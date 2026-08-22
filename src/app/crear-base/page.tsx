@@ -2,16 +2,26 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const MapSelector = dynamic(() => import("@/components/MapSelector"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[400px] w-full bg-slate-200 animate-pulse rounded-lg flex items-center justify-center">
+      <p className="text-slate-500">Cargando mapa explorador...</p>
+    </div>
+  ),
+});
 
 export default function CrearBasePage() {
   const [mensaje, setMensaje] = useState("");
 
   const handleCrearBase = (coords: any) => {
     setMensaje(
-      `Has elegido tu base en: ${coords.lat.toFixed(4)}, ${coords.lng.toFixed(
-        4
-      )}`
+      `Has elegido tu base en: ${coords.lat.toFixed(4)}, ${coords.lng.toFixed(4)}. Enviando exploradores a revisar la zona.`
     );
+
+    
   };
 
   return (
@@ -23,17 +33,14 @@ export default function CrearBasePage() {
             ← Volver
           </Link>
         </div>
-        <p className="mb-4">Elige donde quieres asentar tu base.</p>
-        <div className="h-[400px] w-full bg-slate-300 rounded-lg border-2 border-dashed border-slate-400 flex items-center justify-center">
-          <p className="text-slate-500">🚧 Componente MapSelector</p>
-        </div>
-        
+        <p className="mb-4">Elige donde quieres asentar tu base.</p>        
+        <MapSelector onSaveLocation={handleCrearBase} />
+
         {mensaje && (
           <div className="mt-4 p-4 bg-green-100 text-green-800 rounded-lg border border-green-200">
             {mensaje}
           </div>
         )}
-
       </div>
     </main>
   );
