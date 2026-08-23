@@ -6,22 +6,35 @@ import dynamic from "next/dynamic";
 
 const MapSelector = dynamic(() => import("@/components/MapSelector"), {
   ssr: false,
-  loading: () => (
-    <div className="h-[400px] w-full bg-slate-200 animate-pulse rounded-lg flex items-center justify-center">
-      <p className="text-slate-500">Cargando mapa explorador...</p>
-    </div>
-  ),
+  loading: () => <p className="p-4">Cargando mapa...</p>,
 });
 
 export default function CrearBasePage() {
   const [mensaje, setMensaje] = useState("");
+  const [cargando, setCargando] = useState(false);
 
-  const handleCrearBase = (coords: any) => {
-    setMensaje(
-      `Has elegido tu base en: ${coords.lat.toFixed(4)}, ${coords.lng.toFixed(4)}. Enviando exploradores a revisar la zona.`
-    );
+  const handleCrearBase = async (coords: { lat: number; lng: number }) => {
+    setCargando(true);
+    setMensaje("Analizando el terreno con exploradores...");
 
-    
+    try {
+      const res = await fetch("/api/validar-ubicacion", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(coords),
+      });
+
+      const data = await res.json();
+      setMensaje(data.mensaje);
+
+      if (data.esTierra) {
+        console.log("Coordenada correcta:", coords);
+      }
+    } catch (error) {
+      setMensaje("Error al validar ubicación.");
+    } finally {
+      setCargando(false);
+    }
   };
 
   return (
@@ -33,11 +46,12 @@ export default function CrearBasePage() {
             ← Volver
           </Link>
         </div>
-        <p className="mb-4">Elige donde quieres asentar tu base.</p>        
+        <p className="mb-4">Elige donde quieres asentar tu base.</p>
+
         <MapSelector onSaveLocation={handleCrearBase} />
 
         {mensaje && (
-          <div className="mt-4 p-4 bg-green-100 text-green-800 rounded-lg border border-green-200">
+          <div className={`mt-4 p-4 rounded-lg border ${cargando ? 'bg-blue-50 border-blue-200 text-blue-800' : 'bg-white border-slate-300 text-slate-800'}`}>
             {mensaje}
           </div>
         )}
