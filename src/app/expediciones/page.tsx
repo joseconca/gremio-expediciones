@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { useGameStore } from "@/store/useGameStore";
 
 const MissionMap = dynamic(() => import("@/components/MissionMap"), {
   ssr: false,
@@ -16,7 +17,7 @@ const misionesCercanas = [
     lng: -3.65,
     nombre: "Campamento Goblin",
     dificultad: 0,
-    tiempo: 2,
+    tiempo: 0.01,
     recompensa: 50,
     desc: "Un grupo de goblins ha estado asaltando caravanas.",
   },
@@ -47,6 +48,7 @@ export default function ExpedicionesPage() {
   const [viajeIniciado, setViajeIniciado] = useState(false);
   const [cargando, setCargando] = useState(false);
   const [reporteViaje, setReporteViaje] = useState<any>(null);
+  const iniciarExpedicion = useGameStore((state) => state.iniciarExpedicion);
 
   const handleEnviarExpedicion = async () => {
     setCargando(true);
@@ -63,6 +65,13 @@ export default function ExpedicionesPage() {
       if (data.exito) {
         setReporteViaje(data);
         setViajeIniciado(true);
+
+        iniciarExpedicion({
+          idMision: misionSeleccionada.id,
+          nombre: misionSeleccionada.nombre,
+          recompensa: misionSeleccionada.recompensa,
+          fechaLlegada: data.fechaLlegada,
+        });
       }
     } catch (error) {
       console.error("Error al enviar expedición");

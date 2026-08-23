@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useGameStore } from "@/store/useGameStore";
 
@@ -37,28 +38,96 @@ const baseDatos = {
 
 export default function BasePage() {
   // Estado para la UI
-  const { oro, personaje } = useGameStore();
+  const { oro, personaje, expedicionActiva, finalizarExpedicion } =
+    useGameStore();
+
+  const [tiempoRestante, setTiempoRestante] = useState<number>(0);
+  const [listoParaResolver, setListoParaResolver] = useState(false);
+
+  useEffect(() => {
+    if (!expedicionActiva) return;
+
+    const calcularTiempo = () => {
+      const ahora = new Date().getTime();
+      const llegada = new Date(expedicionActiva.fechaLlegada).getTime();
+      const diferencia = llegada - ahora;
+
+      if (diferencia <= 0) {
+        setTiempoRestante(0);
+        setListoParaResolver(true);
+      } else {
+        setTiempoRestante(Math.floor(diferencia / 1000)); // Guardamos en segundos
+        setListoParaResolver(false);
+      }
+    };
+
+    calcularTiempo(); // Llamar inmediatamente
+    const intervalo = setInterval(calcularTiempo, 1000); // Actualizar cada segundo
+
+    return () => clearInterval(intervalo);
+  }, [expedicionActiva]);
+
+  const handleCompletarMision = () => {
+    // Simulamos que pierde 20 HP y gana el oro de la misión
+    finalizarExpedicion(20, expedicionActiva?.recompensa || 0);
+  };
+
+  // Formatear segundos a MM:SS
+  const formatoTiempo = (segundos: number) => {
+    const m = Math.floor(segundos / 60);
+    const s = segundos % 60;
+    return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+  };
 
   return (
     <main className="min-h-screen bg-slate-900 text-slate-100 p-4 md:p-8 font-sans">
       <div className="max-w-4xl mx-auto">
+        
+        {/* PANEL DE MISIONES DINÁMICO */}
         {personaje && (
-          <div className="mb-8 p-6 bg-gradient-to-r from-slate-800 to-slate-900 border border-amber-500/30 rounded-xl flex items-center justify-between shadow-lg">
-            <div>
-              <h2 className="text-xl font-bold text-white mb-1">
-                Mesa de Misiones
-              </h2>
-              <p className="text-slate-400 text-sm">
-                {personaje.nombre} ({personaje.hpActual}/{personaje.hpMaximo}{" "}
-                HP) está listo para partir.
-              </p>
-            </div>
-            <Link
-              href="/expediciones"
-              className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-transform active:scale-95"
-            >
-              🗺️ Abrir Mapa
-            </Link>
+          <div className="mb-8 p-6 bg-gradient-to-r from-slate-800 to-slate-900 border border-amber-500/30 rounded-xl shadow-lg">
+            <h2 className="text-xl font-bold text-white mb-4">Mesa de Misiones</h2>
+            
+            {personaje.estado === 'ocioso' && (
+              <div className="flex items-center justify-between">
+                <p className="text-slate-400 text-sm">
+                  {personaje.nombre} ({personaje.hpActual}/{personaje.hpMaximo} HP) está listo para partir.
+                </p>
+                <Link href="/expediciones" className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-6 rounded-lg transition-transform active:scale-95">
+                  🗺️ Abrir Mapa
+                </Link>
+              </div>
+            )}
+
+            {personaje.estado === 'en_mision' && expedicionActiva && (
+              <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-700 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div>
+                  <p className="text-amber-400 font-bold">{expedicionActiva.nombre}</p>
+                  <p className="text-slate-400 text-sm">
+                    {listoParaResolver ? "¡La expedición ha llegado a su destino!" : "Aventurero en camino..."}
+                  </p>
+                </div>
+                
+                {listoParaResolver ? (
+                  <button 
+                    onClick={handleCompletarMision}
+                    className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-6 rounded-lg animate-pulse"
+                  >
+                    ⚔️ Resolver Combate
+                  </button>
+                ) : (
+                  <div className="text-center font-mono text-2xl text-slate-300 bg-slate-950 px-4 py-2 rounded-lg border border-slate-800">
+                    ⏳ {formatoTiempo(tiempoRestante)}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {personaje.estado === 'descansando' && (
+              <div className="text-red-400 font-bold">
+                {personaje.nombre} está gravemente herido y necesita descansar.
+              </div>
+            )}
           </div>
         )}
 
