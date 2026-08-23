@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 
 const MapSelector = dynamic(() => import("@/components/MapSelector"), {
   ssr: false,
@@ -12,6 +13,7 @@ const MapSelector = dynamic(() => import("@/components/MapSelector"), {
 export default function CrearBasePage() {
   const [mensaje, setMensaje] = useState("");
   const [cargando, setCargando] = useState(false);
+  const router = useRouter();
 
   const handleCrearBase = async (coords: { lat: number; lng: number }) => {
     setCargando(true);
@@ -27,8 +29,10 @@ export default function CrearBasePage() {
       const data = await res.json();
       setMensaje(data.mensaje);
 
-      if (data.esTierra) {
-        console.log("Coordenada correcta:", coords);
+      if (data.esValido) {
+        setTimeout(() => {
+          router.push("/base");
+        }, 2000);
       }
     } catch (error) {
       setMensaje("Error al validar ubicación.");
@@ -51,7 +55,13 @@ export default function CrearBasePage() {
         <MapSelector onSaveLocation={handleCrearBase} />
 
         {mensaje && (
-          <div className={`mt-4 p-4 rounded-lg border ${cargando ? 'bg-blue-50 border-blue-200 text-blue-800' : 'bg-white border-slate-300 text-slate-800'}`}>
+          <div
+            className={`mt-4 p-4 rounded-lg border ${
+              cargando
+                ? "bg-blue-50 border-blue-200 text-blue-800"
+                : "bg-white border-slate-300 text-slate-800"
+            }`}
+          >
             {mensaje}
           </div>
         )}
