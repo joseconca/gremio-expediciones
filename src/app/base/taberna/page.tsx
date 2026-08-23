@@ -97,7 +97,7 @@ export default function TabernaPage() {
             <div className="text-4xl mb-6">🍺</div>
           </div>
         ) : (
-          /* SI NO HAY PERSONAJE, MOSTRAMOS TU FORMULARIO */
+          /* SI NO HAY PERSONAJE, MOSTRAMOS EL FORMULARIO */
           <form onSubmit={handleReclutar} className="space-y-8">
             {/* Selección de Clase */}
             <div>

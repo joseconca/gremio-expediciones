@@ -149,13 +149,19 @@ export default function ExpedicionesPage() {
                 </span>
               </div>
             </div>
-
+            {cargando ?
             <button
+              onClick={handleEnviarExpedicion}
+              className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 rounded-xl shadow-lg transition-colors text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+               Preparando equipo...
+            </button>
+            : <button
               onClick={handleEnviarExpedicion}
               className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 rounded-xl shadow-lg transition-colors text-lg"
             >
               Enviar Aventurero
-            </button>
+            </button>}
           </div>
         </div>
       )}
