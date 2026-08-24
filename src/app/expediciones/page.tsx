@@ -71,6 +71,7 @@ export default function ExpedicionesPage() {
           nombre: misionSeleccionada.nombre,
           recompensa: misionSeleccionada.recompensa,
           fechaLlegada: data.fechaLlegada,
+          dificultad: misionSeleccionada.dificultad,
         });
       }
     } catch (error) {
@@ -133,7 +134,7 @@ export default function ExpedicionesPage() {
                 </span>
                 <span
                   className={`font-bold ${
-                    misionSeleccionada.dificultad === "Alta"
+                    misionSeleccionada.dificultad >= 2
                       ? "text-red-500"
                       : "text-green-500"
                   }`}

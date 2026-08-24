@@ -29,12 +29,14 @@ export function resolverExpedicion(
   // Tirada de dados (RNG)
   const tiradaDestino = Math.floor(Math.random() * 100) + 1;
   const haSobrevivido = tiradaDestino <= probabilidadSupervivencia;
+  console.log("Misión de dificultad:", mision.dificultad);
+  console.log(tiradaDestino, probabilidadSupervivencia, haSobrevivido);
 
   // Resolución
   if (haSobrevivido) {
     // Oro
     const variacion = 0.8 + Math.random() * 0.4;
-    botinObtenido = Math.floor(mision.recompensaBase * variacion);
+    botinObtenido = Math.floor(mision.recompensa * variacion);
 
     if (personaje.clase === "Mercader")
       botinObtenido = Math.floor(botinObtenido * 1.25);
