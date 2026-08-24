@@ -28,9 +28,16 @@ export function resolverExpedicion(
 
   // Tirada de dados (RNG)
   const tiradaDestino = Math.floor(Math.random() * 100) + 1;
-  const haSobrevivido = tiradaDestino <= probabilidadSupervivencia;
+  const tiradaFalloCritico = Math.floor(Math.random() * 100) + 1;
+  var haSobrevivido = tiradaDestino <= probabilidadSupervivencia;
+  if (haSobrevivido) {    
+    if (tiradaFalloCritico < 5) {
+      haSobrevivido = false;
+    }
+  }
+  
   console.log("Misión de dificultad:", mision.dificultad);
-  console.log(tiradaDestino, probabilidadSupervivencia, haSobrevivido);
+  console.log(tiradaDestino, "<=", probabilidadSupervivencia, "~", tiradaFalloCritico, haSobrevivido);
 
   // Resolución
   if (haSobrevivido) {
