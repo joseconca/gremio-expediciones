@@ -17,10 +17,8 @@ export default function HerreriaPage() {
 
   if (!personaje || edificios.herreria.nivel === 0) return null;
 
-  // El nivel máximo de los atributos depende del nivel del edificio
   const statMaximo = edificios.herreria.nivel * 10;
 
-  // Calculamos un coste dinámico según el nivel actual del atributo
   const costeAtaque = personaje.ataque * 20;
   const costeDefensa = personaje.defensa * 20;
 
@@ -43,7 +41,7 @@ export default function HerreriaPage() {
           ← Volver
         </Link>
         <h1 className="text-3xl font-bold text-white flex items-center gap-2">
-          <span>🔨</span> Herrería (Nvl. {edificios.herreria.nivel})
+          <span>🔨</span> Herrería {edificios.herreria.nivel}
         </h1>
       </div>
 
@@ -52,7 +50,7 @@ export default function HerreriaPage() {
         <div className="bg-slate-800 border-2 border-slate-700 rounded-xl p-6 shadow-xl flex flex-col">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-bold text-red-400">Afilar Arma</h2>
-            <span className="text-2xl font-mono text-white">ATK: {personaje.ataque}</span>
+            <span className="text-2xl font-mono text-white">Ataque: {personaje.ataque}</span>
           </div>
           <p className="text-slate-400 text-sm mb-6 flex-grow">
             Afila el arma. Aumenta el daño realizado.
@@ -72,7 +70,7 @@ export default function HerreriaPage() {
                   : "bg-slate-700 text-slate-500 cursor-not-allowed"
               }`}
             >
-              <span>Mejorar (+1 ATK)</span>
+              <span>Mejorar</span>
               <span>{costeAtaque} 🪙</span>
             </button>
           )}
@@ -82,7 +80,7 @@ export default function HerreriaPage() {
         <div className="bg-slate-800 border-2 border-slate-700 rounded-xl p-6 shadow-xl flex flex-col">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-bold text-blue-400">Reforzar Armadura</h2>
-            <span className="text-2xl font-mono text-white">DEF: {personaje.defensa}</span>
+            <span className="text-2xl font-mono text-white">Defensa: {personaje.defensa}</span>
           </div>
           <p className="text-slate-400 text-sm mb-6 flex-grow">
             Templa y remienda la armadura. Reduce el daño recibido.
@@ -102,7 +100,7 @@ export default function HerreriaPage() {
                   : "bg-slate-700 text-slate-500 cursor-not-allowed"
               }`}
             >
-              <span>Mejorar (+1 DEF)</span>
+              <span>Mejorar</span>
               <span>{costeDefensa} 🪙</span>
             </button>
           )}
