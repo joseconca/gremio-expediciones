@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id               String    @id @default(uuid())
+  email            String    @unique 
+  nombre           String    @unique
+  password         String
+  oro              Int       @default(10)
+  baseLat          Float?    
+  baseLng          Float?
+  
+  // Guardaremos los niveles así: {"taberna": 1, "herreria": 0, "mercado": 0}
+  nivelesEdificios Json      @default("{\"taberna\": 1, \"herreria\": 0, \"mercado\": 0}")
+  
+  // Relaciones
+  personaje        Personaje?
+  expedicion       ExpedicionActiva?
+  historial        RegistroAccion[]
+}
+
+model Personaje {
+  id                String   @id @default(uuid())
+  usuarioId         String   @unique
+  usuario           Usuario  @relation(fields: [usuarioId], references: [id])
+  
+  clase             String
+  hpActual          Int
+  hpMaximo          Int
+  estado            String   @default("ocioso") // ocioso, en_mision, descansando
+  ataque            Int
+  defensa           Int
+  velocidad         Int
+  capacidadCarruaje Int
+}
+
+model ExpedicionActiva {
+  id           String   @id @default(uuid())
+  usuarioId    String   @unique
+  usuario      Usuario  @relation(fields: [usuarioId], references: [id])
+  
+  misionId     Int
+  nombre       String
+  recompensa   Int
+  dificultad   Int
+  fechaLlegada DateTime 
+  latDestino   Float    
+  lngDestino   Float
+}
+
+model RegistroAccion {
+  id          String   @id @default(uuid())
+  usuarioId   String
+  usuario     Usuario  @relation(fields: [usuarioId], references: [id])
+  
+  tipo        String   // Ej: "EXPEDICION_TERMINADA", "MEJORA_EDIFICIO", "CURACION"
+  detalle     String   // Ej: "El personaje sanó 20 HP en la taberna por 15 de oro"
+  fecha       DateTime @default(now())
+}
