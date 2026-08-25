@@ -6,13 +6,10 @@ export interface Personaje {
   hpActual: number;
   hpMaximo: number;
   estado: "ocioso" | "en_mision" | "descansando";
-  armaEquipada?: Arma | null;
-}
-
-export interface Arma {
-  nombre: string;
-  bonoAtaque: number;
-  bonoDano: number;
+  ataque: number;
+  defensa: number;
+  velocidad: number;
+  capacidadCarruaje: number;
 }
 
 export interface Edificio {
@@ -38,16 +35,20 @@ export interface GameState {
   expedicionActiva: ExpedicionActiva | null;
 
   reclutarPersonaje: (personaje: Personaje) => void;
-
   iniciarExpedicion: (expedicion: ExpedicionActiva) => void;
   finalizarExpedicion: (hpPerdido: number, oroGanado: number) => void;
-
   curarPersonaje: (costeOro: number, curaHp: number) => boolean;
-
   gastarOro: (cantidad: number) => boolean;
   ganarOro: (cantidad: number) => void;
 
-  comprarArma: (arma: Arma, costeOro: number) => boolean;
+  mejorarAtributo: (
+    atributo: keyof Pick<
+      Personaje,
+      "ataque" | "defensa" | "velocidad" | "capacidadCarruaje"
+    >,
+    coste: number,
+    cantidad: number
+  ) => boolean;
 
   edificios: Record<string, Edificio>;
   mejorarEdificio: (idEdificio: string) => boolean;
@@ -55,7 +56,7 @@ export interface GameState {
 }
 
 export const useGameStore = create<GameState>((set, get) => ({
-  oro: 50,
+  oro: 600,
   personaje: null,
   expedicionActiva: null,
 
@@ -71,22 +72,18 @@ export const useGameStore = create<GameState>((set, get) => ({
 
   curarPersonaje: (costeOro, curaHp) => {
     const state = get();
-
     const nivelTaberna = state.edificios.taberna.nivel;
     const descuento = 1 - (nivelTaberna - 1) * 0.1;
     const costeFinal = Math.max(1, Math.floor(costeOro * descuento));
 
     if (!state.personaje || state.oro < costeOro) return false;
-
-    const hpActual = state.personaje.hpActual;
-    const hpMaximo = state.personaje.hpMaximo;
-
+    const { hpActual, hpMaximo } = state.personaje;
     if (hpActual >= hpMaximo) return false;
 
     const nuevoHp = Math.min(hpMaximo, hpActual + curaHp);
 
     set({
-      oro: state.oro - costeOro,
+      oro: state.oro - costeFinal,
       personaje: {
         ...state.personaje,
         hpActual: nuevoHp,
@@ -127,15 +124,15 @@ export const useGameStore = create<GameState>((set, get) => ({
     set((state) => ({ oro: state.oro + cantidad }));
   },
 
-  comprarArma: (arma, costeOro) => {
+  mejorarAtributo: (atributo, coste, cantidad) => {
     const state = get();
-    if (!state.personaje || state.oro < costeOro) return false;
+    if (!state.personaje || state.oro < coste) return false;
 
     set({
-      oro: state.oro - costeOro,
+      oro: state.oro - coste,
       personaje: {
         ...state.personaje,
-        armaEquipada: arma,
+        [atributo]: state.personaje[atributo] + cantidad,
       },
     });
     return true;
@@ -144,26 +141,26 @@ export const useGameStore = create<GameState>((set, get) => ({
   edificios: {
     taberna: {
       id: "taberna",
-      nombre: "Taberna del Jabalí",
+      nombre: "Taberna",
       nivel: 1,
-      costeBase: 50,
-      descripcion: "Reduce el coste de curación un 10% por nivel.",
-      nivelMax: 3,
-    },
-    forja: {
-      id: "forja",
-      nombre: "Forja Enana",
-      nivel: 0,
       costeBase: 100,
-      descripcion: "Permite comprar armamento. A más nivel, mejores armas.",
+      descripcion: "Ayuda a descansar a los aventureros.",
       nivelMax: 3,
     },
-    gremio: {
-      id: "gremio",
-      nombre: "Gremio de Aventureros",
+    herreria: {
+      id: "herreria",
+      nombre: "Herrería",
       nivel: 0,
       costeBase: 150,
-      descripcion: "Otorga un +10% de oro extra en misiones por nivel.",
+      descripcion: "Permite mejorar el armamento.",
+      nivelMax: 3,
+    },
+    mercado: {
+      id: "mercado",
+      nombre: "Puesto comercial",
+      nivel: 0,
+      costeBase: 200,
+      descripcion: "Mejora el carruaje para las expediciones.",
       nivelMax: 3,
     },
   },
@@ -177,19 +174,16 @@ export const useGameStore = create<GameState>((set, get) => ({
     const state = get();
     const coste = state.obtenerCosteMejora(idEdificio);
     const edificio = state.edificios[idEdificio];
-    const nivelActual = edificio.nivel;
-    const nivelMax = edificio.nivelMax;
-    if (nivelActual <= nivelMax) {
-      if (state.oro >= coste) {
-        set({
-          oro: state.oro - coste,
-          edificios: {
-            ...state.edificios,
-            [idEdificio]: { ...edificio, nivel: edificio.nivel + 1 },
-          },
-        });
-        return true;
-      }
+
+    if (edificio.nivel < edificio.nivelMax && state.oro >= coste) {
+      set({
+        oro: state.oro - coste,
+        edificios: {
+          ...state.edificios,
+          [idEdificio]: { ...edificio, nivel: edificio.nivel + 1 },
+        },
+      });
+      return true;
     }
     return false;
   },
