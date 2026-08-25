@@ -8,8 +8,8 @@ import { resolverExpedicion, ResultadoCombate } from "@/lib/resolucionCombate";
 //simular datos de bbdd
 const UI_EDIFICIOS: Record<string, { color: string; ruta: string }> = {
   taberna: { color: "bg-amber-700", ruta: "/base/taberna" },
-  forja: { color: "bg-slate-600", ruta: "/base/forja" },
-  gremio: { color: "bg-emerald-700", ruta: "/base/gremio" },
+  herreria: { color: "bg-slate-600", ruta: "/base/herreria" },
+  mercado: { color: "bg-emerald-700", ruta: "/base/mercado" },
 };
 
 export default function BasePage() {

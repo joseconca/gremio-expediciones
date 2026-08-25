@@ -56,6 +56,10 @@ export default function TabernaPage() {
       hpActual: 100,
       hpMaximo: 100,
       estado: "ocioso",
+      ataque: 5,
+      defensa: 5,
+      capacidadCarruaje: 1,
+      velocidad: 1
     });
 
     setMensaje(
