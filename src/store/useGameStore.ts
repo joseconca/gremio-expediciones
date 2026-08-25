@@ -6,6 +6,13 @@ export interface Personaje {
   hpActual: number;
   hpMaximo: number;
   estado: "ocioso" | "en_mision" | "descansando";
+  armaEquipada?: Arma | null;
+}
+
+export interface Arma {
+  nombre: string;
+  bonoAtaque: number;
+  bonoDano: number;
 }
 
 export interface ExpedicionActiva {
@@ -16,7 +23,7 @@ export interface ExpedicionActiva {
   dificultad: number;
 }
 
-interface GameState {
+export interface GameState {
   oro: number;
   personaje: Personaje | null;
   expedicionActiva: ExpedicionActiva | null;
@@ -30,6 +37,8 @@ interface GameState {
 
   gastarOro: (cantidad: number) => boolean;
   ganarOro: (cantidad: number) => void;
+
+  comprarArma: (arma: Arma, costeOro: number) => boolean;
 }
 
 export const useGameStore = create<GameState>((set, get) => ({
@@ -99,5 +108,19 @@ export const useGameStore = create<GameState>((set, get) => ({
 
   ganarOro: (cantidad) => {
     set((state) => ({ oro: state.oro + cantidad }));
+  },
+
+  comprarArma: (arma, costeOro) => {
+    const state = get();
+    if (!state.personaje || state.oro < costeOro) return false;
+
+    set({
+      oro: state.oro - costeOro,
+      personaje: {
+        ...state.personaje,
+        armaEquipada: arma,
+      },
+    });
+    return true;
   },
 }));
