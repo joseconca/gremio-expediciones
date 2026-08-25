@@ -2,7 +2,14 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    const { mision } = await request.json();
+    const { mision, tiempoHoras } = await request.json();
+
+if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number') {
+        return NextResponse.json(
+        { exito: false, mensaje: 'Datos de la misión inválidos.' },
+        { status: 400 }
+      );
+    }
 
     // Consultar el clima real en las coordenadas de la misión
     const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${mision.lat}&longitude=${mision.lng}&current_weather=true`;
@@ -29,15 +36,12 @@ export async function POST(request: Request) {
     }
 
     // Calcular la fecha y hora exacta de llegada
-    const horasBase = mision.tiempo; 
+    const horasBase = tiempoHoras; 
     const horasReales = horasBase * multiplicadorTiempo;
     
     const ahora = Date.now();
     const tiempoViajeMs = horasReales * 60 * 60 * 1000;
     const fechaLlegada = new Date(ahora + tiempoViajeMs);
-
-    
-    // SIMULACIÓN DE GUARDADO EN BASE DE DATOS await db.insert('expeditions').values({ characterId, targetLat, arrivalTime: fechaLlegada... })
 
     return NextResponse.json({
       exito: true,

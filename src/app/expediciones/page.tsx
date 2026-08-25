@@ -1,54 +1,88 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useGameStore } from "@/store/useGameStore";
+import { useRouter } from "next/navigation";
 
 const MissionMap = dynamic(() => import("@/components/MissionMap"), {
   ssr: false,
 });
 
-const miBase = { lat: 40.4168, lng: -3.7038 };
-const misionesCercanas = [
-  {
-    id: 1,
-    lat: 40.45,
-    lng: -3.65,
-    nombre: "Campamento Goblin",
-    dificultad: 0,
-    tiempo: 0.01,
-    recompensa: 50,
-    desc: "Un grupo de goblins ha estado asaltando caravanas.",
-  },
-  {
-    id: 2,
-    lat: 40.38,
-    lng: -3.78,
-    nombre: "Ruinas Antiguas",
-    dificultad: 1,
-    tiempo: 5,
-    recompensa: 120,
-    desc: "Explora los sótanos de esta torre derruida.",
-  },
-  {
-    id: 3,
-    lat: 40.5,
-    lng: -3.8,
-    nombre: "Bestia del Camino",
-    dificultad: 2,
-    tiempo: 8,
-    recompensa: 300,
-    desc: "Una criatura enorme bloquea el paso.",
-  },
-];
+function calcularDistanciaKm(lat1: number, lon1: number, lat2: number, lon2: number) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * (Math.PI / 180);
+  const dLon = (lon2 - lon1) * (Math.PI / 180);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * (Math.PI / 180)) *
+      Math.cos(lat2 * (Math.PI / 180)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
 
 export default function ExpedicionesPage() {
+  const router = useRouter();
+  const { baseCoords, personaje, iniciarExpedicion } = useGameStore();
+
   const [misionSeleccionada, setMisionSeleccionada] = useState<any>(null);
   const [viajeIniciado, setViajeIniciado] = useState(false);
   const [cargando, setCargando] = useState(false);
   const [reporteViaje, setReporteViaje] = useState<any>(null);
-  const iniciarExpedicion = useGameStore((state) => state.iniciarExpedicion);
+
+  if (!baseCoords) {
+    if (typeof window !== "undefined") router.push("/crear-base");
+    return null;
+  }
+
+  const misionesGeneradas = useMemo(() => {
+    return [
+      {
+        id: 1,
+        lat: baseCoords.lat + 0.05,
+        lng: baseCoords.lng - 0.05,
+        nombre: "Campamento Goblin",
+        dificultad: 0,
+        recompensa: 50,
+        desc: "Un grupo de goblins ha estado asaltando caravanas.",
+      },
+      {
+        id: 2,
+        lat: baseCoords.lat - 0.08,
+        lng: baseCoords.lng + 0.02,
+        nombre: "Ruinas Antiguas",
+        dificultad: 1,
+        recompensa: 120,
+        desc: "Explora los sótanos de esta torre derruida.",
+      },
+      {
+        id: 3,
+        lat: baseCoords.lat + 0.1,
+        lng: baseCoords.lng + 0.12,
+        nombre: "Bestia del Camino",
+        dificultad: 2,
+        recompensa: 300,
+        desc: "Una criatura enorme bloquea el paso.",
+      },
+    ];
+  }, [baseCoords]);
+
+  let distanciaKm = 0;
+  let tiempoHoras = 0;
+  let textoTiempo = "Calculando...";
+
+  if (misionSeleccionada && personaje) {
+    const velocidadKmh = 5.9 + personaje.velocidad * 0.1;
+    distanciaKm = calcularDistanciaKm(baseCoords.lat, baseCoords.lng, misionSeleccionada.lat, misionSeleccionada.lng);
+    tiempoHoras = distanciaKm / velocidadKmh;
+
+    const horas = Math.floor(tiempoHoras);
+    const minutos = Math.round((tiempoHoras - horas) * 60);
+    textoTiempo = `${horas}h ${minutos}m`;
+  }
 
   const handleEnviarExpedicion = async () => {
     setCargando(true);
@@ -57,7 +91,7 @@ export default function ExpedicionesPage() {
       const res = await fetch("/api/iniciar-expedicion", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mision: misionSeleccionada }),
+        body: JSON.stringify({ mision: misionSeleccionada, tiempoHoras: tiempoHoras }),
       });
 
       const data = await res.json();
@@ -83,7 +117,6 @@ export default function ExpedicionesPage() {
 
   return (
     <main className="relative h-screen w-full bg-slate-900 overflow-hidden font-sans">
-      {/* Header superpuesto */}
       <header className="absolute top-0 left-0 w-full z-10 p-4 pointer-events-none">
         <div className="flex justify-between items-center max-w-4xl mx-auto pointer-events-auto">
           <Link
@@ -101,8 +134,8 @@ export default function ExpedicionesPage() {
       {/* Capa del Mapa */}
       <div className="absolute inset-0 z-0">
         <MissionMap
-          baseCoords={miBase}
-          misiones={misionesCercanas}
+          baseCoords={baseCoords}
+          misiones={misionesGeneradas}
           onSelectMission={setMisionSeleccionada}
         />
       </div>
@@ -129,9 +162,7 @@ export default function ExpedicionesPage() {
 
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="bg-slate-900 rounded p-2 text-center border border-slate-700">
-                <span className="block text-xs text-slate-400 uppercase">
-                  Dificultad
-                </span>
+                <span className="block text-xs text-slate-400 uppercase">Dificultad</span>
                 <span
                   className={`font-bold ${
                     misionSeleccionada.dificultad >= 2
@@ -155,23 +186,17 @@ export default function ExpedicionesPage() {
                   Duración del Viaje
                 </span>
                 <span className="font-bold text-blue-400">
-                  {misionSeleccionada.tiempo} horas
+                  {textoTiempo}
                 </span>
               </div>
             </div>
-            {cargando ?
             <button
               onClick={handleEnviarExpedicion}
+              disabled={cargando || !personaje}
               className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 rounded-xl shadow-lg transition-colors text-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
-               Preparando equipo...
+              {cargando ? "Preparando equipo..." : "Enviar Aventurero"}
             </button>
-            : <button
-              onClick={handleEnviarExpedicion}
-              className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 rounded-xl shadow-lg transition-colors text-lg"
-            >
-              Enviar Aventurero
-            </button>}
           </div>
         </div>
       )}
@@ -185,29 +210,14 @@ export default function ExpedicionesPage() {
 
           <div className="bg-slate-800 p-6 rounded-xl border border-slate-700 max-w-sm w-full mb-8 shadow-xl">
             <p className="text-slate-300 mb-4">
-              Tu personaje ha partido hacia{" "}
-              <strong className="text-white">
-                {misionSeleccionada?.nombre}
-              </strong>
-              .
+              Tu personaje ha partido hacia <strong className="text-white">{misionSeleccionada?.nombre}</strong>.
             </p>
 
             <div className="bg-slate-900 rounded p-4 border border-slate-700 text-sm">
-              <p className="text-slate-400 uppercase text-xs mb-1">
-                Reporte Meteorológico
-              </p>
-              <p className="text-blue-400 font-medium mb-3">
-                {reporteViaje.clima}
-              </p>
-
-              <p className="text-slate-400 uppercase text-xs mb-1">
-                Llegada Estimada
-              </p>
+              <p className="text-slate-400 uppercase text-xs mb-1">Llegada Estimada</p>
               <p className="text-amber-400 font-bold">
                 {new Date(reporteViaje.fechaLlegada).toLocaleString("es-ES", {
-                  weekday: "long",
-                  hour: "2-digit",
-                  minute: "2-digit",
+                  weekday: "long", hour: "2-digit", minute: "2-digit",
                 })}
               </p>
             </div>
