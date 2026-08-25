@@ -119,7 +119,7 @@ export function resolverExpedicion(
     if (personaje.clase === "Mercader")
       botinObtenido = Math.floor(botinObtenido * 1.25);
 
-    hpPerdido = personaje.hpActual
+    hpPerdido = personaje.hpMaximo - personaje.hpActual
     logCombate.push(
       `${personaje.nombre} ha superado ${mision.nombre} por ${botinObtenido} monedas de oro.`
     );
