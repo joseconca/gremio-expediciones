@@ -41,18 +41,14 @@ export interface GameState {
   gastarOro: (cantidad: number) => boolean;
   ganarOro: (cantidad: number) => void;
 
-  mejorarAtributo: (
-    atributo: keyof Pick<
-      Personaje,
-      "ataque" | "defensa" | "velocidad" | "capacidadCarruaje"
-    >,
-    coste: number,
-    cantidad: number
-  ) => boolean;
-
+  mejorarAtributo: (atributo: keyof Pick<Personaje,"ataque" | "defensa" | "velocidad" | "capacidadCarruaje">, coste: number, cantidad: number) => boolean;
+  
   edificios: Record<string, Edificio>;
   mejorarEdificio: (idEdificio: string) => boolean;
   obtenerCosteMejora: (idEdificio: string) => number;
+
+  baseCoords: { lat: number; lng: number } | null;
+  establecerBase: (coords: { lat: number; lng: number }) => void;
 }
 
 export const useGameStore = create<GameState>((set, get) => ({
@@ -187,4 +183,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     }
     return false;
   },
+  
+  baseCoords: null,
+  establecerBase: (coords) => set({ baseCoords: coords }),
 }));

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
+import { useGameStore } from "@/store/useGameStore";
 
 const MapSelector = dynamic(() => import("@/components/MapSelector"), {
   ssr: false,
@@ -14,6 +15,7 @@ export default function CrearBasePage() {
   const [mensaje, setMensaje] = useState("");
   const [cargando, setCargando] = useState(false);
   const router = useRouter();
+  const establecerBase = useGameStore((state) => state.establecerBase);
 
   const handleCrearBase = async (coords: { lat: number; lng: number }) => {
     setCargando(true);
@@ -30,6 +32,7 @@ export default function CrearBasePage() {
       setMensaje(data.mensaje);
 
       if (data.esValido) {
+        establecerBase(coords);
         setTimeout(() => {
           router.push("/base");
         }, 2000);
