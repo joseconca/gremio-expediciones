@@ -61,7 +61,7 @@ export function resolverExpedicion(
 
       logCombate.push(logTurno);
 
-      logTurno = "--";
+      logTurno = "-- ";
 
       // TURNO DEL ENEMIGO
       const tiradaEnemigo = d20();

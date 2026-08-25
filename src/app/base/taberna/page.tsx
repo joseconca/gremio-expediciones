@@ -126,7 +126,7 @@ export default function TabernaPage() {
                           : "text-emerald-400"
                       }`}
                     >
-                      {personaje.hpActual} / {personaje.hpMaximo} HP
+                      {personaje.hpActual} / {personaje.hpMaximo}
                     </span>
                   </div>
                   <div className="w-full bg-slate-900 rounded-full h-4 border border-slate-700 overflow-hidden">
