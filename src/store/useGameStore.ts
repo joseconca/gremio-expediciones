@@ -1,5 +1,29 @@
 import { create } from "zustand";
 
+const EDIFICIOS_BASE: Record<string, Omit<Edificio, "nivel">> = {
+  taberna: {
+    id: "taberna",
+    nombre: "Taberna",
+    costeBase: 100,
+    descripcion: "Cura a tu personaje",
+    nivelMax: 1,
+  },
+  herreria: {
+    id: "herreria",
+    nombre: "Herrería",
+    costeBase: 200,
+    descripcion: "Mejora atributos",
+    nivelMax: 3,
+  },
+  mercado: {
+    id: "mercado",
+    nombre: "Mercado",
+    costeBase: 500,
+    descripcion: "Comercio",
+    nivelMax: 2,
+  },
+};
+
 export interface Personaje {
   nombre: string;
   clase: string;
@@ -33,28 +57,65 @@ export interface GameState {
   oro: number;
   personaje: Personaje | null;
   expedicionActiva: ExpedicionActiva | null;
+  edificios: Record<string, Edificio>;
+  baseCoords: { lat: number; lng: number } | null;
+  isLoading: boolean;
 
+  cargarJugador: () => Promise<void>;
   reclutarPersonaje: (personaje: Personaje) => void;
   iniciarExpedicion: (expedicion: ExpedicionActiva) => void;
   finalizarExpedicion: (hpPerdido: number, oroGanado: number) => void;
   curarPersonaje: (costeOro: number, curaHp: number) => boolean;
   gastarOro: (cantidad: number) => boolean;
   ganarOro: (cantidad: number) => void;
-
-  mejorarAtributo: (atributo: keyof Pick<Personaje,"ataque" | "defensa" | "velocidad" | "capacidadCarruaje">, coste: number, cantidad: number) => boolean;
-  
-  edificios: Record<string, Edificio>;
+  mejorarAtributo: (
+    atributo: keyof Pick<
+      Personaje,
+      "ataque" | "defensa" | "velocidad" | "capacidadCarruaje"
+    >,
+    coste: number,
+    cantidad: number
+  ) => boolean;
   mejorarEdificio: (idEdificio: string) => boolean;
   obtenerCosteMejora: (idEdificio: string) => number;
-
-  baseCoords: { lat: number; lng: number } | null;
   establecerBase: (coords: { lat: number; lng: number }) => void;
 }
 
 export const useGameStore = create<GameState>((set, get) => ({
-  oro: 600,
+  oro: 0,
   personaje: null,
   expedicionActiva: null,
+  edificios: {
+    taberna: { ...EDIFICIOS_BASE.taberna, nivel: 1 },
+    herreria: { ...EDIFICIOS_BASE.herreria, nivel: 0 },
+    mercado: { ...EDIFICIOS_BASE.mercado, nivel: 0 },
+  },
+  isLoading: true,
+
+  cargarJugador: async () => {
+    try {
+      const respuesta = await fetch("/api/jugador");
+      const datos = await respuesta.json();
+
+      const edificiosCompletos = {
+        taberna: { ...EDIFICIOS_BASE.taberna, nivel: datos.edificios.taberna ?? 1 },
+        herreria: { ...EDIFICIOS_BASE.herreria, nivel: datos.edificios.herreria ?? 0 },
+        mercado: { ...EDIFICIOS_BASE.mercado, nivel: datos.edificios.mercado ?? 0 },
+      };
+
+      set({
+        oro: datos.oro,
+        edificios: edificiosCompletos,
+        personaje: datos.personaje,
+        isLoading: false,
+      });
+
+      console.log(datos.personaje)
+    } catch (error) {
+      console.error("Error al cargar la partida:", error);
+      set({ isLoading: false });
+    }
+  },
 
   reclutarPersonaje: (nuevoPersonaje) => set({ personaje: nuevoPersonaje }),
 
@@ -134,34 +195,8 @@ export const useGameStore = create<GameState>((set, get) => ({
     return true;
   },
 
-  edificios: {
-    taberna: {
-      id: "taberna",
-      nombre: "Taberna",
-      nivel: 1,
-      costeBase: 100,
-      descripcion: "Ayuda a descansar a los aventureros.",
-      nivelMax: 3,
-    },
-    herreria: {
-      id: "herreria",
-      nombre: "Herrería",
-      nivel: 0,
-      costeBase: 150,
-      descripcion: "Permite mejorar el armamento.",
-      nivelMax: 3,
-    },
-    mercado: {
-      id: "mercado",
-      nombre: "Puesto comercial",
-      nivel: 0,
-      costeBase: 200,
-      descripcion: "Mejora el carruaje para las expediciones.",
-      nivelMax: 3,
-    },
-  },
-
   obtenerCosteMejora: (idEdificio) => {
+    console.log(idEdificio)
     const ed = get().edificios[idEdificio];
     return Math.floor(ed.costeBase * (ed.nivel + 1) * 1.5);
   },
@@ -183,7 +218,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     }
     return false;
   },
-  
+
   baseCoords: null,
   establecerBase: (coords) => set({ baseCoords: coords }),
 }));

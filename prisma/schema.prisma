@@ -17,7 +17,7 @@ model Usuario {
   baseLng          Float?
   
   // Guardaremos los niveles así: {"taberna": 1, "herreria": 0, "mercado": 0}
-  nivelesEdificios Json      @default("{\"taberna\": 1, \"herreria\": 0, \"mercado\": 0}")
+  edificios Json      @default("{\"taberna\": 1, \"herreria\": 0, \"mercado\": 0}")
   
   // Relaciones
   personaje        Personaje?
@@ -31,6 +31,7 @@ model Personaje {
   usuario           Usuario  @relation(fields: [usuarioId], references: [id])
   
   clase             String
+  nombre            String
   hpActual          Int
   hpMaximo          Int
   estado            String   @default("ocioso") // ocioso, en_mision, descansando
