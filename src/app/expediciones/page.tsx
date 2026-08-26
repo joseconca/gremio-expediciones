@@ -106,6 +106,7 @@ export default function ExpedicionesPage() {
           recompensa: misionSeleccionada.recompensa,
           fechaLlegada: data.fechaLlegada,
           dificultad: misionSeleccionada.dificultad,
+          destinoCoords: { lat: misionSeleccionada.lat, lng: misionSeleccionada.lng },
         });
       }
     } catch (error) {

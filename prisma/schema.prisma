@@ -19,7 +19,7 @@ model Usuario {
   
   // Relaciones
   personaje        Personaje?
-  expedicion       ExpedicionActiva?
+  expedicionActiva       ExpedicionActiva?
   historial        RegistroAccion[]
 }
 

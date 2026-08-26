@@ -8,7 +8,7 @@ export async function GET() {
     let usuario = await prisma.usuario.findFirst({
       include: {
         personaje: true,
-        expedicion: true,
+        expedicionActiva: true,
       },
     });
 
@@ -19,9 +19,9 @@ export async function GET() {
           email: "test@test.com",
           nombre: "testUser",
           password: "1234",
-          oro: 600,
+          oro: 50,
           edificios: { taberna: 1, herreria: 0, mercado: 0 },
-          /*baseCoords: null,
+          /*baseCoords: null,*/
           personaje: {
             create: {
               clase: "Explorador",
@@ -30,14 +30,14 @@ export async function GET() {
               hpMaximo: 100,
               ataque: 5,
               defensa: 5,
-              velocidad: 200,
+              velocidad: 2000,
               capacidadCarruaje: 50,
             },
-          },*/
+          },
         },
         include: {
           personaje: true,
-          expedicion: true,
+          expedicionActiva: true,
         },
       });
     }
@@ -55,9 +55,14 @@ export async function GET() {
 export async function PATCH(request: Request) {
   try {
     const body = await request.json();
-    const { oro, edificios, personaje, baseCoords } = body;
+    const { oro, edificios, personaje, baseCoords, expedicionActiva } = body;
 
-    const usuario = await prisma.usuario.findFirst();
+    const usuario = await prisma.usuario.findFirst({
+      include: {
+        personaje: true,
+        expedicionActiva: true,
+      },
+    });
 
     if (!usuario) {
       return NextResponse.json(
@@ -72,9 +77,12 @@ export async function PATCH(request: Request) {
       edificios,
     };
 
+    //coordenadas
     if (baseCoords !== undefined) {
       dataToUpdate.baseCoords = baseCoords;
     }
+
+    //personaje
     if (personaje) {
       dataToUpdate.personaje = {
         upsert: {
@@ -90,6 +98,8 @@ export async function PATCH(request: Request) {
             estado: personaje.estado,
           },
           update: {
+            clase: personaje.clase,
+            nombre: personaje.nombre,
             hpActual: personaje.hpActual,
             hpMaximo: personaje.hpMaximo,
             ataque: personaje.ataque,
@@ -102,10 +112,42 @@ export async function PATCH(request: Request) {
       };
     }
 
+    //expedicion
+    if (expedicionActiva !== undefined) {
+      if (expedicionActiva === null) {
+        // Si viene null y existe en BBDD, la borramos (es decir, la misión ha terminado)
+        if (usuario.expedicionActiva) {
+          dataToUpdate.expedicionActiva = { delete: true };
+        }
+      } else {
+        // Si viene con datos, la creamos o actualizamos
+        dataToUpdate.expedicionActiva = {
+          upsert: {
+            create: {
+              misionId: expedicionActiva.idMision,
+              nombre: expedicionActiva.nombre,
+              recompensa: expedicionActiva.recompensa,
+              dificultad: expedicionActiva.dificultad,
+              fechaLlegada: new Date(expedicionActiva.fechaLlegada),
+              destinoCoords: expedicionActiva.destinoCoords || {},
+            },
+            update: {
+              misionId: expedicionActiva.idMision,
+              nombre: expedicionActiva.nombre,
+              recompensa: expedicionActiva.recompensa,
+              dificultad: expedicionActiva.dificultad,
+              fechaLlegada: new Date(expedicionActiva.fechaLlegada),
+              destinoCoords: expedicionActiva.destinoCoords || {},
+            }
+          }
+        };
+      }
+    }
+
     const usuarioActualizado = await prisma.usuario.update({
       where: { id: usuario.id },
       data: dataToUpdate,
-      include: { personaje: true },
+      include: { personaje: true, expedicionActiva: true },
     });
 
     return NextResponse.json(usuarioActualizado);

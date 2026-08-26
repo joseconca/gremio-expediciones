@@ -52,6 +52,7 @@ export interface ExpedicionActiva {
   recompensa: number;
   fechaLlegada: string;
   dificultad: number;
+  destinoCoords: { lat: number; lng: number };
 }
 
 export interface GameState {
@@ -70,7 +71,10 @@ export interface GameState {
   gastarOro: (cantidad: number) => boolean;
   ganarOro: (cantidad: number) => void;
   mejorarAtributo: (
-    atributo: keyof Pick<Personaje, "ataque" | "defensa" | "velocidad" | "capacidadCarruaje">,
+    atributo: keyof Pick<
+      Personaje,
+      "ataque" | "defensa" | "velocidad" | "capacidadCarruaje"
+    >,
     coste: number,
     cantidad: number
   ) => boolean;
@@ -86,7 +90,6 @@ const sincronizarConBD = async (state: GameState) => {
       herreria: state.edificios.herreria.nivel,
       mercado: state.edificios.mercado.nivel,
     };
-
     await fetch("/api/jugador", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -95,7 +98,7 @@ const sincronizarConBD = async (state: GameState) => {
         edificios: nivelesEdificios,
         personaje: state.personaje,
         baseCoords: state.baseCoords,
-        expedicion: state.expedicionActiva,
+        expedicionActiva: state.expedicionActiva,
       }),
     });
   } catch (error) {
@@ -127,17 +130,38 @@ export const useGameStore = create<GameState>((set, get) => ({
       }
 
       const edificiosCompletos = {
-        taberna: { ...EDIFICIOS_BASE.taberna, nivel: datos.edificios?.taberna ?? 1 },
-        herreria: { ...EDIFICIOS_BASE.herreria, nivel: datos.edificios?.herreria ?? 0 },
-        mercado: { ...EDIFICIOS_BASE.mercado, nivel: datos.edificios?.mercado ?? 0 },
+        taberna: {
+          ...EDIFICIOS_BASE.taberna,
+          nivel: datos.edificios?.taberna ?? 1,
+        },
+        herreria: {
+          ...EDIFICIOS_BASE.herreria,
+          nivel: datos.edificios?.herreria ?? 0,
+        },
+        mercado: {
+          ...EDIFICIOS_BASE.mercado,
+          nivel: datos.edificios?.mercado ?? 0,
+        },
       };
+
+      let expedicionCargada = null;
+      if (datos.expedicionActiva) {
+        expedicionCargada = {
+          idMision: datos.expedicionActiva.misionId,
+          nombre: datos.expedicionActiva.nombre,
+          recompensa: datos.expedicionActiva.recompensa,
+          dificultad: datos.expedicionActiva.dificultad,
+          fechaLlegada: datos.expedicionActiva.fechaLlegada,
+          destinoCoords: datos.expedicionActiva.destinoCoords,
+        };
+      }
 
       set({
         oro: datos.oro,
         edificios: edificiosCompletos,
         personaje: datos.personaje,
         baseCoords: datos.baseCoords || null,
-        expedicionActiva: datos.expedicion || null,
+        expedicionActiva: datos.expedicionActiva,
         isLoading: false,
       });
     } catch (error) {
@@ -147,16 +171,17 @@ export const useGameStore = create<GameState>((set, get) => ({
   },
 
   reclutarPersonaje: (nuevoPersonaje) => {
-    set({ personaje: nuevoPersonaje }),
+    set({ personaje: nuevoPersonaje });
     sincronizarConBD(get());
   },
 
   iniciarExpedicion: (expedicion) => {
     set((state) => ({
       expedicionActiva: expedicion,
-      personaje: state.personaje ? { ...state.personaje, estado: "en_mision" }
+      personaje: state.personaje
+        ? { ...state.personaje, estado: "en_mision" }
         : null,
-    })),
+    }));
     sincronizarConBD(get());
   },
 
@@ -191,13 +216,13 @@ export const useGameStore = create<GameState>((set, get) => ({
     const nuevoHp = Math.max(0, state.personaje.hpActual - hpPerdido);
 
     set({
-        oro: state.oro + oroGanado,
-        expedicionActiva: null,
-        personaje: {
-          ...state.personaje,
-          hpActual: nuevoHp,
-          estado: nuevoHp > 0 ? "ocioso" : "descansando",
-        },
+      oro: state.oro + oroGanado,
+      expedicionActiva: null,
+      personaje: {
+        ...state.personaje,
+        hpActual: nuevoHp,
+        estado: nuevoHp > 0 ? "ocioso" : "descansando",
+      },
     });
     sincronizarConBD(get());
   },
@@ -258,7 +283,7 @@ export const useGameStore = create<GameState>((set, get) => ({
   },
 
   establecerBase: (coords) => {
-    set({ baseCoords: coords }),
+    set({ baseCoords: coords });
     sincronizarConBD(get());
   },
 }));
