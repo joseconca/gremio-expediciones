@@ -13,10 +13,8 @@ model Usuario {
   nombre           String    @unique
   password         String
   oro              Int       @default(10)
-  baseLat          Float?    
-  baseLng          Float?
+  baseCoords       Json?
   
-  // Guardaremos los niveles así: {"taberna": 1, "herreria": 0, "mercado": 0}
   edificios Json      @default("{\"taberna\": 1, \"herreria\": 0, \"mercado\": 0}")
   
   // Relaciones
@@ -51,8 +49,7 @@ model ExpedicionActiva {
   recompensa   Int
   dificultad   Int
   fechaLlegada DateTime 
-  latDestino   Float    
-  lngDestino   Float
+  destinoCoords Json
 }
 
 model RegistroAccion {

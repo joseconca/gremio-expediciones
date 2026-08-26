@@ -25,6 +25,7 @@ const EDIFICIOS_BASE: Record<string, Omit<Edificio, "nivel">> = {
 };
 
 export interface Personaje {
+  id?: string;
   nombre: string;
   clase: string;
   hpActual: number;
@@ -69,10 +70,7 @@ export interface GameState {
   gastarOro: (cantidad: number) => boolean;
   ganarOro: (cantidad: number) => void;
   mejorarAtributo: (
-    atributo: keyof Pick<
-      Personaje,
-      "ataque" | "defensa" | "velocidad" | "capacidadCarruaje"
-    >,
+    atributo: keyof Pick<Personaje, "ataque" | "defensa" | "velocidad" | "capacidadCarruaje">,
     coste: number,
     cantidad: number
   ) => boolean;
@@ -80,6 +78,31 @@ export interface GameState {
   obtenerCosteMejora: (idEdificio: string) => number;
   establecerBase: (coords: { lat: number; lng: number }) => void;
 }
+
+const sincronizarConBD = async (state: GameState) => {
+  try {
+    const nivelesEdificios = {
+      taberna: state.edificios.taberna.nivel,
+      herreria: state.edificios.herreria.nivel,
+      mercado: state.edificios.mercado.nivel,
+    };
+
+    await fetch("/api/jugador", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        oro: state.oro,
+        edificios: nivelesEdificios,
+        personaje: state.personaje,
+        baseCoords: state.baseCoords,
+        expedicion: state.expedicionActiva,
+      }),
+    });
+  } catch (error) {
+    console.error("Error al sincronizar con la BBDD:", error);
+    // todo: Revertir el estado si falla
+  }
+};
 
 export const useGameStore = create<GameState>((set, get) => ({
   oro: 0,
@@ -90,6 +113,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     herreria: { ...EDIFICIOS_BASE.herreria, nivel: 0 },
     mercado: { ...EDIFICIOS_BASE.mercado, nivel: 0 },
   },
+  baseCoords: null,
   isLoading: true,
 
   cargarJugador: async () => {
@@ -97,35 +121,44 @@ export const useGameStore = create<GameState>((set, get) => ({
       const respuesta = await fetch("/api/jugador");
       const datos = await respuesta.json();
 
+      if (!datos) {
+        set({ isLoading: false });
+        return;
+      }
+
       const edificiosCompletos = {
-        taberna: { ...EDIFICIOS_BASE.taberna, nivel: datos.edificios.taberna ?? 1 },
-        herreria: { ...EDIFICIOS_BASE.herreria, nivel: datos.edificios.herreria ?? 0 },
-        mercado: { ...EDIFICIOS_BASE.mercado, nivel: datos.edificios.mercado ?? 0 },
+        taberna: { ...EDIFICIOS_BASE.taberna, nivel: datos.edificios?.taberna ?? 1 },
+        herreria: { ...EDIFICIOS_BASE.herreria, nivel: datos.edificios?.herreria ?? 0 },
+        mercado: { ...EDIFICIOS_BASE.mercado, nivel: datos.edificios?.mercado ?? 0 },
       };
 
       set({
         oro: datos.oro,
         edificios: edificiosCompletos,
         personaje: datos.personaje,
+        baseCoords: datos.baseCoords || null,
+        expedicionActiva: datos.expedicion || null,
         isLoading: false,
       });
-
-      console.log(datos.personaje)
     } catch (error) {
       console.error("Error al cargar la partida:", error);
       set({ isLoading: false });
     }
   },
 
-  reclutarPersonaje: (nuevoPersonaje) => set({ personaje: nuevoPersonaje }),
+  reclutarPersonaje: (nuevoPersonaje) => {
+    set({ personaje: nuevoPersonaje }),
+    sincronizarConBD(get());
+  },
 
-  iniciarExpedicion: (expedicion) =>
+  iniciarExpedicion: (expedicion) => {
     set((state) => ({
       expedicionActiva: expedicion,
-      personaje: state.personaje
-        ? { ...state.personaje, estado: "en_mision" }
+      personaje: state.personaje ? { ...state.personaje, estado: "en_mision" }
         : null,
     })),
+    sincronizarConBD(get());
+  },
 
   curarPersonaje: (costeOro, curaHp) => {
     const state = get();
@@ -147,17 +180,17 @@ export const useGameStore = create<GameState>((set, get) => ({
         estado: "ocioso",
       },
     });
-
+    sincronizarConBD(get());
     return true;
   },
 
-  finalizarExpedicion: (hpPerdido, oroGanado) =>
-    set((state) => {
-      if (!state.personaje) return state;
+  finalizarExpedicion: (hpPerdido, oroGanado) => {
+    const state = get();
+    if (!state.personaje) return;
 
-      const nuevoHp = Math.max(0, state.personaje.hpActual - hpPerdido);
+    const nuevoHp = Math.max(0, state.personaje.hpActual - hpPerdido);
 
-      return {
+    set({
         oro: state.oro + oroGanado,
         expedicionActiva: null,
         personaje: {
@@ -165,13 +198,15 @@ export const useGameStore = create<GameState>((set, get) => ({
           hpActual: nuevoHp,
           estado: nuevoHp > 0 ? "ocioso" : "descansando",
         },
-      };
-    }),
+    });
+    sincronizarConBD(get());
+  },
 
   gastarOro: (cantidad) => {
     const oroActual = get().oro;
     if (oroActual >= cantidad) {
       set({ oro: oroActual - cantidad });
+      sincronizarConBD(get());
       return true;
     }
     return false;
@@ -179,6 +214,7 @@ export const useGameStore = create<GameState>((set, get) => ({
 
   ganarOro: (cantidad) => {
     set((state) => ({ oro: state.oro + cantidad }));
+    sincronizarConBD(get());
   },
 
   mejorarAtributo: (atributo, coste, cantidad) => {
@@ -192,11 +228,12 @@ export const useGameStore = create<GameState>((set, get) => ({
         [atributo]: state.personaje[atributo] + cantidad,
       },
     });
+
+    sincronizarConBD(get());
     return true;
   },
 
   obtenerCosteMejora: (idEdificio) => {
-    console.log(idEdificio)
     const ed = get().edificios[idEdificio];
     return Math.floor(ed.costeBase * (ed.nivel + 1) * 1.5);
   },
@@ -214,11 +251,14 @@ export const useGameStore = create<GameState>((set, get) => ({
           [idEdificio]: { ...edificio, nivel: edificio.nivel + 1 },
         },
       });
+      sincronizarConBD(get());
       return true;
     }
     return false;
   },
 
-  baseCoords: null,
-  establecerBase: (coords) => set({ baseCoords: coords }),
+  establecerBase: (coords) => {
+    set({ baseCoords: coords }),
+    sincronizarConBD(get());
+  },
 }));

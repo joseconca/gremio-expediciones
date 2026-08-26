@@ -1,14 +1,26 @@
 "use client";
 import { useGameStore } from "@/store/useGameStore";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function BaseLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { oro, personaje, expedicionActiva } = useGameStore();
+  const router = useRouter();
+  const { oro, personaje, expedicionActiva, baseCoords, isLoading, cargarJugador } = useGameStore();
   const [tiempoRestante, setTiempoRestante] = useState<number>(0);
+
+  useEffect(() => {
+    cargarJugador();
+  }, [cargarJugador]);
+  
+  useEffect(() => {
+    if (!isLoading && !baseCoords) {
+      router.push("/crear-base");
+    }
+  }, [isLoading, baseCoords, router]);
 
   useEffect(() => {
     if (!expedicionActiva) return;
@@ -60,6 +72,14 @@ export default function BaseLayout({
     }
   };
 
+  if (isLoading || !baseCoords) {
+    return (
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center text-amber-500 font-bold">
+        Cargando Gremio...
+      </div>
+    );
+  }
+  
   return (
     <div className="min-h-screen bg-slate-900 flex flex-col">
       <header className="flex flex-col md:flex-row justify-between items-center bg-slate-800 p-4 border-b border-slate-700 gap-4 md:gap-0">
