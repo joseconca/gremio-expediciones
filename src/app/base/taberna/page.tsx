@@ -27,14 +27,14 @@ const CLASES_INICIALES = [
     nombre: "Mercader",
     ventaja: "+25% Botín",
     descripcion:
-      "Sabe negociar y encontrar mejores objetos al visitar bases aliadas.",
+      "Sabe negociar y encontrar mejores objetos al visitar lugares lejanos.",
     color: "bg-amber-900/50 border-amber-500",
   },
 ];
 
 export default function TabernaPage() {
   const router = useRouter();
-  const { personaje, reclutarPersonaje } = useGameStore();
+  const { personaje, reclutarPersonaje, calcularCosteCura, curarPersonaje, oro } = useGameStore();
 
   const [claseSeleccionada, setClaseSeleccionada] = useState(
     CLASES_INICIALES[0]
@@ -59,7 +59,8 @@ export default function TabernaPage() {
       ataque: 5,
       defensa: 5,
       capacidadCarruaje: 1,
-      velocidad: 1
+      velocidad: 1,
+      regeneracionDeVida: 1,
     });
 
     setMensaje(
@@ -69,17 +70,26 @@ export default function TabernaPage() {
     setTimeout(() => router.push("/base"), 2000);
   };
 
+  const handleCurar = () => {
+    const exito = curarPersonaje();
+    if (exito) {
+      setMensaje("¡Salud restaurada!");
+    } else {
+      setMensaje("No ha sido posible curar (Falta de oro o ya estás al máximo).");
+    }
+  };
+
+  const infoCura = calcularCosteCura();
+
   return (
     <main className="min-h-screen bg-slate-900 text-slate-100 p-4 md:p-8 font-sans">
       <div className="max-w-4xl mx-auto">
         <header className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-amber-500">
-              Taberna del Aventurero
+              Taberna de los aventureros
             </h1>
-            <p className="text-slate-400">
-              Recluta a tu primer héroe para empezar las expediciones.
-            </p>
+            <p className="text-slate-400">Recluta o descansa tomando una cerveza enana especial.</p>
           </div>
           <Link
             href="/base"
@@ -92,112 +102,66 @@ export default function TabernaPage() {
         {personaje ? (
           <div className="bg-slate-800 p-8 rounded-xl border border-slate-700 shadow-xl">
             <div className="flex flex-col md:flex-row items-center gap-8">
-              {/* Avatar del Personaje */}
+              
               <div className="w-32 h-32 bg-slate-900 rounded-lg border-2 border-slate-600 flex items-center justify-center relative shadow-inner">
                 <span className="text-xs text-slate-500 font-mono text-center">
-                  [Sprite:
-                  <br />
-                  ocioso
-                  <br />
-                  ]
+                  [Sprite:<br />{personaje.estado}<br />]
                 </span>
-                {personaje.hpActual <= 0 && (
-                  <div className="absolute -top-3 -right-3 text-3xl animate-bounce">
-                    💀
-                  </div>
+                {personaje.estado === "descansando" && (
+                  <div className="absolute -top-3 -right-3 text-3xl animate-pulse">💤</div>
                 )}
               </div>
 
-              {/* Estadísticas y Opciones */}
               <div className="flex-grow w-full">
-                <h2 className="text-2xl font-bold text-amber-500 mb-1">
-                  {personaje.nombre}{" "}
-                  <span className="text-slate-400 text-lg font-normal">
-                    el {personaje.clase}
-                  </span>
-                </h2>
+                <div className="flex justify-between items-start mb-1">
+                  <h2 className="text-2xl font-bold text-amber-500">
+                    {personaje.nombre} <span className="text-slate-400 text-lg font-normal">el {personaje.clase}</span>
+                  </h2>
+                  <div className="text-amber-400 font-bold bg-slate-900 px-3 py-1 rounded-lg border border-amber-600/30">
+                    🪙 {oro}
+                  </div>
+                </div>
 
-                {/* Barra de Vida */}
                 <div className="mb-6">
                   <div className="flex justify-between text-sm mb-1">
-                    <span className="text-slate-300 font-bold">
-                      Vida
-                    </span>
-                    <span
-                      className={`${
-                        personaje.hpActual <= 20
-                          ? "text-red-400 font-bold"
-                          : "text-emerald-400"
-                      }`}
-                    >
+                    <span className="text-slate-300 font-bold">Vida</span>
+                    <span className={`${personaje.hpActual <= 20 ? "text-red-400 font-bold" : "text-emerald-400"}`}>
                       {personaje.hpActual} / {personaje.hpMaximo}
                     </span>
                   </div>
                   <div className="w-full bg-slate-900 rounded-full h-4 border border-slate-700 overflow-hidden">
                     <div
-                      className={`h-full transition-all duration-500 ${
-                        personaje.hpActual <= 20
-                          ? "bg-red-600"
-                          : "bg-emerald-500"
-                      }`}
-                      style={{
-                        width: `${Math.max(
-                          0,
-                          (personaje.hpActual / personaje.hpMaximo) * 100
-                        )}%`,
-                      }}
+                      className={`h-full transition-all duration-500 ${personaje.hpActual <= 20 ? "bg-red-600" : "bg-emerald-500"}`}
+                      style={{ width: `${Math.max(0, (personaje.hpActual / personaje.hpMaximo) * 100)}%` }}
                     ></div>
                   </div>
                 </div>
 
-                {/* Botones de Acción */}
                 <div className="space-y-3">
-                  {personaje.hpActual <= 0 ? (
-                    <button
-                      onClick={() => {
-                        const exito = useGameStore
-                          .getState()
-                          .curarPersonaje(50, 100);
-                        if (!exito)
-                          setMensaje(
-                            "No tienes suficiente oro para la Resurrección."
-                          );
-                      }}
-                      className="w-full bg-indigo-900 hover:bg-indigo-800 border border-indigo-500 text-white font-bold py-3 px-4 rounded-lg flex justify-between items-center transition-colors shadow-[0_0_15px_rgba(99,102,241,0.3)]"
-                    >
-                      <span>Ritual de Resurrección (Cura 100 HP)</span>
-                      <span className="text-amber-400">50 🪙</span>
-                    </button>
+                  {personaje.hpActual >= personaje.hpMaximo ? (
+                    <div className="w-full bg-slate-700/50 border border-slate-600 text-slate-400 font-bold py-3 px-4 rounded-lg flex justify-center items-center">
+                      Personaje completamente sano
+                    </div>
+                  ) : oro === 0 ? (
+                    <div className="w-full bg-red-900/30 border border-red-900/50 text-red-400 font-bold py-3 px-4 rounded-lg flex justify-center items-center">
+                      No tienes oro para pagar el alojamiento
+                    </div>
                   ) : (
-                    <>
-                      <button
-                        disabled={personaje.hpActual >= personaje.hpMaximo}
-                        onClick={() => {
-                          const exito = useGameStore
-                            .getState()
-                            .curarPersonaje(10, 30);
-                          if (!exito) setMensaje("No tienes suficiente oro.");
-                        }}
-                        className="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 px-4 rounded-lg flex justify-between items-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        <span>Cerveza Enana y Estofado (Cura 30 HP)</span>
-                        <span className="text-amber-400">10 🪙</span>
-                      </button>
-
-                      <button
-                        disabled={personaje.hpActual >= personaje.hpMaximo}
-                        onClick={() => {
-                          const exito = useGameStore
-                            .getState()
-                            .curarPersonaje(25, 100);
-                          if (!exito) setMensaje("No tienes suficiente oro.");
-                        }}
-                        className="w-full bg-emerald-900/80 hover:bg-emerald-800 border border-emerald-600 text-white font-bold py-3 px-4 rounded-lg flex justify-between items-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        <span>Poción Alquímica Mayor (Cura al máximo)</span>
-                        <span className="text-amber-400">25 🪙</span>
-                      </button>
-                    </>
+                    <button
+                      onClick={handleCurar}
+                      className={`w-full text-white font-bold py-3 px-4 rounded-lg flex justify-between items-center transition-all ${
+                        infoCura.aTope 
+                          ? "bg-emerald-900/80 hover:bg-emerald-800 border-emerald-600 border shadow-[0_0_15px_rgba(16,185,129,0.2)]" 
+                          : "bg-amber-900/80 hover:bg-amber-800 border-amber-600 border"
+                      }`}
+                    >
+                      <span>
+                        {infoCura.aTope 
+                          ? "Cama premium y banquete (Curar a tope)" 
+                          : `Sopa rancia e invertir todo tu oro (Cura ${infoCura.hpCurado} HP)`}
+                      </span>
+                      <span className="text-amber-400">{infoCura.coste} 🪙</span>
+                    </button>
                   )}
                 </div>
               </div>

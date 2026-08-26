@@ -32,6 +32,7 @@ model Personaje {
   nombre            String
   hpActual          Int
   hpMaximo          Int
+  regeneracionDeVida Int
   estado            String   @default("ocioso") // ocioso, en_mision, descansando
   ataque            Int
   defensa           Int

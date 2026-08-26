@@ -9,7 +9,7 @@ export default function BaseLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const { oro, personaje, expedicionActiva, baseCoords, isLoading, cargarJugador } = useGameStore();
+  const { oro, personaje, expedicionActiva, baseCoords, isLoading, cargarJugador, aplicarRegeneracion } = useGameStore();
   const [tiempoRestante, setTiempoRestante] = useState<number>(0);
 
   useEffect(() => {
@@ -42,6 +42,14 @@ export default function BaseLayout({
     return () => clearInterval(intervalo);
   }, [expedicionActiva]);
 
+  useEffect(() => {
+    const intervaloRegen = setInterval(() => {
+      aplicarRegeneracion();
+    }, 1000);
+    
+    return () => clearInterval(intervaloRegen);
+  }, [aplicarRegeneracion]);
+
   const formatoTiempo = (segundos: number) => {
     const m = Math.floor(segundos / 60);
     const s = segundos % 60;
@@ -54,7 +62,7 @@ export default function BaseLayout({
       return <span className="text-emerald-400">Listo para partir</span>;
     if (personaje.estado === "descansando")
       return <span className="text-red-400">Descansando</span>;
-    if (personaje.estado === "en_mision") {
+    if (personaje.estado === "de_viaje") {
       return (
         <span className="text-amber-400 flex items-center gap-1">
           En expedición
@@ -118,7 +126,7 @@ export default function BaseLayout({
         )}
 
         <div className="text-amber-400 font-bold bg-slate-900 px-4 py-2 rounded-lg border border-amber-600/30">
-          🪙 {oro} Oro
+           {oro} 🪙
         </div>
       </header>
 

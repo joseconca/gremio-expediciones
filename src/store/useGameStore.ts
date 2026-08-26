@@ -5,21 +5,21 @@ const EDIFICIOS_BASE: Record<string, Omit<Edificio, "nivel">> = {
     id: "taberna",
     nombre: "Taberna",
     costeBase: 100,
-    descripcion: "Cura a tu personaje",
+    descripcion: "Descansa tras una expedición.",
     nivelMax: 1,
   },
   herreria: {
     id: "herreria",
     nombre: "Herrería",
     costeBase: 200,
-    descripcion: "Mejora atributos",
+    descripcion: "Mejora tus equipajes.",
     nivelMax: 3,
   },
   mercado: {
     id: "mercado",
     nombre: "Mercado",
     costeBase: 500,
-    descripcion: "Comercio",
+    descripcion: "Repara las botas y ese carruaje.",
     nivelMax: 2,
   },
 };
@@ -30,11 +30,12 @@ export interface Personaje {
   clase: string;
   hpActual: number;
   hpMaximo: number;
-  estado: "ocioso" | "en_mision" | "descansando";
+  estado: "ocioso" | "de_viaje" | "descansando";
   ataque: number;
   defensa: number;
   velocidad: number;
   capacidadCarruaje: number;
+  regeneracionDeVida: number;
 }
 
 export interface Edificio {
@@ -55,6 +56,12 @@ export interface ExpedicionActiva {
   destinoCoords: { lat: number; lng: number };
 }
 
+export interface InfoCura {
+  coste: number;
+  hpCurado: number;
+  aTope: boolean;
+}
+
 export interface GameState {
   oro: number;
   personaje: Personaje | null;
@@ -67,7 +74,11 @@ export interface GameState {
   reclutarPersonaje: (personaje: Personaje) => void;
   iniciarExpedicion: (expedicion: ExpedicionActiva) => void;
   finalizarExpedicion: (hpPerdido: number, oroGanado: number) => void;
-  curarPersonaje: (costeOro: number, curaHp: number) => boolean;
+
+  calcularCosteCura: () => InfoCura;
+  curarPersonaje: () => boolean;
+  aplicarRegeneracion: () => void;
+
   gastarOro: (cantidad: number) => boolean;
   ganarOro: (cantidad: number) => void;
   mejorarAtributo: (
@@ -103,7 +114,6 @@ const sincronizarConBD = async (state: GameState) => {
     });
   } catch (error) {
     console.error("Error al sincronizar con la BBDD:", error);
-    // todo: Revertir el estado si falla
   }
 };
 
@@ -144,7 +154,7 @@ export const useGameStore = create<GameState>((set, get) => ({
         },
       };
 
-      let expedicionCargada = null;
+      /*let expedicionCargada = null;
       if (datos.expedicionActiva) {
         expedicionCargada = {
           idMision: datos.expedicionActiva.misionId,
@@ -154,14 +164,14 @@ export const useGameStore = create<GameState>((set, get) => ({
           fechaLlegada: datos.expedicionActiva.fechaLlegada,
           destinoCoords: datos.expedicionActiva.destinoCoords,
         };
-      }
+      }*/
 
       set({
         oro: datos.oro,
         edificios: edificiosCompletos,
         personaje: datos.personaje,
         baseCoords: datos.baseCoords || null,
-        expedicionActiva: datos.expedicionActiva,
+        expedicionActiva: datos.expedicionActiva || null,
         isLoading: false,
       });
     } catch (error) {
@@ -179,34 +189,10 @@ export const useGameStore = create<GameState>((set, get) => ({
     set((state) => ({
       expedicionActiva: expedicion,
       personaje: state.personaje
-        ? { ...state.personaje, estado: "en_mision" }
+        ? { ...state.personaje, estado: "de_viaje" }
         : null,
     }));
     sincronizarConBD(get());
-  },
-
-  curarPersonaje: (costeOro, curaHp) => {
-    const state = get();
-    const nivelTaberna = state.edificios.taberna.nivel;
-    const descuento = 1 - (nivelTaberna - 1) * 0.1;
-    const costeFinal = Math.max(1, Math.floor(costeOro * descuento));
-
-    if (!state.personaje || state.oro < costeOro) return false;
-    const { hpActual, hpMaximo } = state.personaje;
-    if (hpActual >= hpMaximo) return false;
-
-    const nuevoHp = Math.min(hpMaximo, hpActual + curaHp);
-
-    set({
-      oro: state.oro - costeFinal,
-      personaje: {
-        ...state.personaje,
-        hpActual: nuevoHp,
-        estado: "ocioso",
-      },
-    });
-    sincronizarConBD(get());
-    return true;
   },
 
   finalizarExpedicion: (hpPerdido, oroGanado) => {
@@ -225,6 +211,68 @@ export const useGameStore = create<GameState>((set, get) => ({
       },
     });
     sincronizarConBD(get());
+  },
+
+  calcularCosteCura: () => {
+    const state = get();
+    const personaje = state.personaje;
+    if (!personaje || personaje.hpActual >= personaje.hpMaximo)
+      return { coste: 0, hpCurado: 0, aTope: true };
+
+    const CURA_POR_ORO = 2;
+    const multiplicador = 1 + (state.edificios.taberna.nivel - 1) * 0.1;
+    const curaEfectivaPorOro = CURA_POR_ORO * multiplicador;
+
+    const hpFaltante = personaje.hpMaximo - personaje.hpActual;
+    const costeMaximo = Math.ceil(hpFaltante / curaEfectivaPorOro);
+
+    if (state.oro >= costeMaximo) {
+      return { coste: costeMaximo, hpCurado: hpFaltante, aTope: true };
+    } else {
+      return {
+        coste: state.oro,
+        hpCurado: Math.floor(state.oro * curaEfectivaPorOro),
+        aTope: false,
+      };
+    }
+  },
+
+  curarPersonaje: () => {
+    const state = get();
+    const { coste, hpCurado } = state.calcularCosteCura();
+    const personaje = state.personaje;
+
+    if (!personaje || coste === 0 || hpCurado === 0) return false;
+
+    const nuevoHp = Math.min(personaje.hpMaximo, personaje.hpActual + hpCurado);
+
+    set({
+      oro: state.oro - coste,
+      personaje: {
+        ...personaje,
+        hpActual: nuevoHp,
+        estado: nuevoHp >= personaje.hpMaximo ? "ocioso" : "descansando",
+      },
+    });
+    sincronizarConBD(get());
+    return true;
+  },
+
+  aplicarRegeneracion: () => {
+    const state = get();
+    const personaje = state.personaje;
+    
+    if (!personaje || personaje.estado === "de_viaje" || personaje.hpActual >= personaje.hpMaximo) return;
+
+    const nuevoHp = Math.min(personaje.hpMaximo, personaje.hpActual + personaje.regeneracionDeVida);
+    
+    set({
+      personaje: {
+        ...personaje,
+        hpActual: nuevoHp,
+        estado: nuevoHp >= personaje.hpMaximo ? "ocioso" : personaje.estado,
+      }
+    });
   },
 
   gastarOro: (cantidad) => {

@@ -29,7 +29,7 @@ export function resolverExpedicion(
   logCombate.push(`${personaje.nombre} pone rumbo a ${mision.nombre}.`);
 
   const turnos = (dificultad + 1) * d6() + 4;
-  const enemigo = listaMonstruos[(d6() % listaMonstruos.length) + 6];
+  const enemigo = listaMonstruos[(d6() % listaMonstruos.length)];
 
   //stats provisionales:
   personaje.ataque = 5;

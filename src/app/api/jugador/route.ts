@@ -32,6 +32,7 @@ export async function GET() {
               defensa: 5,
               velocidad: 2000,
               capacidadCarruaje: 50,
+              regeneracionDeVida: 1,
             },
           },
         },
@@ -96,6 +97,7 @@ export async function PATCH(request: Request) {
             velocidad: personaje.velocidad,
             capacidadCarruaje: personaje.capacidadCarruaje,
             estado: personaje.estado,
+            regeneracionDeVida: personaje.regeneracionDeVida,
           },
           update: {
             clase: personaje.clase,
@@ -107,6 +109,7 @@ export async function PATCH(request: Request) {
             velocidad: personaje.velocidad,
             capacidadCarruaje: personaje.capacidadCarruaje,
             estado: personaje.estado,
+            regeneracionDeVida: personaje.regeneracionDeVida,
           },
         },
       };

@@ -154,7 +154,7 @@ export default function BasePage() {
               </div>
             )}
 
-            {personaje.estado === "en_mision" && expedicionActiva && (
+            {personaje.estado === "de_viaje" && expedicionActiva && (
               <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-700 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div>
                   <p className="text-amber-400 font-bold">
