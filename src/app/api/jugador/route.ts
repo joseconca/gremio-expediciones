@@ -32,7 +32,7 @@ export async function GET() {
               defensa: 5,
               velocidad: 2000,
               capacidadCarruaje: 50,
-              regeneracionDeVida: 1,
+              regeneracionDeVida: 0.1,
             },
           },
         },

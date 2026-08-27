@@ -5,12 +5,19 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useGameStore } from "@/store/useGameStore";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { generarMision } from "@/lib/generadorMisiones";
 
 const MissionMap = dynamic(() => import("@/components/MissionMap"), {
   ssr: false,
 });
 
-function calcularDistanciaKm(lat1: number, lon1: number, lat2: number, lon2: number) {
+function calcularDistanciaKm(
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number
+) {
   const R = 6371;
   const dLat = (lat2 - lat1) * (Math.PI / 180);
   const dLon = (lon2 - lon1) * (Math.PI / 180);
@@ -26,57 +33,51 @@ function calcularDistanciaKm(lat1: number, lon1: number, lat2: number, lon2: num
 
 export default function ExpedicionesPage() {
   const router = useRouter();
-  const { baseCoords, personaje, iniciarExpedicion } = useGameStore();
-
+  const [misionesGeneradas, setMisionesGeneradas] = useState<any[]>([]);
+  const {
+    baseCoords,
+    personaje,
+    iniciarExpedicion,
+    misionesCompletadasEstaHora,
+    horaMisiones,
+  } = useGameStore();
   const [misionSeleccionada, setMisionSeleccionada] = useState<any>(null);
   const [viajeIniciado, setViajeIniciado] = useState(false);
   const [cargando, setCargando] = useState(false);
   const [reporteViaje, setReporteViaje] = useState<any>(null);
 
-  if (!baseCoords) {
-    if (typeof window !== "undefined") router.push("/crear-base");
-    return null;
-  }
+  useEffect(() => {
+    if (!baseCoords) return;
 
-  const misionesGeneradas = useMemo(() => {
-    return [
-      {
-        id: 1,
-        lat: baseCoords.lat + 0.05,
-        lng: baseCoords.lng - 0.05,
-        nombre: "Campamento Goblin",
-        dificultad: 0,
-        recompensa: 50,
-        desc: "Un grupo de goblins ha estado asaltando caravanas.",
-      },
-      {
-        id: 2,
-        lat: baseCoords.lat - 0.08,
-        lng: baseCoords.lng + 0.02,
-        nombre: "Ruinas Antiguas",
-        dificultad: 1,
-        recompensa: 120,
-        desc: "Explora los sótanos de esta torre derruida.",
-      },
-      {
-        id: 3,
-        lat: baseCoords.lat + 0.1,
-        lng: baseCoords.lng + 0.12,
-        nombre: "Bestia del Camino",
-        dificultad: 2,
-        recompensa: 300,
-        desc: "Una criatura enorme bloquea el paso.",
-      },
+    const horaActual = Math.floor(Date.now() / (1000 * 60 * 60)); // Horas desde 1970
+
+    // Cuántas misiones hemos saltado por haberlas completado
+    // Si es una hora nueva distinta a la guardada, el offset es 0
+    const offset =
+      horaMisiones === horaActual ? misionesCompletadasEstaHora : 0;
+
+    const nuevasMisiones = [
+      generarMision(baseCoords.lat, baseCoords.lng, horaActual, offset + 0),
+      generarMision(baseCoords.lat, baseCoords.lng, horaActual, offset + 1),
+      generarMision(baseCoords.lat, baseCoords.lng, horaActual, offset + 2),
     ];
-  }, [baseCoords]);
+
+    setMisionesGeneradas(nuevasMisiones);
+  }, [baseCoords, misionesCompletadasEstaHora, horaMisiones]);
 
   let distanciaKm = 0;
   let tiempoHoras = 0;
   let textoTiempo = "Calculando...";
 
   if (misionSeleccionada && personaje) {
+    if (!baseCoords) return;
     const velocidadKmh = 5.9 + personaje.velocidad * 0.1;
-    distanciaKm = calcularDistanciaKm(baseCoords.lat, baseCoords.lng, misionSeleccionada.lat, misionSeleccionada.lng);
+    distanciaKm = calcularDistanciaKm(
+      baseCoords.lat,
+      baseCoords.lng,
+      misionSeleccionada.lat,
+      misionSeleccionada.lng
+    );
     tiempoHoras = distanciaKm / velocidadKmh;
 
     const horas = Math.floor(tiempoHoras);
@@ -91,7 +92,10 @@ export default function ExpedicionesPage() {
       const res = await fetch("/api/iniciar-expedicion", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mision: misionSeleccionada, tiempoHoras: tiempoHoras }),
+        body: JSON.stringify({
+          mision: misionSeleccionada,
+          tiempoHoras: tiempoHoras,
+        }),
       });
 
       const data = await res.json();
@@ -106,7 +110,10 @@ export default function ExpedicionesPage() {
           recompensa: misionSeleccionada.recompensa,
           fechaLlegada: data.fechaLlegada,
           dificultad: misionSeleccionada.dificultad,
-          destinoCoords: { lat: misionSeleccionada.lat, lng: misionSeleccionada.lng },
+          destinoCoords: {
+            lat: misionSeleccionada.lat,
+            lng: misionSeleccionada.lng,
+          },
         });
       }
     } catch (error) {
@@ -163,7 +170,9 @@ export default function ExpedicionesPage() {
 
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="bg-slate-900 rounded p-2 text-center border border-slate-700">
-                <span className="block text-xs text-slate-400 uppercase">Dificultad</span>
+                <span className="block text-xs text-slate-400 uppercase">
+                  Dificultad
+                </span>
                 <span
                   className={`font-bold ${
                     misionSeleccionada.dificultad >= 2
@@ -186,9 +195,7 @@ export default function ExpedicionesPage() {
                 <span className="block text-xs text-slate-400 uppercase">
                   Duración del Viaje
                 </span>
-                <span className="font-bold text-blue-400">
-                  {textoTiempo}
-                </span>
+                <span className="font-bold text-blue-400">{textoTiempo}</span>
               </div>
             </div>
             <button
@@ -211,14 +218,22 @@ export default function ExpedicionesPage() {
 
           <div className="bg-slate-800 p-6 rounded-xl border border-slate-700 max-w-sm w-full mb-8 shadow-xl">
             <p className="text-slate-300 mb-4">
-              Tu personaje ha partido hacia <strong className="text-white">{misionSeleccionada?.nombre}</strong>.
+              Tu personaje ha partido hacia{" "}
+              <strong className="text-white">
+                {misionSeleccionada?.nombre}
+              </strong>
+              .
             </p>
 
             <div className="bg-slate-900 rounded p-4 border border-slate-700 text-sm">
-              <p className="text-slate-400 uppercase text-xs mb-1">Llegada Estimada</p>
+              <p className="text-slate-400 uppercase text-xs mb-1">
+                Llegada Estimada
+              </p>
               <p className="text-amber-400 font-bold">
                 {new Date(reporteViaje.fechaLlegada).toLocaleString("es-ES", {
-                  weekday: "long", hour: "2-digit", minute: "2-digit",
+                  weekday: "long",
+                  hour: "2-digit",
+                  minute: "2-digit",
                 })}
               </p>
             </div>

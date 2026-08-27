@@ -45,7 +45,7 @@ model ExpedicionActiva {
   usuarioId    String   @unique
   usuario      Usuario  @relation(fields: [usuarioId], references: [id])
   
-  misionId     Int
+  misionId     String
   nombre       String
   recompensa   Int
   dificultad   Int

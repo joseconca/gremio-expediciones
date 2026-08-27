@@ -69,6 +69,8 @@ export interface GameState {
   edificios: Record<string, Edificio>;
   baseCoords: { lat: number; lng: number } | null;
   isLoading: boolean;
+  horaMisiones: number;
+  misionesCompletadasEstaHora: number;
 
   cargarJugador: () => Promise<void>;
   reclutarPersonaje: (personaje: Personaje) => void;
@@ -128,6 +130,18 @@ export const useGameStore = create<GameState>((set, get) => ({
   },
   baseCoords: null,
   isLoading: true,
+  horaMisiones: 0,
+  misionesCompletadasEstaHora: 0,
+
+  registrarMisionCompletada: () => {
+    const horaActual = Math.floor(Date.now() / 3600000); // Horas desde 1970
+    set((state) => {
+      if (state.horaMisiones !== horaActual) {
+        return { horaMisiones: horaActual, misionesCompletadasEstaHora: 1 };
+      }
+      return { misionesCompletadasEstaHora: state.misionesCompletadasEstaHora + 1 };
+    });
+  },
 
   cargarJugador: async () => {
     try {
