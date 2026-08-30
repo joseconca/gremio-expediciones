@@ -5,8 +5,10 @@ export interface ResultadoCombate {
   logCombate: string[];
 }
 
-const d20 = () => Math.floor(Math.random() * 20) + 1;
-const d6 = () => Math.floor(Math.random() * 6) + 1;
+//todo: implementar suerte como estadística del pj
+let suerte = 0;
+const d20 = () => Math.floor(Math.random() * 20 + suerte) + 1;
+const d6 = () => Math.floor(Math.random() * 6 + suerte / 3) + 1;
 
 const listaMonstruos = [
   { nombre: "Goblin", hp: 10, ataque: 2, defensa: 2, botin: 5 },
@@ -18,118 +20,101 @@ export function resolverExpedicion(
   personaje: any,
   mision: any
 ): ResultadoCombate {
-  let hpPerdido = 0;
+  const logCombate: string[] = [];
+  const dificultad = mision.dificultad;
+
   let exito = true;
   let botinObtenido = 0;
   let recompensaExtra = 0;
-  var haSobrevivido = true;
+  let haSobrevivido = true;
 
-  const logCombate: string[] = [];
-  const dificultad = mision.dificultad;
   logCombate.push(`${personaje.nombre} pone rumbo a ${mision.nombre}.`);
 
+  let hpTemporal = personaje.hpActual;
+  const ataquePersonaje = personaje.ataque;
+  const defensaPersonaje = personaje.defensa;
+
+  logCombate.push(`🗺️ ${personaje.nombre} pone rumbo a ${mision.nombre}.`);
+
   const turnos = (dificultad + 1) * d6() + 4;
-  const enemigo = listaMonstruos[(d6() % listaMonstruos.length)];
 
-  //stats provisionales:
-  personaje.ataque = 5;
-  personaje.defensa = 3;
+  const monstruoBase = listaMonstruos[d6() % listaMonstruos.length];
+  const enemigo = { ...monstruoBase };
 
-  if (enemigo != undefined) {
-    logCombate.push(`-- Un ${enemigo.nombre} aparece.`);
+  if (enemigo) {
+    logCombate.push(`👾 ¡Un ${enemigo.nombre} salvaje intercepta el paso!`);
     for (let i = 1; i <= turnos; i++) {
-      let logTurno = "";
-      // TURNO DEL PERSONAJE
+      // --- TURNO DEL PERSONAJE ---
       const tiradaAtaque = d20();
-      logTurno += `-- ${personaje.nombre} ataca a ${enemigo.nombre} `;
       if (tiradaAtaque > enemigo.defensa) {
-        const dano = d6() + personaje.ataque;
+        const dano = d6() + ataquePersonaje;
         enemigo.hp -= dano;
-        logTurno += `por ${dano}. Le quedan ${enemigo.hp} de vida.`;
+        logCombate.push(`⚔️ ${personaje.nombre} ataca por ${dano} de daño. (${Math.max(0, enemigo.hp)} HP restantes)`);
       } else {
-        logTurno += `pero no consigue hacerle daño.`;
+        logCombate.push(`💨 ${personaje.nombre} ataca pero el ${enemigo.nombre} lo esquiva.`);
       }
 
       if (enemigo.hp <= 0) {
-        logCombate.push(logTurno);
         recompensaExtra += enemigo.botin;
-        logCombate.push(
-          `¡El ${enemigo.nombre} ha sido derrotado y ha soltado ${enemigo.botin} de oro.`
-        );
+        logCombate.push(`🏆 ¡El ${enemigo.nombre} ha sido derrotado! Soltó ${enemigo.botin} 🪙.`);
         break;
       }
 
-      logCombate.push(logTurno);
-
-      logTurno = "-- ";
-
-      // TURNO DEL ENEMIGO
+      // --- TURNO DEL ENEMIGO ---
       const tiradaEnemigo = d20();
       if (tiradaEnemigo === 1) {
-        logTurno += `El ${enemigo.nombre} tropieza y pierde su turno.`;
-      } else if (tiradaEnemigo > personaje.defensa) {
-        let dano = d6() + enemigo.ataque;
-        personaje.hpActual -= dano;
-        logTurno += `El ${enemigo.nombre} ataca y hace ${dano} de daño. Te quedan ${personaje.hpActual} HP.`;
+        logCombate.push(`🤡 El ${enemigo.nombre} tropieza torpemente y pierde su turno.`);
+      } else if (tiradaEnemigo > defensaPersonaje) {
+        const dano = d6() + enemigo.ataque;
+        hpTemporal -= dano;
+        logCombate.push(`🩸 El ${enemigo.nombre} golpea infligiendo ${dano} de daño. (${Math.max(0, hpTemporal)} HP restantes)`);
       } else {
-        logTurno += `El ${enemigo.nombre} no consigue hacer ningún daño.`;
+        logCombate.push(`🛡️ El ${enemigo.nombre} ataca pero logras bloquearlo.`);
       }
 
-      if (personaje.hpActual <= 0) {
-        logCombate.push(logTurno);
+      if (hpTemporal <= 0) {
         haSobrevivido = false;
-        logCombate.push(`¡${enemigo.nombre} te ha derrotado!`);
+        logCombate.push(`💀 ¡El ${enemigo.nombre} te ha derribado en combate!`);
         break;
       }
 
-      logCombate.push(logTurno);
-      if (i === turnos) logCombate.push(`El ${enemigo.nombre} ha huido`);
+      if (i === turnos) {
+        logCombate.push(`🏃 El ${enemigo.nombre} ha huido cobardemente del combate.`);
+      }
     }
   }
+  
 
-  // Éxito supervivencia?
-  let probabilidadSupervivencia = 0;
-  if (dificultad === 0) probabilidadSupervivencia = 90;
-  if (dificultad === 1) probabilidadSupervivencia = 80;
-  if (dificultad === 2) probabilidadSupervivencia = 60;
-
-  if (personaje.clase === "Guerrero") {
-    probabilidadSupervivencia += 20;
-  }
-
-  const tiradaDestino = Math.floor(Math.random() * 100) + 1;
-  const tiradaFalloCritico = Math.floor(Math.random() * 100) + 1;
   if (haSobrevivido) {
-    haSobrevivido = tiradaDestino <= probabilidadSupervivencia;
-  }
-  if (haSobrevivido) {
-    if (tiradaFalloCritico < 5) {
+    let probSupervivencia = dificultad === 0 ? 90 : dificultad === 1 ? 80 : 60;
+    if (personaje.clase === "Guerrero") probSupervivencia += 20;
+
+    const tiradaDestino = Math.floor(Math.random() * 100) + 1;
+    if (tiradaDestino > probSupervivencia) {
       haSobrevivido = false;
-      logCombate.push(
-        `${personaje.nombre} fue emboscado mientras descansaba y se vio obligado a regresar.`
-      );
+      logCombate.push(`⛺ ${personaje.nombre} sufrió un grave accidente de camino a casa...`);
+    } else {
+      const tiradaFalloCritico = Math.floor(Math.random() * 100) + 1;
+      if (tiradaFalloCritico < 5) {
+        haSobrevivido = false;
+        logCombate.push(`⛺ ¡Emboscada nocturna! ${personaje.nombre} tuvo que huir perdiendo todo.`);
+      }
     }
   }
 
   // Resolución
+  let hpPerdido = personaje.hpActual - hpTemporal;
+
   if (haSobrevivido) {
     const variacion = 0.8 + Math.random() * 0.4;
     botinObtenido = Math.floor(mision.recompensa * variacion + recompensaExtra);
-
-    if (personaje.clase === "Mercader")
-      botinObtenido = Math.floor(botinObtenido * 1.25);
-
-    hpPerdido = personaje.hpMaximo - personaje.hpActual
-    logCombate.push(
-      `${personaje.nombre} ha superado ${mision.nombre} por ${botinObtenido} monedas de oro.`
-    );
+    //if (personaje.clase === "Mercader")      botinObtenido = Math.floor(botinObtenido * 1.25);
+    logCombate.push(`💰 Expedición completada. ¡Regresas con ${botinObtenido} monedas de oro!`);
   } else {
     exito = false;
-    hpPerdido = personaje.hpActual - 1;
     botinObtenido = 0;
-    logCombate.push(
-      `¡Desastre! ${personaje.nombre} fue emboscado en ${mision.nombre}. Apenas logró escapar con vida y tuvo que abandonar el botín.`
-    );
+    hpPerdido = personaje.hpActual /*- 1*/; 
+    logCombate.push(`🚑 ¡Desastre! Apenas lograste escapar con vida. Tuviste que abandonar el botín.`);
   }
 
   return { exito, hpPerdido, oroGanado: exito ? botinObtenido : 0, logCombate };

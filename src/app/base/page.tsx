@@ -5,11 +5,35 @@ import Link from "next/link";
 import { useGameStore } from "@/store/useGameStore";
 import { resolverExpedicion, ResultadoCombate } from "@/lib/resolucionCombate";
 
-//simular datos de bbdd
 const UI_EDIFICIOS: Record<string, { color: string; ruta: string }> = {
   taberna: { color: "bg-amber-700", ruta: "/base/taberna" },
   herreria: { color: "bg-slate-600", ruta: "/base/herreria" },
   mercado: { color: "bg-emerald-700", ruta: "/base/mercado" },
+};
+
+const getColorPorLinea = (linea: string) => {
+  if (linea.startsWith("⚔️")) return "text-blue-300"; // Ataque héroe
+  if (
+    linea.startsWith("🩸") ||
+    linea.startsWith("💀") ||
+    linea.startsWith("🚑")
+  )
+    return "text-red-400 font-medium"; // Daño/Derrota
+  if (
+    linea.startsWith("🛡️") ||
+    linea.startsWith("💨") ||
+    linea.startsWith("🤡")
+  )
+    return "text-slate-400"; // Fallos/Bloqueos
+  if (linea.startsWith("🏆") || linea.startsWith("💰"))
+    return "text-amber-400 font-bold"; // Oro/Victorias
+  if (
+    linea.startsWith("👾") ||
+    linea.startsWith("🗺️") ||
+    linea.startsWith("⛺")
+  )
+    return "text-purple-300 font-semibold"; // Eventos
+  return "text-slate-300";
 };
 
 export default function BasePage() {
@@ -78,60 +102,78 @@ export default function BasePage() {
     <main className="min-h-screen bg-slate-900 text-slate-100 p-4 md:p-8 font-sans">
       {/* ---- MODAL DE REPORTE DE COMBATE ---- */}
       {reporte && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in">
-          <div className="bg-slate-800 border-2 border-slate-600 rounded-xl p-6 max-w-lg w-full max-h-[90vh] flex flex-col shadow-2xl">
-            <h2
-              className={`text-2xl font-bold mb-2 ${
-                reporte.exito ? "text-amber-400" : "text-red-500"
+        <div className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in zoom-in-95 duration-200">
+          <div className="bg-slate-900 border-2 border-slate-700 rounded-xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+            {/* Cabecera del Reporte */}
+            <div
+              className={`p-4 border-b ${
+                reporte.exito
+                  ? "bg-emerald-950/30 border-emerald-900"
+                  : "bg-red-950/30 border-red-900"
               }`}
             >
-              {reporte.exito ? "¡Victoria!" : "Derrota y Huida"}
-            </h2>
+              <h2
+                className={`text-2xl font-black uppercase tracking-wider text-center ${
+                  reporte.exito ? "text-emerald-500" : "text-red-500"
+                }`}
+              >
+                {reporte.exito ? "Misión Completada" : "Expedición Fallida"}
+              </h2>
+            </div>
 
-            <div className="flex-grow overflow-y-auto bg-slate-950 p-4 rounded-lg border border-slate-700 font-mono text-sm space-y-2 mb-6">
+            {/* Log de Combate estilo Terminal */}
+            <div className="flex-grow overflow-y-auto p-6 bg-[#0a0f1a] font-mono text-sm sm:text-base space-y-3 custom-scrollbar">
               {reporte.logCombate.map((linea, idx) => (
-                <p
+                <div
                   key={idx}
-                  className={
-                    linea.includes("falla") || linea.includes("pierde")
-                      ? "text-red-400"
-                      : "text-slate-300"
-                  }
+                  className={`flex items-start gap-2 ${getColorPorLinea(
+                    linea
+                  )}`}
                 >
-                  {linea}
-                </p>
+                  <span className="opacity-50 text-xs mt-1 shrink-0">
+                    [{idx < 9 ? `0${idx + 1}` : idx + 1}]
+                  </span>
+                  <p className="leading-relaxed">{linea}</p>
+                </div>
               ))}
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="bg-slate-900 p-3 rounded text-center border border-slate-700">
-                <span className="block text-xs text-slate-400 uppercase">
-                  Daño Recibido
-                </span>
-                <span className="font-bold text-red-500">
-                  -{reporte.hpPerdido} HP
-                </span>
+            {/* Resumen y Botón */}
+            <div className="p-6 bg-slate-800 border-t border-slate-700">
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="bg-slate-900 p-4 rounded-lg text-center border border-slate-700 shadow-inner">
+                  <span className="block text-xs text-slate-400 uppercase tracking-widest mb-1">
+                    Daño Sufrido
+                  </span>
+                  <span className="text-2xl font-black text-red-500">
+                    -{reporte.hpPerdido} HP
+                  </span>
+                </div>
+                <div className="bg-slate-900 p-4 rounded-lg text-center border border-slate-700 shadow-inner">
+                  <span className="block text-xs text-slate-400 uppercase tracking-widest mb-1">
+                    Botín Recuperado
+                  </span>
+                  <span className="text-2xl font-black text-amber-400">
+                    +{reporte.oroGanado} 🪙
+                  </span>
+                </div>
               </div>
-              <div className="bg-slate-900 p-3 rounded text-center border border-slate-700">
-                <span className="block text-xs text-slate-400 uppercase">
-                  Botín
-                </span>
-                <span className="font-bold text-amber-400">
-                  +{reporte.oroGanado} 🪙
-                </span>
-              </div>
-            </div>
 
-            <button
-              onClick={handleCerrarReporte}
-              className="w-full bg-slate-200 hover:bg-white text-slate-900 font-bold py-3 rounded-lg transition-colors"
-            >
-              Volver a la base
-            </button>
+              <button
+                onClick={handleCerrarReporte}
+                className={`w-full font-bold py-4 rounded-lg transition-all active:scale-95 text-lg shadow-lg ${
+                  reporte.exito
+                    ? "bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-900/50"
+                    : "bg-red-900 hover:bg-red-800 text-white shadow-red-900/50"
+                }`}
+              >
+                Regresar a la Base
+              </button>
+            </div>
           </div>
         </div>
       )}
-
+      
       <div className="max-w-4xl mx-auto">
         {/* 1. PANEL DE MISIONES */}
         {personaje && (
