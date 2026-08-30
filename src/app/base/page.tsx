@@ -12,27 +12,14 @@ const UI_EDIFICIOS: Record<string, { color: string; ruta: string }> = {
 };
 
 const getColorPorLinea = (linea: string) => {
-  if (linea.startsWith("⚔️")) return "text-blue-300"; // Ataque héroe
-  if (
-    linea.startsWith("🩸") ||
-    linea.startsWith("💀") ||
-    linea.startsWith("🚑")
-  )
-    return "text-red-400 font-medium"; // Daño/Derrota
-  if (
-    linea.startsWith("🛡️") ||
-    linea.startsWith("💨") ||
-    linea.startsWith("🤡")
-  )
-    return "text-slate-400"; // Fallos/Bloqueos
-  if (linea.startsWith("🏆") || linea.startsWith("💰"))
-    return "text-amber-400 font-bold"; // Oro/Victorias
-  if (
-    linea.startsWith("👾") ||
-    linea.startsWith("🗺️") ||
-    linea.startsWith("⛺")
-  )
-    return "text-purple-300 font-semibold"; // Eventos
+  if (linea.startsWith("💥")) return "text-fuchsia-400 font-black animate-pulse";
+  if (linea.startsWith("⚔️")) return "text-blue-300";
+  if (linea.startsWith("🩸") || linea.startsWith("💀") || linea.startsWith("🚑")) return "text-red-400 font-medium";
+  if (linea.startsWith("🛡️") || linea.startsWith("💨") || linea.startsWith("🤡")) return "text-slate-400";
+  if (linea.startsWith("🏆") || linea.startsWith("💰")) return "text-amber-400 font-bold";
+  if (linea.startsWith("✨")) return "text-yellow-300 font-bold";
+  if (linea.startsWith("🌿") || linea.startsWith("🦇") || linea.startsWith("🌧️")) return "text-emerald-300/80 italic";
+  if (linea.startsWith("👾") || linea.startsWith("🗺️")) return "text-purple-300 font-semibold";
   return "text-slate-300";
 };
 
@@ -173,7 +160,7 @@ export default function BasePage() {
           </div>
         </div>
       )}
-      
+
       <div className="max-w-4xl mx-auto">
         {/* 1. PANEL DE MISIONES */}
         {personaje && (
