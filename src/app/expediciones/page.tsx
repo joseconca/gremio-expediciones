@@ -45,6 +45,16 @@ export default function ExpedicionesPage() {
   const [viajeIniciado, setViajeIniciado] = useState(false);
   const [cargando, setCargando] = useState(false);
   const [reporteViaje, setReporteViaje] = useState<any>(null);
+  const [basesAjenas, setBasesAjenas] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch("/api/bases")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.bases) setBasesAjenas(data.bases);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   useEffect(() => {
     if (!baseCoords) return;
@@ -144,6 +154,7 @@ export default function ExpedicionesPage() {
         <MissionMap
           baseCoords={baseCoords}
           misiones={misionesGeneradas}
+          basesAjenas={basesAjenas}
           onSelectMission={setMisionSeleccionada}
         />
       </div>

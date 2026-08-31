@@ -1,15 +1,32 @@
 "use client";
 
-import { useState } from "react";
-import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import { useState, useEffect } from "react";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  useMapEvents,
+  Popup,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
+// Icono para tu futura base (Azul)
 const customIcon = new L.Icon({
-  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  iconRetinaUrl:
-    "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+});
+
+// Icono para las bases de otros jugadores (Verde)
+const enemyBaseIcon = new L.Icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
   iconSize: [25, 41],
   iconAnchor: [12, 41],
 });
@@ -29,7 +46,9 @@ function LocationMarker({
   });
 
   return position === null ? null : (
-    <Marker position={position} icon={customIcon} />
+    <Marker position={position} icon={customIcon}>
+      <Popup>Tu futura base</Popup>
+    </Marker>
   );
 }
 
@@ -42,40 +61,70 @@ export default function MapSelector({ onSaveLocation }: MapSelectorProps) {
     lat: number;
     lng: number;
   } | null>(null);
+  const [basesAjenas, setBasesAjenas] = useState<any[]>([]);
 
-  // Centro peninsular
+  // Cargamos las bases de otros jugadores al montar el mapa
+  useEffect(() => {
+    fetch("/api/bases")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.bases) setBasesAjenas(data.bases);
+      })
+      .catch((err) => console.error("Error cargando bases", err));
+  }, []);
+
   const defaultCenter: [number, number] = [40.4168, -3.7038];
 
   return (
     <div className="flex flex-col gap-4">
       <div className="relative h-[400px] w-full rounded-lg overflow-hidden border border-slate-300 shadow-sm z-0">
-        <MapContainer center={defaultCenter} zoom={6} className="h-full w-full">
+        <MapContainer
+          center={defaultCenter}
+          zoom={10}
+          className="h-full w-full"
+        >
           <TileLayer
             url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
+            attribution="&copy; OSM"
           />
+
           <LocationMarker onLocationSelect={setSelectedCoords} />
+
+          {/* Renderizar las bases de los demás */}
+          {basesAjenas.map((base) => (
+            <Marker
+              key={base.id}
+              position={[base.lat, base.lng]}
+              icon={enemyBaseIcon}
+            >
+              <Popup>
+                <div className="text-center font-bold text-slate-800">
+                  {base.nombre} <br />
+                  <span className="text-xs text-slate-500 font-normal">
+                    Nivel {base.nivel}
+                  </span>
+                </div>
+              </Popup>
+            </Marker>
+          ))}
         </MapContainer>
       </div>
 
       {selectedCoords && (
-        <div className="flex flex-col sm:flex-row items-center justify-between p-4 bg-white border border-slate-300 rounded-lg shadow-sm animate-in fade-in slide-in-from-top-4 duration-300">
+        <div className="flex flex-col sm:flex-row items-center justify-between p-4 bg-white border border-slate-300 rounded-lg shadow-sm animate-in fade-in duration-300">
           <div className="mb-4 sm:mb-0 text-center sm:text-left">
-            <p className="text-sm text-slate-500 font-medium uppercase tracking-wider">
-              Lugar seleccionado
+            <p className="text-sm text-slate-500 uppercase tracking-wider">
+              Coordenadas
             </p>
             <p className="text-xl font-bold text-slate-800">
-              Lat: {selectedCoords.lat.toFixed(4)}{" "}
-              <span className="text-slate-300">|</span> Lng:{" "}
-              {selectedCoords.lng.toFixed(4)}
+              {selectedCoords.lat.toFixed(4)} | {selectedCoords.lng.toFixed(4)}
             </p>
           </div>
-
           <button
             onClick={() => onSaveLocation(selectedCoords)}
-            className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-all active:scale-95"
+            className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg"
           >
-            Construir Base Aquí
+            Construir Aquí
           </button>
         </div>
       )}
