@@ -3,7 +3,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useGameStore } from "@/store/useGameStore";
-import { resolverExpedicion, ResultadoCombate } from "@/lib/resolucionCombate";
+import {
+  resolverExpedicion,
+  resolverComercio,
+  ResultadoCombate,
+} from "@/lib/resolucionCombate";
 
 const UI_EDIFICIOS: Record<string, { color: string; ruta: string }> = {
   taberna: { color: "bg-amber-700", ruta: "/base/taberna" },
@@ -12,16 +16,117 @@ const UI_EDIFICIOS: Record<string, { color: string; ruta: string }> = {
 };
 
 const getColorPorLinea = (linea: string) => {
-  if (linea.startsWith("💥")) return "text-fuchsia-400 font-black animate-pulse";
+  if (linea.startsWith("💥"))
+    return "text-fuchsia-400 font-black animate-pulse";
   if (linea.startsWith("⚔️")) return "text-blue-300";
-  if (linea.startsWith("🩸") || linea.startsWith("💀") || linea.startsWith("🚑")) return "text-red-400 font-medium";
-  if (linea.startsWith("🛡️") || linea.startsWith("💨") || linea.startsWith("🤡")) return "text-slate-400";
-  if (linea.startsWith("🏆") || linea.startsWith("💰")) return "text-amber-400 font-bold";
+  if (
+    linea.startsWith("🩸") ||
+    linea.startsWith("💀") ||
+    linea.startsWith("🚑")
+  )
+    return "text-red-400 font-medium";
+  if (
+    linea.startsWith("🛡️") ||
+    linea.startsWith("💨") ||
+    linea.startsWith("🤡")
+  )
+    return "text-slate-400";
+  if (linea.startsWith("🏆") || linea.startsWith("💰"))
+    return "text-amber-400 font-bold";
   if (linea.startsWith("✨")) return "text-yellow-300 font-bold";
-  if (linea.startsWith("🌿") || linea.startsWith("🦇") || linea.startsWith("🌧️")) return "text-emerald-300/80 italic";
-  if (linea.startsWith("👾") || linea.startsWith("🗺️")) return "text-purple-300 font-semibold";
+  if (
+    linea.startsWith("🌿") ||
+    linea.startsWith("🦇") ||
+    linea.startsWith("🌧️")
+  )
+    return "text-emerald-300/80 italic";
+  if (linea.startsWith("👾") || linea.startsWith("🗺️"))
+    return "text-purple-300 font-semibold";
   return "text-slate-300";
 };
+
+export function PanelCaravanasEntrantes({ caravanas }: { caravanas: any[] }) {
+  const [ahora, setAhora] = useState(Date.now());
+
+  useEffect(() => {
+    if (caravanas.length === 0) return;
+    const intervalo = setInterval(() => setAhora(Date.now()), 1000);
+    return () => clearInterval(intervalo);
+  }, [caravanas]);
+
+  if (caravanas.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="bg-slate-900 border-2 border-slate-700 rounded-xl shadow-lg overflow-hidden my-6">
+      <div className="bg-slate-800 border-b border-slate-700 p-4 flex items-center justify-between">
+        <h3 className="text-xl font-black text-amber-500 uppercase tracking-widest flex items-center gap-2">
+          <span>🐪</span> Rutas Comerciales Entrantes
+        </h3>
+        <span className="bg-emerald-900/50 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-emerald-800">
+          {caravanas.length} en camino
+        </span>
+      </div>
+
+      <div className="p-4 space-y-4 bg-[#0a0f1a]">
+        {caravanas.map((caravana) => (
+          <div
+            key={caravana.id}
+            className="bg-slate-800 rounded-lg p-4 border border-slate-700 relative overflow-hidden"
+          >
+            <div className="flex justify-between items-end mb-2 relative z-10">
+              <div>
+                <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">
+                  Caravana de:
+                </p>
+                <p className="text-lg font-bold text-white flex items-center gap-2">
+                  🛡️ {caravana.gremioOrigen}
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">
+                  Llegada en:
+                </p>
+                <p className="text-xl font-mono font-bold text-amber-400">
+                  ⏳ {caravana.tiempoRestante}
+                </p>
+              </div>
+            </div>
+
+            {/* Barra de progreso */}
+            <div className="w-full bg-slate-950 rounded-full h-2.5 mt-4 relative z-10 shadow-inner">
+              <div
+                className="bg-blue-500 h-2.5 rounded-full transition-all duration-1000 ease-linear shadow-[0_0_10px_rgba(59,130,246,0.8)]"
+                style={{ width: `${caravana.porcentajeProgreso}%` }}
+              ></div>
+            </div>
+
+            {/* Detalles extra */}
+            <div className="flex justify-between mt-3 text-xs text-slate-500 font-medium relative z-10">
+              <span>Progreso: {caravana.porcentajeProgreso}%</span>
+              <span>
+                Peligro de ruta:{" "}
+                <span
+                  className={
+                    caravana.nivelPeligro === "Alto"
+                      ? "text-red-400"
+                      : "text-emerald-400"
+                  }
+                >
+                  {caravana.nivelPeligro}
+                </span>
+              </span>
+            </div>
+
+            {/* Decoración de fondo */}
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-blue-900/20 to-transparent pointer-events-none" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function BasePage() {
   // Estado para la UI

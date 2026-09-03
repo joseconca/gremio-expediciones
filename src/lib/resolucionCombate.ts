@@ -5,6 +5,104 @@ export interface ResultadoCombate {
   logCombate: string[];
 }
 
+function simularRuta(distanciaKm: number, personaje: any, esVuelta: boolean = false) {
+  const log: string[] = [];
+  let hpTemporal = personaje.hpActual;
+  
+  // Hay un evento posible por cada 50km recorridos
+  const tramos = Math.max(1, Math.floor(distanciaKm / 50));
+  
+  for(let i = 0; i < tramos; i++) {
+    if (hpTemporal <= 0) break;
+
+    const tirada = Math.random();
+    // A más distancia (tramos), más probabilidad de encuentros peligrosos
+    if (tirada < 0.10) {
+      const dano = Math.floor(Math.random() * 8) + 2;
+      hpTemporal -= dano;
+      log.push(`🏹 ¡Emboscada de bandidos en el kilómetro ${i * 50}! ${personaje.nombre} recibe ${dano} de daño defendiendo la mercancía.`);
+    } else if (tirada < 0.20) {
+      log.push(`🌧️ Lluvias torrenciales embarran el camino. El avance es lento y agotador.`);
+      hpTemporal -= 2;
+    } else if (tirada > 0.90 && !esVuelta) {
+      log.push(`✨ Encuentras los restos de una caravana antigua y recoges algunos materiales útiles.`);
+    }
+  }
+
+  return { hpFinal: hpTemporal, logRuta: log };
+}
+
+export function resolverComercio(
+  personaje: any, 
+  distanciaKm: number, 
+  nivelMercado: number, 
+  intercambiosPrevios: number,
+  nombreBaseAliada: string
+) {
+  const logCombate: string[] = [];
+  let exito = true;
+  let hpTemporal = personaje.hpActual;
+
+  logCombate.push(`🗺️ ${personaje.nombre} carga el carruaje y parte hacia "${nombreBaseAliada}", a ${distanciaKm}km de distancia.`);
+
+  // --- 1. VIAJE DE IDA ---
+  const resultadoIda = simularRuta(distanciaKm, { ...personaje, hpActual: hpTemporal });
+  logCombate.push(...resultadoIda.logRuta);
+  hpTemporal = resultadoIda.hpFinal;
+
+  if (hpTemporal <= 0) {
+    return { 
+      exito: false, 
+      hpPerdido: personaje.hpActual - 1, 
+      oroGanado: 0, 
+      logCombate: [...logCombate, `💀 ${personaje.nombre} sucumbió a los peligros del viaje de ida. La caravana fue saqueada.`] 
+    };
+  }
+
+  // --- 2. LLEGADA Y CURACIÓN ---
+  const hpCurado = Math.floor(personaje.hpMaximo * 0.3); // Se cura un 30% en la base aliada
+  hpTemporal = Math.min(personaje.hpMaximo, hpTemporal + hpCurado);
+  logCombate.push(`🤝 ¡Llegada con éxito! El Gremio "${nombreBaseAliada}" recibe a ${personaje.nombre} con un banquete caliente (Recupera ${hpCurado} HP).`);
+
+  // --- 3. NEGOCIACIÓN Y CÁLCULO DE ORO ---
+  // Recompensa base por distancia (ej: 1 oro por km)
+  const oroBase = Math.floor(distanciaKm * 1.5);
+  
+  // Afinidad: 1% extra por intercambio, máximo 100% (1.0) por Nivel de Mercado
+  const topeAfinidad = 1.0 * nivelMercado; 
+  const bonusAfinidad = Math.min(intercambiosPrevios * 0.01, topeAfinidad);
+  
+  let oroFinal = oroBase + Math.floor(oroBase * bonusAfinidad);
+  if (personaje.clase === "Mercader") oroFinal = Math.floor(oroFinal * 1.25); // Bonus de clase
+
+  logCombate.push(`⚖️ Las negociaciones son un éxito. El vínculo comercial otorga un bono del ${(bonusAfinidad * 100).toFixed(0)}%. Se consiguen ${oroFinal} 🪙 en bienes.`);
+
+  // --- 4. VIAJE DE VUELTA ---
+  logCombate.push(`🗺️ Con el carro lleno, comienza el peligroso viaje de regreso a casa...`);
+  const resultadoVuelta = simularRuta(distanciaKm, { ...personaje, hpActual: hpTemporal }, true);
+  logCombate.push(...resultadoVuelta.logRuta);
+  hpTemporal = resultadoVuelta.hpFinal;
+
+  if (hpTemporal <= 0) {
+    return { 
+      exito: false, 
+      hpPerdido: personaje.hpActual - 1, 
+      oroGanado: 0, 
+      logCombate: [...logCombate, `🚑 ¡Tragedia a un paso de casa! ${personaje.nombre} llega malherido y el carro de oro se pierde por un barranco.`] 
+    };
+  }
+
+  // --- 5. RESOLUCIÓN EXITOSA ---
+  logCombate.push(`🎉 ¡Las puertas de tu Gremio se abren! La expedición comercial ha sido un éxito total.`);
+
+  return { 
+    exito: true, 
+    hpPerdido: personaje.hpActual - hpTemporal, 
+    oroGanado: oroFinal, 
+    logCombate 
+  };
+}
+
 //todo: implementar suerte como estadística del pj
 let suerte = 0;
 const d20 = () => Math.floor(Math.random() * 20 + suerte) + 1;

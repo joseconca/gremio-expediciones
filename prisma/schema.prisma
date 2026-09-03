@@ -45,12 +45,27 @@ model ExpedicionActiva {
   usuarioId    String   @unique
   usuario      Usuario  @relation(fields: [usuarioId], references: [id])
   
+  tipo          String
+  objetivoId    String?
+  fase          String
+
   misionId     String
   nombre       String
   recompensa   Int
   dificultad   Int
+
+  fechaSalida DateTime @default(now()) 
   fechaLlegada DateTime 
   destinoCoords Json
+}
+
+model AfinidadComercial {
+  id           String   @id @default(uuid())
+  jugador1Id   String
+  jugador2Id   String
+  intercambios Int      @default(0)
+  afinidad     Int      @default(0)
+  @@unique([jugador1Id, jugador2Id])
 }
 
 model RegistroAccion {
