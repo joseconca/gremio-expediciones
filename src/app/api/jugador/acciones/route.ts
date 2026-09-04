@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
+import { Prisma } from "@prisma/client";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { CONFIGURACION_EDIFICIOS, IdEdificio } from "@/lib/configuracionJuego";
 
 const CLASES = new Set(["Guerrero", "Explorador", "Mercader"]);
 const ATRIBUTOS = new Set([
@@ -9,11 +11,7 @@ const ATRIBUTOS = new Set([
   "velocidad",
   "capacidadCarruaje",
 ]);
-const EDIFICIOS: Record<string, { costeBase: number; nivelMax: number }> = {
-  taberna: { costeBase: 100, nivelMax: 1 },
-  herreria: { costeBase: 200, nivelMax: 3 },
-  mercado: { costeBase: 500, nivelMax: 2 },
-};
+const EDIFICIOS = CONFIGURACION_EDIFICIOS;
 
 const includeGameData = { personaje: true, expedicionActiva: true } as const;
 
@@ -118,15 +116,22 @@ export async function POST(request: Request) {
     }
 
     if (accion === "mejorarEdificio") {
-      const idEdificio = body.idEdificio;
+      const idEdificioValue: unknown = body.idEdificio;
+      if (typeof idEdificioValue !== "string" || !(idEdificioValue in EDIFICIOS)) {
+        return NextResponse.json({ error: "Edificio inválido." }, { status: 400 });
+      }
+      const idEdificio = idEdificioValue as IdEdificio;
       const configuracion = EDIFICIOS[idEdificio];
-      if (!configuracion) return NextResponse.json({ error: "Edificio inválido." }, { status: 400 });
       const usuario = await prisma.usuario.findUnique({ where: { id: usuarioSesion.id }, include: includeGameData });
       const edificios = usuario?.edificios as Record<string, unknown> | undefined;
       const nivel = typeof edificios?.[idEdificio] === "number" ? edificios[idEdificio] as number : 0;
-      const coste = Math.floor(configuracion.costeBase * (nivel + 1) * 1.5);
+      const coste = nivel === 0 ? configuracion.costeConstruccion : configuracion.costeNivel2;
       if (!usuario || nivel >= configuracion.nivelMax || usuario.oro < coste) return NextResponse.json({ error: "No se puede mejorar el edificio." }, { status: 400 });
-      const actualizado = await prisma.usuario.update({ where: { id: usuario.id }, data: { oro: { decrement: coste }, edificios: { ...edificios, [idEdificio]: nivel + 1 } }, include: includeGameData });
+      const edificiosActualizados: Prisma.InputJsonObject = {
+        ...(edificios as Prisma.InputJsonObject | undefined),
+        [idEdificio]: nivel + 1,
+      };
+      const actualizado = await prisma.usuario.update({ where: { id: usuario.id }, data: { oro: { decrement: coste }, edificios: edificiosActualizados }, include: includeGameData });
       return NextResponse.json(respuestaUsuario(actualizado));
     }
 

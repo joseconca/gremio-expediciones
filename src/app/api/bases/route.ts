@@ -29,6 +29,7 @@ export async function GET() {
       const coords = leerCoordenadas(otroUsuario.baseCoords);
       if (!coords) return [];
       const edificios = otroUsuario.edificios as Record<string, unknown> | null;
+      if (edificios?.embajada !== 1 && edificios?.embajada !== 2) return [];
       const niveles = Object.values(edificios || {}).filter(
         (nivel): nivel is number => typeof nivel === "number"
       );

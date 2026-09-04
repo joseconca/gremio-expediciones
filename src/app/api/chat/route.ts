@@ -5,6 +5,10 @@ import { prisma } from "@/lib/prisma";
 export async function GET() {
   const usuario = await getAuthenticatedUser();
   if (!usuario) return NextResponse.json({ error: "Sesión requerida." }, { status: 401 });
+  const edificios = usuario.edificios as Record<string, unknown> | null;
+  if (edificios?.embajada !== 1 && edificios?.embajada !== 2) {
+    return NextResponse.json({ error: "Construye la Embajada para participar en el chat." }, { status: 403 });
+  }
 
   const mensajes = await prisma.mensajeChat.findMany({
     orderBy: { creado: "desc" },
@@ -23,6 +27,10 @@ export async function POST(request: Request) {
   try {
     const usuario = await getAuthenticatedUser();
     if (!usuario) return NextResponse.json({ error: "Sesión requerida." }, { status: 401 });
+    const edificios = usuario.edificios as Record<string, unknown> | null;
+    if (edificios?.embajada !== 1 && edificios?.embajada !== 2) {
+      return NextResponse.json({ error: "Construye la Embajada para participar en el chat." }, { status: 403 });
+    }
 
     const body = await request.json();
     const texto = typeof body.texto === "string" ? body.texto.trim() : "";

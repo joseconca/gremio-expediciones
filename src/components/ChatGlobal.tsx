@@ -9,31 +9,28 @@ interface MensajeChat {
   usuario: { nombre: string };
 }
 
-export default function ChatGlobal() {
+export default function ChatGlobal({ habilitado = true }: { habilitado?: boolean }) {
   const [mensajes, setMensajes] = useState<MensajeChat[]>([]);
   const [texto, setTexto] = useState("");
   const [error, setError] = useState("");
   const [abierto, setAbierto] = useState(false);
 
-  async function cargarMensajes() {
-    const respuesta = await fetch("/api/chat");
-    if (!respuesta.ok) return;
-    const datos = await respuesta.json();
-    setMensajes(datos.mensajes || []);
-  }
-
   useEffect(() => {
-    fetch("/api/chat")
-      .then((respuesta) => (respuesta.ok ? respuesta.json() : null))
-      .then((datos) => {
-        if (datos) setMensajes(datos.mensajes || []);
-      });
-    const intervalo = setInterval(cargarMensajes, 5000);
+    if (!habilitado) return;
+    const cargar = async () => {
+      const respuesta = await fetch("/api/chat");
+      if (!respuesta.ok) return;
+      const datos = await respuesta.json();
+      setMensajes(datos.mensajes || []);
+    };
+    void cargar();
+    const intervalo = setInterval(() => void cargar(), 5000);
     return () => clearInterval(intervalo);
-  }, []);
+  }, [habilitado]);
 
   async function enviar(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (!habilitado) return;
     if (!texto.trim()) return;
     const respuesta = await fetch("/api/chat", {
       method: "POST",
@@ -51,6 +48,14 @@ export default function ChatGlobal() {
   }
 
   const ultimoMensaje = mensajes[mensajes.length - 1];
+
+  if (!habilitado) {
+    return (
+      <section className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-700 bg-slate-900/95 px-4 py-2 text-center text-sm text-slate-500 shadow-2xl backdrop-blur">
+        Construye la Embajada para desbloquear el chat global.
+      </section>
+    );
+  }
 
   return (
     <section className="fixed inset-x-0 bottom-0 z-40 pointer-events-none">

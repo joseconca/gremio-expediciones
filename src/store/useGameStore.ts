@@ -1,27 +1,35 @@
 import { create } from "zustand";
 import type { ResultadoCombate } from "@/lib/resolucionCombate";
+import { CONFIGURACION_EDIFICIOS } from "@/lib/configuracionJuego";
 
 const EDIFICIOS_BASE: Record<string, Omit<Edificio, "nivel">> = {
   taberna: {
     id: "taberna",
-    nombre: "Taberna",
-    costeBase: 100,
-    descripcion: "Descansa tras una expedición.",
-    nivelMax: 1,
+    nombre: CONFIGURACION_EDIFICIOS.taberna.nombre,
+    costeBase: CONFIGURACION_EDIFICIOS.taberna.costeConstruccion,
+    descripcion: CONFIGURACION_EDIFICIOS.taberna.descripcion,
+    nivelMax: CONFIGURACION_EDIFICIOS.taberna.nivelMax,
   },
   herreria: {
     id: "herreria",
-    nombre: "Herrería",
-    costeBase: 200,
-    descripcion: "Mejora tus equipajes.",
-    nivelMax: 3,
+    nombre: CONFIGURACION_EDIFICIOS.herreria.nombre,
+    costeBase: CONFIGURACION_EDIFICIOS.herreria.costeConstruccion,
+    descripcion: CONFIGURACION_EDIFICIOS.herreria.descripcion,
+    nivelMax: CONFIGURACION_EDIFICIOS.herreria.nivelMax,
   },
   mercado: {
     id: "mercado",
-    nombre: "Mercado",
-    costeBase: 500,
-    descripcion: "Repara las botas y ese carruaje.",
-    nivelMax: 2,
+    nombre: CONFIGURACION_EDIFICIOS.mercado.nombre,
+    costeBase: CONFIGURACION_EDIFICIOS.mercado.costeConstruccion,
+    descripcion: CONFIGURACION_EDIFICIOS.mercado.descripcion,
+    nivelMax: CONFIGURACION_EDIFICIOS.mercado.nivelMax,
+  },
+  embajada: {
+    id: "embajada",
+    nombre: CONFIGURACION_EDIFICIOS.embajada.nombre,
+    costeBase: CONFIGURACION_EDIFICIOS.embajada.costeConstruccion,
+    descripcion: CONFIGURACION_EDIFICIOS.embajada.descripcion,
+    nivelMax: CONFIGURACION_EDIFICIOS.embajada.nivelMax,
   },
 };
 
@@ -125,6 +133,7 @@ function aplicarDatosJugador(
       taberna: { ...EDIFICIOS_BASE.taberna, nivel: nivelEdificio("taberna", 1) },
       herreria: { ...EDIFICIOS_BASE.herreria, nivel: nivelEdificio("herreria", 0) },
       mercado: { ...EDIFICIOS_BASE.mercado, nivel: nivelEdificio("mercado", 0) },
+      embajada: { ...EDIFICIOS_BASE.embajada, nivel: nivelEdificio("embajada", 0) },
     },
   });
 }
@@ -137,6 +146,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     taberna: { ...EDIFICIOS_BASE.taberna, nivel: 1 },
     herreria: { ...EDIFICIOS_BASE.herreria, nivel: 0 },
     mercado: { ...EDIFICIOS_BASE.mercado, nivel: 0 },
+    embajada: { ...EDIFICIOS_BASE.embajada, nivel: 0 },
   },
   baseCoords: null,
   isLoading: true,
@@ -175,6 +185,10 @@ export const useGameStore = create<GameState>((set, get) => ({
         mercado: {
           ...EDIFICIOS_BASE.mercado,
           nivel: datos.edificios?.mercado ?? 0,
+        },
+        embajada: {
+          ...EDIFICIOS_BASE.embajada,
+          nivel: datos.edificios?.embajada ?? 0,
         },
       };
 
@@ -299,7 +313,9 @@ export const useGameStore = create<GameState>((set, get) => ({
 
   obtenerCosteMejora: (idEdificio) => {
     const ed = get().edificios[idEdificio];
-    return Math.floor(ed.costeBase * (ed.nivel + 1) * 1.5);
+    const configuracion = CONFIGURACION_EDIFICIOS[idEdificio as keyof typeof CONFIGURACION_EDIFICIOS];
+    if (!configuracion) return Number.POSITIVE_INFINITY;
+    return ed.nivel === 0 ? configuracion.costeConstruccion : configuracion.costeNivel2;
   },
 
   mejorarEdificio: async (idEdificio) => {

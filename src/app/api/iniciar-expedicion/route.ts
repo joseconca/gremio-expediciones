@@ -48,13 +48,18 @@ if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number')
     const esComercio = typeof mision.tipo === "string" && mision.tipo === "comercio";
     let objetivoId: string | undefined;
     if (esComercio) {
+      const edificiosOrigen = usuario.edificios as Record<string, unknown> | null;
+      if (edificiosOrigen?.embajada !== 1 && edificiosOrigen?.embajada !== 2) {
+        return NextResponse.json({ exito: false, mensaje: "Construye la Embajada para abrir rutas comerciales." }, { status: 403 });
+      }
       const idObjetivo = typeof mision.id === "string" && mision.id.startsWith("comercio-")
         ? mision.id.slice("comercio-".length)
         : "";
       const objetivo = idObjetivo
-        ? await prisma.usuario.findUnique({ where: { id: idObjetivo }, select: { id: true, nombre: true, baseCoords: true } })
+        ? await prisma.usuario.findUnique({ where: { id: idObjetivo }, select: { id: true, nombre: true, baseCoords: true, edificios: true } })
         : null;
-      if (!objetivo || !objetivo.baseCoords) {
+      const edificiosDestino = objetivo?.edificios as Record<string, unknown> | null;
+      if (!objetivo || !objetivo.baseCoords || (edificiosDestino?.embajada !== 1 && edificiosDestino?.embajada !== 2)) {
         return NextResponse.json({ exito: false, mensaje: "El gremio de destino ya no está disponible." }, { status: 404 });
       }
       objetivoId = objetivo.id;

@@ -62,9 +62,12 @@ export async function POST() {
     const oroGanado = typeof resultado.oroGanado === "number" && Number.isFinite(resultado.oroGanado)
       ? Math.max(0, resultado.oroGanado)
       : 0;
+    const experienciaGanada = expedicion.tipo === "comercio"
+      ? 0
+      : resultado.experienciaGanada;
     const experienciaActual = usuario.personaje.experiencia || 0;
     const nivelActual = usuario.personaje.nivel || 1;
-    const experienciaTotal = experienciaActual + resultado.experienciaGanada;
+    const experienciaTotal = experienciaActual + experienciaGanada;
     const experienciaNecesaria = nivelActual * 100;
     const subeNivel = experienciaTotal >= experienciaNecesaria;
     const nuevoNivel = nivelActual + (subeNivel ? 1 : 0);
@@ -107,7 +110,10 @@ export async function POST() {
     const datos = Object.fromEntries(
       Object.entries(actualizado).filter(([clave]) => clave !== "password")
     );
-    return NextResponse.json({ resultado, usuario: datos });
+    return NextResponse.json({
+      resultado: { ...resultado, experienciaGanada },
+      usuario: datos,
+    });
   } catch (error) {
     console.error("Error al completar expedición:", error);
     return NextResponse.json({ error: "No se pudo completar la expedición." }, { status: 500 });

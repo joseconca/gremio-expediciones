@@ -10,7 +10,7 @@ export default function BaseLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const { oro, personaje, expedicionActiva, baseCoords, isLoading, cargarJugador, aplicarRegeneracion } = useGameStore();
+  const { oro, personaje, expedicionActiva, baseCoords, edificios, isLoading, cargarJugador, aplicarRegeneracion } = useGameStore();
   const [tiempoRestante, setTiempoRestante] = useState<number>(0);
 
   useEffect(() => {
@@ -132,7 +132,7 @@ export default function BaseLayout({
       </header>
 
       <div className="flex-grow">{children}</div>
-      <ChatGlobal />
+      <ChatGlobal habilitado={edificios.embajada.nivel > 0} />
     </div>
   );
 }
