@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { sincronizarRegeneracion } from "@/lib/regeneracion";
 import { CONFIGURACION_EDIFICIOS, ESTADISTICAS_BASE_CLASE, IdEdificio, ClasePersonaje } from "@/lib/configuracionJuego";
 
 const CLASES = new Set(["Guerrero", "Explorador", "Comerciante"]);
@@ -80,7 +81,11 @@ export async function POST(request: Request) {
 
     if (accion === "curar") {
       const usuario = await prisma.usuario.findUnique({ where: { id: usuarioSesion.id }, include: { personaje: true } });
-      if (!usuario?.personaje || usuario.personaje.hpActual >= usuario.personaje.hpMaximo) {
+      if (!usuario?.personaje) {
+        return NextResponse.json({ error: "Necesitas un personaje." }, { status: 400 });
+      }
+      usuario.personaje = await sincronizarRegeneracion(usuario.personaje);
+      if (usuario.personaje.hpActual >= usuario.personaje.hpMaximo) {
         return NextResponse.json({ error: "El personaje ya está completamente sano." }, { status: 400 });
       }
       const edificios = usuario.edificios as Record<string, unknown> | null;

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { sincronizarRegeneracion } from "@/lib/regeneracion";
 
 const includeGameData = {
   personaje: true,
@@ -20,6 +21,10 @@ export async function GET() {
     });
     if (!usuario) {
       return NextResponse.json({ error: "Usuario no encontrado." }, { status: 404 });
+    }
+
+    if (usuario.personaje) {
+      usuario.personaje = await sincronizarRegeneracion(usuario.personaje);
     }
 
     const expedicionesEntrantes = await prisma.expedicionActiva.findMany({

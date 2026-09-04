@@ -41,12 +41,28 @@ export default function ExpedicionesPage() {
     iniciarExpedicion,
     misionesCompletadasEstaHora,
     horaMisiones,
+    isLoading,
+    sesionActiva,
+    cargarJugador,
   } = useGameStore();
   const [misionSeleccionada, setMisionSeleccionada] = useState<any>(null);
   const [viajeIniciado, setViajeIniciado] = useState(false);
   const [cargando, setCargando] = useState(false);
   const [reporteViaje, setReporteViaje] = useState<any>(null);
   const [basesAjenas, setBasesAjenas] = useState<any[]>([]);
+
+  useEffect(() => {
+    cargarJugador();
+  }, [cargarJugador]);
+
+  useEffect(() => {
+    if (isLoading) return;
+    if (!sesionActiva) {
+      router.push("/login");
+    } else if (!baseCoords) {
+      router.push("/crear-base");
+    }
+  }, [isLoading, sesionActiva, baseCoords, router]);
 
   useEffect(() => {
     fetch("/api/bases")
@@ -79,8 +95,7 @@ export default function ExpedicionesPage() {
   let tiempoHoras = 0;
   let textoTiempo = "Calculando...";
 
-  if (misionSeleccionada && personaje) {
-    if (!baseCoords) return;
+  if (misionSeleccionada && personaje && baseCoords) {
     const velocidadKmh = 5.9 + personaje.velocidad * 0.1;
     distanciaKm = calcularDistanciaKm(
       baseCoords.lat,
@@ -95,8 +110,13 @@ export default function ExpedicionesPage() {
     textoTiempo = `${horas}h ${minutos}m`;
   }
 
+  const sinVida = !personaje || personaje.hpActual <= 0;
+  const [errorEnvio, setErrorEnvio] = useState<string | null>(null);
+
   const handleEnviarExpedicion = async () => {
+    if (sinVida) return;
     setCargando(true);
+    setErrorEnvio(null);
 
     try {
       const res = await fetch("/api/iniciar-expedicion", {
@@ -125,9 +145,13 @@ export default function ExpedicionesPage() {
             lng: misionSeleccionada.lng,
           },
         });
+      } else {
+        setErrorEnvio(data.mensaje || "No se pudo iniciar la expedición.");
+        cargarJugador();
       }
     } catch (error) {
       console.error("Error al enviar expedición");
+      setErrorEnvio("Error de conexión al iniciar la expedición.");
     } finally {
       setCargando(false);
     }
@@ -150,9 +174,10 @@ export default function ExpedicionesPage() {
       </header>
 
       {/* Capa del Mapa */}
+      {baseCoords && (
       <div className="absolute inset-0 z-0">
         <MissionMap
-          baseCoords={baseCoords!}
+          baseCoords={baseCoords}
           misiones={misionesGeneradas}
           basesAjenas={basesAjenas}
           destinoExpedicion={
@@ -165,6 +190,7 @@ export default function ExpedicionesPage() {
           onSelectMission={setMisionSeleccionada}
         />
       </div>
+      )}
 
       {/* Panel inferior*/}
       {misionSeleccionada && !viajeIniciado && (
@@ -216,9 +242,19 @@ export default function ExpedicionesPage() {
                 <span className="font-bold text-blue-400">{textoTiempo}</span>
               </div>
             </div>
+            {sinVida && (
+              <p className="mb-3 text-center text-sm font-bold text-red-400">
+                Tu aventurero no tiene vida suficiente. Cúralo en la Taberna antes de partir.
+              </p>
+            )}
+            {errorEnvio && !sinVida && (
+              <p className="mb-3 text-center text-sm font-bold text-red-400">
+                {errorEnvio}
+              </p>
+            )}
             <button
               onClick={handleEnviarExpedicion}
-              disabled={cargando || !personaje}
+              disabled={cargando || !personaje || sinVida}
               className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 rounded-xl shadow-lg transition-colors text-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {cargando ? "Preparando equipo..." : "Enviar Aventurero"}

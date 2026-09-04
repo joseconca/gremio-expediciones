@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { sincronizarRegeneracion } from "@/lib/regeneracion";
 
 export async function POST(request: Request) {
   try {
@@ -42,6 +43,13 @@ if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number')
       return NextResponse.json(
         { exito: false, mensaje: "Ya tienes una expedición activa." },
         { status: 409 }
+      );
+    }
+    usuario.personaje = await sincronizarRegeneracion(usuario.personaje);
+    if (usuario.personaje.hpActual <= 0) {
+      return NextResponse.json(
+        { exito: false, mensaje: "Tu aventurero necesita curarse antes de partir." },
+        { status: 400 }
       );
     }
 

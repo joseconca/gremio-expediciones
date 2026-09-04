@@ -49,6 +49,7 @@ model Personaje {
   hpActual          Int
   hpMaximo          Int
   regeneracionDeVida Int
+  ultimaRegeneracion DateTime @default(now())
   estado            String   @default("ocioso") // ocioso, en_mision, descansando
   ataque            Int
   defensa           Int
