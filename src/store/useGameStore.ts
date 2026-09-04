@@ -224,6 +224,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     const datos = await ejecutarAccion("reclutar", {
       nombre: nuevoPersonaje.nombre,
       clase: nuevoPersonaje.clase,
+      sexo: nuevoPersonaje.sexo,
     });
     aplicarDatosJugador(set, datos);
   },

@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useGameStore } from "@/store/useGameStore";
 
 const CLASES_INICIALES = [
@@ -33,8 +32,13 @@ const CLASES_INICIALES = [
   },
 ];
 
+function nombreClase(clase: string, sexo: "chico" | "chica") {
+  if (sexo === "chica" && clase === "Guerrero") return "Guerrera";
+  if (sexo === "chica" && clase === "Explorador") return "Exploradora";
+  return clase;
+}
+
 export default function TabernaPage() {
-  const router = useRouter();
   const { personaje, reclutarPersonaje, calcularCosteCura, curarPersonaje, oro } = useGameStore();
 
   const [claseSeleccionada, setClaseSeleccionada] = useState(
@@ -43,6 +47,7 @@ export default function TabernaPage() {
   const [nombre, setNombre] = useState("");
   const [sexo, setSexo] = useState<"chico" | "chica">("chico");
   const [mensaje, setMensaje] = useState("");
+  const [mostrarReclutamiento, setMostrarReclutamiento] = useState(false);
 
   const handleReclutar = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,16 +73,15 @@ export default function TabernaPage() {
         nivel: 1,
         experiencia: 0,
       });
-    } catch {
-      setMensaje("No se pudo reclutar al personaje.");
+    } catch (error) {
+      setMensaje(error instanceof Error ? error.message : "No se pudo reclutar al personaje.");
       return;
     }
 
     setMensaje(
-      `${nombre} el ${claseSeleccionada.nombre} se ha unido al gremio.`
+      `${nombre} ${sexo === "chica" ? "la" : "el"} ${nombreClase(claseSeleccionada.nombre, sexo)} se ha unido al gremio.`
     );
-
-    setTimeout(() => router.push("/base"), 2000);
+    setMostrarReclutamiento(true);
   };
 
   const handleCurar = async () => {
@@ -93,6 +97,36 @@ export default function TabernaPage() {
 
   return (
     <main className="min-h-screen bg-slate-900 text-slate-100 p-4 md:p-8 font-sans">
+      {mostrarReclutamiento && personaje && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-md rounded-xl border-2 border-amber-500/50 bg-slate-800 p-8 text-center shadow-2xl">
+            <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border-2 border-amber-500 bg-slate-950">
+              <Image
+                src="/sprites/heroes/warrior.png"
+                alt="Nuevo aventurero"
+                width={96}
+                height={96}
+                className="h-24 w-24 object-cover object-top [image-rendering:pixelated]"
+              />
+            </div>
+            <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-amber-400">Nuevo aventurero</p>
+            <h2 className="mb-3 text-3xl font-black text-white">{personaje.nombre}</h2>
+            <p className="mb-6 text-lg text-slate-300">
+              {personaje.sexo === "chica" ? "La" : "El"} {nombreClase(personaje.clase, personaje.sexo)} se une a tu gremio.
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setMostrarReclutamiento(false);
+                setMensaje("");
+              }}
+              className="w-full rounded-lg bg-amber-600 px-6 py-3 font-bold text-white transition-colors hover:bg-amber-500"
+            >
+              ¡A la aventura!
+            </button>
+          </div>
+        </div>
+      )}
       <div className="max-w-4xl mx-auto">
         <header className="flex justify-between items-center mb-8">
           <div>
@@ -126,7 +160,7 @@ export default function TabernaPage() {
                 <div className="w-full flex-grow">
                   <div className="mb-1 flex items-start justify-between gap-4">
                     <h2 className="text-3xl font-black text-amber-400">
-                    {personaje.nombre} <span className="text-slate-400 text-lg font-normal">{personaje.sexo === "chica" ? "la" : "el"} {personaje.clase}</span>
+                    {personaje.nombre} <span className="text-slate-400 text-lg font-normal">{personaje.sexo === "chica" ? "la" : "el"} {nombreClase(personaje.clase, personaje.sexo)}</span>
                     </h2>
                     <div className="whitespace-nowrap rounded-lg border border-amber-600/30 bg-slate-900 px-3 py-1 font-bold text-amber-400">
                       🪙 {oro}
