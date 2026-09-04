@@ -80,7 +80,7 @@ function RutaExpedicion({
     <>
       <Polyline
         positions={[[baseCoords.lat, baseCoords.lng], [destino.lat, destino.lng]]}
-        pathOptions={{ color: "#d97706", weight: 3, dashArray: "8 10", opacity: 0.9 }}
+        pathOptions={{ color: "#facc15", weight: 4, dashArray: "8 10", opacity: 1 }}
       />
       <Marker position={[destino.lat, destino.lng]} icon={destinationIcon}>
         <Popup>Destino de la expedición</Popup>
@@ -145,10 +145,10 @@ export default function MissionMap({
         className="h-full w-full"
       >
         <TileLayer
-          url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}"
-          attribution="Tiles &copy; Esri"
-          maxNativeZoom={8}
-          maxZoom={18}
+          url="https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="https://opentopomap.org">OpenTopoMap</a>'
+          maxNativeZoom={17}
+          maxZoom={17}
         />
 
         {/* Marcador de tu base */}

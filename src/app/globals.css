@@ -4,11 +4,12 @@
   width: 100%;
   height: 100%;
   z-index: 10;
-  background: #d8c49a;
+  background: #52784b;
 }
 
 .leaflet-tile-pane {
-  filter: saturate(1.45) contrast(1.12) sepia(0.1) hue-rotate(-8deg);
+  opacity: 0.3;
+  filter: saturate(0.78) contrast(0.96) brightness(1.04);
 }
 
 .hero-route-marker {
@@ -31,8 +32,9 @@
 
 .camp-map-icon {
   border-radius: 50%;
+  border: 3px solid #facc15;
   object-fit: cover;
-  box-shadow: 0 2px 8px rgb(15 23 42 / 45%);
+  box-shadow: 0 2px 8px rgb(15 23 42 / 65%);
 }
 
 .destination-map-icon {
