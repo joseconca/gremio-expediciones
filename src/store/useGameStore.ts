@@ -86,6 +86,7 @@ export interface GameState {
   sesionActiva: boolean;
   horaMisiones: number;
   misionesCompletadasEstaHora: number;
+  ultimaMisionElite: string | null;
 
   cargarJugador: () => Promise<void>;
   reclutarPersonaje: (personaje: Personaje) => Promise<void>;
@@ -132,6 +133,7 @@ function aplicarDatosJugador(
     personaje: (datos.personaje as Personaje | null) || null,
     baseCoords: (datos.baseCoords as GameState["baseCoords"]) || null,
     expedicionActiva: (datos.expedicionActiva as ExpedicionActiva | null) || null,
+    ultimaMisionElite: (datos.ultimaMisionElite as string | null) || null,
     edificios: {
       taberna: { ...EDIFICIOS_BASE.taberna, nivel: nivelEdificio("taberna", 1) },
       herreria: { ...EDIFICIOS_BASE.herreria, nivel: nivelEdificio("herreria", 0) },
@@ -159,6 +161,7 @@ export const useGameStore = create<GameState>((set, get) => ({
   sesionActiva: false,
   horaMisiones: 0,
   misionesCompletadasEstaHora: 0,
+  ultimaMisionElite: null,
 
   registrarMisionCompletada: () => {
     const horaActual = Math.floor(Date.now() / 3600000); // Horas desde 1970
@@ -230,6 +233,7 @@ export const useGameStore = create<GameState>((set, get) => ({
         personaje: datos.personaje,
         baseCoords: (datos.baseCoords as GameState["baseCoords"]) || null,
         expedicionActiva: (datos.expedicionActiva as ExpedicionActiva | null) || null,
+        ultimaMisionElite: (datos.ultimaMisionElite as string | null) || null,
         isLoading: false,
       });
     } catch (error) {

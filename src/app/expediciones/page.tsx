@@ -26,6 +26,7 @@ export default function ExpedicionesPage() {
     isLoading,
     sesionActiva,
     cargarJugador,
+    ultimaMisionElite,
   } = useGameStore();
   const [misionSeleccionada, setMisionSeleccionada] = useState<any>(null);
   const [viajeIniciado, setViajeIniciado] = useState(false);
@@ -68,10 +69,14 @@ export default function ExpedicionesPage() {
     const nuevasMisiones = [0, 1, 2, 3].map((slot) =>
       generarMision(baseCoords.lat, baseCoords.lng, horaActual, slot, offset)
     );
-    nuevasMisiones.push(generarMisionElite(baseCoords.lat, baseCoords.lng, new Date().toISOString().slice(0, 10)));
+    const diaActual = new Date().toISOString().slice(0, 10);
+    const eliteYaCompletada = ultimaMisionElite?.slice(0, 10) === diaActual;
+    if (!eliteYaCompletada) {
+      nuevasMisiones.push(generarMisionElite(baseCoords.lat, baseCoords.lng, diaActual));
+    }
 
     setMisionesGeneradas(nuevasMisiones);
-  }, [baseCoords, misionesCompletadasEstaHora, horaMisiones]);
+  }, [baseCoords, misionesCompletadasEstaHora, horaMisiones, ultimaMisionElite]);
 
   let distanciaKm = 0;
   let tiempoHoras = 0;
