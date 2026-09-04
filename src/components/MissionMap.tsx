@@ -80,7 +80,25 @@ function RutaExpedicion({
     <>
       <Polyline
         positions={[[baseCoords.lat, baseCoords.lng], [destino.lat, destino.lng]]}
-        pathOptions={{ color: "#facc15", weight: 4, dashArray: "8 10", opacity: 1 }}
+        pathOptions={{
+          color: "#172033",
+          weight: 6,
+          dashArray: "8 10",
+          opacity: 0.9,
+          lineCap: "round",
+          lineJoin: "round",
+        }}
+      />
+      <Polyline
+        positions={[[baseCoords.lat, baseCoords.lng], [destino.lat, destino.lng]]}
+        pathOptions={{
+          color: "#facc15",
+          weight: 4,
+          dashArray: "8 10",
+          opacity: 1,
+          lineCap: "round",
+          lineJoin: "round",
+        }}
       />
       <Marker position={[destino.lat, destino.lng]} icon={destinationIcon}>
         <Popup>Destino de la expedición</Popup>
