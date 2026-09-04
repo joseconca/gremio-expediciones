@@ -22,10 +22,27 @@ export async function GET() {
       return NextResponse.json({ error: "Usuario no encontrado." }, { status: 404 });
     }
 
+    const expedicionesEntrantes = await prisma.expedicionActiva.findMany({
+      where: { tipo: "comercio", objetivoId: usuario.id },
+      select: { id: true, usuarioId: true, fechaSalida: true, fechaLlegada: true, dificultad: true },
+    });
+    const origenes = await prisma.usuario.findMany({
+      where: { id: { in: expedicionesEntrantes.map((expedicion) => expedicion.usuarioId) } },
+      select: { id: true, nombre: true },
+    });
+    const nombresOrigen = new Map(origenes.map((origen) => [origen.id, origen.nombre]));
+    const caravanasEntrantes = expedicionesEntrantes.map((expedicion) => ({
+      id: expedicion.id,
+      gremioOrigen: nombresOrigen.get(expedicion.usuarioId) || "Gremio desconocido",
+      fechaSalida: expedicion.fechaSalida,
+      fechaLlegada: expedicion.fechaLlegada,
+      dificultad: expedicion.dificultad,
+    }));
+
     const datosPublicos = Object.fromEntries(
       Object.entries(usuario).filter(([clave]) => clave !== "password")
     );
-    return NextResponse.json(datosPublicos);
+    return NextResponse.json({ ...datosPublicos, caravanasEntrantes });
   } catch (error) {
     console.error("Error al cargar el jugador:", error);
     return NextResponse.json(

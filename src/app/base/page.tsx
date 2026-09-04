@@ -53,8 +53,16 @@ const getColorPorLinea = (linea: string) => {
   return "text-slate-300";
 };
 
-export function PanelCaravanasEntrantes({ caravanas }: { caravanas: any[] }) {
-  const [ahora, setAhora] = useState(Date.now());
+interface CaravanaEntrante {
+  id: string;
+  gremioOrigen: string;
+  fechaSalida: string;
+  fechaLlegada: string;
+  dificultad: number;
+}
+
+export function PanelCaravanasEntrantes({ caravanas }: { caravanas: CaravanaEntrante[] }) {
+  const [ahora, setAhora] = useState(0);
 
   useEffect(() => {
     if (caravanas.length === 0) return;
@@ -78,11 +86,21 @@ export function PanelCaravanasEntrantes({ caravanas }: { caravanas: any[] }) {
       </div>
 
       <div className="p-4 space-y-4 bg-[#0a0f1a]">
-        {caravanas.map((caravana) => (
-          <div
-            key={caravana.id}
-            className="bg-slate-800 rounded-lg p-4 border border-slate-700 relative overflow-hidden"
-          >
+        {caravanas.map((caravana) => {
+          const salida = new Date(caravana.fechaSalida).getTime();
+          const llegada = new Date(caravana.fechaLlegada).getTime();
+          const duracion = Math.max(1, llegada - salida);
+          const progreso = Math.max(0, Math.min(100, ((ahora - salida) / duracion) * 100));
+          const segundos = Math.max(0, Math.floor((llegada - ahora) / 1000));
+          const minutos = Math.floor(segundos / 60);
+          const restoSegundos = segundos % 60;
+          const nivelPeligro = caravana.dificultad >= 2 ? "Alto" : "Normal";
+
+          return (
+            <div
+              key={caravana.id}
+              className="bg-slate-800 rounded-lg p-4 border border-slate-700 relative overflow-hidden"
+            >
             <div className="flex justify-between items-end mb-2 relative z-10">
               <div>
                 <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">
@@ -97,7 +115,7 @@ export function PanelCaravanasEntrantes({ caravanas }: { caravanas: any[] }) {
                   Llegada en:
                 </p>
                 <p className="text-xl font-mono font-bold text-amber-400">
-                  ⏳ {caravana.tiempoRestante}
+                  ⏳ {minutos.toString().padStart(2, "0")}:{restoSegundos.toString().padStart(2, "0")}
                 </p>
               </div>
             </div>
@@ -106,31 +124,32 @@ export function PanelCaravanasEntrantes({ caravanas }: { caravanas: any[] }) {
             <div className="w-full bg-slate-950 rounded-full h-2.5 mt-4 relative z-10 shadow-inner">
               <div
                 className="bg-blue-500 h-2.5 rounded-full transition-all duration-1000 ease-linear shadow-[0_0_10px_rgba(59,130,246,0.8)]"
-                style={{ width: `${caravana.porcentajeProgreso}%` }}
+                style={{ width: `${progreso}%` }}
               ></div>
             </div>
 
             {/* Detalles extra */}
             <div className="flex justify-between mt-3 text-xs text-slate-500 font-medium relative z-10">
-              <span>Progreso: {caravana.porcentajeProgreso}%</span>
+              <span>Progreso: {Math.round(progreso)}%</span>
               <span>
                 Peligro de ruta:{" "}
                 <span
                   className={
-                    caravana.nivelPeligro === "Alto"
+                    nivelPeligro === "Alto"
                       ? "text-red-400"
                       : "text-emerald-400"
                   }
                 >
-                  {caravana.nivelPeligro}
+                  {nivelPeligro}
                 </span>
               </span>
             </div>
 
             {/* Decoración de fondo */}
             <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-blue-900/20 to-transparent pointer-events-none" />
-          </div>
-        ))}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -154,6 +173,14 @@ export default function BasePage() {
   const [reporte, setReporte] = useState<ResultadoCombate | null>(null);
 
   const [modoConstruccion, setModoConstruccion] = useState(false);
+  const [caravanasEntrantes, setCaravanasEntrantes] = useState<CaravanaEntrante[]>([]);
+
+  useEffect(() => {
+    fetch("/api/jugador")
+      .then((respuesta) => respuesta.json())
+      .then((datos) => setCaravanasEntrantes(datos.caravanasEntrantes || []))
+      .catch(() => setCaravanasEntrantes([]));
+  }, []);
 
   useEffect(() => {
     if (!expedicionActiva) return;
@@ -331,6 +358,9 @@ export default function BasePage() {
           </div>
         )}
 
+        <PanelCaravanasEntrantes caravanas={caravanasEntrantes} />
+
+        {expedicionActiva && (
         <section className="mb-8 overflow-hidden rounded-xl border border-slate-700 bg-slate-800 shadow-lg">
           <div className="flex flex-col gap-2 border-b border-slate-700 p-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -358,6 +388,7 @@ export default function BasePage() {
             />
           </div>
         </section>
+        )}
 
         {/* CABECERA DINÁMICA: Instalaciones vs Construcción */}
         <div className="flex items-center justify-between mb-6">

@@ -58,6 +58,9 @@ export async function POST() {
         dificultad: expedicion.dificultad,
       });
     }
+    const oroGanado = typeof resultado.oroGanado === "number" && Number.isFinite(resultado.oroGanado)
+      ? Math.max(0, resultado.oroGanado)
+      : 0;
     const hpActual = Math.max(0, usuario.personaje.hpActual - resultado.hpPerdido);
     const actualizado = await prisma.$transaction(async (tx) => {
       await tx.personaje.update({
@@ -85,7 +88,7 @@ export async function POST() {
       });
       return tx.usuario.update({
         where: { id: usuario.id },
-        data: { oro: { increment: resultado.oroGanado } },
+        data: { oro: { increment: oroGanado } },
         include: { personaje: true, expedicionActiva: true },
       });
     });
