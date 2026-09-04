@@ -61,7 +61,7 @@ function EscenaCombate({ reporte }: { reporte: ResultadoCombate }) {
   const escenaSprite = esComercio
     ? "/sprites/buildings/camp.jpg"
     : hayCombate
-      ? "/sprites/enemies/goblin.png"
+      ? `/sprites/enemies/${reporte.enemigoId || "goblin"}.png`
       : "/sprites/tesoro.jpeg";
   const escenaAlt = esComercio
     ? "Base aliada"
@@ -535,11 +535,14 @@ export default function BasePage() {
                   className="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-amber-500/50 transition-colors flex flex-col shadow-lg"
                 >
                   <div
-                    className={`h-32 ${configUI.color} flex items-center justify-center relative`}
+                    className={`h-32 ${configUI.color} flex items-center justify-center relative overflow-hidden`}
                   >
-                    <span className="text-white/50 text-sm font-bold tracking-widest uppercase">
-                      [Sprite {edificio.nombre}]
-                    </span>
+                    <Image
+                      src={`/sprites/buildings/${edificio.id}.png`}
+                      alt={edificio.nombre}
+                      fill
+                      className="object-cover"
+                    />
                     <div className="absolute top-2 right-2 bg-black/50 px-2 py-1 rounded text-xs font-bold text-amber-400 border border-amber-500/30">
                       Nvl. {edificio.nivel}
                     </div>
@@ -581,12 +584,19 @@ export default function BasePage() {
                       : "bg-slate-900/80 border-amber-500/30"
                   }`}
                 >
-                  <div className="h-24 w-full bg-slate-950 rounded-md mb-3 border border-slate-800 flex items-center justify-center">
-                    <span className="text-xs text-slate-600 font-mono text-center">
-                      {bloqueado
-                        ? "[Terreno Baldío]"
-                        : `[Sprite ${edificio.nombre}]`}
-                    </span>
+                  <div className="h-24 w-full bg-slate-950 rounded-md mb-3 border border-slate-800 flex items-center justify-center relative overflow-hidden">
+                    {bloqueado ? (
+                      <span className="text-xs text-slate-600 font-mono text-center">
+                        [Terreno Baldío]
+                      </span>
+                    ) : (
+                      <Image
+                        src={`/sprites/buildings/${edificio.id}.png`}
+                        alt={edificio.nombre}
+                        fill
+                        className="object-cover"
+                      />
+                    )}
                   </div>
 
                   <div className="flex justify-between items-start mb-2">

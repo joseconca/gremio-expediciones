@@ -5,6 +5,7 @@ export interface ResultadoCombate {
   experienciaGanada: number;
   logCombate: string[];
   enemigo?: string;
+  enemigoId?: string;
   rondas?: number;
   poderHeroe?: number;
   tipo?: "combate" | "comercio";
@@ -169,8 +170,9 @@ const d20 = () => Math.floor(Math.random() * 20 + suerte) + 1;
 const d6 = () => Math.floor(Math.random() * 6 + suerte / 3) + 1;
 
 const listaMonstruos = [
-  { nombre: "Slime Ácido", hp: 8, ataque: 1, defensa: 5, botin: 3, difMin: 0 },
+  { id: "slime", nombre: "Slime Ácido", hp: 8, ataque: 1, defensa: 5, botin: 3, difMin: 0 },
   {
+    id: "rata",
     nombre: "Rata Gigante",
     hp: 10,
     ataque: 2,
@@ -179,6 +181,7 @@ const listaMonstruos = [
     difMin: 0,
   },
   {
+    id: "goblin",
     nombre: "Goblin Explorador",
     hp: 12,
     ataque: 2,
@@ -187,6 +190,7 @@ const listaMonstruos = [
     difMin: 0,
   },
   {
+    id: "bandido",
     nombre: "Bandido del Camino",
     hp: 15,
     ataque: 3,
@@ -195,6 +199,7 @@ const listaMonstruos = [
     difMin: 1,
   },
   {
+    id: "orco",
     nombre: "Orco Despiadado",
     hp: 20,
     ataque: 4,
@@ -203,6 +208,7 @@ const listaMonstruos = [
     difMin: 1,
   },
   {
+    id: "esqueleto",
     nombre: "Esqueleto Guerrero",
     hp: 18,
     ataque: 4,
@@ -211,6 +217,7 @@ const listaMonstruos = [
     difMin: 1,
   },
   {
+    id: "arana",
     nombre: "Araña de las Sombras",
     hp: 25,
     ataque: 5,
@@ -219,6 +226,7 @@ const listaMonstruos = [
     difMin: 2,
   },
   {
+    id: "troll",
     nombre: "Troll de las Cavernas",
     hp: 35,
     ataque: 6,
@@ -226,7 +234,7 @@ const listaMonstruos = [
     botin: 30,
     difMin: 2,
   },
-  { nombre: "Minotauro", hp: 45, ataque: 7, defensa: 14, botin: 40, difMin: 2 },
+  { id: "minotauro", nombre: "Minotauro", hp: 45, ataque: 7, defensa: 14, botin: 40, difMin: 2 },
 ];
 
 function generarEventoViaje(dificultad: number) {
@@ -460,6 +468,7 @@ export function resolverExpedicion(
     experienciaGanada,
     logCombate,
     enemigo: enemigo.nombre,
+    enemigoId: enemigo.id,
     rondas: Math.min(ronda, MAX_RONDAS),
     poderHeroe: poderPersonaje,
   };
