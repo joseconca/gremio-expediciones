@@ -25,7 +25,7 @@ const CLASES_INICIALES = [
   },
   {
     id: "mercader",
-    nombre: "Mercader",
+    nombre: "Comerciante",
     ventaja: "+25% Botín",
     descripcion:
       "Sabe negociar y encontrar mejores objetos al visitar lugares lejanos.",
@@ -41,6 +41,7 @@ export default function TabernaPage() {
     CLASES_INICIALES[0]
   );
   const [nombre, setNombre] = useState("");
+  const [sexo, setSexo] = useState<"chico" | "chica">("chico");
   const [mensaje, setMensaje] = useState("");
 
   const handleReclutar = async (e: React.FormEvent) => {
@@ -55,6 +56,7 @@ export default function TabernaPage() {
       await reclutarPersonaje({
         nombre: nombre,
         clase: claseSeleccionada.nombre,
+        sexo,
         hpActual: 100,
         hpMaximo: 100,
         estado: "ocioso",
@@ -124,7 +126,7 @@ export default function TabernaPage() {
                 <div className="w-full flex-grow">
                   <div className="mb-1 flex items-start justify-between gap-4">
                     <h2 className="text-3xl font-black text-amber-400">
-                    {personaje.nombre} <span className="text-slate-400 text-lg font-normal">el {personaje.clase}</span>
+                    {personaje.nombre} <span className="text-slate-400 text-lg font-normal">{personaje.sexo === "chica" ? "la" : "el"} {personaje.clase}</span>
                     </h2>
                     <div className="whitespace-nowrap rounded-lg border border-amber-600/30 bg-slate-900 px-3 py-1 font-bold text-amber-400">
                       🪙 {oro}
@@ -230,9 +232,7 @@ export default function TabernaPage() {
                   >
                     {/* Placeholder para el gráfico del personaje */}
                     <div className="h-32 bg-black/30 rounded-lg mb-4 flex items-center justify-center border border-white/10">
-                      <span className="text-sm font-mono text-white/40">
-                        [Sprite: {clase.nombre}]
-                      </span>
+                      <Image src="/sprites/heroes/warrior.png" alt={`Sprite de ${clase.nombre}`} width={112} height={112} className="h-28 w-28 object-contain [image-rendering:pixelated]" />
                     </div>
 
                     <h3 className="font-bold text-lg mb-1">{clase.nombre}</h3>
@@ -264,6 +264,22 @@ export default function TabernaPage() {
                   placeholder="Albita la Calva"
                   className="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all"
                 />
+              </div>
+
+              <div className="w-full md:w-auto">
+                <span className="mb-2 block text-sm font-medium text-slate-300">Aventurero</span>
+                <div className="flex rounded-lg border border-slate-600 bg-slate-900 p-1">
+                  {(["chico", "chica"] as const).map((opcion) => (
+                    <button
+                      key={opcion}
+                      type="button"
+                      onClick={() => setSexo(opcion)}
+                      className={`px-4 py-2 text-sm font-bold capitalize ${sexo === opcion ? "rounded bg-amber-600 text-white" : "text-slate-400 hover:text-white"}`}
+                    >
+                      {opcion}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               <button

@@ -4,7 +4,8 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { CONFIGURACION_EDIFICIOS, IdEdificio } from "@/lib/configuracionJuego";
 
-const CLASES = new Set(["Guerrero", "Explorador", "Mercader"]);
+const CLASES = new Set(["Guerrero", "Explorador", "Comerciante"]);
+const SEXOS = new Set(["chico", "chica"]);
 const ATRIBUTOS = new Set([
   "ataque",
   "defensa",
@@ -50,7 +51,8 @@ export async function POST(request: Request) {
     if (accion === "reclutar") {
       const nombre = typeof body.nombre === "string" ? body.nombre.trim() : "";
       const clase = typeof body.clase === "string" ? body.clase : "";
-      if (nombre.length < 3 || !CLASES.has(clase)) {
+      const sexo = typeof body.sexo === "string" ? body.sexo : "";
+      if (nombre.length < 3 || !CLASES.has(clase) || !SEXOS.has(sexo)) {
         return NextResponse.json({ error: "Personaje inválido." }, { status: 400 });
       }
       const personajeExistente = await prisma.personaje.findUnique({
@@ -65,8 +67,8 @@ export async function POST(request: Request) {
         data: {
           personaje: {
             upsert: {
-              create: { nombre, clase, hpActual: 100, hpMaximo: 100, estado: "ocioso", ataque: 5, defensa: 5, velocidad: 1, capacidadCarruaje: 1, regeneracionDeVida: 1, nivel: 1, experiencia: 0 },
-              update: { nombre, clase },
+              create: { nombre, clase, sexo, hpActual: 100, hpMaximo: 100, estado: "ocioso", ataque: 5, defensa: 5, velocidad: 1, capacidadCarruaje: 1, regeneracionDeVida: 1, nivel: 1, experiencia: 0 },
+              update: { nombre, clase, sexo },
             },
           },
         },

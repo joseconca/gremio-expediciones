@@ -43,6 +43,7 @@ model Personaje {
   usuario           Usuario  @relation(fields: [usuarioId], references: [id])
   
   clase             String
+  sexo              String   @default("chico")
   nombre            String
   hpActual          Int
   hpMaximo          Int

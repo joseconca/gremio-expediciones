@@ -37,6 +37,7 @@ export interface Personaje {
   id?: string;
   nombre: string;
   clase: string;
+  sexo: "chico" | "chica";
   hpActual: number;
   hpMaximo: number;
   estado: "ocioso" | "de_viaje" | "descansando";

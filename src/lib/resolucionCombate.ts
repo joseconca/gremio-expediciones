@@ -97,7 +97,7 @@ export function resolverComercio(
   const bonusAfinidad = Math.min(intercambiosPrevios * 0.01, topeAfinidad);
   
   let oroFinal = oroBase + Math.floor(oroBase * bonusAfinidad);
-  if (personaje.clase === "Mercader") oroFinal = Math.floor(oroFinal * 1.25); // Bonus de clase
+  if (personaje.clase === "Comerciante" || personaje.clase === "Mercader") oroFinal = Math.floor(oroFinal * 1.25); // Bonus de clase
 
   logCombate.push(`⚖️ Las negociaciones son un éxito. El vínculo comercial otorga un bono del ${(bonusAfinidad * 100).toFixed(0)}%. Se consiguen ${oroFinal} 🪙 en bienes.`);
 
@@ -395,10 +395,10 @@ export function resolverExpedicion(
     const variacion = 0.9 + Math.random() * 0.2;
     botinObtenido = Math.floor(mision.recompensa * variacion + recompensaExtra);
 
-    if (personaje.clase === "Mercader") botinObtenido = Math.floor(botinObtenido * 1.25);
+    if (personaje.clase === "Comerciante" || personaje.clase === "Mercader") botinObtenido = Math.floor(botinObtenido * 1.25);
 
     /* Bonus de clase
-    if (personaje.clase === "Mercader")
+    if (personaje.clase === "Comerciante" || personaje.clase === "Mercader")
       botinObtenido = Math.floor(botinObtenido * 1.25);
     */
     logCombate.push(
