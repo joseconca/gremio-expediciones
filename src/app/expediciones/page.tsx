@@ -96,7 +96,7 @@ export default function ExpedicionesPage() {
   let textoTiempo = "Calculando...";
 
   if (misionSeleccionada && personaje && baseCoords) {
-    const velocidadKmh = 5.9 + personaje.velocidad * 0.1;
+    const velocidadKmh = 6 + (personaje.velocidad - 1) / 15;
     distanciaKm = calcularDistanciaKm(
       baseCoords.lat,
       baseCoords.lng,
