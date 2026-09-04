@@ -20,6 +20,30 @@ const MISIONES_POR_DURACION = [
   { horas: 9, dificultad: 2, recompensaBase: 650 },
 ];
 
+export function generarMisionElite(baseLat: number, baseLng: number, dia: string) {
+  const seed = dia.split("-").reduce((total, parte) => total + Number(parte), 0) * 431;
+  const jefes = [
+    { id: "senor-frontera", nombre: "Señor de la Frontera" },
+    { id: "reina-arana", nombre: "Reina de las Sombras" },
+    { id: "titan-hierro", nombre: "Titán de Hierro" },
+    { id: "dragon-verde", nombre: "Dragón del Bosque Verde" },
+  ];
+  const jefe = jefes[Math.floor(randomSeeded(seed + 2) * jefes.length)];
+  const angulo = randomSeeded(seed) * Math.PI * 2;
+  const distanciaKm = 5 + randomSeeded(seed + 1) * 1;
+  return {
+    id: `elite-${dia}-${jefe.id}`,
+    tipo: "elite" as const,
+    lat: baseLat + (distanciaKm * Math.cos(angulo)) / 111,
+    lng: baseLng + (distanciaKm * Math.sin(angulo)) / (111 * Math.cos((baseLat * Math.PI) / 180)),
+    nombre: `Desafío de élite: ${jefe.nombre}`,
+    dificultad: 3,
+    recompensa: 1200,
+    duracionObjetivoHoras: 1,
+    desc: "Una amenaza ancestral ha despertado. Derrota al jefe para obtener una gran recompensa.",
+  };
+}
+
 export function generarMision(
   baseLat: number,
   baseLng: number,

@@ -46,6 +46,17 @@ if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number')
     }
 
     const esComercio = typeof mision.tipo === "string" && mision.tipo === "comercio";
+    const esElite = typeof mision.tipo === "string" && mision.tipo === "elite";
+    const diaActual = new Date().toISOString().slice(0, 10);
+    if (esElite) {
+      if (typeof mision.id !== "string" || !mision.id.startsWith(`elite-${diaActual}-`)) {
+        return NextResponse.json({ exito: false, mensaje: "La misión de élite ya no está disponible." }, { status: 400 });
+      }
+      const ultimaElite = usuario.ultimaMisionElite?.toISOString().slice(0, 10);
+      if (ultimaElite === diaActual) {
+        return NextResponse.json({ exito: false, mensaje: "Ya has completado la misión de élite de hoy." }, { status: 409 });
+      }
+    }
     let objetivoId: string | undefined;
     if (esComercio) {
       const edificiosOrigen = usuario.edificios as Record<string, unknown> | null;
@@ -117,6 +128,7 @@ if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number')
         where: { usuarioId: usuario.id },
         data: { estado: "de_viaje" },
       }),
+      ...(esElite ? [prisma.usuario.update({ where: { id: usuario.id }, data: { ultimaMisionElite: new Date() } })] : []),
     ]);
 
     return NextResponse.json({

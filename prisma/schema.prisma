@@ -14,6 +14,7 @@ model Usuario {
   password         String
   oro              Int       @default(10)
   baseCoords       Json?
+  ultimaMisionElite DateTime?
   
   edificios Json      @default("{\"taberna\": 1, \"herreria\": 0, \"mercado\": 0}")
   

@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import { useGameStore } from "@/store/useGameStore";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { generarMision } from "@/lib/generadorMisiones";
+import { generarMision, generarMisionElite } from "@/lib/generadorMisiones";
 
 const MissionMap = dynamic(() => import("@/components/MissionMap"), {
   ssr: false,
@@ -70,6 +70,7 @@ export default function ExpedicionesPage() {
     const nuevasMisiones = [0, 1, 2, 3].map((slot) =>
       generarMision(baseCoords.lat, baseCoords.lng, horaActual, slot, offset)
     );
+    nuevasMisiones.push(generarMisionElite(baseCoords.lat, baseCoords.lng, new Date().toISOString().slice(0, 10)));
 
     setMisionesGeneradas(nuevasMisiones);
   }, [baseCoords, misionesCompletadasEstaHora, horaMisiones]);
@@ -170,7 +171,7 @@ export default function ExpedicionesPage() {
         <div className="absolute bottom-0 left-0 w-full z-20 p-4 pointer-events-none">
           <div className="max-w-md mx-auto bg-slate-800 border-2 border-slate-600 rounded-t-2xl p-6 shadow-2xl pointer-events-auto transform transition-transform animate-in slide-in-from-bottom-10">
             <div className="flex justify-between items-start mb-2">
-              <h2 className="text-2xl font-bold text-amber-500">
+              <h2 className={`text-2xl font-bold ${misionSeleccionada.tipo === "elite" ? "text-fuchsia-400" : "text-amber-500"}`}>
                 {misionSeleccionada.nombre}
               </h2>
               <button

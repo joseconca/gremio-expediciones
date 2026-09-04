@@ -25,6 +25,7 @@ interface MisionCombate {
   nombre: string;
   dificultad: number;
   recompensa: number;
+  tipo?: string;
 }
 
 function simularRuta(distanciaKm: number, personaje: PersonajeCombate, esVuelta: boolean = false) {
@@ -319,9 +320,17 @@ export function resolverExpedicion(
   }
 
   // COMBATE
-  const monstruosPosibles = listaMonstruos.filter((m) => m.difMin <= dificultad);
-  const monstruoBase =
-    monstruosPosibles[Math.floor(Math.random() * monstruosPosibles.length)];
+  const jefesElite = [
+    { id: "senor-frontera", nombre: "Señor de la Frontera", hp: 70, ataque: 9, defensa: 16, botin: 150, difMin: 3 },
+    { id: "reina-arana", nombre: "Reina de las Sombras", hp: 62, ataque: 11, defensa: 14, botin: 150, difMin: 3 },
+    { id: "titan-hierro", nombre: "Titán de Hierro", hp: 85, ataque: 8, defensa: 18, botin: 150, difMin: 3 },
+    { id: "dragon-verde", nombre: "Dragón del Bosque Verde", hp: 76, ataque: 12, defensa: 15, botin: 150, difMin: 3 },
+  ];
+  const jefeId = mision.id?.split("-").at(-1);
+  const monstruosPosibles = mision.tipo === "elite"
+    ? jefesElite.filter((jefe) => jefe.id === jefeId)
+    : listaMonstruos.filter((m) => m.difMin <= dificultad);
+  const monstruoBase = monstruosPosibles[0] || jefesElite[0];
   const enemigo = { ...monstruoBase };
 
   enemigo.hp += dificultad * 2;
@@ -439,7 +448,9 @@ export function resolverExpedicion(
     );
   }
 
-  const experienciaGanada = hpTemporal > 0 ? 25 + dificultad * 20 : 10 + dificultad * 5;
+  const experienciaGanada = mision.tipo === "elite"
+    ? (hpTemporal > 0 ? 150 : 50)
+    : hpTemporal > 0 ? 25 + dificultad * 20 : 10 + dificultad * 5;
   const exito = hpTemporal > 0;
 
   return {

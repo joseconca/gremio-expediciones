@@ -90,6 +90,7 @@ export async function POST() {
         nombre: expedicion.nombre,
         dificultad: expedicion.dificultad,
         recompensa: expedicion.recompensa,
+        tipo: expedicion.misionId.startsWith("elite-") ? "elite" : "normal",
       });
     }
     const oroGanado = typeof resultado.oroGanado === "number" && Number.isFinite(resultado.oroGanado)
