@@ -30,6 +30,13 @@
   animation: hero-route-bob 900ms ease-in-out infinite alternate;
 }
 
+.avatar-face-image {
+  object-fit: cover;
+  object-position: center;
+  transform: scale(2.5);
+  transform-origin: center 5%;
+}
+
 .combat-hero,
 .combat-enemy {
   position: relative;
