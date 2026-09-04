@@ -549,7 +549,9 @@ export default function BasePage() {
                       src={`/sprites/buildings/${edificio.id}.png`}
                       alt={edificio.nombre}
                       fill
-                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      priority
+                      className="object-contain"
                     />
                     <div className="absolute top-2 right-2 bg-black/50 px-2 py-1 rounded text-xs font-bold text-amber-400 border border-amber-500/30">
                       Nvl. {edificio.nivel}
@@ -602,7 +604,8 @@ export default function BasePage() {
                         src={`/sprites/buildings/${edificio.id}.png`}
                         alt={edificio.nombre}
                         fill
-                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-contain"
                       />
                     )}
                   </div>
