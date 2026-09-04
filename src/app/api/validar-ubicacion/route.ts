@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+import { Prisma } from "@prisma/client";
+import { getAuthenticatedUser } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 
 
 function calcularDistanciaKm(lat1: number, lon1: number, lat2: number, lon2: number) {
@@ -15,25 +18,31 @@ function calcularDistanciaKm(lat1: number, lon1: number, lat2: number, lon2: num
   return R * c; 
 }
 
-//Simular de bbdd
-const basesExistentes = [
-  { id: 1, nombre: "Gremio de Madrid", lat: 40.4168, lng: -3.7038 },
-  { id: 2, nombre: "Gremio de Barcelona", lat: 41.3851, lng: 2.1734 }
-];
-
 export async function POST(request: Request) {
   try {
+    const usuario = await getAuthenticatedUser();
+    if (!usuario) {
+      return NextResponse.json({ esValido: false, mensaje: "Sesión requerida." }, { status: 401 });
+    }
+
     const { lat, lng } = await request.json();
 
-    if (lat === undefined || lng === undefined) {
+    if (typeof lat !== "number" || typeof lng !== "number") {
       return NextResponse.json({esValido: false, mensaje: "Coordenadas inválidas." }, { status: 400 });
     }
 
-    for (const base of basesExistentes) {
-      const distancia = calcularDistanciaKm(lat, lng, base.lat, base.lng);
+    const usuarios = await prisma.usuario.findMany({
+      where: { id: { not: usuario.id }, baseCoords: { not: Prisma.JsonNull } },
+      select: { nombre: true, baseCoords: true },
+    });
+
+    for (const otroUsuario of usuarios) {
+      const coords = otroUsuario.baseCoords as { lat?: unknown; lng?: unknown } | null;
+      if (typeof coords?.lat !== "number" || typeof coords.lng !== "number") continue;
+      const distancia = calcularDistanciaKm(lat, lng, coords.lat, coords.lng);
       
       if (distancia < 5) {
-        return NextResponse.json({esValido: false, mensaje: `Demasiado cerca. A ${distancia.toFixed(1)} km de "${base.nombre}".`});
+        return NextResponse.json({esValido: false, mensaje: `Demasiado cerca. A ${distancia.toFixed(1)} km de "${otroUsuario.nombre}".`});
       }
     }
 
@@ -56,7 +65,7 @@ export async function POST(request: Request) {
       });
     }
 
-    var region = "";
+    let region = "";
     if (data.address.town) {
       region += `${data.address.town}`;
       if (data.address.province) region += `, ${data.address.province}`;
@@ -69,7 +78,7 @@ export async function POST(request: Request) {
       ubicacion: data.display_name,
     });
     
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { esValido: false, mensaje: "Error interno del servidor al procesar la ubicación." },
       { status: 500 }

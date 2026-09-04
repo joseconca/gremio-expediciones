@@ -1,161 +1,114 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { getAuthenticatedUser } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 
-const prisma = new PrismaClient();
+const includeGameData = {
+  personaje: true,
+  expedicionActiva: true,
+} as const;
 
 export async function GET() {
   try {
-    let usuario = await prisma.usuario.findFirst({
-      include: {
-        personaje: true,
-        expedicionActiva: true,
-      },
-    });
-
-    // Crear usuario con datos de prueba
-    if (!usuario) {
-      usuario = await prisma.usuario.create({
-        data: {
-          email: "test@test.com",
-          nombre: "testUser",
-          password: "1234",
-          oro: 50,
-          edificios: { taberna: 1, herreria: 0, mercado: 0 },
-          /*baseCoords: null,*/
-          personaje: {
-            create: {
-              clase: "Explorador",
-              nombre: "Alba la calva poderosa",
-              hpActual: 100,
-              hpMaximo: 100,
-              ataque: 5,
-              defensa: 5,
-              velocidad: 2000,
-              capacidadCarruaje: 50,
-              regeneracionDeVida: 0.1,
-            },
-          },
-        },
-        include: {
-          personaje: true,
-          expedicionActiva: true,
-        },
-      });
+    const usuarioSesion = await getAuthenticatedUser();
+    if (!usuarioSesion) {
+      return NextResponse.json({ error: "Sesión requerida." }, { status: 401 });
     }
 
-    return NextResponse.json(usuario);
+    const usuario = await prisma.usuario.findUnique({
+      where: { id: usuarioSesion.id },
+      include: includeGameData,
+    });
+    if (!usuario) {
+      return NextResponse.json({ error: "Usuario no encontrado." }, { status: 404 });
+    }
+
+    const datosPublicos = Object.fromEntries(
+      Object.entries(usuario).filter(([clave]) => clave !== "password")
+    );
+    return NextResponse.json(datosPublicos);
   } catch (error) {
     console.error("Error al cargar el jugador:", error);
-    return NextResponse.json(
-      { error: "Error al conectar con la base de datos" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Error al conectar con la base de datos." }, { status: 500 });
   }
 }
 
 export async function PATCH(request: Request) {
   try {
+    const usuarioSesion = await getAuthenticatedUser();
+    if (!usuarioSesion) {
+      return NextResponse.json({ error: "Sesión requerida." }, { status: 401 });
+    }
+
     const body = await request.json();
     const { oro, edificios, personaje, baseCoords, expedicionActiva } = body;
+    const dataToUpdate: Record<string, unknown> = {};
 
-    const usuario = await prisma.usuario.findFirst({
-      include: {
-        personaje: true,
-        expedicionActiva: true,
-      },
-    });
+    if (typeof oro === "number" && oro >= 0) dataToUpdate.oro = oro;
+    if (edificios && typeof edificios === "object") dataToUpdate.edificios = edificios;
+    if (baseCoords !== undefined) dataToUpdate.baseCoords = baseCoords;
 
-    if (!usuario) {
-      return NextResponse.json(
-        { error: "Usuario no encontrado" },
-        { status: 404 }
-      );
-    }
-
-    //actualizar
-    const dataToUpdate: any = {
-      oro,
-      edificios,
-    };
-
-    //coordenadas
-    if (baseCoords !== undefined) {
-      dataToUpdate.baseCoords = baseCoords;
-    }
-
-    //personaje
     if (personaje) {
+      const datosPersonaje = {
+        clase: personaje.clase,
+        nombre: personaje.nombre,
+        hpActual: personaje.hpActual,
+        hpMaximo: personaje.hpMaximo,
+        regeneracionDeVida: personaje.regeneracionDeVida,
+        estado: personaje.estado,
+        ataque: personaje.ataque,
+        defensa: personaje.defensa,
+        velocidad: personaje.velocidad,
+        capacidadCarruaje: personaje.capacidadCarruaje,
+      };
       dataToUpdate.personaje = {
-        upsert: {
-          create: {
-            clase: personaje.clase,
-            nombre: personaje.nombre,
-            hpActual: personaje.hpActual,
-            hpMaximo: personaje.hpMaximo,
-            ataque: personaje.ataque,
-            defensa: personaje.defensa,
-            velocidad: personaje.velocidad,
-            capacidadCarruaje: personaje.capacidadCarruaje,
-            estado: personaje.estado,
-            regeneracionDeVida: personaje.regeneracionDeVida,
-          },
-          update: {
-            clase: personaje.clase,
-            nombre: personaje.nombre,
-            hpActual: personaje.hpActual,
-            hpMaximo: personaje.hpMaximo,
-            ataque: personaje.ataque,
-            defensa: personaje.defensa,
-            velocidad: personaje.velocidad,
-            capacidadCarruaje: personaje.capacidadCarruaje,
-            estado: personaje.estado,
-            regeneracionDeVida: personaje.regeneracionDeVida,
-          },
-        },
+        upsert: { create: datosPersonaje, update: datosPersonaje },
       };
     }
 
-    //expedicion
     if (expedicionActiva !== undefined) {
       if (expedicionActiva === null) {
-        // Si viene null y existe en BBDD, la borramos (es decir, la misión ha terminado)
-        if (usuario.expedicionActiva) {
-          dataToUpdate.expedicionActiva = { delete: true };
-        }
+        await prisma.expedicionActiva.deleteMany({
+          where: { usuarioId: usuarioSesion.id },
+        });
       } else {
-        // Si viene con datos, la creamos o actualizamos
         dataToUpdate.expedicionActiva = {
-          upsert: {
-            create: {
-              misionId: expedicionActiva.idMision,
-              nombre: expedicionActiva.nombre,
-              recompensa: expedicionActiva.recompensa,
-              dificultad: expedicionActiva.dificultad,
-              fechaLlegada: new Date(expedicionActiva.fechaLlegada),
-              destinoCoords: expedicionActiva.destinoCoords || {},
+            upsert: {
+              create: {
+                tipo: "expedicion",
+                fase: "en_viaje",
+                misionId: String(expedicionActiva.idMision),
+                nombre: expedicionActiva.nombre,
+                recompensa: expedicionActiva.recompensa,
+                dificultad: expedicionActiva.dificultad,
+                fechaLlegada: new Date(expedicionActiva.fechaLlegada),
+                destinoCoords: expedicionActiva.destinoCoords || {},
+              },
+              update: {
+                tipo: "expedicion",
+                fase: "en_viaje",
+                misionId: String(expedicionActiva.idMision),
+                nombre: expedicionActiva.nombre,
+                recompensa: expedicionActiva.recompensa,
+                dificultad: expedicionActiva.dificultad,
+                fechaLlegada: new Date(expedicionActiva.fechaLlegada),
+                destinoCoords: expedicionActiva.destinoCoords || {},
+              },
             },
-            update: {
-              misionId: expedicionActiva.idMision,
-              nombre: expedicionActiva.nombre,
-              recompensa: expedicionActiva.recompensa,
-              dificultad: expedicionActiva.dificultad,
-              fechaLlegada: new Date(expedicionActiva.fechaLlegada),
-              destinoCoords: expedicionActiva.destinoCoords || {},
-            }
-          }
         };
       }
     }
 
     const usuarioActualizado = await prisma.usuario.update({
-      where: { id: usuario.id },
+      where: { id: usuarioSesion.id },
       data: dataToUpdate,
-      include: { personaje: true, expedicionActiva: true },
+      include: includeGameData,
     });
-
-    return NextResponse.json(usuarioActualizado);
+    const datosPublicos = Object.fromEntries(
+      Object.entries(usuarioActualizado).filter(([clave]) => clave !== "password")
+    );
+    return NextResponse.json(datosPublicos);
   } catch (error) {
-    console.error("Error al guardar:", error);
-    return NextResponse.json({ error: "Error al actualizar" }, { status: 500 });
+    console.error("Error al guardar el jugador:", error);
+    return NextResponse.json({ error: "Error al actualizar el jugador." }, { status: 500 });
   }
 }

@@ -1,13 +1,47 @@
 import { NextResponse } from 'next/server';
+import { getAuthenticatedUser } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 
 export async function POST(request: Request) {
   try {
+    const usuarioSesion = await getAuthenticatedUser();
+    if (!usuarioSesion) {
+      return NextResponse.json(
+        { exito: false, mensaje: "Sesión requerida." },
+        { status: 401 }
+      );
+    }
+
     const { mision, tiempoHoras } = await request.json();
 
 if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number') {
         return NextResponse.json(
         { exito: false, mensaje: 'Datos de la misión inválidos.' },
         { status: 400 }
+      );
+    }
+
+    if (typeof tiempoHoras !== "number" || tiempoHoras <= 0) {
+      return NextResponse.json(
+        { exito: false, mensaje: "Duración de expedición inválida." },
+        { status: 400 }
+      );
+    }
+
+    const usuario = await prisma.usuario.findUnique({
+      where: { id: usuarioSesion.id },
+      include: { personaje: true, expedicionActiva: true },
+    });
+    if (!usuario?.personaje) {
+      return NextResponse.json(
+        { exito: false, mensaje: "Necesitas reclutar un personaje primero." },
+        { status: 400 }
+      );
+    }
+    if (usuario.expedicionActiva) {
+      return NextResponse.json(
+        { exito: false, mensaje: "Ya tienes una expedición activa." },
+        { status: 409 }
       );
     }
 
@@ -43,6 +77,26 @@ if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number')
     const tiempoViajeMs = horasReales * 60 * 60 * 1000;
     const fechaLlegada = new Date(ahora + tiempoViajeMs);
 
+    await prisma.$transaction([
+      prisma.expedicionActiva.create({
+        data: {
+          usuarioId: usuario.id,
+          tipo: "expedicion",
+          fase: "en_viaje",
+          misionId: String(mision.id),
+          nombre: mision.nombre || "Expedición",
+          recompensa: typeof mision.recompensa === "number" ? mision.recompensa : 0,
+          dificultad: typeof mision.dificultad === "number" ? mision.dificultad : 0,
+          fechaLlegada,
+          destinoCoords: { lat: mision.lat, lng: mision.lng },
+        },
+      }),
+      prisma.personaje.update({
+        where: { usuarioId: usuario.id },
+        data: { estado: "de_viaje" },
+      }),
+    ]);
+
     return NextResponse.json({
       exito: true,
       clima: climaReporte,
@@ -50,7 +104,7 @@ if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number')
       fechaLlegada: fechaLlegada.toISOString(),
     });
 
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { exito: false, mensaje: 'Error al planificar la expedición.' },
       { status: 500 }

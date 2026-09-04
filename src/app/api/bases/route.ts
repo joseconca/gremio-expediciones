@@ -1,12 +1,49 @@
 import { NextResponse } from "next/server";
+import { Prisma } from "@prisma/client";
+import { getAuthenticatedUser } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
+
+type Coordenadas = { lat: number; lng: number };
+
+function leerCoordenadas(valor: unknown): Coordenadas | null {
+  if (!valor || typeof valor !== "object") return null;
+  const coords = valor as Record<string, unknown>;
+  if (typeof coords.lat !== "number" || typeof coords.lng !== "number") return null;
+  return { lat: coords.lat, lng: coords.lng };
+}
 
 export async function GET() {
-  // TODO: Coger bases de postgres
-  const basesJugadores = [
-    { id: "jugador_1", nombre: "Gremio de los Halcones", lat: 40.45, lng: -3.65, nivel: 3 },
-    { id: "jugador_2", nombre: "La Taberna del Oso", lat: 40.38, lng: -3.75, nivel: 5 },
-    { id: "jugador_3", nombre: "Refugio del Norte", lat: 40.50, lng: -3.80, nivel: 2 },
-  ];
+  try {
+    const usuario = await getAuthenticatedUser();
+    if (!usuario) {
+      return NextResponse.json({ error: "Sesión requerida." }, { status: 401 });
+    }
 
-  return NextResponse.json({ bases: basesJugadores });
+    const usuarios = await prisma.usuario.findMany({
+      where: { id: { not: usuario.id }, baseCoords: { not: Prisma.JsonNull } },
+      select: { id: true, nombre: true, baseCoords: true, edificios: true },
+      orderBy: { nombre: "asc" },
+    });
+
+    const bases = usuarios.flatMap((otroUsuario) => {
+      const coords = leerCoordenadas(otroUsuario.baseCoords);
+      if (!coords) return [];
+      const edificios = otroUsuario.edificios as Record<string, unknown> | null;
+      const niveles = Object.values(edificios || {}).filter(
+        (nivel): nivel is number => typeof nivel === "number"
+      );
+      return [{
+        id: otroUsuario.id,
+        nombre: otroUsuario.nombre,
+        lat: coords.lat,
+        lng: coords.lng,
+        nivel: niveles.length ? Math.max(...niveles) : 1,
+      }];
+    });
+
+    return NextResponse.json({ bases });
+  } catch (error) {
+    console.error("Error al cargar las bases:", error);
+    return NextResponse.json({ error: "No se pudieron cargar las bases." }, { status: 500 });
+  }
 }
