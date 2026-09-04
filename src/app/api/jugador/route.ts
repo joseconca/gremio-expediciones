@@ -34,13 +34,21 @@ export async function GET() {
     });
     const origenes = await prisma.usuario.findMany({
       where: { id: { in: expedicionesEntrantes.map((expedicion) => expedicion.usuarioId) } },
-      select: { id: true, nombre: true, baseCoords: true },
+      select: {
+        id: true,
+        nombre: true,
+        baseCoords: true,
+        personaje: { select: { nombre: true, hpActual: true, hpMaximo: true } },
+      },
     });
     const nombresOrigen = new Map(origenes.map((origen) => [origen.id, origen.nombre]));
     const caravanasEntrantes = expedicionesEntrantes.map((expedicion) => ({
       id: expedicion.id,
       gremioOrigen: nombresOrigen.get(expedicion.usuarioId) || "Gremio desconocido",
       origenCoords: origenes.find((origen) => origen.id === expedicion.usuarioId)?.baseCoords,
+      nombreAventurero: origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje?.nombre || "Aventurero",
+      hpAventurero: origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje?.hpActual || 0,
+      hpMaximoAventurero: origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje?.hpMaximo || 100,
       fechaSalida: expedicion.fechaSalida,
       fechaLlegada: expedicion.fechaLlegada,
       dificultad: expedicion.dificultad,

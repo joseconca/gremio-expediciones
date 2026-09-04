@@ -57,13 +57,14 @@ const getColorPorLinea = (linea: string) => {
 function EscenaCombate({ reporte }: { reporte: ResultadoCombate }) {
   const enemigoSprite = "/sprites/enemies/goblin.png";
   const vidaHeroe = Math.max(8, 100 - Math.min(92, reporte.hpPerdido * 2));
-  const vidaEnemigo = reporte.exito ? 0 : 28;
+  const esComercio = reporte.tipo === "comercio";
+  const vidaEnemigo = esComercio ? 100 : reporte.exito ? 0 : 28;
 
   return (
     <div className="combat-scene border-b border-slate-700 bg-[radial-gradient(circle_at_50%_35%,#334155,#0f172a_72%)] p-5">
       <div className="mb-3 flex items-center justify-between text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
-        <span>{reporte.enemigo || "Encuentro"}</span>
-        <span>{reporte.rondas || 0} rondas</span>
+        <span>{reporte.tipo === "comercio" ? "Ruta comercial" : reporte.enemigo || "Encuentro"}</span>
+        <span>{reporte.tipo === "comercio" ? "Intercambio" : `${reporte.rondas || 0} rondas`}</span>
       </div>
       <div className="relative flex h-44 items-end justify-between overflow-hidden rounded-lg border border-slate-600/80 bg-slate-950/50 px-8 sm:px-20">
         <div className="combat-hero w-28 sm:w-36">
@@ -71,7 +72,7 @@ function EscenaCombate({ reporte }: { reporte: ResultadoCombate }) {
         </div>
         <div className="combat-impact" aria-hidden="true">✦</div>
         <div className="combat-enemy w-28 sm:w-36">
-          <Image src={enemigoSprite} alt={reporte.enemigo || "Enemigo"} width={144} height={144} className="h-32 w-32 object-contain [image-rendering:pixelated] sm:h-36 sm:w-36" />
+          <Image src={esComercio ? "/sprites/buildings/camp.jpg" : enemigoSprite} alt={esComercio ? "Base aliada" : reporte.enemigo || "Enemigo"} width={144} height={144} className="h-32 w-32 object-contain [image-rendering:pixelated] sm:h-36 sm:w-36" />
         </div>
       </div>
       <div className="mt-3 grid grid-cols-2 gap-8">
@@ -80,8 +81,8 @@ function EscenaCombate({ reporte }: { reporte: ResultadoCombate }) {
           <div className="h-2 rounded-full bg-slate-800"><div className="h-2 rounded-full bg-blue-500" style={{ width: `${vidaHeroe}%` }} /></div>
         </div>
         <div>
-          <div className="mb-1 flex justify-between text-xs font-bold text-red-200"><span>Enemigo</span><span>{vidaEnemigo}%</span></div>
-          <div className="h-2 rounded-full bg-slate-800"><div className="h-2 rounded-full bg-red-500" style={{ width: `${vidaEnemigo}%` }} /></div>
+          <div className="mb-1 flex justify-between text-xs font-bold text-red-200"><span>{esComercio ? "Base aliada" : "Enemigo"}</span><span>{vidaEnemigo}%</span></div>
+          <div className="h-2 rounded-full bg-slate-800"><div className={`h-2 rounded-full ${esComercio ? "bg-emerald-500" : "bg-red-500"}`} style={{ width: `${vidaEnemigo}%` }} /></div>
         </div>
       </div>
     </div>
@@ -91,6 +92,9 @@ function EscenaCombate({ reporte }: { reporte: ResultadoCombate }) {
 interface CaravanaEntrante {
   id: string;
   gremioOrigen: string;
+  nombreAventurero: string;
+  hpAventurero: number;
+  hpMaximoAventurero: number;
   fechaSalida: string;
   fechaLlegada: string;
   dificultad: number;
@@ -154,6 +158,9 @@ export function PanelCaravanasEntrantes({ caravanas }: { caravanas: CaravanaEntr
                 </p>
                 <p className="flex items-center gap-1 text-sm font-bold text-white">
                   🛡️ <span className="max-w-[130px] truncate">{caravana.gremioOrigen}</span>
+                </p>
+                <p className="max-w-[170px] truncate text-[10px] text-slate-400">
+                  {caravana.nombreAventurero} en ruta
                 </p>
               </div>
               <div className="min-w-[80px] flex-1">
@@ -287,16 +294,16 @@ export default function BasePage() {
             <EscenaCombate reporte={reporte} />
             <div className="grid grid-cols-3 gap-2 border-b border-slate-700 bg-slate-900 p-4">
               <div className="rounded-lg border border-red-900/60 bg-red-950/30 p-3 text-center">
-                <span className="block text-[10px] uppercase tracking-wider text-red-300">Enemigo</span>
-                <span className="block truncate font-bold text-white">{reporte.enemigo || "Encuentro"}</span>
+                <span className="block text-[10px] uppercase tracking-wider text-red-300">{reporte.tipo === "comercio" ? "Ruta comercial" : "Enemigo"}</span>
+                  <span className="block truncate font-bold text-white">{reporte.tipo === "comercio" ? "Intercambio" : reporte.enemigo || "Encuentro"}</span>
               </div>
               <div className="rounded-lg border border-blue-900/60 bg-blue-950/30 p-3 text-center">
-                <span className="block text-[10px] uppercase tracking-wider text-blue-300">Poder</span>
-                <span className="block font-black text-white">{reporte.poderHeroe || "-"}</span>
+                <span className="block text-[10px] uppercase tracking-wider text-blue-300">{reporte.tipo === "comercio" ? "Afinidad" : "Poder"}</span>
+                <span className="block font-black text-white">{reporte.tipo === "comercio" ? "Mejorada" : reporte.poderHeroe || "-"}</span>
               </div>
               <div className="rounded-lg border border-amber-900/60 bg-amber-950/30 p-3 text-center">
-                <span className="block text-[10px] uppercase tracking-wider text-amber-300">Rondas</span>
-                <span className="block font-black text-white">{reporte.rondas ?? "-"}</span>
+                <span className="block text-[10px] uppercase tracking-wider text-amber-300">{reporte.tipo === "comercio" ? "Encuentros" : "Rondas"}</span>
+                <span className="block font-black text-white">{reporte.tipo === "comercio" ? (reporte.enemigo ? "1" : "0") : reporte.rondas ?? "-"}</span>
               </div>
             </div>
             <div className="flex-grow overflow-y-auto p-6 bg-[#0a0f1a] font-mono text-sm sm:text-base space-y-3 custom-scrollbar">
@@ -328,7 +335,7 @@ export default function BasePage() {
                 </div>
                 <div className="bg-slate-900 p-4 rounded-lg text-center border border-slate-700 shadow-inner">
                   <span className="block text-xs text-slate-400 uppercase tracking-widest mb-1">
-                    {expedicionActiva?.fase === "regresando" ? "Botín asegurado" : "Botín Recuperado"}
+                    {expedicionActiva?.fase === "regresando" ? "Botín asegurado" : "Botín conseguido"}
                   </span>
                   <span className="text-2xl font-black text-amber-400">
                     +{reporte.oroGanado} 🪙
@@ -457,6 +464,7 @@ export default function BasePage() {
                             origenCoords: caravana.origenCoords!,
                             fechaSalida: caravana.fechaSalida,
                             fechaLlegada: caravana.fechaLlegada,
+                            nombreHeroe: caravana.nombreAventurero,
                           }))}
                         onSelectMission={() => undefined}
                       />

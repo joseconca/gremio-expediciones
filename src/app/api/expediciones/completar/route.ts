@@ -53,6 +53,7 @@ export async function POST() {
           hpPerdido: 0,
           oroGanado: oroGuardado,
           experienciaGanada: 0,
+          tipo: expedicion.tipo === "comercio" ? "comercio" : "combate",
           logCombate: [`🏠 ${usuario.personaje.nombre} regresa al gremio con el botín asegurado.`, `💰 Recibes ${oroGuardado} 🪙 por la expedición.`],
         },
         usuario: datosRegreso,

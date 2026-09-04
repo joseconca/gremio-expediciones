@@ -45,12 +45,14 @@ function RutaExpedicion({
   destino,
   fechaSalida,
   fechaLlegada,
+  nombreHeroe = "Aventurero",
   regresando = false,
 }: {
   baseCoords: { lat: number; lng: number };
   destino: { lat: number; lng: number } | null;
   fechaSalida?: string;
   fechaLlegada?: string;
+  nombreHeroe?: string;
   regresando?: boolean;
 }) {
   const [progreso, setProgreso] = useState(0);
@@ -117,7 +119,7 @@ function RutaExpedicion({
         opacity={1}
         position={posicionHeroe}
       >
-        {Math.round(progreso * 100)}% del recorrido
+        {nombreHeroe} · {Math.round(progreso * 100)}% del recorrido
       </Tooltip>
     </>
   );
@@ -147,6 +149,7 @@ interface RutaEntrante {
   origenCoords: { lat: number; lng: number };
   fechaSalida: string;
   fechaLlegada: string;
+  nombreHeroe: string;
 }
 
 interface MissionMapProps {
@@ -207,6 +210,7 @@ export default function MissionMap({
             destino={baseCoords}
             fechaSalida={ruta.fechaSalida}
             fechaLlegada={ruta.fechaLlegada}
+            nombreHeroe={ruta.nombreHeroe}
           />
         ))}
 

@@ -7,6 +7,7 @@ export interface ResultadoCombate {
   enemigo?: string;
   rondas?: number;
   poderHeroe?: number;
+  tipo?: "combate" | "comercio";
 }
 
 interface PersonajeCombate {
@@ -79,6 +80,7 @@ export function resolverComercio(
       enemigo: "Peligros del camino",
       rondas: 0,
       poderHeroe: personaje.ataque + personaje.defensa,
+      tipo: "comercio",
       logCombate: [...logCombate, `💀 ${personaje.nombre} sucumbió a los peligros del viaje de ida. La caravana fue saqueada.`] 
     };
   }
@@ -89,6 +91,29 @@ export function resolverComercio(
   logCombate.push(`🤝 ¡Llegada con éxito! El Gremio "${nombreBaseAliada}" recibe a ${personaje.nombre} con un banquete caliente (Recupera ${hpCurado} HP).`);
 
   // --- 3. NEGOCIACIÓN Y CÁLCULO DE ORO ---
+    // --- 3. ENCUENTRO OPCIONAL DE CAMINO ---
+    if (Math.random() < Math.min(0.35, distanciaKm / 250)) {
+      const danoEncuentro = Math.max(1, d6() + Math.max(0, 1 - personaje.defensa / 10));
+      hpTemporal -= danoEncuentro;
+      logCombate.push(`👾 Un grupo de bandidos intenta asaltar la caravana, pero ${personaje.nombre} logra abrirse paso.`);
+      logCombate.push(`🩸 El incidente causa ${danoEncuentro} de daño durante la huida.`);
+    }
+
+    if (hpTemporal <= 0) {
+      return {
+        exito: false,
+        hpPerdido: personaje.hpActual - 1,
+        oroGanado: 0,
+        experienciaGanada: 0,
+        enemigo: "Bandidos del camino",
+        rondas: 0,
+        poderHeroe: personaje.ataque + personaje.defensa,
+        tipo: "comercio",
+        logCombate: [...logCombate, `💀 ${personaje.nombre} pierde la carga y logra volver al camino.`],
+      };
+    }
+
+    // --- 4. NEGOCIACIÓN Y CÁLCULO DE ORO ---
   // Recompensa base por distancia (ej: 1 oro por km)
   const oroBase = Math.floor(distanciaKm * 1.5);
   
@@ -116,6 +141,7 @@ export function resolverComercio(
       enemigo: "Peligros del camino",
       rondas: 0,
       poderHeroe: personaje.ataque + personaje.defensa,
+      tipo: "comercio",
       logCombate: [...logCombate, `🚑 ¡Tragedia a un paso de casa! ${personaje.nombre} llega malherido y el carro de oro se pierde por un barranco.`] 
     };
   }
@@ -131,6 +157,7 @@ export function resolverComercio(
     enemigo: "Ruta comercial",
     rondas: 0,
     poderHeroe: personaje.ataque + personaje.defensa,
+    tipo: "comercio",
     logCombate 
   };
 }
