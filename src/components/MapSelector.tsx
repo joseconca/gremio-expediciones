@@ -7,6 +7,7 @@ import {
   Marker,
   useMapEvents,
   Popup,
+  Tooltip,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -56,7 +57,7 @@ export default function MapSelector({ onSaveLocation }: MapSelectorProps) {
 
   // Cargamos las bases de otros jugadores al montar el mapa
   useEffect(() => {
-    fetch("/api/bases")
+    fetch("/api/bases?todas=1")
       .then((res) => res.json())
       .then((data) => {
         if (data.bases) setBasesAjenas(data.bases);
@@ -90,6 +91,9 @@ export default function MapSelector({ onSaveLocation }: MapSelectorProps) {
               position={[base.lat, base.lng]}
               icon={enemyBaseIcon}
             >
+              <Tooltip permanent direction="bottom" offset={[0, 2]} className="base-nombre-tooltip">
+                {base.nombre}
+              </Tooltip>
               <Popup>
                 <div className="text-center font-bold text-slate-800">
                   {base.nombre} <br />

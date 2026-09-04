@@ -12,12 +12,15 @@ function leerCoordenadas(valor: unknown): Coordenadas | null {
   return { lat: coords.lat, lng: coords.lng };
 }
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
     const usuario = await getAuthenticatedUser();
     if (!usuario) {
       return NextResponse.json({ error: "Sesión requerida." }, { status: 401 });
     }
+
+    const { searchParams } = new URL(request.url);
+    const soloConEmbajada = searchParams.get("todas") !== "1";
 
     const usuarios = await prisma.usuario.findMany({
       where: { id: { not: usuario.id }, baseCoords: { not: Prisma.JsonNull } },
@@ -29,7 +32,7 @@ export async function GET() {
       const coords = leerCoordenadas(otroUsuario.baseCoords);
       if (!coords) return [];
       const edificios = otroUsuario.edificios as Record<string, unknown> | null;
-      if (edificios?.embajada !== 1 && edificios?.embajada !== 2) return [];
+      if (soloConEmbajada && edificios?.embajada !== 1 && edificios?.embajada !== 2) return [];
       const niveles = Object.values(edificios || {}).filter(
         (nivel): nivel is number => typeof nivel === "number"
       );
