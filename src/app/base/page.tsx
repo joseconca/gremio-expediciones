@@ -55,10 +55,20 @@ const getColorPorLinea = (linea: string) => {
 };
 
 function EscenaCombate({ reporte }: { reporte: ResultadoCombate }) {
-  const enemigoSprite = "/sprites/enemies/goblin.png";
   const vidaHeroe = Math.max(8, 100 - Math.min(92, reporte.hpPerdido * 2));
   const esComercio = reporte.tipo === "comercio";
-  const vidaEnemigo = esComercio ? 100 : reporte.exito ? 0 : 28;
+  const hayCombate = !esComercio && (reporte.rondas || 0) > 0;
+  const escenaSprite = esComercio
+    ? "/sprites/buildings/camp.jpg"
+    : hayCombate
+      ? "/sprites/enemies/goblin.png"
+      : "/sprites/tesoro.jpeg";
+  const escenaAlt = esComercio
+    ? "Base aliada"
+    : hayCombate
+      ? reporte.enemigo || "Enemigo"
+      : "Tesoro encontrado";
+  const vidaEnemigo = esComercio ? 100 : hayCombate ? (reporte.exito ? 0 : 28) : 100;
 
   return (
     <div className="combat-scene border-b border-slate-700 bg-[radial-gradient(circle_at_50%_35%,#334155,#0f172a_72%)] p-5">
@@ -71,8 +81,8 @@ function EscenaCombate({ reporte }: { reporte: ResultadoCombate }) {
           <Image src="/sprites/heroes/warrior.png" alt="Héroe" width={144} height={144} className="h-32 w-32 object-contain [image-rendering:pixelated] sm:h-36 sm:w-36" />
         </div>
         <div className="combat-impact" aria-hidden="true">✦</div>
-        <div className="combat-enemy w-28 sm:w-36">
-          <Image src={esComercio ? "/sprites/buildings/camp.jpg" : enemigoSprite} alt={esComercio ? "Base aliada" : reporte.enemigo || "Enemigo"} width={144} height={144} className="h-32 w-32 object-contain [image-rendering:pixelated] sm:h-36 sm:w-36" />
+        <div className={`combat-enemy w-28 sm:w-36 ${!hayCombate ? "combat-treasure" : ""}`}>
+          <Image src={escenaSprite} alt={escenaAlt} width={144} height={144} className="h-32 w-32 object-contain [image-rendering:pixelated] sm:h-36 sm:w-36" />
         </div>
       </div>
       <div className="mt-3 grid grid-cols-2 gap-8">
@@ -81,8 +91,8 @@ function EscenaCombate({ reporte }: { reporte: ResultadoCombate }) {
           <div className="h-2 rounded-full bg-slate-800"><div className="h-2 rounded-full bg-blue-500" style={{ width: `${vidaHeroe}%` }} /></div>
         </div>
         <div>
-          <div className="mb-1 flex justify-between text-xs font-bold text-red-200"><span>{esComercio ? "Base aliada" : "Enemigo"}</span><span>{vidaEnemigo}%</span></div>
-          <div className="h-2 rounded-full bg-slate-800"><div className={`h-2 rounded-full ${esComercio ? "bg-emerald-500" : "bg-red-500"}`} style={{ width: `${vidaEnemigo}%` }} /></div>
+          <div className="mb-1 flex justify-between text-xs font-bold text-red-200"><span>{esComercio ? "Base aliada" : hayCombate ? "Enemigo" : "Hallazgo"}</span><span>{vidaEnemigo}%</span></div>
+          <div className="h-2 rounded-full bg-slate-800"><div className={`h-2 rounded-full ${esComercio || !hayCombate ? "bg-emerald-500" : "bg-red-500"}`} style={{ width: `${vidaEnemigo}%` }} /></div>
         </div>
       </div>
     </div>
