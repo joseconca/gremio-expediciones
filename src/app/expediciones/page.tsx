@@ -67,11 +67,9 @@ export default function ExpedicionesPage() {
     const offset =
       horaMisiones === horaActual ? misionesCompletadasEstaHora : 0;
 
-    const nuevasMisiones = [
-      generarMision(baseCoords.lat, baseCoords.lng, horaActual, offset + 0),
-      generarMision(baseCoords.lat, baseCoords.lng, horaActual, offset + 1),
-      generarMision(baseCoords.lat, baseCoords.lng, horaActual, offset + 2),
-    ];
+    const nuevasMisiones = [0, 1, 2, 3].map((slot) =>
+      generarMision(baseCoords.lat, baseCoords.lng, horaActual, slot, offset)
+    );
 
     setMisionesGeneradas(nuevasMisiones);
   }, [baseCoords, misionesCompletadasEstaHora, horaMisiones]);

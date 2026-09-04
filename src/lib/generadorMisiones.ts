@@ -13,8 +13,22 @@ const DESCRIPCIONES = [
   "Una oportunidad perfecta para conseguir recursos para el gremio."
 ];
 
-export function generarMision(baseLat: number, baseLng: number, horaActual: number, indice: number) {
-  const seed = horaActual * 902 + indice * 2503; 
+const MISIONES_POR_DURACION = [
+  { horas: 0.5, dificultad: 0, recompensaBase: 45 },
+  { horas: 1, dificultad: 0, recompensaBase: 85 },
+  { horas: 3, dificultad: 1, recompensaBase: 220 },
+  { horas: 9, dificultad: 2, recompensaBase: 650 },
+];
+
+export function generarMision(
+  baseLat: number,
+  baseLng: number,
+  horaActual: number,
+  indice: number,
+  desplazamiento = 0
+) {
+  const seed = horaActual * 902 + (indice + desplazamiento) * 2503;
+  const configuracion = MISIONES_POR_DURACION[indice % MISIONES_POR_DURACION.length];
 
   const randSufijo = randomSeeded(seed + 1);
   const randPrefijo = randomSeeded(seed + 2);
@@ -23,19 +37,17 @@ export function generarMision(baseLat: number, baseLng: number, horaActual: numb
   const nombre = `${PREFIJOS[Math.floor(randPrefijo * PREFIJOS.length)]} ${SUFIJOS[Math.floor(randSufijo * SUFIJOS.length)]}`;
   const desc = DESCRIPCIONES[Math.floor(randDesc * DESCRIPCIONES.length)];
 
-  // Dificultad: 60% dif 0, 30% dif 1, 10% dif 2
-  const randDif = randomSeeded(seed + 4);
-  let dificultad = 0;
-  if (randDif > 0.6) dificultad = 1;
-  if (randDif > 0.9) dificultad = 2;
-
-  // Recompensa base + modificador por dificultad + aleatoriedad
+  // La ranura fija da variedad de duración sin perder una progresión clara.
+  const dificultad = configuracion.dificultad;
   const randOro = randomSeeded(seed + 5);
-  const recompensa = Math.floor(50 + (dificultad * 100) + (randOro * 50));
+  const recompensa = Math.floor(configuracion.recompensaBase + randOro * configuracion.recompensaBase * 0.2);
 
-  // Posición aleatoria alrededor de la base (rango aprox de -0.15 a +0.15 grados)
-  const randLat = (randomSeeded(seed + 6) - 0.5) * 0.3;
-  const randLng = (randomSeeded(seed + 7) - 0.5) * 0.3;
+  // Distancias orientativas para una velocidad base de aproximadamente 6 km/h.
+  const variacionDistancia = 0.9 + randomSeeded(seed + 6) * 0.2;
+  const distanciaKm = configuracion.horas * 6 * variacionDistancia;
+  const angulo = randomSeeded(seed + 7) * Math.PI * 2;
+  const randLat = (distanciaKm * Math.cos(angulo)) / 111;
+  const randLng = (distanciaKm * Math.sin(angulo)) / (111 * Math.cos((baseLat * Math.PI) / 180));
 
   return {
     id: `mision-${horaActual}-${indice}`,
@@ -44,6 +56,7 @@ export function generarMision(baseLat: number, baseLng: number, horaActual: numb
     nombre,
     dificultad,
     recompensa,
+    duracionObjetivoHoras: configuracion.horas,
     desc,
   };
 }
