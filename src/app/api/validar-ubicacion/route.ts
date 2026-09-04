@@ -40,9 +40,9 @@ export async function POST(request: Request) {
       const coords = otroUsuario.baseCoords as { lat?: unknown; lng?: unknown } | null;
       if (typeof coords?.lat !== "number" || typeof coords.lng !== "number") continue;
       const distancia = calcularDistanciaKm(lat, lng, coords.lat, coords.lng);
-      
-      if (distancia < 5) {
-        return NextResponse.json({esValido: false, mensaje: `Demasiado cerca. A ${distancia.toFixed(1)} km de "${otroUsuario.nombre}".`});
+
+      if (distancia < 0.1) {
+        return NextResponse.json({esValido: false, mensaje: `Demasiado cerca. A ${(distancia * 1000).toFixed(0)} m de "${otroUsuario.nombre}".`});
       }
     }
 
