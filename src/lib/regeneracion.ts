@@ -15,6 +15,14 @@ export async function sincronizarRegeneracion<T extends PersonajeRegen>(
 ): Promise<T> {
   const ahora = new Date();
 
+  if (personaje.ultimaRegeneracion.getTime() > ahora.getTime()) {
+    await prisma.personaje.update({
+      where: { usuarioId: personaje.usuarioId },
+      data: { ultimaRegeneracion: ahora },
+    });
+    return { ...personaje, ultimaRegeneracion: ahora };
+  }
+
   if (personaje.estado === "de_viaje" || personaje.hpActual >= personaje.hpMaximo) {
     if (personaje.hpActual >= personaje.hpMaximo && ahora.getTime() - personaje.ultimaRegeneracion.getTime() < 1000) {
       return personaje;
@@ -26,7 +34,7 @@ export async function sincronizarRegeneracion<T extends PersonajeRegen>(
     return { ...personaje, ultimaRegeneracion: ahora };
   }
 
-  const segundosTranscurridos = Math.max(0, (ahora.getTime() - personaje.ultimaRegeneracion.getTime()) / 1000);
+  const segundosTranscurridos = (ahora.getTime() - personaje.ultimaRegeneracion.getTime()) / 1000;
   const hpGanado = Math.floor(segundosTranscurridos * personaje.regeneracionDeVida);
 
   if (hpGanado <= 0) return personaje;
