@@ -108,7 +108,8 @@ export async function POST() {
     const experienciaNueva = subeNivel ? experienciaTotal - experienciaNecesaria : experienciaTotal;
     const hpActual = Math.max(0, usuario.personaje.hpActual - resultado.hpPerdido);
     const duracionIda = Math.max(60_000, expedicion.fechaLlegada.getTime() - expedicion.fechaSalida.getTime());
-    const fechaSalidaRegreso = new Date();
+    // El regreso arranca en el momento real de llegada, no cuando el jugador pulsa "resolver".
+    const fechaSalidaRegreso = expedicion.fechaLlegada;
     const fechaLlegadaRegreso = new Date(fechaSalidaRegreso.getTime() + duracionIda);
     const actualizado = await prisma.$transaction(async (tx) => {
       await tx.personaje.update({

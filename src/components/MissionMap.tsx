@@ -113,11 +113,9 @@ function RutaExpedicion({
           lineJoin: "round",
         }}
       />
-      {!regresando && (
-        <Marker position={[destino.lat, destino.lng]} icon={destinationIcon}>
-          <Popup>Destino de la expedición</Popup>
-        </Marker>
-      )}
+      <Marker position={[destino.lat, destino.lng]} icon={destinationIcon}>
+        <Popup>{regresando ? "Lugar de la misión" : "Destino de la expedición"}</Popup>
+      </Marker>
       <Marker position={posicionHeroe} icon={crearHeroIcon(claseHeroe, sexoHeroe)} />
       <Tooltip
         direction="top"

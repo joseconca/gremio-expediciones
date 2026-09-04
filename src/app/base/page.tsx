@@ -410,20 +410,20 @@ export default function BasePage() {
             )}
 
             {personaje.estado === "de_viaje" && expedicionActiva && (
-              <div
-                className="relative cursor-pointer rounded-lg border border-slate-700 bg-slate-900/50 p-4 pr-12 transition-colors hover:border-amber-500/50"
-                onClick={() => setExpedicionExpandida((expandida) => !expandida)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    setExpedicionExpandida((expandida) => !expandida);
-                  }
-                }}
-                role="button"
-                tabIndex={0}
-                aria-expanded={expedicionExpandida}
-              >
-                <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+              <div className="relative rounded-lg border border-slate-700 bg-slate-900/50 p-4 pr-12 transition-colors hover:border-amber-500/50">
+                <div
+                  className="flex cursor-pointer flex-col items-center justify-between gap-4 md:flex-row"
+                  onClick={() => setExpedicionExpandida((expandida) => !expandida)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      setExpedicionExpandida((expandida) => !expandida);
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={expedicionExpandida}
+                >
                 <div className="flex min-w-0 items-center gap-3">
                   <p className="text-amber-400 font-bold">
                     {expedicionActiva.nombre}
@@ -455,14 +455,13 @@ export default function BasePage() {
                     ⏳ {formatoTiempo(tiempoRestante)}
                   </div>
                 )}
-                </div>
-
                 <span className="absolute right-4 top-4 text-lg leading-none text-slate-500" aria-hidden="true">
                   {expedicionExpandida ? "⌃" : "⌄"}
                 </span>
+                </div>
 
                 {expedicionExpandida && (
-                  <div className="mt-4 overflow-hidden rounded-lg border border-slate-700 bg-slate-900">
+                  <div className="mt-4 overflow-hidden rounded-lg border border-slate-700 bg-slate-900" onClick={(event) => event.stopPropagation()}>
                     <div className="h-[360px] w-full">
                       <MissionMap
                         baseCoords={baseCoords!}
