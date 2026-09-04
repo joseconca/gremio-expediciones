@@ -95,7 +95,7 @@ if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number')
     
     const ahora = Date.now();
     const fechaSalida = new Date(ahora);
-    const tiempoViajeMs = horasReales * 60 * 60 * 1000;
+    const tiempoViajeMs = (horasReales * 60 * 60 * 1000) / 2;
     const fechaLlegada = new Date(ahora + tiempoViajeMs);
 
     await prisma.$transaction([

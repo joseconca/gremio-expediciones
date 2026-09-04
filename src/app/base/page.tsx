@@ -267,7 +267,7 @@ export default function BasePage() {
                 </div>
                 <div className="bg-slate-900 p-4 rounded-lg text-center border border-slate-700 shadow-inner">
                   <span className="block text-xs text-slate-400 uppercase tracking-widest mb-1">
-                    Botín Recuperado
+                    {expedicionActiva?.fase === "regresando" ? "Botín asegurado" : "Botín Recuperado"}
                   </span>
                   <span className="text-2xl font-black text-amber-400">
                     +{reporte.oroGanado} 🪙
@@ -282,6 +282,11 @@ export default function BasePage() {
                   </span>
                 </div>
               </div>
+              {expedicionActiva?.fase === "regresando" && (
+                <p className="mb-4 text-center text-sm text-amber-300">
+                  El oro se ingresará al regresar a la base.
+                </p>
+              )}
 
               <button
                 onClick={handleCerrarReporte}
