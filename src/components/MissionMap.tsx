@@ -136,6 +136,13 @@ interface BaseMapa {
   nivel: number;
 }
 
+interface RutaEntrante {
+  id: string;
+  origenCoords: { lat: number; lng: number };
+  fechaSalida: string;
+  fechaLlegada: string;
+}
+
 interface MissionMapProps {
   baseCoords: { lat: number; lng: number };
   misiones: MisionMapa[];
@@ -143,6 +150,7 @@ interface MissionMapProps {
   destinoExpedicion?: { lat: number; lng: number } | null;
   fechaSalida?: string;
   fechaLlegada?: string;
+  rutasEntrantes?: RutaEntrante[];
   onSelectMission: (mision: MisionMapa) => void;
 }
 
@@ -154,6 +162,7 @@ export default function MissionMap({
   destinoExpedicion = null,
   fechaSalida,
   fechaLlegada,
+  rutasEntrantes = [],
 }: MissionMapProps) {
   return (
     <div className="h-full w-full z-0">
@@ -181,6 +190,16 @@ export default function MissionMap({
           fechaSalida={fechaSalida}
           fechaLlegada={fechaLlegada}
         />
+
+        {rutasEntrantes.map((ruta) => (
+          <RutaExpedicion
+            key={`entrante-${ruta.id}`}
+            baseCoords={ruta.origenCoords}
+            destino={baseCoords}
+            fechaSalida={ruta.fechaSalida}
+            fechaLlegada={ruta.fechaLlegada}
+          />
+        ))}
 
         {/* Marcadores de Misiones PvE */}
         {misiones.map((m) => (

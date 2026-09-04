@@ -24,16 +24,23 @@ export async function GET() {
 
     const expedicionesEntrantes = await prisma.expedicionActiva.findMany({
       where: { tipo: "comercio", objetivoId: usuario.id },
-      select: { id: true, usuarioId: true, fechaSalida: true, fechaLlegada: true, dificultad: true },
+      select: {
+        id: true,
+        usuarioId: true,
+        fechaSalida: true,
+        fechaLlegada: true,
+        dificultad: true,
+      },
     });
     const origenes = await prisma.usuario.findMany({
       where: { id: { in: expedicionesEntrantes.map((expedicion) => expedicion.usuarioId) } },
-      select: { id: true, nombre: true },
+      select: { id: true, nombre: true, baseCoords: true },
     });
     const nombresOrigen = new Map(origenes.map((origen) => [origen.id, origen.nombre]));
     const caravanasEntrantes = expedicionesEntrantes.map((expedicion) => ({
       id: expedicion.id,
       gremioOrigen: nombresOrigen.get(expedicion.usuarioId) || "Gremio desconocido",
+      origenCoords: origenes.find((origen) => origen.id === expedicion.usuarioId)?.baseCoords,
       fechaSalida: expedicion.fechaSalida,
       fechaLlegada: expedicion.fechaLlegada,
       dificultad: expedicion.dificultad,

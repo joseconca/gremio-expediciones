@@ -59,6 +59,7 @@ interface CaravanaEntrante {
   fechaSalida: string;
   fechaLlegada: string;
   dificultad: number;
+  origenCoords: { lat: number; lng: number } | null;
 }
 
 export function PanelCaravanasEntrantes({ caravanas }: { caravanas: CaravanaEntrante[] }) {
@@ -360,16 +361,12 @@ export default function BasePage() {
 
         <PanelCaravanasEntrantes caravanas={caravanasEntrantes} />
 
-        {expedicionActiva && (
+        {(expedicionActiva || caravanasEntrantes.some((caravana) => caravana.origenCoords)) && (
         <section className="mb-8 overflow-hidden rounded-xl border border-slate-700 bg-slate-800 shadow-lg">
           <div className="flex flex-col gap-2 border-b border-slate-700 p-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 className="text-xl font-bold text-white">Mapa del territorio</h2>
-              <p className="text-sm text-slate-400">
-                {expedicionActiva
-                  ? "Sigue el avance de tu héroe hasta el destino."
-                  : "Tu gremio y sus alrededores."}
-              </p>
+              <p className="text-sm text-slate-400">Sigue las rutas comerciales y expediciones en curso.</p>
             </div>
             {expedicionActiva && (
               <span className="w-fit rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-sm font-bold text-amber-400">
@@ -384,6 +381,14 @@ export default function BasePage() {
               destinoExpedicion={expedicionActiva?.destinoCoords || null}
               fechaSalida={expedicionActiva?.fechaSalida}
               fechaLlegada={expedicionActiva?.fechaLlegada}
+              rutasEntrantes={caravanasEntrantes
+                .filter((caravana) => caravana.origenCoords)
+                .map((caravana) => ({
+                  id: caravana.id,
+                  origenCoords: caravana.origenCoords!,
+                  fechaSalida: caravana.fechaSalida,
+                  fechaLlegada: caravana.fechaLlegada,
+                }))}
               onSelectMission={() => undefined}
             />
           </div>
