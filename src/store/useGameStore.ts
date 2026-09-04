@@ -83,6 +83,7 @@ export interface GameState {
   edificios: Record<string, Edificio>;
   baseCoords: { lat: number; lng: number } | null;
   isLoading: boolean;
+  sesionActiva: boolean;
   horaMisiones: number;
   misionesCompletadasEstaHora: number;
 
@@ -152,6 +153,7 @@ export const useGameStore = create<GameState>((set, get) => ({
   },
   baseCoords: null,
   isLoading: true,
+  sesionActiva: false,
   horaMisiones: 0,
   misionesCompletadasEstaHora: 0,
 
@@ -167,8 +169,15 @@ export const useGameStore = create<GameState>((set, get) => ({
 
   cargarJugador: async () => {
     try {
-      const respuesta = await fetch("/api/jugador");
+      const respuesta = await fetch("/api/jugador", {
+        signal: AbortSignal.timeout(8000),
+      });
       const datos = await respuesta.json();
+
+      if (respuesta.status === 401) {
+        set({ isLoading: false, sesionActiva: false, personaje: null, baseCoords: null });
+        return;
+      }
 
       if (!datos) {
         set({ isLoading: false });
@@ -207,6 +216,7 @@ export const useGameStore = create<GameState>((set, get) => ({
       }*/
 
       set({
+        sesionActiva: true,
         oro: datos.oro as number,
         edificios: edificiosCompletos,
         personaje: datos.personaje,

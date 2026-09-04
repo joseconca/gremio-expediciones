@@ -11,7 +11,7 @@ export default function BaseLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const { oro, personaje, expedicionActiva, baseCoords, edificios, isLoading, cargarJugador, aplicarRegeneracion } = useGameStore();
+  const { oro, personaje, expedicionActiva, baseCoords, edificios, isLoading, sesionActiva, cargarJugador, aplicarRegeneracion } = useGameStore();
   const [tiempoRestante, setTiempoRestante] = useState<number>(0);
 
   useEffect(() => {
@@ -19,10 +19,12 @@ export default function BaseLayout({
   }, [cargarJugador]);
   
   useEffect(() => {
-    if (!isLoading && !baseCoords) {
+    if (!isLoading && !sesionActiva) {
+      router.push("/login");
+    } else if (!isLoading && !baseCoords) {
       router.push("/crear-base");
     }
-  }, [isLoading, baseCoords, router]);
+  }, [isLoading, sesionActiva, baseCoords, router]);
 
   useEffect(() => {
     if (!expedicionActiva) return;
@@ -95,7 +97,7 @@ export default function BaseLayout({
       <header className="flex flex-col md:flex-row md:justify-between items-center bg-slate-800 p-4 border-b border-slate-700 gap-4">
         {/* PANEL DEL HÉROE GLOBAL */}
         {personaje && (
-          <div className="flex w-full flex-wrap items-center justify-start gap-3 bg-slate-900 px-4 py-2 rounded-lg border border-slate-700 text-sm md:w-auto">
+          <div className="flex w-full flex-nowrap items-center justify-start gap-3 rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm md:w-auto md:px-4">
             <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border-2 border-amber-500/70 bg-slate-800 shadow-[0_0_12px_rgba(245,158,11,0.25)]">
               <Image
                 src="/sprites/heroes/warrior.png"
@@ -105,7 +107,7 @@ export default function BaseLayout({
                 className="avatar-face-image [image-rendering:pixelated]"
               />
             </div>
-            <div className="flex min-w-0 flex-col gap-1">
+            <div className="flex min-w-0 flex-1 flex-col gap-1">
               <span className="truncate font-bold uppercase tracking-wider text-white">
                 {personaje.nombre}
               </span>
@@ -113,7 +115,7 @@ export default function BaseLayout({
               {/* Barra de vida */}
               <div className="flex items-center gap-2">
                 <span className="text-xs font-mono text-slate-400">HP</span>
-                <div className="w-40 bg-slate-800 rounded-full h-3 border border-slate-700 overflow-hidden">
+                <div className="h-3 w-24 overflow-hidden rounded-full border border-slate-700 bg-slate-800 sm:w-40">
                   <div
                     className="bg-red-500 h-full transition-all duration-300"
                     style={{
