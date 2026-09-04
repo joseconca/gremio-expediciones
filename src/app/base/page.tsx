@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
 import {
   ResultadoCombate,
@@ -52,6 +53,40 @@ const getColorPorLinea = (linea: string) => {
     return "text-purple-300 font-semibold";
   return "text-slate-300";
 };
+
+function EscenaCombate({ reporte }: { reporte: ResultadoCombate }) {
+  const enemigoSprite = "/sprites/enemies/goblin.png";
+  const vidaHeroe = Math.max(8, 100 - Math.min(92, reporte.hpPerdido * 2));
+  const vidaEnemigo = reporte.exito ? 0 : 28;
+
+  return (
+    <div className="combat-scene border-b border-slate-700 bg-[radial-gradient(circle_at_50%_35%,#334155,#0f172a_72%)] p-5">
+      <div className="mb-3 flex items-center justify-between text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
+        <span>{reporte.enemigo || "Encuentro"}</span>
+        <span>{reporte.rondas || 0} rondas</span>
+      </div>
+      <div className="relative flex h-44 items-end justify-between overflow-hidden rounded-lg border border-slate-600/80 bg-slate-950/50 px-8 sm:px-20">
+        <div className="combat-hero w-28 sm:w-36">
+          <Image src="/sprites/heroes/warrior.png" alt="Héroe" width={144} height={144} className="h-32 w-32 object-contain [image-rendering:pixelated] sm:h-36 sm:w-36" />
+        </div>
+        <div className="combat-impact" aria-hidden="true">✦</div>
+        <div className="combat-enemy w-28 sm:w-36">
+          <Image src={enemigoSprite} alt={reporte.enemigo || "Enemigo"} width={144} height={144} className="h-32 w-32 object-contain [image-rendering:pixelated] sm:h-36 sm:w-36" />
+        </div>
+      </div>
+      <div className="mt-3 grid grid-cols-2 gap-8">
+        <div>
+          <div className="mb-1 flex justify-between text-xs font-bold text-blue-200"><span>Héroe</span><span>{vidaHeroe}%</span></div>
+          <div className="h-2 rounded-full bg-slate-800"><div className="h-2 rounded-full bg-blue-500" style={{ width: `${vidaHeroe}%` }} /></div>
+        </div>
+        <div>
+          <div className="mb-1 flex justify-between text-xs font-bold text-red-200"><span>Enemigo</span><span>{vidaEnemigo}%</span></div>
+          <div className="h-2 rounded-full bg-slate-800"><div className="h-2 rounded-full bg-red-500" style={{ width: `${vidaEnemigo}%` }} /></div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 interface CaravanaEntrante {
   id: string;
@@ -238,6 +273,21 @@ export default function BasePage() {
             </div>
 
             {/* Log de Combate estilo Terminal */}
+            <EscenaCombate reporte={reporte} />
+            <div className="grid grid-cols-3 gap-2 border-b border-slate-700 bg-slate-900 p-4">
+              <div className="rounded-lg border border-red-900/60 bg-red-950/30 p-3 text-center">
+                <span className="block text-[10px] uppercase tracking-wider text-red-300">Enemigo</span>
+                <span className="block truncate font-bold text-white">{reporte.enemigo || "Encuentro"}</span>
+              </div>
+              <div className="rounded-lg border border-blue-900/60 bg-blue-950/30 p-3 text-center">
+                <span className="block text-[10px] uppercase tracking-wider text-blue-300">Poder</span>
+                <span className="block font-black text-white">{reporte.poderHeroe || "-"}</span>
+              </div>
+              <div className="rounded-lg border border-amber-900/60 bg-amber-950/30 p-3 text-center">
+                <span className="block text-[10px] uppercase tracking-wider text-amber-300">Rondas</span>
+                <span className="block font-black text-white">{reporte.rondas ?? "-"}</span>
+              </div>
+            </div>
             <div className="flex-grow overflow-y-auto p-6 bg-[#0a0f1a] font-mono text-sm sm:text-base space-y-3 custom-scrollbar">
               {reporte.logCombate.map((linea, idx) => (
                 <div

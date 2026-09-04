@@ -4,6 +4,9 @@ export interface ResultadoCombate {
   oroGanado: number;
   experienciaGanada: number;
   logCombate: string[];
+  enemigo?: string;
+  rondas?: number;
+  poderHeroe?: number;
 }
 
 interface PersonajeCombate {
@@ -73,6 +76,9 @@ export function resolverComercio(
       hpPerdido: personaje.hpActual - 1, 
       oroGanado: 0, 
       experienciaGanada: 10,
+      enemigo: "Peligros del camino",
+      rondas: 0,
+      poderHeroe: personaje.ataque + personaje.defensa,
       logCombate: [...logCombate, `💀 ${personaje.nombre} sucumbió a los peligros del viaje de ida. La caravana fue saqueada.`] 
     };
   }
@@ -107,6 +113,9 @@ export function resolverComercio(
       hpPerdido: personaje.hpActual - 1, 
       oroGanado: 0, 
       experienciaGanada: 10,
+      enemigo: "Peligros del camino",
+      rondas: 0,
+      poderHeroe: personaje.ataque + personaje.defensa,
       logCombate: [...logCombate, `🚑 ¡Tragedia a un paso de casa! ${personaje.nombre} llega malherido y el carro de oro se pierde por un barranco.`] 
     };
   }
@@ -119,6 +128,9 @@ export function resolverComercio(
     hpPerdido: personaje.hpActual - hpTemporal, 
     oroGanado: oroFinal, 
     experienciaGanada: 25,
+    enemigo: "Ruta comercial",
+    rondas: 0,
+    poderHeroe: personaje.ataque + personaje.defensa,
     logCombate 
   };
 }
@@ -250,8 +262,8 @@ export function resolverExpedicion(
   const ataquePersonaje = personaje.ataque;
   const defensaPersonaje = personaje.defensa;
   const nivelPersonaje = personaje.nivel || 1;
-  const bonificacionClase = personaje.clase === "Guerrero" ? 2 : personaje.clase === "Explorador" ? 1 : 0;
-  const poderPersonaje = ataquePersonaje + defensaPersonaje + nivelPersonaje * 2 + bonificacionClase;
+  const bonificacionClase = personaje.clase === "Guerrero" ? 3 : personaje.clase === "Explorador" ? 2 : 1;
+  const poderPersonaje = ataquePersonaje + defensaPersonaje + nivelPersonaje * 3 + bonificacionClase;
 
   logCombate.push(`🗺️ ${personaje.nombre} pone rumbo a ${mision.nombre}.`);
 
@@ -295,7 +307,7 @@ export function resolverExpedicion(
   const MAX_RONDAS = 30;
   while (enemigo.hp > 0 && hpTemporal > 0 && ronda <= MAX_RONDAS) {
     // ⚔️ TURNO DEL PERSONAJE
-    const tiradaAtaque = d20() + Math.floor(poderPersonaje / 10);
+    const tiradaAtaque = d20() + Math.floor(ataquePersonaje / 2) + nivelPersonaje;
     if (tiradaAtaque === 20) {
       const dano = (d6() + ataquePersonaje) * 2; // Crítico: Daño x2
       enemigo.hp -= dano;
@@ -312,7 +324,7 @@ export function resolverExpedicion(
         `🤡 ${personaje.nombre} resbala torpemente y falla su ataque por completo.`
       );
     } else if (tiradaAtaque > enemigo.defensa) {
-      const dano = d6() + ataquePersonaje;
+      const dano = d6() + ataquePersonaje + nivelPersonaje;
       enemigo.hp -= dano;
       logCombate.push(
         `⚔️ ${personaje.nombre} ataca por ${dano} de daño. (${Math.max(
@@ -335,7 +347,7 @@ export function resolverExpedicion(
     }
 
     // 🛡️ TURNO DEL ENEMIGO
-    const tiradaEnemigo = d20() + dificultad;
+    const tiradaEnemigo = d20() + dificultad - Math.floor(defensaPersonaje / 3) - nivelPersonaje;
     if (tiradaEnemigo === 20) {
       const dano = (d6() + enemigo.ataque) * 2;
       hpTemporal -= dano;
@@ -352,7 +364,8 @@ export function resolverExpedicion(
         `🤡 El ${enemigo.nombre} se distrae y desperdicia su turno.`
       );
     } else if (tiradaEnemigo > defensaPersonaje) {
-      const dano = Math.max(1, d6() + enemigo.ataque - 2); // Fórmula de daño básica
+      const reduccionGuerrero = personaje.clase === "Guerrero" ? 2 : 0;
+      const dano = Math.max(1, d6() + enemigo.ataque - 2 - reduccionGuerrero);
       hpTemporal -= dano;
       logCombate.push(
         `🩸 El ${
@@ -379,8 +392,10 @@ export function resolverExpedicion(
   let hpPerdidoCalculado = personaje.hpActual - hpTemporal;
 
   if (hpTemporal > 0) {
-    const variacion = 0.8 + Math.random() * 0.4;
+    const variacion = 0.9 + Math.random() * 0.2;
     botinObtenido = Math.floor(mision.recompensa * variacion + recompensaExtra);
+
+    if (personaje.clase === "Mercader") botinObtenido = Math.floor(botinObtenido * 1.25);
 
     /* Bonus de clase
     if (personaje.clase === "Mercader")
@@ -406,5 +421,8 @@ export function resolverExpedicion(
     oroGanado: exito ? botinObtenido : 0,
     experienciaGanada,
     logCombate,
+    enemigo: enemigo.nombre,
+    rondas: Math.min(ronda, MAX_RONDAS),
+    poderHeroe: poderPersonaje,
   };
 }

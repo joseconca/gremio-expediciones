@@ -13,7 +13,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
 const campIcon = new L.Icon({
-  iconUrl: "/camp.jpg",
+  iconUrl: "/sprites/buildings/camp.jpg",
   iconSize: [42, 42],
   iconAnchor: [21, 38],
   className: "camp-map-icon",
@@ -35,7 +35,7 @@ const destinationIcon = L.divIcon({
 
 const heroIcon = L.divIcon({
   className: "hero-route-marker",
-  html: '<img src="/warrior.png" alt="" aria-hidden="true" />',
+  html: '<img src="/sprites/heroes/warrior.png" alt="" aria-hidden="true" />',
   iconSize: [34, 34],
   iconAnchor: [17, 17],
 });

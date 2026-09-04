@@ -112,7 +112,7 @@ export default function TabernaPage() {
             <div className="border-b border-slate-700 bg-gradient-to-r from-amber-950/60 via-slate-800 to-slate-900 p-6">
               <div className="flex flex-col items-center gap-6 md:flex-row">
                 <div className="relative flex h-44 w-36 shrink-0 items-end justify-center overflow-hidden rounded-lg border-2 border-amber-500/60 bg-[radial-gradient(circle_at_50%_20%,#475569,#0f172a_70%)] shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
-                  <Image src="/warrior.png" alt="Retrato del héroe" width={144} height={144} className="h-36 w-36 object-contain [image-rendering:pixelated]" />
+                  <Image src="/sprites/heroes/warrior.png" alt="Retrato del héroe" width={144} height={144} className="h-36 w-36 object-contain [image-rendering:pixelated]" />
                   <span className="absolute left-2 top-2 rounded bg-slate-950/80 px-2 py-1 text-xs font-bold uppercase tracking-wider text-amber-400">
                     Nivel {personaje.nivel || 1}
                   </span>

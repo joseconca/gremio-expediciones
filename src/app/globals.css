@@ -30,6 +30,48 @@
   animation: hero-route-bob 900ms ease-in-out infinite alternate;
 }
 
+.combat-hero,
+.combat-enemy {
+  position: relative;
+  z-index: 2;
+}
+
+.combat-hero {
+  animation: combat-hero-strike 2.4s ease-in-out infinite;
+}
+
+.combat-enemy {
+  transform: scaleX(-1);
+  animation: combat-enemy-hit 2.4s ease-in-out infinite;
+}
+
+.combat-impact {
+  position: absolute;
+  left: 50%;
+  bottom: 42%;
+  z-index: 3;
+  color: #facc15;
+  font-size: 2rem;
+  opacity: 0;
+  animation: combat-impact-flash 2.4s ease-in-out infinite;
+}
+
+@keyframes combat-hero-strike {
+  0%, 18%, 100% { transform: translateX(0); }
+  35%, 48% { transform: translateX(32px); }
+  58%, 75% { transform: translateX(0); }
+}
+
+@keyframes combat-enemy-hit {
+  0%, 42%, 100% { filter: none; }
+  48%, 58% { filter: brightness(2.3) saturate(0.4); transform: translateX(-8px) scaleX(-1); }
+}
+
+@keyframes combat-impact-flash {
+  0%, 38%, 64%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+  46%, 55% { opacity: 1; transform: scale(1.25) rotate(90deg); }
+}
+
 .camp-map-icon {
   border-radius: 50%;
   border: 3px solid #facc15;
