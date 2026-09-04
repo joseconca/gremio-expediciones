@@ -23,9 +23,43 @@ export async function POST() {
       return NextResponse.json({ error: "La expedición todavía está en curso." }, { status: 409 });
     }
 
+    if (expedicion.fase === "regresando") {
+      const oroGuardado = Math.max(0, expedicion.recompensa);
+      const objetivoId = expedicion.tipo === "comercio" ? expedicion.objetivoId : null;
+      const actualizado = await prisma.$transaction(async (tx) => {
+        await tx.expedicionActiva.delete({ where: { id: expedicion.id } });
+        await tx.personaje.update({
+          where: { usuarioId: usuario.id },
+          data: { estado: usuario.personaje!.hpActual > 0 ? "ocioso" : "descansando" },
+        });
+        if (objetivoId && oroGuardado > 0) {
+          await tx.usuario.update({ where: { id: objetivoId }, data: { oro: { increment: Math.floor(oroGuardado * 0.25) } } });
+          await tx.afinidadComercial.upsert({
+            where: { jugador1Id_jugador2Id: { jugador1Id: usuario.id, jugador2Id: objetivoId } },
+            create: { jugador1Id: usuario.id, jugador2Id: objetivoId, intercambios: 1, afinidad: 1 },
+            update: { intercambios: { increment: 1 }, afinidad: { increment: 1 } },
+          });
+        }
+        return tx.usuario.update({
+          where: { id: usuario.id },
+          data: { oro: { increment: oroGuardado } },
+          include: { personaje: true, expedicionActiva: true },
+        });
+      });
+      const datosRegreso = Object.fromEntries(Object.entries(actualizado).filter(([clave]) => clave !== "password"));
+      return NextResponse.json({
+        resultado: {
+          exito: true,
+          hpPerdido: 0,
+          oroGanado: oroGuardado,
+          experienciaGanada: 0,
+          logCombate: [`🏠 ${usuario.personaje.nombre} regresa al gremio con el botín asegurado.`, `💰 Recibes ${oroGuardado} 🪙 por la expedición.`],
+        },
+        usuario: datosRegreso,
+      });
+    }
+
     let resultado;
-    let oroReceptor = 0;
-    let objetivoId: string | null = null;
     if (expedicion.tipo === "comercio" && expedicion.objetivoId) {
       const objetivo = await prisma.usuario.findUnique({
         where: { id: expedicion.objetivoId },
@@ -49,8 +83,6 @@ export async function POST() {
         afinidad?.intercambios || 0,
         objetivo.nombre,
       );
-      oroReceptor = resultado.exito ? Math.floor(resultado.oroGanado * 0.25) : 0;
-      objetivoId = objetivo.id;
     } else {
       resultado = resolverExpedicion(usuario.personaje, {
         id: expedicion.misionId,
@@ -73,26 +105,29 @@ export async function POST() {
     const nuevoNivel = nivelActual + (subeNivel ? 1 : 0);
     const experienciaNueva = subeNivel ? experienciaTotal - experienciaNecesaria : experienciaTotal;
     const hpActual = Math.max(0, usuario.personaje.hpActual - resultado.hpPerdido);
+    const duracionIda = Math.max(60_000, expedicion.fechaLlegada.getTime() - expedicion.fechaSalida.getTime());
+    const fechaSalidaRegreso = new Date();
+    const fechaLlegadaRegreso = new Date(fechaSalidaRegreso.getTime() + duracionIda);
     const actualizado = await prisma.$transaction(async (tx) => {
       await tx.personaje.update({
         where: { usuarioId: usuario.id },
         data: {
           hpActual,
-          estado: hpActual > 0 ? "ocioso" : "descansando",
+          estado: "de_viaje",
           nivel: nuevoNivel,
           experiencia: experienciaNueva,
           ...(subeNivel ? { hpMaximo: { increment: 10 }, ataque: { increment: 1 }, defensa: { increment: 1 } } : {}),
         },
       });
-      await tx.expedicionActiva.delete({ where: { id: expedicion.id } });
-      if (objetivoId && resultado.exito) {
-        await tx.usuario.update({ where: { id: objetivoId }, data: { oro: { increment: oroReceptor } } });
-        await tx.afinidadComercial.upsert({
-          where: { jugador1Id_jugador2Id: { jugador1Id: usuario.id, jugador2Id: objetivoId } },
-          create: { jugador1Id: usuario.id, jugador2Id: objetivoId, intercambios: 1, afinidad: 1 },
-          update: { intercambios: { increment: 1 }, afinidad: { increment: 1 } },
-        });
-      }
+      await tx.expedicionActiva.update({
+        where: { id: expedicion.id },
+        data: {
+          fase: "regresando",
+          fechaSalida: fechaSalidaRegreso,
+          fechaLlegada: fechaLlegadaRegreso,
+          recompensa: oroGanado,
+        },
+      });
       await tx.registroAccion.create({
         data: {
           usuarioId: usuario.id,
@@ -102,7 +137,7 @@ export async function POST() {
       });
       return tx.usuario.update({
         where: { id: usuario.id },
-        data: { oro: { increment: oroGanado } },
+        data: { oro: { increment: 0 } },
         include: { personaje: true, expedicionActiva: true },
       });
     });

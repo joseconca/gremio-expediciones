@@ -76,17 +76,17 @@ export function PanelCaravanasEntrantes({ caravanas }: { caravanas: CaravanaEntr
   }
 
   return (
-    <div className="bg-slate-900 border-2 border-slate-700 rounded-xl shadow-lg overflow-hidden my-6">
-      <div className="bg-slate-800 border-b border-slate-700 p-4 flex items-center justify-between">
-        <h3 className="text-xl font-black text-amber-500 uppercase tracking-widest flex items-center gap-2">
+    <div className="-mx-4 -mt-4 mb-4 overflow-hidden border-b-2 border-slate-700 bg-slate-900 shadow-lg md:-mx-8 md:-mt-8">
+      <div className="flex items-center justify-between border-b border-slate-700 bg-slate-800 px-4 py-2">
+        <h3 className="flex items-center gap-2 text-base font-black uppercase tracking-widest text-amber-500">
           <span>🐪</span> Rutas Comerciales Entrantes
         </h3>
-        <span className="bg-emerald-900/50 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-emerald-800">
+        <span className="rounded-full border border-emerald-800 bg-emerald-900/50 px-3 py-1 text-xs font-bold text-emerald-400">
           {caravanas.length} en camino
         </span>
       </div>
 
-      <div className="p-4 space-y-4 bg-[#0a0f1a]">
+      <div className="flex gap-3 overflow-x-auto bg-[#0a0f1a] p-3">
         {caravanas.map((caravana) => {
           const salida = new Date(caravana.fechaSalida).getTime();
           const llegada = new Date(caravana.fechaLlegada).getTime();
@@ -95,55 +95,43 @@ export function PanelCaravanasEntrantes({ caravanas }: { caravanas: CaravanaEntr
           const segundos = Math.max(0, Math.floor((llegada - ahora) / 1000));
           const minutos = Math.floor(segundos / 60);
           const restoSegundos = segundos % 60;
-          const nivelPeligro = caravana.dificultad >= 2 ? "Alto" : "Normal";
 
           return (
             <div
               key={caravana.id}
-              className="bg-slate-800 rounded-lg p-4 border border-slate-700 relative overflow-hidden"
+              className="relative min-w-[290px] flex-1 overflow-hidden rounded-lg border border-slate-700 bg-slate-800 p-2"
             >
-            <div className="flex justify-between items-end mb-2 relative z-10">
+            <div className="relative z-10 flex items-center gap-3">
               <div>
-                <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">
-                  Caravana de:
+                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                  Desde
                 </p>
-                <p className="text-lg font-bold text-white flex items-center gap-2">
-                  🛡️ {caravana.gremioOrigen}
+                <p className="flex items-center gap-1 text-sm font-bold text-white">
+                  🛡️ <span className="max-w-[130px] truncate">{caravana.gremioOrigen}</span>
                 </p>
               </div>
+              <div className="min-w-[80px] flex-1">
+                <div className="h-2 w-full rounded-full bg-slate-950 shadow-inner">
+                  <div
+                    className="h-2 rounded-full bg-blue-500 transition-all duration-1000 ease-linear shadow-[0_0_10px_rgba(59,130,246,0.8)]"
+                    style={{ width: `${progreso}%` }}
+                  />
+                </div>
+              </div>
               <div className="text-right">
-                <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">
-                  Llegada en:
+                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                  Llega en
                 </p>
-                <p className="text-xl font-mono font-bold text-amber-400">
+                <p className="whitespace-nowrap text-lg font-mono font-bold text-amber-400">
                   ⏳ {minutos.toString().padStart(2, "0")}:{restoSegundos.toString().padStart(2, "0")}
                 </p>
               </div>
             </div>
 
-            {/* Barra de progreso */}
-            <div className="w-full bg-slate-950 rounded-full h-2.5 mt-4 relative z-10 shadow-inner">
-              <div
-                className="bg-blue-500 h-2.5 rounded-full transition-all duration-1000 ease-linear shadow-[0_0_10px_rgba(59,130,246,0.8)]"
-                style={{ width: `${progreso}%` }}
-              ></div>
-            </div>
-
             {/* Detalles extra */}
-            <div className="flex justify-between mt-3 text-xs text-slate-500 font-medium relative z-10">
+            <div className="relative z-10 mt-1 flex justify-between text-[10px] font-medium text-slate-500">
               <span>Progreso: {Math.round(progreso)}%</span>
-              <span>
-                Peligro de ruta:{" "}
-                <span
-                  className={
-                    nivelPeligro === "Alto"
-                      ? "text-red-400"
-                      : "text-emerald-400"
-                  }
-                >
-                  {nivelPeligro}
-                </span>
-              </span>
+              <span className="text-blue-300">Ruta comercial</span>
             </div>
 
             {/* Decoración de fondo */}
@@ -174,6 +162,7 @@ export default function BasePage() {
   const [reporte, setReporte] = useState<ResultadoCombate | null>(null);
 
   const [modoConstruccion, setModoConstruccion] = useState(false);
+  const [expedicionExpandida, setExpedicionExpandida] = useState(false);
   const [caravanasEntrantes, setCaravanasEntrantes] = useState<CaravanaEntrante[]>([]);
 
   useEffect(() => {
@@ -267,7 +256,7 @@ export default function BasePage() {
 
             {/* Resumen y Botón */}
             <div className="p-6 bg-slate-800 border-t border-slate-700">
-              <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <div className="bg-slate-900 p-4 rounded-lg text-center border border-slate-700 shadow-inner">
                   <span className="block text-xs text-slate-400 uppercase tracking-widest mb-1">
                     Daño Sufrido
@@ -282,6 +271,14 @@ export default function BasePage() {
                   </span>
                   <span className="text-2xl font-black text-amber-400">
                     +{reporte.oroGanado} 🪙
+                  </span>
+                </div>
+                <div className="bg-slate-900 p-4 rounded-lg text-center border border-slate-700 shadow-inner">
+                  <span className="block text-xs text-slate-400 uppercase tracking-widest mb-1">
+                    Experiencia
+                  </span>
+                  <span className="text-2xl font-black text-blue-400">
+                    +{reporte.experienciaGanada} XP
                   </span>
                 </div>
               </div>
@@ -300,6 +297,8 @@ export default function BasePage() {
           </div>
         </div>
       )}
+
+      <PanelCaravanasEntrantes caravanas={caravanasEntrantes} />
 
       <div className="max-w-4xl mx-auto">
         {/* 1. PANEL DE MISIONES */}
@@ -324,28 +323,73 @@ export default function BasePage() {
             )}
 
             {personaje.estado === "de_viaje" && expedicionActiva && (
-              <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-700 flex flex-col md:flex-row justify-between items-center gap-4">
+              <div
+                className="cursor-pointer rounded-lg border border-slate-700 bg-slate-900/50 p-4 transition-colors hover:border-amber-500/50"
+                onClick={() => setExpedicionExpandida((expandida) => !expandida)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    setExpedicionExpandida((expandida) => !expandida);
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+                aria-expanded={expedicionExpandida}
+              >
+                <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
                 <div>
                   <p className="text-amber-400 font-bold">
                     {expedicionActiva.nombre}
                   </p>
                   <p className="text-slate-400 text-sm">
                     {listoParaResolver
-                      ? `¡${personaje.nombre} ha llegado a su destino!`
-                      : "Aventurero en camino..."}
+                      ? expedicionActiva.fase === "regresando"
+                        ? `¡${personaje.nombre} ha regresado al gremio!`
+                        : `¡${personaje.nombre} ha llegado a su destino!`
+                      : expedicionActiva.fase === "regresando"
+                        ? "Regresando con el botín asegurado..."
+                        : "Aventurero en camino..."}
                   </p>
                 </div>
 
                 {listoParaResolver ? (
                   <button
-                    onClick={handleCompletarMision}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      void handleCompletarMision();
+                    }}
                     className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-6 rounded-lg animate-pulse"
                   >
-                    ⚔️ Ver expedición
+                    {expedicionActiva.fase === "regresando" ? "🏠 Recibir al aventurero" : "⚔️ Resolver llegada"}
                   </button>
                 ) : (
                   <div className="text-center font-mono text-2xl text-slate-300 bg-slate-950 px-4 py-2 rounded-lg border border-slate-800">
                     ⏳ {formatoTiempo(tiempoRestante)}
+                  </div>
+                )}
+                </div>
+
+                {expedicionExpandida && (
+                  <div className="mt-4 overflow-hidden rounded-lg border border-slate-700 bg-slate-900">
+                    <div className="h-[360px] w-full">
+                      <MissionMap
+                        baseCoords={baseCoords!}
+                        misiones={[]}
+                        destinoExpedicion={expedicionActiva.destinoCoords}
+                        fechaSalida={expedicionActiva.fechaSalida}
+                        fechaLlegada={expedicionActiva.fechaLlegada}
+                        regresando={expedicionActiva.fase === "regresando"}
+                        rutasEntrantes={caravanasEntrantes
+                          .filter((caravana) => caravana.origenCoords)
+                          .map((caravana) => ({
+                            id: caravana.id,
+                            origenCoords: caravana.origenCoords!,
+                            fechaSalida: caravana.fechaSalida,
+                            fechaLlegada: caravana.fechaLlegada,
+                          }))}
+                        onSelectMission={() => undefined}
+                      />
+                    </div>
                   </div>
                 )}
               </div>
@@ -356,43 +400,8 @@ export default function BasePage() {
                 El héroe necesita recuperarse en la Taberna.
               </div>
             )}
-          </div>
-        )}
 
-        <PanelCaravanasEntrantes caravanas={caravanasEntrantes} />
-
-        {(expedicionActiva || caravanasEntrantes.some((caravana) => caravana.origenCoords)) && (
-        <section className="mb-8 overflow-hidden rounded-xl border border-slate-700 bg-slate-800 shadow-lg">
-          <div className="flex flex-col gap-2 border-b border-slate-700 p-5 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h2 className="text-xl font-bold text-white">Mapa del territorio</h2>
-              <p className="text-sm text-slate-400">Sigue las rutas comerciales y expediciones en curso.</p>
-            </div>
-            {expedicionActiva && (
-              <span className="w-fit rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-sm font-bold text-amber-400">
-                Expedición en curso
-              </span>
-            )}
           </div>
-          <div className="h-[360px] w-full">
-            <MissionMap
-              baseCoords={baseCoords!}
-              misiones={[]}
-              destinoExpedicion={expedicionActiva?.destinoCoords || null}
-              fechaSalida={expedicionActiva?.fechaSalida}
-              fechaLlegada={expedicionActiva?.fechaLlegada}
-              rutasEntrantes={caravanasEntrantes
-                .filter((caravana) => caravana.origenCoords)
-                .map((caravana) => ({
-                  id: caravana.id,
-                  origenCoords: caravana.origenCoords!,
-                  fechaSalida: caravana.fechaSalida,
-                  fechaLlegada: caravana.fechaLlegada,
-                }))}
-              onSelectMission={() => undefined}
-            />
-          </div>
-        </section>
         )}
 
         {/* CABECERA DINÁMICA: Instalaciones vs Construcción */}

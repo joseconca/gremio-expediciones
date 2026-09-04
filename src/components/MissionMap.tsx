@@ -45,11 +45,13 @@ function RutaExpedicion({
   destino,
   fechaSalida,
   fechaLlegada,
+  regresando = false,
 }: {
   baseCoords: { lat: number; lng: number };
   destino: { lat: number; lng: number } | null;
   fechaSalida?: string;
   fechaLlegada?: string;
+  regresando?: boolean;
 }) {
   const [progreso, setProgreso] = useState(0);
 
@@ -71,9 +73,11 @@ function RutaExpedicion({
 
   if (!destino) return null;
 
+  const origenRuta = regresando ? destino : baseCoords;
+  const destinoRuta = regresando ? baseCoords : destino;
   const posicionHeroe: [number, number] = [
-    baseCoords.lat + (destino.lat - baseCoords.lat) * progreso,
-    baseCoords.lng + (destino.lng - baseCoords.lng) * progreso,
+    origenRuta.lat + (destinoRuta.lat - origenRuta.lat) * progreso,
+    origenRuta.lng + (destinoRuta.lng - origenRuta.lng) * progreso,
   ];
 
   return (
@@ -100,9 +104,11 @@ function RutaExpedicion({
           lineJoin: "round",
         }}
       />
-      <Marker position={[destino.lat, destino.lng]} icon={destinationIcon}>
-        <Popup>Destino de la expedición</Popup>
-      </Marker>
+      {!regresando && (
+        <Marker position={[destino.lat, destino.lng]} icon={destinationIcon}>
+          <Popup>Destino de la expedición</Popup>
+        </Marker>
+      )}
       <Marker position={posicionHeroe} icon={heroIcon} />
       <Tooltip
         direction="top"
@@ -151,6 +157,7 @@ interface MissionMapProps {
   fechaSalida?: string;
   fechaLlegada?: string;
   rutasEntrantes?: RutaEntrante[];
+  regresando?: boolean;
   onSelectMission: (mision: MisionMapa) => void;
 }
 
@@ -163,6 +170,7 @@ export default function MissionMap({
   fechaSalida,
   fechaLlegada,
   rutasEntrantes = [],
+  regresando = false,
 }: MissionMapProps) {
   return (
     <div className="h-full w-full z-0">
@@ -189,6 +197,7 @@ export default function MissionMap({
           destino={destinoExpedicion}
           fechaSalida={fechaSalida}
           fechaLlegada={fechaLlegada}
+          regresando={regresando}
         />
 
         {rutasEntrantes.map((ruta) => (
