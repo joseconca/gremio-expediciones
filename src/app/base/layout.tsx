@@ -3,6 +3,7 @@ import { useGameStore } from "@/store/useGameStore";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ChatGlobal from "@/components/ChatGlobal";
+import Image from "next/image";
 
 export default function BaseLayout({
   children,
@@ -91,38 +92,49 @@ export default function BaseLayout({
   
   return (
     <div className="min-h-screen bg-slate-900 flex flex-col">
-      <header className="flex flex-col md:flex-row justify-between items-center bg-slate-800 p-4 border-b border-slate-700 gap-4 md:gap-0">
-        <h1 className="text-amber-500 font-bold text-xl">Mi Gremio</h1>
-
+      <header className="flex flex-col md:flex-row md:justify-between items-center bg-slate-800 p-4 border-b border-slate-700 gap-4">
         {/* PANEL DEL HÉROE GLOBAL */}
         {personaje && (
-          <div className="flex flex-wrap items-center justify-center gap-3 bg-slate-900 px-4 py-2 rounded-lg border border-slate-700 text-sm">
-            <span className="font-bold text-white uppercase tracking-wider">
-              {personaje.nombre}
-            </span>
-
-            {/* Barra de vida */}
-            <div className="flex items-center gap-2 border-l border-slate-700 pl-3">
-              <span className="text-xs font-mono text-slate-400">HP</span>
-              <div className="w-24 bg-slate-800 rounded-full h-3 border border-slate-700 overflow-hidden">
-                <div
-                  className="bg-red-500 h-full transition-all duration-300"
-                  style={{
-                    width: `${
-                      (personaje.hpActual / personaje.hpMaximo) * 100
-                    }%`,
-                  }}
-                />
-              </div>
-              <span className="text-xs font-mono text-slate-300">
-                {personaje.hpActual}/{personaje.hpMaximo}
+          <div className="flex w-full flex-wrap items-center justify-start gap-3 bg-slate-900 px-4 py-2 rounded-lg border border-slate-700 text-sm md:w-auto">
+            <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border-2 border-amber-500/70 bg-slate-800 shadow-[0_0_12px_rgba(245,158,11,0.25)]">
+              <Image
+                src="/sprites/heroes/warrior.png"
+                alt={`Avatar de ${personaje.nombre}`}
+                fill
+                sizes="48px"
+                className="object-cover object-[center_top] [image-rendering:pixelated]"
+              />
+            </div>
+            <div className="flex min-w-0 flex-col gap-1">
+              <span className="truncate font-bold uppercase tracking-wider text-white">
+                {personaje.nombre}
               </span>
+
+              {/* Barra de vida */}
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-mono text-slate-400">HP</span>
+                <div className="w-40 bg-slate-800 rounded-full h-3 border border-slate-700 overflow-hidden">
+                  <div
+                    className="bg-red-500 h-full transition-all duration-300"
+                    style={{
+                      width: `${
+                        (personaje.hpActual / personaje.hpMaximo) * 100
+                      }%`,
+                    }}
+                  />
+                </div>
+                <span className="text-xs font-mono text-slate-300">
+                  {personaje.hpActual}/{personaje.hpMaximo}
+                </span>
+              </div>
             </div>
 
-            {/* Estado y contador */}
-            <div className="border-l border-slate-700 pl-3 font-semibold">
-              {renderEstado()}
-            </div>
+          </div>
+        )}
+
+        {personaje && personaje.estado !== "de_viaje" && (
+          <div className="flex min-h-12 w-full items-center justify-center rounded-lg border border-slate-700 bg-slate-900 px-5 py-2 text-sm font-semibold md:w-auto md:min-w-44">
+            {renderEstado()}
           </div>
         )}
 
