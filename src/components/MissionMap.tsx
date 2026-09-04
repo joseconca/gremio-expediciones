@@ -13,7 +13,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
 const campIcon = new L.Icon({
-  iconUrl: "/sprites/buildings/camp.jpg",
+  iconUrl: "/sprites/buildings/camp.png",
   iconSize: [42, 42],
   iconAnchor: [21, 38],
   className: "camp-map-icon",

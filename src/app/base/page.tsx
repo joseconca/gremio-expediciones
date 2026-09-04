@@ -19,9 +19,9 @@ const MissionMap = dynamic(() => import("@/components/MissionMap"), {
 });
 
 const UI_EDIFICIOS: Record<string, { color: string; ruta: string }> = {
-  taberna: { color: "bg-amber-700", ruta: "/base/taberna" },
-  herreria: { color: "bg-slate-600", ruta: "/base/herreria" },
-  mercado: { color: "bg-emerald-700", ruta: "/base/mercado" },
+  taberna: { color: "bg-gradient-to-b from-emerald-700 to-green-800", ruta: "/base/taberna" },
+  herreria: { color: "bg-gradient-to-b from-emerald-700 to-green-800", ruta: "/base/herreria" },
+  mercado: { color: "bg-gradient-to-b from-emerald-700 to-green-800", ruta: "/base/mercado" },
 };
 
 const getColorPorLinea = (linea: string) => {
@@ -59,7 +59,7 @@ function EscenaCombate({ reporte }: { reporte: ResultadoCombate }) {
   const esComercio = reporte.tipo === "comercio";
   const hayCombate = !esComercio && (reporte.rondas || 0) > 0;
   const escenaSprite = esComercio
-    ? "/sprites/buildings/camp.jpg"
+    ? "/sprites/buildings/camp.png"
     : hayCombate
       ? `/sprites/enemies/${reporte.enemigoId || "goblin"}.png`
       : "/sprites/tesoro.jpeg";
@@ -525,7 +525,7 @@ export default function BasePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {edificiosConstruidos.map((edificio) => {
               const configUI = UI_EDIFICIOS[edificio.id] || {
-                color: "bg-slate-700",
+                color: "bg-gradient-to-b from-emerald-700 to-green-800",
                 ruta: "/",
               };
 
@@ -584,9 +584,9 @@ export default function BasePage() {
                       : "bg-slate-900/80 border-amber-500/30"
                   }`}
                 >
-                  <div className="h-24 w-full bg-slate-950 rounded-md mb-3 border border-slate-800 flex items-center justify-center relative overflow-hidden">
+                  <div className={`h-24 w-full rounded-md mb-3 border border-slate-800 flex items-center justify-center relative overflow-hidden ${bloqueado ? "bg-amber-900" : "bg-gradient-to-b from-emerald-700 to-green-800"}`}>
                     {bloqueado ? (
-                      <span className="text-xs text-slate-600 font-mono text-center">
+                      <span className="text-xs text-amber-200/70 font-mono text-center">
                         [Terreno Baldío]
                       </span>
                     ) : (
