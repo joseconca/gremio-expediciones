@@ -2,6 +2,7 @@
 import { useGameStore } from "@/store/useGameStore";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import ChatGlobal from "@/components/ChatGlobal";
 
 export default function BaseLayout({
   children,
@@ -131,6 +132,7 @@ export default function BaseLayout({
       </header>
 
       <div className="flex-grow">{children}</div>
+      <ChatGlobal />
     </div>
   );
 }

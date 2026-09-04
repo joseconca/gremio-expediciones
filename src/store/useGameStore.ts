@@ -37,6 +37,8 @@ export interface Personaje {
   velocidad: number;
   capacidadCarruaje: number;
   regeneracionDeVida: number;
+  nivel: number;
+  experiencia: number;
 }
 
 export interface Edificio {
