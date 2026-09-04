@@ -2,10 +2,28 @@ export interface ResultadoCombate {
   exito: boolean;
   hpPerdido: number;
   oroGanado: number;
+  experienciaGanada: number;
   logCombate: string[];
 }
 
-function simularRuta(distanciaKm: number, personaje: any, esVuelta: boolean = false) {
+interface PersonajeCombate {
+  nombre: string;
+  clase: string;
+  hpActual: number;
+  hpMaximo: number;
+  ataque: number;
+  defensa: number;
+  nivel?: number;
+}
+
+interface MisionCombate {
+  id?: string;
+  nombre: string;
+  dificultad: number;
+  recompensa: number;
+}
+
+function simularRuta(distanciaKm: number, personaje: PersonajeCombate, esVuelta: boolean = false) {
   const log: string[] = [];
   let hpTemporal = personaje.hpActual;
   
@@ -33,14 +51,13 @@ function simularRuta(distanciaKm: number, personaje: any, esVuelta: boolean = fa
 }
 
 export function resolverComercio(
-  personaje: any, 
+  personaje: PersonajeCombate, 
   distanciaKm: number, 
   nivelMercado: number, 
   intercambiosPrevios: number,
   nombreBaseAliada: string
 ) {
   const logCombate: string[] = [];
-  let exito = true;
   let hpTemporal = personaje.hpActual;
 
   logCombate.push(`🗺️ ${personaje.nombre} carga el carruaje y parte hacia "${nombreBaseAliada}", a ${distanciaKm}km de distancia.`);
@@ -55,6 +72,7 @@ export function resolverComercio(
       exito: false, 
       hpPerdido: personaje.hpActual - 1, 
       oroGanado: 0, 
+      experienciaGanada: 10,
       logCombate: [...logCombate, `💀 ${personaje.nombre} sucumbió a los peligros del viaje de ida. La caravana fue saqueada.`] 
     };
   }
@@ -88,6 +106,7 @@ export function resolverComercio(
       exito: false, 
       hpPerdido: personaje.hpActual - 1, 
       oroGanado: 0, 
+      experienciaGanada: 10,
       logCombate: [...logCombate, `🚑 ¡Tragedia a un paso de casa! ${personaje.nombre} llega malherido y el carro de oro se pierde por un barranco.`] 
     };
   }
@@ -99,12 +118,13 @@ export function resolverComercio(
     exito: true, 
     hpPerdido: personaje.hpActual - hpTemporal, 
     oroGanado: oroFinal, 
+    experienciaGanada: 25,
     logCombate 
   };
 }
 
 //todo: implementar suerte como estadística del pj
-let suerte = 0;
+const suerte = 0;
 const d20 = () => Math.floor(Math.random() * 20 + suerte) + 1;
 const d6 = () => Math.floor(Math.random() * 6 + suerte / 3) + 1;
 
@@ -217,19 +237,21 @@ function generarEventoViaje(dificultad: number) {
 }
 
 export function resolverExpedicion(
-  personaje: any,
-  mision: any
+  personaje: PersonajeCombate,
+  mision: MisionCombate
 ): ResultadoCombate {
   const logCombate: string[] = [];
-  const dificultad = mision.dificultad;
+  const dificultad = Math.max(0, mision.dificultad);
 
-  let exito = true;
   let botinObtenido = 0;
   let recompensaExtra = 0;
 
   let hpTemporal = personaje.hpActual;
   const ataquePersonaje = personaje.ataque;
   const defensaPersonaje = personaje.defensa;
+  const nivelPersonaje = personaje.nivel || 1;
+  const bonificacionClase = personaje.clase === "Guerrero" ? 2 : personaje.clase === "Explorador" ? 1 : 0;
+  const poderPersonaje = ataquePersonaje + defensaPersonaje + nivelPersonaje * 2 + bonificacionClase;
 
   logCombate.push(`🗺️ ${personaje.nombre} pone rumbo a ${mision.nombre}.`);
 
@@ -249,6 +271,7 @@ export function resolverExpedicion(
       exito: false,
       hpPerdido: personaje.hpActual - 1,
       oroGanado: 0,
+      experienciaGanada: 10 + dificultad * 5,
       logCombate: [
         ...logCombate,
         `💀 Las heridas del viaje fueron demasiado graves. ${personaje.nombre} se ve forzado a volver.`,
@@ -257,12 +280,14 @@ export function resolverExpedicion(
   }
 
   // COMBATE
-  const monstruosPosibles = listaMonstruos.filter(
-    (m) => m.difMin <= dificultad
-  );
+  const monstruosPosibles = listaMonstruos.filter((m) => m.difMin <= dificultad);
   const monstruoBase =
     monstruosPosibles[Math.floor(Math.random() * monstruosPosibles.length)];
   const enemigo = { ...monstruoBase };
+
+  enemigo.hp += dificultad * 2;
+  enemigo.ataque += dificultad;
+  enemigo.defensa += Math.max(0, dificultad - nivelPersonaje);
 
   logCombate.push(`👾 ¡Un ${enemigo.nombre} salvaje intercepta el paso!`);
 
@@ -270,7 +295,7 @@ export function resolverExpedicion(
   const MAX_RONDAS = 30;
   while (enemigo.hp > 0 && hpTemporal > 0 && ronda <= MAX_RONDAS) {
     // ⚔️ TURNO DEL PERSONAJE
-    const tiradaAtaque = d20();
+    const tiradaAtaque = d20() + Math.floor(poderPersonaje / 10);
     if (tiradaAtaque === 20) {
       const dano = (d6() + ataquePersonaje) * 2; // Crítico: Daño x2
       enemigo.hp -= dano;
@@ -310,7 +335,7 @@ export function resolverExpedicion(
     }
 
     // 🛡️ TURNO DEL ENEMIGO
-    const tiradaEnemigo = d20();
+    const tiradaEnemigo = d20() + dificultad;
     if (tiradaEnemigo === 20) {
       const dano = (d6() + enemigo.ataque) * 2;
       hpTemporal -= dano;
@@ -365,7 +390,6 @@ export function resolverExpedicion(
       `💰 Expedición completada con éxito. ¡Regresas con ${botinObtenido} 🪙 en total!`
     );
   } else {
-    exito = false;
     botinObtenido = 0;
     hpPerdidoCalculado = personaje.hpActual - 1;
     logCombate.push(
@@ -373,10 +397,14 @@ export function resolverExpedicion(
     );
   }
 
+  const experienciaGanada = hpTemporal > 0 ? 25 + dificultad * 20 : 10 + dificultad * 5;
+  const exito = hpTemporal > 0;
+
   return {
     exito,
     hpPerdido: hpPerdidoCalculado,
     oroGanado: exito ? botinObtenido : 0,
+    experienciaGanada,
     logCombate,
   };
 }

@@ -56,11 +56,19 @@ export async function POST() {
         id: expedicion.misionId,
         nombre: expedicion.nombre,
         dificultad: expedicion.dificultad,
+        recompensa: expedicion.recompensa,
       });
     }
     const oroGanado = typeof resultado.oroGanado === "number" && Number.isFinite(resultado.oroGanado)
       ? Math.max(0, resultado.oroGanado)
       : 0;
+    const experienciaActual = usuario.personaje.experiencia || 0;
+    const nivelActual = usuario.personaje.nivel || 1;
+    const experienciaTotal = experienciaActual + resultado.experienciaGanada;
+    const experienciaNecesaria = nivelActual * 100;
+    const subeNivel = experienciaTotal >= experienciaNecesaria;
+    const nuevoNivel = nivelActual + (subeNivel ? 1 : 0);
+    const experienciaNueva = subeNivel ? experienciaTotal - experienciaNecesaria : experienciaTotal;
     const hpActual = Math.max(0, usuario.personaje.hpActual - resultado.hpPerdido);
     const actualizado = await prisma.$transaction(async (tx) => {
       await tx.personaje.update({
@@ -68,6 +76,9 @@ export async function POST() {
         data: {
           hpActual,
           estado: hpActual > 0 ? "ocioso" : "descansando",
+          nivel: nuevoNivel,
+          experiencia: experienciaNueva,
+          ...(subeNivel ? { hpMaximo: { increment: 10 }, ataque: { increment: 1 }, defensa: { increment: 1 } } : {}),
         },
       });
       await tx.expedicionActiva.delete({ where: { id: expedicion.id } });
