@@ -8,6 +8,7 @@ import { useGameStore } from "@/store/useGameStore";
 import {
   ResultadoCombate,
 } from "@/lib/resolucionCombate";
+import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 
 const MissionMap = dynamic(() => import("@/components/MissionMap"), {
   ssr: false,
@@ -55,6 +56,7 @@ const getColorPorLinea = (linea: string) => {
 };
 
 function EscenaCombate({ reporte }: { reporte: ResultadoCombate }) {
+  const personaje = useGameStore((state) => state.personaje);
   const vidaHeroe = Math.max(8, 100 - Math.min(92, reporte.hpPerdido * 2));
   const esComercio = reporte.tipo === "comercio";
   const hayCombate = !esComercio && (reporte.rondas || 0) > 0;
@@ -78,7 +80,7 @@ function EscenaCombate({ reporte }: { reporte: ResultadoCombate }) {
       </div>
       <div className="relative flex h-44 items-end justify-between overflow-hidden rounded-lg border border-slate-600/80 bg-slate-950/50 px-8 sm:px-20">
         <div className="combat-hero relative aspect-square w-28 sm:w-36">
-          <Image src="/sprites/heroes/warrior.png" alt="Héroe" fill sizes="144px" priority className="object-contain [image-rendering:pixelated]" />
+          <Image src={obtenerSpriteHeroe(personaje?.clase, personaje?.sexo)} alt="Héroe" fill sizes="144px" priority className="object-contain [image-rendering:pixelated]" />
         </div>
         <div className="combat-impact" aria-hidden="true">✦</div>
         <div className={`combat-enemy relative aspect-square w-28 sm:w-36 ${!hayCombate ? "combat-treasure" : ""}`}>
@@ -103,6 +105,8 @@ interface CaravanaEntrante {
   id: string;
   gremioOrigen: string;
   nombreAventurero: string;
+  claseAventurero?: string | null;
+  sexoAventurero?: string | null;
   hpAventurero: number;
   hpMaximoAventurero: number;
   fechaSalida: string;
@@ -466,6 +470,8 @@ export default function BasePage() {
                         destinoExpedicion={expedicionActiva.destinoCoords}
                         fechaSalida={expedicionActiva.fechaSalida}
                         fechaLlegada={expedicionActiva.fechaLlegada}
+                        claseHeroe={personaje.clase}
+                        sexoHeroe={personaje.sexo}
                         regresando={expedicionActiva.fase === "regresando"}
                         rutasEntrantes={caravanasEntrantes
                           .filter((caravana) => caravana.origenCoords)
@@ -475,6 +481,8 @@ export default function BasePage() {
                             fechaSalida: caravana.fechaSalida,
                             fechaLlegada: caravana.fechaLlegada,
                             nombreHeroe: caravana.nombreAventurero,
+                            claseHeroe: caravana.claseAventurero,
+                            sexoHeroe: caravana.sexoAventurero,
                           }))}
                         onSelectMission={() => undefined}
                       />

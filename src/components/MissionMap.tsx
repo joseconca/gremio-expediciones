@@ -11,6 +11,7 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 
 const campIcon = new L.Icon({
   iconUrl: "/sprites/buildings/camp.png",
@@ -33,12 +34,14 @@ const destinationIcon = L.divIcon({
   iconAnchor: [15, 15],
 });
 
-const heroIcon = L.divIcon({
-  className: "hero-route-marker",
-  html: '<img src="/sprites/heroes/warrior.png" alt="" aria-hidden="true" />',
-  iconSize: [34, 34],
-  iconAnchor: [17, 17],
-});
+function crearHeroIcon(clase?: string | null, sexo?: string | null) {
+  return L.divIcon({
+    className: "hero-route-marker",
+    html: `<img src="${obtenerSpriteHeroe(clase, sexo)}" alt="" aria-hidden="true" />`,
+    iconSize: [34, 34],
+    iconAnchor: [17, 17],
+  });
+}
 
 function RutaExpedicion({
   baseCoords,
@@ -46,6 +49,8 @@ function RutaExpedicion({
   fechaSalida,
   fechaLlegada,
   nombreHeroe = "Aventurero",
+  claseHeroe,
+  sexoHeroe,
   regresando = false,
 }: {
   baseCoords: { lat: number; lng: number };
@@ -53,6 +58,8 @@ function RutaExpedicion({
   fechaSalida?: string;
   fechaLlegada?: string;
   nombreHeroe?: string;
+  claseHeroe?: string | null;
+  sexoHeroe?: string | null;
   regresando?: boolean;
 }) {
   const [progreso, setProgreso] = useState(0);
@@ -111,7 +118,7 @@ function RutaExpedicion({
           <Popup>Destino de la expedición</Popup>
         </Marker>
       )}
-      <Marker position={posicionHeroe} icon={heroIcon} />
+      <Marker position={posicionHeroe} icon={crearHeroIcon(claseHeroe, sexoHeroe)} />
       <Tooltip
         direction="top"
         offset={[0, -18]}
@@ -150,6 +157,8 @@ interface RutaEntrante {
   fechaSalida: string;
   fechaLlegada: string;
   nombreHeroe: string;
+  claseHeroe?: string | null;
+  sexoHeroe?: string | null;
 }
 
 interface MissionMapProps {
@@ -159,6 +168,8 @@ interface MissionMapProps {
   destinoExpedicion?: { lat: number; lng: number } | null;
   fechaSalida?: string;
   fechaLlegada?: string;
+  claseHeroe?: string | null;
+  sexoHeroe?: string | null;
   rutasEntrantes?: RutaEntrante[];
   regresando?: boolean;
   onSelectMission: (mision: MisionMapa) => void;
@@ -172,6 +183,8 @@ export default function MissionMap({
   destinoExpedicion = null,
   fechaSalida,
   fechaLlegada,
+  claseHeroe,
+  sexoHeroe,
   rutasEntrantes = [],
   regresando = false,
 }: MissionMapProps) {
@@ -200,6 +213,8 @@ export default function MissionMap({
           destino={destinoExpedicion}
           fechaSalida={fechaSalida}
           fechaLlegada={fechaLlegada}
+          claseHeroe={claseHeroe}
+          sexoHeroe={sexoHeroe}
           regresando={regresando}
         />
 
@@ -211,6 +226,8 @@ export default function MissionMap({
             fechaSalida={ruta.fechaSalida}
             fechaLlegada={ruta.fechaLlegada}
             nombreHeroe={ruta.nombreHeroe}
+            claseHeroe={ruta.claseHeroe}
+            sexoHeroe={ruta.sexoHeroe}
           />
         ))}
 

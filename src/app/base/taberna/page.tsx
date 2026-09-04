@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
-import { ESTADISTICAS_BASE_CLASE } from "@/lib/configuracionJuego";
+import { ESTADISTICAS_BASE_CLASE, obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 
 const CLASES_INICIALES = [
   {
@@ -101,7 +101,7 @@ export default function TabernaPage() {
           <div className="w-full max-w-md rounded-xl border-2 border-amber-500/50 bg-slate-800 p-8 text-center shadow-2xl">
             <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border-2 border-amber-500 bg-slate-950">
               <Image
-                src="/sprites/heroes/warrior.png"
+                src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)}
                 alt="Nuevo aventurero"
                 width={96}
                 height={96}
@@ -147,7 +147,7 @@ export default function TabernaPage() {
             <div className="border-b border-slate-700 bg-gradient-to-r from-amber-950/60 via-slate-800 to-slate-900 p-6">
               <div className="flex flex-col items-center gap-6 md:flex-row">
                 <div className="relative flex h-44 w-36 shrink-0 items-end justify-center overflow-hidden rounded-lg border-2 border-amber-500/60 bg-[radial-gradient(circle_at_50%_20%,#475569,#0f172a_70%)] shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
-                  <Image src="/sprites/heroes/warrior.png" alt="Retrato del héroe" width={144} height={144} className="h-36 w-36 object-contain [image-rendering:pixelated]" />
+                  <Image src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)} alt="Retrato del héroe" width={144} height={144} className="h-36 w-36 object-contain [image-rendering:pixelated]" />
                   <span className="absolute left-2 top-2 rounded bg-slate-950/80 px-2 py-1 text-xs font-bold uppercase tracking-wider text-amber-400">
                     Nivel {personaje.nivel || 1}
                   </span>
@@ -265,7 +265,7 @@ export default function TabernaPage() {
                   >
                     {/* Placeholder para el gráfico del personaje */}
                     <div className="h-32 bg-black/30 rounded-lg mb-4 flex items-center justify-center border border-white/10">
-                      <Image src="/sprites/heroes/warrior.png" alt={`Sprite de ${clase.nombre}`} width={112} height={112} className="h-28 w-28 object-contain [image-rendering:pixelated]" />
+                      <Image src={obtenerSpriteHeroe(clase.nombre, sexo)} alt={`Sprite de ${clase.nombre}`} width={112} height={112} className="h-28 w-28 object-contain [image-rendering:pixelated]" />
                     </div>
 
                     <h3 className="font-bold text-lg mb-1">{clase.nombre}</h3>

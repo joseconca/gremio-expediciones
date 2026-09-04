@@ -46,3 +46,16 @@ export const ESTADISTICAS_BASE_CLASE = {
 } as const;
 
 export type ClasePersonaje = keyof typeof ESTADISTICAS_BASE_CLASE;
+
+const SPRITE_POR_CLASE: Record<string, string> = {
+  Guerrero: "warrior",
+  Explorador: "explorer",
+  Comerciante: "merchant",
+};
+
+// Devuelve la ruta del sprite del héroe según su clase y sexo, p.ej. "/sprites/heroes/warrior-f.png".
+export function obtenerSpriteHeroe(clase?: string | null, sexo?: string | null): string {
+  const base = SPRITE_POR_CLASE[clase ?? ""] ?? "warrior";
+  const sufijoSexo = sexo === "chica" ? "f" : "m";
+  return `/sprites/heroes/${base}-${sufijoSexo}.png`;
+}

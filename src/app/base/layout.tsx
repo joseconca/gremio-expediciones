@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ChatGlobal from "@/components/ChatGlobal";
 import Image from "next/image";
+import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 
 export default function BaseLayout({
   children,
@@ -108,7 +109,7 @@ export default function BaseLayout({
           <div className="flex w-full flex-nowrap items-center justify-start gap-3 rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm md:w-auto md:px-4">
             <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border-2 border-amber-500/70 bg-slate-800 shadow-[0_0_12px_rgba(245,158,11,0.25)]">
               <Image
-                src="/sprites/heroes/warrior.png"
+                src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)}
                 alt={`Avatar de ${personaje.nombre}`}
                 fill
                 sizes="48px"

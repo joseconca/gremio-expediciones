@@ -45,7 +45,7 @@ export async function GET() {
         id: true,
         nombre: true,
         baseCoords: true,
-        personaje: { select: { nombre: true, hpActual: true, hpMaximo: true } },
+        personaje: { select: { nombre: true, clase: true, sexo: true, hpActual: true, hpMaximo: true } },
       },
     });
     const nombresOrigen = new Map(origenes.map((origen) => [origen.id, origen.nombre]));
@@ -54,6 +54,8 @@ export async function GET() {
       gremioOrigen: nombresOrigen.get(expedicion.usuarioId) || "Gremio desconocido",
       origenCoords: origenes.find((origen) => origen.id === expedicion.usuarioId)?.baseCoords,
       nombreAventurero: origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje?.nombre || "Aventurero",
+      claseAventurero: origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje?.clase,
+      sexoAventurero: origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje?.sexo,
       hpAventurero: origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje?.hpActual || 0,
       hpMaximoAventurero: origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje?.hpMaximo || 100,
       fechaSalida: expedicion.fechaSalida,

@@ -174,6 +174,8 @@ export default function ExpedicionesPage() {
           }
               fechaSalida={expedicionActiva?.fechaSalida}
               fechaLlegada={expedicionActiva?.fechaLlegada}
+          claseHeroe={personaje?.clase}
+          sexoHeroe={personaje?.sexo}
           onSelectMission={setMisionSeleccionada}
         />
       </div>
