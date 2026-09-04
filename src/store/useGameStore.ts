@@ -141,6 +141,9 @@ function aplicarDatosJugador(
   });
 }
 
+// Evita que una respuesta de /api/jugador desactualizada sobreescriba una más reciente.
+let solicitudJugadorId = 0;
+
 export const useGameStore = create<GameState>((set, get) => ({
   oro: 0,
   personaje: null,
@@ -168,11 +171,16 @@ export const useGameStore = create<GameState>((set, get) => ({
   },
 
   cargarJugador: async () => {
+    const idSolicitud = ++solicitudJugadorId;
     try {
       const respuesta = await fetch("/api/jugador", {
         signal: AbortSignal.timeout(8000),
+        cache: "no-store",
       });
       const datos = await respuesta.json();
+
+      // Ignora respuestas que lleguen desordenadas si hubo otra llamada más reciente.
+      if (idSolicitud !== solicitudJugadorId) return;
 
       if (respuesta.status === 401) {
         set({ isLoading: false, sesionActiva: false, personaje: null, baseCoords: null });

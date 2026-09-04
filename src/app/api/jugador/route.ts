@@ -3,6 +3,8 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { sincronizarRegeneracion } from "@/lib/regeneracion";
 
+export const dynamic = "force-dynamic";
+
 const includeGameData = {
   personaje: true,
   expedicionActiva: true,
@@ -62,7 +64,10 @@ export async function GET() {
     const datosPublicos = Object.fromEntries(
       Object.entries(usuario).filter(([clave]) => clave !== "password")
     );
-    return NextResponse.json({ ...datosPublicos, caravanasEntrantes });
+    return NextResponse.json(
+      { ...datosPublicos, caravanasEntrantes },
+      { headers: { "Cache-Control": "no-store" } }
+    );
   } catch (error) {
     console.error("Error al cargar el jugador:", error);
     return NextResponse.json(

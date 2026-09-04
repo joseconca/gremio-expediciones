@@ -50,9 +50,17 @@ export default function BaseLayout({
     const intervaloRegen = setInterval(() => {
       aplicarRegeneracion();
     }, 1000);
-    
-    return () => clearInterval(intervaloRegen);
-  }, [aplicarRegeneracion]);
+
+    // Refresca contra el servidor cada 10s para que la regeneración no se pierda al cambiar de página.
+    const intervaloSync = setInterval(() => {
+      cargarJugador();
+    }, 10000);
+
+    return () => {
+      clearInterval(intervaloRegen);
+      clearInterval(intervaloSync);
+    };
+  }, [aplicarRegeneracion, cargarJugador]);
 
   const formatoTiempo = (segundos: number) => {
     const m = Math.floor(segundos / 60);
