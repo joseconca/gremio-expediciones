@@ -62,7 +62,7 @@ function EscenaCombate({ reporte }: { reporte: ResultadoCombate }) {
     ? "/sprites/buildings/camp.png"
     : hayCombate
       ? `/sprites/enemies/${reporte.enemigoId || "goblin"}.png`
-      : "/sprites/tesoro.jpeg";
+      : "/sprites/tesoro.png";
   const escenaAlt = esComercio
     ? "Base aliada"
     : hayCombate
@@ -77,12 +77,12 @@ function EscenaCombate({ reporte }: { reporte: ResultadoCombate }) {
         <span>{reporte.tipo === "comercio" ? "Intercambio" : `${reporte.rondas || 0} rondas`}</span>
       </div>
       <div className="relative flex h-44 items-end justify-between overflow-hidden rounded-lg border border-slate-600/80 bg-slate-950/50 px-8 sm:px-20">
-        <div className="combat-hero w-28 sm:w-36">
-          <Image src="/sprites/heroes/warrior.png" alt="Héroe" width={144} height={144} className="h-32 w-32 object-contain [image-rendering:pixelated] sm:h-36 sm:w-36" />
+        <div className="combat-hero relative aspect-square w-28 sm:w-36">
+          <Image src="/sprites/heroes/warrior.png" alt="Héroe" fill sizes="144px" priority className="object-contain [image-rendering:pixelated]" />
         </div>
         <div className="combat-impact" aria-hidden="true">✦</div>
-        <div className={`combat-enemy w-28 sm:w-36 ${!hayCombate ? "combat-treasure" : ""}`}>
-          <Image src={escenaSprite} alt={escenaAlt} width={144} height={144} className="h-32 w-32 object-contain [image-rendering:pixelated] sm:h-36 sm:w-36" />
+        <div className={`combat-enemy relative aspect-square w-28 sm:w-36 ${!hayCombate ? "combat-treasure" : ""}`}>
+          <Image src={escenaSprite} alt={escenaAlt} fill sizes="144px" priority className="object-contain [image-rendering:pixelated]" />
         </div>
       </div>
       <div className="mt-3 grid grid-cols-2 gap-8">
