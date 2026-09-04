@@ -99,6 +99,7 @@ interface CaravanaEntrante {
 
 export function PanelCaravanasEntrantes({ caravanas }: { caravanas: CaravanaEntrante[] }) {
   const [ahora, setAhora] = useState(0);
+  const [expandido, setExpandido] = useState(false);
 
   useEffect(() => {
     if (caravanas.length === 0) return;
@@ -112,16 +113,26 @@ export function PanelCaravanasEntrantes({ caravanas }: { caravanas: CaravanaEntr
 
   return (
     <div className="-mx-4 -mt-4 mb-4 overflow-hidden border-b-2 border-slate-700 bg-slate-900 shadow-lg md:-mx-8 md:-mt-8">
-      <div className="flex items-center justify-between border-b border-slate-700 bg-slate-800 px-4 py-2">
+      <button
+        type="button"
+        onClick={() => setExpandido((abierto) => !abierto)}
+        aria-expanded={expandido}
+        className="group flex w-full cursor-pointer items-center justify-between border-b border-slate-700 bg-slate-800 px-4 py-2 text-left hover:bg-slate-750"
+      >
         <h3 className="flex items-center gap-2 text-base font-black uppercase tracking-widest text-amber-500">
           <span>🐪</span> Rutas Comerciales Entrantes
         </h3>
-        <span className="rounded-full border border-emerald-800 bg-emerald-900/50 px-3 py-1 text-xs font-bold text-emerald-400">
-          {caravanas.length} en camino
+        <span className="flex items-center gap-3">
+          <span className="rounded-full border border-emerald-800 bg-emerald-900/50 px-3 py-1 text-xs font-bold text-emerald-400">
+            {caravanas.length} en camino
+          </span>
+          <span className="text-lg leading-none text-slate-500 transition-colors group-hover:text-amber-400" aria-hidden="true">
+              {expandido ? "⌃" : "⌄"}
+          </span>
         </span>
-      </div>
+      </button>
 
-      <div className="flex gap-3 overflow-x-auto bg-[#0a0f1a] p-3">
+      {expandido && <div className="flex gap-3 overflow-x-auto bg-[#0a0f1a] p-3">
         {caravanas.map((caravana) => {
           const salida = new Date(caravana.fechaSalida).getTime();
           const llegada = new Date(caravana.fechaLlegada).getTime();
@@ -174,7 +185,7 @@ export function PanelCaravanasEntrantes({ caravanas }: { caravanas: CaravanaEntr
             </div>
           );
         })}
-      </div>
+      </div>}
     </div>
   );
 }
@@ -379,7 +390,7 @@ export default function BasePage() {
 
             {personaje.estado === "de_viaje" && expedicionActiva && (
               <div
-                className="cursor-pointer rounded-lg border border-slate-700 bg-slate-900/50 p-4 transition-colors hover:border-amber-500/50"
+                className="relative cursor-pointer rounded-lg border border-slate-700 bg-slate-900/50 p-4 pr-12 transition-colors hover:border-amber-500/50"
                 onClick={() => setExpedicionExpandida((expandida) => !expandida)}
                 onKeyDown={(event) => {
                   if (event.key === "Enter" || event.key === " ") {
@@ -392,7 +403,7 @@ export default function BasePage() {
                 aria-expanded={expedicionExpandida}
               >
                 <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-                <div>
+                <div className="flex min-w-0 items-center gap-3">
                   <p className="text-amber-400 font-bold">
                     {expedicionActiva.nombre}
                   </p>
@@ -406,6 +417,7 @@ export default function BasePage() {
                         : "Aventurero en camino..."}
                   </p>
                 </div>
+                  
 
                 {listoParaResolver ? (
                   <button
@@ -423,6 +435,10 @@ export default function BasePage() {
                   </div>
                 )}
                 </div>
+
+                <span className="absolute right-4 top-4 text-lg leading-none text-slate-500" aria-hidden="true">
+                  {expedicionExpandida ? "⌃" : "⌄"}
+                </span>
 
                 {expedicionExpandida && (
                   <div className="mt-4 overflow-hidden rounded-lg border border-slate-700 bg-slate-900">

@@ -73,7 +73,9 @@ export default function ChatGlobal({ habilitado = true }: { habilitado?: boolean
               {ultimoMensaje ? `${ultimoMensaje.usuario.nombre}: ${ultimoMensaje.texto}` : "Todavía no hay mensajes"}
             </span>
           )}
-          <span className="ml-auto text-xs text-slate-500">{abierto ? "Minimizar" : "Abrir chat"}</span>
+          <span className="ml-auto text-lg leading-none text-slate-500" aria-hidden="true">
+            {abierto ? "⌃" : "⌄"}
+          </span>
         </button>
 
         {abierto && (
