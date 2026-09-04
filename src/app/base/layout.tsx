@@ -123,7 +123,7 @@ export default function BaseLayout({
 
               {/* Barra de vida */}
               <div className="flex items-center gap-2">
-                <span className="text-xs font-mono text-slate-400">HP</span>
+                <span className="w-7 shrink-0 text-sm font-mono text-slate-400">HP</span>
                 <div className="h-3 w-24 overflow-hidden rounded-full border border-slate-700 bg-slate-800 sm:w-40">
                   <div
                     className="bg-red-500 h-full transition-all duration-300"
@@ -134,15 +134,15 @@ export default function BaseLayout({
                     }}
                   />
                 </div>
-                <span className="text-xs font-mono text-slate-300">
+                <span className="text-sm font-mono text-slate-300">
                   {personaje.hpActual}/{personaje.hpMaximo}
                 </span>
               </div>
 
               {/* Barra de nivel y experiencia */}
               <div className="flex items-center gap-2">
-                <span className="text-xs font-mono text-slate-400">LV {personaje.nivel || 1}</span>
-                <div className="h-3 w-24 overflow-hidden rounded-full border border-slate-700 bg-slate-800 sm:w-40">
+                <span className="w-7 shrink-0 text-xs font-mono text-slate-400">LV {personaje.nivel || 1}</span>
+                <div className="h-1.5 w-24 overflow-hidden rounded-full border border-slate-700 bg-slate-800 sm:w-40">
                   <div
                     className="bg-blue-500 h-full transition-all duration-300"
                     style={{
