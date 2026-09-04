@@ -59,3 +59,44 @@ export function obtenerSpriteHeroe(clase?: string | null, sexo?: string | null):
   const sufijoSexo = sexo === "chica" ? "f" : "m";
   return `/sprites/heroes/${base}-${sufijoSexo}.png`;
 }
+
+// Experiencia necesaria para subir del nivel indicado al siguiente.
+export function experienciaParaNivel(nivel: number): number {
+  return nivel * nivel * 100;
+}
+
+interface MejorasNivel {
+  ataque: number;
+  defensa: number;
+  velocidad: number;
+  capacidadCarruaje: number;
+}
+
+// Bonificaciones de estadísticas al alcanzar `nivelAlcanzado`, según la clase del personaje.
+export function calcularMejorasPorNivel(clase: string, nivelAlcanzado: number): MejorasNivel {
+  const cada = (divisor: number) => (nivelAlcanzado % divisor === 0 ? 1 : 0);
+
+  if (clase === "Guerrero") {
+    return {
+      ataque: 1 + cada(3),
+      defensa: 1 + cada(3),
+      velocidad: cada(5),
+      capacidadCarruaje: cada(5),
+    };
+  }
+  if (clase === "Explorador") {
+    return {
+      ataque: 1,
+      defensa: 1,
+      velocidad: cada(3),
+      capacidadCarruaje: cada(5),
+    };
+  }
+  // Comerciante (y clase desconocida por defecto)
+  return {
+    ataque: 1,
+    defensa: 1,
+    velocidad: cada(5),
+    capacidadCarruaje: cada(3),
+  };
+}

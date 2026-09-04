@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ChatGlobal from "@/components/ChatGlobal";
 import Image from "next/image";
-import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
+import { obtenerSpriteHeroe, experienciaParaNivel } from "@/lib/configuracionJuego";
 
 export default function BaseLayout({
   children,
@@ -138,6 +138,25 @@ export default function BaseLayout({
                   {personaje.hpActual}/{personaje.hpMaximo}
                 </span>
               </div>
+
+              {/* Barra de nivel y experiencia */}
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-mono text-slate-400">LV {personaje.nivel || 1}</span>
+                <div className="h-3 w-24 overflow-hidden rounded-full border border-slate-700 bg-slate-800 sm:w-40">
+                  <div
+                    className="bg-blue-500 h-full transition-all duration-300"
+                    style={{
+                      width: `${Math.min(
+                        100,
+                        ((personaje.experiencia || 0) / experienciaParaNivel(personaje.nivel || 1)) * 100
+                      )}%`,
+                    }}
+                  />
+                </div>
+                <span className="text-xs font-mono text-slate-300">
+                  {personaje.experiencia || 0}/{experienciaParaNivel(personaje.nivel || 1)} XP
+                </span>
+              </div>
             </div>
 
           </div>
@@ -155,7 +174,7 @@ export default function BaseLayout({
       </header>
 
       <div className="flex-grow">{children}</div>
-      <ChatGlobal habilitado={edificios.embajada.nivel > 0} />
+      <ChatGlobal habilitado={edificios.embajada.nivel > 0} permitirRanking={edificios.embajada.nivel >= 2} />
     </div>
   );
 }

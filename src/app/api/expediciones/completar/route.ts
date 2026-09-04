@@ -3,6 +3,7 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { calcularDistanciaKm } from "@/lib/utils";
 import { resolverComercio, resolverExpedicion } from "@/lib/resolucionCombate";
+import { calcularMejorasPorNivel, experienciaParaNivel } from "@/lib/configuracionJuego";
 
 export async function POST() {
   try {
@@ -101,11 +102,25 @@ export async function POST() {
       : resultado.experienciaGanada;
     const experienciaActual = usuario.personaje.experiencia || 0;
     const nivelActual = usuario.personaje.nivel || 1;
-    const experienciaTotal = experienciaActual + experienciaGanada;
-    const experienciaNecesaria = nivelActual * 100;
-    const subeNivel = experienciaTotal >= experienciaNecesaria;
-    const nuevoNivel = nivelActual + (subeNivel ? 1 : 0);
-    const experienciaNueva = subeNivel ? experienciaTotal - experienciaNecesaria : experienciaTotal;
+    let nivelIterando = nivelActual;
+    let experienciaRestante = experienciaActual + experienciaGanada;
+    let ataqueGanado = 0;
+    let defensaGanado = 0;
+    let velocidadGanada = 0;
+    let capacidadGanada = 0;
+    while (experienciaRestante >= experienciaParaNivel(nivelIterando)) {
+      experienciaRestante -= experienciaParaNivel(nivelIterando);
+      nivelIterando += 1;
+      const mejora = calcularMejorasPorNivel(usuario.personaje.clase, nivelIterando);
+      ataqueGanado += mejora.ataque;
+      defensaGanado += mejora.defensa;
+      velocidadGanada += mejora.velocidad;
+      capacidadGanada += mejora.capacidadCarruaje;
+    }
+    const nivelesSubidos = nivelIterando - nivelActual;
+    const subeNivel = nivelesSubidos > 0;
+    const nuevoNivel = nivelIterando;
+    const experienciaNueva = experienciaRestante;
     const hpActual = Math.max(0, usuario.personaje.hpActual - resultado.hpPerdido);
     const duracionIda = Math.max(60_000, expedicion.fechaLlegada.getTime() - expedicion.fechaSalida.getTime());
     // El regreso arranca en el momento real de llegada, no cuando el jugador pulsa "resolver".
@@ -119,7 +134,13 @@ export async function POST() {
           estado: "de_viaje",
           nivel: nuevoNivel,
           experiencia: experienciaNueva,
-          ...(subeNivel ? { hpMaximo: { increment: 10 }, ataque: { increment: 1 }, defensa: { increment: 1 } } : {}),
+          ...(subeNivel ? {
+            hpMaximo: { increment: 10 * nivelesSubidos },
+            ataque: { increment: ataqueGanado },
+            defensa: { increment: defensaGanado },
+            velocidad: { increment: velocidadGanada },
+            capacidadCarruaje: { increment: capacidadGanada },
+          } : {}),
         },
       });
       await tx.expedicionActiva.update({
