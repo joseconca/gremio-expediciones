@@ -52,6 +52,7 @@ export interface ExpedicionActiva {
   nombre: string;
   recompensa: number;
   fechaLlegada: string;
+  fechaSalida?: string;
   dificultad: number;
   destinoCoords: { lat: number; lng: number };
 }

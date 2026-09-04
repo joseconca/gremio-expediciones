@@ -74,6 +74,7 @@ if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number')
     const horasReales = horasBase * multiplicadorTiempo;
     
     const ahora = Date.now();
+    const fechaSalida = new Date(ahora);
     const tiempoViajeMs = horasReales * 60 * 60 * 1000;
     const fechaLlegada = new Date(ahora + tiempoViajeMs);
 
@@ -102,6 +103,7 @@ if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number')
       clima: climaReporte,
       horasReales: horasReales.toFixed(1),
       fechaLlegada: fechaLlegada.toISOString(),
+      fechaSalida: fechaSalida.toISOString(),
     });
 
   } catch {

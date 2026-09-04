@@ -37,6 +37,7 @@ export default function ExpedicionesPage() {
   const {
     baseCoords,
     personaje,
+    expedicionActiva,
     iniciarExpedicion,
     misionesCompletadasEstaHora,
     horaMisiones,
@@ -152,9 +153,16 @@ export default function ExpedicionesPage() {
       {/* Capa del Mapa */}
       <div className="absolute inset-0 z-0">
         <MissionMap
-          baseCoords={baseCoords}
+          baseCoords={baseCoords!}
           misiones={misionesGeneradas}
           basesAjenas={basesAjenas}
+          destinoExpedicion={
+            misionSeleccionada
+              ? { lat: misionSeleccionada.lat, lng: misionSeleccionada.lng }
+              : expedicionActiva?.destinoCoords || null
+          }
+              fechaSalida={expedicionActiva?.fechaSalida}
+              fechaLlegada={expedicionActiva?.fechaLlegada}
           onSelectMission={setMisionSeleccionada}
         />
       </div>

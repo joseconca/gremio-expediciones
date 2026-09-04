@@ -5,3 +5,43 @@
   height: 100%;
   z-index: 10;
 }
+
+.hero-route-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #f59e0b;
+  border-radius: 9999px;
+  background: #0f172a;
+  box-shadow: 0 0 0 4px rgb(245 158 11 / 20%), 0 3px 10px rgb(15 23 42 / 45%);
+}
+
+.hero-route-marker img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  animation: hero-route-bob 900ms ease-in-out infinite alternate;
+}
+
+.camp-map-icon {
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgb(15 23 42 / 45%);
+}
+
+.destination-map-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #dc2626;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgb(15 23 42 / 45%);
+  font-size: 19px;
+}
+
+@keyframes hero-route-bob {
+  from { transform: translateY(2px) rotate(-8deg); }
+  to { transform: translateY(-2px) rotate(8deg); }
+}

@@ -2,12 +2,22 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useGameStore } from "@/store/useGameStore";
 import {
   resolverExpedicion,
   resolverComercio,
   ResultadoCombate,
 } from "@/lib/resolucionCombate";
+
+const MissionMap = dynamic(() => import("@/components/MissionMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-full flex items-center justify-center text-amber-400">
+      Cargando mapa...
+    </div>
+  ),
+});
 
 const UI_EDIFICIOS: Record<string, { color: string; ruta: string }> = {
   taberna: { color: "bg-amber-700", ruta: "/base/taberna" },
@@ -134,6 +144,7 @@ export default function BasePage() {
     oro,
     personaje,
     expedicionActiva,
+    baseCoords,
     finalizarExpedicion,
     edificios,
     obtenerCosteMejora,
@@ -323,6 +334,34 @@ export default function BasePage() {
             )}
           </div>
         )}
+
+        <section className="mb-8 overflow-hidden rounded-xl border border-slate-700 bg-slate-800 shadow-lg">
+          <div className="flex flex-col gap-2 border-b border-slate-700 p-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 className="text-xl font-bold text-white">Mapa del territorio</h2>
+              <p className="text-sm text-slate-400">
+                {expedicionActiva
+                  ? "Sigue el avance de tu héroe hasta el destino."
+                  : "Tu gremio y sus alrededores."}
+              </p>
+            </div>
+            {expedicionActiva && (
+              <span className="w-fit rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-sm font-bold text-amber-400">
+                Expedición en curso
+              </span>
+            )}
+          </div>
+          <div className="h-[360px] w-full">
+            <MissionMap
+              baseCoords={baseCoords!}
+              misiones={[]}
+              destinoExpedicion={expedicionActiva?.destinoCoords || null}
+              fechaSalida={expedicionActiva?.fechaSalida}
+              fechaLlegada={expedicionActiva?.fechaLlegada}
+              onSelectMission={() => undefined}
+            />
+          </div>
+        </section>
 
         {/* CABECERA DINÁMICA: Instalaciones vs Construcción */}
         <div className="flex items-center justify-between mb-6">
