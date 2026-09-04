@@ -5,8 +5,6 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useGameStore } from "@/store/useGameStore";
 import {
-  resolverExpedicion,
-  resolverComercio,
   ResultadoCombate,
 } from "@/lib/resolucionCombate";
 
@@ -145,7 +143,7 @@ export default function BasePage() {
     personaje,
     expedicionActiva,
     baseCoords,
-    finalizarExpedicion,
+    completarExpedicion,
     edificios,
     obtenerCosteMejora,
     mejorarEdificio,
@@ -180,15 +178,13 @@ export default function BasePage() {
     return () => clearInterval(intervalo);
   }, [expedicionActiva]);
 
-  const handleCompletarMision = () => {
-    if (!personaje || !expedicionActiva) return;
-    const resultado = resolverExpedicion(personaje, expedicionActiva);
-    setReporte(resultado);
+  const handleCompletarMision = async () => {
+    const resultado = await completarExpedicion();
+    if (resultado) setReporte(resultado);
   };
 
   const handleCerrarReporte = () => {
     if (!reporte) return;
-    finalizarExpedicion(reporte.hpPerdido, reporte.oroGanado);
     setReporte(null);
   };
 
@@ -482,8 +478,8 @@ export default function BasePage() {
                     </div>
                   ) : (
                     <button
-                      onClick={() => {
-                        const exito = mejorarEdificio(edificio.id);
+                      onClick={async () => {
+                        const exito = await mejorarEdificio(edificio.id);
                         if (!exito)
                           alert("No tienes suficiente oro para esto.");
                       }}

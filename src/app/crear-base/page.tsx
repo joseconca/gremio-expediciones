@@ -32,7 +32,7 @@ export default function CrearBasePage() {
       setMensaje(data.mensaje);
 
       if (data.esValido) {
-        establecerBase(coords);
+        await establecerBase(coords);
         setTimeout(() => {
           router.push("/base");
         }, 2000);

@@ -45,6 +45,21 @@ if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number')
       );
     }
 
+    const esComercio = typeof mision.tipo === "string" && mision.tipo === "comercio";
+    let objetivoId: string | undefined;
+    if (esComercio) {
+      const idObjetivo = typeof mision.id === "string" && mision.id.startsWith("comercio-")
+        ? mision.id.slice("comercio-".length)
+        : "";
+      const objetivo = idObjetivo
+        ? await prisma.usuario.findUnique({ where: { id: idObjetivo }, select: { id: true, nombre: true, baseCoords: true } })
+        : null;
+      if (!objetivo || !objetivo.baseCoords) {
+        return NextResponse.json({ exito: false, mensaje: "El gremio de destino ya no está disponible." }, { status: 404 });
+      }
+      objetivoId = objetivo.id;
+    }
+
     // Consultar el clima real en las coordenadas de la misión
     const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${mision.lat}&longitude=${mision.lng}&current_weather=true`;
     const weatherResponse = await fetch(weatherUrl);
@@ -82,7 +97,8 @@ if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number')
       prisma.expedicionActiva.create({
         data: {
           usuarioId: usuario.id,
-          tipo: "expedicion",
+          tipo: esComercio ? "comercio" : "expedicion",
+          objetivoId,
           fase: "en_viaje",
           misionId: String(mision.id),
           nombre: mision.nombre || "Expedición",

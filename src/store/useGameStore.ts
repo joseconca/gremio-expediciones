@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import type { ResultadoCombate } from "@/lib/resolucionCombate";
 
 const EDIFICIOS_BASE: Record<string, Omit<Edificio, "nivel">> = {
   taberna: {
@@ -74,16 +75,14 @@ export interface GameState {
   misionesCompletadasEstaHora: number;
 
   cargarJugador: () => Promise<void>;
-  reclutarPersonaje: (personaje: Personaje) => void;
+  reclutarPersonaje: (personaje: Personaje) => Promise<void>;
   iniciarExpedicion: (expedicion: ExpedicionActiva) => void;
-  finalizarExpedicion: (hpPerdido: number, oroGanado: number) => void;
+  completarExpedicion: () => Promise<ResultadoCombate | null>;
 
   calcularCosteCura: () => InfoCura;
-  curarPersonaje: () => boolean;
+  curarPersonaje: () => Promise<boolean>;
   aplicarRegeneracion: () => void;
 
-  gastarOro: (cantidad: number) => boolean;
-  ganarOro: (cantidad: number) => void;
   mejorarAtributo: (
     atributo: keyof Pick<
       Personaje,
@@ -91,34 +90,42 @@ export interface GameState {
     >,
     coste: number,
     cantidad: number
-  ) => boolean;
-  mejorarEdificio: (idEdificio: string) => boolean;
+  ) => Promise<boolean>;
+  mejorarEdificio: (idEdificio: string) => Promise<boolean>;
   obtenerCosteMejora: (idEdificio: string) => number;
-  establecerBase: (coords: { lat: number; lng: number }) => void;
+  establecerBase: (coords: { lat: number; lng: number }) => Promise<void>;
 }
 
-const sincronizarConBD = async (state: GameState) => {
-  try {
-    const nivelesEdificios = {
-      taberna: state.edificios.taberna.nivel,
-      herreria: state.edificios.herreria.nivel,
-      mercado: state.edificios.mercado.nivel,
-    };
-    await fetch("/api/jugador", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        oro: state.oro,
-        edificios: nivelesEdificios,
-        personaje: state.personaje,
-        baseCoords: state.baseCoords,
-        expedicionActiva: state.expedicionActiva,
-      }),
-    });
-  } catch (error) {
-    console.error("Error al sincronizar con la BBDD:", error);
-  }
-};
+async function ejecutarAccion(accion: string, datos: Record<string, unknown> = {}) {
+  const respuesta = await fetch("/api/jugador/acciones", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ accion, ...datos }),
+  });
+  const resultado = await respuesta.json();
+  if (!respuesta.ok) throw new Error(resultado.error || "No se pudo completar la acción.");
+  return resultado;
+}
+
+function aplicarDatosJugador(
+  set: (state: Partial<GameState>) => void,
+  datos: Record<string, unknown>
+) {
+  const edificios = (datos.edificios as Record<string, unknown> | undefined) || {};
+  const nivelEdificio = (id: string, valorPorDefecto: number) =>
+    typeof edificios[id] === "number" ? edificios[id] as number : valorPorDefecto;
+  set({
+    oro: datos.oro as number,
+    personaje: (datos.personaje as Personaje | null) || null,
+    baseCoords: (datos.baseCoords as GameState["baseCoords"]) || null,
+    expedicionActiva: (datos.expedicionActiva as ExpedicionActiva | null) || null,
+    edificios: {
+      taberna: { ...EDIFICIOS_BASE.taberna, nivel: nivelEdificio("taberna", 1) },
+      herreria: { ...EDIFICIOS_BASE.herreria, nivel: nivelEdificio("herreria", 0) },
+      mercado: { ...EDIFICIOS_BASE.mercado, nivel: nivelEdificio("mercado", 0) },
+    },
+  });
+}
 
 export const useGameStore = create<GameState>((set, get) => ({
   oro: 0,
@@ -182,11 +189,11 @@ export const useGameStore = create<GameState>((set, get) => ({
       }*/
 
       set({
-        oro: datos.oro,
+        oro: datos.oro as number,
         edificios: edificiosCompletos,
         personaje: datos.personaje,
-        baseCoords: datos.baseCoords || null,
-        expedicionActiva: datos.expedicionActiva || null,
+        baseCoords: (datos.baseCoords as GameState["baseCoords"]) || null,
+        expedicionActiva: (datos.expedicionActiva as ExpedicionActiva | null) || null,
         isLoading: false,
       });
     } catch (error) {
@@ -195,9 +202,12 @@ export const useGameStore = create<GameState>((set, get) => ({
     }
   },
 
-  reclutarPersonaje: (nuevoPersonaje) => {
-    set({ personaje: nuevoPersonaje });
-    sincronizarConBD(get());
+  reclutarPersonaje: async (nuevoPersonaje) => {
+    const datos = await ejecutarAccion("reclutar", {
+      nombre: nuevoPersonaje.nombre,
+      clase: nuevoPersonaje.clase,
+    });
+    aplicarDatosJugador(set, datos);
   },
 
   iniciarExpedicion: (expedicion) => {
@@ -207,25 +217,19 @@ export const useGameStore = create<GameState>((set, get) => ({
         ? { ...state.personaje, estado: "de_viaje" }
         : null,
     }));
-    sincronizarConBD(get());
   },
 
-  finalizarExpedicion: (hpPerdido, oroGanado) => {
-    const state = get();
-    if (!state.personaje) return;
-
-    const nuevoHp = Math.max(0, state.personaje.hpActual - hpPerdido);
-
-    set({
-      oro: state.oro + oroGanado,
-      expedicionActiva: null,
-      personaje: {
-        ...state.personaje,
-        hpActual: nuevoHp,
-        estado: nuevoHp > 0 ? "ocioso" : "descansando",
-      },
-    });
-    sincronizarConBD(get());
+  completarExpedicion: async () => {
+    try {
+      const respuesta = await fetch("/api/expediciones/completar", { method: "POST" });
+      const datos = await respuesta.json();
+      if (!respuesta.ok) throw new Error(datos.error || "No se pudo completar la expedición.");
+      aplicarDatosJugador(set, datos.usuario);
+      return datos.resultado as ResultadoCombate;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
   },
 
   calcularCosteCura: () => {
@@ -252,25 +256,15 @@ export const useGameStore = create<GameState>((set, get) => ({
     }
   },
 
-  curarPersonaje: () => {
-    const state = get();
-    const { coste, hpCurado } = state.calcularCosteCura();
-    const personaje = state.personaje;
-
-    if (!personaje || coste === 0 || hpCurado === 0) return false;
-
-    const nuevoHp = Math.min(personaje.hpMaximo, personaje.hpActual + hpCurado);
-
-    set({
-      oro: state.oro - coste,
-      personaje: {
-        ...personaje,
-        hpActual: nuevoHp,
-        estado: nuevoHp >= personaje.hpMaximo ? "ocioso" : "descansando",
-      },
-    });
-    sincronizarConBD(get());
-    return true;
+  curarPersonaje: async () => {
+    try {
+      const datos = await ejecutarAccion("curar");
+      aplicarDatosJugador(set, datos);
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
   },
 
   aplicarRegeneracion: () => {
@@ -290,35 +284,15 @@ export const useGameStore = create<GameState>((set, get) => ({
     });
   },
 
-  gastarOro: (cantidad) => {
-    const oroActual = get().oro;
-    if (oroActual >= cantidad) {
-      set({ oro: oroActual - cantidad });
-      sincronizarConBD(get());
+  mejorarAtributo: async (atributo) => {
+    try {
+      const datos = await ejecutarAccion("mejorarAtributo", { atributo });
+      aplicarDatosJugador(set, datos);
       return true;
+    } catch (error) {
+      console.error(error);
+      return false;
     }
-    return false;
-  },
-
-  ganarOro: (cantidad) => {
-    set((state) => ({ oro: state.oro + cantidad }));
-    sincronizarConBD(get());
-  },
-
-  mejorarAtributo: (atributo, coste, cantidad) => {
-    const state = get();
-    if (!state.personaje || state.oro < coste) return false;
-
-    set({
-      oro: state.oro - coste,
-      personaje: {
-        ...state.personaje,
-        [atributo]: state.personaje[atributo] + cantidad,
-      },
-    });
-
-    sincronizarConBD(get());
-    return true;
   },
 
   obtenerCosteMejora: (idEdificio) => {
@@ -326,27 +300,19 @@ export const useGameStore = create<GameState>((set, get) => ({
     return Math.floor(ed.costeBase * (ed.nivel + 1) * 1.5);
   },
 
-  mejorarEdificio: (idEdificio) => {
-    const state = get();
-    const coste = state.obtenerCosteMejora(idEdificio);
-    const edificio = state.edificios[idEdificio];
-
-    if (edificio.nivel < edificio.nivelMax && state.oro >= coste) {
-      set({
-        oro: state.oro - coste,
-        edificios: {
-          ...state.edificios,
-          [idEdificio]: { ...edificio, nivel: edificio.nivel + 1 },
-        },
-      });
-      sincronizarConBD(get());
+  mejorarEdificio: async (idEdificio) => {
+    try {
+      const datos = await ejecutarAccion("mejorarEdificio", { idEdificio });
+      aplicarDatosJugador(set, datos);
       return true;
+    } catch (error) {
+      console.error(error);
+      return false;
     }
-    return false;
   },
 
-  establecerBase: (coords) => {
-    set({ baseCoords: coords });
-    sincronizarConBD(get());
+  establecerBase: async (coords) => {
+    const datos = await ejecutarAccion("establecerBase", { coords });
+    aplicarDatosJugador(set, datos);
   },
 }));

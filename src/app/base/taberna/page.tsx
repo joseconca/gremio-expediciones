@@ -42,7 +42,7 @@ export default function TabernaPage() {
   const [nombre, setNombre] = useState("");
   const [mensaje, setMensaje] = useState("");
 
-  const handleReclutar = (e: React.FormEvent) => {
+  const handleReclutar = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (nombre.trim().length < 3) {
@@ -50,18 +50,23 @@ export default function TabernaPage() {
       return;
     }
 
-    reclutarPersonaje({
-      nombre: nombre,
-      clase: claseSeleccionada.nombre,
-      hpActual: 100,
-      hpMaximo: 100,
-      estado: "ocioso",
-      ataque: 5,
-      defensa: 5,
-      capacidadCarruaje: 1,
-      velocidad: 1,
-      regeneracionDeVida: 1,
-    });
+    try {
+      await reclutarPersonaje({
+        nombre: nombre,
+        clase: claseSeleccionada.nombre,
+        hpActual: 100,
+        hpMaximo: 100,
+        estado: "ocioso",
+        ataque: 5,
+        defensa: 5,
+        capacidadCarruaje: 1,
+        velocidad: 1,
+        regeneracionDeVida: 1,
+      });
+    } catch {
+      setMensaje("No se pudo reclutar al personaje.");
+      return;
+    }
 
     setMensaje(
       `${nombre} el ${claseSeleccionada.nombre} se ha unido al gremio.`
@@ -70,8 +75,8 @@ export default function TabernaPage() {
     setTimeout(() => router.push("/base"), 2000);
   };
 
-  const handleCurar = () => {
-    const exito = curarPersonaje();
+  const handleCurar = async () => {
+    const exito = await curarPersonaje();
     if (exito) {
       setMensaje("¡Salud restaurada!");
     } else {

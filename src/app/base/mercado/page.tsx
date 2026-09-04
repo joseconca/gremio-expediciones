@@ -22,15 +22,15 @@ export default function MercadoPage() {
   const costeVelocidad = personaje.velocidad * 15;
   const costeCapacidad = personaje.capacidadCarruaje * 100;
 
-  const handleMejorarVelocidad = () => {
+  const handleMejorarVelocidad = async () => {
     if (personaje.velocidad < statMaximo && oro >= costeVelocidad) {
-      mejorarAtributo("velocidad", costeVelocidad, 1);
+      await mejorarAtributo("velocidad", costeVelocidad, 1);
     }
   };
 
-  const handleMejorarCapacidad = () => {
+  const handleMejorarCapacidad = async () => {
     if (personaje.capacidadCarruaje < statMaximo && oro >= costeCapacidad) {
-      mejorarAtributo("capacidadCarruaje", costeCapacidad, 1);
+      await mejorarAtributo("capacidadCarruaje", costeCapacidad, 1);
     }
   };
 

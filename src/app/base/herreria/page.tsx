@@ -22,15 +22,15 @@ export default function HerreriaPage() {
   const costeAtaque = personaje.ataque * 20;
   const costeDefensa = personaje.defensa * 20;
 
-  const handleMejorarAtaque = () => {
+  const handleMejorarAtaque = async () => {
     if (personaje.ataque < statMaximo && oro >= costeAtaque) {
-      mejorarAtributo("ataque", costeAtaque, 1);
+      await mejorarAtributo("ataque", costeAtaque, 1);
     }
   };
 
-  const handleMejorarDefensa = () => {
+  const handleMejorarDefensa = async () => {
     if (personaje.defensa < statMaximo && oro >= costeDefensa) {
-      mejorarAtributo("defensa", costeDefensa, 1);
+      await mejorarAtributo("defensa", costeDefensa, 1);
     }
   };
 
