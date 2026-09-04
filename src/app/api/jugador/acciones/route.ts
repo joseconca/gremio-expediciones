@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { CONFIGURACION_EDIFICIOS, IdEdificio } from "@/lib/configuracionJuego";
+import { CONFIGURACION_EDIFICIOS, ESTADISTICAS_BASE_CLASE, IdEdificio, ClasePersonaje } from "@/lib/configuracionJuego";
 
 const CLASES = new Set(["Guerrero", "Explorador", "Comerciante"]);
 const SEXOS = new Set(["chico", "chica"]);
@@ -62,12 +62,13 @@ export async function POST(request: Request) {
       if (personajeExistente) {
         return NextResponse.json({ error: "Ya tienes un personaje reclutado." }, { status: 409 });
       }
+      const estadisticas = ESTADISTICAS_BASE_CLASE[clase as ClasePersonaje];
       const usuario = await prisma.usuario.update({
         where: { id: usuarioSesion.id },
         data: {
           personaje: {
             upsert: {
-              create: { nombre, clase, sexo, hpActual: 100, hpMaximo: 100, estado: "ocioso", ataque: 5, defensa: 5, velocidad: 1, capacidadCarruaje: 1, regeneracionDeVida: 1, nivel: 1, experiencia: 0 },
+              create: { nombre, clase, sexo, hpActual: 100, hpMaximo: 100, estado: "ocioso", ...estadisticas, regeneracionDeVida: 1, nivel: 1, experiencia: 0 },
               update: { nombre, clase, sexo },
             },
           },

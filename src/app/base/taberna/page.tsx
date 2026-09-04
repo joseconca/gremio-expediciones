@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
+import { ESTADISTICAS_BASE_CLASE } from "@/lib/configuracionJuego";
 
 const CLASES_INICIALES = [
   {
@@ -48,6 +49,7 @@ export default function TabernaPage() {
   const [sexo, setSexo] = useState<"chico" | "chica">("chico");
   const [mensaje, setMensaje] = useState("");
   const [mostrarReclutamiento, setMostrarReclutamiento] = useState(false);
+  const estadisticasSeleccionadas = ESTADISTICAS_BASE_CLASE[claseSeleccionada.nombre as keyof typeof ESTADISTICAS_BASE_CLASE];
 
   const handleReclutar = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,10 +67,7 @@ export default function TabernaPage() {
         hpActual: 100,
         hpMaximo: 100,
         estado: "ocioso",
-        ataque: 5,
-        defensa: 5,
-        capacidadCarruaje: 1,
-        velocidad: 1,
+        ...estadisticasSeleccionadas,
         regeneracionDeVida: 1,
         nivel: 1,
         experiencia: 0,
@@ -276,6 +275,12 @@ export default function TabernaPage() {
                     <p className="text-slate-400 text-xs">
                       {clase.descripcion}
                     </p>
+                    <div className="mt-4 grid grid-cols-4 gap-1 border-t border-white/10 pt-3 text-center text-[10px] text-slate-300">
+                      <span>⚔️ {ESTADISTICAS_BASE_CLASE[clase.nombre as keyof typeof ESTADISTICAS_BASE_CLASE].ataque}</span>
+                      <span>🛡️ {ESTADISTICAS_BASE_CLASE[clase.nombre as keyof typeof ESTADISTICAS_BASE_CLASE].defensa}</span>
+                      <span>👟 {ESTADISTICAS_BASE_CLASE[clase.nombre as keyof typeof ESTADISTICAS_BASE_CLASE].velocidad}</span>
+                      <span>🛒 {ESTADISTICAS_BASE_CLASE[clase.nombre as keyof typeof ESTADISTICAS_BASE_CLASE].capacidadCarruaje}</span>
+                    </div>
                   </div>
                 ))}
               </div>

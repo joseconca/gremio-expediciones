@@ -38,3 +38,11 @@ export const CONFIGURACION_EDIFICIOS = {
 } as const;
 
 export type IdEdificio = keyof typeof CONFIGURACION_EDIFICIOS;
+
+export const ESTADISTICAS_BASE_CLASE = {
+  Guerrero: { ataque: 2, defensa: 2, velocidad: 1, capacidadCarruaje: 1 },
+  Explorador: { ataque: 1, defensa: 1, velocidad: 2, capacidadCarruaje: 1 },
+  Comerciante: { ataque: 1, defensa: 1, velocidad: 1, capacidadCarruaje: 2 },
+} as const;
+
+export type ClasePersonaje = keyof typeof ESTADISTICAS_BASE_CLASE;
