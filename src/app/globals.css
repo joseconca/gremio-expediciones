@@ -4,6 +4,11 @@
   width: 100%;
   height: 100%;
   z-index: 10;
+  background: #d8c49a;
+}
+
+.leaflet-tile-pane {
+  filter: saturate(1.45) contrast(1.12) sepia(0.1) hue-rotate(-8deg);
 }
 
 .hero-route-marker {

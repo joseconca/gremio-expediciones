@@ -75,8 +75,10 @@ export default function MapSelector({ onSaveLocation }: MapSelectorProps) {
           className="h-full w-full"
         >
           <TileLayer
-            url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-            attribution="&copy; OSM"
+            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}"
+            attribution="Tiles &copy; Esri"
+            maxNativeZoom={8}
+            maxZoom={18}
           />
 
           <LocationMarker onLocationSelect={setSelectedCoords} />
