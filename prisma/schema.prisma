@@ -21,6 +21,19 @@ model Usuario {
   personaje        Personaje?
   expedicionActiva       ExpedicionActiva?
   historial        RegistroAccion[]
+  sesiones         Sesion[]
+}
+
+model Sesion {
+  id          String   @id @default(uuid())
+  tokenHash   String   @unique
+  usuarioId   String
+  usuario     Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  expira      DateTime
+  creada      DateTime @default(now())
+
+  @@index([usuarioId])
+  @@index([expira])
 }
 
 model Personaje {

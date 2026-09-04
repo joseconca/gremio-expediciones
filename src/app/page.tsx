@@ -43,12 +43,20 @@ export default function Home() {
           Gestiona tu base, recluta aventureros y envíalos a explorar el mundo real.
         </p>
 
-        <Link 
-          href="/crear-base" 
-          className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-lg transition-colors border border-blue-400 shadow-[0_0_15px_rgba(37,99,235,0.5)]"
-        >
-          Fundar mi Gremio
-        </Link>
+        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <Link
+            href="/login"
+            className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-8 rounded-lg transition-colors"
+          >
+            Iniciar sesión
+          </Link>
+          <Link
+            href="/login"
+            className="text-blue-300 hover:text-blue-200 hover:underline"
+          >
+            Crear mi gremio
+          </Link>
+        </div>
       </div>
     </main>
   );
