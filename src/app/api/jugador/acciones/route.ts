@@ -67,7 +67,7 @@ export async function POST(request: Request) {
         data: {
           personaje: {
             upsert: {
-              create: { nombre, clase, hpActual: 100, hpMaximo: 100, estado: "ocioso", ataque: 5, defensa: 5, velocidad: 1, capacidadCarruaje: 1, regeneracionDeVida: 1 },
+              create: { nombre, clase, hpActual: 100, hpMaximo: 100, estado: "ocioso", ataque: 5, defensa: 5, velocidad: 1, capacidadCarruaje: 1, regeneracionDeVida: 1, nivel: 1, experiencia: 0 },
               update: { nombre, clase },
             },
           },

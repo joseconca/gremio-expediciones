@@ -22,6 +22,7 @@ model Usuario {
   expedicionActiva       ExpedicionActiva?
   historial        RegistroAccion[]
   sesiones         Sesion[]
+  mensajesChat     MensajeChat[]
 }
 
 model Sesion {
@@ -51,6 +52,8 @@ model Personaje {
   defensa           Int
   velocidad         Int
   capacidadCarruaje Int
+  nivel             Int      @default(1)
+  experiencia       Int      @default(0)
 }
 
 model ExpedicionActiva {
@@ -89,4 +92,15 @@ model RegistroAccion {
   tipo        String   // Ej: "EXPEDICION_TERMINADA", "MEJORA_EDIFICIO", "CURACION"
   detalle     String   // Ej: "El personaje sanó 20 HP en la taberna por 15 de oro"
   fecha       DateTime @default(now())
+}
+
+model MensajeChat {
+  id        String   @id @default(uuid())
+  usuarioId String
+  texto     String
+  creado    DateTime @default(now())
+
+  usuario Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+
+  @@index([creado])
 }
