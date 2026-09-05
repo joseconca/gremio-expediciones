@@ -83,7 +83,13 @@ export default function ExpedicionesPage() {
   let textoTiempo = "Calculando...";
 
   if (misionSeleccionada && personaje && baseCoords) {
-    const velocidadKmh = 6 + (personaje.velocidad - 1) / 15;
+    let velocidadKmh = 6 + (personaje.velocidad - 1) / 15;
+    
+    // Ventaja de clase: El Explorador viaja más rápido
+    if (personaje.clase === "Explorador") {
+      velocidadKmh *= 1.25;
+    }
+
     distanciaKm = calcularDistanciaKm(
       baseCoords.lat,
       baseCoords.lng,
