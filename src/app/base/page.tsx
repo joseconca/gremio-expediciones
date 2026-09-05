@@ -286,10 +286,10 @@ export default function BasePage() {
       {/* ---- MODAL DE REPORTE DE COMBATE ---- */}
       {reporte && (
         <div className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in zoom-in-95 duration-200">
-          <div className="bg-slate-900 border-2 border-slate-700 rounded-xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+          <div className="bg-slate-900 border-2 border-slate-700 rounded-xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-y-auto custom-scrollbar">
             {/* Cabecera del Reporte */}
             <div
-              className={`p-4 border-b ${
+              className={`shrink-0 p-4 border-b ${
                 reporte.exito
                   ? "bg-emerald-950/30 border-emerald-900"
                   : "bg-red-950/30 border-red-900"
@@ -305,8 +305,10 @@ export default function BasePage() {
             </div>
 
             {/* Log de Combate estilo Terminal */}
-            <EscenaCombate reporte={reporte} />
-            <div className="grid grid-cols-3 gap-2 border-b border-slate-700 bg-slate-900 p-4">
+            <div className="shrink-0">
+              <EscenaCombate reporte={reporte} />
+            </div>
+            <div className="shrink-0 grid grid-cols-3 gap-2 border-b border-slate-700 bg-slate-900 p-4">
               <div className="rounded-lg border border-red-900/60 bg-red-950/30 p-3 text-center">
                 <span className="block text-[10px] uppercase tracking-wider text-red-300">{reporte.tipo === "comercio" ? "Ruta comercial" : "Enemigo"}</span>
                   <span className="block truncate font-bold text-white">{reporte.tipo === "comercio" ? "Intercambio" : reporte.enemigo || "Encuentro"}</span>
@@ -320,7 +322,7 @@ export default function BasePage() {
                 <span className="block font-black text-white">{reporte.tipo === "comercio" ? (reporte.enemigo ? "1" : "0") : reporte.rondas ?? "-"}</span>
               </div>
             </div>
-            <div className="flex-grow overflow-y-auto p-6 bg-[#0a0f1a] font-mono text-sm sm:text-base space-y-3 custom-scrollbar">
+            <div className="shrink-0 p-6 bg-[#0a0f1a] font-mono text-sm sm:text-base space-y-3">
               {reporte.logCombate.map((linea, idx) => (
                 <div
                   key={idx}
@@ -337,7 +339,7 @@ export default function BasePage() {
             </div>
 
             {/* Resumen y Botón */}
-            <div className="p-6 bg-slate-800 border-t border-slate-700">
+            <div className="shrink-0 p-6 bg-slate-800 border-t border-slate-700">
               <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <div className="bg-slate-900 p-4 rounded-lg text-center border border-slate-700 shadow-inner">
                   <span className="block text-xs text-slate-400 uppercase tracking-widest mb-1">
