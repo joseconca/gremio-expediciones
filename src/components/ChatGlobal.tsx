@@ -192,7 +192,7 @@ export default function ChatGlobal({
             <span className="text-xl" aria-hidden="true">
               💬
             </span>
-            <span className="font-bold text-amber-400">Gremio</span>
+            <span className="font-bold text-amber-400">Chat</span>
             {!abierto && (
               <span className="min-w-0 flex-1 truncate text-sm text-slate-300">
                 {ultimoMensaje
@@ -246,7 +246,7 @@ export default function ChatGlobal({
                 value={texto}
                 onChange={(event) => setTexto(event.target.value)}
                 maxLength={300}
-                placeholder="Escribe al gremio..."
+                placeholder="Escribe en el chat..."
                 className="min-w-0 flex-1 rounded-lg border border-slate-600 bg-slate-950 px-3 py-2 text-white"
               />
               <button className="rounded-lg bg-amber-600 px-4 py-2 font-bold text-white hover:bg-amber-500">
