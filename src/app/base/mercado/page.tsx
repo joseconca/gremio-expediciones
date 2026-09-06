@@ -19,8 +19,8 @@ export default function MercadoPage() {
 
   const statMaximo = edificios.mercado.nivel * 5;
 
-  const costeVelocidad = personaje.velocidad * 15;
-  const costeCapacidad = personaje.capacidadCarruaje * 100;
+  const costeVelocidad = personaje.velocidad * personaje.velocidad * 30;
+  const costeCapacidad = personaje.capacidadCarruaje * personaje.capacidadCarruaje * 100;
 
   const handleMejorarVelocidad = async () => {
     if (personaje.velocidad < statMaximo && oro >= costeVelocidad) {
@@ -41,7 +41,7 @@ export default function MercadoPage() {
           ← Volver
         </Link>
         <h1 className="text-3xl font-bold text-white flex items-center gap-2">
-          <span>⚖️</span> Puesto Comercial {edificios.mercado.nivel}
+          <span>⚖️</span> Mercado {edificios.mercado.nivel}
         </h1>
       </div>
 

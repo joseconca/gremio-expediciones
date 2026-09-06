@@ -19,8 +19,8 @@ export default function HerreriaPage() {
 
   const statMaximo = edificios.herreria.nivel * 10;
 
-  const costeAtaque = personaje.ataque * 20;
-  const costeDefensa = personaje.defensa * 20;
+  const costeAtaque = personaje.ataque * personaje.ataque * 20;
+  const costeDefensa = personaje.defensa * personaje.defensa * 20;
 
   const handleMejorarAtaque = async () => {
     if (personaje.ataque < statMaximo && oro >= costeAtaque) {
