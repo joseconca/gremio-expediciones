@@ -127,7 +127,7 @@ export function resolverComercio(
   );
 
   // --- 3. NEGOCIACIÓN Y CÁLCULO DE ORO ---
-  const multiplicadorNivel = 1 + ((personaje.nivel || 1) * 0.1);
+  const multiplicadorNivel = 1 + (personaje.nivel || 1) * 0.1;
   const oroBase = Math.floor((distanciaKm * 1.5 + 10) * multiplicadorNivel);
   const topeAfinidad = 0.1 + 0.15 * nivelMercado;
   const bonusAfinidad = Math.min(intercambiosPrevios * 0.01, topeAfinidad);
@@ -287,7 +287,7 @@ function generarEventoViaje(dificultad: number) {
     return {
       log: "🩸 Un grupo de bandidos te embosca",
       oro: 0,
-      dano: d6() * d20() * dificultad,
+      dano: d20() + dificultad * 2,
     };
   if (tirada < 0.1)
     return {
@@ -424,9 +424,9 @@ export function resolverExpedicion(
   const monstruoBase = monstruosPosibles[0] || jefesElite[0];
   const enemigo = { ...monstruoBase };
 
-  enemigo.hp += dificultad * 2;
-  enemigo.ataque += dificultad;
-  enemigo.defensa += Math.max(0, dificultad - nivelPersonaje);
+  enemigo.hp = Math.floor(enemigo.hp * (1 + dificultad * 0.3));
+  enemigo.ataque += Math.floor(dificultad * 1.2);
+  enemigo.defensa += Math.floor(dificultad * 0.8);
 
   logCombate.push(`👾 ¡Un ${enemigo.nombre} salvaje intercepta el paso!`);
 
@@ -436,7 +436,7 @@ export function resolverExpedicion(
     // ⚔️ TURNO DEL PERSONAJE
     const tiradaAtaque =
       d20() + Math.floor(ataquePersonaje / 2) + nivelPersonaje;
-    if (tiradaAtaque === 20) {
+    if (tiradaAtaque >= 20) {
       const dano = (d6() + ataquePersonaje) * 2; // Crítico: Daño x2
       enemigo.hp -= dano;
       logCombate.push(
@@ -447,12 +447,12 @@ export function resolverExpedicion(
           enemigo.hp
         )} HP restantes)`
       );
-    } else if (tiradaAtaque === 1) {
+    } else if (tiradaAtaque <= 2) {
       logCombate.push(
-        `🤡 ${personaje.nombre} resbala torpemente y falla su ataque por completo.`
+        `🤡 ${personaje.nombre} resbala torpemente y falla el ataque.`
       );
-    } else if (tiradaAtaque > enemigo.defensa) {
-      const dano = d6() + ataquePersonaje + nivelPersonaje;
+    } else if (tiradaAtaque >= enemigo.defensa) {
+      const dano = d6() + Math.floor(ataquePersonaje / 2) + nivelPersonaje;
       enemigo.hp -= dano;
       logCombate.push(
         `⚔️ ${personaje.nombre} ataca por ${dano} de daño. (${Math.max(
@@ -462,22 +462,22 @@ export function resolverExpedicion(
       );
     } else {
       logCombate.push(
-        `💨 ${personaje.nombre} lanza un golpe, pero el ${enemigo.nombre} lo esquiva.`
+        `💨 ${personaje.nombre} intenta atacar pero el ${enemigo.nombre} lo esquiva.`
       );
     }
 
     if (enemigo.hp <= 0) {
       recompensaExtra += enemigo.botin;
       logCombate.push(
-        `🏆 ¡El ${enemigo.nombre} muerde el polvo! Suelta ${enemigo.botin} 🪙.`
+        `🏆 ¡El ${enemigo.nombre} ha sido derrotado! Consigues ${enemigo.botin} 🪙 extra.`
       );
       break;
     }
 
     // 🛡️ TURNO DEL ENEMIGO
-    const tiradaEnemigo =
-      d20() + dificultad - Math.floor(defensaPersonaje / 3) - nivelPersonaje;
-    if (tiradaEnemigo === 20) {
+    const bonusAtaqueEnemigo = Math.floor(enemigo.ataque / 2) + dificultad;
+    const tiradaEnemigo = d20() + bonusAtaqueEnemigo;
+    if (tiradaEnemigo - bonusAtaqueEnemigo >= 20) {
       const dano = (d6() + enemigo.ataque) * 2;
       hpTemporal -= dano;
       logCombate.push(
@@ -486,24 +486,27 @@ export function resolverExpedicion(
         } asesta un golpe letal de ${dano} de daño. (${Math.max(
           0,
           hpTemporal
-        )} HP)`
+        )} HP restantes)`
       );
-    } else if (tiradaEnemigo === 1) {
+    } else if (tiradaEnemigo - bonusAtaqueEnemigo <= 2) {
       logCombate.push(
         `🤡 El ${enemigo.nombre} se distrae y desperdicia su turno.`
       );
-    } else if (tiradaEnemigo > defensaPersonaje) {
+    } else if (tiradaEnemigo >= defensaPersonaje) {
       const reduccionGuerrero = personaje.clase === "Guerrero" ? 2 : 0;
-      const dano = Math.max(1, d6() + enemigo.ataque - 2 - reduccionGuerrero);
+      const dano = Math.max(1, d6() + enemigo.ataque - reduccionGuerrero);
       hpTemporal -= dano;
       logCombate.push(
         `🩸 El ${
           enemigo.nombre
-        } golpea infligiendo ${dano} de daño. (${Math.max(0, hpTemporal)} HP)`
+        } golpea infligiendo ${dano} de daño. (${Math.max(
+          0,
+          hpTemporal
+        )} HP restantes)`
       );
     } else {
       logCombate.push(
-        `🛡️ El ${enemigo.nombre} ataca, pero ${personaje.nombre} bloquea hábilmente.`
+        `🛡️ ${personaje.nombre} esquiva el ataque del ${enemigo.nombre}.`
       );
     }
 
