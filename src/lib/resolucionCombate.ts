@@ -18,6 +18,7 @@ interface PersonajeCombate {
   hpMaximo: number;
   ataque: number;
   defensa: number;
+  capacidadCarruaje: number;
   nivel?: number;
 }
 
@@ -134,10 +135,14 @@ export function resolverComercio(
   //garantizar mínimo por afinidad
   const extraAfinidad =
     bonusAfinidad > 0 ? Math.max(1, Math.floor(oroBase * bonusAfinidad)) : 0;
+  const capacidadCarruaje = personaje.capacidadCarruaje;
 
-  let oroFinal = oroBase + extraAfinidad + oroDeEventos;
+  let oroFinal = Math.floor(
+    (oroBase + extraAfinidad + oroDeEventos) * (0.9 + 0.1 * capacidadCarruaje)
+  );
+
   if (personaje.clase === "Comerciante" || personaje.clase === "Mercader")
-    oroFinal = Math.floor(oroFinal * 1.25); // Bonus de clase
+    oroFinal = Math.floor(oroFinal * 1.1);
 
   logCombate.push(
     `⚖️ Las negociaciones son un éxito. El vínculo comercial otorga un bono del ${(
@@ -281,6 +286,45 @@ const listaMonstruos = [
   },
 ];
 
+const jefesElite = [
+  {
+    id: "senor-frontera",
+    nombre: "Señor de la Frontera",
+    hp: 70,
+    ataque: 9,
+    defensa: 16,
+    botin: 150,
+    difMin: 3,
+  },
+  {
+    id: "reina-arana",
+    nombre: "Reina de las Sombras",
+    hp: 62,
+    ataque: 11,
+    defensa: 14,
+    botin: 150,
+    difMin: 3,
+  },
+  {
+    id: "titan-hierro",
+    nombre: "Titán de Hierro",
+    hp: 85,
+    ataque: 8,
+    defensa: 18,
+    botin: 150,
+    difMin: 3,
+  },
+  {
+    id: "dragon-verde",
+    nombre: "Dragón del Bosque Verde",
+    hp: 76,
+    ataque: 12,
+    defensa: 15,
+    botin: 150,
+    difMin: 3,
+  },
+];
+
 function generarEventoViaje(dificultad: number) {
   const tirada = Math.random();
   if (tirada < 0.01)
@@ -342,14 +386,9 @@ export function resolverExpedicion(
   const ataquePersonaje = personaje.ataque;
   const defensaPersonaje = personaje.defensa;
   const nivelPersonaje = personaje.nivel || 1;
-  const bonificacionClase =
-    personaje.clase === "Guerrero"
-      ? 3
-      : personaje.clase === "Explorador"
-      ? 2
-      : 1;
   const poderPersonaje =
-    ataquePersonaje + defensaPersonaje + nivelPersonaje * 3 + bonificacionClase;
+    ataquePersonaje + defensaPersonaje + nivelPersonaje * 3;
+  const capacidadCarruaje = personaje.capacidadCarruaje;
 
   logCombate.push(`🗺️ ${personaje.nombre} pone rumbo a ${mision.nombre}.`);
 
@@ -378,44 +417,6 @@ export function resolverExpedicion(
   }
 
   // COMBATE
-  const jefesElite = [
-    {
-      id: "senor-frontera",
-      nombre: "Señor de la Frontera",
-      hp: 70,
-      ataque: 9,
-      defensa: 16,
-      botin: 150,
-      difMin: 3,
-    },
-    {
-      id: "reina-arana",
-      nombre: "Reina de las Sombras",
-      hp: 62,
-      ataque: 11,
-      defensa: 14,
-      botin: 150,
-      difMin: 3,
-    },
-    {
-      id: "titan-hierro",
-      nombre: "Titán de Hierro",
-      hp: 85,
-      ataque: 8,
-      defensa: 18,
-      botin: 150,
-      difMin: 3,
-    },
-    {
-      id: "dragon-verde",
-      nombre: "Dragón del Bosque Verde",
-      hp: 76,
-      ataque: 12,
-      defensa: 15,
-      botin: 150,
-      difMin: 3,
-    },
-  ];
   const jefeId = mision.id?.split("-").at(-1);
   const monstruosPosibles =
     mision.tipo === "elite"
@@ -425,6 +426,7 @@ export function resolverExpedicion(
   const enemigo = { ...monstruoBase };
 
   enemigo.hp = Math.floor(enemigo.hp * (1 + dificultad * 0.3));
+  const enemigoHpMaximo = enemigo.hp;
   enemigo.ataque += Math.floor(dificultad * 1.2);
   enemigo.defensa += Math.floor(dificultad * 0.8);
 
@@ -451,10 +453,10 @@ export function resolverExpedicion(
       logCombate.push(
         `💥 ¡GOLPE CRÍTICO! ${
           personaje.nombre
-        } atraviesa las defensas por ${danoFinal} de daño. (${Math.max(
+        } da un golpe certero de ${danoFinal} puntos de daño. (${Math.max(
           0,
           enemigo.hp
-        )} HP)`
+        )}/${enemigoHpMaximo} restante)`
       );
     } else if (dadoHeroe === 1) {
       // Pifia asegurada (5%)
@@ -470,7 +472,10 @@ export function resolverExpedicion(
       logCombate.push(
         `⚔️ ${personaje.nombre} ataca al ${
           enemigo.nombre
-        } infligiendo ${danoFinal} de daño. (${Math.max(0, enemigo.hp)} HP)`
+        } infligiendo ${danoFinal} de daño. (${Math.max(
+          0,
+          enemigo.hp
+        )}/${enemigoHpMaximo} HP)`
       );
     } else {
       logCombate.push(
@@ -499,7 +504,7 @@ export function resolverExpedicion(
         } asesta un golpe letal de ${danoFinal} de daño. (${Math.max(
           0,
           hpTemporal
-        )} HP)`
+        )}/${personaje.hpMaximo} restante)`
       );
     } else if (dadoEnemigo === 1) {
       logCombate.push(
@@ -521,7 +526,7 @@ export function resolverExpedicion(
         } golpea superando la armadura e inflige ${danoFinal} de daño. (${Math.max(
           0,
           hpTemporal
-        )} HP)`
+        )}/${personaje.hpMaximo} restante)`
       );
     } else {
       logCombate.push(
@@ -544,16 +549,14 @@ export function resolverExpedicion(
 
   if (hpTemporal > 0) {
     const variacion = 0.9 + Math.random() * 0.2;
-    //const capacidadCarruaje = personaje.capacidadCarruaje;
-    botinObtenido = Math.floor(mision.recompensa * variacion + recompensaExtra);
+    botinObtenido = Math.floor(
+      (mision.recompensa * variacion + recompensaExtra) *
+        (0.9 + 0.1 * capacidadCarruaje)
+    );
 
     if (personaje.clase === "Comerciante" || personaje.clase === "Mercader")
-      botinObtenido = Math.floor(botinObtenido * 1.25);
+      botinObtenido = Math.floor(botinObtenido * 1.1);
 
-    /* Bonus de clase
-    if (personaje.clase === "Comerciante" || personaje.clase === "Mercader")
-      botinObtenido = Math.floor(botinObtenido * 1.25);
-    */
     logCombate.push(
       `💰 Expedición completada con éxito. ¡Regresas con ${botinObtenido} 🪙 en total!`
     );
@@ -561,7 +564,7 @@ export function resolverExpedicion(
     botinObtenido = 0;
     hpPerdidoCalculado = personaje.hpActual - 1;
     logCombate.push(
-      `🚑 ¡Desastre! ${personaje.nombre} cae inconsciente. Logra arrastrarse hasta la base, pero pierde todo el botín.`
+      `🚑 ${personaje.nombre} cae inconsciente. Logra arrastrarse hasta la base, pero pierde todo el botín.`
     );
   }
 
