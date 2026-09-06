@@ -46,7 +46,7 @@ function simularRuta(
     const tirada = Math.random();
     // A más distancia (tramos), más probabilidad de encuentros peligrosos
     if (tirada < 0.2) {
-      const dano = Math.floor(Math.random() * 8) + 2;
+      const dano = Math.floor(Math.random() * hpTemporal * 1.5);
       hpTemporal -= dano;
       log.push(
         `🏹 ¡Emboscada de bandidos en el kilómetro ${i * 50}! ${
@@ -106,7 +106,7 @@ export function resolverComercio(
       tipo: "comercio",
       logCombate: [
         ...logCombate,
-        `💀 ${personaje.nombre} sucumbió a los peligros del viaje de ida. La caravana fue saqueada.`,
+        `💀 ${personaje.nombre} sucumbió a los peligros del viaje de ida. Dando por terminado el viaje.`,
       ],
     };
   }
@@ -115,7 +115,7 @@ export function resolverComercio(
   const hpCurado = Math.floor(personaje.hpMaximo * 0.3); // Se cura un 30% en la base aliada
   hpTemporal = Math.min(personaje.hpMaximo, hpTemporal + hpCurado);
   logCombate.push(
-    `🤝 ¡Llegada con éxito! El Gremio "${nombreBaseAliada}" recibe a ${personaje.nombre} con un banquete caliente (Recupera ${hpCurado} HP).`
+    `🤝 ¡Llegada con éxito! El Gremio "${nombreBaseAliada}" recibe a ${personaje.nombre} con un banquete caliente (Recupera ${hpCurado} y se queda a ${hpTemporal} puntos de vida).`
   );
 
   // --- 3. NEGOCIACIÓN Y CÁLCULO DE ORO ---
@@ -207,7 +207,7 @@ export function resolverComercio(
     exito: true,
     hpPerdido: personaje.hpActual - hpTemporal,
     oroGanado: oroFinal,
-    experienciaGanada: 25,
+    experienciaGanada: 0,
     enemigo: "Ruta comercial",
     rondas: 0,
     poderHeroe: personaje.ataque + personaje.defensa,
