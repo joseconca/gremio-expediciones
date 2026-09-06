@@ -41,11 +41,11 @@ function simularRuta(distanciaKm: number, personaje: PersonajeCombate, esVuelta:
 
     const tirada = Math.random();
     // A más distancia (tramos), más probabilidad de encuentros peligrosos
-    if (tirada < 0.10) {
+    if (tirada < 0.20) {
       const dano = Math.floor(Math.random() * 8) + 2;
       hpTemporal -= dano;
       log.push(`🏹 ¡Emboscada de bandidos en el kilómetro ${i * 50}! ${personaje.nombre} recibe ${dano} de daño defendiendo la mercancía.`);
-    } else if (tirada < 0.20) {
+    } else if (tirada < 0.40) {
       log.push(`🌧️ Lluvias torrenciales embarran el camino. El avance es lento y agotador.`);
       hpTemporal -= 2;
     } else if (tirada > 0.90 && !esVuelta) {
@@ -66,7 +66,7 @@ export function resolverComercio(
   const logCombate: string[] = [];
   let hpTemporal = personaje.hpActual;
 
-  logCombate.push(`🗺️ ${personaje.nombre} carga el carruaje y parte hacia "${nombreBaseAliada}", a ${distanciaKm}km de distancia.`);
+  logCombate.push(`🗺️ ${personaje.nombre} carga el carruaje y parte hacia "${nombreBaseAliada}", a ${distanciaKm.toFixed(4)}km de distancia.`);
 
   // --- 1. VIAJE DE IDA ---
   const resultadoIda = simularRuta(distanciaKm, { ...personaje, hpActual: hpTemporal });
@@ -111,13 +111,13 @@ export function resolverComercio(
         rondas: 0,
         poderHeroe: personaje.ataque + personaje.defensa,
         tipo: "comercio",
-        logCombate: [...logCombate, `💀 ${personaje.nombre} pierde la carga y logra volver al camino.`],
+        logCombate: [...logCombate, `💀 ${personaje.nombre} pierde la carga pero logra volver al camino.`],
       };
     }
 
     // --- 4. NEGOCIACIÓN Y CÁLCULO DE ORO ---
   // Recompensa base por distancia (ej: 1 oro por km)
-  const oroBase = Math.floor(distanciaKm * 1.5);
+  const oroBase = Math.floor(distanciaKm * 1.5) + 10;
   
   // Afinidad: 1% extra por intercambio, máximo 100% (1.0) por Nivel de Mercado
   const topeAfinidad = 1.0 * nivelMercado; 
