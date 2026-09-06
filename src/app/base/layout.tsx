@@ -4,7 +4,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ChatGlobal from "@/components/ChatGlobal";
 import Image from "next/image";
-import { obtenerSpriteHeroe, experienciaParaNivel } from "@/lib/configuracionJuego";
+import {
+  obtenerSpriteHeroe,
+  experienciaParaNivel,
+} from "@/lib/configuracionJuego";
 
 export default function BaseLayout({
   children,
@@ -12,13 +15,26 @@ export default function BaseLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const { oro, personaje, expedicionActiva, baseCoords, edificios, isLoading, sesionActiva, cargarJugador, aplicarRegeneracion } = useGameStore();
+  const {
+    oro,
+    madera,
+    piedra,
+    metal,
+    personaje,
+    expedicionActiva,
+    baseCoords,
+    edificios,
+    isLoading,
+    sesionActiva,
+    cargarJugador,
+    aplicarRegeneracion,
+  } = useGameStore();
   const [tiempoRestante, setTiempoRestante] = useState<number>(0);
 
   useEffect(() => {
     cargarJugador();
   }, [cargarJugador]);
-  
+
   useEffect(() => {
     if (!isLoading && !sesionActiva) {
       router.push("/login");
@@ -52,7 +68,6 @@ export default function BaseLayout({
       aplicarRegeneracion();
     }, 1000);
 
-    // Refresca contra el servidor cada 10s para que la regeneración no se pierda al cambiar de página.
     const intervaloSync = setInterval(() => {
       cargarJugador();
     }, 10000);
@@ -100,7 +115,7 @@ export default function BaseLayout({
       </div>
     );
   }
-  
+
   return (
     <div className="min-h-screen bg-slate-900 flex flex-col">
       <header className="flex flex-col md:flex-row md:justify-between items-center bg-slate-800 p-4 border-b border-slate-700 gap-4">
@@ -123,7 +138,9 @@ export default function BaseLayout({
 
               {/* Barra de vida */}
               <div className="flex items-center gap-2">
-                <span className="w-7 shrink-0 text-sm font-mono text-slate-400">HP</span>
+                <span className="w-7 shrink-0 text-sm font-mono text-slate-400">
+                  HP
+                </span>
                 <div className="h-3 w-24 overflow-hidden rounded-full border border-slate-700 bg-slate-800 sm:w-40">
                   <div
                     className="bg-red-500 h-full transition-all duration-300"
@@ -141,24 +158,28 @@ export default function BaseLayout({
 
               {/* Barra de nivel y experiencia */}
               <div className="flex items-center gap-2">
-                <span className="w-7 shrink-0 text-xs font-mono text-slate-400">LV {personaje.nivel || 1}</span>
+                <span className="w-7 shrink-0 text-xs font-mono text-slate-400">
+                  LV {personaje.nivel || 1}
+                </span>
                 <div className="h-1.5 w-24 overflow-hidden rounded-full border border-slate-700 bg-slate-800 sm:w-40">
                   <div
                     className="bg-blue-500 h-full transition-all duration-300"
                     style={{
                       width: `${Math.min(
                         100,
-                        ((personaje.experiencia || 0) / experienciaParaNivel(personaje.nivel || 1)) * 100
+                        ((personaje.experiencia || 0) /
+                          experienciaParaNivel(personaje.nivel || 1)) *
+                          100
                       )}%`,
                     }}
                   />
                 </div>
                 <span className="text-xs font-mono text-slate-300">
-                  {personaje.experiencia || 0}/{experienciaParaNivel(personaje.nivel || 1)} XP
+                  {personaje.experiencia || 0}/
+                  {experienciaParaNivel(personaje.nivel || 1)} XP
                 </span>
               </div>
             </div>
-
           </div>
         )}
 
@@ -168,13 +189,38 @@ export default function BaseLayout({
           </div>
         )}
 
-        <div className="text-amber-400 font-bold bg-slate-900 px-4 py-2 rounded-lg border border-amber-600/30">
-           {oro} 🪙
+        {/* PANEL DE RECURSOS CONDICIONALES */}
+        <div className="flex gap-2 flex-wrap justify-center text-sm md:text-base">
+          <div className="text-amber-400 font-bold bg-slate-900 px-3 py-2 rounded-lg border border-amber-600/30 flex items-center gap-1 shadow-sm">
+            {oro} 🪙
+          </div>
+
+          {/* Recursos si hay */}
+          {(madera ?? 0) > 0 && (
+            <div className="text-emerald-500 font-bold bg-slate-900 px-3 py-2 rounded-lg border border-emerald-700/30 flex items-center gap-1 shadow-sm">
+              {madera} 🪵
+            </div>
+          )}
+
+          {(piedra ?? 0) > 0 && (
+            <div className="text-slate-300 font-bold bg-slate-900 px-3 py-2 rounded-lg border border-slate-600/30 flex items-center gap-1 shadow-sm">
+              {piedra} 🪨
+            </div>
+          )}
+
+          {(metal ?? 0) > 0 && (
+            <div className="text-cyan-400 font-bold bg-slate-900 px-3 py-2 rounded-lg border border-cyan-700/30 flex items-center gap-1 shadow-sm">
+              {metal} ⚙️
+            </div>
+          )}
         </div>
       </header>
 
       <div className="flex-grow">{children}</div>
-      <ChatGlobal habilitado={edificios.embajada.nivel > 0} permitirRanking={edificios.embajada.nivel >= 2} />
+      <ChatGlobal
+        habilitado={edificios.embajada.nivel > 0}
+        permitirRanking={edificios.embajada.nivel >= 2}
+      />
     </div>
   );
 }
