@@ -430,39 +430,51 @@ export function resolverExpedicion(
 
   logCombate.push(`👾 ¡Un ${enemigo.nombre} salvaje intercepta el paso!`);
 
+  const nivelEfectivoMision = dificultad + 1;
+
+  const diferenciaNivelHeroe = nivelEfectivoMision - nivelPersonaje;
+  const umbralAciertoHeroe = 2 + diferenciaNivelHeroe;
+
+  const diferenciaNivelEnemigo = nivelPersonaje - nivelEfectivoMision;
+  const umbralAciertoEnemigo = 2 + diferenciaNivelEnemigo;
+
   let ronda = 1;
   const MAX_RONDAS = 30;
   while (enemigo.hp > 0 && hpTemporal > 0 && ronda <= MAX_RONDAS) {
     // ⚔️ TURNO DEL PERSONAJE
-    const tiradaAtaque =
-      d20() + Math.floor(ataquePersonaje / 2) + nivelPersonaje;
-    if (tiradaAtaque >= 20) {
-      const dano = (d6() + ataquePersonaje) * 2; // Crítico: Daño x2
-      enemigo.hp -= dano;
+    const dadoHeroe = d20();
+    if (dadoHeroe === 20) {
+      // Crítico asegurado (5%)
+      const dano = (ataquePersonaje + d6()) * 2 - enemigo.defensa;
+      const danoFinal = Math.max(1, dano);
+      enemigo.hp -= danoFinal;
       logCombate.push(
         `💥 ¡GOLPE CRÍTICO! ${
           personaje.nombre
-        } impacta con ferocidad brutal por ${dano} de daño. (${Math.max(
+        } atraviesa las defensas por ${danoFinal} de daño. (${Math.max(
           0,
           enemigo.hp
-        )} HP restantes)`
+        )} HP)`
       );
-    } else if (tiradaAtaque <= 2) {
+    } else if (dadoHeroe === 1) {
+      // Pifia asegurada (5%)
       logCombate.push(
         `🤡 ${personaje.nombre} resbala torpemente y falla el ataque.`
       );
-    } else if (tiradaAtaque >= enemigo.defensa) {
-      const dano = d6() + Math.floor(ataquePersonaje / 2) + nivelPersonaje;
-      enemigo.hp -= dano;
+    } else if (dadoHeroe >= umbralAciertoHeroe) {
+      const variacion = 0.8 + Math.random() * 0.4;
+      let dano = Math.floor(ataquePersonaje * variacion) + nivelPersonaje;
+      const danoFinal = Math.max(1, dano - Math.floor(enemigo.defensa / 2));
+
+      enemigo.hp -= danoFinal;
       logCombate.push(
-        `⚔️ ${personaje.nombre} ataca por ${dano} de daño. (${Math.max(
-          0,
-          enemigo.hp
-        )} HP restantes)`
+        `⚔️ ${personaje.nombre} ataca al ${
+          enemigo.nombre
+        } infligiendo ${danoFinal} de daño. (${Math.max(0, enemigo.hp)} HP)`
       );
     } else {
       logCombate.push(
-        `💨 ${personaje.nombre} intenta atacar pero el ${enemigo.nombre} lo esquiva.`
+        `💨 El ${enemigo.nombre} esquiva ágilmente el ataque de ${personaje.nombre}.`
       );
     }
 
@@ -475,38 +487,45 @@ export function resolverExpedicion(
     }
 
     // 🛡️ TURNO DEL ENEMIGO
-    const bonusAtaqueEnemigo = Math.floor(enemigo.ataque / 2) + dificultad;
-    const tiradaEnemigo = d20() + bonusAtaqueEnemigo;
-    if (tiradaEnemigo - bonusAtaqueEnemigo >= 20) {
-      const dano = (d6() + enemigo.ataque) * 2;
-      hpTemporal -= dano;
+    const dadoEnemigo = d20();
+
+    if (dadoEnemigo === 20) {
+      const dano = (enemigo.ataque + d6()) * 2 - defensaPersonaje;
+      const danoFinal = Math.max(1, dano);
+      hpTemporal -= danoFinal;
       logCombate.push(
         `💥 ¡CRÍTICO DEL ENEMIGO! El ${
           enemigo.nombre
-        } asesta un golpe letal de ${dano} de daño. (${Math.max(
+        } asesta un golpe letal de ${danoFinal} de daño. (${Math.max(
           0,
           hpTemporal
-        )} HP restantes)`
+        )} HP)`
       );
-    } else if (tiradaEnemigo - bonusAtaqueEnemigo <= 2) {
+    } else if (dadoEnemigo === 1) {
       logCombate.push(
         `🤡 El ${enemigo.nombre} se distrae y desperdicia su turno.`
       );
-    } else if (tiradaEnemigo >= defensaPersonaje) {
+    } else if (dadoEnemigo >= umbralAciertoEnemigo) {
+      const variacion = 0.8 + Math.random() * 0.4;
+      let dano = Math.floor(enemigo.ataque * variacion) + dificultad;
+
       const reduccionGuerrero = personaje.clase === "Guerrero" ? 2 : 0;
-      const dano = Math.max(1, d6() + enemigo.ataque - reduccionGuerrero);
-      hpTemporal -= dano;
+      const mitigacionTotal =
+        Math.floor(defensaPersonaje / 2) + reduccionGuerrero;
+      const danoFinal = Math.max(1, dano - mitigacionTotal);
+
+      hpTemporal -= danoFinal;
       logCombate.push(
         `🩸 El ${
           enemigo.nombre
-        } golpea infligiendo ${dano} de daño. (${Math.max(
+        } golpea superando la armadura e inflige ${danoFinal} de daño. (${Math.max(
           0,
           hpTemporal
-        )} HP restantes)`
+        )} HP)`
       );
     } else {
       logCombate.push(
-        `🛡️ ${personaje.nombre} esquiva el ataque del ${enemigo.nombre}.`
+        `🛡️ ${personaje.nombre} anticipa el movimiento y esquiva el ataque del ${enemigo.nombre}.`
       );
     }
 
