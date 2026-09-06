@@ -29,27 +29,39 @@ interface MisionCombate {
   tipo?: string;
 }
 
-function simularRuta(distanciaKm: number, personaje: PersonajeCombate, esVuelta: boolean = false) {
+function simularRuta(
+  distanciaKm: number,
+  personaje: PersonajeCombate,
+  esVuelta: boolean = false
+) {
   const log: string[] = [];
   let hpTemporal = personaje.hpActual;
-  
+
   // Hay un evento posible por cada 50km recorridos
   const tramos = Math.max(1, Math.floor(distanciaKm / 50));
-  
-  for(let i = 0; i < tramos; i++) {
+
+  for (let i = 0; i < tramos; i++) {
     if (hpTemporal <= 0) break;
 
     const tirada = Math.random();
     // A más distancia (tramos), más probabilidad de encuentros peligrosos
-    if (tirada < 0.20) {
+    if (tirada < 0.2) {
       const dano = Math.floor(Math.random() * 8) + 2;
       hpTemporal -= dano;
-      log.push(`🏹 ¡Emboscada de bandidos en el kilómetro ${i * 50}! ${personaje.nombre} recibe ${dano} de daño defendiendo la mercancía.`);
-    } else if (tirada < 0.40) {
-      log.push(`🌧️ Lluvias torrenciales embarran el camino. El avance es lento y agotador.`);
+      log.push(
+        `🏹 ¡Emboscada de bandidos en el kilómetro ${i * 50}! ${
+          personaje.nombre
+        } recibe ${dano} de daño defendiendo la mercancía.`
+      );
+    } else if (tirada < 0.4) {
+      log.push(
+        `🌧️ Lluvias torrenciales embarran el camino. El avance es lento y agotador.`
+      );
       hpTemporal -= 2;
-    } else if (tirada > 0.90 && !esVuelta) {
-      log.push(`✨ Encuentras los restos de una caravana antigua y recoges algunos materiales útiles.`);
+    } else if (tirada > 0.9 && !esVuelta) {
+      log.push(
+        `✨ Encuentras los restos de una caravana antigua y recoges algunos materiales útiles.`
+      );
     }
   }
 
@@ -57,110 +69,150 @@ function simularRuta(distanciaKm: number, personaje: PersonajeCombate, esVuelta:
 }
 
 export function resolverComercio(
-  personaje: PersonajeCombate, 
-  distanciaKm: number, 
-  nivelMercado: number, 
+  personaje: PersonajeCombate,
+  distanciaKm: number,
+  nivelMercado: number,
   intercambiosPrevios: number,
   nombreBaseAliada: string
 ) {
   const logCombate: string[] = [];
   let hpTemporal = personaje.hpActual;
 
-  logCombate.push(`🗺️ ${personaje.nombre} carga el carruaje y parte hacia "${nombreBaseAliada}", a ${distanciaKm.toFixed(4)}km de distancia.`);
+  logCombate.push(
+    `🗺️ ${
+      personaje.nombre
+    } carga el carruaje y parte hacia "${nombreBaseAliada}", a ${distanciaKm.toFixed(
+      4
+    )}km de distancia.`
+  );
 
   // --- 1. VIAJE DE IDA ---
-  const resultadoIda = simularRuta(distanciaKm, { ...personaje, hpActual: hpTemporal });
+  const resultadoIda = simularRuta(distanciaKm, {
+    ...personaje,
+    hpActual: hpTemporal,
+  });
   logCombate.push(...resultadoIda.logRuta);
   hpTemporal = resultadoIda.hpFinal;
 
   if (hpTemporal <= 0) {
-    return { 
-      exito: false, 
-      hpPerdido: personaje.hpActual - 1, 
-      oroGanado: 0, 
+    return {
+      exito: false,
+      hpPerdido: personaje.hpActual - 1,
+      oroGanado: 0,
       experienciaGanada: 10,
       enemigo: "Peligros del camino",
       rondas: 0,
       poderHeroe: personaje.ataque + personaje.defensa,
       tipo: "comercio",
-      logCombate: [...logCombate, `💀 ${personaje.nombre} sucumbió a los peligros del viaje de ida. La caravana fue saqueada.`] 
+      logCombate: [
+        ...logCombate,
+        `💀 ${personaje.nombre} sucumbió a los peligros del viaje de ida. La caravana fue saqueada.`,
+      ],
     };
   }
 
   // --- 2. LLEGADA Y CURACIÓN ---
   const hpCurado = Math.floor(personaje.hpMaximo * 0.3); // Se cura un 30% en la base aliada
   hpTemporal = Math.min(personaje.hpMaximo, hpTemporal + hpCurado);
-  logCombate.push(`🤝 ¡Llegada con éxito! El Gremio "${nombreBaseAliada}" recibe a ${personaje.nombre} con un banquete caliente (Recupera ${hpCurado} HP).`);
+  logCombate.push(
+    `🤝 ¡Llegada con éxito! El Gremio "${nombreBaseAliada}" recibe a ${personaje.nombre} con un banquete caliente (Recupera ${hpCurado} HP).`
+  );
 
   // --- 3. NEGOCIACIÓN Y CÁLCULO DE ORO ---
-    // --- 3. ENCUENTRO OPCIONAL DE CAMINO ---
-    if (Math.random() < Math.min(0.35, distanciaKm / 250)) {
-      const danoEncuentro = Math.max(1, d6() + Math.max(0, 1 - personaje.defensa / 10));
-      hpTemporal -= danoEncuentro;
-      logCombate.push(`👾 Un grupo de bandidos intenta asaltar la caravana, pero ${personaje.nombre} logra abrirse paso.`);
-      logCombate.push(`🩸 El incidente causa ${danoEncuentro} de daño durante la huida.`);
-    }
+  // --- 3. ENCUENTRO OPCIONAL DE CAMINO ---
+  if (Math.random() < Math.min(0.35, distanciaKm / 250)) {
+    const danoEncuentro = Math.max(
+      1,
+      d6() + Math.max(0, 1 - personaje.defensa / 10)
+    );
+    hpTemporal -= danoEncuentro;
+    logCombate.push(
+      `👾 Un grupo de bandidos intenta asaltar la caravana, pero ${personaje.nombre} logra abrirse paso.`
+    );
+    logCombate.push(
+      `🩸 El incidente causa ${danoEncuentro} de daño durante la huida.`
+    );
+  }
 
-    if (hpTemporal <= 0) {
-      return {
-        exito: false,
-        hpPerdido: personaje.hpActual - 1,
-        oroGanado: 0,
-        experienciaGanada: 0,
-        enemigo: "Bandidos del camino",
-        rondas: 0,
-        poderHeroe: personaje.ataque + personaje.defensa,
-        tipo: "comercio",
-        logCombate: [...logCombate, `💀 ${personaje.nombre} pierde la carga pero logra volver al camino.`],
-      };
-    }
+  if (hpTemporal <= 0) {
+    return {
+      exito: false,
+      hpPerdido: personaje.hpActual - 1,
+      oroGanado: 0,
+      experienciaGanada: 0,
+      enemigo: "Bandidos del camino",
+      rondas: 0,
+      poderHeroe: personaje.ataque + personaje.defensa,
+      tipo: "comercio",
+      logCombate: [
+        ...logCombate,
+        `💀 ${personaje.nombre} pierde la carga pero logra volver al camino.`,
+      ],
+    };
+  }
 
-    // --- 4. NEGOCIACIÓN Y CÁLCULO DE ORO ---
-  // Recompensa base por distancia (ej: 1 oro por km)
+  // --- 4. NEGOCIACIÓN Y CÁLCULO DE ORO ---
   const oroBase = Math.floor(distanciaKm * 1.5) + 10;
-  
-  // Afinidad: 1% extra por intercambio, máximo 100% (1.0) por Nivel de Mercado
-  const topeAfinidad = 1.0 * nivelMercado; 
+  const topeAfinidad = 0.1 + 0.15 * nivelMercado;
   const bonusAfinidad = Math.min(intercambiosPrevios * 0.01, topeAfinidad);
-  
-  let oroFinal = oroBase + Math.floor(oroBase * bonusAfinidad);
-  if (personaje.clase === "Comerciante" || personaje.clase === "Mercader") oroFinal = Math.floor(oroFinal * 1.25); // Bonus de clase
+  //garantizar mínimo por afinidad
+  const extraAfinidad =
+    bonusAfinidad > 0 ? Math.max(1, Math.floor(oroBase * bonusAfinidad)) : 0;
 
-  logCombate.push(`⚖️ Las negociaciones son un éxito. El vínculo comercial otorga un bono del ${(bonusAfinidad * 100).toFixed(0)}%. Se consiguen ${oroFinal} 🪙 en bienes.`);
+  let oroFinal = oroBase + extraAfinidad;
+  if (personaje.clase === "Comerciante" || personaje.clase === "Mercader")
+    oroFinal = Math.floor(oroFinal * 1.25); // Bonus de clase
+
+  logCombate.push(
+    `⚖️ Las negociaciones son un éxito. El vínculo comercial otorga un bono del ${(
+      bonusAfinidad * 100
+    ).toFixed(1)}%. Se consiguen ${oroFinal} 🪙 en bienes.`
+  );
 
   // --- 4. VIAJE DE VUELTA ---
-  logCombate.push(`🗺️ Con el carro lleno, comienza el peligroso viaje de regreso a casa...`);
-  const resultadoVuelta = simularRuta(distanciaKm, { ...personaje, hpActual: hpTemporal }, true);
+  logCombate.push(
+    `🗺️ Con el carro lleno, comienza el peligroso viaje de regreso a casa...`
+  );
+  const resultadoVuelta = simularRuta(
+    distanciaKm,
+    { ...personaje, hpActual: hpTemporal },
+    true
+  );
   logCombate.push(...resultadoVuelta.logRuta);
   hpTemporal = resultadoVuelta.hpFinal;
 
   if (hpTemporal <= 0) {
-    return { 
-      exito: false, 
-      hpPerdido: personaje.hpActual - 1, 
-      oroGanado: 0, 
+    return {
+      exito: false,
+      hpPerdido: personaje.hpActual - 1,
+      oroGanado: 0,
       experienciaGanada: 10,
       enemigo: "Peligros del camino",
       rondas: 0,
       poderHeroe: personaje.ataque + personaje.defensa,
       tipo: "comercio",
-      logCombate: [...logCombate, `🚑 ¡Tragedia a un paso de casa! ${personaje.nombre} llega malherido y el carro de oro se pierde por un barranco.`] 
+      logCombate: [
+        ...logCombate,
+        `🚑 ¡Tragedia a un paso de casa! ${personaje.nombre} llega malherido y el carro de oro se pierde por un barranco.`,
+      ],
     };
   }
 
   // --- 5. RESOLUCIÓN EXITOSA ---
-  logCombate.push(`🎉 ¡Las puertas de tu Gremio se abren! La expedición comercial ha sido un éxito total.`);
+  logCombate.push(
+    `🎉 ¡Las puertas de tu Gremio se abren! La expedición comercial ha sido un éxito total.`
+  );
 
-  return { 
-    exito: true, 
-    hpPerdido: personaje.hpActual - hpTemporal, 
-    oroGanado: oroFinal, 
+  return {
+    exito: true,
+    hpPerdido: personaje.hpActual - hpTemporal,
+    oroGanado: oroFinal,
     experienciaGanada: 25,
     enemigo: "Ruta comercial",
     rondas: 0,
     poderHeroe: personaje.ataque + personaje.defensa,
     tipo: "comercio",
-    logCombate 
+    logCombate,
   };
 }
 
@@ -170,7 +222,15 @@ const d20 = () => Math.floor(Math.random() * 20 + suerte) + 1;
 const d6 = () => Math.floor(Math.random() * 6 + suerte / 3) + 1;
 
 const listaMonstruos = [
-  { id: "slime", nombre: "Slime Ácido", hp: 8, ataque: 1, defensa: 5, botin: 3, difMin: 0 },
+  {
+    id: "slime",
+    nombre: "Slime Ácido",
+    hp: 8,
+    ataque: 1,
+    defensa: 5,
+    botin: 3,
+    difMin: 0,
+  },
   {
     id: "rata",
     nombre: "Rata Gigante",
@@ -234,7 +294,15 @@ const listaMonstruos = [
     botin: 30,
     difMin: 2,
   },
-  { id: "minotauro", nombre: "Minotauro", hp: 45, ataque: 7, defensa: 14, botin: 40, difMin: 2 },
+  {
+    id: "minotauro",
+    nombre: "Minotauro",
+    hp: 45,
+    ataque: 7,
+    defensa: 14,
+    botin: 40,
+    difMin: 2,
+  },
 ];
 
 function generarEventoViaje(dificultad: number) {
@@ -298,8 +366,14 @@ export function resolverExpedicion(
   const ataquePersonaje = personaje.ataque;
   const defensaPersonaje = personaje.defensa;
   const nivelPersonaje = personaje.nivel || 1;
-  const bonificacionClase = personaje.clase === "Guerrero" ? 3 : personaje.clase === "Explorador" ? 2 : 1;
-  const poderPersonaje = ataquePersonaje + defensaPersonaje + nivelPersonaje * 3 + bonificacionClase;
+  const bonificacionClase =
+    personaje.clase === "Guerrero"
+      ? 3
+      : personaje.clase === "Explorador"
+      ? 2
+      : 1;
+  const poderPersonaje =
+    ataquePersonaje + defensaPersonaje + nivelPersonaje * 3 + bonificacionClase;
 
   logCombate.push(`🗺️ ${personaje.nombre} pone rumbo a ${mision.nombre}.`);
 
@@ -329,15 +403,48 @@ export function resolverExpedicion(
 
   // COMBATE
   const jefesElite = [
-    { id: "senor-frontera", nombre: "Señor de la Frontera", hp: 70, ataque: 9, defensa: 16, botin: 150, difMin: 3 },
-    { id: "reina-arana", nombre: "Reina de las Sombras", hp: 62, ataque: 11, defensa: 14, botin: 150, difMin: 3 },
-    { id: "titan-hierro", nombre: "Titán de Hierro", hp: 85, ataque: 8, defensa: 18, botin: 150, difMin: 3 },
-    { id: "dragon-verde", nombre: "Dragón del Bosque Verde", hp: 76, ataque: 12, defensa: 15, botin: 150, difMin: 3 },
+    {
+      id: "senor-frontera",
+      nombre: "Señor de la Frontera",
+      hp: 70,
+      ataque: 9,
+      defensa: 16,
+      botin: 150,
+      difMin: 3,
+    },
+    {
+      id: "reina-arana",
+      nombre: "Reina de las Sombras",
+      hp: 62,
+      ataque: 11,
+      defensa: 14,
+      botin: 150,
+      difMin: 3,
+    },
+    {
+      id: "titan-hierro",
+      nombre: "Titán de Hierro",
+      hp: 85,
+      ataque: 8,
+      defensa: 18,
+      botin: 150,
+      difMin: 3,
+    },
+    {
+      id: "dragon-verde",
+      nombre: "Dragón del Bosque Verde",
+      hp: 76,
+      ataque: 12,
+      defensa: 15,
+      botin: 150,
+      difMin: 3,
+    },
   ];
   const jefeId = mision.id?.split("-").at(-1);
-  const monstruosPosibles = mision.tipo === "elite"
-    ? jefesElite.filter((jefe) => jefe.id === jefeId)
-    : listaMonstruos.filter((m) => m.difMin <= dificultad);
+  const monstruosPosibles =
+    mision.tipo === "elite"
+      ? jefesElite.filter((jefe) => jefe.id === jefeId)
+      : listaMonstruos.filter((m) => m.difMin <= dificultad);
   const monstruoBase = monstruosPosibles[0] || jefesElite[0];
   const enemigo = { ...monstruoBase };
 
@@ -351,7 +458,8 @@ export function resolverExpedicion(
   const MAX_RONDAS = 30;
   while (enemigo.hp > 0 && hpTemporal > 0 && ronda <= MAX_RONDAS) {
     // ⚔️ TURNO DEL PERSONAJE
-    const tiradaAtaque = d20() + Math.floor(ataquePersonaje / 2) + nivelPersonaje;
+    const tiradaAtaque =
+      d20() + Math.floor(ataquePersonaje / 2) + nivelPersonaje;
     if (tiradaAtaque === 20) {
       const dano = (d6() + ataquePersonaje) * 2; // Crítico: Daño x2
       enemigo.hp -= dano;
@@ -391,7 +499,8 @@ export function resolverExpedicion(
     }
 
     // 🛡️ TURNO DEL ENEMIGO
-    const tiradaEnemigo = d20() + dificultad - Math.floor(defensaPersonaje / 3) - nivelPersonaje;
+    const tiradaEnemigo =
+      d20() + dificultad - Math.floor(defensaPersonaje / 3) - nivelPersonaje;
     if (tiradaEnemigo === 20) {
       const dano = (d6() + enemigo.ataque) * 2;
       hpTemporal -= dano;
@@ -439,7 +548,8 @@ export function resolverExpedicion(
     const variacion = 0.9 + Math.random() * 0.2;
     botinObtenido = Math.floor(mision.recompensa * variacion + recompensaExtra);
 
-    if (personaje.clase === "Comerciante" || personaje.clase === "Mercader") botinObtenido = Math.floor(botinObtenido * 1.25);
+    if (personaje.clase === "Comerciante" || personaje.clase === "Mercader")
+      botinObtenido = Math.floor(botinObtenido * 1.25);
 
     /* Bonus de clase
     if (personaje.clase === "Comerciante" || personaje.clase === "Mercader")
@@ -456,9 +566,14 @@ export function resolverExpedicion(
     );
   }
 
-  const experienciaGanada = mision.tipo === "elite"
-    ? (hpTemporal > 0 ? 150 : 50)
-    : hpTemporal > 0 ? 25 + dificultad * 20 : 10 + dificultad * 5;
+  const experienciaGanada =
+    mision.tipo === "elite"
+      ? hpTemporal > 0
+        ? 150
+        : 50
+      : hpTemporal > 0
+      ? 25 + dificultad * 20
+      : 10 + dificultad * 5;
   const exito = hpTemporal > 0;
 
   return {
