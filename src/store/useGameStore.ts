@@ -78,6 +78,9 @@ export interface InfoCura {
 
 export interface GameState {
   oro: number;
+  madera: number;
+  piedra: number;
+  metal: number;
   personaje: Personaje | null;
   expedicionActiva: ExpedicionActiva | null;
   edificios: Record<string, Edificio>;
@@ -110,14 +113,18 @@ export interface GameState {
   establecerBase: (coords: { lat: number; lng: number }) => Promise<void>;
 }
 
-async function ejecutarAccion(accion: string, datos: Record<string, unknown> = {}) {
+async function ejecutarAccion(
+  accion: string,
+  datos: Record<string, unknown> = {}
+) {
   const respuesta = await fetch("/api/jugador/acciones", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ accion, ...datos }),
   });
   const resultado = await respuesta.json();
-  if (!respuesta.ok) throw new Error(resultado.error || "No se pudo completar la acción.");
+  if (!respuesta.ok)
+    throw new Error(resultado.error || "No se pudo completar la acción.");
   return resultado;
 }
 
@@ -125,20 +132,39 @@ function aplicarDatosJugador(
   set: (state: Partial<GameState>) => void,
   datos: Record<string, unknown>
 ) {
-  const edificios = (datos.edificios as Record<string, unknown> | undefined) || {};
+  const edificios =
+    (datos.edificios as Record<string, unknown> | undefined) || {};
   const nivelEdificio = (id: string, valorPorDefecto: number) =>
-    typeof edificios[id] === "number" ? edificios[id] as number : valorPorDefecto;
+    typeof edificios[id] === "number"
+      ? (edificios[id] as number)
+      : valorPorDefecto;
   set({
     oro: datos.oro as number,
+    madera: datos.madera as number,
+    piedra: datos.piedra as number,
+    metal: datos.metal as number,
     personaje: (datos.personaje as Personaje | null) || null,
     baseCoords: (datos.baseCoords as GameState["baseCoords"]) || null,
-    expedicionActiva: (datos.expedicionActiva as ExpedicionActiva | null) || null,
+    expedicionActiva:
+      (datos.expedicionActiva as ExpedicionActiva | null) || null,
     ultimaMisionElite: (datos.ultimaMisionElite as string | null) || null,
     edificios: {
-      taberna: { ...EDIFICIOS_BASE.taberna, nivel: nivelEdificio("taberna", 1) },
-      herreria: { ...EDIFICIOS_BASE.herreria, nivel: nivelEdificio("herreria", 0) },
-      mercado: { ...EDIFICIOS_BASE.mercado, nivel: nivelEdificio("mercado", 0) },
-      embajada: { ...EDIFICIOS_BASE.embajada, nivel: nivelEdificio("embajada", 0) },
+      taberna: {
+        ...EDIFICIOS_BASE.taberna,
+        nivel: nivelEdificio("taberna", 1),
+      },
+      herreria: {
+        ...EDIFICIOS_BASE.herreria,
+        nivel: nivelEdificio("herreria", 0),
+      },
+      mercado: {
+        ...EDIFICIOS_BASE.mercado,
+        nivel: nivelEdificio("mercado", 0),
+      },
+      embajada: {
+        ...EDIFICIOS_BASE.embajada,
+        nivel: nivelEdificio("embajada", 0),
+      },
     },
   });
 }
@@ -148,6 +174,9 @@ let solicitudJugadorId = 0;
 
 export const useGameStore = create<GameState>((set, get) => ({
   oro: 0,
+  madera: 0,
+  piedra: 0,
+  metal: 0,
   personaje: null,
   expedicionActiva: null,
   edificios: {
@@ -169,7 +198,9 @@ export const useGameStore = create<GameState>((set, get) => ({
       if (state.horaMisiones !== horaActual) {
         return { horaMisiones: horaActual, misionesCompletadasEstaHora: 1 };
       }
-      return { misionesCompletadasEstaHora: state.misionesCompletadasEstaHora + 1 };
+      return {
+        misionesCompletadasEstaHora: state.misionesCompletadasEstaHora + 1,
+      };
     });
   },
 
@@ -186,7 +217,12 @@ export const useGameStore = create<GameState>((set, get) => ({
       if (idSolicitud !== solicitudJugadorId) return;
 
       if (respuesta.status === 401) {
-        set({ isLoading: false, sesionActiva: false, personaje: null, baseCoords: null });
+        set({
+          isLoading: false,
+          sesionActiva: false,
+          personaje: null,
+          baseCoords: null,
+        });
         return;
       }
 
@@ -214,25 +250,17 @@ export const useGameStore = create<GameState>((set, get) => ({
         },
       };
 
-      /*let expedicionCargada = null;
-      if (datos.expedicionActiva) {
-        expedicionCargada = {
-          idMision: datos.expedicionActiva.misionId,
-          nombre: datos.expedicionActiva.nombre,
-          recompensa: datos.expedicionActiva.recompensa,
-          dificultad: datos.expedicionActiva.dificultad,
-          fechaLlegada: datos.expedicionActiva.fechaLlegada,
-          destinoCoords: datos.expedicionActiva.destinoCoords,
-        };
-      }*/
-
       set({
         sesionActiva: true,
         oro: datos.oro as number,
+        madera: datos.madera as number,
+        piedra: datos.piedra as number,
+        metal: datos.metal as number,
         edificios: edificiosCompletos,
         personaje: datos.personaje,
         baseCoords: (datos.baseCoords as GameState["baseCoords"]) || null,
-        expedicionActiva: (datos.expedicionActiva as ExpedicionActiva | null) || null,
+        expedicionActiva:
+          (datos.expedicionActiva as ExpedicionActiva | null) || null,
         ultimaMisionElite: (datos.ultimaMisionElite as string | null) || null,
         isLoading: false,
       });
@@ -262,9 +290,12 @@ export const useGameStore = create<GameState>((set, get) => ({
 
   completarExpedicion: async () => {
     try {
-      const respuesta = await fetch("/api/expediciones/completar", { method: "POST" });
+      const respuesta = await fetch("/api/expediciones/completar", {
+        method: "POST",
+      });
       const datos = await respuesta.json();
-      if (!respuesta.ok) throw new Error(datos.error || "No se pudo completar la expedición.");
+      if (!respuesta.ok)
+        throw new Error(datos.error || "No se pudo completar la expedición.");
       aplicarDatosJugador(set, datos.usuario);
       return datos.resultado as ResultadoCombate;
     } catch (error) {
@@ -311,17 +342,25 @@ export const useGameStore = create<GameState>((set, get) => ({
   aplicarRegeneracion: () => {
     const state = get();
     const personaje = state.personaje;
-    
-    if (!personaje || personaje.estado === "de_viaje" || personaje.hpActual >= personaje.hpMaximo) return;
 
-    const nuevoHp = Math.min(personaje.hpMaximo, personaje.hpActual + personaje.regeneracionDeVida);
-    
+    if (
+      !personaje ||
+      personaje.estado === "de_viaje" ||
+      personaje.hpActual >= personaje.hpMaximo
+    )
+      return;
+
+    const nuevoHp = Math.min(
+      personaje.hpMaximo,
+      personaje.hpActual + personaje.regeneracionDeVida
+    );
+
     set({
       personaje: {
         ...personaje,
         hpActual: nuevoHp,
         estado: nuevoHp >= personaje.hpMaximo ? "ocioso" : personaje.estado,
-      }
+      },
     });
   },
 
@@ -338,9 +377,14 @@ export const useGameStore = create<GameState>((set, get) => ({
 
   obtenerCosteMejora: (idEdificio) => {
     const ed = get().edificios[idEdificio];
-    const configuracion = CONFIGURACION_EDIFICIOS[idEdificio as keyof typeof CONFIGURACION_EDIFICIOS];
+    const configuracion =
+      CONFIGURACION_EDIFICIOS[
+        idEdificio as keyof typeof CONFIGURACION_EDIFICIOS
+      ];
     if (!configuracion) return Number.POSITIVE_INFINITY;
-    return ed.nivel === 0 ? configuracion.costeConstruccion : configuracion.costeNivel2;
+    return ed.nivel === 0
+      ? configuracion.costeConstruccion
+      : configuracion.costeNivel2;
   },
 
   mejorarEdificio: async (idEdificio) => {
