@@ -232,8 +232,8 @@ export default function TabernaPage() {
                     >
                       <span>
                         {infoCura.aTope 
-                          ? "Cama premium y banquete (Curar a tope)" 
-                          : `Sopa rancia e invertir todo tu oro (Cura ${infoCura.hpCurado} HP)`}
+                          ? "Cama premium y banquete" 
+                          : `Sopa rancia (TODO TU ORO POR CURAR ${infoCura.hpCurado} HP)`}
                       </span>
                       <span className="text-amber-400">{infoCura.coste} 🪙</span>
                     </button>
