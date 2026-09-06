@@ -66,7 +66,7 @@ export default function ExpedicionesPage() {
     const offset =
       horaMisiones === horaActual ? misionesCompletadasEstaHora : 0;
 
-    const nuevasMisiones = [0, 1, 2, 3].map((slot) =>
+    const nuevasMisiones = [0, 1, 2, 3, 4].map((slot) =>
       generarMision(baseCoords.lat, baseCoords.lng, horaActual, slot, offset)
     );
     const diaActual = new Date().toISOString().slice(0, 10);
