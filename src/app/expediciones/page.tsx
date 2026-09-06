@@ -112,7 +112,7 @@ export default function ExpedicionesPage() {
     setErrorEnvio(null);
 
     try {
-      const res = await fetch("/api/iniciar-expedicion", {
+      const res = await fetch("/api/expediciones/iniciar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
