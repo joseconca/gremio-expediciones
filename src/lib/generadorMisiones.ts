@@ -30,11 +30,11 @@ const DESCRIPCIONES = [
 ];
 
 const MISIONES_POR_DURACION = [
-  { horas: 0.5, dificultad: 0, recompensaBase: 45 },
-  { horas: 1, dificultad: 0, recompensaBase: 82 },
-  { horas: 3, dificultad: 1, recompensaBase: 222 },
-  { horas: 9, dificultad: 2, recompensaBase: 585 },
-  { horas: 24, dificultad: 3, recompensaBase: 1200 },
+  { horas: 0.5, recompensaBase: 45 },
+  { horas: 1, recompensaBase: 82 },
+  { horas: 3, recompensaBase: 222 },
+  { horas: 9, recompensaBase: 585 },
+  { horas: 24, recompensaBase: 1200 },
 ];
 
 export function generarMisionElite(
@@ -53,6 +53,7 @@ export function generarMisionElite(
   const jefe = jefes[Math.floor(randomSeeded(seed + 2) * jefes.length)];
   const angulo = randomSeeded(seed) * Math.PI * 2;
   const distanciaKm = 5 + randomSeeded(seed + 1) * 1;
+  const dificultad = 5 + Math.floor(randomSeeded(seed + 3) * 6);
   return {
     id: `elite-${dia}-${jefe.id}`,
     tipo: "elite" as const,
@@ -62,7 +63,7 @@ export function generarMisionElite(
       (distanciaKm * Math.sin(angulo)) /
         (111 * Math.cos((baseLat * Math.PI) / 180)),
     nombre: `Desafío de élite: ${jefe.nombre}`,
-    dificultad: 3,
+    dificultad,
     recompensa: 1200,
     duracionObjetivoHoras: 1,
     desc: "Una amenaza ancestral ha despertado. Derrota al jefe para obtener una gran recompensa.",
@@ -88,9 +89,8 @@ export function generarMision(
     SUFIJOS[Math.floor(randSufijo * SUFIJOS.length)]
   }`;
   const desc = DESCRIPCIONES[Math.floor(randDesc * DESCRIPCIONES.length)];
-
-  // La ranura fija da variedad de duración sin perder una progresión clara.
-  const dificultad = configuracion.dificultad;
+const randDif = randomSeeded(seed + 8);
+  const dificultad = Math.floor(randDif * 6);
   const randOro = randomSeeded(seed + 5);
   const recompensa = Math.floor(
     configuracion.recompensaBase + randOro * configuracion.recompensaBase * 0.2

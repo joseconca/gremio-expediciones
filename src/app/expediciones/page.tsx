@@ -72,11 +72,18 @@ export default function ExpedicionesPage() {
     const diaActual = new Date().toISOString().slice(0, 10);
     const eliteYaCompletada = ultimaMisionElite?.slice(0, 10) === diaActual;
     if (!eliteYaCompletada) {
-      nuevasMisiones.push(generarMisionElite(baseCoords.lat, baseCoords.lng, diaActual));
+      nuevasMisiones.push(
+        generarMisionElite(baseCoords.lat, baseCoords.lng, diaActual)
+      );
     }
 
     setMisionesGeneradas(nuevasMisiones);
-  }, [baseCoords, misionesCompletadasEstaHora, horaMisiones, ultimaMisionElite]);
+  }, [
+    baseCoords,
+    misionesCompletadasEstaHora,
+    horaMisiones,
+    ultimaMisionElite,
+  ]);
 
   let distanciaKm = 0;
   let tiempoHoras = 0;
@@ -84,7 +91,7 @@ export default function ExpedicionesPage() {
 
   if (misionSeleccionada && personaje && baseCoords) {
     let velocidadKmh = 6 + (personaje.velocidad - 1) / 15;
-    
+
     // Ventaja de clase: El Explorador viaja más rápido
     if (personaje.clase === "Explorador") {
       velocidadKmh *= 1.25;
@@ -168,23 +175,23 @@ export default function ExpedicionesPage() {
 
       {/* Capa del Mapa */}
       {baseCoords && (
-      <div className="absolute inset-0 z-0">
-        <MissionMap
-          baseCoords={baseCoords}
-          misiones={misionesGeneradas}
-          basesAjenas={basesAjenas}
-          destinoExpedicion={
-            misionSeleccionada
-              ? { lat: misionSeleccionada.lat, lng: misionSeleccionada.lng }
-              : expedicionActiva?.destinoCoords || null
-          }
-              fechaSalida={expedicionActiva?.fechaSalida}
-              fechaLlegada={expedicionActiva?.fechaLlegada}
-          claseHeroe={personaje?.clase}
-          sexoHeroe={personaje?.sexo}
-          onSelectMission={setMisionSeleccionada}
-        />
-      </div>
+        <div className="absolute inset-0 z-0">
+          <MissionMap
+            baseCoords={baseCoords}
+            misiones={misionesGeneradas}
+            basesAjenas={basesAjenas}
+            destinoExpedicion={
+              misionSeleccionada
+                ? { lat: misionSeleccionada.lat, lng: misionSeleccionada.lng }
+                : expedicionActiva?.destinoCoords || null
+            }
+            fechaSalida={expedicionActiva?.fechaSalida}
+            fechaLlegada={expedicionActiva?.fechaLlegada}
+            claseHeroe={personaje?.clase}
+            sexoHeroe={personaje?.sexo}
+            onSelectMission={setMisionSeleccionada}
+          />
+        </div>
       )}
 
       {/* Panel inferior*/}
@@ -192,7 +199,13 @@ export default function ExpedicionesPage() {
         <div className="absolute bottom-0 left-0 w-full z-20 p-4 pointer-events-none">
           <div className="max-w-md mx-auto bg-slate-800 border-2 border-slate-600 rounded-t-2xl p-6 shadow-2xl pointer-events-auto transform transition-transform animate-in slide-in-from-bottom-10">
             <div className="flex justify-between items-start mb-2">
-              <h2 className={`text-2xl font-bold ${misionSeleccionada.tipo === "elite" ? "text-fuchsia-400" : "text-amber-500"}`}>
+              <h2
+                className={`text-2xl font-bold ${
+                  misionSeleccionada.tipo === "elite"
+                    ? "text-fuchsia-400"
+                    : "text-amber-500"
+                }`}
+              >
                 {misionSeleccionada.nombre}
               </h2>
               <button
@@ -214,9 +227,15 @@ export default function ExpedicionesPage() {
                 </span>
                 <span
                   className={`font-bold ${
-                    misionSeleccionada.dificultad >= 2
+                    misionSeleccionada.dificultad >= 8
+                      ? "text-fuchsia-500"
+                      : misionSeleccionada.dificultad >= 5
                       ? "text-red-500"
-                      : "text-green-500"
+                      : misionSeleccionada.dificultad >= 3
+                      ? "text-orange-500"
+                      : misionSeleccionada.dificultad > 0
+                      ? "text-green-500"
+                      : "text-slate-400"
                   }`}
                 >
                   {misionSeleccionada.dificultad}
@@ -239,7 +258,8 @@ export default function ExpedicionesPage() {
             </div>
             {sinVida && (
               <p className="mb-3 text-center text-sm font-bold text-red-400">
-                Tu aventurero no tiene vida suficiente. Cúralo en la Taberna antes de partir.
+                Tu aventurero no tiene vida suficiente. Cúralo en la Taberna
+                antes de partir.
               </p>
             )}
             {errorEnvio && !sinVida && (

@@ -223,7 +223,7 @@ const listaMonstruos = [
     ataque: 2,
     defensa: 8,
     botin: 6,
-    difMin: 0,
+    difMin: 2,
   },
   {
     id: "bandido",
@@ -232,7 +232,7 @@ const listaMonstruos = [
     ataque: 3,
     defensa: 9,
     botin: 10,
-    difMin: 1,
+    difMin: 2,
   },
   {
     id: "orco",
@@ -241,7 +241,7 @@ const listaMonstruos = [
     ataque: 4,
     defensa: 11,
     botin: 15,
-    difMin: 1,
+    difMin: 4,
   },
   {
     id: "esqueleto",
@@ -250,7 +250,7 @@ const listaMonstruos = [
     ataque: 4,
     defensa: 12,
     botin: 12,
-    difMin: 1,
+    difMin: 4,
   },
   {
     id: "arana",
@@ -259,7 +259,7 @@ const listaMonstruos = [
     ataque: 5,
     defensa: 10,
     botin: 18,
-    difMin: 2,
+    difMin: 5,
   },
   {
     id: "troll",
@@ -268,7 +268,7 @@ const listaMonstruos = [
     ataque: 6,
     defensa: 13,
     botin: 30,
-    difMin: 2,
+    difMin: 6,
   },
   {
     id: "minotauro",
@@ -277,7 +277,7 @@ const listaMonstruos = [
     ataque: 7,
     defensa: 14,
     botin: 40,
-    difMin: 2,
+    difMin: 7,
   },
 ];
 
