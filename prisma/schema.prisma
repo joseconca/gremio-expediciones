@@ -13,10 +13,13 @@ model Usuario {
   nombre           String    @unique
   password         String
   oro              Int       @default(10)
+  madera           Int       @default(0)
+  piedra           Int       @default(0)
+  metal            Int       @default(0)
   baseCoords       Json?
   ultimaMisionElite DateTime?
   
-  edificios Json      @default("{\"taberna\": 1, \"herreria\": 0, \"mercado\": 0}")
+  edificios Json      @default("{\"taberna\": 1, \"herreria\": 0, \"mercado\": 0, \"embajada\": 0}")
   
   // Relaciones
   personaje        Personaje?
