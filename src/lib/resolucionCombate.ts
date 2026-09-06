@@ -36,6 +36,7 @@ function simularRuta(
 ) {
   const log: string[] = [];
   let hpTemporal = personaje.hpActual;
+  let oroExtra = 0;
 
   // Hay un evento posible por cada 50km recorridos
   const tramos = Math.max(1, Math.floor(distanciaKm / 50));
@@ -44,7 +45,8 @@ function simularRuta(
     if (hpTemporal <= 0) break;
 
     const tirada = Math.random();
-    // A más distancia (tramos), más probabilidad de encuentros peligrosos
+
+    // 20% de probabilidad de emboscada de bandidos
     if (tirada < 0.2) {
       const dano = Math.floor(Math.random() * hpTemporal * 1.5);
       hpTemporal -= dano;
@@ -53,19 +55,23 @@ function simularRuta(
           personaje.nombre
         } recibe ${dano} de daño defendiendo la mercancía.`
       );
+
+      //Mal clima
     } else if (tirada < 0.4) {
       log.push(
         `🌧️ Lluvias torrenciales embarran el camino. El avance es lento y agotador.`
       );
-      hpTemporal -= 2;
+      hpTemporal -= 0.2 * hpTemporal;
     } else if (tirada > 0.9 && !esVuelta) {
+      const oroEncontrado = 5 * i;
+      oroExtra += oroEncontrado;
       log.push(
-        `✨ Encuentras los restos de una caravana antigua y recoges algunos materiales útiles.`
+        `✨ Encuentras los restos de una caravana antigua y recoges algunos materiales útiles. Obtienes ${oroEncontrado} de oro extra.`
       );
     }
   }
 
-  return { hpFinal: hpTemporal, logRuta: log };
+  return { hpFinal: hpTemporal, logRuta: log, oroExtra };
 }
 
 export function resolverComercio(
@@ -82,7 +88,7 @@ export function resolverComercio(
     `🗺️ ${
       personaje.nombre
     } carga el carruaje y parte hacia "${nombreBaseAliada}", a ${distanciaKm.toFixed(
-      4
+      2
     )}km de distancia.`
   );
 
@@ -93,6 +99,8 @@ export function resolverComercio(
   });
   logCombate.push(...resultadoIda.logRuta);
   hpTemporal = resultadoIda.hpFinal;
+
+  const oroDeEventos = resultadoIda.oroExtra;
 
   if (hpTemporal <= 0) {
     return {
@@ -119,47 +127,15 @@ export function resolverComercio(
   );
 
   // --- 3. NEGOCIACIÓN Y CÁLCULO DE ORO ---
-  // --- 3. ENCUENTRO OPCIONAL DE CAMINO ---
-  if (Math.random() < Math.min(0.35, distanciaKm / 250)) {
-    const danoEncuentro = Math.max(
-      1,
-      d6() + Math.max(0, 1 - personaje.defensa / 10)
-    );
-    hpTemporal -= danoEncuentro;
-    logCombate.push(
-      `👾 Un grupo de bandidos intenta asaltar la caravana, pero ${personaje.nombre} logra abrirse paso.`
-    );
-    logCombate.push(
-      `🩸 El incidente causa ${danoEncuentro} de daño durante la huida.`
-    );
-  }
-
-  if (hpTemporal <= 0) {
-    return {
-      exito: false,
-      hpPerdido: personaje.hpActual - 1,
-      oroGanado: 0,
-      experienciaGanada: 0,
-      enemigo: "Bandidos del camino",
-      rondas: 0,
-      poderHeroe: personaje.ataque + personaje.defensa,
-      tipo: "comercio",
-      logCombate: [
-        ...logCombate,
-        `💀 ${personaje.nombre} pierde la carga pero logra volver al camino.`,
-      ],
-    };
-  }
-
-  // --- 4. NEGOCIACIÓN Y CÁLCULO DE ORO ---
-  const oroBase = Math.floor(distanciaKm * 1.5) + 10;
+  const multiplicadorNivel = 1 + ((personaje.nivel || 1) * 0.1);
+  const oroBase = Math.floor((distanciaKm * 1.5 + 10) * multiplicadorNivel);
   const topeAfinidad = 0.1 + 0.15 * nivelMercado;
   const bonusAfinidad = Math.min(intercambiosPrevios * 0.01, topeAfinidad);
   //garantizar mínimo por afinidad
   const extraAfinidad =
     bonusAfinidad > 0 ? Math.max(1, Math.floor(oroBase * bonusAfinidad)) : 0;
 
-  let oroFinal = oroBase + extraAfinidad;
+  let oroFinal = oroBase + extraAfinidad + oroDeEventos;
   if (personaje.clase === "Comerciante" || personaje.clase === "Mercader")
     oroFinal = Math.floor(oroFinal * 1.25); // Bonus de clase
 
@@ -546,6 +522,7 @@ export function resolverExpedicion(
 
   if (hpTemporal > 0) {
     const variacion = 0.9 + Math.random() * 0.2;
+    //const capacidadCarruaje = personaje.capacidadCarruaje;
     botinObtenido = Math.floor(mision.recompensa * variacion + recompensaExtra);
 
     if (personaje.clase === "Comerciante" || personaje.clase === "Mercader")
