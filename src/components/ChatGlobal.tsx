@@ -176,7 +176,7 @@ export default function ChatGlobal({
   }
 
   return (
-    <section className="fixed inset-x-0 bottom-0 z-40 pointer-events-none">
+    <section className="fixed inset-x-0 bottom-0 z-40">
       <div className="pointer-events-auto w-full border-t border-slate-600 bg-slate-900/95 shadow-2xl backdrop-blur">
         <div
           className={`flex w-full items-center gap-2 px-4 ${
