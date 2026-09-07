@@ -135,11 +135,13 @@ export default function ExpedicionesPage() {
         setViajeIniciado(true);
 
         iniciarExpedicion({
-          idMision: misionSeleccionada.id,
+          misionId: misionSeleccionada.id,
           nombre: misionSeleccionada.nombre,
           recompensa: misionSeleccionada.recompensa,
+          fechaSalida: data.fechaSalida,
           fechaLlegada: data.fechaLlegada,
           dificultad: misionSeleccionada.dificultad,
+          fase: "en_viaje",
           destinoCoords: {
             lat: misionSeleccionada.lat,
             lng: misionSeleccionada.lng,

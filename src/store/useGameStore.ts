@@ -60,13 +60,13 @@ export interface Edificio {
 }
 
 export interface ExpedicionActiva {
-  idMision: string;
+  misionId: string;
   nombre: string;
   recompensa: number;
   fechaLlegada: string;
   fechaSalida?: string;
   dificultad: number;
-  fase?: string;
+  fase: "en_viaje" | "regresando";
   destinoCoords: { lat: number; lng: number };
 }
 
