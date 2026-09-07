@@ -5,9 +5,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
-import {
-  ResultadoCombate,
-} from "@/lib/resolucionCombate";
+import { ResultadoCombate } from "@/lib/resolucionCombate";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 
 const MissionMap = dynamic(() => import("@/components/MissionMap"), {
@@ -20,9 +18,18 @@ const MissionMap = dynamic(() => import("@/components/MissionMap"), {
 });
 
 const UI_EDIFICIOS: Record<string, { color: string; ruta: string }> = {
-  taberna: { color: "bg-gradient-to-b from-emerald-700 to-green-800", ruta: "/base/taberna" },
-  herreria: { color: "bg-gradient-to-b from-emerald-700 to-green-800", ruta: "/base/herreria" },
-  mercado: { color: "bg-gradient-to-b from-emerald-700 to-green-800", ruta: "/base/mercado" },
+  taberna: {
+    color: "bg-gradient-to-b from-emerald-700 to-green-800",
+    ruta: "/base/taberna",
+  },
+  herreria: {
+    color: "bg-gradient-to-b from-emerald-700 to-green-800",
+    ruta: "/base/herreria",
+  },
+  mercado: {
+    color: "bg-gradient-to-b from-emerald-700 to-green-800",
+    ruta: "/base/mercado",
+  },
 };
 
 const getColorPorLinea = (linea: string) => {
@@ -63,38 +70,92 @@ function EscenaCombate({ reporte }: { reporte: ResultadoCombate }) {
   const escenaSprite = esComercio
     ? "/sprites/buildings/camp.png"
     : hayCombate
-      ? `/sprites/enemies/${reporte.enemigoId || "goblin"}.png`
-      : "/sprites/tesoro.png";
+    ? `/sprites/enemies/${reporte.enemigoId || "goblin"}.png`
+    : "/sprites/tesoro.png";
   const escenaAlt = esComercio
     ? "Base aliada"
     : hayCombate
-      ? reporte.enemigo || "Enemigo"
-      : "Tesoro encontrado";
-  const vidaEnemigo = esComercio ? 100 : hayCombate ? (reporte.exito ? 0 : 28) : 100;
+    ? reporte.enemigo || "Enemigo"
+    : "Tesoro encontrado";
+  const vidaEnemigo = esComercio
+    ? 100
+    : hayCombate
+    ? reporte.exito
+      ? 0
+      : 28
+    : 100;
 
   return (
     <div className="combat-scene border-b border-slate-700 bg-[radial-gradient(circle_at_50%_35%,#334155,#0f172a_72%)] p-5">
       <div className="mb-3 flex items-center justify-between text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
-        <span>{reporte.tipo === "comercio" ? "Ruta comercial" : reporte.enemigo || "Encuentro"}</span>
-        <span>{reporte.tipo === "comercio" ? "Intercambio" : `${reporte.rondas || 0} rondas`}</span>
+        <span>
+          {reporte.tipo === "comercio"
+            ? "Ruta comercial"
+            : reporte.enemigo || "Encuentro"}
+        </span>
+        <span>
+          {reporte.tipo === "comercio"
+            ? "Intercambio"
+            : `${reporte.rondas || 0} rondas`}
+        </span>
       </div>
       <div className="relative flex h-44 items-end justify-between overflow-hidden rounded-lg border border-slate-600/80 bg-slate-950/50 px-8 sm:px-20">
         <div className="combat-hero relative aspect-square w-28 sm:w-36">
-          <Image src={obtenerSpriteHeroe(personaje?.clase, personaje?.sexo)} alt="Héroe" fill sizes="144px" priority className="object-contain [image-rendering:pixelated]" />
+          <Image
+            src={obtenerSpriteHeroe(personaje?.clase, personaje?.sexo)}
+            alt="Héroe"
+            fill
+            sizes="144px"
+            priority
+            className="object-contain [image-rendering:pixelated]"
+          />
         </div>
-        <div className="combat-impact" aria-hidden="true">✦</div>
-        <div className={`combat-enemy relative aspect-square w-28 sm:w-36 ${!hayCombate ? "combat-treasure" : ""}`}>
-          <Image src={escenaSprite} alt={escenaAlt} fill sizes="144px" priority className="object-contain [image-rendering:pixelated]" />
+        <div className="combat-impact" aria-hidden="true">
+          ✦
+        </div>
+        <div
+          className={`combat-enemy relative aspect-square w-28 sm:w-36 ${
+            !hayCombate ? "combat-treasure" : ""
+          }`}
+        >
+          <Image
+            src={escenaSprite}
+            alt={escenaAlt}
+            fill
+            sizes="144px"
+            priority
+            className="object-contain [image-rendering:pixelated]"
+          />
         </div>
       </div>
       <div className="mt-3 grid grid-cols-2 gap-8">
         <div>
-          <div className="mb-1 flex justify-between text-xs font-bold text-blue-200"><span>Héroe</span><span>{vidaHeroe}%</span></div>
-          <div className="h-2 rounded-full bg-slate-800"><div className="h-2 rounded-full bg-blue-500" style={{ width: `${vidaHeroe}%` }} /></div>
+          <div className="mb-1 flex justify-between text-xs font-bold text-blue-200">
+            <span>Héroe</span>
+            <span>{vidaHeroe}%</span>
+          </div>
+          <div className="h-2 rounded-full bg-slate-800">
+            <div
+              className="h-2 rounded-full bg-blue-500"
+              style={{ width: `${vidaHeroe}%` }}
+            />
+          </div>
         </div>
         <div>
-          <div className="mb-1 flex justify-between text-xs font-bold text-red-200"><span>{esComercio ? "Base aliada" : hayCombate ? "Enemigo" : "Hallazgo"}</span><span>{vidaEnemigo}%</span></div>
-          <div className="h-2 rounded-full bg-slate-800"><div className={`h-2 rounded-full ${esComercio || !hayCombate ? "bg-emerald-500" : "bg-red-500"}`} style={{ width: `${vidaEnemigo}%` }} /></div>
+          <div className="mb-1 flex justify-between text-xs font-bold text-red-200">
+            <span>
+              {esComercio ? "Base aliada" : hayCombate ? "Enemigo" : "Hallazgo"}
+            </span>
+            <span>{vidaEnemigo}%</span>
+          </div>
+          <div className="h-2 rounded-full bg-slate-800">
+            <div
+              className={`h-2 rounded-full ${
+                esComercio || !hayCombate ? "bg-emerald-500" : "bg-red-500"
+              }`}
+              style={{ width: `${vidaEnemigo}%` }}
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -115,7 +176,11 @@ interface CaravanaEntrante {
   origenCoords: { lat: number; lng: number } | null;
 }
 
-export function PanelCaravanasEntrantes({ caravanas }: { caravanas: CaravanaEntrante[] }) {
+export function PanelCaravanasEntrantes({
+  caravanas,
+}: {
+  caravanas: CaravanaEntrante[];
+}) {
   const [ahora, setAhora] = useState(0);
   const [expandido, setExpandido] = useState(false);
 
@@ -144,69 +209,81 @@ export function PanelCaravanasEntrantes({ caravanas }: { caravanas: CaravanaEntr
           <span className="rounded-full border border-emerald-800 bg-emerald-900/50 px-3 py-1 text-xs font-bold text-emerald-400">
             {caravanas.length} en camino
           </span>
-          <span className="text-lg leading-none text-slate-500 transition-colors group-hover:text-amber-400" aria-hidden="true">
-              {expandido ? "⌃" : "⌄"}
+          <span
+            className="text-lg leading-none text-slate-500 transition-colors group-hover:text-amber-400"
+            aria-hidden="true"
+          >
+            {expandido ? "⌃" : "⌄"}
           </span>
         </span>
       </button>
 
-      {expandido && <div className="flex gap-3 overflow-x-auto bg-[#0a0f1a] p-3">
-        {caravanas.map((caravana) => {
-          const salida = new Date(caravana.fechaSalida).getTime();
-          const llegada = new Date(caravana.fechaLlegada).getTime();
-          const duracion = Math.max(1, llegada - salida);
-          const progreso = Math.max(0, Math.min(100, ((ahora - salida) / duracion) * 100));
-          const segundos = Math.max(0, Math.floor((llegada - ahora) / 1000));
-          const minutos = Math.floor(segundos / 60);
-          const restoSegundos = segundos % 60;
+      {expandido && (
+        <div className="flex gap-3 overflow-x-auto bg-[#0a0f1a] p-3">
+          {caravanas.map((caravana) => {
+            const salida = new Date(caravana.fechaSalida).getTime();
+            const llegada = new Date(caravana.fechaLlegada).getTime();
+            const duracion = Math.max(1, llegada - salida);
+            const progreso = Math.max(
+              0,
+              Math.min(100, ((ahora - salida) / duracion) * 100)
+            );
+            const segundos = Math.max(0, Math.floor((llegada - ahora) / 1000));
+            const minutos = Math.floor(segundos / 60);
+            const restoSegundos = segundos % 60;
 
-          return (
-            <div
-              key={caravana.id}
-              className="relative min-w-[290px] flex-1 overflow-hidden rounded-lg border border-slate-700 bg-slate-800 p-2"
-            >
-            <div className="relative z-10 flex items-center gap-3">
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                  Desde
-                </p>
-                <p className="flex items-center gap-1 text-sm font-bold text-white">
-                  🛡️ <span className="max-w-[130px] truncate">{caravana.gremioOrigen}</span>
-                </p>
-                <p className="max-w-[170px] truncate text-[10px] text-slate-400">
-                  {caravana.nombreAventurero} en ruta
-                </p>
-              </div>
-              <div className="min-w-[80px] flex-1">
-                <div className="h-2 w-full rounded-full bg-slate-950 shadow-inner">
-                  <div
-                    className="h-2 rounded-full bg-blue-500 transition-all duration-1000 ease-linear shadow-[0_0_10px_rgba(59,130,246,0.8)]"
-                    style={{ width: `${progreso}%` }}
-                  />
+            return (
+              <div
+                key={caravana.id}
+                className="relative min-w-[290px] flex-1 overflow-hidden rounded-lg border border-slate-700 bg-slate-800 p-2"
+              >
+                <div className="relative z-10 flex items-center gap-3">
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                      Desde
+                    </p>
+                    <p className="flex items-center gap-1 text-sm font-bold text-white">
+                      🛡️{" "}
+                      <span className="max-w-[130px] truncate">
+                        {caravana.gremioOrigen}
+                      </span>
+                    </p>
+                    <p className="max-w-[170px] truncate text-[10px] text-slate-400">
+                      {caravana.nombreAventurero} en ruta
+                    </p>
+                  </div>
+                  <div className="min-w-[80px] flex-1">
+                    <div className="h-2 w-full rounded-full bg-slate-950 shadow-inner">
+                      <div
+                        className="h-2 rounded-full bg-blue-500 transition-all duration-1000 ease-linear shadow-[0_0_10px_rgba(59,130,246,0.8)]"
+                        style={{ width: `${progreso}%` }}
+                      />
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                      Llega en
+                    </p>
+                    <p className="whitespace-nowrap text-lg font-mono font-bold text-amber-400">
+                      ⏳ {minutos.toString().padStart(2, "0")}:
+                      {restoSegundos.toString().padStart(2, "0")}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="text-right">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                  Llega en
-                </p>
-                <p className="whitespace-nowrap text-lg font-mono font-bold text-amber-400">
-                  ⏳ {minutos.toString().padStart(2, "0")}:{restoSegundos.toString().padStart(2, "0")}
-                </p>
-              </div>
-            </div>
 
-            {/* Detalles extra */}
-            <div className="relative z-10 mt-1 flex justify-between text-[10px] font-medium text-slate-500">
-              <span>Progreso: {Math.round(progreso)}%</span>
-              <span className="text-blue-300">Ruta comercial</span>
-            </div>
+                {/* Detalles extra */}
+                <div className="relative z-10 mt-1 flex justify-between text-[10px] font-medium text-slate-500">
+                  <span>Progreso: {Math.round(progreso)}%</span>
+                  <span className="text-blue-300">Ruta comercial</span>
+                </div>
 
-            {/* Decoración de fondo */}
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-blue-900/20 to-transparent pointer-events-none" />
-            </div>
-          );
-        })}
-      </div>}
+                {/* Decoración de fondo */}
+                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-blue-900/20 to-transparent pointer-events-none" />
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
@@ -219,6 +296,7 @@ export default function BasePage() {
     expedicionActiva,
     baseCoords,
     completarExpedicion,
+    cancelarExpedicion,
     edificios,
     obtenerCosteMejora,
     mejorarEdificio,
@@ -229,8 +307,14 @@ export default function BasePage() {
   const [reporte, setReporte] = useState<ResultadoCombate | null>(null);
 
   const [modoConstruccion, setModoConstruccion] = useState(false);
+
   const [expedicionExpandida, setExpedicionExpandida] = useState(false);
-  const [caravanasEntrantes, setCaravanasEntrantes] = useState<CaravanaEntrante[]>([]);
+  const [confirmarRegreso, setConfirmarRegreso] = useState(false);
+  const [cancelandoExpedicion, setCancelandoExpedicion] = useState(false);
+
+  const [caravanasEntrantes, setCaravanasEntrantes] = useState<
+    CaravanaEntrante[]
+  >([]);
 
   useEffect(() => {
     fetch("/api/jugador")
@@ -265,6 +349,21 @@ export default function BasePage() {
   const handleCompletarMision = async () => {
     const resultado = await completarExpedicion();
     if (resultado) setReporte(resultado);
+  };
+
+  const handleCancelarExpedicion = async () => {
+    setCancelandoExpedicion(true);
+
+    try {
+      const exito = await cancelarExpedicion();
+
+      if (exito) {
+        setConfirmarRegreso(false);
+        setExpedicionExpandida(true);
+      }
+    } finally {
+      setCancelandoExpedicion(false);
+    }
   };
 
   const handleCerrarReporte = () => {
@@ -310,16 +409,36 @@ export default function BasePage() {
             </div>
             <div className="shrink-0 grid grid-cols-3 gap-2 border-b border-slate-700 bg-slate-900 p-4">
               <div className="rounded-lg border border-red-900/60 bg-red-950/30 p-3 text-center">
-                <span className="block text-[10px] uppercase tracking-wider text-red-300">{reporte.tipo === "comercio" ? "Ruta comercial" : "Enemigo"}</span>
-                  <span className="block truncate font-bold text-white">{reporte.tipo === "comercio" ? "Intercambio" : reporte.enemigo || "Encuentro"}</span>
+                <span className="block text-[10px] uppercase tracking-wider text-red-300">
+                  {reporte.tipo === "comercio" ? "Ruta comercial" : "Enemigo"}
+                </span>
+                <span className="block truncate font-bold text-white">
+                  {reporte.tipo === "comercio"
+                    ? "Intercambio"
+                    : reporte.enemigo || "Encuentro"}
+                </span>
               </div>
               <div className="rounded-lg border border-blue-900/60 bg-blue-950/30 p-3 text-center">
-                <span className="block text-[10px] uppercase tracking-wider text-blue-300">{reporte.tipo === "comercio" ? "Afinidad" : "Poder"}</span>
-                <span className="block font-black text-white">{reporte.tipo === "comercio" ? "Mejorada" : reporte.poderHeroe || "-"}</span>
+                <span className="block text-[10px] uppercase tracking-wider text-blue-300">
+                  {reporte.tipo === "comercio" ? "Afinidad" : "Poder"}
+                </span>
+                <span className="block font-black text-white">
+                  {reporte.tipo === "comercio"
+                    ? "Mejorada"
+                    : reporte.poderHeroe || "-"}
+                </span>
               </div>
               <div className="rounded-lg border border-amber-900/60 bg-amber-950/30 p-3 text-center">
-                <span className="block text-[10px] uppercase tracking-wider text-amber-300">{reporte.tipo === "comercio" ? "Encuentros" : "Rondas"}</span>
-                <span className="block font-black text-white">{reporte.tipo === "comercio" ? (reporte.enemigo ? "1" : "0") : reporte.rondas ?? "-"}</span>
+                <span className="block text-[10px] uppercase tracking-wider text-amber-300">
+                  {reporte.tipo === "comercio" ? "Encuentros" : "Rondas"}
+                </span>
+                <span className="block font-black text-white">
+                  {reporte.tipo === "comercio"
+                    ? reporte.enemigo
+                      ? "1"
+                      : "0"
+                    : reporte.rondas ?? "-"}
+                </span>
               </div>
             </div>
             <div className="shrink-0 p-6 bg-[#0a0f1a] font-mono text-sm sm:text-base space-y-3">
@@ -351,7 +470,9 @@ export default function BasePage() {
                 </div>
                 <div className="bg-slate-900 p-4 rounded-lg text-center border border-slate-700 shadow-inner">
                   <span className="block text-xs text-slate-400 uppercase tracking-widest mb-1">
-                    {expedicionActiva?.fase === "regresando" ? "Botín asegurado" : "Botín conseguido"}
+                    {expedicionActiva?.fase === "regresando"
+                      ? "Botín asegurado"
+                      : "Botín conseguido"}
                   </span>
                   <span className="text-2xl font-black text-amber-400">
                     +{reporte.oroGanado} 🪙
@@ -387,6 +508,46 @@ export default function BasePage() {
         </div>
       )}
 
+      {confirmarRegreso && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-sm rounded-xl border-2 border-red-500/30 bg-slate-900 p-5 shadow-2xl">
+            <h2 className="mb-3 text-lg font-bold text-red-300">
+              ↩️ ¿Regresar de inmediato?
+            </h2>
+
+            <p className="text-sm leading-6 text-slate-300">
+              Hacer señales de humo para que inicie ya el regreso.
+            </p>
+
+            <p className="mt-3 text-xs leading-5 text-slate-500">
+              El aventurero regresará sin recompensas y conservará únicamente 1
+              HP. El viaje de vuelta durará lo mismo que el tiempo que haya
+              recorrido hasta ahora.
+            </p>
+
+            <div className="mt-5 flex gap-2">
+              <button
+                type="button"
+                onClick={() => setConfirmarRegreso(false)}
+                disabled={cancelandoExpedicion}
+                className="flex-1 rounded-lg border border-slate-600 bg-slate-800 px-4 py-2.5 font-bold text-slate-300 transition hover:bg-slate-700 hover:text-white disabled:opacity-50"
+              >
+                Cancelar
+              </button>
+
+              <button
+                type="button"
+                onClick={() => void handleCancelarExpedicion()}
+                disabled={cancelandoExpedicion}
+                className="flex-1 rounded-lg bg-red-900 px-4 py-2.5 font-bold text-red-100 transition hover:bg-red-800 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {cancelandoExpedicion ? "Preparando regreso..." : "Ok"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <PanelCaravanasEntrantes caravanas={caravanasEntrantes} />
 
       <div className="max-w-4xl mx-auto">
@@ -415,7 +576,9 @@ export default function BasePage() {
               <div className="relative rounded-lg border border-slate-700 bg-slate-900/50 p-4 pr-12 transition-colors hover:border-amber-500/50">
                 <div
                   className="flex cursor-pointer flex-col items-center justify-between gap-4 md:flex-row"
-                  onClick={() => setExpedicionExpandida((expandida) => !expandida)}
+                  onClick={() =>
+                    setExpedicionExpandida((expandida) => !expandida)
+                  }
                   onKeyDown={(event) => {
                     if (event.key === "Enter" || event.key === " ") {
                       event.preventDefault();
@@ -426,44 +589,51 @@ export default function BasePage() {
                   tabIndex={0}
                   aria-expanded={expedicionExpandida}
                 >
-                <div className="flex min-w-0 items-center gap-3">
-                  <p className="text-amber-400 font-bold">
-                    {expedicionActiva.nombre}
-                  </p>
-                  <p className="text-slate-400 text-sm">
-                    {listoParaResolver
-                      ? expedicionActiva.fase === "regresando"
-                        ? `¡${personaje.nombre} ha regresado al gremio!`
-                        : `¡${personaje.nombre} ha llegado a su destino!`
-                      : expedicionActiva.fase === "regresando"
-                        ? "Regresando con el botín asegurado..."
-                        : "Aventurero en camino..."}
-                  </p>
-                </div>
-                  
-
-                {listoParaResolver ? (
-                  <button
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      void handleCompletarMision();
-                    }}
-                    className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-6 rounded-lg animate-pulse"
-                  >
-                    {expedicionActiva.fase === "regresando" ? "🏠 Recibir al aventurero" : "⚔️ Resolver llegada"}
-                  </button>
-                ) : (
-                  <div className="text-center font-mono text-2xl text-slate-300 bg-slate-950 px-4 py-2 rounded-lg border border-slate-800">
-                    ⏳ {formatoTiempo(tiempoRestante)}
+                  <div className="flex min-w-0 items-center gap-3">
+                    <p className="text-amber-400 font-bold">
+                      {expedicionActiva.nombre}
+                    </p>
+                    <p className="text-slate-400 text-sm">
+                      {listoParaResolver
+                        ? expedicionActiva.fase === "regresando"
+                          ? `¡${personaje.nombre} ha regresado al gremio!`
+                          : `¡${personaje.nombre} ha llegado a su destino!`
+                        : expedicionActiva.fase === "regresando"
+                        ? "Regresando..."
+                        : "Aventurero de camino..."}
+                    </p>
                   </div>
-                )}
-                <span className="absolute right-4 top-4 text-lg leading-none text-slate-500" aria-hidden="true">
-                  {expedicionExpandida ? "⌃" : "⌄"}
-                </span>
+
+                  {listoParaResolver ? (
+                    <button
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        void handleCompletarMision();
+                      }}
+                      className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-6 rounded-lg animate-pulse"
+                    >
+                      {expedicionActiva.fase === "regresando"
+                        ? "🏠 Recibir al aventurero"
+                        : "⚔️ Resolver llegada"}
+                    </button>
+                  ) : (
+                    <div className="text-center font-mono text-2xl text-slate-300 bg-slate-950 px-4 py-2 rounded-lg border border-slate-800">
+                      ⏳ {formatoTiempo(tiempoRestante)}
+                    </div>
+                  )}
+                  <span
+                    className="absolute right-4 top-4 text-lg leading-none text-slate-500"
+                    aria-hidden="true"
+                  >
+                    {expedicionExpandida ? "⌃" : "⌄"}
+                  </span>
                 </div>
 
                 {expedicionExpandida && (
-                  <div className="mt-4 overflow-hidden rounded-lg border border-slate-700 bg-slate-900" onClick={(event) => event.stopPropagation()}>
+                  <div
+                    className="mt-4 overflow-hidden rounded-lg border border-slate-700 bg-slate-900"
+                    onClick={(event) => event.stopPropagation()}
+                  >
                     <div className="h-[360px] w-full">
                       <MissionMap
                         baseCoords={baseCoords!}
@@ -488,6 +658,17 @@ export default function BasePage() {
                         onSelectMission={() => undefined}
                       />
                     </div>
+                    {expedicionActiva.fase === "en_viaje" && (
+                      <div className="border-t border-slate-700 bg-slate-950/50 p-3">
+                        <button
+                          type="button"
+                          onClick={() => setConfirmarRegreso(true)}
+                          className="w-full rounded-lg border border-red-900/60 bg-red-950/40 px-4 py-2.5 text-sm font-bold text-red-300 transition hover:bg-red-900/50 hover:text-red-200"
+                        >
+                          ↩️ Regresar de inmediato
+                        </button>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -498,7 +679,6 @@ export default function BasePage() {
                 El héroe necesita recuperarse en la Taberna.
               </div>
             )}
-
           </div>
         )}
 
@@ -595,7 +775,13 @@ export default function BasePage() {
                       : "bg-slate-900/80 border-amber-500/30"
                   }`}
                 >
-                  <div className={`h-24 w-full rounded-md mb-3 border border-slate-800 flex items-center justify-center relative overflow-hidden ${bloqueado ? "bg-amber-900" : "bg-gradient-to-b from-emerald-700 to-green-800"}`}>
+                  <div
+                    className={`h-24 w-full rounded-md mb-3 border border-slate-800 flex items-center justify-center relative overflow-hidden ${
+                      bloqueado
+                        ? "bg-amber-900"
+                        : "bg-gradient-to-b from-emerald-700 to-green-800"
+                    }`}
+                  >
                     {bloqueado ? (
                       <span className="text-xs text-amber-200/70 font-mono text-center">
                         [Terreno Baldío]
