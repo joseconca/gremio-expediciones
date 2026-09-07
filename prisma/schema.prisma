@@ -55,13 +55,88 @@ model Personaje {
   hpMaximo          Int
   regeneracionDeVida Int
   ultimaRegeneracion DateTime @default(now())
-  estado            String   @default("ocioso") // ocioso, en_mision, descansando
+  estado            String   @default("ocioso")
   ataque            Int
   defensa           Int
   velocidad         Int
   capacidadCarruaje Int
   nivel             Int      @default(1)
   experiencia       Int      @default(0)
+  inventario        Inventario?
+  habilidades       HabilidadAprendida[]
+  equipoEquipado    EquipoEquipado?
+}
+
+model Inventario {
+  id          String   @id @default(uuid())
+  personajeId String   @unique
+  personaje   Personaje @relation(fields: [personajeId], references: [id], onDelete: Cascade)
+
+  objetos     InventarioObjeto[]
+}
+
+model Objeto {
+  id          String   @id @default(uuid())
+  nombre      String
+  tipo        String
+  descripcion String
+  rareza      String   @default("comun")
+  precio      Int      @default(0)
+
+  inventarios InventarioObjeto[]
+  armasEquipadas    EquipoEquipado[] @relation("ArmaEquipadas")
+  armadurasEquipadas EquipoEquipado[] @relation("ArmaduraEquipadas")
+  accesoriosEquipados EquipoEquipado[] @relation("AccesorioEquipadas")
+}
+
+model InventarioObjeto {
+  id           String   @id @default(uuid())
+  inventarioId String
+  objetoId     String
+  cantidad     Int      @default(0)
+
+  inventario Inventario @relation(fields: [inventarioId], references: [id], onDelete: Cascade)
+  objeto     Objeto     @relation(fields: [objetoId], references: [id], onDelete: Cascade)
+
+  @@unique([inventarioId, objetoId])
+}
+
+model EquipoEquipado {
+  id          String   @id @default(uuid())
+  personajeId String   @unique
+  personaje   Personaje @relation(fields: [personajeId], references: [id], onDelete: Cascade)
+
+  armaId      String?
+  armaduraId  String?
+  accesorioId String?
+
+  arma        Objeto? @relation("ArmaEquipadas", fields: [armaId], references: [id])
+  armadura    Objeto? @relation("ArmaduraEquipadas", fields: [armaduraId], references: [id])
+  accesorio   Objeto? @relation("AccesorioEquipadas", fields: [accesorioId], references: [id])
+}
+
+model Habilidad {
+  id          String   @id @default(uuid())
+  nombre      String
+  descripcion String
+  tipo        String
+  rareza      String   @default("comun")
+  precio      Int      @default(0)
+
+  aprendidas HabilidadAprendida[]
+}
+
+model HabilidadAprendida {
+  id           String   @id @default(uuid())
+  personajeId  String
+  habilidadId  String
+  slot         String?
+
+  personaje  Personaje @relation(fields: [personajeId], references: [id], onDelete: Cascade)
+  habilidad  Habilidad @relation(fields: [habilidadId], references: [id], onDelete: Cascade)
+
+  @@unique([personajeId, habilidadId])
+    @@unique([personajeId, slot])
 }
 
 model ExpedicionActiva {
