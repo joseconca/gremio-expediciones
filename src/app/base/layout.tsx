@@ -71,7 +71,7 @@ export default function BaseLayout({
 
     const intervaloSync = setInterval(() => {
       cargarJugador();
-    }, 10000);
+    }, 120000);
 
     return () => {
       clearInterval(intervaloRegen);

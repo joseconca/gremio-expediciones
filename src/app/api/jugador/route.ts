@@ -22,8 +22,18 @@ export async function GET() {
       include: includeGameData,
     });
     if (!usuario) {
-      return NextResponse.json({ error: "Usuario no encontrado." }, { status: 404 });
+      return NextResponse.json(
+        { error: "Usuario no encontrado." },
+        { status: 404 }
+      );
     }
+
+    await prisma.usuario.update({
+      where: { id: usuario.id },
+      data: {
+        ultimaActividad: new Date(),
+      },
+    });
 
     if (usuario.personaje) {
       usuario.personaje = await sincronizarRegeneracion(usuario.personaje);
@@ -40,24 +50,51 @@ export async function GET() {
       },
     });
     const origenes = await prisma.usuario.findMany({
-      where: { id: { in: expedicionesEntrantes.map((expedicion) => expedicion.usuarioId) } },
+      where: {
+        id: {
+          in: expedicionesEntrantes.map((expedicion) => expedicion.usuarioId),
+        },
+      },
       select: {
         id: true,
         nombre: true,
         baseCoords: true,
-        personaje: { select: { nombre: true, clase: true, sexo: true, hpActual: true, hpMaximo: true } },
+        personaje: {
+          select: {
+            nombre: true,
+            clase: true,
+            sexo: true,
+            hpActual: true,
+            hpMaximo: true,
+          },
+        },
       },
     });
-    const nombresOrigen = new Map(origenes.map((origen) => [origen.id, origen.nombre]));
+    const nombresOrigen = new Map(
+      origenes.map((origen) => [origen.id, origen.nombre])
+    );
     const caravanasEntrantes = expedicionesEntrantes.map((expedicion) => ({
       id: expedicion.id,
-      gremioOrigen: nombresOrigen.get(expedicion.usuarioId) || "Gremio desconocido",
-      origenCoords: origenes.find((origen) => origen.id === expedicion.usuarioId)?.baseCoords,
-      nombreAventurero: origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje?.nombre || "Aventurero",
-      claseAventurero: origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje?.clase,
-      sexoAventurero: origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje?.sexo,
-      hpAventurero: origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje?.hpActual || 0,
-      hpMaximoAventurero: origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje?.hpMaximo || 100,
+      gremioOrigen:
+        nombresOrigen.get(expedicion.usuarioId) || "Gremio desconocido",
+      origenCoords: origenes.find(
+        (origen) => origen.id === expedicion.usuarioId
+      )?.baseCoords,
+      nombreAventurero:
+        origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje
+          ?.nombre || "Aventurero",
+      claseAventurero: origenes.find(
+        (origen) => origen.id === expedicion.usuarioId
+      )?.personaje?.clase,
+      sexoAventurero: origenes.find(
+        (origen) => origen.id === expedicion.usuarioId
+      )?.personaje?.sexo,
+      hpAventurero:
+        origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje
+          ?.hpActual || 0,
+      hpMaximoAventurero:
+        origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje
+          ?.hpMaximo || 100,
       fechaSalida: expedicion.fechaSalida,
       fechaLlegada: expedicion.fechaLlegada,
       dificultad: expedicion.dificultad,
