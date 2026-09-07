@@ -149,6 +149,7 @@ model ExpedicionActiva {
   fase       String
 
   misionId   String
+  enemigoId  String?
   nombre     String
   recompensa Int
   dificultad Int
