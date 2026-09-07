@@ -57,12 +57,13 @@ export function generarMisionElite(
   return {
     id: `elite-${dia}-${jefe.id}`,
     tipo: "elite" as const,
+    enemigoId: jefe.id,
     lat: baseLat + (distanciaKm * Math.cos(angulo)) / 111,
     lng:
       baseLng +
       (distanciaKm * Math.sin(angulo)) /
         (111 * Math.cos((baseLat * Math.PI) / 180)),
-    nombre: `Desafío de élite: ${jefe.nombre}`,
+    nombre: jefe.nombre,
     dificultad,
     recompensa: 1200,
     duracionObjetivoHoras: 1,
@@ -107,6 +108,7 @@ const randDif = randomSeeded(seed + 8);
 
   return {
     id: `mision-${horaActual}-${indice}`,
+    tipo: "normal" as const,
     lat: baseLat + randLat,
     lng: baseLng + randLng,
     nombre,

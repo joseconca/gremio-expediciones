@@ -31,7 +31,8 @@ interface MisionCombate {
   nombre: string;
   dificultad: number;
   recompensa: number;
-  tipo?: string;
+  tipo?: TipoMision;
+  enemigoId?: string;
 }
 
 function simularRuta(
@@ -298,15 +299,17 @@ export function resolverExpedicion(
   }
 
   // COMBATE
-  const jefeId = mision.id?.split("_").at(-1);
   let monstruosPosibles: DefinicionEnemigo[];
-  if (mision.tipo === "elite") {
-    monstruosPosibles = JEFES_ELITE.filter((jefe) => jefe.id === jefeId);
+  if (mision.tipo === "elite" && mision.enemigoId) {
+    monstruosPosibles = JEFES_ELITE.filter(
+      (enemigo) => enemigo.id === mision.enemigoId
+    );
   } else {
     monstruosPosibles = ENEMIGOS.filter(
       (enemigo) => enemigo.difMin <= dificultad
     );
   }
+  
   const monstruoBase =
     monstruosPosibles.length > 0
       ? monstruosPosibles[Math.floor(Math.random() * monstruosPosibles.length)]
