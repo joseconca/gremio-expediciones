@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 const includeGameData = {
   personaje: true,
-  expedicionActiva: true,
+  expedicionActiva: { include: { combateActivo: true } },
 } as const;
 
 export async function GET() {
