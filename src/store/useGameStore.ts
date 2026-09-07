@@ -60,7 +60,7 @@ export interface Edificio {
 }
 
 export interface ExpedicionActiva {
-  idMision: number;
+  idMision: string;
   nombre: string;
   recompensa: number;
   fechaLlegada: string;
@@ -95,6 +95,7 @@ export interface GameState {
   reclutarPersonaje: (personaje: Personaje) => Promise<void>;
   iniciarExpedicion: (expedicion: ExpedicionActiva) => void;
   completarExpedicion: () => Promise<ResultadoCombate | null>;
+  cancelarExpedicion: () => Promise<boolean>;
 
   calcularCosteCura: () => InfoCura;
   curarPersonaje: () => Promise<boolean>;
@@ -301,6 +302,27 @@ export const useGameStore = create<GameState>((set, get) => ({
     } catch (error) {
       console.error(error);
       return null;
+    }
+  },
+
+  cancelarExpedicion: async () => {
+    try {
+      const respuesta = await fetch("/api/expediciones/cancelar", {
+        method: "POST",
+      });
+
+      const datos = await respuesta.json();
+
+      if (!respuesta.ok) {
+        throw new Error(datos.error || "No se pudo iniciar el regreso.");
+      }
+
+      aplicarDatosJugador(set, datos.usuario);
+
+      return true;
+    } catch (error) {
+      console.error("Error al cancelar expedición:", error);
+      return false;
     }
   },
 
