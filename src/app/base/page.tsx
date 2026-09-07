@@ -295,7 +295,9 @@ export default function BasePage() {
     personaje,
     expedicionActiva,
     baseCoords,
+    llegarExpedicion,
     completarExpedicion,
+    accionCombate,
     cancelarExpedicion,
     edificios,
     obtenerCosteMejora,
@@ -327,6 +329,12 @@ export default function BasePage() {
     if (!expedicionActiva) return;
 
     const calcularTiempo = () => {
+      if (expedicionActiva.fase === "combatiendo") {
+        setTiempoRestante(0);
+        setListoParaResolver(false);
+        return;
+      }
+
       const ahora = new Date().getTime();
       const llegada = new Date(expedicionActiva.fechaLlegada).getTime();
       const diferencia = llegada - ahora;
@@ -346,9 +354,20 @@ export default function BasePage() {
     return () => clearInterval(intervalo);
   }, [expedicionActiva]);
 
-  const handleCompletarMision = async () => {
-    const resultado = await completarExpedicion();
-    if (resultado) setReporte(resultado);
+  const handleResolverLlegada = async () => {
+    if (!expedicionActiva) return;
+
+    if (expedicionActiva.tipo === "comercio") {
+      const resultado = await completarExpedicion();
+
+      if (resultado) {
+        setReporte(resultado);
+      }
+
+      return;
+    }
+
+    await llegarExpedicion();
   };
 
   const handleCancelarExpedicion = async () => {
@@ -594,7 +613,9 @@ export default function BasePage() {
                       {expedicionActiva.nombre}
                     </p>
                     <p className="text-slate-400 text-sm">
-                      {listoParaResolver
+                      {expedicionActiva.fase === "combatiendo"
+                        ? `⚔️ ${personaje.nombre} está combatiendo`
+                        : listoParaResolver
                         ? expedicionActiva.fase === "regresando"
                           ? `¡${personaje.nombre} ha regresado al gremio!`
                           : `¡${personaje.nombre} ha llegado a su destino!`
@@ -604,17 +625,100 @@ export default function BasePage() {
                     </p>
                   </div>
 
-                  {listoParaResolver ? (
+                  {expedicionActiva.fase === "combatiendo" &&
+                  expedicionActiva.combateActivo ? (
+                    <div className="w-full rounded-lg border border-red-900/60 bg-red-950/20 p-4">
+                      <div className="mb-3 flex items-center justify-between">
+                        <div>
+                          <p className="text-xs font-bold uppercase tracking-wider text-red-400">
+                            Combate
+                          </p>
+                          <p className="text-lg font-black text-white">
+                            {expedicionActiva.combateActivo.enemigoNombre}
+                          </p>
+                        </div>
+
+                        <span className="rounded bg-slate-950 px-3 py-1 font-mono text-sm text-amber-400">
+                          Ronda {expedicionActiva.combateActivo.ronda}
+                        </span>
+                      </div>
+
+                      <div className="mb-4 grid grid-cols-2 gap-3">
+                        <div>
+                          <div className="mb-1 flex justify-between text-xs font-bold">
+                            <span className="text-blue-300">Héroe</span>
+                            <span>
+                              {expedicionActiva.combateActivo.jugadorHp}/
+                              {expedicionActiva.combateActivo.jugadorHpMaximo}
+                            </span>
+                          </div>
+
+                          <div className="h-3 overflow-hidden rounded bg-slate-950">
+                            <div
+                              className="h-full bg-blue-500 transition-all"
+                              style={{
+                                width: `${
+                                  (expedicionActiva.combateActivo.jugadorHp /
+                                    expedicionActiva.combateActivo
+                                      .jugadorHpMaximo) *
+                                  100
+                                }%`,
+                              }}
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <div className="mb-1 flex justify-between text-xs font-bold">
+                            <span className="text-red-300">
+                              {expedicionActiva.combateActivo.enemigoNombre}
+                            </span>
+                            <span>
+                              {expedicionActiva.combateActivo.enemigoHp}/
+                              {expedicionActiva.combateActivo.enemigoHpMaximo}
+                            </span>
+                          </div>
+
+                          <div className="h-3 overflow-hidden rounded bg-slate-950">
+                            <div
+                              className="h-full bg-red-500 transition-all"
+                              style={{
+                                width: `${
+                                  (expedicionActiva.combateActivo.enemigoHp /
+                                    expedicionActiva.combateActivo
+                                      .enemigoHpMaximo) *
+                                  100
+                                }%`,
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => void accionCombate("atacar")}
+                        disabled={
+                          expedicionActiva.combateActivo.turno !== "jugador"
+                        }
+                        className="w-full rounded-lg bg-red-700 px-5 py-3 font-black text-white transition hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        ⚔️ Atacar
+                      </button>
+                    </div>
+                  ) : listoParaResolver ? (
                     <button
                       onClick={(event) => {
                         event.stopPropagation();
-                        void handleCompletarMision();
+                        void handleResolverLlegada();
                       }}
                       className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-6 rounded-lg animate-pulse"
                     >
                       {expedicionActiva.fase === "regresando"
                         ? "🏠 Recibir al aventurero"
-                        : "⚔️ Resolver llegada"}
+                        : expedicionActiva.tipo === "comercio"
+                        ? "🤝 Resolver comercio"
+                        : "⚔️ Enfrentarse al enemigo"}
                     </button>
                   ) : (
                     <div className="text-center font-mono text-2xl text-slate-300 bg-slate-950 px-4 py-2 rounded-lg border border-slate-800">

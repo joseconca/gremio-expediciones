@@ -2,11 +2,7 @@ import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { calcularDistanciaKm } from "@/lib/utils";
-import { resolverComercio, resolverExpedicion } from "@/lib/resolucionCombate";
-import {
-  calcularMejorasPorNivel,
-  experienciaParaNivel,
-} from "@/lib/configuracionJuego";
+import { resolverComercio } from "@/lib/resolucionCombate";
 
 export async function POST() {
   try {
@@ -28,12 +24,17 @@ export async function POST() {
     });
 
     const expedicion = usuario?.expedicionActiva;
+
     if (!usuario?.personaje || !expedicion) {
       return NextResponse.json(
         { error: "No hay una expedición activa." },
         { status: 400 }
       );
     }
+
+    // ============================================================
+    // COMPROBAR QUE LA EXPEDICIÓN HAYA LLEGADO
+    // ============================================================
     if (expedicion.fechaLlegada > new Date()) {
       return NextResponse.json(
         { error: "La expedición todavía está en curso." },
@@ -41,18 +42,29 @@ export async function POST() {
       );
     }
 
+    // ============================================================
+    // RECIBIR AL AVENTURERO AL REGRESAR
+    // ============================================================
     if (expedicion.fase === "regresando") {
       const oroGuardado = Math.max(0, expedicion.recompensa);
+
       const objetivoId =
         expedicion.tipo === "comercio" ? expedicion.objetivoId : null;
+
       const actualizado = await prisma.$transaction(async (tx) => {
+        // Eliminar la expedición.
         await tx.expedicionActiva.delete({ where: { id: expedicion.id } });
+        // El aventurero vuelve a estar disponible.
         await tx.personaje.update({
           where: { usuarioId: usuario.id },
           data: {
             estado: usuario.personaje!.hpActual > 0 ? "ocioso" : "descansando",
           },
         });
+
+        // ========================================================
+        // RECOMPENSA AL GREMIO OBJETIVO DEL COMERCIO
+        // ========================================================
         if (objetivoId && oroGuardado > 0) {
           await tx.usuario.update({
             where: { id: objetivoId },
@@ -77,6 +89,7 @@ export async function POST() {
             },
           });
         }
+        // Entregar el oro al jugador.
         return tx.usuario.update({
           where: { id: usuario.id },
           data: { oro: { increment: oroGuardado } },
@@ -102,103 +115,130 @@ export async function POST() {
       });
     }
 
-    let resultado;
-    if (expedicion.tipo === "comercio" && expedicion.objetivoId) {
-      const objetivo = await prisma.usuario.findUnique({
-        where: { id: expedicion.objetivoId },
-        select: { id: true, nombre: true, edificios: true },
-      });
-      if (!objetivo)
-        return NextResponse.json(
-          { error: "El gremio de destino ya no existe." },
-          { status: 404 }
-        );
-      const origenCoords = usuario.baseCoords as {
-        lat?: unknown;
-        lng?: unknown;
-      } | null;
-      const destinoCoords = expedicion.destinoCoords as {
-        lat?: unknown;
-        lng?: unknown;
-      };
-      if (
-        typeof origenCoords?.lat !== "number" ||
-        typeof origenCoords.lng !== "number" ||
-        typeof destinoCoords.lat !== "number" ||
-        typeof destinoCoords.lng !== "number"
-      ) {
-        return NextResponse.json(
-          { error: "La ruta comercial no tiene coordenadas válidas." },
-          { status: 400 }
-        );
-      }
-      const afinidad = await prisma.afinidadComercial.findUnique({
-        where: {
-          jugador1Id_jugador2Id: {
-            jugador1Id: usuario.id,
-            jugador2Id: objetivo.id,
-          },
+    // ============================================================
+    // EL COMBATE POR SU API
+    // ============================================================
+    if (expedicion.fase === "combatiendo") {
+      return NextResponse.json(
+        {
+          error: "La expedición se encuentra en combate.",
+          combate: expedicion.combateActivo,
         },
-      });
-      const mercado = objetivo.edificios as Record<string, unknown> | null;
-      const nivelMercado =
-        typeof mercado?.mercado === "number" ? mercado.mercado : 0;
-      resultado = resolverComercio(
-        usuario.personaje,
-        calcularDistanciaKm(
-          origenCoords.lat,
-          origenCoords.lng,
-          destinoCoords.lat,
-          destinoCoords.lng
-        ),
-        nivelMercado,
-        afinidad?.intercambios || 0,
-        objetivo.nombre
+        { status: 409 }
       );
-    } else {
-      resultado = resolverExpedicion(usuario.personaje, {
-        id: expedicion.misionId,
-        nombre: expedicion.nombre,
-        dificultad: expedicion.dificultad,
-        recompensa: expedicion.recompensa,
-        tipo: expedicion.misionId.startsWith("elite-") ? "elite" : "normal",
-      });
     }
+
+    if (expedicion.tipo !== "comercio") {
+      return NextResponse.json(
+        {
+          error:
+            "Las expediciones de combate deben iniciarse mediante el sistema de combate.",
+        },
+        { status: 409 }
+      );
+    }
+
+    if (!expedicion.objetivoId) {
+      return NextResponse.json(
+        {
+          error: "La expedición comercial no tiene un gremio de destino.",
+        },
+        { status: 400 }
+      );
+    }
+
+    // ============================================================
+    // OBTENER GREMIO DE DESTINO
+    // ============================================================
+    const objetivo = await prisma.usuario.findUnique({
+      where: {
+        id: expedicion.objetivoId,
+      },
+      select: {
+        id: true,
+        nombre: true,
+        edificios: true,
+      },
+    });
+
+    if (!objetivo) {
+      return NextResponse.json(
+        {
+          error: "El gremio de destino ya no existe.",
+        },
+        { status: 404 }
+      );
+    }
+
+    // ============================================================
+    // VALIDAR COORDENADAS
+    // ============================================================
+    const origenCoords = usuario.baseCoords as {
+      lat?: unknown;
+      lng?: unknown;
+    } | null;
+    const destinoCoords = expedicion.destinoCoords as {
+      lat?: unknown;
+      lng?: unknown;
+    };
+    if (
+      typeof origenCoords?.lat !== "number" ||
+      typeof origenCoords.lng !== "number" ||
+      typeof destinoCoords.lat !== "number" ||
+      typeof destinoCoords.lng !== "number"
+    ) {
+      return NextResponse.json(
+        { error: "La ruta comercial no tiene coordenadas válidas." },
+        { status: 400 }
+      );
+    }
+
+    // ============================================================
+    // OBTENER AFINIDAD
+    // ============================================================
+    const afinidad = await prisma.afinidadComercial.findUnique({
+      where: {
+        jugador1Id_jugador2Id: {
+          jugador1Id: usuario.id,
+          jugador2Id: objetivo.id,
+        },
+      },
+    });
+
+    // ============================================================
+    // NIVEL DEL MERCADO
+    // ============================================================
+    const mercado = objetivo.edificios as Record<string, unknown> | null;
+    const nivelMercado =
+      typeof mercado?.mercado === "number" ? mercado.mercado : 0;
+
+    // ============================================================
+    // RESOLVER COMERCIO
+    // ============================================================
+
+    const distanciaKm = calcularDistanciaKm(
+      origenCoords.lat,
+      origenCoords.lng,
+      destinoCoords.lat,
+      destinoCoords.lng
+    );
+    const resultado = resolverComercio(
+      usuario.personaje,
+      distanciaKm,
+      nivelMercado,
+      afinidad?.intercambios || 0,
+      objetivo.nombre
+    );
+
     const oroGanado =
       typeof resultado.oroGanado === "number" &&
       Number.isFinite(resultado.oroGanado)
         ? Math.max(0, resultado.oroGanado)
         : 0;
-    const experienciaGanada =
-      expedicion.tipo === "comercio" ? 0 : resultado.experienciaGanada;
-    const experienciaActual = usuario.personaje.experiencia || 0;
-    const nivelActual = usuario.personaje.nivel || 1;
-    let nivelIterando = nivelActual;
-    let experienciaRestante = experienciaActual + experienciaGanada;
-    let ataqueGanado = 0;
-    let defensaGanado = 0;
-    let velocidadGanada = 0;
-    let capacidadGanada = 0;
-    while (experienciaRestante >= experienciaParaNivel(nivelIterando)) {
-      experienciaRestante -= experienciaParaNivel(nivelIterando);
-      nivelIterando += 1;
-      const mejora = calcularMejorasPorNivel(
-        usuario.personaje.clase,
-        nivelIterando
-      );
-      ataqueGanado += mejora.ataque;
-      defensaGanado += mejora.defensa;
-      velocidadGanada += mejora.velocidad;
-      capacidadGanada += mejora.capacidadCarruaje;
-    }
-    const nivelesSubidos = nivelIterando - nivelActual;
-    const subeNivel = nivelesSubidos > 0;
-    const nuevoNivel = nivelIterando;
-    const experienciaNueva = experienciaRestante;
-    const hpActual = Math.max(
-      0,
-      usuario.personaje.hpActual - resultado.hpPerdido
-    );
+
+    // ============================================================
+    // CALCULAR REGRESO
+    // ============================================================
     const duracionIda = Math.max(
       60_000,
       expedicion.fechaLlegada.getTime() - expedicion.fechaSalida.getTime()
@@ -208,25 +248,24 @@ export async function POST() {
     const fechaLlegadaRegreso = new Date(
       fechaSalidaRegreso.getTime() + duracionIda
     );
+
+    // ============================================================
+    // GUARDAR RESULTADO Y COMENZAR REGRESO
+    // ============================================================
     const actualizado = await prisma.$transaction(async (tx) => {
       await tx.personaje.update({
-        where: { usuarioId: usuario.id },
+        where: {
+          usuarioId: usuario.id,
+        },
         data: {
-          hpActual,
+          hpActual: Math.max(
+            1,
+            usuario.personaje!.hpActual - resultado.hpPerdido
+          ),
           estado: "de_viaje",
-          nivel: nuevoNivel,
-          experiencia: experienciaNueva,
-          ...(subeNivel
-            ? {
-                hpMaximo: { increment: 10 * nivelesSubidos },
-                ataque: { increment: ataqueGanado },
-                defensa: { increment: defensaGanado },
-                velocidad: { increment: velocidadGanada },
-                capacidadCarruaje: { increment: capacidadGanada },
-              }
-            : {}),
         },
       });
+
       await tx.expedicionActiva.update({
         where: { id: expedicion.id },
         data: {
@@ -236,6 +275,7 @@ export async function POST() {
           recompensa: oroGanado,
         },
       });
+
       await tx.registroAccion.create({
         data: {
           usuarioId: usuario.id,
@@ -245,6 +285,7 @@ export async function POST() {
           }`,
         },
       });
+
       return tx.usuario.update({
         where: { id: usuario.id },
         data: { oro: { increment: 0 } },
@@ -255,8 +296,9 @@ export async function POST() {
     const datos = Object.fromEntries(
       Object.entries(actualizado).filter(([clave]) => clave !== "password")
     );
+
     return NextResponse.json({
-      resultado: { ...resultado, experienciaGanada },
+      resultado: { ...resultado, oroGanado },
       usuario: datos,
     });
   } catch (error) {

@@ -132,16 +132,16 @@ export async function POST() {
     const dificultad = Math.max(0, expedicion.dificultad);
 
     const enemigoHp = Math.floor(monstruoBase.hp * (1 + dificultad * 0.3));
-
     const enemigoAtaque = monstruoBase.ataque + Math.floor(dificultad * 1.2);
-
     const enemigoDefensa = monstruoBase.defensa + Math.floor(dificultad * 0.8);
-
     const enemigoVelocidad =
       monstruoBase.velocidad + Math.floor(dificultad * 0.5);
 
     const jugadorHp = Math.max(1, personaje.hpActual);
-
+    const jugadorAtaque = personaje.ataque;
+    const jugadorDefensa = personaje.defensa;
+    const jugadorVelocidad = personaje.velocidad;
+    const jugadorNivel = personaje.nivel;
     // ============================================================
     // CREAR COMBATE
     // ============================================================
@@ -166,6 +166,10 @@ export async function POST() {
 
           jugadorHp,
           jugadorHpMaximo: personaje.hpMaximo,
+          jugadorAtaque,
+          jugadorDefensa,
+          jugadorVelocidad,
+          jugadorNivel,
 
           oroGanado: 0,
           experienciaGanada: 0,
@@ -193,9 +197,32 @@ export async function POST() {
       return nuevoCombate;
     });
 
+    const usuarioActualizado = await prisma.usuario.findUnique({
+      where: {
+        id: usuario.id,
+      },
+      include: {
+        personaje: true,
+        expedicionActiva: {
+          include: {
+            combateActivo: true,
+          },
+        },
+      },
+    });
+
+    const datosUsuario = usuarioActualizado
+      ? Object.fromEntries(
+          Object.entries(usuarioActualizado).filter(
+            ([clave]) => clave !== "password"
+          )
+        )
+      : null;
+
     return NextResponse.json({
       exito: true,
       combate,
+      usuario: datosUsuario,
     });
   } catch (error) {
     console.error("Error al iniciar el combate de la expedición:", error);

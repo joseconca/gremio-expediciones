@@ -170,7 +170,6 @@ model CombateActivo {
   fase String @default("activo")
 
   ronda Int @default(1)
-
   turno String @default("jugador")
 
   enemigoId     String
@@ -184,6 +183,10 @@ model CombateActivo {
 
   jugadorHp       Int
   jugadorHpMaximo Int
+  jugadorAtaque   Int
+  jugadorDefensa  Int
+  jugadorVelocidad Int
+  jugadorNivel    Int
 
   oroGanado         Int @default(0)
   experienciaGanada Int @default(0)

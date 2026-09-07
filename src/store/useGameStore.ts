@@ -59,15 +59,53 @@ export interface Edificio {
   nivelMax: number;
 }
 
+export interface CombateActivo {
+  id: string;
+
+  fase: "activo" | "victoria" | "derrota" | "huida";
+  ronda: number;
+  turno: string;
+
+  enemigoId: string;
+  enemigoNombre: string;
+  enemigoHp: number;
+  enemigoHpMaximo: number;
+  enemigoAtaque: number;
+  enemigoDefensa: number;
+  enemigoVelocidad: number;
+
+  jugadorHp: number;
+  jugadorHpMaximo: number;
+  jugadorAtaque: number;
+  jugadorDefensa: number;
+  jugadorVelocidad: number;
+  jugadorNivel: number;
+
+  oroGanado: number;
+  experienciaGanada: number;
+
+  cooldowns: Record<string, number>;
+  efectos: unknown[];
+  log: string[];
+
+  creado: string;
+  actualizado: string;
+}
+
 export interface ExpedicionActiva {
+  id?: string;
   misionId: string;
+  enemigoId?: string | null;
   nombre: string;
   recompensa: number;
   fechaLlegada: string;
-  fechaSalida?: string;
+  fechaSalida: string;
   dificultad: number;
-  fase: "en_viaje" | "regresando";
+  tipo: "normal" | "elite" | "comercio" | "boss";
+  fase: "en_viaje" | "combatiendo" | "regresando";
+  objetivoId?: string | null;
   destinoCoords: { lat: number; lng: number };
+  combateActivo?: CombateActivo | null;
 }
 
 export interface InfoCura {
@@ -93,8 +131,11 @@ export interface GameState {
 
   cargarJugador: () => Promise<void>;
   reclutarPersonaje: (personaje: Personaje) => Promise<void>;
+
   iniciarExpedicion: (expedicion: ExpedicionActiva) => void;
+  llegarExpedicion: () => Promise<boolean>;
   completarExpedicion: () => Promise<ResultadoCombate | null>;
+  accionCombate: (accion: "atacar") => Promise<boolean>;
   cancelarExpedicion: () => Promise<boolean>;
 
   calcularCosteCura: () => InfoCura;
@@ -289,6 +330,65 @@ export const useGameStore = create<GameState>((set, get) => ({
     }));
   },
 
+  llegarExpedicion: async () => {
+    try {
+      const respuesta = await fetch("/api/expediciones/llegar", {
+        method: "POST",
+      });
+
+      const datos = await respuesta.json();
+
+      if (!respuesta.ok) {
+        throw new Error(datos.error || "No se pudo iniciar el combate.");
+      }
+
+      if (datos.usuario) {
+        aplicarDatosJugador(set, datos.usuario);
+      }
+
+      return true;
+    } catch (error) {
+      console.error("Error al iniciar el combate:", error);
+      return false;
+    }
+  },
+
+  accionCombate: async (accion) => {
+    try {
+      const respuesta = await fetch("/api/combate/accion", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          accion,
+        }),
+      });
+
+      const datos = await respuesta.json();
+
+      if (!respuesta.ok) {
+        throw new Error(datos.error || "No se pudo ejecutar la acción.");
+      }
+
+      if (datos.combate) {
+        set((state) => ({
+          expedicionActiva: state.expedicionActiva
+            ? {
+                ...state.expedicionActiva,
+                combateActivo: datos.combate as CombateActivo,
+              }
+            : null,
+        }));
+      }
+
+      return true;
+    } catch (error) {
+      console.error("Error en acción de combate:", error);
+      return false;
+    }
+  },
+  
   completarExpedicion: async () => {
     try {
       const respuesta = await fetch("/api/expediciones/completar", {
