@@ -39,6 +39,9 @@ export const CONFIGURACION_EDIFICIOS = {
 
 export type IdEdificio = keyof typeof CONFIGURACION_EDIFICIOS;
 
+// ============================================================
+// CLASES
+// ============================================================
 export const ESTADISTICAS_BASE_CLASE = {
   Guerrero: { ataque: 2, defensa: 2, velocidad: 1, capacidadCarruaje: 1 },
   Explorador: { ataque: 1, defensa: 1, velocidad: 2, capacidadCarruaje: 1 },
@@ -47,11 +50,17 @@ export const ESTADISTICAS_BASE_CLASE = {
 
 export type ClasePersonaje = keyof typeof ESTADISTICAS_BASE_CLASE;
 
+
+// ============================================================
+// SPRITES
+// ============================================================
 const SPRITE_POR_CLASE: Record<string, string> = {
   Guerrero: "warrior",
   Explorador: "explorer",
   Comerciante: "merchant",
 };
+
+export type SexoPersonaje = "chico" | "chica";
 
 // Devuelve la ruta del sprite del héroe según su clase y sexo, p.ej. "/sprites/heroes/warrior-f.png".
 export function obtenerSpriteHeroe(clase?: string | null, sexo?: string | null): string {
@@ -60,7 +69,9 @@ export function obtenerSpriteHeroe(clase?: string | null, sexo?: string | null):
   return `/sprites/heroes/${base}-${sufijoSexo}.png`;
 }
 
-// Experiencia necesaria para subir del nivel indicado al siguiente.
+// ============================================================
+// PROGRESIÓN
+// ============================================================
 export function experienciaParaNivel(nivel: number): number {
   return nivel * nivel * 100;
 }
