@@ -1,8 +1,4 @@
-export type TipoMision =
-  | "normal"
-  | "elite"
-  | "comercio"
-  | "boss";
+export type TipoMision = "normal" | "elite" | "comercio" | "boss";
 
 export type TipoObjeto =
   | "consumible"
@@ -11,16 +7,9 @@ export type TipoObjeto =
   | "accesorio"
   | "material";
 
-export type Rareza =
-  | "comun"
-  | "poco_comun"
-  | "raro"
-  | "epico"
-  | "legendario";
+export type Rareza = "comun" | "poco_comun" | "raro" | "epico" | "legendario";
 
-export type TipoHabilidad =
-  | "activa"
-  | "pasiva";
+export type TipoHabilidad = "activa" | "pasiva";
 
 export type TipoAccionCombate =
   | "atacar"
@@ -28,15 +17,9 @@ export type TipoAccionCombate =
   | "usar_habilidad"
   | "escapar";
 
-export type FaseCombate =
-  | "activo"
-  | "victoria"
-  | "derrota"
-  | "huida";
+export type FaseCombate = "activo" | "victoria" | "derrota" | "huida";
 
-export type FaseExpedicion =
-  | "en_viaje"
-  | "regresando";
+export type FaseExpedicion = "en_viaje" | "combatiendo" | "regresando";
 
 export interface DefinicionEnemigo {
   id: string;
@@ -45,18 +28,14 @@ export interface DefinicionEnemigo {
   hp: number;
   ataque: number;
   defensa: number;
+  velocidad: number;
 
   botin: number;
-
-
   difMin: number;
 
   rareza?: Rareza;
 
-
   objetoDropId?: string;
-
-
   habilidadDropId?: string;
 }
 
