@@ -27,6 +27,7 @@ model Usuario {
   historial        RegistroAccion[]
   sesiones         Sesion[]
   mensajesChat     MensajeChat[]
+  sugerencias      Sugerencia[]
 }
 
 model Sesion {
@@ -103,6 +104,18 @@ model RegistroAccion {
 model MensajeChat {
   id        String   @id @default(uuid())
   usuarioId String
+  texto     String
+  creado    DateTime @default(now())
+
+  usuario Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+
+  @@index([creado])
+}
+
+model Sugerencia {
+  id        String   @id @default(uuid())
+  usuarioId String
+  titulo    String
   texto     String
   creado    DateTime @default(now())
 

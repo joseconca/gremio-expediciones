@@ -3,6 +3,7 @@ import { useGameStore } from "@/store/useGameStore";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ChatGlobal from "@/components/ChatGlobal";
+import Sugerencias from "@/components/Sugerencias";
 import Image from "next/image";
 import {
   obtenerSpriteHeroe,
@@ -213,6 +214,7 @@ export default function BaseLayout({
               {metal} ⚙️
             </div>
           )}
+          <Sugerencias />
         </div>
       </header>
 
