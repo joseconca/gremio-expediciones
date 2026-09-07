@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
 import { ResultadoCombate } from "@/lib/resolucionCombate";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
+import CombateModal from "@/components/CombateModal";
 
 const MissionMap = dynamic(() => import("@/components/MissionMap"), {
   ssr: false,
@@ -313,6 +314,7 @@ export default function BasePage() {
   const [expedicionExpandida, setExpedicionExpandida] = useState(false);
   const [confirmarRegreso, setConfirmarRegreso] = useState(false);
   const [cancelandoExpedicion, setCancelandoExpedicion] = useState(false);
+  const [combateAbierto, setCombateAbierto] = useState(false);
 
   const [caravanasEntrantes, setCaravanasEntrantes] = useState<
     CaravanaEntrante[]
@@ -354,8 +356,35 @@ export default function BasePage() {
     return () => clearInterval(intervalo);
   }, [expedicionActiva]);
 
+  useEffect(() => {
+    if (
+      expedicionActiva?.fase === "combatiendo" &&
+      expedicionActiva.combateActivo
+    ) {
+      setCombateAbierto(true);
+    }
+  }, [expedicionActiva]);
+
   const handleResolverLlegada = async () => {
     if (!expedicionActiva) return;
+
+    // ============================================================
+    // EL AVENTURERO YA ESTÁ REGRESANDO
+    // ============================================================
+
+    if (expedicionActiva.fase === "regresando") {
+      const resultado = await completarExpedicion();
+
+      if (resultado) {
+        setReporte(resultado);
+      }
+
+      return;
+    }
+
+    // ============================================================
+    // COMERCIO
+    // ============================================================
 
     if (expedicionActiva.tipo === "comercio") {
       const resultado = await completarExpedicion();
@@ -367,7 +396,15 @@ export default function BasePage() {
       return;
     }
 
-    await llegarExpedicion();
+    // ============================================================
+    // MISIÓN NORMAL / ÉLITE
+    // ============================================================
+
+    const exito = await llegarExpedicion();
+
+    if (exito) {
+      setCombateAbierto(true);
+    }
   };
 
   const handleCancelarExpedicion = async () => {
@@ -401,6 +438,21 @@ export default function BasePage() {
 
   return (
     <main className="min-h-screen bg-slate-900 text-slate-100 p-4 md:p-8 font-sans">
+      {/* ---- MODAL DE COMBATE ---- */}
+      {combateAbierto && expedicionActiva?.combateActivo && personaje && (
+        <CombateModal
+          combate={expedicionActiva.combateActivo}
+          nombreHeroe={personaje.nombre}
+          claseHeroe={personaje.clase}
+          sexoHeroe={personaje.sexo}
+          onAtacar={async () => {
+            await accionCombate("atacar");
+          }}
+          onCerrar={() => {
+            setCombateAbierto(false);
+          }}
+        />
+      )}
       {/* ---- MODAL DE REPORTE DE COMBATE ---- */}
       {reporte && (
         <div className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in zoom-in-95 duration-200">
@@ -625,88 +677,7 @@ export default function BasePage() {
                     </p>
                   </div>
 
-                  {expedicionActiva.fase === "combatiendo" &&
-                  expedicionActiva.combateActivo ? (
-                    <div className="w-full rounded-lg border border-red-900/60 bg-red-950/20 p-4">
-                      <div className="mb-3 flex items-center justify-between">
-                        <div>
-                          <p className="text-xs font-bold uppercase tracking-wider text-red-400">
-                            Combate
-                          </p>
-                          <p className="text-lg font-black text-white">
-                            {expedicionActiva.combateActivo.enemigoNombre}
-                          </p>
-                        </div>
-
-                        <span className="rounded bg-slate-950 px-3 py-1 font-mono text-sm text-amber-400">
-                          Ronda {expedicionActiva.combateActivo.ronda}
-                        </span>
-                      </div>
-
-                      <div className="mb-4 grid grid-cols-2 gap-3">
-                        <div>
-                          <div className="mb-1 flex justify-between text-xs font-bold">
-                            <span className="text-blue-300">Héroe</span>
-                            <span>
-                              {expedicionActiva.combateActivo.jugadorHp}/
-                              {expedicionActiva.combateActivo.jugadorHpMaximo}
-                            </span>
-                          </div>
-
-                          <div className="h-3 overflow-hidden rounded bg-slate-950">
-                            <div
-                              className="h-full bg-blue-500 transition-all"
-                              style={{
-                                width: `${
-                                  (expedicionActiva.combateActivo.jugadorHp /
-                                    expedicionActiva.combateActivo
-                                      .jugadorHpMaximo) *
-                                  100
-                                }%`,
-                              }}
-                            />
-                          </div>
-                        </div>
-
-                        <div>
-                          <div className="mb-1 flex justify-between text-xs font-bold">
-                            <span className="text-red-300">
-                              {expedicionActiva.combateActivo.enemigoNombre}
-                            </span>
-                            <span>
-                              {expedicionActiva.combateActivo.enemigoHp}/
-                              {expedicionActiva.combateActivo.enemigoHpMaximo}
-                            </span>
-                          </div>
-
-                          <div className="h-3 overflow-hidden rounded bg-slate-950">
-                            <div
-                              className="h-full bg-red-500 transition-all"
-                              style={{
-                                width: `${
-                                  (expedicionActiva.combateActivo.enemigoHp /
-                                    expedicionActiva.combateActivo
-                                      .enemigoHpMaximo) *
-                                  100
-                                }%`,
-                              }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      <button
-                        type="button"
-                        onClick={() => void accionCombate("atacar")}
-                        disabled={
-                          expedicionActiva.combateActivo.turno !== "jugador"
-                        }
-                        className="w-full rounded-lg bg-red-700 px-5 py-3 font-black text-white transition hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-50"
-                      >
-                        ⚔️ Atacar
-                      </button>
-                    </div>
-                  ) : listoParaResolver ? (
+                  {listoParaResolver ? (
                     <button
                       onClick={(event) => {
                         event.stopPropagation();

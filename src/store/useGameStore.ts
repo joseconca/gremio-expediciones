@@ -371,7 +371,9 @@ export const useGameStore = create<GameState>((set, get) => ({
         throw new Error(datos.error || "No se pudo ejecutar la acción.");
       }
 
-      if (datos.combate) {
+      if (datos.usuario) {
+        aplicarDatosJugador(set, datos.usuario);
+      } else if (datos.combate) {
         set((state) => ({
           expedicionActiva: state.expedicionActiva
             ? {
@@ -388,7 +390,7 @@ export const useGameStore = create<GameState>((set, get) => ({
       return false;
     }
   },
-  
+
   completarExpedicion: async () => {
     try {
       const respuesta = await fetch("/api/expediciones/completar", {

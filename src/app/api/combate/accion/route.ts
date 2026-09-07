@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server";
-
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { obtenerEnemigoPorId } from "@/lib/enemigos";
+import {
+  calcularMejorasPorNivel,
+  experienciaParaNivel,
+} from "@/lib/configuracionJuego";
 
 type AccionCombate = "atacar";
 
@@ -13,10 +17,7 @@ export async function POST(request: Request) {
     const usuarioSesion = await getAuthenticatedUser();
 
     if (!usuarioSesion) {
-      return NextResponse.json(
-        { error: "Sesión requerida." },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Sesión requerida." }, { status: 401 });
     }
 
     const body = await request.json();
@@ -106,8 +107,7 @@ export async function POST(request: Request) {
     if (dadoJugador === 20) {
       const dano = Math.max(
         1,
-        (combate.jugadorAtaque + d6()) * 2 -
-          combate.enemigoDefensa
+        (combate.jugadorAtaque + d6()) * 2 - combate.enemigoDefensa
       );
 
       enemigoHp -= dano;
@@ -116,17 +116,14 @@ export async function POST(request: Request) {
         `💥 ¡GOLPE CRÍTICO! El aventurero inflige ${dano} de daño a ${combate.enemigoNombre}.`
       );
     } else if (dadoJugador === 1) {
-      log.push(
-        `🤡 El aventurero comete una pifia y falla su ataque.`
-      );
+      log.push(`🤡 El aventurero comete una pifia y falla su ataque.`);
     } else {
-
       /*const diferenciaNivel =
         combate.jugadorNivel -
         (combate.enemigoNivel ?? combate.jugadorNivel);
 
       const umbralAcierto = Math.max(2, 2 - diferenciaNivel);*/
-      
+
       //TEMPORAL
       const umbralAcierto = 2;
 
@@ -134,9 +131,7 @@ export async function POST(request: Request) {
         const variacion = 0.8 + Math.random() * 0.4;
 
         const danoBase =
-          Math.floor(
-            combate.jugadorAtaque * variacion
-          ) + combate.jugadorNivel;
+          Math.floor(combate.jugadorAtaque * variacion) + combate.jugadorNivel;
 
         const dano = Math.max(
           1,
@@ -149,9 +144,7 @@ export async function POST(request: Request) {
           `⚔️ Atacas a ${combate.enemigoNombre} e infliges ${dano} de daño.`
         );
       } else {
-        log.push(
-          `💨 ${combate.enemigoNombre} esquiva tu ataque.`
-        );
+        log.push(`💨 ${combate.enemigoNombre} esquiva tu ataque.`);
       }
     }
 
@@ -162,23 +155,91 @@ export async function POST(request: Request) {
     // ============================================================
 
     if (enemigoHp <= 0) {
-      log.push(
-        `🏆 ¡${combate.enemigoNombre} ha sido derrotado!`
-      );
+      log.push(`🏆 ¡${combate.enemigoNombre} ha sido derrotado!`);
 
-      const actualizado = await prisma.$transaction(async (tx) => {
-        const combateActualizado =
-          await tx.combateActivo.update({
-            where: {
-              id: combate.id,
-            },
-            data: {
-              enemigoHp: 0,
-              fase: "victoria",
-              turno: "jugador",
-              log,
-            },
-          });
+      const enemigo = obtenerEnemigoPorId(combate.enemigoId);
+
+      if (!enemigo) {
+        return NextResponse.json(
+          { error: "No se encontró el enemigo derrotado." },
+          { status: 500 }
+        );
+      }
+
+      // ============================================================
+      // RECOMPENSA
+      // ============================================================
+
+      const oroGanado =
+        Math.max(0, expedicion.recompensa) + Math.max(0, enemigo.botin);
+
+      const experienciaGanada =
+        expedicion.tipo === "elite"
+          ? 150
+          : 25 + Math.max(0, expedicion.dificultad) * 20;
+
+      log.push(`💰 Consigues ${enemigo.botin} 🪙 de botín.`);
+
+      log.push(`⭐ Obtienes ${experienciaGanada} XP.`);
+
+      log.push(`🎒 Botín total asegurado: ${oroGanado} 🪙.`);
+
+      // ============================================================
+      // CALCULAR EXPERIENCIA Y NIVEL
+      // ============================================================
+
+      const experienciaActual = usuario.personaje.experiencia || 0;
+
+      const nivelActual = usuario.personaje.nivel || 1;
+
+      let nivelNuevo = nivelActual;
+      let experienciaNueva = experienciaActual + experienciaGanada;
+
+      let ataqueGanado = 0;
+      let defensaGanada = 0;
+      let velocidadGanada = 0;
+      let capacidadGanada = 0;
+      let nivelesSubidos = 0;
+
+      while (experienciaNueva >= experienciaParaNivel(nivelNuevo)) {
+        experienciaNueva -= experienciaParaNivel(nivelNuevo);
+
+        nivelNuevo += 1;
+        nivelesSubidos += 1;
+
+        const mejora = calcularMejorasPorNivel(
+          usuario.personaje.clase,
+          nivelNuevo
+        );
+
+        ataqueGanado += mejora.ataque;
+        defensaGanada += mejora.defensa;
+        velocidadGanada += mejora.velocidad;
+        capacidadGanada += mejora.capacidadCarruaje;
+      }
+
+      if (nivelesSubidos > 0) {
+        log.push(`⬆️ ¡Subes al nivel ${nivelNuevo}!`);
+      }
+
+      // ============================================================
+      // GUARDAR VICTORIA
+      // ============================================================
+
+      const resultado = await prisma.$transaction(async (tx) => {
+        const combateActualizado = await tx.combateActivo.update({
+          where: {
+            id: combate.id,
+          },
+          data: {
+            enemigoHp: 0,
+            fase: "victoria",
+            turno: "jugador",
+            oroGanado,
+            experienciaGanada,
+            log,
+          },
+        });
 
         await tx.expedicionActiva.update({
           where: {
@@ -186,10 +247,7 @@ export async function POST(request: Request) {
           },
           data: {
             fase: "regresando",
-            recompensa: Math.max(
-              0,
-              expedicion.recompensa + combate.oroGanado
-            ),
+            recompensa: oroGanado,
           },
         });
 
@@ -199,15 +257,63 @@ export async function POST(request: Request) {
           },
           data: {
             hpActual: Math.max(1, jugadorHp),
+            nivel: nivelNuevo,
+            experiencia: experienciaNueva,
+
+            ...(nivelesSubidos > 0
+              ? {
+                  hpMaximo: {
+                    increment: 10 * nivelesSubidos,
+                  },
+                  ataque: {
+                    increment: ataqueGanado,
+                  },
+                  defensa: {
+                    increment: defensaGanada,
+                  },
+                  velocidad: {
+                    increment: velocidadGanada,
+                  },
+                  capacidadCarruaje: {
+                    increment: capacidadGanada,
+                  },
+                }
+              : {}),
           },
         });
 
-        return combateActualizado;
+        const usuarioActualizado = await tx.usuario.findUnique({
+          where: {
+            id: usuario.id,
+          },
+          include: {
+            personaje: true,
+            expedicionActiva: {
+              include: {
+                combateActivo: true,
+              },
+            },
+          },
+        });
+
+        return {
+          combate: combateActualizado,
+          usuario: usuarioActualizado,
+        };
       });
+
+      const datosUsuario = resultado.usuario
+        ? Object.fromEntries(
+            Object.entries(resultado.usuario).filter(
+              ([clave]) => clave !== "password"
+            )
+          )
+        : null;
 
       return NextResponse.json({
         exito: true,
-        combate: actualizado,
+        combate: resultado.combate,
+        usuario: datosUsuario,
         terminado: true,
       });
     }
@@ -221,8 +327,7 @@ export async function POST(request: Request) {
     if (dadoEnemigo === 20) {
       const dano = Math.max(
         1,
-        (combate.enemigoAtaque + d6()) * 2 -
-          combate.jugadorDefensa
+        (combate.enemigoAtaque + d6()) * 2 - combate.jugadorDefensa
       );
 
       jugadorHp -= dano;
@@ -237,15 +342,11 @@ export async function POST(request: Request) {
     } else {
       const variacion = 0.8 + Math.random() * 0.4;
 
-      const danoBase =
-        Math.floor(
-          combate.enemigoAtaque * variacion
-        ) + 1;
+      const danoBase = Math.floor(combate.enemigoAtaque * variacion) + 1;
 
       const dano = Math.max(
         1,
-        danoBase -
-          Math.floor(combate.jugadorDefensa / 2)
+        danoBase - Math.floor(combate.jugadorDefensa / 2)
       );
 
       jugadorHp -= dano;
@@ -262,24 +363,23 @@ export async function POST(request: Request) {
     // ============================================================
 
     if (jugadorHp <= 0) {
-      log.push(
-        `💀 El aventurero cae derrotado.`
-      );
+      log.push(`💀 El aventurero cae derrotado.`);
 
-      const actualizado = await prisma.$transaction(async (tx) => {
-        const combateActualizado =
-          await tx.combateActivo.update({
-            where: {
-              id: combate.id,
-            },
-            data: {
-              jugadorHp: 0,
-              enemigoHp,
-              fase: "derrota",
-              turno: "jugador",
-              log,
-            },
-          });
+      const resultado = await prisma.$transaction(async (tx) => {
+        const combateActualizado = await tx.combateActivo.update({
+          where: {
+            id: combate.id,
+          },
+          data: {
+            jugadorHp: 0,
+            enemigoHp,
+            fase: "derrota",
+            turno: "jugador",
+            oroGanado: 0,
+            experienciaGanada: 0,
+            log,
+          },
+        });
 
         await tx.personaje.update({
           where: {
@@ -301,12 +401,38 @@ export async function POST(request: Request) {
           },
         });
 
-        return combateActualizado;
+        const usuarioActualizado = await tx.usuario.findUnique({
+          where: {
+            id: usuario.id,
+          },
+          include: {
+            personaje: true,
+            expedicionActiva: {
+              include: {
+                combateActivo: true,
+              },
+            },
+          },
+        });
+
+        return {
+          combate: combateActualizado,
+          usuario: usuarioActualizado,
+        };
       });
+
+      const datosUsuario = resultado.usuario
+        ? Object.fromEntries(
+            Object.entries(resultado.usuario).filter(
+              ([clave]) => clave !== "password"
+            )
+          )
+        : null;
 
       return NextResponse.json({
         exito: true,
-        combate: actualizado,
+        combate: resultado.combate,
+        usuario: datosUsuario,
         terminado: true,
       });
     }
