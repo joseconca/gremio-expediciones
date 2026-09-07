@@ -8,23 +8,23 @@ datasource db {
 }
 
 model Usuario {
-  id               String    @id @default(uuid())
-  email            String    @unique 
-  nombre           String    @unique
-  password         String
-  oro              Int       @default(10)
-  madera           Int       @default(0)
-  piedra           Int       @default(0)
-  metal            Int       @default(0)
-  baseCoords       Json?
+  id                String    @id @default(uuid())
+  email             String    @unique
+  nombre            String    @unique
+  password          String
+  oro               Int       @default(10)
+  madera            Int       @default(0)
+  piedra            Int       @default(0)
+  metal             Int       @default(0)
+  baseCoords        Json?
   ultimaMisionElite DateTime?
   ultimaActividad   DateTime?
-  
-  edificios Json      @default("{\"taberna\": 1, \"herreria\": 0, \"mercado\": 0, \"embajada\": 0}")
-  
+
+  edificios Json @default("{\"taberna\": 1, \"herreria\": 0, \"mercado\": 0, \"embajada\": 0}")
+
   // Relaciones
   personaje        Personaje?
-  expedicionActiva       ExpedicionActiva?
+  expedicionActiva ExpedicionActiva?
   historial        RegistroAccion[]
   sesiones         Sesion[]
   mensajesChat     MensajeChat[]
@@ -32,68 +32,68 @@ model Usuario {
 }
 
 model Sesion {
-  id          String   @id @default(uuid())
-  tokenHash   String   @unique
-  usuarioId   String
-  usuario     Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
-  expira      DateTime
-  creada      DateTime @default(now())
+  id        String   @id @default(uuid())
+  tokenHash String   @unique
+  usuarioId String
+  usuario   Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  expira    DateTime
+  creada    DateTime @default(now())
 
   @@index([usuarioId])
   @@index([expira])
 }
 
 model Personaje {
-  id                String   @id @default(uuid())
-  usuarioId         String   @unique
-  usuario           Usuario  @relation(fields: [usuarioId], references: [id])
-  
-  clase             String
-  sexo              String   @default("chico")
-  nombre            String
-  hpActual          Int
-  hpMaximo          Int
+  id        String  @id @default(uuid())
+  usuarioId String  @unique
+  usuario   Usuario @relation(fields: [usuarioId], references: [id])
+
+  clase              String
+  sexo               String               @default("chico")
+  nombre             String
+  hpActual           Int
+  hpMaximo           Int
   regeneracionDeVida Int
-  ultimaRegeneracion DateTime @default(now())
-  estado            String   @default("ocioso")
-  ataque            Int
-  defensa           Int
-  velocidad         Int
-  capacidadCarruaje Int
-  nivel             Int      @default(1)
-  experiencia       Int      @default(0)
-  inventario        Inventario?
-  habilidades       HabilidadAprendida[]
-  equipoEquipado    EquipoEquipado?
+  ultimaRegeneracion DateTime             @default(now())
+  estado             String               @default("ocioso")
+  ataque             Int
+  defensa            Int
+  velocidad          Int
+  capacidadCarruaje  Int
+  nivel              Int                  @default(1)
+  experiencia        Int                  @default(0)
+  inventario         Inventario?
+  habilidades        HabilidadAprendida[]
+  equipoEquipado     EquipoEquipado?
 }
 
 model Inventario {
-  id          String   @id @default(uuid())
-  personajeId String   @unique
+  id          String    @id @default(uuid())
+  personajeId String    @unique
   personaje   Personaje @relation(fields: [personajeId], references: [id], onDelete: Cascade)
 
-  objetos     InventarioObjeto[]
+  objetos InventarioObjeto[]
 }
 
 model Objeto {
-  id          String   @id @default(uuid())
+  id          String @id @default(uuid())
   nombre      String
   tipo        String
   descripcion String
-  rareza      String   @default("comun")
-  precio      Int      @default(0)
+  rareza      String @default("comun")
+  precio      Int    @default(0)
 
-  inventarios InventarioObjeto[]
-  armasEquipadas    EquipoEquipado[] @relation("ArmaEquipadas")
-  armadurasEquipadas EquipoEquipado[] @relation("ArmaduraEquipadas")
-  accesoriosEquipados EquipoEquipado[] @relation("AccesorioEquipadas")
+  inventarios         InventarioObjeto[]
+  armasEquipadas      EquipoEquipado[]   @relation("ArmaEquipadas")
+  armadurasEquipadas  EquipoEquipado[]   @relation("ArmaduraEquipadas")
+  accesoriosEquipados EquipoEquipado[]   @relation("AccesorioEquipadas")
 }
 
 model InventarioObjeto {
-  id           String   @id @default(uuid())
+  id           String @id @default(uuid())
   inventarioId String
   objetoId     String
-  cantidad     Int      @default(0)
+  cantidad     Int    @default(0)
 
   inventario Inventario @relation(fields: [inventarioId], references: [id], onDelete: Cascade)
   objeto     Objeto     @relation(fields: [objetoId], references: [id], onDelete: Cascade)
@@ -102,79 +102,117 @@ model InventarioObjeto {
 }
 
 model EquipoEquipado {
-  id          String   @id @default(uuid())
-  personajeId String   @unique
+  id          String    @id @default(uuid())
+  personajeId String    @unique
   personaje   Personaje @relation(fields: [personajeId], references: [id], onDelete: Cascade)
 
   armaId      String?
   armaduraId  String?
   accesorioId String?
 
-  arma        Objeto? @relation("ArmaEquipadas", fields: [armaId], references: [id])
-  armadura    Objeto? @relation("ArmaduraEquipadas", fields: [armaduraId], references: [id])
-  accesorio   Objeto? @relation("AccesorioEquipadas", fields: [accesorioId], references: [id])
+  arma      Objeto? @relation("ArmaEquipadas", fields: [armaId], references: [id])
+  armadura  Objeto? @relation("ArmaduraEquipadas", fields: [armaduraId], references: [id])
+  accesorio Objeto? @relation("AccesorioEquipadas", fields: [accesorioId], references: [id])
 }
 
 model Habilidad {
-  id          String   @id @default(uuid())
+  id          String @id @default(uuid())
   nombre      String
   descripcion String
   tipo        String
-  rareza      String   @default("comun")
-  precio      Int      @default(0)
+  rareza      String @default("comun")
+  precio      Int    @default(0)
 
   aprendidas HabilidadAprendida[]
 }
 
 model HabilidadAprendida {
-  id           String   @id @default(uuid())
-  personajeId  String
-  habilidadId  String
-  slot         String?
+  id          String  @id @default(uuid())
+  personajeId String
+  habilidadId String
+  slot        String?
 
-  personaje  Personaje @relation(fields: [personajeId], references: [id], onDelete: Cascade)
-  habilidad  Habilidad @relation(fields: [habilidadId], references: [id], onDelete: Cascade)
+  personaje Personaje @relation(fields: [personajeId], references: [id], onDelete: Cascade)
+  habilidad Habilidad @relation(fields: [habilidadId], references: [id], onDelete: Cascade)
 
   @@unique([personajeId, habilidadId])
-    @@unique([personajeId, slot])
+  @@unique([personajeId, slot])
 }
 
 model ExpedicionActiva {
-  id           String   @id @default(uuid())
-  usuarioId    String   @unique
-  usuario      Usuario  @relation(fields: [usuarioId], references: [id])
-  
-  tipo          String
-  objetivoId    String?
-  fase          String
+  id        String  @id @default(uuid())
+  usuarioId String  @unique
+  usuario   Usuario @relation(fields: [usuarioId], references: [id])
 
-  misionId     String
-  nombre       String
-  recompensa   Int
-  dificultad   Int
+  tipo       String
+  objetivoId String?
+  fase       String
 
-  fechaSalida DateTime @default(now()) 
-  fechaLlegada DateTime 
+  misionId   String
+  nombre     String
+  recompensa Int
+  dificultad Int
+
+  fechaSalida   DateTime @default(now())
+  fechaLlegada  DateTime
   destinoCoords Json
+
+  combateActivo CombateActivo?
+}
+
+model CombateActivo {
+  id String @id @default(uuid())
+
+  expedicionId String           @unique
+  expedicion   ExpedicionActiva @relation(fields: [expedicionId], references: [id], onDelete: Cascade)
+
+  fase String @default("activo")
+
+  ronda Int @default(1)
+
+  turno String @default("jugador")
+
+  enemigoId     String
+  enemigoNombre String
+
+  enemigoHp        Int
+  enemigoHpMaximo  Int
+  enemigoAtaque    Int
+  enemigoDefensa   Int
+  enemigoVelocidad Int
+
+  jugadorHp       Int
+  jugadorHpMaximo Int
+
+  oroGanado         Int @default(0)
+  experienciaGanada Int @default(0)
+
+  cooldowns Json @default("{}")
+  efectos   Json @default("[]")
+  log       Json @default("[]")
+
+  creado      DateTime @default(now())
+  actualizado DateTime @updatedAt
 }
 
 model AfinidadComercial {
-  id           String   @id @default(uuid())
+  id           String @id @default(uuid())
   jugador1Id   String
   jugador2Id   String
-  intercambios Int      @default(0)
-  afinidad     Int      @default(0)
+  intercambios Int    @default(0)
+  afinidad     Int    @default(0)
+
   @@unique([jugador1Id, jugador2Id])
 }
 
 model RegistroAccion {
-  id          String   @id @default(uuid())
-  usuarioId   String
-  usuario     Usuario  @relation(fields: [usuarioId], references: [id])
-  
-  tipo        String   // Ej: "EXPEDICION_TERMINADA", "MEJORA_EDIFICIO", "CURACION"
-  detalle     String   // Ej: "El personaje sanó 20 HP en la taberna por 15 de oro"
-  fecha       DateTime @default(now())
+  id        String  @id @default(uuid())
+  usuarioId String
+  usuario   Usuario @relation(fields: [usuarioId], references: [id])
+
+  tipo    String // Ej: "EXPEDICION_TERMINADA", "MEJORA_EDIFICIO", "CURACION"
+  detalle String // Ej: "El personaje sanó 20 HP en la taberna por 15 de oro"
+  fecha   DateTime @default(now())
 }
 
 model MensajeChat {
