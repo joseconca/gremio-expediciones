@@ -135,16 +135,20 @@ export default function ChatGlobal({
 
   useEffect(() => {
     if (!habilitado) return;
+
     const cargar = async () => {
-      const respuesta = await fetch("/api/chat");
+      const respuesta = await fetch("/api/chat", { cache: "no-store" });
+
       if (!respuesta.ok) return;
+
       const datos = await respuesta.json();
       setMensajes(datos.mensajes || []);
     };
+
     void cargar();
-    const intervalo = setInterval(() => void cargar(), 5000);
+    const intervalo = setInterval(() => void cargar(), abierto ? 5000 : 60000);
     return () => clearInterval(intervalo);
-  }, [habilitado]);
+  }, [habilitado, abierto]);
 
   async function enviar(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
