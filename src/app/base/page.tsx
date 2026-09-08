@@ -442,11 +442,10 @@ export default function BasePage() {
       {combateAbierto && expedicionActiva?.combateActivo && personaje && (
         <CombateModal
           combate={expedicionActiva.combateActivo}
-          nombreHeroe={personaje.nombre}
-          claseHeroe={personaje.clase}
-          sexoHeroe={personaje.sexo}
-          onAtacar={async () => {
-            await accionCombate("atacar");
+          personaje={personaje}
+          procesando={false}
+          onAtacar={() => {
+            void accionCombate("atacar");
           }}
           onCerrar={() => {
             setCombateAbierto(false);
