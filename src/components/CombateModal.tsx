@@ -3,13 +3,17 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
-import type { CombateActivo, Personaje } from "@/store/useGameStore";
+import type {
+  CombateActivo,
+  Personaje,
+  AccionAnimadaCombate,
+} from "@/store/useGameStore";
 
 interface CombateModalProps {
   combate: CombateActivo;
   personaje: Personaje;
   procesando?: boolean;
-  onAtacar: () => void;
+  onAtacar: () => Promise<AccionAnimadaCombate | null>;
   onCerrar?: () => void;
 }
 
@@ -26,9 +30,6 @@ export default function CombateModal({
    * ============================================================
    * BLOQUEAR SCROLL DEL FONDO
    * ============================================================
-   *
-   * Mientras el combate está abierto, la página de la base no
-   * debe desplazarse aunque hagamos scroll con rueda o touch.
    */
   useEffect(() => {
     const scrollY = window.scrollY;
@@ -92,6 +93,103 @@ export default function CombateModal({
 
   const spriteHeroe = obtenerSpriteHeroe(personaje.clase, personaje.sexo);
 
+  /*
+   * ============================================================
+   * ANIMACIONES
+   * ============================================================
+   */
+  const [actorAnimando, setActorAnimando] = useState<
+    "jugador" | "enemigo" | null
+  >(null);
+
+  const [danioVisible, setDanioVisible] = useState<{
+    actor: "jugador" | "enemigo";
+    dano: number;
+  } | null>(null);
+
+  const [procesandoLocal, setProcesandoLocal] = useState(false);
+
+  const turnoEnemigoEnCurso = useRef(false);
+
+  const mostrarResultadoAccion = async (accion: AccionAnimadaCombate) => {
+    setActorAnimando(accion.actor);
+
+    if (accion.dano > 0) {
+      setDanioVisible({
+        actor: accion.actor === "jugador" ? "enemigo" : "jugador",
+        dano: accion.dano,
+      });
+    }
+
+    await new Promise((resolver) => setTimeout(resolver, 500));
+
+    setDanioVisible(null);
+    setActorAnimando(null);
+  };
+
+  const ejecutarAtaqueJugador = async () => {
+    if (procesandoLocal || procesando || combateTerminado) {
+      return;
+    }
+
+    if (combate.turno !== "jugador") {
+      return;
+    }
+
+    setProcesandoLocal(true);
+
+    try {
+      const accion = await onAtacar();
+
+      if (!accion) {
+        return;
+      }
+
+      await mostrarResultadoAccion(accion);
+    } finally {
+      setProcesandoLocal(false);
+    }
+  };
+
+  useEffect(() => {
+    if (
+      combate.fase !== "activo" ||
+      combate.turno !== "enemigo" ||
+      procesando
+    ) {
+      return;
+    }
+
+    if (turnoEnemigoEnCurso.current) {
+      return;
+    }
+
+    turnoEnemigoEnCurso.current = true;
+    setProcesandoLocal(true);
+
+    const ejecutarTurnoEnemigo = async () => {
+      try {
+        // Pequeña pausa antes de que el enemigo actúe.
+        await new Promise((resolver) => setTimeout(resolver, 450));
+
+        const accion = await onAtacar();
+
+        if (!accion) {
+          return;
+        }
+
+        await mostrarResultadoAccion(accion);
+      } catch (error) {
+        console.error("Error en el turno enemigo:", error);
+      } finally {
+        turnoEnemigoEnCurso.current = false;
+        setProcesandoLocal(false);
+      }
+    };
+
+    void ejecutarTurnoEnemigo();
+  }, [combate.fase, combate.turno, procesando, onAtacar]);
+
   return (
     <div
       className="fixed inset-0 z-[9999] h-[100dvh] w-full overflow-hidden bg-black"
@@ -148,7 +246,13 @@ export default function CombateModal({
           {/* JUGADOR — IZQUIERDA                                */}
           {/* ================================================== */}
 
-          <div className="flex w-[45%] justify-center">
+          <div
+            className={`relative flex w-[45%] justify-center transition-transform duration-200 ${
+              actorAnimando === "jugador"
+                ? "translate-x-4 sm:translate-x-8"
+                : ""
+            }`}
+          >
             <div className="flex w-full flex-col items-center">
               {/* Caja de información */}
               <div className="w-[min(240px,42vw)] rounded-xl border-2 border-slate-700 bg-slate-950/90 p-2 shadow-lg">
@@ -167,7 +271,11 @@ export default function CombateModal({
                   {Math.max(0, combate.jugadorHp)} / {combate.jugadorHpMaximo}
                 </div>
               </div>
-
+              {danioVisible?.actor === "jugador" && (
+                <div className="absolute -top-10 left-1/2 -translate-x-1/2 animate-bounce text-3xl font-black text-red-400 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                  -{danioVisible.dano}
+                </div>
+              )}
               {/* Sprite */}
               <div className="mt-3">
                 <Image
@@ -186,7 +294,13 @@ export default function CombateModal({
           {/* ENEMIGO — DERECHA                                  */}
           {/* ================================================== */}
 
-          <div className="flex w-[45%] justify-center">
+          <div
+            className={`relative flex w-[45%] justify-center transition-transform duration-200 ${
+              actorAnimando === "enemigo"
+                ? "-translate-x-4 sm:-translate-x-8"
+                : ""
+            }`}
+          >
             <div className="flex w-full flex-col items-center">
               {/* Caja de información */}
               <div className="w-[min(240px,42vw)] rounded-xl border-2 border-slate-700 bg-slate-950/90 p-2 shadow-lg">
@@ -206,6 +320,11 @@ export default function CombateModal({
                 </div>
               </div>
 
+              {danioVisible?.actor === "enemigo" && (
+                <div className="absolute -top-10 left-1/2 -translate-x-1/2 animate-bounce text-3xl font-black text-red-400 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                  -{danioVisible.dano}
+                </div>
+              )}
               {/* Sprite */}
               <div className="mt-3">
                 <Image
@@ -277,32 +396,16 @@ export default function CombateModal({
           <div className="grid grid-cols-2 gap-2 p-2 sm:gap-3 sm:p-4">
             <button
               type="button"
-              onClick={onAtacar}
-              disabled={procesando || combateTerminado}
-              className="
-                group relative overflow-hidden rounded-xl
-                border-2 border-red-700
-                bg-gradient-to-b from-red-700 to-red-900
-                px-2 py-2
-                font-black text-white
-                shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_0_rgb(69,10,10)]
-                transition-all
-                hover:from-red-600 hover:to-red-800
-                active:translate-y-1 active:shadow-none
-                disabled:cursor-not-allowed disabled:opacity-40
-              "
+              onClick={() => void ejecutarAtaqueJugador()}
+              disabled={
+                procesando ||
+                procesandoLocal ||
+                combateTerminado ||
+                combate.turno !== "jugador"
+              }
+              className="rounded-xl bg-red-700 px-8 py-4 text-lg font-bold shadow-lg transition hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              <span className="block text-xl leading-none sm:text-2xl">⚔️</span>
-
-              <span className="mt-1 block text-[11px] tracking-wide sm:text-sm">
-                ATACAR
-              </span>
-
-              {procesando && (
-                <span className="absolute inset-0 flex items-center justify-center bg-black/30 text-[10px] font-black uppercase">
-                  Atacando...
-                </span>
-              )}
+              ⚔️ Atacar
             </button>
 
             <button

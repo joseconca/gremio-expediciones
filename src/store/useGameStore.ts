@@ -114,6 +114,13 @@ export interface InfoCura {
   aTope: boolean;
 }
 
+export interface AccionAnimadaCombate {
+  actor: "jugador" | "enemigo";
+  tipo: "ataque" | "fallo" | "critico";
+  dano: number;
+  texto: string;
+}
+
 export interface GameState {
   oro: number;
   madera: number;
@@ -135,7 +142,7 @@ export interface GameState {
   iniciarExpedicion: (expedicion: ExpedicionActiva) => void;
   llegarExpedicion: () => Promise<boolean>;
   completarExpedicion: () => Promise<ResultadoCombate | null>;
-  accionCombate: (accion: "atacar") => Promise<boolean>;
+  accionCombate: (accion: "atacar") => Promise<AccionAnimadaCombate | null>;
   cancelarExpedicion: () => Promise<boolean>;
 
   calcularCosteCura: () => InfoCura;
@@ -384,10 +391,10 @@ export const useGameStore = create<GameState>((set, get) => ({
         }));
       }
 
-      return true;
+      return (datos.accion as AccionAnimadaCombate) || null;
     } catch (error) {
       console.error("Error en acción de combate:", error);
-      return false;
+      return null;
     }
   },
 

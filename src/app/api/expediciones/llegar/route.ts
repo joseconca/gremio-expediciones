@@ -126,11 +126,12 @@ export async function POST() {
     }
 
     // ============================================================
-    // ESTADÍSTICAS DEL ENEMIGO
+    // ESTADÍSTICAS
     // ============================================================
 
     const dificultad = Math.max(0, expedicion.dificultad);
 
+    const enemigoNombre = monstruoBase.nombre;
     const enemigoHp = Math.floor(monstruoBase.hp * (1 + dificultad * 0.3));
     const enemigoAtaque = monstruoBase.ataque + Math.floor(dificultad * 1.2);
     const enemigoDefensa = monstruoBase.defensa + Math.floor(dificultad * 0.8);
@@ -142,6 +143,13 @@ export async function POST() {
     const jugadorDefensa = personaje.defensa;
     const jugadorVelocidad = personaje.velocidad;
     const jugadorNivel = personaje.nivel;
+
+    const primerTurno =
+      jugadorVelocidad >= enemigoVelocidad ? "jugador" : "enemigo";
+    const logInicial =
+      primerTurno === "jugador"
+        ? [`⚔️ ${usuario.personaje.nombre} tiene la iniciativa.`]
+        : [`⚔️ ${enemigoNombre} tiene la iniciativa.`];
     // ============================================================
     // CREAR COMBATE
     // ============================================================
@@ -153,7 +161,7 @@ export async function POST() {
 
           fase: "activo",
           ronda: 1,
-          turno: "jugador",
+          turno: primerTurno,
 
           enemigoId: monstruoBase.id,
           enemigoNombre: monstruoBase.nombre,
@@ -177,11 +185,7 @@ export async function POST() {
           cooldowns: {},
           efectos: [],
 
-          log: [
-            `🗺️ ${personaje.nombre} llega a ${expedicion.nombre}.`,
-            `👾 ¡Un ${monstruoBase.nombre} aparece ante ti!`,
-            `⚔️ ¡Comienza el combate!`,
-          ],
+          log: logInicial,
         },
       });
 

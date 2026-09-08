@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -435,6 +435,9 @@ export default function BasePage() {
 
   const listaEdificios = Object.values(edificios);
   const edificiosConstruidos = listaEdificios.filter((e) => e.nivel > 0);
+  const ejecutarAtaque = useCallback(() => {
+    return accionCombate("atacar");
+  }, [accionCombate]);
 
   return (
     <main className="min-h-screen bg-slate-900 text-slate-100 p-4 md:p-8 font-sans">
@@ -444,9 +447,7 @@ export default function BasePage() {
           combate={expedicionActiva.combateActivo}
           personaje={personaje}
           procesando={false}
-          onAtacar={() => {
-            void accionCombate("atacar");
-          }}
+          onAtacar={ejecutarAtaque}
           onCerrar={() => {
             setCombateAbierto(false);
           }}

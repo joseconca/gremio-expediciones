@@ -9,8 +9,109 @@ import {
 
 type AccionCombate = "atacar";
 
+interface AccionAnimadaCombate {
+  actor: "jugador" | "enemigo";
+  tipo: "ataque" | "fallo" | "critico";
+  dano: number;
+  texto: string;
+}
+
 const d20 = () => Math.floor(Math.random() * 20) + 1;
 const d6 = () => Math.floor(Math.random() * 6) + 1;
+
+function resolverAtaqueJugador(combate: {
+  jugadorAtaque: number;
+  jugadorNivel: number;
+  enemigoDefensa: number;
+  enemigoNombre: string;
+}) {
+  const dado = d20();
+
+  if (dado === 20) {
+    const dano = Math.max(
+      1,
+      (combate.jugadorAtaque + d6()) * 2 - combate.enemigoDefensa
+    );
+
+    return {
+      dano,
+      tipo: "critico" as const,
+      texto: `💥 ¡Golpe crítico! Atacas a ${combate.enemigoNombre} e infliges ${dano} de daño.`,
+    };
+  }
+
+  if (dado === 1) {
+    return {
+      dano: 0,
+      tipo: "fallo" as const,
+      texto: `🤡 Pifia. Fallas tu ataque contra ${combate.enemigoNombre}.`,
+    };
+  }
+
+  const umbralAcierto = 2;
+
+  if (dado < umbralAcierto) {
+    return {
+      dano: 0,
+      tipo: "fallo" as const,
+      texto: `💨 ${combate.enemigoNombre} esquiva tu ataque.`,
+    };
+  }
+
+  const variacion = 0.8 + Math.random() * 0.4;
+
+  const danoBase =
+    Math.floor(combate.jugadorAtaque * variacion) + combate.jugadorNivel;
+
+  const dano = Math.max(1, danoBase - Math.floor(combate.enemigoDefensa / 2));
+
+  return {
+    dano,
+    tipo: "ataque" as const,
+    texto: `⚔️ Atacas a ${combate.enemigoNombre} e infliges ${dano} de daño.`,
+  };
+}
+
+function resolverAtaqueEnemigo(combate: {
+  enemigoAtaque: number;
+  jugadorDefensa: number;
+  enemigoNombre: string;
+}) {
+  const dado = d20();
+
+  if (dado === 20) {
+    const dano = Math.max(
+      1,
+      (combate.enemigoAtaque + d6()) * 2 - combate.jugadorDefensa
+    );
+
+    return {
+      dano,
+      tipo: "critico" as const,
+      texto: `💥 ¡Golpe crítico! ${combate.enemigoNombre} inflige ${dano} de daño.`,
+    };
+  }
+
+  if (dado === 1) {
+    return {
+      dano: 0,
+      tipo: "fallo" as const,
+      texto: `🤡 ${combate.enemigoNombre} falla su ataque.`,
+    };
+  }
+
+  const variacion = 0.8 + Math.random() * 0.4;
+
+  const danoBase = Math.floor(combate.enemigoAtaque * variacion) + 1;
+
+  const dano = Math.max(1, danoBase - Math.floor(combate.jugadorDefensa / 2));
+
+  return {
+    dano,
+    tipo: "ataque" as const,
+    texto: `🩸 ${combate.enemigoNombre} golpea y causa ${dano} de daño.`,
+  };
+}
 
 export async function POST(request: Request) {
   try {
@@ -80,16 +181,17 @@ export async function POST(request: Request) {
       );
     }
 
-    if (combate.turno !== "jugador") {
+    if (combate.turno !== "jugador" && combate.turno !== "enemigo") {
       return NextResponse.json(
-        { error: "No es el turno del jugador." },
+        { error: "Turno de combate no válido." },
         { status: 409 }
       );
     }
 
     // ============================================================
-    // COPIA DEL ESTADO ACTUAL
+    // FLUJO COMBATE
     // ============================================================
+    const actor = combate.turno;
 
     let jugadorHp = combate.jugadorHp;
     let enemigoHp = combate.enemigoHp;
@@ -98,57 +200,32 @@ export async function POST(request: Request) {
       ? [...(combate.log as string[])]
       : [];
 
-    // ============================================================
-    // ATAQUE DEL JUGADOR
-    // ============================================================
+    let accionAnimada: AccionAnimadaCombate;
 
-    const dadoJugador = d20();
+    if (actor === "jugador") {
+      const resultado = resolverAtaqueJugador(combate);
 
-    if (dadoJugador === 20) {
-      const dano = Math.max(
-        1,
-        (combate.jugadorAtaque + d6()) * 2 - combate.enemigoDefensa
-      );
+      enemigoHp = Math.max(0, enemigoHp - resultado.dano);
 
-      enemigoHp -= dano;
-
-      log.push(
-        `💥 ¡GOLPE CRÍTICO! El aventurero inflige ${dano} de daño a ${combate.enemigoNombre}.`
-      );
-    } else if (dadoJugador === 1) {
-      log.push(`🤡 El aventurero comete una pifia y falla su ataque.`);
+      accionAnimada = {
+        actor: "jugador",
+        tipo: resultado.tipo,
+        dano: resultado.dano,
+        texto: resultado.texto,
+      };
     } else {
-      /*const diferenciaNivel =
-        combate.jugadorNivel -
-        (combate.enemigoNivel ?? combate.jugadorNivel);
+      const resultado = resolverAtaqueEnemigo(combate);
 
-      const umbralAcierto = Math.max(2, 2 - diferenciaNivel);*/
+      jugadorHp = Math.max(0, jugadorHp - resultado.dano);
 
-      //TEMPORAL
-      const umbralAcierto = 2;
-
-      if (dadoJugador >= umbralAcierto) {
-        const variacion = 0.8 + Math.random() * 0.4;
-
-        const danoBase =
-          Math.floor(combate.jugadorAtaque * variacion) + combate.jugadorNivel;
-
-        const dano = Math.max(
-          1,
-          danoBase - Math.floor(combate.enemigoDefensa / 2)
-        );
-
-        enemigoHp -= dano;
-
-        log.push(
-          `⚔️ Atacas a ${combate.enemigoNombre} e infliges ${dano} de daño.`
-        );
-      } else {
-        log.push(`💨 ${combate.enemigoNombre} esquiva tu ataque.`);
-      }
+      accionAnimada = {
+        actor: "enemigo",
+        tipo: resultado.tipo,
+        dano: resultado.dano,
+        texto: resultado.texto,
+      };
     }
-
-    enemigoHp = Math.max(0, enemigoHp);
+    log.push(accionAnimada.texto);
 
     // ============================================================
     // VICTORIA
@@ -223,7 +300,7 @@ export async function POST(request: Request) {
       }
 
       // ============================================================
-      // GUARDAR VICTORIA
+      // VICTORIA
       // ============================================================
 
       const resultado = await prisma.$transaction(async (tx) => {
@@ -315,48 +392,9 @@ export async function POST(request: Request) {
         combate: resultado.combate,
         usuario: datosUsuario,
         terminado: true,
+        accion: accionAnimada,
       });
     }
-
-    // ============================================================
-    // CONTRAATAQUE DEL ENEMIGO
-    // ============================================================
-
-    const dadoEnemigo = d20();
-
-    if (dadoEnemigo === 20) {
-      const dano = Math.max(
-        1,
-        (combate.enemigoAtaque + d6()) * 2 - combate.jugadorDefensa
-      );
-
-      jugadorHp -= dano;
-
-      log.push(
-        `💥 ¡CRÍTICO! ${combate.enemigoNombre} inflige ${dano} de daño.`
-      );
-    } else if (dadoEnemigo === 1) {
-      log.push(
-        `🤡 ${combate.enemigoNombre} comete una pifia y falla su ataque.`
-      );
-    } else {
-      const variacion = 0.8 + Math.random() * 0.4;
-
-      const danoBase = Math.floor(combate.enemigoAtaque * variacion) + 1;
-
-      const dano = Math.max(
-        1,
-        danoBase - Math.floor(combate.jugadorDefensa / 2)
-      );
-
-      jugadorHp -= dano;
-
-      log.push(
-        `🩸 ${combate.enemigoNombre} te golpea e inflige ${dano} de daño.`
-      );
-    }
-
-    jugadorHp = Math.max(0, jugadorHp);
 
     // ============================================================
     // DERROTA
@@ -434,12 +472,40 @@ export async function POST(request: Request) {
         combate: resultado.combate,
         usuario: datosUsuario,
         terminado: true,
+        accion: accionAnimada,
       });
     }
 
     // ============================================================
-    // SIGUIENTE RONDA
+    // SIGUIENTE TURNO
     // ============================================================
+
+    const jugadorEsPrimero =
+      combate.jugadorVelocidad >= combate.enemigoVelocidad;
+
+    let siguienteTurno: "jugador" | "enemigo";
+    let siguienteRonda = combate.ronda;
+
+    if (actor === "jugador") {
+      // Si el jugador es el primero, todavía falta actuar al enemigo
+      if (jugadorEsPrimero) {
+        siguienteTurno = "enemigo";
+      } else {
+        // El jugador era el segundo: empieza una nueva ronda
+        siguienteRonda += 1;
+        siguienteTurno = "enemigo";
+      }
+    } else {
+      // Ha actuado el enemigo
+      if (jugadorEsPrimero) {
+        // El enemigo era el segundo: nueva ronda
+        siguienteRonda += 1;
+        siguienteTurno = "jugador";
+      } else {
+        // El enemigo era el primero: todavía falta el jugador
+        siguienteTurno = "jugador";
+      }
+    }
 
     const actualizado = await prisma.combateActivo.update({
       where: {
@@ -448,10 +514,8 @@ export async function POST(request: Request) {
       data: {
         jugadorHp,
         enemigoHp,
-        ronda: {
-          increment: 1,
-        },
-        turno: "jugador",
+        ronda: siguienteRonda,
+        turno: siguienteTurno,
         log,
       },
     });
@@ -460,6 +524,7 @@ export async function POST(request: Request) {
       exito: true,
       combate: actualizado,
       terminado: false,
+      accion: accionAnimada,
     });
   } catch (error) {
     console.error("Error al ejecutar acción de combate:", error);
