@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { sincronizarRegeneracion } from "@/lib/regeneracion";
@@ -15,9 +15,13 @@ export async function POST(request: Request) {
 
     const { mision, tiempoHoras } = await request.json();
 
-if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number') {
-        return NextResponse.json(
-        { exito: false, mensaje: 'Datos de la misión inválidos.' },
+    if (
+      !mision ||
+      typeof mision.lat !== "number" ||
+      typeof mision.lng !== "number"
+    ) {
+      return NextResponse.json(
+        { exito: false, mensaje: "Datos de la misión inválidos." },
         { status: 400 }
       );
     }
@@ -48,38 +52,89 @@ if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number')
     usuario.personaje = await sincronizarRegeneracion(usuario.personaje);
     if (usuario.personaje.hpActual <= 0) {
       return NextResponse.json(
-        { exito: false, mensaje: "Tu aventurero necesita curarse antes de partir." },
+        {
+          exito: false,
+          mensaje: "Tu aventurero necesita curarse antes de partir.",
+        },
         { status: 400 }
       );
     }
 
-    const esComercio = typeof mision.tipo === "string" && mision.tipo === "comercio";
+    const esComercio =
+      typeof mision.tipo === "string" && mision.tipo === "comercio";
     const esElite = typeof mision.tipo === "string" && mision.tipo === "elite";
     const diaActual = new Date().toISOString().slice(0, 10);
+    
     if (esElite) {
-      if (typeof mision.id !== "string" || !mision.id.startsWith(`elite-${diaActual}-`)) {
-        return NextResponse.json({ exito: false, mensaje: "La misión de élite ya no está disponible." }, { status: 400 });
+      if (
+        typeof mision.id !== "string" ||
+        !mision.id.startsWith(`elite-${diaActual}-`)
+      ) {
+        return NextResponse.json(
+          {
+            exito: false,
+            mensaje: "La misión de élite ya no está disponible.",
+          },
+          { status: 400 }
+        );
       }
       const ultimaElite = usuario.ultimaMisionElite?.toISOString().slice(0, 10);
       if (ultimaElite === diaActual) {
-        return NextResponse.json({ exito: false, mensaje: "Ya has completado la misión de élite de hoy." }, { status: 409 });
+        return NextResponse.json(
+          {
+            exito: false,
+            mensaje: "Ya has completado la misión de élite de hoy.",
+          },
+          { status: 409 }
+        );
       }
     }
     let objetivoId: string | undefined;
     if (esComercio) {
-      const edificiosOrigen = usuario.edificios as Record<string, unknown> | null;
+      const edificiosOrigen = usuario.edificios as Record<
+        string,
+        unknown
+      > | null;
       if (edificiosOrigen?.embajada !== 1 && edificiosOrigen?.embajada !== 2) {
-        return NextResponse.json({ exito: false, mensaje: "Construye la Embajada para abrir rutas comerciales." }, { status: 403 });
+        return NextResponse.json(
+          {
+            exito: false,
+            mensaje: "Construye la Embajada para abrir rutas comerciales.",
+          },
+          { status: 403 }
+        );
       }
-      const idObjetivo = typeof mision.id === "string" && mision.id.startsWith("comercio-")
-        ? mision.id.slice("comercio-".length)
-        : "";
+      const idObjetivo =
+        typeof mision.id === "string" && mision.id.startsWith("comercio-")
+          ? mision.id.slice("comercio-".length)
+          : "";
       const objetivo = idObjetivo
-        ? await prisma.usuario.findUnique({ where: { id: idObjetivo }, select: { id: true, nombre: true, baseCoords: true, edificios: true } })
+        ? await prisma.usuario.findUnique({
+            where: { id: idObjetivo },
+            select: {
+              id: true,
+              nombre: true,
+              baseCoords: true,
+              edificios: true,
+            },
+          })
         : null;
-      const edificiosDestino = objetivo?.edificios as Record<string, unknown> | null;
-      if (!objetivo || !objetivo.baseCoords || (edificiosDestino?.embajada !== 1 && edificiosDestino?.embajada !== 2)) {
-        return NextResponse.json({ exito: false, mensaje: "El gremio de destino ya no está disponible." }, { status: 404 });
+      const edificiosDestino = objetivo?.edificios as Record<
+        string,
+        unknown
+      > | null;
+      if (
+        !objetivo ||
+        !objetivo.baseCoords ||
+        (edificiosDestino?.embajada !== 1 && edificiosDestino?.embajada !== 2)
+      ) {
+        return NextResponse.json(
+          {
+            exito: false,
+            mensaje: "El gremio de destino ya no está disponible.",
+          },
+          { status: 404 }
+        );
       }
       objetivoId = objetivo.id;
     }
@@ -87,9 +142,9 @@ if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number')
     // Consultar el clima real en las coordenadas de la misión
     const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${mision.lat}&longitude=${mision.lng}&current_weather=true`;
     const weatherResponse = await fetch(weatherUrl);
-    
+
     if (!weatherResponse.ok) throw new Error("Error al consultar Open-Meteo");
-    
+
     const weatherData = await weatherResponse.json();
     const weatherCode = weatherData.current_weather.weathercode;
 
@@ -109,9 +164,9 @@ if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number')
     }
 
     // Calcular la fecha y hora exacta de llegada
-    const horasBase = tiempoHoras; 
+    const horasBase = tiempoHoras;
     const horasReales = horasBase * multiplicadorTiempo;
-    
+
     const ahora = Date.now();
     const fechaSalida = new Date(ahora);
     const tiempoViajeMs = (horasReales * 60 * 60 * 1000) / 2;
@@ -121,13 +176,16 @@ if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number')
       prisma.expedicionActiva.create({
         data: {
           usuarioId: usuario.id,
-          tipo: esComercio ? "comercio" : "expedicion",
+          tipo: esComercio ? "comercio" : esElite ? "elite" : "normal",
           objetivoId,
+          enemigoId: esElite ? mision.enemigoId : undefined,
           fase: "en_viaje",
           misionId: String(mision.id),
           nombre: mision.nombre || "Expedición",
-          recompensa: typeof mision.recompensa === "number" ? mision.recompensa : 0,
-          dificultad: typeof mision.dificultad === "number" ? mision.dificultad : 0,
+          recompensa:
+            typeof mision.recompensa === "number" ? mision.recompensa : 0,
+          dificultad:
+            typeof mision.dificultad === "number" ? mision.dificultad : 0,
           fechaLlegada,
           destinoCoords: { lat: mision.lat, lng: mision.lng },
         },
@@ -136,7 +194,14 @@ if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number')
         where: { usuarioId: usuario.id },
         data: { estado: "de_viaje" },
       }),
-      ...(esElite ? [prisma.usuario.update({ where: { id: usuario.id }, data: { ultimaMisionElite: new Date() } })] : []),
+      ...(esElite
+        ? [
+            prisma.usuario.update({
+              where: { id: usuario.id },
+              data: { ultimaMisionElite: new Date() },
+            }),
+          ]
+        : []),
     ]);
 
     return NextResponse.json({
@@ -146,10 +211,9 @@ if (!mision || typeof mision.lat !== 'number' || typeof mision.lng !== 'number')
       fechaLlegada: fechaLlegada.toISOString(),
       fechaSalida: fechaSalida.toISOString(),
     });
-
   } catch {
     return NextResponse.json(
-      { exito: false, mensaje: 'Error al planificar la expedición.' },
+      { exito: false, mensaje: "Error al planificar la expedición." },
       { status: 500 }
     );
   }

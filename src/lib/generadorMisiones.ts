@@ -1,3 +1,5 @@
+import { JEFES_ELITE } from "./enemigos";
+
 function randomSeeded(seed: number) {
   const x = Math.sin(seed) * 181097;
   return x - Math.floor(x);
@@ -44,20 +46,17 @@ export function generarMisionElite(
 ) {
   const seed =
     dia.split("-").reduce((total, parte) => total + Number(parte), 0) * 431;
-  const jefes = [
-    { id: "senor-frontera", nombre: "Señor de la Frontera" },
-    { id: "reina-arana", nombre: "Reina de las Sombras" },
-    { id: "titan-hierro", nombre: "Titán de Hierro" },
-    { id: "dragon-verde", nombre: "Dragón del Bosque Verde" },
-  ];
-  const jefe = jefes[Math.floor(randomSeeded(seed + 2) * jefes.length)];
+  const jefe = JEFES_ELITE[Math.floor(randomSeeded(seed + 2) * JEFES_ELITE.length)];
+
   const angulo = randomSeeded(seed) * Math.PI * 2;
   const distanciaKm = 5 + randomSeeded(seed + 1) * 1;
   const dificultad = 5 + Math.floor(randomSeeded(seed + 3) * 6);
+
   return {
     id: `elite-${dia}-${jefe.id}`,
     tipo: "elite" as const,
     enemigoId: jefe.id,
+
     lat: baseLat + (distanciaKm * Math.cos(angulo)) / 111,
     lng:
       baseLng +
@@ -65,9 +64,9 @@ export function generarMisionElite(
         (111 * Math.cos((baseLat * Math.PI) / 180)),
     nombre: jefe.nombre,
     dificultad,
-    recompensa: 1200,
+    recompensa: jefe.botin,
     duracionObjetivoHoras: 1,
-    desc: "Una amenaza ancestral ha despertado. Derrota al jefe para obtener una gran recompensa.",
+    desc: `Una amenaza ha despertado. Derrota al ${jefe.nombre} para obtener una gran recompensa.`,
   };
 }
 
