@@ -206,12 +206,13 @@ export async function POST(request: Request) {
         });
 
         await tx.expedicionActiva.update({
-          where: {
-            id: expedicion.id,
-          },
+          where: { id: expedicion.id },
           data: {
             fase: "regresando",
             recompensa: oroGanado,
+            resultadoFinal: "exito",
+            hpPerdido: Math.max(0, combate.jugadorHpMaximo - jugadorHp),
+            experienciaGanada,
           },
         });
 
@@ -328,12 +329,13 @@ export async function POST(request: Request) {
         });
 
         await tx.expedicionActiva.update({
-          where: {
-            id: expedicion.id,
-          },
+          where: { id: expedicion.id },
           data: {
             fase: "regresando",
             recompensa: 0,
+            resultadoFinal: "derrota",
+            hpPerdido: Math.max(0, combate.jugadorHpMaximo - jugadorHp),
+            experienciaGanada: 0,
           },
         });
 

@@ -21,6 +21,24 @@ export type FaseCombate = "activo" | "victoria" | "derrota" | "huida";
 
 export type FaseExpedicion = "en_viaje" | "combatiendo" | "regresando";
 
+export type ResultadoExpedicion = "exito" | "derrota" | "cancelada";
+
+export type TipoReporteExpedicion = "combate" | "comercio";
+
+export interface ReporteExpedicion {
+  exito: boolean;
+  resultadoFinal: ResultadoExpedicion;
+  hpPerdido: number;
+  oroGanado: number;
+  experienciaGanada: number;
+  logCombate: string[];
+  tipo: TipoReporteExpedicion;
+  enemigo?: string;
+  enemigoId?: string;
+  rondas?: number;
+  poderHeroe?: number;
+}
+
 export interface DefinicionEnemigo {
   id: string;
   nombre: string;

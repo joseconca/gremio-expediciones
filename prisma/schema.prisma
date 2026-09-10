@@ -147,12 +147,17 @@ model ExpedicionActiva {
   tipo       String
   objetivoId String?
   fase       String
+  resultadoFinal     String?
+
 
   misionId   String
   enemigoId  String?
   nombre     String
   recompensa Int
   dificultad Int
+
+  hpPerdido          Int      @default(0)
+  experienciaGanada  Int      @default(0)
 
   fechaSalida   DateTime @default(now())
   fechaLlegada  DateTime

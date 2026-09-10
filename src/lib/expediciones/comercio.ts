@@ -1,15 +1,8 @@
+import type { ReporteExpedicion, ResultadoExpedicion } from "@/lib/tiposJuego";
 
-export interface ResultadoComercio {
-  exito: boolean;
-  hpPerdido: number;
-  oroGanado: number;
-  experienciaGanada: number;
-  logCombate: string[];
-  enemigo?: string;
-  enemigoId?: string;
-  rondas?: number;
-  poderHeroe?: number;
-  tipo?: "comercio";
+export interface ResultadoComercio extends ReporteExpedicion {
+  tipo: "comercio";
+  resultadoFinal: ResultadoExpedicion;
 }
 
 interface PersonajeCombate {
@@ -99,9 +92,10 @@ export function resolverComercio(
   if (hpTemporal <= 0) {
     return {
       exito: false,
+      resultadoFinal: "derrota",
       hpPerdido: personaje.hpActual - 1,
       oroGanado: 0,
-      experienciaGanada: 10,
+      experienciaGanada: 0,
       enemigo: "Peligros del camino",
       rondas: 0,
       poderHeroe: personaje.ataque + personaje.defensa,
@@ -158,9 +152,10 @@ export function resolverComercio(
   if (hpTemporal <= 0) {
     return {
       exito: false,
+      resultadoFinal: "derrota",
       hpPerdido: personaje.hpActual - 1,
       oroGanado: 0,
-      experienciaGanada: 10,
+      experienciaGanada: 0,
       enemigo: "Peligros del camino",
       rondas: 0,
       poderHeroe: personaje.ataque + personaje.defensa,
@@ -179,6 +174,7 @@ export function resolverComercio(
 
   return {
     exito: true,
+    resultadoFinal: "exito",
     hpPerdido: personaje.hpActual - hpTemporal,
     oroGanado: oroFinal,
     experienciaGanada: 0,

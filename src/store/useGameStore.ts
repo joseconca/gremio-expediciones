@@ -2,6 +2,7 @@ import { create } from "zustand";
 import type { ResultadoComercio } from "@/lib/expediciones/comercio";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { CONFIGURACION_EDIFICIOS } from "@/lib/configuracionJuego";
+import type { ReporteExpedicion, ResultadoExpedicion } from "@/lib/tiposJuego";
 
 const EDIFICIOS_BASE: Record<string, Omit<Edificio, "nivel">> = {
   taberna: {
@@ -104,6 +105,9 @@ export interface ExpedicionActiva {
   dificultad: number;
   tipo: "normal" | "elite" | "comercio" | "boss";
   fase: "en_viaje" | "combatiendo" | "regresando";
+  resultadoFinal?: ResultadoExpedicion | null;
+  hpPerdido: number;
+  experienciaGanada: number;
   objetivoId?: string | null;
   destinoCoords: { lat: number; lng: number };
   combateActivo?: CombateActivo | null;
@@ -135,7 +139,7 @@ export interface GameState {
 
   iniciarExpedicion: (expedicion: ExpedicionActiva) => void;
   llegarExpedicion: () => Promise<boolean>;
-  completarExpedicion: () => Promise<ResultadoComercio | null>;
+  completarExpedicion: () => Promise<ReporteExpedicion | null>;
   accionCombate: (accion: "atacar") => Promise<AccionAnimadaCombate | null>;
   cancelarExpedicion: () => Promise<boolean>;
 
@@ -397,11 +401,15 @@ export const useGameStore = create<GameState>((set, get) => ({
       const respuesta = await fetch("/api/expediciones/completar", {
         method: "POST",
       });
+
       const datos = await respuesta.json();
+
       if (!respuesta.ok)
         throw new Error(datos.error || "No se pudo completar la expedición.");
+
       aplicarDatosJugador(set, datos.usuario);
-      return datos.resultado as ResultadoComercio;
+      
+      return datos.resultado as ReporteExpedicion;
     } catch (error) {
       console.error(error);
       return null;

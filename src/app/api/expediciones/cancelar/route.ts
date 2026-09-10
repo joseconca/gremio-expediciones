@@ -67,6 +67,9 @@ export async function POST() {
           fechaSalida: fechaSalidaRegreso,
           fechaLlegada: fechaLlegadaRegreso,
           recompensa: 0,
+          resultadoFinal: "cancelada",
+          experienciaGanada: 0,
+          hpPerdido: 0
         },
       });
 
