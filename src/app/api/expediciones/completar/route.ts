@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { calcularDistanciaKm } from "@/lib/utils";
-import { resolverComercio } from "@/lib/resolucionCombate";
+import { resolverComercio } from "@/lib/expediciones/comercio";
 
 export async function POST() {
   try {

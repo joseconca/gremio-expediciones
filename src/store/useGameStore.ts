@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { ResultadoCombate } from "@/lib/resolucionCombate";
+import type { ResultadoCombate } from "@/lib/expediciones/comercio";
 import { CONFIGURACION_EDIFICIOS } from "@/lib/configuracionJuego";
 
 const EDIFICIOS_BASE: Record<string, Omit<Edificio, "nivel">> = {
