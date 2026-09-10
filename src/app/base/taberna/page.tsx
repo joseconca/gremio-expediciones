@@ -130,9 +130,9 @@ export default function TabernaPage() {
         <header className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-amber-500">
-              Taberna de los aventureros
+              Taberna
             </h1>
-            <p className="text-slate-400">Recluta o descansa tomando una cerveza enana especial.</p>
+            <p className="text-slate-400">Descansa y recupera la salud.</p>
           </div>
           <Link
             href="/base"
