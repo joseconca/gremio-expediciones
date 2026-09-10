@@ -6,8 +6,9 @@ import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import type {
   CombateActivo,
   Personaje,
-  AccionAnimadaCombate,
 } from "@/store/useGameStore";
+import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
+
 
 interface CombateModalProps {
   combate: CombateActivo;
