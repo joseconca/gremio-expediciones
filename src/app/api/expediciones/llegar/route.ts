@@ -2,8 +2,10 @@ import { NextResponse } from "next/server";
 
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { ENEMIGOS, JEFES_ELITE, obtenerEnemigoPorId } from "@/lib/enemigos";
-import type { DefinicionEnemigo, TipoMision } from "@/lib/tiposJuego";
+import { obtenerEnemigoPorId } from "@/lib/enemigos";
+import type { TipoMision } from "@/lib/tiposJuego";
+import { seleccionarEnemigoNormal } from "@/lib/expediciones/normal";
+import { seleccionarJefeElite } from "@/lib/expediciones/elite";
 
 export async function POST() {
   try {
@@ -88,39 +90,37 @@ export async function POST() {
 
     const tipoMision = expedicion.tipo as TipoMision;
 
-    let monstruoBase: DefinicionEnemigo | undefined;
+    let monstruoBase: ReturnType<typeof seleccionarEnemigoNormal>;
 
-    if (tipoMision === "elite") {
-      if (!expedicion.enemigoId) {
+    try {
+      if (tipoMision === "elite") {
+        if (!expedicion.enemigoId) {
+          return NextResponse.json(
+            {
+              error: "La expedición de élite no tiene un jefe asignado.",
+            },
+            { status: 500 }
+          );
+        }
+
+        monstruoBase = seleccionarJefeElite(expedicion.enemigoId);
+      } else if (tipoMision === "normal") {
+        monstruoBase = seleccionarEnemigoNormal(expedicion.dificultad);
+      } else {
         return NextResponse.json(
-          { error: "La expedición de élite no tiene un jefe asignado." },
-          { status: 500 }
+          {
+            error: `Tipo de expedición no válido para combate: ${expedicion.tipo}`,
+          },
+          { status: 409 }
         );
       }
-      monstruoBase = obtenerEnemigoPorId(expedicion.enemigoId);
+    } catch (error) {
+      console.error("Error seleccionando enemigo:", error);
 
-      if (!monstruoBase) {
-        return NextResponse.json(
-          { error: "No se encontró el jefe de la expedición." },
-          { status: 500 }
-        );
-      }
-    } else {
-      const monstruosPosibles = ENEMIGOS.filter(
-        (enemigo) => enemigo.difMin <= expedicion.dificultad
-      );
-
-      monstruoBase =
-        monstruosPosibles.length > 0
-          ? monstruosPosibles[
-              Math.floor(Math.random() * monstruosPosibles.length)
-            ]
-          : ENEMIGOS[0];
-    }
-
-    if (!monstruoBase) {
       return NextResponse.json(
-        { error: "No se pudo encontrar un enemigo para la expedición." },
+        {
+          error: "No se pudo seleccionar el enemigo de la expedición.",
+        },
         { status: 500 }
       );
     }
