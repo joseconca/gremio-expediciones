@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import type { ResultadoComercio } from "@/lib/expediciones/comercio";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { CONFIGURACION_EDIFICIOS } from "@/lib/configuracionJuego";
 import type { ReporteExpedicion, ResultadoExpedicion } from "@/lib/tiposJuego";
@@ -408,7 +407,7 @@ export const useGameStore = create<GameState>((set, get) => ({
         throw new Error(datos.error || "No se pudo completar la expedición.");
 
       aplicarDatosJugador(set, datos.usuario);
-      
+
       return datos.resultado as ReporteExpedicion;
     } catch (error) {
       console.error(error);
