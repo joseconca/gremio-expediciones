@@ -131,8 +131,8 @@ export interface DefinicionMision {
   recompensa: number;
   duracionObjetivoHoras: number;
 
-  lat?: number;
-  lng?: number;
+  lat: number;
+  lng: number;
 
   /** Solo para misiones de comercio. */
   objetivoId?: string;

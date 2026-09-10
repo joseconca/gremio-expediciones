@@ -13,15 +13,6 @@ import type {
   ReporteViaje,
 } from "@/lib/tiposJuego";
 
-function tieneCoordenadas(
-  mision: DefinicionMision
-): mision is DefinicionMision & {
-  lat: number;
-  lng: number;
-} {
-  return typeof mision.lat === "number" && typeof mision.lng === "number";
-}
-
 const MissionMap = dynamic(() => import("@/components/MissionMap"), {
   ssr: false,
 });
@@ -46,6 +37,8 @@ export default function ExpedicionesPage() {
   const [cargando, setCargando] = useState(false);
   const [reporteViaje, setReporteViaje] = useState<ReporteViaje | null>(null);
   const [basesAjenas, setBasesAjenas] = useState<BaseMapa[]>([]);
+  const [horaActual, setHoraActual] = useState<number | null>(null);
+  const [diaActual, setDiaActual] = useState<string | null>(null);
 
   useEffect(() => {
     cargarJugador();
@@ -69,12 +62,22 @@ export default function ExpedicionesPage() {
       .catch((err) => console.error(err));
   }, []);
 
+  useEffect(() => {
+    const actualizarHora = () => {
+      setHoraActual(Math.floor(Date.now() / (1000 * 60 * 60)));
+      setDiaActual(new Date().toISOString().slice(0, 10));
+    };
+
+    actualizarHora();
+    const intervalo = setInterval(actualizarHora, 60 * 1000);
+
+    return () => clearInterval(intervalo);
+  }, []);
+
   const misionesGeneradas = useMemo<DefinicionMision[]>(() => {
-    if (!baseCoords) {
+    if (!baseCoords || horaActual === null || diaActual === null) {
       return [];
     }
-
-    const horaActual = Math.floor(Date.now() / (1000 * 60 * 60));
 
     const offset =
       horaMisiones === horaActual ? misionesCompletadasEstaHora : 0;
@@ -82,8 +85,6 @@ export default function ExpedicionesPage() {
     const nuevasMisiones: DefinicionMision[] = [0, 1, 2, 3, 4].map((slot) =>
       generarMision(baseCoords.lat, baseCoords.lng, horaActual, slot, offset)
     );
-
-    const diaActual = new Date().toISOString().slice(0, 10);
 
     const eliteYaCompletada = ultimaMisionElite?.slice(0, 10) === diaActual;
 
@@ -96,6 +97,8 @@ export default function ExpedicionesPage() {
     return nuevasMisiones;
   }, [
     baseCoords,
+    horaActual,
+    diaActual,
     misionesCompletadasEstaHora,
     horaMisiones,
     ultimaMisionElite,
@@ -105,12 +108,7 @@ export default function ExpedicionesPage() {
   let tiempoHoras = 0;
   let textoTiempo = "Calculando...";
 
-  if (
-    misionSeleccionada &&
-    tieneCoordenadas(misionSeleccionada) &&
-    personaje &&
-    baseCoords
-  ) {
+  if (misionSeleccionada && personaje && baseCoords) {
     let velocidadKmh = 6 + (personaje.velocidad - 1) / 15;
 
     if (personaje.clase === "Explorador") {
@@ -134,12 +132,7 @@ export default function ExpedicionesPage() {
   const [errorEnvio, setErrorEnvio] = useState<string | null>(null);
 
   const handleEnviarExpedicion = async () => {
-    if (
-      !misionSeleccionada ||
-      !tieneCoordenadas(misionSeleccionada) ||
-      !baseCoords ||
-      sinVida
-    ) {
+    if (!misionSeleccionada || !baseCoords || sinVida) {
       return;
     }
 
@@ -210,7 +203,7 @@ export default function ExpedicionesPage() {
         <div className="absolute inset-0 z-0">
           <MissionMap
             baseCoords={baseCoords}
-            misiones={misionesGeneradas.filter(tieneCoordenadas)}
+            misiones={misionesGeneradas}
             basesAjenas={basesAjenas}
             destinoExpedicion={expedicionActiva?.destinoCoords ?? null}
             fechaSalida={expedicionActiva?.fechaSalida}
