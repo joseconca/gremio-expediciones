@@ -11,8 +11,8 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import type { BaseMapa } from "@/lib/tiposJuego";
 
-// Icono para tu futura base (Azul)
 const campIcon = new L.Icon({
   iconUrl: "/sprites/buildings/camp.png",
   iconSize: [42, 42],
@@ -20,7 +20,6 @@ const campIcon = new L.Icon({
   className: "camp-map-icon",
 });
 
-// Icono para las bases de otros jugadores (Verde)
 const enemyBaseIcon = campIcon;
 
 function LocationMarker({
@@ -31,7 +30,7 @@ function LocationMarker({
   const [position, setPosition] = useState<L.LatLng | null>(null);
 
   useMapEvents({
-    click(e: any) {
+    click(e: L.LeafletMouseEvent) {
       setPosition(e.latlng);
       onLocationSelect({ lat: e.latlng.lat, lng: e.latlng.lng });
     },
@@ -53,9 +52,9 @@ export default function MapSelector({ onSaveLocation }: MapSelectorProps) {
     lat: number;
     lng: number;
   } | null>(null);
-  const [basesAjenas, setBasesAjenas] = useState<any[]>([]);
 
-  // Cargamos las bases de otros jugadores al montar el mapa
+  const [basesAjenas, setBasesAjenas] = useState<BaseMapa[]>([]);
+
   useEffect(() => {
     fetch("/api/bases?todas=1")
       .then((res) => res.json())
@@ -91,7 +90,12 @@ export default function MapSelector({ onSaveLocation }: MapSelectorProps) {
               position={[base.lat, base.lng]}
               icon={enemyBaseIcon}
             >
-              <Tooltip permanent direction="bottom" offset={[0, 2]} className="base-nombre-tooltip">
+              <Tooltip
+                permanent
+                direction="bottom"
+                offset={[0, 2]}
+                className="base-nombre-tooltip"
+              >
                 {base.nombre}
               </Tooltip>
               <Popup>

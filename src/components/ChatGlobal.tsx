@@ -122,16 +122,22 @@ export default function ChatGlobal({
 
   //scroll al final del chat
   const mensajesFinRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    if (abierto) {
-      mensajesFinRef.current?.scrollIntoView({ behavior: "instant" });
-    }
-  }, [abierto]);
-  useEffect(() => {
-    if (abierto) {
-      mensajesFinRef.current?.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [mensajes]);
+    if (!abierto) return;
+
+    mensajesFinRef.current?.scrollIntoView({
+      behavior: "instant",
+    });
+
+    const frame = requestAnimationFrame(() => {
+      mensajesFinRef.current?.scrollIntoView({
+        behavior: "smooth",
+      });
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [mensajes, abierto]);
 
   useEffect(() => {
     if (!habilitado) return;

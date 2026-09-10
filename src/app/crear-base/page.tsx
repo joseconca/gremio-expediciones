@@ -37,7 +37,7 @@ export default function CrearBasePage() {
           router.push("/base");
         }, 2000);
       }
-    } catch (error) {
+    } catch {
       setMensaje("Error al validar ubicación.");
     } finally {
       setCargando(false);

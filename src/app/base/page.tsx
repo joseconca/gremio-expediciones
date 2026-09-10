@@ -358,11 +358,17 @@ export default function BasePage() {
 
   useEffect(() => {
     if (
-      expedicionActiva?.fase === "combatiendo" &&
-      expedicionActiva.combateActivo
+      expedicionActiva?.fase !== "combatiendo" ||
+      !expedicionActiva.combateActivo
     ) {
-      setCombateAbierto(true);
+      return;
     }
+
+    const frame = requestAnimationFrame(() => {
+      setCombateAbierto(true);
+
+      return () => cancelAnimationFrame(frame);
+    });
   }, [expedicionActiva]);
 
   const handleResolverLlegada = async () => {
