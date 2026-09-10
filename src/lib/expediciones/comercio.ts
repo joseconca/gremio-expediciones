@@ -1,8 +1,7 @@
-import type { ReporteExpedicion, ResultadoExpedicion } from "@/lib/tiposJuego";
+import type { ReporteComercio } from "@/lib/tiposJuego";
 
-export interface ResultadoComercio extends ReporteExpedicion {
+export interface ResultadoComercio extends ReporteComercio {
   tipo: "comercio";
-  resultadoFinal: ResultadoExpedicion;
 }
 
 interface PersonajeCombate {
