@@ -5,7 +5,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
-import type { ResultadoComercio } from "@/lib/expediciones/comercio";
+import type { ReporteExpedicion } from "@/lib/tiposJuego";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import CombateModal from "@/components/CombateModal";
 
@@ -63,21 +63,23 @@ const getColorPorLinea = (linea: string) => {
   return "text-slate-300";
 };
 
-function EscenaCombate({ reporte }: { reporte: ResultadoComercio }) {
+function EscenaCombate({ reporte }: { reporte: ReporteExpedicion }) {
   const personaje = useGameStore((state) => state.personaje);
   const vidaHeroe = Math.max(8, 100 - Math.min(92, reporte.hpPerdido * 2));
   const esComercio = reporte.tipo === "comercio";
-  const hayCombate = !esComercio && (reporte.rondas || 0) > 0;
+  const hayCombate =
+    reporte.tipo === "combate" && reporte.resultadoFinal !== "cancelada";
+  const esCancelada = reporte.resultadoFinal === "cancelada";
   const escenaSprite = esComercio
     ? "/sprites/buildings/camp.png"
-    : hayCombate
-    ? `/sprites/enemies/${reporte.enemigoId || "goblin"}.png`
+    : esCancelada
+    ? `/sprites/enemies/${reporte.enemigoId}.png`
     : "/sprites/tesoro.png";
   const escenaAlt = esComercio
     ? "Base aliada"
-    : hayCombate
-    ? reporte.enemigo || "Enemigo"
-    : "Tesoro encontrado";
+    : esCancelada
+    ? "Regreso a la base"
+    : reporte.enemigo || "Enemigo";
   const vidaEnemigo = esComercio
     ? 100
     : hayCombate
@@ -307,7 +309,7 @@ export default function BasePage() {
 
   const [tiempoRestante, setTiempoRestante] = useState<number>(0);
   const [listoParaResolver, setListoParaResolver] = useState(false);
-  const [reporte, setReporte] = useState<ResultadoComercio | null>(null);
+  const [reporte, setReporte] = useState<ReporteExpedicion | null>(null);
 
   const [modoConstruccion, setModoConstruccion] = useState(false);
 
@@ -366,9 +368,8 @@ export default function BasePage() {
 
     const frame = requestAnimationFrame(() => {
       setCombateAbierto(true);
-
-      return () => cancelAnimationFrame(frame);
     });
+    return () => cancelAnimationFrame(frame);
   }, [expedicionActiva]);
 
   const handleResolverLlegada = async () => {
@@ -473,10 +474,18 @@ export default function BasePage() {
             >
               <h2
                 className={`text-2xl font-black uppercase tracking-wider text-center ${
-                  reporte.exito ? "text-emerald-500" : "text-red-500"
+                  reporte.resultadoFinal === "exito"
+                    ? "text-emerald-500"
+                    : reporte.resultadoFinal === "derrota"
+                    ? "text-red-500"
+                    : "text-amber-400"
                 }`}
               >
-                {reporte.exito ? "Misión Completada" : "Expedición Fallida"}
+                {reporte.resultadoFinal === "exito"
+                  ? "Misión Completada"
+                  : reporte.resultadoFinal === "derrota"
+                  ? "Expedición Fallida"
+                  : "Expedición Cancelada"}
               </h2>
             </div>
 
@@ -547,9 +556,9 @@ export default function BasePage() {
                 </div>
                 <div className="bg-slate-900 p-4 rounded-lg text-center border border-slate-700 shadow-inner">
                   <span className="block text-xs text-slate-400 uppercase tracking-widest mb-1">
-                    {expedicionActiva?.fase === "regresando"
+                    {reporte.resultadoFinal === "exito"
                       ? "Botín asegurado"
-                      : "Botín conseguido"}
+                      : "Botín"}
                   </span>
                   <span className="text-2xl font-black text-amber-400">
                     +{reporte.oroGanado} 🪙
@@ -564,11 +573,6 @@ export default function BasePage() {
                   </span>
                 </div>
               </div>
-              {expedicionActiva?.fase === "regresando" && (
-                <p className="mb-4 text-center text-sm text-amber-300">
-                  El oro se ingresará al regresar a la base.
-                </p>
-              )}
 
               <button
                 onClick={handleCerrarReporte}
