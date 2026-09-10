@@ -47,14 +47,47 @@ export async function POST() {
     // ============================================================
     if (expedicion.fase === "regresando") {
       const oroGuardado = Math.max(0, expedicion.recompensa);
+      const resultadoFinal = expedicion.resultadoFinal;
+      if (!resultadoFinal) {
+        return NextResponse.json(
+          {
+            error: "La expedición no tiene un resultado final registrado.",
+          },
+          { status: 409 }
+        );
+      }
+      const exito = resultadoFinal === "exito";
 
-      const objetivoId =
-        expedicion.tipo === "comercio" ? expedicion.objetivoId : null;
+      const combate = expedicion.combateActivo;
+
+      const tipoReporte =
+        expedicion.tipo === "comercio" ? "comercio" : "combate";
+
+      let logRegreso: string[];
+
+      if (resultadoFinal === "exito") {
+        logRegreso = [
+          `🏠 ${usuario.personaje.nombre} regresa al gremio con el botín asegurado.`,
+        ];
+
+        if (oroGuardado > 0) {
+          logRegreso.push(`💰 Recibes ${oroGuardado} 🪙 por la expedición.`);
+        }
+      } else if (resultadoFinal === "derrota") {
+        logRegreso = [
+          `💀 ${usuario.personaje.nombre} regresa al gremio tras ser derrotado.`,
+        ];
+      } else {
+        logRegreso = [
+          `↩️ ${usuario.personaje.nombre} regresa al gremio tras cancelar la expedición.`,
+        ];
+      }
 
       const actualizado = await prisma.$transaction(async (tx) => {
-        // Eliminar la expedición.
-        await tx.expedicionActiva.delete({ where: { id: expedicion.id } });
-        // El aventurero vuelve a estar disponible.
+        await tx.expedicionActiva.delete({
+          where: { id: expedicion.id },
+        });
+
         await tx.personaje.update({
           where: { usuarioId: usuario.id },
           data: {
@@ -62,24 +95,30 @@ export async function POST() {
           },
         });
 
-        // ========================================================
-        // RECOMPENSA AL GREMIO OBJETIVO DEL COMERCIO
-        // ========================================================
-        if (objetivoId && oroGuardado > 0) {
+        if (
+          expedicion.tipo === "comercio" &&
+          expedicion.objetivoId &&
+          oroGuardado > 0
+        ) {
           await tx.usuario.update({
-            where: { id: objetivoId },
-            data: { oro: { increment: Math.floor(oroGuardado * 0.25) } },
+            where: { id: expedicion.objetivoId },
+            data: {
+              oro: {
+                increment: Math.floor(oroGuardado * 0.25),
+              },
+            },
           });
+
           await tx.afinidadComercial.upsert({
             where: {
               jugador1Id_jugador2Id: {
                 jugador1Id: usuario.id,
-                jugador2Id: objetivoId,
+                jugador2Id: expedicion.objetivoId,
               },
             },
             create: {
               jugador1Id: usuario.id,
-              jugador2Id: objetivoId,
+              jugador2Id: expedicion.objetivoId,
               intercambios: 1,
               afinidad: 1,
             },
@@ -89,27 +128,45 @@ export async function POST() {
             },
           });
         }
-        // Entregar el oro al jugador.
+
         return tx.usuario.update({
           where: { id: usuario.id },
-          data: { oro: { increment: oroGuardado } },
-          include: { personaje: true, expedicionActiva: true },
+          data: {
+            oro: {
+              increment: oroGuardado,
+            },
+          },
+          include: {
+            personaje: true,
+            expedicionActiva: true,
+          },
         });
       });
+
       const datosRegreso = Object.fromEntries(
         Object.entries(actualizado).filter(([clave]) => clave !== "password")
       );
+
+      const logCombate =
+        combate && Array.isArray(combate.log) ? (combate.log as string[]) : [];
+
       return NextResponse.json({
         resultado: {
-          exito: true,
-          hpPerdido: 0,
+          exito,
+          resultadoFinal,
+          hpPerdido: expedicion.hpPerdido,
           oroGanado: oroGuardado,
-          experienciaGanada: 0,
-          tipo: expedicion.tipo === "comercio" ? "comercio" : "combate",
-          logCombate: [
-            `🏠 ${usuario.personaje.nombre} regresa al gremio con el botín asegurado.`,
-            `💰 Recibes ${oroGuardado} 🪙 por la expedición.`,
-          ],
+          experienciaGanada: expedicion.experienciaGanada,
+          tipo: tipoReporte,
+          enemigo:
+            tipoReporte === "combate" ? combate?.enemigoNombre : undefined,
+          enemigoId: tipoReporte === "combate" ? combate?.enemigoId : undefined,
+          rondas: tipoReporte === "combate" ? combate?.ronda : undefined,
+          poderHeroe:
+            tipoReporte === "combate" && combate
+              ? combate.jugadorAtaque + combate.jugadorDefensa
+              : undefined,
+          logCombate: [...logCombate, ...logRegreso],
         },
         usuario: datosRegreso,
       });
@@ -205,6 +262,9 @@ export async function POST() {
       },
     });
 
+    const afinidadActual = afinidad?.afinidad ?? 0;
+    const afinidadNueva = afinidadActual + 1;
+
     // ============================================================
     // NIVEL DEL MERCADO
     // ============================================================
@@ -273,6 +333,9 @@ export async function POST() {
           fechaSalida: fechaSalidaRegreso,
           fechaLlegada: fechaLlegadaRegreso,
           recompensa: oroGanado,
+          resultadoFinal: resultado.exito ? "exito" : "derrota",
+          hpPerdido: resultado.hpPerdido,
+          experienciaGanada: resultado.experienciaGanada,
         },
       });
 
@@ -298,7 +361,7 @@ export async function POST() {
     );
 
     return NextResponse.json({
-      resultado: { ...resultado, oroGanado },
+      resultado: { ...resultado, oroGanado, afinidad: afinidadNueva },
       usuario: datos,
     });
   } catch (error) {
