@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { BaseMapa, DefinicionMision } from "@/lib/tiposJuego";
 import {
   MapContainer,
   TileLayer,
@@ -37,7 +38,10 @@ const destinationIcon = L.divIcon({
 function crearHeroIcon(clase?: string | null, sexo?: string | null) {
   return L.divIcon({
     className: "hero-route-marker",
-    html: `<img src="${obtenerSpriteHeroe(clase, sexo)}" alt="" aria-hidden="true" />`,
+    html: `<img src="${obtenerSpriteHeroe(
+      clase,
+      sexo
+    )}" alt="" aria-hidden="true" />`,
     iconSize: [34, 34],
     iconAnchor: [17, 17],
   });
@@ -92,7 +96,10 @@ function RutaExpedicion({
   return (
     <>
       <Polyline
-        positions={[[baseCoords.lat, baseCoords.lng], [destino.lat, destino.lng]]}
+        positions={[
+          [baseCoords.lat, baseCoords.lng],
+          [destino.lat, destino.lng],
+        ]}
         pathOptions={{
           color: "#172033",
           weight: 6,
@@ -103,7 +110,10 @@ function RutaExpedicion({
         }}
       />
       <Polyline
-        positions={[[baseCoords.lat, baseCoords.lng], [destino.lat, destino.lng]]}
+        positions={[
+          [baseCoords.lat, baseCoords.lng],
+          [destino.lat, destino.lng],
+        ]}
         pathOptions={{
           color: "#facc15",
           weight: 4,
@@ -114,9 +124,14 @@ function RutaExpedicion({
         }}
       />
       <Marker position={[destino.lat, destino.lng]} icon={destinationIcon}>
-        <Popup>{regresando ? "Lugar de la misión" : "Destino de la expedición"}</Popup>
+        <Popup>
+          {regresando ? "Lugar de la misión" : "Destino de la expedición"}
+        </Popup>
       </Marker>
-      <Marker position={posicionHeroe} icon={crearHeroIcon(claseHeroe, sexoHeroe)} />
+      <Marker
+        position={posicionHeroe}
+        icon={crearHeroIcon(claseHeroe, sexoHeroe)}
+      />
       <Tooltip
         direction="top"
         offset={[0, -18]}
@@ -128,25 +143,6 @@ function RutaExpedicion({
       </Tooltip>
     </>
   );
-}
-
-interface MisionMapa {
-  id: string | number;
-  lat: number;
-  lng: number;
-  nombre: string;
-  dificultad?: number;
-  recompensa?: number;
-  desc?: string;
-  tipo?: string;
-}
-
-interface BaseMapa {
-  id: string;
-  nombre: string;
-  lat: number;
-  lng: number;
-  nivel: number;
 }
 
 interface RutaEntrante {
@@ -161,7 +157,7 @@ interface RutaEntrante {
 
 interface MissionMapProps {
   baseCoords: { lat: number; lng: number };
-  misiones: MisionMapa[];
+  misiones: DefinicionMision[];
   basesAjenas?: BaseMapa[];
   destinoExpedicion?: { lat: number; lng: number } | null;
   fechaSalida?: string;
@@ -170,7 +166,7 @@ interface MissionMapProps {
   sexoHeroe?: string | null;
   rutasEntrantes?: RutaEntrante[];
   regresando?: boolean;
-  onSelectMission: (mision: MisionMapa) => void;
+  onSelectMission: (mision: DefinicionMision) => void;
 }
 
 export default function MissionMap({
@@ -206,7 +202,11 @@ export default function MissionMap({
         </Marker>
 
         <RutaExpedicion
-          key={destinoExpedicion ? `${destinoExpedicion.lat}-${destinoExpedicion.lng}` : "sin-destino"}
+          key={
+            destinoExpedicion
+              ? `${destinoExpedicion.lat}-${destinoExpedicion.lng}`
+              : "sin-destino"
+          }
           baseCoords={baseCoords}
           destino={destinoExpedicion}
           fechaSalida={fechaSalida}
@@ -254,13 +254,14 @@ export default function MissionMap({
                 click: () =>
                   onSelectMission({
                     id: `comercio-${base.id}`,
+                    tipo: "comercio",
                     lat: base.lat,
                     lng: base.lng,
                     nombre: `Comerciar: ${base.nombre}`,
                     dificultad: 0,
-                    recompensa: base.nivel * 25, // Ejemplo: A más nivel, mejor comercio
-                    desc: `Envía a tu personaje a intercambiar bienes con el gremio de ${base.nombre}. Ambos recibiréis beneficios.`,
-                    tipo: "comercio", // Importante para la lógica de resolución futura
+                    recompensa: base.nivel * 25,
+                    duracionObjetivoHoras: 0,
+                    descripcion: `Envía a tu personaje a intercambiar bienes con el gremio de ${base.nombre}.`,
                   }),
               }}
             >

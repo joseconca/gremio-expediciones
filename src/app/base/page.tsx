@@ -5,7 +5,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
-import { ResultadoComercio } from "@/lib/expediciones/comercio";
+import type { ResultadoComercio } from "@/lib/expediciones/comercio";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import CombateModal from "@/components/CombateModal";
 

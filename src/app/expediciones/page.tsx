@@ -1,13 +1,26 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useGameStore } from "@/store/useGameStore";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { generarMision, generarMisionElite } from "@/lib/generadorMisiones";
 import { calcularDistanciaKm } from "@/lib/utils";
+import type {
+  BaseMapa,
+  DefinicionMision,
+  ReporteViaje,
+} from "@/lib/tiposJuego";
+
+function tieneCoordenadas(
+  mision: DefinicionMision
+): mision is DefinicionMision & {
+  lat: number;
+  lng: number;
+} {
+  return typeof mision.lat === "number" && typeof mision.lng === "number";
+}
 
 const MissionMap = dynamic(() => import("@/components/MissionMap"), {
   ssr: false,
@@ -15,7 +28,6 @@ const MissionMap = dynamic(() => import("@/components/MissionMap"), {
 
 export default function ExpedicionesPage() {
   const router = useRouter();
-  const [misionesGeneradas, setMisionesGeneradas] = useState<any[]>([]);
   const {
     baseCoords,
     personaje,
@@ -28,11 +40,12 @@ export default function ExpedicionesPage() {
     cargarJugador,
     ultimaMisionElite,
   } = useGameStore();
-  const [misionSeleccionada, setMisionSeleccionada] = useState<any>(null);
+  const [misionSeleccionada, setMisionSeleccionada] =
+    useState<DefinicionMision | null>(null);
   const [viajeIniciado, setViajeIniciado] = useState(false);
   const [cargando, setCargando] = useState(false);
-  const [reporteViaje, setReporteViaje] = useState<any>(null);
-  const [basesAjenas, setBasesAjenas] = useState<any[]>([]);
+  const [reporteViaje, setReporteViaje] = useState<ReporteViaje | null>(null);
+  const [basesAjenas, setBasesAjenas] = useState<BaseMapa[]>([]);
 
   useEffect(() => {
     cargarJugador();
@@ -56,28 +69,31 @@ export default function ExpedicionesPage() {
       .catch((err) => console.error(err));
   }, []);
 
-  useEffect(() => {
-    if (!baseCoords) return;
+  const misionesGeneradas = useMemo<DefinicionMision[]>(() => {
+    if (!baseCoords) {
+      return [];
+    }
 
-    const horaActual = Math.floor(Date.now() / (1000 * 60 * 60)); // Horas desde 1970
+    const horaActual = Math.floor(Date.now() / (1000 * 60 * 60));
 
-    // Cuántas misiones hemos saltado por haberlas completado
-    // Si es una hora nueva distinta a la guardada, el offset es 0
     const offset =
       horaMisiones === horaActual ? misionesCompletadasEstaHora : 0;
 
-    const nuevasMisiones = [0, 1, 2, 3, 4].map((slot) =>
+    const nuevasMisiones: DefinicionMision[] = [0, 1, 2, 3, 4].map((slot) =>
       generarMision(baseCoords.lat, baseCoords.lng, horaActual, slot, offset)
     );
+
     const diaActual = new Date().toISOString().slice(0, 10);
+
     const eliteYaCompletada = ultimaMisionElite?.slice(0, 10) === diaActual;
+
     if (!eliteYaCompletada) {
       nuevasMisiones.push(
         generarMisionElite(baseCoords.lat, baseCoords.lng, diaActual)
       );
     }
 
-    setMisionesGeneradas(nuevasMisiones);
+    return nuevasMisiones;
   }, [
     baseCoords,
     misionesCompletadasEstaHora,
@@ -89,10 +105,14 @@ export default function ExpedicionesPage() {
   let tiempoHoras = 0;
   let textoTiempo = "Calculando...";
 
-  if (misionSeleccionada && personaje && baseCoords) {
+  if (
+    misionSeleccionada &&
+    tieneCoordenadas(misionSeleccionada) &&
+    personaje &&
+    baseCoords
+  ) {
     let velocidadKmh = 6 + (personaje.velocidad - 1) / 15;
 
-    // Ventaja de clase: El Explorador viaja más rápido
     if (personaje.clase === "Explorador") {
       velocidadKmh *= 1.25;
     }
@@ -114,7 +134,15 @@ export default function ExpedicionesPage() {
   const [errorEnvio, setErrorEnvio] = useState<string | null>(null);
 
   const handleEnviarExpedicion = async () => {
-    if (sinVida) return;
+    if (
+      !misionSeleccionada ||
+      !tieneCoordenadas(misionSeleccionada) ||
+      !baseCoords ||
+      sinVida
+    ) {
+      return;
+    }
+
     setCargando(true);
     setErrorEnvio(null);
 
@@ -136,11 +164,13 @@ export default function ExpedicionesPage() {
 
         iniciarExpedicion({
           misionId: misionSeleccionada.id,
+          enemigoId: misionSeleccionada.enemigoId ?? null,
           nombre: misionSeleccionada.nombre,
           recompensa: misionSeleccionada.recompensa,
           fechaSalida: data.fechaSalida,
           fechaLlegada: data.fechaLlegada,
           dificultad: misionSeleccionada.dificultad,
+          tipo: misionSeleccionada.tipo,
           fase: "en_viaje",
           destinoCoords: {
             lat: misionSeleccionada.lat,
@@ -151,7 +181,7 @@ export default function ExpedicionesPage() {
         setErrorEnvio(data.mensaje || "No se pudo iniciar la expedición.");
         cargarJugador();
       }
-    } catch (error) {
+    } catch {
       console.error("Error al enviar expedición");
       setErrorEnvio("Error de conexión al iniciar la expedición.");
     } finally {
@@ -180,17 +210,15 @@ export default function ExpedicionesPage() {
         <div className="absolute inset-0 z-0">
           <MissionMap
             baseCoords={baseCoords}
-            misiones={misionesGeneradas}
+            misiones={misionesGeneradas.filter(tieneCoordenadas)}
             basesAjenas={basesAjenas}
-            destinoExpedicion={
-              misionSeleccionada
-                ? { lat: misionSeleccionada.lat, lng: misionSeleccionada.lng }
-                : expedicionActiva?.destinoCoords || null
-            }
+            destinoExpedicion={expedicionActiva?.destinoCoords ?? null}
             fechaSalida={expedicionActiva?.fechaSalida}
             fechaLlegada={expedicionActiva?.fechaLlegada}
             claseHeroe={personaje?.clase}
             sexoHeroe={personaje?.sexo}
+            rutasEntrantes={[]}
+            regresando={expedicionActiva?.fase === "regresando"}
             onSelectMission={setMisionSeleccionada}
           />
         </div>
@@ -219,7 +247,7 @@ export default function ExpedicionesPage() {
             </div>
 
             <p className="text-slate-300 text-sm mb-4 italic">
-              "{misionSeleccionada.desc}"
+              &quot;{misionSeleccionada.descripcion}&quot;{" "}
             </p>
 
             <div className="grid grid-cols-2 gap-4 mb-6">

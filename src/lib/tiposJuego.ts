@@ -62,6 +62,26 @@ export interface DefinicionObjeto {
   limiteCantidad?: number;
 }
 
+export interface BaseMapa {
+  id: string;
+  nombre: string;
+  lat: number;
+  lng: number;
+  nivel: number;
+}
+
+export interface ReporteViaje {
+  fechaLlegada: string;
+  fechaSalida: string;
+  clima: string;
+  horasReales: string;
+}
+
+export interface Coordenadas {
+  lat: number;
+  lng: number;
+}
+
 export interface DefinicionHabilidad {
   id: string;
   nombre: string;

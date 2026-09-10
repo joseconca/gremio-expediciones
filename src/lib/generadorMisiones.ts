@@ -1,4 +1,5 @@
 import { JEFES_ELITE } from "./enemigos";
+import type { DefinicionMision } from "./tiposJuego";
 
 function randomSeeded(seed: number) {
   const x = Math.sin(seed) * 181097;
@@ -43,10 +44,11 @@ export function generarMisionElite(
   baseLat: number,
   baseLng: number,
   dia: string
-) {
+): DefinicionMision {
   const seed =
     dia.split("-").reduce((total, parte) => total + Number(parte), 0) * 431;
-  const jefe = JEFES_ELITE[Math.floor(randomSeeded(seed + 2) * JEFES_ELITE.length)];
+  const jefe =
+    JEFES_ELITE[Math.floor(randomSeeded(seed + 2) * JEFES_ELITE.length)];
 
   const angulo = randomSeeded(seed) * Math.PI * 2;
   const distanciaKm = 5 + randomSeeded(seed + 1) * 1;
@@ -76,7 +78,7 @@ export function generarMision(
   horaActual: number,
   indice: number,
   desplazamiento = 0
-) {
+): DefinicionMision {
   const seed = horaActual * 902 + (indice + desplazamiento) * 2503;
   const configuracion =
     MISIONES_POR_DURACION[indice % MISIONES_POR_DURACION.length];
@@ -88,8 +90,9 @@ export function generarMision(
   const nombre = `${PREFIJOS[Math.floor(randPrefijo * PREFIJOS.length)]} ${
     SUFIJOS[Math.floor(randSufijo * SUFIJOS.length)]
   }`;
-  const descripcion = DESCRIPCIONES[Math.floor(randDesc * DESCRIPCIONES.length)];
-const randDif = randomSeeded(seed + 8);
+  const descripcion =
+    DESCRIPCIONES[Math.floor(randDesc * DESCRIPCIONES.length)];
+  const randDif = randomSeeded(seed + 8);
   const dificultad = Math.floor(randDif * 6);
   const randOro = randomSeeded(seed + 5);
   const recompensa = Math.floor(
