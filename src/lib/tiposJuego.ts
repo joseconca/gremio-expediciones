@@ -25,19 +25,29 @@ export type ResultadoExpedicion = "exito" | "derrota" | "cancelada";
 
 export type TipoReporteExpedicion = "combate" | "comercio";
 
-export interface ReporteExpedicion {
+export interface ReporteExpedicionBase {
   exito: boolean;
   resultadoFinal: ResultadoExpedicion;
   hpPerdido: number;
   oroGanado: number;
   experienciaGanada: number;
   logCombate: string[];
-  tipo: TipoReporteExpedicion;
-  enemigo?: string;
-  enemigoId?: string;
-  rondas?: number;
-  poderHeroe?: number;
 }
+
+export interface ReporteCombate extends ReporteExpedicionBase {
+  tipo: "combate";
+  enemigo: string;
+  enemigoId: string;
+  rondas: number;
+  poderHeroe: number;
+}
+
+export interface ReporteComercio extends ReporteExpedicionBase {
+  tipo: "comercio";
+  afinidad: number;
+}
+
+export type ReporteExpedicion = ReporteCombate | ReporteComercio;
 
 export interface DefinicionEnemigo {
   id: string;
