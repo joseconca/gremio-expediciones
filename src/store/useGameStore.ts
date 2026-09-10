@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import type { ResultadoComercio } from "@/lib/expediciones/comercio";
+import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { CONFIGURACION_EDIFICIOS } from "@/lib/configuracionJuego";
 
 const EDIFICIOS_BASE: Record<string, Omit<Edificio, "nivel">> = {
@@ -112,13 +113,6 @@ export interface InfoCura {
   coste: number;
   hpCurado: number;
   aTope: boolean;
-}
-
-export interface AccionAnimadaCombate {
-  actor: "jugador" | "enemigo";
-  tipo: "ataque" | "fallo" | "critico";
-  dano: number;
-  texto: string;
 }
 
 export interface GameState {

@@ -5,7 +5,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
-import { ResultadoCombate } from "@/lib/expediciones/comercio";
+import { ResultadoComercio } from "@/lib/expediciones/comercio";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import CombateModal from "@/components/CombateModal";
 
@@ -63,7 +63,7 @@ const getColorPorLinea = (linea: string) => {
   return "text-slate-300";
 };
 
-function EscenaCombate({ reporte }: { reporte: ResultadoCombate }) {
+function EscenaCombate({ reporte }: { reporte: ResultadoComercio }) {
   const personaje = useGameStore((state) => state.personaje);
   const vidaHeroe = Math.max(8, 100 - Math.min(92, reporte.hpPerdido * 2));
   const esComercio = reporte.tipo === "comercio";
@@ -307,7 +307,7 @@ export default function BasePage() {
 
   const [tiempoRestante, setTiempoRestante] = useState<number>(0);
   const [listoParaResolver, setListoParaResolver] = useState(false);
-  const [reporte, setReporte] = useState<ResultadoCombate | null>(null);
+  const [reporte, setReporte] = useState<ResultadoComercio | null>(null);
 
   const [modoConstruccion, setModoConstruccion] = useState(false);
 

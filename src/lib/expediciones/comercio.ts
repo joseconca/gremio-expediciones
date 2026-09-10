@@ -1,4 +1,3 @@
-import type { TipoMision } from "../tiposJuego";
 
 export interface ResultadoComercio {
   exito: boolean;

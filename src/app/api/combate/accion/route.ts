@@ -105,28 +105,13 @@ export async function POST(request: Request) {
     let accionAnimada: AccionAnimadaCombate;
 
     if (actor === "jugador") {
-      const resultado = resolverAtaqueJugador(combate);
-
-      enemigoHp = Math.max(0, enemigoHp - resultado.dano);
-
-      accionAnimada = {
-        actor: "jugador",
-        tipo: resultado.tipo,
-        dano: resultado.dano,
-        texto: resultado.texto,
-      };
+      accionAnimada = resolverAtaqueJugador(combate);
+      enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
     } else {
-      const resultado = resolverAtaqueEnemigo(combate);
-
-      jugadorHp = Math.max(0, jugadorHp - resultado.dano);
-
-      accionAnimada = {
-        actor: "enemigo",
-        tipo: resultado.tipo,
-        dano: resultado.dano,
-        texto: resultado.texto,
-      };
+      accionAnimada = resolverAtaqueEnemigo(combate);
+      jugadorHp = Math.max(0, jugadorHp - accionAnimada.dano);
     }
+
     log.push(accionAnimada.texto);
 
     // ============================================================
