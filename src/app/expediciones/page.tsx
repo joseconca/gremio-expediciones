@@ -165,6 +165,8 @@ export default function ExpedicionesPage() {
           dificultad: misionSeleccionada.dificultad,
           tipo: misionSeleccionada.tipo,
           fase: "en_viaje",
+          hpPerdido: 0,
+          experienciaGanada: 0,
           destinoCoords: {
             lat: misionSeleccionada.lat,
             lng: misionSeleccionada.lng,
