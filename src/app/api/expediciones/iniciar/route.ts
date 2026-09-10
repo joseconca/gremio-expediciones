@@ -194,14 +194,6 @@ export async function POST(request: Request) {
         where: { usuarioId: usuario.id },
         data: { estado: "de_viaje" },
       }),
-      ...(esElite
-        ? [
-            prisma.usuario.update({
-              where: { id: usuario.id },
-              data: { ultimaMisionElite: new Date() },
-            }),
-          ]
-        : []),
     ]);
 
     return NextResponse.json({

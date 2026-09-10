@@ -328,6 +328,17 @@ export async function POST(request: Request) {
           },
         });
 
+        if (expedicion.tipo === "elite") {
+          await tx.usuario.update({
+            where: {
+              id: usuario.id,
+            },
+            data: {
+              ultimaMisionElite: new Date(),
+            },
+          });
+        }
+
         await tx.personaje.update({
           where: {
             id: usuario.personaje!.id,
