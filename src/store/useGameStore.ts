@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { ResultadoCombate } from "@/lib/expediciones/comercio";
+import type { ResultadoComercio } from "@/lib/expediciones/comercio";
 import { CONFIGURACION_EDIFICIOS } from "@/lib/configuracionJuego";
 
 const EDIFICIOS_BASE: Record<string, Omit<Edificio, "nivel">> = {
@@ -141,7 +141,7 @@ export interface GameState {
 
   iniciarExpedicion: (expedicion: ExpedicionActiva) => void;
   llegarExpedicion: () => Promise<boolean>;
-  completarExpedicion: () => Promise<ResultadoCombate | null>;
+  completarExpedicion: () => Promise<ResultadoComercio | null>;
   accionCombate: (accion: "atacar") => Promise<AccionAnimadaCombate | null>;
   cancelarExpedicion: () => Promise<boolean>;
 
@@ -407,7 +407,7 @@ export const useGameStore = create<GameState>((set, get) => ({
       if (!respuesta.ok)
         throw new Error(datos.error || "No se pudo completar la expedición.");
       aplicarDatosJugador(set, datos.usuario);
-      return datos.resultado as ResultadoCombate;
+      return datos.resultado as ResultadoComercio;
     } catch (error) {
       console.error(error);
       return null;

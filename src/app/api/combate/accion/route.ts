@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import {
   calcularMejorasPorNivel,
@@ -9,16 +10,10 @@ import {
 import {
   resolverAtaqueJugador,
   resolverAtaqueEnemigo,
+  type AccionAnimadaCombate,
 } from "@/lib/expediciones/combate";
 
 type AccionCombate = "atacar";
-
-interface AccionAnimadaCombate {
-  actor: "jugador" | "enemigo";
-  tipo: "ataque" | "fallo" | "critico";
-  dano: number;
-  texto: string;
-}
 
 export async function POST(request: Request) {
   try {

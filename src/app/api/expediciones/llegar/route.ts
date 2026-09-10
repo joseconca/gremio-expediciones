@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import type { TipoMision } from "@/lib/tiposJuego";
+
 import { seleccionarEnemigoNormal } from "@/lib/expediciones/normal";
 import { seleccionarJefeElite } from "@/lib/expediciones/elite";
 
@@ -90,7 +90,7 @@ export async function POST() {
 
     const tipoMision = expedicion.tipo as TipoMision;
 
-    let monstruoBase: ReturnType<typeof seleccionarEnemigoNormal>;
+    let monstruoBase;
 
     try {
       if (tipoMision === "elite") {

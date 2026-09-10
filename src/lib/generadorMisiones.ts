@@ -66,7 +66,7 @@ export function generarMisionElite(
     dificultad,
     recompensa: jefe.botin,
     duracionObjetivoHoras: 1,
-    desc: `Una amenaza ha despertado. Derrota al ${jefe.nombre} para obtener una gran recompensa.`,
+    descripcion: `Una amenaza ha despertado. Derrota al ${jefe.nombre} para obtener una gran recompensa.`,
   };
 }
 
@@ -88,7 +88,7 @@ export function generarMision(
   const nombre = `${PREFIJOS[Math.floor(randPrefijo * PREFIJOS.length)]} ${
     SUFIJOS[Math.floor(randSufijo * SUFIJOS.length)]
   }`;
-  const desc = DESCRIPCIONES[Math.floor(randDesc * DESCRIPCIONES.length)];
+  const descripcion = DESCRIPCIONES[Math.floor(randDesc * DESCRIPCIONES.length)];
 const randDif = randomSeeded(seed + 8);
   const dificultad = Math.floor(randDif * 6);
   const randOro = randomSeeded(seed + 5);
@@ -114,6 +114,6 @@ const randDif = randomSeeded(seed + 8);
     dificultad,
     recompensa,
     duracionObjetivoHoras: configuracion.horas,
-    desc,
+    descripcion,
   };
 }

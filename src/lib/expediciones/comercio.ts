@@ -1,8 +1,6 @@
-import type { DefinicionEnemigo, TipoMision } from "../tiposJuego";
+import type { TipoMision } from "../tiposJuego";
 
-import { ENEMIGOS, JEFES_ELITE } from "../enemigos";
-
-export interface ResultadoCombate {
+export interface ResultadoComercio {
   exito: boolean;
   hpPerdido: number;
   oroGanado: number;
@@ -12,7 +10,7 @@ export interface ResultadoCombate {
   enemigoId?: string;
   rondas?: number;
   poderHeroe?: number;
-  tipo?: "combate" | "comercio";
+  tipo?: "comercio";
 }
 
 interface PersonajeCombate {
@@ -24,15 +22,6 @@ interface PersonajeCombate {
   defensa: number;
   capacidadCarruaje: number;
   nivel?: number;
-}
-
-interface MisionCombate {
-  id?: string;
-  nombre: string;
-  dificultad: number;
-  recompensa: number;
-  tipo?: TipoMision;
-  enemigoId?: string;
 }
 
 function simularRuta(
