@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useGameStore } from "@/store/useGameStore";
 import RankingHeroes from "@/components/rankings/RankingHeroes";
+import RankingOro from "@/components/rankings/RankingOro";
 import CabeceraEdificio from "@/components/CabeceraEdificio";
 
 type PestanaRanking = "heroes" | "oro" | "boss";
@@ -70,6 +71,18 @@ export default function EmbajadaPage() {
 
                 <button
                   type="button"
+                  onClick={() => setPestana("oro")}
+                  className={`rounded-lg px-4 py-2 text-sm font-bold transition-colors ${
+                    pestana === "oro"
+                      ? "bg-amber-600 text-white"
+                      : "bg-slate-900 text-slate-400 hover:bg-slate-700 hover:text-white"
+                  }`}
+                >
+                  🪙 Acaparadores
+                </button>
+
+                <button
+                  type="button"
                   onClick={() => setPestana("boss")}
                   className={`rounded-lg px-4 py-2 text-sm font-bold transition-colors ${
                     pestana === "boss"
@@ -80,35 +93,13 @@ export default function EmbajadaPage() {
                   ⚔️ Boss diario
                 </button>
 
-                <button
-                  type="button"
-                  onClick={() => setPestana("oro")}
-                  className={`rounded-lg px-4 py-2 text-sm font-bold transition-colors ${
-                    pestana === "oro"
-                      ? "bg-amber-500 text-white"
-                      : "bg-slate-900 text-slate-400 hover:bg-slate-700 hover:text-white"
-                  }`}
-                >
-                  🪙 Acaparadores
-                </button>
               </div>
             </div>
 
             <div className="p-4">
               {pestana === "heroes" && <RankingHeroes />}
 
-              {pestana === "oro" && (
-                <div className="rounded-lg border border-slate-700 bg-slate-900 p-6 text-center">
-                  <h2 className="text-xl font-bold text-amber-400">
-                    🪙 Los Grandes Tesoros
-                  </h2>
-
-                  <p className="mt-2 text-sm text-slate-400">
-                    Próximamente. Aquí podrás competir por la mayor fortuna
-                    acumulada.
-                  </p>
-                </div>
-              )}
+              {pestana === "oro" && <RankingOro />}
 
               {pestana === "boss" && (
                 <div className="rounded-lg border border-slate-700 bg-slate-900 p-6 text-center">
