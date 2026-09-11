@@ -4,7 +4,11 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
-import { ESTADISTICAS_BASE_CLASE, obtenerSpriteHeroe } from "@/lib/configuracionJuego";
+import {
+  ESTADISTICAS_BASE_CLASE,
+  obtenerSpriteHeroe,
+  experienciaParaNivel,
+} from "@/lib/configuracionJuego";
 
 const CLASES_INICIALES = [
   {
@@ -40,7 +44,13 @@ function nombreClase(clase: string, sexo: "chico" | "chica") {
 }
 
 export default function TabernaPage() {
-  const { personaje, reclutarPersonaje, calcularCosteCura, curarPersonaje, oro } = useGameStore();
+  const {
+    personaje,
+    reclutarPersonaje,
+    calcularCosteCura,
+    curarPersonaje,
+    oro,
+  } = useGameStore();
 
   const [claseSeleccionada, setClaseSeleccionada] = useState(
     CLASES_INICIALES[0]
@@ -49,7 +59,10 @@ export default function TabernaPage() {
   const [sexo, setSexo] = useState<"chico" | "chica">("chico");
   const [mensaje, setMensaje] = useState("");
   const [mostrarReclutamiento, setMostrarReclutamiento] = useState(false);
-  const estadisticasSeleccionadas = ESTADISTICAS_BASE_CLASE[claseSeleccionada.nombre as keyof typeof ESTADISTICAS_BASE_CLASE];
+  const estadisticasSeleccionadas =
+    ESTADISTICAS_BASE_CLASE[
+      claseSeleccionada.nombre as keyof typeof ESTADISTICAS_BASE_CLASE
+    ];
 
   const handleReclutar = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -73,12 +86,19 @@ export default function TabernaPage() {
         experiencia: 0,
       });
     } catch (error) {
-      setMensaje(error instanceof Error ? error.message : "No se pudo reclutar al personaje.");
+      setMensaje(
+        error instanceof Error
+          ? error.message
+          : "No se pudo reclutar al personaje."
+      );
       return;
     }
 
     setMensaje(
-      `${nombre} ${sexo === "chica" ? "la" : "el"} ${nombreClase(claseSeleccionada.nombre, sexo)} se ha unido al gremio.`
+      `${nombre} ${sexo === "chica" ? "la" : "el"} ${nombreClase(
+        claseSeleccionada.nombre,
+        sexo
+      )} se ha unido al gremio.`
     );
     setMostrarReclutamiento(true);
   };
@@ -88,7 +108,9 @@ export default function TabernaPage() {
     if (exito) {
       setMensaje("¡Salud restaurada!");
     } else {
-      setMensaje("No ha sido posible curar (Falta de oro o ya estás al máximo).");
+      setMensaje(
+        "No ha sido posible curar (Falta de oro o ya estás al máximo)."
+      );
     }
   };
 
@@ -108,10 +130,15 @@ export default function TabernaPage() {
                 className="h-24 w-24 object-cover object-top [image-rendering:pixelated]"
               />
             </div>
-            <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-amber-400">Nuevo aventurero</p>
-            <h2 className="mb-3 text-3xl font-black text-white">{personaje.nombre}</h2>
+            <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-amber-400">
+              Nuevo aventurero
+            </p>
+            <h2 className="mb-3 text-3xl font-black text-white">
+              {personaje.nombre}
+            </h2>
             <p className="mb-6 text-lg text-slate-300">
-              {personaje.sexo === "chica" ? "La" : "El"} {nombreClase(personaje.clase, personaje.sexo)} se une a tu gremio.
+              {personaje.sexo === "chica" ? "La" : "El"}{" "}
+              {nombreClase(personaje.clase, personaje.sexo)} se une a tu gremio.
             </p>
             <button
               type="button"
@@ -129,9 +156,7 @@ export default function TabernaPage() {
       <div className="max-w-4xl mx-auto">
         <header className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-amber-500">
-              Taberna
-            </h1>
+            <h1 className="text-3xl font-bold text-amber-500">Taberna</h1>
             <p className="text-slate-400">Descansa y recupera la salud.</p>
           </div>
           <Link
@@ -147,35 +172,66 @@ export default function TabernaPage() {
             <div className="border-b border-slate-700 bg-gradient-to-r from-amber-950/60 via-slate-800 to-slate-900 p-6">
               <div className="flex flex-col items-center gap-6 md:flex-row">
                 <div className="relative flex h-44 w-36 shrink-0 items-end justify-center overflow-hidden rounded-lg border-2 border-amber-500/60 bg-[radial-gradient(circle_at_50%_20%,#475569,#0f172a_70%)] shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
-                  <Image src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)} alt="Retrato del héroe" width={144} height={144} className="h-36 w-36 object-contain [image-rendering:pixelated]" />
+                  <Image
+                    src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)}
+                    alt="Retrato del héroe"
+                    width={144}
+                    height={144}
+                    className="h-36 w-36 object-contain [image-rendering:pixelated]"
+                  />
                   <span className="absolute left-2 top-2 rounded bg-slate-950/80 px-2 py-1 text-xs font-bold uppercase tracking-wider text-amber-400">
                     Nivel {personaje.nivel || 1}
                   </span>
-                {personaje.estado === "descansando" && (
-                  <div className="absolute -top-3 -right-3 text-3xl animate-pulse">💤</div>
-                )}
+                  {personaje.estado === "descansando" && (
+                    <div className="absolute -top-3 -right-3 text-3xl animate-pulse">
+                      💤
+                    </div>
+                  )}
                 </div>
 
                 <div className="w-full flex-grow">
                   <div className="mb-1 flex items-start justify-between gap-4">
                     <h2 className="text-3xl font-black text-amber-400">
-                    {personaje.nombre} <span className="text-slate-400 text-lg font-normal">{personaje.sexo === "chica" ? "la" : "el"} {nombreClase(personaje.clase, personaje.sexo)}</span>
+                      {personaje.nombre}{" "}
+                      <span className="text-slate-400 text-lg font-normal">
+                        {personaje.sexo === "chica" ? "la" : "el"}{" "}
+                        {nombreClase(personaje.clase, personaje.sexo)}
+                      </span>
                     </h2>
                     <div className="whitespace-nowrap rounded-lg border border-amber-600/30 bg-slate-900 px-3 py-1 font-bold text-amber-400">
                       🪙 {oro}
                     </div>
                   </div>
-                  <p className="mb-5 text-sm uppercase tracking-[0.2em] text-slate-500">Hoja del aventurero</p>
+                  <p className="mb-5 text-sm uppercase tracking-[0.2em] text-slate-500">
+                    Hoja del aventurero
+                  </p>
 
                   <div className="mb-2 flex justify-between text-xs font-bold uppercase tracking-wider text-slate-400">
                     <span>Experiencia</span>
-                    <span>{personaje.experiencia || 0} / {(personaje.nivel || 1) * 100} XP</span>
+                    <span>
+                      {personaje.experiencia || 0} /
+                      {experienciaParaNivel(personaje.nivel || 1)} XP
+                    </span>
                   </div>
                   <div className="h-3 overflow-hidden rounded-full border border-amber-500/20 bg-slate-950">
-                    <div className="h-full bg-gradient-to-r from-amber-700 to-amber-400 transition-all duration-500" style={{ width: `${Math.min(100, ((personaje.experiencia || 0) / ((personaje.nivel || 1) * 100)) * 100)}%` }} />
+                    <div
+                      className="h-full bg-gradient-to-r from-amber-700 to-amber-400 transition-all duration-500"
+                      style={{
+                        width: `${Math.min(
+                          100,
+                          ((personaje.experiencia || 0) /
+                            experienciaParaNivel(personaje.nivel || 1)) *
+                            100
+                        )}%`,
+                      }}
+                    />
                   </div>
                   <p className="mt-3 text-sm text-slate-400">
-                    {personaje.estado === "ocioso" ? "Listo para una nueva aventura." : personaje.estado === "de_viaje" ? "En ruta hacia tierras lejanas." : "Recuperándose junto al fuego."}
+                    {personaje.estado === "ocioso"
+                      ? "Listo para una nueva aventura."
+                      : personaje.estado === "de_viaje"
+                      ? "En ruta hacia tierras lejanas."
+                      : "Recuperándose junto al fuego."}
                   </p>
                 </div>
               </div>
@@ -189,58 +245,75 @@ export default function TabernaPage() {
                 ["🛒", "Capacidad", personaje.capacidadCarruaje],
               ].map(([icono, etiqueta, valor]) => (
                 <div key={etiqueta} className="bg-slate-900/90 p-4 text-center">
-                  <span className="block text-lg" aria-hidden="true">{icono}</span>
-                  <span className="block text-xs uppercase tracking-wider text-slate-500">{etiqueta}</span>
+                  <span className="block text-lg" aria-hidden="true">
+                    {icono}
+                  </span>
+                  <span className="block text-xs uppercase tracking-wider text-slate-500">
+                    {etiqueta}
+                  </span>
                   <span className="text-xl font-black text-white">{valor}</span>
                 </div>
               ))}
             </div>
 
             <div className="p-6">
-                <div className="mb-6">
-                  <div className="flex justify-between text-sm mb-1">
-                    <span className="text-slate-300 font-bold">Vida</span>
-                    <span className={`${personaje.hpActual <= 20 ? "text-red-400 font-bold" : "text-emerald-400"}`}>
-                      {personaje.hpActual} / {personaje.hpMaximo}
-                    </span>
-                  </div>
-                  <div className="w-full bg-slate-900 rounded-full h-4 border border-slate-700 overflow-hidden">
-                    <div
-                      className={`h-full transition-all duration-500 ${personaje.hpActual <= 20 ? "bg-red-600" : "bg-emerald-500"}`}
-                      style={{ width: `${Math.max(0, (personaje.hpActual / personaje.hpMaximo) * 100)}%` }}
-                    ></div>
-                  </div>
+              <div className="mb-6">
+                <div className="flex justify-between text-sm mb-1">
+                  <span className="text-slate-300 font-bold">Vida</span>
+                  <span
+                    className={`${
+                      personaje.hpActual <= 20
+                        ? "text-red-400 font-bold"
+                        : "text-emerald-400"
+                    }`}
+                  >
+                    {personaje.hpActual} / {personaje.hpMaximo}
+                  </span>
                 </div>
-
-                <div className="space-y-3">
-                  {personaje.hpActual >= personaje.hpMaximo ? (
-                    <div className="w-full bg-slate-700/50 border border-slate-600 text-slate-400 font-bold py-3 px-4 rounded-lg flex justify-center items-center">
-                      Personaje completamente sano
-                    </div>
-                  ) : oro === 0 ? (
-                    <div className="w-full bg-red-900/30 border border-red-900/50 text-red-400 font-bold py-3 px-4 rounded-lg flex justify-center items-center">
-                      No tienes oro para pagar el alojamiento
-                    </div>
-                  ) : (
-                    <button
-                      onClick={handleCurar}
-                      className={`w-full text-white font-bold py-3 px-4 rounded-lg flex justify-between items-center transition-all ${
-                        infoCura.aTope 
-                          ? "bg-emerald-900/80 hover:bg-emerald-800 border-emerald-600 border shadow-[0_0_15px_rgba(16,185,129,0.2)]" 
-                          : "bg-amber-900/80 hover:bg-amber-800 border-amber-600 border"
-                      }`}
-                    >
-                      <span>
-                        {infoCura.aTope 
-                          ? "Cama premium y banquete" 
-                          : `Sopa rancia (TODO TU ORO POR CURAR ${infoCura.hpCurado} HP)`}
-                      </span>
-                      <span className="text-amber-400">{infoCura.coste} 🪙</span>
-                    </button>
-                  )}
+                <div className="w-full bg-slate-900 rounded-full h-4 border border-slate-700 overflow-hidden">
+                  <div
+                    className={`h-full transition-all duration-500 ${
+                      personaje.hpActual <= 20 ? "bg-red-600" : "bg-emerald-500"
+                    }`}
+                    style={{
+                      width: `${Math.max(
+                        0,
+                        (personaje.hpActual / personaje.hpMaximo) * 100
+                      )}%`,
+                    }}
+                  ></div>
                 </div>
               </div>
+
+              <div className="space-y-3">
+                {personaje.hpActual >= personaje.hpMaximo ? (
+                  <div className="w-full bg-slate-700/50 border border-slate-600 text-slate-400 font-bold py-3 px-4 rounded-lg flex justify-center items-center">
+                    Personaje completamente sano
+                  </div>
+                ) : oro === 0 ? (
+                  <div className="w-full bg-red-900/30 border border-red-900/50 text-red-400 font-bold py-3 px-4 rounded-lg flex justify-center items-center">
+                    No tienes oro para pagar el alojamiento
+                  </div>
+                ) : (
+                  <button
+                    onClick={handleCurar}
+                    className={`w-full text-white font-bold py-3 px-4 rounded-lg flex justify-between items-center transition-all ${
+                      infoCura.aTope
+                        ? "bg-emerald-900/80 hover:bg-emerald-800 border-emerald-600 border shadow-[0_0_15px_rgba(16,185,129,0.2)]"
+                        : "bg-amber-900/80 hover:bg-amber-800 border-amber-600 border"
+                    }`}
+                  >
+                    <span>
+                      {infoCura.aTope
+                        ? "Cama premium y banquete"
+                        : `Sopa rancia (TODO TU ORO POR CURAR ${infoCura.hpCurado} HP)`}
+                    </span>
+                    <span className="text-amber-400">{infoCura.coste} 🪙</span>
+                  </button>
+                )}
+              </div>
             </div>
+          </div>
         ) : (
           /* SI NO HAY PERSONAJE, MOSTRAMOS EL FORMULARIO */
           <form onSubmit={handleReclutar} className="space-y-8">
@@ -265,7 +338,13 @@ export default function TabernaPage() {
                   >
                     {/* Placeholder para el gráfico del personaje */}
                     <div className="h-32 bg-black/30 rounded-lg mb-4 flex items-center justify-center border border-white/10">
-                      <Image src={obtenerSpriteHeroe(clase.nombre, sexo)} alt={`Sprite de ${clase.nombre}`} width={112} height={112} className="h-28 w-28 object-contain [image-rendering:pixelated]" />
+                      <Image
+                        src={obtenerSpriteHeroe(clase.nombre, sexo)}
+                        alt={`Sprite de ${clase.nombre}`}
+                        width={112}
+                        height={112}
+                        className="h-28 w-28 object-contain [image-rendering:pixelated]"
+                      />
                     </div>
 
                     <h3 className="font-bold text-lg mb-1">{clase.nombre}</h3>
@@ -276,10 +355,38 @@ export default function TabernaPage() {
                       {clase.descripcion}
                     </p>
                     <div className="mt-4 grid grid-cols-4 gap-1 border-t border-white/10 pt-3 text-center text-[10px] text-slate-300">
-                      <span>⚔️ {ESTADISTICAS_BASE_CLASE[clase.nombre as keyof typeof ESTADISTICAS_BASE_CLASE].ataque}</span>
-                      <span>🛡️ {ESTADISTICAS_BASE_CLASE[clase.nombre as keyof typeof ESTADISTICAS_BASE_CLASE].defensa}</span>
-                      <span>👟 {ESTADISTICAS_BASE_CLASE[clase.nombre as keyof typeof ESTADISTICAS_BASE_CLASE].velocidad}</span>
-                      <span>🛒 {ESTADISTICAS_BASE_CLASE[clase.nombre as keyof typeof ESTADISTICAS_BASE_CLASE].capacidadCarruaje}</span>
+                      <span>
+                        ⚔️{" "}
+                        {
+                          ESTADISTICAS_BASE_CLASE[
+                            clase.nombre as keyof typeof ESTADISTICAS_BASE_CLASE
+                          ].ataque
+                        }
+                      </span>
+                      <span>
+                        🛡️{" "}
+                        {
+                          ESTADISTICAS_BASE_CLASE[
+                            clase.nombre as keyof typeof ESTADISTICAS_BASE_CLASE
+                          ].defensa
+                        }
+                      </span>
+                      <span>
+                        👟{" "}
+                        {
+                          ESTADISTICAS_BASE_CLASE[
+                            clase.nombre as keyof typeof ESTADISTICAS_BASE_CLASE
+                          ].velocidad
+                        }
+                      </span>
+                      <span>
+                        🛒{" "}
+                        {
+                          ESTADISTICAS_BASE_CLASE[
+                            clase.nombre as keyof typeof ESTADISTICAS_BASE_CLASE
+                          ].capacidadCarruaje
+                        }
+                      </span>
                     </div>
                   </div>
                 ))}
@@ -306,14 +413,20 @@ export default function TabernaPage() {
               </div>
 
               <div className="w-full md:w-auto">
-                <span className="mb-2 block text-sm font-medium text-slate-300">Aventurero</span>
+                <span className="mb-2 block text-sm font-medium text-slate-300">
+                  Aventurero
+                </span>
                 <div className="flex rounded-lg border border-slate-600 bg-slate-900 p-1">
                   {(["chico", "chica"] as const).map((opcion) => (
                     <button
                       key={opcion}
                       type="button"
                       onClick={() => setSexo(opcion)}
-                      className={`px-4 py-2 text-sm font-bold capitalize ${sexo === opcion ? "rounded bg-amber-600 text-white" : "text-slate-400 hover:text-white"}`}
+                      className={`px-4 py-2 text-sm font-bold capitalize ${
+                        sexo === opcion
+                          ? "rounded bg-amber-600 text-white"
+                          : "text-slate-400 hover:text-white"
+                      }`}
                     >
                       {opcion}
                     </button>

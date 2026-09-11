@@ -1,6 +1,9 @@
 "use client";
 
-import { calcularCosteAtributo } from "@/lib/configuracionJuego";
+import {
+  calcularCosteAtributo,
+  CONFIGURACION_ATRIBUTOS,
+} from "@/lib/configuracionJuego";
 import { useGameStore } from "@/store/useGameStore";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -18,7 +21,12 @@ export default function MercadoPage() {
 
   if (!personaje || edificios.mercado.nivel === 0) return null;
 
-  const statMaximo = edificios.mercado.nivel * 5;
+  const statMaximoVelocidad =
+    edificios.mercado.nivel * CONFIGURACION_ATRIBUTOS.velocidad.limitePorNivel;
+
+  const statMaximoCapacidad =
+    edificios.mercado.nivel *
+    CONFIGURACION_ATRIBUTOS.capacidadCarruaje.limitePorNivel;
 
   const costeVelocidad = calcularCosteAtributo(
     "velocidad",
@@ -31,13 +39,13 @@ export default function MercadoPage() {
   );
 
   const handleMejorarVelocidad = async () => {
-    if (personaje.velocidad < statMaximo && oro >= costeVelocidad) {
+    if (personaje.velocidad < statMaximoVelocidad && oro >= costeVelocidad) {
       await mejorarAtributo("velocidad");
     }
   };
 
   const handleMejorarCapacidad = async () => {
-    if (personaje.capacidadCarruaje < statMaximo && oro >= costeCapacidad) {
+    if (personaje.capacidadCarruaje < statMaximoCapacidad && oro >= costeCapacidad) {
       await mejorarAtributo("capacidadCarruaje");
     }
   };
@@ -69,7 +77,7 @@ export default function MercadoPage() {
             Reduce el tiempo de viaje.
           </p>
 
-          {personaje.velocidad >= statMaximo ? (
+          {personaje.velocidad >= statMaximoVelocidad ? (
             <div className="text-center p-3 bg-amber-950/50 text-amber-400 border border-amber-900 rounded font-bold">
               Próximamente...
             </div>
@@ -103,7 +111,7 @@ export default function MercadoPage() {
             Aumenta la capacidad de almacenaje.
           </p>
 
-          {personaje.capacidadCarruaje >= statMaximo ? (
+          {personaje.capacidadCarruaje >= statMaximoCapacidad ? (
             <div className="text-center p-3 bg-emerald-950/50 text-emerald-400 border border-emerald-900 rounded font-bold">
               Próximamente...
             </div>

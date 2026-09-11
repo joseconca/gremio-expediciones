@@ -1,6 +1,9 @@
 "use client";
 
-import { calcularCosteAtributo } from "@/lib/configuracionJuego";
+import {
+  calcularCosteAtributo,
+  CONFIGURACION_ATRIBUTOS,
+} from "@/lib/configuracionJuego";
 import { useGameStore } from "@/store/useGameStore";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -18,20 +21,24 @@ export default function HerreriaPage() {
 
   if (!personaje || edificios.herreria.nivel === 0) return null;
 
-  const statMaximo = edificios.herreria.nivel * 10;
+  const statMaximoAtaque =
+    edificios.herreria.nivel * CONFIGURACION_ATRIBUTOS.ataque.limitePorNivel;
+
+  const statMaximoDefensa =
+    edificios.herreria.nivel * CONFIGURACION_ATRIBUTOS.defensa.limitePorNivel;
 
   const costeAtaque = calcularCosteAtributo("ataque", personaje.ataque);
 
   const costeDefensa = calcularCosteAtributo("defensa", personaje.defensa);
 
   const handleMejorarAtaque = async () => {
-    if (personaje.ataque < statMaximo && oro >= costeAtaque) {
+    if (personaje.ataque < statMaximoAtaque && oro >= costeAtaque) {
       await mejorarAtributo("ataque");
     }
   };
 
   const handleMejorarDefensa = async () => {
-    if (personaje.defensa < statMaximo && oro >= costeDefensa) {
+    if (personaje.defensa < statMaximoDefensa && oro >= costeDefensa) {
       await mejorarAtributo("defensa");
     }
   };
@@ -63,7 +70,7 @@ export default function HerreriaPage() {
             Afila el arma. Aumenta el daño realizado.
           </p>
 
-          {personaje.ataque >= statMaximo ? (
+          {personaje.ataque >= statMaximoAtaque ? (
             <div className="text-center p-3 bg-red-950/50 text-red-400 border border-red-900 rounded font-bold">
               Próximamente...
             </div>
@@ -97,7 +104,7 @@ export default function HerreriaPage() {
             Templa y remienda la armadura. Reduce el daño recibido.
           </p>
 
-          {personaje.defensa >= statMaximo ? (
+          {personaje.defensa >= statMaximoDefensa ? (
             <div className="text-center p-3 bg-blue-950/50 text-blue-400 border border-blue-900 rounded font-bold">
               Próximamente...
             </div>
