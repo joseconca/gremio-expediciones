@@ -1,11 +1,11 @@
 "use client";
 
+import CabeceraEdificio from "@/components/CabeceraEdificio";
 import {
   calcularCosteAtributo,
   CONFIGURACION_ATRIBUTOS,
 } from "@/lib/configuracionJuego";
 import { useGameStore } from "@/store/useGameStore";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -45,17 +45,11 @@ export default function HerreriaPage() {
 
   return (
     <main className="p-4 md:p-8 max-w-4xl mx-auto animate-in fade-in">
-      <div className="flex items-center gap-4 mb-8">
-        <Link
-          href="/base"
-          className="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg font-bold"
-        >
-          ← Volver
-        </Link>
-        <h1 className="text-3xl font-bold text-white flex items-center gap-2">
-          <span>🔨</span> Herrería {edificios.herreria.nivel}
-        </h1>
-      </div>
+      <CabeceraEdificio
+        icono="🔨"
+        nombre="Herrería"
+        nivel={edificios.herreria.nivel}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* TARJETA DE ATAQUE */}

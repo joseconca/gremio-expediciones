@@ -55,7 +55,7 @@ export default function RankingHeroes() {
           🏆 Ranking de héroes
         </h2>
         <p className="mt-1 text-sm text-slate-400">
-          Los aventureros con Embajada de nivel 2 compiten por la gloria.
+          Los aventureros que compiten por la gloria.
         </p>
       </div>
 
@@ -74,7 +74,7 @@ export default function RankingHeroes() {
 
         {!cargando && !error && ranking.length === 0 && (
           <p className="text-sm text-slate-400">
-            Todavía no hay héroes con Embajada de nivel 2.
+            Todavía no hay héroes con el nivel mínimo de Embajada.
           </p>
         )}
 

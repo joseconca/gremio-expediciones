@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
 import {
@@ -9,6 +8,7 @@ import {
   obtenerSpriteHeroe,
   experienciaParaNivel,
 } from "@/lib/configuracionJuego";
+import CabeceraEdificio from "@/components/CabeceraEdificio";
 
 const CLASES_INICIALES = [
   {
@@ -50,6 +50,7 @@ export default function TabernaPage() {
     calcularCosteCura,
     curarPersonaje,
     oro,
+    edificios,
   } = useGameStore();
 
   const [claseSeleccionada, setClaseSeleccionada] = useState(
@@ -154,18 +155,15 @@ export default function TabernaPage() {
         </div>
       )}
       <div className="max-w-4xl mx-auto">
-        <header className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-amber-500">Taberna</h1>
-            <p className="text-slate-400">Descansa y recupera la salud.</p>
-          </div>
-          <Link
-            href="/base"
-            className="px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300 transition-colors"
-          >
-            ← Volver a la Base
-          </Link>
-        </header>
+        <CabeceraEdificio
+          icono="🍺"
+          nombre="Taberna"
+          nivel={edificios.herreria.nivel}
+        />
+
+        <p className="mb-8 -mt-6 text-slate-400">
+          Descansa y recupera la salud.
+        </p>
 
         {personaje ? (
           <div className="overflow-hidden rounded-xl border border-amber-500/25 bg-slate-800 shadow-2xl">

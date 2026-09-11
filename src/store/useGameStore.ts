@@ -207,12 +207,6 @@ function aplicarDatosJugador(
   set: (state: Partial<GameState>) => void,
   datos: Record<string, unknown>
 ) {
-  const edificios =
-    (datos.edificios as Record<string, unknown> | undefined) || {};
-  const nivelEdificio = (id: string, valorPorDefecto: number) =>
-    typeof edificios[id] === "number"
-      ? (edificios[id] as number)
-      : valorPorDefecto;
   set({
     oro: datos.oro as number,
     madera: datos.madera as number,
