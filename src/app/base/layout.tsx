@@ -219,10 +219,7 @@ export default function BaseLayout({
       </header>
 
       <div className="flex-grow">{children}</div>
-      <ChatGlobal
-        habilitado={edificios.embajada.nivel > 0}
-        permitirRanking={edificios.embajada.nivel >= 2}
-      />
+      <ChatGlobal habilitado={edificios.embajada.nivel > 0} />
     </div>
   );
 }
