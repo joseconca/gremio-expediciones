@@ -8,6 +8,7 @@ import { useGameStore } from "@/store/useGameStore";
 import type { ReporteExpedicion as ReporteExpedicionTipo } from "@/lib/tiposJuego";
 import CombateModal from "@/components/CombateModal";
 import ReporteExpedicion from "@/components/reportes/ReporteExpedicion";
+import { CONFIGURACION_EDIFICIOS } from "@/lib/configuracionJuego";
 
 const MissionMap = dynamic(() => import("@/components/MissionMap"), {
   ssr: false,
@@ -17,21 +18,6 @@ const MissionMap = dynamic(() => import("@/components/MissionMap"), {
     </div>
   ),
 });
-
-const UI_EDIFICIOS: Record<string, { color: string; ruta: string }> = {
-  taberna: {
-    color: "bg-gradient-to-b from-emerald-700 to-green-800",
-    ruta: "/base/taberna",
-  },
-  herreria: {
-    color: "bg-gradient-to-b from-emerald-700 to-green-800",
-    ruta: "/base/herreria",
-  },
-  mercado: {
-    color: "bg-gradient-to-b from-emerald-700 to-green-800",
-    ruta: "/base/mercado",
-  },
-};
 
 interface CaravanaEntrante {
   id: string;
@@ -177,7 +163,7 @@ export default function BasePage() {
 
   const [tiempoRestante, setTiempoRestante] = useState<number>(0);
   const [listoParaResolver, setListoParaResolver] = useState(false);
-  const [reporte, setReporte] = useState<ReporteExpedicionTipo  | null>(null);
+  const [reporte, setReporte] = useState<ReporteExpedicionTipo | null>(null);
 
   const [modoConstruccion, setModoConstruccion] = useState(false);
 
@@ -542,19 +528,14 @@ export default function BasePage() {
           /* MODO NORMAL: Sólo mostrar edificios construidos */
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {edificiosConstruidos.map((edificio) => {
-              const configUI = UI_EDIFICIOS[edificio.id] || {
-                color: "bg-gradient-to-b from-emerald-700 to-green-800",
-                ruta: "/",
-              };
+              const configuracion = CONFIGURACION_EDIFICIOS[edificio.id];
 
               return (
                 <div
                   key={edificio.id}
                   className="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-amber-500/50 transition-colors flex flex-col shadow-lg"
                 >
-                  <div
-                    className={`h-32 ${configUI.color} flex items-center justify-center relative overflow-hidden`}
-                  >
+                  <div className="relative flex h-32 items-center justify-center overflow-hidden bg-gradient-to-b from-emerald-700 to-green-800">
                     <Image
                       src={`/sprites/buildings/${edificio.id}.png`}
                       alt={edificio.nombre}
@@ -577,7 +558,7 @@ export default function BasePage() {
                     </p>
 
                     <Link
-                      href={configUI.ruta}
+                      href={configuracion.ruta}
                       className="w-full block text-center bg-slate-700 hover:bg-amber-600 text-white py-2 rounded-lg font-medium transition-colors"
                     >
                       Entrar
