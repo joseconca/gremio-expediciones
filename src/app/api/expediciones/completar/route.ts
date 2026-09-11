@@ -7,6 +7,7 @@ import { resolverComercio } from "@/lib/expediciones/comercio";
 export async function POST() {
   try {
     const usuarioSesion = await getAuthenticatedUser();
+
     if (!usuarioSesion) {
       return NextResponse.json({ error: "Sesión requerida." }, { status: 401 });
     }
@@ -48,6 +49,7 @@ export async function POST() {
     if (expedicion.fase === "regresando") {
       const oroGuardado = Math.max(0, expedicion.recompensa);
       const resultadoFinal = expedicion.resultadoFinal;
+
       if (!resultadoFinal) {
         return NextResponse.json(
           {
@@ -56,13 +58,11 @@ export async function POST() {
           { status: 409 }
         );
       }
-      const exito = resultadoFinal === "exito";
 
+      const exito = resultadoFinal === "exito";
       const combate = expedicion.combateActivo;
 
       let logRegreso: string[];
-
-      let afinidadFinal: number | undefined;
 
       if (resultadoFinal === "exito") {
         logRegreso = [
@@ -94,6 +94,8 @@ export async function POST() {
           },
         });
 
+        let afinidad = 0;
+
         if (expedicion.tipo === "comercio" && expedicion.objetivoId) {
           await tx.usuario.update({
             where: { id: expedicion.objetivoId },
@@ -122,10 +124,11 @@ export async function POST() {
               afinidad: { increment: 1 },
             },
           });
-          afinidadFinal = relacion.afinidad;
+
+          afinidad = relacion.afinidad;
         }
 
-        return tx.usuario.update({
+        const usuarioActualizado = await tx.usuario.update({
           where: { id: usuario.id },
           data: {
             oro: {
@@ -137,10 +140,17 @@ export async function POST() {
             expedicionActiva: true,
           },
         });
+
+        return {
+          usuario: usuarioActualizado,
+          afinidad,
+        };
       });
 
       const datosRegreso = Object.fromEntries(
-        Object.entries(actualizado).filter(([clave]) => clave !== "password")
+        Object.entries(actualizado.usuario).filter(
+          ([clave]) => clave !== "password"
+        )
       );
 
       const logCombate =
@@ -156,8 +166,8 @@ export async function POST() {
           oroGanado: oroGuardado,
           experienciaGanada: expedicion.experienciaGanada,
           tipo: "comercio" as const,
-          afinidad: afinidadFinal ?? 0,
-          logCombate: logRegreso,
+          afinidad: actualizado.afinidad,
+          logCombate: [...logCombate, ...logRegreso],
         };
       } else if (resultadoFinal === "cancelada") {
         reporte = {
@@ -255,10 +265,12 @@ export async function POST() {
       lat?: unknown;
       lng?: unknown;
     } | null;
+
     const destinoCoords = expedicion.destinoCoords as {
       lat?: unknown;
       lng?: unknown;
     };
+
     if (
       typeof origenCoords?.lat !== "number" ||
       typeof origenCoords.lng !== "number" ||
@@ -272,7 +284,7 @@ export async function POST() {
     }
 
     // ============================================================
-    // OBTENER AFINIDAD
+    // OBTENER AFINIDAD ACTUAL
     // ============================================================
     const afinidad = await prisma.afinidadComercial.findUnique({
       where: {
@@ -289,19 +301,20 @@ export async function POST() {
     // NIVEL DEL MERCADO
     // ============================================================
     const mercado = objetivo.edificios as Record<string, unknown> | null;
+
     const nivelMercado =
       typeof mercado?.mercado === "number" ? mercado.mercado : 0;
 
     // ============================================================
     // RESOLVER COMERCIO
     // ============================================================
-
     const distanciaKm = calcularDistanciaKm(
       origenCoords.lat,
       origenCoords.lng,
       destinoCoords.lat,
       destinoCoords.lng
     );
+
     const resultado = resolverComercio(
       usuario.personaje,
       distanciaKm,
@@ -323,8 +336,9 @@ export async function POST() {
       60_000,
       expedicion.fechaLlegada.getTime() - expedicion.fechaSalida.getTime()
     );
-    // El regreso arranca en el momento real de llegada, no cuando el jugador pulsa "resolver".
+
     const fechaSalidaRegreso = expedicion.fechaLlegada;
+
     const fechaLlegadaRegreso = new Date(
       fechaSalidaRegreso.getTime() + duracionIda
     );
@@ -371,8 +385,15 @@ export async function POST() {
 
       return tx.usuario.update({
         where: { id: usuario.id },
-        data: { oro: { increment: 0 } },
-        include: { personaje: true, expedicionActiva: true },
+        data: {
+          oro: {
+            increment: 0,
+          },
+        },
+        include: {
+          personaje: true,
+          expedicionActiva: true,
+        },
       });
     });
 
@@ -381,11 +402,15 @@ export async function POST() {
     );
 
     return NextResponse.json({
-      resultado: { ...resultado, oroGanado, afinidad },
+      resultado: {
+        ...resultado,
+        oroGanado,
+      },
       usuario: datos,
     });
   } catch (error) {
     console.error("Error al completar expedición:", error);
+
     return NextResponse.json(
       { error: "No se pudo completar la expedición." },
       { status: 500 }
