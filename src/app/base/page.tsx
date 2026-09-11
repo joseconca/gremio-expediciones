@@ -5,9 +5,9 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
-import type { ReporteExpedicion } from "@/lib/tiposJuego";
-import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
+import type { ReporteExpedicion as ReporteExpedicionTipo } from "@/lib/tiposJuego";
 import CombateModal from "@/components/CombateModal";
+import ReporteExpedicion from "@/components/reportes/ReporteExpedicion";
 
 const MissionMap = dynamic(() => import("@/components/MissionMap"), {
   ssr: false,
@@ -32,138 +32,6 @@ const UI_EDIFICIOS: Record<string, { color: string; ruta: string }> = {
     ruta: "/base/mercado",
   },
 };
-
-const getColorPorLinea = (linea: string) => {
-  if (linea.startsWith("💥"))
-    return "text-fuchsia-400 font-black animate-pulse";
-  if (linea.startsWith("⚔️")) return "text-blue-300";
-  if (
-    linea.startsWith("🩸") ||
-    linea.startsWith("💀") ||
-    linea.startsWith("🚑")
-  )
-    return "text-red-400 font-medium";
-  if (
-    linea.startsWith("🛡️") ||
-    linea.startsWith("💨") ||
-    linea.startsWith("🤡")
-  )
-    return "text-slate-400";
-  if (linea.startsWith("🏆") || linea.startsWith("💰"))
-    return "text-amber-400 font-bold";
-  if (linea.startsWith("✨")) return "text-yellow-300 font-bold";
-  if (
-    linea.startsWith("🌿") ||
-    linea.startsWith("🦇") ||
-    linea.startsWith("🌧️")
-  )
-    return "text-emerald-300/80 italic";
-  if (linea.startsWith("👾") || linea.startsWith("🗺️"))
-    return "text-purple-300 font-semibold";
-  return "text-slate-300";
-};
-
-function EscenaCombate({ reporte }: { reporte: ReporteExpedicion }) {
-  const personaje = useGameStore((state) => state.personaje);
-  const vidaHeroe = Math.max(8, 100 - Math.min(92, reporte.hpPerdido * 2));
-  const esComercio = reporte.tipo === "comercio";
-  const hayCombate =
-    reporte.tipo === "combate" && reporte.resultadoFinal !== "cancelada";
-  const esCancelada = reporte.resultadoFinal === "cancelada";
-  const escenaSprite = esComercio
-    ? "/sprites/buildings/camp.png"
-    : esCancelada
-    ? `/sprites/enemies/${reporte.enemigoId}.png`
-    : "/sprites/tesoro.png";
-  const escenaAlt = esComercio
-    ? "Base aliada"
-    : esCancelada
-    ? "Regreso a la base"
-    : reporte.enemigo || "Enemigo";
-  const vidaEnemigo = esComercio
-    ? 100
-    : hayCombate
-    ? reporte.exito
-      ? 0
-      : 28
-    : 100;
-
-  return (
-    <div className="combat-scene border-b border-slate-700 bg-[radial-gradient(circle_at_50%_35%,#334155,#0f172a_72%)] p-5">
-      <div className="mb-3 flex items-center justify-between text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
-        <span>
-          {reporte.tipo === "comercio"
-            ? "Ruta comercial"
-            : reporte.enemigo || "Encuentro"}
-        </span>
-        <span>
-          {reporte.tipo === "comercio"
-            ? "Intercambio"
-            : `${reporte.rondas || 0} rondas`}
-        </span>
-      </div>
-      <div className="relative flex h-44 items-end justify-between overflow-hidden rounded-lg border border-slate-600/80 bg-slate-950/50 px-8 sm:px-20">
-        <div className="combat-hero relative aspect-square w-28 sm:w-36">
-          <Image
-            src={obtenerSpriteHeroe(personaje?.clase, personaje?.sexo)}
-            alt="Héroe"
-            fill
-            sizes="144px"
-            priority
-            className="object-contain [image-rendering:pixelated]"
-          />
-        </div>
-        <div className="combat-impact" aria-hidden="true">
-          ✦
-        </div>
-        <div
-          className={`combat-enemy relative aspect-square w-28 sm:w-36 ${
-            !hayCombate ? "combat-treasure" : ""
-          }`}
-        >
-          <Image
-            src={escenaSprite}
-            alt={escenaAlt}
-            fill
-            sizes="144px"
-            priority
-            className="object-contain [image-rendering:pixelated]"
-          />
-        </div>
-      </div>
-      <div className="mt-3 grid grid-cols-2 gap-8">
-        <div>
-          <div className="mb-1 flex justify-between text-xs font-bold text-blue-200">
-            <span>Héroe</span>
-            <span>{vidaHeroe}%</span>
-          </div>
-          <div className="h-2 rounded-full bg-slate-800">
-            <div
-              className="h-2 rounded-full bg-blue-500"
-              style={{ width: `${vidaHeroe}%` }}
-            />
-          </div>
-        </div>
-        <div>
-          <div className="mb-1 flex justify-between text-xs font-bold text-red-200">
-            <span>
-              {esComercio ? "Base aliada" : hayCombate ? "Enemigo" : "Hallazgo"}
-            </span>
-            <span>{vidaEnemigo}%</span>
-          </div>
-          <div className="h-2 rounded-full bg-slate-800">
-            <div
-              className={`h-2 rounded-full ${
-                esComercio || !hayCombate ? "bg-emerald-500" : "bg-red-500"
-              }`}
-              style={{ width: `${vidaEnemigo}%` }}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 interface CaravanaEntrante {
   id: string;
@@ -309,7 +177,7 @@ export default function BasePage() {
 
   const [tiempoRestante, setTiempoRestante] = useState<number>(0);
   const [listoParaResolver, setListoParaResolver] = useState(false);
-  const [reporte, setReporte] = useState<ReporteExpedicion | null>(null);
+  const [reporte, setReporte] = useState<ReporteExpedicionTipo  | null>(null);
 
   const [modoConstruccion, setModoConstruccion] = useState(false);
 
@@ -462,131 +330,7 @@ export default function BasePage() {
       )}
       {/* ---- MODAL DE REPORTE DE COMBATE ---- */}
       {reporte && (
-        <div className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in zoom-in-95 duration-200">
-          <div className="bg-slate-900 border-2 border-slate-700 rounded-xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-y-auto custom-scrollbar">
-            {/* Cabecera del Reporte */}
-            <div
-              className={`shrink-0 p-4 border-b ${
-                reporte.exito
-                  ? "bg-emerald-950/30 border-emerald-900"
-                  : "bg-red-950/30 border-red-900"
-              }`}
-            >
-              <h2
-                className={`text-2xl font-black uppercase tracking-wider text-center ${
-                  reporte.resultadoFinal === "exito"
-                    ? "text-emerald-500"
-                    : reporte.resultadoFinal === "derrota"
-                    ? "text-red-500"
-                    : "text-amber-400"
-                }`}
-              >
-                {reporte.resultadoFinal === "exito"
-                  ? "Misión Completada"
-                  : reporte.resultadoFinal === "derrota"
-                  ? "Expedición Fallida"
-                  : "Expedición Cancelada"}
-              </h2>
-            </div>
-
-            {/* Log de Combate estilo Terminal */}
-            <div className="shrink-0">
-              <EscenaCombate reporte={reporte} />
-            </div>
-            <div className="shrink-0 grid grid-cols-3 gap-2 border-b border-slate-700 bg-slate-900 p-4">
-              <div className="rounded-lg border border-red-900/60 bg-red-950/30 p-3 text-center">
-                <span className="block text-[10px] uppercase tracking-wider text-red-300">
-                  {reporte.tipo === "comercio" ? "Ruta comercial" : "Enemigo"}
-                </span>
-                <span className="block truncate font-bold text-white">
-                  {reporte.tipo === "comercio"
-                    ? "Intercambio"
-                    : reporte.enemigo || "Encuentro"}
-                </span>
-              </div>
-              <div className="rounded-lg border border-blue-900/60 bg-blue-950/30 p-3 text-center">
-                <span className="block text-[10px] uppercase tracking-wider text-blue-300">
-                  {reporte.tipo === "comercio" ? "Afinidad" : "Poder"}
-                </span>
-                <span className="block font-black text-white">
-                  {reporte.tipo === "comercio"
-                    ? "Mejorada"
-                    : reporte.poderHeroe || "-"}
-                </span>
-              </div>
-              <div className="rounded-lg border border-amber-900/60 bg-amber-950/30 p-3 text-center">
-                <span className="block text-[10px] uppercase tracking-wider text-amber-300">
-                  {reporte.tipo === "comercio" ? "Encuentros" : "Rondas"}
-                </span>
-                <span className="block font-black text-white">
-                  {reporte.tipo === "comercio"
-                    ? reporte.enemigo
-                      ? "1"
-                      : "0"
-                    : reporte.rondas ?? "-"}
-                </span>
-              </div>
-            </div>
-            <div className="shrink-0 p-6 bg-[#0a0f1a] font-mono text-sm sm:text-base space-y-3">
-              {reporte.logCombate.map((linea, idx) => (
-                <div
-                  key={idx}
-                  className={`flex items-start gap-2 ${getColorPorLinea(
-                    linea
-                  )}`}
-                >
-                  <span className="opacity-50 text-xs mt-1 shrink-0">
-                    [{idx < 9 ? `0${idx + 1}` : idx + 1}]
-                  </span>
-                  <p className="leading-relaxed">{linea}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Resumen y Botón */}
-            <div className="shrink-0 p-6 bg-slate-800 border-t border-slate-700">
-              <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-                <div className="bg-slate-900 p-4 rounded-lg text-center border border-slate-700 shadow-inner">
-                  <span className="block text-xs text-slate-400 uppercase tracking-widest mb-1">
-                    Daño Sufrido
-                  </span>
-                  <span className="text-2xl font-black text-red-500">
-                    -{reporte.hpPerdido} HP
-                  </span>
-                </div>
-                <div className="bg-slate-900 p-4 rounded-lg text-center border border-slate-700 shadow-inner">
-                  <span className="block text-xs text-slate-400 uppercase tracking-widest mb-1">
-                    {reporte.resultadoFinal === "exito"
-                      ? "Botín asegurado"
-                      : "Botín"}
-                  </span>
-                  <span className="text-2xl font-black text-amber-400">
-                    +{reporte.oroGanado} 🪙
-                  </span>
-                </div>
-                <div className="bg-slate-900 p-4 rounded-lg text-center border border-slate-700 shadow-inner">
-                  <span className="block text-xs text-slate-400 uppercase tracking-widest mb-1">
-                    Experiencia
-                  </span>
-                  <span className="text-2xl font-black text-blue-400">
-                    +{reporte.experienciaGanada} XP
-                  </span>
-                </div>
-              </div>
-
-              <button
-                onClick={handleCerrarReporte}
-                className={`w-full font-bold py-4 rounded-lg transition-all active:scale-95 text-lg shadow-lg ${
-                  reporte.exito
-                    ? "bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-900/50"
-                    : "bg-red-900 hover:bg-red-800 text-white shadow-red-900/50"
-                }`}
-              >
-                Regresar a la Base
-              </button>
-            </div>
-          </div>
-        </div>
+        <ReporteExpedicion reporte={reporte} onCerrar={handleCerrarReporte} />
       )}
 
       {confirmarRegreso && (

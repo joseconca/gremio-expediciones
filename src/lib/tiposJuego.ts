@@ -34,13 +34,20 @@ export interface ReporteExpedicionBase {
   logCombate: string[];
 }
 
-export interface ReporteCombate extends ReporteExpedicionBase {
+export type ReporteCombate = ReporteExpedicionBase & {
   tipo: "combate";
-  enemigo: string;
-  enemigoId: string;
-  rondas: number;
-  poderHeroe: number;
-}
+} & (
+    | {
+        resultadoFinal: "cancelada";
+      }
+    | {
+        resultadoFinal: "exito" | "derrota";
+        enemigo: string;
+        enemigoId: string;
+        rondas: number;
+        poderHeroe: number;
+      }
+  );
 
 export interface ReporteComercio extends ReporteExpedicionBase {
   tipo: "comercio";

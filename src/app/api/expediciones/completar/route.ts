@@ -60,10 +60,9 @@ export async function POST() {
 
       const combate = expedicion.combateActivo;
 
-      const tipoReporte =
-        expedicion.tipo === "comercio" ? "comercio" : "combate";
-
       let logRegreso: string[];
+
+      let afinidadFinal: number | undefined;
 
       if (resultadoFinal === "exito") {
         logRegreso = [
@@ -95,11 +94,7 @@ export async function POST() {
           },
         });
 
-        if (
-          expedicion.tipo === "comercio" &&
-          expedicion.objetivoId &&
-          oroGuardado > 0
-        ) {
+        if (expedicion.tipo === "comercio" && expedicion.objetivoId) {
           await tx.usuario.update({
             where: { id: expedicion.objetivoId },
             data: {
@@ -109,7 +104,7 @@ export async function POST() {
             },
           });
 
-          await tx.afinidadComercial.upsert({
+          const relacion = await tx.afinidadComercial.upsert({
             where: {
               jugador1Id_jugador2Id: {
                 jugador1Id: usuario.id,
@@ -127,6 +122,7 @@ export async function POST() {
               afinidad: { increment: 1 },
             },
           });
+          afinidadFinal = relacion.afinidad;
         }
 
         return tx.usuario.update({
@@ -150,24 +146,49 @@ export async function POST() {
       const logCombate =
         combate && Array.isArray(combate.log) ? (combate.log as string[]) : [];
 
-      return NextResponse.json({
-        resultado: {
+      let reporte;
+
+      if (expedicion.tipo === "comercio") {
+        reporte = {
           exito,
           resultadoFinal,
           hpPerdido: expedicion.hpPerdido,
           oroGanado: oroGuardado,
           experienciaGanada: expedicion.experienciaGanada,
-          tipo: tipoReporte,
-          enemigo:
-            tipoReporte === "combate" ? combate?.enemigoNombre : undefined,
-          enemigoId: tipoReporte === "combate" ? combate?.enemigoId : undefined,
-          rondas: tipoReporte === "combate" ? combate?.ronda : undefined,
-          poderHeroe:
-            tipoReporte === "combate" && combate
-              ? combate.jugadorAtaque + combate.jugadorDefensa
-              : undefined,
+          tipo: "comercio" as const,
+          afinidad: afinidadFinal ?? 0,
+          logCombate: logRegreso,
+        };
+      } else if (resultadoFinal === "cancelada") {
+        reporte = {
+          exito,
+          resultadoFinal,
+          hpPerdido: expedicion.hpPerdido,
+          oroGanado: oroGuardado,
+          experienciaGanada: expedicion.experienciaGanada,
+          tipo: "combate" as const,
+          logCombate: logRegreso,
+        };
+      } else {
+        reporte = {
+          exito,
+          resultadoFinal,
+          hpPerdido: expedicion.hpPerdido,
+          oroGanado: oroGuardado,
+          experienciaGanada: expedicion.experienciaGanada,
+          tipo: "combate" as const,
+          enemigo: combate?.enemigoNombre ?? "Enemigo",
+          enemigoId: combate?.enemigoId ?? "goblin",
+          rondas: combate?.ronda ?? 0,
+          poderHeroe: combate
+            ? combate.jugadorAtaque + combate.jugadorDefensa
+            : 0,
           logCombate: [...logCombate, ...logRegreso],
-        },
+        };
+      }
+
+      return NextResponse.json({
+        resultado: reporte,
         usuario: datosRegreso,
       });
     }
@@ -263,7 +284,6 @@ export async function POST() {
     });
 
     const afinidadActual = afinidad?.afinidad ?? 0;
-    const afinidadNueva = afinidadActual + 1;
 
     // ============================================================
     // NIVEL DEL MERCADO
@@ -286,7 +306,7 @@ export async function POST() {
       usuario.personaje,
       distanciaKm,
       nivelMercado,
-      afinidad?.intercambios || 0,
+      afinidadActual,
       objetivo.nombre
     );
 
@@ -361,7 +381,7 @@ export async function POST() {
     );
 
     return NextResponse.json({
-      resultado: { ...resultado, oroGanado, afinidad: afinidadNueva },
+      resultado: { ...resultado, oroGanado, afinidad },
       usuario: datos,
     });
   } catch (error) {

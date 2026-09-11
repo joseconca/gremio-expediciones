@@ -1,9 +1,6 @@
 import type { ReporteComercio } from "@/lib/tiposJuego";
 
-export interface ResultadoComercio extends ReporteComercio {
-  tipo: "comercio";
-}
-
+export type ResultadoComercio = ReporteComercio;
 interface PersonajeCombate {
   nombre: string;
   clase: string;
@@ -64,7 +61,7 @@ export function resolverComercio(
   personaje: PersonajeCombate,
   distanciaKm: number,
   nivelMercado: number,
-  intercambiosPrevios: number,
+  afinidad: number,
   nombreBaseAliada: string
 ) {
   const logCombate: string[] = [];
@@ -95,10 +92,8 @@ export function resolverComercio(
       hpPerdido: personaje.hpActual - 1,
       oroGanado: 0,
       experienciaGanada: 0,
-      enemigo: "Peligros del camino",
-      rondas: 0,
-      poderHeroe: personaje.ataque + personaje.defensa,
       tipo: "comercio",
+      afinidad,
       logCombate: [
         ...logCombate,
         `💀 ${personaje.nombre} sucumbió a los peligros del viaje de ida. Dando por terminado el viaje.`,
@@ -116,9 +111,7 @@ export function resolverComercio(
   // --- 3. NEGOCIACIÓN Y CÁLCULO DE ORO ---
   const multiplicadorNivel = 1 + (personaje.nivel || 1) * 0.1;
   const oroBase = Math.floor((distanciaKm * 1.5 + 10) * multiplicadorNivel);
-  const topeAfinidad = 0.1 + 0.15 * nivelMercado;
-  const bonusAfinidad = Math.min(intercambiosPrevios * 0.01, topeAfinidad);
-  //garantizar mínimo por afinidad
+  const bonusAfinidad = Math.min(afinidad * 0.01, nivelMercado);
   const extraAfinidad =
     bonusAfinidad > 0 ? Math.max(1, Math.floor(oroBase * bonusAfinidad)) : 0;
   const capacidadCarruaje = personaje.capacidadCarruaje;
@@ -155,10 +148,8 @@ export function resolverComercio(
       hpPerdido: personaje.hpActual - 1,
       oroGanado: 0,
       experienciaGanada: 0,
-      enemigo: "Peligros del camino",
-      rondas: 0,
-      poderHeroe: personaje.ataque + personaje.defensa,
       tipo: "comercio",
+      afinidad,
       logCombate: [
         ...logCombate,
         `🚑 ¡Tragedia a un paso de casa! ${personaje.nombre} llega malherido y el carro de oro se pierde por un barranco.`,
@@ -177,9 +168,7 @@ export function resolverComercio(
     hpPerdido: personaje.hpActual - hpTemporal,
     oroGanado: oroFinal,
     experienciaGanada: 0,
-    enemigo: "Ruta comercial",
-    rondas: 0,
-    poderHeroe: personaje.ataque + personaje.defensa,
+    afinidad,
     tipo: "comercio",
     logCombate,
   };
