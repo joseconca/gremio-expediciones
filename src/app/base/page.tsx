@@ -533,36 +533,45 @@ export default function BasePage() {
               return (
                 <div
                   key={edificio.id}
-                  className="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-amber-500/50 transition-colors flex flex-col shadow-lg"
+                  className="overflow-hidden rounded-xl border border-slate-700 bg-slate-800 shadow-lg transition-colors hover:border-amber-500/50"
                 >
-                  <div className="relative flex h-32 items-center justify-center overflow-hidden bg-gradient-to-b from-emerald-700 to-green-800">
-                    <Image
-                      src={`/sprites/buildings/${edificio.id}.png`}
-                      alt={edificio.nombre}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      priority
-                      className="object-contain"
-                    />
-                    <div className="absolute top-2 right-2 bg-black/50 px-2 py-1 rounded text-xs font-bold text-amber-400 border border-amber-500/30">
-                      Nvl. {edificio.nivel}
+                  <div className="relative border-b border-slate-700 bg-slate-950">
+                    <div className="relative flex h-52 items-center justify-center bg-gradient-to-b from-sky-300 via-30% via-stone-600 to-stone-700">
+                      {/* SOMBRA TRAPEZOIDAL */}
+                      <div
+                        className="absolute top-1/2 w-9/10 h-3/4 bg-black/60 blur-xl rounded-xl"
+                        style={{
+                          transform: "perspective(200px) rotateX(60deg)",
+                        }}
+                      />
+                      <Image
+                        src={`/sprites/buildings/${edificio.id}.png`}
+                        alt={edificio.nombre}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        priority
+                        className="object-contain"
+                      />
+                    </div>
+
+                    <div className="flex justify-center p-3 bg-stone-700">
+                      <Link
+                        href={configuracion.ruta}
+                        className="block w-3/4 rounded-lg border border-slate-600 bg-slate-900 py-2.5 text-center font-bold text-slate-200 transition-colors hover:border-amber-500/60 hover:bg-slate-800 hover:text-amber-400"
+                      >
+                        Entrar →
+                      </Link>
                     </div>
                   </div>
 
-                  <div className="p-5 flex flex-col flex-grow">
-                    <h3 className="font-bold text-lg text-white mb-2">
+                  <div className="flex flex-grow flex-col p-5">
+                    <h3 className="mb-2 text-lg font-bold text-white">
                       {edificio.nombre}
                     </h3>
-                    <p className="text-sm text-slate-400 mb-6 flex-grow">
+
+                    <p className="flex-grow text-sm text-slate-400">
                       {edificio.descripcion}
                     </p>
-
-                    <Link
-                      href={configuracion.ruta}
-                      className="w-full block text-center bg-slate-700 hover:bg-amber-600 text-white py-2 rounded-lg font-medium transition-colors"
-                    >
-                      Entrar
-                    </Link>
                   </div>
                 </div>
               );
