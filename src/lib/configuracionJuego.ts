@@ -1,26 +1,23 @@
 export const CONFIGURACION_EDIFICIOS = {
   taberna: {
     nombre: "Taberna",
-    costeConstruccion: 0,
-    costeNivel2: 1200,
-    nivelMax: 1,
+    costeConstruccion: 1400,
+    nivelMax: 2,
     descripcion: "Descansa y recupera la salud del aventurero.",
     color: "bg-amber-700",
     ruta: "/base/taberna",
   },
   herreria: {
     nombre: "Herrería",
-    costeConstruccion: 300,
-    costeNivel2: 1200,
-    nivelMax: 3,
+    costeConstruccion: 1200,
+    nivelMax: 5,
     descripcion: "Mejora ataque y defensa del aventurero.",
     color: "bg-slate-600",
     ruta: "/base/herreria",
   },
   mercado: {
     nombre: "Mercado",
-    costeConstruccion: 350,
-    costeNivel2: 1400,
+    costeConstruccion: 1400,
     nivelMax: 3,
     descripcion: "Mejora velocidad y capacidad del carruaje.",
     color: "bg-emerald-700",
@@ -28,16 +25,33 @@ export const CONFIGURACION_EDIFICIOS = {
   },
   embajada: {
     nombre: "Embajada",
-    costeConstruccion: 250,
-    costeNivel2: 1100,
+    costeConstruccion: 1000,
     nivelMax: 2,
-    descripcion: "Conecta tu campamento con otros gremios y desbloquea el chat global.",
+    descripcion:
+      "Conecta tu campamento con otros gremios y desbloquea el chat global.",
     color: "bg-blue-700",
-    ruta: "/base",
+    ruta: "/base/embajada",
   },
 } as const;
 
 export type IdEdificio = keyof typeof CONFIGURACION_EDIFICIOS;
+
+export function calcularCosteEdificio(
+  idEdificio: IdEdificio,
+  nivelActual: number
+): number {
+  const configuracion = CONFIGURACION_EDIFICIOS[idEdificio];
+
+  if (nivelActual === 0) {
+    return configuracion.costeConstruccion;
+  }
+
+  return (
+    Math.round(
+      (configuracion.costeConstruccion * Math.pow(2, nivelActual)) / 100
+    ) * 100
+  );
+}
 
 // ============================================================
 // CLASES
@@ -50,6 +64,39 @@ export const ESTADISTICAS_BASE_CLASE = {
 
 export type ClasePersonaje = keyof typeof ESTADISTICAS_BASE_CLASE;
 
+export const CONFIGURACION_ATRIBUTOS = {
+  ataque: {
+    costeBase: 20,
+    edificio: "herreria",
+    limitePorNivel: 10,
+  },
+  defensa: {
+    costeBase: 20,
+    edificio: "herreria",
+    limitePorNivel: 10,
+  },
+  velocidad: {
+    costeBase: 100,
+    edificio: "mercado",
+    limitePorNivel: 5,
+  },
+  capacidadCarruaje: {
+    costeBase: 200,
+    edificio: "mercado",
+    limitePorNivel: 5,
+  },
+} as const;
+
+export type IdAtributo = keyof typeof CONFIGURACION_ATRIBUTOS;
+
+export function calcularCosteAtributo(
+  atributo: IdAtributo,
+  valorActual: number
+): number {
+  const configuracion = CONFIGURACION_ATRIBUTOS[atributo];
+
+  return configuracion.costeBase * valorActual * valorActual;
+}
 
 // ============================================================
 // SPRITES
@@ -63,7 +110,10 @@ const SPRITE_POR_CLASE: Record<string, string> = {
 export type SexoPersonaje = "chico" | "chica";
 
 // Devuelve la ruta del sprite del héroe según su clase y sexo, p.ej. "/sprites/heroes/warrior-f.png".
-export function obtenerSpriteHeroe(clase?: string | null, sexo?: string | null): string {
+export function obtenerSpriteHeroe(
+  clase?: string | null,
+  sexo?: string | null
+): string {
   const base = SPRITE_POR_CLASE[clase ?? ""] ?? "warrior";
   const sufijoSexo = sexo === "chica" ? "f" : "m";
   return `/sprites/heroes/${base}-${sufijoSexo}.png`;
@@ -84,7 +134,10 @@ interface MejorasNivel {
 }
 
 // Bonificaciones de estadísticas al alcanzar `nivelAlcanzado`, según la clase del personaje.
-export function calcularMejorasPorNivel(clase: string, nivelAlcanzado: number): MejorasNivel {
+export function calcularMejorasPorNivel(
+  clase: string,
+  nivelAlcanzado: number
+): MejorasNivel {
   const cada = (divisor: number) => (nivelAlcanzado % divisor === 0 ? 1 : 0);
 
   if (clase === "Guerrero") {

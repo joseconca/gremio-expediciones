@@ -4,21 +4,20 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { sincronizarRegeneracion } from "@/lib/regeneracion";
 import {
+  CONFIGURACION_ATRIBUTOS,
   CONFIGURACION_EDIFICIOS,
   ESTADISTICAS_BASE_CLASE,
+  calcularCosteAtributo,
+  calcularCosteEdificio,
+} from "@/lib/configuracionJuego";
+import type {
+  IdAtributo,
   IdEdificio,
   ClasePersonaje,
 } from "@/lib/configuracionJuego";
 
 const CLASES = new Set(["Guerrero", "Explorador", "Comerciante"]);
 const SEXOS = new Set(["chico", "chica"]);
-const ATRIBUTOS = new Set([
-  "ataque",
-  "defensa",
-  "velocidad",
-  "capacidadCarruaje",
-]);
-const EDIFICIOS = CONFIGURACION_EDIFICIOS;
 
 const includeGameData = { personaje: true, expedicionActiva: true } as const;
 
@@ -166,109 +165,159 @@ export async function POST(request: Request) {
     }
 
     if (accion === "mejorarAtributo") {
-      const atributo = body.atributo;
-      if (!ATRIBUTOS.has(atributo))
+      const atributoValue: unknown = body.atributo;
+
+      if (
+        typeof atributoValue !== "string" ||
+        !(atributoValue in CONFIGURACION_ATRIBUTOS)
+      ) {
         return NextResponse.json(
           { error: "Atributo inválido." },
           { status: 400 }
         );
+      }
+
+      const atributo = atributoValue as IdAtributo;
+
       const usuario = await prisma.usuario.findUnique({
         where: { id: usuarioSesion.id },
         include: { personaje: true },
       });
-      if (!usuario?.personaje)
+
+      if (!usuario?.personaje) {
         return NextResponse.json(
           { error: "Necesitas un personaje." },
           { status: 400 }
         );
-      const valorActual =
-        usuario.personaje[atributo as keyof typeof usuario.personaje];
-      if (typeof valorActual !== "number")
+      }
+
+      const valorActual = usuario.personaje[atributo];
+
+      if (typeof valorActual !== "number") {
         return NextResponse.json(
           { error: "Atributo inválido." },
           { status: 400 }
         );
+      }
+
+      const configuracionAtributo = CONFIGURACION_ATRIBUTOS[atributo];
+
       const edificios = usuario.edificios as Record<string, unknown> | null;
-      const edificioNecesario =
-        atributo === "ataque" || atributo === "defensa"
-          ? "herreria"
-          : "mercado";
+
+      const nivelEdificioValue = edificios?.[configuracionAtributo.edificio];
+
       const nivelEdificio =
-        typeof edificios?.[edificioNecesario] === "number"
-          ? (edificios[edificioNecesario] as number)
-          : 0;
-      const maximo =
-        nivelEdificio * (edificioNecesario === "herreria" ? 10 : 5);
-      if (nivelEdificio === 0 || valorActual >= maximo)
+        typeof nivelEdificioValue === "number" ? nivelEdificioValue : 0;
+
+      const maximo = nivelEdificio * configuracionAtributo.limitePorNivel;
+
+      if (nivelEdificio === 0 || valorActual >= maximo) {
         return NextResponse.json(
           { error: "El atributo ya alcanzó el límite actual." },
           { status: 400 }
         );
-      const coste =
-        atributo === "capacidadCarruaje"
-          ? valorActual * 100
-          : valorActual * (atributo === "velocidad" ? 15 : 20);
-      if (usuario.oro < coste)
+      }
+
+      const coste = calcularCosteAtributo(atributo, valorActual);
+
+      if (usuario.oro < coste) {
         return NextResponse.json(
           { error: "No tienes oro suficiente." },
           { status: 400 }
         );
+      }
+
       const actualizado = await prisma.$transaction(async (tx) => {
         await tx.personaje.update({
           where: { usuarioId: usuario.id },
-          data: { [atributo]: { increment: 1 } },
+          data: {
+            [atributo]: {
+              increment: 1,
+            },
+          },
         });
+
         return tx.usuario.update({
           where: { id: usuario.id },
-          data: { oro: { decrement: coste } },
+          data: {
+            oro: {
+              decrement: coste,
+            },
+          },
           include: includeGameData,
         });
       });
+
       return NextResponse.json(respuestaUsuario(actualizado));
     }
 
     if (accion === "mejorarEdificio") {
       const idEdificioValue: unknown = body.idEdificio;
+
       if (
         typeof idEdificioValue !== "string" ||
-        !(idEdificioValue in EDIFICIOS)
+        !(idEdificioValue in CONFIGURACION_EDIFICIOS)
       ) {
         return NextResponse.json(
           { error: "Edificio inválido." },
           { status: 400 }
         );
       }
+
       const idEdificio = idEdificioValue as IdEdificio;
-      const configuracion = EDIFICIOS[idEdificio];
+      const configuracion = CONFIGURACION_EDIFICIOS[idEdificio];
+
       const usuario = await prisma.usuario.findUnique({
         where: { id: usuarioSesion.id },
         include: includeGameData,
       });
-      const edificios = usuario?.edificios as
+
+      if (!usuario) {
+        return NextResponse.json(
+          { error: "Usuario no encontrado." },
+          { status: 404 }
+        );
+      }
+
+      const edificios = usuario.edificios as
         | Record<string, unknown>
         | undefined;
+
       const nivel =
-        typeof edificios?.[idEdificio] === "number"
-          ? (edificios[idEdificio] as number)
-          : 0;
-      const coste =
-        nivel === 0
-          ? configuracion.costeConstruccion
-          : configuracion.costeNivel2;
-      if (!usuario || nivel >= configuracion.nivelMax || usuario.oro < coste)
+        typeof edificios?.[idEdificio] === "number" ? edificios[idEdificio] : 0;
+
+      if (nivel >= configuracion.nivelMax) {
         return NextResponse.json(
-          { error: "No se puede mejorar el edificio." },
+          { error: "El edificio ya está al nivel máximo." },
           { status: 400 }
         );
+      }
+
+      const coste = calcularCosteEdificio(idEdificio, nivel);
+
+      if (usuario.oro < coste) {
+        return NextResponse.json(
+          { error: "No tienes oro suficiente." },
+          { status: 400 }
+        );
+      }
+
       const edificiosActualizados: Prisma.InputJsonObject = {
         ...(edificios as Prisma.InputJsonObject | undefined),
         [idEdificio]: nivel + 1,
       };
+
       const actualizado = await prisma.usuario.update({
         where: { id: usuario.id },
-        data: { oro: { decrement: coste }, edificios: edificiosActualizados },
+        data: {
+          oro: {
+            decrement: coste,
+          },
+          edificios: edificiosActualizados,
+        },
         include: includeGameData,
       });
+
       return NextResponse.json(respuestaUsuario(actualizado));
     }
 

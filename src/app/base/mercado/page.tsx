@@ -1,5 +1,6 @@
 "use client";
 
+import { calcularCosteAtributo } from "@/lib/configuracionJuego";
 import { useGameStore } from "@/store/useGameStore";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -19,25 +20,35 @@ export default function MercadoPage() {
 
   const statMaximo = edificios.mercado.nivel * 5;
 
-  const costeVelocidad = personaje.velocidad * personaje.velocidad * 30;
-  const costeCapacidad = personaje.capacidadCarruaje * personaje.capacidadCarruaje * 100;
+  const costeVelocidad = calcularCosteAtributo(
+    "velocidad",
+    personaje.velocidad
+  );
+
+  const costeCapacidad = calcularCosteAtributo(
+    "capacidadCarruaje",
+    personaje.capacidadCarruaje
+  );
 
   const handleMejorarVelocidad = async () => {
     if (personaje.velocidad < statMaximo && oro >= costeVelocidad) {
-      await mejorarAtributo("velocidad", costeVelocidad, 1);
+      await mejorarAtributo("velocidad");
     }
   };
 
   const handleMejorarCapacidad = async () => {
     if (personaje.capacidadCarruaje < statMaximo && oro >= costeCapacidad) {
-      await mejorarAtributo("capacidadCarruaje", costeCapacidad, 1);
+      await mejorarAtributo("capacidadCarruaje");
     }
   };
 
   return (
     <main className="p-4 md:p-8 max-w-4xl mx-auto animate-in fade-in">
       <div className="flex items-center gap-4 mb-8">
-        <Link href="/base" className="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg font-bold">
+        <Link
+          href="/base"
+          className="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg font-bold"
+        >
           ← Volver
         </Link>
         <h1 className="text-3xl font-bold text-white flex items-center gap-2">
@@ -46,12 +57,13 @@ export default function MercadoPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
         {/* TARJETA DE VELOCIDAD */}
         <div className="bg-slate-800 border-2 border-slate-700 rounded-xl p-6 shadow-xl flex flex-col">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-bold text-amber-400">Mejorar ruedas</h2>
-            <span className="text-2xl font-mono text-white">Velocidad: {personaje.velocidad}</span>
+            <span className="text-2xl font-mono text-white">
+              Velocidad: {personaje.velocidad}
+            </span>
           </div>
           <p className="text-slate-400 text-sm mb-6 flex-grow">
             Reduce el tiempo de viaje.
@@ -80,8 +92,12 @@ export default function MercadoPage() {
         {/* TARJETA DE CAPACIDAD */}
         <div className="bg-slate-800 border-2 border-slate-700 rounded-xl p-6 shadow-xl flex flex-col">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-bold text-emerald-400">Ampliar carro</h2>
-            <span className="text-2xl font-mono text-white">Comercio: {personaje.capacidadCarruaje}</span>
+            <h2 className="text-xl font-bold text-emerald-400">
+              Ampliar carro
+            </h2>
+            <span className="text-2xl font-mono text-white">
+              Comercio: {personaje.capacidadCarruaje}
+            </span>
           </div>
           <p className="text-slate-400 text-sm mb-6 flex-grow">
             Aumenta la capacidad de almacenaje.

@@ -1,5 +1,6 @@
 "use client";
 
+import { calcularCosteAtributo } from "@/lib/configuracionJuego";
 import { useGameStore } from "@/store/useGameStore";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -19,25 +20,29 @@ export default function HerreriaPage() {
 
   const statMaximo = edificios.herreria.nivel * 10;
 
-  const costeAtaque = personaje.ataque * personaje.ataque * 20;
-  const costeDefensa = personaje.defensa * personaje.defensa * 20;
+  const costeAtaque = calcularCosteAtributo("ataque", personaje.ataque);
+
+  const costeDefensa = calcularCosteAtributo("defensa", personaje.defensa);
 
   const handleMejorarAtaque = async () => {
     if (personaje.ataque < statMaximo && oro >= costeAtaque) {
-      await mejorarAtributo("ataque", costeAtaque, 1);
+      await mejorarAtributo("ataque");
     }
   };
 
   const handleMejorarDefensa = async () => {
     if (personaje.defensa < statMaximo && oro >= costeDefensa) {
-      await mejorarAtributo("defensa", costeDefensa, 1);
+      await mejorarAtributo("defensa");
     }
   };
 
   return (
     <main className="p-4 md:p-8 max-w-4xl mx-auto animate-in fade-in">
       <div className="flex items-center gap-4 mb-8">
-        <Link href="/base" className="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg font-bold">
+        <Link
+          href="/base"
+          className="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg font-bold"
+        >
           ← Volver
         </Link>
         <h1 className="text-3xl font-bold text-white flex items-center gap-2">
@@ -50,7 +55,9 @@ export default function HerreriaPage() {
         <div className="bg-slate-800 border-2 border-slate-700 rounded-xl p-6 shadow-xl flex flex-col">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-bold text-red-400">Afilar Arma</h2>
-            <span className="text-2xl font-mono text-white">Ataque: {personaje.ataque}</span>
+            <span className="text-2xl font-mono text-white">
+              Ataque: {personaje.ataque}
+            </span>
           </div>
           <p className="text-slate-400 text-sm mb-6 flex-grow">
             Afila el arma. Aumenta el daño realizado.
@@ -79,8 +86,12 @@ export default function HerreriaPage() {
         {/* TARJETA DE DEFENSA */}
         <div className="bg-slate-800 border-2 border-slate-700 rounded-xl p-6 shadow-xl flex flex-col">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-bold text-blue-400">Reforzar Armadura</h2>
-            <span className="text-2xl font-mono text-white">Defensa: {personaje.defensa}</span>
+            <h2 className="text-xl font-bold text-blue-400">
+              Reforzar Armadura
+            </h2>
+            <span className="text-2xl font-mono text-white">
+              Defensa: {personaje.defensa}
+            </span>
           </div>
           <p className="text-slate-400 text-sm mb-6 flex-grow">
             Templa y remienda la armadura. Reduce el daño recibido.

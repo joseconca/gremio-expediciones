@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
-import { CONFIGURACION_EDIFICIOS } from "@/lib/configuracionJuego";
+import { calcularCosteEdificio, CONFIGURACION_EDIFICIOS } from "@/lib/configuracionJuego";
 import type { ReporteExpedicion, ResultadoExpedicion } from "@/lib/tiposJuego";
 
 const EDIFICIOS_BASE: Record<string, Omit<Edificio, "nivel">> = {
@@ -150,9 +150,7 @@ export interface GameState {
     atributo: keyof Pick<
       Personaje,
       "ataque" | "defensa" | "velocidad" | "capacidadCarruaje"
-    >,
-    coste: number,
-    cantidad: number
+    >
   ) => Promise<boolean>;
   mejorarEdificio: (idEdificio: string) => Promise<boolean>;
   obtenerCosteMejora: (idEdificio: string) => number;
@@ -508,15 +506,16 @@ export const useGameStore = create<GameState>((set, get) => ({
   },
 
   obtenerCosteMejora: (idEdificio) => {
-    const ed = get().edificios[idEdificio];
-    const configuracion =
-      CONFIGURACION_EDIFICIOS[
-        idEdificio as keyof typeof CONFIGURACION_EDIFICIOS
-      ];
-    if (!configuracion) return Number.POSITIVE_INFINITY;
-    return ed.nivel === 0
-      ? configuracion.costeConstruccion
-      : configuracion.costeNivel2;
+    const edificio = get().edificios[idEdificio];
+
+    if (!edificio) {
+      return Number.POSITIVE_INFINITY;
+    }
+
+    return calcularCosteEdificio(
+      idEdificio as keyof typeof CONFIGURACION_EDIFICIOS,
+      edificio.nivel
+    );
   },
 
   mejorarEdificio: async (idEdificio) => {
