@@ -300,6 +300,94 @@ export default function BasePage() {
     return accionCombate("atacar");
   }, [accionCombate]);
 
+  //rayas des vetas del tablon
+  const vetasMadera = [
+    {
+      id: 1,
+      left: "6%",
+      d: "M8,0 Q16,25 8,50 T12,100",
+      stroke: 2.5,
+      clase: "text-amber-950/80",
+    },
+    {
+      id: 2,
+      left: "14%",
+      d: "M12,0 C4,30 18,70 10,100",
+      stroke: 3,
+      clase: "text-amber-950/80",
+    },
+    {
+      id: 3,
+      left: "22%",
+      d: "M10,0 Q2,20 10,45 T6,80 Q12,95 8,100",
+      stroke: 3.5,
+      clase: "text-amber-950/60",
+    },
+    {
+      id: 4,
+      left: "31%",
+      d: "M8,0 C16,40 2,60 10,100",
+      stroke: 2.8,
+      clase: "text-amber-950/70",
+    },
+    {
+      id: 5,
+      left: "38%",
+      d: "M14,0 Q6,30 14,60 T10,100",
+      stroke: 3.2,
+      clase: "text-amber-950/60",
+    },
+    {
+      id: 6,
+      left: "47%",
+      d: "M6,0 C14,25 4,75 12,100",
+      stroke: 3,
+      clase: "text-amber-950/90",
+    },
+    {
+      id: 7,
+      left: "55%",
+      d: "M11,0 Q18,40 10,70 T14,100",
+      stroke: 2.5,
+      clase: "text-amber-950/60",
+    },
+    {
+      id: 8,
+      left: "64%",
+      d: "M13,0 C5,20 18,60 9,100",
+      stroke: 3.5,
+      clase: "text-amber-950/80",
+    },
+    {
+      id: 9,
+      left: "72%",
+      d: "M9,0 Q2,35 12,65 T10,100",
+      stroke: 2.8,
+      clase: "text-amber-950/60",
+    },
+    {
+      id: 10,
+      left: "81%",
+      d: "M12,0 C18,30 4,70 14,100",
+      stroke: 3.2,
+      clase: "text-amber-950/90",
+    },
+    {
+      id: 11,
+      left: "89%",
+      d: "M10,0 Q16,25 8,55 T12,100",
+      stroke: 3,
+      clase: "text-amber-950/60",
+    },
+    {
+      id: 12,
+      left: "95%",
+      d: "M7,0 C14,40 2,60 10,100",
+      stroke: 2.5,
+      clase: "text-amber-950/60",
+    },
+  ];
+
   return (
     <main className="min-h-screen bg-slate-900 text-slate-100 p-4 md:p-8 font-sans">
       {/* ---- MODAL DE COMBATE ---- */}
@@ -364,136 +452,172 @@ export default function BasePage() {
       <div className="max-w-4xl mx-auto">
         {/* 1. PANEL DE MISIONES */}
         {personaje && (
-          <div className="mb-8 p-6 bg-gradient-to-r from-slate-800 to-slate-900 border border-amber-500/30 rounded-xl shadow-lg">
-            <h2 className="text-xl font-bold text-white mb-4">
-              Mesa de Misiones
-            </h2>
+          <div className="mb-8 overflow-hidden rounded-lg border-2 border-amber-950/80 bg-[#4a2f1b] shadow-[0_8px_24px_rgba(0,0,0,0.4)]">
+            <div className="relative p-6">
+              {/* Clavos decorativos */}
+              <span className="absolute left-3 top-2 h-3 w-3 rounded-full bg-slate-400 shadow-inner" />
+              <span className="absolute right-3 top-2 h-3 w-3 rounded-full bg-slate-400 shadow-inner" />
 
-            {personaje.estado === "ocioso" && (
-              <div className="flex items-center justify-between">
-                <p className="text-slate-400 text-sm">
-                  Revisa el tablón en busca de nuevos contratos.
-                </p>
-                <Link
-                  href="/expediciones"
-                  className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-6 rounded-lg transition-transform active:scale-95"
-                >
-                  🗺️ Abrir Mapa
-                </Link>
-              </div>
-            )}
-
-            {personaje.estado === "de_viaje" && expedicionActiva && (
-              <div className="relative rounded-lg border border-slate-700 bg-slate-900/50 p-4 pr-12 transition-colors hover:border-amber-500/50">
-                <div
-                  className="flex cursor-pointer flex-col items-center justify-between gap-4 md:flex-row"
-                  onClick={() =>
-                    setExpedicionExpandida((expandida) => !expandida)
-                  }
-                  onKeyDown={(event) => {
-                    if (event.key === "Enter" || event.key === " ") {
-                      event.preventDefault();
-                      setExpedicionExpandida((expandida) => !expandida);
-                    }
-                  }}
-                  role="button"
-                  tabIndex={0}
-                  aria-expanded={expedicionExpandida}
-                >
-                  <div className="flex min-w-0 items-center gap-3">
-                    <p className="text-amber-400 font-bold">
-                      {expedicionActiva.nombre}
-                    </p>
-                    <p className="text-slate-400 text-sm">
-                      {expedicionActiva.fase === "combatiendo"
-                        ? `⚔️ ${personaje.nombre} está combatiendo`
-                        : listoParaResolver
-                        ? expedicionActiva.fase === "regresando"
-                          ? `¡${personaje.nombre} ha regresado al gremio!`
-                          : `¡${personaje.nombre} ha llegado a su destino!`
-                        : expedicionActiva.fase === "regresando"
-                        ? "Regresando..."
-                        : "Aventurero de camino..."}
-                    </p>
-                  </div>
-
-                  {listoParaResolver ? (
-                    <button
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        void handleResolverLlegada();
-                      }}
-                      className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-6 rounded-lg animate-pulse"
-                    >
-                      {expedicionActiva.fase === "regresando"
-                        ? "🏠 Recibir al aventurero"
-                        : expedicionActiva.tipo === "comercio"
-                        ? "🤝 Resolver comercio"
-                        : "⚔️ Enfrentarse al enemigo"}
-                    </button>
-                  ) : (
-                    <div className="text-center font-mono text-2xl text-slate-300 bg-slate-950 px-4 py-2 rounded-lg border border-slate-800">
-                      ⏳ {formatoTiempo(tiempoRestante)}
-                    </div>
-                  )}
-                  <span
-                    className="absolute right-4 top-4 text-lg leading-none text-slate-500"
-                    aria-hidden="true"
+              {/* Vetado de la madera */}
+              <div className="pointer-events-none absolute inset-0 opacity-20">
+                {vetasMadera.map((veta) => (
+                  <svg
+                    key={veta.id}
+                    className={`absolute inset-y-0 h-full w-4 -ml-2 ${veta.clase}`}
+                    style={{ left: veta.left }}
+                    preserveAspectRatio="none"
+                    viewBox="0 0 20 100"
                   >
-                    {expedicionExpandida ? "⌃" : "⌄"}
-                  </span>
+                    <path
+                      d={veta.d}
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={veta.stroke}
+                      vectorEffect="non-scaling-stroke"
+                    />
+                  </svg>
+                ))}
+              </div>
+
+              <div className="relative">
+                <div className="mb-5 flex items-center gap-3">
+                  <h2 className="text-xl font-black uppercase tracking-[0.15em] text-amber-100">
+                    Contratos disponibles
+                  </h2>
                 </div>
 
-                {expedicionExpandida && (
-                  <div
-                    className="mt-4 overflow-hidden rounded-lg border border-slate-700 bg-slate-900"
-                    onClick={(event) => event.stopPropagation()}
-                  >
-                    <div className="h-[360px] w-full">
-                      <MissionMap
-                        baseCoords={baseCoords!}
-                        misiones={[]}
-                        destinoExpedicion={expedicionActiva.destinoCoords}
-                        fechaSalida={expedicionActiva.fechaSalida}
-                        fechaLlegada={expedicionActiva.fechaLlegada}
-                        claseHeroe={personaje.clase}
-                        sexoHeroe={personaje.sexo}
-                        regresando={expedicionActiva.fase === "regresando"}
-                        rutasEntrantes={caravanasEntrantes
-                          .filter((caravana) => caravana.origenCoords)
-                          .map((caravana) => ({
-                            id: caravana.id,
-                            origenCoords: caravana.origenCoords!,
-                            fechaSalida: caravana.fechaSalida,
-                            fechaLlegada: caravana.fechaLlegada,
-                            nombreHeroe: caravana.nombreAventurero,
-                            claseHeroe: caravana.claseAventurero,
-                            sexoHeroe: caravana.sexoAventurero,
-                          }))}
-                        onSelectMission={() => undefined}
-                      />
+                {personaje.estado === "ocioso" && (
+                  <div className="flex items-center justify-between gap-6 rounded-md border border-amber-950/80 bg-[#21170f]/80 p-4">
+                    <div>
+                      <p className="font-semibold mt-1 text-sm text-amber-100/60">
+                        Revisa el mapa para encontrar un nuevo contrato
+                      </p>
                     </div>
-                    {expedicionActiva.fase === "en_viaje" && (
-                      <div className="border-t border-slate-700 bg-slate-950/50 p-3">
+
+                    <Link
+                      href="/expediciones"
+                      className="group relative flex items-center overflow-hidden rounded-[3px] border border-amber-950/80 bg-[#e8dcc4] px-6 py-2.5 font-bold text-amber-950 shadow-[inset_0_2px_12px_rgba(139,69,19,0.65)]"
+                    >
+                      <span>Ver mapa</span>                  
+                    </Link>
+                  </div>
+                )}
+
+                {personaje.estado === "de_viaje" && expedicionActiva && (
+                  <div className="relative rounded-lg border border-slate-700 bg-slate-900/50 p-4 pr-12 transition-colors hover:border-amber-500/50">
+                    <div
+                      className="flex cursor-pointer flex-col items-center justify-between gap-4 md:flex-row"
+                      onClick={() =>
+                        setExpedicionExpandida((expandida) => !expandida)
+                      }
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                          event.preventDefault();
+                          setExpedicionExpandida((expandida) => !expandida);
+                        }
+                      }}
+                      role="button"
+                      tabIndex={0}
+                      aria-expanded={expedicionExpandida}
+                    >
+                      <div className="flex min-w-0 items-center gap-3">
+                        <p className="text-amber-400 font-bold">
+                          {expedicionActiva.nombre}
+                        </p>
+                        <p className="text-slate-400 text-sm">
+                          {expedicionActiva.fase === "combatiendo"
+                            ? `⚔️ ${personaje.nombre} está combatiendo`
+                            : listoParaResolver
+                            ? expedicionActiva.fase === "regresando"
+                              ? `¡${personaje.nombre} ha regresado al gremio!`
+                              : `¡${personaje.nombre} ha llegado a su destino!`
+                            : expedicionActiva.fase === "regresando"
+                            ? "Regresando..."
+                            : "Aventurero de camino..."}
+                        </p>
+                      </div>
+
+                      {listoParaResolver ? (
                         <button
-                          type="button"
-                          onClick={() => setConfirmarRegreso(true)}
-                          className="w-full rounded-lg border border-red-900/60 bg-red-950/40 px-4 py-2.5 text-sm font-bold text-red-300 transition hover:bg-red-900/50 hover:text-red-200"
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            void handleResolverLlegada();
+                          }}
+                          className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-6 rounded-lg animate-pulse"
                         >
-                          ↩️ Regresar de inmediato
+                          {expedicionActiva.fase === "regresando"
+                            ? "🏠 Recibir al aventurero"
+                            : expedicionActiva.tipo === "comercio"
+                            ? "🤝 Resolver comercio"
+                            : "⚔️ Enfrentarse al enemigo"}
                         </button>
+                      ) : (
+                        <div className="text-center font-mono text-2xl text-slate-300 bg-slate-950 px-4 py-2 rounded-lg border border-slate-800">
+                          ⏳ {formatoTiempo(tiempoRestante)}
+                        </div>
+                      )}
+                      <span
+                        className="absolute right-4 top-4 text-lg leading-none text-slate-500"
+                        aria-hidden="true"
+                      >
+                        {expedicionExpandida ? "⌃" : "⌄"}
+                      </span>
+                    </div>
+
+                    {expedicionExpandida && (
+                      <div
+                        className="mt-4 overflow-hidden rounded-lg border border-slate-700 bg-slate-900"
+                        onClick={(event) => event.stopPropagation()}
+                      >
+                        <div className="h-[360px] w-full">
+                          <MissionMap
+                            baseCoords={baseCoords!}
+                            misiones={[]}
+                            destinoExpedicion={expedicionActiva.destinoCoords}
+                            fechaSalida={expedicionActiva.fechaSalida}
+                            fechaLlegada={expedicionActiva.fechaLlegada}
+                            claseHeroe={personaje.clase}
+                            sexoHeroe={personaje.sexo}
+                            regresando={expedicionActiva.fase === "regresando"}
+                            rutasEntrantes={caravanasEntrantes
+                              .filter((caravana) => caravana.origenCoords)
+                              .map((caravana) => ({
+                                id: caravana.id,
+                                origenCoords: caravana.origenCoords!,
+                                fechaSalida: caravana.fechaSalida,
+                                fechaLlegada: caravana.fechaLlegada,
+                                nombreHeroe: caravana.nombreAventurero,
+                                claseHeroe: caravana.claseAventurero,
+                                sexoHeroe: caravana.sexoAventurero,
+                              }))}
+                            onSelectMission={() => undefined}
+                          />
+                        </div>
+                        {expedicionActiva.fase === "en_viaje" && (
+                          <div className="border-t border-slate-700 bg-slate-950/50 p-3">
+                            <button
+                              type="button"
+                              onClick={() => setConfirmarRegreso(true)}
+                              className="w-full rounded-lg border border-red-900/60 bg-red-950/40 px-4 py-2.5 text-sm font-bold text-red-300 transition hover:bg-red-900/50 hover:text-red-200"
+                            >
+                              ↩️ Regresar de inmediato
+                            </button>
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
                 )}
-              </div>
-            )}
 
-            {personaje.estado === "descansando" && (
-              <div className="text-red-400 font-bold">
-                El héroe necesita recuperarse en la Taberna.
+                {personaje.estado === "descansando" && (
+                  <div className="rounded-md border border-red-950/80 bg-[#21170f]/80 p-4">
+                    <p className="font-bold text-red-300">
+                      El héroe necesita recuperarse en la Taberna.
+                    </p>
+                  </div>
+                )}
               </div>
-            )}
+            </div>
           </div>
         )}
 
@@ -539,7 +663,7 @@ export default function BasePage() {
                     <div className="relative flex h-52 items-center justify-center bg-gradient-to-b from-sky-300 via-30% via-stone-600 to-stone-700">
                       {/* SOMBRA TRAPEZOIDAL */}
                       <div
-                        className="absolute top-1/2 w-9/10 h-3/4 bg-black/60 blur-xl rounded-xl"
+                        className="absolute top-1/2 w-9/10 h-3/4 bg-black/60 blur-xl rounded-xl pointer-events-none"
                         style={{
                           transform: "perspective(200px) rotateX(60deg)",
                         }}

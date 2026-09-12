@@ -295,9 +295,9 @@ export default function ExpedicionesPage() {
             <button
               onClick={handleEnviarExpedicion}
               disabled={cargando || !personaje || sinVida}
-              className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 rounded-xl shadow-lg transition-colors text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-amber-100/60 hover:bg-amber-700 text-white font-bold py-4 rounded-xl shadow-lg transition-colors text-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {cargando ? "Preparando equipo..." : "Enviar Aventurero"}
+              {cargando ? "Preparando equipo..." : misionSeleccionada.tipo === "comercio" ? "Aceptar intercambio" : "Aceptar caza"}
             </button>
           </div>
         </div>
