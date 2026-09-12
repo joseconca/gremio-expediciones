@@ -216,7 +216,10 @@ export default function ExpedicionesPage() {
             sexoHeroe={personaje?.sexo}
             rutasEntrantes={[]}
             regresando={expedicionActiva?.fase === "regresando"}
-            onSelectMission={setMisionSeleccionada}
+            onSelectMission={(mision) => {
+              setMisionSeleccionada(mision);
+              setErrorEnvio(null);
+            }}
           />
         </div>
       )}
