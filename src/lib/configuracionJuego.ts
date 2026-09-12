@@ -1,3 +1,5 @@
+import type { Rareza } from "./tiposJuego";
+
 export const CONFIGURACION_EDIFICIOS = {
   taberna: {
     nombre: "Taberna",
@@ -170,4 +172,24 @@ export function calcularMejorasPorNivel(
     velocidad: cada(5),
     capacidadCarruaje: cada(3),
   };
+}
+
+// ============================================================
+// HABILIDADES
+// ============================================================
+
+export const NIVEL_ESCUELA_POR_RAREZA: Record<Rareza, number> = {
+  basico: 1,
+  comun: 2,
+  poco_comun: 3,
+  raro: 4,
+  epico: 5,
+  legendario: Infinity,
+};
+
+export function puedeAprenderHabilidad(
+  rareza: Rareza,
+  nivelEscuela: number
+): boolean {
+  return nivelEscuela >= NIVEL_ESCUELA_POR_RAREZA[rareza];
 }
