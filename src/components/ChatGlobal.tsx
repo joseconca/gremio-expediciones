@@ -20,22 +20,16 @@ export default function ChatGlobal({
   const [abierto, setAbierto] = useState(false);
 
   //scroll al final del chat
-  const mensajesFinRef = useRef<HTMLDivElement>(null);
+  const mensajesListaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!abierto) return;
 
-    mensajesFinRef.current?.scrollIntoView({
-      behavior: "instant",
-    });
+    const lista = mensajesListaRef.current;
 
-    const frame = requestAnimationFrame(() => {
-      mensajesFinRef.current?.scrollIntoView({
-        behavior: "smooth",
-      });
-    });
+    if (!lista) return;
 
-    return () => cancelAnimationFrame(frame);
+    lista.scrollTop = lista.scrollHeight;
   }, [mensajes, abierto]);
 
   useEffect(() => {
@@ -78,14 +72,14 @@ export default function ChatGlobal({
 
   if (!habilitado) {
     return (
-      <section className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-700 bg-slate-900/95 px-4 py-2 text-center text-sm text-slate-500 shadow-2xl backdrop-blur">
+      <section className="sticky bottom-0 z-40 shrink-0 border-t border-slate-700 bg-slate-900 px-4 py-2 text-center text-sm text-slate-500 shadow-2xl">
         Construye la Embajada para desbloquear el chat global.
       </section>
     );
   }
 
   return (
-    <section className="fixed inset-x-0 bottom-0 z-40">
+    <section className="sticky bottom-0 z-40 shrink-0">
       <div className="pointer-events-auto w-full border-t border-slate-600 bg-slate-900/95 shadow-2xl backdrop-blur">
         <div
           className={`flex w-full items-center gap-2 px-4 ${
@@ -110,7 +104,7 @@ export default function ChatGlobal({
               </span>
             )}
           </button>
-        
+
           <button
             type="button"
             onClick={() => setAbierto((valor) => !valor)}
@@ -139,7 +133,7 @@ export default function ChatGlobal({
                 ))
               )}
               {/* 3. Elemento invisible que sirve de ancla para el auto-scroll */}
-              <div ref={mensajesFinRef} />
+              <div ref={mensajesListaRef} />
             </div>
             <form onSubmit={enviar} className="flex gap-2">
               <input
