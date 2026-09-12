@@ -32,6 +32,12 @@ const EDIFICIOS_BASE: Record<IdEdificio, Omit<Edificio, "nivel">> = {
     descripcion: CONFIGURACION_EDIFICIOS.embajada.descripcion,
     nivelMax: CONFIGURACION_EDIFICIOS.embajada.nivelMax,
   },
+  escuelaCombate: {
+    id: "escuelaCombate",
+    nombre: CONFIGURACION_EDIFICIOS.escuelaCombate.nombre,
+    descripcion: CONFIGURACION_EDIFICIOS.escuelaCombate.descripcion,
+    nivelMax: CONFIGURACION_EDIFICIOS.escuelaCombate.nivelMax,
+  },
 };
 
 function construirEdificios(
@@ -61,6 +67,10 @@ function construirEdificios(
     embajada: {
       ...EDIFICIOS_BASE.embajada,
       nivel: nivelEdificio("embajada", 0),
+    },
+    escuelaCombate: {
+      ...EDIFICIOS_BASE.escuelaCombate,
+      nivel: nivelEdificio("escuelaCombate", 0),
     },
   };
 }
@@ -236,6 +246,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     herreria: { ...EDIFICIOS_BASE.herreria, nivel: 0 },
     mercado: { ...EDIFICIOS_BASE.mercado, nivel: 0 },
     embajada: { ...EDIFICIOS_BASE.embajada, nivel: 0 },
+    escuelaCombate: { ...EDIFICIOS_BASE.escuelaCombate, nivel: 0 },
   },
   baseCoords: null,
   isLoading: true,

@@ -11,7 +11,7 @@ export const CONFIGURACION_EDIFICIOS = {
     nombre: "Herrería",
     costeConstruccion: 1200,
     nivelMax: 5,
-    descripcion: "Mejora ataque y defensa del aventurero.",
+    descripcion: "Mejora el ataque y la defensa.",
     color: "bg-slate-600",
     ruta: "/base/herreria",
   },
@@ -19,7 +19,7 @@ export const CONFIGURACION_EDIFICIOS = {
     nombre: "Mercado",
     costeConstruccion: 1400,
     nivelMax: 3,
-    descripcion: "Mejora velocidad y capacidad del carruaje.",
+    descripcion: "Mejora la velocidad y la capacidad de carga.",
     color: "bg-emerald-700",
     ruta: "/base/mercado",
   },
@@ -27,10 +27,17 @@ export const CONFIGURACION_EDIFICIOS = {
     nombre: "Embajada",
     costeConstruccion: 1000,
     nivelMax: 2,
-    descripcion:
-      "Conecta tu campamento con otros gremios y desbloquea el chat global.",
+    descripcion: "Conecta tu campamento con otros repartidos en el mundo.",
     color: "bg-blue-700",
     ruta: "/base/embajada",
+  },
+  escuelaCombate: {
+    nombre: "Escuela de Combate",
+    costeConstruccion: 1600,
+    nivelMax: 5,
+    descripcion: "Aprende técnicas de combate avanzadas.",
+    color: "bg-red-600",
+    ruta: "/base/escuela-combate",
   },
 } as const;
 
