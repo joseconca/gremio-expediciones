@@ -7,9 +7,33 @@ export type TipoObjeto =
   | "accesorio"
   | "material";
 
-export type Rareza = "basico" | "comun" | "poco_comun" | "raro" | "epico" | "legendario";
+export type Rareza =
+  | "basico"
+  | "comun"
+  | "poco_comun"
+  | "raro"
+  | "epico"
+  | "legendario";
 
 export type TipoHabilidad = "activa" | "pasiva";
+
+export type SlotHabilidad =
+  | "activa_1"
+  | "activa_2"
+  | "activa_3"
+  | "pasiva_1"
+  | "pasiva_2";
+
+export const SLOTS_HABILIDADES_ACTIVAS: SlotHabilidad[] = [
+  "activa_1",
+  "activa_2",
+  "activa_3",
+];
+
+export const SLOTS_HABILIDADES_PASIVAS: SlotHabilidad[] = [
+  "pasiva_1",
+  "pasiva_2",
+];
 
 export type TipoAccionCombate =
   | "atacar"
