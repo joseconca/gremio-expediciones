@@ -9,3 +9,8 @@ export function calcularDistanciaKm(lat1: number, lon1: number, lat2: number, lo
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); 
   return R * c;
 }
+
+export function randomSeeded(seed: number) {
+  const x = Math.sin(seed) * 181097;
+  return x - Math.floor(x);
+}

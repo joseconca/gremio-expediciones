@@ -1,10 +1,6 @@
 import { JEFES_ELITE } from "./enemigos";
 import type { DefinicionMision } from "./tiposJuego";
-
-function randomSeeded(seed: number) {
-  const x = Math.sin(seed) * 181097;
-  return x - Math.floor(x);
-}
+import { randomSeeded } from "./utils";
 
 const PREFIJOS = [
   "El tesoro",
