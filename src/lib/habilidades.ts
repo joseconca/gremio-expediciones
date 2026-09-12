@@ -11,7 +11,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     descripcion: "Realiza un ataque más potente de lo normal.",
     tipo: "activa",
     rareza: "basico",
-    precio: 150,
+    precio: 1150,
     cooldownTurnos: 2,
     multiplicadorDano: 1.5,
   },
@@ -23,7 +23,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
       "Un ataque rápido con una mayor probabilidad de acertar un golpe crítico.",
     tipo: "activa",
     rareza: "comun",
-    precio: 175,
+    precio: 1175,
     cooldownTurnos: 1,
     multiplicadorDano: 1.2,
     probabilidad: 0.15,
@@ -35,10 +35,10 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     descripcion: "Aumenta temporalmente la defensa del aventurero.",
     tipo: "activa",
     rareza: "comun",
-    precio: 300,
-    cooldownTurnos: 2,
+    precio: 1300,
+    cooldownTurnos: 4,
     bonusDefensa: 5,
-    duracionTurnos: 2,
+    duracionTurnos: 4,
   },
 
   {
@@ -47,8 +47,8 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     descripcion: "Recupera parte de los puntos de vida.",
     tipo: "activa",
     rareza: "comun",
-    precio: 350,
-    cooldownTurnos: 3,
+    precio: 1350,
+    cooldownTurnos: 2,
     curacion: 30,
   },
 
@@ -58,9 +58,9 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     descripcion: "Recupera una gran cantidad de vida.",
     tipo: "activa",
     rareza: "raro",
-    precio: 500,
+    precio: 1500,
     cooldownTurnos: 3,
-    curacion: 50,
+    curacion: 60,
   },
 
   {
@@ -69,7 +69,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     descripcion: "Un ataque extremadamente poderoso.",
     tipo: "activa",
     rareza: "epico",
-    precio: 800,
+    precio: 1800,
     cooldownTurnos: 4,
     multiplicadorDano: 2.2,
   },
@@ -84,7 +84,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     descripcion: "Aumenta permanentemente la defensa.",
     tipo: "pasiva",
     rareza: "poco_comun",
-    precio: 200,
+    precio: 2200,
     bonusDefensa: 2,
   },
 
@@ -94,7 +94,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     descripcion: "La experiencia en combate aumenta el ataque.",
     tipo: "pasiva",
     rareza: "poco_comun",
-    precio: 350,
+    precio: 2350,
     bonusAtaque: 2,
   },
 
@@ -104,7 +104,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     descripcion: "Aumenta la probabilidad de golpe crítico.",
     tipo: "pasiva",
     rareza: "raro",
-    precio: 200,
+    precio: 3200,
     probabilidad: 0.20,
   },
 
@@ -114,7 +114,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     descripcion: "Aumenta la velocidad del aventurero.",
     tipo: "pasiva",
     rareza: "epico",
-    precio: 350,
+    precio: 3350,
     bonusVelocidad: 5,
   },
 
@@ -124,7 +124,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     descripcion: "Aumenta la vida máxima.",
     tipo: "pasiva",
     rareza: "legendario",
-    precio: 500,
+    precio: 5500,
     bonusHpMaximo: 80,
   },
 
@@ -134,7 +134,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     descripcion: "Aumenta considerablemente el poder ofensivo.",
     tipo: "pasiva",
     rareza: "legendario",
-    precio: 750,
+    precio: 5750,
     bonusAtaque: 5,
   },
 ];
