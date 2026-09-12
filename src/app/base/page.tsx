@@ -498,7 +498,7 @@ export default function BasePage() {
                       href="/expediciones"
                       className="group relative flex items-center overflow-hidden rounded-[3px] border border-amber-950/80 bg-[#e8dcc4] px-6 py-2.5 font-bold text-amber-950 shadow-[inset_0_2px_12px_rgba(139,69,19,0.65)]"
                     >
-                      <span>Ver mapa</span>                  
+                      <span>Ver mapa</span>
                     </Link>
                   </div>
                 )}
@@ -624,26 +624,26 @@ export default function BasePage() {
         {/* CABECERA DINÁMICA: Instalaciones vs Construcción */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-slate-200 flex items-center gap-2">
+            <img
+              src="/sprites/buildings/camp.png"
+              className="inline-block w-35 h-24"
+            />
             {modoConstruccion ? (
-              <>
-                <span>🏗️</span> Expansión del Campamento
-              </>
+              <p>Construir y mejorar edificios</p>
             ) : (
-              <>
-                <span>🏰</span> Instalaciones
-              </>
+              <p>Edificios</p>
             )}
           </h2>
 
           <button
             onClick={() => setModoConstruccion(!modoConstruccion)}
-            className={`font-bold py-2 px-4 rounded-lg transition-colors ${
+            className={`rounded-md border px-4 py-2 font-bold transition-colors ${
               modoConstruccion
-                ? "bg-slate-700 hover:bg-slate-600 text-white border border-slate-500"
-                : "bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-900/20"
+                ? "border-stone-600 bg-stone-800 text-stone-300"
+                : "border-stone-600 bg-stone-800 text-stone-300"
             }`}
           >
-            {modoConstruccion ? "❌ Cancelar" : "🔨 Construir"}
+            {modoConstruccion ? "← Volver" : "Construir y mejorar edificios"}
           </button>
         </div>
 
@@ -661,13 +661,15 @@ export default function BasePage() {
                 >
                   <div className="relative border-b border-slate-700 bg-slate-950">
                     <div className="relative flex h-52 items-center justify-center bg-gradient-to-b from-sky-300 via-30% via-stone-600 to-stone-700">
-                      {/* SOMBRA TRAPEZOIDAL */}
+                      {/* SOMBRA EDIFICIO */}
                       <div
-                        className="absolute top-1/2 w-9/10 h-3/4 bg-black/60 blur-xl rounded-xl pointer-events-none"
+                        className="absolute w-9/10 h-3/4 bg-black/60 blur-xl rounded-xl pointer-events-none"
                         style={{
-                          transform: "perspective(200px) rotateX(60deg)",
+                          transform:
+                            "translate(0%, 50%) perspective(180px) rotateX(60deg)",
                         }}
                       />
+
                       <Image
                         src={`/sprites/buildings/${edificio.id}.png`}
                         alt={edificio.nombre}
@@ -683,7 +685,7 @@ export default function BasePage() {
                         href={configuracion.ruta}
                         className="block w-3/4 rounded-lg border border-slate-600 bg-slate-900 py-2.5 text-center font-bold text-slate-200 transition-colors hover:border-amber-500/60 hover:bg-slate-800 hover:text-amber-400"
                       >
-                        Entrar →
+                        Entrar
                       </Link>
                     </div>
                   </div>
@@ -703,85 +705,119 @@ export default function BasePage() {
           </div>
         ) : (
           /* MODO CONSTRUCCIÓN: Mostrar todos para mejorar/construir */
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 bg-slate-800/50 rounded-xl border border-dashed border-slate-600">
-            {listaEdificios.map((edificio) => {
-              const coste = obtenerCosteMejora(edificio.id);
-              const bloqueado = edificio.nivel === 0;
-              const maxNivel = edificio.nivel >= edificio.nivelMax;
+          <div className="relative overflow-hidden rounded-lg bg-taupe-600 shadow-[0_10px_30px_rgba(0,0,0,0.45)]">
+            {/* Decoración del patio de obras */}
+            <div className="pointer-events-none absolute inset-0 opacity-40 border-stone-800 bg-stone-900 shadow-[0_10px_30px_rgba(0,0,0,0.4)]">
+              <div className="absolute inset-x-0 top-0 h-3 border-b border-stone-800 bg-stone-800/60" />
+              <div className="absolute inset-x-0 bottom-0 h-3 border-t border-stone-900 bg-black/30" />
 
-              return (
-                <div
-                  key={edificio.id}
-                  className={`p-4 rounded-lg border-2 relative overflow-hidden transition-colors flex flex-col ${
-                    bloqueado
-                      ? "bg-slate-900 border-slate-800"
-                      : "bg-slate-900/80 border-amber-500/30"
-                  }`}
-                >
+              <div className="absolute left-0 top-0 h-full w-3 border-r border-stone-800 bg-stone-800/30" />
+              <div className="absolute right-0 top-0 h-full w-3 border-l border-stone-800 bg-stone-800/30" />
+            </div>
+
+            <div className="relative grid grid-cols-1 gap-6 p-6 md:grid-cols-3">
+              {listaEdificios.map((edificio) => {
+                const coste = obtenerCosteMejora(edificio.id);
+                const bloqueado = edificio.nivel === 0;
+                const maxNivel = edificio.nivel >= edificio.nivelMax;
+
+                return (
                   <div
-                    className={`h-24 w-full rounded-md mb-3 border border-slate-800 flex items-center justify-center relative overflow-hidden ${
+                    key={edificio.id}
+                    className={`relative flex flex-col p-2 overflow-hidden rounded-lg border transition-colors ${
                       bloqueado
-                        ? "bg-amber-900"
-                        : "bg-gradient-to-b from-emerald-700 to-green-800"
+                        ? "border-slate-800 bg-slate-950"
+                        : "border-stone-700 bg-slate-900"
                     }`}
                   >
-                    {bloqueado ? (
-                      <span className="text-xs text-amber-200/70 font-mono text-center">
-                        [Terreno Baldío]
+                    <div className="relative h-28 w-full overflow-hidden border-b border-stone-800 bg-gradient-to-b from-slate-700 via-stone-700 to-stone-900">
+                      {bloqueado ? (
+                        <>
+                          {/* Suelo del solar */}
+                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_60%,rgba(120,90,55,0.22),transparent_55%)]" />
+
+                          {/* Maderas de obra */}
+                          <div className="absolute bottom-5 left-1/2 h-2 w-20 -translate-x-1/2 rotate-[-7deg] bg-amber-950/80 shadow-md" />
+                          <div className="absolute bottom-8 left-1/2 h-2 w-16 -translate-x-1/2 rotate-[8deg] bg-amber-900/70 shadow-md" />
+
+                          {/* Cruz de solar */}
+                          <div className="absolute left-1/2 top-1/2 h-10 w-px -translate-x-1/2 -translate-y-1/2 rotate-45 bg-stone-400/20" />
+                          <div className="absolute left-1/2 top-1/2 h-10 w-px -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-stone-400/20" />
+
+                          <span className="relative z-10 border border-slate-600/80 bg-slate-950/80 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">
+                            Solar disponible
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          {/* Sombra del edificio */}
+                          <div
+                            className="pointer-events-none absolute left-1/2 top-1/2 h-14 w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-xl bg-black/50 blur-xl"
+                            style={{
+                              transform:
+                                "translate(0%, 50%) perspective(180px) rotateX(60deg)",
+                            }}
+                          />
+
+                          <Image
+                            src={`/sprites/buildings/${edificio.id}.png`}
+                            alt={edificio.nombre}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                            className="object-contain drop-shadow-[0_14px_14px_rgba(0,0,0,0.5)]"
+                          />
+                        </>
+                      )}
+                    </div>
+
+                    <div className="flex items-start justify-between gap-3 p-4 pb-2">
+                      <h3
+                        className={`font-bold ${
+                          bloqueado ? "text-slate-500" : "text-amber-300"
+                        }`}
+                      >
+                        {edificio.nombre}
+                      </h3>
+
+                      <span className="shrink-0 border border-slate-700 bg-slate-950 px-2 py-1 text-xs font-mono text-slate-400">
+                        {bloqueado
+                          ? "Sin construir"
+                          : `Nivel ${edificio.nivel}`}
                       </span>
+                    </div>
+
+                    <p className="flex-grow px-4 pb-4 text-xs leading-5 text-slate-500">
+                      {edificio.descripcion}
+                    </p>
+
+                    {maxNivel ? (
+                      <div className="border-t border-slate-800 bg-slate-950/70 px-4 py-3 text-center font-bold">
+                        Nivel máximo
+                      </div>
                     ) : (
-                      <Image
-                        src={`/sprites/buildings/${edificio.id}.png`}
-                        alt={edificio.nombre}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-contain"
-                      />
+                      <button
+                        onClick={async () => {
+                          const exito = await mejorarEdificio(edificio.id);
+
+                          if (!exito) {
+                            alert("No tienes suficiente oro para esto.");
+                          }
+                        }}
+                        disabled={oro < coste}
+                        className={`border-t border-slate-800 bg-slate-950/50 p-3 flex w-full items-center justify-between font-bold ${
+                          oro >= coste
+                            ? "border-amber-700/60 bg-amber-900/70 text-amber-100 hover:border-amber-500/70 hover:bg-amber-800"
+                            : "cursor-not-allowed border-slate-700 bg-slate-900 text-slate-600"
+                        }`}
+                      >
+                        <span>{bloqueado ? "Construir" : "Mejorar"}</span>
+                        <span>{coste} 🪙</span>
+                      </button>
                     )}
                   </div>
-
-                  <div className="flex justify-between items-start mb-2">
-                    <h3
-                      className={`font-bold ${
-                        bloqueado ? "text-slate-500" : "text-amber-400"
-                      }`}
-                    >
-                      {edificio.nombre}
-                    </h3>
-                    <span className="bg-slate-800 px-2 py-1 rounded text-xs font-mono text-slate-300">
-                      {bloqueado ? "Cerrado" : `Lv. ${edificio.nivel}`}
-                    </span>
-                  </div>
-
-                  <p className="text-xs text-slate-400 mb-4 flex-grow">
-                    {edificio.descripcion}
-                  </p>
-
-                  {maxNivel ? (
-                    <div className="w-full bg-emerald-900/50 text-emerald-400 font-bold py-2 px-4 rounded text-center border border-emerald-800/50">
-                      Nivel Máximo
-                    </div>
-                  ) : (
-                    <button
-                      onClick={async () => {
-                        const exito = await mejorarEdificio(edificio.id);
-                        if (!exito)
-                          alert("No tienes suficiente oro para esto.");
-                      }}
-                      disabled={oro < coste}
-                      className={`w-full font-bold py-2 px-4 rounded transition-transform active:scale-95 flex justify-between items-center ${
-                        oro >= coste
-                          ? "bg-amber-600 hover:bg-amber-500 text-white"
-                          : "bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700"
-                      }`}
-                    >
-                      <span>{bloqueado ? "Construir" : "Mejorar"}</span>
-                      <span>{coste} 🪙</span>
-                    </button>
-                  )}
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         )}
       </div>
