@@ -25,11 +25,12 @@ export default function ChatGlobal({
   useEffect(() => {
     if (!abierto) return;
 
-    const lista = mensajesListaRef.current;
-
-    if (!lista) return;
-
-    lista.scrollTop = lista.scrollHeight;
+    setTimeout(() => {
+      mensajesListaRef.current?.scrollIntoView({
+        behavior: "auto",
+        block: "end",
+      });
+    }, 10);
   }, [mensajes, abierto]);
 
   useEffect(() => {
@@ -117,7 +118,7 @@ export default function ChatGlobal({
 
         {abierto && (
           <div className="p-4">
-            <div className="mb-4 h-48 space-y-2 overflow-y-auto rounded-lg bg-slate-950 p-3">
+            <div className="mb-4 h-48 flex flex-col gap-2 overflow-y-auto rounded-lg bg-slate-950 p-3">
               {mensajes.length === 0 ? (
                 <p className="text-sm text-slate-500">
                   ~No hay mensajes cargados~
@@ -133,7 +134,7 @@ export default function ChatGlobal({
                 ))
               )}
               {/* 3. Elemento invisible que sirve de ancla para el auto-scroll */}
-              <div ref={mensajesListaRef} />
+              <div ref={mensajesListaRef} className="h-0 w-0 border-0 p-0 !mt-0"/>
             </div>
             <form onSubmit={enviar} className="flex gap-2">
               <input
