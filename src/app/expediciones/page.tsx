@@ -186,16 +186,18 @@ export default function ExpedicionesPage() {
 
   return (
     <main className="relative h-screen w-full bg-slate-900 overflow-hidden font-sans">
-      <header className="absolute top-0 left-0 w-full z-10 p-4 pointer-events-none">
-        <div className="flex justify-between items-center max-w-4xl mx-auto pointer-events-auto">
+      <header className="pointer-events-none absolute left-0 top-0 z-10 w-full p-4">
+        <div className="pointer-events-auto mx-auto flex max-w-4xl items-center justify-between gap-4">
           <Link
             href="/base"
-            className="bg-slate-900/80 backdrop-blur border border-slate-700 text-slate-200 px-4 py-2 rounded-lg font-bold shadow-lg"
+            className="rounded-md border border-slate-600/80 bg-slate-950/90 px-4 py-2 font-bold text-slate-200 shadow-lg backdrop-blur-sm transition-colors hover:border-amber-500/50 hover:text-amber-400"
           >
             ← Volver
           </Link>
-          <div className="bg-slate-900/80 backdrop-blur border border-slate-700 px-4 py-2 rounded-lg shadow-lg text-amber-500 font-bold text-center">
-            Mapa de Misiones
+          <div className="rounded-lg border border-amber-900/70 bg-[#3b2617]/95 px-5 py-2 shadow-[0_12px_24px_rgba(0,0,0,0.5)]">
+            <span className="font-black uppercase tracking-[0.15em] text-amber-100">
+              Mapa de contratos
+            </span>
           </div>
         </div>
       </header>
@@ -221,84 +223,191 @@ export default function ExpedicionesPage() {
 
       {/* Panel inferior*/}
       {misionSeleccionada && !viajeIniciado && (
-        <div className="absolute bottom-0 left-0 w-full z-20 p-4 pointer-events-none">
-          <div className="max-w-md mx-auto bg-slate-800 border-2 border-slate-600 rounded-t-2xl p-6 shadow-2xl pointer-events-auto transform transition-transform animate-in slide-in-from-bottom-10">
-            <div className="flex justify-between items-start mb-2">
+        <div className="absolute bottom-10 left-0 z-20 w-full p-4 pointer-events-none">
+          <div
+            className={`pointer-events-auto mx-auto max-w-md transform rounded-xl border-2 p-4 shadow-3xl animate-in slide-in-from-bottom-10 ${
+              misionSeleccionada.tipo === "elite"
+                ? "border-fuchsia-950/80 bg-[#1c1421] text-amber-100 shadow-[0_0_30px_rgba(168,85,247,0.15)]"
+                : "border-[#826747] bg-[#f4ebd0] text-[#2c221e] shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+            }`}
+          >
+            {/* 1. CABECERA: Título y botón cerrar */}
+            <div className="mb-2 flex items-start justify-between">
               <h2
-                className={`text-2xl font-bold ${
+                className={`text-2xl font-black uppercase tracking-wide ${
                   misionSeleccionada.tipo === "elite"
-                    ? "text-fuchsia-400"
-                    : "text-amber-500"
+                    ? "text-fuchsia-400 drop-shadow-[0_0_8px_rgba(232,121,249,0.3)]"
+                    : "text-[#4a2e18]"
                 }`}
               >
                 {misionSeleccionada.nombre}
               </h2>
               <button
                 onClick={() => setMisionSeleccionada(null)}
-                className="text-slate-400 hover:text-white text-xl px-2"
+                className={`text-2xl leading-none transition-colors ${
+                  misionSeleccionada.tipo === "elite"
+                    ? "text-slate-500 hover:text-slate-300"
+                    : "text-[#826747] hover:text-[#4a2e18]"
+                }`}
               >
                 ✕
               </button>
             </div>
 
-            <p className="text-slate-300 text-sm mb-4 italic">
-              &quot;{misionSeleccionada.descripcion}&quot;{" "}
-            </p>
+            {/* 2. DESCRIPCIÓN */}
+            <div
+              className={`mb-5 border-b pb-3 ${
+                misionSeleccionada.tipo === "elite"
+                  ? "border-slate-800"
+                  : "border-[#d8ccb0]"
+              }`}
+            >
+              <p
+                className={`text-sm italic ${
+                  misionSeleccionada.tipo === "elite"
+                    ? "text-slate-400"
+                    : "text-[#5e4838]"
+                }`}
+              >
+                &quot;{misionSeleccionada.descripcion}&quot;
+              </p>
+            </div>
 
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="bg-slate-900 rounded p-2 text-center border border-slate-700">
-                <span className="block text-xs text-slate-400 uppercase">
-                  Dificultad
-                </span>
-                <span
-                  className={`font-bold ${
-                    misionSeleccionada.dificultad >= 8
-                      ? "text-fuchsia-500"
-                      : misionSeleccionada.dificultad >= 5
-                      ? "text-red-500"
-                      : misionSeleccionada.dificultad >= 3
-                      ? "text-orange-500"
-                      : misionSeleccionada.dificultad > 0
-                      ? "text-green-500"
-                      : "text-slate-400"
+            {/* 3. DOS COLUMNAS: Stats (Izquierda) y Botón (Derecha) */}
+            <div className="flex items-center justify-between gap-4">
+              {/* COLUMNA IZQUIERDA: Stats compactas */}
+              <div className="flex flex-1 flex-col gap-1.5">
+                {/* Fila Dificultad */}
+                <div
+                  className={`flex items-center justify-between rounded px-2.5 py-1.5 border ${
+                    misionSeleccionada.tipo === "elite"
+                      ? "bg-slate-950/60 border-slate-800"
+                      : "bg-[#eaddc0] border-[#d4c29c]"
                   }`}
                 >
-                  {misionSeleccionada.dificultad}
-                </span>
+                  <span
+                    className={`text-[11px] font-bold uppercase tracking-wider ${
+                      misionSeleccionada.tipo === "elite"
+                        ? "text-slate-400"
+                        : "text-[#6e5642]"
+                    }`}
+                  >
+                    Dificultad
+                  </span>
+                  <span
+                    className={`text-base font-black ${
+                      misionSeleccionada.dificultad >= 8
+                        ? "text-fuchsia-500"
+                        : misionSeleccionada.dificultad >= 5
+                        ? "text-red-500"
+                        : misionSeleccionada.dificultad >= 3
+                        ? "text-orange-500"
+                        : misionSeleccionada.dificultad > 0
+                        ? "text-green-600"
+                        : "text-slate-500"
+                    }`}
+                  >
+                    {misionSeleccionada.dificultad}
+                  </span>
+                </div>
+
+                {/* Fila Recompensa */}
+                <div
+                  className={`flex items-center justify-between rounded px-2.5 py-1.5 border ${
+                    misionSeleccionada.tipo === "elite"
+                      ? "bg-slate-950/60 border-slate-800"
+                      : "bg-[#eaddc0] border-[#d4c29c]"
+                  }`}
+                >
+                  <span
+                    className={`text-[11px] font-bold uppercase tracking-wider ${
+                      misionSeleccionada.tipo === "elite"
+                        ? "text-slate-400"
+                        : "text-[#6e5642]"
+                    }`}
+                  >
+                    Recompensa
+                  </span>
+                  <span
+                    className={`text-base font-bold ${
+                      misionSeleccionada.tipo === "elite"
+                        ? "text-amber-400"
+                        : "text-[#9c590e]"
+                    }`}
+                  >
+                    {misionSeleccionada.recompensa}
+                  </span>
+                </div>
+
+                {/* Fila Duración */}
+                <div
+                  className={`flex items-center justify-between rounded px-2.5 py-1.5 border ${
+                    misionSeleccionada.tipo === "elite"
+                      ? "bg-slate-950/60 border-slate-800"
+                      : "bg-[#eaddc0] border-[#d4c29c]"
+                  }`}
+                >
+                  <span
+                    className={`text-[11px] font-bold uppercase tracking-wider ${
+                      misionSeleccionada.tipo === "elite"
+                        ? "text-slate-400"
+                        : "text-[#6e5642]"
+                    }`}
+                  >
+                    Viaje
+                  </span>
+                  <span
+                    className={`text-base font-bold ${
+                      misionSeleccionada.tipo === "elite"
+                        ? "text-sky-400"
+                        : "text-[#2a688a]"
+                    }`}
+                  >
+                    {textoTiempo}
+                  </span>
+                </div>
               </div>
-              <div className="bg-slate-900 rounded p-2 text-center border border-slate-700">
-                <span className="block text-xs text-slate-400 uppercase">
-                  Recompensa
-                </span>
-                <span className="font-bold text-amber-400">
-                  {misionSeleccionada.recompensa}
-                </span>
-              </div>
-              <div className="bg-slate-900 rounded p-2 text-center border border-slate-700 col-span-2">
-                <span className="block text-xs text-slate-400 uppercase">
-                  Duración del Viaje
-                </span>
-                <span className="font-bold text-blue-400">{textoTiempo}</span>
+
+              {/* COLUMNA DERECHA: Sello de Cera Rojo */}
+              <div className="flex shrink-0 items-center justify-center p-2">
+                <button
+                  onClick={handleEnviarExpedicion}
+                  disabled={cargando || !personaje || sinVida}
+                  className="relative flex h-32 w-32 flex-col items-center justify-center rounded-full border-4 border-[#7a1215] bg-gradient-to-br from-[#c92a2f] via-[#9b1c20] to-[#5c0b0e] shadow-[0_12px_30px_rgba(0,0,0,0.5),inset_0_8px_16px_rgba(255,255,255,0.2),inset_0_-4px_6px_rgba(0,0,0,0.6)] disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {cargando ? (
+                    <span className="animate-pulse text-xs font-bold text-red-200 text-center px-2">
+                      Preparando...
+                    </span>
+                  ) : (
+                    <>
+                      <span className="text-[9px] font-black uppercase tracking-[0.2em] text-red-200/90 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                        Aceptar
+                      </span>
+                      <span className="mt-0.5 text-xs font-black uppercase tracking-widest text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] text-center px-2">
+                        {misionSeleccionada.tipo === "comercio"
+                          ? "Intercambio"
+                          : "Caza"}
+                      </span>
+                    </>
+                  )}
+                </button>
               </div>
             </div>
-            {sinVida && (
-              <p className="mb-3 text-center text-sm font-bold text-red-400">
-                Tu aventurero no tiene vida suficiente. Cúralo en la Taberna
-                antes de partir.
-              </p>
+
+            {/* MENSAJES DE ERROR */}
+            {(sinVida || errorEnvio) && (
+              <div className="mt-4 rounded border border-red-900/50 bg-red-950/30 p-3 text-center">
+                {sinVida ? (
+                  <p className="text-sm font-bold text-red-400">
+                    Tu aventurero no tiene vida suficiente. Cúralo en la Taberna
+                    antes de partir.
+                  </p>
+                ) : (
+                  <p className="text-sm font-bold text-red-400">{errorEnvio}</p>
+                )}
+              </div>
             )}
-            {errorEnvio && !sinVida && (
-              <p className="mb-3 text-center text-sm font-bold text-red-400">
-                {errorEnvio}
-              </p>
-            )}
-            <button
-              onClick={handleEnviarExpedicion}
-              disabled={cargando || !personaje || sinVida}
-              className="w-full bg-amber-100/60 hover:bg-amber-700 text-white font-bold py-4 rounded-xl shadow-lg transition-colors text-lg disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {cargando ? "Preparando equipo..." : misionSeleccionada.tipo === "comercio" ? "Aceptar intercambio" : "Aceptar caza"}
-            </button>
           </div>
         </div>
       )}
