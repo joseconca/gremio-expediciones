@@ -10,7 +10,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     nombre: "Golpe Poderoso",
     descripcion: "Realiza un ataque más potente de lo normal.",
     tipo: "activa",
-    rareza: "comun",
+    rareza: "basico",
     precio: 150,
     cooldownTurnos: 2,
     multiplicadorDano: 1.5,
@@ -19,7 +19,8 @@ export const HABILIDADES: DefinicionHabilidad[] = [
   {
     id: "golpe_preciso",
     nombre: "Golpe Preciso",
-    descripcion: "Un ataque rápido con una mayor probabilidad de acertar un golpe crítico.",
+    descripcion:
+      "Un ataque rápido con una mayor probabilidad de acertar un golpe crítico.",
     tipo: "activa",
     rareza: "comun",
     precio: 175,
@@ -33,7 +34,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     nombre: "Defensa Férrea",
     descripcion: "Aumenta temporalmente la defensa del aventurero.",
     tipo: "activa",
-    rareza: "poco_comun",
+    rareza: "comun",
     precio: 300,
     cooldownTurnos: 2,
     bonusDefensa: 5,
@@ -45,7 +46,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     nombre: "Curación",
     descripcion: "Recupera parte de los puntos de vida.",
     tipo: "activa",
-    rareza: "poco_comun",
+    rareza: "comun",
     precio: 350,
     cooldownTurnos: 3,
     curacion: 30,
@@ -82,19 +83,9 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     nombre: "Piel Dura",
     descripcion: "Aumenta permanentemente la defensa.",
     tipo: "pasiva",
-    rareza: "comun",
+    rareza: "poco_comun",
     precio: 200,
     bonusDefensa: 2,
-  },
-
-  {
-    id: "precision",
-    nombre: "Precisión",
-    descripcion: "Aumenta la probabilidad de golpe crítico.",
-    tipo: "pasiva",
-    rareza: "comun",
-    precio: 200,
-    probabilidad: 0.15,
   },
 
   {
@@ -108,11 +99,21 @@ export const HABILIDADES: DefinicionHabilidad[] = [
   },
 
   {
+    id: "precision",
+    nombre: "Precisión",
+    descripcion: "Aumenta la probabilidad de golpe crítico.",
+    tipo: "pasiva",
+    rareza: "raro",
+    precio: 200,
+    probabilidad: 0.20,
+  },
+
+  {
     id: "corredor",
     nombre: "Corredor",
     descripcion: "Aumenta la velocidad del aventurero.",
     tipo: "pasiva",
-    rareza: "poco_comun",
+    rareza: "epico",
     precio: 350,
     bonusVelocidad: 5,
   },
@@ -122,9 +123,9 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     nombre: "Vitalidad",
     descripcion: "Aumenta la vida máxima.",
     tipo: "pasiva",
-    rareza: "raro",
+    rareza: "legendario",
     precio: 500,
-    bonusHpMaximo: 30,
+    bonusHpMaximo: 80,
   },
 
   {
@@ -132,28 +133,22 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     nombre: "Sed de Batalla",
     descripcion: "Aumenta considerablemente el poder ofensivo.",
     tipo: "pasiva",
-    rareza: "epico",
+    rareza: "legendario",
     precio: 750,
-    bonusAtaque: 4,
+    bonusAtaque: 5,
   },
 ];
 
 export function obtenerHabilidadPorId(
   id: string
 ): DefinicionHabilidad | undefined {
-  return HABILIDADES.find(
-    (habilidad) => habilidad.id === id
-  );
+  return HABILIDADES.find((habilidad) => habilidad.id === id);
 }
 
 export function obtenerHabilidadesActivas(): DefinicionHabilidad[] {
-  return HABILIDADES.filter(
-    (habilidad) => habilidad.tipo === "activa"
-  );
+  return HABILIDADES.filter((habilidad) => habilidad.tipo === "activa");
 }
 
 export function obtenerHabilidadesPasivas(): DefinicionHabilidad[] {
-  return HABILIDADES.filter(
-    (habilidad) => habilidad.tipo === "pasiva"
-  );
+  return HABILIDADES.filter((habilidad) => habilidad.tipo === "pasiva");
 }

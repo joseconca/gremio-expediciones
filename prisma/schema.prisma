@@ -116,7 +116,7 @@ model EquipoEquipado {
 }
 
 model Habilidad {
-  id          String @id @default(uuid())
+  id          String @id
   nombre      String
   descripcion String
   tipo        String

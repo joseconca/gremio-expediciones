@@ -7,7 +7,7 @@ export type TipoObjeto =
   | "accesorio"
   | "material";
 
-export type Rareza = "comun" | "poco_comun" | "raro" | "epico" | "legendario";
+export type Rareza = "basico" | "comun" | "poco_comun" | "raro" | "epico" | "legendario";
 
 export type TipoHabilidad = "activa" | "pasiva";
 
