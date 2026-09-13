@@ -389,7 +389,7 @@ export default function BasePage() {
   ];
 
   return (
-    <main className="min-h-screen bg-slate-900 text-slate-100 p-4 md:p-8 font-sans">
+    <main className="min-h-screen bg-orange-200/60 text-slate-100 p-4 md:p-8 font-sans">
       {/* ---- MODAL DE COMBATE ---- */}
       {combateAbierto && expedicionActiva?.combateActivo && personaje && (
         <CombateModal
@@ -639,57 +639,89 @@ export default function BasePage() {
           </button>
         </div>
 
-        {/* 2. RENDERIZADO CONDICIONAL DE EDIFICIOS */}
+        {/* 2. RENDERIZADO DE EDIFICIOS */}
         {!modoConstruccion ? (
           /* MODO NORMAL: Sólo mostrar edificios construidos */
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3">
             {edificiosConstruidos.map((edificio) => {
               const configuracion = CONFIGURACION_EDIFICIOS[edificio.id];
 
               return (
                 <div
                   key={edificio.id}
-                  className="overflow-hidden rounded-xl border border-slate-700 bg-slate-800 shadow-lg transition-colors hover:border-amber-500/50"
+                  className="group relative flex flex-col overflow-hidden"
                 >
-                  <div className="relative border-b border-slate-700 bg-slate-950">
-                    <div className="relative flex h-52 items-center justify-center bg-gradient-to-b from-sky-300 via-30% via-stone-600 to-stone-700">
-                      {/* SOMBRA EDIFICIO */}
+                  {/* PANEL DE INFORMACIÓN */}
+                  <div className="relative z-1 flex flex-1 items-center justify-center px-3 pt-3 -mb-5">
+                    <div className="relative h-full w-5/6 flex-col items-center justify-center rounded border-3 border-amber-950 bg-gradient-to-b from-amber-800 to-amber-900 p-3 shadow-lg">
+                      {/* Clavos decorativos en las esquinas */}
+                      <div className="absolute left-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
+                      <div className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
+                      <div className="absolute bottom-1.5 left-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
+                      <div className="absolute bottom-1.5 right-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
+
+                      <h3 className="text-center text-lg font-black tracking-wide text-amber-200 drop-shadow-md group-hover:text-amber-100">
+                        {edificio.nombre}
+                      </h3>
+
+                      <p className="mt-1 line-clamp-3 text-center text-xs font-semibold leading-tight text-amber-100/70">
+                        {edificio.descripcion}
+                      </p>
+                    </div>
+                  </div>
+                  {/* ESCENARIO DEL EDIFICIO */}
+                  <div className="relative flex h-44 w-full items-center justify-center overflow-hidden border-b border-slate-700/60 bg-slate-950 p-2 pb-6">
+                    {/* Fondo del pueblo */}
+                    <Image
+                      src="/sprites/buildings/fondoEdificios.png"
+                      alt="Fondo del pueblo"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      priority
+                      className="object-cover opacity-50 [image-rendering:pixelated]"
+                    />
+
+                    <div className="relative z-10 h-36 w-72">
+                      {/* SOMBRA REALISTA CON LA FORMA DEL PNG */}
                       <div
-                        className="absolute w-9/10 h-3/4 bg-black/60 blur-xl rounded-xl pointer-events-none"
+                        className="absolute inset-0 z-0 opacity-60 blur-xs"
                         style={{
                           transform:
-                            "translate(0%, 50%) perspective(180px) rotateX(60deg)",
+                            "translateY(25%) perspective(160px) rotateX(65deg) scale(1.2,-0.9)",
                         }}
-                      />
+                      >
+                        <Image
+                          src={`/sprites/buildings/${edificio.id}.png`}
+                          alt="sombra del edificio"
+                          fill
+                          sizes="288px"
+                          // brightness-0 vuelve todos los píxeles negros respetando la transparencia (canal alpha)
+                          className="object-contain brightness-0"
+                        />
+                      </div>
 
+                      {/* Imagen edificio original */}
                       <Image
                         src={`/sprites/buildings/${edificio.id}.png`}
                         alt={edificio.nombre}
                         fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
+                        sizes="288px"
                         priority
-                        className="object-contain"
+                        // Le añadimos relative z-10 para asegurar que el edificio tape su propia sombra
+                        className="relative z-10 object-contain [image-rendering:pixelated]"
                       />
                     </div>
-
-                    <div className="flex justify-center p-3 bg-stone-700">
+                    {/* BOTÓN ESTILO PIEDRA TALLADA */}
+                    <div className="absolute bottom-1 left-1/2 z-20 w-full -translate-x-1/2 px-4">
                       <Link
                         href={configuracion.ruta}
-                        className="block w-3/4 rounded-lg border border-slate-600 bg-slate-900 py-2.5 text-center font-bold text-slate-200 transition-colors hover:border-amber-500/60 hover:bg-slate-800 hover:text-amber-400"
+                        className="mx-auto block w-3/5 rounded-sm border border-stone-800 bg-stone-500 py-1.5 text-center font-black tracking-widest text-stone-300/80
+                        shadow-[inset_0_2px_1px_rgba(255,255,255,0.3),inset_0_-2px_1px_rgba(0,0,0,0.6),0_4px_0_#1c1917,0_6px_4px_rgba(0,0,0,0.5)]  
+                        [text-shadow:inset_0_2px_3px_rgba(0,0,0,1)] active:translate-y-[4px] active:shadow-[inset_0_2px_1px_rgba(255,255,255,0.3),inset_0_-2px_1px_rgba(0,0,0,0.6),0_0px_0_#1c1917,0_0px_0_rgba(0,0,0,0.5)]"
                       >
-                        Entrar
+                        ENTRAR
                       </Link>
                     </div>
-                  </div>
-
-                  <div className="flex flex-grow flex-col p-5">
-                    <h3 className="mb-2 text-lg font-bold text-white">
-                      {edificio.nombre}
-                    </h3>
-
-                    <p className="flex-grow text-sm text-slate-400">
-                      {edificio.descripcion}
-                    </p>
                   </div>
                 </div>
               );
