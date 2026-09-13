@@ -623,16 +623,8 @@ export default function BasePage() {
 
         {/* CABECERA DINÁMICA: Instalaciones vs Construcción */}
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-slate-200 flex items-center gap-2">
-            <img
-              src="/sprites/buildings/camp.png"
-              className="inline-block w-35 h-24"
-            />
-            {modoConstruccion ? (
-              <p>Construir y mejorar edificios</p>
-            ) : (
-              <p>Edificios</p>
-            )}
+          <h2 className="flex items-center gap-2 text-2xl font-bold text-slate-200">
+            {modoConstruccion && <p>Construir y mejorar edificios</p>}
           </h2>
 
           <button
