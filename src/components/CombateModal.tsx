@@ -484,7 +484,7 @@ export default function CombateModal({
                   alt={personaje.nombre}
                   width={160}
                   height={160}
-                  className="object-contain"
+                  className="object-contain [image-rendering:pixelated]"
                   priority
                 />
               </div>
@@ -496,15 +496,11 @@ export default function CombateModal({
           {/* ================================================== */}
 
           <div
-            className={`relative flex w-[45%] justify-center transition-transform ${
+            className={`relative flex w-[45%] justify-center ${
               actorAnimando === "enemigo"
                 ? animacionActual === "ofensiva_potenciada"
-                  ? "-translate-x-10 sm:-translate-x-20"
-                  : "-translate-x-6 sm:-translate-x-12"
-                : ""
-            } ${
-              actorImpactado === "enemigo"
-                ? "animate-[combate-shake_180ms_ease-in-out]"
+                  ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]"
+                  : "animate-[combate-ataque-enemigo_700ms_ease-in-out]"
                 : ""
             }`}
           >
@@ -539,14 +535,20 @@ export default function CombateModal({
                 </div>
               )}
               {/* Sprite */}
-              <div className="mt-3">
+              <div
+                className={`mt-3 ${
+                  actorImpactado === "enemigo"
+                    ? "animate-[combate-shake_180ms_ease-in-out]"
+                    : ""
+                }`}
+              >
                 <Image
                   src={`/sprites/enemies/${combate.enemigoId}.png`}
                   alt={combate.enemigoNombre}
                   width={160}
                   height={160}
                   style={{ transform: "scaleX(-1)" }}
-                  className="object-contain"
+                  className="object-contain [image-rendering:pixelated]"
                   priority
                 />
               </div>
