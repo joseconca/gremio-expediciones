@@ -29,11 +29,11 @@ const DESCRIPCIONES = [
 ];
 
 const MISIONES_POR_DURACION = [
-  { horas: 0.5, recompensaBase: 45 },
-  { horas: 1, recompensaBase: 82 },
-  { horas: 3, recompensaBase: 222 },
-  { horas: 9, recompensaBase: 585 },
-  { horas: 24, recompensaBase: 1200 },
+  { horas: 0.5, recompensaBase: 135 },
+  { horas: 1, recompensaBase: 246 },
+  { horas: 3, recompensaBase: 666 },
+  { horas: 9, recompensaBase: 1755 },
+  { horas: 24, recompensaBase: 3600 },
 ];
 
 export function generarMisionElite(

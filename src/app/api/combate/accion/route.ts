@@ -13,7 +13,7 @@ import {
   type AccionAnimadaCombate,
 } from "@/lib/expediciones/combate";
 
-type AccionCombate = "atacar";
+type AccionCombate = "atacar" | "usar_habilidad";
 
 export async function POST(request: Request) {
   try {
