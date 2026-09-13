@@ -3,30 +3,57 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
-import type {
-  CombateActivo,
-  Personaje,
-} from "@/store/useGameStore";
+import type { CombateActivo, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
-
 
 interface CombateModalProps {
   combate: CombateActivo;
   personaje: Personaje;
   procesando?: boolean;
-  onAtacar: () => Promise<AccionAnimadaCombate | null>;
+  onAccionCombate: (
+    accion: "atacar" | "usar_habilidad",
+    habilidadId?: string
+  ) => Promise<AccionAnimadaCombate | null>;
   onCerrar?: () => void;
+}
+
+interface HabilidadCombate {
+  id: string;
+  nombre: string;
+  descripcion: string;
+  tipo: "activa" | "pasiva";
+  rareza: string;
+  precio: number;
+  cooldownTurnos?: number;
+  danoBase?: number;
+  multiplicadorDano?: number;
+  curacion?: number;
+  bonusAtaque?: number;
+  bonusDefensa?: number;
+  bonusVelocidad?: number;
+  bonusHpMaximo?: number;
+  duracionTurnos?: number;
+  probabilidad?: number;
+}
+
+interface HabilidadEquipable {
+  id: string;
+  habilidadId: string;
+  slot: string;
+  habilidad: HabilidadCombate;
 }
 
 export default function CombateModal({
   combate,
   personaje,
   procesando = false,
-  onAtacar,
+  onAccionCombate,
   onCerrar,
 }: CombateModalProps) {
   const logRef = useRef<HTMLDivElement>(null);
 
+  const [habilidades, setHabilidades] = useState<HabilidadEquipable[]>([]);
+  const [mostrarHabilidades, setMostrarHabilidades] = useState(false);
   /*
    * ============================================================
    * BLOQUEAR SCROLL DEL FONDO
@@ -62,6 +89,30 @@ export default function CombateModal({
 
       window.scrollTo(0, scrollY);
     };
+  }, []);
+
+  useEffect(() => {
+    const cargarHabilidades = async () => {
+      try {
+        const respuesta = await fetch("/api/habilidades");
+        const datos = await respuesta.json();
+
+        if (!respuesta.ok) {
+          return;
+        }
+
+        setHabilidades(
+          (datos.aprendidas ?? []).filter(
+            (habilidad: { slot: string | null; habilidad: HabilidadCombate }) =>
+              habilidad.slot !== null && habilidad.habilidad.tipo === "activa"
+          )
+        );
+      } catch (error) {
+        console.error("Error al cargar habilidades de combate:", error);
+      }
+    };
+
+    void cargarHabilidades();
   }, []);
 
   /*
@@ -140,7 +191,32 @@ export default function CombateModal({
     setProcesandoLocal(true);
 
     try {
-      const accion = await onAtacar();
+      const accion = await onAccionCombate("atacar");
+      if (!accion) {
+        return;
+      }
+
+      await mostrarResultadoAccion(accion);
+    } finally {
+      setProcesandoLocal(false);
+    }
+  };
+
+  const ejecutarHabilidad = async (habilidadId: string) => {
+    if (
+      procesandoLocal ||
+      procesando ||
+      combateTerminado ||
+      combate.turno !== "jugador"
+    ) {
+      return;
+    }
+
+    setProcesandoLocal(true);
+    setMostrarHabilidades(false);
+
+    try {
+      const accion = await onAccionCombate("usar_habilidad", habilidadId);
 
       if (!accion) {
         return;
@@ -170,10 +246,9 @@ export default function CombateModal({
 
     const ejecutarTurnoEnemigo = async () => {
       try {
-        // Pequeña pausa antes de que el enemigo actúe.
         await new Promise((resolver) => setTimeout(resolver, 450));
 
-        const accion = await onAtacar();
+        const accion = await onAccionCombate("atacar");
 
         if (!accion) {
           return;
@@ -189,7 +264,23 @@ export default function CombateModal({
     };
 
     void ejecutarTurnoEnemigo();
-  }, [combate.fase, combate.turno, procesando, onAtacar]);
+  }, [combate.fase, combate.turno, procesando, onAccionCombate]);
+
+  const obtenerCooldown = (habilidadId: string): number => {
+    if (
+      !combate.cooldowns ||
+      typeof combate.cooldowns !== "object" ||
+      Array.isArray(combate.cooldowns)
+    ) {
+      return 0;
+    }
+
+    const cooldowns = combate.cooldowns as Record<string, unknown>;
+
+    const cooldown = cooldowns[habilidadId];
+
+    return typeof cooldown === "number" && cooldown > 0 ? cooldown : 0;
+  };
 
   return (
     <div
@@ -395,7 +486,7 @@ export default function CombateModal({
           {/* MENÚ DE ACCIONES                                     */}
           {/* ================================================== */}
 
-          <div className="grid grid-cols-2 gap-2 p-2 sm:gap-3 sm:p-4">
+          <div className="relative grid grid-cols-2 gap-2 p-2 sm:gap-3 sm:p-4">
             <button
               type="button"
               onClick={() => void ejecutarAtaqueJugador()}
@@ -409,26 +500,32 @@ export default function CombateModal({
             >
               ⚔️ Atacar
             </button>
-
             <button
               type="button"
-              disabled
+              onClick={() => setMostrarHabilidades((mostrar) => !mostrar)}
+              disabled={
+                procesando ||
+                procesandoLocal ||
+                combateTerminado ||
+                combate.turno !== "jugador" ||
+                habilidades.length === 0
+              }
               className="
-                rounded-xl border-2 border-purple-700/70
-                bg-gradient-to-b from-purple-700/70 to-purple-950
-                px-2 py-2
-                font-black text-purple-100
-                shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_4px_0_rgb(45,20,65)]
-                opacity-50
-              "
+    rounded-xl border-2 border-purple-700/70
+    bg-gradient-to-b from-purple-700/70 to-purple-950
+    px-2 py-2
+    font-black text-purple-100
+    shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_4px_0_rgb(45,20,65)]
+    transition
+    hover:brightness-110
+    disabled:cursor-not-allowed
+    disabled:opacity-50
+  "
             >
-              <span className="block text-xl leading-none sm:text-2xl">✨</span>
-
               <span className="mt-1 block text-[11px] tracking-wide sm:text-sm">
                 HABILIDADES
               </span>
             </button>
-
             <button
               type="button"
               disabled
@@ -441,13 +538,10 @@ export default function CombateModal({
                 opacity-50
               "
             >
-              <span className="block text-xl leading-none sm:text-2xl">🎒</span>
-
               <span className="mt-1 block text-[11px] tracking-wide sm:text-sm">
                 OBJETOS
               </span>
             </button>
-
             <button
               type="button"
               disabled
@@ -460,12 +554,87 @@ export default function CombateModal({
                 opacity-50
               "
             >
-              <span className="block text-xl leading-none sm:text-2xl">🏃</span>
-
               <span className="mt-1 block text-[11px] tracking-wide sm:text-sm">
                 HUIR
               </span>
             </button>
+            {mostrarHabilidades && (
+              <div className="absolute inset-2 z-20 flex flex-col rounded-2xl border-2 border-purple-700 bg-slate-950/98 p-3 shadow-2xl sm:inset-4 sm:p-4">
+                <div className="mb-3 flex items-center justify-between">
+                  <div>
+                    <p className="text-[9px] font-black uppercase tracking-[0.18em] text-purple-400">
+                      Técnicas disponibles
+                    </p>
+
+                    <h3 className="text-sm font-black text-white sm:text-base">
+                      Habilidades activas
+                    </h3>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setMostrarHabilidades(false)}
+                    className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs font-black text-slate-400 transition hover:bg-slate-800 hover:text-white"
+                  >
+                    CERRAR
+                  </button>
+                </div>
+
+                <div className="min-h-0 flex-1 space-y-2 overflow-y-auto pr-1">
+                  {habilidades.length === 0 ? (
+                    <div className="flex h-full items-center justify-center text-center">
+                      <p className="text-sm text-slate-500">
+                        No tienes habilidades activas equipadas.
+                      </p>
+                    </div>
+                  ) : (
+                    habilidades.map((habilidadAprendida) => {
+                      const cooldown = obtenerCooldown(
+                        habilidadAprendida.habilidadId
+                      );
+
+                      const habilidad = habilidadAprendida.habilidad;
+
+                      const bloqueada =
+                        cooldown > 0 ||
+                        procesando ||
+                        procesandoLocal ||
+                        combate.turno !== "jugador";
+
+                      return (
+                        <button
+                          key={habilidadAprendida.id}
+                          type="button"
+                          onClick={() =>
+                            void ejecutarHabilidad(
+                              habilidadAprendida.habilidadId
+                            )
+                          }
+                          disabled={bloqueada}
+                          className="w-full rounded-xl border border-purple-900/80 bg-slate-900 px-3 py-3 text-left transition hover:border-purple-500 hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
+                        >
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="min-w-0">
+                              <div className="text-sm font-black text-purple-200">
+                                {habilidad.nombre}
+                              </div>
+
+                              <p className="mt-1 text-xs leading-4 text-slate-400">
+                                {habilidad.descripcion}
+                              </p>
+                            </div>
+
+                            <span className="shrink-0 rounded border border-slate-700 bg-slate-950 px-2 py-1 text-[9px] font-black uppercase tracking-wide text-slate-400">
+                              {cooldown > 0 ? `CD ${cooldown}` : "LISTA"}
+                            </span>
+                          </div>
+                        </button>
+                      );
+                    })
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* ================================================== */}

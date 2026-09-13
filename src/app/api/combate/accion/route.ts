@@ -11,9 +11,109 @@ import {
   resolverAtaqueJugador,
   resolverAtaqueEnemigo,
   type AccionAnimadaCombate,
+  resolverHabilidadJugador,
 } from "@/lib/expediciones/combate";
+import { obtenerHabilidadPorId } from "@/lib/habilidades";
 
 type AccionCombate = "atacar" | "usar_habilidad";
+
+type EfectoCombate = {
+  habilidadId: string;
+  tipo: "bonus_defensa";
+  valor: number;
+  turnosRestantes: number;
+};
+
+function obtenerCooldowns(valor: unknown): Record<string, number> {
+  if (!valor || typeof valor !== "object" || Array.isArray(valor)) {
+    return {};
+  }
+
+  const resultado: Record<string, number> = {};
+
+  for (const [habilidadId, cooldown] of Object.entries(valor)) {
+    if (
+      typeof cooldown === "number" &&
+      Number.isFinite(cooldown) &&
+      cooldown > 0
+    ) {
+      resultado[habilidadId] = Math.floor(cooldown);
+    }
+  }
+
+  return resultado;
+}
+
+function reducirCooldowns(
+  cooldowns: Record<string, number>
+): Record<string, number> {
+  const resultado: Record<string, number> = {};
+
+  for (const [habilidadId, cooldown] of Object.entries(cooldowns)) {
+    const nuevoCooldown = cooldown - 1;
+
+    if (nuevoCooldown > 0) {
+      resultado[habilidadId] = nuevoCooldown;
+    }
+  }
+
+  return resultado;
+}
+
+function obtenerEfectos(valor: unknown): EfectoCombate[] {
+  if (!Array.isArray(valor)) {
+    return [];
+  }
+
+  return valor.filter((efecto): efecto is EfectoCombate => {
+    if (!efecto || typeof efecto !== "object") {
+      return false;
+    }
+
+    const registro = efecto as Record<string, unknown>;
+
+    return (
+      typeof registro.habilidadId === "string" &&
+      registro.tipo === "bonus_defensa" &&
+      typeof registro.valor === "number" &&
+      typeof registro.turnosRestantes === "number" &&
+      registro.turnosRestantes > 0
+    );
+  });
+}
+
+function actualizarEfectosAlInicioTurnoJugador(
+  efectos: EfectoCombate[],
+  defensaActual: number
+): {
+  efectos: EfectoCombate[];
+  defensa: number;
+} {
+  let defensa = defensaActual;
+  const nuevosEfectos: EfectoCombate[] = [];
+
+  for (const efecto of efectos) {
+    const turnosRestantes = efecto.turnosRestantes - 1;
+
+    if (turnosRestantes > 0) {
+      nuevosEfectos.push({
+        ...efecto,
+        turnosRestantes,
+      });
+
+      continue;
+    }
+
+    if (efecto.tipo === "bonus_defensa") {
+      defensa = Math.max(0, defensa - efecto.valor);
+    }
+  }
+
+  return {
+    efectos: nuevosEfectos,
+    defensa,
+  };
+}
 
 export async function POST(request: Request) {
   try {
@@ -25,19 +125,47 @@ export async function POST(request: Request) {
 
     const body = await request.json();
 
-    const accion = body.accion as AccionCombate;
+    const accionValor = body.accion;
 
-    if (accion !== "atacar") {
+    if (accionValor !== "atacar" && accionValor !== "usar_habilidad") {
       return NextResponse.json(
         { error: "Acción de combate no válida." },
         { status: 400 }
       );
     }
 
+    const accion = accionValor as AccionCombate;
+
+    let habilidadId: string | null = null;
+
+    if (accion === "usar_habilidad") {
+      if (
+        typeof body.habilidadId !== "string" ||
+        body.habilidadId.trim() === ""
+      ) {
+        return NextResponse.json(
+          { error: "Debes indicar una habilidad." },
+          { status: 400 }
+        );
+      }
+
+      habilidadId = body.habilidadId;
+    }
+
     const usuario = await prisma.usuario.findUnique({
       where: { id: usuarioSesion.id },
       include: {
-        personaje: true,
+        personaje: {
+          include: {
+            habilidades: {
+              where: {
+                slot: {
+                  not: null,
+                },
+              },
+            },
+          },
+        },
         expedicionActiva: {
           include: {
             combateActivo: true,
@@ -52,6 +180,19 @@ export async function POST(request: Request) {
         { status: 404 }
       );
     }
+
+    const habilidadAprendida = usuario.personaje.habilidades.find(
+      (habilidad) => habilidad.habilidadId === habilidadId
+    );
+
+    if (!habilidadAprendida) {
+      return NextResponse.json(
+        { error: "No tienes esa habilidad equipada." },
+        { status: 403 }
+      );
+    }
+
+    const habilidad = obtenerHabilidadPorId(habilidadAprendida.habilidadId);
 
     const expedicion = usuario.expedicionActiva;
     const combate = expedicion?.combateActivo;
@@ -83,6 +224,13 @@ export async function POST(request: Request) {
       );
     }
 
+    if (accion === "usar_habilidad" && combate.turno !== "jugador") {
+      return NextResponse.json(
+        { error: "Solo puedes usar habilidades durante tu turno." },
+        { status: 409 }
+      );
+    }
+
     if (combate.turno !== "jugador" && combate.turno !== "enemigo") {
       return NextResponse.json(
         { error: "Turno de combate no válido." },
@@ -90,25 +238,119 @@ export async function POST(request: Request) {
       );
     }
 
+    let habilidad: NonNullable<
+      ReturnType<typeof obtenerHabilidadPorId>
+    > | null = null;
+
+    if (accion === "usar_habilidad") {
+      const habilidadAprendida = usuario.personaje.habilidades.find(
+        (habilidadAprendida) => habilidadAprendida.habilidadId === habilidadId
+      );
+
+      if (!habilidadAprendida) {
+        return NextResponse.json(
+          { error: "No tienes esa habilidad equipada." },
+          { status: 403 }
+        );
+      }
+
+      habilidad = obtenerHabilidadPorId(habilidadAprendida.habilidadId);
+
+      if (!habilidad) {
+        return NextResponse.json(
+          { error: "Habilidad no encontrada." },
+          { status: 404 }
+        );
+      }
+
+      if (habilidad.tipo !== "activa") {
+        return NextResponse.json(
+          {
+            error:
+              "Solo puedes utilizar habilidades activas durante el combate.",
+          },
+          { status: 400 }
+        );
+      }
+    }
+
     // ============================================================
     // FLUJO COMBATE
     // ============================================================
-    const actor = combate.turno;
-
     let jugadorHp = combate.jugadorHp;
     let enemigoHp = combate.enemigoHp;
+    let jugadorDefensa = combate.jugadorDefensa;
+
+    let cooldowns = obtenerCooldowns(combate.cooldowns);
+    let efectos = obtenerEfectos(combate.efectos);
 
     const log = Array.isArray(combate.log)
       ? [...(combate.log as string[])]
       : [];
 
+    const actor = combate.turno;
+
+    if (actor === "jugador") {
+      cooldowns = reducirCooldowns(cooldowns);
+
+      const efectosActualizados = actualizarEfectosAlInicioTurnoJugador(
+        efectos,
+        jugadorDefensa
+      );
+
+      efectos = efectosActualizados.efectos;
+      jugadorDefensa = efectosActualizados.defensa;
+    }
+
     let accionAnimada: AccionAnimadaCombate;
 
     if (actor === "jugador") {
-      accionAnimada = resolverAtaqueJugador(combate);
-      enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
+      if (accion === "atacar") {
+        accionAnimada = resolverAtaqueJugador(combate);
+
+        enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
+      } else {
+        if (!habilidad) {
+          return NextResponse.json(
+            { error: "Habilidad no encontrada." },
+            { status: 404 }
+          );
+        }
+
+        const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
+          jugadorAtaque: combate.jugadorAtaque,
+          jugadorDefensa,
+          jugadorNivel: combate.jugadorNivel,
+          jugadorHp,
+          jugadorHpMaximo: combate.jugadorHpMaximo,
+          enemigoDefensa: combate.enemigoDefensa,
+          enemigoNombre: combate.enemigoNombre,
+        });
+
+        accionAnimada = resultadoHabilidad.accion;
+
+        jugadorHp = resultadoHabilidad.jugadorHp;
+        jugadorDefensa = resultadoHabilidad.jugadorDefensa;
+
+        enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
+
+        if (resultadoHabilidad.efecto) {
+          efectos = [...efectos, resultadoHabilidad.efecto];
+        }
+
+        const cooldownTurnos = habilidad.cooldownTurnos ?? 0;
+
+        if (cooldownTurnos > 0) {
+          cooldowns[habilidad.id] = cooldownTurnos;
+        }
+      }
     } else {
-      accionAnimada = resolverAtaqueEnemigo(combate);
+      accionAnimada = resolverAtaqueEnemigo({
+        enemigoAtaque: combate.enemigoAtaque,
+        jugadorDefensa,
+        enemigoNombre: combate.enemigoNombre,
+      });
+
       jugadorHp = Math.max(0, jugadorHp - accionAnimada.dano);
     }
 
@@ -197,6 +439,9 @@ export async function POST(request: Request) {
           },
           data: {
             enemigoHp: 0,
+            jugadorDefensa,
+            cooldowns,
+            efectos,
             fase: "victoria",
             turno: "jugador",
             oroGanado,
@@ -309,7 +554,10 @@ export async function POST(request: Request) {
           },
           data: {
             jugadorHp: 0,
+            jugadorDefensa,
             enemigoHp,
+            cooldowns,
+            efectos,
             fase: "derrota",
             turno: "jugador",
             oroGanado: 0,
@@ -413,9 +661,12 @@ export async function POST(request: Request) {
       },
       data: {
         jugadorHp,
+        jugadorDefensa,
         enemigoHp,
         ronda: siguienteRonda,
         turno: siguienteTurno,
+        cooldowns,
+        efectos,
         log,
       },
     });
