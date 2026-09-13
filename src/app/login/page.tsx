@@ -46,17 +46,17 @@ export default function LoginPage() {
         </p>
 
         <label className="block text-sm font-semibold mb-2" htmlFor="email">Email</label>
-        <input id="email" type="email" required value={email} onChange={(event) => setEmail(event.target.value)} className="w-full mb-4 rounded bg-slate-900 border border-slate-600 p-3" />
+        <input id="email" name="email" type="email" autoComplete="username" required value={email} onChange={(event) => setEmail(event.target.value)} className="w-full mb-4 rounded bg-slate-900 border border-slate-600 p-3" />
 
         {registro && (
           <>
             <label className="block text-sm font-semibold mb-2" htmlFor="nombre">Nombre del gremio</label>
-            <input id="nombre" required value={nombre} onChange={(event) => setNombre(event.target.value)} className="w-full mb-4 rounded bg-slate-900 border border-slate-600 p-3" />
+            <input id="nombre" name="nombre" autoComplete="organization" required value={nombre} onChange={(event) => setNombre(event.target.value)} className="w-full mb-4 rounded bg-slate-900 border border-slate-600 p-3" />
           </>
         )}
 
         <label className="block text-sm font-semibold mb-2" htmlFor="password">Contraseña</label>
-        <input id="password" type="password" minLength={8} required value={password} onChange={(event) => setPassword(event.target.value)} className="w-full mb-5 rounded bg-slate-900 border border-slate-600 p-3" />
+        <input id="password" name="password" autoComplete={registro ? "new-password" : "current-password"} type="password" minLength={8} required value={password} onChange={(event) => setPassword(event.target.value)} className="w-full mb-5 rounded bg-slate-900 border border-slate-600 p-3" />
 
         {error && <p className="mb-4 text-red-400 text-sm">{error}</p>}
         <button disabled={cargando} className="w-full rounded bg-amber-600 hover:bg-amber-500 disabled:opacity-50 p-3 font-bold">
