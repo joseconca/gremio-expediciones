@@ -68,24 +68,58 @@
 }
 
 @keyframes combat-hero-strike {
-  0%, 18%, 100% { transform: translateX(0); }
-  35%, 48% { transform: translateX(32px); }
-  58%, 75% { transform: translateX(0); }
+  0%,
+  18%,
+  100% {
+    transform: translateX(0);
+  }
+  35%,
+  48% {
+    transform: translateX(32px);
+  }
+  58%,
+  75% {
+    transform: translateX(0);
+  }
 }
 
 @keyframes combat-enemy-hit {
-  0%, 42%, 100% { filter: none; }
-  48%, 58% { filter: brightness(2.3) saturate(0.4); transform: translateX(-8px) scaleX(-1); }
+  0%,
+  42%,
+  100% {
+    filter: none;
+  }
+  48%,
+  58% {
+    filter: brightness(2.3) saturate(0.4);
+    transform: translateX(-8px) scaleX(-1);
+  }
 }
 
 @keyframes combat-impact-flash {
-  0%, 38%, 64%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
-  46%, 55% { opacity: 1; transform: scale(1.25) rotate(90deg); }
+  0%,
+  38%,
+  64%,
+  100% {
+    opacity: 0;
+    transform: scale(0.5) rotate(0deg);
+  }
+  46%,
+  55% {
+    opacity: 1;
+    transform: scale(1.25) rotate(90deg);
+  }
 }
 
 @keyframes combat-treasure-glow {
-  from { transform: translateY(0) scale(0.98); filter: saturate(1); }
-  to { transform: translateY(-5px) scale(1.04); filter: saturate(1.3) brightness(1.2); }
+  from {
+    transform: translateY(0) scale(0.98);
+    filter: saturate(1);
+  }
+  to {
+    transform: translateY(-5px) scale(1.04);
+    filter: saturate(1.3) brightness(1.2);
+  }
 }
 
 .camp-map-icon {
@@ -107,6 +141,150 @@
 }
 
 @keyframes hero-route-bob {
-  from { transform: translateY(2px) rotate(-8deg); }
-  to { transform: translateY(-2px) rotate(8deg); }
+  from {
+    transform: translateY(2px) rotate(-8deg);
+  }
+  to {
+    transform: translateY(-2px) rotate(8deg);
+  }
+}
+
+@keyframes combate-ataque {
+  0% {
+    transform: translateX(0);
+  }
+
+  30% {
+    transform: translateX(24px);
+  }
+
+  50% {
+    transform: translateX(42px);
+  }
+
+  62% {
+    transform: translateX(36px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes combate-shake {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-6px);
+  }
+
+  50% {
+    transform: translateX(6px);
+  }
+
+  75% {
+    transform: translateX(-4px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes combate-ataque-fuerte {
+  0% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(-8px);
+  }
+
+  42% {
+    transform: translateX(50px);
+  }
+
+  55% {
+    transform: translateX(70px);
+  }
+
+  65% {
+    transform: translateX(58px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes combate-ataque-enemigo {
+  0% {
+    transform: translateX(0);
+  }
+
+  30% {
+    transform: translateX(-24px);
+  }
+
+  50% {
+    transform: translateX(-42px);
+  }
+
+  62% {
+    transform: translateX(-36px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes combate-ataque-enemigo-fuerte {
+  0% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(8px);
+  }
+
+  42% {
+    transform: translateX(-50px);
+  }
+
+  55% {
+    transform: translateX(-70px);
+  }
+
+  65% {
+    transform: translateX(-58px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes combate-critico {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  30% {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+
+  60% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
 }

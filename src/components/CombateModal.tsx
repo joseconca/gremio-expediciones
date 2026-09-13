@@ -150,61 +150,108 @@ export default function CombateModal({
    * ANIMACIONES
    * ============================================================
    */
+  const [danioVisible, setDanioVisible] = useState<{
+    actor: "jugador" | "enemigo";
+    dano: number;
+    critico: boolean;
+  } | null>(null);
+
+  const [curacionVisible, setCuracionVisible] = useState<{
+    actor: "jugador" | "enemigo";
+    cantidad: number;
+  } | null>(null);
+
   const [actorAnimando, setActorAnimando] = useState<
     "jugador" | "enemigo" | null
   >(null);
 
-  const [danioVisible, setDanioVisible] = useState<{
-    actor: "jugador" | "enemigo";
-    dano: number;
-  } | null>(null);
+  const [actorImpactado, setActorImpactado] = useState<
+    "jugador" | "enemigo" | null
+  >(null);
+
+  const [animacionActual, setAnimacionActual] = useState<
+    AccionAnimadaCombate["animacion"] | null
+  >(null);
 
   const [procesandoLocal, setProcesandoLocal] = useState(false);
 
   const turnoEnemigoEnCurso = useRef(false);
 
+  const accionEnCurso = useRef(false);
+
+  const esperar = (milisegundos: number) =>
+    new Promise<void>((resolver) => {
+      setTimeout(resolver, milisegundos);
+    });
+
   const mostrarResultadoAccion = async (accion: AccionAnimadaCombate) => {
+    const dano = accion.dano;
+    const curacion = accion.curacion ?? 0;
+    const critico = accion.critico;
+
+    setAnimacionActual(accion.animacion);
+
+    if (
+      accion.animacion === "curacion" ||
+      accion.animacion === "defensiva" ||
+      accion.animacion === "escudo"
+    ) {
+      setActorAnimando(accion.actor);
+
+      if (curacion > 0) {
+        setCuracionVisible({
+          actor: accion.actor,
+          cantidad: curacion,
+        });
+      }
+
+      await esperar(700);
+
+      setCuracionVisible(null);
+      setActorAnimando(null);
+      setAnimacionActual(null);
+
+      return;
+    }
+
+    // ------------------------------------------------------------
+    // ATAQUES
+    // ------------------------------------------------------------
+
+    const objetivo = accion.actor === "jugador" ? "enemigo" : "jugador";
+
     setActorAnimando(accion.actor);
 
-    if (accion.dano > 0) {
+    // Preparación / avance.
+    await esperar(accion.animacion === "ofensiva_potenciada" ? 350 : 250);
+
+    // Impacto.
+    setActorImpactado(objetivo);
+
+    if (dano > 0) {
       setDanioVisible({
-        actor: accion.actor === "jugador" ? "enemigo" : "jugador",
-        dano: accion.dano,
+        actor: objetivo,
+        dano,
+        critico: accion.critico,
       });
     }
 
-    await new Promise((resolver) => setTimeout(resolver, 500));
+    await esperar(accion.animacion === "ofensiva_potenciada" ? 450 : 300);
 
+    // Desaparece el impacto.
     setDanioVisible(null);
+    setActorImpactado(null);
+
+    // El atacante vuelve a su posición.
+    await esperar(accion.animacion === "ofensiva_potenciada" ? 300 : 200);
+
     setActorAnimando(null);
+    setAnimacionActual(null);
   };
 
   const ejecutarAtaqueJugador = async () => {
-    if (procesandoLocal || procesando || combateTerminado) {
-      return;
-    }
-
-    if (combate.turno !== "jugador") {
-      return;
-    }
-
-    setProcesandoLocal(true);
-
-    try {
-      const accion = await onAccionCombate("atacar");
-      if (!accion) {
-        return;
-      }
-
-      await mostrarResultadoAccion(accion);
-    } finally {
-      setProcesandoLocal(false);
-    }
-  };
-
-  const ejecutarHabilidad = async (habilidadId: string) => {
     if (
-      procesandoLocal ||
+      accionEnCurso.current ||
       procesando ||
       combateTerminado ||
       combate.turno !== "jugador"
@@ -212,6 +259,34 @@ export default function CombateModal({
       return;
     }
 
+    accionEnCurso.current = true;
+    setProcesandoLocal(true);
+
+    try {
+      const accion = await onAccionCombate("atacar");
+
+      if (!accion) {
+        return;
+      }
+
+      await mostrarResultadoAccion(accion);
+    } finally {
+      accionEnCurso.current = false;
+      setProcesandoLocal(false);
+    }
+  };
+
+  const ejecutarHabilidad = async (habilidadId: string) => {
+    if (
+      accionEnCurso.current ||
+      procesando ||
+      combateTerminado ||
+      combate.turno !== "jugador"
+    ) {
+      return;
+    }
+
+    accionEnCurso.current = true;
     setProcesandoLocal(true);
     setMostrarHabilidades(false);
 
@@ -224,6 +299,7 @@ export default function CombateModal({
 
       await mostrarResultadoAccion(accion);
     } finally {
+      accionEnCurso.current = false;
       setProcesandoLocal(false);
     }
   };
@@ -232,7 +308,9 @@ export default function CombateModal({
     if (
       combate.fase !== "activo" ||
       combate.turno !== "enemigo" ||
-      procesando
+      procesando ||
+      procesandoLocal ||
+      accionEnCurso.current
     ) {
       return;
     }
@@ -246,7 +324,7 @@ export default function CombateModal({
 
     const ejecutarTurnoEnemigo = async () => {
       try {
-        await new Promise((resolver) => setTimeout(resolver, 450));
+        await new Promise((resolver) => setTimeout(resolver, 2450));
 
         const accion = await onAccionCombate("atacar");
 
@@ -264,7 +342,13 @@ export default function CombateModal({
     };
 
     void ejecutarTurnoEnemigo();
-  }, [combate.fase, combate.turno, procesando, onAccionCombate]);
+  }, [
+    combate.fase,
+    combate.turno,
+    procesando,
+    procesandoLocal,
+    onAccionCombate,
+  ]);
 
   const obtenerCooldown = (habilidadId: string): number => {
     if (
@@ -339,9 +423,11 @@ export default function CombateModal({
           {/* ================================================== */}
 
           <div
-            className={`relative flex w-[45%] justify-center transition-transform duration-200 ${
+            className={`relative flex w-[45%] justify-center ${
               actorAnimando === "jugador"
-                ? "translate-x-4 sm:translate-x-8"
+                ? animacionActual === "ofensiva_potenciada"
+                  ? "animate-[combate-ataque-fuerte_900ms_ease-in-out]"
+                  : "animate-[combate-ataque_700ms_ease-in-out]"
                 : ""
             }`}
           >
@@ -364,12 +450,35 @@ export default function CombateModal({
                 </div>
               </div>
               {danioVisible?.actor === "jugador" && (
-                <div className="absolute -top-10 left-1/2 -translate-x-1/2 animate-bounce text-3xl font-black text-red-400 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                <div
+                  className={`absolute -top-10 left-1/2 -translate-x-1/2 font-black drop-shadow-[0_2px_2px_rgba(0,0,0,0.9)] ${
+                    danioVisible.critico
+                      ? "rounded-xl border-2 border-red-400 bg-red-950/95 px-4 py-1 text-4xl text-yellow-300 shadow-[0_0_20px_rgba(239,68,68,0.5)]"
+                      : "text-3xl text-red-400"
+                  }`}
+                >
                   -{danioVisible.dano}
                 </div>
               )}
+              {curacionVisible?.actor === "jugador" && (
+                <div className="absolute -top-12 left-1/2 -translate-x-1/2 animate-bounce text-3xl font-black text-emerald-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                  +{curacionVisible.cantidad}
+                </div>
+              )}
               {/* Sprite */}
-              <div className="mt-3">
+              <div
+                className={`mt-3 transition-all duration-300 ${
+                  animacionActual === "curacion"
+                    ? "scale-105 drop-shadow-[0_0_25px_rgba(52,211,153,0.8)]"
+                    : animacionActual === "defensiva"
+                    ? "scale-105 drop-shadow-[0_0_25px_rgba(59,130,246,0.8)]"
+                    : ""
+                } ${
+                  actorImpactado === "jugador"
+                    ? "animate-[combate-shake_180ms_ease-in-out]"
+                    : ""
+                }`}
+              >
                 <Image
                   src={spriteHeroe}
                   alt={personaje.nombre}
@@ -387,9 +496,15 @@ export default function CombateModal({
           {/* ================================================== */}
 
           <div
-            className={`relative flex w-[45%] justify-center transition-transform duration-200 ${
+            className={`relative flex w-[45%] justify-center transition-transform ${
               actorAnimando === "enemigo"
-                ? "-translate-x-4 sm:-translate-x-8"
+                ? animacionActual === "ofensiva_potenciada"
+                  ? "-translate-x-10 sm:-translate-x-20"
+                  : "-translate-x-6 sm:-translate-x-12"
+                : ""
+            } ${
+              actorImpactado === "enemigo"
+                ? "animate-[combate-shake_180ms_ease-in-out]"
                 : ""
             }`}
           >
@@ -413,7 +528,13 @@ export default function CombateModal({
               </div>
 
               {danioVisible?.actor === "enemigo" && (
-                <div className="absolute -top-10 left-1/2 -translate-x-1/2 animate-bounce text-3xl font-black text-red-400 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                <div
+                  className={`absolute -top-10 left-1/2 -translate-x-1/2 font-black drop-shadow-[0_2px_2px_rgba(0,0,0,0.9)] ${
+                    danioVisible.critico
+                      ? "rounded-xl border-2 border-red-400 bg-red-950/95 px-4 py-1 text-4xl text-yellow-300 shadow-[0_0_20px_rgba(239,68,68,0.5)]"
+                      : "text-3xl text-red-400"
+                  }`}
+                >
                   -{danioVisible.dano}
                 </div>
               )}
