@@ -108,7 +108,7 @@ export function calcularCosteAtributo(
 }
 
 // ============================================================
-// SPRITES
+// HEROES
 // ============================================================
 const SPRITE_POR_CLASE: Record<string, string> = {
   Guerrero: "warrior",
