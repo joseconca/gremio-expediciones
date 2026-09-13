@@ -423,9 +423,10 @@ export async function POST(request: Request) {
       // ============================================================
 
       const resultado = await prisma.$transaction(async (tx) => {
-        const combateActualizado = await tx.combateActivo.update({
+        const actualizacionCombate = await tx.combateActivo.updateMany({
           where: {
             id: combate.id,
+            version: combate.version,
           },
           data: {
             enemigoHp: 0,
@@ -437,6 +438,19 @@ export async function POST(request: Request) {
             oroGanado,
             experienciaGanada,
             log,
+            version: {
+              increment: 1,
+            },
+          },
+        });
+
+        if (actualizacionCombate.count !== 1) {
+          throw new Error("COMBATE_MODIFICADO");
+        }
+
+        const combateActualizado = await tx.combateActivo.findUniqueOrThrow({
+          where: {
+            id: combate.id,
           },
         });
 
@@ -538,9 +552,10 @@ export async function POST(request: Request) {
       log.push(`💀 El aventurero cae derrotado.`);
 
       const resultado = await prisma.$transaction(async (tx) => {
-        const combateActualizado = await tx.combateActivo.update({
+        const actualizacionCombate = await tx.combateActivo.updateMany({
           where: {
             id: combate.id,
+            version: combate.version,
           },
           data: {
             jugadorHp: 0,
@@ -553,6 +568,19 @@ export async function POST(request: Request) {
             oroGanado: 0,
             experienciaGanada: 0,
             log,
+            version: {
+              increment: 1,
+            },
+          },
+        });
+
+        if (actualizacionCombate.count !== 1) {
+          throw new Error("COMBATE_MODIFICADO");
+        }
+
+        const combateActualizado = await tx.combateActivo.findUniqueOrThrow({
+          where: {
+            id: combate.id,
           },
         });
 
@@ -657,9 +685,10 @@ export async function POST(request: Request) {
       jugadorDefensa = efectosActualizados.defensa;
     }
 
-    const actualizado = await prisma.combateActivo.update({
+    const actualizado = await prisma.combateActivo.updateMany({
       where: {
         id: combate.id,
+        version: combate.version,
       },
       data: {
         jugadorHp,
@@ -670,16 +699,45 @@ export async function POST(request: Request) {
         cooldowns,
         efectos,
         log,
+        version: {
+          increment: 1,
+        },
+      },
+    });
+
+    if (actualizado.count !== 1) {
+      return NextResponse.json(
+        {
+          error:
+            "El combate ha cambiado mientras se procesaba la acción. Actualiza el combate e inténtalo de nuevo.",
+        },
+        { status: 409 }
+      );
+    }
+
+    const combateActualizado = await prisma.combateActivo.findUniqueOrThrow({
+      where: {
+        id: combate.id,
       },
     });
 
     return NextResponse.json({
       exito: true,
-      combate: actualizado,
+      combate: combateActualizado,
       terminado: false,
       accion: accionAnimada,
     });
   } catch (error) {
+    if (error instanceof Error && error.message === "COMBATE_MODIFICADO") {
+      return NextResponse.json(
+        {
+          error:
+            "El combate ha cambiado mientras se procesaba la acción. La acción ya no es válida.",
+        },
+        { status: 409 }
+      );
+    }
+
     console.error("Error al ejecutar acción de combate:", error);
 
     return NextResponse.json(

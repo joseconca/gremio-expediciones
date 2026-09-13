@@ -103,6 +103,8 @@ export interface Edificio {
 export interface CombateActivo {
   id: string;
 
+  version: number;
+
   fase: "activo" | "victoria" | "derrota" | "huida";
   ronda: number;
   turno: string;
@@ -358,7 +360,10 @@ export const useGameStore = create<GameState>((set, get) => ({
     }
   },
 
-  accionCombate: async (accion: "atacar" | "usar_habilidad", habilidadId?: string) => {
+  accionCombate: async (
+    accion: "atacar" | "usar_habilidad",
+    habilidadId?: string
+  ) => {
     try {
       const respuesta = await fetch("/api/combate/accion", {
         method: "POST",

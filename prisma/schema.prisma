@@ -157,6 +157,8 @@ model ExpedicionActiva {
 model CombateActivo {
   id String @id @default(uuid())
 
+  version Int @default(0)
+
   expedicionId String           @unique
   expedicion   ExpedicionActiva @relation(fields: [expedicionId], references: [id], onDelete: Cascade)
 
