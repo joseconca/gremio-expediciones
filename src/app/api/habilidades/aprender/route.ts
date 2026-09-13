@@ -102,7 +102,7 @@ export async function POST(request: Request) {
         throw new Error("NIVEL_ESCUELA_INSUFICIENTE");
       }
 
-      if (usuario.personaje.habilidades.length > 0) {
+      if (usuario.personaje.habilidades.length !== 0) {
         throw new Error("HABILIDAD_YA_APRENDIDA");
       }
 

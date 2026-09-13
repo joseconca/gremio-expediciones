@@ -8,19 +8,13 @@ export async function POST(request: Request) {
     const usuarioSesion = await getAuthenticatedUser();
 
     if (!usuarioSesion) {
-      return NextResponse.json(
-        { error: "Sesión requerida." },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Sesión requerida." }, { status: 401 });
     }
 
     const body = await request.json();
     const habilidadId = body.habilidadId;
 
-    if (
-      typeof habilidadId !== "string" ||
-      habilidadId.trim() === ""
-    ) {
+    if (typeof habilidadId !== "string" || habilidadId.trim() === "") {
       return NextResponse.json(
         { error: "La habilidad indicada no es válida." },
         { status: 400 }

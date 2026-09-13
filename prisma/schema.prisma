@@ -115,17 +115,6 @@ model EquipoEquipado {
   accesorio Objeto? @relation("AccesorioEquipadas", fields: [accesorioId], references: [id])
 }
 
-model Habilidad {
-  id          String @id
-  nombre      String
-  descripcion String
-  tipo        String
-  rareza      String @default("comun")
-  precio      Int    @default(0)
-
-  aprendidas HabilidadAprendida[]
-}
-
 model HabilidadAprendida {
   id          String  @id @default(uuid())
   personajeId String
@@ -133,7 +122,6 @@ model HabilidadAprendida {
   slot        String?
 
   personaje Personaje @relation(fields: [personajeId], references: [id], onDelete: Cascade)
-  habilidad Habilidad @relation(fields: [habilidadId], references: [id], onDelete: Cascade)
 
   @@unique([personajeId, habilidadId])
   @@unique([personajeId, slot])
