@@ -333,6 +333,7 @@ export default function CombateModal({
                   alt={combate.enemigoNombre}
                   width={160}
                   height={160}
+                  style={{ transform: "scaleX(-1)" }}
                   className="object-contain"
                   priority
                 />

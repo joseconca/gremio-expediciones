@@ -687,7 +687,7 @@ export default function BasePage() {
                         className="absolute inset-0 z-0 opacity-60 blur-xs"
                         style={{
                           transform:
-                            "translateY(25%) perspective(160px) rotateX(65deg) scale(1.2,-0.9)",
+                            "translateY(25%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)",
                         }}
                       >
                         <Image
