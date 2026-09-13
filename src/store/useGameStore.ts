@@ -381,6 +381,14 @@ export const useGameStore = create<GameState>((set, get) => ({
       const datos = await respuesta.json();
 
       if (!respuesta.ok) {
+        if (
+          respuesta.status === 409 &&
+          datos.error ===
+            "El combate ha cambiado mientras se procesaba la acción. La acción ya no es válida."
+        ) {
+          await get().cargarJugador();
+        }
+
         throw new Error(datos.error || "No se pudo ejecutar la acción.");
       }
 
