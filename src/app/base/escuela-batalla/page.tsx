@@ -305,7 +305,8 @@ export default function EscuelaCombatePage() {
         <section className="mb-8">
           <div className="mb-4">
             <p className="mt-1 text-sm text-[#817563]">
-              Técnicas disponibles en el mercado de la Escuela hoy. Vuelve mañana a ver las ofertas.
+              Técnicas disponibles en el mercado de la Escuela hoy. Vuelve
+              mañana a ver las ofertas.
             </p>
           </div>
 
@@ -358,8 +359,7 @@ export default function EscuelaCombatePage() {
                         className="flex h-full min-h-[220px] flex-col overflow-hidden rounded-[3px] border-2 border-[#9a8158] bg-[#e7d9b7] shadow-[0_8px_18px_rgba(0,0,0,0.35)]"
                       >
                         {/* Pergamino */}
-                        <div className="relative flex min-h-[175px] flex-1 flex-col bg-[linear-gradient(135deg,#f0e6cb,#dfcea4)] p-5 shadow-[inset_0_0_24px_rgba(98,67,32,0.12)]">
-                          {/* Bordes decorativos */}
+                        <div className="relative flex h-[175px] flex-col bg-[linear-gradient(135deg,#f0e6cb,#dfcea4)] p-5 shadow-[inset_0_0_24px_rgba(98,67,32,0.12)]">
                           <div className="pointer-events-none absolute inset-2 border border-[#b39a70]/50" />
 
                           <div className="relative flex items-start justify-between gap-4">
@@ -379,8 +379,7 @@ export default function EscuelaCombatePage() {
                               </h3>
                             </div>
 
-                            {/* Tipo */}
-                            <span className="shrink-1 rounded border border-[#8b7659] bg-[#d1c09a] px-2 py-1 text-[10px] font-black uppercase tracking-wider text-[#4d3c2a] shadow-sm">
+                            <span className="shrink-0 rounded border border-[#8b7659] bg-[#d1c09a] px-2 py-1 text-[10px] font-black uppercase tracking-wider text-[#4d3c2a] shadow-sm">
                               {habilidad.tipo === "activa"
                                 ? "Activa"
                                 : "Pasiva"}
@@ -393,7 +392,7 @@ export default function EscuelaCombatePage() {
                         </div>
 
                         {/* Parte inferior del puesto */}
-                        <div className="border-t-2 border-[#927650] bg-[#3b2b1d] p-4">
+                        <div className="border-t-2 border-[#927650] bg-[#3b2b1d] p-4 h-[100px]">
                           {!habilidad.puedeAprender ? (
                             <div className="rounded-md border border-[#594b3d] bg-[#241e18] p-3 text-center">
                               <p className="text-sm font-bold text-[#928370]">
@@ -401,8 +400,10 @@ export default function EscuelaCombatePage() {
                               </p>
                             </div>
                           ) : aprendida ? (
-                            <div className="rounded-md border border-emerald-800/50 bg-[#1e3425] p-3 text-center text-sm font-bold text-emerald-400">
-                              ✓ Ya aprendida
+                            <div className="flex h-[50px] items-center justify-center rounded-md border-2 border-[#705d3e] bg-[#33291d] px-4 text-center shadow-inner">
+                              <span className="text-xs font-black uppercase tracking-[0.18em] text-[#c3ae82]">
+                                ✓ Técnica aprendida
+                              </span>
                             </div>
                           ) : (
                             <button
@@ -415,7 +416,7 @@ export default function EscuelaCombatePage() {
                                 comprando ||
                                 oro < habilidad.precio
                               }
-                              className={`flex w-full items-center justify-between rounded-md border-2 px-4 py-3 font-black transition-all ${
+                              className={`flex h-[50px] w-full items-center justify-between rounded-md border-2 px-4 font-black transition-all ${
                                 puedeComprar && oro >= habilidad.precio
                                   ? "border-[#9b712f] bg-[#6c4925] text-[#f4e4bf] shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_4px_8px_rgba(0,0,0,0.3)] hover:border-[#c09a50] hover:bg-[#7b542b] active:translate-y-px"
                                   : "cursor-not-allowed border-[#4a4035] bg-[#26211b] text-[#665d52]"
@@ -667,7 +668,7 @@ export default function EscuelaCombatePage() {
                           </div>
 
                           <p className="mt-1 text-xs text-[#6e655a]">
-                            Elige una ranura compatible para equiparla.
+                            {habilidad.descripcion}
                           </p>
                         </div>
 
