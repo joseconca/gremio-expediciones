@@ -39,7 +39,7 @@ export const CONFIGURACION_EDIFICIOS = {
     nivelMax: 5,
     descripcion: "Aprende técnicas de combate avanzadas.",
     color: "bg-red-600",
-    ruta: "/base/escuela-combate",
+    ruta: "/base/escuela-batalla",
   },
 } as const;
 
