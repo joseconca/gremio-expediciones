@@ -296,9 +296,12 @@ export default function BasePage() {
 
   const listaEdificios = Object.values(edificios);
   const edificiosConstruidos = listaEdificios.filter((e) => e.nivel > 0);
-  const ejecutarAtaque = useCallback(() => {
-    return accionCombate("atacar");
-  }, [accionCombate]);
+  const ejecutarAccionCombate = useCallback(
+    (accion: "atacar" | "usar_habilidad", habilidadId?: string) => {
+      return accionCombate(accion, habilidadId);
+    },
+    [accionCombate]
+  );
 
   //rayas des vetas del tablon
   const vetasMadera = [
@@ -396,7 +399,7 @@ export default function BasePage() {
           combate={expedicionActiva.combateActivo}
           personaje={personaje}
           procesando={false}
-          onAtacar={ejecutarAtaque}
+          onAccionCombate={ejecutarAccionCombate}
           onCerrar={() => {
             setCombateAbierto(false);
           }}

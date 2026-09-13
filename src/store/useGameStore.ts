@@ -179,7 +179,10 @@ export interface GameState {
   iniciarExpedicion: (expedicion: ExpedicionActiva) => void;
   llegarExpedicion: () => Promise<boolean>;
   completarExpedicion: () => Promise<ReporteExpedicion | null>;
-  accionCombate: (accion: "atacar") => Promise<AccionAnimadaCombate | null>;
+  accionCombate: (
+    accion: "atacar" | "usar_habilidad",
+    habilidadId?: string
+  ) => Promise<AccionAnimadaCombate | null>;
   cancelarExpedicion: () => Promise<boolean>;
 
   calcularCosteCura: () => InfoCura;
@@ -355,7 +358,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     }
   },
 
-  accionCombate: async (accion) => {
+  accionCombate: async (accion: "atacar" | "usar_habilidad", habilidadId?: string) => {
     try {
       const respuesta = await fetch("/api/combate/accion", {
         method: "POST",
@@ -364,6 +367,9 @@ export const useGameStore = create<GameState>((set, get) => ({
         },
         body: JSON.stringify({
           accion,
+          ...(accion === "usar_habilidad" && habilidadId
+            ? { habilidadId }
+            : {}),
         }),
       });
 

@@ -14,6 +14,7 @@ import {
   resolverHabilidadJugador,
 } from "@/lib/expediciones/combate";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
+import type { DefinicionHabilidad } from "@/lib/tiposJuego";
 
 type AccionCombate = "atacar" | "usar_habilidad";
 
@@ -181,19 +182,6 @@ export async function POST(request: Request) {
       );
     }
 
-    const habilidadAprendida = usuario.personaje.habilidades.find(
-      (habilidad) => habilidad.habilidadId === habilidadId
-    );
-
-    if (!habilidadAprendida) {
-      return NextResponse.json(
-        { error: "No tienes esa habilidad equipada." },
-        { status: 403 }
-      );
-    }
-
-    const habilidad = obtenerHabilidadPorId(habilidadAprendida.habilidadId);
-
     const expedicion = usuario.expedicionActiva;
     const combate = expedicion?.combateActivo;
 
@@ -203,6 +191,9 @@ export async function POST(request: Request) {
         { status: 409 }
       );
     }
+
+    let cooldowns = obtenerCooldowns(combate.cooldowns);
+    let efectos = obtenerEfectos(combate.efectos);
 
     if (expedicion.fase !== "combatiendo") {
       return NextResponse.json(
@@ -238,9 +229,7 @@ export async function POST(request: Request) {
       );
     }
 
-    let habilidad: NonNullable<
-      ReturnType<typeof obtenerHabilidadPorId>
-    > | null = null;
+    let habilidad: DefinicionHabilidad | null = null;
 
     if (accion === "usar_habilidad") {
       const habilidadAprendida = usuario.personaje.habilidades.find(
@@ -254,14 +243,18 @@ export async function POST(request: Request) {
         );
       }
 
-      habilidad = obtenerHabilidadPorId(habilidadAprendida.habilidadId);
+      const habilidadEncontrada = obtenerHabilidadPorId(
+        habilidadAprendida.habilidadId
+      );
 
-      if (!habilidad) {
+      if (!habilidadEncontrada) {
         return NextResponse.json(
           { error: "Habilidad no encontrada." },
           { status: 404 }
         );
       }
+
+      habilidad = habilidadEncontrada;
 
       if (habilidad.tipo !== "activa") {
         return NextResponse.json(
@@ -270,6 +263,18 @@ export async function POST(request: Request) {
               "Solo puedes utilizar habilidades activas durante el combate.",
           },
           { status: 400 }
+        );
+      }
+      const cooldownRestante = cooldowns[habilidad.id] ?? 0;
+
+      if (cooldownRestante > 0) {
+        return NextResponse.json(
+          {
+            error: `Esta habilidad está en cooldown durante ${cooldownRestante} turno${
+              cooldownRestante === 1 ? "" : "s"
+            }.`,
+          },
+          { status: 409 }
         );
       }
     }
@@ -281,26 +286,11 @@ export async function POST(request: Request) {
     let enemigoHp = combate.enemigoHp;
     let jugadorDefensa = combate.jugadorDefensa;
 
-    let cooldowns = obtenerCooldowns(combate.cooldowns);
-    let efectos = obtenerEfectos(combate.efectos);
-
     const log = Array.isArray(combate.log)
       ? [...(combate.log as string[])]
       : [];
 
     const actor = combate.turno;
-
-    if (actor === "jugador") {
-      cooldowns = reducirCooldowns(cooldowns);
-
-      const efectosActualizados = actualizarEfectosAlInicioTurnoJugador(
-        efectos,
-        jugadorDefensa
-      );
-
-      efectos = efectosActualizados.efectos;
-      jugadorDefensa = efectosActualizados.defensa;
-    }
 
     let accionAnimada: AccionAnimadaCombate;
 
@@ -653,6 +643,18 @@ export async function POST(request: Request) {
         // El enemigo era el primero: todavía falta el jugador
         siguienteTurno = "jugador";
       }
+    }
+
+    if (actor === "enemigo" && siguienteTurno === "jugador") {
+      cooldowns = reducirCooldowns(cooldowns);
+
+      const efectosActualizados = actualizarEfectosAlInicioTurnoJugador(
+        efectos,
+        jugadorDefensa
+      );
+
+      efectos = efectosActualizados.efectos;
+      jugadorDefensa = efectosActualizados.defensa;
     }
 
     const actualizado = await prisma.combateActivo.update({
