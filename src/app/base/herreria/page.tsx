@@ -21,6 +21,8 @@ export default function HerreriaPage() {
 
   if (!personaje || edificios.herreria.nivel === 0) return null;
 
+  const descripcionEdificio = edificios.herreria.descripcion;
+
   const statMaximoAtaque =
     edificios.herreria.nivel * CONFIGURACION_ATRIBUTOS.ataque.limitePorNivel;
 
@@ -51,6 +53,8 @@ export default function HerreriaPage() {
         nivel={edificios.herreria.nivel}
       />
 
+      <p className="mb-8 -mt-6 text-slate-400">{descripcionEdificio}</p>
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* TARJETA DE ATAQUE */}
         <div className="bg-slate-800 border-2 border-slate-700 rounded-xl p-6 shadow-xl flex flex-col">

@@ -25,33 +25,13 @@ export default function EmbajadaPage() {
   if (nivelEmbajada === 0) {
     return null;
   }
+  const descripcionEdificio = edificios.embajada.descripcion;
 
   return (
     <main className="min-h-screen bg-slate-900 p-4 text-slate-100 md:p-8">
       <div className="mx-auto max-w-4xl">
         <CabeceraEdificio icono="🏛️" nombre="Embajada" nivel={nivelEmbajada} />
-
-        <div className="mb-8 rounded-xl border border-blue-500/20 bg-slate-800 p-6 shadow-xl">
-          <h2 className="mb-2 text-xl font-bold text-blue-400">
-            Red de Gremios
-          </h2>
-
-          <p className="text-slate-400">
-            Tu Embajada permite establecer relaciones con otros gremios y
-            participar en las actividades globales.
-          </p>
-
-          {nivelEmbajada === 1 && (
-            <div className="mt-6 rounded-lg border border-amber-500/30 bg-amber-950/30 p-4">
-              <p className="font-bold text-amber-400">🏆 Salón de los Héroes</p>
-
-              <p className="mt-1 text-sm text-slate-400">
-                Mejora la Embajada al nivel 2 para consultar el ranking de
-                héroes.
-              </p>
-            </div>
-          )}
-        </div>
+        <p className="text-slate-400">{descripcionEdificio}</p>
 
         {nivelEmbajada >= 2 && (
           <section className="rounded-xl border border-slate-700 bg-slate-800 shadow-xl">
@@ -92,7 +72,6 @@ export default function EmbajadaPage() {
                 >
                   ⚔️ Boss diario
                 </button>
-
               </div>
             </div>
 

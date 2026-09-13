@@ -116,6 +116,7 @@ export default function TabernaPage() {
   };
 
   const infoCura = calcularCosteCura();
+  const descripcionEdificio = edificios.taberna.descripcion;
 
   return (
     <main className="min-h-screen bg-slate-900 text-slate-100 p-4 md:p-8 font-sans">
@@ -158,11 +159,11 @@ export default function TabernaPage() {
         <CabeceraEdificio
           icono="🍺"
           nombre="Taberna"
-          nivel={edificios.herreria.nivel}
+          nivel={edificios.taberna.nivel}
         />
 
         <p className="mb-8 -mt-6 text-slate-400">
-          Descansa y recupera la salud.
+          {descripcionEdificio}
         </p>
 
         {personaje ? (

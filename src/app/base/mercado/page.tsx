@@ -20,6 +20,7 @@ export default function MercadoPage() {
 
   if (!personaje || edificios.mercado.nivel === 0) return null;
 
+  const descripcionEdificio = edificios.mercado.descripcion;
   const statMaximoVelocidad =
     edificios.mercado.nivel * CONFIGURACION_ATRIBUTOS.velocidad.limitePorNivel;
 
@@ -59,6 +60,7 @@ export default function MercadoPage() {
         nombre="Mercado"
         nivel={edificios.mercado.nivel}
       />
+      <p className="mb-8 -mt-6 text-slate-400">{descripcionEdificio}</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* TARJETA DE VELOCIDAD */}
