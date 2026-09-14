@@ -255,7 +255,7 @@ export function resolverHabilidadJugador(
     }
 
     const esCritico =
-      dado === 20 || Math.random() < (habilidad.probabilidad ?? 0);
+      dado === 20 || Math.random() < (habilidad.probabilidadCritico ?? 0);
 
     const variacion = 0.8 + Math.random() * 0.4;
 

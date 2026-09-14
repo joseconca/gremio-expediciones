@@ -17,6 +17,14 @@ export type Rareza =
 
 export type TipoHabilidad = "activa" | "pasiva";
 
+export type EfectoHabilidadActiva = "danio" | "curacion" | "bonus_defensa";
+
+export type AnimacionHabilidad =
+  | "ofensiva"
+  | "ofensiva_potenciada"
+  | "defensiva"
+  | "curacion";
+
 export type SlotHabilidad =
   | "activa_1"
   | "activa_2"
@@ -145,21 +153,30 @@ export interface DefinicionHabilidad {
   id: string;
   nombre: string;
   descripcion: string;
-
   tipo: TipoHabilidad;
   rareza: Rareza;
-
   precio: number;
 
+  /** Efecto principal de una habilidad activa. */
+  efecto?: EfectoHabilidadActiva;
+
+  /** Animación utilizada al ejecutar una habilidad activa. */
+  animacion?: AnimacionHabilidad;
+
+  /** Tiempo de reutilización en turnos. */
   cooldownTurnos?: number;
 
   /** Daño fijo adicional. */
   danoBase?: number;
 
-  /** Multiplicador del ataque.*/
+  /** Multiplicador aplicado al ataque. */
   multiplicadorDano?: number;
 
+  /** Cantidad base de curación. */
   curacion?: number;
+
+  /** Multiplicador adicional aplicado al efecto de un crítico. */
+  multiplicadorCritico?: number;
 
   /** Bonificación temporal o pasiva de ataque. */
   bonusAtaque?: number;
@@ -176,7 +193,8 @@ export interface DefinicionHabilidad {
   /** Duración de un efecto temporal en turnos. */
   duracionTurnos?: number;
 
-  probabilidad?: number;
+  /** Probabilidad adicional de que se produzca un crítico. */
+  probabilidadCritico?: number;
 }
 
 export interface DefinicionMision {
