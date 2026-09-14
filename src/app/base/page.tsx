@@ -687,7 +687,7 @@ export default function BasePage() {
                     <div className="relative z-10 h-36 w-72">
                       {/* SOMBRA REALISTA CON LA FORMA DEL PNG */}
                       <div
-                        className="absolute inset-0 z-0 opacity-60 blur-xs"
+                        className="absolute inset-0 z-0 opacity-60 blur-xs priority unoptimized"
                         style={{
                           transform:
                             "translateY(25%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)",
@@ -709,6 +709,7 @@ export default function BasePage() {
                         alt={edificio.nombre}
                         fill
                         sizes="288px"
+                        unoptimized 
                         priority
                         // Le añadimos relative z-10 para asegurar que el edificio tape su propia sombra
                         className="relative z-10 object-contain [image-rendering:pixelated]"
