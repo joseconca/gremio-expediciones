@@ -137,12 +137,15 @@ export async function POST() {
     const enemigoDefensa = monstruoBase.defensa + Math.floor(dificultad * 0.8);
     const enemigoVelocidad =
       monstruoBase.velocidad + Math.floor(dificultad * 0.5);
+    const enemigoProbCritico = /*monstruoBase.probCritico ??*/ 0.05;
+    const enemigoNivel = /*monstruoBase.nivel ??*/ 1;
 
     const jugadorHp = Math.max(1, personaje.hpActual);
     const jugadorAtaque = personaje.ataque;
     const jugadorDefensa = personaje.defensa;
     const jugadorVelocidad = personaje.velocidad;
     const jugadorNivel = personaje.nivel;
+    const jugadorProbCritico = personaje.probCritico;
 
     const primerTurno =
       jugadorVelocidad >= enemigoVelocidad ? "jugador" : "enemigo";
@@ -171,12 +174,15 @@ export async function POST() {
           enemigoAtaque,
           enemigoDefensa,
           enemigoVelocidad,
+          enemigoProbCritico,
+          enemigoNivel,
 
           jugadorHp,
           jugadorHpMaximo: personaje.hpMaximo,
           jugadorAtaque,
           jugadorDefensa,
           jugadorVelocidad,
+          jugadorProbCritico,
           jugadorNivel,
 
           oroGanado: 0,

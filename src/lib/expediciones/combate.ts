@@ -152,6 +152,7 @@ interface CombateParaHabilidad {
   jugadorNivel: number;
   jugadorHp: number;
   jugadorHpMaximo: number;
+  jugadorProbCritico: number;
   enemigoDefensa: number;
   enemigoNombre: string;
 }
@@ -172,235 +173,139 @@ export function resolverHabilidadJugador(
   habilidad: DefinicionHabilidad,
   combate: CombateParaHabilidad
 ): ResultadoHabilidad {
-  if (habilidad.id === "golpe_poderoso") {
-    const dado = d20();
+  if (!habilidad.efecto) {
+    throw new Error(
+      `La habilidad ${habilidad.id} no tiene un efecto de combate definido.`
+    );
+  }
+  //calcular diferencias de nivel para aumentar prob critico o pifia, no daño directo
+  const probabilidadCritico = Math.min(
+    1,
+    combate.jugadorProbCritico + (habilidad.probabilidadCritico ?? 0)
+  );
 
-    if (dado === 20) {
-      const multiplicador = habilidad.multiplicadorDano ?? 1;
+  switch (habilidad.efecto) {
+    case "dano": {
+      const dado = d20();
+
+      if (dado === 1) {
+        const animacion =
+          habilidad.animacion === "ofensiva_potenciada"
+            ? "ofensiva_potenciada"
+            : "ofensiva";
+
+        return {
+          accion: crearAccion({
+            actor: "jugador",
+            tipo: "fallo",
+            animacion,
+            texto: `🤡 Pifia. Fallas ${habilidad.nombre} contra ${combate.enemigoNombre}.`,
+          }),
+          jugadorHp: combate.jugadorHp,
+          jugadorDefensa: combate.jugadorDefensa,
+        };
+      }
+
+      const variacion = 0.8 + Math.random() * 0.4;
 
       const danoBase = Math.floor(
-        (combate.jugadorAtaque + d6()) * multiplicador
+        combate.jugadorAtaque * variacion * (habilidad.multiplicadorDano ?? 1)
       );
 
-      const dano = Math.max(1, danoBase * 2 - combate.enemigoDefensa);
+      const danoNormal = Math.max(
+        1,
+        danoBase - Math.floor(combate.enemigoDefensa / 2)
+      );
+
+      const esCritico = dado === 20 || Math.random() < probabilidadCritico;
+
+      const multiplicadorCritico = habilidad.multiplicadorCritico ?? 2;
+
+      const dano = esCritico
+        ? Math.max(1, Math.floor(danoNormal * multiplicadorCritico))
+        : danoNormal;
+
+      const animacion =
+        esCritico && habilidad.animacion === "ofensiva"
+          ? "ofensiva_potenciada"
+          : habilidad.animacion ?? "ofensiva";
 
       return {
-        accion: {
+        accion: crearAccion({
           actor: "jugador",
           tipo: "habilidad",
+          animacion,
           dano,
-          animacion: "ofensiva_potenciada",
-          critico: true,
-          texto: `💥 ¡Golpe Poderoso crítico! Atacas a ${combate.enemigoNombre} e infliges ${dano} de daño.`,
-        },
+          critico: esCritico,
+          texto: esCritico
+            ? `💥 ¡${habilidad.nombre} crítico! Infliges ${dano} de daño a ${combate.enemigoNombre}.`
+            : `⚔️ Usas ${habilidad.nombre} e infliges ${dano} de daño a ${combate.enemigoNombre}.`,
+        }),
         jugadorHp: combate.jugadorHp,
         jugadorDefensa: combate.jugadorDefensa,
       };
     }
 
-    if (dado === 1) {
-      return {
-        accion: {
-          actor: "jugador",
-          tipo: "fallo",
-          animacion: "ofensiva",
-          critico: false,
-          dano: 0,
-          texto: `🤡 Pifia. Fallas el Golpe Poderoso contra ${combate.enemigoNombre}.`,
-        },
-        jugadorHp: combate.jugadorHp,
-        jugadorDefensa: combate.jugadorDefensa,
-      };
-    }
+    case "curacion": {
+      const dado = d20();
+      const esCritico = dado === 20 || Math.random() < probabilidadCritico;
 
-    const variacion = 0.8 + Math.random() * 0.4;
+      const cantidadBase = habilidad.curacion ?? 0;
 
-    const danoBase =
-      Math.floor(
-        combate.jugadorAtaque * variacion * (habilidad.multiplicadorDano ?? 1)
-      ) + combate.jugadorNivel;
+      const multiplicadorCritico = habilidad.multiplicadorCritico ?? 1.5;
 
-    const dano = Math.max(1, danoBase - Math.floor(combate.enemigoDefensa / 2));
+      const cantidad = esCritico
+        ? Math.floor(cantidadBase * multiplicadorCritico)
+        : cantidadBase;
 
-    return {
-      accion: {
-        actor: "jugador",
-        tipo: "habilidad",
-        animacion: "ofensiva",
-        critico: false,
-        dano,
-        texto: `⚔️ Usas Golpe Poderoso contra ${combate.enemigoNombre} e infliges ${dano} de daño.`,
-      },
-      jugadorHp: combate.jugadorHp,
-      jugadorDefensa: combate.jugadorDefensa,
-    };
-  }
+      const vidaNueva = Math.min(
+        combate.jugadorHpMaximo,
+        combate.jugadorHp + cantidad
+      );
 
-  if (habilidad.id === "golpe_preciso") {
-    const dado = d20();
-
-    if (dado === 1) {
-      return {
-        accion: {
-          actor: "jugador",
-          tipo: "fallo",
-          animacion: "ofensiva",
-          critico: false,
-          dano: 0,
-          texto: `🤡 Pifia. Fallas el Golpe Preciso contra ${combate.enemigoNombre}.`,
-        },
-        jugadorHp: combate.jugadorHp,
-        jugadorDefensa: combate.jugadorDefensa,
-      };
-    }
-
-    const esCritico =
-      dado === 20 || Math.random() < (habilidad.probabilidadCritico ?? 0);
-
-    const variacion = 0.8 + Math.random() * 0.4;
-
-    const danoBase =
-      Math.floor(
-        combate.jugadorAtaque * variacion * (habilidad.multiplicadorDano ?? 1)
-      ) + combate.jugadorNivel;
-
-    const dano = Math.max(1, danoBase - Math.floor(combate.enemigoDefensa / 2));
-
-    if (esCritico) {
-      const danoCritico = Math.max(1, dano * 2);
+      const curado = vidaNueva - combate.jugadorHp;
 
       return {
-        accion: {
+        accion: crearAccion({
           actor: "jugador",
           tipo: "habilidad",
-          animacion: "ofensiva_potenciada",
-          critico: true,
-          dano: danoCritico,
-          texto: `🎯 ¡Golpe Preciso crítico! Infliges ${danoCritico} de daño a ${combate.enemigoNombre}.`,
-        },
-        jugadorHp: combate.jugadorHp,
+          animacion: habilidad.animacion ?? "curacion",
+          critico: esCritico,
+          curacion: curado,
+          texto: esCritico
+            ? `✨ ¡${habilidad.nombre} crítico! Recuperas ${curado} HP.`
+            : `✨ Usas ${habilidad.nombre} y recuperas ${curado} HP.`,
+        }),
+        jugadorHp: vidaNueva,
         jugadorDefensa: combate.jugadorDefensa,
       };
     }
 
-    return {
-      accion: {
-        actor: "jugador",
-        tipo: "habilidad",
-        animacion: "ofensiva",
-        critico: false,
-        dano,
-        texto: `🎯 Usas Golpe Preciso e infliges ${dano} de daño a ${combate.enemigoNombre}.`,
-      },
-      jugadorHp: combate.jugadorHp,
-      jugadorDefensa: combate.jugadorDefensa,
-    };
-  }
+    case "bonus_defensa": {
+      const bonus = habilidad.bonusDefensa ?? 0;
+      const duracion = habilidad.duracionTurnos ?? 0;
 
-  if (habilidad.id === "ataque_devastador") {
-    const dado = d20();
-
-    if (dado === 1) {
       return {
-        accion: {
+        accion: crearAccion({
           actor: "jugador",
-          tipo: "fallo",
-          dano: 0,
-          animacion: "ofensiva",
-          critico: false,
-          texto: `🤡 Pifia. El Ataque Devastador falla contra ${combate.enemigoNombre}.`,
-        },
+          tipo: "habilidad",
+          animacion: habilidad.animacion ?? "defensiva",
+          texto: `🛡️ Usas ${habilidad.nombre}. Tu defensa aumenta en ${bonus} durante ${duracion} turnos.`,
+        }),
         jugadorHp: combate.jugadorHp,
-        jugadorDefensa: combate.jugadorDefensa,
+        jugadorDefensa: combate.jugadorDefensa + bonus,
+        efecto: {
+          habilidadId: habilidad.id,
+          tipo: "bonus_defensa",
+          valor: bonus,
+          turnosRestantes: duracion,
+        },
       };
     }
 
-    const variacion = 0.8 + Math.random() * 0.4;
-
-    const danoBase =
-      Math.floor(
-        combate.jugadorAtaque * variacion * (habilidad.multiplicadorDano ?? 1)
-      ) + combate.jugadorNivel;
-
-    const danoNormal = Math.max(
-      1,
-      danoBase - Math.floor(combate.enemigoDefensa / 2)
-    );
-
-    const dano = dado === 20 ? Math.max(1, danoNormal * 1.5) : danoNormal;
-
-    return {
-      accion: {
-        actor: "jugador",
-        tipo: "habilidad",
-        animacion: "ofensiva_potenciada",
-        critico: dado === 20,
-        dano,
-        texto:
-          dado === 20
-            ? `💥 ¡Ataque Devastador crítico! Infliges ${dano} de daño a ${combate.enemigoNombre}.`
-            : `💢 ¡Ataque Devastador! Infliges ${dano} de daño a ${combate.enemigoNombre}.`,
-      },
-      jugadorHp: combate.jugadorHp,
-      jugadorDefensa: combate.jugadorDefensa,
-    };
+    default:
+      throw new Error(
+        `El efecto ${habilidad.efecto} de la habilidad ${habilidad.id} no tiene una resolución definida.`
+      );
   }
-
-  if (habilidad.id === "curacion" || habilidad.id === "segundo_aire") {
-    const dado = d20();
-    const critico = dado === 20;
-
-    const cantidad = critico
-      ? (habilidad.curacion ?? 0) * 1.5
-      : habilidad.curacion ?? 0;
-
-    const vidaNueva = Math.min(
-      combate.jugadorHpMaximo,
-      combate.jugadorHp + cantidad
-    );
-
-    const curado = vidaNueva - combate.jugadorHp;
-
-    return {
-      accion: {
-        actor: "jugador",
-        tipo: "habilidad",
-        animacion: "curacion",
-        critico: critico,
-        dano: 0,
-        curacion: curado,
-        texto: `✨ Usas ${habilidad.nombre} y recuperas ${curado} HP.`,
-      },
-      jugadorHp: vidaNueva,
-      jugadorDefensa: combate.jugadorDefensa,
-    };
-  }
-
-  if (habilidad.id === "defensa_ferrea") {
-    const bonus = habilidad.bonusDefensa ?? 0;
-    const duracion = habilidad.duracionTurnos ?? 0;
-
-    return {
-      accion: {
-        actor: "jugador",
-        tipo: "habilidad",
-        animacion: "defensiva",
-        critico: false,
-        dano: 0,
-        texto: `🛡️ Usas Defensa Férrea. Tu defensa aumenta en ${bonus} durante ${duracion} turnos.`,
-      },
-      jugadorHp: combate.jugadorHp,
-      jugadorDefensa: combate.jugadorDefensa + bonus,
-      efecto: {
-        habilidadId: habilidad.id,
-        tipo: "bonus_defensa",
-        valor: bonus,
-        turnosRestantes: duracion,
-      },
-    };
-  }
-
-  throw new Error(
-    `La habilidad ${habilidad.id} no tiene una resolución de combate definida.`
-  );
 }

@@ -14,7 +14,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     precio: 850,
     cooldownTurnos: 1,
 
-    efecto: "danio",
+    efecto: "dano",
     animacion: "ofensiva_potenciada",
     multiplicadorDano: 1.5,
     multiplicadorCritico: 2,
@@ -29,7 +29,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     precio: 1175,
     cooldownTurnos: 1,
 
-    efecto: "danio",
+    efecto: "dano",
     animacion: "ofensiva_potenciada",
     multiplicadorDano: 1.2,
     multiplicadorCritico: 2,
@@ -90,7 +90,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     precio: 3800,
     cooldownTurnos: 4,
 
-    efecto: "danio",
+    efecto: "dano",
     animacion: "ofensiva_potenciada",
     multiplicadorDano: 2.2,
     multiplicadorCritico: 1.5,

@@ -17,7 +17,7 @@ export type Rareza =
 
 export type TipoHabilidad = "activa" | "pasiva";
 
-export type EfectoHabilidadActiva = "danio" | "curacion" | "bonus_defensa";
+export type EfectoHabilidadActiva = "dano" | "curacion" | "bonus_defensa";
 
 export type AnimacionHabilidad =
   | "ofensiva"

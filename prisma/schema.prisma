@@ -59,6 +59,7 @@ model Personaje {
   ataque             Int
   defensa            Int
   velocidad          Int
+  probCritico        Float                @default(0.05)
   capacidadCarruaje  Int
   nivel              Int                  @default(1)
   experiencia        Int                  @default(0)
@@ -175,12 +176,15 @@ model CombateActivo {
   enemigoAtaque    Int
   enemigoDefensa   Int
   enemigoVelocidad Int
+  enemigoProbCritico Float
+  enemigoNivel Int
 
   jugadorHp       Int
   jugadorHpMaximo Int
   jugadorAtaque   Int
   jugadorDefensa  Int
   jugadorVelocidad Int
+  jugadorProbCritico  Float
   jugadorNivel    Int
 
   oroGanado         Int @default(0)

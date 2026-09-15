@@ -309,6 +309,7 @@ export async function POST(request: Request) {
 
         const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
           jugadorAtaque: combate.jugadorAtaque,
+          jugadorProbCritico: combate.jugadorProbCritico,
           jugadorDefensa,
           jugadorNivel: combate.jugadorNivel,
           jugadorHp,
