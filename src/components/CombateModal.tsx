@@ -324,7 +324,8 @@ export default function CombateModal({
 
     const ejecutarTurnoEnemigo = async () => {
       try {
-        await new Promise((resolver) => setTimeout(resolver, 2450));
+        const tiempoEsperaEnemigo = Math.random() * 1200 + 800;
+        await new Promise((resolver) => setTimeout(resolver, tiempoEsperaEnemigo));
 
         const accion = await onAccionCombate("atacar");
 
