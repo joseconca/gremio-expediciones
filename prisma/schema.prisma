@@ -57,8 +57,6 @@ model Personaje {
   ultimaRegeneracion DateTime             @default(now())
   estado             String               @default("ocioso")
 
-  ataqueMejoras              Int @default(0)
-  defensaMejoras             Int @default(0)
   velocidadMejoras           Int @default(0)
   capacidadCarruajeMejoras   Int @default(0)
 
@@ -86,6 +84,13 @@ model Objeto {
   rareza      String @default("comun")
   precio      Int    @default(0)
 
+  ataqueBase       Int   @default(0)
+  defensaBase      Int   @default(0)
+  velocidadBase    Int   @default(0)
+  hpMaximoBase     Int   @default(0)
+  probCriticoBase  Float @default(0)
+  danoCriticoBase  Float @default(0)
+
   inventarios         InventarioObjeto[]
   armasEquipadas      EquipoEquipado[]   @relation("ArmaEquipadas")
   armadurasEquipadas  EquipoEquipado[]   @relation("ArmaduraEquipadas")
@@ -97,6 +102,7 @@ model InventarioObjeto {
   inventarioId String
   objetoId     String
   cantidad     Int    @default(0)
+  nivelMejora  Int    @default(0)
 
   inventario Inventario @relation(fields: [inventarioId], references: [id], onDelete: Cascade)
   objeto     Objeto     @relation(fields: [objetoId], references: [id], onDelete: Cascade)

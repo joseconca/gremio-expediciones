@@ -150,12 +150,12 @@ export default function Sugerencias() {
                       </h3>
                       <div className="rounded-lg border border-slate-700 bg-slate-900 p-3">
                         <p className="text-sm leading-6 text-red-300">
-                          No carga la imagen de los monstruos correctamente.
+                          No carga la imagen de los monstruos correctamente (faltan muchas imágenes todavía por hacer).
                         </p>
                       </div>
                       <div className="rounded-lg border border-slate-700 bg-slate-900 p-3">
                         <p className="text-sm leading-6 text-red-300">
-                          <span className="font-bold text-xs">07/09</span> Tienes 1500 🪙 extra para construir.
+                          No inviertas de momento en subirte ataque o defensa, estamos implementando cambios en ese sistema.
                         </p>
                       </div>
                     </div>

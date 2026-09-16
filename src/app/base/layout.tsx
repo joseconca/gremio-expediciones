@@ -23,7 +23,7 @@ const RecursoBadge = ({
   colorClases: string;
 }) => (
   <div
-    className={`font-bold bg-slate-900 px-2.5 rounded-b-lg border flex items-center gap-1.5 shadow-sm ${colorClases}`}
+    className={`font-bold bg-stone-900 px-2.5 rounded-b-lg border-x border-b border-stone-700 flex items-center gap-1.5 shadow-sm ${colorClases}`}
   >
     {valor} {icono}
   </div>
@@ -97,7 +97,7 @@ export default function BaseLayout({
 
   if (isLoading || !baseCoords) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center text-amber-500 font-bold">
+      <div className="min-h-screen bg-stone-950 flex items-center justify-center text-amber-600 font-bold">
         Cargando Gremio...
       </div>
     );
@@ -105,17 +105,18 @@ export default function BaseLayout({
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* items-center centra en móvil, md:items-start lo alinea arriba en PC */}
-      <header className="flex flex-col md:flex-row md:justify-between items-center md:items-start ">
+      {/* CAMBIO 1: Quitamos bg-stone-950 y añadimos pointer-events-none */}
+      <header className="sticky top-0 z-50 flex flex-col md:flex-row md:justify-between items-center md:items-start pointer-events-none">
+        
         {/* PANEL DEL HÉROE GLOBAL */}
         {personaje && (
           <button
             type="button"
             onClick={() => setMostrarHoja(true)}
-            className="group flex w-full flex-nowrap items-center justify-start gap-3 rounded-b-lg border border-slate-700 bg-slate-900 px-3 py-2 text-left text-sm transition-all duration-200 hover:border-amber-500/50 hover:bg-slate-850 hover:shadow-[0_0_18px_rgba(245,158,11,0.12)] focus:outline-none focus:ring-2 focus:ring-amber-500/60 md:w-auto md:px-4"
+            className="pointer-events-auto group flex w-full flex-nowrap items-center justify-start gap-3 rounded-b-lg border-x border-b border-stone-700 bg-stone-900 px-3 py-2 text-left text-sm transition-all duration-200 hover:border-amber-700/50 hover:bg-stone-800 hover:shadow-[0_0_15px_rgba(180,83,9,0.2)] focus:outline-none focus:ring-2 focus:ring-amber-700/60 md:w-auto md:px-4"
             aria-label={`Abrir hoja del aventurero ${personaje.nombre}`}
           >
-            <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border-2 border-amber-500/70 bg-slate-800 shadow-[0_0_12px_rgba(245,158,11,0.25)] transition-transform duration-200 group-hover:scale-105">
+            <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border-2 border-amber-700/80 bg-stone-800 shadow-[inset_0_0_8px_rgba(0,0,0,0.6)]">
               <Image
                 src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)}
                 alt={`Avatar de ${personaje.nombre}`}
@@ -127,75 +128,67 @@ export default function BaseLayout({
 
             <div className="flex min-w-0 flex-1 flex-col gap-1">
               <div className="flex items-center gap-2">
-                <span className="truncate font-bold uppercase tracking-wider text-white">
+                <span className="truncate font-bold uppercase tracking-wider text-amber-100">
                   {personaje.nombre}
                 </span>
-
-                <span className="text-xs text-slate-500 transition-colors group-hover:text-amber-400">
+                <span className="text-xs text-stone-500 transition-colors group-hover:text-amber-500">
                   Ver ficha
                 </span>
               </div>
 
               {/* Barra de vida */}
               <div className="flex items-center gap-2">
-                <span className="w-7 shrink-0 text-sm font-mono text-slate-400">
+                <span className="w-7 shrink-0 text-sm font-mono text-stone-400">
                   HP
                 </span>
-
-                <div className="h-3 w-24 overflow-hidden rounded-full border border-slate-700 bg-slate-800 sm:w-40">
+                <div className="h-3 w-24 overflow-hidden rounded-full border border-stone-700 bg-stone-950 sm:w-40">
                   <div
-                    className="h-full bg-red-500 transition-all duration-300"
-                    style={{
-                      width: `${porcentajeVida}%`,
-                    }}
+                    className="h-full bg-red-700 transition-all duration-300"
+                    style={{ width: `${porcentajeVida}%` }}
                   />
                 </div>
-
-                <span className="text-sm font-mono text-slate-300">
+                <span className="text-sm font-mono text-stone-300">
                   {personaje.hpActual}/{personaje.hpMaximo}
                 </span>
               </div>
 
               {/* Barra de nivel y experiencia */}
               <div className="flex items-center gap-2">
-                <span className="w-7 shrink-0 text-xs font-mono text-slate-400">
+                <span className="w-7 shrink-0 text-xs font-mono text-stone-400">
                   LV {nivelPersonaje}
                 </span>
-
-                <div className="h-1.5 w-24 overflow-hidden rounded-full border border-slate-700 bg-slate-800 sm:w-40">
+                <div className="h-1.5 w-24 overflow-hidden rounded-full border border-stone-700 bg-stone-950 sm:w-40">
                   <div
-                    className="h-full bg-blue-500 transition-all duration-300"
-                    style={{
-                      width: `${porcentajeExperiencia}%`,
-                    }}
+                    className="h-full bg-blue-700 transition-all duration-300"
+                    style={{ width: `${porcentajeExperiencia}%` }}
                   />
                 </div>
-
-                <span className="text-xs font-mono text-slate-300">
+                <span className="text-xs font-mono text-stone-300">
                   {experienciaPersonaje}/{experienciaNivel} XP
                 </span>
               </div>
             </div>
 
-            <span className="hidden shrink-0 text-slate-500 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-amber-400 sm:block">
+            <span className="hidden shrink-0 text-stone-600 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-amber-600 sm:block">
               →
             </span>
           </button>
         )}
 
         {/* PANEL DE RECURSOS CONDICIONALES */}
-        <div className="flex gap-1.5 flex-wrap justify-center text-sm md:text-base">
+        {/* CAMBIO 3: Añadimos pointer-events-auto al contenedor de recursos para que los botones dentro funcionen */}
+        <div className="pointer-events-auto flex gap-1.5 flex-wrap justify-center text-sm md:text-base">
           <RecursoBadge
             valor={oro}
             icono="🪙"
-            colorClases="text-amber-400 border-amber-600/30"
+            colorClases="text-amber-500"
           />
 
           {(madera ?? 0) > 0 && (
             <RecursoBadge
               valor={madera}
               icono="🪵"
-              colorClases="text-emerald-500 border-emerald-700/30"
+              colorClases="text-emerald-600"
             />
           )}
 
@@ -203,7 +196,7 @@ export default function BaseLayout({
             <RecursoBadge
               valor={piedra}
               icono="🪨"
-              colorClases="text-slate-300 border-slate-600/30"
+              colorClases="text-stone-400"
             />
           )}
 
@@ -211,7 +204,7 @@ export default function BaseLayout({
             <RecursoBadge
               valor={metal}
               icono="⚙️"
-              colorClases="text-cyan-400 border-cyan-700/30"
+              colorClases="text-cyan-600"
             />
           )}
 

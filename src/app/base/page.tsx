@@ -392,7 +392,7 @@ export default function BasePage() {
   ];
 
   return (
-    <main className="min-h-screen bg-orange-200/60 text-slate-100 p-4 md:p-8 font-sans">
+    <main className="min-h-screen p-4 md:p-8">
       {/* ---- MODAL DE COMBATE ---- */}
       {combateAbierto && expedicionActiva?.combateActivo && personaje && (
         <CombateModal
