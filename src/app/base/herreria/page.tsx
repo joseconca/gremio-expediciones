@@ -29,18 +29,21 @@ export default function HerreriaPage() {
   const statMaximoDefensa =
     edificios.herreria.nivel * CONFIGURACION_ATRIBUTOS.defensa.limitePorNivel;
 
-  const costeAtaque = calcularCosteAtributo("ataque", personaje.ataque);
+  const costeAtaque = calcularCosteAtributo("ataque", personaje.ataqueMejoras);
 
-  const costeDefensa = calcularCosteAtributo("defensa", personaje.defensa);
+  const costeDefensa = calcularCosteAtributo(
+    "defensa",
+    personaje.defensaMejoras
+  );
 
   const handleMejorarAtaque = async () => {
-    if (personaje.ataque < statMaximoAtaque && oro >= costeAtaque) {
+    if (personaje.ataqueMejoras < statMaximoAtaque && oro >= costeAtaque) {
       await mejorarAtributo("ataque");
     }
   };
 
   const handleMejorarDefensa = async () => {
-    if (personaje.defensa < statMaximoDefensa && oro >= costeDefensa) {
+    if (personaje.defensaMejoras < statMaximoDefensa && oro >= costeDefensa) {
       await mejorarAtributo("defensa");
     }
   };
@@ -54,21 +57,21 @@ export default function HerreriaPage() {
       />
 
       <p className="mb-8 -mt-6 text-slate-400">{descripcionEdificio}</p>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* TARJETA DE ATAQUE */}
         <div className="bg-slate-800 border-2 border-slate-700 rounded-xl p-6 shadow-xl flex flex-col">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-bold text-red-400">Afilar Arma</h2>
             <span className="text-2xl font-mono text-white">
-              Ataque: {personaje.ataque}
+              Ataque: {personaje.ataqueMejoras}
             </span>
           </div>
           <p className="text-slate-400 text-sm mb-6 flex-grow">
             Afila el arma. Aumenta el daño realizado.
           </p>
 
-          {personaje.ataque >= statMaximoAtaque ? (
+          {personaje.ataqueMejoras >= statMaximoAtaque ? (
             <div className="text-center p-3 bg-red-950/50 text-red-400 border border-red-900 rounded font-bold">
               Próximamente...
             </div>
@@ -95,14 +98,14 @@ export default function HerreriaPage() {
               Reforzar Armadura
             </h2>
             <span className="text-2xl font-mono text-white">
-              Defensa: {personaje.defensa}
+              Defensa: {personaje.defensaMejoras}
             </span>
           </div>
           <p className="text-slate-400 text-sm mb-6 flex-grow">
             Templa y remienda la armadura. Reduce el daño recibido.
           </p>
 
-          {personaje.defensa >= statMaximoDefensa ? (
+          {personaje.defensaMejoras >= statMaximoDefensa ? (
             <div className="text-center p-3 bg-blue-950/50 text-blue-400 border border-blue-900 rounded font-bold">
               Próximamente...
             </div>

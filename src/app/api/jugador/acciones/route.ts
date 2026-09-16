@@ -6,20 +6,25 @@ import { sincronizarRegeneracion } from "@/lib/regeneracion";
 import {
   CONFIGURACION_ATRIBUTOS,
   CONFIGURACION_EDIFICIOS,
-  ESTADISTICAS_BASE_CLASE,
   calcularCosteAtributo,
   calcularCosteEdificio,
+  calcularEstadisticasBase,
 } from "@/lib/configuracionJuego";
-import type {
-  IdAtributo,
-  IdEdificio,
-  ClasePersonaje,
-} from "@/lib/configuracionJuego";
+import type { IdAtributo, IdEdificio } from "@/lib/configuracionJuego";
+import { type ClasePersonaje } from "@/lib/tiposJuego";
+import { calcularEstadisticasPersonaje } from "@/lib/estadisticasPersonaje";
 
 const CLASES = new Set(["Guerrero", "Explorador", "Comerciante"]);
 const SEXOS = new Set(["chico", "chica"]);
 
-const includeGameData = { personaje: true, expedicionActiva: true } as const;
+const includeGameData = {
+  personaje: {
+    include: {
+      habilidades: true,
+    },
+  },
+  expedicionActiva: true,
+} as const;
 
 function respuestaUsuario(usuario: {
   password: string;
@@ -83,7 +88,9 @@ export async function POST(request: Request) {
           { status: 409 }
         );
       }
-      const estadisticas = ESTADISTICAS_BASE_CLASE[clase as ClasePersonaje];
+      const clasePersonaje = clase as ClasePersonaje;
+      const estadisticasBase = calcularEstadisticasBase(clasePersonaje, 1);
+
       const usuario = await prisma.usuario.update({
         where: { id: usuarioSesion.id },
         data: {
@@ -93,11 +100,17 @@ export async function POST(request: Request) {
                 nombre,
                 clase,
                 sexo,
-                hpActual: 100,
-                hpMaximo: 100,
                 estado: "ocioso",
-                ...estadisticas,
+
+                hpActual: Math.floor(estadisticasBase.hpMaximo),
+
+                ataqueMejoras: 0,
+                defensaMejoras: 0,
+                velocidadMejoras: 0,
+                capacidadCarruajeMejoras: 0,
+
                 regeneracionDeVida: 1,
+
                 nivel: 1,
                 experiencia: 0,
               },
@@ -113,7 +126,14 @@ export async function POST(request: Request) {
     if (accion === "curar") {
       const usuario = await prisma.usuario.findUnique({
         where: { id: usuarioSesion.id },
-        include: { personaje: true, expedicionActiva: true },
+        include: {
+          personaje: {
+            include: {
+              habilidades: true,
+            },
+          },
+          expedicionActiva: true,
+        },
       });
       if (!usuario?.personaje) {
         return NextResponse.json(
@@ -127,8 +147,17 @@ export async function POST(request: Request) {
           { status: 409 }
         );
       }
-      usuario.personaje = await sincronizarRegeneracion(usuario.personaje);
-      if (usuario.personaje.hpActual >= usuario.personaje.hpMaximo) {
+
+      const personaje = await sincronizarRegeneracion(usuario.personaje);
+
+      const estadisticas = calcularEstadisticasPersonaje(
+        personaje,
+        personaje.habilidades?.map((habilidad) => habilidad.habilidadId) ?? []
+      );
+
+      const hpMaximo = estadisticas.total.hpMaximo;
+
+      if (personaje.hpActual >= hpMaximo) {
         return NextResponse.json(
           { error: "El personaje ya está completamente sano." },
           { status: 400 }
@@ -138,8 +167,7 @@ export async function POST(request: Request) {
       const nivelTaberna =
         typeof edificios?.taberna === "number" ? edificios.taberna : 1;
       const curaPorOro = 2 * (1 + (nivelTaberna - 1) * 0.1);
-      const hpFaltante =
-        usuario.personaje.hpMaximo - usuario.personaje.hpActual;
+      const hpFaltante = hpMaximo - personaje.hpActual;
       const coste = Math.min(usuario.oro, Math.ceil(hpFaltante / curaPorOro));
       const hpCurado = Math.min(hpFaltante, Math.floor(coste * curaPorOro));
       if (coste <= 0 || hpCurado <= 0)
@@ -151,7 +179,7 @@ export async function POST(request: Request) {
         await tx.personaje.update({
           where: { usuarioId: usuario.id },
           data: {
-            hpActual: usuario.personaje!.hpActual + hpCurado,
+            hpActual: personaje.hpActual + hpCurado,
             estado: "ocioso",
           },
         });
@@ -191,7 +219,10 @@ export async function POST(request: Request) {
         );
       }
 
-      const valorActual = usuario.personaje[atributo];
+      const configuracionAtributo = CONFIGURACION_ATRIBUTOS[atributo];
+
+      const campoMejora = configuracionAtributo.campo;
+      const valorActual = usuario.personaje[campoMejora];
 
       if (typeof valorActual !== "number") {
         return NextResponse.json(
@@ -199,8 +230,6 @@ export async function POST(request: Request) {
           { status: 400 }
         );
       }
-
-      const configuracionAtributo = CONFIGURACION_ATRIBUTOS[atributo];
 
       const edificios = usuario.edificios as Record<string, unknown> | null;
 
@@ -231,7 +260,7 @@ export async function POST(request: Request) {
         await tx.personaje.update({
           where: { usuarioId: usuario.id },
           data: {
-            [atributo]: {
+            [campoMejora]: {
               increment: 1,
             },
           },

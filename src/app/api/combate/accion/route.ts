@@ -3,10 +3,7 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
-import {
-  calcularMejorasPorNivel,
-  experienciaParaNivel,
-} from "@/lib/configuracionJuego";
+import { experienciaParaNivel } from "@/lib/configuracionJuego";
 import {
   resolverAtaqueJugador,
   resolverAtaqueEnemigo,
@@ -392,10 +389,6 @@ export async function POST(request: Request) {
       let nivelNuevo = nivelActual;
       let experienciaNueva = experienciaActual + experienciaGanada;
 
-      let ataqueGanado = 0;
-      let defensaGanada = 0;
-      let velocidadGanada = 0;
-      let capacidadGanada = 0;
       let nivelesSubidos = 0;
 
       while (experienciaNueva >= experienciaParaNivel(nivelNuevo)) {
@@ -403,16 +396,6 @@ export async function POST(request: Request) {
 
         nivelNuevo += 1;
         nivelesSubidos += 1;
-
-        const mejora = calcularMejorasPorNivel(
-          usuario.personaje.clase,
-          nivelNuevo
-        );
-
-        ataqueGanado += mejora.ataque;
-        defensaGanada += mejora.defensa;
-        velocidadGanada += mejora.velocidad;
-        capacidadGanada += mejora.capacidadCarruaje;
       }
 
       if (nivelesSubidos > 0) {
@@ -485,26 +468,6 @@ export async function POST(request: Request) {
             hpActual: Math.max(1, jugadorHp),
             nivel: nivelNuevo,
             experiencia: experienciaNueva,
-
-            ...(nivelesSubidos > 0
-              ? {
-                  hpMaximo: {
-                    increment: 10 * nivelesSubidos,
-                  },
-                  ataque: {
-                    increment: ataqueGanado,
-                  },
-                  defensa: {
-                    increment: defensaGanada,
-                  },
-                  velocidad: {
-                    increment: velocidadGanada,
-                  },
-                  capacidadCarruaje: {
-                    increment: capacidadGanada,
-                  },
-                }
-              : {}),
           },
         });
 

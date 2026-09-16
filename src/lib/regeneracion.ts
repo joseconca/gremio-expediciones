@@ -1,13 +1,22 @@
 import { prisma } from "@/lib/prisma";
+import { calcularEstadisticasPersonaje } from "@/lib/estadisticasPersonaje";
 
 interface PersonajeRegen {
   id: string;
   usuarioId: string;
+  clase: string;
+  nivel: number;
+  ataqueMejoras: number;
+  defensaMejoras: number;
+  velocidadMejoras: number;
+  capacidadCarruajeMejoras: number;
   hpActual: number;
-  hpMaximo: number;
   regeneracionDeVida: number;
   estado: string;
   ultimaRegeneracion: Date;
+  habilidades?: {
+    habilidadId: string;
+  }[];
 }
 
 export async function sincronizarRegeneracion<T extends PersonajeRegen>(
@@ -15,37 +24,66 @@ export async function sincronizarRegeneracion<T extends PersonajeRegen>(
 ): Promise<T> {
   const ahora = new Date();
 
+  const estadisticas = calcularEstadisticasPersonaje(
+    personaje,
+    personaje.habilidades?.map((habilidad) => habilidad.habilidadId) ?? []
+  );
+
+  const hpMaximo = estadisticas.total.hpMaximo;
+
   if (personaje.ultimaRegeneracion.getTime() > ahora.getTime()) {
     await prisma.personaje.update({
       where: { usuarioId: personaje.usuarioId },
       data: { ultimaRegeneracion: ahora },
     });
-    return { ...personaje, ultimaRegeneracion: ahora };
+
+    return { ...personaje, ultimaRegeneracion: ahora } as T;
   }
 
-  if (personaje.estado === "de_viaje" || personaje.hpActual >= personaje.hpMaximo) {
-    if (personaje.hpActual >= personaje.hpMaximo && ahora.getTime() - personaje.ultimaRegeneracion.getTime() < 1000) {
+  if (personaje.estado === "de_viaje" || personaje.hpActual >= hpMaximo) {
+    if (
+      personaje.hpActual >= hpMaximo &&
+      ahora.getTime() - personaje.ultimaRegeneracion.getTime() < 1000
+    ) {
       return personaje;
     }
+
     await prisma.personaje.update({
       where: { usuarioId: personaje.usuarioId },
       data: { ultimaRegeneracion: ahora },
     });
-    return { ...personaje, ultimaRegeneracion: ahora };
+
+    return { ...personaje, ultimaRegeneracion: ahora } as T;
   }
 
-  const segundosTranscurridos = (ahora.getTime() - personaje.ultimaRegeneracion.getTime()) / 1000;
-  const hpGanado = Math.floor(segundosTranscurridos * personaje.regeneracionDeVida);
+  const segundosTranscurridos =
+    (ahora.getTime() - personaje.ultimaRegeneracion.getTime()) / 1000;
 
-  if (hpGanado <= 0) return personaje;
+  const hpGanado = Math.floor(
+    segundosTranscurridos * personaje.regeneracionDeVida
+  );
 
-  const hpActual = Math.min(personaje.hpMaximo, personaje.hpActual + hpGanado);
-  const nuevoEstado = hpActual >= personaje.hpMaximo ? "ocioso" : personaje.estado;
+  if (hpGanado <= 0) {
+    return personaje;
+  }
+
+  const hpActual = Math.min(hpMaximo, personaje.hpActual + hpGanado);
+
+  const nuevoEstado = hpActual >= hpMaximo ? "ocioso" : personaje.estado;
 
   await prisma.personaje.update({
     where: { usuarioId: personaje.usuarioId },
-    data: { hpActual, estado: nuevoEstado, ultimaRegeneracion: ahora },
+    data: {
+      hpActual,
+      estado: nuevoEstado,
+      ultimaRegeneracion: ahora,
+    },
   });
 
-  return { ...personaje, hpActual, estado: nuevoEstado, ultimaRegeneracion: ahora };
+  return {
+    ...personaje,
+    hpActual,
+    estado: nuevoEstado,
+    ultimaRegeneracion: ahora,
+  } as T;
 }

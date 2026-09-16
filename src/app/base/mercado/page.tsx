@@ -1,4 +1,5 @@
 "use client";
+
 import CabeceraEdificio from "@/components/CabeceraEdificio";
 import {
   calcularCosteAtributo,
@@ -30,23 +31,23 @@ export default function MercadoPage() {
 
   const costeVelocidad = calcularCosteAtributo(
     "velocidad",
-    personaje.velocidad
+    personaje.velocidadMejoras
   );
 
   const costeCapacidad = calcularCosteAtributo(
     "capacidadCarruaje",
-    personaje.capacidadCarruaje
+    personaje.capacidadCarruajeMejoras
   );
 
   const handleMejorarVelocidad = async () => {
-    if (personaje.velocidad < statMaximoVelocidad && oro >= costeVelocidad) {
+    if (personaje.velocidadMejoras < statMaximoVelocidad && oro >= costeVelocidad) {
       await mejorarAtributo("velocidad");
     }
   };
 
   const handleMejorarCapacidad = async () => {
     if (
-      personaje.capacidadCarruaje < statMaximoCapacidad &&
+      personaje.capacidadCarruajeMejoras < statMaximoCapacidad &&
       oro >= costeCapacidad
     ) {
       await mejorarAtributo("capacidadCarruaje");
@@ -68,14 +69,14 @@ export default function MercadoPage() {
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-bold text-amber-400">Mejorar ruedas</h2>
             <span className="text-2xl font-mono text-white">
-              Velocidad: {personaje.velocidad}
+              Velocidad: {personaje.velocidadMejoras}
             </span>
           </div>
           <p className="text-slate-400 text-sm mb-6 flex-grow">
             Reduce el tiempo de viaje.
           </p>
 
-          {personaje.velocidad >= statMaximoVelocidad ? (
+          {personaje.velocidadMejoras >= statMaximoVelocidad ? (
             <div className="text-center p-3 bg-amber-950/50 text-amber-400 border border-amber-900 rounded font-bold">
               Próximamente...
             </div>
@@ -102,14 +103,14 @@ export default function MercadoPage() {
               Ampliar carro
             </h2>
             <span className="text-2xl font-mono text-white">
-              Comercio: {personaje.capacidadCarruaje}
+              Comercio: {personaje.capacidadCarruajeMejoras}
             </span>
           </div>
           <p className="text-slate-400 text-sm mb-6 flex-grow">
             Aumenta la capacidad de almacenaje.
           </p>
 
-          {personaje.capacidadCarruaje >= statMaximoCapacidad ? (
+          {personaje.capacidadCarruajeMejoras >= statMaximoCapacidad ? (
             <div className="text-center p-3 bg-emerald-950/50 text-emerald-400 border border-emerald-900 rounded font-bold">
               Próximamente...
             </div>

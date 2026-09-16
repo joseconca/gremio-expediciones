@@ -6,6 +6,7 @@ import {
 } from "@/lib/configuracionJuego";
 import type { ReporteExpedicion, ResultadoExpedicion } from "@/lib/tiposJuego";
 import type { IdEdificio } from "@/lib/configuracionJuego";
+import { calcularEstadisticasPersonaje } from "@/lib/estadisticasPersonaje";
 
 const EDIFICIOS_BASE: Record<IdEdificio, Omit<Edificio, "nivel">> = {
   taberna: {
@@ -80,13 +81,22 @@ export interface Personaje {
   nombre: string;
   clase: string;
   sexo: "chico" | "chica";
+
   hpActual: number;
   hpMaximo: number;
+
   estado: "ocioso" | "de_viaje" | "descansando";
+
   ataque: number;
   defensa: number;
   velocidad: number;
   capacidadCarruaje: number;
+
+  ataqueMejoras: number;
+  defensaMejoras: number;
+  velocidadMejoras: number;
+  capacidadCarruajeMejoras: number;
+
   regeneracionDeVida: number;
   nivel: number;
   experiencia: number;
@@ -218,6 +228,82 @@ async function ejecutarAccion(
   return resultado;
 }
 
+function construirPersonaje(datosPersonaje: unknown): Personaje | null {
+  if (!datosPersonaje || typeof datosPersonaje !== "object") {
+    return null;
+  }
+
+  const datos = datosPersonaje as Record<string, unknown>;
+
+  if (
+    typeof datos.nombre !== "string" ||
+    typeof datos.clase !== "string" ||
+    typeof datos.hpActual !== "number" ||
+    typeof datos.nivel !== "number" ||
+    typeof datos.regeneracionDeVida !== "number"
+  ) {
+    return null;
+  }
+
+  const estadisticas = calcularEstadisticasPersonaje(
+    {
+      clase: datos.clase,
+      nivel: datos.nivel,
+      ataqueMejoras:
+        typeof datos.ataqueMejoras === "number" ? datos.ataqueMejoras : 0,
+      defensaMejoras:
+        typeof datos.defensaMejoras === "number" ? datos.defensaMejoras : 0,
+      velocidadMejoras:
+        typeof datos.velocidadMejoras === "number" ? datos.velocidadMejoras : 0,
+      capacidadCarruajeMejoras:
+        typeof datos.capacidadCarruajeMejoras === "number"
+          ? datos.capacidadCarruajeMejoras
+          : 0,
+    },
+    Array.isArray(datos.habilidades)
+      ? datos.habilidades
+          .filter(
+            (habilidad): habilidad is { habilidadId: string } =>
+              !!habilidad &&
+              typeof habilidad === "object" &&
+              "habilidadId" in habilidad &&
+              typeof habilidad.habilidadId === "string"
+          )
+          .map((habilidad) => habilidad.habilidadId)
+      : []
+  );
+
+  return {
+    id: typeof datos.id === "string" ? datos.id : undefined,
+    nombre: datos.nombre,
+    clase: datos.clase,
+    sexo: datos.sexo === "chica" ? "chica" : "chico",
+    hpActual: datos.hpActual,
+    hpMaximo: estadisticas.total.hpMaximo,
+    estado:
+      datos.estado === "de_viaje" || datos.estado === "descansando"
+        ? datos.estado
+        : "ocioso",
+    ataque: estadisticas.total.ataque,
+    defensa: estadisticas.total.defensa,
+    velocidad: estadisticas.total.velocidad,
+    capacidadCarruaje: estadisticas.total.capacidadCarruaje,
+    ataqueMejoras:
+      typeof datos.ataqueMejoras === "number" ? datos.ataqueMejoras : 0,
+    defensaMejoras:
+      typeof datos.defensaMejoras === "number" ? datos.defensaMejoras : 0,
+    velocidadMejoras:
+      typeof datos.velocidadMejoras === "number" ? datos.velocidadMejoras : 0,
+    capacidadCarruajeMejoras:
+      typeof datos.capacidadCarruajeMejoras === "number"
+        ? datos.capacidadCarruajeMejoras
+        : 0,
+    regeneracionDeVida: datos.regeneracionDeVida,
+    nivel: datos.nivel,
+    experiencia: typeof datos.experiencia === "number" ? datos.experiencia : 0,
+  };
+}
+
 function aplicarDatosJugador(
   set: (state: Partial<GameState>) => void,
   datos: Record<string, unknown>
@@ -227,7 +313,7 @@ function aplicarDatosJugador(
     madera: datos.madera as number,
     piedra: datos.piedra as number,
     metal: datos.metal as number,
-    personaje: (datos.personaje as Personaje | null) || null,
+    personaje: construirPersonaje(datos.personaje),
     baseCoords: (datos.baseCoords as GameState["baseCoords"]) || null,
     expedicionActiva:
       (datos.expedicionActiva as ExpedicionActiva | null) || null,
@@ -306,7 +392,7 @@ export const useGameStore = create<GameState>((set, get) => ({
         piedra: datos.piedra as number,
         metal: datos.metal as number,
         edificios: construirEdificios(datos.edificios),
-        personaje: datos.personaje,
+        personaje: construirPersonaje(datos.personaje),
         baseCoords: (datos.baseCoords as GameState["baseCoords"]) || null,
         expedicionActiva:
           (datos.expedicionActiva as ExpedicionActiva | null) || null,

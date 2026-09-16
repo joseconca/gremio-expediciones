@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
 import {
-  ESTADISTICAS_BASE_CLASE,
+  calcularEstadisticasBase,
   obtenerSpriteHeroe,
   experienciaParaNivel,
 } from "@/lib/configuracionJuego";
@@ -60,10 +60,10 @@ export default function TabernaPage() {
   const [sexo, setSexo] = useState<"chico" | "chica">("chico");
   const [mensaje, setMensaje] = useState("");
   const [mostrarReclutamiento, setMostrarReclutamiento] = useState(false);
-  const estadisticasSeleccionadas =
-    ESTADISTICAS_BASE_CLASE[
-      claseSeleccionada.nombre as keyof typeof ESTADISTICAS_BASE_CLASE
-    ];
+  const estadisticasSeleccionadas = calcularEstadisticasBase(
+    claseSeleccionada.nombre as "Guerrero" | "Explorador" | "Comerciante",
+    1
+  );
 
   const handleReclutar = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,10 +78,13 @@ export default function TabernaPage() {
         nombre: nombre,
         clase: claseSeleccionada.nombre,
         sexo,
-        hpActual: 100,
-        hpMaximo: 100,
+        hpActual: Math.floor(estadisticasSeleccionadas.hpMaximo),
         estado: "ocioso",
         ...estadisticasSeleccionadas,
+        ataqueMejoras: 0,
+        defensaMejoras: 0,
+        velocidadMejoras: 0,
+        capacidadCarruajeMejoras: 0,
         regeneracionDeVida: 1,
         nivel: 1,
         experiencia: 0,
@@ -162,9 +165,7 @@ export default function TabernaPage() {
           nivel={edificios.taberna.nivel}
         />
 
-        <p className="mb-8 -mt-6 text-slate-400">
-          {descripcionEdificio}
-        </p>
+        <p className="mb-8 -mt-6 text-slate-400">{descripcionEdificio}</p>
 
         {personaje ? (
           <div className="overflow-hidden rounded-xl border border-amber-500/25 bg-slate-800 shadow-2xl">
@@ -357,33 +358,49 @@ export default function TabernaPage() {
                       <span>
                         ⚔️{" "}
                         {
-                          ESTADISTICAS_BASE_CLASE[
-                            clase.nombre as keyof typeof ESTADISTICAS_BASE_CLASE
-                          ].ataque
+                          calcularEstadisticasBase(
+                            clase.nombre as
+                              | "Guerrero"
+                              | "Explorador"
+                              | "Comerciante",
+                            1
+                          ).ataque
                         }
                       </span>
                       <span>
                         🛡️{" "}
                         {
-                          ESTADISTICAS_BASE_CLASE[
-                            clase.nombre as keyof typeof ESTADISTICAS_BASE_CLASE
-                          ].defensa
+                          calcularEstadisticasBase(
+                            clase.nombre as
+                              | "Guerrero"
+                              | "Explorador"
+                              | "Comerciante",
+                            1
+                          ).defensa
                         }
                       </span>
                       <span>
                         👟{" "}
                         {
-                          ESTADISTICAS_BASE_CLASE[
-                            clase.nombre as keyof typeof ESTADISTICAS_BASE_CLASE
-                          ].velocidad
+                          calcularEstadisticasBase(
+                            clase.nombre as
+                              | "Guerrero"
+                              | "Explorador"
+                              | "Comerciante",
+                            1
+                          ).velocidad
                         }
                       </span>
                       <span>
                         🛒{" "}
                         {
-                          ESTADISTICAS_BASE_CLASE[
-                            clase.nombre as keyof typeof ESTADISTICAS_BASE_CLASE
-                          ].capacidadCarruaje
+                          calcularEstadisticasBase(
+                            clase.nombre as
+                              | "Guerrero"
+                              | "Explorador"
+                              | "Comerciante",
+                            1
+                          ).capacidadCarruaje
                         }
                       </span>
                     </div>

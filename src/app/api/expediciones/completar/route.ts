@@ -3,6 +3,7 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { calcularDistanciaKm } from "@/lib/utils";
 import { resolverComercio } from "@/lib/expediciones/comercio";
+import { calcularEstadisticasPersonaje } from "@/lib/estadisticasPersonaje";
 
 export async function POST() {
   try {
@@ -15,7 +16,11 @@ export async function POST() {
     const usuario = await prisma.usuario.findUnique({
       where: { id: usuarioSesion.id },
       include: {
-        personaje: true,
+        personaje: {
+          include: {
+            habilidades: true,
+          },
+        },
         expedicionActiva: {
           include: {
             combateActivo: true,
@@ -315,8 +320,24 @@ export async function POST() {
       destinoCoords.lng
     );
 
-    const resultado = resolverComercio(
+    const estadisticasPersonaje = calcularEstadisticasPersonaje(
       usuario.personaje,
+      usuario.personaje.habilidades.map((habilidad) => habilidad.habilidadId)
+    );
+
+    const personajeComercio = {
+      nombre: usuario.personaje.nombre,
+      clase: usuario.personaje.clase,
+      hpActual: usuario.personaje.hpActual,
+      hpMaximo: estadisticasPersonaje.total.hpMaximo,
+      ataque: estadisticasPersonaje.total.ataque,
+      defensa: estadisticasPersonaje.total.defensa,
+      capacidadCarruaje: estadisticasPersonaje.total.capacidadCarruaje,
+      nivel: usuario.personaje.nivel,
+    };
+
+    const resultado = resolverComercio(
+      personajeComercio,
       distanciaKm,
       nivelMercado,
       afinidadActual,

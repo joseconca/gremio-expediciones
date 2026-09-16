@@ -2,11 +2,16 @@ import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { sincronizarRegeneracion } from "@/lib/regeneracion";
+import { calcularEstadisticasPersonaje } from "@/lib/estadisticasPersonaje";
 
 export const dynamic = "force-dynamic";
 
 const includeGameData = {
-  personaje: true,
+  personaje: {
+    include: {
+      habilidades: true,
+    },
+  },
   expedicionActiva: { include: { combateActivo: true } },
 } as const;
 
@@ -39,6 +44,26 @@ export async function GET() {
       usuario.personaje = await sincronizarRegeneracion(usuario.personaje);
     }
 
+    const personajeRespuesta = usuario.personaje
+      ? (() => {
+          const estadisticas = calcularEstadisticasPersonaje(
+            usuario.personaje,
+            usuario.personaje.habilidades.map(
+              (habilidad) => habilidad.habilidadId
+            )
+          );
+
+          return {
+            ...usuario.personaje,
+            hpMaximo: estadisticas.total.hpMaximo,
+            ataque: estadisticas.total.ataque,
+            defensa: estadisticas.total.defensa,
+            velocidad: estadisticas.total.velocidad,
+            capacidadCarruaje: estadisticas.total.capacidadCarruaje,
+          };
+        })()
+      : null;
+
     const expedicionesEntrantes = await prisma.expedicionActiva.findMany({
       where: { tipo: "comercio", objetivoId: usuario.id },
       select: {
@@ -65,7 +90,16 @@ export async function GET() {
             clase: true,
             sexo: true,
             hpActual: true,
-            hpMaximo: true,
+            nivel: true,
+            ataqueMejoras: true,
+            defensaMejoras: true,
+            velocidadMejoras: true,
+            capacidadCarruajeMejoras: true,
+            habilidades: {
+              select: {
+                habilidadId: true,
+              },
+            },
           },
         },
       },
@@ -73,36 +107,43 @@ export async function GET() {
     const nombresOrigen = new Map(
       origenes.map((origen) => [origen.id, origen.nombre])
     );
-    const caravanasEntrantes = expedicionesEntrantes.map((expedicion) => ({
-      id: expedicion.id,
-      gremioOrigen:
-        nombresOrigen.get(expedicion.usuarioId) || "Gremio desconocido",
-      origenCoords: origenes.find(
+
+    const caravanasEntrantes = expedicionesEntrantes.map((expedicion) => {
+      const origen = origenes.find(
         (origen) => origen.id === expedicion.usuarioId
-      )?.baseCoords,
-      nombreAventurero:
-        origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje
-          ?.nombre || "Aventurero",
-      claseAventurero: origenes.find(
-        (origen) => origen.id === expedicion.usuarioId
-      )?.personaje?.clase,
-      sexoAventurero: origenes.find(
-        (origen) => origen.id === expedicion.usuarioId
-      )?.personaje?.sexo,
-      hpAventurero:
-        origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje
-          ?.hpActual || 0,
-      hpMaximoAventurero:
-        origenes.find((origen) => origen.id === expedicion.usuarioId)?.personaje
-          ?.hpMaximo || 100,
-      fechaSalida: expedicion.fechaSalida,
-      fechaLlegada: expedicion.fechaLlegada,
-      dificultad: expedicion.dificultad,
-    }));
+      );
+
+      const personaje = origen?.personaje;
+
+      const estadisticas = personaje
+        ? calcularEstadisticasPersonaje(
+            personaje,
+            personaje.habilidades.map((habilidad) => habilidad.habilidadId)
+          )
+        : null;
+
+      return {
+        id: expedicion.id,
+        gremioOrigen: origen?.nombre || "Gremio desconocido",
+        origenCoords: origen?.baseCoords,
+        nombreAventurero: personaje?.nombre || "Aventurero",
+        claseAventurero: personaje?.clase,
+        sexoAventurero: personaje?.sexo,
+        hpAventurero: personaje?.hpActual || 0,
+        hpMaximoAventurero: estadisticas?.total.hpMaximo || 100,
+        fechaSalida: expedicion.fechaSalida,
+        fechaLlegada: expedicion.fechaLlegada,
+        dificultad: expedicion.dificultad,
+      };
+    });
 
     const datosPublicos = Object.fromEntries(
-      Object.entries(usuario).filter(([clave]) => clave !== "password")
+      Object.entries({
+        ...usuario,
+        personaje: personajeRespuesta,
+      }).filter(([clave]) => clave !== "password")
     );
+
     return NextResponse.json(
       { ...datosPublicos, caravanasEntrantes },
       { headers: { "Cache-Control": "no-store" } }

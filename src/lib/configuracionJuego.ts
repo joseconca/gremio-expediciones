@@ -1,4 +1,4 @@
-import type { Rareza } from "./tiposJuego";
+import type { Rareza, ClasePersonaje } from "./tiposJuego";
 
 export const CONFIGURACION_EDIFICIOS = {
   taberna: {
@@ -65,31 +65,81 @@ export function calcularCosteEdificio(
 // ============================================================
 // CLASES
 // ============================================================
-export const ESTADISTICAS_BASE_CLASE = {
-  Guerrero: { ataque: 2, defensa: 2, velocidad: 1, capacidadCarruaje: 1 },
-  Explorador: { ataque: 1, defensa: 1, velocidad: 2, capacidadCarruaje: 1 },
-  Comerciante: { ataque: 1, defensa: 1, velocidad: 1, capacidadCarruaje: 2 },
-} as const;
+export interface EstadisticasBasePersonaje {
+  hpMaximo: number;
+  ataque: number;
+  defensa: number;
+  velocidad: number;
+  capacidadCarruaje: number;
+  probCritico: number;
+}
 
-export type ClasePersonaje = keyof typeof ESTADISTICAS_BASE_CLASE;
+export function calcularEstadisticasBase(
+  clase: ClasePersonaje,
+  nivel: number
+): EstadisticasBasePersonaje {
+  const nivelSeguro = Math.max(1, nivel);
+
+  switch (clase) {
+    case "Guerrero":
+      return {
+        hpMaximo: 100 + nivelSeguro * 12,
+        ataque: 6 + nivelSeguro * 1.2,
+        defensa: 8 + nivelSeguro * 1.4,
+        velocidad: 4 + nivelSeguro * 0.6,
+        capacidadCarruaje: 10 + nivelSeguro,
+        probCritico: 0.05,
+      };
+
+    case "Explorador":
+      return {
+        hpMaximo: 85 + nivelSeguro * 9,
+        ataque: 5 + nivelSeguro,
+        defensa: 5 + nivelSeguro * 0.9,
+        velocidad: 8 + nivelSeguro * 1.2,
+        capacidadCarruaje: 10 + nivelSeguro,
+        probCritico: 0.05,
+      };
+
+    case "Comerciante":
+      return {
+        hpMaximo: 90 + nivelSeguro * 10,
+        ataque: 5 + nivelSeguro,
+        defensa: 5 + nivelSeguro,
+        velocidad: 6 + nivelSeguro * 0.8,
+        capacidadCarruaje: 14 + nivelSeguro * 1.5,
+        probCritico: 0.05,
+      };
+  }
+}
+
+export type CampoMejora =
+  | "ataqueMejoras"
+  | "defensaMejoras"
+  | "velocidadMejoras"
+  | "capacidadCarruajeMejoras";
 
 export const CONFIGURACION_ATRIBUTOS = {
   ataque: {
+    campo: "ataqueMejoras" as CampoMejora,
     costeBase: 20,
     edificio: "herreria",
     limitePorNivel: 10,
   },
   defensa: {
+    campo: "defensaMejoras" as CampoMejora,
     costeBase: 20,
     edificio: "herreria",
     limitePorNivel: 10,
   },
   velocidad: {
+    campo: "velocidadMejoras" as CampoMejora,
     costeBase: 100,
     edificio: "mercado",
     limitePorNivel: 5,
   },
   capacidadCarruaje: {
+    campo: "capacidadCarruajeMejoras" as CampoMejora,
     costeBase: 200,
     edificio: "mercado",
     limitePorNivel: 5,
@@ -103,8 +153,9 @@ export function calcularCosteAtributo(
   valorActual: number
 ): number {
   const configuracion = CONFIGURACION_ATRIBUTOS[atributo];
+  const siguienteNivel = valorActual + 1;
 
-  return configuracion.costeBase * valorActual * valorActual;
+  return configuracion.costeBase * siguienteNivel * siguienteNivel;
 }
 
 // ============================================================
@@ -133,45 +184,6 @@ export function obtenerSpriteHeroe(
 // ============================================================
 export function experienciaParaNivel(nivel: number): number {
   return nivel * nivel * 100;
-}
-
-interface MejorasNivel {
-  ataque: number;
-  defensa: number;
-  velocidad: number;
-  capacidadCarruaje: number;
-}
-
-// Bonificaciones de estadísticas al alcanzar `nivelAlcanzado`, según la clase del personaje.
-export function calcularMejorasPorNivel(
-  clase: string,
-  nivelAlcanzado: number
-): MejorasNivel {
-  const cada = (divisor: number) => (nivelAlcanzado % divisor === 0 ? 1 : 0);
-
-  if (clase === "Guerrero") {
-    return {
-      ataque: 1 + cada(3),
-      defensa: 1 + cada(3),
-      velocidad: cada(5),
-      capacidadCarruaje: cada(5),
-    };
-  }
-  if (clase === "Explorador") {
-    return {
-      ataque: 1,
-      defensa: 1,
-      velocidad: cada(3),
-      capacidadCarruaje: cada(5),
-    };
-  }
-  // Comerciante (y clase desconocida por defecto)
-  return {
-    ataque: 1,
-    defensa: 1,
-    velocidad: cada(5),
-    capacidadCarruaje: cada(3),
-  };
 }
 
 // ============================================================

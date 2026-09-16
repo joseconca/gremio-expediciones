@@ -6,6 +6,7 @@ import type { TipoMision } from "@/lib/tiposJuego";
 
 import { seleccionarEnemigoNormal } from "@/lib/expediciones/normal";
 import { seleccionarJefeElite } from "@/lib/expediciones/elite";
+import { calcularEstadisticasPersonaje } from "@/lib/estadisticasPersonaje";
 
 export async function POST() {
   try {
@@ -18,7 +19,11 @@ export async function POST() {
     const usuario = await prisma.usuario.findUnique({
       where: { id: usuarioSesion.id },
       include: {
-        personaje: true,
+        personaje: {
+          include: {
+            habilidades: true,
+          },
+        },
         expedicionActiva: {
           include: {
             combateActivo: true,
@@ -140,12 +145,17 @@ export async function POST() {
     const enemigoProbCritico = /*monstruoBase.probCritico ??*/ 0.05;
     const enemigoNivel = /*monstruoBase.nivel ??*/ 1;
 
+    const estadisticasJugador = calcularEstadisticasPersonaje(
+      personaje,
+      personaje.habilidades.map((habilidad) => habilidad.habilidadId)
+    );
     const jugadorHp = Math.max(1, personaje.hpActual);
-    const jugadorAtaque = personaje.ataque;
-    const jugadorDefensa = personaje.defensa;
-    const jugadorVelocidad = personaje.velocidad;
+    const jugadorHpMaximo = estadisticasJugador.total.hpMaximo;
+    const jugadorAtaque = estadisticasJugador.total.ataque;
+    const jugadorDefensa = estadisticasJugador.total.defensa;
+    const jugadorVelocidad = estadisticasJugador.total.velocidad;
     const jugadorNivel = personaje.nivel;
-    const jugadorProbCritico = personaje.probCritico;
+    const jugadorProbCritico = estadisticasJugador.total.probCritico;
 
     const primerTurno =
       jugadorVelocidad >= enemigoVelocidad ? "jugador" : "enemigo";
@@ -178,7 +188,7 @@ export async function POST() {
           enemigoNivel,
 
           jugadorHp,
-          jugadorHpMaximo: personaje.hpMaximo,
+          jugadorHpMaximo: jugadorHpMaximo,
           jugadorAtaque,
           jugadorDefensa,
           jugadorVelocidad,
@@ -212,7 +222,11 @@ export async function POST() {
         id: usuario.id,
       },
       include: {
-        personaje: true,
+        personaje: {
+          include: {
+            habilidades: true,
+          },
+        },
         expedicionActiva: {
           include: {
             combateActivo: true,

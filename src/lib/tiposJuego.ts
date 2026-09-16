@@ -1,5 +1,7 @@
 export type TipoMision = "normal" | "elite" | "comercio" | "boss";
 
+export type ClasePersonaje = "Guerrero" | "Explorador" | "Comerciante";
+
 export type TipoObjeto =
   | "consumible"
   | "arma"

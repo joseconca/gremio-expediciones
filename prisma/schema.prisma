@@ -51,18 +51,20 @@ model Personaje {
   clase              String
   sexo               String               @default("chico")
   nombre             String
+
   hpActual           Int
-  hpMaximo           Int
   regeneracionDeVida Int
   ultimaRegeneracion DateTime             @default(now())
   estado             String               @default("ocioso")
-  ataque             Int
-  defensa            Int
-  velocidad          Int
-  probCritico        Float                @default(0.05)
-  capacidadCarruaje  Int
+
+  ataqueMejoras              Int @default(0)
+  defensaMejoras             Int @default(0)
+  velocidadMejoras           Int @default(0)
+  capacidadCarruajeMejoras   Int @default(0)
+
   nivel              Int                  @default(1)
   experiencia        Int                  @default(0)
+
   inventario         Inventario?
   habilidades        HabilidadAprendida[]
   equipoEquipado     EquipoEquipado?
