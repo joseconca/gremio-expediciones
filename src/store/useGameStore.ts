@@ -97,8 +97,6 @@ export interface Personaje {
   nivel: number;
   experiencia: number;
 
-  ataqueMejoras: number;
-  defensaMejoras: number;
   velocidadMejoras: number;
   capacidadCarruajeMejoras: number;
 
@@ -110,6 +108,12 @@ export interface Personaje {
   defensa: number;
   velocidad: number;
   capacidadCarruaje: number;
+}
+
+export interface DatosReclutamiento {
+  nombre: string;
+  clase: string;
+  sexo: "chico" | "chica";
 }
 
 export interface Edificio {
@@ -197,7 +201,7 @@ export interface GameState {
   ultimaMisionElite: string | null;
 
   cargarJugador: () => Promise<void>;
-  reclutarPersonaje: (personaje: Personaje) => Promise<void>;
+  reclutarPersonaje: (personaje: DatosReclutamiento) => Promise<void>;
 
   iniciarExpedicion: (expedicion: ExpedicionActiva) => void;
   llegarExpedicion: () => Promise<boolean>;
@@ -213,10 +217,7 @@ export interface GameState {
   aplicarRegeneracion: () => void;
 
   mejorarAtributo: (
-    atributo: keyof Pick<
-      Personaje,
-      "ataque" | "defensa" | "velocidad" | "capacidadCarruaje"
-    >
+    atributo: keyof Pick<Personaje, "velocidad" | "capacidadCarruaje">
   ) => Promise<boolean>;
 
   mejorarEdificio: (idEdificio: IdEdificio) => Promise<boolean>;
@@ -283,10 +284,6 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     {
       clase: datos.clase,
       nivel: datos.nivel,
-      ataqueMejoras:
-        typeof datos.ataqueMejoras === "number" ? datos.ataqueMejoras : 0,
-      defensaMejoras:
-        typeof datos.defensaMejoras === "number" ? datos.defensaMejoras : 0,
       velocidadMejoras:
         typeof datos.velocidadMejoras === "number" ? datos.velocidadMejoras : 0,
       capacidadCarruajeMejoras:
@@ -312,10 +309,6 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     defensa: estadisticas.total.defensa,
     velocidad: estadisticas.total.velocidad,
     capacidadCarruaje: estadisticas.total.capacidadCarruaje,
-    ataqueMejoras:
-      typeof datos.ataqueMejoras === "number" ? datos.ataqueMejoras : 0,
-    defensaMejoras:
-      typeof datos.defensaMejoras === "number" ? datos.defensaMejoras : 0,
     velocidadMejoras:
       typeof datos.velocidadMejoras === "number" ? datos.velocidadMejoras : 0,
     capacidadCarruajeMejoras:

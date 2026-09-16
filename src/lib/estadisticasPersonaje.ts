@@ -6,8 +6,6 @@ export interface DatosPersonajeEstadisticas {
   clase: string;
   nivel: number;
 
-  ataqueMejoras: number;
-  defensaMejoras: number;
   velocidadMejoras: number;
   capacidadCarruajeMejoras: number;
 }
@@ -19,6 +17,7 @@ export interface ModificadoresEstadisticas {
   velocidad: number;
   capacidadCarruaje: number;
   probCritico: number;
+  danoCritico: number;
 }
 
 export interface DesgloseEstadisticasPersonaje {
@@ -37,6 +36,7 @@ const MODIFICADORES_VACIOS: ModificadoresEstadisticas = {
   velocidad: 0,
   capacidadCarruaje: 0,
   probCritico: 0,
+  danoCritico: 0,
 };
 
 function sumarModificadores(
@@ -59,6 +59,10 @@ function sumarModificadores(
     ),
     probCritico: modificadores.reduce(
       (total, actual) => total + actual.probCritico,
+      0
+    ),
+    danoCritico: modificadores.reduce(
+      (total, actual) => total + actual.danoCritico,
       0
     ),
   };
@@ -96,6 +100,7 @@ function obtenerModificadoresPasivas(
       (total, habilidad) => total + (habilidad.probabilidadCritico ?? 0),
       0
     ),
+    danoCritico: 0,
   };
 }
 
@@ -125,15 +130,17 @@ export function calcularEstadisticasPersonaje(
     velocidad: baseCalculada.velocidad,
     capacidadCarruaje: baseCalculada.capacidadCarruaje,
     probCritico: baseCalculada.probCritico,
+    danoCritico: baseCalculada.danoCritico,
   };
 
   const mejoras: ModificadoresEstadisticas = {
     hpMaximo: 0,
-    ataque: personaje.ataqueMejoras,
-    defensa: personaje.defensaMejoras,
+    ataque: 0,
+    defensa: 0,
     velocidad: personaje.velocidadMejoras,
     capacidadCarruaje: personaje.capacidadCarruajeMejoras,
     probCritico: 0,
+    danoCritico: 0,
   };
 
   const pasivas = obtenerModificadoresPasivas(habilidadesAprendidas);
@@ -153,6 +160,7 @@ export function calcularEstadisticasPersonaje(
     velocidad: Math.floor(totalSinRedondear.velocidad),
     capacidadCarruaje: Math.floor(totalSinRedondear.capacidadCarruaje),
     probCritico: Math.min(1, totalSinRedondear.probCritico),
+    danoCritico: totalSinRedondear.danoCritico,
   };
 
   return {

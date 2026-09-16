@@ -72,8 +72,6 @@ export async function GET() {
             sexo: true,
             hpActual: true,
             nivel: true,
-            ataqueMejoras: true,
-            defensaMejoras: true,
             velocidadMejoras: true,
             capacidadCarruajeMejoras: true,
             habilidades: {

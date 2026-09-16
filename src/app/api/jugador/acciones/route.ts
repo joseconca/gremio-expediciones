@@ -104,8 +104,6 @@ export async function POST(request: Request) {
 
                 hpActual: Math.floor(estadisticasBase.hpMaximo),
 
-                ataqueMejoras: 0,
-                defensaMejoras: 0,
                 velocidadMejoras: 0,
                 capacidadCarruajeMejoras: 0,
 

@@ -13,7 +13,7 @@ export const CONFIGURACION_EDIFICIOS = {
     nombre: "Herrería",
     costeConstruccion: 1200,
     nivelMax: 5,
-    descripcion: "Mejora el ataque y la defensa.",
+    descripcion: "Mejora armas y armaduras.",
     color: "bg-slate-600",
     ruta: "/base/herreria",
   },
@@ -72,6 +72,7 @@ export interface EstadisticasBasePersonaje {
   velocidad: number;
   capacidadCarruaje: number;
   probCritico: number;
+  danoCritico: number;
 }
 
 export function calcularEstadisticasBase(
@@ -89,6 +90,7 @@ export function calcularEstadisticasBase(
         velocidad: 4 + nivelSeguro * 0.6,
         capacidadCarruaje: 10 + nivelSeguro,
         probCritico: 0.05,
+        danoCritico: 1.5,
       };
 
     case "Explorador":
@@ -99,6 +101,7 @@ export function calcularEstadisticasBase(
         velocidad: 8 + nivelSeguro * 1.2,
         capacidadCarruaje: 10 + nivelSeguro,
         probCritico: 0.05,
+        danoCritico: 1.5,
       };
 
     case "Comerciante":
@@ -109,29 +112,14 @@ export function calcularEstadisticasBase(
         velocidad: 6 + nivelSeguro * 0.8,
         capacidadCarruaje: 14 + nivelSeguro * 1.5,
         probCritico: 0.05,
+        danoCritico: 1.5,
       };
   }
 }
 
-export type CampoMejora =
-  | "ataqueMejoras"
-  | "defensaMejoras"
-  | "velocidadMejoras"
-  | "capacidadCarruajeMejoras";
+export type CampoMejora = "velocidadMejoras" | "capacidadCarruajeMejoras";
 
 export const CONFIGURACION_ATRIBUTOS = {
-  ataque: {
-    campo: "ataqueMejoras" as CampoMejora,
-    costeBase: 20,
-    edificio: "herreria",
-    limitePorNivel: 10,
-  },
-  defensa: {
-    campo: "defensaMejoras" as CampoMejora,
-    costeBase: 20,
-    edificio: "herreria",
-    limitePorNivel: 10,
-  },
   velocidad: {
     campo: "velocidadMejoras" as CampoMejora,
     costeBase: 100,

@@ -6,8 +6,6 @@ interface PersonajeRegen {
   usuarioId: string;
   clase: string;
   nivel: number;
-  ataqueMejoras: number;
-  defensaMejoras: number;
   velocidadMejoras: number;
   capacidadCarruajeMejoras: number;
   hpActual: number;
