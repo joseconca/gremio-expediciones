@@ -35,6 +35,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     id: "espada_hierro",
     nombre: "Espada de Hierro",
     tipo: "arma",
+    subtipo: "espada",
     descripcion: "Una espada sencilla pero fiable.",
     rareza: "comun",
     precio: 100,
@@ -45,6 +46,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     id: "espada_acero",
     nombre: "Espada de Acero",
     tipo: "arma",
+    subtipo: "espada",
     descripcion: "Una espada resistente y bien equilibrada.",
     rareza: "poco_comun",
     precio: 250,
@@ -55,6 +57,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     id: "espada_runa",
     nombre: "Espada Rúnica",
     tipo: "arma",
+    subtipo: "espada",
     descripcion: "Una espada imbuida con poder mágico.",
     rareza: "raro",
     precio: 600,
@@ -120,9 +123,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
 ];
 
-export function obtenerObjetoPorId(
-  id: string
-): DefinicionObjeto | undefined {
+export function obtenerObjetoPorId(id: string): DefinicionObjeto | undefined {
   return OBJETOS.find((objeto) => objeto.id === id);
 }
 

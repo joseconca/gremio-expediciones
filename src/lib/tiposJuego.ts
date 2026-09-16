@@ -110,6 +110,7 @@ export interface DefinicionObjeto {
   id: string;
   nombre: string;
   tipo: TipoObjeto;
+  subtipo?: string;
   descripcion: string;
   rareza: Rareza;
 
