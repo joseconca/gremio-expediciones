@@ -12,6 +12,25 @@ import {
   experienciaParaNivel,
 } from "@/lib/configuracionJuego";
 
+// COMPONENTE REUTILIZABLE PARA LOS CARTELES DE RECURSOS
+const CartelRecurso = ({ children, colorText }: { children: React.ReactNode, colorText: string }) => (
+  <div className="relative flex flex-col items-center group cursor-default">
+    {/* Cuerdas */}
+    <div className="absolute bottom-full mb-[-2px] w-[60%] flex justify-between h-12 -z-10 pointer-events-none">
+      <div className="w-[3px] h-full bg-[#5c4033] shadow-[-1px_0_2px_rgba(0,0,0,0.5)]" />
+      <div className="w-[3px] h-full bg-[#5c4033] shadow-[-1px_0_2px_rgba(0,0,0,0.5)]" />
+    </div>
+    
+    {/* Cartel de Madera */}
+    <div className={`relative z-10 flex items-center gap-1 px-4 py-2 font-bold rounded-sm border-y-2 border-x-4 border-[#3e2723] bg-[#4a2f1b] shadow-[0_8px_15px_-3px_rgba(0,0,0,0.6)] transition-transform duration-300 origin-top hover:rotate-2 ${colorText}`}>
+      {/* Clavos decorativos */}
+      <div className="absolute top-1 left-1 w-1.5 h-1.5 rounded-full bg-slate-950 shadow-sm" />
+      <div className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-slate-950 shadow-sm" />
+      {children}
+    </div>
+  </div>
+);
+
 export default function BaseLayout({
   children,
 }: {
@@ -20,17 +39,8 @@ export default function BaseLayout({
   const router = useRouter();
 
   const {
-    oro,
-    madera,
-    piedra,
-    metal,
-    personaje,
-    baseCoords,
-    edificios,
-    isLoading,
-    sesionActiva,
-    cargarJugador,
-    aplicarRegeneracion,
+    oro, madera, piedra, metal, personaje, baseCoords, edificios, isLoading,
+    sesionActiva, cargarJugador, aplicarRegeneracion,
   } = useGameStore();
 
   const [mostrarHoja, setMostrarHoja] = useState<boolean>(false);
@@ -51,11 +61,9 @@ export default function BaseLayout({
     const intervaloRegen = setInterval(() => {
       aplicarRegeneracion();
     }, 1000);
-
     const intervaloSync = setInterval(() => {
       cargarJugador();
     }, 120000);
-
     return () => {
       clearInterval(intervaloRegen);
       clearInterval(intervaloSync);
@@ -63,10 +71,7 @@ export default function BaseLayout({
   }, [aplicarRegeneracion, cargarJugador]);
 
   const porcentajeVida = personaje
-    ? Math.min(
-        100,
-        Math.max(0, (personaje.hpActual / personaje.hpMaximo) * 100)
-      )
+    ? Math.min(100, Math.max(0, (personaje.hpActual / personaje.hpMaximo) * 100))
     : 0;
 
   const nivelPersonaje = personaje?.nivel || 1;
@@ -80,120 +85,126 @@ export default function BaseLayout({
 
   if (isLoading || !baseCoords) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center text-amber-500 font-bold">
+      // Fondo transparente también en el loading para que no dé un pantallazo de color
+      <div className="min-h-screen flex items-center justify-center bg-orange-200/60 text-amber-500 font-bold">
         Cargando Gremio...
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 flex flex-col">
-      <header className="flex flex-col md:flex-row md:justify-between items-center bg-slate-800 p-4 border-b border-slate-700 gap-4">
-        {/* PANEL DEL HÉROE GLOBAL */}
+    <div className="min-h-screen flex flex-col bg-sky-200/60 relative pt-4">
+      
+      {/* VIGA SUPERIOR */}
+      <div className="absolute top-0 left-0 w-full h-4 bg-[#2a1708] border-b-2 border-[#140a03] shadow-[0_5px_15px_rgba(0,0,0,0.6)] z-50 pointer-events-none" />
+
+      <header className="flex flex-col md:flex-row md:justify-between items-start p-3 gap-1 md:gap-4 relative z-40 max-w-7xl mx-auto w-full">
+        
+      {/* PANEL DEL HÉROE */}
         {personaje && (
-          <button
-            type="button"
-            onClick={() => setMostrarHoja(true)}
-            className="group flex w-full flex-nowrap items-center justify-start gap-3 rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-left text-sm transition-all duration-200 hover:border-amber-500/50 hover:bg-slate-850 hover:shadow-[0_0_18px_rgba(245,158,11,0.12)] focus:outline-none focus:ring-2 focus:ring-amber-500/60 md:w-auto md:px-4"
-            aria-label={`Abrir hoja del aventurero ${personaje.nombre}`}
-          >
-            <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border-2 border-amber-500/70 bg-slate-800 shadow-[0_0_12px_rgba(245,158,11,0.25)] transition-transform duration-200 group-hover:scale-105">
-              <Image
-                src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)}
-                alt={`Avatar de ${personaje.nombre}`}
-                fill
-                sizes="48px"
-                className="avatar-face-image [image-rendering:pixelated]"
-              />
+          <div className="relative flex flex-col items-center group w-full md:w-auto z-20">
+            {/* Cuerdas del héroe */}
+            <div className="absolute bottom-full mb-[-2px] w-3/4 flex justify-between h-10 -z-10 pointer-events-none">
+              <div className="w-1 h-full bg-[#5c4033] shadow-[inset_-1px_0_2px_rgba(0,0,0,0.5)]" />
+              <div className="w-1 h-full bg-[#5c4033] shadow-[inset_-1px_0_2px_rgba(0,0,0,0.5)]" />
             </div>
 
-            <div className="flex min-w-0 flex-1 flex-col gap-1">
-              <div className="flex items-center gap-2">
-                <span className="truncate font-bold uppercase tracking-wider text-white">
-                  {personaje.nombre}
-                </span>
+            <button
+              type="button"
+              onClick={() => setMostrarHoja(true)}
+              className="relative z-10 flex w-full flex-nowrap items-center justify-start gap-3 rounded-sm border-y-2 border-x-4 border-[#3e2723] bg-[#4a2f1b] px-4 py-3 text-left text-sm shadow-[0_10px_20px_-5px_rgba(0,0,0,0.7)] transition-transform duration-300 origin-top hover:rotate-1 hover:brightness-110 focus:outline-none md:w-auto"
+              aria-label={`Abrir hoja del aventurero ${personaje.nombre}`}
+            >
+              {/* Clavos */}
+              <div className="absolute top-2 left-2 w-2 h-2 rounded-full bg-slate-950 shadow-sm" />
+              <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-slate-950 shadow-sm" />
+              <div className="absolute bottom-2 left-2 w-2 h-2 rounded-full bg-slate-950 shadow-sm" />
+              <div className="absolute bottom-2 right-2 w-2 h-2 rounded-full bg-slate-950 shadow-sm" />
 
-                <span className="text-xs text-slate-500 transition-colors group-hover:text-amber-400">
-                  Ver ficha
-                </span>
+              <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-md border-2 border-[#8b5a2b] bg-slate-800 shadow-[inset_0_0_10px_rgba(0,0,0,0.8)]">
+                <Image
+                  src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)}
+                  alt={`Avatar de ${personaje.nombre}`}
+                  fill
+                  sizes="56px"
+                  className="avatar-face-image [image-rendering:pixelated]"
+                />
               </div>
 
-              {/* Barra de vida */}
-              <div className="flex items-center gap-2">
-                <span className="w-7 shrink-0 text-sm font-mono text-slate-400">
-                  HP
-                </span>
-
-                <div className="h-3 w-24 overflow-hidden rounded-full border border-slate-700 bg-slate-800 sm:w-40">
-                  <div
-                    className="h-full bg-red-500 transition-all duration-300"
-                    style={{
-                      width: `${porcentajeVida}%`,
-                    }}
-                  />
+              <div className="flex min-w-0 flex-1 flex-col gap-1.5 ml-2">
+                <div className="flex items-center gap-2">
+                  <span className="truncate font-black uppercase tracking-wider text-amber-100">
+                    {personaje.nombre}
+                  </span>
+                  <span className="text-xs text-amber-500/80 uppercase tracking-widest font-bold">
+                    Ficha
+                  </span>
                 </div>
 
-                <span className="text-sm font-mono text-slate-300">
-                  {personaje.hpActual}/{personaje.hpMaximo}
-                </span>
-              </div>
-
-              {/* Barra de nivel y experiencia */}
-              <div className="flex items-center gap-2">
-                <span className="w-7 shrink-0 text-xs font-mono text-slate-400">
-                  LV {nivelPersonaje}
-                </span>
-
-                <div className="h-1.5 w-24 overflow-hidden rounded-full border border-slate-700 bg-slate-800 sm:w-40">
-                  <div
-                    className="h-full bg-blue-500 transition-all duration-300"
-                    style={{
-                      width: `${porcentajeExperiencia}%`,
-                    }}
-                  />
+                {/* Barra de vida */}
+                <div className="flex items-center gap-2">
+                  <span className="w-7 shrink-0 text-xs font-mono font-bold text-red-400">HP</span>
+                  <div className="h-2.5 w-24 overflow-hidden rounded-sm border border-slate-950 bg-slate-900 sm:w-40 shadow-inner">
+                    <div
+                      className="h-full bg-red-600 transition-all duration-300 shadow-[inset_0_1px_2px_rgba(255,255,255,0.3)]"
+                      style={{ width: `${porcentajeVida}%` }}
+                    />
+                  </div>
                 </div>
 
-                <span className="text-xs font-mono text-slate-300">
-                  {experienciaPersonaje}/{experienciaNivel} XP
-                </span>
+                {/* Barra de nivel */}
+                <div className="flex items-center gap-2">
+                  <span className="w-7 shrink-0 text-xs font-mono font-bold text-blue-400">
+                    LV {nivelPersonaje}
+                  </span>
+                  <div className="h-1.5 w-24 overflow-hidden rounded-sm border border-slate-950 bg-slate-900 sm:w-40 shadow-inner">
+                    <div
+                      className="h-full bg-blue-500 transition-all duration-300"
+                      style={{ width: `${porcentajeExperiencia}%` }}
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-
-            <span className="hidden shrink-0 text-slate-500 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-amber-400 sm:block">
-              →
-            </span>
-          </button>
+            </button>
+          </div>
         )}
 
-        {/* PANEL DE RECURSOS CONDICIONALES */}
-        <div className="flex gap-2 flex-wrap justify-center text-sm md:text-base">
-          <div className="text-amber-400 font-bold bg-slate-900 px-3 py-2 rounded-lg border border-amber-600/30 flex items-center gap-1 shadow-sm">
-            {oro} 🪙
-          </div>
+        {/* PANEL DE RECURSOS */}
+        <div className="flex gap-4 flex-wrap justify-center items-start text-sm md:text-base relative z-10 w-full md:w-auto">
+          <CartelRecurso colorText="text-amber-400">
+            {oro} <span className="drop-shadow-md">🪙</span>
+          </CartelRecurso>
 
           {(madera ?? 0) > 0 && (
-            <div className="text-emerald-500 font-bold bg-slate-900 px-3 py-2 rounded-lg border border-emerald-700/30 flex items-center gap-1 shadow-sm">
-              {madera} 🪵
-            </div>
+            <CartelRecurso colorText="text-emerald-400">
+              {madera} <span className="drop-shadow-md">🪵</span>
+            </CartelRecurso>
           )}
 
           {(piedra ?? 0) > 0 && (
-            <div className="text-slate-300 font-bold bg-slate-900 px-3 py-2 rounded-lg border border-slate-600/30 flex items-center gap-1 shadow-sm">
-              {piedra} 🪨
-            </div>
+            <CartelRecurso colorText="text-slate-300">
+              {piedra} <span className="drop-shadow-md">🪨</span>
+            </CartelRecurso>
           )}
 
           {(metal ?? 0) > 0 && (
-            <div className="text-cyan-400 font-bold bg-slate-900 px-3 py-2 rounded-lg border border-cyan-700/30 flex items-center gap-1 shadow-sm">
-              {metal} ⚙️
-            </div>
+            <CartelRecurso colorText="text-cyan-400">
+              {metal} <span className="drop-shadow-md">⚙️</span>
+            </CartelRecurso>
           )}
 
-          <Sugerencias />
+          {/* Botón sugerencias */}
+          <div className="relative group origin-top hover:rotate-2 transition-transform">
+             <div className="absolute bottom-full mb-[-2px] left-1/2 -translate-x-1/2 w-[3px] h-12 bg-[#5c4033] shadow-[-1px_0_2px_rgba(0,0,0,0.5)] -z-10 pointer-events-none" />
+             <div className="relative z-10">
+                <Sugerencias />
+             </div>
+          </div>
         </div>
       </header>
 
-      <div className="flex-grow">{children}</div>
+      {/* Contenedor principal */}
+      <div className="flex-grow relative z-0">{children}</div>
 
       <HojaPersonajeModal
         abierto={mostrarHoja}
