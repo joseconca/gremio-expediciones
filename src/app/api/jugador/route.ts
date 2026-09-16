@@ -44,26 +44,6 @@ export async function GET() {
       usuario.personaje = await sincronizarRegeneracion(usuario.personaje);
     }
 
-    const personajeRespuesta = usuario.personaje
-      ? (() => {
-          const estadisticas = calcularEstadisticasPersonaje(
-            usuario.personaje,
-            usuario.personaje.habilidades.map(
-              (habilidad) => habilidad.habilidadId
-            )
-          );
-
-          return {
-            ...usuario.personaje,
-            hpMaximo: estadisticas.total.hpMaximo,
-            ataque: estadisticas.total.ataque,
-            defensa: estadisticas.total.defensa,
-            velocidad: estadisticas.total.velocidad,
-            capacidadCarruaje: estadisticas.total.capacidadCarruaje,
-          };
-        })()
-      : null;
-
     const expedicionesEntrantes = await prisma.expedicionActiva.findMany({
       where: { tipo: "comercio", objetivoId: usuario.id },
       select: {
@@ -74,6 +54,7 @@ export async function GET() {
         dificultad: true,
       },
     });
+
     const origenes = await prisma.usuario.findMany({
       where: {
         id: {
@@ -138,10 +119,7 @@ export async function GET() {
     });
 
     const datosPublicos = Object.fromEntries(
-      Object.entries({
-        ...usuario,
-        personaje: personajeRespuesta,
-      }).filter(([clave]) => clave !== "password")
+      Object.entries(usuario).filter(([clave]) => clave !== "password")
     );
 
     return NextResponse.json(
