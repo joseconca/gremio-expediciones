@@ -77,29 +77,28 @@ function construirEdificios(
 }
 
 export interface Personaje {
+  // Datos persistentes
   id?: string;
   nombre: string;
   clase: string;
   sexo: "chico" | "chica";
-
   hpActual: number;
-  hpMaximo: number;
-
   estado: "ocioso" | "de_viaje" | "descansando";
-
-  ataque: number;
-  defensa: number;
-  velocidad: number;
-  capacidadCarruaje: number;
+  regeneracionDeVida: number;
+  nivel: number;
+  experiencia: number;
 
   ataqueMejoras: number;
   defensaMejoras: number;
   velocidadMejoras: number;
   capacidadCarruajeMejoras: number;
 
-  regeneracionDeVida: number;
-  nivel: number;
-  experiencia: number;
+  // Estadísticas calculadas
+  hpMaximo: number;
+  ataque: number;
+  defensa: number;
+  velocidad: number;
+  capacidadCarruaje: number;
 }
 
 export interface Edificio {
