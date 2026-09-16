@@ -12,20 +12,11 @@ import {
   experienciaParaNivel,
 } from "@/lib/configuracionJuego";
 
-// COMPONENTE REUTILIZABLE PARA LOS CARTELES DE RECURSOS
+// COMPONENTE REUTILIZABLE PARA LOS BLOQUES DE MÁRMOL (EMPOTRADOS ARRIBA)
 const CartelRecurso = ({ children, colorText }: { children: React.ReactNode, colorText: string }) => (
   <div className="relative flex flex-col items-center group cursor-default">
-    {/* Cuerdas */}
-    <div className="absolute bottom-full mb-[-2px] w-[60%] flex justify-between h-12 -z-10 pointer-events-none">
-      <div className="w-[3px] h-full bg-[#5c4033] shadow-[-1px_0_2px_rgba(0,0,0,0.5)]" />
-      <div className="w-[3px] h-full bg-[#5c4033] shadow-[-1px_0_2px_rgba(0,0,0,0.5)]" />
-    </div>
-    
-    {/* Cartel de Madera */}
-    <div className={`relative z-10 flex items-center gap-1 px-4 py-2 font-bold rounded-sm border-y-2 border-x-4 border-[#3e2723] bg-[#4a2f1b] shadow-[0_8px_15px_-3px_rgba(0,0,0,0.6)] transition-transform duration-300 origin-top hover:rotate-2 ${colorText}`}>
-      {/* Clavos decorativos */}
-      <div className="absolute top-1 left-1 w-1.5 h-1.5 rounded-full bg-slate-950 shadow-sm" />
-      <div className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-slate-950 shadow-sm" />
+    {/* Placa de Mármol empotrada */}
+    <div className={`relative z-10 flex items-center gap-1 px-4 py-2 font-black rounded-sm border-2 border-slate-400 bg-gradient-to-br from-slate-100 via-stone-200 to-slate-300 shadow-[inset_0_1px_3px_rgba(255,255,255,0.9),0_4px_8px_-2px_rgba(0,0,0,0.5)] transition-all duration-200 hover:brightness-105 ${colorText}`}>
       {children}
     </div>
   </div>
@@ -85,43 +76,31 @@ export default function BaseLayout({
 
   if (isLoading || !baseCoords) {
     return (
-      // Fondo transparente también en el loading para que no dé un pantallazo de color
-      <div className="min-h-screen flex items-center justify-center bg-orange-200/60 text-amber-500 font-bold">
-        Cargando Gremio...
+      <div className="min-h-screen flex items-center justify-center text-slate-300 font-bold">
+        Cargando Monumento...
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-sky-200/60 relative pt-4">
+    <div className="min-h-screen flex flex-col relative bg-sky-800/60">
       
-      {/* VIGA SUPERIOR */}
-      <div className="absolute top-0 left-0 w-full h-4 bg-[#2a1708] border-b-2 border-[#140a03] shadow-[0_5px_15px_rgba(0,0,0,0.6)] z-50 pointer-events-none" />
+      {/* CORNISA / DINTEL DE PIEDRA SUPERIOR */}
+      <div className="absolute top-0 left-0 w-full h-3 bg-slate-900 border-b-2 border-slate-700 shadow-[0_4px_10px_rgba(0,0,0,0.6)] z-50 pointer-events-none" />
 
-      <header className="flex flex-col md:flex-row md:justify-between items-start p-3 gap-1 md:gap-4 relative z-40 max-w-7xl mx-auto w-full">
+      {/* HEADER PEGADO ARRIBA */}
+      <header className="flex flex-col md:flex-row md:justify-between items-start p-3 gap-3 relative z-40 max-w-7xl mx-auto w-full pt-4">
         
-      {/* PANEL DEL HÉROE */}
+        {/* PANEL DEL HÉROE (MONOLITO DE MÁRMOL EMPOTRADO) */}
         {personaje && (
-          <div className="relative flex flex-col items-center group w-full md:w-auto z-20">
-            {/* Cuerdas del héroe */}
-            <div className="absolute bottom-full mb-[-2px] w-3/4 flex justify-between h-10 -z-10 pointer-events-none">
-              <div className="w-1 h-full bg-[#5c4033] shadow-[inset_-1px_0_2px_rgba(0,0,0,0.5)]" />
-              <div className="w-1 h-full bg-[#5c4033] shadow-[inset_-1px_0_2px_rgba(0,0,0,0.5)]" />
-            </div>
-
+          <div className="relative flex flex-col items-center w-full md:w-auto z-20">
             <button
               type="button"
               onClick={() => setMostrarHoja(true)}
-              className="relative z-10 flex w-full flex-nowrap items-center justify-start gap-3 rounded-sm border-y-2 border-x-4 border-[#3e2723] bg-[#4a2f1b] px-4 py-3 text-left text-sm shadow-[0_10px_20px_-5px_rgba(0,0,0,0.7)] transition-transform duration-300 origin-top hover:rotate-1 hover:brightness-110 focus:outline-none md:w-auto"
+              className="relative z-10 flex w-full flex-nowrap items-center justify-start gap-3 rounded-sm border-2 border-slate-400 bg-gradient-to-br from-slate-100 via-stone-200 to-slate-300 px-4 py-3 text-left text-sm shadow-[inset_0_1px_3px_rgba(255,255,255,0.9),0_6px_15px_-3px_rgba(0,0,0,0.6)] transition-all duration-200 hover:brightness-105 focus:outline-none md:w-auto text-slate-900"
               aria-label={`Abrir hoja del aventurero ${personaje.nombre}`}
             >
-              {/* Clavos */}
-              <div className="absolute top-2 left-2 w-2 h-2 rounded-full bg-slate-950 shadow-sm" />
-              <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-slate-950 shadow-sm" />
-              <div className="absolute bottom-2 left-2 w-2 h-2 rounded-full bg-slate-950 shadow-sm" />
-              <div className="absolute bottom-2 right-2 w-2 h-2 rounded-full bg-slate-950 shadow-sm" />
-
-              <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-md border-2 border-[#8b5a2b] bg-slate-800 shadow-[inset_0_0_10px_rgba(0,0,0,0.8)]">
+              <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-md border-2 border-slate-500 bg-slate-900 shadow-[inset_0_0_10px_rgba(0,0,0,0.8)]">
                 <Image
                   src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)}
                   alt={`Avatar de ${personaje.nombre}`}
@@ -133,17 +112,17 @@ export default function BaseLayout({
 
               <div className="flex min-w-0 flex-1 flex-col gap-1.5 ml-2">
                 <div className="flex items-center gap-2">
-                  <span className="truncate font-black uppercase tracking-wider text-amber-100">
+                  <span className="truncate font-black uppercase tracking-wider text-slate-900 drop-shadow-[0_1px_1px_rgba(255,255,255,0.5)]">
                     {personaje.nombre}
                   </span>
-                  <span className="text-xs text-amber-500/80 uppercase tracking-widest font-bold">
+                  <span className="text-xs text-slate-600 uppercase tracking-widest font-black">
                     Ficha
                   </span>
                 </div>
 
                 {/* Barra de vida */}
                 <div className="flex items-center gap-2">
-                  <span className="w-7 shrink-0 text-xs font-mono font-bold text-red-400">HP</span>
+                  <span className="w-7 shrink-0 text-xs font-mono font-black text-red-700">HP</span>
                   <div className="h-2.5 w-24 overflow-hidden rounded-sm border border-slate-950 bg-slate-900 sm:w-40 shadow-inner">
                     <div
                       className="h-full bg-red-600 transition-all duration-300 shadow-[inset_0_1px_2px_rgba(255,255,255,0.3)]"
@@ -154,7 +133,7 @@ export default function BaseLayout({
 
                 {/* Barra de nivel */}
                 <div className="flex items-center gap-2">
-                  <span className="w-7 shrink-0 text-xs font-mono font-bold text-blue-400">
+                  <span className="w-7 shrink-0 text-xs font-mono font-black text-blue-700">
                     LV {nivelPersonaje}
                   </span>
                   <div className="h-1.5 w-24 overflow-hidden rounded-sm border border-slate-950 bg-slate-900 sm:w-40 shadow-inner">
@@ -169,36 +148,32 @@ export default function BaseLayout({
           </div>
         )}
 
-        {/* PANEL DE RECURSOS */}
-        <div className="flex gap-4 flex-wrap justify-center items-start text-sm md:text-base relative z-10 w-full md:w-auto">
-          <CartelRecurso colorText="text-amber-400">
-            {oro} <span className="drop-shadow-md">🪙</span>
+        {/* PANEL DE RECURSOS DE MÁRMOL (PEGADOS ARRIBA) */}
+        <div className="flex gap-3 flex-wrap justify-center items-start text-sm md:text-base relative z-10 w-full md:w-auto">
+          <CartelRecurso colorText="text-amber-600">
+            {oro} <span className="drop-shadow-sm">🪙</span>
           </CartelRecurso>
 
           {(madera ?? 0) > 0 && (
-            <CartelRecurso colorText="text-emerald-400">
-              {madera} <span className="drop-shadow-md">🪵</span>
+            <CartelRecurso colorText="text-emerald-700">
+              {madera} <span className="drop-shadow-sm">🪵</span>
             </CartelRecurso>
           )}
 
           {(piedra ?? 0) > 0 && (
-            <CartelRecurso colorText="text-slate-300">
-              {piedra} <span className="drop-shadow-md">🪨</span>
+            <CartelRecurso colorText="text-stone-700">
+              {piedra} <span className="drop-shadow-sm">🪨</span>
             </CartelRecurso>
           )}
 
           {(metal ?? 0) > 0 && (
-            <CartelRecurso colorText="text-cyan-400">
-              {metal} <span className="drop-shadow-md">⚙️</span>
+            <CartelRecurso colorText="text-cyan-800">
+              {metal} <span className="drop-shadow-sm">⚙️</span>
             </CartelRecurso>
           )}
 
-          {/* Botón sugerencias */}
-          <div className="relative group origin-top hover:rotate-2 transition-transform">
-             <div className="absolute bottom-full mb-[-2px] left-1/2 -translate-x-1/2 w-[3px] h-12 bg-[#5c4033] shadow-[-1px_0_2px_rgba(0,0,0,0.5)] -z-10 pointer-events-none" />
-             <div className="relative z-10">
-                <Sugerencias />
-             </div>
+          <div className="relative z-10">
+            <Sugerencias />
           </div>
         </div>
       </header>
