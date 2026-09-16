@@ -4,7 +4,11 @@ import {
   calcularCosteEdificio,
   CONFIGURACION_EDIFICIOS,
 } from "@/lib/configuracionJuego";
-import type { ReporteExpedicion, ResultadoExpedicion } from "@/lib/tiposJuego";
+import type {
+  ReporteExpedicion,
+  ResultadoExpedicion,
+  SlotHabilidad,
+} from "@/lib/tiposJuego";
 import type { IdEdificio } from "@/lib/configuracionJuego";
 import { calcularEstadisticasPersonaje } from "@/lib/estadisticasPersonaje";
 
@@ -76,6 +80,11 @@ function construirEdificios(
   };
 }
 
+export interface HabilidadPersonaje {
+  habilidadId: string;
+  slot: SlotHabilidad | null;
+}
+
 export interface Personaje {
   // Datos persistentes
   id?: string;
@@ -92,6 +101,8 @@ export interface Personaje {
   defensaMejoras: number;
   velocidadMejoras: number;
   capacidadCarruajeMejoras: number;
+
+  habilidades: HabilidadPersonaje[];
 
   // Estadísticas calculadas
   hpMaximo: number;
@@ -170,6 +181,7 @@ export interface InfoCura {
 }
 
 export interface GameState {
+  nombreGremio: string;
   oro: number;
   madera: number;
   piedra: number;
@@ -244,6 +256,29 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     return null;
   }
 
+  const habilidades: HabilidadPersonaje[] = Array.isArray(datos.habilidades)
+    ? datos.habilidades
+        .filter(
+          (habilidad): habilidad is Record<string, unknown> =>
+            !!habilidad && typeof habilidad === "object"
+        )
+        .filter((habilidad) => typeof habilidad.habilidadId === "string")
+        .map((habilidad) => ({
+          habilidadId: habilidad.habilidadId as string,
+          slot:
+            typeof habilidad.slot === "string"
+              ? (habilidad.slot as SlotHabilidad)
+              : null,
+        }))
+    : [];
+
+  const habilidadesPasivasEquipadas = habilidades
+    .filter(
+      (habilidad) =>
+        habilidad.slot === "pasiva_1" || habilidad.slot === "pasiva_2"
+    )
+    .map((habilidad) => habilidad.habilidadId);
+
   const estadisticas = calcularEstadisticasPersonaje(
     {
       clase: datos.clase,
@@ -259,17 +294,7 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
           ? datos.capacidadCarruajeMejoras
           : 0,
     },
-    Array.isArray(datos.habilidades)
-      ? datos.habilidades
-          .filter(
-            (habilidad): habilidad is { habilidadId: string } =>
-              !!habilidad &&
-              typeof habilidad === "object" &&
-              "habilidadId" in habilidad &&
-              typeof habilidad.habilidadId === "string"
-          )
-          .map((habilidad) => habilidad.habilidadId)
-      : []
+    habilidadesPasivasEquipadas
   );
 
   return {
@@ -297,6 +322,7 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
       typeof datos.capacidadCarruajeMejoras === "number"
         ? datos.capacidadCarruajeMejoras
         : 0,
+    habilidades,
     regeneracionDeVida: datos.regeneracionDeVida,
     nivel: datos.nivel,
     experiencia: typeof datos.experiencia === "number" ? datos.experiencia : 0,
@@ -308,6 +334,7 @@ function aplicarDatosJugador(
   datos: Record<string, unknown>
 ) {
   set({
+    nombreGremio: typeof datos.nombre === "string" ? datos.nombre : "",
     oro: datos.oro as number,
     madera: datos.madera as number,
     piedra: datos.piedra as number,
@@ -325,6 +352,7 @@ function aplicarDatosJugador(
 let solicitudJugadorId = 0;
 
 export const useGameStore = create<GameState>((set, get) => ({
+  nombreGremio: "",
   oro: 0,
   madera: 0,
   piedra: 0,
@@ -386,6 +414,7 @@ export const useGameStore = create<GameState>((set, get) => ({
 
       set({
         sesionActiva: true,
+        nombreGremio: typeof datos.nombre === "string" ? datos.nombre : "",
         oro: datos.oro as number,
         madera: datos.madera as number,
         piedra: datos.piedra as number,
