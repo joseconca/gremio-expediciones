@@ -704,6 +704,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     )
       return;
 
+    //todo: revisar que regeneración de vida funciona con decimales
     const nuevoHp = Math.min(
       personaje.hpMaximo,
       personaje.hpActual + personaje.regeneracionDeVida
