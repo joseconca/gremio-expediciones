@@ -3,7 +3,11 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { calcularDistanciaKm } from "@/lib/utils";
 import { resolverComercio } from "@/lib/expediciones/comercio";
-import { calcularEstadisticasPersonaje } from "@/lib/estadisticasPersonaje";
+import {
+  calcularEstadisticasPersonaje,
+  calcularModificadoresEquipo,
+} from "@/lib/estadisticasPersonaje";
+import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 
 export async function POST() {
   try {
@@ -19,6 +23,13 @@ export async function POST() {
         personaje: {
           include: {
             habilidades: true,
+            equipoEquipado: {
+              include: {
+                arma: true,
+                armadura: true,
+                accesorio: true,
+              },
+            },
           },
         },
         expedicionActiva: {
@@ -141,7 +152,23 @@ export async function POST() {
             },
           },
           include: {
-            personaje: true,
+            personaje: {
+              include: {
+                habilidades: true,
+                inventario: {
+                  include: {
+                    objetos: true,
+                  },
+                },
+                equipoEquipado: {
+                  include: {
+                    arma: true,
+                    armadura: true,
+                    accesorio: true,
+                  },
+                },
+              },
+            },
             expedicionActiva: true,
           },
         });
@@ -320,9 +347,13 @@ export async function POST() {
       destinoCoords.lng
     );
 
+    const equipo = obtenerEquipoDesdePersonaje(usuario.personaje);
+    const modificadoresEquipo = calcularModificadoresEquipo(equipo);
+
     const estadisticasPersonaje = calcularEstadisticasPersonaje(
       usuario.personaje,
-      usuario.personaje.habilidades.map((habilidad) => habilidad.habilidadId)
+      usuario.personaje.habilidades.map((habilidad) => habilidad.habilidadId),
+      modificadoresEquipo
     );
 
     const personajeComercio = {
@@ -412,7 +443,23 @@ export async function POST() {
           },
         },
         include: {
-          personaje: true,
+          personaje: {
+            include: {
+              habilidades: true,
+              inventario: {
+                include: {
+                  objetos: true,
+                },
+              },
+              equipoEquipado: {
+                include: {
+                  arma: true,
+                  armadura: true,
+                  accesorio: true,
+                },
+              },
+            },
+          },
           expedicionActiva: true,
         },
       });

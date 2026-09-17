@@ -34,6 +34,7 @@ const d6 = () => Math.floor(Math.random() * 6) + 1;
 export function resolverAtaqueJugador(combate: {
   jugadorAtaque: number;
   jugadorNivel: number;
+  jugadorDanoCritico: number;
   enemigoDefensa: number;
   enemigoNombre: string;
 }): AccionAnimadaCombate {
@@ -42,7 +43,10 @@ export function resolverAtaqueJugador(combate: {
   if (dado === 20) {
     const dano = Math.max(
       1,
-      (combate.jugadorAtaque + d6()) * 2 - combate.enemigoDefensa
+      Math.floor(
+        (combate.jugadorAtaque + d6()) * combate.jugadorDanoCritico -
+          combate.enemigoDefensa
+      )
     );
 
     return {
@@ -153,6 +157,7 @@ interface CombateParaHabilidad {
   jugadorHp: number;
   jugadorHpMaximo: number;
   jugadorProbCritico: number;
+  jugadorDanoCritico: number;
   enemigoDefensa: number;
   enemigoNombre: string;
 }
@@ -219,8 +224,8 @@ export function resolverHabilidadJugador(
 
       const esCritico = dado === 20 || Math.random() < probabilidadCritico;
 
-      const multiplicadorCritico = habilidad.multiplicadorCritico ?? 2;
-
+      const multiplicadorCritico = (combate.jugadorDanoCritico ?? 1.5) + (habilidad.multiplicadorCritico ?? 0);
+      
       const dano = esCritico
         ? Math.max(1, Math.floor(danoNormal * multiplicadorCritico))
         : danoNormal;

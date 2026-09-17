@@ -293,8 +293,13 @@ export async function POST(request: Request) {
 
     if (actor === "jugador") {
       if (accion === "atacar") {
-        accionAnimada = resolverAtaqueJugador(combate);
-
+        accionAnimada = resolverAtaqueJugador({
+          jugadorAtaque: combate.jugadorAtaque,
+          jugadorNivel: combate.jugadorNivel,
+          jugadorDanoCritico: combate.jugadorDanoCritico,
+          enemigoDefensa: combate.enemigoDefensa,
+          enemigoNombre: combate.enemigoNombre,
+        });
         enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
       } else {
         if (!habilidad) {
@@ -307,6 +312,7 @@ export async function POST(request: Request) {
         const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
           jugadorAtaque: combate.jugadorAtaque,
           jugadorProbCritico: combate.jugadorProbCritico,
+          jugadorDanoCritico: combate.jugadorDanoCritico,
           jugadorDefensa,
           jugadorNivel: combate.jugadorNivel,
           jugadorHp,

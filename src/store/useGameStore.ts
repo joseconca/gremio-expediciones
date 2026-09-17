@@ -16,6 +16,7 @@ import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
 } from "@/lib/estadisticasPersonaje";
+import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 
 const EDIFICIOS_BASE: Record<IdEdificio, Omit<Edificio, "nivel">> = {
@@ -158,6 +159,7 @@ export interface CombateActivo {
   jugadorDefensa: number;
   jugadorVelocidad: number;
   jugadorNivel: number;
+  jugadorDanoCritico: number;
 
   oroGanado: number;
   experienciaGanada: number;

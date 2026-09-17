@@ -6,7 +6,11 @@ import type { TipoMision } from "@/lib/tiposJuego";
 
 import { seleccionarEnemigoNormal } from "@/lib/expediciones/normal";
 import { seleccionarJefeElite } from "@/lib/expediciones/elite";
-import { calcularEstadisticasPersonaje } from "@/lib/estadisticasPersonaje";
+import {
+  calcularEstadisticasPersonaje,
+  calcularModificadoresEquipo,
+} from "@/lib/estadisticasPersonaje";
+import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 
 export async function POST() {
   try {
@@ -22,6 +26,13 @@ export async function POST() {
         personaje: {
           include: {
             habilidades: true,
+            equipoEquipado: {
+              include: {
+                arma: true,
+                armadura: true,
+                accesorio: true,
+              },
+            },
           },
         },
         expedicionActiva: {
@@ -145,9 +156,13 @@ export async function POST() {
     const enemigoProbCritico = /*monstruoBase.probCritico ??*/ 0.05;
     const enemigoNivel = /*monstruoBase.nivel ??*/ 1;
 
+    const equipo = obtenerEquipoDesdePersonaje(personaje);
+    const modificadoresEquipo = calcularModificadoresEquipo(equipo);
+
     const estadisticasJugador = calcularEstadisticasPersonaje(
       personaje,
-      personaje.habilidades.map((habilidad) => habilidad.habilidadId)
+      personaje.habilidades.map((habilidad) => habilidad.habilidadId),
+      modificadoresEquipo
     );
     const jugadorHp = Math.max(1, personaje.hpActual);
     const jugadorHpMaximo = estadisticasJugador.total.hpMaximo;
@@ -156,6 +171,8 @@ export async function POST() {
     const jugadorVelocidad = estadisticasJugador.total.velocidad;
     const jugadorNivel = personaje.nivel;
     const jugadorProbCritico = estadisticasJugador.total.probCritico;
+    const jugadorDanoCritico = estadisticasJugador.total.danoCritico;
+
 
     const primerTurno =
       jugadorVelocidad >= enemigoVelocidad ? "jugador" : "enemigo";
@@ -193,6 +210,7 @@ export async function POST() {
           jugadorDefensa,
           jugadorVelocidad,
           jugadorProbCritico,
+          jugadorDanoCritico,
           jugadorNivel,
 
           oroGanado: 0,
@@ -225,6 +243,18 @@ export async function POST() {
         personaje: {
           include: {
             habilidades: true,
+            inventario: {
+              include: {
+                objetos: true,
+              },
+            },
+            equipoEquipado: {
+              include: {
+                arma: true,
+                armadura: true,
+                accesorio: true,
+              },
+            },
           },
         },
         expedicionActiva: {

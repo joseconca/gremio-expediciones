@@ -175,6 +175,7 @@ model CombateActivo {
   jugadorDefensa  Int
   jugadorVelocidad Int
   jugadorProbCritico  Float
+  jugadorDanoCritico Float
   jugadorNivel    Int
 
   oroGanado         Int @default(0)

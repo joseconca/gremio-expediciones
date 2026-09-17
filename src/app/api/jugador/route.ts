@@ -2,7 +2,11 @@ import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { sincronizarRegeneracion } from "@/lib/regeneracion";
-import { calcularEstadisticasPersonaje } from "@/lib/estadisticasPersonaje";
+import {
+  calcularEstadisticasPersonaje,
+  calcularModificadoresEquipo,
+} from "@/lib/estadisticasPersonaje";
+import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 
 export const dynamic = "force-dynamic";
 
@@ -53,7 +57,13 @@ export async function GET() {
     });
 
     if (usuario.personaje) {
-      usuario.personaje = await sincronizarRegeneracion(usuario.personaje);
+      const equipo = obtenerEquipoDesdePersonaje(usuario.personaje);
+      const modificadoresEquipo = calcularModificadoresEquipo(equipo);
+
+      usuario.personaje = await sincronizarRegeneracion(
+        usuario.personaje,
+        modificadoresEquipo
+      );
     }
 
     const expedicionesEntrantes = await prisma.expedicionActiva.findMany({
@@ -91,6 +101,13 @@ export async function GET() {
                 habilidadId: true,
               },
             },
+            equipoEquipado: {
+              include: {
+                arma: true,
+                armadura: true,
+                accesorio: true,
+              },
+            },
           },
         },
       },
@@ -107,10 +124,16 @@ export async function GET() {
       const personaje = origen?.personaje;
 
       const estadisticas = personaje
-        ? calcularEstadisticasPersonaje(
-            personaje,
-            personaje.habilidades.map((habilidad) => habilidad.habilidadId)
-          )
+        ? (() => {
+            const equipo = obtenerEquipoDesdePersonaje(personaje);
+            const modificadoresEquipo = calcularModificadoresEquipo(equipo);
+
+            return calcularEstadisticasPersonaje(
+              personaje,
+              personaje.habilidades.map((habilidad) => habilidad.habilidadId),
+              modificadoresEquipo
+            );
+          })()
         : null;
 
       return {
