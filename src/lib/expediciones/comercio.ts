@@ -15,11 +15,17 @@ interface PersonajeCombate {
 function simularRuta(
   distanciaKm: number,
   personaje: PersonajeCombate,
+  afinidad: number,
   esVuelta: boolean = false
 ) {
   const log: string[] = [];
   let hpTemporal = personaje.hpActual;
   let oroExtra = 0;
+  const afinidadSegura = Math.max(0, Math.min(afinidad, 100));
+
+  // Una relación de confianza reduce ligeramente el riesgo de emboscadas.
+  const probEmboscada = 0.2 - afinidadSegura * 0.0005;
+  const probMalClima = 0.2;
 
   // Hay un evento posible por cada 50km recorridos
   const tramos = Math.max(1, Math.floor(distanciaKm / 50));
@@ -30,7 +36,7 @@ function simularRuta(
     const tirada = Math.random();
 
     // 20% de probabilidad de emboscada de bandidos
-    if (tirada < 0.2) {
+    if (tirada < probEmboscada) {
       const dano = Math.floor(Math.random() * hpTemporal * 1.5);
       hpTemporal -= dano;
       log.push(
@@ -40,13 +46,13 @@ function simularRuta(
       );
 
       //Mal clima
-    } else if (tirada < 0.4) {
+    } else if (tirada < probEmboscada + probMalClima) {
       log.push(
         `🌧️ Lluvias torrenciales embarran el camino. El avance es lento y agotador.`
       );
       hpTemporal -= 0.2 * hpTemporal;
     } else if (tirada > 0.9 && !esVuelta) {
-      const oroEncontrado = 5 * i;
+      const oroEncontrado = 5 * (i + afinidadSegura);
       oroExtra += oroEncontrado;
       log.push(
         `✨ Encuentras los restos de una caravana antigua y recoges algunos materiales útiles. Obtienes ${oroEncontrado} de oro extra.`
@@ -76,10 +82,14 @@ export function resolverComercio(
   );
 
   // --- 1. VIAJE DE IDA ---
-  const resultadoIda = simularRuta(distanciaKm, {
-    ...personaje,
-    hpActual: hpTemporal,
-  });
+  const resultadoIda = simularRuta(
+    distanciaKm,
+    {
+      ...personaje,
+      hpActual: hpTemporal,
+    },
+    afinidad
+  );
   logCombate.push(...resultadoIda.logRuta);
   hpTemporal = resultadoIda.hpFinal;
 
@@ -109,26 +119,40 @@ export function resolverComercio(
   );
 
   // --- 3. NEGOCIACIÓN Y CÁLCULO DE ORO ---
-  const multiplicadorNivel = 1 + (personaje.nivel || 1) * 0.1;
-  const oroBase = Math.floor((distanciaKm * 1.5 + 10) * multiplicadorNivel);
-  const bonusAfinidad = Math.min(afinidad * 0.01, nivelMercado);
-  const extraAfinidad =
-    bonusAfinidad > 0 ? Math.max(1, Math.floor(oroBase * bonusAfinidad)) : 0;
-  const capacidadCarruaje = personaje.capacidadCarruaje;
+  const nivelPersonaje = Math.max(1, personaje.nivel ?? 1);
+  const nivelMercadoSeguro = Math.max(0, nivelMercado);
+
+  const afinidadSegura = Math.max(0, Math.min(afinidad, 100));
+  const porcentajeAfinidad = afinidadSegura / 100;
+
+  // El nivel del personaje aumenta progresivamente el valor de los negocios.
+  const multiplicadorNivel = 1 + (nivelPersonaje - 1) * 0.08;
+
+  // El Mercado mejora ligeramente el valor base de las operaciones.
+  const multiplicadorMercado = 1 + Math.max(0, nivelMercadoSeguro - 1) * 0.1;
+
+  const oroBase = Math.floor(
+    (distanciaKm * 2 + 20) * multiplicadorNivel * multiplicadorMercado
+  );
+
+  const bonusAfinidad = 0.5 * nivelMercadoSeguro * porcentajeAfinidad ** 2;
+
+  const capacidadExtra = Math.max(0, personaje.capacidadCarruaje - 10);
+
+  const multiplicadorCapacidad = 1 + capacidadExtra * 0.05;
 
   let oroFinal = Math.floor(
-    (oroBase + extraAfinidad + oroDeEventos) * (0.9 + 0.1 * capacidadCarruaje)
+    (oroBase + oroDeEventos) * (1 + bonusAfinidad) * multiplicadorCapacidad
   );
 
-  if (personaje.clase === "Comerciante" || personaje.clase === "Mercader")
-    oroFinal = Math.floor(oroFinal * 1.1);
-
+  if (personaje.clase === "Comerciante" || personaje.clase === "Mercader") {
+    oroFinal = Math.floor(oroFinal * 1.15);
+  }
   logCombate.push(
-    `⚖️ Las negociaciones son un éxito. El vínculo comercial otorga un bono del ${(
+    `⚖️ Las negociaciones son un éxito. La afinidad con "${nombreBaseAliada}" aporta un bono del ${(
       bonusAfinidad * 100
-    ).toFixed(1)}%. Se consiguen ${oroFinal} 🪙 en bienes.`
+    ).toFixed(1)}%. Se consigue ${oroFinal} 🪙 en bienes.`
   );
-
   // --- 4. VIAJE DE VUELTA ---
   logCombate.push(
     `🗺️ Con el carro lleno, comienza el peligroso viaje de regreso a casa...`
@@ -136,6 +160,7 @@ export function resolverComercio(
   const resultadoVuelta = simularRuta(
     distanciaKm,
     { ...personaje, hpActual: hpTemporal },
+    afinidad,
     true
   );
   logCombate.push(...resultadoVuelta.logRuta);
