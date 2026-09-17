@@ -10,6 +10,18 @@ const includeGameData = {
   personaje: {
     include: {
       habilidades: true,
+      inventario: {
+        include: {
+          objetos: true,
+        },
+      },
+      equipoEquipado: {
+        include: {
+          arma: true,
+          armadura: true,
+          accesorio: true,
+        },
+      },
     },
   },
   expedicionActiva: { include: { combateActivo: true } },

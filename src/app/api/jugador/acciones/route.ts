@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
+
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { sincronizarRegeneracion } from "@/lib/regeneracion";
@@ -13,6 +14,7 @@ import {
 import type { IdAtributo, IdEdificio } from "@/lib/configuracionJuego";
 import { type ClasePersonaje } from "@/lib/tiposJuego";
 import { calcularEstadisticasPersonaje } from "@/lib/estadisticasPersonaje";
+import { asegurarInventarioYEquipo } from "@/lib/inventario";
 
 const CLASES = new Set(["Guerrero", "Explorador", "Comerciante"]);
 const SEXOS = new Set(["chico", "chica"]);
@@ -21,6 +23,18 @@ const includeGameData = {
   personaje: {
     include: {
       habilidades: true,
+      inventario: {
+        include: {
+          objetos: true,
+        },
+      },
+      equipoEquipado: {
+        include: {
+          arma: true,
+          armadura: true,
+          accesorio: true,
+        },
+      },
     },
   },
   expedicionActiva: true,
@@ -91,33 +105,46 @@ export async function POST(request: Request) {
       const clasePersonaje = clase as ClasePersonaje;
       const estadisticasBase = calcularEstadisticasBase(clasePersonaje, 1);
 
-      const usuario = await prisma.usuario.update({
-        where: { id: usuarioSesion.id },
-        data: {
-          personaje: {
-            upsert: {
-              create: {
-                nombre,
-                clase,
-                sexo,
-                estado: "ocioso",
+      const usuario = await prisma.$transaction(async (tx) => {
+        const usuarioActualizado = await tx.usuario.update({
+          where: { id: usuarioSesion.id },
+          data: {
+            personaje: {
+              upsert: {
+                create: {
+                  nombre,
+                  clase,
+                  sexo,
+                  estado: "ocioso",
 
-                hpActual: Math.floor(estadisticasBase.hpMaximo),
+                  hpActual: Math.floor(estadisticasBase.hpMaximo),
 
-                velocidadMejoras: 0,
-                capacidadCarruajeMejoras: 0,
+                  velocidadMejoras: 0,
+                  capacidadCarruajeMejoras: 0,
 
-                regeneracionDeVida: 1,
+                  regeneracionDeVida: 1,
 
-                nivel: 1,
-                experiencia: 0,
+                  nivel: 1,
+                  experiencia: 0,
+                },
+                update: { nombre, clase, sexo },
               },
-              update: { nombre, clase, sexo },
             },
           },
-        },
-        include: includeGameData,
+          include: includeGameData,
+        });
+
+        if (!usuarioActualizado.personaje) {
+          throw new Error("No se pudo crear el personaje.");
+        }
+
+        await asegurarInventarioYEquipo(tx, usuarioActualizado.personaje.id);
+        return tx.usuario.findUniqueOrThrow({
+          where: { id: usuarioActualizado.id },
+          include: includeGameData,
+        });
       });
+
       return NextResponse.json(respuestaUsuario(usuario));
     }
 

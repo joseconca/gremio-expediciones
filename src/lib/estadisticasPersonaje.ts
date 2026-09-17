@@ -1,6 +1,7 @@
-import type { DefinicionHabilidad } from "./tiposJuego";
+import type { DefinicionHabilidad, EquipoPersonaje } from "./tiposJuego";
 import { calcularEstadisticasBase } from "./configuracionJuego";
 import { obtenerHabilidadPorId } from "./habilidades";
+import { calcularEstadisticasObjeto } from "./objetos";
 
 export interface DatosPersonajeEstadisticas {
   clase: string;
@@ -66,6 +67,38 @@ function sumarModificadores(
       0
     ),
   };
+}
+
+export function calcularModificadoresEquipo(
+  equipo: EquipoPersonaje
+): ModificadoresEstadisticas {
+  const modificadores: ModificadoresEstadisticas[] = [];
+
+  if (equipo.arma) {
+    modificadores.push(
+      calcularEstadisticasObjeto(equipo.arma.objeto, equipo.arma.nivelMejora)
+    );
+  }
+
+  if (equipo.armadura) {
+    modificadores.push(
+      calcularEstadisticasObjeto(
+        equipo.armadura.objeto,
+        equipo.armadura.nivelMejora
+      )
+    );
+  }
+
+  if (equipo.accesorio) {
+    modificadores.push(
+      calcularEstadisticasObjeto(
+        equipo.accesorio.objeto,
+        equipo.accesorio.nivelMejora
+      )
+    );
+  }
+
+  return sumarModificadores(...modificadores);
 }
 
 function obtenerModificadoresPasivas(

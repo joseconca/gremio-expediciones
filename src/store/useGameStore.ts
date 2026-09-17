@@ -5,12 +5,18 @@ import {
   CONFIGURACION_EDIFICIOS,
 } from "@/lib/configuracionJuego";
 import type {
+  EquipoPersonaje,
+  ObjetoInventario,
   ReporteExpedicion,
   ResultadoExpedicion,
   SlotHabilidad,
 } from "@/lib/tiposJuego";
 import type { IdEdificio } from "@/lib/configuracionJuego";
-import { calcularEstadisticasPersonaje } from "@/lib/estadisticasPersonaje";
+import {
+  calcularEstadisticasPersonaje,
+  calcularModificadoresEquipo,
+} from "@/lib/estadisticasPersonaje";
+import { obtenerObjetoPorId } from "@/lib/objetos";
 
 const EDIFICIOS_BASE: Record<IdEdificio, Omit<Edificio, "nivel">> = {
   taberna: {
@@ -102,12 +108,17 @@ export interface Personaje {
 
   habilidades: HabilidadPersonaje[];
 
+  inventario: ObjetoInventario[];
+  equipo: EquipoPersonaje;
+
   // Estadísticas calculadas
   hpMaximo: number;
   ataque: number;
   defensa: number;
   velocidad: number;
   capacidadCarruaje: number;
+  probCritico: number;
+  danoCritico: number;
 }
 
 export interface DatosReclutamiento {
@@ -240,6 +251,40 @@ async function ejecutarAccion(
   return resultado;
 }
 
+function construirObjetoInventario(
+  datosObjeto: unknown
+): ObjetoInventario | null {
+  if (!datosObjeto || typeof datosObjeto !== "object") {
+    return null;
+  }
+
+  const datos = datosObjeto as Record<string, unknown>;
+
+  if (
+    typeof datos.id !== "string" ||
+    typeof datos.objetoId !== "string" ||
+    typeof datos.cantidad !== "number" ||
+    typeof datos.nivelMejora !== "number"
+  ) {
+    return null;
+  }
+
+  const objeto = obtenerObjetoPorId(datos.objetoId);
+
+  if (!objeto) {
+    console.warn(`Objeto no encontrado: ${datos.objetoId}`);
+    return null;
+  }
+
+  return {
+    id: datos.id,
+    objetoId: datos.objetoId,
+    cantidad: datos.cantidad,
+    nivelMejora: datos.nivelMejora,
+    objeto,
+  };
+}
+
 function construirPersonaje(datosPersonaje: unknown): Personaje | null {
   if (!datosPersonaje || typeof datosPersonaje !== "object") {
     return null;
@@ -280,6 +325,52 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     )
     .map((habilidad) => habilidad.habilidadId);
 
+  const inventario: ObjetoInventario[] =
+    datos.inventario &&
+    typeof datos.inventario === "object" &&
+    !Array.isArray(datos.inventario)
+      ? (() => {
+          const datosInventario = datos.inventario as Record<string, unknown>;
+
+          if (!Array.isArray(datosInventario.objetos)) {
+            return [];
+          }
+
+          return datosInventario.objetos
+            .map(construirObjetoInventario)
+            .filter((objeto): objeto is ObjetoInventario => objeto !== null);
+        })()
+      : [];
+
+  const datosEquipo =
+    datos.equipoEquipado &&
+    typeof datos.equipoEquipado === "object" &&
+    !Array.isArray(datos.equipoEquipado)
+      ? (datos.equipoEquipado as Record<string, unknown>)
+      : {};
+
+  const buscarObjetoInventario = (valor: unknown): ObjetoInventario | null => {
+    if (!valor || typeof valor !== "object" || Array.isArray(valor)) {
+      return null;
+    }
+
+    const datosObjeto = valor as Record<string, unknown>;
+
+    if (typeof datosObjeto.id !== "string") {
+      return null;
+    }
+
+    return inventario.find((objeto) => objeto.id === datosObjeto.id) ?? null;
+  };
+
+  const equipo: EquipoPersonaje = {
+    arma: buscarObjetoInventario(datosEquipo.arma),
+    armadura: buscarObjetoInventario(datosEquipo.armadura),
+    accesorio: buscarObjetoInventario(datosEquipo.accesorio),
+  };
+
+  const modificadoresEquipo = calcularModificadoresEquipo(equipo);
+
   const estadisticas = calcularEstadisticasPersonaje(
     {
       clase: datos.clase,
@@ -291,7 +382,8 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
           ? datos.capacidadCarruajeMejoras
           : 0,
     },
-    habilidadesPasivasEquipadas
+    habilidadesPasivasEquipadas,
+    modificadoresEquipo
   );
 
   return {
@@ -309,6 +401,8 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     defensa: estadisticas.total.defensa,
     velocidad: estadisticas.total.velocidad,
     capacidadCarruaje: estadisticas.total.capacidadCarruaje,
+    probCritico: estadisticas.total.probCritico,
+    danoCritico: estadisticas.total.danoCritico,
     velocidadMejoras:
       typeof datos.velocidadMejoras === "number" ? datos.velocidadMejoras : 0,
     capacidadCarruajeMejoras:
@@ -316,6 +410,8 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
         ? datos.capacidadCarruajeMejoras
         : 0,
     habilidades,
+    inventario,
+    equipo,
     regeneracionDeVida: datos.regeneracionDeVida,
     nivel: datos.nivel,
     experiencia: typeof datos.experiencia === "number" ? datos.experiencia : 0,
