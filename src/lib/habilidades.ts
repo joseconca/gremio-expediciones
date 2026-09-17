@@ -17,7 +17,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     efecto: "dano",
     animacion: "ofensiva_potenciada",
     multiplicadorDano: 1.5,
-    multiplicadorCritico: 2,
+    multiplicadorCritico: 0.5,
   },
 
   {
@@ -32,7 +32,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     efecto: "dano",
     animacion: "ofensiva_potenciada",
     multiplicadorDano: 1.2,
-    multiplicadorCritico: 2,
+    multiplicadorCritico: 0.25,
     probabilidadCritico: 0.25,
   },
 
@@ -93,7 +93,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     efecto: "dano",
     animacion: "ofensiva_potenciada",
     multiplicadorDano: 2.2,
-    multiplicadorCritico: 1.5,
+    multiplicadorCritico: 0.5,
   },
 
   // ============================================================

@@ -520,6 +520,21 @@ export async function POST(request: Request) {
 
     if (jugadorHp <= 0) {
       log.push(`💀 El aventurero cae derrotado.`);
+      const enemigo = obtenerEnemigoPorId(combate.enemigoId);
+
+      if (!enemigo) {
+        return NextResponse.json(
+          { error: "No se encontró el enemigo del combate." },
+          { status: 500 }
+        );
+      }
+
+      const oroTotalPosible =
+        Math.max(0, expedicion.recompensa) + Math.max(0, enemigo.botin);
+
+      const oroAsegurado = Math.floor(oroTotalPosible / 5);
+
+      log.push(`💰 Antes de caer, consigues asegurar ${oroAsegurado} 🪙.`);
 
       const resultado = await prisma.$transaction(async (tx) => {
         const actualizacionCombate = await tx.combateActivo.updateMany({
@@ -535,8 +550,8 @@ export async function POST(request: Request) {
             efectos,
             fase: "derrota",
             turno: "jugador",
-            oroGanado: 0,
-            experienciaGanada: 0,
+            oroGanado: oroAsegurado,
+            experienciaGanada: 1,
             log,
             version: {
               increment: 1,

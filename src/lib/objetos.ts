@@ -69,7 +69,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     descripcion: "Una espada sencilla pero fiable.",
     rareza: "comun",
     precio: 100,
-    ataqueBase: 3,
+    ataqueBase: 4,
     ataquePorMejora: 1,
   },
 
@@ -80,8 +80,8 @@ export const OBJETOS: DefinicionObjeto[] = [
     subtipo: "espada",
     descripcion: "Una espada resistente y bien equilibrada.",
     rareza: "poco_comun",
-    precio: 250,
-    ataqueBase: 7,
+    precio: 1250,
+    ataqueBase: 9,
     ataquePorMejora: 2,
   },
 
@@ -92,9 +92,9 @@ export const OBJETOS: DefinicionObjeto[] = [
     subtipo: "espada",
     descripcion: "Una espada imbuida con poder mágico.",
     rareza: "raro",
-    precio: 600,
-    ataqueBase: 12,
-    ataquePorMejora: 3,
+    precio: 4600,
+    ataqueBase: 10,
+    ataquePorMejora: 2.5,
     velocidadPorMejora: 0.5,
   },
 
@@ -109,7 +109,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     descripcion: "Protección ligera para aventureros.",
     rareza: "comun",
     precio: 100,
-    defensaBase: 3,
+    defensaBase: 4,
     defensaPorMejora: 1,
   },
 
@@ -119,10 +119,10 @@ export const OBJETOS: DefinicionObjeto[] = [
     tipo: "armadura",
     descripcion: "Una armadura pesada y resistente.",
     rareza: "poco_comun",
-    precio: 250,
-    defensaBase: 7,
+    precio: 1250,
+    defensaBase: 9,
     defensaPorMejora: 2,
-    velocidadBase: -3,
+    velocidadBase: -2,
   },
 
   {
@@ -131,10 +131,10 @@ export const OBJETOS: DefinicionObjeto[] = [
     tipo: "armadura",
     descripcion: "Protección de gran calidad.",
     rareza: "raro",
-    precio: 600,
+    precio: 4600,
     defensaBase: 12,
     defensaPorMejora: 3,
-    velocidadBase: -5,
+    velocidadBase: -4,
   },
 
   // ============================================================

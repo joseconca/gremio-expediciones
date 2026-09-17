@@ -80,37 +80,38 @@ export function calcularEstadisticasBase(
   nivel: number
 ): EstadisticasBasePersonaje {
   const nivelSeguro = Math.max(1, nivel);
+  const nivelesExtra = nivelSeguro - 1;
 
   switch (clase) {
     case "Guerrero":
       return {
-        hpMaximo: 100 + nivelSeguro * 12,
-        ataque: 6 + nivelSeguro * 1.2,
-        defensa: 8 + nivelSeguro * 1.4,
-        velocidad: 4 + nivelSeguro * 0.6,
-        capacidadCarruaje: 10 + nivelSeguro,
+        hpMaximo: 90 + nivelesExtra * 12,
+        ataque: 7 + nivelesExtra * 1.4,
+        defensa: 8 + nivelesExtra * 1.3,
+        velocidad: 5 + nivelesExtra * 0.5,
+        capacidadCarruaje: 10 + nivelesExtra,
         probCritico: 0.05,
         danoCritico: 1.5,
       };
 
     case "Explorador":
       return {
-        hpMaximo: 85 + nivelSeguro * 9,
-        ataque: 5 + nivelSeguro,
-        defensa: 5 + nivelSeguro * 0.9,
-        velocidad: 8 + nivelSeguro * 1.2,
-        capacidadCarruaje: 10 + nivelSeguro,
+        hpMaximo: 75 + nivelesExtra * 9,
+        ataque: 6.5 + nivelesExtra * 1.25,
+        defensa: 4 + nivelesExtra * 0.9,
+        velocidad: 9 + nivelesExtra,
+        capacidadCarruaje: 10 + nivelesExtra,
         probCritico: 0.05,
         danoCritico: 1.5,
       };
 
     case "Comerciante":
       return {
-        hpMaximo: 90 + nivelSeguro * 10,
-        ataque: 5 + nivelSeguro,
-        defensa: 5 + nivelSeguro,
-        velocidad: 6 + nivelSeguro * 0.8,
-        capacidadCarruaje: 14 + nivelSeguro * 1.5,
+        hpMaximo: 80 + nivelesExtra * 10,
+        ataque: 6 + nivelesExtra * 1.05,
+        defensa: 5 + nivelesExtra,
+        velocidad: 7 + nivelesExtra * 0.7,
+        capacidadCarruaje: 14 + nivelesExtra * 1.5,
         probCritico: 0.05,
         danoCritico: 1.5,
       };
