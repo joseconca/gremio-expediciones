@@ -3,11 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
-import {
-  calcularEstadisticasBase,
-  obtenerSpriteHeroe,
-  experienciaParaNivel,
-} from "@/lib/configuracionJuego";
+import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import CabeceraEdificio from "@/components/CabeceraEdificio";
 
 const CLASES_INICIALES = [
@@ -60,10 +56,6 @@ export default function TabernaPage() {
   const [sexo, setSexo] = useState<"chico" | "chica">("chico");
   const [mensaje, setMensaje] = useState("");
   const [mostrarReclutamiento, setMostrarReclutamiento] = useState(false);
-  const estadisticasSeleccionadas = calcularEstadisticasBase(
-    claseSeleccionada.nombre as "Guerrero" | "Explorador" | "Comerciante",
-    1
-  );
 
   const handleReclutar = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,19 +67,9 @@ export default function TabernaPage() {
 
     try {
       await reclutarPersonaje({
-        nombre: nombre,
+        nombre: nombre.trim(),
         clase: claseSeleccionada.nombre,
         sexo,
-        hpActual: Math.floor(estadisticasSeleccionadas.hpMaximo),
-        estado: "ocioso",
-        ...estadisticasSeleccionadas,
-        ataqueMejoras: 0,
-        defensaMejoras: 0,
-        velocidadMejoras: 0,
-        capacidadCarruajeMejoras: 0,
-        regeneracionDeVida: 1,
-        nivel: 1,
-        experiencia: 0,
       });
     } catch (error) {
       setMensaje(
@@ -168,109 +150,63 @@ export default function TabernaPage() {
         <p className="mb-8 -mt-6 text-slate-400">{descripcionEdificio}</p>
 
         {personaje ? (
-          <div className="overflow-hidden rounded-xl border border-amber-500/25 bg-slate-800 shadow-2xl">
-            <div className="border-b border-slate-700 bg-gradient-to-r from-amber-950/60 via-slate-800 to-slate-900 p-6">
-              <div className="flex flex-col items-center gap-6 md:flex-row">
-                <div className="relative flex h-44 w-36 shrink-0 items-end justify-center overflow-hidden rounded-lg border-2 border-amber-500/60 bg-[radial-gradient(circle_at_50%_20%,#475569,#0f172a_70%)] shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
-                  <Image
-                    src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)}
-                    alt="Retrato del héroe"
-                    width={144}
-                    height={144}
-                    className="h-36 w-36 object-contain [image-rendering:pixelated]"
-                  />
-                  <span className="absolute left-2 top-2 rounded bg-slate-950/80 px-2 py-1 text-xs font-bold uppercase tracking-wider text-amber-400">
-                    Nivel {personaje.nivel || 1}
-                  </span>
-                  {personaje.estado === "descansando" && (
-                    <div className="absolute -top-3 -right-3 text-3xl animate-pulse">
-                      💤
-                    </div>
-                  )}
-                </div>
+          <div className="mx-auto max-w-2xl overflow-hidden rounded-xl border border-amber-500/25 bg-slate-800 shadow-2xl">
+            <div className="flex flex-col items-center gap-6 p-6 md:flex-row">
+              <div className="relative flex h-36 w-28 shrink-0 items-end justify-center overflow-hidden rounded-lg border-2 border-amber-500/60 bg-[radial-gradient(circle_at_50%_20%,#475569,#0f172a_70%)]">
+                <Image
+                  src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)}
+                  alt="Retrato del héroe"
+                  width={112}
+                  height={112}
+                  className="h-28 w-28 object-contain [image-rendering:pixelated]"
+                />
 
-                <div className="w-full flex-grow">
-                  <div className="mb-1 flex items-start justify-between gap-4">
-                    <h2 className="text-3xl font-black text-amber-400">
-                      {personaje.nombre}{" "}
-                      <span className="text-slate-400 text-lg font-normal">
-                        {personaje.sexo === "chica" ? "la" : "el"}{" "}
-                        {nombreClase(personaje.clase, personaje.sexo)}
-                      </span>
-                    </h2>
-                    <div className="whitespace-nowrap rounded-lg border border-amber-600/30 bg-slate-900 px-3 py-1 font-bold text-amber-400">
-                      🪙 {oro}
-                    </div>
-                  </div>
-                  <p className="mb-5 text-sm uppercase tracking-[0.2em] text-slate-500">
-                    Hoja del aventurero
-                  </p>
+                <span className="absolute left-2 top-2 rounded bg-slate-950/80 px-2 py-1 text-xs font-bold uppercase tracking-wider text-amber-400">
+                  Nivel {personaje.nivel}
+                </span>
 
-                  <div className="mb-2 flex justify-between text-xs font-bold uppercase tracking-wider text-slate-400">
-                    <span>Experiencia</span>
-                    <span>
-                      {personaje.experiencia || 0} /
-                      {experienciaParaNivel(personaje.nivel || 1)} XP
-                    </span>
+                {personaje.estado === "descansando" && (
+                  <div className="absolute -right-2 -top-2 text-2xl animate-pulse">
+                    💤
                   </div>
-                  <div className="h-3 overflow-hidden rounded-full border border-amber-500/20 bg-slate-950">
-                    <div
-                      className="h-full bg-gradient-to-r from-amber-700 to-amber-400 transition-all duration-500"
-                      style={{
-                        width: `${Math.min(
-                          100,
-                          ((personaje.experiencia || 0) /
-                            experienciaParaNivel(personaje.nivel || 1)) *
-                            100
-                        )}%`,
-                      }}
-                    />
-                  </div>
-                  <p className="mt-3 text-sm text-slate-400">
-                    {personaje.estado === "ocioso"
-                      ? "Listo para una nueva aventura."
-                      : personaje.estado === "de_viaje"
-                      ? "En ruta hacia tierras lejanas."
-                      : "Recuperándose junto al fuego."}
-                  </p>
-                </div>
+                )}
               </div>
-            </div>
 
-            <div className="grid grid-cols-2 gap-px border-b border-slate-700 bg-slate-700 sm:grid-cols-4">
-              {[
-                ["⚔️", "Ataque", personaje.ataque],
-                ["🛡️", "Defensa", personaje.defensa],
-                ["👟", "Velocidad", personaje.velocidad],
-                ["🛒", "Capacidad", personaje.capacidadCarruaje],
-              ].map(([icono, etiqueta, valor]) => (
-                <div key={etiqueta} className="bg-slate-900/90 p-4 text-center">
-                  <span className="block text-lg" aria-hidden="true">
-                    {icono}
-                  </span>
-                  <span className="block text-xs uppercase tracking-wider text-slate-500">
-                    {etiqueta}
-                  </span>
-                  <span className="text-xl font-black text-white">{valor}</span>
+              <div className="w-full flex-grow">
+                <div className="mb-1 flex items-center justify-between gap-4">
+                  <div>
+                    <h2 className="text-2xl font-black text-amber-400">
+                      {personaje.nombre}
+                    </h2>
+                    <p className="text-sm text-slate-400">
+                      {personaje.sexo === "chica" ? "La" : "El"}{" "}
+                      {nombreClase(personaje.clase, personaje.sexo)}
+                    </p>
+                  </div>
+
+                  <div className="whitespace-nowrap rounded-lg border border-amber-600/30 bg-slate-900 px-3 py-1 font-bold text-amber-400">
+                    🪙 {oro}
+                  </div>
                 </div>
-              ))}
-            </div>
 
-            <div className="p-6">
-              <div className="mb-6">
-                <div className="flex justify-between text-sm mb-1">
-                  <span className="text-slate-300 font-bold">Vida</span>
+                <p className="mb-5 text-sm uppercase tracking-[0.2em] text-slate-500">
+                  Descanso en la taberna
+                </p>
+
+                <div className="mb-2 flex justify-between text-sm font-bold">
+                  <span className="text-slate-300">Vida</span>
                   <span
-                    className={`${
+                    className={
                       personaje.hpActual <= 20
-                        ? "text-red-400 font-bold"
+                        ? "text-red-400"
                         : "text-emerald-400"
-                    }`}
+                    }
                   >
                     {personaje.hpActual} / {personaje.hpMaximo}
                   </span>
                 </div>
-                <div className="w-full bg-slate-900 rounded-full h-4 border border-slate-700 overflow-hidden">
+
+                <div className="mb-6 h-4 overflow-hidden rounded-full border border-slate-700 bg-slate-950">
                   <div
                     className={`h-full transition-all duration-500 ${
                       personaje.hpActual <= 20 ? "bg-red-600" : "bg-emerald-500"
@@ -278,29 +214,30 @@ export default function TabernaPage() {
                     style={{
                       width: `${Math.max(
                         0,
-                        (personaje.hpActual / personaje.hpMaximo) * 100
+                        Math.min(
+                          100,
+                          (personaje.hpActual / personaje.hpMaximo) * 100
+                        )
                       )}%`,
                     }}
-                  ></div>
+                  />
                 </div>
-              </div>
 
-              <div className="space-y-3">
                 {personaje.hpActual >= personaje.hpMaximo ? (
-                  <div className="w-full bg-slate-700/50 border border-slate-600 text-slate-400 font-bold py-3 px-4 rounded-lg flex justify-center items-center">
+                  <div className="w-full rounded-lg border border-slate-600 bg-slate-700/50 px-4 py-3 text-center font-bold text-slate-400">
                     Personaje completamente sano
                   </div>
                 ) : oro === 0 ? (
-                  <div className="w-full bg-red-900/30 border border-red-900/50 text-red-400 font-bold py-3 px-4 rounded-lg flex justify-center items-center">
+                  <div className="w-full rounded-lg border border-red-900/50 bg-red-900/30 px-4 py-3 text-center font-bold text-red-400">
                     No tienes oro para pagar el alojamiento
                   </div>
                 ) : (
                   <button
                     onClick={handleCurar}
-                    className={`w-full text-white font-bold py-3 px-4 rounded-lg flex justify-between items-center transition-all ${
+                    className={`flex w-full items-center justify-between rounded-lg border px-4 py-3 font-bold text-white transition-all ${
                       infoCura.aTope
-                        ? "bg-emerald-900/80 hover:bg-emerald-800 border-emerald-600 border shadow-[0_0_15px_rgba(16,185,129,0.2)]"
-                        : "bg-amber-900/80 hover:bg-amber-800 border-amber-600 border"
+                        ? "border-emerald-600 bg-emerald-900/80 shadow-[0_0_15px_rgba(16,185,129,0.2)] hover:bg-emerald-800"
+                        : "border-amber-600 bg-amber-900/80 hover:bg-amber-800"
                     }`}
                   >
                     <span>
@@ -308,7 +245,10 @@ export default function TabernaPage() {
                         ? "Cama premium y banquete"
                         : `Sopa rancia (TODO TU ORO POR CURAR ${infoCura.hpCurado} HP)`}
                     </span>
-                    <span className="text-amber-400">{infoCura.coste} 🪙</span>
+
+                    <span className="whitespace-nowrap text-amber-400">
+                      {infoCura.coste} 🪙
+                    </span>
                   </button>
                 )}
               </div>
@@ -354,56 +294,6 @@ export default function TabernaPage() {
                     <p className="text-slate-400 text-xs">
                       {clase.descripcion}
                     </p>
-                    <div className="mt-4 grid grid-cols-4 gap-1 border-t border-white/10 pt-3 text-center text-[10px] text-slate-300">
-                      <span>
-                        ⚔️{" "}
-                        {
-                          calcularEstadisticasBase(
-                            clase.nombre as
-                              | "Guerrero"
-                              | "Explorador"
-                              | "Comerciante",
-                            1
-                          ).ataque
-                        }
-                      </span>
-                      <span>
-                        🛡️{" "}
-                        {
-                          calcularEstadisticasBase(
-                            clase.nombre as
-                              | "Guerrero"
-                              | "Explorador"
-                              | "Comerciante",
-                            1
-                          ).defensa
-                        }
-                      </span>
-                      <span>
-                        👟{" "}
-                        {
-                          calcularEstadisticasBase(
-                            clase.nombre as
-                              | "Guerrero"
-                              | "Explorador"
-                              | "Comerciante",
-                            1
-                          ).velocidad
-                        }
-                      </span>
-                      <span>
-                        🛒{" "}
-                        {
-                          calcularEstadisticasBase(
-                            clase.nombre as
-                              | "Guerrero"
-                              | "Explorador"
-                              | "Comerciante",
-                            1
-                          ).capacidadCarruaje
-                        }
-                      </span>
-                    </div>
                   </div>
                 ))}
               </div>
