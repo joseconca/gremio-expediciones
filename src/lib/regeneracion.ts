@@ -1,5 +1,8 @@
 import { prisma } from "@/lib/prisma";
-import { calcularEstadisticasPersonaje } from "@/lib/estadisticasPersonaje";
+import {
+  calcularEstadisticasPersonaje,
+  type ModificadoresEstadisticas,
+} from "@/lib/estadisticasPersonaje";
 
 interface PersonajeRegen {
   id: string;
@@ -18,13 +21,15 @@ interface PersonajeRegen {
 }
 
 export async function sincronizarRegeneracion<T extends PersonajeRegen>(
-  personaje: T
+  personaje: T,
+  equipo?: ModificadoresEstadisticas
 ): Promise<T> {
   const ahora = new Date();
 
   const estadisticas = calcularEstadisticasPersonaje(
     personaje,
-    personaje.habilidades?.map((habilidad) => habilidad.habilidadId) ?? []
+    personaje.habilidades?.map((habilidad) => habilidad.habilidadId) ?? [],
+    equipo
   );
 
   const hpMaximo = estadisticas.total.hpMaximo;
