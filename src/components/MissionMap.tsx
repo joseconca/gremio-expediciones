@@ -13,6 +13,8 @@ import {
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
+import { calcularDistanciaKm } from "@/lib/utils";
+import { calcularOroBaseComercio } from "@/lib/expediciones/comercio";
 
 const campIcon = new L.Icon({
   iconUrl: "/sprites/buildings/camp.png",
@@ -259,7 +261,7 @@ export default function MissionMap({
                     lng: base.lng,
                     nombre: `Comerciar: ${base.nombre}`,
                     dificultad: 0,
-                    recompensa: base.nivel * 25,
+                    recompensa: calcularOroBaseComercio(calcularDistanciaKm(baseCoords.lat, baseCoords.lng, base.lat, base.lng)),
                     duracionObjetivoHoras: 0,
                     descripcion: `Envía a tu personaje a intercambiar bienes con el gremio de ${base.nombre}.`,
                   }),

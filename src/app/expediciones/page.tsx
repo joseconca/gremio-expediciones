@@ -272,7 +272,7 @@ export default function ExpedicionesPage() {
                     : "text-[#5e4838]"
                 }`}
               >
-                &quot;{misionSeleccionada.descripcion}&quot;
+                {misionSeleccionada.descripcion}
               </p>
             </div>
 

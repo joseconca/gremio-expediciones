@@ -63,6 +63,10 @@ function simularRuta(
   return { hpFinal: hpTemporal, logRuta: log, oroExtra };
 }
 
+export function calcularOroBaseComercio(distanciaKm: number) {
+  return Math.floor(distanciaKm * 2 + 20);
+}
+
 export function resolverComercio(
   personaje: PersonajeCombate,
   distanciaKm: number,
@@ -126,13 +130,13 @@ export function resolverComercio(
   const porcentajeAfinidad = afinidadSegura / 100;
 
   // El nivel del personaje aumenta progresivamente el valor de los negocios.
-  const multiplicadorNivel = 1 + (nivelPersonaje - 1) * 0.08;
+  const multiplicadorNivel = 1 + (nivelPersonaje - 1) * 0.05;
 
   // El Mercado mejora ligeramente el valor base de las operaciones.
   const multiplicadorMercado = 1 + Math.max(0, nivelMercadoSeguro - 1) * 0.1;
 
   const oroBase = Math.floor(
-    (distanciaKm * 2 + 20) * multiplicadorNivel * multiplicadorMercado
+    calcularOroBaseComercio(distanciaKm) * multiplicadorNivel * multiplicadorMercado
   );
 
   const bonusAfinidad = 0.5 * nivelMercadoSeguro * porcentajeAfinidad ** 2;
