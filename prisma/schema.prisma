@@ -76,52 +76,34 @@ model Inventario {
   objetos InventarioObjeto[]
 }
 
-model Objeto {
-  id          String @id @default(uuid())
-  nombre      String
-  tipo        String
-  descripcion String
-  rareza      String @default("comun")
-  precio      Int    @default(0)
-
-  ataqueBase       Int   @default(0)
-  defensaBase      Int   @default(0)
-  velocidadBase    Int   @default(0)
-  hpMaximoBase     Int   @default(0)
-  probCriticoBase  Float @default(0)
-  danoCriticoBase  Float @default(0)
-
-  inventarios         InventarioObjeto[]
-  armasEquipadas      EquipoEquipado[]   @relation("ArmaEquipadas")
-  armadurasEquipadas  EquipoEquipado[]   @relation("ArmaduraEquipadas")
-  accesoriosEquipados EquipoEquipado[]   @relation("AccesorioEquipadas")
-}
-
 model InventarioObjeto {
   id           String @id @default(uuid())
   inventarioId String
   objetoId     String
-  cantidad     Int    @default(0)
-  nivelMejora  Int    @default(0)
+  cantidad     Int @default(1)
+  nivelMejora  Int @default(0)
 
   inventario Inventario @relation(fields: [inventarioId], references: [id], onDelete: Cascade)
-  objeto     Objeto     @relation(fields: [objetoId], references: [id], onDelete: Cascade)
+
+  armaEquipadas      EquipoEquipado[] @relation("ArmaEquipada")
+  armaduraEquipadas  EquipoEquipado[] @relation("ArmaduraEquipada")
+  accesorioEquipadas EquipoEquipado[] @relation("AccesorioEquipada")
 
   @@unique([inventarioId, objetoId])
 }
 
 model EquipoEquipado {
-  id          String    @id @default(uuid())
-  personajeId String    @unique
+  id          String @id @default(uuid())
+  personajeId String @unique
   personaje   Personaje @relation(fields: [personajeId], references: [id], onDelete: Cascade)
 
-  armaId      String?
-  armaduraId  String?
-  accesorioId String?
+  armaInventarioId      String?
+  armaduraInventarioId  String?
+  accesorioInventarioId String?
 
-  arma      Objeto? @relation("ArmaEquipadas", fields: [armaId], references: [id])
-  armadura  Objeto? @relation("ArmaduraEquipadas", fields: [armaduraId], references: [id])
-  accesorio Objeto? @relation("AccesorioEquipadas", fields: [accesorioId], references: [id])
+  arma      InventarioObjeto? @relation("ArmaEquipada", fields: [armaInventarioId], references: [id], onDelete: SetNull)
+  armadura  InventarioObjeto? @relation("ArmaduraEquipada", fields: [armaduraInventarioId], references: [id], onDelete: SetNull)
+  accesorio InventarioObjeto? @relation("AccesorioEquipada", fields: [accesorioInventarioId], references: [id], onDelete: SetNull)
 }
 
 model HabilidadAprendida {

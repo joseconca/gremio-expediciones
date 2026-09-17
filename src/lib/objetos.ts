@@ -1,4 +1,34 @@
 import type { DefinicionObjeto } from "./tiposJuego";
+import type { ModificadoresEstadisticas } from "./estadisticasPersonaje";
+
+export function calcularEstadisticasObjeto(
+  objeto: DefinicionObjeto,
+  nivelMejora: number
+): ModificadoresEstadisticas {
+  const nivelSeguro = Math.max(0, Math.floor(nivelMejora));
+
+  return {
+    hpMaximo:
+      (objeto.hpMaximoBase ?? 0) +
+      (objeto.hpMaximoPorMejora ?? 0) * nivelSeguro,
+    ataque:
+      (objeto.ataqueBase ?? 0) + (objeto.ataquePorMejora ?? 0) * nivelSeguro,
+    defensa:
+      (objeto.defensaBase ?? 0) + (objeto.defensaPorMejora ?? 0) * nivelSeguro,
+    velocidad:
+      (objeto.velocidadBase ?? 0) +
+      (objeto.velocidadPorMejora ?? 0) * nivelSeguro,
+    capacidadCarruaje:
+      (objeto.capacidadCarruajeBase ?? 0) +
+      (objeto.capacidadCarruajePorMejora ?? 0) * nivelSeguro,
+    probCritico:
+      (objeto.probCriticoBase ?? 0) +
+      (objeto.probCriticoPorMejora ?? 0) * nivelSeguro,
+    danoCritico:
+      (objeto.danoCriticoBase ?? 0) +
+      (objeto.danoCriticoPorMejora ?? 0) * nivelSeguro,
+  };
+}
 
 export const OBJETOS: DefinicionObjeto[] = [
   // ============================================================
@@ -39,7 +69,8 @@ export const OBJETOS: DefinicionObjeto[] = [
     descripcion: "Una espada sencilla pero fiable.",
     rareza: "comun",
     precio: 100,
-    ataque: 3,
+    ataqueBase: 3,
+    ataquePorMejora: 1,
   },
 
   {
@@ -50,7 +81,8 @@ export const OBJETOS: DefinicionObjeto[] = [
     descripcion: "Una espada resistente y bien equilibrada.",
     rareza: "poco_comun",
     precio: 250,
-    ataque: 7,
+    ataqueBase: 7,
+    ataquePorMejora: 2,
   },
 
   {
@@ -61,7 +93,9 @@ export const OBJETOS: DefinicionObjeto[] = [
     descripcion: "Una espada imbuida con poder mágico.",
     rareza: "raro",
     precio: 600,
-    ataque: 12,
+    ataqueBase: 12,
+    ataquePorMejora: 3,
+    velocidadPorMejora: 0.5,
   },
 
   // ============================================================
@@ -75,7 +109,8 @@ export const OBJETOS: DefinicionObjeto[] = [
     descripcion: "Protección ligera para aventureros.",
     rareza: "comun",
     precio: 100,
-    defensa: 3,
+    defensaBase: 3,
+    defensaPorMejora: 1,
   },
 
   {
@@ -85,7 +120,9 @@ export const OBJETOS: DefinicionObjeto[] = [
     descripcion: "Una armadura pesada y resistente.",
     rareza: "poco_comun",
     precio: 250,
-    defensa: 7,
+    defensaBase: 7,
+    defensaPorMejora: 2,
+    velocidadBase: -3,
   },
 
   {
@@ -95,7 +132,9 @@ export const OBJETOS: DefinicionObjeto[] = [
     descripcion: "Protección de gran calidad.",
     rareza: "raro",
     precio: 600,
-    defensa: 12,
+    defensaBase: 12,
+    defensaPorMejora: 3,
+    velocidadBase: -5,
   },
 
   // ============================================================
@@ -109,7 +148,8 @@ export const OBJETOS: DefinicionObjeto[] = [
     descripcion: "Aumenta ligeramente la velocidad.",
     rareza: "poco_comun",
     precio: 200,
-    velocidad: 2,
+    velocidadBase: 2,
+    velocidadPorMejora: 0.5,
   },
 
   {
@@ -119,7 +159,27 @@ export const OBJETOS: DefinicionObjeto[] = [
     descripcion: "Aumenta la vida máxima del aventurero.",
     rareza: "raro",
     precio: 500,
-    hpMaximo: 20,
+    hpMaximoBase: 20,
+    hpMaximoPorMejora: 5,
+  },
+
+  {
+    id: "anillo_maldito",
+    nombre: "Anillo Maldito",
+    tipo: "accesorio",
+    descripcion: "Un anillo que maldice a su portador.",
+    rareza: "epico",
+    precio: 800,
+
+    ataqueBase: -10,
+    hpMaximoBase: -50,
+    defensaBase: -10,
+    velocidadBase: -10,
+
+    ataquePorMejora: 1.5,
+    hpMaximoPorMejora: 7.5,
+    defensaPorMejora: 1.5,
+    velocidadPorMejora: 1.5,
   },
 ];
 

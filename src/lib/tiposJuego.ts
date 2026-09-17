@@ -9,6 +9,7 @@ export type TipoObjeto =
   | "accesorio"
   | "material";
 
+/** RAREZA */
 export type Rareza =
   | "basico"
   | "comun"
@@ -17,6 +18,7 @@ export type Rareza =
   | "epico"
   | "legendario";
 
+/** HABILIDADES */
 export type TipoHabilidad = "activa" | "pasiva";
 
 export type EfectoHabilidadActiva = "dano" | "curacion" | "bonus_defensa";
@@ -45,6 +47,7 @@ export const SLOTS_HABILIDADES_PASIVAS: SlotHabilidad[] = [
   "pasiva_2",
 ];
 
+/** COMBATE */
 export type TipoAccionCombate =
   | "atacar"
   | "usar_objeto"
@@ -57,6 +60,7 @@ export type FaseExpedicion = "en_viaje" | "combatiendo" | "regresando";
 
 export type ResultadoExpedicion = "exito" | "derrota" | "cancelada";
 
+/** EXPEDICIONES */
 export type TipoReporteExpedicion = "combate" | "comercio";
 
 export interface ReporteExpedicionBase {
@@ -90,6 +94,7 @@ export interface ReporteComercio extends ReporteExpedicionBase {
 
 export type ReporteExpedicion = ReporteCombate | ReporteComercio;
 
+/** ENEMIGOS */
 export interface DefinicionEnemigo {
   id: string;
   nombre: string;
@@ -108,6 +113,7 @@ export interface DefinicionEnemigo {
   habilidadDropId?: string;
 }
 
+/** OBJETOS */
 export interface DefinicionObjeto {
   id: string;
   nombre: string;
@@ -120,10 +126,22 @@ export interface DefinicionObjeto {
   precio: number;
 
   /** Modificadores de equipo. */
-  ataque?: number;
-  defensa?: number;
-  velocidad?: number;
-  hpMaximo?: number;
+  ataqueBase?: number;
+  defensaBase?: number;
+  velocidadBase?: number;
+  hpMaximoBase?: number;
+  probCriticoBase?: number;
+  danoCriticoBase?: number;
+  capacidadCarruajeBase?: number;
+
+  /** Incremento por mejora de las estadísticas base. */
+  ataquePorMejora?: number;
+  defensaPorMejora?: number;
+  velocidadPorMejora?: number;
+  hpMaximoPorMejora?: number;
+  probCriticoPorMejora?: number;
+  danoCriticoPorMejora?: number;
+  capacidadCarruajePorMejora?: number;
 
   /** Efecto de un consumible de curación. */
   curacion?: number;
@@ -132,6 +150,21 @@ export interface DefinicionObjeto {
   limiteCantidad?: number;
 }
 
+export interface ObjetoInventario {
+  id: string;
+  objetoId: string;
+  cantidad: number;
+  nivelMejora: number;
+  objeto: DefinicionObjeto;
+}
+
+export interface EquipoPersonaje {
+  arma: ObjetoInventario | null;
+  armadura: ObjetoInventario | null;
+  accesorio: ObjetoInventario | null;
+}
+
+/** MAPA */
 export interface BaseMapa {
   id: string;
   nombre: string;
@@ -152,6 +185,7 @@ export interface Coordenadas {
   lng: number;
 }
 
+/** HABILIDADES */
 export interface DefinicionHabilidad {
   id: string;
   nombre: string;
@@ -200,6 +234,7 @@ export interface DefinicionHabilidad {
   probabilidadCritico?: number;
 }
 
+/** MISIONES */
 export interface DefinicionMision {
   id: string;
   tipo: TipoMision;
@@ -220,7 +255,7 @@ export interface DefinicionMision {
   /** Para identificar un boss concreto. */
   enemigoId?: string;
 }
-
+/** COMBATE */
 export interface EstadoEfectoCombate {
   id: string;
   nombre: string;
