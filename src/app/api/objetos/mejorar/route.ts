@@ -1,14 +1,8 @@
 import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { obtenerObjetoPorId } from "@/lib/objetos";
+import { obtenerObjetoPorId, calcularCosteMejoraObjeto } from "@/lib/objetos";
 
-function calcularCosteMejora(
-  precioObjeto: number,
-  nivelMejora: number
-): number {
-  return Math.ceil(precioObjeto * 5 * (nivelMejora + 1));
-}
 
 export async function POST(request: Request) {
   try {
@@ -143,7 +137,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const coste = calcularCosteMejora(
+    const coste = calcularCosteMejoraObjeto(
       objeto.precio,
       objetoInventario.nivelMejora
     );

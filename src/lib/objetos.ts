@@ -202,3 +202,10 @@ export function obtenerObjetosEquipables(): DefinicionObjeto[] {
     ["arma", "armadura", "accesorio"].includes(objeto.tipo)
   );
 }
+
+export function calcularCosteMejoraObjeto(
+  precioObjeto: number,
+  nivelMejora: number
+): number {
+  return Math.ceil(precioObjeto * 5 * (nivelMejora + 1));
+}
