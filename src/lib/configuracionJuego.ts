@@ -15,7 +15,7 @@ export const CONFIGURACION_EDIFICIOS = {
     nivelMax: 3,
     descripcion: "Compra armas y armaduras.",
     color: "bg-slate-600",
-    ruta: "/base/armeria",
+    ruta: "/base/herreria",
   },
   herreria: {
     nombre: "Herrería",

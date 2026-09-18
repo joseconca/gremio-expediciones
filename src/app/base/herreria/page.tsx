@@ -176,28 +176,19 @@ function obtenerDiferenciasMejora(
     .filter(({ valor }) => valor !== 0);
 }
 
-function formatearFecha(fecha: string): string {
-  const [anio, mes, dia] = fecha.split("-");
-
-  if (!anio || !mes || !dia) {
-    return fecha;
-  }
-
-  return `${dia}/${mes}/${anio}`;
-}
-
 export default function HerreriaPage() {
   const router = useRouter();
 
-  const {
-    personaje,
-    edificios,
-    oro,
-    cargarJugador,
-  } = useGameStore();
+  const { personaje, edificios, oro, cargarJugador } = useGameStore();
 
-  const nivelHerreria = edificios.herreria.nivel;
-  const descripcionEdificio = edificios.herreria.descripcion;
+  const armeria = edificios.armeria;
+  const herreria = edificios.herreria;
+
+  const nivelHerreria = herreria.nivel;
+  const nivelArmeria = armeria.nivel;
+
+  const descripcionArmeria = armeria.descripcion;
+  const descripcionHerreria = herreria.descripcion;
 
   const [datos, setDatos] = useState<DatosObjetos | null>(null);
   const [cargando, setCargando] = useState(true);
@@ -205,13 +196,7 @@ export default function HerreriaPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (nivelHerreria === 0) {
-      router.push("/base");
-    }
-  }, [nivelHerreria, router]);
-
-  useEffect(() => {
-    if (nivelHerreria === 0) {
+    if (nivelArmeria === 0) {
       return;
     }
 
@@ -227,9 +212,7 @@ export default function HerreriaPage() {
         const resultado = await respuesta.json();
 
         if (!respuesta.ok) {
-          setError(
-            resultado.error || "No se pudieron cargar los objetos."
-          );
+          setError(resultado.error || "No se pudieron cargar los objetos.");
           return;
         }
 
@@ -242,7 +225,7 @@ export default function HerreriaPage() {
     };
 
     void cargarObjetos();
-  }, [nivelHerreria]);
+  }, [nivelArmeria]);
 
   const recargarObjetos = async () => {
     try {
@@ -253,9 +236,7 @@ export default function HerreriaPage() {
       const resultado = await respuesta.json();
 
       if (!respuesta.ok) {
-        setError(
-          resultado.error || "No se pudieron actualizar los objetos."
-        );
+        setError(resultado.error || "No se pudieron actualizar los objetos.");
         return false;
       }
 
@@ -347,9 +328,7 @@ export default function HerreriaPage() {
       const resultado = await respuesta.json();
 
       if (!respuesta.ok) {
-        setError(
-          resultado.error || "No se pudo desequipar el objeto."
-        );
+        setError(resultado.error || "No se pudo desequipar el objeto.");
         return;
       }
 
@@ -416,7 +395,7 @@ export default function HerreriaPage() {
 
   const nivelMaximoMejora = nivelHerreria * 3;
 
-  if (!personaje || nivelHerreria === 0) {
+  if (!personaje || nivelArmeria === 0) {
     return null;
   }
 
@@ -439,55 +418,35 @@ export default function HerreriaPage() {
 
       <div className="relative z-10 mx-auto max-w-5xl animate-in fade-in">
         {/* ====================================================== */}
-        {/* CABECERA                                               */}
+        {/* CABECERA ARMERIA                                       */}
         {/* ====================================================== */}
 
         <CabeceraEdificio
           icono="🔨"
-          nombre="Herrería"
-          nivel={nivelHerreria}
+          nombre={armeria.nombre}
+          nivel={nivelArmeria}
         />
 
         <div className="-mt-6 mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <p className="text-[#9a9a96]">{descripcionEdificio}</p>
-
-          <div className="shrink-0 rounded-md border border-[#4b5053] bg-[#1a1d1f] px-4 py-2 shadow-lg">
-            <span className="text-[10px] font-black uppercase tracking-[0.18em] text-[#777d80]">
-              Oro disponible
-            </span>
-
-            <span className="ml-3 font-black text-amber-400">
-              {oro} 🪙
-            </span>
-          </div>
+          <p className="text-[#9a9a96]">{descripcionArmeria}</p>
         </div>
 
         {/* ====================================================== */}
-        {/* OFERTAS DEL DÍA                                        */}
+        {/* TIENDA                                                 */}
         {/* ====================================================== */}
 
         <section className="mb-8">
           <div className="mb-4 flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
             <div>
               <h2 className="text-xl font-black uppercase tracking-[0.08em] text-[#d8d4ce]">
-                Mercancía de hoy
+                Mercancía disponible
               </h2>
-
-              <p className="mt-1 text-sm text-[#73777a]">
-                Dos piezas llegan cada día a la Herrería.
-              </p>
             </div>
-
-            {datos && (
-              <span className="text-xs font-bold uppercase tracking-wider text-[#666b6e]">
-                Oferta del {formatearFecha(datos.fecha)}
-              </span>
-            )}
           </div>
 
           <div className="relative overflow-hidden rounded-lg border-2 border-[#353a3d] bg-[#1b1e20] shadow-[0_16px_36px_rgba(0,0,0,0.55)]">
             {/* Parte superior metálica */}
-            <div className="relative h-16 overflow-hidden border-b-2 border-[#454a4d] bg-[#292e31]">
+            {/*<div className="relative h-16 overflow-hidden border-b-2 border-[#454a4d] bg-[#292e31]">
               <div className="absolute inset-0 opacity-30 bg-[repeating-linear-gradient(115deg,transparent_0,transparent_22px,rgba(255,255,255,0.045)_23px,transparent_24px)]" />
 
               <div className="absolute inset-x-0 bottom-0 h-1 bg-[#16191b]" />
@@ -497,7 +456,7 @@ export default function HerreriaPage() {
                   Acero y hierro en venta
                 </span>
               </div>
-            </div>
+            </div>*/}
 
             <div className="p-4 md:p-5">
               {cargando ? (
@@ -565,17 +524,13 @@ export default function HerreriaPage() {
                         </div>
 
                         {/* Estadísticas */}
-                        <div className="flex-1 p-4">
-                          <p className="mb-3 text-[10px] font-black uppercase tracking-[0.2em] text-[#696f72]">
-                            Características
-                          </p>
-
-                          <div className="grid grid-cols-2 gap-2">
+                        <div className="flex-1 p-2">
+                          <div className="grid grid-cols-2 gap-1">
                             {obtenerEstadisticasNoCero(objeto, 0).map(
                               (estadistica) => (
                                 <div
                                   key={estadistica.clave}
-                                  className="rounded border border-[#363b3e] bg-[#181b1c] px-3 py-2"
+                                  className="rounded border border-[#363b3e] bg-[#181b1c] px-2 py-2"
                                 >
                                   <p className="text-[9px] font-black uppercase tracking-wider text-[#62686b]">
                                     {estadistica.nombre}
@@ -604,7 +559,7 @@ export default function HerreriaPage() {
                           {yaLoTiene ? (
                             <div className="flex h-12 items-center justify-center rounded border border-[#3d4647] bg-[#202526] px-4 text-center">
                               <span className="text-xs font-black uppercase tracking-[0.16em] text-[#7c8989]">
-                                ✓ Ya forma parte de tu inventario
+                                Ya lo tienes
                               </span>
                             </div>
                           ) : (
@@ -617,8 +572,7 @@ export default function HerreriaPage() {
                                 oro < objeto.precio
                               }
                               className={`flex h-12 w-full items-center justify-between rounded border-2 px-4 font-black transition-all ${
-                                oro >= objeto.precio &&
-                                !procesando
+                                oro >= objeto.precio && !procesando
                                   ? "border-[#8b7752] bg-[#51452f] text-[#eadbbd] shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_8px_rgba(0,0,0,0.3)] hover:border-[#b7a06c] hover:bg-[#635338] active:translate-y-px"
                                   : "cursor-not-allowed border-[#373c3e] bg-[#202324] text-[#5f6669]"
                               }`}
@@ -627,8 +581,8 @@ export default function HerreriaPage() {
                                 {comprando
                                   ? "Comprando..."
                                   : oro < objeto.precio
-                                    ? "Oro insuficiente"
-                                    : "Comprar pieza"}
+                                  ? "Oro insuficiente"
+                                  : "Comprar pieza"}
                               </span>
 
                               <span className="rounded border border-amber-700/40 bg-[#231d13] px-2 py-1 text-amber-400">
@@ -659,266 +613,260 @@ export default function HerreriaPage() {
         {/* ====================================================== */}
         {/* EQUIPO                                                   */}
         {/* ====================================================== */}
+        {nivelHerreria > 0 && (
+          <section className="mb-8 overflow-hidden rounded-lg border-2 border-[#353a3d] bg-[#1a1d1f] shadow-[0_14px_32px_rgba(0,0,0,0.5)]">
+            <div className="border-b-2 border-[#353a3d] bg-[#141718] p-6">
+              <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+                <div>
+                  <h2 className="text-2xl font-black uppercase tracking-[0.08em] text-[#ddd8cf]">
+                    Equipo del aventurero
+                  </h2>
 
-        <section className="mb-8 overflow-hidden rounded-lg border-2 border-[#353a3d] bg-[#1a1d1f] shadow-[0_14px_32px_rgba(0,0,0,0.5)]">
-          <div className="border-b-2 border-[#353a3d] bg-[#141718] p-6">
-            <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-              <div>
-                <h2 className="text-2xl font-black uppercase tracking-[0.08em] text-[#ddd8cf]">
-                  Equipo del aventurero
-                </h2>
+                  <p className="mt-1 text-xs text-[#707578]">
+                    Equipa las piezas de tu inventario para aplicar sus
+                    estadísticas.
+                  </p>
+                </div>
 
-                <p className="mt-1 text-xs text-[#707578]">
-                  Equipa las piezas de tu inventario para aplicar sus
-                  estadísticas.
-                </p>
-              </div>
-
-              <div className="rounded border border-[#42484b] bg-[#202426] px-3 py-2 text-[10px] font-black uppercase tracking-wider text-[#8a9093]">
-                {inventarioEquipable.length}{" "}
-                {inventarioEquipable.length === 1
-                  ? "pieza disponible"
-                  : "piezas disponibles"}
+                <div className="rounded border border-[#42484b] bg-[#202426] px-3 py-2 text-[10px] font-black uppercase tracking-wider text-[#8a9093]">
+                  {inventarioEquipable.length}{" "}
+                  {inventarioEquipable.length === 1
+                    ? "pieza disponible"
+                    : "piezas disponibles"}
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="grid grid-cols-1 gap-px bg-[#353a3d] lg:grid-cols-3">
-            {TIPOS_EQUIPAMIENTO.map((tipo) => {
-              const equipado = obtenerObjetoEquipado(tipo);
+            <div className="grid grid-cols-1 gap-px bg-[#353a3d] lg:grid-cols-3">
+              {TIPOS_EQUIPAMIENTO.map((tipo) => {
+                const equipado = obtenerObjetoEquipado(tipo);
 
-              const diferenciaMejora = equipado
-                ? obtenerDiferenciasMejora(
-                    equipado.objeto,
-                    equipado.nivelMejora
-                  )
-                : [];
+                const diferenciaMejora = equipado
+                  ? obtenerDiferenciasMejora(
+                      equipado.objeto,
+                      equipado.nivelMejora
+                    )
+                  : [];
 
-              const puedeMejorar =
-                equipado &&
-                (tipo === "arma" || tipo === "armadura") &&
-                equipado.nivelMejora < nivelMaximoMejora;
+                const puedeMejorar =
+                  equipado &&
+                  (tipo === "arma" || tipo === "armadura") &&
+                  equipado.nivelMejora < nivelMaximoMejora;
 
-              const costeMejora = equipado
-                ? calcularCosteMejoraObjeto(
-                    equipado.objeto.precio,
-                    equipado.nivelMejora
-                  )
-                : 0;
+                const costeMejora = equipado
+                  ? calcularCosteMejoraObjeto(
+                      equipado.objeto.precio,
+                      equipado.nivelMejora
+                    )
+                  : 0;
 
-              const mejorando =
-                equipado &&
-                procesando === `mejorar:${equipado.id}`;
+                const mejorando =
+                  equipado && procesando === `mejorar:${equipado.id}`;
 
-              const desequipando =
-                procesando === `desequipar:${tipo}`;
+                const desequipando = procesando === `desequipar:${tipo}`;
 
-              return (
-                <div
-                  key={tipo}
-                  className="bg-[#1c2021] p-5"
-                >
-                  <div className="mb-4 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl">{iconoTipo(tipo)}</span>
+                return (
+                  <div key={tipo} className="bg-[#1c2021] p-5">
+                    <div className="mb-4 flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">{iconoTipo(tipo)}</span>
 
-                      <div>
-                        <h3 className="text-sm font-black uppercase tracking-[0.18em] text-[#c7c7c2]">
-                          {nombreTipo(tipo)}
-                        </h3>
+                        <div>
+                          <h3 className="text-sm font-black uppercase tracking-[0.18em] text-[#c7c7c2]">
+                            {nombreTipo(tipo)}
+                          </h3>
 
-                        <p className="text-[10px] uppercase tracking-wider text-[#63696c]">
-                          Ranura de equipo
-                        </p>
+                          <p className="text-[10px] uppercase tracking-wider text-[#63696c]">
+                            Ranura de equipo
+                          </p>
+                        </div>
                       </div>
+
+                      <span className="text-lg text-[#50575a]">
+                        {equipado ? "◆" : "◇"}
+                      </span>
                     </div>
 
-                    <span className="text-lg text-[#50575a]">
-                      {equipado ? "◆" : "◇"}
-                    </span>
-                  </div>
-
-                  {equipado ? (
-                    <>
-                      <div className="rounded-md border border-[#4e5659] bg-[linear-gradient(135deg,#292e30,#1c2021)] p-4 shadow-[inset_0_0_20px_rgba(0,0,0,0.25)]">
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="min-w-0">
-                            <div className="flex flex-wrap items-center gap-2">
-                              <span
-                                className={`rounded border px-2 py-1 text-[9px] font-black uppercase tracking-widest ${estiloRareza(
-                                  equipado.objeto.rareza
-                                )}`}
-                              >
-                                {nombreRareza(equipado.objeto.rareza)}
-                              </span>
-
-                              <span className="rounded border border-[#555d60] bg-[#181b1c] px-2 py-1 text-[9px] font-black uppercase tracking-wider text-[#9ba0a2]">
-                                +{equipado.nivelMejora}
-                              </span>
-                            </div>
-
-                            <h4 className="mt-3 truncate text-xl font-black text-[#eeeae2]">
-                              {equipado.objeto.nombre}
-                            </h4>
-                          </div>
-
-                          <span className="text-3xl opacity-70">
-                            {iconoTipo(tipo)}
-                          </span>
-                        </div>
-
-                        <div className="mt-4 grid grid-cols-2 gap-2">
-                          {obtenerEstadisticasNoCero(
-                            equipado.objeto,
-                            equipado.nivelMejora
-                          ).map((estadistica) => (
-                            <div
-                              key={estadistica.clave}
-                              className="rounded border border-[#343a3d] bg-[#171a1b] px-3 py-2"
-                            >
-                              <p className="text-[9px] font-black uppercase tracking-wider text-[#646b6e]">
-                                {estadistica.nombre}
-                              </p>
-
-                              <p
-                                className={`mt-1 text-sm font-black ${
-                                  estadistica.valor < 0
-                                    ? "text-red-400"
-                                    : "text-sky-300"
-                                }`}
-                              >
-                                {formatearValorEstadistica(
-                                  estadistica.clave,
-                                  estadistica.valor
-                                )}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-
-                        <button
-                          type="button"
-                          onClick={() => void desequiparObjeto(tipo)}
-                          disabled={procesando !== null}
-                          className="mt-4 w-full rounded border border-[#55575a] bg-[#25282a] px-3 py-2 text-xs font-bold text-[#a4a5a1] transition-colors hover:border-red-800/60 hover:bg-[#321d1d] hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-50"
-                        >
-                          {desequipando ? "Quitando..." : "Desequipar"}
-                        </button>
-                      </div>
-
-                      {/* Mejora */}
-                      {(tipo === "arma" || tipo === "armadura") && (
-                        <div className="mt-3 rounded-md border border-[#4e4536] bg-[#211e19] p-4">
+                    {equipado ? (
+                      <>
+                        <div className="rounded-md border border-[#4e5659] bg-[linear-gradient(135deg,#292e30,#1c2021)] p-4 shadow-[inset_0_0_20px_rgba(0,0,0,0.25)]">
                           <div className="flex items-start justify-between gap-3">
-                            <div>
-                              <p className="text-[10px] font-black uppercase tracking-[0.16em] text-[#9b875f]">
-                                Mejora de forja
-                              </p>
+                            <div className="min-w-0">
+                              <div className="flex flex-wrap items-center gap-2">
+                                <span
+                                  className={`rounded border px-2 py-1 text-[9px] font-black uppercase tracking-widest ${estiloRareza(
+                                    equipado.objeto.rareza
+                                  )}`}
+                                >
+                                  {nombreRareza(equipado.objeto.rareza)}
+                                </span>
 
-                              <p className="mt-1 text-xs text-[#716b62]">
-                                Máximo con tu Herrería: +
-                                {nivelMaximoMejora}
-                              </p>
+                                <span className="rounded border border-[#555d60] bg-[#181b1c] px-2 py-1 text-[9px] font-black uppercase tracking-wider text-[#9ba0a2]">
+                                  +{equipado.nivelMejora}
+                                </span>
+                              </div>
+
+                              <h4 className="mt-3 truncate text-xl font-black text-[#eeeae2]">
+                                {equipado.objeto.nombre}
+                              </h4>
                             </div>
 
-                            <span className="rounded border border-[#62543f] bg-[#29241b] px-2 py-1 text-[10px] font-black text-amber-400">
-                              +{equipado.nivelMejora}/+
-                              {nivelMaximoMejora}
+                            <span className="text-3xl opacity-70">
+                              {iconoTipo(tipo)}
                             </span>
                           </div>
 
-                          {equipado.nivelMejora >= nivelMaximoMejora ? (
-                            <div className="mt-3 rounded border border-[#434039] bg-[#191817] p-3 text-center">
-                              <p className="text-xs font-black uppercase tracking-wider text-[#77736a]">
-                                ⚒️ Mejora máxima alcanzada
-                              </p>
-                            </div>
-                          ) : (
-                            <>
-                              <div className="mt-3 rounded border border-[#403b32] bg-[#1a1917] p-3">
-                                <p className="text-[9px] font-black uppercase tracking-wider text-[#6f695f]">
-                                  Siguiente mejora
+                          <div className="mt-4 grid grid-cols-2 gap-2">
+                            {obtenerEstadisticasNoCero(
+                              equipado.objeto,
+                              equipado.nivelMejora
+                            ).map((estadistica) => (
+                              <div
+                                key={estadistica.clave}
+                                className="rounded border border-[#343a3d] bg-[#171a1b] px-3 py-2"
+                              >
+                                <p className="text-[9px] font-black uppercase tracking-wider text-[#646b6e]">
+                                  {estadistica.nombre}
                                 </p>
 
-                                {diferenciaMejora.length === 0 ? (
-                                  <p className="mt-2 text-xs text-[#77736a]">
-                                    Esta pieza no obtiene nuevas estadísticas
-                                    con la mejora actual.
-                                  </p>
-                                ) : (
-                                  <div className="mt-2 flex flex-wrap gap-2">
-                                    {diferenciaMejora.map((diferencia) => (
-                                      <span
-                                        key={diferencia.clave}
-                                        className="rounded border border-[#564a36] bg-[#282117] px-2 py-1 text-[10px] font-black text-amber-300"
-                                      >
-                                        {diferencia.nombre}{" "}
-                                        {formatearValorEstadistica(
-                                          diferencia.clave,
-                                          diferencia.valor
-                                        )}
-                                      </span>
-                                    ))}
-                                  </div>
-                                )}
+                                <p
+                                  className={`mt-1 text-sm font-black ${
+                                    estadistica.valor < 0
+                                      ? "text-red-400"
+                                      : "text-sky-300"
+                                  }`}
+                                >
+                                  {formatearValorEstadistica(
+                                    estadistica.clave,
+                                    estadistica.valor
+                                  )}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+
+                          <button
+                            type="button"
+                            onClick={() => void desequiparObjeto(tipo)}
+                            disabled={procesando !== null}
+                            className="mt-4 w-full rounded border border-[#55575a] bg-[#25282a] px-3 py-2 text-xs font-bold text-[#a4a5a1] transition-colors hover:border-red-800/60 hover:bg-[#321d1d] hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-50"
+                          >
+                            {desequipando ? "Quitando..." : "Desequipar"}
+                          </button>
+                        </div>
+
+                        {/* Mejora */}
+                        {(tipo === "arma" || tipo === "armadura") && (
+                          <div className="mt-3 rounded-md border border-[#4e4536] bg-[#211e19] p-4">
+                            <div className="flex items-start justify-between gap-3">
+                              <div>
+                                <p className="text-[10px] font-black uppercase tracking-[0.16em] text-[#9b875f]">
+                                  Mejora de forja
+                                </p>
+
+                                <p className="mt-1 text-xs text-[#716b62]">
+                                  Máximo con tu Herrería: +{nivelMaximoMejora}
+                                </p>
                               </div>
 
-                              <button
-                                type="button"
-                                onClick={() =>
-                                  void mejorarObjeto(equipado.id)
-                                }
-                                disabled={
-                                  procesando !== null ||
-                                  !puedeMejorar ||
-                                  oro < costeMejora
-                                }
-                                className={`mt-3 flex h-11 w-full items-center justify-between rounded border-2 px-3 text-xs font-black transition-all ${
-                                  puedeMejorar && oro >= costeMejora
-                                    ? "border-[#8a703f] bg-[#493b26] text-[#ead9b4] hover:border-[#b29761] hover:bg-[#59482b]"
-                                    : "cursor-not-allowed border-[#383a39] bg-[#202120] text-[#656660]"
-                                }`}
-                              >
-                                <span>
-                                  {mejorando
-                                    ? "Forjando..."
-                                    : oro < costeMejora
+                              <span className="rounded border border-[#62543f] bg-[#29241b] px-2 py-1 text-[10px] font-black text-amber-400">
+                                +{equipado.nivelMejora}/+
+                                {nivelMaximoMejora}
+                              </span>
+                            </div>
+
+                            {equipado.nivelMejora >= nivelMaximoMejora ? (
+                              <div className="mt-3 rounded border border-[#434039] bg-[#191817] p-3 text-center">
+                                <p className="text-xs font-black uppercase tracking-wider text-[#77736a]">
+                                  ⚒️ Mejora máxima alcanzada
+                                </p>
+                              </div>
+                            ) : (
+                              <>
+                                <div className="mt-3 rounded border border-[#403b32] bg-[#1a1917] p-3">
+                                  <p className="text-[9px] font-black uppercase tracking-wider text-[#6f695f]">
+                                    Siguiente mejora
+                                  </p>
+
+                                  {diferenciaMejora.length === 0 ? (
+                                    <p className="mt-2 text-xs text-[#77736a]">
+                                      Esta pieza no obtiene nuevas estadísticas
+                                      con la mejora actual.
+                                    </p>
+                                  ) : (
+                                    <div className="mt-2 flex flex-wrap gap-2">
+                                      {diferenciaMejora.map((diferencia) => (
+                                        <span
+                                          key={diferencia.clave}
+                                          className="rounded border border-[#564a36] bg-[#282117] px-2 py-1 text-[10px] font-black text-amber-300"
+                                        >
+                                          {diferencia.nombre}{" "}
+                                          {formatearValorEstadistica(
+                                            diferencia.clave,
+                                            diferencia.valor
+                                          )}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  )}
+                                </div>
+
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    void mejorarObjeto(equipado.id)
+                                  }
+                                  disabled={
+                                    procesando !== null ||
+                                    !puedeMejorar ||
+                                    oro < costeMejora
+                                  }
+                                  className={`mt-3 flex h-11 w-full items-center justify-between rounded border-2 px-3 text-xs font-black transition-all ${
+                                    puedeMejorar && oro >= costeMejora
+                                      ? "border-[#8a703f] bg-[#493b26] text-[#ead9b4] hover:border-[#b29761] hover:bg-[#59482b]"
+                                      : "cursor-not-allowed border-[#383a39] bg-[#202120] text-[#656660]"
+                                  }`}
+                                >
+                                  <span>
+                                    {mejorando
+                                      ? "Forjando..."
+                                      : oro < costeMejora
                                       ? "Oro insuficiente"
                                       : "Mejorar +1"}
-                                </span>
+                                  </span>
 
-                                <span className="rounded border border-[#725f3a] bg-[#251d11] px-2 py-1 text-amber-400">
-                                  {costeMejora} 🪙
-                                </span>
-                              </button>
-                            </>
-                          )}
-                        </div>
-                      )}
-                    </>
-                  ) : (
-                    <div className="flex min-h-[230px] flex-col items-center justify-center rounded-md border border-dashed border-[#3c4244] bg-[#171a1b] px-5 text-center">
-                      <span className="text-4xl opacity-30">
-                        {iconoTipo(tipo)}
-                      </span>
+                                  <span className="rounded border border-[#725f3a] bg-[#251d11] px-2 py-1 text-amber-400">
+                                    {costeMejora} 🪙
+                                  </span>
+                                </button>
+                              </>
+                            )}
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <div className="flex min-h-[230px] flex-col items-center justify-center rounded-md border border-dashed border-[#3c4244] bg-[#171a1b] px-5 text-center">
+                        <span className="text-4xl opacity-30">
+                          {iconoTipo(tipo)}
+                        </span>
 
-                      <p className="mt-4 text-sm font-black uppercase tracking-wider text-[#666d70]">
-                        Ranura vacía
-                      </p>
+                        <p className="mt-4 text-sm font-black uppercase tracking-wider text-[#666d70]">
+                          Ranura vacía
+                        </p>
 
-                      <p className="mt-2 max-w-[220px] text-xs leading-5 text-[#4f5659]">
-                        {tipo === "accesorio"
-                          ? "Puedes equipar aquí un accesorio de tu inventario."
-                          : "Compra o consigue una pieza para equiparla aquí."}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
+                        <p className="mt-2 max-w-[220px] text-xs leading-5 text-[#4f5659]">
+                          {tipo === "accesorio"
+                            ? "Puedes equipar aquí un accesorio de tu inventario."
+                            : "Compra o consigue una pieza para equiparla aquí."}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
         {/* ====================================================== */}
         {/* INVENTARIO                                              */}
         {/* ====================================================== */}
@@ -959,8 +907,8 @@ export default function HerreriaPage() {
                     objeto.tipo === "arma"
                       ? datos?.equipo.arma
                       : objeto.tipo === "armadura"
-                        ? datos?.equipo.armadura
-                        : datos?.equipo.accesorio;
+                      ? datos?.equipo.armadura
+                      : datos?.equipo.accesorio;
 
                   const equipando =
                     procesando === `equipar:${objetoInventario.id}`;
