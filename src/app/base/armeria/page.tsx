@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/CabeceraEdificio";
 import { useGameStore } from "@/store/useGameStore";
 import {
@@ -178,8 +177,6 @@ function obtenerDiferenciasMejora(
 }
 
 export default function HerreriaPage() {
-  const router = useRouter();
-
   const { personaje, edificios, oro, cargarJugador } = useGameStore();
 
   const armeria = edificios.armeria;
@@ -579,7 +576,7 @@ export default function HerreriaPage() {
                                 ? "Comprando..."
                                 : oro < objeto.precio
                                 ? "Oro insuficiente"
-                                : "Comprar pieza"}
+                                : "Comprar"}
                             </span>
 
                             <span className="rounded border border-amber-700/40 bg-[#231d13] px-2 py-1 text-amber-400">
@@ -615,20 +612,8 @@ export default function HerreriaPage() {
               <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
                 <div>
                   <h2 className="text-2xl font-black uppercase tracking-[0.08em] text-[#ddd8cf]">
-                    Equipo del aventurero
+                    Equipamiento
                   </h2>
-
-                  <p className="mt-1 text-xs text-[#707578]">
-                    Equipa las piezas de tu inventario para aplicar sus
-                    estadísticas.
-                  </p>
-                </div>
-
-                <div className="rounded border border-[#42484b] bg-[#202426] px-3 py-2 text-[10px] font-black uppercase tracking-wider text-[#8a9093]">
-                  {inventarioEquipable.length}{" "}
-                  {inventarioEquipable.length === 1
-                    ? "pieza disponible"
-                    : "piezas disponibles"}
                 </div>
               </div>
             </div>
@@ -684,162 +669,71 @@ export default function HerreriaPage() {
                     </div>
 
                     {equipado ? (
-                      <>
-                        <div className="rounded-md border border-[#4e5659] bg-[linear-gradient(135deg,#292e30,#1c2021)] p-4 shadow-[inset_0_0_20px_rgba(0,0,0,0.25)]">
-                          <div className="flex items-start justify-between gap-3">
-                            <div className="min-w-0">
-                              <div className="flex flex-wrap items-center gap-2">
-                                <span
-                                  className={`rounded border px-2 py-1 text-[9px] font-black uppercase tracking-widest ${estiloRareza(
-                                    equipado.objeto.rareza
-                                  )}`}
-                                >
-                                  {nombreRareza(equipado.objeto.rareza)}
-                                </span>
-
-                                <span className="rounded border border-[#555d60] bg-[#181b1c] px-2 py-1 text-[9px] font-black uppercase tracking-wider text-[#9ba0a2]">
-                                  +{equipado.nivelMejora}
-                                </span>
-                              </div>
-
-                              <h4 className="mt-3 truncate text-xl font-black text-[#eeeae2]">
-                                {equipado.objeto.nombre}
-                              </h4>
-                            </div>
-
-                            <span className="text-3xl opacity-70">
-                              {iconoTipo(tipo)}
-                            </span>
-                          </div>
-
-                          <div className="mt-4 grid grid-cols-2 gap-2">
-                            {obtenerEstadisticasNoCero(
-                              equipado.objeto,
-                              equipado.nivelMejora
-                            ).map((estadistica) => (
-                              <div
-                                key={estadistica.clave}
-                                className="rounded border border-[#343a3d] bg-[#171a1b] px-3 py-2"
+                      <div className="rounded-md border border-[#4e5659] bg-[linear-gradient(135deg,#292e30,#1c2021)] p-4 shadow-[inset_0_0_20px_rgba(0,0,0,0.25)]">
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0">
+                            <div className="flex flex-wrap items-center gap-2">
+                              <span
+                                className={`rounded border px-2 py-1 text-[9px] font-black uppercase tracking-widest ${estiloRareza(
+                                  equipado.objeto.rareza
+                                )}`}
                               >
-                                <p className="text-[9px] font-black uppercase tracking-wider text-[#646b6e]">
-                                  {estadistica.nombre}
-                                </p>
+                                {nombreRareza(equipado.objeto.rareza)}
+                              </span>
 
-                                <p
-                                  className={`mt-1 text-sm font-black ${
-                                    estadistica.valor < 0
-                                      ? "text-red-400"
-                                      : "text-sky-300"
-                                  }`}
-                                >
-                                  {formatearValorEstadistica(
-                                    estadistica.clave,
-                                    estadistica.valor
-                                  )}
-                                </p>
-                              </div>
-                            ))}
-                          </div>
-
-                          <button
-                            type="button"
-                            onClick={() => void desequiparObjeto(tipo)}
-                            disabled={procesando !== null}
-                            className="mt-4 w-full rounded border border-[#55575a] bg-[#25282a] px-3 py-2 text-xs font-bold text-[#a4a5a1] transition-colors hover:border-red-800/60 hover:bg-[#321d1d] hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-50"
-                          >
-                            {desequipando ? "Quitando..." : "Desequipar"}
-                          </button>
-                        </div>
-
-                        {/* Mejora */}
-                        {(tipo === "arma" || tipo === "armadura") && (
-                          <div className="mt-3 rounded-md border border-[#4e4536] bg-[#211e19] p-4">
-                            <div className="flex items-start justify-between gap-3">
-                              <div>
-                                <p className="text-[10px] font-black uppercase tracking-[0.16em] text-[#9b875f]">
-                                  Mejora de forja
-                                </p>
-
-                                <p className="mt-1 text-xs text-[#716b62]">
-                                  Máximo con tu Herrería: +{nivelMaximoMejora}
-                                </p>
-                              </div>
-
-                              <span className="rounded border border-[#62543f] bg-[#29241b] px-2 py-1 text-[10px] font-black text-amber-400">
-                                +{equipado.nivelMejora}/+
-                                {nivelMaximoMejora}
+                              <span className="rounded border border-[#555d60] bg-[#181b1c] px-2 py-1 text-[9px] font-black uppercase tracking-wider text-[#9ba0a2]">
+                                +{equipado.nivelMejora}
                               </span>
                             </div>
 
-                            {equipado.nivelMejora >= nivelMaximoMejora ? (
-                              <div className="mt-3 rounded border border-[#434039] bg-[#191817] p-3 text-center">
-                                <p className="text-xs font-black uppercase tracking-wider text-[#77736a]">
-                                  ⚒️ Mejora máxima alcanzada
-                                </p>
-                              </div>
-                            ) : (
-                              <>
-                                <div className="mt-3 rounded border border-[#403b32] bg-[#1a1917] p-3">
-                                  <p className="text-[9px] font-black uppercase tracking-wider text-[#6f695f]">
-                                    Siguiente mejora
-                                  </p>
-
-                                  {diferenciaMejora.length === 0 ? (
-                                    <p className="mt-2 text-xs text-[#77736a]">
-                                      Esta pieza no obtiene nuevas estadísticas
-                                      con la mejora actual.
-                                    </p>
-                                  ) : (
-                                    <div className="mt-2 flex flex-wrap gap-2">
-                                      {diferenciaMejora.map((diferencia) => (
-                                        <span
-                                          key={diferencia.clave}
-                                          className="rounded border border-[#564a36] bg-[#282117] px-2 py-1 text-[10px] font-black text-amber-300"
-                                        >
-                                          {diferencia.nombre}{" "}
-                                          {formatearValorEstadistica(
-                                            diferencia.clave,
-                                            diferencia.valor
-                                          )}
-                                        </span>
-                                      ))}
-                                    </div>
-                                  )}
-                                </div>
-
-                                <button
-                                  type="button"
-                                  onClick={() =>
-                                    void mejorarObjeto(equipado.id)
-                                  }
-                                  disabled={
-                                    procesando !== null ||
-                                    !puedeMejorar ||
-                                    oro < costeMejora
-                                  }
-                                  className={`mt-3 flex h-11 w-full items-center justify-between rounded border-2 px-3 text-xs font-black transition-all ${
-                                    puedeMejorar && oro >= costeMejora
-                                      ? "border-[#8a703f] bg-[#493b26] text-[#ead9b4] hover:border-[#b29761] hover:bg-[#59482b]"
-                                      : "cursor-not-allowed border-[#383a39] bg-[#202120] text-[#656660]"
-                                  }`}
-                                >
-                                  <span>
-                                    {mejorando
-                                      ? "Forjando..."
-                                      : oro < costeMejora
-                                      ? "Oro insuficiente"
-                                      : "Mejorar +1"}
-                                  </span>
-
-                                  <span className="rounded border border-[#725f3a] bg-[#251d11] px-2 py-1 text-amber-400">
-                                    {costeMejora} 🪙
-                                  </span>
-                                </button>
-                              </>
-                            )}
+                            <h4 className="mt-3 truncate text-xl font-black text-[#eeeae2]">
+                              {equipado.objeto.nombre}
+                            </h4>
                           </div>
-                        )}
-                      </>
+
+                          <span className="text-3xl opacity-70">
+                            {iconoTipo(tipo)}
+                          </span>
+                        </div>
+
+                        <div className="mt-4 grid grid-cols-2 gap-2">
+                          {obtenerEstadisticasNoCero(
+                            equipado.objeto,
+                            equipado.nivelMejora
+                          ).map((estadistica) => (
+                            <div
+                              key={estadistica.clave}
+                              className="rounded border border-[#343a3d] bg-[#171a1b] px-3 py-2"
+                            >
+                              <p className="text-[9px] font-black uppercase tracking-wider text-[#646b6e]">
+                                {estadistica.nombre}
+                              </p>
+
+                              <p
+                                className={`mt-1 text-sm font-black ${
+                                  estadistica.valor < 0
+                                    ? "text-red-400"
+                                    : "text-sky-300"
+                                }`}
+                              >
+                                {formatearValorEstadistica(
+                                  estadistica.clave,
+                                  estadistica.valor
+                                )}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => void desequiparObjeto(tipo)}
+                          disabled={procesando !== null}
+                          className="mt-4 w-full rounded border border-[#55575a] bg-[#25282a] px-3 py-2 text-xs font-bold text-[#a4a5a1] transition-colors hover:border-red-800/60 hover:bg-[#321d1d] hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-50"
+                        >
+                          {desequipando ? "Quitando..." : "Desequipar"}
+                        </button>
+                      </div>
                     ) : (
                       <div className="flex min-h-[230px] flex-col items-center justify-center rounded-md border border-dashed border-[#3c4244] bg-[#171a1b] px-5 text-center">
                         <span className="text-4xl opacity-30">
@@ -853,7 +747,7 @@ export default function HerreriaPage() {
                         <p className="mt-2 max-w-[220px] text-xs leading-5 text-[#4f5659]">
                           {tipo === "accesorio"
                             ? "Puedes equipar aquí un accesorio de tu inventario."
-                            : "Compra o consigue una pieza para equiparla aquí."}
+                            : "Compra o consigue un arma o armadura para equiparla aquí."}
                         </p>
                       </div>
                     )}
@@ -867,18 +761,47 @@ export default function HerreriaPage() {
         {/* INVENTARIO                                              */}
         {/* ====================================================== */}
 
-        <section className="overflow-hidden rounded-lg border-2 border-[#353a3d] bg-[#191c1d] shadow-[0_14px_32px_rgba(0,0,0,0.5)]">
-          <div className="border-b-2 border-[#353a3d] bg-[#141718] p-6">
-            <h2 className="text-2xl font-black uppercase tracking-[0.08em] text-[#ddd8cf]">
-              Inventario
-            </h2>
+        <section className="relative overflow-hidden rounded-xl border-2 border-[#62452d] bg-[#261a12] shadow-[0_14px_32px_rgba(0,0,0,0.55)]">
+          {/* Tirantes / costuras decorativas */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-5 border-r border-[#694a2e] bg-[#352317]/70" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-5 border-l border-[#694a2e] bg-[#352317]/70" />
+
+          {/* Textura de cuero */}
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(180,130,75,0.08),transparent_20%),radial-gradient(circle_at_85%_70%,rgba(180,130,75,0.06),transparent_22%)]" />
+
+          {/* Cabecera */}
+          <div className="relative border-b-2 border-[#62452d] bg-[linear-gradient(135deg,#392719,#241810)] p-6">
+            <div className="pointer-events-none absolute inset-2 rounded border border-[#8a6038]/20" />
+
+            <div className="relative flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div>
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl">🎒</span>
+
+                  <h2 className="text-2xl font-black uppercase tracking-[0.08em] text-[#e5d2b5]">
+                    Inventario de objetos
+                  </h2>
+                </div>
+
+                <p className="mt-2 text-xs leading-5 text-[#9b8266]">
+                  Armas, armaduras y accesorios que lleva el aventurero.
+                </p>
+              </div>
+            </div>
           </div>
 
-          <div className="p-4 md:p-6">
+          {/* Contenido */}
+          <div className="relative p-4 md:p-6">
             {inventarioEquipable.length === 0 ? (
-              <div className="rounded-md border border-[#353b3d] bg-[#151718] p-8 text-center">
-                <p className="text-sm font-bold text-[#666d70]">
-                  No tienes piezas equipables en el inventario.
+              <div className="rounded-lg border-2 border-dashed border-[#61452d] bg-[#211710] p-10 text-center">
+                <div className="text-5xl opacity-30">🎒</div>
+
+                <p className="mt-4 text-sm font-black uppercase tracking-wider text-[#806a52]">
+                  Mochila vacía
+                </p>
+
+                <p className="mt-2 text-xs text-[#645341]">
+                  Todavía no tienes piezas equipables.
                 </p>
               </div>
             ) : (
@@ -908,27 +831,38 @@ export default function HerreriaPage() {
                   return (
                     <article
                       key={objetoInventario.id}
-                      className={`rounded-md border p-4 transition-colors ${
+                      className={`relative overflow-hidden rounded-lg border-2 p-4 transition-all ${
                         estaEquipado
-                          ? "border-[#687174] bg-[#222729]"
-                          : "border-[#343b3e] bg-[#151819] hover:border-[#50585b]"
+                          ? "border-[#9a7748] bg-[linear-gradient(135deg,#473420,#302218)] shadow-[inset_0_1px_0_rgba(255,220,170,0.08),0_4px_10px_rgba(0,0,0,0.25)]"
+                          : "border-[#59402a] bg-[linear-gradient(135deg,#35251a,#291c14)] hover:border-[#765532] hover:bg-[#3a281c]"
                       }`}
                     >
+                      {/* Costura superior */}
+                      <div className="pointer-events-none absolute inset-x-3 top-2 border-t border-dashed border-[#9a7548]/20" />
+
                       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                         <div className="flex min-w-0 items-start gap-4">
-                          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded border border-[#4a5154] bg-[#202426] text-2xl">
+                          {/* Bolsillo / icono */}
+                          <div
+                            className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-lg border-2 text-2xl shadow-[inset_0_0_14px_rgba(0,0,0,0.35)] ${
+                              estaEquipado
+                                ? "border-[#8e6d45] bg-[#24190f]"
+                                : "border-[#684a2f] bg-[#211710]"
+                            }`}
+                          >
                             {iconoTipo(objeto.tipo)}
                           </div>
 
                           <div className="min-w-0">
                             <div className="flex flex-wrap items-center gap-2">
-                              <h3 className="font-black text-[#e3dfd8]">
+                              <h3 className="font-black text-[#eadcc7]">
                                 {objeto.nombre}
                               </h3>
 
-                              <span className="rounded text-[9px] font-black uppercase tracking-wider text-[#8b9294]">
+                              <span className="rounded border border-[#8a663f] bg-[#241a12] px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-[#ad916a]">
                                 +{objetoInventario.nivelMejora}
                               </span>
+
                               <span
                                 className={`rounded border px-2 py-0.5 text-[9px] font-black uppercase tracking-wider ${estiloRareza(
                                   objeto.rareza
@@ -944,7 +878,7 @@ export default function HerreriaPage() {
                               )}
                             </div>
 
-                            <p className="mt-1 text-xs text-[#666d70]">
+                            <p className="mt-1 text-xs text-[#957b60]">
                               {objeto.descripcion}
                             </p>
 
@@ -955,7 +889,7 @@ export default function HerreriaPage() {
                               ).map((estadistica) => (
                                 <span
                                   key={estadistica.clave}
-                                  className="text-[10px] font-bold text-[#90979a]"
+                                  className="text-[10px] font-bold text-[#a2886a]"
                                 >
                                   {estadistica.nombre}{" "}
                                   <span
@@ -976,23 +910,29 @@ export default function HerreriaPage() {
                           </div>
                         </div>
 
-                        {!estaEquipado && (
+                        {estaEquipado ? (
+                          <div className="shrink-0 text-center lg:text-right">
+                            <p className="text-[10px] font-black uppercase tracking-widest text-[#75614b]">
+                              En uso
+                            </p>
+
+                            {equipoDelMismoTipo && (
+                              <p className="mt-1 text-xs font-bold text-[#aa906e]">
+                                Equipado actualmente
+                              </p>
+                            )}
+                          </div>
+                        ) : (
                           <button
                             type="button"
                             onClick={() =>
                               void equiparObjeto(objetoInventario.id)
                             }
                             disabled={procesando !== null}
-                            className="shrink-0 rounded border-2 border-[#555c5f] bg-[#252a2c] px-4 py-2 text-xs font-black uppercase tracking-wider text-[#bfc1bd] transition-colors hover:border-amber-700/70 hover:bg-[#362f23] hover:text-amber-300 disabled:cursor-not-allowed disabled:opacity-50"
+                            className="shrink-0 rounded-lg border-2 border-[#765635] bg-[#42301f] px-5 py-2.5 text-xs font-black uppercase tracking-wider text-[#ddc8a6] transition-colors hover:border-[#a27d4f] hover:bg-[#513a25] hover:text-[#f1dfc0] disabled:cursor-not-allowed disabled:opacity-50"
                           >
                             {equipando ? "Equipando..." : "Equipar"}
                           </button>
-                        )}
-
-                        {estaEquipado && equipoDelMismoTipo && (
-                          <span className="shrink-0 text-[10px] font-black uppercase tracking-widest text-[#697174]">
-                            En uso
-                          </span>
                         )}
                       </div>
                     </article>
