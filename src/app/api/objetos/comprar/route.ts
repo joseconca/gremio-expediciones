@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import {
-  obtenerObjetoPorId,
-} from "@/lib/objetos";
+import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerObjetosEnVenta } from "@/lib/tiendaObjetos";
 
 export async function POST(request: Request) {
@@ -11,10 +9,7 @@ export async function POST(request: Request) {
     const usuarioSesion = await getAuthenticatedUser();
 
     if (!usuarioSesion) {
-      return NextResponse.json(
-        { error: "Sesión requerida." },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Sesión requerida." }, { status: 401 });
     }
 
     const body = await request.json();
@@ -44,19 +39,6 @@ export async function POST(request: Request) {
       );
     }
 
-    const ofertas = obtenerObjetosEnVenta();
-
-    const objetoEnOferta = ofertas.some(
-      (oferta) => oferta.id === objetoId
-    );
-
-    if (!objetoEnOferta) {
-      return NextResponse.json(
-        { error: "Este objeto no está disponible en la oferta de hoy." },
-        { status: 400 }
-      );
-    }
-
     const usuario = await prisma.usuario.findUnique({
       where: {
         id: usuarioSesion.id,
@@ -74,6 +56,38 @@ export async function POST(request: Request) {
       return NextResponse.json(
         { error: "No se encontró el personaje." },
         { status: 404 }
+      );
+    }
+
+    const edificios =
+      usuario.edificios &&
+      typeof usuario.edificios === "object" &&
+      !Array.isArray(usuario.edificios)
+        ? (usuario.edificios as Record<string, unknown>)
+        : {};
+
+    const nivelArmeria =
+      typeof edificios.armeria === "number" ? edificios.armeria : 0;
+
+    if (nivelArmeria <= 0) {
+      return NextResponse.json(
+        { error: "No tienes una Armería construida." },
+        { status: 403 }
+      );
+    }
+
+    const objetosDisponibles = obtenerObjetosEnVenta(nivelArmeria);
+
+    const objetoDisponible = objetosDisponibles.some(
+      (objetoDisponible) => objetoDisponible.id === objetoId
+    );
+
+    if (!objetoDisponible) {
+      return NextResponse.json(
+        {
+          error: "Tu Armería todavía no puede vender este objeto.",
+        },
+        { status: 400 }
       );
     }
 

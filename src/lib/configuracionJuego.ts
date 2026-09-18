@@ -9,12 +9,20 @@ export const CONFIGURACION_EDIFICIOS = {
     color: "bg-amber-700",
     ruta: "/base/taberna",
   },
+  armeria: {
+    nombre: "Armería",
+    costeConstruccion: 800,
+    nivelMax: 3,
+    descripcion: "Compra armas y armaduras.",
+    color: "bg-slate-600",
+    ruta: "/base/armeria",
+  },
   herreria: {
     nombre: "Herrería",
-    costeConstruccion: 1200,
-    nivelMax: 5,
-    descripcion: "Mejora armas y armaduras.",
-    color: "bg-slate-600",
+    costeConstruccion: 2500,
+    nivelMax: 3,
+    descripcion: "Mejora las armas y armaduras.",
+    color: "bg-slate-700",
     ruta: "/base/herreria",
   },
   mercado: {
@@ -35,7 +43,7 @@ export const CONFIGURACION_EDIFICIOS = {
   },
   escuelaCombate: {
     nombre: "Escuela de Combate",
-    costeConstruccion: 1600,
+    costeConstruccion: 2400,
     nivelMax: 5,
     descripcion: "Aprende técnicas de combate avanzadas.",
     color: "bg-red-600",
@@ -44,6 +52,15 @@ export const CONFIGURACION_EDIFICIOS = {
 } as const;
 
 export type IdEdificio = keyof typeof CONFIGURACION_EDIFICIOS;
+
+export const REQUISITOS_EDIFICIOS: Partial<
+  Record<IdEdificio, { edificio: IdEdificio; nivel: number }>
+> = {
+  herreria: {
+    edificio: "armeria",
+    nivel: 1,
+  },
+};
 
 export function calcularCosteEdificio(
   idEdificio: IdEdificio,

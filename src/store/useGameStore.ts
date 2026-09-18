@@ -26,6 +26,12 @@ const EDIFICIOS_BASE: Record<IdEdificio, Omit<Edificio, "nivel">> = {
     descripcion: CONFIGURACION_EDIFICIOS.taberna.descripcion,
     nivelMax: CONFIGURACION_EDIFICIOS.taberna.nivelMax,
   },
+  armeria: {
+    id: "armeria",
+    nombre: CONFIGURACION_EDIFICIOS.armeria.nombre,
+    descripcion: CONFIGURACION_EDIFICIOS.armeria.descripcion,
+    nivelMax: CONFIGURACION_EDIFICIOS.armeria.nivelMax,
+  },
   herreria: {
     id: "herreria",
     nombre: CONFIGURACION_EDIFICIOS.herreria.nombre,
@@ -67,6 +73,10 @@ function construirEdificios(
     taberna: {
       ...EDIFICIOS_BASE.taberna,
       nivel: nivelEdificio("taberna", 1),
+    },
+    armeria: {
+      ...EDIFICIOS_BASE.armeria,
+      nivel: nivelEdificio("armeria", 0),
     },
     herreria: {
       ...EDIFICIOS_BASE.herreria,
@@ -452,6 +462,7 @@ export const useGameStore = create<GameState>((set, get) => ({
   expedicionActiva: null,
   edificios: {
     taberna: { ...EDIFICIOS_BASE.taberna, nivel: 1 },
+    armeria: { ...EDIFICIOS_BASE.armeria, nivel: 0 },
     herreria: { ...EDIFICIOS_BASE.herreria, nivel: 0 },
     mercado: { ...EDIFICIOS_BASE.mercado, nivel: 0 },
     embajada: { ...EDIFICIOS_BASE.embajada, nivel: 0 },

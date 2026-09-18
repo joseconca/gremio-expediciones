@@ -7,6 +7,7 @@ import { sincronizarRegeneracion } from "@/lib/regeneracion";
 import {
   CONFIGURACION_ATRIBUTOS,
   CONFIGURACION_EDIFICIOS,
+  REQUISITOS_EDIFICIOS,
   calcularCosteAtributo,
   calcularCosteEdificio,
   calcularEstadisticasBase,
@@ -345,6 +346,27 @@ export async function POST(request: Request) {
           { error: "El edificio ya está al nivel máximo." },
           { status: 400 }
         );
+      }
+
+      const requisito = REQUISITOS_EDIFICIOS[idEdificio];
+
+      if (requisito) {
+        const nivelRequisitoValue = edificios?.[requisito.edificio];
+
+        const nivelRequisito =
+          typeof nivelRequisitoValue === "number" ? nivelRequisitoValue : 0;
+
+        if (nivelRequisito < requisito.nivel) {
+          const nombreEdificioRequisito =
+            CONFIGURACION_EDIFICIOS[requisito.edificio].nombre;
+
+          return NextResponse.json(
+            {
+              error: `Necesitas ${nombreEdificioRequisito} nivel ${requisito.nivel}.`,
+            },
+            { status: 400 }
+          );
+        }
       }
 
       const coste = calcularCosteEdificio(idEdificio, nivel);

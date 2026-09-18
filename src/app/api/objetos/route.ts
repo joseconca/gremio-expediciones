@@ -2,10 +2,7 @@ import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
-import {
-  obtenerFechaTiendaObjetos,
-  obtenerObjetosEnVenta,
-} from "@/lib/tiendaObjetos";
+import { obtenerObjetosEnVenta } from "@/lib/tiendaObjetos";
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 
 function construirInventario(personaje: {
@@ -18,25 +15,23 @@ function construirInventario(personaje: {
     }>;
   } | null;
 }) {
-  return (personaje.inventario?.objetos ?? []).flatMap(
-    (objetoInventario) => {
-      const objeto = obtenerObjetoPorId(objetoInventario.objetoId);
+  return (personaje.inventario?.objetos ?? []).flatMap((objetoInventario) => {
+    const objeto = obtenerObjetoPorId(objetoInventario.objetoId);
 
-      if (!objeto) {
-        return [];
-      }
-
-      return [
-        {
-          id: objetoInventario.id,
-          objetoId: objetoInventario.objetoId,
-          cantidad: objetoInventario.cantidad,
-          nivelMejora: objetoInventario.nivelMejora,
-          objeto,
-        },
-      ];
+    if (!objeto) {
+      return [];
     }
-  );
+
+    return [
+      {
+        id: objetoInventario.id,
+        objetoId: objetoInventario.objetoId,
+        cantidad: objetoInventario.cantidad,
+        nivelMejora: objetoInventario.nivelMejora,
+        objeto,
+      },
+    ];
+  });
 }
 
 export async function GET() {
@@ -44,10 +39,7 @@ export async function GET() {
     const usuarioSesion = await getAuthenticatedUser();
 
     if (!usuarioSesion) {
-      return NextResponse.json(
-        { error: "Sesión requerida." },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Sesión requerida." }, { status: 401 });
     }
 
     const usuario = await prisma.usuario.findUnique({
@@ -88,18 +80,19 @@ export async function GET() {
         ? (usuario.edificios as Record<string, unknown>)
         : {};
 
-    const nivelHerrería =
-      typeof edificios.herreria === "number"
-        ? edificios.herreria
-        : 0;
+    const nivelArmeria =
+      typeof edificios.armeria === "number" ? edificios.armeria : 0;
+
+    const nivelHerreria =
+      typeof edificios.herreria === "number" ? edificios.herreria : 0;
 
     const inventario = construirInventario(usuario.personaje);
     const equipo = obtenerEquipoDesdePersonaje(usuario.personaje);
 
     return NextResponse.json({
-      herreriaNivel: nivelHerrería,
-      fecha: obtenerFechaTiendaObjetos(),
-      enVenta: obtenerObjetosEnVenta(),
+      armeriaNivel: nivelArmeria,
+      herreriaNivel: nivelHerreria,
+      enVenta: obtenerObjetosEnVenta(nivelArmeria),
       inventario,
       equipo,
       oro: usuario.oro,
