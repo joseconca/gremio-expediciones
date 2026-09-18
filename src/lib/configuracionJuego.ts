@@ -12,7 +12,7 @@ export const CONFIGURACION_EDIFICIOS = {
   armeria: {
     nombre: "Armería",
     costeConstruccion: 800,
-    nivelMax: 3,
+    nivelMax: 5,
     descripcion: "Compra armas y armaduras.",
     color: "bg-slate-600",
     ruta: "/base/armeria",

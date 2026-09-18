@@ -726,7 +726,7 @@ export default function BasePage() {
                     >
                       <Image
                         src={`/sprites/buildings/${
-                          herreria.nivel > 0 ? "herreria" : "armeria"
+                          herreria.nivel > 0 ? "armeria-herreria" : "armeria"
                         }.png`}
                         alt=""
                         fill
@@ -738,7 +738,7 @@ export default function BasePage() {
                     {/* EDIFICIO */}
                     <Image
                       src={`/sprites/buildings/${
-                        herreria.nivel > 0 ? "herreria" : "armeria"
+                        herreria.nivel > 0 ? "armeria-herreria" : "armeria"
                       }.png`}
                       alt={
                         herreria.nivel > 0 ? "Armería y Herrería" : "Armería"
@@ -870,11 +870,12 @@ export default function BasePage() {
 
             {edificiosConstruccion.map((edificio) => {
               const coste = obtenerCosteMejora(edificio.id);
+              const sinConstruir = edificio.nivel === 0;
               const maxNivel = edificio.nivel >= edificio.nivelMax;
               const bloqueadaPorArmeria =
                 edificio.id === "herreria" && armeria.nivel === 0;
 
-              const bloqueado = edificio.nivel === 0 && bloqueadaPorArmeria;
+              const bloqueado = sinConstruir && bloqueadaPorArmeria;
 
               return (
                 <div
@@ -902,16 +903,36 @@ export default function BasePage() {
 
                   {/* ESCENARIO */}
                   <div className="relative flex h-44 w-full items-center justify-center overflow-hidden border-b border-slate-700/60 bg-slate-950 p-2 pb-6">
-                    {bloqueado ? (
+                    {sinConstruir ? (
                       <>
                         {/* Solar */}
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_60%,rgba(120,90,55,0.22),transparent_55%)]" />
+                        <div className="absolute inset-0 bg-stone-400/70" />
+                        {/* Tablones de obra */}
+                        <div className="absolute bottom-5 left-[22%] h-2 w-20 rotate-[-12deg] bg-amber-950/80 shadow-md" />
+                        <div className="absolute bottom-9 left-[30%] h-2 w-16 rotate-[7deg] bg-amber-900/70 shadow-md" />
+                        <div className="absolute bottom-6 right-[22%] h-2 w-24 rotate-[9deg] bg-amber-950/80 shadow-md" />
+                        <div className="absolute bottom-11 right-[30%] h-2 w-14 rotate-[-5deg] bg-amber-900/70 shadow-md" />
 
-                        <div className="absolute bottom-5 left-1/2 h-2 w-20 -translate-x-1/2 rotate-[-7deg] bg-amber-950/80 shadow-md" />
-                        <div className="absolute bottom-8 left-1/2 h-2 w-16 -translate-x-1/2 rotate-[8deg] bg-amber-900/70 shadow-md" />
+                        {/* Tablón pequeño en primer plano */}
+                        <div className="absolute bottom-4 left-1/2 h-2 w-10 -translate-x-1/2 rotate-[18deg] bg-amber-800/70 shadow-md" />
 
-                        <div className="absolute left-1/2 top-1/2 h-10 w-px -translate-x-1/2 -translate-y-1/2 rotate-45 bg-stone-400/20" />
-                        <div className="absolute left-1/2 top-1/2 h-10 w-px -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-stone-400/20" />
+                        {/* Piedras - izquierda */}
+                        <div className="absolute bottom-5 left-[16%] h-3 w-4 rotate-[-12deg] rounded-sm bg-stone-600/70 shadow-sm" />
+                        <div className="absolute bottom-7 left-[20%] h-2.5 w-3 rotate-[18deg] rounded-sm bg-stone-500/70 shadow-sm" />
+                        <div className="absolute bottom-4 left-[25%] h-2 w-3 rotate-[8deg] rounded-sm bg-stone-700/70 shadow-sm" />
+
+                        {/* Piedras - derecha */}
+                        <div className="absolute bottom-5 right-[16%] h-3 w-4 rotate-[15deg] rounded-sm bg-stone-600/70 shadow-sm" />
+                        <div className="absolute bottom-8 right-[21%] h-2.5 w-3 rotate-[-10deg] rounded-sm bg-stone-500/70 shadow-sm" />
+                        <div className="absolute bottom-4 right-[26%] h-2 w-4 rotate-[-18deg] rounded-sm bg-stone-700/70 shadow-sm" />
+
+                        {/* Piedras pequeñas alrededor del solar */}
+                        <div className="absolute bottom-3 left-[38%] h-2 w-2.5 rotate-[20deg] rounded-sm bg-stone-500/60" />
+                        <div className="absolute bottom-4 right-[38%] h-2 w-2.5 rotate-[-15deg] rounded-sm bg-stone-600/60" />
+
+                        {/* Cruz de solar */}
+                        <div className="absolute left-1/2 top-1/2 h-14 w-1 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-stone-400/40 shadow-sm" />
+                        <div className="absolute left-1/2 top-1/2 h-14 w-1 -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-stone-400/40 shadow-sm" />
 
                         <span className="relative z-10 border border-slate-600/80 bg-slate-950/80 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">
                           Solar disponible
@@ -965,7 +986,7 @@ export default function BasePage() {
                           bloqueado ? "text-slate-500" : "text-amber-300"
                         }`}
                       >
-                        {bloqueado
+                        {sinConstruir
                           ? "Sin construir"
                           : `Nivel ${edificio.nivel}/${edificio.nivelMax}`}
                       </span>
@@ -993,7 +1014,7 @@ export default function BasePage() {
                           <span>
                             {bloqueadaPorArmeria
                               ? "Requiere Armería"
-                              : bloqueado
+                              : sinConstruir
                               ? "Construir"
                               : "Mejorar"}
                           </span>

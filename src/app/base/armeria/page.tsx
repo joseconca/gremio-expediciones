@@ -569,11 +569,11 @@ export default function HerreriaPage() {
                             disabled={
                               comprando ||
                               procesando !== null ||
-                              nivelHeroeInsuficiente ||
+                              !objeto.puedeComprar ||
                               oro < objeto.precio
                             }
                             className={`flex h-12 w-full items-center justify-between rounded border-2 px-4 font-black transition-all ${
-                              oro >= objeto.precio && !procesando
+                               objeto.puedeComprar && oro >= objeto.precio && !procesando
                                 ? "border-[#8b7752] bg-[#51452f] text-[#eadbbd] shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_8px_rgba(0,0,0,0.3)] hover:border-[#b7a06c] hover:bg-[#635338] active:translate-y-px"
                                 : "cursor-not-allowed border-[#373c3e] bg-[#202324] text-[#5f6669]"
                             }`}
@@ -581,8 +581,8 @@ export default function HerreriaPage() {
                             <span>
                               {comprando
                                 ? "Comprando..."
-                                : nivelHeroeInsuficiente
-                                ? `Nivel ${objeto.nivelHeroeNecesario}`
+                                : !objeto.puedeComprar
+                                ? `Nivel ${objeto.nivelHeroeNecesario} requerido`
                                 : oro < objeto.precio
                                 ? "Oro insuficiente"
                                 : "Comprar"}
