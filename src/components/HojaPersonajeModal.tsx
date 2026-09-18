@@ -110,6 +110,11 @@ export default function HojaPersonajeModal({
     }))
     .filter((habilidad) => habilidad.definicion);
 
+  const equipo = personaje.equipo;
+  const arma = equipo.arma;
+  const armadura = equipo.armadura;
+  const accesorio = equipo.accesorio;
+
   return (
     <div
       className={`fixed inset-0 z-50 overflow-y-auto bg-stone-900/70 backdrop-blur-sm transition-opacity duration-200 ${
@@ -348,30 +353,93 @@ export default function HojaPersonajeModal({
                 🎒 Equipamiento
               </h3>
               <span className="font-serif text-[11px] italic text-stone-500">
-                Próximamente muejeje
+                Objetos equipados
               </span>
             </div>
 
             <div className="grid grid-cols-3 gap-2.5">
-              <div className="flex flex-col items-center justify-center rounded-sm border border-dashed border-stone-400 bg-stone-200/20 py-3 text-center">
-                <span className="text-2xl opacity-80">⚔️</span>
-                <span className="mt-1 font-serif text-[12px] font-semibold text-stone-600">
+              {/* ARMA */}
+              <div className="flex min-h-[110px] flex-col items-center justify-center rounded-sm border border-stone-300 bg-[#efe5cf] p-3 text-center shadow-sm">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500">
                   Arma
                 </span>
+
+                {arma ? (
+                  <>
+                    <span className="mt-2 font-serif text-sm font-black text-stone-900">
+                      {arma.objeto.nombre}
+                    </span>
+
+                    {arma.nivelMejora > 0 && (
+                      <span className="mt-1 text-xs font-bold text-amber-700">
+                        +{arma.nivelMejora}
+                      </span>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <span className="mt-2 text-2xl opacity-60">⚔️</span>
+                    <span className="mt-1 font-serif text-[11px] italic text-stone-500">
+                      Sin equipar
+                    </span>
+                  </>
+                )}
               </div>
 
-              <div className="flex flex-col items-center justify-center rounded-sm border border-dashed border-stone-400 bg-stone-200/20 py-3 text-center">
-                <span className="text-2xl opacity-80">🛡️</span>
-                <span className="mt-1 font-serif text-[12px] font-semibold text-stone-600">
+              {/* ARMADURA */}
+              <div className="flex min-h-[110px] flex-col items-center justify-center rounded-sm border border-stone-300 bg-[#efe5cf] p-3 text-center shadow-sm">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500">
                   Armadura
                 </span>
+
+                {armadura ? (
+                  <>
+                    <span className="mt-2 font-serif text-sm font-black text-stone-900">
+                      {armadura.objeto.nombre}
+                    </span>
+
+                    {armadura.nivelMejora > 0 && (
+                      <span className="mt-1 text-xs font-bold text-amber-700">
+                        +{armadura.nivelMejora}
+                      </span>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <span className="mt-2 text-2xl opacity-60">🛡️</span>
+                    <span className="mt-1 font-serif text-[11px] italic text-stone-500">
+                      Sin equipar
+                    </span>
+                  </>
+                )}
               </div>
 
-              <div className="flex flex-col items-center justify-center rounded-sm border border-dashed border-stone-400 bg-stone-200/20 py-3 text-center">
-                <span className="text-2xl opacity-80">💍</span>
-                <span className="mt-1 font-serif text-[12px] font-semibold text-stone-600">
-                  Reliquia
+              {/* ACCESORIO */}
+              <div className="flex min-h-[110px] flex-col items-center justify-center rounded-sm border border-stone-300 bg-[#efe5cf] p-3 text-center shadow-sm">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500">
+                  Accesorio
                 </span>
+
+                {accesorio ? (
+                  <>
+                    <span className="mt-2 font-serif text-sm font-black text-stone-900">
+                      {accesorio.objeto.nombre}
+                    </span>
+
+                    {accesorio.nivelMejora > 0 && (
+                      <span className="mt-1 text-xs font-bold text-amber-700">
+                        +{accesorio.nivelMejora}
+                      </span>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <span className="mt-2 text-2xl opacity-60">💍</span>
+                    <span className="mt-1 font-serif text-[11px] italic text-stone-500">
+                      Sin equipar
+                    </span>
+                  </>
+                )}
               </div>
             </div>
           </section>

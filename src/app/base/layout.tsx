@@ -148,7 +148,7 @@ export default function BaseLayout({
                   />
                 </div>
                 <span className="text-sm font-mono text-stone-300">
-                  {personaje.hpActual}/{personaje.hpMaximo}
+                  {Math.floor(personaje.hpActual)}/{personaje.hpMaximo}
                 </span>
               </div>
 
