@@ -2,7 +2,11 @@ import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
-import { obtenerObjetosEnVenta } from "@/lib/tiendaObjetos";
+import {
+  obtenerObjetosVisiblesEnArmeria,
+  puedeComprarObjeto,
+  obtenerRequisitosRareza,
+} from "@/lib/tiendaObjetos";
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 
 function construirInventario(personaje: {
@@ -86,13 +90,27 @@ export async function GET() {
     const nivelHerreria =
       typeof edificios.herreria === "number" ? edificios.herreria : 0;
 
+    const nivelHeroe = usuario.personaje.nivel;
+
     const inventario = construirInventario(usuario.personaje);
     const equipo = obtenerEquipoDesdePersonaje(usuario.personaje);
+
+    const objetosVisibles = obtenerObjetosVisiblesEnArmeria(nivelArmeria);
+
+    const enVenta = objetosVisibles.map((objeto) => {
+      const requisitos = obtenerRequisitosRareza(objeto.rareza);
+
+      return {
+        ...objeto,
+        puedeComprar: puedeComprarObjeto(objeto, nivelArmeria, nivelHeroe),
+        nivelHeroeNecesario: requisitos.nivelHeroe,
+      };
+    });
 
     return NextResponse.json({
       armeriaNivel: nivelArmeria,
       herreriaNivel: nivelHerreria,
-      enVenta: obtenerObjetosEnVenta(nivelArmeria),
+      enVenta,
       inventario,
       equipo,
       oro: usuario.oro,

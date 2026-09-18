@@ -2,7 +2,10 @@ import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
-import { obtenerObjetosEnVenta } from "@/lib/tiendaObjetos";
+import {
+  puedeComprarObjeto,
+  obtenerRequisitosRareza,
+} from "@/lib/tiendaObjetos";
 
 export async function POST(request: Request) {
   try {
@@ -69,6 +72,8 @@ export async function POST(request: Request) {
     const nivelArmeria =
       typeof edificios.armeria === "number" ? edificios.armeria : 0;
 
+    const nivelHeroe = usuario.personaje.nivel;
+
     if (nivelArmeria <= 0) {
       return NextResponse.json(
         { error: "No tienes una Armería construida." },
@@ -76,16 +81,30 @@ export async function POST(request: Request) {
       );
     }
 
-    const objetosDisponibles = obtenerObjetosEnVenta(nivelArmeria);
+    const requisitos = obtenerRequisitosRareza(objeto.rareza);
 
-    const objetoDisponible = objetosDisponibles.some(
-      (objetoDisponible) => objetoDisponible.id === objetoId
-    );
-
-    if (!objetoDisponible) {
+    if (nivelArmeria < requisitos.nivelArmeria) {
       return NextResponse.json(
         {
           error: "Tu Armería todavía no puede vender este objeto.",
+        },
+        { status: 400 }
+      );
+    }
+
+    if (nivelHeroe < requisitos.nivelHeroe) {
+      return NextResponse.json(
+        {
+          error: `Necesitas nivel ${requisitos.nivelHeroe} de héroe para comprar este objeto.`,
+        },
+        { status: 400 }
+      );
+    }
+
+    if (!puedeComprarObjeto(objeto, nivelArmeria, nivelHeroe)) {
+      return NextResponse.json(
+        {
+          error: "No cumples los requisitos para comprar este objeto.",
         },
         { status: 400 }
       );

@@ -16,10 +16,15 @@ import type {
 } from "@/lib/tiposJuego";
 import type { ModificadoresEstadisticas } from "@/lib/estadisticasPersonaje";
 
+interface ObjetoEnVenta extends DefinicionObjeto {
+  puedeComprar: boolean;
+  nivelHeroeNecesario: number;
+}
+
 interface DatosObjetos {
   herreriaNivel: number;
   fecha: string;
-  enVenta: DefinicionObjeto[];
+  enVenta: ObjetoEnVenta[];
   inventario: ObjetoInventario[];
   equipo: EquipoPersonaje;
   oro: number;
@@ -466,6 +471,7 @@ export default function HerreriaPage() {
                   );
 
                   const comprando = procesando === `comprar:${objeto.id}`;
+                  const nivelHeroeInsuficiente = !objeto.puedeComprar;
 
                   if (!esEquipable(objeto)) {
                     return null;
@@ -563,6 +569,7 @@ export default function HerreriaPage() {
                             disabled={
                               comprando ||
                               procesando !== null ||
+                              nivelHeroeInsuficiente ||
                               oro < objeto.precio
                             }
                             className={`flex h-12 w-full items-center justify-between rounded border-2 px-4 font-black transition-all ${
@@ -574,6 +581,8 @@ export default function HerreriaPage() {
                             <span>
                               {comprando
                                 ? "Comprando..."
+                                : nivelHeroeInsuficiente
+                                ? `Nivel ${objeto.nivelHeroeNecesario}`
                                 : oro < objeto.precio
                                 ? "Oro insuficiente"
                                 : "Comprar"}
