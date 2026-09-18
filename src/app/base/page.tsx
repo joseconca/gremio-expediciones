@@ -303,14 +303,7 @@ export default function BasePage() {
     (e) => e.nivel > 0 && e.id !== "armeria" && e.id !== "herreria"
   );
 
-  const complejoArmeriaConstruido = armeria.nivel > 0;
-
-  const edificiosConstruccion = listaEdificios.filter(
-    (e) => e.id !== "armeria" && e.id !== "herreria"
-  );
-
-  const costeArmeria = obtenerCosteMejora("armeria");
-  const costeHerreria = obtenerCosteMejora("herreria");
+  const edificiosConstruccion = listaEdificios;
 
   const ejecutarAccionCombate = useCallback(
     (accion: "atacar" | "usar_habilidad", habilidadId?: string) => {
@@ -663,31 +656,55 @@ export default function BasePage() {
           /* MODO NORMAL: Sólo mostrar edificios construidos */
           <div className="grid grid-cols-1 md:grid-cols-3">
             {/**CASO ESPECIAL ARMERIA-HERRERIA */}
-            {complejoArmeriaConstruido && (
+            {armeria.nivel > 0 && (
               <div
                 key="armeria-complejo"
                 className="group relative flex flex-col overflow-hidden"
               >
                 {/* PANEL DE INFORMACIÓN */}
+
                 <div className="relative z-1 flex flex-1 items-center justify-center px-3 pt-3 -mb-5">
-                  <div className="relative h-full w-5/6 flex-col items-center justify-center rounded border-3 border-amber-950 bg-gradient-to-b from-amber-800 to-amber-900 p-3 shadow-lg">
-                    {/* Clavos decorativos en las esquinas */}
-                    <div className="absolute left-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
-                    <div className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
-                    <div className="absolute bottom-1.5 left-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
-                    <div className="absolute bottom-1.5 right-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
+                  <div className="relative h-full w-5/6 rounded flex-col items-center justify-center border-3 border-amber-950 bg-gradient-to-b from-amber-800 to-amber-900 p-3 shadow-lg">
+                    <div className="absolute left-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80" />
+                    <div className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80" />
+                    <div className="absolute bottom-1.5 left-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80" />
+                    <div className="absolute bottom-1.5 right-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80" />
 
-                    <h3 className="text-center text-lg font-black tracking-wide text-amber-200 drop-shadow-md group-hover:text-amber-100">
-                      {herreria.nivel > 0 ? herreria.nombre : armeria.nombre}
-                    </h3>
+                    <div
+                      className={
+                        herreria.nivel > 0
+                          ? "mt-2 grid grid-cols-2 gap-3"
+                          : "mt-2"
+                      }
+                    >
+                      {/* ARMERÍA */}
+                      <div className="min-w-0 text-center">
+                        <h3 className="text-lg text-center font-black tracking-wide text-amber-200">
+                          {armeria.nombre}
+                        </h3>
 
-                    <p className="mt-1 line-clamp-3 text-center text-xs font-semibold leading-tight text-amber-100/70">
-                      {herreria.nivel > 0
-                        ? herreria.descripcion
-                        : armeria.descripcion}
-                    </p>
+                        <p className="mt-1 line-clamp-2 text-[10px] font-semibold leading-tight text-amber-100/60">
+                          {armeria.descripcion}
+                        </p>
+                      </div>
+
+                      {/* HERRERÍA */}
+                      {herreria.nivel > 0 && (
+                        <div className="min-w-0 text-center">
+                          <h3 className="text-lg text-center font-black tracking-wide text-amber-200">
+                            {herreria.nombre}
+                          </h3>
+
+                          <p className="mt-1 line-clamp-2 text-[10px] font-semibold leading-tight text-amber-100/60">
+                            {herreria.descripcion}
+                          </p>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
+
+                {/* ESCENARIO */}
                 <div className="relative flex h-44 w-full items-center justify-center overflow-hidden border-b border-slate-700/60 bg-slate-950 p-2 pb-6">
                   <Image
                     src="/sprites/buildings/fondoEdificios.png"
@@ -699,9 +716,9 @@ export default function BasePage() {
                   />
 
                   <div className="relative z-10 h-36 w-72">
-                    {/* SOMBRA REALISTA CON LA FORMA DEL PNG */}
+                    {/* SOMBRA */}
                     <div
-                      className="absolute inset-0 z-0 opacity-60 blur-xs priority unoptimized"
+                      className="absolute inset-0 z-0 opacity-60 blur-xs"
                       style={{
                         transform:
                           "translateY(25%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)",
@@ -709,40 +726,52 @@ export default function BasePage() {
                     >
                       <Image
                         src={`/sprites/buildings/${
-                          herreria.nivel > 0 ? herreria.id : armeria.id
+                          herreria.nivel > 0 ? "herreria" : "armeria"
                         }.png`}
-                        alt="sombra del edificio"
+                        alt=""
                         fill
                         sizes="288px"
-                        // brightness-0 vuelve todos los píxeles negros respetando la transparencia (canal alpha)
                         className="object-contain brightness-0"
                       />
                     </div>
+
+                    {/* EDIFICIO */}
+                    <Image
+                      src={`/sprites/buildings/${
+                        herreria.nivel > 0 ? "herreria" : "armeria"
+                      }.png`}
+                      alt={
+                        herreria.nivel > 0 ? "Armería y Herrería" : "Armería"
+                      }
+                      fill
+                      sizes="288px"
+                      unoptimized
+                      priority
+                      className="relative z-10 object-contain [image-rendering:pixelated]"
+                    />
                   </div>
 
-                  <Image
-                    src={`/sprites/buildings/${
-                      herreria.nivel > 0 ? "herreria" : "armeria"
-                    }.png`}
-                    alt={
-                      herreria.nivel > 0 ? "Armería con Herrería" : "Armería"
-                    }
-                    fill
-                    sizes="288px"
-                    unoptimized
-                    priority
-                    className="relative z-10 object-contain [image-rendering:pixelated]"
-                  />
-
-                  <div className="absolute bottom-1 left-1/2 z-20 w-full -translate-x-1/2 px-4">
+                  {/* BOTONES */}
+                  <div
+                    className={`absolute bottom-1 left-1/2 z-20 flex -translate-x-1/2 gap-2 ${
+                      herreria.nivel > 0 ? "w-full px-4" : "w-3/5"
+                    }`}
+                  >
                     <Link
-                      href={CONFIGURACION_EDIFICIOS["herreria"].ruta}
-                      className="mx-auto block w-3/5 rounded-sm border border-stone-800 bg-stone-500 py-1.5 text-center font-black tracking-widest text-stone-300/80
-                        shadow-[inset_0_2px_1px_rgba(255,255,255,0.3),inset_0_-2px_1px_rgba(0,0,0,0.6),0_4px_0_#1c1917,0_6px_4px_rgba(0,0,0,0.5)]  
-                        [text-shadow:inset_0_2px_3px_rgba(0,0,0,1)] active:translate-y-[4px] active:shadow-[inset_0_2px_1px_rgba(255,255,255,0.3),inset_0_-2px_1px_rgba(0,0,0,0.6),0_0px_0_#1c1917,0_0px_0_rgba(0,0,0,0.5)]"
+                      href={CONFIGURACION_EDIFICIOS.armeria.ruta}
+                      className="block flex-1 rounded-sm border border-stone-800 bg-stone-500 py-1.5 text-center font-black tracking-widest text-stone-300/80 shadow-[inset_0_2px_1px_rgba(255,255,255,0.3),inset_0_-2px_1px_rgba(0,0,0,0.6),0_4px_0_#1c1917,0_6px_4px_rgba(0,0,0,0.5)] active:translate-y-[4px] active:shadow-[inset_0_2px_1px_rgba(255,255,255,0.3),inset_0_-2px_1px_rgba(0,0,0,0.6),0_0px_0_#1c1917,0_0px_0_rgba(0,0,0,0.5)]"
                     >
-                      ENTRAR
+                      {herreria.nivel > 0 ? "ARMERÍA" : "ENTRAR"}
                     </Link>
+
+                    {herreria.nivel > 0 && (
+                      <Link
+                        href={CONFIGURACION_EDIFICIOS.herreria.ruta}
+                        className="block flex-1 rounded-sm border border-stone-800 bg-stone-500 py-1.5 text-center font-black tracking-widest text-stone-300/80 shadow-[inset_0_2px_1px_rgba(255,255,255,0.3),inset_0_-2px_1px_rgba(0,0,0,0.6),0_4px_0_#1c1917,0_6px_4px_rgba(0,0,0,0.5)] active:translate-y-[4px] active:shadow-[inset_0_2px_1px_rgba(255,255,255,0.3),inset_0_-2px_1px_rgba(0,0,0,0.6),0_0px_0_#1c1917,0_0px_0_rgba(0,0,0,0.5)]"
+                      >
+                        HERRERÍA
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>
@@ -834,214 +863,18 @@ export default function BasePage() {
           </div>
         ) : (
           /* MODO CONSTRUCCIÓN: Mostrar todos para mejorar/construir */
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {/* ========================================================= */}
-            {/* ARMERÍA + HERRERÍA: UN ÚNICO HUECO                       */}
-            {/* ========================================================= */}
-
-            <div className="group relative flex flex-col overflow-hidden">
-              {/* PANEL DE INFORMACIÓN */}
-              <div className="relative z-10 flex flex-1 items-center justify-center px-3 pt-3 -mb-5">
-                <div className="relative h-full w-5/6 rounded border-3 border-amber-950 bg-gradient-to-b from-amber-800 to-amber-900 p-3 shadow-lg">
-                  {/* Clavos decorativos */}
-                  <div className="absolute left-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
-                  <div className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
-                  <div className="absolute bottom-1.5 left-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
-                  <div className="absolute bottom-1.5 right-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
-
-                  <h3 className="text-center text-lg font-black tracking-wide text-amber-200 drop-shadow-md group-hover:text-amber-100">
-                    Armería y Herrería
-                  </h3>
-
-                  <p className="mt-1 text-center text-xs font-semibold leading-tight text-amber-100/70">
-                    Forja armas y armaduras y mejora tu equipo.
-                  </p>
-                </div>
-              </div>
-
-              {/* ESCENARIO */}
-              <div className="relative flex h-44 w-full items-center justify-center overflow-hidden border-b border-slate-700/60 bg-slate-950 p-2 pb-6">
-                {armeria.nivel === 0 ? (
-                  <>
-                    {/* Fondo del solar */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_60%,rgba(120,90,55,0.22),transparent_55%)]" />
-
-                    {/* Maderas de obra */}
-                    <div className="absolute bottom-5 left-1/2 h-2 w-20 -translate-x-1/2 rotate-[-7deg] bg-amber-950/80 shadow-md" />
-                    <div className="absolute bottom-8 left-1/2 h-2 w-16 -translate-x-1/2 rotate-[8deg] bg-amber-900/70 shadow-md" />
-
-                    {/* Cruz del solar */}
-                    <div className="absolute left-1/2 top-1/2 h-10 w-px -translate-x-1/2 -translate-y-1/2 rotate-45 bg-stone-400/20" />
-                    <div className="absolute left-1/2 top-1/2 h-10 w-px -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-stone-400/20" />
-
-                    <span className="relative z-10 border border-slate-600/80 bg-slate-950/80 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">
-                      Solar disponible
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    {/* Fondo del pueblo */}
-                    <Image
-                      src="/sprites/buildings/fondoEdificios.png"
-                      alt="Fondo del pueblo"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover opacity-50 [image-rendering:pixelated]"
-                    />
-
-                    <div className="relative z-10 h-36 w-72">
-                      {/* Sombra */}
-                      <div
-                        className="absolute inset-0 z-0 opacity-60 blur-xs"
-                        style={{
-                          transform:
-                            "translateY(25%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)",
-                        }}
-                      >
-                        <Image
-                          src={`/sprites/buildings/${
-                            herreria.nivel > 0 ? "armeria-herreria" : "armeria"
-                          }.png`}
-                          alt="Sombra del edificio"
-                          fill
-                          sizes="288px"
-                          className="object-contain brightness-0"
-                        />
-                      </div>
-
-                      {/* Edificio */}
-                      <Image
-                        src={`/sprites/buildings/${
-                          herreria.nivel > 0 ? "armeria-herreria" : "armeria"
-                        }.png`}
-                        alt={
-                          herreria.nivel > 0 ? "Armería y Herrería" : "Armería"
-                        }
-                        fill
-                        sizes="288px"
-                        unoptimized
-                        className="relative z-10 object-contain [image-rendering:pixelated]"
-                      />
-                    </div>
-                  </>
-                )}
-              </div>
-
-              {/* CONTROLES */}
-              <div className="space-y-2 border-t border-slate-800 bg-slate-950/80 p-3">
-                {/* ARMERÍA */}
-                <div className="rounded border border-slate-800 bg-slate-900/80 p-3">
-                  <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <h4 className="font-bold text-amber-300">Armería</h4>
-                      <p className="mt-1 text-xs text-slate-500">
-                        Compra armas y armaduras.
-                      </p>
-                    </div>
-
-                    <span className="shrink-0 border border-slate-700 bg-slate-950 px-2 py-1 text-xs font-mono text-slate-400">
-                      {armeria.nivel === 0
-                        ? "Sin construir"
-                        : `Nivel ${armeria.nivel}/${armeria.nivelMax}`}
-                    </span>
-                  </div>
-
-                  {armeria.nivel >= armeria.nivelMax ? (
-                    <div className="mt-3 border-t border-slate-800 pt-2 text-center text-xs font-bold text-slate-500">
-                      Nivel máximo
-                    </div>
-                  ) : (
-                    <button
-                      onClick={async () => {
-                        const exito = await mejorarEdificio("armeria");
-
-                        if (!exito && oro < costeArmeria) {
-                          alert("No tienes suficiente oro para esto.");
-                        }
-                      }}
-                      disabled={oro < costeArmeria}
-                      className={`mt-3 flex w-full items-center justify-between rounded border px-3 py-2 text-sm font-bold transition ${
-                        oro >= costeArmeria
-                          ? "border-amber-700/60 bg-amber-900/70 text-amber-100 hover:border-amber-500/70 hover:bg-amber-800"
-                          : "cursor-not-allowed border-slate-700 bg-slate-900 text-slate-600"
-                      }`}
-                    >
-                      <span>
-                        {armeria.nivel === 0 ? "Construir" : "Mejorar"}
-                      </span>
-                      <span>{costeArmeria} 🪙</span>
-                    </button>
-                  )}
-                </div>
-
-                {/* HERRERÍA */}
-                <div className="rounded border border-slate-800 bg-slate-900/80 p-3">
-                  <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <h4
-                        className={`font-bold ${
-                          armeria.nivel === 0
-                            ? "text-slate-500"
-                            : "text-amber-300"
-                        }`}
-                      >
-                        Herrería
-                      </h4>
-
-                      <p className="mt-1 text-xs text-slate-500">
-                        {armeria.nivel === 0
-                          ? "Requiere Armería nivel 1."
-                          : `Permite mejorar armas hasta +${
-                              herreria.nivel * 3
-                            }.`}
-                      </p>
-                    </div>
-
-                    <span className="shrink-0 border border-slate-700 bg-slate-950 px-2 py-1 text-xs font-mono text-slate-400">
-                      {herreria.nivel === 0
-                        ? "Sin construir"
-                        : `Nivel ${herreria.nivel}/${herreria.nivelMax}`}
-                    </span>
-                  </div>
-
-                  {herreria.nivel >= herreria.nivelMax ? (
-                    <div className="mt-3 border-t border-slate-800 pt-2 text-center text-xs font-bold text-slate-500">
-                      Nivel máximo
-                    </div>
-                  ) : (
-                    <button
-                      onClick={async () => {
-                        const exito = await mejorarEdificio("herreria");
-
-                        if (!exito && oro < costeHerreria) {
-                          alert("No tienes suficiente oro para esto.");
-                        }
-                      }}
-                      disabled={armeria.nivel < 1 || oro < costeHerreria}
-                      className={`mt-3 flex w-full items-center justify-between rounded border px-3 py-2 text-sm font-bold transition ${
-                        armeria.nivel >= 1 && oro >= costeHerreria
-                          ? "border-amber-700/60 bg-amber-900/70 text-amber-100 hover:border-amber-500/70 hover:bg-amber-800"
-                          : "cursor-not-allowed border-slate-700 bg-slate-900 text-slate-600"
-                      }`}
-                    >
-                      <span>
-                        {herreria.nivel === 0 ? "Construir" : "Mejorar"}
-                      </span>
-                      <span>{costeHerreria} 🪙</span>
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {/* ========================================================= */}
             {/* RESTO DE EDIFICIOS                                        */}
             {/* ========================================================= */}
 
             {edificiosConstruccion.map((edificio) => {
               const coste = obtenerCosteMejora(edificio.id);
-              const bloqueado = edificio.nivel === 0;
               const maxNivel = edificio.nivel >= edificio.nivelMax;
+              const bloqueadaPorArmeria =
+                edificio.id === "herreria" && armeria.nivel === 0;
+
+              const bloqueado = edificio.nivel === 0 && bloqueadaPorArmeria;
 
               return (
                 <div
@@ -1137,33 +970,37 @@ export default function BasePage() {
                           : `Nivel ${edificio.nivel}/${edificio.nivelMax}`}
                       </span>
 
-                      {maxNivel && (
+                      {maxNivel ? (
                         <span className="text-xs font-bold text-slate-500">
                           Nivel máximo
                         </span>
+                      ) : (
+                        <button
+                          onClick={async () => {
+                            const exito = await mejorarEdificio(edificio.id);
+
+                            if (!exito && oro < coste) {
+                              alert("No tienes suficiente oro para esto.");
+                            }
+                          }}
+                          disabled={bloqueado || oro < coste}
+                          className={`flex items-center gap-3 rounded-sm border px-3 py-0 font-bold ${
+                            oro >= coste && !bloqueado
+                              ? "border-amber-700/60 bg-amber-900/70 text-amber-100 hover:border-amber-500/70 hover:bg-amber-800"
+                              : "cursor-not-allowed border-slate-700 bg-slate-900 text-slate-600"
+                          }`}
+                        >
+                          <span>
+                            {bloqueadaPorArmeria
+                              ? "Requiere Armería"
+                              : bloqueado
+                              ? "Construir"
+                              : "Mejorar"}
+                          </span>
+                          <span>{coste} 🪙</span>
+                        </button>
                       )}
                     </div>
-
-                    {!maxNivel && (
-                      <button
-                        onClick={async () => {
-                          const exito = await mejorarEdificio(edificio.id);
-
-                          if (!exito && oro < coste) {
-                            alert("No tienes suficiente oro para esto.");
-                          }
-                        }}
-                        disabled={oro < coste}
-                        className={`w-full border-t px-4 py-3 flex items-center justify-between font-bold ${
-                          oro >= coste
-                            ? "border-amber-700/60 bg-amber-900/70 text-amber-100 hover:border-amber-500/70 hover:bg-amber-800"
-                            : "cursor-not-allowed border-slate-700 bg-slate-900 text-slate-600"
-                        }`}
-                      >
-                        <span>{bloqueado ? "Construir" : "Mejorar"}</span>
-                        <span>{coste} 🪙</span>
-                      </button>
-                    )}
                   </div>
                 </div>
               );
