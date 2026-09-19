@@ -2,11 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image"
 import CabeceraEdificio from "@/components/CabeceraEdificio";
 import { useGameStore } from "@/store/useGameStore";
 import {
   calcularCosteMejoraObjeto,
   calcularEstadisticasObjeto,
+  obtenerSpriteObjeto,
 } from "@/lib/objetos";
 import type {
   DefinicionObjeto,
@@ -486,7 +488,7 @@ export default function HerreriaPage() {
             href="/base/armeria"
             className="shrink-0 rounded-lg bg-slate-800 px-4 py-2 font-bold text-slate-300 transition-colors hover:bg-slate-700"
           >
-              Ir a la armería →
+            Ir a la armería →
           </Link>
         </div>
 
@@ -614,6 +616,20 @@ export default function HerreriaPage() {
                               {/* INFORMACIÓN */}
                               <div className="min-w-0">
                                 <div className="flex flex-wrap items-center gap-2">
+                                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-md border-2 border-[#60676a] bg-[#171a1b] text-3xl shadow-[inset_0_0_18px_rgba(0,0,0,0.5)]">
+                                    {obtenerSpriteObjeto(objeto) ? (
+                                      <Image
+                                        src={obtenerSpriteObjeto(objeto)!}
+                                        alt={objeto.nombre}
+                                        width={64}
+                                        height={64}
+                                        className="rounded-md"
+                                      />
+                                    ) : (
+                                      iconoTipo(categoria.tipo)
+                                    )}
+                                  </div>
+
                                   <h4 className="text-lg font-black text-[#e3dfd8]">
                                     {objeto.nombre}
                                   </h4>

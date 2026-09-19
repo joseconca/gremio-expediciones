@@ -8,6 +8,7 @@ import {
   obtenerSpriteHeroe,
 } from "@/lib/configuracionJuego";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
+import { obtenerSpriteObjeto } from "@/lib/objetos";
 
 interface HojaPersonajeModalProps {
   abierto: boolean;
@@ -369,6 +370,17 @@ export default function HojaPersonajeModal({
 
                 {arma ? (
                   <>
+                    {obtenerSpriteObjeto(arma.objeto) ? (
+                      <Image
+                        src={obtenerSpriteObjeto(arma.objeto)!}
+                        alt={arma.objeto.nombre}
+                        width={64}
+                        height={64}
+                        className="rounded-md"
+                      />
+                    ) : (
+                      <span className="text-2xl opacity-60">⚔️</span>
+                    )}
                     <span className="mt-2 font-serif text-sm font-black text-stone-900">
                       {arma.objeto.nombre}
                     </span>
@@ -397,6 +409,17 @@ export default function HojaPersonajeModal({
 
                 {armadura ? (
                   <>
+                  {obtenerSpriteObjeto(armadura.objeto) ? (
+                      <Image
+                        src={obtenerSpriteObjeto(armadura.objeto)!}
+                        alt={armadura.objeto.nombre}
+                        width={64}
+                        height={64}
+                        className="rounded-md"
+                      />
+                    ) : (
+                      <span className="text-2xl opacity-60">🛡️</span>
+                    )}
                     <span className="mt-2 font-serif text-sm font-black text-stone-900">
                       {armadura.objeto.nombre}
                     </span>
@@ -425,6 +448,17 @@ export default function HojaPersonajeModal({
 
                 {accesorio ? (
                   <>
+                  {obtenerSpriteObjeto(accesorio.objeto) ? (
+                      <Image
+                        src={obtenerSpriteObjeto(accesorio.objeto)!}
+                        alt={accesorio.objeto.nombre}
+                        width={64}
+                        height={64}
+                        className="rounded-md"
+                      />
+                    ) : (
+                      <span className="text-2xl opacity-60">💍</span>
+                    )}
                     <span className="mt-2 font-serif text-sm font-black text-stone-900">
                       {accesorio.objeto.nombre}
                     </span>
