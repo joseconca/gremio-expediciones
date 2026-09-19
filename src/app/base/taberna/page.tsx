@@ -183,10 +183,6 @@ export default function TabernaPage() {
                       {nombreClase(personaje.clase, personaje.sexo)}
                     </p>
                   </div>
-
-                  <div className="whitespace-nowrap rounded-lg border border-amber-600/30 bg-slate-900 px-3 py-1 font-bold text-amber-400">
-                    🪙 {oro}
-                  </div>
                 </div>
 
                 <p className="mb-5 text-sm uppercase tracking-[0.2em] text-slate-500">
@@ -234,16 +230,21 @@ export default function TabernaPage() {
                 ) : (
                   <button
                     onClick={handleCurar}
+                    disabled={personaje.estado === "de_viaje" || infoCura.aTope}
                     className={`flex w-full items-center justify-between rounded-lg border px-4 py-3 font-bold text-white transition-all ${
-                      infoCura.aTope
+                      personaje.estado === "de_viaje"
+                        ? "border-gray-600 bg-gray-900/80 opacity-60 cursor-not-allowed"
+                        : infoCura.aTope
                         ? "border-emerald-600 bg-emerald-900/80 shadow-[0_0_15px_rgba(16,185,129,0.2)] hover:bg-emerald-800"
                         : "border-amber-600 bg-amber-900/80 hover:bg-amber-800"
                     }`}
                   >
                     <span>
-                      {infoCura.aTope
-                        ? "Cama premium y banquete"
-                        : `Sopa rancia (TODO TU ORO POR CURAR ${infoCura.hpCurado} HP)`}
+                      {personaje.estado === "de_viaje"
+                        ? "No puedes curarte estando de viaje"
+                        : infoCura.aTope
+                        ? "Descansar y comer"
+                        : `Una siesta y comer sopa rancia (TODO TU ORO POR CURAR ${infoCura.hpCurado} HP)`}
                     </span>
 
                     <span className="whitespace-nowrap text-amber-400">
