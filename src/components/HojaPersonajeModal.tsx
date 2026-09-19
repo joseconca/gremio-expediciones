@@ -204,9 +204,9 @@ export default function HojaPersonajeModal({
                   </span>
                 </div>
                 <div className="h-2.5 w-full overflow-hidden rounded-full border border-stone-400/50 bg-stone-300/80 shadow-inner">
-                  {/* Barra de progreso color lacre/cera roja */}
+                  {/* Barra de progreso */}
                   <div
-                    className="h-full bg-gradient-to-r from-red-900 to-red-700 transition-all duration-300"
+                    className="h-full bg-gradient-to-r from-blue-700/80 to-blue-500/80 transition-all duration-300"
                     style={{
                       width: `${porcentajeExperiencia}%`,
                     }}
@@ -272,8 +272,11 @@ export default function HojaPersonajeModal({
                 <div className="text-[11px] font-bold text-stone-600">
                   🎯 Golpe Crítico
                 </div>
+                <div className="text-[11px] font-bold text-stone-600">
+                  Probabilidad y daño
+                </div>
                 <div className="mt-0.5 font-serif text-xl font-black text-stone-900">
-                  -
+                  {personaje.probCritico * 100}% x {personaje.danoCritico}
                 </div>
               </div>
             </div>
