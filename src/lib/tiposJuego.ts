@@ -6,9 +6,8 @@ export type TipoObjeto =
   | "consumible"
   | "arma"
   | "armadura"
-  | "accesorio"
-  | "material";
-
+  | "accesorio";
+  
 /** RAREZA */
 export type Rareza =
   | "basico"

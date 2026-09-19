@@ -224,6 +224,26 @@ export function obtenerObjetoPorId(id: string): DefinicionObjeto | undefined {
   return OBJETOS.find((objeto) => objeto.id === id);
 }
 
+export function obtenerSpriteObjeto(
+  objeto: Pick<DefinicionObjeto, "id" | "tipo">
+): string | null {
+  const carpetaPorTipo: Record<
+    "arma" | "armadura" | "accesorio" | "consumible",
+    string
+  > = {
+    arma: "weapons",
+    armadura: "armors",
+    accesorio: "accessories",
+    consumible: "consumables",
+  };
+
+  if (!(objeto.tipo in carpetaPorTipo)) {
+    return null;
+  }
+
+  return `/sprites/items/${carpetaPorTipo[objeto.tipo]}/${objeto.id}.png`;
+}
+
 export function obtenerObjetosPorTipo(
   tipo: DefinicionObjeto["tipo"]
 ): DefinicionObjeto[] {

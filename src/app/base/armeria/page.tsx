@@ -2,11 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import CabeceraEdificio from "@/components/CabeceraEdificio";
 import { useGameStore } from "@/store/useGameStore";
 import {
   calcularCosteMejoraObjeto,
   calcularEstadisticasObjeto,
+  obtenerSpriteObjeto,
 } from "@/lib/objetos";
 import type {
   DefinicionObjeto,
@@ -488,7 +490,17 @@ export default function HerreriaPage() {
 
                         <div className="relative flex items-start gap-4">
                           <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-md border-2 border-[#60676a] bg-[#171a1b] text-3xl shadow-[inset_0_0_18px_rgba(0,0,0,0.5)]">
-                            {iconoTipo(objeto.tipo)}
+                            {obtenerSpriteObjeto(objeto) ? (
+                              <Image
+                                src={obtenerSpriteObjeto(objeto)!}
+                                alt={objeto.nombre}
+                                width={64}
+                                height={64}
+                                className="rounded-md"
+                              />
+                            ) : (
+                              iconoTipo(objeto.tipo)
+                            )}
                           </div>
 
                           <div className="min-w-0">
@@ -573,7 +585,9 @@ export default function HerreriaPage() {
                               oro < objeto.precio
                             }
                             className={`flex h-12 w-full items-center justify-between rounded border-2 px-4 font-black transition-all ${
-                               objeto.puedeComprar && oro >= objeto.precio && !procesando
+                              objeto.puedeComprar &&
+                              oro >= objeto.precio &&
+                              !procesando
                                 ? "border-[#8b7752] bg-[#51452f] text-[#eadbbd] shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_8px_rgba(0,0,0,0.3)] hover:border-[#b7a06c] hover:bg-[#635338] active:translate-y-px"
                                 : "cursor-not-allowed border-[#373c3e] bg-[#202324] text-[#5f6669]"
                             }`}
@@ -630,29 +644,6 @@ export default function HerreriaPage() {
             <div className="grid grid-cols-1 gap-px bg-[#353a3d] lg:grid-cols-3">
               {TIPOS_EQUIPAMIENTO.map((tipo) => {
                 const equipado = obtenerObjetoEquipado(tipo);
-
-                const diferenciaMejora = equipado
-                  ? obtenerDiferenciasMejora(
-                      equipado.objeto,
-                      equipado.nivelMejora
-                    )
-                  : [];
-
-                const puedeMejorar =
-                  equipado &&
-                  (tipo === "arma" || tipo === "armadura") &&
-                  equipado.nivelMejora < nivelMaximoMejora;
-
-                const costeMejora = equipado
-                  ? calcularCosteMejoraObjeto(
-                      equipado.objeto.precio,
-                      equipado.nivelMejora
-                    )
-                  : 0;
-
-                const mejorando =
-                  equipado && procesando === `mejorar:${equipado.id}`;
-
                 const desequipando = procesando === `desequipar:${tipo}`;
 
                 return (
@@ -679,7 +670,20 @@ export default function HerreriaPage() {
 
                     {equipado ? (
                       <div className="rounded-md border border-[#4e5659] bg-[linear-gradient(135deg,#292e30,#1c2021)] p-4 shadow-[inset_0_0_20px_rgba(0,0,0,0.25)]">
-                        <div className="flex items-start justify-between gap-3">
+                        <div className="flex items-start gap-3">
+                          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-md border-2 border-[#60676a] bg-[#171a1b] text-3xl shadow-[inset_0_0_18px_rgba(0,0,0,0.5)]">
+                            {obtenerSpriteObjeto(equipado.objeto) ? (
+                              <Image
+                                src={obtenerSpriteObjeto(equipado.objeto)!}
+                                alt={equipado.objeto.nombre}
+                                width={64}
+                                height={64}
+                                className="rounded-md"
+                              />
+                            ) : (
+                              iconoTipo(tipo)
+                            )}
+                          </div>
                           <div className="min-w-0">
                             <div className="flex flex-wrap items-center gap-2">
                               <span
@@ -699,10 +703,6 @@ export default function HerreriaPage() {
                               {equipado.objeto.nombre}
                             </h4>
                           </div>
-
-                          <span className="text-3xl opacity-70">
-                            {iconoTipo(tipo)}
-                          </span>
                         </div>
 
                         <div className="mt-4 grid grid-cols-2 gap-2">
@@ -859,7 +859,17 @@ export default function HerreriaPage() {
                                 : "border-[#684a2f] bg-[#211710]"
                             }`}
                           >
-                            {iconoTipo(objeto.tipo)}
+                            {obtenerSpriteObjeto(objeto) ? (
+                              <Image
+                                src={obtenerSpriteObjeto(objeto)!}
+                                alt={objeto.nombre}
+                                width={64}
+                                height={64}
+                                className="rounded-md"
+                              />
+                            ) : (
+                              iconoTipo(objeto.tipo)
+                            )}
                           </div>
 
                           <div className="min-w-0">
