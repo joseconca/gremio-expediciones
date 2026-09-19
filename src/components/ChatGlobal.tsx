@@ -81,7 +81,7 @@ export default function ChatGlobal({
 
   return (
     <section className="sticky bottom-0 z-40 shrink-0">
-      <div className="pointer-events-auto w-full border-t border-slate-600 bg-slate-900/95 shadow-2xl backdrop-blur">
+      <div className="pointer-events-auto w-full border-t border-slate-600 bg-stone-900 shadow-2xl backdrop-blur">
         <div
           className={`flex w-full items-center gap-2 px-4 ${
             abierto ? "border-b border-slate-700 py-3" : "py-2"
@@ -118,7 +118,7 @@ export default function ChatGlobal({
 
         {abierto && (
           <div className="p-4">
-            <div className="mb-4 h-48 flex flex-col gap-2 overflow-y-auto rounded-lg bg-slate-950 p-3">
+            <div className="mb-4 h-48 flex flex-col gap-2 overflow-y-auto rounded-lg bg-stone-700 p-3">
               {mensajes.length === 0 ? (
                 <p className="text-sm text-slate-500">
                   ~No hay mensajes cargados~
@@ -142,7 +142,7 @@ export default function ChatGlobal({
                 onChange={(event) => setTexto(event.target.value)}
                 maxLength={300}
                 placeholder="Escribe en el chat..."
-                className="min-w-0 flex-1 rounded-lg border border-slate-600 bg-slate-950 px-3 py-2 text-white"
+                className="min-w-0 flex-1 rounded-lg border border-slate-600 bg-stone-700 px-3 py-2 text-white"
               />
               <button className="rounded-lg bg-amber-600 px-4 py-2 font-bold text-white hover:bg-amber-500">
                 Enviar

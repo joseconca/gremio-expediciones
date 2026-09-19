@@ -105,7 +105,6 @@ export default function BaseLayout({
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* CAMBIO 1: Quitamos bg-stone-950 y añadimos pointer-events-none */}
       <header className="sticky top-0 z-50 flex flex-col md:flex-row md:justify-between items-center md:items-start pointer-events-none">
         
         {/* PANEL DEL HÉROE GLOBAL */}
@@ -131,9 +130,6 @@ export default function BaseLayout({
                 <span className="truncate font-bold uppercase tracking-wider text-amber-100">
                   {personaje.nombre}
                 </span>
-                <span className="text-xs text-stone-500 transition-colors group-hover:text-amber-500">
-                  Ver ficha
-                </span>
               </div>
 
               {/* Barra de vida */}
@@ -154,7 +150,7 @@ export default function BaseLayout({
 
               {/* Barra de nivel y experiencia */}
               <div className="flex items-center gap-2">
-                <span className="w-7 shrink-0 text-xs font-mono text-stone-400">
+                <span className="block w-7 shrink-0 text-xs font-mono text-stone-400">
                   LV {nivelPersonaje}
                 </span>
                 <div className="h-1.5 w-24 overflow-hidden rounded-full border border-stone-700 bg-stone-950 sm:w-40">

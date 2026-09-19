@@ -486,7 +486,7 @@ export default function HerreriaPage() {
             href="/base/armeria"
             className="shrink-0 rounded-lg bg-slate-800 px-4 py-2 font-bold text-slate-300 transition-colors hover:bg-slate-700"
           >
-            Volver a la armería
+              Ir a la armería →
           </Link>
         </div>
 

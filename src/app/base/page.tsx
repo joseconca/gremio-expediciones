@@ -499,7 +499,7 @@ export default function BasePage() {
                 </div>
 
                 {personaje.estado === "ocioso" && (
-                  <div className="flex items-center justify-between gap-6 rounded-md border border-amber-950/80 bg-[#21170f]/80 p-4">
+                  <div className="flex flex-col items-center justify-between gap-6 rounded-md border border-amber-950/80 bg-[#21170f]/80 p-4">
                     <div>
                       <p className="font-semibold mt-1 text-sm text-amber-100/60">
                         Revisa el mapa para encontrar un nuevo contrato
@@ -516,7 +516,7 @@ export default function BasePage() {
                 )}
 
                 {personaje.estado === "de_viaje" && expedicionActiva && (
-                  <div className="relative rounded-lg border border-slate-700 bg-slate-900/50 p-4 pr-12 transition-colors hover:border-amber-500/50">
+                  <div className="relative rounded-lg border border-slate-700 bg-slate-900/50 p-4 transition-colors hover:border-amber-500/50">
                     <div
                       className="flex cursor-pointer flex-col items-center justify-between gap-4 md:flex-row"
                       onClick={() =>
@@ -569,13 +569,12 @@ export default function BasePage() {
                         </div>
                       )}
                       <span
-                        className="absolute right-4 top-4 text-lg leading-none text-slate-500"
+                        className="pointer-events-none absolute right-1 top-15 text-lg leading-none text-slate-500"
                         aria-hidden="true"
                       >
                         {expedicionExpandida ? "⌃" : "⌄"}
                       </span>
                     </div>
-
                     {expedicionExpandida && (
                       <div
                         className="mt-4 overflow-hidden rounded-lg border border-slate-700 bg-slate-900"
@@ -641,10 +640,10 @@ export default function BasePage() {
 
           <button
             onClick={() => setModoConstruccion(!modoConstruccion)}
-            className={`rounded-md border px-4 py-2 font-bold transition-colors ${
+            className={`rounded-md border-x border-b-3 border-amber-950 px-4 py-2 font-bold transition-colors ${
               modoConstruccion
-                ? "border-stone-600 bg-stone-800 text-stone-300"
-                : "border-stone-600 bg-stone-800 text-stone-300"
+                ? "border-amber-400 bg-amber-700/40 text-amber-200/70"
+                : "border-stone-600 bg-stone-700 text-stone-400"
             }`}
           >
             {modoConstruccion ? "← Volver" : "Construir y mejorar edificios"}
@@ -659,7 +658,7 @@ export default function BasePage() {
             {armeria.nivel > 0 && (
               <div
                 key="armeria-complejo"
-                className="group relative flex flex-col overflow-hidden"
+                className="group relative order-2 flex flex-col overflow-hidden"
               >
                 {/* PANEL DE INFORMACIÓN */}
 
@@ -782,7 +781,9 @@ export default function BasePage() {
               return (
                 <div
                   key={edificio.id}
-                  className="group relative flex flex-col overflow-hidden"
+                  className={`group relative flex flex-col overflow-hidden ${
+                    edificio.id === "taberna" ? "order-1" : "order-3"
+                  }`}
                 >
                   {/* PANEL DE INFORMACIÓN */}
                   <div className="relative z-1 flex flex-1 items-center justify-center px-3 pt-3 -mb-5">
