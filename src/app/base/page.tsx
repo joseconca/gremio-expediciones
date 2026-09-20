@@ -5,19 +5,16 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
-import type { ReporteExpedicion as ReporteExpedicionTipo } from "@/lib/tiposJuego";
+import type {
+  ReporteExpedicion as ReporteExpedicionTipo,
+  Edificio,
+} from "@/lib/tiposJuego";
 import CombateModal from "@/components/CombateModal";
+import PanelEdificios from "@/components/PanelEdificios";
 import ReporteExpedicion from "@/components/reportes/ReporteExpedicion";
-import { CONFIGURACION_EDIFICIOS } from "@/lib/configuracionJuego";
-
-const MissionMap = dynamic(() => import("@/components/MissionMap"), {
-  ssr: false,
-  loading: () => (
-    <div className="h-full flex items-center justify-center text-amber-400">
-      Cargando mapa...
-    </div>
-  ),
-});
+import { CONFIGURACION_EDIFICIOS } from "@/lib/tiposJuego";
+import PanelMisiones from "@/components/PanelMisiones";
+import PanelConstruccion from "@/components/PanelConstruccion";
 
 interface CaravanaEntrante {
   id: string;
@@ -288,12 +285,6 @@ export default function BasePage() {
     setReporte(null);
   };
 
-  const formatoTiempo = (segundos: number) => {
-    const m = Math.floor(segundos / 60);
-    const s = segundos % 60;
-    return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
-  };
-
   const listaEdificios = Object.values(edificios);
 
   const armeria = edificios.armeria;
@@ -464,175 +455,24 @@ export default function BasePage() {
       <div className="max-w-4xl mx-auto">
         {/* 1. PANEL DE MISIONES */}
         {personaje && (
-          <div className="mb-8 overflow-hidden rounded-lg border-2 border-amber-950/80 bg-[#4a2f1b] shadow-[0_8px_24px_rgba(0,0,0,0.4)]">
-            <div className="relative p-6">
-              {/* Clavos decorativos */}
-              <span className="absolute left-3 top-2 h-3 w-3 rounded-full bg-slate-400 shadow-inner" />
-              <span className="absolute right-3 top-2 h-3 w-3 rounded-full bg-slate-400 shadow-inner" />
-
-              {/* Vetado de la madera */}
-              <div className="pointer-events-none absolute inset-0 opacity-20">
-                {vetasMadera.map((veta) => (
-                  <svg
-                    key={veta.id}
-                    className={`absolute inset-y-0 h-full w-4 -ml-2 ${veta.clase}`}
-                    style={{ left: veta.left }}
-                    preserveAspectRatio="none"
-                    viewBox="0 0 20 100"
-                  >
-                    <path
-                      d={veta.d}
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={veta.stroke}
-                      vectorEffect="non-scaling-stroke"
-                    />
-                  </svg>
-                ))}
-              </div>
-
-              <div className="relative">
-                <div className="mb-5 flex items-center gap-3">
-                  <h2 className="text-xl font-black uppercase tracking-[0.15em] text-amber-100">
-                    Contratos disponibles
-                  </h2>
-                </div>
-
-                {personaje.estado === "ocioso" && (
-                  <div className="flex flex-col items-center justify-between gap-6 rounded-md border border-amber-950/80 bg-[#21170f]/80 p-4">
-                    <div>
-                      <p className="font-semibold mt-1 text-sm text-amber-100/60">
-                        Revisa el mapa para encontrar un nuevo contrato
-                      </p>
-                    </div>
-
-                    <Link
-                      href="/expediciones"
-                      className="group relative flex items-center overflow-hidden rounded-[3px] border border-amber-950/80 bg-[#e8dcc4] px-6 py-2.5 font-bold text-amber-950 shadow-[inset_0_2px_12px_rgba(139,69,19,0.65)]"
-                    >
-                      <span>Ver mapa</span>
-                    </Link>
-                  </div>
-                )}
-
-                {personaje.estado === "de_viaje" && expedicionActiva && (
-                  <div className="relative rounded-lg border border-slate-700 bg-slate-900/50 p-4 transition-colors hover:border-amber-500/50">
-                    <div
-                      className="flex cursor-pointer flex-col items-center justify-between gap-4 md:flex-row"
-                      onClick={() =>
-                        setExpedicionExpandida((expandida) => !expandida)
-                      }
-                      onKeyDown={(event) => {
-                        if (event.key === "Enter" || event.key === " ") {
-                          event.preventDefault();
-                          setExpedicionExpandida((expandida) => !expandida);
-                        }
-                      }}
-                      role="button"
-                      tabIndex={0}
-                      aria-expanded={expedicionExpandida}
-                    >
-                      <div className="flex min-w-0 items-center gap-3">
-                        <p className="text-amber-400 font-bold">
-                          {expedicionActiva.nombre}
-                        </p>
-                        <p className="text-slate-400 text-sm">
-                          {expedicionActiva.fase === "combatiendo"
-                            ? `⚔️ ${personaje.nombre} está combatiendo`
-                            : listoParaResolver
-                            ? expedicionActiva.fase === "regresando"
-                              ? `¡${personaje.nombre} ha regresado al gremio!`
-                              : `¡${personaje.nombre} ha llegado a su destino!`
-                            : expedicionActiva.fase === "regresando"
-                            ? "Regresando..."
-                            : "Aventurero de camino..."}
-                        </p>
-                      </div>
-
-                      {listoParaResolver ? (
-                        <button
-                          onClick={(event) => {
-                            event.stopPropagation();
-                            void handleResolverLlegada();
-                          }}
-                          className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-6 rounded-lg animate-pulse"
-                        >
-                          {expedicionActiva.fase === "regresando"
-                            ? "🏠 Recibir al aventurero"
-                            : expedicionActiva.tipo === "comercio"
-                            ? "🤝 Resolver comercio"
-                            : "⚔️ Enfrentarse al enemigo"}
-                        </button>
-                      ) : (
-                        <div className="text-center font-mono text-2xl text-slate-300 bg-slate-950 px-4 py-2 rounded-lg border border-slate-800">
-                          ⏳ {formatoTiempo(tiempoRestante)}
-                        </div>
-                      )}
-                      <span
-                        className="pointer-events-none absolute right-1 top-15 text-lg leading-none text-slate-500"
-                        aria-hidden="true"
-                      >
-                        {expedicionExpandida ? "⌃" : "⌄"}
-                      </span>
-                    </div>
-                    {expedicionExpandida && (
-                      <div
-                        className="mt-4 overflow-hidden rounded-lg border border-slate-700 bg-slate-900"
-                        onClick={(event) => event.stopPropagation()}
-                      >
-                        <div className="h-[360px] w-full">
-                          <MissionMap
-                            baseCoords={baseCoords!}
-                            misiones={[]}
-                            destinoExpedicion={expedicionActiva.destinoCoords}
-                            fechaSalida={expedicionActiva.fechaSalida}
-                            fechaLlegada={expedicionActiva.fechaLlegada}
-                            claseHeroe={personaje.clase}
-                            sexoHeroe={personaje.sexo}
-                            regresando={expedicionActiva.fase === "regresando"}
-                            rutasEntrantes={caravanasEntrantes
-                              .filter((caravana) => caravana.origenCoords)
-                              .map((caravana) => ({
-                                id: caravana.id,
-                                origenCoords: caravana.origenCoords!,
-                                fechaSalida: caravana.fechaSalida,
-                                fechaLlegada: caravana.fechaLlegada,
-                                nombreHeroe: caravana.nombreAventurero,
-                                claseHeroe: caravana.claseAventurero,
-                                sexoHeroe: caravana.sexoAventurero,
-                              }))}
-                            onSelectMission={() => undefined}
-                          />
-                        </div>
-                        {expedicionActiva.fase === "en_viaje" && (
-                          <div className="border-t border-slate-700 bg-slate-950/50 p-3">
-                            <button
-                              type="button"
-                              onClick={() => setConfirmarRegreso(true)}
-                              className="w-full rounded-lg border border-red-900/60 bg-red-950/40 px-4 py-2.5 text-sm font-bold text-red-300 transition hover:bg-red-900/50 hover:text-red-200"
-                            >
-                              ↩️ Regresar de inmediato
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {personaje.estado === "descansando" && (
-                  <div className="rounded-md border border-red-950/80 bg-[#21170f]/80 p-4">
-                    <p className="font-bold text-red-300">
-                      El héroe necesita recuperarse en la Taberna.
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+          <PanelMisiones
+            personaje={personaje}
+            expedicionActiva={expedicionActiva}
+            baseCoords={baseCoords}
+            caravanasEntrantes={caravanasEntrantes}
+            tiempoRestante={tiempoRestante}
+            listoParaResolver={listoParaResolver}
+            expedicionExpandida={expedicionExpandida}
+            onToggleExpedicion={() =>
+              setExpedicionExpandida((expandida) => !expandida)
+            }
+            onResolverLlegada={() => void handleResolverLlegada()}
+            onConfirmarRegreso={() => setConfirmarRegreso(true)}
+          />
         )}
 
         {/* CABECERA DINÁMICA: Instalaciones vs Construcción */}
+        {/* Edificios */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="flex items-center gap-2 text-2xl font-bold text-slate-200">
             {modoConstruccion && <p>Construir y mejorar edificios</p>}
@@ -650,384 +490,16 @@ export default function BasePage() {
           </button>
         </div>
 
-        {/* 2. RENDERIZADO DE EDIFICIOS */}
-        {!modoConstruccion ? (
-          /* MODO NORMAL: Sólo mostrar edificios construidos */
-          <div className="grid grid-cols-1 md:grid-cols-3">
-            {/**CASO ESPECIAL ARMERIA-HERRERIA */}
-            {armeria.nivel > 0 && (
-              <div
-                key="armeria-complejo"
-                className="group relative order-2 flex flex-col overflow-hidden"
-              >
-                {/* PANEL DE INFORMACIÓN */}
-
-                <div className="relative z-1 flex flex-1 items-center justify-center px-3 pt-3 -mb-5">
-                  <div className="relative h-full w-5/6 rounded flex-col items-center justify-center border-3 border-amber-950 bg-gradient-to-b from-amber-800 to-amber-900 p-3 shadow-lg">
-                    <div className="absolute left-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80" />
-                    <div className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80" />
-                    <div className="absolute bottom-1.5 left-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80" />
-                    <div className="absolute bottom-1.5 right-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80" />
-
-                    <div
-                      className={
-                        herreria.nivel > 0
-                          ? "mt-2 grid grid-cols-2 gap-3"
-                          : "mt-2"
-                      }
-                    >
-                      {/* ARMERÍA */}
-                      <div className="min-w-0 text-center">
-                        <h3 className="text-lg text-center font-black tracking-wide text-amber-200">
-                          {armeria.nombre}
-                        </h3>
-
-                        <p className="mt-1 line-clamp-2 text-[10px] font-semibold leading-tight text-amber-100/60">
-                          {armeria.descripcion}
-                        </p>
-                      </div>
-
-                      {/* HERRERÍA */}
-                      {herreria.nivel > 0 && (
-                        <div className="min-w-0 text-center">
-                          <h3 className="text-lg text-center font-black tracking-wide text-amber-200">
-                            {herreria.nombre}
-                          </h3>
-
-                          <p className="mt-1 line-clamp-2 text-[10px] font-semibold leading-tight text-amber-100/60">
-                            {herreria.descripcion}
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* ESCENARIO */}
-                <div className="relative flex h-44 w-full items-center justify-center overflow-hidden border-b border-slate-700/60 bg-slate-950 p-2 pb-6">
-                  <Image
-                    src="/sprites/buildings/fondoEdificios.png"
-                    alt="Fondo del pueblo"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    priority
-                    className="object-cover opacity-50 [image-rendering:pixelated]"
-                  />
-
-                  <div className="relative z-10 h-36 w-72">
-                    {/* SOMBRA */}
-                    <div
-                      className="absolute inset-0 z-0 opacity-60 blur-xs"
-                      style={{
-                        transform:
-                          "translateY(25%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)",
-                      }}
-                    >
-                      <Image
-                        src={`/sprites/buildings/${
-                          herreria.nivel > 0 ? "armeria-herreria" : "armeria"
-                        }.png`}
-                        alt=""
-                        fill
-                        sizes="288px"
-                        className="object-contain brightness-0"
-                      />
-                    </div>
-
-                    {/* EDIFICIO */}
-                    <Image
-                      src={`/sprites/buildings/${
-                        herreria.nivel > 0 ? "armeria-herreria" : "armeria"
-                      }.png`}
-                      alt={
-                        herreria.nivel > 0 ? "Armería y Herrería" : "Armería"
-                      }
-                      fill
-                      sizes="288px"
-                      unoptimized
-                      priority
-                      className="relative z-10 object-contain [image-rendering:pixelated]"
-                    />
-                  </div>
-
-                  {/* BOTONES */}
-                  <div
-                    className={`absolute bottom-1 left-1/2 z-20 flex -translate-x-1/2 gap-2 ${
-                      herreria.nivel > 0 ? "w-full px-4" : "w-3/5"
-                    }`}
-                  >
-                    <Link
-                      href={CONFIGURACION_EDIFICIOS.armeria.ruta}
-                      className="block flex-1 rounded-sm border border-stone-800 bg-stone-500 py-1.5 text-center font-black tracking-widest text-stone-300/80 shadow-[inset_0_2px_1px_rgba(255,255,255,0.3),inset_0_-2px_1px_rgba(0,0,0,0.6),0_4px_0_#1c1917,0_6px_4px_rgba(0,0,0,0.5)] active:translate-y-[4px] active:shadow-[inset_0_2px_1px_rgba(255,255,255,0.3),inset_0_-2px_1px_rgba(0,0,0,0.6),0_0px_0_#1c1917,0_0px_0_rgba(0,0,0,0.5)]"
-                    >
-                      {herreria.nivel > 0 ? "ARMERÍA" : "ENTRAR"}
-                    </Link>
-
-                    {herreria.nivel > 0 && (
-                      <Link
-                        href={CONFIGURACION_EDIFICIOS.herreria.ruta}
-                        className="block flex-1 rounded-sm border border-stone-800 bg-stone-500 py-1.5 text-center font-black tracking-widest text-stone-300/80 shadow-[inset_0_2px_1px_rgba(255,255,255,0.3),inset_0_-2px_1px_rgba(0,0,0,0.6),0_4px_0_#1c1917,0_6px_4px_rgba(0,0,0,0.5)] active:translate-y-[4px] active:shadow-[inset_0_2px_1px_rgba(255,255,255,0.3),inset_0_-2px_1px_rgba(0,0,0,0.6),0_0px_0_#1c1917,0_0px_0_rgba(0,0,0,0.5)]"
-                      >
-                        HERRERÍA
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
-            {edificiosConstruidos.map((edificio) => {
-              const configuracion = CONFIGURACION_EDIFICIOS[edificio.id];
-
-              return (
-                <div
-                  key={edificio.id}
-                  className={`group relative flex flex-col overflow-hidden ${
-                    edificio.id === "taberna" ? "order-1" : "order-3"
-                  }`}
-                >
-                  {/* PANEL DE INFORMACIÓN */}
-                  <div className="relative z-1 flex flex-1 items-center justify-center px-3 pt-3 -mb-5">
-                    <div className="relative h-full w-5/6 flex-col items-center justify-center rounded border-3 border-amber-950 bg-gradient-to-b from-amber-800 to-amber-900 p-3 shadow-lg">
-                      {/* Clavos decorativos en las esquinas */}
-                      <div className="absolute left-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
-                      <div className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
-                      <div className="absolute bottom-1.5 left-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
-                      <div className="absolute bottom-1.5 right-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
-
-                      <h3 className="text-center text-lg font-black tracking-wide text-amber-200 drop-shadow-md group-hover:text-amber-100">
-                        {edificio.nombre}
-                      </h3>
-
-                      <p className="mt-1 line-clamp-3 text-center text-xs font-semibold leading-tight text-amber-100/70">
-                        {edificio.descripcion}
-                      </p>
-                    </div>
-                  </div>
-                  {/* ESCENARIO DEL EDIFICIO */}
-                  <div className="relative flex h-44 w-full items-center justify-center overflow-hidden border-b border-slate-700/60 bg-slate-950 p-2 pb-6">
-                    {/* Fondo del pueblo */}
-                    <Image
-                      src="/sprites/buildings/fondoEdificios.png"
-                      alt="Fondo del pueblo"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      priority
-                      className="object-cover opacity-50 [image-rendering:pixelated]"
-                    />
-
-                    <div className="relative z-10 h-36 w-72">
-                      {/* SOMBRA REALISTA CON LA FORMA DEL PNG */}
-                      <div
-                        className="absolute inset-0 z-0 opacity-60 blur-xs priority unoptimized"
-                        style={{
-                          transform:
-                            "translateY(25%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)",
-                        }}
-                      >
-                        <Image
-                          src={`/sprites/buildings/${edificio.id}.png`}
-                          alt="sombra del edificio"
-                          fill
-                          sizes="288px"
-                          // brightness-0 vuelve todos los píxeles negros respetando la transparencia (canal alpha)
-                          className="object-contain brightness-0"
-                        />
-                      </div>
-
-                      {/* Imagen edificio original */}
-                      <Image
-                        src={`/sprites/buildings/${edificio.id}.png`}
-                        alt={edificio.nombre}
-                        fill
-                        sizes="288px"
-                        unoptimized
-                        priority
-                        // Le añadimos relative z-10 para asegurar que el edificio tape su propia sombra
-                        className="relative z-10 object-contain [image-rendering:pixelated]"
-                      />
-                    </div>
-                    {/* BOTÓN ESTILO PIEDRA TALLADA */}
-                    <div className="absolute bottom-1 left-1/2 z-20 w-full -translate-x-1/2 px-4">
-                      <Link
-                        href={configuracion.ruta}
-                        className="mx-auto block w-3/5 rounded-sm border border-stone-800 bg-stone-500 py-1.5 text-center font-black tracking-widest text-stone-300/80
-                        shadow-[inset_0_2px_1px_rgba(255,255,255,0.3),inset_0_-2px_1px_rgba(0,0,0,0.6),0_4px_0_#1c1917,0_6px_4px_rgba(0,0,0,0.5)]  
-                        [text-shadow:inset_0_2px_3px_rgba(0,0,0,1)] active:translate-y-[4px] active:shadow-[inset_0_2px_1px_rgba(255,255,255,0.3),inset_0_-2px_1px_rgba(0,0,0,0.6),0_0px_0_#1c1917,0_0px_0_rgba(0,0,0,0.5)]"
-                      >
-                        ENTRAR
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+        {modoConstruccion ? (
+          <PanelConstruccion
+            edificios={Object.values(edificios)}
+            oro={oro}
+            armeriaNivel={edificios.armeria.nivel}
+            obtenerCosteMejora={obtenerCosteMejora}
+            mejorarEdificio={mejorarEdificio}
+          />
         ) : (
-          /* MODO CONSTRUCCIÓN: Mostrar todos para mejorar/construir */
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {/* ========================================================= */}
-            {/* RESTO DE EDIFICIOS                                        */}
-            {/* ========================================================= */}
-
-            {edificiosConstruccion.map((edificio) => {
-              const coste = obtenerCosteMejora(edificio.id);
-              const sinConstruir = edificio.nivel === 0;
-              const maxNivel = edificio.nivel >= edificio.nivelMax;
-              const bloqueadaPorArmeria =
-                edificio.id === "herreria" && armeria.nivel === 0;
-
-              const bloqueado = sinConstruir && bloqueadaPorArmeria;
-
-              return (
-                <div
-                  key={edificio.id}
-                  className="group relative flex flex-col overflow-hidden"
-                >
-                  {/* PANEL DE INFORMACIÓN */}
-                  <div className="relative z-10 flex flex-1 items-center justify-center px-3 pt-3 -mb-5">
-                    <div className="relative h-full w-5/6 rounded border-3 border-amber-950 bg-gradient-to-b from-amber-800 to-amber-900 p-3 shadow-lg">
-                      {/* Clavos decorativos */}
-                      <div className="absolute left-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
-                      <div className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
-                      <div className="absolute bottom-1.5 left-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
-                      <div className="absolute bottom-1.5 right-1.5 h-1.5 w-1.5 rounded-full bg-amber-950/80 shadow-sm" />
-
-                      <h3 className="text-center text-lg font-black tracking-wide text-amber-200 drop-shadow-md group-hover:text-amber-100">
-                        {edificio.nombre}
-                      </h3>
-
-                      <p className="mt-1 line-clamp-3 text-center text-xs font-semibold leading-tight text-amber-100/70">
-                        {edificio.descripcion}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* ESCENARIO */}
-                  <div className="relative flex h-44 w-full items-center justify-center overflow-hidden border-b border-slate-700/60 bg-slate-950 p-2 pb-6">
-                    {sinConstruir ? (
-                      <>
-                        {/* Solar */}
-                        <div className="absolute inset-0 bg-stone-400/70" />
-                        {/* Tablones de obra */}
-                        <div className="absolute bottom-5 left-[22%] h-2 w-20 rotate-[-12deg] bg-amber-950/80 shadow-md" />
-                        <div className="absolute bottom-9 left-[30%] h-2 w-16 rotate-[7deg] bg-amber-900/70 shadow-md" />
-                        <div className="absolute bottom-6 right-[22%] h-2 w-24 rotate-[9deg] bg-amber-950/80 shadow-md" />
-                        <div className="absolute bottom-11 right-[30%] h-2 w-14 rotate-[-5deg] bg-amber-900/70 shadow-md" />
-
-                        {/* Tablón pequeño en primer plano */}
-                        <div className="absolute bottom-4 left-1/2 h-2 w-10 -translate-x-1/2 rotate-[18deg] bg-amber-800/70 shadow-md" />
-
-                        {/* Piedras - izquierda */}
-                        <div className="absolute bottom-5 left-[16%] h-3 w-4 rotate-[-12deg] rounded-sm bg-stone-600/70 shadow-sm" />
-                        <div className="absolute bottom-7 left-[20%] h-2.5 w-3 rotate-[18deg] rounded-sm bg-stone-500/70 shadow-sm" />
-                        <div className="absolute bottom-4 left-[25%] h-2 w-3 rotate-[8deg] rounded-sm bg-stone-700/70 shadow-sm" />
-
-                        {/* Piedras - derecha */}
-                        <div className="absolute bottom-5 right-[16%] h-3 w-4 rotate-[15deg] rounded-sm bg-stone-600/70 shadow-sm" />
-                        <div className="absolute bottom-8 right-[21%] h-2.5 w-3 rotate-[-10deg] rounded-sm bg-stone-500/70 shadow-sm" />
-                        <div className="absolute bottom-4 right-[26%] h-2 w-4 rotate-[-18deg] rounded-sm bg-stone-700/70 shadow-sm" />
-
-                        {/* Piedras pequeñas alrededor del solar */}
-                        <div className="absolute bottom-3 left-[38%] h-2 w-2.5 rotate-[20deg] rounded-sm bg-stone-500/60" />
-                        <div className="absolute bottom-4 right-[38%] h-2 w-2.5 rotate-[-15deg] rounded-sm bg-stone-600/60" />
-
-                        {/* Cruz de solar */}
-                        <div className="absolute left-1/2 top-1/2 h-14 w-1 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-stone-400/40 shadow-sm" />
-                        <div className="absolute left-1/2 top-1/2 h-14 w-1 -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-stone-400/40 shadow-sm" />
-
-                        <span className="relative z-10 border border-slate-600/80 bg-slate-950/80 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">
-                          Solar disponible
-                        </span>
-                      </>
-                    ) : (
-                      <>
-                        <Image
-                          src="/sprites/buildings/fondoEdificios.png"
-                          alt="Fondo del pueblo"
-                          fill
-                          sizes="(max-width: 768px) 100vw, 33vw"
-                          className="object-cover opacity-50 [image-rendering:pixelated]"
-                        />
-
-                        <div className="relative z-10 h-36 w-72">
-                          <div
-                            className="pointer-events-none absolute inset-0 z-0 opacity-60 blur-xs"
-                            style={{
-                              transform:
-                                "translateY(25%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)",
-                            }}
-                          >
-                            <Image
-                              src={`/sprites/buildings/${edificio.id}.png`}
-                              alt="Sombra del edificio"
-                              fill
-                              sizes="288px"
-                              className="object-contain brightness-0"
-                            />
-                          </div>
-
-                          <Image
-                            src={`/sprites/buildings/${edificio.id}.png`}
-                            alt={edificio.nombre}
-                            fill
-                            sizes="288px"
-                            unoptimized
-                            className="relative z-10 object-contain [image-rendering:pixelated]"
-                          />
-                        </div>
-                      </>
-                    )}
-                  </div>
-
-                  {/* NIVEL + ACCIÓN */}
-                  <div className="border-t border-slate-800 bg-slate-950/80">
-                    <div className="flex items-center justify-between gap-3 px-4 py-3">
-                      <span
-                        className={`font-bold ${
-                          bloqueado ? "text-slate-500" : "text-amber-300"
-                        }`}
-                      >
-                        {sinConstruir
-                          ? "Sin construir"
-                          : `Nivel ${edificio.nivel}/${edificio.nivelMax}`}
-                      </span>
-
-                      {maxNivel ? (
-                        <span className="text-xs font-bold text-slate-500">
-                          Nivel máximo
-                        </span>
-                      ) : (
-                        <button
-                          onClick={async () => {
-                            const exito = await mejorarEdificio(edificio.id);
-
-                            if (!exito && oro < coste) {
-                              alert("No tienes suficiente oro para esto.");
-                            }
-                          }}
-                          disabled={bloqueado || oro < coste}
-                          className={`flex items-center gap-3 rounded-sm border px-3 py-0 font-bold ${
-                            oro >= coste && !bloqueado
-                              ? "border-amber-700/60 bg-amber-900/70 text-amber-100 hover:border-amber-500/70 hover:bg-amber-800"
-                              : "cursor-not-allowed border-slate-700 bg-slate-900 text-slate-600"
-                          }`}
-                        >
-                          <span>
-                            {bloqueadaPorArmeria
-                              ? "Requiere Armería"
-                              : sinConstruir
-                              ? "Construir"
-                              : "Mejorar"}
-                          </span>
-                          <span>{coste} 🪙</span>
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          <PanelEdificios edificios={Object.values(edificios)} />
         )}
       </div>
     </main>

@@ -325,7 +325,9 @@ export default function CombateModal({
     const ejecutarTurnoEnemigo = async () => {
       try {
         const tiempoEsperaEnemigo = Math.random() * 1200 + 800;
-        await new Promise((resolver) => setTimeout(resolver, tiempoEsperaEnemigo));
+        await new Promise((resolver) =>
+          setTimeout(resolver, tiempoEsperaEnemigo)
+        );
 
         const accion = await onAccionCombate("atacar");
 
@@ -610,7 +612,7 @@ export default function CombateModal({
           {/* MENÚ DE ACCIONES                                     */}
           {/* ================================================== */}
 
-          <div className="relative grid grid-cols-2 gap-2 p-2 sm:gap-3 sm:p-4">
+          <div className="relative grid grid-cols-1 gap-2 p-2 sm:gap-2 sm:p-4">
             <button
               type="button"
               onClick={() => void ejecutarAtaqueJugador()}
@@ -622,7 +624,7 @@ export default function CombateModal({
               }
               className="rounded-xl bg-red-700 px-8 py-4 text-lg font-bold shadow-lg transition hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              ⚔️ Atacar
+              Atacar
             </button>
             <button
               type="button"

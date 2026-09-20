@@ -1,17 +1,16 @@
 import { create } from "zustand";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
-import {
-  calcularCosteEdificio,
-  CONFIGURACION_EDIFICIOS,
-} from "@/lib/configuracionJuego";
+import { calcularCosteEdificio } from "@/lib/configuracionJuego";
 import type {
   EquipoPersonaje,
   ObjetoInventario,
   ReporteExpedicion,
   ResultadoExpedicion,
   SlotHabilidad,
+  Edificio,
+  IdEdificio,
 } from "@/lib/tiposJuego";
-import type { IdEdificio } from "@/lib/configuracionJuego";
+import { CONFIGURACION_EDIFICIOS } from "@/lib/tiposJuego";
 import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
@@ -136,14 +135,6 @@ export interface DatosReclutamiento {
   nombre: string;
   clase: string;
   sexo: "chico" | "chica";
-}
-
-export interface Edificio {
-  id: IdEdificio;
-  nombre: string;
-  nivel: number;
-  descripcion: string;
-  nivelMax: number;
 }
 
 export interface CombateActivo {

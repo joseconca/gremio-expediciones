@@ -6,14 +6,14 @@ import { prisma } from "@/lib/prisma";
 import { sincronizarRegeneracion } from "@/lib/regeneracion";
 import {
   CONFIGURACION_ATRIBUTOS,
-  CONFIGURACION_EDIFICIOS,
   REQUISITOS_EDIFICIOS,
   calcularCosteAtributo,
   calcularCosteEdificio,
   calcularEstadisticasBase,
 } from "@/lib/configuracionJuego";
-import type { IdAtributo, IdEdificio } from "@/lib/configuracionJuego";
+import type { IdAtributo } from "@/lib/configuracionJuego";
 import { type ClasePersonaje } from "@/lib/tiposJuego";
+import { CONFIGURACION_EDIFICIOS, IdEdificio } from "@/lib/tiposJuego";
 import { calcularEstadisticasPersonaje } from "@/lib/estadisticasPersonaje";
 import { asegurarInventarioYEquipo } from "@/lib/inventario";
 

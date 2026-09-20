@@ -307,3 +307,65 @@ export interface EstadoCombate {
 
   enemigoId?: string;
 }
+
+/** EDIFICIOS */
+export interface Edificio {
+  id: IdEdificio;
+  nombre: string;
+  descripcion: string;
+  nivel: number;
+  nivelMax: number;
+}
+
+export const CONFIGURACION_EDIFICIOS = {
+  taberna: {
+    nombre: "Taberna",
+    costeConstruccion: 1400,
+    nivelMax: 2,
+    descripcion: "Descansa y recupera la salud.",
+    color: "bg-amber-700",
+    ruta: "/base/taberna",
+  },
+  armeria: {
+    nombre: "Armería",
+    costeConstruccion: 800,
+    nivelMax: 5,
+    descripcion: "Compra armas y armaduras.",
+    color: "bg-slate-600",
+    ruta: "/base/armeria",
+  },
+  herreria: {
+    nombre: "Herrería",
+    costeConstruccion: 2500,
+    nivelMax: 3,
+    descripcion: "Mejora las armas y armaduras.",
+    color: "bg-slate-700",
+    ruta: "/base/herreria",
+  },
+  mercado: {
+    nombre: "Mercado",
+    costeConstruccion: 1400,
+    nivelMax: 3,
+    descripcion: "Mejora la velocidad y la capacidad de carga.",
+    color: "bg-emerald-700",
+    ruta: "/base/mercado",
+  },
+  embajada: {
+    nombre: "Embajada",
+    costeConstruccion: 1000,
+    nivelMax: 2,
+    descripcion: "Establece conexiones con otros campamentos.",
+    color: "bg-blue-700",
+    ruta: "/base/embajada",
+  },
+  escuelaCombate: {
+    nombre: "Escuela de Combate",
+    costeConstruccion: 2400,
+    nivelMax: 5,
+    descripcion: "Aprende técnicas para el combate.",
+    color: "bg-red-600",
+    ruta: "/base/escuela-batalla",
+  },
+} as const;
+
+export type IdEdificio = keyof typeof CONFIGURACION_EDIFICIOS;
