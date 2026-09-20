@@ -64,7 +64,7 @@ export async function POST(request: Request) {
       typeof mision.tipo === "string" && mision.tipo === "comercio";
     const esElite = typeof mision.tipo === "string" && mision.tipo === "elite";
     const diaActual = new Date().toISOString().slice(0, 10);
-    
+
     if (esElite) {
       if (
         typeof mision.id !== "string" ||
@@ -138,6 +138,15 @@ export async function POST(request: Request) {
       }
       objetivoId = objetivo.id;
     }
+    const tipoExpedicion = esComercio
+      ? "comercio"
+      : esElite
+      ? "elite"
+      : "normal";
+
+    console.log(
+      `${usuario.personaje.nombre} inicia (${tipoExpedicion}) por ${Math.round(tiempoHoras*60)} minutos`
+    );
 
     // Consultar el clima real en las coordenadas de la misión
     const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${mision.lat}&longitude=${mision.lng}&current_weather=true`;
