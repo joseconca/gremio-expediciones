@@ -187,7 +187,6 @@ export default function HerreriaPage() {
   const nivelHerreria = herreria.nivel;
   const nivelArmeria = armeria.nivel;
 
-  const descripcionArmeria = armeria.descripcion;
   const descripcionHerreria = herreria.descripcion;
 
   const [datos, setDatos] = useState<DatosObjetos | null>(null);
@@ -248,98 +247,6 @@ export default function HerreriaPage() {
     }
   };
 
-  const comprarObjeto = async (objetoId: string) => {
-    setProcesando(`comprar:${objetoId}`);
-    setError(null);
-
-    try {
-      const respuesta = await fetch("/api/objetos/comprar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          objetoId,
-        }),
-      });
-
-      const resultado = await respuesta.json();
-
-      if (!respuesta.ok) {
-        setError(resultado.error || "No se pudo comprar el objeto.");
-        return;
-      }
-
-      await recargarObjetos();
-      await cargarJugador();
-    } catch {
-      setError("Error de conexión al comprar el objeto.");
-    } finally {
-      setProcesando(null);
-    }
-  };
-
-  const equiparObjeto = async (objetoInventarioId: string) => {
-    setProcesando(`equipar:${objetoInventarioId}`);
-    setError(null);
-
-    try {
-      const respuesta = await fetch("/api/objetos/equipar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          objetoInventarioId,
-        }),
-      });
-
-      const resultado = await respuesta.json();
-
-      if (!respuesta.ok) {
-        setError(resultado.error || "No se pudo equipar el objeto.");
-        return;
-      }
-
-      await recargarObjetos();
-      await cargarJugador();
-    } catch {
-      setError("Error de conexión al equipar el objeto.");
-    } finally {
-      setProcesando(null);
-    }
-  };
-
-  const desequiparObjeto = async (tipo: TipoEquipamiento) => {
-    setProcesando(`desequipar:${tipo}`);
-    setError(null);
-
-    try {
-      const respuesta = await fetch("/api/objetos/desequipar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          tipo,
-        }),
-      });
-
-      const resultado = await respuesta.json();
-
-      if (!respuesta.ok) {
-        setError(resultado.error || "No se pudo desequipar el objeto.");
-        return;
-      }
-
-      await recargarObjetos();
-      await cargarJugador();
-    } catch {
-      setError("Error de conexión al desequipar el objeto.");
-    } finally {
-      setProcesando(null);
-    }
-  };
 
   const mejorarObjeto = async (objetoInventarioId: string) => {
     setProcesando(`mejorar:${objetoInventarioId}`);
@@ -431,26 +338,13 @@ export default function HerreriaPage() {
     });
   }, [datos?.inventario, datos?.equipo]);
 
-  const obtenerObjetoEquipado = (tipo: TipoEquipamiento) => {
-    switch (tipo) {
-      case "arma":
-        return datos?.equipo.arma ?? null;
-
-      case "armadura":
-        return datos?.equipo.armadura ?? null;
-
-      case "accesorio":
-        return datos?.equipo.accesorio ?? null;
-    }
-  };
-
   const nivelMaximoMejora = nivelHerreria * 3;
 
   const puedeMejorarObjeto = (nivelMejora: number): boolean => {
     return nivelMejora < nivelMaximoMejora;
   };
 
-  if (!personaje || nivelArmeria === 0) {
+  if (!personaje || nivelArmeria === 0 || nivelHerreria === 0) {
     return null;
   }
 
@@ -473,7 +367,7 @@ export default function HerreriaPage() {
 
       <div className="relative z-10 mx-auto max-w-5xl animate-in fade-in">
         {/* ====================================================== */}
-        {/* CABECERA ARMERIA                                       */}
+        {/* CABECERA HERRERIA                                       */}
         {/* ====================================================== */}
 
         <CabeceraEdificio
@@ -505,13 +399,8 @@ export default function HerreriaPage() {
                   </h2>
 
                   <p className="mt-1 max-w-2xl text-xs leading-5 text-[#707578]">
-                    Mejora las armas y armaduras de tu inventario. Los objetos
-                    equipados aparecen primero.
+                    Mejora tus armas y armaduras.
                   </p>
-                </div>
-
-                <div className="shrink-0 rounded border border-[#62543f] bg-[#29241b] px-3 py-2 text-[10px] font-black uppercase tracking-wider text-amber-400">
-                  Herrería nivel {nivelHerreria} · Máximo +{nivelMaximoMejora}
                 </div>
               </div>
             </div>
@@ -550,17 +439,8 @@ export default function HerreriaPage() {
                         <h3 className="text-sm font-black uppercase tracking-[0.16em] text-[#c9c8c3]">
                           {categoria.nombre}
                         </h3>
-
-                        <p className="text-[10px] uppercase tracking-wider text-[#656c6f]">
-                          {categoria.objetos.length}{" "}
-                          {categoria.objetos.length === 1 ? "pieza" : "piezas"}
-                        </p>
                       </div>
                     </div>
-
-                    <span className="text-[10px] font-black uppercase tracking-wider text-[#5e6568]">
-                      {categoria.tipo === "accesorio" ? "Equipo" : "Forja"}
-                    </span>
                   </div>
 
                   {/* OBJETOS */}
