@@ -147,23 +147,24 @@ export async function POST() {
 
     const dificultad = Math.max(0, expedicion.dificultad);
 
-    const enemigoNombre = monstruoBase.nombre;
-    const enemigoHp = Math.floor(monstruoBase.hp * (1 + dificultad * 0.3));
-    const enemigoAtaque = monstruoBase.ataque + Math.floor(dificultad * 1.2);
-    const enemigoDefensa = monstruoBase.defensa + Math.floor(dificultad * 0.8);
-    const enemigoVelocidad =
-      monstruoBase.velocidad + Math.floor(dificultad * 0.5);
-    const enemigoProbCritico = /*monstruoBase.probCritico ??*/ 0.05;
-    const enemigoNivel = /*monstruoBase.nivel ??*/ 1;
-
     const equipo = obtenerEquipoDesdePersonaje(personaje);
     const modificadoresEquipo = calcularModificadoresEquipo(equipo);
-
     const estadisticasJugador = calcularEstadisticasPersonaje(
       personaje,
       personaje.habilidades.map((habilidad) => habilidad.habilidadId),
       modificadoresEquipo
     );
+
+    const enemigoNombre = monstruoBase.nombre;
+    const enemigoHp = Math.floor(monstruoBase.hp * (1 + (dificultad + personaje.nivel) * 0.3));
+    const enemigoAtaque = monstruoBase.ataque + Math.floor((dificultad+ personaje.nivel) * 1.2);
+    const enemigoDefensa = monstruoBase.defensa + Math.floor((dificultad + personaje.nivel) * 0.8);
+    const enemigoVelocidad =
+      monstruoBase.velocidad + Math.floor((dificultad + personaje.nivel) * 0.5);
+    const enemigoProbCritico = /*monstruoBase.probCritico ??*/ 0.1;
+    const enemigoNivel = /*monstruoBase.nivel ??*/ 1;
+
+    
     const jugadorHp = Math.max(1, personaje.hpActual);
     const jugadorHpMaximo = estadisticasJugador.total.hpMaximo;
     const jugadorAtaque = estadisticasJugador.total.ataque;
@@ -180,6 +181,7 @@ export async function POST() {
       primerTurno === "jugador"
         ? [`⚔️ ${usuario.personaje.nombre} tiene la iniciativa.`]
         : [`⚔️ ${enemigoNombre} tiene la iniciativa.`];
+
     // ============================================================
     // CREAR COMBATE
     // ============================================================
