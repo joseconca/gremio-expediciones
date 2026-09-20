@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useGameStore } from "@/store/useGameStore";
 import RankingHeroes from "@/components/rankings/RankingHeroes";
 import RankingOro from "@/components/rankings/RankingOro";
-import CabeceraEdificio from "@/components/CabeceraEdificio";
+import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 
 type PestanaRanking = "heroes" | "oro" | "boss";
 

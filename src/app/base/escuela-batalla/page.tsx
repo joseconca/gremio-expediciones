@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import CabeceraEdificio from "@/components/CabeceraEdificio";
+import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import { NIVEL_ESCUELA_POR_RAREZA } from "@/lib/configuracionJuego";
 import type { DefinicionHabilidad, Rareza } from "@/lib/tiposJuego";
 import { useGameStore } from "@/store/useGameStore";

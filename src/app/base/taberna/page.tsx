@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
-import CabeceraEdificio from "@/components/CabeceraEdificio";
+import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 
 const CLASES_INICIALES = [
   {

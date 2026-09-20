@@ -10,11 +10,11 @@ import type {
   Edificio,
 } from "@/lib/tiposJuego";
 import CombateModal from "@/components/CombateModal";
-import PanelEdificios from "@/components/PanelEdificios";
+import PanelEdificios from "@/components/base/PanelEdificios";
 import ReporteExpedicion from "@/components/reportes/ReporteExpedicion";
 import { CONFIGURACION_EDIFICIOS } from "@/lib/tiposJuego";
-import PanelMisiones from "@/components/PanelMisiones";
-import PanelConstruccion from "@/components/PanelConstruccion";
+import PanelMisiones from "@/components/base/PanelMisiones";
+import PanelConstruccion from "@/components/base/PanelConstruccion";
 
 interface CaravanaEntrante {
   id: string;

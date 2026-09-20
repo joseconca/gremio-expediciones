@@ -1,6 +1,6 @@
 "use client";
 
-import CabeceraEdificio from "@/components/CabeceraEdificio";
+import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import {
   calcularCosteAtributo,
   CONFIGURACION_ATRIBUTOS,
