@@ -12,27 +12,26 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     tipo: "activa",
     rareza: "basico",
     precio: 850,
-    cooldownTurnos: 1,
+    cooldownTurnos: 2,
 
     efecto: "dano",
     animacion: "ofensiva_potenciada",
     multiplicadorDano: 1.5,
-    multiplicadorCritico: 0.5,
   },
 
   {
     id: "golpe_preciso",
     nombre: "Golpe Preciso",
-    descripcion: "Ataque con mayor probabilidad de hacer golpe crítico.",
+    descripcion: "Ataque potenciado con mayor probabilidad de hacer golpe crítico.",
     tipo: "activa",
     rareza: "comun",
     precio: 1175,
-    cooldownTurnos: 1,
+    cooldownTurnos: 2,
 
     efecto: "dano",
     animacion: "ofensiva_potenciada",
-    multiplicadorDano: 1.2,
-    multiplicadorCritico: 0.25,
+    multiplicadorDano: 1.3,
+    multiplicadorCritico: 0.5,
     probabilidadCritico: 0.25,
   },
 
@@ -58,7 +57,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     tipo: "activa",
     rareza: "comun",
     precio: 1350,
-    cooldownTurnos: 2,
+    cooldownTurnos: 5,
 
     efecto: "curacion",
     animacion: "curacion",
