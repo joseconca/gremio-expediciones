@@ -198,7 +198,7 @@ export default function TabernaPage() {
                         : "text-emerald-400"
                     }
                   >
-                    {personaje.hpActual} / {personaje.hpMaximo}
+                    {Math.floor(personaje.hpActual)} / {personaje.hpMaximo}
                   </span>
                 </div>
 
@@ -230,7 +230,7 @@ export default function TabernaPage() {
                 ) : (
                   <button
                     onClick={handleCurar}
-                    disabled={personaje.estado === "de_viaje" || infoCura.aTope}
+                    disabled={personaje.estado === "de_viaje"}
                     className={`flex w-full items-center justify-between rounded-lg border px-4 py-3 font-bold text-white transition-all ${
                       personaje.estado === "de_viaje"
                         ? "border-gray-600 bg-gray-900/80 opacity-60 cursor-not-allowed"
