@@ -480,10 +480,10 @@ export default function BasePage() {
 
           <button
             onClick={() => setModoConstruccion(!modoConstruccion)}
-            className={`rounded-md border-x border-b-3 border-amber-950 px-4 py-2 font-bold transition-colors ${
+            className={`rounded-md border-x border-b-4 border-amber-950 px-4 py-2 font-bold transition-colors ${
               modoConstruccion
                 ? "border-amber-400 bg-amber-700/40 text-amber-200/70"
-                : "border-stone-600 bg-stone-700 text-stone-400"
+                : "border-stone-700 bg-stone-500 text-stone-200"
             }`}
           >
             {modoConstruccion ? "← Volver" : "Construir y mejorar edificios"}
