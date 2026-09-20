@@ -54,6 +54,9 @@ export default function CombateModal({
 
   const [habilidades, setHabilidades] = useState<HabilidadEquipable[]>([]);
   const [mostrarHabilidades, setMostrarHabilidades] = useState(false);
+  const [logExpandido, setLogExpandido] = useState(false);
+  const [habilidadSeleccionadaId, setHabilidadSeleccionadaId] = useState<string | null>(null);
+
   /*
    * ============================================================
    * BLOQUEAR SCROLL DEL FONDO
@@ -61,7 +64,6 @@ export default function CombateModal({
    */
   useEffect(() => {
     const scrollY = window.scrollY;
-
     const body = document.body;
     const html = document.documentElement;
 
@@ -69,14 +71,12 @@ export default function CombateModal({
     const bodyPosition = body.style.position;
     const bodyTop = body.style.top;
     const bodyWidth = body.style.width;
-
     const htmlOverflow = html.style.overflow;
 
     body.style.overflow = "hidden";
     body.style.position = "fixed";
     body.style.top = `-${scrollY}px`;
     body.style.width = "100%";
-
     html.style.overflow = "hidden";
 
     return () => {
@@ -84,9 +84,7 @@ export default function CombateModal({
       body.style.position = bodyPosition;
       body.style.top = bodyTop;
       body.style.width = bodyWidth;
-
       html.style.overflow = htmlOverflow;
-
       window.scrollTo(0, scrollY);
     };
   }, []);
@@ -97,23 +95,30 @@ export default function CombateModal({
         const respuesta = await fetch("/api/habilidades");
         const datos = await respuesta.json();
 
-        if (!respuesta.ok) {
-          return;
-        }
+        if (!respuesta.ok) return;
 
-        setHabilidades(
-          (datos.aprendidas ?? []).filter(
-            (habilidad: { slot: string | null; habilidad: HabilidadCombate }) =>
-              habilidad.slot !== null && habilidad.habilidad.tipo === "activa"
-          )
+        const habsActivas = (datos.aprendidas ?? []).filter(
+          (habilidad: { slot: string | null; habilidad: HabilidadCombate }) =>
+            habilidad.slot !== null && habilidad.habilidad.tipo === "activa"
         );
+
+        setHabilidades(habsActivas);
+        if (habsActivas.length > 0) {
+          setHabilidadSeleccionadaId(habsActivas[0].habilidadId);
+        }
       } catch (error) {
         console.error("Error al cargar habilidades de combate:", error);
       }
     };
-
     void cargarHabilidades();
   }, []);
+
+  // Seleccionar la primera habilidad por defecto al abrir el panel si hay disponibles
+  useEffect(() => {
+    if (mostrarHabilidades && habilidades.length > 0 && !habilidadSeleccionadaId) {
+      setHabilidadSeleccionadaId(habilidades[0].habilidadId);
+    }
+  }, [mostrarHabilidades, habilidades, habilidadSeleccionadaId]);
 
   /*
    * ============================================================
@@ -121,22 +126,26 @@ export default function CombateModal({
    * ============================================================
    */
   useEffect(() => {
-    const log = logRef.current;
-
-    if (!log) return;
-
-    log.scrollTop = log.scrollHeight;
-  }, [combate.log]);
+    if (logExpandido && logRef.current) {
+      logRef.current.scrollTop = logRef.current.scrollHeight;
+    }
+  }, [combate.log, logExpandido]);
 
   const vidaJugador = Math.max(
     0,
     Math.min(100, (combate.jugadorHp / combate.jugadorHpMaximo) * 100)
   );
-
   const vidaEnemigo = Math.max(
     0,
     Math.min(100, (combate.enemigoHp / combate.enemigoHpMaximo) * 100)
   );
+
+  const obtenerColorVida = (porcentaje: number) => {
+    if (porcentaje >= 75) return "from-emerald-500 to-emerald-400";
+    if (porcentaje >= 50) return "from-lime-500 to-lime-400";
+    if (porcentaje >= 25) return "from-orange-500 to-orange-400";
+    return "from-red-600 to-red-500";
+  };
 
   const combateTerminado =
     combate.fase === "victoria" ||
@@ -161,114 +170,61 @@ export default function CombateModal({
     cantidad: number;
   } | null>(null);
 
-  const [actorAnimando, setActorAnimando] = useState<
-    "jugador" | "enemigo" | null
-  >(null);
-
-  const [actorImpactado, setActorImpactado] = useState<
-    "jugador" | "enemigo" | null
-  >(null);
-
-  const [animacionActual, setAnimacionActual] = useState<
-    AccionAnimadaCombate["animacion"] | null
-  >(null);
-
+  const [actorAnimando, setActorAnimando] = useState<"jugador" | "enemigo" | null>(null);
+  const [actorImpactado, setActorImpactado] = useState<"jugador" | "enemigo" | null>(null);
+  const [animacionActual, setAnimacionActual] = useState<AccionAnimadaCombate["animacion"] | null>(null);
   const [procesandoLocal, setProcesandoLocal] = useState(false);
 
   const turnoEnemigoEnCurso = useRef(false);
-
   const accionEnCurso = useRef(false);
 
   const esperar = (milisegundos: number) =>
-    new Promise<void>((resolver) => {
-      setTimeout(resolver, milisegundos);
-    });
+    new Promise<void>((resolver) => setTimeout(resolver, milisegundos));
 
   const mostrarResultadoAccion = async (accion: AccionAnimadaCombate) => {
     const dano = accion.dano;
     const curacion = accion.curacion ?? 0;
-    const critico = accion.critico;
 
     setAnimacionActual(accion.animacion);
 
-    if (
-      accion.animacion === "curacion" ||
-      accion.animacion === "defensiva" ||
-      accion.animacion === "escudo"
-    ) {
+    if (accion.animacion === "curacion" || accion.animacion === "defensiva" || accion.animacion === "escudo") {
       setActorAnimando(accion.actor);
-
       if (curacion > 0) {
-        setCuracionVisible({
-          actor: accion.actor,
-          cantidad: curacion,
-        });
+        setCuracionVisible({ actor: accion.actor, cantidad: curacion });
       }
-
       await esperar(700);
-
       setCuracionVisible(null);
       setActorAnimando(null);
       setAnimacionActual(null);
-
       return;
     }
 
-    // ------------------------------------------------------------
-    // ATAQUES
-    // ------------------------------------------------------------
-
     const objetivo = accion.actor === "jugador" ? "enemigo" : "jugador";
-
     setActorAnimando(accion.actor);
 
-    // Preparación / avance.
     await esperar(accion.animacion === "ofensiva_potenciada" ? 350 : 250);
-
-    // Impacto.
     setActorImpactado(objetivo);
 
     if (dano > 0) {
-      setDanioVisible({
-        actor: objetivo,
-        dano,
-        critico: accion.critico,
-      });
+      setDanioVisible({ actor: objetivo, dano, critico: accion.critico });
     }
 
     await esperar(accion.animacion === "ofensiva_potenciada" ? 450 : 300);
-
-    // Desaparece el impacto.
     setDanioVisible(null);
     setActorImpactado(null);
-
-    // El atacante vuelve a su posición.
     await esperar(accion.animacion === "ofensiva_potenciada" ? 300 : 200);
-
     setActorAnimando(null);
     setAnimacionActual(null);
   };
 
   const ejecutarAtaqueJugador = async () => {
-    if (
-      accionEnCurso.current ||
-      procesando ||
-      combateTerminado ||
-      combate.turno !== "jugador"
-    ) {
-      return;
-    }
-
+    if (accionEnCurso.current || procesando || combateTerminado || combate.turno !== "jugador") return;
     accionEnCurso.current = true;
     setProcesandoLocal(true);
-
+    setMostrarHabilidades(false);
     try {
       const accion = await onAccionCombate("atacar");
-
-      if (!accion) {
-        return;
-      }
-
+      if (!accion) return;
       await mostrarResultadoAccion(accion);
     } finally {
       accionEnCurso.current = false;
@@ -277,26 +233,13 @@ export default function CombateModal({
   };
 
   const ejecutarHabilidad = async (habilidadId: string) => {
-    if (
-      accionEnCurso.current ||
-      procesando ||
-      combateTerminado ||
-      combate.turno !== "jugador"
-    ) {
-      return;
-    }
-
+    if (accionEnCurso.current || procesando || combateTerminado || combate.turno !== "jugador") return;
     accionEnCurso.current = true;
     setProcesandoLocal(true);
     setMostrarHabilidades(false);
-
     try {
       const accion = await onAccionCombate("usar_habilidad", habilidadId);
-
-      if (!accion) {
-        return;
-      }
-
+      if (!accion) return;
       await mostrarResultadoAccion(accion);
     } finally {
       accionEnCurso.current = false;
@@ -305,19 +248,8 @@ export default function CombateModal({
   };
 
   useEffect(() => {
-    if (
-      combate.fase !== "activo" ||
-      combate.turno !== "enemigo" ||
-      procesando ||
-      procesandoLocal ||
-      accionEnCurso.current
-    ) {
-      return;
-    }
-
-    if (turnoEnemigoEnCurso.current) {
-      return;
-    }
+    if (combate.fase !== "activo" || combate.turno !== "enemigo" || procesando || procesandoLocal || accionEnCurso.current) return;
+    if (turnoEnemigoEnCurso.current) return;
 
     turnoEnemigoEnCurso.current = true;
     setProcesandoLocal(true);
@@ -325,16 +257,9 @@ export default function CombateModal({
     const ejecutarTurnoEnemigo = async () => {
       try {
         const tiempoEsperaEnemigo = Math.random() * 1200 + 800;
-        await new Promise((resolver) =>
-          setTimeout(resolver, tiempoEsperaEnemigo)
-        );
-
+        await esperar(tiempoEsperaEnemigo);
         const accion = await onAccionCombate("atacar");
-
-        if (!accion) {
-          return;
-        }
-
+        if (!accion) return;
         await mostrarResultadoAccion(accion);
       } catch (error) {
         console.error("Error en el turno enemigo:", error);
@@ -343,258 +268,185 @@ export default function CombateModal({
         setProcesandoLocal(false);
       }
     };
-
     void ejecutarTurnoEnemigo();
-  }, [
-    combate.fase,
-    combate.turno,
-    procesando,
-    procesandoLocal,
-    onAccionCombate,
-  ]);
+  }, [combate.fase, combate.turno, procesando, procesandoLocal, onAccionCombate]);
 
   const obtenerCooldown = (habilidadId: string): number => {
-    if (
-      !combate.cooldowns ||
-      typeof combate.cooldowns !== "object" ||
-      Array.isArray(combate.cooldowns)
-    ) {
-      return 0;
-    }
-
+    if (!combate.cooldowns || typeof combate.cooldowns !== "object" || Array.isArray(combate.cooldowns)) return 0;
     const cooldowns = combate.cooldowns as Record<string, unknown>;
-
     const cooldown = cooldowns[habilidadId];
-
     return typeof cooldown === "number" && cooldown > 0 ? cooldown : 0;
   };
 
+  const ultimaLineaLog = combate.log.length > 0 ? combate.log[combate.log.length - 1] : "El combate comienza...";
+  const habilidadSeleccionada = habilidades.find((h) => h.habilidadId === habilidadSeleccionadaId);
+
   return (
-    <div
-      className="fixed inset-0 z-[9999] h-[100dvh] w-full overflow-hidden bg-black"
-      style={{
-        touchAction: "none",
-      }}
-    >
-      {/* ====================================================== */}
-      {/* FONDO                                                  */}
-      {/* ====================================================== */}
+    <div className="fixed inset-0 z-[9999] h-[100dvh] w-full overflow-hidden bg-black font-sans" style={{ touchAction: "none" }}>
+      {/* FONDO */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/sprites/battle/fondoBatalla.png')",
-        }}
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80"
+        style={{ backgroundImage: "url('/sprites/battle/fondoBatalla.png')" }}
       />
 
-      {/* ====================================================== */}
-      {/* CONTENEDOR PRINCIPAL                                    */}
-      {/* ====================================================== */}
-
-      <div className="relative flex h-full w-full flex-col overflow-hidden text-white">
-        {/* ==================================================== */}
-        {/* CABECERA                                               */}
-        {/* ==================================================== */}
-
-        <header className="flex h-12 shrink-0 items-center justify-between border-b border-slate-700 bg-slate-950 px-3 sm:h-14 sm:px-5">
-          <div className="min-w-0">
-            <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-slate-500 sm:text-[10px]">
-              Combate
+      <div className="relative flex h-full w-full flex-col overflow-hidden text-stone-200">
+        
+        {/* CABECERA */}
+        <header className="flex h-12 shrink-0 items-center justify-between bg-stone-950/80 px-4 sm:h-14 sm:px-6 backdrop-blur-sm border-b border-stone-800">
+          <div className="flex items-center gap-4 min-w-0">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-stone-500">
+              Batalla
             </p>
-
-            <div className="flex items-center gap-2">
-              <h2 className="truncate text-sm font-black text-amber-400 sm:text-base">
-                {combate.enemigoNombre}
-              </h2>
-
-              <span className="shrink-0 rounded border border-slate-700 bg-slate-900 px-2 py-0.5 font-mono text-[10px] text-slate-400 sm:text-xs">
-                Ronda {combate.ronda}
-              </span>
-            </div>
+            <div className="h-4 w-px bg-stone-700" />
+            <h2 className="truncate text-sm font-black text-stone-100 sm:text-base tracking-wide">
+              {combate.enemigoNombre}
+            </h2>
           </div>
+          <span className="shrink-0 rounded bg-stone-900 px-3 py-1 font-mono text-[10px] sm:text-xs tracking-widest text-amber-500 border border-stone-800 shadow-inner">
+            RONDA {combate.ronda}
+          </span>
         </header>
 
-        {/* ==================================================== */}
-        {/* ESCENA                                                 */}
-        {/* ==================================================== */}
-        {/* ==================================================== */}
-        {/* ESCENA                                               */}
-        {/* ==================================================== */}
-
-        <section className="relative flex min-h-0 flex-1 items-center justify-between overflow-hidden px-4 sm:px-10">
-          {/* ================================================== */}
-          {/* JUGADOR — IZQUIERDA                                */}
-          {/* ================================================== */}
-
-          <div
-            className={`relative flex w-[45%] justify-center ${
-              actorAnimando === "jugador"
-                ? animacionActual === "ofensiva_potenciada"
-                  ? "animate-[combate-ataque-fuerte_900ms_ease-in-out]"
-                  : "animate-[combate-ataque_700ms_ease-in-out]"
-                : ""
-            }`}
-          >
+        {/* ESCENA */}
+        <section className="relative flex min-h-0 flex-1 items-center justify-between overflow-hidden px-4 sm:px-16">
+          {/* JUGADOR */}
+          <div className={`relative flex w-[40%] justify-center ${
+              actorAnimando === "jugador" ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque_700ms_ease-in-out]") : ""
+          }`}>
             <div className="flex w-full flex-col items-center">
-              {/* Caja de información */}
-              <div className="w-[min(240px,42vw)] rounded-xl border-2 border-slate-700 bg-slate-950/90 p-2 shadow-lg">
-                <div className="text-left text-sm font-bold text-white">
-                  {personaje.nombre}
+              <div className="w-full max-w-[200px] mb-4">
+                <div className="flex justify-between items-end mb-1.5 bg-black/50 backdrop-blur-sm rounded px-2.5 py-1 border border-stone-800/80 shadow-sm">
+                  <span className="text-sm font-bold text-stone-100 tracking-wide">{personaje.nombre}</span>
+                  <span className="text-xs font-mono font-bold text-stone-200">
+                    {Math.max(0, combate.jugadorHp)}<span className="text-stone-500">/{combate.jugadorHpMaximo}</span>
+                  </span>
                 </div>
-
-                <div className="mt-1 h-3 w-full overflow-hidden rounded-full bg-slate-800">
-                  <div
-                    className="h-full rounded-full bg-green-500 transition-all duration-300"
-                    style={{ width: `${vidaJugador}%` }}
-                  />
-                </div>
-
-                <div className="mt-1 text-right text-xs font-bold text-slate-300">
-                  {Math.max(0, combate.jugadorHp)} / {combate.jugadorHpMaximo}
+                <div className="h-2 w-full overflow-hidden rounded-full bg-stone-900 border border-stone-700 shadow-inner">
+                  <div className={`h-full rounded-full bg-gradient-to-r ${obtenerColorVida(vidaJugador)} transition-all duration-500`} style={{ width: `${vidaJugador}%` }} />
                 </div>
               </div>
+
               {danioVisible?.actor === "jugador" && (
-                <div
-                  className={`absolute -top-10 left-1/2 -translate-x-1/2 font-black drop-shadow-[0_2px_2px_rgba(0,0,0,0.9)] ${
-                    danioVisible.critico
-                      ? "rounded-xl border-2 border-red-400 bg-red-950/95 px-4 py-1 text-4xl text-yellow-300 shadow-[0_0_20px_rgba(239,68,68,0.5)]"
-                      : "text-3xl text-red-400"
-                  }`}
-                >
+                <div className={`absolute top-0 left-1/2 -translate-x-1/2 font-black drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] z-50 ${
+                    danioVisible.critico ? "text-5xl text-amber-400 scale-125 animate-bounce" : "text-4xl text-red-400"
+                  }`}>
                   -{danioVisible.dano}
                 </div>
               )}
               {curacionVisible?.actor === "jugador" && (
-                <div className="absolute -top-12 left-1/2 -translate-x-1/2 animate-bounce text-3xl font-black text-emerald-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 animate-bounce text-4xl font-black text-emerald-400 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] z-50">
                   +{curacionVisible.cantidad}
                 </div>
               )}
-              {/* Sprite */}
-              <div
-                className={`mt-3 transition-all duration-300 ${
-                  animacionActual === "curacion"
-                    ? "scale-105 drop-shadow-[0_0_25px_rgba(52,211,153,0.8)]"
-                    : animacionActual === "defensiva"
-                    ? "scale-105 drop-shadow-[0_0_25px_rgba(59,130,246,0.8)]"
-                    : ""
-                } ${
-                  actorImpactado === "jugador"
-                    ? "animate-[combate-shake_180ms_ease-in-out]"
-                    : ""
-                }`}
-              >
-                <Image
-                  src={spriteHeroe}
-                  alt={personaje.nombre}
-                  width={160}
-                  height={160}
-                  className="object-contain [image-rendering:pixelated]"
-                  priority
+
+              <div className={`relative h-[180px] w-[180px] transition-all duration-300 ${
+                  animacionActual === "curacion" ? "drop-shadow-[0_0_30px_rgba(52,211,153,0.6)]" : ""
+              } ${actorImpactado === "jugador" ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}>
+                
+                {/* SOMBRA INVERSA DEL HÉROE */}
+                <div
+                  className="absolute inset-0 z-0 opacity-60 blur-xs"
+                  style={{
+                    transform:
+                      "translateY(55%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)",
+                  }}
+                >
+                  <Image
+                    src={spriteHeroe}
+                    alt="Sombra del héroe"
+                    fill
+                    sizes="180px"
+                    className="object-contain brightness-0"
+                  />
+                </div>
+
+                {/* HÉROE */}
+                <Image 
+                  src={spriteHeroe} 
+                  alt={personaje.nombre} 
+                  fill
+                  sizes="180px"
+                  className="relative z-10 object-contain [image-rendering:pixelated]" 
+                  priority 
                 />
               </div>
             </div>
           </div>
 
-          {/* ================================================== */}
-          {/* ENEMIGO — DERECHA                                  */}
-          {/* ================================================== */}
-
-          <div
-            className={`relative flex w-[45%] justify-center ${
-              actorAnimando === "enemigo"
-                ? animacionActual === "ofensiva_potenciada"
-                  ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]"
-                  : "animate-[combate-ataque-enemigo_700ms_ease-in-out]"
-                : ""
-            }`}
-          >
+          {/* ENEMIGO */}
+          <div className={`relative flex w-[40%] justify-center ${
+              actorAnimando === "enemigo" ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque-enemigo_700ms_ease-in-out]") : ""
+          }`}>
             <div className="flex w-full flex-col items-center">
-              {/* Caja de información */}
-              <div className="w-[min(240px,42vw)] rounded-xl border-2 border-slate-700 bg-slate-950/90 p-2 shadow-lg">
-                <div className="text-left text-sm font-bold text-white">
-                  {combate.enemigoNombre}
+              <div className="w-full max-w-[200px] mb-4">
+                <div className="flex justify-between items-end mb-1.5 bg-black/50 backdrop-blur-sm rounded px-2.5 py-1 border border-stone-800/80 shadow-sm">
+                  <span className="text-sm font-bold text-stone-100 tracking-wide">{combate.enemigoNombre}</span>
+                  <span className="text-xs font-mono font-bold text-stone-200">
+                    {Math.max(0, combate.enemigoHp)}<span className="text-stone-500">/{combate.enemigoHpMaximo}</span>
+                  </span>
                 </div>
-
-                <div className="mt-1 h-3 w-full overflow-hidden rounded-full bg-slate-800">
-                  <div
-                    className="h-full rounded-full bg-red-500 transition-all duration-300"
-                    style={{ width: `${vidaEnemigo}%` }}
-                  />
-                </div>
-
-                <div className="mt-1 text-right text-xs font-bold text-slate-300">
-                  {Math.max(0, combate.enemigoHp)} / {combate.enemigoHpMaximo}
+                <div className="h-2 w-full overflow-hidden rounded-full bg-stone-900 border border-stone-700 shadow-inner">
+                  <div className={`h-full rounded-full bg-gradient-to-r ${obtenerColorVida(vidaEnemigo)} transition-all duration-500`} style={{ width: `${vidaEnemigo}%` }} />
                 </div>
               </div>
 
               {danioVisible?.actor === "enemigo" && (
-                <div
-                  className={`absolute -top-10 left-1/2 -translate-x-1/2 font-black drop-shadow-[0_2px_2px_rgba(0,0,0,0.9)] ${
-                    danioVisible.critico
-                      ? "rounded-xl border-2 border-red-400 bg-red-950/95 px-4 py-1 text-4xl text-yellow-300 shadow-[0_0_20px_rgba(239,68,68,0.5)]"
-                      : "text-3xl text-red-400"
-                  }`}
-                >
+                <div className={`absolute top-0 left-1/2 -translate-x-1/2 font-black drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] z-50 ${
+                    danioVisible.critico ? "text-5xl text-amber-400 scale-125 animate-bounce" : "text-4xl text-stone-100"
+                  }`}>
                   -{danioVisible.dano}
                 </div>
               )}
-              {/* Sprite */}
-              <div
-                className={`mt-3 ${
-                  actorImpactado === "enemigo"
-                    ? "animate-[combate-shake_180ms_ease-in-out]"
-                    : ""
-                }`}
-              >
-                <Image
-                  src={`/sprites/enemies/${combate.enemigoId}.png`}
-                  alt={combate.enemigoNombre}
-                  width={160}
-                  height={160}
-                  style={{ transform: "scaleX(-1)" }}
-                  className="object-contain [image-rendering:pixelated]"
-                  priority
+
+              <div className={`relative h-[180px] w-[180px] ${actorImpactado === "enemigo" ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}>
+                
+                {/* SOMBRA INVERSA DEL ENEMIGO */}
+                <div
+                  className="absolute inset-0 z-0 opacity-60 blur-xs"
+                  style={{
+                    transform:
+                      "translateY(35%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)",
+                  }}
+                >
+                  <Image
+                    src={`/sprites/enemies/${combate.enemigoId}.png`}
+                    alt="Sombra del enemigo"
+                    fill
+                    sizes="180px"
+                    style={{ transform: "scaleX(-1)" }}
+                    className="object-contain brightness-0"
+                  />
+                </div>
+
+                {/* ENEMIGO */}
+                <Image 
+                  src={`/sprites/enemies/${combate.enemigoId}.png`} 
+                  alt={combate.enemigoNombre} 
+                  fill
+                  sizes="180px"
+                  style={{ transform: "scaleX(-1)" }} 
+                  className="relative z-10 object-contain [image-rendering:pixelated]" 
+                  priority 
                 />
               </div>
             </div>
           </div>
 
-          {/* ================================================== */}
-          {/* RESULTADO                                           */}
-          {/* ================================================== */}
-
+          {/* RESULTADO */}
           {combateTerminado && (
-            <div className="absolute inset-0 z-30 flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm">
-              <div className="w-full max-w-sm rounded-2xl border border-slate-600 bg-slate-950 p-6 text-center shadow-2xl">
-                <p
-                  className={`text-3xl font-black ${
-                    combate.fase === "victoria"
-                      ? "text-emerald-400"
-                      : combate.fase === "derrota"
-                      ? "text-red-400"
-                      : "text-amber-400"
-                  }`}
-                >
-                  {combate.fase === "victoria"
-                    ? "¡VICTORIA!"
-                    : combate.fase === "derrota"
-                    ? "DERROTA"
-                    : "HUÍDA"}
+            <div className="absolute inset-0 z-[100] flex items-center justify-center bg-stone-950/80 p-4 backdrop-blur-md">
+              <div className="w-full max-w-md rounded-lg border-2 border-stone-700 bg-stone-900 p-8 text-center shadow-2xl">
+                <p className={`text-4xl font-black tracking-widest ${
+                    combate.fase === "victoria" ? "text-emerald-400" : combate.fase === "derrota" ? "text-red-500" : "text-stone-400"
+                  }`}>
+                  {combate.fase === "victoria" ? "VICTORIA" : combate.fase === "derrota" ? "DERROTA" : "HUÍDA"}
                 </p>
-
-                <p className="mt-2 text-sm text-slate-400">
-                  {combate.fase === "victoria"
-                    ? `${personaje.nombre} ha derrotado a ${combate.enemigoNombre}.`
-                    : combate.fase === "derrota"
-                    ? `${personaje.nombre} ha caído en combate.`
-                    : "Has abandonado el combate."}
+                <div className="h-px w-16 bg-stone-600 mx-auto my-4" />
+                <p className="text-stone-300">
+                  {combate.fase === "victoria" ? `${personaje.nombre} ha derrotado a ${combate.enemigoNombre}.` : combate.fase === "derrota" ? `${personaje.nombre} ha caído en combate.` : "Has abandonado el combate."}
                 </p>
-
                 {onCerrar && (
-                  <button
-                    type="button"
-                    onClick={onCerrar}
-                    className="mt-5 w-full rounded-xl border border-amber-400/40 bg-amber-600 px-4 py-3 font-black text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_4px_0_rgb(120,53,15)] transition hover:bg-amber-500 active:translate-y-1 active:shadow-none"
-                  >
+                  <button onClick={onCerrar} className="mt-8 w-full rounded border border-stone-600 bg-stone-800 px-4 py-3 font-bold tracking-widest text-stone-200 transition hover:bg-stone-700 hover:text-white active:scale-95">
                     CONTINUAR
                   </button>
                 )}
@@ -603,211 +455,205 @@ export default function CombateModal({
           )}
         </section>
 
-        {/* ==================================================== */}
-        {/* ZONA INFERIOR                                         */}
-        {/* ==================================================== */}
+        {/* ZONA INFERIOR (Acciones Flexibles | Panel Dinámico) */}
+        <section className="relative h-[220px] shrink-0 bg-stone-950/95 border-t border-stone-800 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] flex flex-row">
+          
+          {/* IZQUIERDA: PANEL DE ACCIONES (Fijo en PC, 1/3 en Móvil) */}
+          <div className="w-1/3 sm:w-1/6 shrink-0 p-3 sm:p-5 border-r border-stone-800 flex items-center justify-center relative z-20">
+            <div className="flex flex-col gap-2 w-full max-w-[200px]">
+              
+              <button
+                onClick={() => void ejecutarAtaqueJugador()}
+                disabled={procesando || procesandoLocal || combateTerminado || combate.turno !== "jugador"}
+                className="group flex w-full items-center justify-between rounded border border-stone-800 bg-stone-900 px-3 py-2 sm:px-4 sm:py-2.5 shadow-md transition-all hover:border-stone-500 hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                <span className="text-xs sm:text-sm font-bold tracking-widest text-stone-300 group-hover:text-white group-disabled:text-stone-600">ATACAR</span>
+                <span className="text-[10px] sm:text-xs text-stone-400 opacity-0 transition-opacity group-hover:opacity-100">▶</span>
+              </button>
 
-        <section className="grid h-[31%] min-h-[190px] max-h-[300px] shrink-0 grid-cols-[3fr_2fr] border-t border-slate-700 bg-slate-950">
-          {/* ================================================== */}
-          {/* MENÚ DE ACCIONES                                     */}
-          {/* ================================================== */}
+              <button
+                onClick={() => setMostrarHabilidades(!mostrarHabilidades)}
+                disabled={procesando || procesandoLocal || combateTerminado || combate.turno !== "jugador" || habilidades.length === 0}
+                className={`group flex w-full items-center justify-between rounded border px-3 py-2 sm:px-4 sm:py-2.5 shadow-md transition-all disabled:cursor-not-allowed disabled:opacity-40
+                  ${mostrarHabilidades 
+                    ? 'border-amber-500 bg-stone-800' 
+                    : 'border-stone-800 bg-stone-900 hover:border-amber-600/50 hover:bg-stone-800'
+                  }
+                `}
+              >
+                <span className={`text-xs sm:text-sm font-bold tracking-widest transition-colors ${
+                  mostrarHabilidades 
+                    ? 'text-amber-400' 
+                    : 'text-stone-300 group-hover:text-amber-400 group-disabled:text-stone-600'
+                }`}>
+                  HABILIDADES
+                </span>
+                <span className={`text-[10px] sm:text-xs transition-opacity ${mostrarHabilidades ? 'opacity-100 text-amber-500' : 'opacity-0 text-amber-600 group-hover:opacity-100'}`}>▶</span>
+              </button>
 
-          <div className="relative grid grid-cols-1 gap-2 p-2 sm:gap-2 sm:p-4">
-            <button
-              type="button"
-              onClick={() => void ejecutarAtaqueJugador()}
-              disabled={
-                procesando ||
-                procesandoLocal ||
-                combateTerminado ||
-                combate.turno !== "jugador"
-              }
-              className="rounded-xl bg-red-700 px-8 py-4 text-lg font-bold shadow-lg transition hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              Atacar
-            </button>
-            <button
-              type="button"
-              onClick={() => setMostrarHabilidades((mostrar) => !mostrar)}
-              disabled={
-                procesando ||
-                procesandoLocal ||
-                combateTerminado ||
-                combate.turno !== "jugador" ||
-                habilidades.length === 0
-              }
-              className="
-    rounded-xl border-2 border-purple-700/70
-    bg-gradient-to-b from-purple-700/70 to-purple-950
-    px-2 py-2
-    font-black text-purple-100
-    shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_4px_0_rgb(45,20,65)]
-    transition
-    hover:brightness-110
-    disabled:cursor-not-allowed
-    disabled:opacity-50
-  "
-            >
-              <span className="mt-1 block text-[11px] tracking-wide sm:text-sm">
-                HABILIDADES
-              </span>
-            </button>
-            <button
-              type="button"
-              disabled
-              className="
-                rounded-xl border-2 border-amber-700/70
-                bg-gradient-to-b from-amber-700/70 to-amber-950
-                px-2 py-2
-                font-black text-amber-100
-                shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_4px_0_rgb(69,45,10)]
-                opacity-50
-              "
-            >
-              <span className="mt-1 block text-[11px] tracking-wide sm:text-sm">
-                OBJETOS
-              </span>
-            </button>
-            <button
-              type="button"
-              disabled
-              className="
-                rounded-xl border-2 border-slate-600
-                bg-gradient-to-b from-slate-700 to-slate-900
-                px-2 py-2
-                font-black text-slate-200
-                shadow-[inset_0_1px_0_rgba(255,255,255,0.10),0_4px_0_rgb(15,23,42)]
-                opacity-50
-              "
-            >
-              <span className="mt-1 block text-[11px] tracking-wide sm:text-sm">
-                HUIR
-              </span>
-            </button>
-            {mostrarHabilidades && (
-              <div className="absolute inset-2 z-20 flex flex-col rounded-2xl border-2 border-purple-700 bg-slate-950/98 p-3 shadow-2xl sm:inset-4 sm:p-4">
-                <div className="mb-3 flex items-center justify-between">
-                  <div>
-                    <p className="text-[9px] font-black uppercase tracking-[0.18em] text-purple-400">
-                      Técnicas disponibles
-                    </p>
+              <button disabled className="group flex w-full items-center justify-between rounded border border-stone-800 bg-stone-950 px-3 py-2 sm:px-4 sm:py-2.5 opacity-40">
+                <span className="text-xs sm:text-sm font-bold tracking-widest text-stone-500">OBJETOS</span>
+              </button>
 
-                    <h3 className="text-sm font-black text-white sm:text-base">
-                      Habilidades activas
-                    </h3>
+              <button disabled className="group flex w-full items-center justify-between rounded border border-stone-800 bg-stone-950 px-3 py-2 sm:px-4 sm:py-2.5 opacity-40">
+                <span className="text-xs sm:text-sm font-bold tracking-widest text-stone-500">HUIR</span>
+              </button>
+
+            </div>
+          </div>
+
+          {/* DERECHA: PANEL DINÁMICO (Registro / Menús) - Ocupa el resto del espacio */}
+          <div className="flex-1 p-4 sm:p-6 relative flex flex-col justify-center bg-stone-900/30 overflow-hidden">
+            
+            {mostrarHabilidades ? (
+              /* ESTADO A: MOSTRAR HABILIDADES (2 Columnas en Desktop: Zona central de habilidades y zona derecha de descripción) */
+              <div className="flex flex-col h-full w-full animate-fade-in">
+                <div className="mb-2 flex shrink-0 items-center justify-between border-b border-stone-700 pb-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-amber-500">
+                      Técnicas Equipadas
+                    </span>
+                    <span className="text-[10px] font-mono text-stone-500">
+                      {Math.min(habilidades.length, 3)}/3
+                    </span>
                   </div>
-
-                  <button
-                    type="button"
+                  <button 
                     onClick={() => setMostrarHabilidades(false)}
-                    className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs font-black text-slate-400 transition hover:bg-slate-800 hover:text-white"
+                    className="text-[10px] font-bold tracking-widest text-stone-500 hover:text-stone-300 transition-colors"
                   >
-                    CERRAR
+                    VOLVER ✕
                   </button>
                 </div>
 
-                <div className="min-h-0 flex-1 space-y-2 overflow-y-auto pr-1">
-                  {habilidades.length === 0 ? (
-                    <div className="flex h-full items-center justify-center text-center">
-                      <p className="text-sm text-slate-500">
-                        No tienes habilidades activas equipadas.
-                      </p>
-                    </div>
-                  ) : (
-                    habilidades.map((habilidadAprendida) => {
-                      const cooldown = obtenerCooldown(
-                        habilidadAprendida.habilidadId
-                      );
-
-                      const habilidad = habilidadAprendida.habilidad;
-
-                      const bloqueada =
-                        cooldown > 0 ||
-                        procesando ||
-                        procesandoLocal ||
-                        combate.turno !== "jugador";
-
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1 min-h-0 items-center">
+                  {/* Zona Central / Izquierda del Panel: Lista de Habilidades */}
+                  <div className="flex flex-col gap-2 overflow-y-auto custom-scrollbar pr-1 max-h-full justify-center">
+                    {habilidades.slice(0, 3).map((h) => {
+                      const cooldown = obtenerCooldown(h.habilidadId);
+                      const bloqueada = cooldown > 0 || procesando || procesandoLocal || combate.turno !== "jugador";
+                      const seleccionada = habilidadSeleccionadaId === h.habilidadId;
+                      
                       return (
                         <button
-                          key={habilidadAprendida.id}
-                          type="button"
-                          onClick={() =>
-                            void ejecutarHabilidad(
-                              habilidadAprendida.habilidadId
-                            )
-                          }
-                          disabled={bloqueada}
-                          className="w-full rounded-xl border border-purple-900/80 bg-slate-900 px-3 py-3 text-left transition hover:border-purple-500 hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
+                            key={h.id}
+                            onClick={() => void ejecutarHabilidad(h.habilidadId)}
+                            onMouseEnter={() => setHabilidadSeleccionadaId(h.habilidadId)}
+                            disabled={bloqueada}
+                            className={`group relative flex w-full items-center justify-between overflow-hidden rounded border px-3 py-2.5 sm:px-4 sm:py-3 text-left transition-all ${
+                              seleccionada 
+                                ? 'border-amber-500 bg-stone-800' 
+                                : 'border-stone-800 bg-stone-950/80 hover:border-stone-600 hover:bg-stone-900'
+                            } disabled:opacity-50`}
                         >
-                          <div className="flex items-start justify-between gap-3">
-                            <div className="min-w-0">
-                              <div className="text-sm font-black text-purple-200">
-                                {habilidad.nombre}
-                              </div>
-
-                              <p className="mt-1 text-xs leading-4 text-slate-400">
-                                {habilidad.descripcion}
+                            <div className={`absolute left-0 top-0 h-full w-1 bg-amber-500 transition-opacity ${seleccionada ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
+                            
+                            <div className="relative z-10 flex-1 min-w-0 pr-2">
+                              <p className={`text-xs sm:text-sm font-bold tracking-wide transition-colors truncate ${seleccionada ? 'text-amber-400' : 'text-stone-200 group-hover:text-stone-100'}`}>
+                                {h.habilidad.nombre}
                               </p>
                             </div>
-
-                            <span className="shrink-0 rounded border border-slate-700 bg-slate-950 px-2 py-1 text-[9px] font-black uppercase tracking-wide text-slate-400">
-                              {cooldown > 0 ? `CD ${cooldown}` : "LISTA"}
-                            </span>
-                          </div>
+                            
+                            <div className="relative z-10 flex shrink-0 items-center justify-end">
+                              {cooldown > 0 ? (
+                                <span className="rounded bg-red-950 px-1.5 sm:px-2 py-0.5 sm:py-1 text-[9px] sm:text-[10px] font-black tracking-widest text-red-400 border border-red-900/50">
+                                  CD {cooldown}
+                                </span>
+                              ) : (
+                                <span className="text-[9px] sm:text-[10px] font-black tracking-widest text-stone-500 group-hover:text-emerald-400 transition-colors">
+                                  USAR
+                                </span>
+                              )}
+                            </div>
                         </button>
                       );
-                    })
-                  )}
+                    })}
+                  </div>
+
+                  {/* Zona Derecha del Panel: Descripción de la Técnica Seleccionada (Solo PC) */}
+                  <div className="hidden sm:flex flex-col justify-between rounded border border-stone-800 bg-stone-950/90 p-4 h-full max-h-[160px] overflow-y-auto shadow-inner">
+                    {habilidadSeleccionada ? (
+                      <div className="flex flex-col justify-between h-full">
+                        <div>
+                          <div className="flex items-center justify-between mb-1">
+                            <h4 className="text-xs sm:text-sm font-bold text-amber-400 tracking-wide">
+                              {habilidadSeleccionada.habilidad.nombre}
+                            </h4>
+                            <span className="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded bg-stone-900 border border-stone-800 text-stone-400">
+                              {habilidadSeleccionada.habilidad.rareza}
+                            </span>
+                          </div>
+                          <p className="text-xs text-stone-300 leading-relaxed line-clamp-2">
+                            {habilidadSeleccionada.habilidad.descripcion}
+                          </p>
+                        </div>
+                        <div className="mt-2 pt-2 border-t border-stone-800/80 flex items-center justify-between">
+                          <div className="flex gap-3 text-[10px] font-mono text-stone-400">
+                            {habilidadSeleccionada.habilidad.cooldownTurnos ? (
+                              <span>CD: {habilidadSeleccionada.habilidad.cooldownTurnos}t</span>
+                            ) : null}
+                            {habilidadSeleccionada.habilidad.danoBase ? (
+                              <span>Daño: {habilidadSeleccionada.habilidad.danoBase}</span>
+                            ) : null}
+                            {habilidadSeleccionada.habilidad.curacion ? (
+                              <span className="text-emerald-400 font-bold">Curación: {habilidadSeleccionada.habilidad.curacion}</span>
+                            ) : null}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-center h-full text-xs text-stone-500 italic">
+                        Pasa el cursor sobre una técnica para ver sus detalles.
+                      </div>
+                    )}
+                  </div>
                 </div>
+              </div>
+            ) : (
+              /* ESTADO B: MOSTRAR REGISTRO (LOG) */
+              <div className="flex flex-col h-full w-full justify-center animate-fade-in relative">
+                <div className="absolute top-0 left-0">
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-stone-600">Registro</span>
+                </div>
+                
+                <p className="text-sm sm:text-base md:text-lg text-stone-300 text-center min-h-[3rem] flex items-center justify-start line-clamp-2 px-2">
+                  {ultimaLineaLog}
+                </p>
+
+                <button 
+                  onClick={() => setLogExpandido(true)}
+                  className="absolute bottom-0 right-0 text-[10px] sm:text-xs font-bold text-stone-500 tracking-widest hover:text-stone-300 transition-colors"
+                >
+                  VER HISTORIAL ▲
+                </button>
               </div>
             )}
+
           </div>
 
-          {/* ================================================== */}
-          {/* LOG                                                   */}
-          {/* ================================================== */}
-
-          <div className="min-h-0 border-l border-slate-700 bg-[#080c14]">
-            <div className="flex h-full min-h-0 flex-col">
-              <div className="shrink-0 border-b border-slate-800 px-2.5 py-2 sm:px-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-[9px] font-black uppercase tracking-[0.16em] text-slate-500 sm:text-xs">
-                    Registro
-                  </span>
-
-                  <span className="text-[8px] text-slate-700 sm:text-[10px]">
-                    ↓
-                  </span>
-                </div>
+          {/* HISTORIAL EXPANDIDO (Modal Overlay Pantalla Completa) */}
+          {logExpandido && (
+            <div className="absolute inset-0 z-30 bg-stone-950/95 flex flex-col border-t border-stone-800 animate-fade-in">
+              <div className="flex items-center justify-between p-3 sm:p-4 border-b border-stone-800">
+                <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-stone-400">Historial del Combate</span>
+                <button onClick={() => setLogExpandido(false)} className="text-[10px] sm:text-xs font-bold text-stone-400 hover:text-white tracking-widest">
+                  CERRAR ▼
+                </button>
               </div>
-
-              <div
-                ref={logRef}
-                className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-2.5 py-2 sm:px-3"
-                style={{
-                  touchAction: "pan-y",
-                }}
-              >
-                <div className="space-y-1.5">
-                  {combate.log.length === 0 ? (
-                    <p className="text-[10px] italic leading-4 text-slate-600 sm:text-xs">
-                      El combate comienza...
+              <div ref={logRef} className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-2 sm:space-y-3 custom-scrollbar">
+                {combate.log.length === 0 ? (
+                  <p className="text-xs sm:text-sm italic text-stone-600 text-center">El combate comienza...</p>
+                ) : (
+                  combate.log.map((linea, i) => (
+                    <p key={i} className="text-xs sm:text-sm text-stone-400 border-l-2 border-stone-800 pl-2 sm:pl-3 py-1">
+                      {linea}
                     </p>
-                  ) : (
-                    combate.log.map((linea, indice) => (
-                      <p
-                        key={`${indice}-${linea}`}
-                        className="text-[9px] leading-4 text-slate-400 sm:text-xs sm:leading-5"
-                      >
-                        {linea}
-                      </p>
-                    ))
-                  )}
-                </div>
+                  ))
+                )}
               </div>
             </div>
-          </div>
+          )}
         </section>
+
       </div>
     </div>
   );
