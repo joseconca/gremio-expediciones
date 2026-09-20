@@ -1,7 +1,7 @@
 "use client";
 
 import ComplejoArmeria from "@/components/base/ComplejoArmeria";
-import EdificioCard from "@/components/EdificioCard";
+import EdificioCard from "@/components/base/EdificioCard";
 import type { Edificio } from "@/lib/tiposJuego";
 
 
