@@ -156,15 +156,18 @@ export async function POST() {
     );
 
     const enemigoNombre = monstruoBase.nombre;
-    const enemigoHp = Math.floor(monstruoBase.hp * (1 + (dificultad + personaje.nivel) * 0.3));
-    const enemigoAtaque = monstruoBase.ataque + Math.floor((dificultad+ personaje.nivel) * 1.2);
-    const enemigoDefensa = monstruoBase.defensa + Math.floor((dificultad + personaje.nivel) * 0.8);
+    const enemigoHp = Math.floor(
+      monstruoBase.hp * (1 + (dificultad + personaje.nivel) * 0.3)
+    );
+    const enemigoAtaque =
+      monstruoBase.ataque + Math.floor((dificultad + personaje.nivel) * 0.3);
+    const enemigoDefensa =
+      monstruoBase.defensa + Math.floor((dificultad + personaje.nivel) * 0.3);
     const enemigoVelocidad =
-      monstruoBase.velocidad + Math.floor((dificultad + personaje.nivel) * 0.5);
+      monstruoBase.velocidad + Math.floor((dificultad + personaje.nivel) * 0.3);
     const enemigoProbCritico = /*monstruoBase.probCritico ??*/ 0.1;
     const enemigoNivel = /*monstruoBase.nivel ??*/ 1;
 
-    
     const jugadorHp = Math.max(1, personaje.hpActual);
     const jugadorHpMaximo = estadisticasJugador.total.hpMaximo;
     const jugadorAtaque = estadisticasJugador.total.ataque;
@@ -173,7 +176,6 @@ export async function POST() {
     const jugadorNivel = personaje.nivel;
     const jugadorProbCritico = estadisticasJugador.total.probCritico;
     const jugadorDanoCritico = estadisticasJugador.total.danoCritico;
-
 
     const primerTurno =
       jugadorVelocidad >= enemigoVelocidad ? "jugador" : "enemigo";
@@ -275,6 +277,10 @@ export async function POST() {
         )
       : null;
 
+    console.log(
+      `${usuario.personaje.nombre}(lvl ${usuario.personaje.nivel}) combate con ${monstruoBase.nombre} nivel ${dificultad+personaje.nivel} de dificultad ${dificultad}`
+    );
+    
     return NextResponse.json({
       exito: true,
       combate,
