@@ -371,18 +371,16 @@ export async function POST(request: Request) {
       // ============================================================
 
       const oroGanado =
-        Math.max(0, expedicion.recompensa) + Math.max(0, enemigo.botin);
+        Math.max(0, expedicion.recompensa) + Math.max(0, enemigo.botin * (1 + (expedicion.dificultad + usuario.personaje.nivel) * 0.3));
 
       const experienciaGanada =
         expedicion.tipo === "elite"
-          ? 150
-          : 25 + Math.max(0, expedicion.dificultad) * 20;
+          ? 250 + Math.max(0, expedicion.dificultad*(1+enemigo.difMin)) * 20
+          : 25 + Math.max(0, expedicion.dificultad*(1+enemigo.difMin)) * 20;
 
-      log.push(`💰 Consigues ${enemigo.botin} 🪙 de botín.`);
+      log.push(`💰 Consigues ${oroGanado} 🪙 de botín.`);
 
       log.push(`⭐ Obtienes ${experienciaGanada} XP.`);
-
-      log.push(`🎒 Botín total asegurado: ${oroGanado} 🪙.`);
 
       // ============================================================
       // CALCULAR EXPERIENCIA Y NIVEL
@@ -529,12 +527,14 @@ export async function POST(request: Request) {
         );
       }
 
-      const oroTotalPosible =
-        Math.max(0, expedicion.recompensa) + Math.max(0, enemigo.botin);
-
+      const oroTotalPosible = Math.max(0, expedicion.recompensa) + Math.max(0, enemigo.botin);
       const oroAsegurado = Math.floor(oroTotalPosible / 5);
 
+      const experienciaTotalPosible = 25 + Math.max(0, expedicion.dificultad*(1+enemigo.difMin)) * 20;
+      const experienciaGanada = Math.floor(experienciaTotalPosible / 10);
+
       log.push(`💰 Antes de caer, consigues asegurar ${oroAsegurado} 🪙.`);
+      log.push(`⭐ Obtienes ${experienciaGanada} XP.`);
 
       const resultado = await prisma.$transaction(async (tx) => {
         const actualizacionCombate = await tx.combateActivo.updateMany({
@@ -551,7 +551,7 @@ export async function POST(request: Request) {
             fase: "derrota",
             turno: "jugador",
             oroGanado: oroAsegurado,
-            experienciaGanada: 1,
+            experienciaGanada: experienciaGanada,
             log,
             version: {
               increment: 1,
@@ -583,10 +583,10 @@ export async function POST(request: Request) {
           where: { id: expedicion.id },
           data: {
             fase: "regresando",
-            recompensa: 0,
+            recompensa: oroAsegurado,
+            experienciaGanada: experienciaGanada,
             resultadoFinal: "derrota",
             hpPerdido: Math.max(0, combate.jugadorHpMaximo - jugadorHp),
-            experienciaGanada: 0,
           },
         });
 
