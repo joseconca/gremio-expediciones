@@ -361,7 +361,7 @@ export const CONFIGURACION_EDIFICIOS = {
   escuelaCombate: {
     nombre: "Escuela de Combate",
     costeConstruccion: 2400,
-    nivelMax: 5,
+    nivelMax: 3,
     descripcion: "Aprende técnicas para el combate.",
     color: "bg-red-600",
     ruta: "/base/escuela-batalla",
