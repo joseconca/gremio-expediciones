@@ -157,14 +157,14 @@ export async function POST() {
 
     const enemigoNombre = monstruoBase.nombre;
     const enemigoHp = Math.floor(
-      monstruoBase.hp * (1 + (dificultad + personaje.nivel) * 0.3)
+      monstruoBase.hp * (1 + (dificultad + personaje.nivel) * 0.1)
     );
     const enemigoAtaque =
       monstruoBase.ataque + Math.floor((dificultad + personaje.nivel) * 0.3);
     const enemigoDefensa =
       monstruoBase.defensa + Math.floor((dificultad + personaje.nivel) * 0.3);
     const enemigoVelocidad =
-      monstruoBase.velocidad + Math.floor((dificultad + personaje.nivel) * 0.3);
+      monstruoBase.velocidad + Math.floor((dificultad + personaje.nivel) * 0.1);
     const enemigoProbCritico = /*monstruoBase.probCritico ??*/ 0.1;
     const enemigoNivel = /*monstruoBase.nivel ??*/ 1;
 
