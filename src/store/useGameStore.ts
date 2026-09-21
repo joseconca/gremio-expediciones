@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
-import { calcularCosteEdificio } from "@/lib/configuracionJuego";
+import { calcularCosteEdificio, CosteEdificio } from "@/lib/configuracionJuego";
 import type {
   EquipoPersonaje,
   ObjetoInventario,
@@ -236,7 +236,7 @@ export interface GameState {
   ) => Promise<boolean>;
 
   mejorarEdificio: (idEdificio: IdEdificio) => Promise<boolean>;
-  obtenerCosteMejora: (idEdificio: IdEdificio) => number;
+  obtenerCosteMejora: (idEdificio: IdEdificio) => CosteEdificio;
   establecerBase: (coords: { lat: number; lng: number }) => Promise<void>;
 }
 
@@ -733,11 +733,16 @@ export const useGameStore = create<GameState>((set, get) => ({
     }
   },
 
-  obtenerCosteMejora: (idEdificio) => {
+  obtenerCosteMejora: (idEdificio): CosteEdificio => {
     const edificio = get().edificios[idEdificio];
 
     if (!edificio) {
-      return Number.POSITIVE_INFINITY;
+      return {
+        oro: Number.POSITIVE_INFINITY,
+        madera: Number.POSITIVE_INFINITY,
+        piedra: Number.POSITIVE_INFINITY,
+        metal: Number.POSITIVE_INFINITY,
+      };
     }
 
     return calcularCosteEdificio(idEdificio, edificio.nivel);

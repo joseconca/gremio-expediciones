@@ -91,20 +91,39 @@ export function generarMision(
   const randDif = randomSeeded(seed + 8);
   const dificultad = Math.floor(randDif * 6);
 
-  //recompensas
+  // ============================================================
+  // RECOMPENSAS
+  // ============================================================
+
   const randOro = randomSeeded(seed + 5);
+
   const oro = Math.floor(
     configuracion.recompensaBase + randOro * configuracion.recompensaBase * 0.2
   );
+
+  // La dificultad aumenta la probabilidad de conseguir materiales.
+  const probabilidadMaterial = Math.max(0, dificultad) * 0.03;
+
+  // Madera
   const randMadera = randomSeeded(seed + 9);
   const madera =
-    randMadera < 0.25 ? 1 + Math.floor(randomSeeded(seed + 12) * 3) : 0;
+    randMadera < probabilidadMaterial
+      ? 1 + Math.floor(randomSeeded(seed + 12) * 3)
+      : 0;
+
+  // Piedra
   const randPiedra = randomSeeded(seed + 10);
   const piedra =
-    randPiedra < 0.20 ? 1 + Math.floor(randomSeeded(seed + 13) * 3) : 0;
+    randPiedra < probabilidadMaterial * 0.8
+      ? 1 + Math.floor(randomSeeded(seed + 13) * 3)
+      : 0;
+
+  // Metal
   const randMetal = randomSeeded(seed + 11);
   const metal =
-    randMetal < 0.15 ? 1 + Math.floor(randomSeeded(seed + 14) * 2) : 0;
+    randMetal < probabilidadMaterial * 0.5
+      ? 1 + Math.floor(randomSeeded(seed + 14) * 2)
+      : 0;
 
   // Distancias orientativas para una velocidad base de aproximadamente 6 km/h.
   const variacionDistancia = 0.9 + randomSeeded(seed + 6) * 0.2;
@@ -122,7 +141,7 @@ export function generarMision(
     lng: baseLng + randLng,
     nombre,
     dificultad,
-    recompensa:  {
+    recompensa: {
       oro,
       madera,
       piedra,

@@ -2,20 +2,25 @@
 
 import Image from "next/image";
 import type { Edificio, IdEdificio } from "@/lib/tiposJuego";
-
-
+import type { CosteEdificio } from "@/lib/configuracionJuego";
 
 interface PanelConstruccionProps {
   edificios: Edificio[];
   oro: number;
+  madera: number;
+  piedra: number;
+  metal: number;
   armeriaNivel: number;
-  obtenerCosteMejora: (id: IdEdificio) => number;
+  obtenerCosteMejora: (id: IdEdificio) => CosteEdificio;
   mejorarEdificio: (id: IdEdificio) => Promise<boolean>;
 }
 
 export default function PanelConstruccion({
   edificios,
   oro,
+  madera,
+  piedra,
+  metal,
   armeriaNivel,
   obtenerCosteMejora,
   mejorarEdificio,
@@ -24,6 +29,11 @@ export default function PanelConstruccion({
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
       {edificios.map((edificio) => {
         const coste = obtenerCosteMejora(edificio.id);
+        const puedePagar =
+          oro >= coste.oro &&
+          madera >= coste.madera &&
+          piedra >= coste.piedra &&
+          metal >= coste.metal;
 
         const sinConstruir = edificio.nivel === 0;
         const maxNivel = edificio.nivel >= edificio.nivelMax;
@@ -31,8 +41,7 @@ export default function PanelConstruccion({
         const bloqueadaPorArmeria =
           edificio.id === "herreria" && armeriaNivel === 0;
 
-        const bloqueado =
-          sinConstruir && bloqueadaPorArmeria;
+        const bloqueado = sinConstruir && bloqueadaPorArmeria;
 
         return (
           <div
@@ -139,9 +148,7 @@ export default function PanelConstruccion({
               <div className="flex items-center justify-between gap-3 px-4 py-3">
                 <span
                   className={`font-bold ${
-                    bloqueado
-                      ? "text-slate-500"
-                      : "text-amber-300"
+                    bloqueado ? "text-slate-500" : "text-amber-300"
                   }`}
                 >
                   {sinConstruir
@@ -159,13 +166,13 @@ export default function PanelConstruccion({
                     onClick={async () => {
                       const exito = await mejorarEdificio(edificio.id);
 
-                      if (!exito && oro < coste) {
+                      if (!exito && !puedePagar) {
                         alert("No tienes suficiente oro para esto.");
                       }
                     }}
-                    disabled={bloqueado || oro < coste}
+                    disabled={bloqueado || !puedePagar}
                     className={`flex items-center gap-3 rounded-sm border px-3 py-0 font-bold ${
-                      oro >= coste && !bloqueado
+                      puedePagar && !bloqueado
                         ? "border-amber-700/60 bg-amber-900/70 text-amber-100 hover:border-amber-500/70 hover:bg-amber-800"
                         : "cursor-not-allowed border-slate-700 bg-slate-900 text-slate-600"
                     }`}
@@ -178,7 +185,34 @@ export default function PanelConstruccion({
                         : "Mejorar"}
                     </span>
 
-                    <span>{coste} 🪙</span>
+                    {/* Contenedor de los recursos (Fila) */}
+                    <div className="flex items-center gap-3 border-l border-stone-600 pl-4 text-xs font-mono">
+                      <div className="flex flex-col items-center justify-center gap-1">
+                        <span className="text-sm">🪙</span>
+                        <span>{coste.oro}</span>
+                      </div>
+
+                      {coste.madera > 0 && (
+                        <div className="flex flex-col items-center justify-center gap-1">
+                          <span className="text-sm">🪵</span>
+                          <span>{coste.madera}</span>
+                        </div>
+                      )}
+
+                      {coste.piedra > 0 && (
+                        <div className="flex flex-col items-center justify-center gap-1">
+                          <span className="text-sm">🪨</span>
+                          <span>{coste.piedra}</span>
+                        </div>
+                      )}
+
+                      {coste.metal > 0 && (
+                        <div className="flex flex-col items-center justify-center gap-1">
+                          <span className="text-sm">⚙️</span>
+                          <span>{coste.metal}</span>
+                        </div>
+                      )}
+                    </div>
                   </button>
                 )}
               </div>

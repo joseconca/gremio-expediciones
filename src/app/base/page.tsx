@@ -146,6 +146,9 @@ export default function BasePage() {
   // Estado para la UI
   const {
     oro,
+    madera,
+    piedra,
+    metal,
     personaje,
     expedicionActiva,
     baseCoords,
@@ -494,6 +497,9 @@ export default function BasePage() {
           <PanelConstruccion
             edificios={Object.values(edificios)}
             oro={oro}
+            madera={madera}
+            piedra={piedra}
+            metal={metal}
             armeriaNivel={edificios.armeria.nivel}
             obtenerCosteMejora={obtenerCosteMejora}
             mejorarEdificio={mejorarEdificio}

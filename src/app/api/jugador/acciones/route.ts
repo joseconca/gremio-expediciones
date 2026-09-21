@@ -371,9 +371,13 @@ export async function POST(request: Request) {
 
       const coste = calcularCosteEdificio(idEdificio, nivel);
 
-      if (usuario.oro < coste) {
+      if (
+        usuario.oro < coste.oro ||
+        usuario.madera < coste.madera ||
+        usuario.piedra < coste.piedra
+      ) {
         return NextResponse.json(
-          { error: "No tienes oro suficiente." },
+          { error: "No tienes recursos suficientes." },
           { status: 400 }
         );
       }
@@ -387,7 +391,16 @@ export async function POST(request: Request) {
         where: { id: usuario.id },
         data: {
           oro: {
-            decrement: coste,
+            decrement: coste.oro,
+          },
+          madera: {
+            decrement: coste.madera,
+          },
+          piedra: {
+            decrement: coste.piedra,
+          },
+          metal: {
+            decrement: coste.metal,
           },
           edificios: edificiosActualizados,
         },

@@ -10,21 +10,33 @@ export const REQUISITOS_EDIFICIOS: Partial<
   },
 };
 
+export interface CosteEdificio {
+  oro: number;
+  madera: number;
+  piedra: number;
+  metal: number;
+}
+
 export function calcularCosteEdificio(
   idEdificio: IdEdificio,
   nivelActual: number
-): number {
+): CosteEdificio {
   const configuracion = CONFIGURACION_EDIFICIOS[idEdificio];
 
-  if (nivelActual === 0) {
-    return configuracion.costeConstruccion;
-  }
+  const multiplicadorOro = nivelActual === 0 ? 1 : Math.pow(1.5, nivelActual);
+  const multiplicadorRecursos = nivelActual === 0 ? 1 : 1.5 * nivelActual;
 
-  return (
-    Math.round(
-      (configuracion.costeConstruccion * Math.pow(2, nivelActual)) / 100
-    ) * 100
-  );
+  return {
+    oro:
+      Math.round((configuracion.costeConstruccion * multiplicadorOro) / 100) *
+      100,
+
+    madera: Math.ceil(configuracion.costeMadera * multiplicadorRecursos),
+
+    piedra: Math.ceil(configuracion.costePiedra * multiplicadorRecursos),
+
+    metal: Math.ceil(configuracion.costeMetal * multiplicadorRecursos),
+  };
 }
 
 // ============================================================
