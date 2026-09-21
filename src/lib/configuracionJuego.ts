@@ -147,9 +147,9 @@ export function experienciaParaNivel(nivel: number): number {
 export const NIVEL_ESCUELA_POR_RAREZA: Record<Rareza, number> = {
   basico: 1,
   comun: 2,
-  poco_comun: 3,
-  raro: 4,
-  epico: 5,
+  poco_comun: 2,
+  raro: 3,
+  epico: 3,
   legendario: Infinity,
 };
 
