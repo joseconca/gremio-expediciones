@@ -459,7 +459,7 @@ export default function CombateModal({
         <section className="relative h-[220px] shrink-0 bg-stone-950/95 border-t border-stone-800 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] flex flex-row">
           
           {/* IZQUIERDA: PANEL DE ACCIONES (Fijo en PC, 1/3 en Móvil) */}
-          <div className="w-1/3 sm:w-1/6 shrink-0 p-3 sm:p-5 border-r border-stone-800 flex items-center justify-center relative z-20">
+          <div className="w-2/5 sm:w-1/6 shrink-0 p-3 sm:p-5 border-r border-stone-800 flex items-center justify-center relative z-20">
             <div className="flex flex-col gap-2 w-full max-w-[200px]">
               
               <button
@@ -468,7 +468,6 @@ export default function CombateModal({
                 className="group flex w-full items-center justify-between rounded border border-stone-800 bg-stone-900 px-3 py-2 sm:px-4 sm:py-2.5 shadow-md transition-all hover:border-stone-500 hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-40"
               >
                 <span className="text-xs sm:text-sm font-bold tracking-widest text-stone-300 group-hover:text-white group-disabled:text-stone-600">ATACAR</span>
-                <span className="text-[10px] sm:text-xs text-stone-400 opacity-0 transition-opacity group-hover:opacity-100">▶</span>
               </button>
 
               <button
@@ -488,7 +487,6 @@ export default function CombateModal({
                 }`}>
                   HABILIDADES
                 </span>
-                <span className={`text-[10px] sm:text-xs transition-opacity ${mostrarHabilidades ? 'opacity-100 text-amber-500' : 'opacity-0 text-amber-600 group-hover:opacity-100'}`}>▶</span>
               </button>
 
               <button disabled className="group flex w-full items-center justify-between rounded border border-stone-800 bg-stone-950 px-3 py-2 sm:px-4 sm:py-2.5 opacity-40">
