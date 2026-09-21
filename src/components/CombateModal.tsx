@@ -52,6 +52,9 @@ export default function CombateModal({
 }: CombateModalProps) {
   const logRef = useRef<HTMLDivElement>(null);
 
+  const faseCombateRef = useRef(combate.fase);
+  faseCombateRef.current = combate.fase;
+
   const [mostrarStatsEnemigo, setMostrarStatsEnemigo] = useState(false);
   const [habilidades, setHabilidades] = useState<HabilidadEquipable[]>([]);
   const [mostrarHabilidades, setMostrarHabilidades] = useState(false);
@@ -59,6 +62,7 @@ export default function CombateModal({
   const [habilidadSeleccionadaId, setHabilidadSeleccionadaId] = useState<
     string | null
   >(null);
+  const [mostrarResultado, setMostrarResultado] = useState(false);
 
   /*
    * ============================================================
@@ -92,6 +96,11 @@ export default function CombateModal({
     };
   }, []);
 
+  /**
+   * ============================================================
+   * CARGAR HABILIDADES DE COMBATE
+   * ============================================================
+   */
   useEffect(() => {
     const cargarHabilidades = async () => {
       try {
@@ -194,6 +203,30 @@ export default function CombateModal({
   const esperar = (milisegundos: number) =>
     new Promise<void>((resolver) => setTimeout(resolver, milisegundos));
 
+  /**
+   * ============================================================
+   * COMPROBAR RESULTADO DEL COMBATE
+   * ============================================================
+   */
+  useEffect(() => {
+    if (combate.fase === "activo") {
+      setMostrarResultado(false);
+    }
+  }, [combate.fase]);
+
+  const comprobarResultadoCombate = () => {
+    const fase = faseCombateRef.current;
+
+    if (fase === "victoria" || fase === "derrota" || fase === "huida") {
+      setMostrarResultado(true);
+    }
+  };
+
+  /** 
+   * ============================================================
+   * MOSTRAR RESULTADO DE ACCIÓN
+   * ============================================================
+   */ 
   const mostrarResultadoAccion = async (accion: AccionAnimadaCombate) => {
     const dano = accion.dano;
     const curacion = accion.curacion ?? 0;
@@ -213,6 +246,7 @@ export default function CombateModal({
       setCuracionVisible(null);
       setActorAnimando(null);
       setAnimacionActual(null);
+      comprobarResultadoCombate();
       return;
     }
 
@@ -232,6 +266,7 @@ export default function CombateModal({
     await esperar(accion.animacion === "ofensiva_potenciada" ? 300 : 200);
     setActorAnimando(null);
     setAnimacionActual(null);
+    comprobarResultadoCombate();
   };
 
   const ejecutarAtaqueJugador = async () => {
@@ -543,7 +578,7 @@ export default function CombateModal({
           </div>
 
           {/* RESULTADO */}
-          {combateTerminado && (
+          {combateTerminado && mostrarResultado && (
             <div className="absolute inset-0 z-[100] flex items-center justify-center bg-stone-950/80 p-4 backdrop-blur-md">
               <div className="w-full max-w-md rounded-lg border-2 border-stone-700 bg-stone-900 p-8 text-center shadow-2xl">
                 <p
