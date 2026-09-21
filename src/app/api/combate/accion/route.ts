@@ -371,12 +371,17 @@ export async function POST(request: Request) {
       // ============================================================
 
       const oroGanado =
-        Math.max(0, expedicion.recompensa) + Math.max(0, enemigo.botin * (1 + (expedicion.dificultad + usuario.personaje.nivel) * 0.3));
+        Math.max(0, expedicion.recompensa) +
+        Math.max(
+          0,
+          enemigo.botin *
+            (1 + (expedicion.dificultad + usuario.personaje.nivel) * 0.3)
+        );
 
       const experienciaGanada =
         expedicion.tipo === "elite"
-          ? 250 + Math.max(0, expedicion.dificultad*(1+enemigo.difMin)) * 20
-          : 25 + Math.max(0, expedicion.dificultad*(1+enemigo.difMin)) * 20;
+          ? 250 + Math.max(0, expedicion.dificultad * (1 + enemigo.difMin)) * 20
+          : 25 + Math.max(0, expedicion.dificultad * (1 + enemigo.difMin)) * 20;
 
       log.push(`💰 Consigues ${oroGanado} 🪙 de botín.`);
 
@@ -527,10 +532,12 @@ export async function POST(request: Request) {
         );
       }
 
-      const oroTotalPosible = Math.max(0, expedicion.recompensa) + Math.max(0, enemigo.botin);
+      const oroTotalPosible =
+        Math.max(0, expedicion.recompensa) + Math.max(0, enemigo.botin);
       const oroAsegurado = Math.floor(oroTotalPosible / 5);
 
-      const experienciaTotalPosible = 25 + Math.max(0, expedicion.dificultad*(1+enemigo.difMin)) * 20;
+      const experienciaTotalPosible =
+        25 + Math.max(0, expedicion.dificultad * (1 + enemigo.difMin)) * 20;
       const experienciaGanada = Math.floor(experienciaTotalPosible / 10);
 
       log.push(`💰 Antes de caer, consigues asegurar ${oroAsegurado} 🪙.`);
@@ -569,6 +576,30 @@ export async function POST(request: Request) {
           },
         });
 
+        // ============================================================
+        // CALCULAR EXPERIENCIA Y NIVEL
+        // ============================================================
+
+        const experienciaActual = usuario.personaje.experiencia || 0;
+
+        const nivelActual = usuario.personaje.nivel || 1;
+
+        let nivelNuevo = nivelActual;
+        let experienciaNueva = experienciaActual + experienciaGanada;
+
+        let nivelesSubidos = 0;
+
+        while (experienciaNueva >= experienciaParaNivel(nivelNuevo)) {
+          experienciaNueva -= experienciaParaNivel(nivelNuevo);
+
+          nivelNuevo += 1;
+          nivelesSubidos += 1;
+        }
+
+        if (nivelesSubidos > 0) {
+          log.push(`⬆️ ¡Subes al nivel ${nivelNuevo}!`);
+        }
+
         await tx.personaje.update({
           where: {
             id: usuario.personaje!.id,
@@ -576,6 +607,8 @@ export async function POST(request: Request) {
           data: {
             hpActual: 1,
             estado: "de_viaje",
+            nivel: nivelNuevo,
+            experiencia: experienciaNueva,
           },
         });
 
