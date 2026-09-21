@@ -10,24 +10,24 @@ const CLASES_INICIALES = [
   {
     id: "guerrero",
     nombre: "Guerrero",
-    ventaja: "+20% Supervivencia",
+    ventaja: "Más supervivencia",
     descripcion:
-      "Ideal para defenderse de emboscadas de bandidos en los caminos.",
+      "Curtido por la batalla, siempre preparado para el próximo enfrentamiento.",
     color: "bg-red-950/80 border-red-800 text-red-100",
   },
   {
     id: "explorador",
     nombre: "Explorador",
-    ventaja: "+15% Velocidad",
-    descripcion: "Reduce el tiempo real de viaje gracias a su conocimiento.",
+    ventaja: "Más velocidad",
+    descripcion: "Ágil y con ganas de explorar, siempre encuentra la mejor ruta.",
     color: "bg-green-950/80 border-green-800 text-green-100",
   },
   {
     id: "mercader",
     nombre: "Comerciante",
-    ventaja: "+25% Botín",
+    ventaja: "Más botín",
     descripcion:
-      "Sabe negociar y encontrar mejores objetos en lugares lejanos.",
+      "Experto en el arte del trueque, siempre consigue el mejor trato.",
     color: "bg-amber-950/80 border-amber-800 text-amber-100",
   },
 ];
@@ -40,6 +40,7 @@ function nombreClase(clase: string, sexo: "chico" | "chica") {
 
 export default function TabernaPage() {
   const {
+    nombreGremio,
     personaje,
     reclutarPersonaje,
     calcularCosteCura,
@@ -319,7 +320,7 @@ export default function TabernaPage() {
                       Contrato de Gremio
                     </h2>
                     <p className="text-sm font-bold text-stone-600 italic">
-                      Firmado en la Taberna del Jabalí
+                      Firmado en la Taberna de {nombreGremio}
                     </p>
                   </div>
 
