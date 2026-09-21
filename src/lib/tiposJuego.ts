@@ -2,12 +2,8 @@ export type TipoMision = "normal" | "elite" | "comercio" | "boss";
 
 export type ClasePersonaje = "Guerrero" | "Explorador" | "Comerciante";
 
-export type TipoObjeto =
-  | "consumible"
-  | "arma"
-  | "armadura"
-  | "accesorio";
-  
+export type TipoObjeto = "consumible" | "arma" | "armadura" | "accesorio";
+
 /** RAREZA */
 export type Rareza =
   | "basico"
@@ -242,7 +238,7 @@ export interface DefinicionMision {
   descripcion: string;
 
   dificultad: number;
-  recompensa: number;
+  recompensa: RecompensaMision;
   duracionObjetivoHoras: number;
 
   lat: number;
@@ -254,6 +250,21 @@ export interface DefinicionMision {
   /** Para identificar un boss concreto. */
   enemigoId?: string;
 }
+
+/** RECOMPENSAS */
+export interface RecompensaMision {
+  oro: number;
+  madera: number;
+  piedra: number;
+  metal: number;
+  objetos?: RecompensaObjeto[];
+}
+
+export interface RecompensaObjeto {
+  objetoId: string;
+  cantidad: number;
+}
+
 /** COMBATE */
 export interface EstadoEfectoCombate {
   id: string;

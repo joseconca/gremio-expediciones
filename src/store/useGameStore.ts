@@ -9,6 +9,7 @@ import type {
   SlotHabilidad,
   Edificio,
   IdEdificio,
+  RecompensaMision,
 } from "@/lib/tiposJuego";
 import { CONFIGURACION_EDIFICIOS } from "@/lib/tiposJuego";
 import {
@@ -178,7 +179,7 @@ export interface ExpedicionActiva {
   misionId: string;
   enemigoId?: string | null;
   nombre: string;
-  recompensa: number;
+  recompensa: RecompensaMision;
   fechaLlegada: string;
   fechaSalida: string;
   dificultad: number;

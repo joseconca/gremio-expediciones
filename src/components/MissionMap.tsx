@@ -261,7 +261,19 @@ export default function MissionMap({
                     lng: base.lng,
                     nombre: `Comerciar: ${base.nombre}`,
                     dificultad: 0,
-                    recompensa: calcularOroBaseComercio(calcularDistanciaKm(baseCoords.lat, baseCoords.lng, base.lat, base.lng)),
+                    recompensa: {
+                      oro: calcularOroBaseComercio(
+                        calcularDistanciaKm(
+                          baseCoords.lat,
+                          baseCoords.lng,
+                          base.lat,
+                          base.lng
+                        )
+                      ),
+                      madera: 0,
+                      piedra: 0,
+                      metal: 0,
+                    },
                     duracionObjetivoHoras: 0,
                     descripcion: `Envía a tu personaje a intercambiar bienes con el gremio de ${base.nombre}.`,
                   }),

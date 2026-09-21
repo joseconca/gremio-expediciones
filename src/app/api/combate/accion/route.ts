@@ -22,6 +22,23 @@ type EfectoCombate = {
   turnosRestantes: number;
 };
 
+function obtenerOroRecompensa(valor: unknown): number {
+  if (
+    typeof valor === "object" &&
+    valor !== null &&
+    "oro" in valor &&
+    typeof valor.oro === "number"
+  ) {
+    return Math.max(0, valor.oro);
+  }
+
+  if (typeof valor === "number") {
+    return Math.max(0, valor);
+  }
+
+  return 0;
+}
+
 function obtenerCooldowns(valor: unknown): Record<string, number> {
   if (!valor || typeof valor !== "object" || Array.isArray(valor)) {
     return {};
@@ -371,7 +388,7 @@ export async function POST(request: Request) {
       // ============================================================
 
       const oroGanado =
-        Math.max(0, expedicion.recompensa) +
+        obtenerOroRecompensa(expedicion.recompensa) +
         Math.max(
           0,
           enemigo.botin *
@@ -533,7 +550,8 @@ export async function POST(request: Request) {
       }
 
       const oroTotalPosible =
-        Math.max(0, expedicion.recompensa) + Math.max(0, enemigo.botin);
+        obtenerOroRecompensa(expedicion.recompensa) +
+        Math.max(0, enemigo.botin);
       const oroAsegurado = Math.floor(oroTotalPosible / 5);
 
       const experienciaTotalPosible =
@@ -581,7 +599,7 @@ export async function POST(request: Request) {
         // ============================================================
 
         const experienciaActual = usuario.personaje?.experiencia || 0;
-        
+
         const nivelActual = usuario.personaje?.nivel || 1;
 
         let nivelNuevo = nivelActual;

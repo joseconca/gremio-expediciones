@@ -62,7 +62,7 @@ export function generarMisionElite(
         (111 * Math.cos((baseLat * Math.PI) / 180)),
     nombre: jefe.nombre,
     dificultad,
-    recompensa: jefe.botin,
+    recompensa: { oro: jefe.botin, madera: 0, piedra: 0, metal: 0 },
     duracionObjetivoHoras: 1,
     descripcion: `Una amenaza ha despertado. Derrota al ${jefe.nombre} para obtener una gran recompensa.`,
   };
@@ -90,10 +90,21 @@ export function generarMision(
     DESCRIPCIONES[Math.floor(randDesc * DESCRIPCIONES.length)];
   const randDif = randomSeeded(seed + 8);
   const dificultad = Math.floor(randDif * 6);
+
+  //recompensas
   const randOro = randomSeeded(seed + 5);
-  const recompensa = Math.floor(
+  const oro = Math.floor(
     configuracion.recompensaBase + randOro * configuracion.recompensaBase * 0.2
   );
+  const randMadera = randomSeeded(seed + 9);
+  const madera =
+    randMadera < 0.25 ? 1 + Math.floor(randomSeeded(seed + 12) * 3) : 0;
+  const randPiedra = randomSeeded(seed + 10);
+  const piedra =
+    randPiedra < 0.20 ? 1 + Math.floor(randomSeeded(seed + 13) * 3) : 0;
+  const randMetal = randomSeeded(seed + 11);
+  const metal =
+    randMetal < 0.15 ? 1 + Math.floor(randomSeeded(seed + 14) * 2) : 0;
 
   // Distancias orientativas para una velocidad base de aproximadamente 6 km/h.
   const variacionDistancia = 0.9 + randomSeeded(seed + 6) * 0.2;
@@ -111,7 +122,12 @@ export function generarMision(
     lng: baseLng + randLng,
     nombre,
     dificultad,
-    recompensa,
+    recompensa:  {
+      oro,
+      madera,
+      piedra,
+      metal,
+    },
     duracionObjetivoHoras: configuracion.horas,
     descripcion,
   };

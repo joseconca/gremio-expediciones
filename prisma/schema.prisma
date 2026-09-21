@@ -132,7 +132,7 @@ model ExpedicionActiva {
   misionId   String
   enemigoId  String?
   nombre     String
-  recompensa Int
+  recompensa Json
   dificultad Int
 
   hpPerdido          Int      @default(0)

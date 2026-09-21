@@ -331,15 +331,31 @@ export default function ExpedicionesPage() {
                   >
                     Recompensa
                   </span>
-                  <span
-                    className={`text-base font-bold ${
-                      misionSeleccionada.tipo === "elite"
-                        ? "text-amber-400"
-                        : "text-[#9c590e]"
-                    }`}
-                  >
-                    {misionSeleccionada.recompensa}
-                  </span>
+                  <div className="flex flex-wrap gap-x-3 gap-y-1 text-sm font-bold">
+                    {misionSeleccionada.recompensa.oro > 0 && (
+                      <span className="text-amber-500">
+                        🪙 {misionSeleccionada.recompensa.oro}
+                      </span>
+                    )}
+
+                    {misionSeleccionada.recompensa.madera > 0 && (
+                      <span className="text-emerald-700">
+                        🪵 {misionSeleccionada.recompensa.madera}
+                      </span>
+                    )}
+
+                    {misionSeleccionada.recompensa.piedra > 0 && (
+                      <span className="text-slate-500">
+                        🪨 {misionSeleccionada.recompensa.piedra}
+                      </span>
+                    )}
+
+                    {misionSeleccionada.recompensa.metal > 0 && (
+                      <span className="text-slate-700">
+                        ⚙️ {misionSeleccionada.recompensa.metal}
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 {/* Fila Duración */}

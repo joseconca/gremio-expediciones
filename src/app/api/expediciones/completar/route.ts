@@ -8,6 +8,36 @@ import {
   calcularModificadoresEquipo,
 } from "@/lib/estadisticasPersonaje";
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
+import type { RecompensaMision } from "@/lib/tiposJuego";
+
+function obtenerRecompensaMision(valor: unknown): RecompensaMision {
+  if (
+    typeof valor === "object" &&
+    valor !== null &&
+    "oro" in valor &&
+    "madera" in valor &&
+    "piedra" in valor &&
+    "metal" in valor &&
+    typeof valor.oro === "number" &&
+    typeof valor.madera === "number" &&
+    typeof valor.piedra === "number" &&
+    typeof valor.metal === "number"
+  ) {
+    return {
+      oro: Math.max(0, valor.oro),
+      madera: Math.max(0, valor.madera),
+      piedra: Math.max(0, valor.piedra),
+      metal: Math.max(0, valor.metal),
+    };
+  }
+
+  return {
+    oro: 0,
+    madera: 0,
+    piedra: 0,
+    metal: 0,
+  };
+}
 
 export async function POST() {
   try {
@@ -63,7 +93,8 @@ export async function POST() {
     // RECIBIR AL AVENTURERO AL REGRESAR
     // ============================================================
     if (expedicion.fase === "regresando") {
-      const oroGuardado = Math.max(0, expedicion.recompensa);
+      const recompensa = obtenerRecompensaMision(expedicion.recompensa);
+      const oroGuardado = recompensa.oro;
       const resultadoFinal = expedicion.resultadoFinal;
 
       if (!resultadoFinal) {
@@ -87,6 +118,23 @@ export async function POST() {
 
         if (oroGuardado > 0) {
           logRegreso.push(`💰 Recibes ${oroGuardado} 🪙 por la expedición.`);
+        }
+        if (recompensa.madera > 0) {
+          logRegreso.push(
+            `🪵 Recibes ${recompensa.madera} de madera por la expedición.`
+          );
+        }
+
+        if (recompensa.piedra > 0) {
+          logRegreso.push(
+            `🪨 Recibes ${recompensa.piedra} de piedra por la expedición.`
+          );
+        }
+
+        if (recompensa.metal > 0) {
+          logRegreso.push(
+            `⚙️ Recibes ${recompensa.metal} de metal por la expedición.`
+          );
         }
       } else if (resultadoFinal === "derrota") {
         logRegreso = [
@@ -148,7 +196,16 @@ export async function POST() {
           where: { id: usuario.id },
           data: {
             oro: {
-              increment: oroGuardado,
+              increment: recompensa.oro,
+            },
+            madera: {
+              increment: recompensa.madera,
+            },
+            piedra: {
+              increment: recompensa.piedra,
+            },
+            metal: {
+              increment: recompensa.metal,
             },
           },
           include: {
@@ -196,6 +253,7 @@ export async function POST() {
           resultadoFinal,
           hpPerdido: expedicion.hpPerdido,
           oroGanado: oroGuardado,
+          recompensa,
           experienciaGanada: expedicion.experienciaGanada,
           tipo: "comercio" as const,
           afinidad: actualizado.afinidad,
@@ -207,6 +265,7 @@ export async function POST() {
           resultadoFinal,
           hpPerdido: expedicion.hpPerdido,
           oroGanado: oroGuardado,
+          recompensa,
           experienciaGanada: expedicion.experienciaGanada,
           tipo: "combate" as const,
           logCombate: logRegreso,
@@ -217,6 +276,7 @@ export async function POST() {
           resultadoFinal,
           hpPerdido: expedicion.hpPerdido,
           oroGanado: oroGuardado,
+          recompensa,
           experienciaGanada: expedicion.experienciaGanada,
           tipo: "combate" as const,
           enemigo: combate?.enemigoNombre ?? "Enemigo",
@@ -418,7 +478,12 @@ export async function POST() {
           fase: "regresando",
           fechaSalida: fechaSalidaRegreso,
           fechaLlegada: fechaLlegadaRegreso,
-          recompensa: oroGanado,
+          recompensa: {
+            oro: oroGanado,
+            madera: 0,
+            piedra: 0,
+            metal: 0,
+          },
           resultadoFinal: resultado.exito ? "exito" : "derrota",
           hpPerdido: resultado.hpPerdido,
           experienciaGanada: resultado.experienciaGanada,
