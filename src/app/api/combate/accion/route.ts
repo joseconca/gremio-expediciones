@@ -580,9 +580,9 @@ export async function POST(request: Request) {
         // CALCULAR EXPERIENCIA Y NIVEL
         // ============================================================
 
-        const experienciaActual = usuario.personaje.experiencia || 0;
-
-        const nivelActual = usuario.personaje.nivel || 1;
+        const experienciaActual = usuario.personaje?.experiencia || 0;
+        
+        const nivelActual = usuario.personaje?.nivel || 1;
 
         let nivelNuevo = nivelActual;
         let experienciaNueva = experienciaActual + experienciaGanada;
