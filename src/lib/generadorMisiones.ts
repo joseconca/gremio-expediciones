@@ -30,8 +30,17 @@ const DESCRIPCIONES = [
 
 const MISIONES_POR_DURACION = [
   { horas: 0.5, recompensaBase: 70 },
+  { horas: 0.5, recompensaBase: 70 },
+  { horas: 0.5, recompensaBase: 70 },
+  { horas: 0.5, recompensaBase: 70 },
+
   { horas: 1, recompensaBase: 120 },
+  { horas: 1, recompensaBase: 120 },
+  { horas: 1, recompensaBase: 120 },
+
   { horas: 3, recompensaBase: 300 },
+  { horas: 3, recompensaBase: 300 },
+
   { horas: 9, recompensaBase: 800 },
   { horas: 24, recompensaBase: 1800 },
 ];
@@ -102,7 +111,7 @@ export function generarMision(
   );
 
   // La dificultad aumenta la probabilidad de conseguir materiales.
-  const probabilidadMaterial = Math.max(0, dificultad) * 0.03;
+  const probabilidadMaterial = Math.max(0, dificultad) * 0.2;
 
   // Madera
   const randMadera = randomSeeded(seed + 9);
