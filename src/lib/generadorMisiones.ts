@@ -145,7 +145,7 @@ export function generarMision(
   // Oro
   const randOro = randomSeeded(seed + 5);
 
-  const oro = Math.floor(
+  var oro = Math.floor(
     configuracion.recompensaBase + randOro * configuracion.recompensaBase * 0.2
   );
 
@@ -169,7 +169,19 @@ export function generarMision(
     randMetal < probabilidadMaterial * 0.5
       ? 1 + Math.floor(randomSeeded(seed + 14) * 2)
       : 0;
+  var reduccionOro = 0;
+  if (madera >= 0) {
+    reduccionOro += 1;
+  }
+  if (piedra >= 0) {
+    reduccionOro += 1;
+  }
+  if (metal >= 0) {
+    reduccionOro += 1;
+  }
 
+  oro = Math.floor(oro * (1 - reduccionOro * 0.2));
+  
   // Distancia
   const variacionDistancia = 0.9 + randomSeeded(seed + 6) * 0.2;
 
