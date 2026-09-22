@@ -24,10 +24,10 @@ function obtenerRecompensaMision(valor: unknown): RecompensaMision {
     typeof valor.metal === "number"
   ) {
     return {
-      oro: Math.max(0, valor.oro),
-      madera: Math.max(0, valor.madera),
-      piedra: Math.max(0, valor.piedra),
-      metal: Math.max(0, valor.metal),
+      oro: Math.max(0, Math.trunc(valor.oro)),
+      madera: Math.max(0, Math.trunc(valor.madera)),
+      piedra: Math.max(0, Math.trunc(valor.piedra)),
+      metal: Math.max(0, Math.trunc(valor.metal)),
     };
   }
 
@@ -239,9 +239,19 @@ export async function POST() {
         )
       );
 
-      const logCombate =
+      let logCombate =
         combate && Array.isArray(combate.log) ? (combate.log as string[]) : [];
 
+      logCombate = logCombate.filter(
+        (linea) =>
+          linea.includes("🏆") ||
+          linea.includes("💀") ||
+          linea.includes("💰 Consigues") ||
+          linea.includes("⭐ Obtienes") ||
+          linea.includes("🏠") ||
+          linea.includes("Recibes")
+      );
+      
       let reporte;
 
       if (expedicion.tipo === "comercio") {

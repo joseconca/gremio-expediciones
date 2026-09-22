@@ -256,28 +256,28 @@ export default function ReporteCombate({
                 <div className="flex flex-col items-center">
                   <span className="text-lg">🪙</span>
                   <span className="text-sm font-black text-amber-400">
-                    +{reporte.recompensa.oro}
+                    +{Math.trunc(reporte.recompensa.oro)}
                   </span>
                 </div>
 
                 <div className="flex flex-col items-center">
                   <span className="text-lg">🪵</span>
                   <span className="text-sm font-black text-emerald-400">
-                    +{reporte.recompensa.madera}
+                    +{Math.trunc(reporte.recompensa.madera)}
                   </span>
                 </div>
 
                 <div className="flex flex-col items-center">
                   <span className="text-lg">🪨</span>
                   <span className="text-sm font-black text-slate-300">
-                    +{reporte.recompensa.piedra}
+                    +{Math.trunc(reporte.recompensa.piedra)}
                   </span>
                 </div>
 
                 <div className="flex flex-col items-center">
                   <span className="text-lg">⚙️</span>
                   <span className="text-sm font-black text-slate-400">
-                    +{reporte.recompensa.metal}
+                    +{Math.trunc(reporte.recompensa.metal)}
                   </span>
                 </div>
               </div>
