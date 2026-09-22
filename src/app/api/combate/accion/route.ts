@@ -11,7 +11,7 @@ import {
   resolverHabilidadJugador,
 } from "@/lib/expediciones/combate";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
-import type { DefinicionHabilidad } from "@/lib/tiposJuego";
+import type { DefinicionHabilidad, RecompensaMision } from "@/lib/tiposJuego";
 
 type AccionCombate = "atacar" | "usar_habilidad";
 
@@ -22,21 +22,37 @@ type EfectoCombate = {
   turnosRestantes: number;
 };
 
-function obtenerOroRecompensa(valor: unknown): number {
+function obtenerRecompensaMision(valor: unknown): RecompensaMision {
   if (
     typeof valor === "object" &&
     valor !== null &&
     "oro" in valor &&
-    typeof valor.oro === "number"
+    "madera" in valor &&
+    "piedra" in valor &&
+    "metal" in valor &&
+    typeof valor.oro === "number" &&
+    typeof valor.madera === "number" &&
+    typeof valor.piedra === "number" &&
+    typeof valor.metal === "number"
   ) {
-    return Math.max(0, valor.oro);
+    return {
+      oro: Math.max(0, valor.oro),
+      madera: Math.max(0, valor.madera),
+      piedra: Math.max(0, valor.piedra),
+      metal: Math.max(0, valor.metal),
+    };
   }
 
-  if (typeof valor === "number") {
-    return Math.max(0, valor);
-  }
+  return {
+    oro: 0,
+    madera: 0,
+    piedra: 0,
+    metal: 0,
+  };
+}
 
-  return 0;
+function obtenerOroRecompensa(valor: unknown): number {
+  return obtenerRecompensaMision(valor).oro;
 }
 
 function obtenerCooldowns(valor: unknown): Record<string, number> {
@@ -387,8 +403,10 @@ export async function POST(request: Request) {
       // RECOMPENSA
       // ============================================================
 
+      const recompensaMision = obtenerRecompensaMision(expedicion.recompensa);
+
       const oroGanado =
-        obtenerOroRecompensa(expedicion.recompensa) +
+        recompensaMision.oro +
         Math.max(
           0,
           enemigo.botin *
@@ -468,7 +486,12 @@ export async function POST(request: Request) {
           where: { id: expedicion.id },
           data: {
             fase: "regresando",
-            recompensa: oroGanado,
+            recompensa: {
+              oro: oroGanado,
+              madera: obtenerRecompensaMision(expedicion.recompensa).madera,
+              piedra: obtenerRecompensaMision(expedicion.recompensa).piedra,
+              metal: obtenerRecompensaMision(expedicion.recompensa).metal,
+            },
             resultadoFinal: "exito",
             hpPerdido: Math.max(0, combate.jugadorHpMaximo - jugadorHp),
             experienciaGanada,
@@ -551,7 +574,7 @@ export async function POST(request: Request) {
 
       const oroTotalPosible =
         obtenerOroRecompensa(expedicion.recompensa) +
-        Math.max(0, enemigo.botin);
+        Math.max(0, Math.floor(enemigo.botin));
       const oroAsegurado = Math.floor(oroTotalPosible / 5);
 
       const experienciaTotalPosible =
@@ -634,7 +657,12 @@ export async function POST(request: Request) {
           where: { id: expedicion.id },
           data: {
             fase: "regresando",
-            recompensa: oroAsegurado,
+            recompensa: {
+              oro: oroAsegurado,
+              madera: 0,
+              piedra: 0,
+              metal: 0,
+            },
             experienciaGanada: experienciaGanada,
             resultadoFinal: "derrota",
             hpPerdido: Math.max(0, combate.jugadorHpMaximo - jugadorHp),
