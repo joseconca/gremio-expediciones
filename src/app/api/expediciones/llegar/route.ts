@@ -155,7 +155,7 @@ export async function POST() {
       modificadoresEquipo
     );
 
-    const variacionStats = () => Math.random() * 0.4 - 0.2;
+    const variacionStats = () => Math.random() * 0.5 - 0.25;
 
     const enemigoNombre = monstruoBase.nombre;
     const enemigoHp = Math.floor(monstruoBase.hp * (1 + (dificultad + personaje.nivel) * 0.1) * (1 - variacionStats())
