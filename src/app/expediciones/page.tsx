@@ -5,7 +5,12 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useGameStore } from "@/store/useGameStore";
 import { useRouter } from "next/navigation";
-import { generarMision, generarMisionElite } from "@/lib/generadorMisiones";
+import {
+  generarMision,
+  generarMisionElite,
+  MISIONES_POR_DURACION,
+  generarDificultades,
+} from "@/lib/generadorMisiones";
 import { calcularDistanciaKm } from "@/lib/utils";
 import type {
   BaseMapa,
@@ -75,16 +80,75 @@ export default function ExpedicionesPage() {
   }, []);
 
   const misionesGeneradas = useMemo<DefinicionMision[]>(() => {
-    if (!baseCoords || horaActual === null || diaActual === null) {
+    if (
+      !baseCoords ||
+      !personaje ||
+      horaActual === null ||
+      diaActual === null
+    ) {
       return [];
     }
 
     const offset =
       horaMisiones === horaActual ? misionesCompletadasEstaHora : 0;
 
-    const nuevasMisiones: DefinicionMision[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((slot) =>
-      generarMision(baseCoords.lat, baseCoords.lng, horaActual, slot, offset)
-    );
+    const nivel = personaje.nivel;
+
+    const nuevasMisiones: DefinicionMision[] = [];
+
+    MISIONES_POR_DURACION.forEach((configuracion, indiceDuracion) => {
+      let minimo: number;
+      let maximo: number;
+
+      switch (indiceDuracion) {
+        case 0:
+          // 0,5 h:
+          // desde dificultad 0 hasta nivel + 1.
+          minimo = 0;
+          maximo = nivel + 1;
+          break;
+
+        case 1:
+        case 2:
+          // 1 h y 3 h:
+          // nivel - 1 hasta nivel + 1.
+          minimo = Math.max(0, nivel - 1);
+          maximo = nivel + 1;
+          break;
+
+        case 3:
+        case 4:
+          // 9 h y 24 h:
+          // nivel hasta nivel + 1.
+          minimo = nivel;
+          maximo = nivel + 1;
+          break;
+
+        default:
+          return;
+      }
+
+      const dificultades = generarDificultades(
+        minimo,
+        maximo,
+        configuracion.maxMisiones,
+        horaActual * 100 + indiceDuracion + offset
+      );
+
+      dificultades.forEach((dificultad, indiceMision) => {
+        nuevasMisiones.push(
+          generarMision(
+            baseCoords.lat,
+            baseCoords.lng,
+            horaActual,
+            indiceDuracion * 10 + indiceMision,
+            dificultad,
+            configuracion,
+            offset
+          )
+        );
+      });
+    });
 
     const eliteYaCompletada = ultimaMisionElite?.slice(0, 10) === diaActual;
 
@@ -97,6 +161,7 @@ export default function ExpedicionesPage() {
     return nuevasMisiones;
   }, [
     baseCoords,
+    personaje?.nivel,
     horaActual,
     diaActual,
     misionesCompletadasEstaHora,
