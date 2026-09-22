@@ -373,7 +373,7 @@ export const CONFIGURACION_EDIFICIOS = {
     costePiedra: 4,
     costeMetal: 0,
     nivelMax: 3,
-    descripcion: "Mejora la velocidad y la capacidad de carga.",
+    descripcion: "Intercambia recursos y bienes.",
     color: "bg-emerald-700",
     ruta: "/base/mercado",
   },

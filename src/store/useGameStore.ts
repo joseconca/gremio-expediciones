@@ -238,6 +238,11 @@ export interface GameState {
   mejorarEdificio: (idEdificio: IdEdificio) => Promise<boolean>;
   obtenerCosteMejora: (idEdificio: IdEdificio) => CosteEdificio;
   establecerBase: (coords: { lat: number; lng: number }) => Promise<void>;
+
+  comprarRecurso: (
+    recurso: "madera" | "piedra" | "metal",
+    cantidad: number
+  ) => Promise<boolean>;
 }
 
 async function ejecutarAccion(
@@ -762,5 +767,33 @@ export const useGameStore = create<GameState>((set, get) => ({
   establecerBase: async (coords) => {
     const datos = await ejecutarAccion("establecerBase", { coords });
     aplicarDatosJugador(set, datos);
+  },
+
+  comprarRecurso: async (recurso, cantidad) => {
+    try {
+      const respuesta = await fetch("/api/mercado/comprar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          recurso,
+          cantidad,
+        }),
+      });
+
+      const datos = await respuesta.json();
+
+      if (!respuesta.ok) {
+        throw new Error(datos.error || "No se pudo realizar la compra.");
+      }
+
+      aplicarDatosJugador(set, datos.usuario);
+
+      return true;
+    } catch (error) {
+      console.error("Error al comprar en el mercado:", error);
+      return false;
+    }
   },
 }));
