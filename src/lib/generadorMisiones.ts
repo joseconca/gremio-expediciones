@@ -160,13 +160,13 @@ export function generarMision(
 
   const randPiedra = randomSeeded(seed + 10);
   const piedra =
-    randPiedra < probabilidadMaterial * 0.8
+    randPiedra < probabilidadMaterial * 0.5
       ? 1 + Math.floor(randomSeeded(seed + 13) * 3)
       : 0;
 
   const randMetal = randomSeeded(seed + 11);
   const metal =
-    randMetal < probabilidadMaterial * 0.5
+    randMetal < probabilidadMaterial * 0.1
       ? 1 + Math.floor(randomSeeded(seed + 14) * 2)
       : 0;
   var reduccionOro = 0;
