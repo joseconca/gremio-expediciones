@@ -155,16 +155,14 @@ export async function POST() {
       modificadoresEquipo
     );
 
+    const variacionStats = () => Math.random() * 0.4 - 0.2;
+
     const enemigoNombre = monstruoBase.nombre;
-    const enemigoHp = Math.floor(
-      monstruoBase.hp * (1 + (dificultad + personaje.nivel) * 0.1)
+    const enemigoHp = Math.floor(monstruoBase.hp * (1 + (dificultad + personaje.nivel) * 0.1) * (1 - variacionStats())
     );
-    const enemigoAtaque =
-      monstruoBase.ataque + Math.floor((dificultad + personaje.nivel) * 0.3);
-    const enemigoDefensa =
-      monstruoBase.defensa + Math.floor((dificultad + personaje.nivel) * 0.3);
-    const enemigoVelocidad =
-      monstruoBase.velocidad + Math.floor((dificultad + personaje.nivel) * 0.1);
+    const enemigoAtaque = monstruoBase.ataque + Math.floor((dificultad + personaje.nivel) * 0.3) * (1 - variacionStats());
+    const enemigoDefensa = monstruoBase.defensa + Math.floor((dificultad + personaje.nivel) * 0.3) * (1 - variacionStats());
+    const enemigoVelocidad = monstruoBase.velocidad + Math.floor((dificultad + personaje.nivel) * 0.1) * (1 - variacionStats());
     const enemigoProbCritico = /*monstruoBase.probCritico ??*/ 0.1;
     const enemigoNivel = /*monstruoBase.nivel ??*/ 1;
 
@@ -278,9 +276,13 @@ export async function POST() {
       : null;
 
     console.log(
-      `${usuario.personaje.nombre}(lvl ${usuario.personaje.nivel}) combate con ${monstruoBase.nombre} nivel ${dificultad+personaje.nivel} de dificultad ${dificultad}`
+      `${usuario.personaje.nombre}(lvl ${
+        usuario.personaje.nivel
+      }) combate con ${monstruoBase.nombre} nivel ${
+        dificultad + personaje.nivel
+      } de dificultad ${dificultad}`
     );
-    
+
     return NextResponse.json({
       exito: true,
       combate,
