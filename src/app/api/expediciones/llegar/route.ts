@@ -107,6 +107,7 @@ export async function POST() {
     const tipoMision = expedicion.tipo as TipoMision;
 
     let monstruoBase;
+    let rarezaMonstruo = "legendario";
 
     try {
       if (tipoMision === "elite") {
@@ -122,6 +123,7 @@ export async function POST() {
         monstruoBase = seleccionarJefeElite(expedicion.enemigoId);
       } else if (tipoMision === "normal") {
         monstruoBase = seleccionarEnemigoNormal(expedicion.dificultad);
+        rarezaMonstruo = monstruoBase.rareza ?? "comun";
       } else {
         return NextResponse.json(
           {
@@ -156,13 +158,49 @@ export async function POST() {
     );
 
     const variacionStats = () => Math.random() * 0.5 - 0.25;
+    const multiplicadorStatPorRareza = (rareza: string) => {
+      switch (rareza) {
+        case "comun":
+          return 0.4;
+        case "poco_comun":
+          return 0.3;
+        case "raro":
+          return 0.2;
+        case "epico":
+        case "legendario":
+        default:
+          return 0.1;
+      }
+    };
 
     const enemigoNombre = monstruoBase.nombre;
-    const enemigoHp = Math.floor(monstruoBase.hp * (1 + (dificultad + personaje.nivel) * 0.1) * (1 - variacionStats())
+
+    const multiplicadorEscalado =
+      1 +
+      (dificultad + personaje.nivel) *
+        multiplicadorStatPorRareza(rarezaMonstruo);
+
+    const enemigoHp = Math.floor(
+      monstruoBase.hp * multiplicadorEscalado * 0.75 * (1 - variacionStats())
     );
-    const enemigoAtaque = monstruoBase.ataque + Math.floor((dificultad + personaje.nivel) * 0.3) * (1 - variacionStats());
-    const enemigoDefensa = monstruoBase.defensa + Math.floor((dificultad + personaje.nivel) * 0.3) * (1 - variacionStats());
-    const enemigoVelocidad = monstruoBase.velocidad + Math.floor((dificultad + personaje.nivel) * 0.1) * (1 - variacionStats());
+
+    const enemigoAtaque = Math.floor(
+      monstruoBase.ataque * multiplicadorEscalado * 0.5 * (1 - variacionStats())
+    );
+
+    const enemigoDefensa = Math.floor(
+      monstruoBase.defensa *
+        multiplicadorEscalado *
+        0.5 *
+        (1 - variacionStats())
+    );
+
+    const enemigoVelocidad = Math.floor(
+      monstruoBase.velocidad *
+        multiplicadorEscalado *
+        0.25 *
+        (1 - variacionStats())
+    );
     const enemigoProbCritico = /*monstruoBase.probCritico ??*/ 0.1;
     const enemigoNivel = /*monstruoBase.nivel ??*/ 1;
 
