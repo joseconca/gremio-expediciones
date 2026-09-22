@@ -262,7 +262,7 @@ export default function HojaPersonajeModal({
 
               <div className="rounded-sm border border-stone-300 bg-[#efe5cf] px-3 py-2.5 shadow-sm">
                 <div className="text-[11px] font-bold text-stone-600">
-                  📦 Carga Carruaje
+                  📦 Capacidad
                 </div>
                 <div className="mt-0.5 font-serif text-xl font-black text-stone-900">
                   {personaje.capacidadCarruaje}
@@ -271,13 +271,10 @@ export default function HojaPersonajeModal({
 
               <div className="rounded-sm border border-stone-300 bg-[#efe5cf] px-3 py-2.5 shadow-sm">
                 <div className="text-[11px] font-bold text-stone-600">
-                  🎯 Golpe Crítico
-                </div>
-                <div className="text-[11px] font-bold text-stone-600">
-                  Probabilidad y daño
+                  🎯 Probabilidad Crítico
                 </div>
                 <div className="mt-0.5 font-serif text-xl font-black text-stone-900">
-                  {personaje.probCritico * 100}% x {personaje.danoCritico}
+                  {personaje.probCritico * 100}% 
                 </div>
               </div>
             </div>

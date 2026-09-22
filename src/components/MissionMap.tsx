@@ -44,8 +44,8 @@ function crearHeroIcon(clase?: string | null, sexo?: string | null) {
       clase,
       sexo
     )}" alt="" aria-hidden="true" />`,
-    iconSize: [34, 34],
-    iconAnchor: [17, 17],
+    iconSize: [64, 64],
+    iconAnchor: [32, 32],
   });
 }
 
