@@ -3,10 +3,10 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import { useGameStore } from "@/store/useGameStore";
 import {
-  calcularCosteMejoraObjeto,
   calcularEstadisticasObjeto,
   obtenerSpriteObjeto,
 } from "@/lib/objetos";
@@ -167,23 +167,8 @@ function obtenerEstadisticasNoCero(
   );
 }
 
-function obtenerDiferenciasMejora(
-  objeto: DefinicionObjeto,
-  nivelMejora: number
-) {
-  const actual = calcularEstadisticasObjeto(objeto, nivelMejora);
-  const siguiente = calcularEstadisticasObjeto(objeto, nivelMejora + 1);
-
-  return ESTADISTICAS.filter(({ clave }) => siguiente[clave] !== actual[clave])
-    .map(({ clave, nombre }) => ({
-      clave,
-      nombre,
-      valor: siguiente[clave] - actual[clave],
-    }))
-    .filter(({ valor }) => valor !== 0);
-}
-
 export default function HerreriaPage() {
+  const router = useRouter();
   const { personaje, edificios, oro, cargarJugador } = useGameStore();
 
   const armeria = edificios.armeria;
@@ -193,12 +178,17 @@ export default function HerreriaPage() {
   const nivelArmeria = armeria.nivel;
 
   const descripcionArmeria = armeria.descripcion;
-  const descripcionHerreria = herreria.descripcion;
 
   const [datos, setDatos] = useState<DatosObjetos | null>(null);
   const [cargando, setCargando] = useState(true);
   const [procesando, setProcesando] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (nivelArmeria === 0) {
+      router.push("/base");
+    }
+  }, [nivelArmeria, router]);
 
   useEffect(() => {
     if (nivelArmeria === 0) {
@@ -434,7 +424,7 @@ export default function HerreriaPage() {
 
         <div className="-mt-6 mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <p className="text-[#9a9a96]">{descripcionArmeria}</p>
-          {nivelHerreria >= 0 && (
+          {nivelHerreria > 0 && (
             <Link
               href="/base/herreria"
               className="shrink-0 rounded-lg bg-slate-800 px-4 py-2 font-bold text-slate-300 transition-colors hover:bg-slate-700"

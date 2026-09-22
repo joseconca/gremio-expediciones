@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image"
+import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import { useGameStore } from "@/store/useGameStore";
 import {
@@ -29,11 +30,6 @@ interface DatosObjetos {
 
 type TipoEquipamiento = "arma" | "armadura" | "accesorio";
 
-const TIPOS_EQUIPAMIENTO: TipoEquipamiento[] = [
-  "arma",
-  "armadura",
-  "accesorio",
-];
 
 const ESTADISTICAS: Array<{
   clave: keyof ModificadoresEstadisticas;
@@ -92,19 +88,6 @@ function estiloRareza(rareza: Rareza): string {
   }
 }
 
-function nombreTipo(tipo: TipoEquipamiento): string {
-  switch (tipo) {
-    case "arma":
-      return "Arma";
-
-    case "armadura":
-      return "Armadura";
-
-    case "accesorio":
-      return "Accesorio";
-  }
-}
-
 function iconoTipo(tipo: TipoEquipamiento): string {
   switch (tipo) {
     case "arma":
@@ -116,12 +99,6 @@ function iconoTipo(tipo: TipoEquipamiento): string {
     case "accesorio":
       return "💍";
   }
-}
-
-function esEquipable(objeto: DefinicionObjeto): objeto is DefinicionObjeto & {
-  tipo: TipoEquipamiento;
-} {
-  return TIPOS_EQUIPAMIENTO.includes(objeto.tipo as TipoEquipamiento);
 }
 
 function formatearNumero(valor: number): string {
@@ -179,6 +156,7 @@ function obtenerDiferenciasMejora(
 }
 
 export default function HerreriaPage() {
+  const router = useRouter();
   const { personaje, edificios, oro, cargarJugador } = useGameStore();
 
   const armeria = edificios.armeria;
@@ -195,7 +173,13 @@ export default function HerreriaPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (nivelArmeria === 0) {
+    if (nivelArmeria === 0 || nivelHerreria === 0) {
+      router.push("/base");
+    }
+  }, [nivelArmeria, nivelHerreria, router]);
+
+  useEffect(() => {
+    if (nivelArmeria === 0 || nivelHerreria === 0) {
       return;
     }
 
