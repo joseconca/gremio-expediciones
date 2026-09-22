@@ -62,10 +62,7 @@ export default function ReporteCombate({
   const esCancelada = reporte.resultadoFinal === "cancelada";
   const esVictoria = reporte.resultadoFinal === "exito";
 
-  const vidaHeroe = Math.max(
-    8,
-    100 - Math.min(92, reporte.hpPerdido * 2)
-  );
+  const vidaHeroe = Math.max(8, 100 - Math.min(92, reporte.hpPerdido * 2));
 
   const vidaEnemigo = esVictoria ? 0 : esCancelada ? 100 : 28;
 
@@ -116,18 +113,13 @@ export default function ReporteCombate({
               {esCancelada ? "Expedición cancelada" : reporte.enemigo}
             </span>
 
-            <span>
-              {esCancelada ? "Regreso" : `${reporte.rondas} rondas`}
-            </span>
+            <span>{esCancelada ? "Regreso" : `${reporte.rondas} rondas`}</span>
           </div>
 
           <div className="relative flex h-44 items-end justify-between overflow-hidden rounded-lg border border-slate-600/80 bg-slate-950/50 px-8 sm:px-20">
             <div className="relative aspect-square w-28 sm:w-36">
               <Image
-                src={obtenerSpriteHeroe(
-                  personaje?.clase,
-                  personaje?.sexo
-                )}
+                src={obtenerSpriteHeroe(personaje?.clase, personaje?.sexo)}
                 alt="Héroe"
                 fill
                 sizes="144px"
@@ -173,9 +165,7 @@ export default function ReporteCombate({
 
             <div>
               <div className="mb-1 flex justify-between text-xs font-bold text-red-200">
-                <span>
-                  {esCancelada ? "Destino" : "Enemigo"}
-                </span>
+                <span>{esCancelada ? "Destino" : "Enemigo"}</span>
 
                 <span>{esCancelada ? "-" : `${vidaEnemigo}%`}</span>
               </div>
@@ -232,9 +222,7 @@ export default function ReporteCombate({
           {reporte.logCombate.map((linea, idx) => (
             <div
               key={idx}
-              className={`flex items-start gap-2 ${getColorPorLinea(
-                linea
-              )}`}
+              className={`flex items-start gap-2 ${getColorPorLinea(linea)}`}
             >
               <span className="mt-1 shrink-0 text-xs opacity-50">
                 [{idx < 9 ? `0${idx + 1}` : idx + 1}]
@@ -258,15 +246,41 @@ export default function ReporteCombate({
             </div>
 
             <div className="rounded-lg border border-slate-700 bg-slate-900 p-4 text-center shadow-inner">
-              <span className="mb-1 block text-xs uppercase tracking-widest text-slate-400">
+              <span className="mb-3 block text-xs uppercase tracking-widest text-slate-400">
                 {reporte.resultadoFinal === "exito"
                   ? "Botín asegurado"
                   : "Botín"}
               </span>
 
-              <span className="text-2xl font-black text-amber-400">
-                +{reporte.oroGanado} 🪙
-              </span>
+              <div className="grid grid-cols-4 gap-2">
+                <div className="flex flex-col items-center">
+                  <span className="text-lg">🪙</span>
+                  <span className="text-sm font-black text-amber-400">
+                    +{reporte.recompensa.oro}
+                  </span>
+                </div>
+
+                <div className="flex flex-col items-center">
+                  <span className="text-lg">🪵</span>
+                  <span className="text-sm font-black text-emerald-400">
+                    +{reporte.recompensa.madera}
+                  </span>
+                </div>
+
+                <div className="flex flex-col items-center">
+                  <span className="text-lg">🪨</span>
+                  <span className="text-sm font-black text-slate-300">
+                    +{reporte.recompensa.piedra}
+                  </span>
+                </div>
+
+                <div className="flex flex-col items-center">
+                  <span className="text-lg">⚙️</span>
+                  <span className="text-sm font-black text-slate-400">
+                    +{reporte.recompensa.metal}
+                  </span>
+                </div>
+              </div>
             </div>
 
             <div className="rounded-lg border border-slate-700 bg-slate-900 p-4 text-center shadow-inner">

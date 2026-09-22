@@ -299,20 +299,41 @@ export default function ExpedicionesPage() {
                 : "border-[#826747] bg-[#f4ebd0] text-[#2c221e] shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
             }`}
           >
-            {/* 1. CABECERA: Título y botón cerrar */}
-            <div className="mb-2 flex items-start justify-between">
-              <h2
-                className={`text-2xl font-black uppercase tracking-wide ${
-                  misionSeleccionada.tipo === "elite"
-                    ? "text-fuchsia-400 drop-shadow-[0_0_8px_rgba(232,121,249,0.3)]"
-                    : "text-[#4a2e18]"
-                }`}
-              >
-                {misionSeleccionada.nombre}
-              </h2>
+            {/* 1. CABECERA: Título + dificultad + cerrar */}
+            <div className="mb-2 flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <h2
+                    className={`text-2xl font-black uppercase tracking-wide ${
+                      misionSeleccionada.tipo === "elite"
+                        ? "text-fuchsia-400 drop-shadow-[0_0_8px_rgba(232,121,249,0.3)]"
+                        : "text-[#4a2e18]"
+                    }`}
+                  >
+                    {misionSeleccionada.nombre}
+                  </h2>
+
+                  <span
+                    className={`shrink-0 text-sm font-black ${
+                      misionSeleccionada.dificultad >= 8
+                        ? "text-fuchsia-500"
+                        : misionSeleccionada.dificultad >= 5
+                        ? "text-red-500"
+                        : misionSeleccionada.dificultad >= 3
+                        ? "text-orange-500"
+                        : misionSeleccionada.dificultad > 0
+                        ? "text-green-600"
+                        : "text-slate-500"
+                    }`}
+                  >
+                    Dificultad {misionSeleccionada.dificultad}
+                  </span>
+                </div>
+              </div>
+
               <button
                 onClick={() => setMisionSeleccionada(null)}
-                className={`text-2xl leading-none transition-colors ${
+                className={`shrink-0 text-2xl leading-none transition-colors ${
                   misionSeleccionada.tipo === "elite"
                     ? "text-slate-500 hover:text-slate-300"
                     : "text-[#826747] hover:text-[#4a2e18]"
@@ -324,7 +345,7 @@ export default function ExpedicionesPage() {
 
             {/* 2. DESCRIPCIÓN */}
             <div
-              className={`mb-5 border-b pb-3 ${
+              className={`mb-4 border-b pb-3 ${
                 misionSeleccionada.tipo === "elite"
                   ? "border-slate-800"
                   : "border-[#d8ccb0]"
@@ -341,157 +362,113 @@ export default function ExpedicionesPage() {
               </p>
             </div>
 
-            {/* 3. DOS COLUMNAS: Stats (Izquierda) y Botón (Derecha) */}
+            {/* 3. VIAJE + BOTÓN */}
             <div className="flex items-center justify-between gap-4">
-              {/* COLUMNA IZQUIERDA: Stats compactas */}
-              <div className="flex flex-1 flex-col gap-1.5">
-                {/* Fila Dificultad */}
-                <div
-                  className={`flex items-center justify-between rounded px-2.5 py-1.5 border ${
+              {/* Tiempo de viaje */}
+              <div className="flex min-w-0 flex-col">
+                <span
+                  className={`text-[11px] font-bold uppercase tracking-wider ${
                     misionSeleccionada.tipo === "elite"
-                      ? "bg-slate-950/60 border-slate-800"
-                      : "bg-[#eaddc0] border-[#d4c29c]"
+                      ? "text-slate-400"
+                      : "text-[#6e5642]"
                   }`}
                 >
-                  <span
-                    className={`text-[11px] font-bold uppercase tracking-wider ${
-                      misionSeleccionada.tipo === "elite"
-                        ? "text-slate-400"
-                        : "text-[#6e5642]"
-                    }`}
-                  >
-                    Dificultad
-                  </span>
-                  <span
-                    className={`text-base font-black ${
-                      misionSeleccionada.dificultad >= 8
-                        ? "text-fuchsia-500"
-                        : misionSeleccionada.dificultad >= 5
-                        ? "text-red-500"
-                        : misionSeleccionada.dificultad >= 3
-                        ? "text-orange-500"
-                        : misionSeleccionada.dificultad > 0
-                        ? "text-green-600"
-                        : "text-slate-500"
-                    }`}
-                  >
-                    {misionSeleccionada.dificultad}
-                  </span>
-                </div>
+                  Tiempo de viaje
+                </span>
 
-                {/* Fila Recompensa */}
-                <div
-                  className={`flex items-center justify-between rounded px-2.5 py-1.5 border ${
+                <span
+                  className={`text-base font-bold ${
                     misionSeleccionada.tipo === "elite"
-                      ? "bg-slate-950/60 border-slate-800"
-                      : "bg-[#eaddc0] border-[#d4c29c]"
+                      ? "text-sky-400"
+                      : "text-[#2a688a]"
                   }`}
                 >
-                  <span
-                    className={`text-[11px] font-bold uppercase tracking-wider ${
-                      misionSeleccionada.tipo === "elite"
-                        ? "text-slate-400"
-                        : "text-[#6e5642]"
-                    }`}
-                  >
-                    Recompensa
-                  </span>
-                  <div className="flex flex-wrap gap-x-3 gap-y-1 text-sm font-bold">
-                    {misionSeleccionada.recompensa.oro > 0 && (
-                      <span className="text-amber-500">
-                        🪙 {misionSeleccionada.recompensa.oro}
-                      </span>
-                    )}
-
-                    {misionSeleccionada.recompensa.madera > 0 && (
-                      <span className="text-emerald-700">
-                        🪵 {misionSeleccionada.recompensa.madera}
-                      </span>
-                    )}
-
-                    {misionSeleccionada.recompensa.piedra > 0 && (
-                      <span className="text-slate-500">
-                        🪨 {misionSeleccionada.recompensa.piedra}
-                      </span>
-                    )}
-
-                    {misionSeleccionada.recompensa.metal > 0 && (
-                      <span className="text-slate-700">
-                        ⚙️ {misionSeleccionada.recompensa.metal}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Fila Duración */}
-                <div
-                  className={`flex items-center justify-between rounded px-2.5 py-1.5 border ${
-                    misionSeleccionada.tipo === "elite"
-                      ? "bg-slate-950/60 border-slate-800"
-                      : "bg-[#eaddc0] border-[#d4c29c]"
-                  }`}
-                >
-                  <span
-                    className={`text-[11px] font-bold uppercase tracking-wider ${
-                      misionSeleccionada.tipo === "elite"
-                        ? "text-slate-400"
-                        : "text-[#6e5642]"
-                    }`}
-                  >
-                    Viaje
-                  </span>
-                  <span
-                    className={`text-base font-bold ${
-                      misionSeleccionada.tipo === "elite"
-                        ? "text-sky-400"
-                        : "text-[#2a688a]"
-                    }`}
-                  >
-                    {textoTiempo}
-                  </span>
-                </div>
+                  {textoTiempo}
+                </span>
               </div>
 
-              {/* COLUMNA DERECHA: Sello de Cera Rojo */}
-              <div className="flex shrink-0 items-center justify-center p-2">
-                <button
-                  onClick={handleEnviarExpedicion}
-                  disabled={cargando || !personaje || sinVida}
-                  className="relative flex h-32 w-32 flex-col items-center justify-center rounded-full border-4 border-[#7a1215] bg-gradient-to-br from-[#c92a2f] via-[#9b1c20] to-[#5c0b0e] shadow-[0_12px_30px_rgba(0,0,0,0.5),inset_0_8px_16px_rgba(255,255,255,0.2),inset_0_-4px_6px_rgba(0,0,0,0.6)] disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  {cargando ? (
-                    <span className="animate-pulse text-xs font-bold text-red-200 text-center px-2">
-                      Preparando...
+              {/* Botón */}
+              <button
+                onClick={handleEnviarExpedicion}
+                disabled={cargando || !personaje || sinVida}
+                className="relative flex h-24 w-24 shrink-0 flex-col items-center justify-center rounded-full border-4 border-[#7a1215] bg-gradient-to-br from-[#c92a2f] via-[#9b1c20] to-[#5c0b0e] shadow-[0_12px_30px_rgba(0,0,0,0.5),inset_0_8px_16px_rgba(255,255,255,0.2),inset_0_-4px_6px_rgba(0,0,0,0.6)] disabled:cursor-not-allowed disabled:opacity-50 sm:h-28 sm:w-28"
+              >
+                {cargando ? (
+                  <span className="px-2 text-center text-xs font-bold text-red-200">
+                    Preparando...
+                  </span>
+                ) : (
+                  <>
+                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-red-200/90 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                      Aceptar
                     </span>
-                  ) : (
-                    <>
-                      <span className="text-[9px] font-black uppercase tracking-[0.2em] text-red-200/90 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
-                        Aceptar
-                      </span>
-                      <span className="mt-0.5 text-xs font-black uppercase tracking-widest text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] text-center px-2">
-                        {misionSeleccionada.tipo === "comercio"
-                          ? "Intercambio"
-                          : "Caza"}
-                      </span>
-                    </>
-                  )}
-                </button>
-              </div>
+
+                    <span className="mt-0.5 px-2 text-center text-xs font-black uppercase tracking-widest text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                      {misionSeleccionada.tipo === "comercio"
+                        ? "Intercambio"
+                        : "Caza"}
+                    </span>
+                  </>
+                )}
+              </button>
             </div>
 
-            {/* MENSAJES DE ERROR */}
-            {(sinVida || errorEnvio) && (
-              <div className="mt-4 rounded border border-red-900/50 bg-red-950/30 p-3 text-center">
-                {sinVida ? (
-                  <p className="text-sm font-bold text-red-400">
-                    Tu aventurero no tiene vida suficiente. Cúralo en la Taberna
-                    antes de partir.
-                  </p>
-                ) : (
-                  <p className="text-sm font-bold text-red-400">{errorEnvio}</p>
+            {/* 4. POSIBLES RECOMPENSAS */}
+            <div
+              className={`mt-4 rounded-lg border p-3 ${
+                misionSeleccionada.tipo === "elite"
+                  ? "border-slate-800 bg-slate-950/40"
+                  : "border-[#d4c29c] bg-[#eaddc0]"
+              }`}
+            >
+              <span
+                className={`mb-2 block text-[11px] font-bold uppercase tracking-wider ${
+                  misionSeleccionada.tipo === "elite"
+                    ? "text-slate-400"
+                    : "text-[#6e5642]"
+                }`}
+              >
+                Posibles recompensas
+              </span>
+
+              <div className="grid grid-cols-4 gap-2">
+                {misionSeleccionada.recompensa.oro > 0 && (
+                  <div className="flex flex-col items-center">
+                    <span className="text-lg">🪙</span>
+                    <span className="text-xs font-bold text-amber-500">
+                      {misionSeleccionada.recompensa.oro}
+                    </span>
+                  </div>
+                )}
+
+                {misionSeleccionada.recompensa.madera > 0 && (
+                  <div className="flex flex-col items-center">
+                    <span className="text-lg">🪵</span>
+                    <span className="text-xs font-bold text-emerald-700">
+                      {misionSeleccionada.recompensa.madera}
+                    </span>
+                  </div>
+                )}
+
+                {misionSeleccionada.recompensa.piedra > 0 && (
+                  <div className="flex flex-col items-center">
+                    <span className="text-lg">🪨</span>
+                    <span className="text-xs font-bold text-slate-500">
+                      {misionSeleccionada.recompensa.piedra}
+                    </span>
+                  </div>
+                )}
+
+                {misionSeleccionada.recompensa.metal > 0 && (
+                  <div className="flex flex-col items-center">
+                    <span className="text-lg">⚙️</span>
+                    <span className="text-xs font-bold text-slate-700">
+                      {misionSeleccionada.recompensa.metal}
+                    </span>
+                  </div>
                 )}
               </div>
-            )}
+            </div>
           </div>
         </div>
       )}
