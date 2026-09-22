@@ -19,6 +19,7 @@ model Usuario {
   baseCoords        Json?
   ultimaMisionElite DateTime?
   ultimaActividad   DateTime?
+  fechaCreacion DateTime @default(now())
 
   edificios Json @default("{\"taberna\": 1, \"herreria\": 0, \"mercado\": 0, \"embajada\": 0}")
 
