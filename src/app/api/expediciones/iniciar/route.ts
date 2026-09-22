@@ -145,7 +145,9 @@ export async function POST(request: Request) {
       : "normal";
 
     console.log(
-      `${usuario.personaje.nombre} inicia (${tipoExpedicion}) por ${Math.round(tiempoHoras*60)} minutos`
+      `${usuario.personaje.nombre} inicia (${tipoExpedicion}) por ${Math.round(
+        tiempoHoras * 60
+      )} minutos`
     );
 
     // Consultar el clima real en las coordenadas de la misión
@@ -191,8 +193,7 @@ export async function POST(request: Request) {
           fase: "en_viaje",
           misionId: String(mision.id),
           nombre: mision.nombre || "Expedición",
-          recompensa:
-            typeof mision.recompensa === "number" ? mision.recompensa : 0,
+          recompensa: mision.recompensa,
           dificultad:
             typeof mision.dificultad === "number" ? mision.dificultad : 0,
           fechaLlegada,

@@ -65,6 +65,7 @@ export interface ReporteExpedicionBase {
   oroGanado: number;
   experienciaGanada: number;
   logCombate: string[];
+  recompensa: RecompensaMision;
 }
 
 export type ReporteCombate = ReporteExpedicionBase & {

@@ -94,7 +94,6 @@ export async function POST() {
     // ============================================================
     if (expedicion.fase === "regresando") {
       const recompensa = obtenerRecompensaMision(expedicion.recompensa);
-      const oroGuardado = recompensa.oro;
       const resultadoFinal = expedicion.resultadoFinal;
 
       if (!resultadoFinal) {
@@ -116,21 +115,19 @@ export async function POST() {
           `🏠 ${usuario.personaje.nombre} regresa al gremio con el botín asegurado.`,
         ];
 
-        if (oroGuardado > 0) {
-          logRegreso.push(`💰 Recibes ${oroGuardado} 🪙 por la expedición.`);
+        if (recompensa.oro > 0) {
+          logRegreso.push(`💰 Recibes ${recompensa.oro} 🪙 por la expedición.`);
         }
         if (recompensa.madera > 0) {
           logRegreso.push(
             `🪵 Recibes ${recompensa.madera} de madera por la expedición.`
           );
         }
-
         if (recompensa.piedra > 0) {
           logRegreso.push(
             `🪨 Recibes ${recompensa.piedra} de piedra por la expedición.`
           );
         }
-
         if (recompensa.metal > 0) {
           logRegreso.push(
             `⚙️ Recibes ${recompensa.metal} de metal por la expedición.`
@@ -165,7 +162,7 @@ export async function POST() {
             where: { id: expedicion.objetivoId },
             data: {
               oro: {
-                increment: Math.floor(oroGuardado * 0.25),
+                increment: Math.floor(recompensa.oro * 0.25),
               },
             },
           });
@@ -252,7 +249,7 @@ export async function POST() {
           exito,
           resultadoFinal,
           hpPerdido: expedicion.hpPerdido,
-          oroGanado: oroGuardado,
+          oroGanado: recompensa.oro,
           recompensa,
           experienciaGanada: expedicion.experienciaGanada,
           tipo: "comercio" as const,
@@ -264,7 +261,7 @@ export async function POST() {
           exito,
           resultadoFinal,
           hpPerdido: expedicion.hpPerdido,
-          oroGanado: oroGuardado,
+          oroGanado: recompensa.oro,
           recompensa,
           experienciaGanada: expedicion.experienciaGanada,
           tipo: "combate" as const,
@@ -275,7 +272,7 @@ export async function POST() {
           exito,
           resultadoFinal,
           hpPerdido: expedicion.hpPerdido,
-          oroGanado: oroGuardado,
+          oroGanado: recompensa.oro,
           recompensa,
           experienciaGanada: expedicion.experienciaGanada,
           tipo: "combate" as const,
