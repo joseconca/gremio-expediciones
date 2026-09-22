@@ -468,7 +468,7 @@ export default function CombateModal({
                   className="absolute inset-0 z-0 opacity-60 blur-xs"
                   style={{
                     transform:
-                      "translateY(55%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)",
+                      "translateY(42%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)",
                   }}
                 >
                   <Image
@@ -550,7 +550,7 @@ export default function CombateModal({
                   className="absolute inset-0 z-0 opacity-60 blur-xs"
                   style={{
                     transform:
-                      "translateY(35%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)",
+                      "translateY(45%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)",
                   }}
                 >
                   <Image
