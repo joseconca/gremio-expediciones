@@ -219,9 +219,9 @@ export default function MercadoPage() {
           {/* MOSTRADOR DEL MERCADO (Panel de control + Ofertas) */}
           <div className="relative z-20 w-full bg-stone-950/90 border-t-8 border-amber-900 shadow-[0_-20px_50px_rgba(0,0,0,0.9)] p-4 sm:p-8">
             {/* TABLERO DE ORO Y DESCUENTOS (Libro de Cuentas) */}
-            <div className="mb-8 max-w-2xl mx-auto bg-[#e8dcc4] text-stone-900 rounded-lg border-4 border-[#b5a37f] p-4 shadow-[5px_5px_0_rgba(0,0,0,0.4)] flex flex-col sm:flex-row justify-between items-center gap-4">
-              <div className="h-8 w-0.5 bg-stone-400 hidden sm:block" />
-              {nivelMercado > 1 && (
+            {nivelMercado > 1 && (
+              <div className="mb-8 max-w-2xl mx-auto bg-[#e8dcc4] text-stone-900 rounded-lg border-4 border-[#b5a37f] p-4 shadow-[5px_5px_0_rgba(0,0,0,0.4)] flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div className="h-8 w-0.5 bg-stone-400 hidden sm:block" />
                 <div className="flex items-center gap-3 text-right">
                   <div>
                     <p className="text-xs font-bold uppercase tracking-wider text-stone-700">
@@ -233,8 +233,8 @@ export default function MercadoPage() {
                   </div>
                   <span className="text-3xl">📜</span>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
 
             {/* MENSAJE DE ERROR */}
             {error && (

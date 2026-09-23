@@ -62,9 +62,9 @@ export function calcularEstadisticasBase(
   switch (clase) {
     case "Guerrero":
       return {
-        hpMaximo: 90 + nivelesExtra * 12,
+        hpMaximo: 85 + nivelesExtra * 6,
         ataque: 7 + nivelesExtra * 1.4,
-        defensa: 8 + nivelesExtra * 1.3,
+        defensa: 6 + nivelesExtra * 1.3,
         velocidad: 5 + nivelesExtra * 0.5,
         capacidadCarruaje: 10 + nivelesExtra,
         probCritico: 0.05,
@@ -73,8 +73,8 @@ export function calcularEstadisticasBase(
 
     case "Explorador":
       return {
-        hpMaximo: 75 + nivelesExtra * 9,
-        ataque: 6.5 + nivelesExtra * 1.25,
+        hpMaximo: 75 + nivelesExtra * 5,
+        ataque: 6.5 + nivelesExtra * 1.2,
         defensa: 4 + nivelesExtra * 0.9,
         velocidad: 9 + nivelesExtra,
         capacidadCarruaje: 10 + nivelesExtra,
@@ -84,11 +84,11 @@ export function calcularEstadisticasBase(
 
     case "Comerciante":
       return {
-        hpMaximo: 80 + nivelesExtra * 10,
+        hpMaximo: 80 + nivelesExtra * 5,
         ataque: 6 + nivelesExtra * 1.05,
         defensa: 5 + nivelesExtra,
         velocidad: 7 + nivelesExtra * 0.7,
-        capacidadCarruaje: 14 + nivelesExtra * 1.5,
+        capacidadCarruaje: 14 + nivelesExtra * 1.2,
         probCritico: 0.05,
         danoCritico: 1.5,
       };
