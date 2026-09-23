@@ -31,33 +31,25 @@ function crearAccion(
 const d20 = () => Math.floor(Math.random() * 20) + 1;
 const d6 = () => Math.floor(Math.random() * 6) + 1;
 
+const K_DEFENSA = 20;
+
+function calcularDanoMitigado(danoBase: number, defensa: number): number {
+  const defensaSegura = Math.max(0, defensa);
+
+  const dano = (danoBase * K_DEFENSA) / (defensaSegura + K_DEFENSA);
+
+  return Math.max(1, Math.floor(dano));
+}
+
 export function resolverAtaqueJugador(combate: {
   jugadorAtaque: number;
   jugadorNivel: number;
+  jugadorProbCritico: number;
   jugadorDanoCritico: number;
   enemigoDefensa: number;
   enemigoNombre: string;
 }): AccionAnimadaCombate {
   const dado = d20();
-
-  if (dado === 20) {
-    const dano = Math.max(
-      1,
-      Math.floor(
-        (combate.jugadorAtaque + d6()) * combate.jugadorDanoCritico -
-          combate.enemigoDefensa
-      )
-    );
-
-    return {
-      actor: "jugador",
-      tipo: "ataque",
-      animacion: "ofensiva",
-      dano,
-      critico: true,
-      texto: `💥 ¡Golpe crítico! Atacas a ${combate.enemigoNombre} e infliges ${dano} de daño.`,
-    };
-  }
 
   if (dado === 1) {
     return {
@@ -70,64 +62,48 @@ export function resolverAtaqueJugador(combate: {
     };
   }
 
-  const umbralAcierto = 2;
-
-  if (dado < umbralAcierto) {
-    return {
-      actor: "jugador",
-      tipo: "fallo",
-      animacion: "ofensiva",
-      dano: 0,
-      critico: false,
-      texto: `💨 ${combate.enemigoNombre} esquiva tu ataque.`,
-    };
-  }
-
   const variacion = 0.8 + Math.random() * 0.4;
 
   const danoBase =
     Math.floor(combate.jugadorAtaque * variacion) + combate.jugadorNivel;
 
-  const dano = Math.max(1, danoBase - Math.floor(combate.enemigoDefensa / 2));
+  const esCritico = Math.random() < combate.jugadorProbCritico || dado === 20;
+
+  const danoAntesCritico = calcularDanoMitigado(
+    danoBase,
+    combate.enemigoDefensa
+  );
+
+  const dano = esCritico
+    ? Math.max(1, Math.floor(danoAntesCritico * combate.jugadorDanoCritico))
+    : danoAntesCritico;
 
   return {
     actor: "jugador",
     tipo: "ataque",
-    animacion: "ofensiva",
+    animacion: esCritico ? "ofensiva_potenciada" : "ofensiva",
     dano,
-    critico: false,
-    texto: `⚔️ Atacas a ${combate.enemigoNombre} e infliges ${dano} de daño.`,
+    critico: esCritico,
+    texto: esCritico
+      ? `💥 ¡Golpe crítico! Atacas a ${combate.enemigoNombre} e infliges ${dano} de daño.`
+      : `⚔️ Atacas a ${combate.enemigoNombre} e infliges ${dano} de daño.`,
   };
 }
 
 export function resolverAtaqueEnemigo(combate: {
   enemigoAtaque: number;
+  enemigoProbCritico?: number;
+  enemigoDanoCritico?: number;
   jugadorDefensa: number;
   enemigoNombre: string;
 }): AccionAnimadaCombate {
   const dado = d20();
 
-  if (dado === 20) {
-    const dano = Math.max(
-      1,
-      (combate.enemigoAtaque + d6()) * 2 - combate.jugadorDefensa
-    );
-
-    return {
-      actor: "enemigo",
-      dano,
-      tipo: "ataque" as const,
-      animacion: "ofensiva",
-      critico: true,
-      texto: `💥 ¡Golpe crítico! ${combate.enemigoNombre} inflige ${dano} de daño.`,
-    };
-  }
-
   if (dado === 1) {
     return {
       actor: "enemigo",
       dano: 0,
-      tipo: "fallo" as const,
+      tipo: "fallo",
       animacion: "ofensiva",
       critico: false,
       texto: `🤡 ${combate.enemigoNombre} falla su ataque.`,
@@ -138,15 +114,29 @@ export function resolverAtaqueEnemigo(combate: {
 
   const danoBase = Math.floor(combate.enemigoAtaque * variacion) + 1;
 
-  const dano = Math.max(1, danoBase - Math.floor(combate.jugadorDefensa / 2));
+  const probCritico = combate.enemigoProbCritico ?? 0.1;
+  const danoCritico = combate.enemigoDanoCritico ?? 1.5;
+
+  const esCritico = Math.random() < probCritico || dado === 20;
+
+  const danoAntesCritico = calcularDanoMitigado(
+    danoBase,
+    combate.jugadorDefensa
+  );
+
+  const dano = esCritico
+    ? Math.max(1, Math.floor(danoAntesCritico * danoCritico))
+    : danoAntesCritico;
 
   return {
     actor: "enemigo",
     dano,
-    tipo: "ataque" as const,
-    animacion: "ofensiva",
-    critico: false,
-    texto: `🩸 ${combate.enemigoNombre} golpea y causa ${dano} de daño.`,
+    tipo: "ataque",
+    animacion: esCritico ? "ofensiva_potenciada" : "ofensiva",
+    critico: esCritico,
+    texto: esCritico
+      ? `💥 ¡Golpe crítico! ${combate.enemigoNombre} inflige ${dano} de daño.`
+      : `🩸 ${combate.enemigoNombre} golpea y causa ${dano} de daño.`,
   };
 }
 
@@ -224,8 +214,10 @@ export function resolverHabilidadJugador(
 
       const esCritico = dado === 20 || Math.random() < probabilidadCritico;
 
-      const multiplicadorCritico = (combate.jugadorDanoCritico ?? 1.5) + (habilidad.multiplicadorCritico ?? 0);
-      
+      const multiplicadorCritico =
+        (combate.jugadorDanoCritico ?? 1.5) +
+        (habilidad.multiplicadorCritico ?? 0);
+
       const dano = esCritico
         ? Math.max(1, Math.floor(danoNormal * multiplicadorCritico))
         : danoNormal;

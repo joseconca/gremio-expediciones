@@ -329,6 +329,7 @@ export async function POST(request: Request) {
         accionAnimada = resolverAtaqueJugador({
           jugadorAtaque: combate.jugadorAtaque,
           jugadorNivel: combate.jugadorNivel,
+          jugadorProbCritico: combate.jugadorProbCritico,
           jugadorDanoCritico: combate.jugadorDanoCritico,
           enemigoDefensa: combate.enemigoDefensa,
           enemigoNombre: combate.enemigoNombre,
