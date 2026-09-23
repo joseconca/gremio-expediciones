@@ -149,7 +149,7 @@ export function obtenerSpriteHeroe(
 // PROGRESIÓN
 // ============================================================
 export function experienciaParaNivel(nivel: number): number {
-  return nivel * nivel * 100;
+  return nivel * nivel * 500;
 }
 
 // ============================================================
