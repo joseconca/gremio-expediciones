@@ -431,7 +431,7 @@ export default function ExpedicionesPage() {
                 Posibles recompensas
               </span>
 
-              <div className="grid grid-cols-4 gap-2">
+              <div className="flex justify-center items-center gap-6">
                 {misionSeleccionada.recompensa.oro > 0 && (
                   <div className="flex flex-col items-center">
                     <span className="text-lg">🪙</span>

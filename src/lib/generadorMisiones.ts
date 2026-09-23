@@ -31,22 +31,22 @@ const DESCRIPCIONES = [
 export const MISIONES_POR_DURACION = [
   {
     horas: 0.5,
-    recompensaBase: 70,
+    recompensaBase: 50,
     maxMisiones: 6,
   },
   {
     horas: 1,
-    recompensaBase: 120,
+    recompensaBase: 90,
     maxMisiones: 3,
   },
   {
     horas: 3,
-    recompensaBase: 300,
+    recompensaBase: 250,
     maxMisiones: 3,
   },
   {
     horas: 9,
-    recompensaBase: 800,
+    recompensaBase: 700,
     maxMisiones: 2,
   },
   {
@@ -150,17 +150,17 @@ export function generarMision(
   );
 
   // Materiales
-  const probabilidadMaterial = Math.min(1, Math.max(0, dificultad * 0.25));
+  const probabilidadMaterial = Math.min(1, 0.05 + dificultad * 0.2);
 
   const randMadera = randomSeeded(seed + 9);
   const madera =
-    randMadera < probabilidadMaterial
+    randMadera < probabilidadMaterial * 0.9
       ? 1 + Math.floor(randomSeeded(seed + 12) * 3)
       : 0;
 
   const randPiedra = randomSeeded(seed + 10);
   const piedra =
-    randPiedra < probabilidadMaterial * 0.5
+    randPiedra < probabilidadMaterial * 0.45
       ? 1 + Math.floor(randomSeeded(seed + 13) * 3)
       : 0;
 
@@ -169,19 +169,19 @@ export function generarMision(
     randMetal < probabilidadMaterial * 0.1
       ? 1 + Math.floor(randomSeeded(seed + 14) * 2)
       : 0;
-  var reduccionOro = 0;
-  if (madera >= 0) {
+  let reduccionOro = 0;
+  if (madera > 0) {
     reduccionOro += 1;
   }
-  if (piedra >= 0) {
+  if (piedra > 0) {
     reduccionOro += 1;
   }
-  if (metal >= 0) {
+  if (metal > 0) {
     reduccionOro += 1;
   }
 
-  oro = Math.floor(oro * (1 - reduccionOro * 0.2));
-  
+  oro = Math.floor(oro * (1 - reduccionOro * 0.2) * (1 + dificultad * 0.15));
+
   // Distancia
   const variacionDistancia = 0.9 + randomSeeded(seed + 6) * 0.2;
 
