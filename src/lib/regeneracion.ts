@@ -48,6 +48,7 @@ export async function sincronizarRegeneracion<T extends PersonajeRegen>(
       personaje.hpActual >= hpMaximo &&
       ahora.getTime() - personaje.ultimaRegeneracion.getTime() < 1000
     ) {
+      personaje.hpActual = hpMaximo;
       return personaje;
     }
 

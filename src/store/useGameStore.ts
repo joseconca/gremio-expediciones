@@ -400,7 +400,7 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     nombre: datos.nombre,
     clase: datos.clase,
     sexo: datos.sexo === "chica" ? "chica" : "chico",
-    hpActual: datos.hpActual,
+    hpActual: Math.min(datos.hpActual, estadisticas.total.hpMaximo),
     hpMaximo: estadisticas.total.hpMaximo,
     estado:
       datos.estado === "de_viaje" || datos.estado === "descansando"

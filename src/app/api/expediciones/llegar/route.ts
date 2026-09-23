@@ -204,8 +204,8 @@ export async function POST() {
     const enemigoProbCritico = /*monstruoBase.probCritico ??*/ 0.1;
     const enemigoNivel = /*monstruoBase.nivel ??*/ 1;
 
-    const jugadorHp = Math.max(1, personaje.hpActual);
     const jugadorHpMaximo = estadisticasJugador.total.hpMaximo;
+    const jugadorHp = Math.min(Math.max(1, personaje.hpActual), jugadorHpMaximo);
     const jugadorAtaque = estadisticasJugador.total.ataque;
     const jugadorDefensa = estadisticasJugador.total.defensa;
     const jugadorVelocidad = estadisticasJugador.total.velocidad;
