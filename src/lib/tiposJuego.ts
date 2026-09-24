@@ -401,6 +401,30 @@ export const CONFIGURACION_EDIFICIOS = {
     color: "bg-red-600",
     ruta: "/base/escuela-batalla",
   },
+
+  muralla: {
+    nombre: "Murallas",
+    costeConstruccion: 2000,
+    costeMadera: 15,
+    costePiedra: 0,
+    costeMetal: 0,
+    nivelMax: 3,
+    descripcion: "Ayuda a proteger el campamento de ataques invasores.",
+    color: "bg-gray-700",
+    ruta: "/base",
+  },
+
+  almacen: {
+    nombre: "Almacén",
+    costeConstruccion: 1500,
+    costeMadera: 5,
+    costePiedra: 5,
+    costeMetal: 1,
+    nivelMax: 5,
+    descripcion: "Almacena y protege los recursos",
+    color: "bg-yellow-700",
+    ruta: "/base/almacen",
+  }
 } as const;
 
 export type IdEdificio = keyof typeof CONFIGURACION_EDIFICIOS;

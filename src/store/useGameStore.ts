@@ -56,6 +56,18 @@ const EDIFICIOS_BASE: Record<IdEdificio, Omit<Edificio, "nivel">> = {
     descripcion: CONFIGURACION_EDIFICIOS.escuelaCombate.descripcion,
     nivelMax: CONFIGURACION_EDIFICIOS.escuelaCombate.nivelMax,
   },
+  muralla: {
+    id: "muralla",
+    nombre: CONFIGURACION_EDIFICIOS.muralla.nombre,
+    descripcion: CONFIGURACION_EDIFICIOS.muralla.descripcion,
+    nivelMax: CONFIGURACION_EDIFICIOS.muralla.nivelMax,
+  },
+  almacen: {
+    id: "almacen",
+    nombre: CONFIGURACION_EDIFICIOS.almacen.nombre,
+    descripcion: CONFIGURACION_EDIFICIOS.almacen.descripcion,
+    nivelMax: CONFIGURACION_EDIFICIOS.almacen.nivelMax,
+  },
 };
 
 function construirEdificios(
@@ -93,6 +105,14 @@ function construirEdificios(
     escuelaCombate: {
       ...EDIFICIOS_BASE.escuelaCombate,
       nivel: nivelEdificio("escuelaCombate", 0),
+    },
+    muralla: {
+      ...EDIFICIOS_BASE.muralla,
+      nivel: nivelEdificio("muralla", 0),
+    },
+    almacen: {
+      ...EDIFICIOS_BASE.almacen,
+      nivel: nivelEdificio("almacen", 0),
     },
   };
 }

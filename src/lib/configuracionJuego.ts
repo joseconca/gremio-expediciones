@@ -29,11 +29,11 @@ export function calcularCosteEdificio(
   return {
     oro:
       Math.round((configuracion.costeConstruccion * multiplicadorOro) / 100) *
-      100,
+      90,
 
-    madera: Math.ceil(configuracion.costeMadera * multiplicadorRecursos),
+    madera: idEdificio === "muralla" && nivelActual > 0 ? 0 : Math.ceil(configuracion.costeMadera * multiplicadorRecursos),
 
-    piedra: Math.ceil(configuracion.costePiedra * multiplicadorRecursos),
+    piedra: idEdificio === "muralla" && nivelActual > 0 ? Math.ceil(10 * multiplicadorRecursos) : Math.ceil(configuracion.costePiedra * multiplicadorRecursos),
 
     metal: Math.ceil(configuracion.costeMetal * multiplicadorRecursos),
   };
