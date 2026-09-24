@@ -221,17 +221,18 @@ export default function MercadoPage() {
             {/* TABLERO DE ORO Y DESCUENTOS (Libro de Cuentas) */}
             {nivelMercado > 1 && (
               <div className="mb-8 max-w-2xl mx-auto bg-[#e8dcc4] text-stone-900 rounded-lg border-4 border-[#b5a37f] p-4 shadow-[5px_5px_0_rgba(0,0,0,0.4)] flex flex-col sm:flex-row justify-between items-center gap-4">
-                <div className="h-8 w-0.5 bg-stone-400 hidden sm:block" />
-                <div className="flex items-center gap-3 text-right">
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl">📜</span>
+
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-wider text-stone-700">
-                      Descuento del Mercado
-                    </p>
-                    <p className="text-2xl font-black text-emerald-700">
-                      {(nivelMercado - 1) * 10}%
+                    <p className="text-l font-bold uppercase tracking-wider text-stone-700">
+                      Descuento{" "}
+                      <span className="text-2xl font-black text-emerald-600 text-right">
+                        {(nivelMercado - 1) * 10}
+                      </span>
+                      %
                     </p>
                   </div>
-                  <span className="text-3xl">📜</span>
                 </div>
               </div>
             )}
