@@ -175,12 +175,20 @@ export default function BasePage() {
   const [caravanasEntrantes, setCaravanasEntrantes] = useState<
     CaravanaEntrante[]
   >([]);
+  const [asediosEntrantes, setAsediosEntrantes] = useState<
+    AsedioEntrante[]
+  >([]);
 
   useEffect(() => {
     fetch("/api/jugador")
       .then((respuesta) => respuesta.json())
       .then((datos) => setCaravanasEntrantes(datos.caravanasEntrantes || []))
       .catch(() => setCaravanasEntrantes([]));
+
+      fetch("/api/asedios/entrantes")
+        .then((respuesta) => respuesta.json())
+        .then((datos) => setAsediosEntrantes(datos.asediosEntrantes || []))
+        .catch(() => setAsediosEntrantes([]));
   }, []);
 
   useEffect(() => {

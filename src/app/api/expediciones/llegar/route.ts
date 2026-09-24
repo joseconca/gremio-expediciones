@@ -7,6 +7,10 @@ import type { TipoMision } from "@/lib/tiposJuego";
 import { seleccionarEnemigoNormal } from "@/lib/expediciones/normal";
 import { seleccionarJefeElite } from "@/lib/expediciones/elite";
 import {
+  calcularBonificacionMuralla,
+  determinarPrimerTurnoAsedio,
+} from "@/lib/expediciones/asedio";
+import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
 } from "@/lib/estadisticasPersonaje";
@@ -99,6 +103,254 @@ export async function POST() {
     }
 
     const personaje = usuario.personaje;
+
+    // ============================================================
+    // ASEDIO PvP
+    // ============================================================
+
+    if (expedicion.tipo === "asedio") {
+      if (!expedicion.objetivoId) {
+        return NextResponse.json(
+          {
+            error: "El asedio no tiene un gremio objetivo.",
+          },
+          { status: 400 }
+        );
+      }
+
+      const defensor = await prisma.usuario.findUnique({
+        where: {
+          id: expedicion.objetivoId,
+        },
+        include: {
+          personaje: {
+            include: {
+              habilidades: true,
+              equipoEquipado: {
+                include: {
+                  arma: true,
+                  armadura: true,
+                  accesorio: true,
+                },
+              },
+            },
+          },
+          expedicionActiva: {
+            include: {
+              combateActivo: true,
+            },
+          },
+        },
+      });
+
+      if (!defensor?.personaje) {
+        return NextResponse.json(
+          {
+            error: "El gremio defensor ya no tiene un personaje disponible.",
+          },
+          { status: 404 }
+        );
+      }
+
+      // No permitimos que un personaje participe en dos combates simultáneos.
+      if (
+        defensor.expedicionActiva?.combateActivo ||
+        defensor.personaje.estado === "combatiendo"
+      ) {
+        return NextResponse.json(
+          {
+            error:
+              "El personaje defensor ya se encuentra participando en un combate.",
+          },
+          { status: 409 }
+        );
+      }
+
+      // ============================================================
+      // ESTADÍSTICAS DEL ATACANTE
+      // ============================================================
+
+      const equipoAtacante = obtenerEquipoDesdePersonaje(personaje);
+      const modificadoresEquipoAtacante =
+        calcularModificadoresEquipo(equipoAtacante);
+
+      const estadisticasAtacante = calcularEstadisticasPersonaje(
+        personaje,
+        personaje.habilidades.map((habilidad) => habilidad.habilidadId),
+        modificadoresEquipoAtacante
+      );
+
+      // ============================================================
+      // ESTADÍSTICAS DEL DEFENSOR
+      // ============================================================
+
+      const personajeDefensor = defensor.personaje;
+
+      const equipoDefensor = obtenerEquipoDesdePersonaje(personajeDefensor);
+
+      const modificadoresEquipoDefensor =
+        calcularModificadoresEquipo(equipoDefensor);
+
+      const estadisticasDefensor = calcularEstadisticasPersonaje(
+        personajeDefensor,
+        personajeDefensor.habilidades.map((habilidad) => habilidad.habilidadId),
+        modificadoresEquipoDefensor
+      );
+
+      // ============================================================
+      // EDIFICIOS DEFENSIVOS
+      // ============================================================
+
+      const edificiosDefensor = defensor.edificios as Record<
+        string,
+        unknown
+      > | null;
+
+      const nivelMuralla =
+        typeof edificiosDefensor?.muralla === "number"
+          ? Math.max(0, Math.trunc(edificiosDefensor.muralla))
+          : 0;
+
+      const nivelAlmacen =
+        typeof edificiosDefensor?.almacen === "number"
+          ? Math.max(0, Math.trunc(edificiosDefensor.almacen))
+          : 0;
+
+      /*
+       * La Muralla se congela al comenzar el combate.
+       * Cualquier mejora posterior no afecta a este asedio.
+       */
+      const bonificacionMuralla = calcularBonificacionMuralla(nivelMuralla);
+
+      const jugadorHpMaximo = estadisticasAtacante.total.hpMaximo;
+
+      const jugadorHp = Math.min(
+        Math.max(1, personaje.hpActual),
+        jugadorHpMaximo
+      );
+
+      const jugadorAtaque = estadisticasAtacante.total.ataque;
+
+      const jugadorDefensa = estadisticasAtacante.total.defensa;
+
+      const jugadorVelocidad = estadisticasAtacante.total.velocidad;
+
+      const jugadorNivel = personaje.nivel;
+
+      const jugadorProbCritico = estadisticasAtacante.total.probCritico;
+
+      const jugadorDanoCritico = estadisticasAtacante.total.danoCritico;
+
+      const enemigoHpMaximo = estadisticasDefensor.total.hpMaximo;
+
+      const enemigoHp = Math.min(
+        Math.max(1, personajeDefensor.hpActual),
+        enemigoHpMaximo
+      );
+
+      const enemigoAtaque = estadisticasDefensor.total.ataque;
+
+      const enemigoDefensa =
+        estadisticasDefensor.total.defensa + bonificacionMuralla;
+
+      const enemigoVelocidad = estadisticasDefensor.total.velocidad;
+
+      const enemigoNivel = personajeDefensor.nivel;
+
+      const enemigoProbCritico = estadisticasDefensor.total.probCritico;
+
+      const enemigoDanoCritico = estadisticasDefensor.total.danoCritico;
+
+      // ============================================================
+      // INICIATIVA
+      // ============================================================
+
+      const primerTurno = determinarPrimerTurnoAsedio({
+        velocidadAtacante: jugadorVelocidad,
+        velocidadDefensor: enemigoVelocidad,
+      });
+
+      const logInicial =
+        primerTurno === "atacante"
+          ? [`⚔️ ${personaje.nombre} tiene la iniciativa y comienza el asedio.`]
+          : [
+              `⚔️ ${personajeDefensor.nombre} tiene la iniciativa y defiende el gremio.`,
+            ];
+
+      // ============================================================
+      // CREAR COMBATE PvP
+      // ============================================================
+
+      const combate = await prisma.$transaction(async (tx) => {
+        const nuevoCombate = await tx.combateActivo.create({
+          data: {
+            expedicionId: expedicion.id,
+
+            fase: "activo",
+            ronda: 1,
+            turno: primerTurno,
+
+            tipo: "pvp",
+
+            atacanteUsuarioId: usuario.id,
+            defensorUsuarioId: defensor.id,
+            enemigoUsuarioId: defensor.id,
+
+            murallaNivel: nivelMuralla,
+            almacenNivel: nivelAlmacen,
+
+            enemigoId: null,
+            enemigoNombre: personajeDefensor.nombre,
+
+            enemigoHp,
+            enemigoHpMaximo: enemigoHpMaximo,
+            enemigoAtaque,
+            enemigoDefensa,
+            enemigoVelocidad,
+            enemigoProbCritico,
+            enemigoDanoCritico,
+            enemigoNivel,
+
+            jugadorHp,
+            jugadorHpMaximo,
+            jugadorAtaque,
+            jugadorDefensa,
+            jugadorVelocidad,
+            jugadorProbCritico,
+            jugadorDanoCritico,
+            jugadorNivel,
+
+            ganadorUsuarioId: null,
+            botinResuelto: false,
+
+            oroGanado: 0,
+            experienciaGanada: 0,
+
+            cooldowns: {},
+            efectos: [],
+
+            log: logInicial,
+          },
+        });
+
+        await tx.expedicionActiva.update({
+          where: {
+            id: expedicion.id,
+          },
+          data: {
+            fase: "combatiendo",
+          },
+        });
+
+        return nuevoCombate;
+      });
+
+      return NextResponse.json({
+        exito: true,
+        tipo: "asedio",
+        combate,
+      });
+    }
 
     // ============================================================
     // SELECCIONAR ENEMIGO
@@ -205,7 +457,10 @@ export async function POST() {
     const enemigoNivel = /*monstruoBase.nivel ??*/ 1;
 
     const jugadorHpMaximo = estadisticasJugador.total.hpMaximo;
-    const jugadorHp = Math.min(Math.max(1, personaje.hpActual), jugadorHpMaximo);
+    const jugadorHp = Math.min(
+      Math.max(1, personaje.hpActual),
+      jugadorHpMaximo
+    );
     const jugadorAtaque = estadisticasJugador.total.ataque;
     const jugadorDefensa = estadisticasJugador.total.defensa;
     const jugadorVelocidad = estadisticasJugador.total.velocidad;

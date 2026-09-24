@@ -63,6 +63,8 @@ export async function POST(request: Request) {
     const esComercio =
       typeof mision.tipo === "string" && mision.tipo === "comercio";
     const esElite = typeof mision.tipo === "string" && mision.tipo === "elite";
+    const esAsedio =
+      typeof mision.tipo === "string" && mision.tipo === "asedio";
     const diaActual = new Date().toISOString().slice(0, 10);
 
     if (esElite) {
@@ -138,10 +140,60 @@ export async function POST(request: Request) {
       }
       objetivoId = objetivo.id;
     }
+    if (esAsedio) {
+      const edificiosOrigen = usuario.edificios as Record<
+        string,
+        unknown
+      > | null;
+      if (edificiosOrigen?.embajada !== 1 && edificiosOrigen?.embajada !== 2) {
+        return NextResponse.json(
+          {
+            exito: false,
+            mensaje: "Construye la Embajada para poder asediar.",
+          },
+          { status: 403 }
+        );
+      }
+      const idObjetivo =
+        typeof mision.id === "string" && mision.id.startsWith("asedio-")
+          ? mision.id.slice("asedio-".length)
+          : "";
+      const objetivo = idObjetivo
+        ? await prisma.usuario.findUnique({
+            where: { id: idObjetivo },
+            select: {
+              id: true,
+              nombre: true,
+              baseCoords: true,
+              edificios: true,
+            },
+          })
+        : null;
+      const edificiosDestino = objetivo?.edificios as Record<
+        string,
+        unknown
+      > | null;
+      if (
+        !objetivo ||
+        !objetivo.baseCoords ||
+        (edificiosDestino?.embajada !== 1 && edificiosDestino?.embajada !== 2)
+      ) {
+        return NextResponse.json(
+          {
+            exito: false,
+            mensaje: "El gremio de destino ya no está disponible.",
+          },
+          { status: 404 }
+        );
+      }
+      objetivoId = objetivo.id;
+    }
     const tipoExpedicion = esComercio
       ? "comercio"
       : esElite
       ? "elite"
+      : esAsedio
+      ? "asedio"
       : "normal";
 
     console.log(
@@ -183,11 +235,11 @@ export async function POST(request: Request) {
     const tiempoViajeMs = (horasReales * 60 * 60 * 1000) / 2;
     const fechaLlegada = new Date(ahora + tiempoViajeMs);
 
-    await prisma.$transaction([
-      prisma.expedicionActiva.create({
+    await prisma.$transaction(async (tx) => {
+      await tx.expedicionActiva.create({
         data: {
           usuarioId: usuario.id,
-          tipo: esComercio ? "comercio" : esElite ? "elite" : "normal",
+          tipo: tipoExpedicion,
           objetivoId,
           enemigoId: esElite ? mision.enemigoId : undefined,
           fase: "en_viaje",
@@ -199,12 +251,38 @@ export async function POST(request: Request) {
           fechaLlegada,
           destinoCoords: { lat: mision.lat, lng: mision.lng },
         },
-      }),
-      prisma.personaje.update({
+      });
+
+      await tx.personaje.update({
         where: { usuarioId: usuario.id },
         data: { estado: "de_viaje" },
-      }),
-    ]);
+      });
+
+      if (esAsedio && objetivoId) {
+        const afinidad = await tx.afinidadComercial.findUnique({
+          where: {
+            jugador1Id_jugador2Id: {
+              jugador1Id: usuario.id,
+              jugador2Id: objetivoId,
+            },
+          },
+        });
+
+        if (afinidad) {
+          await tx.afinidadComercial.update({
+            where: {
+              jugador1Id_jugador2Id: {
+                jugador1Id: usuario.id,
+                jugador2Id: objetivoId,
+              },
+            },
+            data: {
+              afinidad: Math.max(0, afinidad.afinidad - 5),
+            },
+          });
+        }
+      }
+    });
 
     return NextResponse.json({
       exito: true,

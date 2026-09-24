@@ -129,7 +129,6 @@ model ExpedicionActiva {
   fase       String
   resultadoFinal     String?
 
-
   misionId   String
   enemigoId  String?
   nombre     String
@@ -159,25 +158,41 @@ model CombateActivo {
   ronda Int @default(1)
   turno String @default("jugador")
 
-  enemigoId     String
-  enemigoNombre String
+  tipo String @default("pve")
 
-  enemigoHp        Int
-  enemigoHpMaximo  Int
-  enemigoAtaque    Int
-  enemigoDefensa   Int
-  enemigoVelocidad Int
-  enemigoProbCritico Float
-  enemigoNivel Int
+ // Solo PvP
+  atacanteUsuarioId String?
+  defensorUsuarioId String?
+
+  // Edificios defensivos
+  murallaNivel Int?
+  almacenNivel Int?
+
+  enemigoUsuarioId String?
+
+  enemigoId     String?
+  enemigoNombre String?
+
+  enemigoHp        Int?
+  enemigoHpMaximo  Int?
+  enemigoAtaque    Int?
+  enemigoDefensa   Int?
+  enemigoVelocidad Int?
+  enemigoProbCritico Float?
+  enemigoDanoCritico Float?
+  enemigoNivel Int?
 
   jugadorHp       Int
   jugadorHpMaximo Int
   jugadorAtaque   Int
   jugadorDefensa  Int
   jugadorVelocidad Int
-  jugadorProbCritico  Float
+  jugadorProbCritico Float
   jugadorDanoCritico Float
   jugadorNivel    Int
+
+  ganadorUsuarioId String?
+  botinResuelto Boolean @default(false)
 
   oroGanado         Int @default(0)
   experienciaGanada Int @default(0)
@@ -188,6 +203,10 @@ model CombateActivo {
 
   creado      DateTime @default(now())
   actualizado DateTime @updatedAt
+
+  @@index([defensorUsuarioId])
+  @@index([atacanteUsuarioId])
+  @@index([tipo, fase])
 }
 
 model AfinidadComercial {
