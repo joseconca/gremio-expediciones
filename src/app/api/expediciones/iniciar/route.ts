@@ -6,6 +6,7 @@ import { sincronizarRegeneracion } from "@/lib/regeneracion";
 export async function POST(request: Request) {
   try {
     const usuarioSesion = await getAuthenticatedUser();
+
     if (!usuarioSesion) {
       return NextResponse.json(
         { exito: false, mensaje: "Sesión requerida." },
@@ -35,21 +36,34 @@ export async function POST(request: Request) {
 
     const usuario = await prisma.usuario.findUnique({
       where: { id: usuarioSesion.id },
-      include: { personaje: true, expedicionActiva: true },
+      include: {
+        personaje: true,
+        expedicionActiva: true,
+      },
     });
+
     if (!usuario?.personaje) {
       return NextResponse.json(
-        { exito: false, mensaje: "Necesitas reclutar un personaje primero." },
+        {
+          exito: false,
+          mensaje: "Necesitas reclutar un personaje primero.",
+        },
         { status: 400 }
       );
     }
+
     if (usuario.expedicionActiva) {
       return NextResponse.json(
-        { exito: false, mensaje: "Ya tienes una expedición activa." },
+        {
+          exito: false,
+          mensaje: "Ya tienes una expedición activa.",
+        },
         { status: 409 }
       );
     }
+
     usuario.personaje = await sincronizarRegeneracion(usuario.personaje);
+
     if (usuario.personaje.hpActual <= 0) {
       return NextResponse.json(
         {
@@ -62,10 +76,17 @@ export async function POST(request: Request) {
 
     const esComercio =
       typeof mision.tipo === "string" && mision.tipo === "comercio";
+
     const esElite = typeof mision.tipo === "string" && mision.tipo === "elite";
+
     const esAsedio =
       typeof mision.tipo === "string" && mision.tipo === "asedio";
+
     const diaActual = new Date().toISOString().slice(0, 10);
+
+    // ============================================================
+    // MISIÓN ÉLITE
+    // ============================================================
 
     if (esElite) {
       if (
@@ -80,7 +101,9 @@ export async function POST(request: Request) {
           { status: 400 }
         );
       }
+
       const ultimaElite = usuario.ultimaMisionElite?.toISOString().slice(0, 10);
+
       if (ultimaElite === diaActual) {
         return NextResponse.json(
           {
@@ -91,12 +114,19 @@ export async function POST(request: Request) {
         );
       }
     }
+
+    // ============================================================
+    // OBJETIVO
+    // ============================================================
+
     let objetivoId: string | undefined;
+
     if (esComercio) {
       const edificiosOrigen = usuario.edificios as Record<
         string,
         unknown
       > | null;
+
       if (edificiosOrigen?.embajada !== 1 && edificiosOrigen?.embajada !== 2) {
         return NextResponse.json(
           {
@@ -106,10 +136,12 @@ export async function POST(request: Request) {
           { status: 403 }
         );
       }
+
       const idObjetivo =
         typeof mision.id === "string" && mision.id.startsWith("comercio-")
           ? mision.id.slice("comercio-".length)
           : "";
+
       const objetivo = idObjetivo
         ? await prisma.usuario.findUnique({
             where: { id: idObjetivo },
@@ -121,10 +153,12 @@ export async function POST(request: Request) {
             },
           })
         : null;
+
       const edificiosDestino = objetivo?.edificios as Record<
         string,
         unknown
       > | null;
+
       if (
         !objetivo ||
         !objetivo.baseCoords ||
@@ -138,13 +172,20 @@ export async function POST(request: Request) {
           { status: 404 }
         );
       }
+
       objetivoId = objetivo.id;
     }
+
+    // ============================================================
+    // ASEDIO
+    // ============================================================
+
     if (esAsedio) {
       const edificiosOrigen = usuario.edificios as Record<
         string,
         unknown
       > | null;
+
       if (edificiosOrigen?.embajada !== 1 && edificiosOrigen?.embajada !== 2) {
         return NextResponse.json(
           {
@@ -154,10 +195,12 @@ export async function POST(request: Request) {
           { status: 403 }
         );
       }
+
       const idObjetivo =
         typeof mision.id === "string" && mision.id.startsWith("asedio-")
           ? mision.id.slice("asedio-".length)
           : "";
+
       const objetivo = idObjetivo
         ? await prisma.usuario.findUnique({
             where: { id: idObjetivo },
@@ -169,10 +212,12 @@ export async function POST(request: Request) {
             },
           })
         : null;
+
       const edificiosDestino = objetivo?.edificios as Record<
         string,
         unknown
       > | null;
+
       if (
         !objetivo ||
         !objetivo.baseCoords ||
@@ -186,8 +231,25 @@ export async function POST(request: Request) {
           { status: 404 }
         );
       }
+
+      // Evitar atacarse a uno mismo.
+      if (objetivo.id === usuario.id) {
+        return NextResponse.json(
+          {
+            exito: false,
+            mensaje: "No puedes asediar tu propio gremio.",
+          },
+          { status: 400 }
+        );
+      }
+
       objetivoId = objetivo.id;
     }
+
+    // ============================================================
+    // TIPO DE EXPEDICIÓN
+    // ============================================================
+
     const tipoExpedicion = esComercio
       ? "comercio"
       : esElite
@@ -202,16 +264,25 @@ export async function POST(request: Request) {
       )} minutos`
     );
 
-    // Consultar el clima real en las coordenadas de la misión
-    const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${mision.lat}&longitude=${mision.lng}&current_weather=true`;
+    // ============================================================
+    // CLIMA
+    // ============================================================
+
+    const weatherUrl =
+      `https://api.open-meteo.com/v1/forecast` +
+      `?latitude=${mision.lat}` +
+      `&longitude=${mision.lng}` +
+      `&current_weather=true`;
+
     const weatherResponse = await fetch(weatherUrl);
 
-    if (!weatherResponse.ok) throw new Error("Error al consultar Open-Meteo");
+    if (!weatherResponse.ok) {
+      throw new Error("Error al consultar Open-Meteo");
+    }
 
     const weatherData = await weatherResponse.json();
     const weatherCode = weatherData.current_weather.weathercode;
 
-    // Sistema de Modificadores por Clima (WMO Weather interpretation codes)
     let multiplicadorTiempo = 1.0;
     let climaReporte = "Despejado / Buen tiempo";
 
@@ -226,14 +297,23 @@ export async function POST(request: Request) {
       climaReporte = "Tormenta eléctrica peligrosa";
     }
 
-    // Calcular la fecha y hora exacta de llegada
+    // ============================================================
+    // FECHAS
+    // ============================================================
+
     const horasBase = tiempoHoras;
     const horasReales = horasBase * multiplicadorTiempo;
 
     const ahora = Date.now();
     const fechaSalida = new Date(ahora);
+
     const tiempoViajeMs = (horasReales * 60 * 60 * 1000) / 2;
+
     const fechaLlegada = new Date(ahora + tiempoViajeMs);
+
+    // ============================================================
+    // CREAR EXPEDICIÓN
+    // ============================================================
 
     await prisma.$transaction(async (tx) => {
       await tx.expedicionActiva.create({
@@ -249,14 +329,25 @@ export async function POST(request: Request) {
           dificultad:
             typeof mision.dificultad === "number" ? mision.dificultad : 0,
           fechaLlegada,
-          destinoCoords: { lat: mision.lat, lng: mision.lng },
+          destinoCoords: {
+            lat: mision.lat,
+            lng: mision.lng,
+          },
         },
       });
 
       await tx.personaje.update({
-        where: { usuarioId: usuario.id },
-        data: { estado: "de_viaje" },
+        where: {
+          usuarioId: usuario.id,
+        },
+        data: {
+          estado: "de_viaje",
+        },
       });
+
+      // ============================================================
+      // ASEDIO: -5 DE AFINIDAD
+      // ============================================================
 
       if (esAsedio && objetivoId) {
         const afinidad = await tx.afinidadComercial.findUnique({
@@ -291,9 +382,14 @@ export async function POST(request: Request) {
       fechaLlegada: fechaLlegada.toISOString(),
       fechaSalida: fechaSalida.toISOString(),
     });
-  } catch {
+  } catch (error) {
+    console.error("Error al planificar la expedición:", error);
+
     return NextResponse.json(
-      { exito: false, mensaje: "Error al planificar la expedición." },
+      {
+        exito: false,
+        mensaje: "Error al planificar la expedición.",
+      },
       { status: 500 }
     );
   }

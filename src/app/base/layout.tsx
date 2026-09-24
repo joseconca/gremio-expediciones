@@ -184,7 +184,7 @@ export default function BaseLayout({
             <RecursoBadge
               valor={madera}
               icono="🪵"
-              colorClases="text-emerald-600"
+              colorClases="text-orange-300"
             />
           )}
 
@@ -200,7 +200,7 @@ export default function BaseLayout({
             <RecursoBadge
               valor={metal}
               icono="⚙️"
-              colorClases="text-cyan-600"
+              colorClases="text-slate-400"
             />
           )}
 

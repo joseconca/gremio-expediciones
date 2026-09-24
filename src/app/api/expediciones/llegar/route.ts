@@ -153,7 +153,16 @@ export async function POST() {
       }
 
       // No permitimos que un personaje participe en dos combates simultáneos.
+      const combateDefensor = await prisma.combateActivo.findFirst({
+        where: {
+          tipo: "pvp",
+          defensorUsuarioId: defensor.id,
+          fase: "activo",
+        },
+      });
+
       if (
+        combateDefensor ||
         defensor.expedicionActiva?.combateActivo ||
         defensor.personaje.estado === "combatiendo"
       ) {
@@ -342,6 +351,15 @@ export async function POST() {
           },
         });
 
+        await tx.personaje.update({
+          where: {
+            id: personajeDefensor.id,
+          },
+          data: {
+            estado: "combatiendo",
+          },
+        });
+
         return nuevoCombate;
       });
 
@@ -454,6 +472,8 @@ export async function POST() {
         (1 - variacionStats())
     );
     const enemigoProbCritico = /*monstruoBase.probCritico ??*/ 0.1;
+    const enemigoDanoCritico = /*monstruoBase.danoCritico ??*/ 2;
+
     const enemigoNivel = /*monstruoBase.nivel ??*/ 1;
 
     const jugadorHpMaximo = estadisticasJugador.total.hpMaximo;
@@ -497,6 +517,7 @@ export async function POST() {
           enemigoDefensa,
           enemigoVelocidad,
           enemigoProbCritico,
+          enemigoDanoCritico,
           enemigoNivel,
 
           jugadorHp,

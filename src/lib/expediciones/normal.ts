@@ -2,11 +2,11 @@ import { obtenerEnemigosPorDificultad } from "@/lib/enemigos";
 import type { DefinicionEnemigo } from "@/lib/tiposJuego";
 
 const PESOS_RAREZA: Record<string, number> = {
-  comun: 40,
+  comun: 30,
   poco_comun: 25,
-  raro: 15,
-  epico: 10,
-  legendario: 1,
+  raro: 20,
+  epico: 15,
+  legendario: 5,
 };
 
 export function seleccionarEnemigoNormal(
