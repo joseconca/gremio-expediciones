@@ -492,8 +492,8 @@ export async function POST() {
       jugadorVelocidad >= enemigoVelocidad ? "jugador" : "enemigo";
     const logInicial =
       primerTurno === "jugador"
-        ? [`⚔️ ${usuario.personaje.nombre} tiene la iniciativa.`]
-        : [`⚔️ ${enemigoNombre} tiene la iniciativa.`];
+        ? [`⚔️ Has encontrado un ${enemigoNombre} de nivel ${expedicion.dificultad}. ${usuario.personaje.nombre} tiene la iniciativa.`]
+        : [`⚔️ Has encontrado un ${enemigoNombre} de nivel ${expedicion.dificultad}.${enemigoNombre} tiene la iniciativa.`];
 
     // ============================================================
     // CREAR COMBATE
