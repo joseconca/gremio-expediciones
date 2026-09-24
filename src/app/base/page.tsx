@@ -9,7 +9,7 @@ import type {
   ReporteExpedicion as ReporteExpedicionTipo,
   Edificio,
 } from "@/lib/tiposJuego";
-import CombateModal from "@/components/CombateModal";
+import CombateModal from "@/components/combate/CombateModal";
 import PanelEdificios from "@/components/base/PanelEdificios";
 import ReporteExpedicion from "@/components/reportes/ReporteExpedicion";
 import { CONFIGURACION_EDIFICIOS } from "@/lib/tiposJuego";
