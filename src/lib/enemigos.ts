@@ -2,6 +2,18 @@ import type { DefinicionEnemigo } from "./tiposJuego";
 
 export const ENEMIGOS: DefinicionEnemigo[] = [
   {
+    id: "mimic",
+    nombre: "Mímico",
+    hp: 1,
+    ataque: 1,
+    defensa: 1,
+    velocidad: 1,
+    botin: 500,
+    difMin: 0,
+    rareza: "legendario",
+  },
+
+  {
     id: "slime_acido",
     nombre: "Slime Ácido",
     hp: 40,
@@ -71,6 +83,18 @@ export const ENEMIGOS: DefinicionEnemigo[] = [
     botin: 40,
     difMin: 4,
     rareza: "poco_comun",
+  },
+
+  {
+    id: "ogro",
+    nombre: "Ogro",
+    hp: 125,
+    ataque: 28,
+    defensa: 9,
+    velocidad: 5,
+    botin: 58,
+    difMin: 5,
+    rareza: "epico",
   },
 
   {
