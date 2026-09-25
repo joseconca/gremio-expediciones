@@ -163,6 +163,13 @@ model CombateActivo {
  // Solo PvP
   atacanteUsuarioId String?
   defensorUsuarioId String?
+  ultimoTurnoEn DateTime @default(now())
+  cooldownsDefensonr Json @default("{}")
+  efectosDefensor Json @default("{}")
+  enemigoClase String?
+  enemigoSexo String?
+
+  estadoDefensorAnterior String?
 
   // Edificios defensivos
   murallaNivel Int?

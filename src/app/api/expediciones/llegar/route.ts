@@ -233,10 +233,7 @@ export async function POST() {
 
       const jugadorHpMaximo = estadisticasAtacante.total.hpMaximo;
 
-      const jugadorHp = Math.min(
-        Math.max(1, personaje.hpActual),
-        jugadorHpMaximo
-      );
+      const jugadorHp = jugadorHpMaximo;
 
       const jugadorAtaque = estadisticasAtacante.total.ataque;
 
@@ -252,10 +249,7 @@ export async function POST() {
 
       const enemigoHpMaximo = estadisticasDefensor.total.hpMaximo;
 
-      const enemigoHp = Math.min(
-        Math.max(1, personajeDefensor.hpActual),
-        enemigoHpMaximo
-      );
+      const enemigoHp = enemigoHpMaximo;
 
       const enemigoAtaque = estadisticasDefensor.total.ataque;
 
@@ -298,18 +292,23 @@ export async function POST() {
             fase: "activo",
             ronda: 1,
             turno: primerTurno,
+            ultimoTurnoEn: new Date(),
 
             tipo: "pvp",
 
             atacanteUsuarioId: usuario.id,
             defensorUsuarioId: defensor.id,
             enemigoUsuarioId: defensor.id,
+            estadoDefensorAnterior: personajeDefensor.estado,
 
             murallaNivel: nivelMuralla,
             almacenNivel: nivelAlmacen,
 
             enemigoId: null,
             enemigoNombre: personajeDefensor.nombre,
+
+            enemigoClase: personajeDefensor.clase,
+            enemigoSexo: personajeDefensor.sexo,
 
             enemigoHp,
             enemigoHpMaximo: enemigoHpMaximo,
@@ -492,8 +491,12 @@ export async function POST() {
       jugadorVelocidad >= enemigoVelocidad ? "jugador" : "enemigo";
     const logInicial =
       primerTurno === "jugador"
-        ? [`⚔️ Has encontrado un ${enemigoNombre} de nivel ${expedicion.dificultad}. ${usuario.personaje.nombre} tiene la iniciativa.`]
-        : [`⚔️ Has encontrado un ${enemigoNombre} de nivel ${expedicion.dificultad}.${enemigoNombre} tiene la iniciativa.`];
+        ? [
+            `⚔️ Has encontrado un ${enemigoNombre} de nivel ${expedicion.dificultad}. ${usuario.personaje.nombre} tiene la iniciativa.`,
+          ]
+        : [
+            `⚔️ Has encontrado un ${enemigoNombre} de nivel ${expedicion.dificultad}.${enemigoNombre} tiene la iniciativa.`,
+          ];
 
     // ============================================================
     // CREAR COMBATE

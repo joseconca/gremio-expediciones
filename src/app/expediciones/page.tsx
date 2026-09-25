@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useGameStore } from "@/store/useGameStore";
@@ -17,6 +17,9 @@ import type {
   DefinicionMision,
   ReporteViaje,
 } from "@/lib/tiposJuego";
+import AsedioModal from "@/components/combate/AsedioModal";
+import type { CombateActivo } from "@/store/useGameStore";
+import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 
 const MissionMap = dynamic(() => import("@/components/MissionMap"), {
   ssr: false,
@@ -44,10 +47,104 @@ export default function ExpedicionesPage() {
   const [basesAjenas, setBasesAjenas] = useState<BaseMapa[]>([]);
   const [horaActual, setHoraActual] = useState<number | null>(null);
   const [diaActual, setDiaActual] = useState<string | null>(null);
+  const [combateAsedio, setCombateAsedio] = useState<CombateActivo | null>(
+    null
+  );
+  const [esAtacanteAsedio, setEsAtacanteAsedio] = useState(false);
+  const [procesandoAsedio, setProcesandoAsedio] = useState(false);
 
   useEffect(() => {
     cargarJugador();
   }, [cargarJugador]);
+
+  useEffect(() => {
+    if (!expedicionActiva) return;
+
+    if (
+      expedicionActiva.tipo !== "asedio" ||
+      expedicionActiva.fase !== "en_viaje"
+    ) {
+      return;
+    }
+
+    const fechaLlegada = new Date(expedicionActiva.fechaLlegada).getTime();
+
+    if (Date.now() < fechaLlegada) return;
+
+    let cancelado = false;
+
+    const iniciarCombateAlLlegar = async () => {
+      try {
+        const respuesta = await fetch("/api/expediciones/llegar", {
+          method: "POST",
+        });
+
+        const datos = await respuesta.json();
+
+        if (cancelado) return;
+
+        if (!respuesta.ok) {
+          console.error("Error al llegar al asedio:", datos.error);
+          return;
+        }
+
+        if (datos.combate) {
+          setCombateAsedio(datos.combate);
+          setEsAtacanteAsedio(true);
+        }
+      } catch (error) {
+        console.error("Error comprobando llegada del asedio:", error);
+      }
+    };
+
+    void iniciarCombateAlLlegar();
+
+    return () => {
+      cancelado = true;
+    };
+  }, [expedicionActiva]);
+
+  useEffect(() => {
+    if (!sesionActiva || combateAsedio) return;
+
+    let cancelado = false;
+
+    const comprobarAsediosEntrantes = async () => {
+      try {
+        const respuesta = await fetch("/api/asedios/entrantes", {
+          cache: "no-store",
+        });
+
+        if (!respuesta.ok) return;
+
+        const datos = await respuesta.json();
+
+        if (
+          cancelado ||
+          !Array.isArray(datos.combates) ||
+          datos.combates.length === 0
+        ) {
+          return;
+        }
+
+        const combateEntrante = datos.combates[0];
+
+        setCombateAsedio(combateEntrante);
+        setEsAtacanteAsedio(false);
+      } catch (error) {
+        console.error("Error comprobando asedios entrantes:", error);
+      }
+    };
+
+    void comprobarAsediosEntrantes();
+
+    const intervalo = setInterval(comprobarAsediosEntrantes, 5000);
+
+    return () => {
+      cancelado = true;
+      clearInterval(intervalo);
+    };
+  }, [sesionActiva, combateAsedio]);
 
   useEffect(() => {
     if (isLoading) return;
@@ -78,6 +175,37 @@ export default function ExpedicionesPage() {
 
     return () => clearInterval(intervalo);
   }, []);
+
+  useEffect(() => {
+    if (!combateAsedio) return;
+
+    let cancelado = false;
+
+    const actualizarCombate = async () => {
+      try {
+        const respuesta = await fetch("/api/combate/estado", {
+          cache: "no-store",
+        });
+
+        if (!respuesta.ok) return;
+
+        const datos = await respuesta.json();
+
+        if (cancelado || !datos.combate) return;
+
+        setCombateAsedio(datos.combate);
+      } catch (error) {
+        console.error("Error actualizando estado del asedio:", error);
+      }
+    };
+
+    const intervalo = setInterval(actualizarCombate, 2000);
+
+    return () => {
+      cancelado = true;
+      clearInterval(intervalo);
+    };
+  }, [combateAsedio?.id]);
 
   const misionesGeneradas = useMemo<DefinicionMision[]>(() => {
     if (
@@ -247,6 +375,59 @@ export default function ExpedicionesPage() {
     } finally {
       setCargando(false);
     }
+  };
+
+  const ejecutarAccionAsedio = useCallback(
+    async (
+      accion: "atacar" | "usar_habilidad",
+      habilidadId?: string
+    ): Promise<AccionAnimadaCombate | null> => {
+      if (!combateAsedio) {
+        return null;
+      }
+
+      setProcesandoAsedio(true);
+
+      try {
+        const respuesta = await fetch("/api/combate/accion", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            accion,
+            habilidadId,
+          }),
+        });
+
+        const datos = await respuesta.json();
+
+        if (!respuesta.ok) {
+          console.error("Error en acción de asedio:", datos.error);
+          return null;
+        }
+
+        if (datos.combate) {
+          setCombateAsedio(datos.combate);
+        }
+
+        return datos.accion ?? null;
+      } catch (error) {
+        console.error("Error ejecutando acción de asedio:", error);
+
+        return null;
+      } finally {
+        setProcesandoAsedio(false);
+      }
+    },
+    [combateAsedio]
+  );
+
+  const cerrarAsedio = () => {
+    setCombateAsedio(null);
+    setEsAtacanteAsedio(false);
+
+    cargarJugador();
   };
 
   return (
@@ -510,6 +691,17 @@ export default function ExpedicionesPage() {
             Volver a la base
           </Link>
         </div>
+      )}
+
+      {combateAsedio && personaje && (
+        <AsedioModal
+          combate={combateAsedio}
+          personaje={personaje}
+          esAtacante={esAtacanteAsedio}
+          procesando={procesandoAsedio}
+          onAccionCombate={ejecutarAccionAsedio}
+          onCerrar={cerrarAsedio}
+        />
       )}
     </main>
   );

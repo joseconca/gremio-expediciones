@@ -370,18 +370,6 @@ export async function POST(request: Request) {
           { status: 409 }
         );
       }
-
-      // Por ahora las habilidades existentes están
-      // modeladas sobre el lado "jugador".
-      // El atacante sí puede utilizarlas.
-      if (usuarioEsDefensor && accion === "usar_habilidad") {
-        return NextResponse.json(
-          {
-            error: "El defensor solo puede atacar por ahora.",
-          },
-          { status: 400 }
-        );
-      }
     } else {
       if (actor !== "jugador" && actor !== "enemigo") {
         return NextResponse.json(
@@ -409,8 +397,10 @@ export async function POST(request: Request) {
     let habilidad: DefinicionHabilidad | null = null;
 
     let cooldowns = obtenerCooldowns(combate.cooldowns);
-
     let efectos = obtenerEfectos(combate.efectos);
+
+    let cooldownsDefensor = obtenerCooldowns(combate.cooldownsDefensor);
+    let efectosDefensor = obtenerEfectos(combate.efectosDefensor);
 
     if (accion === "usar_habilidad") {
       const habilidadAprendida = personaje.habilidades.find(
@@ -451,7 +441,10 @@ export async function POST(request: Request) {
         );
       }
 
-      const cooldownRestante = cooldowns[habilidad.id] ?? 0;
+      const cooldownsActor =
+        esPvp && actor === "defensor" ? cooldownsDefensor : cooldowns;
+
+      const cooldownRestante = cooldownsActor[habilidad.id] ?? 0;
 
       if (cooldownRestante > 0) {
         return NextResponse.json(
@@ -470,8 +463,10 @@ export async function POST(request: Request) {
     // ============================================================
 
     let jugadorHp = combate.jugadorHp;
-    let enemigoHp = combate.enemigoHp;
     let jugadorDefensa = combate.jugadorDefensa;
+
+    let enemigoHp = combate.enemigoHp;
+    let enemigoDefensa = combate.enemigoDefensa;
 
     const log = Array.isArray(combate.log)
       ? [...(combate.log as string[])]
@@ -491,7 +486,7 @@ export async function POST(request: Request) {
             jugadorNivel: combate.jugadorNivel,
             jugadorProbCritico: combate.jugadorProbCritico,
             jugadorDanoCritico: combate.jugadorDanoCritico,
-            enemigoDefensa: combate.enemigoDefensa,
+            enemigoDefensa,
             enemigoNombre: combate.enemigoNombre ?? "Enemigo",
           });
 
@@ -514,7 +509,7 @@ export async function POST(request: Request) {
             jugadorNivel: combate.jugadorNivel,
             jugadorHp,
             jugadorHpMaximo: combate.jugadorHpMaximo,
-            enemigoDefensa: combate.enemigoDefensa,
+            enemigoDefensa,
             enemigoNombre: combate.enemigoNombre ?? "Enemigo",
           });
 
@@ -944,6 +939,7 @@ export async function POST(request: Request) {
           turno: siguienteTurno,
           cooldowns,
           efectos,
+          ultimoTurnoEn: new Date(),
           log,
           version: {
             increment: 1,
@@ -1032,7 +1028,7 @@ export async function POST(request: Request) {
           jugadorNivel: combate.jugadorNivel,
           jugadorProbCritico: combate.jugadorProbCritico,
           jugadorDanoCritico: combate.jugadorDanoCritico,
-          enemigoDefensa: combate.enemigoDefensa,
+          enemigoDefensa,
           enemigoNombre: combate.enemigoNombre ?? "Defensor",
         });
 
@@ -1055,7 +1051,7 @@ export async function POST(request: Request) {
           jugadorNivel: combate.jugadorNivel,
           jugadorHp,
           jugadorHpMaximo: combate.jugadorHpMaximo,
-          enemigoDefensa: combate.enemigoDefensa,
+          enemigoDefensa,
           enemigoNombre: combate.enemigoNombre ?? "Defensor",
         });
 
@@ -1087,22 +1083,53 @@ export async function POST(request: Request) {
         );
       }
 
-      if (accion !== "atacar") {
-        return NextResponse.json(
-          {
-            error: "El defensor solo puede atacar por ahora.",
-          },
-          { status: 400 }
-        );
+      if (accion === "atacar") {
+        accionAnimada = resolverAtaqueEnemigo({
+          enemigoAtaque: combate.enemigoAtaque,
+          jugadorDefensa,
+          enemigoNombre: personaje.nombre,
+        });
+
+        jugadorHp = Math.max(0, jugadorHp - accionAnimada.dano);
+      } else {
+        if (!habilidad) {
+          return NextResponse.json(
+            {
+              error: "Habilidad no encontrada.",
+            },
+            { status: 404 }
+          );
+        }
+
+        const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
+          jugadorAtaque: combate.enemigoAtaque,
+          jugadorProbCritico: combate.enemigoProbCritico,
+          jugadorDanoCritico: combate.enemigoDanoCritico,
+          jugadorDefensa: enemigoDefensa,
+          jugadorNivel: combate.enemigoNivel,
+          jugadorHp: enemigoHp,
+          jugadorHpMaximo: combate.enemigoHpMaximo,
+          enemigoDefensa: jugadorDefensa,
+          enemigoNombre: "Atacante",
+        });
+
+        accionAnimada = resultadoHabilidad.accion;
+
+        enemigoHp = resultadoHabilidad.jugadorHp;
+        enemigoDefensa = resultadoHabilidad.jugadorDefensa;
+
+        jugadorHp = Math.max(0, jugadorHp - accionAnimada.dano);
+
+        if (resultadoHabilidad.efecto) {
+          efectosDefensor = [...efectosDefensor, resultadoHabilidad.efecto];
+        }
+
+        const cooldownTurnos = habilidad.cooldownTurnos ?? 0;
+
+        if (cooldownTurnos > 0) {
+          cooldownsDefensor[habilidad.id] = cooldownTurnos;
+        }
       }
-
-      accionAnimada = resolverAtaqueEnemigo({
-        enemigoAtaque: combate.enemigoAtaque,
-        jugadorDefensa,
-        enemigoNombre: combate.enemigoNombre ?? "Defensor",
-      });
-
-      jugadorHp = Math.max(0, jugadorHp - accionAnimada.dano);
     } else {
       return NextResponse.json(
         {
@@ -1149,10 +1176,16 @@ export async function POST(request: Request) {
             jugadorHp,
             enemigoHp,
             jugadorDefensa,
+            enemigoDefensa,
             fase: faseFinal,
             turno: ganador,
             ganadorUsuarioId,
             botinResuelto: false,
+            cooldowns,
+            efectos,
+            cooldownsDefensor,
+            efectosDefensor,
+            ultimoTurnoEn: new Date(),
             log,
             version: {
               increment: 1,
@@ -1199,16 +1232,14 @@ export async function POST(request: Request) {
           },
         });
 
-        // Guardamos el HP final del defensor.
         await tx.personaje.update({
           where: {
             usuarioId: defensorUsuarioId,
           },
           data: {
-            hpActual: Math.max(1, enemigoHp),
+            estado: combate.estadoDefensorAnterior ?? "ocioso",
           },
         });
-
         return {
           combate: combateActualizado,
         };
@@ -1242,11 +1273,6 @@ export async function POST(request: Request) {
       siguienteRonda += 1;
     }
 
-    // Los cooldowns y efectos pertenecen actualmente
-    // al atacante, igual que en PvE.
-    //
-    // Cuando vuelve su turno, reducimos cooldowns
-    // y actualizamos los efectos de defensa.
     if (siguienteTurno === "atacante") {
       cooldowns = reducirCooldowns(cooldowns);
 
@@ -1256,8 +1282,19 @@ export async function POST(request: Request) {
       );
 
       efectos = efectosActualizados.efectos;
-
       jugadorDefensa = efectosActualizados.defensa;
+    }
+
+    if (siguienteTurno === "defensor") {
+      cooldownsDefensor = reducirCooldowns(cooldownsDefensor);
+
+      const efectosActualizados = actualizarEfectosAlInicioTurnoJugador(
+        efectosDefensor,
+        enemigoDefensa
+      );
+
+      efectosDefensor = efectosActualizados.efectos;
+      enemigoDefensa = efectosActualizados.defensa;
     }
 
     const actualizado = await prisma.combateActivo.updateMany({
@@ -1269,10 +1306,14 @@ export async function POST(request: Request) {
         jugadorHp,
         enemigoHp,
         jugadorDefensa,
+        enemigoDefensa,
         ronda: siguienteRonda,
         turno: siguienteTurno,
         cooldowns,
         efectos,
+        cooldownsDefensor,
+        efectosDefensor,
+        ultimoTurnoEn: new Date(),
         log,
         version: {
           increment: 1,
