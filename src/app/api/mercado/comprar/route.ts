@@ -97,6 +97,9 @@ export async function POST(request: Request) {
         madera: true,
         piedra: true,
         metal: true,
+        baseCoords: true,
+        edificios: true,
+        personaje: true,
       },
     });
 
