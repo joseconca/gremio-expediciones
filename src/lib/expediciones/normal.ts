@@ -2,11 +2,11 @@ import { obtenerEnemigosPorDificultad } from "@/lib/enemigos";
 import type { DefinicionEnemigo } from "@/lib/tiposJuego";
 
 const PESOS_RAREZA: Record<string, number> = {
-  comun: 30,
-  poco_comun: 25,
-  raro: 20,
-  epico: 15,
-  legendario: 5,
+  comun: 70,
+  poco_comun: 50,
+  raro: 35,
+  epico: 20,
+  legendario: 1,
 };
 
 export function seleccionarEnemigoNormal(
@@ -18,12 +18,18 @@ export function seleccionarEnemigoNormal(
     throw new Error("No hay enemigos disponibles para esta dificultad.");
   }
 
+  const conteoPorRareza: Record<string, number> = {};
+  for (const enemigo of enemigosDisponibles) {
+    const rareza = enemigo.rareza ?? "comun";
+    conteoPorRareza[rareza] = (conteoPorRareza[rareza] || 0) + 1;
+  }
+
   let pesoTotal = 0;
   const enemigosConPeso = enemigosDisponibles.map((enemigo) => {
-    // Si por algún motivo no tiene rareza, lo tratamos como "comun"
     const rareza = enemigo.rareza ?? "comun";
-    const peso = PESOS_RAREZA[rareza] || 10; // Fallback por si hay un typo
-
+    const pesoGlobalRareza = PESOS_RAREZA[rareza] || 10;
+    const peso = pesoGlobalRareza / conteoPorRareza[rareza];
+  
     pesoTotal += peso;
     return { enemigo, peso };
   });

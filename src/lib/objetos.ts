@@ -69,7 +69,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     descripcion: "Una rama sencilla y nada fiable.",
     rareza: "basico",
     precio: 100,
-    ataqueBase: 1,
+    ataqueBase: 3,
     ataquePorMejora: 0.5,
   },
 
@@ -81,7 +81,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     descripcion: "Una espada sencilla pero fiable.",
     rareza: "comun",
     precio: 1000,
-    ataqueBase: 4,
+    ataqueBase: 6,
     ataquePorMejora: 1,
   },
 
@@ -118,9 +118,9 @@ export const OBJETOS: DefinicionObjeto[] = [
     rareza: "raro",
     precio: 12000,
     ataqueBase: 5,
-    ataquePorMejora: 1,
+    ataquePorMejora: 1.5,
     probCriticoBase: 0.05,
-    probCriticoPorMejora: 0.02,
+    probCriticoPorMejora: 0.015,
     velocidadBase: -1,
     velocidadPorMejora: 0.1,
   },
@@ -136,7 +136,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     descripcion: "Protección para tapar vergüenzas.",
     rareza: "basico",
     precio: 100,
-    defensaBase: 1,
+    defensaBase: 3,
     defensaPorMejora: 0.5,
   },
   {
@@ -146,7 +146,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     descripcion: "Protección ligera para aventureros.",
     rareza: "comun",
     precio: 1100,
-    defensaBase: 4,
+    defensaBase: 6,
     defensaPorMejora: 1,
   },
 
