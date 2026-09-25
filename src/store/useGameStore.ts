@@ -10,6 +10,7 @@ import type {
   Edificio,
   IdEdificio,
   RecompensaMision,
+  TipoMision,
 } from "@/lib/tiposJuego";
 import { CONFIGURACION_EDIFICIOS } from "@/lib/tiposJuego";
 import {
@@ -160,34 +161,108 @@ export interface DatosReclutamiento {
 
 export interface CombateActivo {
   id: string;
-
   version: number;
+
+  expedicionId: string;
 
   fase: "activo" | "victoria" | "derrota" | "huida";
   ronda: number;
-  turno: string;
-
-  enemigoId: string;
-  enemigoNombre: string;
-  enemigoHp: number;
-  enemigoHpMaximo: number;
-  enemigoAtaque: number;
-  enemigoDefensa: number;
-  enemigoVelocidad: number;
+  turno: "atacante" | "defensor";
+  tipo: TipoMision;
 
   jugadorHp: number;
   jugadorHpMaximo: number;
   jugadorAtaque: number;
   jugadorDefensa: number;
   jugadorVelocidad: number;
-  jugadorNivel: number;
+  jugadorProbCritico: number;
   jugadorDanoCritico: number;
+  jugadorNivel: number;
+
+  enemigoHp: number;
+  enemigoHpMaximo: number;
+  enemigoAtaque: number;
+  enemigoDefensa: number;
+  enemigoVelocidad: number;
+  enemigoProbCritico: number;
+  enemigoDanoCritico: number;
+  enemigoNivel: number;
+
+  atacanteUsuarioId?: string | null;
+  defensorUsuarioId?: string | null;
+  atacanteNombre?: string | null;
+  defensorNombre?: string | null;
+  atacanteClase?: string | null;
+  atacanteSexo?: string | null;
+  defensorClase?: string | null;
+  defensorSexo?: string | null;
+  enemigoId?: string | null;
+  enemigoNombre?: string | null;
+  murallaNivel?: number | null;
+  almacenNivel?: number | null;
+
+  ganadorUsuarioId?: string | null;
+  botinResuelto: boolean;
 
   oroGanado: number;
   experienciaGanada: number;
 
   cooldowns: Record<string, number>;
   efectos: unknown[];
+
+  cooldownsDefensor: Record<string, number>;
+  efectosDefensor: unknown[];
+
+  ultimoTurnoEn: string;
+
+  log: string[];
+
+  creado: string;
+  actualizado: string;
+
+  estadoDefensorAnterior?: string | null;
+}
+
+export interface CombatePve {
+  id: string;
+  version: number;
+
+  expedicionId: string;
+
+  fase: "activo" | "victoria" | "derrota" | "huida";
+  ronda: number;
+  turno: "jugador" | "enemigo";
+  tipo: TipoMision;
+
+  jugadorHp: number;
+  jugadorHpMaximo: number;
+  jugadorAtaque: number;
+  jugadorDefensa: number;
+  jugadorVelocidad: number;
+  jugadorProbCritico: number;
+  jugadorDanoCritico: number;
+  jugadorNivel: number;
+
+  enemigoHp: number;
+  enemigoHpMaximo: number;
+  enemigoAtaque: number;
+  enemigoDefensa: number;
+  enemigoVelocidad: number;
+  enemigoProbCritico: number;
+  enemigoDanoCritico: number;
+  enemigoNivel: number;
+
+  enemigoId?: string | null;
+  enemigoNombre?: string | null;
+
+  ganadorUsuarioId?: string | null;
+
+  oroGanado: number;
+  experienciaGanada: number;
+
+  cooldowns: Record<string, number>;
+  efectos: unknown[];
+
   log: string[];
 
   creado: string;
@@ -203,14 +278,14 @@ export interface ExpedicionActiva {
   fechaLlegada: string;
   fechaSalida: string;
   dificultad: number;
-  tipo: "normal" | "elite" | "comercio" | "boss";
+  tipo: TipoMision;
   fase: "en_viaje" | "combatiendo" | "regresando";
   resultadoFinal?: ResultadoExpedicion | null;
   hpPerdido: number;
   experienciaGanada: number;
   objetivoId?: string | null;
   destinoCoords: { lat: number; lng: number };
-  combateActivo?: CombateActivo | null;
+  combateActivo?: CombatePve | null;
 }
 
 export interface InfoCura {
@@ -632,7 +707,7 @@ export const useGameStore = create<GameState>((set, get) => ({
           expedicionActiva: state.expedicionActiva
             ? {
                 ...state.expedicionActiva,
-                combateActivo: datos.combate as CombateActivo,
+                combateActivo: datos.combate as CombatePve,
               }
             : null,
         }));

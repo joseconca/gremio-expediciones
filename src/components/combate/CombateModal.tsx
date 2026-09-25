@@ -3,11 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
-import type { CombateActivo, Personaje } from "@/store/useGameStore";
+import type { CombatePve, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 
 interface CombateModalProps {
-  combate: CombateActivo;
+  combate: CombatePve;
   personaje: Personaje;
   procesando?: boolean;
   onAccionCombate: (
@@ -566,7 +566,7 @@ export default function CombateModal({
                 {/* ENEMIGO */}
                 <Image
                   src={`/sprites/enemies/${combate.enemigoId}.png`}
-                  alt={combate.enemigoNombre}
+                  alt={combate.enemigoNombre || "Enemigo"}
                   fill
                   sizes="180px"
                   style={{ transform: "scaleX(-1)" }}
