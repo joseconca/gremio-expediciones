@@ -179,6 +179,8 @@ export async function POST() {
       // ESTADÍSTICAS DEL ATACANTE
       // ============================================================
 
+      const personajeAtacante = personaje;
+
       const equipoAtacante = obtenerEquipoDesdePersonaje(personaje);
       const modificadoresEquipoAtacante =
         calcularModificadoresEquipo(equipoAtacante);
@@ -299,6 +301,16 @@ export async function POST() {
             atacanteUsuarioId: usuario.id,
             defensorUsuarioId: defensor.id,
             enemigoUsuarioId: defensor.id,
+
+            atacanteNombre: usuario.nombre,
+            defensorNombre: defensor.nombre,
+
+            atacanteClase: personajeAtacante.clase,
+            atacanteSexo: personajeAtacante.sexo,
+
+            defensorClase: personajeDefensor.clase,
+            defensorSexo: personajeDefensor.sexo,
+
             estadoDefensorAnterior: personajeDefensor.estado,
 
             murallaNivel: nivelMuralla,
@@ -306,9 +318,6 @@ export async function POST() {
 
             enemigoId: null,
             enemigoNombre: personajeDefensor.nombre,
-
-            enemigoClase: personajeDefensor.clase,
-            enemigoSexo: personajeDefensor.sexo,
 
             enemigoHp,
             enemigoHpMaximo: enemigoHpMaximo,
