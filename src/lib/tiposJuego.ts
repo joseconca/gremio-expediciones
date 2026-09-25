@@ -1,4 +1,4 @@
-export type TipoMision = "normal" | "elite" | "comercio" | "boss";
+export type TipoMision = "normal" | "elite" | "comercio" | "boss" | "asedio";
 
 export type ClasePersonaje = "Guerrero" | "Explorador" | "Comerciante";
 
