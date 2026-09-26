@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { CombateActivo, useGameStore } from "@/store/useGameStore";
+import { CombateActivo, CombatePve, useGameStore } from "@/store/useGameStore";
 import type {
   ReporteExpedicion as ReporteExpedicionTipo,
   Edificio,
@@ -620,7 +620,7 @@ export default function BasePage() {
     : combateEntrante.version > combateLocal.version
     ? combateEntrante
     : combateLocal;
-    
+
   const esAtacante = Boolean(expedicionActiva?.combateActivo);
 
   return (
@@ -631,7 +631,7 @@ export default function BasePage() {
         expedicionActiva.tipo !== "asedio" &&
         personaje && (
           <CombateModal
-            combate={expedicionActiva.combateActivo}
+            combate={expedicionActiva.combateActivo as CombatePve}
             personaje={personaje}
             procesando={false}
             onAccionCombate={ejecutarAccionCombate}
@@ -648,7 +648,7 @@ export default function BasePage() {
         personaje &&
         (expedicionActiva?.tipo === "asedio" || combateEntrante) && (
           <AsedioModal
-            combate={combateVisible}
+            combate={combateVisible as CombateActivo}
             personaje={personaje}
             esAtacante={esAtacante}
             procesando={false}
