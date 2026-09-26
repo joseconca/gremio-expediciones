@@ -167,6 +167,7 @@ export interface BaseMapa {
   lat: number;
   lng: number;
   nivel: number;
+  nivelPersonaje: number;
 }
 
 export interface ReporteViaje {

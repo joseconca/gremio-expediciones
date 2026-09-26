@@ -12,6 +12,7 @@ import {
   generarDificultades,
 } from "@/lib/generadorMisiones";
 import { calcularDistanciaKm } from "@/lib/utils";
+import { calcularOroBaseComercio } from "@/lib/expediciones/comercio"; 
 import type {
   BaseMapa,
   DefinicionMision,
@@ -39,17 +40,16 @@ export default function ExpedicionesPage() {
     cargarJugador,
     ultimaMisionElite,
   } = useGameStore();
-  const [misionSeleccionada, setMisionSeleccionada] =
-    useState<DefinicionMision | null>(null);
+
+  const [misionSeleccionada, setMisionSeleccionada] = useState<DefinicionMision | null>(null);
+  const [baseSeleccionada, setBaseSeleccionada] = useState<BaseMapa | null>(null); // NUEVO ESTADO
   const [viajeIniciado, setViajeIniciado] = useState(false);
   const [cargando, setCargando] = useState(false);
   const [reporteViaje, setReporteViaje] = useState<ReporteViaje | null>(null);
   const [basesAjenas, setBasesAjenas] = useState<BaseMapa[]>([]);
   const [horaActual, setHoraActual] = useState<number | null>(null);
   const [diaActual, setDiaActual] = useState<string | null>(null);
-  const [combateAsedio, setCombateAsedio] = useState<CombateActivo | null>(
-    null
-  );
+  const [combateAsedio, setCombateAsedio] = useState<CombateActivo | null>(null);
   const [esAtacanteAsedio, setEsAtacanteAsedio] = useState(false);
   const [procesandoAsedio, setProcesandoAsedio] = useState(false);
 
@@ -59,30 +59,18 @@ export default function ExpedicionesPage() {
 
   useEffect(() => {
     if (!expedicionActiva) return;
-
-    if (
-      expedicionActiva.tipo !== "asedio" ||
-      expedicionActiva.fase !== "en_viaje"
-    ) {
-      return;
-    }
+    if (expedicionActiva.tipo !== "asedio" || expedicionActiva.fase !== "en_viaje") return;
 
     const fechaLlegada = new Date(expedicionActiva.fechaLlegada).getTime();
-
     if (Date.now() < fechaLlegada) return;
 
     let cancelado = false;
-
     const iniciarCombateAlLlegar = async () => {
       try {
-        const respuesta = await fetch("/api/expediciones/llegar", {
-          method: "POST",
-        });
-
+        const respuesta = await fetch("/api/expediciones/llegar", { method: "POST" });
         const datos = await respuesta.json();
 
         if (cancelado) return;
-
         if (!respuesta.ok) {
           console.error("Error al llegar al asedio:", datos.error);
           return;
@@ -98,37 +86,22 @@ export default function ExpedicionesPage() {
     };
 
     void iniciarCombateAlLlegar();
-
-    return () => {
-      cancelado = true;
-    };
+    return () => { cancelado = true; };
   }, [expedicionActiva]);
 
   useEffect(() => {
     if (!sesionActiva || combateAsedio) return;
 
     let cancelado = false;
-
     const comprobarAsediosEntrantes = async () => {
       try {
-        const respuesta = await fetch("/api/asedios/entrantes", {
-          cache: "no-store",
-        });
-
+        const respuesta = await fetch("/api/asedios/entrantes", { cache: "no-store" });
         if (!respuesta.ok) return;
 
         const datos = await respuesta.json();
-
-        if (
-          cancelado ||
-          !Array.isArray(datos.combates) ||
-          datos.combates.length === 0
-        ) {
-          return;
-        }
+        if (cancelado || !Array.isArray(datos.combates) || datos.combates.length === 0) return;
 
         const combateEntrante = datos.combates[0];
-
         setCombateAsedio(combateEntrante);
         setEsAtacanteAsedio(false);
       } catch (error) {
@@ -137,7 +110,6 @@ export default function ExpedicionesPage() {
     };
 
     void comprobarAsediosEntrantes();
-
     const intervalo = setInterval(comprobarAsediosEntrantes, 5000);
 
     return () => {
@@ -172,7 +144,6 @@ export default function ExpedicionesPage() {
 
     actualizarHora();
     const intervalo = setInterval(actualizarHora, 60 * 1000);
-
     return () => clearInterval(intervalo);
   }, []);
 
@@ -180,17 +151,12 @@ export default function ExpedicionesPage() {
     if (!combateAsedio) return;
 
     let cancelado = false;
-
     const actualizarCombate = async () => {
       try {
-        const respuesta = await fetch("/api/combate/estado", {
-          cache: "no-store",
-        });
-
+        const respuesta = await fetch("/api/combate/estado", { cache: "no-store" });
         if (!respuesta.ok) return;
 
         const datos = await respuesta.json();
-
         if (cancelado || !datos.combate) return;
 
         setCombateAsedio(datos.combate);
@@ -200,7 +166,6 @@ export default function ExpedicionesPage() {
     };
 
     const intervalo = setInterval(actualizarCombate, 2000);
-
     return () => {
       cancelado = true;
       clearInterval(intervalo);
@@ -208,20 +173,10 @@ export default function ExpedicionesPage() {
   }, [combateAsedio?.id]);
 
   const misionesGeneradas = useMemo<DefinicionMision[]>(() => {
-    if (
-      !baseCoords ||
-      !personaje ||
-      horaActual === null ||
-      diaActual === null
-    ) {
-      return [];
-    }
+    if (!baseCoords || !personaje || horaActual === null || diaActual === null) return [];
 
-    const offset =
-      horaMisiones === horaActual ? misionesCompletadasEstaHora : 0;
-
+    const offset = horaMisiones === horaActual ? misionesCompletadasEstaHora : 0;
     const nivel = personaje.nivel;
-
     const nuevasMisiones: DefinicionMision[] = [];
 
     MISIONES_POR_DURACION.forEach((configuracion, indiceDuracion) => {
@@ -230,28 +185,19 @@ export default function ExpedicionesPage() {
 
       switch (indiceDuracion) {
         case 0:
-          // 0,5 h:
-          // desde dificultad 0 hasta nivel + 1.
           minimo = 0;
           maximo = nivel + 1;
           break;
-
         case 1:
         case 2:
-          // 1 h y 3 h:
-          // nivel - 1 hasta nivel + 1.
           minimo = Math.max(0, nivel - 1);
           maximo = nivel + 1;
           break;
-
         case 3:
         case 4:
-          // 9 h y 24 h:
-          // nivel hasta nivel + 1.
           minimo = nivel;
           maximo = nivel + 1;
           break;
-
         default:
           return;
       }
@@ -279,11 +225,8 @@ export default function ExpedicionesPage() {
     });
 
     const eliteYaCompletada = ultimaMisionElite?.slice(0, 10) === diaActual;
-
     if (!eliteYaCompletada) {
-      nuevasMisiones.push(
-        generarMisionElite(baseCoords.lat, baseCoords.lng, diaActual)
-      );
+      nuevasMisiones.push(generarMisionElite(baseCoords.lat, baseCoords.lng, diaActual));
     }
 
     return nuevasMisiones;
@@ -303,7 +246,6 @@ export default function ExpedicionesPage() {
 
   if (misionSeleccionada && personaje && baseCoords) {
     let velocidadKmh = 6 + (personaje.velocidad - 1) / 15;
-
     if (personaje.clase === "Explorador") {
       velocidadKmh *= 1.25;
     }
@@ -324,10 +266,50 @@ export default function ExpedicionesPage() {
   const sinVida = !personaje || personaje.hpActual <= 0;
   const [errorEnvio, setErrorEnvio] = useState<string | null>(null);
 
+  const handleSeleccionarAccionBase = (tipo: "asedio" | "comercio") => {
+    if (!baseSeleccionada || !baseCoords || !personaje) return;
+
+    const distanciaKmBase = calcularDistanciaKm(
+      baseCoords.lat,
+      baseCoords.lng,
+      baseSeleccionada.lat,
+      baseSeleccionada.lng
+    );
+
+    const mision: DefinicionMision = tipo === "comercio" ? {
+      id: `comercio-${baseSeleccionada.id}`,
+      tipo: "comercio",
+      lat: baseSeleccionada.lat,
+      lng: baseSeleccionada.lng,
+      nombre: `Comerciar: ${baseSeleccionada.nombre}`,
+      dificultad: 0,
+      recompensa: {
+        oro: calcularOroBaseComercio(distanciaKmBase),
+        madera: 0,
+        piedra: 0,
+        metal: 0,
+      },
+      duracionObjetivoHoras: 0,
+      descripcion: `Envía a tu personaje a intercambiar bienes con el gremio de ${baseSeleccionada.nombre}.`,
+    } : {
+      id: `asedio-${baseSeleccionada.id}`,
+      tipo: "asedio",
+      lat: baseSeleccionada.lat,
+      lng: baseSeleccionada.lng,
+      nombre: `Asediar: ${baseSeleccionada.nombre}`,
+      dificultad: Math.max(0, (baseSeleccionada.nivelPersonaje + 1 || 1) - (personaje?.nivel || 1)),
+      recompensa: { oro: 0, madera: 0, piedra: 0, metal: 0 },
+      duracionObjetivoHoras: 0,
+      descripcion: `Envía a tu personaje a atacar la base del gremio de ${baseSeleccionada.nombre}.`,
+      objetivoId: baseSeleccionada.id,
+    };
+
+    setMisionSeleccionada(mision);
+    setBaseSeleccionada(null);
+  };
+
   const handleEnviarExpedicion = async () => {
-    if (!misionSeleccionada || !baseCoords || sinVida) {
-      return;
-    }
+    if (!misionSeleccionada || !baseCoords || sinVida) return;
 
     setCargando(true);
     setErrorEnvio(null);
@@ -382,26 +364,18 @@ export default function ExpedicionesPage() {
       accion: "atacar" | "usar_habilidad",
       habilidadId?: string
     ): Promise<AccionAnimadaCombate | null> => {
-      if (!combateAsedio) {
-        return null;
-      }
+      if (!combateAsedio) return null;
 
       setProcesandoAsedio(true);
 
       try {
         const respuesta = await fetch("/api/combate/accion", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            accion,
-            habilidadId,
-          }),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ accion, habilidadId }),
         });
 
         const datos = await respuesta.json();
-
         if (!respuesta.ok) {
           console.error("Error en acción de asedio:", datos.error);
           return null;
@@ -414,7 +388,6 @@ export default function ExpedicionesPage() {
         return datos.accion ?? null;
       } catch (error) {
         console.error("Error ejecutando acción de asedio:", error);
-
         return null;
       } finally {
         setProcesandoAsedio(false);
@@ -426,9 +399,15 @@ export default function ExpedicionesPage() {
   const cerrarAsedio = () => {
     setCombateAsedio(null);
     setEsAtacanteAsedio(false);
-
     cargarJugador();
   };
+
+  const tieneRecompensas = misionSeleccionada ? (
+    misionSeleccionada.recompensa.oro > 0 ||
+    misionSeleccionada.recompensa.madera > 0 ||
+    misionSeleccionada.recompensa.piedra > 0 ||
+    misionSeleccionada.recompensa.metal > 0
+  ) : false;
 
   return (
     <main className="relative h-screen w-full bg-slate-900 overflow-hidden font-sans">
@@ -464,13 +443,76 @@ export default function ExpedicionesPage() {
             regresando={expedicionActiva?.fase === "regresando"}
             onSelectMission={(mision) => {
               setMisionSeleccionada(mision);
+              setBaseSeleccionada(null);
+              setErrorEnvio(null);
+            }}
+            onSelectBase={(base) => {
+              setBaseSeleccionada(base);
+              setMisionSeleccionada(null);
               setErrorEnvio(null);
             }}
           />
         </div>
       )}
 
-      {/* Panel inferior*/}
+      {/* PANEL DE SELECCIÓN DE BASE */}
+      {baseSeleccionada && !viajeIniciado && !misionSeleccionada && (
+        <div className="absolute bottom-10 left-0 z-20 w-full p-4 pointer-events-none">
+          <div className="pointer-events-auto mx-auto max-w-md transform rounded-xl border-2 border-slate-700 bg-slate-900 p-4 text-slate-200 shadow-[0_10px_30px_rgba(0,0,0,0.8)] animate-in slide-in-from-bottom-10">
+            {/* 1. Cabecera */}
+            <div className="mb-2 flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <h2 className="text-2xl font-black uppercase tracking-wide text-amber-500">
+                    {baseSeleccionada.nombre}
+                  </h2>
+                  <span className="shrink-0 text-sm font-black text-slate-400">
+                    Gremio Rival
+                  </span>
+                </div>
+              </div>
+              <button
+                onClick={() => setBaseSeleccionada(null)}
+                className="shrink-0 text-2xl leading-none text-slate-500 transition-colors hover:text-slate-300"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* 2. Descripción */}
+            <div className="mb-4 border-b border-slate-800 pb-3">
+              <p className="text-sm italic text-slate-400">
+                Has localizado el campamento de otro jugador. ¿Qué acción deseas emprender contra este gremio?
+              </p>
+            </div>
+
+            {/* 3. Acciones */}
+            <div className="flex gap-4">
+              <button
+                onClick={() => handleSeleccionarAccionBase("asedio")}
+                className="group flex flex-1 flex-col items-center justify-center rounded-lg border-2 border-red-900/50 bg-red-950/30 p-4 transition-all hover:border-red-700 hover:bg-red-900/50 hover:shadow-[0_0_15px_rgba(220,38,38,0.2)]"
+              >
+                <span className="mb-2 text-3xl transition-transform group-hover:scale-110">⚔️</span>
+                <span className="text-sm font-bold uppercase tracking-widest text-red-400 drop-shadow-md">
+                  Asediar
+                </span>
+              </button>
+
+              <button
+                onClick={() => handleSeleccionarAccionBase("comercio")}
+                className="group flex flex-1 flex-col items-center justify-center rounded-lg border-2 border-emerald-900/50 bg-emerald-950/30 p-4 transition-all hover:border-emerald-700 hover:bg-emerald-900/50 hover:shadow-[0_0_15px_rgba(16,185,129,0.2)]"
+              >
+                <span className="mb-2 text-3xl transition-transform group-hover:scale-110">🤝</span>
+                <span className="text-sm font-bold uppercase tracking-widest text-emerald-400 drop-shadow-md">
+                  Comerciar
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* PANEL EXISTENTE: MISIONES PVE / CONFIRMACIÓN DE VIAJE */}
       {misionSeleccionada && !viajeIniciado && (
         <div className="absolute bottom-10 left-0 z-20 w-full p-4 pointer-events-none">
           <div
@@ -587,6 +629,8 @@ export default function ExpedicionesPage() {
                     <span className="mt-0.5 px-2 text-center text-xs font-black uppercase tracking-widest text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                       {misionSeleccionada.tipo === "comercio"
                         ? "Intercambio"
+                        : misionSeleccionada.tipo === "asedio"
+                        ? "Asedio"
                         : "Caza"}
                     </span>
                   </>
@@ -594,7 +638,7 @@ export default function ExpedicionesPage() {
               </button>
             </div>
 
-            {/* 4. POSIBLES RECOMPENSAS */}
+            {/* 4. POSIBLES RECOMPENSAS / BOTÍN */}
             <div
               className={`mt-4 rounded-lg border p-3 ${
                 misionSeleccionada.tipo === "elite"
@@ -609,46 +653,54 @@ export default function ExpedicionesPage() {
                     : "text-[#6e5642]"
                 }`}
               >
-                Posibles recompensas
+                {misionSeleccionada.tipo === "asedio" ? "Botín de Guerra" : "Posibles recompensas"}
               </span>
 
-              <div className="flex justify-center items-center gap-6">
-                {misionSeleccionada.recompensa.oro > 0 && (
-                  <div className="flex flex-col items-center">
-                    <span className="text-lg">🪙</span>
-                    <span className="text-xs font-bold text-amber-500">
-                      {misionSeleccionada.recompensa.oro}
-                    </span>
-                  </div>
-                )}
+              {tieneRecompensas ? (
+                <div className="flex items-center justify-center gap-6">
+                  {misionSeleccionada.recompensa.oro > 0 && (
+                    <div className="flex flex-col items-center">
+                      <span className="text-lg">🪙</span>
+                      <span className="text-xs font-bold text-amber-500">
+                        {misionSeleccionada.recompensa.oro}
+                      </span>
+                    </div>
+                  )}
 
-                {misionSeleccionada.recompensa.madera > 0 && (
-                  <div className="flex flex-col items-center">
-                    <span className="text-lg">🪵</span>
-                    <span className="text-xs font-bold text-emerald-700">
-                      {misionSeleccionada.recompensa.madera}
-                    </span>
-                  </div>
-                )}
+                  {misionSeleccionada.recompensa.madera > 0 && (
+                    <div className="flex flex-col items-center">
+                      <span className="text-lg">🪵</span>
+                      <span className="text-xs font-bold text-emerald-700">
+                        {misionSeleccionada.recompensa.madera}
+                      </span>
+                    </div>
+                  )}
 
-                {misionSeleccionada.recompensa.piedra > 0 && (
-                  <div className="flex flex-col items-center">
-                    <span className="text-lg">🪨</span>
-                    <span className="text-xs font-bold text-slate-500">
-                      {misionSeleccionada.recompensa.piedra}
-                    </span>
-                  </div>
-                )}
+                  {misionSeleccionada.recompensa.piedra > 0 && (
+                    <div className="flex flex-col items-center">
+                      <span className="text-lg">🪨</span>
+                      <span className="text-xs font-bold text-slate-500">
+                        {misionSeleccionada.recompensa.piedra}
+                      </span>
+                    </div>
+                  )}
 
-                {misionSeleccionada.recompensa.metal > 0 && (
-                  <div className="flex flex-col items-center">
-                    <span className="text-lg">⚙️</span>
-                    <span className="text-xs font-bold text-slate-700">
-                      {misionSeleccionada.recompensa.metal}
-                    </span>
-                  </div>
-                )}
-              </div>
+                  {misionSeleccionada.recompensa.metal > 0 && (
+                    <div className="flex flex-col items-center">
+                      <span className="text-lg">⚙️</span>
+                      <span className="text-xs font-bold text-slate-700">
+                        {misionSeleccionada.recompensa.metal}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="text-center text-sm italic opacity-70">
+                  {misionSeleccionada.tipo === "asedio"
+                    ? "Saquearás los recursos del gremio si consigues la victoria."
+                    : "Sin recompensas garantizadas."}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -656,13 +708,13 @@ export default function ExpedicionesPage() {
 
       {/* Pantalla de confirmación de viaje */}
       {viajeIniciado && reporteViaje && (
-        <div className="absolute inset-0 z-30 bg-slate-900/95 backdrop-blur flex flex-col items-center justify-center p-6 text-center animate-in fade-in">
-          <h2 className="text-3xl font-bold text-amber-500 mb-4">
+        <div className="absolute inset-0 z-30 flex animate-in flex-col items-center justify-center bg-slate-900/95 p-6 text-center fade-in backdrop-blur">
+          <h2 className="mb-4 text-3xl font-bold text-amber-500">
             ¡Expedición en marcha!
           </h2>
 
-          <div className="bg-slate-800 p-6 rounded-xl border border-slate-700 max-w-sm w-full mb-8 shadow-xl">
-            <p className="text-slate-300 mb-4">
+          <div className="mb-8 w-full max-w-sm rounded-xl border border-slate-700 bg-slate-800 p-6 shadow-xl">
+            <p className="mb-4 text-slate-300">
               Tu personaje ha partido hacia{" "}
               <strong className="text-white">
                 {misionSeleccionada?.nombre}
@@ -670,11 +722,11 @@ export default function ExpedicionesPage() {
               .
             </p>
 
-            <div className="bg-slate-900 rounded p-4 border border-slate-700 text-sm">
-              <p className="text-slate-400 uppercase text-xs mb-1">
+            <div className="rounded border border-slate-700 bg-slate-900 p-4 text-sm">
+              <p className="mb-1 text-xs uppercase text-slate-400">
                 Llegada Estimada
               </p>
-              <p className="text-amber-400 font-bold">
+              <p className="font-bold text-amber-400">
                 {new Date(reporteViaje.fechaLlegada).toLocaleString("es-ES", {
                   weekday: "long",
                   hour: "2-digit",
@@ -686,7 +738,7 @@ export default function ExpedicionesPage() {
 
           <Link
             href="/base"
-            className="bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 px-8 rounded-xl transition-colors"
+            className="rounded-xl bg-slate-700 px-8 py-3 font-bold text-white transition-colors hover:bg-slate-600"
           >
             Volver a la base
           </Link>
