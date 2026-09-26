@@ -32,27 +32,27 @@ export const MISIONES_POR_DURACION = [
   {
     horas: 0.5,
     recompensaBase: 50,
-    maxMisiones: 6,
+    maxMisiones: 7,
   },
   {
     horas: 1,
     recompensaBase: 90,
-    maxMisiones: 3,
+    maxMisiones: 6,
   },
   {
     horas: 3,
     recompensaBase: 250,
-    maxMisiones: 3,
+    maxMisiones: 5,
   },
   {
     horas: 9,
     recompensaBase: 700,
-    maxMisiones: 2,
+    maxMisiones: 4,
   },
   {
     horas: 24,
     recompensaBase: 1800,
-    maxMisiones: 2,
+    maxMisiones: 3,
   },
 ];
 

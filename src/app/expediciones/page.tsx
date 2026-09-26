@@ -210,17 +210,17 @@ export default function ExpedicionesPage() {
       switch (indiceDuracion) {
         case 0:
           minimo = 0;
-          maximo = nivel + 1;
+          maximo = nivel + 2;
           break;
         case 1:
         case 2:
-          minimo = Math.max(0, nivel - 1);
-          maximo = nivel + 1;
+          minimo = Math.max(0, nivel - 2);
+          maximo = nivel + 3;
           break;
         case 3:
         case 4:
-          minimo = nivel;
-          maximo = nivel + 1;
+          minimo = Math.max(0, nivel - 2);
+          maximo = nivel + 4;
           break;
         default:
           return;
