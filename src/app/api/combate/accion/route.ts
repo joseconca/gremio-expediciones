@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { experienciaParaNivel } from "@/lib/configuracionJuego";
 import {
+  calcularBonusDefensaMuralla,
   resolverAtaqueJugador,
   resolverAtaqueEnemigo,
   type AccionAnimadaCombate,
@@ -1031,7 +1032,7 @@ export async function POST(request: Request) {
           jugadorNivel: combate.jugadorNivel,
           jugadorProbCritico: combate.jugadorProbCritico,
           jugadorDanoCritico: combate.jugadorDanoCritico,
-          enemigoDefensa,
+          enemigoDefensa: combate.enemigoDefensa + calcularBonusDefensaMuralla(combate.murallaNivel),
           enemigoNombre: combate.enemigoNombre ?? "Defensor",
         });
 
@@ -1054,7 +1055,7 @@ export async function POST(request: Request) {
           jugadorNivel: combate.jugadorNivel,
           jugadorHp,
           jugadorHpMaximo: combate.jugadorHpMaximo,
-          enemigoDefensa,
+          enemigoDefensa: combate.enemigoDefensa + calcularBonusDefensaMuralla(combate.murallaNivel),
           enemigoNombre: combate.enemigoNombre ?? "Defensor",
         });
 

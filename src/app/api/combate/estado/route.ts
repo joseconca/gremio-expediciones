@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import {
   resolverAtaqueJugador,
   resolverAtaqueEnemigo,
+  calcularBonusDefensaMuralla,
 } from "@/lib/expediciones/combate";
 
 const TIEMPO_MAXIMO_TURNO_MS = 2 * 60 * 1000;
@@ -122,7 +123,7 @@ export async function GET() {
         jugadorNivel: combate.jugadorNivel,
         jugadorProbCritico: combate.jugadorProbCritico,
         jugadorDanoCritico: combate.jugadorDanoCritico,
-        enemigoDefensa: combate.enemigoDefensa ?? 0,
+        enemigoDefensa: (combate.enemigoDefensa ?? 0) + calcularBonusDefensaMuralla(combate.murallaNivel),
         enemigoNombre:
           combate.defensorNombre ?? combate.enemigoNombre ?? "Defensor",
       });

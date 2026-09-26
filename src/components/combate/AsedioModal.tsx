@@ -5,6 +5,7 @@ import Image from "next/image";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import type { CombateActivo, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
+import { calcularBonusDefensaMuralla } from "@/lib/expediciones/combate";
 
 interface AsedioModalProps {
   combate: CombateActivo;
@@ -479,10 +480,18 @@ export default function AsedioModal({
    * ============================================================
    */
 
+  const defensaRivalBase = esAtacante
+    ? combate.enemigoDefensa
+    : combate.jugadorDefensa;
+
+  const bonusMurallaRival = esAtacante
+    ? calcularBonusDefensaMuralla(combate.murallaNivel)
+    : 0;
+
   const statsRival = {
     hpMaximo: hpMaximoRival,
     ataque: esAtacante ? combate.enemigoAtaque : combate.jugadorAtaque,
-    defensa: esAtacante ? combate.enemigoDefensa : combate.jugadorDefensa,
+    defensa: defensaRivalBase + bonusMurallaRival,
     velocidad: esAtacante ? combate.enemigoVelocidad : combate.jugadorVelocidad,
     nivel: esAtacante ? combate.enemigoNivel : combate.jugadorNivel,
   };
@@ -1141,9 +1150,17 @@ export default function AsedioModal({
                     Defensa
                   </span>
 
-                  <span className="font-mono text-lg font-bold text-blue-400">
-                    {statsRival.defensa}
-                  </span>
+                  <div className="text-right">
+                    <span className="font-mono text-lg font-bold text-blue-400">
+                      {statsRival.defensa}
+                    </span>
+
+                    {esAtacante && (combate.murallaNivel ?? 0) > 0 && (
+                      <span className="ml-2 text-[10px] font-bold text-stone-500">
+                        (+{bonusMurallaRival} muralla)
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 <div className="flex items-center justify-around rounded border border-stone-800 bg-stone-950/50 p-2">

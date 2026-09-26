@@ -1,6 +1,6 @@
 import type { DefinicionHabilidad } from "@/lib/tiposJuego";
 
-export type AccionAnimadaCombate ={
+export type AccionAnimadaCombate = {
   actor: "jugador" | "enemigo";
   tipo: "ataque" | "fallo" | "habilidad";
   animacion:
@@ -13,7 +13,7 @@ export type AccionAnimadaCombate ={
   critico: boolean;
   curacion?: number;
   texto: string;
-}
+};
 
 function crearAccion(
   datos: Omit<AccionAnimadaCombate, "critico" | "dano"> & {
@@ -39,6 +39,16 @@ function calcularDanoMitigado(danoBase: number, defensa: number): number {
   const dano = (danoBase * K_DEFENSA) / (defensaSegura + K_DEFENSA);
 
   return Math.max(1, Math.floor(dano));
+}
+
+export function calcularBonusDefensaMuralla(
+  murallaNivel: number | null | undefined
+): number {
+  const nivel = Math.max(0, murallaNivel ?? 0);
+  if (nivel >= 1) {
+    return 5 + nivel * 5;
+  }
+  return 0;
 }
 
 export function resolverAtaqueJugador(combate: {
