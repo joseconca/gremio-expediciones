@@ -1,6 +1,6 @@
 import type { DefinicionHabilidad } from "@/lib/tiposJuego";
 
-export interface AccionAnimadaCombate {
+export type AccionAnimadaCombate ={
   actor: "jugador" | "enemigo";
   tipo: "ataque" | "fallo" | "habilidad";
   animacion:

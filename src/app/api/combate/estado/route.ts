@@ -145,27 +145,24 @@ export async function GET() {
     }
 
     let ganadorUsuarioId: string | null = null;
+    let nuevaFase: "activo" | "victoria" | "derrota" = "activo";
 
-    let nuevaFase = "activo";
-
-    /*
-     * El defensor gana también en caso de doble KO.
-     */
     if (jugadorHp <= 0 && enemigoHp <= 0) {
       ganadorUsuarioId = combate.defensorUsuarioId;
-      nuevaFase = "finalizado";
+      nuevaFase = "derrota";
     } else if (jugadorHp <= 0) {
       ganadorUsuarioId = combate.defensorUsuarioId;
-      nuevaFase = "finalizado";
+      nuevaFase = "derrota";
     } else if (enemigoHp <= 0) {
       ganadorUsuarioId = combate.atacanteUsuarioId;
-      nuevaFase = "finalizado";
+      nuevaFase = "victoria";
     }
 
     const nuevoTurno = combate.turno === "atacante" ? "defensor" : "atacante";
 
-    const nuevoLog = Array.isArray(combate.log) ? combate.log : [];
-
+    const nuevoLog = Array.isArray(combate.log)
+      ? [...(combate.log as string[]), accion.texto]
+      : [accion.texto];
 
     /*
      * Solo el cliente que consiga esta actualización gana
@@ -184,7 +181,7 @@ export async function GET() {
         cooldowns,
         cooldownsDefensor,
 
-        turno: nuevaFase === "finalizado" ? combate.turno : nuevoTurno,
+        turno: nuevaFase === "activo" ? combate.turno : nuevoTurno,
 
         fase: nuevaFase,
 
@@ -193,6 +190,8 @@ export async function GET() {
         ultimoTurnoEn: new Date(),
 
         log: nuevoLog,
+
+        ultimaAccion: accion,
 
         version: {
           increment: 1,

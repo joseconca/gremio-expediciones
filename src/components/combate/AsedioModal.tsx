@@ -56,6 +56,10 @@ export default function AsedioModal({
 }: AsedioModalProps) {
   const logRef = useRef<HTMLDivElement>(null);
   const accionEnCurso = useRef(false);
+  const versionEsperada = combate.version + 1;
+  const ultimaVersionAnimada = useRef<number | null>(null);
+  const firmaAccionLocal = useRef<string | null>(null);
+  const versionAccionLocal = useRef<number | null>(null);
 
   const [habilidades, setHabilidades] = useState<HabilidadEquipable[]>([]);
   const [mostrarHabilidades, setMostrarHabilidades] = useState(false);
@@ -267,6 +271,17 @@ export default function AsedioModal({
   const esperar = (milisegundos: number) =>
     new Promise<void>((resolver) => setTimeout(resolver, milisegundos));
 
+  const obtenerFirmaAccion = (accion: AccionAnimadaCombate) =>
+    JSON.stringify({
+      actor: accion.actor,
+      tipo: accion.tipo,
+      animacion: accion.animacion,
+      dano: accion.dano,
+      critico: accion.critico,
+      curacion: accion.curacion ?? 0,
+      texto: accion.texto,
+    });
+
   const mostrarResultadoAccion = async (accion: AccionAnimadaCombate) => {
     const actorVista = convertirActorVista(accion.actor);
     const objetivo: ActorVista =
@@ -325,6 +340,28 @@ export default function AsedioModal({
     setAnimacionActual(null);
   };
 
+  useEffect(() => {
+    const ultimaAccion = combate.ultimaAccion;
+
+    if (!ultimaAccion) {
+      return;
+    }
+
+    if (ultimaVersionAnimada.current === combate.version) {
+      return;
+    }
+
+    if (versionAccionLocal.current === combate.version) {
+      ultimaVersionAnimada.current = combate.version;
+      versionAccionLocal.current = null;
+      return;
+    }
+
+    ultimaVersionAnimada.current = combate.version;
+
+    void mostrarResultadoAccion(ultimaAccion);
+  }, [combate.version, combate.ultimaAccion]);
+
   /*
    * ============================================================
    * ATAQUE BÁSICO
@@ -346,13 +383,19 @@ export default function AsedioModal({
     setProcesandoLocal(true);
     setMostrarHabilidades(false);
 
+    versionAccionLocal.current = combate.version + 1;
+
     try {
       const accion = await onAccionCombate("atacar");
 
-      if (!accion) return;
+      if (!accion) {
+        versionAccionLocal.current = null;
+        return;
+      }
 
       await mostrarResultadoAccion(accion);
     } catch (error) {
+      versionAccionLocal.current = null;
       console.error("Error ejecutando ataque de asedio:", error);
     } finally {
       accionEnCurso.current = false;
@@ -382,12 +425,18 @@ export default function AsedioModal({
     setMostrarHabilidades(false);
 
     try {
+      versionAccionLocal.current = combate.version + 1;
       const accion = await onAccionCombate("usar_habilidad", habilidadId);
 
-      if (!accion) return;
+      if (!accion) {
+        versionAccionLocal.current = null;
+        return;
+      }
+      firmaAccionLocal.current = obtenerFirmaAccion(accion);
 
       await mostrarResultadoAccion(accion);
     } catch (error) {
+      versionAccionLocal.current = null;
       console.error("Error ejecutando habilidad de asedio:", error);
     } finally {
       accionEnCurso.current = false;

@@ -632,6 +632,7 @@ export async function POST(request: Request) {
               oroGanado,
               experienciaGanada,
               log,
+              ultimaAccion: accionAnimada,
               version: {
                 increment: 1,
               },
@@ -784,6 +785,7 @@ export async function POST(request: Request) {
               oroGanado: oroAsegurado,
               experienciaGanada,
               log,
+              ultimaAccion: accionAnimada,
               version: {
                 increment: 1,
               },
@@ -941,6 +943,7 @@ export async function POST(request: Request) {
           efectos,
           ultimoTurnoEn: new Date(),
           log,
+          ultimaAccion: accionAnimada,
           version: {
             increment: 1,
           },
@@ -1186,6 +1189,7 @@ export async function POST(request: Request) {
             cooldownsDefensor,
             efectosDefensor,
             ultimoTurnoEn: new Date(),
+            ultimaAccion: accionAnimada,
             log,
             version: {
               increment: 1,
