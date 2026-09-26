@@ -69,7 +69,7 @@ export default function MercadoPage() {
   // Limpiar el mensaje del mercader tras unos segundos
   useEffect(() => {
     if (mensajeMercader) {
-      const timer = setTimeout(() => setMensajeMercader(null), 4000);
+      const timer = setTimeout(() => setMensajeMercader(null), 40000);
       return () => clearTimeout(timer);
     }
   }, [mensajeMercader]);
