@@ -12,7 +12,7 @@ import {
   generarDificultades,
 } from "@/lib/generadorMisiones";
 import { calcularDistanciaKm } from "@/lib/utils";
-import { calcularOroBaseComercio } from "@/lib/expediciones/comercio"; 
+import { calcularOroBaseComercio } from "@/lib/expediciones/comercio";
 import type {
   BaseMapa,
   DefinicionMision,
@@ -41,15 +41,20 @@ export default function ExpedicionesPage() {
     ultimaMisionElite,
   } = useGameStore();
 
-  const [misionSeleccionada, setMisionSeleccionada] = useState<DefinicionMision | null>(null);
-  const [baseSeleccionada, setBaseSeleccionada] = useState<BaseMapa | null>(null); // NUEVO ESTADO
+  const [misionSeleccionada, setMisionSeleccionada] =
+    useState<DefinicionMision | null>(null);
+  const [baseSeleccionada, setBaseSeleccionada] = useState<BaseMapa | null>(
+    null
+  ); // NUEVO ESTADO
   const [viajeIniciado, setViajeIniciado] = useState(false);
   const [cargando, setCargando] = useState(false);
   const [reporteViaje, setReporteViaje] = useState<ReporteViaje | null>(null);
   const [basesAjenas, setBasesAjenas] = useState<BaseMapa[]>([]);
   const [horaActual, setHoraActual] = useState<number | null>(null);
   const [diaActual, setDiaActual] = useState<string | null>(null);
-  const [combateAsedio, setCombateAsedio] = useState<CombateActivo | null>(null);
+  const [combateAsedio, setCombateAsedio] = useState<CombateActivo | null>(
+    null
+  );
   const [esAtacanteAsedio, setEsAtacanteAsedio] = useState(false);
   const [procesandoAsedio, setProcesandoAsedio] = useState(false);
 
@@ -59,7 +64,11 @@ export default function ExpedicionesPage() {
 
   useEffect(() => {
     if (!expedicionActiva) return;
-    if (expedicionActiva.tipo !== "asedio" || expedicionActiva.fase !== "en_viaje") return;
+    if (
+      expedicionActiva.tipo !== "asedio" ||
+      expedicionActiva.fase !== "en_viaje"
+    )
+      return;
 
     const fechaLlegada = new Date(expedicionActiva.fechaLlegada).getTime();
     if (Date.now() < fechaLlegada) return;
@@ -67,7 +76,9 @@ export default function ExpedicionesPage() {
     let cancelado = false;
     const iniciarCombateAlLlegar = async () => {
       try {
-        const respuesta = await fetch("/api/expediciones/llegar", { method: "POST" });
+        const respuesta = await fetch("/api/expediciones/llegar", {
+          method: "POST",
+        });
         const datos = await respuesta.json();
 
         if (cancelado) return;
@@ -86,7 +97,9 @@ export default function ExpedicionesPage() {
     };
 
     void iniciarCombateAlLlegar();
-    return () => { cancelado = true; };
+    return () => {
+      cancelado = true;
+    };
   }, [expedicionActiva]);
 
   useEffect(() => {
@@ -95,11 +108,18 @@ export default function ExpedicionesPage() {
     let cancelado = false;
     const comprobarAsediosEntrantes = async () => {
       try {
-        const respuesta = await fetch("/api/asedios/entrantes", { cache: "no-store" });
+        const respuesta = await fetch("/api/asedios/entrantes", {
+          cache: "no-store",
+        });
         if (!respuesta.ok) return;
 
         const datos = await respuesta.json();
-        if (cancelado || !Array.isArray(datos.combates) || datos.combates.length === 0) return;
+        if (
+          cancelado ||
+          !Array.isArray(datos.combates) ||
+          datos.combates.length === 0
+        )
+          return;
 
         const combateEntrante = datos.combates[0];
         setCombateAsedio(combateEntrante);
@@ -153,7 +173,9 @@ export default function ExpedicionesPage() {
     let cancelado = false;
     const actualizarCombate = async () => {
       try {
-        const respuesta = await fetch("/api/combate/estado", { cache: "no-store" });
+        const respuesta = await fetch("/api/combate/estado", {
+          cache: "no-store",
+        });
         if (!respuesta.ok) return;
 
         const datos = await respuesta.json();
@@ -173,9 +195,11 @@ export default function ExpedicionesPage() {
   }, [combateAsedio?.id]);
 
   const misionesGeneradas = useMemo<DefinicionMision[]>(() => {
-    if (!baseCoords || !personaje || horaActual === null || diaActual === null) return [];
+    if (!baseCoords || !personaje || horaActual === null || diaActual === null)
+      return [];
 
-    const offset = horaMisiones === horaActual ? misionesCompletadasEstaHora : 0;
+    const offset =
+      horaMisiones === horaActual ? misionesCompletadasEstaHora : 0;
     const nivel = personaje.nivel;
     const nuevasMisiones: DefinicionMision[] = [];
 
@@ -226,7 +250,9 @@ export default function ExpedicionesPage() {
 
     const eliteYaCompletada = ultimaMisionElite?.slice(0, 10) === diaActual;
     if (!eliteYaCompletada) {
-      nuevasMisiones.push(generarMisionElite(baseCoords.lat, baseCoords.lng, diaActual));
+      nuevasMisiones.push(
+        generarMisionElite(baseCoords.lat, baseCoords.lng, diaActual)
+      );
     }
 
     return nuevasMisiones;
@@ -276,33 +302,40 @@ export default function ExpedicionesPage() {
       baseSeleccionada.lng
     );
 
-    const mision: DefinicionMision = tipo === "comercio" ? {
-      id: `comercio-${baseSeleccionada.id}`,
-      tipo: "comercio",
-      lat: baseSeleccionada.lat,
-      lng: baseSeleccionada.lng,
-      nombre: `Comerciar: ${baseSeleccionada.nombre}`,
-      dificultad: 0,
-      recompensa: {
-        oro: calcularOroBaseComercio(distanciaKmBase),
-        madera: 0,
-        piedra: 0,
-        metal: 0,
-      },
-      duracionObjetivoHoras: 0,
-      descripcion: `Envía a tu personaje a intercambiar bienes con el gremio de ${baseSeleccionada.nombre}.`,
-    } : {
-      id: `asedio-${baseSeleccionada.id}`,
-      tipo: "asedio",
-      lat: baseSeleccionada.lat,
-      lng: baseSeleccionada.lng,
-      nombre: `Asediar: ${baseSeleccionada.nombre}`,
-      dificultad: Math.max(0, (baseSeleccionada.nivelPersonaje + 1 || 1) - (personaje?.nivel || 1)),
-      recompensa: { oro: 0, madera: 0, piedra: 0, metal: 0 },
-      duracionObjetivoHoras: 0,
-      descripcion: `Envía a tu personaje a atacar la base del gremio de ${baseSeleccionada.nombre}.`,
-      objetivoId: baseSeleccionada.id,
-    };
+    const mision: DefinicionMision =
+      tipo === "comercio"
+        ? {
+            id: `comercio-${baseSeleccionada.id}`,
+            tipo: "comercio",
+            lat: baseSeleccionada.lat,
+            lng: baseSeleccionada.lng,
+            nombre: `Comerciar: ${baseSeleccionada.nombre}`,
+            dificultad: 0,
+            recompensa: {
+              oro: calcularOroBaseComercio(distanciaKmBase),
+              madera: 0,
+              piedra: 0,
+              metal: 0,
+            },
+            duracionObjetivoHoras: 0,
+            descripcion: `Envía a tu personaje a intercambiar bienes con el gremio de ${baseSeleccionada.nombre}.`,
+          }
+        : {
+            id: `asedio-${baseSeleccionada.id}`,
+            tipo: "asedio",
+            lat: baseSeleccionada.lat,
+            lng: baseSeleccionada.lng,
+            nombre: `Asediar: ${baseSeleccionada.nombre}`,
+            dificultad: Math.max(
+              0,
+              (baseSeleccionada.nivelPersonaje + 1 || 1) -
+                (personaje?.nivel || 1)
+            ),
+            recompensa: { oro: 0, madera: 0, piedra: 0, metal: 0 },
+            duracionObjetivoHoras: 0,
+            descripcion: `Envía a tu personaje a atacar la base del gremio de ${baseSeleccionada.nombre}.`,
+            objetivoId: baseSeleccionada.id,
+          };
 
     setMisionSeleccionada(mision);
     setBaseSeleccionada(null);
@@ -402,12 +435,12 @@ export default function ExpedicionesPage() {
     cargarJugador();
   };
 
-  const tieneRecompensas = misionSeleccionada ? (
-    misionSeleccionada.recompensa.oro > 0 ||
-    misionSeleccionada.recompensa.madera > 0 ||
-    misionSeleccionada.recompensa.piedra > 0 ||
-    misionSeleccionada.recompensa.metal > 0
-  ) : false;
+  const tieneRecompensas = misionSeleccionada
+    ? misionSeleccionada.recompensa.oro > 0 ||
+      misionSeleccionada.recompensa.madera > 0 ||
+      misionSeleccionada.recompensa.piedra > 0 ||
+      misionSeleccionada.recompensa.metal > 0
+    : false;
 
   return (
     <main className="relative h-screen w-full bg-slate-900 overflow-hidden font-sans">
@@ -458,55 +491,77 @@ export default function ExpedicionesPage() {
       {/* PANEL DE SELECCIÓN DE BASE */}
       {baseSeleccionada && !viajeIniciado && !misionSeleccionada && (
         <div className="absolute bottom-10 left-0 z-20 w-full p-4 pointer-events-none">
-          <div className="pointer-events-auto mx-auto max-w-md transform rounded-xl border-2 border-slate-700 bg-slate-900 p-4 text-slate-200 shadow-[0_10px_30px_rgba(0,0,0,0.8)] animate-in slide-in-from-bottom-10">
-            {/* 1. Cabecera */}
-            <div className="mb-2 flex items-start justify-between gap-3">
-              <div className="min-w-0">
-                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <h2 className="text-2xl font-black uppercase tracking-wide text-amber-500">
+          <div className="pointer-events-auto relative mx-auto max-w-sm transform animate-in slide-in-from-bottom-10">
+            {/* Postes traseros de sujeción (decorativos) */}
+            <div className="absolute -top-4 left-8 h-6 w-3 rounded-t-sm bg-[#3a2214] shadow-[inset_-1px_0_3px_rgba(0,0,0,0.6)]"></div>
+            <div className="absolute -top-4 right-8 h-6 w-3 rounded-t-sm bg-[#3a2214] shadow-[inset_-1px_0_3px_rgba(0,0,0,0.6)]"></div>
+
+            {/* Tablón Principal (Contenedor de Madera) */}
+            <div className="relative rounded-sm border-y-4 border-x-2 border-[#362214] bg-[#5e3a23] shadow-[0_15px_35px_rgba(0,0,0,0.8),inset_0_0_20px_rgba(0,0,0,0.5)]">
+              {/* Clavos en las cuatro esquinas */}
+              <div className="absolute left-2 top-2 h-2.5 w-2.5 rounded-full bg-[#1c110a] shadow-[inset_1px_1px_1px_rgba(255,255,255,0.2),0_1px_1px_rgba(0,0,0,0.5)]"></div>
+              <div className="absolute right-2 top-2 h-2.5 w-2.5 rounded-full bg-[#1c110a] shadow-[inset_1px_1px_1px_rgba(255,255,255,0.2),0_1px_1px_rgba(0,0,0,0.5)]"></div>
+              <div className="absolute bottom-2 left-2 h-2.5 w-2.5 rounded-full bg-[#1c110a] shadow-[inset_1px_1px_1px_rgba(255,255,255,0.2),0_1px_1px_rgba(0,0,0,0.5)]"></div>
+              <div className="absolute bottom-2 right-2 h-2.5 w-2.5 rounded-full bg-[#1c110a] shadow-[inset_1px_1px_1px_rgba(255,255,255,0.2),0_1px_1px_rgba(0,0,0,0.5)]"></div>
+
+              {/* Hendiduras simulando la separación de los tablones */}
+              <div className="pointer-events-none absolute left-0 top-1/3 w-full border-b border-[#362214] opacity-60 shadow-[0_1px_0_rgba(255,255,255,0.05)]"></div>
+              <div className="pointer-events-none absolute left-0 top-2/3 w-full border-b border-[#362214] opacity-60 shadow-[0_1px_0_rgba(255,255,255,0.05)]"></div>
+
+              {/* Contenido del Letrero */}
+              <div className="relative z-10 p-5">
+                {/* Botón Cerrar (Como un remache de hierro forjado) */}
+                <button
+                  onClick={() => setBaseSeleccionada(null)}
+                  className="absolute -right-3 -top-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#1a0f09] bg-[#2a160b] text-sm font-black text-[#8c6b5d] shadow-[0_2px_4px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.1)] transition-all hover:scale-110 hover:text-[#e8c39e]"
+                >
+                  ✕
+                </button>
+
+                {/* Título: Tablilla superpuesta y hundida */}
+                <div className="mx-auto mb-4 w-11/12 rounded bg-[#3a2214] p-2 text-center shadow-[inset_0_3px_6px_rgba(0,0,0,0.6),0_1px_0_rgba(255,255,255,0.1)]">
+                  <span className="block text-[10px] font-bold uppercase tracking-[0.2em] text-[#a88265]">
+                    Campamento Enemigo
+                  </span>
+                  <h2 className="mt-0.5 text-xl font-black uppercase tracking-widest text-[#e8c39e] drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">
                     {baseSeleccionada.nombre}
                   </h2>
-                  <span className="shrink-0 text-sm font-black text-slate-400">
-                    Gremio Rival
-                  </span>
+                </div>
+
+                {/* Descripción */}
+                <p className="mb-5 px-2 text-center text-sm font-medium italic text-[#d4b494] drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                  Has localizado las tierras de este gremio.
+                </p>
+
+                {/* Botones de acción (Placas de madera tallada) */}
+                <div className="flex gap-4">
+                  {/* Asediar */}
+                  <button
+                    onClick={() => handleSeleccionarAccionBase("asedio")}
+                    className="group relative flex flex-1 flex-col items-center justify-center overflow-hidden rounded-sm border border-[#2a160b] bg-gradient-to-b from-[#4a2e1b] to-[#362013] p-3 shadow-[0_4px_6px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.05)] transition-all hover:-translate-y-0.5 hover:from-[#54341f] hover:to-[#3b2214] hover:shadow-[0_6px_8px_rgba(0,0,0,0.8)] active:translate-y-0 active:shadow-inner"
+                  >
+                    <span className="mb-1 text-2xl opacity-80 saturate-50 sepia-[.3] transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 group-hover:saturate-100 group-hover:sepia-0 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                      ⚔️
+                    </span>
+                    <span className="text-[11px] font-black uppercase tracking-widest text-[#c27373] drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] transition-colors group-hover:text-[#d18484]">
+                      Asediar
+                    </span>
+                  </button>
+
+                  {/* Comerciar */}
+                  <button
+                    onClick={() => handleSeleccionarAccionBase("comercio")}
+                    className="group relative flex flex-1 flex-col items-center justify-center overflow-hidden rounded-sm border border-[#2a160b] bg-gradient-to-b from-[#4a2e1b] to-[#362013] p-3 shadow-[0_4px_6px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.05)] transition-all hover:-translate-y-0.5 hover:from-[#54341f] hover:to-[#3b2214] hover:shadow-[0_6px_8px_rgba(0,0,0,0.8)] active:translate-y-0 active:shadow-inner"
+                  >
+                    <span className="mb-1 text-2xl opacity-80 saturate-50 sepia-[.3] transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 group-hover:saturate-100 group-hover:sepia-0 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                      🤝
+                    </span>
+                    <span className="text-[11px] font-black uppercase tracking-widest text-[#8fa382] drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] transition-colors group-hover:text-[#a1b893]">
+                      Comerciar
+                    </span>
+                  </button>
                 </div>
               </div>
-              <button
-                onClick={() => setBaseSeleccionada(null)}
-                className="shrink-0 text-2xl leading-none text-slate-500 transition-colors hover:text-slate-300"
-              >
-                ✕
-              </button>
-            </div>
-
-            {/* 2. Descripción */}
-            <div className="mb-4 border-b border-slate-800 pb-3">
-              <p className="text-sm italic text-slate-400">
-                Has localizado el campamento de otro jugador. ¿Qué acción deseas emprender contra este gremio?
-              </p>
-            </div>
-
-            {/* 3. Acciones */}
-            <div className="flex gap-4">
-              <button
-                onClick={() => handleSeleccionarAccionBase("asedio")}
-                className="group flex flex-1 flex-col items-center justify-center rounded-lg border-2 border-red-900/50 bg-red-950/30 p-4 transition-all hover:border-red-700 hover:bg-red-900/50 hover:shadow-[0_0_15px_rgba(220,38,38,0.2)]"
-              >
-                <span className="mb-2 text-3xl transition-transform group-hover:scale-110">⚔️</span>
-                <span className="text-sm font-bold uppercase tracking-widest text-red-400 drop-shadow-md">
-                  Asediar
-                </span>
-              </button>
-
-              <button
-                onClick={() => handleSeleccionarAccionBase("comercio")}
-                className="group flex flex-1 flex-col items-center justify-center rounded-lg border-2 border-emerald-900/50 bg-emerald-950/30 p-4 transition-all hover:border-emerald-700 hover:bg-emerald-900/50 hover:shadow-[0_0_15px_rgba(16,185,129,0.2)]"
-              >
-                <span className="mb-2 text-3xl transition-transform group-hover:scale-110">🤝</span>
-                <span className="text-sm font-bold uppercase tracking-widest text-emerald-400 drop-shadow-md">
-                  Comerciar
-                </span>
-              </button>
             </div>
           </div>
         </div>
@@ -653,7 +708,9 @@ export default function ExpedicionesPage() {
                     : "text-[#6e5642]"
                 }`}
               >
-                {misionSeleccionada.tipo === "asedio" ? "Botín de Guerra" : "Posibles recompensas"}
+                {misionSeleccionada.tipo === "asedio"
+                  ? "Botín de Guerra"
+                  : "Posibles recompensas"}
               </span>
 
               {tieneRecompensas ? (
