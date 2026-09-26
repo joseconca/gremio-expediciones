@@ -1315,6 +1315,7 @@ export async function POST(request: Request) {
         efectosDefensor,
         ultimoTurnoEn: new Date(),
         log,
+        ultimaAccion: accionAnimada,
         version: {
           increment: 1,
         },

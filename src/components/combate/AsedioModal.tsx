@@ -190,7 +190,9 @@ export default function AsedioModal({
     ? combate.enemigoHpMaximo
     : combate.jugadorHpMaximo;
 
-  const nombreRival = combate.enemigoNombre ?? "Defensor";
+  const nombreRival = esAtacante
+    ? combate.defensorNombre ?? "Defensor"
+    : combate.atacanteNombre ?? "Atacante";
 
   const porcentajeVidaPropia =
     hpMaximoPropio > 0
@@ -452,9 +454,13 @@ export default function AsedioModal({
    * personaje rival al modelo de combate.
    */
 
+  const claseRival = esAtacante ? combate.defensorClase : combate.atacanteClase;
+
+  const sexoRival = esAtacante ? combate.defensorSexo : combate.atacanteSexo;
+
   const spriteRival = obtenerSpriteHeroe(
-    combate.enemigoClase ?? "Guerrero",
-    combate.enemigoSexo ?? "chico"
+    claseRival ?? "Guerrero",
+    sexoRival ?? "chico"
   );
 
   const ultimaLineaLog =

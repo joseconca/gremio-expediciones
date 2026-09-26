@@ -4,12 +4,13 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useGameStore } from "@/store/useGameStore";
+import { CombateActivo, useGameStore } from "@/store/useGameStore";
 import type {
   ReporteExpedicion as ReporteExpedicionTipo,
   Edificio,
 } from "@/lib/tiposJuego";
 import CombateModal from "@/components/combate/CombateModal";
+import AsedioModal from "@/components/combate/AsedioModal";
 import PanelEdificios from "@/components/base/PanelEdificios";
 import ReporteExpedicion from "@/components/reportes/ReporteExpedicion";
 import { CONFIGURACION_EDIFICIOS } from "@/lib/tiposJuego";
@@ -27,6 +28,16 @@ interface CaravanaEntrante {
   fechaSalida: string;
   fechaLlegada: string;
   dificultad: number;
+  origenCoords: { lat: number; lng: number } | null;
+}
+interface AsedioEntrante {
+  id: string;
+  atacanteNombre: string;
+  atacanteNombreAventurero: string;
+  atacanteClase?: string | null;
+  atacanteSexo?: string | null;
+  fechaSalida: string;
+  fechaLlegada: string;
   origenCoords: { lat: number; lng: number } | null;
 }
 
@@ -141,6 +152,130 @@ export function PanelCaravanasEntrantes({
     </div>
   );
 }
+export function PanelAsediosEntrantes({
+  asedios,
+}: {
+  asedios: AsedioEntrante[];
+}) {
+  const [ahora, setAhora] = useState(0);
+  const [expandido, setExpandido] = useState(false);
+
+  useEffect(() => {
+    if (asedios.length === 0) return;
+
+    const intervalo = setInterval(() => {
+      setAhora(Date.now());
+    }, 1000);
+
+    return () => clearInterval(intervalo);
+  }, [asedios]);
+
+  if (asedios.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="-mx-4 mb-4 overflow-hidden border-b-2 border-red-900 bg-slate-900 shadow-lg md:-mx-8">
+      <button
+        type="button"
+        onClick={() => setExpandido((abierto) => !abierto)}
+        aria-expanded={expandido}
+        className="group flex w-full cursor-pointer items-center justify-between border-b border-red-900 bg-slate-800 px-4 py-2 text-left hover:bg-slate-750"
+      >
+        <h3 className="flex items-center gap-2 text-base font-black uppercase tracking-widest text-red-400">
+          <span>⚔️</span> Asedios Entrantes
+        </h3>
+
+        <span className="flex items-center gap-3">
+          <span className="rounded-full border border-red-800 bg-red-900/50 px-3 py-1 text-xs font-bold text-red-300">
+            {asedios.length} en camino
+          </span>
+
+          <span
+            className="text-lg leading-none text-slate-500 transition-colors group-hover:text-red-400"
+            aria-hidden="true"
+          >
+            {expandido ? "⌃" : "⌄"}
+          </span>
+        </span>
+      </button>
+
+      {expandido && (
+        <div className="flex gap-3 overflow-x-auto bg-[#0a0f1a] p-3">
+          {asedios.map((asedio) => {
+            const salida = new Date(asedio.fechaSalida).getTime();
+            const llegada = new Date(asedio.fechaLlegada).getTime();
+
+            const duracion = Math.max(1, llegada - salida);
+
+            const progreso = Math.max(
+              0,
+              Math.min(100, ((ahora - salida) / duracion) * 100)
+            );
+
+            const segundos = Math.max(0, Math.floor((llegada - ahora) / 1000));
+
+            const minutos = Math.floor(segundos / 60);
+            const restoSegundos = segundos % 60;
+
+            return (
+              <div
+                key={asedio.id}
+                className="relative min-w-[290px] flex-1 overflow-hidden rounded-lg border border-red-900/60 bg-slate-800 p-2"
+              >
+                <div className="relative z-10 flex items-center gap-3">
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                      Atacante
+                    </p>
+
+                    <p className="flex items-center gap-1 text-sm font-bold text-white">
+                      ⚔️
+                      <span className="max-w-[130px] truncate">
+                        {asedio.atacanteNombre}
+                      </span>
+                    </p>
+
+                    <p className="max-w-[170px] truncate text-[10px] text-slate-400">
+                      {asedio.atacanteNombreAventurero} en ruta
+                    </p>
+                  </div>
+
+                  <div className="min-w-[80px] flex-1">
+                    <div className="h-2 w-full rounded-full bg-slate-950 shadow-inner">
+                      <div
+                        className="h-2 rounded-full bg-red-600 transition-all duration-1000 ease-linear shadow-[0_0_10px_rgba(220,38,38,0.8)]"
+                        style={{ width: `${progreso}%` }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="text-right">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                      Llega en
+                    </p>
+
+                    <p className="whitespace-nowrap text-lg font-mono font-bold text-red-400">
+                      ⚔️ {minutos.toString().padStart(2, "0")}:
+                      {restoSegundos.toString().padStart(2, "0")}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="relative z-10 mt-1 flex justify-between text-[10px] font-medium text-slate-500">
+                  <span>Progreso: {Math.round(progreso)}%</span>
+                  <span className="text-red-300">Asedio en camino</span>
+                </div>
+
+                <div className="pointer-events-none absolute bottom-0 right-0 top-0 w-32 bg-gradient-to-l from-red-900/20 to-transparent" />
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function BasePage() {
   // Estado para la UI
@@ -171,24 +306,94 @@ export default function BasePage() {
   const [confirmarRegreso, setConfirmarRegreso] = useState(false);
   const [cancelandoExpedicion, setCancelandoExpedicion] = useState(false);
   const [combateAbierto, setCombateAbierto] = useState(false);
-
+  const [combateEntrante, setCombateEntrante] = useState<CombateActivo | null>(
+    null
+  );
   const [caravanasEntrantes, setCaravanasEntrantes] = useState<
     CaravanaEntrante[]
   >([]);
-  const [asediosEntrantes, setAsediosEntrantes] = useState<
-    AsedioEntrante[]
-  >([]);
+
+  const [asediosEntrantes, setAsediosEntrantes] = useState<AsedioEntrante[]>(
+    []
+  );
 
   useEffect(() => {
     fetch("/api/jugador")
       .then((respuesta) => respuesta.json())
       .then((datos) => setCaravanasEntrantes(datos.caravanasEntrantes || []))
       .catch(() => setCaravanasEntrantes([]));
+  }, []);
 
-      fetch("/api/asedios/entrantes")
-        .then((respuesta) => respuesta.json())
-        .then((datos) => setAsediosEntrantes(datos.asediosEntrantes || []))
-        .catch(() => setAsediosEntrantes([]));
+  useEffect(() => {
+    let activo = true;
+
+    const cargarAsedios = async () => {
+      try {
+        const respuesta = await fetch("/api/asedios/entrantes");
+
+        if (!respuesta.ok) return;
+
+        const datos = await respuesta.json();
+
+        if (activo) {
+          setAsediosEntrantes(datos.asedios || []);
+        }
+      } catch {
+        if (activo) {
+          setAsediosEntrantes([]);
+        }
+      }
+    };
+
+    void cargarAsedios();
+
+    const intervalo = setInterval(() => {
+      void cargarAsedios();
+    }, 5000);
+
+    return () => {
+      activo = false;
+      clearInterval(intervalo);
+    };
+  }, []);
+
+  useEffect(() => {
+    let activo = true;
+
+    const cargarCombateEntrante = async () => {
+      try {
+        const respuesta = await fetch("/api/combate/estado");
+
+        if (!respuesta.ok) return;
+
+        const datos = await respuesta.json();
+
+        if (!activo) return;
+
+        const combate = datos.combate ?? null;
+
+        setCombateEntrante(combate);
+
+        if (combate?.fase === "activo") {
+          setCombateAbierto(true);
+        }
+      } catch {
+        if (activo) {
+          setCombateEntrante(null);
+        }
+      }
+    };
+
+    void cargarCombateEntrante();
+
+    const intervalo = setInterval(() => {
+      void cargarCombateEntrante();
+    }, 2000);
+
+    return () => {
+      activo = false;
+      clearInterval(intervalo);
+    };
   }, []);
 
   useEffect(() => {
@@ -221,18 +426,22 @@ export default function BasePage() {
   }, [expedicionActiva]);
 
   useEffect(() => {
-    if (
-      expedicionActiva?.fase !== "combatiendo" ||
-      !expedicionActiva.combateActivo
-    ) {
-      return;
+    if (expedicionActiva?.combateActivo?.fase === "activo") {
+      const frame = requestAnimationFrame(() => {
+        setCombateAbierto(true);
+      });
+
+      return () => cancelAnimationFrame(frame);
     }
 
-    const frame = requestAnimationFrame(() => {
-      setCombateAbierto(true);
-    });
-    return () => cancelAnimationFrame(frame);
-  }, [expedicionActiva]);
+    if (combateEntrante?.fase === "activo") {
+      const frame = requestAnimationFrame(() => {
+        setCombateAbierto(true);
+      });
+
+      return () => cancelAnimationFrame(frame);
+    }
+  }, [expedicionActiva, combateEntrante]);
 
   const handleResolverLlegada = async () => {
     if (!expedicionActiva) return;
@@ -402,20 +611,53 @@ export default function BasePage() {
     },
   ];
 
+  const combateLocal = expedicionActiva?.combateActivo ?? null;
+
+  const combateVisible = !combateLocal
+    ? combateEntrante
+    : !combateEntrante
+    ? combateLocal
+    : combateEntrante.version > combateLocal.version
+    ? combateEntrante
+    : combateLocal;
+    
+  const esAtacante = Boolean(expedicionActiva?.combateActivo);
+
   return (
     <main className="min-h-screen p-4 md:p-8">
-      {/* ---- MODAL DE COMBATE ---- */}
-      {combateAbierto && expedicionActiva?.combateActivo && personaje && (
-        <CombateModal
-          combate={expedicionActiva.combateActivo}
-          personaje={personaje}
-          procesando={false}
-          onAccionCombate={ejecutarAccionCombate}
-          onCerrar={() => {
-            setCombateAbierto(false);
-          }}
-        />
-      )}
+      {/* ---- MODAL DE COMBATE NORMAL ---- */}
+      {combateAbierto &&
+        expedicionActiva?.combateActivo &&
+        expedicionActiva.tipo !== "asedio" &&
+        personaje && (
+          <CombateModal
+            combate={expedicionActiva.combateActivo}
+            personaje={personaje}
+            procesando={false}
+            onAccionCombate={ejecutarAccionCombate}
+            onCerrar={() => {
+              setCombateAbierto(false);
+            }}
+          />
+        )}
+
+      {/* ---- MODAL DE ASEDIO ---- */}
+      {combateAbierto &&
+        combateVisible &&
+        combateVisible.fase === "activo" &&
+        personaje &&
+        (expedicionActiva?.tipo === "asedio" || combateEntrante) && (
+          <AsedioModal
+            combate={combateVisible}
+            personaje={personaje}
+            esAtacante={esAtacante}
+            procesando={false}
+            onAccionCombate={ejecutarAccionCombate}
+            onCerrar={() => {
+              setCombateAbierto(false);
+            }}
+          />
+        )}
       {/* ---- MODAL DE REPORTE DE COMBATE ---- */}
       {reporte && (
         <ReporteExpedicion reporte={reporte} onCerrar={handleCerrarReporte} />
@@ -460,7 +702,7 @@ export default function BasePage() {
           </div>
         </div>
       )}
-
+      <PanelAsediosEntrantes asedios={asediosEntrantes} />
       <PanelCaravanasEntrantes caravanas={caravanasEntrantes} />
 
       <div className="max-w-4xl mx-auto">

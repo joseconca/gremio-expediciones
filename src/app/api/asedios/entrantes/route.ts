@@ -13,30 +13,64 @@ export async function GET() {
       );
     }
 
-    const combates = await prisma.combateActivo.findMany({
+    const expediciones = await prisma.expedicionActiva.findMany({
       where: {
-        tipo: "pvp",
-        defensorUsuarioId: usuario.id,
-        fase: "activo",
+        tipo: "asedio",
+        objetivoId: usuario.id,
+        fase: "en_viaje",
       },
       include: {
-        expedicion: {
-          include: {
-            usuario: {
+        usuario: {
+          select: {
+            id: true,
+            nombre: true,
+            baseCoords: true,
+            personaje: {
               select: {
-                id: true,
                 nombre: true,
+                clase: true,
+                sexo: true,
               },
             },
           },
         },
       },
       orderBy: {
-        creado: "desc",
+        fechaSalida: "desc",
       },
     });
 
-    return NextResponse.json({ combates });
+    const asedios = expediciones.map((expedicion) => {
+      const origenCoords = expedicion.usuario.baseCoords as {
+        lat: number;
+        lng: number;
+      } | null;
+
+      return {
+        id: expedicion.id,
+
+        // Gremio atacante
+        atacanteNombre: expedicion.usuario.nombre,
+
+        // Aventurero atacante
+        atacanteNombreAventurero:
+          expedicion.usuario.personaje?.nombre ?? "Aventurero",
+
+        atacanteClase:
+          expedicion.usuario.personaje?.clase ?? null,
+
+        atacanteSexo:
+          expedicion.usuario.personaje?.sexo ?? null,
+
+        fechaSalida: expedicion.fechaSalida.toISOString(),
+        fechaLlegada: expedicion.fechaLlegada.toISOString(),
+
+        // Base desde la que sale el atacante
+        origenCoords,
+      };
+    });
+
+    return NextResponse.json({ asedios });
   } catch (error) {
     console.error("Error obteniendo asedios entrantes:", error);
 

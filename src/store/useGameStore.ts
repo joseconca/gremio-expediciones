@@ -221,7 +221,9 @@ export interface CombateActivo {
   actualizado: string;
 
   estadoDefensorAnterior?: string | null;
+  ultimaAccion?: AccionAnimadaCombate | null;
 }
+export type CombateVisible = CombatePve | CombateActivo;
 
 export interface CombatePve {
   id: string;
@@ -285,7 +287,7 @@ export interface ExpedicionActiva {
   experienciaGanada: number;
   objetivoId?: string | null;
   destinoCoords: { lat: number; lng: number };
-  combateActivo?: CombatePve | null;
+  combateActivo?: CombateVisible  | null;
 }
 
 export interface InfoCura {
@@ -707,7 +709,7 @@ export const useGameStore = create<GameState>((set, get) => ({
           expedicionActiva: state.expedicionActiva
             ? {
                 ...state.expedicionActiva,
-                combateActivo: datos.combate as CombatePve,
+                combateActivo: datos.combate as CombateVisible,
               }
             : null,
         }));
