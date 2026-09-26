@@ -14,19 +14,19 @@ export const REQUISITOS_RAREZA: Record<
   },
   comun: {
     nivelArmeria: 2,
-    nivelHeroe: 4,
+    nivelHeroe: 5,
   },
   poco_comun: {
     nivelArmeria: 3,
-    nivelHeroe: 7,
+    nivelHeroe: 10,
   },
   raro: {
     nivelArmeria: 4,
-    nivelHeroe: 10,
+    nivelHeroe: 15,
   },
   epico: {
     nivelArmeria: 5,
-    nivelHeroe: 15,
+    nivelHeroe: 20,
   },
   legendario: {
     nivelArmeria: Infinity,
