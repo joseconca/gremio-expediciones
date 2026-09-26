@@ -37,6 +37,13 @@ const destinationIcon = L.divIcon({
   iconAnchor: [15, 15],
 });
 
+const siegeIcon = L.divIcon({
+  className: "siege-map-icon",
+  html: '<span aria-hidden="true">⚔️</span>',
+  iconSize: [42, 42],
+  iconAnchor: [21, 21],
+});
+
 function crearHeroIcon(clase?: string | null, sexo?: string | null) {
   return L.divIcon({
     className: "hero-route-marker",
@@ -241,45 +248,82 @@ export default function MissionMap({
           />
         ))}
 
-        {/* Marcadores de Bases Ajenas (Comercio) */}
+        {/* Marcadores de Bases Ajenas */}
         {basesAjenas.map((base) => {
-          // Si es tu propia base, no la renderizamos de nuevo
-          if (base.lat === baseCoords.lat && base.lng === baseCoords.lng)
+          // Si es tu propia base, no la renderizamos.
+          if (base.lat === baseCoords.lat && base.lng === baseCoords.lng) {
             return null;
+          }
+
+          const distanciaKm = calcularDistanciaKm(
+            baseCoords.lat,
+            baseCoords.lng,
+            base.lat,
+            base.lng
+          );
+
+          const misionComercio: DefinicionMision = {
+            id: `comercio-${base.id}`,
+            tipo: "comercio",
+            lat: base.lat,
+            lng: base.lng,
+            nombre: `Comerciar: ${base.nombre}`,
+            dificultad: 0,
+            recompensa: {
+              oro: calcularOroBaseComercio(distanciaKm),
+              madera: 0,
+              piedra: 0,
+              metal: 0,
+            },
+            duracionObjetivoHoras: 0,
+            descripcion: `Envía a tu personaje a intercambiar bienes con el gremio de ${base.nombre}.`,
+          };
+
+          const misionAsedio: DefinicionMision = {
+            id: `asedio-${base.id}`,
+            tipo: "asedio",
+            lat: base.lat,
+            lng: base.lng,
+            nombre: `Asediar: ${base.nombre}`,
+            dificultad: 0,
+            recompensa: {
+              oro: 0,
+              madera: 0,
+              piedra: 0,
+              metal: 0,
+            },
+            duracionObjetivoHoras: 0,
+            descripcion: `Envía a tu personaje a atacar la base del gremio de ${base.nombre}.`,
+            objetivoId: base.id,
+          };
 
           return (
             <Marker
               key={`base-${base.id}`}
               position={[base.lat, base.lng]}
               icon={campIcon}
-              eventHandlers={{
-                click: () =>
-                  onSelectMission({
-                    id: `comercio-${base.id}`,
-                    tipo: "comercio",
-                    lat: base.lat,
-                    lng: base.lng,
-                    nombre: `Comerciar: ${base.nombre}`,
-                    dificultad: 0,
-                    recompensa: {
-                      oro: calcularOroBaseComercio(
-                        calcularDistanciaKm(
-                          baseCoords.lat,
-                          baseCoords.lng,
-                          base.lat,
-                          base.lng
-                        )
-                      ),
-                      madera: 0,
-                      piedra: 0,
-                      metal: 0,
-                    },
-                    duracionObjetivoHoras: 0,
-                    descripcion: `Envía a tu personaje a intercambiar bienes con el gremio de ${base.nombre}.`,
-                  }),
-              }}
             >
-              <Popup>{base.nombre}</Popup>
+              <Popup>
+                <div className="flex flex-col gap-2">
+                  <strong>{base.nombre}</strong>
+
+                  <button
+                    type="button"
+                    className="rounded bg-amber-600 px-3 py-1 text-sm font-semibold text-white hover:bg-amber-700"
+                    onClick={() => onSelectMission(misionAsedio)}
+                  >
+                    ⚔️ Asediar
+                  </button>
+
+                  <button
+                    type="button"
+                    className="rounded bg-emerald-600 px-3 py-1 text-sm font-semibold text-white hover:bg-emerald-700"
+                    onClick={() => onSelectMission(misionComercio)}
+                  >
+                    🤝 Comerciar
+                  </button>
+                </div>
+              </Popup>
             </Marker>
           );
         })}
