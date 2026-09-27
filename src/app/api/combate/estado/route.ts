@@ -6,6 +6,12 @@ import {
   resolverAtaqueEnemigo,
   calcularBonusDefensaMuralla,
 } from "@/lib/expediciones/combate";
+import {
+  siguienteTurnoAsedio,
+  determinarGanadorAsedio,
+  finalizarAsedio,
+  determinarPrimerTurnoAsedio,
+} from "@/lib/expediciones/asedio";
 
 const TIEMPO_MAXIMO_TURNO_MS = 2 * 60 * 1000;
 
@@ -33,6 +39,86 @@ function disminuirCooldowns(
   }
 
   return resultado;
+}
+
+function obtenerEfectos(valor: unknown): {
+  habilidadId: string;
+  tipo: "bonus_defensa";
+  valor: number;
+  turnosRestantes: number;
+}[] {
+  if (!Array.isArray(valor)) {
+    return [];
+  }
+
+  return valor.filter(
+    (
+      efecto
+    ): efecto is {
+      habilidadId: string;
+      tipo: "bonus_defensa";
+      valor: number;
+      turnosRestantes: number;
+    } => {
+      if (!efecto || typeof efecto !== "object") {
+        return false;
+      }
+
+      const registro = efecto as Record<string, unknown>;
+
+      return (
+        typeof registro.habilidadId === "string" &&
+        registro.tipo === "bonus_defensa" &&
+        typeof registro.valor === "number" &&
+        typeof registro.turnosRestantes === "number" &&
+        registro.turnosRestantes > 0
+      );
+    }
+  );
+}
+
+function actualizarEfectosAlInicioTurno(
+  efectos: {
+    habilidadId: string;
+    tipo: "bonus_defensa";
+    valor: number;
+    turnosRestantes: number;
+  }[],
+  defensaActual: number
+): {
+  efectos: {
+    habilidadId: string;
+    tipo: "bonus_defensa";
+    valor: number;
+    turnosRestantes: number;
+  }[];
+  defensa: number;
+} {
+  let defensa = defensaActual;
+
+  const nuevosEfectos: typeof efectos = [];
+
+  for (const efecto of efectos) {
+    const turnosRestantes = efecto.turnosRestantes - 1;
+
+    if (turnosRestantes > 0) {
+      nuevosEfectos.push({
+        ...efecto,
+        turnosRestantes,
+      });
+
+      continue;
+    }
+
+    if (efecto.tipo === "bonus_defensa") {
+      defensa = Math.max(0, defensa - efecto.valor);
+    }
+  }
+
+  return {
+    efectos: nuevosEfectos,
+    defensa,
+  };
 }
 
 export async function GET() {
@@ -111,19 +197,27 @@ export async function GET() {
     let jugadorHp = combate.jugadorHp;
     let enemigoHp = combate.enemigoHp;
 
-    let cooldowns = obtenerCooldowns(combate.cooldowns);
+    let jugadorDefensa = combate.jugadorDefensa;
+    let enemigoDefensa = combate.enemigoDefensa;
 
+    let cooldowns = obtenerCooldowns(combate.cooldowns);
     let cooldownsDefensor = obtenerCooldowns(combate.cooldownsDefensor);
+
+    let efectos = obtenerEfectos(combate.efectos);
+    let efectosDefensor = obtenerEfectos(combate.efectosDefensor);
 
     let accion;
 
+    // Resolver ataque automático
     if (combate.turno === "atacante") {
       accion = resolverAtaqueJugador({
         jugadorAtaque: combate.jugadorAtaque,
         jugadorNivel: combate.jugadorNivel,
         jugadorProbCritico: combate.jugadorProbCritico,
         jugadorDanoCritico: combate.jugadorDanoCritico,
-        enemigoDefensa: (combate.enemigoDefensa ?? 0) + calcularBonusDefensaMuralla(combate.murallaNivel),
+        enemigoDefensa:
+          combate.enemigoDefensa +
+          calcularBonusDefensaMuralla(combate.murallaNivel),
         enemigoNombre:
           combate.defensorNombre ?? combate.enemigoNombre ?? "Defensor",
       });
@@ -145,21 +239,10 @@ export async function GET() {
       cooldownsDefensor = disminuirCooldowns(cooldownsDefensor);
     }
 
-    let ganadorUsuarioId: string | null = null;
-    let nuevaFase: "activo" | "victoria" | "derrota" = "activo";
-
-    if (jugadorHp <= 0 && enemigoHp <= 0) {
-      ganadorUsuarioId = combate.defensorUsuarioId;
-      nuevaFase = "derrota";
-    } else if (jugadorHp <= 0) {
-      ganadorUsuarioId = combate.defensorUsuarioId;
-      nuevaFase = "derrota";
-    } else if (enemigoHp <= 0) {
-      ganadorUsuarioId = combate.atacanteUsuarioId;
-      nuevaFase = "victoria";
-    }
-
-    const nuevoTurno = combate.turno === "atacante" ? "defensor" : "atacante";
+    const ganador = determinarGanadorAsedio({
+      hpAtacante: jugadorHp,
+      hpDefensor: enemigoHp,
+    });
 
     const nuevoLog = Array.isArray(combate.log)
       ? [...(combate.log as string[]), accion.texto]
@@ -169,42 +252,152 @@ export async function GET() {
      * Solo el cliente que consiga esta actualización gana
      * la carrera para resolver el turno.
      */
-    const resultadoUpdate = await prisma.combateActivo.updateMany({
-      where: {
-        id: combate.id,
-        version: versionActual,
-        fase: "activo",
-      },
-      data: {
-        jugadorHp,
-        enemigoHp,
+    if (ganador) {
+      nuevoLog.push(
+        ganador === "atacante"
+          ? `🏆 ¡${
+              combate.defensorNombre ?? combate.enemigoNombre ?? "El defensor"
+            } ha sido derrotado!`
+          : "🏆 ¡El atacante ha sido derrotado!"
+      );
 
-        cooldowns,
-        cooldownsDefensor,
+      const resultado = await prisma.$transaction(async (tx) => {
+        return finalizarAsedio({
+          tx,
 
-        turno: nuevaFase === "activo" ? combate.turno : nuevoTurno,
+          combate: {
+            id: combate.id,
+            version: versionActual,
 
-        fase: nuevaFase,
+            atacanteUsuarioId: combate.atacanteUsuarioId,
+            defensorUsuarioId: combate.defensorUsuarioId,
 
-        ganadorUsuarioId,
+            jugadorHpMaximo: combate.jugadorHpMaximo,
 
-        ultimoTurnoEn: new Date(),
+            almacenNivel: combate.almacenNivel,
+            capacidadCarruaje: combate.capacidadCarruaje,
 
-        log: nuevoLog,
+            estadoDefensorAnterior: combate.estadoDefensorAnterior,
+          },
 
-        ultimaAccion: accion,
+          expedicionId: combate.expedicionId,
 
-        version: {
-          increment: 1,
-        },
-      },
-    });
+          jugadorHp,
+          enemigoHp,
+
+          jugadorDefensa,
+          enemigoDefensa,
+
+          cooldowns,
+          efectos,
+
+          cooldownsDefensor,
+          efectosDefensor,
+
+          accion,
+          log: nuevoLog,
+
+          ganador,
+        });
+      });
+
+      return NextResponse.json({
+        combate: resultado.combate,
+        accion,
+        automatica: true,
+        terminado: true,
+        botin: resultado.botin,
+      });
+    }
 
     /*
-     * Otro cliente resolvió el turno antes.
+     * El combate continúa.
+     *
+     * Calculamos el siguiente turno y la siguiente ronda.
      */
-    if (resultadoUpdate.count === 0) {
-      const combateActualizado = await prisma.combateActivo.findUnique({
+    if (combate.turno !== "atacante" && combate.turno !== "defensor") {
+      return NextResponse.json(
+        {
+          error: "Turno de combate PvP no válido.",
+        },
+        { status: 409 }
+      );
+    }
+    const siguienteTurno = siguienteTurnoAsedio(combate.turno);
+
+    let siguienteRonda = combate.ronda;
+
+    const primerTurno = determinarPrimerTurnoAsedio({
+      velocidadAtacante: combate.jugadorVelocidad,
+      velocidadDefensor: combate.enemigoVelocidad ?? 0,
+    });
+
+    if (siguienteTurno === primerTurno) {
+      siguienteRonda += 1;
+    }
+
+    if (siguienteTurno === "atacante") {
+      cooldowns = disminuirCooldowns(cooldowns);
+
+      const efectosActualizados = actualizarEfectosAlInicioTurno(
+        efectos,
+        jugadorDefensa
+      );
+
+      efectos = efectosActualizados.efectos;
+      jugadorDefensa = efectosActualizados.defensa;
+    }
+
+    if (siguienteTurno === "defensor") {
+      cooldownsDefensor = disminuirCooldowns(cooldownsDefensor);
+
+      const efectosActualizados = actualizarEfectosAlInicioTurno(
+        efectosDefensor,
+        enemigoDefensa
+      );
+
+      efectosDefensor = efectosActualizados.efectos;
+      enemigoDefensa = efectosActualizados.defensa;
+
+      const actualizado = await prisma.combateActivo.updateMany({
+        where: {
+          id: combate.id,
+          version: versionActual,
+          fase: "activo",
+        },
+        data: {
+          jugadorHp,
+          enemigoHp,
+          jugadorDefensa,
+          enemigoDefensa,
+          ronda: siguienteRonda,
+          turno: siguienteTurno,
+          cooldowns,
+          efectos,
+          cooldownsDefensor,
+          efectosDefensor,
+          ultimoTurnoEn: new Date(),
+          log: nuevoLog,
+          ultimaAccion: accion,
+          version: {
+            increment: 1,
+          },
+        },
+      });
+
+      if (actualizado.count !== 1) {
+        const combateActualizado = await prisma.combateActivo.findUnique({
+          where: {
+            id: combate.id,
+          },
+        });
+
+        return NextResponse.json({
+          combate: combateActualizado,
+        });
+      }
+
+      const combateActualizado = await prisma.combateActivo.findUniqueOrThrow({
         where: {
           id: combate.id,
         },
@@ -212,20 +405,11 @@ export async function GET() {
 
       return NextResponse.json({
         combate: combateActualizado,
+        accion,
+        automatica: true,
+        terminado: false,
       });
     }
-
-    const combateActualizado = await prisma.combateActivo.findUnique({
-      where: {
-        id: combate.id,
-      },
-    });
-
-    return NextResponse.json({
-      combate: combateActualizado,
-      accion,
-      automatica: true,
-    });
   } catch (error) {
     console.error("Error obteniendo estado del combate:", error);
 

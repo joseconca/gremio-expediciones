@@ -16,8 +16,7 @@ import {
   determinarGanadorAsedio,
   determinarPrimerTurnoAsedio,
   siguienteTurnoAsedio,
-  calcularBotinAsedio,
-  calcularRecursosProtegidos,
+  finalizarAsedio,
 } from "@/lib/expediciones/asedio";
 import type { DefinicionHabilidad, RecompensaMision } from "@/lib/tiposJuego";
 
@@ -1161,9 +1160,6 @@ export async function POST(request: Request) {
     });
 
     if (ganador) {
-      const ganadorUsuarioId =
-        ganador === "atacante" ? atacanteUsuarioId : defensorUsuarioId;
-
       const atacanteGana = ganador === "atacante";
 
       if (atacanteGana) {
@@ -1174,205 +1170,43 @@ export async function POST(request: Request) {
         log.push(`🏆 ¡El atacante ha sido derrotado!`);
       }
 
-      const faseFinal = atacanteGana ? "victoria" : "derrota";
-
       const resultado = await prisma.$transaction(async (tx) => {
-        // ==========================================================
-        // RESOLVER BOTÍN DEL ASEDIO
-        // ==========================================================
+        return finalizarAsedio({
+          tx,
 
-        let botin = {
-          madera: 0,
-          piedra: 0,
-          metal: 0,
-        };
-
-        if (atacanteGana) {
-          const defensor = await tx.usuario.findUnique({
-            where: {
-              id: defensorUsuarioId,
-            },
-            select: {
-              madera: true,
-              piedra: true,
-              metal: true,
-            },
-          });
-
-          if (!defensor) {
-            throw new Error("DEFENSOR_NO_ENCONTRADO");
-          }
-
-          const recursosProtegidos = calcularRecursosProtegidos(
-            combate.almacenNivel ?? 0
-          );
-
-          botin = calcularBotinAsedio({
-            recursos: {
-              madera: defensor.madera,
-              piedra: defensor.piedra,
-              metal: defensor.metal,
-            },
-            recursosProtegidos,
-            capacidadCarruaje: combate.capacidadCarruaje ?? 0,
-          });
-
-          // Descontamos inmediatamente el botín al defensor.
-          // Esto evita que esos recursos puedan volver a saquearse
-          // o utilizarse antes de que termine el asedio.
-          await tx.usuario.update({
-            where: {
-              id: defensorUsuarioId,
-            },
-            data: {
-              madera: {
-                decrement: botin.madera,
-              },
-              piedra: {
-                decrement: botin.piedra,
-              },
-              metal: {
-                decrement: botin.metal,
-              },
-            },
-          });
-
-          const totalBotin = botin.madera + botin.piedra + botin.metal;
-
-          if (totalBotin > 0) {
-            log.push(
-              `🎒 Saqueas ${botin.madera} 🪵, ${botin.piedra} 🪨 y ${botin.metal} ⚙️.`
-            );
-          } else {
-            log.push(
-              "🎒 No encuentras recursos vulnerables que puedas saquear."
-            );
-          }
-        }
-
-        // ==========================================================
-        // MARCAR COMBATE COMO TERMINADO
-        // ==========================================================
-
-        const actualizacionCombate = await tx.combateActivo.updateMany({
-          where: {
+          combate: {
             id: combate.id,
             version: combate.version,
-            fase: "activo",
-          },
-          data: {
-            jugadorHp,
-            enemigoHp,
-            jugadorDefensa,
-            enemigoDefensa,
-            fase: faseFinal,
-            turno: ganador,
-            ganadorUsuarioId,
 
-            // El botín queda resuelto aquí mismo.
-            botinResuelto: true,
+            atacanteUsuarioId: combate.atacanteUsuarioId,
+            defensorUsuarioId: combate.defensorUsuarioId,
 
-            cooldowns,
-            efectos,
-            cooldownsDefensor,
-            efectosDefensor,
-            ultimoTurnoEn: new Date(),
-            ultimaAccion: accionAnimada,
-            log,
-            version: {
-              increment: 1,
-            },
+            jugadorHpMaximo: combate.jugadorHpMaximo,
+
+            almacenNivel: combate.almacenNivel,
+            capacidadCarruaje: combate.capacidadCarruaje,
+
+            estadoDefensorAnterior: combate.estadoDefensorAnterior,
           },
+
+          expedicionId: expedicion.id,
+
+          jugadorHp,
+          enemigoHp,
+
+          jugadorDefensa,
+          enemigoDefensa,
+
+          cooldowns,
+          efectos,
+          cooldownsDefensor,
+          efectosDefensor,
+
+          accion: accionAnimada,
+          log,
+
+          ganador,
         });
-
-        if (actualizacionCombate.count !== 1) {
-          throw new Error("COMBATE_MODIFICADO");
-        }
-
-        const combateActualizado = await tx.combateActivo.findUniqueOrThrow({
-          where: {
-            id: combate.id,
-          },
-        });
-
-        // ==========================================================
-        // EXPEDICIÓN DEL ATACANTE
-        // ==========================================================
-
-        await tx.expedicionActiva.update({
-          where: {
-            id: expedicion.id,
-          },
-          data: {
-            fase: "regresando",
-            resultadoFinal: atacanteGana ? "exito" : "derrota",
-
-            // El botín ya ha sido calculado y descontado
-            // del defensor. Ahora viaja con el atacante.
-            recompensa: {
-              oro: 0,
-              madera: botin.madera,
-              piedra: botin.piedra,
-              metal: botin.metal,
-            },
-
-            hpPerdido: Math.max(0, combate.jugadorHpMaximo - jugadorHp),
-
-            experienciaGanada: 0,
-          },
-        });
-
-        // ==========================================================
-        // GUARDAR HP FINAL DEL ATACANTE
-        // ==========================================================
-
-        await tx.personaje.update({
-          where: {
-            usuarioId: atacanteUsuarioId,
-          },
-          data: {
-            hpActual: Math.max(1, jugadorHp),
-          },
-        });
-
-        // ==========================================================
-        // RESTAURAR ESTADO DEL DEFENSOR
-        // ==========================================================
-        //
-        // No usamos directamente estadoDefensorAnterior porque
-        // puede ser un estado antiguo ("de_viaje") de una expedición
-        // que ya haya terminado mientras el asedio estaba activo.
-        //
-        // Si todavía tiene una expedición activa, debe seguir
-        // estando de viaje. Si no tiene ninguna, vuelve a ocioso
-        // (o descansando si su HP está a 0).
-
-        const expedicionDefensor = await tx.expedicionActiva.findUnique({
-          where: {
-            usuarioId: defensorUsuarioId,
-          },
-          select: {
-            id: true,
-          },
-        });
-
-        await tx.personaje.update({
-          where: {
-            usuarioId: defensorUsuarioId,
-          },
-          data: {
-            estado: expedicionDefensor
-              ? "de_viaje"
-              : enemigoHp > 0
-              ? "ocioso"
-              : "descansando",
-          },
-        });
-
-        return {
-          combate: combateActualizado,
-          botin,
-        };
       });
 
       return NextResponse.json({
