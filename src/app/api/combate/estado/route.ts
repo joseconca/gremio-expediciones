@@ -194,6 +194,15 @@ export async function GET() {
      */
     const versionActual = combate.version;
 
+    if (combate.turno !== "atacante" && combate.turno !== "defensor") {
+      return NextResponse.json(
+        {
+          error: "Turno de combate PvP no válido.",
+        },
+        { status: 409 }
+      );
+    }
+
     let jugadorHp = combate.jugadorHp;
     let enemigoHp = combate.enemigoHp;
 
@@ -208,9 +217,12 @@ export async function GET() {
 
     let accion;
 
-    // Resolver ataque automático
+    // ============================================================
+    // EJECUTAR ATAQUE AUTOMÁTICO
+    // ============================================================
+
     if (combate.turno === "atacante") {
-      accion = resolverAtaqueJugador({
+      const accionAutomatica = resolverAtaqueJugador({
         jugadorAtaque: combate.jugadorAtaque,
         jugadorNivel: combate.jugadorNivel,
         jugadorProbCritico: combate.jugadorProbCritico,
@@ -219,24 +231,24 @@ export async function GET() {
           combate.enemigoDefensa +
           calcularBonusDefensaMuralla(combate.murallaNivel),
         enemigoNombre:
-          combate.defensorNombre ?? combate.enemigoNombre ?? "Defensor",
+          combate.defensorNombre ?? combate.enemigoNombre ?? "el defensor",
       });
 
-      enemigoHp = Math.max(0, enemigoHp - accion.dano);
+      accion = accionAutomatica;
 
-      cooldowns = disminuirCooldowns(cooldowns);
+      enemigoHp = Math.max(0, enemigoHp - accionAutomatica.dano);
     } else {
-      accion = resolverAtaqueEnemigo({
-        enemigoAtaque: combate.enemigoAtaque ?? 0,
-        enemigoProbCritico: combate.enemigoProbCritico ?? 0.1,
-        enemigoDanoCritico: combate.enemigoDanoCritico ?? 1.5,
-        jugadorDefensa: combate.jugadorDefensa ?? 0,
-        enemigoNombre: combate.atacanteNombre ?? "Atacante",
+      const accionAutomatica = resolverAtaqueEnemigo({
+        enemigoAtaque: combate.enemigoAtaque,
+        enemigoProbCritico: combate.enemigoProbCritico ?? undefined,
+        enemigoDanoCritico: combate.enemigoDanoCritico ?? undefined,
+        jugadorDefensa,
+        enemigoNombre: combate.atacanteNombre ?? "el atacante",
       });
 
-      jugadorHp = Math.max(0, jugadorHp - accion.dano);
+      accion = accionAutomatica;
 
-      cooldownsDefensor = disminuirCooldowns(cooldownsDefensor);
+      jugadorHp = Math.max(0, jugadorHp - accionAutomatica.dano);
     }
 
     const ganador = determinarGanadorAsedio({
@@ -248,17 +260,17 @@ export async function GET() {
       ? [...(combate.log as string[]), accion.texto]
       : [accion.texto];
 
-    /*
-     * Solo el cliente que consiga esta actualización gana
-     * la carrera para resolver el turno.
-     */
+    // ============================================================
+    // COMBATE TERMINADO
+    // ============================================================
+
     if (ganador) {
       nuevoLog.push(
         ganador === "atacante"
           ? `🏆 ¡${
               combate.defensorNombre ?? combate.enemigoNombre ?? "El defensor"
             } ha sido derrotado!`
-          : "🏆 ¡El atacante ha sido derrotado!"
+          : `🏆 ¡${combate.atacanteNombre ?? "El atacante"} ha sido derrotado!`
       );
 
       const resultado = await prisma.$transaction(async (tx) => {
@@ -310,19 +322,10 @@ export async function GET() {
       });
     }
 
-    /*
-     * El combate continúa.
-     *
-     * Calculamos el siguiente turno y la siguiente ronda.
-     */
-    if (combate.turno !== "atacante" && combate.turno !== "defensor") {
-      return NextResponse.json(
-        {
-          error: "Turno de combate PvP no válido.",
-        },
-        { status: 409 }
-      );
-    }
+    // ============================================================
+    // PREPARAR SIGUIENTE TURNO
+    // ============================================================
+
     const siguienteTurno = siguienteTurnoAsedio(combate.turno);
 
     let siguienteRonda = combate.ronda;
@@ -335,6 +338,10 @@ export async function GET() {
     if (siguienteTurno === primerTurno) {
       siguienteRonda += 1;
     }
+
+    // ============================================================
+    // ACTUALIZAR COOLDOWNS Y EFECTOS DEL JUGADOR QUE VA A ACTUAR
+    // ============================================================
 
     if (siguienteTurno === "atacante") {
       cooldowns = disminuirCooldowns(cooldowns);
@@ -358,46 +365,46 @@ export async function GET() {
 
       efectosDefensor = efectosActualizados.efectos;
       enemigoDefensa = efectosActualizados.defensa;
+    }
 
-      const actualizado = await prisma.combateActivo.updateMany({
-        where: {
-          id: combate.id,
-          version: versionActual,
-          fase: "activo",
+    // ============================================================
+    // GUARDAR EL TURNO AUTOMÁTICO
+    // ============================================================
+
+    const actualizado = await prisma.combateActivo.updateMany({
+      where: {
+        id: combate.id,
+        version: versionActual,
+        fase: "activo",
+      },
+      data: {
+        jugadorHp,
+        enemigoHp,
+        jugadorDefensa,
+        enemigoDefensa,
+
+        ronda: siguienteRonda,
+        turno: siguienteTurno,
+
+        cooldowns,
+        efectos,
+        cooldownsDefensor,
+        efectosDefensor,
+
+        ultimoTurnoEn: new Date(),
+
+        log: nuevoLog,
+        ultimaAccion: accion,
+
+        version: {
+          increment: 1,
         },
-        data: {
-          jugadorHp,
-          enemigoHp,
-          jugadorDefensa,
-          enemigoDefensa,
-          ronda: siguienteRonda,
-          turno: siguienteTurno,
-          cooldowns,
-          efectos,
-          cooldownsDefensor,
-          efectosDefensor,
-          ultimoTurnoEn: new Date(),
-          log: nuevoLog,
-          ultimaAccion: accion,
-          version: {
-            increment: 1,
-          },
-        },
-      });
+      },
+    });
 
-      if (actualizado.count !== 1) {
-        const combateActualizado = await prisma.combateActivo.findUnique({
-          where: {
-            id: combate.id,
-          },
-        });
-
-        return NextResponse.json({
-          combate: combateActualizado,
-        });
-      }
-
-      const combateActualizado = await prisma.combateActivo.findUniqueOrThrow({
+    // Otra petición ganó la carrera.
+    if (actualizado.count !== 1) {
+      const combateActualizado = await prisma.combateActivo.findUnique({
         where: {
           id: combate.id,
         },
@@ -405,11 +412,21 @@ export async function GET() {
 
       return NextResponse.json({
         combate: combateActualizado,
-        accion,
-        automatica: true,
-        terminado: false,
       });
     }
+
+    const combateActualizado = await prisma.combateActivo.findUniqueOrThrow({
+      where: {
+        id: combate.id,
+      },
+    });
+
+    return NextResponse.json({
+      combate: combateActualizado,
+      accion,
+      automatica: true,
+      terminado: false,
+    });
   } catch (error) {
     console.error("Error obteniendo estado del combate:", error);
 

@@ -303,8 +303,8 @@ export async function POST() {
             defensorUsuarioId: defensor.id,
             enemigoUsuarioId: defensor.id,
 
-            atacanteNombre: usuario.nombre,
-            defensorNombre: defensor.nombre,
+            atacanteNombre: personajeAtacante.nombre,
+            defensorNombre: personajeDefensor.nombre,
 
             atacanteClase: personajeAtacante.clase,
             atacanteSexo: personajeAtacante.sexo,
