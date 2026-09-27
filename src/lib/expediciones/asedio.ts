@@ -34,8 +34,6 @@ export function calcularCapacidadAlmacen(
 ): number {
   const nivel = Math.max(0, nivelAlmacen);
 
-  // Nivel 0 = 300
-  // Cada nivel añade 300 de capacidad.
   return 25 + nivel * 25;
 }
 
@@ -51,7 +49,7 @@ export function calcularRecursosProtegidos(
   const nivel = Math.max(0, nivelAlmacen);
 
   return {
-    madera: 5 +nivel * 5,
+    madera: 5 + nivel * 5,
     piedra: 5 + nivel * 5,
     metal: 5 + nivel * 5,
   };

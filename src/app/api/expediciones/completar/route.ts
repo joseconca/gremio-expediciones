@@ -8,6 +8,7 @@ import {
   calcularModificadoresEquipo,
 } from "@/lib/estadisticasPersonaje";
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
+import { calcularCapacidadAlmacen } from "@/lib/expediciones/asedio";
 import type { RecompensaMision } from "@/lib/tiposJuego";
 
 function obtenerRecompensaMision(valor: unknown): RecompensaMision {
@@ -108,6 +109,50 @@ export async function POST() {
       const exito = resultadoFinal === "exito";
       const combate = expedicion.combateActivo;
 
+      // CAPACIDAD DEL ALMACÉN
+      const edificios = usuario.edificios as Record<string, unknown> | null;
+      const nivelAlmacen =
+        typeof edificios?.almacen === "number"
+          ? Math.max(0, Math.trunc(edificios.almacen))
+          : 0;
+
+      const capacidadAlmacen = calcularCapacidadAlmacen(nivelAlmacen);
+
+      const maderaRecibida = Math.max(
+        0,
+        Math.min(
+          recompensa.madera,
+          Math.max(0, capacidadAlmacen - usuario.madera)
+        )
+      );
+
+      const piedraRecibida = Math.max(
+        0,
+        Math.min(
+          recompensa.piedra,
+          Math.max(0, capacidadAlmacen - usuario.piedra)
+        )
+      );
+
+      const metalRecibido = Math.max(
+        0,
+        Math.min(
+          recompensa.metal,
+          Math.max(0, capacidadAlmacen - usuario.metal)
+        )
+      );
+
+      const maderaPerdida = recompensa.madera - maderaRecibida;
+      const piedraPerdida = recompensa.piedra - piedraRecibida;
+      const metalPerdido = recompensa.metal - metalRecibido;
+
+      const recompensaRecibida: RecompensaMision = {
+        oro: recompensa.oro,
+        madera: maderaRecibida,
+        piedra: piedraRecibida,
+        metal: metalRecibido,
+      };
+
       let logRegreso: string[];
 
       if (resultadoFinal === "exito") {
@@ -115,22 +160,24 @@ export async function POST() {
           `🏠 ${usuario.personaje.nombre} regresa al gremio con el botín asegurado.`,
         ];
 
-        if (recompensa.oro > 0) {
-          logRegreso.push(`💰 Recibes ${recompensa.oro} 🪙 por la expedición.`);
-        }
-        if (recompensa.madera > 0) {
+        if (recompensaRecibida.oro > 0) {
           logRegreso.push(
-            `🪵 Recibes ${recompensa.madera} de madera por la expedición.`
+            `💰 Recibes ${recompensaRecibida.oro} 🪙 por la expedición.`
           );
         }
-        if (recompensa.piedra > 0) {
+        if (recompensaRecibida.madera > 0) {
           logRegreso.push(
-            `🪨 Recibes ${recompensa.piedra} de piedra por la expedición.`
+            `🪵 Recibes ${recompensaRecibida.madera} de madera por la expedición.`
           );
         }
-        if (recompensa.metal > 0) {
+        if (recompensaRecibida.piedra > 0) {
           logRegreso.push(
-            `⚙️ Recibes ${recompensa.metal} de metal por la expedición.`
+            `🪨 Recibes ${recompensaRecibida.piedra} de piedra por la expedición.`
+          );
+        }
+        if (recompensaRecibida.metal > 0) {
+          logRegreso.push(
+            `⚙️ Recibes ${recompensaRecibida.metal} de metal por la expedición.`
           );
         }
       } else if (resultadoFinal === "derrota") {
@@ -143,7 +190,38 @@ export async function POST() {
         ];
       }
 
+      let recursosPerdidos = "";
+      if (maderaPerdida > 0) {
+        recursosPerdidos += `${maderaPerdida} 🪵, `;
+      }
+      if (piedraPerdida > 0) {
+        recursosPerdidos += `${piedraPerdida} 🪨, `;
+      }
+      if (metalPerdido > 0) {
+        recursosPerdidos += `${metalPerdido} ⚙️, `;
+      }
+      recursosPerdidos = recursosPerdidos.replace(/, $/, "");
+
+      if (recursosPerdidos !== "") {
+        logRegreso.push(
+          `📦 El almacén no tenía espacio suficiente y se pierden ` +
+            recursosPerdidos +
+            `.`
+        );
+      }
+
       const actualizado = await prisma.$transaction(async (tx) => {
+        const asedioEntrante = await tx.combateActivo.findFirst({
+          where: {
+            tipo: "pvp",
+            defensorUsuarioId: usuario.id,
+            fase: "activo",
+          },
+          select: {
+            id: true,
+          },
+        });
+
         await tx.expedicionActiva.delete({
           where: { id: expedicion.id },
         });
@@ -151,7 +229,11 @@ export async function POST() {
         await tx.personaje.update({
           where: { usuarioId: usuario.id },
           data: {
-            estado: usuario.personaje!.hpActual > 0 ? "ocioso" : "descansando",
+            estado: asedioEntrante
+              ? "combatiendo"
+              : usuario.personaje!.hpActual > 0
+              ? "ocioso"
+              : "descansando",
           },
         });
 
@@ -193,16 +275,16 @@ export async function POST() {
           where: { id: usuario.id },
           data: {
             oro: {
-              increment: recompensa.oro,
+              increment: recompensaRecibida.oro,
             },
             madera: {
-              increment: recompensa.madera,
+              increment: recompensaRecibida.madera,
             },
             piedra: {
-              increment: recompensa.piedra,
+              increment: recompensaRecibida.piedra,
             },
             metal: {
-              increment: recompensa.metal,
+              increment: recompensaRecibida.metal,
             },
           },
           include: {
@@ -251,7 +333,7 @@ export async function POST() {
           linea.includes("🏠") ||
           linea.includes("Recibes")
       );
-      
+
       let reporte;
 
       if (expedicion.tipo === "comercio") {
@@ -259,8 +341,8 @@ export async function POST() {
           exito,
           resultadoFinal,
           hpPerdido: expedicion.hpPerdido,
-          oroGanado: recompensa.oro,
-          recompensa,
+          oroGanado: recompensaRecibida.oro,
+          recompensa: recompensaRecibida,
           experienciaGanada: expedicion.experienciaGanada,
           tipo: "comercio" as const,
           afinidad: actualizado.afinidad,
@@ -271,8 +353,8 @@ export async function POST() {
           exito,
           resultadoFinal,
           hpPerdido: expedicion.hpPerdido,
-          oroGanado: recompensa.oro,
-          recompensa,
+          oroGanado: recompensaRecibida.oro,
+          recompensa: recompensaRecibida,
           experienciaGanada: expedicion.experienciaGanada,
           tipo: "combate" as const,
           logCombate: logRegreso,
@@ -282,8 +364,8 @@ export async function POST() {
           exito,
           resultadoFinal,
           hpPerdido: expedicion.hpPerdido,
-          oroGanado: recompensa.oro,
-          recompensa,
+          oroGanado: recompensaRecibida.oro,
+          recompensa: recompensaRecibida,
           experienciaGanada: expedicion.experienciaGanada,
           tipo: "combate" as const,
           enemigo: combate?.enemigoNombre ?? "Enemigo",

@@ -180,6 +180,8 @@ model CombateActivo {
 
   estadoDefensorAnterior String?
 
+  capacidadCarruaje Int?
+  
   // Edificios defensivos
   murallaNivel Int?
   almacenNivel Int?

@@ -249,14 +249,15 @@ export async function POST() {
 
       const jugadorDanoCritico = estadisticasAtacante.total.danoCritico;
 
+      const capacidadCarruaje = estadisticasAtacante.total.capacidadCarruaje;
+
       const enemigoHpMaximo = estadisticasDefensor.total.hpMaximo;
 
       const enemigoHp = enemigoHpMaximo;
 
       const enemigoAtaque = estadisticasDefensor.total.ataque;
 
-      const enemigoDefensa =
-        estadisticasDefensor.total.defensa + bonificacionMuralla;
+      const enemigoDefensa = estadisticasDefensor.total.defensa;
 
       const enemigoVelocidad = estadisticasDefensor.total.velocidad;
 
@@ -313,6 +314,7 @@ export async function POST() {
 
             estadoDefensorAnterior: personajeDefensor.estado,
 
+            capacidadCarruaje: capacidadCarruaje,
             murallaNivel: nivelMuralla,
             almacenNivel: nivelAlmacen,
 
