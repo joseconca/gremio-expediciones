@@ -412,7 +412,7 @@ export const CONFIGURACION_EDIFICIOS = {
     nivelMax: 3,
     descripcion: "Ayuda a proteger el campamento de ataques invasores.",
     color: "bg-gray-700",
-    ruta: "/base",
+    ruta: "/base/muralla",
   },
 
   almacen: {
