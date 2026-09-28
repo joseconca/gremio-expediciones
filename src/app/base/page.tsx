@@ -1,19 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import Link from "next/link";
-import dynamic from "next/dynamic";
-import Image from "next/image";
 import { CombateActivo, CombatePve, useGameStore } from "@/store/useGameStore";
 import type {
   ReporteExpedicion as ReporteExpedicionTipo,
-  Edificio,
 } from "@/lib/tiposJuego";
 import CombateModal from "@/components/combate/CombateModal";
 import AsedioModal from "@/components/combate/AsedioModal";
 import PanelEdificios from "@/components/base/PanelEdificios";
 import ReporteExpedicion from "@/components/reportes/ReporteExpedicion";
-import { CONFIGURACION_EDIFICIOS } from "@/lib/tiposJuego";
 import PanelMisiones from "@/components/base/PanelMisiones";
 import PanelConstruccion from "@/components/base/PanelConstruccion";
 
@@ -349,7 +344,7 @@ export default function BasePage() {
 
     const intervalo = setInterval(() => {
       void cargarAsedios();
-    }, 5000);
+    }, 30000);
 
     return () => {
       activo = false;
@@ -358,6 +353,14 @@ export default function BasePage() {
   }, []);
 
   useEffect(() => {
+    const hayCombateActivo =
+      expedicionActiva?.combateActivo?.fase === "activo" ||
+      combateEntrante?.fase === "activo";
+
+    if (!hayCombateActivo) {
+      return;
+    }
+
     let activo = true;
 
     const cargarCombateEntrante = async () => {
@@ -394,7 +397,7 @@ export default function BasePage() {
       activo = false;
       clearInterval(intervalo);
     };
-  }, []);
+  }, [expedicionActiva?.combateActivo?.fase, combateEntrante?.fase]);
 
   useEffect(() => {
     if (!expedicionActiva) return;
@@ -505,111 +508,12 @@ export default function BasePage() {
     setReporte(null);
   };
 
-  const listaEdificios = Object.values(edificios);
-
-  const armeria = edificios.armeria;
-  const herreria = edificios.herreria;
-
-  const edificiosConstruidos = listaEdificios.filter(
-    (e) => e.nivel > 0 && e.id !== "armeria" && e.id !== "herreria"
-  );
-
-  const edificiosConstruccion = listaEdificios;
-
   const ejecutarAccionCombate = useCallback(
     (accion: "atacar" | "usar_habilidad", habilidadId?: string) => {
       return accionCombate(accion, habilidadId);
     },
     [accionCombate]
   );
-
-  //rayas des vetas del tablon
-  const vetasMadera = [
-    {
-      id: 1,
-      left: "6%",
-      d: "M8,0 Q16,25 8,50 T12,100",
-      stroke: 2.5,
-      clase: "text-amber-950/80",
-    },
-    {
-      id: 2,
-      left: "14%",
-      d: "M12,0 C4,30 18,70 10,100",
-      stroke: 3,
-      clase: "text-amber-950/80",
-    },
-    {
-      id: 3,
-      left: "22%",
-      d: "M10,0 Q2,20 10,45 T6,80 Q12,95 8,100",
-      stroke: 3.5,
-      clase: "text-amber-950/60",
-    },
-    {
-      id: 4,
-      left: "31%",
-      d: "M8,0 C16,40 2,60 10,100",
-      stroke: 2.8,
-      clase: "text-amber-950/70",
-    },
-    {
-      id: 5,
-      left: "38%",
-      d: "M14,0 Q6,30 14,60 T10,100",
-      stroke: 3.2,
-      clase: "text-amber-950/60",
-    },
-    {
-      id: 6,
-      left: "47%",
-      d: "M6,0 C14,25 4,75 12,100",
-      stroke: 3,
-      clase: "text-amber-950/90",
-    },
-    {
-      id: 7,
-      left: "55%",
-      d: "M11,0 Q18,40 10,70 T14,100",
-      stroke: 2.5,
-      clase: "text-amber-950/60",
-    },
-    {
-      id: 8,
-      left: "64%",
-      d: "M13,0 C5,20 18,60 9,100",
-      stroke: 3.5,
-      clase: "text-amber-950/80",
-    },
-    {
-      id: 9,
-      left: "72%",
-      d: "M9,0 Q2,35 12,65 T10,100",
-      stroke: 2.8,
-      clase: "text-amber-950/60",
-    },
-    {
-      id: 10,
-      left: "81%",
-      d: "M12,0 C18,30 4,70 14,100",
-      stroke: 3.2,
-      clase: "text-amber-950/90",
-    },
-    {
-      id: 11,
-      left: "89%",
-      d: "M10,0 Q16,25 8,55 T12,100",
-      stroke: 3,
-      clase: "text-amber-950/60",
-    },
-    {
-      id: 12,
-      left: "95%",
-      d: "M7,0 C14,40 2,60 10,100",
-      stroke: 2.5,
-      clase: "text-amber-950/60",
-    },
-  ];
 
   const combateLocal = expedicionActiva?.combateActivo ?? null;
 
