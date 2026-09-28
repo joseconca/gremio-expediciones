@@ -6,14 +6,14 @@ import type { TipoMision } from "@/lib/tiposJuego";
 
 import { seleccionarEnemigoNormal } from "@/lib/expediciones/normal";
 import { seleccionarJefeElite } from "@/lib/expediciones/elite";
-import {
-  calcularBonificacionMuralla,
-  determinarPrimerTurnoAsedio,
-} from "@/lib/expediciones/asedio";
+
+import { procesarLlegadaAsedio } from "@/lib/expediciones/procesarLlegadaAsedio";
+
 import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
 } from "@/lib/estadisticasPersonaje";
+
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 
 export async function POST() {
@@ -25,11 +25,15 @@ export async function POST() {
     }
 
     const usuario = await prisma.usuario.findUnique({
-      where: { id: usuarioSesion.id },
+      where: {
+        id: usuarioSesion.id,
+      },
+
       include: {
         personaje: {
           include: {
             habilidades: true,
+
             equipoEquipado: {
               include: {
                 arma: true,
@@ -39,6 +43,7 @@ export async function POST() {
             },
           },
         },
+
         expedicionActiva: {
           include: {
             combateActivo: true,
@@ -49,7 +54,9 @@ export async function POST() {
 
     if (!usuario || !usuario.personaje) {
       return NextResponse.json(
-        { error: "No se encontró el personaje." },
+        {
+          error: "No se encontró el personaje.",
+        },
         { status: 404 }
       );
     }
@@ -58,7 +65,9 @@ export async function POST() {
 
     if (!expedicion) {
       return NextResponse.json(
-        { error: "No tienes ninguna expedición activa." },
+        {
+          error: "No tienes ninguna expedición activa.",
+        },
         { status: 409 }
       );
     }
@@ -68,12 +77,16 @@ export async function POST() {
         {
           error:
             "Las expediciones comerciales no utilizan el sistema de combate.",
+
           tipo: "comercio",
         },
         { status: 409 }
       );
     }
 
+    /*
+     * Si el combate ya existe, simplemente lo devolvemos.
+     */
     if (expedicion.combateActivo) {
       return NextResponse.json({
         combate: expedicion.combateActivo,
@@ -84,6 +97,7 @@ export async function POST() {
       return NextResponse.json(
         {
           error: "La expedición no puede iniciar un combate desde esta fase.",
+
           fase: expedicion.fase,
         },
         { status: 409 }
@@ -96,6 +110,7 @@ export async function POST() {
       return NextResponse.json(
         {
           error: "La expedición todavía no ha llegado a su destino.",
+
           fechaLlegada: expedicion.fechaLlegada,
         },
         { status: 409 }
@@ -109,279 +124,85 @@ export async function POST() {
     // ============================================================
 
     if (expedicion.tipo === "asedio") {
-      if (!expedicion.objetivoId) {
-        return NextResponse.json(
-          {
-            error: "El asedio no tiene un gremio objetivo.",
-          },
-          { status: 400 }
-        );
-      }
+      try {
+        const combate = await procesarLlegadaAsedio(expedicion.id);
 
-      const defensor = await prisma.usuario.findUnique({
-        where: {
-          id: expedicion.objetivoId,
-        },
-        include: {
-          personaje: {
-            include: {
-              habilidades: true,
-              equipoEquipado: {
-                include: {
-                  arma: true,
-                  armadura: true,
-                  accesorio: true,
-                },
-              },
+        return NextResponse.json({
+          exito: true,
+          tipo: "asedio",
+          combate,
+        });
+      } catch (error) {
+        if (
+          error instanceof Error &&
+          error.message === "EXPEDICION_AUN_NO_HA_LLEGADO"
+        ) {
+          return NextResponse.json(
+            {
+              error: "La expedición todavía no ha llegado a su destino.",
+
+              fechaLlegada: expedicion.fechaLlegada,
             },
-          },
-          expedicionActiva: {
-            include: {
-              combateActivo: true,
+            { status: 409 }
+          );
+        }
+
+        if (error instanceof Error && error.message === "ASEDIO_SIN_OBJETIVO") {
+          return NextResponse.json(
+            {
+              error: "El asedio no tiene un gremio objetivo.",
             },
-          },
-        },
-      });
+            { status: 400 }
+          );
+        }
 
-      if (!defensor?.personaje) {
+        if (
+          error instanceof Error &&
+          error.message === "DEFENSOR_NO_ENCONTRADO"
+        ) {
+          return NextResponse.json(
+            {
+              error: "El gremio defensor ya no tiene un personaje disponible.",
+            },
+            { status: 404 }
+          );
+        }
+
+        if (
+          error instanceof Error &&
+          error.message === "DEFENSOR_YA_PARTICIPA_EN_COMBATE"
+        ) {
+          return NextResponse.json(
+            {
+              error:
+                "El personaje defensor ya se encuentra participando en un combate.",
+            },
+            { status: 409 }
+          );
+        }
+
+        if (error instanceof Error && error.message === "ASEDIO_YA_PROCESADO") {
+          return NextResponse.json(
+            {
+              error: "El asedio ya ha sido procesado.",
+            },
+            { status: 409 }
+          );
+        }
+
+        console.error("Error procesando llegada del asedio:", error);
+
         return NextResponse.json(
           {
-            error: "El gremio defensor ya no tiene un personaje disponible.",
+            error: "No se pudo iniciar el asedio.",
           },
-          { status: 404 }
+          { status: 500 }
         );
       }
-
-      // No permitimos que un personaje participe en dos combates simultáneos.
-      const combateDefensor = await prisma.combateActivo.findFirst({
-        where: {
-          tipo: "pvp",
-          defensorUsuarioId: defensor.id,
-          fase: "activo",
-        },
-      });
-
-      if (
-        combateDefensor ||
-        defensor.expedicionActiva?.combateActivo ||
-        defensor.personaje.estado === "combatiendo"
-      ) {
-        return NextResponse.json(
-          {
-            error:
-              "El personaje defensor ya se encuentra participando en un combate.",
-          },
-          { status: 409 }
-        );
-      }
-
-      // ============================================================
-      // ESTADÍSTICAS DEL ATACANTE
-      // ============================================================
-
-      const personajeAtacante = personaje;
-
-      const equipoAtacante = obtenerEquipoDesdePersonaje(personaje);
-      const modificadoresEquipoAtacante =
-        calcularModificadoresEquipo(equipoAtacante);
-
-      const estadisticasAtacante = calcularEstadisticasPersonaje(
-        personaje,
-        personaje.habilidades.map((habilidad) => habilidad.habilidadId),
-        modificadoresEquipoAtacante
-      );
-
-      // ============================================================
-      // ESTADÍSTICAS DEL DEFENSOR
-      // ============================================================
-
-      const personajeDefensor = defensor.personaje;
-
-      const equipoDefensor = obtenerEquipoDesdePersonaje(personajeDefensor);
-
-      const modificadoresEquipoDefensor =
-        calcularModificadoresEquipo(equipoDefensor);
-
-      const estadisticasDefensor = calcularEstadisticasPersonaje(
-        personajeDefensor,
-        personajeDefensor.habilidades.map((habilidad) => habilidad.habilidadId),
-        modificadoresEquipoDefensor
-      );
-
-      // ============================================================
-      // EDIFICIOS DEFENSIVOS
-      // ============================================================
-
-      const edificiosDefensor = defensor.edificios as Record<
-        string,
-        unknown
-      > | null;
-
-      const nivelMuralla =
-        typeof edificiosDefensor?.muralla === "number"
-          ? Math.max(0, Math.trunc(edificiosDefensor.muralla))
-          : 0;
-
-      const nivelAlmacen =
-        typeof edificiosDefensor?.almacen === "number"
-          ? Math.max(0, Math.trunc(edificiosDefensor.almacen))
-          : 0;
-
-      /*
-       * La Muralla se congela al comenzar el combate.
-       * Cualquier mejora posterior no afecta a este asedio.
-       */
-      const bonificacionMuralla = calcularBonificacionMuralla(nivelMuralla);
-
-      const jugadorHpMaximo = estadisticasAtacante.total.hpMaximo;
-
-      const jugadorHp = jugadorHpMaximo;
-
-      const jugadorAtaque = estadisticasAtacante.total.ataque;
-
-      const jugadorDefensa = estadisticasAtacante.total.defensa;
-
-      const jugadorVelocidad = estadisticasAtacante.total.velocidad;
-
-      const jugadorNivel = personaje.nivel;
-
-      const jugadorProbCritico = estadisticasAtacante.total.probCritico;
-
-      const jugadorDanoCritico = estadisticasAtacante.total.danoCritico;
-
-      const capacidadCarruaje = estadisticasAtacante.total.capacidadCarruaje;
-
-      const enemigoHpMaximo = estadisticasDefensor.total.hpMaximo;
-
-      const enemigoHp = enemigoHpMaximo;
-
-      const enemigoAtaque = estadisticasDefensor.total.ataque;
-
-      const enemigoDefensa = estadisticasDefensor.total.defensa;
-
-      const enemigoVelocidad = estadisticasDefensor.total.velocidad;
-
-      const enemigoNivel = personajeDefensor.nivel;
-
-      const enemigoProbCritico = estadisticasDefensor.total.probCritico;
-
-      const enemigoDanoCritico = estadisticasDefensor.total.danoCritico;
-
-      // ============================================================
-      // INICIATIVA
-      // ============================================================
-
-      const primerTurno = determinarPrimerTurnoAsedio({
-        velocidadAtacante: jugadorVelocidad,
-        velocidadDefensor: enemigoVelocidad,
-      });
-
-      const logInicial =
-        primerTurno === "atacante"
-          ? [`⚔️ ${personaje.nombre} tiene la iniciativa y comienza el asedio.`]
-          : [
-              `⚔️ ${personajeDefensor.nombre} tiene la iniciativa y defiende el gremio.`,
-            ];
-
-      // ============================================================
-      // CREAR COMBATE PvP
-      // ============================================================
-
-      const combate = await prisma.$transaction(async (tx) => {
-        const nuevoCombate = await tx.combateActivo.create({
-          data: {
-            expedicionId: expedicion.id,
-
-            fase: "activo",
-            ronda: 1,
-            turno: primerTurno,
-            ultimoTurnoEn: new Date(),
-
-            tipo: "pvp",
-
-            atacanteUsuarioId: usuario.id,
-            defensorUsuarioId: defensor.id,
-            enemigoUsuarioId: defensor.id,
-
-            atacanteNombre: personajeAtacante.nombre,
-            defensorNombre: personajeDefensor.nombre,
-
-            atacanteClase: personajeAtacante.clase,
-            atacanteSexo: personajeAtacante.sexo,
-
-            defensorClase: personajeDefensor.clase,
-            defensorSexo: personajeDefensor.sexo,
-
-            estadoDefensorAnterior: personajeDefensor.estado,
-
-            capacidadCarruaje: capacidadCarruaje,
-            murallaNivel: nivelMuralla,
-            almacenNivel: nivelAlmacen,
-
-            enemigoId: null,
-            enemigoNombre: personajeDefensor.nombre,
-
-            enemigoHp,
-            enemigoHpMaximo: enemigoHpMaximo,
-            enemigoAtaque,
-            enemigoDefensa,
-            enemigoVelocidad,
-            enemigoProbCritico,
-            enemigoDanoCritico,
-            enemigoNivel,
-
-            jugadorHp,
-            jugadorHpMaximo,
-            jugadorAtaque,
-            jugadorDefensa,
-            jugadorVelocidad,
-            jugadorProbCritico,
-            jugadorDanoCritico,
-            jugadorNivel,
-
-            ganadorUsuarioId: null,
-            botinResuelto: false,
-
-            oroGanado: 0,
-            experienciaGanada: 0,
-
-            cooldowns: {},
-            efectos: [],
-
-            log: logInicial,
-          },
-        });
-
-        await tx.expedicionActiva.update({
-          where: {
-            id: expedicion.id,
-          },
-          data: {
-            fase: "combatiendo",
-          },
-        });
-
-        await tx.personaje.update({
-          where: {
-            id: personajeDefensor.id,
-          },
-          data: {
-            estado: "combatiendo",
-          },
-        });
-
-        return nuevoCombate;
-      });
-
-      return NextResponse.json({
-        exito: true,
-        tipo: "asedio",
-        combate,
-      });
     }
 
     // ============================================================
-    // SELECCIONAR ENEMIGO
+    // SELECCIONAR ENEMIGO PvE
     // ============================================================
 
     const tipoMision = expedicion.tipo as TipoMision;
@@ -403,6 +224,7 @@ export async function POST() {
         monstruoBase = seleccionarJefeElite(expedicion.enemigoId);
       } else if (tipoMision === "normal") {
         monstruoBase = seleccionarEnemigoNormal(expedicion.dificultad);
+
         rarezaMonstruo = monstruoBase.rareza ?? "comun";
       } else {
         return NextResponse.json(
@@ -424,13 +246,15 @@ export async function POST() {
     }
 
     // ============================================================
-    // ESTADÍSTICAS
+    // ESTADÍSTICAS PvE
     // ============================================================
 
     const dificultad = Math.max(0, expedicion.dificultad);
 
     const equipo = obtenerEquipoDesdePersonaje(personaje);
+
     const modificadoresEquipo = calcularModificadoresEquipo(equipo);
+
     const estadisticasJugador = calcularEstadisticasPersonaje(
       personaje,
       personaje.habilidades.map((habilidad) => habilidad.habilidadId),
@@ -438,14 +262,18 @@ export async function POST() {
     );
 
     const variacionStats = () => Math.random() * 0.5 - 0.25;
+
     const multiplicadorStatPorRareza = (rareza: string) => {
       switch (rareza) {
         case "comun":
           return 0.4;
+
         case "poco_comun":
           return 0.3;
+
         case "raro":
           return 0.2;
+
         case "epico":
         case "legendario":
         default:
@@ -481,36 +309,44 @@ export async function POST() {
         0.25 *
         (1 - variacionStats())
     );
-    const enemigoProbCritico = /*monstruoBase.probCritico ??*/ 0.1;
-    const enemigoDanoCritico = /*monstruoBase.danoCritico ??*/ 2;
 
-    const enemigoNivel = /*monstruoBase.nivel ??*/ 1;
+    const enemigoProbCritico = 0.1;
+    const enemigoDanoCritico = 2;
+    const enemigoNivel = 1;
 
     const jugadorHpMaximo = estadisticasJugador.total.hpMaximo;
+
     const jugadorHp = Math.min(
       Math.max(1, personaje.hpActual),
       jugadorHpMaximo
     );
+
     const jugadorAtaque = estadisticasJugador.total.ataque;
+
     const jugadorDefensa = estadisticasJugador.total.defensa;
+
     const jugadorVelocidad = estadisticasJugador.total.velocidad;
+
     const jugadorNivel = personaje.nivel;
+
     const jugadorProbCritico = estadisticasJugador.total.probCritico;
+
     const jugadorDanoCritico = estadisticasJugador.total.danoCritico;
 
     const primerTurno =
       jugadorVelocidad >= enemigoVelocidad ? "jugador" : "enemigo";
+
     const logInicial =
       primerTurno === "jugador"
         ? [
             `⚔️ Has encontrado un ${enemigoNombre} de nivel ${expedicion.dificultad}. ${usuario.personaje.nombre} tiene la iniciativa.`,
           ]
         : [
-            `⚔️ Has encontrado un ${enemigoNombre} de nivel ${expedicion.dificultad}.${enemigoNombre} tiene la iniciativa.`,
+            `⚔️ Has encontrado un ${enemigoNombre} de nivel ${expedicion.dificultad}. ${enemigoNombre} tiene la iniciativa.`,
           ];
 
     // ============================================================
-    // CREAR COMBATE
+    // CREAR COMBATE PvE
     // ============================================================
 
     const combate = await prisma.$transaction(async (tx) => {
@@ -523,10 +359,12 @@ export async function POST() {
           turno: primerTurno,
 
           enemigoId: monstruoBase.id,
+
           enemigoNombre: monstruoBase.nombre,
 
           enemigoHp,
           enemigoHpMaximo: enemigoHp,
+
           enemigoAtaque,
           enemigoDefensa,
           enemigoVelocidad,
@@ -536,6 +374,7 @@ export async function POST() {
 
           jugadorHp,
           jugadorHpMaximo: jugadorHpMaximo,
+
           jugadorAtaque,
           jugadorDefensa,
           jugadorVelocidad,
@@ -557,6 +396,7 @@ export async function POST() {
         where: {
           id: expedicion.id,
         },
+
         data: {
           fase: "combatiendo",
         },
@@ -569,15 +409,18 @@ export async function POST() {
       where: {
         id: usuario.id,
       },
+
       include: {
         personaje: {
           include: {
             habilidades: true,
+
             inventario: {
               include: {
                 objetos: true,
               },
             },
+
             equipoEquipado: {
               include: {
                 arma: true,
@@ -587,6 +430,7 @@ export async function POST() {
             },
           },
         },
+
         expedicionActiva: {
           include: {
             combateActivo: true,
@@ -620,7 +464,9 @@ export async function POST() {
     console.error("Error al iniciar el combate de la expedición:", error);
 
     return NextResponse.json(
-      { error: "No se pudo iniciar el combate." },
+      {
+        error: "No se pudo iniciar el combate.",
+      },
       { status: 500 }
     );
   }

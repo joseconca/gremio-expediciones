@@ -147,8 +147,12 @@ export function PanelCaravanasEntrantes({
 }
 export function PanelAsediosEntrantes({
   asedios,
+  onComenzarAsedio,
+  comenzandoAsedio,
 }: {
   asedios: AsedioEntrante[];
+  onComenzarAsedio: () => void;
+  comenzandoAsedio: boolean;
 }) {
   const [ahora, setAhora] = useState(0);
   const [expandido, setExpandido] = useState(false);
@@ -210,6 +214,7 @@ export function PanelAsediosEntrantes({
 
             const minutos = Math.floor(segundos / 60);
             const restoSegundos = segundos % 60;
+            const haLlegado = segundos <= 0;
 
             return (
               <div
@@ -255,9 +260,23 @@ export function PanelAsediosEntrantes({
                   </div>
                 </div>
 
-                <div className="relative z-10 mt-1 flex justify-between text-[10px] font-medium text-slate-500">
+                <div className="relative z-10 mt-2 flex items-center justify-between gap-3 text-[10px] font-medium text-slate-500">
                   <span>Progreso: {Math.round(progreso)}%</span>
-                  <span className="text-red-300">Asedio en camino</span>
+
+                  {haLlegado ? (
+                    <button
+                      type="button"
+                      onClick={onComenzarAsedio}
+                      disabled={comenzandoAsedio}
+                      className="rounded-lg border border-red-500 bg-red-700 px-3 py-1.5 text-xs font-black uppercase tracking-wide text-white shadow-lg transition hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                      {comenzandoAsedio
+                        ? "Comenzando..."
+                        : "⚔️ Comenzar asedio"}
+                    </button>
+                  ) : (
+                    <span className="text-red-300">Asedio en camino</span>
+                  )}
                 </div>
 
                 <div className="pointer-events-none absolute bottom-0 right-0 top-0 w-32 bg-gradient-to-l from-red-900/20 to-transparent" />
@@ -299,6 +318,7 @@ export default function BasePage() {
   const [confirmarRegreso, setConfirmarRegreso] = useState(false);
   const [cancelandoExpedicion, setCancelandoExpedicion] = useState(false);
   const [combateAbierto, setCombateAbierto] = useState(false);
+  const [comenzandoAsedio, setComenzandoAsedio] = useState(false);
   const [combateEntrante, setCombateEntrante] = useState<CombateActivo | null>(
     null
   );
@@ -417,6 +437,45 @@ export default function BasePage() {
       return () => cancelAnimationFrame(frame);
     }
   }, [expedicionActiva, combateEntrante]);
+
+  const handleComenzarAsedioDefensor = async () => {
+    if (comenzandoAsedio) return;
+
+    setComenzandoAsedio(true);
+
+    try {
+      const respuesta = await fetch("/api/asedios/comenzar", {
+        method: "POST",
+      });
+
+      const datos = await respuesta.json();
+
+      if (!respuesta.ok) {
+        console.error("Error al comenzar asedio:", datos.error);
+        return;
+      }
+
+      if (datos.combate) {
+        setCombateEntrante(datos.combate);
+        setCombateAbierto(true);
+      }
+
+      // Refrescar el estado general del jugador.
+      const respuestaJugador = await fetch("/api/jugador");
+
+      if (respuestaJugador.ok) {
+        const jugador = await respuestaJugador.json();
+
+        setAsediosEntrantes(jugador.asediosEntrantes || []);
+        setCaravanasEntrantes(jugador.caravanasEntrantes || []);
+        setCombateEntrante(jugador.combateEntrante ?? datos.combate ?? null);
+      }
+    } catch (error) {
+      console.error("Error al comenzar asedio:", error);
+    } finally {
+      setComenzandoAsedio(false);
+    }
+  };
 
   const handleResolverLlegada = async () => {
     if (!expedicionActiva) return;
@@ -578,7 +637,11 @@ export default function BasePage() {
           </div>
         </div>
       )}
-      <PanelAsediosEntrantes asedios={asediosEntrantes} />
+      <PanelAsediosEntrantes
+        asedios={asediosEntrantes}
+        onComenzarAsedio={() => void handleComenzarAsedioDefensor()}
+        comenzandoAsedio={comenzandoAsedio}
+      />
       <PanelCaravanasEntrantes caravanas={caravanasEntrantes} />
 
       <div className="max-w-4xl mx-auto">
