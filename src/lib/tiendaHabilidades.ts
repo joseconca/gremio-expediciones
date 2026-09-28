@@ -23,7 +23,7 @@ export function obtenerHabilidadesEnVenta(): DefinicionHabilidad[] {
   const restantes = [...disponibles];
   const seleccionadas: DefinicionHabilidad[] = [];
 
-  for (let i = 0; i < 2 && restantes.length > 0; i++) {
+  for (let i = 0; i < 4 && restantes.length > 0; i++) {
     const indice = Math.floor(randomSeeded(seed + i + 1) * restantes.length);
 
     const habilidad = restantes.splice(indice, 1)[0];
