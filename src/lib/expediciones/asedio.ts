@@ -27,7 +27,6 @@ export interface EdificiosDefensivos {
 export function calcularBonificacionMuralla(nivelMuralla: number): number {
   const nivel = Math.max(0, nivelMuralla);
 
-  // TODO: ajustar valores cuando definamos la progresión definitiva
   return nivel * 5;
 }
 
@@ -447,33 +446,12 @@ export async function finalizarAsedio({
   // RESTAURAR ESTADO DEL DEFENSOR
   // ==========================================================
 
-  /*
-   * No restauramos directamente estadoDefensorAnterior.
-   *
-   * Ese estado puede haber quedado obsoleto si, por ejemplo,
-   * el defensor tenía una expedición PvE que terminó durante
-   * el asedio.
-   */
-
-  const expedicionDefensor = await tx.expedicionActiva.findUnique({
-    where: {
-      usuarioId: defensorUsuarioId,
-    },
-    select: {
-      id: true,
-    },
-  });
-
   await tx.personaje.update({
     where: {
       usuarioId: defensorUsuarioId,
     },
     data: {
-      estado: expedicionDefensor
-        ? "de_viaje"
-        : enemigoHp > 0
-        ? "ocioso"
-        : "descansando",
+      estado: combate.estadoDefensorAnterior!,
     },
   });
 
