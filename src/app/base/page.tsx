@@ -341,6 +341,7 @@ export default function BasePage() {
       .catch(() => {
         setCaravanasEntrantes([]);
         setAsediosEntrantes([]);
+        setCombateEntrante(null);
       });
   }, []);
 

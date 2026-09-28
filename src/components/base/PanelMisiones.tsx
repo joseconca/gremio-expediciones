@@ -242,6 +242,8 @@ export default function PanelMisiones({
                       ? "🏠 Recibir al aventurero"
                       : expedicionActiva.tipo === "comercio"
                       ? "🤝 Resolver comercio"
+                      : expedicionActiva.tipo === "asedio"
+                      ? "⚔️ Comenzar asedio"
                       : "⚔️ Enfrentarse al enemigo"}
                   </button>
                 ) : (
