@@ -64,7 +64,7 @@ function simularRuta(
 }
 
 export function calcularOroBaseComercio(distanciaKm: number) {
-  return Math.floor(distanciaKm * 2 + 20);
+  return Math.floor(distanciaKm * 10 );
 }
 
 export function resolverComercio(
