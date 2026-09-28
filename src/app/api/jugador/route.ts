@@ -112,6 +112,7 @@ export async function GET() {
         },
       },
     });
+
     const nombresOrigen = new Map(
       origenes.map((origen) => [origen.id, origen.nombre])
     );
@@ -155,8 +156,54 @@ export async function GET() {
       Object.entries(usuario).filter(([clave]) => clave !== "password")
     );
 
+    const asediosEntrantes = await prisma.expedicionActiva.findMany({
+      where: {
+        tipo: "asedio",
+        objetivoId: usuario.id,
+        fase: "en_viaje",
+      },
+      include: {
+        usuario: {
+          select: {
+            id: true,
+            nombre: true,
+            baseCoords: true,
+            personaje: {
+              select: {
+                nombre: true,
+                clase: true,
+                sexo: true,
+              },
+            },
+          },
+        },
+      },
+      orderBy: {
+        fechaSalida: "desc",
+      },
+    });
+
+    const datosAsediosEntrantes = asediosEntrantes.map((expedicion) => {
+      const origenCoords = expedicion.usuario.baseCoords as {
+        lat: number;
+        lng: number;
+      } | null;
+
+      return {
+        id: expedicion.id,
+        atacanteNombre: expedicion.usuario.nombre,
+        atacanteNombreAventurero:
+          expedicion.usuario.personaje?.nombre ?? "Aventurero",
+        atacanteClase: expedicion.usuario.personaje?.clase ?? null,
+        atacanteSexo: expedicion.usuario.personaje?.sexo ?? null,
+        fechaSalida: expedicion.fechaSalida,
+        fechaLlegada: expedicion.fechaLlegada,
+        origenCoords,
+      };
+    });
+
     return NextResponse.json(
-      { ...datosPublicos, caravanasEntrantes },
+      { ...datosPublicos, caravanasEntrantes, asediosEntrantes: datosAsediosEntrantes },
       { headers: { "Cache-Control": "no-store" } }
     );
   } catch (error) {

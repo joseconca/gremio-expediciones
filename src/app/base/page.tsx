@@ -2,9 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { CombateActivo, CombatePve, useGameStore } from "@/store/useGameStore";
-import type {
-  ReporteExpedicion as ReporteExpedicionTipo,
-} from "@/lib/tiposJuego";
+import type { ReporteExpedicion as ReporteExpedicionTipo } from "@/lib/tiposJuego";
 import CombateModal from "@/components/combate/CombateModal";
 import AsedioModal from "@/components/combate/AsedioModal";
 import PanelEdificios from "@/components/base/PanelEdificios";
@@ -315,41 +313,14 @@ export default function BasePage() {
   useEffect(() => {
     fetch("/api/jugador")
       .then((respuesta) => respuesta.json())
-      .then((datos) => setCaravanasEntrantes(datos.caravanasEntrantes || []))
-      .catch(() => setCaravanasEntrantes([]));
-  }, []);
-
-  useEffect(() => {
-    let activo = true;
-
-    const cargarAsedios = async () => {
-      try {
-        const respuesta = await fetch("/api/asedios/entrantes");
-
-        if (!respuesta.ok) return;
-
-        const datos = await respuesta.json();
-
-        if (activo) {
-          setAsediosEntrantes(datos.asedios || []);
-        }
-      } catch {
-        if (activo) {
-          setAsediosEntrantes([]);
-        }
-      }
-    };
-
-    void cargarAsedios();
-
-    const intervalo = setInterval(() => {
-      void cargarAsedios();
-    }, 30000);
-
-    return () => {
-      activo = false;
-      clearInterval(intervalo);
-    };
+      .then((datos) => {
+        setCaravanasEntrantes(datos.caravanasEntrantes || []);
+        setAsediosEntrantes(datos.asediosEntrantes || []);
+      })
+      .catch(() => {
+        setCaravanasEntrantes([]);
+        setAsediosEntrantes([]);
+      });
   }, []);
 
   useEffect(() => {
