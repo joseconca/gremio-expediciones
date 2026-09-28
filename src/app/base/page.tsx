@@ -316,6 +316,7 @@ export default function BasePage() {
       .then((datos) => {
         setCaravanasEntrantes(datos.caravanasEntrantes || []);
         setAsediosEntrantes(datos.asediosEntrantes || []);
+        setCombateEntrante(datos.combateEntrante ?? null);
       })
       .catch(() => {
         setCaravanasEntrantes([]);

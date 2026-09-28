@@ -202,8 +202,21 @@ export async function GET() {
       };
     });
 
+    const combateEntrante = await prisma.combateActivo.findFirst({
+      where: {
+        tipo: "pvp",
+        defensorUsuarioId: usuario.id,
+        fase: "activo",
+      },
+    });
+
     return NextResponse.json(
-      { ...datosPublicos, caravanasEntrantes, asediosEntrantes: datosAsediosEntrantes },
+      {
+        ...datosPublicos,
+        caravanasEntrantes,
+        asediosEntrantes: datosAsediosEntrantes,
+        combateEntrante,
+      },
       { headers: { "Cache-Control": "no-store" } }
     );
   } catch (error) {
