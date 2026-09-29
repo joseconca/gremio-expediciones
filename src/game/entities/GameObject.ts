@@ -54,6 +54,10 @@ export class GameObject {
     ];
   }
 
+  isCollidable(): boolean {
+    return true;
+  }
+
   render(
     _ctx: CanvasRenderingContext2D,
     _screenX: number,

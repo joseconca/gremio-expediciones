@@ -39,7 +39,11 @@ export class CollisionSystem {
       }
 
       for (const other of this.objects) {
-        if (other === object) {
+        if (
+          other === object ||
+          other.colliders.length === 0 ||
+          !other.isCollidable()
+        ) {
           continue;
         }
 

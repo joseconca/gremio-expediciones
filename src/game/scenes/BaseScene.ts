@@ -16,6 +16,7 @@ import { Building } from "../entities/Building";
 import { townHallDefinition } from "../data/buildings/townHall";
 import { InteractionSystem } from "../systems/InteractionSystem";
 import { Door } from "../entities/Door";
+import { genericDoorDefinition } from "../data/doors/genericDoor1";
 import type { Interactable } from "../entities/Interactable";
 
 export class BaseScene extends Scene {
@@ -70,11 +71,11 @@ export class BaseScene extends Scene {
     const townHallDoor = new Door({
       x: 496,
       y: 704,
-
-      interactionRadius: 28,
+      definition: genericDoorDefinition,
     });
-    this.interactables.push(townHallDoor);
     this.world.addObject(townHallDoor);
+    this.collisionSystem.addObject(townHallDoor);
+    this.interactables.push(townHallDoor);
 
     this.movementSystem = new MovementSystem(this.collisionSystem);
     this.interactionSystem = new InteractionSystem(this.input);

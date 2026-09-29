@@ -1,28 +1,55 @@
 import { GameObject, GameObjectConfig } from "./GameObject";
 import type { Interactable } from "./Interactable";
+import type { DoorDefinition } from "../data/doors/DoorDefinition";
+import { SpriteSheet } from "../rendering/SpriteSheet";
+import { Animator } from "../rendering/Animator";
+import { doorAnimations } from "../data/doorAnimations";
+import { Collider } from "./Collider";
 
 export type DoorState = "closed" | "opening" | "open" | "closing";
 
 export interface DoorConfig extends GameObjectConfig {
-  interactionRadius: number;
+  definition: DoorDefinition;
 }
 
 export class Door extends GameObject implements Interactable {
   state: DoorState = "closed";
 
-  readonly interactionRadius: number;
+  readonly definition: DoorDefinition;
+
+  private readonly spriteSheet: SpriteSheet;
+  private readonly animator: Animator;
 
   constructor(config: DoorConfig) {
-    super(config);
+    super({
+      ...config,
+      colliders: [new Collider(config.definition.collider)],
+    });
 
-    this.interactionRadius = config.interactionRadius;
+    this.definition = config.definition;
+
+    this.spriteSheet = new SpriteSheet({
+      src: config.definition.sprite.src,
+      frameWidth: config.definition.sprite.frameWidth,
+      frameHeight: config.definition.sprite.frameHeight,
+    });
+
+    this.animator = new Animator(this.spriteSheet, doorAnimations);
+
+    this.animator.play("closed");
   }
 
   canInteractWith(x: number, y: number): boolean {
-    const dx = x - this.x;
-    const dy = y - this.y;
+    const interactionX = this.x + this.definition.interaction.offsetX;
 
-    return dx * dx + dy * dy <= this.interactionRadius * this.interactionRadius;
+    const interactionY = this.y + this.definition.interaction.offsetY;
+
+    const dx = x - interactionX;
+    const dy = y - interactionY;
+
+    const radius = this.definition.interaction.radius;
+
+    return dx * dx + dy * dy <= radius * radius;
   }
 
   interact(): void {
@@ -42,6 +69,7 @@ export class Door extends GameObject implements Interactable {
     }
 
     this.state = "opening";
+    this.animator.play("opening");
   }
 
   close(): void {
@@ -50,15 +78,23 @@ export class Door extends GameObject implements Interactable {
     }
 
     this.state = "closing";
+    this.animator.play("closing");
   }
 
-  override update(_deltaTime: number): void {
-    if (this.state === "opening") {
-      this.state = "open";
+  override update(deltaTime: number): void {
+    this.animator.update(deltaTime);
+
+    const frame = this.animator.getCurrentFrame();
+
+    if (!frame) {
       return;
     }
 
-    if (this.state === "closing") {
+    if (this.state === "opening" && frame.sx === 3 * frame.sw) {
+      this.state = "open";
+    }
+
+    if (this.state === "closing" && frame.sx === 0) {
       this.state = "closed";
     }
   }
@@ -68,10 +104,15 @@ export class Door extends GameObject implements Interactable {
     screenX: number,
     screenY: number
   ): void {
-    ctx.fillStyle =
-      this.state === "open" ? "rgba(0, 255, 0, 0.8)" : "rgba(139, 69, 19, 0.9)";
+    this.animator.draw(
+      ctx,
+      Math.round(screenX - this.spriteSheet.frameWidth / 2),
+      Math.round(screenY - this.spriteSheet.frameHeight)
+    );
+  }
 
-    ctx.fillRect(Math.round(screenX - 8), Math.round(screenY - 16), 16, 16);
+  override isCollidable(): boolean {
+    return this.state !== "open";
   }
 
   isOpen(): boolean {
