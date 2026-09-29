@@ -5,6 +5,8 @@ import { Animator } from "../rendering/Animator";
 import { heroAnimations } from "../data/heroAnimations";
 import { World } from "../world/World";
 import { Camera } from "../world/Camera";
+import { TileMap } from "../world/TileMap";
+import { baseMap } from "../data/baseMap";
 
 export class BaseScene extends Scene {
   private world: World;
@@ -14,9 +16,12 @@ export class BaseScene extends Scene {
   constructor(config: SceneConfig) {
     super(config);
 
+    const tileMap = new TileMap(baseMap);
+
     this.world = new World({
-      width: 960,
-      height: 1440,
+      width: baseMap.width * baseMap.tileSize,
+      height: baseMap.height * baseMap.tileSize,
+      tileMap: tileMap,
     });
 
     this.camera = new Camera({
