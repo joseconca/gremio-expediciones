@@ -1,15 +1,16 @@
 import type { Character } from "../entities/Character";
-import type { CollisionMap } from "../world/CollisionMap";
+import type { CollisionSystem } from "./CollisionSystem";
 
 export class MovementSystem {
-  private collisionMap: CollisionMap;
+  private collisionSystem: CollisionSystem;
 
-  constructor(collisionMap: CollisionMap) {
-    this.collisionMap = collisionMap;
+  constructor(collisionSystem: CollisionSystem) {
+    this.collisionSystem = collisionSystem;
   }
 
   move(character: Character, deltaX: number, deltaY: number): void {
     this.moveAxis(character, deltaX, "x");
+
     this.moveAxis(character, deltaY, "y");
   }
 
@@ -27,23 +28,10 @@ export class MovementSystem {
       axis === "y" ? amount : 0
     );
 
-    if (this.canOccupy(character, nextPosition.x, nextPosition.y)) {
+    if (
+      this.collisionSystem.canOccupy(character, nextPosition.x, nextPosition.y)
+    ) {
       character.move(axis === "x" ? amount : 0, axis === "y" ? amount : 0);
     }
-  }
-
-  private canOccupy(character: Character, x: number, y: number): boolean {
-    if (!character.collider) {
-      return true;
-    }
-
-    const bounds = character.collider.getBounds(x, y);
-
-    return !this.collisionMap.isBlockedRect(
-      bounds.x,
-      bounds.y,
-      bounds.width,
-      bounds.height
-    );
   }
 }

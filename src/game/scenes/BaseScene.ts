@@ -8,15 +8,20 @@ import { Camera } from "../world/Camera";
 import { TileMap } from "../world/TileMap";
 import { baseMap } from "../data/baseMap";
 import { MovementSystem } from "../systems/MovementSystem";
+import { CollisionSystem } from "../systems/CollisionSystem";
 import { CollisionMap } from "../world/CollisionMap";
 import { baseCollision } from "../data/baseCollision";
 import { Collider } from "../entities/Collider";
-import { TownHall } from "../entities/TownHall";
+import { Building } from "../entities/Building";
+import { townHallDefinition } from "../data/buildings/townHall";
 
 export class BaseScene extends Scene {
   private world: World;
   private camera: Camera;
   private player: Player;
+
+  private collisionSystem: CollisionSystem;
+  private movementSystem: MovementSystem;
 
   constructor(config: SceneConfig) {
     super(config);
@@ -30,17 +35,34 @@ export class BaseScene extends Scene {
       tileMap: tileMap,
       collisionMap: collisionMap,
     });
-    
-    const townHall = new TownHall({
+
+    this.collisionSystem = new CollisionSystem(this.world.collisionMap);
+
+    const townHall = new Building({
+      definition: townHallDefinition,
       x: 432,
       y: 640,
-      width: 96,
-      height: 96,
+      colliders: [
+        new Collider({
+          width: 36,
+          height: 48,
+          offsetX: 8,
+          offsetY: 48,
+        }),
+
+        new Collider({
+          width: 36,
+          height: 48,
+          offsetX: 52,
+          offsetY: 48,
+        }),
+      ],
     });
 
     this.world.addObject(townHall);
+    this.collisionSystem.addObject(townHall);
 
-    const movement = new MovementSystem(this.world.collisionMap);
+    this.movementSystem = new MovementSystem(this.collisionSystem);
 
     this.camera = new Camera({
       width: this.canvas.width,
@@ -63,16 +85,19 @@ export class BaseScene extends Scene {
       direction: "down",
       input: this.input,
       animator: heroAnimator,
-      movement,
-      collider: new Collider({
-        width: 16,
-        height: 12,
-        offsetX: 8,
-        offsetY: 50,
-      }),
+      movement: this.movementSystem,
+      colliders: [
+        new Collider({
+          width: 16,
+          height: 12,
+          offsetX: 8,
+          offsetY: 50,
+        }),
+      ],
     });
 
     this.world.addObject(this.player);
+    this.collisionSystem.addObject(this.player);
   }
 
   init(): void {

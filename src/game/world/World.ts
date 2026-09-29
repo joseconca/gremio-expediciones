@@ -2,7 +2,7 @@ import type { GameObject } from "../entities/GameObject";
 import type { Camera } from "./Camera";
 import { TileMap } from "./TileMap";
 import { CollisionMap } from "./CollisionMap";
-import { RenderLayer } from "../rendering/RenderLayer";
+import { RenderSystem } from "../rendering/RenderSystem";
 
 export interface WorldConfig {
   width: number;
@@ -18,6 +18,8 @@ export class World {
   readonly tileMap: TileMap;
   readonly collisionMap: CollisionMap;
 
+  private readonly renderSystem: RenderSystem;
+
   private objects: GameObject[] = [];
 
   constructor(config: WorldConfig) {
@@ -26,6 +28,8 @@ export class World {
 
     this.tileMap = config.tileMap;
     this.collisionMap = config.collisionMap;
+
+    this.renderSystem = new RenderSystem();
   }
 
   addObject(object: GameObject): void {
@@ -47,30 +51,6 @@ export class World {
   render(ctx: CanvasRenderingContext2D, camera: Camera): void {
     this.tileMap.render(ctx, camera.x, camera.y, camera.width, camera.height);
 
-    this.renderLayer(RenderLayer.BACK, ctx, camera);
-
-    const worldObjects = this.objects
-      .filter((object) => object.getRenderLayer() === RenderLayer.WORLD)
-      .sort((a, b) => a.getSortY() - b.getSortY());
-
-    for (const object of worldObjects) {
-      const screenPosition = camera.worldToScreen(object.x, object.y);
-
-      object.render(ctx, screenPosition.x, screenPosition.y);
-    }
-
-    this.renderLayer(RenderLayer.FRONT, ctx, camera);
-  }
-
-  private renderLayer(
-    layer: RenderLayer,
-    ctx: CanvasRenderingContext2D,
-    camera: Camera
-  ): void {
-    for (const object of this.objects) {
-      const screenPosition = camera.worldToScreen(object.x, object.y);
-
-      object.renderLayer(layer, ctx, screenPosition.x, screenPosition.y);
-    }
+    this.renderSystem.render(ctx, camera, this.objects);
   }
 }

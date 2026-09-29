@@ -1,6 +1,7 @@
 import { GameLoop } from "./GameLoop";
-import { BaseScene } from "../scenes/BaseScene";
 import { InputManager } from "../input/InputManager";
+import { SceneManager } from "../scenes/SceneManager";
+import { BaseScene } from "../scenes/BaseScene";
 
 export interface GameConfig {
   canvas: HTMLCanvasElement;
@@ -11,8 +12,8 @@ export class Game {
   ctx: CanvasRenderingContext2D;
 
   input: InputManager;
+  sceneManager: SceneManager;
   loop: GameLoop;
-  scene: BaseScene;
 
   constructor(config: GameConfig) {
     this.canvas = config.canvas;
@@ -27,27 +28,39 @@ export class Game {
 
     this.input = new InputManager();
 
-    this.scene = new BaseScene({
-      canvas: this.canvas,
-      ctx: this.ctx,
-      input: this.input,
-    });
+    this.sceneManager = new SceneManager();
+
+    this.sceneManager.register(
+      "base",
+      (spawnId) =>
+        new BaseScene({
+          canvas: this.canvas,
+          ctx: this.ctx,
+          input: this.input,
+          spawnId,
+        })
+    );
 
     this.loop = new GameLoop({
-      update: (deltaTime) => this.scene.update(deltaTime),
-      render: () => this.scene.render(),
+      update: (deltaTime) => this.sceneManager.update(deltaTime),
+
+      render: () => this.sceneManager.render(),
     });
   }
 
   init(): void {
     this.input.init();
-    this.scene.init();
+
+    this.sceneManager.changeScene("base");
+
     this.loop.start();
   }
 
   destroy(): void {
     this.loop.stop();
-    this.scene.destroy();
+
+    this.sceneManager.destroy();
+
     this.input.destroy();
   }
 }

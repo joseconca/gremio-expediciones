@@ -1,53 +1,73 @@
-import { GameObject, GameObjectConfig } from "./GameObject";
-import { RenderLayer } from "../rendering/RenderLayer";
+import {
+  GameObject,
+  GameObjectConfig,
+} from "./GameObject";
+import type {
+  BuildingDefinition,
+} from "../data/buildings/BuildingDefinition";
+import type { RenderPart } from "../rendering/RenderPart";
 
 export interface BuildingConfig extends GameObjectConfig {
-  width: number;
-  height: number;
+  definition: BuildingDefinition;
 }
 
 export class Building extends GameObject {
+  readonly definition: BuildingDefinition;
+
   readonly width: number;
   readonly height: number;
 
   constructor(config: BuildingConfig) {
     super(config);
 
-    this.width = config.width;
-    this.height = config.height;
+    this.definition = config.definition;
+
+    this.width = config.definition.width;
+    this.height = config.definition.height;
   }
 
-  override renderLayer(
-    layer: RenderLayer,
+  override getRenderParts(): RenderPart[] {
+    return this.definition.parts.map((part) => ({
+      layer: part.layer,
+
+      offsetX: part.offsetX,
+      offsetY: part.offsetY,
+
+      sortYOffset: part.sortYOffset,
+
+      render: (
+        ctx,
+        screenX,
+        screenY
+      ) => {
+        this.renderPart(
+          part.id,
+          ctx,
+          screenX,
+          screenY
+        );
+      },
+    }));
+  }
+
+  protected renderPart(
+    partId: string,
     ctx: CanvasRenderingContext2D,
     screenX: number,
     screenY: number
   ): void {
-    switch (layer) {
-      case RenderLayer.BACK:
-        this.renderBack(ctx, screenX, screenY);
+    switch (partId) {
+      case "body":
+        this.renderBody(
+          ctx,
+          screenX,
+          screenY
+        );
         break;
 
-      case RenderLayer.FRONT:
-        this.renderFront(ctx, screenX, screenY);
+      default:
         break;
     }
-  }
-
-  override render(
-    ctx: CanvasRenderingContext2D,
-    screenX: number,
-    screenY: number
-  ): void {
-    this.renderBody(ctx, screenX, screenY);
-  }
-
-  protected renderBack(
-    _ctx: CanvasRenderingContext2D,
-    _screenX: number,
-    _screenY: number
-  ): void {
-    // Capa trasera
   }
 
   protected renderBody(
@@ -57,14 +77,11 @@ export class Building extends GameObject {
   ): void {
     ctx.fillStyle = "#8b5a3c";
 
-    ctx.fillRect(screenX, screenY, this.width, this.height);
-  }
-
-  protected renderFront(
-    _ctx: CanvasRenderingContext2D,
-    _screenX: number,
-    _screenY: number
-  ): void {
-    // Capa frontal
+    ctx.fillRect(
+      screenX,
+      screenY,
+      this.width,
+      this.height
+    );
   }
 }
