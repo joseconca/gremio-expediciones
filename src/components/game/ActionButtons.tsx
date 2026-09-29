@@ -36,9 +36,9 @@ function ActionButton({ action, label }: ActionButtonProps) {
 export default function ActionButtons() {
   return (
     <div className="flex items-center gap-4">
-      <ActionButton action="actionB" label="A" />
+      <ActionButton action="actionA" label="A" />
 
-      <ActionButton action="actionA" label="B" />
+      <ActionButton action="actionB" label="B" />
     </div>
   );
 }

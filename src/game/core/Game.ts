@@ -2,6 +2,7 @@ import { GameLoop } from "./GameLoop";
 import { InputManager } from "../input/InputManager";
 import { SceneManager } from "../scenes/SceneManager";
 import { BaseScene } from "../scenes/BaseScene";
+import { TownHallInteriorScene } from "../scenes/TownHallInteriorScene";
 
 export interface GameConfig {
   canvas: HTMLCanvasElement;
@@ -37,14 +38,32 @@ export class Game {
           canvas: this.canvas,
           ctx: this.ctx,
           input: this.input,
+          sceneManager: this.sceneManager,
+          spawnId,
+        })
+    );
+
+    this.sceneManager.register(
+      "town-hall-interior",
+      (spawnId) =>
+        new TownHallInteriorScene({
+          canvas: this.canvas,
+          ctx: this.ctx,
+          input: this.input,
+          sceneManager: this.sceneManager,
           spawnId,
         })
     );
 
     this.loop = new GameLoop({
-      update: (deltaTime) => this.sceneManager.update(deltaTime),
+      update: (deltaTime) => {
+        this.sceneManager.update(deltaTime);
+        this.input.endFrame();
+      },
 
-      render: () => this.sceneManager.render(),
+      render: () => {
+        this.sceneManager.render();
+      },
     });
   }
 

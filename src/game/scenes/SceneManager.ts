@@ -37,7 +37,6 @@ export class SceneManager {
 
   destroy(): void {
     this.currentScene?.destroy();
-
     this.currentScene = null;
   }
 }

@@ -14,6 +14,9 @@ import { baseCollision } from "../data/baseCollision";
 import { Collider } from "../entities/Collider";
 import { Building } from "../entities/Building";
 import { townHallDefinition } from "../data/buildings/townHall";
+import { InteractionSystem } from "../systems/InteractionSystem";
+import { Door } from "../entities/Door";
+import type { Interactable } from "../entities/Interactable";
 
 export class BaseScene extends Scene {
   private world: World;
@@ -22,6 +25,8 @@ export class BaseScene extends Scene {
 
   private collisionSystem: CollisionSystem;
   private movementSystem: MovementSystem;
+  private interactionSystem: InteractionSystem;
+  private interactables: Interactable[] = [];
 
   constructor(config: SceneConfig) {
     super(config);
@@ -60,11 +65,19 @@ export class BaseScene extends Scene {
         }),
       ],
     });
-
     this.world.addObject(townHall);
     this.collisionSystem.addObject(townHall);
+    const townHallDoor = new Door({
+      x: 496,
+      y: 704,
+
+      interactionRadius: 28,
+    });
+    this.interactables.push(townHallDoor);
+    this.world.addObject(townHallDoor);
 
     this.movementSystem = new MovementSystem(this.collisionSystem);
+    this.interactionSystem = new InteractionSystem(this.input);
 
     this.camera = new Camera({
       width: this.canvas.width,
@@ -110,6 +123,8 @@ export class BaseScene extends Scene {
     this.world.update(deltaTime);
 
     this.camera.follow(this.player.x, this.player.y, 32, 64);
+
+    this.interactionSystem.tryInteract(this.player, this.interactables);
   }
 
   render(): void {

@@ -1,9 +1,11 @@
 import type { InputManager } from "../input/InputManager";
+import type { SceneManager } from "./SceneManager";
 
 export interface SceneConfig {
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
   input: InputManager;
+  sceneManager: SceneManager;
   spawnId?: string;
 }
 
@@ -11,12 +13,14 @@ export abstract class Scene {
   protected canvas: HTMLCanvasElement;
   protected ctx: CanvasRenderingContext2D;
   protected input: InputManager;
-  protected readonly spawnId?: string;
+  protected sceneManager: SceneManager;
+  protected spawnId?: string;
 
   constructor(config: SceneConfig) {
     this.canvas = config.canvas;
     this.ctx = config.ctx;
     this.input = config.input;
+    this.sceneManager = config.sceneManager;
     this.spawnId = config.spawnId;
   }
 

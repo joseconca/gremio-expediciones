@@ -39,7 +39,6 @@ export class InputManager {
       right: this.isDirectionHeld("right"),
 
       actionA: this.touch.isPressed("actionA"),
-
       actionB: this.touch.isPressed("actionB"),
     };
   }

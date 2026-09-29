@@ -1,6 +1,6 @@
 import type { InputManager } from "../input/InputManager";
 import type { Player } from "../entities/Player";
-import type { Entrance } from "../entities/Entrance";
+import type { Interactable } from "../entities/Interactable";
 
 export class InteractionSystem {
   private input: InputManager;
@@ -9,14 +9,19 @@ export class InteractionSystem {
     this.input = input;
   }
 
-  tryInteract(player: Player, entrances: Entrance[]): Entrance | null {
+  tryInteract(
+    player: Player,
+    interactables: Interactable[]
+  ): Interactable | null {
     if (!this.input.getState().actionA) {
       return null;
     }
 
-    for (const entrance of entrances) {
-      if (entrance.canInteractWith(player.x, player.y)) {
-        return entrance;
+    for (const interactable of interactables) {
+      if (interactable.canInteractWith(player.x, player.y)) {
+        interactable.interact();
+
+        return interactable;
       }
     }
 
