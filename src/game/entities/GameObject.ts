@@ -1,4 +1,5 @@
 import { Collider } from "./Collider";
+import { RenderLayer } from "../rendering/RenderLayer";
 
 export interface GameObjectConfig {
   x: number;
@@ -18,6 +19,10 @@ export class GameObject {
     this.collider = config.collider;
   }
 
+  update(_deltaTime: number): void {
+    // Comportamiento base
+  }
+
   getSortY(): number {
     if (!this.collider) {
       return this.y;
@@ -28,8 +33,8 @@ export class GameObject {
     return bounds.y + bounds.height;
   }
 
-  update(_deltaTime: number): void {
-    // Comportamiento base
+  getRenderLayer(): RenderLayer {
+    return RenderLayer.WORLD;
   }
 
   render(
@@ -38,5 +43,14 @@ export class GameObject {
     _screenY: number
   ): void {
     // Renderizado base
+  }
+
+  renderLayer(
+    _layer: RenderLayer,
+    _ctx: CanvasRenderingContext2D,
+    _screenX: number,
+    _screenY: number
+  ): void {
+    // Renderizado específico de una capa
   }
 }

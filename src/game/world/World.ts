@@ -2,6 +2,7 @@ import type { GameObject } from "../entities/GameObject";
 import type { Camera } from "./Camera";
 import { TileMap } from "./TileMap";
 import { CollisionMap } from "./CollisionMap";
+import { RenderLayer } from "../rendering/RenderLayer";
 
 export interface WorldConfig {
   width: number;
@@ -46,14 +47,30 @@ export class World {
   render(ctx: CanvasRenderingContext2D, camera: Camera): void {
     this.tileMap.render(ctx, camera.x, camera.y, camera.width, camera.height);
 
-    const renderObjects = [...this.objects];
+    this.renderLayer(RenderLayer.BACK, ctx, camera);
 
-    renderObjects.sort((a, b) => a.getSortY() - b.getSortY());
+    const worldObjects = this.objects
+      .filter((object) => object.getRenderLayer() === RenderLayer.WORLD)
+      .sort((a, b) => a.getSortY() - b.getSortY());
 
-    for (const object of renderObjects) {
+    for (const object of worldObjects) {
       const screenPosition = camera.worldToScreen(object.x, object.y);
 
       object.render(ctx, screenPosition.x, screenPosition.y);
+    }
+
+    this.renderLayer(RenderLayer.FRONT, ctx, camera);
+  }
+
+  private renderLayer(
+    layer: RenderLayer,
+    ctx: CanvasRenderingContext2D,
+    camera: Camera
+  ): void {
+    for (const object of this.objects) {
+      const screenPosition = camera.worldToScreen(object.x, object.y);
+
+      object.renderLayer(layer, ctx, screenPosition.x, screenPosition.y);
     }
   }
 }

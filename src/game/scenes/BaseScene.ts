@@ -11,6 +11,7 @@ import { MovementSystem } from "../systems/MovementSystem";
 import { CollisionMap } from "../world/CollisionMap";
 import { baseCollision } from "../data/baseCollision";
 import { Collider } from "../entities/Collider";
+import { TownHall } from "../entities/TownHall";
 
 export class BaseScene extends Scene {
   private world: World;
@@ -29,6 +30,16 @@ export class BaseScene extends Scene {
       tileMap: tileMap,
       collisionMap: collisionMap,
     });
+    
+    const townHall = new TownHall({
+      x: 432,
+      y: 640,
+      width: 96,
+      height: 96,
+    });
+
+    this.world.addObject(townHall);
+
     const movement = new MovementSystem(this.world.collisionMap);
 
     this.camera = new Camera({
@@ -53,7 +64,12 @@ export class BaseScene extends Scene {
       input: this.input,
       animator: heroAnimator,
       movement,
-      collider: new Collider({ width: 16, height: 12, offsetX: 8, offsetY: 50 }),
+      collider: new Collider({
+        width: 16,
+        height: 12,
+        offsetX: 8,
+        offsetY: 50,
+      }),
     });
 
     this.world.addObject(this.player);
