@@ -1,17 +1,21 @@
 import { Character, CharacterConfig } from "./Character";
 import type { InputManager } from "../input/InputManager";
+import type { MovementSystem } from "../systems/MovementSystem";
 
 export interface PlayerConfig extends CharacterConfig {
   input: InputManager;
+  movement: MovementSystem;
 }
 
 export class Player extends Character {
   private input: InputManager;
+  private movement: MovementSystem;
 
   constructor(config: PlayerConfig) {
     super(config);
 
     this.input = config.input;
+    this.movement = config.movement;
   }
 
   override update(deltaTime: number): void {
@@ -46,7 +50,8 @@ export class Player extends Character {
       dx /= length;
       dy /= length;
 
-      this.move(
+      this.movement.move(
+        this,
         dx * this.speed * deltaTime,
         dy * this.speed * deltaTime
       );

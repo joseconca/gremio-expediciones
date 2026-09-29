@@ -27,6 +27,19 @@ export class Character extends GameObject {
     this.y += deltaY;
   }
 
+  getNextPosition(
+    deltaX: number,
+    deltaY: number
+  ): {
+    x: number;
+    y: number;
+  } {
+    return {
+      x: this.x + deltaX,
+      y: this.y + deltaY,
+    };
+  }
+
   override update(deltaTime: number): void {
     this.animator?.update(deltaTime);
   }

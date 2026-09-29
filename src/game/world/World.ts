@@ -1,11 +1,13 @@
 import type { GameObject } from "../entities/GameObject";
 import type { Camera } from "./Camera";
 import { TileMap } from "./TileMap";
+import { CollisionMap } from "./CollisionMap";
 
 export interface WorldConfig {
   width: number;
   height: number;
   tileMap: TileMap;
+  collisionMap: CollisionMap;
 }
 
 export class World {
@@ -13,6 +15,7 @@ export class World {
   readonly height: number;
 
   readonly tileMap: TileMap;
+  readonly collisionMap: CollisionMap;
 
   private objects: GameObject[] = [];
 
@@ -21,6 +24,7 @@ export class World {
     this.height = config.height;
 
     this.tileMap = config.tileMap;
+    this.collisionMap = config.collisionMap;
   }
 
   addObject(object: GameObject): void {
@@ -36,7 +40,6 @@ export class World {
   update(deltaTime: number): void {
     for (const object of this.objects) {
       object.update(deltaTime);
-      this.clampObjectPosition(object);
     }
   }
 
@@ -48,11 +51,5 @@ export class World {
 
       object.render(ctx, screenPosition.x, screenPosition.y);
     }
-  }
-
-  clampObjectPosition(object: GameObject): void {
-    object.x = Math.max(0, Math.min(object.x, this.width - 32));
-
-    object.y = Math.max(0, Math.min(object.y, this.height - 64));
   }
 }

@@ -7,6 +7,10 @@ import { World } from "../world/World";
 import { Camera } from "../world/Camera";
 import { TileMap } from "../world/TileMap";
 import { baseMap } from "../data/baseMap";
+import { MovementSystem } from "../systems/MovementSystem";
+import { CollisionMap } from "../world/CollisionMap";
+import { baseCollision } from "../data/baseCollision";
+import { Collider } from "../entities/Collider";
 
 export class BaseScene extends Scene {
   private world: World;
@@ -17,12 +21,15 @@ export class BaseScene extends Scene {
     super(config);
 
     const tileMap = new TileMap(baseMap);
+    const collisionMap = new CollisionMap(baseCollision);
 
     this.world = new World({
       width: baseMap.width * baseMap.tileSize,
       height: baseMap.height * baseMap.tileSize,
       tileMap: tileMap,
+      collisionMap: collisionMap,
     });
+    const movement = new MovementSystem(this.world.collisionMap);
 
     this.camera = new Camera({
       width: this.canvas.width,
@@ -45,6 +52,8 @@ export class BaseScene extends Scene {
       direction: "down",
       input: this.input,
       animator: heroAnimator,
+      movement,
+      collider: new Collider({ width: 16, height: 12, offsetX: 8, offsetY: 50 }),
     });
 
     this.world.addObject(this.player);
