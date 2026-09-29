@@ -10,6 +10,7 @@ export class SpriteSheet {
   readonly frameHeight: number;
 
   private loaded = false;
+  private failed = false;
 
   constructor(config: SpriteSheetConfig) {
     this.image = new Image();
@@ -21,7 +22,16 @@ export class SpriteSheet {
 
     this.image.onload = () => {
       this.loaded = true;
+      this.failed = false;
     };
+    
+    this.image.onerror = () => {
+      this.loaded = false;
+      this.failed = true;
+      console.error(`No se pudo cargar el spritesheet: ${config.src}`);
+    };
+
+    this.image.src = config.src;
   }
 
   isLoaded(): boolean {

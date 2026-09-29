@@ -3,11 +3,16 @@ import type { BuildingDefinition } from "./BuildingDefinition";
 
 export const townHallDefinition: BuildingDefinition = {
   id: "town-hall",
-
   name: "Ayuntamiento",
 
-  width: 96,
-  height: 96,
+  sprite: {
+    src: "/sprites/buildings/town-hall.png",
+    frameWidth: 128,
+    frameHeight: 64,
+  },
+
+  width: 128,
+  height: 64,
 
   parts: [
     {
@@ -15,10 +20,12 @@ export const townHallDefinition: BuildingDefinition = {
 
       layer: RenderLayer.BACK,
 
-      offsetX: 0,
-      offsetY: -24,
+      frameY: 0,
 
-      sortYOffset: -24,
+      offsetX: 0,
+      offsetY: -64,
+
+      sortYOffset: -64,
     },
 
     {
@@ -26,10 +33,12 @@ export const townHallDefinition: BuildingDefinition = {
 
       layer: RenderLayer.WORLD,
 
-      offsetX: 0,
-      offsetY: 0,
+      frameY: 1,
 
-      sortYOffset: 96,
+      offsetX: 0,
+      offsetY: -64,
+
+      sortYOffset: 0,
     },
 
     {
@@ -37,10 +46,12 @@ export const townHallDefinition: BuildingDefinition = {
 
       layer: RenderLayer.WORLD,
 
-      offsetX: 0,
-      offsetY: 0,
+      frameY: 2,
 
-      sortYOffset: 72,
+      offsetX: 0,
+      offsetY: -64,
+
+      sortYOffset: 0,
     },
   ],
 };

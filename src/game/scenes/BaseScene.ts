@@ -39,22 +39,24 @@ export class BaseScene extends Scene {
     this.collisionSystem = new CollisionSystem(this.world.collisionMap);
 
     const townHall = new Building({
-      definition: townHallDefinition,
       x: 432,
-      y: 640,
+      y: 704,
+
+      definition: townHallDefinition,
+
       colliders: [
         new Collider({
           width: 36,
           height: 48,
           offsetX: 8,
-          offsetY: 48,
+          offsetY: -16,
         }),
 
         new Collider({
           width: 36,
           height: 48,
-          offsetX: 52,
-          offsetY: 48,
+          offsetX: 84,
+          offsetY: -16,
         }),
       ],
     });

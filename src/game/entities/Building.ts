@@ -1,11 +1,13 @@
-import {
-  GameObject,
-  GameObjectConfig,
-} from "./GameObject";
+import { GameObject, GameObjectConfig } from "./GameObject";
+
 import type {
   BuildingDefinition,
+  BuildingPartDefinition,
 } from "../data/buildings/BuildingDefinition";
+
 import type { RenderPart } from "../rendering/RenderPart";
+
+import { SpriteSheet } from "../rendering/SpriteSheet";
 
 export interface BuildingConfig extends GameObjectConfig {
   definition: BuildingDefinition;
@@ -17,6 +19,9 @@ export class Building extends GameObject {
   readonly width: number;
   readonly height: number;
 
+  private readonly renderParts: RenderPart[];
+  private readonly spriteSheet: SpriteSheet;
+
   constructor(config: BuildingConfig) {
     super(config);
 
@@ -24,10 +29,24 @@ export class Building extends GameObject {
 
     this.width = config.definition.width;
     this.height = config.definition.height;
+
+    this.spriteSheet = new SpriteSheet({
+      src: config.definition.sprite.src,
+      frameWidth: config.definition.sprite.frameWidth,
+      frameHeight: config.definition.sprite.frameHeight,
+    });
+
+    this.renderParts = this.definition.parts.map((part) =>
+      this.createRenderPart(part)
+    );
   }
 
   override getRenderParts(): RenderPart[] {
-    return this.definition.parts.map((part) => ({
+    return this.renderParts;
+  }
+
+  private createRenderPart(part: BuildingPartDefinition): RenderPart {
+    return {
       layer: part.layer,
 
       offsetX: part.offsetX,
@@ -35,53 +54,36 @@ export class Building extends GameObject {
 
       sortYOffset: part.sortYOffset,
 
-      render: (
-        ctx,
-        screenX,
-        screenY
-      ) => {
-        this.renderPart(
-          part.id,
-          ctx,
-          screenX,
-          screenY
-        );
+      render: (ctx, screenX, screenY) => {
+        this.renderSpritePart(ctx, screenX, screenY, part);
       },
-    }));
+    };
   }
 
-  protected renderPart(
-    partId: string,
+  private renderSpritePart(
     ctx: CanvasRenderingContext2D,
     screenX: number,
-    screenY: number
+    screenY: number,
+    part: BuildingPartDefinition
   ): void {
-    switch (partId) {
-      case "body":
-        this.renderBody(
-          ctx,
-          screenX,
-          screenY
-        );
-        break;
-
-      default:
-        break;
+    if (!this.spriteSheet.isLoaded()) {
+      return;
     }
-  }
 
-  protected renderBody(
-    ctx: CanvasRenderingContext2D,
-    screenX: number,
-    screenY: number
-  ): void {
-    ctx.fillStyle = "#8b5a3c";
+    const frame = this.spriteSheet.getFrame(0, part.frameY);
 
-    ctx.fillRect(
-      screenX,
-      screenY,
-      this.width,
-      this.height
+    ctx.drawImage(
+      this.spriteSheet.image,
+
+      frame.sx,
+      frame.sy,
+      frame.sw,
+      frame.sh,
+
+      Math.round(screenX),
+      Math.round(screenY),
+      frame.sw,
+      frame.sh
     );
   }
 }
