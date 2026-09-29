@@ -2,12 +2,15 @@
 
 import { useEffect, useRef } from "react";
 import { Game } from "@/game/core/Game";
+import GameControls from "@/components/game/GameControls";
 
 export default function NewGamePage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    if (!canvasRef.current) return;
+    if (!canvasRef.current) {
+      return;
+    }
 
     const game = new Game({
       canvas: canvasRef.current,
@@ -28,6 +31,8 @@ export default function NewGamePage() {
         height={360}
         className="h-full w-full [image-rendering:pixelated]"
       />
+
+      <GameControls />
     </main>
   );
 }

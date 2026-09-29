@@ -1,6 +1,8 @@
 import type { Direction, InputState } from "./InputState";
+
 import { KeyboardInput } from "./KeyboardInput";
-import { TouchInput } from "./TouchInput";
+
+import { TouchInput, type TouchAction } from "./TouchInput";
 
 export class InputManager {
   private keyboard: KeyboardInput;
@@ -22,10 +24,11 @@ export class InputManager {
   }
 
   isDirectionHeld(direction: Direction): boolean {
-    return (
-      this.keyboard.isHeld(direction) ||
-      this.touch.isHeld(direction)
-    );
+    return this.keyboard.isHeld(direction) || this.touch.isHeld(direction);
+  }
+
+  isActionPressed(action: TouchAction): boolean {
+    return this.touch.isPressed(action);
   }
 
   getState(): InputState {
@@ -35,8 +38,13 @@ export class InputManager {
       left: this.isDirectionHeld("left"),
       right: this.isDirectionHeld("right"),
 
-      actionA: false,
-      actionB: false,
+      actionA: this.touch.isPressed("actionA"),
+
+      actionB: this.touch.isPressed("actionB"),
     };
+  }
+
+  endFrame(): void {
+    this.touch.clearPressedActions();
   }
 }
