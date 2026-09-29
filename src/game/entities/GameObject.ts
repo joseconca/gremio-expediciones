@@ -15,7 +15,17 @@ export class GameObject {
     this.x = config.x;
     this.y = config.y;
 
-    this.collider = config.collider; 
+    this.collider = config.collider;
+  }
+
+  getSortY(): number {
+    if (!this.collider) {
+      return this.y;
+    }
+
+    const bounds = this.collider.getBounds(this.x, this.y);
+
+    return bounds.y + bounds.height;
   }
 
   update(_deltaTime: number): void {

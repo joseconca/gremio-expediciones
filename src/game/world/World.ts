@@ -46,7 +46,11 @@ export class World {
   render(ctx: CanvasRenderingContext2D, camera: Camera): void {
     this.tileMap.render(ctx, camera.x, camera.y, camera.width, camera.height);
 
-    for (const object of this.objects) {
+    const renderObjects = [...this.objects];
+
+    renderObjects.sort((a, b) => a.getSortY() - b.getSortY());
+
+    for (const object of renderObjects) {
       const screenPosition = camera.worldToScreen(object.x, object.y);
 
       object.render(ctx, screenPosition.x, screenPosition.y);
