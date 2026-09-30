@@ -58,6 +58,10 @@ export class GameObject {
     return true;
   }
 
+  canTriggerSceneTransition(): boolean {
+    return false;
+  }
+
   render(
     _ctx: CanvasRenderingContext2D,
     _screenX: number,

@@ -1,6 +1,6 @@
 import { Character, CharacterConfig } from "./Character";
-import type { InputManager } from "../input/InputManager";
-import type { MovementSystem } from "../systems/MovementSystem";
+import type { InputManager } from "../../input/InputManager";
+import type { MovementSystem } from "../../systems/MovementSystem";
 
 export interface PlayerConfig extends CharacterConfig {
   input: InputManager;
@@ -16,6 +16,10 @@ export class Player extends Character {
 
     this.input = config.input;
     this.movement = config.movement;
+  }
+
+  override canTriggerSceneTransition(): boolean {
+    return true;
   }
 
   override update(deltaTime: number): void {

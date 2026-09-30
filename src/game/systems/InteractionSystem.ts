@@ -1,5 +1,5 @@
 import type { InputManager } from "../input/InputManager";
-import type { Player } from "../entities/Player";
+import type { Player } from "../entities/Characters/Player";
 import type { Interactable } from "../entities/Interactable";
 
 export class InteractionSystem {

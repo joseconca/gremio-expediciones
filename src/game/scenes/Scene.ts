@@ -1,4 +1,5 @@
 import type { InputManager } from "../input/InputManager";
+import { SpawnPoint } from "../world/SpawnPoint";
 import type { SceneManager } from "./SceneManager";
 
 export interface SceneConfig {
@@ -23,6 +24,8 @@ export abstract class Scene {
     this.sceneManager = config.sceneManager;
     this.spawnId = config.spawnId;
   }
+
+  protected abstract getSpawnPoint(spawnId?: string): SpawnPoint;
 
   abstract init(): void;
 

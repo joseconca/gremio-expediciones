@@ -1,23 +1,31 @@
 import { Scene, SceneConfig } from "./Scene";
-import { Player } from "../entities/Player";
+
 import { SpriteSheet } from "../rendering/SpriteSheet";
 import { Animator } from "../rendering/Animator";
-import { heroAnimations } from "../data/heroAnimations";
+
+import { SceneTransitionSystem } from "../systems/SceneTransitionSystem";
+import { MovementSystem } from "../systems/MovementSystem";
+import { CollisionSystem } from "../systems/CollisionSystem";
+import { InteractionSystem } from "../systems/InteractionSystem";
+
 import { World } from "../world/World";
 import { Camera } from "../world/Camera";
 import { TileMap } from "../world/TileMap";
-import { baseMap } from "../data/baseMap";
-import { MovementSystem } from "../systems/MovementSystem";
-import { CollisionSystem } from "../systems/CollisionSystem";
+import { SpawnPoint } from "../world/SpawnPoint";
 import { CollisionMap } from "../world/CollisionMap";
-import { baseCollision } from "../data/baseCollision";
+
 import { Collider } from "../entities/Collider";
 import { Building } from "../entities/Building";
-import { townHallDefinition } from "../data/buildings/townHall";
-import { InteractionSystem } from "../systems/InteractionSystem";
 import { Door } from "../entities/Door";
-import { genericDoorDefinition } from "../data/doors/genericDoor1";
 import type { Interactable } from "../entities/Interactable";
+import { SceneTransition } from "../entities/SceneTransition";
+import { Player } from "../entities/Characters/Player";
+
+import { townHallDefinition } from "../data/buildings/townHall";
+import { heroAnimations } from "../data/heroAnimations";
+import { genericDoorDefinition } from "../data/doors/genericDoor1";
+import { baseMap } from "../data/baseMap";
+import { baseCollision } from "../data/baseCollision";
 
 export class BaseScene extends Scene {
   private world: World;
@@ -28,6 +36,8 @@ export class BaseScene extends Scene {
   private movementSystem: MovementSystem;
   private interactionSystem: InteractionSystem;
   private interactables: Interactable[] = [];
+  private sceneTransitionSystem: SceneTransitionSystem;
+  private readonly spawnPoints: SpawnPoint[] = [];
 
   constructor(config: SceneConfig) {
     super(config);
@@ -43,6 +53,22 @@ export class BaseScene extends Scene {
     });
 
     this.collisionSystem = new CollisionSystem(this.world.collisionMap);
+    this.sceneTransitionSystem = new SceneTransitionSystem();
+
+    this.spawnPoints.push(
+      {
+        id: "default",
+        x: 464,
+        y: 688,
+        direction: "down",
+      },
+      {
+        id: "town-hall-exit",
+        x: 464,
+        y: 688,
+        direction: "down",
+      }
+    );
 
     const townHall = new Building({
       x: 432,
@@ -89,6 +115,7 @@ export class BaseScene extends Scene {
     });
     this.world.addObject(townHall);
     this.collisionSystem.addObject(townHall);
+
     const townHallDoor = new Door({
       x: 496,
       y: 704,
@@ -98,6 +125,16 @@ export class BaseScene extends Scene {
     this.collisionSystem.addObject(townHallDoor);
     this.interactables.push(townHallDoor);
 
+    const townHallTransition = new SceneTransition({
+      x: 496,
+      y: 694,
+      width: 32,
+      height: 2,
+      targetSceneId: "town-hall-interior",
+      targetSpawnId: "main-entrance",
+      sceneManager: this.sceneManager,
+    });
+    this.sceneTransitionSystem.addTransition(townHallTransition);
     this.movementSystem = new MovementSystem(this.collisionSystem);
     this.interactionSystem = new InteractionSystem(this.input);
 
@@ -113,13 +150,13 @@ export class BaseScene extends Scene {
     });
     const heroAnimator = new Animator(heroSpriteSheet, heroAnimations);
 
-    heroAnimator.play("idle-down");
-
+    const spawn = this.getSpawnPoint(this.spawnId);
+    heroAnimator.play(`idle-${spawn.direction}`);
     this.player = new Player({
-      x: 464,
-      y: 688,
+      x: spawn.x,
+      y: spawn.y,
       speed: 60,
-      direction: "down",
+      direction: spawn.direction,
       input: this.input,
       animator: heroAnimator,
       movement: this.movementSystem,
@@ -132,9 +169,20 @@ export class BaseScene extends Scene {
         }),
       ],
     });
-
     this.world.addObject(this.player);
     this.collisionSystem.addObject(this.player);
+  }
+
+  protected getSpawnPoint(spawnId?: string): SpawnPoint {
+    const id = spawnId ?? "default";
+
+    const spawnPoint = this.spawnPoints.find((point) => point.id === id);
+
+    if (!spawnPoint) {
+      throw new Error(`SpawnPoint "${id}" no encontrado en BaseScene`);
+    }
+
+    return spawnPoint;
   }
 
   init(): void {
@@ -147,6 +195,8 @@ export class BaseScene extends Scene {
     this.camera.follow(this.player.x, this.player.y, 32, 64);
 
     this.interactionSystem.tryInteract(this.player, this.interactables);
+
+    this.sceneTransitionSystem.update([this.player]);
   }
 
   render(): void {
