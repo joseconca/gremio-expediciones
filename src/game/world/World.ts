@@ -2,7 +2,7 @@ import type { GameObject } from "../entities/GameObject";
 import type { Camera } from "./Camera";
 import { TileMap } from "./TileMap";
 import { CollisionMap } from "./CollisionMap";
-import { RenderSystem } from "../rendering/RenderSystem";
+import { RenderSystem } from "../systems/RenderSystem";
 
 export interface WorldConfig {
   width: number;

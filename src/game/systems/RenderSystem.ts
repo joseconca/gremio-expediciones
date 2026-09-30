@@ -1,6 +1,6 @@
 import type { GameObject } from "../entities/GameObject";
 import type { Camera } from "../world/Camera";
-import type { RenderPart } from "./RenderPart";
+import type { RenderPart } from "../rendering/RenderPart";
 
 interface RenderCommand {
   object: GameObject;
