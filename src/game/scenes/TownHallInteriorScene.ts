@@ -1,47 +1,74 @@
 import { Scene, SceneConfig } from "./Scene";
+
 import { Player } from "../entities/Characters/Player";
+import { Collider } from "../entities/Collider";
+import { SceneTransition } from "../entities/SceneTransition";
+
 import { SpriteSheet } from "../rendering/SpriteSheet";
 import { Animator } from "../rendering/Animator";
-import { heroAnimations } from "../data/heroAnimations";
-import { Collider } from "../entities/Collider";
-import { SpawnPoint } from "../world/SpawnPoint";
+
 import { MovementSystem } from "../systems/MovementSystem";
 import { CollisionSystem } from "../systems/CollisionSystem";
+import { SceneTransitionSystem } from "../systems/SceneTransitionSystem";
+
+import { World } from "../world/World";
+import { Camera } from "../world/Camera";
+import { TileMap } from "../world/TileMap";
 import { CollisionMap } from "../world/CollisionMap";
+import { SpawnPoint } from "../world/SpawnPoint";
+
+import { heroAnimations } from "../data/heroAnimations";
+import { townHallInteriorMap } from "../data/interiors/townHall/townHallInteriorMap";
+import { townHallInteriorCollision } from "../data/interiors/townHall/townHallInteriorCollision";
 
 export class TownHallInteriorScene extends Scene {
+  private world: World;
+  private camera: Camera;
+
+  private player: Player;
+
+  private collisionSystem: CollisionSystem;
+  private movementSystem: MovementSystem;
+
+  private sceneTransitionSystem: SceneTransitionSystem;
+
   private readonly spawnPoints: SpawnPoint[] = [
     {
       id: "main-entrance",
-      x: 256,
-      y: 400,
+      x: 480,
+      y: 690,
       direction: "down",
     },
   ];
 
-  private player: Player;
-  private movementSystem: MovementSystem;
-  private collisionSystem: CollisionSystem;
-
   constructor(config: SceneConfig) {
     super(config);
 
-    const spawn = this.getSpawnPoint(config.spawnId);
+    const tileMap = new TileMap(townHallInteriorMap);
 
-    const collisionMap = new CollisionMap({
-      width: 32,
-      height: 24,
-      tileSize: 32,
-      tiles: Array.from({ length: 24 }, (_, y) =>
-        Array.from({ length: 32 }, (_, x) =>
-          x === 0 || y === 0 || x === 31 || y === 23 ? 1 : 0
-        )
-      ),
+    const collisionMap = new CollisionMap(townHallInteriorCollision);
+
+    this.world = new World({
+      width: townHallInteriorMap.width * townHallInteriorMap.tileSize,
+
+      height: townHallInteriorMap.height * townHallInteriorMap.tileSize,
+
+      tileMap,
+      collisionMap,
     });
 
-    this.collisionSystem = new CollisionSystem(collisionMap);
+    this.collisionSystem = new CollisionSystem(this.world.collisionMap);
 
     this.movementSystem = new MovementSystem(this.collisionSystem);
+
+    this.sceneTransitionSystem = new SceneTransitionSystem();
+
+    this.camera = new Camera({
+      width: this.canvas.width,
+      height: this.canvas.height,
+    });
+
+    const spawn = this.getSpawnPoint(this.spawnId);
 
     const heroSpriteSheet = new SpriteSheet({
       src: "/sprites/sheets/characters/hero.png",
@@ -56,11 +83,17 @@ export class TownHallInteriorScene extends Scene {
     this.player = new Player({
       x: spawn.x,
       y: spawn.y,
+
       speed: 60,
+
       direction: spawn.direction,
+
       input: this.input,
+
       animator: heroAnimator,
+
       movement: this.movementSystem,
+
       colliders: [
         new Collider({
           width: 16,
@@ -71,7 +104,25 @@ export class TownHallInteriorScene extends Scene {
       ],
     });
 
+    this.world.addObject(this.player);
+
     this.collisionSystem.addObject(this.player);
+
+    const exitTransition = new SceneTransition({
+      x: 496,
+      y: 768,
+
+      width: 32,
+      height: 10,
+
+      targetSceneId: "base",
+
+      targetSpawnId: "town-hall-exit",
+
+      sceneManager: this.sceneManager,
+    });
+
+    this.sceneTransitionSystem.addTransition(exitTransition);
   }
 
   protected getSpawnPoint(spawnId?: string): SpawnPoint {
@@ -93,14 +144,19 @@ export class TownHallInteriorScene extends Scene {
   }
 
   update(deltaTime: number): void {
-    this.player.update(deltaTime);
+    this.world.update(deltaTime);
+
+    this.camera.follow(this.player.x, this.player.y, 32, 64);
+
+    this.sceneTransitionSystem.update([this.player]);
   }
 
   render(): void {
-    this.ctx.fillStyle = "#222";
+    this.ctx.fillStyle = "#111";
+
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.player.render(this.ctx, this.player.x, this.player.y);
+    this.world.render(this.ctx, this.camera);
   }
 
   destroy(): void {}

@@ -24,8 +24,8 @@ import { Player } from "../entities/Characters/Player";
 import { townHallDefinition } from "../data/buildings/townHall";
 import { heroAnimations } from "../data/heroAnimations";
 import { genericDoorDefinition } from "../data/doors/genericDoor1";
-import { baseMap } from "../data/baseMap";
-import { baseCollision } from "../data/baseCollision";
+import { baseMap } from "../data/base/baseMap";
+import { baseCollision } from "../data/base/baseCollision";
 
 export class BaseScene extends Scene {
   private world: World;
@@ -58,13 +58,13 @@ export class BaseScene extends Scene {
     this.spawnPoints.push(
       {
         id: "default",
-        x: 464,
+        x: 480,
         y: 688,
         direction: "down",
       },
       {
         id: "town-hall-exit",
-        x: 464,
+        x: 480,
         y: 688,
         direction: "down",
       }
@@ -128,6 +128,7 @@ export class BaseScene extends Scene {
     const townHallTransition = new SceneTransition({
       x: 496,
       y: 694,
+      
       width: 32,
       height: 2,
       targetSceneId: "town-hall-interior",
