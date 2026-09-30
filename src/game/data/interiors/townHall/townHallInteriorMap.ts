@@ -1,10 +1,8 @@
 import { townHallInteriorTileset } from "./townHallInteriorTileset";
 
-const WIDTH = 32;
-const HEIGHT = 24;
+const WIDTH = 10;
+const HEIGHT = 10;
 
-// Tiles del tileset.
-// El PNG es 256x256 -> 8 columnas x 8 filas.
 const TILES = {
   floor: 0,
 
@@ -55,7 +53,7 @@ wallTiles[HEIGHT - 1][0] = TILES.cornerBottomLeft;
 
 wallTiles[HEIGHT - 1][WIDTH - 1] = TILES.cornerBottomRight;
 
-const exitX = 15;
+const exitX = 5;
 
 for (let x = 1; x < WIDTH - 1; x++) {
   if (x === exitX) {

@@ -35,8 +35,8 @@ export class TownHallInteriorScene extends Scene {
   private readonly spawnPoints: SpawnPoint[] = [
     {
       id: "main-entrance",
-      x: 480,
-      y: 690,
+      x: 32*5,
+      y: 32*8,
       direction: "down",
     },
   ];
@@ -109,11 +109,11 @@ export class TownHallInteriorScene extends Scene {
     this.collisionSystem.addObject(this.player);
 
     const exitTransition = new SceneTransition({
-      x: 496,
-      y: 768,
+      x: 32*5,
+      y: 32*10,
 
       width: 32,
-      height: 10,
+      height: 24,
 
       targetSceneId: "base",
 
