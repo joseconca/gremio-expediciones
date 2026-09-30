@@ -53,16 +53,37 @@ export class BaseScene extends Scene {
       colliders: [
         new Collider({
           width: 36,
-          height: 48,
+          height: 2,
           offsetX: 8,
-          offsetY: -16,
+          offsetY: -8,
         }),
 
         new Collider({
           width: 36,
-          height: 48,
+          height: 2,
           offsetX: 84,
-          offsetY: -16,
+          offsetY: -8,
+        }),
+
+        new Collider({
+          width: 128,
+          height: 8,
+          offsetX: 8,
+          offsetY: -48,
+        }),
+
+        new Collider({
+          width: 2,
+          height: 64,
+          offsetX: 20,
+          offsetY: -64,
+        }),
+
+        new Collider({
+          width: 2,
+          height: 64,
+          offsetX: 110,
+          offsetY: -64,
         }),
       ],
     });

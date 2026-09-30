@@ -8,11 +8,11 @@ export const townHallDefinition: BuildingDefinition = {
   sprite: {
     src: "/sprites/buildings/town-hall.png",
     frameWidth: 128,
-    frameHeight: 64,
+    frameHeight: 128,
   },
 
   width: 128,
-  height: 64,
+  height: 128,
 
   parts: [
     {
@@ -23,9 +23,9 @@ export const townHallDefinition: BuildingDefinition = {
       frameY: 0,
 
       offsetX: 0,
-      offsetY: -64,
+      offsetY: -128,
 
-      sortYOffset: -64,
+      sortYOffset: -128,
     },
 
     {
@@ -36,7 +36,7 @@ export const townHallDefinition: BuildingDefinition = {
       frameY: 1,
 
       offsetX: 0,
-      offsetY: -64,
+      offsetY: -128,
 
       sortYOffset: 0,
     },
@@ -49,7 +49,7 @@ export const townHallDefinition: BuildingDefinition = {
       frameY: 2,
 
       offsetX: 0,
-      offsetY: -64,
+      offsetY: -128,
 
       sortYOffset: 0,
     },

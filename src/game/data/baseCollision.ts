@@ -5,8 +5,3 @@ export const baseCollision = {
 
   tiles: Array.from({ length: 45 }, () => Array(30).fill(0)),
 };
-
-//pared provisional
-for (let y = 10; y < 20; y++) {
-  baseCollision.tiles[y][15] = 1;
-}
