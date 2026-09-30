@@ -35,8 +35,8 @@ export class TownHallInteriorScene extends Scene {
   private readonly spawnPoints: SpawnPoint[] = [
     {
       id: "main-entrance",
-      x: 32*5,
-      y: 32*8,
+      x: 32 * 5,
+      y: 32 * 8,
       direction: "down",
     },
   ];
@@ -109,8 +109,8 @@ export class TownHallInteriorScene extends Scene {
     this.collisionSystem.addObject(this.player);
 
     const exitTransition = new SceneTransition({
-      x: 32*5,
-      y: 32*10,
+      x: 32 * 5,
+      y: 32 * 10,
 
       width: 32,
       height: 24,
@@ -153,10 +153,19 @@ export class TownHallInteriorScene extends Scene {
 
   render(): void {
     this.ctx.fillStyle = "#111";
-
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.world.render(this.ctx, this.camera);
+    const playerAnchor = this.player.getGroundAnchor();
+    
+    const groundReference = {
+      worldX: playerAnchor.x,
+      worldY: playerAnchor.y,
+
+      screenX: this.canvas.width / 2,
+      screenY: this.canvas.height * 0.72,
+    };
+
+    this.world.render(this.ctx, this.camera, groundReference);
   }
 
   destroy(): void {}

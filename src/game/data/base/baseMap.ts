@@ -10,10 +10,11 @@ export const baseMap = {
   layers: [
     {
       name: "ground",
-      tiles: Array.from(
-        { length: 45 },
-        () => Array(30).fill(0)
-      ),
+      tiles: Array.from({ length: 45 }, () => Array(30).fill(0)),
+      renderMode: "ground" as const,
+      projection: {
+        angle: 30,
+      },
     },
   ],
 };

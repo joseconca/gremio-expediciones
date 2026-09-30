@@ -49,7 +49,8 @@ export class Building extends GameObject {
     return {
       layer: part.layer,
 
-      offsetX: part.offsetX,
+      offsetX: part.offsetX - this.width / 2,
+
       offsetY: part.offsetY,
 
       sortYOffset: part.sortYOffset,
@@ -85,5 +86,11 @@ export class Building extends GameObject {
       frame.sw,
       frame.sh
     );
+  }
+  override getGroundAnchor(): { x: number; y: number } {
+    return {
+      x: this.x + this.width / 2,
+      y: this.y,
+    };
   }
 }

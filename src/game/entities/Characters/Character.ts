@@ -46,9 +46,9 @@ export class Character extends GameObject {
 
   override render(
     ctx: CanvasRenderingContext2D,
-    screenX: number,
-    screenY: number
+    _screenX: number,
+    _screenY: number
   ): void {
-    this.animator?.draw(ctx, screenX, screenY);
+    this.animator?.draw(ctx, -16, -64);
   }
 }

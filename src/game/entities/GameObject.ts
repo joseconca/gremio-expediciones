@@ -62,6 +62,48 @@ export class GameObject {
     return false;
   }
 
+  getGroundAnchor(): { x: number; y: number } {
+    if (this.colliders.length === 0) {
+      return {
+        x: this.x,
+        y: this.y,
+      };
+    }
+
+    let maxBottom = -Infinity;
+
+    for (const collider of this.colliders) {
+      const bounds = collider.getBounds(this.x, this.y);
+      const bottom = bounds.y + bounds.height;
+
+      if (bottom > maxBottom) {
+        maxBottom = bottom;
+      }
+    }
+
+    const bottomColliders = this.colliders.filter((collider) => {
+      const bounds = collider.getBounds(this.x, this.y);
+      const bottom = bounds.y + bounds.height;
+
+      return Math.abs(bottom - maxBottom) < 0.001;
+    });
+
+    let minX = Infinity;
+    let maxX = -Infinity;
+
+    for (const collider of bottomColliders) {
+      const bounds = collider.getBounds(this.x, this.y);
+
+      minX = Math.min(minX, bounds.x);
+      maxX = Math.max(maxX, bounds.x + bounds.width);
+    }
+
+    return {
+      x: (minX + maxX) / 2,
+      y: maxBottom,
+    };
+  }
+
   render(
     _ctx: CanvasRenderingContext2D,
     _screenX: number,

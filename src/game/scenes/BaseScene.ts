@@ -128,7 +128,7 @@ export class BaseScene extends Scene {
     const townHallTransition = new SceneTransition({
       x: 496,
       y: 694,
-      
+
       width: 32,
       height: 2,
       targetSceneId: "town-hall-interior",
@@ -204,8 +204,17 @@ export class BaseScene extends Scene {
     this.ctx.fillStyle = "#111";
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.world.render(this.ctx, this.camera);
-  }
+    const playerAnchor = this.player.getGroundAnchor();
+    
+    const groundReference = {
+      worldX: playerAnchor.x,
+      worldY: playerAnchor.y,
 
+      screenX: this.canvas.width / 2,
+      screenY: this.canvas.height * 0.65,
+    };
+
+    this.world.render(this.ctx, this.camera, groundReference);
+  }
   destroy(): void {}
 }

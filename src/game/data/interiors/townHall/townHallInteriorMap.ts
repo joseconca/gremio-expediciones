@@ -76,11 +76,16 @@ export const townHallInteriorMap = {
     {
       name: "ground",
       tiles: groundTiles,
+      renderMode: "ground" as const,
+      projection: {
+        angle: 30,
+      },
     },
 
     {
       name: "walls",
       tiles: wallTiles,
+      renderMode: "vertical" as const,
     },
   ],
 };

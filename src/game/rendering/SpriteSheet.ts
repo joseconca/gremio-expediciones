@@ -24,7 +24,7 @@ export class SpriteSheet {
       this.loaded = true;
       this.failed = false;
     };
-    
+
     this.image.onerror = () => {
       this.loaded = false;
       this.failed = true;
@@ -53,5 +53,21 @@ export class SpriteSheet {
       sw: this.frameWidth,
       sh: this.frameHeight,
     };
+  }
+
+  getColumns(): number {
+    if (!this.image.naturalWidth) {
+      return 0;
+    }
+
+    return Math.floor(this.image.naturalWidth / this.frameWidth);
+  }
+
+  getRows(): number {
+    if (!this.image.naturalHeight) {
+      return 0;
+    }
+
+    return Math.floor(this.image.naturalHeight / this.frameHeight);
   }
 }
