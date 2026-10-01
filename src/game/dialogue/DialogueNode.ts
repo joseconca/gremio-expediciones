@@ -10,4 +10,5 @@ export interface DialogueNode {
 export interface DialogueChoice {
   text: string;
   nextNodeId: string;
+  eventId?: string;
 }

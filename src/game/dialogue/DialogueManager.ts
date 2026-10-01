@@ -1,5 +1,5 @@
 import type { Dialogue } from "./Dialogue";
-import type { DialogueNode } from "./DialogueNode";
+import type { DialogueChoice, DialogueNode } from "./DialogueNode";
 
 export interface DialogueState {
   active: boolean;
@@ -74,11 +74,12 @@ export class DialogueManager {
     this.updateState();
   }
 
-  selectChoice(): void {
+  selectChoice(): DialogueChoice | null {
     const choice = this.getCurrentNode()?.choices?.[this.selectedChoiceIndex];
-    if (choice) {
-      this.goToNode(choice.nextNodeId);
-    }
+    if (!choice) return null;
+
+    this.goToNode(choice.nextNodeId);
+    return choice;
   }
 
   close(): void {

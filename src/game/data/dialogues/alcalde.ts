@@ -1,67 +1,70 @@
 import type { Dialogue } from "../../dialogue/Dialogue";
-import { CONFIGURACION_EDIFICIOS, type IdEdificio } from "@/lib/tiposJuego";
 
-const edificios = Object.entries(CONFIGURACION_EDIFICIOS).map(
-  ([id, configuracion]) => ({
-    id: id as IdEdificio,
-    nombre: configuracion.nombre,
-  })
-);
-
-const buildingListNodeId = "building-list";
-
-const nodosConfirmacion = edificios.map(({ id, nombre }) => ({
-  id: `confirm-${id}`,
-  speaker: "Alcalde",
-  text: `¿Confirmas iniciar la construcción de ${nombre}?`,
-  choices: [
-    { text: "Confirmar elección", nextNodeId: `confirmed-${id}` },
-    { text: "Elegir otro edificio", nextNodeId: buildingListNodeId },
-    { text: "Cancelar", nextNodeId: "goodbye" },
-  ],
-}));
-
-const nodosEleccionConfirmada = edificios.map(({ id, nombre }) => ({
-  id: `confirmed-${id}`,
-  speaker: "Alcalde",
-  text: `Has confirmado tu elección: ${nombre}. La obra todavía no se inicia; la conexión con el sistema de construcción queda pendiente.`,
-  nextNodeId: "goodbye",
-}));
-
-export const alcaldeNpcDialogue: Dialogue = {
-  id: "alcalde",
-  nodes: [
-    {
-      id: "welcome",
-      speaker: "Alcalde",
-      text: "Bienvenido al Ayuntamiento.",
-      nextNodeId: "question",
-    },
-    {
-      id: "question",
-      speaker: "Alcalde",
-      text: "¿Qué necesitas hacer en el poblado?",
-      choices: [
-        { text: "Quiero construir un edificio", nextNodeId: buildingListNodeId },
-        { text: "Solo quería saludar", nextNodeId: "goodbye" },
+export function createAlcaldeDialogue(townHallLevel: 1 | 2): Dialogue {
+  if (townHallLevel === 1) {
+    return {
+      id: "alcalde-town-hall-tutorial",
+      nodes: [
+        {
+          id: "welcome",
+          speaker: "Alcalde",
+          text: "Bienvenido a tu nuevo hogar. Esta cabaña es solo un ayuntamiento provisional.",
+          nextNodeId: "upgrade-offer",
+        },
+        {
+          id: "upgrade-offer",
+          speaker: "Alcalde",
+          text: "Con los materiales que has traído podemos mejorarla y convertirla en un Ayuntamiento de nivel 2. ¿Empezamos?",
+          choices: [
+            { text: "Sí, mejorar el Ayuntamiento", nextNodeId: "upgrade-confirm" },
+            { text: "Más tarde", nextNodeId: "goodbye" },
+          ],
+        },
+        {
+          id: "upgrade-confirm",
+          speaker: "Alcalde",
+          text: "Confirmo la mejora del Ayuntamiento al nivel 2. ¿Damos la orden?",
+          choices: [
+            {
+              text: "Confirmar mejora",
+              nextNodeId: "upgrade-complete",
+              eventId: "upgrade-town-hall",
+            },
+            { text: "Volver", nextNodeId: "upgrade-offer" },
+            { text: "Cancelar", nextNodeId: "goodbye" },
+          ],
+        },
+        {
+          id: "upgrade-complete",
+          speaker: "Alcalde",
+          text: "La mejora está lista. Ahora el Ayuntamiento puede coordinar la construcción de nuevos edificios.",
+          nextNodeId: null,
+        },
+        {
+          id: "goodbye",
+          speaker: "Alcalde",
+          text: "De acuerdo. Avísame cuando quieras continuar con la mejora.",
+          nextNodeId: null,
+        },
       ],
-    },
-    {
-      id: buildingListNodeId,
-      speaker: "Alcalde",
-      text: "¿Qué edificio quieres construir?",
-      choices: edificios.map(({ id, nombre }) => ({
-        text: nombre,
-        nextNodeId: `confirm-${id}`,
-      })),
-    },
-    {
-      id: "goodbye",
-      speaker: "Alcalde",
-      text: "Cuando necesites algo, vuelve a verme.",
-      nextNodeId: null,
-    },
-    ...nodosConfirmacion,
-    ...nodosEleccionConfirmada,
-  ],
-};
+    };
+  }
+
+  return {
+    id: "alcalde-town-hall-level-2",
+    nodes: [
+      {
+        id: "welcome",
+        speaker: "Alcalde",
+        text: "El Ayuntamiento ya está preparado para dirigir el crecimiento del poblado.",
+        nextNodeId: "buildings-unlocked",
+      },
+      {
+        id: "buildings-unlocked",
+        speaker: "Alcalde",
+        text: "Ya puedes planificar nuevos edificios. Necesitaremos definir los materiales y el tiempo de cada obra antes de iniciar la construcción.",
+        nextNodeId: null,
+      },
+    ],
+  };
+}

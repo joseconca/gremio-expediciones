@@ -24,7 +24,7 @@ import { townHallInteriorMap } from "../data/interiors/townHall/townHallInterior
 import { townHallInteriorCollision } from "../data/interiors/townHall/townHallInteriorCollision";
 import { Interactable } from "../entities/Interactable";
 
-import { alcaldeNpcDialogue } from "../data/dialogues/alcalde";
+import { createAlcaldeDialogue } from "../data/dialogues/alcalde";
 
 export class TownHallInteriorScene extends Scene {
   private world: World;
@@ -123,7 +123,9 @@ export class TownHallInteriorScene extends Scene {
       speed: 0,
       direction: "down",
       animator: npcAnimator,
-      dialogue: alcaldeNpcDialogue,
+      dialogue: createAlcaldeDialogue(
+        this.villageProgression.getState().townHallLevel
+      ),
       dialogueManager: this.dialogueManager,
       interaction: {
         offsetX: 0,
@@ -201,7 +203,10 @@ export class TownHallInteriorScene extends Scene {
 
       if (this.input.isActionPressed("actionA")) {
         if (this.dialogueManager.getCurrentNode()?.choices?.length) {
-          this.dialogueManager.selectChoice();
+          const choice = this.dialogueManager.selectChoice();
+          if (choice?.eventId === "upgrade-town-hall") {
+            this.villageProgression.upgradeTownHall();
+          }
         } else {
           this.dialogueManager.advance();
         }
