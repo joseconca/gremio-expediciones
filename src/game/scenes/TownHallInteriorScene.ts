@@ -115,7 +115,8 @@ export class TownHallInteriorScene extends Scene {
       direction: "down",
       animator: npcAnimator,
       dialogue: createAlcaldeDialogue(
-        this.villageProgression.getState().townHallLevel
+        this.villageProgression.getState().townHallLevel,
+        this.villageProgression.getAvailableConstructionPositions()
       ),
       dialogueManager: this.dialogueManager,
       interaction: {
@@ -191,6 +192,13 @@ export class TownHallInteriorScene extends Scene {
           const choice = this.dialogueManager.selectChoice();
           if (choice?.eventId === "upgrade-town-hall") {
             this.villageProgression.upgradeTownHall();
+          } else if (choice?.eventId?.startsWith("build-tavern-position:")) {
+            const position = Number(
+              choice.eventId.slice("build-tavern-position:".length)
+            );
+            if (!this.villageProgression.startTavernConstruction(position)) {
+              this.dialogueManager.close();
+            }
           }
         } else {
           this.dialogueManager.advance();

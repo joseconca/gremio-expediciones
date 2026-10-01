@@ -11,6 +11,7 @@ export interface ConstructionSiteConfig extends Omit<GameObjectConfig, "collider
   durationSeconds?: number;
   colliders?: ColliderConfig[];
   startImmediately?: boolean;
+  elapsedSeconds?: number;
 }
 
 const DEFAULT_DURATION_SECONDS = 60;
@@ -44,6 +45,12 @@ export class ConstructionSite extends GameObject implements GroundRenderable {
       config.durationSeconds ?? DEFAULT_DURATION_SECONDS,
       Number.EPSILON
     );
+    this.elapsedSeconds = Math.min(
+      Math.max(config.elapsedSeconds ?? 0, 0),
+      this.durationSeconds
+    );
+    this.constructionStarted =
+      config.startImmediately === true || this.elapsedSeconds > 0;
 
     if (config.startImmediately) {
       this.beginConstruction();
@@ -77,6 +84,14 @@ export class ConstructionSite extends GameObject implements GroundRenderable {
 
   isComplete(): boolean {
     return this.constructionStarted && this.elapsedSeconds >= this.durationSeconds;
+  }
+
+  syncProgress(elapsedSeconds: number): void {
+    this.constructionStarted = true;
+    this.elapsedSeconds = Math.min(
+      Math.max(elapsedSeconds, 0),
+      this.durationSeconds
+    );
   }
 
   renderOnGround(

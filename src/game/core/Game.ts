@@ -68,6 +68,7 @@ export class Game {
 
     this.loop = new GameLoop({
       update: (deltaTime) => {
+        this.villageProgression.update(deltaTime);
         this.sceneManager.update(deltaTime);
         this.input.endFrame();
       },

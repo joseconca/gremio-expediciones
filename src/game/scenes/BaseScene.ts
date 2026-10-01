@@ -18,12 +18,14 @@ import { Building } from "../entities/Building";
 import { Campfire } from "../entities/Campfire";
 import { ConstructionSite } from "../entities/ConstructionSite";
 import { ResourceCart } from "../entities/ResourceCart";
+import type { GameObject } from "../entities/GameObject";
 import { Door } from "../entities/Door";
 import type { Interactable } from "../entities/Interactable";
 import { SceneTransition } from "../entities/SceneTransition";
 import { Player } from "../entities/Characters/Player";
 
 import { townHallDefinitions } from "../data/buildings/townHall";
+import { tavernDefinition } from "../data/buildings/tavern";
 import { heroAnimations } from "../data/heroAnimations";
 import { genericDoorDefinition } from "../data/doors/genericDoor1";
 import { baseMap } from "../data/base/baseMap";
@@ -41,6 +43,9 @@ export class BaseScene extends Scene {
   private sceneTransitionSystem: SceneTransitionSystem;
   private readonly debugTeleporters: SceneTransition[] = [];
   private readonly spawnPoints: SpawnPoint[] = [];
+  private readonly villageObjects: GameObject[] = [];
+  private constructionSite: ConstructionSite | null = null;
+  private villageRevision = -1;
 
   constructor(config: SceneConfig) {
     super(config);
@@ -72,30 +77,12 @@ export class BaseScene extends Scene {
         direction: "down",
       }
     );
-
     const townHallLevel = this.villageProgression.getState().townHallLevel;
-    const townHall = new Building({
-      x: 432,
-      y: 704,
-      definition: townHallDefinitions[townHallLevel],
-    });
-    this.world.addObject(townHall);
-    this.collisionSystem.addObject(townHall);
 
     this.world.addObject(new Campfire({ x: 560, y: 800 }));
     this.world.addObject(
       new ResourceCart({ x: 320, y: 704 })
     );
-
-    if (townHallLevel === 2) {
-      const constructionSite = new ConstructionSite({
-        x: 592,
-        y: 704,
-        startImmediately: true,
-      });
-      this.world.addObject(constructionSite);
-      this.collisionSystem.addObject(constructionSite);
-    }
 
     // Progression level 1 is the town-hall0 sprite and has no door yet.
     if (townHallLevel === 2) {
@@ -148,6 +135,59 @@ export class BaseScene extends Scene {
     });
     this.world.addObject(this.player);
     this.collisionSystem.addObject(this.player);
+
+    this.syncVillageLayout();
+  }
+
+  private syncVillageLayout(): void {
+    const revision = this.villageProgression.getRevision();
+    if (revision === this.villageRevision) return;
+
+    for (const object of this.villageObjects) {
+      this.world.removeObject(object);
+      this.collisionSystem.removeObject(object);
+    }
+    this.villageObjects.length = 0;
+    this.constructionSite = null;
+
+    const state = this.villageProgression.getState();
+    const placements = this.villageProgression.getBuildingPlacements();
+
+    for (const placement of placements) {
+      let object: GameObject;
+
+      if (placement.underConstruction) {
+        const activeConstruction = state.construction;
+        if (!activeConstruction) continue;
+
+        const constructionSite = new ConstructionSite({
+          x: placement.x,
+          y: placement.y,
+          durationSeconds: activeConstruction.durationSeconds,
+          elapsedSeconds: activeConstruction.elapsedSeconds,
+        });
+        this.constructionSite = constructionSite;
+        object = constructionSite;
+      } else if (placement.type === "town-hall") {
+        object = new Building({
+          x: placement.x,
+          y: placement.y,
+          definition: townHallDefinitions[state.townHallLevel],
+        });
+      } else {
+        object = new Building({
+          x: placement.x,
+          y: placement.y,
+          definition: tavernDefinition,
+        });
+      }
+
+      this.world.addObject(object);
+      this.collisionSystem.addObject(object);
+      this.villageObjects.push(object);
+    }
+
+    this.villageRevision = revision;
   }
 
   protected getSpawnPoint(spawnId?: string): SpawnPoint {
@@ -168,7 +208,13 @@ export class BaseScene extends Scene {
 
   update(deltaTime: number): void {
     this.updateDebugMode();
+    this.syncVillageLayout();
     this.world.update(deltaTime);
+
+    const construction = this.villageProgression.getState().construction;
+    if (construction && this.constructionSite) {
+      this.constructionSite.syncProgress(construction.elapsedSeconds);
+    }
 
     this.camera.follow(this.player.x, this.player.y, 32, 64);
 
