@@ -44,6 +44,7 @@ export class BaseScene extends Scene {
   private readonly debugTeleporters: SceneTransition[] = [];
   private readonly spawnPoints: SpawnPoint[] = [];
   private readonly villageObjects: GameObject[] = [];
+  private readonly villageEntranceObjects: GameObject[] = [];
   private constructionSite: ConstructionSite | null = null;
   private villageRevision = -1;
 
@@ -147,7 +148,21 @@ export class BaseScene extends Scene {
       this.world.removeObject(object);
       this.collisionSystem.removeObject(object);
     }
+    for (const object of this.villageEntranceObjects) {
+      this.world.removeObject(object);
+      this.collisionSystem.removeObject(object);
+      if (object instanceof SceneTransition) {
+        this.sceneTransitionSystem.removeTransition(object);
+        const debugIndex = this.debugTeleporters.indexOf(object);
+        if (debugIndex >= 0) this.debugTeleporters.splice(debugIndex, 1);
+      }
+      if (object instanceof Door) {
+        const interactableIndex = this.interactables.indexOf(object);
+        if (interactableIndex >= 0) this.interactables.splice(interactableIndex, 1);
+      }
+    }
     this.villageObjects.length = 0;
+    this.villageEntranceObjects.length = 0;
     this.constructionSite = null;
 
     const state = this.villageProgression.getState();
@@ -185,6 +200,31 @@ export class BaseScene extends Scene {
       this.world.addObject(object);
       this.collisionSystem.addObject(object);
       this.villageObjects.push(object);
+
+      if (placement.type === "tavern" && !placement.underConstruction) {
+        const entranceX = placement.x + 64;
+        const tavernDoor = new Door({
+          x: entranceX,
+          y: placement.y,
+          definition: genericDoorDefinition,
+        });
+        const tavernTransition = new SceneTransition({
+          x: entranceX - 16,
+          y: placement.y - 16,
+          width: 32,
+          height: 32,
+          targetSceneId: "tavern-interior",
+          targetSpawnId: "tavern-entrance",
+          sceneManager: this.sceneManager,
+        });
+
+        this.world.addObject(tavernDoor);
+        this.collisionSystem.addObject(tavernDoor);
+        this.interactables.push(tavernDoor);
+        this.villageEntranceObjects.push(tavernDoor, tavernTransition);
+        this.sceneTransitionSystem.addTransition(tavernTransition);
+        this.debugTeleporters.push(tavernTransition);
+      }
     }
 
     this.villageRevision = revision;

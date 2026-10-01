@@ -27,6 +27,12 @@ const EMPTY_DIALOGUE_STATE = {
   selectedChoiceIndex: 0,
 };
 
+const EMPTY_VILLAGE_VITALS = {
+  gold: 0,
+  playerHp: 0,
+  playerMaxHp: 0,
+};
+
 export default function NewGamePage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const gameRef = useRef<Game | null>(null);
@@ -34,6 +40,9 @@ export default function NewGamePage() {
 
   const [dialogueManager, setDialogueManager] = useState<
     Game["dialogueManager"] | null
+  >(null);
+  const [villageProgression, setVillageProgression] = useState<
+    Game["villageProgression"] | null
   >(null);
 
   useEffect(() => {
@@ -48,6 +57,7 @@ export default function NewGamePage() {
     gameRef.current = game;
 
     setDialogueManager(game.dialogueManager);
+    setVillageProgression(game.villageProgression);
 
     game.init();
 
@@ -55,6 +65,7 @@ export default function NewGamePage() {
       game.destroy();
       gameRef.current = null;
       setDialogueManager(null);
+      setVillageProgression(null);
     };
   }, [baseLocation]);
 
@@ -68,6 +79,16 @@ export default function NewGamePage() {
       : () => EMPTY_DIALOGUE_STATE,
 
     () => EMPTY_DIALOGUE_STATE
+  );
+
+  const villageVitals = useSyncExternalStore(
+    villageProgression
+      ? (listener) => villageProgression.subscribe(() => listener())
+      : () => () => {},
+    villageProgression
+      ? () => villageProgression.getVitalsSnapshot()
+      : () => EMPTY_VILLAGE_VITALS,
+    () => EMPTY_VILLAGE_VITALS
   );
 
   if (!baseLocation) {
@@ -96,6 +117,13 @@ export default function NewGamePage() {
 
       <div className="pointer-events-none absolute left-3 top-3 z-10 rounded bg-black/60 px-2 py-1 text-[10px] text-white/70">
         Base · {baseLocation.lat.toFixed(3)}, {baseLocation.lng.toFixed(3)}
+      </div>
+
+      <div className="pointer-events-none absolute right-3 top-3 z-10 flex gap-2 rounded bg-black/70 px-3 py-2 text-xs font-bold text-amber-100">
+        <span>🪙 {villageVitals.gold}</span>
+        <span>
+          ❤️ {villageVitals.playerHp}/{villageVitals.playerMaxHp}
+        </span>
       </div>
 
       <GameControls />

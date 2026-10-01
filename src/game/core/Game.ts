@@ -3,6 +3,7 @@ import { InputManager } from "../input/InputManager";
 import { SceneManager } from "../scenes/SceneManager";
 import { BaseScene } from "../scenes/BaseScene";
 import { TownHallInteriorScene } from "../scenes/TownHallInteriorScene";
+import { TavernInteriorScene } from "../scenes/TavernInteriorScene";
 import { DialogueManager } from "../dialogue/DialogueManager";
 import { VillageProgression } from "../gameplay/VillageProgression";
 
@@ -56,6 +57,20 @@ export class Game {
       "town-hall-interior",
       (spawnId) =>
         new TownHallInteriorScene({
+          canvas: this.canvas,
+          ctx: this.ctx,
+          input: this.input,
+          sceneManager: this.sceneManager,
+          dialogueManager: this.dialogueManager,
+          villageProgression: this.villageProgression,
+          spawnId,
+        })
+    );
+
+    this.sceneManager.register(
+      "tavern-interior",
+      (spawnId) =>
+        new TavernInteriorScene({
           canvas: this.canvas,
           ctx: this.ctx,
           input: this.input,

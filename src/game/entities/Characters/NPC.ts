@@ -11,7 +11,7 @@ export interface NPCConfig extends CharacterConfig {
     radius: number;
   };
 
-  dialogue?: Dialogue;
+  dialogue?: Dialogue | (() => Dialogue);
   dialogueManager?: DialogueManager;
 }
 
@@ -22,7 +22,7 @@ export class NPC extends Character implements Interactable {
     radius: number;
   };
 
-  private readonly dialogue?: Dialogue;
+  private readonly dialogue?: Dialogue | (() => Dialogue);
   private readonly dialogueManager?: DialogueManager;
 
   constructor(config: NPCConfig) {
@@ -66,6 +66,8 @@ export class NPC extends Character implements Interactable {
       return;
     }
 
-    this.dialogueManager.start(this.dialogue);
+    const dialogue =
+      typeof this.dialogue === "function" ? this.dialogue() : this.dialogue;
+    this.dialogueManager.start(dialogue);
   }
 }
