@@ -2,9 +2,12 @@
 
 import { useState } from "react";
 import type { PlayerProgressionState } from "@/game/gameplay/PlayerProgression";
+import type { VillageResources } from "@/game/gameplay/VillageProgression";
 
 interface GameHudProps {
   player: PlayerProgressionState;
+  resources: VillageResources;
+  isInVillage: boolean;
 }
 
 function percentage(value: number, max: number): number {
@@ -31,15 +34,15 @@ function ProgressBar({
   );
 }
 
-export default function GameHud({ player }: GameHudProps) {
+export default function GameHud({ player, resources, isInVillage }: GameHudProps) {
   const [showAttributes, setShowAttributes] = useState(false);
   const [showResources, setShowResources] = useState(false);
   const attributes = player.attributes;
 
   return (
     <>
-      <aside className="pointer-events-none absolute left-2 top-2 z-10 sm:left-3 sm:top-3">
-        <section className="pointer-events-auto w-[min(68vw,26rem)] rounded-md border border-amber-200/25 bg-stone-950/90 p-2 text-[10px] leading-tight text-stone-100 shadow-lg backdrop-blur-sm sm:w-[min(62vw,30rem)] sm:p-3 sm:text-xs">
+      <header className="pointer-events-none absolute inset-x-2 top-2 z-10 flex items-start justify-between gap-2 sm:inset-x-3 sm:top-3">
+        <section className="pointer-events-auto w-[min(76vw,32rem)] rounded-md border border-amber-200/25 bg-stone-950/90 p-2 text-[10px] leading-tight text-stone-100 shadow-lg backdrop-blur-sm sm:w-[min(68vw,36rem)] sm:p-3 sm:text-xs">
           <div className="flex items-start justify-between gap-2">
             <div className="min-w-0">
               <div className="truncate font-bold text-amber-200">{player.name}</div>
@@ -119,9 +122,7 @@ export default function GameHud({ player }: GameHudProps) {
             </dl>
           )}
         </section>
-      </aside>
 
-      <div className="pointer-events-none absolute right-2 top-2 z-10 sm:right-3 sm:top-3">
         <button
           type="button"
           aria-haspopup="dialog"
@@ -129,9 +130,9 @@ export default function GameHud({ player }: GameHudProps) {
           onClick={() => setShowResources(true)}
           className="pointer-events-auto rounded-md border border-amber-200/25 bg-stone-950/90 px-2 py-2 text-[10px] font-bold text-amber-100 shadow-lg backdrop-blur-sm hover:bg-stone-800 sm:px-3 sm:text-xs"
         >
-          🎒 <span className="hidden sm:inline">Recursos</span>
+          🪙 {player.gold} <span aria-hidden="true">·</span> 🎒
         </button>
-      </div>
+      </header>
 
       {showResources && (
         <div
@@ -161,10 +162,14 @@ export default function GameHud({ player }: GameHudProps) {
             </div>
             <ul className="space-y-2">
               <li className="flex justify-between"><span>🪙 Oro</span><strong>{player.gold}</strong></li>
-              <li className="flex justify-between"><span>🪵 Madera</span><strong>{player.wood}</strong></li>
-              <li className="flex justify-between"><span>🪨 Piedra</span><strong>{player.stone}</strong></li>
-              <li className="flex justify-between"><span>⚙️ Metal</span><strong>{player.metal}</strong></li>
-              <li className="flex justify-between"><span>🍲 Comida</span><strong>{player.food}</strong></li>
+              {isInVillage ? (
+                <>
+                  <li className="flex justify-between"><span>🪵 Madera</span><strong>{resources.wood}</strong></li>
+                  <li className="flex justify-between"><span>🪨 Piedra</span><strong>{resources.stone}</strong></li>
+                  <li className="flex justify-between"><span>⚙️ Metal</span><strong>{resources.metal}</strong></li>
+                  <li className="flex justify-between"><span>🍲 Comida</span><strong>{resources.food}</strong></li>
+                </>
+              ) : null}
             </ul>
           </section>
         </div>

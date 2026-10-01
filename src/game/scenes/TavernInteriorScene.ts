@@ -2,6 +2,7 @@ import { InteriorScene, type InteriorSceneConfig } from "./InteriorScene";
 import { createTaberneroDialogue } from "../data/dialogues/tabernero";
 import { tavernInteriorMap } from "../data/interiors/tavern/tavernInteriorMap";
 import { tavernInteriorCollision } from "../data/interiors/tavern/tavernInteriorCollision";
+import { TavernService } from "../gameplay/TavernService";
 
 export class TavernInteriorScene extends InteriorScene {
   constructor(
@@ -15,11 +16,16 @@ export class TavernInteriorScene extends InteriorScene {
       | "npc"
     >
   ) {
+    const tavernService = new TavernService(
+      config.villageProgression,
+      config.playerProgression
+    );
+
     super({
       ...config,
       tileMap: tavernInteriorMap,
       collisionMap: tavernInteriorCollision,
-      exitSpawnId: "town-hall-exit",
+      exitSpawnId: "tavern-exit",
       entranceSpawn: {
         id: "tavern-entrance",
         x: 64,
@@ -33,14 +39,14 @@ export class TavernInteriorScene extends InteriorScene {
         spriteSrc: "/sprites/sheets/characters/tabernero.png",
         dialogue: () =>
           createTaberneroDialogue({
-            canBuyWithGold: config.playerProgression.canBuyMealWithGold(),
-            canUseFood: config.playerProgression.canUseFoodToHeal(),
+            canBuyWithGold: tavernService.canBuyWithGold(),
+            canUseFood: tavernService.canUseFood(),
           }),
         onChoice: (eventId) => {
           if (eventId === "buy-tavern-meal") {
-            config.playerProgression.buyMealWithGold();
+            tavernService.buyMealWithGold();
           } else if (eventId === "eat-food") {
-            config.playerProgression.useFoodToHeal();
+            tavernService.useFood();
           }
         },
       },

@@ -1,8 +1,22 @@
 export interface VillageProgressionState {
-  townHallLevel: 1 | 2;
   buildings: VillageBuilding[];
   construction: ActiveConstruction | null;
+  resources: VillageResources;
 }
+
+export interface VillageResources {
+  readonly wood: number;
+  readonly stone: number;
+  readonly metal: number;
+  readonly food: number;
+}
+
+export const INITIAL_VILLAGE_RESOURCES: VillageResources = {
+  wood: 0,
+  stone: 0,
+  metal: 0,
+  food: 1,
+};
 
 export type VillageBuildingType = "town-hall" | "tavern";
 
@@ -29,7 +43,8 @@ export interface VillageBuildingPlacement extends VillageBuilding {
 export type VillageProgressionEvent =
   | "town-hall-upgraded"
   | "construction-started"
-  | "construction-completed";
+  | "construction-completed"
+  | "resources-changed";
 
 type VillageProgressionListener = (
   state: VillageProgressionState,
@@ -37,9 +52,9 @@ type VillageProgressionListener = (
 ) => void;
 
 const INITIAL_STATE: VillageProgressionState = {
-  townHallLevel: 1,
   buildings: [{ id: "town-hall", type: "town-hall", level: 1 }],
   construction: null,
+  resources: INITIAL_VILLAGE_RESOURCES,
 };
 
 const TEST_CONSTRUCTION_DURATION_SECONDS = 60;
@@ -60,11 +75,24 @@ export class VillageProgression {
       construction: this.state.construction
         ? { ...this.state.construction }
         : null,
+      resources: { ...this.state.resources },
     };
+  }
+
+  /** Stable until a resource value changes; safe as a useSyncExternalStore snapshot. */
+  getResourcesSnapshot(): VillageResources {
+    return this.state.resources;
   }
 
   getRevision(): number {
     return this.currentRevision;
+  }
+
+  getTownHallLevel(): 1 | 2 {
+    const level =
+      this.state.buildings.find((building) => building.type === "town-hall")
+        ?.level ?? 1;
+    return level >= 2 ? 2 : 1;
   }
 
   getBuildingPlacements(): VillageBuildingPlacement[] {
@@ -130,7 +158,7 @@ export class VillageProgression {
     label: string;
   }> {
     if (
-      this.state.townHallLevel < 2 ||
+      this.getTownHallLevel() < 2 ||
       this.state.construction ||
       this.state.buildings.some((building) => building.type === "tavern")
     ) {
@@ -152,11 +180,10 @@ export class VillageProgression {
   }
 
   upgradeTownHall(): boolean {
-    if (this.state.townHallLevel !== 1) return false;
+    if (this.getTownHallLevel() !== 1) return false;
 
     this.state = {
       ...this.state,
-      townHallLevel: 2,
       buildings: this.state.buildings.map((building) =>
         building.type === "town-hall" ? { ...building, level: 2 } : building
       ),
@@ -168,7 +195,7 @@ export class VillageProgression {
 
   startTavernConstruction(position: number): boolean {
     if (
-      this.state.townHallLevel < 2 ||
+      this.getTownHallLevel() < 2 ||
       this.state.construction ||
       this.state.buildings.some((building) => building.type === "tavern") ||
       !this.getConstructionPositionLabel(position)
@@ -189,6 +216,32 @@ export class VillageProgression {
     this.currentRevision++;
     this.notify("construction-started");
     return true;
+  }
+
+  addFood(amount: number): void {
+    if (!Number.isInteger(amount) || amount <= 0) return;
+    this.setResources({ food: this.state.resources.food + amount });
+  }
+
+  consumeFood(amount = 1): boolean {
+    if (
+      !Number.isInteger(amount) ||
+      amount <= 0 ||
+      this.state.resources.food < amount
+    ) {
+      return false;
+    }
+
+    this.setResources({ food: this.state.resources.food - amount });
+    return true;
+  }
+
+  private setResources(resources: Partial<VillageResources>): void {
+    this.state = {
+      ...this.state,
+      resources: { ...this.state.resources, ...resources },
+    };
+    this.notify("resources-changed");
   }
 
   update(deltaTime: number): void {

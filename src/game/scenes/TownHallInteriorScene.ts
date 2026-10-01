@@ -33,7 +33,7 @@ export class TownHallInteriorScene extends InteriorScene {
         spriteSrc: "/sprites/sheets/characters/alcalde.png",
         dialogue: () =>
           createAlcaldeDialogue(
-            config.villageProgression.getState().townHallLevel,
+            config.villageProgression.getTownHallLevel(),
             config.villageProgression.getAvailableConstructionPositions()
           ),
         onChoice: (eventId) => {

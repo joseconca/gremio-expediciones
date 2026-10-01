@@ -6,17 +6,25 @@ import type { Camera } from "../world/Camera";
 export class VerticalTileRenderer {
   private readonly tileMap: TileMap;
   private readonly projection: GroundProjection;
-  private readonly spriteSheet: SpriteSheet;
+  private readonly spriteSheet: SpriteSheet | null;
+  private readonly tilesetConfig: NonNullable<TileMap["tileset"]> | null;
 
   constructor(tileMap: TileMap, projection: GroundProjection) {
     this.tileMap = tileMap;
     this.projection = projection;
 
-    this.spriteSheet = new SpriteSheet({
-      src: tileMap.tileset.src,
-      frameWidth: tileMap.tileset.tileWidth,
-      frameHeight: tileMap.tileset.tileHeight,
-    });
+    const hasVerticalLayers = tileMap.getVerticalLayers().length > 0;
+    if (hasVerticalLayers && !tileMap.tileset) {
+      throw new Error("Las capas verticales necesitan un tileset.");
+    }
+    this.tilesetConfig = hasVerticalLayers ? tileMap.tileset ?? null : null;
+    this.spriteSheet = this.tilesetConfig
+      ? new SpriteSheet({
+          src: this.tilesetConfig.src,
+          frameWidth: this.tilesetConfig.tileWidth,
+          frameHeight: this.tilesetConfig.tileHeight,
+        })
+      : null;
   }
 
   render(
@@ -24,7 +32,7 @@ export class VerticalTileRenderer {
     _camera: Camera,
     reference: GroundReference
   ): void {
-    if (!this.spriteSheet.isLoaded()) {
+    if (!this.spriteSheet?.isLoaded()) {
       return;
     }
 
@@ -40,7 +48,11 @@ export class VerticalTileRenderer {
     layer: TileLayer,
     reference: GroundReference
   ): void {
-    const columns = this.spriteSheet.getColumns();
+    const spriteSheet = this.spriteSheet;
+    const tilesetConfig = this.tilesetConfig;
+    if (!spriteSheet || !tilesetConfig) return;
+
+    const columns = spriteSheet.getColumns();
 
     if (columns <= 0) {
       return;
@@ -75,10 +87,14 @@ export class VerticalTileRenderer {
   ): void {
     const tileSize = this.tileMap.tileSize;
 
-    const sourceX = (tileId % columns) * this.tileMap.tileset.tileWidth;
+    const spriteSheet = this.spriteSheet;
+    const tilesetConfig = this.tilesetConfig;
+    if (!spriteSheet || !tilesetConfig) return;
+
+    const sourceX = (tileId % columns) * tilesetConfig.tileWidth;
 
     const sourceY =
-      Math.floor(tileId / columns) * this.tileMap.tileset.tileHeight;
+      Math.floor(tileId / columns) * tilesetConfig.tileHeight;
 
     /*
      * El punto de apoyo de una pared es el centro de su
@@ -98,9 +114,9 @@ export class VerticalTileRenderer {
 
     const scale = projected.scale;
 
-    const destinationWidth = this.tileMap.tileset.tileWidth * scale;
+    const destinationWidth = tilesetConfig.tileWidth * scale;
 
-    const destinationHeight = this.tileMap.tileset.tileHeight * scale;
+    const destinationHeight = tilesetConfig.tileHeight * scale;
 
     /*
      * La base proyectada es el centro inferior de la pared.
@@ -111,12 +127,12 @@ export class VerticalTileRenderer {
     const destinationY = projected.y - destinationHeight;
 
     ctx.drawImage(
-      this.spriteSheet.image,
+      spriteSheet.image,
 
       sourceX,
       sourceY,
-      this.tileMap.tileset.tileWidth,
-      this.tileMap.tileset.tileHeight,
+      tilesetConfig.tileWidth,
+      tilesetConfig.tileHeight,
 
       Math.round(destinationX),
       Math.round(destinationY),

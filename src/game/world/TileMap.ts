@@ -16,7 +16,7 @@ export interface TileMapConfig {
 
   tileSize: number;
 
-  tileset: {
+  tileset?: {
     src: string;
     tileWidth: number;
     tileHeight: number;

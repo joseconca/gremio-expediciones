@@ -6,6 +6,7 @@ import { RenderSystem } from "../systems/RenderSystem";
 import { GroundRenderer } from "../rendering/GroundRenderer";
 import { VerticalTileRenderer } from "../rendering/VerticalTileRenderer";
 import type { GroundRenderable } from "../rendering/GroundRenderable";
+import type { GroundSurfaceRenderer } from "../rendering/GroundSurfaceRenderer";
 import {
   GroundProjection,
   type GroundReference,
@@ -16,6 +17,8 @@ export interface WorldConfig {
   height: number;
   tileMap: TileMap;
   collisionMap: CollisionMap;
+  renderMarginTiles?: number;
+  groundSurfaceRenderer?: GroundSurfaceRenderer;
 }
 
 interface DebugArea {
@@ -40,7 +43,7 @@ export class World {
   readonly tileMap: TileMap;
   readonly collisionMap: CollisionMap;
 
-  private readonly groundRenderer: GroundRenderer;
+  private readonly groundRenderer: GroundSurfaceRenderer;
   private readonly verticalTileRenderer: VerticalTileRenderer;
   private readonly renderSystem: RenderSystem;
   private readonly groundProjection: GroundProjection;
@@ -59,10 +62,13 @@ export class World {
       cameraDepth: 320,
       focalLength: 320,
     });
-    this.groundRenderer = new GroundRenderer(
-      this.tileMap,
-      this.groundProjection
-    );
+    this.groundRenderer =
+      config.groundSurfaceRenderer ??
+      new GroundRenderer(
+        this.tileMap,
+        this.groundProjection,
+        config.renderMarginTiles
+      );
 
     this.verticalTileRenderer = new VerticalTileRenderer(
       this.tileMap,
@@ -93,7 +99,12 @@ export class World {
     camera: Camera,
     groundReference: GroundReference
   ): void {
-    this.groundRenderer.render(ctx, camera, groundReference);
+    this.groundRenderer.render(
+      ctx,
+      camera,
+      groundReference,
+      this.groundProjection
+    );
 
     for (const object of this.objects) {
       if (isGroundRenderable(object)) {

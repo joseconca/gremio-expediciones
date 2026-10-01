@@ -23,6 +23,9 @@ import { Door } from "../entities/Door";
 import type { Interactable } from "../entities/Interactable";
 import { SceneTransition } from "../entities/SceneTransition";
 import { Player } from "../entities/Characters/Player";
+import {
+  calculateVillageExteriorGates,
+} from "../gameplay/VillageGateLayout";
 
 import { townHallDefinitions } from "../data/buildings/townHall";
 import { tavernDefinition } from "../data/buildings/tavern";
@@ -76,9 +79,15 @@ export class BaseScene extends Scene {
         x: 480,
         y: 688,
         direction: "down",
+      },
+      {
+        id: "world-base-arrival",
+        x: 480,
+        y: 848,
+        direction: "up",
       }
     );
-    const townHallLevel = this.villageProgression.getState().townHallLevel;
+    const townHallLevel = this.villageProgression.getTownHallLevel();
 
     this.world.addObject(new Campfire({ x: 560, y: 800 }));
     this.world.addObject(
@@ -188,7 +197,9 @@ export class BaseScene extends Scene {
         object = new Building({
           x: placement.x,
           y: placement.y,
-          definition: townHallDefinitions[state.townHallLevel],
+          definition: townHallDefinitions[
+            this.villageProgression.getTownHallLevel()
+          ],
         });
       } else {
         object = new Building({
@@ -228,10 +239,64 @@ export class BaseScene extends Scene {
       }
     }
 
+    this.addExteriorGates();
     this.villageRevision = revision;
   }
 
+  private addExteriorGates(): void {
+    const gates = this.getExteriorGatePositions();
+
+    for (const gate of gates) {
+      const transition = new SceneTransition({
+        x: gate.x - 16,
+        y: gate.y - 8,
+        width: 32,
+        height: 16,
+        targetSceneId: "exterior-world",
+        targetSpawnId: `from-${gate.direction}`,
+        sceneManager: this.sceneManager,
+      });
+      this.sceneTransitionSystem.addTransition(transition);
+      this.debugTeleporters.push(transition);
+      this.villageEntranceObjects.push(transition);
+    }
+  }
+
+  private getExteriorGatePositions() {
+    return calculateVillageExteriorGates(
+      this.villageProgression.getBuildingPlacements(),
+      baseMap.exteriorGates,
+      baseMap.width * baseMap.tileSize
+    );
+  }
+
   protected getSpawnPoint(spawnId?: string): SpawnPoint {
+    if (spawnId === "world-base-arrival") {
+      return {
+        id: spawnId,
+        x: 480,
+        y: 848,
+        direction: "up",
+      };
+    }
+
+    if (spawnId === "tavern-exit") {
+      const tavern = this.villageProgression
+        .getBuildingPlacements()
+        .find((building) => building.type === "tavern" && !building.underConstruction);
+
+      if (!tavern) {
+        throw new Error("No se puede volver de la taberna: aún no está construida.");
+      }
+
+      return {
+        id: spawnId,
+        x: tavern.x + 64,
+        y: tavern.y + 40,
+        direction: "down",
+      };
+    }
+
     const id = spawnId ?? "default";
 
     const spawnPoint = this.spawnPoints.find((point) => point.id === id);

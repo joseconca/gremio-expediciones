@@ -3,6 +3,8 @@ export interface GameLoopConfig {
   render: () => void;
 }
 
+const MAX_FRAME_DELTA_SECONDS = 0.1;
+
 export class GameLoop {
   private animationFrameId: number | null = null;
   private lastTime = 0;
@@ -23,7 +25,8 @@ export class GameLoop {
     this.lastTime = performance.now();
 
     const frame = (currentTime: number) => {
-      const deltaTime = (currentTime - this.lastTime) / 1000;
+      const elapsedSeconds = (currentTime - this.lastTime) / 1000;
+      const deltaTime = Math.min(elapsedSeconds, MAX_FRAME_DELTA_SECONDS);
 
       this.lastTime = currentTime;
 

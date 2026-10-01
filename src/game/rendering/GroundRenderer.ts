@@ -4,11 +4,14 @@ import { GroundProjection, type GroundReference } from "./GroundProjection";
 import type { TileMap, TileLayer } from "../world/TileMap";
 
 import type { Camera } from "../world/Camera";
+import type { GroundSurfaceRenderer } from "./GroundSurfaceRenderer";
 
-export class GroundRenderer {
+export class GroundRenderer implements GroundSurfaceRenderer {
   private readonly tileMap: TileMap;
   private readonly projection: GroundProjection;
   private readonly tileset: SpriteSheet;
+  private readonly tilesetConfig: NonNullable<TileMap["tileset"]>;
+  private readonly renderMarginTiles: number;
 
   /**
    * Subdivisiones verticales de cada tile.
@@ -17,21 +20,32 @@ export class GroundRenderer {
    */
   private readonly subdivisions = 8;
 
-  constructor(tileMap: TileMap, projection: GroundProjection) {
+  constructor(
+    tileMap: TileMap,
+    projection: GroundProjection,
+    renderMarginTiles = 40
+  ) {
+    if (!tileMap.tileset) {
+      throw new Error("GroundRenderer necesita un tileset para pintar el suelo.");
+    }
+
     this.tileMap = tileMap;
     this.projection = projection;
+    this.renderMarginTiles = Math.max(0, renderMarginTiles);
+    this.tilesetConfig = tileMap.tileset;
 
     this.tileset = new SpriteSheet({
-      src: tileMap.tileset.src,
-      frameWidth: tileMap.tileset.tileWidth,
-      frameHeight: tileMap.tileset.tileHeight,
+      src: this.tilesetConfig.src,
+      frameWidth: this.tilesetConfig.tileWidth,
+      frameHeight: this.tilesetConfig.tileHeight,
     });
   }
 
   render(
     ctx: CanvasRenderingContext2D,
     camera: Camera,
-    reference: GroundReference
+    reference: GroundReference,
+    projection: GroundProjection = this.projection
   ): void {
     if (!this.tileset.isLoaded()) {
       return;
@@ -42,7 +56,7 @@ export class GroundRenderer {
     const layers = this.tileMap.getGroundLayers();
 
     for (const layer of layers) {
-      this.renderLayer(ctx, camera, reference, layer);
+      this.renderLayer(ctx, camera, reference, layer, projection);
     }
   }
 
@@ -50,7 +64,8 @@ export class GroundRenderer {
     ctx: CanvasRenderingContext2D,
     camera: Camera,
     reference: GroundReference,
-    layer: TileLayer
+    layer: TileLayer,
+    projection: GroundProjection
   ): void {
     const tileSize = this.tileMap.tileSize;
 
@@ -62,25 +77,26 @@ export class GroundRenderer {
      * hace que la zona visible no corresponda
      * exactamente al rectángulo de cámara.
      */
-    const startY = Math.max(0, Math.floor(camera.y / tileSize) - 40);
+    const margin = this.renderMarginTiles;
+    const startY = Math.max(0, Math.floor(camera.y / tileSize) - margin);
 
     const endY = Math.min(
       this.tileMap.height - 1,
-      Math.ceil((camera.y + camera.height) / tileSize) + 40
+      Math.ceil((camera.y + camera.height) / tileSize) + margin
     );
 
-    const startX = Math.max(0, Math.floor(camera.x / tileSize) - 40);
+    const startX = Math.max(0, Math.floor(camera.x / tileSize) - margin);
 
     const endX = Math.min(
       this.tileMap.width - 1,
-      Math.ceil((camera.x + camera.width) / tileSize) + 40
+      Math.ceil((camera.x + camera.width) / tileSize) + margin
     );
 
     /*
      * Lejos → cerca.
      */
     for (let tileY = startY; tileY <= endY; tileY++) {
-      this.renderRow(ctx, camera, reference, layer, tileY, startX, endX);
+      this.renderRow(ctx, camera, reference, layer, tileY, startX, endX, projection);
     }
   }
 
@@ -91,7 +107,8 @@ export class GroundRenderer {
     layer: TileLayer,
     tileY: number,
     startX: number,
-    endX: number
+    endX: number,
+    projection: GroundProjection
   ): void {
     const row = layer.tiles[tileY];
 
@@ -111,7 +128,7 @@ export class GroundRenderer {
     for (let slice = 0; slice < this.subdivisions; slice++) {
       const worldSliceY = worldY + slice * sliceHeight;
 
-      const top = this.projection.project(
+      const top = projection.project(
         reference.worldX,
         worldSliceY,
         reference,
@@ -119,7 +136,7 @@ export class GroundRenderer {
         camera.height
       );
 
-      const bottom = this.projection.project(
+      const bottom = projection.project(
         reference.worldX,
         worldSliceY + sliceHeight,
         reference,

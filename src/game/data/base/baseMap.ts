@@ -5,6 +5,15 @@ export const baseMap = {
   height: 45,
   tileSize: 32,
 
+  // Exit anchors belong to this map; VillageGateLayout offsets them around buildings.
+  exteriorGates: {
+    centerX: 496,
+    horizontalClearance: 128,
+    verticalClearance: 192,
+    edgeMargin: 48,
+    directions: ["north", "south", "east", "west"] as const,
+  },
+
   tileset: baseTileset,
 
   layers: [
