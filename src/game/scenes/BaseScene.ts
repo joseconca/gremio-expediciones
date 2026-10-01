@@ -154,9 +154,9 @@ export class BaseScene extends Scene {
       movement: this.movementSystem,
       colliders: [
         new Collider({
-          width: 8,
-          height: 4,
-          offsetX: -10,
+          width: 12,
+          height: 6,
+          offsetX: 8,
           offsetY: 50,
         }),
       ],

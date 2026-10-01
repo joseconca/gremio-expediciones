@@ -101,8 +101,8 @@ export class TownHallInteriorScene extends Scene {
 
       colliders: [
         new Collider({
-          width: 16,
-          height: 12,
+          width: 12,
+          height: 6,
           offsetX: 8,
           offsetY: 50,
         }),
