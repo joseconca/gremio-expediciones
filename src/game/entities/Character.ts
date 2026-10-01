@@ -1,16 +1,19 @@
 import { GameObject, GameObjectConfig } from "./GameObject";
 import type { Direction } from "../input/InputState";
 import type { Animator } from "../rendering/Animator";
+import type { CharacterAttributes } from "./Characters/CharacterAttributes";
 
 export interface CharacterConfig extends GameObjectConfig {
   speed?: number;
   direction?: Direction;
   animator?: Animator;
+  attributes?: CharacterAttributes;
 }
 
 export class Character extends GameObject {
   speed: number;
   direction: Direction;
+  attributes: CharacterAttributes;
 
   protected animator?: Animator;
 
@@ -20,6 +23,18 @@ export class Character extends GameObject {
     this.speed = config.speed ?? 60;
     this.direction = config.direction ?? "down";
     this.animator = config.animator;
+    this.attributes = config.attributes ?? {
+      currentHealth: 100,
+      maxHealth: 100,
+      physicalDefense: 5,
+      physicalAttack: 8,
+      criticalChance: 0.05,
+      criticalDamage: 1.5,
+      speed: 5,
+      evasionChance: 0.05,
+      magicDefense: 3,
+      magicAttack: 3,
+    };
   }
 
   move(deltaX: number, deltaY: number): void {

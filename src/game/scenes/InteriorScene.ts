@@ -78,6 +78,7 @@ export class InteriorScene extends Scene {
       input: this.input,
       animator: playerAnimator,
       movement: movementSystem,
+      attributes: this.playerProgression.getState().attributes,
     });
     this.world.addObject(this.player);
     collisionSystem.addObject(this.player);
@@ -146,7 +147,10 @@ export class InteriorScene extends Scene {
       if (this.input.isActionPressed("actionA")) {
         if (this.dialogueManager.getCurrentNode()?.choices?.length) {
           const choice = this.dialogueManager.selectChoice();
-          if (choice?.eventId) this.onNpcChoice?.(choice.eventId);
+          if (choice?.eventId) {
+            this.onNpcChoice?.(choice.eventId);
+            this.player.attributes = this.playerProgression.getState().attributes;
+          }
         } else {
           this.dialogueManager.advance();
         }

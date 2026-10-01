@@ -133,6 +133,7 @@ export class BaseScene extends Scene {
       input: this.input,
       animator: heroAnimator,
       movement: this.movementSystem,
+      attributes: this.playerProgression.getState().attributes,
     });
     this.world.addObject(this.player);
     this.collisionSystem.addObject(this.player);

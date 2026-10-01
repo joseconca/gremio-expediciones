@@ -32,12 +32,15 @@ export class TavernInteriorScene extends InteriorScene {
         y: 16,
         spriteSrc: "/sprites/sheets/characters/tabernero.png",
         dialogue: () =>
-          createTaberneroDialogue(
-            config.villageProgression.canBuyTavernMeal()
-          ),
+          createTaberneroDialogue({
+            canBuyWithGold: config.playerProgression.canBuyMealWithGold(),
+            canUseFood: config.playerProgression.canUseFoodToHeal(),
+          }),
         onChoice: (eventId) => {
           if (eventId === "buy-tavern-meal") {
-            config.villageProgression.buyTavernMeal();
+            config.playerProgression.buyMealWithGold();
+          } else if (eventId === "eat-food") {
+            config.playerProgression.useFoodToHeal();
           }
         },
       },

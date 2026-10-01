@@ -1,31 +1,48 @@
 import type { Dialogue } from "../../dialogue/Dialogue";
 
-export function createTaberneroDialogue(canBuyMeal: boolean): Dialogue {
+export function createTaberneroDialogue(
+  options: { canBuyWithGold: boolean; canUseFood: boolean }
+): Dialogue {
+  const choices = [
+    ...(options.canUseFood
+      ? [
+          {
+            text: "Usar comida del inventario",
+            nextNodeId: "meal-served",
+            eventId: "eat-food",
+          },
+        ]
+      : []),
+    ...(options.canBuyWithGold
+      ? [
+          {
+            text: "Comprar un guiso · 10 monedas",
+            nextNodeId: "meal-served",
+            eventId: "buy-tavern-meal",
+          },
+        ]
+      : []),
+    { text: "Ahora no, gracias", nextNodeId: "goodbye" },
+  ];
+
+  const canHeal = options.canUseFood || options.canBuyWithGold;
+
   return {
     id: "tabernero",
     nodes: [
       {
         id: "welcome",
         speaker: "Tabernero",
-        text: canBuyMeal
-          ? "Siéntate un momento. Un plato caliente cuesta 10 monedas y te recuperará 30 puntos de vida. ¿Te sirvo?"
-          : "Bienvenido, viajero. Cuando necesites comer o descansar, aquí tendrás un plato caliente.",
-        choices: canBuyMeal
-          ? [
-              {
-                text: "Comprar comida · 10 monedas",
-                nextNodeId: "meal-served",
-                eventId: "buy-tavern-meal",
-              },
-              { text: "Ahora no, gracias", nextNodeId: "goodbye" },
-            ]
-          : undefined,
-        nextNodeId: canBuyMeal ? undefined : null,
+        text: canHeal
+          ? "Te prepararé un guiso que te dejará como nuevo. Puedes usar una comida que ya tengas o pagar 10 monedas. ¿Qué prefieres?"
+          : "Bienvenido, viajero. Estás en plena forma o no tienes comida ni oro suficiente para un guiso.",
+        choices: canHeal ? choices : undefined,
+        nextNodeId: canHeal ? undefined : null,
       },
       {
         id: "meal-served",
         speaker: "Tabernero",
-        text: "¡Marchando! Come despacio; la aventura puede esperar unos minutos.",
+        text: "¡Marchando! El guiso te ha recuperado toda la vida.",
         nextNodeId: null,
       },
       {

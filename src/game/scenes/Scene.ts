@@ -3,6 +3,7 @@ import { SpawnPoint } from "../world/SpawnPoint";
 import type { SceneManager } from "./SceneManager";
 import type { DialogueManager } from "../dialogue/DialogueManager";
 import type { VillageProgression } from "../gameplay/VillageProgression";
+import type { PlayerProgression } from "../gameplay/PlayerProgression";
 
 export interface SceneConfig {
   canvas: HTMLCanvasElement;
@@ -11,6 +12,7 @@ export interface SceneConfig {
   sceneManager: SceneManager;
   dialogueManager: DialogueManager;
   villageProgression: VillageProgression;
+  playerProgression: PlayerProgression;
   spawnId?: string;
 }
 
@@ -21,6 +23,7 @@ export abstract class Scene {
   protected sceneManager: SceneManager;
   protected readonly dialogueManager: DialogueManager;
   protected readonly villageProgression: VillageProgression;
+  protected readonly playerProgression: PlayerProgression;
   protected debugMode = false;
   protected spawnId?: string;
 
@@ -31,6 +34,7 @@ export abstract class Scene {
     this.sceneManager = config.sceneManager;
     this.dialogueManager = config.dialogueManager;
     this.villageProgression = config.villageProgression;
+    this.playerProgression = config.playerProgression;
     this.spawnId = config.spawnId;
   }
 

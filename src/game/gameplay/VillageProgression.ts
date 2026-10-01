@@ -2,15 +2,6 @@ export interface VillageProgressionState {
   townHallLevel: 1 | 2;
   buildings: VillageBuilding[];
   construction: ActiveConstruction | null;
-  gold: number;
-  playerHp: number;
-  playerMaxHp: number;
-}
-
-export interface VillageVitalsSnapshot {
-  gold: number;
-  playerHp: number;
-  playerMaxHp: number;
 }
 
 export type VillageBuildingType = "town-hall" | "tavern";
@@ -38,8 +29,7 @@ export interface VillageBuildingPlacement extends VillageBuilding {
 export type VillageProgressionEvent =
   | "town-hall-upgraded"
   | "construction-started"
-  | "construction-completed"
-  | "meal-purchased";
+  | "construction-completed";
 
 type VillageProgressionListener = (
   state: VillageProgressionState,
@@ -50,9 +40,6 @@ const INITIAL_STATE: VillageProgressionState = {
   townHallLevel: 1,
   buildings: [{ id: "town-hall", type: "town-hall", level: 1 }],
   construction: null,
-  gold: 100,
-  playerHp: 40,
-  playerMaxHp: 100,
 };
 
 const TEST_CONSTRUCTION_DURATION_SECONDS = 60;
@@ -65,11 +52,6 @@ export class VillageProgression {
   private state: VillageProgressionState = INITIAL_STATE;
   private readonly listeners = new Set<VillageProgressionListener>();
   private currentRevision = 0;
-  private vitalsSnapshot: VillageVitalsSnapshot = {
-    gold: INITIAL_STATE.gold,
-    playerHp: INITIAL_STATE.playerHp,
-    playerMaxHp: INITIAL_STATE.playerMaxHp,
-  };
 
   getState(): VillageProgressionState {
     return {
@@ -83,10 +65,6 @@ export class VillageProgression {
 
   getRevision(): number {
     return this.currentRevision;
-  }
-
-  getVitalsSnapshot(): VillageVitalsSnapshot {
-    return this.vitalsSnapshot;
   }
 
   getBuildingPlacements(): VillageBuildingPlacement[] {
@@ -210,32 +188,6 @@ export class VillageProgression {
     };
     this.currentRevision++;
     this.notify("construction-started");
-    return true;
-  }
-
-  canBuyTavernMeal(): boolean {
-    return (
-      this.state.gold >= 10 &&
-      this.state.playerHp < this.state.playerMaxHp &&
-      this.state.buildings.some((building) => building.type === "tavern")
-    );
-  }
-
-  buyTavernMeal(): boolean {
-    if (!this.canBuyTavernMeal()) return false;
-
-    this.state = {
-      ...this.state,
-      gold: this.state.gold - 10,
-      playerHp: Math.min(this.state.playerHp + 30, this.state.playerMaxHp),
-    };
-    this.vitalsSnapshot = {
-      gold: this.state.gold,
-      playerHp: this.state.playerHp,
-      playerMaxHp: this.state.playerMaxHp,
-    };
-    this.currentRevision++;
-    this.notify("meal-purchased");
     return true;
   }
 
