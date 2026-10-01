@@ -7,18 +7,18 @@ export const campBuildingDefinition: BuildingDefinition = {
   name: "Campamento",
   sprite: {
     src: "/sprites/buildings/camp.png",
-    frameWidth: 597,
-    frameHeight: 418,
+    frameWidth: 128,
+    frameHeight: 89,
   },
-  width: 597,
-  height: 418,
+  width: 128,
+  height: 89,
   parts: [
     {
       id: "camp",
       layer: RenderLayer.WORLD,
       frameY: 0,
       offsetX: 0,
-      offsetY: -418,
+      offsetY: -89,
       sortYOffset: 0,
     },
   ],

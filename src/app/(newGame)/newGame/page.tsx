@@ -7,6 +7,8 @@ import { Game } from "@/game/core/Game";
 import GameControls from "@/components/game/GameControls";
 import DialogueBox from "@/components/game/DialogueBox";
 import GameHud from "@/components/game/GameHud";
+import BattleOverlay from "@/components/game/BattleOverlay";
+import type { CombatSnapshot } from "@/game/gameplay/CombatManager";
 import type { PlayerProgressionState } from "@/game/gameplay/PlayerProgression";
 import {
   INITIAL_VILLAGE_RESOURCES,
@@ -46,6 +48,14 @@ const EMPTY_DIALOGUE_STATE = {
 };
 
 const EMPTY_SCENE_STATE = { sceneId: null };
+const EMPTY_COMBAT_STATE: CombatSnapshot = {
+  phase: "fled",
+  menu: "root",
+  enemy: null,
+  party: [],
+  log: "",
+  revision: 0,
+};
 
 const EMPTY_PLAYER_STATE: PlayerProgressionState = {
   name: "Aventurero",
@@ -87,6 +97,7 @@ export default function NewGamePage() {
     Game["villageProgression"] | null
   >(null);
   const [sceneManager, setSceneManager] = useState<Game["sceneManager"] | null>(null);
+  const [combatManager, setCombatManager] = useState<Game["combatManager"] | null>(null);
 
   useEffect(() => {
     if (!baseLocation || !canvasRef.current) {
@@ -109,6 +120,7 @@ export default function NewGamePage() {
     setPlayerProgression(game.playerProgression);
     setVillageProgression(game.villageProgression);
     setSceneManager(game.sceneManager);
+    setCombatManager(game.combatManager);
 
     game.init();
 
@@ -119,6 +131,7 @@ export default function NewGamePage() {
       setPlayerProgression(null);
       setVillageProgression(null);
       setSceneManager(null);
+      setCombatManager(null);
     };
   }, [baseLocation, otherBases]);
 
@@ -160,6 +173,12 @@ export default function NewGamePage() {
       : () => () => {},
     sceneManager ? () => sceneManager.getState() : () => EMPTY_SCENE_STATE,
     () => EMPTY_SCENE_STATE
+  );
+
+  const combatState = useSyncExternalStore(
+    combatManager?.subscribe ?? (() => () => {}),
+    combatManager?.getSnapshot ?? (() => EMPTY_COMBAT_STATE),
+    () => EMPTY_COMBAT_STATE
   );
 
   const startGameAtLocation = async (location: BaseLocation) => {
@@ -227,6 +246,14 @@ export default function NewGamePage() {
       />
 
       <GameControls />
+
+      {combatManager && combatState.enemy && (
+        <BattleOverlay
+          manager={combatManager}
+          snapshot={combatState}
+          potionCount={villageResources.potions}
+        />
+      )}
     </main>
   );
 }

@@ -8,6 +8,7 @@ import { ExteriorWorldScene } from "../scenes/ExteriorWorldScene";
 import { DialogueManager } from "../dialogue/DialogueManager";
 import { VillageProgression } from "../gameplay/VillageProgression";
 import { PlayerProgression } from "../gameplay/PlayerProgression";
+import { CombatManager } from "../gameplay/CombatManager";
 import type { WorldBaseLocation } from "../world/WorldLocation";
 
 export interface GameConfig {
@@ -25,6 +26,7 @@ export class Game {
   dialogueManager: DialogueManager;
   villageProgression: VillageProgression;
   playerProgression: PlayerProgression;
+  combatManager: CombatManager;
   loop: GameLoop;
 
   private readonly selectedBase: WorldBaseLocation;
@@ -45,6 +47,10 @@ export class Game {
     this.dialogueManager = new DialogueManager();
     this.villageProgression = new VillageProgression();
     this.playerProgression = new PlayerProgression();
+    this.combatManager = new CombatManager(
+      this.playerProgression,
+      this.villageProgression
+    );
     this.sceneManager = new SceneManager();
 
     this.sceneManager.register(
@@ -58,6 +64,7 @@ export class Game {
           dialogueManager: this.dialogueManager,
           villageProgression: this.villageProgression,
           playerProgression: this.playerProgression,
+          combatManager: this.combatManager,
           spawnId,
         })
     );
@@ -73,6 +80,7 @@ export class Game {
           dialogueManager: this.dialogueManager,
           villageProgression: this.villageProgression,
           playerProgression: this.playerProgression,
+          combatManager: this.combatManager,
           spawnId,
         })
     );
@@ -88,6 +96,7 @@ export class Game {
           dialogueManager: this.dialogueManager,
           villageProgression: this.villageProgression,
           playerProgression: this.playerProgression,
+          combatManager: this.combatManager,
           spawnId,
         })
     );
@@ -103,6 +112,7 @@ export class Game {
           dialogueManager: this.dialogueManager,
           villageProgression: this.villageProgression,
           playerProgression: this.playerProgression,
+          combatManager: this.combatManager,
           selectedBase: this.selectedBase,
           otherBases: this.otherBases,
           spawnId,

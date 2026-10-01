@@ -2,12 +2,14 @@ import { Scene, type SceneConfig } from "./Scene";
 import { Player } from "../entities/Characters/Player";
 import { CampBuilding } from "../entities/Characters/CampBuilding";
 import { WorldBaseMarker } from "../entities/WorldBaseMarker";
+import { OverworldMonster } from "../entities/Characters/OverworldMonster";
 import type { Interactable } from "../entities/Interactable";
 import { SpriteSheet } from "../rendering/SpriteSheet";
 import { Animator } from "../rendering/Animator";
 import { MovementSystem } from "../systems/MovementSystem";
 import { CollisionSystem } from "../systems/CollisionSystem";
 import { InteractionSystem } from "../systems/InteractionSystem";
+import { EncounterSystem } from "../systems/EncounterSystem";
 import { World } from "../world/World";
 import { Camera } from "../world/Camera";
 import { TileMap } from "../world/TileMap";
@@ -17,6 +19,7 @@ import { RealWorldGroundRenderer } from "../rendering/RealWorldGroundRenderer";
 import { campBuildingDefinition } from "../data/buildings/campBuilding";
 import { heroAnimations } from "../data/heroAnimations";
 import { campReturnDialogue } from "../data/dialogues/camp";
+import { OVERWORLD_ENEMIES } from "../data/enemies/overworldEnemies";
 import {
   geographicToWorldPoint,
   isInsideWorldMap,
@@ -24,14 +27,15 @@ import {
   type WorldBaseLocation,
   type WorldPoint,
 } from "../world/WorldLocation";
+import { Collider } from "../entities/Collider";
 
 export interface ExteriorWorldSceneConfig extends SceneConfig {
   selectedBase: WorldBaseLocation;
   otherBases: WorldBaseLocation[];
 }
 
-const CARDINAL_ARRIVAL_OFFSET = 168;
-const INITIAL_WORLD_OFFSET = 160;
+const CARDINAL_ARRIVAL_OFFSET = 32;
+const INITIAL_WORLD_OFFSET = 32;
 
 export class ExteriorWorldScene extends Scene {
   private readonly world: World;
@@ -43,6 +47,7 @@ export class ExteriorWorldScene extends Scene {
   private readonly homePoint: WorldPoint;
   private readonly basePoint: WorldBaseLocation;
   private readonly campBuilding: CampBuilding;
+  private readonly encounterSystem: EncounterSystem;
 
   constructor(config: ExteriorWorldSceneConfig) {
     super(config);
@@ -99,6 +104,14 @@ export class ExteriorWorldScene extends Scene {
     this.world.addObject(this.campBuilding);
     this.interactables.push(this.campBuilding);
 
+    const monsters = this.createOverworldMonsters(collisionMap);
+    for (const monster of monsters) this.world.addObject(monster);
+    this.encounterSystem = new EncounterSystem(
+      this.player,
+      monsters,
+      this.combatManager
+    );
+
     for (const otherBase of config.otherBases) {
       const point = geographicToWorldPoint(otherBase, config.selectedBase);
       if (!isInsideWorldMap(point)) continue;
@@ -141,17 +154,60 @@ export class ExteriorWorldScene extends Scene {
 
   init(): void {}
 
+  private createOverworldMonsters(collisionMap: CollisionMap): OverworldMonster[] {
+    const seedText = `${this.basePoint.lat.toFixed(5)}:${this.basePoint.lng.toFixed(5)}`;
+    let seed = 2166136261;
+    for (let index = 0; index < seedText.length; index++) {
+      seed = Math.imul(seed ^ seedText.charCodeAt(index), 16777619);
+    }
+    const random = () => {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 0x100000000;
+    };
+
+    const monsters: OverworldMonster[] = [];
+    const count = 6;
+    for (let index = 0; index < count; index++) {
+      const angle = ((index + random() * 0.7) / count) * Math.PI * 2;
+      const radius = 180 + random() * 320;
+      const x = this.homePoint.x + Math.cos(angle) * radius;
+      const y = this.homePoint.y + Math.sin(angle) * radius;
+      const definition = OVERWORLD_ENEMIES[
+        Math.floor(random() * OVERWORLD_ENEMIES.length)
+      ];
+      const monster = new OverworldMonster({ x, y, definition });
+      const collider = monster.colliders[0] ?? new Collider({ width: 20, height: 12 });
+      const bounds = collider.getBounds(monster.x, monster.y);
+      const dx = x - this.homePoint.x;
+      const dy = y - this.homePoint.y;
+
+      if (
+        Math.hypot(dx, dy) < 160 ||
+        collisionMap.isBlockedRect(bounds.x, bounds.y, bounds.width, bounds.height)
+      ) {
+        continue;
+      }
+      monsters.push(monster);
+    }
+
+    return monsters;
+  }
+
   update(deltaTime: number): void {
     this.updateDebugMode();
     const dialogueWasActive = this.dialogueManager.isActive();
-    this.player.setInputEnabled(!dialogueWasActive);
+    const combatWasActive = this.combatManager.isEncounterOpen();
+    this.player.setInputEnabled(!dialogueWasActive && !combatWasActive);
 
-    if (!dialogueWasActive) {
+    if (!dialogueWasActive && !combatWasActive) {
       this.interactionSystem.tryInteract(this.player, this.interactables);
-      this.player.setInputEnabled(!this.dialogueManager.isActive());
+      this.player.setInputEnabled(
+        !this.dialogueManager.isActive() && !this.combatManager.isEncounterOpen()
+      );
     }
 
     this.world.update(deltaTime);
+    this.encounterSystem.update();
     this.camera.follow(this.player.x, this.player.y, 32, 64);
 
     if (dialogueWasActive) {

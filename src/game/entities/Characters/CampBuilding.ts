@@ -20,14 +20,15 @@ export class CampBuilding extends Building implements Interactable {
     super(config);
     this.dialogue = config.dialogue;
     this.dialogueManager = config.dialogueManager;
-    this.interactionRadius = config.interactionRadius ?? 64;
+      this.interactionRadius = config.interactionRadius ?? 80;
     this.onChoice = config.onChoice;
   }
 
   canInteractWith(x: number, y: number): boolean {
     const anchor = this.getGroundAnchor();
+    const interactionCenterY = anchor.y - this.height / 2;
     const dx = x - anchor.x;
-    const dy = y - anchor.y;
+    const dy = y - interactionCenterY;
     return dx * dx + dy * dy <= this.interactionRadius * this.interactionRadius;
   }
 

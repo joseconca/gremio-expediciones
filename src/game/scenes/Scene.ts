@@ -4,6 +4,7 @@ import type { SceneManager } from "./SceneManager";
 import type { DialogueManager } from "../dialogue/DialogueManager";
 import type { VillageProgression } from "../gameplay/VillageProgression";
 import type { PlayerProgression } from "../gameplay/PlayerProgression";
+import type { CombatManager } from "../gameplay/CombatManager";
 
 export interface SceneConfig {
   canvas: HTMLCanvasElement;
@@ -13,6 +14,7 @@ export interface SceneConfig {
   dialogueManager: DialogueManager;
   villageProgression: VillageProgression;
   playerProgression: PlayerProgression;
+  combatManager: CombatManager;
   spawnId?: string;
 }
 
@@ -24,6 +26,7 @@ export abstract class Scene {
   protected readonly dialogueManager: DialogueManager;
   protected readonly villageProgression: VillageProgression;
   protected readonly playerProgression: PlayerProgression;
+  protected readonly combatManager: CombatManager;
   protected debugMode = false;
   protected spawnId?: string;
 
@@ -35,6 +38,7 @@ export abstract class Scene {
     this.dialogueManager = config.dialogueManager;
     this.villageProgression = config.villageProgression;
     this.playerProgression = config.playerProgression;
+    this.combatManager = config.combatManager;
     this.spawnId = config.spawnId;
   }
 

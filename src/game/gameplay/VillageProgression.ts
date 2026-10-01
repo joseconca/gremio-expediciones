@@ -9,6 +9,7 @@ export interface VillageResources {
   readonly stone: number;
   readonly metal: number;
   readonly food: number;
+  readonly potions: number;
 }
 
 export const INITIAL_VILLAGE_RESOURCES: VillageResources = {
@@ -16,6 +17,7 @@ export const INITIAL_VILLAGE_RESOURCES: VillageResources = {
   stone: 0,
   metal: 0,
   food: 1,
+  potions: 1,
 };
 
 export type VillageBuildingType = "town-hall" | "tavern";
@@ -233,6 +235,17 @@ export class VillageProgression {
     }
 
     this.setResources({ food: this.state.resources.food - amount });
+    return true;
+  }
+
+  addPotions(amount: number): void {
+    if (!Number.isInteger(amount) || amount <= 0) return;
+    this.setResources({ potions: this.state.resources.potions + amount });
+  }
+
+  consumePotion(): boolean {
+    if (this.state.resources.potions <= 0) return false;
+    this.setResources({ potions: this.state.resources.potions - 1 });
     return true;
   }
 

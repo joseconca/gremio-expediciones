@@ -77,6 +77,24 @@ export class PlayerProgression {
     return true;
   }
 
+  addGold(amount: number): void {
+    if (!Number.isFinite(amount) || amount <= 0) return;
+    this.state = { ...this.state, gold: this.state.gold + amount };
+    this.notify();
+  }
+
+  setHealth(currentHealth: number): void {
+    if (!Number.isFinite(currentHealth)) return;
+    const attributes = this.state.attributes;
+    const clampedHealth = Math.max(0, Math.min(attributes.maxHealth, currentHealth));
+    if (attributes.currentHealth === clampedHealth) return;
+    this.state = {
+      ...this.state,
+      attributes: { ...attributes, currentHealth: clampedHealth },
+    };
+    this.notify();
+  }
+
   refundGold(amount: number): void {
     if (!Number.isFinite(amount) || amount <= 0) return;
     this.state = { ...this.state, gold: this.state.gold + amount };
