@@ -3,6 +3,7 @@ import { Scene, SceneConfig } from "./Scene";
 import { Player } from "../entities/Characters/Player";
 import { Collider } from "../entities/Collider";
 import { SceneTransition } from "../entities/SceneTransition";
+import { NPC } from "../entities/Characters/NPC";
 
 import { SpriteSheet } from "../rendering/SpriteSheet";
 import { Animator } from "../rendering/Animator";
@@ -10,6 +11,7 @@ import { Animator } from "../rendering/Animator";
 import { MovementSystem } from "../systems/MovementSystem";
 import { CollisionSystem } from "../systems/CollisionSystem";
 import { SceneTransitionSystem } from "../systems/SceneTransitionSystem";
+import { InteractionSystem } from "../systems/InteractionSystem";
 
 import { World } from "../world/World";
 import { Camera } from "../world/Camera";
@@ -20,6 +22,9 @@ import { SpawnPoint } from "../world/SpawnPoint";
 import { heroAnimations } from "../data/heroAnimations";
 import { townHallInteriorMap } from "../data/interiors/townHall/townHallInteriorMap";
 import { townHallInteriorCollision } from "../data/interiors/townHall/townHallInteriorCollision";
+import { Interactable } from "../entities/Interactable";
+
+import { alcaldeNpcDialogue } from "../data/dialogues/alcalde";
 
 export class TownHallInteriorScene extends Scene {
   private world: World;
@@ -29,6 +34,8 @@ export class TownHallInteriorScene extends Scene {
 
   private collisionSystem: CollisionSystem;
   private movementSystem: MovementSystem;
+  private interactionSystem: InteractionSystem;
+  private interactables: Interactable[] = [];
 
   private sceneTransitionSystem: SceneTransitionSystem;
 
@@ -58,8 +65,8 @@ export class TownHallInteriorScene extends Scene {
     });
 
     this.collisionSystem = new CollisionSystem(this.world.collisionMap);
-
     this.movementSystem = new MovementSystem(this.collisionSystem);
+    this.interactionSystem = new InteractionSystem(this.input);
 
     this.sceneTransitionSystem = new SceneTransitionSystem();
 
@@ -75,11 +82,8 @@ export class TownHallInteriorScene extends Scene {
       frameWidth: 32,
       frameHeight: 64,
     });
-
     const heroAnimator = new Animator(heroSpriteSheet, heroAnimations);
-
     heroAnimator.play(`idle-${spawn.direction}`);
-
     this.player = new Player({
       x: spawn.x,
       y: spawn.y,
@@ -103,10 +107,41 @@ export class TownHallInteriorScene extends Scene {
         }),
       ],
     });
-
     this.world.addObject(this.player);
-
     this.collisionSystem.addObject(this.player);
+
+    const npcSpriteSheet = new SpriteSheet({
+      src: "/sprites/sheets/characters/hero.png",
+      frameWidth: 32,
+      frameHeight: 64,
+    });
+    const npcAnimator = new Animator(npcSpriteSheet, heroAnimations);
+    npcAnimator.play("idle-down");
+    const testNpc = new NPC({
+      x: 160,
+      y: 52,
+      speed: 0,
+      direction: "down",
+      animator: npcAnimator,
+      dialogue: alcaldeNpcDialogue,
+      dialogueManager: this.dialogueManager,
+      interaction: {
+        offsetX: 0,
+        offsetY: 0,
+        radius: 40,
+      },
+      colliders: [
+        new Collider({
+          width: 16,
+          height: 12,
+          offsetX: 8,
+          offsetY: 50,
+        }),
+      ],
+    });
+    this.world.addObject(testNpc);
+    this.collisionSystem.addObject(testNpc);
+    this.interactables.push(testNpc);
 
     const exitTransition = new SceneTransition({
       x: 32 * 5,
@@ -148,6 +183,14 @@ export class TownHallInteriorScene extends Scene {
 
     this.camera.follow(this.player.x, this.player.y, 32, 64);
 
+    if (this.dialogueManager.isActive()) {
+      if (this.input.getState().actionA) {
+        this.dialogueManager.advance();
+      }
+    } else {
+      this.interactionSystem.tryInteract(this.player, this.interactables);
+    }
+
     this.sceneTransitionSystem.update([this.player]);
   }
 
@@ -156,7 +199,7 @@ export class TownHallInteriorScene extends Scene {
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
     const playerAnchor = this.player.getGroundAnchor();
-    
+
     const groundReference = {
       worldX: playerAnchor.x,
       worldY: playerAnchor.y,

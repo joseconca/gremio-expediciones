@@ -1,4 +1,4 @@
-import type { Character } from "../entities/Characters/Character";
+import type { Character } from "../entities/Character";
 import type { CollisionSystem } from "./CollisionSystem";
 
 export class MovementSystem {

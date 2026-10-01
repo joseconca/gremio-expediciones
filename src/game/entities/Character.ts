@@ -1,6 +1,6 @@
-import { GameObject, GameObjectConfig } from "../GameObject";
-import type { Direction } from "../../input/InputState";
-import type { Animator } from "../../rendering/Animator";
+import { GameObject, GameObjectConfig } from "./GameObject";
+import type { Direction } from "../input/InputState";
+import type { Animator } from "../rendering/Animator";
 
 export interface CharacterConfig extends GameObjectConfig {
   speed?: number;

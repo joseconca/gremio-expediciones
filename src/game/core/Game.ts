@@ -3,6 +3,7 @@ import { InputManager } from "../input/InputManager";
 import { SceneManager } from "../scenes/SceneManager";
 import { BaseScene } from "../scenes/BaseScene";
 import { TownHallInteriorScene } from "../scenes/TownHallInteriorScene";
+import { DialogueManager } from "../dialogue/DialogueManager";
 
 export interface GameConfig {
   canvas: HTMLCanvasElement;
@@ -14,6 +15,7 @@ export class Game {
 
   input: InputManager;
   sceneManager: SceneManager;
+  dialogueManager: DialogueManager;
   loop: GameLoop;
 
   constructor(config: GameConfig) {
@@ -29,6 +31,8 @@ export class Game {
 
     this.input = new InputManager();
 
+    this.dialogueManager = new DialogueManager();
+
     this.sceneManager = new SceneManager();
 
     this.sceneManager.register(
@@ -39,6 +43,7 @@ export class Game {
           ctx: this.ctx,
           input: this.input,
           sceneManager: this.sceneManager,
+          dialogueManager: this.dialogueManager,
           spawnId,
         })
     );
@@ -51,6 +56,7 @@ export class Game {
           ctx: this.ctx,
           input: this.input,
           sceneManager: this.sceneManager,
+          dialogueManager: this.dialogueManager,
           spawnId,
         })
     );

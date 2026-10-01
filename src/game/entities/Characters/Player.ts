@@ -1,4 +1,4 @@
-import { Character, CharacterConfig } from "./Character";
+import { Character, CharacterConfig } from "../Character";
 import type { InputManager } from "../../input/InputManager";
 import type { MovementSystem } from "../../systems/MovementSystem";
 
