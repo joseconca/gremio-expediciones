@@ -4,6 +4,8 @@ export class KeyboardInput {
   private heldDirections = new Set<Direction>();
   private heldActions = new Set<InputAction>();
   private pressedActions = new Set<InputAction>();
+  private debugToggleHeld = false;
+  private debugTogglePressed = false;
 
   private readonly keyMap: Record<string, Direction> = {
     ArrowUp: "up",
@@ -26,6 +28,14 @@ export class KeyboardInput {
   };
 
   private handleKeyDown = (event: KeyboardEvent): void => {
+    if (event.code === "F3") {
+      if (!this.debugToggleHeld) {
+        this.debugToggleHeld = true;
+        this.debugTogglePressed = true;
+      }
+      return;
+    }
+
     const direction = this.keyMap[event.code];
 
     if (direction) {
@@ -41,6 +51,11 @@ export class KeyboardInput {
   };
 
   private handleKeyUp = (event: KeyboardEvent): void => {
+    if (event.code === "F3") {
+      this.debugToggleHeld = false;
+      return;
+    }
+
     const direction = this.keyMap[event.code];
 
     if (direction) {
@@ -64,6 +79,8 @@ export class KeyboardInput {
     this.heldDirections.clear();
     this.heldActions.clear();
     this.pressedActions.clear();
+    this.debugToggleHeld = false;
+    this.debugTogglePressed = false;
   }
 
   isHeld(direction: Direction): boolean {
@@ -76,5 +93,10 @@ export class KeyboardInput {
 
   clearPressedActions(): void {
     this.pressedActions.clear();
+    this.debugTogglePressed = false;
+  }
+
+  wasDebugTogglePressed(): boolean {
+    return this.debugTogglePressed;
   }
 }

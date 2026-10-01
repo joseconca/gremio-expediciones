@@ -39,6 +39,10 @@ export class InputManager {
     );
   }
 
+  wasDebugTogglePressed(): boolean {
+    return this.keyboard.wasDebugTogglePressed();
+  }
+
   getState(): InputState {
     return {
       up: this.isDirectionHeld("up"),

@@ -38,6 +38,7 @@ export class TownHallInteriorScene extends Scene {
   private interactables: Interactable[] = [];
 
   private sceneTransitionSystem: SceneTransitionSystem;
+  private readonly debugTeleporters: SceneTransition[] = [];
 
   private readonly spawnPoints: SpawnPoint[] = [
     {
@@ -160,6 +161,7 @@ export class TownHallInteriorScene extends Scene {
     });
 
     this.sceneTransitionSystem.addTransition(exitTransition);
+    this.debugTeleporters.push(exitTransition);
   }
 
   protected getSpawnPoint(spawnId?: string): SpawnPoint {
@@ -181,6 +183,7 @@ export class TownHallInteriorScene extends Scene {
   }
 
   update(deltaTime: number): void {
+    this.updateDebugMode();
     const dialogueWasActive = this.dialogueManager.isActive();
 
     this.player.setInputEnabled(!dialogueWasActive);
@@ -235,6 +238,10 @@ export class TownHallInteriorScene extends Scene {
     };
 
     this.world.render(this.ctx, this.camera, groundReference);
+
+    if (this.debugMode) {
+      this.world.renderDebug(this.ctx, groundReference, this.debugTeleporters);
+    }
   }
 
   destroy(): void {}
