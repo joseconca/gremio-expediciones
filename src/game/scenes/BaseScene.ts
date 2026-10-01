@@ -16,12 +16,14 @@ import { CollisionMap } from "../world/CollisionMap";
 
 import { Collider } from "../entities/Collider";
 import { Building } from "../entities/Building";
+import { Campfire } from "../entities/Campfire";
+import { ResourceCart } from "../entities/ResourceCart";
 import { Door } from "../entities/Door";
 import type { Interactable } from "../entities/Interactable";
 import { SceneTransition } from "../entities/SceneTransition";
 import { Player } from "../entities/Characters/Player";
 
-import { townHallDefinition } from "../data/buildings/townHall";
+import { townHallDefinitions } from "../data/buildings/townHall";
 import { heroAnimations } from "../data/heroAnimations";
 import { genericDoorDefinition } from "../data/doors/genericDoor1";
 import { baseMap } from "../data/base/baseMap";
@@ -37,6 +39,7 @@ export class BaseScene extends Scene {
   private interactionSystem: InteractionSystem;
   private interactables: Interactable[] = [];
   private sceneTransitionSystem: SceneTransitionSystem;
+  private readonly debugTeleporters: SceneTransition[] = [];
   private readonly spawnPoints: SpawnPoint[] = [];
 
   constructor(config: SceneConfig) {
@@ -70,72 +73,50 @@ export class BaseScene extends Scene {
       }
     );
 
+    const townHallLevel = this.villageProgression.getState().townHallLevel;
     const townHall = new Building({
       x: 432,
       y: 704,
-
-      definition: townHallDefinition,
-
+      definition: townHallDefinitions[townHallLevel],
       colliders: [
-        new Collider({
-          width: 36,
-          height: 2,
-          offsetX: 8,
-          offsetY: -8,
-        }),
-
-        new Collider({
-          width: 36,
-          height: 2,
-          offsetX: 84,
-          offsetY: -8,
-        }),
-
-        new Collider({
-          width: 128,
-          height: 8,
-          offsetX: 8,
-          offsetY: -48,
-        }),
-
-        new Collider({
-          width: 2,
-          height: 64,
-          offsetX: 20,
-          offsetY: -64,
-        }),
-
-        new Collider({
-          width: 2,
-          height: 64,
-          offsetX: 110,
-          offsetY: -64,
-        }),
+        new Collider({ width: 36, height: 2, offsetX: 8, offsetY: -8 }),
+        new Collider({ width: 36, height: 2, offsetX: 84, offsetY: -8 }),
+        new Collider({ width: 128, height: 8, offsetX: 8, offsetY: -48 }),
+        new Collider({ width: 2, height: 64, offsetX: 20, offsetY: -64 }),
+        new Collider({ width: 2, height: 64, offsetX: 110, offsetY: -64 }),
       ],
     });
     this.world.addObject(townHall);
     this.collisionSystem.addObject(townHall);
 
-    const townHallDoor = new Door({
-      x: 496,
-      y: 704,
-      definition: genericDoorDefinition,
-    });
-    this.world.addObject(townHallDoor);
-    this.collisionSystem.addObject(townHallDoor);
-    this.interactables.push(townHallDoor);
+    this.world.addObject(new Campfire({ x: 560, y: 800 }));
+    this.world.addObject(
+      new ResourceCart({ x: 320, y: 704 })
+    );
+
+    // Progression level 1 is the town-hall0 sprite and has no door yet.
+    if (townHallLevel === 2) {
+      const townHallDoor = new Door({
+        x: 496,
+        y: 704,
+        definition: genericDoorDefinition,
+      });
+      this.world.addObject(townHallDoor);
+      this.collisionSystem.addObject(townHallDoor);
+      this.interactables.push(townHallDoor);
+    }
 
     const townHallTransition = new SceneTransition({
       x: 496,
-      y: 694,
-
-      width: 32,
+      y: 688,
+      width: townHallLevel === 1 ? 80 : 32,
       height: 2,
       targetSceneId: "town-hall-interior",
       targetSpawnId: "main-entrance",
       sceneManager: this.sceneManager,
     });
     this.sceneTransitionSystem.addTransition(townHallTransition);
+    this.debugTeleporters.push(townHallTransition);
     this.movementSystem = new MovementSystem(this.collisionSystem);
     this.interactionSystem = new InteractionSystem(this.input);
 
@@ -191,6 +172,7 @@ export class BaseScene extends Scene {
   }
 
   update(deltaTime: number): void {
+    this.updateDebugMode();
     this.world.update(deltaTime);
 
     this.camera.follow(this.player.x, this.player.y, 32, 64);
@@ -215,6 +197,10 @@ export class BaseScene extends Scene {
     };
 
     this.world.render(this.ctx, this.camera, groundReference);
+
+    if (this.debugMode) {
+      this.world.renderDebug(this.ctx, groundReference, this.debugTeleporters);
+    }
   }
   destroy(): void {}
 }

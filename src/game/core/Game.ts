@@ -4,6 +4,7 @@ import { SceneManager } from "../scenes/SceneManager";
 import { BaseScene } from "../scenes/BaseScene";
 import { TownHallInteriorScene } from "../scenes/TownHallInteriorScene";
 import { DialogueManager } from "../dialogue/DialogueManager";
+import { VillageProgression } from "../gameplay/VillageProgression";
 
 export interface GameConfig {
   canvas: HTMLCanvasElement;
@@ -16,6 +17,7 @@ export class Game {
   input: InputManager;
   sceneManager: SceneManager;
   dialogueManager: DialogueManager;
+  villageProgression: VillageProgression;
   loop: GameLoop;
 
   constructor(config: GameConfig) {
@@ -32,6 +34,7 @@ export class Game {
     this.input = new InputManager();
 
     this.dialogueManager = new DialogueManager();
+    this.villageProgression = new VillageProgression();
 
     this.sceneManager = new SceneManager();
 
@@ -44,6 +47,7 @@ export class Game {
           input: this.input,
           sceneManager: this.sceneManager,
           dialogueManager: this.dialogueManager,
+          villageProgression: this.villageProgression,
           spawnId,
         })
     );
@@ -57,6 +61,7 @@ export class Game {
           input: this.input,
           sceneManager: this.sceneManager,
           dialogueManager: this.dialogueManager,
+          villageProgression: this.villageProgression,
           spawnId,
         })
     );
