@@ -1,7 +1,9 @@
-import type { Direction } from "./InputState";
+import type { Direction, InputAction } from "./InputState";
 
 export class KeyboardInput {
   private heldDirections = new Set<Direction>();
+  private heldActions = new Set<InputAction>();
+  private pressedActions = new Set<InputAction>();
 
   private readonly keyMap: Record<string, Direction> = {
     ArrowUp: "up",
@@ -17,20 +19,37 @@ export class KeyboardInput {
     KeyD: "right",
   };
 
+  private readonly actionKeyMap: Record<string, InputAction> = {
+    Space: "actionA",
+    Enter: "actionA",
+    Escape: "actionB",
+  };
+
   private handleKeyDown = (event: KeyboardEvent): void => {
     const direction = this.keyMap[event.code];
 
-    if (!direction) return;
+    if (direction) {
+      this.heldDirections.add(direction);
+      return;
+    }
 
-    this.heldDirections.add(direction);
+    const action = this.actionKeyMap[event.code];
+    if (!action || this.heldActions.has(action)) return;
+
+    this.heldActions.add(action);
+    this.pressedActions.add(action);
   };
 
   private handleKeyUp = (event: KeyboardEvent): void => {
     const direction = this.keyMap[event.code];
 
-    if (!direction) return;
+    if (direction) {
+      this.heldDirections.delete(direction);
+      return;
+    }
 
-    this.heldDirections.delete(direction);
+    const action = this.actionKeyMap[event.code];
+    if (action) this.heldActions.delete(action);
   };
 
   init(): void {
@@ -43,9 +62,19 @@ export class KeyboardInput {
     window.removeEventListener("keyup", this.handleKeyUp);
 
     this.heldDirections.clear();
+    this.heldActions.clear();
+    this.pressedActions.clear();
   }
 
   isHeld(direction: Direction): boolean {
     return this.heldDirections.has(direction);
+  }
+
+  isActionPressed(action: InputAction): boolean {
+    return this.pressedActions.has(action);
+  }
+
+  clearPressedActions(): void {
+    this.pressedActions.clear();
   }
 }

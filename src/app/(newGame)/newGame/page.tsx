@@ -10,6 +10,7 @@ const EMPTY_DIALOGUE_STATE = {
   active: false,
   dialogue: null,
   currentNode: null,
+  selectedChoiceIndex: 0,
 };
 
 export default function NewGamePage() {
@@ -63,7 +64,12 @@ export default function NewGamePage() {
         className="h-full w-full [image-rendering:pixelated]"
       />
 
-      {dialogueState.active && <DialogueBox node={dialogueState.currentNode} />}
+      {dialogueState.active && (
+        <DialogueBox
+          node={dialogueState.currentNode}
+          selectedChoiceIndex={dialogueState.selectedChoiceIndex}
+        />
+      )}
 
       <GameControls />
     </main>

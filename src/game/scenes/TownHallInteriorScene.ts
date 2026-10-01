@@ -179,19 +179,40 @@ export class TownHallInteriorScene extends Scene {
   }
 
   update(deltaTime: number): void {
+    const dialogueWasActive = this.dialogueManager.isActive();
+
+    this.player.setInputEnabled(!dialogueWasActive);
+
+    if (!dialogueWasActive) {
+      this.interactionSystem.tryInteract(this.player, this.interactables);
+      this.player.setInputEnabled(!this.dialogueManager.isActive());
+    }
+
     this.world.update(deltaTime);
 
     this.camera.follow(this.player.x, this.player.y, 32, 64);
 
-    if (this.dialogueManager.isActive()) {
-      if (this.input.getState().actionA) {
-        this.dialogueManager.advance();
+    if (dialogueWasActive) {
+      if (this.input.wasDirectionPressed("up")) {
+        this.dialogueManager.moveSelection(-1);
+      } else if (this.input.wasDirectionPressed("down")) {
+        this.dialogueManager.moveSelection(1);
       }
-    } else {
-      this.interactionSystem.tryInteract(this.player, this.interactables);
+
+      if (this.input.isActionPressed("actionA")) {
+        if (this.dialogueManager.getCurrentNode()?.choices?.length) {
+          this.dialogueManager.selectChoice();
+        } else {
+          this.dialogueManager.advance();
+        }
+      } else if (this.input.isActionPressed("actionB")) {
+        this.dialogueManager.close();
+      }
     }
 
-    this.sceneTransitionSystem.update([this.player]);
+    if (!dialogueWasActive && !this.dialogueManager.isActive()) {
+      this.sceneTransitionSystem.update([this.player]);
+    }
   }
 
   render(): void {

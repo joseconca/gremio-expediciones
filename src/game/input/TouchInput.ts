@@ -1,6 +1,6 @@
-import type { Direction } from "./InputState";
+import type { Direction, InputAction } from "./InputState";
 
-export type TouchAction = "actionA" | "actionB";
+export type TouchAction = InputAction;
 
 export class TouchInput {
   private heldDirections = new Set<Direction>();

@@ -1,4 +1,5 @@
 export type Direction = "up" | "down" | "left" | "right";
+export type InputAction = "actionA" | "actionB";
 
 export interface InputState {
   up: boolean;

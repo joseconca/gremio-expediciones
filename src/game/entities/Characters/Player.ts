@@ -10,6 +10,7 @@ export interface PlayerConfig extends CharacterConfig {
 export class Player extends Character {
   private input: InputManager;
   private movement: MovementSystem;
+  private inputEnabled = true;
 
   constructor(config: PlayerConfig) {
     super(config);
@@ -22,26 +23,30 @@ export class Player extends Character {
     return true;
   }
 
+  setInputEnabled(enabled: boolean): void {
+    this.inputEnabled = enabled;
+  }
+
   override update(deltaTime: number): void {
     let dx = 0;
     let dy = 0;
 
-    if (this.input.isDirectionHeld("up")) {
+    if (this.inputEnabled && this.input.isDirectionHeld("up")) {
       dy -= 1;
       this.direction = "up";
     }
 
-    if (this.input.isDirectionHeld("down")) {
+    if (this.inputEnabled && this.input.isDirectionHeld("down")) {
       dy += 1;
       this.direction = "down";
     }
 
-    if (this.input.isDirectionHeld("left")) {
+    if (this.inputEnabled && this.input.isDirectionHeld("left")) {
       dx -= 1;
       this.direction = "left";
     }
 
-    if (this.input.isDirectionHeld("right")) {
+    if (this.inputEnabled && this.input.isDirectionHeld("right")) {
       dx += 1;
       this.direction = "right";
     }

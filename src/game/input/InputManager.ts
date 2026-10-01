@@ -1,12 +1,13 @@
-import type { Direction, InputState } from "./InputState";
+import type { Direction, InputAction, InputState } from "./InputState";
 
 import { KeyboardInput } from "./KeyboardInput";
 
-import { TouchInput, type TouchAction } from "./TouchInput";
+import { TouchInput } from "./TouchInput";
 
 export class InputManager {
   private keyboard: KeyboardInput;
   private touch: TouchInput;
+  private previousDirections = new Set<Direction>();
 
   constructor() {
     this.keyboard = new KeyboardInput();
@@ -21,14 +22,21 @@ export class InputManager {
   destroy(): void {
     this.keyboard.destroy();
     this.touch.destroy();
+    this.previousDirections.clear();
   }
 
   isDirectionHeld(direction: Direction): boolean {
     return this.keyboard.isHeld(direction) || this.touch.isHeld(direction);
   }
 
-  isActionPressed(action: TouchAction): boolean {
-    return this.touch.isPressed(action);
+  wasDirectionPressed(direction: Direction): boolean {
+    return this.isDirectionHeld(direction) && !this.previousDirections.has(direction);
+  }
+
+  isActionPressed(action: InputAction): boolean {
+    return (
+      this.keyboard.isActionPressed(action) || this.touch.isPressed(action)
+    );
   }
 
   getState(): InputState {
@@ -38,12 +46,20 @@ export class InputManager {
       left: this.isDirectionHeld("left"),
       right: this.isDirectionHeld("right"),
 
-      actionA: this.touch.isPressed("actionA"),
-      actionB: this.touch.isPressed("actionB"),
+      actionA: this.isActionPressed("actionA"),
+      actionB: this.isActionPressed("actionB"),
     };
   }
 
   endFrame(): void {
     this.touch.clearPressedActions();
+    this.keyboard.clearPressedActions();
+    this.previousDirections.clear();
+
+    for (const direction of ["up", "down", "left", "right"] as const) {
+      if (this.isDirectionHeld(direction)) {
+        this.previousDirections.add(direction);
+      }
+    }
   }
 }
