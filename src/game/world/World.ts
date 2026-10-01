@@ -5,6 +5,7 @@ import { CollisionMap } from "./CollisionMap";
 import { RenderSystem } from "../systems/RenderSystem";
 import { GroundRenderer } from "../rendering/GroundRenderer";
 import { VerticalTileRenderer } from "../rendering/VerticalTileRenderer";
+import type { GroundRenderable } from "../rendering/GroundRenderable";
 import {
   GroundProjection,
   type GroundReference,
@@ -22,6 +23,15 @@ interface DebugArea {
   y: number;
   width: number;
   height: number;
+}
+
+function isGroundRenderable(
+  object: GameObject
+): object is GameObject & GroundRenderable {
+  return (
+    "renderOnGround" in object &&
+    typeof object.renderOnGround === "function"
+  );
 }
 
 export class World {
@@ -84,6 +94,12 @@ export class World {
     groundReference: GroundReference
   ): void {
     this.groundRenderer.render(ctx, camera, groundReference);
+
+    for (const object of this.objects) {
+      if (isGroundRenderable(object)) {
+        object.renderOnGround(ctx, this.groundProjection, groundReference);
+      }
+    }
 
     this.verticalTileRenderer.render(ctx, camera, groundReference);
 

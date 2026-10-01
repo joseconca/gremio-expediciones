@@ -12,6 +12,20 @@ function createTownHallDefinition(level: 0 | 1): BuildingDefinition {
     },
     width: 128,
     height: 128,
+    colliders:
+      level === 0
+        ? [
+            { width: 72, height: 1, offsetX: 23, offsetY: -48 },
+            { width: 1, height: 50, offsetX: 23, offsetY: -48 },
+            { width: 1, height: 50, offsetX: 95, offsetY: -48 },
+          ]
+        : [
+            { width: 26, height: 2, offsetX: 20, offsetY: -2 },
+            { width: 26, height: 2, offsetX: 84, offsetY: -2 },
+            { width: 90, height: 2, offsetX: 20, offsetY: -44 },
+            { width: 2, height: 44, offsetX: 20, offsetY: -44 },
+            { width: 2, height: 44, offsetX: 110, offsetY: -44 },
+          ],
     parts: [
       {
         id: "background",

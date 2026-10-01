@@ -8,6 +8,7 @@ import type {
 import type { RenderPart } from "../rendering/RenderPart";
 
 import { SpriteSheet } from "../rendering/SpriteSheet";
+import { Collider } from "./Collider";
 
 export interface BuildingConfig extends GameObjectConfig {
   definition: BuildingDefinition;
@@ -23,7 +24,12 @@ export class Building extends GameObject {
   private readonly spriteSheet: SpriteSheet;
 
   constructor(config: BuildingConfig) {
-    super(config);
+    super({
+      ...config,
+      colliders: config.colliders ?? config.definition.colliders?.map(
+        (collider) => new Collider(collider)
+      ),
+    });
 
     this.definition = config.definition;
 

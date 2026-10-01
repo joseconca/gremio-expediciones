@@ -2,6 +2,7 @@ import { Character, type CharacterConfig } from "../Character";
 import type { Interactable } from "../Interactable";
 import type { Dialogue } from "../../dialogue/Dialogue";
 import type { DialogueManager } from "../../dialogue/DialogueManager";
+import { Collider } from "../Collider";
 
 export interface NPCConfig extends CharacterConfig {
   interaction?: {
@@ -25,7 +26,17 @@ export class NPC extends Character implements Interactable {
   private readonly dialogueManager?: DialogueManager;
 
   constructor(config: NPCConfig) {
-    super(config);
+    super({
+      ...config,
+      colliders: config.colliders ?? [
+        new Collider({
+          width: 16,
+          height: 12,
+          offsetX: 8,
+          offsetY: 50,
+        }),
+      ],
+    });
 
     this.interaction = config.interaction ?? {
       offsetX: 0,

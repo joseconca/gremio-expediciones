@@ -1,7 +1,6 @@
 import { Scene, SceneConfig } from "./Scene";
 
 import { Player } from "../entities/Characters/Player";
-import { Collider } from "../entities/Collider";
 import { SceneTransition } from "../entities/SceneTransition";
 import { NPC } from "../entities/Characters/NPC";
 
@@ -98,15 +97,6 @@ export class TownHallInteriorScene extends Scene {
       animator: heroAnimator,
 
       movement: this.movementSystem,
-
-      colliders: [
-        new Collider({
-          width: 12,
-          height: 6,
-          offsetX: 8,
-          offsetY: 50,
-        }),
-      ],
     });
     this.world.addObject(this.player);
     this.collisionSystem.addObject(this.player);
@@ -133,14 +123,6 @@ export class TownHallInteriorScene extends Scene {
         offsetY: 0,
         radius: 40,
       },
-      colliders: [
-        new Collider({
-          width: 16,
-          height: 12,
-          offsetX: 8,
-          offsetY: 50,
-        }),
-      ],
     });
     this.world.addObject(testNpc);
     this.collisionSystem.addObject(testNpc);

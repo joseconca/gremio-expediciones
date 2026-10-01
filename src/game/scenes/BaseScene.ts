@@ -14,9 +14,9 @@ import { TileMap } from "../world/TileMap";
 import { SpawnPoint } from "../world/SpawnPoint";
 import { CollisionMap } from "../world/CollisionMap";
 
-import { Collider } from "../entities/Collider";
 import { Building } from "../entities/Building";
 import { Campfire } from "../entities/Campfire";
+import { ConstructionSite } from "../entities/ConstructionSite";
 import { ResourceCart } from "../entities/ResourceCart";
 import { Door } from "../entities/Door";
 import type { Interactable } from "../entities/Interactable";
@@ -74,27 +74,10 @@ export class BaseScene extends Scene {
     );
 
     const townHallLevel = this.villageProgression.getState().townHallLevel;
-    const townHallColliders =
-      townHallLevel === 1
-        ? [
-            
-            new Collider({ width: 72, height: 1, offsetX: 23, offsetY: -48 }),
-            new Collider({ width: 1, height: 50, offsetX: 23, offsetY: -48 }),
-            new Collider({ width: 1, height: 50, offsetX: 95, offsetY: -48 }),
-          ]
-        : [
-            new Collider({ width: 36, height: 2, offsetX: 8, offsetY: -8 }),
-            new Collider({ width: 36, height: 2, offsetX: 84, offsetY: -8 }),
-            new Collider({ width: 128, height: 8, offsetX: 8, offsetY: -48 }),
-            new Collider({ width: 2, height: 64, offsetX: 20, offsetY: -64 }),
-            new Collider({ width: 2, height: 64, offsetX: 110, offsetY: -64 }),
-          ];
-
     const townHall = new Building({
       x: 432,
       y: 704,
       definition: townHallDefinitions[townHallLevel],
-      colliders: townHallColliders,
     });
     this.world.addObject(townHall);
     this.collisionSystem.addObject(townHall);
@@ -103,6 +86,16 @@ export class BaseScene extends Scene {
     this.world.addObject(
       new ResourceCart({ x: 320, y: 704 })
     );
+
+    if (townHallLevel === 2) {
+      const constructionSite = new ConstructionSite({
+        x: 592,
+        y: 704,
+        startImmediately: true,
+      });
+      this.world.addObject(constructionSite);
+      this.collisionSystem.addObject(constructionSite);
+    }
 
     // Progression level 1 is the town-hall0 sprite and has no door yet.
     if (townHallLevel === 2) {
@@ -152,14 +145,6 @@ export class BaseScene extends Scene {
       input: this.input,
       animator: heroAnimator,
       movement: this.movementSystem,
-      colliders: [
-        new Collider({
-          width: 12,
-          height: 6,
-          offsetX: 8,
-          offsetY: 50,
-        }),
-      ],
     });
     this.world.addObject(this.player);
     this.collisionSystem.addObject(this.player);

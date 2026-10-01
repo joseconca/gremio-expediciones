@@ -1,4 +1,5 @@
 import type { RenderLayer } from "../../rendering/RenderLayer";
+import type { ColliderConfig } from "../../entities/Collider";
 
 export interface BuildingPartDefinition {
   id: string;
@@ -25,6 +26,7 @@ export interface BuildingDefinition {
 
   width: number;
   height: number;
+  colliders?: ColliderConfig[];
 
   parts: BuildingPartDefinition[];
 }

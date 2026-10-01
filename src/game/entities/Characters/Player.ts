@@ -1,6 +1,7 @@
 import { Character, CharacterConfig } from "../Character";
 import type { InputManager } from "../../input/InputManager";
 import type { MovementSystem } from "../../systems/MovementSystem";
+import { Collider } from "../Collider";
 
 export interface PlayerConfig extends CharacterConfig {
   input: InputManager;
@@ -13,7 +14,17 @@ export class Player extends Character {
   private inputEnabled = true;
 
   constructor(config: PlayerConfig) {
-    super(config);
+    super({
+      ...config,
+      colliders: config.colliders ?? [
+        new Collider({
+          width: 12,
+          height: 6,
+          offsetX: 8,
+          offsetY: 50,
+        }),
+      ],
+    });
 
     this.input = config.input;
     this.movement = config.movement;
