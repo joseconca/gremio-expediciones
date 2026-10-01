@@ -74,17 +74,27 @@ export class BaseScene extends Scene {
     );
 
     const townHallLevel = this.villageProgression.getState().townHallLevel;
+    const townHallColliders =
+      townHallLevel === 1
+        ? [
+            
+            new Collider({ width: 72, height: 1, offsetX: 23, offsetY: -48 }),
+            new Collider({ width: 1, height: 50, offsetX: 23, offsetY: -48 }),
+            new Collider({ width: 1, height: 50, offsetX: 95, offsetY: -48 }),
+          ]
+        : [
+            new Collider({ width: 36, height: 2, offsetX: 8, offsetY: -8 }),
+            new Collider({ width: 36, height: 2, offsetX: 84, offsetY: -8 }),
+            new Collider({ width: 128, height: 8, offsetX: 8, offsetY: -48 }),
+            new Collider({ width: 2, height: 64, offsetX: 20, offsetY: -64 }),
+            new Collider({ width: 2, height: 64, offsetX: 110, offsetY: -64 }),
+          ];
+
     const townHall = new Building({
       x: 432,
       y: 704,
       definition: townHallDefinitions[townHallLevel],
-      colliders: [
-        new Collider({ width: 36, height: 2, offsetX: 8, offsetY: -8 }),
-        new Collider({ width: 36, height: 2, offsetX: 84, offsetY: -8 }),
-        new Collider({ width: 128, height: 8, offsetX: 8, offsetY: -48 }),
-        new Collider({ width: 2, height: 64, offsetX: 20, offsetY: -64 }),
-        new Collider({ width: 2, height: 64, offsetX: 110, offsetY: -64 }),
-      ],
+      colliders: townHallColliders,
     });
     this.world.addObject(townHall);
     this.collisionSystem.addObject(townHall);
@@ -107,10 +117,10 @@ export class BaseScene extends Scene {
     }
 
     const townHallTransition = new SceneTransition({
-      x: 496,
-      y: 688,
-      width: townHallLevel === 1 ? 80 : 32,
-      height: 2,
+      x: townHallLevel === 1 ? 456 : 480,
+      y: townHallLevel === 1 ? 666 : 688,
+      width: townHallLevel === 1 ? 70 : 32,
+      height: 16,
       targetSceneId: "town-hall-interior",
       targetSpawnId: "main-entrance",
       sceneManager: this.sceneManager,
@@ -144,9 +154,9 @@ export class BaseScene extends Scene {
       movement: this.movementSystem,
       colliders: [
         new Collider({
-          width: 16,
-          height: 12,
-          offsetX: 8,
+          width: 8,
+          height: 4,
+          offsetX: -10,
           offsetY: 50,
         }),
       ],

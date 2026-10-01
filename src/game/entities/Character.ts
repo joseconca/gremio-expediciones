@@ -40,6 +40,14 @@ export class Character extends GameObject {
     };
   }
 
+  override getGroundAnchor(): { x: number; y: number } {
+    // Character positions are the sprite's top-left; hitbox offsets must not move its visual anchor.
+    return {
+      x: this.x - 5,
+      y: this.y + 54,
+    };
+  }
+
   override update(deltaTime: number): void {
     this.animator?.update(deltaTime);
   }
