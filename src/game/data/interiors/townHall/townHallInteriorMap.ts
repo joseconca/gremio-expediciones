@@ -85,7 +85,8 @@ export const townHallInteriorMap = {
     {
       name: "walls",
       tiles: wallTiles,
-      renderMode: "vertical" as const,
+      renderMode: "ground" as const,
+      projection: { angle: 30 },
     },
   ],
 };

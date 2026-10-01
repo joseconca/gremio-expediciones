@@ -37,6 +37,8 @@ export class GroundRenderer {
       return;
     }
 
+    ctx.imageSmoothingEnabled = false;
+
     const layers = this.tileMap.getGroundLayers();
 
     for (const layer of layers) {
@@ -204,10 +206,10 @@ export class GroundRenderer {
       frame.sw,
       sliceHeight,
 
-      screenX,
+      Math.round(screenX),
       projectedTop.y,
-      destinationWidth,
-      destinationHeight
+      Math.ceil(destinationWidth),
+      destinationHeight + 1
     );
   }
 }
