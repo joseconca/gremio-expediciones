@@ -6,7 +6,7 @@ import type {
 } from "../data/buildings/BuildingDefinition";
 
 import type { RenderPart } from "../rendering/RenderPart";
-import type { ShadowCaster, ShadowFootprint } from "../lighting/ShadowCaster";
+import type { ShadowCaster, ShadowFootprint, ShadowSprite } from "../lighting/ShadowCaster";
 
 import { SpriteSheet } from "../rendering/SpriteSheet";
 import { Collider } from "./Collider";
@@ -23,6 +23,7 @@ export class Building extends GameObject implements ShadowCaster {
 
   private readonly renderParts: RenderPart[];
   private readonly spriteSheet: SpriteSheet;
+  private readonly shadowSprite: ShadowSprite;
 
   constructor(config: BuildingConfig) {
     super({
@@ -46,6 +47,21 @@ export class Building extends GameObject implements ShadowCaster {
     this.renderParts = this.definition.parts.map((part) =>
       this.createRenderPart(part)
     );
+    const minX = Math.min(0, ...this.definition.parts.map((part) => part.offsetX));
+    const minY = Math.min(0, ...this.definition.parts.map((part) => part.offsetY));
+    const maxX = Math.max(this.width, ...this.definition.parts.map((part) => part.offsetX + this.spriteSheet.frameWidth));
+    const maxY = Math.max(0, ...this.definition.parts.map((part) => part.offsetY + this.spriteSheet.frameHeight));
+    this.shadowSprite = {
+      image: this.spriteSheet.image,
+      width: maxX - minX, height: maxY - minY,
+      anchorX: this.width / 2 - minX, anchorY: -minY,
+      // Recombine BACK/WORLD/FRONT at their original offsets, not as stacked rows.
+      parts: this.definition.parts.map((part) => ({
+        ...this.spriteSheet.getFrame(0, part.frameY),
+        x: part.offsetX - minX, y: part.offsetY - minY,
+        width: this.spriteSheet.frameWidth, height: this.spriteSheet.frameHeight,
+      })),
+    };
   }
 
   override getRenderParts(): RenderPart[] {
@@ -56,12 +72,16 @@ export class Building extends GameObject implements ShadowCaster {
     const anchor = this.getGroundAnchor();
     return {
       x: anchor.x,
-      y: anchor.y - 10,
+      y: anchor.y,
       radiusX: this.width * 0.42,
       radiusY: 10,
       height: this.height * 0.9,
       shape: "box",
     };
+  }
+
+  getShadowSprite(): ShadowSprite | null {
+    return this.spriteSheet.isLoaded() ? this.shadowSprite : null;
   }
 
   private createRenderPart(part: BuildingPartDefinition): RenderPart {

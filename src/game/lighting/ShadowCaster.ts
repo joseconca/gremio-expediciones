@@ -11,6 +11,20 @@ export interface ShadowFootprint {
 
 export interface ShadowCaster {
   getShadowFootprint(): ShadowFootprint | null;
+  getShadowSprite?(): ShadowSprite | null;
+}
+
+/** Sprite alpha geometry, expressed relative to a bottom/ground anchor. */
+export interface ShadowSprite {
+  readonly image: HTMLImageElement;
+  readonly width: number;
+  readonly height: number;
+  readonly anchorX: number;
+  readonly anchorY: number;
+  readonly parts: readonly {
+    sx: number; sy: number; sw: number; sh: number;
+    x: number; y: number; width: number; height: number;
+  }[];
 }
 
 export function isShadowCaster(object: object): object is ShadowCaster {

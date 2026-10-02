@@ -2,7 +2,7 @@ import { GameObject, GameObjectConfig } from "./GameObject";
 import type { Direction } from "../input/InputState";
 import type { Animator } from "../rendering/Animator";
 import type { CharacterAttributes } from "./Characters/CharacterAttributes";
-import type { ShadowCaster, ShadowFootprint } from "../lighting/ShadowCaster";
+import type { ShadowCaster, ShadowFootprint, ShadowSprite } from "../lighting/ShadowCaster";
 
 export interface CharacterConfig extends GameObjectConfig {
   speed?: number;
@@ -70,6 +70,10 @@ export class Character extends GameObject implements ShadowCaster {
 
   override update(deltaTime: number): void {
     this.animator?.update(deltaTime);
+  }
+
+  getShadowSprite(): ShadowSprite | null {
+    return this.animator?.getShadowSprite() ?? null;
   }
 
   override render(

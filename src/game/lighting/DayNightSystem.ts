@@ -17,20 +17,22 @@ export interface DayNightState {
   ambient: AmbientTint;
 }
 
-const SUNRISE_HOUR = 6;
-const SUNSET_HOUR = 20;
+const SUNRISE_HOUR = 7;
+const SUNSET_HOUR = 21;
 const MAX_SUN_ELEVATION = 1.15;
 
 const AMBIENT_KEYFRAMES: ReadonlyArray<readonly [number, AmbientTint]> = [
   [0, { r: 12, g: 18, b: 48, alpha: 0.55 }],
-  [5, { r: 12, g: 18, b: 48, alpha: 0.55 }],
-  [6.5, { r: 255, g: 150, b: 100, alpha: 0.22 }],
-  [8, { r: 255, g: 200, b: 140, alpha: 0.07 }],
-  [10, { r: 255, g: 255, b: 255, alpha: 0 }],
-  [17, { r: 255, g: 255, b: 255, alpha: 0 }],
-  [19, { r: 255, g: 120, b: 70, alpha: 0.24 }],
-  [21, { r: 20, g: 24, b: 60, alpha: 0.48 }],
-  [22.5, { r: 12, g: 18, b: 48, alpha: 0.55 }],
+  [6.5, { r: 12, g: 18, b: 48, alpha: 0.55 }],
+  [7, { r: 245, g: 164, b: 105, alpha: 0.28 }],
+  [8, { r: 255, g: 206, b: 150, alpha: 0.15 }],
+  [10.5, { r: 255, g: 206, b: 150, alpha: 0.15 }],
+  [11, { r: 255, g: 244, b: 215, alpha: 0.03 }],
+  [16.5, { r: 255, g: 244, b: 215, alpha: 0.03 }],
+  [17, { r: 245, g: 138, b: 95, alpha: 0.18 }],
+  [19, { r: 210, g: 95, b: 100, alpha: 0.3 }],
+  [20.5, { r: 85, g: 65, b: 110, alpha: 0.42 }],
+  [21, { r: 12, g: 18, b: 48, alpha: 0.55 }],
   [24, { r: 12, g: 18, b: 48, alpha: 0.55 }],
 ];
 
@@ -40,9 +42,9 @@ function localClockHours(): number {
 }
 
 function resolvePhase(hour: number): DayPhase {
-  if (hour >= 6 && hour < 10) return "morning";
-  if (hour >= 10 && hour < 18) return "day";
-  if (hour >= 18 && hour < 21) return "dusk";
+  if (hour >= 7 && hour < 11) return "morning";
+  if (hour >= 11 && hour < 17) return "day";
+  if (hour >= 17 && hour < 21) return "dusk";
   return "night";
 }
 

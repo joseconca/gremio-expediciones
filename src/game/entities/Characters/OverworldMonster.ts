@@ -11,7 +11,7 @@ import {
   drawGroundCircle,
   HOSTILE_AREA_STYLE,
 } from "../../rendering/GroundShapes";
-import type { ShadowFootprint } from "../../lighting/ShadowCaster";
+import type { ShadowFootprint, ShadowSprite } from "../../lighting/ShadowCaster";
 import type { OverworldEnemyDefinition } from "../../data/enemies/overworldEnemies";
 
 const ENCOUNTER_RADIUS = 20;
@@ -26,6 +26,7 @@ export class OverworldMonster extends Character implements GroundRenderable {
   readonly definition: OverworldEnemyDefinition;
   private readonly spriteSheet: SpriteSheet;
   private readonly drawScale: number;
+  private readonly shadowSprite: ShadowSprite;
   private defeated = false;
   private ignoredUntilSeparated = false;
 
@@ -46,6 +47,12 @@ export class OverworldMonster extends Character implements GroundRenderable {
       MAX_DRAWN_SIZE /
         Math.max(config.definition.frameWidth, config.definition.frameHeight)
     );
+    const width = Math.round(config.definition.frameWidth * this.drawScale);
+    const height = Math.round(config.definition.frameHeight * this.drawScale);
+    this.shadowSprite = {
+      image: this.spriteSheet.image, width, height, anchorX: width / 2, anchorY: height,
+      parts: [{ ...this.spriteSheet.getFrame(0, 0), x: 0, y: 0, width, height }],
+    };
   }
 
   isWithinEncounterRange(feetX: number, feetY: number): boolean {
@@ -102,6 +109,10 @@ export class OverworldMonster extends Character implements GroundRenderable {
       ENCOUNTER_RADIUS,
       HOSTILE_AREA_STYLE
     );
+  }
+
+  override getShadowSprite(): ShadowSprite | null {
+    return !this.defeated && this.spriteSheet.isLoaded() ? this.shadowSprite : null;
   }
 
   override getRenderParts(): RenderPart[] {

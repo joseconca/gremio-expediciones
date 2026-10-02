@@ -1,4 +1,5 @@
 import { SpriteSheet } from "./SpriteSheet";
+import type { ShadowSprite } from "../lighting/ShadowCaster";
 
 export interface AnimationConfig {
   frames: Array<{
@@ -16,6 +17,7 @@ export class Animator {
   private currentAnimation = "";
   private currentFrame = 0;
   private elapsed = 0;
+  private readonly shadowFrames = new Map<string, ShadowSprite>();
 
   constructor(
     spriteSheet: SpriteSheet,
@@ -78,6 +80,22 @@ export class Animator {
       frame.x,
       frame.y
     );
+  }
+
+  getShadowSprite(): ShadowSprite | null {
+    const frame = this.getCurrentFrame();
+    if (!frame || !this.spriteSheet.isLoaded()) return null;
+    const key = `${frame.sx}:${frame.sy}`;
+    let sprite = this.shadowFrames.get(key);
+    if (!sprite) {
+      sprite = {
+        image: this.spriteSheet.image, width: frame.sw, height: frame.sh,
+        anchorX: frame.sw / 2, anchorY: frame.sh,
+        parts: [{ ...frame, x: 0, y: 0, width: frame.sw, height: frame.sh }],
+      };
+      this.shadowFrames.set(key, sprite);
+    }
+    return sprite;
   }
 
   draw(

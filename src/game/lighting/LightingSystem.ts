@@ -3,14 +3,12 @@ import type {
   GroundProjection,
   GroundReference,
 } from "../rendering/GroundProjection";
-import {
-  addGroundEllipsePath,
-  addGroundPolygonPath,
-} from "../rendering/GroundShapes";
+import { addGroundEllipsePath } from "../rendering/GroundShapes";
 import type { DayNightSystem } from "./DayNightSystem";
 import { getShadowVector } from "./DirectionalLight";
 import { isLightEmitter, type PointLight } from "./PointLight";
 import { isShadowCaster, type ShadowFootprint } from "./ShadowCaster";
+import { SpriteShadowRenderer } from "./SpriteShadowRenderer";
 
 const CONTACT_SHADOW_OPACITY = 0.3;
 const SUN_SHADOW_OPACITY = 0.4;
@@ -26,6 +24,8 @@ export interface LightingConfig {
 export class LightingSystem {
   private readonly dayNight?: DayNightSystem;
   private lightLayer: HTMLCanvasElement | null = null;
+  private shadowLayer: HTMLCanvasElement | null = null;
+  private readonly spriteShadows = new SpriteShadowRenderer();
 
   constructor(config: LightingConfig = {}) {
     this.dayNight = config.dayNight;
@@ -40,27 +40,43 @@ export class LightingSystem {
     const sun = this.dayNight?.getState().sun;
     ctx.save();
     ctx.fillStyle = "#000";
+    ctx.globalAlpha = CONTACT_SHADOW_OPACITY;
 
+    // Contact remains small and soft-looking; it is not swept into a rectangle.
     for (const object of objects) {
       if (!isShadowCaster(object)) continue;
       const footprint = object.getShadowFootprint();
       if (!footprint) continue;
-
-      const sunStrength = sun?.intensity ?? 0;
-      const sweep =
-        sun && sunStrength > 0
-          ? getShadowVector(sun, footprint.height)
-          : { x: 0, y: 0 };
-      ctx.globalAlpha = Math.max(
-        CONTACT_SHADOW_OPACITY,
-        sunStrength * SUN_SHADOW_OPACITY
-      );
-
       ctx.beginPath();
-      this.traceSweptFootprint(ctx, projection, reference, footprint, sweep);
+      addGroundEllipsePath(ctx, projection, reference, footprint.x, footprint.y, footprint.radiusX, footprint.radiusY, 16);
       ctx.fill();
     }
+    ctx.restore();
+    if (!sun || sun.intensity <= 0) return;
 
+    this.shadowLayer = this.resizeLayer(this.shadowLayer, ctx.canvas);
+    const shadowContext = this.shadowLayer.getContext("2d");
+    if (!shadowContext) return;
+    shadowContext.clearRect(0, 0, this.shadowLayer.width, this.shadowLayer.height);
+    shadowContext.fillStyle = "#000";
+    for (const object of objects) {
+      if (!isShadowCaster(object)) continue;
+      const footprint = object.getShadowFootprint();
+      if (!footprint) continue;
+      const sweep = getShadowVector(sun, footprint.height);
+      const sprite = object.getShadowSprite?.();
+      if (sprite) {
+        this.spriteShadows.render(shadowContext, sprite, footprint, sweep, projection, reference);
+      } else {
+        shadowContext.beginPath();
+        this.traceSweptFootprint(shadowContext, projection, reference, footprint, sweep);
+        shadowContext.fill();
+      }
+    }
+    // Apply opacity once, avoiding dark seams/stacking between strips or casters.
+    ctx.save();
+    ctx.globalAlpha = sun.intensity * SUN_SHADOW_OPACITY;
+    ctx.drawImage(this.shadowLayer, 0, 0);
     ctx.restore();
   }
 
@@ -159,8 +175,7 @@ export class LightingSystem {
       const centerX = footprint.x + sweep.x * t;
       const centerY = footprint.y + sweep.y * t;
 
-      if (footprint.shape === "ellipse") {
-        addGroundEllipsePath(
+      addGroundEllipsePath(
           ctx,
           projection,
           reference,
@@ -169,27 +184,21 @@ export class LightingSystem {
           footprint.radiusX,
           footprint.radiusY,
           16
-        );
-      } else {
-        addGroundPolygonPath(ctx, projection, reference, [
-          [centerX - footprint.radiusX, centerY - footprint.radiusY],
-          [centerX + footprint.radiusX, centerY - footprint.radiusY],
-          [centerX + footprint.radiusX, centerY + footprint.radiusY],
-          [centerX - footprint.radiusX, centerY + footprint.radiusY],
-        ]);
-      }
+      );
     }
   }
 
   private getLightLayer(source: HTMLCanvasElement): HTMLCanvasElement {
-    if (!this.lightLayer) this.lightLayer = document.createElement("canvas");
-    if (
-      this.lightLayer.width !== source.width ||
-      this.lightLayer.height !== source.height
-    ) {
-      this.lightLayer.width = source.width;
-      this.lightLayer.height = source.height;
-    }
+    this.lightLayer = this.resizeLayer(this.lightLayer, source);
     return this.lightLayer;
+  }
+
+  private resizeLayer(layer: HTMLCanvasElement | null, source: HTMLCanvasElement): HTMLCanvasElement {
+    layer ??= document.createElement("canvas");
+    if (layer.width !== source.width || layer.height !== source.height) {
+      layer.width = source.width;
+      layer.height = source.height;
+    }
+    return layer;
   }
 }
