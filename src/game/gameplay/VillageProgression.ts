@@ -61,7 +61,8 @@ const INITIAL_STATE: VillageProgressionState = {
 };
 
 const TEST_CONSTRUCTION_DURATION_SECONDS = 60;
-const BUILDING_SPACING = 256;
+const BUILDING_SPACING = 224;
+const BUILDING_ROW_STEP = 32;
 const TOWN_HALL_CENTER_X = 496;
 const BUILDING_GROUND_Y = 704;
 
@@ -131,6 +132,7 @@ export class VillageProgression {
     const townHallIndex = orderedBuildings.findIndex(
       (building) => building.type === "town-hall"
     );
+    const rowCenterIndex = (orderedBuildings.length - 1) / 2;
 
     return orderedBuildings.map((building, index) => ({
       ...building,
@@ -138,7 +140,8 @@ export class VillageProgression {
         TOWN_HALL_CENTER_X +
         (index - townHallIndex) * BUILDING_SPACING -
         64,
-      y: BUILDING_GROUND_Y,
+      // Two central buildings share the same baseline when the count is even.
+      y: BUILDING_GROUND_Y + Math.floor(Math.abs(index - rowCenterIndex)) * BUILDING_ROW_STEP,
     }));
   }
 

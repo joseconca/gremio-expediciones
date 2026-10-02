@@ -92,36 +92,11 @@ export class BaseScene extends Scene {
       },
       WORLD_BASE_ARRIVAL
     );
-    const townHallLevel = this.villageProgression.getTownHallLevel();
-
     this.world.addObject(new Campfire({ x: 560, y: 800 }));
     this.world.addObject(
       new ResourceCart({ x: 320, y: 704 })
     );
 
-    // Progression level 1 is the town-hall0 sprite and has no door yet.
-    if (townHallLevel === 2) {
-      const townHallDoor = new Door({
-        x: 496,
-        y: 704,
-        definition: genericDoorDefinition,
-      });
-      this.world.addObject(townHallDoor);
-      this.collisionSystem.addObject(townHallDoor);
-      this.interactables.push(townHallDoor);
-    }
-
-    const townHallTransition = new SceneTransition({
-      x: townHallLevel === 1 ? 456 : 480,
-      y: townHallLevel === 1 ? 666 : 688,
-      width: townHallLevel === 1 ? 70 : 32,
-      height: 16,
-      targetSceneId: "town-hall-interior",
-      targetSpawnId: "main-entrance",
-      sceneManager: this.sceneManager,
-    });
-    this.sceneTransitionSystem.addTransition(townHallTransition);
-    this.debugTeleporters.push(townHallTransition);
     this.movementSystem = new MovementSystem(this.collisionSystem);
     this.interactionSystem = new InteractionSystem(this.input);
 
@@ -218,7 +193,28 @@ export class BaseScene extends Scene {
       this.collisionSystem.addObject(object);
       this.villageObjects.push(object);
 
-      if (placement.type !== "town-hall" && !placement.underConstruction) {
+      if (placement.type === "town-hall") {
+        const level = this.villageProgression.getTownHallLevel();
+        if (level === 2) {
+          const door = new Door({ x: placement.x + 64, y: placement.y, definition: genericDoorDefinition });
+          this.world.addObject(door);
+          this.collisionSystem.addObject(door);
+          this.interactables.push(door);
+          this.villageEntranceObjects.push(door);
+        }
+        const transition = new SceneTransition({
+          x: placement.x + (level === 1 ? 24 : 48),
+          y: placement.y - (level === 1 ? 38 : 16),
+          width: level === 1 ? 70 : 32,
+          height: 16,
+          targetSceneId: "town-hall-interior",
+          targetSpawnId: "main-entrance",
+          sceneManager: this.sceneManager,
+        });
+        this.sceneTransitionSystem.addTransition(transition);
+        this.debugTeleporters.push(transition);
+        this.villageEntranceObjects.push(transition);
+      } else if (!placement.underConstruction) {
         const interior = constructibleBuildings[placement.type].interior;
         const entranceX = placement.x + 64;
         const buildingDoor = new Door({
@@ -279,6 +275,12 @@ export class BaseScene extends Scene {
   protected getSpawnPoint(spawnId?: string): SpawnPoint {
     if (spawnId === "world-base-arrival") {
       return WORLD_BASE_ARRIVAL;
+    }
+    if (!spawnId || spawnId === "default" || spawnId === "town-hall-exit") {
+      const hall = this.villageProgression.getBuildingPlacements().find((building) => building.type === "town-hall");
+      if (hall) {
+        return { id: spawnId ?? "default", x: hall.x + 48, y: hall.y - 16, direction: "down" };
+      }
     }
 
     const exitedBuilding = this.villageProgression
