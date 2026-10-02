@@ -1,4 +1,5 @@
 /** Contracts shared by the game engine's gateway and the world API routes. */
+import type { MobilitySnapshot } from "./travel";
 
 export const MAX_PARTY_SIZE = 3;
 export const MIN_BASE_DISTANCE_METERS = 200;
@@ -46,6 +47,7 @@ export interface WorldSessionDto {
   player: PlayerProfileDto;
   base: OwnBaseDto;
   nearbyBases: NearbyBaseDto[];
+  mobility: MobilitySnapshot;
 }
 
 export interface CreatePlayerRequest {

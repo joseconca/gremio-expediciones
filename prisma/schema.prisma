@@ -300,6 +300,9 @@ model Jugador {
   saludActual Int     @default(40)
   saludMaxima Int     @default(100)
   ultimoVisto DateTime @default(now())
+  ubicacion   Json?
+  viajeRegreso Json?
+  ubicacionRevision Int @default(0)
 
   miembroParty          MiembroParty?
   partyLiderada         Party?             @relation("LiderParty")

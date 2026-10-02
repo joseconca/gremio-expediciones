@@ -12,6 +12,8 @@ import {
 } from "@/shared/world";
 import { boundingBox, distanceMeters, longitudeFilter } from "./geo";
 import { MundoError, withWorldLock } from "./http";
+import { loadMobility } from "./travel";
+import type { MobilitySnapshot } from "@/shared/travel";
 
 const BUILDING_TYPES: readonly SavedBuildingType[] = ["town-hall", "tavern", "embassy"];
 const MAX_BUILDING_LEVEL = 2;
@@ -63,7 +65,8 @@ function parseBuildings(value: unknown): SavedBuilding[] {
 function toSession(
   jugador: Jugador,
   base: Base,
-  nearbyBases: NearbyBaseDto[]
+  nearbyBases: NearbyBaseDto[],
+  mobility: MobilitySnapshot
 ): WorldSessionDto {
   return {
     progressToken: progressToken(jugador, base),
@@ -85,6 +88,7 @@ function toSession(
       buildings: parseBuildings(base.edificios),
     },
     nearbyBases,
+    mobility,
   };
 }
 
@@ -126,7 +130,8 @@ export async function loadSession(usuarioId: string): Promise<WorldSessionDto | 
   const base = jugador?.usuario.base;
   if (!jugador || !base) return null;
 
-  return toSession(jugador, base, await listNearbyBases(base));
+  const mobility = await loadMobility(usuarioId);
+  return toSession(jugador, base, await listNearbyBases(base), mobility);
 }
 
 /** The base location is permanent: creating again returns the stored session. */
