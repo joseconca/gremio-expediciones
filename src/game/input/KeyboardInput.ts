@@ -1,8 +1,7 @@
 import type { Direction, InputAction } from "./InputState";
 
 export class KeyboardInput {
-  private heldDirections = new Set<Direction>();
-  private heldActions = new Set<InputAction>();
+  private heldKeys = new Set<string>();
   private pressedActions = new Set<InputAction>();
   private debugToggleHeld = false;
   private debugTogglePressed = false;
@@ -28,6 +27,7 @@ export class KeyboardInput {
   };
 
   private handleKeyDown = (event: KeyboardEvent): void => {
+    if (event.target instanceof HTMLElement && event.target.closest("input, textarea, select, [contenteditable='true'], [role='dialog']")) return;
     if (event.code === "F3") {
       if (!this.debugToggleHeld) {
         this.debugToggleHeld = true;
@@ -39,14 +39,18 @@ export class KeyboardInput {
     const direction = this.keyMap[event.code];
 
     if (direction) {
-      this.heldDirections.add(direction);
+      event.preventDefault();
+      this.heldKeys.add(event.code);
       return;
     }
 
     const action = this.actionKeyMap[event.code];
-    if (!action || this.heldActions.has(action)) return;
+    if (event.target instanceof HTMLElement && event.target.closest("button")) return;
+    if (!action) return;
+    event.preventDefault();
+    if (event.repeat || this.heldKeys.has(event.code)) return;
 
-    this.heldActions.add(action);
+    this.heldKeys.add(event.code);
     this.pressedActions.add(action);
   };
 
@@ -56,35 +60,40 @@ export class KeyboardInput {
       return;
     }
 
-    const direction = this.keyMap[event.code];
+    this.heldKeys.delete(event.code);
+  };
 
-    if (direction) {
-      this.heldDirections.delete(direction);
-      return;
-    }
+  private clear = (): void => {
+    this.heldKeys.clear();
+    this.pressedActions.clear();
+    this.debugToggleHeld = false;
+    this.debugTogglePressed = false;
+  };
 
-    const action = this.actionKeyMap[event.code];
-    if (action) this.heldActions.delete(action);
+  private handleVisibility = (): void => {
+    if (document.hidden) this.clear();
   };
 
   init(): void {
     window.addEventListener("keydown", this.handleKeyDown);
     window.addEventListener("keyup", this.handleKeyUp);
+    window.addEventListener("blur", this.clear);
+    document.addEventListener("visibilitychange", this.handleVisibility);
   }
 
   destroy(): void {
     window.removeEventListener("keydown", this.handleKeyDown);
     window.removeEventListener("keyup", this.handleKeyUp);
-
-    this.heldDirections.clear();
-    this.heldActions.clear();
-    this.pressedActions.clear();
-    this.debugToggleHeld = false;
-    this.debugTogglePressed = false;
+    window.removeEventListener("blur", this.clear);
+    document.removeEventListener("visibilitychange", this.handleVisibility);
+    this.clear();
   }
 
   isHeld(direction: Direction): boolean {
-    return this.heldDirections.has(direction);
+    for (const code of this.heldKeys) {
+      if (this.keyMap[code] === direction) return true;
+    }
+    return false;
   }
 
   isActionPressed(action: InputAction): boolean {

@@ -6,6 +6,15 @@ export class TouchInput {
   private heldDirections = new Set<Direction>();
   private pressedActions = new Set<TouchAction>();
 
+  private clear = (): void => {
+    this.heldDirections.clear();
+    this.pressedActions.clear();
+  };
+
+  private handleVisibility = (): void => {
+    if (document.hidden) this.clear();
+  };
+
   private handleDirectionEvent = (event: Event): void => {
     const customEvent = event as CustomEvent<{
       dir: Direction;
@@ -35,15 +44,17 @@ export class TouchInput {
     document.addEventListener("VirtualDPad", this.handleDirectionEvent);
 
     document.addEventListener("VirtualAction", this.handleActionEvent);
+    window.addEventListener("blur", this.clear);
+    document.addEventListener("visibilitychange", this.handleVisibility);
   }
 
   destroy(): void {
     document.removeEventListener("VirtualDPad", this.handleDirectionEvent);
 
     document.removeEventListener("VirtualAction", this.handleActionEvent);
-
-    this.heldDirections.clear();
-    this.pressedActions.clear();
+    window.removeEventListener("blur", this.clear);
+    document.removeEventListener("visibilitychange", this.handleVisibility);
+    this.clear();
   }
 
   isHeld(direction: Direction): boolean {

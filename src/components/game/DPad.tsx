@@ -41,6 +41,7 @@ function DPadButton({ direction, label }: DPadButtonProps) {
 
         emit("remove");
       }}
+      onLostPointerCapture={() => emit("remove")}
     >
       {label}
     </button>
