@@ -1,4 +1,4 @@
-export interface VillageProgressionState {
+﻿export interface VillageProgressionState {
   buildings: VillageBuilding[];
   construction: ActiveConstruction | null;
   resources: VillageResources;
@@ -20,7 +20,8 @@ export const INITIAL_VILLAGE_RESOURCES: VillageResources = {
   potions: 1,
 };
 
-export type VillageBuildingType = "town-hall" | "tavern";
+export type VillageBuildingType = "town-hall" | "tavern" | "embassy";
+export type ConstructibleBuildingType = Exclude<VillageBuildingType, "town-hall">;
 
 export interface VillageBuilding {
   id: string;
@@ -30,7 +31,7 @@ export interface VillageBuilding {
 
 export interface ActiveConstruction {
   id: string;
-  type: "tavern";
+  type: ConstructibleBuildingType;
   position: number;
   elapsedSeconds: number;
   durationSeconds: number;
@@ -155,14 +156,14 @@ export class VillageProgression {
     return null;
   }
 
-  getAvailableConstructionPositions(): Array<{
+  getAvailableConstructionPositions(type: ConstructibleBuildingType): Array<{
     position: number;
     label: string;
   }> {
     if (
       this.getTownHallLevel() < 2 ||
       this.state.construction ||
-      this.state.buildings.some((building) => building.type === "tavern")
+      this.hasBuilding(type)
     ) {
       return [];
     }
@@ -195,11 +196,18 @@ export class VillageProgression {
     return true;
   }
 
-  startTavernConstruction(position: number): boolean {
+  hasBuilding(type: VillageBuildingType): boolean {
+    return this.state.buildings.some((building) => building.type === type);
+  }
+
+  startConstruction(
+    type: ConstructibleBuildingType,
+    position: number
+  ): boolean {
     if (
       this.getTownHallLevel() < 2 ||
       this.state.construction ||
-      this.state.buildings.some((building) => building.type === "tavern") ||
+      this.hasBuilding(type) ||
       !this.getConstructionPositionLabel(position)
     ) {
       return false;
@@ -208,8 +216,8 @@ export class VillageProgression {
     this.state = {
       ...this.state,
       construction: {
-        id: `tavern-${Date.now()}`,
-        type: "tavern",
+        id: `${type}-${Date.now()}`,
+        type,
         position,
         elapsedSeconds: 0,
         durationSeconds: TEST_CONSTRUCTION_DURATION_SECONDS,
@@ -276,8 +284,8 @@ export class VillageProgression {
 
     const buildings = [...this.state.buildings];
     buildings.splice(construction.position - 1, 0, {
-      id: "tavern",
-      type: "tavern",
+      id: construction.type,
+      type: construction.type,
       level: 1,
     });
     this.state = {
@@ -296,6 +304,11 @@ export class VillageProgression {
   }
 
   private getBuildingName(type: VillageBuildingType): string {
-    return type === "town-hall" ? "Ayuntamiento" : "Taberna";
+    const names: Record<VillageBuildingType, string> = {
+      "town-hall": "Ayuntamiento",
+      tavern: "Taberna",
+      embassy: "Embajada",
+    };
+    return names[type];
   }
 }

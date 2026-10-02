@@ -1,13 +1,63 @@
 import type { Dialogue } from "../../dialogue/Dialogue";
+import type { DialogueNode } from "../../dialogue/DialogueNode";
+import type { ConstructibleBuildingType } from "../../gameplay/VillageProgression";
 
 interface ConstructionPositionOption {
   position: number;
   label: string;
 }
 
+export type ConstructionOptions = Record<
+  ConstructibleBuildingType,
+  ConstructionPositionOption[]
+>;
+
+const BUILDING_LABELS: Record<ConstructibleBuildingType, string> = {
+  tavern: "Taberna",
+  embassy: "Embajada",
+};
+
+function createConstructionNodes(
+  type: ConstructibleBuildingType,
+  positions: ConstructionPositionOption[]
+): DialogueNode[] {
+  const label = BUILDING_LABELS[type];
+  return [
+    {
+      id: `${type}-position`,
+      speaker: "Alcalde",
+      text: `¿En qué parcela quieres construir la ${label}?`,
+      choices: positions.map(({ position, label: positionLabel }) => ({
+        text: `Posición ${position}: ${positionLabel}`,
+        nextNodeId: `confirm-${type}-${position}`,
+      })),
+    },
+    ...positions.map(({ position, label: positionLabel }) => ({
+      id: `confirm-${type}-${position}`,
+      speaker: "Alcalde",
+      text: `La ${label} se construirá en la posición ${position}, ${positionLabel.toLowerCase()}. ¿Confirmas?`,
+      choices: [
+        {
+          text: "Confirmar construcción",
+          nextNodeId: `${type}-ordered`,
+          eventId: `build:${type}:${position}`,
+        },
+        { text: "Elegir otra posición", nextNodeId: `${type}-position` },
+        { text: "Cancelar", nextNodeId: "goodbye" },
+      ],
+    })),
+    {
+      id: `${type}-ordered`,
+      speaker: "Alcalde",
+      text: `La parcela queda reservada. Los trabajadores ya han empezado la construcción de la ${label}.`,
+      nextNodeId: null,
+    },
+  ];
+}
+
 export function createAlcaldeDialogue(
   townHallLevel: 1 | 2,
-  constructionPositions: ConstructionPositionOption[] = []
+  constructionOptions: ConstructionOptions = { tavern: [], embassy: [] }
 ): Dialogue {
   if (townHallLevel === 1) {
     return {
@@ -58,6 +108,9 @@ export function createAlcaldeDialogue(
     };
   }
 
+  const buildable = (Object.keys(constructionOptions) as ConstructibleBuildingType[])
+    .filter((type) => constructionOptions[type].length > 0);
+
   return {
     id: "alcalde-town-hall-level-2",
     nodes: [
@@ -70,46 +123,23 @@ export function createAlcaldeDialogue(
       {
         id: "building-options",
         speaker: "Alcalde",
-        text: constructionPositions.length
+        text: buildable.length
           ? "¿Qué te gustaría construir?"
           : "Ahora mismo no hay ningún edificio disponible para construir.",
-        choices: constructionPositions.length
+        choices: buildable.length
           ? [
-              { text: "Construir una Taberna", nextNodeId: "tavern-position" },
+              ...buildable.map((type) => ({
+                text: `Construir una ${BUILDING_LABELS[type]}`,
+                nextNodeId: `${type}-position`,
+              })),
               { text: "Ahora no", nextNodeId: "goodbye" },
             ]
           : undefined,
-        nextNodeId: constructionPositions.length ? undefined : null,
+        nextNodeId: buildable.length ? undefined : null,
       },
-      {
-        id: "tavern-position",
-        speaker: "Alcalde",
-        text: "¿En qué parcela quieres construir la Taberna?",
-        choices: constructionPositions.map(({ position, label }) => ({
-          text: `Posición ${position}: ${label}`,
-          nextNodeId: `confirm-tavern-${position}`,
-        })),
-      },
-      ...constructionPositions.map(({ position, label }) => ({
-        id: `confirm-tavern-${position}`,
-        speaker: "Alcalde",
-        text: `La Taberna se construirá en la posición ${position}, ${label.toLowerCase()}. ¿Confirmas?`,
-        choices: [
-          {
-            text: "Confirmar construcción",
-            nextNodeId: "tavern-ordered",
-            eventId: `build-tavern-position:${position}`,
-          },
-          { text: "Elegir otra posición", nextNodeId: "tavern-position" },
-          { text: "Cancelar", nextNodeId: "goodbye" },
-        ],
-      })),
-      {
-        id: "tavern-ordered",
-        speaker: "Alcalde",
-        text: "La parcela queda reservada. Los trabajadores ya han empezado la construcción de la Taberna.",
-        nextNodeId: null,
-      },
+      ...buildable.flatMap((type) =>
+        createConstructionNodes(type, constructionOptions[type])
+      ),
       {
         id: "goodbye",
         speaker: "Alcalde",
