@@ -1,7 +1,8 @@
 import { createHash } from "node:crypto";
-import type { EnemyDto, ExpeditionKind, ExpeditionRequest, MissionDto } from "@/shared/expeditions";
+import type { EnemyDto, ExpeditionInventoryItemDto, ExpeditionKind, ExpeditionLootDto, ExpeditionRequest, MissionDto } from "@/shared/expeditions";
 import { distanceMeters } from "./geo";
 import { MundoError } from "./http";
+import { EXPEDITION_DESCRIPTIONS, EXPEDITION_ENEMIES, EXPEDITION_ITEMS, EXPEDITION_LOCATIONS, EXPEDITION_PREFIXES } from "./expeditionContent";
 
 export const EXPEDITION_SPEED_KMH = 60;
 export const MIN_EXPEDITION_DURATION_MS = 5_000;
@@ -10,6 +11,11 @@ export const ELITE_COOLDOWN_MS = (23 * 60 + 30) * 60_000;
 export const EXPEDITION_RADIUS_METERS = 7_000;
 export const EXPERIENCE_PER_LEVEL = 100;
 export const HEALTH_PER_LEVEL = 10;
+
+export const EXPEDITION_REWARD_RULES = {
+  normal: { baseGold: 15, goldPerKm: 5, goldPerLevel: 4, baseExperience: 25, experiencePerKm: 2, experiencePerLevel: 5, variation: 0.2 },
+  elite: { baseGold: 60, goldPerKm: 10, goldPerLevel: 12, baseExperience: 75, experiencePerKm: 4, experiencePerLevel: 15, variation: 0.2 },
+} as const;
 
 type Coordinates = { lat: number; lng: number };
 export type TradeDestination = Coordinates & { playerId: string; baseName: string };
@@ -60,47 +66,126 @@ function destination(origin: Coordinates, km: number, bearing: number): Coordina
   return { lat: lat / radians, lng: ((lng / radians + 540) % 360) - 180 };
 }
 
-/** Stable for the same origin/hour; persisted missions outlive this ephemeral catalog. */
-export function generateExpeditionMissions(origin: Coordinates, now: number, targets: readonly TradeDestination[] = []): MissionDto[] {
+function seededInteger(seed: string, minimum: number, maximum: number): number {
+  return minimum + createHash("sha256").update(seed).digest().readUInt32BE(0) % (maximum - minimum + 1);
+}
+
+export function expeditionRewardBounds(kind: "normal" | "elite", distanceKm: number, level: number) {
+  const rule = EXPEDITION_REWARD_RULES[kind];
+  const growth = Math.max(0, level - 1);
+  const gold = rule.baseGold + distanceKm * rule.goldPerKm + growth * rule.goldPerLevel;
+  const experience = rule.baseExperience + distanceKm * rule.experiencePerKm + growth * rule.experiencePerLevel;
+  return {
+    gold: { min: Math.max(1, Math.floor(gold * (1 - rule.variation))), max: Math.ceil(gold * (1 + rule.variation)) },
+    experience: { min: Math.max(1, Math.floor(experience * (1 - rule.variation))), max: Math.ceil(experience * (1 + rule.variation)) },
+  };
+}
+
+/** Stable for the same origin/hour/level; persisted missions outlive this ephemeral catalog. */
+export function generateExpeditionMissions(origin: Coordinates, now: number, targets: readonly TradeDestination[] = [], playerLevel = 1): MissionDto[] {
   if (!validExpeditionCoordinates(origin)) throw new MundoError(500, "invalid_coordinates", "Coordenadas de base guardadas inválidas.");
   const hour = Math.floor(now / EXPEDITION_CATALOG_PERIOD_MS);
-  const seed = `${origin.lat}:${origin.lng}:${hour}`;
+  const seed = `${origin.lat}:${origin.lng}:${hour}:${playerLevel}`;
   const makeMission = (kind: ExpeditionKind, key: string, point: Coordinates, name: string, targetPlayerId?: string): MissionDto => {
     const distanceKm = distanceMeters(origin, point) / 1000;
-    const gold = kind === "elite" ? Math.round(60 + distanceKm * 10) : kind === "trade"
-      // Gold is integral and divisible by four: the recipient gets exactly 25%.
-      ? 4 * Math.ceil((20 + distanceKm * 5) / 4) : Math.round(15 + distanceKm * 5);
+    const missionSeed = `${seed}:${key}`;
+    const enemyLevel = seededInteger(`${missionSeed}:level`, Math.max(1, playerLevel - 3), playerLevel + 3);
+    const enemy = expeditionEnemy(kind, enemyLevel, seededInteger(`${missionSeed}:species`, 0, 7));
+    const bounds = kind === "trade" ? null : expeditionRewardBounds(kind, distanceKm, enemyLevel);
+    // Commerce retains the previous formula and exact integral 25% recipient share.
+    const gold = bounds ? seededInteger(`${missionSeed}:gold`, bounds.gold.min, bounds.gold.max)
+      : 4 * Math.ceil((20 + distanceKm * 5) / 4);
     return {
-      id: `${kind}:${hour}:${createHash("sha256").update(`${seed}:${key}:${point.lat}:${point.lng}`).digest("hex").slice(0, 32)}`,
+      id: `${kind}:${hour}:${playerLevel}:${createHash("sha256").update(`${missionSeed}:${point.lat}:${point.lng}`).digest("hex").slice(0, 32)}`,
       kind, name, ...point, distanceKm, durationMs: expeditionDurationMs(distanceKm), gold,
-      experience: kind === "elite" ? 75 : 25,
+      experience: bounds ? seededInteger(`${missionSeed}:experience`, bounds.experience.min, bounds.experience.max) : 25,
+      description: kind === "trade" ? "Transporta mercancías al poblado vecino y regresa para cobrar el encargo."
+        : EXPEDITION_DESCRIPTIONS[seededInteger(`${missionSeed}:description`, 0, EXPEDITION_DESCRIPTIONS.length - 1)],
+      ...(enemy ? { enemyLevel, enemy, loot: EXPEDITION_ITEMS.map((item) => ({
+        ...item, quantity: seededInteger(`${missionSeed}:${item.id}:quantity`, 1, kind === "elite" ? 3 : 2),
+        chance: item.chance + (kind === "elite" ? 20 : 0),
+      })) } : {}),
       ...(targetPlayerId ? { targetPlayerId } : {}),
     };
   };
   const missions: MissionDto[] = [];
+  const usedNames = new Set<string>();
   for (let index = 0; index < 4; index++) {
     const hash = createHash("sha256").update(`${seed}:${index}`).digest();
     const km = 0.5 + hash.readUInt32BE(0) / 0xffffffff * 2.5;
     let point = destination(origin, km, hash.readUInt32BE(4) / 0xffffffff * Math.PI * 2);
     // Near the playable latitude limit, reflect the bearing toward the equator.
     if (!validExpeditionCoordinates(point)) point = destination(origin, km, origin.lat >= 0 ? Math.PI : 0);
-    missions.push(makeMission(index === 3 ? "elite" : "normal", String(index), point, index === 3 ? "El ogro del camino" : `Arañas del camino ${index + 1}`));
+    const prefix = seededInteger(`${seed}:${index}:prefix`, 0, EXPEDITION_PREFIXES.length - 1);
+    let suffix = seededInteger(`${seed}:${index}:location`, 0, EXPEDITION_LOCATIONS.length - 1);
+    let name = `${EXPEDITION_PREFIXES[prefix]} ${EXPEDITION_LOCATIONS[suffix]}`;
+    while (usedNames.has(name)) {
+      suffix = (suffix + 1) % EXPEDITION_LOCATIONS.length;
+      name = `${EXPEDITION_PREFIXES[prefix]} ${EXPEDITION_LOCATIONS[suffix]}`;
+    }
+    usedNames.add(name);
+    missions.push(makeMission(index === 3 ? "elite" : "normal", String(index), point, name));
   }
   const seen = new Set<string>();
   for (const target of [...targets].sort((a, b) => a.playerId.localeCompare(b.playerId))) {
     if (seen.has(target.playerId) || !validExpeditionCoordinates(target) || distanceMeters(origin, target) > EXPEDITION_RADIUS_METERS) continue;
     seen.add(target.playerId);
-    missions.push(makeMission("trade", target.playerId, { lat: target.lat, lng: target.lng }, `Comercio con ${target.baseName}`, target.playerId));
+    const baseName = `Comercio con ${target.baseName}`;
+    let name = baseName;
+    let route = 2;
+    while (usedNames.has(name)) name = `${baseName} · ruta ${route++}`;
+    usedNames.add(name);
+    missions.push(makeMission("trade", target.playerId, { lat: target.lat, lng: target.lng }, name, target.playerId));
   }
   return missions;
 }
 
-export function expeditionEnemy(kind: ExpeditionKind, level: number): EnemyDto | null {
+export function expeditionEnemy(kind: ExpeditionKind, level: number, speciesSeed?: number): EnemyDto | null {
   const growth = Math.max(0, level - 1);
   if (kind === "trade") return null;
-  return kind === "elite"
+  const basic = kind === "elite"
     ? { name: "Ogro", sprite: "/sprites/enemies/ogro.png", maxHealth: 35 + growth * 4, attack: 3 + growth, defense: 3 + Math.floor(growth / 3) }
     : { name: "Araña", sprite: "/sprites/enemies/arana.png", maxHealth: 12 + level * 2, attack: 1 + Math.floor(growth / 3), defense: 0 };
+  if (speciesSeed === undefined) return { ...basic, level };
+  const seed = Math.abs(Math.trunc(speciesSeed));
+  const species = EXPEDITION_ENEMIES[seed % EXPEDITION_ENEMIES.length];
+  const names = species[kind];
+  return { ...basic, level, sprite: species.sprite, name: names[Math.floor(seed / EXPEDITION_ENEMIES.length) % names.length] };
+}
+
+/** Normalize old/malformed JSON without ever reading the legacy inventory. */
+export function normalizeExpeditionInventory(value: unknown): ExpeditionInventoryItemDto[] {
+  if (typeof value === "string") {
+    try { value = JSON.parse(value); } catch { return []; }
+  }
+  if (!Array.isArray(value)) return [];
+  const result = new Map<string, ExpeditionInventoryItemDto>();
+  for (const entry of value) {
+    if (!entry || typeof entry !== "object" || typeof entry.id !== "string" || !entry.id.trim() ||
+      typeof entry.name !== "string" || !entry.name.trim() || !Number.isSafeInteger(entry.quantity) || entry.quantity <= 0) continue;
+    const quantity = (result.get(entry.id)?.quantity ?? 0) + entry.quantity;
+    if (!Number.isSafeInteger(quantity)) continue;
+    result.set(entry.id, { id: entry.id, name: entry.name, quantity });
+  }
+  return [...result.values()];
+}
+
+export function mergeLoot(inventory: unknown, loot: readonly ExpeditionInventoryItemDto[]): ExpeditionInventoryItemDto[] {
+  return normalizeExpeditionInventory([...normalizeExpeditionInventory(inventory), ...loot]);
+}
+
+/** The server-generated ledger UUID cannot be chosen by the client to reroll rewards.
+ * Only possibilities are sent before completion; awarded items are persisted on return. */
+export function rollExpeditionLoot(loot: readonly ExpeditionLootDto[] | undefined, expeditionId: string): ExpeditionInventoryItemDto[] {
+  const awarded: ExpeditionInventoryItemDto[] = [];
+  const seen = new Set<string>();
+  for (const item of loot ?? []) {
+    if (!Number.isFinite(item.chance) || item.chance < 0 || item.chance > 100 || seen.has(item.id)) continue;
+    seen.add(item.id);
+    const roll = createHash("sha256").update(`${expeditionId}:${item.id}`).digest().readUInt32BE(0) / 0x1_0000_0000;
+    if (roll < item.chance / 100) awarded.push({ id: item.id, name: item.name, quantity: item.quantity });
+  }
+  return normalizeExpeditionInventory(awarded);
 }
 
 export function expeditionCombatStats(level: number): { attack: number; defense: number } {

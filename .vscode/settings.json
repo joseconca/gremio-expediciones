@@ -1,0 +1,15 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "npx eslint": true,
+        "npx prisma": true,
+        "npx tsc": true,
+        "/^node --test tests/world-engine\\.test\\.cjs$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^node --test tests/world-expeditions-server\\.test\\.cjs; npx tsc --noEmit --incremental false; npx eslint src/shared/expeditions\\.ts src/lib/mundo/expeditionRules\\.ts src/lib/mundo/expeditionContent\\.ts src/lib/mundo/expeditions\\.ts tests/world-expeditions-server\\.test\\.cjs$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

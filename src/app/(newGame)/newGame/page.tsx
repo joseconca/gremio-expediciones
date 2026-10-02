@@ -12,6 +12,7 @@ import BattleOverlay from "@/components/game/BattleOverlay";
 import GameMenu from "@/components/game/GameMenu";
 import ExpeditionModal from "@/components/game/ExpeditionModal";
 import type { ExpeditionState } from "@/game/gameplay/ExpeditionManager";
+import { expeditionCombatSnapshot } from "@/game/gameplay/expeditionCombat";
 import type { MenuSnapshot } from "@/game/gameplay/MenuManager";
 import type { MobilityState } from "@/game/gameplay/MobilityManager";
 import { BASE_RETURN_LOCATION, type MobilitySnapshot } from "@/shared/travel";
@@ -316,6 +317,7 @@ export default function NewGamePage() {
   const expeditionState = useSyncExternalStore(expeditionManager?.subscribe ?? noopSubscribe,
     expeditionManager?.getSnapshot ?? (() => EMPTY_EXPEDITION), () => EMPTY_EXPEDITION);
   const expeditionActive = !expeditionState.data || (expeditionState.data.active && expeditionState.data.active.phase !== "completed");
+  const expeditionBattle = expeditionState.battleOpen && expeditionState.data ? expeditionCombatSnapshot(expeditionState.data) : null;
 
   if (phase.kind !== "playing") {
     return (
@@ -377,7 +379,7 @@ export default function NewGamePage() {
           : undefined} />
 
       {expeditionManager && start && <ExpeditionModal manager={expeditionManager} snapshot={expeditionState} base={start.base} />}
-      {expeditionManager && (expeditionActive || expeditionState.error) && !expeditionState.open && (
+      {expeditionManager && (expeditionActive || expeditionState.error) && !expeditionState.open && !expeditionState.battleOpen && (
         <button type="button" onClick={() => expeditionManager.openBoard()}
           className="absolute inset-x-4 bottom-20 z-30 rounded border border-amber-200/30 bg-stone-950/95 p-3 text-sm font-bold text-amber-100">
           {expeditionState.data?.active?.phase === "battle" ? "Resolver combate de expedición" : "Ver expedición y mapa"}
@@ -391,7 +393,8 @@ export default function NewGamePage() {
       {menuManager && partyManager && <GameMenu manager={menuManager} snapshot={menuState}
         player={playerState} resources={villageResources} party={partyState}
         partyManager={partyManager} mobility={mobilityState}
-        hasEmbassy={!!villageProgression?.hasBuilding("embassy")} />}
+        hasEmbassy={!!villageProgression?.hasBuilding("embassy")}
+        expeditionInventory={expeditionState.data?.inventory} />}
 
       {mobilityState.error && <p role="alert" className="absolute inset-x-3 top-44 z-30 rounded bg-stone-950/90 p-2 text-xs text-red-200">
         {mobilityState.error}
@@ -410,6 +413,9 @@ export default function NewGamePage() {
           potionCount={villageResources.potions}
         />
       )}
+      {expeditionManager && expeditionBattle && <BattleOverlay manager={expeditionManager.battleController}
+        snapshot={expeditionBattle} potionCount={0} serverControlled busy={expeditionState.busy}
+        error={expeditionState.error} title="Combate de expedición" />}
     </main>
   );
 }

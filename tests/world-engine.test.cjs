@@ -13,6 +13,7 @@ const { ExpeditionManager } = require("../src/game/gameplay/ExpeditionManager.ts
 const { worldGateway } = require("../src/services/worldGateway.ts");
 const { MISSION_BOARD_POSITION } = require("../src/game/entities/MissionBoard.ts");
 const { createRequestId } = require("../src/game/core/requestId.ts");
+const { expeditionCombatSnapshot } = require("../src/game/gameplay/expeditionCombat.ts");
 
 const yieldMicrotasks = () => new Promise((resolve) => setImmediate(resolve));
 function serverSnapshot(token = "token") {
@@ -357,4 +358,55 @@ test("queued departure revalidates latest status and cannot launch after another
     assert.match(manager.getSnapshot().error, /otro viaje/);
     assert.equal(manager.getSnapshot().busy, false);
   } finally { manager.destroy(); }
+});
+
+test("expedition battle automatically opens the common combat view and commands stay server-owned", async () => {
+  const requests = [];
+  const fixture = expeditionFixture();
+  const active = { id: "trip", phase: "battle", version: 2,
+    enemy: { name: "Araña de cristal", sprite: "/sprites/enemies/arana.png", level: 3, attack: 2, defense: 0, maxHealth: 18 },
+    enemyHealth: 18, playerHealth: 40, playerMaxHealth: 100, outcome: null, log: "Encuentro.",
+    mission: { gold: 27, experience: 34 } };
+  const manager = new ExpeditionManager({ async expedition(request) {
+    requests.push(request);
+    return { ok: true, snapshot: { ...fixture, active: request.action === "attack"
+      ? { ...active, phase: "returning", outcome: "victory", enemyHealth: 0, version: 3 } : active } };
+  } }, { suspendSync: async (action) => action(), adoptProfile() {} }, {}, () => true);
+  try {
+    manager.openBoard();
+    await yieldMicrotasks();
+    assert.equal(manager.getSnapshot().open, false);
+    assert.equal(manager.getSnapshot().battleOpen, true);
+    manager.openBoard();
+    assert.equal(manager.getSnapshot().battleOpen, false);
+    manager.openBattle();
+    assert.equal(manager.getSnapshot().open, false);
+    assert.equal(manager.getSnapshot().battleOpen, true);
+    const overlay = expeditionCombatSnapshot(manager.getSnapshot().data);
+    assert.equal(overlay.phase, "active");
+    assert.equal(overlay.enemy.attributes.currentHealth, 18);
+    assert.match(overlay.enemy.name, /Nv\. 3/);
+    assert.equal(manager.battleController.usePotion(), false);
+    manager.battleController.act("attack");
+    await yieldMicrotasks();
+    const attack = requests.find((request) => request.action === "attack");
+    assert.ok(attack);
+    assert.equal(attack.version, 2);
+    assert.equal(expeditionCombatSnapshot(manager.getSnapshot().data).phase, "victory");
+    assert.equal(manager.getSnapshot().battleOpen, true);
+    manager.battleController.closeResult();
+    assert.equal(manager.getSnapshot().battleOpen, false);
+    assert.equal(manager.getSnapshot().open, true);
+  } finally { manager.destroy(); }
+});
+
+test("old expeditions still project into common overlay without enemy level or loot", () => {
+  const data = { ...expeditionFixture(), active: { id: "old", phase: "returning", version: 3, outcome: "fled",
+    enemy: { name: "Araña", sprite: "/sprites/enemies/arana.png", attack: 1, defense: 0, maxHealth: 14 },
+    enemyHealth: 6, playerHealth: 39, playerMaxHealth: 100, log: "Retirada", mission: { gold: 20, experience: 25 } } };
+  assert.equal(expeditionCombatSnapshot(data).phase, "fled");
+  assert.equal(expeditionCombatSnapshot(data).enemy.name, "Araña");
+  const delivered = { ...data, active: { ...data.active, phase: "completed", outcome: "victory", rewardGranted: true } };
+  assert.match(expeditionCombatSnapshot(delivered).log, /Botín entregado/);
+  assert.doesNotMatch(expeditionCombatSnapshot(delivered).log, /pendiente/);
 });

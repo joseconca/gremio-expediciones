@@ -305,6 +305,7 @@ model Jugador {
   ubicacionRevision Int @default(0)
   ultimaEliteExitosa DateTime?
   rewardRevision Int @default(0)
+  inventarioMundo Json @default("[]")
   expedicionesMundo ExpedicionMundo[]
 
   miembroParty          MiembroParty?
@@ -337,6 +338,7 @@ model ExpedicionMundo {
   outcome           String?
   log               String   @default("")
   rewardGranted     Boolean  @default(false)
+  botin             Json     @default("[]")
   // Sin FK: borrar el receptor no debe borrar el ledger del remitente.
   targetPlayerId    String?
 

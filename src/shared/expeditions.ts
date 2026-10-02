@@ -3,6 +3,9 @@ import type { PlayerProfileDto } from "./world";
 export type ExpeditionKind = "normal" | "elite" | "trade";
 export type ExpeditionPhase = "outbound" | "battle" | "returning" | "completed";
 
+export type ExpeditionInventoryItemDto = { id: string; name: string; quantity: number };
+export type ExpeditionLootDto = ExpeditionInventoryItemDto & { chance: number };
+
 export type MissionDto = {
   id: string;
   kind: ExpeditionKind;
@@ -14,9 +17,14 @@ export type MissionDto = {
   gold: number;
   experience: number;
   targetPlayerId?: string;
+  description?: string;
+  enemyLevel?: number;
+  enemy?: EnemyDto;
+  loot?: ExpeditionLootDto[];
 };
 
 export type EnemyDto = {
+  level?: number;
   name: string;
   sprite: string;
   maxHealth: number;
@@ -41,6 +49,7 @@ export type ExpeditionDto = {
   outcome: "victory" | "defeat" | "fled" | "trade" | null;
   log: string;
   rewardGranted: boolean;
+  awardedLoot?: ExpeditionInventoryItemDto[];
 };
 
 export type ExpeditionSnapshotDto = {
@@ -51,6 +60,7 @@ export type ExpeditionSnapshotDto = {
   profile: PlayerProfileDto;
   progressToken: string;
   rewardRevision: number;
+  inventory?: ExpeditionInventoryItemDto[];
 };
 
 export type ExpeditionRequest =

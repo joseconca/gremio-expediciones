@@ -7,6 +7,7 @@ import type { PartyManager, PartySnapshot } from "@/game/gameplay/PartyManager";
 import type { PlayerProgressionState } from "@/game/gameplay/PlayerProgression";
 import type { VillageResources } from "@/game/gameplay/VillageProgression";
 import type { GatewayResult } from "@/shared/world";
+import type { ExpeditionInventoryItemDto } from "@/shared/expeditions";
 
 interface GameMenuProps {
   manager: MenuManager;
@@ -17,6 +18,7 @@ interface GameMenuProps {
   mobility: MobilityState;
   partyManager: PartyManager;
   hasEmbassy: boolean;
+  expeditionInventory?: ExpeditionInventoryItemDto[];
 }
 
 const MENU_TABS: ReadonlyArray<{ id: MenuSnapshot["tab"]; label: string }> = [
@@ -45,6 +47,7 @@ export default function GameMenu({
   mobility,
   partyManager,
   hasEmbassy,
+  expeditionInventory = [],
 }: GameMenuProps) {
   const titleId = useId();
   const descriptionId = useId();
@@ -175,6 +178,11 @@ export default function GameMenu({
 
           {snapshot.tab === "inventory" && (
             <section aria-label="Inventario">
+              <h3 className="mb-3 font-bold text-amber-100">Botín de expediciones</h3>
+              <p className="mb-3 text-stone-400">Objetos guardados en servidor. Su uso y equipamiento todavía no están disponibles.</p>
+              {expeditionInventory.length ? <ul className="mb-4 space-y-2">
+                {expeditionInventory.map((item) => <li key={item.id} className="flex justify-between rounded-lg bg-stone-900 p-3"><span>{item.name}</span><strong>×{item.quantity}</strong></li>)}
+              </ul> : <p className="mb-4 text-stone-400">Aún no tienes botín de expediciones.</p>}
               <h3 className="mb-3 font-bold text-amber-100">Objetos temporales locales</h3>
               <p className="mb-4 text-stone-400">Estas cantidades proceden de los recursos locales actuales. No son un inventario persistente y no se pueden usar desde este menú.</p>
               <dl className="space-y-2">

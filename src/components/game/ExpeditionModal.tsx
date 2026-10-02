@@ -1,22 +1,14 @@
 "use client";
 
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useEffectEvent, useId, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import Image from "next/image";
-import type { ExpeditionManager } from "@/game/gameplay/ExpeditionManager";
-import type { ExpeditionKind, ExpeditionSnapshotDto, MissionDto } from "@/shared/expeditions";
+import type { ExpeditionManager, ExpeditionState } from "@/game/gameplay/ExpeditionManager";
+import type { ExpeditionKind } from "@/shared/expeditions";
 
 const ExpeditionMap = dynamic(() => import("./ExpeditionMap"), {
   ssr: false,
-  loading: () => <div className="grid h-full min-h-40 place-items-center rounded-lg bg-slate-900 text-amber-200" role="status">Cargando mapa…</div>,
+  loading: () => <div className="grid h-full place-items-center bg-slate-900 text-amber-200" role="status">Cargando mapa…</div>,
 });
-
-export interface ExpeditionState {
-  open: boolean;
-  busy: boolean;
-  error: string | null;
-  data: ExpeditionSnapshotDto | null;
-}
 
 export interface ExpeditionModalProps {
   manager: ExpeditionManager;
@@ -24,14 +16,10 @@ export interface ExpeditionModalProps {
   base: { lat: number; lng: number };
 }
 
-const kinds: Record<ExpeditionKind, { label: string; symbol: string }> = {
-  normal: { label: "Normal", symbol: "⚔️" },
-  elite: { label: "Élite · jefe", symbol: "👑" },
-  trade: { label: "Comercio", symbol: "📦" },
-};
-const phases = { outbound: "En camino", battle: "Combate", returning: "Regresando", completed: "Regreso completado" };
+const kinds: Record<ExpeditionKind, string> = { normal: "⚔️ Normal", elite: "👑 Élite · jefe", trade: "📦 Comercio" };
+const phases = { outbound: "En camino", battle: "Encuentro", returning: "Regresando", completed: "Completada" };
 const outcomes = { victory: "Victoria", defeat: "Derrota", fled: "Retirada", trade: "Entrega comercial" };
-const buttonClass = "min-h-11 touch-manipulation rounded-lg border border-amber-200/25 px-4 py-2 font-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 disabled:cursor-not-allowed disabled:opacity-45";
+const buttonClass = "min-h-11 touch-manipulation rounded-lg border border-amber-200/25 px-3 py-2 font-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 disabled:cursor-not-allowed disabled:opacity-45";
 
 function duration(ms: number): string {
   const seconds = Math.max(0, Math.ceil(ms / 1000));
@@ -39,6 +27,14 @@ function duration(ms: number): string {
   const minutes = Math.floor((seconds % 3600) / 60);
   const remainder = seconds % 60;
   return hours > 0 ? `${hours} h ${minutes} min ${remainder} s` : minutes > 0 ? `${minutes} min ${remainder} s` : `${remainder} s`;
+}
+
+function difficulty(difference: number): string {
+  if (difference <= -2) return "Muy fácil";
+  if (difference === -1) return "Fácil";
+  if (difference === 0) return "Normal";
+  if (difference <= 2) return "Difícil";
+  return "Muy difícil";
 }
 
 function ArrivalTime({ at, serverNow }: { at: number; serverNow: number }) {
@@ -53,53 +49,41 @@ function ArrivalTime({ at, serverNow }: { at: number; serverNow: number }) {
     const interval = window.setInterval(update, 1000);
     return () => window.clearInterval(interval);
   }, [at, serverNow]);
-  return <span ref={ref}>{at > serverNow ? duration(at - serverNow) : "Esperando confirmación del servidor…"}</span>;
-}
-
-function HealthBar({ label, current, maximum, enemy = false }: { label: string; current: number; maximum: number; enemy?: boolean }) {
-  const value = Math.max(0, Math.min(maximum, current));
-  return (
-    <div className="rounded-lg border border-amber-100/15 bg-black/30 p-3">
-      <div className="mb-2 flex justify-between gap-3 text-sm"><span className="font-bold">{label}</span><span>{current}/{maximum} HP</span></div>
-      <div role="progressbar" aria-label={`Salud de ${label}`} aria-valuemin={0} aria-valuemax={Math.max(1, maximum)} aria-valuenow={value} className="h-2 overflow-hidden rounded bg-slate-900">
-        <div className={`h-full ${enemy ? "bg-red-500" : "bg-emerald-500"}`} style={{ width: `${maximum > 0 ? value / maximum * 100 : 0}%` }} />
-      </div>
-    </div>
-  );
-}
-
-function Rewards({ mission }: { mission: MissionDto }) {
-  return (
-    <div className="space-y-2">
-      <p className="font-bold text-amber-300">{mission.gold} oro <span className="text-amber-100/40">·</span> {mission.experience} XP</p>
-      {mission.kind === "trade" && <p className="text-sm text-emerald-200">El receptor obtiene además el 25%: {mission.gold / 4} oro, al completar tu regreso.</p>}
-    </div>
-  );
+  return <span ref={ref}>{duration(at - serverNow)}</span>;
 }
 
 export default function ExpeditionModal({ manager, snapshot, base }: ExpeditionModalProps) {
   const titleId = useId();
   const descriptionId = useId();
+  const detailsId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const detailsRef = useRef<HTMLElement>(null);
   const inFlight = useRef(false);
   const mounted = useRef(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
   const [commandError, setCommandError] = useState<string | null>(null);
-  const [mapExpanded, setMapExpanded] = useState(false);
-  const mapId = useId();
   const data = snapshot.data;
   const active = data?.active ?? null;
   const travelling = active !== null && active.phase !== "completed";
   const selected = data?.missions.find((mission) => mission.id === selectedId) ?? null;
   const busy = snapshot.busy || pending;
   const eliteReady = data !== null && data.eliteAvailableAt <= data.serverNow;
-  const selectMission = useCallback((id: string) => setSelectedId(id), []);
+  const error = commandError || snapshot.error;
+  const enemyLevel = selected?.enemyLevel ?? selected?.enemy?.level;
+  const selectMission = useCallback((id: string) => { setSelectedId(id); setCommandError(null); }, []);
+  const clearSelection = () => { setSelectedId(null); closeRef.current?.focus(); };
 
   useEffect(() => {
     mounted.current = true;
     return () => { mounted.current = false; };
   }, []);
+
+  const escape = useEffectEvent(() => {
+    if (selected) clearSelection();
+    else manager.close();
+  });
 
   useEffect(() => {
     if (!snapshot.open) return;
@@ -110,19 +94,18 @@ export default function ExpeditionModal({ manager, snapshot, base }: ExpeditionM
     document.body.style.overflow = "hidden";
     const focusable = () => Array.from(dialog.querySelectorAll<HTMLElement>(
       'button:not(:disabled), a[href], input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex]:not([tabindex="-1"])',
-    )).filter((element) => element.getClientRects().length > 0 && !element.closest('[aria-hidden="true"], [inert]'));
+    )).filter((element) => element.getClientRects().length > 0 && !element.matches(':disabled, [aria-disabled="true"]') && !element.closest('[aria-hidden="true"], [inert]'));
     const focusFirst = () => (focusable()[0] ?? dialog).focus();
     focusFirst();
     const handleKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        event.preventDefault();
-        event.stopPropagation();
-        manager.close();
+        event.preventDefault(); event.stopPropagation(); escape();
       } else if (event.key === "Tab") {
         const elements = focusable();
         const first = elements[0];
         const last = elements[elements.length - 1];
-        if (!first || (event.shiftKey && (document.activeElement === first || document.activeElement === dialog)) || (!event.shiftKey && document.activeElement === last)) {
+        if (!first || !elements.includes(document.activeElement as HTMLElement) ||
+          (event.shiftKey && document.activeElement === first) || (!event.shiftKey && document.activeElement === last)) {
           event.preventDefault();
           (event.shiftKey ? last ?? dialog : first ?? dialog).focus();
         }
@@ -141,140 +124,80 @@ export default function ExpeditionModal({ manager, snapshot, base }: ExpeditionM
     };
   }, [snapshot.open, manager]);
 
+  useEffect(() => {
+    if (snapshot.open && selectedId) detailsRef.current?.focus({ preventScroll: true });
+  }, [snapshot.open, selectedId]);
+
   const run = async (command: () => Promise<void>) => {
     if (busy || inFlight.current) return;
-    inFlight.current = true;
-    setPending(true);
-    setCommandError(null);
-    try {
-      await command();
-    } catch (error) {
-      if (mounted.current) setCommandError(error instanceof Error ? error.message : "No se ha podido completar la acción.");
-    } finally {
-      inFlight.current = false;
-      if (mounted.current) setPending(false);
-    }
+    inFlight.current = true; setPending(true); setCommandError(null);
+    try { await command(); }
+    catch (error) { if (mounted.current) setCommandError(error instanceof Error ? error.message : "No se ha podido completar la acción."); }
+    finally { inFlight.current = false; if (mounted.current) setPending(false); }
+  };
+
+  const openBattle = () => {
+    manager.openBattle();
   };
 
   if (!snapshot.open) return null;
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-2 text-amber-50 backdrop-blur-sm sm:p-5">
-      <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby={titleId} aria-describedby={descriptionId} tabIndex={-1} className="flex h-[calc(100dvh-1rem)] min-h-0 w-full min-w-0 max-w-6xl flex-col overflow-hidden rounded-xl border border-amber-200/25 bg-[#17120f] shadow-2xl sm:h-auto sm:max-h-[calc(100dvh-2.5rem)]">
-        <header className="flex shrink-0 items-start justify-between gap-3 border-b border-amber-100/15 px-3 py-2 pt-[max(0.5rem,env(safe-area-inset-top))] sm:px-6 sm:py-3">
-          <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-amber-300/70">Gremio de expediciones</p>
-            <h2 id={titleId} className="text-xl font-black sm:text-2xl">{travelling ? "Tu expedición" : "Tablero de misiones"}</h2>
-            <p id={descriptionId} className="mt-1 text-xs text-amber-100/65">{travelling ? "Tu aventurero está embarcado y permanece ocupado hasta regresar. Cerrar no cancela el viaje." : "Elige un destino. Las recompensas se entregan al regresar al poblado."}</p>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 text-amber-50 backdrop-blur-sm">
+      <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby={titleId} aria-describedby={descriptionId} tabIndex={-1}
+        className="relative isolate h-[95dvh] min-h-[min(92dvh,800px)] w-[95vw] min-w-0 max-w-[1280px] bg-no-repeat shadow-2xl [image-rendering:pixelated]"
+        style={{ backgroundImage: "url('/sprites/tablonMisiones.png')", backgroundSize: "200% 168.421%", backgroundPosition: "50% 26.923%" }}>
+        <h2 id={titleId} className="sr-only">Tablero de expediciones</h2>
+        <p id={descriptionId} className="sr-only">Selecciona un marcador para consultar su misión. Puedes mover y ampliar el mapa. Cerrar no cancela el viaje. Escape cierra primero los detalles y después el tablero.</p>
+        <button ref={closeRef} type="button" onClick={() => manager.close()} aria-label="Cerrar expediciones" className={`${buttonClass} absolute right-[6%] top-[max(1%,env(safe-area-inset-top))] z-20 bg-[#21150f]/95 text-sm shadow-lg`}>Cerrar</button>
+        <div className="absolute inset-x-[5%] bottom-[7%] top-[9%] min-h-0 min-w-0">
+          <ExpeditionMap base={base} missions={data?.missions ?? []} selectedId={selected?.id ?? null} onSelect={selectMission} active={active} serverNow={data?.serverNow ?? 0} />
+          <div className="pointer-events-none absolute inset-x-2 top-2 z-[500] flex justify-end">
+            <p aria-label="Leyenda del mapa" className="rounded bg-[#21150f]/90 px-2 py-1 text-[10px] shadow-lg sm:text-xs">{Object.values(kinds).join(" · ")}</p>
           </div>
-          <button type="button" onClick={() => manager.close()} className={`${buttonClass} shrink-0 bg-black/30 hover:bg-amber-900/40`} aria-label="Cerrar expediciones">Cerrar</button>
-        </header>
-
-        <div className="min-h-0 min-w-0 flex-1 overflow-y-auto overscroll-contain p-3 sm:p-6">
-          {(snapshot.error || commandError) && <p role="alert" className="mb-4 rounded-lg border border-red-400/35 bg-red-950/40 p-3 text-sm text-red-200">{snapshot.error || commandError}</p>}
-          <p role="status" className="mb-3 text-xs text-amber-200/70">{busy ? "Consultando al servidor…" : data ? "Estado confirmado por el servidor" : "Cargando tablero…"}</p>
-          {!data ? (
-            <div className="rounded-lg border border-amber-100/15 bg-black/20 p-6 text-center">
-              <p className="mb-4 text-sm text-amber-100/70">Todavía no hay datos de expediciones.</p>
-              <button type="button" disabled={busy} onClick={() => void run(async () => { await manager.openBoard(); })} className={`${buttonClass} bg-amber-900/60`}>Volver a consultar</button>
+          {!data && <section className="pointer-events-auto absolute inset-x-2 bottom-2 z-[500] mx-auto max-w-sm space-y-2 rounded-lg bg-[#21150f]/95 p-3 text-sm shadow-xl">
+            <p role="status">{busy ? "Consultando al servidor…" : "Cargando tablero…"}</p>
+            {error && <p role="alert" className="text-red-200">{error}</p>}
+            <button type="button" disabled={busy} onClick={() => void run(async () => { manager.openBoard(); })} className={`${buttonClass} w-full bg-amber-800`}>Volver a consultar</button>
+          </section>}
+          {selected && data && <section ref={detailsRef} tabIndex={-1} aria-labelledby={detailsId}
+            className="pointer-events-auto absolute bottom-2 right-2 z-[510] max-h-[60%] w-[calc(100%-1rem)] max-w-sm overflow-y-auto overscroll-contain rounded-lg border border-amber-200/30 bg-[#21150f]/95 p-3 text-sm shadow-2xl focus-visible:outline-2 focus-visible:outline-amber-300 sm:p-4">
+            <div className="mb-2 flex items-start justify-between gap-2">
+              <div className="min-w-0"><p className="text-xs text-amber-300">{kinds[selected.kind]}</p><h3 id={detailsId} className="break-words font-black">{selected.name}</h3></div>
+              <button type="button" onClick={clearSelection} className={`${buttonClass} shrink-0 px-2 text-xs`}>Cerrar detalles</button>
             </div>
-          ) : (
-            <>
-              {active?.phase === "completed" && (
-                <section aria-label="Resultado de la última expedición" className="mb-4 space-y-2 rounded-lg border border-emerald-300/25 bg-emerald-950/25 p-4">
-                  <h3 className="font-black">{active.outcome ? outcomes[active.outcome] : "Expedición finalizada"} · {active.mission.name}</h3>
-                  <p className="whitespace-pre-line text-sm text-amber-100/80">{active.log}</p>
-                  {active.rewardGranted ? <><p className="text-sm text-emerald-200">Recompensas entregadas.</p><Rewards mission={active.mission} /></> : <p className="text-sm text-amber-100/70">Sin recompensas.</p>}
-                  <p className="text-xs text-amber-100/65">Tu aventurero ha regresado. Puedes elegir otra misión del catálogo actual.</p>
-                </section>
-              )}
-              <button type="button" aria-expanded={mapExpanded} aria-controls={mapId}
-                onClick={() => setMapExpanded((expanded) => !expanded)}
-                className={`${buttonClass} mb-3 w-full bg-black/30 lg:hidden`}>
-                {mapExpanded ? "Ocultar mapa" : "Mostrar mapa y ruta"}
+            <div className="space-y-3">
+              <p className="text-amber-100/80">{selected.description ?? (selected.kind === "trade" ? "Lleva mercancías al poblado vecino y regresa para cobrar el encargo." : "Explora el destino y derrota a su guardián.")}</p>
+              <p className="text-xs">{selected.distanceKm.toLocaleString("es", { maximumFractionDigits: 2 })} km de ida · {duration(selected.durationMs)} por trayecto<br />Ida y vuelta: {duration(selected.durationMs * 2)}{selected.kind !== "trade" ? " + combate" : ""}</p>
+              {selected.enemy && <div className="rounded bg-black/25 p-2">
+                <p className="font-bold">{selected.enemy.name}{enemyLevel !== undefined ? ` · Nivel ${enemyLevel}` : ""}</p>
+                {enemyLevel !== undefined && <p className="text-xs text-amber-200">{difficulty(enemyLevel - data.profile.level)} · Tu nivel: {data.profile.level}</p>}
+                {selected.kind === "elite" && <p className="mt-1 text-xs text-purple-200">Modificador de jefe: mayor salud, ataque y defensa.</p>}
+              </div>}
+              <p className="font-bold text-amber-300">{selected.gold} oro · {selected.experience} XP</p>
+              {selected.kind === "trade" && <p className="text-xs text-emerald-200">El receptor obtiene además {selected.gold / 4} oro (25%).</p>}
+              {!!selected.loot?.length && <div><h4 className="mb-1 text-xs font-bold text-amber-200">Botín posible</h4><ul className="space-y-1 text-xs">{selected.loot.map((item) => <li key={item.id}>{item.name} ×{item.quantity} · {item.chance}% de probabilidad</li>)}</ul></div>}
+              <p className="text-xs text-amber-100/60">Las recompensas se entregan al regresar. Tu aventurero permanece ocupado durante el viaje.</p>
+              {selected.kind === "elite" && !eliteReady && <p className="text-xs text-purple-200">Élite disponible en {duration(data.eliteAvailableAt - data.serverNow)}.</p>}
+              {data.profile.currentHealth <= 0 && <p className="text-xs text-red-200">Necesitas recuperar salud antes de salir.</p>}
+              {travelling && <p className="text-xs text-amber-200">Ya tienes una expedición en curso.</p>}
+              {error && <p role="alert" className="rounded bg-red-950/60 p-2 text-xs text-red-200">{error}</p>}
+              <button type="button" disabled={busy || travelling || data.profile.currentHealth <= 0 || (selected.kind === "elite" && !eliteReady)} onClick={() => void run(() => manager.start(selected.id))} className={`${buttonClass} w-full bg-amber-700 enabled:hover:bg-amber-600`}>
+                {busy ? "Preparando expedición…" : selected.kind === "elite" && !eliteReady ? "Élite en espera" : "Embarcar aventurero"}
               </button>
-              <div className="grid min-w-0 grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.3fr)_minmax(18rem,1fr)]">
-                <div id={mapId} className={`${mapExpanded ? "block" : "hidden"} order-2 h-[min(40dvh,18rem)] min-h-40 min-w-0 lg:order-1 lg:block lg:h-[30rem]`}>
-                  <ExpeditionMap base={base} missions={data.missions} selectedId={selected?.id ?? null} onSelect={selectMission} active={active} serverNow={data.serverNow} />
-                </div>
-
-                {travelling ? (
-                  <section aria-label="Estado de la expedición" className="order-1 min-w-0 space-y-4 rounded-lg border border-amber-100/15 bg-black/25 p-4 lg:order-2">
-                    <div className="flex items-start justify-between gap-3"><h3 className="text-lg font-black">{active.mission.name}</h3><span className="shrink-0 rounded bg-amber-900/40 px-2 py-1 text-xs font-bold">{phases[active.phase]}</span></div>
-                    <p className="text-sm text-amber-100/65">{kinds[active.mission.kind].label} · {active.mission.distanceKm.toLocaleString("es", { maximumFractionDigits: 2 })} km de ida</p>
-                    {(active.phase === "outbound" || active.phase === "returning") && <p className="rounded-lg border border-amber-200/20 bg-amber-950/25 p-3 text-sm">{active.phase === "outbound" ? "Llegada al destino: " : "Regreso al poblado: "}<ArrivalTime at={active.phase === "outbound" ? active.arrivalAt : active.returnArrivalAt ?? data.serverNow} serverNow={data.serverNow} /></p>}
-                    <HealthBar label="Tu aventurero" current={active.playerHealth} maximum={active.playerMaxHealth} />
-                    {active.phase === "battle" && active.enemy && (
-                      <section aria-label="Combate de expedición" className="space-y-3">
-                        <HealthBar label={active.enemy.name} current={active.enemyHealth} maximum={active.enemy.maxHealth} enemy />
-                        <div className="flex justify-center rounded-lg bg-black/25 p-3"><Image src={active.enemy.sprite} alt={active.enemy.name} width={160} height={160} unoptimized className="h-40 w-40 object-contain [image-rendering:pixelated]" /></div>
-                        <p className="text-center text-xs text-amber-100/60">{active.mission.kind === "elite" ? "Jefe · " : ""}Ataque {active.enemy.attack} · Defensa {active.enemy.defense}</p>
-                        <nav aria-label="Acciones de combate" className="grid grid-cols-2 gap-3">
-                          <button type="button" disabled={busy} onClick={() => void run(() => manager.act("attack"))} className={`${buttonClass} bg-amber-800 enabled:hover:bg-amber-700`}>Atacar</button>
-                          <button type="button" disabled={busy} onClick={() => void run(() => manager.act("flee"))} className={`${buttonClass} bg-slate-800 enabled:hover:bg-slate-700`}>Huir</button>
-                        </nav>
-                      </section>
-                    )}
-                    <p aria-live="polite" className="whitespace-pre-line text-sm text-amber-100/80">{active.log}</p>
-                    {active.phase === "returning" && <div className="space-y-2 border-t border-amber-100/15 pt-3"><h4 className="font-bold">{active.outcome ? outcomes[active.outcome] : "Resultado"}</h4>{active.outcome === "victory" || active.outcome === "trade" ? <><Rewards mission={active.mission} /><p className="text-xs text-amber-100/65">Pendientes de entrega: no se acreditan hasta que el servidor confirme el regreso.</p></> : <p className="text-sm text-amber-100/65">Regresas sin recompensas.</p>}</div>}
-                    <p className="text-xs text-amber-100/55">Puedes cerrar esta ventana sin cancelar la expedición. Tu aventurero seguirá ocupado hasta regresar.</p>
-                  </section>
-                ) : (
-                  <section aria-label="Misiones disponibles" className="order-1 min-w-0 space-y-4 lg:order-2">
-                    <div className="space-y-3 rounded-lg border border-amber-100/15 bg-black/25 p-3 lg:max-h-64 lg:overflow-y-auto">
-                      {(["normal", "elite", "trade"] as const).map((kind) => (
-                        <div key={kind}>
-                          <h3 className="mb-2 text-xs font-bold uppercase tracking-wider text-amber-200">{kinds[kind].symbol} {kinds[kind].label}</h3>
-                          {kind === "elite" && <p className="mb-2 text-xs text-purple-200">{eliteReady ? "Élite disponible" : `Disponible en ${duration(data.eliteAvailableAt - data.serverNow)}`}</p>}
-                          {data.missions.filter((mission) => mission.kind === kind).map((mission) => (
-                            <button key={mission.id} type="button" aria-pressed={selected?.id === mission.id} onClick={() => selectMission(mission.id)} className={`mb-2 min-h-11 w-full touch-manipulation rounded-lg border p-3 text-left focus-visible:outline-2 focus-visible:outline-amber-300 ${selected?.id === mission.id ? "border-amber-300/70 bg-amber-900/35" : "border-amber-100/10 bg-black/20 hover:bg-amber-900/20"}`}>
-                              <span className="block text-sm font-bold">{mission.name}</span><span className="mt-1 block text-xs text-amber-100/60">{mission.distanceKm.toLocaleString("es", { maximumFractionDigits: 2 })} km · {duration(mission.durationMs)} de ida</span>
-                            </button>
-                          ))}
-                          {!data.missions.some((mission) => mission.kind === kind) && <p className="mb-2 text-xs text-amber-100/50">{kind === "trade" ? "No hay destinos comerciales cercanos." : "Sin misiones en este catálogo."}</p>}
-                        </div>
-                      ))}
-                    </div>
-                    <section aria-label="Detalles de la misión seleccionada" className="space-y-3 rounded-lg border border-amber-200/20 bg-amber-950/20 p-4">
-                      {selected ? (
-                        <>
-                          <h3 className="font-black">{selected.name}</h3>
-                          <p className="text-sm text-amber-100/70">
-                            {selected.distanceKm.toLocaleString("es", { maximumFractionDigits: 2 })} km de ida · {duration(selected.durationMs)} por trayecto
-                            <br />
-                            Ida y vuelta: {duration(selected.durationMs * 2)}{selected.kind !== "trade" ? " + combate" : ""}
-                          </p>
-                          <Rewards mission={selected} />
-                          {selected.kind === "elite" && (
-                            <p className="text-sm text-purple-200">
-                              Jefe: Ogro. {eliteReady ? "Puedes desafiarlo." : `En espera: ${duration(data.eliteAvailableAt - data.serverNow)}.`}
-                            </p>
-                          )}
-                          <p className="text-xs text-amber-100/55">El aventurero queda ocupado hasta su regreso. El servidor valida el inicio y las recompensas.</p>
-                        </>
-                      ) : (
-                        <p className="text-sm text-amber-100/65">Selecciona una misión en el mapa o en la lista para ver sus detalles.</p>
-                      )}
-                    </section>
-                  </section>
-                )}
-              </div>
-            </>
-          )}
+            </div>
+          </section>}
         </div>
-        {!travelling && data && (
-          <footer className="shrink-0 border-t border-amber-200/20 bg-[#17120f] p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-6">
-            {(snapshot.error || commandError) && <p role="alert" className="mb-2 max-h-16 overflow-y-auto text-sm text-red-200">{snapshot.error || commandError}</p>}
-            <p aria-live="polite" className="mb-2 truncate text-sm text-amber-200">
-              {selected ? `${selected.name} · ${selected.gold} oro · ${selected.experience} XP` : "Elige una misión en la lista o el mapa"}
-            </p>
-            <button type="button" disabled={busy || !selected || (selected.kind === "elite" && !eliteReady)}
-              onClick={() => { if (selected) void run(() => manager.start(selected.id)); }}
-              className={`${buttonClass} w-full bg-amber-700 enabled:hover:bg-amber-600`}>
-              {busy ? "Preparando expedición…" : selected?.kind === "elite" && !eliteReady ? "Élite en espera" : "Embarcar aventurero"}
-            </button>
-          </footer>
-        )}
+        {data && !selected && <div className="pointer-events-none absolute inset-x-[6%] bottom-[max(8%,env(safe-area-inset-bottom))] z-20 flex max-h-[19%] justify-end">
+          {active ? <section aria-label="Estado de la expedición" className="pointer-events-auto w-full max-w-sm space-y-1 overflow-y-auto overscroll-contain rounded-lg border border-amber-200/20 bg-[#21150f]/95 p-2 text-xs shadow-xl sm:p-3">
+            <p className="font-bold text-amber-300">{phases[active.phase]} · {active.mission.name}</p>
+            {(active.phase === "outbound" || active.phase === "returning") && <p>{active.phase === "outbound" ? "Llegada: " : "Regreso: "}<ArrivalTime at={active.phase === "outbound" ? active.arrivalAt : active.returnArrivalAt ?? data.serverNow} serverNow={data.serverNow} /></p>}
+            {active.outcome && <p>{outcomes[active.outcome]}</p>}
+            <p aria-live="polite" className="whitespace-pre-line text-amber-100/80">{active.log}</p>
+            {active.phase === "completed" && (active.rewardGranted ? <><p className="text-emerald-200">Entregados: {active.mission.gold} oro · {active.mission.experience} XP</p>{active.awardedLoot?.map((item) => <p key={item.id}>{item.name} ×{item.quantity}</p>)}</> : <p>Sin recompensas.</p>)}
+            {error && <p role="alert" className="text-red-200">{error}</p>}
+            {active.phase === "battle" && <button type="button" disabled={busy} onClick={openBattle} className={`${buttonClass} w-full bg-amber-700 enabled:hover:bg-amber-600`}>Resolver combate</button>}
+          </section> : !selected && <p role={error ? "alert" : "status"} className="pointer-events-auto max-w-sm overflow-y-auto rounded bg-[#21150f]/95 p-2 text-xs shadow-lg">{error || (busy ? "Consultando al servidor…" : "Selecciona un destino en el mapa.")}</p>}
+        </div>}
       </div>
     </div>
   );

@@ -8,15 +8,17 @@ import { progressToken } from "./jugador";
 import {
   ELITE_COOLDOWN_MS, EXPEDITION_RADIUS_METERS, expeditionAttack, expeditionCombatStats,
   expeditionEnemy, expeditionRewardProgress, generateExpeditionMissions,
-  parseExpeditionRequest, validExpeditionCoordinates,
+  mergeLoot, normalizeExpeditionInventory, parseExpeditionRequest, rollExpeditionLoot, validExpeditionCoordinates,
 } from "./expeditionRules";
 
 type PlayerRow = Jugador & {
   ultimaEliteExitosa: Date | null;
   rewardRevision: number;
+  inventarioMundo: Prisma.JsonValue;
   usuario: { base: Base | null };
 };
-type LedgerRow = Omit<ExpeditionDto, "origin" | "departureAt" | "arrivalAt" | "returnDepartureAt" | "returnArrivalAt"> & {
+type LedgerRow = Omit<ExpeditionDto, "origin" | "departureAt" | "arrivalAt" | "returnDepartureAt" | "returnArrivalAt" | "awardedLoot"> & {
+  botin?: Prisma.JsonValue;
   jugadorId: string;
   requestId: string;
   originLat: number;
@@ -30,6 +32,7 @@ type LedgerRow = Omit<ExpeditionDto, "origin" | "departureAt" | "arrivalAt" | "r
   targetPlayerId: string | null;
 };
 type PlayerWrite = Partial<Pick<Jugador, "nivel" | "experiencia" | "oro" | "saludActual" | "saludMaxima">> & {
+  inventarioMundo?: Prisma.InputJsonValue;
   rewardRevision?: { increment: number };
   ultimaEliteExitosa?: Date;
 };
@@ -38,7 +41,7 @@ type LedgerWrite = Partial<Omit<LedgerRow, "id" | "jugadorId" | "requestId" | "e
 };
 
 /** Typed schema boundary: permits validation before generating the updated Prisma client.
- * The deployed client/database must include ExpedicionMundo before using this service. */
+ * The deployed client/database must include ExpedicionMundo, botin and inventarioMundo. */
 type ExpeditionTransaction = {
   base: Prisma.TransactionClient["base"];
   jugador: {
@@ -59,7 +62,7 @@ async function readPlayer(tx: ExpeditionTransaction, usuarioId: string): Promise
   if (!validExpeditionCoordinates(player.usuario.base)) {
     throw new MundoError(500, "invalid_coordinates", "Coordenadas de base guardadas inválidas.");
   }
-  return player;
+  return { ...player, inventarioMundo: normalizeExpeditionInventory(player.inventarioMundo) };
 }
 
 async function readLatest(tx: ExpeditionTransaction, playerId: string): Promise<LedgerRow | null> {
@@ -69,7 +72,7 @@ async function readLatest(tx: ExpeditionTransaction, playerId: string): Promise<
     ?? await tx.expedicionMundo.findFirst({ where: { jugadorId: playerId }, orderBy });
 }
 
-async function catalog(tx: ExpeditionTransaction, base: Base, now: number): Promise<MissionDto[]> {
+async function catalog(tx: ExpeditionTransaction, base: Base, now: number, playerLevel: number): Promise<MissionDto[]> {
   const box = boundingBox(base, EXPEDITION_RADIUS_METERS);
   const candidates = await tx.base.findMany({
     where: {
@@ -82,7 +85,7 @@ async function catalog(tx: ExpeditionTransaction, base: Base, now: number): Prom
   const targets = candidates.flatMap((other) => other.usuario.jugador &&
     other.usuarioId !== base.usuarioId && distanceMeters(base, other) <= EXPEDITION_RADIUS_METERS
     ? [{ playerId: other.usuario.jugador.id, baseName: other.nombre, lat: other.lat, lng: other.lng }] : []);
-  return generateExpeditionMissions(base, now, targets);
+  return generateExpeditionMissions(base, now, targets, playerLevel);
 }
 
 function toDto(row: LedgerRow): ExpeditionDto {
@@ -94,6 +97,7 @@ function toDto(row: LedgerRow): ExpeditionDto {
     enemy: row.enemy, enemyHealth: row.enemyHealth, playerHealth: row.playerHealth,
     playerMaxHealth: row.playerMaxHealth, version: row.version, outcome: row.outcome,
     log: row.log, rewardGranted: row.rewardGranted,
+    awardedLoot: row.rewardGranted ? normalizeExpeditionInventory(row.botin) : [],
   };
 }
 
@@ -116,7 +120,10 @@ async function resolveProgression(tx: ExpeditionTransaction, player: PlayerRow, 
   }
   if (row.phase !== "returning" || !row.returnArrivalAt || now < row.returnArrivalAt.getTime()) return row;
   const earnsReward = row.outcome === "victory" || row.outcome === "trade";
+  let awardedLoot = normalizeExpeditionInventory(row.botin);
   if (earnsReward && !row.rewardGranted) {
+    awardedLoot = row.outcome === "victory" && row.mission.kind !== "trade"
+      ? rollExpeditionLoot(row.mission.loot, row.id) : [];
     if (row.outcome === "trade" && row.targetPlayerId && row.targetPlayerId !== player.id) {
       const recipient = await tx.jugador.findUnique({ where: { id: row.targetPlayerId } });
       if (recipient) {
@@ -128,10 +135,12 @@ async function resolveProgression(tx: ExpeditionTransaction, player: PlayerRow, 
     }
     await tx.jugador.update({ where: { id: player.id }, data: {
       ...expeditionRewardProgress(player, row.mission.gold, row.mission.experience), rewardRevision: { increment: 1 },
+      ...(awardedLoot.length ? { inventarioMundo: mergeLoot(player.inventarioMundo, awardedLoot) } : {}),
     } });
   }
   return tx.expedicionMundo.update({ where: { id: row.id }, data: {
     phase: "completed", version: row.version + 1, rewardGranted: row.rewardGranted || earnsReward,
+    botin: awardedLoot,
     log: `${row.log}\nRegreso completado.${earnsReward ? " Recompensa concedida." : " Sin recompensa."}`,
   } });
 }
@@ -157,7 +166,7 @@ async function start(tx: ExpeditionTransaction, player: PlayerRow, row: LedgerRo
     throw new MundoError(409, "elite_cooldown", "Todavía no puedes repetir una expedición élite exitosa.");
   }
   const base = player.usuario.base!;
-  const enemy = expeditionEnemy(mission.kind, player.nivel);
+  const enemy = mission.enemy ?? expeditionEnemy(mission.kind, player.nivel);
   await tx.expedicionMundo.create({ data: {
     id: randomUUID(), jugadorId: player.id, requestId: request.requestId, mission,
     phase: "outbound", originLat: base.lat, originLng: base.lng,
@@ -166,6 +175,7 @@ async function start(tx: ExpeditionTransaction, player: PlayerRow, row: LedgerRo
     enemyHealth: enemy?.maxHealth ?? 0, playerHealth: player.saludActual, playerMaxHealth: player.saludMaxima,
     ...expeditionCombatStats(player.nivel), version: 0, outcome: null,
     log: "Expedición en camino.", rewardGranted: false, targetPlayerId: mission.targetPlayerId ?? null,
+    botin: [],
   } });
 }
 
@@ -204,6 +214,7 @@ async function snapshot(tx: ExpeditionTransaction, usuarioId: string, missions: 
       currentHealth: player.saludActual, maxHealth: player.saludMaxima,
     },
     progressToken: progressToken(player, player.usuario.base!), rewardRevision: player.rewardRevision,
+    inventory: normalizeExpeditionInventory(player.inventarioMundo),
   };
 }
 
@@ -219,7 +230,7 @@ export async function mutateExpeditions(usuarioId: string, body: unknown): Promi
     let player = await readPlayer(tx, usuarioId);
     const row = await resolveProgression(tx, player, await readLatest(tx, player.id), now);
     player = await readPlayer(tx, usuarioId);
-    const missions = await catalog(tx, player.usuario.base!, now);
+    const missions = await catalog(tx, player.usuario.base!, now, player.nivel);
     // Only deliberate validation failures are committed after resolving an arrival.
     // Database/unknown failures propagate and roll back all writes, including rewards.
     try {

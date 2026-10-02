@@ -1,6 +1,6 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { randomUUID, randomBytes } = require("node:crypto");
+const { createHash, randomUUID, randomBytes } = require("node:crypto");
 require("./load-typescript.cjs");
 const { prisma } = require("../src/lib/prisma.ts");
 const { PlayerProgression } = require("../src/game/gameplay/PlayerProgression.ts");
@@ -399,6 +399,13 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
 
     async function winExpedition(account, snapshot) {
       assert.equal(snapshot.active.phase, "battle");
+      const enemy = snapshot.active.enemy;
+      const attack = 8 + Math.max(0, snapshot.profile.level - 1);
+      const defense = 5 + Math.max(0, snapshot.profile.level - 1);
+      const turns = Math.ceil(snapshot.active.enemyHealth / Math.max(1, attack - enemy.defense));
+      assert.ok(turns <= 30, "Selected mission must be winnable within 30 attacks");
+      assert.ok(snapshot.active.playerHealth > (turns - 1) * Math.max(1, enemy.attack - defense),
+        "Selected mission must leave enough health for victory");
       for (let turn = 0; turn < 30 && snapshot.active.phase === "battle"; turn++) {
         const command = { action: "attack", expeditionId: snapshot.active.id, version: snapshot.active.version };
         const before = snapshot;
@@ -409,6 +416,9 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
         const repeated = await expedition(account);
         assert.deepEqual(repeated.active, snapshot.active);
         assert.deepEqual(repeated.profile, snapshot.profile);
+        assert.deepEqual(snapshot.inventory, before.inventory);
+        assert.deepEqual(repeated.inventory, snapshot.inventory);
+        assert.deepEqual(snapshot.active.awardedLoot, []);
         assert.equal(repeated.rewardRevision, snapshot.rewardRevision);
       }
       assert.equal(snapshot.active.phase, "returning", "Combat must finish within 30 attacks");
@@ -418,10 +428,13 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       return snapshot;
     }
 
-    function assertReward(before, after, mission) {
-      const totalExperience = before.profile.experience + mission.experience;
+    function assertReward(before, after, expectedMission) {
+      assert.equal(after.active.mission.id, expectedMission.id);
+      assert.equal(after.active.mission.gold, expectedMission.gold);
+      assert.equal(after.active.mission.experience, expectedMission.experience);
+      const totalExperience = before.profile.experience + expectedMission.experience;
       const levels = Math.floor(totalExperience / 100);
-      assert.equal(after.profile.gold, before.profile.gold + mission.gold);
+      assert.equal(after.profile.gold, before.profile.gold + expectedMission.gold);
       assert.equal(after.profile.experience, totalExperience % 100);
       assert.equal(after.profile.level, before.profile.level + levels);
       assert.equal(after.profile.maxHealth, before.profile.maxHealth + levels * 10);
@@ -430,6 +443,75 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       assert.notEqual(after.progressToken, before.progressToken);
       assert.equal(after.active.phase, "completed");
       assert.equal(after.active.rewardGranted, true);
+      // An empty roll is valid: all preview chances are below 100%.
+      const awarded = expectedMission.kind === "trade" ? [] : (expectedMission.loot ?? [])
+        .filter((item) => createHash("sha256").update(`${after.active.id}:${item.id}`)
+          .digest().readUInt32BE(0) / 0x1_0000_0000 < item.chance / 100)
+        .map(({ id, name, quantity }) => ({ id, name, quantity }));
+      assert.deepEqual(after.active.awardedLoot, awarded);
+      const inventory = new Map(before.inventory.map((item) => [item.id, { ...item }]));
+      for (const item of awarded) {
+        inventory.set(item.id, { ...item, quantity: (inventory.get(item.id)?.quantity ?? 0) + item.quantity });
+      }
+      assert.deepEqual(after.inventory, [...inventory.values()]);
+    }
+
+    function assertCatalog(snapshot) {
+      const combatMissions = snapshot.missions.filter((mission) => mission.kind !== "trade");
+      assert.equal(combatMissions.filter((mission) => mission.kind === "normal").length, 3);
+      assert.equal(combatMissions.filter((mission) => mission.kind === "elite").length, 1);
+      assert.equal(new Set(combatMissions.map((mission) => mission.name)).size, 4);
+      for (const mission of combatMissions) {
+        assert.ok(Number.isInteger(mission.enemyLevel));
+        assert.ok(mission.enemyLevel >= Math.max(1, snapshot.profile.level - 3));
+        assert.ok(mission.enemyLevel <= snapshot.profile.level + 3);
+        assert.equal(mission.enemy.level, mission.enemyLevel);
+        assert.ok(mission.id.includes(`:${snapshot.profile.level}:`));
+        assert.ok(mission.description.length > 30);
+        const growth = mission.enemyLevel - 1;
+        const elite = mission.kind === "elite";
+        assert.equal(mission.enemy.maxHealth, elite ? 35 + growth * 4 : 12 + mission.enemyLevel * 2);
+        assert.equal(mission.enemy.attack, elite ? 3 + growth : 1 + Math.floor(growth / 3));
+        assert.equal(mission.enemy.defense, elite ? 3 + Math.floor(growth / 3) : 0);
+        const gold = elite ? 60 + mission.distanceKm * 10 + growth * 12 : 15 + mission.distanceKm * 5 + growth * 4;
+        const experience = elite ? 75 + mission.distanceKm * 4 + growth * 15 : 25 + mission.distanceKm * 2 + growth * 5;
+        for (const [field, base] of [["gold", gold], ["experience", experience]]) {
+          assert.ok(Number.isInteger(mission[field]));
+          assert.ok(mission[field] >= Math.max(1, Math.floor(base * 0.8)) && mission[field] <= Math.ceil(base * 1.2));
+        }
+        assert.deepEqual(mission.loot.map((item) => item.id), ["world-potion", "world-ration", "world-relic"]);
+        assert.ok(mission.loot.every((item) => item.name.length > 0 && item.chance > 0 && item.chance < 100 &&
+          Number.isInteger(item.quantity) && item.quantity >= 1 && item.quantity <= (elite ? 3 : 2)));
+      }
+    }
+
+    function weakestNormal(snapshot) {
+      assertCatalog(snapshot);
+      const missions = snapshot.missions.filter((mission) => mission.kind === "normal");
+      return missions.reduce((weakest, mission) => mission.enemyLevel < weakest.enemyLevel ? mission : weakest);
+    }
+
+    async function assertPersistedMission(account, snapshot, mission) {
+      const row = await prisma.expedicionMundo.findUniqueOrThrow({ where: { id: snapshot.active.id } });
+      assert.equal(row.jugadorId, account.session.player.id);
+      // PostgreSQL JSON numbers may differ in their last geographic decimal.
+      const content = (value) => {
+        const result = { ...value };
+        delete result.lat;
+        delete result.lng;
+        delete result.distanceKm;
+        return result;
+      };
+      assert.deepEqual(content(snapshot.active.mission), content(mission));
+      assert.deepEqual(content(row.mission), content(mission));
+      assert.ok(Math.abs(row.mission.lat - mission.lat) < 1e-9);
+      assert.ok(Math.abs(row.mission.lng - mission.lng) < 1e-9);
+      assert.ok(Math.abs(row.mission.distanceKm - mission.distanceKm) < 1e-9);
+      assert.deepEqual(snapshot.active.enemy, mission.enemy);
+      assert.deepEqual(row.enemy, mission.enemy);
+      assert.equal(row.enemyHealth, mission.enemy.maxHealth);
+      assert.deepEqual(row.botin, []);
+      assert.deepEqual(snapshot.active.awardedLoot, []);
     }
 
     async function assertSavedExpedition(account, snapshot) {
@@ -437,41 +519,72 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       assert.deepEqual(session.player, snapshot.profile);
       assert.equal(session.rewardRevision, snapshot.rewardRevision);
       assert.equal(session.progressToken, snapshot.progressToken);
+      const player = await prisma.jugador.findUniqueOrThrow({ where: { id: session.player.id } });
+      assert.deepEqual(player.inventarioMundo, snapshot.inventory);
+      if (snapshot.active) {
+        const ledger = await prisma.expedicionMundo.findUniqueOrThrow({ where: { id: snapshot.active.id } });
+        assert.deepEqual(ledger.botin, snapshot.active.awardedLoot);
+      }
       const repeated = await expedition(account, { action: "status" });
       assert.deepEqual(repeated.active, snapshot.active);
       assert.deepEqual(repeated.profile, snapshot.profile);
       assert.equal(repeated.rewardRevision, snapshot.rewardRevision);
       assert.equal(repeated.progressToken, snapshot.progressToken);
+      assert.deepEqual(repeated.inventory, snapshot.inventory);
     }
 
-    await t.test("expedition authentication and strict payloads reject forged rewards and client times", async () => {
+    await t.test("expedition authentication and strict payloads reject forged rewards, enemies, loot and client times", async () => {
       await expedition(null, undefined, 401);
       await expedition(null, { action: "status" }, 401);
       const before = await expedition(a);
       assert.equal(before.active, null);
-      assert.equal(before.missions.filter((mission) => mission.kind === "normal").length, 3);
-      assert.equal(before.missions.filter((mission) => mission.kind === "elite").length, 1);
-      const mission = before.missions.find((candidate) => candidate.kind === "normal");
+      assert.deepEqual(before.inventory, []);
+      const mission = weakestNormal(before);
       for (const field of ["gold", "experience", "rewardGranted", "departureAt", "arrivalAt", "returnArrivalAt", "ultimaEliteExitosa"]) {
         await expedition(a, {
           action: "start", missionId: mission.id, requestId: randomUUID(), [field]: Date.now(),
         }, 400, "invalid_body");
+      }
+      const forgedFields = {
+        enemyLevel: 1, enemy: { ...mission.enemy, maxHealth: 1, attack: 0, defense: 0 },
+        loot: [{ id: "world-relic", name: "Fragmento de reliquia", quantity: 999999, chance: 100 }],
+        awardedLoot: [{ id: "world-relic", name: "Fragmento de reliquia", quantity: 999999 }],
+        inventory: [{ id: "world-potion", name: "Poción curativa", quantity: 999999 }],
+      };
+      for (const [field, value] of Object.entries(forgedFields)) {
+        for (const command of [
+          { action: "start", missionId: mission.id, requestId: randomUUID() },
+          { action: "attack", expeditionId: randomUUID(), version: 0 },
+          { action: "flee", expeditionId: randomUUID(), version: 0 },
+          { action: "status" },
+        ]) {
+          await expedition(a, { ...command, [field]: value }, 400, "invalid_body");
+        }
       }
       await expedition(a, { action: "status", gold: 999999 }, 400, "invalid_body");
       await expedition(a, { action: "start", missionId: mission.id, requestId: "invalid" }, 400, "invalid_request");
       const unchanged = await expedition(a, { action: "status" });
       assert.equal(unchanged.active, null);
       assert.deepEqual(unchanged.profile, before.profile);
+      assert.deepEqual(unchanged.inventory, before.inventory);
       assert.equal(unchanged.rewardRevision, before.rewardRevision);
+      assert.equal(await prisma.expedicionMundo.count({ where: { jugadorId: a.session.player.id } }), 0);
     });
 
     await t.test("normal HTTP expedition: concurrent UUID replay, versioned combat and exactly-once rewards recover stale sync", async () => {
       await checkpointBase(a);
+      await sync(a, { currentHealth: 40 });
+      // Seed only this disposable player's new JSON inventory, never legacy objects.
+      const initialInventory = [{ id: "world-potion", name: "Poción curativa", quantity: 2 }];
+      await prisma.jugador.update({ where: { id: a.session.player.id }, data: { inventarioMundo: initialInventory } });
       const stale = progress(a.session);
       const before = await expedition(a);
-      const mission = before.missions.find((candidate) => candidate.kind === "normal");
+      assert.equal(before.profile.currentHealth, 40);
+      assert.deepEqual(before.inventory, initialInventory);
+      const mission = weakestNormal(before);
       assert.ok(mission);
-      assert.equal(mission.experience, 25);
+      assert.equal(mission.enemyLevel, Math.min(...before.missions.filter((candidate) => candidate.kind === "normal")
+        .map((candidate) => candidate.enemyLevel)));
       const command = { action: "start", missionId: mission.id, requestId: randomUUID() };
       const starts = await Promise.all([expedition(a, command), expedition(a, command)]);
       assert.equal(starts[0].active.id, starts[1].active.id);
@@ -483,6 +596,8 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       assert.deepEqual(snapshot.active.origin, { lat: a.session.base.lat, lng: a.session.base.lng });
       assert.equal(snapshot.active.arrivalAt - snapshot.active.departureAt, mission.durationMs);
       assert.ok(snapshot.active.departureAt >= before.serverNow && snapshot.active.departureAt <= snapshot.serverNow);
+      await assertPersistedMission(a, snapshot, mission);
+      assert.deepEqual(snapshot.inventory, before.inventory);
       assert.deepEqual((await expedition(a, command)).active, snapshot.active);
       assert.equal(await prisma.expedicionMundo.count({ where: { jugadorId: a.session.player.id, requestId: command.requestId } }), 1);
       await expireExpeditionLeg(a, snapshot.active, "arrivalAt");
@@ -497,7 +612,12 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       assertReward(returning, snapshot, mission);
       assert.deepEqual(completed[1].profile, snapshot.profile);
       assert.deepEqual(completed[1].active, snapshot.active);
+      assert.deepEqual(completed[1].inventory, snapshot.inventory);
       assert.equal(completed[1].rewardRevision, snapshot.rewardRevision);
+      const replayed = await expedition(a, command);
+      assert.deepEqual(replayed.active, snapshot.active);
+      assert.deepEqual(replayed.inventory, snapshot.inventory);
+      assert.equal(replayed.rewardRevision, snapshot.rewardRevision);
       const recovered = await request("/api/mundo/sync", a, stale);
       assert.equal(recovered.status, 200);
       assert.equal(recovered.data.profileReset, true);
@@ -506,16 +626,22 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       assert.equal(recovered.data.progressToken, snapshot.progressToken);
       await assertSavedExpedition(a, snapshot);
       assert.deepEqual(a.session.base.buildings, stale.buildings);
+      assert.equal((await request("/api/auth/logout", a, {})).status, 200);
+      assert.equal((await request("/api/auth/login", a, { email: a.email, password })).status, 200);
+      await assertSavedExpedition(a, snapshot);
     });
 
     await t.test("elite HTTP victory sets server cooldown for 23h30 and persists rewards/revision", async () => {
       await checkpointBase(a);
+      await sync(a, { currentHealth: 100 });
       const before = await expedition(a);
+      assert.equal(before.profile.currentHealth, 100);
+      assertCatalog(before);
       const mission = before.missions.find((candidate) => candidate.kind === "elite");
       assert.ok(mission);
-      assert.equal(mission.experience, 75);
       assert.equal(before.eliteAvailableAt, 0);
       let snapshot = await expedition(a, { action: "start", missionId: mission.id, requestId: randomUUID() });
+      await assertPersistedMission(a, snapshot, mission);
       await expireExpeditionLeg(a, snapshot.active, "arrivalAt");
       snapshot = await winExpedition(a, await expedition(a));
       const player = await prisma.jugador.findUniqueOrThrow({ where: { id: a.session.player.id } });
@@ -536,6 +662,9 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       assert.deepEqual(saved.profile, snapshot.profile);
       assert.equal(saved.rewardRevision, snapshot.rewardRevision);
       await assertSavedExpedition(a, snapshot);
+      assert.equal((await request("/api/auth/logout", a, {})).status, 200);
+      assert.equal((await request("/api/auth/login", a, { email: a.email, password })).status, 200);
+      await assertSavedExpedition(a, snapshot);
     });
 
     await t.test("trade HTTP credits live B exactly one integral quarter and stale recipient sync cannot undo payment", async () => {
@@ -543,6 +672,7 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       const staleRecipient = progress(await load(b));
       const recipientBefore = await expedition(b);
       const before = await expedition(a);
+      assertCatalog(before);
       const mission = before.missions.find((candidate) => candidate.kind === "trade" && candidate.targetPlayerId === b.session.player.id);
       assert.ok(mission, "Choose this run's live account B, never an arbitrary nearby base");
       assert.equal(mission.gold % 4, 0);
@@ -551,6 +681,10 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       let snapshot = await expedition(a, command);
       assert.equal(snapshot.active.phase, "outbound");
       assert.equal(snapshot.active.enemy, null);
+      assert.equal(mission.enemyLevel, undefined);
+      assert.equal(mission.enemy, undefined);
+      assert.equal(mission.loot, undefined);
+      assert.equal(mission.experience, 25);
       await expireExpeditionLeg(a, snapshot.active, "arrivalAt");
       snapshot = await expedition(a);
       assert.equal(snapshot.active.phase, "returning");
@@ -565,6 +699,7 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       const recipient = await expedition(b);
       assert.deepEqual(recipient.profile, { ...recipientBefore.profile, gold: recipientBefore.profile.gold + mission.gold / 4 });
       assert.equal(recipient.rewardRevision, recipientBefore.rewardRevision + 1);
+      assert.deepEqual(recipient.inventory, recipientBefore.inventory);
       assert.notEqual(recipient.progressToken, recipientBefore.progressToken);
       assert.ok(Number.isInteger(recipient.profile.gold));
       assert.deepEqual((await expedition(a, command)).active, snapshot.active);
@@ -594,6 +729,44 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       assert.deepEqual(recipientAfterBuilding.profile, recipient.profile);
       assert.equal(recipientAfterBuilding.rewardRevision, recipient.rewardRevision);
       await assertSavedExpedition(b, recipientAfterBuilding);
+    });
+
+    await t.test("old mission JSON without preview fields returns safely without loot or touching legacy state", async () => {
+      await checkpointBase(a);
+      await sync(a, { currentHealth: 100 });
+      const before = await expedition(a);
+      const mission = weakestNormal(before);
+      const legacyState = () => prisma.usuario.findUniqueOrThrow({
+        where: { email: a.email },
+        select: {
+          oro: true, madera: true, piedra: true, metal: true, edificios: true,
+          baseCoords: true, ultimaMisionElite: true, personaje: true, expedicionActiva: true,
+        },
+      });
+      const legacyBefore = await legacyState();
+      let snapshot = await expedition(a, { action: "start", missionId: mission.id, requestId: randomUUID() });
+      const oldMission = { ...snapshot.active.mission };
+      for (const field of ["description", "enemyLevel", "enemy", "loot"]) delete oldMission[field];
+      // Emulate a pre-upgrade ledger while preserving its server-issued enemy and rewards.
+      const oldEnemy = { ...snapshot.active.enemy };
+      delete oldEnemy.level;
+      await prisma.expedicionMundo.update({
+        where: { id: snapshot.active.id }, data: { mission: oldMission, enemy: oldEnemy },
+      });
+      await expireExpeditionLeg(a, snapshot.active, "arrivalAt");
+      snapshot = await expedition(a);
+      assert.equal(snapshot.active.mission.enemyLevel, undefined);
+      assert.equal(snapshot.active.mission.loot, undefined);
+      assert.deepEqual(snapshot.active.enemy, oldEnemy);
+      snapshot = await winExpedition(a, snapshot);
+      const returning = snapshot;
+      await expireExpeditionLeg(a, snapshot.active, "returnArrivalAt");
+      snapshot = await expedition(a);
+      assertReward(returning, snapshot, oldMission);
+      assert.deepEqual(snapshot.inventory, before.inventory);
+      assert.deepEqual(snapshot.active.awardedLoot, []);
+      await assertSavedExpedition(a, snapshot);
+      assert.deepEqual(await legacyState(), legacyBefore);
     });
   } finally {
     // Only this run's disposable accounts are touched, including failed registrations.

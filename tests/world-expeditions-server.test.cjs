@@ -24,6 +24,7 @@ const NOW = 1_800_000_000_000;
 const contract = loadSource("src/shared/expeditions.ts");
 const world = loadSource("src/shared/world.ts");
 const geo = loadSource("src/lib/mundo/geo.ts", { "@/lib/utils": loadSource("src/lib/utils.ts") });
+const content = loadSource("src/lib/mundo/expeditionContent.ts");
 function player(name = "propio", lat = 40, lng = -3) {
   const id = randomUUID();
   const usuarioId = randomUUID();
@@ -31,6 +32,7 @@ function player(name = "propio", lat = 40, lng = -3) {
     id, usuarioId, nombre: name, sexo: "chico", clase: "Novato", nivel: 1, experiencia: 0,
     oro: 100, saludActual: 40, saludMaxima: 100, ultimoVisto: new Date(NOW), ubicacion: null,
     viajeRegreso: null, ubicacionRevision: 0, ultimaEliteExitosa: null, rewardRevision: 0,
+    inventarioMundo: [],
     usuario: { base: { id: randomUUID(), usuarioId, nombre: name, lat, lng, edificios: [{ type: "town-hall", level: 1 }], embajada: false } },
   };
 }
@@ -59,6 +61,7 @@ function harness(initial = player(), others = []) {
               check();
               const p = draft.get(where.id);
               assert.ok(p);
+              assert.equal(Object.hasOwn(data, "inventario"), false, "Never write legacy inventory");
               for (const [key, value] of Object.entries(data)) {
                 p[key] = value && typeof value === "object" && "increment" in value ? p[key] + value.increment : structuredClone(value);
               }
@@ -91,14 +94,16 @@ function harness(initial = player(), others = []) {
             },
             async create({ data }) {
               check();
+              assert.equal(Object.hasOwn(data, "awardedLoot"), false, "DTO field is not a Prisma column");
               assert.equal([...draftLedger.values()].some((r) => r.requestId === data.requestId), false);
               assert.equal([...draftLedger.values()].some((r) => r.jugadorId === data.jugadorId && r.phase !== "completed"), false);
-              const row = { ...structuredClone(data), enemy: data.enemy === Prisma.DbNull ? null : structuredClone(data.enemy) };
+              const row = { botin: [], ...structuredClone(data), enemy: data.enemy === Prisma.DbNull ? null : structuredClone(data.enemy) };
               draftLedger.set(row.id, row);
               return structuredClone(row);
             },
             async update({ where, data }) {
               check();
+              assert.equal(Object.hasOwn(data, "awardedLoot"), false);
               if (failCompletion && data.phase === "completed") {
                 failCompletion = false;
                 throw new Error("Simulated ledger write failure after balance updates");
@@ -126,7 +131,7 @@ function harness(initial = player(), others = []) {
     "@/lib/prisma": { prisma }, "@/shared/world": world, "./geo": geo, "./http": http,
     "./travel": { loadMobility() { throw new Error("Expeditions must not call mobility or sync"); } },
   });
-  const rules = loadSource("src/lib/mundo/expeditionRules.ts", { "./geo": geo, "./http": http });
+  const rules = loadSource("src/lib/mundo/expeditionRules.ts", { "./geo": geo, "./http": http, "./expeditionContent": content });
   const service = loadSource("src/lib/mundo/expeditions.ts", {
     "./geo": geo, "./http": http, "./jugador": jugador, "./expeditionRules": rules,
   });
@@ -161,6 +166,220 @@ async function victory(h, snapshot) {
   return snapshot;
 }
 
+// Combat mechanics fixtures deliberately isolate damage from catalog variation.
+function basicEnemy(h, kind = "normal") {
+  const row = h.ledger()[0];
+  row.enemy = h.rules.expeditionEnemy(kind, 1);
+  row.enemyHealth = row.enemy.maxHealth;
+}
+
+test("Compound Spanish content, hundreds of seeds, inclusive level 1/4/50 difficulty and scalable varied rewards", () => {
+  const { rules } = harness();
+  assert.ok(content.EXPEDITION_PREFIXES.length >= 30);
+  assert.ok(content.EXPEDITION_LOCATIONS.length >= 40);
+  assert.ok(content.EXPEDITION_DESCRIPTIONS.length >= 20);
+  for (const list of [content.EXPEDITION_PREFIXES, content.EXPEDITION_LOCATIONS, content.EXPEDITION_DESCRIPTIONS]) {
+    assert.equal(new Set(list).size, list.length);
+  }
+  const names = new Set(), descriptions = new Set(), species = new Set();
+  const lowRewards = [], highRewards = [];
+  for (const level of [1, 4, 50]) {
+    const difficulty = { normal: new Set(), elite: new Set() };
+    const rewards = { normal: new Set(), elite: new Set() };
+    for (let seed = 0; seed < 300; seed++) {
+      const origin = { lat: 40 + seed / 10000, lng: -3 };
+      const time = NOW + seed * rules.EXPEDITION_CATALOG_PERIOD_MS;
+      const catalog = rules.generateExpeditionMissions(origin, time, [], level);
+      assert.deepEqual(catalog, rules.generateExpeditionMissions(origin, time, [], level));
+      assert.equal(catalog.length, 4);
+      assert.equal(new Set(catalog.map((m) => m.name)).size, 4);
+      for (const m of catalog) {
+        assert.match(m.name, /^(El|La|Las) .+ (del|de la|de las|de los) .+/);
+        assert.ok(m.description.length > 30);
+        assert.ok(m.enemyLevel >= Math.max(1, level - 3) && m.enemyLevel <= level + 3);
+        assert.ok(Number.isInteger(m.enemyLevel));
+        assert.equal(m.enemy.level, m.enemyLevel);
+        assert.ok(m.id.includes(`:${level}:`));
+        assert.ok(m.id.length <= 128);
+        assert.ok(fs.existsSync(path.resolve(__dirname, "../public", m.enemy.sprite.slice(1))));
+        assert.ok(m.distanceKm >= 0.5 - 1e-8 && m.distanceKm <= 3 + 1e-8);
+        const bounds = rules.expeditionRewardBounds(m.kind, m.distanceKm, m.enemyLevel);
+        assert.ok(Number.isInteger(m.gold) && m.gold >= bounds.gold.min && m.gold <= bounds.gold.max);
+        assert.ok(Number.isInteger(m.experience) && m.experience >= bounds.experience.min && m.experience <= bounds.experience.max);
+        assert.deepEqual(m.enemy, rules.expeditionEnemy(m.kind, m.enemyLevel,
+          // Identify the persisted species variant without coupling to the hash implementation.
+          Array.from({ length: 8 }, (_, i) => i).find((i) => rules.expeditionEnemy(m.kind, m.enemyLevel, i).name === m.enemy.name)));
+        assert.equal(m.loot.length, 3);
+        assert.deepEqual(m.loot.map((i) => i.id), ["world-potion", "world-ration", "world-relic"]);
+        assert.ok(m.loot.every((i) => i.chance > 0 && i.chance < 100 && Number.isInteger(i.quantity) && i.quantity > 0));
+        difficulty[m.kind].add(m.enemyLevel); rewards[m.kind].add(`${m.gold}:${m.experience}`);
+        names.add(m.name); descriptions.add(m.description); species.add(m.enemy.name);
+        if (level === 1) lowRewards.push(m.gold);
+        if (level === 50) highRewards.push(m.gold);
+      }
+    }
+    const expected = Array.from({ length: level + 3 - Math.max(1, level - 3) + 1 }, (_, i) => Math.max(1, level - 3) + i);
+    for (const kind of ["normal", "elite"]) {
+      assert.deepEqual([...difficulty[kind]].sort((a, b) => a - b), expected, "Both inclusive endpoints occur");
+      assert.ok(rewards[kind].size > 100);
+    }
+  }
+  assert.ok(names.size > 900); assert.equal(descriptions.size, content.EXPEDITION_DESCRIPTIONS.length);
+  assert.equal(species.size, 16);
+  assert.ok(Math.min(...highRewards) > Math.max(...lowRewards));
+  const origin = { lat: 40, lng: -3 };
+  const a = rules.generateExpeditionMissions(origin, NOW, [], 1), b = rules.generateExpeditionMissions(origin, NOW, [], 4);
+  assert.ok(a.every((m) => !b.some((n) => n.id === m.id)));
+});
+
+test("Reward configuration uses inclusive integer bounds and commerce retains prior gold/XP/share at all levels", () => {
+  const { rules } = harness();
+  for (const kind of ["normal", "elite"]) for (const level of [1, 4, 50]) {
+    const config = rules.EXPEDITION_REWARD_RULES[kind], km = 1.5;
+    const gold = config.baseGold + km * config.goldPerKm + (level - 1) * config.goldPerLevel;
+    const xp = config.baseExperience + km * config.experiencePerKm + (level - 1) * config.experiencePerLevel;
+    assert.deepEqual(rules.expeditionRewardBounds(kind, km, level), {
+      gold: { min: Math.floor(gold * (1 - config.variation)), max: Math.ceil(gold * (1 + config.variation)) },
+      experience: { min: Math.floor(xp * (1 - config.variation)), max: Math.ceil(xp * (1 + config.variation)) },
+    });
+  }
+  const target = { playerId: randomUUID(), baseName: "Vecino", lat: 40.01, lng: -3 };
+  for (const level of [1, 4, 50]) {
+    const trade = rules.generateExpeditionMissions({ lat: 40, lng: -3 }, NOW, [target], level).find((m) => m.kind === "trade");
+    assert.equal(trade.gold, 4 * Math.ceil((20 + trade.distanceKm * 5) / 4));
+    assert.equal(trade.gold / 4, Math.round(trade.gold / 4)); assert.equal(trade.experience, 25);
+    assert.equal(trade.enemy, undefined); assert.equal(trade.loot, undefined); assert.equal(trade.enemyLevel, undefined);
+  }
+});
+
+test("Pure loot normalization, merge, keyed deterministic probability and zero/100 percent boundaries", () => {
+  const { rules } = harness();
+  const potion = { id: "world-potion", name: "Poción curativa", quantity: 2 };
+  for (const value of [undefined, null, {}, 1, "broken", "{}", [null, {}, { ...potion, quantity: -1 }, { ...potion, quantity: 1.2 }, { ...potion, quantity: Infinity }, { ...potion, id: "" }, { ...potion, name: "" }]]) {
+    assert.deepEqual(rules.normalizeExpeditionInventory(value), []);
+  }
+  assert.deepEqual(rules.normalizeExpeditionInventory(JSON.stringify([potion])), [potion]);
+  assert.deepEqual(rules.mergeLoot([potion], [potion]), [{ ...potion, quantity: 4 }]);
+  assert.deepEqual(rules.rollExpeditionLoot(undefined, randomUUID()), []);
+  const loot = [{ ...potion, chance: 100 }, { id: "world-ration", name: "Ración de viaje", quantity: 3, chance: 0 }];
+  assert.deepEqual(rules.rollExpeditionLoot(loot, "fixed-id"), [potion]);
+  const probabilistic = [{ ...potion, chance: 50 }]; let wins = 0;
+  for (let seed = 0; seed < 500; seed++) {
+    const result = rules.rollExpeditionLoot(probabilistic, `server-ledger-${seed}`);
+    assert.deepEqual(result, rules.rollExpeditionLoot(probabilistic, `server-ledger-${seed}`));
+    wins += result.length;
+  }
+  assert.ok(wins > 180 && wins < 320);
+  assert.deepEqual(rules.rollExpeditionLoot([{ ...potion, chance: -1 }, { ...potion, chance: 101 }], "id"), []);
+});
+
+test("Authoritative catalog level and persisted enemy survive changed level/hour and reload", async (t) => {
+  let now = NOW; t.mock.method(Date, "now", () => now);
+  const h = harness(); h.row().nivel = 50;
+  const catalog = await h.loadExpeditions(h.initial.usuarioId);
+  assert.deepEqual(catalog.missions, h.rules.generateExpeditionMissions(h.row().usuario.base, now, [], 50));
+  const mission = catalog.missions[0]; h.row().nivel = 4;
+  await rejectsCode(h.mutateExpeditions(h.initial.usuarioId, { action: "start", missionId: mission.id, requestId: randomUUID() }), 404, "mission_unavailable");
+  h.row().nivel = 50;
+  const { snapshot: s } = await start(h);
+  assert.deepEqual(s.active.enemy, s.active.mission.enemy);
+  h.row().nivel = 1; now += 3_600_000;
+  const loaded = await h.loadExpeditions(h.initial.usuarioId);
+  assert.deepEqual(loaded.active.enemy, s.active.enemy); assert.deepEqual(loaded.active.mission, s.active.mission);
+  assert.notDeepEqual(loaded.missions, s.missions);
+});
+
+test("Snapshot normalizes missing/malformed/string JSON inventory and never exposes legacy objects", async (t) => {
+  t.mock.method(Date, "now", () => NOW);
+  const h = harness();
+  h.row().inventario = [{ id: "legacy-item", name: "Objeto antiguo", quantity: 99 }];
+  for (const value of [undefined, null, "invalid-json", {}, [null, { id: "world-potion", quantity: 1 }]]) {
+    h.row().inventarioMundo = value;
+    assert.deepEqual((await h.loadExpeditions(h.initial.usuarioId)).inventory, []);
+  }
+  const potion = { id: "world-potion", name: "Poción curativa", quantity: 2 };
+  h.row().inventarioMundo = JSON.stringify([potion, potion, { ...potion, quantity: -10 }]);
+  assert.deepEqual((await h.loadExpeditions(h.initial.usuarioId)).inventory, [{ ...potion, quantity: 4 }]);
+  assert.equal(typeof h.row().inventarioMundo, "string", "Status normalization does not rewrite persistence");
+  assert.equal(h.row().inventario[0].quantity, 99);
+});
+
+test("Trade routes with identical base names are stable and unique within the whole catalog", () => {
+  const { rules } = harness();
+  const targets = Array.from({ length: 6 }, (_, i) => ({ playerId: String(i), baseName: "Valle", lat: 40.01, lng: -3 }));
+  const catalog = rules.generateExpeditionMissions({ lat: 40, lng: -3 }, NOW, targets);
+  assert.deepEqual(catalog, rules.generateExpeditionMissions({ lat: 40, lng: -3 }, NOW, targets.toReversed()));
+  assert.equal(catalog.length, 10); assert.equal(new Set(catalog.map((m) => m.name)).size, 10);
+});
+
+test("Victory normal/elite grants rolled items only at completion; concurrent reload/replay never duplicates", async (t) => {
+  let now = NOW; t.mock.method(Date, "now", () => now);
+  for (const kind of ["normal", "elite"]) {
+    const initial = player(); initial.inventarioMundo = [{ id: "world-potion", name: "Poción curativa", quantity: 5 }];
+    const h = harness(initial); const { snapshot: s, request } = await start(h, kind);
+    basicEnemy(h, kind);
+    const row = h.ledger()[0]; row.mission.loot.forEach((i) => { i.chance = 100; });
+    const expectedLoot = h.rules.rollExpeditionLoot(row.mission.loot, row.id);
+    assert.deepEqual(s.active.awardedLoot, []); assert.deepEqual(row.botin, []);
+    now = s.active.arrivalAt;
+    const won = await victory(h, await h.loadExpeditions(initial.usuarioId));
+    assert.deepEqual(won.inventory, initial.inventarioMundo); assert.deepEqual(won.active.awardedLoot, []);
+    assert.deepEqual(h.ledger()[0].botin, []);
+    now = won.active.returnArrivalAt;
+    const [done, repeated] = await Promise.all([h.loadExpeditions(initial.usuarioId), h.loadExpeditions(initial.usuarioId)]);
+    assert.deepEqual(done, repeated); assert.deepEqual(done.active.awardedLoot, expectedLoot);
+    assert.deepEqual(h.ledger()[0].botin, expectedLoot);
+    const expectedInventory = h.rules.mergeLoot(initial.inventarioMundo, expectedLoot);
+    assert.deepEqual(done.inventory, expectedInventory); assert.deepEqual(h.row().inventarioMundo, expectedInventory);
+    assert.deepEqual(await h.mutateExpeditions(initial.usuarioId, request), done);
+    assert.deepEqual((await h.loadExpeditions(initial.usuarioId)).inventory, expectedInventory);
+    assert.equal(done.rewardRevision, won.rewardRevision + 1);
+  }
+});
+
+test("Inventory and botin roll back with gold/XP on ledger failure; same UUID retry awards the same loot once", async (t) => {
+  let now = NOW; t.mock.method(Date, "now", () => now);
+  const h = harness(); const { snapshot: s } = await start(h); basicEnemy(h);
+  h.ledger()[0].mission.loot.forEach((i) => { i.chance = 100; });
+  now = s.active.arrivalAt;
+  const won = await victory(h, await h.loadExpeditions(h.initial.usuarioId));
+  const before = structuredClone(h.row()), ledgerBefore = structuredClone(h.ledger()[0]);
+  const expected = h.rules.rollExpeditionLoot(ledgerBefore.mission.loot, ledgerBefore.id);
+  now = won.active.returnArrivalAt; h.failCompletion();
+  await assert.rejects(h.loadExpeditions(h.initial.usuarioId), /Simulated ledger write failure/);
+  assert.deepEqual(h.row(), before); assert.deepEqual(h.ledger()[0], ledgerBefore);
+  const done = await h.loadExpeditions(h.initial.usuarioId);
+  assert.deepEqual(done.active.awardedLoot, expected); assert.deepEqual(done.inventory, expected);
+  assert.equal(done.rewardRevision, before.rewardRevision + 1);
+  assert.deepEqual(await h.loadExpeditions(h.initial.usuarioId), done);
+});
+
+test("Old saved missions/missing botin and inventory remain compatible; rewardGranted guards items too", async (t) => {
+  let now = NOW; t.mock.method(Date, "now", () => now);
+  const h = harness(); delete h.row().inventarioMundo;
+  const { snapshot: s } = await start(h); basicEnemy(h);
+  const row = h.ledger()[0];
+  for (const key of ["description", "enemyLevel", "enemy", "loot"]) delete row.mission[key];
+  delete row.botin; delete row.enemy.level;
+  const oldMission = structuredClone(row.mission), oldEnemy = structuredClone(row.enemy);
+  now = s.active.arrivalAt;
+  const battle = await h.loadExpeditions(h.initial.usuarioId);
+  assert.deepEqual(battle.active.mission, oldMission); assert.deepEqual(battle.active.enemy, oldEnemy);
+  assert.deepEqual(battle.inventory, []); assert.deepEqual(battle.active.awardedLoot, []);
+  const won = await victory(h, battle); now = won.active.returnArrivalAt;
+  const done = await h.loadExpeditions(h.initial.usuarioId);
+  assert.equal(done.active.rewardGranted, true); assert.deepEqual(done.inventory, []); assert.deepEqual(done.active.awardedLoot, []);
+  assert.equal(done.profile.gold, 100 + oldMission.gold);
+  // A returning ledger whose reward was already committed must never roll/regrant it.
+  const saved = h.ledger()[0]; saved.phase = "returning"; saved.mission.loot = [{ ...content.EXPEDITION_ITEMS[0], quantity: 9, chance: 100 }];
+  saved.botin = [{ id: "world-ration", name: "Ración de viaje", quantity: 2 }];
+  h.row().inventarioMundo = structuredClone(saved.botin);
+  const before = structuredClone(h.row());
+  const guarded = await h.loadExpeditions(h.initial.usuarioId);
+  assert.deepEqual(h.row(), before); assert.deepEqual(guarded.inventory, before.inventarioMundo);
+  assert.deepEqual(guarded.active.awardedLoot, saved.botin);
+});
+
 test("Shared contract: pure positions, all phases, endpoints and antimeridian", () => {
   const base = Object.freeze({ origin: Object.freeze({ lat: 10, lng: 179 }), mission: Object.freeze({ lat: 20, lng: -179 }), departureAt: 100, arrivalAt: 200, returnDepartureAt: 300, returnArrivalAt: 400, phase: "outbound" });
   assert.deepEqual(contract.expeditionPosition(base, 0), { lat: 10, lng: 179, progress: 0 });
@@ -191,8 +410,9 @@ test("Deterministic hourly catalog: 3 normal, 1 elite, nearby trade, 0.5–3km a
     for (const m of catalog) {
       assert.ok(m.distanceKm >= 0.5 - 1e-8 && m.distanceKm <= 3 + 1e-8);
       assert.ok(rules.validExpeditionCoordinates(m));
-      assert.equal(m.gold, Math.round((m.kind === "elite" ? 60 : 15) + m.distanceKm * (m.kind === "elite" ? 10 : 5)));
-      assert.equal(m.experience, m.kind === "elite" ? 75 : 25);
+      const bounds = rules.expeditionRewardBounds(m.kind, m.distanceKm, m.enemyLevel);
+      assert.ok(m.gold >= bounds.gold.min && m.gold <= bounds.gold.max);
+      assert.ok(m.experience >= bounds.experience.min && m.experience <= bounds.experience.max);
       assert.equal(m.durationMs, rules.expeditionDurationMs(m.distanceKm));
     }
   }
@@ -238,7 +458,7 @@ test("Payload strict keys, safe versions, UUIDs and bounded mission ids; no clie
     { action: "start", missionId: "m" }, { action: "attack", expeditionId: randomUUID() },
     { action: "flee", expeditionId: randomUUID(), version: 0, outcome: "victory" },
   ]) await rejectsCode(h.mutateExpeditions(h.initial.usuarioId, body), 400, "invalid_body");
-  for (const key of ["gold", "experience", "origin", "enemy", "attack", "defense", "departureAt", "targetPlayerId", "outcome", "rewardGranted"]) {
+  for (const key of ["gold", "experience", "origin", "enemy", "attack", "defense", "departureAt", "targetPlayerId", "outcome", "rewardGranted", "loot", "awardedLoot", "botin", "inventory", "inventarioMundo", "enemyLevel"]) {
     await rejectsCode(h.mutateExpeditions(h.initial.usuarioId, { action: "start", missionId: "m", requestId: randomUUID(), [key]: 1 }), 400, "invalid_body");
   }
   assert.equal(h.ledger().length, 0);
@@ -249,7 +469,8 @@ test("Status fresh exact DTO, imported token, missing player/base and invalid sa
   const h = harness();
   const before = structuredClone(h.row());
   const s = await h.loadExpeditions(h.initial.usuarioId);
-  assert.deepEqual(Object.keys(s).sort(), ["active", "eliteAvailableAt", "missions", "profile", "progressToken", "rewardRevision", "serverNow"]);
+  assert.deepEqual(Object.keys(s).sort(), ["active", "eliteAvailableAt", "inventory", "missions", "profile", "progressToken", "rewardRevision", "serverNow"]);
+  assert.deepEqual(s.inventory, []);
   assert.equal(s.serverNow, NOW); assert.equal(s.active, null); assert.equal(s.eliteAvailableAt, 0); assert.equal(s.rewardRevision, 0);
   assert.equal(s.progressToken, h.progressToken(h.row(), h.row().usuario.base));
   assert.deepEqual(s.profile, { id: before.id, name: before.nombre, sex: "chico", characterClass: "Novato", level: 1, experience: 0, gold: 100, currentHealth: 40, maxHealth: 100 });
@@ -272,9 +493,11 @@ test("Start persists full geometry, snapshots server combat stats and serializes
   assert.equal(a.active.phase, "outbound"); assert.equal(a.active.version, 0);
   assert.equal(a.active.departureAt, NOW); assert.equal(a.active.arrivalAt, NOW + mission.durationMs);
   assert.deepEqual(a.active.origin, { lat: 40, lng: -3 }); assert.deepEqual(a.active.mission, mission);
-  assert.equal(a.active.enemy.maxHealth, 18); assert.equal(a.active.playerHealth, 40); assert.equal(a.active.playerMaxHealth, 100);
+  assert.deepEqual(a.active.enemy, mission.enemy); assert.equal(a.active.enemy.level, mission.enemyLevel);
+  assert.equal(a.active.playerHealth, 40); assert.equal(a.active.playerMaxHealth, 100);
   assert.equal(h.ledger()[0].attack, 10); assert.equal(h.ledger()[0].defense, 7);
-  assert.deepEqual(Object.keys(a.active).sort(), ["arrivalAt", "departureAt", "enemy", "enemyHealth", "id", "log", "mission", "origin", "outcome", "phase", "playerHealth", "playerMaxHealth", "returnArrivalAt", "returnDepartureAt", "rewardGranted", "version"]);
+  assert.deepEqual(Object.keys(a.active).sort(), ["arrivalAt", "awardedLoot", "departureAt", "enemy", "enemyHealth", "id", "log", "mission", "origin", "outcome", "phase", "playerHealth", "playerMaxHealth", "returnArrivalAt", "returnDepartureAt", "rewardGranted", "version"]);
+  assert.deepEqual(a.active.awardedLoot, []);
   await rejectsCode(h.mutateExpeditions(initial.usuarioId, { ...request, requestId: randomUUID() }), 409, "expedition_active");
   await rejectsCode(h.mutateExpeditions(initial.usuarioId, { ...request, missionId: "different" }), 409, "request_conflict");
   assert.deepEqual(await h.mutateExpeditions(initial.usuarioId, { ...request, requestId: request.requestId.toUpperCase() }), a);
@@ -346,6 +569,7 @@ test("Versioned server combat, persistent damage, victory return preserves battl
   let now = NOW; t.mock.method(Date, "now", () => now);
   const initial = player(); initial.experiencia = 90;
   const h = harness(initial); const { snapshot: s, request } = await start(h);
+  basicEnemy(h);
   now = s.active.arrivalAt;
   const battle = await h.loadExpeditions(initial.usuarioId);
   const first = await attack(h, battle);
@@ -365,8 +589,9 @@ test("Versioned server combat, persistent damage, victory return preserves battl
   const [done, repeated] = await Promise.all([h.loadExpeditions(initial.usuarioId), h.loadExpeditions(initial.usuarioId)]);
   assert.deepEqual(done, repeated);
   assert.equal(done.active.phase, "completed"); assert.equal(done.active.outcome, "victory"); assert.equal(done.active.rewardGranted, true);
-  assert.equal(done.profile.gold, 100 + s.active.mission.gold); assert.equal(done.profile.level, 2); assert.equal(done.profile.experience, 15);
-  assert.equal(done.profile.maxHealth, 110); assert.equal(done.profile.currentHealth, 49);
+  const expected = h.rules.expeditionRewardProgress({ ...initial, saludActual: 39 }, s.active.mission.gold, s.active.mission.experience);
+  assert.equal(done.profile.gold, expected.oro); assert.equal(done.profile.level, expected.nivel); assert.equal(done.profile.experience, expected.experiencia);
+  assert.equal(done.profile.maxHealth, expected.saludMaxima); assert.equal(done.profile.currentHealth, expected.saludActual);
   assert.equal(done.active.playerHealth, 39); assert.equal(done.active.playerMaxHealth, 100); assert.equal(done.active.enemyHealth, 0);
   assert.equal(done.rewardRevision, won.rewardRevision + 1); assert.notEqual(done.progressToken, won.progressToken);
   assert.equal(h.row().ultimaEliteExitosa, null);
@@ -379,6 +604,7 @@ test("Versioned server combat, persistent damage, victory return preserves battl
 test("Concurrent attacks accept only one matching version, exactly one retaliation", async (t) => {
   let now = NOW; t.mock.method(Date, "now", () => now);
   const h = harness(); const { snapshot: s } = await start(h); now = s.active.arrivalAt;
+  basicEnemy(h);
   const battle = await h.loadExpeditions(h.initial.usuarioId);
   const results = await Promise.allSettled([attack(h, battle), attack(h, battle)]);
   assert.equal(results.filter((r) => r.status === "fulfilled").length, 1);
@@ -391,6 +617,7 @@ test("Flee/defeat return without rewards or elite cooldown, preserve final comba
   for (const outcome of ["fled", "defeat"]) {
     const h = harness(); if (outcome === "defeat") h.row().saludActual = 1;
     const { snapshot: s } = await start(h, "elite"); now = s.active.arrivalAt;
+    basicEnemy(h, "elite");
     const battle = await h.loadExpeditions(h.initial.usuarioId);
     const back = outcome === "fled" ? await h.mutateExpeditions(h.initial.usuarioId, { action: "flee", expeditionId: battle.active.id, version: battle.active.version }) : await attack(h, battle);
     assert.equal(back.active.outcome, outcome); assert.equal(back.active.phase, "returning");
@@ -402,12 +629,14 @@ test("Flee/defeat return without rewards or elite cooldown, preserve final comba
     assert.equal(done.active.phase, "completed"); assert.equal(done.active.outcome, outcome); assert.equal(done.active.rewardGranted, false);
     assert.equal(done.profile.gold, 100); assert.equal(done.profile.experience, 0); assert.equal(done.rewardRevision, outcome === "defeat" ? 1 : 0);
     assert.equal(done.profile.currentHealth, outcome === "defeat" ? 0 : 40);
+    assert.deepEqual(done.inventory, []); assert.deepEqual(done.active.awardedLoot, []); assert.deepEqual(h.ledger()[0].botin, []);
   }
 });
 
 test("Elite cooldown starts at victory, not return: 23h30 boundary, failure/flee do not set it", async (t) => {
   let now = NOW; t.mock.method(Date, "now", () => now);
   const h = harness(); const { snapshot: s } = await start(h, "elite"); now = s.active.arrivalAt;
+  basicEnemy(h, "elite");
   const won = await victory(h, await h.loadExpeditions(h.initial.usuarioId));
   const victoryTime = now;
   assert.equal(h.row().ultimaEliteExitosa.getTime(), victoryTime);
@@ -415,7 +644,7 @@ test("Elite cooldown starts at victory, not return: 23h30 boundary, failure/flee
   assert.ok(won.rewardRevision > 0);
   now = won.active.returnArrivalAt;
   const done = await h.loadExpeditions(h.initial.usuarioId);
-  assert.equal(done.profile.experience, 75); assert.equal(done.eliteAvailableAt, won.eliteAvailableAt);
+  assert.equal(done.profile.experience, s.active.mission.experience % 100); assert.equal(done.eliteAvailableAt, won.eliteAvailableAt);
   await rejectsCode(start(h, "elite"), 409, "elite_cooldown");
   now = won.eliteAvailableAt - 1;
   await rejectsCode(start(h, "elite"), 409, "elite_cooldown");
@@ -440,6 +669,8 @@ test("Trade resolves both legs offline, grants sender XP/gold and exactly recipi
   const tokenRecipient = h.progressToken(h.row(recipient.id), h.row(recipient.id).usuario.base);
   const { snapshot: s, request } = await start(h, "trade");
   assert.equal(s.active.enemy, null); assert.equal(s.active.enemyHealth, 0);
+  // Even a malformed persisted trade with possible loot must never award objects.
+  h.ledger()[0].mission.loot = [{ ...content.EXPEDITION_ITEMS[0], quantity: 99, chance: 100 }];
   now = s.active.arrivalAt;
   const back = await h.loadExpeditions(h.initial.usuarioId);
   assert.equal(back.active.phase, "returning"); assert.equal(back.active.outcome, "trade");
@@ -448,6 +679,7 @@ test("Trade resolves both legs offline, grants sender XP/gold and exactly recipi
   const done = await h.loadExpeditions(h.initial.usuarioId);
   assert.equal(done.active.phase, "completed"); assert.equal(done.active.rewardGranted, true);
   assert.equal(done.profile.gold, 100 + s.active.mission.gold); assert.equal(done.profile.experience, 25); assert.equal(done.rewardRevision, 1);
+  assert.deepEqual(done.inventory, []); assert.deepEqual(done.active.awardedLoot, []); assert.deepEqual(h.ledger()[0].botin, []);
   assert.equal(h.row(recipient.id).oro, 100 + s.active.mission.gold * 0.25); assert.equal(h.row(recipient.id).rewardRevision, 1);
   assert.equal(h.row(recipient.id).experiencia, 0); assert.equal(h.row(recipient.id).saludActual, 40);
   assert.notEqual(tokenRecipient, h.progressToken(h.row(recipient.id), h.row(recipient.id).usuario.base));

@@ -3,16 +3,29 @@ import type { WorldGateway } from "./WorldGateway";
 import type { PartyManager } from "./PartyManager";
 import type { MobilityManager } from "./MobilityManager";
 import { createRequestId } from "../core/requestId";
+import type { CombatController } from "./CombatManager";
 
 export interface ExpeditionState {
   open: boolean;
   busy: boolean;
   error: string | null;
   data: ExpeditionSnapshotDto | null;
+  battleOpen?: boolean;
 }
 
 /** Owns board commands and low-frequency server observation, never combat results. */
 export class ExpeditionManager {
+  readonly battleController: CombatController = {
+    act: (action) => { if (action === "attack" || action === "flee") void this.act(action); },
+    selectMenu: () => {},
+    usePotion: () => false,
+    closeResult: () => { this.publish({ ...this.state, battleOpen: false, open: true }); },
+  };
+  openBattle(): void {
+    if (this.state.data?.active?.enemy && this.state.data.active.phase === "battle") {
+      this.publish({ ...this.state, open: false, battleOpen: true });
+    }
+  }
   private state: ExpeditionState = { open: false, busy: false, error: null, data: null };
   private readonly listeners = new Set<() => void>();
   private elapsed = 4;
@@ -40,7 +53,7 @@ export class ExpeditionManager {
   }
   openBoard(): void {
     if (this.destroyed) return;
-    this.publish({ ...this.state, open: true });
+    this.publish({ ...this.state, open: true, battleOpen: false });
     void this.refresh();
   }
   close(): void {
@@ -116,7 +129,11 @@ export class ExpeditionManager {
           (result.snapshot.active && result.snapshot.active.phase !== "completed" && !previous)) {
           this.party.adoptProfile(result.snapshot.profile, result.snapshot.progressToken, result.snapshot.rewardRevision);
         }
-        this.publish({ ...this.state, data: result.snapshot, error: null });
+        const enteredBattle = result.snapshot.active?.phase === "battle" &&
+          (previous?.active?.id !== result.snapshot.active.id || previous.active.phase !== "battle");
+        this.publish({ ...this.state, data: result.snapshot, error: null,
+          battleOpen: enteredBattle || this.state.battleOpen,
+          open: enteredBattle ? false : this.state.open });
       } else {
         if (request.action === "start" && result.code !== "network") this.pendingStart = null;
         this.publish({ ...this.state, error: result.message });

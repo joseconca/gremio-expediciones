@@ -1,19 +1,43 @@
 "use client";
 
 import Image from "next/image";
-import type { CombatManager, CombatSnapshot } from "@/game/gameplay/CombatManager";
+import { useEffect, useRef } from "react";
+import type { CombatController, CombatSnapshot } from "@/game/gameplay/CombatManager";
 
 interface BattleOverlayProps {
-  manager: CombatManager;
+  manager: CombatController;
   snapshot: CombatSnapshot;
   potionCount: number;
+  busy?: boolean;
+  serverControlled?: boolean;
+  error?: string | null;
+  title?: string;
 }
 
 export default function BattleOverlay({
   manager,
   snapshot,
   potionCount,
+  busy = false,
+  serverControlled = false,
+  error,
+  title = "Encuentro en el exterior",
 }: BattleOverlayProps) {
+  const dialogRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    const previous = document.activeElement;
+    dialog.focus({ preventScroll: true });
+    const containFocus = (event: FocusEvent) => {
+      if (event.target instanceof Node && !dialog.contains(event.target)) dialog.focus({ preventScroll: true });
+    };
+    document.addEventListener("focusin", containFocus);
+    return () => {
+      document.removeEventListener("focusin", containFocus);
+      if (previous instanceof HTMLElement && previous.isConnected) previous.focus({ preventScroll: true });
+    };
+  }, []);
   const enemy = snapshot.enemy;
   if (!enemy) return null;
 
@@ -24,15 +48,29 @@ export default function BattleOverlay({
 
   return (
     <section
+      ref={dialogRef}
+      tabIndex={-1}
+      onKeyDown={(event) => {
+        if (event.key !== "Tab") return;
+        const buttons = dialogRef.current?.querySelectorAll<HTMLButtonElement>("button:not(:disabled)");
+        if (!buttons?.length) { event.preventDefault(); return; }
+        const first = buttons[0];
+        const last = buttons[buttons.length - 1];
+        if (event.shiftKey && (document.activeElement === first || document.activeElement === dialogRef.current)) {
+          event.preventDefault(); last.focus();
+        } else if (!event.shiftKey && (document.activeElement === last || document.activeElement === dialogRef.current)) {
+          event.preventDefault(); first.focus();
+        }
+      }}
       aria-label="Combate"
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-40 flex flex-col justify-between overflow-y-auto overscroll-contain bg-slate-950/75 text-amber-50 backdrop-blur-[2px]"
+      className="fixed inset-0 z-[60] flex flex-col justify-between overflow-y-auto overscroll-contain bg-slate-950/75 text-amber-50 backdrop-blur-[2px]"
     >
       <header className="flex shrink-0 items-center justify-between border-b border-amber-100/15 bg-black/60 px-4 py-3 sm:px-8">
         <div>
           <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-amber-300/70">
-            Encuentro en el exterior
+            {title}
           </p>
           <h2 className="text-lg font-black sm:text-2xl">{enemy.name}</h2>
         </div>
@@ -93,6 +131,8 @@ export default function BattleOverlay({
       </div>
 
       <footer className="shrink-0 border-t border-amber-100/15 bg-[#17120f]/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:p-5">
+        {error && <p role="alert" className="mb-2 text-center text-sm text-red-200">{error}</p>}
+        {busy && <p role="status" className="mb-2 text-center text-sm text-amber-200">Resolviendo turno en el servidor…</p>}
         <p aria-live="polite" className="mx-auto mb-3 min-h-5 max-w-4xl text-center text-sm text-amber-100/80">
           {snapshot.log}
         </p>
@@ -104,6 +144,7 @@ export default function BattleOverlay({
             <button
               type="button"
               onClick={() => manager.closeResult()}
+              disabled={busy}
               className="rounded border border-amber-200/30 bg-amber-700 px-5 py-2 font-bold text-white hover:bg-amber-600"
             >
               Continuar
@@ -138,6 +179,7 @@ export default function BattleOverlay({
               <button
                 type="button"
                 onClick={() => manager.act("attack")}
+                disabled={busy}
                 className="rounded border border-amber-200/30 bg-amber-800 px-3 py-3 font-black uppercase tracking-wider shadow hover:bg-amber-700 active:translate-y-px"
               >
                 Atacar
@@ -145,6 +187,7 @@ export default function BattleOverlay({
               <button
                 type="button"
                 onClick={() => manager.act("skill")}
+                disabled={busy || serverControlled}
                 className="rounded border border-sky-200/25 bg-sky-950/80 px-3 py-3 font-black uppercase tracking-wider hover:bg-sky-900"
               >
                 Habilidades
@@ -152,6 +195,7 @@ export default function BattleOverlay({
               <button
                 type="button"
                 onClick={() => manager.act("item")}
+                disabled={busy || serverControlled}
                 className="rounded border border-emerald-200/25 bg-emerald-950/80 px-3 py-3 font-black uppercase tracking-wider hover:bg-emerald-900"
               >
                 Objetos
@@ -159,6 +203,7 @@ export default function BattleOverlay({
               <button
                 type="button"
                 onClick={() => manager.act("flee")}
+                disabled={busy}
                 className="rounded border border-slate-200/20 bg-slate-800 px-3 py-3 font-black uppercase tracking-wider text-slate-200 hover:bg-slate-700"
               >
                 Huída

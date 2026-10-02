@@ -32,6 +32,14 @@ export interface CombatSnapshot {
 
 export type CombatAction = "attack" | "skill" | "item" | "flee";
 
+/** Presentation commands shared by local encounters and authoritative expeditions. */
+export interface CombatController {
+  act(action: CombatAction): void;
+  selectMenu(menu: CombatMenu): void;
+  usePotion(): boolean;
+  closeResult(): void;
+}
+
 function copyAttributes(attributes: CharacterAttributes): CharacterAttributes {
   return { ...attributes };
 }

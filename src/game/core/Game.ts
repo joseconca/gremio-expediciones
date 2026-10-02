@@ -146,7 +146,8 @@ export class Game {
         const mobility = this.mobilityManager.getSnapshot();
         this.input.setBlocker("menu", this.menuManager.getSnapshot().open);
         this.input.setBlocker("travel", !!mobility.journey || !!mobility.travelPending || mobility.conflict);
-        this.input.setBlocker("expedition", this.expeditionManager.getSnapshot().open || this.expeditionManager.isActive());
+        this.input.setBlocker("expedition", this.expeditionManager.getSnapshot().open ||
+          !!this.expeditionManager.getSnapshot().battleOpen || this.expeditionManager.isActive());
         this.villageProgression.update(deltaTime);
         this.dayNightSystem.update();
         this.partyManager.update(deltaTime);
