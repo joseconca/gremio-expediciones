@@ -29,6 +29,7 @@ export class ExpeditionManager {
   private state: ExpeditionState = { open: false, busy: false, error: null, data: null };
   private readonly listeners = new Set<() => void>();
   private elapsed = 4;
+  private lastEnemyStatusAt = -Infinity;
   private syncing = false;
   private refreshInFlight: Promise<void> | null = null;
   private destroyed = false;
@@ -61,8 +62,13 @@ export class ExpeditionManager {
   }
   update(dt: number): void {
     this.elapsed += dt;
-    if (this.elapsed >= 4 && !this.syncing && !this.state.busy) {
+    const active = this.state.data?.active;
+    const now = this.serverNow();
+    const enemyDue = active?.phase === "battle" && active.turn === "enemy" && active.enemyTurnAt != null &&
+      now >= active.enemyTurnAt && now - this.lastEnemyStatusAt >= 500;
+    if ((this.elapsed >= 4 || enemyDue) && !this.syncing && !this.state.busy) {
       this.elapsed = 0;
+      if (enemyDue) this.lastEnemyStatusAt = now;
       void this.refresh();
     }
   }
@@ -97,6 +103,10 @@ export class ExpeditionManager {
       const active = this.state.data?.active;
       if (!active || active.phase !== "battle") {
         this.publish({ ...this.state, error: "El combate ya no está disponible. Consulta el estado de la expedición." });
+        return;
+      }
+      if (active.turn === "enemy") {
+        this.publish({ ...this.state, error: "Es el turno del enemigo. Espera a que termine su ataque." });
         return;
       }
       await this.command({ action, expeditionId: active.id, version: active.version });

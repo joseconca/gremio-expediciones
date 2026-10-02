@@ -387,7 +387,7 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
     }
 
     async function expireExpeditionLeg(account, active, field) {
-      assert.ok(["arrivalAt", "returnArrivalAt"].includes(field));
+      assert.ok(["arrivalAt", "returnArrivalAt", "enemyTurnAt"].includes(field));
       // Only dates on A's own server-created ledger are advanced, never stats or outcomes.
       assert.equal(account, a);
       const row = await prisma.expedicionMundo.findUniqueOrThrow({ where: { id: active.id } });
@@ -397,6 +397,33 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       });
     }
 
+    async function resolveHttpEnemyTurn(account, snapshot) {
+      const before = snapshot;
+      assert.equal(before.active.turn, "enemy");
+      assert.ok(Number.isSafeInteger(before.active.enemyTurnAt));
+      assert.ok(before.active.enemyTurnAt >= before.serverNow);
+      const row = await prisma.expedicionMundo.findUniqueOrThrow({ where: { id: before.active.id } });
+      assert.equal(row.enemyTurnAt.getTime(), before.active.enemyTurnAt);
+      // Capture the server-derived deadline before expiring only this disposable ledger.
+      await expireExpeditionLeg(account, before.active, "enemyTurnAt");
+      snapshot = await expedition(account, { action: "status" });
+      const damage = Math.min(before.active.playerHealth, Math.max(1, before.active.enemy.attack -
+        (5 + Math.max(0, before.profile.level - 1))));
+      assert.equal(snapshot.active.playerHealth, before.active.playerHealth - damage);
+      assert.equal(snapshot.active.enemyHealth, before.active.enemyHealth);
+      assert.equal(snapshot.profile.currentHealth, snapshot.active.playerHealth);
+      assert.equal(snapshot.active.version, before.active.version + 1);
+      assert.equal(snapshot.rewardRevision, before.rewardRevision + 1);
+      assert.equal(snapshot.active.turn, "player"); assert.equal(snapshot.active.enemyTurnAt, null);
+      assert.deepEqual(snapshot.active.lastAction, {
+        id: snapshot.active.version, actor: "enemy", kind: "attack", damage, at: snapshot.serverNow,
+      });
+      const repeated = await expedition(account);
+      assert.deepEqual(repeated.active, snapshot.active); assert.deepEqual(repeated.profile, snapshot.profile);
+      assert.equal(repeated.rewardRevision, snapshot.rewardRevision);
+      return snapshot;
+    }
+
     async function winExpedition(account, snapshot) {
       assert.equal(snapshot.active.phase, "battle");
       const enemy = snapshot.active.enemy;
@@ -404,14 +431,32 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       const defense = 5 + Math.max(0, snapshot.profile.level - 1);
       const turns = Math.ceil(snapshot.active.enemyHealth / Math.max(1, attack - enemy.defense));
       assert.ok(turns <= 30, "Selected mission must be winnable within 30 attacks");
-      assert.ok(snapshot.active.playerHealth > (turns - 1) * Math.max(1, enemy.attack - defense),
+      assert.ok(snapshot.active.playerHealth > (turns - 1 + (snapshot.active.turn === "enemy" ? 1 : 0)) * Math.max(1, enemy.attack - defense),
         "Selected mission must leave enough health for victory");
       for (let turn = 0; turn < 30 && snapshot.active.phase === "battle"; turn++) {
+        if (snapshot.active.turn === "enemy") snapshot = await resolveHttpEnemyTurn(account, snapshot);
+        assert.equal(snapshot.active.turn, "player");
         const command = { action: "attack", expeditionId: snapshot.active.id, version: snapshot.active.version };
         const before = snapshot;
         snapshot = await expedition(account, command);
         assert.equal(snapshot.active.version, before.active.version + 1);
-        assert.equal(snapshot.rewardRevision, before.rewardRevision + 1);
+        assert.equal(snapshot.rewardRevision, before.rewardRevision +
+          (snapshot.active.outcome === "victory" && snapshot.active.mission.kind === "elite" ? 1 : 0));
+        assert.equal(snapshot.active.playerHealth, before.active.playerHealth);
+        assert.deepEqual(snapshot.profile, before.profile);
+        assert.deepEqual(snapshot.active.lastAction, {
+          id: snapshot.active.version, actor: "player", kind: "attack",
+          damage: before.active.enemyHealth - snapshot.active.enemyHealth, at: snapshot.serverNow,
+        });
+        if (snapshot.active.phase === "battle") {
+          assert.equal(snapshot.active.turn, "enemy");
+          assert.equal(snapshot.active.enemyTurnAt, snapshot.serverNow + 1000);
+          for (const action of ["attack", "flee"]) await expedition(account, {
+            action, expeditionId: snapshot.active.id, version: snapshot.active.version,
+          }, 409, "not_your_turn");
+        } else {
+          assert.equal(snapshot.active.turn, "player"); assert.equal(snapshot.active.enemyTurnAt, null);
+        }
         await expedition(account, command, 409, "expedition_conflict");
         const repeated = await expedition(account);
         assert.deepEqual(repeated.active, snapshot.active);
@@ -473,6 +518,7 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
         assert.equal(mission.enemy.maxHealth, elite ? 35 + growth * 4 : 12 + mission.enemyLevel * 2);
         assert.equal(mission.enemy.attack, elite ? 3 + growth : 1 + Math.floor(growth / 3));
         assert.equal(mission.enemy.defense, elite ? 3 + Math.floor(growth / 3) : 0);
+        assert.equal(mission.enemy.speed, (mission.enemy.sprite.endsWith("arana.png") ? 6 : 3) + Math.floor(mission.enemyLevel / 4));
         const gold = elite ? 60 + mission.distanceKm * 10 + growth * 12 : 15 + mission.distanceKm * 5 + growth * 4;
         const experience = elite ? 75 + mission.distanceKm * 4 + growth * 15 : 25 + mission.distanceKm * 2 + growth * 5;
         for (const [field, base] of [["gold", gold], ["experience", experience]]) {
@@ -512,6 +558,10 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       assert.equal(row.enemyHealth, mission.enemy.maxHealth);
       assert.deepEqual(row.botin, []);
       assert.deepEqual(snapshot.active.awardedLoot, []);
+      assert.equal(row.playerSpeed, 5); assert.equal(snapshot.active.playerSpeed, 5);
+      assert.equal(row.turn, "player"); assert.equal(snapshot.active.turn, "player");
+      assert.equal(row.enemyTurnAt, null); assert.equal(snapshot.active.enemyTurnAt, null);
+      assert.equal(row.lastAction, null); assert.equal(snapshot.active.lastAction, null);
     }
 
     async function assertSavedExpedition(account, snapshot) {
@@ -524,6 +574,10 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       if (snapshot.active) {
         const ledger = await prisma.expedicionMundo.findUniqueOrThrow({ where: { id: snapshot.active.id } });
         assert.deepEqual(ledger.botin, snapshot.active.awardedLoot);
+        assert.equal(ledger.turn, snapshot.active.turn);
+        assert.equal(ledger.enemyTurnAt?.getTime() ?? null, snapshot.active.enemyTurnAt);
+        assert.deepEqual(ledger.lastAction, snapshot.active.lastAction);
+        assert.equal(ledger.playerSpeed, snapshot.active.playerSpeed);
       }
       const repeated = await expedition(account, { action: "status" });
       assert.deepEqual(repeated.active, snapshot.active);
@@ -546,6 +600,8 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
         }, 400, "invalid_body");
       }
       const forgedFields = {
+        turn: "player", enemyTurnAt: 0, playerSpeed: 999,
+        lastAction: { id: 1, actor: "player", kind: "attack", damage: 999, at: 0 },
         enemyLevel: 1, enemy: { ...mission.enemy, maxHealth: 1, attack: 0, defense: 0 },
         loot: [{ id: "world-relic", name: "Fragmento de reliquia", quantity: 999999, chance: 100 }],
         awardedLoot: [{ id: "world-relic", name: "Fragmento de reliquia", quantity: 999999 }],
@@ -750,6 +806,7 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       // Emulate a pre-upgrade ledger while preserving its server-issued enemy and rewards.
       const oldEnemy = { ...snapshot.active.enemy };
       delete oldEnemy.level;
+      delete oldEnemy.speed;
       await prisma.expedicionMundo.update({
         where: { id: snapshot.active.id }, data: { mission: oldMission, enemy: oldEnemy },
       });

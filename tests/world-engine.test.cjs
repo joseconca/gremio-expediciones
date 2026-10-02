@@ -8,6 +8,7 @@ const { createEmbajadorDialogue } = require("../src/game/data/dialogues/embajado
 const { KeyboardInput } = require("../src/game/input/KeyboardInput.ts");
 const { InputManager } = require("../src/game/input/InputManager.ts");
 const { CombatManager } = require("../src/game/gameplay/CombatManager.ts");
+const { ENEMY_TURN_DELAY_MS, ATTACK_ANIMATION_MS } = require("../src/shared/combat.ts");
 const { geographicToWorldPoint, isInsideWorldMap } = require("../src/game/world/WorldLocation.ts");
 const { ExpeditionManager } = require("../src/game/gameplay/ExpeditionManager.ts");
 const { worldGateway } = require("../src/services/worldGateway.ts");
@@ -185,6 +186,7 @@ test("combat overlay state: menus, potion, flee, victory and no duplicate reward
   const player = new PlayerProgression();
   const village = new VillageProgression();
   const combat = new CombatManager(player, village);
+  assert.ok(Object.isFrozen(combat.getSnapshot()) && Object.isFrozen(combat.getSnapshot().party));
   const enemy = {
     id: "test", name: "Enemigo de prueba", sprite: "/test.png", experienceReward: 5, goldReward: 2,
     attributes: { ...player.getState().attributes, currentHealth: 1, maxHealth: 1 },
@@ -197,6 +199,9 @@ test("combat overlay state: menus, potion, flee, victory and no duplicate reward
   assert.equal(combat.usePotion(), true);
   assert.equal(player.getState().attributes.currentHealth, 70);
   combat.act("flee");
+  assert.equal(combat.getSnapshot().phase, "active");
+  combat.update(ENEMY_TURN_DELAY_MS);
+  combat.act("flee");
   assert.equal(combat.getSnapshot().phase, "fled");
   combat.closeResult();
   assert.equal(combat.isEncounterOpen(), false);
@@ -206,6 +211,234 @@ test("combat overlay state: menus, potion, flee, victory and no duplicate reward
   assert.equal(player.getState().gold, 102);
   combat.act("attack");
   assert.equal(player.getState().gold, 102);
+});
+
+function localCombatFixture(enemyAttributes = {}, clock = () => 10_000) {
+  const player = new PlayerProgression();
+  const village = new VillageProgression();
+  const combat = new CombatManager(player, village, clock);
+  const enemy = {
+    id: "turn-test", name: "Araña de prueba", sprite: "/sprites/enemies/arana.png",
+    experienceReward: 5, goldReward: 2,
+    attributes: { ...player.getState().attributes, currentHealth: 100, maxHealth: 100, ...enemyAttributes },
+  };
+  assert.equal(combat.startEncounter(enemy), true);
+  return { player, village, combat, enemy };
+}
+
+test("combat initiative: faster enemy waits exactly 1000 simulated ms; ties and faster player act first", () => {
+  for (const speed of [4, 5]) {
+    const { combat } = localCombatFixture({ speed });
+    assert.equal(combat.getSnapshot().turn, "player");
+    assert.equal(combat.getSnapshot().enemyTurnAt, null);
+    combat.update(10_000);
+    assert.equal(combat.getSnapshot().lastAction, null);
+  }
+  let now = 10_000;
+  const { combat, player } = localCombatFixture({ speed: 6 }, () => now);
+  const initial = combat.getSnapshot();
+  assert.equal(initial.turn, "enemy");
+  assert.equal(initial.enemyTurnAt, 11_000);
+  now += 1_000_000;
+  for (const delta of [0, -1, NaN, Infinity]) combat.update(delta);
+  combat.update(999);
+  assert.strictEqual(combat.getSnapshot(), initial);
+  assert.equal(player.getState().attributes.currentHealth, 40);
+  combat.update(1);
+  const attacked = combat.getSnapshot();
+  assert.equal(attacked.turn, "player");
+  assert.equal(attacked.enemyTurnAt, null);
+  assert.deepEqual(attacked.lastAction, { id: 1, actor: "enemy", kind: "attack", damage: 6, at: 11_000, targetMemberId: "local-player" });
+  assert.equal(player.getState().attributes.currentHealth, 34);
+  combat.update(10_000);
+  assert.strictEqual(combat.getSnapshot(), attacked);
+});
+
+test("player attack only damages enemy; pending enemy turn guards spam and action IDs drive animations", () => {
+  const { combat, player, village } = localCombatFixture();
+  const initial = combat.getSnapshot();
+  combat.act("attack");
+  const attack = combat.getSnapshot();
+  assert.equal(attack.enemy.attributes.currentHealth, 94);
+  assert.equal(player.getState().attributes.currentHealth, 40);
+  assert.equal(attack.turn, "enemy");
+  assert.equal(attack.actingMemberId, "local-player");
+  assert.deepEqual(attack.lastAction, { id: 1, actor: "player", kind: "attack", damage: 6, at: 10_000, actorMemberId: "local-player" });
+  const resources = village.getResourcesSnapshot();
+  for (const action of ["attack", "flee", "item", "skill"]) combat.act(action);
+  combat.selectMenu("items");
+  assert.equal(combat.usePotion(), false);
+  combat.closeResult();
+  assert.equal(combat.startEncounter(localCombatFixture().enemy), false);
+  assert.strictEqual(combat.getSnapshot(), attack);
+  assert.strictEqual(village.getResourcesSnapshot(), resources);
+  assert.equal(initial.enemy.attributes.currentHealth, 100);
+  combat.update(ATTACK_ANIMATION_MS);
+  assert.strictEqual(combat.getSnapshot(), attack);
+  combat.update(ENEMY_TURN_DELAY_MS - ATTACK_ANIMATION_MS - 1);
+  assert.equal(player.getState().attributes.currentHealth, 40);
+  combat.update(1);
+  const counterattack = combat.getSnapshot();
+  assert.equal(counterattack.lastAction.id, 2);
+  assert.equal(counterattack.lastAction.actor, "enemy");
+  assert.equal(counterattack.lastAction.at, 11_000);
+  assert.equal(player.getState().attributes.currentHealth, 34);
+  assert.equal(counterattack.turn, "player");
+  combat.act("attack");
+  assert.equal(combat.getSnapshot().lastAction.id, 3);
+  assert.equal(combat.getSnapshot().lastAction.actor, "player");
+  assert.equal(counterattack.enemy.attributes.currentHealth, 94);
+  assert.equal(attack.party[0].attributes.currentHealth, 40);
+  assert.ok(Object.isFrozen(attack) && Object.isFrozen(attack.party) && Object.isFrozen(attack.party[0]));
+  assert.ok(Object.isFrozen(attack.enemy.attributes) && Object.isFrozen(attack.lastAction));
+});
+
+test("menus consume no turn; potion heals missing local HP once and consumes one player turn", () => {
+  const { combat, player, village } = localCombatFixture();
+  combat.act("skill");
+  combat.act("item");
+  combat.selectMenu("root");
+  assert.equal(combat.getSnapshot().turn, "player");
+  assert.equal(combat.getSnapshot().lastAction, null);
+  assert.equal(combat.getSnapshot().enemyTurnAt, null);
+  const potions = village.getResourcesSnapshot().potions;
+  assert.equal(combat.usePotion(), true);
+  assert.equal(player.getState().attributes.currentHealth, 70);
+  assert.equal(village.getResourcesSnapshot().potions, potions - 1);
+  assert.deepEqual(combat.getSnapshot().lastAction, { id: 1, actor: "player", kind: "item", damage: -30, at: 10_000 });
+  assert.equal(combat.usePotion(), false);
+  combat.update(1000);
+  assert.equal(player.getState().attributes.currentHealth, 64);
+  const snapshot = combat.getSnapshot();
+  assert.equal(combat.usePotion(), false);
+  assert.strictEqual(combat.getSnapshot(), snapshot);
+  combat.act("flee");
+  const fled = combat.getSnapshot();
+  assert.deepEqual(fled.lastAction, { id: 3, actor: "player", kind: "flee", damage: 0, at: 11_000 });
+  combat.update(100_000);
+  assert.strictEqual(combat.getSnapshot(), fled);
+
+  const healthy = new PlayerProgression();
+  healthy.setHealth(100);
+  const healthyVillage = new VillageProgression();
+  const full = new CombatManager(healthy, healthyVillage);
+  full.startEncounter(localCombatFixture().enemy);
+  const healthyPotions = healthyVillage.getResourcesSnapshot().potions;
+  assert.equal(full.usePotion(), false);
+  assert.equal(healthyVillage.getResourcesSnapshot().potions, healthyPotions);
+  assert.equal(full.getSnapshot().turn, "player");
+  assert.equal(full.getSnapshot().lastAction, null);
+  assert.equal(full.getSnapshot().enemyTurnAt, null);
+  full.act("attack");
+  assert.equal(full.getSnapshot().turn, "enemy");
+
+  const almostFull = new PlayerProgression();
+  almostFull.setHealth(95);
+  const partial = new CombatManager(almostFull, new VillageProgression());
+  partial.startEncounter(localCombatFixture().enemy);
+  assert.equal(partial.usePotion(), true);
+  assert.equal(partial.getSnapshot().lastAction.damage, -5);
+  assert.equal(almostFull.getState().attributes.currentHealth, 100);
+});
+
+test("fatal attack grants local rewards once without enemy retaliation, including reentrant actions", () => {
+  const { combat, player } = localCombatFixture({ currentHealth: 1, maxHealth: 1, physicalAttack: 1000 });
+  player.subscribe(() => combat.act("attack"));
+  combat.act("attack");
+  const victory = combat.getSnapshot();
+  assert.equal(victory.phase, "victory");
+  assert.equal(victory.lastAction.actor, "player");
+  assert.equal(victory.enemyTurnAt, null);
+  assert.equal(player.getState().gold, 102);
+  assert.equal(player.getState().experience, 5);
+  assert.equal(player.getState().attributes.currentHealth, 40);
+  for (const action of ["attack", "flee", "skill", "item"]) combat.act(action);
+  assert.equal(combat.usePotion(), false);
+  combat.update(100_000);
+  assert.strictEqual(combat.getSnapshot(), victory);
+  assert.equal(player.getState().gold, 102);
+  assert.equal(player.getState().experience, 5);
+  combat.closeResult();
+  const closed = combat.getSnapshot();
+  assert.equal(closed.enemyTurnAt, null);
+  assert.equal(closed.lastAction, null);
+  combat.update(100_000);
+  assert.strictEqual(combat.getSnapshot(), closed);
+});
+
+test("enemy fatal attack clamps HP, ends battle and cannot act after result closes or leaks into next battle", () => {
+  const { combat, player, enemy } = localCombatFixture({ speed: 6, physicalAttack: 1000 });
+  combat.update(5000);
+  const defeat = combat.getSnapshot();
+  assert.equal(defeat.phase, "defeat");
+  assert.equal(defeat.party[0].attributes.currentHealth, 0);
+  assert.equal(player.getState().attributes.currentHealth, 0);
+  assert.equal(player.getState().gold, 100);
+  assert.equal(player.getState().experience, 0);
+  assert.equal(defeat.lastAction.at, 11_000);
+  combat.update(10_000);
+  combat.act("attack");
+  assert.strictEqual(combat.getSnapshot(), defeat);
+  combat.closeResult();
+  assert.equal(combat.startEncounter(enemy), false);
+  player.setHealth(40);
+  assert.equal(combat.startEncounter({ ...enemy, attributes: { ...enemy.attributes, speed: 5, physicalAttack: 8 } }), true);
+  assert.equal(combat.getSnapshot().lastAction, null);
+  combat.update(100_000);
+  assert.equal(player.getState().attributes.currentHealth, 40);
+  combat.act("flee");
+  assert.equal(combat.getSnapshot().lastAction.id, 2);
+});
+
+test("party supports only supplied living members, rotates alive attackers and keeps pending initiative", () => {
+  const { combat, player } = localCombatFixture({ speed: 6, currentHealth: 1000, maxHealth: 1000 });
+  const member = { id: "companion", name: "Compañera", isLocalPlayer: false,
+    spriteSrc: "/provided.png", attributes: { ...player.getState().attributes, physicalAttack: 20, speed: 100 } };
+  assert.equal(combat.getSnapshot().party.length, 1);
+  assert.equal(combat.getSnapshot().party[0].spriteSrc, "/sprites/sheets/characters/hero.png");
+  assert.equal(combat.addPartyMember({ ...member, attributes: { ...member.attributes, currentHealth: 0 } }), false);
+  assert.equal(combat.addPartyMember({ ...member, attributes: { ...member.attributes, currentHealth: NaN } }), false);
+  assert.equal(combat.addPartyMember({ ...member, isLocalPlayer: true }), false);
+  combat.update(600);
+  assert.equal(combat.addPartyMember(member), true);
+  assert.equal(combat.addPartyMember(member), false);
+  assert.equal(combat.addPartyMember({ ...member, id: "third", spriteSrc: undefined }), true);
+  assert.equal(combat.addPartyMember({ ...member, id: "fourth" }), false);
+  assert.equal(combat.getSnapshot().enemyTurnAt, 11_000);
+  assert.equal(combat.getSnapshot().turn, "enemy");
+  assert.equal(combat.getSnapshot().party[1].spriteSrc, "/provided.png");
+  assert.equal(combat.getSnapshot().party[2].spriteSrc, "/sprites/sheets/characters/hero.png");
+  member.attributes.physicalAttack = 999;
+  combat.update(399);
+  assert.equal(player.getState().attributes.currentHealth, 40);
+  combat.update(1);
+  assert.equal(combat.getSnapshot().actingMemberId, "local-player");
+  for (const [actor, expectedDamage] of [["local-player", 6], ["companion", 16], ["third", 16], ["local-player", 6]]) {
+    assert.equal(combat.getSnapshot().actingMemberId, actor);
+    combat.act("attack");
+    assert.equal(combat.getSnapshot().lastAction.damage, expectedDamage);
+    assert.equal(combat.getSnapshot().actingMemberId, actor);
+    combat.update(1000);
+  }
+});
+
+test("fallen local member is skipped while supplied allies keep fighting; only local HP updates progression", () => {
+  const { combat, player } = localCombatFixture({ physicalAttack: 1000, currentHealth: 1000, maxHealth: 1000 });
+  const ally = { id: "ally", name: "Aliado", isLocalPlayer: false, attributes: { ...player.getState().attributes } };
+  assert.equal(combat.addPartyMember(ally), true);
+  combat.act("attack");
+  combat.update(1000);
+  assert.equal(combat.getSnapshot().phase, "active");
+  assert.equal(combat.getSnapshot().actingMemberId, "ally");
+  assert.equal(player.getState().attributes.currentHealth, 0);
+  assert.equal(combat.usePotion(), false);
+  combat.act("attack");
+  combat.update(1000);
+  assert.equal(combat.getSnapshot().phase, "defeat");
+  assert.equal(combat.getSnapshot().party[1].attributes.currentHealth, 0);
+  assert.equal(ally.attributes.currentHealth, 40);
+  assert.equal(player.getState().attributes.currentHealth, 0);
+  assert.equal(combat.addPartyMember({ ...ally, id: "late" }), false);
 });
 
 test("HTTP envelope reaches expedition controller without erasing ordinary local spending", async () => {
@@ -409,4 +642,52 @@ test("old expeditions still project into common overlay without enemy level or l
   const delivered = { ...data, active: { ...data.active, phase: "completed", outcome: "victory", rewardGranted: true } };
   assert.match(expeditionCombatSnapshot(delivered).log, /Botín entregado/);
   assert.doesNotMatch(expeditionCombatSnapshot(delivered).log, /pendiente/);
+});
+
+test("expedition adapter forwards initiative, speeds and confirmed animation metadata", () => {
+  const action = { id: 3, actor: "enemy", kind: "attack", damage: 4, at: 1000 };
+  const data = { ...expeditionFixture(), active: { id: "trip", phase: "battle", version: 3,
+    enemy: { name: "Araña", sprite: "/sprites/enemies/arana.png", speed: 8, attack: 7, defense: 0, maxHealth: 20 },
+    enemyHealth: 15, playerHealth: 36, playerMaxHealth: 100, log: "Ataque enemigo",
+    mission: { gold: 20, experience: 25 }, playerSpeed: 5, turn: "enemy", enemyTurnAt: 2000, lastAction: action } };
+  const view = expeditionCombatSnapshot(data);
+  assert.equal(view.turn, "enemy");
+  assert.equal(view.enemy.attributes.speed, 8);
+  assert.equal(view.party[0].attributes.speed, 5);
+  assert.equal(view.party[0].spriteSrc, "/sprites/sheets/characters/hero.png");
+  assert.strictEqual(view.lastAction, action);
+  assert.equal(view.enemyTurnAt, 2000);
+});
+
+test("expedition polls due enemy turn promptly with throttle, never attacks or resolves locally", async () => {
+  let now = 0;
+  let polls = 0;
+  let attacks = 0;
+  const manager = new ExpeditionManager({ async expedition(request) {
+    if (request.action === "attack") attacks++;
+    else polls++;
+    return { ok: true, snapshot: { ...expeditionFixture(), active: { id: "trip", phase: "battle", version: 1,
+      turn: "enemy", enemyTurnAt: 1000, enemy: { name: "Araña" } } } };
+  } }, { suspendSync: async (action) => action(), adoptProfile() {} }, {}, () => true);
+  manager.serverNow = () => now;
+  try {
+    manager.update(0);
+    await yieldMicrotasks();
+    assert.equal(polls, 1);
+    await manager.act("attack");
+    assert.equal(attacks, 0);
+    now = 999;
+    manager.update(0.1);
+    assert.equal(polls, 1);
+    now = 1000;
+    manager.update(0.1);
+    await yieldMicrotasks();
+    assert.equal(polls, 2);
+    for (let frame = 0; frame < 30; frame++) manager.update(0.01);
+    assert.equal(polls, 2);
+    now = 1500;
+    manager.update(0.01);
+    await yieldMicrotasks();
+    assert.equal(polls, 3);
+  } finally { manager.destroy(); }
 });

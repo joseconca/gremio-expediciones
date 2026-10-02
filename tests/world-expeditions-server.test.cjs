@@ -22,6 +22,7 @@ function loadSource(relativePath, dependencies = {}) {
 
 const NOW = 1_800_000_000_000;
 const contract = loadSource("src/shared/expeditions.ts");
+const combat = loadSource("src/shared/combat.ts");
 const world = loadSource("src/shared/world.ts");
 const geo = loadSource("src/lib/mundo/geo.ts", { "@/lib/utils": loadSource("src/lib/utils.ts") });
 const content = loadSource("src/lib/mundo/expeditionContent.ts");
@@ -43,6 +44,7 @@ function harness(initial = player(), others = []) {
   let queue = Promise.resolve();
   let authenticated = { id: initial.usuarioId };
   let failCompletion = false;
+  let failReturn = false;
   const prisma = {
     $transaction(work) {
       const operation = queue.then(async () => {
@@ -95,9 +97,13 @@ function harness(initial = player(), others = []) {
             async create({ data }) {
               check();
               assert.equal(Object.hasOwn(data, "awardedLoot"), false, "DTO field is not a Prisma column");
+              assert.ok(data.enemyTurnAt === null || data.enemyTurnAt instanceof Date);
+              assert.equal(data.lastAction, Prisma.DbNull);
               assert.equal([...draftLedger.values()].some((r) => r.requestId === data.requestId), false);
               assert.equal([...draftLedger.values()].some((r) => r.jugadorId === data.jugadorId && r.phase !== "completed"), false);
-              const row = { botin: [], ...structuredClone(data), enemy: data.enemy === Prisma.DbNull ? null : structuredClone(data.enemy) };
+              const row = { botin: [], turn: "player", playerSpeed: 5, enemyTurnAt: null, lastAction: null,
+                ...structuredClone(data), enemy: data.enemy === Prisma.DbNull ? null : structuredClone(data.enemy),
+                lastAction: data.lastAction === Prisma.DbNull ? null : structuredClone(data.lastAction) };
               draftLedger.set(row.id, row);
               return structuredClone(row);
             },
@@ -108,9 +114,19 @@ function harness(initial = player(), others = []) {
                 failCompletion = false;
                 throw new Error("Simulated ledger write failure after balance updates");
               }
+              if (failReturn && data.phase === "returning") {
+                failReturn = false;
+                throw new Error("Simulated return write failure");
+              }
+              if (Object.hasOwn(data, "enemyTurnAt")) assert.ok(data.enemyTurnAt === null || data.enemyTurnAt instanceof Date);
+              if (data.lastAction && data.lastAction !== Prisma.DbNull) {
+                assert.ok(Number.isSafeInteger(data.lastAction.id));
+                assert.ok(Number.isSafeInteger(data.lastAction.at));
+              }
               const r = draftLedger.get(where.id);
               assert.ok(r);
               Object.assign(r, structuredClone(data));
+              if (data.lastAction === Prisma.DbNull) r.lastAction = null;
               return structuredClone(r);
             },
           },
@@ -133,7 +149,7 @@ function harness(initial = player(), others = []) {
   });
   const rules = loadSource("src/lib/mundo/expeditionRules.ts", { "./geo": geo, "./http": http, "./expeditionContent": content });
   const service = loadSource("src/lib/mundo/expeditions.ts", {
-    "./geo": geo, "./http": http, "./jugador": jugador, "./expeditionRules": rules,
+    "./geo": geo, "./http": http, "./jugador": jugador, "./expeditionRules": rules, "@/shared/combat": combat,
   });
   const route = loadSource("src/app/api/mundo/expediciones/route.ts", {
     "@/lib/mundo/http": http, "@/lib/mundo/expeditions": service,
@@ -143,6 +159,7 @@ function harness(initial = player(), others = []) {
     row: (id = initial.id) => rows.get(id), ledger: () => [...ledger.values()],
     remove: (id) => rows.delete(id), setAuthenticated: (value) => { authenticated = value; },
     failCompletion: () => { failCompletion = true; },
+    failReturn: () => { failReturn = true; },
   };
 }
 
@@ -160,8 +177,28 @@ async function start(h, kind = "normal", requestId = randomUUID()) {
 async function attack(h, snapshot) {
   return h.mutateExpeditions(h.initial.usuarioId, { action: "attack", expeditionId: snapshot.active.id, version: snapshot.active.version });
 }
-async function victory(h, snapshot) {
-  for (let turn = 0; snapshot.active.phase === "battle" && turn < 100; turn++) snapshot = await attack(h, snapshot);
+async function enemyTurn(h, snapshot, setNow) {
+  assert.equal(snapshot.active.turn, "enemy");
+  setNow(snapshot.active.enemyTurnAt);
+  const after = await h.loadExpeditions(h.initial.usuarioId);
+  assert.equal(after.active.enemyHealth, snapshot.active.enemyHealth);
+  assert.equal(after.active.playerHealth, snapshot.active.playerHealth - after.active.lastAction.damage);
+  assert.equal(after.active.lastAction.actor, "enemy");
+  assert.equal(after.active.lastAction.at, snapshot.active.enemyTurnAt);
+  assert.equal(after.active.version, snapshot.active.version + 1);
+  assert.equal(after.rewardRevision, snapshot.rewardRevision + 1);
+  assert.equal(after.active.turn, "player"); assert.equal(after.active.enemyTurnAt, null);
+  return after;
+}
+async function victory(h, snapshot, setNow) {
+  for (let turn = 0; snapshot.active.phase === "battle" && turn < 100; turn++) {
+    if (snapshot.active.turn === "enemy") snapshot = await enemyTurn(h, snapshot, setNow);
+    if (snapshot.active.phase !== "battle") break;
+    const before = snapshot;
+    snapshot = await attack(h, snapshot);
+    assert.equal(snapshot.active.playerHealth, before.active.playerHealth, "Player attacks never retaliate simultaneously");
+    assert.equal(snapshot.active.lastAction.actor, "player");
+  }
   assert.equal(snapshot.active.outcome, "victory");
   return snapshot;
 }
@@ -169,7 +206,7 @@ async function victory(h, snapshot) {
 // Combat mechanics fixtures deliberately isolate damage from catalog variation.
 function basicEnemy(h, kind = "normal") {
   const row = h.ledger()[0];
-  row.enemy = h.rules.expeditionEnemy(kind, 1);
+  row.enemy = { ...h.rules.expeditionEnemy(kind, 1), speed: 5 };
   row.enemyHealth = row.enemy.maxHealth;
 }
 
@@ -322,7 +359,7 @@ test("Victory normal/elite grants rolled items only at completion; concurrent re
     const expectedLoot = h.rules.rollExpeditionLoot(row.mission.loot, row.id);
     assert.deepEqual(s.active.awardedLoot, []); assert.deepEqual(row.botin, []);
     now = s.active.arrivalAt;
-    const won = await victory(h, await h.loadExpeditions(initial.usuarioId));
+    const won = await victory(h, await h.loadExpeditions(initial.usuarioId), (value) => { now = value; });
     assert.deepEqual(won.inventory, initial.inventarioMundo); assert.deepEqual(won.active.awardedLoot, []);
     assert.deepEqual(h.ledger()[0].botin, []);
     now = won.active.returnArrivalAt;
@@ -342,7 +379,7 @@ test("Inventory and botin roll back with gold/XP on ledger failure; same UUID re
   const h = harness(); const { snapshot: s } = await start(h); basicEnemy(h);
   h.ledger()[0].mission.loot.forEach((i) => { i.chance = 100; });
   now = s.active.arrivalAt;
-  const won = await victory(h, await h.loadExpeditions(h.initial.usuarioId));
+  const won = await victory(h, await h.loadExpeditions(h.initial.usuarioId), (value) => { now = value; });
   const before = structuredClone(h.row()), ledgerBefore = structuredClone(h.ledger()[0]);
   const expected = h.rules.rollExpeditionLoot(ledgerBefore.mission.loot, ledgerBefore.id);
   now = won.active.returnArrivalAt; h.failCompletion();
@@ -366,7 +403,7 @@ test("Old saved missions/missing botin and inventory remain compatible; rewardGr
   const battle = await h.loadExpeditions(h.initial.usuarioId);
   assert.deepEqual(battle.active.mission, oldMission); assert.deepEqual(battle.active.enemy, oldEnemy);
   assert.deepEqual(battle.inventory, []); assert.deepEqual(battle.active.awardedLoot, []);
-  const won = await victory(h, battle); now = won.active.returnArrivalAt;
+  const won = await victory(h, battle, (value) => { now = value; }); now = won.active.returnArrivalAt;
   const done = await h.loadExpeditions(h.initial.usuarioId);
   assert.equal(done.active.rewardGranted, true); assert.deepEqual(done.inventory, []); assert.deepEqual(done.active.awardedLoot, []);
   assert.equal(done.profile.gold, 100 + oldMission.gold);
@@ -424,12 +461,19 @@ test("Deterministic hourly catalog: 3 normal, 1 elite, nearby trade, 0.5–3km a
 
 test("Pure combat and level growth mirror Novato, minimum damage and no retaliation after lethal hit", () => {
   const { rules } = harness();
+  assert.equal(combat.ENEMY_TURN_DELAY_MS, 1000); assert.equal(combat.ATTACK_ANIMATION_MS, 500);
+  assert.equal(rules.expeditionDamage(2, 100, 0), 2);
+  assert.equal(rules.expeditionDamage(10, 1, 100), 1);
   assert.deepEqual(rules.expeditionCombatStats(3), { attack: 10, defense: 7 });
   assert.equal(rules.expeditionEnemy("trade", 1), null);
   const spider = rules.expeditionEnemy("normal", 1);
   assert.equal(spider.maxHealth, 14); assert.equal(spider.attack, 1);
   const ogre = rules.expeditionEnemy("elite", 1);
   assert.equal(ogre.maxHealth, 35); assert.equal(ogre.attack, 3); assert.equal(ogre.defense, 3);
+  for (const level of [1, 4, 50]) for (const kind of ["normal", "elite"]) for (let species = 0; species < 8; species++) {
+    const enemy = rules.expeditionEnemy(kind, level, species);
+    assert.equal(enemy.speed, (enemy.sprite.endsWith("arana.png") ? 6 : 3) + Math.floor(level / 4));
+  }
   assert.equal(rules.expeditionAttack(1, 4, 8, 5, spider).outcome, "victory");
   assert.equal(rules.expeditionAttack(1, 35, 8, 5, ogre).outcome, "defeat");
   assert.deepEqual(rules.expeditionRewardProgress({ nivel: 1, experiencia: 90, oro: 100, saludActual: 30, saludMaxima: 100 }, 20, 225), {
@@ -496,7 +540,9 @@ test("Start persists full geometry, snapshots server combat stats and serializes
   assert.deepEqual(a.active.enemy, mission.enemy); assert.equal(a.active.enemy.level, mission.enemyLevel);
   assert.equal(a.active.playerHealth, 40); assert.equal(a.active.playerMaxHealth, 100);
   assert.equal(h.ledger()[0].attack, 10); assert.equal(h.ledger()[0].defense, 7);
-  assert.deepEqual(Object.keys(a.active).sort(), ["arrivalAt", "awardedLoot", "departureAt", "enemy", "enemyHealth", "id", "log", "mission", "origin", "outcome", "phase", "playerHealth", "playerMaxHealth", "returnArrivalAt", "returnDepartureAt", "rewardGranted", "version"]);
+  assert.deepEqual(Object.keys(a.active).sort(), ["arrivalAt", "awardedLoot", "departureAt", "enemy", "enemyHealth", "enemyTurnAt", "id", "lastAction", "log", "mission", "origin", "outcome", "phase", "playerHealth", "playerMaxHealth", "playerSpeed", "returnArrivalAt", "returnDepartureAt", "rewardGranted", "turn", "version"]);
+  assert.equal(a.active.playerSpeed, 5); assert.equal(a.active.turn, "player");
+  assert.equal(a.active.enemyTurnAt, null); assert.equal(a.active.lastAction, null);
   assert.deepEqual(a.active.awardedLoot, []);
   await rejectsCode(h.mutateExpeditions(initial.usuarioId, { ...request, requestId: randomUUID() }), 409, "expedition_active");
   await rejectsCode(h.mutateExpeditions(initial.usuarioId, { ...request, missionId: "different" }), 409, "request_conflict");
@@ -565,6 +611,94 @@ test("Exact outbound arrival advances version and commits despite stale attack r
   assert.equal(h.ledger()[0].phase, "battle");
 });
 
+test("Faster enemy starts after a full observed pause, ties/player advantage and missing speeds start player", async (t) => {
+  let now = NOW; t.mock.method(Date, "now", () => now);
+  for (const speed of [3, 5, 6, undefined]) {
+    const h = harness(); const { snapshot: s } = await start(h);
+    basicEnemy(h); h.ledger()[0].enemy.speed = speed;
+    delete h.ledger()[0].playerSpeed;
+    now = s.active.arrivalAt + 86_400_000;
+    const battle = await h.loadExpeditions(h.initial.usuarioId);
+    assert.equal(battle.active.playerSpeed, 5); assert.equal(battle.active.version, 1);
+    assert.equal(battle.active.lastAction, null); assert.equal(battle.profile.currentHealth, 40);
+    assert.equal(battle.active.turn, speed > 5 ? "enemy" : "player");
+    assert.equal(battle.active.enemyTurnAt, speed > 5 ? now + 1000 : null);
+    if (speed > 5) {
+      now += 999;
+      assert.deepEqual((await h.loadExpeditions(h.initial.usuarioId)).active, battle.active);
+      await enemyTurn(h, battle, (value) => { now = value; });
+    }
+  }
+});
+
+test("Enemy pause rejects early/due attack and flee without damage; one offline attack then unlimited player wait", async (t) => {
+  let now = NOW; t.mock.method(Date, "now", () => now);
+  const h = harness(); const { snapshot: s } = await start(h); basicEnemy(h);
+  now = s.active.arrivalAt;
+  const battle = await h.loadExpeditions(h.initial.usuarioId);
+  const first = await attack(h, battle);
+  assert.equal(first.active.enemyTurnAt, now + 1000);
+  for (const time of [now, now + 999, now + 1000, now + 86_400_000]) {
+    now = time;
+    const before = structuredClone(h.ledger()[0]), profile = structuredClone(h.row());
+    for (const action of ["attack", "flee"]) {
+      await rejectsCode(h.mutateExpeditions(h.initial.usuarioId, {
+        action, expeditionId: first.active.id, version: first.active.version,
+      }), 409, "not_your_turn");
+    }
+    assert.deepEqual(h.ledger()[0], before); assert.deepEqual(h.row(), profile);
+  }
+  const resolved = await h.loadExpeditions(h.initial.usuarioId);
+  assert.equal(resolved.active.playerHealth, 39); assert.equal(resolved.active.version, 3);
+  assert.equal(resolved.active.lastAction.at, now); assert.equal(resolved.active.lastAction.id, 3);
+  now += 7 * 86_400_000;
+  const waiting = await h.loadExpeditions(h.initial.usuarioId);
+  assert.deepEqual(waiting.active, resolved.active); assert.deepEqual(waiting.profile, resolved.profile);
+  assert.equal(waiting.rewardRevision, resolved.rewardRevision);
+  await rejectsCode(attack(h, first), 409, "expedition_conflict");
+});
+
+test("Persisted pre-turn battle defaults to player and can attack without re-running initiative", async (t) => {
+  let now = NOW; t.mock.method(Date, "now", () => now);
+  const h = harness(); const { snapshot: s } = await start(h); basicEnemy(h);
+  const row = h.ledger()[0]; row.phase = "battle"; row.version = 7;
+  for (const key of ["turn", "enemyTurnAt", "lastAction", "playerSpeed"]) delete row[key];
+  delete row.enemy.speed;
+  now = s.active.arrivalAt + 86_400_000;
+  const loaded = await h.loadExpeditions(h.initial.usuarioId);
+  assert.equal(loaded.active.turn, "player"); assert.equal(loaded.active.enemyTurnAt, null);
+  assert.equal(loaded.active.lastAction, null); assert.equal(loaded.active.playerSpeed, 5);
+  assert.equal(loaded.active.version, 7); assert.equal(loaded.profile.currentHealth, 40);
+  const hit = await attack(h, loaded);
+  assert.equal(hit.active.version, 8); assert.equal(hit.active.playerHealth, 40);
+  assert.equal(hit.active.turn, "enemy"); assert.equal(hit.active.lastAction.id, 8);
+});
+
+test("Enemy death and elite victory roll back HP, revision, action and cooldown if terminal write fails", async (t) => {
+  let now = NOW; t.mock.method(Date, "now", () => now);
+  for (const outcome of ["defeat", "victory"]) {
+    const h = harness(); if (outcome === "defeat") h.row().saludActual = 1;
+    const { snapshot: s } = await start(h, "elite"); basicEnemy(h, "elite");
+    now = s.active.arrivalAt;
+    let battle = await h.loadExpeditions(h.initial.usuarioId);
+    if (outcome === "defeat") {
+      battle = await attack(h, battle); now = battle.active.enemyTurnAt;
+    } else {
+      h.ledger()[0].enemyHealth = 1;
+      battle = await h.loadExpeditions(h.initial.usuarioId);
+    }
+    const rowBefore = structuredClone(h.ledger()[0]), playerBefore = structuredClone(h.row());
+    h.failReturn();
+    await assert.rejects(outcome === "defeat" ? h.loadExpeditions(h.initial.usuarioId) : attack(h, battle), /Simulated return write failure/);
+    assert.deepEqual(h.row(), playerBefore); assert.deepEqual(h.ledger()[0], rowBefore);
+    const terminal = outcome === "defeat" ? await h.loadExpeditions(h.initial.usuarioId) : await attack(h, battle);
+    assert.equal(terminal.active.outcome, outcome); assert.equal(terminal.active.version, battle.active.version + 1);
+    assert.equal(terminal.rewardRevision, playerBefore.rewardRevision + 1);
+    assert.equal(terminal.active.lastAction.id, terminal.active.version);
+    assert.equal(terminal.active.lastAction.actor, outcome === "defeat" ? "enemy" : "player");
+  }
+});
+
 test("Versioned server combat, persistent damage, victory return preserves battle and rewards once at exact arrival", async (t) => {
   let now = NOW; t.mock.method(Date, "now", () => now);
   const initial = player(); initial.experiencia = 90;
@@ -573,13 +707,17 @@ test("Versioned server combat, persistent damage, victory return preserves battl
   now = s.active.arrivalAt;
   const battle = await h.loadExpeditions(initial.usuarioId);
   const first = await attack(h, battle);
-  assert.equal(first.active.enemyHealth, 6); assert.equal(first.active.playerHealth, 39);
-  assert.equal(h.row().saludActual, 39); assert.equal(first.active.version, 2);
+  assert.equal(first.active.enemyHealth, 6); assert.equal(first.active.playerHealth, 40);
+  assert.equal(h.row().saludActual, 40); assert.equal(first.active.version, 2);
+  assert.equal(first.rewardRevision, battle.rewardRevision);
+  assert.deepEqual(first.active.lastAction, { id: 2, actor: "player", kind: "attack", damage: 8, at: now });
   await rejectsCode(attack(h, battle), 409, "expedition_conflict");
-  const won = await victory(h, first);
+  const won = await victory(h, first, (value) => { now = value; });
   assert.equal(won.active.phase, "returning"); assert.equal(won.active.enemyHealth, 0);
   assert.equal(won.active.playerHealth, 39); assert.equal(won.active.playerMaxHealth, 100);
-  assert.equal(won.active.version, 3); assert.match(won.active.log, /Victoria/);
+  assert.equal(won.active.version, 4); assert.match(won.active.log, /Victoria/);
+  assert.equal(won.active.turn, "player"); assert.equal(won.active.enemyTurnAt, null);
+  assert.deepEqual(won.active.lastAction, { id: 4, actor: "player", kind: "attack", damage: 6, at: now });
   assert.equal(won.profile.gold, 100); assert.equal(won.profile.experience, 90); assert.equal(won.active.rewardGranted, false);
   assert.equal(won.active.returnDepartureAt, now); assert.equal(won.active.returnArrivalAt, now + s.active.mission.durationMs);
   await rejectsCode(attack(h, won), 409, "not_in_battle");
@@ -601,7 +739,7 @@ test("Versioned server combat, persistent damage, victory return preserves battl
   assert.equal(h.ledger().length, 2); assert.equal(h.row().rewardRevision, done.rewardRevision);
 });
 
-test("Concurrent attacks accept only one matching version, exactly one retaliation", async (t) => {
+test("Concurrent attacks accept one matching version; concurrent due status retaliates exactly once", async (t) => {
   let now = NOW; t.mock.method(Date, "now", () => now);
   const h = harness(); const { snapshot: s } = await start(h); now = s.active.arrivalAt;
   basicEnemy(h);
@@ -609,7 +747,11 @@ test("Concurrent attacks accept only one matching version, exactly one retaliati
   const results = await Promise.allSettled([attack(h, battle), attack(h, battle)]);
   assert.equal(results.filter((r) => r.status === "fulfilled").length, 1);
   assert.equal(results.find((r) => r.status === "rejected").reason.code, "expedition_conflict");
-  assert.equal(h.ledger()[0].enemyHealth, 6); assert.equal(h.row().saludActual, 39);
+  assert.equal(h.ledger()[0].enemyHealth, 6); assert.equal(h.row().saludActual, 40);
+  now = h.ledger()[0].enemyTurnAt.getTime();
+  const [a, b] = await Promise.all([h.loadExpeditions(h.initial.usuarioId), h.loadExpeditions(h.initial.usuarioId)]);
+  assert.deepEqual(a, b); assert.equal(a.active.version, 3);
+  assert.equal(h.row().saludActual, 39); assert.equal(a.rewardRevision, 1);
 });
 
 test("Flee/defeat return without rewards or elite cooldown, preserve final combat and reject replay", async (t) => {
@@ -619,7 +761,12 @@ test("Flee/defeat return without rewards or elite cooldown, preserve final comba
     const { snapshot: s } = await start(h, "elite"); now = s.active.arrivalAt;
     basicEnemy(h, "elite");
     const battle = await h.loadExpeditions(h.initial.usuarioId);
-    const back = outcome === "fled" ? await h.mutateExpeditions(h.initial.usuarioId, { action: "flee", expeditionId: battle.active.id, version: battle.active.version }) : await attack(h, battle);
+    const back = outcome === "fled" ? await h.mutateExpeditions(h.initial.usuarioId, { action: "flee", expeditionId: battle.active.id, version: battle.active.version })
+      : await enemyTurn(h, await attack(h, battle), (value) => { now = value; });
+    assert.equal(back.active.turn, "player"); assert.equal(back.active.enemyTurnAt, null);
+    assert.equal(back.active.lastAction.actor, outcome === "fled" ? "player" : "enemy");
+    assert.equal(back.active.lastAction.kind, outcome === "fled" ? "flee" : "attack");
+    assert.equal(back.active.lastAction.id, back.active.version);
     assert.equal(back.active.outcome, outcome); assert.equal(back.active.phase, "returning");
     assert.equal(back.eliteAvailableAt, 0); assert.equal(h.row().ultimaEliteExitosa, null);
     assert.ok(back.active.enemyHealth > 0);
@@ -637,7 +784,7 @@ test("Elite cooldown starts at victory, not return: 23h30 boundary, failure/flee
   let now = NOW; t.mock.method(Date, "now", () => now);
   const h = harness(); const { snapshot: s } = await start(h, "elite"); now = s.active.arrivalAt;
   basicEnemy(h, "elite");
-  const won = await victory(h, await h.loadExpeditions(h.initial.usuarioId));
+  const won = await victory(h, await h.loadExpeditions(h.initial.usuarioId), (value) => { now = value; });
   const victoryTime = now;
   assert.equal(h.row().ultimaEliteExitosa.getTime(), victoryTime);
   assert.equal(won.eliteAvailableAt, victoryTime + 84_600_000);

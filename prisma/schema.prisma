@@ -334,6 +334,10 @@ model ExpedicionMundo {
   playerMaxHealth   Int
   attack            Int
   defense           Int
+  playerSpeed       Int      @default(5)
+  turn              String   @default("player")
+  enemyTurnAt       DateTime?
+  lastAction        Json?
   version           Int      @default(0)
   outcome           String?
   log               String   @default("")

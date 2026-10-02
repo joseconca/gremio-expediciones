@@ -150,6 +150,7 @@ export class Game {
           !!this.expeditionManager.getSnapshot().battleOpen || this.expeditionManager.isActive());
         this.villageProgression.update(deltaTime);
         this.dayNightSystem.update();
+        this.combatManager.update(deltaTime * 1000);
         this.partyManager.update(deltaTime);
         this.sceneManager.update(deltaTime);
         this.mobilityManager.update(deltaTime);

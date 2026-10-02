@@ -146,11 +146,12 @@ export function expeditionEnemy(kind: ExpeditionKind, level: number, speciesSeed
   const basic = kind === "elite"
     ? { name: "Ogro", sprite: "/sprites/enemies/ogro.png", maxHealth: 35 + growth * 4, attack: 3 + growth, defense: 3 + Math.floor(growth / 3) }
     : { name: "Araña", sprite: "/sprites/enemies/arana.png", maxHealth: 12 + level * 2, attack: 1 + Math.floor(growth / 3), defense: 0 };
-  if (speciesSeed === undefined) return { ...basic, level };
+  const speedForSprite = (sprite: string) => (sprite === "/sprites/enemies/arana.png" ? 6 : 3) + Math.floor(level / 4);
+  if (speciesSeed === undefined) return { ...basic, level, speed: speedForSprite(basic.sprite) };
   const seed = Math.abs(Math.trunc(speciesSeed));
   const species = EXPEDITION_ENEMIES[seed % EXPEDITION_ENEMIES.length];
   const names = species[kind];
-  return { ...basic, level, sprite: species.sprite, name: names[Math.floor(seed / EXPEDITION_ENEMIES.length) % names.length] };
+  return { ...basic, level, sprite: species.sprite, speed: speedForSprite(species.sprite), name: names[Math.floor(seed / EXPEDITION_ENEMIES.length) % names.length] };
 }
 
 /** Normalize old/malformed JSON without ever reading the legacy inventory. */
@@ -192,11 +193,16 @@ export function expeditionCombatStats(level: number): { attack: number; defense:
   return { attack: 8 + Math.max(0, level - 1), defense: 5 + Math.max(0, level - 1) };
 }
 
+/** One actor's hit, capped to the target's remaining health. */
+export function expeditionDamage(health: number, attack: number, defense: number): number {
+  return Math.min(health, Math.max(1, attack - defense));
+}
+
 /** Player hits first; a defeated enemy cannot retaliate. */
 export function expeditionAttack(playerHealth: number, enemyHealth: number, attack: number, defense: number, enemy: EnemyDto) {
-  const dealt = Math.min(enemyHealth, Math.max(1, attack - enemy.defense));
+  const dealt = expeditionDamage(enemyHealth, attack, enemy.defense);
   const remainingEnemy = enemyHealth - dealt;
-  const received = remainingEnemy > 0 ? Math.min(playerHealth, Math.max(1, enemy.attack - defense)) : 0;
+  const received = remainingEnemy > 0 ? expeditionDamage(playerHealth, enemy.attack, defense) : 0;
   const remainingPlayer = playerHealth - received;
   return {
     enemyHealth: remainingEnemy, playerHealth: remainingPlayer,

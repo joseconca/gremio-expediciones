@@ -1,4 +1,5 @@
 import type { PlayerProfileDto } from "./world";
+import type { BattleActionDto, CombatTurn } from "./combat";
 
 export type ExpeditionKind = "normal" | "elite" | "trade";
 export type ExpeditionPhase = "outbound" | "battle" | "returning" | "completed";
@@ -25,6 +26,7 @@ export type MissionDto = {
 
 export type EnemyDto = {
   level?: number;
+  speed?: number;
   name: string;
   sprite: string;
   maxHealth: number;
@@ -50,6 +52,10 @@ export type ExpeditionDto = {
   log: string;
   rewardGranted: boolean;
   awardedLoot?: ExpeditionInventoryItemDto[];
+  turn?: CombatTurn;
+  enemyTurnAt?: number | null;
+  lastAction?: BattleActionDto | null;
+  playerSpeed?: number;
 };
 
 export type ExpeditionSnapshotDto = {

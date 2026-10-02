@@ -411,11 +411,12 @@ export default function NewGamePage() {
           manager={combatManager}
           snapshot={combatState}
           potionCount={villageResources.potions}
+          presentationNow={combatManager.getSimulationTime()}
         />
       )}
       {expeditionManager && expeditionBattle && <BattleOverlay manager={expeditionManager.battleController}
         snapshot={expeditionBattle} potionCount={0} serverControlled busy={expeditionState.busy}
-        error={expeditionState.error} title="Combate de expedición" />}
+        error={expeditionState.error} title="Combate de expedición" presentationNow={expeditionManager.serverNow()} />}
     </main>
   );
 }

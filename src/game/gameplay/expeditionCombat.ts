@@ -2,9 +2,9 @@ import type { ExpeditionSnapshotDto } from "../../shared/expeditions";
 import type { CombatSnapshot } from "./CombatManager";
 import type { CharacterAttributes } from "../entities/Characters/CharacterAttributes";
 
-function attributes(health: number, maxHealth: number, attack: number, defense: number): CharacterAttributes {
+function attributes(health: number, maxHealth: number, attack: number, defense: number, speed = 5): CharacterAttributes {
   return { currentHealth: health, maxHealth, physicalAttack: attack, physicalDefense: defense,
-    magicAttack: 0, magicDefense: 0, speed: 5, criticalChance: 0, criticalDamage: 1.5, evasionChance: 0 };
+    magicAttack: 0, magicDefense: 0, speed, criticalChance: 0, criticalDamage: 1.5, evasionChance: 0 };
 }
 
 /** Projection into the common overlay, never a second combat simulation. */
@@ -17,9 +17,14 @@ export function expeditionCombatSnapshot(data: ExpeditionSnapshotDto): CombatSna
     menu: "root",
     enemy: { id: active.id, name: `${active.enemy.name}${active.enemy.level ? ` · Nv. ${active.enemy.level}` : ""}`,
       sprite: active.enemy.sprite, experienceReward: active.mission.experience, goldReward: active.mission.gold,
-      attributes: attributes(active.enemyHealth, active.enemy.maxHealth, active.enemy.attack, active.enemy.defense) },
+      attributes: attributes(active.enemyHealth, active.enemy.maxHealth, active.enemy.attack, active.enemy.defense, active.enemy.speed ?? 5) },
     party: [{ id: data.profile.id, name: data.profile.name, isLocalPlayer: true,
-      attributes: attributes(active.playerHealth, active.playerMaxHealth, 8 + growth, 5 + growth) }],
+      spriteSrc: "/sprites/sheets/characters/hero.png",
+      attributes: attributes(active.playerHealth, active.playerMaxHealth, 8 + growth, 5 + growth, active.playerSpeed ?? 5) }],
+    turn: active.turn ?? "player",
+    lastAction: active.lastAction ?? null,
+    enemyTurnAt: active.enemyTurnAt ?? null,
+    actingMemberId: data.profile.id,
     log: `${active.log.split("\n").slice(-1)[0]}${active.outcome === "victory"
       ? active.rewardGranted ? " Botín entregado." : " Botín pendiente de entrega al regresar." : ""}`,
     revision: active.version,

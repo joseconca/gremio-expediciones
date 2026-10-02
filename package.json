@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:world": "node --test tests/world-engine.test.cjs tests/world-lighting.test.cjs tests/travel-server.test.cjs tests/world-travel.test.cjs",
+    "test:world": "node --test tests/world-engine.test.cjs tests/world-lighting.test.cjs tests/travel-server.test.cjs tests/world-travel.test.cjs tests/world-expeditions-server.test.cjs tests/battle-sprites.test.cjs",
     "test:world:api": "node --env-file=.env --test tests/world-api.test.cjs"
   },
   "dependencies": {
