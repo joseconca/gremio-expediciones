@@ -66,7 +66,7 @@ export class ExteriorWorldScene extends Scene {
       collisionMap,
       renderMarginTiles: 12,
       groundSurfaceRenderer: new RealWorldGroundRenderer(config.selectedBase),
-      lighting: new LightingSystem({ dayNight: this.dayNightSystem, contactShadows: true }),
+      lighting: new LightingSystem({ dayNight: this.dayNightSystem }),
     });
     this.collisionSystem = new CollisionSystem(collisionMap);
     this.interactionSystem = new InteractionSystem(this.input);
@@ -92,6 +92,11 @@ export class ExteriorWorldScene extends Scene {
     });
     this.world.addObject(this.player);
     this.collisionSystem.addObject(this.player);
+    if (this.initialLocation && !this.mobilityManager?.getSnapshot().journey &&
+      !this.collisionSystem.canOccupy(this.player, this.player.x, this.player.y)) {
+      this.player.x = this.homePoint.x;
+      this.player.y = this.homePoint.y + INITIAL_WORLD_OFFSET;
+    }
 
     this.campBuilding = new CampBuilding({
       x: this.homePoint.x - campBuildingDefinition.width / 2,

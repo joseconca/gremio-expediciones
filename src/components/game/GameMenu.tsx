@@ -64,10 +64,10 @@ export default function GameMenu({
     };
   }, [snapshot.open]);
 
-  const actionsBlocked = snapshot.busy || mobility.conflict || mobility.saving || mobility.journey !== null;
+  const actionsBlocked = snapshot.busy || mobility.conflict || mobility.saving || !!mobility.travelPending || mobility.journey !== null;
   const partyBlocked = actionsBlocked || partyBusy || !party.loaded || party.syncStatus === "conflict";
   const canInvite = hasEmbassy && !party.isFull && (party.companions.length === 0 || party.isLeader);
-  const canCallCart = mobility.location.sceneId === "exterior-world" && !actionsBlocked;
+  const canCallCart = mobility.location.sceneId === "exterior-world" && !actionsBlocked && !partyBusy;
 
   async function runPartyAction(action: () => Promise<GatewayResult>, successMessage: string) {
     if (partyBlocked || partyActionRef.current) return;
@@ -148,7 +148,7 @@ export default function GameMenu({
         <div className="min-h-0 overflow-y-auto overscroll-contain p-4">
           <nav aria-label="Secciones del menú" className="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-5">
             {MENU_TABS.map((tab) => (
-              <button key={tab.id} type="button" aria-current={snapshot.tab === tab.id ? "page" : undefined} onClick={() => manager.selectTab(tab.id)} className={`${BUTTON_CLASS} ${snapshot.tab === tab.id ? "border-amber-300 bg-amber-950 text-amber-200" : ""}`}>
+              <button key={tab.id} type="button" disabled={partyBusy || snapshot.busy} aria-current={snapshot.tab === tab.id ? "page" : undefined} onClick={() => manager.selectTab(tab.id)} className={`${BUTTON_CLASS} ${snapshot.tab === tab.id ? "border-amber-300 bg-amber-950 text-amber-200" : ""}`}>
                 {tab.label}
               </button>
             ))}

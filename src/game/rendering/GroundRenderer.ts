@@ -78,18 +78,20 @@ export class GroundRenderer implements GroundSurfaceRenderer {
      * exactamente al rectángulo de cámara.
      */
     const margin = this.renderMarginTiles;
-    const startY = Math.max(0, Math.floor(camera.y / tileSize) - margin);
+    const localCameraX = camera.x - this.tileMap.originX;
+    const localCameraY = camera.y - this.tileMap.originY;
+    const startY = Math.max(0, Math.floor(localCameraY / tileSize) - margin);
 
     const endY = Math.min(
       this.tileMap.height - 1,
-      Math.ceil((camera.y + camera.height) / tileSize) + margin
+      Math.ceil((localCameraY + camera.height) / tileSize) + margin
     );
 
-    const startX = Math.max(0, Math.floor(camera.x / tileSize) - margin);
+    const startX = Math.max(0, Math.floor(localCameraX / tileSize) - margin);
 
     const endX = Math.min(
       this.tileMap.width - 1,
-      Math.ceil((camera.x + camera.width) / tileSize) + margin
+      Math.ceil((localCameraX + camera.width) / tileSize) + margin
     );
 
     /*
@@ -118,7 +120,7 @@ export class GroundRenderer implements GroundSurfaceRenderer {
 
     const tileSize = this.tileMap.tileSize;
 
-    const worldY = tileY * tileSize;
+    const worldY = this.tileMap.originY + tileY * tileSize;
 
     const sliceHeight = tileSize / this.subdivisions;
 
@@ -201,7 +203,7 @@ export class GroundRenderer implements GroundSurfaceRenderer {
 
     const tileSize = this.tileMap.tileSize;
 
-    const worldX = tileX * tileSize;
+    const worldX = this.tileMap.originX + tileX * tileSize;
 
     /*
      * X respecto al mismo punto de referencia

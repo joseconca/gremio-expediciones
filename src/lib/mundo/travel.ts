@@ -11,6 +11,7 @@ import {
   type SceneId,
 } from "@/shared/travel";
 import type { SavedBuildingType } from "@/shared/world";
+import { calculateVillageBounds, LOCAL_PLAYER_FOOTPRINT } from "@/shared/village";
 import { MundoError, withWorldLock } from "./http";
 
 // Límites del mapa en unidades de mundo, no coordenadas de pantalla ni de los pies.
@@ -45,16 +46,29 @@ function parseLocation(value: unknown): PlayerLocation {
   }
   const sceneId = value.sceneId as SceneId;
   const bounds = SCENE_BOUNDS[sceneId];
+  const validBaseCoordinate = (number: unknown) => typeof number === "number" && Number.isFinite(number) && Math.abs(number) < 1_000_000;
   if (
-    !isCoordinate(value.x, bounds.width) || !isCoordinate(value.y, bounds.height) ||
+    !(sceneId === "base" ? validBaseCoordinate(value.x) && validBaseCoordinate(value.y)
+      : isCoordinate(value.x, bounds.width) && isCoordinate(value.y, bounds.height)) ||
     !DIRECTIONS.includes(value.direction as PlayerLocation["direction"])
   ) {
     throw new MundoError(400, "invalid_location", "Coordenadas o dirección inválidas para esta escena.");
   }
-  return { sceneId, x: value.x, y: value.y, direction: value.direction as PlayerLocation["direction"] };
+  return { sceneId, x: value.x as number, y: value.y as number, direction: value.direction as PlayerLocation["direction"] };
 }
 
-function requireBuiltInterior(location: PlayerLocation, buildings: unknown): void {
+function requireBuiltInterior(location: PlayerLocation, buildings: unknown, validateBaseBounds = true): void {
+  if (location.sceneId === "base" && validateBaseBounds) {
+    const bounds = calculateVillageBounds(Array.isArray(buildings) ? buildings.length : 1);
+    // Active local construction is not persisted yet: allow its next plot's extent.
+    const next = calculateVillageBounds(Array.isArray(buildings) ? buildings.length + 1 : 2);
+    const feetX = location.x + LOCAL_PLAYER_FOOTPRINT.offsetX;
+    const feetY = location.y + LOCAL_PLAYER_FOOTPRINT.offsetY;
+    if (feetX < Math.min(bounds.minX, next.minX) || feetX + LOCAL_PLAYER_FOOTPRINT.width > Math.max(bounds.maxX, next.maxX) ||
+      feetY < bounds.minY || feetY + LOCAL_PLAYER_FOOTPRINT.height > Math.max(bounds.maxY, next.maxY)) {
+      throw new MundoError(400, "invalid_location", "Coordenadas fuera del poblado.");
+    }
+  }
   const required = SCENE_BOUNDS[location.sceneId].building;
   if (required && (!Array.isArray(buildings) || !buildings.some((building: unknown) =>
     isRecord(building) && building.type === required &&
@@ -99,7 +113,9 @@ async function readMobility(tx: Prisma.TransactionClient, usuarioId: string) {
   let location: PlayerLocation;
   try {
     location = jugador.ubicacion === null ? { ...BASE_RETURN_LOCATION } : parseLocation(jugador.ubicacion);
-    requireBuiltInterior(location, base.edificios);
+    // Old fixed-map checkpoints outside the smaller village are relocated by
+    // the engine on load; don't make existing accounts unloadable after resize.
+    requireBuiltInterior(location, base.edificios, false);
   } catch {
     // No convertir datos dañados en un teletransporte ni cancelar un viaje silenciosamente.
     throw new MundoError(500, "invalid_mobility", "La ubicación guardada no es válida.");
@@ -155,7 +171,15 @@ export async function mutateMobility(usuarioId: string, body: unknown): Promise<
         if (body.action === "call-cart") return snapshot;
         throw new MundoError(409, "travel_active", "No puedes cambiar de ubicación durante el viaje de regreso.");
       }
-      if (body.revision !== snapshot.revision) throw locationConflict();
+      if (body.revision !== snapshot.revision) {
+        // A checkpoint may have committed while its acknowledgement was lost.
+        // Only the immediate, identical retry can be acknowledged safely.
+        if (body.action === "checkpoint" && snapshot.revision === (body.revision as number) + 1) {
+          const retry = parseLocation(body.location);
+          if (JSON.stringify(retry) === JSON.stringify(snapshot.location)) return snapshot;
+        }
+        throw locationConflict();
+      }
 
       let location = snapshot.location;
       let journey: ReturnJourney | null = null;

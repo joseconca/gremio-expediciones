@@ -100,9 +100,9 @@ export class VerticalTileRenderer {
      * El punto de apoyo de una pared es el centro de su
      * borde inferior en coordenadas de mundo.
      */
-    const worldX = tileX * tileSize + tileSize / 2;
+    const worldX = this.tileMap.originX + tileX * tileSize + tileSize / 2;
 
-    const worldY = (tileY + 1) * tileSize;
+    const worldY = this.tileMap.originY + (tileY + 1) * tileSize;
 
     const projected = this.projection.project(
       worldX,

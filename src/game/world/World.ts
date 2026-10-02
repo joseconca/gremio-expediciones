@@ -14,8 +14,9 @@ import {
 } from "../rendering/GroundProjection";
 
 export interface WorldConfig {
-  width: number;
-  height: number;
+  // Compatibilidad con escenas existentes; las dimensiones se derivan del mapa.
+  width?: number;
+  height?: number;
   tileMap: TileMap;
   collisionMap: CollisionMap;
   renderMarginTiles?: number;
@@ -40,8 +41,6 @@ function isGroundRenderable(
 }
 
 export class World {
-  readonly width: number;
-  readonly height: number;
   readonly tileMap: TileMap;
   readonly collisionMap: CollisionMap;
 
@@ -54,8 +53,6 @@ export class World {
   private objects: GameObject[] = [];
 
   constructor(config: WorldConfig) {
-    this.width = config.width;
-    this.height = config.height;
     this.tileMap = config.tileMap;
     this.collisionMap = config.collisionMap;
     this.lighting = config.lighting;
@@ -80,6 +77,14 @@ export class World {
     );
 
     this.renderSystem = new RenderSystem();
+  }
+
+  get width(): number {
+    return this.tileMap.width * this.tileMap.tileSize;
+  }
+
+  get height(): number {
+    return this.tileMap.height * this.tileMap.tileSize;
   }
 
   addObject(object: GameObject): void {
@@ -153,8 +158,8 @@ export class World {
         this.drawDebugArea(
           ctx,
           {
-            x: tileX * this.collisionMap.tileSize,
-            y: tileY * this.collisionMap.tileSize,
+            x: this.collisionMap.originX + tileX * this.collisionMap.tileSize,
+            y: this.collisionMap.originY + tileY * this.collisionMap.tileSize,
             width: this.collisionMap.tileSize,
             height: this.collisionMap.tileSize,
           },

@@ -53,7 +53,8 @@ export class PartyManager {
     private readonly gateway: WorldGateway,
     private readonly player: PlayerProgression,
     private readonly village: VillageProgression,
-    private progressToken: string
+    private progressToken: string,
+    private readonly canAct: () => boolean = () => true
   ) {
     this.unsubscribe = [
       player.subscribe(() => this.markPending()),
@@ -104,12 +105,14 @@ export class PartyManager {
   private async runAction(
     action: () => Promise<GatewayResult>
   ): Promise<GatewayResult> {
+    if (!this.canAct()) return { ok: false, message: "No puedes organizar la party durante el viaje." };
     // Publish completed buildings before the server checks embassy requirements.
     await this.sync();
     if (this.snapshot.syncStatus === "pending") await this.sync();
     if (this.snapshot.syncStatus !== "saved") {
       return { ok: false, message: this.snapshot.syncMessage ?? "Espera a que se guarde el progreso y vuelve a intentarlo." };
     }
+    if (!this.canAct()) return { ok: false, message: "No puedes organizar la party durante el viaje." };
     const result = await action();
     if (result.ok) await this.sync();
     return result;

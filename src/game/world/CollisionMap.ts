@@ -1,13 +1,17 @@
 export interface CollisionMapConfig {
   width: number;
   height: number;
+  originX?: number;
+  originY?: number;
   tileSize: number;
   tiles: number[][];
 }
 
 export class CollisionMap {
-  readonly width: number;
-  readonly height: number;
+  width: number;
+  height: number;
+  originX: number;
+  originY: number;
   readonly tileSize: number;
 
   private tiles: number[][];
@@ -15,8 +19,18 @@ export class CollisionMap {
   constructor(config: CollisionMapConfig) {
     this.width = config.width;
     this.height = config.height;
+    this.originX = config.originX ?? 0;
+    this.originY = config.originY ?? 0;
     this.tileSize = config.tileSize;
 
+    this.tiles = config.tiles;
+  }
+
+  resize(config: CollisionMapConfig): void {
+    this.width = config.width;
+    this.height = config.height;
+    this.originX = config.originX ?? 0;
+    this.originY = config.originY ?? 0;
     this.tiles = config.tiles;
   }
 
@@ -34,13 +48,15 @@ export class CollisionMap {
     width: number,
     height: number
   ): boolean {
-    const left = Math.floor(x / this.tileSize);
+    const localX = x - this.originX;
+    const localY = y - this.originY;
+    const left = Math.floor(localX / this.tileSize);
 
-    const right = Math.floor((x + width - 1) / this.tileSize);
+    const right = Math.floor((localX + width - 1) / this.tileSize);
 
-    const top = Math.floor(y / this.tileSize);
+    const top = Math.floor(localY / this.tileSize);
 
-    const bottom = Math.floor((y + height - 1) / this.tileSize);
+    const bottom = Math.floor((localY + height - 1) / this.tileSize);
 
     for (let tileY = top; tileY <= bottom; tileY++) {
       for (let tileX = left; tileX <= right; tileX++) {

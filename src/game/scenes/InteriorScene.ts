@@ -114,6 +114,10 @@ export class InteriorScene extends Scene {
     });
     this.sceneTransitionSystem.addTransition(exit);
     this.debugTeleporters.push(exit);
+    if (this.initialLocation && !collisionSystem.canOccupy(this.player, this.player.x, this.player.y)) {
+      this.player.x = config.entranceSpawn.x;
+      this.player.y = config.entranceSpawn.y;
+    }
   }
 
   protected getSpawnPoint(spawnId?: string): SpawnPoint {

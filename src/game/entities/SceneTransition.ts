@@ -8,12 +8,14 @@ export interface SceneTransitionConfig extends GameObjectConfig {
   targetSceneId: string;
   targetSpawnId: string;
   sceneManager: SceneManager;
+  canActivate?: () => boolean;
 }
 
 export class SceneTransition extends GameObject {
   private readonly targetSceneId: string;
   private readonly targetSpawnId: string;
   private readonly sceneManager: SceneManager;
+  private readonly canActivate: () => boolean;
 
   constructor(config: SceneTransitionConfig) {
     super({
@@ -29,13 +31,16 @@ export class SceneTransition extends GameObject {
     this.targetSceneId = config.targetSceneId;
     this.targetSpawnId = config.targetSpawnId;
     this.sceneManager = config.sceneManager;
+    this.canActivate = config.canActivate ?? (() => true);
   }
 
-  activate(): void {
+  activate(): boolean {
+    if (!this.canActivate()) return false;
     this.sceneManager.changeScene(
       this.targetSceneId,
       this.targetSpawnId
     );
+    return true;
   }
 
   override render(

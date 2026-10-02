@@ -1,4 +1,5 @@
 import type { Base, Jugador } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { MAX_PARTY_SIZE, type PartySnapshotDto } from "@/shared/world";
 import { MundoError, withWorldLock } from "./http";
@@ -7,6 +8,14 @@ import { listNearbyBases, progressToken } from "./jugador";
 const INVITATION_TTL_MS = 5 * 60 * 1000;
 const ONLINE_WINDOW_MS = 2 * 60 * 1000;
 const MAX_CANDIDATES = 5;
+
+async function requireAvailablePlayer(tx: Prisma.TransactionClient, playerId: string): Promise<void> {
+  const player = await tx.jugador.findUniqueOrThrow({ where: { id: playerId } });
+  const trip = player.viajeRegreso;
+  if (trip && typeof trip === "object" && !Array.isArray(trip) && typeof trip.arrivalAt === "number" && trip.arrivalAt > Date.now()) {
+    throw new MundoError(409, "travel_active", "No puedes organizar la party durante el regreso en carro.");
+  }
+}
 
 export async function getPartySnapshot(
   jugador: Jugador,
@@ -81,6 +90,7 @@ export async function invitePlayer(
   }
 
   await withWorldLock(async (tx) => {
+    await requireAvailablePlayer(tx, jugador.id);
     const target = await tx.jugador.findUnique({
       where: { id: targetPlayerId },
       include: { miembroParty: true, usuario: { include: { base: true } } },
@@ -135,6 +145,7 @@ export async function respondToInvitation(
   }
 
   const invalidSender = await withWorldLock(async (tx) => {
+    await requireAvailablePlayer(tx, jugador.id);
     const invitation = await tx.invitacionParty.findUnique({ where: { id: invitationId } });
     if (
       !invitation ||
@@ -207,6 +218,7 @@ export async function respondToInvitation(
 
 export async function leaveParty(jugador: Jugador): Promise<void> {
   await withWorldLock(async (tx) => {
+    await requireAvailablePlayer(tx, jugador.id);
     await tx.invitacionParty.updateMany({
       where: { emisorId: jugador.id, estado: "PENDIENTE" },
       data: { estado: "CANCELADA" },

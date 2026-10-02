@@ -13,6 +13,8 @@ export interface TileLayer {
 export interface TileMapConfig {
   width: number;
   height: number;
+  originX?: number;
+  originY?: number;
 
   tileSize: number;
 
@@ -26,20 +28,33 @@ export interface TileMapConfig {
 }
 
 export class TileMap {
-  readonly width: number;
-  readonly height: number;
+  width: number;
+  height: number;
+  originX: number;
+  originY: number;
   readonly tileSize: number;
 
   readonly tileset: TileMapConfig["tileset"];
-  readonly layers: TileLayer[];
+  layers: TileLayer[];
 
   constructor(config: TileMapConfig) {
     this.width = config.width;
     this.height = config.height;
+    this.originX = config.originX ?? 0;
+    this.originY = config.originY ?? 0;
 
     this.tileSize = config.tileSize;
 
     this.tileset = config.tileset;
+    this.layers = config.layers;
+  }
+
+  resize(config: TileMapConfig): void {
+    // El tamaño de tile y el tileset se conservan para reutilizar los renderers.
+    this.width = config.width;
+    this.height = config.height;
+    this.originX = config.originX ?? 0;
+    this.originY = config.originY ?? 0;
     this.layers = config.layers;
   }
 
