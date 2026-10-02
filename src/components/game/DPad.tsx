@@ -23,7 +23,8 @@ function DPadButton({ direction, label }: DPadButtonProps) {
     <button
       type="button"
       aria-label={label}
-      className="touch-none rounded-lg bg-white/20 text-2xl text-white backdrop-blur-sm active:bg-white/40"
+      className="touch-none select-none rounded-lg bg-white/20 text-2xl text-white backdrop-blur-sm [-webkit-touch-callout:none] [-webkit-user-select:none] active:bg-white/40"
+      onContextMenu={(event) => event.preventDefault()}
       onPointerDown={(event) => {
         event.preventDefault();
 
