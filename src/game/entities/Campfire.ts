@@ -4,6 +4,7 @@ import type { AnimationConfig } from "../rendering/Animator";
 import { RenderLayer } from "../rendering/RenderLayer";
 import type { RenderPart } from "../rendering/RenderPart";
 import { GameObject, type GameObjectConfig } from "./GameObject";
+import type { LightEmitter, PointLight } from "../lighting/PointLight";
 
 const campfireAnimation: Record<string, AnimationConfig> = {
   burning: {
@@ -16,9 +17,10 @@ const campfireAnimation: Record<string, AnimationConfig> = {
   },
 };
 
-export class Campfire extends GameObject {
+export class Campfire extends GameObject implements LightEmitter {
   private readonly spriteSheet: SpriteSheet;
   private readonly animator: Animator;
+  private elapsedSeconds = 0;
 
   constructor(config: GameObjectConfig) {
     super(config);
@@ -33,7 +35,21 @@ export class Campfire extends GameObject {
   }
 
   override update(deltaTime: number): void {
+    this.elapsedSeconds += deltaTime;
     this.animator.update(deltaTime);
+  }
+
+  getPointLights(): PointLight[] {
+    const flicker = 1 + Math.sin(this.elapsedSeconds * 9) * 0.04;
+    return [
+      {
+        x: this.x + this.spriteSheet.frameWidth / 2,
+        y: this.y + 16,
+        radius: 150 * flicker,
+        intensity: 0.9,
+        color: "255, 160, 70",
+      },
+    ];
   }
 
   override getRenderParts(): RenderPart[] {

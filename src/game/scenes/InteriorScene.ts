@@ -15,6 +15,7 @@ import { CollisionMap, type CollisionMapConfig } from "../world/CollisionMap";
 import type { SpawnPoint } from "../world/SpawnPoint";
 import type { Dialogue } from "../dialogue/Dialogue";
 import { heroAnimations } from "../data/heroAnimations";
+import { LightingSystem } from "../lighting/LightingSystem";
 
 export interface InteriorSceneConfig extends SceneConfig {
   tileMap: TileMapConfig;
@@ -55,6 +56,7 @@ export class InteriorScene extends Scene {
       height: tileMap.height * tileMap.tileSize,
       tileMap,
       collisionMap,
+      lighting: new LightingSystem(),
     });
 
     const collisionSystem = new CollisionSystem(collisionMap);

@@ -6,6 +6,7 @@ import type {
 } from "../data/buildings/BuildingDefinition";
 
 import type { RenderPart } from "../rendering/RenderPart";
+import type { ShadowCaster, ShadowFootprint } from "../lighting/ShadowCaster";
 
 import { SpriteSheet } from "../rendering/SpriteSheet";
 import { Collider } from "./Collider";
@@ -14,7 +15,7 @@ export interface BuildingConfig extends GameObjectConfig {
   definition: BuildingDefinition;
 }
 
-export class Building extends GameObject {
+export class Building extends GameObject implements ShadowCaster {
   readonly definition: BuildingDefinition;
 
   readonly width: number;
@@ -49,6 +50,18 @@ export class Building extends GameObject {
 
   override getRenderParts(): RenderPart[] {
     return this.renderParts;
+  }
+
+  getShadowFootprint(): ShadowFootprint | null {
+    const anchor = this.getGroundAnchor();
+    return {
+      x: anchor.x,
+      y: anchor.y - 10,
+      radiusX: this.width * 0.42,
+      radiusY: 10,
+      height: this.height * 0.9,
+      shape: "box",
+    };
   }
 
   private createRenderPart(part: BuildingPartDefinition): RenderPart {

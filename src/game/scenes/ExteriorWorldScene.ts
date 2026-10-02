@@ -20,6 +20,8 @@ import { campBuildingDefinition } from "../data/buildings/campBuilding";
 import { heroAnimations } from "../data/heroAnimations";
 import { campReturnDialogue } from "../data/dialogues/camp";
 import { OVERWORLD_ENEMIES } from "../data/enemies/overworldEnemies";
+import { createNoticeDialogue } from "../data/dialogues/notice";
+import { LightingSystem } from "../lighting/LightingSystem";
 import {
   geographicToWorldPoint,
   isInsideWorldMap,
@@ -27,7 +29,6 @@ import {
   type WorldBaseLocation,
   type WorldPoint,
 } from "../world/WorldLocation";
-import { Collider } from "../entities/Collider";
 
 export interface ExteriorWorldSceneConfig extends SceneConfig {
   selectedBase: WorldBaseLocation;
@@ -63,6 +64,7 @@ export class ExteriorWorldScene extends Scene {
       collisionMap,
       renderMarginTiles: 12,
       groundSurfaceRenderer: new RealWorldGroundRenderer(config.selectedBase),
+      lighting: new LightingSystem({ dayNight: this.dayNightSystem }),
     });
     this.collisionSystem = new CollisionSystem(collisionMap);
     this.interactionSystem = new InteractionSystem(this.input);
@@ -120,10 +122,34 @@ export class ExteriorWorldScene extends Scene {
         x: point.x,
         y: point.y,
         name: otherBase.name,
+        onEnter: () => this.requestBaseVisit(otherBase),
       });
       this.world.addObject(marker);
+      this.interactables.push(marker);
     }
 
+  }
+
+  private requestBaseVisit(base: WorldBaseLocation): void {
+    const notice = (text: string) =>
+      this.dialogueManager.start(createNoticeDialogue(base.name, text));
+
+    if (!this.villageProgression.hasBuilding("embassy")) {
+      notice("Necesitas una Embajada en tu base para visitar otros gremios.");
+      return;
+    }
+    if (!base.hasEmbassy) {
+      notice("Este gremio todavía no tiene Embajada, así que no recibe visitas.");
+      return;
+    }
+
+    void this.worldGateway.authorizeVisit(base.id).then((result) =>
+      notice(
+        result.ok
+          ? "Visita autorizada por ambas Embajadas. Entrar en bases ajenas llegará cuando exista su escena de visita."
+          : result.message
+      )
+    );
   }
 
   protected getSpawnPoint(spawnId?: string) {
@@ -176,14 +202,12 @@ export class ExteriorWorldScene extends Scene {
         Math.floor(random() * OVERWORLD_ENEMIES.length)
       ];
       const monster = new OverworldMonster({ x, y, definition });
-      const collider = monster.colliders[0] ?? new Collider({ width: 20, height: 12 });
-      const bounds = collider.getBounds(monster.x, monster.y);
       const dx = x - this.homePoint.x;
       const dy = y - this.homePoint.y;
 
       if (
         Math.hypot(dx, dy) < 160 ||
-        collisionMap.isBlockedRect(bounds.x, bounds.y, bounds.width, bounds.height)
+        collisionMap.isBlockedRect(x - 10, y - 12, 20, 12)
       ) {
         continue;
       }

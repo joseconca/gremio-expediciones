@@ -5,6 +5,9 @@ import type { DialogueManager } from "../dialogue/DialogueManager";
 import type { VillageProgression } from "../gameplay/VillageProgression";
 import type { PlayerProgression } from "../gameplay/PlayerProgression";
 import type { CombatManager } from "../gameplay/CombatManager";
+import type { PartyManager } from "../gameplay/PartyManager";
+import type { WorldGateway } from "../gameplay/WorldGateway";
+import type { DayNightSystem } from "../lighting/DayNightSystem";
 
 export interface SceneConfig {
   canvas: HTMLCanvasElement;
@@ -15,6 +18,9 @@ export interface SceneConfig {
   villageProgression: VillageProgression;
   playerProgression: PlayerProgression;
   combatManager: CombatManager;
+  partyManager: PartyManager;
+  worldGateway: WorldGateway;
+  dayNightSystem: DayNightSystem;
   spawnId?: string;
 }
 
@@ -27,6 +33,9 @@ export abstract class Scene {
   protected readonly villageProgression: VillageProgression;
   protected readonly playerProgression: PlayerProgression;
   protected readonly combatManager: CombatManager;
+  protected readonly partyManager: PartyManager;
+  protected readonly worldGateway: WorldGateway;
+  protected readonly dayNightSystem: DayNightSystem;
   protected debugMode = false;
   protected spawnId?: string;
 
@@ -39,6 +48,9 @@ export abstract class Scene {
     this.villageProgression = config.villageProgression;
     this.playerProgression = config.playerProgression;
     this.combatManager = config.combatManager;
+    this.partyManager = config.partyManager;
+    this.worldGateway = config.worldGateway;
+    this.dayNightSystem = config.dayNightSystem;
     this.spawnId = config.spawnId;
   }
 

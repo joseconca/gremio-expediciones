@@ -2,6 +2,7 @@ import { GameObject, GameObjectConfig } from "./GameObject";
 import type { Direction } from "../input/InputState";
 import type { Animator } from "../rendering/Animator";
 import type { CharacterAttributes } from "./Characters/CharacterAttributes";
+import type { ShadowCaster, ShadowFootprint } from "../lighting/ShadowCaster";
 
 export interface CharacterConfig extends GameObjectConfig {
   speed?: number;
@@ -10,7 +11,7 @@ export interface CharacterConfig extends GameObjectConfig {
   attributes?: CharacterAttributes;
 }
 
-export class Character extends GameObject {
+export class Character extends GameObject implements ShadowCaster {
   speed: number;
   direction: Direction;
   attributes: CharacterAttributes;
@@ -52,6 +53,18 @@ export class Character extends GameObject {
     return {
       x: this.x + deltaX,
       y: this.y + deltaY,
+    };
+  }
+
+  getShadowFootprint(): ShadowFootprint | null {
+    const feet = this.getGroundAnchor();
+    return {
+      x: feet.x,
+      y: feet.y,
+      radiusX: 9,
+      radiusY: 4,
+      height: 44,
+      shape: "ellipse",
     };
   }
 
