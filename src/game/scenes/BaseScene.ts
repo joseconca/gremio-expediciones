@@ -28,11 +28,20 @@ import {
 } from "../gameplay/VillageGateLayout";
 
 import { townHallDefinitions } from "../data/buildings/townHall";
-import { tavernDefinition } from "../data/buildings/tavern";
+import { constructibleBuildings } from "../data/buildings/constructibleBuildings";
+import { LightingSystem } from "../lighting/LightingSystem";
 import { heroAnimations } from "../data/heroAnimations";
 import { genericDoorDefinition } from "../data/doors/genericDoor1";
 import { baseMap } from "../data/base/baseMap";
 import { baseCollision } from "../data/base/baseCollision";
+
+// Must stay clear of the south exit trigger, or arrival re-triggers the transition.
+const WORLD_BASE_ARRIVAL: SpawnPoint = {
+  id: "world-base-arrival",
+  x: 480,
+  y: 768,
+  direction: "up",
+};
 
 export class BaseScene extends Scene {
   private world: World;
@@ -62,6 +71,7 @@ export class BaseScene extends Scene {
       height: baseMap.height * baseMap.tileSize,
       tileMap: tileMap,
       collisionMap: collisionMap,
+      lighting: new LightingSystem({ dayNight: this.dayNightSystem }),
     });
 
     this.collisionSystem = new CollisionSystem(this.world.collisionMap);
@@ -80,12 +90,7 @@ export class BaseScene extends Scene {
         y: 688,
         direction: "down",
       },
-      {
-        id: "world-base-arrival",
-        x: 480,
-        y: 848,
-        direction: "up",
-      }
+      WORLD_BASE_ARRIVAL
     );
     const townHallLevel = this.villageProgression.getTownHallLevel();
 
@@ -205,7 +210,7 @@ export class BaseScene extends Scene {
         object = new Building({
           x: placement.x,
           y: placement.y,
-          definition: tavernDefinition,
+          definition: constructibleBuildings[placement.type].definition,
         });
       }
 
@@ -213,29 +218,30 @@ export class BaseScene extends Scene {
       this.collisionSystem.addObject(object);
       this.villageObjects.push(object);
 
-      if (placement.type === "tavern" && !placement.underConstruction) {
+      if (placement.type !== "town-hall" && !placement.underConstruction) {
+        const interior = constructibleBuildings[placement.type].interior;
         const entranceX = placement.x + 64;
-        const tavernDoor = new Door({
+        const buildingDoor = new Door({
           x: entranceX,
           y: placement.y,
           definition: genericDoorDefinition,
         });
-        const tavernTransition = new SceneTransition({
+        const buildingTransition = new SceneTransition({
           x: entranceX - 16,
           y: placement.y - 16,
           width: 32,
           height: 32,
-          targetSceneId: "tavern-interior",
-          targetSpawnId: "tavern-entrance",
+          targetSceneId: interior.sceneId,
+          targetSpawnId: interior.entranceSpawnId,
           sceneManager: this.sceneManager,
         });
 
-        this.world.addObject(tavernDoor);
-        this.collisionSystem.addObject(tavernDoor);
-        this.interactables.push(tavernDoor);
-        this.villageEntranceObjects.push(tavernDoor, tavernTransition);
-        this.sceneTransitionSystem.addTransition(tavernTransition);
-        this.debugTeleporters.push(tavernTransition);
+        this.world.addObject(buildingDoor);
+        this.collisionSystem.addObject(buildingDoor);
+        this.interactables.push(buildingDoor);
+        this.villageEntranceObjects.push(buildingDoor, buildingTransition);
+        this.sceneTransitionSystem.addTransition(buildingTransition);
+        this.debugTeleporters.push(buildingTransition);
       }
     }
 
@@ -272,27 +278,22 @@ export class BaseScene extends Scene {
 
   protected getSpawnPoint(spawnId?: string): SpawnPoint {
     if (spawnId === "world-base-arrival") {
-      return {
-        id: spawnId,
-        x: 480,
-        y: 848,
-        direction: "up",
-      };
+      return WORLD_BASE_ARRIVAL;
     }
 
-    if (spawnId === "tavern-exit") {
-      const tavern = this.villageProgression
-        .getBuildingPlacements()
-        .find((building) => building.type === "tavern" && !building.underConstruction);
-
-      if (!tavern) {
-        throw new Error("No se puede volver de la taberna: aún no está construida.");
-      }
-
+    const exitedBuilding = this.villageProgression
+      .getBuildingPlacements()
+      .find(
+        (building) =>
+          building.type !== "town-hall" &&
+          !building.underConstruction &&
+          constructibleBuildings[building.type].interior.exitSpawnId === spawnId
+      );
+    if (spawnId && exitedBuilding) {
       return {
         id: spawnId,
-        x: tavern.x + 64,
-        y: tavern.y + 40,
+        x: exitedBuilding.x + 64,
+        y: exitedBuilding.y + 40,
         direction: "down",
       };
     }
