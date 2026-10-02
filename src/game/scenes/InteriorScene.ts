@@ -157,11 +157,11 @@ export class InteriorScene extends Scene {
   update(deltaTime: number): void {
     this.updateDebugMode();
     const dialogueWasActive = this.dialogueManager.isActive();
-    this.player.setInputEnabled(!dialogueWasActive);
+    this.player.setInputEnabled(!dialogueWasActive && !this.input.isBlocked());
 
-    if (!dialogueWasActive) {
+    if (!dialogueWasActive && !this.input.isBlocked()) {
       this.interactionSystem.tryInteract(this.player, this.interactables);
-      this.player.setInputEnabled(!this.dialogueManager.isActive());
+      this.player.setInputEnabled(!this.dialogueManager.isActive() && !this.input.isBlocked());
     }
 
     this.world.update(deltaTime);

@@ -20,6 +20,8 @@ import type { MobilitySnapshot, PlayerLocation } from "../../shared/travel";
 import { MobilityManager } from "../gameplay/MobilityManager";
 import { MenuManager } from "../gameplay/MenuManager";
 import { ExpeditionManager } from "../gameplay/ExpeditionManager";
+import { EquipmentManager } from "../gameplay/EquipmentManager";
+import { EquipmentInteriorScene } from "../scenes/EquipmentInteriorScene";
 
 export interface GameConfig {
   mobility: MobilitySnapshot;
@@ -49,6 +51,7 @@ export class Game {
   mobilityManager: MobilityManager;
   menuManager: MenuManager;
   expeditionManager: ExpeditionManager;
+  equipmentManager: EquipmentManager;
   private readonly initialMobility: MobilitySnapshot;
 
   private readonly selectedBase: WorldBaseLocation;
@@ -89,7 +92,7 @@ export class Game {
       this.playerProgression,
       this.villageProgression,
       config.progressToken,
-      () => !this.mobilityManager?.getSnapshot().journey && !this.mobilityManager?.getSnapshot().travelPending && !this.expeditionManager?.isActive(),
+      () => !this.mobilityManager?.getSnapshot().journey && !this.mobilityManager?.getSnapshot().travelPending && !this.expeditionManager?.isActive() && !this.equipmentManager?.isBlocking(),
       config.rewardRevision
     );
     this.dayNightSystem = new DayNightSystem();
@@ -99,14 +102,18 @@ export class Game {
       (location) => {
         this.dialogueManager.close();
         this.sceneManager.changeScene(location.sceneId, undefined, location);
-      }, undefined, () => !this.expeditionManager?.isActive());
+      }, undefined, () => !this.expeditionManager?.isActive() && !this.equipmentManager?.isBlocking());
     this.menuManager = new MenuManager(this.mobilityManager, () =>
       !this.combatManager.isEncounterOpen() && !this.dialogueManager.isActive() &&
-      !this.mobilityManager.getSnapshot().journey && !this.mobilityManager.getSnapshot().travelPending && !this.mobilityManager.getSnapshot().conflict && !this.expeditionManager?.isActive());
+      !this.mobilityManager.getSnapshot().journey && !this.mobilityManager.getSnapshot().travelPending && !this.mobilityManager.getSnapshot().conflict && !this.expeditionManager?.isActive() && !this.equipmentManager?.isBlocking());
     this.expeditionManager = new ExpeditionManager(this.worldGateway, this.partyManager, this.mobilityManager,
       () => this.sceneManager.getState().sceneId === "base" && !this.combatManager.isEncounterOpen() &&
-        !this.mobilityManager.getSnapshot().journey && !this.mobilityManager.getSnapshot().travelPending && !this.mobilityManager.getSnapshot().conflict,
+        !this.mobilityManager.getSnapshot().journey && !this.mobilityManager.getSnapshot().travelPending && !this.mobilityManager.getSnapshot().conflict && !this.equipmentManager?.isBlocking(),
       config.rewardRevision);
+    this.equipmentManager = new EquipmentManager(this.worldGateway, this.partyManager,
+      () => !this.expeditionManager.isActive() && !this.combatManager.isEncounterOpen() &&
+        !this.mobilityManager.getSnapshot().journey && !this.mobilityManager.getSnapshot().travelPending && !this.mobilityManager.getSnapshot().conflict,
+      () => this.sceneManager.getState().sceneId);
 
     this.sceneManager.register(
       "base",
@@ -139,10 +146,17 @@ export class Game {
         })
     );
 
+    for (const type of ["armory", "smithy"] as const) {
+      this.sceneManager.register(`${type}-interior`, (spawnId, initialLocation) =>
+        new EquipmentInteriorScene(this.createSceneConfig(spawnId, initialLocation), type));
+    }
+
     this.loop = new GameLoop({
       update: (deltaTime) => {
         if (this.input.isRawActionPressed("start")) this.menuManager.toggle();
         if (this.menuManager.getSnapshot().open && this.input.isRawActionPressed("actionB")) this.menuManager.close();
+        if (this.input.isRawActionPressed("actionB")) this.equipmentManager.close();
+        this.input.setBlocker("equipment", this.equipmentManager.isBlocking());
         const mobility = this.mobilityManager.getSnapshot();
         this.input.setBlocker("menu", this.menuManager.getSnapshot().open);
         this.input.setBlocker("travel", !!mobility.journey || !!mobility.travelPending || mobility.conflict);
@@ -174,12 +188,14 @@ export class Game {
     this.mobilityManager.destroy();
     this.menuManager.destroy();
     this.expeditionManager.destroy();
+    this.equipmentManager.destroy();
     this.sceneManager.destroy();
     this.input.destroy();
   }
 
   private createSceneConfig(spawnId?: string, initialLocation?: PlayerLocation): SceneConfig {
     return {
+      equipmentManager: this.equipmentManager,
       initialLocation,
       mobilityManager: this.mobilityManager,
       expeditionManager: this.expeditionManager,

@@ -8,6 +8,7 @@ import type { PlayerProgressionState } from "@/game/gameplay/PlayerProgression";
 import type { VillageResources } from "@/game/gameplay/VillageProgression";
 import type { GatewayResult } from "@/shared/world";
 import type { ExpeditionInventoryItemDto } from "@/shared/expeditions";
+import type { EquipmentManager } from "@/game/gameplay/EquipmentManager";
 
 interface GameMenuProps {
   manager: MenuManager;
@@ -19,6 +20,7 @@ interface GameMenuProps {
   partyManager: PartyManager;
   hasEmbassy: boolean;
   expeditionInventory?: ExpeditionInventoryItemDto[];
+  equipmentManager?: EquipmentManager;
 }
 
 const MENU_TABS: ReadonlyArray<{ id: MenuSnapshot["tab"]; label: string }> = [
@@ -48,6 +50,7 @@ export default function GameMenu({
   partyManager,
   hasEmbassy,
   expeditionInventory = [],
+  equipmentManager,
 }: GameMenuProps) {
   const titleId = useId();
   const descriptionId = useId();
@@ -178,6 +181,11 @@ export default function GameMenu({
 
           {snapshot.tab === "inventory" && (
             <section aria-label="Inventario">
+              <h3 className="mb-3 font-bold text-amber-100">Armas y armaduras</h3>
+              <button type="button" className={`${BUTTON_CLASS} mb-4`} disabled={actionsBlocked || !equipmentManager} onClick={() => {
+                manager.close();
+                equipmentManager?.open("inventory");
+              }}>Consultar equipo propio</button>
               <h3 className="mb-3 font-bold text-amber-100">Botín de expediciones</h3>
               <p className="mb-3 text-stone-400">Objetos guardados en servidor. Su uso y equipamiento todavía no están disponibles.</p>
               {expeditionInventory.length ? <ul className="mb-4 space-y-2">

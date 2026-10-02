@@ -1,4 +1,5 @@
 ﻿import { VILLAGE_BUILDING_SPACING, VILLAGE_ROW_CENTER_X, VILLAGE_GROUND_Y, VILLAGE_TILE_SIZE } from "../../shared/village";
+import type { SavedBuildingType } from "../../shared/world";
 
 export interface VillageProgressionState {
   buildings: VillageBuilding[];
@@ -22,7 +23,7 @@ export const INITIAL_VILLAGE_RESOURCES: VillageResources = {
   potions: 1,
 };
 
-export type VillageBuildingType = "town-hall" | "tavern" | "embassy" | "armory" | "smithy";
+export type VillageBuildingType = SavedBuildingType;
 export type ConstructibleBuildingType = Exclude<VillageBuildingType, "town-hall">;
 
 export interface VillageBuilding {
@@ -131,16 +132,15 @@ export class VillageProgression {
     const rowCenterIndex = (plots.length - 1) / 2;
 
     return orderedBuildings.map((building) => {
-      const index = building.type === "smithy" ? plots.findIndex((plot) => plot.type === "armory") : plots.indexOf(building);
-      return ({
-      ...building,
-      x:
-        VILLAGE_ROW_CENTER_X +
-        (index - rowCenterIndex) * VILLAGE_BUILDING_SPACING -
-        64,
-      // Two central buildings share the same baseline when the count is even.
-      y: VILLAGE_GROUND_Y + Math.floor(Math.abs(index - rowCenterIndex)) * VILLAGE_TILE_SIZE,
-      });
+      const index = building.type === "smithy"
+        ? plots.findIndex((plot) => plot.type === "armory")
+        : plots.indexOf(building);
+      return {
+        ...building,
+        x: VILLAGE_ROW_CENTER_X + (index - rowCenterIndex) * VILLAGE_BUILDING_SPACING - 64,
+        // The annex shares its armory's plot; it must never recenter the row.
+        y: VILLAGE_GROUND_Y + Math.floor(Math.abs(index - rowCenterIndex)) * VILLAGE_TILE_SIZE,
+      };
     });
   }
 

@@ -167,8 +167,13 @@ export class BaseScene extends Scene {
         if (!activeConstruction) continue;
 
         const constructionSite = new ConstructionSite({
-          x: placement.x,
+          // Keep the existing armory and its entrance usable during annex work.
+          x: placement.x + (placement.type === "smithy" ? 74 : 0),
           y: placement.y,
+          ...(placement.type === "smithy" ? {
+            footprint: { width: 44, height: 48 },
+            colliders: [{ offsetX: 12, offsetY: -30, width: 24, height: 28 }],
+          } : {}),
           durationSeconds: activeConstruction.durationSeconds,
           elapsedSeconds: activeConstruction.elapsedSeconds,
         });

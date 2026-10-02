@@ -5,6 +5,10 @@ import { tavernInteriorTileset } from "../data/interiors/tavern/tavernInteriorTi
 
 /** Reuses existing floor art explicitly; no invented blacksmith/NPC assets. */
 export class EquipmentInteriorScene extends InteriorScene {
+  private readonly interior: ReturnType<typeof createSmallInterior>;
+  private readonly passageColumn: number;
+  private connected: boolean;
+
   constructor(config: SceneConfig, type: "armory" | "smithy") {
     const interior = createSmallInterior(tavernInteriorTileset);
     const connected = config.villageProgression.hasBuilding("smithy");
@@ -18,12 +22,12 @@ export class EquipmentInteriorScene extends InteriorScene {
       ...config, tileMap: interior.map, collisionMap: interior.collision,
       entranceSpawn: { id: `${type}-entrance`, x: 64, y: 48, direction: "down" },
       exitSpawnId: `${type}-exit`, exitPosition: { x: 64, y: 128, width: 32, height: 24 },
-      passages: connected ? [{
+      passages: [{
         x: right ? 136 : 0, y: 64, width: 24, height: 32,
         targetSceneId: `${other}-interior`, targetSpawnId: `${other}-passage`,
         spawn: { id: `${type}-passage`, x: right ? 100 : 28, y: 24, direction: right ? "left" : "right" },
         canActivate: () => config.villageProgression.hasBuilding("armory") && config.villageProgression.hasBuilding("smithy"),
-      }] : [],
+      }],
       npc: {
         x: 64, y: 0, spriteSrc: "/sprites/sheets/characters/hero.png",
         dialogue: {
@@ -40,5 +44,19 @@ export class EquipmentInteriorScene extends InteriorScene {
         },
       },
     });
+    this.interior = interior;
+    this.passageColumn = right ? 4 : 0;
+    this.connected = connected;
+  }
+
+  override update(deltaTime: number): void {
+    const connected = this.villageProgression.hasBuilding("smithy") && this.villageProgression.hasBuilding("armory");
+    if (connected !== this.connected) {
+      // TileMap/CollisionMap retain these arrays; no scene/world recreation is needed.
+      this.interior.collision.tiles[2][this.passageColumn] = connected ? 0 : 1;
+      this.interior.map.layers[1].tiles[2][this.passageColumn] = connected ? -1 : this.passageColumn === 4 ? 11 : 10;
+      this.connected = connected;
+    }
+    super.update(deltaTime);
   }
 }

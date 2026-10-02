@@ -10,7 +10,6 @@ const BUTTON = "min-h-11 rounded-lg border border-amber-200/30 bg-stone-800 px-4
 export default function EquipmentShop({ manager, snapshot, gold }: { manager: EquipmentManager; snapshot: EquipmentState; gold: number }) {
   const titleId = useId();
   const dialog = useRef<HTMLElement>(null);
-  const close = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     if (!snapshot.open) return;
     const previous = document.activeElement;
@@ -39,10 +38,12 @@ export default function EquipmentShop({ manager, snapshot, gold }: { manager: Eq
       }}>
       <header className="flex shrink-0 items-center justify-between gap-3 border-b border-stone-800 p-4">
         <div><h2 id={titleId} className="text-lg font-bold text-amber-200">{snapshot.mode === "armory" ? "Armería" : snapshot.mode === "smithy" ? "Herrería" : "Equipo propio"}</h2><p>Oro: {gold.toLocaleString("es-ES")}</p></div>
-        <button ref={close} type="button" className={BUTTON} disabled={blocked} onClick={() => manager.close()}>Cerrar</button>
+        <button type="button" className={BUTTON} disabled={blocked} onClick={() => manager.close()}>Cerrar</button>
       </header>
       <div className="min-h-0 overflow-y-auto overscroll-contain p-4">
-        <p className="mb-4 text-stone-400">Armas y armaduras persistentes. Las mejoras aumentan sus atributos; equiparlas y aplicar sus bonificaciones al combate todavía no está disponible.</p>
+        <p className="mb-4 text-stone-400">{snapshot.mode === "armory" ? "Compra armas y armaduras; cada compra crea un objeto propio."
+          : snapshot.mode === "smithy" ? "Mejora una pieza de tu propiedad. Coste: precio base × 5 × (nivel de mejora + 1)."
+          : "Tus armas y armaduras guardadas en servidor."} Equiparlas y aplicar sus bonificaciones al combate todavía no está disponible.</p>
         {snapshot.busy && <p role="status" className="mb-3">Confirmando con el servidor…</p>}
         {snapshot.error && <p role="alert" className="mb-3 text-red-300">{snapshot.error}</p>}
         {snapshot.message && <p role="status" className="mb-3 text-emerald-300">{snapshot.message}</p>}

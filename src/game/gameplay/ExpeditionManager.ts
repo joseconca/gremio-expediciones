@@ -142,10 +142,12 @@ export class ExpeditionManager {
         this.receivedAt = performance.now();
         if (request.action === "start") this.pendingStart = null;
         const previous = this.state.data;
+        const knownRevision = this.party.getProfileVersion?.().rewardRevision ?? previous?.rewardRevision ?? this.initialRewardRevision;
         // Status does not erase local spending/healing if the server profile has
         // not changed; expedition/reward changes do replace it authoritatively.
-        if (result.snapshot.rewardRevision !== (previous?.rewardRevision ?? this.initialRewardRevision) ||
-          (result.snapshot.active && result.snapshot.active.phase !== "completed" && !previous)) {
+        if (result.snapshot.rewardRevision > knownRevision ||
+          (result.snapshot.active && result.snapshot.active.phase !== "completed" && !previous &&
+            result.snapshot.rewardRevision >= knownRevision)) {
           this.party.adoptProfile(result.snapshot.profile, result.snapshot.progressToken, result.snapshot.rewardRevision);
         }
         const enteredBattle = result.snapshot.active?.phase === "battle" &&

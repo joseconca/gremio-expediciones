@@ -306,6 +306,7 @@ model Jugador {
   ultimaEliteExitosa DateTime?
   rewardRevision Int @default(0)
   inventarioMundo Json @default("[]")
+  equipoMundo Json @default("{\"items\":[],\"receipts\":[]}")
   expedicionesMundo ExpedicionMundo[]
   participacionesMundo ExpedicionParticipante[]
 

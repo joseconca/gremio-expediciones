@@ -10,7 +10,7 @@ import {
   type ReturnJourney,
   type SceneId,
 } from "@/shared/travel";
-import type { SavedBuildingType } from "@/shared/world";
+import { validSmithyDependency, type SavedBuilding, type SavedBuildingType } from "@/shared/world";
 import { calculateVillageBounds, LOCAL_PLAYER_FOOTPRINT } from "@/shared/village";
 import { MundoError, withWorldLock } from "./http";
 
@@ -73,6 +73,9 @@ function requireBuiltInterior(location: PlayerLocation, buildings: unknown, vali
     }
   }
   const required = SCENE_BOUNDS[location.sceneId].building;
+  if (required === "smithy" && (!Array.isArray(buildings) || !validSmithyDependency(buildings as SavedBuilding[]))) {
+    throw new MundoError(403, "scene_unavailable", "La Herrería requiere su Armería construida y contigua.");
+  }
   if (required && (!Array.isArray(buildings) || !buildings.some((building: unknown) =>
     isRecord(building) && building.type === required &&
     typeof building.level === "number" && Number.isInteger(building.level) && building.level >= 1

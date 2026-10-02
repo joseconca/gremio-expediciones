@@ -12,6 +12,7 @@ export interface ConstructionSiteConfig extends Omit<GameObjectConfig, "collider
   colliders?: ColliderConfig[];
   startImmediately?: boolean;
   elapsedSeconds?: number;
+  footprint?: { width: number; height: number };
 }
 
 const DEFAULT_DURATION_SECONDS = 60;
@@ -31,6 +32,7 @@ export class ConstructionSite extends GameObject implements GroundRenderable {
   private readonly durationSeconds: number;
   private elapsedSeconds = 0;
   private constructionStarted = false;
+  private readonly footprint: { width: number; height: number };
 
   constructor(config: ConstructionSiteConfig) {
     super({
@@ -45,6 +47,7 @@ export class ConstructionSite extends GameObject implements GroundRenderable {
       config.durationSeconds ?? DEFAULT_DURATION_SECONDS,
       Number.EPSILON
     );
+    this.footprint = config.footprint ?? { width: 128, height: 128 };
     this.elapsedSeconds = Math.min(
       Math.max(config.elapsedSeconds ?? 0, 0),
       this.durationSeconds
@@ -114,9 +117,11 @@ export class ConstructionSite extends GameObject implements GroundRenderable {
         height: source.sh,
       },
       this.x,
-      this.y - source.sh,
+      this.y - this.footprint.height,
       projection,
-      reference
+      reference,
+      this.footprint.width,
+      this.footprint.height
     );
   }
 }

@@ -28,7 +28,7 @@ export class EquipmentManager {
   }
   isBlocking(): boolean { return this.state.open || this.state.busy || this.state.pending; }
   open(mode: EquipmentState["mode"]): void {
-    if (!this.canAct() || this.state.busy) return;
+    if (!this.canAct() || this.state.busy || this.state.pending) return;
     if (mode !== "inventory" && this.sceneId() !== `${mode}-interior`) return;
     this.publish({ open: true, mode, error: null, message: null });
     void this.execute("status");
@@ -50,6 +50,9 @@ export class EquipmentManager {
       if (!this.pendingRequest) {
         if (!await this.party.flush()) throw new Error("Espera a que se guarde el progreso antes de operar con equipo.");
         if (this.destroyed || !this.canAct()) throw new Error("El personaje no está disponible.");
+        if (action !== "status" && this.sceneId() !== (action === "buy" ? "armory-interior" : "smithy-interior")) {
+          throw new Error("Vuelve al edificio correspondiente antes de operar con equipo.");
+        }
         this.pendingRequest = action === "status" ? { action } : {
           action, targetId: targetId!, requestId: createRequestId(), ...this.party.getProfileVersion(),
         };
@@ -58,7 +61,7 @@ export class EquipmentManager {
       const result = await this.party.suspendSync(() => this.gateway.equipment(this.pendingRequest!));
       if (this.destroyed) return;
       if (!result.ok) {
-        if (["network", "invalid_response", "internal"].includes(result.code)) {
+        if (this.pendingRequest.action !== "status" && ["network", "invalid_response", "internal"].includes(result.code)) {
           this.publish({ pending: true, error: `${result.message} Reintenta para confirmar la misma petición; no se cobrará dos veces.` });
           return;
         }
@@ -72,6 +75,12 @@ export class EquipmentManager {
       this.releaseSync = null;
       this.publish({ pending: false });
     } catch (error) {
+      // Reads have no irreversible outcome: they must not trap the player offline.
+      if (this.pendingRequest?.action === "status") {
+        this.pendingRequest = null;
+        this.releaseSync?.();
+        this.releaseSync = null;
+      }
       this.publish({ pending: !!this.pendingRequest, error: error instanceof Error ? error.message : "No se pudo consultar el equipo." });
     } finally { this.publish({ busy: false }); }
   }

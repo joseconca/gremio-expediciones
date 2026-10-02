@@ -11,12 +11,30 @@ const { CombatManager } = require("../src/game/gameplay/CombatManager.ts");
 const { ENEMY_TURN_DELAY_MS, ATTACK_ANIMATION_MS } = require("../src/shared/combat.ts");
 const { geographicToWorldPoint, isInsideWorldMap } = require("../src/game/world/WorldLocation.ts");
 const { ExpeditionManager } = require("../src/game/gameplay/ExpeditionManager.ts");
-const { worldGateway } = require("../src/services/worldGateway.ts");
+const { worldGateway, loadSession } = require("../src/services/worldGateway.ts");
 const { MISSION_BOARD_POSITION } = require("../src/game/entities/MissionBoard.ts");
 const { createRequestId } = require("../src/game/core/requestId.ts");
 const { expeditionCombatSnapshot } = require("../src/game/gameplay/expeditionCombat.ts");
 
 const yieldMicrotasks = () => new Promise((resolve) => setImmediate(resolve));
+test("session lookup rejects empty/malformed successful HTTP responses without crashing or onboarding", async () => {
+  const originalFetch = global.fetch;
+  try {
+    for (const body of ["", "not-json", "null", "[]", "42", "{}", '{"session":false}']) {
+      global.fetch = async () => new Response(body, { status: 200 });
+      const result = await loadSession();
+      assert.equal(result.status, "unavailable", body);
+      assert.ok(result.message);
+    }
+    global.fetch = async () => new Response('{"session":null}', { status: 200 });
+    assert.deepEqual(await loadSession(), { status: "ready", session: null });
+    global.fetch = async () => new Response("", { status: 401 });
+    assert.deepEqual(await loadSession(), { status: "unauthenticated" });
+  } finally {
+    global.fetch = originalFetch;
+  }
+});
+
 function serverSnapshot(token = "token") {
   return {
     progressToken: token, nearbyBases: [], selfPlayerId: "self",

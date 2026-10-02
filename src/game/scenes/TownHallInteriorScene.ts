@@ -52,9 +52,24 @@ export class TownHallInteriorScene extends InteriorScene {
           if (eventId.startsWith("build:")) {
             const [, type, position] = eventId.split(":");
             if (type === "smithy") {
+              const pendingDialogue = { id: "smithy-order-pending", nodes: [{
+                id: "pending", speaker: "Alcalde",
+                text: "Estoy comprobando que la Armería terminada esté guardada antes de autorizar su ampliación…",
+                nextNodeId: null,
+              }] };
+              config.dialogueManager.start(pendingDialogue);
               void config.partyManager.flush().then((saved) => {
-                if (saved) config.villageProgression.startConstruction("smithy", Number(position));
-                else config.dialogueManager.close();
+                const started = saved && config.villageProgression.startConstruction("smithy", Number(position));
+                if (config.dialogueManager.getState().dialogue !== pendingDialogue) return;
+                config.dialogueManager.start({ id: "smithy-order-result", nodes: [{
+                  id: "result", speaker: "Alcalde", nextNodeId: null,
+                  text: started ? "La ampliación de la Herrería ha empezado junto a la Armería. Estará lista en 60 segundos activos."
+                    : config.partyManager.getSnapshot().syncMessage ?? "No se pudo autorizar la ampliación. Comprueba el guardado y vuelve a hablar conmigo.",
+                }] });
+              }).catch(() => {
+                if (config.dialogueManager.getState().dialogue !== pendingDialogue) return;
+                config.dialogueManager.start({ id: "smithy-order-error", nodes: [{ id: "error", speaker: "Alcalde",
+                  text: "No se pudo confirmar el guardado. La obra no ha comenzado; vuelve a intentarlo.", nextNodeId: null }] });
               });
             } else if (type === "tavern" || type === "embassy" || type === "armory") {
               config.villageProgression.startConstruction(type, Number(position));

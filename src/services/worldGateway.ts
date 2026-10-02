@@ -8,6 +8,23 @@ import type {
 } from "@/shared/world";
 import type { MobilitySnapshot } from "@/shared/travel";
 import type { ExpeditionResult } from "@/shared/expeditions";
+import { EQUIPMENT_CATALOG, type EquipmentResult, type EquipmentSnapshot } from "../shared/equipment";
+
+function isEquipmentSnapshot(value: unknown): value is EquipmentSnapshot {
+  if (!value || typeof value !== "object") return false;
+  const snapshot = value as EquipmentSnapshot;
+  const profile = snapshot.profile;
+  return Array.isArray(snapshot.items) && snapshot.items.every((item) => item && typeof item.id === "string" &&
+    EQUIPMENT_CATALOG.some((definition) => definition.id === item.catalogId) && Number.isSafeInteger(item.upgrade) && item.upgrade >= 0) &&
+    new Set(snapshot.items.map((item) => item.id)).size === snapshot.items.length &&
+    typeof snapshot.progressToken === "string" && snapshot.progressToken.length > 0 &&
+    Number.isSafeInteger(snapshot.rewardRevision) && snapshot.rewardRevision >= 0 &&
+    !!profile && typeof profile.id === "string" && typeof profile.name === "string" && typeof profile.characterClass === "string" &&
+    (profile.sex === "chico" || profile.sex === "chica") &&
+    [profile.gold, profile.experience, profile.currentHealth].every((number) => Number.isSafeInteger(number) && number >= 0) &&
+    [profile.level, profile.maxHealth].every((number) => Number.isSafeInteger(number) && number > 0) &&
+    profile.currentHealth <= profile.maxHealth;
+}
 
 type ApiResponse<T> =
   | { ok: true; data: T }
@@ -23,7 +40,14 @@ async function call<T>(path: string, body?: unknown, method?: "PATCH"): Promise<
       signal: AbortSignal.timeout(10_000),
     });
     const payload: unknown = await response.json().catch(() => null);
-    if (response.ok) return { ok: true, data: payload as T };
+    if (response.ok) {
+      if (payload === null || typeof payload !== "object" || Array.isArray(payload)) {
+        return { ok: false, status: response.status, error: {
+          code: "invalid_response", message: "El servidor devolvió una respuesta inválida. Vuelve a intentarlo.",
+        } };
+      }
+      return { ok: true, data: payload as T };
+    }
     const error = payload as Partial<WorldApiError> | null;
     return {
       ok: false,
@@ -47,6 +71,12 @@ function toResult(response: ApiResponse<unknown>): GatewayResult {
 }
 
 export const worldGateway: WorldGateway = {
+  async equipment(request) {
+    const response = await call<EquipmentResult>("equipo", request.action === "status" ? undefined : request);
+    if (!response.ok) return { ok: false, ...response.error };
+    if (response.data.ok === true && isEquipmentSnapshot(response.data.snapshot)) return response.data;
+    return { ok: false, code: "invalid_response", message: "El servidor devolvió equipo inválido. Reintenta para confirmar la petición." };
+  },
   async expedition(request) {
     const response = await call<ExpeditionResult>("expediciones", request);
     return response.ok ? response.data : { ok: false, ...response.error };
@@ -79,7 +109,13 @@ export type SessionLookup =
 
 export async function loadSession(): Promise<SessionLookup> {
   const response = await call<{ session: WorldSessionDto | null }>("jugador");
-  if (response.ok) return { status: "ready", session: response.data.session };
+  if (response.ok) {
+    if (!Object.hasOwn(response.data, "session") ||
+      (response.data.session !== null && (typeof response.data.session !== "object" || Array.isArray(response.data.session)))) {
+      return { status: "unavailable", message: "El servidor devolvió una sesión inválida. Vuelve a intentarlo." };
+    }
+    return { status: "ready", session: response.data.session };
+  }
   if (response.status === 401) return { status: "unauthenticated" };
   return { status: "unavailable", message: response.error.message };
 }

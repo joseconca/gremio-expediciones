@@ -111,6 +111,18 @@ export class PartyManager {
   }
 
   /** Serialize server profile operations without stopping the world's simulation. */
+  holdSync(): () => void {
+    this.suspendedOperations++;
+    this.profileWritesPaused = true;
+    let released = false;
+    return () => {
+      if (released) return;
+      released = true;
+      this.suspendedOperations--;
+      this.profileWritesPaused = this.suspendedOperations > 0;
+    };
+  }
+
   suspendSync<T>(action: () => Promise<T>): Promise<T> {
     this.suspendedOperations++;
     this.profileWritesPaused = true;
@@ -127,9 +139,13 @@ export class PartyManager {
   }
 
   adoptProfile(profile: PlayerProfileDto, token: string, rewardRevision: number): void {
-    if (this.destroyed) return;
+    if (this.destroyed || rewardRevision < this.rewardRevision) return;
     this.restoreAuthoritativeProfile(profile, token, rewardRevision);
     for (const listener of this.listeners) listener();
+  }
+
+  getProfileVersion(): { progressToken: string; rewardRevision: number } {
+    return { progressToken: this.progressToken, rewardRevision: this.rewardRevision };
   }
 
   private restoreAuthoritativeProfile(profile: PlayerProfileDto, token: string, rewardRevision: number): void {
@@ -146,7 +162,9 @@ export class PartyManager {
     this.rewardRevision = rewardRevision;
     // Authoritative rewards do not resolve an unrelated multi-session conflict.
     if (this.snapshot.syncStatus !== "conflict") {
-      this.snapshot = { ...this.snapshot, syncStatus: "saved", syncMessage: null };
+      this.snapshot = { ...this.snapshot,
+        syncStatus: JSON.stringify(this.village.getSavedBuildings()) === this.buildingToken ? "saved" : "pending",
+        syncMessage: null };
     }
   }
 
