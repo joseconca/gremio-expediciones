@@ -1,0 +1,376 @@
+const { test } = require("node:test");
+const assert = require("node:assert/strict");
+const { randomUUID, randomBytes } = require("node:crypto");
+require("./load-typescript.cjs");
+const { prisma } = require("../src/lib/prisma.ts");
+const { PlayerProgression } = require("../src/game/gameplay/PlayerProgression.ts");
+const { VillageProgression } = require("../src/game/gameplay/VillageProgression.ts");
+const { PartyManager } = require("../src/game/gameplay/PartyManager.ts");
+const { BASE_RETURN_LOCATION, EXTERIOR_HOME_POSITION, CART_SPEED, MIN_TRIP_DURATION_MS } = require("../src/shared/travel.ts");
+
+const origin = process.env.WORLD_TEST_URL ?? "http://localhost:3100";
+const runId = `smoke-${randomUUID()}`;
+const password = randomBytes(24).toString("hex");
+const accounts = [];
+
+async function request(path, account, body, method) {
+  const response = await fetch(`${origin}${path}`, {
+    method: method ?? (body === undefined ? "GET" : "POST"),
+    headers: { "Content-Type": "application/json", ...(account?.cookie ? { Cookie: account.cookie } : {}) },
+    body: body === undefined ? undefined : JSON.stringify(body),
+    signal: AbortSignal.timeout(15_000),
+  });
+  const cookies = response.headers.getSetCookie();
+  if (account && cookies.length) account.cookie = cookies[0].split(";")[0];
+  return { status: response.status, data: await response.json() };
+}
+async function register(index) {
+  const account = { email: `${runId}-${index}@test.local`, nombre: `${runId}-${index}`, password };
+  accounts.push(account);
+  const result = await request("/api/auth/register", account, account);
+  assert.equal(result.status, 201);
+  assert.ok(account.cookie);
+  return account;
+}
+async function load(account) {
+  const result = await request("/api/mundo/jugador", account);
+  assert.equal(result.status, 200);
+  account.session = result.data.session;
+  return account.session;
+}
+function progress(session, changes = {}) {
+  return {
+    progressToken: session.progressToken,
+    characterClass: session.player.characterClass, level: session.player.level,
+    experience: session.player.experience, gold: session.player.gold,
+    currentHealth: session.player.currentHealth, maxHealth: session.player.maxHealth,
+    buildings: session.base.buildings, ...changes,
+  };
+}
+async function sync(account, changes) {
+  const result = await request("/api/mundo/sync", account, progress(account.session, changes));
+  assert.equal(result.status, 200);
+  await load(account);
+  return result.data;
+}
+async function party(account, body, status = 200) {
+  const result = await request("/api/mundo/party", account, body);
+  assert.equal(result.status, status);
+  return result;
+}
+
+test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { timeout: 60_000 }, async (t) => {
+  try {
+    let a, b, c, d, location;
+    await t.test("unauthenticated access, registration, credentials and new-player session", async () => {
+      assert.equal((await request("/api/mundo/jugador")).status, 401);
+      assert.equal((await request("/api/mundo/sync", null, {})).status, 401);
+      assert.equal((await request("/api/auth/register", null, null)).status, 400);
+      assert.equal((await request("/api/auth/login", null, null)).status, 400);
+      [a, b, c, d] = await Promise.all([0, 1, 2, 3].map(register));
+      assert.equal(await load(a), null);
+      assert.equal((await request("/api/auth/register", null, a)).status, 409);
+      assert.equal((await request("/api/auth/login", null, { email: a.email, password: "incorrect" })).status, 401);
+    });
+
+    await t.test("creation defaults, 199.9 m rejection, date line and idempotent foundation", async () => {
+      location = { lat: -55 - Math.random() * 5, lng: 179.9998 };
+      const creation = { ...location, baseName: "Poblado A", playerName: "Novata A", sex: "chica" };
+      assert.equal((await request("/api/mundo/jugador", a, { ...creation, sex: "invalid" })).status, 400);
+      assert.equal((await request("/api/mundo/jugador", a, creation)).status, 200);
+      const session = await load(a);
+      assert.equal(session.player.sex, "chica");
+      assert.equal(session.player.characterClass, "Novato");
+      assert.equal(session.player.gold, 100);
+      assert.equal(session.player.currentHealth, 40);
+      assert.equal(session.player.maxHealth, 100);
+      const near = { ...creation, playerName: "Novato B", sex: "chico", lat: location.lat + 199.9 / 6_371_000 * 180 / Math.PI };
+      const rejected = await request("/api/mundo/jugador", b, near);
+      assert.equal(rejected.status, 409);
+      assert.equal(rejected.data.code, "base_too_close");
+      assert.equal((await request("/api/mundo/jugador", b, { ...near, lat: location.lat, lng: -179.9998 })).status, 409);
+      assert.equal((await request("/api/mundo/jugador", b, { ...near, lat: location.lat + 0.004 })).status, 200);
+      assert.equal((await request("/api/mundo/jugador", c, { ...creation, baseName: "Poblado C", lat: location.lat + 0.008 })).status, 200);
+      const repeats = await Promise.all([
+        request("/api/mundo/jugador", d, { ...creation, lat: location.lat + 0.012 }),
+        request("/api/mundo/jugador", d, { ...creation, lat: location.lat + 0.012 }),
+      ]);
+      assert.ok(repeats.every((result) => result.status === 200));
+      assert.equal(repeats[0].data.session.player.id, repeats[1].data.session.player.id);
+      await Promise.all([a, b, c, d].map(load));
+      assert.ok(a.session.nearbyBases.some((base) => base.playerId === b.session.player.id));
+    });
+
+    await t.test("engine construction and 4 s HTTP sync restore profile, gold, level and building order", async () => {
+      const player = new PlayerProgression({
+        name: a.session.player.name, characterClass: "Novato", level: 1, experience: 0, gold: 100, currentHealth: 40,
+      });
+      const village = new VillageProgression(a.session.base.buildings);
+      const gateway = { async sync(body) {
+        const result = await request("/api/mundo/sync", a, body);
+        return result.status === 200 ? { ok: true, snapshot: result.data } : { ok: false, ...result.data };
+      } };
+      const manager = new PartyManager(gateway, player, village, a.session.progressToken);
+      const tick = (seconds) => new Promise((resolve, reject) => {
+        const timeout = setTimeout(() => {
+          unsubscribe();
+          reject(new Error("La sincronización no terminó en 20 s."));
+        }, 20_000);
+        const unsubscribe = manager.subscribe(() => {
+          const state = manager.getSnapshot();
+          if (state.syncStatus === "saved") { clearTimeout(timeout); unsubscribe(); resolve(); }
+          else if (state.syncStatus === "error" || state.syncStatus === "conflict") { clearTimeout(timeout); unsubscribe(); reject(new Error(state.syncMessage)); }
+        });
+        manager.update(seconds);
+      });
+      try {
+        await tick(0);
+        // Snapshot listeners run before the in-flight request finishes unwinding.
+        await new Promise((resolve) => setImmediate(resolve));
+        village.upgradeTownHall();
+        for (const [type, position] of [["tavern", 1], ["embassy", 3]]) {
+          assert.equal(village.startConstruction(type, position), true);
+          for (let frame = 0; frame < 601; frame++) village.update(0.1);
+        }
+        player.gainExperience(125);
+        player.spendGold(10);
+        await tick(4);
+        const restored = await load(a);
+        assert.equal(restored.player.name, "Novata A");
+        assert.equal(restored.player.sex, "chica");
+        assert.equal(restored.player.level, 2);
+        assert.equal(restored.player.gold, 90);
+        assert.equal(restored.player.currentHealth, 50);
+        assert.equal(restored.player.maxHealth, 110);
+        assert.deepEqual(restored.base.buildings, village.getSavedBuildings());
+      } finally { manager.destroy(); }
+    });
+
+    await t.test("invalid saves and obsolete tabs cannot overwrite persisted progress", async () => {
+      const stale = progress(a.session);
+      assert.equal((await request("/api/mundo/sync", a, {})).status, 400);
+      assert.equal((await request("/api/mundo/sync", a, { ...stale, buildings: [] })).status, 400);
+      const ambiguousSave = { ...stale, gold: 88 };
+      assert.equal((await request("/api/mundo/sync", a, ambiguousSave)).status, 200);
+      // Simulate losing the successful response and retrying its exact payload.
+      assert.equal((await request("/api/mundo/sync", a, ambiguousSave)).status, 200);
+      await load(a);
+      await sync(a, { gold: 89 });
+      const conflict = await request("/api/mundo/sync", a, { ...stale, gold: 100, buildings: [{ type: "town-hall", level: 1 }] });
+      assert.equal(conflict.status, 409);
+      assert.equal(conflict.data.code, "progress_conflict");
+      await load(a);
+      assert.equal(a.session.player.gold, 89);
+      assert.equal(a.session.base.buildings.length, 3);
+    });
+
+    await t.test("both embassies required; reject, accept, duplicate response and leave", async () => {
+      await party(a, { action: "invite", targetPlayerId: b.session.player.id }, 403);
+      const buildings = [{ type: "town-hall", level: 2 }, { type: "tavern", level: 1 }, { type: "embassy", level: 1 }];
+      await sync(b, { buildings });
+      await party(a, { action: "invite", targetPlayerId: b.session.player.id });
+      let view = await sync(b);
+      assert.equal(view.invitations.length, 1);
+      await party(a, { action: "respond", invitationId: view.invitations[0].id, accept: true }, 410);
+      await party(b, { action: "respond", invitationId: view.invitations[0].id, accept: false });
+      assert.equal((await sync(b)).invitations.length, 0);
+      await party(a, { action: "invite", targetPlayerId: b.session.player.id });
+      view = await sync(b);
+      const invitationId = view.invitations[0].id;
+      await party(b, { action: "respond", invitationId, accept: true });
+      await party(b, { action: "respond", invitationId, accept: true }, 410);
+      assert.equal((await sync(a)).members.length, 2);
+      assert.equal((await sync(b)).members.length, 2);
+      await party(b, { action: "leave" });
+      assert.equal((await sync(a)).members.length, 0);
+      assert.equal((await sync(b)).members.length, 0);
+    });
+
+    await t.test("3-player capacity, only leader invites, expired invitations and cancellation commit", async () => {
+      const buildings = [{ type: "town-hall", level: 2 }, { type: "embassy", level: 1 }];
+      await sync(c, { buildings });
+      await sync(d, { buildings });
+      await party(a, { action: "invite", targetPlayerId: b.session.player.id });
+      await party(b, { action: "respond", invitationId: (await sync(b)).invitations[0].id, accept: true });
+      await party(b, { action: "invite", targetPlayerId: c.session.player.id }, 403);
+      await party(a, { action: "invite", targetPlayerId: c.session.player.id });
+      await party(c, { action: "respond", invitationId: (await sync(c)).invitations[0].id, accept: true });
+      await party(a, { action: "invite", targetPlayerId: d.session.player.id }, 409);
+      await party(a, { action: "leave" });
+      assert.ok((await sync(b)).members.some((member) => member.playerId === b.session.player.id && member.isLeader));
+      await party(b, { action: "leave" });
+      await party(a, { action: "invite", targetPlayerId: d.session.player.id });
+      let invitation = (await sync(d)).invitations[0];
+      await prisma.invitacionParty.update({ where: { id: invitation.id }, data: { expira: new Date(0) } });
+      await party(d, { action: "respond", invitationId: invitation.id, accept: true }, 410);
+      await party(a, { action: "invite", targetPlayerId: d.session.player.id });
+      invitation = (await sync(d)).invitations[0];
+      await party(b, { action: "invite", targetPlayerId: a.session.player.id });
+      await party(a, { action: "respond", invitationId: (await sync(a)).invitations[0].id, accept: true });
+      await party(d, { action: "respond", invitationId: invitation.id, accept: true }, 410);
+      assert.equal((await prisma.invitacionParty.findUnique({ where: { id: invitation.id } })).estado, "CANCELADA");
+      await party(a, { action: "leave" });
+    });
+
+    await t.test("returning account login restores the same character and nearby embassy markers", async () => {
+      await request("/api/auth/logout", a, {});
+      assert.equal((await request("/api/mundo/jugador", a)).status, 401);
+      assert.equal((await request("/api/auth/login", a, { email: a.email, password })).status, 200);
+      const session = await load(a);
+      assert.equal(session.player.gold, 89);
+      assert.equal(session.player.level, 2);
+      assert.equal(session.base.name, "Poblado A");
+      assert.ok(session.nearbyBases.find((base) => base.playerId === b.session.player.id).hasEmbassy);
+    });
+
+    const exteriorLocation = { sceneId: "exterior-world", x: 3500, y: 4400, direction: "right" };
+    const mobilityProgress = new Map();
+    let savedJourney, journeyRevision;
+    async function reloadMobility(account) {
+      const session = await load(account);
+      const before = mobilityProgress.get(account);
+      assert.equal(session.progressToken, before.progressToken);
+      assert.equal(session.player.gold, before.gold);
+      return session.mobility;
+    }
+
+    await t.test("mobility PATCH requires authentication; checkpoints persist and reject stale revisions", async () => {
+      assert.equal((await request("/api/mundo/jugador", null, {
+        action: "checkpoint", revision: 0, location: exteriorLocation,
+      }, "PATCH")).status, 401);
+      await load(a);
+      mobilityProgress.set(a, { progressToken: a.session.progressToken, gold: a.session.player.gold });
+      const revision = a.session.mobility.revision;
+      assert.ok(Number.isInteger(revision) && revision >= 0);
+      const checkpoint = await request("/api/mundo/jugador", a, {
+        action: "checkpoint", revision, location: exteriorLocation,
+      }, "PATCH");
+      assert.equal(checkpoint.status, 200);
+      assert.equal(checkpoint.data.mobility.revision, revision + 1);
+      assert.deepEqual(checkpoint.data.mobility.location, exteriorLocation);
+      assert.equal(checkpoint.data.mobility.journey, null);
+      const restored = await reloadMobility(a);
+      assert.equal(restored.revision, revision + 1);
+      assert.deepEqual(restored.location, exteriorLocation);
+      assert.equal(restored.journey, null);
+      const stale = await request("/api/mundo/jugador", a, {
+        action: "checkpoint", revision, location: BASE_RETURN_LOCATION,
+      }, "PATCH");
+      assert.equal(stale.status, 409);
+      assert.equal(stale.data.code, "location_conflict");
+      const unchanged = await reloadMobility(a);
+      assert.equal(unchanged.revision, restored.revision);
+      assert.deepEqual(unchanged.location, exteriorLocation);
+      assert.equal(unchanged.journey, null);
+    });
+
+    await t.test("mobility checkpoints reject an unbuilt tavern without changing progress", async () => {
+      await load(d);
+      mobilityProgress.set(d, { progressToken: d.session.progressToken, gold: d.session.player.gold });
+      assert.ok(d.session.base.buildings.some((building) => building.type === "embassy" && building.level >= 1));
+      assert.ok(!d.session.base.buildings.some((building) => building.type === "tavern" && building.level >= 1));
+      const before = d.session.mobility;
+      const rejected = await request("/api/mundo/jugador", d, {
+        action: "checkpoint", revision: before.revision,
+        location: { sceneId: "tavern-interior", x: 80, y: 80, direction: "up" },
+      }, "PATCH");
+      assert.equal(rejected.status, 403);
+      assert.equal(rejected.data.code, "scene_unavailable");
+      const unchanged = await reloadMobility(d);
+      assert.equal(unchanged.revision, before.revision);
+      assert.deepEqual(unchanged.location, before.location);
+      assert.deepEqual(unchanged.journey, before.journey);
+    });
+
+    await t.test("return cart uses server destination and times; concurrent calls share one persisted journey", async () => {
+      const before = await reloadMobility(a);
+      for (const field of ["departureAt", "arrivalAt"]) {
+        const injected = await request("/api/mundo/jugador", a, {
+          action: "call-cart", revision: before.revision, [field]: Date.now(),
+        }, "PATCH");
+        assert.equal(injected.status, 400);
+        assert.equal(injected.data.code, "invalid_body");
+      }
+      const unchanged = await reloadMobility(a);
+      assert.equal(unchanged.revision, before.revision);
+      assert.deepEqual(unchanged.location, exteriorLocation);
+      assert.equal(unchanged.journey, null);
+      const startedAt = Date.now();
+      const calls = await Promise.all([0, 1].map(() => request("/api/mundo/jugador", a, {
+        action: "call-cart", revision: before.revision,
+      }, "PATCH")));
+      const finishedAt = Date.now();
+      assert.ok(calls.every((result) => result.status === 200));
+      const mobility = calls[0].data.mobility;
+      savedJourney = mobility.journey;
+      journeyRevision = before.revision + 1;
+      assert.ok(savedJourney && typeof savedJourney.id === "string" && savedJourney.id.length > 0);
+      assert.deepEqual(calls[1].data.mobility.journey, savedJourney);
+      for (const result of calls) {
+        assert.equal(result.data.mobility.revision, journeyRevision);
+        assert.deepEqual(result.data.mobility.location, exteriorLocation);
+      }
+      assert.equal(savedJourney.fromX, exteriorLocation.x);
+      assert.equal(savedJourney.fromY, exteriorLocation.y);
+      assert.equal(savedJourney.toX, EXTERIOR_HOME_POSITION.x);
+      assert.equal(savedJourney.toY, EXTERIOR_HOME_POSITION.y);
+      assert.ok(Number.isSafeInteger(savedJourney.departureAt));
+      assert.ok(Number.isSafeInteger(savedJourney.arrivalAt));
+      assert.equal(savedJourney.departureAt, mobility.serverNow);
+      assert.ok(savedJourney.departureAt >= startedAt && savedJourney.departureAt <= finishedAt);
+      const duration = Math.max(MIN_TRIP_DURATION_MS, Math.ceil(Math.hypot(
+        exteriorLocation.x - EXTERIOR_HOME_POSITION.x,
+        exteriorLocation.y - EXTERIOR_HOME_POSITION.y,
+      ) / CART_SPEED * 1000));
+      assert.equal(savedJourney.arrivalAt - savedJourney.departureAt, duration);
+      const restored = await reloadMobility(a);
+      assert.equal(restored.revision, journeyRevision);
+      assert.deepEqual(restored.location, exteriorLocation);
+      assert.deepEqual(restored.journey, savedJourney);
+      const blocked = await request("/api/mundo/jugador", a, {
+        action: "checkpoint", revision: journeyRevision, location: BASE_RETURN_LOCATION,
+      }, "PATCH");
+      assert.equal(blocked.status, 409);
+      assert.equal(blocked.data.code, "travel_active");
+      const stillTravelling = await reloadMobility(a);
+      assert.equal(stillTravelling.revision, journeyRevision);
+      assert.deepEqual(stillTravelling.location, exteriorLocation);
+      assert.deepEqual(stillTravelling.journey, savedJourney);
+    });
+
+    await t.test("offline return resolves exactly once and stale checkpoints cannot overwrite arrival", async () => {
+      assert.ok(savedJourney && Number.isInteger(journeyRevision));
+      const now = Date.now();
+      const expiredJourney = { ...savedJourney, departureAt: now - 10_000, arrivalAt: now - 1 };
+      assert.ok(expiredJourney.arrivalAt - expiredJourney.departureAt >= MIN_TRIP_DURATION_MS);
+      // Only this run's account A is changed; preserve the server-issued journey and endpoints.
+      await prisma.jugador.update({
+        where: { id: a.session.player.id }, data: { viajeRegreso: expiredJourney },
+      });
+      const arrived = await reloadMobility(a);
+      assert.equal(arrived.revision, journeyRevision + 1);
+      assert.deepEqual(arrived.location, BASE_RETURN_LOCATION);
+      assert.equal(arrived.journey, null);
+      const reloaded = await reloadMobility(a);
+      assert.equal(reloaded.revision, arrived.revision);
+      assert.deepEqual(reloaded.location, BASE_RETURN_LOCATION);
+      assert.equal(reloaded.journey, null);
+      const stale = await request("/api/mundo/jugador", a, {
+        action: "checkpoint", revision: journeyRevision, location: exteriorLocation,
+      }, "PATCH");
+      assert.equal(stale.status, 409);
+      assert.equal(stale.data.code, "location_conflict");
+      const unchanged = await reloadMobility(a);
+      assert.equal(unchanged.revision, arrived.revision);
+      assert.deepEqual(unchanged.location, BASE_RETURN_LOCATION);
+      assert.equal(unchanged.journey, null);
+    });
+  } finally {
+    // Only this run's disposable accounts are touched, including failed registrations.
+    const users = await prisma.usuario.findMany({ where: { email: { in: accounts.map((account) => account.email) } }, select: { id: true } });
+    const players = await prisma.jugador.findMany({ where: { usuarioId: { in: users.map((user) => user.id) } }, select: { id: true } });
+    await prisma.party.deleteMany({ where: { liderId: { in: players.map((player) => player.id) } } });
+    await prisma.usuario.deleteMany({ where: { id: { in: users.map((user) => user.id) } } });
+    await prisma.$disconnect();
+  }
+});
