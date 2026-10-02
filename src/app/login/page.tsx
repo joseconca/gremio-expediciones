@@ -19,20 +19,24 @@ export default function LoginPage() {
 
     const endpoint = registro ? "/api/auth/register" : "/api/auth/login";
     const body = registro ? { email, nombre, password } : { email, password };
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
-    const data = await response.json();
-
-    if (!response.ok) {
-      setError(data.error || "No se pudo completar la operación.");
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+        signal: AbortSignal.timeout(10_000),
+      });
+      const data = await response.json().catch(() => null);
+      if (!response.ok) {
+        setError(data?.error || "No se pudo completar la operación.");
+        return;
+      }
+      router.replace("/newGame");
+    } catch {
+      setError("Sin conexión con el servidor. Vuelve a intentarlo.");
+    } finally {
       setCargando(false);
-      return;
     }
-
-    router.push("/newGame");
   }
 
   return (
