@@ -3,36 +3,29 @@ import type {
   GroundProjection,
   GroundReference,
 } from "../rendering/GroundProjection";
-import { addGroundEllipsePath } from "../rendering/GroundShapes";
 import type { DayNightSystem } from "./DayNightSystem";
 import { getShadowVector } from "./DirectionalLight";
 import { isLightEmitter, type PointLight } from "./PointLight";
-import { isShadowCaster, type ShadowFootprint } from "./ShadowCaster";
+import { isShadowCaster } from "./ShadowCaster";
 import { SpriteShadowRenderer } from "./SpriteShadowRenderer";
 
-const CONTACT_SHADOW_OPACITY = 0.3;
 const SUN_SHADOW_OPACITY = 0.4;
-const MAX_SWEEP_STEPS = 12;
 const MIN_AMBIENT_ALPHA = 0.01;
 
 export interface LightingConfig {
-  /** Visible ground contact circles are reserved for the exterior world. */
-  contactShadows?: boolean;
-  /** Omit for indoor scenes: no sun or ambient tint, only contact shadows. */
+  /** Omit for indoor scenes: no solar shadows or ambient tint. */
   dayNight?: DayNightSystem;
 }
 
 /** Composites shadows and ambient/point light as separate layers; never reads ground pixels. */
 export class LightingSystem {
   private readonly dayNight?: DayNightSystem;
-  private readonly contactShadows: boolean;
   private lightLayer: HTMLCanvasElement | null = null;
   private shadowLayer: HTMLCanvasElement | null = null;
   private readonly spriteShadows = new SpriteShadowRenderer();
 
   constructor(config: LightingConfig = {}) {
     this.dayNight = config.dayNight;
-    this.contactShadows = config.contactShadows ?? false;
   }
 
   renderShadows(
@@ -42,21 +35,6 @@ export class LightingSystem {
     reference: GroundReference
   ): void {
     const sun = this.dayNight?.getState().sun;
-    ctx.save();
-    ctx.fillStyle = "#000";
-    ctx.globalAlpha = CONTACT_SHADOW_OPACITY;
-
-    // Contact remains small and soft-looking; it is not swept into a rectangle.
-    for (const object of objects) {
-      if (!this.contactShadows) break;
-      if (!isShadowCaster(object)) continue;
-      const footprint = object.getShadowFootprint();
-      if (!footprint) continue;
-      ctx.beginPath();
-      addGroundEllipsePath(ctx, projection, reference, footprint.x, footprint.y, footprint.radiusX, footprint.radiusY, 16);
-      ctx.fill();
-    }
-    ctx.restore();
     if (!sun || sun.intensity <= 0) return;
 
     this.shadowLayer = this.resizeLayer(this.shadowLayer, ctx.canvas);
@@ -72,11 +50,6 @@ export class LightingSystem {
       const sprite = object.getShadowSprite?.();
       if (sprite) {
         this.spriteShadows.render(shadowContext, sprite, footprint, sweep, projection, reference);
-      } else {
-        if (!this.contactShadows) continue;
-        shadowContext.beginPath();
-        this.traceSweptFootprint(shadowContext, projection, reference, footprint, sweep);
-        shadowContext.fill();
       }
     }
     // Apply opacity once, avoiding dark seams/stacking between strips or casters.
@@ -161,37 +134,6 @@ export class LightingSystem {
       ctx.fillRect(point.x - radius, point.y - radius, radius * 2, radius * 2);
     }
     ctx.restore();
-  }
-
-  private traceSweptFootprint(
-    ctx: CanvasRenderingContext2D,
-    projection: GroundProjection,
-    reference: GroundReference,
-    footprint: ShadowFootprint,
-    sweep: { x: number; y: number }
-  ): void {
-    const length = Math.hypot(sweep.x, sweep.y);
-    const stepSize = Math.max(2, Math.min(footprint.radiusX, footprint.radiusY));
-    const steps =
-      length < 1 ? 0 : Math.min(MAX_SWEEP_STEPS, Math.ceil(length / stepSize));
-
-    // Overlapping sub-paths fill as a single union, so alpha is not doubled.
-    for (let step = 0; step <= steps; step++) {
-      const t = steps === 0 ? 0 : step / steps;
-      const centerX = footprint.x + sweep.x * t;
-      const centerY = footprint.y + sweep.y * t;
-
-      addGroundEllipsePath(
-        ctx,
-        projection,
-        reference,
-        centerX,
-        centerY,
-        footprint.radiusX,
-        footprint.radiusY,
-        16
-      );
-    }
   }
 
   private getLightLayer(source: HTMLCanvasElement): HTMLCanvasElement {
