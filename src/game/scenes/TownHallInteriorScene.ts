@@ -34,7 +34,12 @@ export class TownHallInteriorScene extends InteriorScene {
         dialogue: () =>
           createAlcaldeDialogue(
             config.villageProgression.getTownHallLevel(),
-            config.villageProgression.getAvailableConstructionPositions()
+            {
+              tavern:
+                config.villageProgression.getAvailableConstructionPositions("tavern"),
+              embassy:
+                config.villageProgression.getAvailableConstructionPositions("embassy"),
+            }
           ),
         onChoice: (eventId) => {
           if (eventId === "upgrade-town-hall") {
@@ -42,11 +47,11 @@ export class TownHallInteriorScene extends InteriorScene {
             return;
           }
 
-          if (eventId.startsWith("build-tavern-position:")) {
-            const position = Number(
-              eventId.slice("build-tavern-position:".length)
-            );
-            config.villageProgression.startTavernConstruction(position);
+          if (eventId.startsWith("build:")) {
+            const [, type, position] = eventId.split(":");
+            if (type === "tavern" || type === "embassy") {
+              config.villageProgression.startConstruction(type, Number(position));
+            }
           }
         },
       },

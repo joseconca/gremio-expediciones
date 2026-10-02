@@ -6,6 +6,7 @@ export interface GeographicLocation {
 export interface WorldBaseLocation extends GeographicLocation {
   id: string;
   name: string;
+  hasEmbassy?: boolean;
 }
 
 export interface WorldPoint {

@@ -7,6 +7,7 @@ import { GroundRenderer } from "../rendering/GroundRenderer";
 import { VerticalTileRenderer } from "../rendering/VerticalTileRenderer";
 import type { GroundRenderable } from "../rendering/GroundRenderable";
 import type { GroundSurfaceRenderer } from "../rendering/GroundSurfaceRenderer";
+import type { LightingSystem } from "../lighting/LightingSystem";
 import {
   GroundProjection,
   type GroundReference,
@@ -19,6 +20,7 @@ export interface WorldConfig {
   collisionMap: CollisionMap;
   renderMarginTiles?: number;
   groundSurfaceRenderer?: GroundSurfaceRenderer;
+  lighting?: LightingSystem;
 }
 
 interface DebugArea {
@@ -47,6 +49,7 @@ export class World {
   private readonly verticalTileRenderer: VerticalTileRenderer;
   private readonly renderSystem: RenderSystem;
   private readonly groundProjection: GroundProjection;
+  private readonly lighting?: LightingSystem;
 
   private objects: GameObject[] = [];
 
@@ -55,6 +58,7 @@ export class World {
     this.height = config.height;
     this.tileMap = config.tileMap;
     this.collisionMap = config.collisionMap;
+    this.lighting = config.lighting;
 
     this.groundProjection = new GroundProjection({
       horizonScreenRatio: -0.8,
@@ -114,9 +118,23 @@ export class World {
 
     this.verticalTileRenderer.render(ctx, camera, groundReference);
 
+    this.lighting?.renderShadows(
+      ctx,
+      this.objects,
+      this.groundProjection,
+      groundReference
+    );
+
     this.renderSystem.render(
       ctx,
       camera,
+      this.objects,
+      this.groundProjection,
+      groundReference
+    );
+
+    this.lighting?.renderAmbient(
+      ctx,
       this.objects,
       this.groundProjection,
       groundReference

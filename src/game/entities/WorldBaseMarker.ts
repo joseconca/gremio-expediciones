@@ -1,12 +1,27 @@
 import { GameObject, type GameObjectConfig } from "./GameObject";
-import type { Interactable } from "./Interactable";
+import type { Interactable, InteractionArea } from "./Interactable";
+import type { GroundRenderable } from "../rendering/GroundRenderable";
+import type {
+  GroundProjection,
+  GroundReference,
+} from "../rendering/GroundProjection";
+import {
+  drawGroundCircle,
+  INACTIVE_AREA_STYLE,
+  INTERACTION_AREA_STYLE,
+} from "../rendering/GroundShapes";
+
+const INTERACTION_RADIUS = 56;
 
 export interface WorldBaseMarkerConfig extends GameObjectConfig {
   name: string;
   onEnter?: () => void;
 }
 
-export class WorldBaseMarker extends GameObject implements Interactable {
+export class WorldBaseMarker
+  extends GameObject
+  implements Interactable, GroundRenderable
+{
   private readonly name: string;
   private readonly onEnter?: () => void;
   private readonly icon = new Image();
@@ -18,15 +33,38 @@ export class WorldBaseMarker extends GameObject implements Interactable {
     this.icon.src = "/sprites/buildings/camp.png";
   }
 
+  getInteractionArea(): InteractionArea {
+    return { x: this.x, y: this.y, radius: INTERACTION_RADIUS };
+  }
+
   canInteractWith(x: number, y: number): boolean {
     if (!this.onEnter) return false;
-    const dx = x - this.x;
-    const dy = y - this.y;
-    return dx * dx + dy * dy <= 56 * 56;
+    const area = this.getInteractionArea();
+    return (x - area.x) ** 2 + (y - area.y) ** 2 <= area.radius ** 2;
   }
 
   interact(): void {
     this.onEnter?.();
+  }
+
+  isEnterable(): boolean {
+    return this.onEnter !== undefined;
+  }
+
+  renderOnGround(
+    ctx: CanvasRenderingContext2D,
+    projection: GroundProjection,
+    reference: GroundReference
+  ): void {
+    drawGroundCircle(
+      ctx,
+      projection,
+      reference,
+      this.x,
+      this.y,
+      INTERACTION_RADIUS,
+      this.onEnter ? INTERACTION_AREA_STYLE : INACTIVE_AREA_STYLE
+    );
   }
 
   override isCollidable(): boolean {
