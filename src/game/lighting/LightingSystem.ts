@@ -16,6 +16,8 @@ const MAX_SWEEP_STEPS = 12;
 const MIN_AMBIENT_ALPHA = 0.01;
 
 export interface LightingConfig {
+  /** Visible ground contact circles are reserved for the exterior world. */
+  contactShadows?: boolean;
   /** Omit for indoor scenes: no sun or ambient tint, only contact shadows. */
   dayNight?: DayNightSystem;
 }
@@ -23,12 +25,14 @@ export interface LightingConfig {
 /** Composites shadows and ambient/point light as separate layers; never reads ground pixels. */
 export class LightingSystem {
   private readonly dayNight?: DayNightSystem;
+  private readonly contactShadows: boolean;
   private lightLayer: HTMLCanvasElement | null = null;
   private shadowLayer: HTMLCanvasElement | null = null;
   private readonly spriteShadows = new SpriteShadowRenderer();
 
   constructor(config: LightingConfig = {}) {
     this.dayNight = config.dayNight;
+    this.contactShadows = config.contactShadows ?? false;
   }
 
   renderShadows(
@@ -44,6 +48,7 @@ export class LightingSystem {
 
     // Contact remains small and soft-looking; it is not swept into a rectangle.
     for (const object of objects) {
+      if (!this.contactShadows) break;
       if (!isShadowCaster(object)) continue;
       const footprint = object.getShadowFootprint();
       if (!footprint) continue;
@@ -68,6 +73,7 @@ export class LightingSystem {
       if (sprite) {
         this.spriteShadows.render(shadowContext, sprite, footprint, sweep, projection, reference);
       } else {
+        if (!this.contactShadows) continue;
         shadowContext.beginPath();
         this.traceSweptFootprint(shadowContext, projection, reference, footprint, sweep);
         shadowContext.fill();
@@ -176,14 +182,14 @@ export class LightingSystem {
       const centerY = footprint.y + sweep.y * t;
 
       addGroundEllipsePath(
-          ctx,
-          projection,
-          reference,
-          centerX,
-          centerY,
-          footprint.radiusX,
-          footprint.radiusY,
-          16
+        ctx,
+        projection,
+        reference,
+        centerX,
+        centerY,
+        footprint.radiusX,
+        footprint.radiusY,
+        16
       );
     }
   }
