@@ -3,13 +3,16 @@ import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { MAX_PARTY_SIZE, type PartySnapshotDto } from "@/shared/world";
 import { MundoError, withWorldLock } from "./http";
-import { listNearbyBases, progressToken } from "./jugador";
+import { listNearbyBases, progressToken, toPlayerProfile } from "./jugador";
 
 const INVITATION_TTL_MS = 5 * 60 * 1000;
 const ONLINE_WINDOW_MS = 2 * 60 * 1000;
 const MAX_CANDIDATES = 5;
 
 async function requireAvailablePlayer(tx: Prisma.TransactionClient, playerId: string): Promise<void> {
+  if (await tx.expedicionMundo.findFirst({ where: { jugadorId: playerId, phase: { not: "completed" } }, select: { id: true } })) {
+    throw new MundoError(409, "expedition_active", "No puedes organizar la party mientras estás de expedición.");
+  }
   const player = await tx.jugador.findUniqueOrThrow({ where: { id: playerId } });
   const trip = player.viajeRegreso;
   if (trip && typeof trip === "object" && !Array.isArray(trip) && typeof trip.arrivalAt === "number" && trip.arrivalAt > Date.now()) {
@@ -54,6 +57,9 @@ export async function getPartySnapshot(
 
   return {
     progressToken: progressToken(jugador, base),
+    rewardRevision: (jugador as Jugador & { rewardRevision?: number }).rewardRevision ?? 0,
+    profile: toPlayerProfile(jugador),
+    buildingToken: JSON.stringify(base.edificios),
     nearbyBases: await listNearbyBases(base),
     selfPlayerId: jugador.id,
     members: (membership?.party.miembros ?? []).map((member) => ({

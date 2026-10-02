@@ -23,6 +23,7 @@ import { OVERWORLD_ENEMIES } from "../data/enemies/overworldEnemies";
 import { createNoticeDialogue } from "../data/dialogues/notice";
 import { LightingSystem } from "../lighting/LightingSystem";
 import { ReturnCart } from "../entities/ReturnCart";
+import { expeditionPosition } from "../../shared/expeditions";
 import {
   geographicToWorldPoint,
   isInsideWorldMap,
@@ -51,6 +52,7 @@ export class ExteriorWorldScene extends Scene {
   private readonly campBuilding: CampBuilding;
   private readonly encounterSystem: EncounterSystem;
   private cart: ReturnCart | null = null;
+  private expeditionCart: ReturnCart | null = null;
 
   constructor(config: ExteriorWorldSceneConfig) {
     super(config);
@@ -261,6 +263,24 @@ export class ExteriorWorldScene extends Scene {
       }
     }
     this.world.update(deltaTime);
+    const missionState = this.expeditionManager?.getSnapshot().data;
+    const expedition = missionState?.active;
+    if (expedition && expedition.phase !== "completed" && missionState) {
+      if (!this.expeditionCart) {
+        this.expeditionCart = new ReturnCart({ x: this.homePoint.x, y: this.homePoint.y });
+        this.world.addObject(this.expeditionCart);
+      }
+      const position = expeditionPosition(expedition, this.expeditionManager!.serverNow());
+      const point = geographicToWorldPoint(position, this.basePoint);
+      const previousX = this.expeditionCart.x;
+      const previousY = this.expeditionCart.y;
+      this.expeditionCart.x = point.x;
+      this.expeditionCart.y = point.y;
+      this.expeditionCart.setTravelDirection(point.x - previousX, point.y - previousY, expedition.phase !== "battle");
+    } else if (this.expeditionCart) {
+      this.world.removeObject(this.expeditionCart);
+      this.expeditionCart = null;
+    }
     if (!journey && !this.dialogueManager.isActive() && !this.input.isBlocked()) this.encounterSystem.update();
     this.camera.follow(this.player.x, this.player.y, 32, 64);
 

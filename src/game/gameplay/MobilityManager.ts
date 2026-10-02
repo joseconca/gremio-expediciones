@@ -33,7 +33,8 @@ export class MobilityManager {
     saved: MobilitySnapshot,
     private readonly readLocation: () => PlayerLocation | null,
     private readonly onArrive: (location: PlayerLocation) => void,
-    private readonly clock: () => number = () => performance.now()
+    private readonly clock: () => number = () => performance.now(),
+    private readonly canMove: () => boolean = () => true
   ) {
     this.revision = saved.revision;
     this.serverEpoch = saved.serverNow;
@@ -59,6 +60,7 @@ export class MobilityManager {
 
   update(deltaTime: number): void {
     if (this.destroyed || this.state.conflict || this.inFlight) return;
+    if (!this.canMove()) return;
     this.elapsed += deltaTime;
     if (this.pendingRequest) {
       if (this.elapsed >= 4) {
@@ -103,6 +105,7 @@ export class MobilityManager {
   }
 
   async callCart(): Promise<MobilityResult> {
+    if (!this.canMove()) return { ok: false, code: "expedition_active", message: "El personaje está de expedición." };
     const saved = await this.checkpoint();
     if (!saved.ok) return saved;
     if (this.destroyed) return { ok: false, code: "destroyed", message: "La partida se ha cerrado." };

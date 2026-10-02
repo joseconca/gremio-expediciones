@@ -10,6 +10,8 @@ import DialogueBox from "@/components/game/DialogueBox";
 import GameHud from "@/components/game/GameHud";
 import BattleOverlay from "@/components/game/BattleOverlay";
 import GameMenu from "@/components/game/GameMenu";
+import ExpeditionModal from "@/components/game/ExpeditionModal";
+import type { ExpeditionState } from "@/game/gameplay/ExpeditionManager";
 import type { MenuSnapshot } from "@/game/gameplay/MenuManager";
 import type { MobilityState } from "@/game/gameplay/MobilityManager";
 import { BASE_RETURN_LOCATION, type MobilitySnapshot } from "@/shared/travel";
@@ -42,6 +44,7 @@ const GameBaseLocationPicker = dynamic(
 );
 
 interface GameStart {
+  rewardRevision: number;
   mobility: MobilitySnapshot;
   progressToken: string;
   base: WorldBaseLocation;
@@ -69,6 +72,7 @@ function toNearbyLocation(base: NearbyBaseDto): WorldBaseLocation {
 
 function toGameStart(session: WorldSessionDto): GameStart {
   return {
+    rewardRevision: session.rewardRevision,
     mobility: session.mobility,
     progressToken: session.progressToken,
     base: {
@@ -92,6 +96,7 @@ const EMPTY_DIALOGUE_STATE = {
 
 const EMPTY_SCENE_STATE = { sceneId: null };
 const EMPTY_MENU: MenuSnapshot = { open: false, tab: "character", message: null, busy: false };
+const EMPTY_EXPEDITION: ExpeditionState = { open: false, busy: false, error: null, data: null };
 const EMPTY_MOBILITY: MobilityState = { location: BASE_RETURN_LOCATION, journey: null, saving: false, error: null, conflict: false };
 const EMPTY_COMBAT_STATE: CombatSnapshot = {
   phase: "fled",
@@ -160,6 +165,7 @@ export default function NewGamePage() {
   const [partyManager, setPartyManager] = useState<Game["partyManager"] | null>(null);
   const [menuManager, setMenuManager] = useState<Game["menuManager"] | null>(null);
   const [mobilityManager, setMobilityManager] = useState<Game["mobilityManager"] | null>(null);
+  const [expeditionManager, setExpeditionManager] = useState<Game["expeditionManager"] | null>(null);
   const setModalOpen = useCallback((open: boolean) => {
     gameRef.current?.input.setBlocked(open);
   }, []);
@@ -196,6 +202,7 @@ export default function NewGamePage() {
     }
 
     const game = new Game({
+      rewardRevision: start.rewardRevision,
       mobility: start.mobility,
       progressToken: start.progressToken,
       canvas: canvasRef.current,
@@ -216,6 +223,7 @@ export default function NewGamePage() {
     setPartyManager(game.partyManager);
     setMenuManager(game.menuManager);
     setMobilityManager(game.mobilityManager);
+    setExpeditionManager(game.expeditionManager);
 
     game.init();
 
@@ -230,6 +238,7 @@ export default function NewGamePage() {
       setPartyManager(null);
       setMenuManager(null);
       setMobilityManager(null);
+      setExpeditionManager(null);
     };
   }, [start]);
 
@@ -304,6 +313,9 @@ export default function NewGamePage() {
     menuManager?.getSnapshot ?? (() => EMPTY_MENU), () => EMPTY_MENU);
   const mobilityState = useSyncExternalStore(mobilityManager?.subscribe ?? noopSubscribe,
     mobilityManager?.getSnapshot ?? (() => EMPTY_MOBILITY), () => EMPTY_MOBILITY);
+  const expeditionState = useSyncExternalStore(expeditionManager?.subscribe ?? noopSubscribe,
+    expeditionManager?.getSnapshot ?? (() => EMPTY_EXPEDITION), () => EMPTY_EXPEDITION);
+  const expeditionActive = !expeditionState.data || (expeditionState.data.active && expeditionState.data.active.phase !== "completed");
 
   if (phase.kind !== "playing") {
     return (
@@ -358,10 +370,19 @@ export default function NewGamePage() {
         }
       />}
 
-      <GameControls disabled={!!mobilityState.journey || !!mobilityState.travelPending || mobilityState.conflict}
+      <GameControls disabled={!!mobilityState.journey || !!mobilityState.travelPending || mobilityState.conflict || !!expeditionActive}
         disabledMessage={mobilityState.conflict ? "Ubicación cambiada en otra sesión. Recarga para continuar."
+          : expeditionActive ? expeditionState.data ? "Personaje en expedición. Consulta su estado en el tablón." : "Consultando expediciones guardadas…"
           : mobilityState.travelPending ? "Confirmando el carro con el servidor. El personaje permanece bloqueado."
           : undefined} />
+
+      {expeditionManager && start && <ExpeditionModal manager={expeditionManager} snapshot={expeditionState} base={start.base} />}
+      {expeditionManager && (expeditionActive || expeditionState.error) && !expeditionState.open && (
+        <button type="button" onClick={() => expeditionManager.openBoard()}
+          className="absolute inset-x-4 bottom-20 z-30 rounded border border-amber-200/30 bg-stone-950/95 p-3 text-sm font-bold text-amber-100">
+          {expeditionState.data?.active?.phase === "battle" ? "Resolver combate de expedición" : "Ver expedición y mapa"}
+        </button>
+      )}
 
       {mobilityState.journey && <p role="status" className="pointer-events-none absolute inset-x-3 top-3 rounded border border-amber-200/30 bg-stone-950/90 p-3 text-center text-sm text-amber-100">
         Regreso a tu poblado · Llegada prevista {new Date(mobilityState.journey.arrivalAt).toLocaleTimeString("es-ES")}

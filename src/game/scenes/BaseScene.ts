@@ -18,6 +18,7 @@ import { Building } from "../entities/Building";
 import { Campfire } from "../entities/Campfire";
 import { ConstructionSite } from "../entities/ConstructionSite";
 import { ResourceCart } from "../entities/ResourceCart";
+import { MissionBoard, MISSION_BOARD_POSITION } from "../entities/MissionBoard";
 import type { GameObject } from "../entities/GameObject";
 import { Door } from "../entities/Door";
 import type { Interactable } from "../entities/Interactable";
@@ -79,6 +80,11 @@ export class BaseScene extends Scene {
     this.sceneTransitionSystem = new SceneTransitionSystem();
 
     this.world.addObject(new Campfire({ x: 560, y: 800 }));
+    const board = new MissionBoard({ ...MISSION_BOARD_POSITION,
+      onInteract: () => this.expeditionManager?.openBoard() });
+    this.world.addObject(board);
+    this.collisionSystem.addObject(board);
+    this.interactables.push(board);
     this.world.addObject(
       new ResourceCart({ x: 320, y: 704 })
     );

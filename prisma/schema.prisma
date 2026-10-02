@@ -303,11 +303,45 @@ model Jugador {
   ubicacion   Json?
   viajeRegreso Json?
   ubicacionRevision Int @default(0)
+  ultimaEliteExitosa DateTime?
+  rewardRevision Int @default(0)
+  expedicionesMundo ExpedicionMundo[]
 
   miembroParty          MiembroParty?
   partyLiderada         Party?             @relation("LiderParty")
   invitacionesEnviadas  InvitacionParty[]  @relation("InvitacionEmisor")
   invitacionesRecibidas InvitacionParty[]  @relation("InvitacionReceptor")
+}
+
+model ExpedicionMundo {
+  id                String   @id @default(uuid())
+  jugadorId         String
+  jugador           Jugador  @relation(fields: [jugadorId], references: [id], onDelete: Cascade)
+  requestId         String   @unique
+  // Snapshot autoritativo; el catálogo horario puede caducar durante el viaje.
+  mission           Json
+  phase             String
+  originLat         Float
+  originLng         Float
+  departureAt       DateTime
+  arrivalAt         DateTime
+  returnDepartureAt DateTime?
+  returnArrivalAt   DateTime?
+  enemy             Json?
+  enemyHealth       Int
+  playerHealth      Int
+  playerMaxHealth   Int
+  attack            Int
+  defense           Int
+  version           Int      @default(0)
+  outcome           String?
+  log               String   @default("")
+  rewardGranted     Boolean  @default(false)
+  // Sin FK: borrar el receptor no debe borrar el ledger del remitente.
+  targetPlayerId    String?
+
+  @@index([jugadorId, phase])
+  @@index([jugadorId, departureAt])
 }
 
 model Base {

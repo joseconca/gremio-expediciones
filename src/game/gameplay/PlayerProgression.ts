@@ -1,4 +1,5 @@
 import type { CharacterAttributes } from "../entities/Characters/CharacterAttributes";
+import type { PlayerProfileDto } from "../../shared/world";
 
 export interface PlayerProgressionState {
   name: string;
@@ -44,12 +45,13 @@ export interface SavedPlayerProgress {
   experience: number;
   gold: number;
   currentHealth: number;
+  maxHealth?: number;
 }
 
 // Per-level growth mirrors gainExperience(), so attributes derive from the saved level.
 function restoreState(saved: SavedPlayerProgress): PlayerProgressionState {
   const gainedLevels = Math.max(0, saved.level - 1);
-  const maxHealth = INITIAL_STATE.attributes.maxHealth + gainedLevels * 10;
+  const maxHealth = saved.maxHealth ?? INITIAL_STATE.attributes.maxHealth + gainedLevels * 10;
 
   return {
     ...INITIAL_STATE,
@@ -79,6 +81,13 @@ export class PlayerProgression {
 
   getState(): PlayerProgressionState {
     return this.state;
+  }
+
+  restoreProfile(profile: PlayerProfileDto): void {
+    const restored = restoreState(profile);
+    if (JSON.stringify(restored) === JSON.stringify(this.state)) return;
+    this.state = restored;
+    this.notify();
   }
 
   subscribe(listener: () => void): () => void {

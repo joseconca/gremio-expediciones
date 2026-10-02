@@ -9,10 +9,12 @@ import type { PartyManager } from "../gameplay/PartyManager";
 import type { DayNightSystem } from "../lighting/DayNightSystem";
 import type { PlayerLocation } from "../../shared/travel";
 import type { MobilityManager } from "../gameplay/MobilityManager";
+import type { ExpeditionManager } from "../gameplay/ExpeditionManager";
 
 export interface SceneConfig {
   initialLocation?: PlayerLocation;
   mobilityManager?: MobilityManager;
+  expeditionManager?: ExpeditionManager;
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
   input: InputManager;
@@ -29,6 +31,7 @@ export interface SceneConfig {
 export abstract class Scene {
   protected readonly initialLocation?: PlayerLocation;
   protected readonly mobilityManager?: MobilityManager;
+  protected readonly expeditionManager?: ExpeditionManager;
   protected canvas: HTMLCanvasElement;
   protected ctx: CanvasRenderingContext2D;
   protected input: InputManager;
@@ -45,6 +48,7 @@ export abstract class Scene {
   constructor(config: SceneConfig) {
     this.initialLocation = config.initialLocation;
     this.mobilityManager = config.mobilityManager;
+    this.expeditionManager = config.expeditionManager;
     this.canvas = config.canvas;
     this.ctx = config.ctx;
     this.input = config.input;

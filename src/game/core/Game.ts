@@ -19,10 +19,12 @@ import type { PlayerProfileDto, SavedBuilding } from "../../shared/world";
 import type { MobilitySnapshot, PlayerLocation } from "../../shared/travel";
 import { MobilityManager } from "../gameplay/MobilityManager";
 import { MenuManager } from "../gameplay/MenuManager";
+import { ExpeditionManager } from "../gameplay/ExpeditionManager";
 
 export interface GameConfig {
   mobility: MobilitySnapshot;
   progressToken: string;
+  rewardRevision: number;
   canvas: HTMLCanvasElement;
   selectedBase: WorldBaseLocation;
   otherBases?: WorldBaseLocation[];
@@ -46,6 +48,7 @@ export class Game {
   loop: GameLoop;
   mobilityManager: MobilityManager;
   menuManager: MenuManager;
+  expeditionManager: ExpeditionManager;
   private readonly initialMobility: MobilitySnapshot;
 
   private readonly selectedBase: WorldBaseLocation;
@@ -75,6 +78,7 @@ export class Game {
       experience: config.player.experience,
       gold: config.player.gold,
       currentHealth: config.player.currentHealth,
+      maxHealth: config.player.maxHealth,
     });
     this.combatManager = new CombatManager(
       this.playerProgression,
@@ -85,7 +89,8 @@ export class Game {
       this.playerProgression,
       this.villageProgression,
       config.progressToken,
-      () => !this.mobilityManager?.getSnapshot().journey && !this.mobilityManager?.getSnapshot().travelPending
+      () => !this.mobilityManager?.getSnapshot().journey && !this.mobilityManager?.getSnapshot().travelPending && !this.expeditionManager?.isActive(),
+      config.rewardRevision
     );
     this.dayNightSystem = new DayNightSystem();
     this.sceneManager = new SceneManager();
@@ -94,10 +99,14 @@ export class Game {
       (location) => {
         this.dialogueManager.close();
         this.sceneManager.changeScene(location.sceneId, undefined, location);
-      });
+      }, undefined, () => !this.expeditionManager?.isActive());
     this.menuManager = new MenuManager(this.mobilityManager, () =>
       !this.combatManager.isEncounterOpen() && !this.dialogueManager.isActive() &&
-      !this.mobilityManager.getSnapshot().journey && !this.mobilityManager.getSnapshot().travelPending && !this.mobilityManager.getSnapshot().conflict);
+      !this.mobilityManager.getSnapshot().journey && !this.mobilityManager.getSnapshot().travelPending && !this.mobilityManager.getSnapshot().conflict && !this.expeditionManager?.isActive());
+    this.expeditionManager = new ExpeditionManager(this.worldGateway, this.partyManager, this.mobilityManager,
+      () => this.sceneManager.getState().sceneId === "base" && !this.combatManager.isEncounterOpen() &&
+        !this.mobilityManager.getSnapshot().journey && !this.mobilityManager.getSnapshot().travelPending && !this.mobilityManager.getSnapshot().conflict,
+      config.rewardRevision);
 
     this.sceneManager.register(
       "base",
@@ -137,11 +146,13 @@ export class Game {
         const mobility = this.mobilityManager.getSnapshot();
         this.input.setBlocker("menu", this.menuManager.getSnapshot().open);
         this.input.setBlocker("travel", !!mobility.journey || !!mobility.travelPending || mobility.conflict);
+        this.input.setBlocker("expedition", this.expeditionManager.getSnapshot().open || this.expeditionManager.isActive());
         this.villageProgression.update(deltaTime);
         this.dayNightSystem.update();
         this.partyManager.update(deltaTime);
         this.sceneManager.update(deltaTime);
         this.mobilityManager.update(deltaTime);
+        this.expeditionManager.update(deltaTime);
         this.input.endFrame();
       },
       render: () => this.sceneManager.render(),
@@ -160,6 +171,7 @@ export class Game {
     this.partyManager.destroy();
     this.mobilityManager.destroy();
     this.menuManager.destroy();
+    this.expeditionManager.destroy();
     this.sceneManager.destroy();
     this.input.destroy();
   }
@@ -168,6 +180,7 @@ export class Game {
     return {
       initialLocation,
       mobilityManager: this.mobilityManager,
+      expeditionManager: this.expeditionManager,
       canvas: this.canvas,
       ctx: this.ctx,
       input: this.input,

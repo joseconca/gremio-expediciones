@@ -7,6 +7,7 @@ import type {
   WorldSessionDto,
 } from "@/shared/world";
 import type { MobilitySnapshot } from "@/shared/travel";
+import type { ExpeditionResult } from "@/shared/expeditions";
 
 type ApiResponse<T> =
   | { ok: true; data: T }
@@ -46,6 +47,10 @@ function toResult(response: ApiResponse<unknown>): GatewayResult {
 }
 
 export const worldGateway: WorldGateway = {
+  async expedition(request) {
+    const response = await call<ExpeditionResult>("expediciones", request);
+    return response.ok ? response.data : { ok: false, ...response.error };
+  },
   async mobility(request) {
     const response = await call<{ mobility: MobilitySnapshot }>("jugador", request, "PATCH");
     return response.ok ? { ok: true, mobility: response.data.mobility } : { ok: false, ...response.error };

@@ -1,10 +1,11 @@
-import type { Base, Jugador } from "@prisma/client";
+import type { Base, Jugador, Prisma } from "@prisma/client";
 import { createHash } from "node:crypto";
 import { prisma } from "@/lib/prisma";
 import {
   MIN_BASE_DISTANCE_METERS,
   VISIBLE_BASE_RADIUS_METERS,
   type NearbyBaseDto,
+  type PlayerProfileDto,
   type PlayerSex,
   type SavedBuilding,
   type SavedBuildingType,
@@ -17,6 +18,14 @@ import type { MobilitySnapshot } from "@/shared/travel";
 
 const BUILDING_TYPES: readonly SavedBuildingType[] = ["town-hall", "tavern", "embassy"];
 const MAX_BUILDING_LEVEL = 2;
+
+// Schema boundary until the updated Prisma client is generated; legacy mocks default to zero.
+type RewardPlayer = Jugador & { rewardRevision?: number };
+type ExpeditionTransaction = Prisma.TransactionClient & {
+  expedicionMundo: {
+    findFirst(args: { where: { jugadorId: string; phase: { not: string } } }): Promise<{ id: string } | null>;
+  };
+};
 
 function parseName(value: unknown, label: string, min: number, max: number): string {
   const name = typeof value === "string" ? value.trim() : "";
@@ -62,25 +71,31 @@ function parseBuildings(value: unknown): SavedBuilding[] {
     ? buildings
     : [{ type: "town-hall" as const, level: 1 }, ...buildings];
 }
+export function toPlayerProfile(jugador: Jugador): PlayerProfileDto {
+  return {
+    id: jugador.id,
+    name: jugador.nombre,
+    sex: jugador.sexo as PlayerSex,
+    characterClass: jugador.clase,
+    level: jugador.nivel,
+    experience: jugador.experiencia,
+    gold: jugador.oro,
+    currentHealth: jugador.saludActual,
+    maxHealth: jugador.saludMaxima,
+  };
+}
+
 function toSession(
-  jugador: Jugador,
+  jugador: RewardPlayer,
   base: Base,
   nearbyBases: NearbyBaseDto[],
   mobility: MobilitySnapshot
 ): WorldSessionDto {
   return {
     progressToken: progressToken(jugador, base),
-    player: {
-      id: jugador.id,
-      name: jugador.nombre,
-      sex: jugador.sexo as PlayerSex,
-      characterClass: jugador.clase,
-      level: jugador.nivel,
-      experience: jugador.experiencia,
-      gold: jugador.oro,
-      currentHealth: jugador.saludActual,
-      maxHealth: jugador.saludMaxima,
-    },
+    rewardRevision: jugador.rewardRevision ?? 0,
+    buildingToken: JSON.stringify(parseBuildings(base.edificios)),
+    player: toPlayerProfile(jugador),
     base: {
       name: base.nombre,
       lat: base.lat,
@@ -204,6 +219,8 @@ export async function syncProgress(
   }
   if (
     typeof body.progressToken !== "string" ||
+    (body.rewardRevision !== undefined &&
+      (typeof body.rewardRevision !== "number" || !Number.isSafeInteger(body.rewardRevision) || body.rewardRevision < 0)) ||
     typeof body.characterClass !== "string" || !body.characterClass.trim() || body.characterClass.length > 40 ||
     (body.currentHealth as number) > (body.maxHealth as number) ||
     !Array.isArray(body.buildings) || body.buildings.length < 1 || body.buildings.length > BUILDING_TYPES.length ||
@@ -218,8 +235,18 @@ export async function syncProgress(
   const maxHealth = clampInteger(body.maxHealth, 1, 100_000);
 
   return withWorldLock(async (tx) => {
-    const currentPlayer = await tx.jugador.findUniqueOrThrow({ where: { id: jugador.id } });
+    const currentPlayer: RewardPlayer = await tx.jugador.findUniqueOrThrow({ where: { id: jugador.id } });
     const currentBase = await tx.base.findUniqueOrThrow({ where: { id: base.id } });
+    if (body.buildingToken !== undefined && body.buildingToken !== JSON.stringify(parseBuildings(currentBase.edificios))) {
+      if (JSON.stringify(buildings) !== JSON.stringify(parseBuildings(currentBase.edificios))) {
+        throw new MundoError(409, "progress_conflict", "Otra sesión ha cambiado los edificios. Recarga antes de guardar.");
+      }
+    }
+    if ((currentPlayer.rewardRevision ?? 0) > (body.rewardRevision as number | undefined ?? 0)) {
+      // A reward supersedes this entire save, including buildings. Only presence is accepted.
+      await tx.jugador.update({ where: { id: jugador.id }, data: { ultimoVisto: new Date() } });
+      return progressToken(currentPlayer, currentBase);
+    }
     if (body.progressToken !== progressToken(currentPlayer, currentBase)) {
       // The previous save may have committed while its HTTP response was lost.
       // An identical retry is safe; it never overwrites another session's data.
@@ -234,9 +261,14 @@ export async function syncProgress(
       }
       throw new MundoError(409, "progress_conflict", "Otra sesión ha guardado progreso. Recarga antes de continuar; esta pestaña no sobrescribirá ese guardado.");
     }
+    const activeExpedition = await (tx as ExpeditionTransaction).expedicionMundo.findFirst({
+      where: { jugadorId: jugador.id, phase: { not: "completed" } },
+    });
     const savedPlayer = await tx.jugador.update({
       where: { id: jugador.id },
-      data: {
+      // Active expeditions own the profile; matching-token saves may still publish buildings.
+      // Outside expeditions this remains client-reported economy, not anti-cheat authority.
+      data: activeExpedition ? { ultimoVisto: new Date() } : {
         clase:
           typeof body.characterClass === "string"
             ? body.characterClass.slice(0, 40)
@@ -262,9 +294,9 @@ export async function syncProgress(
 }
 
 /** Optimistic concurrency over persisted progress, excluding the presence heartbeat. */
-export function progressToken(jugador: Jugador, base: Base): string {
+export function progressToken(jugador: RewardPlayer, base: Base): string {
   return createHash("sha256").update(JSON.stringify([
     jugador.id, jugador.clase, jugador.nivel, jugador.experiencia, jugador.oro,
-    jugador.saludActual, jugador.saludMaxima, base.edificios,
+    jugador.saludActual, jugador.saludMaxima, base.edificios, jugador.rewardRevision ?? 0,
   ])).digest("hex");
 }
