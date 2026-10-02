@@ -33,6 +33,11 @@ export class MenuManager {
   async callCart(): Promise<void> {
     if (this.state.busy || !this.canOpen()) return;
     this.publish({ ...this.state, busy: true, message: null });
+    const location = this.mobility.getSnapshot().location;
+    if (location.sceneId !== "exterior-world") {
+      this.publish({ ...this.state, busy: false, message: "Solo puedes llamar al carro desde el exterior." });
+      return;
+    }
     const result = await this.mobility.callCart();
     this.publish({ ...this.state, busy: false, open: !result.ok, message: result.ok ? null : result.message });
   }

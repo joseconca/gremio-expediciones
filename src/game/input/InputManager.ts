@@ -38,6 +38,8 @@ export class InputManager {
     this.keyboard.destroy();
     this.touch.destroy();
     this.previousDirections.clear();
+    this.blockers.clear();
+    this.blocked = false;
   }
 
   isDirectionHeld(direction: Direction): boolean {

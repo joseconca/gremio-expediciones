@@ -118,7 +118,11 @@ export default function GameMenu({
         tabIndex={-1}
         className="flex max-h-full w-full max-w-2xl flex-col overflow-hidden rounded-xl border border-amber-200/30 bg-stone-950 text-sm text-stone-100 shadow-2xl"
         onKeyDown={(event) => {
-          // Escape remains owned by the engine; only modal focus is managed here.
+          if (event.key === "Escape") {
+            event.preventDefault();
+            manager.close();
+            return;
+          }
           if (event.key !== "Tab") return;
           const controls = dialogRef.current?.querySelectorAll<HTMLElement>('button:not(:disabled), [href], input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex="0"]');
           if (!controls?.length) return;
