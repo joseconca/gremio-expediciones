@@ -86,17 +86,17 @@ export default function BattleOverlay({ manager, snapshot, potionCount, busy = f
         <div className="arena" aria-label="Tu grupo a la izquierda y el enemigo a la derecha">
           <div className="party-stage">{snapshot.party.map((member, index) => (
             <div key={member.id} className="member" style={{ "--offset-x": `${index * 20}px`, "--offset-y": `${index * -16}px`, zIndex: snapshot.party.length - index } as CSSProperties}>
-              <div key={enemyAttack && recipient?.id === member.id ? `${enemy.id}:${action.id}` : "rest"} className={enemyAttack && recipient?.id === member.id ? "hurt" : ""}>
+              <div key={enemyAttack && recipient?.id === member.id ? `member-motion:${enemy.id}:${action.id}` : "member-motion:rest"} className={enemyAttack && recipient?.id === member.id ? "hurt" : ""}>
                 <BattleCharacterSprite name={member.name} spriteSrc={member.spriteSrc} alive={member.attributes.currentHealth > 0} local={member.isLocalPlayer} attackId={playerAttack && attacker?.id === member.id ? action.id : undefined} />
               </div>
-              {enemyAttack && recipient?.id === member.id && action.damage > 0 && <span key={`${enemy.id}:${action.id}`} className="damage" aria-hidden="true">−{action.damage}</span>}
+              {enemyAttack && recipient?.id === member.id && action.damage > 0 && <span key={`member-damage:${enemy.id}:${action.id}`} className="damage" aria-hidden="true">−{action.damage}</span>}
             </div>
           ))}</div>
           <div className="enemy-stage">
-            <div key={action ? `${enemy.id}:${action.id}` : enemy.id} className={`enemy-motion ${enemyAttack ? "lunge" : playerAttack ? "hurt" : ""}`}>
+            <div key={action ? `enemy-motion:${enemy.id}:${action.id}` : `enemy-motion:${enemy.id}`} className={`enemy-motion ${enemyAttack ? "lunge" : playerAttack ? "hurt" : ""}`}>
               <Image src={enemy.sprite} alt={enemy.name} width={192} height={192} unoptimized className={`enemy-image ${enemy.attributes.currentHealth <= 0 ? "defeated" : ""}`} />
             </div>
-            {playerAttack && action.damage > 0 && <span key={`${enemy.id}:${action.id}`} className="damage" aria-hidden="true">−{action.damage}</span>}
+            {playerAttack && action.damage > 0 && <span key={`enemy-damage:${enemy.id}:${action.id}`} className="damage" aria-hidden="true">−{action.damage}</span>}
           </div>
         </div>
         <p className="turn" role="status">{status}</p>
