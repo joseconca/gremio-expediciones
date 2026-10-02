@@ -5,11 +5,6 @@ import { tavernDefinition } from "./tavern";
 
 export interface ConstructibleBuildingConfig {
   definition: BuildingDefinition;
-  interior: {
-    sceneId: string;
-    entranceSpawnId: string;
-    exitSpawnId: string;
-  };
 }
 
 export const constructibleBuildings: Record<
@@ -18,18 +13,8 @@ export const constructibleBuildings: Record<
 > = {
   tavern: {
     definition: tavernDefinition,
-    interior: {
-      sceneId: "tavern-interior",
-      entranceSpawnId: "tavern-entrance",
-      exitSpawnId: "tavern-exit",
-    },
   },
   embassy: {
     definition: embassyDefinition,
-    interior: {
-      sceneId: "embassy-interior",
-      entranceSpawnId: "embassy-entrance",
-      exitSpawnId: "embassy-exit",
-    },
   },
 };

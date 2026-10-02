@@ -1,4 +1,6 @@
-﻿export interface VillageProgressionState {
+﻿import { VILLAGE_BUILDING_SPACING, VILLAGE_ROW_CENTER_X, VILLAGE_GROUND_Y, VILLAGE_TILE_SIZE } from "../../shared/village";
+
+export interface VillageProgressionState {
   buildings: VillageBuilding[];
   construction: ActiveConstruction | null;
   resources: VillageResources;
@@ -61,10 +63,6 @@ const INITIAL_STATE: VillageProgressionState = {
 };
 
 const TEST_CONSTRUCTION_DURATION_SECONDS = 60;
-const BUILDING_SPACING = 224;
-const BUILDING_ROW_STEP = 32;
-const BUILDING_ROW_CENTER_X = 496;
-const BUILDING_GROUND_Y = 704;
 
 /** Temporary, in-memory progression for the standalone 2.5D game. */
 export class VillageProgression {
@@ -134,11 +132,11 @@ export class VillageProgression {
     return orderedBuildings.map((building, index) => ({
       ...building,
       x:
-        BUILDING_ROW_CENTER_X +
-        (index - rowCenterIndex) * BUILDING_SPACING -
+        VILLAGE_ROW_CENTER_X +
+        (index - rowCenterIndex) * VILLAGE_BUILDING_SPACING -
         64,
       // Two central buildings share the same baseline when the count is even.
-      y: BUILDING_GROUND_Y + Math.floor(Math.abs(index - rowCenterIndex)) * BUILDING_ROW_STEP,
+      y: VILLAGE_GROUND_Y + Math.floor(Math.abs(index - rowCenterIndex)) * VILLAGE_TILE_SIZE,
     }));
   }
 

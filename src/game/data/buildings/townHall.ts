@@ -1,5 +1,6 @@
 import { RenderLayer } from "../../rendering/RenderLayer";
 import type { BuildingDefinition } from "./BuildingDefinition";
+import { genericDoorDefinition } from "../doors/genericDoor1";
 
 function createTownHallDefinition(level: 0 | 1): BuildingDefinition {
   return {
@@ -12,6 +13,13 @@ function createTownHallDefinition(level: 0 | 1): BuildingDefinition {
     },
     width: 128,
     height: 128,
+    entrance: {
+      door: level === 1 ? { definition: genericDoorDefinition, offsetX: 64, offsetY: 0 } : undefined,
+      trigger: { offsetX: level === 0 ? 24 : 48, offsetY: level === 0 ? -38 : -28,
+        width: level === 0 ? 70 : 32, height: 16 },
+      interior: { sceneId: "town-hall-interior", entranceSpawnId: "main-entrance", exitSpawnId: "town-hall-exit" },
+      exit: { offsetX: 48, offsetY: -16 },
+    },
     colliders:
       level === 0
         ? [

@@ -31,9 +31,10 @@ import { townHallDefinitions } from "../data/buildings/townHall";
 import { constructibleBuildings } from "../data/buildings/constructibleBuildings";
 import { LightingSystem } from "../lighting/LightingSystem";
 import { heroAnimations } from "../data/heroAnimations";
-import { genericDoorDefinition } from "../data/doors/genericDoor1";
-import { baseMap } from "../data/base/baseMap";
-import { baseCollision } from "../data/base/baseCollision";
+import { villageGateConfig, createVillageMap } from "../data/base/baseMap";
+import { createVillageCollision } from "../data/base/baseCollision";
+import type { VillageBuildingPlacement } from "../gameplay/VillageProgression";
+import type { BuildingDefinition } from "../data/buildings/BuildingDefinition";
 
 // Must stay clear of the south exit trigger, or arrival re-triggers the transition.
 const WORLD_BASE_ARRIVAL: SpawnPoint = {
@@ -62,12 +63,13 @@ export class BaseScene extends Scene {
   constructor(config: SceneConfig) {
     super(config);
 
-    const tileMap = new TileMap(baseMap);
-    const collisionMap = new CollisionMap(baseCollision);
+    const buildingCount = this.villageProgression.getBuildingPlacements().length;
+    const tileMap = new TileMap(createVillageMap(buildingCount));
+    const collisionMap = new CollisionMap(createVillageCollision(buildingCount));
 
     this.world = new World({
-      width: baseMap.width * baseMap.tileSize,
-      height: baseMap.height * baseMap.tileSize,
+      width: tileMap.width * tileMap.tileSize,
+      height: tileMap.height * tileMap.tileSize,
       tileMap: tileMap,
       collisionMap: collisionMap,
       lighting: new LightingSystem({ dayNight: this.dayNightSystem }),
@@ -141,6 +143,8 @@ export class BaseScene extends Scene {
 
     const state = this.villageProgression.getState();
     const placements = this.villageProgression.getBuildingPlacements();
+    this.world.tileMap.resize(createVillageMap(placements.length));
+    this.world.collisionMap.resize(createVillageCollision(placements.length));
 
     for (const placement of placements) {
       let object: GameObject;
@@ -177,56 +181,61 @@ export class BaseScene extends Scene {
       this.collisionSystem.addObject(object);
       this.villageObjects.push(object);
 
-      if (placement.type === "town-hall") {
-        const level = this.villageProgression.getTownHallLevel();
-        if (level === 2) {
-          const door = new Door({ x: placement.x + 64, y: placement.y, definition: genericDoorDefinition });
-          this.world.addObject(door);
-          this.collisionSystem.addObject(door);
-          this.interactables.push(door);
-          this.villageEntranceObjects.push(door);
-        }
-        const transition = new SceneTransition({
-          x: placement.x + (level === 1 ? 24 : 48),
-          y: placement.y - (level === 1 ? 38 : 16),
-          width: level === 1 ? 70 : 32,
-          height: 16,
-          targetSceneId: "town-hall-interior",
-          targetSpawnId: "main-entrance",
-          sceneManager: this.sceneManager,
-        });
-        this.sceneTransitionSystem.addTransition(transition);
-        this.debugTeleporters.push(transition);
-        this.villageEntranceObjects.push(transition);
-      } else if (!placement.underConstruction) {
-        const interior = constructibleBuildings[placement.type].interior;
-        const entranceX = placement.x + 64;
-        const buildingDoor = new Door({
-          x: entranceX,
-          y: placement.y,
-          definition: genericDoorDefinition,
-        });
-        const buildingTransition = new SceneTransition({
-          x: entranceX - 16,
-          y: placement.y - 16,
-          width: 32,
-          height: 32,
-          targetSceneId: interior.sceneId,
-          targetSpawnId: interior.entranceSpawnId,
-          sceneManager: this.sceneManager,
-        });
-
-        this.world.addObject(buildingDoor);
-        this.collisionSystem.addObject(buildingDoor);
-        this.interactables.push(buildingDoor);
-        this.villageEntranceObjects.push(buildingDoor, buildingTransition);
-        this.sceneTransitionSystem.addTransition(buildingTransition);
-        this.debugTeleporters.push(buildingTransition);
-      }
+      if (!placement.underConstruction) this.addBuildingEntrance(placement);
     }
 
     this.addExteriorGates();
     this.villageRevision = revision;
+    this.ensurePlayerCanOccupy();
+  }
+
+  private ensurePlayerCanOccupy(): void {
+    if (this.collisionSystem.canOccupy(this.player, this.player.x, this.player.y)) return;
+    // Completing/recentering a building must not trap the local character.
+    if (this.collisionSystem.canOccupy(this.player, WORLD_BASE_ARRIVAL.x, WORLD_BASE_ARRIVAL.y)) {
+      this.player.x = WORLD_BASE_ARRIVAL.x;
+      this.player.y = WORLD_BASE_ARRIVAL.y;
+      return;
+    }
+    const map = this.world.tileMap;
+    for (let y = map.originY; y < map.originY + this.world.height; y += map.tileSize) {
+      for (let x = map.originX; x < map.originX + this.world.width; x += map.tileSize) {
+        if (!this.collisionSystem.canOccupy(this.player, x, y)) continue;
+        this.player.x = x;
+        this.player.y = y;
+        return;
+      }
+    }
+  }
+
+  private getBuildingDefinition(placement: VillageBuildingPlacement): BuildingDefinition {
+    return placement.type === "town-hall"
+      ? townHallDefinitions[this.villageProgression.getTownHallLevel()]
+      : constructibleBuildings[placement.type].definition;
+  }
+
+  private addBuildingEntrance(placement: VillageBuildingPlacement): void {
+    const entrance = this.getBuildingDefinition(placement).entrance;
+    if (!entrance) return;
+    const door = entrance.door ? new Door({
+      x: placement.x + entrance.door.offsetX, y: placement.y + entrance.door.offsetY,
+      definition: entrance.door.definition,
+    }) : null;
+    if (door) {
+      this.world.addObject(door);
+      this.collisionSystem.addObject(door);
+      this.interactables.push(door);
+      this.villageEntranceObjects.push(door);
+    }
+    const transition = new SceneTransition({
+      x: placement.x + entrance.trigger.offsetX, y: placement.y + entrance.trigger.offsetY,
+      width: entrance.trigger.width, height: entrance.trigger.height,
+      targetSceneId: entrance.interior.sceneId, targetSpawnId: entrance.interior.entranceSpawnId,
+      sceneManager: this.sceneManager, canActivate: () => !door || door.isOpen(),
+    });
+    this.sceneTransitionSystem.addTransition(transition);
+    this.debugTeleporters.push(transition);
+    this.villageEntranceObjects.push(transition);
   }
 
   private addExteriorGates(): void {
@@ -251,8 +260,9 @@ export class BaseScene extends Scene {
   private getExteriorGatePositions() {
     return calculateVillageExteriorGates(
       this.villageProgression.getBuildingPlacements(),
-      baseMap.exteriorGates,
-      baseMap.width * baseMap.tileSize
+      villageGateConfig,
+      this.world.width,
+      this.world.tileMap.originX
     );
   }
 
@@ -269,7 +279,8 @@ export class BaseScene extends Scene {
     if (!spawnId || spawnId === "default" || spawnId === "town-hall-exit") {
       const hall = this.villageProgression.getBuildingPlacements().find((building) => building.type === "town-hall");
       if (hall) {
-        return { id: spawnId ?? "default", x: hall.x + 48, y: hall.y - 16, direction: "down" };
+        const exit = this.getBuildingDefinition(hall).entrance!.exit;
+        return { id: spawnId ?? "default", x: hall.x + exit.offsetX, y: hall.y + exit.offsetY, direction: "down" };
       }
     }
 
@@ -279,13 +290,14 @@ export class BaseScene extends Scene {
         (building) =>
           building.type !== "town-hall" &&
           !building.underConstruction &&
-          constructibleBuildings[building.type].interior.exitSpawnId === spawnId
+            constructibleBuildings[building.type].definition.entrance?.interior.exitSpawnId === spawnId
       );
     if (spawnId && exitedBuilding) {
+      const exit = this.getBuildingDefinition(exitedBuilding).entrance!.exit;
       return {
         id: spawnId,
-        x: exitedBuilding.x + 64,
-        y: exitedBuilding.y + 40,
+        x: exitedBuilding.x + exit.offsetX,
+        y: exitedBuilding.y + exit.offsetY,
         direction: "down",
       };
     }

@@ -16,10 +16,10 @@ export interface VillageGateLayoutConfig {
   directions: readonly CardinalDirection[];
 }
 
-function clampBaseX(x: number, baseMapWidth: number, edgeMargin: number): number {
+function clampBaseX(x: number, baseMapWidth: number, edgeMargin: number, originX: number): number {
   return Math.max(
-    edgeMargin,
-    Math.min(baseMapWidth - edgeMargin, x)
+    originX + edgeMargin,
+    Math.min(originX + baseMapWidth - edgeMargin, x)
   );
 }
 
@@ -27,7 +27,8 @@ function clampBaseX(x: number, baseMapWidth: number, edgeMargin: number): number
 export function calculateVillageExteriorGates(
   placements: VillageBuildingPlacement[],
   config: VillageGateLayoutConfig,
-  baseMapWidth: number
+  baseMapWidth: number,
+  originX = 0
 ): VillageExteriorGate[] {
   if (placements.length === 0) return [];
 
@@ -58,7 +59,8 @@ export function calculateVillageExteriorGates(
       x: clampBaseX(
         maxX + config.horizontalClearance,
         baseMapWidth,
-        config.edgeMargin
+        config.edgeMargin,
+        originX
       ),
       y: (minGroundY + maxGroundY) / 2,
     },
@@ -67,7 +69,8 @@ export function calculateVillageExteriorGates(
       x: clampBaseX(
         minX - config.horizontalClearance,
         baseMapWidth,
-        config.edgeMargin
+        config.edgeMargin,
+        originX
       ),
       y: (minGroundY + maxGroundY) / 2,
     },
