@@ -24,6 +24,7 @@ export class KeyboardInput {
     Space: "actionA",
     Enter: "actionA",
     Escape: "actionB",
+    KeyP: "start",
   };
 
   private handleKeyDown = (event: KeyboardEvent): void => {

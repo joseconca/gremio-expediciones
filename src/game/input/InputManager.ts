@@ -9,13 +9,19 @@ export class InputManager {
   private touch: TouchInput;
   private previousDirections = new Set<Direction>();
   private blocked = false;
+  private readonly blockers = new Set<string>();
+
+  setBlocker(reason: string, blocked: boolean): void {
+    if (blocked) this.blockers.add(reason);
+    else this.blockers.delete(reason);
+  }
 
   setBlocked(blocked: boolean): void {
     this.blocked = blocked;
   }
 
   isBlocked(): boolean {
-    return this.blocked;
+    return this.blocked || this.blockers.size > 0;
   }
 
   constructor() {
@@ -35,7 +41,7 @@ export class InputManager {
   }
 
   isDirectionHeld(direction: Direction): boolean {
-    return !this.blocked && (this.keyboard.isHeld(direction) || this.touch.isHeld(direction));
+    return !this.isBlocked() && (this.keyboard.isHeld(direction) || this.touch.isHeld(direction));
   }
 
   wasDirectionPressed(direction: Direction): boolean {
@@ -43,7 +49,11 @@ export class InputManager {
   }
 
   isActionPressed(action: InputAction): boolean {
-    return !this.blocked && (
+    return !this.isBlocked() && this.isRawActionPressed(action);
+  }
+
+  isRawActionPressed(action: InputAction): boolean {
+    return (
       this.keyboard.isActionPressed(action) || this.touch.isPressed(action)
     );
   }
