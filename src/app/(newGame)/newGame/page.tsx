@@ -9,6 +9,10 @@ import GameControls from "@/components/game/GameControls";
 import DialogueBox from "@/components/game/DialogueBox";
 import GameHud from "@/components/game/GameHud";
 import BattleOverlay from "@/components/game/BattleOverlay";
+import GameMenu from "@/components/game/GameMenu";
+import type { MenuSnapshot } from "@/game/gameplay/MenuManager";
+import type { MobilityState } from "@/game/gameplay/MobilityManager";
+import { BASE_RETURN_LOCATION, type MobilitySnapshot } from "@/shared/travel";
 import type { CombatSnapshot } from "@/game/gameplay/CombatManager";
 import type { PartySnapshot } from "@/game/gameplay/PartyManager";
 import type { PlayerProgressionState } from "@/game/gameplay/PlayerProgression";
@@ -38,6 +42,7 @@ const GameBaseLocationPicker = dynamic(
 );
 
 interface GameStart {
+  mobility: MobilitySnapshot;
   progressToken: string;
   base: WorldBaseLocation;
   otherBases: WorldBaseLocation[];
@@ -64,6 +69,7 @@ function toNearbyLocation(base: NearbyBaseDto): WorldBaseLocation {
 
 function toGameStart(session: WorldSessionDto): GameStart {
   return {
+    mobility: session.mobility,
     progressToken: session.progressToken,
     base: {
       id: session.player.id,
@@ -85,6 +91,8 @@ const EMPTY_DIALOGUE_STATE = {
 };
 
 const EMPTY_SCENE_STATE = { sceneId: null };
+const EMPTY_MENU: MenuSnapshot = { open: false, tab: "character", message: null, busy: false };
+const EMPTY_MOBILITY: MobilityState = { location: BASE_RETURN_LOCATION, journey: null, saving: false, error: null, conflict: false };
 const EMPTY_COMBAT_STATE: CombatSnapshot = {
   phase: "fled",
   menu: "root",
@@ -150,6 +158,8 @@ export default function NewGamePage() {
   const [sceneManager, setSceneManager] = useState<Game["sceneManager"] | null>(null);
   const [combatManager, setCombatManager] = useState<Game["combatManager"] | null>(null);
   const [partyManager, setPartyManager] = useState<Game["partyManager"] | null>(null);
+  const [menuManager, setMenuManager] = useState<Game["menuManager"] | null>(null);
+  const [mobilityManager, setMobilityManager] = useState<Game["mobilityManager"] | null>(null);
   const setModalOpen = useCallback((open: boolean) => {
     gameRef.current?.input.setBlocked(open);
   }, []);
@@ -186,6 +196,7 @@ export default function NewGamePage() {
     }
 
     const game = new Game({
+      mobility: start.mobility,
       progressToken: start.progressToken,
       canvas: canvasRef.current,
       selectedBase: start.base,
@@ -203,6 +214,8 @@ export default function NewGamePage() {
     setSceneManager(game.sceneManager);
     setCombatManager(game.combatManager);
     setPartyManager(game.partyManager);
+    setMenuManager(game.menuManager);
+    setMobilityManager(game.mobilityManager);
 
     game.init();
 
@@ -215,6 +228,8 @@ export default function NewGamePage() {
       setSceneManager(null);
       setCombatManager(null);
       setPartyManager(null);
+      setMenuManager(null);
+      setMobilityManager(null);
     };
   }, [start]);
 
@@ -285,6 +300,11 @@ export default function NewGamePage() {
     setRegistering(false);
   };
 
+  const menuState = useSyncExternalStore(menuManager?.subscribe ?? noopSubscribe,
+    menuManager?.getSnapshot ?? (() => EMPTY_MENU), () => EMPTY_MENU);
+  const mobilityState = useSyncExternalStore(mobilityManager?.subscribe ?? noopSubscribe,
+    mobilityManager?.getSnapshot ?? (() => EMPTY_MOBILITY), () => EMPTY_MOBILITY);
+
   if (phase.kind !== "playing") {
     return (
       <main className="flex min-h-screen items-center justify-center bg-stone-900 p-4 text-amber-50">
@@ -325,7 +345,7 @@ export default function NewGamePage() {
         />
       )}
 
-      <GameHud
+      {!mobilityState.journey && <GameHud
         player={playerState}
         resources={villageResources}
         companions={partyState.companions}
@@ -336,9 +356,18 @@ export default function NewGamePage() {
           sceneState.sceneId === "tavern-interior" ||
           sceneState.sceneId === "embassy-interior"
         }
-      />
+      />}
 
-      <GameControls />
+      <GameControls disabled={!!mobilityState.journey || mobilityState.conflict} />
+
+      {menuManager && partyManager && <GameMenu manager={menuManager} snapshot={menuState}
+        player={playerState} resources={villageResources} party={partyState}
+        partyManager={partyManager} mobility={mobilityState}
+        hasEmbassy={!!villageProgression?.hasBuilding("embassy")} />}
+
+      {mobilityState.error && <p role="alert" className="absolute inset-x-3 top-44 z-30 rounded bg-stone-950/90 p-2 text-xs text-red-200">
+        {mobilityState.error}
+      </p>}
 
       {partyState.syncStatus !== "saved" && (
         <p role="status" className="pointer-events-none absolute inset-x-3 top-32 z-30 rounded bg-stone-950/90 p-2 text-xs text-amber-200">

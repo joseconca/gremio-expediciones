@@ -257,6 +257,12 @@ export class BaseScene extends Scene {
   }
 
   protected getSpawnPoint(spawnId?: string): SpawnPoint {
+    if (this.initialLocation) {
+      const saved = this.initialLocation;
+      if (!this.world.collisionMap.isBlockedRect(saved.x + 8, saved.y + 50, 12, 6)) {
+        return { id: "resume", x: saved.x, y: saved.y, direction: saved.direction };
+      }
+    }
     if (spawnId === "world-base-arrival") {
       return WORLD_BASE_ARRIVAL;
     }
@@ -289,6 +295,10 @@ export class BaseScene extends Scene {
 
   init(): void {
     console.log("BaseScene iniciada");
+  }
+
+  override getPlayerLocation() {
+    return { x: this.player.x, y: this.player.y, direction: this.player.direction };
   }
 
   update(deltaTime: number): void {

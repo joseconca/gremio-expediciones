@@ -1,6 +1,7 @@
 import type { Scene } from "./Scene";
+import type { PlayerLocation, SceneId } from "../../shared/travel";
 
-export type SceneFactory = (spawnId?: string) => Scene;
+export type SceneFactory = (spawnId?: string, initialLocation?: PlayerLocation) => Scene;
 
 export interface SceneManagerState {
   sceneId: string | null;
@@ -28,7 +29,12 @@ export class SceneManager {
     return () => this.listeners.delete(listener);
   }
 
-  changeScene(sceneId: string, spawnId?: string): void {
+  getPlayerLocation(): PlayerLocation | null {
+    const position = this.currentScene?.getPlayerLocation();
+    return position && this.state.sceneId ? { ...position, sceneId: this.state.sceneId as SceneId } : null;
+  }
+
+  changeScene(sceneId: string, spawnId?: string, initialLocation?: PlayerLocation): void {
     const factory = this.factories.get(sceneId);
 
     if (!factory) {
@@ -37,7 +43,7 @@ export class SceneManager {
 
     this.currentScene?.destroy();
 
-    const scene = factory(spawnId);
+    const scene = factory(spawnId, initialLocation);
 
     this.currentScene = scene;
 

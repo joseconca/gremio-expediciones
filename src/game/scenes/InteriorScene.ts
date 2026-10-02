@@ -117,6 +117,12 @@ export class InteriorScene extends Scene {
   }
 
   protected getSpawnPoint(spawnId?: string): SpawnPoint {
+    if (this.initialLocation) {
+      const saved = this.initialLocation;
+      if (!this.world.collisionMap.isBlockedRect(saved.x + 8, saved.y + 50, 12, 6)) {
+        return { id: "resume", x: saved.x, y: saved.y, direction: saved.direction };
+      }
+    }
     if (spawnId && spawnId !== this.entranceSpawn.id) {
       throw new Error(`SpawnPoint "${spawnId}" no encontrado en interior`);
     }
@@ -125,6 +131,10 @@ export class InteriorScene extends Scene {
   }
 
   init(): void {}
+
+  override getPlayerLocation() {
+    return { x: this.player.x, y: this.player.y, direction: this.player.direction };
+  }
 
   update(deltaTime: number): void {
     this.updateDebugMode();

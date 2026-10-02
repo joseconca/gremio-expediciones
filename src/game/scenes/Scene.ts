@@ -7,8 +7,12 @@ import type { PlayerProgression } from "../gameplay/PlayerProgression";
 import type { CombatManager } from "../gameplay/CombatManager";
 import type { PartyManager } from "../gameplay/PartyManager";
 import type { DayNightSystem } from "../lighting/DayNightSystem";
+import type { PlayerLocation } from "../../shared/travel";
+import type { MobilityManager } from "../gameplay/MobilityManager";
 
 export interface SceneConfig {
+  initialLocation?: PlayerLocation;
+  mobilityManager?: MobilityManager;
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
   input: InputManager;
@@ -23,6 +27,8 @@ export interface SceneConfig {
 }
 
 export abstract class Scene {
+  protected readonly initialLocation?: PlayerLocation;
+  protected readonly mobilityManager?: MobilityManager;
   protected canvas: HTMLCanvasElement;
   protected ctx: CanvasRenderingContext2D;
   protected input: InputManager;
@@ -37,6 +43,8 @@ export abstract class Scene {
   protected spawnId?: string;
 
   constructor(config: SceneConfig) {
+    this.initialLocation = config.initialLocation;
+    this.mobilityManager = config.mobilityManager;
     this.canvas = config.canvas;
     this.ctx = config.ctx;
     this.input = config.input;
@@ -51,6 +59,10 @@ export abstract class Scene {
   }
 
   protected abstract getSpawnPoint(spawnId?: string): SpawnPoint;
+
+  getPlayerLocation(): { x: number; y: number; direction: PlayerLocation["direction"] } | null {
+    return null;
+  }
 
   protected updateDebugMode(): void {
     if (this.input.wasDebugTogglePressed()) {
