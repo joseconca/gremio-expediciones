@@ -21,6 +21,8 @@ const SCENE_BOUNDS: Record<SceneId, { width: number; height: number; building?: 
   "town-hall-interior": { width: 160, height: 160, building: "town-hall" },
   "tavern-interior": { width: 160, height: 160, building: "tavern" },
   "embassy-interior": { width: 160, height: 160, building: "embassy" },
+  "armory-interior": { width: 160, height: 160, building: "armory" },
+  "smithy-interior": { width: 160, height: 160, building: "smithy" },
   "exterior-world": { width: 8192, height: 8192 },
 };
 const DIRECTIONS: readonly PlayerLocation["direction"][] = ["up", "down", "left", "right"];
@@ -59,9 +61,10 @@ function parseLocation(value: unknown): PlayerLocation {
 
 function requireBuiltInterior(location: PlayerLocation, buildings: unknown, validateBaseBounds = true): void {
   if (location.sceneId === "base" && validateBaseBounds) {
-    const bounds = calculateVillageBounds(Array.isArray(buildings) ? buildings.length : 1);
+    const plotCount = Array.isArray(buildings) ? buildings.filter((building) => !isRecord(building) || building.type !== "smithy").length : 1;
+    const bounds = calculateVillageBounds(plotCount);
     // Active local construction is not persisted yet: allow its next plot's extent.
-    const next = calculateVillageBounds(Array.isArray(buildings) ? buildings.length + 1 : 2);
+    const next = calculateVillageBounds(plotCount + 1);
     const feetX = location.x + LOCAL_PLAYER_FOOTPRINT.offsetX;
     const feetY = location.y + LOCAL_PLAYER_FOOTPRINT.offsetY;
     if (feetX < Math.min(bounds.minX, next.minX) || feetX + LOCAL_PLAYER_FOOTPRINT.width > Math.max(bounds.maxX, next.maxX) ||

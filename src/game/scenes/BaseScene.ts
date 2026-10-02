@@ -30,6 +30,7 @@ import {
 
 import { townHallDefinitions } from "../data/buildings/townHall";
 import { constructibleBuildings } from "../data/buildings/constructibleBuildings";
+import { equipmentBuilding } from "../data/buildings/armory";
 import { LightingSystem } from "../lighting/LightingSystem";
 import { heroAnimations } from "../data/heroAnimations";
 import { villageGateConfig, createVillageMap } from "../data/base/baseMap";
@@ -64,7 +65,7 @@ export class BaseScene extends Scene {
   constructor(config: SceneConfig) {
     super(config);
 
-    const buildingCount = this.villageProgression.getBuildingPlacements().length;
+    const buildingCount = this.villageProgression.getBuildingPlacements().filter((building) => building.type !== "smithy").length;
     const tileMap = new TileMap(createVillageMap(buildingCount));
     const collisionMap = new CollisionMap(createVillageCollision(buildingCount));
 
@@ -149,11 +150,17 @@ export class BaseScene extends Scene {
 
     const state = this.villageProgression.getState();
     const placements = this.villageProgression.getBuildingPlacements();
-    this.world.tileMap.resize(createVillageMap(placements.length));
-    this.world.collisionMap.resize(createVillageCollision(placements.length));
+    const plotCount = placements.filter((building) => building.type !== "smithy").length;
+    this.world.tileMap.resize(createVillageMap(plotCount));
+    this.world.collisionMap.resize(createVillageCollision(plotCount));
 
     for (const placement of placements) {
       let object: GameObject;
+
+      if (placement.type === "smithy" && !placement.underConstruction) {
+        this.addBuildingEntrance(placement);
+        continue; // The armory renders/collides the single composite asset.
+      }
 
       if (placement.underConstruction) {
         const activeConstruction = state.construction;
@@ -179,7 +186,7 @@ export class BaseScene extends Scene {
         object = new Building({
           x: placement.x,
           y: placement.y,
-          definition: constructibleBuildings[placement.type].definition,
+          definition: this.getBuildingDefinition(placement),
         });
       }
 
@@ -215,6 +222,7 @@ export class BaseScene extends Scene {
   }
 
   private getBuildingDefinition(placement: VillageBuildingPlacement): BuildingDefinition {
+    if (placement.type === "armory") return equipmentBuilding("armory", this.villageProgression.hasBuilding("smithy"));
     return placement.type === "town-hall"
       ? townHallDefinitions[this.villageProgression.getTownHallLevel()]
       : constructibleBuildings[placement.type].definition;

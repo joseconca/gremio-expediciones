@@ -39,6 +39,8 @@ export class TownHallInteriorScene extends InteriorScene {
                 config.villageProgression.getAvailableConstructionPositions("tavern"),
               embassy:
                 config.villageProgression.getAvailableConstructionPositions("embassy"),
+              armory: config.villageProgression.getAvailableConstructionPositions("armory"),
+              smithy: config.villageProgression.getAvailableConstructionPositions("smithy"),
             }
           ),
         onChoice: (eventId) => {
@@ -49,7 +51,12 @@ export class TownHallInteriorScene extends InteriorScene {
 
           if (eventId.startsWith("build:")) {
             const [, type, position] = eventId.split(":");
-            if (type === "tavern" || type === "embassy") {
+            if (type === "smithy") {
+              void config.partyManager.flush().then((saved) => {
+                if (saved) config.villageProgression.startConstruction("smithy", Number(position));
+                else config.dialogueManager.close();
+              });
+            } else if (type === "tavern" || type === "embassy" || type === "armory") {
               config.villageProgression.startConstruction(type, Number(position));
             }
           }

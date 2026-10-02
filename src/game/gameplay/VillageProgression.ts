@@ -22,7 +22,7 @@ export const INITIAL_VILLAGE_RESOURCES: VillageResources = {
   potions: 1,
 };
 
-export type VillageBuildingType = "town-hall" | "tavern" | "embassy";
+export type VillageBuildingType = "town-hall" | "tavern" | "embassy" | "armory" | "smithy";
 export type ConstructibleBuildingType = Exclude<VillageBuildingType, "town-hall">;
 
 export interface VillageBuilding {
@@ -127,9 +127,12 @@ export class VillageProgression {
       });
     }
 
-    const rowCenterIndex = (orderedBuildings.length - 1) / 2;
+    const plots = orderedBuildings.filter((building) => building.type !== "smithy");
+    const rowCenterIndex = (plots.length - 1) / 2;
 
-    return orderedBuildings.map((building, index) => ({
+    return orderedBuildings.map((building) => {
+      const index = building.type === "smithy" ? plots.findIndex((plot) => plot.type === "armory") : plots.indexOf(building);
+      return ({
       ...building,
       x:
         VILLAGE_ROW_CENTER_X +
@@ -137,7 +140,8 @@ export class VillageProgression {
         64,
       // Two central buildings share the same baseline when the count is even.
       y: VILLAGE_GROUND_Y + Math.floor(Math.abs(index - rowCenterIndex)) * VILLAGE_TILE_SIZE,
-    }));
+      });
+    });
   }
 
   getConstructionPositionLabel(position: number): string | null {
@@ -180,10 +184,16 @@ export class VillageProgression {
       return [];
     }
 
+    if (type === "smithy") {
+      const index = this.state.buildings.findIndex((building) => building.type === "armory");
+      return index < 0 ? [] : [{ position: index + 2, label: "Ampliación a la derecha de la Armería" }];
+    }
+
     return Array.from(
       { length: this.state.buildings.length + 1 },
       (_, index) => index + 1
     ).flatMap((position) => {
+      if (this.state.buildings[position - 2]?.type === "armory" && this.state.buildings[position - 1]?.type === "smithy") return [];
       const label = this.getConstructionPositionLabel(position);
       return label ? [{ position, label }] : [];
     });
@@ -220,7 +230,7 @@ export class VillageProgression {
       this.getTownHallLevel() < 2 ||
       this.state.construction ||
       this.hasBuilding(type) ||
-      !this.getConstructionPositionLabel(position)
+      !this.getAvailableConstructionPositions(type).some((option) => option.position === position)
     ) {
       return false;
     }
@@ -320,6 +330,8 @@ export class VillageProgression {
       "town-hall": "Ayuntamiento",
       tavern: "Taberna",
       embassy: "Embajada",
+      armory: "Armería",
+      smithy: "Herrería",
     };
     return names[type];
   }

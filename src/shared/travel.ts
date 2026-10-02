@@ -3,6 +3,8 @@ export type SceneId =
   | "town-hall-interior"
   | "tavern-interior"
   | "embassy-interior"
+  | "armory-interior"
+  | "smithy-interior"
   | "exterior-world";
 
 // Alias compatible con los campos JSON de Prisma.

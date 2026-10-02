@@ -6,7 +6,14 @@ export const MIN_BASE_DISTANCE_METERS = 200;
 export const VISIBLE_BASE_RADIUS_METERS = 7000;
 
 export type PlayerSex = "chico" | "chica";
-export type SavedBuildingType = "town-hall" | "tavern" | "embassy";
+export type SavedBuildingType = "town-hall" | "tavern" | "embassy" | "armory" | "smithy";
+
+export const SAVED_BUILDING_TYPES: readonly SavedBuildingType[] = ["town-hall", "tavern", "embassy", "armory", "smithy"];
+/** The smithy is an annex, not an independently selectable plot. */
+export function validSmithyDependency(buildings: readonly SavedBuilding[]): boolean {
+  const index = buildings.findIndex((building) => building.type === "smithy");
+  return index < 0 || (index > 0 && buildings[index - 1].type === "armory" && buildings[index - 1].level >= 1);
+}
 
 // A type alias (not interface) so it is assignable to Prisma JSON input.
 export type SavedBuilding = {

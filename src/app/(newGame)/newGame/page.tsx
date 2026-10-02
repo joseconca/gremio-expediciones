@@ -11,6 +11,8 @@ import GameHud from "@/components/game/GameHud";
 import BattleOverlay from "@/components/game/BattleOverlay";
 import GameMenu from "@/components/game/GameMenu";
 import ExpeditionModal from "@/components/game/ExpeditionModal";
+import EquipmentShop from "@/components/game/EquipmentShop";
+import { EMPTY_EQUIPMENT } from "@/game/gameplay/EquipmentManager";
 import type { ExpeditionState } from "@/game/gameplay/ExpeditionManager";
 import { expeditionCombatSnapshot } from "@/game/gameplay/expeditionCombat";
 import type { MenuSnapshot } from "@/game/gameplay/MenuManager";
@@ -167,6 +169,7 @@ export default function NewGamePage() {
   const [menuManager, setMenuManager] = useState<Game["menuManager"] | null>(null);
   const [mobilityManager, setMobilityManager] = useState<Game["mobilityManager"] | null>(null);
   const [expeditionManager, setExpeditionManager] = useState<Game["expeditionManager"] | null>(null);
+  const [equipmentManager, setEquipmentManager] = useState<Game["equipmentManager"] | null>(null);
   const setModalOpen = useCallback((open: boolean) => {
     gameRef.current?.input.setBlocked(open);
   }, []);
@@ -225,6 +228,7 @@ export default function NewGamePage() {
     setMenuManager(game.menuManager);
     setMobilityManager(game.mobilityManager);
     setExpeditionManager(game.expeditionManager);
+    setEquipmentManager(game.equipmentManager);
 
     game.init();
 
@@ -240,6 +244,7 @@ export default function NewGamePage() {
       setMenuManager(null);
       setMobilityManager(null);
       setExpeditionManager(null);
+      setEquipmentManager(null);
     };
   }, [start]);
 
@@ -316,6 +321,8 @@ export default function NewGamePage() {
     mobilityManager?.getSnapshot ?? (() => EMPTY_MOBILITY), () => EMPTY_MOBILITY);
   const expeditionState = useSyncExternalStore(expeditionManager?.subscribe ?? noopSubscribe,
     expeditionManager?.getSnapshot ?? (() => EMPTY_EXPEDITION), () => EMPTY_EXPEDITION);
+  const equipmentState = useSyncExternalStore(equipmentManager?.subscribe ?? noopSubscribe,
+    equipmentManager?.getSnapshot ?? (() => EMPTY_EQUIPMENT), () => EMPTY_EQUIPMENT);
   const expeditionActive = !expeditionState.data || (expeditionState.data.active && expeditionState.data.active.phase !== "completed");
   const expeditionBattle = expeditionState.battleOpen && expeditionState.data ? expeditionCombatSnapshot(expeditionState.data) : null;
 
@@ -368,7 +375,8 @@ export default function NewGamePage() {
           sceneState.sceneId === "base" ||
           sceneState.sceneId === "town-hall-interior" ||
           sceneState.sceneId === "tavern-interior" ||
-          sceneState.sceneId === "embassy-interior"
+          sceneState.sceneId === "embassy-interior" ||
+          sceneState.sceneId === "armory-interior" || sceneState.sceneId === "smithy-interior"
         }
       />}
 
@@ -391,10 +399,12 @@ export default function NewGamePage() {
       </p>}
 
       {menuManager && partyManager && <GameMenu manager={menuManager} snapshot={menuState}
+        equipmentManager={equipmentManager ?? undefined}
         player={playerState} resources={villageResources} party={partyState}
         partyManager={partyManager} mobility={mobilityState}
         hasEmbassy={!!villageProgression?.hasBuilding("embassy")}
         expeditionInventory={expeditionState.data?.inventory} />}
+      {equipmentManager && <EquipmentShop manager={equipmentManager} snapshot={equipmentState} gold={playerState.gold} />}
 
       {mobilityState.error && <p role="alert" className="absolute inset-x-3 top-44 z-30 rounded bg-stone-950/90 p-2 text-xs text-red-200">
         {mobilityState.error}

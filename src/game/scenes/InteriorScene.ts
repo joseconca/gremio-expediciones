@@ -23,6 +23,11 @@ export interface InteriorSceneConfig extends SceneConfig {
   exitSpawnId: string;
   entranceSpawn: SpawnPoint;
   exitPosition: { x: number; y: number; width: number; height: number };
+  passages?: Array<{
+    x: number; y: number; width: number; height: number;
+    targetSceneId: string; targetSpawnId: string; spawn: SpawnPoint;
+    canActivate?: () => boolean;
+  }>;
   npc: {
     x: number;
     y: number;
@@ -43,11 +48,13 @@ export class InteriorScene extends Scene {
   private readonly debugTeleporters: SceneTransition[] = [];
   private readonly onNpcChoice?: (eventId: string) => void;
   private readonly entranceSpawn: SpawnPoint;
+  private readonly passageSpawns: SpawnPoint[];
 
   constructor(config: InteriorSceneConfig) {
     super(config);
     this.onNpcChoice = config.npc.onChoice;
     this.entranceSpawn = config.entranceSpawn;
+    this.passageSpawns = config.passages?.map((passage) => passage.spawn) ?? [];
 
     const tileMap = new TileMap(config.tileMap);
     const collisionMap = new CollisionMap(config.collisionMap);
@@ -114,6 +121,11 @@ export class InteriorScene extends Scene {
     });
     this.sceneTransitionSystem.addTransition(exit);
     this.debugTeleporters.push(exit);
+    for (const passage of config.passages ?? []) {
+      const transition = new SceneTransition({ ...passage, sceneManager: this.sceneManager });
+      this.sceneTransitionSystem.addTransition(transition);
+      this.debugTeleporters.push(transition);
+    }
     if (this.initialLocation && !collisionSystem.canOccupy(this.player, this.player.x, this.player.y)) {
       this.player.x = config.entranceSpawn.x;
       this.player.y = config.entranceSpawn.y;
@@ -127,6 +139,8 @@ export class InteriorScene extends Scene {
         return { id: "resume", x: saved.x, y: saved.y, direction: saved.direction };
       }
     }
+    const passageSpawn = this.passageSpawns.find((spawn) => spawn.id === spawnId);
+    if (passageSpawn) return passageSpawn;
     if (spawnId && spawnId !== this.entranceSpawn.id) {
       throw new Error(`SpawnPoint "${spawnId}" no encontrado en interior`);
     }

@@ -4,6 +4,8 @@ import { prisma } from "@/lib/prisma";
 import {
   MIN_BASE_DISTANCE_METERS,
   VISIBLE_BASE_RADIUS_METERS,
+  SAVED_BUILDING_TYPES,
+  validSmithyDependency,
   type NearbyBaseDto,
   type PlayerProfileDto,
   type PlayerSex,
@@ -16,7 +18,7 @@ import { MundoError, withWorldLock } from "./http";
 import { loadMobility } from "./travel";
 import type { MobilitySnapshot } from "@/shared/travel";
 
-const BUILDING_TYPES: readonly SavedBuildingType[] = ["town-hall", "tavern", "embassy"];
+const BUILDING_TYPES: readonly SavedBuildingType[] = SAVED_BUILDING_TYPES;
 const MAX_BUILDING_LEVEL = 2;
 
 // Schema boundary until the updated Prisma client is generated; legacy mocks default to zero.
@@ -227,7 +229,8 @@ export async function syncProgress(
     body.buildings.some((entry) => !entry || typeof entry !== "object" ||
       !BUILDING_TYPES.includes(entry.type) || !Number.isInteger(entry.level) || entry.level < 1 || entry.level > MAX_BUILDING_LEVEL) ||
     new Set(body.buildings.map((entry) => entry.type)).size !== body.buildings.length ||
-    !body.buildings.some((entry) => entry.type === "town-hall")
+    !body.buildings.some((entry) => entry.type === "town-hall") ||
+    !validSmithyDependency(body.buildings)
   ) {
     throw new MundoError(400, "invalid_progress", "Progreso o edificios inválidos.");
   }
@@ -237,6 +240,10 @@ export async function syncProgress(
   return withWorldLock(async (tx) => {
     const currentPlayer: RewardPlayer = await tx.jugador.findUniqueOrThrow({ where: { id: jugador.id } });
     const currentBase = await tx.base.findUniqueOrThrow({ where: { id: base.id } });
+    if (buildings.some((building) => building.type === "smithy") &&
+      !parseBuildings(currentBase.edificios).some((building) => building.type === "armory")) {
+      throw new MundoError(403, "armory_required", "Guarda primero la Armería terminada antes de construir la Herrería.");
+    }
     if (body.buildingToken !== undefined && body.buildingToken !== JSON.stringify(parseBuildings(currentBase.edificios))) {
       if (JSON.stringify(buildings) !== JSON.stringify(parseBuildings(currentBase.edificios))) {
         throw new MundoError(409, "progress_conflict", "Otra sesión ha cambiado los edificios. Recarga antes de guardar.");

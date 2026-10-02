@@ -15,6 +15,8 @@ export type ConstructionOptions = Record<
 const BUILDING_LABELS: Record<ConstructibleBuildingType, string> = {
   tavern: "Taberna",
   embassy: "Embajada",
+  armory: "Armería",
+  smithy: "Herrería",
 };
 
 function createConstructionNodes(
@@ -57,7 +59,7 @@ function createConstructionNodes(
 
 export function createAlcaldeDialogue(
   townHallLevel: 1 | 2,
-  constructionOptions: ConstructionOptions = { tavern: [], embassy: [] }
+  constructionOptions: ConstructionOptions = { tavern: [], embassy: [], armory: [], smithy: [] }
 ): Dialogue {
   if (townHallLevel === 1) {
     return {

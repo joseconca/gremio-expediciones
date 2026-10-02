@@ -10,8 +10,10 @@ import type { DayNightSystem } from "../lighting/DayNightSystem";
 import type { PlayerLocation } from "../../shared/travel";
 import type { MobilityManager } from "../gameplay/MobilityManager";
 import type { ExpeditionManager } from "../gameplay/ExpeditionManager";
+import type { EquipmentManager } from "../gameplay/EquipmentManager";
 
 export interface SceneConfig {
+  equipmentManager?: EquipmentManager;
   initialLocation?: PlayerLocation;
   mobilityManager?: MobilityManager;
   expeditionManager?: ExpeditionManager;
