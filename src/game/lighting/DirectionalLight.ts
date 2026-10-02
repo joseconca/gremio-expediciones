@@ -14,6 +14,7 @@ export function getShadowVector(
   light: DirectionalLight,
   height: number
 ): { x: number; y: number } {
+  if (light.intensity <= 0 || height <= 0) return { x: 0, y: 0 };
   const length = Math.min(
     height / Math.tan(Math.max(light.elevation, MIN_ELEVATION)),
     height * MAX_SHADOW_LENGTH_RATIO

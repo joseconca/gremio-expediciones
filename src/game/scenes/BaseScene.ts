@@ -54,7 +54,6 @@ export class BaseScene extends Scene {
   private interactables: Interactable[] = [];
   private sceneTransitionSystem: SceneTransitionSystem;
   private readonly debugTeleporters: SceneTransition[] = [];
-  private readonly spawnPoints: SpawnPoint[] = [];
   private readonly villageObjects: GameObject[] = [];
   private readonly villageEntranceObjects: GameObject[] = [];
   private constructionSite: ConstructionSite | null = null;
@@ -77,21 +76,6 @@ export class BaseScene extends Scene {
     this.collisionSystem = new CollisionSystem(this.world.collisionMap);
     this.sceneTransitionSystem = new SceneTransitionSystem();
 
-    this.spawnPoints.push(
-      {
-        id: "default",
-        x: 480,
-        y: 688,
-        direction: "down",
-      },
-      {
-        id: "town-hall-exit",
-        x: 480,
-        y: 688,
-        direction: "down",
-      },
-      WORLD_BASE_ARRIVAL
-    );
     this.world.addObject(new Campfire({ x: 560, y: 800 }));
     this.world.addObject(
       new ResourceCart({ x: 320, y: 704 })
@@ -300,15 +284,7 @@ export class BaseScene extends Scene {
       };
     }
 
-    const id = spawnId ?? "default";
-
-    const spawnPoint = this.spawnPoints.find((point) => point.id === id);
-
-    if (!spawnPoint) {
-      throw new Error(`SpawnPoint "${id}" no encontrado en BaseScene`);
-    }
-
-    return spawnPoint;
+    throw new Error(`SpawnPoint "${spawnId ?? "default"}" no encontrado en BaseScene`);
   }
 
   init(): void {

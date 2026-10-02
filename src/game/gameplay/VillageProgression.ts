@@ -63,7 +63,7 @@ const INITIAL_STATE: VillageProgressionState = {
 const TEST_CONSTRUCTION_DURATION_SECONDS = 60;
 const BUILDING_SPACING = 224;
 const BUILDING_ROW_STEP = 32;
-const TOWN_HALL_CENTER_X = 496;
+const BUILDING_ROW_CENTER_X = 496;
 const BUILDING_GROUND_Y = 704;
 
 /** Temporary, in-memory progression for the standalone 2.5D game. */
@@ -129,16 +129,13 @@ export class VillageProgression {
       });
     }
 
-    const townHallIndex = orderedBuildings.findIndex(
-      (building) => building.type === "town-hall"
-    );
     const rowCenterIndex = (orderedBuildings.length - 1) / 2;
 
     return orderedBuildings.map((building, index) => ({
       ...building,
       x:
-        TOWN_HALL_CENTER_X +
-        (index - townHallIndex) * BUILDING_SPACING -
+        BUILDING_ROW_CENTER_X +
+        (index - rowCenterIndex) * BUILDING_SPACING -
         64,
       // Two central buildings share the same baseline when the count is even.
       y: BUILDING_GROUND_Y + Math.floor(Math.abs(index - rowCenterIndex)) * BUILDING_ROW_STEP,
