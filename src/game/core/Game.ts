@@ -84,7 +84,8 @@ export class Game {
       this.worldGateway,
       this.playerProgression,
       this.villageProgression,
-      config.progressToken
+      config.progressToken,
+      () => !this.mobilityManager?.getSnapshot().journey && !this.mobilityManager?.getSnapshot().travelPending
     );
     this.dayNightSystem = new DayNightSystem();
     this.sceneManager = new SceneManager();
@@ -96,7 +97,7 @@ export class Game {
       });
     this.menuManager = new MenuManager(this.mobilityManager, () =>
       !this.combatManager.isEncounterOpen() && !this.dialogueManager.isActive() &&
-      !this.mobilityManager.getSnapshot().journey && !this.mobilityManager.getSnapshot().conflict);
+      !this.mobilityManager.getSnapshot().journey && !this.mobilityManager.getSnapshot().travelPending && !this.mobilityManager.getSnapshot().conflict);
 
     this.sceneManager.register(
       "base",
@@ -135,7 +136,7 @@ export class Game {
         if (this.menuManager.getSnapshot().open && this.input.isRawActionPressed("actionB")) this.menuManager.close();
         const mobility = this.mobilityManager.getSnapshot();
         this.input.setBlocker("menu", this.menuManager.getSnapshot().open);
-        this.input.setBlocker("travel", !!mobility.journey || mobility.conflict);
+        this.input.setBlocker("travel", !!mobility.journey || !!mobility.travelPending || mobility.conflict);
         this.villageProgression.update(deltaTime);
         this.dayNightSystem.update();
         this.partyManager.update(deltaTime);

@@ -22,8 +22,7 @@ export class SceneTransitionSystem {
         }
 
         if (this.intersectsTransition(object, transition)) {
-          transition.activate();
-          return;
+          if (transition.activate()) return;
         }
       }
     }

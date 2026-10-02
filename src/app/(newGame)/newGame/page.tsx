@@ -345,7 +345,7 @@ export default function NewGamePage() {
         />
       )}
 
-      {!mobilityState.journey && <GameHud
+      {!mobilityState.journey && !mobilityState.travelPending && <GameHud
         player={playerState}
         resources={villageResources}
         companions={partyState.companions}
@@ -358,7 +358,14 @@ export default function NewGamePage() {
         }
       />}
 
-      <GameControls disabled={!!mobilityState.journey || mobilityState.conflict} />
+      <GameControls disabled={!!mobilityState.journey || !!mobilityState.travelPending || mobilityState.conflict}
+        disabledMessage={mobilityState.conflict ? "Ubicación cambiada en otra sesión. Recarga para continuar."
+          : mobilityState.travelPending ? "Confirmando el carro con el servidor. El personaje permanece bloqueado."
+          : undefined} />
+
+      {mobilityState.journey && <p role="status" className="pointer-events-none absolute inset-x-3 top-3 rounded border border-amber-200/30 bg-stone-950/90 p-3 text-center text-sm text-amber-100">
+        Regreso a tu poblado · Llegada prevista {new Date(mobilityState.journey.arrivalAt).toLocaleTimeString("es-ES")}
+      </p>}
 
       {menuManager && partyManager && <GameMenu manager={menuManager} snapshot={menuState}
         player={playerState} resources={villageResources} party={partyState}

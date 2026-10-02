@@ -2,6 +2,7 @@ import { Character, CharacterConfig } from "../Character";
 import type { InputManager } from "../../input/InputManager";
 import type { MovementSystem } from "../../systems/MovementSystem";
 import { Collider } from "../Collider";
+import { LOCAL_PLAYER_FOOTPRINT } from "../../../shared/village";
 
 export interface PlayerConfig extends CharacterConfig {
   input: InputManager;
@@ -17,12 +18,7 @@ export class Player extends Character {
     super({
       ...config,
       colliders: config.colliders ?? [
-        new Collider({
-          width: 12,
-          height: 6,
-          offsetX: 8,
-          offsetY: 50,
-        }),
+        new Collider(LOCAL_PLAYER_FOOTPRINT),
       ],
     });
 
