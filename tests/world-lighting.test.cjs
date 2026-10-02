@@ -13,6 +13,12 @@ const { SpriteSheet } = require("../src/game/rendering/SpriteSheet.ts");
 const { GroundProjection } = require("../src/game/rendering/GroundProjection.ts");
 const { BaseScene } = require("../src/game/scenes/BaseScene.ts");
 const { PlayerProgression } = require("../src/game/gameplay/PlayerProgression.ts");
+const { calculateVillageBounds } = require("../src/shared/village.ts");
+const { createVillageMap } = require("../src/game/data/base/baseMap.ts");
+const { createVillageCollision } = require("../src/game/data/base/baseCollision.ts");
+const { CollisionMap } = require("../src/game/world/CollisionMap.ts");
+const { TileMap } = require("../src/game/world/TileMap.ts");
+const { tavernDefinition } = require("../src/game/data/buildings/tavern.ts");
 
 test("224 px spacing and symmetric tile steps for odd/even rows; works include their future slot", () => {
   // Synthetic counts exercise the future layout without extending today's building catalogue.
@@ -158,7 +164,7 @@ test("town-hall doors, entrance triggers and return spawns follow row movements"
     assert.equal(spawn.y, hall.y - 16);
     const entrance = scene.villageEntranceObjects.find((object) => object.targetSceneId === "town-hall-interior");
     assert.equal(entrance.x, hall.x + 48);
-    assert.equal(entrance.y, hall.y - 16);
+    assert.equal(entrance.y, hall.y + townHallDefinitions[2].entrance.trigger.offsetY);
     const doors = scene.villageEntranceObjects.filter((object) => object.definition);
     assert.ok(doors.some((door) => door.x === hall.x + 64 && door.y === hall.y));
     assert.equal(scene.villageEntranceObjects.filter((object) => object.targetSceneId === "town-hall-interior").length, 1);
@@ -176,4 +182,93 @@ test("town-hall doors, entrance triggers and return spawns follow row movements"
     assert.equal(spawn.x, building.x + 64);
     assert.equal(spawn.y, building.y + 40);
   }
+});
+
+test("village bounds grow with plots, preserve checkpoints and contain all seven synthetic buildings", () => {
+  let previousWidth = 0;
+  let previousHeight = 0;
+  for (const count of [1, 2, 3, 4, 7]) {
+    const bounds = calculateVillageBounds(count);
+    const buildings = Array.from({ length: count }, (_, index) => ({ type: index === 0 ? "town-hall" : "tavern", level: 2 }));
+    for (const placement of new VillageProgression(buildings).getBuildingPlacements()) {
+      assert.ok(placement.x >= bounds.minX + 64);
+      assert.ok(placement.x + 128 <= bounds.maxX - 64);
+      assert.ok(placement.y - 128 >= bounds.minY);
+      assert.ok(placement.y + 192 < bounds.maxY);
+    }
+    assert.ok(bounds.width > previousWidth);
+    assert.ok(bounds.height >= previousHeight);
+    assert.ok(480 >= bounds.minX && 480 < bounds.maxX);
+    assert.ok(768 + 56 < bounds.maxY);
+    previousWidth = bounds.width;
+    previousHeight = bounds.height;
+  }
+  assert.ok(calculateVillageBounds(1).width < 960);
+  assert.ok(calculateVillageBounds(1).height < 1440);
+  assert.ok(calculateVillageBounds(7).minX < 0);
+});
+
+test("map origin and resize retain local collision indexing without allocating a new map", () => {
+  const collision = new CollisionMap(createVillageCollision(1));
+  const map = new TileMap(createVillageMap(1));
+  assert.equal(collision.isBlockedRect(480, 818, 12, 6), false);
+  assert.equal(collision.isBlockedRect(0, 0, 12, 6), true);
+  collision.resize(createVillageCollision(7));
+  map.resize(createVillageMap(7));
+  assert.equal(collision.originX, map.originX);
+  assert.equal(collision.isBlockedRect(collision.originX + 4, collision.originY + 4, 12, 6), false);
+  assert.equal(collision.isBlockedRect(collision.originX - 2, collision.originY, 12, 6), true);
+  assert.equal(collision.isBlockedTile(0, 0), false);
+});
+
+test("entrance sits behind its door, cannot teleport closed, and facade leaves a passage", () => {
+  global.Image = class { complete = true; naturalWidth = 128; };
+  const village = new VillageProgression([{ type: "town-hall", level: 2 }, { type: "tavern", level: 1 }]);
+  let transitions = 0;
+  const scene = new BaseScene({
+    canvas: { width: 240, height: 360 }, ctx: {}, input: {}, sceneManager: { changeScene() { transitions++; } },
+    dialogueManager: {}, villageProgression: village, playerProgression: new PlayerProgression(),
+    combatManager: {}, partyManager: {}, dayNightSystem: new DayNightSystem(() => 14),
+  });
+  const placement = village.getBuildingPlacements().find((building) => building.type === "tavern");
+  const door = scene.villageEntranceObjects.find((object) => object.definition && object.x === placement.x + 64);
+  const trigger = scene.villageEntranceObjects.find((object) => object.targetSceneId === "tavern-interior");
+  assert.equal(trigger.activate(), false);
+  assert.equal(transitions, 0);
+  const doorBack = door.y + door.definition.collider.offsetY;
+  assert.ok(trigger.y + trigger.colliders[0].height <= doorBack);
+  assert.equal(scene.collisionSystem.canOccupy(scene.player, placement.x + 50, placement.y - 60), false);
+  door.state = "open";
+  assert.equal(scene.collisionSystem.canOccupy(scene.player, placement.x + 50, placement.y - 60), true);
+  assert.equal(trigger.activate(), true);
+  assert.equal(transitions, 1);
+  assert.equal(tavernDefinition.entrance.door.offsetX, 64);
+});
+
+test("base resizes when a construction starts without rebuilding the world or player", () => {
+  global.Image = class { complete = true; naturalWidth = 128; };
+  const village = new VillageProgression([{ type: "town-hall", level: 2 }]);
+  const scene = new BaseScene({
+    canvas: { width: 240, height: 360 }, ctx: {}, input: {}, sceneManager: {},
+    dialogueManager: {}, villageProgression: village, playerProgression: new PlayerProgression(),
+    combatManager: {}, partyManager: {}, dayNightSystem: new DayNightSystem(() => 14),
+  });
+  const world = scene.world;
+  const player = scene.player;
+  const width = world.width;
+  village.startConstruction("tavern", 1);
+  scene.syncVillageLayout();
+  assert.strictEqual(scene.world, world);
+  assert.strictEqual(scene.player, player);
+  assert.ok(world.width > width);
+  assert.equal(world.width, world.tileMap.width * world.tileMap.tileSize);
+  assert.equal(world.width, world.collisionMap.width * world.collisionMap.tileSize);
+  const plot = village.getBuildingPlacements().find((building) => building.underConstruction);
+  player.x = plot.x + 50;
+  player.y = plot.y - 60;
+  assert.equal(scene.collisionSystem.canOccupy(player, player.x, player.y), true);
+  village.update(60);
+  scene.syncVillageLayout();
+  assert.equal(scene.collisionSystem.canOccupy(player, player.x, player.y), true);
+  assert.notEqual(player.y, plot.y - 60);
 });

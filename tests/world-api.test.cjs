@@ -41,6 +41,8 @@ async function load(account) {
 function progress(session, changes = {}) {
   return {
     progressToken: session.progressToken,
+    rewardRevision: session.rewardRevision,
+    buildingToken: session.buildingToken,
     characterClass: session.player.characterClass, level: session.player.level,
     experience: session.player.experience, gold: session.player.gold,
     currentHealth: session.player.currentHealth, maxHealth: session.player.maxHealth,
@@ -295,11 +297,9 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       assert.equal(unchanged.revision, before.revision);
       assert.deepEqual(unchanged.location, exteriorLocation);
       assert.equal(unchanged.journey, null);
-      const startedAt = Date.now();
       const calls = await Promise.all([0, 1].map(() => request("/api/mundo/jugador", a, {
         action: "call-cart", revision: before.revision,
       }, "PATCH")));
-      const finishedAt = Date.now();
       assert.ok(calls.every((result) => result.status === 200));
       const mobility = calls[0].data.mobility;
       savedJourney = mobility.journey;
@@ -316,8 +316,10 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       assert.equal(savedJourney.toY, EXTERIOR_HOME_POSITION.y);
       assert.ok(Number.isSafeInteger(savedJourney.departureAt));
       assert.ok(Number.isSafeInteger(savedJourney.arrivalAt));
-      assert.equal(savedJourney.departureAt, mobility.serverNow);
-      assert.ok(savedJourney.departureAt >= startedAt && savedJourney.departureAt <= finishedAt);
+      // Concurrent HTTP requests may be processed in either order; the second
+      // response acknowledges the original departure with a newer serverNow.
+      assert.ok(savedJourney.departureAt >= before.serverNow);
+      assert.ok(calls.every((result) => savedJourney.departureAt <= result.data.mobility.serverNow));
       const duration = Math.max(MIN_TRIP_DURATION_MS, Math.ceil(Math.hypot(
         exteriorLocation.x - EXTERIOR_HOME_POSITION.x,
         exteriorLocation.y - EXTERIOR_HOME_POSITION.y,
@@ -327,6 +329,7 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       assert.equal(restored.revision, journeyRevision);
       assert.deepEqual(restored.location, exteriorLocation);
       assert.deepEqual(restored.journey, savedJourney);
+      await party(a, { action: "leave" }, 409);
       const blocked = await request("/api/mundo/jugador", a, {
         action: "checkpoint", revision: journeyRevision, location: BASE_RETURN_LOCATION,
       }, "PATCH");
@@ -364,6 +367,233 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       assert.equal(unchanged.revision, arrived.revision);
       assert.deepEqual(unchanged.location, BASE_RETURN_LOCATION);
       assert.equal(unchanged.journey, null);
+    });
+
+    async function expedition(account, body, status = 200, code) {
+      const result = await request("/api/mundo/expediciones", account, body);
+      assert.equal(result.status, status, JSON.stringify(result.data));
+      assert.equal(result.data.ok, status === 200);
+      if (code) assert.equal(result.data.code, code);
+      return result.data.snapshot;
+    }
+
+    async function checkpointBase(account) {
+      await load(account);
+      const result = await request("/api/mundo/jugador", account, {
+        action: "checkpoint", revision: account.session.mobility.revision, location: BASE_RETURN_LOCATION,
+      }, "PATCH");
+      assert.equal(result.status, 200);
+      assert.deepEqual((await load(account)).mobility.location, BASE_RETURN_LOCATION);
+    }
+
+    async function expireExpeditionLeg(account, active, field) {
+      assert.ok(["arrivalAt", "returnArrivalAt"].includes(field));
+      // Only dates on A's own server-created ledger are advanced, never stats or outcomes.
+      assert.equal(account, a);
+      const row = await prisma.expedicionMundo.findUniqueOrThrow({ where: { id: active.id } });
+      assert.equal(row.jugadorId, account.session.player.id);
+      await prisma.expedicionMundo.update({
+        where: { id: row.id }, data: { [field]: new Date(Date.now() - 1) },
+      });
+    }
+
+    async function winExpedition(account, snapshot) {
+      assert.equal(snapshot.active.phase, "battle");
+      for (let turn = 0; turn < 30 && snapshot.active.phase === "battle"; turn++) {
+        const command = { action: "attack", expeditionId: snapshot.active.id, version: snapshot.active.version };
+        const before = snapshot;
+        snapshot = await expedition(account, command);
+        assert.equal(snapshot.active.version, before.active.version + 1);
+        assert.equal(snapshot.rewardRevision, before.rewardRevision + 1);
+        await expedition(account, command, 409, "expedition_conflict");
+        const repeated = await expedition(account);
+        assert.deepEqual(repeated.active, snapshot.active);
+        assert.deepEqual(repeated.profile, snapshot.profile);
+        assert.equal(repeated.rewardRevision, snapshot.rewardRevision);
+      }
+      assert.equal(snapshot.active.phase, "returning", "Combat must finish within 30 attacks");
+      assert.equal(snapshot.active.outcome, "victory");
+      assert.equal(snapshot.active.rewardGranted, false);
+      assert.equal(snapshot.active.returnArrivalAt - snapshot.active.returnDepartureAt, snapshot.active.mission.durationMs);
+      return snapshot;
+    }
+
+    function assertReward(before, after, mission) {
+      const totalExperience = before.profile.experience + mission.experience;
+      const levels = Math.floor(totalExperience / 100);
+      assert.equal(after.profile.gold, before.profile.gold + mission.gold);
+      assert.equal(after.profile.experience, totalExperience % 100);
+      assert.equal(after.profile.level, before.profile.level + levels);
+      assert.equal(after.profile.maxHealth, before.profile.maxHealth + levels * 10);
+      assert.equal(after.profile.currentHealth, before.profile.currentHealth + levels * 10);
+      assert.equal(after.rewardRevision, before.rewardRevision + 1);
+      assert.notEqual(after.progressToken, before.progressToken);
+      assert.equal(after.active.phase, "completed");
+      assert.equal(after.active.rewardGranted, true);
+    }
+
+    async function assertSavedExpedition(account, snapshot) {
+      const session = await load(account);
+      assert.deepEqual(session.player, snapshot.profile);
+      assert.equal(session.rewardRevision, snapshot.rewardRevision);
+      assert.equal(session.progressToken, snapshot.progressToken);
+      const repeated = await expedition(account, { action: "status" });
+      assert.deepEqual(repeated.active, snapshot.active);
+      assert.deepEqual(repeated.profile, snapshot.profile);
+      assert.equal(repeated.rewardRevision, snapshot.rewardRevision);
+      assert.equal(repeated.progressToken, snapshot.progressToken);
+    }
+
+    await t.test("expedition authentication and strict payloads reject forged rewards and client times", async () => {
+      await expedition(null, undefined, 401);
+      await expedition(null, { action: "status" }, 401);
+      const before = await expedition(a);
+      assert.equal(before.active, null);
+      assert.equal(before.missions.filter((mission) => mission.kind === "normal").length, 3);
+      assert.equal(before.missions.filter((mission) => mission.kind === "elite").length, 1);
+      const mission = before.missions.find((candidate) => candidate.kind === "normal");
+      for (const field of ["gold", "experience", "rewardGranted", "departureAt", "arrivalAt", "returnArrivalAt", "ultimaEliteExitosa"]) {
+        await expedition(a, {
+          action: "start", missionId: mission.id, requestId: randomUUID(), [field]: Date.now(),
+        }, 400, "invalid_body");
+      }
+      await expedition(a, { action: "status", gold: 999999 }, 400, "invalid_body");
+      await expedition(a, { action: "start", missionId: mission.id, requestId: "invalid" }, 400, "invalid_request");
+      const unchanged = await expedition(a, { action: "status" });
+      assert.equal(unchanged.active, null);
+      assert.deepEqual(unchanged.profile, before.profile);
+      assert.equal(unchanged.rewardRevision, before.rewardRevision);
+    });
+
+    await t.test("normal HTTP expedition: concurrent UUID replay, versioned combat and exactly-once rewards recover stale sync", async () => {
+      await checkpointBase(a);
+      const stale = progress(a.session);
+      const before = await expedition(a);
+      const mission = before.missions.find((candidate) => candidate.kind === "normal");
+      assert.ok(mission);
+      assert.equal(mission.experience, 25);
+      const command = { action: "start", missionId: mission.id, requestId: randomUUID() };
+      const starts = await Promise.all([expedition(a, command), expedition(a, command)]);
+      assert.equal(starts[0].active.id, starts[1].active.id);
+      let snapshot = starts[0];
+      assert.equal(snapshot.active.phase, "outbound");
+      assert.equal(snapshot.active.mission.id, mission.id);
+      assert.ok(Math.abs(snapshot.active.mission.lng - mission.lng) < 1e-9);
+      assert.ok(Math.abs(snapshot.active.mission.lat - mission.lat) < 1e-9);
+      assert.deepEqual(snapshot.active.origin, { lat: a.session.base.lat, lng: a.session.base.lng });
+      assert.equal(snapshot.active.arrivalAt - snapshot.active.departureAt, mission.durationMs);
+      assert.ok(snapshot.active.departureAt >= before.serverNow && snapshot.active.departureAt <= snapshot.serverNow);
+      assert.deepEqual((await expedition(a, command)).active, snapshot.active);
+      assert.equal(await prisma.expedicionMundo.count({ where: { jugadorId: a.session.player.id, requestId: command.requestId } }), 1);
+      await expireExpeditionLeg(a, snapshot.active, "arrivalAt");
+      snapshot = await expedition(a);
+      snapshot = await winExpedition(a, snapshot);
+      assert.equal(snapshot.profile.gold, before.profile.gold);
+      assert.equal(snapshot.profile.experience, before.profile.experience);
+      const returning = snapshot;
+      await expireExpeditionLeg(a, snapshot.active, "returnArrivalAt");
+      const completed = await Promise.all([expedition(a), expedition(a)]);
+      snapshot = completed[0];
+      assertReward(returning, snapshot, mission);
+      assert.deepEqual(completed[1].profile, snapshot.profile);
+      assert.deepEqual(completed[1].active, snapshot.active);
+      assert.equal(completed[1].rewardRevision, snapshot.rewardRevision);
+      const recovered = await request("/api/mundo/sync", a, stale);
+      assert.equal(recovered.status, 200);
+      assert.equal(recovered.data.profileReset, true);
+      assert.deepEqual(recovered.data.profile, snapshot.profile);
+      assert.equal(recovered.data.rewardRevision, snapshot.rewardRevision);
+      assert.equal(recovered.data.progressToken, snapshot.progressToken);
+      await assertSavedExpedition(a, snapshot);
+      assert.deepEqual(a.session.base.buildings, stale.buildings);
+    });
+
+    await t.test("elite HTTP victory sets server cooldown for 23h30 and persists rewards/revision", async () => {
+      await checkpointBase(a);
+      const before = await expedition(a);
+      const mission = before.missions.find((candidate) => candidate.kind === "elite");
+      assert.ok(mission);
+      assert.equal(mission.experience, 75);
+      assert.equal(before.eliteAvailableAt, 0);
+      let snapshot = await expedition(a, { action: "start", missionId: mission.id, requestId: randomUUID() });
+      await expireExpeditionLeg(a, snapshot.active, "arrivalAt");
+      snapshot = await winExpedition(a, await expedition(a));
+      const player = await prisma.jugador.findUniqueOrThrow({ where: { id: a.session.player.id } });
+      assert.ok(player.ultimaEliteExitosa instanceof Date);
+      assert.equal(player.ultimaEliteExitosa.getTime(), snapshot.active.returnDepartureAt);
+      assert.equal(snapshot.eliteAvailableAt, player.ultimaEliteExitosa.getTime() + (23 * 60 + 30) * 60_000);
+      assert.ok(snapshot.eliteAvailableAt > snapshot.serverNow);
+      const returning = snapshot;
+      await expireExpeditionLeg(a, snapshot.active, "returnArrivalAt");
+      snapshot = await expedition(a);
+      assertReward(returning, snapshot, mission);
+      assert.equal(snapshot.eliteAvailableAt, returning.eliteAvailableAt);
+      const currentElite = snapshot.missions.find((candidate) => candidate.kind === "elite");
+      await expedition(a, { action: "start", missionId: currentElite.id, requestId: randomUUID() }, 409, "elite_cooldown");
+      await assertSavedExpedition(a, snapshot);
+      const saved = await sync(a);
+      assert.equal(saved.profileReset, false);
+      assert.deepEqual(saved.profile, snapshot.profile);
+      assert.equal(saved.rewardRevision, snapshot.rewardRevision);
+      await assertSavedExpedition(a, snapshot);
+    });
+
+    await t.test("trade HTTP credits live B exactly one integral quarter and stale recipient sync cannot undo payment", async () => {
+      await checkpointBase(a);
+      const staleRecipient = progress(await load(b));
+      const recipientBefore = await expedition(b);
+      const before = await expedition(a);
+      const mission = before.missions.find((candidate) => candidate.kind === "trade" && candidate.targetPlayerId === b.session.player.id);
+      assert.ok(mission, "Choose this run's live account B, never an arbitrary nearby base");
+      assert.equal(mission.gold % 4, 0);
+      assert.ok(Number.isInteger(mission.gold / 4));
+      const command = { action: "start", missionId: mission.id, requestId: randomUUID() };
+      let snapshot = await expedition(a, command);
+      assert.equal(snapshot.active.phase, "outbound");
+      assert.equal(snapshot.active.enemy, null);
+      await expireExpeditionLeg(a, snapshot.active, "arrivalAt");
+      snapshot = await expedition(a);
+      assert.equal(snapshot.active.phase, "returning");
+      assert.equal(snapshot.active.outcome, "trade");
+      assert.equal(snapshot.active.rewardGranted, false);
+      assert.equal(snapshot.active.returnArrivalAt - snapshot.active.returnDepartureAt, mission.durationMs);
+      assert.deepEqual(snapshot.profile, before.profile);
+      assert.deepEqual((await expedition(b)).profile, recipientBefore.profile);
+      await expireExpeditionLeg(a, snapshot.active, "returnArrivalAt");
+      snapshot = await expedition(a);
+      assertReward(before, snapshot, mission);
+      const recipient = await expedition(b);
+      assert.deepEqual(recipient.profile, { ...recipientBefore.profile, gold: recipientBefore.profile.gold + mission.gold / 4 });
+      assert.equal(recipient.rewardRevision, recipientBefore.rewardRevision + 1);
+      assert.notEqual(recipient.progressToken, recipientBefore.progressToken);
+      assert.ok(Number.isInteger(recipient.profile.gold));
+      assert.deepEqual((await expedition(a, command)).active, snapshot.active);
+      const recovered = await request("/api/mundo/sync", b, staleRecipient);
+      assert.equal(recovered.status, 200);
+      assert.equal(recovered.data.profileReset, true);
+      assert.deepEqual(recovered.data.profile, recipient.profile);
+      assert.equal(recovered.data.rewardRevision, recipient.rewardRevision);
+      await assertSavedExpedition(a, snapshot);
+      await assertSavedExpedition(b, recipient);
+      assert.deepEqual(b.session.base.buildings, staleRecipient.buildings);
+
+      // Reward recovery must not authorize an old tab to replace a newer building save.
+      const buildings = b.session.base.buildings.map((building) => building.type === "embassy" ? { ...building, level: 2 } : building);
+      await sync(b, { buildings });
+      const conflict = await request("/api/mundo/sync", b, staleRecipient);
+      assert.equal(conflict.status, 409);
+      assert.equal(conflict.data.code, "progress_conflict");
+      await load(b);
+      assert.deepEqual(b.session.base.buildings, buildings);
+      const savedSender = await sync(a);
+      const savedRecipient = await sync(b);
+      assert.equal(savedSender.profileReset, false);
+      assert.equal(savedRecipient.profileReset, false);
+      await assertSavedExpedition(a, snapshot);
+      const recipientAfterBuilding = await expedition(b);
+      assert.deepEqual(recipientAfterBuilding.profile, recipient.profile);
+      assert.equal(recipientAfterBuilding.rewardRevision, recipient.rewardRevision);
+      await assertSavedExpedition(b, recipientAfterBuilding);
     });
   } finally {
     // Only this run's disposable accounts are touched, including failed registrations.

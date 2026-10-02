@@ -90,7 +90,7 @@ test("location conflicts stop writes; menu commands blocked in journey", async (
   await manager.checkpoint();
   assert.equal(manager.getSnapshot().conflict, true);
   manager.update(12);
-  assert.equal(requests, 2);
+  assert.equal(requests, 1);
   let canOpen = false;
   const menu = new MenuManager(manager, () => canOpen);
   menu.toggle();
@@ -114,13 +114,70 @@ test("cart animation matches the supplied 3x8 sheet and interpolation clamps", (
   assert.equal(interpolateJourney(trip, 50).progress, 1);
 });
 
-test("visible contact circles are opt-in for exterior, not base or interiors", () => {
+test("elliptical contact shadows are removed; interaction radii are independent", () => {
   let circles = 0;
   const ctx = { canvas: { width: 240, height: 360 }, save() {}, restore() {}, beginPath() {}, fill() {}, moveTo() {}, lineTo() { circles++; }, closePath() {} };
   const caster = { getShadowFootprint() { return { x: 0, y: 0, radiusX: 9, radiusY: 4, height: 40, shape: "ellipse" }; } };
   const projection = { project(x, y) { return { x, y, scale: 1 }; } };
   new LightingSystem().renderShadows(ctx, [caster], projection, {});
   assert.equal(circles, 0);
-  new LightingSystem({ contactShadows: true }).renderShadows(ctx, [caster], projection, {});
-  assert.ok(circles > 0);
+  new LightingSystem({ dayNight: { getState: () => ({ sun: { intensity: 0 } }) } }).renderShadows(ctx, [caster], projection, {});
+  assert.equal(circles, 0);
+});
+
+test("double network failure preserves exact checkpoint before saving newer movement", async () => {
+  let location = { sceneId: "exterior-world", x: 4000, y: 5000, direction: "up" };
+  const writes = [];
+  let failing = true;
+  const gateway = { async mobility(request) {
+    if (request.action !== "status") writes.push(request);
+    if (failing) return { ok: false, code: "network", message: "Sin conexión" };
+    return { ok: true, mobility: { revision: 1, location: request.location, journey: null, serverNow: 1000 } };
+  } };
+  const manager = new MobilityManager(gateway, initial(), () => location, () => {}, () => 0);
+  await manager.checkpoint();
+  location = { ...location, x: 4100 };
+  failing = false;
+  manager.update(4);
+  await yieldMicrotasks();
+  assert.deepEqual(writes[1], writes[0]);
+  assert.equal(manager.getSnapshot().conflict, false);
+  manager.destroy();
+});
+
+test("ambiguous cart start stays locked until recovered, and destroyed engines send no new cart call", async () => {
+  const location = { sceneId: "exterior-world", x: 4000, y: 5000, direction: "up" };
+  const failing = new MobilityManager({ async mobility() { return { ok: false, code: "network", message: "Sin conexión" }; } },
+    initial(location), () => location, () => {}, () => 0);
+  await failing.callCart();
+  assert.equal(failing.getSnapshot().travelPending, true);
+  const menu = new MenuManager(failing, () => !failing.getSnapshot().travelPending);
+  menu.toggle();
+  assert.equal(menu.getSnapshot().open, false);
+  failing.destroy();
+  let finish;
+  let cartCalls = 0;
+  const manager = new MobilityManager({ async mobility(request) {
+    if (request.action === "call-cart") cartCalls++;
+    await new Promise((resolve) => { finish = resolve; });
+    return { ok: true, mobility: { revision: 1, location, journey: null, serverNow: 1000 } };
+  } }, initial(), () => location, () => {}, () => 0);
+  const calling = manager.callCart();
+  manager.destroy();
+  finish();
+  await calling;
+  assert.equal(cartCalls, 0);
+});
+
+test("conflicts never silently adopt a different session's journey or interior location", async () => {
+  const location = { sceneId: "tavern-interior", x: 64, y: 48, direction: "down" };
+  let statusCalls = 0;
+  const manager = new MobilityManager({ async mobility(request) {
+    if (request.action === "status") statusCalls++;
+    return { ok: false, code: "travel_active", message: "Recarga para ver el viaje" };
+  } }, initial(), () => location, () => {}, () => 0);
+  await manager.checkpoint();
+  assert.equal(manager.getSnapshot().conflict, true);
+  assert.equal(statusCalls, 0);
+  manager.destroy();
 });

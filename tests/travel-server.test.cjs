@@ -21,6 +21,7 @@ function loadSource(relativePath, dependencies = {}) {
 
 const travelContract = loadSource("src/shared/travel.ts");
 const worldContract = loadSource("src/shared/world.ts");
+const villageContract = loadSource("src/shared/village.ts");
 const { BASE_RETURN_LOCATION, EXTERIOR_HOME_POSITION, CART_SPEED, MIN_TRIP_DURATION_MS, interpolateJourney } = travelContract;
 const NOW = 1_800_000_000_000;
 const exterior = (x = 1000, y = 2000) => ({ sceneId: "exterior-world", x, y, direction: "left" });
@@ -51,6 +52,7 @@ function harness(initial = player()) {
         const draft = structuredClone(rows);
         let locked = false;
         const tx = {
+          expedicionMundo: { async findFirst() { return null; } },
           async $executeRaw() { locked = true; },
           jugador: {
             async findUnique({ where }) {
@@ -85,7 +87,7 @@ function harness(initial = player()) {
     "@/lib/prisma": { prisma },
     "@/lib/auth": { async getAuthenticatedUser() { return authenticated; } },
   });
-  const travel = loadSource("src/lib/mundo/travel.ts", { "./http": http, "@/shared/travel": travelContract });
+  const travel = loadSource("src/lib/mundo/travel.ts", { "./http": http, "@/shared/travel": travelContract, "@/shared/village": villageContract });
   const jugador = loadSource("src/lib/mundo/jugador.ts", {
     "@/lib/prisma": { prisma }, "@/shared/world": worldContract,
     "./http": http, "./travel": travel,
@@ -197,7 +199,7 @@ test("Solo permite interiores construidos en la base propia, no solares ni edifi
   h.row().usuario.base.edificios.push({ type: "town-hall", level: 1 });
   for (const sceneId of ["town-hall-interior", "tavern-interior", "embassy-interior", "base", "exterior-world"]) {
     const revision = h.row().ubicacionRevision;
-    const location = { sceneId, x: 64, y: 48, direction: "right" };
+    const location = sceneId === "base" ? { ...BASE_RETURN_LOCATION, direction: "right" } : { sceneId, x: 64, y: 48, direction: "right" };
     assert.deepEqual((await h.mutateMobility(id, { action: "checkpoint", revision, location })).location, location);
   }
   assert.equal(h.row("usuario-ajeno").ubicacionRevision, 0);
@@ -370,4 +372,13 @@ test("PATCH autenticado rechaza JSON inválido y usa exclusivamente la identidad
   assert.equal(unauthorized.status, 401);
   assert.equal((await unauthorized.json()).code, "unauthenticated");
   assert.equal(h.writes.length, 0);
+});
+
+test("checkpoint de base valida pies y acepta origen visual sobre el borde norte", async () => {
+  const h = harness();
+  const location = { sceneId: "base", x: 350, y: 450, direction: "up" };
+  const saved = await h.mutateMobility(h.row().usuarioId, { action: "checkpoint", revision: 0, location });
+  assert.deepEqual(saved.location, location);
+  await rejectsCode(h.mutateMobility(h.row().usuarioId, { action: "checkpoint", revision: 1,
+    location: { ...location, y: 420 } }), 400, "invalid_location");
 });

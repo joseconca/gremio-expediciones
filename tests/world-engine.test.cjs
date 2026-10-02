@@ -9,6 +9,9 @@ const { KeyboardInput } = require("../src/game/input/KeyboardInput.ts");
 const { InputManager } = require("../src/game/input/InputManager.ts");
 const { CombatManager } = require("../src/game/gameplay/CombatManager.ts");
 const { geographicToWorldPoint, isInsideWorldMap } = require("../src/game/world/WorldLocation.ts");
+const { ExpeditionManager } = require("../src/game/gameplay/ExpeditionManager.ts");
+const { worldGateway } = require("../src/services/worldGateway.ts");
+const { MISSION_BOARD_POSITION } = require("../src/game/entities/MissionBoard.ts");
 
 const yieldMicrotasks = () => new Promise((resolve) => setImmediate(resolve));
 function serverSnapshot(token = "token") {
@@ -201,4 +204,52 @@ test("combat overlay state: menus, potion, flee, victory and no duplicate reward
   assert.equal(player.getState().gold, 102);
   combat.act("attack");
   assert.equal(player.getState().gold, 102);
+});
+
+test("HTTP envelope reaches expedition controller without erasing ordinary local spending", async () => {
+  const fetchOriginal = global.fetch;
+  let gold = 100;
+  const profile = () => ({ id: "self", name: "Aventurero", sex: "chico", characterClass: "Novato", level: 1,
+    experience: 0, gold, currentHealth: 40, maxHealth: 100 });
+  global.fetch = async () => new Response(JSON.stringify({ ok: true, snapshot: {
+    serverNow: Date.now(), missions: [], active: null, eliteAvailableAt: 0,
+    profile: profile(), progressToken: "initial", rewardRevision: 0,
+  } }), { headers: { "Content-Type": "application/json" } });
+  const player = new PlayerProgression();
+  const village = new VillageProgression();
+  const party = new PartyManager(worldGateway, player, village, "initial");
+  const manager = new ExpeditionManager(worldGateway, party, { checkpoint: async () => ({ ok: true }) }, () => true);
+  try {
+    manager.openBoard();
+    await yieldMicrotasks();
+    assert.ok(manager.getSnapshot().data);
+    assert.equal(manager.isActive(), false);
+    gold = 90;
+    player.spendGold(20);
+    manager.update(4);
+    await yieldMicrotasks();
+    assert.equal(player.getState().gold, 80);
+    assert.equal(manager.getSnapshot().data.profile.gold, 90);
+    assert.deepEqual(MISSION_BOARD_POSITION, { x: 464, y: 768 });
+  } finally { global.fetch = fetchOriginal; manager.destroy(); party.destroy(); }
+});
+
+test("reward snapshot resets profile once and stale save acknowledgements cannot erase it", async () => {
+  const player = new PlayerProgression();
+  const village = new VillageProgression();
+  let reset = true;
+  const profile = { id: "self", name: "Aventurero", sex: "chico", characterClass: "Novato", level: 2,
+    experience: 5, gold: 150, currentHealth: 70, maxHealth: 110 };
+  const gateway = { async sync(progress) {
+    if (reset) { reset = false; return { ok: true, snapshot: { ...serverSnapshot("reward"), profile, rewardRevision: 1, profileReset: true } }; }
+    assert.equal(progress.gold, 150);
+    assert.equal(progress.rewardRevision, 1);
+    return { ok: true, snapshot: { ...serverSnapshot("reward"), rewardRevision: 1 } };
+  } };
+  const party = new PartyManager(gateway, player, village, "old");
+  assert.equal(await party.flush(), true);
+  assert.equal(player.getState().gold, 150);
+  assert.equal(player.getState().characterLevel, 2);
+  assert.equal(await party.flush(), true);
+  party.destroy();
 });
