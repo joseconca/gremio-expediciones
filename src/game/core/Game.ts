@@ -15,11 +15,14 @@ import { PartyManager } from "../gameplay/PartyManager";
 import type { WorldGateway } from "../gameplay/WorldGateway";
 import { DayNightSystem } from "../lighting/DayNightSystem";
 import type { WorldBaseLocation } from "../world/WorldLocation";
+import type { PlayerProfileDto, SavedBuilding } from "../../shared/world";
 
 export interface GameConfig {
   canvas: HTMLCanvasElement;
   selectedBase: WorldBaseLocation;
   otherBases?: WorldBaseLocation[];
+  player: PlayerProfileDto;
+  buildings: SavedBuilding[];
   worldGateway: WorldGateway;
 }
 
@@ -55,8 +58,15 @@ export class Game {
 
     this.input = new InputManager();
     this.dialogueManager = new DialogueManager();
-    this.villageProgression = new VillageProgression();
-    this.playerProgression = new PlayerProgression();
+    this.villageProgression = new VillageProgression(config.buildings);
+    this.playerProgression = new PlayerProgression({
+      name: config.player.name,
+      characterClass: config.player.characterClass,
+      level: config.player.level,
+      experience: config.player.experience,
+      gold: config.player.gold,
+      currentHealth: config.player.currentHealth,
+    });
     this.combatManager = new CombatManager(
       this.playerProgression,
       this.villageProgression
@@ -130,7 +140,6 @@ export class Game {
       playerProgression: this.playerProgression,
       combatManager: this.combatManager,
       partyManager: this.partyManager,
-      worldGateway: this.worldGateway,
       dayNightSystem: this.dayNightSystem,
       spawnId,
     };

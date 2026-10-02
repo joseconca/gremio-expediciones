@@ -16,11 +16,16 @@ import {
   INITIAL_VILLAGE_RESOURCES,
 } from "@/game/gameplay/VillageProgression";
 import type { WorldBaseLocation } from "@/game/world/WorldLocation";
-import type { WorldPlayerDto } from "@/shared/world";
+import type {
+  CreatePlayerRequest,
+  NearbyBaseDto,
+  PlayerProfileDto,
+  SavedBuilding,
+  WorldSessionDto,
+} from "@/shared/world";
 import {
-  loadNearbyBases,
-  loadOwnPlayer,
-  registerBase,
+  createPlayer,
+  loadSession,
   worldGateway,
 } from "@/services/worldGateway";
 
@@ -35,6 +40,8 @@ const GameBaseLocationPicker = dynamic(
 interface GameStart {
   base: WorldBaseLocation;
   otherBases: WorldBaseLocation[];
+  player: PlayerProfileDto;
+  buildings: SavedBuilding[];
 }
 
 type Phase =
@@ -44,13 +51,27 @@ type Phase =
   | { kind: "picking" }
   | { kind: "playing"; start: GameStart };
 
-function toWorldBaseLocation(player: WorldPlayerDto): WorldBaseLocation {
+function toNearbyLocation(base: NearbyBaseDto): WorldBaseLocation {
   return {
-    id: player.id,
-    name: player.displayName,
-    lat: player.baseLat,
-    lng: player.baseLng,
-    hasEmbassy: player.hasEmbassy,
+    id: base.playerId,
+    name: base.baseName,
+    lat: base.lat,
+    lng: base.lng,
+    hasEmbassy: base.hasEmbassy,
+  };
+}
+
+function toGameStart(session: WorldSessionDto): GameStart {
+  return {
+    base: {
+      id: session.player.id,
+      name: session.base.name,
+      lat: session.base.lat,
+      lng: session.base.lng,
+    },
+    otherBases: session.nearbyBases.map(toNearbyLocation),
+    player: session.player,
+    buildings: session.base.buildings,
   };
 }
 
@@ -129,21 +150,15 @@ export default function NewGamePage() {
     let cancelled = false;
 
     const resolveSession = async () => {
-      const lookup = await loadOwnPlayer();
+      const lookup = await loadSession();
       if (cancelled) return;
 
       if (lookup.status === "unauthenticated") {
         setPhase({ kind: "unauthenticated" });
       } else if (lookup.status === "unavailable") {
         setPhase({ kind: "unavailable", message: lookup.message });
-      } else if (lookup.player) {
-        const otherBases = (await loadNearbyBases()).map(toWorldBaseLocation);
-        if (!cancelled) {
-          setPhase({
-            kind: "playing",
-            start: { base: toWorldBaseLocation(lookup.player), otherBases },
-          });
-        }
+      } else if (lookup.session) {
+        setPhase({ kind: "playing", start: toGameStart(lookup.session) });
       } else {
         setPhase({ kind: "picking" });
       }
@@ -166,6 +181,8 @@ export default function NewGamePage() {
       canvas: canvasRef.current,
       selectedBase: start.base,
       otherBases: start.otherBases,
+      player: start.player,
+      buildings: start.buildings,
       worldGateway,
     });
 
@@ -244,22 +261,18 @@ export default function NewGamePage() {
     () => EMPTY_PARTY_STATE
   );
 
-  const foundGuild = async (location: { lat: number; lng: number }) => {
+  const foundGuild = async (request: CreatePlayerRequest) => {
     setRegistering(true);
     setRegistrationError(null);
 
-    const registration = await registerBase(location);
-    if (!registration.ok) {
-      setRegistrationError(registration.message);
+    const creation = await createPlayer(request);
+    if (!creation.ok) {
+      setRegistrationError(creation.message);
       setRegistering(false);
       return;
     }
 
-    const otherBases = (await loadNearbyBases()).map(toWorldBaseLocation);
-    setPhase({
-      kind: "playing",
-      start: { base: toWorldBaseLocation(registration.player), otherBases },
-    });
+    setPhase({ kind: "playing", start: toGameStart(creation.session) });
     setRegistering(false);
   };
 
@@ -280,7 +293,7 @@ export default function NewGamePage() {
           <GameBaseLocationPicker
             busy={registering}
             errorMessage={registrationError}
-            onStart={(location) => void foundGuild(location)}
+            onStart={(request) => void foundGuild(request)}
           />
         )}
       </main>

@@ -67,9 +67,23 @@ const BUILDING_GROUND_Y = 704;
 
 /** Temporary, in-memory progression for the standalone 2.5D game. */
 export class VillageProgression {
-  private state: VillageProgressionState = INITIAL_STATE;
+  private state: VillageProgressionState;
   private readonly listeners = new Set<VillageProgressionListener>();
   private currentRevision = 0;
+
+  /** `saved` is the left-to-right building order; it must include the town hall. */
+  constructor(saved?: ReadonlyArray<{ type: VillageBuildingType; level: number }>) {
+    this.state = saved?.length
+      ? {
+          ...INITIAL_STATE,
+          buildings: saved.map(({ type, level }) => ({ id: type, type, level })),
+        }
+      : INITIAL_STATE;
+  }
+
+  getSavedBuildings(): Array<{ type: VillageBuildingType; level: number }> {
+    return this.state.buildings.map(({ type, level }) => ({ type, level }));
+  }
 
   getState(): VillageProgressionState {
     return {

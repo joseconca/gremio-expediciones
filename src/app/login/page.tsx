@@ -32,7 +32,7 @@ export default function LoginPage() {
       return;
     }
 
-    router.push("/base");
+    router.push("/newGame");
   }
 
   return (

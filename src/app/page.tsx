@@ -1,62 +1,52 @@
-'use client';
+"use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useGameStore } from "@/store/useGameStore";
 import Link from "next/link";
 
 export default function Home() {
   const router = useRouter();
-  const { cargarJugador, isLoading, personaje } = useGameStore();
+  const [checking, setChecking] = useState(true);
 
   useEffect(() => {
-    cargarJugador();
-  }, [cargarJugador]);
+    let cancelled = false;
 
-  useEffect(() => {
-    if (!isLoading) {
-      if (personaje) {
-        router.push("/base");
-      }
-    }
-  }, [isLoading, personaje, router]);
+    fetch("/api/mundo/jugador", { cache: "no-store" })
+      .then((response) => {
+        if (cancelled) return;
+        if (response.ok) router.replace("/newGame");
+        else setChecking(false);
+      })
+      .catch(() => {
+        if (!cancelled) setChecking(false);
+      });
 
-  if (isLoading) {
+    return () => {
+      cancelled = true;
+    };
+  }, [router]);
+
+  if (checking) {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-slate-900 text-slate-100">
-        <div className="animate-pulse flex flex-col items-center">
-          <div className="w-12 h-12 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-          <p className="text-amber-500 font-bold">Conectando con el gremio...</p>
-        </div>
+      <main className="flex min-h-screen flex-col items-center justify-center bg-slate-900 p-8 text-slate-100">
+        <p className="animate-pulse font-bold text-amber-500">Conectando con el gremio...</p>
       </main>
     );
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-slate-900 text-slate-100">
-      <div className="text-center max-w-xl">
-        <h1 className="text-4xl font-bold mb-4 text-amber-500">
-          Gremio de Expediciones
-        </h1>
-
-        <p className="text-lg mb-8 text-slate-300">
-          Gestiona tu base, recluta aventureros y envíalos a explorar el mundo real.
+    <main className="flex min-h-screen flex-col items-center justify-center bg-slate-900 p-8 text-slate-100">
+      <div className="max-w-xl text-center">
+        <h1 className="mb-4 text-4xl font-bold text-amber-500">Gremio de Expediciones</h1>
+        <p className="mb-8 text-lg text-slate-300">
+          Levanta tu poblado en el mapa real, explora y combate junto a otros aventureros.
         </p>
-
-        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <Link
-            href="/login"
-            className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-8 rounded-lg transition-colors"
-          >
-            Iniciar sesión
-          </Link>
-          <Link
-            href="/login"
-            className="text-blue-300 hover:text-blue-200 hover:underline"
-          >
-            Crear mi gremio
-          </Link>
-        </div>
+        <Link
+          href="/login"
+          className="rounded-lg bg-amber-600 px-8 py-3 font-bold text-white transition-colors hover:bg-amber-500"
+        >
+          Entrar o crear cuenta
+        </Link>
       </div>
     </main>
   );

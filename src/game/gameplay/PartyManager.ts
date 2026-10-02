@@ -31,13 +31,12 @@ const EMPTY_SNAPSHOT: PartySnapshot = {
 
 const SYNC_INTERVAL_SECONDS = 4;
 
-/** Mirrors server-owned party state; polls on a timer, never per frame. */
+/** Reports local progress and mirrors server-owned party state on a timer, never per frame. */
 export class PartyManager {
   private snapshot: PartySnapshot = EMPTY_SNAPSHOT;
   private readonly listeners = new Set<() => void>();
   private elapsedSinceSync = SYNC_INTERVAL_SECONDS;
   private syncing = false;
-  private embassyRegistered = false;
 
   constructor(
     private readonly gateway: WorldGateway,
@@ -85,18 +84,16 @@ export class PartyManager {
     this.elapsedSinceSync = 0;
 
     try {
-      if (!this.embassyRegistered && this.village.hasBuilding("embassy")) {
-        const registration = await this.gateway.registerEmbassy();
-        this.embassyRegistered = registration.ok;
-      }
-
       const state = this.player.getState();
-      await this.gateway.reportPresence({
+      const remote = await this.gateway.sync({
         characterClass: state.characterClass,
+        level: state.characterLevel,
+        experience: state.experience,
+        gold: state.gold,
         currentHealth: state.attributes.currentHealth,
         maxHealth: state.attributes.maxHealth,
+        buildings: this.village.getSavedBuildings(),
       });
-      const remote = await this.gateway.getPartySnapshot();
       if (remote) this.apply(remote);
     } catch {
       // Network hiccups keep the last known snapshot; the next tick retries.

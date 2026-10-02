@@ -143,12 +143,8 @@ export class ExteriorWorldScene extends Scene {
       return;
     }
 
-    void this.worldGateway.authorizeVisit(base.id).then((result) =>
-      notice(
-        result.ok
-          ? "Visita autorizada por ambas Embajadas. Entrar en bases ajenas llegará cuando exista su escena de visita."
-          : result.message
-      )
+    notice(
+      "Ambas Embajadas permiten la visita. Entrar en bases ajenas llegará cuando exista su escena de visita."
     );
   }
 

@@ -2,7 +2,7 @@ import type { CharacterAttributes } from "../entities/Characters/CharacterAttrib
 
 export interface PlayerProgressionState {
   name: string;
-  characterClass: "Novato";
+  characterClass: string;
   characterLevel: number;
   experience: number;
   experienceToNextLevel: number;
@@ -37,10 +37,45 @@ const INITIAL_STATE: PlayerProgressionState = {
   gold: 100,
 };
 
+export interface SavedPlayerProgress {
+  name: string;
+  characterClass: string;
+  level: number;
+  experience: number;
+  gold: number;
+  currentHealth: number;
+}
+
+// Per-level growth mirrors gainExperience(), so attributes derive from the saved level.
+function restoreState(saved: SavedPlayerProgress): PlayerProgressionState {
+  const gainedLevels = Math.max(0, saved.level - 1);
+  const maxHealth = INITIAL_STATE.attributes.maxHealth + gainedLevels * 10;
+
+  return {
+    ...INITIAL_STATE,
+    name: saved.name,
+    characterClass: saved.characterClass,
+    characterLevel: saved.level,
+    experience: saved.experience,
+    gold: saved.gold,
+    attributes: {
+      ...INITIAL_STATE.attributes,
+      maxHealth,
+      currentHealth: Math.min(maxHealth, saved.currentHealth),
+      physicalAttack: INITIAL_STATE.attributes.physicalAttack + gainedLevels,
+      physicalDefense: INITIAL_STATE.attributes.physicalDefense + gainedLevels,
+    },
+  };
+}
+
 /** Session-only identity, experience and combat attributes for the player. */
 export class PlayerProgression {
-  private state: PlayerProgressionState = INITIAL_STATE;
+  private state: PlayerProgressionState;
   private readonly listeners = new Set<() => void>();
+
+  constructor(saved?: SavedPlayerProgress) {
+    this.state = saved ? restoreState(saved) : INITIAL_STATE;
+  }
 
   getState(): PlayerProgressionState {
     return this.state;

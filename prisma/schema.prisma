@@ -30,6 +30,11 @@ model Usuario {
   sesiones         Sesion[]
   mensajesChat     MensajeChat[]
   sugerencias      Sugerencia[]
+
+  // Juego 2.5D
+  fechaEmpezar DateTime?
+  jugador      Jugador?
+  base         Base?
 }
 
 model Sesion {
@@ -270,4 +275,84 @@ model Sugerencia {
   usuario Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
 
   @@index([creado])
+}
+
+// ---------------- Juego 2.5D ----------------
+
+enum EstadoInvitacion {
+  PENDIENTE
+  ACEPTADA
+  RECHAZADA
+  CANCELADA
+}
+
+model Jugador {
+  id          String  @id @default(uuid())
+  usuarioId   String  @unique
+  usuario     Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+
+  nombre      String
+  sexo        String
+  clase       String  @default("Novato")
+  nivel       Int     @default(1)
+  experiencia Int     @default(0)
+  oro         Int     @default(100)
+  saludActual Int     @default(40)
+  saludMaxima Int     @default(100)
+  ultimoVisto DateTime @default(now())
+
+  miembroParty          MiembroParty?
+  partyLiderada         Party?             @relation("LiderParty")
+  invitacionesEnviadas  InvitacionParty[]  @relation("InvitacionEmisor")
+  invitacionesRecibidas InvitacionParty[]  @relation("InvitacionReceptor")
+}
+
+model Base {
+  id        String  @id @default(uuid())
+  usuarioId String  @unique
+  usuario   Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+
+  nombre    String
+  lat       Float
+  lng       Float
+  // [{ "type": "town-hall" | "tavern" | "embassy", "level": number }]
+  edificios Json    @default("[]")
+  // Derivado de edificios; permite filtrar en SQL.
+  embajada  Boolean  @default(false)
+  creada    DateTime @default(now())
+
+  @@index([lat, lng])
+}
+
+model Party {
+  id       String   @id @default(uuid())
+  liderId  String   @unique
+  lider    Jugador  @relation("LiderParty", fields: [liderId], references: [id])
+  creada   DateTime @default(now())
+
+  miembros MiembroParty[]
+}
+
+model MiembroParty {
+  jugadorId String   @id
+  jugador   Jugador  @relation(fields: [jugadorId], references: [id], onDelete: Cascade)
+  partyId   String
+  party     Party    @relation(fields: [partyId], references: [id], onDelete: Cascade)
+  unido     DateTime @default(now())
+
+  @@index([partyId])
+}
+
+model InvitacionParty {
+  id         String           @id @default(uuid())
+  emisorId   String
+  emisor     Jugador          @relation("InvitacionEmisor", fields: [emisorId], references: [id], onDelete: Cascade)
+  receptorId String
+  receptor   Jugador          @relation("InvitacionReceptor", fields: [receptorId], references: [id], onDelete: Cascade)
+  estado     EstadoInvitacion @default(PENDIENTE)
+  creada     DateTime         @default(now())
+  expira     DateTime
+
+  @@index([receptorId, estado])
+  @@index([emisorId, estado])
 }
