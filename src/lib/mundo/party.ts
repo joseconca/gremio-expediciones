@@ -2,6 +2,7 @@ import type { Base, Jugador } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { MAX_PARTY_SIZE, type PartySnapshotDto } from "@/shared/world";
 import { MundoError, withWorldLock } from "./http";
+import { listNearbyBases, progressToken } from "./jugador";
 
 const INVITATION_TTL_MS = 5 * 60 * 1000;
 const ONLINE_WINDOW_MS = 2 * 60 * 1000;
@@ -43,6 +44,8 @@ export async function getPartySnapshot(
     : [];
 
   return {
+    progressToken: progressToken(jugador, base),
+    nearbyBases: await listNearbyBases(base),
     selfPlayerId: jugador.id,
     members: (membership?.party.miembros ?? []).map((member) => ({
       playerId: member.jugadorId,
@@ -131,7 +134,7 @@ export async function respondToInvitation(
     throw new MundoError(400, "invalid_body", "Respuesta inv\u00e1lida.");
   }
 
-  await withWorldLock(async (tx) => {
+  const invalidSender = await withWorldLock(async (tx) => {
     const invitation = await tx.invitacionParty.findUnique({ where: { id: invitationId } });
     if (
       !invitation ||
@@ -166,7 +169,7 @@ export async function respondToInvitation(
         where: { id: invitation.id },
         data: { estado: "CANCELADA" },
       });
-      throw new MundoError(410, "invitation_gone", "Quien te invit\u00f3 ya no lidera esa party.");
+      return true;
     }
     if ((senderMembership?.party._count.miembros ?? 1) >= MAX_PARTY_SIZE) {
       throw new MundoError(409, "party_full", "La party est\u00e1 completa.");
@@ -193,10 +196,17 @@ export async function respondToInvitation(
       data: { estado: "CANCELADA" },
     });
   });
+  if (invalidSender) {
+    throw new MundoError(410, "invitation_gone", "Quien te invitó ya no lidera esa party.");
+  }
 }
 
 export async function leaveParty(jugador: Jugador): Promise<void> {
   await withWorldLock(async (tx) => {
+    await tx.invitacionParty.updateMany({
+      where: { emisorId: jugador.id, estado: "PENDIENTE" },
+      data: { estado: "CANCELADA" },
+    });
     const membership = await tx.miembroParty.findUnique({
       where: { jugadorId: jugador.id },
       include: { party: { include: { miembros: { orderBy: { unido: "asc" } } } } },

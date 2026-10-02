@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 
@@ -38,6 +38,7 @@ const GameBaseLocationPicker = dynamic(
 );
 
 interface GameStart {
+  progressToken: string;
   base: WorldBaseLocation;
   otherBases: WorldBaseLocation[];
   player: PlayerProfileDto;
@@ -63,6 +64,7 @@ function toNearbyLocation(base: NearbyBaseDto): WorldBaseLocation {
 
 function toGameStart(session: WorldSessionDto): GameStart {
   return {
+    progressToken: session.progressToken,
     base: {
       id: session.player.id,
       name: session.base.name,
@@ -92,6 +94,9 @@ const EMPTY_COMBAT_STATE: CombatSnapshot = {
   revision: 0,
 };
 const EMPTY_PARTY_STATE: PartySnapshot = {
+  syncStatus: "pending",
+  syncMessage: null,
+  nearbyBases: [],
   loaded: false,
   companions: [],
   isLeader: false,
@@ -145,6 +150,9 @@ export default function NewGamePage() {
   const [sceneManager, setSceneManager] = useState<Game["sceneManager"] | null>(null);
   const [combatManager, setCombatManager] = useState<Game["combatManager"] | null>(null);
   const [partyManager, setPartyManager] = useState<Game["partyManager"] | null>(null);
+  const setModalOpen = useCallback((open: boolean) => {
+    gameRef.current?.input.setBlocked(open);
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -178,6 +186,7 @@ export default function NewGamePage() {
     }
 
     const game = new Game({
+      progressToken: start.progressToken,
       canvas: canvasRef.current,
       selectedBase: start.base,
       otherBases: start.otherBases,
@@ -320,6 +329,7 @@ export default function NewGamePage() {
         player={playerState}
         resources={villageResources}
         companions={partyState.companions}
+        onModalChange={setModalOpen}
         isInVillage={
           sceneState.sceneId === "base" ||
           sceneState.sceneId === "town-hall-interior" ||
@@ -329,6 +339,12 @@ export default function NewGamePage() {
       />
 
       <GameControls />
+
+      {partyState.syncStatus !== "saved" && (
+        <p role="status" className="pointer-events-none absolute inset-x-3 top-32 z-30 rounded bg-stone-950/90 p-2 text-xs text-amber-200">
+          {partyState.syncMessage ?? "Conectando: espera al guardado antes de recargar."}
+        </p>
+      )}
 
       {combatManager && combatState.enemy && (
         <BattleOverlay

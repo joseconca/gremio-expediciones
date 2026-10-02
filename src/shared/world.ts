@@ -42,6 +42,7 @@ export interface NearbyBaseDto {
 }
 
 export interface WorldSessionDto {
+  progressToken: string;
   player: PlayerProfileDto;
   base: OwnBaseDto;
   nearbyBases: NearbyBaseDto[];
@@ -57,6 +58,7 @@ export interface CreatePlayerRequest {
 
 /** Client-reported progress; the server only persists it until economy moves server-side. */
 export interface SyncRequest {
+  progressToken: string;
   characterClass: string;
   level: number;
   experience: number;
@@ -88,6 +90,8 @@ export interface InvitablePlayerDto {
 }
 
 export interface PartySnapshotDto {
+  progressToken: string;
+  nearbyBases: NearbyBaseDto[];
   selfPlayerId: string;
   members: PartyMemberDto[];
   invitations: PartyInvitationDto[];
@@ -95,6 +99,10 @@ export interface PartySnapshotDto {
 }
 
 export type GatewayResult = { ok: true } | { ok: false; message: string };
+
+export type SyncResult =
+  | { ok: true; snapshot: PartySnapshotDto }
+  | { ok: false; code: string; message: string };
 
 export interface WorldApiError {
   code: string;

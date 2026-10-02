@@ -5,12 +5,16 @@ import type {
   PartyInvitationDto,
   PartyMemberDto,
   PartySnapshotDto,
+  NearbyBaseDto,
 } from "../../shared/world";
 import type { PlayerProgression } from "./PlayerProgression";
 import type { VillageProgression } from "./VillageProgression";
 import type { WorldGateway } from "./WorldGateway";
 
 export interface PartySnapshot {
+  syncStatus: "pending" | "saved" | "error" | "conflict";
+  syncMessage: string | null;
+  nearbyBases: NearbyBaseDto[];
   loaded: boolean;
   /** Party-mates excluding the local player. */
   companions: PartyMemberDto[];
@@ -21,6 +25,9 @@ export interface PartySnapshot {
 }
 
 const EMPTY_SNAPSHOT: PartySnapshot = {
+  syncStatus: "pending",
+  syncMessage: null,
+  nearbyBases: [],
   loaded: false,
   companions: [],
   isLeader: false,
@@ -36,13 +43,35 @@ export class PartyManager {
   private snapshot: PartySnapshot = EMPTY_SNAPSHOT;
   private readonly listeners = new Set<() => void>();
   private elapsedSinceSync = SYNC_INTERVAL_SECONDS;
-  private syncing = false;
+  private inFlight: Promise<void> | null = null;
+  private changeRevision = 0;
+  private readonly unsubscribe: Array<() => void>;
 
   constructor(
     private readonly gateway: WorldGateway,
     private readonly player: PlayerProgression,
-    private readonly village: VillageProgression
-  ) {}
+    private readonly village: VillageProgression,
+    private progressToken: string
+  ) {
+    this.unsubscribe = [
+      player.subscribe(() => this.markPending()),
+      village.subscribe((_state, event) => {
+        if (event === "town-hall-upgraded" || event === "construction-completed") this.markPending();
+      }),
+    ];
+  }
+
+  destroy(): void {
+    for (const unsubscribe of this.unsubscribe) unsubscribe();
+    this.listeners.clear();
+  }
+
+  private markPending(): void {
+    this.changeRevision++;
+    if (this.snapshot.syncStatus === "conflict") return;
+    this.snapshot = { ...this.snapshot, syncStatus: "pending", syncMessage: null };
+    for (const listener of this.listeners) listener();
+  }
 
   getSnapshot = (): PartySnapshot => this.snapshot;
 
@@ -73,19 +102,32 @@ export class PartyManager {
   private async runAction(
     action: () => Promise<GatewayResult>
   ): Promise<GatewayResult> {
+    // Publish completed buildings before the server checks embassy requirements.
+    await this.sync();
+    if (this.snapshot.syncStatus === "pending") await this.sync();
+    if (this.snapshot.syncStatus !== "saved") {
+      return { ok: false, message: this.snapshot.syncMessage ?? "Espera a que se guarde el progreso y vuelve a intentarlo." };
+    }
     const result = await action();
     if (result.ok) await this.sync();
     return result;
   }
 
-  private async sync(): Promise<void> {
-    if (this.syncing) return;
-    this.syncing = true;
+  private sync(): Promise<void> {
+    if (this.inFlight) return this.inFlight;
+    if (this.snapshot.syncStatus === "conflict") return Promise.resolve();
+    this.inFlight = this.performSync().finally(() => { this.inFlight = null; });
+    return this.inFlight;
+  }
+
+  private async performSync(): Promise<void> {
     this.elapsedSinceSync = 0;
+    const sentRevision = this.changeRevision;
 
     try {
       const state = this.player.getState();
       const remote = await this.gateway.sync({
+        progressToken: this.progressToken,
         characterClass: state.characterClass,
         level: state.characterLevel,
         experience: state.experience,
@@ -94,15 +136,18 @@ export class PartyManager {
         maxHealth: state.attributes.maxHealth,
         buildings: this.village.getSavedBuildings(),
       });
-      if (remote) this.apply(remote);
+      if (remote.ok) {
+        this.progressToken = remote.snapshot.progressToken;
+        this.apply(remote.snapshot, sentRevision === this.changeRevision);
+      } else {
+        this.setSyncError(remote.message, remote.code === "progress_conflict");
+      }
     } catch {
-      // Network hiccups keep the last known snapshot; the next tick retries.
-    } finally {
-      this.syncing = false;
+      this.setSyncError("Sin conexión: el progreso aún no se ha guardado.");
     }
   }
 
-  private apply(remote: PartySnapshotDto): void {
+  private apply(remote: PartySnapshotDto, saved: boolean): void {
     const companions = remote.members.filter(
       (member) => member.playerId !== remote.selfPlayerId
     );
@@ -111,12 +156,24 @@ export class PartyManager {
     );
 
     this.snapshot = {
+      syncStatus: saved ? "saved" : "pending",
+      syncMessage: null,
+      nearbyBases: remote.nearbyBases,
       loaded: true,
       companions,
       isLeader: self?.isLeader ?? false,
       isFull: remote.members.length >= MAX_PARTY_SIZE,
       invitations: remote.invitations,
       candidates: remote.candidates,
+    };
+    for (const listener of this.listeners) listener();
+  }
+
+  private setSyncError(message: string, conflict = false): void {
+    this.snapshot = {
+      ...this.snapshot,
+      syncStatus: conflict ? "conflict" : "error",
+      syncMessage: message,
     };
     for (const listener of this.listeners) listener();
   }

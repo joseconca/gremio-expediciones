@@ -8,12 +8,14 @@ import { prisma } from "@/lib/prisma";
 export function POST(request: Request) {
   return handleMundoRoute(async () => {
     const { jugador, base } = await requireJugador();
-    await syncProgress(jugador, base, await readJson(request));
+    const savedToken = await syncProgress(jugador, base, await readJson(request));
 
     const [freshPlayer, freshBase] = await Promise.all([
       prisma.jugador.findUniqueOrThrow({ where: { id: jugador.id } }),
       prisma.base.findUniqueOrThrow({ where: { id: base.id } }),
     ]);
-    return NextResponse.json(await getPartySnapshot(freshPlayer, freshBase));
+    const snapshot = await getPartySnapshot(freshPlayer, freshBase);
+    // A different writer may commit after ours; acknowledge only our own save.
+    return NextResponse.json({ ...snapshot, progressToken: savedToken });
   });
 }

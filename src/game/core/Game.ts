@@ -18,6 +18,7 @@ import type { WorldBaseLocation } from "../world/WorldLocation";
 import type { PlayerProfileDto, SavedBuilding } from "../../shared/world";
 
 export interface GameConfig {
+  progressToken: string;
   canvas: HTMLCanvasElement;
   selectedBase: WorldBaseLocation;
   otherBases?: WorldBaseLocation[];
@@ -74,7 +75,8 @@ export class Game {
     this.partyManager = new PartyManager(
       this.worldGateway,
       this.playerProgression,
-      this.villageProgression
+      this.villageProgression,
+      config.progressToken
     );
     this.dayNightSystem = new DayNightSystem();
     this.sceneManager = new SceneManager();
@@ -101,7 +103,12 @@ export class Game {
         new ExteriorWorldScene({
           ...this.createSceneConfig(spawnId),
           selectedBase: this.selectedBase,
-          otherBases: this.otherBases,
+          otherBases: this.partyManager.getSnapshot().loaded
+            ? this.partyManager.getSnapshot().nearbyBases.map((base) => ({
+                id: base.playerId, name: base.baseName, lat: base.lat, lng: base.lng,
+                hasEmbassy: base.hasEmbassy,
+              }))
+            : this.otherBases,
         })
     );
 
@@ -125,6 +132,7 @@ export class Game {
 
   destroy(): void {
     this.loop.stop();
+    this.partyManager.destroy();
     this.sceneManager.destroy();
     this.input.destroy();
   }

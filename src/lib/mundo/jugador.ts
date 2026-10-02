@@ -1,4 +1,5 @@
 import type { Base, Jugador } from "@prisma/client";
+import { createHash } from "node:crypto";
 import { prisma } from "@/lib/prisma";
 import {
   MIN_BASE_DISTANCE_METERS,
@@ -65,6 +66,7 @@ function toSession(
   nearbyBases: NearbyBaseDto[]
 ): WorldSessionDto {
   return {
+    progressToken: progressToken(jugador, base),
     player: {
       id: jugador.id,
       name: jugador.nombre,
@@ -87,7 +89,7 @@ function toSession(
 }
 
 /** Only bases inside the playable map are exposed, never the whole player base. */
-async function listNearbyBases(base: Base): Promise<NearbyBaseDto[]> {
+export async function listNearbyBases(base: Base): Promise<NearbyBaseDto[]> {
   const box = boundingBox(base, VISIBLE_BASE_RADIUS_METERS);
   const candidates = await prisma.base.findMany({
     where: {
@@ -184,12 +186,39 @@ export async function syncProgress(
   jugador: Jugador,
   base: Base,
   body: Record<string, unknown>
-): Promise<void> {
+): Promise<string> {
+  const integerFields = {
+    level: [1, 1000], experience: [0, 10_000_000], gold: [0, 100_000_000],
+    maxHealth: [1, 100_000], currentHealth: [0, 100_000],
+  };
+  for (const [field, [min, max]] of Object.entries(integerFields)) {
+    const value = body[field];
+    if (typeof value !== "number" || !Number.isInteger(value) || value < min || value > max) {
+      throw new MundoError(400, "invalid_progress", `Progreso inválido: ${field}.`);
+    }
+  }
+  if (
+    typeof body.progressToken !== "string" ||
+    typeof body.characterClass !== "string" || !body.characterClass.trim() || body.characterClass.length > 40 ||
+    (body.currentHealth as number) > (body.maxHealth as number) ||
+    !Array.isArray(body.buildings) || body.buildings.length < 1 || body.buildings.length > BUILDING_TYPES.length ||
+    body.buildings.some((entry) => !entry || typeof entry !== "object" ||
+      !BUILDING_TYPES.includes(entry.type) || !Number.isInteger(entry.level) || entry.level < 1 || entry.level > MAX_BUILDING_LEVEL) ||
+    new Set(body.buildings.map((entry) => entry.type)).size !== body.buildings.length ||
+    !body.buildings.some((entry) => entry.type === "town-hall")
+  ) {
+    throw new MundoError(400, "invalid_progress", "Progreso o edificios inválidos.");
+  }
   const buildings = parseBuildings(body.buildings);
   const maxHealth = clampInteger(body.maxHealth, 1, 100_000);
 
-  await prisma.$transaction([
-    prisma.jugador.update({
+  return withWorldLock(async (tx) => {
+    const currentPlayer = await tx.jugador.findUniqueOrThrow({ where: { id: jugador.id } });
+    const currentBase = await tx.base.findUniqueOrThrow({ where: { id: base.id } });
+    if (body.progressToken !== progressToken(currentPlayer, currentBase)) {
+      throw new MundoError(409, "progress_conflict", "Otra sesión ha guardado progreso. Recarga antes de continuar; esta pestaña no sobrescribirá ese guardado.");
+    }
+    const savedPlayer = await tx.jugador.update({
       where: { id: jugador.id },
       data: {
         clase:
@@ -203,14 +232,23 @@ export async function syncProgress(
         saludActual: clampInteger(body.currentHealth, 0, maxHealth),
         ultimoVisto: new Date(),
       },
-    }),
-    prisma.base.update({
+    });
+    const savedBase = await tx.base.update({
       where: { id: base.id },
       data: {
         edificios: buildings,
         // Never revoked by a stale client; losing an embassy needs a server-side rule.
-        embajada: base.embajada || buildings.some((building) => building.type === "embassy"),
+        embajada: buildings.some((building) => building.type === "embassy"),
       },
-    }),
-  ]);
+    });
+    return progressToken(savedPlayer, savedBase);
+  });
+}
+
+/** Optimistic concurrency over persisted progress, excluding the presence heartbeat. */
+export function progressToken(jugador: Jugador, base: Base): string {
+  return createHash("sha256").update(JSON.stringify([
+    jugador.id, jugador.clase, jugador.nivel, jugador.experiencia, jugador.oro,
+    jugador.saludActual, jugador.saludMaxima, base.edificios,
+  ])).digest("hex");
 }

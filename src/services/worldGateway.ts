@@ -18,6 +18,7 @@ async function call<T>(path: string, body?: unknown): Promise<ApiResponse<T>> {
       cache: "no-store",
       headers: { "Content-Type": "application/json" },
       body: body === undefined ? undefined : JSON.stringify(body),
+      signal: AbortSignal.timeout(10_000),
     });
     const payload: unknown = await response.json().catch(() => null);
     if (response.ok) return { ok: true, data: payload as T };
@@ -46,7 +47,9 @@ function toResult(response: ApiResponse<unknown>): GatewayResult {
 export const worldGateway: WorldGateway = {
   async sync(progress) {
     const response = await call<PartySnapshotDto>("sync", progress);
-    return response.ok ? response.data : null;
+    return response.ok
+      ? { ok: true, snapshot: response.data }
+      : { ok: false, ...response.error };
   },
   async invite(targetPlayerId) {
     return toResult(await call("party", { action: "invite", targetPlayerId }));
