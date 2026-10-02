@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { PlayerProgressionState } from "@/game/gameplay/PlayerProgression";
 import type { VillageResources } from "@/game/gameplay/VillageProgression";
 import type { PartyMemberDto } from "@/shared/world";
@@ -10,6 +10,7 @@ interface GameHudProps {
   resources: VillageResources;
   isInVillage: boolean;
   companions: PartyMemberDto[];
+  onModalChange: (open: boolean) => void;
 }
 
 function percentage(value: number, max: number): number {
@@ -41,10 +42,23 @@ export default function GameHud({
   resources,
   isInVillage,
   companions,
+  onModalChange,
 }: GameHudProps) {
   const [showAttributes, setShowAttributes] = useState(false);
   const [showResources, setShowResources] = useState(false);
   const attributes = player.attributes;
+
+  useEffect(() => {
+    onModalChange(showResources);
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setShowResources(false);
+    };
+    if (showResources) window.addEventListener("keydown", onKeyDown);
+    return () => {
+      onModalChange(false);
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [showResources, onModalChange]);
 
   return (
     <>
@@ -176,12 +190,15 @@ export default function GameHud({
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) setShowResources(false);
           }}
+          onKeyDown={(event) => {
+            if (event.key === "Escape") setShowResources(false);
+          }}
         >
           <section
             role="dialog"
             aria-modal="true"
             aria-labelledby="resource-modal-title"
-            className="w-60 max-w-[calc(100vw-1.5rem)] rounded-lg border border-amber-200/30 bg-stone-950 p-4 text-sm text-stone-100 shadow-2xl"
+            className="max-h-[calc(100dvh-4.25rem)] w-60 max-w-[calc(100vw-1.5rem)] overflow-y-auto rounded-lg border border-amber-200/30 bg-stone-950 p-4 text-sm text-stone-100 shadow-2xl"
           >
             <div className="mb-3 flex items-center justify-between gap-3 border-b border-stone-700 pb-2">
               <h2 id="resource-modal-title" className="font-bold text-amber-200">

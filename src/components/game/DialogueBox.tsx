@@ -1,6 +1,7 @@
 "use client";
 
 import type { DialogueNode } from "@/game/dialogue/DialogueNode";
+import { useEffect, useRef } from "react";
 
 interface DialogueBoxProps {
   node: DialogueNode | null;
@@ -11,12 +12,16 @@ export default function DialogueBox({
   node,
   selectedChoiceIndex,
 }: DialogueBoxProps) {
+  const selectedRef = useRef<HTMLLIElement>(null);
+  useEffect(() => {
+    selectedRef.current?.scrollIntoView({ block: "nearest" });
+  }, [node, selectedChoiceIndex]);
   if (!node) {
     return null;
   }
 
   return (
-    <div className="pointer-events-none absolute inset-x-4 bottom-52 z-20 max-h-[calc(100%-14rem)] overflow-y-auto overscroll-contain">
+    <div className="pointer-events-auto absolute inset-x-4 bottom-40 z-20 max-h-[calc(100%-11rem)] overflow-y-auto overscroll-contain sm:bottom-52 sm:max-h-[calc(100%-14rem)]">
       <div className="rounded-lg border border-white/30 bg-black/90 px-4 py-3 text-white shadow-lg">
         <div className="mb-1 text-sm font-bold text-yellow-300">
           {node.speaker}
@@ -29,6 +34,7 @@ export default function DialogueBox({
             {node.choices.map((choice, index) => (
               <li
                 key={`${choice.nextNodeId}-${choice.text}`}
+                ref={index === selectedChoiceIndex ? selectedRef : undefined}
                 aria-current={index === selectedChoiceIndex ? "true" : undefined}
                 className={`rounded px-2 py-1 text-sm ${
                   index === selectedChoiceIndex

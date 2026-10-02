@@ -316,6 +316,8 @@ export class BaseScene extends Scene {
   update(deltaTime: number): void {
     this.updateDebugMode();
     this.syncVillageLayout();
+    const dialogueActive = this.dialogueManager.isActive();
+    this.player.setInputEnabled(!dialogueActive && !this.input.isBlocked());
     this.world.update(deltaTime);
 
     const construction = this.villageProgression.getState().construction;
@@ -325,9 +327,13 @@ export class BaseScene extends Scene {
 
     this.camera.follow(this.player.x, this.player.y, 32, 64);
 
-    this.interactionSystem.tryInteract(this.player, this.interactables);
-
-    this.sceneTransitionSystem.update([this.player]);
+    if (dialogueActive) {
+      if (this.input.isActionPressed("actionB")) this.dialogueManager.close();
+      else if (this.input.isActionPressed("actionA")) this.dialogueManager.advance();
+    } else if (!this.input.isBlocked()) {
+      this.interactionSystem.tryInteract(this.player, this.interactables);
+      this.sceneTransitionSystem.update([this.player]);
+    }
   }
 
   render(): void {

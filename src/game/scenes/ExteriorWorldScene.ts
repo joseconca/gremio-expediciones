@@ -99,6 +99,7 @@ export class ExteriorWorldScene extends Scene {
       dialogueManager: this.dialogueManager,
       onChoice: (eventId) => {
         if (eventId === "return-to-camp") {
+          this.dialogueManager.close();
           this.sceneManager.changeScene("base", "world-base-arrival");
         }
       },
@@ -138,7 +139,8 @@ export class ExteriorWorldScene extends Scene {
       notice("Necesitas una Embajada en tu base para visitar otros gremios.");
       return;
     }
-    if (!base.hasEmbassy) {
+    const latestBase = this.partyManager.getSnapshot().nearbyBases.find((other) => other.playerId === base.id);
+    if (!(latestBase?.hasEmbassy ?? base.hasEmbassy)) {
       notice("Este gremio todavía no tiene Embajada, así que no recibe visitas.");
       return;
     }
@@ -227,7 +229,7 @@ export class ExteriorWorldScene extends Scene {
     }
 
     this.world.update(deltaTime);
-    this.encounterSystem.update();
+    if (!this.dialogueManager.isActive() && !this.input.isBlocked()) this.encounterSystem.update();
     this.camera.follow(this.player.x, this.player.y, 32, 64);
 
     if (dialogueWasActive) {
