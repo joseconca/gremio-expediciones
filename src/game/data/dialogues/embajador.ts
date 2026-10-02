@@ -22,15 +22,22 @@ export function createEmbajadorDialogue(party: PartySnapshot): Dialogue {
 
   const inParty = party.companions.length > 0;
   const choices: DialogueChoice[] = [
-    ...party.invitations.slice(0, MAX_LISTED_INVITATIONS).map((invitation) => ({
-      text: `Aceptar la invitación de ${invitation.fromDisplayName}`,
-      nextNodeId: "joined",
-      eventId: `party-accept:${invitation.id}`,
-    })),
+    ...party.invitations.slice(0, MAX_LISTED_INVITATIONS).flatMap((invitation) => [
+      {
+        text: `Aceptar la invitación de ${invitation.fromDisplayName}`,
+        nextNodeId: "pending",
+        eventId: `party-accept:${invitation.id}`,
+      },
+      {
+        text: `Rechazar la invitación de ${invitation.fromDisplayName}`,
+        nextNodeId: "pending",
+        eventId: `party-reject:${invitation.id}`,
+      },
+    ]),
     ...(!party.isFull && (party.isLeader || !inParty)
       ? party.candidates.slice(0, MAX_LISTED_CANDIDATES).map((candidate) => ({
           text: `Invitar a ${candidate.displayName} (${candidate.characterClass})`,
-          nextNodeId: "invited",
+          nextNodeId: "pending",
           eventId: `party-invite:${candidate.id}`,
         }))
       : []),
@@ -38,7 +45,7 @@ export function createEmbajadorDialogue(party: PartySnapshot): Dialogue {
       ? [
           {
             text: "Abandonar la party",
-            nextNodeId: "left",
+            nextNodeId: "pending",
             eventId: "party-leave",
           },
         ]
@@ -60,21 +67,9 @@ export function createEmbajadorDialogue(party: PartySnapshot): Dialogue {
         choices,
       },
       {
-        id: "invited",
+        id: "pending",
         speaker: "Embajador",
-        text: "He enviado la invitaci\u00f3n. Si la acepta, lo ver\u00e1s en tu grupo.",
-        nextNodeId: null,
-      },
-      {
-        id: "joined",
-        speaker: "Embajador",
-        text: "Si la invitaci\u00f3n sigue vigente y hay hueco, ya formas parte de la party.",
-        nextNodeId: null,
-      },
-      {
-        id: "left",
-        speaker: "Embajador",
-        text: "Has dejado la party.",
+        text: "Consultando con los mensajeros…",
         nextNodeId: null,
       },
       {

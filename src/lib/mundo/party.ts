@@ -156,6 +156,10 @@ export async function respondToInvitation(
     if (!base.embajada) {
       throw new MundoError(403, "embassy_required", "Necesitas una Embajada para unirte a una party.");
     }
+    const senderBase = await tx.base.findFirst({ where: { usuario: { jugador: { id: invitation.emisorId } } } });
+    if (!senderBase?.embajada) {
+      throw new MundoError(403, "target_without_embassy", "Quien te invitó ya no tiene Embajada.");
+    }
     if (await tx.miembroParty.findUnique({ where: { jugadorId: jugador.id } })) {
       throw new MundoError(409, "already_in_party", "Ya est\u00e1s en una party.");
     }
