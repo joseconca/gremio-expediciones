@@ -4,7 +4,7 @@ import type { ShadowFootprint, ShadowSprite } from "./ShadowCaster";
 const SHADOW_GRID_ROWS = 8;
 const MAX_SHADOW_GRID_COLUMNS = 8;
 
-/** Maps sprite height away from its ground anchor, opposite the sun. */
+/** Shears sprite height opposite the sun while keeping its ground baseline fixed. */
 export function shadowSpriteGroundPoint(
   sprite: Pick<ShadowSprite, "anchorX" | "anchorY">,
   footprint: ShadowFootprint,
@@ -13,13 +13,15 @@ export function shadowSpriteGroundPoint(
   sourceY: number
 ): { x: number; y: number } {
   const length = Math.hypot(sweep.x, sweep.y);
-  const sideX = length > 0 ? -sweep.y / length : 1;
-  const sideY = length > 0 ? sweep.x / length : 0;
+  // A perfectly lateral light would flatten a fixed-width sprite into one line.
+  // Keep a small ground depth, not a rotating base or a separate contact ellipse.
+  const minimumDepth = Math.min(footprint.radiusY * 2, length * 0.15);
+  const depth = (sweep.y > 0 ? 1 : -1) * Math.max(Math.abs(sweep.y), minimumDepth);
   const lateral = sourceX - sprite.anchorX;
   const heightRatio = (sprite.anchorY - sourceY) / Math.max(1, sprite.anchorY);
   return {
-    x: footprint.x + lateral * sideX + heightRatio * sweep.x,
-    y: footprint.y + lateral * sideY + heightRatio * sweep.y,
+    x: footprint.x + lateral + heightRatio * sweep.x,
+    y: footprint.y + heightRatio * depth,
   };
 }
 
@@ -61,8 +63,8 @@ export class SpriteShadowRenderer {
         const tr = topRow[column + 1];
         const bl = bottomRow[column];
         const br = bottomRow[column + 1];
-        // Both axes can vary in depth (especially east/west shadows). Two
-        // triangles use all four projected corners, not a sheared rectangle.
+        // Triangles retain perspective along the sheared silhouette without
+        // rotating its baseline or replacing the ground projection.
         this.drawTriangle(ctx, mask, sourceX, sourceY, cellWidth, cellHeight, [tl, tr, bl], tl, tr.x - tl.x, tr.y - tl.y, bl.x - tl.x, bl.y - tl.y);
         this.drawTriangle(ctx, mask, sourceX, sourceY, cellWidth, cellHeight, [tr, br, bl],
           { x: tr.x + bl.x - br.x, y: tr.y + bl.y - br.y }, br.x - bl.x, br.y - bl.y, br.x - tr.x, br.y - tr.y);
