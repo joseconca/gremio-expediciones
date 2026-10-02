@@ -12,6 +12,7 @@ const { geographicToWorldPoint, isInsideWorldMap } = require("../src/game/world/
 const { ExpeditionManager } = require("../src/game/gameplay/ExpeditionManager.ts");
 const { worldGateway } = require("../src/services/worldGateway.ts");
 const { MISSION_BOARD_POSITION } = require("../src/game/entities/MissionBoard.ts");
+const { createRequestId } = require("../src/game/core/requestId.ts");
 
 const yieldMicrotasks = () => new Promise((resolve) => setImmediate(resolve));
 function serverSnapshot(token = "token") {
@@ -252,4 +253,108 @@ test("reward snapshot resets profile once and stale save acknowledgements cannot
   assert.equal(player.getState().characterLevel, 2);
   assert.equal(await party.flush(), true);
   party.destroy();
+});
+
+test("request UUID works in mobile LAN HTTP without randomUUID and keeps v4/variant bits", () => {
+  const source = { getRandomValues(bytes) { bytes.fill(255); return bytes; } };
+  assert.equal(createRequestId(source), "ffffffff-ffff-4fff-bfff-ffffffffffff");
+  assert.match(createRequestId(), /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
+  assert.notEqual(createRequestId(), createRequestId());
+  assert.throws(() => createRequestId({}), /HTTPS/);
+});
+
+function expeditionFixture() {
+  return { serverNow: Date.now(), missions: [], active: null, eliteAvailableAt: 0,
+    profile: { id: "self", name: "Aventurero", sex: "chico", characterClass: "Novato", level: 1,
+      experience: 0, gold: 100, currentHealth: 40, maxHealth: 100 }, progressToken: "initial", rewardRevision: 0 };
+}
+
+test("one mobile tap during slow polling waits, starts once and retries the same UUID on lost response", async () => {
+  const originalCrypto = Object.getOwnPropertyDescriptor(globalThis, "crypto");
+  const secureRandom = globalThis.crypto.getRandomValues.bind(globalThis.crypto);
+  Object.defineProperty(globalThis, "crypto", { configurable: true, value: { getRandomValues: secureRandom } });
+  let releasePoll;
+  let polls = 0;
+  const starts = [];
+  const party = { flush: async () => true, suspendSync: async (action) => action(), adoptProfile() {} };
+  const manager = new ExpeditionManager({ async expedition(request) {
+    if (request.action === "status") {
+      polls++;
+      if (polls === 2) await new Promise((resolve) => { releasePoll = resolve; });
+      return { ok: true, snapshot: expeditionFixture() };
+    }
+    starts.push(request);
+    return starts.length === 1
+      ? { ok: false, code: "network", message: "Respuesta perdida" }
+      : { ok: true, snapshot: { ...expeditionFixture(), active: { id: "trip", phase: "outbound" } } };
+  } }, party, { checkpoint: async () => ({ ok: true }) }, () => true);
+  try {
+    manager.openBoard();
+    await yieldMicrotasks();
+    manager.update(4);
+    await yieldMicrotasks();
+    const tapped = manager.start("normal:test");
+    await manager.start("normal:test");
+    assert.equal(manager.getSnapshot().busy, true);
+    assert.equal(starts.length, 0);
+    releasePoll();
+    await tapped;
+    assert.equal(starts.length, 1);
+    assert.match(starts[0].requestId, /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
+    manager.update(4);
+    await yieldMicrotasks();
+    assert.equal(starts.length, 2);
+    assert.equal(starts[0].requestId, starts[1].requestId);
+    assert.equal(manager.getSnapshot().data.active.phase, "outbound");
+  } finally { Object.defineProperty(globalThis, "crypto", originalCrypto); manager.destroy(); }
+});
+
+test("mobile combat tap during poll uses refreshed version rather than disappearing", async () => {
+  let releasePoll;
+  let polls = 0;
+  const attacks = [];
+  const manager = new ExpeditionManager({ async expedition(request) {
+    if (request.action === "status") {
+      polls++;
+      if (polls === 2) await new Promise((resolve) => { releasePoll = resolve; });
+      return { ok: true, snapshot: { ...expeditionFixture(), active: { id: "trip", phase: "battle", version: polls } } };
+    }
+    attacks.push(request);
+    return { ok: true, snapshot: { ...expeditionFixture(), active: { id: "trip", phase: "returning" } } };
+  } }, { suspendSync: async (action) => action(), adoptProfile() {} }, {}, () => true);
+  try {
+    manager.openBoard();
+    await yieldMicrotasks();
+    manager.update(4);
+    await yieldMicrotasks();
+    const tapped = manager.act("attack");
+    assert.equal(manager.getSnapshot().busy, true);
+    releasePoll();
+    await tapped;
+    assert.deepEqual(attacks, [{ action: "attack", expeditionId: "trip", version: 2 }]);
+  } finally { manager.destroy(); }
+});
+
+test("queued departure revalidates latest status and cannot launch after another active expedition", async () => {
+  let releasePoll;
+  let polls = 0;
+  let starts = 0;
+  const manager = new ExpeditionManager({ async expedition(request) {
+    if (request.action === "start") starts++;
+    polls++;
+    if (polls === 2) await new Promise((resolve) => { releasePoll = resolve; });
+    return { ok: true, snapshot: { ...expeditionFixture(), active: polls === 2 ? { id: "other", phase: "outbound" } : null } };
+  } }, { suspendSync: async (action) => action(), adoptProfile() {} }, {}, () => true);
+  try {
+    manager.openBoard();
+    await yieldMicrotasks();
+    manager.update(4);
+    await yieldMicrotasks();
+    const tapped = manager.start("normal:test");
+    releasePoll();
+    await tapped;
+    assert.equal(starts, 0);
+    assert.match(manager.getSnapshot().error, /otro viaje/);
+    assert.equal(manager.getSnapshot().busy, false);
+  } finally { manager.destroy(); }
 });

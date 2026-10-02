@@ -2,6 +2,7 @@ import type { ExpeditionRequest, ExpeditionSnapshotDto } from "../../shared/expe
 import type { WorldGateway } from "./WorldGateway";
 import type { PartyManager } from "./PartyManager";
 import type { MobilityManager } from "./MobilityManager";
+import { createRequestId } from "../core/requestId";
 
 export interface ExpeditionState {
   open: boolean;
@@ -16,6 +17,7 @@ export class ExpeditionManager {
   private readonly listeners = new Set<() => void>();
   private elapsed = 4;
   private syncing = false;
+  private refreshInFlight: Promise<void> | null = null;
   private destroyed = false;
   private pendingStart: Extract<ExpeditionRequest, { action: "start" }> | null = null;
   private receivedAt = 0;
@@ -52,18 +54,20 @@ export class ExpeditionManager {
     }
   }
   async start(missionId: string): Promise<void> {
-    if (this.state.busy || this.syncing || this.destroyed) return;
-    if (!this.canStart() || (this.isActive() && !this.pendingStart)) {
-      this.publish({ ...this.state, error: "Debes estar en tu base y no tener otro viaje activo." });
-      return;
-    }
+    if (this.state.busy || this.destroyed) return;
     this.publish({ ...this.state, busy: true, error: null });
     try {
+      // Keep the user's command, even when a slower mobile request is polling.
+      await this.refreshInFlight;
+      if (this.destroyed) return;
+      if (!this.canStart() || (this.isActive() && !this.pendingStart)) {
+        throw new Error("Debes estar en tu base y no tener otro viaje activo.");
+      }
       if (!await this.party.flush()) throw new Error("Guarda el progreso antes de iniciar la expedición.");
       const checkpoint = await this.mobility.checkpoint();
       if (!checkpoint.ok) throw new Error(checkpoint.message);
       if (this.destroyed) return;
-      this.pendingStart ??= { action: "start", missionId, requestId: crypto.randomUUID() };
+      this.pendingStart ??= { action: "start", missionId, requestId: createRequestId() };
       await this.command(this.pendingStart);
     } catch (error) {
       this.publish({ ...this.state, error: error instanceof Error ? error.message : "No se pudo enviar la expedición." });
@@ -72,20 +76,31 @@ export class ExpeditionManager {
     }
   }
   async act(action: "attack" | "flee"): Promise<void> {
-    const active = this.state.data?.active;
-    if (this.state.busy || this.syncing || !active || active.phase !== "battle") return;
+    if (this.state.busy || this.destroyed) return;
     this.publish({ ...this.state, busy: true, error: null });
-    try { await this.command({ action, expeditionId: active.id, version: active.version }); }
+    try {
+      await this.refreshInFlight;
+      if (this.destroyed) return;
+      const active = this.state.data?.active;
+      if (!active || active.phase !== "battle") {
+        this.publish({ ...this.state, error: "El combate ya no está disponible. Consulta el estado de la expedición." });
+        return;
+      }
+      await this.command({ action, expeditionId: active.id, version: active.version });
+    }
     finally { if (!this.destroyed) this.publish({ ...this.state, busy: false }); }
   }
   destroy(): void { this.destroyed = true; this.listeners.clear(); }
 
-  private async refresh(): Promise<void> {
-    if (this.syncing || this.destroyed || this.state.busy) return;
+  private refresh(): Promise<void> {
+    if (this.refreshInFlight) return this.refreshInFlight;
+    if (this.destroyed || this.state.busy) return Promise.resolve();
     this.syncing = true;
-    try {
-      await this.command(this.pendingStart ?? { action: "status" });
-    } finally { this.syncing = false; }
+    this.refreshInFlight = this.command(this.pendingStart ?? { action: "status" }).finally(() => {
+      this.syncing = false;
+      this.refreshInFlight = null;
+    });
+    return this.refreshInFlight;
   }
   private async command(request: ExpeditionRequest): Promise<void> {
     try { await this.party.suspendSync(async () => {

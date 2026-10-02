@@ -8,7 +8,7 @@ import type { ExpeditionKind, ExpeditionSnapshotDto, MissionDto } from "@/shared
 
 const ExpeditionMap = dynamic(() => import("./ExpeditionMap"), {
   ssr: false,
-  loading: () => <div className="grid h-full min-h-64 place-items-center rounded-lg bg-slate-900 text-amber-200" role="status">Cargando mapa…</div>,
+  loading: () => <div className="grid h-full min-h-40 place-items-center rounded-lg bg-slate-900 text-amber-200" role="status">Cargando mapa…</div>,
 });
 
 export interface ExpeditionState {
@@ -31,7 +31,7 @@ const kinds: Record<ExpeditionKind, { label: string; symbol: string }> = {
 };
 const phases = { outbound: "En camino", battle: "Combate", returning: "Regresando", completed: "Regreso completado" };
 const outcomes = { victory: "Victoria", defeat: "Derrota", fled: "Retirada", trade: "Entrega comercial" };
-const buttonClass = "min-h-11 rounded-lg border border-amber-200/25 px-4 py-2 font-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 disabled:cursor-not-allowed disabled:opacity-45";
+const buttonClass = "min-h-11 touch-manipulation rounded-lg border border-amber-200/25 px-4 py-2 font-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 disabled:cursor-not-allowed disabled:opacity-45";
 
 function duration(ms: number): string {
   const seconds = Math.max(0, Math.ceil(ms / 1000));
@@ -86,6 +86,8 @@ export default function ExpeditionModal({ manager, snapshot, base }: ExpeditionM
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
   const [commandError, setCommandError] = useState<string | null>(null);
+  const [mapExpanded, setMapExpanded] = useState(false);
+  const mapId = useId();
   const data = snapshot.data;
   const active = data?.active ?? null;
   const travelling = active !== null && active.phase !== "completed";
@@ -158,8 +160,8 @@ export default function ExpeditionModal({ manager, snapshot, base }: ExpeditionM
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-2 text-amber-50 backdrop-blur-sm sm:p-5">
-      <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby={titleId} aria-describedby={descriptionId} tabIndex={-1} className="flex max-h-[calc(100dvh-1rem)] w-full max-w-6xl flex-col overflow-hidden rounded-xl border border-amber-200/25 bg-[#17120f] shadow-2xl sm:max-h-[calc(100dvh-2.5rem)]">
-        <header className="flex shrink-0 items-start justify-between gap-3 border-b border-amber-100/15 px-4 py-3 sm:px-6">
+      <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby={titleId} aria-describedby={descriptionId} tabIndex={-1} className="flex h-[calc(100dvh-1rem)] min-h-0 w-full min-w-0 max-w-6xl flex-col overflow-hidden rounded-xl border border-amber-200/25 bg-[#17120f] shadow-2xl sm:h-auto sm:max-h-[calc(100dvh-2.5rem)]">
+        <header className="flex shrink-0 items-start justify-between gap-3 border-b border-amber-100/15 px-3 py-2 pt-[max(0.5rem,env(safe-area-inset-top))] sm:px-6 sm:py-3">
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-amber-300/70">Gremio de expediciones</p>
             <h2 id={titleId} className="text-xl font-black sm:text-2xl">{travelling ? "Tu expedición" : "Tablero de misiones"}</h2>
@@ -168,7 +170,7 @@ export default function ExpeditionModal({ manager, snapshot, base }: ExpeditionM
           <button type="button" onClick={() => manager.close()} className={`${buttonClass} shrink-0 bg-black/30 hover:bg-amber-900/40`} aria-label="Cerrar expediciones">Cerrar</button>
         </header>
 
-        <div className="min-h-0 overflow-y-auto overscroll-contain p-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:p-6">
+        <div className="min-h-0 min-w-0 flex-1 overflow-y-auto overscroll-contain p-3 sm:p-6">
           {(snapshot.error || commandError) && <p role="alert" className="mb-4 rounded-lg border border-red-400/35 bg-red-950/40 p-3 text-sm text-red-200">{snapshot.error || commandError}</p>}
           <p role="status" className="mb-3 text-xs text-amber-200/70">{busy ? "Consultando al servidor…" : data ? "Estado confirmado por el servidor" : "Cargando tablero…"}</p>
           {!data ? (
@@ -186,13 +188,18 @@ export default function ExpeditionModal({ manager, snapshot, base }: ExpeditionM
                   <p className="text-xs text-amber-100/65">Tu aventurero ha regresado. Puedes elegir otra misión del catálogo actual.</p>
                 </section>
               )}
-              <div className="grid gap-4 lg:grid-cols-[minmax(0,1.3fr)_minmax(18rem,1fr)]">
-                <div className="h-72 sm:h-96 lg:h-[30rem]">
+              <button type="button" aria-expanded={mapExpanded} aria-controls={mapId}
+                onClick={() => setMapExpanded((expanded) => !expanded)}
+                className={`${buttonClass} mb-3 w-full bg-black/30 lg:hidden`}>
+                {mapExpanded ? "Ocultar mapa" : "Mostrar mapa y ruta"}
+              </button>
+              <div className="grid min-w-0 grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.3fr)_minmax(18rem,1fr)]">
+                <div id={mapId} className={`${mapExpanded ? "block" : "hidden"} order-2 h-[min(40dvh,18rem)] min-h-40 min-w-0 lg:order-1 lg:block lg:h-[30rem]`}>
                   <ExpeditionMap base={base} missions={data.missions} selectedId={selected?.id ?? null} onSelect={selectMission} active={active} serverNow={data.serverNow} />
                 </div>
 
                 {travelling ? (
-                  <section aria-label="Estado de la expedición" className="space-y-4 rounded-lg border border-amber-100/15 bg-black/25 p-4">
+                  <section aria-label="Estado de la expedición" className="order-1 min-w-0 space-y-4 rounded-lg border border-amber-100/15 bg-black/25 p-4 lg:order-2">
                     <div className="flex items-start justify-between gap-3"><h3 className="text-lg font-black">{active.mission.name}</h3><span className="shrink-0 rounded bg-amber-900/40 px-2 py-1 text-xs font-bold">{phases[active.phase]}</span></div>
                     <p className="text-sm text-amber-100/65">{kinds[active.mission.kind].label} · {active.mission.distanceKm.toLocaleString("es", { maximumFractionDigits: 2 })} km de ida</p>
                     {(active.phase === "outbound" || active.phase === "returning") && <p className="rounded-lg border border-amber-200/20 bg-amber-950/25 p-3 text-sm">{active.phase === "outbound" ? "Llegada al destino: " : "Regreso al poblado: "}<ArrivalTime at={active.phase === "outbound" ? active.arrivalAt : active.returnArrivalAt ?? data.serverNow} serverNow={data.serverNow} /></p>}
@@ -213,14 +220,14 @@ export default function ExpeditionModal({ manager, snapshot, base }: ExpeditionM
                     <p className="text-xs text-amber-100/55">Puedes cerrar esta ventana sin cancelar la expedición. Tu aventurero seguirá ocupado hasta regresar.</p>
                   </section>
                 ) : (
-                  <section aria-label="Misiones disponibles" className="space-y-4">
-                    <div className="max-h-64 space-y-3 overflow-y-auto rounded-lg border border-amber-100/15 bg-black/25 p-3">
+                  <section aria-label="Misiones disponibles" className="order-1 min-w-0 space-y-4 lg:order-2">
+                    <div className="space-y-3 rounded-lg border border-amber-100/15 bg-black/25 p-3 lg:max-h-64 lg:overflow-y-auto">
                       {(["normal", "elite", "trade"] as const).map((kind) => (
                         <div key={kind}>
                           <h3 className="mb-2 text-xs font-bold uppercase tracking-wider text-amber-200">{kinds[kind].symbol} {kinds[kind].label}</h3>
                           {kind === "elite" && <p className="mb-2 text-xs text-purple-200">{eliteReady ? "Élite disponible" : `Disponible en ${duration(data.eliteAvailableAt - data.serverNow)}`}</p>}
                           {data.missions.filter((mission) => mission.kind === kind).map((mission) => (
-                            <button key={mission.id} type="button" aria-pressed={selected?.id === mission.id} onClick={() => selectMission(mission.id)} className={`mb-2 w-full rounded-lg border p-3 text-left focus-visible:outline-2 focus-visible:outline-amber-300 ${selected?.id === mission.id ? "border-amber-300/70 bg-amber-900/35" : "border-amber-100/10 bg-black/20 hover:bg-amber-900/20"}`}>
+                            <button key={mission.id} type="button" aria-pressed={selected?.id === mission.id} onClick={() => selectMission(mission.id)} className={`mb-2 min-h-11 w-full touch-manipulation rounded-lg border p-3 text-left focus-visible:outline-2 focus-visible:outline-amber-300 ${selected?.id === mission.id ? "border-amber-300/70 bg-amber-900/35" : "border-amber-100/10 bg-black/20 hover:bg-amber-900/20"}`}>
                               <span className="block text-sm font-bold">{mission.name}</span><span className="mt-1 block text-xs text-amber-100/60">{mission.distanceKm.toLocaleString("es", { maximumFractionDigits: 2 })} km · {duration(mission.durationMs)} de ida</span>
                             </button>
                           ))}
@@ -243,14 +250,6 @@ export default function ExpeditionModal({ manager, snapshot, base }: ExpeditionM
                               Jefe: Ogro. {eliteReady ? "Puedes desafiarlo." : `En espera: ${duration(data.eliteAvailableAt - data.serverNow)}.`}
                             </p>
                           )}
-                          <button
-                            type="button"
-                            disabled={busy || (selected.kind === "elite" && !eliteReady)}
-                            onClick={() => void run(() => manager.start(selected.id))}
-                            className={`${buttonClass} w-full bg-amber-700 enabled:hover:bg-amber-600`}
-                          >
-                            Embarcar aventurero
-                          </button>
                           <p className="text-xs text-amber-100/55">El aventurero queda ocupado hasta su regreso. El servidor valida el inicio y las recompensas.</p>
                         </>
                       ) : (
@@ -263,6 +262,19 @@ export default function ExpeditionModal({ manager, snapshot, base }: ExpeditionM
             </>
           )}
         </div>
+        {!travelling && data && (
+          <footer className="shrink-0 border-t border-amber-200/20 bg-[#17120f] p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-6">
+            {(snapshot.error || commandError) && <p role="alert" className="mb-2 max-h-16 overflow-y-auto text-sm text-red-200">{snapshot.error || commandError}</p>}
+            <p aria-live="polite" className="mb-2 truncate text-sm text-amber-200">
+              {selected ? `${selected.name} · ${selected.gold} oro · ${selected.experience} XP` : "Elige una misión en la lista o el mapa"}
+            </p>
+            <button type="button" disabled={busy || !selected || (selected.kind === "elite" && !eliteReady)}
+              onClick={() => { if (selected) void run(() => manager.start(selected.id)); }}
+              className={`${buttonClass} w-full bg-amber-700 enabled:hover:bg-amber-600`}>
+              {busy ? "Preparando expedición…" : selected?.kind === "elite" && !eliteReady ? "Élite en espera" : "Embarcar aventurero"}
+            </button>
+          </footer>
+        )}
       </div>
     </div>
   );

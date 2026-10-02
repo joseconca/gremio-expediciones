@@ -95,7 +95,18 @@ function MapLayers({ base, missions, selectedId, onSelect, active, serverNow }: 
         points.push([lat, lng]);
       }
     }
-    map.fitBounds(L.latLngBounds(points), { padding: [40, 40], maxZoom: 15, animate: false });
+    const resizeAndFit = () => {
+      // A collapsed mobile map has 0x0 dimensions: fitting then locks in an
+      // incorrect zoom. Refit when the panel becomes visible or rotates.
+      const container = map.getContainer();
+      if (container.clientWidth === 0 || container.clientHeight === 0) return;
+      map.invalidateSize({ pan: false });
+      map.fitBounds(L.latLngBounds(points), { padding: [32, 32], maxZoom: 15, animate: false });
+    };
+    const observer = new ResizeObserver(resizeAndFit);
+    observer.observe(map.getContainer());
+    resizeAndFit();
+    return () => observer.disconnect();
   }, [map, origin.lat, origin.lng, destinationLat, destinationLng, catalogBounds]);
 
   useEffect(() => {
@@ -117,13 +128,6 @@ function MapLayers({ base, missions, selectedId, onSelect, active, serverNow }: 
     return () => { window.clearInterval(interval); marker.remove(); };
   }, [map, active, serverNow]);
 
-  useEffect(() => {
-    const observer = new ResizeObserver(() => map.invalidateSize({ pan: false }));
-    observer.observe(map.getContainer());
-    map.invalidateSize({ pan: false });
-    return () => observer.disconnect();
-  }, [map]);
-
   return null;
 }
 
@@ -131,8 +135,8 @@ function MapLayers({ base, missions, selectedId, onSelect, active, serverNow }: 
 export default function ExpeditionMap(props: ExpeditionMapProps) {
   const origin = props.active?.origin ?? props.base;
   return (
-    <div className="relative isolate h-full min-h-64 w-full overflow-hidden rounded-lg border border-amber-100/20 bg-slate-800" role="region" aria-label="Mapa de expediciones. También puedes seleccionar una misión en la lista.">
-      <MapContainer center={[origin.lat, origin.lng]} zoom={13} className="h-full min-h-64 w-full" scrollWheelZoom={false}>
+    <div className="relative isolate h-full min-h-40 w-full overflow-hidden rounded-lg border border-amber-100/20 bg-slate-800" role="region" aria-label="Mapa de expediciones. También puedes seleccionar una misión en la lista.">
+      <MapContainer center={[origin.lat, origin.lng]} zoom={13} className="h-full min-h-40 w-full" scrollWheelZoom={false}>
         <TileLayer
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
