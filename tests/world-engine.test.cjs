@@ -248,7 +248,7 @@ test("combat initiative: faster enemy waits exactly 1000 simulated ms; ties and 
   const attacked = combat.getSnapshot();
   assert.equal(attacked.turn, "player");
   assert.equal(attacked.enemyTurnAt, null);
-  assert.deepEqual(attacked.lastAction, { id: 1, actor: "enemy", kind: "attack", damage: 6, at: 11_000, targetMemberId: "local-player" });
+  assert.deepEqual(attacked.lastAction, { id: 1, actor: "enemy", kind: "attack", damage: 6, at: 11_000, targetEnemyId: "turn-test", targetMemberId: "local-player" });
   assert.equal(player.getState().attributes.currentHealth, 34);
   combat.update(10_000);
   assert.strictEqual(combat.getSnapshot(), attacked);
@@ -262,8 +262,9 @@ test("player attack only damages enemy; pending enemy turn guards spam and actio
   assert.equal(attack.enemy.attributes.currentHealth, 94);
   assert.equal(player.getState().attributes.currentHealth, 40);
   assert.equal(attack.turn, "enemy");
-  assert.equal(attack.actingMemberId, "local-player");
-  assert.deepEqual(attack.lastAction, { id: 1, actor: "player", kind: "attack", damage: 6, at: 10_000, actorMemberId: "local-player" });
+  assert.equal(attack.actingMemberId, "turn-test");
+  assert.deepEqual(attack.lastAction, { id: 1, actor: "player", kind: "attack", damage: 6, at: 10_000,
+    actorMemberId: "local-player", targetEnemyId: "turn-test" });
   const resources = village.getResourcesSnapshot();
   for (const action of ["attack", "flee", "item", "skill"]) combat.act(action);
   combat.selectMenu("items");
@@ -305,7 +306,8 @@ test("menus consume no turn; potion heals missing local HP once and consumes one
   assert.equal(combat.usePotion(), true);
   assert.equal(player.getState().attributes.currentHealth, 70);
   assert.equal(village.getResourcesSnapshot().potions, potions - 1);
-  assert.deepEqual(combat.getSnapshot().lastAction, { id: 1, actor: "player", kind: "item", damage: -30, at: 10_000 });
+  assert.deepEqual(combat.getSnapshot().lastAction, { id: 1, actor: "player", kind: "item", damage: -30, at: 10_000,
+    actorMemberId: "local-player", targetMemberId: "local-player" });
   assert.equal(combat.usePotion(), false);
   combat.update(1000);
   assert.equal(player.getState().attributes.currentHealth, 64);
@@ -413,17 +415,18 @@ test("party supports only supplied living members, rotates alive attackers and k
   assert.equal(player.getState().attributes.currentHealth, 40);
   combat.update(1);
   assert.equal(combat.getSnapshot().actingMemberId, "local-player");
-  for (const [actor, expectedDamage] of [["local-player", 6], ["companion", 16], ["third", 16], ["local-player", 6]]) {
+  for (const [actor, expectedDamage] of [["local-player", 6], ["companion", 16], ["third", 16]]) {
     assert.equal(combat.getSnapshot().actingMemberId, actor);
     combat.act("attack");
     assert.equal(combat.getSnapshot().lastAction.damage, expectedDamage);
-    assert.equal(combat.getSnapshot().actingMemberId, actor);
+    assert.equal(combat.getSnapshot().lastAction.actorMemberId, actor);
     combat.update(1000);
   }
+  assert.equal(combat.getSnapshot().actingMemberId, "local-player");
 });
 
 test("fallen local member is skipped while supplied allies keep fighting; only local HP updates progression", () => {
-  const { combat, player } = localCombatFixture({ physicalAttack: 1000, currentHealth: 1000, maxHealth: 1000 });
+  const { combat, player } = localCombatFixture({ physicalAttack: 1000, currentHealth: 1000, maxHealth: 1000, speed: 1000 });
   const ally = { id: "ally", name: "Aliado", isLocalPlayer: false, attributes: { ...player.getState().attributes } };
   assert.equal(combat.addPartyMember(ally), true);
   combat.act("attack");
@@ -690,4 +693,24 @@ test("expedition polls due enemy turn promptly with throttle, never attacks or r
     await yieldMicrotasks();
     assert.equal(polls, 3);
   } finally { manager.destroy(); }
+});
+
+test("combat manager supports target selection for groups and auto-targets a lone enemy", () => {
+  const player = new PlayerProgression();
+  const manager = new CombatManager(player, new VillageProgression());
+  const first = { id: "first", name: "Primer enemigo", sprite: "/first.png", experienceReward: 1, goldReward: 1,
+    attributes: { ...player.getState().attributes, currentHealth: 1, maxHealth: 1, speed: 1 } };
+  const second = { ...first, id: "second", name: "Segundo enemigo", sprite: "/second.png" };
+  assert.equal(manager.startEncounterGroup([first]), true);
+  assert.equal(manager.getSnapshot().selectedTargetId, "first");
+  assert.equal(manager.selectTarget("first"), false, "single enemy requires no target menu");
+  manager.act("attack");
+  assert.equal(manager.getSnapshot().phase, "victory");
+  manager.closeResult();
+  assert.equal(manager.startEncounterGroup([first, second]), true);
+  assert.equal(manager.selectTarget("second"), true);
+  manager.act("attack");
+  assert.equal(manager.getSnapshot().lastAction.targetEnemyId, "second");
+  assert.equal(manager.getSnapshot().enemies.find((enemy) => enemy.id === "second").attributes.currentHealth, 0);
+  assert.equal(manager.getSnapshot().enemies.find((enemy) => enemy.id === "first").attributes.currentHealth, 1);
 });

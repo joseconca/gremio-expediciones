@@ -24,6 +24,7 @@ const NOW = 1_800_000_000_000;
 const contract = loadSource("src/shared/expeditions.ts");
 const combat = loadSource("src/shared/combat.ts");
 const world = loadSource("src/shared/world.ts");
+const enemyCatalog = loadSource("src/shared/enemies.ts");
 const geo = loadSource("src/lib/mundo/geo.ts", { "@/lib/utils": loadSource("src/lib/utils.ts") });
 const content = loadSource("src/lib/mundo/expeditionContent.ts");
 function player(name = "propio", lat = 40, lng = -3) {
@@ -41,6 +42,7 @@ function player(name = "propio", lat = 40, lng = -3) {
 function harness(initial = player(), others = []) {
   let rows = new Map([initial, ...others].map((p) => [p.id, structuredClone(p)]));
   let ledger = new Map();
+  const partyMemberships = new Map();
   let queue = Promise.resolve();
   let authenticated = { id: initial.usuarioId };
   let failCompletion = false;
@@ -86,11 +88,12 @@ function harness(initial = player(), others = []) {
           expedicionMundo: {
             async findUnique({ where }) {
               check();
-              return structuredClone([...draftLedger.values()].find((r) => r.requestId === where.requestId) ?? null);
+              return structuredClone([...draftLedger.values()].find((r) => where.requestId ? r.requestId === where.requestId : r.id === where.id) ?? null);
             },
             async findFirst({ where }) {
               check();
-              return structuredClone([...draftLedger.values()].filter((r) => r.jugadorId === where.jugadorId &&
+              return structuredClone([...draftLedger.values()].filter((r) => (!where.jugadorId || r.jugadorId === where.jugadorId) &&
+                (!where.participantes || r.participants?.some((p) => p.jugadorId === where.participantes.some.jugadorId)) &&
                 (!where.phase || r.phase !== where.phase.not)).sort((a, b) =>
                 b.departureAt.getTime() - a.departureAt.getTime() || b.id.localeCompare(a.id))[0] ?? null);
             },
@@ -103,7 +106,7 @@ function harness(initial = player(), others = []) {
               assert.equal([...draftLedger.values()].some((r) => r.jugadorId === data.jugadorId && r.phase !== "completed"), false);
               const row = { botin: [], turn: "player", playerSpeed: 5, enemyTurnAt: null, lastAction: null,
                 ...structuredClone(data), enemy: data.enemy === Prisma.DbNull ? null : structuredClone(data.enemy),
-                lastAction: data.lastAction === Prisma.DbNull ? null : structuredClone(data.lastAction) };
+                lastAction: data.lastAction === Prisma.DbNull ? null : structuredClone(data.lastAction), participants: [] };
               draftLedger.set(row.id, row);
               return structuredClone(row);
             },
@@ -130,6 +133,36 @@ function harness(initial = player(), others = []) {
               return structuredClone(r);
             },
           },
+          miembroParty: {
+            async findUnique({ where }) {
+              check();
+              const ids = partyMemberships.get(where.jugadorId);
+              if (!ids) return null;
+              const members = ids.map((id) => draft.get(id)).filter(Boolean).map((jugador) => ({ jugador: structuredClone(jugador) }));
+              return { party: { liderId: ids[0], miembros: members } };
+            },
+          },
+          expedicionParticipante: {
+            async findMany({ where }) {
+              check();
+              return structuredClone(draftLedger.get(where.expedicionId)?.participants ?? []);
+            },
+            async createMany({ data }) {
+              check();
+              const row = draftLedger.get(data[0]?.expedicionId);
+              assert.ok(row);
+              row.participants = structuredClone(data);
+              return { count: data.length };
+            },
+            async update({ where, data }) {
+              check();
+              const row = draftLedger.get(where.expedicionId_jugadorId.expedicionId);
+              const participant = row?.participants.find((p) => p.jugadorId === where.expedicionId_jugadorId.jugadorId);
+              assert.ok(participant);
+              Object.assign(participant, structuredClone(data));
+              return structuredClone(participant);
+            },
+          },
         };
         const result = await work(tx);
         rows = draft;
@@ -147,7 +180,8 @@ function harness(initial = player(), others = []) {
     "@/lib/prisma": { prisma }, "@/shared/world": world, "./geo": geo, "./http": http,
     "./travel": { loadMobility() { throw new Error("Expeditions must not call mobility or sync"); } },
   });
-  const rules = loadSource("src/lib/mundo/expeditionRules.ts", { "./geo": geo, "./http": http, "./expeditionContent": content });
+  const rules = loadSource("src/lib/mundo/expeditionRules.ts", { "./geo": geo, "./http": http, "./expeditionContent": content,
+    "@/shared/enemies": enemyCatalog, "@/shared/combat": combat });
   const service = loadSource("src/lib/mundo/expeditions.ts", {
     "./geo": geo, "./http": http, "./jugador": jugador, "./expeditionRules": rules, "@/shared/combat": combat,
   });
@@ -160,6 +194,7 @@ function harness(initial = player(), others = []) {
     remove: (id) => rows.delete(id), setAuthenticated: (value) => { authenticated = value; },
     failCompletion: () => { failCompletion = true; },
     failReturn: () => { failReturn = true; },
+    setParty(ids) { for (const id of ids) partyMemberships.set(id, ids); },
   };
 }
 
@@ -182,12 +217,17 @@ async function enemyTurn(h, snapshot, setNow) {
   setNow(snapshot.active.enemyTurnAt);
   const after = await h.loadExpeditions(h.initial.usuarioId);
   assert.equal(after.active.enemyHealth, snapshot.active.enemyHealth);
-  assert.equal(after.active.playerHealth, snapshot.active.playerHealth - after.active.lastAction.damage);
+  const beforeTarget = snapshot.active.participants?.find((participant) => participant.playerId === after.active.lastAction.targetMemberId);
+  const afterTarget = after.active.participants?.find((participant) => participant.playerId === after.active.lastAction.targetMemberId);
+  if (beforeTarget && afterTarget) assert.equal(afterTarget.currentHealth, beforeTarget.currentHealth - after.active.lastAction.damage);
+  if (after.active.lastAction.targetMemberId === snapshot.profile.id) {
+    assert.equal(after.active.playerHealth, afterTarget.currentHealth);
+  }
   assert.equal(after.active.lastAction.actor, "enemy");
   assert.equal(after.active.lastAction.at, snapshot.active.enemyTurnAt);
   assert.equal(after.active.version, snapshot.active.version + 1);
   assert.equal(after.rewardRevision, snapshot.rewardRevision + 1);
-  assert.equal(after.active.turn, "player"); assert.equal(after.active.enemyTurnAt, null);
+  assert.notEqual(after.active.turn, "enemy"); assert.equal(after.active.enemyTurnAt, null);
   return after;
 }
 async function victory(h, snapshot, setNow) {
@@ -206,7 +246,7 @@ async function victory(h, snapshot, setNow) {
 // Combat mechanics fixtures deliberately isolate damage from catalog variation.
 function basicEnemy(h, kind = "normal") {
   const row = h.ledger()[0];
-  row.enemy = { ...h.rules.expeditionEnemy(kind, 1), speed: 5 };
+  row.enemy = { ...h.rules.expeditionEnemy(kind, 1, kind === "elite" ? 0 : 3), speed: 5 };
   row.enemyHealth = row.enemy.maxHealth;
 }
 
@@ -245,7 +285,7 @@ test("Compound Spanish content, hundreds of seeds, inclusive level 1/4/50 diffic
         assert.ok(Number.isInteger(m.experience) && m.experience >= bounds.experience.min && m.experience <= bounds.experience.max);
         assert.deepEqual(m.enemy, rules.expeditionEnemy(m.kind, m.enemyLevel,
           // Identify the persisted species variant without coupling to the hash implementation.
-          Array.from({ length: 8 }, (_, i) => i).find((i) => rules.expeditionEnemy(m.kind, m.enemyLevel, i).name === m.enemy.name)));
+          Array.from({ length: (m.kind === "elite" ? 4 : (content.EXPEDITION_ENEMIES.length - 1) * 4) }, (_, i) => i).find((i) => rules.expeditionEnemy(m.kind, m.enemyLevel, i).name === m.enemy.name)));
         assert.equal(m.loot.length, 3);
         assert.deepEqual(m.loot.map((i) => i.id), ["world-potion", "world-ration", "world-relic"]);
         assert.ok(m.loot.every((i) => i.chance > 0 && i.chance < 100 && Number.isInteger(i.quantity) && i.quantity > 0));
@@ -262,7 +302,7 @@ test("Compound Spanish content, hundreds of seeds, inclusive level 1/4/50 diffic
     }
   }
   assert.ok(names.size > 900); assert.equal(descriptions.size, content.EXPEDITION_DESCRIPTIONS.length);
-  assert.equal(species.size, 16);
+  assert.equal(species.size, (content.EXPEDITION_ENEMIES.length - 1) * 4 + 4);
   assert.ok(Math.min(...highRewards) > Math.max(...lowRewards));
   const origin = { lat: 40, lng: -3 };
   const a = rules.generateExpeditionMissions(origin, NOW, [], 1), b = rules.generateExpeditionMissions(origin, NOW, [], 4);
@@ -466,13 +506,14 @@ test("Pure combat and level growth mirror Novato, minimum damage and no retaliat
   assert.equal(rules.expeditionDamage(10, 1, 100), 1);
   assert.deepEqual(rules.expeditionCombatStats(3), { attack: 10, defense: 7 });
   assert.equal(rules.expeditionEnemy("trade", 1), null);
-  const spider = rules.expeditionEnemy("normal", 1);
+  const spider = rules.expeditionEnemy("normal", 1, 3);
   assert.equal(spider.maxHealth, 14); assert.equal(spider.attack, 1);
-  const ogre = rules.expeditionEnemy("elite", 1);
+  const ogre = rules.expeditionEnemy("elite", 1, 0);
   assert.equal(ogre.maxHealth, 35); assert.equal(ogre.attack, 3); assert.equal(ogre.defense, 3);
-  for (const level of [1, 4, 50]) for (const kind of ["normal", "elite"]) for (let species = 0; species < 8; species++) {
+  for (const level of [1, 4, 50]) for (const kind of ["normal", "elite"]) for (let species = 0; species < (kind === "elite" ? 4 : (content.EXPEDITION_ENEMIES.length - 1) * 4); species++) {
     const enemy = rules.expeditionEnemy(kind, level, species);
-    assert.equal(enemy.speed, (enemy.sprite.endsWith("arana.png") ? 6 : 3) + Math.floor(level / 4));
+    const shared = enemyCatalog.createEnemyAtLevel(enemy.id, level, kind === "elite");
+    assert.equal(enemy.speed, shared.attributes.speed);
   }
   assert.equal(rules.expeditionAttack(1, 4, 8, 5, spider).outcome, "victory");
   assert.equal(rules.expeditionAttack(1, 35, 8, 5, ogre).outcome, "defeat");
@@ -540,8 +581,9 @@ test("Start persists full geometry, snapshots server combat stats and serializes
   assert.deepEqual(a.active.enemy, mission.enemy); assert.equal(a.active.enemy.level, mission.enemyLevel);
   assert.equal(a.active.playerHealth, 40); assert.equal(a.active.playerMaxHealth, 100);
   assert.equal(h.ledger()[0].attack, 10); assert.equal(h.ledger()[0].defense, 7);
-  assert.deepEqual(Object.keys(a.active).sort(), ["arrivalAt", "awardedLoot", "departureAt", "enemy", "enemyHealth", "enemyTurnAt", "id", "lastAction", "log", "mission", "origin", "outcome", "phase", "playerHealth", "playerMaxHealth", "playerSpeed", "returnArrivalAt", "returnDepartureAt", "rewardGranted", "turn", "version"]);
+  assert.deepEqual(Object.keys(a.active).sort(), ["actingMemberId", "arrivalAt", "awardedLoot", "departureAt", "enemy", "enemyHealth", "enemyTurnAt", "id", "lastAction", "log", "mission", "origin", "outcome", "participants", "phase", "playerHealth", "playerMaxHealth", "playerSpeed", "returnArrivalAt", "returnDepartureAt", "rewardGranted", "turn", "version"]);
   assert.equal(a.active.playerSpeed, 5); assert.equal(a.active.turn, "player");
+  assert.equal(a.active.actingMemberId, initial.id);
   assert.equal(a.active.enemyTurnAt, null); assert.equal(a.active.lastAction, null);
   assert.deepEqual(a.active.awardedLoot, []);
   await rejectsCode(h.mutateExpeditions(initial.usuarioId, { ...request, requestId: randomUUID() }), 409, "expedition_active");
@@ -666,7 +708,7 @@ test("Persisted pre-turn battle defaults to player and can attack without re-run
   delete row.enemy.speed;
   now = s.active.arrivalAt + 86_400_000;
   const loaded = await h.loadExpeditions(h.initial.usuarioId);
-  assert.equal(loaded.active.turn, "player"); assert.equal(loaded.active.enemyTurnAt, null);
+  assert.equal(loaded.active.turn, "player"); assert.equal(loaded.active.actingMemberId, h.initial.id); assert.equal(loaded.active.enemyTurnAt, null);
   assert.equal(loaded.active.lastAction, null); assert.equal(loaded.active.playerSpeed, 5);
   assert.equal(loaded.active.version, 7); assert.equal(loaded.profile.currentHealth, 40);
   const hit = await attack(h, loaded);
@@ -710,14 +752,14 @@ test("Versioned server combat, persistent damage, victory return preserves battl
   assert.equal(first.active.enemyHealth, 6); assert.equal(first.active.playerHealth, 40);
   assert.equal(h.row().saludActual, 40); assert.equal(first.active.version, 2);
   assert.equal(first.rewardRevision, battle.rewardRevision);
-  assert.deepEqual(first.active.lastAction, { id: 2, actor: "player", kind: "attack", damage: 8, at: now });
+  assert.deepEqual(first.active.lastAction, { id: 2, actor: "player", actorMemberId: initial.id, targetEnemyId: first.active.enemy.id, kind: "attack", damage: 8, at: now });
   await rejectsCode(attack(h, battle), 409, "expedition_conflict");
   const won = await victory(h, first, (value) => { now = value; });
   assert.equal(won.active.phase, "returning"); assert.equal(won.active.enemyHealth, 0);
   assert.equal(won.active.playerHealth, 39); assert.equal(won.active.playerMaxHealth, 100);
   assert.equal(won.active.version, 4); assert.match(won.active.log, /Victoria/);
-  assert.equal(won.active.turn, "player"); assert.equal(won.active.enemyTurnAt, null);
-  assert.deepEqual(won.active.lastAction, { id: 4, actor: "player", kind: "attack", damage: 6, at: now });
+  assert.equal(won.active.turn, "player"); assert.equal(won.active.actingMemberId, initial.id); assert.equal(won.active.enemyTurnAt, null);
+  assert.deepEqual(won.active.lastAction, { id: 4, actor: "player", actorMemberId: initial.id, targetEnemyId: first.active.enemy.id, kind: "attack", damage: 6, at: now });
   assert.equal(won.profile.gold, 100); assert.equal(won.profile.experience, 90); assert.equal(won.active.rewardGranted, false);
   assert.equal(won.active.returnDepartureAt, now); assert.equal(won.active.returnArrivalAt, now + s.active.mission.durationMs);
   await rejectsCode(attack(h, won), 409, "not_in_battle");
@@ -763,7 +805,7 @@ test("Flee/defeat return without rewards or elite cooldown, preserve final comba
     const battle = await h.loadExpeditions(h.initial.usuarioId);
     const back = outcome === "fled" ? await h.mutateExpeditions(h.initial.usuarioId, { action: "flee", expeditionId: battle.active.id, version: battle.active.version })
       : await enemyTurn(h, await attack(h, battle), (value) => { now = value; });
-    assert.equal(back.active.turn, "player"); assert.equal(back.active.enemyTurnAt, null);
+    assert.equal(back.active.turn, "player"); assert.equal(back.active.actingMemberId, h.initial.id); assert.equal(back.active.enemyTurnAt, null);
     assert.equal(back.active.lastAction.actor, outcome === "fled" ? "player" : "enemy");
     assert.equal(back.active.lastAction.kind, outcome === "fled" ? "flee" : "attack");
     assert.equal(back.active.lastAction.id, back.active.version);
@@ -897,4 +939,71 @@ test("HTTP internal failures return safe exact error and roll back; missing play
   assert.equal(h.row().oro, 100); assert.equal(h.row(recipient.id).oro, 100); assert.equal(h.ledger()[0].phase, "outbound");
   h.setAuthenticated({ id: randomUUID() });
   const missing = await h.route.GET(); assert.equal(missing.status, 404); assert.equal((await missing.json()).code, "no_player");
+});
+
+test("Shared initiative orders every living party member and enemy by speed with stable tie breaks", () => {
+  const order = combat.orderCombatInitiative([
+    { id: "member-slow", side: "player", speed: 5, order: 0 },
+    { id: "enemy-fast", side: "enemy", speed: 9, order: 2 },
+    { id: "member-fast", side: "player", speed: 12, order: 1 },
+    { id: "member-tie", side: "player", speed: 9, order: 2 },
+    { id: "enemy-tie", side: "enemy", speed: 9, order: 3 },
+  ]);
+  assert.deepEqual(order.map((entry) => entry.id), ["member-fast", "member-tie", "enemy-fast", "enemy-tie", "member-slow"]);
+  assert.equal(combat.nextCombatantId(order.map((entry) => entry.id), "member-fast", new Set(["member-tie", "enemy-fast", "member-slow"])), "member-tie");
+  assert.equal(combat.nextCombatantId(order.map((entry) => entry.id), "member-tie", new Set(["enemy-fast", "member-slow"])), "enemy-fast");
+});
+
+test("Cooperative expedition snapshots actor ownership, applies each speed turn once and splits rewards with per-player loot", async (t) => {
+  let now = NOW; t.mock.method(Date, "now", () => now);
+  const first = player("leader"), second = player("ally", 40.01), third = player("ally2", 40.02);
+  const h = harness(first, [second, third]); h.setParty([first.id, second.id, third.id]);
+  const { snapshot: started } = await start(h);
+  const ledger = h.ledger()[0];
+  ledger.enemy = { ...h.rules.expeditionEnemy("normal", 1, 0), speed: 10 };
+  ledger.enemyHealth = 100;
+  ledger.participants[0].velocidad = 12;
+  ledger.participants[1].velocidad = 8;
+  ledger.participants[2].velocidad = 5;
+  ledger.participants[0].salud = 10;
+  now = started.active.arrivalAt;
+  let snapshot = await h.loadExpeditions(first.usuarioId);
+  assert.equal(snapshot.active.turn, "player");
+  assert.equal(snapshot.active.actingMemberId, first.id);
+  assert.deepEqual(snapshot.active.participants.map((member) => member.playerId), [first.id, second.id, third.id]);
+  await rejectsCode(h.mutateExpeditions(second.usuarioId, {
+    action: "attack", expeditionId: snapshot.active.id, version: snapshot.active.version,
+  }), 409, "not_your_turn");
+  snapshot = await attack(h, snapshot);
+  assert.equal(snapshot.active.turn, "enemy");
+  assert.equal(snapshot.active.enemyTurnAt, now + 1000);
+  now = snapshot.active.enemyTurnAt;
+  snapshot = await h.loadExpeditions(second.usuarioId);
+  assert.equal(snapshot.active.lastAction.targetMemberId, first.id);
+  assert.equal(snapshot.active.turn, "player");
+  assert.equal(snapshot.active.actingMemberId, second.id);
+  await rejectsCode(h.mutateExpeditions(third.usuarioId, {
+    action: "attack", expeditionId: snapshot.active.id, version: snapshot.active.version,
+  }), 409, "not_your_turn");
+  const mission = snapshot.active.mission;
+  const rewardLedger = h.ledger()[0];
+  rewardLedger.mission.loot.forEach((item) => { item.chance = 50; });
+  mission.loot.forEach((item) => { item.chance = 50; });
+  rewardLedger.participants[0].ataque = rewardLedger.participants[1].ataque = rewardLedger.participants[2].ataque = 1000;
+  rewardLedger.enemyHealth = 1;
+  snapshot = await h.mutateExpeditions(second.usuarioId, {
+    action: "attack", expeditionId: snapshot.active.id, version: snapshot.active.version,
+  });
+  assert.equal(snapshot.active.outcome, "victory");
+  assert.equal(snapshot.active.phase, "returning");
+  now = snapshot.active.returnArrivalAt;
+  const completed = await h.loadExpeditions(first.usuarioId);
+  const recipients = [first, second, third].map((member) => h.row(member.id));
+  assert.equal(recipients.reduce((sum, member) => sum + member.oro - 100, 0), mission.gold);
+  assert.equal(recipients.reduce((sum, member) => sum + member.experiencia, 0), mission.experience);
+  for (const member of recipients) {
+    assert.deepEqual(member.inventarioMundo, h.rules.rollExpeditionLoot(mission.loot, `${completed.active.id}:${member.id}`));
+  }
+  assert.deepEqual(completed.active.awardedLoot, recipients[0].inventarioMundo);
+  assert.equal(completed.active.participants.length, 3);
 });

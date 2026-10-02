@@ -167,8 +167,8 @@ export async function mutateMobility(usuarioId: string, body: unknown): Promise<
     // Los rechazos se lanzan fuera de la transacción: una llegada resuelta debe quedar confirmada.
     try {
       if (body.action === "status") return snapshot;
-      const expedition = await tx.expedicionMundo.findFirst({
-        where: { jugadorId, phase: { not: "completed" } }, select: { id: true },
+      const expedition = await (tx.expedicionMundo as unknown as { findFirst(args: { where: { phase: { not: string }; participantes: { some: { jugadorId: string } } }; select: { id: true } }): Promise<{ id: string } | null> }).findFirst({
+        where: { phase: { not: "completed" }, participantes: { some: { jugadorId } } }, select: { id: true },
       });
       if (expedition) throw new MundoError(409, "expedition_active", "El personaje está en una expedición hasta su regreso.");
       if (snapshot.journey) {

@@ -10,6 +10,18 @@
         "/^node --test tests/world-expeditions-server\\.test\\.cjs; npx tsc --noEmit --incremental false; npx eslint src/shared/expeditions\\.ts src/lib/mundo/expeditionRules\\.ts src/lib/mundo/expeditionContent\\.ts src/lib/mundo/expeditions\\.ts tests/world-expeditions-server\\.test\\.cjs$/": {
             "approve": true,
             "matchCommandLine": true
+        },
+        "/^node --test tests/battle-sprites\\.test\\.cjs; npx tsc --noEmit; npx eslint src/components/game/BattleOverlay\\.tsx src/components/game/BattleCharacterSprite\\.tsx src/game/data/battleSprites\\.ts tests/battle-sprites\\.test\\.cjs; git diff --check; npm run test:world$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^node --test tests/battle-sprites\\.test\\.cjs; npx tsc --noEmit; npx eslint src/components/game/BattleOverlay\\.tsx tests/battle-sprites\\.test\\.cjs; git diff --check$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^node --test tests/world-engine\\.test\\.cjs tests/world-expeditions-server\\.test\\.cjs tests/battle-sprites\\.test\\.cjs$/": {
+            "approve": true,
+            "matchCommandLine": true
         }
     }
 }

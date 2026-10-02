@@ -57,14 +57,31 @@ export const EXPEDITION_DESCRIPTIONS = [
   "Una criatura custodia un cargamento perdido. Derrota a su guardián y asegura la zona.",
 ] as const;
 
-// Both species use actual existing art. Elite names are variants, not new assets.
+// Names are presentation variants; the canonical stats and sprites live in shared/enemies.
 export const EXPEDITION_ENEMIES = [
   {
+    id: "slime_acido",
+    normal: ["Slime ácido del camino", "Slime ácido de la espesura", "Slime ácido de las ruinas", "Slime ácido acechador"],
+    elite: ["Slime ácido alfa", "Slime ácido colosal", "Slime ácido ancestral", "Slime ácido abisal"],
+  },
+  {
+    id: "rata_gigante",
+    normal: ["Rata gigante del camino", "Rata gigante de la espesura", "Rata gigante de las ruinas", "Rata gigante acechadora"],
+    elite: ["Rata gigante alfa", "Rata gigante colosal", "Rata gigante ancestral", "Rata gigante abisal"],
+  },
+  {
+    id: "goblin_explorador",
+    normal: ["Goblin explorador del camino", "Goblin explorador de la espesura", "Goblin explorador de las ruinas", "Goblin explorador acechador"],
+    elite: ["Goblin explorador alfa", "Goblin explorador caudillo", "Goblin explorador ancestral", "Goblin explorador abisal"],
+  },
+  {
+    id: "arana",
     sprite: "/sprites/enemies/arana.png",
     normal: ["Araña del camino", "Araña de la espesura", "Araña de las ruinas", "Araña acechadora"],
     elite: ["Matriarca de la espesura", "Araña reina de las ruinas", "Tejedora del abismo", "Araña ancestral"],
   },
   {
+    id: "ogro",
     sprite: "/sprites/enemies/ogro.png",
     normal: ["Ogro del barranco", "Ogro errante", "Ogro de la cantera", "Ogro saqueador"],
     elite: ["Ogro señor del paso", "Ogro caudillo de la frontera", "Ogro guardián de las ruinas", "Ogro coloso del valle"],

@@ -1,9 +1,9 @@
 import { Prisma, type Base, type Jugador } from "@prisma/client";
 import { randomUUID } from "node:crypto";
-import type { EnemyDto, ExpeditionDto, ExpeditionRequest, ExpeditionSnapshotDto, MissionDto } from "@/shared/expeditions";
+import type { EnemyDto, ExpeditionDto, ExpeditionParticipantDto, ExpeditionRequest, ExpeditionSnapshotDto, MissionDto } from "@/shared/expeditions";
 import type { PlayerSex } from "@/shared/world";
-import { ENEMY_TURN_DELAY_MS } from "@/shared/combat";
-import type { BattleActionDto } from "@/shared/combat";
+import { ENEMY_TURN_DELAY_MS, playerCombatStats } from "@/shared/combat";
+import { nextCombatantId, orderCombatInitiative, type BattleActionDto, type CombatInitiativeEntry } from "@/shared/combat";
 import { boundingBox, distanceMeters, longitudeFilter } from "./geo";
 import { MundoError, withWorldLock } from "./http";
 import { progressToken } from "./jugador";
@@ -39,6 +39,21 @@ type PlayerWrite = Partial<Pick<Jugador, "nivel" | "experiencia" | "oro" | "salu
   rewardRevision?: { increment: number };
   ultimaEliteExitosa?: Date;
 };
+type ParticipantRow = {
+  expedicionId: string;
+  jugadorId: string;
+  orden: number;
+  nombre: string;
+  nivel: number;
+  salud: number;
+  saludMaxima: number;
+  ataque: number;
+  defensa: number;
+  velocidad: number;
+  botin: Prisma.JsonValue;
+  persisted?: boolean;
+};
+type ParticipantWrite = Partial<Omit<ParticipantRow, "expedicionId" | "jugadorId">>;
 type LedgerWrite = Partial<Omit<LedgerRow, "id" | "jugadorId" | "requestId" | "enemy" | "lastAction">> & {
   enemy?: EnemyDto | typeof Prisma.DbNull;
   lastAction?: BattleActionDto | typeof Prisma.DbNull;
@@ -53,13 +68,23 @@ type ExpeditionTransaction = {
     update(args: { where: { id: string }; data: PlayerWrite }): Promise<PlayerRow>;
   };
   expedicionMundo: {
-    findUnique(args: { where: { requestId: string } }): Promise<LedgerRow | null>;
-    findFirst(args: { where: { jugadorId: string; phase?: { not: string } }; orderBy: { departureAt?: "desc"; id?: "desc" }[] }): Promise<LedgerRow | null>;
+    findUnique(args: { where: { requestId?: string; id?: string } }): Promise<LedgerRow | null>;
+    findFirst(args: { where: { jugadorId?: string; phase?: { not: string }; participantes?: { some: { jugadorId: string } } }; orderBy: { departureAt?: "desc"; id?: "desc" }[] }): Promise<LedgerRow | null>;
     create(args: { data: Omit<LedgerRow, "enemy" | "lastAction"> & {
       enemy: EnemyDto | typeof Prisma.DbNull;
       lastAction: BattleActionDto | typeof Prisma.DbNull;
     } }): Promise<LedgerRow>;
     update(args: { where: { id: string }; data: LedgerWrite }): Promise<LedgerRow>;
+  };
+  miembroParty: {
+    findUnique(args: { where: { jugadorId: string }; include: { party: { include: { miembros: { include: { jugador: true }; orderBy: { unido: "asc" } } } } } }): Promise<{
+      party: { liderId: string; miembros: Array<{ jugador: PlayerRow }> };
+    } | null>;
+  };
+  expedicionParticipante: {
+    findMany(args: { where: { expedicionId: string }; orderBy?: { orden: "asc" } }): Promise<ParticipantRow[]>;
+    createMany(args: { data: ParticipantRow[] }): Promise<{ count: number }>;
+    update(args: { where: { expedicionId_jugadorId: { expedicionId: string; jugadorId: string } }; data: ParticipantWrite }): Promise<ParticipantRow>;
   };
 };
 
@@ -74,8 +99,9 @@ async function readPlayer(tx: ExpeditionTransaction, usuarioId: string): Promise
 
 async function readLatest(tx: ExpeditionTransaction, playerId: string): Promise<LedgerRow | null> {
   const orderBy: { departureAt?: "desc"; id?: "desc" }[] = [{ departureAt: "desc" }, { id: "desc" }];
-  // A completed ledger remains visible until the next expedition; no deletion on status.
+  // A party member sees the leader's active ledger; completed history stays owner-scoped.
   return await tx.expedicionMundo.findFirst({ where: { jugadorId: playerId, phase: { not: "completed" } }, orderBy })
+    ?? await tx.expedicionMundo.findFirst({ where: { phase: { not: "completed" }, participantes: { some: { jugadorId: playerId } } }, orderBy })
     ?? await tx.expedicionMundo.findFirst({ where: { jugadorId: playerId }, orderBy });
 }
 
@@ -95,25 +121,47 @@ async function catalog(tx: ExpeditionTransaction, base: Base, now: number, playe
   return generateExpeditionMissions(base, now, targets, playerLevel);
 }
 
-function toDto(row: LedgerRow): ExpeditionDto {
+function currentActorId(row: LedgerRow, participants: readonly ParticipantRow[]): string {
+  if (row.turn === "enemy") return "enemy";
+  if (typeof row.turn === "string" && participants.some((participant) => participant.jugadorId === row.turn)) return row.turn;
+  // Compatibility with ledgers created before party combat stored member IDs.
+  return !row.turn || row.turn === "player" ? row.jugadorId : "enemy";
+}
+
+function toParticipantDto(participant: ParticipantRow, leaderId: string): ExpeditionParticipantDto {
+  return {
+    playerId: participant.jugadorId, order: participant.orden, name: participant.nombre, level: participant.nivel,
+    currentHealth: participant.salud, maxHealth: participant.saludMaxima,
+    attack: participant.ataque, defense: participant.defensa, speed: participant.velocidad,
+    isLeader: participant.jugadorId === leaderId,
+  };
+}
+
+function toDto(row: LedgerRow, participants: readonly ParticipantRow[], viewerId: string): ExpeditionDto {
+  const actingMemberId = currentActorId(row, participants);
+  const viewer = participants.find((participant) => participant.jugadorId === viewerId);
   return {
     id: row.id, mission: row.mission, origin: { lat: row.originLat, lng: row.originLng }, phase: row.phase,
     departureAt: row.departureAt.getTime(), arrivalAt: row.arrivalAt.getTime(),
     returnDepartureAt: row.returnDepartureAt?.getTime() ?? null,
     returnArrivalAt: row.returnArrivalAt?.getTime() ?? null,
-    enemy: row.enemy, enemyHealth: row.enemyHealth, playerHealth: row.playerHealth,
+    enemy: row.enemy, enemyHealth: row.enemyHealth, playerHealth: viewer?.salud ?? row.playerHealth,
     playerMaxHealth: row.playerMaxHealth, version: row.version, outcome: row.outcome,
     log: row.log, rewardGranted: row.rewardGranted,
-    awardedLoot: row.rewardGranted ? normalizeExpeditionInventory(row.botin) : [],
-    turn: row.turn ?? "player", enemyTurnAt: row.enemyTurnAt?.getTime() ?? null,
+    awardedLoot: row.rewardGranted
+      ? viewer && participants.length > 1 ? normalizeExpeditionInventory(viewer.botin) : normalizeExpeditionInventory(row.botin)
+      : [],
+    turn: actingMemberId === "enemy" ? "enemy" : "player", actingMemberId,
+    participants: participants.map((participant) => toParticipantDto(participant, row.jugadorId)),
+    enemyTurnAt: row.enemyTurnAt?.getTime() ?? null,
     lastAction: row.lastAction ?? null, playerSpeed: row.playerSpeed ?? 5,
   };
 }
 
-async function beginReturn(tx: ExpeditionTransaction, row: LedgerRow, outcome: NonNullable<ExpeditionDto["outcome"]>, now: number, log: string): Promise<LedgerRow> {
+async function beginReturn(tx: ExpeditionTransaction, row: LedgerRow, outcome: NonNullable<ExpeditionDto["outcome"]>, now: number, log: string, versionAlreadyAdvanced = false): Promise<LedgerRow> {
   return tx.expedicionMundo.update({ where: { id: row.id }, data: {
     phase: "returning", outcome, returnDepartureAt: new Date(now),
-    returnArrivalAt: new Date(now + row.mission.durationMs), version: row.version + 1, log,
+    returnArrivalAt: new Date(now + row.mission.durationMs), version: row.version + (versionAlreadyAdvanced ? 0 : 1), log,
     turn: "player", enemyTurnAt: null,
   } });
 }
@@ -122,22 +170,48 @@ async function beginReturn(tx: ExpeditionTransaction, row: LedgerRow, outcome: N
 async function resolveProgression(tx: ExpeditionTransaction, player: PlayerRow, row: LedgerRow | null, now: number): Promise<LedgerRow | null> {
   if (!row) return null;
   if (row.phase === "outbound" && now >= row.arrivalAt.getTime()) {
-    row = row.mission.kind === "trade"
-      ? await beginReturn(tx, row, "trade", row.arrivalAt.getTime(), "Entrega comercial realizada. Regresando al poblado.")
-      : await tx.expedicionMundo.update({ where: { id: row.id }, data: {
+    if (row.mission.kind === "trade") {
+      row = await beginReturn(tx, row, "trade", row.arrivalAt.getTime(), "Entrega comercial realizada. Regresando al poblado.");
+    } else {
+      const participants = await readParticipants(tx, row);
+      const first = firstActor(row, participants) ?? row.jugadorId;
+      row = await tx.expedicionMundo.update({ where: { id: row.id }, data: {
         phase: "battle", version: row.version + 1, log: `Te encuentras con ${row.enemy?.name ?? "el enemigo"}.`,
-        turn: (row.enemy?.speed ?? 5) > (row.playerSpeed ?? 5) ? "enemy" : "player",
+        turn: first,
         // Offline arrival never consumes the first enemy pause retroactively.
-        enemyTurnAt: (row.enemy?.speed ?? 5) > (row.playerSpeed ?? 5) ? new Date(now + ENEMY_TURN_DELAY_MS) : null,
+        enemyTurnAt: first === "enemy" ? new Date(now + ENEMY_TURN_DELAY_MS) : null,
         lastAction: Prisma.DbNull,
       } });
+    }
   }
   if (row.phase !== "returning" || !row.returnArrivalAt || now < row.returnArrivalAt.getTime()) return row;
   const earnsReward = row.outcome === "victory" || row.outcome === "trade";
   let awardedLoot = normalizeExpeditionInventory(row.botin);
   if (earnsReward && !row.rewardGranted) {
-    awardedLoot = row.outcome === "victory" && row.mission.kind !== "trade"
-      ? rollExpeditionLoot(row.mission.loot, row.id) : [];
+    const participants = await readParticipants(tx, row);
+    const ordered = [...participants].sort((left, right) => left.orden - right.orden || left.jugadorId.localeCompare(right.jugadorId));
+    const goldShare = Math.floor(row.mission.gold / Math.max(1, ordered.length));
+    const goldRemainder = row.mission.gold % Math.max(1, ordered.length);
+    const experienceShare = Math.floor(row.mission.experience / Math.max(1, ordered.length));
+    const experienceRemainder = row.mission.experience % Math.max(1, ordered.length);
+    for (const [index, participant] of ordered.entries()) {
+      const recipient = await tx.jugador.findUnique({ where: { id: participant.jugadorId } });
+      const personalLoot = row.outcome === "victory" && row.mission.kind !== "trade"
+        ? rollExpeditionLoot(row.mission.loot, ordered.length === 1 ? row.id : `${row.id}:${participant.jugadorId}`) : [];
+      if (participant.persisted) await tx.expedicionParticipante.update({
+        where: { expedicionId_jugadorId: { expedicionId: row.id, jugadorId: participant.jugadorId } },
+        data: { botin: personalLoot },
+      });
+      if (!recipient) continue;
+      const personalGold = goldShare + (index < goldRemainder ? 1 : 0);
+      const personalExperience = experienceShare + (index < experienceRemainder ? 1 : 0);
+      await tx.jugador.update({ where: { id: recipient.id }, data: {
+        ...expeditionRewardProgress(recipient, personalGold, personalExperience), rewardRevision: { increment: 1 },
+        ...(personalLoot.length ? { inventarioMundo: mergeLoot(recipient.inventarioMundo, personalLoot) } : {}),
+        ...(row.mission.kind === "elite" && row.outcome === "victory" ? { ultimaEliteExitosa: recipient.ultimaEliteExitosa ?? new Date(row.returnDepartureAt ?? now) } : {}),
+      } });
+      if (participant.jugadorId === row.jugadorId) awardedLoot = personalLoot;
+    }
     if (row.outcome === "trade" && row.targetPlayerId && row.targetPlayerId !== player.id) {
       const recipient = await tx.jugador.findUnique({ where: { id: row.targetPlayerId } });
       if (recipient) {
@@ -147,10 +221,6 @@ async function resolveProgression(tx: ExpeditionTransaction, player: PlayerRow, 
       }
       // Without a recipient FK, account deletion cannot strand the sender's expedition.
     }
-    await tx.jugador.update({ where: { id: player.id }, data: {
-      ...expeditionRewardProgress(player, row.mission.gold, row.mission.experience), rewardRevision: { increment: 1 },
-      ...(awardedLoot.length ? { inventarioMundo: mergeLoot(player.inventarioMundo, awardedLoot) } : {}),
-    } });
   }
   return tx.expedicionMundo.update({ where: { id: row.id }, data: {
     phase: "completed", version: row.version + 1, rewardGranted: row.rewardGranted || earnsReward,
@@ -176,12 +246,43 @@ async function start(tx: ExpeditionTransaction, player: PlayerRow, row: LedgerRo
   if (player.saludActual <= 0) throw new MundoError(409, "player_dead", "Necesitas recuperar salud antes de salir.");
   const mission = missions.find((candidate) => candidate.id === request.missionId);
   if (!mission) throw new MundoError(404, "mission_unavailable", "La misión no existe o su catálogo ha caducado.");
-  if (mission.kind === "elite" && player.ultimaEliteExitosa && now < player.ultimaEliteExitosa.getTime() + ELITE_COOLDOWN_MS) {
-    throw new MundoError(409, "elite_cooldown", "Todavía no puedes repetir una expedición élite exitosa.");
+  const membership = await tx.miembroParty.findUnique({ where: { jugadorId: player.id }, include: {
+    party: { include: { miembros: { include: { jugador: true }, orderBy: { unido: "asc" } } } },
+  } });
+  if (membership && membership.party.liderId !== player.id) {
+    throw new MundoError(403, "not_leader", "Solo el líder de la party puede iniciar una expedición.");
+  }
+  const memberIds = membership?.party.miembros.map((member) => member.jugador.id) ?? [player.id];
+  const participants: ParticipantRow[] = [];
+  for (const [order, memberId] of memberIds.entries()) {
+    const active = await tx.expedicionMundo.findFirst({ where: {
+      phase: { not: "completed" }, participantes: { some: { jugadorId: memberId } },
+    }, orderBy: [{ departureAt: "desc" }, { id: "desc" }] });
+    if (active) throw new MundoError(409, "party_member_busy", "Un miembro de la party ya participa en otra expedición.");
+    const member = memberId === player.id ? player : await tx.jugador.findUnique({
+      where: { id: memberId }, include: { usuario: { include: { base: true } } },
+    });
+    if (!member) throw new MundoError(409, "party_member_missing", "No se pudo cargar a un miembro de la party.");
+    const memberLocation = member.ubicacion;
+    if (member.viajeRegreso !== null || (memberLocation !== null &&
+      (typeof memberLocation !== "object" || Array.isArray(memberLocation) || memberLocation.sceneId !== "base"))) {
+      throw new MundoError(409, "party_member_away", "Todos los miembros deben estar en su poblado y sin viajes activos.");
+    }
+    if (member.saludActual <= 0) throw new MundoError(409, "party_member_dead", `${member.nombre} necesita recuperar salud antes de salir.`);
+    if (mission.kind === "elite" && member.ultimaEliteExitosa && now < member.ultimaEliteExitosa.getTime() + ELITE_COOLDOWN_MS) {
+      throw new MundoError(409, "elite_cooldown", `${member.nombre} todavía no puede repetir una expedición élite exitosa.`);
+    }
+    const stats = playerCombatStats(member.nivel);
+    participants.push({
+      expedicionId: "", jugadorId: member.id, orden: order, nombre: member.nombre, nivel: member.nivel,
+      salud: member.saludActual, saludMaxima: member.saludMaxima,
+      ataque: stats.attack, defensa: stats.defense, velocidad: stats.speed,
+      botin: [],
+    });
   }
   const base = player.usuario.base!;
   const enemy = mission.enemy ?? expeditionEnemy(mission.kind, player.nivel);
-  await tx.expedicionMundo.create({ data: {
+  const saved = await tx.expedicionMundo.create({ data: {
     id: randomUUID(), jugadorId: player.id, requestId: request.requestId, mission,
     phase: "outbound", originLat: base.lat, originLng: base.lng,
     departureAt: new Date(now), arrivalAt: new Date(now + mission.durationMs),
@@ -192,62 +293,93 @@ async function start(tx: ExpeditionTransaction, player: PlayerRow, row: LedgerRo
     log: "Expedición en camino.", rewardGranted: false, targetPlayerId: mission.targetPlayerId ?? null,
     botin: [],
   } });
+  await tx.expedicionParticipante.createMany({ data: participants.map((participant) => ({
+    ...participant, expedicionId: saved.id,
+  })) });
 }
 
 async function fight(tx: ExpeditionTransaction, player: PlayerRow, row: LedgerRow | null, request: Extract<ExpeditionRequest, { action: "attack" | "flee" }>, now: number): Promise<void> {
-  if (!row || row.id !== request.expeditionId) throw new MundoError(404, "expedition_not_found", "Esta expedición no pertenece al jugador o ya no es la actual.");
+  if (!row || row.id !== request.expeditionId) throw new MundoError(404, "expedition_not_found", "Esta expedición no pertenece a tu party o ya no es la actual.");
   if (row.version !== request.version) throw new MundoError(409, "expedition_conflict", "La versión de la expedición está obsoleta. Consulta su estado.");
   if (row.phase !== "battle" || !row.enemy) throw new MundoError(409, "not_in_battle", "La expedición no está en combate.");
-  if (row.turn === "enemy") throw new MundoError(409, "not_your_turn", "Es el turno del enemigo. Consulta el estado tras la pausa.");
+  const participants = await readParticipants(tx, row);
+  const actorId = currentActorId(row, participants);
+  if (actorId === "enemy") throw new MundoError(409, "not_your_turn", "Es el turno del enemigo. Consulta el estado tras la pausa.");
+  if (actorId !== player.id) throw new MundoError(409, "not_your_turn", "La iniciativa corresponde a otro miembro de la party.");
+  const actor = participants.find((participant) => participant.jugadorId === player.id);
+  if (!actor || actor.salud <= 0) throw new MundoError(409, "participant_unavailable", "Este personaje no puede actuar en el combate.");
   if (request.action === "flee") {
     const saved = await tx.expedicionMundo.update({ where: { id: row.id }, data: {
-      lastAction: { id: row.version + 1, actor: "player", kind: "flee", damage: 0, at: now },
+      lastAction: { id: row.version + 1, actor: "player", actorMemberId: player.id, kind: "flee", damage: 0, at: now },
     } });
     await beginReturn(tx, saved, "fled", now, `${row.log}\nHas huido. Regresas sin recompensa.`);
     return;
   }
-  const damage = expeditionDamage(row.enemyHealth, row.attack, row.enemy.defense);
+  const damage = expeditionDamage(row.enemyHealth, actor.ataque, row.enemy.defense);
   const enemyHealth = row.enemyHealth - damage;
   const victory = enemyHealth === 0;
-  const log = `${row.log}\nInfliges ${damage} de daño.${victory ? " Victoria." : ""}`;
+  const log = `${row.log}\n${actor.nombre} inflige ${damage} de daño.${victory ? " Victoria." : ""}`;
+  const nextActor = victory ? null : nextLivingActor({ ...row, enemyHealth }, participants, actorId);
+  if (!victory && !nextActor) throw new Error("No se pudo determinar el siguiente combatiente.");
   const saved = await tx.expedicionMundo.update({ where: { id: row.id }, data: {
     enemyHealth, log,
-    turn: victory ? "player" : "enemy", enemyTurnAt: victory ? null : new Date(now + ENEMY_TURN_DELAY_MS),
-    lastAction: { id: row.version + 1, actor: "player", kind: "attack", damage, at: now },
-    // One version per accepted command, including the terminal attack.
-    version: row.version + (victory ? 0 : 1),
+    turn: nextActor ?? "player", enemyTurnAt: nextActor === "enemy" ? new Date(now + ENEMY_TURN_DELAY_MS) : null,
+    lastAction: { id: row.version + 1, actor: "player", actorMemberId: player.id, targetEnemyId: row.enemy.id, kind: "attack", damage, at: now },
+    version: row.version + 1,
   } });
   if (victory) {
-    if (row.mission.kind === "elite") await tx.jugador.update({ where: { id: player.id }, data: {
-      ultimaEliteExitosa: new Date(now), rewardRevision: { increment: 1 },
-    } });
-    await beginReturn(tx, saved, "victory", now, log);
+    if (row.mission.kind === "elite") for (const participant of participants) {
+      await tx.jugador.update({ where: { id: participant.jugadorId }, data: {
+        ultimaEliteExitosa: new Date(now), rewardRevision: { increment: 1 },
+      } });
+    }
+    await beginReturn(tx, saved, "victory", now, log, true);
   }
 }
 
 /** Status consumes at most one due enemy action; the player turn has no timeout. */
 async function resolveEnemyTurn(tx: ExpeditionTransaction, player: PlayerRow, row: LedgerRow | null, now: number): Promise<void> {
-  if (!row || row.phase !== "battle" || !row.enemy || row.turn !== "enemy" ||
+  if (!row || row.phase !== "battle" || !row.enemy ||
+    currentActorId(row, await readParticipants(tx, row)) !== "enemy" ||
     !row.enemyTurnAt || now < row.enemyTurnAt.getTime()) return;
-  const damage = expeditionDamage(row.playerHealth, row.enemy.attack, row.defense);
-  const playerHealth = row.playerHealth - damage;
-  const log = `${row.log}\nRecibes ${damage} de daño.${playerHealth === 0 ? " Derrota." : ""}`;
+  const participants = await readParticipants(tx, row);
+  const targets = participants.filter((participant) => participant.salud > 0)
+    .sort((left, right) => left.salud / left.saludMaxima - right.salud / right.saludMaxima || left.jugadorId.localeCompare(right.jugadorId));
+  const target = targets[0];
+  if (!target) {
+    await beginReturn(tx, row, "defeat", now, `${row.log}\nLa party ha sido derrotada.`);
+    return;
+  }
+  const damage = expeditionDamage(target.salud, row.enemy.attack, target.defensa);
+  const health = target.salud - damage;
+  if (target.persisted) await tx.expedicionParticipante.update({
+    where: { expedicionId_jugadorId: { expedicionId: row.id, jugadorId: target.jugadorId } },
+    data: { salud: health },
+  });
+  await tx.jugador.update({ where: { id: target.jugadorId }, data: {
+    saludActual: health, rewardRevision: { increment: 1 },
+  } });
+  const updatedParticipants = participants.map((participant) => participant.jugadorId === target.jugadorId
+    ? { ...participant, salud: health } : participant);
+  const defeated = updatedParticipants.every((participant) => participant.salud <= 0);
+  const nextActor = defeated ? null : nextLivingActor(row, updatedParticipants, "enemy");
+  if (!defeated && !nextActor) throw new Error("No se pudo determinar el siguiente combatiente.");
+  const log = `${row.log}\n${row.enemy.name} inflige ${damage} de daño a ${target.nombre}.${defeated ? " La party ha sido derrotada." : ""}`;
   const saved = await tx.expedicionMundo.update({ where: { id: row.id }, data: {
-    playerHealth, turn: "player", enemyTurnAt: null, log,
-    lastAction: { id: row.version + 1, actor: "enemy", kind: "attack", damage, at: now },
-    version: row.version + (playerHealth === 0 ? 0 : 1),
+    playerHealth: target.jugadorId === row.jugadorId ? health : row.playerHealth,
+    turn: nextActor ?? "player", enemyTurnAt: nextActor === "enemy" ? new Date(now + ENEMY_TURN_DELAY_MS) : null, log,
+    lastAction: { id: row.version + 1, actor: "enemy", targetEnemyId: row.enemy.id, targetMemberId: target.jugadorId, kind: "attack", damage, at: now },
+    version: row.version + 1,
   } });
-  await tx.jugador.update({ where: { id: player.id }, data: {
-    saludActual: playerHealth, rewardRevision: { increment: 1 },
-  } });
-  if (playerHealth === 0) await beginReturn(tx, saved, "defeat", now, log);
+  if (defeated) await beginReturn(tx, saved, "defeat", now, log, true);
 }
 
 async function snapshot(tx: ExpeditionTransaction, usuarioId: string, missions: MissionDto[], now: number): Promise<ExpeditionSnapshotDto> {
   const player = await readPlayer(tx, usuarioId);
   const row = await readLatest(tx, player.id);
+  const participants = row ? await readParticipants(tx, row) : [];
   return {
-    serverNow: now, missions, active: row ? toDto(row) : null,
+    serverNow: now, missions, active: row ? toDto(row, participants, player.id) : null,
     eliteAvailableAt: player.ultimaEliteExitosa ? player.ultimaEliteExitosa.getTime() + ELITE_COOLDOWN_MS : 0,
     profile: {
       id: player.id, name: player.nombre, sex: player.sexo as PlayerSex, characterClass: player.clase,
@@ -286,4 +418,36 @@ export async function mutateExpeditions(usuarioId: string, body: unknown): Promi
   });
   if (result instanceof MundoError) throw result;
   return result;
+}
+
+async function readParticipants(tx: ExpeditionTransaction, row: LedgerRow): Promise<ParticipantRow[]> {
+  const participants = await tx.expedicionParticipante.findMany({ where: { expedicionId: row.id }, orderBy: { orden: "asc" } });
+  if (participants.length) return participants.map((participant) => ({ ...participant, persisted: true }));
+  const owner = await tx.jugador.findUnique({ where: { id: row.jugadorId } });
+  if (!owner) return [];
+  return [{
+    expedicionId: row.id, jugadorId: row.jugadorId, orden: 0, nombre: owner.nombre, nivel: owner.nivel,
+    salud: row.playerHealth, saludMaxima: row.playerMaxHealth, ataque: row.attack, defensa: row.defense,
+    velocidad: row.playerSpeed ?? 5, botin: row.botin ?? [], persisted: false,
+  }];
+}
+
+function initiativeEntries(participants: readonly ParticipantRow[], enemy: EnemyDto | null): CombatInitiativeEntry[] {
+  const entries: CombatInitiativeEntry[] = participants.map((participant) => ({
+    id: participant.jugadorId, side: "player", speed: participant.velocidad, order: participant.orden,
+  }));
+  if (enemy) entries.push({ id: "enemy", side: "enemy", speed: enemy.speed ?? 5, order: entries.length });
+  return orderCombatInitiative(entries);
+}
+
+function nextLivingActor(row: LedgerRow, participants: readonly ParticipantRow[], currentActorId: string): string | null {
+  const order = initiativeEntries(participants, row.enemy).map((entry) => entry.id);
+  const living = new Set(participants.filter((participant) => participant.salud > 0).map((participant) => participant.jugadorId));
+  if (row.enemy && row.enemyHealth > 0) living.add("enemy");
+  return nextCombatantId(order, currentActorId, living);
+}
+
+function firstActor(row: LedgerRow, participants: readonly ParticipantRow[]): string | null {
+  const ordered = initiativeEntries(participants, row.enemy);
+  return ordered.find((entry) => entry.side === "player" ? participants.some((p) => p.jugadorId === entry.id && p.salud > 0) : row.enemyHealth > 0)?.id ?? null;
 }

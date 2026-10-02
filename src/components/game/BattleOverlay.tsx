@@ -39,11 +39,13 @@ export default function BattleOverlay({ manager, snapshot, potionCount, busy = f
 
   const enemy = snapshot.enemy;
   if (!enemy) return null;
+  const enemies = snapshot.enemies?.length ? snapshot.enemies : [enemy];
   const player = snapshot.party.find((member) => member.isLocalPlayer);
   const actor = snapshot.party.find((member) => member.id === snapshot.actingMemberId) ?? player ?? snapshot.party[0];
+  const actingEnemy = enemies.find((candidate) => candidate.id === snapshot.actingMemberId);
   const finished = snapshot.phase !== "active";
   const enemyTurn = (snapshot.turn ?? "player") === "enemy";
-  const blocked = busy || enemyTurn || finished;
+  const blocked = busy || enemyTurn || finished || snapshot.canAct === false;
   const confirmedAction = snapshot.lastAction;
   const action = confirmedAction && presentationNow >= confirmedAction.at &&
     presentationNow - confirmedAction.at <= ATTACK_ANIMATION_MS ? confirmedAction : null;
@@ -52,7 +54,9 @@ export default function BattleOverlay({ manager, snapshot, potionCount, busy = f
   const attacker = snapshot.party.find((member) => member.id === action?.actorMemberId) ?? actor;
   const recipient = snapshot.party.find((member) => member.id === action?.targetMemberId) ?? player ?? snapshot.party[0];
   const result = snapshot.phase === "victory" ? "Victoria" : snapshot.phase === "defeat" ? "Derrota" : "Huida";
-  const status = finished ? result : busy ? "Resolviendo turno en el servidor…" : enemyTurn ? `${enemy.name} prepara su ataque…` : `Turno de ${actor?.name ?? "tu grupo"}`;
+  const status = finished ? result : busy ? "Resolviendo turno en el servidor…" : enemyTurn ? `${actingEnemy?.name ?? enemy.name} prepara su ataque…`
+    : snapshot.canAct === false ? `Turno de ${actor?.name ?? "otro miembro"}; actuará desde su sesión.`
+    : `Turno de ${actor?.name ?? "tu grupo"}`;
 
   return (
     <section ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true" aria-label={`Combate · ${title}`} className="battle" onKeyDown={(event) => {
@@ -77,11 +81,20 @@ export default function BattleOverlay({ manager, snapshot, potionCount, busy = f
               <div className="stats"><span>{member.attributes.currentHealth}/{member.attributes.maxHealth} HP</span><span>Velocidad {member.attributes.speed}</span></div>
             </article>
           ))}</div>
-          <article className="health-card enemy-card">
-            <div className="card-title"><strong>{enemy.name}</strong><span>Rival</span></div>
-            <div className="meter" role="progressbar" aria-label={`Vida de ${enemy.name}`} aria-valuemin={0} aria-valuemax={enemy.attributes.maxHealth} aria-valuenow={enemy.attributes.currentHealth}><span style={{ width: `${healthPercent(enemy.attributes.currentHealth, enemy.attributes.maxHealth)}%` }} /></div>
-            <div className="stats"><span>{enemy.attributes.currentHealth}/{enemy.attributes.maxHealth} HP</span><span>Velocidad {enemy.attributes.speed}</span></div>
-          </article>
+          <div className="enemy-cards" aria-label="Enemigos">
+            {enemies.map((target) => {
+              const selected = target.id === (snapshot.selectedTargetId ?? enemy.id);
+              const content = <>
+                <div className="card-title"><strong>{target.name}</strong><span>{selected ? "Objetivo" : "Rival"}</span></div>
+                <div className="meter" role="progressbar" aria-label={`Vida de ${target.name}`} aria-valuemin={0} aria-valuemax={target.attributes.maxHealth} aria-valuenow={target.attributes.currentHealth}><span style={{ width: `${healthPercent(target.attributes.currentHealth, target.attributes.maxHealth)}%` }} /></div>
+                <div className="stats"><span>{target.attributes.currentHealth}/{target.attributes.maxHealth} HP</span><span>Velocidad {target.attributes.speed}</span></div>
+              </>;
+              return enemies.length > 1 ? <button key={target.id} type="button" className={`health-card enemy-card ${selected ? "selected-target" : ""}`}
+                aria-pressed={selected} disabled={blocked || (serverControlled && !snapshot.party.some((member) => member.isLocalPlayer && member.id === snapshot.actingMemberId))}
+                onClick={() => manager.selectTarget?.(target.id)}>{content}</button>
+                : <article key={target.id} className="health-card enemy-card">{content}</article>;
+            })}
+          </div>
         </div>
         <div className="arena" aria-label="Tu grupo a la izquierda y el enemigo a la derecha">
           <div className="party-stage">{snapshot.party.map((member, index) => (
@@ -92,11 +105,14 @@ export default function BattleOverlay({ manager, snapshot, potionCount, busy = f
               {enemyAttack && recipient?.id === member.id && action.damage > 0 && <span key={`member-damage:${enemy.id}:${action.id}`} className="damage" aria-hidden="true">−{action.damage}</span>}
             </div>
           ))}</div>
-          <div className="enemy-stage">
-            <div key={action ? `enemy-motion:${enemy.id}:${action.id}` : `enemy-motion:${enemy.id}`} className={`enemy-motion ${enemyAttack ? "lunge" : playerAttack ? "hurt" : ""}`}>
-              <Image src={enemy.sprite} alt={enemy.name} width={192} height={192} unoptimized className={`enemy-image ${enemy.attributes.currentHealth <= 0 ? "defeated" : ""}`} />
-            </div>
-            {playerAttack && action.damage > 0 && <span key={`enemy-damage:${enemy.id}:${action.id}`} className="damage" aria-hidden="true">−{action.damage}</span>}
+          <div className={`enemy-stage ${enemies.length > 1 ? "multiple-enemies" : ""}`}>
+            {enemies.map((target, index) => <div key={target.id} className="enemy-piece" style={{ "--enemy-index": index } as CSSProperties}>
+              <div key={action && (action.targetEnemyId ?? enemy.id) === target.id ? `enemy-motion:${target.id}:${action.id}` : `enemy-motion:${target.id}`}
+                className={`enemy-motion ${enemyAttack && action?.targetEnemyId === target.id ? "lunge" : playerAttack && (action?.targetEnemyId ?? enemy.id) === target.id ? "hurt" : ""}`}>
+                <Image src={target.sprite} alt={target.name} width={192} height={192} unoptimized className={`enemy-image ${target.attributes.currentHealth <= 0 ? "defeated" : ""}`} />
+              </div>
+              {playerAttack && (action?.targetEnemyId ?? enemy.id) === target.id && action.damage > 0 && <span key={`enemy-damage:${target.id}:${action.id}`} className="damage" aria-hidden="true">−{action.damage}</span>}
+            </div>)}
           </div>
         </div>
         <p className="turn" role="status">{status}</p>
@@ -134,6 +150,9 @@ export default function BattleOverlay({ manager, snapshot, potionCount, busy = f
         .health-cards { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(12px, 5vw, 90px); align-items: start; z-index: 5; }
         .party-cards { display: grid; gap: 6px; }
         .health-card { background: #fff0cf; color: #253431; border: 2px solid #7a795b; border-radius: 8px 2px; box-shadow: 3px 3px 0 #0c1b2488; padding: 8px 10px; min-width: 0; }
+        .enemy-cards { display: grid; gap: 6px; min-width: 0; }
+        .enemy-card { width: 100%; text-align: left; }
+        .selected-target { border-color: #e7b64d; box-shadow: 0 0 0 2px #e7b64d88, 3px 3px 0 #0c1b2488; }
         .local-card { border-color: #e7b64d; }
         .card-title, .stats { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; }
         .card-title strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; }
@@ -147,6 +166,9 @@ export default function BattleOverlay({ manager, snapshot, potionCount, busy = f
         .party-stage::before, .enemy-stage::before { content: ""; position: absolute; width: 86%; height: 28px; left: 7%; bottom: -6px; border-radius: 50%; background: #aec28a22; border-bottom: 3px solid #0f241f55; }
         .member { position: absolute; bottom: 0; left: calc(18% + var(--offset-x)); transform: translateY(var(--offset-y)); }
         .enemy-stage { display: flex; justify-content: center; align-items: end; }
+        .enemy-piece { position: relative; width: 100%; display: flex; justify-content: center; align-items: end; }
+        .multiple-enemies .enemy-piece { position: absolute; left: calc(var(--enemy-index) * 28%); width: 68%; }
+        .multiple-enemies .enemy-piece:nth-child(even) { bottom: 24px; }
         .enemy-motion { width: clamp(100px, 20vw, 192px); height: clamp(100px, 20vw, 192px); position: relative; }
         .enemy-stage :global(.enemy-image) { width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; }
         .enemy-stage :global(.defeated) { opacity: .4; filter: grayscale(1); }

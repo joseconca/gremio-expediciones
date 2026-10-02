@@ -78,8 +78,12 @@ export interface PartyMemberDto {
   playerId: string;
   displayName: string;
   characterClass: string;
+  level: number;
   currentHealth: number;
   maxHealth: number;
+  attack: number;
+  defense: number;
+  speed: number;
   isLeader: boolean;
 }
 

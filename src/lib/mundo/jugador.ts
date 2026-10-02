@@ -23,7 +23,7 @@ const MAX_BUILDING_LEVEL = 2;
 type RewardPlayer = Jugador & { rewardRevision?: number };
 type ExpeditionTransaction = Prisma.TransactionClient & {
   expedicionMundo: {
-    findFirst(args: { where: { jugadorId: string; phase: { not: string } } }): Promise<{ id: string } | null>;
+    findFirst(args: { where: { jugadorId?: string; phase: { not: string }; participantes?: { some: { jugadorId: string } } } }): Promise<{ id: string } | null>;
   };
 };
 
@@ -262,7 +262,7 @@ export async function syncProgress(
       throw new MundoError(409, "progress_conflict", "Otra sesión ha guardado progreso. Recarga antes de continuar; esta pestaña no sobrescribirá ese guardado.");
     }
     const activeExpedition = await (tx as ExpeditionTransaction).expedicionMundo.findFirst({
-      where: { jugadorId: jugador.id, phase: { not: "completed" } },
+      where: { phase: { not: "completed" }, participantes: { some: { jugadorId: jugador.id } } },
     });
     const savedPlayer = await tx.jugador.update({
       where: { id: jugador.id },

@@ -1,6 +1,7 @@
 import type { OverworldMonster } from "../entities/Characters/OverworldMonster";
 import type { Player } from "../entities/Characters/Player";
 import type { CombatManager } from "../gameplay/CombatManager";
+import type { PartyCombatant } from "../gameplay/CombatManager";
 
 /** Starts combat when the player's feet enter a monster's encounter circle. */
 export class EncounterSystem {
@@ -9,7 +10,8 @@ export class EncounterSystem {
   constructor(
     private readonly player: Player,
     private readonly monsters: OverworldMonster[],
-    private readonly combatManager: CombatManager
+    private readonly combatManager: CombatManager,
+    private readonly getCompanions: () => readonly PartyCombatant[] = () => []
   ) {}
 
   update(): void {
@@ -34,7 +36,7 @@ export class EncounterSystem {
       }
       if (!monster.canStartEncounter()) continue;
 
-      if (this.combatManager.startEncounter(monster.definition)) {
+      if (this.combatManager.startEncounterGroup([monster.definition], this.getCompanions())) {
         this.currentMonster = monster;
         return;
       }

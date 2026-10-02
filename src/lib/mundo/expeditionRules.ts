@@ -1,4 +1,6 @@
 import { createHash } from "node:crypto";
+import { ENEMY_ROSTER, createEnemyAtLevel } from "@/shared/enemies";
+import { calculateCombatDamage, playerCombatStats } from "@/shared/combat";
 import type { EnemyDto, ExpeditionInventoryItemDto, ExpeditionKind, ExpeditionLootDto, ExpeditionRequest, MissionDto } from "@/shared/expeditions";
 import { distanceMeters } from "./geo";
 import { MundoError } from "./http";
@@ -90,7 +92,7 @@ export function generateExpeditionMissions(origin: Coordinates, now: number, tar
     const distanceKm = distanceMeters(origin, point) / 1000;
     const missionSeed = `${seed}:${key}`;
     const enemyLevel = seededInteger(`${missionSeed}:level`, Math.max(1, playerLevel - 3), playerLevel + 3);
-    const enemy = expeditionEnemy(kind, enemyLevel, seededInteger(`${missionSeed}:species`, 0, 7));
+    const enemy = expeditionEnemy(kind, enemyLevel, seededInteger(`${missionSeed}:species`, 0, EXPEDITION_ENEMIES.length * 4 - 1));
     const bounds = kind === "trade" ? null : expeditionRewardBounds(kind, distanceKm, enemyLevel);
     // Commerce retains the previous formula and exact integral 25% recipient share.
     const gold = bounds ? seededInteger(`${missionSeed}:gold`, bounds.gold.min, bounds.gold.max)
@@ -141,17 +143,27 @@ export function generateExpeditionMissions(origin: Coordinates, now: number, tar
 }
 
 export function expeditionEnemy(kind: ExpeditionKind, level: number, speciesSeed?: number): EnemyDto | null {
-  const growth = Math.max(0, level - 1);
   if (kind === "trade") return null;
-  const basic = kind === "elite"
-    ? { name: "Ogro", sprite: "/sprites/enemies/ogro.png", maxHealth: 35 + growth * 4, attack: 3 + growth, defense: 3 + Math.floor(growth / 3) }
-    : { name: "Araña", sprite: "/sprites/enemies/arana.png", maxHealth: 12 + level * 2, attack: 1 + Math.floor(growth / 3), defense: 0 };
-  const speedForSprite = (sprite: string) => (sprite === "/sprites/enemies/arana.png" ? 6 : 3) + Math.floor(level / 4);
-  if (speciesSeed === undefined) return { ...basic, level, speed: speedForSprite(basic.sprite) };
-  const seed = Math.abs(Math.trunc(speciesSeed));
-  const species = EXPEDITION_ENEMIES[seed % EXPEDITION_ENEMIES.length];
+  const speciesPool = kind === "elite"
+    ? EXPEDITION_ENEMIES.filter((species) => species.id === "ogro")
+    : EXPEDITION_ENEMIES.filter((species) => species.id !== "ogro");
+  if (speciesPool.length === 0) return null;
+  const seed = speciesSeed === undefined ? 0 : Math.abs(Math.trunc(speciesSeed));
+  const species = speciesPool[seed % speciesPool.length];
   const names = species[kind];
-  return { ...basic, level, sprite: species.sprite, speed: speedForSprite(species.sprite), name: names[Math.floor(seed / EXPEDITION_ENEMIES.length) % names.length] };
+  const definition = ENEMY_ROSTER.find((enemy) => enemy.id === species.id);
+  const scaled = createEnemyAtLevel(species.id, level, false);
+  if (!definition || !scaled) return null;
+  return {
+    id: definition.id,
+    name: names[Math.floor(seed / speciesPool.length) % names.length],
+    sprite: definition.sprite,
+    level: scaled.level,
+    speed: scaled.attributes.speed,
+    maxHealth: scaled.attributes.maxHealth,
+    attack: scaled.attributes.physicalAttack,
+    defense: scaled.attributes.physicalDefense,
+  };
 }
 
 /** Normalize old/malformed JSON without ever reading the legacy inventory. */
@@ -190,12 +202,13 @@ export function rollExpeditionLoot(loot: readonly ExpeditionLootDto[] | undefine
 }
 
 export function expeditionCombatStats(level: number): { attack: number; defense: number } {
-  return { attack: 8 + Math.max(0, level - 1), defense: 5 + Math.max(0, level - 1) };
+  const { attack, defense } = playerCombatStats(level);
+  return { attack, defense };
 }
 
 /** One actor's hit, capped to the target's remaining health. */
 export function expeditionDamage(health: number, attack: number, defense: number): number {
-  return Math.min(health, Math.max(1, attack - defense));
+  return calculateCombatDamage(attack, defense, health);
 }
 
 /** Player hits first; a defeated enemy cannot retaliate. */

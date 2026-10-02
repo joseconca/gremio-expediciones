@@ -10,6 +10,7 @@ import { MovementSystem } from "../systems/MovementSystem";
 import { CollisionSystem } from "../systems/CollisionSystem";
 import { InteractionSystem } from "../systems/InteractionSystem";
 import { EncounterSystem } from "../systems/EncounterSystem";
+import type { CharacterAttributes } from "../entities/Characters/CharacterAttributes";
 import { World } from "../world/World";
 import { Camera } from "../world/Camera";
 import { TileMap } from "../world/TileMap";
@@ -19,7 +20,7 @@ import { RealWorldGroundRenderer } from "../rendering/RealWorldGroundRenderer";
 import { campBuildingDefinition } from "../data/buildings/campBuilding";
 import { heroAnimations } from "../data/heroAnimations";
 import { campReturnDialogue } from "../data/dialogues/camp";
-import { OVERWORLD_ENEMIES } from "../data/enemies/overworldEnemies";
+import { overworldEnemiesAtLevel } from "../data/enemies/overworldEnemies";
 import { createNoticeDialogue } from "../data/dialogues/notice";
 import { LightingSystem } from "../lighting/LightingSystem";
 import { ReturnCart } from "../entities/ReturnCart";
@@ -121,7 +122,17 @@ export class ExteriorWorldScene extends Scene {
     this.encounterSystem = new EncounterSystem(
       this.player,
       monsters,
-      this.combatManager
+      this.combatManager,
+      () => this.partyManager.getSnapshot().companions.map((member) => ({
+        id: member.playerId, name: member.displayName, isLocalPlayer: false,
+        spriteSrc: "/sprites/sheets/characters/hero.png",
+        attributes: {
+          currentHealth: member.currentHealth, maxHealth: member.maxHealth,
+          physicalAttack: member.attack, physicalDefense: member.defense,
+          speed: member.speed, criticalChance: 0.05, criticalDamage: 1.5, evasionChance: 0.05,
+          magicAttack: 3, magicDefense: 3,
+        } satisfies CharacterAttributes,
+      }))
     );
 
     for (const otherBase of config.otherBases) {
@@ -207,15 +218,14 @@ export class ExteriorWorldScene extends Scene {
     };
 
     const monsters: OverworldMonster[] = [];
+    const enemies = overworldEnemiesAtLevel(this.playerProgression.getState().characterLevel);
     const count = 6;
     for (let index = 0; index < count; index++) {
       const angle = ((index + random() * 0.7) / count) * Math.PI * 2;
       const radius = 180 + random() * 320;
       const x = this.homePoint.x + Math.cos(angle) * radius;
       const y = this.homePoint.y + Math.sin(angle) * radius;
-      const definition = OVERWORLD_ENEMIES[
-        Math.floor(random() * OVERWORLD_ENEMIES.length)
-      ];
+      const definition = enemies[Math.floor(random() * enemies.length)];
       const monster = new OverworldMonster({ x, y, definition });
       const dx = x - this.homePoint.x;
       const dy = y - this.homePoint.y;

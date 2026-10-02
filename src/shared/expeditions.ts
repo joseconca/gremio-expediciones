@@ -25,6 +25,7 @@ export type MissionDto = {
 };
 
 export type EnemyDto = {
+  id?: string;
   level?: number;
   speed?: number;
   name: string;
@@ -32,6 +33,19 @@ export type EnemyDto = {
   maxHealth: number;
   attack: number;
   defense: number;
+};
+
+export type ExpeditionParticipantDto = {
+  playerId: string;
+  order: number;
+  name: string;
+  level: number;
+  currentHealth: number;
+  maxHealth: number;
+  attack: number;
+  defense: number;
+  speed: number;
+  isLeader: boolean;
 };
 
 export type ExpeditionDto = {
@@ -52,10 +66,12 @@ export type ExpeditionDto = {
   log: string;
   rewardGranted: boolean;
   awardedLoot?: ExpeditionInventoryItemDto[];
-  turn?: CombatTurn;
+  turn?: CombatTurn | string;
   enemyTurnAt?: number | null;
   lastAction?: BattleActionDto | null;
   playerSpeed?: number;
+  participants?: ExpeditionParticipantDto[];
+  actingMemberId?: string;
 };
 
 export type ExpeditionSnapshotDto = {

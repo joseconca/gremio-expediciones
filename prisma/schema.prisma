@@ -307,6 +307,7 @@ model Jugador {
   rewardRevision Int @default(0)
   inventarioMundo Json @default("[]")
   expedicionesMundo ExpedicionMundo[]
+  participacionesMundo ExpedicionParticipante[]
 
   miembroParty          MiembroParty?
   partyLiderada         Party?             @relation("LiderParty")
@@ -318,6 +319,7 @@ model ExpedicionMundo {
   id                String   @id @default(uuid())
   jugadorId         String
   jugador           Jugador  @relation(fields: [jugadorId], references: [id], onDelete: Cascade)
+  participantes     ExpedicionParticipante[]
   requestId         String   @unique
   // Snapshot autoritativo; el catálogo horario puede caducar durante el viaje.
   mission           Json
@@ -398,4 +400,25 @@ model InvitacionParty {
 
   @@index([receptorId, estado])
   @@index([emisorId, estado])
+}
+
+model ExpedicionParticipante {
+  expedicionId String
+  expedicion   ExpedicionMundo @relation(fields: [expedicionId], references: [id], onDelete: Cascade)
+  jugadorId    String
+  jugador      Jugador @relation(fields: [jugadorId], references: [id], onDelete: Cascade)
+
+  orden        Int
+  nombre       String
+  nivel        Int
+  salud        Int
+  saludMaxima  Int
+  ataque       Int
+  defensa      Int
+  velocidad    Int
+  botin        Json @default("[]")
+
+  @@id([expedicionId, jugadorId])
+  @@index([jugadorId])
+  @@index([expedicionId, orden])
 }

@@ -42,7 +42,11 @@ export class ExpeditionManager {
 
   constructor(private readonly gateway: WorldGateway,
     private readonly party: PartyManager, private readonly mobility: MobilityManager,
-    private readonly canStart: () => boolean, rewardRevision = 0) { this.initialRewardRevision = rewardRevision; }
+    private readonly canStart: () => boolean, rewardRevision = 0) {
+    this.initialRewardRevision = rewardRevision;
+    // Resolve whether this character is already participating before releasing local controls.
+    void this.refresh();
+  }
 
   getSnapshot = (): ExpeditionState => this.state;
   subscribe = (listener: () => void): (() => void) => {
@@ -109,6 +113,10 @@ export class ExpeditionManager {
         this.publish({ ...this.state, error: "Es el turno del enemigo. Espera a que termine su ataque." });
         return;
       }
+      if (active.actingMemberId && active.actingMemberId !== this.state.data?.profile.id) {
+        this.publish({ ...this.state, error: "El turno corresponde a otro miembro de la party." });
+        return;
+      }
       await this.command({ action, expeditionId: active.id, version: active.version });
     }
     finally { if (!this.destroyed) this.publish({ ...this.state, busy: false }); }
@@ -118,6 +126,7 @@ export class ExpeditionManager {
   private refresh(): Promise<void> {
     if (this.refreshInFlight) return this.refreshInFlight;
     if (this.destroyed || this.state.busy) return Promise.resolve();
+    this.elapsed = 0;
     this.syncing = true;
     this.refreshInFlight = this.command(this.pendingStart ?? { action: "status" }).finally(() => {
       this.syncing = false;

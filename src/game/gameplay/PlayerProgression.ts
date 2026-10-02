@@ -1,5 +1,6 @@
 import type { CharacterAttributes } from "../entities/Characters/CharacterAttributes";
 import type { PlayerProfileDto } from "../../shared/world";
+import { playerCombatStats } from "../../shared/combat";
 
 export interface PlayerProgressionState {
   name: string;
@@ -51,6 +52,7 @@ export interface SavedPlayerProgress {
 // Per-level growth mirrors gainExperience(), so attributes derive from the saved level.
 function restoreState(saved: SavedPlayerProgress): PlayerProgressionState {
   const gainedLevels = Math.max(0, saved.level - 1);
+  const combatStats = playerCombatStats(saved.level);
   const maxHealth = saved.maxHealth ?? INITIAL_STATE.attributes.maxHealth + gainedLevels * 10;
 
   return {
@@ -64,8 +66,9 @@ function restoreState(saved: SavedPlayerProgress): PlayerProgressionState {
       ...INITIAL_STATE.attributes,
       maxHealth,
       currentHealth: Math.min(maxHealth, saved.currentHealth),
-      physicalAttack: INITIAL_STATE.attributes.physicalAttack + gainedLevels,
-      physicalDefense: INITIAL_STATE.attributes.physicalDefense + gainedLevels,
+      physicalAttack: combatStats.attack,
+      physicalDefense: combatStats.defense,
+      speed: combatStats.speed,
     },
   };
 }

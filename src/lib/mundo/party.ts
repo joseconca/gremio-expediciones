@@ -4,13 +4,19 @@ import { prisma } from "@/lib/prisma";
 import { MAX_PARTY_SIZE, type PartySnapshotDto } from "@/shared/world";
 import { MundoError, withWorldLock } from "./http";
 import { listNearbyBases, progressToken, toPlayerProfile } from "./jugador";
+import { playerCombatStats } from "@/shared/combat";
 
 const INVITATION_TTL_MS = 5 * 60 * 1000;
 const ONLINE_WINDOW_MS = 2 * 60 * 1000;
 const MAX_CANDIDATES = 5;
 
 async function requireAvailablePlayer(tx: Prisma.TransactionClient, playerId: string): Promise<void> {
-  if (await tx.expedicionMundo.findFirst({ where: { jugadorId: playerId, phase: { not: "completed" } }, select: { id: true } })) {
+  const expeditionModel = tx.expedicionMundo as unknown as { findFirst(args: { where: {
+    phase: { not: string }; participantes: { some: { jugadorId: string } };
+  }; select: { id: true } }): Promise<{ id: string } | null> };
+  if (await expeditionModel.findFirst({ where: {
+    phase: { not: "completed" }, participantes: { some: { jugadorId: playerId } },
+  }, select: { id: true } })) {
     throw new MundoError(409, "expedition_active", "No puedes organizar la party mientras estás de expedición.");
   }
   const player = await tx.jugador.findUniqueOrThrow({ where: { id: playerId } });
@@ -66,8 +72,10 @@ export async function getPartySnapshot(
       playerId: member.jugadorId,
       displayName: member.jugador.nombre,
       characterClass: member.jugador.clase,
+      level: member.jugador.nivel,
       currentHealth: member.jugador.saludActual,
       maxHealth: member.jugador.saludMaxima,
+      ...playerCombatStats(member.jugador.nivel),
       isLeader: membership?.party.liderId === member.jugadorId,
     })),
     invitations: invitations.map((invitation) => ({
