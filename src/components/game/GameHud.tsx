@@ -3,11 +3,13 @@
 import { useState } from "react";
 import type { PlayerProgressionState } from "@/game/gameplay/PlayerProgression";
 import type { VillageResources } from "@/game/gameplay/VillageProgression";
+import type { PartyMemberDto } from "@/shared/world";
 
 interface GameHudProps {
   player: PlayerProgressionState;
   resources: VillageResources;
   isInVillage: boolean;
+  companions: PartyMemberDto[];
 }
 
 function percentage(value: number, max: number): number {
@@ -34,7 +36,12 @@ function ProgressBar({
   );
 }
 
-export default function GameHud({ player, resources, isInVillage }: GameHudProps) {
+export default function GameHud({
+  player,
+  resources,
+  isInVillage,
+  companions,
+}: GameHudProps) {
   const [showAttributes, setShowAttributes] = useState(false);
   const [showResources, setShowResources] = useState(false);
   const attributes = player.attributes;
@@ -42,6 +49,7 @@ export default function GameHud({ player, resources, isInVillage }: GameHudProps
   return (
     <>
       <header className="pointer-events-none absolute inset-x-2 top-2 z-10 flex items-start justify-between gap-2 sm:inset-x-3 sm:top-3">
+        <div className="flex flex-col gap-1">
         <section className="pointer-events-auto w-[min(76vw,32rem)] rounded-md border border-amber-200/25 bg-stone-950/90 p-2 text-[10px] leading-tight text-stone-100 shadow-lg backdrop-blur-sm sm:w-[min(68vw,36rem)] sm:p-3 sm:text-xs">
           <div className="flex items-start justify-between gap-2">
             <div className="min-w-0">
@@ -122,6 +130,34 @@ export default function GameHud({ player, resources, isInVillage }: GameHudProps
             </dl>
           )}
         </section>
+
+        {companions.length > 0 && (
+          <ul
+            aria-label="Party"
+            className="pointer-events-auto w-40 space-y-1 rounded-md border border-amber-200/20 bg-stone-950/85 p-1.5 text-[9px] leading-tight text-stone-100 shadow-md backdrop-blur-sm sm:w-48 sm:text-[10px]"
+          >
+            {companions.map((member) => (
+              <li key={member.playerId}>
+                <div className="flex justify-between gap-1">
+                  <span className="truncate font-bold text-amber-100">
+                    {member.isLeader ? "★ " : ""}
+                    {member.displayName}
+                    <span className="font-normal text-stone-400"> · {member.characterClass}</span>
+                  </span>
+                  <span className="shrink-0 font-mono">
+                    {member.currentHealth}/{member.maxHealth}
+                  </span>
+                </div>
+                <ProgressBar
+                  value={member.currentHealth}
+                  max={member.maxHealth}
+                  color="bg-emerald-500"
+                />
+              </li>
+            ))}
+          </ul>
+        )}
+        </div>
 
         <button
           type="button"

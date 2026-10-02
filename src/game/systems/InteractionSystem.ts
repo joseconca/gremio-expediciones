@@ -1,4 +1,4 @@
-import type { InputManager } from "../input/InputManager";
+﻿import type { InputManager } from "../input/InputManager";
 import type { Player } from "../entities/Characters/Player";
 import type { Interactable } from "../entities/Interactable";
 
@@ -17,8 +17,16 @@ export class InteractionSystem {
       return null;
     }
 
+    const feet = player.getGroundAnchor();
+
     for (const interactable of interactables) {
-      if (interactable.canInteractWith(player.x, player.y)) {
+      const area = interactable.getInteractionArea?.();
+      const reachable = area
+        ? (feet.x - area.x) ** 2 + (feet.y - area.y) ** 2 <=
+          area.radius * area.radius
+        : interactable.canInteractWith(player.x, player.y);
+
+      if (reachable) {
         interactable.interact();
 
         return interactable;

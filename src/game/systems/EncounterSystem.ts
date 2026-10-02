@@ -2,19 +2,7 @@ import type { OverworldMonster } from "../entities/Characters/OverworldMonster";
 import type { Player } from "../entities/Characters/Player";
 import type { CombatManager } from "../gameplay/CombatManager";
 
-function intersects(
-  a: { x: number; y: number; width: number; height: number },
-  b: { x: number; y: number; width: number; height: number }
-): boolean {
-  return (
-    a.x < b.x + b.width &&
-    a.x + a.width > b.x &&
-    a.y < b.y + b.height &&
-    a.y + a.height > b.y
-  );
-}
-
-/** Detects contact encounters without making monsters movement colliders. */
+/** Starts combat when the player's feet enter a monster's encounter circle. */
 export class EncounterSystem {
   private currentMonster: OverworldMonster | null = null;
 
@@ -37,21 +25,10 @@ export class EncounterSystem {
     }
     if (this.combatManager.isEncounterOpen()) return;
 
-    const playerColliders = this.player.colliders.map((collider) =>
-      collider.getBounds(this.player.x, this.player.y)
-    );
+    const feet = this.player.getGroundAnchor();
 
     for (const monster of this.monsters) {
-      const monsterColliders = monster.colliders.map((collider) =>
-        collider.getBounds(monster.x, monster.y)
-      );
-      const touching = playerColliders.some((playerBounds) =>
-        monsterColliders.some((monsterBounds) =>
-          intersects(playerBounds, monsterBounds)
-        )
-      );
-
-      if (!touching) {
+      if (!monster.isWithinEncounterRange(feet.x, feet.y)) {
         monster.resetEncounterIgnore();
         continue;
       }

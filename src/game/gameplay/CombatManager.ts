@@ -2,8 +2,7 @@ import type { CharacterAttributes } from "../entities/Characters/CharacterAttrib
 import type { PlayerProgression } from "./PlayerProgression";
 import type { VillageProgression } from "./VillageProgression";
 import type { OverworldEnemyDefinition } from "../data/enemies/overworldEnemies";
-
-export const MAX_PARTY_SIZE = 3;
+import { MAX_PARTY_SIZE } from "../../shared/world";
 
 export type CombatPhase = "active" | "victory" | "defeat" | "fled";
 export type CombatMenu = "root" | "skills" | "items";
