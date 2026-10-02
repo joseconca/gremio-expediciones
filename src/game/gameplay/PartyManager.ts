@@ -6,6 +6,7 @@ import type {
   PartyMemberDto,
   PartySnapshotDto,
   NearbyBaseDto,
+  SyncRequest,
 } from "../../shared/world";
 import type { PlayerProgression } from "./PlayerProgression";
 import type { VillageProgression } from "./VillageProgression";
@@ -45,6 +46,7 @@ export class PartyManager {
   private elapsedSinceSync = SYNC_INTERVAL_SECONDS;
   private inFlight: Promise<void> | null = null;
   private changeRevision = 0;
+  private pendingSave: { progress: SyncRequest; revision: number } | null = null;
   private readonly unsubscribe: Array<() => void>;
 
   constructor(
@@ -122,11 +124,12 @@ export class PartyManager {
 
   private async performSync(): Promise<void> {
     this.elapsedSinceSync = 0;
-    const sentRevision = this.changeRevision;
 
     try {
       const state = this.player.getState();
-      const remote = await this.gateway.sync({
+      // Retry the same payload after an ambiguous failure before sending newer
+      // changes; the server can acknowledge an already committed identical save.
+      this.pendingSave ??= { revision: this.changeRevision, progress: {
         progressToken: this.progressToken,
         characterClass: state.characterClass,
         level: state.characterLevel,
@@ -135,8 +138,11 @@ export class PartyManager {
         currentHealth: state.attributes.currentHealth,
         maxHealth: state.attributes.maxHealth,
         buildings: this.village.getSavedBuildings(),
-      });
+      } };
+      const sentRevision = this.pendingSave.revision;
+      const remote = await this.gateway.sync(this.pendingSave.progress);
       if (remote.ok) {
+        this.pendingSave = null;
         this.progressToken = remote.snapshot.progressToken;
         this.apply(remote.snapshot, sentRevision === this.changeRevision);
       } else {

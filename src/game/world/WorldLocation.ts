@@ -51,9 +51,12 @@ export function geographicToWorldPoint(
 ): WorldPoint {
   const locationPixels = geographicToMapPixels(location);
   const originPixels = geographicToMapPixels(origin);
+  const worldWidth = WEB_MERCATOR_TILE_SIZE * 2 ** WORLD_MAP_ZOOM;
+  const deltaX = locationPixels.x - originPixels.x;
+  const wrappedDeltaX = ((deltaX + worldWidth / 2) % worldWidth + worldWidth) % worldWidth - worldWidth / 2;
 
   return {
-    x: MAP_CENTER + locationPixels.x - originPixels.x,
+    x: MAP_CENTER + wrappedDeltaX,
     y: MAP_CENTER + locationPixels.y - originPixels.y,
   };
 }

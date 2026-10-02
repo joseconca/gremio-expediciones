@@ -25,9 +25,11 @@ export default function BattleOverlay({
   return (
     <section
       aria-label="Combate"
-      className="fixed inset-0 z-40 flex flex-col justify-between overflow-hidden bg-slate-950/75 text-amber-50 backdrop-blur-[2px]"
+      role="dialog"
+      aria-modal="true"
+      className="fixed inset-0 z-40 flex flex-col justify-between overflow-y-auto overscroll-contain bg-slate-950/75 text-amber-50 backdrop-blur-[2px]"
     >
-      <header className="flex items-center justify-between border-b border-amber-100/15 bg-black/60 px-4 py-3 sm:px-8">
+      <header className="flex shrink-0 items-center justify-between border-b border-amber-100/15 bg-black/60 px-4 py-3 sm:px-8">
         <div>
           <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-amber-300/70">
             Encuentro en el exterior
@@ -90,7 +92,7 @@ export default function BattleOverlay({
         </div>
       </div>
 
-      <footer className="border-t border-amber-100/15 bg-[#17120f]/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:p-5">
+      <footer className="shrink-0 border-t border-amber-100/15 bg-[#17120f]/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:p-5">
         <p aria-live="polite" className="mx-auto mb-3 min-h-5 max-w-4xl text-center text-sm text-amber-100/80">
           {snapshot.log}
         </p>

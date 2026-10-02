@@ -161,7 +161,7 @@ export class InteriorScene extends Scene {
       }
     }
 
-    if (!dialogueWasActive && !this.dialogueManager.isActive()) {
+    if (!dialogueWasActive && !this.dialogueManager.isActive() && !this.input.isBlocked()) {
       this.sceneTransitionSystem.update([this.player]);
     }
   }

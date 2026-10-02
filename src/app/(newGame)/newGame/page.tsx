@@ -342,7 +342,7 @@ export default function NewGamePage() {
 
       {partyState.syncStatus !== "saved" && (
         <p role="status" className="pointer-events-none absolute inset-x-3 top-32 z-30 rounded bg-stone-950/90 p-2 text-xs text-amber-200">
-          {partyState.syncMessage ?? "Conectando: espera al guardado antes de recargar."}
+          {partyState.syncMessage ?? "Progreso pendiente: espera al guardado antes de recargar."}
         </p>
       )}
 

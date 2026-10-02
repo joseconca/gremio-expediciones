@@ -10,7 +10,7 @@ import {
   type SavedBuildingType,
   type WorldSessionDto,
 } from "@/shared/world";
-import { boundingBox, distanceMeters } from "./geo";
+import { boundingBox, distanceMeters, longitudeFilter } from "./geo";
 import { MundoError, withWorldLock } from "./http";
 
 const BUILDING_TYPES: readonly SavedBuildingType[] = ["town-hall", "tavern", "embassy"];
@@ -95,7 +95,7 @@ export async function listNearbyBases(base: Base): Promise<NearbyBaseDto[]> {
     where: {
       id: { not: base.id },
       lat: { gte: box.minLat, lte: box.maxLat },
-      lng: { gte: box.minLng, lte: box.maxLng },
+      ...longitudeFilter(box),
       usuario: { jugador: { isNot: null } },
     },
     include: { usuario: { include: { jugador: true } } },
@@ -149,7 +149,7 @@ export async function createPlayer(
     const nearby = await tx.base.findMany({
       where: {
         lat: { gte: box.minLat, lte: box.maxLat },
-        lng: { gte: box.minLng, lte: box.maxLng },
+        ...longitudeFilter(box),
       },
     });
     if (nearby.some((other) => distanceMeters(location, other) < MIN_BASE_DISTANCE_METERS)) {
@@ -216,6 +216,17 @@ export async function syncProgress(
     const currentPlayer = await tx.jugador.findUniqueOrThrow({ where: { id: jugador.id } });
     const currentBase = await tx.base.findUniqueOrThrow({ where: { id: base.id } });
     if (body.progressToken !== progressToken(currentPlayer, currentBase)) {
+      // The previous save may have committed while its HTTP response was lost.
+      // An identical retry is safe; it never overwrites another session's data.
+      if (
+        currentPlayer.clase === body.characterClass && currentPlayer.nivel === body.level &&
+        currentPlayer.experiencia === body.experience && currentPlayer.oro === body.gold &&
+        currentPlayer.saludActual === body.currentHealth && currentPlayer.saludMaxima === body.maxHealth &&
+        JSON.stringify(parseBuildings(currentBase.edificios)) === JSON.stringify(buildings)
+      ) {
+        await tx.jugador.update({ where: { id: jugador.id }, data: { ultimoVisto: new Date() } });
+        return progressToken(currentPlayer, currentBase);
+      }
       throw new MundoError(409, "progress_conflict", "Otra sesión ha guardado progreso. Recarga antes de continuar; esta pestaña no sobrescribirá ese guardado.");
     }
     const savedPlayer = await tx.jugador.update({
@@ -237,7 +248,7 @@ export async function syncProgress(
       where: { id: base.id },
       data: {
         edificios: buildings,
-        // Never revoked by a stale client; losing an embassy needs a server-side rule.
+        // The token rejects stale saves, keeping the index consistent with buildings.
         embajada: buildings.some((building) => building.type === "embassy"),
       },
     });
