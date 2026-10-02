@@ -22,6 +22,7 @@ import { campReturnDialogue } from "../data/dialogues/camp";
 import { OVERWORLD_ENEMIES } from "../data/enemies/overworldEnemies";
 import { createNoticeDialogue } from "../data/dialogues/notice";
 import { LightingSystem } from "../lighting/LightingSystem";
+import { ReturnCart } from "../entities/ReturnCart";
 import {
   geographicToWorldPoint,
   isInsideWorldMap,
@@ -49,6 +50,7 @@ export class ExteriorWorldScene extends Scene {
   private readonly basePoint: WorldBaseLocation;
   private readonly campBuilding: CampBuilding;
   private readonly encounterSystem: EncounterSystem;
+  private cart: ReturnCart | null = null;
 
   constructor(config: ExteriorWorldSceneConfig) {
     super(config);
@@ -64,7 +66,7 @@ export class ExteriorWorldScene extends Scene {
       collisionMap,
       renderMarginTiles: 12,
       groundSurfaceRenderer: new RealWorldGroundRenderer(config.selectedBase),
-      lighting: new LightingSystem({ dayNight: this.dayNightSystem }),
+      lighting: new LightingSystem({ dayNight: this.dayNightSystem, contactShadows: true }),
     });
     this.collisionSystem = new CollisionSystem(collisionMap);
     this.interactionSystem = new InteractionSystem(this.input);
@@ -151,6 +153,10 @@ export class ExteriorWorldScene extends Scene {
   }
 
   protected getSpawnPoint(spawnId?: string) {
+    if (this.initialLocation) {
+      const saved = this.initialLocation;
+      return { id: "resume", x: saved.x, y: saved.y, direction: saved.direction };
+    }
     if (!spawnId || spawnId === "from-base") {
       return {
         id: "from-base",
@@ -177,6 +183,10 @@ export class ExteriorWorldScene extends Scene {
   }
 
   init(): void {}
+
+  override getPlayerLocation() {
+    return { x: this.player.x, y: this.player.y, direction: this.player.direction };
+  }
 
   private createOverworldMonsters(collisionMap: CollisionMap): OverworldMonster[] {
     const seedText = `${this.basePoint.lat.toFixed(5)}:${this.basePoint.lng.toFixed(5)}`;
@@ -219,20 +229,37 @@ export class ExteriorWorldScene extends Scene {
     this.updateDebugMode();
     const dialogueWasActive = this.dialogueManager.isActive();
     const combatWasActive = this.combatManager.isEncounterOpen();
-    this.player.setInputEnabled(!dialogueWasActive && !combatWasActive);
+    const journey = this.mobilityManager?.getSnapshot().journey;
+    this.player.setInputEnabled(!dialogueWasActive && !combatWasActive && !journey && !this.input.isBlocked());
 
-    if (!dialogueWasActive && !combatWasActive) {
+    if (!dialogueWasActive && !combatWasActive && !journey && !this.input.isBlocked()) {
       this.interactionSystem.tryInteract(this.player, this.interactables);
       this.player.setInputEnabled(
         !this.dialogueManager.isActive() && !this.combatManager.isEncounterOpen()
       );
     }
 
+    if (journey) {
+      if (!this.cart) {
+        this.world.removeObject(this.player);
+        this.collisionSystem.removeObject(this.player);
+        this.cart = new ReturnCart({ x: journey.fromX + 14, y: journey.fromY + 56 });
+        this.world.addObject(this.cart);
+      }
+      const point = this.mobilityManager?.getJourneyPosition();
+      if (point) {
+        this.cart.x = point.x + 14;
+        this.cart.y = point.y + 56;
+        this.cart.setTravelDirection(journey.toX - journey.fromX, journey.toY - journey.fromY, point.progress < 1);
+        this.player.x = point.x;
+        this.player.y = point.y;
+      }
+    }
     this.world.update(deltaTime);
-    if (!this.dialogueManager.isActive() && !this.input.isBlocked()) this.encounterSystem.update();
+    if (!journey && !this.dialogueManager.isActive() && !this.input.isBlocked()) this.encounterSystem.update();
     this.camera.follow(this.player.x, this.player.y, 32, 64);
 
-    if (dialogueWasActive) {
+    if (dialogueWasActive && !journey) {
       if (this.input.wasDirectionPressed("up")) {
         this.dialogueManager.moveSelection(-1);
       } else if (this.input.wasDirectionPressed("down")) {

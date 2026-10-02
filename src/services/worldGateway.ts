@@ -6,15 +6,16 @@ import type {
   WorldApiError,
   WorldSessionDto,
 } from "@/shared/world";
+import type { MobilitySnapshot } from "@/shared/travel";
 
 type ApiResponse<T> =
   | { ok: true; data: T }
   | { ok: false; status: number; error: WorldApiError };
 
-async function call<T>(path: string, body?: unknown): Promise<ApiResponse<T>> {
+async function call<T>(path: string, body?: unknown, method?: "PATCH"): Promise<ApiResponse<T>> {
   try {
     const response = await fetch(`/api/mundo/${path}`, {
-      method: body === undefined ? "GET" : "POST",
+      method: method ?? (body === undefined ? "GET" : "POST"),
       cache: "no-store",
       headers: { "Content-Type": "application/json" },
       body: body === undefined ? undefined : JSON.stringify(body),
@@ -45,6 +46,10 @@ function toResult(response: ApiResponse<unknown>): GatewayResult {
 }
 
 export const worldGateway: WorldGateway = {
+  async mobility(request) {
+    const response = await call<{ mobility: MobilitySnapshot }>("jugador", request, "PATCH");
+    return response.ok ? { ok: true, mobility: response.data.mobility } : { ok: false, ...response.error };
+  },
   async sync(progress) {
     const response = await call<PartySnapshotDto>("sync", progress);
     return response.ok

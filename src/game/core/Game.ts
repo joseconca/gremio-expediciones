@@ -16,8 +16,12 @@ import type { WorldGateway } from "../gameplay/WorldGateway";
 import { DayNightSystem } from "../lighting/DayNightSystem";
 import type { WorldBaseLocation } from "../world/WorldLocation";
 import type { PlayerProfileDto, SavedBuilding } from "../../shared/world";
+import type { MobilitySnapshot, PlayerLocation } from "../../shared/travel";
+import { MobilityManager } from "../gameplay/MobilityManager";
+import { MenuManager } from "../gameplay/MenuManager";
 
 export interface GameConfig {
+  mobility: MobilitySnapshot;
   progressToken: string;
   canvas: HTMLCanvasElement;
   selectedBase: WorldBaseLocation;
@@ -40,12 +44,16 @@ export class Game {
   partyManager: PartyManager;
   dayNightSystem: DayNightSystem;
   loop: GameLoop;
+  mobilityManager: MobilityManager;
+  menuManager: MenuManager;
+  private readonly initialMobility: MobilitySnapshot;
 
   private readonly selectedBase: WorldBaseLocation;
   private readonly otherBases: WorldBaseLocation[];
   private readonly worldGateway: WorldGateway;
 
   constructor(config: GameConfig) {
+    this.initialMobility = config.mobility;
     this.canvas = config.canvas;
     this.selectedBase = config.selectedBase;
     this.otherBases = config.otherBases ?? [];
@@ -80,28 +88,37 @@ export class Game {
     );
     this.dayNightSystem = new DayNightSystem();
     this.sceneManager = new SceneManager();
+    this.mobilityManager = new MobilityManager(this.worldGateway, config.mobility,
+      () => this.sceneManager.getPlayerLocation(),
+      (location) => {
+        this.dialogueManager.close();
+        this.sceneManager.changeScene(location.sceneId, undefined, location);
+      });
+    this.menuManager = new MenuManager(this.mobilityManager, () =>
+      !this.combatManager.isEncounterOpen() && !this.dialogueManager.isActive() &&
+      !this.mobilityManager.getSnapshot().journey && !this.mobilityManager.getSnapshot().conflict);
 
     this.sceneManager.register(
       "base",
-      (spawnId) => new BaseScene(this.createSceneConfig(spawnId))
+      (spawnId, initialLocation) => new BaseScene(this.createSceneConfig(spawnId, initialLocation))
     );
     this.sceneManager.register(
       "town-hall-interior",
-      (spawnId) => new TownHallInteriorScene(this.createSceneConfig(spawnId))
+      (spawnId, initialLocation) => new TownHallInteriorScene(this.createSceneConfig(spawnId, initialLocation))
     );
     this.sceneManager.register(
       "tavern-interior",
-      (spawnId) => new TavernInteriorScene(this.createSceneConfig(spawnId))
+      (spawnId, initialLocation) => new TavernInteriorScene(this.createSceneConfig(spawnId, initialLocation))
     );
     this.sceneManager.register(
       "embassy-interior",
-      (spawnId) => new EmbassyInteriorScene(this.createSceneConfig(spawnId))
+      (spawnId, initialLocation) => new EmbassyInteriorScene(this.createSceneConfig(spawnId, initialLocation))
     );
     this.sceneManager.register(
       "exterior-world",
-      (spawnId) =>
+      (spawnId, initialLocation) =>
         new ExteriorWorldScene({
-          ...this.createSceneConfig(spawnId),
+          ...this.createSceneConfig(spawnId, initialLocation),
           selectedBase: this.selectedBase,
           otherBases: this.partyManager.getSnapshot().loaded
             ? this.partyManager.getSnapshot().nearbyBases.map((base) => ({
@@ -114,10 +131,16 @@ export class Game {
 
     this.loop = new GameLoop({
       update: (deltaTime) => {
+        if (this.input.isRawActionPressed("start")) this.menuManager.toggle();
+        if (this.menuManager.getSnapshot().open && this.input.isRawActionPressed("actionB")) this.menuManager.close();
+        const mobility = this.mobilityManager.getSnapshot();
+        this.input.setBlocker("menu", this.menuManager.getSnapshot().open);
+        this.input.setBlocker("travel", !!mobility.journey || mobility.conflict);
         this.villageProgression.update(deltaTime);
         this.dayNightSystem.update();
         this.partyManager.update(deltaTime);
         this.sceneManager.update(deltaTime);
+        this.mobilityManager.update(deltaTime);
         this.input.endFrame();
       },
       render: () => this.sceneManager.render(),
@@ -126,19 +149,24 @@ export class Game {
 
   init(): void {
     this.input.init();
-    this.sceneManager.changeScene("base");
+    const saved = this.initialMobility;
+    this.sceneManager.changeScene(saved.journey ? "exterior-world" : saved.location.sceneId, undefined, saved.location);
     this.loop.start();
   }
 
   destroy(): void {
     this.loop.stop();
     this.partyManager.destroy();
+    this.mobilityManager.destroy();
+    this.menuManager.destroy();
     this.sceneManager.destroy();
     this.input.destroy();
   }
 
-  private createSceneConfig(spawnId?: string): SceneConfig {
+  private createSceneConfig(spawnId?: string, initialLocation?: PlayerLocation): SceneConfig {
     return {
+      initialLocation,
+      mobilityManager: this.mobilityManager,
       canvas: this.canvas,
       ctx: this.ctx,
       input: this.input,
