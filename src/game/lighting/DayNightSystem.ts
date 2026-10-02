@@ -31,7 +31,8 @@ const AMBIENT_KEYFRAMES: ReadonlyArray<readonly [number, AmbientTint]> = [
   [16.5, { r: 255, g: 244, b: 215, alpha: 0.03 }],
   [17, { r: 245, g: 138, b: 95, alpha: 0.18 }],
   [19, { r: 210, g: 95, b: 100, alpha: 0.3 }],
-  [20.5, { r: 85, g: 65, b: 110, alpha: 0.42 }],
+  [20, { r: 65, g: 45, b: 85, alpha: 0.46 }],
+  [20.5, { r: 30, g: 28, b: 65, alpha: 0.51 }],
   [21, { r: 12, g: 18, b: 48, alpha: 0.55 }],
   [24, { r: 12, g: 18, b: 48, alpha: 0.55 }],
 ];

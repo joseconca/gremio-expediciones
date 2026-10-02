@@ -82,18 +82,25 @@ test("shadow lies opposite solar azimuth, stretches at low sun, vanishes at nigh
   assert.deepEqual(getShadowVector(new DayNightSystem(() => 23).getState().sun, 100), { x: 0, y: 0 });
 });
 
-test("sprite shadow anchors feet, flips height away from sun, and retains width at cardinal angles", () => {
+test("sprite shadow keeps its full baseline fixed and shears height without rotating", () => {
   const sprite = { anchorX: 16, anchorY: 64 };
-  const footprint = { x: 100, y: 200 };
-  for (const sweep of [{ x: -80, y: 0 }, { x: 80, y: 0 }, { x: 0, y: -80 }]) {
-    assert.deepEqual(shadowSpriteGroundPoint(sprite, footprint, sweep, 16, 64), footprint);
-    assert.deepEqual(shadowSpriteGroundPoint(sprite, footprint, sweep, 16, 0), { x: footprint.x + sweep.x, y: footprint.y + sweep.y });
+  const footprint = { x: 100, y: 200, radiusY: 4 };
+  for (const sweep of [{ x: -80, y: 0 }, { x: 80, y: 0 }, { x: 0, y: -80 }, { x: 40, y: -40 }, { x: 40, y: 40 }]) {
+    assert.deepEqual(shadowSpriteGroundPoint(sprite, footprint, sweep, 16, 64), { x: footprint.x, y: footprint.y });
+    const tip = shadowSpriteGroundPoint(sprite, footprint, sweep, 16, 0);
+    assert.equal(tip.x, footprint.x + sweep.x);
+    assert.equal(tip.y, footprint.y + (sweep.y === 0 ? -8 : sweep.y));
     const left = shadowSpriteGroundPoint(sprite, footprint, sweep, 0, 64);
     const right = shadowSpriteGroundPoint(sprite, footprint, sweep, 32, 64);
-    assert.equal(Math.hypot(right.x - left.x, right.y - left.y), 32);
-    const cross = (right.x - left.x) * sweep.y - (right.y - left.y) * sweep.x;
+    assert.deepEqual(left, { x: 84, y: 200 });
+    assert.deepEqual(right, { x: 116, y: 200 });
+    const middle = shadowSpriteGroundPoint(sprite, footprint, sweep, 16, 32);
+    assert.equal(middle.x, (tip.x + footprint.x) / 2);
+    assert.equal(middle.y, (tip.y + footprint.y) / 2);
+    const cross = (right.x - left.x) * (tip.y - footprint.y);
     assert.notEqual(cross, 0);
   }
+  assert.deepEqual(shadowSpriteGroundPoint(sprite, footprint, { x: 0, y: 0 }, 16, 0), { x: 100, y: 200 });
 });
 
 function mockCanvas() {
@@ -271,4 +278,24 @@ test("base resizes when a construction starts without rebuilding the world or pl
   scene.syncVillageLayout();
   assert.equal(scene.collisionSystem.canOccupy(player, player.x, player.y), true);
   assert.notEqual(player.y, plot.y - 60);
+});
+
+test("late dusk is darker by 20:15 and smoothly approaches night without changing its schedule", () => {
+  const sample = (hour) => new DayNightSystem(() => hour).getState();
+  const early = sample(19);
+  const late = sample(20.25);
+  const night = sample(21);
+  assert.equal(late.phase, "dusk");
+  assert.ok(Math.abs(late.ambient.alpha - 0.485) < 1e-9);
+  assert.ok(late.ambient.alpha > early.ambient.alpha);
+  assert.ok(late.ambient.alpha < night.ambient.alpha);
+  assert.ok(late.ambient.r < early.ambient.r);
+  assert.ok(late.sun.intensity > 0);
+  assert.equal(night.phase, "night");
+  assert.equal(night.sun.intensity, 0);
+  for (const boundary of [19, 20, 20.5, 21]) {
+    const before = sample(boundary - 0.0001).ambient;
+    const after = sample(boundary).ambient;
+    for (const key of ["r", "g", "b", "alpha"]) assert.ok(Math.abs(before[key] - after[key]) < 0.1);
+  }
 });
