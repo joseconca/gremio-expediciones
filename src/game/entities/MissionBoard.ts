@@ -6,7 +6,7 @@ import type { RenderPart } from "../rendering/RenderPart";
 import { RenderLayer } from "../rendering/RenderLayer";
 import type { ShadowCaster, ShadowFootprint, ShadowSprite } from "../lighting/ShadowCaster";
 
-export const MISSION_BOARD_POSITION = { x: 560 - 3 * 32, y: 800 - 32 };
+export const MISSION_BOARD_POSITION = { x: 560 - 5 * 32, y: 800 - 2 * 32 };
 
 export class MissionBoard extends GameObject implements Interactable, ShadowCaster {
   private readonly sheet = new SpriteSheet({ src: "/sprites/tablonMisiones.png", frameWidth: 128, frameHeight: 64 });
