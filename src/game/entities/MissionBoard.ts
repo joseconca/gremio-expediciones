@@ -13,11 +13,11 @@ export class MissionBoard extends GameObject implements Interactable, ShadowCast
   private readonly parts: RenderPart[];
   private readonly shadow: ShadowSprite;
   constructor(config: GameObjectConfig & { onInteract: () => void }) {
-    super({ ...config, colliders: [new Collider({ width: 80, height: 8, offsetX: 24, offsetY: -8 })] });
+    super({ ...config, colliders: [new Collider({ width: 64, height: 8, offsetX: 64+32, offsetY: -8 })] });
     this.onInteract = config.onInteract;
     this.parts = [{ layer: RenderLayer.WORLD, offsetX: 0, offsetY: -64, sortYOffset: 0,
       render: (ctx, x, y) => { if (this.sheet.isLoaded()) ctx.drawImage(this.sheet.image, x, y, 128, 64); } }];
-    this.shadow = { image: this.sheet.image, width: 128, height: 64, anchorX: 64, anchorY: 64,
+    this.shadow = { image: this.sheet.image, width: 128, height: 64, anchorX: 0, anchorY: 64,
       parts: [{ sx: 0, sy: 0, sw: 128, sh: 64, x: 0, y: 0, width: 128, height: 64 }] };
   }
   private readonly onInteract: () => void;
