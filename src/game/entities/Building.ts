@@ -20,7 +20,6 @@ export interface BuildingConfig extends GameObjectConfig {
   dayNight?: DayNightSystem;
 }
 
-export class Building extends GameObject implements ShadowCaster {
 export class Building extends GameObject implements ShadowCaster, LightEmitter {
   readonly definition: BuildingDefinition;
 

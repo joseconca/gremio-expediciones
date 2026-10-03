@@ -30,7 +30,6 @@ export class Campfire extends GameObject implements LightEmitter {
   private readonly dayNight?: DayNightSystem;
   private elapsedSeconds = 0;
 
-  constructor(config: GameObjectConfig) {
   constructor(config: CampfireConfig) {
     super(config);
     this.dayNight = config.dayNight;
@@ -56,8 +55,8 @@ export class Campfire extends GameObject implements LightEmitter {
       {
         x: this.x + this.spriteSheet.frameWidth / 2,
         y: this.y + 16,
-        radius: 150 * flicker,
-        intensity: 0.9,
+        radius: 120 * flicker,
+        intensity: 0.6,
         color: "255, 160, 70",
       },
     ];

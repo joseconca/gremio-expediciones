@@ -23,10 +23,10 @@ function createTownHallDefinition(level: 0 | 1): BuildingDefinition {
     // Window light only on the upgraded town hall that has a visible window sprite.
     pointLights: level === 1 ? [
       {
-        offsetX: 64,
-        offsetY: -80,
-        radius: 90,
-        intensity: 0.75,
+        offsetX: 96,
+        offsetY: -40,
+        radius: 24,
+        intensity: 1,
         color: "255, 210, 120",
       },
     ] : undefined,
