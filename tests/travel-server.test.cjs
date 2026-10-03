@@ -87,7 +87,8 @@ function harness(initial = player()) {
     "@/lib/prisma": { prisma },
     "@/lib/auth": { async getAuthenticatedUser() { return authenticated; } },
   });
-  const travel = loadSource("src/lib/mundo/travel.ts", { "./http": http, "@/shared/travel": travelContract, "@/shared/village": villageContract });
+  const travel = loadSource("src/lib/mundo/travel.ts", { "./http": http, "@/shared/travel": travelContract,
+    "@/shared/village": villageContract, "@/shared/world": worldContract });
   const jugador = loadSource("src/lib/mundo/jugador.ts", {
     "@/lib/prisma": { prisma }, "@/shared/world": worldContract,
     "./http": http, "./travel": travel,

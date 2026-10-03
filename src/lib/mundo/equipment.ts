@@ -41,6 +41,9 @@ export async function equipmentAction(usuarioId: string, body: Record<string, un
     const player = await tx.jugador.findUnique({ where: { usuarioId }, include: { usuario: { include: { base: true } } } });
     const base = player?.usuario.base;
     if (!player || !base) throw new MundoError(404, "no_player", "Todavía no has creado tu jugador.");
+    if (!Object.hasOwn(player, "equipoMundo")) {
+      throw new MundoError(503, "server_restart_required", "El servidor conserva un cliente Prisma anterior. Reinicia el servidor después de regenerar Prisma para habilitar el equipo.");
+    }
     const store = readEquipmentStore(player.equipoMundo);
     const snapshot = (profile = player): EquipmentSnapshot => ({
       items: store.items, profile: toPlayerProfile(profile), progressToken: progressToken(profile, base), rewardRevision: profile.rewardRevision,

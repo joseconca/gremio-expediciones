@@ -24,7 +24,8 @@ const { worldGateway } = require("../src/services/worldGateway.ts");
 
 function load(file, deps) {
   const filename = path.resolve(__dirname, "..", file);
-  const output = ts.transpileModule(fs.readFileSync(filename, "utf8"), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
+  const output = ts.transpileModule(fs.readFileSync(filename, "utf8"), { fileName: filename,
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX } }).outputText;
   const loaded = { exports: {} };
   vm.runInThisContext(`(function(require,module,exports){${output}\n})`, { filename })((name) => name in deps ? deps[name] : require(name), loaded, loaded.exports);
   return loaded.exports;
@@ -284,4 +285,27 @@ test("authoritative equipment adoption keeps construction completed during reque
   assert.equal(party.getSnapshot().syncStatus, "pending");
   assert.equal(v.hasBuilding("smithy"), true);
   release(); party.destroy();
+});
+
+test("shop React presentation renders catalog, only owned upgrades, persisted levels and pending retry access", () => {
+  const React = require("react");
+  const { renderToStaticMarkup } = require("react-dom/server");
+  const { default: EquipmentShop } = load("src/components/game/EquipmentShop.tsx", { "@/shared/equipment": contracts });
+  const snapshot = { open: true, mode: "armory", busy: false, pending: false, error: null, message: null, items: [] };
+  const render = (state) => renderToStaticMarkup(React.createElement(EquipmentShop, { manager: {}, snapshot: state, gold: 2000 }));
+  const catalog = render(snapshot);
+  assert.match(catalog, /aria-modal="true"/);
+  assert.equal((catalog.match(/aria-label="Comprar/g) ?? []).length, 4);
+  assert.match(catalog, /Espada de Hierro/); assert.match(catalog, /Armadura de Cuero/);
+  const items = [{ id: randomUUID(), catalogId: "espada_madera", upgrade: 2 }];
+  const smithy = render({ ...snapshot, mode: "smithy", items });
+  assert.equal((smithy.match(/aria-label="Mejorar/g) ?? []).length, 1);
+  assert.match(smithy, /Un palo de madera \+2/);
+  assert.ok(smithy.includes(`${(1500).toLocaleString("es-ES")} oro`));
+  assert.doesNotMatch(smithy, /Espada de Hierro/);
+  const inventory = render({ ...snapshot, mode: "inventory", items });
+  assert.doesNotMatch(inventory, /aria-label="(?:Comprar|Mejorar)/);
+  const pending = render({ ...snapshot, pending: true, error: "Respuesta perdida" });
+  assert.match(pending, /Confirmar petición pendiente/);
+  assert.match(pending, /role="alert"/);
 });
