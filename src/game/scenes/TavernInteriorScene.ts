@@ -39,8 +39,8 @@ export class TavernInteriorScene extends InteriorScene {
       },
       exitPosition: { x: 64, y: 148, width: 32, height: 24 },
       npc: {
-        x: 80,
-        y: 16,
+        x: 48,
+        y: -16,
         spriteSrc: "/sprites/sheets/characters/tabernero.png",
         dialogue: () =>
           createTaberneroDialogue({
