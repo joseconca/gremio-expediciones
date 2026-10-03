@@ -35,6 +35,7 @@ export interface InteriorSceneConfig extends SceneConfig {
     dialogue: Dialogue | (() => Dialogue);
     onChoice?: (eventId: string) => void;
   };
+  objects?: import("../entities/GameObject").GameObject[];
 }
 
 /** Shared simulation/render/input infrastructure for compact building interiors. */
@@ -70,6 +71,11 @@ export class InteriorScene extends Scene {
     const movementSystem = new MovementSystem(collisionSystem);
     this.interactionSystem = new InteractionSystem(this.input);
     this.camera = new Camera({ width: this.canvas.width, height: this.canvas.height });
+
+    for (const obj of config.objects ?? []) {
+      this.world.addObject(obj);
+      collisionSystem.addObject(obj);
+    }
 
     const spawn = this.getSpawnPoint(config.spawnId);
     const playerSprite = new SpriteSheet({

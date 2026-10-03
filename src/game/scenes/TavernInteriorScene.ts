@@ -3,6 +3,8 @@ import { createTaberneroDialogue } from "../data/dialogues/tabernero";
 import { tavernInteriorMap } from "../data/interiors/tavern/tavernInteriorMap";
 import { tavernInteriorCollision } from "../data/interiors/tavern/tavernInteriorCollision";
 import { TavernService } from "../gameplay/TavernService";
+import { Prop } from "../entities/Prop";
+import { getTavernProps } from "../data/interiors/tavern/tavernProps";
 
 export class TavernInteriorScene extends InteriorScene {
   constructor(
@@ -20,6 +22,9 @@ export class TavernInteriorScene extends InteriorScene {
       config.villageProgression,
       config.playerProgression
     );
+
+    // Obtener el nivel actual de la taberna (por defecto 1 si por algún motivo falla)
+    const tavernLevel = config.villageProgression.getState().buildings.find(b => b.type === "tavern")?.level ?? 1;
 
     super({
       ...config,
@@ -50,6 +55,9 @@ export class TavernInteriorScene extends InteriorScene {
           }
         },
       },
+      objects: getTavernProps(tavernLevel).map((propConfig) => new Prop(propConfig)),
     });
   }
 }
+
+
