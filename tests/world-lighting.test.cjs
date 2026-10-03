@@ -117,6 +117,23 @@ function mockCanvas() {
   return canvas;
 }
 
+test("shadow triangles overlap image cells by one screen pixel without stretching or sampling outside the mask", () => {
+  const renderer = new SpriteShadowRenderer();
+  const canvas = mockCanvas();
+  const mask = { width: 128, height: 128 };
+  renderer.drawTriangle(canvas.getContext("2d"), mask, 16, 16, 16, 16,
+    [{ x: 0, y: 0 }, { x: 32, y: 0 }, { x: 0, y: 8 }],
+    { x: 0, y: 0 }, 32, 0, 0, 8);
+  const draw = canvas.calls.find((call) => call[0] === "draw");
+  assert.deepEqual(draw.slice(3), [15.5, 14, 17, 20, -0.5, -2, 17, 20]);
+  const edgeCanvas = mockCanvas();
+  renderer.drawTriangle(edgeCanvas.getContext("2d"), mask, 0, 0, 16, 16,
+    [{ x: 0, y: 0 }, { x: 32, y: 0 }, { x: 0, y: 8 }],
+    { x: 0, y: 0 }, 32, 0, 0, 8);
+  const edge = edgeCanvas.calls.find((call) => call[0] === "draw");
+  assert.deepEqual(edge.slice(3), [0, 0, 16.5, 18, 0, 0, 16.5, 18]);
+});
+
 test("mask recombines building layers, uses source-in alpha and caches per animated frame", () => {
   global.Image = class {
     complete = true;

@@ -3,6 +3,7 @@ import type { ShadowFootprint, ShadowSprite } from "./ShadowCaster";
 
 const SHADOW_GRID_ROWS = 8;
 const MAX_SHADOW_GRID_COLUMNS = 8;
+const SHADOW_SEAM_OVERLAP_PIXELS = 1;
 
 /** Shears sprite height opposite the sun while keeping its ground baseline fixed. */
 export function shadowSpriteGroundPoint(
@@ -90,15 +91,30 @@ export class SpriteShadowRenderer {
       const dy = point.y - centerY;
       const length = Math.max(1, Math.hypot(dx, dy));
       // Subpixel overlap hides antialiased clip seams; opacity is applied later.
-      const x = point.x + dx / length * 0.35;
-      const y = point.y + dy / length * 0.35;
+      const x = point.x + dx / length * SHADOW_SEAM_OVERLAP_PIXELS;
+      const y = point.y + dy / length * SHADOW_SEAM_OVERLAP_PIXELS;
       if (index === 0) ctx.moveTo(x, y);
       else ctx.lineTo(x, y);
     }
     ctx.closePath();
     ctx.clip();
     ctx.transform(dxX / width, dxY / width, dyX / height, dyY / height, origin.x, origin.y);
-    ctx.drawImage(mask, sourceX, sourceY, width, height, 0, 0, width, height);
+    // Expanding only the clip leaves the image's cell bounds unchanged. Extend
+    // source and destination together so adjacent cells overlap without stretching
+    // the silhouette; inverse affine row lengths convert screen pixels to texels.
+    const a = dxX / width;
+    const b = dxY / width;
+    const c = dyX / height;
+    const d = dyY / height;
+    const determinant = Math.abs(a * d - b * c);
+    const paddingX = determinant > 1e-8 ? SHADOW_SEAM_OVERLAP_PIXELS * Math.hypot(d, c) / determinant : 0;
+    const paddingY = determinant > 1e-8 ? SHADOW_SEAM_OVERLAP_PIXELS * Math.hypot(b, a) / determinant : 0;
+    const left = Math.max(0, sourceX - paddingX);
+    const top = Math.max(0, sourceY - paddingY);
+    const right = Math.min(mask.width, sourceX + width + paddingX);
+    const bottom = Math.min(mask.height, sourceY + height + paddingY);
+    ctx.drawImage(mask, left, top, right - left, bottom - top,
+      left - sourceX, top - sourceY, right - left, bottom - top);
     ctx.restore();
   }
 
