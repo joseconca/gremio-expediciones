@@ -23,6 +23,17 @@ export interface BuildingPartDefinition {
   sortYOffset: number;
 }
 
+/** A static point light emitted by a building feature (window, lantern, etc.).
+ *  offsetX/Y are relative to the building's ground anchor (x, y). */
+export interface PointLightDefinition {
+  offsetX: number;
+  offsetY: number;
+  radius: number;
+  intensity: number;
+  /** "r, g, b" components. */
+  color: string;
+}
+
 export interface BuildingDefinition {
   id: string;
   name: string;
@@ -37,6 +48,8 @@ export interface BuildingDefinition {
   height: number;
   colliders?: ColliderConfig[];
   entrance?: BuildingEntranceDefinition;
+  /** Point lights emitted at dusk/night (windows, lanterns). */
+  pointLights?: PointLightDefinition[];
 
   parts: BuildingPartDefinition[];
 }

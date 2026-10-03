@@ -49,6 +49,11 @@ function resolvePhase(hour: number): DayPhase {
   return "night";
 }
 
+/** Returns true when artificial lights (campfire, lanterns, windows) should be active. */
+export function isNightLightingActive(phase: DayPhase): boolean {
+  return phase === "dusk" || phase === "night";
+}
+
 function sampleAmbient(hour: number): AmbientTint {
   for (let index = 1; index < AMBIENT_KEYFRAMES.length; index++) {
     const [endHour, end] = AMBIENT_KEYFRAMES[index];

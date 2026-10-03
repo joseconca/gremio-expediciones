@@ -80,6 +80,7 @@ export class BaseScene extends Scene {
     this.sceneTransitionSystem = new SceneTransitionSystem();
 
     this.world.addObject(new Campfire({ x: 600, y: 760 }));
+    this.world.addObject(new Campfire({ x: 600, y: 760, dayNight: this.dayNightSystem }));
     const board = new MissionBoard({ ...MISSION_BOARD_POSITION,
       onInteract: () => this.expeditionManager?.openBoard() });
     this.world.addObject(board);
@@ -188,12 +189,14 @@ export class BaseScene extends Scene {
           definition: townHallDefinitions[
             this.villageProgression.getTownHallLevel()
           ],
+          dayNight: this.dayNightSystem,
         });
       } else {
         object = new Building({
           x: placement.x,
           y: placement.y,
           definition: this.getBuildingDefinition(placement),
+          dayNight: this.dayNightSystem,
         });
       }
 

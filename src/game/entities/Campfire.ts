@@ -5,6 +5,8 @@ import { RenderLayer } from "../rendering/RenderLayer";
 import type { RenderPart } from "../rendering/RenderPart";
 import { GameObject, type GameObjectConfig } from "./GameObject";
 import type { LightEmitter, PointLight } from "../lighting/PointLight";
+import type { DayNightSystem } from "../lighting/DayNightSystem";
+import { isNightLightingActive } from "../lighting/DayNightSystem";
 
 const campfireAnimation: Record<string, AnimationConfig> = {
   burning: {
@@ -17,13 +19,21 @@ const campfireAnimation: Record<string, AnimationConfig> = {
   },
 };
 
+export interface CampfireConfig extends GameObjectConfig {
+  /** Required to restrict light emission to dusk/night. */
+  dayNight?: DayNightSystem;
+}
+
 export class Campfire extends GameObject implements LightEmitter {
   private readonly spriteSheet: SpriteSheet;
   private readonly animator: Animator;
+  private readonly dayNight?: DayNightSystem;
   private elapsedSeconds = 0;
 
   constructor(config: GameObjectConfig) {
+  constructor(config: CampfireConfig) {
     super(config);
+    this.dayNight = config.dayNight;
 
     this.spriteSheet = new SpriteSheet({
       src: "/sprites/sheets/generic/hoguera0.png",
@@ -40,6 +50,7 @@ export class Campfire extends GameObject implements LightEmitter {
   }
 
   getPointLights(): PointLight[] {
+    if (this.dayNight && !isNightLightingActive(this.dayNight.getState().phase)) return [];
     const flicker = 1 + Math.sin(this.elapsedSeconds * 9) * 0.04;
     return [
       {

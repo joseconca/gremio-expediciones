@@ -7,15 +7,21 @@ import type {
 
 import type { RenderPart } from "../rendering/RenderPart";
 import type { ShadowCaster, ShadowFootprint, ShadowSprite } from "../lighting/ShadowCaster";
+import type { LightEmitter, PointLight } from "../lighting/PointLight";
+import type { DayNightSystem } from "../lighting/DayNightSystem";
+import { isNightLightingActive } from "../lighting/DayNightSystem";
 
 import { SpriteSheet } from "../rendering/SpriteSheet";
 import { Collider } from "./Collider";
 
 export interface BuildingConfig extends GameObjectConfig {
   definition: BuildingDefinition;
+  /** Required to emit point lights at dusk/night. */
+  dayNight?: DayNightSystem;
 }
 
 export class Building extends GameObject implements ShadowCaster {
+export class Building extends GameObject implements ShadowCaster, LightEmitter {
   readonly definition: BuildingDefinition;
 
   readonly width: number;
@@ -24,6 +30,7 @@ export class Building extends GameObject implements ShadowCaster {
   private readonly renderParts: RenderPart[];
   private readonly spriteSheet: SpriteSheet;
   private readonly shadowSprite: ShadowSprite;
+  private readonly dayNight?: DayNightSystem;
 
   constructor(config: BuildingConfig) {
     super({
@@ -34,6 +41,7 @@ export class Building extends GameObject implements ShadowCaster {
     });
 
     this.definition = config.definition;
+    this.dayNight = config.dayNight;
 
     this.width = config.definition.width;
     this.height = config.definition.height;
@@ -66,6 +74,19 @@ export class Building extends GameObject implements ShadowCaster {
 
   override getRenderParts(): RenderPart[] {
     return this.renderParts;
+  }
+
+  getPointLights(): PointLight[] {
+    const lights = this.definition.pointLights;
+    if (!lights || lights.length === 0) return [];
+    if (this.dayNight && !isNightLightingActive(this.dayNight.getState().phase)) return [];
+    return lights.map((def) => ({
+      x: this.x + def.offsetX,
+      y: this.y + def.offsetY,
+      radius: def.radius,
+      intensity: def.intensity,
+      color: def.color,
+    }));
   }
 
   getShadowFootprint(): ShadowFootprint | null {
