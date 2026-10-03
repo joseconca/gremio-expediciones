@@ -28,14 +28,16 @@ export class KeyboardInput {
   };
 
   private handleKeyDown = (event: KeyboardEvent): void => {
-    if (event.target instanceof HTMLElement && event.target.closest("input, textarea, select, [contenteditable='true'], [role='dialog']")) return;
     if (event.code === "F3") {
+      // Browser search steals focus and clears input before the next game frame.
+      event.preventDefault();
       if (!this.debugToggleHeld) {
         this.debugToggleHeld = true;
         this.debugTogglePressed = true;
       }
       return;
     }
+    if (event.target instanceof HTMLElement && event.target.closest("input, textarea, select, [contenteditable='true'], [role='dialog']")) return;
 
     const direction = this.keyMap[event.code];
 

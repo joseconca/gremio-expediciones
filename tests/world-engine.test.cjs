@@ -166,6 +166,32 @@ test("keyboard aliases, blur, editable UI, blocked input and virtual D-pad", () 
   manager.destroy();
 });
 
+test("F3 cancels native search and toggles debug once per press even with a focused dialog", () => {
+  global.window = new EventTarget();
+  global.document = new EventTarget();
+  global.HTMLElement = class { closest() { return this; } };
+  const manager = new InputManager();
+  manager.init();
+  const key = (type) => {
+    const event = new Event(type, { cancelable: true });
+    Object.defineProperty(event, "code", { value: "F3" });
+    Object.defineProperty(event, "target", { value: new HTMLElement() });
+    window.dispatchEvent(event);
+    return event;
+  };
+  try {
+    manager.setBlocked(true);
+    assert.equal(key("keydown").defaultPrevented, true);
+    assert.equal(manager.wasDebugTogglePressed(), true);
+    manager.endFrame();
+    assert.equal(key("keydown").defaultPrevented, true);
+    assert.equal(manager.wasDebugTogglePressed(), false);
+    key("keyup");
+    key("keydown");
+    assert.equal(manager.wasDebugTogglePressed(), true);
+  } finally { manager.destroy(); }
+});
+
 test("lost save acknowledgements retry the same payload before publishing newer changes", async () => {
   const player = new PlayerProgression();
   const village = new VillageProgression();
