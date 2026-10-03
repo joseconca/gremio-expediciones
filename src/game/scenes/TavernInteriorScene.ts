@@ -29,10 +29,10 @@ export class TavernInteriorScene extends InteriorScene {
       entranceSpawn: {
         id: "tavern-entrance",
         x: 64,
-        y: 48,
-        direction: "down",
+        y: 92,
+        direction: "up",
       },
-      exitPosition: { x: 64, y: 128, width: 32, height: 24 },
+      exitPosition: { x: 64, y: 148, width: 32, height: 24 },
       npc: {
         x: 80,
         y: 16,

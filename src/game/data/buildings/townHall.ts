@@ -18,7 +18,7 @@ function createTownHallDefinition(level: 0 | 1): BuildingDefinition {
       trigger: { offsetX: level === 0 ? 24 : 48, offsetY: level === 0 ? -38 : -28,
         width: level === 0 ? 70 : 32, height: 16 },
       interior: { sceneId: "town-hall-interior", entranceSpawnId: "main-entrance", exitSpawnId: "town-hall-exit" },
-      exit: { offsetX: 48, offsetY: -16 },
+      exit: { offsetX: 48, offsetY: -32 },
     },
     // Window light only on the upgraded town hall that has a visible window sprite.
     pointLights: level === 1 ? [
