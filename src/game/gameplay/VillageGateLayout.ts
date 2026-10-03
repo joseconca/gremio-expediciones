@@ -61,7 +61,7 @@ export function calculateVillageExteriorGates(
         baseMapWidth,
         config.edgeMargin,
         originX
-      ),
+      )-16,
       y: (minGroundY + maxGroundY) / 2,
     },
     west: {

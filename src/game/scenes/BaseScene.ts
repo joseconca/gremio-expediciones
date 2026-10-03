@@ -17,7 +17,6 @@ import { CollisionMap } from "../world/CollisionMap";
 import { Building } from "../entities/Building";
 import { Campfire } from "../entities/Campfire";
 import { ConstructionSite } from "../entities/ConstructionSite";
-import { ResourceCart } from "../entities/ResourceCart";
 import { MissionBoard, MISSION_BOARD_POSITION } from "../entities/MissionBoard";
 import type { GameObject } from "../entities/GameObject";
 import { Door } from "../entities/Door";
@@ -33,7 +32,7 @@ import { constructibleBuildings } from "../data/buildings/constructibleBuildings
 import { equipmentBuilding } from "../data/buildings/armory";
 import { LightingSystem } from "../lighting/LightingSystem";
 import { heroAnimations } from "../data/heroAnimations";
-import { villageGateConfig, createVillageMap } from "../data/base/baseMap";
+import { villageGateConfig, createVillageMap, placeGateTiles } from "../data/base/baseMap";
 import { createVillageCollision } from "../data/base/baseCollision";
 import type { VillageBuildingPlacement } from "../gameplay/VillageProgression";
 import type { BuildingDefinition } from "../data/buildings/BuildingDefinition";
@@ -80,15 +79,12 @@ export class BaseScene extends Scene {
     this.collisionSystem = new CollisionSystem(this.world.collisionMap);
     this.sceneTransitionSystem = new SceneTransitionSystem();
 
-    this.world.addObject(new Campfire({ x: 560, y: 800 }));
+    this.world.addObject(new Campfire({ x: 600, y: 760 }));
     const board = new MissionBoard({ ...MISSION_BOARD_POSITION,
       onInteract: () => this.expeditionManager?.openBoard() });
     this.world.addObject(board);
     this.collisionSystem.addObject(board);
     this.interactables.push(board);
-    this.world.addObject(
-      new ResourceCart({ x: 320, y: 704 })
-    );
 
     this.movementSystem = new MovementSystem(this.collisionSystem);
     this.interactionSystem = new InteractionSystem(this.input);
@@ -151,8 +147,14 @@ export class BaseScene extends Scene {
     const state = this.villageProgression.getState();
     const placements = this.villageProgression.getBuildingPlacements();
     const plotCount = placements.filter((building) => building.type !== "smithy").length;
-    this.world.tileMap.resize(createVillageMap(plotCount));
+    const villageMapConfig = createVillageMap(plotCount);
+    this.world.tileMap.resize(villageMapConfig);
     this.world.collisionMap.resize(createVillageCollision(plotCount));
+
+    // Paint exit markers on the ground layer before adding functional transitions.
+    placeGateTiles(villageMapConfig, this.getExteriorGatePositions());
+    // Propagate the updated layer data (placeGateTiles mutates villageMapConfig.layers).
+    this.world.tileMap.layers = villageMapConfig.layers;
 
     for (const placement of placements) {
       let object: GameObject;
@@ -262,10 +264,10 @@ export class BaseScene extends Scene {
 
     for (const gate of gates) {
       const transition = new SceneTransition({
-        x: gate.x - 16,
-        y: gate.y - 8,
+        x: gate.x,
+        y: gate.y,
         width: 32,
-        height: 16,
+        height: 32,
         targetSceneId: "exterior-world",
         targetSpawnId: `from-${gate.direction}`,
         sceneManager: this.sceneManager,
