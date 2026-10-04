@@ -1,7 +1,7 @@
 import { InteriorScene, type InteriorSceneConfig } from "./InteriorScene";
 import { createEmbajadorDialogue } from "../data/dialogues/embajador";
-import { tavernInteriorMap } from "../data/interiors/tavern/tavernInteriorMap";
-import { tavernInteriorCollision } from "../data/interiors/tavern/tavernInteriorCollision";
+import { embassyInteriorMap } from "../data/interiors/embassy/embassyInteriorMap";
+import { embassyInteriorCollision } from "../data/interiors/embassy/embassyInteriorCollision";
 import { createNoticeDialogue } from "../data/dialogues/notice";
 
 /** Temporarily reuses the tavern interior layout until embassy art exists. */
@@ -19,16 +19,16 @@ export class EmbassyInteriorScene extends InteriorScene {
   ) {
     super({
       ...config,
-      tileMap: tavernInteriorMap,
-      collisionMap: tavernInteriorCollision,
+      tileMap: embassyInteriorMap,
+      collisionMap: embassyInteriorCollision,
       exitSpawnId: "embassy-exit",
       entranceSpawn: {
         id: "embassy-entrance",
         x: 64,
-        y: 48,
-        direction: "down",
+        y: 100,
+        direction: "up",
       },
-      exitPosition: { x: 64, y: 128, width: 32, height: 24 },
+      exitPosition: { x: 64, y: 156, width: 32, height: 12 },
       npc: {
         x: 80,
         y: 16,
