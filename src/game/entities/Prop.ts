@@ -1,5 +1,7 @@
 import { GameObject, type GameObjectConfig } from "./GameObject";
 import { SpriteSheet } from "../rendering/SpriteSheet";
+import type { RenderPart } from "../rendering/RenderPart";
+import { RenderLayer } from "../rendering/RenderLayer";
 
 export interface PropConfig extends GameObjectConfig {
   spriteSrc: string;
@@ -28,6 +30,21 @@ export class Prop extends GameObject {
       frameWidth: this.width,
       frameHeight: this.height,
     });
+  }
+
+  override getRenderParts(): RenderPart[] {
+    const anchor = this.getGroundAnchor();
+    return [
+      {
+        layer: RenderLayer.WORLD,
+        offsetX: this.x - anchor.x,
+        offsetY: this.y - anchor.y,
+        sortYOffset: this.getSortY() - this.y,
+        render: (ctx, screenX, screenY) => {
+          this.render(ctx, screenX, screenY);
+        },
+      },
+    ];
   }
 
   override render(ctx: CanvasRenderingContext2D, screenX: number, screenY: number): void {
