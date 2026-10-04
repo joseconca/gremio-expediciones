@@ -23,6 +23,7 @@ const MAX_SUN_ELEVATION = 1.15;
 
 const AMBIENT_KEYFRAMES: ReadonlyArray<readonly [number, AmbientTint]> = [
   [0, { r: 12, g: 18, b: 48, alpha: 0.55 }],
+  [1, { r: 5, g: 8, b: 45, alpha: 0.75 }],
   [6.5, { r: 12, g: 18, b: 48, alpha: 0.55 }],
   [7, { r: 245, g: 164, b: 105, alpha: 0.28 }],
   [8, { r: 255, g: 206, b: 150, alpha: 0.15 }],
