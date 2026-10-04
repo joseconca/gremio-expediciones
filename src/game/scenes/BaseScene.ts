@@ -107,7 +107,7 @@ export class BaseScene extends Scene {
     this.player = new Player({
       x: spawn.x,
       y: spawn.y,
-      speed: 60,
+      speed: 100,//más velocidad en base
       direction: spawn.direction,
       input: this.input,
       animator: heroAnimator,

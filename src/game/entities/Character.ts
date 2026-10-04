@@ -21,7 +21,7 @@ export class Character extends GameObject implements ShadowCaster {
   constructor(config: CharacterConfig) {
     super(config);
 
-    this.speed = config.speed ?? 60;
+    this.speed = config.speed ?? 100;
     this.direction = config.direction ?? "down";
     this.animator = config.animator;
     this.attributes = config.attributes ?? {

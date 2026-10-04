@@ -86,7 +86,7 @@ export class ExteriorWorldScene extends Scene {
     this.player = new Player({
       x: start.x,
       y: start.y,
-      speed: 60,
+      speed: 100,
       direction: start.direction,
       input: this.input,
       animator: heroAnimator,

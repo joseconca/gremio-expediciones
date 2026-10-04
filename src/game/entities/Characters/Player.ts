@@ -69,7 +69,7 @@ export class Player extends Character {
       this.movement.move(
         this,
         dx * this.speed * deltaTime,
-        dy * this.speed * deltaTime/0.8 //al estar en perspectiva el eje X es más corto que el eje Y
+        dy * this.speed * deltaTime/2.4 //al estar en perspectiva el eje X es más corto que el eje Y
       );
 
       this.animator?.play(`walk-${this.direction}`);
