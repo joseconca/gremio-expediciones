@@ -23,10 +23,10 @@ export class TownHallInteriorScene extends InteriorScene {
       entranceSpawn: {
         id: "main-entrance",
         x: 64,
-        y: 92,
+        y: 100,
         direction: "up",
       },
-      exitPosition: { x: 64, y: 148, width: 32, height: 24 },
+      exitPosition: { x: 64, y: 156, width: 32, height: 2 },
       npc: {
         x: 80,
         y: 16,

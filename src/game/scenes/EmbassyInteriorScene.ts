@@ -28,7 +28,7 @@ export class EmbassyInteriorScene extends InteriorScene {
         y: 100,
         direction: "up",
       },
-      exitPosition: { x: 64, y: 156, width: 32, height: 12 },
+      exitPosition: { x: 64, y: 156, width: 32, height: 2 },
       npc: {
         x: 80,
         y: 16,

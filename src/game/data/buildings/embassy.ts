@@ -16,8 +16,12 @@ export const embassyDefinition: BuildingDefinition = {
   entrance: {
     door: { definition: genericDoorDefinition, offsetX: 64, offsetY: 0 },
     trigger: { offsetX: 48, offsetY: -24, width: 32, height: 12 },
-    interior: { sceneId: "embassy-interior", entranceSpawnId: "embassy-entrance", exitSpawnId: "embassy-exit" },
-    exit: { offsetX: 64, offsetY: 40 },
+    interior: {
+      sceneId: "embassy-interior",
+      entranceSpawnId: "embassy-entrance",
+      exitSpawnId: "embassy-exit",
+    },
+    exit: { offsetX: 48, offsetY: -48 },
   },
   colliders: [
     { width: 32, height: 4, offsetX: 16, offsetY: -4 },

@@ -16,7 +16,7 @@ export const tavernDefinition: BuildingDefinition = {
     door: { definition: genericDoor2Definition, offsetX: 81, offsetY: 0 },
     trigger: { offsetX: 56, offsetY: -24, width: 48, height: 12 },
     interior: { sceneId: "tavern-interior", entranceSpawnId: "tavern-entrance", exitSpawnId: "tavern-exit" },
-    exit: { offsetX: 70, offsetY: -32 },
+    exit: { offsetX: 70, offsetY: -48 },
   },
   colliders: [
     { width: 40, height: 4, offsetX: 16, offsetY: -4 },
