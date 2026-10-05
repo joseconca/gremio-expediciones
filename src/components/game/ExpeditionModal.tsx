@@ -69,6 +69,7 @@ export default function ExpeditionModal({ manager, snapshot, base }: ExpeditionM
   const active = data?.active ?? null;
   const travelling = active !== null && active.phase !== "completed";
   const selected = data?.missions.find((mission) => mission.id === selectedId) ?? null;
+  const tradeMissions = data?.missions.filter((mission) => mission.kind === "trade") ?? [];
   const busy = snapshot.busy || pending;
   const eliteReady = data !== null && data.eliteAvailableAt <= data.serverNow;
   const error = commandError || snapshot.error;
@@ -158,6 +159,17 @@ export default function ExpeditionModal({ manager, snapshot, base }: ExpeditionM
               {Object.values(kinds).join(" · ")}{soloLevelRange && ` · Enemigos Nv. ${soloLevelRange.min}–${soloLevelRange.max}`}
             </p>
           </div>
+          {tradeMissions.length > 0 && <label className="pointer-events-auto absolute left-2 top-2 z-[501] flex max-w-[68%] items-center gap-2 rounded bg-[#21150f]/95 p-1.5 text-[10px] shadow-lg sm:text-xs">
+            <span className="shrink-0 text-emerald-200">Comercio</span>
+            <select aria-label="Seleccionar destino comercial global" value={selected?.kind === "trade" ? selected.id : ""}
+              onChange={(event) => { if (event.target.value) selectMission(event.target.value); }}
+              className="min-w-0 max-w-full bg-transparent text-amber-50 outline-none focus-visible:ring-2 focus-visible:ring-amber-300">
+              <option value="" className="bg-stone-950">Elegir base…</option>
+              {tradeMissions.map((mission) => <option key={mission.id} value={mission.id} className="bg-stone-950">
+                {mission.name} · {mission.distanceKm.toLocaleString("es", { maximumFractionDigits: 0 })} km
+              </option>)}
+            </select>
+          </label>}
           {!data && <section className="pointer-events-auto absolute inset-x-2 bottom-2 z-[500] mx-auto max-w-sm space-y-2 rounded-lg bg-[#21150f]/95 p-3 text-sm shadow-xl">
             <p role="status">{busy ? "Consultando al servidor…" : "Cargando tablero…"}</p>
             {error && <p role="alert" className="text-red-200">{error}</p>}

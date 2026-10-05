@@ -173,10 +173,18 @@ export async function mutateMobility(usuarioId: string, body: unknown): Promise<
     // Los rechazos se lanzan fuera de la transacción: una llegada resuelta debe quedar confirmada.
     try {
       if (body.action === "status") return snapshot;
-      const expedition = await (tx.expedicionMundo as unknown as { findFirst(args: { where: { phase: { not: string }; participantes: { some: { jugadorId: string } } }; select: { id: true } }): Promise<{ id: string } | null> }).findFirst({
-        where: { phase: { not: "completed" }, participantes: { some: { jugadorId } } }, select: { id: true },
+      const expedition = await (tx.expedicionMundo as unknown as { findFirst(args: { where: { phase: { not: string }; participantes: { some: { jugadorId: string } } }; select: { id: true; mission: true } }): Promise<{ id: string; mission: unknown } | null> }).findFirst({
+        where: { phase: { not: "completed" }, participantes: { some: { jugadorId } } }, select: { id: true, mission: true },
       });
-      if (expedition) throw new MundoError(409, "expedition_active", "El personaje está en una expedición hasta su regreso.");
+      const tradeExpedition = expedition?.mission && typeof expedition.mission === "object" && !Array.isArray(expedition.mission) &&
+        (expedition.mission as Record<string, unknown>).kind === "trade";
+      if (expedition && (!tradeExpedition || body.action === "call-cart")) {
+        throw new MundoError(409, "expedition_active", "El personaje está en una expedición hasta su regreso.");
+      }
+      const encounter = await (tx as unknown as { combateExterior: { findFirst(args: unknown): Promise<{ id: string } | null> } }).combateExterior.findFirst({
+        where: { fase: { not: "completed" }, participantes: { some: { jugadorId } } }, select: { id: true },
+      });
+      if (encounter) throw new MundoError(409, "encounter_active", "No puedes cambiar de ubicación durante un combate exterior.");
       if (snapshot.journey) {
         if (body.action === "call-cart") return snapshot;
         throw new MundoError(409, "travel_active", "No puedes cambiar de ubicación durante el viaje de regreso.");

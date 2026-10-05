@@ -57,6 +57,7 @@ function MapLayers({ base, missions, selectedId, onSelect, active, serverNow }: 
   const destination = travelling ? active.mission : missions.find((mission) => mission.id === selectedId);
   const destinationLat = destination?.lat;
   const destinationLng = destination?.lng;
+  const previousSelection = useRef<string | null>(null);
 
   // Polling clones full DTOs. Only changed marker content may rebuild this layer.
   const signature = JSON.stringify(missions.map(({ id, name, kind, lat, lng }) => ({ id, name, kind, lat, lng })));
@@ -113,7 +114,9 @@ function MapLayers({ base, missions, selectedId, onSelect, active, serverNow }: 
     const container = map.getContainer();
     if (container.clientWidth === 0 || container.clientHeight === 0) return;
     const points: L.LatLngTuple[] = [[origin.lat, origin.lng]];
-    for (const mission of catalog) points.push([mission.lat, unwrapLongitude(mission.lng, origin.lng)]);
+    for (const mission of catalog) {
+      if (mission.kind !== "trade") points.push([mission.lat, unwrapLongitude(mission.lng, origin.lng)]);
+    }
     if (travelling) points.push([active.mission.lat, unwrapLongitude(active.mission.lng, origin.lng)]);
     map.fitBounds(L.latLngBounds(points), { padding: [32, 32], maxZoom: 15, animate: false });
     fittedInitial.current = true;
@@ -122,6 +125,15 @@ function MapLayers({ base, missions, selectedId, onSelect, active, serverNow }: 
   useEffect(() => {
     fitInitial();
   }, [catalog, travelling]);
+
+  useEffect(() => {
+    if (!selectedId || selectedId === previousSelection.current) return;
+    previousSelection.current = selectedId;
+    const mission = catalog.find((item) => item.id === selectedId);
+    if (mission?.kind !== "trade") return;
+    const endpoint = [mission.lat, unwrapLongitude(mission.lng, origin.lng)] as L.LatLngTuple;
+    map.fitBounds(L.latLngBounds([[origin.lat, origin.lng], endpoint]), { padding: [36, 36], maxZoom: 9, animate: true });
+  }, [map, selectedId, catalog, origin.lat, origin.lng]);
 
   useEffect(() => {
     const resize = () => {

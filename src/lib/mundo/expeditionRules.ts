@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { enemyLevelRange, ENEMY_ROSTER, createEnemyAtLevel } from "@/shared/enemies";
+import { ENEMY_ROSTER, createEnemyAtLevel } from "@/shared/enemies";
 import { calculateCombatDamage, playerCombatStats } from "@/shared/combat";
 import type { EnemyDto, ExpeditionInventoryItemDto, ExpeditionKind, ExpeditionLootDto, ExpeditionRequest, MissionDto } from "@/shared/expeditions";
 import { distanceMeters } from "./geo";
@@ -10,7 +10,6 @@ export const EXPEDITION_SPEED_KMH = 60;
 export const MIN_EXPEDITION_DURATION_MS = 5_000;
 export const EXPEDITION_CATALOG_PERIOD_MS = 3_600_000;
 export const ELITE_COOLDOWN_MS = (23 * 60 + 30) * 60_000;
-export const EXPEDITION_RADIUS_METERS = 7_000;
 export const EXPERIENCE_PER_LEVEL = 100;
 export const HEALTH_PER_LEVEL = 10;
 
@@ -18,6 +17,14 @@ export const EXPEDITION_REWARD_RULES = {
   normal: { baseGold: 15, goldPerKm: 5, goldPerLevel: 4, baseExperience: 25, experiencePerKm: 2, experiencePerLevel: 5, variation: 0.2 },
   elite: { baseGold: 60, goldPerKm: 10, goldPerLevel: 12, baseExperience: 75, experiencePerKm: 4, experiencePerLevel: 15, variation: 0.2 },
 } as const;
+
+export const NORMAL_MISSION_TIERS = [
+  { targetHours: 0.5, count: 7, minOffset: 0, maxOffset: 2 },
+  { targetHours: 1, count: 6, minOffset: -2, maxOffset: 3 },
+  { targetHours: 3, count: 5, minOffset: -2, maxOffset: 3 },
+  { targetHours: 9, count: 4, minOffset: -2, maxOffset: 4 },
+  { targetHours: 24, count: 3, minOffset: -2, maxOffset: 4 },
+] as const;
 
 
 type Coordinates = { lat: number; lng: number };
@@ -73,6 +80,19 @@ function seededInteger(seed: string, minimum: number, maximum: number): number {
   return minimum + createHash("sha256").update(seed).digest().readUInt32BE(0) % (maximum - minimum + 1);
 }
 
+function seededUnit(seed: string): number {
+  return createHash("sha256").update(seed).digest().readUInt32BE(0) / 0xffff_ffff;
+}
+
+function seededDifficulties(minimum: number, maximum: number, count: number, seed: string): number[] {
+  const values = Array.from({ length: maximum - minimum + 1 }, (_, index) => minimum + index);
+  for (let index = values.length - 1; index > 0; index--) {
+    const swap = seededInteger(`${seed}:${index}`, 0, index);
+    [values[index], values[swap]] = [values[swap], values[index]];
+  }
+  return values.slice(0, Math.min(count, values.length)).sort((left, right) => left - right);
+}
+
 export function expeditionRewardBounds(kind: "normal" | "elite", distanceKm: number, level: number) {
   const rule = EXPEDITION_REWARD_RULES[kind];
   const growth = Math.max(0, level - 1);
@@ -85,16 +105,29 @@ export function expeditionRewardBounds(kind: "normal" | "elite", distanceKm: num
 }
 
 /** Stable for the same origin/hour/level; persisted missions outlive this ephemeral catalog. */
-export function generateExpeditionMissions(origin: Coordinates, now: number, targets: readonly TradeDestination[] = [], playerLevel = 1): MissionDto[] {
+export function generateExpeditionMissions(
+  origin: Coordinates,
+  now: number,
+  targets: readonly TradeDestination[] = [],
+  playerLevel = 1,
+  completedToday = 0,
+): MissionDto[] {
   if (!validExpeditionCoordinates(origin)) throw new MundoError(500, "invalid_coordinates", "Coordenadas de base guardadas inválidas.");
-  const hour = Math.floor(now / EXPEDITION_CATALOG_PERIOD_MS);
-  // A board expedition is the solo expedition variant, independent of current party size.
-  const levelRange = enemyLevelRange(playerLevel, 1);
-  const seed = `${origin.lat}:${origin.lng}:${hour}:${playerLevel}`;
-  const makeMission = (kind: ExpeditionKind, key: string, point: Coordinates, name: string, targetPlayerId?: string): MissionDto => {
+  const day = new Date(now).toISOString().slice(0, 10);
+  const completed = Math.max(0, Math.floor(Number.isFinite(completedToday) ? completedToday : 0));
+  const seed = `${origin.lat}:${origin.lng}:${day}:${playerLevel}:${completed}`;
+  const makeMission = (
+    kind: ExpeditionKind,
+    key: string,
+    point: Coordinates,
+    name: string,
+    targetPlayerId?: string,
+    targetHours?: number,
+    chosenLevel?: number,
+  ): MissionDto => {
     const distanceKm = distanceMeters(origin, point) / 1000;
     const missionSeed = `${seed}:${key}`;
-    const enemyLevel = seededInteger(`${missionSeed}:level`, levelRange.min, levelRange.max);
+    const enemyLevel = chosenLevel ?? seededInteger(`${missionSeed}:level`, Math.max(1, playerLevel - 5), playerLevel + 5);
     const speciesCount = kind === "elite" ? 4 : (EXPEDITION_ENEMIES.length - 1) * 4;
     const enemy = expeditionEnemy(kind, enemyLevel, seededInteger(`${missionSeed}:species`, 0, speciesCount - 1));
     const bounds = kind === "trade" ? null : expeditionRewardBounds(kind, distanceKm, enemyLevel);
@@ -102,8 +135,11 @@ export function generateExpeditionMissions(origin: Coordinates, now: number, tar
     const gold = bounds ? seededInteger(`${missionSeed}:gold`, bounds.gold.min, bounds.gold.max)
       : 4 * Math.ceil((20 + distanceKm * 5) / 4);
     return {
-      id: `${kind}:${hour}:${playerLevel}:${createHash("sha256").update(`${missionSeed}:${point.lat}:${point.lng}`).digest("hex").slice(0, 32)}`,
-      kind, name, ...point, distanceKm, durationMs: expeditionDurationMs(distanceKm), gold,
+      id: `${kind}:${day}:${playerLevel}:${completed}:${createHash("sha256").update(`${missionSeed}:${point.lat}:${point.lng}`).digest("hex").slice(0, 32)}`,
+      kind, name, ...point, distanceKm,
+      durationMs: targetHours === undefined
+        ? expeditionDurationMs(distanceKm)
+        : Math.max(MIN_EXPEDITION_DURATION_MS, Math.ceil(targetHours * 30 * 60_000 * (0.9 + seededUnit(`${missionSeed}:time`) * 0.2))), gold,
       experience: bounds ? seededInteger(`${missionSeed}:experience`, bounds.experience.min, bounds.experience.max) : 25,
       description: kind === "trade" ? "Transporta mercancías al poblado vecino y regresa para cobrar el encargo."
         : EXPEDITION_DESCRIPTIONS[seededInteger(`${missionSeed}:description`, 0, EXPEDITION_DESCRIPTIONS.length - 1)],
@@ -116,25 +152,40 @@ export function generateExpeditionMissions(origin: Coordinates, now: number, tar
   };
   const missions: MissionDto[] = [];
   const usedNames = new Set<string>();
-  for (let index = 0; index < 4; index++) {
-    const hash = createHash("sha256").update(`${seed}:${index}`).digest();
-    const km = 0.5 + hash.readUInt32BE(0) / 0xffffffff * 2.5;
-    let point = destination(origin, km, hash.readUInt32BE(4) / 0xffffffff * Math.PI * 2);
-    // Near the playable latitude limit, reflect the bearing toward the equator.
-    if (!validExpeditionCoordinates(point)) point = destination(origin, km, origin.lat >= 0 ? Math.PI : 0);
-    const prefix = seededInteger(`${seed}:${index}:prefix`, 0, EXPEDITION_PREFIXES.length - 1);
-    let suffix = seededInteger(`${seed}:${index}:location`, 0, EXPEDITION_LOCATIONS.length - 1);
-    let name = `${EXPEDITION_PREFIXES[prefix]} ${EXPEDITION_LOCATIONS[suffix]}`;
-    while (usedNames.has(name)) {
-      suffix = (suffix + 1) % EXPEDITION_LOCATIONS.length;
-      name = `${EXPEDITION_PREFIXES[prefix]} ${EXPEDITION_LOCATIONS[suffix]}`;
+  let missionIndex = 0;
+  for (const [tierIndex, tier] of NORMAL_MISSION_TIERS.entries()) {
+    const minimum = Math.max(1, playerLevel + tier.minOffset);
+    const maximum = Math.max(minimum, playerLevel + tier.maxOffset);
+    const levels = seededDifficulties(minimum, maximum, tier.count, `${seed}:tier:${tierIndex}`);
+    for (const [index, level] of levels.entries()) {
+      const missionSeed = `${seed}:normal:${tierIndex}:${index}`;
+      const variation = 0.9 + seededUnit(`${missionSeed}:distance`) * 0.2;
+      const distanceKm = tier.targetHours * 6 * variation;
+      const bearing = seededUnit(`${missionSeed}:bearing`) * Math.PI * 2;
+      let point = destination(origin, distanceKm, bearing);
+      if (!validExpeditionCoordinates(point)) point = destination(origin, distanceKm, origin.lat >= 0 ? Math.PI : 0);
+      const prefix = seededInteger(`${missionSeed}:prefix`, 0, EXPEDITION_PREFIXES.length - 1);
+      let suffix = seededInteger(`${missionSeed}:location`, 0, EXPEDITION_LOCATIONS.length - 1);
+      let name = `${EXPEDITION_PREFIXES[prefix]} ${EXPEDITION_LOCATIONS[suffix]}`;
+      while (usedNames.has(name)) {
+        suffix = (suffix + 1) % EXPEDITION_LOCATIONS.length;
+        name = `${EXPEDITION_PREFIXES[prefix]} ${EXPEDITION_LOCATIONS[suffix]}`;
+      }
+      usedNames.add(name);
+      missions.push(makeMission("normal", String(missionIndex++), point, name, undefined, tier.targetHours, level));
     }
-    usedNames.add(name);
-    missions.push(makeMission(index === 3 ? "elite" : "normal", String(index), point, name));
   }
+  const eliteSeed = `${seed}:elite`;
+  const eliteDistance = 5 + seededUnit(`${eliteSeed}:distance`);
+  let elitePoint = destination(origin, eliteDistance, seededUnit(`${eliteSeed}:bearing`) * Math.PI * 2);
+  if (!validExpeditionCoordinates(elitePoint)) elitePoint = destination(origin, eliteDistance, origin.lat >= 0 ? Math.PI : 0);
+  let eliteName = `El desafío ${EXPEDITION_LOCATIONS[seededInteger(`${eliteSeed}:location`, 0, EXPEDITION_LOCATIONS.length - 1)]}`;
+  while (usedNames.has(eliteName)) eliteName += " · jefe";
+  const eliteLevel = seededInteger(`${eliteSeed}:level`, Math.max(1, playerLevel - 5), playerLevel + 5);
+  missions.push(makeMission("elite", "daily-elite", elitePoint, eliteName, undefined, 1, eliteLevel));
   const seen = new Set<string>();
   for (const target of [...targets].sort((a, b) => a.playerId.localeCompare(b.playerId))) {
-    if (seen.has(target.playerId) || !validExpeditionCoordinates(target) || distanceMeters(origin, target) > EXPEDITION_RADIUS_METERS) continue;
+    if (seen.has(target.playerId) || !validExpeditionCoordinates(target) || distanceMeters(origin, target) < 1e-6) continue;
     seen.add(target.playerId);
     const baseName = `Comercio con ${target.baseName}`;
     let name = baseName;

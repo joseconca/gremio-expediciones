@@ -56,8 +56,15 @@ export class ExpeditionManager {
   isActive(): boolean {
     return !this.state.data || !!this.pendingStart || !!(this.state.data.active && this.state.data.active.phase !== "completed");
   }
+  blocksPlayer(): boolean {
+    const active = this.state.data?.active;
+    return !this.state.data || !!this.pendingStart || this.state.battleOpen ||
+      (!!active && active.phase !== "completed" && active.mission.kind !== "trade");
+  }
   openBoard(): void {
     if (this.destroyed) return;
+    const active = this.state.data?.active;
+    if (active && active.phase !== "completed" && active.mission.kind === "trade") return;
     this.publish({ ...this.state, open: true, battleOpen: false });
     void this.refresh();
   }
@@ -154,7 +161,8 @@ export class ExpeditionManager {
           (previous?.active?.id !== result.snapshot.active.id || previous.active.phase !== "battle");
         this.publish({ ...this.state, data: result.snapshot, error: null,
           battleOpen: enteredBattle || this.state.battleOpen,
-          open: enteredBattle ? false : this.state.open });
+          open: enteredBattle || result.snapshot.active?.mission.kind === "trade" && result.snapshot.active.phase !== "completed"
+            ? false : this.state.open });
       } else {
         if (request.action === "start" && result.code !== "network") this.pendingStart = null;
         this.publish({ ...this.state, error: result.message });
