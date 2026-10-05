@@ -545,7 +545,7 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
     function assertCatalog(snapshot) {
       const combatMissions = snapshot.missions.filter((mission) => mission.kind !== "trade");
       const normalMissions = combatMissions.filter((mission) => mission.kind === "normal");
-      assert.equal(normalMissions.length, 25);
+      assert.equal(normalMissions.length, 7 + 6 + 5 + 4 + 3);
       assert.equal(combatMissions.filter((mission) => mission.kind === "elite").length, 1);
       assert.equal(new Set(combatMissions.map((mission) => mission.name)).size, combatMissions.length);
       const hoursFor = (mission) => [0.5, 1, 3, 9, 24].find((hours) =>

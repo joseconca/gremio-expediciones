@@ -331,8 +331,7 @@ test("Compound Spanish content, hundreds of seeds, inclusive level 1/4/50 diffic
       const time = NOW + seed * rules.EXPEDITION_CATALOG_PERIOD_MS;
       const catalog = rules.generateExpeditionMissions(origin, time, [], level);
       assert.deepEqual(catalog, rules.generateExpeditionMissions(origin, time, [], level));
-      const expectedNormalCount = rules.NORMAL_MISSION_TIERS.reduce((sum, tier) =>
-        sum + Math.min(tier.count, Math.max(1, level + tier.maxOffset) - Math.max(1, level + tier.minOffset) + 1), 0);
+      const expectedNormalCount = rules.NORMAL_MISSION_TIERS.reduce((sum, tier) => sum + tier.count, 0);
       assert.equal(catalog.length, expectedNormalCount + 1);
       assert.equal(catalog.filter((m) => m.kind === "normal").length, expectedNormalCount);
       assert.equal(catalog.filter((m) => m.kind === "elite").length, 1);
@@ -462,8 +461,7 @@ test("Trade routes with identical base names are stable and unique within the wh
   const targets = Array.from({ length: 6 }, (_, i) => ({ playerId: String(i), baseName: "Valle", lat: 40.01, lng: -3 }));
   const catalog = rules.generateExpeditionMissions({ lat: 40, lng: -3 }, NOW, targets);
   assert.deepEqual(catalog, rules.generateExpeditionMissions({ lat: 40, lng: -3 }, NOW, targets.toReversed()));
-  assert.equal(catalog.length, 1 + rules.NORMAL_MISSION_TIERS.reduce((sum, tier) =>
-    sum + Math.min(tier.count, Math.max(1, 1 + tier.maxOffset) - Math.max(1, 1 + tier.minOffset) + 1), 0) + 6);
+  assert.equal(catalog.length, 1 + rules.NORMAL_MISSION_TIERS.reduce((sum, tier) => sum + tier.count, 0) + 6);
   assert.equal(new Set(catalog.map((m) => m.name)).size, catalog.length);
 });
 
@@ -562,8 +560,7 @@ test("Daily catalog: 25 legacy-duration normals, one elite and global trade dest
     assert.deepEqual(catalog, rules.generateExpeditionMissions(origin, startOfDay + 86_399_999));
     assert.notDeepEqual(catalog, rules.generateExpeditionMissions(origin, startOfDay + 86_400_000));
     assert.notDeepEqual(catalog, rules.generateExpeditionMissions(origin, startOfDay, [], 1, 1));
-    assert.equal(catalog.filter((m) => m.kind === "normal").length, rules.NORMAL_MISSION_TIERS.reduce((sum, tier) =>
-      sum + Math.min(tier.count, Math.max(1, 1 + tier.maxOffset) - Math.max(1, 1 + tier.minOffset) + 1), 0));
+    assert.equal(catalog.filter((m) => m.kind === "normal").length, rules.NORMAL_MISSION_TIERS.reduce((sum, tier) => sum + tier.count, 0));
     assert.equal(catalog.filter((m) => m.kind === "elite").length, 1);
     for (const m of catalog) {
       assert.ok(rules.validExpeditionCoordinates(m));

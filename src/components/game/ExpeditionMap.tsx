@@ -76,6 +76,7 @@ function MapLayers({ base, missions, selectedId, onSelect, active, serverNow }: 
     const layers = L.layerGroup().addTo(map);
     const currentMarkers = markers.current;
     for (const mission of catalog) {
+      if (mission.kind === "trade" && map.distance([origin.lat, origin.lng], [mission.lat, unwrapLongitude(mission.lng, origin.lng)]) > 30_000) continue;
       const marker = L.marker([mission.lat, unwrapLongitude(mission.lng, origin.lng)], {
         icon: missionIcons[mission.kind], title: `Seleccionar: ${mission.name}`, alt: mission.name,
         keyboard: true, autoPanOnFocus: false,
@@ -84,11 +85,12 @@ function MapLayers({ base, missions, selectedId, onSelect, active, serverNow }: 
       currentMarkers.set(mission.id, marker);
     }
     return () => { currentMarkers.clear(); layers.remove(); };
-  }, [map, catalog, origin.lng]);
+  }, [map, catalog, origin.lat, origin.lng]);
 
   useEffect(() => {
     for (const mission of catalog) {
       const marker = markers.current.get(mission.id);
+      if (!marker) continue;
       const nextIcon = mission.id === selectedId ? selectedIcon : missionIcons[mission.kind];
       // Avoid replacing DOM/focused markers for unchanged selections.
       if (marker && marker.options.icon !== nextIcon) marker.setIcon(nextIcon);
@@ -102,11 +104,13 @@ function MapLayers({ base, missions, selectedId, onSelect, active, serverNow }: 
       [destinationLat, unwrapLongitude(destinationLng, origin.lng)],
     ], { color: "#d97706", weight: 4, dashArray: "8 8", interactive: false }).addTo(map);
     // A persisted active destination can outlive the current catalog.
-    const destinationMarker = travelling ? L.marker([destinationLat, unwrapLongitude(destinationLng, origin.lng)], {
-      icon: selectedIcon, keyboard: false, autoPanOnFocus: false, title: "Destino de la expedición", alt: "Destino de la expedición",
+    const destinationMarker = travelling || selectedId ? L.marker([destinationLat, unwrapLongitude(destinationLng, origin.lng)], {
+      icon: selectedIcon, keyboard: false, autoPanOnFocus: false,
+      title: travelling ? "Destino de la expedición" : "Destino seleccionado",
+      alt: travelling ? "Destino de la expedición" : "Destino seleccionado",
     }).addTo(map) : null;
     return () => { route.remove(); destinationMarker?.remove(); };
-  }, [map, origin.lat, origin.lng, destinationLat, destinationLng, travelling]);
+  }, [map, origin.lat, origin.lng, destinationLat, destinationLng, travelling, selectedId]);
 
   const fitInitial = useEffectEvent(() => {
     // Wait for the first real catalog and nonzero viewport, never fit on selection or polling.

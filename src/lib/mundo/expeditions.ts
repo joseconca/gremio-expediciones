@@ -269,7 +269,7 @@ async function start(tx: ExpeditionTransaction, player: PlayerRow, row: LedgerRo
     throw new MundoError(409, "elite_cooldown", "Todavía no puedes repetir una expedición élite exitosa.");
   }
   const activeEncounter = await (tx as unknown as { combateExterior: { findFirst(args: unknown): Promise<{ id: string } | null> } }).combateExterior.findFirst({
-    where: { phase: { not: "completed" }, participantes: { some: { jugadorId: player.id } } },
+    where: { fase: { not: "completed" }, participantes: { some: { jugadorId: player.id } } },
   });
   if (activeEncounter) throw new MundoError(409, "encounter_active", "No puedes iniciar una expedición durante un combate exterior.");
   const stats = playerCombatStats(player.nivel);

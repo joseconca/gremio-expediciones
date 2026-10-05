@@ -53,6 +53,7 @@ function harness(initial = player()) {
         let locked = false;
         const tx = {
           expedicionMundo: { async findFirst() { return null; } },
+          combateExterior: { async findFirst() { return null; } },
           async $executeRaw() { locked = true; },
           jugador: {
             async findUnique({ where }) {

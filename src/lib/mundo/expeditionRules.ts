@@ -85,12 +85,15 @@ function seededUnit(seed: string): number {
 }
 
 function seededDifficulties(minimum: number, maximum: number, count: number, seed: string): number[] {
-  const values = Array.from({ length: maximum - minimum + 1 }, (_, index) => minimum + index);
-  for (let index = values.length - 1; index > 0; index--) {
-    const swap = seededInteger(`${seed}:${index}`, 0, index);
-    [values[index], values[swap]] = [values[swap], values[index]];
+  if (maximum <= minimum) return Array.from({ length: count }, () => minimum);
+  const range = maximum - minimum + 1;
+  const selected: number[] = [];
+  for (let index = 0; index < count; index++) {
+    const roll = seededInteger(`${seed}:${index}`, 0, range - 1);
+    const replacement = selected.includes(roll) ? range - 1 : roll;
+    selected.push(replacement);
   }
-  return values.slice(0, Math.min(count, values.length)).sort((left, right) => left - right);
+  return selected.map((value) => minimum + value).sort((left, right) => left - right);
 }
 
 export function expeditionRewardBounds(kind: "normal" | "elite", distanceKm: number, level: number) {
