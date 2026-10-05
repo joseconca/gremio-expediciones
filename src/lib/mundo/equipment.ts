@@ -57,8 +57,15 @@ export async function equipmentAction(usuarioId: string, body: Record<string, un
     if (request.rewardRevision !== player.rewardRevision || request.progressToken !== progressToken(player, base)) {
       throw new MundoError(409, "equipment_conflict", "El progreso ha cambiado. Recarga el inventario antes de continuar.");
     }
-    const expedition = await tx.expedicionMundo.findFirst({ where: { phase: { not: "completed" }, participantes: { some: { jugadorId: player.id } } } });
-    if (expedition || player.viajeRegreso !== null) throw new MundoError(409, "player_busy", "No puedes cambiar equipo durante un viaje o expedición.");
+    const expedition = await (tx.expedicionMundo as unknown as { findFirst(args: unknown): Promise<{ mission?: unknown } | null> }).findFirst({
+      where: { phase: { not: "completed" }, participantes: { some: { jugadorId: player.id } } }, select: { mission: true },
+    });
+    const expeditionMission = expedition?.mission as { kind?: unknown } | null | undefined;
+    const blockingExpedition = !!expedition && expeditionMission?.kind !== "trade";
+    const encounter = await (tx as unknown as { combateExterior: { findFirst(args: unknown): Promise<{ id: string } | null> } }).combateExterior.findFirst({
+      where: { fase: { not: "completed" }, participantes: { some: { jugadorId: player.id } } }, select: { id: true },
+    });
+    if (blockingExpedition || encounter || player.viajeRegreso !== null) throw new MundoError(409, "player_busy", "No puedes cambiar equipo durante un viaje o combate.");
     const buildings = base.edificios as SavedBuilding[];
     const required = request.action === "buy" ? "armory" : "smithy";
     if (!Array.isArray(buildings) || !validSmithyDependency(buildings) || !buildings.some((building) => building.type === required && building.level >= 1)) {

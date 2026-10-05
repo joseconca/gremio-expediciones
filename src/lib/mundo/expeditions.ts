@@ -4,11 +4,10 @@ import type { EnemyDto, ExpeditionDto, ExpeditionParticipantDto, ExpeditionReque
 import type { PlayerSex } from "@/shared/world";
 import { ENEMY_TURN_DELAY_MS, playerCombatStats } from "@/shared/combat";
 import { nextCombatantId, orderCombatInitiative, type BattleActionDto, type CombatInitiativeEntry } from "@/shared/combat";
-import { boundingBox, distanceMeters, longitudeFilter } from "./geo";
 import { MundoError, withWorldLock } from "./http";
 import { progressToken } from "./jugador";
 import {
-  ELITE_COOLDOWN_MS, EXPEDITION_RADIUS_METERS, expeditionDamage, expeditionCombatStats,
+  ELITE_COOLDOWN_MS, expeditionDamage, expeditionCombatStats,
   expeditionEnemy, expeditionRewardProgress, generateExpeditionMissions,
   mergeLoot, normalizeExpeditionInventory, parseExpeditionRequest, rollExpeditionLoot, validExpeditionCoordinates,
 } from "./expeditionRules";
@@ -70,6 +69,7 @@ type ExpeditionTransaction = {
   expedicionMundo: {
     findUnique(args: { where: { requestId?: string; id?: string } }): Promise<LedgerRow | null>;
     findFirst(args: { where: { jugadorId?: string; phase?: { not: string }; participantes?: { some: { jugadorId: string } } }; orderBy: { departureAt?: "desc"; id?: "desc" }[] }): Promise<LedgerRow | null>;
+    count(args: { where: { phase: string; returnArrivalAt: { gte: Date }; OR: Array<{ jugadorId: string } | { participantes: { some: { jugadorId: string } } }> } }): Promise<number>;
     create(args: { data: Omit<LedgerRow, "enemy" | "lastAction"> & {
       enemy: EnemyDto | typeof Prisma.DbNull;
       lastAction: BattleActionDto | typeof Prisma.DbNull;
@@ -112,20 +112,25 @@ async function currentPartySize(tx: ExpeditionTransaction, playerId: string): Pr
   return Math.max(1, Math.min(3, membership?.party.miembros.length ?? 1));
 }
 
-async function catalog(tx: ExpeditionTransaction, base: Base, now: number, playerLevel: number): Promise<MissionDto[]> {
-  const box = boundingBox(base, EXPEDITION_RADIUS_METERS);
+async function catalog(tx: ExpeditionTransaction, base: Base, now: number, playerLevel: number, completedToday: number): Promise<MissionDto[]> {
+  if (!base.embajada) return generateExpeditionMissions(base, now, [], playerLevel, completedToday);
   const candidates = await tx.base.findMany({
     where: {
-      id: { not: base.id }, lat: { gte: box.minLat, lte: box.maxLat }, ...longitudeFilter(box),
+      id: { not: base.id }, embajada: true,
       usuario: { jugador: { isNot: null } },
     },
     include: { usuario: { include: { jugador: true } } },
     orderBy: { id: "asc" },
   });
   const targets = candidates.flatMap((other) => other.usuario.jugador &&
-    other.usuarioId !== base.usuarioId && distanceMeters(base, other) <= EXPEDITION_RADIUS_METERS
+    other.usuarioId !== base.usuarioId
     ? [{ playerId: other.usuario.jugador.id, baseName: other.nombre, lat: other.lat, lng: other.lng }] : []);
-  return generateExpeditionMissions(base, now, targets, playerLevel);
+  return generateExpeditionMissions(base, now, targets, playerLevel, completedToday);
+}
+
+function utcDayStart(now: number): Date {
+  const date = new Date(now);
+  return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
 }
 
 function currentActorId(row: LedgerRow, participants: readonly ParticipantRow[]): string {
@@ -253,40 +258,26 @@ async function start(tx: ExpeditionTransaction, player: PlayerRow, row: LedgerRo
   if (player.saludActual <= 0) throw new MundoError(409, "player_dead", "Necesitas recuperar salud antes de salir.");
   const mission = missions.find((candidate) => candidate.id === request.missionId);
   if (!mission) throw new MundoError(404, "mission_unavailable", "La misión no existe o su catálogo ha caducado.");
-  const membership = await tx.miembroParty.findUnique({ where: { jugadorId: player.id }, include: {
-    party: { include: { miembros: { include: { jugador: true }, orderBy: { unido: "asc" } } } },
-  } });
-  if (membership && membership.party.liderId !== player.id) {
-    throw new MundoError(403, "not_leader", "Solo el líder de la party puede iniciar una expedición.");
+  if (mission.kind === "trade") {
+    if (!player.usuario.base?.embajada) throw new MundoError(403, "embassy_required", "Necesitas una Embajada para abrir rutas comerciales.");
+    const target = mission.targetPlayerId ? await tx.jugador.findUnique({
+      where: { id: mission.targetPlayerId }, include: { usuario: { include: { base: true } } },
+    }) : null;
+    if (!target?.usuario.base?.embajada) throw new MundoError(404, "trade_target_unavailable", "El gremio de destino ya no tiene una Embajada disponible.");
   }
-  const memberIds = membership?.party.miembros.map((member) => member.jugador.id) ?? [player.id];
-  const participants: ParticipantRow[] = [];
-  for (const [order, memberId] of memberIds.entries()) {
-    const active = await tx.expedicionMundo.findFirst({ where: {
-      phase: { not: "completed" }, participantes: { some: { jugadorId: memberId } },
-    }, orderBy: [{ departureAt: "desc" }, { id: "desc" }] });
-    if (active) throw new MundoError(409, "party_member_busy", "Un miembro de la party ya participa en otra expedición.");
-    const member = memberId === player.id ? player : await tx.jugador.findUnique({
-      where: { id: memberId }, include: { usuario: { include: { base: true } } },
-    });
-    if (!member) throw new MundoError(409, "party_member_missing", "No se pudo cargar a un miembro de la party.");
-    const memberLocation = member.ubicacion;
-    if (member.viajeRegreso !== null || (memberLocation !== null &&
-      (typeof memberLocation !== "object" || Array.isArray(memberLocation) || memberLocation.sceneId !== "base"))) {
-      throw new MundoError(409, "party_member_away", "Todos los miembros deben estar en su poblado y sin viajes activos.");
-    }
-    if (member.saludActual <= 0) throw new MundoError(409, "party_member_dead", `${member.nombre} necesita recuperar salud antes de salir.`);
-    if (mission.kind === "elite" && member.ultimaEliteExitosa && now < member.ultimaEliteExitosa.getTime() + ELITE_COOLDOWN_MS) {
-      throw new MundoError(409, "elite_cooldown", `${member.nombre} todavía no puede repetir una expedición élite exitosa.`);
-    }
-    const stats = playerCombatStats(member.nivel);
-    participants.push({
-      expedicionId: "", jugadorId: member.id, orden: order, nombre: member.nombre, nivel: member.nivel,
-      salud: member.saludActual, saludMaxima: member.saludMaxima,
-      ataque: stats.attack, defensa: stats.defense, velocidad: stats.speed,
-      botin: [],
-    });
+  if (mission.kind === "elite" && player.ultimaEliteExitosa && now < player.ultimaEliteExitosa.getTime() + ELITE_COOLDOWN_MS) {
+    throw new MundoError(409, "elite_cooldown", "Todavía no puedes repetir una expedición élite exitosa.");
   }
+  const activeEncounter = await (tx as unknown as { combateExterior: { findFirst(args: unknown): Promise<{ id: string } | null> } }).combateExterior.findFirst({
+    where: { phase: { not: "completed" }, participantes: { some: { jugadorId: player.id } } },
+  });
+  if (activeEncounter) throw new MundoError(409, "encounter_active", "No puedes iniciar una expedición durante un combate exterior.");
+  const stats = playerCombatStats(player.nivel);
+  const participants: ParticipantRow[] = [{
+    expedicionId: "", jugadorId: player.id, orden: 0, nombre: player.nombre, nivel: player.nivel,
+    salud: player.saludActual, saludMaxima: player.saludMaxima,
+    ataque: stats.attack, defensa: stats.defense, velocidad: stats.speed, botin: [],
+  }];
   const base = player.usuario.base!;
   const enemy = mission.enemy ?? expeditionEnemy(mission.kind, player.nivel);
   const saved = await tx.expedicionMundo.create({ data: {
@@ -412,7 +403,11 @@ export async function mutateExpeditions(usuarioId: string, body: unknown): Promi
     if (request.action === "status") await resolveEnemyTurn(tx, player, row, now);
     player = await readPlayer(tx, usuarioId);
     const partySize = await currentPartySize(tx, player.id);
-    const missions = await catalog(tx, player.usuario.base!, now, player.nivel);
+    const completedToday = await tx.expedicionMundo.count({
+      where: { phase: "completed", returnArrivalAt: { gte: utcDayStart(now) },
+        OR: [{ jugadorId: player.id }, { participantes: { some: { jugadorId: player.id } } }] },
+    });
+    const missions = await catalog(tx, player.usuario.base!, now, player.nivel, completedToday);
     // Only deliberate validation failures are committed after resolving an arrival.
     // Database/unknown failures propagate and roll back all writes, including rewards.
     try {

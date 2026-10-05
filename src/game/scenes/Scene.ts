@@ -11,9 +11,11 @@ import type { PlayerLocation } from "../../shared/travel";
 import type { MobilityManager } from "../gameplay/MobilityManager";
 import type { ExpeditionManager } from "../gameplay/ExpeditionManager";
 import type { EquipmentManager } from "../gameplay/EquipmentManager";
+import type { WorldCombatManager } from "../gameplay/WorldCombatManager";
 
 export interface SceneConfig {
   equipmentManager?: EquipmentManager;
+  worldCombatManager: WorldCombatManager;
   initialLocation?: PlayerLocation;
   mobilityManager?: MobilityManager;
   expeditionManager?: ExpeditionManager;
@@ -34,6 +36,7 @@ export abstract class Scene {
   protected readonly initialLocation?: PlayerLocation;
   protected readonly mobilityManager?: MobilityManager;
   protected readonly expeditionManager?: ExpeditionManager;
+  protected readonly worldCombatManager: WorldCombatManager;
   protected canvas: HTMLCanvasElement;
   protected ctx: CanvasRenderingContext2D;
   protected input: InputManager;
@@ -51,6 +54,7 @@ export abstract class Scene {
     this.initialLocation = config.initialLocation;
     this.mobilityManager = config.mobilityManager;
     this.expeditionManager = config.expeditionManager;
+    this.worldCombatManager = config.worldCombatManager;
     this.canvas = config.canvas;
     this.ctx = config.ctx;
     this.input = config.input;

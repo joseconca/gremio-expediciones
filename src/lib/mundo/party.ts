@@ -71,6 +71,12 @@ async function requireAvailablePlayer(tx: Prisma.TransactionClient, playerId: st
   }, select: { id: true } })) {
     throw new MundoError(409, "expedition_active", "No puedes organizar la party mientras estás de expedición.");
   }
+  const encounterModel = (tx as unknown as { combateExterior: { findFirst(args: unknown): Promise<{ id: string } | null> } }).combateExterior;
+  if (await encounterModel.findFirst({ where: {
+    fase: { not: "completed" }, participantes: { some: { jugadorId: playerId } },
+  }, select: { id: true } })) {
+    throw new MundoError(409, "encounter_active", "No puedes organizar la party durante un combate exterior.");
+  }
   const player = await tx.jugador.findUniqueOrThrow({ where: { id: playerId } });
   const trip = player.viajeRegreso;
   if (trip && typeof trip === "object" && !Array.isArray(trip) && typeof trip.arrivalAt === "number" && trip.arrivalAt > Date.now()) {

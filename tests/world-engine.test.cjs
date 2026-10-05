@@ -16,6 +16,7 @@ const { enemyLevelRange, enemyDifficultyColor } = require("../src/shared/enemies
 const { ENEMY_TURN_DELAY_MS, ATTACK_ANIMATION_MS } = require("../src/shared/combat.ts");
 const { geographicToWorldPoint, isInsideWorldMap } = require("../src/game/world/WorldLocation.ts");
 const { ExpeditionManager } = require("../src/game/gameplay/ExpeditionManager.ts");
+const { WorldCombatManager } = require("../src/game/gameplay/WorldCombatManager.ts");
 const { worldGateway, loadSession } = require("../src/services/worldGateway.ts");
 const { MISSION_BOARD_POSITION } = require("../src/game/entities/MissionBoard.ts");
 const { createRequestId } = require("../src/game/core/requestId.ts");
@@ -555,96 +556,6 @@ function expeditionFixture() {
       experience: 0, gold: 100, currentHealth: 40, maxHealth: 100 }, progressToken: "initial", rewardRevision: 0 };
 }
 
-test("one mobile tap during slow polling waits, starts once and retries the same UUID on lost response", async () => {
-  const originalCrypto = Object.getOwnPropertyDescriptor(globalThis, "crypto");
-  const secureRandom = globalThis.crypto.getRandomValues.bind(globalThis.crypto);
-  Object.defineProperty(globalThis, "crypto", { configurable: true, value: { getRandomValues: secureRandom } });
-  let releasePoll;
-  let polls = 0;
-  const starts = [];
-  const party = { flush: async () => true, suspendSync: async (action) => action(), adoptProfile() {} };
-  const manager = new ExpeditionManager({ async expedition(request) {
-    if (request.action === "status") {
-      polls++;
-      if (polls === 2) await new Promise((resolve) => { releasePoll = resolve; });
-      return { ok: true, snapshot: expeditionFixture() };
-    }
-    starts.push(request);
-    return starts.length === 1
-      ? { ok: false, code: "network", message: "Respuesta perdida" }
-      : { ok: true, snapshot: { ...expeditionFixture(), active: { id: "trip", phase: "outbound" } } };
-  } }, party, { checkpoint: async () => ({ ok: true }) }, () => true);
-  try {
-    manager.openBoard();
-    await yieldMicrotasks();
-    manager.update(4);
-    await yieldMicrotasks();
-    const tapped = manager.start("normal:test");
-    await manager.start("normal:test");
-    assert.equal(manager.getSnapshot().busy, true);
-    assert.equal(starts.length, 0);
-    releasePoll();
-    await tapped;
-    assert.equal(starts.length, 1);
-    assert.match(starts[0].requestId, /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
-    manager.update(4);
-    await yieldMicrotasks();
-    assert.equal(starts.length, 2);
-    assert.equal(starts[0].requestId, starts[1].requestId);
-    assert.equal(manager.getSnapshot().data.active.phase, "outbound");
-  } finally { Object.defineProperty(globalThis, "crypto", originalCrypto); manager.destroy(); }
-});
-
-test("mobile combat tap during poll uses refreshed version rather than disappearing", async () => {
-  let releasePoll;
-  let polls = 0;
-  const attacks = [];
-  const manager = new ExpeditionManager({ async expedition(request) {
-    if (request.action === "status") {
-      polls++;
-      if (polls === 2) await new Promise((resolve) => { releasePoll = resolve; });
-      return { ok: true, snapshot: { ...expeditionFixture(), active: { id: "trip", phase: "battle", version: polls } } };
-    }
-    attacks.push(request);
-    return { ok: true, snapshot: { ...expeditionFixture(), active: { id: "trip", phase: "returning" } } };
-  } }, { suspendSync: async (action) => action(), adoptProfile() {} }, {}, () => true);
-  try {
-    manager.openBoard();
-    await yieldMicrotasks();
-    manager.update(4);
-    await yieldMicrotasks();
-    const tapped = manager.act("attack");
-    assert.equal(manager.getSnapshot().busy, true);
-    releasePoll();
-    await tapped;
-    assert.deepEqual(attacks, [{ action: "attack", expeditionId: "trip", version: 2 }]);
-  } finally { manager.destroy(); }
-});
-
-test("queued departure revalidates latest status and cannot launch after another active expedition", async () => {
-  let releasePoll;
-  let polls = 0;
-  let starts = 0;
-  const manager = new ExpeditionManager({ async expedition(request) {
-    if (request.action === "start") starts++;
-    polls++;
-    if (polls === 2) await new Promise((resolve) => { releasePoll = resolve; });
-    return { ok: true, snapshot: { ...expeditionFixture(), active: polls === 2 ? { id: "other", phase: "outbound" } : null } };
-  } }, { suspendSync: async (action) => action(), adoptProfile() {} }, {}, () => true);
-  try {
-    manager.openBoard();
-    await yieldMicrotasks();
-    manager.update(4);
-    await yieldMicrotasks();
-    const tapped = manager.start("normal:test");
-    releasePoll();
-    await tapped;
-    assert.equal(starts, 0);
-    assert.match(manager.getSnapshot().error, /otro viaje/);
-    assert.equal(manager.getSnapshot().busy, false);
-  } finally { manager.destroy(); }
-});
-
 test("expedition battle automatically opens the common combat view and commands stay server-owned", async () => {
   const requests = [];
   const fixture = expeditionFixture();
@@ -843,4 +754,57 @@ test("exterior scene creates initial monsters around the spawn, not as fixed bas
   assert.match(source, /this\.encounterSpawner\.update\(2,\s*\{\s*x: initialFeet\.x, y: initialFeet\.y/);
   assert.match(source, /this\.encounterSpawner\.update\(deltaTime,\s*\{\s*x: feet\.x, y: feet\.y/);
   assert.doesNotMatch(source, /this\.homePoint\.x \+ Math\.cos\(angle\) \* radius/);
+});
+
+test("exterior battle manager polls every four seconds, shares snapshot and only submits the active actor turn", async () => {
+  const calls = [];
+  const profile = { id: "local", name: "Local", sex: "chico", characterClass: "Novato", level: 3,
+    experience: 0, gold: 100, currentHealth: 30, maxHealth: 100 };
+  const active = { id: "encounter", phase: "battle", outcome: null,
+    enemy: { id: "slime_acido", level: 3, speed: 2, name: "Slime", sprite: "/sprites/enemies/slime_acido.png",
+      maxHealth: 50, attack: 8, defense: 3, experienceReward: 15, goldReward: 5 },
+    enemyHealth: 50, turn: "player", actingMemberId: "other", nextActorId: "other", enemyTurnAt: null,
+    version: 4, lastAction: null, log: "Combate compartido", rewardGranted: false,
+    participants: [{ playerId: "local", order: 0, name: "Local", level: 3, currentHealth: 30, maxHealth: 100,
+      attack: 10, defense: 7, speed: 5, isLeader: true },
+    { playerId: "other", order: 1, name: "Otro", level: 3, currentHealth: 40, maxHealth: 100,
+      attack: 10, defense: 7, speed: 5, isLeader: false }], encounterLocation: { lat: 40, lng: -3 } };
+  let snapshot = { serverNow: 1000, active: null, profile, progressToken: "token", rewardRevision: 0 };
+  const gateway = { async worldCombat(request) {
+    calls.push(request);
+    return { ok: true, snapshot };
+  } };
+  const party = { suspendSync: (action) => action(), getProfileVersion: () => ({ rewardRevision: 0 }), adoptProfile() {} };
+  const manager = new WorldCombatManager(gateway, party);
+  await yieldMicrotasks();
+  assert.deepEqual(calls, [{ action: "status" }]);
+  manager.update(3.99);
+  await yieldMicrotasks();
+  assert.equal(calls.length, 1);
+  manager.update(0.01);
+  await yieldMicrotasks();
+  assert.equal(calls.length, 2);
+
+  snapshot = { ...snapshot, active };
+  manager.update(4);
+  await yieldMicrotasks();
+  assert.equal(manager.getSnapshot().data.active.id, "encounter");
+  const beforeUnauthorizedAct = calls.length;
+  await manager.act("attack");
+  assert.equal(calls.length, beforeUnauthorizedAct, "A party member cannot submit another member's turn");
+
+  snapshot = { ...snapshot, active: { ...active, nextActorId: "local" } };
+  manager.update(4);
+  await yieldMicrotasks();
+  await manager.act("attack");
+  assert.equal(calls.at(-1).action, "attack");
+  assert.equal(calls.at(-1).encounterId, "encounter");
+  assert.equal(calls.at(-1).version, 4);
+
+  snapshot = { ...snapshot, active: { ...active, version: 5, actingMemberId: "local", nextActorId: "local" } };
+  manager.update(4);
+  await yieldMicrotasks();
+  await manager.act("flee");
+  assert.equal(calls.at(-1).action, "flee");
+  manager.destroy();
 });

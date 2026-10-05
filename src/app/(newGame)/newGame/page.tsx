@@ -15,6 +15,8 @@ import EquipmentShop from "@/components/game/EquipmentShop";
 import { EMPTY_EQUIPMENT } from "@/game/gameplay/EquipmentManager";
 import type { ExpeditionState } from "@/game/gameplay/ExpeditionManager";
 import { expeditionCombatSnapshot } from "@/game/gameplay/expeditionCombat";
+import type { WorldCombatState } from "@/game/gameplay/WorldCombatManager";
+import { worldCombatSnapshot } from "@/game/gameplay/worldCombatSnapshot";
 import type { MenuSnapshot } from "@/game/gameplay/MenuManager";
 import type { MobilityState } from "@/game/gameplay/MobilityManager";
 import { BASE_RETURN_LOCATION, type MobilitySnapshot } from "@/shared/travel";
@@ -100,6 +102,7 @@ const EMPTY_DIALOGUE_STATE = {
 const EMPTY_SCENE_STATE = { sceneId: null };
 const EMPTY_MENU: MenuSnapshot = { open: false, tab: "character", message: null, busy: false };
 const EMPTY_EXPEDITION: ExpeditionState = { open: false, busy: false, error: null, data: null };
+const EMPTY_WORLD_COMBAT: WorldCombatState = { busy: false, error: null, data: null };
 const EMPTY_MOBILITY: MobilityState = { location: BASE_RETURN_LOCATION, journey: null, saving: false, error: null, conflict: false };
 const EMPTY_COMBAT_STATE: CombatSnapshot = {
   phase: "fled",
@@ -171,6 +174,7 @@ export default function NewGamePage() {
   const [mobilityManager, setMobilityManager] = useState<Game["mobilityManager"] | null>(null);
   const [expeditionManager, setExpeditionManager] = useState<Game["expeditionManager"] | null>(null);
   const [equipmentManager, setEquipmentManager] = useState<Game["equipmentManager"] | null>(null);
+  const [worldCombatManager, setWorldCombatManager] = useState<Game["worldCombatManager"] | null>(null);
   const setModalOpen = useCallback((open: boolean) => {
     gameRef.current?.input.setBlocked(open);
   }, []);
@@ -230,6 +234,7 @@ export default function NewGamePage() {
     setMobilityManager(game.mobilityManager);
     setExpeditionManager(game.expeditionManager);
     setEquipmentManager(game.equipmentManager);
+    setWorldCombatManager(game.worldCombatManager);
 
     game.init();
 
@@ -246,6 +251,7 @@ export default function NewGamePage() {
       setMobilityManager(null);
       setExpeditionManager(null);
       setEquipmentManager(null);
+      setWorldCombatManager(null);
     };
   }, [start]);
 
@@ -324,8 +330,14 @@ export default function NewGamePage() {
     expeditionManager?.getSnapshot ?? (() => EMPTY_EXPEDITION), () => EMPTY_EXPEDITION);
   const equipmentState = useSyncExternalStore(equipmentManager?.subscribe ?? noopSubscribe,
     equipmentManager?.getSnapshot ?? (() => EMPTY_EQUIPMENT), () => EMPTY_EQUIPMENT);
+  const worldCombatState = useSyncExternalStore(worldCombatManager?.subscribe ?? noopSubscribe,
+    worldCombatManager?.getSnapshot ?? (() => EMPTY_WORLD_COMBAT), () => EMPTY_WORLD_COMBAT);
   const expeditionActive = !expeditionState.data || (expeditionState.data.active && expeditionState.data.active.phase !== "completed");
+  const expeditionBlocksPlayer = !expeditionState.data || (!!expeditionState.data.active &&
+    expeditionState.data.active.phase !== "completed" && expeditionState.data.active.mission.kind !== "trade");
   const expeditionBattle = expeditionState.battleOpen && expeditionState.data ? expeditionCombatSnapshot(expeditionState.data) : null;
+  const worldEncounter = worldCombatManager?.getVisibleEncounter() ?? null;
+  const worldBattle = worldCombatState.data ? worldCombatSnapshot(worldCombatState.data) : null;
 
   if (phase.kind !== "playing") {
     return (
@@ -381,18 +393,26 @@ export default function NewGamePage() {
         }
       />}
 
-      <GameControls disabled={!!mobilityState.journey || !!mobilityState.travelPending || mobilityState.conflict || !!expeditionActive}
+      <GameControls disabled={!!mobilityState.journey || !!mobilityState.travelPending || mobilityState.conflict || !!expeditionBlocksPlayer || !!worldEncounter}
         disabledMessage={mobilityState.conflict ? "Ubicación cambiada en otra sesión. Recarga para continuar."
-          : expeditionActive ? expeditionState.data ? "Personaje en expedición. Consulta su estado en el tablón." : "Consultando expediciones guardadas…"
+          : worldEncounter ? "La party está en combate. Espera a que termine el encuentro."
+          : expeditionBlocksPlayer ? expeditionState.data ? "Personaje en expedición. Consulta su estado en el tablón." : "Consultando expediciones guardadas…"
           : mobilityState.travelPending ? "Confirmando el carro con el servidor. El personaje permanece bloqueado."
           : undefined} />
 
       {expeditionManager && start && <ExpeditionModal manager={expeditionManager} snapshot={expeditionState} base={start.base} />}
-      {expeditionManager && (expeditionActive || expeditionState.error) && !expeditionState.open && !expeditionState.battleOpen && (
+      {expeditionManager && (expeditionActive || expeditionState.error) && !expeditionState.open && !expeditionState.battleOpen &&
+        expeditionState.data?.active?.mission.kind !== "trade" && (
         <button type="button" onClick={() => expeditionManager.openBoard()}
           className="absolute inset-x-4 bottom-20 z-30 rounded border border-amber-200/30 bg-stone-950/95 p-3 text-sm font-bold text-amber-100">
           {expeditionState.data?.active?.phase === "battle" ? "Resolver combate de expedición" : "Ver expedición y mapa"}
         </button>
+      )}
+      {expeditionState.data?.active?.phase !== "completed" && expeditionState.data?.active?.mission.kind === "trade" && (
+        <p role="status" className="pointer-events-none absolute inset-x-3 top-3 z-30 rounded border border-emerald-200/30 bg-stone-950/90 p-3 text-center text-sm text-emerald-100">
+          Carro comercial en ruta · Regreso previsto {new Date(expeditionState.data.active.returnArrivalAt ??
+            expeditionState.data.active.arrivalAt + expeditionState.data.active.mission.durationMs).toLocaleTimeString("es-ES")}
+        </p>
       )}
 
       {mobilityState.journey && <p role="status" className="pointer-events-none absolute inset-x-3 top-3 rounded border border-amber-200/30 bg-stone-950/90 p-3 text-center text-sm text-amber-100">
@@ -428,6 +448,9 @@ export default function NewGamePage() {
       {expeditionManager && expeditionBattle && <BattleOverlay manager={expeditionManager.battleController}
         snapshot={expeditionBattle} potionCount={0} serverControlled busy={expeditionState.busy}
         error={expeditionState.error} title="Combate de expedición" presentationNow={expeditionManager.serverNow()} />}
+      {worldCombatManager && worldEncounter && worldBattle && <BattleOverlay manager={worldCombatManager.battleController}
+        snapshot={worldBattle} potionCount={0} serverControlled busy={worldCombatState.busy}
+        error={worldCombatState.error} title="Combate exterior" presentationNow={worldCombatManager.serverNow()} />}
     </main>
   );
 }

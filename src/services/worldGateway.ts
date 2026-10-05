@@ -8,6 +8,7 @@ import type {
 } from "@/shared/world";
 import type { MobilitySnapshot } from "@/shared/travel";
 import type { ExpeditionResult } from "@/shared/expeditions";
+import type { WorldCombatResult } from "@/shared/worldCombat";
 import { EQUIPMENT_CATALOG, type EquipmentResult, type EquipmentSnapshot } from "../shared/equipment";
 
 function isEquipmentSnapshot(value: unknown): value is EquipmentSnapshot {
@@ -79,6 +80,10 @@ export const worldGateway: WorldGateway = {
   },
   async expedition(request) {
     const response = await call<ExpeditionResult>("expediciones", request);
+    return response.ok ? response.data : { ok: false, ...response.error };
+  },
+  async worldCombat(request) {
+    const response = await call<WorldCombatResult>("combate-exterior", request.action === "status" ? undefined : request);
     return response.ok ? response.data : { ok: false, ...response.error };
   },
   async mobility(request) {

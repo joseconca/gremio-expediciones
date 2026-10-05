@@ -309,6 +309,8 @@ model Jugador {
   equipoMundo Json @default("{\"items\":[],\"receipts\":[]}")
   expedicionesMundo ExpedicionMundo[]
   participacionesMundo ExpedicionParticipante[]
+  combatesExterioresIniciados CombateExterior[] @relation("CombateExteriorIniciador")
+  participacionesCombateExterior CombateExteriorParticipante[]
 
   miembroParty          MiembroParty?
   partyLiderada         Party?             @relation("LiderParty")
@@ -422,4 +424,49 @@ model ExpedicionParticipante {
   @@id([expedicionId, jugadorId])
   @@index([jugadorId])
   @@index([expedicionId, orden])
+}
+
+model CombateExterior {
+  id             String   @id @default(uuid())
+  iniciadorId    String
+  iniciador      Jugador  @relation("CombateExteriorIniciador", fields: [iniciadorId], references: [id], onDelete: Cascade)
+  participantes  CombateExteriorParticipante[]
+  requestId      String   @unique
+  enemigo        Json
+  encuentroLat   Float
+  encuentroLng   Float
+  vidaEnemigo    Int
+  fase           String   @default("battle")
+  turno          String
+  enemigoTurnoAt DateTime?
+  ultimaAccion   Json?
+  version        Int      @default(0)
+  resultado      String?
+  log            String   @default("")
+  recompensaEntregada Boolean @default(false)
+  creado         DateTime @default(now())
+  completado     DateTime?
+
+  @@index([iniciadorId, fase])
+  @@index([fase, completado])
+}
+
+model CombateExteriorParticipante {
+  combateId  String
+  combate    CombateExterior @relation(fields: [combateId], references: [id], onDelete: Cascade)
+  jugadorId  String
+  jugador    Jugador @relation(fields: [jugadorId], references: [id], onDelete: Cascade)
+
+  orden      Int
+  nombre     String
+  nivel      Int
+  salud      Int
+  saludMaxima Int
+  ataque     Int
+  defensa    Int
+  velocidad  Int
+
+  @@id([combateId, jugadorId])
+  @@index([jugadorId, combateId])
+  @@index([combateId, orden])
 }

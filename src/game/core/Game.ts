@@ -22,6 +22,7 @@ import { MenuManager } from "../gameplay/MenuManager";
 import { ExpeditionManager } from "../gameplay/ExpeditionManager";
 import { EquipmentManager } from "../gameplay/EquipmentManager";
 import { EquipmentInteriorScene } from "../scenes/EquipmentInteriorScene";
+import { WorldCombatManager } from "../gameplay/WorldCombatManager";
 
 export interface GameConfig {
   mobility: MobilitySnapshot;
@@ -52,6 +53,7 @@ export class Game {
   menuManager: MenuManager;
   expeditionManager: ExpeditionManager;
   equipmentManager: EquipmentManager;
+  worldCombatManager: WorldCombatManager;
   private readonly initialMobility: MobilitySnapshot;
 
   private readonly selectedBase: WorldBaseLocation;
@@ -92,7 +94,7 @@ export class Game {
       this.playerProgression,
       this.villageProgression,
       config.progressToken,
-      () => !this.mobilityManager?.getSnapshot().journey && !this.mobilityManager?.getSnapshot().travelPending && !this.expeditionManager?.isActive() && !this.equipmentManager?.isBlocking(),
+      () => !this.mobilityManager?.getSnapshot().journey && !this.mobilityManager?.getSnapshot().travelPending && !this.expeditionManager?.blocksPlayer() && !this.equipmentManager?.isBlocking() && !this.worldCombatManager?.isBusyOrActive(),
       config.rewardRevision
     );
     this.dayNightSystem = new DayNightSystem();
@@ -102,17 +104,19 @@ export class Game {
       (location) => {
         this.dialogueManager.close();
         this.sceneManager.changeScene(location.sceneId, undefined, location);
-      }, undefined, () => !this.expeditionManager?.isActive() && !this.equipmentManager?.isBlocking());
-    this.menuManager = new MenuManager(this.mobilityManager, () =>
-      !this.combatManager.isEncounterOpen() && !this.dialogueManager.isActive() &&
-      !this.mobilityManager.getSnapshot().journey && !this.mobilityManager.getSnapshot().travelPending && !this.mobilityManager.getSnapshot().conflict && !this.expeditionManager?.isActive() && !this.equipmentManager?.isBlocking());
+      }, undefined, () => !this.expeditionManager?.blocksPlayer() && !this.equipmentManager?.isBlocking() && !this.worldCombatManager?.isBusyOrActive());
+    this.worldCombatManager = new WorldCombatManager(this.worldGateway, this.partyManager,
+      () => this.mobilityManager.checkpoint());
+        this.menuManager = new MenuManager(this.mobilityManager, () =>
+          !this.combatManager.isEncounterOpen() && !this.worldCombatManager.isBusyOrActive() && !this.dialogueManager.isActive() &&
+          !this.mobilityManager.getSnapshot().journey && !this.mobilityManager.getSnapshot().travelPending && !this.mobilityManager.getSnapshot().conflict && !this.expeditionManager?.blocksPlayer() && !this.equipmentManager?.isBlocking());
     this.expeditionManager = new ExpeditionManager(this.worldGateway, this.partyManager, this.mobilityManager,
       () => this.sceneManager.getState().sceneId === "base" && !this.combatManager.isEncounterOpen() &&
-        !this.mobilityManager.getSnapshot().journey && !this.mobilityManager.getSnapshot().travelPending && !this.mobilityManager.getSnapshot().conflict && !this.equipmentManager?.isBlocking(),
+        !this.mobilityManager.getSnapshot().journey && !this.mobilityManager.getSnapshot().travelPending && !this.mobilityManager.getSnapshot().conflict && !this.equipmentManager?.isBlocking() && !this.worldCombatManager.isBusyOrActive(),
       config.rewardRevision);
     this.equipmentManager = new EquipmentManager(this.worldGateway, this.partyManager,
-      () => !this.expeditionManager.isActive() && !this.combatManager.isEncounterOpen() &&
-        !this.mobilityManager.getSnapshot().journey && !this.mobilityManager.getSnapshot().travelPending && !this.mobilityManager.getSnapshot().conflict,
+      () => !this.expeditionManager.blocksPlayer() && !this.combatManager.isEncounterOpen() &&
+        !this.mobilityManager.getSnapshot().journey && !this.mobilityManager.getSnapshot().travelPending && !this.mobilityManager.getSnapshot().conflict && !this.worldCombatManager.isBusyOrActive(),
       () => this.sceneManager.getState().sceneId);
 
     this.sceneManager.register(
@@ -161,7 +165,8 @@ export class Game {
         this.input.setBlocker("menu", this.menuManager.getSnapshot().open);
         this.input.setBlocker("travel", !!mobility.journey || !!mobility.travelPending || mobility.conflict);
         this.input.setBlocker("expedition", this.expeditionManager.getSnapshot().open ||
-          !!this.expeditionManager.getSnapshot().battleOpen || this.expeditionManager.isActive());
+          !!this.expeditionManager.getSnapshot().battleOpen || this.expeditionManager.blocksPlayer());
+        this.input.setBlocker("world-combat", this.worldCombatManager.isEncounterOpen());
         this.villageProgression.update(deltaTime);
         this.dayNightSystem.update();
         this.combatManager.update(deltaTime * 1000);
@@ -169,6 +174,7 @@ export class Game {
         this.sceneManager.update(deltaTime);
         this.mobilityManager.update(deltaTime);
         this.expeditionManager.update(deltaTime);
+        this.worldCombatManager.update(deltaTime);
         this.input.endFrame();
       },
       render: () => this.sceneManager.render(),
@@ -188,6 +194,7 @@ export class Game {
     this.mobilityManager.destroy();
     this.menuManager.destroy();
     this.expeditionManager.destroy();
+    this.worldCombatManager.destroy();
     this.equipmentManager.destroy();
     this.sceneManager.destroy();
     this.input.destroy();
@@ -207,6 +214,7 @@ export class Game {
       villageProgression: this.villageProgression,
       playerProgression: this.playerProgression,
       combatManager: this.combatManager,
+      worldCombatManager: this.worldCombatManager,
       partyManager: this.partyManager,
       dayNightSystem: this.dayNightSystem,
       spawnId,

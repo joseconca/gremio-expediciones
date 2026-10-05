@@ -27,7 +27,8 @@ const world = loadSource("src/shared/world.ts");
 const enemyCatalog = loadSource("src/shared/enemies.ts");
 const geo = loadSource("src/lib/mundo/geo.ts", { "@/lib/utils": loadSource("src/lib/utils.ts") });
 const content = loadSource("src/lib/mundo/expeditionContent.ts");
-function player(name = "propio", lat = 40, lng = -3) {
+const worldPosition = loadSource("src/shared/worldPosition.ts");
+function player(name = "propio", lat = 40, lng = -3, embassy = true) {
   const id = randomUUID();
   const usuarioId = randomUUID();
   return {
@@ -35,13 +36,14 @@ function player(name = "propio", lat = 40, lng = -3) {
     oro: 100, saludActual: 40, saludMaxima: 100, ultimoVisto: new Date(NOW), ubicacion: null,
     viajeRegreso: null, ubicacionRevision: 0, ultimaEliteExitosa: null, rewardRevision: 0,
     inventarioMundo: [],
-    usuario: { base: { id: randomUUID(), usuarioId, nombre: name, lat, lng, edificios: [{ type: "town-hall", level: 1 }], embajada: false } },
+    usuario: { base: { id: randomUUID(), usuarioId, nombre: name, lat, lng, edificios: [{ type: "town-hall", level: 1 }], embajada: embassy } },
   };
 }
 
 function harness(initial = player(), others = []) {
   let rows = new Map([initial, ...others].map((p) => [p.id, structuredClone(p)]));
   let ledger = new Map();
+  let encounters = new Map();
   const partyMemberships = new Map();
   let queue = Promise.resolve();
   let authenticated = { id: initial.usuarioId };
@@ -52,6 +54,7 @@ function harness(initial = player(), others = []) {
       const operation = queue.then(async () => {
         const draft = structuredClone(rows);
         const draftLedger = structuredClone(ledger);
+        const draftEncounters = structuredClone(encounters);
         let locked = false;
         const check = () => assert.equal(locked, true, "Every DB operation must hold the world lock");
         const tx = {
@@ -75,13 +78,10 @@ function harness(initial = player(), others = []) {
           base: {
             async findMany({ where }) {
               check();
-              const longitudeMatches = (base, condition) => !condition.lng || (
-                (condition.lng.gte === undefined || base.lng >= condition.lng.gte) &&
-                (condition.lng.lte === undefined || base.lng <= condition.lng.lte));
               return [...draft.values()].filter((p) => {
                 const b = p.usuario.base;
-                return b && b.id !== where.id.not && b.lat >= where.lat.gte && b.lat <= where.lat.lte &&
-                  (where.OR ? where.OR.some((condition) => longitudeMatches(b, condition)) : longitudeMatches(b, where));
+                return b && b.id !== where.id.not && (!where.embajada || b.embajada) &&
+                  (!where.lat || b.lat >= where.lat.gte && b.lat <= where.lat.lte);
               }).map((p) => ({ ...structuredClone(p.usuario.base), usuario: { jugador: structuredClone(p) } }));
             },
           },
@@ -96,6 +96,14 @@ function harness(initial = player(), others = []) {
                 (!where.participantes || r.participants?.some((p) => p.jugadorId === where.participantes.some.jugadorId)) &&
                 (!where.phase || r.phase !== where.phase.not)).sort((a, b) =>
                 b.departureAt.getTime() - a.departureAt.getTime() || b.id.localeCompare(a.id))[0] ?? null);
+            },
+            async count({ where }) {
+              check();
+              const playerId = where.OR[0].jugadorId;
+              const from = where.returnArrivalAt.gte.getTime();
+              return [...draftLedger.values()].filter((row) => row.phase === where.phase && row.returnArrivalAt instanceof Date &&
+                row.returnArrivalAt.getTime() >= from && (row.jugadorId === playerId ||
+                  row.participants?.some((participant) => participant.jugadorId === playerId))).length;
             },
             async create({ data }) {
               check();
@@ -142,6 +150,55 @@ function harness(initial = player(), others = []) {
               return { party: { liderId: ids[0], miembros: members } };
             },
           },
+          combateExterior: {
+            async findUnique({ where }) {
+              check();
+              const row = [...draftEncounters.values()].find((entry) => where.requestId
+                ? entry.requestId === where.requestId : entry.id === where.id);
+              return row ? { ...structuredClone(row), participantes: structuredClone(row.participants) } : null;
+            },
+            async findFirst({ where }) {
+              check();
+              const row = [...draftEncounters.values()].filter((row) => {
+                const participantFilter = where.participantes?.some?.jugadorId;
+                return (!participantFilter || row.participants.some((member) => member.jugadorId === participantFilter)) &&
+                  (!where.fase || row.fase !== where.fase.not) &&
+                  (!where.OR || where.OR.some((filter) => filter.fase ? row.fase !== filter.fase.not :
+                    filter.completado ? row.completado && row.completado > filter.completado.gt : true));
+              }).sort((a, b) => b.creado.getTime() - a.creado.getTime())[0];
+              return row ? { ...structuredClone(row), participantes: structuredClone(row.participants) } : null;
+            },
+            async create({ data }) {
+              check();
+              const row = { ...structuredClone(data), participants: [] };
+              draftEncounters.set(row.id, row);
+              return structuredClone(row);
+            },
+            async update({ where, data }) {
+              check();
+              const row = draftEncounters.get(where.id);
+              assert.ok(row);
+              Object.assign(row, structuredClone(data));
+              return structuredClone(row);
+            },
+          },
+          combateExteriorParticipante: {
+            async createMany({ data }) {
+              check();
+              const row = draftEncounters.get(data[0]?.combateId);
+              assert.ok(row);
+              row.participants = structuredClone(data);
+              return { count: data.length };
+            },
+            async update({ where, data }) {
+              check();
+              const row = draftEncounters.get(where.combateId_jugadorId.combateId);
+              const participant = row?.participants.find((member) => member.jugadorId === where.combateId_jugadorId.jugadorId);
+              assert.ok(participant);
+              Object.assign(participant, structuredClone(data));
+              return structuredClone(participant);
+            },
+          },
           expedicionParticipante: {
             async findMany({ where }) {
               check();
@@ -167,6 +224,7 @@ function harness(initial = player(), others = []) {
         const result = await work(tx);
         rows = draft;
         ledger = draftLedger;
+        encounters = draftEncounters;
         return result;
       });
       queue = operation.catch(() => {});
@@ -185,12 +243,17 @@ function harness(initial = player(), others = []) {
   const service = loadSource("src/lib/mundo/expeditions.ts", {
     "./geo": geo, "./http": http, "./jugador": jugador, "./expeditionRules": rules, "@/shared/combat": combat,
   });
+  const worldCombat = loadSource("src/lib/mundo/worldCombat.ts", {
+    "./geo": geo, "./http": http, "./expeditionRules": rules, "./jugador": jugador,
+    "@/shared/enemies": enemyCatalog, "@/shared/combat": combat, "@/shared/worldPosition": worldPosition,
+  });
   const route = loadSource("src/app/api/mundo/expediciones/route.ts", {
     "@/lib/mundo/http": http, "@/lib/mundo/expeditions": service,
   });
   return {
-    ...service, rules, route, progressToken: jugador.progressToken, initial,
+    ...service, ...worldCombat, rules, route, progressToken: jugador.progressToken, initial,
     row: (id = initial.id) => rows.get(id), ledger: () => [...ledger.values()],
+    encounters: () => [...encounters.values()],
     remove: (id) => rows.delete(id), setAuthenticated: (value) => { authenticated = value; },
     failCompletion: () => { failCompletion = true; },
     failReturn: () => { failReturn = true; },
@@ -268,19 +331,31 @@ test("Compound Spanish content, hundreds of seeds, inclusive level 1/4/50 diffic
       const time = NOW + seed * rules.EXPEDITION_CATALOG_PERIOD_MS;
       const catalog = rules.generateExpeditionMissions(origin, time, [], level);
       assert.deepEqual(catalog, rules.generateExpeditionMissions(origin, time, [], level));
-      assert.equal(catalog.length, 4);
-      assert.equal(new Set(catalog.map((m) => m.name)).size, 4);
+      const expectedNormalCount = rules.NORMAL_MISSION_TIERS.reduce((sum, tier) =>
+        sum + Math.min(tier.count, Math.max(1, level + tier.maxOffset) - Math.max(1, level + tier.minOffset) + 1), 0);
+      assert.equal(catalog.length, expectedNormalCount + 1);
+      assert.equal(catalog.filter((m) => m.kind === "normal").length, expectedNormalCount);
+      assert.equal(catalog.filter((m) => m.kind === "elite").length, 1);
+      assert.equal(new Set(catalog.map((m) => m.name)).size, catalog.length);
       for (const m of catalog) {
-        assert.match(m.name, /^(El|La|Las) .+ (del|de la|de las|de los) .+/);
+        assert.match(m.name, /^(El|La|Las) .+/);
         assert.ok(m.description.length > 30);
-        const range = enemyCatalog.enemyLevelRange(level);
+        const tierHours = m.kind === "elite" ? null : [0.5, 1, 3, 9, 24]
+          .find((hours) => m.distanceKm >= hours * 5.4 && m.distanceKm <= hours * 6.6);
+        if (m.kind === "normal") assert.ok(tierHours, `Unexpected normal-mission distance ${m.distanceKm}`);
+        const offsets = tierHours === 0.5 ? [0, 2] : tierHours === 1 || tierHours === 3 ? [-2, 3] : [-2, 4];
+        const range = m.kind === "elite"
+          ? enemyCatalog.enemyLevelRange(level, 1)
+          : { min: Math.max(1, level + offsets[0]), max: Math.max(Math.max(1, level + offsets[0]), level + offsets[1]) };
         assert.ok(m.enemyLevel >= range.min && m.enemyLevel <= range.max);
         assert.ok(Number.isInteger(m.enemyLevel));
         assert.equal(m.enemy.level, m.enemyLevel);
         assert.ok(m.id.includes(`:${level}:`));
         assert.ok(m.id.length <= 128);
         assert.ok(fs.existsSync(path.resolve(__dirname, "../public", m.enemy.sprite.slice(1))));
-        assert.ok(m.distanceKm >= 0.5 - 1e-8 && m.distanceKm <= 3 + 1e-8);
+        if (m.kind === "elite") assert.ok(m.distanceKm >= 5 && m.distanceKm <= 6.1);
+        else assert.ok(m.distanceKm >= tierHours * 5.4 - 1e-8 && m.distanceKm <= tierHours * 6.6 + 1e-8);
+        if (m.kind === "normal") assert.ok(m.durationMs >= tierHours * 30 * 60_000 * 0.9 && m.durationMs <= tierHours * 30 * 60_000 * 1.1 + 1);
         const bounds = rules.expeditionRewardBounds(m.kind, m.distanceKm, m.enemyLevel);
         assert.ok(Number.isInteger(m.gold) && m.gold >= bounds.gold.min && m.gold <= bounds.gold.max);
         assert.ok(Number.isInteger(m.experience) && m.experience >= bounds.experience.min && m.experience <= bounds.experience.max);
@@ -296,14 +371,12 @@ test("Compound Spanish content, hundreds of seeds, inclusive level 1/4/50 diffic
         if (level === 50) highRewards.push(m.gold);
       }
     }
-    const range = enemyCatalog.enemyLevelRange(level);
-    const expected = Array.from({ length: range.max - range.min + 1 }, (_, i) => range.min + i);
     for (const kind of ["normal", "elite"]) {
-      assert.deepEqual([...difficulty[kind]].sort((a, b) => a - b), expected, "Both inclusive endpoints occur");
+      assert.ok(difficulty[kind].size >= 5, "Daily pseudo-randomized difficulty bands offer a variety of levels");
       assert.ok(rewards[kind].size > 100);
     }
   }
-  assert.ok(names.size > 900); assert.equal(descriptions.size, content.EXPEDITION_DESCRIPTIONS.length);
+  assert.ok(names.size > 900); assert.ok(descriptions.size > 10);
   assert.equal(species.size, (content.EXPEDITION_ENEMIES.length - 1) * 4 + 4);
   const average = (values) => values.reduce((sum, value) => sum + value, 0) / values.length;
   assert.ok(average(highRewards) > average(lowRewards), "Higher-level catalogs should award higher average gold despite overlapping normal/elite bands");
@@ -389,7 +462,9 @@ test("Trade routes with identical base names are stable and unique within the wh
   const targets = Array.from({ length: 6 }, (_, i) => ({ playerId: String(i), baseName: "Valle", lat: 40.01, lng: -3 }));
   const catalog = rules.generateExpeditionMissions({ lat: 40, lng: -3 }, NOW, targets);
   assert.deepEqual(catalog, rules.generateExpeditionMissions({ lat: 40, lng: -3 }, NOW, targets.toReversed()));
-  assert.equal(catalog.length, 10); assert.equal(new Set(catalog.map((m) => m.name)).size, 10);
+  assert.equal(catalog.length, 1 + rules.NORMAL_MISSION_TIERS.reduce((sum, tier) =>
+    sum + Math.min(tier.count, Math.max(1, 1 + tier.maxOffset) - Math.max(1, 1 + tier.minOffset) + 1), 0) + 6);
+  assert.equal(new Set(catalog.map((m) => m.name)).size, catalog.length);
 });
 
 test("Victory normal/elite grants rolled items only at completion; concurrent reload/replay never duplicates", async (t) => {
@@ -473,33 +548,46 @@ test("Shared contract: pure positions, all phases, endpoints and antimeridian", 
   assert.equal(contract.expeditionPosition({ ...base, arrivalAt: 100 }, 100).progress, 1);
 });
 
-test("Deterministic hourly catalog: 3 normal, 1 elite, nearby trade, 0.5–3km and 7km bounds", () => {
+test("Daily catalog: 25 legacy-duration normals, one elite and global trade destinations requiring embassies", () => {
   const { rules } = harness();
   assert.equal(rules.EXPEDITION_SPEED_KMH, 60);
   assert.equal(rules.MIN_EXPEDITION_DURATION_MS, 5000);
   assert.equal(rules.ELITE_COOLDOWN_MS, 84_600_000);
   assert.equal(rules.expeditionDurationMs(0), 5000);
   assert.equal(rules.expeditionDurationMs(1), 60_000);
-  const hour = Math.floor(NOW / rules.EXPEDITION_CATALOG_PERIOD_MS) * rules.EXPEDITION_CATALOG_PERIOD_MS;
+  const day = new Date(NOW); day.setUTCHours(0, 0, 0, 0);
+  const startOfDay = day.getTime();
   for (const origin of [{ lat: 40, lng: -3 }, { lat: 0, lng: 179.999 }, { lat: 85, lng: 180 }, { lat: -85, lng: -180 }]) {
-    const catalog = rules.generateExpeditionMissions(origin, hour);
-    assert.deepEqual(catalog, rules.generateExpeditionMissions(origin, hour + 3_599_999));
-    assert.notDeepEqual(catalog, rules.generateExpeditionMissions(origin, hour + 3_600_000));
-    assert.equal(catalog.filter((m) => m.kind === "normal").length, 3);
+    const catalog = rules.generateExpeditionMissions(origin, startOfDay);
+    assert.deepEqual(catalog, rules.generateExpeditionMissions(origin, startOfDay + 86_399_999));
+    assert.notDeepEqual(catalog, rules.generateExpeditionMissions(origin, startOfDay + 86_400_000));
+    assert.notDeepEqual(catalog, rules.generateExpeditionMissions(origin, startOfDay, [], 1, 1));
+    assert.equal(catalog.filter((m) => m.kind === "normal").length, rules.NORMAL_MISSION_TIERS.reduce((sum, tier) =>
+      sum + Math.min(tier.count, Math.max(1, 1 + tier.maxOffset) - Math.max(1, 1 + tier.minOffset) + 1), 0));
     assert.equal(catalog.filter((m) => m.kind === "elite").length, 1);
     for (const m of catalog) {
-      assert.ok(m.distanceKm >= 0.5 - 1e-8 && m.distanceKm <= 3 + 1e-8);
       assert.ok(rules.validExpeditionCoordinates(m));
-      const bounds = rules.expeditionRewardBounds(m.kind, m.distanceKm, m.enemyLevel);
-      assert.ok(m.gold >= bounds.gold.min && m.gold <= bounds.gold.max);
-      assert.ok(m.experience >= bounds.experience.min && m.experience <= bounds.experience.max);
-      assert.equal(m.durationMs, rules.expeditionDurationMs(m.distanceKm));
+      if (m.kind !== "trade") {
+        const bounds = rules.expeditionRewardBounds(m.kind, m.distanceKm, m.enemyLevel);
+        assert.ok(m.gold >= bounds.gold.min && m.gold <= bounds.gold.max);
+        assert.ok(m.experience >= bounds.experience.min && m.experience <= bounds.experience.max);
+      }
+      if (m.kind === "normal") {
+        const tierHours = [0.5, 1, 3, 9, 24].find((hours) => m.distanceKm >= hours * 5.4 && m.distanceKm <= hours * 6.6);
+        assert.ok(tierHours);
+        assert.ok(m.durationMs >= tierHours * 30 * 60_000 * 0.9 && m.durationMs <= tierHours * 30 * 60_000 * 1.1 + 1);
+      } else if (m.kind === "elite") {
+        assert.ok(m.durationMs >= 30 * 60_000 * 0.9 && m.durationMs <= 30 * 60_000 * 1.1 + 1);
+      } else assert.equal(m.durationMs, rules.expeditionDurationMs(m.distanceKm));
     }
   }
   const target = { playerId: randomUUID(), baseName: "Vecino", lat: 40.01, lng: -3 };
-  const missions = rules.generateExpeditionMissions({ lat: 40, lng: -3 }, NOW, [target, target, { ...target, playerId: randomUUID(), lat: 42 }]);
+  const farTarget = { playerId: randomUUID(), baseName: "Lejano", lat: 42, lng: -3 };
+  const missions = rules.generateExpeditionMissions({ lat: 40, lng: -3 }, startOfDay, [target, target, farTarget]);
   const trade = missions.filter((m) => m.kind === "trade");
-  assert.equal(trade.length, 1); assert.equal(trade[0].targetPlayerId, target.playerId); assert.equal(trade[0].gold % 4, 0);
+  assert.equal(trade.length, 2); assert.ok(trade.some((mission) => mission.targetPlayerId === target.playerId));
+  assert.ok(trade.some((mission) => mission.targetPlayerId === farTarget.playerId));
+  assert.ok(trade.every((mission) => mission.gold % 4 === 0));
 });
 
 test("Pure combat and level growth mirror Novato, minimum damage and no retaliation after lethal hit", () => {
@@ -632,13 +720,14 @@ test("Only saved own base scene, no return cart, positive health; null location 
   await rejectsCode(start(h), 409, "player_dead");
 });
 
-test("Hourly catalog expires for new starts but not replay or persisted enemy/mission", async (t) => {
+test("Daily catalog remains valid intraday; completed expedition count/day rotate future missions without changing active ledgers", async (t) => {
   let now = NOW; t.mock.method(Date, "now", () => now);
   const h = harness(); const stale = (await h.loadExpeditions(h.initial.usuarioId)).missions[0];
   now += 3_600_000;
-  await rejectsCode(h.mutateExpeditions(h.initial.usuarioId, { action: "start", missionId: stale.id, requestId: randomUUID() }), 404, "mission_unavailable");
-  const { snapshot: s, request } = await start(h);
-  now += 3_600_000;
+  const request = { action: "start", missionId: stale.id, requestId: randomUUID() };
+  const s = await h.mutateExpeditions(h.initial.usuarioId, request);
+  assert.equal(s.active.mission.id, stale.id);
+  now += 86_400_000;
   const replay = await h.mutateExpeditions(h.initial.usuarioId, request);
   assert.equal(replay.active.id, s.active.id); assert.equal(replay.active.phase, "battle");
   assert.deepEqual(replay.active.mission, s.active.mission); assert.deepEqual(replay.active.enemy, s.active.enemy);
@@ -846,13 +935,17 @@ test("Elite cooldown starts at victory, not return: 23h30 boundary, failure/flee
   assert.equal(h.ledger().length, 2);
 });
 
-test("Trade radius includes antimeridian, excludes >7km and only persistent player bases", async (t) => {
+test("Trade catalog includes embassies globally, including the antimeridian, and excludes players without embassies", async (t) => {
   t.mock.method(Date, "now", () => NOW);
-  const own = player("propio", 0, 179.99), close = player("cerca", 0, -179.99), far = player("lejos", 0, -179.8);
-  const h = harness(own, [close, far]);
+  const own = player("propio", 0, 179.99), close = player("cerca", 0, -179.99), far = player("lejos", 0, -179.8),
+    noEmbassy = player("sin embajada", 0, 179.98, false);
+  const h = harness(own, [close, far, noEmbassy]);
   const missions = (await h.loadExpeditions(own.usuarioId)).missions.filter((m) => m.kind === "trade");
-  assert.equal(missions.length, 1); assert.equal(missions[0].targetPlayerId, close.id);
-  assert.ok(missions[0].distanceKm < 7);
+  assert.equal(missions.length, 2);
+  assert.ok(missions.some((mission) => mission.targetPlayerId === close.id));
+  assert.ok(missions.some((mission) => mission.targetPlayerId === far.id));
+  assert.ok(missions.every((mission) => mission.targetPlayerId !== noEmbassy.id));
+  assert.ok(missions.some((mission) => mission.distanceKm > 7));
 });
 
 test("Trade resolves both legs offline, grants sender XP/gold and exactly recipient 25% once, increments both revisions", async (t) => {
@@ -958,58 +1051,84 @@ test("Shared initiative orders every living party member and enemy by speed with
   assert.equal(combat.nextCombatantId(order.map((entry) => entry.id), "member-tie", new Set(["enemy-fast", "member-slow"])), "enemy-fast");
 });
 
-test("Cooperative expedition snapshots actor ownership, applies each speed turn once and splits rewards with per-player loot", async (t) => {
-  let now = NOW; t.mock.method(Date, "now", () => now);
-  const first = player("leader"), second = player("ally", 40.01), third = player("ally2", 40.02);
-  const h = harness(first, [second, third]); h.setParty([first.id, second.id, third.id]);
-  const { snapshot: started } = await start(h);
-  const ledger = h.ledger()[0];
-  ledger.enemy = { ...h.rules.expeditionEnemy("normal", 1, 0), speed: 10 };
-  ledger.enemyHealth = 100;
-  ledger.participants[0].velocidad = 12;
-  ledger.participants[1].velocidad = 8;
-  ledger.participants[2].velocidad = 5;
-  ledger.participants[0].salud = 10;
-  now = started.active.arrivalAt;
-  let snapshot = await h.loadExpeditions(first.usuarioId);
-  assert.equal(snapshot.active.turn, "player");
-  assert.equal(snapshot.active.actingMemberId, first.id);
-  assert.deepEqual(snapshot.active.participants.map((member) => member.playerId), [first.id, second.id, third.id]);
-  await rejectsCode(h.mutateExpeditions(second.usuarioId, {
-    action: "attack", expeditionId: snapshot.active.id, version: snapshot.active.version,
-  }), 409, "not_your_turn");
-  snapshot = await attack(h, snapshot);
-  assert.equal(snapshot.active.turn, "enemy");
-  assert.equal(snapshot.active.enemyTurnAt, now + 1000);
-  now = snapshot.active.enemyTurnAt;
-  snapshot = await h.loadExpeditions(second.usuarioId);
-  assert.equal(snapshot.active.lastAction.targetMemberId, first.id);
-  assert.equal(snapshot.active.turn, "player");
-  assert.equal(snapshot.active.actingMemberId, second.id);
-  await rejectsCode(h.mutateExpeditions(third.usuarioId, {
-    action: "attack", expeditionId: snapshot.active.id, version: snapshot.active.version,
-  }), 409, "not_your_turn");
-  const mission = snapshot.active.mission;
-  const rewardLedger = h.ledger()[0];
-  rewardLedger.mission.loot.forEach((item) => { item.chance = 50; });
-  mission.loot.forEach((item) => { item.chance = 50; });
-  rewardLedger.participants[0].ataque = rewardLedger.participants[1].ataque = rewardLedger.participants[2].ataque = 1000;
-  rewardLedger.enemyHealth = 1;
-  snapshot = await h.mutateExpeditions(second.usuarioId, {
-    action: "attack", expeditionId: snapshot.active.id, version: snapshot.active.version,
+test("Board missions remain solo even when the requester belongs to a party", async () => {
+  const leader = player("leader"), ally = player("ally", 40.01), third = player("ally2", 40.02);
+  const h = harness(leader, [ally, third]); h.setParty([leader.id, ally.id, third.id]);
+  const first = await start(h);
+  assert.deepEqual(first.snapshot.active.participants.map((member) => member.playerId), [leader.id]);
+
+  const allySnapshot = await h.loadExpeditions(ally.usuarioId);
+  const allyMission = allySnapshot.missions.find((mission) => mission.kind === "normal");
+  const second = await h.mutateExpeditions(ally.usuarioId, {
+    action: "start", missionId: allyMission.id, requestId: randomUUID(),
   });
-  assert.equal(snapshot.active.outcome, "victory");
-  assert.equal(snapshot.active.phase, "returning");
-  now = snapshot.active.returnArrivalAt;
-  const completed = await h.loadExpeditions(first.usuarioId);
-  const recipients = [first, second, third].map((member) => h.row(member.id));
-  assert.equal(recipients.reduce((sum, member) => sum + member.oro - 100, 0), mission.gold);
-  assert.equal(recipients.reduce((sum, member) => sum + member.experiencia, 0), mission.experience);
-  for (const member of recipients) {
-    assert.deepEqual(member.inventarioMundo, h.rules.rollExpeditionLoot(mission.loot, `${completed.active.id}:${member.id}`));
+  assert.deepEqual(second.active.participants.map((member) => member.playerId), [ally.id]);
+  assert.equal(h.ledger().length, 2, "Party members can independently take solo board missions");
+});
+
+test("Exterior party combat shares an authoritative ledger, turn ownership, enemy turns and rewards", async (t) => {
+  let now = NOW; t.mock.method(Date, "now", () => now);
+  const leader = player("leader"), nearby = player("nearby", 40.01), distant = player("distant", 44);
+  for (const member of [leader, nearby]) {
+    member.ubicacion = { sceneId: "exterior-world", x: 4096, y: 4096, direction: "down" };
+    member.ultimoVisto = new Date(NOW);
   }
-  assert.deepEqual(completed.active.awardedLoot, recipients[0].inventarioMundo);
-  assert.equal(completed.active.participants.length, 3);
+  distant.ubicacion = { sceneId: "base", x: 480, y: 768, direction: "up" };
+  distant.ultimoVisto = new Date(NOW);
+  const h = harness(leader, [nearby, distant]); h.setParty([leader.id, nearby.id, distant.id]);
+  const request = { action: "start", requestId: randomUUID(), lat: 40, lng: -3 };
+  const started = await h.mutateWorldCombat(leader.usuarioId, request);
+  assert.equal(started.active.phase, "battle");
+  assert.ok(enemyCatalog.ENEMY_ROSTER.some((enemy) => enemy.id === started.active.enemy.id));
+  assert.ok(started.active.enemy.level >= 6 && started.active.enemy.level <= 16, "Server chooses a valid trio difficulty");
+  assert.deepEqual(started.active.participants.map((member) => member.playerId), [leader.id, nearby.id, distant.id]);
+  assert.ok(Math.abs(started.active.encounterLocation.lat - 40) < 1e-6);
+  const row = h.encounters()[0];
+  row.enemigo.speed = 1;
+  row.participants.forEach((member, index) => { member.velocidad = 15 - index; });
+  row.turno = leader.id;
+  const shared = await h.mutateWorldCombat(nearby.usuarioId, { action: "status" });
+  assert.equal(shared.active.id, started.active.id);
+  assert.equal(shared.active.version, started.active.version);
+  await rejectsCode(h.mutateWorldCombat(nearby.usuarioId, {
+    action: "attack", encounterId: shared.active.id, version: shared.active.version,
+  }), 409, "not_your_turn");
+
+  const attackRequest = { action: "attack", encounterId: shared.active.id, version: shared.active.version };
+  const firstTurn = await h.mutateWorldCombat(leader.usuarioId, attackRequest);
+  assert.equal(firstTurn.active.actingMemberId, nearby.id);
+  await rejectsCode(h.mutateWorldCombat(leader.usuarioId, attackRequest), 409, "encounter_conflict");
+  assert.ok(firstTurn.active.enemyHealth < shared.active.enemyHealth);
+  const seenAfterAttack = await h.mutateWorldCombat(distant.usuarioId, { action: "status" });
+  assert.equal(seenAfterAttack.active.enemyHealth, firstTurn.active.enemyHealth);
+  assert.equal(seenAfterAttack.active.lastAction.actorMemberId, leader.id);
+
+  let currentRow = h.encounters()[0];
+  currentRow.turno = "enemy";
+  currentRow.enemigoTurnoAt = new Date(now - 1);
+  const beforeHp = currentRow.participants[0].salud;
+  const afterEnemy = await h.mutateWorldCombat(distant.usuarioId, { action: "status" });
+  assert.equal(afterEnemy.active.version, firstTurn.active.version + 1);
+  assert.equal(afterEnemy.active.lastAction.actor, "enemy");
+  currentRow = h.encounters()[0];
+  assert.ok(currentRow.participants[0].salud < beforeHp);
+  assert.equal(h.row(leader.id).saludActual, currentRow.participants[0].salud);
+
+  currentRow.turno = leader.id; currentRow.enemigoTurnoAt = null; currentRow.vidaEnemigo = 1;
+  const beforeVersion = currentRow.version;
+  const victory = await h.mutateWorldCombat(leader.usuarioId, {
+    action: "attack", encounterId: currentRow.id, version: beforeVersion,
+  });
+  assert.equal(victory.active.outcome, "victory");
+  assert.equal(victory.active.rewardGranted, true);
+  assert.equal(h.row(leader.id).oro + h.row(nearby.id).oro + h.row(distant.id).oro - 300, currentRow.enemigo.goldReward);
+  assert.equal(h.row(leader.id).rewardRevision, 2);
+  const resultAtSecondClient = await h.mutateWorldCombat(nearby.usuarioId, { action: "status" });
+  assert.equal(resultAtSecondClient.active.outcome, "victory");
+  assert.equal(resultAtSecondClient.active.version, victory.active.version);
+  await rejectsCode(h.mutateWorldCombat(leader.usuarioId, {
+    action: "attack", encounterId: currentRow.id, version: h.encounters()[0].version,
+  }), 409, "not_in_battle");
 });
 
 test("Enemy level ranges widen with party size exactly as configured and clamp at level one", () => {

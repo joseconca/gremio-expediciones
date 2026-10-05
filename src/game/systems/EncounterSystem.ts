@@ -1,35 +1,37 @@
 import type { OverworldMonster } from "../entities/Characters/OverworldMonster";
 import type { Player } from "../entities/Characters/Player";
-import type { CombatManager } from "../gameplay/CombatManager";
-import type { PartyCombatant } from "../gameplay/CombatManager";
+import type { WorldCombatManager } from "../gameplay/WorldCombatManager";
 
-/** Starts combat when the player's feet enter a monster's encounter circle. */
+/** Starts a server-backed encounter when the local player's feet enter its radius. */
 export class EncounterSystem {
   private currentMonster: OverworldMonster | null = null;
+  private observedEncounterId: string | null = null;
 
   constructor(
     private readonly player: Player,
     private readonly monsters: OverworldMonster[],
-    private readonly combatManager: CombatManager,
-    private readonly getCompanions: () => readonly PartyCombatant[] = () => [],
+    private readonly combat: WorldCombatManager,
+    private readonly startEncounter: (monster: OverworldMonster) => boolean,
     private readonly onDefeated: (monster: OverworldMonster) => void = () => {}
   ) {}
 
   update(): void {
-    if (this.combatManager.isActive()) return;
+    const active = this.combat.getSnapshot().data?.active ?? null;
+    if (active?.id !== this.observedEncounterId) this.observedEncounterId = active?.id ?? null;
 
-    if (this.currentMonster) {
-      const phase = this.combatManager.getSnapshot().phase;
-      if (phase === "victory") {
+    if (this.currentMonster && active?.phase === "completed") {
+      if (active.outcome === "victory") {
         this.currentMonster.markDefeated();
         this.onDefeated(this.currentMonster);
-      }
-      if (phase === "fled" || phase === "defeat") {
+      } else {
         this.currentMonster.ignoreUntilSeparated();
       }
       this.currentMonster = null;
+    } else if (this.currentMonster && !this.combat.isBusyOrActive()) {
+      this.currentMonster.ignoreUntilSeparated();
+      this.currentMonster = null;
     }
-    if (this.combatManager.isEncounterOpen()) return;
+    if (this.combat.isBusyOrActive()) return;
 
     const feet = this.player.getGroundAnchor();
 
@@ -40,7 +42,7 @@ export class EncounterSystem {
       }
       if (!monster.canStartEncounter()) continue;
 
-      if (this.combatManager.startEncounterGroup([monster.definition], this.getCompanions())) {
+      if (this.startEncounter(monster)) {
         this.currentMonster = monster;
         return;
       }

@@ -51,6 +51,7 @@ function harness() {
         },
         base: { async findUniqueOrThrow() { return structuredClone(draft.usuario.base); }, async update({ data }) { Object.assign(draft.usuario.base, data); return draft.usuario.base; } },
         expedicionMundo: { async findFirst() { return active ? { id: randomUUID() } : null; } },
+        combateExterior: { async findFirst() { return null; } },
       };
       const result = await work(tx);
       p = draft;

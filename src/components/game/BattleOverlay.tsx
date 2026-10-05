@@ -126,7 +126,7 @@ export default function BattleOverlay({ manager, snapshot, potionCount, busy = f
           <p className="eyebrow">{finished ? "Resultado del encuentro" : "¿Qué vas a hacer?"}</p>
           <p aria-live="polite">{snapshot.log}</p>
           {error && <p role="alert" className="error">{error}</p>}
-          {serverControlled && !finished && <p className="hint">Habilidades y objetos no disponibles en combates de expedición.</p>}
+          {serverControlled && !finished && <p className="hint">Habilidades y objetos no disponibles en este combate.</p>}
         </div>
         <div className="command-panel">
           {finished ? <div className="result"><strong className={snapshot.phase}>{result}</strong><button type="button" disabled={busy} onClick={() => manager.closeResult()}>Continuar</button></div> : snapshot.menu !== "root" ? (

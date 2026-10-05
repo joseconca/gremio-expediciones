@@ -12,7 +12,6 @@ import { CollisionSystem } from "../systems/CollisionSystem";
 import { InteractionSystem } from "../systems/InteractionSystem";
 import { EncounterSystem } from "../systems/EncounterSystem";
 import { OverworldEncounterSpawner } from "../systems/OverworldEncounterSpawner";
-import type { CharacterAttributes } from "../entities/Characters/CharacterAttributes";
 import { World } from "../world/World";
 import { Camera } from "../world/Camera";
 import { TileMap } from "../world/TileMap";
@@ -26,6 +25,7 @@ import { createNoticeDialogue } from "../data/dialogues/notice";
 import { LightingSystem } from "../lighting/LightingSystem";
 import { ReturnCart } from "../entities/ReturnCart";
 import { expeditionPosition } from "../../shared/expeditions";
+import { worldPositionToGeographic } from "../../shared/worldPosition";
 import {
   geographicToWorldPoint,
   isInsideWorldMap,
@@ -34,7 +34,6 @@ import {
   type WorldPoint,
 } from "../world/WorldLocation";
 import type { NearbyWorldPlayerDto } from "../../shared/world";
-import type { PartyCombatant } from "../gameplay/CombatManager";
 
 export interface ExteriorWorldSceneConfig extends SceneConfig {
   selectedBase: WorldBaseLocation;
@@ -136,8 +135,9 @@ export class ExteriorWorldScene extends Scene {
     this.encounterSystem = new EncounterSystem(
       this.player,
       this.encounterMonsters,
-      this.combatManager,
-      () => this.getPartyCombatants(),
+      this.worldCombatManager,
+      (monster) => this.worldCombatManager.startEncounter(
+        worldPositionToGeographic({ x: monster.x, y: monster.y }, this.basePoint)),
       (monster) => monster.markDefeated()
     );
 
@@ -174,19 +174,6 @@ export class ExteriorWorldScene extends Scene {
     notice(
       "Ambas Embajadas permiten la visita. Entrar en bases ajenas llegará cuando exista su escena de visita."
     );
-  }
-
-  private getPartyCombatants(): PartyCombatant[] {
-    return this.partyManager.getSnapshot().companions.map((member) => ({
-      id: member.playerId, name: member.displayName, level: member.level, isLocalPlayer: false,
-      spriteSrc: "/sprites/sheets/characters/hero.png",
-      attributes: {
-        currentHealth: member.currentHealth, maxHealth: member.maxHealth,
-        physicalAttack: member.attack, physicalDefense: member.defense,
-        speed: member.speed, criticalChance: 0.05, criticalDamage: 1.5, evasionChance: 0.05,
-        magicAttack: 3, magicDefense: 3,
-      } satisfies CharacterAttributes,
-    }));
   }
 
   private syncRemotePlayers(): void {
@@ -257,7 +244,7 @@ export class ExteriorWorldScene extends Scene {
   update(deltaTime: number): void {
     this.updateDebugMode();
     const dialogueWasActive = this.dialogueManager.isActive();
-    const combatWasActive = this.combatManager.isEncounterOpen();
+    const combatWasActive = this.combatManager.isEncounterOpen() || this.worldCombatManager.isBusyOrActive();
     const journey = this.mobilityManager?.getSnapshot().journey;
     this.player.setInputEnabled(!dialogueWasActive && !combatWasActive && !journey && !this.input.isBlocked());
 
@@ -285,7 +272,8 @@ export class ExteriorWorldScene extends Scene {
       }
     }
     this.syncRemotePlayers();
-    if (!journey && !this.mobilityManager?.getSnapshot().travelPending && !this.expeditionManager?.isActive() && !this.combatManager.isEncounterOpen()) {
+    if (!journey && !this.mobilityManager?.getSnapshot().travelPending && !this.expeditionManager?.blocksPlayer() &&
+      !this.combatManager.isEncounterOpen() && !this.worldCombatManager.isBusyOrActive()) {
       const feet = this.player.getGroundAnchor();
       const encounters = this.encounterSpawner.update(deltaTime, {
         x: feet.x, y: feet.y, level: this.playerProgression.getState().characterLevel,

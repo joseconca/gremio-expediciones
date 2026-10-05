@@ -6,8 +6,9 @@ const { prisma } = require("../src/lib/prisma.ts");
 const { PlayerProgression } = require("../src/game/gameplay/PlayerProgression.ts");
 const { VillageProgression } = require("../src/game/gameplay/VillageProgression.ts");
 const { PartyManager } = require("../src/game/gameplay/PartyManager.ts");
-const { createEnemyAtLevel, enemyLevelRange } = require("../src/shared/enemies.ts");
+const { createEnemyAtLevel } = require("../src/shared/enemies.ts");
 const { calculateCombatDamage } = require("../src/shared/combat.ts");
+const { worldPositionToGeographic } = require("../src/shared/worldPosition.ts");
 const { BASE_RETURN_LOCATION, EXTERIOR_HOME_POSITION, CART_SPEED, MIN_TRIP_DURATION_MS } = require("../src/shared/travel.ts");
 
 const origin = process.env.WORLD_TEST_URL ?? "http://localhost:3100";
@@ -543,14 +544,22 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
 
     function assertCatalog(snapshot) {
       const combatMissions = snapshot.missions.filter((mission) => mission.kind !== "trade");
-      assert.equal(combatMissions.filter((mission) => mission.kind === "normal").length, 3);
+      const normalMissions = combatMissions.filter((mission) => mission.kind === "normal");
+      assert.equal(normalMissions.length, 25);
       assert.equal(combatMissions.filter((mission) => mission.kind === "elite").length, 1);
-      assert.equal(new Set(combatMissions.map((mission) => mission.name)).size, 4);
-      const expectedRange = enemyLevelRange(snapshot.profile.level, 1);
+      assert.equal(new Set(combatMissions.map((mission) => mission.name)).size, combatMissions.length);
+      const hoursFor = (mission) => [0.5, 1, 3, 9, 24].find((hours) =>
+        mission.distanceKm >= hours * 5.4 && mission.distanceKm <= hours * 6.6);
       for (const mission of combatMissions) {
+        const targetHours = mission.kind === "elite" ? 1 : hoursFor(mission);
+        assert.ok(targetHours, `Mission has one of the five legacy duration bands: ${mission.distanceKm} km`);
+        const [minOffset, maxOffset] = mission.kind === "elite" ? [-5, 5]
+          : targetHours === 0.5 ? [0, 2] : targetHours <= 3 ? [-2, 3] : [-2, 4];
+        const minimum = Math.max(1, snapshot.profile.level + minOffset);
+        const maximum = Math.max(minimum, snapshot.profile.level + maxOffset);
         assert.ok(Number.isInteger(mission.enemyLevel));
-        assert.ok(mission.enemyLevel >= expectedRange.min);
-        assert.ok(mission.enemyLevel <= expectedRange.max);
+        assert.ok(mission.enemyLevel >= minimum);
+        assert.ok(mission.enemyLevel <= maximum);
         assert.equal(mission.enemy.level, mission.enemyLevel);
         assert.ok(mission.id.includes(`:${snapshot.profile.level}:`));
         assert.ok(mission.description.length > 30);
@@ -572,6 +581,10 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
         assert.deepEqual(mission.loot.map((item) => item.id), ["world-potion", "world-ration", "world-relic"]);
         assert.ok(mission.loot.every((item) => item.name.length > 0 && item.chance > 0 && item.chance < 100 &&
           Number.isInteger(item.quantity) && item.quantity >= 1 && item.quantity <= (elite ? 3 : 2)));
+        if (mission.kind === "normal") {
+          const fullDuration = mission.durationMs * 2;
+          assert.ok(fullDuration >= targetHours * 3_600_000 * 0.9 && fullDuration <= targetHours * 3_600_000 * 1.1 + 2);
+        }
       }
     }
 
@@ -773,12 +786,16 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
 
     await t.test("trade HTTP credits live B exactly one integral quarter and stale recipient sync cannot undo payment", async () => {
       await checkpointBase(a);
+      const recipientPlayer = await prisma.jugador.findUniqueOrThrow({ where: { id: b.session.player.id }, select: { usuarioId: true } });
+      const recipientBase = await prisma.base.findUniqueOrThrow({ where: { usuarioId: recipientPlayer.usuarioId } });
+      await prisma.base.update({ where: { id: recipientBase.id }, data: { lat: 0, lng: 0 } });
       const staleRecipient = progress(await load(b));
       const recipientBefore = await expedition(b);
       const before = await expedition(a);
       assertCatalog(before);
       const mission = before.missions.find((candidate) => candidate.kind === "trade" && candidate.targetPlayerId === b.session.player.id);
       assert.ok(mission, "Choose this run's live account B, never an arbitrary nearby base");
+      assert.ok(mission.distanceKm > 7, "global trade is not restricted to the exterior map's visible radius");
       assert.equal(mission.gold % 4, 0);
       assert.ok(Number.isInteger(mission.gold / 4));
       const command = { action: "start", missionId: mission.id, requestId: randomUUID() };
@@ -833,6 +850,7 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       assert.deepEqual(recipientAfterBuilding.profile, recipient.profile);
       assert.equal(recipientAfterBuilding.rewardRevision, recipient.rewardRevision);
       await assertSavedExpedition(b, recipientAfterBuilding);
+      await prisma.base.update({ where: { id: recipientBase.id }, data: { lat: recipientBase.lat, lng: recipientBase.lng } });
     });
 
     await t.test("old mission JSON without preview fields returns safely without loot or touching legacy state", async () => {
@@ -874,7 +892,75 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       assert.deepEqual(await legacyState(), legacyBefore);
     });
 
-    await t.test("party expedition reserves members, shares the authoritative ledger and freezes reported profiles", async () => {
+    await t.test("exterior combat shares one server ledger with a distant party member and awards once", async () => {
+      await checkpointBase(a);
+      await checkpointBase(b);
+      await sync(a, { currentHealth: a.session.player.maxHealth, maxHealth: a.session.player.maxHealth });
+      await sync(b, { currentHealth: b.session.player.maxHealth, maxHealth: b.session.player.maxHealth });
+      const partyView = await sync(a);
+      assert.equal(partyView.members.length, 0, "previous party fixtures have left cleanly");
+      await party(a, { action: "invite", targetPlayerId: b.session.player.id });
+      const invitation = (await sync(b)).invitations[0];
+      assert.ok(invitation);
+      await party(b, { action: "respond", invitationId: invitation.id, accept: true });
+
+      await load(a);
+      const exterior = await request("/api/mundo/jugador", a, {
+        action: "checkpoint", revision: a.session.mobility.revision,
+        location: { sceneId: "exterior-world", x: 4096, y: 4096, direction: "down" },
+      }, "PATCH");
+      assert.equal(exterior.status, 200);
+      const encounterPoint = worldPositionToGeographic({ x: 4096, y: 4096 }, a.session.base);
+      const farSpawn = await request("/api/mundo/combate-exterior", a, {
+        action: "start", requestId: randomUUID(), lat: encounterPoint.lat + 0.01, lng: encounterPoint.lng,
+      });
+      assert.equal(farSpawn.status, 409);
+      assert.equal(farSpawn.data.code, "encounter_too_far");
+
+      const staleFollower = progress(b.session);
+      const start = await request("/api/mundo/combate-exterior", a, {
+        action: "start", requestId: randomUUID(), ...encounterPoint,
+      });
+      assert.equal(start.status, 200, JSON.stringify(start.data));
+      assert.equal(start.data.snapshot.active.phase, "battle");
+      const encounter = start.data.snapshot.active;
+      assert.deepEqual(encounter.participants.map((member) => member.playerId), [a.session.player.id, b.session.player.id]);
+      assert.ok(encounter.enemy.level >= a.session.player.level && encounter.enemy.level <= a.session.player.level + 10);
+
+      const blockedCart = await request("/api/mundo/jugador", a, {
+        action: "call-cart", revision: exterior.data.mobility.revision,
+      }, "PATCH");
+      assert.equal(blockedCart.status, 409);
+      assert.equal(blockedCart.data.code, "encounter_active");
+      const shared = await request("/api/mundo/combate-exterior", b);
+      assert.equal(shared.status, 200);
+      assert.equal(shared.data.snapshot.active.id, encounter.id);
+      assert.equal(shared.data.snapshot.active.version, encounter.version);
+
+      await prisma.combateExterior.update({ where: { id: encounter.id }, data: { turno: a.session.player.id, vidaEnemigo: 1 } });
+      const attack = await request("/api/mundo/combate-exterior", a, {
+        action: "attack", encounterId: encounter.id, version: encounter.version,
+      });
+      assert.equal(attack.status, 200, JSON.stringify(attack.data));
+      assert.equal(attack.data.snapshot.active.outcome, "victory");
+      assert.equal(attack.data.snapshot.active.rewardGranted, true);
+      const followerView = await request("/api/mundo/combate-exterior", b);
+      assert.equal(followerView.status, 200);
+      assert.equal(followerView.data.snapshot.active.id, encounter.id);
+      assert.equal(followerView.data.snapshot.active.version, attack.data.snapshot.active.version);
+      assert.equal(followerView.data.snapshot.active.outcome, "victory");
+
+      const recoveredProfile = await request("/api/mundo/sync", b, staleFollower);
+      assert.equal(recoveredProfile.status, 200);
+      assert.equal(recoveredProfile.data.profileReset, true, "an obsolete client save cannot undo combat rewards/HP");
+      assert.equal(recoveredProfile.data.profile.gold, followerView.data.snapshot.profile.gold);
+      const persisted = await prisma.combateExterior.findUniqueOrThrow({ where: { id: encounter.id }, include: { participantes: true } });
+      assert.equal(persisted.recompensaEntregada, true);
+      assert.deepEqual(persisted.participantes.map((member) => member.jugadorId), [a.session.player.id, b.session.player.id]);
+      await party(b, { action: "leave" });
+    });
+
+    await t.test("party board contracts remain solo; party members independently travel and save", async () => {
       await checkpointBase(a);
       await checkpointBase(b);
       await party(a, { action: "invite", targetPlayerId: b.session.player.id });
@@ -893,30 +979,26 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       const memberGold = b.session.player.gold;
       const command = { action: "start", missionId: mission.id, requestId: randomUUID() };
       const started = await expedition(a, command);
-      assert.deepEqual(started.active.participants.map((member) => member.playerId), [a.session.player.id, b.session.player.id]);
-      assert.deepEqual(started.active.participants.map((member) => member.order), [0, 1]);
-      assert.ok(started.active.participants.every((member) => member.currentHealth > 0 && member.speed === 5));
+      assert.deepEqual(started.active.participants.map((member) => member.playerId), [a.session.player.id]);
 
       const followerSnapshot = await expedition(b, { action: "status" });
-      assert.equal(followerSnapshot.active.id, started.active.id);
-      assert.equal(followerSnapshot.active.participants.length, 2);
-      assert.equal(followerSnapshot.active.playerHealth, b.session.player.currentHealth);
-      await expedition(b, { action: "start", missionId: mission.id, requestId: randomUUID() }, 409, "expedition_active");
-      await party(b, { action: "leave" }, 409);
+      assert.equal(followerSnapshot.active, null);
+      assert.equal(followerSnapshot.partySize, 2);
+      await party(b, { action: "leave" });
       const travel = await request("/api/mundo/jugador", b, {
         action: "checkpoint", revision: b.session.mobility.revision, location: BASE_RETURN_LOCATION,
       }, "PATCH");
-      assert.equal(travel.status, 409);
-      assert.equal(travel.data.code, "expedition_active");
+      assert.equal(travel.status, 200, "the follower is not reserved by the leader's solo contract");
 
-      const rejectedSave = await request("/api/mundo/sync", b, progress(b.session, { gold: memberGold + 999 }));
-      assert.equal(rejectedSave.status, 200);
+      await load(b);
+      const followerSave = await request("/api/mundo/sync", b, progress(b.session, { gold: memberGold + 9 }));
+      assert.equal(followerSave.status, 200);
       const savedMember = await prisma.jugador.findUniqueOrThrow({ where: { id: b.session.player.id } });
-      assert.equal(savedMember.oro, memberGold, "client profile data stays server-frozen during the shared expedition");
+      assert.equal(savedMember.oro, memberGold + 9, "the nonparticipant remains free to use the character normally");
       const savedLeader = await prisma.jugador.findUniqueOrThrow({ where: { id: a.session.player.id } });
       assert.equal(savedLeader.oro, leaderGold);
       const persisted = await prisma.expedicionParticipante.findMany({ where: { expedicionId: started.active.id }, orderBy: { orden: "asc" } });
-      assert.deepEqual(persisted.map((member) => member.jugadorId), [a.session.player.id, b.session.player.id]);
+      assert.deepEqual(persisted.map((member) => member.jugadorId), [a.session.player.id]);
       assert.equal((await expedition(a, { action: "status" })).active.id, started.active.id);
     });
   } finally {

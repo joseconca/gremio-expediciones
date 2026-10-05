@@ -25,7 +25,10 @@ const MAX_BUILDING_LEVEL = 2;
 type RewardPlayer = Jugador & { rewardRevision?: number };
 type ExpeditionTransaction = Prisma.TransactionClient & {
   expedicionMundo: {
-    findFirst(args: { where: { jugadorId?: string; phase: { not: string }; participantes?: { some: { jugadorId: string } } } }): Promise<{ id: string } | null>;
+    findFirst(args: { where: { jugadorId?: string; phase: { not: string }; participantes?: { some: { jugadorId: string } } }; select?: { mission: true } }): Promise<{ id: string; mission?: unknown } | null>;
+  };
+  combateExterior: {
+    findFirst(args: { where: { fase: { not: string }; participantes: { some: { jugadorId: string } } } }): Promise<{ id: string } | null>;
   };
 };
 
@@ -270,12 +273,18 @@ export async function syncProgress(
     }
     const activeExpedition = await (tx as ExpeditionTransaction).expedicionMundo.findFirst({
       where: { phase: { not: "completed" }, participantes: { some: { jugadorId: jugador.id } } },
+      select: { mission: true },
     });
+    const activeWorldCombat = await (tx as ExpeditionTransaction).combateExterior.findFirst({
+      where: { fase: { not: "completed" }, participantes: { some: { jugadorId: jugador.id } } },
+    });
+    const isNonCombatTrade = activeExpedition?.mission && typeof activeExpedition.mission === "object" &&
+      !Array.isArray(activeExpedition.mission) && (activeExpedition.mission as Record<string, unknown>).kind === "trade";
     const savedPlayer = await tx.jugador.update({
       where: { id: jugador.id },
       // Active expeditions own the profile; matching-token saves may still publish buildings.
       // Outside expeditions this remains client-reported economy, not anti-cheat authority.
-      data: activeExpedition ? { ultimoVisto: new Date() } : {
+      data: activeExpedition && !isNonCombatTrade || activeWorldCombat ? { ultimoVisto: new Date() } : {
         clase:
           typeof body.characterClass === "string"
             ? body.characterClass.slice(0, 40)
