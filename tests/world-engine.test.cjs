@@ -8,6 +8,11 @@ const { createEmbajadorDialogue } = require("../src/game/data/dialogues/embajado
 const { KeyboardInput } = require("../src/game/input/KeyboardInput.ts");
 const { InputManager } = require("../src/game/input/InputManager.ts");
 const { CombatManager } = require("../src/game/gameplay/CombatManager.ts");
+const { RemotePlayer } = require("../src/game/entities/Characters/RemotePlayer.ts");
+const { OverworldEncounterSpawner } = require("../src/game/systems/OverworldEncounterSpawner.ts");
+const { OverworldMonster } = require("../src/game/entities/Characters/OverworldMonster.ts");
+const { worldPositionToGeographic } = require("../src/shared/worldPosition.ts");
+const { enemyLevelRange, enemyDifficultyColor } = require("../src/shared/enemies.ts");
 const { ENEMY_TURN_DELAY_MS, ATTACK_ANIMATION_MS } = require("../src/shared/combat.ts");
 const { geographicToWorldPoint, isInsideWorldMap } = require("../src/game/world/WorldLocation.ts");
 const { ExpeditionManager } = require("../src/game/gameplay/ExpeditionManager.ts");
@@ -37,7 +42,7 @@ test("session lookup rejects empty/malformed successful HTTP responses without c
 
 function serverSnapshot(token = "token") {
   return {
-    progressToken: token, nearbyBases: [], selfPlayerId: "self",
+    progressToken: token, nearbyBases: [], nearbyWorldPlayers: [], selfPlayerId: "self",
     members: [{ playerId: "self", isLeader: true }, { playerId: "other", displayName: "Compañera" }],
     invitations: [{ id: "invitation", fromDisplayName: "Compañera" }], candidates: [],
   };
@@ -512,7 +517,7 @@ test("HTTP envelope reaches expedition controller without erasing ordinary local
     await yieldMicrotasks();
     assert.equal(player.getState().gold, 80);
     assert.equal(manager.getSnapshot().data.profile.gold, 90);
-    assert.deepEqual(MISSION_BOARD_POSITION, { x: 464, y: 768 });
+    assert.deepEqual(MISSION_BOARD_POSITION, { x: 272, y: 800 });
   } finally { global.fetch = fetchOriginal; manager.destroy(); party.destroy(); }
 });
 
@@ -665,7 +670,7 @@ test("expedition battle automatically opens the common combat view and commands 
     const overlay = expeditionCombatSnapshot(manager.getSnapshot().data);
     assert.equal(overlay.phase, "active");
     assert.equal(overlay.enemy.attributes.currentHealth, 18);
-    assert.match(overlay.enemy.name, /Nv\. 3/);
+    assert.equal(overlay.enemy.level, 3);
     assert.equal(manager.battleController.usePotion(), false);
     manager.battleController.act("attack");
     await yieldMicrotasks();
@@ -757,4 +762,85 @@ test("combat manager supports target selection for groups and auto-targets a lon
   assert.equal(manager.getSnapshot().lastAction.targetEnemyId, "second");
   assert.equal(manager.getSnapshot().enemies.find((enemy) => enemy.id === "second").attributes.currentHealth, 0);
   assert.equal(manager.getSnapshot().enemies.find((enemy) => enemy.id === "first").attributes.currentHealth, 1);
+});
+
+test("exterior coordinates round-trip around the Web Mercator origin, including the date line", () => {
+  for (const base of [{ lat: 40.2, lng: -3.7 }, { lat: -20, lng: 179.99 }]) {
+    const point = { lat: base.lat + 0.01, lng: base.lng > 170 ? -179.99 : base.lng + 0.02 };
+    const fromMap = (location) => ({
+      x: 4096 + (((location.lng - base.lng + 540) % 360) - 180) / 360 * (256 * 2 ** 16),
+      y: 4096 + webMercatorY(location.lat) - webMercatorY(base.lat),
+    });
+    const recovered = worldPositionToGeographic(fromMap(point), base);
+    assert.ok(Math.abs(recovered.lat - point.lat) < 1e-8);
+    assert.ok(Math.abs(((recovered.lng - point.lng + 540) % 360) - 180) < 1e-8);
+  }
+});
+
+test("enemy ranges match solo board and exterior party sizes; threat gradient runs green to red", () => {
+  assert.deepEqual(enemyLevelRange(20, 1), { min: 15, max: 25 });
+  assert.deepEqual(enemyLevelRange(20, 2), { min: 20, max: 30 });
+  assert.deepEqual(enemyLevelRange(20, 3), { min: 25, max: 35 });
+  assert.deepEqual(enemyLevelRange(1, 1), { min: 1, max: 6 });
+  assert.equal(enemyDifficultyColor(15, 20), "hsl(120 82% 48%)");
+  assert.equal(enemyDifficultyColor(20, 20), "hsl(60 82% 48%)");
+  assert.equal(enemyDifficultyColor(25, 20), "hsl(0 82% 48%)");
+});
+
+function webMercatorY(latitude) {
+  const radians = latitude * Math.PI / 180;
+  const sine = Math.sin(radians);
+  return (0.5 - Math.log((1 + sine) / (1 - sine)) / (4 * Math.PI)) * 256 * 2 ** 16;
+}
+
+test("remote player interpolates checkpoints without colliding or receiving local input", () => {
+  const animator = { current: "idle-down", play(value) { this.current = value; }, update() {} };
+  const player = new RemotePlayer({ playerId: "remote", displayName: "Viajera", x: 10, y: 20, observedAt: 1000, animator });
+  player.receivePosition(50, 80, "right", 5000);
+  assert.equal(animator.current, "walk-right");
+  player.update(2);
+  assert.equal(player.x, 30);
+  assert.equal(player.y, 50);
+  player.update(2);
+  assert.equal(player.x, 50);
+  assert.equal(player.y, 80);
+  assert.equal(animator.current, "idle-right");
+  assert.equal(player.isCollidable(), false);
+  player.receivePosition(-100, 0, "left", 4000);
+  assert.equal(player.x, 50, "out-of-order presence sample is discarded");
+});
+
+test("dynamic enemy spawner follows the player, applies party-size level bounds, and stays collision-safe", () => {
+  global.Image = class { src = ""; naturalWidth = 128; naturalHeight = 128; };
+  const monsters = [];
+  const spawner = new OverworldEncounterSpawner({ isBlockedRect: () => false }, monsters, "map-seed", () => 20);
+  const firstFocus = { x: 2000, y: 2000, level: 20, partySize: 2 };
+  const first = spawner.update(2, firstFocus).added;
+  assert.equal(first.length, 3);
+  assert.ok(first.every((monster) => {
+    const distance = Math.hypot(monster.x - firstFocus.x, monster.y - firstFocus.y);
+    return distance >= 180 && distance <= 420 && monster.definition.level >= 20 && monster.definition.level <= 30;
+  }));
+  assert.equal(spawner.update(2, firstFocus).added.length, 0);
+  const nextFocus = { x: 3200, y: 2500, level: 20, partySize: 3 };
+  const delta = spawner.update(2, nextFocus);
+  const next = delta.added;
+  assert.equal(delta.removed.length, 3, "old encounter cluster is evicted when the player roams far away");
+  assert.equal(next.length, 3);
+  assert.ok(next.every((monster) => monster.definition.level >= 25 && monster.definition.level <= 35));
+  assert.equal(enemyDifficultyColor(15, 20), "hsl(120 82% 48%)");
+  assert.equal(enemyDifficultyColor(25, 20), "hsl(0 82% 48%)");
+  const circleColors = [];
+  const context = { canvas: { width: 100, height: 100 }, save() {}, restore() {}, beginPath() {}, moveTo() {}, lineTo() {}, closePath() {},
+    fill() { circleColors.push(this.fillStyle); }, stroke() { circleColors.push(this.strokeStyle); } };
+  const monster = new OverworldMonster({ x: 40, y: 40, definition: first[0].definition, getPlayerLevel: () => 20 });
+  monster.renderOnGround(context, { project: (x, y) => ({ x, y }) }, { worldX: 0, worldY: 0, screenX: 0, screenY: 0 });
+  assert.ok(circleColors.includes(enemyDifficultyColor(monster.definition.level, 20)), "overworld encounter radius follows the enemy's level difference");
+});
+
+test("exterior scene creates initial monsters around the spawn, not as fixed base-relative encounter sites", () => {
+  const source = require("node:fs").readFileSync(require("node:path").resolve(__dirname, "../src/game/scenes/ExteriorWorldScene.ts"), "utf8");
+  assert.match(source, /this\.encounterSpawner\.update\(2,\s*\{\s*x: initialFeet\.x, y: initialFeet\.y/);
+  assert.match(source, /this\.encounterSpawner\.update\(deltaTime,\s*\{\s*x: feet\.x, y: feet\.y/);
+  assert.doesNotMatch(source, /this\.homePoint\.x \+ Math\.cos\(angle\) \* radius/);
 });

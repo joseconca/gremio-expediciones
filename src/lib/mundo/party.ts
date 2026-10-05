@@ -1,14 +1,66 @@
 import type { Base, Jugador } from "@prisma/client";
 import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import { MAX_PARTY_SIZE, type PartySnapshotDto } from "@/shared/world";
+import { MAX_PARTY_SIZE, VISIBLE_BASE_RADIUS_METERS, type NearbyWorldPlayerDto, type PartySnapshotDto } from "@/shared/world";
 import { MundoError, withWorldLock } from "./http";
 import { listNearbyBases, progressToken, toPlayerProfile } from "./jugador";
 import { playerCombatStats } from "@/shared/combat";
+import { boundingBox, distanceMeters, longitudeFilter } from "./geo";
+import { worldPositionToGeographic } from "@/shared/worldPosition";
 
 const INVITATION_TTL_MS = 5 * 60 * 1000;
 const ONLINE_WINDOW_MS = 2 * 60 * 1000;
 const MAX_CANDIDATES = 5;
+const WORLD_PRESENCE_WINDOW_MS = 20_000;
+// A remote player may be near the far edge of their own local map and still
+// appear in ours. Filter base origins generously, then use exact current geo distance.
+const PRESENCE_BASE_SEARCH_METERS = VISIBLE_BASE_RADIUS_METERS * 3;
+const MAX_PRESENCE_CANDIDATES = 200;
+
+async function listNearbyWorldPlayers(
+  jugadorId: string,
+  base: Base,
+  ownLocation: unknown,
+  now: Date
+): Promise<NearbyWorldPlayerDto[]> {
+  if (!ownLocation || typeof ownLocation !== "object" || Array.isArray(ownLocation)) return [];
+  const ownValue = ownLocation as Record<string, unknown>;
+  if (ownValue.sceneId !== "exterior-world" || typeof ownValue.x !== "number" || !Number.isFinite(ownValue.x) ||
+    typeof ownValue.y !== "number" || !Number.isFinite(ownValue.y)) return [];
+  const ownPoint = worldPositionToGeographic({ x: ownValue.x, y: ownValue.y }, base);
+  const bounds = boundingBox(ownPoint, PRESENCE_BASE_SEARCH_METERS);
+  const cutoff = new Date(now.getTime() - WORLD_PRESENCE_WINDOW_MS);
+  const candidates = await prisma.base.findMany({
+    where: {
+      id: { not: base.id },
+      lat: { gte: bounds.minLat, lte: bounds.maxLat },
+      ...longitudeFilter(bounds),
+      usuario: { jugador: { is: { ultimoVisto: { gt: cutoff } } } },
+    },
+    include: { usuario: { include: { jugador: true } } },
+    orderBy: { id: "asc" },
+    take: MAX_PRESENCE_CANDIDATES,
+  });
+  const players: NearbyWorldPlayerDto[] = [];
+  for (const candidate of candidates) {
+    const remote = candidate.usuario.jugador;
+    const location = remote?.ubicacion;
+    if (!remote || !location || typeof location !== "object" || Array.isArray(location)) continue;
+    const value = location as Record<string, unknown>;
+    if (value.sceneId !== "exterior-world" || typeof value.x !== "number" || !Number.isFinite(value.x) ||
+      typeof value.y !== "number" || !Number.isFinite(value.y) ||
+      !["up", "down", "left", "right"].includes(value.direction as string) ||
+      remote.viajeRegreso !== null) continue;
+    const point = worldPositionToGeographic({ x: value.x, y: value.y }, candidate);
+    if (distanceMeters(ownPoint, point) > VISIBLE_BASE_RADIUS_METERS) continue;
+    players.push({
+      playerId: remote.id, displayName: remote.nombre, sex: remote.sexo === "chica" ? "chica" : "chico",
+      level: remote.nivel, direction: value.direction as NearbyWorldPlayerDto["direction"],
+      lat: point.lat, lng: point.lng, lastSeenAt: remote.ultimoVisto.getTime(),
+    });
+  }
+  return players;
+}
 
 async function requireAvailablePlayer(tx: Prisma.TransactionClient, playerId: string): Promise<void> {
   const expeditionModel = tx.expedicionMundo as unknown as { findFirst(args: { where: {
@@ -67,6 +119,7 @@ export async function getPartySnapshot(
     profile: toPlayerProfile(jugador),
     buildingToken: JSON.stringify(base.edificios),
     nearbyBases: await listNearbyBases(base),
+    nearbyWorldPlayers: await listNearbyWorldPlayers(jugador.id, base, jugador.ubicacion, now),
     selfPlayerId: jugador.id,
     members: (membership?.party.miembros ?? []).map((member) => ({
       playerId: member.jugadorId,

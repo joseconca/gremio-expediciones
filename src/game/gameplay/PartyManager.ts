@@ -4,6 +4,7 @@ import type {
   InvitablePlayerDto,
   PartyInvitationDto,
   PartyMemberDto,
+  NearbyWorldPlayerDto,
   PartySnapshotDto,
   PlayerProfileDto,
   NearbyBaseDto,
@@ -17,6 +18,7 @@ export interface PartySnapshot {
   syncStatus: "pending" | "saved" | "error" | "conflict";
   syncMessage: string | null;
   nearbyBases: NearbyBaseDto[];
+  nearbyWorldPlayers: NearbyWorldPlayerDto[];
   loaded: boolean;
   /** Party-mates excluding the local player. */
   companions: PartyMemberDto[];
@@ -30,6 +32,7 @@ const EMPTY_SNAPSHOT: PartySnapshot = {
   syncStatus: "pending",
   syncMessage: null,
   nearbyBases: [],
+  nearbyWorldPlayers: [],
   loaded: false,
   companions: [],
   isLeader: false,
@@ -267,6 +270,7 @@ export class PartyManager {
       syncStatus: this.snapshot.syncStatus === "conflict" ? "conflict" : saved ? "saved" : "pending",
       syncMessage: this.snapshot.syncStatus === "conflict" ? this.snapshot.syncMessage : null,
       nearbyBases: remote.nearbyBases,
+      nearbyWorldPlayers: remote.nearbyWorldPlayers ?? [],
       loaded: true,
       companions,
       isLeader: self?.isLeader ?? false,

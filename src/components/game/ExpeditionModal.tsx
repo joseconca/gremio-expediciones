@@ -4,6 +4,7 @@ import { useCallback, useEffect, useEffectEvent, useId, useRef, useState } from 
 import dynamic from "next/dynamic";
 import type { ExpeditionManager, ExpeditionState } from "@/game/gameplay/ExpeditionManager";
 import type { ExpeditionKind } from "@/shared/expeditions";
+import { enemyLevelRange } from "@/shared/enemies";
 
 const ExpeditionMap = dynamic(() => import("./ExpeditionMap"), {
   ssr: false,
@@ -72,6 +73,7 @@ export default function ExpeditionModal({ manager, snapshot, base }: ExpeditionM
   const eliteReady = data !== null && data.eliteAvailableAt <= data.serverNow;
   const error = commandError || snapshot.error;
   const enemyLevel = selected?.enemyLevel ?? selected?.enemy?.level;
+  const soloLevelRange = data ? enemyLevelRange(data.profile.level, 1) : null;
   const selectMission = useCallback((id: string) => { setSelectedId(id); setCommandError(null); }, []);
   const clearSelection = () => { setSelectedId(null); closeRef.current?.focus(); };
 
@@ -152,7 +154,9 @@ export default function ExpeditionModal({ manager, snapshot, base }: ExpeditionM
         <div className="absolute inset-x-[5%] bottom-[7%] top-[9%] min-h-0 min-w-0">
           <ExpeditionMap base={base} missions={data?.missions ?? []} selectedId={selected?.id ?? null} onSelect={selectMission} active={active} serverNow={data?.serverNow ?? 0} />
           <div className="pointer-events-none absolute inset-x-2 top-2 z-[500] flex justify-end">
-            <p aria-label="Leyenda del mapa" className="rounded bg-[#21150f]/90 px-2 py-1 text-[10px] shadow-lg sm:text-xs">{Object.values(kinds).join(" · ")}</p>
+            <p aria-label="Leyenda del mapa" className="rounded bg-[#21150f]/90 px-2 py-1 text-[10px] shadow-lg sm:text-xs">
+              {Object.values(kinds).join(" · ")}{soloLevelRange && ` · Enemigos Nv. ${soloLevelRange.min}–${soloLevelRange.max}`}
+            </p>
           </div>
           {!data && <section className="pointer-events-auto absolute inset-x-2 bottom-2 z-[500] mx-auto max-w-sm space-y-2 rounded-lg bg-[#21150f]/95 p-3 text-sm shadow-xl">
             <p role="status">{busy ? "Consultando al servidor…" : "Cargando tablero…"}</p>

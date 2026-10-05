@@ -3,6 +3,7 @@ import { Player } from "../entities/Characters/Player";
 import { CampBuilding } from "../entities/Characters/CampBuilding";
 import { WorldBaseMarker } from "../entities/WorldBaseMarker";
 import { OverworldMonster } from "../entities/Characters/OverworldMonster";
+import { RemotePlayer } from "../entities/Characters/RemotePlayer";
 import type { Interactable } from "../entities/Interactable";
 import { SpriteSheet } from "../rendering/SpriteSheet";
 import { Animator } from "../rendering/Animator";
@@ -10,6 +11,7 @@ import { MovementSystem } from "../systems/MovementSystem";
 import { CollisionSystem } from "../systems/CollisionSystem";
 import { InteractionSystem } from "../systems/InteractionSystem";
 import { EncounterSystem } from "../systems/EncounterSystem";
+import { OverworldEncounterSpawner } from "../systems/OverworldEncounterSpawner";
 import type { CharacterAttributes } from "../entities/Characters/CharacterAttributes";
 import { World } from "../world/World";
 import { Camera } from "../world/Camera";
@@ -20,7 +22,6 @@ import { RealWorldGroundRenderer } from "../rendering/RealWorldGroundRenderer";
 import { campBuildingDefinition } from "../data/buildings/campBuilding";
 import { heroAnimations } from "../data/heroAnimations";
 import { campReturnDialogue } from "../data/dialogues/camp";
-import { overworldEnemiesAtLevel } from "../data/enemies/overworldEnemies";
 import { createNoticeDialogue } from "../data/dialogues/notice";
 import { LightingSystem } from "../lighting/LightingSystem";
 import { ReturnCart } from "../entities/ReturnCart";
@@ -32,6 +33,8 @@ import {
   type WorldBaseLocation,
   type WorldPoint,
 } from "../world/WorldLocation";
+import type { NearbyWorldPlayerDto } from "../../shared/world";
+import type { PartyCombatant } from "../gameplay/CombatManager";
 
 export interface ExteriorWorldSceneConfig extends SceneConfig {
   selectedBase: WorldBaseLocation;
@@ -52,6 +55,10 @@ export class ExteriorWorldScene extends Scene {
   private readonly basePoint: WorldBaseLocation;
   private readonly campBuilding: CampBuilding;
   private readonly encounterSystem: EncounterSystem;
+  private readonly encounterMonsters: OverworldMonster[] = [];
+  private readonly encounterSpawner: OverworldEncounterSpawner;
+  private readonly remotePlayers = new Map<string, RemotePlayer>();
+  private lastRemotePresence: readonly NearbyWorldPlayerDto[] | null = null;
   private cart: ReturnCart | null = null;
   private expeditionCart: ReturnCart | null = null;
 
@@ -117,22 +124,21 @@ export class ExteriorWorldScene extends Scene {
     this.world.addObject(this.campBuilding);
     this.interactables.push(this.campBuilding);
 
-    const monsters = this.createOverworldMonsters(collisionMap);
-    for (const monster of monsters) this.world.addObject(monster);
+    this.encounterSpawner = new OverworldEncounterSpawner(collisionMap, this.encounterMonsters,
+      `${this.basePoint.lat}:${this.basePoint.lng}:${start.x}:${start.y}:${Date.now()}`,
+      () => this.playerProgression.getState().characterLevel);
+    const initialFeet = this.player.getGroundAnchor();
+    const initialEncounters = this.encounterSpawner.update(2, {
+      x: initialFeet.x, y: initialFeet.y, level: this.playerProgression.getState().characterLevel,
+      partySize: this.partyManager.getSnapshot().companions.length + 1,
+    });
+    for (const monster of initialEncounters.added) this.world.addObject(monster);
     this.encounterSystem = new EncounterSystem(
       this.player,
-      monsters,
+      this.encounterMonsters,
       this.combatManager,
-      () => this.partyManager.getSnapshot().companions.map((member) => ({
-        id: member.playerId, name: member.displayName, isLocalPlayer: false,
-        spriteSrc: "/sprites/sheets/characters/hero.png",
-        attributes: {
-          currentHealth: member.currentHealth, maxHealth: member.maxHealth,
-          physicalAttack: member.attack, physicalDefense: member.defense,
-          speed: member.speed, criticalChance: 0.05, criticalDamage: 1.5, evasionChance: 0.05,
-          magicAttack: 3, magicDefense: 3,
-        } satisfies CharacterAttributes,
-      }))
+      () => this.getPartyCombatants(),
+      (monster) => monster.markDefeated()
     );
 
     for (const otherBase of config.otherBases) {
@@ -168,6 +174,48 @@ export class ExteriorWorldScene extends Scene {
     notice(
       "Ambas Embajadas permiten la visita. Entrar en bases ajenas llegará cuando exista su escena de visita."
     );
+  }
+
+  private getPartyCombatants(): PartyCombatant[] {
+    return this.partyManager.getSnapshot().companions.map((member) => ({
+      id: member.playerId, name: member.displayName, level: member.level, isLocalPlayer: false,
+      spriteSrc: "/sprites/sheets/characters/hero.png",
+      attributes: {
+        currentHealth: member.currentHealth, maxHealth: member.maxHealth,
+        physicalAttack: member.attack, physicalDefense: member.defense,
+        speed: member.speed, criticalChance: 0.05, criticalDamage: 1.5, evasionChance: 0.05,
+        magicAttack: 3, magicDefense: 3,
+      } satisfies CharacterAttributes,
+    }));
+  }
+
+  private syncRemotePlayers(): void {
+    const presence = this.partyManager.getSnapshot().nearbyWorldPlayers;
+    if (presence === this.lastRemotePresence) return;
+    this.lastRemotePresence = presence;
+    const seen = new Set<string>();
+    for (const remote of presence) {
+      const point = geographicToWorldPoint(remote, this.basePoint);
+      if (!isInsideWorldMap(point)) continue;
+      seen.add(remote.playerId);
+      let entity = this.remotePlayers.get(remote.playerId);
+      if (!entity) {
+        const sheet = new SpriteSheet({ src: "/sprites/sheets/characters/hero.png", frameWidth: 32, frameHeight: 64 });
+        const animator = new Animator(sheet, heroAnimations);
+        animator.play(`idle-${remote.direction}`);
+        entity = new RemotePlayer({ x: point.x, y: point.y, direction: remote.direction, animator,
+          playerId: remote.playerId, displayName: remote.displayName, observedAt: remote.lastSeenAt });
+        this.remotePlayers.set(remote.playerId, entity);
+        this.world.addObject(entity);
+      } else {
+        entity.receivePosition(point.x, point.y, remote.direction, remote.lastSeenAt);
+      }
+    }
+    for (const [playerId, entity] of this.remotePlayers) {
+      if (seen.has(playerId)) continue;
+      this.world.removeObject(entity);
+      this.remotePlayers.delete(playerId);
+    }
   }
 
   protected getSpawnPoint(spawnId?: string) {
@@ -206,42 +254,6 @@ export class ExteriorWorldScene extends Scene {
     return { x: this.player.x, y: this.player.y, direction: this.player.direction };
   }
 
-  private createOverworldMonsters(collisionMap: CollisionMap): OverworldMonster[] {
-    const seedText = `${this.basePoint.lat.toFixed(5)}:${this.basePoint.lng.toFixed(5)}`;
-    let seed = 2166136261;
-    for (let index = 0; index < seedText.length; index++) {
-      seed = Math.imul(seed ^ seedText.charCodeAt(index), 16777619);
-    }
-    const random = () => {
-      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
-      return seed / 0x100000000;
-    };
-
-    const monsters: OverworldMonster[] = [];
-    const enemies = overworldEnemiesAtLevel(this.playerProgression.getState().characterLevel);
-    const count = 6;
-    for (let index = 0; index < count; index++) {
-      const angle = ((index + random() * 0.7) / count) * Math.PI * 2;
-      const radius = 180 + random() * 320;
-      const x = this.homePoint.x + Math.cos(angle) * radius;
-      const y = this.homePoint.y + Math.sin(angle) * radius;
-      const definition = enemies[Math.floor(random() * enemies.length)];
-      const monster = new OverworldMonster({ x, y, definition });
-      const dx = x - this.homePoint.x;
-      const dy = y - this.homePoint.y;
-
-      if (
-        Math.hypot(dx, dy) < 160 ||
-        collisionMap.isBlockedRect(x - 10, y - 12, 20, 12)
-      ) {
-        continue;
-      }
-      monsters.push(monster);
-    }
-
-    return monsters;
-  }
-
   update(deltaTime: number): void {
     this.updateDebugMode();
     const dialogueWasActive = this.dialogueManager.isActive();
@@ -271,6 +283,16 @@ export class ExteriorWorldScene extends Scene {
         this.player.x = point.x;
         this.player.y = point.y;
       }
+    }
+    this.syncRemotePlayers();
+    if (!journey && !this.mobilityManager?.getSnapshot().travelPending && !this.expeditionManager?.isActive() && !this.combatManager.isEncounterOpen()) {
+      const feet = this.player.getGroundAnchor();
+      const encounters = this.encounterSpawner.update(deltaTime, {
+        x: feet.x, y: feet.y, level: this.playerProgression.getState().characterLevel,
+        partySize: this.partyManager.getSnapshot().companions.length + 1,
+      });
+      for (const monster of encounters.removed) this.world.removeObject(monster);
+      for (const monster of encounters.added) this.world.addObject(monster);
     }
     this.world.update(deltaTime);
     const missionState = this.expeditionManager?.getSnapshot().data;

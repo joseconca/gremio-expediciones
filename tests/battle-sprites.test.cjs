@@ -48,6 +48,7 @@ test("battle motion and damage siblings have distinct keys for repeated attacks 
     "next/image": { default: () => null },
     "./BattleCharacterSprite": { default: spriteComponent },
     "@/shared/combat": { ATTACK_ANIMATION_MS: 500 },
+    "@/shared/enemies": { enemyDifficultyColor: () => "hsl(60 82% 48%)" },
   };
   const loaded = { exports: {} };
   new Function("require", "module", "exports", outputText)((name) => {

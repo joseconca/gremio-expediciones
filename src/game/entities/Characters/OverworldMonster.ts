@@ -9,16 +9,17 @@ import type {
 } from "../../rendering/GroundProjection";
 import {
   drawGroundCircle,
-  HOSTILE_AREA_STYLE,
 } from "../../rendering/GroundShapes";
 import type { ShadowFootprint, ShadowSprite } from "../../lighting/ShadowCaster";
 import type { OverworldEnemyDefinition } from "../../data/enemies/overworldEnemies";
+import { enemyDifficultyColor } from "../../../shared/enemies";
 
 const ENCOUNTER_RADIUS = 20;
 const MAX_DRAWN_SIZE = 64;
 
 export interface OverworldMonsterConfig extends Omit<CharacterConfig, "attributes"> {
   definition: OverworldEnemyDefinition;
+  getPlayerLevel?: () => number;
 }
 
 /** Static overworld monster; the player's feet entering its circle starts an encounter. */
@@ -27,6 +28,7 @@ export class OverworldMonster extends Character implements GroundRenderable {
   private readonly spriteSheet: SpriteSheet;
   private readonly drawScale: number;
   private readonly shadowSprite: ShadowSprite;
+  private readonly getPlayerLevel: () => number;
   private defeated = false;
   private ignoredUntilSeparated = false;
 
@@ -37,6 +39,7 @@ export class OverworldMonster extends Character implements GroundRenderable {
       attributes: { ...config.definition.attributes },
     });
     this.definition = config.definition;
+    this.getPlayerLevel = config.getPlayerLevel ?? (() => 1);
     this.spriteSheet = new SpriteSheet({
       src: config.definition.sprite,
       frameWidth: config.definition.frameWidth,
@@ -65,6 +68,8 @@ export class OverworldMonster extends Character implements GroundRenderable {
   canStartEncounter(): boolean {
     return !this.defeated && !this.ignoredUntilSeparated;
   }
+
+  isDefeated(): boolean { return this.defeated; }
 
   markDefeated(): void {
     this.defeated = true;
@@ -100,6 +105,7 @@ export class OverworldMonster extends Character implements GroundRenderable {
     reference: GroundReference
   ): void {
     if (this.defeated) return;
+    const color = enemyDifficultyColor(this.definition.level, this.getPlayerLevel());
     drawGroundCircle(
       ctx,
       projection,
@@ -107,7 +113,7 @@ export class OverworldMonster extends Character implements GroundRenderable {
       this.x,
       this.y,
       ENCOUNTER_RADIUS,
-      HOSTILE_AREA_STYLE
+      { fill: color.replace("hsl(", "hsla(").replace(")", " / 0.16)"), stroke: color }
     );
   }
 

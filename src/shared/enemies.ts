@@ -39,6 +39,23 @@ export interface ScaledEnemyDefinition extends SharedEnemyDefinition {
   };
 }
 
+export interface EnemyLevelRange { min: number; max: number }
+
+/** Party-size offsets: solo [-5,+5], duo [0,+10], trio [+5,+15]. */
+export function enemyLevelRange(playerLevel: number, partySize = 1): EnemyLevelRange {
+  const level = Math.max(1, Math.floor(Number.isFinite(playerLevel) ? playerLevel : 1));
+  const members = Math.max(1, Math.min(3, Math.floor(Number.isFinite(partySize) ? partySize : 1)));
+  if (members === 1) return { min: Math.max(1, level - 5), max: level + 5 };
+  return { min: level + 5 * (members - 2), max: level + 5 * members };
+}
+
+/** Green at five levels below, yellow at equal level, red at five above. */
+export function enemyDifficultyColor(enemyLevel: number, playerLevel: number): string {
+  const difference = Math.max(-5, Math.min(5, enemyLevel - playerLevel));
+  const hue = Math.round(60 - difference * 12);
+  return `hsl(${hue} 82% 48%)`;
+}
+
 export const ENEMY_ROSTER: readonly SharedEnemyDefinition[] = [
   {
     id: "slime_acido", name: "Slime ácido", sprite: "/sprites/enemies/slime_acido.png", frameWidth: 64, frameHeight: 64,

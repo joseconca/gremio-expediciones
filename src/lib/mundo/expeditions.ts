@@ -105,6 +105,13 @@ async function readLatest(tx: ExpeditionTransaction, playerId: string): Promise<
     ?? await tx.expedicionMundo.findFirst({ where: { jugadorId: playerId }, orderBy });
 }
 
+async function currentPartySize(tx: ExpeditionTransaction, playerId: string): Promise<number> {
+  const membership = await tx.miembroParty.findUnique({ where: { jugadorId: playerId }, include: {
+    party: { include: { miembros: { include: { jugador: true }, orderBy: { unido: "asc" } } } },
+  } });
+  return Math.max(1, Math.min(3, membership?.party.miembros.length ?? 1));
+}
+
 async function catalog(tx: ExpeditionTransaction, base: Base, now: number, playerLevel: number): Promise<MissionDto[]> {
   const box = boundingBox(base, EXPEDITION_RADIUS_METERS);
   const candidates = await tx.base.findMany({
@@ -374,12 +381,12 @@ async function resolveEnemyTurn(tx: ExpeditionTransaction, player: PlayerRow, ro
   if (defeated) await beginReturn(tx, saved, "defeat", now, log, true);
 }
 
-async function snapshot(tx: ExpeditionTransaction, usuarioId: string, missions: MissionDto[], now: number): Promise<ExpeditionSnapshotDto> {
+async function snapshot(tx: ExpeditionTransaction, usuarioId: string, missions: MissionDto[], now: number, partySize: number): Promise<ExpeditionSnapshotDto> {
   const player = await readPlayer(tx, usuarioId);
   const row = await readLatest(tx, player.id);
   const participants = row ? await readParticipants(tx, row) : [];
   return {
-    serverNow: now, missions, active: row ? toDto(row, participants, player.id) : null,
+    serverNow: now, partySize, missions, active: row ? toDto(row, participants, player.id) : null,
     eliteAvailableAt: player.ultimaEliteExitosa ? player.ultimaEliteExitosa.getTime() + ELITE_COOLDOWN_MS : 0,
     profile: {
       id: player.id, name: player.nombre, sex: player.sexo as PlayerSex, characterClass: player.clase,
@@ -404,6 +411,7 @@ export async function mutateExpeditions(usuarioId: string, body: unknown): Promi
     const row = await resolveProgression(tx, player, await readLatest(tx, player.id), now);
     if (request.action === "status") await resolveEnemyTurn(tx, player, row, now);
     player = await readPlayer(tx, usuarioId);
+    const partySize = await currentPartySize(tx, player.id);
     const missions = await catalog(tx, player.usuario.base!, now, player.nivel);
     // Only deliberate validation failures are committed after resolving an arrival.
     // Database/unknown failures propagate and roll back all writes, including rewards.
@@ -414,7 +422,7 @@ export async function mutateExpeditions(usuarioId: string, body: unknown): Promi
       if (error instanceof MundoError) return error;
       throw error;
     }
-    return snapshot(tx, usuarioId, missions, now);
+    return snapshot(tx, usuarioId, missions, now, partySize);
   });
   if (result instanceof MundoError) throw result;
   return result;

@@ -6,7 +6,7 @@ const { prisma } = require("../src/lib/prisma.ts");
 const { PlayerProgression } = require("../src/game/gameplay/PlayerProgression.ts");
 const { VillageProgression } = require("../src/game/gameplay/VillageProgression.ts");
 const { PartyManager } = require("../src/game/gameplay/PartyManager.ts");
-const { createEnemyAtLevel } = require("../src/shared/enemies.ts");
+const { createEnemyAtLevel, enemyLevelRange } = require("../src/shared/enemies.ts");
 const { calculateCombatDamage } = require("../src/shared/combat.ts");
 const { BASE_RETURN_LOCATION, EXTERIOR_HOME_POSITION, CART_SPEED, MIN_TRIP_DURATION_MS } = require("../src/shared/travel.ts");
 
@@ -286,6 +286,31 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       assert.deepEqual(unchanged.journey, before.journey);
     });
 
+    await t.test("party sync exposes only fresh exterior presence inside visible radius", async () => {
+      await load(b);
+      const placedOutside = await request("/api/mundo/jugador", b, {
+        action: "checkpoint", revision: b.session.mobility.revision,
+        location: { sceneId: "exterior-world", x: 4096, y: 4096, direction: "left" },
+      }, "PATCH");
+      assert.equal(placedOutside.status, 200);
+      const outsideView = await sync(b);
+      const playerA = outsideView.nearbyWorldPlayers.find((remote) => remote.playerId === a.session.player.id);
+      assert.ok(playerA, "another online exterior player within seven kilometres is visible");
+      assert.equal(playerA.displayName, a.session.player.name);
+      assert.equal(playerA.direction, "right");
+      assert.ok(Number.isFinite(playerA.lat) && Number.isFinite(playerA.lng));
+      assert.equal("x" in playerA || "y" in playerA || "sceneId" in playerA, false,
+        "DTO exposes geographic location, never another player's local map coordinates");
+
+      const returnedToBase = await request("/api/mundo/jugador", b, {
+        action: "checkpoint", revision: b.session.mobility.revision,
+        location: BASE_RETURN_LOCATION,
+      }, "PATCH");
+      assert.equal(returnedToBase.status, 200);
+      const baseView = await sync(b);
+      assert.deepEqual(baseView.nearbyWorldPlayers, [], "players do not receive exterior coordinates while indoors/base");
+    });
+
     await t.test("return cart uses server destination and times; concurrent calls share one persisted journey", async () => {
       const before = await reloadMobility(a);
       for (const field of ["departureAt", "arrivalAt"]) {
@@ -521,10 +546,11 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       assert.equal(combatMissions.filter((mission) => mission.kind === "normal").length, 3);
       assert.equal(combatMissions.filter((mission) => mission.kind === "elite").length, 1);
       assert.equal(new Set(combatMissions.map((mission) => mission.name)).size, 4);
+      const expectedRange = enemyLevelRange(snapshot.profile.level, 1);
       for (const mission of combatMissions) {
         assert.ok(Number.isInteger(mission.enemyLevel));
-        assert.ok(mission.enemyLevel >= Math.max(1, snapshot.profile.level - 3));
-        assert.ok(mission.enemyLevel <= snapshot.profile.level + 3);
+        assert.ok(mission.enemyLevel >= expectedRange.min);
+        assert.ok(mission.enemyLevel <= expectedRange.max);
         assert.equal(mission.enemy.level, mission.enemyLevel);
         assert.ok(mission.id.includes(`:${snapshot.profile.level}:`));
         assert.ok(mission.description.length > 30);
@@ -860,6 +886,8 @@ test("world HTTP flow (isolated disposable accounts, cleaned in finally)", { tim
       assert.ok(partyView.members.every((member) => Number.isFinite(member.speed) && Number.isFinite(member.attack)));
 
       const catalog = await expedition(a);
+      assert.equal(catalog.partySize, 2, "snapshot reports the live party, separately from solo board-mission scaling");
+      assertCatalog(catalog);
       const mission = weakestNormal(catalog);
       const leaderGold = a.session.player.gold;
       const memberGold = b.session.player.gold;

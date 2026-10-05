@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { ENEMY_ROSTER, createEnemyAtLevel } from "@/shared/enemies";
+import { enemyLevelRange, ENEMY_ROSTER, createEnemyAtLevel } from "@/shared/enemies";
 import { calculateCombatDamage, playerCombatStats } from "@/shared/combat";
 import type { EnemyDto, ExpeditionInventoryItemDto, ExpeditionKind, ExpeditionLootDto, ExpeditionRequest, MissionDto } from "@/shared/expeditions";
 import { distanceMeters } from "./geo";
@@ -18,6 +18,7 @@ export const EXPEDITION_REWARD_RULES = {
   normal: { baseGold: 15, goldPerKm: 5, goldPerLevel: 4, baseExperience: 25, experiencePerKm: 2, experiencePerLevel: 5, variation: 0.2 },
   elite: { baseGold: 60, goldPerKm: 10, goldPerLevel: 12, baseExperience: 75, experiencePerKm: 4, experiencePerLevel: 15, variation: 0.2 },
 } as const;
+
 
 type Coordinates = { lat: number; lng: number };
 export type TradeDestination = Coordinates & { playerId: string; baseName: string };
@@ -87,12 +88,15 @@ export function expeditionRewardBounds(kind: "normal" | "elite", distanceKm: num
 export function generateExpeditionMissions(origin: Coordinates, now: number, targets: readonly TradeDestination[] = [], playerLevel = 1): MissionDto[] {
   if (!validExpeditionCoordinates(origin)) throw new MundoError(500, "invalid_coordinates", "Coordenadas de base guardadas inválidas.");
   const hour = Math.floor(now / EXPEDITION_CATALOG_PERIOD_MS);
+  // A board expedition is the solo expedition variant, independent of current party size.
+  const levelRange = enemyLevelRange(playerLevel, 1);
   const seed = `${origin.lat}:${origin.lng}:${hour}:${playerLevel}`;
   const makeMission = (kind: ExpeditionKind, key: string, point: Coordinates, name: string, targetPlayerId?: string): MissionDto => {
     const distanceKm = distanceMeters(origin, point) / 1000;
     const missionSeed = `${seed}:${key}`;
-    const enemyLevel = seededInteger(`${missionSeed}:level`, Math.max(1, playerLevel - 3), playerLevel + 3);
-    const enemy = expeditionEnemy(kind, enemyLevel, seededInteger(`${missionSeed}:species`, 0, EXPEDITION_ENEMIES.length * 4 - 1));
+    const enemyLevel = seededInteger(`${missionSeed}:level`, levelRange.min, levelRange.max);
+    const speciesCount = kind === "elite" ? 4 : (EXPEDITION_ENEMIES.length - 1) * 4;
+    const enemy = expeditionEnemy(kind, enemyLevel, seededInteger(`${missionSeed}:species`, 0, speciesCount - 1));
     const bounds = kind === "trade" ? null : expeditionRewardBounds(kind, distanceKm, enemyLevel);
     // Commerce retains the previous formula and exact integral 25% recipient share.
     const gold = bounds ? seededInteger(`${missionSeed}:gold`, bounds.gold.min, bounds.gold.max)

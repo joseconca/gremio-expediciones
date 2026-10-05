@@ -4,6 +4,7 @@ import { ENEMY_ROSTER, createEnemyAtLevel } from "../../../shared/enemies";
 export interface OverworldEnemyDefinition {
   id: string;
   name: string;
+  level: number;
   sprite: string;
   frameWidth: number;
   frameHeight: number;
@@ -19,6 +20,7 @@ export const OVERWORLD_ENEMIES: OverworldEnemyDefinition[] = ENEMY_ROSTER
     return {
       id: definition.id,
       name: definition.name,
+      level: scaled.level,
       sprite: definition.sprite,
       frameWidth: definition.frameWidth,
       frameHeight: definition.frameHeight,
@@ -37,4 +39,11 @@ export function overworldEnemiesAtLevel(level: number): OverworldEnemyDefinition
       attributes: { ...scaled.attributes } satisfies CharacterAttributes,
     };
   });
+}
+
+export function overworldEnemyAtLevel(id: string, level: number): OverworldEnemyDefinition | undefined {
+  const definition = OVERWORLD_ENEMIES.find((enemy) => enemy.id === id);
+  const scaled = createEnemyAtLevel(id, level);
+  if (!definition || !scaled) return undefined;
+  return { ...definition, level: scaled.level, attributes: { ...scaled.attributes } satisfies CharacterAttributes };
 }

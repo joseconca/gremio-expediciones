@@ -15,15 +15,16 @@ export function expeditionCombatSnapshot(data: ExpeditionSnapshotDto): CombatSna
   return {
     phase: active.phase === "battle" ? "active" : active.outcome === "victory" ? "victory" : active.outcome === "defeat" ? "defeat" : "fled",
     menu: "root",
-    enemy: { id: active.id, name: `${active.enemy.name}${active.enemy.level ? ` · Nv. ${active.enemy.level}` : ""}`,
+    enemy: { id: active.enemy.id ?? active.id, level: active.enemy.level,
+      name: active.enemy.name,
       sprite: active.enemy.sprite, experienceReward: active.mission.experience, goldReward: active.mission.gold,
       attributes: attributes(active.enemyHealth, active.enemy.maxHealth, active.enemy.attack, active.enemy.defense, active.enemy.speed ?? 5) },
     party: (active.participants?.length ? active.participants : [{
       playerId: data.profile.id, name: data.profile.name, currentHealth: active.playerHealth,
       maxHealth: active.playerMaxHealth, attack: 8 + growth, defense: 5 + growth,
-      speed: active.playerSpeed ?? 5,
+      speed: active.playerSpeed ?? 5, level: data.profile.level,
     }]).map((member) => ({
-      id: member.playerId, name: member.name, isLocalPlayer: member.playerId === data.profile.id,
+      id: member.playerId, name: member.name, level: member.level, isLocalPlayer: member.playerId === data.profile.id,
       spriteSrc: "/sprites/sheets/characters/hero.png",
       attributes: attributes(member.currentHealth, member.maxHealth, member.attack, member.defense, member.speed),
     })),

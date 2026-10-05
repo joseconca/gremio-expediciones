@@ -11,6 +11,7 @@ export type CombatMenu = "root" | "skills" | "items";
 export interface PartyCombatant {
   id: string;
   name: string;
+  level?: number;
   attributes: CharacterAttributes;
   isLocalPlayer: boolean;
   spriteSrc?: string;
@@ -19,6 +20,7 @@ export interface PartyCombatant {
 export interface CombatEnemy {
   id: string;
   name: string;
+  level?: number;
   sprite: string;
   experienceReward: number;
   goldReward: number;
@@ -86,9 +88,10 @@ export class CombatManager {
     const enemies = definitions.map((enemy) => {
       const occurrence = seenIds.get(enemy.id) ?? 0;
       seenIds.set(enemy.id, occurrence + 1);
-      return { ...enemy, id: occurrence === 0 ? enemy.id : `${enemy.id}:${occurrence + 1}`, attributes: copyAttributes(enemy.attributes) };
+      return { ...enemy, id: occurrence === 0 ? enemy.id : `${enemy.id}:${occurrence + 1}`, level: enemy.level, attributes: copyAttributes(enemy.attributes) };
     });
     const party: PartyCombatant[] = [{ id: "local-player", name: player.name,
+      level: player.characterLevel,
       attributes: copyAttributes(player.attributes), isLocalPlayer: true, spriteSrc: "/sprites/sheets/characters/hero.png" }];
     for (const companion of companions) {
       if (party.length >= MAX_PARTY_SIZE) break;

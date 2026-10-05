@@ -19,6 +19,7 @@ const { createVillageCollision } = require("../src/game/data/base/baseCollision.
 const { CollisionMap } = require("../src/game/world/CollisionMap.ts");
 const { TileMap } = require("../src/game/world/TileMap.ts");
 const { tavernDefinition } = require("../src/game/data/buildings/tavern.ts");
+const { constructibleBuildings } = require("../src/game/data/buildings/constructibleBuildings.ts");
 
 test("224 px spacing and symmetric tile steps for odd/even rows; works include their future slot", () => {
   // Synthetic counts exercise the future layout without extending today's building catalogue.
@@ -184,13 +185,14 @@ test("town-hall doors, entrance triggers and return spawns follow row movements"
   const verify = () => {
     const hall = village.getBuildingPlacements().find((building) => building.type === "town-hall");
     const spawn = scene.getSpawnPoint("town-hall-exit");
-    assert.equal(spawn.x, hall.x + 48);
-    assert.equal(spawn.y, hall.y - 16);
+    const exit = townHallDefinitions[2].entrance.exit;
+    assert.equal(spawn.x, hall.x + exit.offsetX);
+    assert.equal(spawn.y, hall.y + exit.offsetY);
     const entrance = scene.villageEntranceObjects.find((object) => object.targetSceneId === "town-hall-interior");
-    assert.equal(entrance.x, hall.x + 48);
+    assert.equal(entrance.x, hall.x + townHallDefinitions[2].entrance.trigger.offsetX);
     assert.equal(entrance.y, hall.y + townHallDefinitions[2].entrance.trigger.offsetY);
     const doors = scene.villageEntranceObjects.filter((object) => object.definition);
-    assert.ok(doors.some((door) => door.x === hall.x + 64 && door.y === hall.y));
+    assert.ok(doors.some((door) => door.x === hall.x + townHallDefinitions[2].entrance.door.offsetX && door.y === hall.y));
     assert.equal(scene.villageEntranceObjects.filter((object) => object.targetSceneId === "town-hall-interior").length, 1);
   };
   verify();
@@ -202,9 +204,10 @@ test("town-hall doors, entrance triggers and return spawns follow row movements"
   verify();
   for (const [type, spawnId] of [["tavern", "tavern-exit"], ["embassy", "embassy-exit"]]) {
     const building = village.getBuildingPlacements().find((placement) => placement.type === type);
+    const exit = constructibleBuildings[type].definition.entrance.exit;
     const spawn = scene.getSpawnPoint(spawnId);
-    assert.equal(spawn.x, building.x + 64);
-    assert.equal(spawn.y, building.y + 40);
+    assert.equal(spawn.x, building.x + exit.offsetX);
+    assert.equal(spawn.y, building.y + exit.offsetY);
   }
 });
 
@@ -255,7 +258,7 @@ test("entrance sits behind its door, cannot teleport closed, and facade leaves a
     combatManager: {}, partyManager: {}, dayNightSystem: new DayNightSystem(() => 14),
   });
   const placement = village.getBuildingPlacements().find((building) => building.type === "tavern");
-  const door = scene.villageEntranceObjects.find((object) => object.definition && object.x === placement.x + 64);
+  const door = scene.villageEntranceObjects.find((object) => object.definition && object.x === placement.x + tavernDefinition.entrance.door.offsetX);
   const trigger = scene.villageEntranceObjects.find((object) => object.targetSceneId === "tavern-interior");
   assert.equal(trigger.activate(), false);
   assert.equal(transitions, 0);
@@ -266,7 +269,7 @@ test("entrance sits behind its door, cannot teleport closed, and facade leaves a
   assert.equal(scene.collisionSystem.canOccupy(scene.player, placement.x + 50, placement.y - 60), true);
   assert.equal(trigger.activate(), true);
   assert.equal(transitions, 1);
-  assert.equal(tavernDefinition.entrance.door.offsetX, 64);
+  assert.equal(tavernDefinition.entrance.door.offsetX, 81);
 });
 
 test("base resizes when a construction starts without rebuilding the world or player", () => {

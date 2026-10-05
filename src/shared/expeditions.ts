@@ -76,6 +76,7 @@ export type ExpeditionDto = {
 
 export type ExpeditionSnapshotDto = {
   serverNow: number;
+  partySize: number;
   missions: MissionDto[];
   active: ExpeditionDto | null;
   eliteAvailableAt: number;

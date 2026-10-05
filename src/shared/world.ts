@@ -49,6 +49,26 @@ export interface NearbyBaseDto {
   hasEmbassy: boolean;
 }
 
+export interface GeographicLocation {
+  lat: number;
+  lng: number;
+}
+
+export interface WorldPosition {
+  x: number;
+  y: number;
+}
+
+/** Short-lived exterior presence; interior/base positions are never exposed. */
+export interface NearbyWorldPlayerDto extends GeographicLocation {
+  playerId: string;
+  displayName: string;
+  sex: PlayerSex;
+  level: number;
+  direction: "up" | "down" | "left" | "right";
+  lastSeenAt: number;
+}
+
 export interface WorldSessionDto {
   buildingToken: string;
   progressToken: string;
@@ -113,6 +133,7 @@ export interface PartySnapshotDto {
   profile?: PlayerProfileDto;
   profileReset?: boolean;
   nearbyBases: NearbyBaseDto[];
+  nearbyWorldPlayers: NearbyWorldPlayerDto[];
   selfPlayerId: string;
   members: PartyMemberDto[];
   invitations: PartyInvitationDto[];

@@ -113,6 +113,7 @@ const EMPTY_PARTY_STATE: PartySnapshot = {
   syncStatus: "pending",
   syncMessage: null,
   nearbyBases: [],
+  nearbyWorldPlayers: [],
   loaded: false,
   companions: [],
   isLeader: false,

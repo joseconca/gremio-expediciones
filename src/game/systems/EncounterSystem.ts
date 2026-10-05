@@ -11,7 +11,8 @@ export class EncounterSystem {
     private readonly player: Player,
     private readonly monsters: OverworldMonster[],
     private readonly combatManager: CombatManager,
-    private readonly getCompanions: () => readonly PartyCombatant[] = () => []
+    private readonly getCompanions: () => readonly PartyCombatant[] = () => [],
+    private readonly onDefeated: (monster: OverworldMonster) => void = () => {}
   ) {}
 
   update(): void {
@@ -19,7 +20,10 @@ export class EncounterSystem {
 
     if (this.currentMonster) {
       const phase = this.combatManager.getSnapshot().phase;
-      if (phase === "victory") this.currentMonster.markDefeated();
+      if (phase === "victory") {
+        this.currentMonster.markDefeated();
+        this.onDefeated(this.currentMonster);
+      }
       if (phase === "fled" || phase === "defeat") {
         this.currentMonster.ignoreUntilSeparated();
       }

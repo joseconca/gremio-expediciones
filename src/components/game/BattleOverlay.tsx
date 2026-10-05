@@ -5,6 +5,7 @@ import { useEffect, useRef, type CSSProperties } from "react";
 import type { CombatController, CombatSnapshot } from "@/game/gameplay/CombatManager";
 import BattleCharacterSprite from "./BattleCharacterSprite";
 import { ATTACK_ANIMATION_MS } from "@/shared/combat";
+import { enemyDifficultyColor } from "@/shared/enemies";
 
 interface BattleOverlayProps {
   manager: CombatController;
@@ -71,23 +72,23 @@ export default function BattleOverlay({ manager, snapshot, potionCount, busy = f
         event.preventDefault(); first.focus();
       }
     }}>
-      <header className="heading"><div><p className="eyebrow">{title}</p><h2>{enemy.name}</h2></div><span>Grupo {snapshot.party.length}/3</span></header>
+      <header className="heading"><div><p className="eyebrow">{title}</p><h2>{enemy.name}{enemy.level ? ` · Nv. ${enemy.level}` : ""}</h2></div><span>Grupo {snapshot.party.length}/3</span></header>
       <main className="field">
         <div className="health-cards">
           <div className="party-cards">{snapshot.party.map((member) => (
             <article key={member.id} className={`health-card ${member.isLocalPlayer && member.attributes.currentHealth > 0 ? "local-card" : ""}`}>
               <div className="card-title"><strong>{member.name}</strong><span>{member.isLocalPlayer ? "Tú" : "Aliado"}</span></div>
               <div className="meter" role="progressbar" aria-label={`Vida de ${member.name}`} aria-valuemin={0} aria-valuemax={member.attributes.maxHealth} aria-valuenow={member.attributes.currentHealth}><span style={{ width: `${healthPercent(member.attributes.currentHealth, member.attributes.maxHealth)}%` }} /></div>
-              <div className="stats"><span>{member.attributes.currentHealth}/{member.attributes.maxHealth} HP</span><span>Velocidad {member.attributes.speed}</span></div>
+              <div className="stats"><span>Nv. {member.level ?? "—"}</span><span>{member.attributes.currentHealth}/{member.attributes.maxHealth} HP</span><span>Velocidad {member.attributes.speed}</span></div>
             </article>
           ))}</div>
           <div className="enemy-cards" aria-label="Enemigos">
             {enemies.map((target) => {
               const selected = target.id === (snapshot.selectedTargetId ?? enemy.id);
               const content = <>
-                <div className="card-title"><strong>{target.name}</strong><span>{selected ? "Objetivo" : "Rival"}</span></div>
+                <div className="card-title"><strong>{target.name}{target.level ? ` · Nv. ${target.level}` : ""}</strong><span>{selected ? "Objetivo" : "Rival"}</span></div>
                 <div className="meter" role="progressbar" aria-label={`Vida de ${target.name}`} aria-valuemin={0} aria-valuemax={target.attributes.maxHealth} aria-valuenow={target.attributes.currentHealth}><span style={{ width: `${healthPercent(target.attributes.currentHealth, target.attributes.maxHealth)}%` }} /></div>
-                <div className="stats"><span>{target.attributes.currentHealth}/{target.attributes.maxHealth} HP</span><span>Velocidad {target.attributes.speed}</span></div>
+                <div className="stats"><span>Nv. {target.level ?? "—"}</span><span>{target.attributes.currentHealth}/{target.attributes.maxHealth} HP</span><span>Velocidad {target.attributes.speed}</span></div>
               </>;
               return enemies.length > 1 ? <button key={target.id} type="button" className={`health-card enemy-card ${selected ? "selected-target" : ""}`}
                 aria-pressed={selected} disabled={blocked || (serverControlled && !snapshot.party.some((member) => member.isLocalPlayer && member.id === snapshot.actingMemberId))}
@@ -106,7 +107,10 @@ export default function BattleOverlay({ manager, snapshot, potionCount, busy = f
             </div>
           ))}</div>
           <div className={`enemy-stage ${enemies.length > 1 ? "multiple-enemies" : ""}`}>
-            {enemies.map((target, index) => <div key={target.id} className="enemy-piece" style={{ "--enemy-index": index } as CSSProperties}>
+            {enemies.map((target, index) => <div key={target.id} className="enemy-piece" style={{
+              "--enemy-index": index,
+              "--difficulty-color": enemyDifficultyColor(target.level ?? actor?.level ?? 1, player?.level ?? 1),
+            } as CSSProperties}>
               <div key={action && (action.targetEnemyId ?? enemy.id) === target.id ? `enemy-motion:${target.id}:${action.id}` : `enemy-motion:${target.id}`}
                 className={`enemy-motion ${enemyAttack && action?.targetEnemyId === target.id ? "lunge" : playerAttack && (action?.targetEnemyId ?? enemy.id) === target.id ? "hurt" : ""}`}>
                 <Image src={target.sprite} alt={target.name} width={192} height={192} unoptimized className={`enemy-image ${target.attributes.currentHealth <= 0 ? "defeated" : ""}`} />
@@ -167,9 +171,10 @@ export default function BattleOverlay({ manager, snapshot, potionCount, busy = f
         .member { position: absolute; bottom: 0; left: calc(18% + var(--offset-x)); transform: translateY(var(--offset-y)); }
         .enemy-stage { display: flex; justify-content: center; align-items: end; }
         .enemy-piece { position: relative; width: 100%; display: flex; justify-content: center; align-items: end; }
+        .enemy-piece::before { content: ""; position: absolute; z-index: 0; width: 62%; height: 18px; left: 19%; bottom: 2px; border: 2px solid var(--difficulty-color); border-radius: 50%; background: color-mix(in srgb, var(--difficulty-color) 20%, transparent); box-shadow: 0 0 12px color-mix(in srgb, var(--difficulty-color) 55%, transparent); }
         .multiple-enemies .enemy-piece { position: absolute; left: calc(var(--enemy-index) * 28%); width: 68%; }
         .multiple-enemies .enemy-piece:nth-child(even) { bottom: 24px; }
-        .enemy-motion { width: clamp(100px, 20vw, 192px); height: clamp(100px, 20vw, 192px); position: relative; }
+        .enemy-motion { width: clamp(100px, 20vw, 192px); height: clamp(100px, 20vw, 192px); position: relative; z-index: 1; }
         .enemy-stage :global(.enemy-image) { width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; }
         .enemy-stage :global(.defeated) { opacity: .4; filter: grayscale(1); }
         .lunge { animation: enemy-lunge .4s ease-out; }

@@ -273,7 +273,8 @@ test("Compound Spanish content, hundreds of seeds, inclusive level 1/4/50 diffic
       for (const m of catalog) {
         assert.match(m.name, /^(El|La|Las) .+ (del|de la|de las|de los) .+/);
         assert.ok(m.description.length > 30);
-        assert.ok(m.enemyLevel >= Math.max(1, level - 3) && m.enemyLevel <= level + 3);
+        const range = enemyCatalog.enemyLevelRange(level);
+        assert.ok(m.enemyLevel >= range.min && m.enemyLevel <= range.max);
         assert.ok(Number.isInteger(m.enemyLevel));
         assert.equal(m.enemy.level, m.enemyLevel);
         assert.ok(m.id.includes(`:${level}:`));
@@ -295,7 +296,8 @@ test("Compound Spanish content, hundreds of seeds, inclusive level 1/4/50 diffic
         if (level === 50) highRewards.push(m.gold);
       }
     }
-    const expected = Array.from({ length: level + 3 - Math.max(1, level - 3) + 1 }, (_, i) => Math.max(1, level - 3) + i);
+    const range = enemyCatalog.enemyLevelRange(level);
+    const expected = Array.from({ length: range.max - range.min + 1 }, (_, i) => range.min + i);
     for (const kind of ["normal", "elite"]) {
       assert.deepEqual([...difficulty[kind]].sort((a, b) => a - b), expected, "Both inclusive endpoints occur");
       assert.ok(rewards[kind].size > 100);
@@ -303,7 +305,8 @@ test("Compound Spanish content, hundreds of seeds, inclusive level 1/4/50 diffic
   }
   assert.ok(names.size > 900); assert.equal(descriptions.size, content.EXPEDITION_DESCRIPTIONS.length);
   assert.equal(species.size, (content.EXPEDITION_ENEMIES.length - 1) * 4 + 4);
-  assert.ok(Math.min(...highRewards) > Math.max(...lowRewards));
+  const average = (values) => values.reduce((sum, value) => sum + value, 0) / values.length;
+  assert.ok(average(highRewards) > average(lowRewards), "Higher-level catalogs should award higher average gold despite overlapping normal/elite bands");
   const origin = { lat: 40, lng: -3 };
   const a = rules.generateExpeditionMissions(origin, NOW, [], 1), b = rules.generateExpeditionMissions(origin, NOW, [], 4);
   assert.ok(a.every((m) => !b.some((n) => n.id === m.id)));
@@ -554,9 +557,10 @@ test("Status fresh exact DTO, imported token, missing player/base and invalid sa
   const h = harness();
   const before = structuredClone(h.row());
   const s = await h.loadExpeditions(h.initial.usuarioId);
-  assert.deepEqual(Object.keys(s).sort(), ["active", "eliteAvailableAt", "inventory", "missions", "profile", "progressToken", "rewardRevision", "serverNow"]);
+  assert.deepEqual(Object.keys(s).sort(), ["active", "eliteAvailableAt", "inventory", "missions", "partySize", "profile", "progressToken", "rewardRevision", "serverNow"]);
   assert.deepEqual(s.inventory, []);
   assert.equal(s.serverNow, NOW); assert.equal(s.active, null); assert.equal(s.eliteAvailableAt, 0); assert.equal(s.rewardRevision, 0);
+  assert.equal(s.partySize, 1);
   assert.equal(s.progressToken, h.progressToken(h.row(), h.row().usuario.base));
   assert.deepEqual(s.profile, { id: before.id, name: before.nombre, sex: "chico", characterClass: "Novato", level: 1, experience: 0, gold: 100, currentHealth: 40, maxHealth: 100 });
   assert.deepEqual(h.row(), before);
@@ -1006,4 +1010,18 @@ test("Cooperative expedition snapshots actor ownership, applies each speed turn 
   }
   assert.deepEqual(completed.active.awardedLoot, recipients[0].inventarioMundo);
   assert.equal(completed.active.participants.length, 3);
+});
+
+test("Enemy level ranges widen with party size exactly as configured and clamp at level one", () => {
+  const ranges = [1, 2, 3].map((size) => enemyCatalog.enemyLevelRange(20, size));
+  assert.deepEqual(ranges, [
+    { min: 15, max: 25 }, { min: 20, max: 30 }, { min: 25, max: 35 },
+  ]);
+  assert.deepEqual(enemyCatalog.enemyLevelRange(1, 1), { min: 1, max: 6 });
+  for (let difference = -5; difference <= 5; difference++) {
+    assert.match(enemyCatalog.enemyDifficultyColor(20 + difference, 20), /^hsl\(/);
+  }
+  assert.equal(enemyCatalog.enemyDifficultyColor(15, 20), "hsl(120 82% 48%)");
+  assert.equal(enemyCatalog.enemyDifficultyColor(20, 20), "hsl(60 82% 48%)");
+  assert.equal(enemyCatalog.enemyDifficultyColor(25, 20), "hsl(0 82% 48%)");
 });
