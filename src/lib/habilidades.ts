@@ -72,7 +72,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     tipo: "activa",
     rareza: "raro",
     precio: 2100,
-    cooldownTurnos: 3,
+    cooldownTurnos: 6,
 
     efecto: "curacion",
     animacion: "curacion",
