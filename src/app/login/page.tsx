@@ -31,7 +31,7 @@ export default function LoginPage() {
         setError(data?.error || "No se pudo completar la operación.");
         return;
       }
-      router.replace("/newGame");
+      router.replace("/base");
     } catch {
       setError("Sin conexión con el servidor. Vuelve a intentarlo.");
     } finally {

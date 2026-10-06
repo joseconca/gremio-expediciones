@@ -14,7 +14,7 @@ export default function Home() {
     fetch("/api/mundo/jugador", { cache: "no-store" })
       .then((response) => {
         if (cancelled) return;
-        if (response.ok) router.replace("/newGame");
+        if (response.ok) router.replace("/base");
         else setChecking(false);
       })
       .catch(() => {
