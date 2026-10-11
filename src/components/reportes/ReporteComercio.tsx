@@ -30,7 +30,8 @@ const getColorPorLinea = (linea: string) => {
   if (
     linea.startsWith("🩸") ||
     linea.startsWith("💀") ||
-    linea.startsWith("🚑")
+    linea.startsWith("🚑") ||
+    linea.startsWith("🏹")
   ) {
     return "text-red-400 font-medium";
   }

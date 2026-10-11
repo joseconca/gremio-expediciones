@@ -575,22 +575,30 @@ export async function POST(request: Request) {
 
         const recompensaMision = obtenerRecompensaMision(expedicion.recompensa);
 
-        const recompensaEnemigo = Math.trunc(
-          Math.max(
-            0,
-            enemigo.botin *
-              (1 + (expedicion.dificultad + personaje.nivel) * 0.3)
-          )
-        );
-
+        const recompensaEnemigo =
+          expedicion.tipo === "elite"
+            ? Math.trunc(
+                Math.max(
+                  0,
+                  enemigo.botin *
+                    (1 + (expedicion.dificultad + personaje.nivel) * 2)
+                )
+              )
+            : Math.trunc(
+                Math.max(
+                  0,
+                  enemigo.botin *
+                    (1 + (expedicion.dificultad + personaje.nivel) * 0.8)
+                )
+              );
         const oroGanado = recompensaMision.oro + recompensaEnemigo;
 
         const experienciaGanada =
           expedicion.tipo === "elite"
             ? 250 +
-              Math.max(0, expedicion.dificultad * (1 + enemigo.difMin)) * 20
+              Math.max(0, expedicion.dificultad * (1 + enemigo.difMin)) * 500
             : 25 +
-              Math.max(0, expedicion.dificultad * (1 + enemigo.difMin)) * 20;
+              Math.max(0, expedicion.dificultad * (1 + enemigo.difMin)) * 50;
 
         log.push(
           `💰 Consigues ${recompensaMision.oro} 🪙 de recompensa por la misión y ${recompensaEnemigo} 🪙 por derrotar al enemigo.`

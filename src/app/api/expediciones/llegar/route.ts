@@ -309,7 +309,7 @@ export async function POST() {
 
     const enemigoProbCritico = 0.1;
     const enemigoDanoCritico = 2;
-    const enemigoNivel = 1;
+    const enemigoNivel = dificultad+personaje.nivel;
 
     const jugadorHpMaximo = estadisticasJugador.total.hpMaximo;
 
