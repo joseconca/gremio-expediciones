@@ -293,20 +293,17 @@ export async function POST() {
     );
 
     const enemigoAtaque = Math.floor(
-      monstruoBase.ataque * multiplicadorEscalado * 0.5 * (1 - variacionStats())
+      monstruoBase.ataque * multiplicadorEscalado * (1 - variacionStats())
     );
 
     const enemigoDefensa = Math.floor(
-      monstruoBase.defensa *
-        multiplicadorEscalado *
-        0.5 *
-        (1 - variacionStats())
+      monstruoBase.defensa * multiplicadorEscalado * (1 - variacionStats())
     );
 
     const enemigoVelocidad = Math.floor(
       monstruoBase.velocidad *
         multiplicadorEscalado *
-        0.25 *
+        0.5 *
         (1 - variacionStats())
     );
 
