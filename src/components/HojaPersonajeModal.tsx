@@ -9,6 +9,7 @@ import {
 } from "@/lib/configuracionJuego";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { obtenerSpriteObjeto } from "@/lib/objetos";
+import { ARQUETIPOS_CLASE, CLASES } from "@/lib/progresion/clases";
 
 interface HojaPersonajeModalProps {
   abierto: boolean;
@@ -77,10 +78,35 @@ export default function HojaPersonajeModal({
   const experiencia = personaje.experiencia || 0;
   const experienciaNecesaria = experienciaParaNivel(nivel);
 
-  const porcentajeExperiencia = Math.min(
-    100,
-    Math.max(0, (experiencia / experienciaNecesaria) * 100)
-  );
+  const porcentajeExperiencia = Math.min(100, Math.max(0, (experiencia / experienciaNecesaria) * 100));
+  const profesionActivaId = personaje.profesionActivaId || "novato";
+  const claseActiva = CLASES[profesionActivaId] ?? CLASES.novato;
+  const arquetipo = ARQUETIPOS_CLASE[claseActiva.arquetipo];
+  const nivelJob = personaje.nivelJob || 1;
+  const experienciaJob = personaje.experienciaJob || 0;
+  const experienciaJobNecesaria = experienciaParaNivel(nivelJob);
+  const maestriaCompletada = nivelJob >= claseActiva.nivelJobMaximo;
+  const porcentajeExperienciaJob = maestriaCompletada ? 100 : Math.min(100, Math.max(0, experienciaJob / experienciaJobNecesaria * 100));
+  const atributos = [
+    { id: "fuerza", nombre: "Fuerza", sigla: "FUE", emoji: "💪", valor: personaje.fuerza },
+    { id: "agilidad", nombre: "Agilidad", sigla: "AGI", emoji: "💨", valor: personaje.agilidad },
+    { id: "vitalidad", nombre: "Vitalidad", sigla: "VIT", emoji: "❤️", valor: personaje.vitalidad },
+    { id: "inteligencia", nombre: "Inteligencia", sigla: "INT", emoji: "✨", valor: personaje.inteligencia },
+    { id: "destreza", nombre: "Destreza", sigla: "DES", emoji: "🎯", valor: personaje.destreza },
+    { id: "suerte", nombre: "Suerte", sigla: "SUE", emoji: "🍀", valor: personaje.suerte },
+  ];
+  const ranurasEquipo = [
+    { clave: "arma", nombre: "Arma", emoji: "⚔️" },
+    { clave: "manoSecundaria", nombre: "Mano secundaria", emoji: "🗡️" },
+    { clave: "casco", nombre: "Casco", emoji: "⛑️" },
+    { clave: "armadura", nombre: "Armadura", emoji: "🛡️" },
+    { clave: "pantalones", nombre: "Pantalones", emoji: "👖" },
+    { clave: "botas", nombre: "Botas", emoji: "🥾" },
+    { clave: "guantes", nombre: "Guantes", emoji: "🧤" },
+    { clave: "accesorio", nombre: "Collar", emoji: "📿" },
+    { clave: "anillo1", nombre: "Anillo I", emoji: "💍" },
+    { clave: "anillo2", nombre: "Anillo II", emoji: "💍" },
+  ] as const;
 
   const habilidadesActivas = personaje.habilidades
     .filter(
@@ -185,10 +211,10 @@ export default function HojaPersonajeModal({
             <div className="min-w-0 flex-1">
               <div className="flex items-center justify-between gap-2">
                 <span className="rounded border border-stone-300 bg-[#e8dcc4] px-2 py-0.5 font-serif text-xs font-bold text-stone-800 shadow-sm">
-                  {personaje.clase}
+                  {claseActiva.nombre} · {arquetipo.nombre}
                 </span>
                 <span className="font-serif text-sm font-bold uppercase tracking-wider text-stone-700">
-                  Nivel {nivel}
+                  Base {nivel} · Job {nivelJob}
                 </span>
               </div>
 
@@ -209,8 +235,36 @@ export default function HojaPersonajeModal({
                   />
                 </div>
               </div>
+              <div className="mt-3">
+                <div className="mb-1 flex justify-between font-serif text-[12px] font-semibold text-stone-600">
+                  <span>{claseActiva.nombre} · Nivel Job {nivelJob}</span>
+                  <span className="font-bold text-stone-800">{maestriaCompletada ? "Maestría alcanzada" : experienciaJob + " / " + experienciaJobNecesaria + " XP"}</span>
+                </div>
+                <div className="h-2.5 w-full overflow-hidden rounded-full border border-stone-400/50 bg-stone-300/80 shadow-inner">
+                  <div className="h-full bg-gradient-to-r from-amber-700/80 to-amber-500/80 transition-all duration-300" style={{ width: porcentajeExperienciaJob + "%" }} />
+                </div>
+                <p className="mt-1 text-[11px] font-semibold text-stone-500">Tier {claseActiva.tier} · Puntos de habilidad: {personaje.puntosHabilidadDisponibles}</p>
+              </div>
             </div>
           </div>
+
+          {/* ATRIBUTOS DERIVADOS DEL ARQUETIPO */}
+          <section className="mb-6">
+            <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2 border-b border-stone-400/40 pb-1">
+              <h3 className="font-serif text-sm font-black uppercase tracking-widest text-stone-800">Atributos</h3>
+              <span className="text-xs font-semibold text-stone-500">Crecimiento automático · {arquetipo.nombre}</span>
+            </div>
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
+              {atributos.map((atributo) => (
+                <article key={atributo.id} className="rounded-sm border border-stone-300 bg-[#efe5cf] p-3 text-center shadow-sm">
+                  <span aria-hidden="true">{atributo.emoji}</span>
+                  <p className="mt-1 text-[10px] font-black uppercase tracking-wider text-stone-500">{atributo.sigla}</p>
+                  <p className="font-serif text-xs font-bold text-stone-700">{atributo.nombre}</p>
+                  <p className="mt-1 font-serif text-2xl font-black tabular-nums text-stone-900">{atributo.valor}</p>
+                </article>
+              ))}
+            </div>
+          </section>
 
           {/* ESTADÍSTICAS */}
           <section className="mb-6">
@@ -218,59 +272,33 @@ export default function HojaPersonajeModal({
               Estadísticas
             </h3>
 
-            <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
-              <div className="rounded-sm border border-stone-300 bg-[#efe5cf] px-3 py-2.5 shadow-sm">
-                <div className="text-[11px] font-bold text-stone-600">
-                  ❤️ Vida Máxima
-                </div>
-                <div className="mt-0.5 font-serif text-xl font-black text-stone-900">
-                  {personaje.hpMaximo}
-                </div>
+            <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
+              {[
+                { nombre: "Vida máxima", valor: personaje.hpMaximo, emoji: "❤️" },
+                { nombre: "Ataque físico", valor: personaje.ataque, emoji: "⚔️" },
+                { nombre: "Defensa física", valor: personaje.defensa, emoji: "🛡️" },
+                { nombre: "Ataque mágico", valor: personaje.ataqueMagico, emoji: "✨" },
+                { nombre: "Defensa mágica", valor: personaje.defensaMagica, emoji: "🔮" },
+                { nombre: "Velocidad", valor: personaje.velocidad, emoji: "💨" },
+                { nombre: "Capacidad", valor: personaje.capacidadCarruaje, emoji: "📦" },
+                { nombre: "Precisión", valor: Math.round(personaje.precision) + "%", emoji: "🎯" },
+                { nombre: "Evasión", valor: (personaje.evasion * 100).toFixed(1) + "%", emoji: "🌀" },
+                { nombre: "Probabilidad crítica", valor: (personaje.probCritico * 100).toFixed(1) + "%", emoji: "💥" },
+              ].map((stat) => (
+                <article key={stat.nombre} className="rounded-sm border border-stone-300 bg-[#efe5cf] px-3 py-2.5 shadow-sm">
+                  <div className="text-[11px] font-bold text-stone-600">{stat.emoji} {stat.nombre}</div>
+                  <div className="mt-0.5 font-serif text-xl font-black text-stone-900">{stat.valor}</div>
+                </article>
+              ))}
+            </div>
+            <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div className="rounded-sm border border-blue-200 bg-blue-50/70 p-3">
+                <div className="flex items-center justify-between gap-2 text-sm font-bold text-blue-900"><span>⚡ Energía</span><span>{personaje.energiaActual} / {personaje.energiaMaxima}</span></div>
+                <p className="mt-1 text-xs text-blue-800/70">Regeneración: {personaje.regeneracionEnergiaPorTurno.toFixed(1)} por turno.</p>
               </div>
-
-              <div className="rounded-sm border border-stone-300 bg-[#efe5cf] px-3 py-2.5 shadow-sm">
-                <div className="text-[11px] font-bold text-stone-600">
-                  ⚔️ Ataque
-                </div>
-                <div className="mt-0.5 font-serif text-xl font-black text-stone-900">
-                  {personaje.ataque}
-                </div>
-              </div>
-
-              <div className="rounded-sm border border-stone-300 bg-[#efe5cf] px-3 py-2.5 shadow-sm">
-                <div className="text-[11px] font-bold text-stone-600">
-                  🛡️ Defensa
-                </div>
-                <div className="mt-0.5 font-serif text-xl font-black text-stone-900">
-                  {personaje.defensa}
-                </div>
-              </div>
-
-              <div className="rounded-sm border border-stone-300 bg-[#efe5cf] px-3 py-2.5 shadow-sm">
-                <div className="text-[11px] font-bold text-stone-600">
-                  💨 Velocidad
-                </div>
-                <div className="mt-0.5 font-serif text-xl font-black text-stone-900">
-                  {personaje.velocidad}
-                </div>
-              </div>
-
-              <div className="rounded-sm border border-stone-300 bg-[#efe5cf] px-3 py-2.5 shadow-sm">
-                <div className="text-[11px] font-bold text-stone-600">
-                  📦 Capacidad
-                </div>
-                <div className="mt-0.5 font-serif text-xl font-black text-stone-900">
-                  {personaje.capacidadCarruaje}
-                </div>
-              </div>
-
-              <div className="rounded-sm border border-stone-300 bg-[#efe5cf] px-3 py-2.5 shadow-sm">
-                <div className="text-[11px] font-bold text-stone-600">
-                  🎯 Probabilidad Crítico
-                </div>
-                <div className="mt-0.5 font-serif text-xl font-black text-stone-900">
-                  {personaje.probCritico * 100}% 
-                </div>
+              <div className="rounded-sm border border-violet-200 bg-violet-50/70 p-3">
+                <div className="flex items-center justify-between gap-2 text-sm font-bold text-violet-900"><span>🔮 Maná</span><span>{personaje.manaActual} / {personaje.manaMaximo}</span></div>
+                <p className="mt-1 text-xs text-violet-800/70">Regeneración: {personaje.regeneracionManaPorTurno.toFixed(1)} por turno.</p>
               </div>
             </div>
           </section>
@@ -349,127 +377,32 @@ export default function HojaPersonajeModal({
                 🎒 Equipamiento
               </h3>
               <span className="font-serif text-[11px] italic text-stone-500">
-                Objetos equipados
+                {ranurasEquipo.filter((ranura) => personaje.equipo[ranura.clave]).length} / {ranurasEquipo.length} ranuras ocupadas
               </span>
             </div>
 
-            <div className="grid grid-cols-3 gap-2.5">
-              {/* ARMA */}
-              <div className="flex min-h-[110px] flex-col items-center justify-center rounded-sm border border-stone-300 bg-[#efe5cf] p-3 text-center shadow-sm">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500">
-                  Arma
-                </span>
-
-                {arma ? (
-                  <>
-                    {obtenerSpriteObjeto(arma.objeto) ? (
-                      <Image
-                        src={obtenerSpriteObjeto(arma.objeto)!}
-                        alt={arma.objeto.nombre}
-                        width={64}
-                        height={64}
-                        className="rounded-md"
-                      />
+            <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
+              {ranurasEquipo.map((ranura) => {
+                const objeto = personaje.equipo[ranura.clave];
+                const sprite = objeto ? obtenerSpriteObjeto(objeto.objeto) : null;
+                return (
+                  <article key={ranura.clave} className="flex min-h-[125px] min-w-0 flex-col items-center justify-center rounded-sm border border-stone-300 bg-[#efe5cf] p-3 text-center shadow-sm">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500">{ranura.nombre}</span>
+                    {objeto ? (
+                      <>
+                        {sprite ? <Image src={sprite} alt={objeto.objeto.nombre} width={52} height={52} className="mt-1 rounded-md [image-rendering:pixelated]" /> : <span className="mt-2 text-2xl">{ranura.emoji}</span>}
+                        <span className="mt-2 break-words font-serif text-sm font-black text-stone-900">{objeto.objeto.nombre}</span>
+                        {objeto.nivelMejora > 0 && <span className="mt-1 text-xs font-bold text-amber-700">+{objeto.nivelMejora}</span>}
+                      </>
                     ) : (
-                      <span className="text-2xl opacity-60">⚔️</span>
+                      <>
+                        <span className="mt-2 text-2xl opacity-60">{ranura.emoji}</span>
+                        <span className="mt-1 text-[11px] italic text-stone-500">Sin equipar</span>
+                      </>
                     )}
-                    <span className="mt-2 font-serif text-sm font-black text-stone-900">
-                      {arma.objeto.nombre}
-                    </span>
-
-                    {arma.nivelMejora > 0 && (
-                      <span className="mt-1 text-xs font-bold text-amber-700">
-                        +{arma.nivelMejora}
-                      </span>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <span className="mt-2 text-2xl opacity-60">⚔️</span>
-                    <span className="mt-1 font-serif text-[11px] italic text-stone-500">
-                      Sin equipar
-                    </span>
-                  </>
-                )}
-              </div>
-
-              {/* ARMADURA */}
-              <div className="flex min-h-[110px] flex-col items-center justify-center rounded-sm border border-stone-300 bg-[#efe5cf] p-3 text-center shadow-sm">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500">
-                  Armadura
-                </span>
-
-                {armadura ? (
-                  <>
-                  {obtenerSpriteObjeto(armadura.objeto) ? (
-                      <Image
-                        src={obtenerSpriteObjeto(armadura.objeto)!}
-                        alt={armadura.objeto.nombre}
-                        width={64}
-                        height={64}
-                        className="rounded-md"
-                      />
-                    ) : (
-                      <span className="text-2xl opacity-60">🛡️</span>
-                    )}
-                    <span className="mt-2 font-serif text-sm font-black text-stone-900">
-                      {armadura.objeto.nombre}
-                    </span>
-
-                    {armadura.nivelMejora > 0 && (
-                      <span className="mt-1 text-xs font-bold text-amber-700">
-                        +{armadura.nivelMejora}
-                      </span>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <span className="mt-2 text-2xl opacity-60">🛡️</span>
-                    <span className="mt-1 font-serif text-[11px] italic text-stone-500">
-                      Sin equipar
-                    </span>
-                  </>
-                )}
-              </div>
-
-              {/* ACCESORIO */}
-              <div className="flex min-h-[110px] flex-col items-center justify-center rounded-sm border border-stone-300 bg-[#efe5cf] p-3 text-center shadow-sm">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500">
-                  Accesorio
-                </span>
-
-                {accesorio ? (
-                  <>
-                  {obtenerSpriteObjeto(accesorio.objeto) ? (
-                      <Image
-                        src={obtenerSpriteObjeto(accesorio.objeto)!}
-                        alt={accesorio.objeto.nombre}
-                        width={64}
-                        height={64}
-                        className="rounded-md"
-                      />
-                    ) : (
-                      <span className="text-2xl opacity-60">💍</span>
-                    )}
-                    <span className="mt-2 font-serif text-sm font-black text-stone-900">
-                      {accesorio.objeto.nombre}
-                    </span>
-
-                    {accesorio.nivelMejora > 0 && (
-                      <span className="mt-1 text-xs font-bold text-amber-700">
-                        +{accesorio.nivelMejora}
-                      </span>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <span className="mt-2 text-2xl opacity-60">💍</span>
-                    <span className="mt-1 font-serif text-[11px] italic text-stone-500">
-                      Sin equipar
-                    </span>
-                  </>
-                )}
-              </div>
+                  </article>
+                );
+              })}
             </div>
           </section>
         </div>
