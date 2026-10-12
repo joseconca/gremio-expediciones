@@ -141,7 +141,7 @@ export function calcularMultiplicadoresEnemigo(nivelAmenaza: number, dificultadM
 }
 
 export function calcularOroEnemigo(base: number, nivelAmenaza: number, dificultadMinima: number): number {
-  const exceso = Math.max(0, Math.floor(nivelAmenaza) - Math.floor(dificultadMinima));
+  const exceso = Math.max(0, Math.floor(nivelAmenaza) - Math.max(1, Math.floor(dificultadMinima)));
   const factorAmenaza = Math.min(1.5, 1 + exceso * 0.02);
   return Math.max(0, Math.floor(base * factorAmenaza));
 }
