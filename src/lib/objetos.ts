@@ -27,6 +27,20 @@ export function calcularEstadisticasObjeto(
       (objeto.probCriticoBase ?? 0) + (objeto.probCriticoPorMejora ?? 0) * nivelSeguro + (bonificaciones.probCritico ?? 0),
     danoCritico:
       (objeto.danoCriticoBase ?? 0) + (objeto.danoCriticoPorMejora ?? 0) * nivelSeguro + (bonificaciones.danoCritico ?? 0),
+    precision:
+      (objeto.precisionBase ?? 0) + (objeto.precisionPorMejora ?? 0) * nivelSeguro + (bonificaciones.precision ?? 0),
+    evasion:
+      (objeto.evasionBase ?? 0) + (objeto.evasionPorMejora ?? 0) * nivelSeguro + (bonificaciones.evasion ?? 0),
+    energiaMaxima:
+      (objeto.energiaMaximaBase ?? 0) + (objeto.energiaMaximaPorMejora ?? 0) * nivelSeguro + (bonificaciones.energiaMaxima ?? 0),
+    manaMaximo:
+      (objeto.manaMaximoBase ?? 0) + (objeto.manaMaximoPorMejora ?? 0) * nivelSeguro + (bonificaciones.manaMaximo ?? 0),
+    regeneracionVidaPorTurno:
+      (objeto.regeneracionVidaPorTurnoBase ?? 0) + (objeto.regeneracionVidaPorTurnoPorMejora ?? 0) * nivelSeguro + (bonificaciones.regeneracionVidaPorTurno ?? 0),
+    regeneracionEnergiaPorTurno:
+      (objeto.regeneracionEnergiaPorTurnoBase ?? 0) + (objeto.regeneracionEnergiaPorTurnoPorMejora ?? 0) * nivelSeguro + (bonificaciones.regeneracionEnergiaPorTurno ?? 0),
+    regeneracionManaPorTurno:
+      (objeto.regeneracionManaPorTurnoBase ?? 0) + (objeto.regeneracionManaPorTurnoPorMejora ?? 0) * nivelSeguro + (bonificaciones.regeneracionManaPorTurno ?? 0),
   };
 }
 
