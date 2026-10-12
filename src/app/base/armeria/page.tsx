@@ -670,7 +670,7 @@ export default function HerreriaPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-px bg-[#353a3d] lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-px bg-[#353a3d] lg:grid-cols-3 xl:grid-cols-5">
               {TIPOS_EQUIPAMIENTO.map((tipo) => {
                 const equipado = obtenerObjetoEquipado(tipo);
                 const desequipando = procesando === `desequipar:${tipo}`;
@@ -784,9 +784,7 @@ export default function HerreriaPage() {
                         </p>
 
                         <p className="mt-2 max-w-[220px] text-xs leading-5 text-[#4f5659]">
-                          {tipo === "accesorio"
-                            ? "Puedes equipar aquí un accesorio de tu inventario."
-                            : "Compra o consigue un arma o armadura para equiparla aquí."}
+                          Puedes conseguir una pieza compatible y equiparla desde tu inventario.
                         </p>
                       </div>
                     )}
