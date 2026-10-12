@@ -55,25 +55,36 @@ export async function POST() {
     if (!objeto) return NextResponse.json({ error: "La definición del objeto ya no existe." }, { status: 409 });
 
     const resultado = await prisma.$transaction(async (tx) => {
+      // La última venta se vuelve a leer dentro de la transacción. Esto evita
+      // que dos peticiones concurrentes recompren el mismo recibo dos veces.
+      const inventarioActual = await tx.inventario.findUnique({
+        where: { id: personaje.inventario!.id },
+        select: { ultimaVenta: true },
+      });
+      const ventaActual = leerUltimaVenta(inventarioActual?.ultimaVenta);
+      if (!ventaActual || ventaActual.vendidoEn !== venta.vendidoEn) {
+        throw new Error("VENTA_MODIFICADA");
+      }
+
       const ocupados = await tx.inventarioObjeto.count({
         where: { inventarioId: personaje.inventario!.id },
       });
       if (ocupados >= LIMITE_INVENTARIO_OBJETOS) throw new Error("INVENTARIO_LLENO");
 
       const cobro = await tx.usuario.updateMany({
-        where: { id: sesion.id, oro: { gte: venta.precioRecompra } },
-        data: { oro: { decrement: venta.precioRecompra } },
+        where: { id: sesion.id, oro: { gte: ventaActual.precioRecompra } },
+        data: { oro: { decrement: ventaActual.precioRecompra } },
       });
       if (cobro.count !== 1) throw new Error("ORO_INSUFICIENTE");
 
       const item = await tx.inventarioObjeto.create({
         data: {
           inventarioId: personaje.inventario!.id,
-          objetoId: venta.objetoId,
-          cantidad: venta.cantidad,
-          nivelMejora: venta.nivelMejora,
-          sufijoId: venta.sufijoId,
-          bonificaciones: venta.bonificaciones,
+          objetoId: ventaActual.objetoId,
+          cantidad: ventaActual.cantidad,
+          nivelMejora: ventaActual.nivelMejora,
+          sufijoId: ventaActual.sufijoId,
+          bonificaciones: ventaActual.bonificaciones,
         },
       });
 
@@ -106,6 +117,9 @@ export async function POST() {
   } catch (error) {
     if (error instanceof Error && error.message === "INVENTARIO_LLENO") {
       return NextResponse.json({ error: `El inventario está lleno (${LIMITE_INVENTARIO_OBJETOS}/${LIMITE_INVENTARIO_OBJETOS}). Libera un espacio antes de recomprar.` }, { status: 409 });
+    }
+    if (error instanceof Error && error.message === "VENTA_MODIFICADA") {
+      return NextResponse.json({ error: "La última venta ya ha cambiado o se ha recomprado. Actualiza el inventario." }, { status: 409 });
     }
     if (error instanceof Error && error.message === "ORO_INSUFICIENTE") {
       return NextResponse.json({ error: "No tienes oro suficiente para recomprar el objeto." }, { status: 400 });
