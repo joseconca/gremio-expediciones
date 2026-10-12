@@ -14,7 +14,6 @@ import { prisma } from "@/lib/prisma";
 
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { obtenerObjetoPorId } from "@/lib/objetos";
-import { obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
 import { experienciaParaNivel } from "@/lib/configuracionJuego";
 import {
   calcularBonusDefensaMuralla,
