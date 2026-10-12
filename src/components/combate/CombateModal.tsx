@@ -587,7 +587,7 @@ export default function CombateModal({
 
                 {/* ENEMIGO */}
                 <Image
-                  src={`/sprites/enemies/${combate.enemigoId}.png`}
+                  src={obtenerRutaSpriteEnemigo(combate.enemigoId)}
                   alt={combate.enemigoNombre || "Enemigo"}
                   fill
                   sizes="180px"
