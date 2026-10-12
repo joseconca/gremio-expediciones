@@ -129,7 +129,8 @@ export async function GET() {
       inventario,
       equipo,
       espaciosInventario: {
-        ocupados: inventario.length,
+        // Cuenta filas reales, incluso si una definición antigua ya no está en el catálogo.
+        ocupados: usuario.personaje.inventario?.objetos.length ?? 0,
         maximo: LIMITE_INVENTARIO_OBJETOS,
       },
       ultimaVenta: usuario.personaje.inventario?.ultimaVenta ?? null,
