@@ -564,7 +564,7 @@ export default function ExpedicionesPage() {
                         : "text-slate-500"
                     }`}
                   >
-                    Dificultad {misionSeleccionada.dificultad}
+                    Amenaza {misionSeleccionada.dificultad}
                   </span>
                 </div>
               </div>
