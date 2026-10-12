@@ -192,7 +192,17 @@ export async function POST(request: Request) {
       error.code === "P2002"
     ) {
       return NextResponse.json(
-        { error: "Ya tienes este objeto; actualiza el inventario." },
+        { error: "La compra ha cambiado durante la operación. Actualiza el inventario e inténtalo de nuevo." },
+        { status: 409 }
+      );
+    }
+
+    if (
+      error instanceof Prisma.PrismaClientKnownRequestError &&
+      error.code === "P2034"
+    ) {
+      return NextResponse.json(
+        { error: "El inventario o el saldo han cambiado. Actualiza e inténtalo de nuevo." },
         { status: 409 }
       );
     }
