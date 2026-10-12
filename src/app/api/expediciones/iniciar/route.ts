@@ -390,7 +390,7 @@ export async function POST(request: Request) {
           fase: "en_viaje",
           misionId: mision.id,
           nombre: mision.nombre,
-          recompensa: mision.recompensa,
+          recompensa: { ...mision.recompensa },
           dificultad: mision.dificultad,
           fechaSalida,
           fechaLlegada,
