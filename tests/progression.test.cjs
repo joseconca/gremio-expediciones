@@ -21,6 +21,7 @@ const {
   obtenerRangoMaximoDesbloqueado,
 } = require("../src/lib/expediciones/dificultad.ts");
 const { obtenerHabilidadesEnVenta } = require("../src/lib/tiendaHabilidades.ts");
+const { ENEMIGOS, JEFES_ELITE, obtenerRutaSpriteEnemigo } = require("../src/lib/enemigos.ts");
 const { generarMisionesDisponibles } = require("../src/lib/generadorMisiones.ts");
 
 test("el catálogo de clases tiene requisitos válidos y no contiene ciclos", () => {
@@ -199,6 +200,18 @@ test("dificultad: los rangos exigen nivel Base y victoria Normal del rango anter
   assert.equal(obtenerRangoMaximoDesbloqueado(13, ["I", "II", "III", "IV"]).id, "V");
   assert.deepEqual(registrarVictoriaRangoNormal(["I"], 4), ["I", "II"]);
   assert.deepEqual(RANGOS_AMENAZA.map((rango) => rango.id), ["I", "II", "III", "IV", "V"]);
+});
+
+test("sprites de enemigos: cada enemigo del catálogo tiene sprite organizado por rango", () => {
+  for (const enemigo of [...ENEMIGOS, ...JEFES_ELITE]) {
+    const ruta = obtenerRutaSpriteEnemigo(enemigo.id);
+    assert.match(ruta, /^\/sprites\/enemies\/(I|II|III|IV|V)\/[^/]+\.png$/);
+    assert.ok(
+      fs.existsSync(path.join(__dirname, "..", "public", ruta.slice(1))),
+      `Falta el sprite ${ruta} para ${enemigo.id}`,
+    );
+  }
+  assert.equal(obtenerRutaSpriteEnemigo(null), "/sprites/enemies/I/slime_acido.png");
 });
 
 test("dificultad: XP Base conserva la curva progresiva y limita farmeo de amenazas bajas", () => {
