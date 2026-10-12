@@ -71,8 +71,6 @@ export default function ProfesionesPage() {
   const [mensaje, setMensaje] = useState<string | null>(null);
 
   const cargarProfesiones = useCallback(async () => {
-    setCargando(true);
-    setError(null);
     try {
       const respuesta = await fetch("/api/profesiones", { cache: "no-store" });
       const resultado = await respuesta.json();
@@ -81,6 +79,7 @@ export default function ProfesionesPage() {
         return;
       }
       setDatos(resultado as DatosProfesiones);
+      setError(null);
     } catch {
       setError("No se pudieron cargar las profesiones.");
     } finally {
