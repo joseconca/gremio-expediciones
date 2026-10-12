@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
+import { generarSufijoObjeto, obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
+import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
 import {
   puedeComprarObjeto,
   obtenerRequisitosRareza,
@@ -46,7 +48,7 @@ export async function POST(request: Request) {
       include: {
         personaje: {
           include: {
-            inventario: true,
+            inventario: { include: { objetos: true } },
           },
         },
       },
@@ -104,27 +106,21 @@ export async function POST(request: Request) {
       );
     }
 
-    const objetoExistente = await prisma.inventarioObjeto.findUnique({
-      where: {
-        inventarioId_objetoId: {
-          inventarioId,
-          objetoId,
-        },
-      },
-      select: { id: true },
-    });
-
-    if (objetoExistente) {
-      return NextResponse.json({ error: "Ya tienes este objeto." }, { status: 409 });
-    }
-
     if (usuario.oro < objeto.precio) {
       return NextResponse.json({ error: "No tienes suficiente oro." }, { status: 400 });
     }
 
+    const sufijo = generarSufijoObjeto(objeto, false);
     const resultado = await prisma.$transaction(async (tx) => {
-      // El saldo se vuelve a comprobar dentro de la transacción. Si la creación
-      // del inventario falla por una compra concurrente, el débito se revierte.
+      const espaciosOcupados = await tx.inventarioObjeto.count({
+        where: { inventarioId },
+      });
+      if (espaciosOcupados >= LIMITE_INVENTARIO_OBJETOS) {
+        throw new Error("INVENTARIO_LLENO");
+      }
+
+      // El saldo se vuelve a comprobar dentro de la transacción. Si falla
+      // la creación, el débito se revierte junto con el resto de la operación.
       const debitado = await tx.usuario.updateMany({
         where: {
           id: usuario.id,
@@ -145,6 +141,8 @@ export async function POST(request: Request) {
           objetoId,
           cantidad: 1,
           nivelMejora: 0,
+          sufijoId: sufijo.sufijoId,
+          bonificaciones: sufijo.bonificaciones,
         },
       });
 
@@ -157,21 +155,30 @@ export async function POST(request: Request) {
         usuario: usuarioActualizado,
         objetoInventario,
       };
-    });
+    }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
 
     return NextResponse.json({
       exito: true,
-      mensaje: `Has comprado ${objeto.nombre}.`,
+      mensaje: `Has comprado ${obtenerNombreObjetoConSufijo(objeto.nombre, sufijo.sufijoId)}.`,
       oro: resultado.usuario.oro,
       objeto: {
         id: resultado.objetoInventario.id,
         objetoId: resultado.objetoInventario.objetoId,
         cantidad: resultado.objetoInventario.cantidad,
         nivelMejora: resultado.objetoInventario.nivelMejora,
-        datos: objeto,
+        sufijoId: resultado.objetoInventario.sufijoId,
+        bonificaciones: resultado.objetoInventario.bonificaciones,
+        datos: { ...objeto, nombre: obtenerNombreObjetoConSufijo(objeto.nombre, sufijo.sufijoId) },
       },
     });
   } catch (error) {
+    if (error instanceof Error && error.message === "INVENTARIO_LLENO") {
+      return NextResponse.json(
+        { error: `El inventario está lleno (${LIMITE_INVENTARIO_OBJETOS}/${LIMITE_INVENTARIO_OBJETOS}). Vende algún objeto antes de comprar.` },
+        { status: 409 }
+      );
+    }
+
     if (error instanceof Error && error.message === "ORO_INSUFICIENTE") {
       return NextResponse.json(
         { error: "No tienes suficiente oro." },
