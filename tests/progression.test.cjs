@@ -139,22 +139,22 @@ test("migración: los personajes actuales pasan a Novato Job 1 sin perder nivel 
   );
 
   const actualizarPersonaje = migration.match(
-    /UPDATE "Personaje"[\\s\\S]*?;/
+    /UPDATE "Personaje"[\s\S]*?;/
   )?.[0];
   assert.ok(actualizarPersonaje, "La migración actualiza Personaje");
   assert.match(actualizarPersonaje, /"clase" = 'Novato'/);
   assert.match(actualizarPersonaje, /"profesionActivaId" = 'novato'/);
   assert.doesNotMatch(
     actualizarPersonaje,
-    /"nivel"\\s*=|"experiencia"\\s*=/,
+    /"nivel"\s*=|"experiencia"\s*=/,
     "El nivel y la experiencia Base no se modifican"
   );
 
-  assert.match(migration, /DELETE FROM "ProgresoClase"[\\s\\S]*?"claseId" <> 'novato'/);
+  assert.match(migration, /DELETE FROM "ProgresoClase"[\s\S]*?"claseId" <> 'novato'/);
   assert.match(migration, /"nivelJob" = 1/);
   assert.match(migration, /"experienciaJob" = 0/);
   assert.match(migration, /"puntosHabilidadDisponibles" = 0/);
   assert.match(migration, /"desbloqueada" = TRUE/);
   assert.match(migration, /"maestriaCompletada" = FALSE/);
-  assert.match(migration, /ON CONFLICT \\("personajeId", "claseId"\\) DO NOTHING/);
+  assert.match(migration, /ON CONFLICT \("personajeId", "claseId"\) DO NOTHING/);
 });
