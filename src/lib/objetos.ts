@@ -349,6 +349,19 @@ export function obtenerRanuraObjeto(objeto: DefinicionObjeto) {
 export function obtenerSpriteObjeto(
   objeto: Pick<DefinicionObjeto, "id" | "tipo">
 ): string | null {
+  // Estas piezas se han añadido antes de crear su pixel art; usa el icono
+  // genérico de la ranura en vez de mostrar una imagen 404.
+  const objetosSinSprite = new Set([
+    "escudo_madera",
+    "casco_cuero",
+    "pantalones_cuero",
+    "botas_cuero",
+    "guantes_cuero",
+    "collar_cobre",
+    "anillo_resistencia",
+  ]);
+  if (objetosSinSprite.has(objeto.id)) return null;
+
   const carpetaPorTipo: Record<
     "arma" | "armadura" | "accesorio" | "consumible",
     string
