@@ -475,6 +475,19 @@ function makeInvalidBodyRoute(relativePath) {
     "@/lib/habilidades": { obtenerHabilidadPorId: () => null },
     "@/lib/configuracionJuego": { puedeAprenderHabilidad: () => true },
     "@/lib/tiendaHabilidades": { obtenerHabilidadesEnVenta: () => [] },
+    "@/lib/enemigos": { obtenerEnemigoPorId: () => null },
+    "@/lib/expediciones/combate": {
+      calcularBonusDefensaMuralla: () => 0,
+      resolverAtaqueJugador: () => ({}),
+      resolverAtaqueEnemigo: () => ({}),
+      resolverHabilidadJugador: () => ({}),
+    },
+    "@/lib/expediciones/asedio": {
+      determinarGanadorAsedio: () => null,
+      determinarPrimerTurnoAsedio: () => "atacante",
+      siguienteTurnoAsedio: () => "defensor",
+      finalizarAsedio: async () => ({}),
+    },
   });
 
   return route.POST;
@@ -550,6 +563,7 @@ test("equipamiento y habilidades: rechazan JSON malformado y cuerpos que no son 
     "src/app/api/habilidades/aprender/route.ts",
     "src/app/api/habilidades/equipar/route.ts",
     "src/app/api/habilidades/desequipar/route.ts",
+    "src/app/api/combate/accion/route.ts",
   ];
   const invalidRequests = [
     {
