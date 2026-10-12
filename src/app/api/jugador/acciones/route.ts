@@ -72,7 +72,13 @@ export async function POST(request: Request) {
     const accion = body.accion;
 
     if (accion === "establecerBase") {
-      const { lat, lng } = body.coords || {};
+      const coords =
+        body.coords &&
+        typeof body.coords === "object" &&
+        !Array.isArray(body.coords)
+          ? (body.coords as Record<string, unknown>)
+          : {};
+      const { lat, lng } = coords;
       if (
         typeof lat !== "number" ||
         !Number.isFinite(lat) ||
