@@ -4,6 +4,221 @@ const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
 const ts = require("typescript");
+function makeCombatConsumableRoute({
+  authenticated = true,
+  initialHp = 40,
+  maxHp = 100,
+  initialQuantity = 2,
+  action = "usar_objeto",
+  itemId = "pocion",
+} = {}) {
+  let state = {
+    user: {
+      id: "u1",
+      oro: 0,
+      personaje: {
+        id: "p1",
+        usuarioId: "u1",
+        estado: "combatiendo",
+        nombre: "Aventurero",
+        clase: "Novato",
+        profesionActivaId: "novato",
+        nivel: 1,
+        experiencia: 0,
+        puntosAtributoDisponibles: 0,
+        fuerza: 1,
+        agilidad: 1,
+        vitalidad: 1,
+        inteligencia: 1,
+        destreza: 1,
+        suerte: 1,
+        energiaActual: 10,
+        manaActual: 5,
+        hpActual: initialHp,
+        habilidades: [],
+        inventario: {
+          id: "inv1",
+          objetos: [{
+            id: "item-consumible",
+            inventarioId: "inv1",
+            objetoId: itemId,
+            cantidad: initialQuantity,
+            nivelMejora: 0,
+            sufijoId: null,
+            bonificaciones: {},
+          }],
+        },
+      },
+      expedicionActiva: {
+        id: "exp1",
+        tipo: "normal",
+        fase: "combatiendo",
+        dificultad: 1,
+        recompensa: { oro: 0, madera: 0, piedra: 0, metal: 0 },
+        combateActivo: {
+          id: "combat1",
+          version: 0,
+          fase: "activo",
+          ronda: 1,
+          turno: "jugador",
+          jugadorHp: initialHp,
+          jugadorHpMaximo: maxHp,
+          jugadorAtaque: 5,
+          jugadorAtaqueMagico: 1,
+          jugadorDefensa: 2,
+          jugadorDefensaMagica: 0,
+          jugadorVelocidad: 5,
+          jugadorProbCritico: 0,
+          jugadorDanoCritico: 1.5,
+          jugadorNivel: 1,
+          enemigoHp: 100,
+          enemigoHpMaximo: 100,
+          enemigoAtaque: 5,
+          enemigoAtaqueMagico: 1,
+          enemigoDefensa: 2,
+          enemigoDefensaMagica: 0,
+          enemigoVelocidad: 3,
+          enemigoProbCritico: 0,
+          enemigoDanoCritico: 1.5,
+          enemigoNivel: 1,
+          enemigoId: "slime_verde",
+          enemigoNombre: "Slime",
+          cooldowns: {},
+          efectos: [],
+          log: [],
+        },
+      },
+    },
+    item: {
+      id: "item-consumible",
+      inventarioId: "inv1",
+      objetoId: itemId,
+      cantidad: initialQuantity,
+      nivelMejora: 0,
+      sufijoId: null,
+      bonificaciones: {},
+    },
+    combate: {
+      id: "combat1",
+      version: 0,
+      fase: "activo",
+      ronda: 1,
+      turno: "jugador",
+      jugadorHp: initialHp,
+      jugadorHpMaximo: maxHp,
+      jugadorDefensa: 2,
+      enemigoHp: 100,
+      enemigoDefensa: 2,
+      cooldowns: {},
+      efectos: [],
+      log: [],
+    },
+    expediente: { id: "exp1", fase: "combatiendo" },
+  };
+  const clone = (value) => value == null ? value : structuredClone(value);
+  const tx = {
+    personaje: {
+      findUnique: async () => ({
+        id: "p1", nivel: 1, profesionActivaId: "novato",
+        fuerza: 1, agilidad: 1, vitalidad: 1, inteligencia: 1, destreza: 1, suerte: 1,
+        energiaActual: 10, manaActual: 5, equipoEquipado: null,
+      }),
+      updateMany: async () => ({ count: 1 }),
+    },
+    inventarioObjeto: {
+      updateMany: async ({ where, data }) => {
+        if (state.item.id !== where.id || state.item.inventarioId !== where.inventarioId ||
+            state.item.objetoId !== where.objetoId || state.item.cantidad < (where.cantidad?.gte ?? 0)) {
+          return { count: 0 };
+        }
+        applyData(state.item, data);
+        state.user.personaje.inventario.objetos[0].cantidad = state.item.cantidad;
+        return { count: 1 };
+      },
+      deleteMany: async ({ where }) => {
+        if (state.item.id === where.id && state.item.cantidad <= (where.cantidad?.lte ?? -1)) {
+          state.user.personaje.inventario.objetos = [];
+          state.item = null;
+          return { count: 1 };
+        }
+        return { count: 0 };
+      },
+    },
+    combateActivo: {
+      updateMany: async ({ where, data }) => {
+        if (where.id !== state.combate.id || where.version !== state.combate.version) return { count: 0 };
+        applyData(state.combate, data);
+        return { count: 1 };
+      },
+      findUniqueOrThrow: async () => clone(state.combate),
+    },
+    expedicionActiva: { update: async ({ data }) => { applyData(state.expediente, data); return clone(state.expediente); } },
+    progresoClase: { findUnique: async () => null },
+    $queryRaw: async () => [],
+    usuario: {
+      findUnique: async () => clone(state.user),
+      updateMany: async () => ({ count: 1 }),
+    },
+  };
+  const prisma = {
+    usuario: { findUnique: async () => clone(state.user) },
+    combateActivo: { findFirst: async () => null },
+    $transaction: async (work) => {
+      const snapshot = clone(state);
+      try { return await work(tx); }
+      catch (error) { state = snapshot; throw error; }
+    },
+  };
+  const { POST } = loadSource("src/app/api/combate/accion/route.ts", {
+    "next/server": { NextResponse },
+    "@prisma/client": {
+      Prisma: {
+        ...PrismaStub,
+        TransactionIsolationLevel: { Serializable: "Serializable" },
+      },
+    },
+    "@/lib/auth": { getAuthenticatedUser: async () => authenticated ? { id: "u1" } : null },
+    "@/lib/prisma": { prisma },
+    "@/lib/progresion/clases": { CLASES: {}, puedeUsarHabilidadDeClase: () => true },
+    "@/lib/progresion/experiencia": { aplicarExperienciaJob: (p) => p, PUNTOS_ATRIBUTO_POR_NIVEL_BASE: 3 },
+    "@/lib/progresion/estadisticas": { calcularEstadisticasDerivadasRpg: () => ({
+      energiaMaxima: 20, manaMaximo: 10, regeneracionEnergiaPorTurno: 1, regeneracionManaPorTurno: 1,
+    }) },
+    "@/lib/progresion/bonificaciones-equipo": { mapearBonificacionesEquipoRpg: () => ({}) },
+    "@/lib/estadisticasPersonaje": { calcularModificadoresEquipo: () => ({}) },
+    "@/lib/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
+    "@/lib/configuracionJuego": { experienciaParaNivel: () => 100 },
+    "@/lib/enemigos": {
+      obtenerEnemigoPorId: () => ({ id: "slime_verde", nombre: "Slime", botin: 0, difMin: 0 }),
+    },
+    "@/lib/objetos": {
+      obtenerObjetoPorId: (id) => ({
+        id, nombre: id === "pocion" ? "Poción" : "Espada",
+        tipo: id === "pocion" ? "consumible" : "arma", curacion: id === "pocion" ? 30 : undefined,
+      }),
+    },
+    "@/lib/sufijosObjetos": { obtenerNombreObjetoConSufijo: (name) => name },
+    "@/lib/habilidades": { obtenerHabilidadPorId: () => null },
+    "@/lib/progresion/clases": {
+      CLASES: {},
+      puedeUsarHabilidadDeClase: () => true,
+    },
+    "@/lib/expediciones/combate": {
+      calcularBonusDefensaMuralla: () => 0,
+      resolverAtaqueJugador: () => ({ actor: "jugador", tipo: "ataque", animacion: "ofensiva", dano: 5, critico: false, texto: "Atacas." }),
+      resolverAtaqueEnemigo: () => ({ actor: "enemigo", tipo: "ataque", animacion: "ofensiva", dano: 5, critico: false, texto: "Te golpea." }),
+      resolverHabilidadJugador: () => ({ accion: { actor: "jugador", tipo: "habilidad", animacion: "curacion", dano: 0, critico: false, texto: "Habilidad." }, jugadorHp: initialHp, jugadorDefensa: 2 }),
+    },
+    "@/lib/expediciones/asedio": {
+      determinarGanadorAsedio: () => null,
+      determinarPrimerTurnoAsedio: () => "atacante",
+      siguienteTurnoAsedio: () => "defensor",
+      finalizarAsedio: async () => ({}),
+    },
+  });
+  return { POST, getState: () => state };
+}
+
 
 class PrismaClientKnownRequestError extends Error {
   constructor(message, { code }) {
@@ -659,6 +874,30 @@ function makeAbilityEquipConflictRoute(errorCode = "P2002") {
     getTransactionOptions: () => transactionOptions,
   };
 }
+
+test("combate: las pociones curan hasta el máximo y consumen una unidad atómicamente", async () => {
+  const route = makeCombatConsumableRoute({ initialHp: 80, maxHp: 100, initialQuantity: 2 });
+  const response = await route.POST(request({ accion: "usar_objeto", objetoInventarioId: "item-consumible" }));
+  assert.equal(response.status, 200, JSON.stringify(response.body));
+  assert.equal(response.body.accion.curacion, 20);
+  assert.equal(response.body.combate.jugadorHp, 100);
+  assert.equal(route.getState().item.cantidad, 1);
+  assert.equal(route.getState().combate.version, 1);
+});
+
+test("combate: rechaza objeto inexistente, no consumible y salud completa sin gastar inventario", async () => {
+  const inexistente = makeCombatConsumableRoute({ initialHp: 80 });
+  assert.equal((await inexistente.POST(request({ accion: "usar_objeto", objetoInventarioId: "otro" }))).status, 404);
+  assert.equal(inexistente.getState().item.cantidad, 2);
+
+  const noConsumible = makeCombatConsumableRoute({ itemId: "espada_madera", initialHp: 80 });
+  assert.equal((await noConsumible.POST(request({ accion: "usar_objeto", objetoInventarioId: "item-consumible" }))).status, 400);
+  assert.equal(noConsumible.getState().item.cantidad, 2);
+
+  const saludCompleta = makeCombatConsumableRoute({ initialHp: 100, maxHp: 100 });
+  assert.equal((await saludCompleta.POST(request({ accion: "usar_objeto", objetoInventarioId: "item-consumible" }))).status, 400);
+  assert.equal(saludCompleta.getState().item.cantidad, 2);
+});
 
 test("equipamiento y habilidades: rechazan JSON malformado y cuerpos que no son objetos", async () => {
   const paths = [
