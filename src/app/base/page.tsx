@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { CombateActivo, CombatePve, useGameStore } from "@/store/useGameStore";
 import type { ReporteExpedicion as ReporteExpedicionTipo } from "@/lib/tiposJuego";
@@ -656,20 +655,7 @@ export default function BasePage() {
       <PanelCaravanasEntrantes caravanas={caravanasEntrantes} />
 
       <div className="max-w-4xl mx-auto">
-        <div className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-amber-900/60 bg-slate-900/80 p-4">
-          <div>
-            <p className="font-black text-amber-300">Profesiones y maestrías</p>
-            <p className="mt-1 text-xs text-slate-400">
-              Cambia de clase, desbloquea ramas y desarrolla tu estilo de combate.
-            </p>
-          </div>
-          <Link
-            href="/base/profesiones"
-            className="rounded-md border border-amber-800 bg-amber-950/40 px-4 py-2 text-sm font-bold text-amber-200 transition hover:bg-amber-900/50"
-          >
-            ⚔️ Ver profesiones
-          </Link>
-        </div>
+        {/* Profesiones y maestrías están integradas en la Escuela de Combate. */}
 
         {/* 1. PANEL DE MISIONES */}
         {personaje && (

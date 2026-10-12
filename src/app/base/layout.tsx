@@ -11,6 +11,7 @@ import {
   obtenerSpriteHeroe,
   experienciaParaNivel,
 } from "@/lib/configuracionJuego";
+import { CLASES } from "@/lib/progresion/clases";
 
 // Componente reutilizable para los recursos
 const RecursoBadge = ({
@@ -90,10 +91,13 @@ export default function BaseLayout({
   const experienciaPersonaje = personaje?.experiencia || 0;
   const experienciaNivel = experienciaParaNivel(nivelPersonaje);
 
-  const porcentajeExperiencia = Math.min(
-    100,
-    Math.max(0, (experienciaPersonaje / experienciaNivel) * 100)
-  );
+  const porcentajeExperiencia = Math.min(100, Math.max(0, (experienciaPersonaje / experienciaNivel) * 100));
+  const claseActivaId = personaje?.profesionActivaId ?? "novato";
+  const claseActiva = CLASES[claseActivaId] ?? CLASES.novato;
+  const nivelJob = personaje?.nivelJob ?? 1;
+  const experienciaJob = personaje?.experienciaJob ?? 0;
+  const experienciaJobNecesaria = experienciaParaNivel(nivelJob);
+  const porcentajeExperienciaJob = nivelJob >= claseActiva.nivelJobMaximo ? 100 : Math.min(100, Math.max(0, experienciaJob / experienciaJobNecesaria * 100));
 
   if (isLoading || !baseCoords) {
     return (
@@ -148,10 +152,10 @@ export default function BaseLayout({
                 </span>
               </div>
 
-              {/* Barra de nivel y experiencia */}
+              {/* Nivel Base y experiencia Base */}
               <div className="flex items-center gap-2">
-                <span className="block w-7 shrink-0 text-xs font-mono text-stone-400">
-                  LV {nivelPersonaje}
+                <span className="block w-12 shrink-0 text-[10px] font-mono font-bold text-blue-300">
+                  BASE {nivelPersonaje}
                 </span>
                 <div className="h-1.5 w-24 overflow-hidden rounded-full border border-stone-700 bg-stone-950 sm:w-40">
                   <div
@@ -160,7 +164,19 @@ export default function BaseLayout({
                   />
                 </div>
                 <span className="text-xs font-mono text-stone-300">
-                  {experienciaPersonaje}/{experienciaNivel} XP
+                  BASE XP {experienciaPersonaje}/{experienciaNivel}
+                </span>
+              </div>
+              {/* Nivel de clase (Job) y experiencia Job */}
+              <div className="flex items-center gap-2">
+                <span className="block w-12 shrink-0 truncate text-[10px] font-mono font-bold text-amber-300" title={claseActiva.nombre}>
+                  JOB {nivelJob}
+                </span>
+                <div className="h-1.5 w-24 overflow-hidden rounded-full border border-stone-700 bg-stone-950 sm:w-40">
+                  <div className="h-full bg-amber-600 transition-all duration-300" style={{ width: `${porcentajeExperienciaJob}%` }} />
+                </div>
+                <span className="text-[10px] font-mono text-stone-300">
+                  {nivelJob >= claseActiva.nivelJobMaximo ? "Maestría" : `${claseActiva.nombre} · XP ${experienciaJob}/${experienciaJobNecesaria}`}
                 </span>
               </div>
             </div>

@@ -6,6 +6,7 @@ import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import { NIVEL_ESCUELA_POR_RAREZA } from "@/lib/configuracionJuego";
 import type { DefinicionHabilidad, Rareza } from "@/lib/tiposJuego";
 import { useGameStore } from "@/store/useGameStore";
+import PanelProfesiones from "@/components/progresion/PanelProfesiones";
 
 type SlotHabilidad =
   | "activa_1"
@@ -114,6 +115,7 @@ export default function EscuelaCombatePage() {
   const [cargando, setCargando] = useState(true);
   const [procesando, setProcesando] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [vista, setVista] = useState<"habilidades" | "profesiones">("habilidades");
 
   useEffect(() => {
     if (nivelEscuela === 0) {
@@ -283,8 +285,28 @@ export default function EscuelaCombatePage() {
   const obtenerHabilidadEnSlot = (slot: SlotHabilidad) =>
     habilidadesEquipadas.find((habilidad) => habilidad.slot === slot);
 
+  const pestañas = (
+    <nav aria-label="Secciones de la escuela de combate" className="mb-6 flex flex-wrap gap-2">
+      <button type="button" onClick={() => setVista("habilidades")} aria-pressed={vista === "habilidades"} className={vista === "habilidades" ? "rounded-md border border-amber-500 bg-amber-900/40 px-4 py-2 text-sm font-black text-amber-100" : "rounded-md border border-[#5d4229] bg-[#241912] px-4 py-2 text-sm font-black text-[#a99d84]"}>Habilidades</button>
+      <button type="button" onClick={() => setVista("profesiones")} aria-pressed={vista === "profesiones"} className={vista === "profesiones" ? "rounded-md border border-amber-500 bg-amber-900/40 px-4 py-2 text-sm font-black text-amber-100" : "rounded-md border border-[#5d4229] bg-[#241912] px-4 py-2 text-sm font-black text-[#a99d84]"}>Profesiones y maestrías</button>
+    </nav>
+  );
+
   if (nivelEscuela === 0) {
     return null;
+  }
+
+  if (vista === "profesiones") {
+    return (
+      <main className="relative min-h-screen overflow-hidden bg-[#171512] p-4 font-sans text-[#e8dfc8] md:p-8">
+        <div className="relative z-10 mx-auto max-w-6xl animate-in fade-in">
+          <CabeceraEdificio icono="⚔️" nombre="Escuela de Combate" nivel={nivelEscuela} />
+          <p className="-mt-6 mb-8 text-[#a99d84]">{descripcionEdificio}</p>
+          {pestañas}
+          <PanelProfesiones integrado />
+        </div>
+      </main>
+    );
   }
 
   return (
@@ -305,6 +327,7 @@ export default function EscuelaCombatePage() {
         />
 
         <p className="-mt-6 mb-8 text-[#a99d84]">{descripcionEdificio}</p>
+        {pestañas}
 
         <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
           <div className="rounded-md border border-[#5d4229] bg-[#241912] p-4">
