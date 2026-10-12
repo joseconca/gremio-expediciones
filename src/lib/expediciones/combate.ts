@@ -29,7 +29,6 @@ function crearAccion(
 }
 
 const d20 = () => Math.floor(Math.random() * 20) + 1;
-const d6 = () => Math.floor(Math.random() * 6) + 1;
 
 const K_DEFENSA = 20;
 
