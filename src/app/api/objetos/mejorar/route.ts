@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId, calcularCosteMejoraObjeto } from "@/lib/objetos";
+import { obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
 
 
 export async function POST(request: Request) {
@@ -202,7 +203,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       exito: true,
-      mensaje: `Has mejorado ${objeto.nombre} a +${nivelNuevo}.`,
+      mensaje: `Has mejorado ${obtenerNombreObjetoConSufijo(objeto.nombre, objetoInventario.sufijoId)} a +${nivelNuevo}.`,
       oro: resultado.oro,
       nivelMejora: nivelNuevo,
       coste,
