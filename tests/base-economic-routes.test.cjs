@@ -257,6 +257,14 @@ function loadSource(relativePath, dependencies = {}) {
   })(
     (name) => {
       if (Object.hasOwn(dependencies, name)) return dependencies[name];
+      if (name === "@/lib/progresion/atributos-clase") {
+        return {
+          calcularAtributosClase: () => ({
+            fuerza: 1, agilidad: 1, vitalidad: 1,
+            inteligencia: 1, destreza: 1, suerte: 1,
+          }),
+        };
+      }
       if (name === "@/lib/sufijosObjetos") {
         return {
           obtenerNombreObjetoConSufijo: (nombre) => nombre,
