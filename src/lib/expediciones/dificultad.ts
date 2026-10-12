@@ -1,4 +1,5 @@
 import { experienciaParaNivel } from "../configuracionJuego";
+import { experienciaJobParaNivel } from "../progresion/experiencia";
 
 export type ModoDificultad = "facil" | "normal" | "dificil";
 export type IdRangoAmenaza = "I" | "II" | "III" | "IV" | "V";
@@ -99,8 +100,37 @@ export function calcularExperienciaBaseGanada(nivelAmenaza: number, nivelBase: n
   return Math.max(1, Math.floor(base * calcularFactorExperienciaAmenaza(nivelAmenaza, nivelBase) * CONFIGURACION_DIFICULTAD[modo].multiplicadorRecompensa));
 }
 
+/**
+ * XP Job se calcula desde el nivel Job actual, no desde la enorme recompensa
+ * Base. Al nivel actual concede el 75 % de su umbral: normalmente hacen falta
+ * 1-2 victorias por nivel. De ese modo Job 40 ronda 50-60 victorias relevantes
+ * y una profesión nueva no sube de golpe al cambiar desde un Base alto.
+ */
+export function calcularExperienciaJobGanada(
+  nivelJob: number,
+  nivelAmenaza: number,
+  nivelBase: number,
+  modo: ModoDificultad,
+  factorResultado = 1
+): number {
+  const umbralJob = experienciaJobParaNivel(nivelJob);
+  const base = Math.max(1, Math.floor(umbralJob * 0.75));
+  const resultadoSeguro = Number.isFinite(factorResultado)
+    ? Math.max(0, Math.min(1, factorResultado))
+    : 1;
+  return Math.max(
+    0,
+    Math.floor(
+      base *
+        calcularFactorExperienciaAmenaza(nivelAmenaza, nivelBase) *
+        CONFIGURACION_DIFICULTAD[modo].multiplicadorRecompensa *
+        resultadoSeguro
+    )
+  );
+}
+
 export function calcularMultiplicadoresEnemigo(nivelAmenaza: number, dificultadMinima: number, modo: ModoDificultad) {
-  const exceso = Math.max(0, Math.floor(nivelAmenaza) - Math.floor(dificultadMinima));
+  const exceso = Math.max(0, Math.floor(nivelAmenaza) - Math.max(1, Math.floor(dificultadMinima)));
   const factorAmenaza = 1 + exceso * 0.03;
   const configuracion = CONFIGURACION_DIFICULTAD[modo];
   return {
