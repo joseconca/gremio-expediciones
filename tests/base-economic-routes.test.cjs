@@ -473,6 +473,7 @@ function makeInvalidBodyRoute(relativePath) {
     "@/lib/prisma": { prisma: {} },
     "@/lib/objetos": { obtenerObjetoPorId: () => null },
     "@/lib/habilidades": { obtenerHabilidadPorId: () => null },
+    "@/lib/progresion/clases": { puedeUsarHabilidadDeClase: () => true },
     "@/lib/configuracionJuego": { puedeAprenderHabilidad: () => true },
     "@/lib/tiendaHabilidades": { obtenerHabilidadesEnVenta: () => [] },
     "@/lib/enemigos": { obtenerEnemigoPorId: () => null },
@@ -548,6 +549,7 @@ function makeAbilityEquipConflictRoute(errorCode = "P2002") {
         ? { id, nombre: "Golpe de prueba", tipo: "activa" }
         : null,
     },
+    "@/lib/progresion/clases": { puedeUsarHabilidadDeClase: () => true },
   });
 
   return {
