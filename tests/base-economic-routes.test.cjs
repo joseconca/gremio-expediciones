@@ -114,7 +114,6 @@ function makeMarketRoute({ authenticated = true, initialUser = {} } = {}) {
     },
   };
   const getState = () => state;
-  const setState = (next) => { state = next; };
   const prisma = {
     usuario: {
       findUnique: async ({ where }) =>
