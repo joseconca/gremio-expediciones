@@ -44,7 +44,7 @@ Las migraciones de esta iteración añaden el modelo de progreso por profesión,
 
 La migración `20261012180000_reset_personajes_a_novato` adapta los personajes que ya existían al nuevo modelo: conserva exactamente `Personaje.nivel` y `Personaje.experiencia`, cambia la clase heredada a `Novato`, establece `profesionActivaId = "novato"` y reinicia su progreso Job de Novato a nivel 1 con 0 XP y 0 puntos Job. También elimina los progresos Job de otras profesiones para que se desbloqueen desde cero. Los atributos Base y los puntos de atributo no se reinician en esa migración.
 
-La devolución de oro por los objetos del sistema antiguo **no forma parte de esta migración**. Se hará junto con el nuevo inventario/equipamiento, a partir de los objetos que cada personaje posea antes de retirarlos, registrando la compensación como una operación única para evitar pagos duplicados.
+La migración `20261012190000_objetos_instance_system` añade el inventario de instancias, las diez ranuras, los sufijos persistentes y la recompra de la última venta. Además, acredita una compensación única del 30 % del precio de catálogo por las unidades de objetos legacy incluidas en su tabla SQL. Los objetos no se borran ni se desmontan durante la migración. La compensación ocurre al aplicar esa migración y no se repite mediante operaciones normales de la aplicación.
 
 Antes de ejecutar SQL de migración sobre tu base local, haz una copia de seguridad y comprueba cómo se ha administrado el esquema desde el inicio. Esta iteración **no ha ejecutado ninguna migración en tu PostgreSQL local**.
 
