@@ -13,13 +13,13 @@ export interface ResultadoExperienciaJob extends EstadoProgresoJob {
 }
 
 /**
- * Job tiene una curva independiente: 100 + 35 * nivel^1.5 XP por nivel.
- * El coste acumulado de Job 1 a 40 ronda los 145.000 XP, parecido a llegar
+ * Job tiene una curva independiente: 100 + 25 * nivel^1.5 XP por nivel.
+ * El coste acumulado de Job 1 a 40 ronda los 105.000 XP, parecido a llegar
  * a Base 13-14 con la curva Base actual. Esto acelera Job sin regalar Job 40.
  */
 export function experienciaJobParaNivel(nivelJob: number): number {
   const nivel = Number.isFinite(nivelJob) ? Math.max(1, Math.floor(nivelJob)) : 1;
-  return Math.round(100 + 35 * Math.pow(nivel, 1.5));
+  return Math.round(100 + 25 * Math.pow(nivel, 1.5));
 }
 
 export function aplicarExperienciaJob(
