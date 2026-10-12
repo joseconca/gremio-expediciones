@@ -118,7 +118,8 @@ export function calcularModificadoresEquipo(
   if (equipo.arma) {
     const estadisticasArma = calcularEstadisticasObjeto(
       equipo.arma.objeto,
-      equipo.arma.nivelMejora
+      equipo.arma.nivelMejora,
+      equipo.arma.bonificaciones
     );
     if (claseId) {
       const dominio = calcularBonificacionesDominioEquipo(
@@ -136,7 +137,8 @@ export function calcularModificadoresEquipo(
   if (equipo.armadura) {
     const estadisticasArmadura = calcularEstadisticasObjeto(
       equipo.armadura.objeto,
-      equipo.armadura.nivelMejora
+      equipo.armadura.nivelMejora,
+      equipo.armadura.bonificaciones
     );
     if (claseId) {
       const dominio = calcularBonificacionesDominioEquipo(
@@ -154,8 +156,43 @@ export function calcularModificadoresEquipo(
 
   if (equipo.accesorio) {
     modificadores.push(
-      calcularEstadisticasObjeto(equipo.accesorio.objeto, equipo.accesorio.nivelMejora)
+      calcularEstadisticasObjeto(
+        equipo.accesorio.objeto,
+        equipo.accesorio.nivelMejora,
+        equipo.accesorio.bonificaciones
+      )
     );
+  }
+
+  const piezasAdicionales = [
+    equipo.manoSecundaria,
+    equipo.casco,
+    equipo.pantalones,
+    equipo.botas,
+    equipo.guantes,
+    equipo.anillo1,
+    equipo.anillo2,
+  ];
+
+  for (const pieza of piezasAdicionales) {
+    if (!pieza) continue;
+    const estadisticas = calcularEstadisticasObjeto(
+      pieza.objeto,
+      pieza.nivelMejora,
+      pieza.bonificaciones
+    );
+    if (claseId && pieza.objeto.tipo === "armadura") {
+      const dominio = calcularBonificacionesDominioEquipo(
+        claseId,
+        undefined,
+        pieza.objeto.categoriaArmadura
+      );
+      estadisticas.defensa *= dominio.multiplicadorDefensaArmadura;
+      if (estadisticas.defensaMagica) {
+        estadisticas.defensaMagica *= dominio.multiplicadorDefensaArmadura;
+      }
+    }
+    modificadores.push(estadisticas);
   }
 
   return sumarModificadores(...modificadores);
