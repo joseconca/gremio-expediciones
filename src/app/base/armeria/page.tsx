@@ -158,11 +158,11 @@ function obtenerEstadisticasNoCero(
 ) {
   const estadisticas = calcularEstadisticasObjeto(objeto, nivelMejora);
 
-  return ESTADISTICAS.filter(({ clave }) => estadisticas[clave] !== 0).map(
+  return ESTADISTICAS.filter(({ clave }) => (estadisticas[clave] ?? 0) !== 0).map(
     ({ clave, nombre }) => ({
       clave,
       nombre,
-      valor: estadisticas[clave],
+      valor: estadisticas[clave] ?? 0,
     })
   );
 }
