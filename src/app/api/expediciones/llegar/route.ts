@@ -328,6 +328,8 @@ export async function POST() {
 
     const enemigoProbCritico = 0.1;
     const enemigoDanoCritico = 2;
+    const enemigoPrecision = 75;
+    const enemigoEvasion = 0;
     const enemigoNivel = dificultad+personaje.nivel;
 
     const jugadorHpMaximo = estadisticasJugador.total.hpMaximo;
@@ -348,6 +350,8 @@ export async function POST() {
     const jugadorNivel = personaje.nivel;
 
     const jugadorProbCritico = estadisticasJugador.total.probCritico;
+    const jugadorPrecision = estadisticasJugador.total.precision ?? 75;
+    const jugadorEvasion = estadisticasJugador.total.evasion ?? 0;
 
     const jugadorDanoCritico = estadisticasJugador.total.danoCritico;
 
@@ -390,6 +394,8 @@ export async function POST() {
           enemigoVelocidad,
           enemigoProbCritico,
           enemigoDanoCritico,
+          enemigoPrecision,
+          enemigoEvasion,
           enemigoNivel,
 
           jugadorHp,
@@ -402,6 +408,8 @@ export async function POST() {
           jugadorVelocidad,
           jugadorProbCritico,
           jugadorDanoCritico,
+          jugadorPrecision,
+          jugadorEvasion,
           jugadorNivel,
 
           oroGanado: 0,

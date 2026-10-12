@@ -746,6 +746,8 @@ export async function POST(request: Request) {
             jugadorNivel: combate.jugadorNivel,
             jugadorProbCritico: combate.jugadorProbCritico,
             jugadorDanoCritico: combate.jugadorDanoCritico,
+            jugadorPrecision: combate.jugadorPrecision ?? 75,
+            enemigoEvasion: combate.enemigoEvasion ?? 0,
             enemigoDefensa,
             enemigoNombre: combate.enemigoNombre ?? "Enemigo",
           });
@@ -784,6 +786,8 @@ export async function POST(request: Request) {
             jugadorAtaqueMagico: combate.jugadorAtaqueMagico,
             jugadorProbCritico: combate.jugadorProbCritico,
             jugadorDanoCritico: combate.jugadorDanoCritico,
+            jugadorPrecision: combate.jugadorPrecision ?? 75,
+            enemigoEvasion: combate.enemigoEvasion ?? 0,
             jugadorDefensa,
             jugadorNivel: combate.jugadorNivel,
             jugadorHp,
@@ -813,6 +817,8 @@ export async function POST(request: Request) {
       } else {
         accionAnimada = resolverAtaqueEnemigo({
           enemigoAtaque: combate.enemigoAtaque,
+          enemigoPrecision: combate.enemigoPrecision ?? 75,
+          jugadorEvasion: combate.jugadorEvasion ?? 0,
           jugadorDefensa,
           enemigoNombre: combate.enemigoNombre ?? "Enemigo",
         });
@@ -1382,6 +1388,8 @@ export async function POST(request: Request) {
           jugadorNivel: combate.jugadorNivel,
           jugadorProbCritico: combate.jugadorProbCritico,
           jugadorDanoCritico: combate.jugadorDanoCritico,
+          jugadorPrecision: combate.jugadorPrecision ?? 75,
+          enemigoEvasion: combate.enemigoEvasion ?? 0,
           enemigoDefensa:
             combate.enemigoDefensa +
             calcularBonusDefensaMuralla(combate.murallaNivel),
@@ -1448,6 +1456,8 @@ export async function POST(request: Request) {
       if (accion === "atacar") {
         accionAnimada = resolverAtaqueEnemigo({
           enemigoAtaque: combate.enemigoAtaque,
+          enemigoPrecision: combate.enemigoPrecision ?? 75,
+          jugadorEvasion: combate.jugadorEvasion ?? 0,
           jugadorDefensa,
           enemigoNombre: personaje.nombre,
         });
@@ -1468,6 +1478,8 @@ export async function POST(request: Request) {
           jugadorAtaqueMagico: combate.enemigoAtaqueMagico ?? combate.enemigoAtaque,
           jugadorProbCritico: combate.enemigoProbCritico,
           jugadorDanoCritico: combate.enemigoDanoCritico,
+          jugadorPrecision: combate.enemigoPrecision ?? 75,
+          enemigoEvasion: combate.jugadorEvasion ?? 0,
           jugadorDefensa: enemigoDefensa,
           jugadorNivel: combate.enemigoNivel,
           jugadorHp: enemigoHp,

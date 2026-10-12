@@ -243,6 +243,8 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
   const jugadorNivel = personajeAtacante.nivel;
 
   const jugadorProbCritico = estadisticasAtacante.total.probCritico;
+  const jugadorPrecision = estadisticasAtacante.total.precision ?? 75;
+  const jugadorEvasion = estadisticasAtacante.total.evasion ?? 0;
 
   const jugadorDanoCritico = estadisticasAtacante.total.danoCritico;
 
@@ -263,6 +265,8 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
   const enemigoNivel = personajeDefensor.nivel;
 
   const enemigoProbCritico = estadisticasDefensor.total.probCritico;
+  const enemigoPrecision = estadisticasDefensor.total.precision ?? 75;
+  const enemigoEvasion = estadisticasDefensor.total.evasion ?? 0;
 
   const enemigoDanoCritico = estadisticasDefensor.total.danoCritico;
 
@@ -395,6 +399,8 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
         enemigoVelocidad,
         enemigoProbCritico,
         enemigoDanoCritico,
+        enemigoPrecision,
+        enemigoEvasion,
         enemigoNivel,
 
         jugadorHp,
@@ -407,6 +413,8 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
         jugadorVelocidad,
         jugadorProbCritico,
         jugadorDanoCritico,
+        jugadorPrecision,
+        jugadorEvasion,
         jugadorNivel,
 
         ganadorUsuarioId: null,
