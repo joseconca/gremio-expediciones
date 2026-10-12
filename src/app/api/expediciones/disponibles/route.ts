@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { generarMisionesDisponibles } from "@/lib/generadorMisiones";
+import { obtenerRangoMaximoDesbloqueado } from "@/lib/expediciones/dificultad";
 
 export const dynamic = "force-dynamic";
 
@@ -51,7 +52,7 @@ export async function GET() {
         baseCoords: true,
         ultimaMisionElite: true,
         personaje: {
-          select: { nivel: true },
+          select: { nivel: true, rangosAmenazaCompletados: true },
         },
       },
     });
@@ -76,12 +77,13 @@ export async function GET() {
       baseLat: coordenadas.lat,
       baseLng: coordenadas.lng,
       nivelPersonaje: usuario.personaje.nivel,
+      rangosAmenazaCompletados: usuario.personaje.rangosAmenazaCompletados,
       ultimaMisionElite: usuario.ultimaMisionElite,
       ahora: new Date(),
     });
 
     return NextResponse.json(
-      { misiones },
+      { misiones, progresoAmenaza: { rangoMaximo: obtenerRangoMaximoDesbloqueado(usuario.personaje.nivel, usuario.personaje.rangosAmenazaCompletados), rangosCompletados: usuario.personaje.rangosAmenazaCompletados } },
       { headers: { "Cache-Control": "no-store" } }
     );
   } catch (error) {
