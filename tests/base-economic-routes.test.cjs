@@ -211,6 +211,82 @@ function makeObjectRoute({ authenticated = true, initialUser = {}, initialItems 
   return { POST: route.POST, getState };
 }
 
+
+function makeObjectUpgradeRoute({ authenticated = true, initialGold = 500 } = {}) {
+  let state = {
+    user: {
+      id: "u1",
+      oro: initialGold,
+      edificios: { herreria: 1 },
+      personaje: {
+        id: "p1",
+        inventario: { id: "inv1" },
+        equipoEquipado: {
+          armaInventarioId: "item1",
+          armaduraInventarioId: null,
+        },
+      },
+    },
+    items: [{
+      id: "item1",
+      inventarioId: "inv1",
+      objetoId: "espada_prueba",
+      nivelMejora: 0,
+      cantidad: 1,
+    }],
+  };
+  const getState = () => state;
+  const setState = (next) => { state = next; };
+  const tx = {
+    usuario: {
+      updateMany: async ({ where, data }) => {
+        if (!matches(state.user, where)) return { count: 0 };
+        applyData(state.user, data);
+        return { count: 1 };
+      },
+      findUniqueOrThrow: async ({ where }) => {
+        if (state.user?.id !== where.id) throw new Error("Usuario no encontrado");
+        return { oro: state.user.oro };
+      },
+    },
+    inventarioObjeto: {
+      updateMany: async ({ where, data }) => {
+        const item = state.items.find((candidate) => matches(candidate, where));
+        if (!item) return { count: 0 };
+        applyData(item, data);
+        return { count: 1 };
+      },
+    },
+  };
+  const prisma = {
+    usuario: {
+      findUnique: async ({ where }) =>
+        state.user?.id === where.id ? clone(state.user) : null,
+    },
+    inventarioObjeto: {
+      findFirst: async ({ where }) =>
+        clone(state.items.find((item) => matches(item, where)) ?? null),
+    },
+    $transaction: createTransactionRunner(getState, setState, () => tx),
+  };
+  const objeto = {
+    id: "espada_prueba",
+    nombre: "Espada de prueba",
+    tipo: "arma",
+    precio: 100,
+  };
+  const route = loadSource("src/app/api/objetos/mejorar/route.ts", {
+    "next/server": { NextResponse },
+    "@/lib/auth": { getAuthenticatedUser: async () => authenticated ? { id: "u1" } : null },
+    "@/lib/prisma": { prisma },
+    "@/lib/objetos": {
+      obtenerObjetoPorId: (id) => id === objeto.id ? objeto : null,
+      calcularCosteMejoraObjeto: () => 100,
+    },
+  });
+  return { POST: route.POST, getState };
+}
+
 function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
   let state = {
     user: {
@@ -689,4 +765,18 @@ test("reclutamiento concurrente: una segunda petición no sobrescribe al persona
   const successful = results.find((result) => result.status === 200);
   assert.equal(route.getState().user.personaje.nombre, successful.body.personaje.nombre);
   assert.ok(["Aventurero Uno", "Aventurera Dos"].includes(route.getState().user.personaje.nombre));
+});
+
+
+test("herrería: dos mejoras simultáneas de la misma pieza solo cobran y mejoran una vez", async () => {
+  const route = makeObjectUpgradeRoute({ initialGold: 500 });
+  const results = await Promise.all([
+    route.POST(request({ objetoInventarioId: "item1" })),
+    route.POST(request({ objetoInventarioId: "item1" })),
+  ]);
+
+  assert.equal(results.filter((result) => result.status === 200).length, 1);
+  assert.equal(results.filter((result) => result.status === 409).length, 1);
+  assert.equal(route.getState().user.oro, 400);
+  assert.equal(route.getState().items[0].nivelMejora, 1);
 });
