@@ -11,6 +11,7 @@ import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 import { calcularDistanciaKm } from "@/lib/utils";
 import { calcularOroBaseComercio } from "@/lib/expediciones/comercio";
 import { generarMisionesDisponibles } from "@/lib/generadorMisiones";
+import { obtenerDefinicionClase } from "@/lib/progresion/clases";
 import type { DefinicionMision, RecompensaMision } from "@/lib/tiposJuego";
 
 interface Coordenadas {
@@ -284,9 +285,11 @@ export async function POST(request: Request) {
     );
 
     let velocidadKmh = 6 + (estadisticas.total.velocidad - 1) / 15;
-    if (personaje.clase === "Explorador") {
-      velocidadKmh *= 1.25;
-    }
+    const profesionActivaId = personaje.profesionActivaId || "novato";
+    const bonusVelocidadExpedicion =
+      obtenerDefinicionClase(profesionActivaId)?.bonusVelocidadExpedicion ??
+      (profesionActivaId === "novato" && personaje.clase === "Explorador" ? 0.25 : 0);
+    velocidadKmh *= 1 + bonusVelocidadExpedicion;
     velocidadKmh = Math.max(1, velocidadKmh);
 
     const distanciaKm = calcularDistanciaKm(
