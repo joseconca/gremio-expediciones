@@ -544,8 +544,8 @@ export default function BasePage() {
   };
 
   const ejecutarAccionCombate = useCallback(
-    (accion: "atacar" | "usar_habilidad", habilidadId?: string) => {
-      return accionCombate(accion, habilidadId);
+    (accion: "atacar" | "usar_habilidad" | "usar_objeto", payload?: string) => {
+      return accionCombate(accion, payload);
     },
     [accionCombate]
   );
