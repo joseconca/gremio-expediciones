@@ -113,7 +113,7 @@ export async function POST(request: Request) {
         case "PERSONAJE_NO_ENCONTRADO":
           return NextResponse.json({ error: "Necesitas un personaje." }, { status: 400 });
         case "EXPEDICION_ACTIVA":
-          return NextResponse.json({ error: "No puedes distribuir atributos durante una expedición." }, { status: 409 });
+          return NextResponse.json({ error: "No puedes distribuir atributos durante una expedición o combate." }, { status: 409 });
         case "PUNTOS_ATRIBUTO_INSUFICIENTES":
           return NextResponse.json({ error: "No tienes puntos de atributo disponibles." }, { status: 400 });
         case "ATRIBUTO_MAXIMO":
