@@ -88,8 +88,39 @@ export default function ProfesionesPage() {
   }, []);
 
   useEffect(() => {
-    void cargarProfesiones();
-  }, [cargarProfesiones]);
+    let cancelado = false;
+
+    void fetch("/api/profesiones", { cache: "no-store" })
+      .then(async (respuesta) => ({
+        respuesta,
+        resultado: await respuesta.json(),
+      }))
+      .then(({ respuesta, resultado }) => {
+        if (cancelado) return;
+
+        if (!respuesta.ok) {
+          setError(resultado.error || "No se pudieron cargar las profesiones.");
+          return;
+        }
+
+        setDatos(resultado as DatosProfesiones);
+        setError(null);
+      })
+      .catch(() => {
+        if (!cancelado) {
+          setError("No se pudieron cargar las profesiones.");
+        }
+      })
+      .finally(() => {
+        if (!cancelado) {
+          setCargando(false);
+        }
+      });
+
+    return () => {
+      cancelado = true;
+    };
+  }, []);
 
   const ejecutarAccion = async (
     clase: ClaseVista,
