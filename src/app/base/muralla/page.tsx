@@ -25,21 +25,12 @@ export default function MurallaPage() {
   );
   
   // Estado para la hora y evitar errores de hidratación en Next.js
-  const [montado, setMontado] = useState(false);
   const [hora, setHora] = useState(12);
 
   const bonusDefensa = nivelMuralla * 5;
 
-  // Efectos de carga (Hora local y diálogos)
+  // Actualiza el reloj y el diálogo después del primer render del cliente.
   useEffect(() => {
-    setMontado(true);
-    setHora(new Date().getHours());
-    
-    // Opcional: Actualizar la hora cada minuto por si el jugador se queda mucho rato
-    const intervalo = setInterval(() => {
-      setHora(new Date().getHours());
-    }, 60000);
-
     const frases = [
       "Nuestros muros se mantendrán firmes. Ningún saqueador cruzará esta empalizada.",
       "Cada tronco de esta muralla está tallado para quebrar las espadas enemigas.",
@@ -48,9 +39,19 @@ export default function MurallaPage() {
       "Las antorchas están encendidas y los arqueros en posición, mi señor.",
       "¿Has visto las muescas en la madera? Son de la última vez que intentaron robarnos.",
     ];
-    setDialogoCapitan(frases[Math.floor(Math.random() * frases.length)]);
+    const temporizadorInicial = window.setTimeout(() => {
+      setHora(new Date().getHours());
+      setDialogoCapitan(frases[Math.floor(Math.random() * frases.length)]);
+    }, 0);
 
-    return () => clearInterval(intervalo);
+    const intervalo = window.setInterval(() => {
+      setHora(new Date().getHours());
+    }, 60_000);
+
+    return () => {
+      window.clearTimeout(temporizadorInicial);
+      window.clearInterval(intervalo);
+    };
   }, []);
 
   // Determinar la fase del día basada en la hora
@@ -95,9 +96,6 @@ export default function MurallaPage() {
 
   const tema = temasVisuales[faseDia];
   const troncos = Array.from({ length: 24 });
-
-  // Evitar renderizados extraños antes de saber la hora del cliente
-  if (!montado) return null;
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-8 font-sans">
