@@ -19,11 +19,6 @@ const CAMPOS_RANURA = {
 } as const;
 
 type RanuraEquipamiento = keyof typeof CAMPOS_RANURA;
-type EquipoActual = Record<(typeof CAMPOS_RANURA)[RanuraEquipamiento], string | null>;
-
-function esRanura(value: unknown): value is RanuraEquipamiento {
-  return typeof value === "string" && Object.hasOwn(CAMPOS_RANURA, value);
-}
 
 export async function POST(request: Request) {
   try {
@@ -135,8 +130,11 @@ export async function POST(request: Request) {
       }
       return tx.equipoEquipado.upsert({
         where: { personajeId: personaje.id },
-        update,
-        create: { personajeId: personaje.id, [field]: objetoInventario.id },
+        update: update as Prisma.EquipoEquipadoUncheckedUpdateInput,
+        create: {
+          personajeId: personaje.id,
+          [field]: objetoInventario.id,
+        } as Prisma.EquipoEquipadoUncheckedCreateInput,
       });
     }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
 
