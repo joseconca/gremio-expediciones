@@ -141,8 +141,10 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
 
   const equipoAtacante = obtenerEquipoDesdePersonaje(personajeAtacante);
 
-  const modificadoresEquipoAtacante =
-    calcularModificadoresEquipo(equipoAtacante);
+  const modificadoresEquipoAtacante = calcularModificadoresEquipo(
+    equipoAtacante,
+    personajeAtacante.profesionActivaId
+  );
 
   const estadisticasAtacante = calcularEstadisticasPersonaje(
     personajeAtacante,
@@ -158,8 +160,10 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
 
   const equipoDefensor = obtenerEquipoDesdePersonaje(personajeDefensor);
 
-  const modificadoresEquipoDefensor =
-    calcularModificadoresEquipo(equipoDefensor);
+  const modificadoresEquipoDefensor = calcularModificadoresEquipo(
+    equipoDefensor,
+    personajeDefensor.profesionActivaId
+  );
 
   const estadisticasDefensor = calcularEstadisticasPersonaje(
     personajeDefensor,
@@ -213,8 +217,10 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
   const jugadorHp = jugadorHpMaximo;
 
   const jugadorAtaque = estadisticasAtacante.total.ataque;
+  const jugadorAtaqueMagico = estadisticasAtacante.total.ataqueMagico ?? jugadorAtaque;
 
   const jugadorDefensa = estadisticasAtacante.total.defensa;
+  const jugadorDefensaMagica = estadisticasAtacante.total.defensaMagica ?? jugadorDefensa;
 
   const jugadorVelocidad = estadisticasAtacante.total.velocidad;
 
@@ -231,8 +237,10 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
   const enemigoHp = enemigoHpMaximo;
 
   const enemigoAtaque = estadisticasDefensor.total.ataque;
+  const enemigoAtaqueMagico = estadisticasDefensor.total.ataqueMagico ?? enemigoAtaque;
 
   const enemigoDefensa = estadisticasDefensor.total.defensa;
+  const enemigoDefensaMagica = estadisticasDefensor.total.defensaMagica ?? enemigoDefensa;
 
   const enemigoVelocidad = estadisticasDefensor.total.velocidad;
 
@@ -365,7 +373,9 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
         enemigoHpMaximo,
 
         enemigoAtaque,
+        enemigoAtaqueMagico,
         enemigoDefensa,
+        enemigoDefensaMagica,
         enemigoVelocidad,
         enemigoProbCritico,
         enemigoDanoCritico,
@@ -375,7 +385,9 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
         jugadorHpMaximo,
 
         jugadorAtaque,
+        jugadorAtaqueMagico,
         jugadorDefensa,
+        jugadorDefensaMagica,
         jugadorVelocidad,
         jugadorProbCritico,
         jugadorDanoCritico,
