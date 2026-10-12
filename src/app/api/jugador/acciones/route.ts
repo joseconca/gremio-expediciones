@@ -153,19 +153,13 @@ export async function POST(request: Request) {
       const usuario = await prisma.usuario.findUnique({
         where: { id: usuarioSesion.id },
         include: {
-          personaje: {
-            include: {
-              habilidades: true,
-            },
-          },
+          personaje: { include: { habilidades: true } },
           expedicionActiva: true,
         },
       });
+
       if (!usuario?.personaje) {
-        return NextResponse.json(
-          { error: "Necesitas un personaje." },
-          { status: 400 }
-        );
+        return NextResponse.json({ error: "Necesitas un personaje." }, { status: 400 });
       }
       if (usuario.expedicionActiva || usuario.personaje.estado === "de_viaje") {
         return NextResponse.json(
@@ -175,12 +169,10 @@ export async function POST(request: Request) {
       }
 
       const personaje = await sincronizarRegeneracion(usuario.personaje);
-
       const estadisticas = calcularEstadisticasPersonaje(
         personaje,
         personaje.habilidades?.map((habilidad) => habilidad.habilidadId) ?? []
       );
-
       const hpMaximo = estadisticas.total.hpMaximo;
 
       if (personaje.hpActual >= hpMaximo) {
@@ -189,6 +181,7 @@ export async function POST(request: Request) {
           { status: 400 }
         );
       }
+
       const edificios = usuario.edificios as Record<string, unknown> | null;
       const nivelTaberna =
         typeof edificios?.taberna === "number" ? edificios.taberna : 1;
@@ -196,77 +189,80 @@ export async function POST(request: Request) {
       const hpFaltante = hpMaximo - personaje.hpActual;
       const coste = Math.min(usuario.oro, Math.ceil(hpFaltante / curaPorOro));
       const hpCurado = Math.min(hpFaltante, Math.floor(coste * curaPorOro));
-      if (coste <= 0 || hpCurado <= 0)
+
+      if (coste <= 0 || hpCurado <= 0) {
         return NextResponse.json(
           { error: "No tienes oro suficiente." },
           { status: 400 }
         );
+      }
+
       const actualizado = await prisma.$transaction(async (tx) => {
-        await tx.personaje.update({
+        const expedicion = await tx.expedicionActiva.findUnique({
           where: { usuarioId: usuario.id },
-          data: {
-            hpActual: personaje.hpActual + hpCurado,
-            estado: "ocioso",
-          },
+          select: { id: true },
         });
-        return tx.usuario.update({
-          where: { id: usuario.id },
+        if (expedicion) throw new Error("EXPEDICION_ACTIVA");
+
+        const personajeActualizado = await tx.personaje.updateMany({
+          where: {
+            usuarioId: usuario.id,
+            hpActual: personaje.hpActual,
+            estado: { not: "de_viaje" },
+          },
+          data: { hpActual: { increment: hpCurado }, estado: "ocioso" },
+        });
+        if (personajeActualizado.count !== 1) {
+          throw new Error("PERSONAJE_CAMBIO");
+        }
+
+        const oroActualizado = await tx.usuario.updateMany({
+          where: { id: usuario.id, oro: { gte: coste } },
           data: { oro: { decrement: coste } },
+        });
+        if (oroActualizado.count !== 1) throw new Error("ORO_INSUFICIENTE");
+
+        return tx.usuario.findUniqueOrThrow({
+          where: { id: usuario.id },
           include: includeGameData,
         });
       });
+
       return NextResponse.json(respuestaUsuario(actualizado));
     }
 
     if (accion === "mejorarAtributo") {
       const atributoValue: unknown = body.atributo;
-
       if (
         typeof atributoValue !== "string" ||
-        !(atributoValue in CONFIGURACION_ATRIBUTOS)
+        !Object.prototype.hasOwnProperty.call(CONFIGURACION_ATRIBUTOS, atributoValue)
       ) {
-        return NextResponse.json(
-          { error: "Atributo inválido." },
-          { status: 400 }
-        );
+        return NextResponse.json({ error: "Atributo inválido." }, { status: 400 });
       }
 
       const atributo = atributoValue as IdAtributo;
-
       const usuario = await prisma.usuario.findUnique({
         where: { id: usuarioSesion.id },
         include: { personaje: true },
       });
-
       if (!usuario?.personaje) {
-        return NextResponse.json(
-          { error: "Necesitas un personaje." },
-          { status: 400 }
-        );
+        return NextResponse.json({ error: "Necesitas un personaje." }, { status: 400 });
       }
 
       const configuracionAtributo = CONFIGURACION_ATRIBUTOS[atributo];
-
       const campoMejora = configuracionAtributo.campo;
       const valorActual = usuario.personaje[campoMejora];
-
       if (typeof valorActual !== "number") {
-        return NextResponse.json(
-          { error: "Atributo inválido." },
-          { status: 400 }
-        );
+        return NextResponse.json({ error: "Atributo inválido." }, { status: 400 });
       }
 
       const edificios = usuario.edificios as Record<string, unknown> | null;
-
       const nivelEdificioValue = edificios?.[configuracionAtributo.edificio];
-
       const nivelEdificio =
         typeof nivelEdificioValue === "number" ? nivelEdificioValue : 0;
-
       const maximo = nivelEdificio * configuracionAtributo.limitePorNivel;
 
-      if (nivelEdificio === 0 || valorActual >= maximo) {
+      if (nivelEdificio <= 0 || valorActual >= maximo) {
         return NextResponse.json(
           { error: "El atributo ya alcanzó el límite actual." },
           { status: 400 }
@@ -274,31 +270,30 @@ export async function POST(request: Request) {
       }
 
       const coste = calcularCosteAtributo(atributo, valorActual);
-
       if (usuario.oro < coste) {
-        return NextResponse.json(
-          { error: "No tienes oro suficiente." },
-          { status: 400 }
-        );
+        return NextResponse.json({ error: "No tienes oro suficiente." }, { status: 400 });
       }
 
       const actualizado = await prisma.$transaction(async (tx) => {
-        await tx.personaje.update({
-          where: { usuarioId: usuario.id },
-          data: {
-            [campoMejora]: {
-              increment: 1,
-            },
+        // El valor previo evita que dos peticiones simultáneas compren el mismo
+        // incremento y que se supere el límite calculado desde un estado obsoleto.
+        const atributoActualizado = await tx.personaje.updateMany({
+          where: {
+            usuarioId: usuario.id,
+            [campoMejora]: valorActual,
           },
+          data: { [campoMejora]: { increment: 1 } },
         });
+        if (atributoActualizado.count !== 1) throw new Error("ATRIBUTO_MODIFICADO");
 
-        return tx.usuario.update({
+        const oroActualizado = await tx.usuario.updateMany({
+          where: { id: usuario.id, oro: { gte: coste } },
+          data: { oro: { decrement: coste } },
+        });
+        if (oroActualizado.count !== 1) throw new Error("ORO_INSUFICIENTE");
+
+        return tx.usuario.findUniqueOrThrow({
           where: { id: usuario.id },
-          data: {
-            oro: {
-              decrement: coste,
-            },
-          },
           include: includeGameData,
         });
       });
@@ -308,104 +303,86 @@ export async function POST(request: Request) {
 
     if (accion === "mejorarEdificio") {
       const idEdificioValue: unknown = body.idEdificio;
-
       if (
         typeof idEdificioValue !== "string" ||
-        !(idEdificioValue in CONFIGURACION_EDIFICIOS)
+        !Object.prototype.hasOwnProperty.call(CONFIGURACION_EDIFICIOS, idEdificioValue)
       ) {
-        return NextResponse.json(
-          { error: "Edificio inválido." },
-          { status: 400 }
-        );
+        return NextResponse.json({ error: "Edificio inválido." }, { status: 400 });
       }
 
       const idEdificio = idEdificioValue as IdEdificio;
       const configuracion = CONFIGURACION_EDIFICIOS[idEdificio];
 
-      const usuario = await prisma.usuario.findUnique({
-        where: { id: usuarioSesion.id },
-        include: includeGameData,
-      });
+      // La lectura, validación y actualización del JSON de edificios ocurren en
+      // una transacción serializable para evitar sobrescribir mejoras concurrentes.
+      const actualizado = await prisma.$transaction(async (tx) => {
+        const usuario = await tx.usuario.findUnique({
+          where: { id: usuarioSesion.id },
+          include: includeGameData,
+        });
+        if (!usuario) throw new Error("USUARIO_NO_ENCONTRADO");
 
-      if (!usuario) {
-        return NextResponse.json(
-          { error: "Usuario no encontrado." },
-          { status: 404 }
-        );
-      }
+        const edificios =
+          usuario.edificios &&
+          typeof usuario.edificios === "object" &&
+          !Array.isArray(usuario.edificios)
+            ? (usuario.edificios as Record<string, unknown>)
+            : {};
 
-      const edificios = usuario.edificios as
-        | Record<string, unknown>
-        | undefined;
+        const nivel =
+          typeof edificios[idEdificio] === "number" ? edificios[idEdificio] : 0;
+        if (nivel >= configuracion.nivelMax) throw new Error("EDIFICIO_NIVEL_MAXIMO");
 
-      const nivel =
-        typeof edificios?.[idEdificio] === "number" ? edificios[idEdificio] : 0;
-
-      if (nivel >= configuracion.nivelMax) {
-        return NextResponse.json(
-          { error: "El edificio ya está al nivel máximo." },
-          { status: 400 }
-        );
-      }
-
-      const requisito = REQUISITOS_EDIFICIOS[idEdificio];
-
-      if (requisito) {
-        const nivelRequisitoValue = edificios?.[requisito.edificio];
-
-        const nivelRequisito =
-          typeof nivelRequisitoValue === "number" ? nivelRequisitoValue : 0;
-
-        if (nivelRequisito < requisito.nivel) {
-          const nombreEdificioRequisito =
-            CONFIGURACION_EDIFICIOS[requisito.edificio].nombre;
-
-          return NextResponse.json(
-            {
-              error: `Necesitas ${nombreEdificioRequisito} nivel ${requisito.nivel}.`,
-            },
-            { status: 400 }
-          );
+        const requisito = REQUISITOS_EDIFICIOS[idEdificio];
+        if (requisito) {
+          const nivelRequisitoValue = edificios[requisito.edificio];
+          const nivelRequisito =
+            typeof nivelRequisitoValue === "number" ? nivelRequisitoValue : 0;
+          if (nivelRequisito < requisito.nivel) {
+            throw new Error(
+              `REQUISITO_EDIFICIO:${CONFIGURACION_EDIFICIOS[requisito.edificio].nombre}:${requisito.nivel}`
+            );
+          }
         }
-      }
 
-      const coste = calcularCosteEdificio(idEdificio, nivel);
+        const coste = calcularCosteEdificio(idEdificio, nivel);
+        if (
+          usuario.oro < coste.oro ||
+          usuario.madera < coste.madera ||
+          usuario.piedra < coste.piedra ||
+          usuario.metal < coste.metal
+        ) {
+          throw new Error("RECURSOS_INSUFICIENTES");
+        }
 
-      if (
-        usuario.oro < coste.oro ||
-        usuario.madera < coste.madera ||
-        usuario.piedra < coste.piedra
-      ) {
-        return NextResponse.json(
-          { error: "No tienes recursos suficientes." },
-          { status: 400 }
-        );
-      }
+        const edificiosActualizados: Prisma.InputJsonObject = {
+          ...(edificios as Prisma.InputJsonObject),
+          [idEdificio]: nivel + 1,
+        };
 
-      const edificiosActualizados: Prisma.InputJsonObject = {
-        ...(edificios as Prisma.InputJsonObject | undefined),
-        [idEdificio]: nivel + 1,
-      };
+        const debitado = await tx.usuario.updateMany({
+          where: {
+            id: usuario.id,
+            oro: { gte: coste.oro },
+            madera: { gte: coste.madera },
+            piedra: { gte: coste.piedra },
+            metal: { gte: coste.metal },
+          },
+          data: {
+            oro: { decrement: coste.oro },
+            madera: { decrement: coste.madera },
+            piedra: { decrement: coste.piedra },
+            metal: { decrement: coste.metal },
+            edificios: edificiosActualizados,
+          },
+        });
+        if (debitado.count !== 1) throw new Error("RECURSOS_CAMBIARON");
 
-      const actualizado = await prisma.usuario.update({
-        where: { id: usuario.id },
-        data: {
-          oro: {
-            decrement: coste.oro,
-          },
-          madera: {
-            decrement: coste.madera,
-          },
-          piedra: {
-            decrement: coste.piedra,
-          },
-          metal: {
-            decrement: coste.metal,
-          },
-          edificios: edificiosActualizados,
-        },
-        include: includeGameData,
-      });
+        return tx.usuario.findUniqueOrThrow({
+          where: { id: usuario.id },
+          include: includeGameData,
+        });
+      }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
 
       return NextResponse.json(respuestaUsuario(actualizado));
     }
@@ -415,6 +392,49 @@ export async function POST(request: Request) {
       { status: 400 }
     );
   } catch (error) {
+    if (error instanceof Error) {
+      if (error.message === "ORO_INSUFICIENTE") {
+        return NextResponse.json({ error: "No tienes oro suficiente." }, { status: 400 });
+      }
+      if (error.message === "PERSONAJE_CAMBIO" || error.message === "ATRIBUTO_MODIFICADO") {
+        return NextResponse.json(
+          { error: "El estado del personaje ha cambiado. Actualiza el juego e inténtalo de nuevo." },
+          { status: 409 }
+        );
+      }
+      if (error.message === "EXPEDICION_ACTIVA") {
+        return NextResponse.json(
+          { error: "No puedes realizar esta acción mientras tienes una expedición activa." },
+          { status: 409 }
+        );
+      }
+      if (error.message === "USUARIO_NO_ENCONTRADO") {
+        return NextResponse.json({ error: "Usuario no encontrado." }, { status: 404 });
+      }
+      if (error.message === "EDIFICIO_NIVEL_MAXIMO") {
+        return NextResponse.json({ error: "El edificio ya está al nivel máximo." }, { status: 400 });
+      }
+      if (error.message === "RECURSOS_INSUFICIENTES" || error.message === "RECURSOS_CAMBIARON") {
+        return NextResponse.json({ error: "No tienes recursos suficientes o han cambiado." }, { status: 409 });
+      }
+      if (error.message.startsWith("REQUISITO_EDIFICIO:")) {
+        const [, nombre, nivel] = error.message.split(":");
+        return NextResponse.json(
+          { error: `Necesitas ${nombre} nivel ${nivel}.` },
+          { status: 400 }
+        );
+      }
+    }
+    if (
+      error instanceof Prisma.PrismaClientKnownRequestError &&
+      error.code === "P2034"
+    ) {
+      return NextResponse.json(
+        { error: "Otra acción ha actualizado tu base al mismo tiempo. Actualiza e inténtalo de nuevo." },
+        { status: 409 }
+      );
+    }
+
     console.error("Error en acción de jugador:", error);
     return NextResponse.json(
       { error: "No se pudo completar la acción." },
