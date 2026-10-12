@@ -71,6 +71,7 @@ export async function POST(request: Request) {
       );
       const sufijoId = existente.sufijoId ?? null;
       const snapshot = {
+        instanciaId: existente.id,
         objetoId: existente.objetoId,
         cantidad: existente.cantidad,
         nivelMejora: existente.nivelMejora,
