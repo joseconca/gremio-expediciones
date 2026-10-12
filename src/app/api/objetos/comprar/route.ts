@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
-import { generarSufijoObjeto, obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
+import { obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
 import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
 import {
   puedeComprarObjeto,
@@ -110,7 +110,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "No tienes suficiente oro." }, { status: 400 });
     }
 
-    const sufijo = generarSufijoObjeto(objeto, false);
+    // La tienda vende la definición normal. Los sufijos se generan al obtener botín,
+    // no al comprar copias, para evitar rerollear sufijos pagando oro.
     const resultado = await prisma.$transaction(async (tx) => {
       const espaciosOcupados = await tx.inventarioObjeto.count({
         where: { inventarioId },
@@ -141,8 +142,8 @@ export async function POST(request: Request) {
           objetoId,
           cantidad: 1,
           nivelMejora: 0,
-          sufijoId: sufijo.sufijoId,
-          bonificaciones: sufijo.bonificaciones,
+          sufijoId: null,
+          bonificaciones: {},
         },
       });
 
@@ -159,7 +160,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       exito: true,
-      mensaje: `Has comprado ${obtenerNombreObjetoConSufijo(objeto.nombre, sufijo.sufijoId)}.`,
+      mensaje: `Has comprado ${obtenerNombreObjetoConSufijo(objeto.nombre, null)}.`,
       oro: resultado.usuario.oro,
       objeto: {
         id: resultado.objetoInventario.id,
@@ -168,7 +169,7 @@ export async function POST(request: Request) {
         nivelMejora: resultado.objetoInventario.nivelMejora,
         sufijoId: resultado.objetoInventario.sufijoId,
         bonificaciones: resultado.objetoInventario.bonificaciones,
-        datos: { ...objeto, nombre: obtenerNombreObjetoConSufijo(objeto.nombre, sufijo.sufijoId) },
+        datos: { ...objeto, nombre: obtenerNombreObjetoConSufijo(objeto.nombre, null) },
       },
     });
   } catch (error) {
