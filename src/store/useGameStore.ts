@@ -163,6 +163,14 @@ export interface Personaje {
   capacidadCarruaje: number;
   probCritico: number;
   danoCritico: number;
+  ataqueMagico: number;
+  defensaMagica: number;
+  precision: number;
+  evasion: number;
+  energiaMaxima: number;
+  manaMaximo: number;
+  regeneracionEnergiaPorTurno: number;
+  regeneracionManaPorTurno: number;
 }
 
 export interface DatosReclutamiento {
@@ -530,8 +538,14 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     profesionActivaId,
     sexo: datos.sexo === "chica" ? "chica" : "chico",
     ...atributos,
-    energiaActual: typeof datos.energiaActual === "number" ? datos.energiaActual : 20,
-    manaActual: typeof datos.manaActual === "number" ? datos.manaActual : 10,
+    energiaActual: Math.min(
+      typeof datos.energiaActual === "number" ? datos.energiaActual : (estadisticas.total.energiaMaxima ?? 20),
+      estadisticas.total.energiaMaxima ?? 20
+    ),
+    manaActual: Math.min(
+      typeof datos.manaActual === "number" ? datos.manaActual : (estadisticas.total.manaMaximo ?? 10),
+      estadisticas.total.manaMaximo ?? 10
+    ),
     puntosAtributoDisponibles:
       typeof datos.puntosAtributoDisponibles === "number" ? datos.puntosAtributoDisponibles : 0,
     nivelJob: typeof progresoActivo?.nivelJob === "number" ? progresoActivo.nivelJob : 1,
@@ -552,6 +566,14 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     capacidadCarruaje: estadisticas.total.capacidadCarruaje,
     probCritico: estadisticas.total.probCritico,
     danoCritico: estadisticas.total.danoCritico,
+    ataqueMagico: estadisticas.total.ataqueMagico ?? 1,
+    defensaMagica: estadisticas.total.defensaMagica ?? 0,
+    precision: estadisticas.total.precision ?? 75,
+    evasion: estadisticas.total.evasion ?? 0,
+    energiaMaxima: estadisticas.total.energiaMaxima ?? 20,
+    manaMaximo: estadisticas.total.manaMaximo ?? 10,
+    regeneracionEnergiaPorTurno: estadisticas.total.regeneracionEnergiaPorTurno ?? 0,
+    regeneracionManaPorTurno: estadisticas.total.regeneracionManaPorTurno ?? 0,
     velocidadMejoras:
       typeof datos.velocidadMejoras === "number" ? datos.velocidadMejoras : 0,
     capacidadCarruajeMejoras:
