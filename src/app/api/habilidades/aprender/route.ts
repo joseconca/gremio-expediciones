@@ -14,8 +14,26 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Sesión requerida." }, { status: 401 });
     }
 
-    const body = await request.json();
-    const habilidadId = body.habilidadId;
+    let bodyJson: unknown;
+
+    try {
+      bodyJson = await request.json();
+    } catch {
+      return NextResponse.json(
+        { error: "El cuerpo de la petición no contiene JSON válido." },
+        { status: 400 }
+      );
+    }
+
+    if (!bodyJson || typeof bodyJson !== "object" || Array.isArray(bodyJson)) {
+      return NextResponse.json(
+        { error: "El cuerpo de la petición no es válido." },
+        { status: 400 }
+      );
+    }
+
+    const body = bodyJson as Record<string, unknown>;
+    const habilidadId = typeof body.habilidadId === "string" ? body.habilidadId.trim() : body.habilidadId;
 
     if (typeof habilidadId !== "string" || habilidadId.trim() === "") {
       return NextResponse.json(
@@ -188,6 +206,16 @@ export async function POST(request: Request) {
     ) {
       return NextResponse.json(
         { error: "Ya has aprendido esta habilidad." },
+        { status: 409 }
+      );
+    }
+
+    if (
+      error instanceof Prisma.PrismaClientKnownRequestError &&
+      error.code === "P2034"
+    ) {
+      return NextResponse.json(
+        { error: "La operación ha entrado en conflicto con otro cambio. Inténtalo de nuevo." },
         { status: 409 }
       );
     }
