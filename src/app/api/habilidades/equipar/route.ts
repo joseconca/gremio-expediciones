@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
@@ -23,7 +24,25 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Sesión requerida." }, { status: 401 });
     }
 
-    const body = await request.json();
+    let bodyJson: unknown;
+
+    try {
+      bodyJson = await request.json();
+    } catch {
+      return NextResponse.json(
+        { error: "El cuerpo de la petición no contiene JSON válido." },
+        { status: 400 }
+      );
+    }
+
+    if (!bodyJson || typeof bodyJson !== "object" || Array.isArray(bodyJson)) {
+      return NextResponse.json(
+        { error: "El cuerpo de la petición no es válido." },
+        { status: 400 }
+      );
+    }
+
+    const body = bodyJson as Record<string, unknown>;
 
     const habilidadId = body.habilidadId;
     const slot = body.slot;
@@ -121,6 +140,8 @@ export async function POST(request: Request) {
       });
 
       return actualizada;
+    }, {
+      isolationLevel: Prisma.TransactionIsolationLevel.Serializable,
     });
 
     return NextResponse.json({
@@ -148,6 +169,16 @@ export async function POST(request: Request) {
             { status: 403 }
           );
       }
+    }
+
+    if (
+      error instanceof Prisma.PrismaClientKnownRequestError &&
+      ["P2002", "P2025", "P2034"].includes(error.code)
+    ) {
+      return NextResponse.json(
+        { error: "Ese slot ha cambiado durante la operación. Actualiza las habilidades e inténtalo de nuevo." },
+        { status: 409 }
+      );
     }
 
     console.error("Error al equipar habilidad:", error);
