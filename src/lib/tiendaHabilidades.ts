@@ -1,5 +1,5 @@
 import type { DefinicionHabilidad } from "./tiposJuego";
-import { HABILIDADES } from "./habilidades";
+import { HABILIDADES, obtenerHabilidadesDisponiblesParaClase } from "./habilidades";
 import { randomSeeded } from "./utils";
 
 function obtenerDiaActual(): string {
@@ -12,8 +12,13 @@ function obtenerSeedDelDia(dia: string): number {
   );
 }
 
-export function obtenerHabilidadesEnVenta(): DefinicionHabilidad[] {
-  const disponibles = HABILIDADES.filter(
+export function obtenerHabilidadesEnVenta(
+  claseActualId?: string
+): DefinicionHabilidad[] {
+  const catalogo = claseActualId
+    ? obtenerHabilidadesDisponiblesParaClase(claseActualId)
+    : HABILIDADES;
+  const disponibles = catalogo.filter(
     (habilidad) => habilidad.rareza !== "legendario"
   );
 
