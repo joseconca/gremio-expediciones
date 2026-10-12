@@ -7,6 +7,7 @@ import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/l
 import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
 
 interface VentaGuardada {
+  instanciaId: string;
   objetoId: string;
   cantidad: number;
   nivelMejora: number;
@@ -21,10 +22,12 @@ interface VentaGuardada {
 function leerUltimaVenta(value: unknown): VentaGuardada | null {
   if (!value || typeof value !== "object" || Array.isArray(value)) return null;
   const v = value as Record<string, unknown>;
-  if (typeof v.objetoId !== "string" ||
+  if (typeof v.instanciaId !== "string" ||
+      typeof v.objetoId !== "string" ||
       typeof v.precioRecompra !== "number" || !Number.isFinite(v.precioRecompra) ||
       typeof v.cantidad !== "number" || typeof v.nivelMejora !== "number") return null;
   return {
+    instanciaId: v.instanciaId,
     objetoId: v.objetoId,
     cantidad: Math.max(1, Math.trunc(v.cantidad)),
     nivelMejora: Math.max(0, Math.trunc(v.nivelMejora)),
@@ -62,7 +65,7 @@ export async function POST() {
         select: { ultimaVenta: true },
       });
       const ventaActual = leerUltimaVenta(inventarioActual?.ultimaVenta);
-      if (!ventaActual || ventaActual.vendidoEn !== venta.vendidoEn) {
+      if (!ventaActual || ventaActual.instanciaId !== venta.instanciaId || ventaActual.vendidoEn !== venta.vendidoEn) {
         throw new Error("VENTA_MODIFICADA");
       }
 
@@ -79,6 +82,7 @@ export async function POST() {
 
       const item = await tx.inventarioObjeto.create({
         data: {
+          id: ventaActual.instanciaId,
           inventarioId: personaje.inventario!.id,
           objetoId: ventaActual.objetoId,
           cantidad: ventaActual.cantidad,
