@@ -21,7 +21,7 @@ El personaje puede llevar diez piezas:
 9. Anillo 1.
 10. Anillo 2.
 
-Las armas a dos manos bloquean la mano secundaria. El servidor valida la compatibilidad; un objeto equipado no puede venderse. Al mover un objeto de ranura, se limpia su ubicación anterior y no queda duplicado en dos slots.
+Las armas a dos manos bloquean la mano secundaria. El servidor valida la compatibilidad; un objeto equipado no puede venderse. Al mover un objeto de ranura, se limpia su ubicación anterior y no queda duplicado en dos slots. El equipo no se puede equipar, desequipar ni mejorar mientras el personaje está de viaje o combatiendo; el servidor vuelve a comprobar ese estado dentro de la transacción para evitar cambios concurrentes con el inicio de una expedición.
 
 ## Sufijos y rareza
 
