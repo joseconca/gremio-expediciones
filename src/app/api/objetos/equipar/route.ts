@@ -20,6 +20,10 @@ const CAMPOS_RANURA = {
 
 type RanuraEquipamiento = keyof typeof CAMPOS_RANURA;
 
+function personajeOcupado(estado: string): boolean {
+  return estado === "de_viaje" || estado === "combatiendo";
+}
+
 export async function POST(request: Request) {
   try {
     const usuarioSesion = await getAuthenticatedUser();
@@ -46,6 +50,12 @@ export async function POST(request: Request) {
     }
     if (!personaje.inventario) {
       return NextResponse.json({ error: "El personaje no tiene inventario." }, { status: 409 });
+    }
+    if (personajeOcupado(personaje.estado)) {
+      return NextResponse.json(
+        { error: "No puedes cambiar el equipo durante una expedición o un combate." },
+        { status: 409 }
+      );
     }
 
     const objetoInventario = await prisma.inventarioObjeto.findFirst({
@@ -117,6 +127,17 @@ export async function POST(request: Request) {
 
     const field = CAMPOS_RANURA[ranura];
     const resultado = await prisma.$transaction(async (tx) => {
+      // El estado se comprueba también dentro de la transacción para evitar
+      // cambiar el equipo en una carrera con el inicio de una expedición.
+      const personajeActual = await tx.personaje.findUnique({
+        where: { id: personaje.id },
+        select: { estado: true },
+      });
+      if (!personajeActual) throw new Error("PERSONAJE_NO_ENCONTRADO");
+      if (personajeOcupado(personajeActual.estado)) {
+        throw new Error("PERSONAJE_OCUPADO");
+      }
+
       const actual = await tx.equipoEquipado.findUnique({
         where: { personajeId: personaje.id },
       });
@@ -164,6 +185,15 @@ export async function POST(request: Request) {
       equipo: resultado,
     });
   } catch (error) {
+    if (error instanceof Error && error.message === "PERSONAJE_OCUPADO") {
+      return NextResponse.json(
+        { error: "No puedes cambiar el equipo durante una expedición o un combate." },
+        { status: 409 }
+      );
+    }
+    if (error instanceof Error && error.message === "PERSONAJE_NO_ENCONTRADO") {
+      return NextResponse.json({ error: "No se encontró el personaje." }, { status: 404 });
+    }
     if (error instanceof Error && error.message === "ARMA_DOS_MANOS_OCUPADA") {
       return NextResponse.json({
         error: "Esta arma requiere las dos manos. Desequipa primero el objeto de la mano secundaria.",
