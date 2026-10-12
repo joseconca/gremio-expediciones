@@ -275,6 +275,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     rareza: "comun",
     precio: 450,
     defensaBase: 2,
+    defensaPorMejora: 0.5,
   },
   {
     id: "pantalones_cuero",
@@ -286,6 +287,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     rareza: "comun",
     precio: 500,
     defensaBase: 2,
+    defensaPorMejora: 0.5,
   },
   {
     id: "botas_cuero",
@@ -298,6 +300,8 @@ export const OBJETOS: DefinicionObjeto[] = [
     precio: 400,
     defensaBase: 1,
     velocidadBase: 1,
+    defensaPorMejora: 0.25,
+    velocidadPorMejora: 0.1,
   },
   {
     id: "guantes_cuero",
@@ -309,6 +313,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     rareza: "comun",
     precio: 350,
     defensaBase: 1,
+    defensaPorMejora: 0.25,
   },
   {
     id: "collar_cobre",
