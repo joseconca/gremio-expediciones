@@ -298,9 +298,17 @@ export async function POST() {
     const enemigoAtaque = Math.floor(
       monstruoBase.ataque * multiplicadorEscalado * (1 - variacionStats())
     );
+    const enemigoAtaqueMagico = Math.floor(
+      (monstruoBase.ataqueMagico ?? monstruoBase.ataque) *
+        multiplicadorEscalado * (1 - variacionStats())
+    );
 
     const enemigoDefensa = Math.floor(
       monstruoBase.defensa * multiplicadorEscalado * (1 - variacionStats())
+    );
+    const enemigoDefensaMagica = Math.floor(
+      (monstruoBase.defensaMagica ?? monstruoBase.defensa) *
+        multiplicadorEscalado * (1 - variacionStats())
     );
 
     const enemigoVelocidad = Math.floor(
@@ -322,8 +330,10 @@ export async function POST() {
     );
 
     const jugadorAtaque = estadisticasJugador.total.ataque;
+    const jugadorAtaqueMagico = estadisticasJugador.total.ataqueMagico ?? jugadorAtaque;
 
     const jugadorDefensa = estadisticasJugador.total.defensa;
+    const jugadorDefensaMagica = estadisticasJugador.total.defensaMagica ?? jugadorDefensa;
 
     const jugadorVelocidad = estadisticasJugador.total.velocidad;
 
@@ -366,7 +376,9 @@ export async function POST() {
           enemigoHpMaximo: enemigoHp,
 
           enemigoAtaque,
+          enemigoAtaqueMagico,
           enemigoDefensa,
+          enemigoDefensaMagica,
           enemigoVelocidad,
           enemigoProbCritico,
           enemigoDanoCritico,
@@ -376,7 +388,9 @@ export async function POST() {
           jugadorHpMaximo: jugadorHpMaximo,
 
           jugadorAtaque,
+          jugadorAtaqueMagico,
           jugadorDefensa,
+          jugadorDefensaMagica,
           jugadorVelocidad,
           jugadorProbCritico,
           jugadorDanoCritico,
