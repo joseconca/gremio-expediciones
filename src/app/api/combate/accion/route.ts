@@ -892,7 +892,7 @@ export async function POST(request: Request) {
         );
 
         log.push(
-          `💰 Consigues ${recompensaMision.oro} 🪙 de recompensa por la misión y ${recompensaEnemigo} 🪙 por derrotar al enemigo.`
+          `💰 Recompensa base: ${recompensaMision.oro} 🪙 por la misión + ${recompensaEnemigo} 🪙 por el enemigo. Modo ${CONFIGURACION_DIFICULTAD[modoDificultad].nombre}: cobras ${oroGanado} 🪙 en total.`
         );
 
         log.push(`⭐ Obtienes ${experienciaGanada} XP.`);
