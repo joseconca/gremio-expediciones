@@ -465,6 +465,139 @@ function makeExpeditionRoutes({ authenticated = true, initialUser = null } = {})
   };
 }
 
+function makeInvalidBodyRoute(relativePath) {
+  const route = loadSource(relativePath, {
+    "next/server": { NextResponse },
+    "@prisma/client": { Prisma: PrismaStub },
+    "@/lib/auth": { getAuthenticatedUser: async () => ({ id: "u1" }) },
+    "@/lib/prisma": { prisma: {} },
+    "@/lib/objetos": { obtenerObjetoPorId: () => null },
+    "@/lib/habilidades": { obtenerHabilidadPorId: () => null },
+    "@/lib/configuracionJuego": { puedeAprenderHabilidad: () => true },
+    "@/lib/tiendaHabilidades": { obtenerHabilidadesEnVenta: () => [] },
+  });
+
+  return route.POST;
+}
+
+function makeObjectEquipConflictRoute() {
+  const prisma = {
+    personaje: {
+      findUnique: async () => ({
+        id: "p1",
+        inventario: { id: "inv1" },
+        equipoEquipado: null,
+      }),
+    },
+    inventarioObjeto: {
+      findFirst: async () => ({
+        id: "item1",
+        inventarioId: "inv1",
+        objetoId: "espada_prueba",
+      }),
+    },
+    equipoEquipado: {
+      upsert: async () => {
+        throw new PrismaClientKnownRequestError("Unique constraint", { code: "P2002" });
+      },
+    },
+  };
+  const route = loadSource("src/app/api/objetos/equipar/route.ts", {
+    "next/server": { NextResponse },
+    "@prisma/client": { Prisma: PrismaStub },
+    "@/lib/auth": { getAuthenticatedUser: async () => ({ id: "u1" }) },
+    "@/lib/prisma": { prisma },
+    "@/lib/objetos": {
+      obtenerObjetoPorId: (id) => id === "espada_prueba"
+        ? { id, nombre: "Espada de prueba", tipo: "arma" }
+        : null,
+    },
+  });
+
+  return route.POST;
+}
+
+function makeAbilityEquipConflictRoute(errorCode = "P2002") {
+  let transactionOptions = null;
+  const prisma = {
+    $transaction: async (_work, options) => {
+      transactionOptions = options;
+      throw new PrismaClientKnownRequestError("Concurrent slot update", { code: errorCode });
+    },
+  };
+  const route = loadSource("src/app/api/habilidades/equipar/route.ts", {
+    "next/server": { NextResponse },
+    "@prisma/client": { Prisma: PrismaStub },
+    "@/lib/auth": { getAuthenticatedUser: async () => ({ id: "u1" }) },
+    "@/lib/prisma": { prisma },
+    "@/lib/habilidades": {
+      obtenerHabilidadPorId: (id) => id === "golpe_prueba"
+        ? { id, nombre: "Golpe de prueba", tipo: "activa" }
+        : null,
+    },
+  });
+
+  return {
+    POST: route.POST,
+    getTransactionOptions: () => transactionOptions,
+  };
+}
+
+test("equipamiento y habilidades: rechazan JSON malformado y cuerpos que no son objetos", async () => {
+  const paths = [
+    "src/app/api/objetos/equipar/route.ts",
+    "src/app/api/objetos/desequipar/route.ts",
+    "src/app/api/habilidades/aprender/route.ts",
+    "src/app/api/habilidades/equipar/route.ts",
+    "src/app/api/habilidades/desequipar/route.ts",
+  ];
+  const invalidRequests = [
+    {
+      label: "JSON malformado",
+      request: { json: async () => { throw new SyntaxError("JSON inválido"); } },
+    },
+    { label: "null", request: request(null) },
+    { label: "array", request: request([]) },
+    { label: "cadena", request: request("no es un objeto") },
+  ];
+
+  for (const routePath of paths) {
+    const POST = makeInvalidBodyRoute(routePath);
+
+    for (const invalid of invalidRequests) {
+      const response = await POST(invalid.request);
+      assert.equal(
+        response.status,
+        400,
+        routePath + " debe devolver 400 para " + invalid.label,
+      );
+    }
+  }
+});
+
+test("equipamiento: un conflicto de Prisma al equipar un objeto devuelve 409", async () => {
+  const POST = makeObjectEquipConflictRoute();
+  const response = await POST(request({ objetoInventarioId: "item1" }));
+
+  assert.equal(response.status, 409);
+});
+
+test("habilidades: los conflictos de slot devuelven 409 y usan aislamiento Serializable", async () => {
+  for (const errorCode of ["P2002", "P2034"]) {
+    const route = makeAbilityEquipConflictRoute(errorCode);
+    const response = await route.POST(request({
+      habilidadId: "golpe_prueba",
+      slot: "activa_1",
+    }));
+
+    assert.equal(response.status, 409);
+    assert.equal(
+      route.getTransactionOptions().isolationLevel,
+      PrismaStub.TransactionIsolationLevel.Serializable,
+    );
+  }
+});
+
 test("mercado: rechaza peticiones no autenticadas e importes inválidos", async () => {
   const unauthenticated = makeMarketRoute({ authenticated: false });
   assert.equal((await unauthenticated.POST(request({ recurso: "madera", cantidad: 1 }))).status, 401);
