@@ -46,6 +46,7 @@ export async function POST(request: Request) {
         select: {
           id: true,
           clase: true,
+          estado: true,
           profesionActivaId: true,
           progresosClase: {
             select: { claseId: true, desbloqueada: true },
@@ -68,7 +69,12 @@ export async function POST(request: Request) {
         where: { usuarioId: usuarioSesion.id },
         select: { id: true },
       });
-      if (expedicionActiva) throw new Error("EXPEDICION_ACTIVA");
+      if (expedicionActiva || personaje.estado === "de_viaje") {
+        throw new Error("EXPEDICION_ACTIVA");
+      }
+      if (personaje.estado === "combatiendo") {
+        throw new Error("COMBATE_ACTIVO");
+      }
 
       const idsHabilidadesADesequipar = personaje.habilidades
         .filter((aprendida) => {
@@ -123,6 +129,8 @@ export async function POST(request: Request) {
           return NextResponse.json({ error: "Primero debes desbloquear esa profesión." }, { status: 403 });
         case "EXPEDICION_ACTIVA":
           return NextResponse.json({ error: "No puedes cambiar de profesión durante una expedición." }, { status: 409 });
+        case "COMBATE_ACTIVO":
+          return NextResponse.json({ error: "No puedes cambiar de profesión durante un combate." }, { status: 409 });
       }
     }
 
