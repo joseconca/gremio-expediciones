@@ -31,6 +31,12 @@ Los enemigos normales no pueden generar sufijos legendarios. Los jefes tienen ma
 
 La tabla de sufijos está en `src/lib/sufijosObjetos.ts`; las probabilidades y tablas de botín se definen en `src/lib/enemigos.ts`, y la tirada ponderada en `src/lib/lootObjetos.ts`.
 
+## Consumibles en combate
+
+En combate PvE, el panel **Objetos** muestra los consumibles curativos que lleva el personaje. Usar una poción consume una unidad y restaura los puntos de vida definidos por el objeto, sin superar los PV máximos. No se permite gastar una poción si el personaje ya está al máximo de vida, si no posee la instancia indicada o si el objeto no es un consumible curativo. El consumo, la actualización de la salud de combate y el avance de versión se guardan en la misma transacción para impedir duplicados en peticiones concurrentes.
+
+Los consumibles en asedios PvP continúan deshabilitados; no se habilitan hasta que el flujo de ambos participantes y su persistencia de recursos tenga cobertura equivalente de pruebas.
+
 ## Venta y recompra
 
 - La venta devuelve el 35 % del precio base de catálogo multiplicado por la cantidad de la pila.
