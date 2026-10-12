@@ -757,6 +757,10 @@ export const useGameStore = create<GameState>((set, get) => ({
         }));
       }
 
+      // Energía y Maná cambian en cada acción; recargamos el estado autoritativo
+      // para que los costes y la regeneración se reflejen inmediatamente en la UI.
+      await get().cargarJugador();
+
       return (datos.accion as AccionAnimadaCombate) || null;
     } catch (error) {
       console.error("Error en acción de combate:", error);
