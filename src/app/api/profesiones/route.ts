@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import {
-  CLASES,
   evaluarDesbloqueoClase,
+  obtenerClasesVisibles,
   obtenerDefinicionClase,
 } from "@/lib/progresion/clases";
 
@@ -46,7 +46,7 @@ export async function GET() {
     const progresoActual = personaje.progresosClase.find(
       (progreso) => progreso.claseId === personaje.profesionActivaId
     );
-    const clases = Object.values(CLASES).map((clase) => {
+    const clases = obtenerClasesVisibles(personaje.profesionActivaId, personaje.progresosClase).map((clase) => {
       const progreso = personaje.progresosClase.find(
         (actual) => actual.claseId === clase.id
       );

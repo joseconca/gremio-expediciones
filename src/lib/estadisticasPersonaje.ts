@@ -7,6 +7,7 @@ import { calcularEstadisticasBase } from "./configuracionJuego";
 import { obtenerHabilidadPorId } from "./habilidades";
 import { calcularEstadisticasObjeto } from "./objetos";
 import { calcularEstadisticasDerivadasRpg } from "./progresion/estadisticas";
+import { calcularAtributosClase } from "./progresion/atributos-clase";
 import {
   CLASES,
   calcularBonificacionesDominioEquipo,
@@ -17,6 +18,8 @@ export interface DatosPersonajeEstadisticas {
   clase: string;
   profesionActivaId?: string;
   nivel: number;
+  nivelJob?: number;
+  progresosClase?: readonly { claseId: string; nivelJob: number; desbloqueada?: boolean }[];
   fuerza?: number;
   agilidad?: number;
   vitalidad?: number;
@@ -234,22 +237,11 @@ function obtenerModificadoresPasivas(
   };
 }
 
-function obtenerAtributosPrincipales(
-  personaje: DatosPersonajeEstadisticas
-): AtributosPrincipales {
-  const enteroPositivo = (valor: number | undefined) =>
-    typeof valor === "number" && Number.isFinite(valor)
-      ? Math.max(1, Math.floor(valor))
-      : 1;
-
-  return {
-    fuerza: enteroPositivo(personaje.fuerza),
-    agilidad: enteroPositivo(personaje.agilidad),
-    vitalidad: enteroPositivo(personaje.vitalidad),
-    inteligencia: enteroPositivo(personaje.inteligencia),
-    destreza: enteroPositivo(personaje.destreza),
-    suerte: enteroPositivo(personaje.suerte),
-  };
+function obtenerAtributosPrincipales(personaje: DatosPersonajeEstadisticas): AtributosPrincipales {
+  const claseId = personaje.profesionActivaId ?? "novato";
+  const progreso = personaje.progresosClase?.find((item) => item.claseId === claseId && item.desbloqueada !== false);
+  const nivelJob = typeof personaje.nivelJob === "number" && Number.isFinite(personaje.nivelJob) ? personaje.nivelJob : progreso?.nivelJob ?? 1;
+  return calcularAtributosClase(claseId, personaje.nivel, nivelJob);
 }
 
 function obtenerEstadisticasBase(
