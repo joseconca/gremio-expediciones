@@ -57,8 +57,19 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Sesión requerida." }, { status: 401 });
     }
 
-    const body = await request.json();
-    const accion = body?.accion;
+    const bodyValue: unknown = await request.json().catch(() => null);
+    if (
+      !bodyValue ||
+      typeof bodyValue !== "object" ||
+      Array.isArray(bodyValue)
+    ) {
+      return NextResponse.json(
+        { error: "Petición no válida." },
+        { status: 400 }
+      );
+    }
+    const body = bodyValue as Record<string, unknown>;
+    const accion = body.accion;
 
     if (accion === "establecerBase") {
       const { lat, lng } = body.coords || {};
@@ -113,24 +124,21 @@ export async function POST(request: Request) {
           where: { id: usuarioSesion.id },
           data: {
             personaje: {
-              upsert: {
-                create: {
-                  nombre,
-                  clase,
-                  sexo,
-                  estado: "ocioso",
+              create: {
+                nombre,
+                clase,
+                sexo,
+                estado: "ocioso",
 
-                  hpActual: Math.floor(estadisticasBase.hpMaximo),
+                hpActual: Math.floor(estadisticasBase.hpMaximo),
 
-                  velocidadMejoras: 0,
-                  capacidadCarruajeMejoras: 0,
+                velocidadMejoras: 0,
+                capacidadCarruajeMejoras: 0,
 
-                  regeneracionDeVida: 0.3,
+                regeneracionDeVida: 0.3,
 
-                  nivel: 1,
-                  experiencia: 0,
-                },
-                update: { nombre, clase, sexo },
+                nivel: 1,
+                experiencia: 0,
               },
             },
           },
@@ -426,6 +434,15 @@ export async function POST(request: Request) {
           { status: 400 }
         );
       }
+    }
+    if (
+      error instanceof Prisma.PrismaClientKnownRequestError &&
+      error.code === "P2002"
+    ) {
+      return NextResponse.json(
+        { error: "Ya tienes un personaje reclutado." },
+        { status: 409 }
+      );
     }
     if (
       error instanceof Prisma.PrismaClientKnownRequestError &&
