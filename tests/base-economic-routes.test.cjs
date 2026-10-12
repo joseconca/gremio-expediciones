@@ -479,7 +479,7 @@ test("mejoras de atributo: peticiones simultáneas no duplican el mismo incremen
         nivel: 1,
         hpActual: 20,
         estado: "ocioso",
-        fuerzaMejoras: 0,
+        velocidadMejoras: 0,
         habilidades: [],
         inventario: { id: "inv1", objetos: [] },
         equipoEquipado: null,
@@ -488,7 +488,7 @@ test("mejoras de atributo: peticiones simultáneas no duplican el mismo incremen
   });
   const results = await Promise.all([
     route.POST(request({ accion: "mejorarAtributo", atributo: "velocidad" })),
-    route.POST(request({ accion: "mejorarAtributo", atributo: "fuerza" })),
+    route.POST(request({ accion: "mejorarAtributo", atributo: "velocidad" })),
   ]);
 
   assert.equal(results.filter((result) => result.status === 200).length, 1);
