@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+import { Prisma } from "@prisma/client";
+import { CLASES } from "@/lib/progresion/clases";
+import { aplicarExperienciaJob } from "@/lib/progresion/experiencia";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
@@ -28,6 +31,52 @@ type EfectoCombate = {
   valor: number;
   turnosRestantes: number;
 };
+
+
+async function otorgarExperienciaJob(
+  tx: Prisma.TransactionClient,
+  personaje: { id: string; profesionActivaId: string },
+  experienciaGanada: number
+) {
+  const claseId = personaje.profesionActivaId || "novato";
+  const definicion = CLASES[claseId];
+  if (!definicion) return null;
+
+  const progreso = await tx.progresoClase.findUnique({
+    where: {
+      personajeId_claseId: {
+        personajeId: personaje.id,
+        claseId,
+      },
+    },
+  });
+
+  if (!progreso || !progreso.desbloqueada) return null;
+
+  const actualizado = aplicarExperienciaJob(
+    progreso,
+    experienciaGanada,
+    definicion.nivelJobMaximo
+  );
+
+  await tx.progresoClase.update({
+    where: { id: progreso.id },
+    data: {
+      nivelJob: actualizado.nivelJob,
+      experienciaJob: actualizado.experienciaJob,
+      puntosHabilidadDisponibles: actualizado.puntosHabilidadDisponibles,
+      maestriaCompletada: actualizado.maestriaCompletada,
+    },
+  });
+
+  return {
+    claseNombre: definicion.nombre,
+    nivelAnterior: progreso.nivelJob,
+    nivelJob: actualizado.nivelJob,
+    nivelesSubidos: actualizado.nivelesSubidos,
+    maestriaCompletada: actualizado.maestriaCompletada && !progreso.maestriaCompletada,
+  };
+}
 
 function obtenerRecompensaMision(valor: unknown): RecompensaMision {
   if (
@@ -645,6 +694,18 @@ export async function POST(request: Request) {
         }
 
         const resultado = await prisma.$transaction(async (tx) => {
+          const progresoJob = await otorgarExperienciaJob(
+            tx,
+            personaje,
+            experienciaGanada
+          );
+          if (progresoJob && progresoJob.nivelesSubidos > 0) {
+            log.push(`⬆️ Job de ${progresoJob.claseNombre}: nivel ${progresoJob.nivelJob}.`);
+          }
+          if (progresoJob?.maestriaCompletada) {
+            log.push(`🏅 ¡Has completado la maestría de ${progresoJob.claseNombre}!`);
+          }
+
           const actualizacionCombate = await tx.combateActivo.updateMany({
             where: {
               id: combate.id,
