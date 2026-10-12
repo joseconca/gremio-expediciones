@@ -164,6 +164,12 @@ function makeObjectRoute({ authenticated = true, initialUser = {}, initialItems 
   const findInventoryItem = (inventarioId, objetoId) =>
     state.items.find((item) => item.inventarioId === inventarioId && item.objetoId === objetoId) ?? null;
   const tx = {
+    personaje: {
+      findUnique: async () => ({ estado: transactionState }),
+    },
+    equipoEquipado: {
+      findUnique: async () => clone(state.user.personaje.equipoEquipado),
+    },
     usuario: {
       updateMany: async ({ where, data }) => {
         if (!matches(state.user, where)) return { count: 0 };
@@ -223,7 +229,7 @@ function makeObjectRoute({ authenticated = true, initialUser = {}, initialItems 
 }
 
 
-function makeObjectUpgradeRoute({ authenticated = true, initialGold = 500 } = {}) {
+function makeObjectUpgradeRoute({ authenticated = true, initialGold = 500, initialState = "ocioso", transactionState = initialState } = {}) {
   let state = {
     user: {
       id: "u1",
@@ -231,6 +237,7 @@ function makeObjectUpgradeRoute({ authenticated = true, initialGold = 500 } = {}
       edificios: { herreria: 1 },
       personaje: {
         id: "p1",
+        estado: initialState,
         inventario: { id: "inv1" },
         equipoEquipado: {
           armaInventarioId: "item1",
@@ -288,6 +295,7 @@ function makeObjectUpgradeRoute({ authenticated = true, initialGold = 500 } = {}
   };
   const route = loadSource("src/app/api/objetos/mejorar/route.ts", {
     "next/server": { NextResponse },
+    "@prisma/client": { Prisma: PrismaStub },
     "@/lib/auth": { getAuthenticatedUser: async () => authenticated ? { id: "u1" } : null },
     "@/lib/prisma": { prisma },
     "@/lib/objetos": {
@@ -558,7 +566,10 @@ function makeObjectEquipConflictRoute() {
         throw new PrismaClientKnownRequestError("Unique constraint", { code: "P2002" });
       },
     },
-    $transaction: async (work) => work({ equipoEquipado: prisma.equipoEquipado }),
+    $transaction: async (work) => work({
+      personaje: { findUnique: async () => ({ estado: "ocioso" }) },
+      equipoEquipado: prisma.equipoEquipado,
+    }),
   };
   const route = loadSource("src/app/api/objetos/equipar/route.ts", {
     "next/server": { NextResponse },
@@ -757,6 +768,21 @@ test("acciones de jugador: rechaza cuerpos malformados, coordenadas no finitas y
     atributo: "toString",
   }));
   assert.equal(invalidAttribute.status, 400);
+});
+
+test("herrería: bloquea mejoras durante una expedición y revalida estado dentro de la transacción", async () => {
+  const traveling = makeObjectUpgradeRoute({ initialState: "de_viaje" });
+  const rejectedBefore = await traveling.POST(request({ objetoInventarioId: "item1" }));
+  assert.equal(rejectedBefore.status, 409);
+  assert.equal(traveling.getState().user.oro, 500);
+  assert.equal(traveling.getState().items[0].nivelMejora, 0);
+
+  // Simula que la expedición comienza después de la lectura inicial del personaje.
+  const race = makeObjectUpgradeRoute({ transactionState: "combatiendo" });
+  const rejectedInside = await race.POST(request({ objetoInventarioId: "item1" }));
+  assert.equal(rejectedInside.status, 409);
+  assert.equal(race.getState().user.oro, 500);
+  assert.equal(race.getState().items[0].nivelMejora, 0);
 });
 
 test("mejoras de edificio: metal insuficiente no actualiza nivel ni gasta recursos", async () => {
