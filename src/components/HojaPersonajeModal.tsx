@@ -8,6 +8,7 @@ import {
   obtenerSpriteHeroe,
 } from "@/lib/configuracionJuego";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
+import { experienciaJobParaNivel } from "@/lib/progresion/experiencia";
 import { obtenerSpriteObjeto } from "@/lib/objetos";
 import { ARQUETIPOS_CLASE, CLASES } from "@/lib/progresion/clases";
 
@@ -84,7 +85,7 @@ export default function HojaPersonajeModal({
   const arquetipo = ARQUETIPOS_CLASE[claseActiva.arquetipo];
   const nivelJob = personaje.nivelJob || 1;
   const experienciaJob = personaje.experienciaJob || 0;
-  const experienciaJobNecesaria = experienciaParaNivel(nivelJob);
+  const experienciaJobNecesaria = experienciaJobParaNivel(nivelJob);
   const maestriaCompletada = nivelJob >= claseActiva.nivelJobMaximo;
   const porcentajeExperienciaJob = maestriaCompletada ? 100 : Math.min(100, Math.max(0, experienciaJob / experienciaJobNecesaria * 100));
   const atributos = [
