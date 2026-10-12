@@ -726,8 +726,8 @@ export const useGameStore = create<GameState>((set, get) => ({
   },
 
   accionCombate: async (
-    accion: "atacar" | "usar_habilidad",
-    habilidadId?: string
+    accion: "atacar" | "usar_habilidad" | "usar_objeto",
+    payload?: string
   ) => {
     try {
       const respuesta = await fetch("/api/combate/accion", {
@@ -737,9 +737,8 @@ export const useGameStore = create<GameState>((set, get) => ({
         },
         body: JSON.stringify({
           accion,
-          ...(accion === "usar_habilidad" && habilidadId
-            ? { habilidadId }
-            : {}),
+          ...(accion === "usar_habilidad" && payload ? { habilidadId: payload } : {}),
+          ...(accion === "usar_objeto" && payload ? { objetoInventarioId: payload } : {}),
         }),
       });
 
