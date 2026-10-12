@@ -284,9 +284,12 @@ export function generarMisionesDisponibles({
     });
   });
 
-  const fechaUltimaElite = ultimaMisionElite
-    ? new Date(ultimaMisionElite)
-    : null;
+  const fechaUltimaElite =
+    ultimaMisionElite === null
+      ? null
+      : ultimaMisionElite instanceof Date
+        ? ultimaMisionElite
+        : new Date(ultimaMisionElite);
   const eliteCompletadaHoy =
     fechaUltimaElite !== null &&
     Number.isFinite(fechaUltimaElite.getTime()) &&
