@@ -64,7 +64,9 @@ export async function POST(request: Request) {
       const { lat, lng } = body.coords || {};
       if (
         typeof lat !== "number" ||
+        !Number.isFinite(lat) ||
         typeof lng !== "number" ||
+        !Number.isFinite(lng) ||
         lat < -90 ||
         lat > 90 ||
         lng < -180 ||
