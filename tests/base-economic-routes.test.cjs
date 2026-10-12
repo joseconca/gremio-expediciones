@@ -410,6 +410,15 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
     "@/lib/estadisticasPersonaje": {
       calcularEstadisticasPersonaje: () => ({ total: { hpMaximo: 40 } }),
     },
+    "@/lib/progresion/estadisticas": {
+      calcularEstadisticasDerivadasRpg: () => ({
+        hpMaximo: 40,
+        energiaMaxima: 20,
+        manaMaximo: 10,
+        regeneracionEnergiaPorTurno: 1,
+        regeneracionManaPorTurno: 1,
+      }),
+    },
     "@/lib/inventario": { asegurarInventarioYEquipo: async () => {} },
   });
   return { POST: route.POST, getState };
