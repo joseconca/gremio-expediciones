@@ -336,36 +336,6 @@ export default function HerreriaPage() {
     }
   };
 
-  const mejorarObjeto = async (objetoInventarioId: string) => {
-    setProcesando(`mejorar:${objetoInventarioId}`);
-    setError(null);
-
-    try {
-      const respuesta = await fetch("/api/objetos/mejorar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          objetoInventarioId,
-        }),
-      });
-
-      const resultado = await respuesta.json();
-
-      if (!respuesta.ok) {
-        setError(resultado.error || "No se pudo mejorar el objeto.");
-        return;
-      }
-
-      await recargarObjetos();
-      await cargarJugador();
-    } catch {
-      setError("Error de conexión al mejorar el objeto.");
-    } finally {
-      setProcesando(null);
-    }
-  };
 
   const inventarioEquipable = useMemo(
     () =>
@@ -387,8 +357,6 @@ export default function HerreriaPage() {
         return datos?.equipo.accesorio ?? null;
     }
   };
-
-  const nivelMaximoMejora = nivelHerreria * 3;
 
   if (!personaje || nivelArmeria === 0) {
     return null;
@@ -463,8 +431,6 @@ export default function HerreriaPage() {
                   );
 
                   const comprando = procesando === `comprar:${objeto.id}`;
-                  const nivelHeroeInsuficiente = !objeto.puedeComprar;
-
                   if (!esEquipable(objeto)) {
                     return null;
                   }
