@@ -234,7 +234,7 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
         hpActual: 20,
         regeneracionDeVida: 0.3,
         estado: "ocioso",
-        fuerzaMejoras: 0,
+        velocidadMejoras: 0,
         habilidades: [],
         inventario: { id: "inv1", objetos: [] },
         equipoEquipado: null,
@@ -303,7 +303,7 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
     "@/lib/regeneracion": { sincronizarRegeneracion: async (personaje) => personaje },
     "@/lib/configuracionJuego": {
       CONFIGURACION_ATRIBUTOS: {
-        fuerza: { campo: "fuerzaMejoras", edificio: "escuelaCombate", limitePorNivel: 1 },
+        velocidad: { campo: "velocidadMejoras", edificio: "mercado", limitePorNivel: 5 },
       },
       REQUISITOS_EDIFICIOS: {},
       calcularCosteAtributo: () => 10,
@@ -469,7 +469,7 @@ test("mejoras de atributo: peticiones simultáneas no duplican el mismo incremen
   const route = makeActionsRoute({
     initialUser: {
       oro: 50,
-      edificios: { taberna: 1, escuelaCombate: 1 },
+      edificios: { taberna: 1, mercado: 1 },
       personaje: {
         id: "p1",
         usuarioId: "u1",
@@ -487,13 +487,13 @@ test("mejoras de atributo: peticiones simultáneas no duplican el mismo incremen
     },
   });
   const results = await Promise.all([
-    route.POST(request({ accion: "mejorarAtributo", atributo: "fuerza" })),
+    route.POST(request({ accion: "mejorarAtributo", atributo: "velocidad" })),
     route.POST(request({ accion: "mejorarAtributo", atributo: "fuerza" })),
   ]);
 
   assert.equal(results.filter((result) => result.status === 200).length, 1);
   assert.ok(results.every((result) => result.status === 200 || result.status === 400 || result.status === 409));
-  assert.equal(route.getState().user.personaje.fuerzaMejoras, 1);
+  assert.equal(route.getState().user.personaje.velocidadMejoras, 1);
   assert.equal(route.getState().user.oro, 40);
 });
 
