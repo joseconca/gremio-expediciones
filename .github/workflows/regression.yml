@@ -1,0 +1,45 @@
+name: Regression
+
+on:
+  push:
+    branches:
+      - refactor-en-server-y-limpieza
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/gremio_test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: Test base-game API route regressions
+        run: npm run test:base
+
+      - name: Test world-engine regressions
+        run: npm run test:world
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
