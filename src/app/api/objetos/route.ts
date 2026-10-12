@@ -7,7 +7,8 @@ import {
   puedeComprarObjeto,
   obtenerRequisitosRareza,
 } from "@/lib/tiendaObjetos";
-import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
+import { obtenerEquipoDesdePersonaje, LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
+import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/lib/sufijosObjetos";
 
 function construirInventario(personaje: {
   inventario?: {
@@ -16,6 +17,8 @@ function construirInventario(personaje: {
       objetoId: string;
       cantidad: number;
       nivelMejora: number;
+      sufijoId?: string | null;
+      bonificaciones?: unknown;
     }>;
   } | null;
 }) {
@@ -32,7 +35,12 @@ function construirInventario(personaje: {
         objetoId: objetoInventario.objetoId,
         cantidad: objetoInventario.cantidad,
         nivelMejora: objetoInventario.nivelMejora,
-        objeto,
+        sufijoId: objetoInventario.sufijoId ?? null,
+        bonificaciones: sanitizarBonificacionesObjeto(objetoInventario.bonificaciones),
+        objeto: {
+          ...objeto,
+          nombre: obtenerNombreObjetoConSufijo(objeto.nombre, objetoInventario.sufijoId),
+        },
       },
     ];
   });
@@ -63,6 +71,13 @@ export async function GET() {
                 arma: true,
                 armadura: true,
                 accesorio: true,
+                manoSecundaria: true,
+                casco: true,
+                pantalones: true,
+                botas: true,
+                guantes: true,
+                anillo1: true,
+                anillo2: true,
               },
             },
           },
@@ -113,6 +128,11 @@ export async function GET() {
       enVenta,
       inventario,
       equipo,
+      espaciosInventario: {
+        ocupados: inventario.length,
+        maximo: LIMITE_INVENTARIO_OBJETOS,
+      },
+      ultimaVenta: usuario.personaje.inventario?.ultimaVenta ?? null,
       oro: usuario.oro,
     });
   } catch (error) {
