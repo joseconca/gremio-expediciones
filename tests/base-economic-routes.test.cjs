@@ -40,7 +40,17 @@ function loadSource(relativePath, dependencies = {}) {
   vm.runInThisContext("(function(require, module, exports) {" + outputText + "\n})", {
     filename,
   })(
-    (name) => (Object.hasOwn(dependencies, name) ? dependencies[name] : require(name)),
+    (name) => {
+      if (Object.hasOwn(dependencies, name)) return dependencies[name];
+      if (name === "@/lib/sufijosObjetos") {
+        return {
+          obtenerNombreObjetoConSufijo: (nombre) => nombre,
+          sanitizarBonificacionesObjeto: (valor) =>
+            valor && typeof valor === "object" && !Array.isArray(valor) ? valor : {},
+        };
+      }
+      return require(name);
+    },
     loaded,
     loaded.exports,
   );
