@@ -728,11 +728,19 @@ export function obtenerEnemigosPorDificultad(
   dificultad: number
 ): DefinicionEnemigo[] {
   const nivel = Math.max(1, Math.floor(dificultad));
-  const minimo = Math.max(0, nivel - 3);
   // El Mímico conserva su sprite/contenido, pero su botín de 500 monedas y
   // sus estadísticas de prueba no lo convierten en un exploit de farmeo.
-  return ENEMIGOS.filter(
-    (enemigo) => enemigo.id !== "mimic" && enemigo.difMin >= minimo && enemigo.difMin <= nivel
+  const candidatos = ENEMIGOS.filter((enemigo) => enemigo.id !== "mimic");
+  const amenazaMaximaCatalogo = Math.max(
+    ...candidatos.map((enemigo) => Math.max(1, enemigo.difMin))
+  );
+  // Rango V es indefinido: al superar el último difMin, reutilizamos los
+  // monstruos de referencia más altos; sus estadísticas siguen escalando con
+  // el nivel de amenaza real al crear el snapshot del combate.
+  const nivelCatalogo = Math.min(nivel, amenazaMaximaCatalogo);
+  const minimo = Math.max(0, nivelCatalogo - 3);
+  return candidatos.filter(
+    (enemigo) => enemigo.difMin >= minimo && enemigo.difMin <= nivelCatalogo
   );
 }
 
