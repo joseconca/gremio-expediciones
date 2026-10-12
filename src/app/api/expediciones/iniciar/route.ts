@@ -124,7 +124,10 @@ export async function POST(request: Request) {
     }
 
     const equipo = obtenerEquipoDesdePersonaje(usuario.personaje);
-    const modificadoresEquipo = calcularModificadoresEquipo(equipo);
+    const modificadoresEquipo = calcularModificadoresEquipo(
+      equipo,
+      usuario.personaje!.profesionActivaId
+    );
     const personaje = await sincronizarRegeneracion(
       usuario.personaje,
       modificadoresEquipo
