@@ -57,6 +57,7 @@ export default function MercadoPage() {
 
   const [error, setError] = useState<string | null>(null);
   const [mensajeMercader, setMensajeMercader] = useState<string | null>(null);
+  const [randomMensaje, setRandomMensaje] = useState(0.5);
 
   const nivelMercado = edificios.mercado.nivel;
 
@@ -66,6 +67,14 @@ export default function MercadoPage() {
     }
   }, [nivelMercado, router]);
 
+  useEffect(() => {
+    const temporizador = window.setTimeout(() => {
+      setRandomMensaje(Math.random());
+    }, 0);
+
+    return () => window.clearTimeout(temporizador);
+  }, []);
+
   // Limpiar el mensaje del mercader tras unos segundos
   useEffect(() => {
     if (mensajeMercader) {
@@ -73,12 +82,6 @@ export default function MercadoPage() {
       return () => clearTimeout(timer);
     }
   }, [mensajeMercader]);
-
-  const recursosActuales: Record<Recurso, number> = {
-    madera,
-    piedra,
-    metal,
-  };
 
   const ofertas = useMemo(() => {
     return RECURSOS.map((recurso) => {
@@ -136,7 +139,6 @@ export default function MercadoPage() {
     setComprando(null);
   };
 
-  const randomMensaje = Math.random();
   // Diálogo dinámico del mercader
   const dialogoMercader = () => {
     if (mensajeMercader) return mensajeMercader;
