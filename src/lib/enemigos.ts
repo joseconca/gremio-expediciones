@@ -743,7 +743,8 @@ export function obtenerEnemigosPorDificultad(
  * Para enemigos nuevos sin arte propio, el archivo por ID contiene inicialmente
  * un sprite de referencia del rango y se puede sustituir sin tocar el código.
  */
-export function obtenerRutaSpriteEnemigo(id: string): string {
+export function obtenerRutaSpriteEnemigo(id?: string | null): string {
+  if (!id) return "/sprites/enemies/I/slime_acido.png";
   const enemigo = obtenerEnemigoPorId(id);
   if (!enemigo) return "/sprites/enemies/I/slime_acido.png";
   const rango = obtenerRangoAmenaza(Math.max(1, enemigo.difMin));
