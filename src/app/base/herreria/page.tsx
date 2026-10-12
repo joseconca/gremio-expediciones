@@ -276,11 +276,18 @@ export default function HerreriaPage() {
   };
 
   const estaObjetoEquipado = useCallback((objetoInventarioId: string): boolean => {
-    return (
-      datos?.equipo.arma?.id === objetoInventarioId ||
-      datos?.equipo.armadura?.id === objetoInventarioId ||
-      datos?.equipo.accesorio?.id === objetoInventarioId
-    );
+    return [
+      datos?.equipo.arma,
+      datos?.equipo.manoSecundaria,
+      datos?.equipo.casco,
+      datos?.equipo.armadura,
+      datos?.equipo.pantalones,
+      datos?.equipo.botas,
+      datos?.equipo.guantes,
+      datos?.equipo.accesorio,
+      datos?.equipo.anillo1,
+      datos?.equipo.anillo2,
+    ].some((objeto) => objeto?.id === objetoInventarioId);
   }, [datos?.equipo]);
 
   const inventarioArmas = useMemo(() => {
@@ -470,23 +477,22 @@ export default function HerreriaPage() {
 
                         const esAccesorio = categoria.tipo === "accesorio";
 
-                        const diferenciaMejora =
+                        const puedeSubirNivel =
                           !esAccesorio &&
-                          puedeMejorarObjeto(objetoInventario.nivelMejora)
-                            ? obtenerDiferenciasMejora(
-                                objeto,
-                                objetoInventario.nivelMejora
-                              )
-                            : [];
+                          puedeMejorarObjeto(objetoInventario.nivelMejora);
+                        const diferenciaMejora = puedeSubirNivel
+                          ? obtenerDiferenciasMejora(
+                              objeto,
+                              objetoInventario.nivelMejora
+                            )
+                          : [];
 
                         const costeMejora = calcularCosteMejoraObjeto(
                           objeto.precio,
                           objetoInventario.nivelMejora
                         );
 
-                        const puedeMejorar =
-                          !esAccesorio &&
-                          puedeMejorarObjeto(objetoInventario.nivelMejora);
+                        const puedeMejorar = puedeSubirNivel && equipado;
 
                         const mejorando =
                           procesando === `mejorar:${objetoInventario.id}`;
@@ -610,6 +616,10 @@ export default function HerreriaPage() {
                                 {esAccesorio ? (
                                   <div className="flex h-11 items-center justify-center rounded border border-[#383a39] bg-[#202120] text-center text-[10px] font-black uppercase tracking-wider text-[#656660]">
                                     💍 No se mejora aquí
+                                  </div>
+                                ) : puedeSubirNivel && !equipado ? (
+                                  <div className="flex h-11 items-center justify-center rounded border border-[#383a39] bg-[#202120] text-center text-[10px] font-black uppercase tracking-wider text-[#8b877d]">
+                                    ⚒️ Equípalo para mejorar
                                   </div>
                                 ) : puedeMejorar ? (
                                   <button
