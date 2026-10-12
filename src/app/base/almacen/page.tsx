@@ -3,7 +3,7 @@
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import { useGameStore } from "@/store/useGameStore";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 type Recurso = "madera" | "piedra" | "metal";
 
@@ -77,7 +77,11 @@ export default function AlmacenPage() {
       "He organizado los lingotes de metal por peso. Ni se te ocurra desordenarlos.",
       "La humedad está pudriendo la madera del fondo... tendré que echarle un ojo.",
     ];
-    setDialogoIntendente(frases[Math.floor(Math.random() * frases.length)]);
+    const temporizador = window.setTimeout(() => {
+      setDialogoIntendente(frases[Math.floor(Math.random() * frases.length)]);
+    }, 0);
+
+    return () => window.clearTimeout(temporizador);
   }, []);
 
   return (
