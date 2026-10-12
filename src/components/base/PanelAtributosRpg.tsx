@@ -29,7 +29,8 @@ export default function PanelAtributosRpg({
   const [procesando, setProcesando] = useState<Atributo | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [mensaje, setMensaje] = useState<string | null>(null);
-  const estaEnActividad = personaje.estado === "de_viaje";
+  const estaEnActividad =
+    personaje.estado === "de_viaje" || personaje.estado === "combatiendo";
 
   const asignarPunto = async (atributo: Atributo) => {
     setProcesando(atributo);
