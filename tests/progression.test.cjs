@@ -218,3 +218,39 @@ test("los atributos crecen por nivel Base y reciben bonificaciones Job según el
   assert.ok(espadachinJob40.fuerza > espadachin.fuerza);
   assert.ok(magoBase40.inteligencia > mago.inteligencia);
 });
+
+
+const { calcularProbabilidadImpacto, resolverAtaqueJugador } = require("../src/lib/expediciones/combate.ts");
+
+test("combate: precisión y evasión afectan a la probabilidad de impacto", () => {
+  const base = calcularProbabilidadImpacto(75, 0);
+  const precisionBaja = calcularProbabilidadImpacto(20, 0);
+  const precisionAlta = calcularProbabilidadImpacto(100, 0);
+  const evasionAlta = calcularProbabilidadImpacto(100, 0.6);
+  assert.equal(base, 0.95);
+  assert.ok(precisionAlta > base);
+  assert.ok(precisionBaja < base);
+  assert.ok(evasionAlta < precisionAlta);
+});
+
+test("combate: la precisión baja puede provocar un fallo sin pifia natural", () => {
+  const originalRandom = Math.random;
+  try {
+    const valores = [0.5, 0.9];
+    Math.random = () => valores.shift() ?? 0.99;
+    const resultado = resolverAtaqueJugador({
+      jugadorAtaque: 20,
+      jugadorNivel: 10,
+      jugadorProbCritico: 0,
+      jugadorDanoCritico: 1.5,
+      jugadorPrecision: 20,
+      enemigoEvasion: 0,
+      enemigoDefensa: 0,
+      enemigoNombre: "Objetivo de prueba",
+    });
+    assert.equal(resultado.tipo, "fallo");
+    assert.equal(resultado.dano, 0);
+  } finally {
+    Math.random = originalRandom;
+  }
+});

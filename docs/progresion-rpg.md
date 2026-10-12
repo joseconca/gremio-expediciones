@@ -67,3 +67,12 @@ Las migraciones conservan `Personaje.nivel` y `Personaje.experiencia`. A persona
 - El HUD global muestra niveles y barras de experiencia Base y Job por separado.
 - Los atributos visibles y usados en los cálculos de combate se derivan del arquetipo de la profesión activa, del nivel Base y de su nivel Job. La antigua ruta de asignación manual de atributos devuelve HTTP 410.
 - Profesiones y maestrías se gestionan desde una pestaña de la Escuela de Combate; la base principal conserva una vista de solo lectura de atributos y estadísticas.
+
+
+## Auditoría de estadísticas de combate
+
+- PvE calcula estadísticas a partir de la profesión activa, progreso Job, habilidades pasivas y equipo antes de crear el combate; después guarda un snapshot para resolver todos los turnos con los mismos valores.
+- Los asedios PvP calculan de forma independiente las estadísticas completas del atacante y del defensor.
+- Los ataques básicos utilizan ataque/defensa físicos; las habilidades con daño mágico usan ataque/defensa mágicos. Los críticos siguen utilizando la probabilidad y el multiplicador del snapshot.
+- Precisión y evasión ahora participan en la resolución de ataques básicos y habilidades dañinas. Se congelan al iniciar PvE o PvP para ambos combatientes.
+- La migración aditiva `20261012200000_combat_precision_evasion` añade cuatro columnas con valores por defecto para que los combates anteriores sean compatibles. Aplica las migraciones pendientes en la base local antes de ejecutar esta versión.
