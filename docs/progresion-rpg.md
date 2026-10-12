@@ -76,3 +76,13 @@ Las migraciones conservan `Personaje.nivel` y `Personaje.experiencia`. A persona
 - Los ataques básicos utilizan ataque/defensa físicos; las habilidades con daño mágico usan ataque/defensa mágicos. Los críticos siguen utilizando la probabilidad y el multiplicador del snapshot.
 - Precisión y evasión ahora participan en la resolución de ataques básicos y habilidades dañinas. Se congelan al iniciar PvE o PvP para ambos combatientes.
 - La migración aditiva `20261012200000_combat_precision_evasion` añade cuatro columnas con valores por defecto para que los combates anteriores sean compatibles. Aplica las migraciones pendientes en la base local antes de ejecutar esta versión.
+
+
+## Dificultad y progresión de expediciones
+
+Las reglas de amenaza, dificultad por expedición, recompensas y ritmo Base/Job se documentan en [Dificultad de expediciones](dificultad-expediciones.md).
+
+La migración `20261012210000_expedition_difficulty_progression` añade el modo de dificultad a las expediciones y el registro JSON de rangos superados en Personaje. Los personajes existentes reciben rangos previos equivalentes a su nivel Base para evitar retrocesos; los nuevos empiezan con Rango I. No modifica el nivel ni la experiencia Base existentes.
+
+Job ahora usa su propia curva `round(100 + 25 × nivelJob^1,5)`. En una victoria apropiada se entrega normalmente el 75 % del umbral Job actual ajustado por amenaza/modo; en derrota se entrega el 10 % de esa cantidad. La experiencia Base conserva su umbral actual y normalmente concede alrededor del 25 % del siguiente umbral por victoria apropiada. Esto hace que Job suba más deprisa por niveles, sin transferir a una profesión nueva toda la XP Base acumulada por un personaje veterano.
+
