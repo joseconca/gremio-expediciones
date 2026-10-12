@@ -152,6 +152,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
   {
     id: "chispa_mago",
     claseId: "mago",
+    tipoDano: "magico",
     nivelJobRequerido: 1,
     costePuntosHabilidad: 1,
     nombre: "Chispa Arcana",
