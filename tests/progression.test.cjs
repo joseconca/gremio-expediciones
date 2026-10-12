@@ -368,3 +368,41 @@ test("combate: la precisión baja puede provocar un fallo sin pifia natural", ()
     Math.random = originalRandom;
   }
 });
+
+
+test("XP Base: el número de victorias aumenta con cada nivel", () => {
+  const { experienciaParaNivel } = require("../src/lib/configuracionJuego.ts");
+  const victoriasPorNivel = Array.from({ length: 12 }, (_, indice) => {
+    const nivel = indice + 1;
+    const xpPorVictoria = calcularExperienciaBaseGanada(nivel, nivel, "normal");
+    return Math.ceil(experienciaParaNivel(nivel) / xpPorVictoria);
+  });
+
+  assert.equal(victoriasPorNivel[0], 4, "Base 1 a 2 debe mantener unas cuatro victorias");
+  assert.deepEqual(victoriasPorNivel.slice(0, 5), [4, 6, 8, 10, 12]);
+  for (let indice = 1; indice < victoriasPorNivel.length; indice += 1) {
+    assert.ok(
+      victoriasPorNivel[indice] > victoriasPorNivel[indice - 1],
+      `El nivel ${indice + 1} debe exigir más victorias que el anterior`
+    );
+  }
+  const total = victoriasPorNivel.reduce((suma, cantidad) => suma + cantidad, 0);
+  assert.ok(total >= 165 && total <= 180, `El ritmo Base 1 a 13 no es el esperado: ${total} victorias`);
+});
+
+test("objetos: los sprites de armadura se organizan por ranura", () => {
+  const { obtenerObjetoPorId, obtenerSpriteObjeto } = require("../src/lib/objetos.ts");
+  for (const id of ["armadura_cuero", "tela_andrajosa"]) {
+    const objeto = obtenerObjetoPorId(id);
+    assert.ok(objeto, `No existe el objeto ${id}`);
+    const ruta = obtenerSpriteObjeto(objeto);
+    assert.equal(ruta, `/sprites/items/armors/armadura/${id}.png`);
+    assert.ok(
+      fs.existsSync(path.join(__dirname, "..", "public", ruta.slice(1))),
+      `Falta el sprite organizado de ${id}: ${ruta}`
+    );
+  }
+
+  const cascoSinSprite = obtenerObjetoPorId("casco_cuero");
+  assert.equal(obtenerSpriteObjeto(cascoSinSprite), null, "El casco sin arte aún debe usar el icono alternativo");
+});

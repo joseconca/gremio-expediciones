@@ -352,7 +352,7 @@ export function obtenerRanuraObjeto(objeto: DefinicionObjeto) {
 }
 
 export function obtenerSpriteObjeto(
-  objeto: Pick<DefinicionObjeto, "id" | "tipo">
+  objeto: Pick<DefinicionObjeto, "id" | "tipo" | "slot">
 ): string | null {
   // Estas piezas se han añadido antes de crear su pixel art; usa el icono
   // genérico de la ranura en vez de mostrar una imagen 404.
@@ -379,6 +379,20 @@ export function obtenerSpriteObjeto(
 
   if (!(objeto.tipo in carpetaPorTipo)) {
     return null;
+  }
+
+  if (objeto.tipo === "armadura") {
+    // Las armaduras se organizan primero por ranura de equipo.
+    const carpetaPorRanura: Record<string, string> = {
+      casco: "casco",
+      armadura: "armadura",
+      pantalones: "pantalones",
+      botas: "botas",
+      guantes: "guantes",
+    };
+    const carpeta = objeto.slot ? carpetaPorRanura[objeto.slot] : "armadura";
+    if (!carpeta) return null;
+    return `/sprites/items/armors/${carpeta}/${objeto.id}.png`;
   }
 
   return `/sprites/items/${carpetaPorTipo[objeto.tipo]}/${objeto.id}.png`;

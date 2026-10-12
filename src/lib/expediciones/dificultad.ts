@@ -90,14 +90,24 @@ export function calcularFactorExperienciaAmenaza(nivelAmenaza: number, nivelBase
 }
 
 /**
- * Conserva la curva Base existente. Una victoria Normal frente a una amenaza
- * apropiada concede el 25 % del umbral de ese nivel (unas cuatro victorias
- * por nivel), evitando la antigua multiplicación por amenaza * difMin.
+ * La curva de requisitos Base no cambia, pero la recompensa pierde peso a
+ * medida que sube el nivel. Base 1 conserva el 25 % del umbral (4 victorias);
+ * el divisor lineal creciente hace que los niveles siguientes requieran más
+ * expediciones. Amenaza y modo siguen ajustando la recompensa después.
  */
 export function calcularExperienciaBaseGanada(nivelAmenaza: number, nivelBase: number, modo: ModoDificultad): number {
-  const umbral = experienciaParaNivel(nivelBase);
-  const base = Math.max(50, Math.round(umbral * 0.25));
-  return Math.max(1, Math.floor(base * calcularFactorExperienciaAmenaza(nivelAmenaza, nivelBase) * CONFIGURACION_DIFICULTAD[modo].multiplicadorRecompensa));
+  const nivelSeguro = Number.isFinite(nivelBase) ? Math.max(1, Math.floor(nivelBase)) : 1;
+  const umbral = experienciaParaNivel(nivelSeguro);
+  const divisorProgresion = 1 + 0.45 * (nivelSeguro - 1);
+  const base = Math.max(50, Math.round((umbral * 0.25) / divisorProgresion));
+  return Math.max(
+    1,
+    Math.floor(
+      base *
+        calcularFactorExperienciaAmenaza(nivelAmenaza, nivelSeguro) *
+        CONFIGURACION_DIFICULTAD[modo].multiplicadorRecompensa
+    )
+  );
 }
 
 /**
