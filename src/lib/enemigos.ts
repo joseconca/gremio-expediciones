@@ -737,38 +737,15 @@ export function obtenerEnemigosPorDificultad(
 }
 
 
-// Sprites organizados por rango. Se mantienen los PNG originales en la raíz
-// por compatibilidad con el mapa 2.5D y se sirven copias desde los directorios I-V.
-const ALIAS_SPRITE_ENEMIGO: Record<string, string> = {
-  reina_arana: "reina-arana",
-  titan_hierro: "titan-hierro",
-  arana_sombras: "arana",
-  troll_cavernas: "troll",
-  bandido_arbalestero: "bandido",
-};
-
-const SPRITES_ENEMIGO_DISPONIBLES = new Set([
-  "arana", "bandido", "bandido_camino", "dragon_bosque_verde",
-  "esqueleto_guerrero", "goblin_explorador", "mimic", "minotauro",
-  "ogro", "orco", "orco_despiadado", "rata", "rata_gigante",
-  "reina-arana", "reina_sombras", "senor_frontera", "slime_acido",
-  "titan-hierro", "troll",
-]);
-
-const SPRITE_FALLBACK_RANGO: Record<string, string> = {
-  I: "slime_acido",
-  II: "ogro",
-  III: "minotauro",
-  IV: "titan-hierro",
-  V: "dragon_bosque_verde",
-};
-
+/**
+ * Cada enemigo tiene una copia de su sprite dentro de la carpeta de su rango.
+ * Los PNG originales en la raíz se conservan por compatibilidad con el mundo 2.5D.
+ * Para enemigos nuevos sin arte propio, el archivo por ID contiene inicialmente
+ * un sprite de referencia del rango y se puede sustituir sin tocar el código.
+ */
 export function obtenerRutaSpriteEnemigo(id: string): string {
   const enemigo = obtenerEnemigoPorId(id);
-  const rango = obtenerRangoAmenaza(Math.max(1, enemigo?.difMin ?? 1));
-  const candidato = ALIAS_SPRITE_ENEMIGO[id] ?? id;
-  const sprite = SPRITES_ENEMIGO_DISPONIBLES.has(candidato)
-    ? candidato
-    : SPRITE_FALLBACK_RANGO[rango.id];
-  return `/sprites/enemies/${rango.id}/${sprite}.png`;
+  if (!enemigo) return "/sprites/enemies/I/slime_acido.png";
+  const rango = obtenerRangoAmenaza(Math.max(1, enemigo.difMin));
+  return `/sprites/enemies/${rango.id}/${id}.png`;
 }
