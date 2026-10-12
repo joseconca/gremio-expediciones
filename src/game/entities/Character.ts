@@ -81,6 +81,9 @@ export class Character extends GameObject implements ShadowCaster {
     _screenX: number,
     _screenY: number
   ): void {
+    // Este render usa coordenadas locales del sprite, no las de cámara.
+    void _screenX;
+    void _screenY;
     this.animator?.draw(ctx, -16, -64);
   }
 }
