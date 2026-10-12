@@ -401,13 +401,13 @@ test("mercado: calcula el precio en servidor e ignora costes enviados por el cli
 test("mercado: dos compras simultáneas no gastan dos veces el mismo oro", async () => {
   const route = makeMarketRoute({ initialUser: { oro: 100 } });
   const results = await Promise.all([
-    route.POST(request({ recurso: "piedra", cantidad: 1 })),
-    route.POST(request({ recurso: "piedra", cantidad: 1 })),
+    route.POST(request({ recurso: "madera", cantidad: 1 })),
+    route.POST(request({ recurso: "madera", cantidad: 1 })),
   ]);
 
   assert.equal(results.filter((result) => result.status === 200).length, 1);
   assert.equal(route.getState().user.oro, 0);
-  assert.equal(route.getState().user.piedra, 1);
+  assert.equal(route.getState().user.madera, 1);
 });
 
 test("herrería: compras concurrentes del mismo objeto solo lo cobran una vez", async () => {
