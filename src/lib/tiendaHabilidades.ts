@@ -1,5 +1,8 @@
 import type { DefinicionHabilidad } from "./tiposJuego";
-import { HABILIDADES, obtenerHabilidadesDisponiblesParaClase } from "./habilidades";
+import {
+  HABILIDADES,
+  obtenerHabilidadesDisponiblesParaClase,
+} from "./habilidades";
 import { randomSeeded } from "./utils";
 
 function obtenerDiaActual(): string {
@@ -12,31 +15,45 @@ function obtenerSeedDelDia(dia: string): number {
   );
 }
 
-export function obtenerHabilidadesEnVenta(
-  claseActualId?: string
+function seleccionarOfertasDiarias(
+  disponibles: readonly DefinicionHabilidad[],
+  limite = 4
 ): DefinicionHabilidad[] {
-  const catalogo = claseActualId
-    ? obtenerHabilidadesDisponiblesParaClase(claseActualId)
-    : HABILIDADES;
-  const disponibles = catalogo.filter(
-    (habilidad) => habilidad.rareza !== "legendario"
-  );
-
   const dia = obtenerDiaActual();
   const seed = obtenerSeedDelDia(dia);
-
   const restantes = [...disponibles];
   const seleccionadas: DefinicionHabilidad[] = [];
 
-  for (let i = 0; i < 4 && restantes.length > 0; i++) {
+  for (let i = 0; i < limite && restantes.length > 0; i++) {
     const indice = Math.floor(randomSeeded(seed + i + 1) * restantes.length);
-
     const habilidad = restantes.splice(indice, 1)[0];
-
-    if (habilidad) {
-      seleccionadas.push(habilidad);
-    }
+    if (habilidad) seleccionadas.push(habilidad);
   }
 
   return seleccionadas;
+}
+
+export function obtenerHabilidadesEnVenta(
+  claseActualId?: string
+): DefinicionHabilidad[] {
+  if (!claseActualId) {
+    // Compatibilidad temporal para los consumidores antiguos del catálogo.
+    return seleccionarOfertasDiarias(
+      HABILIDADES.filter((habilidad) => habilidad.rareza !== "legendario")
+    );
+  }
+
+  const disponibles = obtenerHabilidadesDisponiblesParaClase(claseActualId)
+    .filter((habilidad) => habilidad.rareza !== "legendario");
+
+  // Las habilidades profesionales y heredadas nunca desaparecen por una rotación diaria.
+  const habilidadesProfesionales = disponibles.filter(
+    (habilidad) => Boolean(habilidad.claseId)
+  );
+  // Solo las habilidades genéricas mantienen las ofertas rotatorias de la Escuela.
+  const habilidadesGenericas = seleccionarOfertasDiarias(
+    disponibles.filter((habilidad) => !habilidad.claseId)
+  );
+
+  return [...habilidadesProfesionales, ...habilidadesGenericas];
 }
