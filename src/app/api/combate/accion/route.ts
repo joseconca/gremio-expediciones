@@ -16,10 +16,12 @@ import { experienciaParaNivel } from "@/lib/configuracionJuego";
 import {
   aplicarMultiplicadorRecompensa,
   calcularExperienciaBaseGanada,
+  calcularExperienciaJobGanada,
   calcularOroEnemigo,
   CONFIGURACION_DIFICULTAD,
   esModoDificultad,
   registrarVictoriaRangoNormal,
+  type ModoDificultad,
 } from "../../../../lib/expediciones/dificultad";
 import {
   calcularBonusDefensaMuralla,
@@ -51,7 +53,10 @@ type EfectoCombate = {
 async function otorgarExperienciaJob(
   tx: Prisma.TransactionClient,
   personaje: { id: string; profesionActivaId: string },
-  experienciaGanada: number
+  nivelAmenaza: number,
+  nivelBase: number,
+  modoDificultad: ModoDificultad,
+  factorResultado = 1
 ) {
   const claseId = personaje.profesionActivaId || "novato";
   const definicion = CLASES[claseId];
@@ -68,9 +73,16 @@ async function otorgarExperienciaJob(
 
   if (!progreso || !progreso.desbloqueada) return null;
 
+  const experienciaJobGanada = calcularExperienciaJobGanada(
+    progreso.nivelJob,
+    nivelAmenaza,
+    nivelBase,
+    modoDificultad,
+    factorResultado
+  );
   const actualizado = aplicarExperienciaJob(
     progreso,
-    experienciaGanada,
+    experienciaJobGanada,
     definicion.nivelJobMaximo
   );
 
@@ -925,7 +937,9 @@ export async function POST(request: Request) {
           const progresoJob = await otorgarExperienciaJob(
             tx,
             personaje,
-            experienciaGanada
+            expedicion.dificultad,
+            personaje.nivel,
+            modoDificultad
           );
           if (progresoJob && progresoJob.nivelesSubidos > 0) {
             log.push(`⬆️ Job de ${progresoJob.claseNombre}: nivel ${progresoJob.nivelJob}.`);
@@ -1111,6 +1125,17 @@ export async function POST(request: Request) {
             await tx.inventarioObjeto.deleteMany({
               where: { id: consumible.inventarioObjetoId, cantidad: { lte: 0 } },
             });
+          }
+          const progresoJob = await otorgarExperienciaJob(
+            tx,
+            personaje,
+            expedicion.dificultad,
+            personaje.nivel,
+            modoDificultad,
+            0.1
+          );
+          if (progresoJob && progresoJob.nivelesSubidos > 0) {
+            log.push(`⬆️ Job de ${progresoJob.claseNombre}: nivel ${progresoJob.nivelJob}.`);
           }
           const actualizacionCombate = await tx.combateActivo.updateMany({
             where: {
