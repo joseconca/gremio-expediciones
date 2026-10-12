@@ -199,6 +199,7 @@ function makeCombatConsumableRoute({
         tipo: id === "pocion" ? "consumible" : "arma", curacion: id === "pocion" ? 30 : undefined,
       }),
     },
+    "@/lib/progresion/clases": { CLASES: {}, puedeUsarHabilidadDeClase: () => true },
     "@/lib/sufijosObjetos": { obtenerNombreObjetoConSufijo: (name) => name },
     "@/lib/habilidades": { obtenerHabilidadPorId: () => null },
     "@/lib/expediciones/combate": {
