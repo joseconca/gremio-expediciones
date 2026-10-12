@@ -1,5 +1,8 @@
 import { experienciaParaNivel } from "../configuracionJuego";
 
+/** Puntos libres que obtiene el personaje por cada nivel Base alcanzado. */
+export const PUNTOS_ATRIBUTO_POR_NIVEL_BASE = 3;
+
 export interface EstadoProgresoJob {
   nivelJob: number;
   experienciaJob: number;
