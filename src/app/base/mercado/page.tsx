@@ -42,8 +42,7 @@ function calcularPrecio(precioBase: number, nivelMercado: number) {
 }
 
 export default function MercadoPage() {
-  const { oro, madera, piedra, metal, edificios, comprarRecurso } =
-    useGameStore();
+  const { oro, edificios, comprarRecurso } = useGameStore();
 
   const router = useRouter();
 
