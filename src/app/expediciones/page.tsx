@@ -146,7 +146,7 @@ export default function ExpedicionesPage() {
   }, []);
 
   useEffect(() => {
-    if (!combateAsedio) return;
+    if (!combateAsedio?.id) return;
 
     let cancelado = false;
     const actualizarCombate = async () => {
@@ -172,9 +172,18 @@ export default function ExpedicionesPage() {
     };
   }, [combateAsedio?.id]);
 
+  const baseLat = baseCoords?.lat ?? null;
+  const baseLng = baseCoords?.lng ?? null;
+  const nivelPersonaje = personaje?.nivel ?? null;
+
   useEffect(() => {
-    if (isLoading || !sesionActiva || !baseCoords || !personaje) {
-      setMisionesGeneradas([]);
+    if (
+      isLoading ||
+      !sesionActiva ||
+      baseLat === null ||
+      baseLng === null ||
+      nivelPersonaje === null
+    ) {
       return;
     }
 
@@ -212,7 +221,16 @@ export default function ExpedicionesPage() {
       cancelado = true;
       clearInterval(intervalo);
     };
-  }, [baseCoords, isLoading, personaje?.nivel, sesionActiva]);
+  }, [baseLat, baseLng, isLoading, nivelPersonaje, sesionActiva]);
+
+  const misionesVisibles =
+    !isLoading &&
+    sesionActiva &&
+    baseLat !== null &&
+    baseLng !== null &&
+    nivelPersonaje !== null
+      ? misionesGeneradas
+      : [];
 
   let distanciaKm = 0;
   let tiempoHoras = 0;
@@ -396,7 +414,7 @@ export default function ExpedicionesPage() {
         <div className="absolute inset-0 z-0">
           <MissionMap
             baseCoords={baseCoords}
-            misiones={misionesGeneradas}
+            misiones={misionesVisibles}
             basesAjenas={basesAjenas}
             destinoExpedicion={expedicionActiva?.destinoCoords ?? null}
             fechaSalida={expedicionActiva?.fechaSalida}
@@ -624,7 +642,13 @@ export default function ExpedicionesPage() {
               </button>
             </div>
 
-            {/* 4. POSIBLES RECOMPENSAS / BOTÍN */}
+                  {errorEnvio && (
+                <p role="alert" className="mt-3 text-center text-sm font-bold text-red-600">
+                  {errorEnvio}
+                </p>
+              )}
+
+        {/* 4. POSIBLES RECOMPENSAS / BOTÍN */}
             <div
               className={`mt-4 rounded-lg border p-3 ${
                 misionSeleccionada.tipo === "elite"
