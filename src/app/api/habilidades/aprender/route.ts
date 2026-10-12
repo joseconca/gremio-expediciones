@@ -5,6 +5,7 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { puedeAprenderHabilidad } from "@/lib/configuracionJuego";
 import { obtenerHabilidadesEnVenta } from "@/lib/tiendaHabilidades";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
+import { puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
 
 export async function POST(request: Request) {
   try {
@@ -51,24 +52,9 @@ export async function POST(request: Request) {
       );
     }
 
-    if (habilidad.rareza === "legendario") {
+    if (!habilidad.claseId && habilidad.rareza === "legendario") {
       return NextResponse.json(
         { error: "Las habilidades legendarias no se pueden comprar." },
-        { status: 403 }
-      );
-    }
-
-    const habilidadesEnVenta = obtenerHabilidadesEnVenta();
-
-    const estaEnVenta = habilidadesEnVenta.some(
-      (habilidadVenta) => habilidadVenta.id === habilidad.id
-    );
-
-    if (!estaEnVenta) {
-      return NextResponse.json(
-        {
-          error: "Esta habilidad no está disponible en la Escuela hoy.",
-        },
         { status: 403 }
       );
     }
@@ -85,6 +71,7 @@ export async function POST(request: Request) {
           personaje: {
             select: {
               id: true,
+              profesionActivaId: true,
               habilidades: {
                 where: {
                   habilidadId: habilidad.id,
@@ -111,35 +98,80 @@ export async function POST(request: Request) {
           ? (usuario.edificios as Record<string, unknown>)
           : {};
 
-      const nivelEscuela =
-        typeof edificios.escuelaCombate === "number"
-          ? edificios.escuelaCombate
-          : 0;
-
-      if (!puedeAprenderHabilidad(habilidad.rareza, nivelEscuela)) {
-        throw new Error("NIVEL_ESCUELA_INSUFICIENTE");
+      const profesionActivaId = usuario.personaje.profesionActivaId || "novato";
+      const habilidadesEnVenta = obtenerHabilidadesEnVenta(profesionActivaId);
+      if (!habilidadesEnVenta.some((habilidadVenta) => habilidadVenta.id === habilidad.id)) {
+        throw new Error("HABILIDAD_NO_EN_VENTA");
       }
 
       if (usuario.personaje.habilidades.length !== 0) {
         throw new Error("HABILIDAD_YA_APRENDIDA");
       }
 
-      const descuento = await tx.usuario.updateMany({
-        where: {
-          id: usuario.id,
-          oro: {
-            gte: habilidad.precio,
-          },
-        },
-        data: {
-          oro: {
-            decrement: habilidad.precio,
-          },
-        },
-      });
+      if (habilidad.claseId) {
+        if (!puedeUsarHabilidadDeClase(profesionActivaId, habilidad.claseId)) {
+          throw new Error("HABILIDAD_CLASE_INCOMPATIBLE");
+        }
 
-      if (descuento.count !== 1) {
-        throw new Error("ORO_INSUFICIENTE");
+        const progresoJob = await tx.progresoClase.findUnique({
+          where: {
+            personajeId_claseId: {
+              personajeId: usuario.personaje.id,
+              claseId: profesionActivaId,
+            },
+          },
+        });
+
+        if (!progresoJob || !progresoJob.desbloqueada) {
+          throw new Error("PROGRESO_JOB_NO_ENCONTRADO");
+        }
+
+        const nivelJobRequerido = habilidad.nivelJobRequerido ?? 1;
+        if (progresoJob.nivelJob < nivelJobRequerido) {
+          throw new Error("NIVEL_JOB_INSUFICIENTE");
+        }
+
+        const costePuntos = Math.max(1, Math.floor(habilidad.costePuntosHabilidad ?? 1));
+        const puntosGastados = await tx.progresoClase.updateMany({
+          where: {
+            id: progresoJob.id,
+            puntosHabilidadDisponibles: { gte: costePuntos },
+          },
+          data: {
+            puntosHabilidadDisponibles: { decrement: costePuntos },
+          },
+        });
+
+        if (puntosGastados.count !== 1) {
+          throw new Error("PUNTOS_HABILIDAD_INSUFICIENTES");
+        }
+      } else {
+        const nivelEscuela =
+          typeof edificios.escuelaCombate === "number"
+            ? edificios.escuelaCombate
+            : 0;
+
+        if (!puedeAprenderHabilidad(habilidad.rareza, nivelEscuela)) {
+          throw new Error("NIVEL_ESCUELA_INSUFICIENTE");
+        }
+
+        const descuento = await tx.usuario.updateMany({
+          where: {
+            id: usuario.id,
+            oro: {
+              gte: habilidad.precio,
+            },
+          },
+          data: {
+            oro: {
+              decrement: habilidad.precio,
+            },
+          },
+        });
+
+        if (descuento.count !== 1) {
+          throw new Error("ORO_INSUFICIENTE");
+        }
       }
 
       const aprendida = await tx.habilidadAprendida.create({
@@ -190,6 +222,36 @@ export async function POST(request: Request) {
           return NextResponse.json(
             { error: "Ya has aprendido esta habilidad." },
             { status: 409 }
+          );
+
+        case "HABILIDAD_NO_EN_VENTA":
+          return NextResponse.json(
+            { error: "Esta habilidad no está disponible para tu profesión hoy." },
+            { status: 403 }
+          );
+
+        case "HABILIDAD_CLASE_INCOMPATIBLE":
+          return NextResponse.json(
+            { error: "Esta profesión no puede aprender esa habilidad." },
+            { status: 403 }
+          );
+
+        case "PROGRESO_JOB_NO_ENCONTRADO":
+          return NextResponse.json(
+            { error: "No se encontró el progreso Job de tu profesión." },
+            { status: 409 }
+          );
+
+        case "NIVEL_JOB_INSUFICIENTE":
+          return NextResponse.json(
+            { error: "Tu nivel Job todavía no cumple los requisitos de esta habilidad." },
+            { status: 403 }
+          );
+
+        case "PUNTOS_HABILIDAD_INSUFICIENTES":
+          return NextResponse.json(
+            { error: "No tienes puntos de habilidad Job suficientes." },
+            { status: 400 }
           );
 
         case "ORO_INSUFICIENTE":
