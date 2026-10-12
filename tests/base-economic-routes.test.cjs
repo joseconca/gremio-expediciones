@@ -423,8 +423,13 @@ test("herrería: compras concurrentes del mismo objeto solo lo cobran una vez", 
   assert.equal(route.getState().items.length, 1);
 });
 
-test("acciones de jugador: rechaza coordenadas no finitas y atributos manipulados", async () => {
+test("acciones de jugador: rechaza cuerpos malformados, coordenadas no finitas y atributos manipulados", async () => {
   const route = makeActionsRoute();
+  const malformed = await route.POST({
+    json: async () => { throw new SyntaxError("JSON inválido"); },
+  });
+  assert.equal(malformed.status, 400);
+
   for (const coords of [
     { lat: Number.NaN, lng: -15 },
     { lat: 28, lng: Number.POSITIVE_INFINITY },
