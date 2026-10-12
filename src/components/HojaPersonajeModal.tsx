@@ -38,10 +38,8 @@ export default function HojaPersonajeModal({
   }, [onCerrar]);
 
   useEffect(() => {
-    if (!abierto) return;
-
     const frame = requestAnimationFrame(() => {
-      setVisible(true);
+      setVisible(abierto);
     });
 
     return () => cancelAnimationFrame(frame);
