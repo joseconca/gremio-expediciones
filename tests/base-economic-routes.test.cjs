@@ -874,6 +874,17 @@ function makeAbilityEquipConflictRoute(errorCode = "P2002") {
   };
 }
 
+test("regresión: la entrega de botín en expedición respeta el límite de inventario y comunica si se pierde", () => {
+  const source = fs.readFileSync(
+    path.resolve(__dirname, "../src/app/api/expediciones/completar/route.ts"),
+    "utf8",
+  );
+  assert.match(source, /espaciosOcupados < LIMITE_INVENTARIO_OBJETOS/);
+  assert.match(source, /botinPerdidoPorInventarioLleno = true/);
+  assert.match(source, /El inventario está lleno y el objeto encontrado se ha perdido\./);
+  assert.match(source, /objetosObtenidos: actualizado\.botinEntregado \? \[actualizado\.botinEntregado\] : \[\]/);
+});
+
 test("combate: las pociones curan hasta el máximo y consumen una unidad atómicamente", async () => {
   const route = makeCombatConsumableRoute({ initialHp: 80, maxHp: 100, initialQuantity: 2 });
   const response = await route.POST(request({ accion: "usar_objeto", objetoInventarioId: "item-consumible" }));
