@@ -18,6 +18,16 @@ export interface AtributosPrincipales {
 }
 
 export type TipoObjeto = "consumible" | "arma" | "armadura" | "accesorio";
+export type SlotObjeto =
+  | "arma"
+  | "mano_secundaria"
+  | "casco"
+  | "armadura"
+  | "pantalones"
+  | "botas"
+  | "guantes"
+  | "collar"
+  | "anillo";
 
 /** RAREZA */
 export type Rareza =
@@ -125,6 +135,9 @@ export interface DefinicionEnemigo {
 
   objetoDropId?: string;
   habilidadDropId?: string;
+  esJefe?: boolean;
+  probabilidadBotin?: number;
+  tablaLoot?: Array<{ objetoId: string; peso: number }>;
 }
 
 /** OBJETOS */
@@ -133,6 +146,9 @@ export interface DefinicionObjeto {
   nombre: string;
   tipo: TipoObjeto;
   subtipo?: string;
+  slot?: SlotObjeto;
+  /** Las armas de dos manos bloquean la mano secundaria. */
+  manos?: 1 | 2;
   categoriaArmadura?: TipoArmadura;
   descripcion: string;
   rareza: Rareza;
@@ -174,13 +190,23 @@ export interface ObjetoInventario {
   objetoId: string;
   cantidad: number;
   nivelMejora: number;
+  sufijoId: string | null;
+  bonificaciones: Record<string, number>;
   objeto: DefinicionObjeto;
 }
 
 export interface EquipoPersonaje {
   arma: ObjetoInventario | null;
+  manoSecundaria: ObjetoInventario | null;
+  casco: ObjetoInventario | null;
   armadura: ObjetoInventario | null;
+  pantalones: ObjetoInventario | null;
+  botas: ObjetoInventario | null;
+  guantes: ObjetoInventario | null;
+  /** La antigua relación accesorio representa ahora el collar. */
   accesorio: ObjetoInventario | null;
+  anillo1: ObjetoInventario | null;
+  anillo2: ObjetoInventario | null;
 }
 
 /** MAPA */
