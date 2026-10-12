@@ -60,6 +60,17 @@ export function calcularEstadisticasBase(
   const nivelesExtra = nivelSeguro - 1;
 
   switch (clase) {
+    case "Novato":
+      return {
+        hpMaximo: 65 + nivelesExtra * 5,
+        ataque: 5 + nivelesExtra,
+        defensa: 3 + nivelesExtra * 0.8,
+        velocidad: 5 + nivelesExtra * 0.4,
+        capacidadCarruaje: 8 + nivelesExtra,
+        probCritico: 0.03,
+        danoCritico: 1.5,
+      };
+
     case "Guerrero":
       return {
         hpMaximo: 85 + nivelesExtra * 6,
@@ -128,6 +139,7 @@ export function calcularCosteAtributo(
 // HEROES
 // ============================================================
 const SPRITE_POR_CLASE: Record<string, string> = {
+  Novato: "warrior",
   Guerrero: "warrior",
   Explorador: "explorer",
   Comerciante: "merchant",

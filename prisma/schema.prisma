@@ -54,9 +54,20 @@ model Personaje {
   usuarioId String  @unique
   usuario   Usuario @relation(fields: [usuarioId], references: [id])
 
+  // "clase" se conserva temporalmente para compatibilidad con el combate legado.
   clase              String
+  profesionActivaId  String               @default("novato")
   sexo               String               @default("chico")
   nombre             String
+
+  fuerza              Int                  @default(1)
+  agilidad            Int                  @default(1)
+  vitalidad           Int                  @default(1)
+  inteligencia        Int                  @default(1)
+  destreza            Int                  @default(1)
+  suerte              Int                  @default(1)
+  energiaActual       Int                  @default(20)
+  manaActual          Int                  @default(10)
 
   hpActual           Int
   regeneracionDeVida Float
@@ -72,6 +83,26 @@ model Personaje {
   inventario         Inventario?
   habilidades        HabilidadAprendida[]
   equipoEquipado     EquipoEquipado?
+  progresosClase     ProgresoClase[]
+}
+
+model ProgresoClase {
+  id                         String   @id @default(uuid())
+  personajeId                String
+  claseId                    String
+  nivelJob                   Int      @default(1)
+  experienciaJob             Int      @default(0)
+  puntosHabilidadDisponibles  Int      @default(0)
+  desbloqueada               Boolean  @default(false)
+  maestriaCompletada         Boolean  @default(false)
+  creado                     DateTime @default(now())
+  actualizado                DateTime @updatedAt
+
+  personaje Personaje @relation(fields: [personajeId], references: [id], onDelete: Cascade)
+
+  @@unique([personajeId, claseId])
+  @@index([personajeId, desbloqueada])
+  @@index([claseId, nivelJob])
 }
 
 model Inventario {

@@ -6,33 +6,8 @@ import { useGameStore } from "@/store/useGameStore";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 
-const CLASES_INICIALES = [
-  {
-    id: "guerrero",
-    nombre: "Guerrero",
-    ventaja: "Más supervivencia",
-    descripcion:
-      "Curtido por la batalla, siempre preparado para el próximo enfrentamiento.",
-    color: "bg-red-950/80 border-red-800 text-red-100",
-  },
-  {
-    id: "explorador",
-    nombre: "Explorador",
-    ventaja: "Más velocidad",
-    descripcion: "Ágil y con ganas de explorar, siempre encuentra la mejor ruta.",
-    color: "bg-green-950/80 border-green-800 text-green-100",
-  },
-  {
-    id: "mercader",
-    nombre: "Comerciante",
-    ventaja: "Más botín",
-    descripcion:
-      "Experto en el arte del trueque, siempre consigue el mejor trato.",
-    color: "bg-amber-950/80 border-amber-800 text-amber-100",
-  },
-];
-
 function nombreClase(clase: string, sexo: "chico" | "chica") {
+  if (sexo === "chica" && clase === "Novato") return "Novata";
   if (sexo === "chica" && clase === "Guerrero") return "Guerrera";
   if (sexo === "chica" && clase === "Explorador") return "Exploradora";
   return clase;
@@ -49,9 +24,6 @@ export default function TabernaPage() {
     edificios,
   } = useGameStore();
 
-  const [claseSeleccionada, setClaseSeleccionada] = useState(
-    CLASES_INICIALES[0]
-  );
   const [nombre, setNombre] = useState("");
   const [sexo, setSexo] = useState<"chico" | "chica">("chico");
   const [mensaje, setMensaje] = useState("");
@@ -74,7 +46,7 @@ export default function TabernaPage() {
     try {
       await reclutarPersonaje({
         nombre: nombre.trim(),
-        clase: claseSeleccionada.nombre,
+        clase: "Novato",
         sexo,
       });
     } catch (error) {
@@ -325,43 +297,22 @@ export default function TabernaPage() {
                   </div>
 
                   <div className="space-y-6">
-                    {/* Clases tipo "Pósters de Búsqueda" */}
-                    <div>
-                      <h3 className="font-bold mb-3 text-stone-800 uppercase text-sm tracking-wider">
-                        1. Selecciona tu especialidad
-                      </h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        {CLASES_INICIALES.map((clase) => (
-                          <div
-                            key={clase.id}
-                            onClick={() => setClaseSeleccionada(clase)}
-                            className={`cursor-pointer rounded-lg p-4 border-2 transition-all flex flex-col items-center text-center ${
-                              claseSeleccionada.id === clase.id
-                                ? clase.color + " shadow-lg scale-105"
-                                : "bg-[#dfd1b3] border-[#c4b38d] hover:border-stone-500 text-stone-700"
-                            }`}
-                          >
-                            <div className="h-20 w-20 mb-2 bg-black/10 rounded-full flex items-center justify-center border-2 border-current overflow-hidden">
-                              <Image
-                                src={obtenerSpriteHeroe(clase.nombre, sexo)}
-                                alt={clase.nombre}
-                                width={64}
-                                height={64}
-                                className="h-16 w-16 object-contain translate-y-2 [image-rendering:pixelated]"
-                              />
-                            </div>
-                            <h4 className="font-black text-lg">
-                              {clase.nombre}
-                            </h4>
-                            <p className="text-xs font-bold mt-1 mb-2 px-2 py-1 bg-black/20 rounded">
-                              {clase.ventaja}
-                            </p>
-                            <p className="text-[10px] leading-tight opacity-90">
-                              {clase.descripcion}
-                            </p>
-                          </div>
-                        ))}
+                    <div className="rounded-lg border-2 border-[#b5a37f] bg-[#dfd1b3] p-5 text-center">
+                      <div className="mx-auto mb-3 flex h-20 w-20 items-center justify-center overflow-hidden rounded-full border-2 border-stone-500 bg-black/10">
+                        <Image
+                          src={obtenerSpriteHeroe("Novato", sexo)}
+                          alt="Novato"
+                          width={64}
+                          height={64}
+                          className="h-16 w-16 translate-y-2 object-contain [image-rendering:pixelated]"
+                        />
                       </div>
+                      <h3 className="font-serif text-lg font-black uppercase tracking-wider text-stone-900">
+                        1. Profesión inicial: Novato
+                      </h3>
+                      <p className="mt-2 text-sm text-stone-700">
+                        Todos los aventureros comienzan como Novatos. Al alcanzar Job 10 podrás elegir tu primera profesión y empezar a definir tu especialización.
+                      </p>
                     </div>
 
                     {/* Datos Personales */}

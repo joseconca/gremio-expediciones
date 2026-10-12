@@ -17,7 +17,6 @@ import { CONFIGURACION_EDIFICIOS, IdEdificio } from "@/lib/tiposJuego";
 import { calcularEstadisticasPersonaje } from "@/lib/estadisticasPersonaje";
 import { asegurarInventarioYEquipo } from "@/lib/inventario";
 
-const CLASES = new Set(["Guerrero", "Explorador", "Comerciante"]);
 const SEXOS = new Set(["chico", "chica"]);
 
 const includeGameData = {
@@ -36,6 +35,7 @@ const includeGameData = {
           accesorio: true,
         },
       },
+      progresosClase: true,
     },
   },
   expedicionActiva: true,
@@ -104,9 +104,8 @@ export async function POST(request: Request) {
 
     if (accion === "reclutar") {
       const nombre = typeof body.nombre === "string" ? body.nombre.trim() : "";
-      const clase = typeof body.clase === "string" ? body.clase : "";
       const sexo = typeof body.sexo === "string" ? body.sexo : "";
-      if (nombre.length < 3 || !CLASES.has(clase) || !SEXOS.has(sexo)) {
+      if (nombre.length < 3 || !SEXOS.has(sexo)) {
         return NextResponse.json(
           { error: "Personaje inválido." },
           { status: 400 }
@@ -122,7 +121,8 @@ export async function POST(request: Request) {
           { status: 409 }
         );
       }
-      const clasePersonaje = clase as ClasePersonaje;
+      // El servidor ignora la clase enviada por el cliente: todos empiezan como Novato.
+      const clasePersonaje: ClasePersonaje = "Novato";
       const estadisticasBase = calcularEstadisticasBase(clasePersonaje, 1);
 
       const usuario = await prisma.$transaction(async (tx) => {
@@ -132,9 +132,19 @@ export async function POST(request: Request) {
             personaje: {
               create: {
                 nombre,
-                clase,
+                clase: clasePersonaje,
+                profesionActivaId: "novato",
                 sexo,
                 estado: "ocioso",
+
+                fuerza: 1,
+                agilidad: 1,
+                vitalidad: 1,
+                inteligencia: 1,
+                destreza: 1,
+                suerte: 1,
+                energiaActual: 20,
+                manaActual: 10,
 
                 hpActual: Math.floor(estadisticasBase.hpMaximo),
 
@@ -145,6 +155,15 @@ export async function POST(request: Request) {
 
                 nivel: 1,
                 experiencia: 0,
+                progresosClase: {
+                  create: {
+                    claseId: "novato",
+                    nivelJob: 1,
+                    experienciaJob: 0,
+                    puntosHabilidadDisponibles: 0,
+                    desbloqueada: true,
+                  },
+                },
               },
             },
           },

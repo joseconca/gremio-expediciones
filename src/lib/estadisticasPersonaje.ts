@@ -144,6 +144,7 @@ export function calcularEstadisticasPersonaje(
   combate: ModificadoresEstadisticas = MODIFICADORES_VACIOS
 ): DesgloseEstadisticasPersonaje {
   if (
+    personaje.clase !== "Novato" &&
     personaje.clase !== "Guerrero" &&
     personaje.clase !== "Explorador" &&
     personaje.clase !== "Comerciante"
