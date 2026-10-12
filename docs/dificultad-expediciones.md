@@ -40,7 +40,7 @@ La rareza decide principalmente la frecuencia de aparición y el botín, no un m
 
 Vida, ataque y defensa se calculan como su estadística de catálogo por el factor de amenaza y por el factor del modo. Cada resultado se redondea hacia abajo y se aplica un mínimo razonable. El nivel Base no se suma otra vez al nivel de amenaza.
 
-El catálogo de enemigos usa una ventana de amenazas próximas, con pesos por rareza; el Mímico de prueba está excluido de encuentros aleatorios para evitar usar sus estadísticas de 1 HP y botín de 500 como exploit. Sus archivos originales se conservan. Los sprites de combate/reportes se sirven desde `public/sprites/enemies/{I,II,III,IV,V}/`.
+El catálogo de enemigos usa una ventana de amenazas próximas, con pesos por rareza; el Mímico de prueba está excluido de encuentros aleatorios para evitar usar sus estadísticas de 1 HP y botín de 500 como exploit. Por encima del mayor `difMin` del catálogo se reutiliza el grupo de monstruos superior y se escala según la amenaza real, de modo que el Rango V no se queda sin candidatos. Los sprites de combate/reportes se sirven desde `public/sprites/enemies/{I,II,III,IV,V}/`.
 
 ## Recompensas y ritmo de niveles
 
