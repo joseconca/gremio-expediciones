@@ -9,6 +9,7 @@ import AsedioModal from "@/components/combate/AsedioModal";
 import PanelEdificios from "@/components/base/PanelEdificios";
 import ReporteExpedicion from "@/components/reportes/ReporteExpedicion";
 import PanelMisiones from "@/components/base/PanelMisiones";
+import PanelAtributosRpg from "@/components/base/PanelAtributosRpg";
 import PanelConstruccion from "@/components/base/PanelConstruccion";
 
 interface CaravanaEntrante {
@@ -298,6 +299,7 @@ export default function BasePage() {
     piedra,
     metal,
     personaje,
+    cargarJugador,
     expedicionActiva,
     baseCoords,
     llegarExpedicion,
@@ -678,6 +680,10 @@ export default function BasePage() {
             onResolverLlegada={() => void handleResolverLlegada()}
             onConfirmarRegreso={() => setConfirmarRegreso(true)}
           />
+        )}
+
+        {personaje && (
+          <PanelAtributosRpg personaje={personaje} cargarJugador={cargarJugador} />
         )}
 
         {/* CABECERA DINÁMICA: Instalaciones vs Construcción */}
