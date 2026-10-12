@@ -21,6 +21,7 @@ const {
   obtenerRangoMaximoDesbloqueado,
 } = require("../src/lib/expediciones/dificultad.ts");
 const { obtenerHabilidadesEnVenta } = require("../src/lib/tiendaHabilidades.ts");
+const { generarMisionesDisponibles } = require("../src/lib/generadorMisiones.ts");
 
 test("el catálogo de clases tiene requisitos válidos y no contiene ciclos", () => {
   for (const clase of Object.values(CLASES)) {
@@ -161,6 +162,34 @@ test("Job usa una curva más rápida y Job 40 es alcanzable alrededor de Base 13
   assert.ok(experienciaJobParaNivel(10) < experienciaParaNivel(10));
   assert.ok(totalJob40 >= 95_000 && totalJob40 <= 120_000, `XP acumulada Job 40 inesperada: ${totalJob40}`);
   assert.ok(totalJob40 > totalBase13 * 0.8 && totalJob40 < totalBase13 * 1.2);
+});
+
+test("expediciones: el catálogo respeta rangos desbloqueados y garantiza misión de frontera", () => {
+  const ahora = new Date("2026-10-12T12:00:00.000Z");
+  const inicial = generarMisionesDisponibles({
+    baseLat: 28,
+    baseLng: -15,
+    nivelPersonaje: 1,
+    rangosAmenazaCompletados: [],
+    ultimaMisionElite: null,
+    ahora,
+  });
+  const normalesIniciales = inicial.filter((mision) => mision.tipo === "normal");
+  assert.ok(normalesIniciales.some((mision) => mision.dificultad === 1));
+  assert.ok(normalesIniciales.some((mision) => mision.dificultad === 3));
+  assert.ok(normalesIniciales.every((mision) => mision.dificultad <= 3));
+  assert.ok(!inicial.some((mision) => mision.tipo === "elite"));
+
+  const rangoDos = generarMisionesDisponibles({
+    baseLat: 28,
+    baseLng: -15,
+    nivelPersonaje: 4,
+    rangosAmenazaCompletados: ["I"],
+    ultimaMisionElite: null,
+    ahora,
+  }).filter((mision) => mision.tipo === "normal");
+  assert.ok(rangoDos.some((mision) => mision.dificultad === 6));
+  assert.ok(rangoDos.every((mision) => mision.dificultad <= 6));
 });
 
 test("dificultad: los rangos exigen nivel Base y victoria Normal del rango anterior", () => {
