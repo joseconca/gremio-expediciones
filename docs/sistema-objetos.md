@@ -44,6 +44,21 @@ Los consumibles en asedios PvP continúan deshabilitados; no se habilitan hasta 
 - La recompra cuesta el 70 % del precio base (o un mínimo de una moneda por encima de la venta), conserva el sufijo, las bonificaciones y el nivel de mejora, y consume la última venta guardada.
 - La venta y la recompra se ejecutan en transacciones. No se puede vender una pieza equipada. No se puede recomprar sin oro o espacio en el inventario.
 
+## Estado de estabilización
+
+Verificado en la rama `estabilizacion-clases-objetos`:
+- [x] Bonificaciones del equipo aplicadas a máximos y regeneración de Energía/Maná durante el combate.
+- [x] Equipar, desequipar y mejorar bloqueados durante viaje/combate, con revalidación en transacción.
+- [x] Uso de consumibles curativos en combate PvE: propiedad, cantidad, PV máximos y consumo atómico.
+- [x] Inventario máximo de 30 instancias y mensaje explícito cuando un botín no cabe.
+- [x] Venta y recompra conservan la instancia, sufijo, mejoras y bonificaciones; la recompra duplicada se rechaza.
+- [x] CI completa: pruebas de base/API, motor del mundo, progresión, ESLint y build de producción.
+
+Pendiente antes de cerrar por completo el sistema de objetos:
+- [ ] Validación integral manual/UI de compras, venta, recompra, equipo y consumibles en una partida real.
+- [ ] Consumibles durante asedios PvP, cuando estén cubiertos los dos participantes y la persistencia de sus estados.
+- [ ] Revisar el recorrido de edificios y las integraciones de tienda una vez cerrada la verificación del núcleo de objetos.
+
 ## Migración
 
 La migración `20261012190000_objetos_instance_system` elimina la restricción que impedía varias instancias de una misma definición, añade los campos de sufijo y bonificaciones, amplía el modelo de equipo y guarda una instantánea de la última venta. También abona una sola vez el 30 % del valor de catálogo por unidad de los objetos legacy incluidos en la tabla SQL; conserva los objetos existentes. Ese abono no se procesa desde una ruta de aplicación, por lo que no vuelve a pagarse con las compras, ventas o sesiones normales.
