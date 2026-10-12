@@ -22,6 +22,16 @@ export async function GET() {
         personaje: {
           select: {
             id: true,
+            profesionActivaId: true,
+            progresosClase: {
+              select: {
+                claseId: true,
+                nivelJob: true,
+                puntosHabilidadDisponibles: true,
+                desbloqueada: true,
+                maestriaCompletada: true,
+              },
+            },
             habilidades: {
               select: {
                 id: true,
@@ -61,11 +71,21 @@ export async function GET() {
         ? edificios.escuelaCombate
         : 0;
 
-    const habilidadesEnVenta = obtenerHabilidadesEnVenta();
+    const profesionActivaId = usuario.personaje.profesionActivaId || "novato";
+    const habilidadesEnVenta = obtenerHabilidadesEnVenta(profesionActivaId);
+    const progresoJob = usuario.personaje.progresosClase.find(
+      (progreso) => progreso.claseId === profesionActivaId && progreso.desbloqueada
+    );
+    const nivelJob = progresoJob?.nivelJob ?? 1;
+    const puntosHabilidadDisponibles = progresoJob?.puntosHabilidadDisponibles ?? 0;
 
     const enVenta = habilidadesEnVenta.map((habilidad) => ({
       ...habilidad,
-      puedeAprender: puedeAprenderHabilidad(habilidad.rareza, nivelEscuela),
+      puedeAprender: habilidad.claseId
+        ? nivelJob >= (habilidad.nivelJobRequerido ?? 1) &&
+          puntosHabilidadDisponibles >= (habilidad.costePuntosHabilidad ?? 1)
+        : puedeAprenderHabilidad(habilidad.rareza, nivelEscuela),
+      modoAprendizaje: habilidad.claseId ? "job" : "oro",
     }));
 
     const habilidadesAprendidas = usuario.personaje.habilidades
@@ -92,8 +112,15 @@ export async function GET() {
 
     return NextResponse.json({
       escuelaNivel: nivelEscuela,
+      profesionActivaId,
+      progresoJob,
       enVenta,
-      aprendidas: habilidadesAprendidas,
+      aprendidas: habilidadesAprendidas.map((aprendida) => ({
+        ...aprendida,
+        disponibleParaProfesion: obtenerHabilidadesEnVenta(profesionActivaId).some(
+          (oferta) => oferta.id === aprendida.habilidadId
+        ),
+      })),
     });
   } catch (error) {
     console.error("Error al obtener habilidades:", error);
