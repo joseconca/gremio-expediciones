@@ -685,6 +685,7 @@ export async function POST(request: Request) {
 
           const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
             jugadorAtaque: combate.jugadorAtaque,
+            jugadorAtaqueMagico: combate.jugadorAtaqueMagico,
             jugadorProbCritico: combate.jugadorProbCritico,
             jugadorDanoCritico: combate.jugadorDanoCritico,
             jugadorDefensa,
@@ -692,6 +693,7 @@ export async function POST(request: Request) {
             jugadorHp,
             jugadorHpMaximo: combate.jugadorHpMaximo,
             enemigoDefensa,
+            enemigoDefensaMagica: combate.enemigoDefensaMagica ?? enemigoDefensa,
             enemigoNombre: combate.enemigoNombre ?? "Enemigo",
           });
 
@@ -1259,6 +1261,7 @@ export async function POST(request: Request) {
 
         const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
           jugadorAtaque: combate.jugadorAtaque,
+          jugadorAtaqueMagico: combate.jugadorAtaqueMagico,
           jugadorProbCritico: combate.jugadorProbCritico,
           jugadorDanoCritico: combate.jugadorDanoCritico,
           jugadorDefensa,
@@ -1267,6 +1270,9 @@ export async function POST(request: Request) {
           jugadorHpMaximo: combate.jugadorHpMaximo,
           enemigoDefensa:
             combate.enemigoDefensa +
+            calcularBonusDefensaMuralla(combate.murallaNivel),
+          enemigoDefensaMagica:
+            (combate.enemigoDefensaMagica ?? combate.enemigoDefensa) +
             calcularBonusDefensaMuralla(combate.murallaNivel),
           enemigoNombre: combate.enemigoNombre ?? "Defensor",
         });
@@ -1319,6 +1325,7 @@ export async function POST(request: Request) {
 
         const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
           jugadorAtaque: combate.enemigoAtaque,
+          jugadorAtaqueMagico: combate.enemigoAtaqueMagico ?? combate.enemigoAtaque,
           jugadorProbCritico: combate.enemigoProbCritico,
           jugadorDanoCritico: combate.enemigoDanoCritico,
           jugadorDefensa: enemigoDefensa,
@@ -1326,6 +1333,7 @@ export async function POST(request: Request) {
           jugadorHp: enemigoHp,
           jugadorHpMaximo: combate.enemigoHpMaximo,
           enemigoDefensa: jugadorDefensa,
+          enemigoDefensaMagica: combate.jugadorDefensaMagica,
           enemigoNombre: "Atacante",
         });
 
