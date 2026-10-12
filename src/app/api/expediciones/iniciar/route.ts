@@ -12,7 +12,7 @@ import { calcularDistanciaKm } from "@/lib/utils";
 import { calcularOroBaseComercio } from "@/lib/expediciones/comercio";
 import { generarMisionesDisponibles } from "@/lib/generadorMisiones";
 import { obtenerDefinicionClase } from "@/lib/progresion/clases";
-import { esModoDificultad, type ModoDificultad } from "@/lib/expediciones/dificultad";
+import { esModoDificultad, type ModoDificultad } from "../../../../lib/expediciones/dificultad";
 import type { DefinicionMision, RecompensaMision } from "@/lib/tiposJuego";
 
 interface Coordenadas {
