@@ -98,8 +98,17 @@ export function generarMisionElite(
     Math.max(3, nivelBase),
     Math.max(...JEFES_ELITE.map((jefe) => jefe.difMin))
   );
-  const jefesDisponibles = JEFES_ELITE.filter((jefe) => jefe.difMin <= nivelJefeMaximo);
-  const candidatos = jefesDisponibles.length > 0 ? jefesDisponibles : [JEFES_ELITE[0]];
+  const nivelJefeMinimo = Math.max(3, nivelJefeMaximo - 3);
+  const jefesDisponibles = JEFES_ELITE.filter(
+    (jefe) => jefe.difMin >= nivelJefeMinimo && jefe.difMin <= nivelJefeMaximo
+  );
+  const candidatos = jefesDisponibles.length > 0
+    ? jefesDisponibles
+    : [JEFES_ELITE.reduce((mejor, jefe) =>
+        Math.abs(jefe.difMin - nivelJefeMaximo) < Math.abs(mejor.difMin - nivelJefeMaximo)
+          ? jefe
+          : mejor
+      )];
   const jefe = candidatos[Math.floor(randomSeeded(seed + 2) * candidatos.length)];
   const dificultad = Math.min(nivelAmenazaMaximo, Math.max(jefe.difMin, nivelBase));
 
