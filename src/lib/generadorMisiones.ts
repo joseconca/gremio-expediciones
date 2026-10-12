@@ -1,6 +1,7 @@
 import { JEFES_ELITE } from "./enemigos";
 import type { DefinicionMision } from "./tiposJuego";
 import { randomSeeded } from "./utils";
+import { obtenerNivelMaximoAmenazaDesbloqueada, obtenerRangoMaximoDesbloqueado } from "./expediciones/dificultad";
 
 const PREFIJOS = [
   "El tesoro",
@@ -83,17 +84,30 @@ export function generarDificultades(
 export function generarMisionElite(
   baseLat: number,
   baseLng: number,
-  dia: string
+  dia: string,
+  nivelAmenazaMaximo: number,
+  nivelBase: number
 ): DefinicionMision {
   const seed =
     dia.split("-").reduce((total, parte) => total + Number(parte), 0) * 431;
 
-  const jefe =
-    JEFES_ELITE[Math.floor(randomSeeded(seed + 2) * JEFES_ELITE.length)];
+  // Los jefes disponibles se limitan al progreso real del personaje. La amenaza
+  // del encuentro refleja el nivel Base, sin sumar otra vez nivel + dificultad.
+  const nivelJefeMaximo = Math.min(
+    nivelAmenazaMaximo,
+    Math.max(3, nivelBase),
+    Math.max(...JEFES_ELITE.map((jefe) => jefe.difMin))
+  );
+  const jefesDisponibles = JEFES_ELITE.filter((jefe) => jefe.difMin <= nivelJefeMaximo);
+  const candidatos = jefesDisponibles.length > 0 ? jefesDisponibles : [JEFES_ELITE[0]];
+  const jefe = candidatos[Math.floor(randomSeeded(seed + 2) * candidatos.length)];
+  const dificultad = Math.min(nivelAmenazaMaximo, Math.max(jefe.difMin, nivelBase));
 
   const angulo = randomSeeded(seed) * Math.PI * 2;
   const distanciaKm = 5 + randomSeeded(seed + 1) * 1;
-  const dificultad = 5 + Math.floor(randomSeeded(seed + 3) * 6);
+  const oroEscalado = Math.floor(
+    jefe.botin * Math.min(1.5, 1 + Math.max(0, dificultad - 1) * 0.025)
+  );
 
   return {
     id: `elite-${dia}-${jefe.id}`,
@@ -107,13 +121,13 @@ export function generarMisionElite(
     nombre: jefe.nombre,
     dificultad,
     recompensa: {
-      oro: jefe.botin,
+      oro: oroEscalado,
       madera: 0,
       piedra: 0,
       metal: 0,
     },
     duracionObjetivoHoras: 1,
-    descripcion: `Una amenaza ha despertado. Derrota al ${jefe.nombre} para obtener una gran recompensa.`,
+    descripcion: `Una amenaza de élite ha despertado. Derrota al ${jefe.nombre} para obtener una gran recompensa.`,
   };
 }
 
@@ -150,7 +164,7 @@ export function generarMision(
   );
 
   // Materiales
-  const probabilidadMaterial = Math.min(1, 0.05 + dificultad * 0.2);
+  const probabilidadMaterial = Math.min(0.65, 0.15 + dificultad * 0.03);
 
   const randMadera = randomSeeded(seed + 9);
   const madera =
@@ -169,18 +183,10 @@ export function generarMision(
     randMetal < probabilidadMaterial * 0.1
       ? 1 + Math.floor(randomSeeded(seed + 14) * 2)
       : 0;
-  let reduccionOro = 0;
-  if (madera > 0) {
-    reduccionOro += 1;
-  }
-  if (piedra > 0) {
-    reduccionOro += 1;
-  }
-  if (metal > 0) {
-    reduccionOro += 1;
-  }
-
-  oro = Math.floor(oro * (1 - reduccionOro * 0.2) * (1 + dificultad * 0.15));
+  // La amenaza aumenta moderadamente el oro y tiene un tope; encontrar
+  // materiales ya no reduce el pago base de la misión.
+  const multiplicadorOroAmenaza = Math.min(1.5, 1 + Math.max(0, dificultad - 1) * 0.025);
+  oro = Math.floor(oro * multiplicadorOroAmenaza);
 
   // Distancia
   const variacionDistancia = 0.9 + randomSeeded(seed + 6) * 0.2;
@@ -218,19 +224,20 @@ export interface ParametrosGeneracionMisiones {
   baseLat: number;
   baseLng: number;
   nivelPersonaje: number;
+  rangosAmenazaCompletados?: unknown;
   ultimaMisionElite: Date | string | null;
   ahora?: Date;
 }
 
 /**
- * Genera el catálogo autoritativo de misiones PvE para una hora y perfil.
- * Las misiones normales y de élite son deterministas para poder validar
- * su identificador cuando el jugador solicita iniciar una expedición.
+ * Catálogo determinista por hora y progreso. El modo Fácil/Normal/Difícil
+ * se elige para cada expedición y no forma parte de la identidad de la misión.
  */
 export function generarMisionesDisponibles({
   baseLat,
   baseLng,
   nivelPersonaje,
+  rangosAmenazaCompletados = [],
   ultimaMisionElite,
   ahora = new Date(),
 }: ParametrosGeneracionMisiones): DefinicionMision[] {
@@ -238,6 +245,9 @@ export function generarMisionesDisponibles({
   const diaActual = ahora.toISOString().slice(0, 10);
   const offset = 0;
   const nuevasMisiones: DefinicionMision[] = [];
+  const nivelBase = Math.max(1, Math.floor(nivelPersonaje));
+  const rangoMaximo = obtenerRangoMaximoDesbloqueado(nivelBase, rangosAmenazaCompletados);
+  const maximoAmenaza = obtenerNivelMaximoAmenazaDesbloqueada(nivelBase, rangosAmenazaCompletados);
 
   MISIONES_POR_DURACION.forEach((configuracion, indiceDuracion) => {
     let minimo: number;
@@ -245,22 +255,25 @@ export function generarMisionesDisponibles({
 
     switch (indiceDuracion) {
       case 0:
-        minimo = 0;
-        maximo = nivelPersonaje + 2;
+        minimo = 1;
+        maximo = nivelBase + 2;
         break;
       case 1:
       case 2:
-        minimo = Math.max(0, nivelPersonaje - 2);
-        maximo = nivelPersonaje + 3;
+        minimo = Math.max(1, nivelBase - 2);
+        maximo = nivelBase + 3;
         break;
       case 3:
       case 4:
-        minimo = Math.max(0, nivelPersonaje - 2);
-        maximo = nivelPersonaje + 4;
+        minimo = Math.max(1, nivelBase - 2);
+        maximo = nivelBase + 4;
         break;
       default:
         return;
     }
+
+    maximo = Math.min(maximo, maximoAmenaza);
+    if (minimo > maximo) minimo = Math.max(1, maximo - 4);
 
     const dificultades = generarDificultades(
       minimo,
@@ -284,6 +297,35 @@ export function generarMisionesDisponibles({
     });
   });
 
+  // Siempre mantiene una misión segura y otra en la frontera de progreso.
+  // Son necesarias para farmear con poco riesgo o demostrar preparación
+  // para el siguiente rango sin depender de la selección aleatoria.
+  const amenazaFrontera = Math.min(maximoAmenaza, nivelBase + 2);
+  const asegurarAmenaza = (amenaza: number, indiceUnico: number) => {
+    if (nuevasMisiones.some((mision) => mision.tipo === "normal" && mision.dificultad === amenaza)) return;
+    const indiceReemplazo = nuevasMisiones.findIndex(
+      (mision) =>
+        mision.tipo === "normal" &&
+        mision.duracionObjetivoHoras === 0.5 &&
+        mision.dificultad !== 1 &&
+        mision.dificultad !== amenazaFrontera
+    );
+    if (indiceReemplazo >= 0) nuevasMisiones.splice(indiceReemplazo, 1);
+    nuevasMisiones.push(
+      generarMision(
+        baseLat,
+        baseLng,
+        horaActual,
+        900 + indiceUnico,
+        amenaza,
+        MISIONES_POR_DURACION[0],
+        10 + indiceUnico
+      )
+    );
+  };
+  asegurarAmenaza(1, 1);
+  asegurarAmenaza(amenazaFrontera, 2);
+
   const fechaUltimaElite =
     ultimaMisionElite === null
       ? null
@@ -294,9 +336,14 @@ export function generarMisionesDisponibles({
     fechaUltimaElite !== null &&
     Number.isFinite(fechaUltimaElite.getTime()) &&
     fechaUltimaElite.toISOString().slice(0, 10) === diaActual;
+  const tieneRangoElite = rangoMaximo.id === "IV" || rangoMaximo.id === "V";
 
-  if (!eliteCompletadaHoy) {
-    nuevasMisiones.push(generarMisionElite(baseLat, baseLng, diaActual));
+  // El contrato diario de élite se desbloquea con el Rango IV y queda fuera
+  // de las victorias normales que abren el siguiente rango.
+  if (!eliteCompletadaHoy && tieneRangoElite) {
+    nuevasMisiones.push(
+      generarMisionElite(baseLat, baseLng, diaActual, maximoAmenaza, nivelBase)
+    );
   }
 
   return nuevasMisiones;
