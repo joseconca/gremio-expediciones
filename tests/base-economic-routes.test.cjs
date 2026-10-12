@@ -514,3 +514,138 @@ test("expediciones: rutas requieren sesión y las misiones manipuladas se rechaz
   assert.equal(response.status, 409);
   assert.equal(route.wasExpeditionCreated(), false);
 });
+
+
+test("asedios concurrentes: el botín se calcula con los recursos restantes y nunca los hace negativos", async () => {
+  const { finalizarAsedio } = loadSource("src/lib/expediciones/asedio.ts");
+  const state = {
+    users: {
+      defensor: { id: "defensor", madera: 100, piedra: 0, metal: 0 },
+    },
+    combats: {
+      combate1: { id: "combate1", version: 0, fase: "activo" },
+      combate2: { id: "combate2", version: 0, fase: "activo" },
+    },
+    expeditions: {
+      expedicion1: { id: "expedicion1" },
+      expedicion2: { id: "expedicion2" },
+    },
+    characters: {
+      atacante1: { usuarioId: "atacante1", hpActual: 10 },
+      atacante2: { usuarioId: "atacante2", hpActual: 10 },
+      defensor: { usuarioId: "defensor", estado: "asediado" },
+    },
+  };
+
+  let lockTail = Promise.resolve();
+  function makeTx() {
+    let releaseLock;
+    let holdsLock = false;
+    return {
+      $queryRaw: async (_strings, userId) => {
+        assert.equal(userId, "defensor");
+        const previous = lockTail;
+        let releaseNext;
+        const next = new Promise((resolve) => { releaseNext = resolve; });
+        lockTail = previous.then(() => next);
+        await previous;
+        releaseLock = releaseNext;
+        holdsLock = true;
+        return [{ id: userId }];
+      },
+      release: () => {
+        if (holdsLock) {
+          holdsLock = false;
+          releaseLock();
+        }
+      },
+      usuario: {
+        findUnique: async ({ where }) => clone(state.users[where.id] ?? null),
+        updateMany: async ({ where, data }) => {
+          const user = state.users[where.id];
+          if (!matches(user, where)) return { count: 0 };
+          applyData(user, data);
+          return { count: 1 };
+        },
+      },
+      combateActivo: {
+        updateMany: async ({ where, data }) => {
+          const combate = state.combats[where.id];
+          if (!matches(combate, where)) return { count: 0 };
+          applyData(combate, data);
+          return { count: 1 };
+        },
+        findUniqueOrThrow: async ({ where }) => {
+          if (!state.combats[where.id]) throw new Error("Combate no encontrado");
+          return clone(state.combats[where.id]);
+        },
+      },
+      expedicionActiva: {
+        update: async ({ where, data }) => {
+          const expedition = state.expeditions[where.id];
+          if (!expedition) throw new Error("Expedición no encontrada");
+          applyData(expedition, data);
+          return clone(expedition);
+        },
+      },
+      personaje: {
+        update: async ({ where, data }) => {
+          const character = Object.values(state.characters).find(
+            (item) => (where.usuarioId && item.usuarioId === where.usuarioId) ||
+              (where.id && item.id === where.id),
+          );
+          if (!character) throw new Error("Personaje no encontrado");
+          applyData(character, data);
+          return clone(character);
+        },
+      },
+    };
+  }
+  const prisma = {
+    $transaction: async (work) => {
+      const tx = makeTx();
+      try {
+        return await work(tx);
+      } finally {
+        tx.release();
+      }
+    },
+  };
+
+  async function resolveSiege(index) {
+    return prisma.$transaction((tx) => finalizarAsedio({
+      tx,
+      combate: {
+        id: "combate" + index,
+        version: 0,
+        atacanteUsuarioId: "atacante" + index,
+        defensorUsuarioId: "defensor",
+        jugadorHpMaximo: 10,
+        almacenNivel: 0,
+        capacidadCarruaje: 80,
+        estadoDefensorAnterior: "ocioso",
+      },
+      expedicionId: "expedicion" + index,
+      jugadorHp: 8,
+      enemigoHp: 0,
+      jugadorDefensa: 1,
+      enemigoDefensa: 0,
+      cooldowns: {},
+      efectos: [],
+      cooldownsDefensor: {},
+      efectosDefensor: [],
+      accion: { texto: "Golpe final", dano: 1 },
+      log: [],
+      ganador: "atacante",
+    }));
+  }
+
+  const results = await Promise.all([resolveSiege(1), resolveSiege(2)]);
+  const woodLoot = results.reduce((total, result) => total + result.botin.madera, 0);
+
+  assert.equal(state.users.defensor.madera, 5);
+  assert.equal(woodLoot, 95);
+  assert.ok(state.users.defensor.madera >= 0);
+  assert.equal(state.expeditions.expedicion1.recompensa.madera +
+    state.expeditions.expedicion2.recompensa.madera, 95);
+});
