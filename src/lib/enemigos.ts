@@ -1,6 +1,6 @@
 import type { DefinicionEnemigo } from "./tiposJuego";
 
-export const ENEMIGOS: DefinicionEnemigo[] = [
+const ENEMIGOS_BASE: DefinicionEnemigo[] = [
   {
     id: "mimic",
     nombre: "Mímico",
@@ -500,7 +500,80 @@ export const ENEMIGOS: DefinicionEnemigo[] = [
   },
 ];
 
-export const JEFES_ELITE: DefinicionEnemigo[] = [
+const TABLAS_LOOT: Record<string, Array<{ objetoId: string; peso: number }>> = {
+  comun: [
+    { objetoId: "espada_madera", peso: 4 },
+    { objetoId: "tela_andrajosa", peso: 4 },
+    { objetoId: "escudo_madera", peso: 2 },
+    { objetoId: "casco_cuero", peso: 2 },
+    { objetoId: "pantalones_cuero", peso: 2 },
+    { objetoId: "botas_cuero", peso: 1 },
+    { objetoId: "guantes_cuero", peso: 1 },
+  ],
+  poco_comun: [
+    { objetoId: "espada_acero", peso: 4 },
+    { objetoId: "armadura_cuero", peso: 3 },
+    { objetoId: "anillo_resistencia", peso: 2 },
+    { objetoId: "botas_cuero", peso: 2 },
+    { objetoId: "guantes_cuero", peso: 2 },
+  ],
+  raro: [
+    { objetoId: "espada_acero", peso: 3 },
+    { objetoId: "hacha_orca", peso: 2 },
+    { objetoId: "armadura_hierro", peso: 3 },
+    { objetoId: "anillo_viajero", peso: 2 },
+    { objetoId: "collar_cobre", peso: 2 },
+  ],
+  epico: [
+    { objetoId: "espada_runa", peso: 3 },
+    { objetoId: "armadura_acero", peso: 3 },
+    { objetoId: "amuleto_vitalidad", peso: 2 },
+    { objetoId: "anillo_maldito", peso: 1 },
+    { objetoId: "hacha_orca", peso: 2 },
+  ],
+  legendario: [
+    { objetoId: "espada_runa", peso: 4 },
+    { objetoId: "armadura_acero", peso: 3 },
+    { objetoId: "amuleto_vitalidad", peso: 2 },
+    { objetoId: "anillo_maldito", peso: 1 },
+  ],
+};
+
+function prepararEnemigo(enemigo: DefinicionEnemigo, esJefe: boolean): DefinicionEnemigo {
+  const rareza = enemigo.rareza ?? "comun";
+  const tablaLoot = esJefe
+    ? [
+        { objetoId: "espada_runa", peso: 4 },
+        { objetoId: "armadura_acero", peso: 4 },
+        { objetoId: "hacha_orca", peso: 3 },
+        { objetoId: "amuleto_vitalidad", peso: 2 },
+        { objetoId: "anillo_maldito", peso: 1 },
+      ]
+    : enemigo.objetoDropId
+      ? [{ objetoId: enemigo.objetoDropId, peso: 1 }]
+      : TABLAS_LOOT[rareza] ?? TABLAS_LOOT.comun;
+
+  const probabilidadPorRareza: Record<string, number> = {
+    comun: 0.08,
+    poco_comun: 0.14,
+    raro: 0.22,
+    epico: 0.32,
+    legendario: 0.42,
+  };
+
+  return {
+    ...enemigo,
+    esJefe,
+    probabilidadBotin: esJefe ? 0.7 : (probabilidadPorRareza[rareza] ?? 0.08),
+    tablaLoot,
+  };
+}
+
+export const ENEMIGOS: DefinicionEnemigo[] = ENEMIGOS_BASE.map((enemigo) =>
+  prepararEnemigo(enemigo, false)
+);
+
+const JEFES_ELITE_BASE: DefinicionEnemigo[] = [
   {
     id: "senor_frontera",
     nombre: "Señor de la Frontera",
@@ -638,6 +711,10 @@ export const JEFES_ELITE: DefinicionEnemigo[] = [
     rareza: "legendario",
   },
 ];
+
+export const JEFES_ELITE: DefinicionEnemigo[] = JEFES_ELITE_BASE.map((enemigo) =>
+  prepararEnemigo(enemigo, true)
+);
 
 export function obtenerEnemigoPorId(id: string): DefinicionEnemigo | undefined {
   return [...ENEMIGOS, ...JEFES_ELITE].find((enemigo) => enemigo.id === id);
