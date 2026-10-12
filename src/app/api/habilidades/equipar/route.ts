@@ -3,6 +3,7 @@ import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
+import { puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
 import type { SlotHabilidad } from "@/lib/tiposJuego";
 
 const SLOTS_ACTIVAS: SlotHabilidad[] = ["activa_1", "activa_2", "activa_3"];
@@ -91,6 +92,7 @@ export async function POST(request: Request) {
         },
         select: {
           id: true,
+          profesionActivaId: true,
           habilidades: {
             where: {
               habilidadId,
@@ -112,6 +114,10 @@ export async function POST(request: Request) {
 
       if (!habilidadAprendida) {
         throw new Error("HABILIDAD_NO_APRENDIDA");
+      }
+
+      if (!puedeUsarHabilidadDeClase(personaje.profesionActivaId || "novato", habilidad.claseId)) {
+        throw new Error("HABILIDAD_CLASE_INCOMPATIBLE");
       }
 
       /*
@@ -166,6 +172,12 @@ export async function POST(request: Request) {
         case "HABILIDAD_NO_APRENDIDA":
           return NextResponse.json(
             { error: "No has aprendido esta habilidad." },
+            { status: 403 }
+          );
+
+        case "HABILIDAD_CLASE_INCOMPATIBLE":
+          return NextResponse.json(
+            { error: "Tu profesión no puede equipar esta habilidad. Solo están disponibles las habilidades de tu rama y sus antecesoras." },
             { status: 403 }
           );
       }
