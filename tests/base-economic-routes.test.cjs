@@ -695,11 +695,11 @@ test("equipamiento y habilidades: rechazan JSON malformado y cuerpos que no son 
 
 test("equipamiento: bloquea cambios durante viaje o combate, incluso si el estado cambia en la transacción", async () => {
   const traveling = makeObjectEquipConflictRoute({ initialState: "de_viaje" });
-  const before = await traveling.POST(request({ objetoInventarioId: "item1" }));
+  const before = await traveling(request({ objetoInventarioId: "item1" }));
   assert.equal(before.status, 409);
 
   const race = makeObjectEquipConflictRoute({ transactionState: "combatiendo" });
-  const inside = await race.POST(request({ objetoInventarioId: "item1" }));
+  const inside = await race(request({ objetoInventarioId: "item1" }));
   assert.equal(inside.status, 409);
 });
 
