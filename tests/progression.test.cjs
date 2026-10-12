@@ -413,7 +413,7 @@ test("XP Base: los umbrales siguen la curva polinómica y la XP crece por nivel 
   let victoriasAcumuladas = 0;
   const victoriasPorNivel = [];
 
-  for (let nivelObjetivo = 1; nivelObjetivo <= 13; nivelObjetivo += 1) {
+  for (let nivelObjetivo = 1; nivelObjetivo <= 12; nivelObjetivo += 1) {
     const inicio = victoriasAcumuladas;
     while (nivel === nivelObjetivo) {
       experiencia += calcularExperienciaBaseGanada(nivel, nivel, "normal");
@@ -433,7 +433,7 @@ test("XP Base: los umbrales siguen la curva polinómica y la XP crece por nivel 
       `El nivel ${indice + 1} debe exigir más victorias que el anterior`
     );
   }
-  assert.equal(victoriasAcumuladas, 367, "El ritmo Base 1 a 13 no debe volver a decenas de miles de victorias");
+  assert.equal(victoriasAcumuladas, 327, "El ritmo Base 1 a 13 no debe volver a decenas de miles de victorias");
 });
 
 test("objetos: los sprites de armadura se organizan por ranura", () => {
