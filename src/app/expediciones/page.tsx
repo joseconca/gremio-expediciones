@@ -1,16 +1,10 @@
 "use client";
 
-import { useState, useMemo, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useGameStore } from "@/store/useGameStore";
 import { useRouter } from "next/navigation";
-import {
-  generarMision,
-  generarMisionElite,
-  MISIONES_POR_DURACION,
-  generarDificultades,
-} from "@/lib/generadorMisiones";
 import { calcularDistanciaKm } from "@/lib/utils";
 import { calcularOroBaseComercio } from "@/lib/expediciones/comercio";
 import type {
@@ -32,13 +26,9 @@ export default function ExpedicionesPage() {
     baseCoords,
     personaje,
     expedicionActiva,
-    iniciarExpedicion,
-    misionesCompletadasEstaHora,
-    horaMisiones,
     isLoading,
     sesionActiva,
     cargarJugador,
-    ultimaMisionElite,
   } = useGameStore();
 
   const [misionSeleccionada, setMisionSeleccionada] =
@@ -50,8 +40,7 @@ export default function ExpedicionesPage() {
   const [cargando, setCargando] = useState(false);
   const [reporteViaje, setReporteViaje] = useState<ReporteViaje | null>(null);
   const [basesAjenas, setBasesAjenas] = useState<BaseMapa[]>([]);
-  const [horaActual, setHoraActual] = useState<number | null>(null);
-  const [diaActual, setDiaActual] = useState<string | null>(null);
+  const [misionesGeneradas, setMisionesGeneradas] = useState<DefinicionMision[]>([]);
   const [combateAsedio, setCombateAsedio] = useState<CombateActivo | null>(
     null
   );
@@ -157,17 +146,6 @@ export default function ExpedicionesPage() {
   }, []);
 
   useEffect(() => {
-    const actualizarHora = () => {
-      setHoraActual(Math.floor(Date.now() / (1000 * 60 * 60)));
-      setDiaActual(new Date().toISOString().slice(0, 10));
-    };
-
-    actualizarHora();
-    const intervalo = setInterval(actualizarHora, 60 * 1000);
-    return () => clearInterval(intervalo);
-  }, []);
-
-  useEffect(() => {
     if (!combateAsedio) return;
 
     let cancelado = false;
@@ -194,77 +172,47 @@ export default function ExpedicionesPage() {
     };
   }, [combateAsedio?.id]);
 
-  const misionesGeneradas = useMemo<DefinicionMision[]>(() => {
-    if (!baseCoords || !personaje || horaActual === null || diaActual === null)
-      return [];
-
-    const offset =
-      horaMisiones === horaActual ? misionesCompletadasEstaHora : 0;
-    const nivel = personaje.nivel;
-    const nuevasMisiones: DefinicionMision[] = [];
-
-    MISIONES_POR_DURACION.forEach((configuracion, indiceDuracion) => {
-      let minimo: number;
-      let maximo: number;
-
-      switch (indiceDuracion) {
-        case 0:
-          minimo = 0;
-          maximo = nivel + 2;
-          break;
-        case 1:
-        case 2:
-          minimo = Math.max(0, nivel - 2);
-          maximo = nivel + 3;
-          break;
-        case 3:
-        case 4:
-          minimo = Math.max(0, nivel - 2);
-          maximo = nivel + 4;
-          break;
-        default:
-          return;
-      }
-
-      const dificultades = generarDificultades(
-        minimo,
-        maximo,
-        configuracion.maxMisiones,
-        horaActual * 100 + indiceDuracion + offset
-      );
-
-      dificultades.forEach((dificultad, indiceMision) => {
-        nuevasMisiones.push(
-          generarMision(
-            baseCoords.lat,
-            baseCoords.lng,
-            horaActual,
-            indiceDuracion * 10 + indiceMision,
-            dificultad,
-            configuracion,
-            offset
-          )
-        );
-      });
-    });
-
-    const eliteYaCompletada = ultimaMisionElite?.slice(0, 10) === diaActual;
-    if (!eliteYaCompletada) {
-      nuevasMisiones.push(
-        generarMisionElite(baseCoords.lat, baseCoords.lng, diaActual)
-      );
+  useEffect(() => {
+    if (isLoading || !sesionActiva || !baseCoords || !personaje) {
+      setMisionesGeneradas([]);
+      return;
     }
 
-    return nuevasMisiones;
-  }, [
-    baseCoords,
-    personaje?.nivel,
-    horaActual,
-    diaActual,
-    misionesCompletadasEstaHora,
-    horaMisiones,
-    ultimaMisionElite,
-  ]);
+    let cancelado = false;
+
+    const cargarMisionesDisponibles = async () => {
+      try {
+        const respuesta = await fetch("/api/expediciones/disponibles", {
+          cache: "no-store",
+        });
+        const datos = await respuesta.json();
+
+        if (!respuesta.ok || !Array.isArray(datos.misiones)) {
+          throw new Error(datos.error || "Respuesta de misiones inválida.");
+        }
+
+        if (!cancelado) {
+          setMisionesGeneradas(datos.misiones as DefinicionMision[]);
+        }
+      } catch (error) {
+        if (!cancelado) {
+          console.error("Error cargando las misiones:", error);
+          setMisionesGeneradas([]);
+        }
+      }
+    };
+
+    void cargarMisionesDisponibles();
+    // La lista cambia por hora y la misión de élite puede cambiar por día.
+    const intervalo = setInterval(() => {
+      void cargarMisionesDisponibles();
+    }, 60_000);
+
+    return () => {
+      cancelado = true;
+      clearInterval(intervalo);
+    };
+  }, [baseCoords, isLoading, personaje?.nivel, sesionActiva]);
 
   let distanciaKm = 0;
   let tiempoHoras = 0;
@@ -352,37 +300,20 @@ export default function ExpedicionesPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          mision: misionSeleccionada,
-          tiempoHoras: tiempoHoras,
+          misionId: misionSeleccionada.id,
         }),
       });
 
       const data = await res.json();
 
-      if (data.exito) {
+      if (res.ok && data.exito) {
         setReporteViaje(data);
         setViajeIniciado(true);
-
-        iniciarExpedicion({
-          misionId: misionSeleccionada.id,
-          enemigoId: misionSeleccionada.enemigoId ?? null,
-          nombre: misionSeleccionada.nombre,
-          recompensa: misionSeleccionada.recompensa,
-          fechaSalida: data.fechaSalida,
-          fechaLlegada: data.fechaLlegada,
-          dificultad: misionSeleccionada.dificultad,
-          tipo: misionSeleccionada.tipo,
-          fase: "en_viaje",
-          hpPerdido: 0,
-          experienciaGanada: 0,
-          destinoCoords: {
-            lat: misionSeleccionada.lat,
-            lng: misionSeleccionada.lng,
-          },
-        });
+        // El estado de la expedición se obtiene del servidor, no del objeto seleccionado.
+        await cargarJugador();
       } else {
-        setErrorEnvio(data.mensaje || "No se pudo iniciar la expedición.");
-        cargarJugador();
+        setErrorEnvio(data.mensaje || data.error || "No se pudo iniciar la expedición.");
+        await cargarJugador();
       }
     } catch {
       console.error("Error al enviar expedición");
