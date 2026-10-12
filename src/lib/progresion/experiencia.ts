@@ -13,13 +13,12 @@ export interface ResultadoExperienciaJob extends EstadoProgresoJob {
 }
 
 /**
- * Job tiene una curva independiente: 100 + 25 * nivel^1.5 XP por nivel.
- * El coste acumulado de Job 1 a 40 ronda los 102.000 XP. La XP otorgada por combate se limita al 75 % del
- * umbral Job actual para que una profesión nueva no suba de golpe en Base alto.
+ * Umbral Job: comparte el exponente de Base (1,83), con una escala mucho menor.
+ * Job 1→10 suma unas 1.004 XP; completar Job 1→40 suma unas 9.726 XP.
  */
 export function experienciaJobParaNivel(nivelJob: number): number {
   const nivel = Number.isFinite(nivelJob) ? Math.max(1, Math.floor(nivelJob)) : 1;
-  return Math.round(100 + 25 * Math.pow(nivel, 1.5));
+  return Math.round(100 + 0.5 * Math.pow(nivel, 1.83));
 }
 
 export function aplicarExperienciaJob(
