@@ -707,6 +707,16 @@ function makeExpeditionRoutes({ authenticated = true, initialUser = null } = {})
     "@/lib/expediciones/comercio": { calcularOroBaseComercio: () => 20 },
     "@/lib/generadorMisiones": { generarMisionesDisponibles: () => [] },
     "@/lib/progresion/clases": { obtenerDefinicionClase: () => undefined },
+    "../../../../lib/expediciones/dificultad": {
+      esModoDificultad: (valor) => ["facil", "normal", "dificil"].includes(valor),
+      obtenerRangoMaximoDesbloqueado: () => ({
+        id: "I",
+        nombre: "Primeras amenazas",
+        minimo: 1,
+        maximo: 3,
+        nivelBaseMinimo: 1,
+      }),
+    },
   };
   const available = loadSource("src/app/api/expediciones/disponibles/route.ts", common);
   const start = loadSource("src/app/api/expediciones/iniciar/route.ts", common);
