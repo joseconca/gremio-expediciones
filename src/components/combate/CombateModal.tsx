@@ -24,6 +24,9 @@ interface HabilidadCombate {
   tipo: "activa" | "pasiva";
   rareza: string;
   precio: number;
+  costeEnergia?: number;
+  costeMana?: number;
+  tipoDano?: "fisico" | "magico";
   cooldownTurnos?: number;
   danoBase?: number;
   multiplicadorDano?: number;
@@ -414,6 +417,14 @@ export default function CombateModal({
                     style={{ width: `${vidaJugador}%` }}
                   />
                 </div>
+                <div className="mt-2 grid grid-cols-2 gap-1 text-[9px] font-mono font-bold">
+                  <span className="rounded border border-blue-900/70 bg-blue-950/70 px-1.5 py-1 text-blue-200">
+                    ENE {personaje.energiaActual}/{personaje.energiaMaxima}
+                  </span>
+                  <span className="rounded border border-violet-900/70 bg-violet-950/70 px-1.5 py-1 text-violet-200">
+                    MAN {personaje.manaActual}/{personaje.manaMaximo}
+                  </span>
+                </div>
               </div>
 
               {danioVisible?.actor === "jugador" && (
@@ -702,8 +713,14 @@ export default function CombateModal({
                   <div className="flex flex-col gap-2 overflow-y-auto custom-scrollbar pr-1 max-h-full justify-center">
                     {habilidades.slice(0, 3).map((h) => {
                       const cooldown = obtenerCooldown(h.habilidadId);
+                      const costeEnergia = h.habilidad.costeEnergia ?? 0;
+                      const costeMana = h.habilidad.costeMana ?? 0;
+                      const recursoInsuficiente =
+                        personaje.energiaActual < costeEnergia ||
+                        personaje.manaActual < costeMana;
                       const bloqueada =
                         cooldown > 0 ||
+                        recursoInsuficiente ||
                         procesando ||
                         procesandoLocal ||
                         combate.turno !== "jugador";
@@ -741,6 +758,12 @@ export default function CombateModal({
                               }`}
                             >
                               {h.habilidad.nombre}
+                            </p>
+                            <p className={`mt-1 text-[9px] font-mono ${recursoInsuficiente ? "text-red-400" : "text-stone-500"}`}>
+                              {costeEnergia > 0 ? `${costeEnergia} ENE` : ""}
+                              {costeEnergia > 0 && costeMana > 0 ? " + " : ""}
+                              {costeMana > 0 ? `${costeMana} MAN` : ""}
+                              {costeEnergia === 0 && costeMana === 0 ? "Sin coste de recurso" : ""}
                             </p>
                           </div>
 
@@ -795,6 +818,16 @@ export default function CombateModal({
                               <span className="text-emerald-400 font-bold">
                                 Curación:{" "}
                                 {habilidadSeleccionada.habilidad.curacion}
+                              </span>
+                            ) : null}
+                            {(habilidadSeleccionada.habilidad.costeEnergia ?? 0) > 0 ? (
+                              <span className="text-blue-300">
+                                {habilidadSeleccionada.habilidad.costeEnergia} ENE
+                              </span>
+                            ) : null}
+                            {(habilidadSeleccionada.habilidad.costeMana ?? 0) > 0 ? (
+                              <span className="text-violet-300">
+                                {habilidadSeleccionada.habilidad.costeMana} MAN
                               </span>
                             ) : null}
                           </div>
