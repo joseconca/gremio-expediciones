@@ -99,16 +99,6 @@ export function calcularExperienciaBaseGanada(nivelAmenaza: number, nivelBase: n
   return Math.max(1, Math.floor(base * calcularFactorExperienciaAmenaza(nivelAmenaza, nivelBase) * CONFIGURACION_DIFICULTAD[modo].multiplicadorRecompensa));
 }
 
-/**
- * Job usa una fracción ligeramente mayor de su propio umbral, no la XP Base.
- * Esto evita que un personaje de Base alto suba una profesión nueva de golpe.
- */
-export function calcularExperienciaJobGanada(nivelJob: number, nivelAmenaza: number, nivelBase: number, modo: ModoDificultad): number {
-  const umbralJob = experienciaParaNivel(nivelJob);
-  const base = Math.max(50, Math.round(umbralJob * 0.3));
-  return Math.max(1, Math.floor(base * calcularFactorExperienciaAmenaza(nivelAmenaza, nivelBase) * CONFIGURACION_DIFICULTAD[modo].multiplicadorRecompensa));
-}
-
 export function calcularMultiplicadoresEnemigo(nivelAmenaza: number, dificultadMinima: number, modo: ModoDificultad) {
   const exceso = Math.max(0, Math.floor(nivelAmenaza) - Math.floor(dificultadMinima));
   const factorAmenaza = 1 + exceso * 0.03;
