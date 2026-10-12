@@ -154,15 +154,53 @@ test("Job: cada nivel concede un punto de habilidad y conserva el exceso de expe
 });
 
 
-test("Job usa una curva más rápida y Job 40 es alcanzable alrededor de Base 13", () => {
-  const { experienciaParaNivel } = require("../src/lib/configuracionJuego.ts");
+test("Job 40 de Tier 1 llega alrededor de Base 6 con el ritmo Base/Job", () => {
+  const { experienciaParaNivel, experienciaBaseReferenciaParaNivel } = require("../src/lib/configuracionJuego.ts");
   const totalJob40 = Array.from({ length: 39 }, (_, index) => experienciaJobParaNivel(index + 1))
     .reduce((total, xp) => total + xp, 0);
-  const totalBase13 = Array.from({ length: 12 }, (_, index) => experienciaParaNivel(index + 1))
-    .reduce((total, xp) => total + xp, 0);
-  assert.ok(experienciaJobParaNivel(10) < experienciaParaNivel(10));
+  assert.equal(experienciaParaNivel(1), 500);
+  assert.equal(experienciaParaNivel(2), 3074);
+  assert.equal(
+    experienciaParaNivel(3),
+    Math.round(experienciaBaseReferenciaParaNivel(3) * 2.1 ** 2)
+  );
   assert.ok(totalJob40 >= 95_000 && totalJob40 <= 120_000, `XP acumulada Job 40 inesperada: ${totalJob40}`);
-  assert.ok(totalJob40 > totalBase13 * 0.8 && totalJob40 < totalBase13 * 1.2);
+
+  function victoriasJobHasta(nivelObjetivo) {
+    let progreso = {
+      nivelJob: 1,
+      experienciaJob: 0,
+      puntosHabilidadDisponibles: 0,
+      maestriaCompletada: false,
+    };
+    let victorias = 0;
+    while (progreso.nivelJob < nivelObjetivo) {
+      const ganada = calcularExperienciaJobGanada(progreso.nivelJob, 1, 1, "normal");
+      progreso = aplicarExperienciaJob(progreso, ganada, nivelObjetivo);
+      victorias += 1;
+      assert.ok(victorias < 1000, "La progresión Job debe finalizar");
+    }
+    return victorias;
+  }
+
+  const victoriasNovatoHastaTier1 = victoriasJobHasta(10);
+  const victoriasJob40Tier1 = victoriasJobHasta(40);
+  assert.equal(victoriasNovatoHastaTier1, 46);
+  assert.equal(victoriasJob40Tier1, 197);
+  const victoriasTotales = victoriasNovatoHastaTier1 + victoriasJob40Tier1;
+  assert.equal(victoriasTotales, 243);
+
+  // Simula Base desde cero, conservando el exceso de XP tras cada subida.
+  let nivelBase = 1;
+  let xpBase = 0;
+  for (let victoria = 0; victoria < victoriasTotales; victoria += 1) {
+    xpBase += calcularExperienciaBaseGanada(nivelBase, nivelBase, "normal");
+    while (xpBase >= experienciaParaNivel(nivelBase)) {
+      xpBase -= experienciaParaNivel(nivelBase);
+      nivelBase += 1;
+    }
+  }
+  assert.equal(nivelBase, 6, "La primera maestría de Tier 1 debe llegar cerca de Base 6");
 });
 
 test("expediciones: el catálogo respeta rangos desbloqueados y garantiza misión de frontera", () => {
@@ -228,8 +266,8 @@ test("sprites de enemigos: cada enemigo del catálogo tiene sprite organizado po
   assert.equal(obtenerRutaSpriteEnemigo(null), "/sprites/enemies/I/slime_acido.png");
 });
 
-test("dificultad: XP Base conserva la curva progresiva y limita farmeo de amenazas bajas", () => {
-  assert.equal(calcularExperienciaBaseGanada(1, 1, "normal"), 125);
+test("dificultad: XP Base conserva la curva polinómica de referencia y limita farmeo", () => {
+  assert.equal(calcularExperienciaBaseGanada(1, 1, "normal"), 100);
   assert.ok(calcularExperienciaBaseGanada(1, 10, "normal") < calcularExperienciaBaseGanada(10, 10, "normal"));
   assert.ok(calcularExperienciaBaseGanada(10, 10, "dificil") > calcularExperienciaBaseGanada(10, 10, "normal"));
   assert.equal(calcularFactorExperienciaAmenaza(6, 10), 0.15);
@@ -240,7 +278,7 @@ test("Job: la experiencia depende del Job actual y no se dispara por tener Base 
   const altoBase = calcularExperienciaJobGanada(1, 13, 13, "normal");
   const amenazaBaja = calcularExperienciaJobGanada(1, 1, 10, "normal");
   const dificil = calcularExperienciaJobGanada(1, 1, 1, "dificil");
-  assert.equal(bajoBase, 93);
+  assert.equal(bajoBase, 25);
   assert.equal(altoBase, bajoBase);
   assert.ok(amenazaBaja < bajoBase);
   assert.ok(dificil > bajoBase);
@@ -370,24 +408,37 @@ test("combate: la precisión baja puede provocar un fallo sin pifia natural", ()
 });
 
 
-test("XP Base: el número de victorias aumenta con cada nivel", () => {
+test("XP Base: las victorias por nivel crecen exponencialmente y conservan el exceso de XP", () => {
   const { experienciaParaNivel } = require("../src/lib/configuracionJuego.ts");
-  const victoriasPorNivel = Array.from({ length: 12 }, (_, indice) => {
-    const nivel = indice + 1;
-    const xpPorVictoria = calcularExperienciaBaseGanada(nivel, nivel, "normal");
-    return Math.ceil(experienciaParaNivel(nivel) / xpPorVictoria);
-  });
+  let nivel = 1;
+  let experiencia = 0;
+  let victoriasAcumuladas = 0;
+  const victoriasPorNivel = [];
 
-  assert.equal(victoriasPorNivel[0], 4, "Base 1 a 2 debe mantener unas cuatro victorias");
-  assert.deepEqual(victoriasPorNivel.slice(0, 5), [4, 6, 8, 10, 12]);
+  for (let nivelObjetivo = 1; nivelObjetivo <= 12; nivelObjetivo += 1) {
+    const inicio = victoriasAcumuladas;
+    while (nivel === nivelObjetivo) {
+      experiencia += calcularExperienciaBaseGanada(nivel, nivel, "normal");
+      victoriasAcumuladas += 1;
+      while (experiencia >= experienciaParaNivel(nivel)) {
+        experiencia -= experienciaParaNivel(nivel);
+        nivel += 1;
+      }
+    }
+    victoriasPorNivel.push(victoriasAcumuladas - inicio);
+  }
+
+  assert.deepEqual(victoriasPorNivel.slice(0, 6), [5, 11, 22, 47, 97, 204]);
   for (let indice = 1; indice < victoriasPorNivel.length; indice += 1) {
     assert.ok(
       victoriasPorNivel[indice] > victoriasPorNivel[indice - 1],
       `El nivel ${indice + 1} debe exigir más victorias que el anterior`
     );
   }
-  const total = victoriasPorNivel.reduce((suma, cantidad) => suma + cantidad, 0);
-  assert.ok(total >= 165 && total <= 180, `El ritmo Base 1 a 13 no es el esperado: ${total} victorias`);
+  assert.ok(
+    victoriasAcumuladas >= 33_000 && victoriasAcumuladas <= 34_000,
+    `El ritmo Base 1 a 13 no es el esperado: ${victoriasAcumuladas} victorias`
+  );
 });
 
 test("objetos: los sprites de armadura se organizan por ranura", () => {

@@ -1,4 +1,4 @@
-import { experienciaParaNivel } from "../configuracionJuego";
+import { experienciaBaseReferenciaParaNivel } from "../configuracionJuego";
 import { experienciaJobParaNivel } from "../progresion/experiencia";
 
 export type ModoDificultad = "facil" | "normal" | "dificil";
@@ -90,16 +90,15 @@ export function calcularFactorExperienciaAmenaza(nivelAmenaza: number, nivelBase
 }
 
 /**
- * La curva de requisitos Base no cambia, pero la recompensa pierde peso a
- * medida que sube el nivel. Base 1 conserva el 25 % del umbral (4 victorias);
- * el divisor lineal creciente hace que los niveles siguientes requieran más
- * expediciones. Amenaza y modo siguen ajustando la recompensa después.
+ * El umbral Base combina la curva polinómica original con un factor ×2,1 por
+ * nivel. La recompensa usa solo el componente polinómico (20 %): por eso, a
+ * igualdad de amenaza y modo Normal, las victorias por nivel se multiplican
+ * aproximadamente por 2,1 en cada nuevo nivel.
  */
 export function calcularExperienciaBaseGanada(nivelAmenaza: number, nivelBase: number, modo: ModoDificultad): number {
   const nivelSeguro = Number.isFinite(nivelBase) ? Math.max(1, Math.floor(nivelBase)) : 1;
-  const umbral = experienciaParaNivel(nivelSeguro);
-  const divisorProgresion = 1 + 0.45 * (nivelSeguro - 1);
-  const base = Math.max(50, Math.round((umbral * 0.25) / divisorProgresion));
+  const umbralReferencia = experienciaBaseReferenciaParaNivel(nivelSeguro);
+  const base = Math.max(1, Math.round(umbralReferencia * 0.2));
   return Math.max(
     1,
     Math.floor(
@@ -111,10 +110,10 @@ export function calcularExperienciaBaseGanada(nivelAmenaza: number, nivelBase: n
 }
 
 /**
- * XP Job se calcula desde el nivel Job actual, no desde la enorme recompensa
- * Base. Al nivel actual concede el 75 % de su umbral: normalmente hacen falta
- * 1-2 victorias por nivel. De ese modo Job 40 ronda 50-60 victorias relevantes
- * y una profesión nueva no sube de golpe al cambiar desde un Base alto.
+ * XP Job se calcula desde el nivel Job actual, nunca desde la recompensa Base.
+ * Otorga el 20 % del umbral Job por victoria apropiada: unas cinco victorias
+ * por nivel y alrededor de 197 para Job 1→40. Así la primera maestría de Tier 1
+ * aparece aproximadamente en Base 6, sin transferir XP Base a otra profesión.
  */
 export function calcularExperienciaJobGanada(
   nivelJob: number,
@@ -124,7 +123,7 @@ export function calcularExperienciaJobGanada(
   factorResultado = 1
 ): number {
   const umbralJob = experienciaJobParaNivel(nivelJob);
-  const base = Math.max(1, Math.floor(umbralJob * 0.75));
+  const base = Math.max(1, Math.floor(umbralJob * 0.2));
   const resultadoSeguro = Number.isFinite(factorResultado)
     ? Math.max(0, Math.min(1, factorResultado))
     : 1;

@@ -11,6 +11,7 @@ import {
   obtenerSpriteHeroe,
   experienciaParaNivel,
 } from "@/lib/configuracionJuego";
+import { experienciaJobParaNivel } from "@/lib/progresion/experiencia";
 import { CLASES } from "@/lib/progresion/clases";
 
 // Componente reutilizable para los recursos
@@ -96,7 +97,7 @@ export default function BaseLayout({
   const claseActiva = CLASES[claseActivaId] ?? CLASES.novato;
   const nivelJob = personaje?.nivelJob ?? 1;
   const experienciaJob = personaje?.experienciaJob ?? 0;
-  const experienciaJobNecesaria = experienciaParaNivel(nivelJob);
+  const experienciaJobNecesaria = experienciaJobParaNivel(nivelJob);
   const porcentajeExperienciaJob = nivelJob >= claseActiva.nivelJobMaximo ? 100 : Math.min(100, Math.max(0, experienciaJob / experienciaJobNecesaria * 100));
 
   if (isLoading || !baseCoords) {

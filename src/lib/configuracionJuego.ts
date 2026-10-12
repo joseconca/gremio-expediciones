@@ -160,8 +160,24 @@ export function obtenerSpriteHeroe(
 // ============================================================
 // PROGRESIÓN
 // ============================================================
+/**
+ * Factor compuesto de progresión Base. La parte polinómica se mantiene como
+ * referencia, pero el umbral real crece aproximadamente ×2,1 por nivel.
+ * Esto crea un ritmo de victorias exponencial, sin afectar la curva Job.
+ */
+export const MULTIPLICADOR_ESCALADO_EXPERIENCIA_BASE = 2.1;
+
+export function experienciaBaseReferenciaParaNivel(nivel: number): number {
+  const nivelSeguro = Number.isFinite(nivel) ? Math.max(1, Math.floor(nivel)) : 1;
+  return Math.round(500 * nivelSeguro ** 1.55);
+}
+
 export function experienciaParaNivel(nivel: number): number {
-  return Math.round(500 * nivel ** 1.55);
+  const nivelSeguro = Number.isFinite(nivel) ? Math.max(1, Math.floor(nivel)) : 1;
+  const umbralPolinomico = experienciaBaseReferenciaParaNivel(nivelSeguro);
+  return Math.round(
+    umbralPolinomico * MULTIPLICADOR_ESCALADO_EXPERIENCIA_BASE ** (nivelSeguro - 1)
+  );
 }
 
 // ============================================================
