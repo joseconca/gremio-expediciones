@@ -151,7 +151,9 @@ export function resolverAtaqueEnemigo(combate: {
 
 interface CombateParaHabilidad {
   jugadorAtaque: number;
+  jugadorAtaqueMagico?: number;
   jugadorDefensa: number;
+  enemigoDefensaMagica?: number;
   jugadorNivel: number;
   jugadorHp: number;
   jugadorHpMaximo: number;
@@ -212,13 +214,21 @@ export function resolverHabilidadJugador(
 
       const variacion = 0.8 + Math.random() * 0.4;
 
+      const ataque =
+        habilidad.tipoDano === "magico"
+          ? (combate.jugadorAtaqueMagico ?? combate.jugadorAtaque)
+          : combate.jugadorAtaque;
+      const defensa =
+        habilidad.tipoDano === "magico"
+          ? (combate.enemigoDefensaMagica ?? combate.enemigoDefensa)
+          : combate.enemigoDefensa;
       const danoBase = Math.floor(
-        combate.jugadorAtaque * variacion * (habilidad.multiplicadorDano ?? 1)
+        ataque * variacion * (habilidad.multiplicadorDano ?? 1)
       );
 
       const danoNormal = Math.max(
         1,
-        danoBase - Math.floor(combate.enemigoDefensa / 2)
+        danoBase - Math.floor(defensa / 2)
       );
 
       const esCritico = dado === 20 || Math.random() < probabilidadCritico;
