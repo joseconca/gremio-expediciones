@@ -855,7 +855,7 @@ export default function HerreriaPage() {
                 </p>
 
                 <p className="mt-2 text-xs text-[#645341]">
-                  Todavía no tienes piezas equipables.
+                  Todavía no tienes objetos en el inventario.
                 </p>
               </div>
             ) : (
