@@ -26,6 +26,7 @@ const includeGameData = {
           accesorio: true,
         },
       },
+      progresosClase: true,
     },
   },
   expedicionActiva: { include: { combateActivo: true } },
@@ -58,7 +59,10 @@ export async function GET() {
 
     if (usuario.personaje) {
       const equipo = obtenerEquipoDesdePersonaje(usuario.personaje);
-      const modificadoresEquipo = calcularModificadoresEquipo(equipo);
+      const modificadoresEquipo = calcularModificadoresEquipo(
+        equipo,
+        usuario.personaje.profesionActivaId
+      );
 
       usuario.personaje = await sincronizarRegeneracion(
         usuario.personaje,
@@ -91,6 +95,13 @@ export async function GET() {
           select: {
             nombre: true,
             clase: true,
+            profesionActivaId: true,
+            fuerza: true,
+            agilidad: true,
+            vitalidad: true,
+            inteligencia: true,
+            destreza: true,
+            suerte: true,
             sexo: true,
             hpActual: true,
             nivel: true,
@@ -123,7 +134,10 @@ export async function GET() {
       const estadisticas = personaje
         ? (() => {
             const equipo = obtenerEquipoDesdePersonaje(personaje);
-            const modificadoresEquipo = calcularModificadoresEquipo(equipo);
+            const modificadoresEquipo = calcularModificadoresEquipo(
+              equipo,
+              personaje.profesionActivaId
+            );
 
             return calcularEstadisticasPersonaje(
               personaje,
