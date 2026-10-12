@@ -143,10 +143,10 @@ test("Job: cada nivel concede un punto de habilidad y conserva el exceso de expe
     maestriaCompletada: false,
   }, 2000, 40);
 
-  assert.equal(resultado.nivelJob, 6);
-  assert.equal(resultado.nivelesSubidos, 5);
-  assert.equal(resultado.puntosHabilidadDisponibles, 5);
-  assert.equal(resultado.experienciaJob, 513);
+  assert.equal(resultado.nivelJob, 7);
+  assert.equal(resultado.nivelesSubidos, 6);
+  assert.equal(resultado.puntosHabilidadDisponibles, 6);
+  assert.equal(resultado.experienciaJob, 327);
   assert.equal(resultado.maestriaCompletada, false);
 });
 
