@@ -642,13 +642,16 @@ export default function ExpedicionesPage() {
               </button>
             </div>
 
-                  {errorEnvio && (
-                <p role="alert" className="mt-3 text-center text-sm font-bold text-red-600">
+              {errorEnvio && (
+                <p
+                  role="alert"
+                  className="mt-3 text-center text-sm font-bold text-red-600"
+                >
                   {errorEnvio}
                 </p>
               )}
 
-        {/* 4. POSIBLES RECOMPENSAS / BOTÍN */}
+              {/* 4. POSIBLES RECOMPENSAS / BOTÍN */}
             <div
               className={`mt-4 rounded-lg border p-3 ${
                 misionSeleccionada.tipo === "elite"
