@@ -231,7 +231,9 @@ model CombateActivo {
   enemigoHp        Int?
   enemigoHpMaximo  Int?
   enemigoAtaque    Int?
+  enemigoAtaqueMagico Int?
   enemigoDefensa   Int?
+  enemigoDefensaMagica Int?
   enemigoVelocidad Int?
   enemigoProbCritico Float?
   enemigoDanoCritico Float?
@@ -240,7 +242,9 @@ model CombateActivo {
   jugadorHp       Int
   jugadorHpMaximo Int
   jugadorAtaque   Int
+  jugadorAtaqueMagico Int @default(1)
   jugadorDefensa  Int
+  jugadorDefensaMagica Int @default(0)
   jugadorVelocidad Int
   jugadorProbCritico Float
   jugadorDanoCritico Float
