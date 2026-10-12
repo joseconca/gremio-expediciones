@@ -264,6 +264,27 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
         return clone(state.user);
       },
       updateMany: updateUserMany,
+      update: async ({ where, data }) => {
+        if (state.user?.id !== where.id) throw new Error("Usuario no encontrado");
+        const nestedCreate = data.personaje && data.personaje.create;
+        if (nestedCreate) {
+          if (state.user.personaje) {
+            throw new PrismaClientKnownRequestError("Unique constraint", { code: "P2002" });
+          }
+          state.user.personaje = {
+            id: "p1",
+            usuarioId: state.user.id,
+            ...clone(nestedCreate),
+            habilidades: [],
+            inventario: null,
+            equipoEquipado: null,
+          };
+        }
+        const scalarData = { ...data };
+        delete scalarData.personaje;
+        applyData(state.user, scalarData);
+        return clone(state.user);
+      },
     },
     personaje: { updateMany: updateCharacterMany },
     expedicionActiva: {
@@ -653,4 +674,20 @@ test("asedios concurrentes: el botín se calcula con los recursos restantes y nu
   assert.ok(state.users.defensor.madera >= 0);
   assert.equal(state.expeditions.expedicion1.recompensa.madera +
     state.expeditions.expedicion2.recompensa.madera, 95);
+});
+
+
+test("reclutamiento concurrente: una segunda petición no sobrescribe al personaje creado", async () => {
+  const route = makeActionsRoute({ initialUser: { personaje: null } });
+  const requests = [
+    request({ accion: "reclutar", nombre: "Aventurero Uno", clase: "Guerrero", sexo: "chico" }),
+    request({ accion: "reclutar", nombre: "Aventurera Dos", clase: "Explorador", sexo: "chica" }),
+  ];
+  const results = await Promise.all(requests.map((item) => route.POST(item)));
+
+  assert.equal(results.filter((result) => result.status === 200).length, 1);
+  assert.equal(results.filter((result) => result.status === 409).length, 1);
+  const successful = results.find((result) => result.status === 200);
+  assert.equal(route.getState().user.personaje.nombre, successful.body.personaje.nombre);
+  assert.ok(["Aventurero Uno", "Aventurera Dos"].includes(route.getState().user.personaje.nombre));
 });
