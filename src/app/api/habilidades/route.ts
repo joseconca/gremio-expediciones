@@ -4,6 +4,7 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { puedeAprenderHabilidad } from "@/lib/configuracionJuego";
 import { obtenerHabilidadesEnVenta } from "@/lib/tiendaHabilidades";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
+import { CLASES, puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
 
 export async function GET() {
   try {
@@ -113,12 +114,14 @@ export async function GET() {
     return NextResponse.json({
       escuelaNivel: nivelEscuela,
       profesionActivaId,
-      progresoJob,
+      profesionNombre: CLASES[profesionActivaId]?.nombre ?? profesionActivaId,
+      progresoJob: progresoJob ?? null,
       enVenta,
       aprendidas: habilidadesAprendidas.map((aprendida) => ({
         ...aprendida,
-        disponibleParaProfesion: obtenerHabilidadesEnVenta(profesionActivaId).some(
-          (oferta) => oferta.id === aprendida.habilidadId
+        disponibleParaProfesion: puedeUsarHabilidadDeClase(
+          profesionActivaId,
+          aprendida.habilidad.claseId
         ),
       })),
     });
