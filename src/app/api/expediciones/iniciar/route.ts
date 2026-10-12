@@ -381,6 +381,21 @@ export async function POST(request: Request) {
         }
       }
 
+      const recompensaJson: Prisma.InputJsonObject = {
+        oro: mision.recompensa.oro,
+        madera: mision.recompensa.madera,
+        piedra: mision.recompensa.piedra,
+        metal: mision.recompensa.metal,
+        ...(mision.recompensa.objetos
+          ? {
+              objetos: mision.recompensa.objetos.map((objeto) => ({
+                objetoId: objeto.objetoId,
+                cantidad: objeto.cantidad,
+              })),
+            }
+          : {}),
+      };
+
       await tx.expedicionActiva.create({
         data: {
           usuarioId: usuario.id,
@@ -390,7 +405,7 @@ export async function POST(request: Request) {
           fase: "en_viaje",
           misionId: mision.id,
           nombre: mision.nombre,
-          recompensa: { ...mision.recompensa } as Prisma.InputJsonValue,
+          recompensa: recompensaJson,
           dificultad: mision.dificultad,
           fechaSalida,
           fechaLlegada,
