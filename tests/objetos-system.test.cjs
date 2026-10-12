@@ -319,6 +319,7 @@ test("vender y recomprar restaura la misma instancia, sufijo, mejoras y bonifica
   assert.equal(repurchase.status, 200);
   assert.equal(api.state.user.oro, 148900);
   assert.equal(api.state.items.length, 1);
+  assert.equal(api.state.items[0].id, "item-1");
   assert.equal(api.state.items[0].objetoId, "espada_runa");
   assert.equal(api.state.items[0].nivelMejora, 2);
   assert.equal(api.state.items[0].sufijoId, "del_dragon");
