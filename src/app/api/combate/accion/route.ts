@@ -1,11 +1,9 @@
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { CLASES } from "@/lib/progresion/clases";
-import {
-  aplicarExperienciaJob,
-  PUNTOS_ATRIBUTO_POR_NIVEL_BASE,
-} from "@/lib/progresion/experiencia";
+import { aplicarExperienciaJob } from "@/lib/progresion/experiencia";
 import { calcularEstadisticasDerivadasRpg } from "@/lib/progresion/estadisticas";
+import { calcularAtributosClase } from "@/lib/progresion/atributos-clase";
 import { mapearBonificacionesEquipoRpg } from "@/lib/progresion/bonificaciones-equipo";
 import { calcularModificadoresEquipo } from "@/lib/estadisticasPersonaje";
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
@@ -126,6 +124,7 @@ async function regenerarRecursosPorTurno(
       id: true,
       nivel: true,
       profesionActivaId: true,
+      progresosClase: { select: { claseId: true, nivelJob: true, desbloqueada: true } },
       fuerza: true,
       agilidad: true,
       vitalidad: true,
@@ -161,14 +160,11 @@ async function regenerarRecursosPorTurno(
   );
   const bonificacionesEquipo = mapearBonificacionesEquipoRpg(modificadoresEquipo);
 
-  const maximos = calcularEstadisticasDerivadasRpg({
-    fuerza: personaje.fuerza,
-    agilidad: personaje.agilidad,
-    vitalidad: personaje.vitalidad,
-    inteligencia: personaje.inteligencia,
-    destreza: personaje.destreza,
-    suerte: personaje.suerte,
-  }, personaje.nivel, bonificacionesEquipo);
+  const progresoActivo = personaje.progresosClase.find(
+    (progreso) => progreso.claseId === personaje.profesionActivaId && progreso.desbloqueada
+  );
+  const atributos = calcularAtributosClase(personaje.profesionActivaId, personaje.nivel, progresoActivo?.nivelJob ?? 1);
+  const maximos = calcularEstadisticasDerivadasRpg(atributos, personaje.nivel, bonificacionesEquipo);
 
   const energiaNueva = Math.min(
     maximos.energiaMaxima,
@@ -1006,9 +1002,7 @@ export async function POST(request: Request) {
               hpActual: Math.max(1, jugadorHp),
               nivel: nivelNuevo,
               experiencia: experienciaNueva,
-              puntosAtributoDisponibles: {
-                increment: nivelesSubidos * PUNTOS_ATRIBUTO_POR_NIVEL_BASE,
-              },
+
             },
           });
 
@@ -1170,9 +1164,7 @@ export async function POST(request: Request) {
               estado: "de_viaje",
               nivel: nivelNuevo,
               experiencia: experienciaNueva,
-              puntosAtributoDisponibles: {
-                increment: nivelesSubidos * PUNTOS_ATRIBUTO_POR_NIVEL_BASE,
-              },
+
             },
           });
 

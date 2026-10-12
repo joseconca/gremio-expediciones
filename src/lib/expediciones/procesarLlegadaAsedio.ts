@@ -23,6 +23,7 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
           personaje: {
             include: {
               habilidades: true,
+              progresosClase: true,
               equipoEquipado: {
                 include: {
                   arma: true,
@@ -101,6 +102,7 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
       personaje: {
         include: {
           habilidades: true,
+          progresosClase: true,
           equipoEquipado: {
             include: {
               arma: true,

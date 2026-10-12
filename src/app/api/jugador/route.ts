@@ -114,6 +114,7 @@ export async function GET() {
             nivel: true,
             velocidadMejoras: true,
             capacidadCarruajeMejoras: true,
+            progresosClase: { select: { claseId: true, nivelJob: true, desbloqueada: true } },
             habilidades: {
               select: {
                 habilidadId: true,

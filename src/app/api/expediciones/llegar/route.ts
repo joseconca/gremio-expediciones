@@ -33,6 +33,7 @@ export async function POST() {
         personaje: {
           include: {
             habilidades: true,
+            progresosClase: true,
 
             equipoEquipado: {
               include: {

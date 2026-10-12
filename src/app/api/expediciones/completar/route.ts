@@ -57,6 +57,7 @@ export async function POST() {
         personaje: {
           include: {
             habilidades: true,
+            progresosClase: true,
             inventario: { include: { objetos: true } },
             equipoEquipado: {
               include: {
