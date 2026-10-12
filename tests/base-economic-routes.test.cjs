@@ -202,6 +202,8 @@ function makeObjectRoute({ authenticated = true, initialUser = {}, initialItems 
     "@/lib/auth": { getAuthenticatedUser: async () => authenticated ? { id: "u1" } : null },
     "@/lib/prisma": { prisma },
     "@/lib/objetos": { obtenerObjetoPorId: (id) => id === objeto.id ? objeto : null },
+    "@/lib/sufijosObjetos": { obtenerNombreObjetoConSufijo: (nombre) => nombre },
+    "@/lib/inventario": { LIMITE_INVENTARIO_OBJETOS: 30 },
     "@/lib/tiendaObjetos": {
       puedeComprarObjeto: () => true,
       obtenerRequisitosRareza: () => ({ nivelArmeria: 1, nivelHeroe: 1 }),
