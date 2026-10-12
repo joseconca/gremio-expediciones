@@ -203,6 +203,13 @@ export interface DefinicionHabilidad {
   id: string;
   /** Clase propietaria; las profesiones descendientes heredan esta habilidad. */
   claseId?: string;
+  /** Nivel Job mínimo en la profesión activa para aprenderla. */
+  nivelJobRequerido?: number;
+  /** Puntos Job consumidos al aprender habilidades profesionales. */
+  costePuntosHabilidad?: number;
+  /** Recursos de combate; las técnicas físicas usan Energía y las mágicas Maná. */
+  costeEnergia?: number;
+  costeMana?: number;
   nombre: string;
   descripcion: string;
   tipo: TipoHabilidad;
