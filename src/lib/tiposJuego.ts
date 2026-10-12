@@ -244,11 +244,26 @@ export interface DefinicionHabilidad {
   /** Multiplicador adicional aplicado al efecto de un crítico. */
   multiplicadorCritico?: number;
 
-  /** Bonificación temporal o pasiva de ataque. */
+  /** Bonificación temporal o pasiva de ataque físico. */
   bonusAtaque?: number;
+  /** Bonificación de ataque mágico. */
+  bonusAtaqueMagico?: number;
 
-  /** Bonificación temporal o pasiva de defensa. */
+  /** Bonificación temporal o pasiva de defensa física. */
   bonusDefensa?: number;
+  /** Bonificación de defensa mágica. */
+  bonusDefensaMagica?: number;
+  /** Bonificación de precisión. */
+  bonusPrecision?: number;
+  /** Bonificación de evasión (fracción entre 0 y 1). */
+  bonusEvasion?: number;
+  /** Bonificación a los recursos máximos. */
+  bonusEnergiaMaxima?: number;
+  bonusManaMaximo?: number;
+  /** Bonificaciones de regeneración por turno. */
+  bonusRegeneracionVida?: number;
+  bonusRegeneracionEnergia?: number;
+  bonusRegeneracionMana?: number;
 
   /** Bonificación de velocidad. */
   bonusVelocidad?: number;
