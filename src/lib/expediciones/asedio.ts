@@ -297,6 +297,11 @@ export async function finalizarAsedio({
   };
 
   if (atacanteGana) {
+    // Varios asedios pueden terminar casi a la vez contra el mismo defensor.
+    // Bloqueamos su fila antes de leer los recursos para que cada saqueo se
+    // calcule sobre el saldo que dejó el asedio anterior.
+    await tx.$queryRaw`SELECT "id" FROM "Usuario" WHERE "id" = ${defensorUsuarioId} FOR UPDATE`;
+
     const defensor = await tx.usuario.findUnique({
       where: {
         id: defensorUsuarioId,
@@ -326,22 +331,25 @@ export async function finalizarAsedio({
       capacidadCarruaje: combate.capacidadCarruaje ?? 0,
     });
 
-    await tx.usuario.update({
+    const recursosDescontados = await tx.usuario.updateMany({
       where: {
         id: defensorUsuarioId,
+        madera: { gte: botin.madera },
+        piedra: { gte: botin.piedra },
+        metal: { gte: botin.metal },
       },
       data: {
-        madera: {
-          decrement: botin.madera,
-        },
-        piedra: {
-          decrement: botin.piedra,
-        },
-        metal: {
-          decrement: botin.metal,
-        },
+        madera: { decrement: botin.madera },
+        piedra: { decrement: botin.piedra },
+        metal: { decrement: botin.metal },
       },
     });
+
+    if (recursosDescontados.count !== 1) {
+      // Protección adicional: si cambia el estado inesperadamente, aborta
+      // toda la transacción en lugar de permitir recursos negativos.
+      throw new Error("COMBATE_MODIFICADO");
+    }
 
     const totalBotin = botin.madera + botin.piedra + botin.metal;
 
