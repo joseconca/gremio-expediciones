@@ -15,6 +15,7 @@ import type {
 import AsedioModal from "@/components/combate/AsedioModal";
 import type { CombateActivo } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
+import { RANGOS_AMENAZA, type ModoDificultad } from "@/lib/expediciones/dificultad";
 
 const MissionMap = dynamic(() => import("@/components/MissionMap"), {
   ssr: false,
@@ -41,6 +42,11 @@ export default function ExpedicionesPage() {
   const [reporteViaje, setReporteViaje] = useState<ReporteViaje | null>(null);
   const [basesAjenas, setBasesAjenas] = useState<BaseMapa[]>([]);
   const [misionesGeneradas, setMisionesGeneradas] = useState<DefinicionMision[]>([]);
+  const [modoDificultad, setModoDificultad] = useState<ModoDificultad>("normal");
+  const [progresoAmenaza, setProgresoAmenaza] = useState<{
+    rangoMaximo: { id: string; nombre: string; minimo: number; maximo: number; nivelBaseMinimo: number };
+    rangosCompletados: unknown;
+  } | null>(null);
   const [combateAsedio, setCombateAsedio] = useState<CombateActivo | null>(
     null
   );
@@ -202,6 +208,9 @@ export default function ExpedicionesPage() {
 
         if (!cancelado) {
           setMisionesGeneradas(datos.misiones as DefinicionMision[]);
+          if (datos.progresoAmenaza && typeof datos.progresoAmenaza === "object") {
+            setProgresoAmenaza(datos.progresoAmenaza);
+          }
         }
       } catch (error) {
         if (!cancelado) {
@@ -319,6 +328,7 @@ export default function ExpedicionesPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           misionId: misionSeleccionada.id,
+          modoDificultad,
         }),
       });
 
@@ -425,6 +435,7 @@ export default function ExpedicionesPage() {
             regresando={expedicionActiva?.fase === "regresando"}
             onSelectMission={(mision) => {
               setMisionSeleccionada(mision);
+              setModoDificultad("normal");
               setBaseSeleccionada(null);
               setErrorEnvio(null);
             }}
@@ -588,6 +599,61 @@ export default function ExpedicionesPage() {
                 {misionSeleccionada.descripcion}
               </p>
             </div>
+
+            {progresoAmenaza && (
+              <div className={`mb-3 rounded-md border px-3 py-2 text-xs ${misionSeleccionada.tipo === "elite" ? "border-slate-700 bg-slate-950/50 text-slate-300" : "border-[#d8ccb0] bg-[#eee2c5] text-[#5e4838]"}`}>
+                <strong>Rango {progresoAmenaza.rangoMaximo.id} · {progresoAmenaza.rangoMaximo.nombre}</strong>
+                {(() => {
+                  const indiceActual = RANGOS_AMENAZA.findIndex((rango) => rango.id === progresoAmenaza.rangoMaximo.id);
+                  const siguiente = RANGOS_AMENAZA[indiceActual + 1];
+                  if (!siguiente) return <p className="mt-1">Último rango desbloqueado. Las amenazas seguirán escalando con el nivel Base.</p>;
+                  const completados = Array.isArray(progresoAmenaza.rangosCompletados) ? progresoAmenaza.rangosCompletados : [];
+                  const rangoAnteriorSuperado = completados.includes(progresoAmenaza.rangoMaximo.id);
+                  return <p className="mt-1">Para desbloquear el Rango {siguiente.id}: nivel Base {siguiente.nivelBaseMinimo}{rangoAnteriorSuperado ? "." : ` y una victoria en Normal dentro del Rango ${progresoAmenaza.rangoMaximo.id}.`}</p>;
+                })()}
+              </div>
+            )}
+
+            {misionSeleccionada.tipo === "normal" || misionSeleccionada.tipo === "elite" ? (
+              <section className={`mb-4 rounded-lg border p-3 ${misionSeleccionada.tipo === "elite" ? "border-slate-700 bg-slate-950/40" : "border-[#d8ccb0] bg-[#eee2c5]"}`}>
+                <p className={`mb-2 text-[11px] font-black uppercase tracking-wider ${misionSeleccionada.tipo === "elite" ? "text-slate-400" : "text-[#6e5642]"}`}>Dificultad del combate</p>
+                <div className="grid grid-cols-3 gap-2">
+                  {([
+                    { id: "facil", nombre: "Fácil", resumen: "−15 % oro/XP", ayuda: "Menos vida, ataque y defensa enemigos." },
+                    { id: "normal", nombre: "Normal", resumen: "Recompensa base", ayuda: "Dificultad equilibrada; cuenta para desbloquear rangos." },
+                    { id: "dificil", nombre: "Difícil", resumen: "+25 % oro/XP", ayuda: "Enemigos más resistentes y peligrosos." },
+                  ] as const).map((opcion) => {
+                    const activa = modoDificultad === opcion.id;
+                    return (
+                      <button
+                        key={opcion.id}
+                        type="button"
+                        aria-pressed={activa}
+                        title={opcion.ayuda}
+                        onClick={() => setModoDificultad(opcion.id)}
+                        className={`rounded-md border px-2 py-2 text-center transition-colors ${activa
+                          ? misionSeleccionada.tipo === "elite"
+                            ? "border-fuchsia-400 bg-fuchsia-900/60 text-white shadow-inner"
+                            : "border-amber-800 bg-amber-200 text-amber-950 shadow-inner"
+                          : misionSeleccionada.tipo === "elite"
+                            ? "border-slate-700 bg-slate-900/50 text-slate-300 hover:border-slate-500"
+                            : "border-[#c8b38a] bg-[#f6ecd4] text-[#6e5642] hover:border-amber-700"}`}
+                      >
+                        <span className="block text-sm font-black">{opcion.nombre}</span>
+                        <span className="mt-1 block text-[10px]">{opcion.resumen}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+                <p className={`mt-2 text-[11px] ${misionSeleccionada.tipo === "elite" ? "text-slate-400" : "text-[#6e5642]"}`}>
+                  {modoDificultad === "facil"
+                    ? "El enemigo tendrá un 20 % menos de vida, 15 % menos de ataque y 10 % menos de defensa."
+                    : modoDificultad === "dificil"
+                      ? "El enemigo tendrá un 25 % más de vida, 15 % más de ataque y 10 % más de defensa."
+                      : "Se aplicarán las estadísticas de referencia del rango de amenaza."}
+                </p>
+              </section>
+            ) : null}
 
             {/* 3. VIAJE + BOTÓN */}
             <div className="flex items-center justify-between gap-4">
