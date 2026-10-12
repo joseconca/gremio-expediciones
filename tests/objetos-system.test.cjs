@@ -247,6 +247,10 @@ function makeTradeApi({ oro = 200000, items, equipo = {}, ultimaVenta = null } =
       },
     },
     inventario: {
+      findUnique: async ({ where }) =>
+        state.inventario.id === where.id
+          ? { ultimaVenta: clone(state.inventario.ultimaVenta) }
+          : null,
       update: async ({ where, data }) => {
         if (state.inventario.id !== where.id) throw new Error("Inventario no encontrado");
         state.inventario.ultimaVenta = data.ultimaVenta === ApiPrisma.DbNull ? null : clone(data.ultimaVenta);
@@ -254,6 +258,7 @@ function makeTradeApi({ oro = 200000, items, equipo = {}, ultimaVenta = null } =
       },
     },
   };
+  let transactionTail = Promise.resolve();
   const prisma = {
     personaje: {
       findUnique: async ({ where, include }) => {
@@ -271,12 +276,18 @@ function makeTradeApi({ oro = 200000, items, equipo = {}, ultimaVenta = null } =
       findFirst: async ({ where }) => clone(findItem(where)),
     },
     $transaction: async (callback) => {
+      let release;
+      const previous = transactionTail;
+      transactionTail = new Promise((resolve) => { release = resolve; });
+      await previous;
       const snapshot = clone(state);
       try {
         return await callback(tx);
       } catch (error) {
         Object.assign(state, snapshot);
         throw error;
+      } finally {
+        release();
       }
     },
   };
@@ -316,6 +327,19 @@ test("vender y recomprar restaura la misma instancia, sufijo, mejoras y bonifica
 
   const noSecondRepurchase = await api.buyback();
   assert.equal(noSecondRepurchase.status, 404);
+});
+
+test("dos peticiones concurrentes solo pueden recomprar una vez el último recibo", async () => {
+  const api = makeTradeApi();
+  const sale = await api.sell({ json: async () => ({ objetoInventarioId: "item-1" }) });
+  assert.equal(sale.status, 200);
+  const results = await Promise.all([api.buyback(), api.buyback()]);
+
+  assert.equal(results.filter((result) => result.status === 200).length, 1);
+  assert.equal(results.filter((result) => result.status === 409).length, 1);
+  assert.equal(api.state.items.length, 1);
+  assert.equal(api.state.user.oro, 148900);
+  assert.equal(api.state.inventario.ultimaVenta, null);
 });
 
 test("no se puede vender equipo puesto", async () => {
