@@ -166,6 +166,13 @@ export interface DefinicionObjeto {
   probCriticoBase?: number;
   danoCriticoBase?: number;
   capacidadCarruajeBase?: number;
+  precisionBase?: number;
+  evasionBase?: number;
+  energiaMaximaBase?: number;
+  manaMaximoBase?: number;
+  regeneracionVidaPorTurnoBase?: number;
+  regeneracionEnergiaPorTurnoBase?: number;
+  regeneracionManaPorTurnoBase?: number;
 
   /** Incremento por mejora de las estadísticas base. */
   ataquePorMejora?: number;
@@ -177,6 +184,13 @@ export interface DefinicionObjeto {
   probCriticoPorMejora?: number;
   danoCriticoPorMejora?: number;
   capacidadCarruajePorMejora?: number;
+  precisionPorMejora?: number;
+  evasionPorMejora?: number;
+  energiaMaximaPorMejora?: number;
+  manaMaximoPorMejora?: number;
+  regeneracionVidaPorTurnoPorMejora?: number;
+  regeneracionEnergiaPorTurnoPorMejora?: number;
+  regeneracionManaPorTurnoPorMejora?: number;
 
   /** Efecto de un consumible de curación. */
   curacion?: number;
