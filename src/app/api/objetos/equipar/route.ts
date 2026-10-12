@@ -120,6 +120,25 @@ export async function POST(request: Request) {
       const actual = await tx.equipoEquipado.findUnique({
         where: { personajeId: personaje.id },
       });
+
+      // Vuelve a validar las restricciones con el estado leído dentro de la
+      // transacción: dos peticiones simultáneas no deben poder equipar un arma
+      // a dos manos y un objeto de mano secundaria a la vez.
+      if (ranura === "arma" && objeto.manos === 2 && actual?.manoSecundariaInventarioId) {
+        throw new Error("ARMA_DOS_MANOS_OCUPADA");
+      }
+      if (ranura === "manoSecundaria" && actual?.armaInventarioId) {
+        const armaActual = await tx.inventarioObjeto.findFirst({
+          where: {
+            id: actual.armaInventarioId,
+            inventarioId: personaje.inventario!.id,
+          },
+        });
+        if (armaActual && obtenerObjetoPorId(armaActual.objetoId)?.manos === 2) {
+          throw new Error("ARMA_DOS_MANOS_ACTIVA");
+        }
+      }
+
       const update: Record<string, string | null> = { [field]: objetoInventario.id };
       if (actual) {
         for (const [slot, idField] of Object.entries(CAMPOS_RANURA)) {
@@ -145,6 +164,16 @@ export async function POST(request: Request) {
       equipo: resultado,
     });
   } catch (error) {
+    if (error instanceof Error && error.message === "ARMA_DOS_MANOS_OCUPADA") {
+      return NextResponse.json({
+        error: "Esta arma requiere las dos manos. Desequipa primero el objeto de la mano secundaria.",
+      }, { status: 409 });
+    }
+    if (error instanceof Error && error.message === "ARMA_DOS_MANOS_ACTIVA") {
+      return NextResponse.json({
+        error: "No puedes ocupar la mano secundaria mientras llevas un arma de dos manos.",
+      }, { status: 409 });
+    }
     if (error instanceof Prisma.PrismaClientKnownRequestError && ["P2002", "P2003", "P2025", "P2034"].includes(error.code)) {
       return NextResponse.json({
         error: "El equipo ha cambiado durante la operación. Actualiza el inventario e inténtalo de nuevo.",
