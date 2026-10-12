@@ -113,7 +113,9 @@ export interface DefinicionEnemigo {
 
   hp: number;
   ataque: number;
+  ataqueMagico?: number;
   defensa: number;
+  defensaMagica?: number;
   velocidad: number;
 
   botin: number;
