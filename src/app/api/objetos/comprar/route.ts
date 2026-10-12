@@ -36,9 +36,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Objeto no encontrado." }, { status: 404 });
     }
 
-    if (objeto.tipo !== "arma" && objeto.tipo !== "armadura") {
+    if (objeto.tipo !== "arma" && objeto.tipo !== "armadura" && objeto.tipo !== "accesorio") {
       return NextResponse.json(
-        { error: "Este objeto no puede comprarse en la Herrería." },
+        { error: "Este objeto no se vende en la Armería." },
         { status: 400 }
       );
     }
