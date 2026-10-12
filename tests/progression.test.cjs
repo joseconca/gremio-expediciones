@@ -146,60 +146,79 @@ test("Job: cada nivel concede un punto de habilidad y conserva el exceso de expe
     maestriaCompletada: false,
   }, 2000, 40);
 
-  assert.equal(resultado.nivelJob, 7);
-  assert.equal(resultado.nivelesSubidos, 6);
-  assert.equal(resultado.puntosHabilidadDisponibles, 6);
-  assert.equal(resultado.experienciaJob, 327);
+  assert.equal(resultado.nivelJob, 16);
+  assert.equal(resultado.nivelesSubidos, 15);
+  assert.equal(resultado.puntosHabilidadDisponibles, 15);
+  assert.equal(resultado.experienciaJob, 86);
   assert.equal(resultado.maestriaCompletada, false);
 });
-
 
 test("Job 40 de Tier 1 llega alrededor de Base 6–7 con el ritmo Base/Job", () => {
   const { experienciaParaNivel } = require("../src/lib/configuracionJuego.ts");
   const totalJob40 = Array.from({ length: 39 }, (_, index) => experienciaJobParaNivel(index + 1))
     .reduce((total, xp) => total + xp, 0);
+
   assert.equal(experienciaParaNivel(1), 500);
   assert.equal(experienciaParaNivel(2), 1778);
   assert.equal(experienciaParaNivel(3), 3733);
   assert.equal(experienciaParaNivel(4), 6320);
-  assert.ok(totalJob40 >= 95_000 && totalJob40 <= 120_000, `XP acumulada Job 40 inesperada: ${totalJob40}`);
+  assert.equal(experienciaJobParaNivel(1), 101);
+  assert.equal(experienciaJobParaNivel(10), 134);
+  assert.ok(totalJob40 >= 9_500 && totalJob40 <= 10_000, `XP acumulada Job 1→40 inesperada: ${totalJob40}`);
 
-  function victoriasJobHasta(nivelObjetivo) {
-    let progreso = {
-      nivelJob: 1,
-      experienciaJob: 0,
-      puntosHabilidadDisponibles: 0,
-      maestriaCompletada: false,
-    };
-    let victorias = 0;
-    while (progreso.nivelJob < nivelObjetivo) {
-      const ganada = calcularExperienciaJobGanada(progreso.nivelJob, 1, 1, "normal");
-      progreso = aplicarExperienciaJob(progreso, ganada, nivelObjetivo);
-      victorias += 1;
-      assert.ok(victorias < 1000, "La progresión Job debe finalizar");
-    }
-    return victorias;
-  }
-
-  const victoriasNovatoHastaTier1 = victoriasJobHasta(10);
-  const victoriasJob40Tier1 = victoriasJobHasta(40);
-  assert.equal(victoriasNovatoHastaTier1, 24);
-  assert.equal(victoriasJob40Tier1, 100);
-  const victoriasTotales = victoriasNovatoHastaTier1 + victoriasJob40Tier1;
-  assert.equal(victoriasTotales, 124);
-
-  // Simula Base desde cero, conservando el exceso de XP tras cada subida.
   let nivelBase = 1;
   let xpBase = 0;
-  for (let victoria = 0; victoria < victoriasTotales; victoria += 1) {
-    xpBase += calcularExperienciaBaseGanada(nivelBase, nivelBase, "normal");
+  let victorias = 0;
+  let profesion = "novato";
+  let progresoJob = {
+    nivelJob: 1,
+    experienciaJob: 0,
+    puntosHabilidadDisponibles: 0,
+    maestriaCompletada: false,
+  };
+
+  while (!(profesion === "tier1" && progresoJob.nivelJob >= 40)) {
+    const amenaza = nivelBase;
+    const xpBaseGanada = calcularExperienciaBaseGanada(amenaza, nivelBase, "normal");
+    const xpJobGanada = calcularExperienciaJobGanada(
+      progresoJob.nivelJob,
+      amenaza,
+      nivelBase,
+      "normal"
+    );
+
+    xpBase += xpBaseGanada;
     while (xpBase >= experienciaParaNivel(nivelBase)) {
       xpBase -= experienciaParaNivel(nivelBase);
       nivelBase += 1;
     }
+
+    progresoJob = aplicarExperienciaJob(
+      progresoJob,
+      xpJobGanada,
+      profesion === "novato" ? 10 : 40
+    );
+    victorias += 1;
+
+    if (profesion === "novato" && progresoJob.nivelJob >= 10) {
+      profesion = "tier1";
+      progresoJob = {
+        nivelJob: 1,
+        experienciaJob: 0,
+        puntosHabilidadDisponibles: 0,
+        maestriaCompletada: false,
+      };
+    }
+
+    assert.ok(victorias < 200, "La primera maestría Tier 1 debe alcanzarse en un ritmo razonable");
   }
-  assert.equal(nivelBase, 5, "La primera maestría debe quedar muy cerca de Base 6");
-  assert.ok(xpBase / experienciaParaNivel(nivelBase) >= 0.85, "Debe faltar menos del 15 % para Base 6");
+
+  assert.equal(victorias, 126);
+  assert.equal(nivelBase, 5, "La primera maestría llega cerca de Base 6");
+  assert.ok(
+    xpBase / experienciaParaNivel(nivelBase) >= 0.9,
+    "Debe quedar cerca de subir a Base 6"
+  );
 });
 
 test("expediciones: el catálogo respeta rangos desbloqueados y garantiza misión de frontera", () => {
@@ -273,15 +292,18 @@ test("dificultad: XP Base depende del enemigo y no del nivel actual del jugador"
   assert.equal(calcularFactorExperienciaAmenaza(6, 10), 0.15, "El modificador sigue disponible para Job");
 });
 
-test("Job: la experiencia depende del Job actual y no se dispara por tener Base alta", () => {
-  const bajoBase = calcularExperienciaJobGanada(1, 1, 1, "normal");
-  const altoBase = calcularExperienciaJobGanada(1, 13, 13, "normal");
+test("Job: la recompensa depende de amenaza, no del nivel Job ni de un porcentaje de su umbral", () => {
+  const amenazaInicial = calcularExperienciaJobGanada(1, 1, 1, "normal");
+  const mismoEnemigoJobAlto = calcularExperienciaJobGanada(10, 1, 1, "normal");
+  const amenazaAlta = calcularExperienciaJobGanada(1, 13, 13, "normal");
   const amenazaBaja = calcularExperienciaJobGanada(1, 1, 10, "normal");
   const dificil = calcularExperienciaJobGanada(1, 1, 1, "dificil");
-  assert.equal(bajoBase, 50);
-  assert.equal(altoBase, bajoBase);
-  assert.ok(amenazaBaja < bajoBase);
-  assert.ok(dificil > bajoBase);
+
+  assert.equal(amenazaInicial, 23);
+  assert.equal(mismoEnemigoJobAlto, amenazaInicial);
+  assert.ok(amenazaAlta > amenazaInicial);
+  assert.ok(amenazaBaja < amenazaInicial);
+  assert.ok(dificil > amenazaInicial);
 });
 
 test("dificultad: los modificadores de modo solo cambian las estadísticas declaradas", () => {
