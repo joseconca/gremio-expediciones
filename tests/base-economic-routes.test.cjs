@@ -544,11 +544,12 @@ function makeInvalidBodyRoute(relativePath) {
   return route.POST;
 }
 
-function makeObjectEquipConflictRoute() {
+function makeObjectEquipConflictRoute({ initialState = "ocioso", transactionState = initialState } = {}) {
   const prisma = {
     personaje: {
       findUnique: async () => ({
         id: "p1",
+        estado: initialState,
         inventario: { id: "inv1" },
         equipoEquipado: null,
       }),
@@ -567,7 +568,7 @@ function makeObjectEquipConflictRoute() {
       },
     },
     $transaction: async (work) => work({
-      personaje: { findUnique: async () => ({ estado: "ocioso" }) },
+      personaje: { findUnique: async () => ({ estado: transactionState }) },
       equipoEquipado: prisma.equipoEquipado,
     }),
   };
@@ -645,6 +646,16 @@ test("equipamiento y habilidades: rechazan JSON malformado y cuerpos que no son 
       );
     }
   }
+});
+
+test("equipamiento: bloquea cambios durante viaje o combate, incluso si el estado cambia en la transacción", async () => {
+  const traveling = makeObjectEquipConflictRoute({ initialState: "de_viaje" });
+  const before = await traveling.POST(request({ objetoInventarioId: "item1" }));
+  assert.equal(before.status, 409);
+
+  const race = makeObjectEquipConflictRoute({ transactionState: "combatiendo" });
+  const inside = await race.POST(request({ objetoInventarioId: "item1" }));
+  assert.equal(inside.status, 409);
 });
 
 test("equipamiento: un conflicto de Prisma al equipar un objeto devuelve 409", async () => {
