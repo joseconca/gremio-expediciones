@@ -64,6 +64,19 @@ test("el botín utiliza la tabla de pesos y conserva sufijo y estadísticas prop
   assert.equal(calcularEstadisticasObjeto(botin.objeto, 0, botin.bonificaciones).ataque, 14);
 });
 
+test("las bonificaciones de recurso y precisión llegan al cálculo de estadísticas", () => {
+  const arma = obtenerObjetoPorId("espada_runa");
+  assert.ok(arma);
+  const stats = calcularEstadisticasObjeto(arma, 0, {
+    manaMaximo: 8,
+    precision: 2,
+    regeneracionManaPorTurno: 1,
+  });
+  assert.equal(stats.manaMaximo, 8);
+  assert.equal(stats.precision, 2);
+  assert.equal(stats.regeneracionManaPorTurno, 1);
+});
+
 test("todas las tablas loot apuntan a objetos existentes y los jefes tienen mejor probabilidad", () => {
   const enemigos = [...ENEMIGOS, ...JEFES_ELITE];
   for (const enemigo of enemigos) {
@@ -137,6 +150,22 @@ function loadApiRoute(relativePath, dependencies) {
   );
   return loaded.exports;
 }
+
+test("la migración de objetos compensa una vez y elimina la restricción de una instancia por tipo", () => {
+  const migrationPath = nodePath.resolve(
+    __dirname,
+    "../prisma/migrations/20261012190000_objetos_instance_system/migration.sql"
+  );
+  const migration = nodeFs.readFileSync(migrationPath, "utf8");
+  const schema = nodeFs.readFileSync(nodePath.resolve(__dirname, "../prisma/schema.prisma"), "utf8");
+
+  assert.match(migration, /DROP INDEX IF EXISTS "InventarioObjeto_inventarioId_objetoId_key"/);
+  assert.match(migration, /SET "oro" = u\."oro" \+ compensaciones\.oro/);
+  assert.match(migration, /FLOOR\(precios\."precio" \* 0\.30\)/);
+  assert.match(schema, /ultimaVenta Json\?/);
+  assert.match(schema, /bonificaciones Json @default\("\{\}"\)/);
+  assert.doesNotMatch(schema, /@@unique\(\[inventarioId, objetoId\]\)/);
+});
 
 function makeTradeApi({ oro = 200000, items, equipo = {}, ultimaVenta = null } = {}) {
   const state = {
