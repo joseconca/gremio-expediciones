@@ -145,7 +145,7 @@ export function generarMision(
   // Oro
   const randOro = randomSeeded(seed + 5);
 
-  var oro = Math.floor(
+  let oro = Math.floor(
     configuracion.recompensaBase + randOro * configuracion.recompensaBase * 0.2
   );
 
