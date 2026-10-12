@@ -1,4 +1,4 @@
-import { experienciaParaNivel } from "@/lib/configuracionJuego";
+import { experienciaParaNivel } from "../configuracionJuego";
 
 export type ModoDificultad = "facil" | "normal" | "dificil";
 export type IdRangoAmenaza = "I" | "II" | "III" | "IV" | "V";
