@@ -1,6 +1,8 @@
 import type { Prisma } from "@prisma/client";
 import { obtenerObjetoPorId } from "./objetos";
 import type { EquipoPersonaje, ObjetoInventario } from "./tiposJuego";
+
+export const LIMITE_INVENTARIO_OBJETOS = 30;
 import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "./sufijosObjetos";
 
 interface DatosObjetoInventario {
