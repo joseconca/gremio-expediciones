@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import type { CombatePve, Personaje } from "@/store/useGameStore";
@@ -43,6 +43,10 @@ interface HabilidadEquipable {
   habilidad: HabilidadCombate;
 }
 
+function esperar(milisegundos: number): Promise<void> {
+  return new Promise((resolver) => window.setTimeout(resolver, milisegundos));
+}
+
 export default function CombateModal({
   combate,
   personaje,
@@ -53,7 +57,10 @@ export default function CombateModal({
   const logRef = useRef<HTMLDivElement>(null);
 
   const faseCombateRef = useRef(combate.fase);
-  faseCombateRef.current = combate.fase;
+
+  useEffect(() => {
+    faseCombateRef.current = combate.fase;
+  }, [combate.fase]);
 
   const [mostrarStatsEnemigo, setMostrarStatsEnemigo] = useState(false);
   const [habilidades, setHabilidades] = useState<HabilidadEquipable[]>([]);
@@ -125,17 +132,6 @@ export default function CombateModal({
     void cargarHabilidades();
   }, []);
 
-  // Seleccionar la primera habilidad por defecto al abrir el panel si hay disponibles
-  useEffect(() => {
-    if (
-      mostrarHabilidades &&
-      habilidades.length > 0 &&
-      !habilidadSeleccionadaId
-    ) {
-      setHabilidadSeleccionadaId(habilidades[0].habilidadId);
-    }
-  }, [mostrarHabilidades, habilidades, habilidadSeleccionadaId]);
-
   /*
    * ============================================================
    * SCROLL AUTOMÁTICO DEL LOG
@@ -200,34 +196,18 @@ export default function CombateModal({
   const turnoEnemigoEnCurso = useRef(false);
   const accionEnCurso = useRef(false);
 
-  const esperar = (milisegundos: number) =>
-    new Promise<void>((resolver) => setTimeout(resolver, milisegundos));
-
   /**
-   * ============================================================
-   * COMPROBAR RESULTADO DEL COMBATE
-   * ============================================================
-   */
-  useEffect(() => {
-    if (combate.fase === "activo") {
-      setMostrarResultado(false);
-    }
-  }, [combate.fase]);
-
-  const comprobarResultadoCombate = () => {
-    const fase = faseCombateRef.current;
-
-    if (fase === "victoria" || fase === "derrota" || fase === "huida") {
-      setMostrarResultado(true);
-    }
-  };
-
-  /** 
    * ============================================================
    * MOSTRAR RESULTADO DE ACCIÓN
    * ============================================================
-   */ 
-  const mostrarResultadoAccion = async (accion: AccionAnimadaCombate) => {
+   */
+  const mostrarResultadoAccion = useCallback(async (accion: AccionAnimadaCombate) => {
+    const comprobarResultadoCombate = () => {
+      const fase = faseCombateRef.current;
+      if (fase === "victoria" || fase === "derrota" || fase === "huida") {
+        setMostrarResultado(true);
+      }
+    };
     const dano = accion.dano;
     const curacion = accion.curacion ?? 0;
 
@@ -267,7 +247,7 @@ export default function CombateModal({
     setActorAnimando(null);
     setAnimacionActual(null);
     comprobarResultadoCombate();
-  };
+  }, []);
 
   const ejecutarAtaqueJugador = async () => {
     if (
@@ -638,7 +618,16 @@ export default function CombateModal({
               </button>
 
               <button
-                onClick={() => setMostrarHabilidades(!mostrarHabilidades)}
+                onClick={() => {
+                  if (
+                    !mostrarHabilidades &&
+                    !habilidadSeleccionadaId &&
+                    habilidades.length > 0
+                  ) {
+                    setHabilidadSeleccionadaId(habilidades[0].habilidadId);
+                  }
+                  setMostrarHabilidades((actual) => !actual);
+                }}
                 disabled={
                   procesando ||
                   procesandoLocal ||
@@ -919,7 +908,7 @@ export default function CombateModal({
                   </span>
                   <span className="text-red-400 font-mono font-bold text-lg">
                     {/* Si no lo tienes en 'combate', pon aquí tu lógica de búsqueda (ej: enemigoDb.ataque) */}
-                    {(combate as any).enemigoAtaque ?? "?"}
+                    {combate.enemigoAtaque ?? "?"}
                   </span>
                 </div>
 
@@ -929,7 +918,7 @@ export default function CombateModal({
                     Defensa
                   </span>
                   <span className="text-blue-400 font-mono font-bold text-lg">
-                    {(combate as any).enemigoDefensa ?? "?"}
+                    {combate.enemigoDefensa ?? "?"}
                   </span>
                 </div>
 
@@ -939,7 +928,7 @@ export default function CombateModal({
                     Velocidad
                   </span>
                   <span className="text-amber-400 font-mono font-bold text-lg">
-                    {(combate as any).enemigoVelocidad ?? "?"}
+                    {combate.enemigoVelocidad ?? "?"}
                   </span>
                 </div>
               </div>
