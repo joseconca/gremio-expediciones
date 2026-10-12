@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useGameStore } from "@/store/useGameStore";
 import {
   experienciaParaNivel,
@@ -25,11 +25,20 @@ export default function HojaPersonajeModal({
   const [visible, setVisible] = useState(false);
   const timeoutCerrar = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    if (!abierto) {
-      setVisible(false);
-      return;
+  const cerrarModal = useCallback(() => {
+    setVisible(false);
+
+    if (timeoutCerrar.current) {
+      clearTimeout(timeoutCerrar.current);
     }
+
+    timeoutCerrar.current = setTimeout(() => {
+      onCerrar();
+    }, 200);
+  }, [onCerrar]);
+
+  useEffect(() => {
+    if (!abierto) return;
 
     const frame = requestAnimationFrame(() => {
       setVisible(true);
@@ -60,19 +69,7 @@ export default function HojaPersonajeModal({
     return () => {
       window.removeEventListener("keydown", manejarTecla);
     };
-  });
-
-  const cerrarModal = () => {
-    setVisible(false);
-
-    if (timeoutCerrar.current) {
-      clearTimeout(timeoutCerrar.current);
-    }
-
-    timeoutCerrar.current = setTimeout(() => {
-      onCerrar();
-    }, 200);
-  };
+  }, [abierto, cerrarModal]);
 
   if (!abierto || !personaje) {
     return null;
