@@ -326,6 +326,7 @@ export default function CombateModal({
     procesando,
     procesandoLocal,
     onAccionCombate,
+    mostrarResultadoAccion,
   ]);
 
   const obtenerCooldown = (habilidadId: string): number => {
