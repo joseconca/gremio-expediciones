@@ -53,7 +53,12 @@ export async function POST(request: Request) {
         select: {
           id: true,
           estado: true,
-          [campo]: true,
+          fuerza: true,
+          agilidad: true,
+          vitalidad: true,
+          inteligencia: true,
+          destreza: true,
+          suerte: true,
           puntosAtributoDisponibles: true,
         },
       });
