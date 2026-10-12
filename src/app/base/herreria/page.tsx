@@ -36,9 +36,18 @@ const ESTADISTICAS: Array<{
   nombre: string;
 }> = [
   { clave: "ataque", nombre: "Ataque" },
+  { clave: "ataqueMagico", nombre: "Ataque mágico" },
   { clave: "defensa", nombre: "Defensa" },
+  { clave: "defensaMagica", nombre: "Defensa mágica" },
   { clave: "velocidad", nombre: "Velocidad" },
   { clave: "hpMaximo", nombre: "Vida máxima" },
+  { clave: "energiaMaxima", nombre: "Energía máxima" },
+  { clave: "manaMaximo", nombre: "Maná máximo" },
+  { clave: "precision", nombre: "Precisión" },
+  { clave: "evasion", nombre: "Evasión" },
+  { clave: "regeneracionVidaPorTurno", nombre: "Regeneración de vida" },
+  { clave: "regeneracionEnergiaPorTurno", nombre: "Regeneración de energía" },
+  { clave: "regeneracionManaPorTurno", nombre: "Regeneración de maná" },
   { clave: "capacidadCarruaje", nombre: "Capacidad" },
   { clave: "probCritico", nombre: "Prob. crítico" },
   { clave: "danoCritico", nombre: "Daño crítico" },
@@ -126,9 +135,10 @@ function formatearValorEstadistica(
 
 function obtenerEstadisticasNoCero(
   objeto: DefinicionObjeto,
-  nivelMejora: number
+  nivelMejora: number,
+  bonificaciones: Record<string, number> = {}
 ) {
-  const estadisticas = calcularEstadisticasObjeto(objeto, nivelMejora);
+  const estadisticas = calcularEstadisticasObjeto(objeto, nivelMejora, bonificaciones);
 
   return ESTADISTICAS.filter(({ clave }) => (estadisticas[clave] ?? 0) !== 0).map(
     ({ clave, nombre }) => ({
@@ -539,7 +549,8 @@ export default function HerreriaPage() {
                                 <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
                                   {obtenerEstadisticasNoCero(
                                     objeto,
-                                    objetoInventario.nivelMejora
+                                    objetoInventario.nivelMejora,
+                                    objetoInventario.bonificaciones
                                   ).map((estadistica) => (
                                     <span
                                       key={estadistica.clave}
