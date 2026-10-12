@@ -258,7 +258,6 @@ export async function POST(request: Request) {
     }
 
     const esElite = mision.tipo === "elite";
-    const esComercio = mision.tipo === "comercio";
     const esAsedio = mision.tipo === "asedio";
     const tipoExpedicion = mision.tipo;
 
