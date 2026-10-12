@@ -1,321 +1,387 @@
+import { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { sincronizarRegeneracion } from "@/lib/regeneracion";
+import {
+  calcularEstadisticasPersonaje,
+  calcularModificadoresEquipo,
+} from "@/lib/estadisticasPersonaje";
+import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
+import { calcularDistanciaKm } from "@/lib/utils";
+import { calcularOroBaseComercio } from "@/lib/expediciones/comercio";
+import { generarMisionesDisponibles } from "@/lib/generadorMisiones";
+import type { DefinicionMision, RecompensaMision } from "@/lib/tiposJuego";
+
+interface Coordenadas {
+  lat: number;
+  lng: number;
+}
+
+function leerCoordenadas(valor: unknown): Coordenadas | null {
+  if (!valor || typeof valor !== "object" || Array.isArray(valor)) {
+    return null;
+  }
+
+  const registro = valor as Record<string, unknown>;
+  const { lat, lng } = registro;
+
+  if (
+    typeof lat !== "number" ||
+    !Number.isFinite(lat) ||
+    lat < -90 ||
+    lat > 90 ||
+    typeof lng !== "number" ||
+    !Number.isFinite(lng) ||
+    lng < -180 ||
+    lng > 180
+  ) {
+    return null;
+  }
+
+  return { lat, lng };
+}
+
+function leerEdificios(valor: unknown): Record<string, unknown> {
+  if (!valor || typeof valor !== "object" || Array.isArray(valor)) {
+    return {};
+  }
+
+  return valor as Record<string, unknown>;
+}
+
+function tieneEmbajada(valor: unknown): boolean {
+  const nivel = leerEdificios(valor).embajada;
+  return typeof nivel === "number" && Number.isFinite(nivel) && nivel >= 1;
+}
+
+function respuestaError(mensaje: string, status: number) {
+  return NextResponse.json({ exito: false, mensaje }, { status });
+}
+
+function esErrorPrisma(error: unknown, codigo: string): boolean {
+  return (
+    error instanceof Prisma.PrismaClientKnownRequestError &&
+    error.code === codigo
+  );
+}
 
 export async function POST(request: Request) {
   try {
     const usuarioSesion = await getAuthenticatedUser();
 
     if (!usuarioSesion) {
-      return NextResponse.json(
-        { exito: false, mensaje: "Sesión requerida." },
-        { status: 401 }
+      return respuestaError("Sesión requerida.", 401);
+    }
+
+    const body: unknown = await request.json().catch(() => null);
+    if (!body || typeof body !== "object" || Array.isArray(body)) {
+      return respuestaError(
+        "La petición debe contener un identificador de misión válido.",
+        400
       );
     }
 
-    const { mision, tiempoHoras } = await request.json();
-
+    const misionId = (body as Record<string, unknown>).misionId;
     if (
-      !mision ||
-      typeof mision.lat !== "number" ||
-      typeof mision.lng !== "number"
+      typeof misionId !== "string" ||
+      misionId.trim().length === 0 ||
+      misionId.length > 200
     ) {
-      return NextResponse.json(
-        { exito: false, mensaje: "Datos de la misión inválidos." },
-        { status: 400 }
-      );
-    }
-
-    if (typeof tiempoHoras !== "number" || tiempoHoras <= 0) {
-      return NextResponse.json(
-        { exito: false, mensaje: "Duración de expedición inválida." },
-        { status: 400 }
-      );
+      return respuestaError("Debes indicar una misión válida.", 400);
     }
 
     const usuario = await prisma.usuario.findUnique({
       where: { id: usuarioSesion.id },
       include: {
-        personaje: true,
+        personaje: {
+          include: {
+            habilidades: true,
+            inventario: { include: { objetos: true } },
+            equipoEquipado: {
+              include: { arma: true, armadura: true, accesorio: true },
+            },
+          },
+        },
         expedicionActiva: true,
       },
     });
 
-    if (!usuario?.personaje) {
-      return NextResponse.json(
-        {
-          exito: false,
-          mensaje: "Necesitas reclutar un personaje primero.",
-        },
-        { status: 400 }
-      );
+    if (!usuario || !usuario.personaje) {
+      return respuestaError("Necesitas reclutar un personaje primero.", 400);
     }
 
     if (usuario.expedicionActiva) {
-      return NextResponse.json(
-        {
-          exito: false,
-          mensaje: "Ya tienes una expedición activa.",
-        },
-        { status: 409 }
+      return respuestaError("Ya tienes una expedición activa.", 409);
+    }
+
+    const coordenadasOrigen = leerCoordenadas(usuario.baseCoords);
+    if (!coordenadasOrigen) {
+      return respuestaError(
+        "Debes configurar una base con coordenadas válidas antes de partir.",
+        400
       );
     }
 
-    usuario.personaje = await sincronizarRegeneracion(usuario.personaje);
-
-    if (usuario.personaje.hpActual <= 0) {
-      return NextResponse.json(
-        {
-          exito: false,
-          mensaje: "Tu aventurero necesita curarse antes de partir.",
-        },
-        { status: 400 }
-      );
-    }
-
-    const esComercio =
-      typeof mision.tipo === "string" && mision.tipo === "comercio";
-
-    const esElite = typeof mision.tipo === "string" && mision.tipo === "elite";
-
-    const esAsedio =
-      typeof mision.tipo === "string" && mision.tipo === "asedio";
-
-    const diaActual = new Date().toISOString().slice(0, 10);
-
-    // ============================================================
-    // MISIÓN ÉLITE
-    // ============================================================
-
-    if (esElite) {
-      if (
-        typeof mision.id !== "string" ||
-        !mision.id.startsWith(`elite-${diaActual}-`)
-      ) {
-        return NextResponse.json(
-          {
-            exito: false,
-            mensaje: "La misión de élite ya no está disponible.",
-          },
-          { status: 400 }
-        );
-      }
-
-      const ultimaElite = usuario.ultimaMisionElite?.toISOString().slice(0, 10);
-
-      if (ultimaElite === diaActual) {
-        return NextResponse.json(
-          {
-            exito: false,
-            mensaje: "Ya has completado la misión de élite de hoy.",
-          },
-          { status: 409 }
-        );
-      }
-    }
-
-    // ============================================================
-    // OBJETIVO
-    // ============================================================
-
-    let objetivoId: string | undefined;
-
-    if (esComercio) {
-      const edificiosOrigen = usuario.edificios as Record<
-        string,
-        unknown
-      > | null;
-
-      if (edificiosOrigen?.embajada !== 1 && edificiosOrigen?.embajada !== 2) {
-        return NextResponse.json(
-          {
-            exito: false,
-            mensaje: "Construye la Embajada para abrir rutas comerciales.",
-          },
-          { status: 403 }
-        );
-      }
-
-      const idObjetivo =
-        typeof mision.id === "string" && mision.id.startsWith("comercio-")
-          ? mision.id.slice("comercio-".length)
-          : "";
-
-      const objetivo = idObjetivo
-        ? await prisma.usuario.findUnique({
-            where: { id: idObjetivo },
-            select: {
-              id: true,
-              nombre: true,
-              baseCoords: true,
-              edificios: true,
-            },
-          })
-        : null;
-
-      const edificiosDestino = objetivo?.edificios as Record<
-        string,
-        unknown
-      > | null;
-
-      if (
-        !objetivo ||
-        !objetivo.baseCoords ||
-        (edificiosDestino?.embajada !== 1 && edificiosDestino?.embajada !== 2)
-      ) {
-        return NextResponse.json(
-          {
-            exito: false,
-            mensaje: "El gremio de destino ya no está disponible.",
-          },
-          { status: 404 }
-        );
-      }
-
-      objetivoId = objetivo.id;
-    }
-
-    // ============================================================
-    // ASEDIO
-    // ============================================================
-
-    if (esAsedio) {
-      const edificiosOrigen = usuario.edificios as Record<
-        string,
-        unknown
-      > | null;
-
-      if (edificiosOrigen?.embajada !== 1 && edificiosOrigen?.embajada !== 2) {
-        return NextResponse.json(
-          {
-            exito: false,
-            mensaje: "Construye la Embajada para poder asediar.",
-          },
-          { status: 403 }
-        );
-      }
-
-      const idObjetivo =
-        typeof mision.id === "string" && mision.id.startsWith("asedio-")
-          ? mision.id.slice("asedio-".length)
-          : "";
-
-      const objetivo = idObjetivo
-        ? await prisma.usuario.findUnique({
-            where: { id: idObjetivo },
-            select: {
-              id: true,
-              nombre: true,
-              baseCoords: true,
-              edificios: true,
-            },
-          })
-        : null;
-
-      const edificiosDestino = objetivo?.edificios as Record<
-        string,
-        unknown
-      > | null;
-
-      if (
-        !objetivo ||
-        !objetivo.baseCoords ||
-        (edificiosDestino?.embajada !== 1 && edificiosDestino?.embajada !== 2)
-      ) {
-        return NextResponse.json(
-          {
-            exito: false,
-            mensaje: "El gremio de destino ya no está disponible.",
-          },
-          { status: 404 }
-        );
-      }
-
-      // Evitar atacarse a uno mismo.
-      if (objetivo.id === usuario.id) {
-        return NextResponse.json(
-          {
-            exito: false,
-            mensaje: "No puedes asediar tu propio gremio.",
-          },
-          { status: 400 }
-        );
-      }
-
-      objetivoId = objetivo.id;
-    }
-
-    // ============================================================
-    // TIPO DE EXPEDICIÓN
-    // ============================================================
-
-    const tipoExpedicion = esComercio
-      ? "comercio"
-      : esElite
-      ? "elite"
-      : esAsedio
-      ? "asedio"
-      : "normal";
-
-    console.log(
-      `${usuario.personaje.nombre} inicia (${tipoExpedicion}) por ${Math.round(
-        tiempoHoras * 60
-      )} minutos`
+    const equipo = obtenerEquipoDesdePersonaje(usuario.personaje);
+    const modificadoresEquipo = calcularModificadoresEquipo(equipo);
+    const personaje = await sincronizarRegeneracion(
+      usuario.personaje,
+      modificadoresEquipo
     );
 
-    // ============================================================
-    // CLIMA
-    // ============================================================
-
-    const weatherUrl =
-      `https://api.open-meteo.com/v1/forecast` +
-      `?latitude=${mision.lat}` +
-      `&longitude=${mision.lng}` +
-      `&current_weather=true`;
-
-    const weatherResponse = await fetch(weatherUrl);
-
-    if (!weatherResponse.ok) {
-      throw new Error("Error al consultar Open-Meteo");
+    if (personaje.hpActual <= 0) {
+      return respuestaError(
+        "Tu aventurero necesita curarse antes de partir.",
+        400
+      );
     }
 
-    const weatherData = await weatherResponse.json();
-    const weatherCode = weatherData.current_weather.weathercode;
+    const ahora = new Date();
+    let mision: DefinicionMision | null = null;
+    let objetivoId: string | undefined;
 
-    let multiplicadorTiempo = 1.0;
+    // Las misiones normales y de élite se validan contra el catálogo
+    // generado desde el estado persistido del jugador.
+    if (misionId.startsWith("mision-") || misionId.startsWith("elite-")) {
+      const misionesDisponibles = generarMisionesDisponibles({
+        baseLat: coordenadasOrigen.lat,
+        baseLng: coordenadasOrigen.lng,
+        nivelPersonaje: personaje.nivel,
+        ultimaMisionElite: usuario.ultimaMisionElite,
+        ahora,
+      });
+
+      mision =
+        misionesDisponibles.find((candidata) => candidata.id === misionId) ??
+        null;
+
+      if (!mision) {
+        return respuestaError(
+          "La misión ya no está disponible. Actualiza el mapa e inténtalo de nuevo.",
+          409
+        );
+      }
+    } else if (
+      misionId.startsWith("comercio-") ||
+      misionId.startsWith("asedio-")
+    ) {
+      const esComercio = misionId.startsWith("comercio-");
+      const prefijo = esComercio ? "comercio-" : "asedio-";
+      const idObjetivo = misionId.slice(prefijo.length);
+
+      if (!idObjetivo || idObjetivo === usuario.id) {
+        return respuestaError("El gremio de destino no es válido.", 400);
+      }
+
+      const objetivo = await prisma.usuario.findUnique({
+        where: { id: idObjetivo },
+        select: {
+          id: true,
+          nombre: true,
+          baseCoords: true,
+          edificios: true,
+          personaje: { select: { nivel: true } },
+        },
+      });
+
+      const coordenadasDestino = leerCoordenadas(objetivo?.baseCoords);
+      if (
+        !objetivo ||
+        !coordenadasDestino ||
+        !tieneEmbajada(objetivo.edificios)
+      ) {
+        return respuestaError(
+          "El gremio de destino ya no está disponible.",
+          404
+        );
+      }
+
+      if (!tieneEmbajada(usuario.edificios)) {
+        return respuestaError(
+          esComercio
+            ? "Construye la Embajada para abrir rutas comerciales."
+            : "Construye la Embajada para poder asediar.",
+          403
+        );
+      }
+
+      objetivoId = objetivo.id;
+      const distanciaDestino = calcularDistanciaKm(
+        coordenadasOrigen.lat,
+        coordenadasOrigen.lng,
+        coordenadasDestino.lat,
+        coordenadasDestino.lng
+      );
+
+      if (!Number.isFinite(distanciaDestino) || distanciaDestino < 0) {
+        return respuestaError(
+          "La distancia de la expedición no es válida.",
+          400
+        );
+      }
+
+      const recompensa: RecompensaMision = {
+        oro: esComercio ? calcularOroBaseComercio(distanciaDestino) : 0,
+        madera: 0,
+        piedra: 0,
+        metal: 0,
+      };
+
+      mision = {
+        id: misionId,
+        tipo: esComercio ? "comercio" : "asedio",
+        nombre: esComercio
+          ? `Comerciar: ${objetivo.nombre}`
+          : `Asediar: ${objetivo.nombre}`,
+        descripcion: esComercio
+          ? `Envía a tu personaje a intercambiar bienes con el gremio de ${objetivo.nombre}.`
+          : `Envía a tu personaje a atacar la base del gremio de ${objetivo.nombre}.`,
+        dificultad: esComercio
+          ? 0
+          : Math.max(
+              0,
+              (objetivo.personaje?.nivel ?? 1) + 1 - personaje.nivel
+            ),
+        recompensa,
+        duracionObjetivoHoras: 0,
+        lat: coordenadasDestino.lat,
+        lng: coordenadasDestino.lng,
+        objetivoId: objetivo.id,
+      };
+    } else {
+      return respuestaError("El identificador de misión no es válido.", 400);
+    }
+
+    if (!mision) {
+      return respuestaError("No se pudo validar la misión.", 400);
+    }
+
+    const esElite = mision.tipo === "elite";
+    const esComercio = mision.tipo === "comercio";
+    const esAsedio = mision.tipo === "asedio";
+    const tipoExpedicion = mision.tipo;
+
+    if (
+      tipoExpedicion !== "normal" &&
+      tipoExpedicion !== "elite" &&
+      tipoExpedicion !== "comercio" &&
+      tipoExpedicion !== "asedio"
+    ) {
+      return respuestaError("Tipo de expedición no válido.", 400);
+    }
+
+    if (esElite && !mision.enemigoId) {
+      return respuestaError("La misión de élite no tiene un jefe válido.", 409);
+    }
+
+    const estadisticas = calcularEstadisticasPersonaje(
+      personaje,
+      personaje.habilidades.map((habilidad) => habilidad.habilidadId),
+      modificadoresEquipo
+    );
+
+    let velocidadKmh = 6 + (estadisticas.total.velocidad - 1) / 15;
+    if (personaje.clase === "Explorador") {
+      velocidadKmh *= 1.25;
+    }
+    velocidadKmh = Math.max(1, velocidadKmh);
+
+    const distanciaKm = calcularDistanciaKm(
+      coordenadasOrigen.lat,
+      coordenadasOrigen.lng,
+      mision.lat,
+      mision.lng
+    );
+
+    if (!Number.isFinite(distanciaKm) || distanciaKm < 0) {
+      return respuestaError("La distancia de la expedición no es válida.", 400);
+    }
+
+    const tiempoHoras = Math.max(1 / 60, distanciaKm / velocidadKmh);
+
+    let multiplicadorTiempo = 1;
     let climaReporte = "Despejado / Buen tiempo";
 
-    if (weatherCode >= 51 && weatherCode <= 67) {
-      multiplicadorTiempo = 1.2;
-      climaReporte = "Lluvia y barro en los caminos";
-    } else if (weatherCode >= 71 && weatherCode <= 77) {
-      multiplicadorTiempo = 1.5;
-      climaReporte = "Fuertes nevadas";
-    } else if (weatherCode >= 95) {
-      multiplicadorTiempo = 1.8;
-      climaReporte = "Tormenta eléctrica peligrosa";
+    const weatherUrl =
+      `https://api.open-meteo.com/v1/forecast?latitude=${mision.lat}` +
+      `&longitude=${mision.lng}&current_weather=true`;
+
+    try {
+      const weatherResponse = await fetch(weatherUrl, {
+        cache: "no-store",
+        signal: AbortSignal.timeout(6000),
+      });
+
+      if (weatherResponse.ok) {
+        const weatherData = await weatherResponse.json();
+        const weatherCode = weatherData?.current_weather?.weathercode;
+
+        if (typeof weatherCode === "number") {
+          if (weatherCode >= 51 && weatherCode <= 67) {
+            multiplicadorTiempo = 1.2;
+            climaReporte = "Lluvia y barro en los caminos";
+          } else if (weatherCode >= 71 && weatherCode <= 77) {
+            multiplicadorTiempo = 1.5;
+            climaReporte = "Fuertes nevadas";
+          } else if (weatherCode >= 95) {
+            multiplicadorTiempo = 1.8;
+            climaReporte = "Tormenta eléctrica peligrosa";
+          }
+        }
+      } else {
+        climaReporte = "No se pudo consultar el clima";
+      }
+    } catch {
+      // La disponibilidad del proveedor meteorológico no debe bloquear el juego.
+      climaReporte = "No se pudo consultar el clima";
     }
 
-    // ============================================================
-    // FECHAS
-    // ============================================================
-
-    const horasBase = tiempoHoras;
-    const horasReales = horasBase * multiplicadorTiempo;
-
-    const ahora = Date.now();
-    const fechaSalida = new Date(ahora);
-
-    const tiempoViajeMs = (horasReales * 60 * 60 * 1000) / 2;
-
-    const fechaLlegada = new Date(ahora + tiempoViajeMs);
-
-    // ============================================================
-    // CREAR EXPEDICIÓN
-    // ============================================================
+    const horasReales = tiempoHoras * multiplicadorTiempo;
+    const fechaSalida = new Date();
+    const fechaLlegada = new Date(
+      fechaSalida.getTime() + (horasReales * 60 * 60 * 1000) / 2
+    );
 
     await prisma.$transaction(async (tx) => {
+      const expedicionExistente = await tx.expedicionActiva.findUnique({
+        where: { usuarioId: usuario.id },
+        select: { id: true },
+      });
+
+      if (expedicionExistente) {
+        throw new Error("EXPEDICION_ACTIVA_EXISTENTE");
+      }
+
+      const personajeActual = await tx.personaje.findUnique({
+        where: { usuarioId: usuario.id },
+        select: { nivel: true, hpActual: true },
+      });
+
+      if (!personajeActual) {
+        throw new Error("PERSONAJE_NO_ENCONTRADO");
+      }
+      if (personajeActual.hpActual <= 0) {
+        throw new Error("SIN_VIDA");
+      }
+      if (personajeActual.nivel !== personaje.nivel) {
+        throw new Error("PERSONAJE_CAMBIO");
+      }
+
+      if (esElite) {
+        const usuarioActual = await tx.usuario.findUnique({
+          where: { id: usuario.id },
+          select: { ultimaMisionElite: true },
+        });
+        const ultimaEliteActual = usuarioActual?.ultimaMisionElite
+          ?.toISOString()
+          .slice(0, 10);
+
+        if (ultimaEliteActual === ahora.toISOString().slice(0, 10)) {
+          throw new Error("ELITE_YA_COMPLETADA");
+        }
+      }
+
       await tx.expedicionActiva.create({
         data: {
           usuarioId: usuario.id,
@@ -323,11 +389,11 @@ export async function POST(request: Request) {
           objetivoId,
           enemigoId: esElite ? mision.enemigoId : undefined,
           fase: "en_viaje",
-          misionId: String(mision.id),
-          nombre: mision.nombre || "Expedición",
+          misionId: mision.id,
+          nombre: mision.nombre,
           recompensa: mision.recompensa,
-          dificultad:
-            typeof mision.dificultad === "number" ? mision.dificultad : 0,
+          dificultad: mision.dificultad,
+          fechaSalida,
           fechaLlegada,
           destinoCoords: {
             lat: mision.lat,
@@ -337,17 +403,9 @@ export async function POST(request: Request) {
       });
 
       await tx.personaje.update({
-        where: {
-          usuarioId: usuario.id,
-        },
-        data: {
-          estado: "de_viaje",
-        },
+        where: { usuarioId: usuario.id },
+        data: { estado: "de_viaje" },
       });
-
-      // ============================================================
-      // ASEDIO: -5 DE AFINIDAD
-      // ============================================================
 
       if (esAsedio && objetivoId) {
         const afinidad = await tx.afinidadComercial.findUnique({
@@ -367,9 +425,7 @@ export async function POST(request: Request) {
                 jugador2Id: objetivoId,
               },
             },
-            data: {
-              afinidad: Math.max(0, afinidad.afinidad - 5),
-            },
+            data: { afinidad: Math.max(0, afinidad.afinidad - 5) },
           });
         }
       }
@@ -383,14 +439,40 @@ export async function POST(request: Request) {
       fechaSalida: fechaSalida.toISOString(),
     });
   } catch (error) {
-    console.error("Error al planificar la expedición:", error);
+    if (error instanceof Error) {
+      if (
+        error.message === "EXPEDICION_ACTIVA_EXISTENTE" ||
+        error.message === "ELITE_YA_COMPLETADA"
+      ) {
+        return respuestaError(
+          error.message === "ELITE_YA_COMPLETADA"
+            ? "Ya has completado la misión de élite de hoy."
+            : "Ya tienes una expedición activa.",
+          409
+        );
+      }
+      if (error.message === "PERSONAJE_NO_ENCONTRADO") {
+        return respuestaError("No se encontró el personaje.", 404);
+      }
+      if (error.message === "SIN_VIDA") {
+        return respuestaError(
+          "Tu aventurero necesita curarse antes de partir.",
+          400
+        );
+      }
+      if (error.message === "PERSONAJE_CAMBIO") {
+        return respuestaError(
+          "El personaje ha cambiado mientras se iniciaba la expedición. Actualiza el estado e inténtalo de nuevo.",
+          409
+        );
+      }
+    }
 
-    return NextResponse.json(
-      {
-        exito: false,
-        mensaje: "Error al planificar la expedición.",
-      },
-      { status: 500 }
-    );
+    if (esErrorPrisma(error, "P2002")) {
+      return respuestaError("Ya tienes una expedición activa.", 409);
+    }
+
+    console.error("Error al planificar la expedición:", error);
+    return respuestaError("No se pudo planificar la expedición.", 500);
   }
 }
