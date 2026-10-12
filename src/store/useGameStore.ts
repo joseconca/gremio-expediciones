@@ -337,8 +337,8 @@ export interface GameState {
   llegarExpedicion: () => Promise<boolean>;
   completarExpedicion: () => Promise<ReporteExpedicion | null>;
   accionCombate: (
-    accion: "atacar" | "usar_habilidad",
-    habilidadId?: string
+    accion: "atacar" | "usar_habilidad" | "usar_objeto",
+    payload?: string
   ) => Promise<AccionAnimadaCombate | null>;
   cancelarExpedicion: () => Promise<boolean>;
 
