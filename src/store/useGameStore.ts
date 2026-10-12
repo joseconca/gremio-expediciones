@@ -308,14 +308,11 @@ export interface GameState {
   baseCoords: { lat: number; lng: number } | null;
   isLoading: boolean;
   sesionActiva: boolean;
-  horaMisiones: number;
-  misionesCompletadasEstaHora: number;
   ultimaMisionElite: string | null;
 
   cargarJugador: () => Promise<void>;
   reclutarPersonaje: (personaje: DatosReclutamiento) => Promise<void>;
 
-  iniciarExpedicion: (expedicion: ExpedicionActiva) => void;
   llegarExpedicion: () => Promise<boolean>;
   completarExpedicion: () => Promise<ReporteExpedicion | null>;
   accionCombate: (
@@ -565,21 +562,7 @@ export const useGameStore = create<GameState>((set, get) => ({
   baseCoords: null,
   isLoading: true,
   sesionActiva: false,
-  horaMisiones: 0,
-  misionesCompletadasEstaHora: 0,
   ultimaMisionElite: null,
-
-  registrarMisionCompletada: () => {
-    const horaActual = Math.floor(Date.now() / 3600000); // Horas desde 1970
-    set((state) => {
-      if (state.horaMisiones !== horaActual) {
-        return { horaMisiones: horaActual, misionesCompletadasEstaHora: 1 };
-      }
-      return {
-        misionesCompletadasEstaHora: state.misionesCompletadasEstaHora + 1,
-      };
-    });
-  },
 
   cargarJugador: async () => {
     const idSolicitud = ++solicitudJugadorId;
@@ -636,15 +619,6 @@ export const useGameStore = create<GameState>((set, get) => ({
       sexo: nuevoPersonaje.sexo,
     });
     aplicarDatosJugador(set, datos);
-  },
-
-  iniciarExpedicion: (expedicion) => {
-    set((state) => ({
-      expedicionActiva: expedicion,
-      personaje: state.personaje
-        ? { ...state.personaje, estado: "de_viaje" }
-        : null,
-    }));
   },
 
   llegarExpedicion: async () => {
