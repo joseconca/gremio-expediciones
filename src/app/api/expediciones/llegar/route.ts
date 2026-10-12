@@ -15,7 +15,7 @@ import {
 } from "@/lib/estadisticasPersonaje";
 
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
-import { calcularMultiplicadoresEnemigo, esModoDificultad } from "@/lib/expediciones/dificultad";
+import { calcularMultiplicadoresEnemigo, esModoDificultad } from "../../../../lib/expediciones/dificultad";
 
 export async function POST() {
   try {
