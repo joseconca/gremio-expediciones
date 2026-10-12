@@ -1,4 +1,5 @@
 import type { DefinicionHabilidad } from "./tiposJuego";
+import { puedeUsarHabilidadDeClase } from "./progresion/clases";
 
 export const HABILIDADES: DefinicionHabilidad[] = [
   // ============================================================
@@ -165,6 +166,18 @@ export function obtenerHabilidadPorId(
   id: string
 ): DefinicionHabilidad | undefined {
   return HABILIDADES.find((habilidad) => habilidad.id === id);
+}
+
+/**
+ * Devuelve habilidades accesibles para la profesión actual.
+ * Las definiciones antiguas sin clase propietaria siguen siendo globales mientras se migran.
+ */
+export function obtenerHabilidadesDisponiblesParaClase(
+  claseActualId: string
+): DefinicionHabilidad[] {
+  return HABILIDADES.filter((habilidad) =>
+    puedeUsarHabilidadDeClase(claseActualId, habilidad.claseId)
+  );
 }
 
 export function obtenerHabilidadesActivas(): DefinicionHabilidad[] {

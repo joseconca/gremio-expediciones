@@ -38,6 +38,9 @@ jobs:
       - name: Test world-engine regressions
         run: npm run test:world
 
+      - name: Test RPG progression rules
+        run: npm run test:progression
+
       - name: Lint
         run: npm run lint
 

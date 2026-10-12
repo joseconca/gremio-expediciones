@@ -1,6 +1,21 @@
 export type TipoMision = "normal" | "elite" | "comercio" | "boss" | "asedio";
 
-export type ClasePersonaje = "Guerrero" | "Explorador" | "Comerciante";
+/** Valores antiguos conservados durante la transición del sistema de clases. */
+export type ClasePersonaje = "Novato" | "Guerrero" | "Explorador" | "Comerciante";
+
+export type TipoArma =
+  | "espada" | "hacha" | "lanza" | "daga" | "arco"
+  | "baston" | "maza" | "libro" | "puños";
+export type TipoArmadura = "ligera" | "media" | "pesada";
+
+export interface AtributosPrincipales {
+  fuerza: number;
+  agilidad: number;
+  vitalidad: number;
+  inteligencia: number;
+  destreza: number;
+  suerte: number;
+}
 
 export type TipoObjeto = "consumible" | "arma" | "armadura" | "accesorio";
 
@@ -115,6 +130,7 @@ export interface DefinicionObjeto {
   nombre: string;
   tipo: TipoObjeto;
   subtipo?: string;
+  categoriaArmadura?: TipoArmadura;
   descripcion: string;
   rareza: Rareza;
 
@@ -185,6 +201,8 @@ export interface Coordenadas {
 /** HABILIDADES */
 export interface DefinicionHabilidad {
   id: string;
+  /** Clase propietaria; las profesiones descendientes heredan esta habilidad. */
+  claseId?: string;
   nombre: string;
   descripcion: string;
   tipo: TipoHabilidad;
