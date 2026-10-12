@@ -9,6 +9,7 @@ import { useGameStore } from "@/store/useGameStore";
 import {
   calcularEstadisticasObjeto,
   obtenerSpriteObjeto,
+  obtenerRanuraObjeto,
 } from "@/lib/objetos";
 import type {
   DefinicionObjeto,
@@ -30,22 +31,39 @@ interface DatosObjetos {
   inventario: ObjetoInventario[];
   equipo: EquipoPersonaje;
   oro: number;
+  espaciosInventario: { ocupados: number; maximo: number };
+  ultimaVenta: {
+    nombreObjeto: string;
+    precioRecompra: number;
+    vendidoEn: string;
+  } | null;
 }
 
-type TipoEquipamiento = "arma" | "armadura" | "accesorio";
+type TipoEquipamiento = keyof EquipoPersonaje;
+type TipoObjetoEquipable = "arma" | "armadura" | "accesorio";
 
 const TIPOS_EQUIPAMIENTO: TipoEquipamiento[] = [
   "arma",
+  "manoSecundaria",
+  "casco",
   "armadura",
+  "pantalones",
+  "botas",
+  "guantes",
   "accesorio",
+  "anillo1",
+  "anillo2",
 ];
+const TIPOS_OBJETO_EQUIPABLE: TipoObjetoEquipable[] = ["arma", "armadura", "accesorio"];
 
 const ESTADISTICAS: Array<{
   clave: keyof ModificadoresEstadisticas;
   nombre: string;
 }> = [
   { clave: "ataque", nombre: "Ataque" },
+  { clave: "ataqueMagico", nombre: "Ataque mágico" },
   { clave: "defensa", nombre: "Defensa" },
+  { clave: "defensaMagica", nombre: "Defensa mágica" },
   { clave: "velocidad", nombre: "Velocidad" },
   { clave: "hpMaximo", nombre: "Vida máxima" },
   { clave: "capacidadCarruaje", nombre: "Capacidad" },
@@ -97,36 +115,60 @@ function estiloRareza(rareza: Rareza): string {
   }
 }
 
-function nombreTipo(tipo: TipoEquipamiento): string {
+function nombreTipo(tipo: TipoEquipamiento | TipoObjetoEquipable | "consumible"): string {
   switch (tipo) {
-    case "arma":
-      return "Arma";
-
-    case "armadura":
-      return "Armadura";
-
-    case "accesorio":
-      return "Accesorio";
+    case "arma": return "Arma";
+    case "manoSecundaria": return "Mano secundaria";
+    case "casco": return "Casco";
+    case "armadura": return "Armadura";
+    case "pantalones": return "Pantalones";
+    case "botas": return "Botas";
+    case "guantes": return "Guantes";
+    case "accesorio": return "Collar";
+    case "anillo1": return "Anillo 1";
+    case "anillo2": return "Anillo 2";
+    case "consumible": return "Consumible";
   }
 }
 
-function iconoTipo(tipo: TipoEquipamiento): string {
+function iconoTipo(tipo: TipoEquipamiento | TipoObjetoEquipable | "consumible"): string {
   switch (tipo) {
-    case "arma":
-      return "⚔️";
-
-    case "armadura":
-      return "🛡️";
-
-    case "accesorio":
-      return "💍";
+    case "arma": return "⚔️";
+    case "manoSecundaria": return "🛡️";
+    case "casco": return "🪖";
+    case "armadura": return "🛡️";
+    case "pantalones": return "👖";
+    case "botas": return "🥾";
+    case "guantes": return "🧤";
+    case "accesorio": return "📿";
+    case "anillo1":
+    case "anillo2": return "💍";
+    case "consumible": return "🧪";
   }
 }
 
 function esEquipable(objeto: DefinicionObjeto): objeto is DefinicionObjeto & {
-  tipo: TipoEquipamiento;
+  tipo: TipoObjetoEquipable;
 } {
-  return TIPOS_EQUIPAMIENTO.includes(objeto.tipo as TipoEquipamiento);
+  return TIPOS_OBJETO_EQUIPABLE.includes(objeto.tipo as TipoObjetoEquipable);
+}
+
+function nombreTipoObjeto(objeto: DefinicionObjeto): string {
+  const ranura = obtenerRanuraObjeto(objeto);
+  if (ranura) {
+    switch (ranura) {
+      case "mano_secundaria": return "Mano secundaria";
+      case "casco": return "Casco";
+      case "pantalones": return "Pantalones";
+      case "botas": return "Botas";
+      case "guantes": return "Guantes";
+      case "collar": return "Collar";
+      case "anillo": return "Anillo";
+      case "arma": return objeto.manos === 2 ? "Arma a dos manos" : "Arma";
+      case "armadura": return "Armadura";
+    }
+  }
+  return nombreTipo(objeto.tipo as TipoObjetoEquipable | "consumible");
 }
 
 function formatearNumero(valor: number): string {
@@ -154,9 +196,10 @@ function formatearValorEstadistica(
 
 function obtenerEstadisticasNoCero(
   objeto: DefinicionObjeto,
-  nivelMejora: number
+  nivelMejora: number,
+  bonificaciones: Record<string, number> = {}
 ) {
-  const estadisticas = calcularEstadisticasObjeto(objeto, nivelMejora);
+  const estadisticas = calcularEstadisticasObjeto(objeto, nivelMejora, bonificaciones);
 
   return ESTADISTICAS.filter(({ clave }) => (estadisticas[clave] ?? 0) !== 0).map(
     ({ clave, nombre }) => ({
@@ -274,7 +317,54 @@ export default function HerreriaPage() {
     }
   };
 
-  const equiparObjeto = async (objetoInventarioId: string) => {
+  const venderObjeto = async (objetoInventarioId: string) => {
+    const item = datos?.inventario.find((objeto) => objeto.id === objetoInventarioId);
+    if (!item) return;
+    const valor = Math.max(1, Math.floor(item.objeto.precio * Math.max(1, item.cantidad) * 0.35));
+    if (!window.confirm(`¿Vender ${item.objeto.nombre} por ${valor} de oro? Podrás recomprar únicamente la última venta, por un precio superior.`)) return;
+
+    setProcesando(`vender:${objetoInventarioId}`);
+    setError(null);
+    try {
+      const respuesta = await fetch("/api/objetos/vender", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ objetoInventarioId }),
+      });
+      const resultado = await respuesta.json();
+      if (!respuesta.ok) {
+        setError(resultado.error || "No se pudo vender el objeto.");
+        return;
+      }
+      await recargarObjetos();
+      await cargarJugador();
+    } catch {
+      setError("Error de conexión al vender el objeto.");
+    } finally {
+      setProcesando(null);
+    }
+  };
+
+  const recomprarUltimaVenta = async () => {
+    setProcesando("recomprar");
+    setError(null);
+    try {
+      const respuesta = await fetch("/api/objetos/recomprar", { method: "POST" });
+      const resultado = await respuesta.json();
+      if (!respuesta.ok) {
+        setError(resultado.error || "No se pudo recomprar el objeto.");
+        return;
+      }
+      await recargarObjetos();
+      await cargarJugador();
+    } catch {
+      setError("Error de conexión al recomprar el objeto.");
+    } finally {
+      setProcesando(null);
+    }
+  };
+
+  const equiparObjeto = async (objetoInventarioId: string, slot?: TipoEquipamiento) => {
     setProcesando(`equipar:${objetoInventarioId}`);
     setError(null);
 
@@ -286,6 +376,7 @@ export default function HerreriaPage() {
         },
         body: JSON.stringify({
           objetoInventarioId,
+          ...(slot ? { slot } : {}),
         }),
       });
 
@@ -316,7 +407,7 @@ export default function HerreriaPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          tipo,
+          slot: tipo,
         }),
       });
 
@@ -337,26 +428,9 @@ export default function HerreriaPage() {
   };
 
 
-  const inventarioEquipable = useMemo(
-    () =>
-      (datos?.inventario ?? []).filter((objetoInventario) =>
-        esEquipable(objetoInventario.objeto)
-      ),
-    [datos?.inventario]
-  );
+  const inventarioVisible = useMemo(() => datos?.inventario ?? [], [datos?.inventario]);
 
-  const obtenerObjetoEquipado = (tipo: TipoEquipamiento) => {
-    switch (tipo) {
-      case "arma":
-        return datos?.equipo.arma ?? null;
-
-      case "armadura":
-        return datos?.equipo.armadura ?? null;
-
-      case "accesorio":
-        return datos?.equipo.accesorio ?? null;
-    }
-  };
+  const obtenerObjetoEquipado = (tipo: TipoEquipamiento) => datos?.equipo[tipo] ?? null;
 
   if (!personaje || nivelArmeria === 0) {
     return null;
