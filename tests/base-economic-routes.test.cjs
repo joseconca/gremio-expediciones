@@ -785,6 +785,19 @@ function makeInvalidBodyRoute(relativePath) {
       siguienteTurnoAsedio: () => "defensor",
       finalizarAsedio: async () => ({}),
     },
+    "../../../../lib/expediciones/dificultad": {
+      aplicarMultiplicadorRecompensa: (cantidad) => cantidad,
+      calcularExperienciaBaseGanada: () => 0,
+      calcularExperienciaJobGanada: () => 0,
+      calcularOroEnemigo: () => 0,
+      CONFIGURACION_DIFICULTAD: {
+        facil: { multiplicadorRecompensa: 0.85 },
+        normal: { multiplicadorRecompensa: 1 },
+        dificil: { multiplicadorRecompensa: 1.25 },
+      },
+      esModoDificultad: (valor) => ["facil", "normal", "dificil"].includes(valor),
+      registrarVictoriaRangoNormal: () => ["I"],
+    },
   });
 
   return route.POST;
