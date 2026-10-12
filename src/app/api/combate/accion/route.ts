@@ -706,7 +706,7 @@ export async function POST(request: Request) {
       : [];
 
     let accionAnimada: AccionAnimadaCombate;
-    let consumible: { id: string; curacion: number; inventarioObjetoId: string } | null = null;
+    let consumible: { id: string; nombre: string; curacion: number; inventarioObjetoId: string } | null = null;
 
     if (accion === "usar_objeto") {
       if (esPvp) {
@@ -733,6 +733,7 @@ export async function POST(request: Request) {
       }
       consumible = {
         id: definicion.id,
+        nombre: definicion.nombre,
         curacion: Math.floor(definicion.curacion ?? 0),
         inventarioObjetoId: registroInventario.id,
       };
@@ -771,7 +772,7 @@ export async function POST(request: Request) {
             dano: 0,
             curacion,
             critico: false,
-            texto: `Usas ${obtenerObjetoPorId(consumible.id)?.nombre ?? "un consumible"} y recuperas ${curacion} puntos de vida.`,
+            texto: `Usas ${consumible.nombre} y recuperas ${curacion} puntos de vida.`,
           };
         } else {
           if (!habilidad) {
