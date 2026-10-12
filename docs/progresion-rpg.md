@@ -46,13 +46,15 @@ La migración `20261012180000_reset_personajes_a_novato` adapta los personajes q
 
 La devolución de oro por los objetos del sistema antiguo **no forma parte de esta migración**. Se hará junto con el nuevo inventario/equipamiento, a partir de los objetos que cada personaje posea antes de retirarlos, registrando la compensación como una operación única para evitar pagos duplicados.
 
-Después de actualizar la rama, ejecuta desde PowerShell en la raíz del proyecto:
+Antes de ejecutar SQL de migración sobre tu base local, haz una copia de seguridad y comprueba cómo se ha administrado el esquema desde el inicio. Esta iteración **no ha ejecutado ninguna migración en tu PostgreSQL local**.
+
+Primero, desde PowerShell en la raíz del proyecto:
 
 ```powershell
-npx prisma migrate deploy
+npx prisma migrate status
 npx prisma generate
 ```
 
-No se ha ejecutado esta migración en tu base PostgreSQL local desde aquí. Haz una copia de seguridad antes de aplicarla. Para una base nueva creada con `prisma db push`, revisa el estado de migraciones antes de mezclar ambos métodos; no alternes `db push` y migraciones en una base compartida sin comprobar el historial.
+Si Prisma confirma que la base utiliza el historial de migraciones y que las anteriores están aplicadas, puedes desplegar las pendientes con `npx prisma migrate deploy`. Si tu base se creó o actualizó con `prisma db push` y no tiene historial en `_prisma_migrations`, **no ejecutes `migrate deploy` a ciegas**: las migraciones anteriores podrían intentar volver a crear tablas o columnas existentes. En ese caso, primero hay que establecer una línea base coherente con el esquema real; la migración de reinicio de personajes debe ejecutarse exactamente una vez.
 
-Las migraciones conservan los campos de progreso Base existentes. A personajes que no tenían progreso profesional se les crea un registro inicial de Novato; los personajes nuevos crean esa misma fila al reclutarse.
+Las migraciones conservan `Personaje.nivel` y `Personaje.experiencia`. A personajes sin progreso profesional se les crea un registro inicial de Novato; los personajes nuevos crean esa misma fila al reclutarse.
