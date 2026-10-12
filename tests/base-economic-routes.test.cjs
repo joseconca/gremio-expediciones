@@ -507,6 +507,15 @@ function makeInvalidBodyRoute(relativePath) {
         regeneracionManaPorTurno: 1,
       }),
     },
+    "@/lib/progresion/bonificaciones-equipo": {
+      mapearBonificacionesEquipoRpg: () => ({}),
+    },
+    "@/lib/estadisticasPersonaje": {
+      calcularModificadoresEquipo: () => ({}),
+    },
+    "@/lib/inventario": {
+      obtenerEquipoDesdePersonaje: () => ({}),
+    },
     "@/lib/configuracionJuego": { puedeAprenderHabilidad: () => true },
     "@/lib/tiendaHabilidades": { obtenerHabilidadesEnVenta: () => [] },
     "@/lib/enemigos": { obtenerEnemigoPorId: () => null },
