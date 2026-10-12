@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { CLASES } from "@/lib/progresion/clases";
-import { aplicarExperienciaJob } from "@/lib/progresion/experiencia";
+import {
+  aplicarExperienciaJob,
+  PUNTOS_ATRIBUTO_POR_NIVEL_BASE,
+} from "@/lib/progresion/experiencia";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
@@ -775,6 +778,9 @@ export async function POST(request: Request) {
               hpActual: Math.max(1, jugadorHp),
               nivel: nivelNuevo,
               experiencia: experienciaNueva,
+              puntosAtributoDisponibles: {
+                increment: nivelesSubidos * PUNTOS_ATRIBUTO_POR_NIVEL_BASE,
+              },
             },
           });
 
@@ -920,6 +926,9 @@ export async function POST(request: Request) {
               estado: "de_viaje",
               nivel: nivelNuevo,
               experiencia: experienciaNueva,
+              puntosAtributoDisponibles: {
+                increment: nivelesSubidos * PUNTOS_ATRIBUTO_POR_NIVEL_BASE,
+              },
             },
           });
 
