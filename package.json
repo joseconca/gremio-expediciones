@@ -11,7 +11,7 @@
     "test:world:api": "node --env-file=.env --test tests/world-api.test.cjs",
     "test:world:equipment:api": "node --env-file=.env --test tests/world-equipment-api.test.cjs",
     "test:base": "node --test tests/base-economic-routes.test.cjs",
-    "test:progression": "node --test tests/progression.test.cjs"
+    "test:progression": "node --test tests/progression.test.cjs tests/progression-api.test.cjs"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
