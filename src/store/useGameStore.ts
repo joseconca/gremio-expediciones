@@ -127,7 +127,20 @@ export interface Personaje {
   id?: string;
   nombre: string;
   clase: string;
+  profesionActivaId: string;
   sexo: "chico" | "chica";
+  fuerza: number;
+  agilidad: number;
+  vitalidad: number;
+  inteligencia: number;
+  destreza: number;
+  suerte: number;
+  energiaActual: number;
+  manaActual: number;
+  puntosAtributoDisponibles: number;
+  nivelJob: number;
+  experienciaJob: number;
+  puntosHabilidadDisponibles: number;
   hpActual: number;
   estado: "ocioso" | "de_viaje" | "descansando";
   regeneracionDeVida: number;
@@ -471,12 +484,34 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     accesorio: buscarObjetoInventario(datosEquipo.accesorio),
   };
 
-  const modificadoresEquipo = calcularModificadoresEquipo(equipo);
+  const profesionActivaId =
+    typeof datos.profesionActivaId === "string" ? datos.profesionActivaId : "novato";
+  const modificadoresEquipo = calcularModificadoresEquipo(equipo, profesionActivaId);
+  const atributos = {
+    fuerza: typeof datos.fuerza === "number" ? datos.fuerza : 1,
+    agilidad: typeof datos.agilidad === "number" ? datos.agilidad : 1,
+    vitalidad: typeof datos.vitalidad === "number" ? datos.vitalidad : 1,
+    inteligencia: typeof datos.inteligencia === "number" ? datos.inteligencia : 1,
+    destreza: typeof datos.destreza === "number" ? datos.destreza : 1,
+    suerte: typeof datos.suerte === "number" ? datos.suerte : 1,
+  };
+  const progresosClase = Array.isArray(datos.progresosClase)
+    ? datos.progresosClase.filter(
+        (progreso): progreso is Record<string, unknown> =>
+          !!progreso && typeof progreso === "object"
+      )
+    : [];
+  const progresoActivo = progresosClase.find(
+    (progreso) =>
+      progreso.claseId === profesionActivaId && progreso.desbloqueada === true
+  );
 
   const estadisticas = calcularEstadisticasPersonaje(
     {
       clase: datos.clase,
+      profesionActivaId,
       nivel: datos.nivel,
+      ...atributos,
       velocidadMejoras:
         typeof datos.velocidadMejoras === "number" ? datos.velocidadMejoras : 0,
       capacidadCarruajeMejoras:
@@ -492,7 +527,19 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     id: typeof datos.id === "string" ? datos.id : undefined,
     nombre: datos.nombre,
     clase: datos.clase,
+    profesionActivaId,
     sexo: datos.sexo === "chica" ? "chica" : "chico",
+    ...atributos,
+    energiaActual: typeof datos.energiaActual === "number" ? datos.energiaActual : 20,
+    manaActual: typeof datos.manaActual === "number" ? datos.manaActual : 10,
+    puntosAtributoDisponibles:
+      typeof datos.puntosAtributoDisponibles === "number" ? datos.puntosAtributoDisponibles : 0,
+    nivelJob: typeof progresoActivo?.nivelJob === "number" ? progresoActivo.nivelJob : 1,
+    experienciaJob: typeof progresoActivo?.experienciaJob === "number" ? progresoActivo.experienciaJob : 0,
+    puntosHabilidadDisponibles:
+      typeof progresoActivo?.puntosHabilidadDisponibles === "number"
+        ? progresoActivo.puntosHabilidadDisponibles
+        : 0,
     hpActual: Math.min(datos.hpActual, estadisticas.total.hpMaximo),
     hpMaximo: estadisticas.total.hpMaximo,
     estado:
