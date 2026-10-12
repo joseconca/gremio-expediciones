@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { Prisma } from "@prisma/client";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
@@ -16,7 +17,25 @@ export async function POST(request: Request) {
       );
     }
 
-    const body = await request.json();
+    let bodyJson: unknown;
+
+    try {
+      bodyJson = await request.json();
+    } catch {
+      return NextResponse.json(
+        { error: "El cuerpo de la petición no contiene JSON válido." },
+        { status: 400 }
+      );
+    }
+
+    if (!bodyJson || typeof bodyJson !== "object" || Array.isArray(bodyJson)) {
+      return NextResponse.json(
+        { error: "El cuerpo de la petición no es válido." },
+        { status: 400 }
+      );
+    }
+
+    const body = bodyJson as Record<string, unknown>;
 
     if (
       typeof body.objetoInventarioId !== "string" ||
@@ -28,7 +47,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const objetoInventarioId = body.objetoInventarioId;
+    const objetoInventarioId = body.objetoInventarioId.trim();
 
     const personaje = await prisma.personaje.findUnique({
       where: {
@@ -123,6 +142,16 @@ export async function POST(request: Request) {
       equipo,
     });
   } catch (error) {
+    if (
+      error instanceof Prisma.PrismaClientKnownRequestError &&
+      ["P2002", "P2003", "P2025"].includes(error.code)
+    ) {
+      return NextResponse.json(
+        { error: "El equipo ha cambiado durante la operación. Actualiza el inventario e inténtalo de nuevo." },
+        { status: 409 }
+      );
+    }
+
     console.error("Error al equipar objeto:", error);
 
     return NextResponse.json(
