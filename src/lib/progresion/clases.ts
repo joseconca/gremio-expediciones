@@ -16,6 +16,8 @@ export interface DefinicionClase {
   armadurasDominadas: readonly TipoArmadura[];
   bonoAtaqueArmaDominada: number;
   bonoDefensaArmaduraDominada: number;
+  /** Aumenta proporcionalmente la velocidad de viaje de expediciones. */
+  bonusVelocidadExpedicion?: number;
 }
 
 const NOVATO_JOB_10: readonly RequisitoClase[] = [{ claseId: "novato", nivelJob: 10 }];
@@ -89,6 +91,7 @@ const DEFINICIONES = {
     tier: 2, nivelJobMaximo: 40, requisitos: ARQUERO_JOB_40,
     armasDominadas: ["arco", "daga"], armadurasDominadas: ["ligera"],
     bonoAtaqueArmaDominada: 0.15, bonoDefensaArmaduraDominada: 0.05,
+    bonusVelocidadExpedicion: 0.25,
   },
   elementalista: {
     id: "elementalista", nombre: "Elementalista", descripcion: "Especialista en magia elemental.",
