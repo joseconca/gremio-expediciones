@@ -1,5 +1,7 @@
 require("./load-typescript.cjs");
 const { test } = require("node:test");
+const fs = require("node:fs");
+const path = require("node:path");
 const assert = require("node:assert/strict");
 const {
   CLASES, obtenerAncestrosClase, obtenerClasesHabilidadDisponibles,
@@ -127,4 +129,32 @@ test("Job: al alcanzar el máximo completa maestría y no acumula experiencia ex
   assert.equal(resultado.puntosHabilidadDisponibles, 3);
   assert.equal(resultado.maestriaCompletada, true);
   assert.equal(resultado.experienciaNecesariaSiguienteNivel, null);
+});
+
+
+test("migración: los personajes actuales pasan a Novato Job 1 sin perder nivel Base", () => {
+  const migration = fs.readFileSync(
+    path.join(__dirname, "../prisma/migrations/20261012180000_reset_personajes_a_novato/migration.sql"),
+    "utf8"
+  );
+
+  const actualizarPersonaje = migration.match(
+    /UPDATE "Personaje"[\\s\\S]*?;/
+  )?.[0];
+  assert.ok(actualizarPersonaje, "La migración actualiza Personaje");
+  assert.match(actualizarPersonaje, /"clase" = 'Novato'/);
+  assert.match(actualizarPersonaje, /"profesionActivaId" = 'novato'/);
+  assert.doesNotMatch(
+    actualizarPersonaje,
+    /"nivel"\\s*=|"experiencia"\\s*=/,
+    "El nivel y la experiencia Base no se modifican"
+  );
+
+  assert.match(migration, /DELETE FROM "ProgresoClase"[\\s\\S]*?"claseId" <> 'novato'/);
+  assert.match(migration, /"nivelJob" = 1/);
+  assert.match(migration, /"experienciaJob" = 0/);
+  assert.match(migration, /"puntosHabilidadDisponibles" = 0/);
+  assert.match(migration, /"desbloqueada" = TRUE/);
+  assert.match(migration, /"maestriaCompletada" = FALSE/);
+  assert.match(migration, /ON CONFLICT \\("personajeId", "claseId"\\) DO NOTHING/);
 });
