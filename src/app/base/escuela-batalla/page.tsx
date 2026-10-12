@@ -16,6 +16,7 @@ type SlotHabilidad =
 
 interface HabilidadEnVenta extends DefinicionHabilidad {
   puedeAprender: boolean;
+  modoAprendizaje?: "job" | "oro";
 }
 
 interface HabilidadAprendida {
@@ -27,6 +28,13 @@ interface HabilidadAprendida {
 
 interface DatosHabilidades {
   escuelaNivel: number;
+  profesionActivaId?: string;
+  profesionNombre?: string;
+  progresoJob?: {
+    nivelJob: number;
+    puntosHabilidadDisponibles: number;
+    maestriaCompletada: boolean;
+  } | null;
   enVenta: HabilidadEnVenta[];
   aprendidas: HabilidadAprendida[];
 }
@@ -298,6 +306,21 @@ export default function EscuelaCombatePage() {
 
         <p className="-mt-6 mb-8 text-[#a99d84]">{descripcionEdificio}</p>
 
+        <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <div className="rounded-md border border-[#5d4229] bg-[#241912] p-4">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#9b8a70]">Profesión activa</p>
+            <p className="mt-1 text-lg font-bold text-[#e8d4ab]">{datos?.profesionNombre ?? datos?.profesionActivaId ?? "Novato"}</p>
+          </div>
+          <div className="rounded-md border border-[#5d4229] bg-[#241912] p-4">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#9b8a70]">Nivel Job</p>
+            <p className="mt-1 text-lg font-bold text-[#e8d4ab]">{datos?.progresoJob?.nivelJob ?? 1}</p>
+          </div>
+          <div className="rounded-md border border-[#5d4229] bg-[#241912] p-4">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#9b8a70]">Puntos de habilidad</p>
+            <p className="mt-1 text-lg font-bold text-[#e8d4ab]">{datos?.progresoJob?.puntosHabilidadDisponibles ?? 0}</p>
+          </div>
+        </div>
+
         {/* ====================================================== */}
         {/* OFERTAS */}
         {/* ====================================================== */}
@@ -346,11 +369,15 @@ export default function EscuelaCombatePage() {
                         aprendidaItem.habilidadId === habilidad.id
                     );
 
-                    const nivelNecesario =
-                      NIVEL_ESCUELA_POR_RAREZA[habilidad.rareza];
-
+                    const esHabilidadProfesional = habilidad.modoAprendizaje === "job";
+                    const nivelNecesario = esHabilidadProfesional
+                      ? (habilidad.nivelJobRequerido ?? 1)
+                      : NIVEL_ESCUELA_POR_RAREZA[habilidad.rareza];
+                    const costePuntos = Math.max(1, habilidad.costePuntosHabilidad ?? 1);
+                    const tieneCosteSuficiente = esHabilidadProfesional
+                      ? (datos?.progresoJob?.puntosHabilidadDisponibles ?? 0) >= costePuntos
+                      : oro >= habilidad.precio;
                     const puedeComprar = habilidad.puedeAprender && !aprendida;
-
                     const comprando = procesando === `aprender:${habilidad.id}`;
 
                     return (
@@ -389,6 +416,13 @@ export default function EscuelaCombatePage() {
                           <p className="relative mt-4 text-sm leading-6 text-[#3d3328]">
                             {habilidad.descripcion}
                           </p>
+                          {(habilidad.costeEnergia || habilidad.costeMana) ? (
+                            <p className="relative mt-2 text-xs font-bold text-[#6b4a2c]">
+                              Coste en combate: {habilidad.costeEnergia ? `${habilidad.costeEnergia} Energía` : ""}
+                              {habilidad.costeEnergia && habilidad.costeMana ? " + " : ""}
+                              {habilidad.costeMana ? `${habilidad.costeMana} Maná` : ""}
+                            </p>
+                          ) : null}
                         </div>
 
                         {/* Parte inferior del puesto */}
@@ -396,7 +430,9 @@ export default function EscuelaCombatePage() {
                           {!habilidad.puedeAprender ? (
                             <div className="rounded-md border border-[#594b3d] bg-[#241e18] p-3 text-center">
                               <p className="text-sm font-bold text-[#928370]">
-                                🔒 Requiere Escuela nivel {nivelNecesario}
+                                🔒 {esHabilidadProfesional
+                                  ? `Requiere Job ${nivelNecesario} y ${costePuntos} punto(s) de habilidad`
+                                  : `Requiere Escuela nivel ${nivelNecesario}`}
                               </p>
                             </div>
                           ) : aprendida ? (
@@ -414,10 +450,10 @@ export default function EscuelaCombatePage() {
                               disabled={
                                 !puedeComprar ||
                                 comprando ||
-                                oro < habilidad.precio
+                                !tieneCosteSuficiente
                               }
                               className={`flex h-[50px] w-full items-center justify-between rounded-md border-2 px-4 font-black transition-all ${
-                                puedeComprar && oro >= habilidad.precio
+                                puedeComprar && tieneCosteSuficiente
                                   ? "border-[#9b712f] bg-[#6c4925] text-[#f4e4bf] shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_4px_8px_rgba(0,0,0,0.3)] hover:border-[#c09a50] hover:bg-[#7b542b] active:translate-y-px"
                                   : "cursor-not-allowed border-[#4a4035] bg-[#26211b] text-[#665d52]"
                               }`}
@@ -429,7 +465,9 @@ export default function EscuelaCombatePage() {
                               </span>
 
                               <span className="rounded border border-[#9c6f2d]/50 bg-[#24180e] px-2 py-1 text-amber-400">
-                                {habilidad.precio} 🪙
+                                {esHabilidadProfesional
+                                  ? `${costePuntos} ✦ Job`
+                                  : `${habilidad.precio} 🪙`}
                               </span>
                             </button>
                           )}
