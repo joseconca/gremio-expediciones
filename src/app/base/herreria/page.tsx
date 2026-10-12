@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image"
 import { useRouter } from "next/navigation";
@@ -208,7 +208,7 @@ export default function HerreriaPage() {
     };
 
     void cargarObjetos();
-  }, [nivelArmeria]);
+  }, [nivelArmeria, nivelHerreria]);
 
   const recargarObjetos = async () => {
     try {
@@ -263,13 +263,13 @@ export default function HerreriaPage() {
     }
   };
 
-  const estaObjetoEquipado = (objetoInventarioId: string): boolean => {
+  const estaObjetoEquipado = useCallback((objetoInventarioId: string): boolean => {
     return (
       datos?.equipo.arma?.id === objetoInventarioId ||
       datos?.equipo.armadura?.id === objetoInventarioId ||
       datos?.equipo.accesorio?.id === objetoInventarioId
     );
-  };
+  }, [datos?.equipo]);
 
   const inventarioArmas = useMemo(() => {
     const objetos = (datos?.inventario ?? []).filter(
@@ -286,7 +286,7 @@ export default function HerreriaPage() {
 
       return a.objeto.nombre.localeCompare(b.objeto.nombre, "es");
     });
-  }, [datos?.inventario, datos?.equipo]);
+  }, [datos?.inventario, estaObjetoEquipado]);
 
   const inventarioArmaduras = useMemo(() => {
     const objetos = (datos?.inventario ?? []).filter(
@@ -303,7 +303,7 @@ export default function HerreriaPage() {
 
       return a.objeto.nombre.localeCompare(b.objeto.nombre, "es");
     });
-  }, [datos?.inventario, datos?.equipo]);
+  }, [datos?.inventario, estaObjetoEquipado]);
 
   const inventarioAccesorios = useMemo(() => {
     const objetos = (datos?.inventario ?? []).filter(
@@ -320,7 +320,7 @@ export default function HerreriaPage() {
 
       return a.objeto.nombre.localeCompare(b.objeto.nombre, "es");
     });
-  }, [datos?.inventario, datos?.equipo]);
+  }, [datos?.inventario, estaObjetoEquipado]);
 
   const nivelMaximoMejora = nivelHerreria * 3;
 
@@ -369,6 +369,18 @@ export default function HerreriaPage() {
             Ir a la armería →
           </Link>
         </div>
+
+        {cargando && (
+          <p role="status" className="mb-4 rounded border border-stone-700 bg-stone-900 p-3 text-sm text-stone-300">
+            Cargando objetos y equipamiento…
+          </p>
+        )}
+
+        {error && (
+          <p role="alert" className="mb-4 rounded border border-red-900/70 bg-[#321817] p-3 text-sm font-bold text-red-300">
+            ⚠️ {error}
+          </p>
+        )}
 
         {/* ====================================================== */}
         {/* FORJA                                                   */}
