@@ -66,6 +66,7 @@ model Personaje {
   inteligencia        Int                  @default(1)
   destreza            Int                  @default(1)
   suerte              Int                  @default(1)
+  puntosAtributoDisponibles Int             @default(0)
   energiaActual       Int                  @default(20)
   manaActual          Int                  @default(10)
 
