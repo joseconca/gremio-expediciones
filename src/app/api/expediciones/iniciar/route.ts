@@ -52,7 +52,7 @@ function leerEdificios(valor: unknown): Record<string, unknown> {
 
 function tieneEmbajada(valor: unknown): boolean {
   const nivel = leerEdificios(valor).embajada;
-  return typeof nivel === "number" && Number.isFinite(nivel) && nivel >= 1;
+  return nivel === 1 || nivel === 2;
 }
 
 function respuestaError(mensaje: string, status: number) {
