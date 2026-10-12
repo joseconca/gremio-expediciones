@@ -252,7 +252,7 @@ export default function EscuelaCombatePage() {
     }
   };
 
-  const aprendidas = datos?.aprendidas ?? [];
+  const aprendidas = useMemo(() => datos?.aprendidas ?? [], [datos?.aprendidas]);
 
   const habilidadesEquipadas = useMemo(
     () =>
