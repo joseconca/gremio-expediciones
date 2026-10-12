@@ -21,7 +21,7 @@ El personaje puede llevar diez piezas:
 9. Anillo 1.
 10. Anillo 2.
 
-Las armas a dos manos bloquean la mano secundaria. El servidor valida la compatibilidad; un objeto equipado no puede venderse. Al mover un objeto de ranura, se limpia su ubicación anterior y no queda duplicado en dos slots.
+Las armas a dos manos bloquean la mano secundaria. El servidor valida la compatibilidad; un objeto equipado no puede venderse. Al mover un objeto de ranura, se limpia su ubicación anterior y no queda duplicado en dos slots. El equipo no se puede equipar, desequipar ni mejorar mientras el personaje está de viaje o combatiendo; el servidor vuelve a comprobar ese estado dentro de la transacción para evitar cambios concurrentes con el inicio de una expedición.
 
 ## Sufijos y rareza
 
@@ -31,12 +31,33 @@ Los enemigos normales no pueden generar sufijos legendarios. Los jefes tienen ma
 
 La tabla de sufijos está en `src/lib/sufijosObjetos.ts`; las probabilidades y tablas de botín se definen en `src/lib/enemigos.ts`, y la tirada ponderada en `src/lib/lootObjetos.ts`.
 
+## Consumibles en combate
+
+En combate PvE, el panel **Objetos** muestra los consumibles curativos que lleva el personaje. Usar una poción consume una unidad y restaura los puntos de vida definidos por el objeto, sin superar los PV máximos. No se permite gastar una poción si el personaje ya está al máximo de vida, si no posee la instancia indicada o si el objeto no es un consumible curativo. El consumo, la actualización de la salud de combate y el avance de versión se guardan en la misma transacción para impedir duplicados en peticiones concurrentes.
+
+Los consumibles en asedios PvP continúan deshabilitados; no se habilitan hasta que el flujo de ambos participantes y su persistencia de recursos tenga cobertura equivalente de pruebas.
+
 ## Venta y recompra
 
 - La venta devuelve el 35 % del precio base de catálogo multiplicado por la cantidad de la pila.
 - El sistema guarda una única última venta en `Inventario.ultimaVenta`. Una venta posterior reemplaza la anterior.
 - La recompra cuesta el 70 % del precio base (o un mínimo de una moneda por encima de la venta), conserva el sufijo, las bonificaciones y el nivel de mejora, y consume la última venta guardada.
 - La venta y la recompra se ejecutan en transacciones. No se puede vender una pieza equipada. No se puede recomprar sin oro o espacio en el inventario.
+
+## Estado de estabilización
+
+Verificado en la rama `estabilizacion-clases-objetos`:
+- [x] Bonificaciones del equipo aplicadas a máximos y regeneración de Energía/Maná durante el combate.
+- [x] Equipar, desequipar y mejorar bloqueados durante viaje/combate, con revalidación en transacción.
+- [x] Uso de consumibles curativos en combate PvE: propiedad, cantidad, PV máximos y consumo atómico.
+- [x] Inventario máximo de 30 instancias y mensaje explícito cuando un botín no cabe.
+- [x] Venta y recompra conservan la instancia, sufijo, mejoras y bonificaciones; la recompra duplicada se rechaza.
+- [x] CI completa: pruebas de base/API, motor del mundo, progresión, ESLint y build de producción.
+
+Pendiente antes de cerrar por completo el sistema de objetos:
+- [ ] Validación integral manual/UI de compras, venta, recompra, equipo y consumibles en una partida real.
+- [ ] Consumibles durante asedios PvP, cuando estén cubiertos los dos participantes y la persistencia de sus estados.
+- [ ] Revisar el recorrido de edificios y las integraciones de tienda una vez cerrada la verificación del núcleo de objetos.
 
 ## Migración
 

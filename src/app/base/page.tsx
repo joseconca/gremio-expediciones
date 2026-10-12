@@ -550,6 +550,13 @@ export default function BasePage() {
     [accionCombate]
   );
 
+  const ejecutarAccionCombatePve = useCallback(
+    (accion: "atacar" | "usar_habilidad" | "usar_objeto", payload?: string) => {
+      return accionCombate(accion, payload);
+    },
+    [accionCombate]
+  );
+
   const combateLocal = expedicionActiva?.combateActivo ?? null;
 
   const combateVisible = !combateLocal
@@ -573,7 +580,7 @@ export default function BasePage() {
             combate={expedicionActiva.combateActivo as CombatePve}
             personaje={personaje}
             procesando={false}
-            onAccionCombate={ejecutarAccionCombate}
+            onAccionCombate={ejecutarAccionCombatePve}
             onCerrar={() => {
               setCombateAbierto(false);
             }}

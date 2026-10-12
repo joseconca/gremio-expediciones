@@ -8,6 +8,7 @@ const {
   puedeUsarHabilidadDeClase, evaluarDesbloqueoClase, calcularBonificacionesDominioEquipo,
 } = require("../src/lib/progresion/clases.ts");
 const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas.ts");
+const { mapearBonificacionesEquipoRpg } = require("../src/lib/progresion/bonificaciones-equipo.ts");
 const { aplicarExperienciaJob } = require("../src/lib/progresion/experiencia.ts");
 const { obtenerHabilidadesEnVenta } = require("../src/lib/tiendaHabilidades.ts");
 
@@ -100,6 +101,30 @@ test("atributos principales generan estadísticas derivadas y valores acotados",
   assert.ok(Number.isFinite(invalido.hpMaximo) && invalido.hpMaximo >= 1);
 });
 
+
+test("las bonificaciones de equipo se aplican a máximos y regeneración de recursos RPG", () => {
+  const atributos = {
+    fuerza: 1,
+    agilidad: 1,
+    vitalidad: 1,
+    inteligencia: 1,
+    destreza: 1,
+    suerte: 1,
+  };
+  const base = calcularEstadisticasDerivadasRpg(atributos, 1);
+  const bonificaciones = mapearBonificacionesEquipoRpg({
+    energiaMaxima: 7,
+    manaMaximo: 8,
+    regeneracionEnergiaPorTurno: 2,
+    regeneracionManaPorTurno: 1,
+  });
+  const equipado = calcularEstadisticasDerivadasRpg(atributos, 1, bonificaciones);
+
+  assert.equal(equipado.energiaMaxima, base.energiaMaxima + 7);
+  assert.equal(equipado.manaMaximo, base.manaMaximo + 8);
+  assert.equal(equipado.regeneracionEnergiaPorTurno, base.regeneracionEnergiaPorTurno + 2);
+  assert.equal(equipado.regeneracionManaPorTurno, base.regeneracionManaPorTurno + 1);
+});
 
 test("Job: cada nivel concede un punto de habilidad y conserva el exceso de experiencia", () => {
   const resultado = aplicarExperienciaJob({

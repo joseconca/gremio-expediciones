@@ -1,9 +1,14 @@
 import { NextResponse } from "next/server";
+import { Prisma } from "@prisma/client";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId, calcularCosteMejoraObjeto } from "@/lib/objetos";
 import { obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
 
+
+function personajeOcupado(estado: string): boolean {
+  return estado === "de_viaje" || estado === "combatiendo";
+}
 
 export async function POST(request: Request) {
   try {
@@ -52,6 +57,12 @@ export async function POST(request: Request) {
     }
 
     const personaje = usuario.personaje;
+    if (personajeOcupado(personaje.estado)) {
+      return NextResponse.json(
+        { error: "No puedes mejorar el equipo durante una expedición o un combate." },
+        { status: 409 }
+      );
+    }
 
     const edificios =
       usuario.edificios &&
@@ -166,6 +177,32 @@ export async function POST(request: Request) {
     const nivelNuevo = nivelAnterior + 1;
 
     const resultado = await prisma.$transaction(async (tx) => {
+      // La herrería no debe modificar las estadísticas de una expedición ya
+      // iniciada. Releer estado y ranura evita una carrera con el comienzo del viaje.
+      const personajeActual = await tx.personaje.findUnique({
+        where: { id: personaje.id },
+        select: { estado: true },
+      });
+      if (!personajeActual) throw new Error("PERSONAJE_NO_ENCONTRADO");
+      if (personajeOcupado(personajeActual.estado)) throw new Error("PERSONAJE_OCUPADO");
+
+      const equipoActual = await tx.equipoEquipado.findUnique({
+        where: { personajeId: personaje.id },
+      });
+      const objetoSigueEquipado = [
+        equipoActual?.armaInventarioId,
+        equipoActual?.manoSecundariaInventarioId,
+        equipoActual?.cascoInventarioId,
+        equipoActual?.armaduraInventarioId,
+        equipoActual?.pantalonesInventarioId,
+        equipoActual?.botasInventarioId,
+        equipoActual?.guantesInventarioId,
+        equipoActual?.accesorioInventarioId,
+        equipoActual?.anillo1InventarioId,
+        equipoActual?.anillo2InventarioId,
+      ].includes(objetoInventario.id);
+      if (!objetoSigueEquipado) throw new Error("OBJETO_NO_EQUIPADO");
+
       const usuarioActualizado = await tx.usuario.updateMany({
         where: {
           id: usuario.id,
@@ -209,7 +246,7 @@ export async function POST(request: Request) {
       });
 
       return usuarioFinal;
-    });
+    }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
 
     return NextResponse.json({
       exito: true,
@@ -219,6 +256,27 @@ export async function POST(request: Request) {
       coste,
     });
   } catch (error) {
+    if (error instanceof Error && error.message === "PERSONAJE_OCUPADO") {
+      return NextResponse.json(
+        { error: "No puedes mejorar el equipo durante una expedición o un combate." },
+        { status: 409 }
+      );
+    }
+    if (error instanceof Error && error.message === "PERSONAJE_NO_ENCONTRADO") {
+      return NextResponse.json({ error: "No se encontró el personaje." }, { status: 404 });
+    }
+    if (error instanceof Error && error.message === "OBJETO_NO_EQUIPADO") {
+      return NextResponse.json(
+        { error: "El objeto ya no está equipado. Actualiza el inventario e inténtalo de nuevo." },
+        { status: 409 }
+      );
+    }
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2034") {
+      return NextResponse.json(
+        { error: "El personaje o el equipo han cambiado. Actualiza e inténtalo de nuevo." },
+        { status: 409 }
+      );
+    }
     if (error instanceof Error && error.message === "ORO_INSUFICIENTE") {
       return NextResponse.json(
         { error: "No tienes suficiente oro." },

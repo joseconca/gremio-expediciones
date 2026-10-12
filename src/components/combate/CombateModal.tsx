@@ -5,14 +5,15 @@ import Image from "next/image";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import type { CombatePve, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
+import type { ObjetoInventario } from "@/lib/tiposJuego";
 
 interface CombateModalProps {
   combate: CombatePve;
   personaje: Personaje;
   procesando?: boolean;
   onAccionCombate: (
-    accion: "atacar" | "usar_habilidad",
-    habilidadId?: string
+    accion: "atacar" | "usar_habilidad" | "usar_objeto",
+    payload?: string
   ) => Promise<AccionAnimadaCombate | null>;
   onCerrar?: () => void;
 }
@@ -68,6 +69,8 @@ export default function CombateModal({
   const [mostrarStatsEnemigo, setMostrarStatsEnemigo] = useState(false);
   const [habilidades, setHabilidades] = useState<HabilidadEquipable[]>([]);
   const [mostrarHabilidades, setMostrarHabilidades] = useState(false);
+  const [mostrarObjetos, setMostrarObjetos] = useState(false);
+  const [objetoSeleccionadoId, setObjetoSeleccionadoId] = useState<string | null>(null);
   const [logExpandido, setLogExpandido] = useState(false);
   const [habilidadSeleccionadaId, setHabilidadSeleccionadaId] = useState<
     string | null
@@ -293,6 +296,32 @@ export default function CombateModal({
       setProcesandoLocal(false);
     }
   };
+
+  const ejecutarObjeto = async (objetoInventario: ObjetoInventario) => {
+    if (
+      accionEnCurso.current ||
+      procesando ||
+      combateTerminado ||
+      combate.turno !== "jugador"
+    ) return;
+
+    accionEnCurso.current = true;
+    setProcesandoLocal(true);
+    setMostrarObjetos(false);
+    try {
+      const accion = await onAccionCombate("usar_objeto", objetoInventario.id);
+      if (!accion) return;
+      await mostrarResultadoAccion(accion);
+    } finally {
+      accionEnCurso.current = false;
+      setProcesandoLocal(false);
+    }
+  };
+
+  const objetosConsumibles = personaje.inventario.filter(
+    (item) => item.cantidad > 0 && item.objeto.tipo === "consumible" && (item.objeto.curacion ?? 0) > 0
+  );
+  const objetoSeleccionado = objetosConsumibles.find((item) => item.id === objetoSeleccionadoId) ?? null;
 
   useEffect(() => {
     if (
@@ -667,11 +696,24 @@ export default function CombateModal({
               </button>
 
               <button
-                disabled
-                className="group flex w-full items-center justify-between rounded border border-stone-800 bg-stone-950 px-3 py-2 sm:px-4 sm:py-2.5 opacity-40"
+                onClick={() => {
+                  setMostrarHabilidades(false);
+                  setMostrarObjetos((actual) => !actual);
+                  if (!objetoSeleccionadoId && objetosConsumibles.length > 0) {
+                    setObjetoSeleccionadoId(objetosConsumibles[0].id);
+                  }
+                }}
+                disabled={
+                  procesando || procesandoLocal || combateTerminado ||
+                  combate.turno !== "jugador" || objetosConsumibles.length === 0
+                }
+                className={`group flex w-full items-center justify-between rounded border px-3 py-2 sm:px-4 sm:py-2.5 shadow-md transition-all disabled:cursor-not-allowed disabled:opacity-40 ${mostrarObjetos ? "border-emerald-700 bg-emerald-950" : "border-stone-600 bg-stone-700"}`}
               >
-                <span className="text-xs sm:text-sm font-bold tracking-widest text-stone-500">
+                <span className="text-xs sm:text-sm font-bold tracking-widest text-stone-200">
                   OBJETOS
+                </span>
+                <span className="font-mono text-[10px] text-emerald-300">
+                  {objetosConsumibles.reduce((total, item) => total + item.cantidad, 0)}
                 </span>
               </button>
 
@@ -688,7 +730,78 @@ export default function CombateModal({
 
           {/* DERECHA: PANEL DINÁMICO (Registro / Menús) - Ocupa el resto del espacio */}
           <div className="flex-1 p-4 sm:p-6 relative flex flex-col justify-center bg-stone-900/30 overflow-hidden">
-            {mostrarHabilidades ? (
+            {mostrarObjetos ? (
+              <div className="flex h-full w-full animate-fade-in flex-col">
+                <div className="mb-2 flex shrink-0 items-center justify-between border-b border-stone-700 pb-2">
+                  <div>
+                    <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-stone-500">
+                      Consumibles
+                    </span>
+                    <span className="ml-2 text-[10px] font-mono text-stone-500">
+                      {objetosConsumibles.reduce((total, item) => total + item.cantidad, 0)} disponibles
+                    </span>
+                  </div>
+                  <button onClick={() => setMostrarObjetos(false)} className="text-[10px] font-bold tracking-widest text-stone-500">
+                    VOLVER ✕
+                  </button>
+                </div>
+                {objetosConsumibles.length === 0 ? (
+                  <div className="flex flex-1 items-center justify-center text-center text-xs text-stone-500">
+                    No llevas consumibles de curación.
+                  </div>
+                ) : (
+                  <div className="grid flex-1 min-h-0 grid-cols-1 gap-2 overflow-y-auto custom-scrollbar sm:grid-cols-2">
+                    <div className="flex flex-col gap-2">
+                      {objetosConsumibles.map((item) => {
+                        const curacion = Math.min(item.objeto.curacion ?? 0, Math.max(0, combate.jugadorHpMaximo - combate.jugadorHp));
+                        const seleccionada = item.id === objetoSeleccionado?.id;
+                        return (
+                          <button
+                            key={item.id}
+                            onClick={() => setObjetoSeleccionadoId(item.id)}
+                            disabled={procesando || procesandoLocal}
+                            className={`flex items-center justify-between rounded border px-3 py-2 text-left transition disabled:opacity-50 ${seleccionada ? "border-emerald-700 bg-emerald-950/70" : "border-stone-800 bg-stone-950/70"}`}
+                          >
+                            <span className="min-w-0">
+                              <span className="block truncate text-xs font-bold text-stone-200">{item.objeto.nombre}</span>
+                              <span className="mt-1 block text-[10px] text-emerald-300">Cura hasta {item.objeto.curacion} PV · x{item.cantidad}</span>
+                            </span>
+                            <span className="ml-2 text-xs font-mono text-stone-400">{curacion > 0 ? `+${curacion} PV` : "PV al máximo"}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                    <div className="hidden sm:flex flex-col justify-between rounded border border-stone-800 bg-stone-950/90 p-4">
+                      {objetoSeleccionado ? (
+                        <>
+                          <div>
+                            <h4 className="text-sm font-bold text-emerald-300">{objetoSeleccionado.objeto.nombre}</h4>
+                            <p className="mt-2 text-xs leading-relaxed text-stone-300">{objetoSeleccionado.objeto.descripcion}</p>
+                            <p className="mt-3 text-[10px] font-mono text-stone-500">Cantidad: {objetoSeleccionado.cantidad}</p>
+                          </div>
+                          <button
+                            onClick={() => void ejecutarObjeto(objetoSeleccionado)}
+                            disabled={procesando || procesandoLocal || combate.turno !== "jugador" || combate.jugadorHp >= combate.jugadorHpMaximo}
+                            className="mt-3 rounded border border-emerald-700 bg-emerald-950 px-3 py-2 text-xs font-black tracking-widest text-emerald-300 transition hover:bg-emerald-900 disabled:cursor-not-allowed disabled:opacity-40"
+                          >
+                            USAR OBJETO
+                          </button>
+                        </>
+                      ) : null}
+                    </div>
+                    {objetoSeleccionado ? (
+                      <button
+                        onClick={() => void ejecutarObjeto(objetoSeleccionado)}
+                        disabled={procesando || procesandoLocal || combate.turno !== "jugador" || combate.jugadorHp >= combate.jugadorHpMaximo}
+                        className="rounded border border-emerald-700 bg-emerald-950 px-3 py-2 text-xs font-black tracking-widest text-emerald-300 sm:hidden disabled:cursor-not-allowed disabled:opacity-40"
+                      >
+                        USAR {objetoSeleccionado.objeto.nombre.toLocaleUpperCase("es-ES")}
+                      </button>
+                    ) : null}
+                  </div>
+                )}
+              </div>
+            ) : mostrarHabilidades ? (
               /* ESTADO A: MOSTRAR HABILIDADES (2 Columnas en Desktop: Zona central de habilidades y zona derecha de descripción) */
               <div className="flex flex-col h-full w-full animate-fade-in">
                 <div className="mb-2 flex shrink-0 items-center justify-between border-b border-stone-700 pb-2">

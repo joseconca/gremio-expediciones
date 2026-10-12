@@ -16,6 +16,10 @@ const CAMPOS_RANURA = {
   anillo2: "anillo2InventarioId",
 } as const;
 
+function personajeOcupado(estado: string): boolean {
+  return estado === "de_viaje" || estado === "combatiendo";
+}
+
 export async function POST(request: Request) {
   try {
     const usuarioSesion = await getAuthenticatedUser();
@@ -48,14 +52,34 @@ export async function POST(request: Request) {
     if (!personaje) {
       return NextResponse.json({ error: "No se encontró el personaje." }, { status: 404 });
     }
+    if (personajeOcupado(personaje.estado)) {
+      return NextResponse.json(
+        { error: "No puedes cambiar el equipo durante una expedición o un combate." },
+        { status: 409 }
+      );
+    }
     if (!personaje.equipoEquipado || !personaje.equipoEquipado[field]) {
       return NextResponse.json({ error: "Esa ranura ya está vacía." }, { status: 409 });
     }
 
-    const equipo = await prisma.equipoEquipado.update({
-      where: { personajeId: personaje.id },
-      data: { [field]: null } as Prisma.EquipoEquipadoUncheckedUpdateInput,
-    });
+    const equipo = await prisma.$transaction(async (tx) => {
+      const personajeActual = await tx.personaje.findUnique({
+        where: { id: personaje.id },
+        select: { estado: true },
+      });
+      if (!personajeActual) throw new Error("PERSONAJE_NO_ENCONTRADO");
+      if (personajeOcupado(personajeActual.estado)) throw new Error("PERSONAJE_OCUPADO");
+
+      const equipoActual = await tx.equipoEquipado.findUnique({
+        where: { personajeId: personaje.id },
+      });
+      if (!equipoActual || !equipoActual[field]) throw new Error("RANURA_VACIA");
+
+      return tx.equipoEquipado.update({
+        where: { personajeId: personaje.id },
+        data: { [field]: null } as Prisma.EquipoEquipadoUncheckedUpdateInput,
+      });
+    }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
 
     return NextResponse.json({
       exito: true,
@@ -64,6 +88,18 @@ export async function POST(request: Request) {
       equipo,
     });
   } catch (error) {
+    if (error instanceof Error && error.message === "PERSONAJE_OCUPADO") {
+      return NextResponse.json(
+        { error: "No puedes cambiar el equipo durante una expedición o un combate." },
+        { status: 409 }
+      );
+    }
+    if (error instanceof Error && error.message === "RANURA_VACIA") {
+      return NextResponse.json({ error: "Esa ranura ya está vacía." }, { status: 409 });
+    }
+    if (error instanceof Error && error.message === "PERSONAJE_NO_ENCONTRADO") {
+      return NextResponse.json({ error: "No se encontró el personaje." }, { status: 404 });
+    }
     if (error instanceof Prisma.PrismaClientKnownRequestError && ["P2025", "P2034"].includes(error.code)) {
       return NextResponse.json({
         error: "El equipo ha cambiado durante la operación. Actualiza el inventario e inténtalo de nuevo.",

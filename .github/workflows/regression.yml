@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - refactor-en-server-y-limpieza
+      - estabilizacion-clases-objetos
   pull_request:
     branches:
       - main
