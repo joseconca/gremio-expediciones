@@ -9,7 +9,6 @@ function makeCombatConsumableRoute({
   initialHp = 40,
   maxHp = 100,
   initialQuantity = 2,
-  action = "usar_objeto",
   itemId = "pocion",
 } = {}) {
   let state = {
@@ -58,6 +57,7 @@ function makeCombatConsumableRoute({
         combateActivo: {
           id: "combat1",
           version: 0,
+          tipo: "pve",
           fase: "activo",
           ronda: 1,
           turno: "jugador",
@@ -101,6 +101,7 @@ function makeCombatConsumableRoute({
     combate: {
       id: "combat1",
       version: 0,
+      tipo: "pve",
       fase: "activo",
       ronda: 1,
       turno: "jugador",
@@ -127,6 +128,7 @@ function makeCombatConsumableRoute({
     },
     inventarioObjeto: {
       updateMany: async ({ where, data }) => {
+        if (!state.item) return { count: 0 };
         if (state.item.id !== where.id || state.item.inventarioId !== where.inventarioId ||
             state.item.objetoId !== where.objetoId || state.item.cantidad < (where.cantidad?.gte ?? 0)) {
           return { count: 0 };
@@ -136,6 +138,7 @@ function makeCombatConsumableRoute({
         return { count: 1 };
       },
       deleteMany: async ({ where }) => {
+        if (!state.item) return { count: 0 };
         if (state.item.id === where.id && state.item.cantidad <= (where.cantidad?.lte ?? -1)) {
           state.user.personaje.inventario.objetos = [];
           state.item = null;
