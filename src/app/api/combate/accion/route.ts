@@ -5,6 +5,7 @@ import {
   aplicarExperienciaJob,
   PUNTOS_ATRIBUTO_POR_NIVEL_BASE,
 } from "@/lib/progresion/experiencia";
+import { calcularEstadisticasDerivadasRpg } from "@/lib/progresion/estadisticas";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
@@ -80,6 +81,92 @@ async function otorgarExperienciaJob(
     nivelesSubidos: actualizado.nivelesSubidos,
     maestriaCompletada: actualizado.maestriaCompletada && !progreso.maestriaCompletada,
   };
+}
+
+
+async function gastarRecursosHabilidad(
+  tx: Prisma.TransactionClient,
+  personajeId: string,
+  habilidad: DefinicionHabilidad | null
+) {
+  if (!habilidad) return;
+
+  const costeEnergia = Math.max(0, Math.floor(habilidad.costeEnergia ?? 0));
+  const costeMana = Math.max(0, Math.floor(habilidad.costeMana ?? 0));
+  if (costeEnergia === 0 && costeMana === 0) return;
+
+  const where: Prisma.PersonajeWhereInput = { id: personajeId };
+  const data: Prisma.PersonajeUpdateManyMutationInput = {};
+  if (costeEnergia > 0) {
+    where.energiaActual = { gte: costeEnergia };
+    data.energiaActual = { decrement: costeEnergia };
+  }
+  if (costeMana > 0) {
+    where.manaActual = { gte: costeMana };
+    data.manaActual = { decrement: costeMana };
+  }
+
+  const resultado = await tx.personaje.updateMany({ where, data });
+  if (resultado.count !== 1) {
+    throw new Error("RECURSO_HABILIDAD_INSUFICIENTE");
+  }
+}
+
+async function regenerarRecursosPorTurno(
+  tx: Prisma.TransactionClient,
+  usuarioId: string
+) {
+  const personaje = await tx.personaje.findUnique({
+    where: { usuarioId },
+    select: {
+      id: true,
+      nivel: true,
+      fuerza: true,
+      agilidad: true,
+      vitalidad: true,
+      inteligencia: true,
+      destreza: true,
+      suerte: true,
+      energiaActual: true,
+      manaActual: true,
+    },
+  });
+  if (!personaje) return;
+
+  const maximos = calcularEstadisticasDerivadasRpg({
+    fuerza: personaje.fuerza,
+    agilidad: personaje.agilidad,
+    vitalidad: personaje.vitalidad,
+    inteligencia: personaje.inteligencia,
+    destreza: personaje.destreza,
+    suerte: personaje.suerte,
+  }, personaje.nivel);
+
+  const energiaNueva = Math.min(
+    maximos.energiaMaxima,
+    personaje.energiaActual + Math.max(1, Math.ceil(maximos.regeneracionEnergiaPorTurno))
+  );
+  const manaNuevo = Math.min(
+    maximos.manaMaximo,
+    personaje.manaActual + Math.max(1, Math.ceil(maximos.regeneracionManaPorTurno))
+  );
+
+  if (energiaNueva === personaje.energiaActual && manaNuevo === personaje.manaActual) return;
+
+  const actualizado = await tx.personaje.updateMany({
+    where: {
+      id: personaje.id,
+      energiaActual: personaje.energiaActual,
+      manaActual: personaje.manaActual,
+    },
+    data: {
+      energiaActual: energiaNueva,
+      manaActual: manaNuevo,
+    },
+  });
+  if (actualizado.count !== 1) {
+    throw new Error("RECURSO_COMBATE_MODIFICADO");
+  }
 }
 
 function obtenerRecompensaMision(valor: unknown): RecompensaMision {
@@ -536,6 +623,21 @@ export async function POST(request: Request) {
           { status: 409 }
         );
       }
+
+      const costeEnergia = Math.max(0, Math.floor(habilidad.costeEnergia ?? 0));
+      const costeMana = Math.max(0, Math.floor(habilidad.costeMana ?? 0));
+      if ((personaje.energiaActual ?? 0) < costeEnergia) {
+        return NextResponse.json(
+          { error: `No tienes Energía suficiente. Necesitas ${costeEnergia}.` },
+          { status: 400 }
+        );
+      }
+      if ((personaje.manaActual ?? 0) < costeMana) {
+        return NextResponse.json(
+          { error: `No tienes Maná suficiente. Necesitas ${costeMana}.` },
+          { status: 400 }
+        );
+      }
     }
 
     // ============================================================
@@ -705,6 +807,7 @@ export async function POST(request: Request) {
         }
 
         const resultado = await prisma.$transaction(async (tx) => {
+          await gastarRecursosHabilidad(tx, personaje.id, habilidad);
           const progresoJob = await otorgarExperienciaJob(
             tx,
             personaje,
@@ -872,6 +975,7 @@ export async function POST(request: Request) {
         log.push(`⭐ Obtienes ${experienciaGanada} XP.`);
 
         const resultado = await prisma.$transaction(async (tx) => {
+          await gastarRecursosHabilidad(tx, personaje.id, habilidad);
           const actualizacionCombate = await tx.combateActivo.updateMany({
             where: {
               id: combate.id,
@@ -1034,42 +1138,41 @@ export async function POST(request: Request) {
         jugadorDefensa = efectosActualizados.defensa;
       }
 
-      const actualizado = await prisma.combateActivo.updateMany({
-        where: {
-          id: combate.id,
-          version: combate.version,
-        },
-        data: {
-          jugadorHp,
-          jugadorDefensa,
-          enemigoHp,
-          ronda: siguienteRonda,
-          turno: siguienteTurno,
-          cooldowns,
-          efectos,
-          ultimoTurnoEn: new Date(),
-          log,
-          ultimaAccion: accionAnimada,
-          version: {
-            increment: 1,
-          },
-        },
-      });
+      const combateActualizado = await prisma.$transaction(async (tx) => {
+        await gastarRecursosHabilidad(tx, personaje.id, habilidad);
+        if (siguienteTurno === "jugador") {
+          await regenerarRecursosPorTurno(tx, usuario.id);
+        }
 
-      if (actualizado.count !== 1) {
-        return NextResponse.json(
-          {
-            error:
-              "El combate ha cambiado mientras se procesaba la acción. Actualiza el combate e inténtalo de nuevo.",
+        const actualizado = await tx.combateActivo.updateMany({
+          where: {
+            id: combate.id,
+            version: combate.version,
           },
-          { status: 409 }
-        );
-      }
+          data: {
+            jugadorHp,
+            jugadorDefensa,
+            enemigoHp,
+            ronda: siguienteRonda,
+            turno: siguienteTurno,
+            cooldowns,
+            efectos,
+            ultimoTurnoEn: new Date(),
+            log,
+            ultimaAccion: accionAnimada,
+            version: {
+              increment: 1,
+            },
+          },
+        });
 
-      const combateActualizado = await prisma.combateActivo.findUniqueOrThrow({
-        where: {
-          id: combate.id,
-        },
+        if (actualizado.count !== 1) {
+          throw new Error("COMBATE_MODIFICADO");
+        }
+
+        return tx.combateActivo.findUniqueOrThrow({
+          where: { id: combate.id },
+        });
       });
 
       return NextResponse.json({
@@ -1275,6 +1378,7 @@ export async function POST(request: Request) {
       }
 
       const resultado = await prisma.$transaction(async (tx) => {
+        await gastarRecursosHabilidad(tx, personaje.id, habilidad);
         return finalizarAsedio({
           tx,
 
@@ -1366,45 +1470,44 @@ export async function POST(request: Request) {
       enemigoDefensa = efectosActualizados.defensa;
     }
 
-    const actualizado = await prisma.combateActivo.updateMany({
-      where: {
-        id: combate.id,
-        version: combate.version,
-      },
-      data: {
-        jugadorHp,
-        enemigoHp,
-        jugadorDefensa,
-        enemigoDefensa,
-        ronda: siguienteRonda,
-        turno: siguienteTurno,
-        cooldowns,
-        efectos,
-        cooldownsDefensor,
-        efectosDefensor,
-        ultimoTurnoEn: new Date(),
-        log,
-        ultimaAccion: accionAnimada,
-        version: {
-          increment: 1,
-        },
-      },
-    });
+    const combateActualizado = await prisma.$transaction(async (tx) => {
+      await gastarRecursosHabilidad(tx, personaje.id, habilidad);
+      const siguienteUsuarioId =
+        siguienteTurno === "atacante" ? atacanteUsuarioId : defensorUsuarioId;
+      await regenerarRecursosPorTurno(tx, siguienteUsuarioId);
 
-    if (actualizado.count !== 1) {
-      return NextResponse.json(
-        {
-          error:
-            "El combate ha cambiado mientras se procesaba la acción. Actualiza el combate e inténtalo de nuevo.",
+      const actualizado = await tx.combateActivo.updateMany({
+        where: {
+          id: combate.id,
+          version: combate.version,
         },
-        { status: 409 }
-      );
-    }
+        data: {
+          jugadorHp,
+          enemigoHp,
+          jugadorDefensa,
+          enemigoDefensa,
+          ronda: siguienteRonda,
+          turno: siguienteTurno,
+          cooldowns,
+          efectos,
+          cooldownsDefensor,
+          efectosDefensor,
+          ultimoTurnoEn: new Date(),
+          log,
+          ultimaAccion: accionAnimada,
+          version: {
+            increment: 1,
+          },
+        },
+      });
 
-    const combateActualizado = await prisma.combateActivo.findUniqueOrThrow({
-      where: {
-        id: combate.id,
-      },
+      if (actualizado.count !== 1) {
+        throw new Error("COMBATE_MODIFICADO");
+      }
+
+      return tx.combateActivo.findUniqueOrThrow({
+        where: { id: combate.id },
+      });
     });
 
     return NextResponse.json({
@@ -1414,6 +1517,20 @@ export async function POST(request: Request) {
       accion: accionAnimada,
     });
   } catch (error) {
+    if (error instanceof Error && error.message === "RECURSO_HABILIDAD_INSUFICIENTE") {
+      return NextResponse.json(
+        { error: "Ya no tienes suficiente Energía o Maná para ejecutar esa habilidad." },
+        { status: 400 }
+      );
+    }
+
+    if (error instanceof Error && error.message === "RECURSO_COMBATE_MODIFICADO") {
+      return NextResponse.json(
+        { error: "Los recursos del personaje han cambiado; actualiza el combate e inténtalo de nuevo." },
+        { status: 409 }
+      );
+    }
+
     if (error instanceof Error && error.message === "COMBATE_MODIFICADO") {
       return NextResponse.json(
         {
