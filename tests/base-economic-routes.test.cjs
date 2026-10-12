@@ -474,6 +474,18 @@ function makeInvalidBodyRoute(relativePath) {
     "@/lib/objetos": { obtenerObjetoPorId: () => null },
     "@/lib/habilidades": { obtenerHabilidadPorId: () => null },
     "@/lib/progresion/clases": { puedeUsarHabilidadDeClase: () => true },
+    "@/lib/progresion/experiencia": {
+      aplicarExperienciaJob: (progreso) => progreso,
+      PUNTOS_ATRIBUTO_POR_NIVEL_BASE: 3,
+    },
+    "@/lib/progresion/estadisticas": {
+      calcularEstadisticasDerivadasRpg: () => ({
+        energiaMaxima: 20,
+        manaMaximo: 10,
+        regeneracionEnergiaPorTurno: 1,
+        regeneracionManaPorTurno: 1,
+      }),
+    },
     "@/lib/configuracionJuego": { puedeAprenderHabilidad: () => true },
     "@/lib/tiendaHabilidades": { obtenerHabilidadesEnVenta: () => [] },
     "@/lib/enemigos": { obtenerEnemigoPorId: () => null },
