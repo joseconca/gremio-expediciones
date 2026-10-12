@@ -11,7 +11,8 @@ Esta primera iteración integra el núcleo de progresión Base/Job, el catálogo
 - Cruzado es un ejemplo de clase híbrida Tier 3 y requiere Caballero Job 40 **y** Sacerdote Job 40.
 - Las profesiones desbloqueadas se pueden seleccionar libremente fuera de expediciones y combates. Al cambiar, se desequipan las habilidades incompatibles, pero no se pierden las habilidades aprendidas ni el Job de otras profesiones.
 - Los requisitos de clase están definidos en `src/lib/progresion/clases.ts`. `obtenerAncestrosClase` recorre el grafo; una clase hereda las habilidades de sí misma y de todas sus ramas antecesoras. Una híbrida hereda de ambas ramas.
-- Cada nivel Job obtenido en combate PvE concede un punto de habilidad para la profesión activa. Al alcanzar el Job máximo se registra el hito de maestría. Cada nivel Base ganado en combate concede tres puntos distribuibles de atributo.
+- Cada nivel Job obtenido en combate PvE concede un punto de habilidad para la profesión activa. Al alcanzar el Job máximo se registra el hito de maestría.
+- Los atributos se calculan automáticamente según el arquetipo y los niveles Base y Job: el jugador no los distribuye manualmente, y el progreso Job añade bonificaciones específicas a cada profesión.
 - Las primeras habilidades específicas ya tienen costes de Energía o Maná y se aprenden mediante puntos Job. Las habilidades genéricas antiguas siguen disponibles mediante la Escuela y oro durante la transición.
 - Las habilidades profesionales propias y heredadas permanecen visibles en la Escuela. Solo las habilidades genéricas mantienen ofertas rotatorias diarias.
 - Cada clase declara categorías de armas y armaduras dominadas. El dominio aplica un multiplicador a la estadística de ataque del arma compatible y a la defensa de la armadura compatible. Equipar una categoría no dominada sigue siendo posible, pero no recibe ese bonus.
@@ -58,3 +59,11 @@ npx prisma generate
 Si Prisma confirma que la base utiliza el historial de migraciones y que las anteriores están aplicadas, puedes desplegar las pendientes con `npx prisma migrate deploy`. Si tu base se creó o actualizó con `prisma db push` y no tiene historial en `_prisma_migrations`, **no ejecutes `migrate deploy` a ciegas**: las migraciones anteriores podrían intentar volver a crear tablas o columnas existentes. En ese caso, primero hay que establecer una línea base coherente con el esquema real; la migración de reinicio de personajes debe ejecutarse exactamente una vez.
 
 Las migraciones conservan `Personaje.nivel` y `Personaje.experiencia`. A personajes sin progreso profesional se les crea un registro inicial de Novato; los personajes nuevos crean esa misma fila al reclutarse.
+
+
+## Cambios de progresión por arquetipo
+
+- La API de profesiones solo entrega clases ya desbloqueadas o para las que el personaje cumple todos los requisitos de acceso en ese momento; excluye la profesión activa de las opciones de cambio.
+- El HUD global muestra niveles y barras de experiencia Base y Job por separado.
+- Los atributos visibles y usados en los cálculos de combate se derivan del arquetipo de la profesión activa, del nivel Base y de su nivel Job. La antigua ruta de asignación manual de atributos devuelve HTTP 410.
+- Profesiones y maestrías se gestionan desde una pestaña de la Escuela de Combate; la base principal conserva una vista de solo lectura de atributos y estadísticas.

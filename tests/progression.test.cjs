@@ -5,9 +5,10 @@ const path = require("node:path");
 const assert = require("node:assert/strict");
 const {
   CLASES, obtenerAncestrosClase, obtenerClasesHabilidadDisponibles,
-  puedeUsarHabilidadDeClase, evaluarDesbloqueoClase, calcularBonificacionesDominioEquipo,
+  puedeUsarHabilidadDeClase, evaluarDesbloqueoClase, calcularBonificacionesDominioEquipo, obtenerClasesVisibles,
 } = require("../src/lib/progresion/clases.ts");
 const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas.ts");
+const { calcularAtributosClase } = require("../src/lib/progresion/atributos-clase.ts");
 const { mapearBonificacionesEquipoRpg } = require("../src/lib/progresion/bonificaciones-equipo.ts");
 const { aplicarExperienciaJob } = require("../src/lib/progresion/experiencia.ts");
 const { obtenerHabilidadesEnVenta } = require("../src/lib/tiendaHabilidades.ts");
@@ -182,4 +183,38 @@ test("migración: los personajes actuales pasan a Novato Job 1 sin perder nivel 
   assert.match(migration, /"desbloqueada" = TRUE/);
   assert.match(migration, /"maestriaCompletada" = FALSE/);
   assert.match(migration, /ON CONFLICT \("personajeId", "claseId"\) DO NOTHING/);
+});
+
+
+test("la lista de profesiones solo muestra las ramas desbloqueadas o alcanzables", () => {
+  const novato1 = obtenerClasesVisibles("novato", [
+    { claseId: "novato", nivelJob: 1, desbloqueada: true },
+  ]);
+  assert.deepEqual(novato1, []);
+
+  const novato10 = obtenerClasesVisibles("novato", [
+    { claseId: "novato", nivelJob: 10, desbloqueada: true },
+  ]);
+  assert.deepEqual(novato10.map((clase) => clase.id).sort(), ["acolito", "arquero", "espadachin", "mago"]);
+
+  const mago40 = obtenerClasesVisibles("mago", [
+    { claseId: "novato", nivelJob: 10, desbloqueada: true },
+    { claseId: "mago", nivelJob: 40, desbloqueada: true },
+  ]).map((clase) => clase.id);
+  for (const id of ["acolito", "arquero", "espadachin", "elementalista", "brujo"]) assert.ok(mago40.includes(id));
+  assert.ok(!mago40.includes("mago"), "La clase activa no debe ofrecerse como cambio");
+  assert.ok(!mago40.includes("cruzado"), "Una clase de tier superior no debe mostrarse antes de cumplir todos sus requisitos");
+});
+
+test("los atributos crecen por nivel Base y reciben bonificaciones Job según el arquetipo", () => {
+  const novato = calcularAtributosClase("novato", 20, 1);
+  const espadachin = calcularAtributosClase("espadachin", 20, 1);
+  const mago = calcularAtributosClase("mago", 20, 1);
+  const espadachinJob40 = calcularAtributosClase("espadachin", 20, 40);
+  const magoBase40 = calcularAtributosClase("mago", 40, 1);
+  assert.ok(espadachin.fuerza > espadachin.inteligencia);
+  assert.ok(mago.inteligencia > mago.fuerza);
+  assert.notDeepEqual(novato, espadachin);
+  assert.ok(espadachinJob40.fuerza > espadachin.fuerza);
+  assert.ok(magoBase40.inteligencia > mago.inteligencia);
 });

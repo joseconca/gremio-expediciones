@@ -142,47 +142,11 @@ function request(body) {
   return { json: async () => body };
 }
 
-test("atributos RPG: asigna un punto y lo descuenta de manera atómica", async () => {
-  const route = makeRoute({ points: 2, force: 7 });
-  const response = await route.POST(request({ atributo: "fuerza" }));
-
-  assert.equal(response.status, 200);
-  assert.equal(response.body.valor, 8);
-  assert.equal(response.body.puntosAtributoDisponibles, 1);
-  assert.equal(route.getState().character.fuerza, 8);
-  assert.equal(route.getState().character.puntosAtributoDisponibles, 1);
-  assert.equal(route.getTransactionOptions().isolationLevel, "Serializable");
-});
-
-test("atributos RPG: rechaza atributos manipulados, JSON inválido y falta de puntos", async () => {
-  const route = makeRoute({ points: 0 });
-  assert.equal((await route.POST(request({ atributo: "constructor" }))).status, 400);
-  assert.equal((await route.POST(request({ atributo: "ataque" }))).status, 400);
-  assert.equal((await route.POST({ json: async () => { throw new SyntaxError("bad json"); } })).status, 400);
-  assert.equal((await route.POST(request({ atributo: "fuerza" }))).status, 400);
-});
-
-test("atributos RPG: no permite superar el máximo ni asignar durante una expedición", async () => {
-  const maximum = makeRoute({ points: 1, force: 99 });
-  assert.equal((await maximum.POST(request({ atributo: "fuerza" }))).status, 400);
-  assert.equal(maximum.getState().character.fuerza, 99);
-  assert.equal(maximum.getState().character.puntosAtributoDisponibles, 1);
-
-  const expedition = makeRoute({ points: 1, expedition: { id: "exp1" } });
-  assert.equal((await expedition.POST(request({ atributo: "agilidad" }))).status, 409);
-  assert.equal(expedition.getState().character.agilidad, 1);
-  assert.equal(expedition.getState().character.puntosAtributoDisponibles, 1);
-});
-
-test("atributos RPG: las peticiones simultáneas no gastan el mismo punto dos veces", async () => {
-  const route = makeRoute({ points: 1, force: 1 });
-  const results = await Promise.all([
-    route.POST(request({ atributo: "fuerza" })),
-    route.POST(request({ atributo: "fuerza" })),
-  ]);
-
-  assert.equal(results.filter((result) => result.status === 200).length, 1);
-  assert.equal(results.filter((result) => result.status === 400).length, 1);
-  assert.equal(route.getState().character.fuerza, 2);
-  assert.equal(route.getState().character.puntosAtributoDisponibles, 0);
+test("la API de asignación manual de atributos se retira explícitamente", async () => {
+  const route = loadSource("src/app/api/jugador/atributos/asignar/route.ts", {
+    "next/server": { NextResponse },
+  });
+  const response = await route.POST();
+  assert.equal(response.status, 410);
+  assert.match(response.body.error, /calculan automáticamente/i);
 });
