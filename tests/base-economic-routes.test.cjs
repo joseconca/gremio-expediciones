@@ -691,6 +691,28 @@ test("herrería: permite comprar varias instancias de la misma definición", asy
   assert.notEqual(route.getState().items[0].id, route.getState().items[1].id);
 });
 
+test("herrería: el inventario completo impide comprar y no cobra oro", async () => {
+  const initialItems = Array.from({ length: 30 }, (_, index) => ({
+    id: "existing-" + index,
+    inventarioId: "inv1",
+    objetoId: "objeto-" + index,
+    cantidad: 1,
+    nivelMejora: 0,
+    sufijoId: null,
+    bonificaciones: {},
+  }));
+  const route = makeObjectRoute({
+    initialUser: { oro: 500 },
+    initialItems,
+  });
+  const response = await route.POST(request({ objetoId: "espada_prueba" }));
+
+  assert.equal(response.status, 409);
+  assert.match(response.body.error, /inventario está lleno/i);
+  assert.equal(route.getState().user.oro, 500);
+  assert.equal(route.getState().items.length, 30);
+});
+
 test("acciones de jugador: rechaza cuerpos malformados, coordenadas no finitas y atributos manipulados", async () => {
   const route = makeActionsRoute();
   const malformed = await route.POST({
