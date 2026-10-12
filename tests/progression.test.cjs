@@ -7,6 +7,7 @@ const {
 } = require("../src/lib/progresion/clases.ts");
 const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas.ts");
 const { aplicarExperienciaJob } = require("../src/lib/progresion/experiencia.ts");
+const { obtenerHabilidadesEnVenta } = require("../src/lib/tiendaHabilidades.ts");
 
 test("el catálogo de clases tiene requisitos válidos y no contiene ciclos", () => {
   for (const clase of Object.values(CLASES)) {
@@ -49,6 +50,40 @@ test("el dominio de armas y armaduras aplica solo los bonus definidos", () => {
     multiplicadorAtaqueArma: 1.15, multiplicadorDefensaArmadura: 1,
   });
 });
+test("Escuela: muestra siempre las habilidades de la profesión y hereda las ramas superiores", () => {
+  const caballero = obtenerHabilidadesEnVenta("caballero").map((habilidad) => habilidad.id);
+  assert.ok(caballero.includes("estocada_espadachin"));
+  assert.ok(caballero.includes("guardia_caballero"));
+  assert.ok(!caballero.includes("luz_acolito"));
+
+  const cruzado = obtenerHabilidadesEnVenta("cruzado").map((habilidad) => habilidad.id);
+  for (const habilidadId of [
+    "estocada_espadachin",
+    "guardia_caballero",
+    "luz_acolito",
+    "bendicion_sacerdote",
+    "golpe_cruzado",
+  ]) {
+    assert.ok(cruzado.includes(habilidadId), `El Cruzado debe ver ${habilidadId}`);
+  }
+
+  const genericas = cruzado.filter((habilidadId) => [
+    "golpe_poderoso",
+    "golpe_preciso",
+    "defensa_ferrea",
+    "curacion",
+    "segundo_aire",
+    "ataque_devastador",
+    "piel_dura",
+    "veterano",
+    "precision",
+    "corredor",
+    "vitalidad",
+    "sed_de_batalla",
+  ].includes(habilidadId));
+  assert.ok(genericas.length <= 4, "Las ofertas genéricas siguen rotando a diario");
+});
+
 test("atributos principales generan estadísticas derivadas y valores acotados", () => {
   const bajo = calcularEstadisticasDerivadasRpg({ fuerza: 1, agilidad: 1, vitalidad: 1, inteligencia: 1, destreza: 1, suerte: 1 });
   const alto = calcularEstadisticasDerivadasRpg({ fuerza: 20, agilidad: 30, vitalidad: 25, inteligencia: 18, destreza: 24, suerte: 10 }, 5);
