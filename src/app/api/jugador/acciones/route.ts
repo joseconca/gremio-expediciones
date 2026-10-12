@@ -9,7 +9,6 @@ import {
   REQUISITOS_EDIFICIOS,
   calcularCosteAtributo,
   calcularCosteEdificio,
-  calcularEstadisticasBase,
 } from "@/lib/configuracionJuego";
 import type { IdAtributo } from "@/lib/configuracionJuego";
 import { type ClasePersonaje } from "@/lib/tiposJuego";
@@ -124,7 +123,6 @@ export async function POST(request: Request) {
       }
       // El servidor ignora la clase enviada por el cliente: todos empiezan como Novato.
       const clasePersonaje: ClasePersonaje = "Novato";
-      const estadisticasBase = calcularEstadisticasBase(clasePersonaje, 1);
       const estadisticasRpgIniciales = calcularEstadisticasDerivadasRpg({
         fuerza: 1,
         agilidad: 1,
