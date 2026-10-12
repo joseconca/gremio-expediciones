@@ -179,7 +179,6 @@ function makeCombatConsumableRoute({
     },
     "@/lib/auth": { getAuthenticatedUser: async () => authenticated ? { id: "u1" } : null },
     "@/lib/prisma": { prisma },
-    "@/lib/progresion/clases": { CLASES: {}, puedeUsarHabilidadDeClase: () => true },
     "@/lib/progresion/experiencia": { aplicarExperienciaJob: (p) => p, PUNTOS_ATRIBUTO_POR_NIVEL_BASE: 3 },
     "@/lib/progresion/estadisticas": { calcularEstadisticasDerivadasRpg: () => ({
       energiaMaxima: 20, manaMaximo: 10, regeneracionEnergiaPorTurno: 1, regeneracionManaPorTurno: 1,
@@ -199,10 +198,6 @@ function makeCombatConsumableRoute({
     },
     "@/lib/sufijosObjetos": { obtenerNombreObjetoConSufijo: (name) => name },
     "@/lib/habilidades": { obtenerHabilidadPorId: () => null },
-    "@/lib/progresion/clases": {
-      CLASES: {},
-      puedeUsarHabilidadDeClase: () => true,
-    },
     "@/lib/expediciones/combate": {
       calcularBonusDefensaMuralla: () => 0,
       resolverAtaqueJugador: () => ({ actor: "jugador", tipo: "ataque", animacion: "ofensiva", dano: 5, critico: false, texto: "Atacas." }),
