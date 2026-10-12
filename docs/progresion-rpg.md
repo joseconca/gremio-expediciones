@@ -42,6 +42,10 @@ Para ampliar el juego, se añade una definición a `CLASES` indicando `tier`, `n
 
 Las migraciones de esta iteración añaden el modelo de progreso por profesión, atributos, Energía/Maná, puntos de atributos y snapshots de ataque/defensa mágicos de combate.
 
+La migración `20261012180000_reset_personajes_a_novato` adapta los personajes que ya existían al nuevo modelo: conserva exactamente `Personaje.nivel` y `Personaje.experiencia`, cambia la clase heredada a `Novato`, establece `profesionActivaId = "novato"` y reinicia su progreso Job de Novato a nivel 1 con 0 XP y 0 puntos Job. También elimina los progresos Job de otras profesiones para que se desbloqueen desde cero. Los atributos Base y los puntos de atributo no se reinician en esa migración.
+
+La devolución de oro por los objetos del sistema antiguo **no forma parte de esta migración**. Se hará junto con el nuevo inventario/equipamiento, a partir de los objetos que cada personaje posea antes de retirarlos, registrando la compensación como una operación única para evitar pagos duplicados.
+
 Después de actualizar la rama, ejecuta desde PowerShell en la raíz del proyecto:
 
 ```powershell
