@@ -166,10 +166,9 @@ function makeObjectRoute({ authenticated = true, initialUser = {}, initialItems 
       },
     },
     inventarioObjeto: {
+      count: async ({ where }) =>
+        state.items.filter((item) => item.inventarioId === where.inventarioId).length,
       create: async ({ data }) => {
-        if (findInventoryItem(data.inventarioId, data.objetoId)) {
-          throw new PrismaClientKnownRequestError("Unique constraint", { code: "P2002" });
-        }
         const item = { id: "item-" + state.nextItemId++, ...clone(data) };
         state.items.push(item);
         return clone(item);
@@ -677,17 +676,17 @@ test("mercado: dos compras simultáneas no gastan dos veces el mismo oro", async
   assert.equal(route.getState().user.madera, 1);
 });
 
-test("herrería: compras concurrentes del mismo objeto solo lo cobran una vez", async () => {
+test("herrería: permite comprar varias instancias de la misma definición", async () => {
   const route = makeObjectRoute({ initialUser: { oro: 500 } });
   const results = await Promise.all([
     route.POST(request({ objetoId: "espada_prueba" })),
     route.POST(request({ objetoId: "espada_prueba" })),
   ]);
 
-  assert.equal(results.filter((result) => result.status === 200).length, 1);
-  assert.equal(results.filter((result) => result.status === 409).length, 1);
-  assert.equal(route.getState().user.oro, 400);
-  assert.equal(route.getState().items.length, 1);
+  assert.equal(results.filter((result) => result.status === 200).length, 2);
+  assert.equal(route.getState().user.oro, 300);
+  assert.equal(route.getState().items.length, 2);
+  assert.notEqual(route.getState().items[0].id, route.getState().items[1].id);
 });
 
 test("acciones de jugador: rechaza cuerpos malformados, coordenadas no finitas y atributos manipulados", async () => {
