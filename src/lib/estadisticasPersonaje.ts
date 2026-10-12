@@ -1,9 +1,17 @@
-import type { DefinicionHabilidad, EquipoPersonaje, AtributosPrincipales } from "./tiposJuego";
+import type {
+  DefinicionHabilidad,
+  EquipoPersonaje,
+  AtributosPrincipales,
+} from "./tiposJuego";
 import { calcularEstadisticasBase } from "./configuracionJuego";
 import { obtenerHabilidadPorId } from "./habilidades";
 import { calcularEstadisticasObjeto } from "./objetos";
 import { calcularEstadisticasDerivadasRpg } from "./progresion/estadisticas";
-import { CLASES, calcularBonificacionesDominioEquipo, puedeUsarHabilidadDeClase } from "./progresion/clases";
+import {
+  CLASES,
+  calcularBonificacionesDominioEquipo,
+  puedeUsarHabilidadDeClase,
+} from "./progresion/clases";
 
 export interface DatosPersonajeEstadisticas {
   clase: string;
@@ -19,6 +27,11 @@ export interface DatosPersonajeEstadisticas {
   capacidadCarruajeMejoras: number;
 }
 
+/**
+ * Estadísticas derivadas del personaje.
+ * Las siete primeras conservan nombres legacy para compatibilidad con el juego
+ * existente; las restantes permiten que los nuevos sistemas consuman atributos RPG.
+ */
 export interface ModificadoresEstadisticas {
   hpMaximo: number;
   ataque: number;
@@ -27,6 +40,15 @@ export interface ModificadoresEstadisticas {
   capacidadCarruaje: number;
   probCritico: number;
   danoCritico: number;
+  ataqueMagico?: number;
+  defensaMagica?: number;
+  precision?: number;
+  evasion?: number;
+  energiaMaxima?: number;
+  manaMaximo?: number;
+  regeneracionVidaPorTurno?: number;
+  regeneracionEnergiaPorTurno?: number;
+  regeneracionManaPorTurno?: number;
 }
 
 export interface DesgloseEstadisticasPersonaje {
@@ -46,23 +68,47 @@ const MODIFICADORES_VACIOS: ModificadoresEstadisticas = {
   capacidadCarruaje: 0,
   probCritico: 0,
   danoCritico: 0,
+  ataqueMagico: 0,
+  defensaMagica: 0,
+  precision: 0,
+  evasion: 0,
+  energiaMaxima: 0,
+  manaMaximo: 0,
+  regeneracionVidaPorTurno: 0,
+  regeneracionEnergiaPorTurno: 0,
+  regeneracionManaPorTurno: 0,
 };
 
 function sumarModificadores(
   ...modificadores: ModificadoresEstadisticas[]
 ): ModificadoresEstadisticas {
+  const sumar = (campo: keyof ModificadoresEstadisticas) =>
+    modificadores.reduce((total, actual) => {
+      const valor = actual[campo];
+      return total + (typeof valor === "number" && Number.isFinite(valor) ? valor : 0);
+    }, 0);
+
   return {
-    hpMaximo: modificadores.reduce((total, actual) => total + actual.hpMaximo, 0),
-    ataque: modificadores.reduce((total, actual) => total + actual.ataque, 0),
-    defensa: modificadores.reduce((total, actual) => total + actual.defensa, 0),
-    velocidad: modificadores.reduce((total, actual) => total + actual.velocidad, 0),
-    capacidadCarruaje: modificadores.reduce((total, actual) => total + actual.capacidadCarruaje, 0),
-    probCritico: modificadores.reduce((total, actual) => total + actual.probCritico, 0),
-    danoCritico: modificadores.reduce((total, actual) => total + actual.danoCritico, 0),
+    hpMaximo: sumar("hpMaximo"),
+    ataque: sumar("ataque"),
+    defensa: sumar("defensa"),
+    velocidad: sumar("velocidad"),
+    capacidadCarruaje: sumar("capacidadCarruaje"),
+    probCritico: sumar("probCritico"),
+    danoCritico: sumar("danoCritico"),
+    ataqueMagico: sumar("ataqueMagico"),
+    defensaMagica: sumar("defensaMagica"),
+    precision: sumar("precision"),
+    evasion: sumar("evasion"),
+    energiaMaxima: sumar("energiaMaxima"),
+    manaMaximo: sumar("manaMaximo"),
+    regeneracionVidaPorTurno: sumar("regeneracionVidaPorTurno"),
+    regeneracionEnergiaPorTurno: sumar("regeneracionEnergiaPorTurno"),
+    regeneracionManaPorTurno: sumar("regeneracionManaPorTurno"),
   };
 }
 
-/** El bonus de dominio solo multiplica el ataque del arma o la defensa de la armadura correspondiente. */
+/** Aplica los dominios profesionales a la categoría de arma y armadura correspondiente. */
 export function calcularModificadoresEquipo(
   equipo: EquipoPersonaje,
   claseId?: string | null
@@ -80,6 +126,9 @@ export function calcularModificadoresEquipo(
         equipo.arma.objeto.subtipo
       );
       estadisticasArma.ataque *= dominio.multiplicadorAtaqueArma;
+      if (estadisticasArma.ataqueMagico) {
+        estadisticasArma.ataqueMagico *= dominio.multiplicadorAtaqueArma;
+      }
     }
     modificadores.push(estadisticasArma);
   }
@@ -96,6 +145,9 @@ export function calcularModificadoresEquipo(
         equipo.armadura.objeto.categoriaArmadura
       );
       estadisticasArmadura.defensa *= dominio.multiplicadorDefensaArmadura;
+      if (estadisticasArmadura.defensaMagica) {
+        estadisticasArmadura.defensaMagica *= dominio.multiplicadorDefensaArmadura;
+      }
     }
     modificadores.push(estadisticasArmadura);
   }
@@ -122,14 +174,26 @@ function obtenerModificadoresPasivas(
         puedeUsarHabilidadDeClase(claseActualId, habilidad.claseId)
     );
 
+  const sumar = (selector: (habilidad: DefinicionHabilidad) => number | undefined) =>
+    pasivas.reduce((total, habilidad) => total + (selector(habilidad) ?? 0), 0);
+
   return {
-    hpMaximo: pasivas.reduce((total, habilidad) => total + (habilidad.bonusHpMaximo ?? 0), 0),
-    ataque: pasivas.reduce((total, habilidad) => total + (habilidad.bonusAtaque ?? 0), 0),
-    defensa: pasivas.reduce((total, habilidad) => total + (habilidad.bonusDefensa ?? 0), 0),
-    velocidad: pasivas.reduce((total, habilidad) => total + (habilidad.bonusVelocidad ?? 0), 0),
+    hpMaximo: sumar((habilidad) => habilidad.bonusHpMaximo),
+    ataque: sumar((habilidad) => habilidad.bonusAtaque),
+    defensa: sumar((habilidad) => habilidad.bonusDefensa),
+    velocidad: sumar((habilidad) => habilidad.bonusVelocidad),
     capacidadCarruaje: 0,
-    probCritico: pasivas.reduce((total, habilidad) => total + (habilidad.probabilidadCritico ?? 0), 0),
+    probCritico: sumar((habilidad) => habilidad.probabilidadCritico),
     danoCritico: 0,
+    ataqueMagico: sumar((habilidad) => habilidad.bonusAtaqueMagico),
+    defensaMagica: sumar((habilidad) => habilidad.bonusDefensaMagica),
+    precision: sumar((habilidad) => habilidad.bonusPrecision),
+    evasion: sumar((habilidad) => habilidad.bonusEvasion),
+    energiaMaxima: sumar((habilidad) => habilidad.bonusEnergiaMaxima),
+    manaMaximo: sumar((habilidad) => habilidad.bonusManaMaximo),
+    regeneracionVidaPorTurno: sumar((habilidad) => habilidad.bonusRegeneracionVida),
+    regeneracionEnergiaPorTurno: sumar((habilidad) => habilidad.bonusRegeneracionEnergia),
+    regeneracionManaPorTurno: sumar((habilidad) => habilidad.bonusRegeneracionMana),
   };
 }
 
@@ -155,13 +219,17 @@ function obtenerEstadisticasBase(
   personaje: DatosPersonajeEstadisticas,
   claseActualId: string
 ): ModificadoresEstadisticas {
+  const derivadasRpg = calcularEstadisticasDerivadasRpg(
+    obtenerAtributosPrincipales(personaje),
+    personaje.nivel
+  );
   const claseBaseLegada = (
     personaje.clase === "Guerrero" ||
     personaje.clase === "Explorador" ||
     personaje.clase === "Comerciante"
   ) && claseActualId === "novato";
 
-  // Personajes antiguos mantienen su balance original hasta que cambien de profesión.
+  // Las cuentas antiguas conservan sus estadísticas físicas hasta que cambien de profesión.
   if (claseBaseLegada || (!CLASES[claseActualId] && personaje.clase !== "Novato")) {
     const baseLegada = calcularEstadisticasBase(
       personaje.clase as "Guerrero" | "Explorador" | "Comerciante" | "Novato",
@@ -175,23 +243,37 @@ function obtenerEstadisticasBase(
       capacidadCarruaje: baseLegada.capacidadCarruaje,
       probCritico: baseLegada.probCritico,
       danoCritico: baseLegada.danoCritico,
+      ataqueMagico: derivadasRpg.ataqueMagico,
+      defensaMagica: derivadasRpg.defensaMagica,
+      precision: derivadasRpg.precision,
+      evasion: derivadasRpg.evasion,
+      energiaMaxima: derivadasRpg.energiaMaxima,
+      manaMaximo: derivadasRpg.manaMaximo,
+      regeneracionVidaPorTurno: derivadasRpg.regeneracionVidaPorTurno,
+      regeneracionEnergiaPorTurno: derivadasRpg.regeneracionEnergiaPorTurno,
+      regeneracionManaPorTurno: derivadasRpg.regeneracionManaPorTurno,
     };
   }
 
-  const derivadas = calcularEstadisticasDerivadasRpg(
-    obtenerAtributosPrincipales(personaje),
-    personaje.nivel
-  );
   const capacidadLegada = calcularEstadisticasBase("Novato", personaje.nivel);
 
   return {
-    hpMaximo: derivadas.hpMaximo,
-    ataque: derivadas.ataqueFisico,
-    defensa: derivadas.defensaFisica,
-    velocidad: derivadas.velocidad,
+    hpMaximo: derivadasRpg.hpMaximo,
+    ataque: derivadasRpg.ataqueFisico,
+    defensa: derivadasRpg.defensaFisica,
+    velocidad: derivadasRpg.velocidad,
     capacidadCarruaje: capacidadLegada.capacidadCarruaje,
-    probCritico: derivadas.probCritico,
-    danoCritico: derivadas.danoCritico,
+    probCritico: derivadasRpg.probCritico,
+    danoCritico: derivadasRpg.danoCritico,
+    ataqueMagico: derivadasRpg.ataqueMagico,
+    defensaMagica: derivadasRpg.defensaMagica,
+    precision: derivadasRpg.precision,
+    evasion: derivadasRpg.evasion,
+    energiaMaxima: derivadasRpg.energiaMaxima,
+    manaMaximo: derivadasRpg.manaMaximo,
+    regeneracionVidaPorTurno: derivadasRpg.regeneracionVidaPorTurno,
+    regeneracionEnergiaPorTurno: derivadasRpg.regeneracionEnergiaPorTurno,
+    regeneracionManaPorTurno: derivadasRpg.regeneracionManaPorTurno,
   };
 }
 
@@ -215,8 +297,10 @@ export function calcularEstadisticasPersonaje(
   };
 
   const pasivas = obtenerModificadoresPasivas(habilidadesAprendidas, claseActualId);
-
   const totalSinRedondear = sumarModificadores(base, mejoras, pasivas, equipo, combate);
+
+  const precision = totalSinRedondear.precision ?? 75;
+  const evasion = totalSinRedondear.evasion ?? 0;
 
   const total: ModificadoresEstadisticas = {
     hpMaximo: Math.max(1, Math.floor(totalSinRedondear.hpMaximo)),
@@ -226,6 +310,15 @@ export function calcularEstadisticasPersonaje(
     capacidadCarruaje: Math.max(0, Math.floor(totalSinRedondear.capacidadCarruaje)),
     probCritico: Math.max(0, Math.min(0.75, totalSinRedondear.probCritico)),
     danoCritico: Math.max(1, totalSinRedondear.danoCritico),
+    ataqueMagico: Math.max(1, Math.floor(totalSinRedondear.ataqueMagico ?? 1)),
+    defensaMagica: Math.max(0, Math.floor(totalSinRedondear.defensaMagica ?? 0)),
+    precision: Math.max(1, Math.min(100, precision)),
+    evasion: Math.max(0, Math.min(0.6, evasion)),
+    energiaMaxima: Math.max(1, Math.floor(totalSinRedondear.energiaMaxima ?? 1)),
+    manaMaximo: Math.max(1, Math.floor(totalSinRedondear.manaMaximo ?? 1)),
+    regeneracionVidaPorTurno: Math.max(0, totalSinRedondear.regeneracionVidaPorTurno ?? 0),
+    regeneracionEnergiaPorTurno: Math.max(0, totalSinRedondear.regeneracionEnergiaPorTurno ?? 0),
+    regeneracionManaPorTurno: Math.max(0, totalSinRedondear.regeneracionManaPorTurno ?? 0),
   };
 
   return { base, mejoras, pasivas, equipo, combate, total };
