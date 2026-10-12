@@ -113,10 +113,6 @@ export async function GET() {
       },
     });
 
-    const nombresOrigen = new Map(
-      origenes.map((origen) => [origen.id, origen.nombre])
-    );
-
     const caravanasEntrantes = expedicionesEntrantes.map((expedicion) => {
       const origen = origenes.find(
         (origen) => origen.id === expedicion.usuarioId
