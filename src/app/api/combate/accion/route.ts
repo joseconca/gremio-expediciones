@@ -18,6 +18,7 @@ import {
   resolverHabilidadJugador,
 } from "@/lib/expediciones/combate";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
+import { puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
 import {
   determinarGanadorAsedio,
   determinarPrimerTurnoAsedio,
@@ -502,6 +503,13 @@ export async function POST(request: Request) {
       }
 
       habilidad = habilidadEncontrada;
+
+      if (!puedeUsarHabilidadDeClase(personaje.profesionActivaId || "novato", habilidad.claseId)) {
+        return NextResponse.json(
+          { error: "Tu profesión no puede utilizar esa habilidad; solo puedes usar habilidades de tu rama y sus antecesoras." },
+          { status: 403 }
+        );
+      }
 
       if (habilidad.tipo !== "activa") {
         return NextResponse.json(
