@@ -1,4 +1,4 @@
-import { experienciaParaNivel } from "../configuracionJuego";
+
 
 export interface EstadoProgresoJob {
   nivelJob: number;
@@ -13,9 +13,15 @@ export interface ResultadoExperienciaJob extends EstadoProgresoJob {
 }
 
 /**
- * El progreso Job usa la misma curva que el nivel Base, pero se almacena
- * independientemente para cada profesión en ProgresoClase.
+ * Job tiene una curva independiente: 100 + 35 * nivel^1.5 XP por nivel.
+ * El coste acumulado de Job 1 a 40 ronda los 145.000 XP, parecido a llegar
+ * a Base 13-14 con la curva Base actual. Esto acelera Job sin regalar Job 40.
  */
+export function experienciaJobParaNivel(nivelJob: number): number {
+  const nivel = Number.isFinite(nivelJob) ? Math.max(1, Math.floor(nivelJob)) : 1;
+  return Math.round(100 + 35 * Math.pow(nivel, 1.5));
+}
+
 export function aplicarExperienciaJob(
   progreso: EstadoProgresoJob,
   experienciaGanada: number,
@@ -41,8 +47,8 @@ export function aplicarExperienciaJob(
   if (nivelJob < maximo) {
     experienciaJob += ganada;
 
-    while (nivelJob < maximo && experienciaJob >= experienciaParaNivel(nivelJob)) {
-      experienciaJob -= experienciaParaNivel(nivelJob);
+    while (nivelJob < maximo && experienciaJob >= experienciaJobParaNivel(nivelJob)) {
+      experienciaJob -= experienciaJobParaNivel(nivelJob);
       nivelJob += 1;
       nivelesSubidos += 1;
     }
@@ -63,6 +69,6 @@ export function aplicarExperienciaJob(
     maestriaCompletada,
     nivelesSubidos,
     experienciaNecesariaSiguienteNivel:
-      nivelJob >= maximo ? null : experienciaParaNivel(nivelJob) - experienciaJob,
+      nivelJob >= maximo ? null : experienciaJobParaNivel(nivelJob) - experienciaJob,
   };
 }
