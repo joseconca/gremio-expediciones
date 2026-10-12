@@ -6,6 +6,7 @@ const {
   puedeUsarHabilidadDeClase, evaluarDesbloqueoClase, calcularBonificacionesDominioEquipo,
 } = require("../src/lib/progresion/clases.ts");
 const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas.ts");
+const { aplicarExperienciaJob } = require("../src/lib/progresion/experiencia.ts");
 
 test("el catálogo de clases tiene requisitos válidos y no contiene ciclos", () => {
   for (const clase of Object.values(CLASES)) {
@@ -62,3 +63,33 @@ test("atributos principales generan estadísticas derivadas y valores acotados",
   assert.ok(Number.isFinite(invalido.hpMaximo) && invalido.hpMaximo >= 1);
 });
 
+
+test("Job: cada nivel concede un punto de habilidad y conserva el exceso de experiencia", () => {
+  const resultado = aplicarExperienciaJob({
+    nivelJob: 1,
+    experienciaJob: 0,
+    puntosHabilidadDisponibles: 0,
+    maestriaCompletada: false,
+  }, 2000, 40);
+
+  assert.equal(resultado.nivelJob, 3);
+  assert.equal(resultado.nivelesSubidos, 2);
+  assert.equal(resultado.puntosHabilidadDisponibles, 2);
+  assert.equal(resultado.experienciaJob, 34);
+  assert.equal(resultado.maestriaCompletada, false);
+});
+
+test("Job: al alcanzar el máximo completa maestría y no acumula experiencia extra", () => {
+  const resultado = aplicarExperienciaJob({
+    nivelJob: 1,
+    experienciaJob: 0,
+    puntosHabilidadDisponibles: 2,
+    maestriaCompletada: false,
+  }, 999999, 2);
+
+  assert.equal(resultado.nivelJob, 2);
+  assert.equal(resultado.experienciaJob, 0);
+  assert.equal(resultado.puntosHabilidadDisponibles, 3);
+  assert.equal(resultado.maestriaCompletada, true);
+  assert.equal(resultado.experienciaNecesariaSiguienteNivel, null);
+});
