@@ -64,7 +64,11 @@ export async function POST(request: Request) {
         where: { usuarioId: sesion.id },
         select: { id: true },
       });
-      if (expedicion || personaje.estado === "de_viaje") {
+      if (
+        expedicion ||
+        personaje.estado === "de_viaje" ||
+        personaje.estado === "combatiendo"
+      ) {
         throw new Error("EXPEDICION_ACTIVA");
       }
 
