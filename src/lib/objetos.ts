@@ -13,8 +13,14 @@ export function calcularEstadisticasObjeto(
       (objeto.hpMaximoPorMejora ?? 0) * nivelSeguro,
     ataque:
       (objeto.ataqueBase ?? 0) + (objeto.ataquePorMejora ?? 0) * nivelSeguro,
+    ataqueMagico:
+      (objeto.ataqueMagicoBase ?? 0) +
+      (objeto.ataqueMagicoPorMejora ?? 0) * nivelSeguro,
     defensa:
       (objeto.defensaBase ?? 0) + (objeto.defensaPorMejora ?? 0) * nivelSeguro,
+    defensaMagica:
+      (objeto.defensaMagicaBase ?? 0) +
+      (objeto.defensaMagicaPorMejora ?? 0) * nivelSeguro,
     velocidad:
       (objeto.velocidadBase ?? 0) +
       (objeto.velocidadPorMejora ?? 0) * nivelSeguro,
