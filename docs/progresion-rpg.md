@@ -18,17 +18,17 @@ Esta primera iteración integra el núcleo de progresión Base/Job, el catálogo
 - Cada clase declara categorías de armas y armaduras dominadas. El dominio aplica un multiplicador a la estadística de ataque del arma compatible y a la defensa de la armadura compatible. Equipar una categoría no dominada sigue siendo posible, pero no recibe ese bonus.
 - Las seis estadísticas principales (Fuerza, Agilidad, Vitalidad, Inteligencia, Destreza y Suerte) alimentan `calcularEstadisticasDerivadasRpg`. Los coeficientes iniciales son valores de balance y están centralizados en ese módulo.
 - Las habilidades marcadas con `tipoDano: "magico"` utilizan ataque y defensa mágicos. Los costes de Energía/Maná se validan y descuentan en la misma transacción que guarda la acción de combate; los recursos se regeneran por turno, sin superar el máximo calculado.
-- Los endpoints de profesiones y atributos validan de nuevo requisitos, puntos disponibles y estado del personaje en el servidor; la UI no decide por sí sola si una acción está permitida.
+- Los endpoints de profesiones validan de nuevo requisitos y estado del personaje en el servidor; el catálogo solo expone clases desbloqueadas o alcanzables. Los atributos ya no admiten asignación manual.
 
 ## Endpoints incluidos
 
 - `GET /api/profesiones`: devuelve el catálogo, progreso Job y requisitos pendientes del personaje.
 - `POST /api/profesiones/desbloquear` con `{ "claseId": "espadachin" }`: crea el progreso Job cuando los requisitos de todas las clases están cumplidos.
 - `POST /api/profesiones/cambiar` con `{ "claseId": "espadachin" }`: selecciona una profesión desbloqueada.
-- `POST /api/jugador/atributos/asignar` con `{ "atributo": "fuerza" }`: consume un punto de atributo e incrementa el atributo validado hasta un máximo de 99.
+- `POST /api/jugador/atributos/asignar`: ruta retirada (HTTP 410); los atributos se calculan automáticamente.
 - `GET /api/habilidades`, `POST /api/habilidades/aprender` y `POST /api/habilidades/equipar`: exponen, aprenden y equipan habilidades teniendo en cuenta la profesión y sus antecesoras.
 
-La interfaz de profesiones está en `/base/profesiones`. La Escuela muestra nivel Job, puntos disponibles y costes de las habilidades; la base principal muestra el panel de atributos y Energía/Maná.
+Las profesiones y maestrías se gestionan desde una pestaña de la Escuela de Combate; `/base/profesiones` se mantiene como ruta directa. La base principal muestra atributos de solo lectura y Energía/Maná, y el HUD distingue las barras Base y Job.
 
 ## Catálogo inicial
 
