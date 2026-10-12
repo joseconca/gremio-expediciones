@@ -130,11 +130,11 @@ function obtenerEstadisticasNoCero(
 ) {
   const estadisticas = calcularEstadisticasObjeto(objeto, nivelMejora);
 
-  return ESTADISTICAS.filter(({ clave }) => estadisticas[clave] !== 0).map(
+  return ESTADISTICAS.filter(({ clave }) => (estadisticas[clave] ?? 0) !== 0).map(
     ({ clave, nombre }) => ({
       clave,
       nombre,
-      valor: estadisticas[clave],
+      valor: estadisticas[clave] ?? 0,
     })
   );
 }
@@ -146,11 +146,13 @@ function obtenerDiferenciasMejora(
   const actual = calcularEstadisticasObjeto(objeto, nivelMejora);
   const siguiente = calcularEstadisticasObjeto(objeto, nivelMejora + 1);
 
-  return ESTADISTICAS.filter(({ clave }) => siguiente[clave] !== actual[clave])
+  return ESTADISTICAS.filter(
+    ({ clave }) => (siguiente[clave] ?? 0) !== (actual[clave] ?? 0)
+  )
     .map(({ clave, nombre }) => ({
       clave,
       nombre,
-      valor: siguiente[clave] - actual[clave],
+      valor: (siguiente[clave] ?? 0) - (actual[clave] ?? 0),
     }))
     .filter(({ valor }) => valor !== 0);
 }
