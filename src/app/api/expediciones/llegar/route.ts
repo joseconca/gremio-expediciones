@@ -217,7 +217,6 @@ export async function POST() {
     const tipoMision = expedicion.tipo as TipoMision;
 
     let monstruoBase;
-    let rarezaMonstruo = "legendario";
 
     try {
       if (tipoMision === "elite") {
@@ -234,7 +233,6 @@ export async function POST() {
       } else if (tipoMision === "normal") {
         monstruoBase = seleccionarEnemigoNormal(expedicion.dificultad);
 
-        rarezaMonstruo = monstruoBase.rareza ?? "comun";
       } else {
         return NextResponse.json(
           {
