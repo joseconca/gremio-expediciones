@@ -544,10 +544,12 @@ function makeObjectEquipConflictRoute() {
       }),
     },
     equipoEquipado: {
+      findUnique: async () => null,
       upsert: async () => {
         throw new PrismaClientKnownRequestError("Unique constraint", { code: "P2002" });
       },
     },
+    $transaction: async (work) => work({ equipoEquipado: prisma.equipoEquipado }),
   };
   const route = loadSource("src/app/api/objetos/equipar/route.ts", {
     "next/server": { NextResponse },
@@ -558,6 +560,7 @@ function makeObjectEquipConflictRoute() {
       obtenerObjetoPorId: (id) => id === "espada_prueba"
         ? { id, nombre: "Espada de prueba", tipo: "arma" }
         : null,
+      obtenerRanuraObjeto: (objeto) => objeto.tipo === "arma" ? "arma" : null,
     },
   });
 
