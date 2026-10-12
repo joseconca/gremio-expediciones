@@ -90,20 +90,23 @@ export function calcularFactorExperienciaAmenaza(nivelAmenaza: number, nivelBase
 }
 
 /**
- * El umbral Base combina la curva polinómica original con un factor ×2,1 por
- * nivel. La recompensa usa solo el componente polinómico (20 %): por eso, a
- * igualdad de amenaza y modo Normal, las victorias por nivel se multiplican
- * aproximadamente por 2,1 en cada nuevo nivel.
+ * XP se determina por el nivel de amenaza del enemigo derrotado, no por el
+ * nivel del jugador: un enemigo débil conserva su recompensa aunque el jugador
+ * avance. Las amenazas fuertes conceden más XP, con crecimiento moderado.
+ * Con amenazas iguales al Base, Normal empieza en 45 XP y Base 5→6 ronda
+ * 25 victorias incluyendo la experiencia sobrante.
  */
 export function calcularExperienciaBaseGanada(nivelAmenaza: number, nivelBase: number, modo: ModoDificultad): number {
+  const nivelAmenazaSeguro = Number.isFinite(nivelAmenaza)
+    ? Math.max(1, Math.floor(nivelAmenaza))
+    : 1;
   const nivelSeguro = Number.isFinite(nivelBase) ? Math.max(1, Math.floor(nivelBase)) : 1;
-  const umbralReferencia = experienciaBaseReferenciaParaNivel(nivelSeguro);
-  const base = Math.max(1, Math.round(umbralReferencia * 0.2));
+  const base = Math.max(1, Math.round(45 * Math.pow(nivelAmenazaSeguro, 1.05)));
   return Math.max(
     1,
     Math.floor(
       base *
-        calcularFactorExperienciaAmenaza(nivelAmenaza, nivelSeguro) *
+        calcularFactorExperienciaAmenaza(nivelAmenazaSeguro, nivelSeguro) *
         CONFIGURACION_DIFICULTAD[modo].multiplicadorRecompensa
     )
   );
@@ -111,9 +114,9 @@ export function calcularExperienciaBaseGanada(nivelAmenaza: number, nivelBase: n
 
 /**
  * XP Job se calcula desde el nivel Job actual, nunca desde la recompensa Base.
- * Otorga el 20 % del umbral Job por victoria apropiada: unas cinco victorias
- * por nivel y alrededor de 197 para Job 1→40. Así la primera maestría de Tier 1
- * aparece aproximadamente en Base 6, sin transferir XP Base a otra profesión.
+ * Otorga el 40 % del umbral por victoria apropiada: unas 100 victorias de Job
+ * 1→40, de modo que la primera maestría de Tier 1 aparece alrededor de Base 7
+ * cuando se combina con la nueva progresión Base.
  */
 export function calcularExperienciaJobGanada(
   nivelJob: number,
@@ -123,7 +126,7 @@ export function calcularExperienciaJobGanada(
   factorResultado = 1
 ): number {
   const umbralJob = experienciaJobParaNivel(nivelJob);
-  const base = Math.max(1, Math.floor(umbralJob * 0.2));
+  const base = Math.max(1, Math.floor(umbralJob * 0.4));
   const resultadoSeguro = Number.isFinite(factorResultado)
     ? Math.max(0, Math.min(1, factorResultado))
     : 1;
