@@ -199,6 +199,8 @@ export interface CombateActivo {
   jugadorVelocidad: number;
   jugadorProbCritico: number;
   jugadorDanoCritico: number;
+  jugadorPrecision?: number;
+  jugadorEvasion?: number;
   jugadorNivel: number;
 
   enemigoHp: number;
@@ -208,6 +210,8 @@ export interface CombateActivo {
   enemigoVelocidad: number;
   enemigoProbCritico: number;
   enemigoDanoCritico: number;
+  enemigoPrecision?: number;
+  enemigoEvasion?: number;
   enemigoNivel: number;
 
   atacanteUsuarioId?: string | null;

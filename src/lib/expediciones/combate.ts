@@ -30,6 +30,25 @@ function crearAccion(
 
 const d20 = () => Math.floor(Math.random() * 20) + 1;
 
+export function calcularProbabilidadImpacto(precision = 75, evasionObjetivo = 0): number {
+  const precisionSegura = Number.isFinite(precision) ? Math.max(1, Math.min(100, precision)) : 75;
+  const evasionSegura = Number.isFinite(evasionObjetivo) ? Math.max(0, Math.min(0.6, evasionObjetivo)) : 0;
+  return Math.max(0.1, Math.min(0.99, 0.95 + (precisionSegura - 75) * 0.005 - evasionSegura * 0.5));
+}
+
+function falloPorPrecision(actor: "jugador" | "enemigo", nombre: string): AccionAnimadaCombate {
+  return {
+    actor,
+    tipo: "fallo",
+    animacion: "ofensiva",
+    dano: 0,
+    critico: false,
+    texto: actor === "jugador"
+      ? "🎯 Fallas el ataque contra " + nombre + "; el objetivo esquiva o evita el golpe."
+      : "🌀 " + nombre + " esquiva el ataque.",
+  };
+}
+
 const K_DEFENSA = 20;
 
 function calcularDanoMitigado(danoBase: number, defensa: number): number {
@@ -57,6 +76,8 @@ export function resolverAtaqueJugador(combate: {
   jugadorDanoCritico: number;
   enemigoDefensa: number;
   enemigoNombre: string;
+  jugadorPrecision?: number;
+  enemigoEvasion?: number;
 }): AccionAnimadaCombate {
   const dado = d20();
 
@@ -69,6 +90,10 @@ export function resolverAtaqueJugador(combate: {
       critico: false,
       texto: `🤡 Pifia. Fallas tu ataque contra ${combate.enemigoNombre}.`,
     };
+  }
+
+  if (dado !== 20 && Math.random() > calcularProbabilidadImpacto(combate.jugadorPrecision, combate.enemigoEvasion)) {
+    return falloPorPrecision("jugador", combate.enemigoNombre);
   }
 
   const variacion = 0.8 + Math.random() * 0.4;
@@ -105,6 +130,8 @@ export function resolverAtaqueEnemigo(combate: {
   enemigoDanoCritico?: number;
   jugadorDefensa: number;
   enemigoNombre: string;
+  enemigoPrecision?: number;
+  jugadorEvasion?: number;
 }): AccionAnimadaCombate {
   const dado = d20();
 
@@ -117,6 +144,10 @@ export function resolverAtaqueEnemigo(combate: {
       critico: false,
       texto: `🤡 ${combate.enemigoNombre} falla su ataque.`,
     };
+  }
+
+  if (dado !== 20 && Math.random() > calcularProbabilidadImpacto(combate.enemigoPrecision, combate.jugadorEvasion)) {
+    return falloPorPrecision("enemigo", combate.enemigoNombre);
   }
 
   const variacion = 0.8 + Math.random() * 0.4;
@@ -161,6 +192,8 @@ interface CombateParaHabilidad {
   jugadorDanoCritico: number;
   enemigoDefensa: number;
   enemigoNombre: string;
+  jugadorPrecision?: number;
+  enemigoEvasion?: number;
 }
 
 export interface ResultadoHabilidad {
@@ -207,6 +240,14 @@ export function resolverHabilidadJugador(
             animacion,
             texto: `🤡 Pifia. Fallas ${habilidad.nombre} contra ${combate.enemigoNombre}.`,
           }),
+          jugadorHp: combate.jugadorHp,
+          jugadorDefensa: combate.jugadorDefensa,
+        };
+      }
+
+      if (dado !== 20 && Math.random() > calcularProbabilidadImpacto(combate.jugadorPrecision, combate.enemigoEvasion)) {
+        return {
+          accion: falloPorPrecision("jugador", combate.enemigoNombre),
           jugadorHp: combate.jugadorHp,
           jugadorDefensa: combate.jugadorDefensa,
         };

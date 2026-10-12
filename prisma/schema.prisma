@@ -264,6 +264,8 @@ model CombateActivo {
   enemigoVelocidad Int?
   enemigoProbCritico Float?
   enemigoDanoCritico Float?
+  enemigoPrecision Float @default(75)
+  enemigoEvasion Float @default(0)
   enemigoNivel Int?
 
   jugadorHp       Int
@@ -275,6 +277,8 @@ model CombateActivo {
   jugadorVelocidad Int
   jugadorProbCritico Float
   jugadorDanoCritico Float
+  jugadorPrecision Float @default(75)
+  jugadorEvasion Float @default(0)
   jugadorNivel    Int
 
   ganadorUsuarioId String?
