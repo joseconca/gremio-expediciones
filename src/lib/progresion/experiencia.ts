@@ -14,8 +14,8 @@ export interface ResultadoExperienciaJob extends EstadoProgresoJob {
 
 /**
  * Job tiene una curva independiente: 100 + 25 * nivel^1.5 XP por nivel.
- * El coste acumulado de Job 1 a 40 ronda los 105.000 XP, parecido a llegar
- * a Base 13-14 con la curva Base actual. Esto acelera Job sin regalar Job 40.
+ * El coste acumulado de Job 1 a 40 ronda los 102.000 XP. La XP otorgada por combate se limita al 75 % del
+ * umbral Job actual para que una profesión nueva no suba de golpe en Base alto.
  */
 export function experienciaJobParaNivel(nivelJob: number): number {
   const nivel = Number.isFinite(nivelJob) ? Math.max(1, Math.floor(nivelJob)) : 1;
