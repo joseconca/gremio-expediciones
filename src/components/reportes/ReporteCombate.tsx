@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
+import { obtenerRutaSpriteEnemigo } from "@/lib/enemigos";
 import type { ReporteCombate } from "@/lib/tiposJuego";
 
 interface ReporteCombateProps {
@@ -70,7 +71,7 @@ export default function ReporteCombate({
     ? "/sprites/buildings/camp.png"
     : esVictoria
     ? "/sprites/tesoro.png"
-    : `/sprites/enemies/${reporte.enemigoId}.png`;
+    : obtenerRutaSpriteEnemigo(reporte.enemigoId);
 
   const escenaAlt = esCancelada
     ? "Regreso a la base"
