@@ -12,6 +12,7 @@ import { calcularDistanciaKm } from "@/lib/utils";
 import { calcularOroBaseComercio } from "@/lib/expediciones/comercio";
 import { generarMisionesDisponibles } from "@/lib/generadorMisiones";
 import { obtenerDefinicionClase } from "@/lib/progresion/clases";
+import { esModoDificultad, type ModoDificultad } from "@/lib/expediciones/dificultad";
 import type { DefinicionMision, RecompensaMision } from "@/lib/tiposJuego";
 
 interface Coordenadas {
@@ -83,7 +84,13 @@ export async function POST(request: Request) {
       );
     }
 
-    const misionId = (body as Record<string, unknown>).misionId;
+    const datosPeticion = body as Record<string, unknown>;
+    const misionId = datosPeticion.misionId;
+    const modoPeticion = datosPeticion.modoDificultad;
+    if (modoPeticion !== undefined && !esModoDificultad(modoPeticion)) {
+      return respuestaError("El modo de dificultad no es válido.", 400);
+    }
+    const modoDificultadSolicitado: ModoDificultad = esModoDificultad(modoPeticion) ? modoPeticion : "normal";
     if (
       typeof misionId !== "string" ||
       misionId.trim().length === 0 ||
@@ -152,6 +159,7 @@ export async function POST(request: Request) {
         baseLat: coordenadasOrigen.lat,
         baseLng: coordenadasOrigen.lng,
         nivelPersonaje: personaje.nivel,
+        rangosAmenazaCompletados: personaje.rangosAmenazaCompletados,
         ultimaMisionElite: usuario.ultimaMisionElite,
         ahora,
       });
@@ -264,6 +272,10 @@ export async function POST(request: Request) {
     const esElite = mision.tipo === "elite";
     const esAsedio = mision.tipo === "asedio";
     const tipoExpedicion = mision.tipo;
+    const modoDificultadPersistido: ModoDificultad =
+      tipoExpedicion === "normal" || tipoExpedicion === "elite"
+        ? modoDificultadSolicitado
+        : "normal";
 
     if (
       tipoExpedicion !== "normal" &&
@@ -413,6 +425,7 @@ export async function POST(request: Request) {
           nombre: mision.nombre,
           recompensa: recompensaJson,
           dificultad: mision.dificultad,
+          modoDificultad: modoDificultadPersistido,
           fechaSalida,
           fechaLlegada,
           destinoCoords: {
