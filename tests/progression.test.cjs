@@ -159,8 +159,9 @@ test("Job 40 de Tier 1 llega alrededor de Base 6–7 con el ritmo Base/Job", () 
   const totalJob40 = Array.from({ length: 39 }, (_, index) => experienciaJobParaNivel(index + 1))
     .reduce((total, xp) => total + xp, 0);
   assert.equal(experienciaParaNivel(1), 500);
-  assert.equal(experienciaParaNivel(2), 1464);
-  assert.equal(experienciaParaNivel(3), 2745);
+  assert.equal(experienciaParaNivel(2), 1778);
+  assert.equal(experienciaParaNivel(3), 3733);
+  assert.equal(experienciaParaNivel(4), 6320);
   assert.ok(totalJob40 >= 95_000 && totalJob40 <= 120_000, `XP acumulada Job 40 inesperada: ${totalJob40}`);
 
   function victoriasJobHasta(nivelObjetivo) {
@@ -197,7 +198,8 @@ test("Job 40 de Tier 1 llega alrededor de Base 6–7 con el ritmo Base/Job", () 
       nivelBase += 1;
     }
   }
-  assert.ok(nivelBase >= 6 && nivelBase <= 7, "La primera maestría de Tier 1 debe llegar cerca de Base 6–7");
+  assert.equal(nivelBase, 5, "La primera maestría debe quedar muy cerca de Base 6");
+  assert.ok(xpBase / experienciaParaNivel(nivelBase) >= 0.85, "Debe faltar menos del 15 % para Base 6");
 });
 
 test("expediciones: el catálogo respeta rangos desbloqueados y garantiza misión de frontera", () => {
@@ -263,12 +265,12 @@ test("sprites de enemigos: cada enemigo del catálogo tiene sprite organizado po
   assert.equal(obtenerRutaSpriteEnemigo(null), "/sprites/enemies/I/slime_acido.png");
 });
 
-test("dificultad: XP Base depende del enemigo, escala por amenaza y limita farmeo", () => {
+test("dificultad: XP Base depende del enemigo y no del nivel actual del jugador", () => {
   assert.equal(calcularExperienciaBaseGanada(1, 1, "normal"), 45);
-  assert.equal(calcularExperienciaBaseGanada(1, 10, "normal"), 6);
-  assert.ok(calcularExperienciaBaseGanada(10, 10, "normal") > calcularExperienciaBaseGanada(1, 10, "normal"));
+  assert.equal(calcularExperienciaBaseGanada(1, 10, "normal"), 45);
+  assert.equal(calcularExperienciaBaseGanada(10, 1, "normal"), 505);
   assert.ok(calcularExperienciaBaseGanada(10, 10, "dificil") > calcularExperienciaBaseGanada(10, 10, "normal"));
-  assert.equal(calcularFactorExperienciaAmenaza(6, 10), 0.15);
+  assert.equal(calcularFactorExperienciaAmenaza(6, 10), 0.15, "El modificador sigue disponible para Job");
 });
 
 test("Job: la experiencia depende del Job actual y no se dispara por tener Base alta", () => {
@@ -426,14 +428,14 @@ test("XP Base: los umbrales siguen la curva polinómica y la XP crece por nivel 
     victoriasPorNivel.push(victoriasAcumuladas - inicio);
   }
 
-  assert.deepEqual(victoriasPorNivel.slice(0, 6), [12, 16, 19, 23, 25, 27]);
+  assert.deepEqual(victoriasPorNivel.slice(0, 6), [12, 19, 26, 33, 39, 45]);
   for (let indice = 1; indice < victoriasPorNivel.length; indice += 1) {
     assert.ok(
       victoriasPorNivel[indice] > victoriasPorNivel[indice - 1],
       `El nivel ${indice + 1} debe exigir más victorias que el anterior`
     );
   }
-  assert.equal(victoriasAcumuladas, 327, "El ritmo Base 1 a 13 no debe volver a decenas de miles de victorias");
+  assert.equal(victoriasAcumuladas, 559, "El ritmo Base 1 a 13 debe ser exigente, pero razonable");
 });
 
 test("objetos: los sprites de armadura se organizan por ranura", () => {

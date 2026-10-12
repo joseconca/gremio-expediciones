@@ -1,4 +1,3 @@
-import { experienciaBaseReferenciaParaNivel } from "../configuracionJuego";
 import { experienciaJobParaNivel } from "../progresion/experiencia";
 
 export type ModoDificultad = "facil" | "normal" | "dificil";
@@ -90,26 +89,17 @@ export function calcularFactorExperienciaAmenaza(nivelAmenaza: number, nivelBase
 }
 
 /**
- * XP se determina por el nivel de amenaza del enemigo derrotado, no por el
- * nivel del jugador: un enemigo débil conserva su recompensa aunque el jugador
- * avance. Las amenazas fuertes conceden más XP, con crecimiento moderado.
- * Con amenazas iguales al Base, Normal empieza en 45 XP y Base 5→6 ronda
- * 25 victorias incluyendo la experiencia sobrante.
+ * La XP Base depende del nivel de amenaza derrotado, no del nivel actual del
+ * jugador: el mismo enemigo siempre conserva su recompensa, aunque el personaje
+ * suba de nivel. Las criaturas más fuertes entregan más XP; el modo modifica el
+ * pago, pero no hay una penalización adicional por diferencia de nivel.
  */
-export function calcularExperienciaBaseGanada(nivelAmenaza: number, nivelBase: number, modo: ModoDificultad): number {
+export function calcularExperienciaBaseGanada(nivelAmenaza: number, _nivelBase: number, modo: ModoDificultad): number {
   const nivelAmenazaSeguro = Number.isFinite(nivelAmenaza)
     ? Math.max(1, Math.floor(nivelAmenaza))
     : 1;
-  const nivelSeguro = Number.isFinite(nivelBase) ? Math.max(1, Math.floor(nivelBase)) : 1;
   const base = Math.max(1, Math.round(45 * Math.pow(nivelAmenazaSeguro, 1.05)));
-  return Math.max(
-    1,
-    Math.floor(
-      base *
-        calcularFactorExperienciaAmenaza(nivelAmenazaSeguro, nivelSeguro) *
-        CONFIGURACION_DIFICULTAD[modo].multiplicadorRecompensa
-    )
-  );
+  return Math.max(1, Math.floor(base * CONFIGURACION_DIFICULTAD[modo].multiplicadorRecompensa));
 }
 
 /**

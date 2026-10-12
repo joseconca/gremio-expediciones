@@ -161,13 +161,13 @@ export function obtenerSpriteHeroe(
 // PROGRESIÓN
 // ============================================================
 /**
- * Umbral de experiencia Base. Se conserva la curva polinómica del diseño RPG.
- * La XP que entrega un enemigo depende de su nivel de amenaza, de modo que
- * los enemigos fuertes ayudan a progresar sin inflar el umbral exponencialmente.
+ * Umbral de experiencia Base. La curva mantiene la forma polinómica, con un
+ * exponente de 1,83 para hacer más costosos los niveles intermedios y altos.
+ * XP 1→2 sigue requiriendo 500 puntos; Base 4→5 requiere unos 6.320 puntos.
  */
 export function experienciaBaseReferenciaParaNivel(nivel: number): number {
   const nivelSeguro = Number.isFinite(nivel) ? Math.max(1, Math.floor(nivel)) : 1;
-  return Math.round(500 * nivelSeguro ** 1.55);
+  return Math.round(500 * nivelSeguro ** 1.83);
 }
 
 export function experienciaParaNivel(nivel: number): number {
