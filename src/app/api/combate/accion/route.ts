@@ -13,6 +13,8 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
+import { obtenerObjetoPorId } from "@/lib/objetos";
+import { obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
 import { experienciaParaNivel } from "@/lib/configuracionJuego";
 import {
   calcularBonusDefensaMuralla,
@@ -31,7 +33,7 @@ import {
 } from "@/lib/expediciones/asedio";
 import type { DefinicionHabilidad, RecompensaMision } from "@/lib/tiposJuego";
 
-type AccionCombate = "atacar" | "usar_habilidad";
+type AccionCombate = "atacar" | "usar_habilidad" | "usar_objeto";
 
 type EfectoCombate = {
   habilidadId: string;
@@ -350,7 +352,11 @@ export async function POST(request: Request) {
 
     const accionValor = body.accion;
 
-    if (accionValor !== "atacar" && accionValor !== "usar_habilidad") {
+    if (
+      accionValor !== "atacar" &&
+      accionValor !== "usar_habilidad" &&
+      accionValor !== "usar_objeto"
+    ) {
       return NextResponse.json(
         {
           error: "Acción de combate no válida.",
@@ -362,6 +368,20 @@ export async function POST(request: Request) {
     const accion = accionValor as AccionCombate;
 
     let habilidadId: string | null = null;
+    let objetoInventarioId: string | null = null;
+
+    if (accion === "usar_objeto") {
+      if (
+        typeof body.objetoInventarioId !== "string" ||
+        body.objetoInventarioId.trim() === ""
+      ) {
+        return NextResponse.json(
+          { error: "Debes seleccionar un objeto del inventario." },
+          { status: 400 }
+        );
+      }
+      objetoInventarioId = body.objetoInventarioId;
+    }
 
     if (accion === "usar_habilidad") {
       if (
@@ -390,6 +410,7 @@ export async function POST(request: Request) {
       include: {
         personaje: {
           include: {
+            inventario: { include: { objetos: true } },
             habilidades: {
               where: {
                 slot: {
@@ -567,10 +588,13 @@ export async function POST(request: Request) {
         );
       }
 
-      if (accion === "usar_habilidad" && actor !== "jugador") {
+      if (
+        (accion === "usar_habilidad" || accion === "usar_objeto") &&
+        actor !== "jugador"
+      ) {
         return NextResponse.json(
           {
-            error: "Solo puedes usar habilidades durante tu turno.",
+            error: "Solo puedes usar habilidades u objetos durante tu turno.",
           },
           { status: 409 }
         );
@@ -682,6 +706,37 @@ export async function POST(request: Request) {
       : [];
 
     let accionAnimada: AccionAnimadaCombate;
+    let consumible: { id: string; curacion: number; inventarioObjetoId: string } | null = null;
+
+    if (accion === "usar_objeto") {
+      if (esPvp) {
+        return NextResponse.json(
+          { error: "Los consumibles todavía no están habilitados en asedios PvP." },
+          { status: 409 }
+        );
+      }
+      const registroInventario = personaje.inventario?.objetos.find(
+        (item) => item.id === objetoInventarioId
+      );
+      if (!registroInventario || registroInventario.cantidad < 1) {
+        return NextResponse.json({ error: "No tienes ese objeto en el inventario." }, { status: 404 });
+      }
+      const definicion = obtenerObjetoPorId(registroInventario.objetoId);
+      if (!definicion || definicion.tipo !== "consumible" || !Number.isFinite(definicion.curacion) || (definicion.curacion ?? 0) <= 0) {
+        return NextResponse.json({ error: "Este objeto no se puede usar durante el combate." }, { status: 400 });
+      }
+      if (actor !== "jugador") {
+        return NextResponse.json({ error: "Solo puedes usar objetos durante tu turno." }, { status: 409 });
+      }
+      if (combate.jugadorHp >= combate.jugadorHpMaximo) {
+        return NextResponse.json({ error: "Ya tienes la salud al máximo." }, { status: 400 });
+      }
+      consumible = {
+        id: definicion.id,
+        curacion: Math.floor(definicion.curacion ?? 0),
+        inventarioObjetoId: registroInventario.id,
+      };
+    }
 
     // ============================================================
     // PVE
@@ -700,6 +755,24 @@ export async function POST(request: Request) {
           });
 
           enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
+        } else if (accion === "usar_objeto") {
+          if (!consumible) {
+            return NextResponse.json({ error: "Objeto de combate no válido." }, { status: 400 });
+          }
+          const curacion = Math.min(consumible.curacion, combate.jugadorHpMaximo - jugadorHp);
+          if (curacion <= 0) {
+            return NextResponse.json({ error: "Ya tienes la salud al máximo." }, { status: 400 });
+          }
+          jugadorHp += curacion;
+          accionAnimada = {
+            actor: "jugador",
+            tipo: "habilidad",
+            animacion: "curacion",
+            dano: 0,
+            curacion,
+            critico: false,
+            texto: `Usas ${obtenerObjetoPorId(consumible.id)?.nombre ?? "un consumible"} y recuperas ${curacion} puntos de vida.`,
+          };
         } else {
           if (!habilidad) {
             return NextResponse.json(
@@ -837,6 +910,21 @@ export async function POST(request: Request) {
 
         const resultado = await prisma.$transaction(async (tx) => {
           await gastarRecursosHabilidad(tx, personaje.id, habilidad);
+          if (consumible) {
+            const consumido = await tx.inventarioObjeto.updateMany({
+              where: {
+                id: consumible.inventarioObjetoId,
+                inventarioId: personaje.inventario?.id,
+                objetoId: consumible.id,
+                cantidad: { gte: 1 },
+              },
+              data: { cantidad: { decrement: 1 } },
+            });
+            if (consumido.count !== 1) throw new Error("CONSUMIBLE_MODIFICADO");
+            await tx.inventarioObjeto.deleteMany({
+              where: { id: consumible.inventarioObjetoId, cantidad: { lte: 0 } },
+            });
+          }
           const progresoJob = await otorgarExperienciaJob(
             tx,
             personaje,
@@ -1005,6 +1093,21 @@ export async function POST(request: Request) {
 
         const resultado = await prisma.$transaction(async (tx) => {
           await gastarRecursosHabilidad(tx, personaje.id, habilidad);
+          if (consumible) {
+            const consumido = await tx.inventarioObjeto.updateMany({
+              where: {
+                id: consumible.inventarioObjetoId,
+                inventarioId: personaje.inventario?.id,
+                objetoId: consumible.id,
+                cantidad: { gte: 1 },
+              },
+              data: { cantidad: { decrement: 1 } },
+            });
+            if (consumido.count !== 1) throw new Error("CONSUMIBLE_MODIFICADO");
+            await tx.inventarioObjeto.deleteMany({
+              where: { id: consumible.inventarioObjetoId, cantidad: { lte: 0 } },
+            });
+          }
           const actualizacionCombate = await tx.combateActivo.updateMany({
             where: {
               id: combate.id,
@@ -1169,6 +1272,24 @@ export async function POST(request: Request) {
 
       const combateActualizado = await prisma.$transaction(async (tx) => {
         await gastarRecursosHabilidad(tx, personaje.id, habilidad);
+        if (consumible) {
+          const consumido = await tx.inventarioObjeto.updateMany({
+            where: {
+              id: consumible.inventarioObjetoId,
+              inventarioId: personaje.inventario?.id,
+              objetoId: consumible.id,
+              cantidad: { gte: 1 },
+            },
+            data: { cantidad: { decrement: 1 } },
+          });
+          if (consumido.count !== 1) throw new Error("CONSUMIBLE_MODIFICADO");
+          await tx.inventarioObjeto.deleteMany({
+            where: {
+              id: consumible.inventarioObjetoId,
+              cantidad: { lte: 0 },
+            },
+          });
+        }
         if (siguienteTurno === "jugador") {
           await regenerarRecursosPorTurno(tx, usuario.id);
         }
@@ -1552,6 +1673,12 @@ export async function POST(request: Request) {
       accion: accionAnimada,
     });
   } catch (error) {
+    if (error instanceof Error && error.message === "CONSUMIBLE_MODIFICADO") {
+      return NextResponse.json(
+        { error: "El objeto del inventario ha cambiado; actualiza e inténtalo de nuevo." },
+        { status: 409 }
+      );
+    }
     if (error instanceof Error && error.message === "RECURSO_HABILIDAD_INSUFICIENTE") {
       return NextResponse.json(
         { error: "Ya no tienes suficiente Energía o Maná para ejecutar esa habilidad." },
