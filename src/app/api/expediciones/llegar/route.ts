@@ -15,6 +15,7 @@ import {
 } from "@/lib/estadisticasPersonaje";
 
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
+import { calcularMultiplicadoresEnemigo, esModoDificultad } from "@/lib/expediciones/dificultad";
 
 export async function POST() {
   try {
@@ -272,65 +273,36 @@ export async function POST() {
       modificadoresEquipo
     );
 
-    const variacionStats = () => Math.random() * 0.5 - 0.25;
-
-    const multiplicadorStatPorRareza = (rareza: string) => {
-      switch (rareza) {
-        case "comun":
-          return 0.4;
-
-        case "poco_comun":
-          return 0.3;
-
-        case "raro":
-          return 0.2;
-
-        case "epico":
-        case "legendario":
-        default:
-          return 0.1;
-      }
-    };
-
     const enemigoNombre = monstruoBase.nombre;
-
-    const multiplicadorEscalado =
-      1 +
-      (dificultad + personaje.nivel) *
-        multiplicadorStatPorRareza(rarezaMonstruo);
-
-    const enemigoHp = Math.floor(
-      monstruoBase.hp * multiplicadorEscalado * 0.75 * (1 - variacionStats())
+    const modoDificultad = esModoDificultad(expedicion.modoDificultad)
+      ? expedicion.modoDificultad
+      : "normal";
+    const multiplicadores = calcularMultiplicadoresEnemigo(
+      dificultad,
+      monstruoBase.difMin,
+      modoDificultad
     );
 
-    const enemigoAtaque = Math.floor(
-      monstruoBase.ataque * multiplicadorEscalado * (1 - variacionStats())
+    // Escalado determinista: rareza solo afecta a selección/loot, no a la
+    // fórmula de atributos. El modo se aplica exactamente una vez.
+    const enemigoHp = Math.max(1, Math.floor(monstruoBase.hp * multiplicadores.vida));
+    const enemigoAtaque = Math.max(1, Math.floor(monstruoBase.ataque * multiplicadores.ataque));
+    const enemigoAtaqueMagico = Math.max(
+      1,
+      Math.floor((monstruoBase.ataqueMagico ?? monstruoBase.ataque) * multiplicadores.ataque)
     );
-    const enemigoAtaqueMagico = Math.floor(
-      (monstruoBase.ataqueMagico ?? monstruoBase.ataque) *
-        multiplicadorEscalado * (1 - variacionStats())
+    const enemigoDefensa = Math.max(0, Math.floor(monstruoBase.defensa * multiplicadores.defensa));
+    const enemigoDefensaMagica = Math.max(
+      0,
+      Math.floor((monstruoBase.defensaMagica ?? monstruoBase.defensa) * multiplicadores.defensa)
     );
-
-    const enemigoDefensa = Math.floor(
-      monstruoBase.defensa * multiplicadorEscalado * (1 - variacionStats())
-    );
-    const enemigoDefensaMagica = Math.floor(
-      (monstruoBase.defensaMagica ?? monstruoBase.defensa) *
-        multiplicadorEscalado * (1 - variacionStats())
-    );
-
-    const enemigoVelocidad = Math.floor(
-      monstruoBase.velocidad *
-        multiplicadorEscalado *
-        0.5 *
-        (1 - variacionStats())
-    );
+    const enemigoVelocidad = Math.max(1, Math.floor(monstruoBase.velocidad));
 
     const enemigoProbCritico = 0.1;
     const enemigoDanoCritico = 2;
     const enemigoPrecision = 75;
     const enemigoEvasion = 0;
-    const enemigoNivel = dificultad+personaje.nivel;
+    const enemigoNivel = dificultad;
 
     const jugadorHpMaximo = estadisticasJugador.total.hpMaximo;
 
@@ -361,10 +333,10 @@ export async function POST() {
     const logInicial =
       primerTurno === "jugador"
         ? [
-            `⚔️ Has encontrado un ${enemigoNombre} de nivel ${expedicion.dificultad}. ${usuario.personaje.nombre} tiene la iniciativa.`,
+            `⚔️ Has encontrado un ${enemigoNombre} (amenaza ${expedicion.dificultad}, modo ${modoDificultad}). ${usuario.personaje.nombre} tiene la iniciativa.`,
           ]
         : [
-            `⚔️ Has encontrado un ${enemigoNombre} de nivel ${expedicion.dificultad}. ${enemigoNombre} tiene la iniciativa.`,
+            `⚔️ Has encontrado un ${enemigoNombre} (amenaza ${expedicion.dificultad}, modo ${modoDificultad}). ${enemigoNombre} tiene la iniciativa.`,
           ];
 
     // ============================================================
