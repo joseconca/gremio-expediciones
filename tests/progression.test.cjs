@@ -14,6 +14,7 @@ const { aplicarExperienciaJob, experienciaJobParaNivel } = require("../src/lib/p
 const {
   RANGOS_AMENAZA,
   calcularExperienciaBaseGanada,
+  calcularExperienciaJobGanada,
   calcularFactorExperienciaAmenaza,
   calcularMultiplicadoresEnemigo,
   registrarVictoriaRangoNormal,
@@ -176,6 +177,17 @@ test("dificultad: XP Base conserva la curva progresiva y limita farmeo de amenaz
   assert.ok(calcularExperienciaBaseGanada(1, 10, "normal") < calcularExperienciaBaseGanada(10, 10, "normal"));
   assert.ok(calcularExperienciaBaseGanada(10, 10, "dificil") > calcularExperienciaBaseGanada(10, 10, "normal"));
   assert.equal(calcularFactorExperienciaAmenaza(6, 10), 0.15);
+});
+
+test("Job: la experiencia depende del Job actual y no se dispara por tener Base alta", () => {
+  const bajoBase = calcularExperienciaJobGanada(1, 1, 1, "normal");
+  const altoBase = calcularExperienciaJobGanada(1, 13, 13, "normal");
+  const amenazaBaja = calcularExperienciaJobGanada(1, 1, 10, "normal");
+  const dificil = calcularExperienciaJobGanada(1, 1, 1, "dificil");
+  assert.equal(bajoBase, 93);
+  assert.equal(altoBase, bajoBase);
+  assert.ok(amenazaBaja < bajoBase);
+  assert.ok(dificil > bajoBase);
 });
 
 test("dificultad: los modificadores de modo solo cambian las estadísticas declaradas", () => {
