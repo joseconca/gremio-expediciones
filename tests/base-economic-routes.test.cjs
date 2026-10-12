@@ -186,6 +186,7 @@ function makeCombatConsumableRoute({
     "@/lib/progresion/estadisticas": { calcularEstadisticasDerivadasRpg: () => ({
       energiaMaxima: 20, manaMaximo: 10, regeneracionEnergiaPorTurno: 1, regeneracionManaPorTurno: 1,
     }) },
+    "@/lib/progresion/atributos-clase": { calcularAtributosClase: () => ({ fuerza: 1, agilidad: 1, vitalidad: 1, inteligencia: 1, destreza: 1, suerte: 1 }) },
     "@/lib/progresion/bonificaciones-equipo": { mapearBonificacionesEquipoRpg: () => ({}) },
     "@/lib/estadisticasPersonaje": { calcularModificadoresEquipo: () => ({}) },
     "@/lib/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
