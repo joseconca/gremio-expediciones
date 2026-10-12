@@ -7,7 +7,10 @@ import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
 } from "@/lib/estadisticasPersonaje";
-import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
+import { obtenerEquipoDesdePersonaje, LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
+import { obtenerEnemigoPorId } from "@/lib/enemigos";
+import { tirarBotinEnemigo } from "@/lib/lootObjetos";
+import { obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
 import { calcularCapacidadAlmacen } from "@/lib/expediciones/asedio";
 import type { RecompensaMision } from "@/lib/tiposJuego";
 
@@ -54,6 +57,7 @@ export async function POST() {
         personaje: {
           include: {
             habilidades: true,
+            inventario: { include: { objetos: true } },
             equipoEquipado: {
               include: {
                 arma: true,
@@ -115,6 +119,13 @@ export async function POST() {
 
       const exito = resultadoFinal === "exito";
       const combate = expedicion.combateActivo;
+      const enemigoDerrotado = obtenerEnemigoPorId(
+        expedicion.enemigoId ?? combate?.enemigoId ?? ""
+      );
+      const botinTirado =
+        exito && expedicion.tipo !== "comercio"
+          ? tirarBotinEnemigo(enemigoDerrotado)
+          : null;
 
       // CAPACIDAD DEL ALMACÉN
       const edificios = usuario.edificios as Record<string, unknown> | null;
@@ -218,6 +229,51 @@ export async function POST() {
       }
 
       const actualizado = await prisma.$transaction(async (tx) => {
+        let botinEntregado: {
+          id: string;
+          objetoId: string;
+          nombre: string;
+          sufijoId: string | null;
+          bonificaciones: Record<string, number>;
+        } | null = null;
+        let botinPerdidoPorInventarioLleno = false;
+
+        if (botinTirado && usuario.personaje?.id) {
+          const inventario = await tx.inventario.upsert({
+            where: { personajeId: usuario.personaje.id },
+            update: {},
+            create: { personajeId: usuario.personaje.id },
+          });
+          const espaciosOcupados = await tx.inventarioObjeto.count({
+            where: { inventarioId: inventario.id },
+          });
+
+          if (espaciosOcupados < LIMITE_INVENTARIO_OBJETOS) {
+            const objetoCreado = await tx.inventarioObjeto.create({
+              data: {
+                inventarioId: inventario.id,
+                objetoId: botinTirado.objeto.id,
+                cantidad: 1,
+                nivelMejora: 0,
+                sufijoId: botinTirado.sufijoId,
+                bonificaciones: botinTirado.bonificaciones,
+              },
+            });
+            botinEntregado = {
+              id: objetoCreado.id,
+              objetoId: objetoCreado.objetoId,
+              nombre: obtenerNombreObjetoConSufijo(
+                botinTirado.objeto.nombre,
+                botinTirado.sufijoId
+              ),
+              sufijoId: botinTirado.sufijoId,
+              bonificaciones: botinTirado.bonificaciones,
+            };
+          } else {
+            botinPerdidoPorInventarioLleno = true;
+          }
+        }
+
         const asedioEntrante = await tx.combateActivo.findFirst({
           where: {
             tipo: "pvp",
@@ -326,8 +382,16 @@ export async function POST() {
         return {
           usuario: usuarioActualizado,
           afinidad,
+          botinEntregado,
+          botinPerdidoPorInventarioLleno,
         };
-      });
+      }, { isolationLevel: "Serializable" });
+
+      if (actualizado.botinEntregado) {
+        logRegreso.push(`🎁 Encuentras ${actualizado.botinEntregado.nombre}.`);
+      } else if (actualizado.botinPerdidoPorInventarioLleno) {
+        logRegreso.push("🎒 El inventario está lleno y el objeto encontrado se ha perdido.");
+      }
 
       const datosRegreso = Object.fromEntries(
         Object.entries(actualizado.usuario).filter(
@@ -360,6 +424,7 @@ export async function POST() {
           experienciaGanada: expedicion.experienciaGanada,
           tipo: "comercio" as const,
           afinidad: actualizado.afinidad,
+          objetosObtenidos: actualizado.botinEntregado ? [actualizado.botinEntregado] : [],
           logCombate: [...logCombate, ...logRegreso],
         };
       } else if (resultadoFinal === "cancelada") {
@@ -388,6 +453,7 @@ export async function POST() {
           poderHeroe: combate
             ? combate.jugadorAtaque + combate.jugadorDefensa
             : 0,
+          objetosObtenidos: actualizado.botinEntregado ? [actualizado.botinEntregado] : [],
           logCombate: [...logCombate, ...logRegreso],
         };
       }
