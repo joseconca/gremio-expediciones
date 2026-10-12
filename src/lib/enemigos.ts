@@ -543,16 +543,16 @@ function prepararEnemigo(enemigo: DefinicionEnemigo, esJefe: boolean): Definicio
   const rareza = enemigo.rareza ?? "comun";
   const tablaLoot = enemigo.tablaLoot?.length
     ? enemigo.tablaLoot
-    : esJefe
-      ? [
-          { objetoId: "espada_runa", peso: 4 },
-          { objetoId: "armadura_acero", peso: 4 },
-          { objetoId: "hacha_orca", peso: 3 },
-          { objetoId: "amuleto_vitalidad", peso: 2 },
-          { objetoId: "anillo_maldito", peso: 1 },
-        ]
-      : enemigo.objetoDropId
-        ? [{ objetoId: enemigo.objetoDropId, peso: 1 }]
+    : enemigo.objetoDropId
+      ? [{ objetoId: enemigo.objetoDropId, peso: 1 }]
+      : esJefe
+        ? [
+            { objetoId: "espada_runa", peso: 4 },
+            { objetoId: "armadura_acero", peso: 4 },
+            { objetoId: "hacha_orca", peso: 3 },
+            { objetoId: "amuleto_vitalidad", peso: 2 },
+            { objetoId: "anillo_maldito", peso: 1 },
+          ]
         : TABLAS_LOOT[rareza] ?? TABLAS_LOOT.comun;
 
   const probabilidadPorRareza: Record<string, number> = {
