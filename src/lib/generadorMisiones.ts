@@ -212,3 +212,89 @@ export function generarMision(
     descripcion,
   };
 }
+
+
+export interface ParametrosGeneracionMisiones {
+  baseLat: number;
+  baseLng: number;
+  nivelPersonaje: number;
+  ultimaMisionElite: Date | string | null;
+  ahora?: Date;
+}
+
+/**
+ * Genera el catálogo autoritativo de misiones PvE para una hora y perfil.
+ * Las misiones normales y de élite son deterministas para poder validar
+ * su identificador cuando el jugador solicita iniciar una expedición.
+ */
+export function generarMisionesDisponibles({
+  baseLat,
+  baseLng,
+  nivelPersonaje,
+  ultimaMisionElite,
+  ahora = new Date(),
+}: ParametrosGeneracionMisiones): DefinicionMision[] {
+  const horaActual = Math.floor(ahora.getTime() / 3_600_000);
+  const diaActual = ahora.toISOString().slice(0, 10);
+  const offset = 0;
+  const nuevasMisiones: DefinicionMision[] = [];
+
+  MISIONES_POR_DURACION.forEach((configuracion, indiceDuracion) => {
+    let minimo: number;
+    let maximo: number;
+
+    switch (indiceDuracion) {
+      case 0:
+        minimo = 0;
+        maximo = nivelPersonaje + 2;
+        break;
+      case 1:
+      case 2:
+        minimo = Math.max(0, nivelPersonaje - 2);
+        maximo = nivelPersonaje + 3;
+        break;
+      case 3:
+      case 4:
+        minimo = Math.max(0, nivelPersonaje - 2);
+        maximo = nivelPersonaje + 4;
+        break;
+      default:
+        return;
+    }
+
+    const dificultades = generarDificultades(
+      minimo,
+      maximo,
+      configuracion.maxMisiones,
+      horaActual * 100 + indiceDuracion + offset
+    );
+
+    dificultades.forEach((dificultad, indiceMision) => {
+      nuevasMisiones.push(
+        generarMision(
+          baseLat,
+          baseLng,
+          horaActual,
+          indiceDuracion * 10 + indiceMision,
+          dificultad,
+          configuracion,
+          offset
+        )
+      );
+    });
+  });
+
+  const fechaUltimaElite = ultimaMisionElite
+    ? new Date(ultimaMisionElite)
+    : null;
+  const eliteCompletadaHoy =
+    fechaUltimaElite !== null &&
+    Number.isFinite(fechaUltimaElite.getTime()) &&
+    fechaUltimaElite.toISOString().slice(0, 10) === diaActual;
+
+  if (!eliteCompletadaHoy) {
+    nuevasMisiones.push(generarMisionElite(baseLat, baseLng, diaActual));
+  }
+
+  return nuevasMisiones;
+}
