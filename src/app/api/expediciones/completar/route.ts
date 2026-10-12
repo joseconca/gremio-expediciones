@@ -497,7 +497,10 @@ export async function POST() {
     );
 
     const equipo = obtenerEquipoDesdePersonaje(usuario.personaje);
-    const modificadoresEquipo = calcularModificadoresEquipo(equipo);
+    const modificadoresEquipo = calcularModificadoresEquipo(
+      equipo,
+      usuario.personaje!.profesionActivaId
+    );
 
     const estadisticasPersonaje = calcularEstadisticasPersonaje(
       usuario.personaje,
