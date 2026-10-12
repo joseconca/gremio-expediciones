@@ -15,6 +15,7 @@ import type { IdAtributo } from "@/lib/configuracionJuego";
 import { type ClasePersonaje } from "@/lib/tiposJuego";
 import { CONFIGURACION_EDIFICIOS, IdEdificio } from "@/lib/tiposJuego";
 import { calcularEstadisticasPersonaje } from "@/lib/estadisticasPersonaje";
+import { calcularEstadisticasDerivadasRpg } from "@/lib/progresion/estadisticas";
 import { asegurarInventarioYEquipo } from "@/lib/inventario";
 
 const SEXOS = new Set(["chico", "chica"]);
@@ -124,6 +125,14 @@ export async function POST(request: Request) {
       // El servidor ignora la clase enviada por el cliente: todos empiezan como Novato.
       const clasePersonaje: ClasePersonaje = "Novato";
       const estadisticasBase = calcularEstadisticasBase(clasePersonaje, 1);
+      const estadisticasRpgIniciales = calcularEstadisticasDerivadasRpg({
+        fuerza: 1,
+        agilidad: 1,
+        vitalidad: 1,
+        inteligencia: 1,
+        destreza: 1,
+        suerte: 1,
+      }, 1);
 
       const usuario = await prisma.$transaction(async (tx) => {
         const usuarioActualizado = await tx.usuario.update({
@@ -143,8 +152,8 @@ export async function POST(request: Request) {
                 inteligencia: 1,
                 destreza: 1,
                 suerte: 1,
-                energiaActual: 20,
-                manaActual: 10,
+                energiaActual: estadisticasRpgIniciales.energiaMaxima,
+                manaActual: estadisticasRpgIniciales.manaMaximo,
 
                 hpActual: Math.floor(estadisticasBase.hpMaximo),
 
