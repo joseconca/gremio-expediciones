@@ -141,7 +141,7 @@ function loadApiRoute(relativePath, dependencies) {
     fileName: filename,
   });
   const loaded = { exports: {} };
-  vm.runInThisContext("(function(require, module, exports) {" + outputText + "\\n})", {
+  vm.runInThisContext("(function(require, module, exports) {" + outputText + "\n})", {
     filename,
   })(
     (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
