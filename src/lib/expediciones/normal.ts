@@ -1,6 +1,5 @@
 import { obtenerEnemigosPorDificultad } from "@/lib/enemigos";
 import type { DefinicionEnemigo } from "@/lib/tiposJuego";
-import { obtenerEnemigosPorDificultad } from "@/lib/enemigos";
 
 const PESOS_RAREZA: Record<string, number> = {
   comun: 70,
