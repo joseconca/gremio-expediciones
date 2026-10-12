@@ -742,6 +742,9 @@ export function obtenerEnemigosPorDificultad(
 const ALIAS_SPRITE_ENEMIGO: Record<string, string> = {
   reina_arana: "reina-arana",
   titan_hierro: "titan-hierro",
+  arana_sombras: "arana",
+  troll_cavernas: "troll",
+  bandido_arbalestero: "bandido",
 };
 
 const SPRITES_ENEMIGO_DISPONIBLES = new Set([
