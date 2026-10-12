@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import type { CombateActivo, Personaje } from "@/store/useGameStore";
@@ -47,6 +47,10 @@ interface HabilidadEquipable {
 
 type ActorVista = "jugador" | "enemigo";
 
+function esperar(milisegundos: number): Promise<void> {
+  return new Promise((resolver) => window.setTimeout(resolver, milisegundos));
+}
+
 export default function AsedioModal({
   combate,
   personaje,
@@ -57,7 +61,6 @@ export default function AsedioModal({
 }: AsedioModalProps) {
   const logRef = useRef<HTMLDivElement>(null);
   const accionEnCurso = useRef(false);
-  const versionEsperada = combate.version + 1;
   const ultimaVersionAnimada = useRef<number | null>(null);
   const firmaAccionLocal = useRef<string | null>(null);
   const versionAccionLocal = useRef<number | null>(null);
@@ -69,7 +72,7 @@ export default function AsedioModal({
   >(null);
   const [logExpandido, setLogExpandido] = useState(false);
   const [mostrarStatsRival, setMostrarStatsRival] = useState(false);
-  const [mostrarResultado, setMostrarResultado] = useState(false);
+  const mostrarResultado = combate.fase !== "activo";
   const [procesandoLocal, setProcesandoLocal] = useState(false);
 
   const [danioVisible, setDanioVisible] = useState<{
@@ -241,37 +244,6 @@ export default function AsedioModal({
    * ============================================================
    */
 
-  const convertirActorVista = (actor: "jugador" | "enemigo"): ActorVista => {
-    if (esAtacante) {
-      return actor;
-    }
-
-    return actor === "jugador" ? "enemigo" : "jugador";
-  };
-
-  /*
-   * ============================================================
-   * RESULTADO
-   * ============================================================
-   */
-
-  useEffect(() => {
-    if (combate.fase === "activo") {
-      setMostrarResultado(false);
-    } else {
-      setMostrarResultado(true);
-    }
-  }, [combate.fase]);
-
-  /*
-   * ============================================================
-   * ANIMACIÓN DE ACCIÓN
-   * ============================================================
-   */
-
-  const esperar = (milisegundos: number) =>
-    new Promise<void>((resolver) => setTimeout(resolver, milisegundos));
-
   const obtenerFirmaAccion = (accion: AccionAnimadaCombate) =>
     JSON.stringify({
       actor: accion.actor,
@@ -283,8 +255,12 @@ export default function AsedioModal({
       texto: accion.texto,
     });
 
-  const mostrarResultadoAccion = async (accion: AccionAnimadaCombate) => {
-    const actorVista = convertirActorVista(accion.actor);
+  const mostrarResultadoAccion = useCallback(async (accion: AccionAnimadaCombate) => {
+    const actorVista: ActorVista = esAtacante
+      ? accion.actor
+      : accion.actor === "jugador"
+        ? "enemigo"
+        : "jugador";
     const objetivo: ActorVista =
       actorVista === "jugador" ? "enemigo" : "jugador";
 
@@ -339,7 +315,7 @@ export default function AsedioModal({
 
     setActorAnimando(null);
     setAnimacionActual(null);
-  };
+  }, [esAtacante]);
 
   useEffect(() => {
     const ultimaAccion = combate.ultimaAccion;
@@ -361,7 +337,7 @@ export default function AsedioModal({
     ultimaVersionAnimada.current = combate.version;
 
     void mostrarResultadoAccion(ultimaAccion);
-  }, [combate.version, combate.ultimaAccion]);
+  }, [combate.version, combate.ultimaAccion, mostrarResultadoAccion]);
 
   /*
    * ============================================================
