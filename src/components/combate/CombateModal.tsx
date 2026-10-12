@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
+import { obtenerRutaSpriteEnemigo } from "@/lib/enemigos";
 import type { CombatePve, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import type { ObjetoInventario } from "@/lib/tiposJuego";
@@ -575,7 +576,7 @@ export default function CombateModal({
                   }}
                 >
                   <Image
-                    src={`/sprites/enemies/${combate.enemigoId}.png`}
+                    src={obtenerRutaSpriteEnemigo(combate.enemigoId)}
                     alt="Sombra del enemigo"
                     fill
                     sizes="180px"
