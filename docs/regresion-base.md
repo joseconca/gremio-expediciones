@@ -61,6 +61,7 @@ Para probar el flujo visual, inicia el servidor con la configuración local habi
 ## 7. Combate y persistencia
 
 - [ ] Un combate termina con un resultado coherente; no se entregan recompensas dos veces al repetir la petición.
+- [ ] Si dos asedios contra la misma base terminan a la vez, el botín total no supera los recursos vulnerables y ningún recurso queda en negativo.
 - [ ] Los cambios de vida, oro, experiencia e inventario se reflejan al volver a cargar el jugador.
 - [ ] La interfaz comunica conflictos y errores del servidor sin mostrar una compra o expedición como realizada si el servidor la rechazó.
 - [ ] Las páginas principales de \`/base\` (Taberna, Armería, Herrería, Mercado, Almacén, Muralla, Escuela de batalla y Expediciones) cargan sin errores de consola.
