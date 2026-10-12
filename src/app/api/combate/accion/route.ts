@@ -6,6 +6,9 @@ import {
   PUNTOS_ATRIBUTO_POR_NIVEL_BASE,
 } from "@/lib/progresion/experiencia";
 import { calcularEstadisticasDerivadasRpg } from "@/lib/progresion/estadisticas";
+import { mapearBonificacionesEquipoRpg } from "@/lib/progresion/bonificaciones-equipo";
+import { calcularModificadoresEquipo } from "@/lib/estadisticasPersonaje";
+import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
@@ -121,6 +124,7 @@ async function regenerarRecursosPorTurno(
     select: {
       id: true,
       nivel: true,
+      profesionActivaId: true,
       fuerza: true,
       agilidad: true,
       vitalidad: true,
@@ -129,9 +133,32 @@ async function regenerarRecursosPorTurno(
       suerte: true,
       energiaActual: true,
       manaActual: true,
+      equipoEquipado: {
+        select: {
+          arma: true,
+          armadura: true,
+          accesorio: true,
+          manoSecundaria: true,
+          casco: true,
+          pantalones: true,
+          botas: true,
+          guantes: true,
+          anillo1: true,
+          anillo2: true,
+        },
+      },
     },
   });
   if (!personaje) return;
+
+  const equipoPersonaje = obtenerEquipoDesdePersonaje({
+    equipoEquipado: personaje.equipoEquipado,
+  });
+  const modificadoresEquipo = calcularModificadoresEquipo(
+    equipoPersonaje,
+    personaje.profesionActivaId
+  );
+  const bonificacionesEquipo = mapearBonificacionesEquipoRpg(modificadoresEquipo);
 
   const maximos = calcularEstadisticasDerivadasRpg({
     fuerza: personaje.fuerza,
@@ -140,7 +167,7 @@ async function regenerarRecursosPorTurno(
     inteligencia: personaje.inteligencia,
     destreza: personaje.destreza,
     suerte: personaje.suerte,
-  }, personaje.nivel);
+  }, personaje.nivel, bonificacionesEquipo);
 
   const energiaNueva = Math.min(
     maximos.energiaMaxima,
