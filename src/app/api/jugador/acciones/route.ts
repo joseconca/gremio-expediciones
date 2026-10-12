@@ -155,7 +155,7 @@ export async function POST(request: Request) {
                 energiaActual: estadisticasRpgIniciales.energiaMaxima,
                 manaActual: estadisticasRpgIniciales.manaMaximo,
 
-                hpActual: Math.floor(estadisticasBase.hpMaximo),
+                hpActual: Math.floor(estadisticasRpgIniciales.hpMaximo),
 
                 velocidadMejoras: 0,
                 capacidadCarruajeMejoras: 0,
