@@ -541,17 +541,19 @@ const TABLAS_LOOT: Record<string, Array<{ objetoId: string; peso: number }>> = {
 
 function prepararEnemigo(enemigo: DefinicionEnemigo, esJefe: boolean): DefinicionEnemigo {
   const rareza = enemigo.rareza ?? "comun";
-  const tablaLoot = esJefe
-    ? [
-        { objetoId: "espada_runa", peso: 4 },
-        { objetoId: "armadura_acero", peso: 4 },
-        { objetoId: "hacha_orca", peso: 3 },
-        { objetoId: "amuleto_vitalidad", peso: 2 },
-        { objetoId: "anillo_maldito", peso: 1 },
-      ]
-    : enemigo.objetoDropId
-      ? [{ objetoId: enemigo.objetoDropId, peso: 1 }]
-      : TABLAS_LOOT[rareza] ?? TABLAS_LOOT.comun;
+  const tablaLoot = enemigo.tablaLoot?.length
+    ? enemigo.tablaLoot
+    : esJefe
+      ? [
+          { objetoId: "espada_runa", peso: 4 },
+          { objetoId: "armadura_acero", peso: 4 },
+          { objetoId: "hacha_orca", peso: 3 },
+          { objetoId: "amuleto_vitalidad", peso: 2 },
+          { objetoId: "anillo_maldito", peso: 1 },
+        ]
+      : enemigo.objetoDropId
+        ? [{ objetoId: enemigo.objetoDropId, peso: 1 }]
+        : TABLAS_LOOT[rareza] ?? TABLAS_LOOT.comun;
 
   const probabilidadPorRareza: Record<string, number> = {
     comun: 0.08,
@@ -564,7 +566,8 @@ function prepararEnemigo(enemigo: DefinicionEnemigo, esJefe: boolean): Definicio
   return {
     ...enemigo,
     esJefe,
-    probabilidadBotin: esJefe ? 0.7 : (probabilidadPorRareza[rareza] ?? 0.08),
+    probabilidadBotin:
+      enemigo.probabilidadBotin ?? (esJefe ? 0.7 : (probabilidadPorRareza[rareza] ?? 0.08)),
     tablaLoot,
   };
 }
