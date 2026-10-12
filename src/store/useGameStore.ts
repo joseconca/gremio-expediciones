@@ -18,6 +18,7 @@ import {
   calcularModificadoresEquipo,
 } from "@/lib/estadisticasPersonaje";
 import { obtenerObjetoPorId } from "@/lib/objetos";
+import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/lib/sufijosObjetos";
 
 const EDIFICIOS_BASE: Record<IdEdificio, Omit<Edificio, "nivel">> = {
   taberna: {
@@ -399,12 +400,15 @@ function construirObjetoInventario(
     return null;
   }
 
+  const sufijoId = typeof datos.sufijoId === "string" ? datos.sufijoId : null;
   return {
     id: datos.id,
     objetoId: datos.objetoId,
     cantidad: datos.cantidad,
     nivelMejora: datos.nivelMejora,
-    objeto,
+    sufijoId,
+    bonificaciones: sanitizarBonificacionesObjeto(datos.bonificaciones),
+    objeto: { ...objeto, nombre: obtenerNombreObjetoConSufijo(objeto.nombre, sufijoId) },
   };
 }
 
@@ -488,8 +492,15 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
 
   const equipo: EquipoPersonaje = {
     arma: buscarObjetoInventario(datosEquipo.arma),
+    manoSecundaria: buscarObjetoInventario(datosEquipo.manoSecundaria),
+    casco: buscarObjetoInventario(datosEquipo.casco),
     armadura: buscarObjetoInventario(datosEquipo.armadura),
+    pantalones: buscarObjetoInventario(datosEquipo.pantalones),
+    botas: buscarObjetoInventario(datosEquipo.botas),
+    guantes: buscarObjetoInventario(datosEquipo.guantes),
     accesorio: buscarObjetoInventario(datosEquipo.accesorio),
+    anillo1: buscarObjetoInventario(datosEquipo.anillo1),
+    anillo2: buscarObjetoInventario(datosEquipo.anillo2),
   };
 
   const profesionActivaId =
