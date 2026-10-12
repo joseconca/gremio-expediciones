@@ -164,12 +164,6 @@ function makeObjectRoute({ authenticated = true, initialUser = {}, initialItems 
   const findInventoryItem = (inventarioId, objetoId) =>
     state.items.find((item) => item.inventarioId === inventarioId && item.objetoId === objetoId) ?? null;
   const tx = {
-    personaje: {
-      findUnique: async () => ({ estado: transactionState }),
-    },
-    equipoEquipado: {
-      findUnique: async () => clone(state.user.personaje.equipoEquipado),
-    },
     usuario: {
       updateMany: async ({ where, data }) => {
         if (!matches(state.user, where)) return { count: 0 };
@@ -256,6 +250,12 @@ function makeObjectUpgradeRoute({ authenticated = true, initialGold = 500, initi
   const getState = () => state;
   const setState = (next) => { state = next; };
   const tx = {
+    personaje: {
+      findUnique: async () => ({ estado: transactionState }),
+    },
+    equipoEquipado: {
+      findUnique: async () => clone(state.user.personaje.equipoEquipado),
+    },
     usuario: {
       updateMany: async ({ where, data }) => {
         if (!matches(state.user, where)) return { count: 0 };
