@@ -54,7 +54,7 @@ export async function POST(request: Request) {
 
     const equipo = await prisma.equipoEquipado.update({
       where: { personajeId: personaje.id },
-      data: { [field]: null },
+      data: { [field]: null } as Prisma.EquipoEquipadoUncheckedUpdateInput,
     });
 
     return NextResponse.json({
