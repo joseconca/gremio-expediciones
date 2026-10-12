@@ -142,7 +142,7 @@ export interface Personaje {
   experienciaJob: number;
   puntosHabilidadDisponibles: number;
   hpActual: number;
-  estado: "ocioso" | "de_viaje" | "descansando";
+  estado: "ocioso" | "de_viaje" | "descansando" | "combatiendo";
   regeneracionDeVida: number;
   nivel: number;
   experiencia: number;
@@ -557,7 +557,9 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     hpActual: Math.min(datos.hpActual, estadisticas.total.hpMaximo),
     hpMaximo: estadisticas.total.hpMaximo,
     estado:
-      datos.estado === "de_viaje" || datos.estado === "descansando"
+      datos.estado === "de_viaje" ||
+      datos.estado === "descansando" ||
+      datos.estado === "combatiendo"
         ? datos.estado
         : "ocioso",
     ataque: estadisticas.total.ataque,
