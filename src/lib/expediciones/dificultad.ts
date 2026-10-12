@@ -1,5 +1,3 @@
-import { experienciaJobParaNivel } from "../progresion/experiencia";
-
 export type ModoDificultad = "facil" | "normal" | "dificil";
 export type IdRangoAmenaza = "I" | "II" | "III" | "IV" | "V";
 
@@ -103,28 +101,33 @@ export function calcularExperienciaBaseGanada(nivelAmenaza: number, _nivelBase: 
 }
 
 /**
- * XP Job se calcula desde el nivel Job actual, nunca desde la recompensa Base.
- * Otorga el 40 % del umbral por victoria apropiada: unas 100 victorias de Job
- * 1→40, de modo que la primera maestría de Tier 1 aparece alrededor de Base 7
- * cuando se combina con la nueva progresión Base.
+ * La XP Job escala con la amenaza derrotada, no como porcentaje del umbral Job.
+ * Su recompensa de referencia es menor que la Base y se ajusta por amenaza,
+ * dificultad y resultado del combate.
  */
 export function calcularExperienciaJobGanada(
-  nivelJob: number,
+  _nivelJob: number,
   nivelAmenaza: number,
   nivelBase: number,
   modo: ModoDificultad,
   factorResultado = 1
 ): number {
-  const umbralJob = experienciaJobParaNivel(nivelJob);
-  const base = Math.max(1, Math.floor(umbralJob * 0.4));
+  const amenazaSegura = Number.isFinite(nivelAmenaza)
+    ? Math.max(1, Math.floor(nivelAmenaza))
+    : 1;
+  const baseSeguro = Number.isFinite(nivelBase)
+    ? Math.max(1, Math.floor(nivelBase))
+    : 1;
+  const base = Math.max(1, Math.round(23 * Math.pow(amenazaSegura, 1.05)));
   const resultadoSeguro = Number.isFinite(factorResultado)
     ? Math.max(0, Math.min(1, factorResultado))
     : 1;
+
   return Math.max(
     0,
     Math.floor(
       base *
-        calcularFactorExperienciaAmenaza(nivelAmenaza, nivelBase) *
+        calcularFactorExperienciaAmenaza(amenazaSegura, baseSeguro) *
         CONFIGURACION_DIFICULTAD[modo].multiplicadorRecompensa *
         resultadoSeguro
     )
