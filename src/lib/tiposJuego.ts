@@ -32,6 +32,7 @@ export type Rareza =
 export type TipoHabilidad = "activa" | "pasiva";
 
 export type EfectoHabilidadActiva = "dano" | "curacion" | "bonus_defensa";
+export type TipoDanoHabilidad = "fisico" | "magico";
 
 export type AnimacionHabilidad =
   | "ofensiva"
@@ -139,7 +140,9 @@ export interface DefinicionObjeto {
 
   /** Modificadores de equipo. */
   ataqueBase?: number;
+  ataqueMagicoBase?: number;
   defensaBase?: number;
+  defensaMagicaBase?: number;
   velocidadBase?: number;
   hpMaximoBase?: number;
   probCriticoBase?: number;
@@ -148,7 +151,9 @@ export interface DefinicionObjeto {
 
   /** Incremento por mejora de las estadísticas base. */
   ataquePorMejora?: number;
+  ataqueMagicoPorMejora?: number;
   defensaPorMejora?: number;
+  defensaMagicaPorMejora?: number;
   velocidadPorMejora?: number;
   hpMaximoPorMejora?: number;
   probCriticoPorMejora?: number;
@@ -203,6 +208,8 @@ export interface DefinicionHabilidad {
   id: string;
   /** Clase propietaria; las profesiones descendientes heredan esta habilidad. */
   claseId?: string;
+  /** Tipo de ataque utilizado por habilidades que infligen daño. */
+  tipoDano?: TipoDanoHabilidad;
   /** Nivel Job mínimo en la profesión activa para aprenderla. */
   nivelJobRequerido?: number;
   /** Puntos Job consumidos al aprender habilidades profesionales. */
