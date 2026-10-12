@@ -11,8 +11,26 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Sesión requerida." }, { status: 401 });
     }
 
-    const body = await request.json();
-    const habilidadId = body.habilidadId;
+    let bodyJson: unknown;
+
+    try {
+      bodyJson = await request.json();
+    } catch {
+      return NextResponse.json(
+        { error: "El cuerpo de la petición no contiene JSON válido." },
+        { status: 400 }
+      );
+    }
+
+    if (!bodyJson || typeof bodyJson !== "object" || Array.isArray(bodyJson)) {
+      return NextResponse.json(
+        { error: "El cuerpo de la petición no es válido." },
+        { status: 400 }
+      );
+    }
+
+    const body = bodyJson as Record<string, unknown>;
+    const habilidadId = typeof body.habilidadId === "string" ? body.habilidadId.trim() : body.habilidadId;
 
     if (typeof habilidadId !== "string" || habilidadId.trim() === "") {
       return NextResponse.json(
