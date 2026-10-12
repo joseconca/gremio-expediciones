@@ -464,6 +464,7 @@ function makeExpeditionRoutes({ authenticated = true, initialUser = null } = {})
     "@/lib/utils": { calcularDistanciaKm: () => 1 },
     "@/lib/expediciones/comercio": { calcularOroBaseComercio: () => 20 },
     "@/lib/generadorMisiones": { generarMisionesDisponibles: () => [] },
+    "@/lib/progresion/clases": { obtenerDefinicionClase: () => undefined },
   };
   const available = loadSource("src/app/api/expediciones/disponibles/route.ts", common);
   const start = loadSource("src/app/api/expediciones/iniciar/route.ts", common);
