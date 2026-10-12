@@ -203,9 +203,16 @@ test("dificultad: los rangos exigen nivel Base y victoria Normal del rango anter
 });
 
 test("enemigos: el Rango V mantiene candidatos por encima del mayor difMin del catálogo", () => {
+  const catalogo = ENEMIGOS.filter((enemigo) => enemigo.id !== "mimic");
+  const nivelMaximoCatalogo = Math.max(
+    ...catalogo.map((enemigo) => Math.max(1, enemigo.difMin))
+  );
+  const minimoCatalogo = Math.max(0, nivelMaximoCatalogo - 3);
   const normales = obtenerEnemigosPorDificultad(30);
   assert.ok(normales.length > 0);
-  assert.ok(normales.every((enemigo) => enemigo.difMin >= 14 && enemigo.difMin <= 17));
+  assert.ok(normales.every((enemigo) =>
+    enemigo.difMin >= minimoCatalogo && enemigo.difMin <= nivelMaximoCatalogo
+  ));
   assert.ok(obtenerEnemigosPorDificultad(17).length > 0);
 });
 
