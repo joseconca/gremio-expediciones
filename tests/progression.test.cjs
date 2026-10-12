@@ -21,7 +21,7 @@ const {
   obtenerRangoMaximoDesbloqueado,
 } = require("../src/lib/expediciones/dificultad.ts");
 const { obtenerHabilidadesEnVenta } = require("../src/lib/tiendaHabilidades.ts");
-const { ENEMIGOS, JEFES_ELITE, obtenerRutaSpriteEnemigo } = require("../src/lib/enemigos.ts");
+const { ENEMIGOS, JEFES_ELITE, obtenerRutaSpriteEnemigo, obtenerEnemigosPorDificultad } = require("../src/lib/enemigos.ts");
 const { generarMisionesDisponibles } = require("../src/lib/generadorMisiones.ts");
 
 test("el catálogo de clases tiene requisitos válidos y no contiene ciclos", () => {
@@ -200,6 +200,13 @@ test("dificultad: los rangos exigen nivel Base y victoria Normal del rango anter
   assert.equal(obtenerRangoMaximoDesbloqueado(13, ["I", "II", "III", "IV"]).id, "V");
   assert.deepEqual(registrarVictoriaRangoNormal(["I"], 4), ["I", "II"]);
   assert.deepEqual(RANGOS_AMENAZA.map((rango) => rango.id), ["I", "II", "III", "IV", "V"]);
+});
+
+test("enemigos: el Rango V mantiene candidatos por encima del mayor difMin del catálogo", () => {
+  const normales = obtenerEnemigosPorDificultad(30);
+  assert.ok(normales.length > 0);
+  assert.ok(normales.every((enemigo) => enemigo.difMin >= 14 && enemigo.difMin <= 17));
+  assert.ok(obtenerEnemigosPorDificultad(17).length > 0);
 });
 
 test("sprites de enemigos: cada enemigo del catálogo tiene sprite organizado por rango", () => {
