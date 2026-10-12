@@ -10,7 +10,15 @@ const {
 const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas.ts");
 const { calcularAtributosClase } = require("../src/lib/progresion/atributos-clase.ts");
 const { mapearBonificacionesEquipoRpg } = require("../src/lib/progresion/bonificaciones-equipo.ts");
-const { aplicarExperienciaJob } = require("../src/lib/progresion/experiencia.ts");
+const { aplicarExperienciaJob, experienciaJobParaNivel } = require("../src/lib/progresion/experiencia.ts");
+const {
+  RANGOS_AMENAZA,
+  calcularExperienciaBaseGanada,
+  calcularFactorExperienciaAmenaza,
+  calcularMultiplicadoresEnemigo,
+  registrarVictoriaRangoNormal,
+  obtenerRangoMaximoDesbloqueado,
+} = require("../src/lib/expediciones/dificultad.ts");
 const { obtenerHabilidadesEnVenta } = require("../src/lib/tiendaHabilidades.ts");
 
 test("el catálogo de clases tiene requisitos válidos y no contiene ciclos", () => {
@@ -135,11 +143,49 @@ test("Job: cada nivel concede un punto de habilidad y conserva el exceso de expe
     maestriaCompletada: false,
   }, 2000, 40);
 
-  assert.equal(resultado.nivelJob, 3);
-  assert.equal(resultado.nivelesSubidos, 2);
-  assert.equal(resultado.puntosHabilidadDisponibles, 2);
-  assert.equal(resultado.experienciaJob, 36);
+  assert.equal(resultado.nivelJob, 6);
+  assert.equal(resultado.nivelesSubidos, 5);
+  assert.equal(resultado.puntosHabilidadDisponibles, 5);
+  assert.equal(resultado.experienciaJob, 513);
   assert.equal(resultado.maestriaCompletada, false);
+});
+
+
+test("Job usa una curva más rápida y Job 40 es alcanzable alrededor de Base 13", () => {
+  const { experienciaParaNivel } = require("../src/lib/configuracionJuego.ts");
+  const totalJob40 = Array.from({ length: 39 }, (_, index) => experienciaJobParaNivel(index + 1))
+    .reduce((total, xp) => total + xp, 0);
+  const totalBase13 = Array.from({ length: 12 }, (_, index) => experienciaParaNivel(index + 1))
+    .reduce((total, xp) => total + xp, 0);
+  assert.ok(experienciaJobParaNivel(10) < experienciaParaNivel(10));
+  assert.ok(totalJob40 >= 95_000 && totalJob40 <= 120_000, `XP acumulada Job 40 inesperada: ${totalJob40}`);
+  assert.ok(totalJob40 > totalBase13 * 0.8 && totalJob40 < totalBase13 * 1.2);
+});
+
+test("dificultad: los rangos exigen nivel Base y victoria Normal del rango anterior", () => {
+  assert.equal(obtenerRangoMaximoDesbloqueado(4, []).id, "I");
+  assert.equal(obtenerRangoMaximoDesbloqueado(4, ["I"]).id, "II");
+  assert.equal(obtenerRangoMaximoDesbloqueado(7, ["I", "II"]).id, "III");
+  assert.equal(obtenerRangoMaximoDesbloqueado(13, ["I", "II", "III", "IV"]).id, "V");
+  assert.deepEqual(registrarVictoriaRangoNormal(["I"], 4), ["I", "II"]);
+  assert.deepEqual(RANGOS_AMENAZA.map((rango) => rango.id), ["I", "II", "III", "IV", "V"]);
+});
+
+test("dificultad: XP Base conserva la curva progresiva y limita farmeo de amenazas bajas", () => {
+  assert.equal(calcularExperienciaBaseGanada(1, 1, "normal"), 125);
+  assert.ok(calcularExperienciaBaseGanada(1, 10, "normal") < calcularExperienciaBaseGanada(10, 10, "normal"));
+  assert.ok(calcularExperienciaBaseGanada(10, 10, "dificil") > calcularExperienciaBaseGanada(10, 10, "normal"));
+  assert.equal(calcularFactorExperienciaAmenaza(6, 10), 0.15);
+});
+
+test("dificultad: los modificadores de modo solo cambian las estadísticas declaradas", () => {
+  const facil = calcularMultiplicadoresEnemigo(7, 7, "facil");
+  const normal = calcularMultiplicadoresEnemigo(7, 7, "normal");
+  const dificil = calcularMultiplicadoresEnemigo(7, 7, "dificil");
+  assert.deepEqual(facil, { vida: 0.8, ataque: 0.85, defensa: 0.9 });
+  assert.deepEqual(normal, { vida: 1, ataque: 1, defensa: 1 });
+  assert.deepEqual(dificil, { vida: 1.25, ataque: 1.15, defensa: 1.1 });
+  assert.equal(calcularMultiplicadoresEnemigo(9, 7, "normal").vida, 1.06);
 });
 
 test("Job: al alcanzar el máximo completa maestría y no acumula experiencia extra", () => {
