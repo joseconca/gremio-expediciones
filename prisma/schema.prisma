@@ -110,24 +110,35 @@ model Inventario {
   id          String    @id @default(uuid())
   personajeId String    @unique
   personaje   Personaje @relation(fields: [personajeId], references: [id], onDelete: Cascade)
+  // Snapshot de la última venta para permitir una única recompra.
+  ultimaVenta Json?
 
   objetos InventarioObjeto[]
 }
 
 model InventarioObjeto {
-  id           String @id @default(uuid())
-  inventarioId String
-  objetoId     String
-  cantidad     Int @default(1)
-  nivelMejora  Int @default(0)
+  id            String @id @default(uuid())
+  inventarioId  String
+  objetoId      String
+  cantidad      Int @default(1)
+  nivelMejora   Int @default(0)
+  sufijoId      String?
+  bonificaciones Json @default("{}")
 
   inventario Inventario @relation(fields: [inventarioId], references: [id], onDelete: Cascade)
 
-  armaEquipadas      EquipoEquipado[] @relation("ArmaEquipada")
-  armaduraEquipadas  EquipoEquipado[] @relation("ArmaduraEquipada")
-  accesorioEquipadas EquipoEquipado[] @relation("AccesorioEquipada")
+  armaEquipadas             EquipoEquipado[] @relation("ArmaEquipada")
+  armaduraEquipadas         EquipoEquipado[] @relation("ArmaduraEquipada")
+  accesorioEquipadas        EquipoEquipado[] @relation("AccesorioEquipada")
+  manoSecundariaEquipadas   EquipoEquipado[] @relation("ManoSecundariaEquipada")
+  cascoEquipadas            EquipoEquipado[] @relation("CascoEquipada")
+  pantalonesEquipadas       EquipoEquipado[] @relation("PantalonesEquipada")
+  botasEquipadas            EquipoEquipado[] @relation("BotasEquipada")
+  guantesEquipadas          EquipoEquipado[] @relation("GuantesEquipada")
+  anillo1Equipadas          EquipoEquipado[] @relation("Anillo1Equipada")
+  anillo2Equipadas          EquipoEquipado[] @relation("Anillo2Equipada")
 
-  @@unique([inventarioId, objetoId])
+  @@index([inventarioId, objetoId])
 }
 
 model EquipoEquipado {
@@ -135,13 +146,29 @@ model EquipoEquipado {
   personajeId String @unique
   personaje   Personaje @relation(fields: [personajeId], references: [id], onDelete: Cascade)
 
-  armaInventarioId      String?
-  armaduraInventarioId  String?
-  accesorioInventarioId String?
+  // Diez ranuras: arma (una o dos manos), mano secundaria, casco, torso,
+  // pantalones, botas, guantes, collar y dos anillos.
+  armaInventarioId             String?
+  manoSecundariaInventarioId   String?
+  cascoInventarioId            String?
+  armaduraInventarioId         String?
+  pantalonesInventarioId       String?
+  botasInventarioId            String?
+  guantesInventarioId          String?
+  accesorioInventarioId        String?
+  anillo1InventarioId          String?
+  anillo2InventarioId          String?
 
-  arma      InventarioObjeto? @relation("ArmaEquipada", fields: [armaInventarioId], references: [id], onDelete: SetNull)
-  armadura  InventarioObjeto? @relation("ArmaduraEquipada", fields: [armaduraInventarioId], references: [id], onDelete: SetNull)
-  accesorio InventarioObjeto? @relation("AccesorioEquipada", fields: [accesorioInventarioId], references: [id], onDelete: SetNull)
+  arma           InventarioObjeto? @relation("ArmaEquipada", fields: [armaInventarioId], references: [id], onDelete: SetNull)
+  manoSecundaria InventarioObjeto? @relation("ManoSecundariaEquipada", fields: [manoSecundariaInventarioId], references: [id], onDelete: SetNull)
+  casco          InventarioObjeto? @relation("CascoEquipada", fields: [cascoInventarioId], references: [id], onDelete: SetNull)
+  armadura       InventarioObjeto? @relation("ArmaduraEquipada", fields: [armaduraInventarioId], references: [id], onDelete: SetNull)
+  pantalones     InventarioObjeto? @relation("PantalonesEquipada", fields: [pantalonesInventarioId], references: [id], onDelete: SetNull)
+  botas          InventarioObjeto? @relation("BotasEquipada", fields: [botasInventarioId], references: [id], onDelete: SetNull)
+  guantes        InventarioObjeto? @relation("GuantesEquipada", fields: [guantesInventarioId], references: [id], onDelete: SetNull)
+  accesorio      InventarioObjeto? @relation("AccesorioEquipada", fields: [accesorioInventarioId], references: [id], onDelete: SetNull)
+  anillo1        InventarioObjeto? @relation("Anillo1Equipada", fields: [anillo1InventarioId], references: [id], onDelete: SetNull)
+  anillo2        InventarioObjeto? @relation("Anillo2Equipada", fields: [anillo2InventarioId], references: [id], onDelete: SetNull)
 }
 
 model HabilidadAprendida {
