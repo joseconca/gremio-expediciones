@@ -22,7 +22,8 @@ export class GameObject {
   }
 
   update(_deltaTime: number): void {
-    // Comportamiento base
+    // Clase base sin actualización temporal.
+    void _deltaTime;
   }
 
   getSortY(): number {
@@ -109,6 +110,9 @@ export class GameObject {
     _screenX: number,
     _screenY: number
   ): void {
-    // Renderizado base
+    // La implementación base no dibuja nada.
+    void _ctx;
+    void _screenX;
+    void _screenY;
   }
 }
