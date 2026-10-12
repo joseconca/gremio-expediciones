@@ -48,7 +48,10 @@ export class SceneTransition extends GameObject {
     _screenX: number,
     _screenY: number
   ): void {
-    // Invisible.
+    // Invisible: se conservan los parámetros comunes del renderizador.
+    void _ctx;
+    void _screenX;
+    void _screenY;
   }
 
   override isCollidable(): boolean {
