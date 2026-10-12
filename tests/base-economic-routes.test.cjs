@@ -588,6 +588,51 @@ function makeObjectEquipConflictRoute({ initialState = "ocioso", transactionStat
   return route.POST;
 }
 
+function makeObjectUnequipRoute({ initialState = "ocioso", transactionState = initialState } = {}) {
+  const state = {
+    personaje: {
+      id: "p1",
+      usuarioId: "u1",
+      estado: initialState,
+      equipoEquipado: {
+        armaInventarioId: "item1",
+        manoSecundariaInventarioId: null,
+        cascoInventarioId: null,
+        armaduraInventarioId: null,
+        pantalonesInventarioId: null,
+        botasInventarioId: null,
+        guantesInventarioId: null,
+        accesorioInventarioId: null,
+        anillo1InventarioId: null,
+        anillo2InventarioId: null,
+      },
+    },
+  };
+  const tx = {
+    personaje: {
+      findUnique: async () => ({ estado: transactionState }),
+    },
+    equipoEquipado: {
+      findUnique: async () => clone(state.personaje.equipoEquipado),
+      update: async ({ data }) => {
+        applyData(state.personaje.equipoEquipado, data);
+        return clone(state.personaje.equipoEquipado);
+      },
+    },
+  };
+  const prisma = {
+    personaje: { findUnique: async () => clone(state.personaje) },
+    $transaction: async (work) => work(tx),
+  };
+  const route = loadSource("src/app/api/objetos/desequipar/route.ts", {
+    "next/server": { NextResponse },
+    "@prisma/client": { Prisma: PrismaStub },
+    "@/lib/auth": { getAuthenticatedUser: async () => ({ id: "u1" }) },
+    "@/lib/prisma": { prisma },
+  });
+  return { POST: route.POST, getState: () => state };
+}
+
 function makeAbilityEquipConflictRoute(errorCode = "P2002") {
   let transactionOptions = null;
   const prisma = {
@@ -663,6 +708,18 @@ test("equipamiento: un conflicto de Prisma al equipar un objeto devuelve 409", a
   const response = await POST(request({ objetoInventarioId: "item1" }));
 
   assert.equal(response.status, 409);
+});
+
+test("desequipamiento: bloquea cambios durante viaje o combate, también con un cambio de estado concurrente", async () => {
+  const traveling = makeObjectUnequipRoute({ initialState: "de_viaje" });
+  const before = await traveling.POST(request({ slot: "arma" }));
+  assert.equal(before.status, 409);
+  assert.equal(traveling.getState().personaje.equipoEquipado.armaInventarioId, "item1");
+
+  const race = makeObjectUnequipRoute({ transactionState: "combatiendo" });
+  const inside = await race.POST(request({ slot: "arma" }));
+  assert.equal(inside.status, 409);
+  assert.equal(race.getState().personaje.equipoEquipado.armaInventarioId, "item1");
 });
 
 test("habilidades: los conflictos de slot devuelven 409 y usan aislamiento Serializable", async () => {
