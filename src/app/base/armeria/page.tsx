@@ -499,12 +499,10 @@ export default function HerreriaPage() {
             ) : (
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                 {(datos?.enVenta ?? []).map((objeto) => {
-                  const yaLoTiene = datos?.inventario.some(
-                    (objetoInventario) =>
-                      objetoInventario.objetoId === objeto.id
-                  );
-
                   const comprando = procesando === `comprar:${objeto.id}`;
+                  const inventarioLleno =
+                    (datos?.espaciosInventario.ocupados ?? datos?.inventario.length ?? 0) >=
+                    (datos?.espaciosInventario.maximo ?? 30);
                   if (!esEquipable(objeto)) {
                     return null;
                   }
@@ -544,7 +542,7 @@ export default function HerreriaPage() {
                               </span>
 
                               <span className="text-[9px] font-black uppercase tracking-wider text-[#747b7e]">
-                                {nombreTipo(objeto.tipo)}
+                                {nombreTipoObjeto(objeto)}
                               </span>
                             </div>
 
@@ -598,45 +596,40 @@ export default function HerreriaPage() {
 
                       {/* Compra */}
                       <div className="border-t border-[#464c4e] bg-[#191c1d] p-4">
-                        {yaLoTiene ? (
-                          <div className="flex h-12 items-center justify-center rounded border border-[#3d4647] bg-[#202526] px-4 text-center">
-                            <span className="text-xs font-black uppercase tracking-[0.16em] text-[#7c8989]">
-                              Ya lo tienes
-                            </span>
-                          </div>
-                        ) : (
-                          <button
-                            type="button"
-                            onClick={() => void comprarObjeto(objeto.id)}
-                            disabled={
-                              comprando ||
-                              procesando !== null ||
-                              !objeto.puedeComprar ||
-                              oro < objeto.precio
-                            }
-                            className={`flex h-12 w-full items-center justify-between rounded border-2 px-4 font-black transition-all ${
-                              objeto.puedeComprar &&
-                              oro >= objeto.precio &&
-                              !procesando
-                                ? "border-[#8b7752] bg-[#51452f] text-[#eadbbd] shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_8px_rgba(0,0,0,0.3)] hover:border-[#b7a06c] hover:bg-[#635338] active:translate-y-px"
-                                : "cursor-not-allowed border-[#373c3e] bg-[#202324] text-[#5f6669]"
-                            }`}
-                          >
-                            <span>
-                              {comprando
-                                ? "Comprando..."
-                                : !objeto.puedeComprar
-                                ? `Nivel ${objeto.nivelHeroeNecesario} requerido`
-                                : oro < objeto.precio
-                                ? "Oro insuficiente"
-                                : "Comprar"}
-                            </span>
-
-                            <span className="rounded border border-amber-700/40 bg-[#231d13] px-2 py-1 text-amber-400">
-                              {objeto.precio} 🪙
-                            </span>
-                          </button>
-                        )}
+                        <button
+                          type="button"
+                          onClick={() => void comprarObjeto(objeto.id)}
+                          disabled={
+                            comprando ||
+                            procesando !== null ||
+                            !objeto.puedeComprar ||
+                            oro < objeto.precio ||
+                            inventarioLleno
+                          }
+                          className={`flex h-12 w-full items-center justify-between rounded border-2 px-4 font-black transition-all ${
+                            objeto.puedeComprar &&
+                            oro >= objeto.precio &&
+                            !procesando &&
+                            !inventarioLleno
+                              ? "border-[#8b7752] bg-[#51452f] text-[#eadbbd] shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_8px_rgba(0,0,0,0.3)] hover:border-[#b7a06c] hover:bg-[#635338] active:translate-y-px"
+                              : "cursor-not-allowed border-[#373c3e] bg-[#202324] text-[#5f6669]"
+                          }`}
+                        >
+                          <span>
+                            {comprando
+                              ? "Comprando..."
+                              : inventarioLleno
+                              ? "Inventario lleno"
+                              : !objeto.puedeComprar
+                              ? `Nivel ${objeto.nivelHeroeNecesario} requerido`
+                              : oro < objeto.precio
+                              ? "Oro insuficiente"
+                              : "Comprar otra unidad"}
+                          </span>
+                          <span className="rounded border border-amber-700/40 bg-[#231d13] px-2 py-1 text-amber-400">
+                            {objeto.precio} 🪙
+                          </span>
+                        </button>
                       </div>
                     </article>
                   );
@@ -659,8 +652,7 @@ export default function HerreriaPage() {
         {/* ====================================================== */}
         {/* EQUIPO                                                   */}
         {/* ====================================================== */}
-        {nivelHerreria > 0 && (
-          <section className="mb-8 overflow-hidden rounded-lg border-2 border-[#353a3d] bg-[#1a1d1f] shadow-[0_14px_32px_rgba(0,0,0,0.5)]">
+        <section className="mb-8 overflow-hidden rounded-lg border-2 border-[#353a3d] bg-[#1a1d1f] shadow-[0_14px_32px_rgba(0,0,0,0.5)]">
             <div className="border-b-2 border-[#353a3d] bg-[#141718] p-6">
               <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
                 <div>
@@ -738,7 +730,8 @@ export default function HerreriaPage() {
                         <div className="mt-4 grid grid-cols-2 gap-2">
                           {obtenerEstadisticasNoCero(
                             equipado.objeto,
-                            equipado.nivelMejora
+                            equipado.nivelMejora,
+                            equipado.bonificaciones
                           ).map((estadistica) => (
                             <div
                               key={estadistica.clave}
@@ -795,7 +788,6 @@ export default function HerreriaPage() {
               })}
             </div>
           </section>
-        )}
         {/* ====================================================== */}
         {/* INVENTARIO                                              */}
         {/* ====================================================== */}
@@ -823,15 +815,38 @@ export default function HerreriaPage() {
                 </div>
 
                 <p className="mt-2 text-xs leading-5 text-[#9b8266]">
-                  Armas, armaduras y accesorios que lleva el aventurero.
+                  Hasta 30 espacios para equipo, botín y consumibles.
                 </p>
+                <p className="mt-2 text-sm font-black text-[#d8b786]">
+                  Espacios: {datos?.espaciosInventario.ocupados ?? datos?.inventario.length ?? 0}/{datos?.espaciosInventario.maximo ?? 30}
+                </p>
+                {datos?.ultimaVenta && (
+                  <div className="mt-3 flex flex-col gap-2 rounded border border-amber-700/50 bg-[#2d2115] p-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <p className="text-xs font-black text-amber-200">Última venta: {datos.ultimaVenta.nombreObjeto}</p>
+                      <p className="mt-1 text-xs text-[#bba17a]">Recompra por {datos.ultimaVenta.precioRecompra} de oro. Solo se conserva la venta más reciente.</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => void recomprarUltimaVenta()}
+                      disabled={
+                        procesando !== null ||
+                        oro < datos.ultimaVenta.precioRecompra ||
+                        ((datos?.espaciosInventario.ocupados ?? 0) >= (datos?.espaciosInventario.maximo ?? 30))
+                      }
+                      className="rounded border border-amber-600 bg-[#534022] px-4 py-2 text-xs font-black text-amber-100 hover:bg-[#654d2b] disabled:cursor-not-allowed disabled:opacity-40"
+                    >
+                      {procesando === "recomprar" ? "Recomprando..." : "Recomprar última venta"}
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
 
           {/* Contenido */}
           <div className="relative p-4 md:p-6">
-            {inventarioEquipable.length === 0 ? (
+            {inventarioVisible.length === 0 ? (
               <div className="rounded-lg border-2 border-dashed border-[#61452d] bg-[#211710] p-10 text-center">
                 <div className="text-5xl opacity-30">🎒</div>
 
@@ -845,27 +860,22 @@ export default function HerreriaPage() {
               </div>
             ) : (
               <div className="space-y-3">
-                {inventarioEquipable.map((objetoInventario) => {
+                {inventarioVisible.map((objetoInventario) => {
                   const objeto = objetoInventario.objeto;
 
-                  if (!esEquipable(objeto)) {
-                    return null;
-                  }
-
-                  const estaEquipado =
-                    datos?.equipo.arma?.id === objetoInventario.id ||
-                    datos?.equipo.armadura?.id === objetoInventario.id ||
-                    datos?.equipo.accesorio?.id === objetoInventario.id;
-
+                  const estaEquipado = TIPOS_EQUIPAMIENTO.some(
+                    (ranura) => datos?.equipo[ranura]?.id === objetoInventario.id
+                  );
                   const equipoDelMismoTipo =
-                    objeto.tipo === "arma"
-                      ? datos?.equipo.arma
-                      : objeto.tipo === "armadura"
-                      ? datos?.equipo.armadura
-                      : datos?.equipo.accesorio;
-
-                  const equipando =
-                    procesando === `equipar:${objetoInventario.id}`;
+                    TIPOS_EQUIPAMIENTO.map((ranura) => datos?.equipo[ranura] ?? null)
+                      .find((pieza) => pieza?.id === objetoInventario.id) ?? null;
+                  const equipando = procesando === `equipar:${objetoInventario.id}`;
+                  const vendiendo = procesando === `vender:${objetoInventario.id}`;
+                  const precioVenta = Math.max(
+                    1,
+                    Math.floor(objeto.precio * Math.max(1, objetoInventario.cantidad) * 0.35)
+                  );
+                  const ranuraObjeto = obtenerRanuraObjeto(objeto);
 
                   return (
                     <article
@@ -929,12 +939,14 @@ export default function HerreriaPage() {
 
                             <p className="mt-1 text-xs text-[#957b60]">
                               {objeto.descripcion}
+                              {objetoInventario.cantidad > 1 ? ` · Cantidad: ${objetoInventario.cantidad}` : ""}
                             </p>
 
                             <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
                               {obtenerEstadisticasNoCero(
                                 objeto,
-                                objetoInventario.nivelMejora
+                                objetoInventario.nivelMejora,
+                                objetoInventario.bonificaciones
                               ).map((estadistica) => (
                                 <span
                                   key={estadistica.clave}
@@ -961,27 +973,49 @@ export default function HerreriaPage() {
 
                         {estaEquipado ? (
                           <div className="shrink-0 text-center lg:text-right">
-                            <p className="text-[10px] font-black uppercase tracking-widest text-[#75614b]">
-                              En uso
-                            </p>
-
+                            <p className="text-[10px] font-black uppercase tracking-widest text-[#75614b]">En uso</p>
                             {equipoDelMismoTipo && (
-                              <p className="mt-1 text-xs font-bold text-[#aa906e]">
-                                Equipado actualmente
-                              </p>
+                              <p className="mt-1 text-xs font-bold text-[#aa906e]">Equipado actualmente</p>
                             )}
                           </div>
                         ) : (
-                          <button
-                            type="button"
-                            onClick={() =>
-                              void equiparObjeto(objetoInventario.id)
-                            }
-                            disabled={procesando !== null}
-                            className="shrink-0 rounded-lg border-2 border-[#765635] bg-[#42301f] px-5 py-2.5 text-xs font-black uppercase tracking-wider text-[#ddc8a6] transition-colors hover:border-[#a27d4f] hover:bg-[#513a25] hover:text-[#f1dfc0] disabled:cursor-not-allowed disabled:opacity-50"
-                          >
-                            {equipando ? "Equipando..." : "Equipar"}
-                          </button>
+                          <div className="flex shrink-0 flex-wrap items-center gap-2">
+                            {esEquipable(objeto) && (
+                              ranuraObjeto === "anillo" ? (
+                                <>
+                                  <button
+                                    type="button"
+                                    onClick={() => void equiparObjeto(objetoInventario.id, "anillo1")}
+                                    disabled={procesando !== null}
+                                    className="rounded-lg border-2 border-[#765635] bg-[#42301f] px-3 py-2.5 text-xs font-black text-[#ddc8a6] hover:bg-[#513a25] disabled:opacity-50"
+                                  >Equipar anillo 1</button>
+                                  <button
+                                    type="button"
+                                    onClick={() => void equiparObjeto(objetoInventario.id, "anillo2")}
+                                    disabled={procesando !== null}
+                                    className="rounded-lg border-2 border-[#765635] bg-[#42301f] px-3 py-2.5 text-xs font-black text-[#ddc8a6] hover:bg-[#513a25] disabled:opacity-50"
+                                  >Equipar anillo 2</button>
+                                </>
+                              ) : (
+                                <button
+                                  type="button"
+                                  onClick={() => void equiparObjeto(objetoInventario.id)}
+                                  disabled={procesando !== null}
+                                  className="rounded-lg border-2 border-[#765635] bg-[#42301f] px-4 py-2.5 text-xs font-black uppercase tracking-wider text-[#ddc8a6] hover:bg-[#513a25] disabled:opacity-50"
+                                >
+                                  {equipando ? "Equipando..." : "Equipar"}
+                                </button>
+                              )
+                            )}
+                            <button
+                              type="button"
+                              onClick={() => void venderObjeto(objetoInventario.id)}
+                              disabled={procesando !== null}
+                              className="rounded-lg border border-red-900/80 bg-[#351b18] px-4 py-2.5 text-xs font-black text-red-200 hover:bg-[#48221e] disabled:opacity-50"
+                            >
+                              {vendiendo ? "Vendiendo..." : `Vender · ${precioVenta} 🪙`}
+                            </button>
+                          </div>
                         )}
                       </div>
                     </article>
