@@ -14,6 +14,14 @@ import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { experienciaParaNivel } from "@/lib/configuracionJuego";
 import {
+  aplicarMultiplicadorRecompensa,
+  calcularExperienciaBaseGanada,
+  calcularOroEnemigo,
+  CONFIGURACION_DIFICULTAD,
+  esModoDificultad,
+  registrarVictoriaRangoNormal,
+} from "@/lib/expediciones/dificultad";
+import {
   calcularBonusDefensaMuralla,
   resolverAtaqueJugador,
   resolverAtaqueEnemigo,
@@ -220,10 +228,6 @@ function obtenerRecompensaMision(valor: unknown): RecompensaMision {
     piedra: 0,
     metal: 0,
   };
-}
-
-function obtenerOroRecompensa(valor: unknown): number {
-  return obtenerRecompensaMision(valor).oro;
 }
 
 function obtenerCooldowns(valor: unknown): Record<string, number> {
@@ -739,6 +743,10 @@ export async function POST(request: Request) {
     // ============================================================
 
     if (!esPvp) {
+      const modoDificultad = esModoDificultad(expedicion.modoDificultad)
+        ? expedicion.modoDificultad
+        : "normal";
+
       if (actor === "jugador") {
         if (accion === "atacar") {
           accionAnimada = resolverAtaqueJugador({
@@ -858,31 +866,18 @@ export async function POST(request: Request) {
         }
 
         const recompensaMision = obtenerRecompensaMision(expedicion.recompensa);
-
-        const recompensaEnemigo =
-          expedicion.tipo === "elite"
-            ? Math.trunc(
-                Math.max(
-                  0,
-                  enemigo.botin *
-                    (1 + (expedicion.dificultad + personaje.nivel) * 2)
-                )
-              )
-            : Math.trunc(
-                Math.max(
-                  0,
-                  enemigo.botin *
-                    (1 + (expedicion.dificultad + personaje.nivel) * 0.8)
-                )
-              );
-        const oroGanado = recompensaMision.oro + recompensaEnemigo;
-
-        const experienciaGanada =
-          expedicion.tipo === "elite"
-            ? 250 +
-              Math.max(0, expedicion.dificultad * (1 + enemigo.difMin)) * 500
-            : 25 +
-              Math.max(0, expedicion.dificultad * (1 + enemigo.difMin)) * 50;
+        const recompensaEnemigo = calcularOroEnemigo(
+          enemigo.botin,
+          expedicion.dificultad,
+          enemigo.difMin
+        );
+        const oroSinMultiplicar = recompensaMision.oro + recompensaEnemigo;
+        const oroGanado = aplicarMultiplicadorRecompensa(oroSinMultiplicar, modoDificultad);
+        const experienciaGanada = calcularExperienciaBaseGanada(
+          expedicion.dificultad,
+          personaje.nivel,
+          modoDificultad
+        );
 
         log.push(
           `💰 Consigues ${recompensaMision.oro} 🪙 de recompensa por la misión y ${recompensaEnemigo} 🪙 por derrotar al enemigo.`
@@ -1008,7 +1003,14 @@ export async function POST(request: Request) {
               hpActual: Math.max(1, jugadorHp),
               nivel: nivelNuevo,
               experiencia: experienciaNueva,
-
+              ...(expedicion.tipo === "normal" && modoDificultad === "normal"
+                ? {
+                    rangosAmenazaCompletados: registrarVictoriaRangoNormal(
+                      personaje.rangosAmenazaCompletados,
+                      expedicion.dificultad
+                    ),
+                  }
+                : {}),
             },
           });
 
@@ -1076,16 +1078,18 @@ export async function POST(request: Request) {
           );
         }
 
-        const oroTotalPosible =
-          obtenerOroRecompensa(expedicion.recompensa) +
-          Math.max(0, Math.floor(enemigo.botin));
-
-        const oroAsegurado = Math.floor(oroTotalPosible / 5);
-
-        const experienciaTotalPosible =
-          25 + Math.max(0, expedicion.dificultad * (1 + enemigo.difMin)) * 20;
-
-        const experienciaGanada = Math.floor(experienciaTotalPosible / 10);
+        const recompensaMision = obtenerRecompensaMision(expedicion.recompensa);
+        const oroAsegurado = Math.floor(
+          recompensaMision.oro *
+            CONFIGURACION_DIFICULTAD[modoDificultad].multiplicadorRecompensa *
+            0.2
+        );
+        const experienciaVictoria = calcularExperienciaBaseGanada(
+          expedicion.dificultad,
+          personaje.nivel,
+          modoDificultad
+        );
+        const experienciaGanada = Math.floor(experienciaVictoria * 0.1);
 
         log.push(`💰 Antes de caer, consigues asegurar ${oroAsegurado} 🪙.`);
 
