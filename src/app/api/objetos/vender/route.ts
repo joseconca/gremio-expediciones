@@ -46,23 +46,7 @@ export async function POST(request: Request) {
     const objeto = obtenerObjetoPorId(item.objetoId);
     if (!objeto) return NextResponse.json({ error: "La definición de este objeto ya no existe." }, { status: 409 });
 
-    const precioVenta = Math.max(1, Math.floor(objeto.precio * Math.max(1, item.cantidad) * 0.35));
-    const precioRecompra = Math.max(precioVenta + 1, Math.ceil(objeto.precio * Math.max(1, item.cantidad) * 0.7));
-    const sufijoId = item.sufijoId ?? null;
-    const bonificaciones = sanitizarBonificacionesObjeto(item.bonificaciones);
-    const snapshot = {
-      objetoId: item.objetoId,
-      cantidad: item.cantidad,
-      nivelMejora: item.nivelMejora,
-      sufijoId,
-      bonificaciones,
-      precioVenta,
-      precioRecompra,
-      nombreObjeto: obtenerNombreObjetoConSufijo(objeto.nombre, sufijoId),
-      vendidoEn: new Date().toISOString(),
-    };
-
-    await prisma.$transaction(async (tx) => {
+    const resultado = await prisma.$transaction(async (tx) => {
       const equipo = await tx.equipoEquipado.findUnique({
         where: { personajeId: personaje.id },
       });
@@ -70,13 +54,36 @@ export async function POST(request: Request) {
         throw new Error("OBJETO_EQUIPADO");
       }
 
+      // Relee la instancia en la transacción para no vender con datos obsoletos
+      // si una mejora u otra acción se produjo después de la lectura inicial.
       const existente = await tx.inventarioObjeto.findFirst({
         where: { id: item.id, inventarioId: personaje.inventario!.id },
       });
       if (!existente) throw new Error("OBJETO_NO_EXISTE");
 
+      const definicionActual = obtenerObjetoPorId(existente.objetoId);
+      if (!definicionActual) throw new Error("DEFINICION_NO_EXISTE");
+      const cantidad = Math.max(1, existente.cantidad);
+      const precioVenta = Math.max(1, Math.floor(definicionActual.precio * cantidad * 0.35));
+      const precioRecompra = Math.max(
+        precioVenta + 1,
+        Math.ceil(definicionActual.precio * cantidad * 0.7)
+      );
+      const sufijoId = existente.sufijoId ?? null;
+      const snapshot = {
+        objetoId: existente.objetoId,
+        cantidad: existente.cantidad,
+        nivelMejora: existente.nivelMejora,
+        sufijoId,
+        bonificaciones: sanitizarBonificacionesObjeto(existente.bonificaciones),
+        precioVenta,
+        precioRecompra,
+        nombreObjeto: obtenerNombreObjetoConSufijo(definicionActual.nombre, sufijoId),
+        vendidoEn: new Date().toISOString(),
+      };
+
       const borrado = await tx.inventarioObjeto.deleteMany({
-        where: { id: item.id, inventarioId: personaje.inventario!.id },
+        where: { id: existente.id, inventarioId: personaje.inventario!.id },
       });
       if (borrado.count !== 1) throw new Error("OBJETO_MODIFICADO");
 
@@ -88,14 +95,15 @@ export async function POST(request: Request) {
         where: { id: personaje.inventario!.id },
         data: { ultimaVenta: snapshot as Prisma.InputJsonValue },
       });
+      return { snapshot, precioVenta, precioRecompra };
     }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
 
     return NextResponse.json({
       exito: true,
-      mensaje: `Has vendido ${snapshot.nombreObjeto} por ${precioVenta} de oro.`,
-      oroRecibido: precioVenta,
-      precioRecompra,
-      ultimaVenta: snapshot,
+      mensaje: `Has vendido ${resultado.snapshot.nombreObjeto} por ${resultado.precioVenta} de oro.`,
+      oroRecibido: resultado.precioVenta,
+      precioRecompra: resultado.precioRecompra,
+      ultimaVenta: resultado.snapshot,
     });
   } catch (error) {
     if (error instanceof Error && error.message === "OBJETO_EQUIPADO") {
@@ -103,6 +111,9 @@ export async function POST(request: Request) {
     }
     if (error instanceof Error && (error.message === "OBJETO_NO_EXISTE" || error.message === "OBJETO_MODIFICADO")) {
       return NextResponse.json({ error: "El objeto ha cambiado. Actualiza el inventario e inténtalo de nuevo." }, { status: 409 });
+    }
+    if (error instanceof Error && error.message === "DEFINICION_NO_EXISTE") {
+      return NextResponse.json({ error: "La definición de este objeto ya no existe." }, { status: 409 });
     }
     if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2034") {
       return NextResponse.json({ error: "El inventario ha cambiado. Actualízalo e inténtalo de nuevo." }, { status: 409 });
