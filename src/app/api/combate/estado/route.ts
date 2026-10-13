@@ -41,7 +41,7 @@ export async function GET() {
      * Si el turno todavía no ha expirado, simplemente devuelve
      * el combate actual.
      *
-     * Si han pasado 2 minutos, procesa el ataque automático.
+     * Si han transcurrido 90 segundos, procesa el ataque automático.
      */
     const resultado =
       await procesarTurnoAutomaticoAsedio(

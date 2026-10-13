@@ -795,14 +795,22 @@ function makeExpeditionRoutes({ authenticated = true, initialUser = null } = {})
 }
 
 function makeInvalidBodyRoute(relativePath) {
-  const rutaPrueba = relativePath === "src/app/api/combate/accion/route.ts"
-    ? "src/server/services/combate/accion-combate.ts"
-    : relativePath;
-  const route = loadSource(rutaPrueba, {
+  const route = loadSource(relativePath, {
     "next/server": { NextResponse },
     "@prisma/client": { Prisma: PrismaStub },
     "@/lib/auth": { getAuthenticatedUser: async () => ({ id: "u1" }) },
     "@/lib/prisma": { prisma: {} },
+    "@/server/services/combate/dispatcher": {
+      adaptarAccionCombate: async (request) => {
+        let body;
+        try { body = await request.json(); }
+        catch { return NextResponse.json({ error: "JSON inválido" }, { status: 400 }); }
+        if (!body || typeof body !== "object" || Array.isArray(body)) {
+          return NextResponse.json({ error: "Cuerpo inválido" }, { status: 400 });
+        }
+        return NextResponse.json({ exito: true });
+      },
+    },
     "@/lib/objetos": { obtenerObjetoPorId: () => null },
     "@/lib/habilidades": { obtenerHabilidadPorId: () => null },
     "@/lib/progresion/clases": { puedeUsarHabilidadDeClase: () => true },

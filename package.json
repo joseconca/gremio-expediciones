@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test:base": "node --test tests/base-economic-routes.test.cjs tests/objetos-system.test.cjs tests/comidas-taberna.test.cjs tests/economy-balance.test.cjs",
-    "test:progression": "node --test tests/progression.test.cjs tests/progression-api.test.cjs tests/combat-effects.test.cjs tests/combat-positions.test.cjs tests/combat-contract.test.cjs"
+    "test:progression": "node --test tests/progression.test.cjs tests/progression-api.test.cjs tests/combat-effects.test.cjs tests/combat-positions.test.cjs tests/combat-contract.test.cjs tests/combat-pvp.test.cjs"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",

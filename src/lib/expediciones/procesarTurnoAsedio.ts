@@ -1,4 +1,6 @@
 import type { Prisma } from "@prisma/client";
+import { haExpiradoTurnoPvp } from "./turno-pvp";
+export { TIEMPO_MAXIMO_TURNO_MS } from "./turno-pvp";
 import { prisma } from "@/lib/prisma";
 import {
   resolverAtaqueJugador,
@@ -19,8 +21,6 @@ import {
   calcularPrecisionModificada,
   calcularEvasionModificada,
 } from "./estados-combate";
-
-export const TIEMPO_MAXIMO_TURNO_MS = 1.5 * 60 * 1000;
 
 function obtenerCooldowns(valor: unknown): Record<string, number> {
   if (!valor || typeof valor !== "object" || Array.isArray(valor)) {
@@ -106,8 +106,7 @@ export async function procesarTurnoAutomaticoAsedio(
   const ahora = Date.now();
   const ultimoTurno = combate.ultimoTurnoEn.getTime();
 
-  const turnoExpirado =
-    ahora - ultimoTurno >= TIEMPO_MAXIMO_TURNO_MS;
+  const turnoExpirado = haExpiradoTurnoPvp(ultimoTurno, ahora);
 
   /*
    * Todavía queda tiempo para que actúe el jugador.
