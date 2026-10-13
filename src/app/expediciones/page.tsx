@@ -264,7 +264,7 @@ export default function ExpedicionesPage() {
     textoTiempo = `${horas}h ${minutos}m`;
   }
 
-  const sinVida = !personaje || personaje.hpActual <= 0;
+  const sinPersonaje = !personaje;
   const [errorEnvio, setErrorEnvio] = useState<string | null>(null);
 
   const handleSeleccionarAccionBase = (tipo: "asedio" | "comercio") => {
@@ -317,7 +317,7 @@ export default function ExpedicionesPage() {
   };
 
   const handleEnviarExpedicion = async () => {
-    if (!misionSeleccionada || !baseCoords || sinVida) return;
+    if (!misionSeleccionada || !baseCoords || sinPersonaje) return;
 
     setCargando(true);
     setErrorEnvio(null);
@@ -683,7 +683,7 @@ export default function ExpedicionesPage() {
               {/* Botón */}
               <button
                 onClick={handleEnviarExpedicion}
-                disabled={cargando || !personaje || sinVida}
+                disabled={cargando || sinPersonaje}
                 className="relative flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-full border-4 border-[#7a1215] sm:h-24 sm:w-24 md:h-28 md:w-28 bg-gradient-to-br from-[#c92a2f] via-[#9b1c20] to-[#5c0b0e] shadow-[0_12px_30px_rgba(0,0,0,0.5),inset_0_8px_16px_rgba(255,255,255,0.2),inset_0_-4px_6px_rgba(0,0,0,0.6)] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {cargando ? (
