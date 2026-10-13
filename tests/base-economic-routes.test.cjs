@@ -469,11 +469,20 @@ function makeObjectRoute({ authenticated = true, initialUser = {}, initialItems 
 }
 
 
-function makeObjectUpgradeRoute({ authenticated = true, initialGold = 500, initialState = "ocioso", transactionState = initialState } = {}) {
+function makeObjectUpgradeRoute({
+  authenticated = true,
+  initialGold = 500,
+  initialResources = { madera: 100, piedra: 100, metal: 100 },
+  initialState = "ocioso",
+  transactionState = initialState,
+} = {}) {
   let state = {
     user: {
       id: "u1",
       oro: initialGold,
+      madera: initialResources.madera,
+      piedra: initialResources.piedra,
+      metal: initialResources.metal,
       edificios: { herreria: 1 },
       personaje: {
         id: "p1",
@@ -510,7 +519,12 @@ function makeObjectUpgradeRoute({ authenticated = true, initialGold = 500, initi
       },
       findUniqueOrThrow: async ({ where }) => {
         if (state.user?.id !== where.id) throw new Error("Usuario no encontrado");
-        return { oro: state.user.oro };
+        return {
+          oro: state.user.oro,
+          madera: state.user.madera,
+          piedra: state.user.piedra,
+          metal: state.user.metal,
+        };
       },
     },
     inventarioObjeto: {
@@ -547,6 +561,7 @@ function makeObjectUpgradeRoute({ authenticated = true, initialGold = 500, initi
     "@/lib/objetos": {
       obtenerObjetoPorId: (id) => id === objeto.id ? objeto : null,
       calcularCosteMejoraObjeto: () => 100,
+      calcularCosteRecursosMejora: () => ({ madera: 2, piedra: 1, metal: 3 }),
     },
   });
   return { POST: route.POST, getState };
@@ -1407,7 +1422,27 @@ test("herrería: dos mejoras simultáneas de la misma pieza solo cobran y mejora
   assert.equal(results.filter((result) => result.status === 200).length, 1);
   assert.equal(results.filter((result) => result.status === 409).length, 1);
   assert.equal(route.getState().user.oro, 400);
+  assert.equal(route.getState().user.madera, 98);
+  assert.equal(route.getState().user.piedra, 99);
+  assert.equal(route.getState().user.metal, 97);
   assert.equal(route.getState().items[0].nivelMejora, 1);
+});
+
+test("herrería: exige materiales antes de cobrar oro o subir la mejora", async () => {
+  const route = makeObjectUpgradeRoute({
+    initialGold: 500,
+    initialResources: { madera: 1, piedra: 5, metal: 5 },
+  });
+
+  const response = await route.POST(request({ objetoInventarioId: "item1" }));
+
+  assert.equal(response.status, 400);
+  assert.match(response.body.error, /materiales/i);
+  assert.equal(route.getState().user.oro, 500);
+  assert.equal(route.getState().user.madera, 1);
+  assert.equal(route.getState().user.piedra, 5);
+  assert.equal(route.getState().user.metal, 5);
+  assert.equal(route.getState().items[0].nivelMejora, 0);
 });
 
 
