@@ -847,7 +847,9 @@ function makeInvalidBodyRoute(relativePath) {
     },
   });
 
-  return route.POST;
+  return relativePath === "src/app/api/combate/accion/route.ts"
+    ? route.procesarAccionCombate
+    : route.POST;
 }
 
 function makeObjectEquipConflictRoute({ initialState = "ocioso", transactionState = initialState } = {}) {
