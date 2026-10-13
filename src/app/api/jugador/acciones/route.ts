@@ -3,7 +3,6 @@ import { Prisma } from "@prisma/client";
 
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { sincronizarRegeneracion } from "@/lib/regeneracion";
 import {
   CONFIGURACION_ATRIBUTOS,
   REQUISITOS_EDIFICIOS,
@@ -13,7 +12,7 @@ import {
 import type { IdAtributo } from "@/lib/configuracionJuego";
 import { type ClasePersonaje } from "@/lib/tiposJuego";
 import { CONFIGURACION_EDIFICIOS, IdEdificio } from "@/lib/tiposJuego";
-import { calcularEstadisticasPersonaje } from "@/lib/estadisticasPersonaje";
+import { obtenerComidaTaberna } from "@/lib/comidasTaberna";
 import { calcularEstadisticasDerivadasRpg } from "@/lib/progresion/estadisticas";
 import { asegurarInventarioYEquipo } from "@/lib/inventario";
 
@@ -198,76 +197,47 @@ export async function POST(request: Request) {
       return NextResponse.json(respuestaUsuario(usuario));
     }
 
-    if (accion === "curar") {
-      const usuario = await prisma.usuario.findUnique({
-        where: { id: usuarioSesion.id },
-        include: {
-          personaje: { include: { habilidades: true } },
-          expedicionActiva: true,
-        },
-      });
-
-      if (!usuario?.personaje) {
-        return NextResponse.json({ error: "Necesitas un personaje." }, { status: 400 });
-      }
-      if (usuario.expedicionActiva || usuario.personaje.estado === "de_viaje") {
-        return NextResponse.json(
-          { error: "No puedes curar a un aventurero que está de expedición." },
-          { status: 409 }
-        );
-      }
-
-      const personaje = await sincronizarRegeneracion(usuario.personaje);
-      const estadisticas = calcularEstadisticasPersonaje(
-        personaje,
-        personaje.habilidades?.filter((habilidad) => habilidad.slot !== null).map((habilidad) => habilidad.habilidadId) ?? []
-      );
-      const hpMaximo = estadisticas.total.hpMaximo;
-
-      if (personaje.hpActual >= hpMaximo) {
-        return NextResponse.json(
-          { error: "El personaje ya está completamente sano." },
-          { status: 400 }
-        );
-      }
-
-      const edificios = usuario.edificios as Record<string, unknown> | null;
-      const nivelTaberna =
-        typeof edificios?.taberna === "number" ? edificios.taberna : 1;
-      const curaPorOro = 2 * (1 + (nivelTaberna - 1) * 0.1);
-      const hpFaltante = hpMaximo - personaje.hpActual;
-      const coste = Math.min(usuario.oro, Math.ceil(hpFaltante / curaPorOro));
-      const hpCurado = Math.min(hpFaltante, Math.floor(coste * curaPorOro));
-
-      if (coste <= 0 || hpCurado <= 0) {
-        return NextResponse.json(
-          { error: "No tienes oro suficiente." },
-          { status: 400 }
-        );
+    if (accion === "prepararComida") {
+      const comida = obtenerComidaTaberna(body.comidaId);
+      if (!comida) {
+        return NextResponse.json({ error: "La comida seleccionada no existe." }, { status: 400 });
       }
 
       const actualizado = await prisma.$transaction(async (tx) => {
-        const expedicion = await tx.expedicionActiva.findUnique({
-          where: { usuarioId: usuario.id },
-          select: { id: true },
+        const usuario = await tx.usuario.findUnique({
+          where: { id: usuarioSesion.id },
+          include: {
+            personaje: true,
+            expedicionActiva: true,
+          },
         });
-        if (expedicion) throw new Error("EXPEDICION_ACTIVA");
+
+        if (!usuario?.personaje) throw new Error("PERSONAJE_NO_ENCONTRADO");
+        if (usuario.expedicionActiva || usuario.personaje.estado === "de_viaje" || usuario.personaje.estado === "combatiendo") {
+          throw new Error("EXPEDICION_ACTIVA");
+        }
+
+        const edificios =
+          usuario.edificios && typeof usuario.edificios === "object" && !Array.isArray(usuario.edificios)
+            ? (usuario.edificios as Record<string, unknown>)
+            : {};
+        if (typeof edificios.taberna !== "number" || edificios.taberna <= 0) {
+          throw new Error("TABERNA_NO_CONSTRUIDA");
+        }
+        if (usuario.personaje.comidaPreparada) throw new Error("COMIDA_YA_PREPARADA");
 
         const personajeActualizado = await tx.personaje.updateMany({
           where: {
             usuarioId: usuario.id,
-            hpActual: personaje.hpActual,
-            estado: { not: "de_viaje" },
+            comidaPreparada: null,
           },
-          data: { hpActual: { increment: hpCurado }, estado: "ocioso" },
+          data: { comidaPreparada: comida.id },
         });
-        if (personajeActualizado.count !== 1) {
-          throw new Error("PERSONAJE_CAMBIO");
-        }
+        if (personajeActualizado.count !== 1) throw new Error("COMIDA_YA_PREPARADA");
 
         const oroActualizado = await tx.usuario.updateMany({
-          where: { id: usuario.id, oro: { gte: coste } },
-          data: { oro: { decrement: coste } },
+          where: { id: usuario.id, oro: { gte: comida.coste } },
+          data: { oro: { decrement: comida.coste } },
         });
         if (oroActualizado.count !== 1) throw new Error("ORO_INSUFICIENTE");
 
@@ -275,7 +245,7 @@ export async function POST(request: Request) {
           where: { id: usuario.id },
           include: includeGameData,
         });
-      });
+      }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
 
       return NextResponse.json(respuestaUsuario(actualizado));
     }
@@ -456,6 +426,18 @@ export async function POST(request: Request) {
           { error: "No puedes realizar esta acción mientras tienes una expedición activa." },
           { status: 409 }
         );
+      }
+      if (error.message === "PERSONAJE_NO_ENCONTRADO") {
+        return NextResponse.json({ error: "Necesitas un personaje." }, { status: 400 });
+      }
+      if (error.message === "COMIDA_YA_PREPARADA") {
+        return NextResponse.json(
+          { error: "Ya tienes una comida preparada para tu próxima expedición de combate." },
+          { status: 409 }
+        );
+      }
+      if (error.message === "TABERNA_NO_CONSTRUIDA") {
+        return NextResponse.json({ error: "Necesitas tener una taberna construida." }, { status: 400 });
       }
       if (error.message === "USUARIO_NO_ENCONTRADO") {
         return NextResponse.json({ error: "Usuario no encontrado." }, { status: 404 });
