@@ -169,7 +169,7 @@ export default function EscuelaCombatePage() {
               <div className="grid grid-cols-2 gap-3 sm:min-w-[300px]">
                 <div className="rounded-lg border border-[#4c3b27] bg-[#191612] p-3">
                   <p className="text-[11px] uppercase tracking-wider text-[#91816a]">Nivel de Job</p>
-                  <p className="mt-1 text-2xl font-bold text-amber-200">{nivelJob}</p>
+                  <p className="mt-1 text-2xl font-bold text-amber-200">{nivelJob} / {CLASES[profesionId]?.nivelJobMaximo ?? 10}</p>
                 </div>
                 <div className="rounded-lg border border-[#4c3b27] bg-[#191612] p-3">
                   <p className="text-[11px] uppercase tracking-wider text-[#91816a]">Puntos disponibles</p>
@@ -181,7 +181,7 @@ export default function EscuelaCombatePage() {
 
         {error && <div role="alert" className="mb-5 rounded-lg border border-red-800 bg-red-950/40 p-4 text-sm text-red-200">{error}</div>}
 
-        {vista === "profesiones" ? <PanelProfesiones integrado /> : vista === "aprender" ? (
+        {vista === "profesiones" ? <PanelProfesiones integrado onProfessionChanged={recargarHabilidades} /> : vista === "aprender" ? (
           <section>
             <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
               <div>
