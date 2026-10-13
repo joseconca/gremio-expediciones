@@ -135,6 +135,9 @@ export async function GET() {
       },
       ultimaVenta: usuario.personaje.inventario?.ultimaVenta ?? null,
       oro: usuario.oro,
+      madera: usuario.madera,
+      piedra: usuario.piedra,
+      metal: usuario.metal,
     });
   } catch (error) {
     console.error("Error al obtener objetos:", error);
