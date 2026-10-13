@@ -38,16 +38,20 @@ import {
   siguienteTurnoAsedio,
   finalizarAsedio,
 } from "@/lib/expediciones/asedio";
-import type { DefinicionHabilidad, RecompensaMision } from "@/lib/tiposJuego";
+import type { DefinicionHabilidad, RecompensaMision, EstadoEfectoHabilidad } from "@/lib/tiposJuego";
+import {
+  leerEfectosCombate,
+  procesarEfectosTurno,
+  procesarTicksPeriodicos,
+  avanzarEfectosCombate,
+  calcularAtaqueModificado,
+  calcularPrecisionModificada,
+  calcularEvasionModificada,
+} from "@/lib/expediciones/estados-combate";
 
 type AccionCombate = "atacar" | "usar_habilidad" | "usar_objeto";
 
-type EfectoCombate = {
-  habilidadId: string;
-  tipo: "bonus_defensa";
-  valor: number;
-  turnosRestantes: number;
-};
+type EfectoCombate = EstadoEfectoHabilidad;
 
 
 async function otorgarExperienciaJob(
@@ -279,58 +283,22 @@ function reducirCooldowns(
 }
 
 function obtenerEfectos(valor: unknown): EfectoCombate[] {
-  if (!Array.isArray(valor)) {
-    return [];
-  }
-
-  return valor.filter((efecto): efecto is EfectoCombate => {
-    if (!efecto || typeof efecto !== "object") {
-      return false;
-    }
-
-    const registro = efecto as Record<string, unknown>;
-
-    return (
-      typeof registro.habilidadId === "string" &&
-      registro.tipo === "bonus_defensa" &&
-      typeof registro.valor === "number" &&
-      typeof registro.turnosRestantes === "number" &&
-      registro.turnosRestantes > 0
-    );
-  });
+  return leerEfectosCombate(valor);
 }
 
 function actualizarEfectosAlInicioTurnoJugador(
   efectos: EfectoCombate[],
-  defensaActual: number
+  hpActual: number,
+  hpMaximo: number,
+  defensaActual: number,
+  nombreObjetivo: string,
 ): {
   efectos: EfectoCombate[];
+  hp: number;
   defensa: number;
+  mensajes: string[];
 } {
-  let defensa = defensaActual;
-  const nuevosEfectos: EfectoCombate[] = [];
-
-  for (const efecto of efectos) {
-    const turnosRestantes = efecto.turnosRestantes - 1;
-
-    if (turnosRestantes > 0) {
-      nuevosEfectos.push({
-        ...efecto,
-        turnosRestantes,
-      });
-
-      continue;
-    }
-
-    if (efecto.tipo === "bonus_defensa") {
-      defensa = Math.max(0, defensa - efecto.valor);
-    }
-  }
-
-  return {
-    efectos: nuevosEfectos,
-    defensa,
-  };
+  return procesarEfectosTurno(efectos, hpActual, hpMaximo, defensaActual, nombreObjetivo);
 }
 
 export async function POST(request: Request) {
