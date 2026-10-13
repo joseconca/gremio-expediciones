@@ -19,9 +19,9 @@ function loadSource(relativePath, dependencies = {}) {
   return loadedModule.exports;
 }
 
-const travelContract = loadSource("src/shared/travel.ts");
-const worldContract = loadSource("src/shared/world.ts");
-const villageContract = loadSource("src/shared/village.ts");
+const travelContract = loadSource("src/newGame/shared/travel.ts");
+const worldContract = loadSource("src/newGame/shared/world.ts");
+const villageContract = loadSource("src/newGame/shared/village.ts");
 const { BASE_RETURN_LOCATION, EXTERIOR_HOME_POSITION, CART_SPEED, MIN_TRIP_DURATION_MS, interpolateJourney } = travelContract;
 const NOW = 1_800_000_000_000;
 const exterior = (x = 1000, y = 2000) => ({ sceneId: "exterior-world", x, y, direction: "left" });
@@ -84,19 +84,19 @@ function harness(initial = player()) {
       return operation;
     },
   };
-  const http = loadSource("src/lib/mundo/http.ts", {
+  const http = loadSource("src/newGame/server/mundo/http.ts", {
     "@/lib/prisma": { prisma },
     "@/lib/auth": { async getAuthenticatedUser() { return authenticated; } },
   });
-  const travel = loadSource("src/lib/mundo/travel.ts", { "./http": http, "@/shared/travel": travelContract,
+  const travel = loadSource("src/newGame/server/mundo/travel.ts", { "./http": http, "@/shared/travel": travelContract,
     "@/shared/village": villageContract, "@/shared/world": worldContract });
-  const jugador = loadSource("src/lib/mundo/jugador.ts", {
+  const jugador = loadSource("src/newGame/server/mundo/jugador.ts", {
     "@/lib/prisma": { prisma }, "@/shared/world": worldContract,
     "./http": http, "./travel": travel,
     "./geo": { boundingBox: () => ({ minLat: 0, maxLat: 90 }), longitudeFilter: () => ({}) },
   });
   const route = loadSource("src/app/api/mundo/jugador/route.ts", {
-    "@/lib/mundo/http": http, "@/lib/mundo/jugador": jugador, "@/lib/mundo/travel": travel,
+    "@/newGame/server/mundo/http": http, "@/newGame/server/mundo/jugador": jugador, "@/newGame/server/mundo/travel": travel,
   });
   return {
     ...travel, ...jugador, route, writes,

@@ -21,13 +21,13 @@ function loadSource(relativePath, dependencies = {}) {
 }
 
 const NOW = 1_800_000_000_000;
-const contract = loadSource("src/shared/expeditions.ts");
-const combat = loadSource("src/shared/combat.ts");
-const world = loadSource("src/shared/world.ts");
-const enemyCatalog = loadSource("src/shared/enemies.ts");
-const geo = loadSource("src/lib/mundo/geo.ts", { "@/lib/utils": loadSource("src/lib/utils.ts") });
-const content = loadSource("src/lib/mundo/expeditionContent.ts");
-const worldPosition = loadSource("src/shared/worldPosition.ts");
+const contract = loadSource("src/newGame/shared/expeditions.ts");
+const combat = loadSource("src/newGame/shared/combat.ts");
+const world = loadSource("src/newGame/shared/world.ts");
+const enemyCatalog = loadSource("src/newGame/shared/enemies.ts");
+const geo = loadSource("src/newGame/server/mundo/geo.ts", { "@/lib/utils": loadSource("src/lib/utils.ts") });
+const content = loadSource("src/newGame/server/mundo/expeditionContent.ts");
+const worldPosition = loadSource("src/newGame/shared/worldPosition.ts");
 function player(name = "propio", lat = 40, lng = -3, embassy = true) {
   const id = randomUUID();
   const usuarioId = randomUUID();
@@ -231,24 +231,24 @@ function harness(initial = player(), others = []) {
       return operation;
     },
   };
-  const http = loadSource("src/lib/mundo/http.ts", {
+  const http = loadSource("src/newGame/server/mundo/http.ts", {
     "@/lib/prisma": { prisma }, "@/lib/auth": { async getAuthenticatedUser() { return authenticated; } },
   });
-  const jugador = loadSource("src/lib/mundo/jugador.ts", {
+  const jugador = loadSource("src/newGame/server/mundo/jugador.ts", {
     "@/lib/prisma": { prisma }, "@/shared/world": world, "./geo": geo, "./http": http,
     "./travel": { loadMobility() { throw new Error("Expeditions must not call mobility or sync"); } },
   });
-  const rules = loadSource("src/lib/mundo/expeditionRules.ts", { "./geo": geo, "./http": http, "./expeditionContent": content,
+  const rules = loadSource("src/newGame/server/mundo/expeditionRules.ts", { "./geo": geo, "./http": http, "./expeditionContent": content,
     "@/shared/enemies": enemyCatalog, "@/shared/combat": combat });
-  const service = loadSource("src/lib/mundo/expeditions.ts", {
+  const service = loadSource("src/newGame/server/mundo/expeditions.ts", {
     "./geo": geo, "./http": http, "./jugador": jugador, "./expeditionRules": rules, "@/shared/combat": combat,
   });
-  const worldCombat = loadSource("src/lib/mundo/worldCombat.ts", {
+  const worldCombat = loadSource("src/newGame/server/mundo/worldCombat.ts", {
     "./geo": geo, "./http": http, "./expeditionRules": rules, "./jugador": jugador,
     "@/shared/enemies": enemyCatalog, "@/shared/combat": combat, "@/shared/worldPosition": worldPosition,
   });
   const route = loadSource("src/app/api/mundo/expediciones/route.ts", {
-    "@/lib/mundo/http": http, "@/lib/mundo/expeditions": service,
+    "@/newGame/server/mundo/http": http, "@/newGame/server/mundo/expeditions": service,
   });
   return {
     ...service, ...worldCombat, rules, route, progressToken: jugador.progressToken, initial,
