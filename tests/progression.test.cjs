@@ -82,21 +82,22 @@ test("Escuela: muestra siempre las habilidades de la profesión y hereda las ram
     assert.ok(cruzado.includes(habilidadId), `El Cruzado debe ver ${habilidadId}`);
   }
 
-  const genericas = cruzado.filter((habilidadId) => [
-    "golpe_poderoso",
-    "golpe_preciso",
-    "defensa_ferrea",
-    "curacion",
-    "segundo_aire",
-    "ataque_devastador",
-    "piel_dura",
-    "veterano",
-    "precision",
-    "corredor",
-    "vitalidad",
-    "sed_de_batalla",
-  ].includes(habilidadId));
-  assert.ok(genericas.length <= 4, "Las ofertas genéricas siguen rotando a diario");
+  const catalogo = require("../src/lib/habilidades.ts").HABILIDADES;
+  assert.equal(catalogo.length, 49);
+  assert.ok(catalogo.every((habilidad) => Boolean(habilidad.claseId)), "Todas las habilidades pertenecen a una profesión");
+  assert.ok(!cruzado.some((habilidadId) => [
+    "golpe_poderoso", "golpe_preciso", "defensa_ferrea", "curacion",
+    "segundo_aire", "ataque_devastador", "piel_dura", "veterano",
+    "precision", "corredor", "vitalidad", "sed_de_batalla",
+  ].includes(habilidadId)), "Las habilidades globales antiguas no deben reaparecer");
+  assert.ok(cruzado.includes("rejuvenecer"), "El Cruzado debe heredar las habilidades del Acólito");
+  assert.ok(cruzado.includes("primeros_auxilios"), "Las clases avanzadas deben heredar habilidades de Novato");
+  const { HABILIDADES } = require("../src/lib/habilidades.ts");
+  const guardia = HABILIDADES.find((habilidad) => habilidad.id === "guardia_improvisada");
+  assert.equal(guardia.duracionTurnos, 4);
+  assert.equal(guardia.cooldownTurnos, 4);
+  assert.equal(HABILIDADES.find((habilidad) => habilidad.id === "primeros_auxilios").curacionPorcentaje, 0.15);
+  assert.equal(HABILIDADES.find((habilidad) => habilidad.id === "rejuvenecer").curacionProgresivaPorcentaje, 0.08);
 });
 
 test("atributos principales generan estadísticas derivadas y valores acotados", () => {
