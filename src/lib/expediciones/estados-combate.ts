@@ -64,6 +64,25 @@ export function avanzarEfectosCombate(
   return { efectos: nuevos, defensa, mensajes };
 }
 
+/** Reaplicar una misma habilidad renueva sus estados en vez de apilarlos. */
+export function retirarEfectosHabilidad(
+  efectos: readonly EstadoEfectoHabilidad[],
+  habilidadId: string,
+  defensaActual: number,
+): { efectos: EstadoEfectoHabilidad[]; defensa: number } {
+  let defensa = defensaActual;
+  const restantes: EstadoEfectoHabilidad[] = [];
+  for (const efecto of efectos) {
+    if (efecto.habilidadId !== habilidadId) {
+      restantes.push(efecto);
+      continue;
+    }
+    if (efecto.tipo === "bonus_defensa") defensa = Math.max(0, defensa - efecto.valor);
+    if (efecto.tipo === "debuff_defensa") defensa = Math.max(0, defensa + efecto.valor);
+  }
+  return { efectos: restantes, defensa };
+}
+
 /** Los efectos periódicos se procesan al comienzo del turno de quien los sufre. */
 export function procesarEfectosTurno(
   efectos: readonly EstadoEfectoHabilidad[],
