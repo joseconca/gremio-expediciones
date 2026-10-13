@@ -8,6 +8,7 @@ const {
   puedeUsarHabilidadDeClase, evaluarDesbloqueoClase, calcularBonificacionesDominioEquipo, obtenerClasesVisibles,
 } = require("../src/lib/progresion/clases.ts");
 const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas.ts");
+const { calcularEstadisticasPersonaje } = require("../src/lib/estadisticasPersonaje.ts");
 const { calcularAtributosClase } = require("../src/lib/progresion/atributos-clase.ts");
 const { mapearBonificacionesEquipoRpg } = require("../src/lib/progresion/bonificaciones-equipo.ts");
 const { aplicarExperienciaJob, experienciaJobParaNivel } = require("../src/lib/progresion/experiencia.ts");
@@ -115,6 +116,40 @@ test("Escuela: muestra siempre las habilidades de la profesión y hereda las ram
   assert.equal(rejuvenecer.cooldownTurnos, 4);
   assert.equal(rejuvenecer.duracionTurnos, 3);
   assert.equal(rejuvenecer.curacionProgresivaPorcentaje, 0.08);
+});
+
+test("el desglose de estadísticas separa base fija, atributos y redondeos", () => {
+  const desglose = calcularEstadisticasPersonaje({
+    clase: "Novato",
+    profesionActivaId: "novato",
+    nivel: 1,
+    nivelJob: 1,
+    fuerza: 1,
+    agilidad: 1,
+    vitalidad: 1,
+    inteligencia: 1,
+    destreza: 1,
+    suerte: 1,
+    velocidadMejoras: 0,
+    capacidadCarruajeMejoras: 0,
+  });
+
+  assert.equal(desglose.baseSinAtributos.hpMaximo, 55);
+  assert.equal(desglose.atributos.vitalidad.hpMaximo, 10);
+  assert.equal(desglose.base.hpMaximo, 65);
+
+  assert.equal(desglose.baseSinAtributos.ataque, 3);
+  assert.equal(desglose.atributos.fuerza.ataque, 2);
+  assert.equal(desglose.atributos.destreza.ataque, 0.5);
+  assert.equal(desglose.base.ataque, 5);
+  assert.equal(
+    desglose.base.ataque -
+      desglose.baseSinAtributos.ataque -
+      desglose.atributos.fuerza.ataque -
+      desglose.atributos.destreza.ataque,
+    -0.5,
+    "El desglose conserva el ajuste del redondeo aplicado por la fórmula original",
+  );
 });
 
 test("atributos principales generan estadísticas derivadas y valores acotados", () => {
