@@ -4,15 +4,15 @@ Los valores de oro por hora de este documento son **estimaciones brutas y nomina
 
 ## Expediciones de combate
 
-Las recompensas base son 50, 90, 250, 700 y 1.800 de oro para misiones de 0,5, 1, 3, 9 y 24 horas. La variación de la recompensa está entre el 0 y el 20 %, con media matemática del 10 % sobre la base.
+Las recompensas base son 50, 90, 250, 700 y 1.800 de oro para misiones de 0,5, 1, 3, 9 y 24 horas. El generador suma `floor(rng × recompensaBase × 0,2)`: la media matemática exacta para estos múltiplos de 5 es base + `(floor(base × 0,2) − 1) / 2`, medio oro inferior a la aproximación simplificada del 10 %.
 
 | Duración nominal | Oro medio de la misión | Oro medio bruto por hora |
 |---:|---:|---:|
-| 30 minutos | 55 | 110 |
-| 1 hora | 99 | 99 |
-| 3 horas | 275 | 91,7 |
-| 9 horas | 770 | 85,6 |
-| 24 horas | 1.980 | 82,5 |
+| 30 minutos | 54,5 | 109 |
+| 1 hora | 98,5 | 98,5 |
+| 3 horas | 274,5 | 91,5 |
+| 9 horas | 769,5 | 85,5 |
+| 24 horas | 1.979,5 | 82,48 |
 
 Esto no incluye el oro del enemigo ni el botín de equipo. Fácil aplica 0,85 al pago; Difícil aplica 1,25 y aumenta la fuerza del enemigo. La probabilidad de victoria no está fijada como un porcentaje por nivel: depende de las estadísticas y de la resolución del combate. En caso de derrota, el código conserva el 20 % de la recompensa de misión (ajustada por dificultad), pero no entrega el oro del enemigo ni un objeto de botín; la XP Base se reduce al 10 % de la recompensa de victoria.
 
@@ -22,9 +22,9 @@ La siguiente tabla usa el pago base medio, dificultad Normal y el porcentaje que
 
 | Duración | Victoria 50 % | Victoria 75 % | Victoria 90 % |
 |---:|---:|---:|---:|
-| 30 minutos | 66,0 oro/h | 88,0 oro/h | 101,2 oro/h |
-| 1 hora | 59,4 oro/h | 79,2 oro/h | 91,1 oro/h |
-| 3 horas | 55,0 oro/h | 73,3 oro/h | 84,3 oro/h |
+| 30 minutos | 65,4 oro/h | 87,2 oro/h | 100,3 oro/h |
+| 1 hora | 59,1 oro/h | 78,8 oro/h | 90,6 oro/h |
+| 3 horas | 54,9 oro/h | 73,2 oro/h | 84,2 oro/h |
 | 9 horas | 51,3 oro/h | 68,4 oro/h | 78,7 oro/h |
 | 24 horas | 49,5 oro/h | 66,0 oro/h | 75,9 oro/h |
 
@@ -32,13 +32,13 @@ La fórmula es `(recompensa media × [pVictoria + 0,2 × (1 − pVictoria)] × m
 
 ### Ejemplo concreto: misión corta contra una Rata Gigante
 
-Para mostrar cómo influyen los ingresos secundarios, uso una misión nominal de 30 minutos, recompensa base media de 55 de oro y la Rata Gigante de amenaza 1 (botín base 18). En una victoria se obtiene el pago de la misión más el oro del enemigo; en una derrota solo se asegura el 20 % del pago de misión. Se añade el valor esperado de reventa del botín común, suponiendo espacio de inventario y vendiéndolo por el 35 % del catálogo.
+Para mostrar cómo influyen los ingresos secundarios, uso una misión nominal de 30 minutos, recompensa base media de 54,5 de oro y la Rata Gigante de amenaza 1 (botín base 18). En una victoria se obtiene el pago de la misión más el oro del enemigo; en una derrota solo se asegura el 20 % del pago de misión. Se añade el valor esperado de reventa del botín común, suponiendo espacio de inventario y vendiéndolo por el 35 % del catálogo.
 
 | Escenario hipotético | Oro/h de misión y enemigo | Oro/h esperado de reventa de botín | Total esperado |
 |---|---:|---:|---:|
-| Fácil, 90 % de victoria | 113,56 | 8,94 | 122,50 |
-| Normal, 75 % de victoria | 115,00 | 7,45 | 122,45 |
-| Difícil, 55 % de victoria | 112,75 | 5,46 | 118,21 |
+| Fácil, 90 % de victoria | 112,78 | 8,94 | 121,71 |
+| Normal, 75 % de victoria | 114,20 | 7,45 | 121,65 |
+| Difícil, 55 % de victoria | 111,95 | 5,46 | 117,41 |
 
 Esta no es una simulación del éxito real ni un resultado garantizado: las probabilidades se han supuesto para el análisis, los pagos se redondean en el servidor y el valor de botín se materializa solo si cae un objeto y cabe en el inventario. El equipo equipado no se vende, pero aporta valor de progresión que esta tabla no monetiza.
 
@@ -48,9 +48,9 @@ Como las probabilidades de victoria dependen del combate concreto, no existe un 
 
 | Duración | Fácil (90 %) | Normal (75 %) | Difícil (55 %) |
 |---:|---:|---:|---:|
-| 30 minutos | 86,0 oro/h | 88,0 oro/h | 88,0 oro/h |
-| 1 hora | 77,4 oro/h | 79,2 oro/h | 79,2 oro/h |
-| 3 horas | 71,7 oro/h | 73,3 oro/h | 73,3 oro/h |
+| 30 minutos | 85,2 oro/h | 87,2 oro/h | 87,2 oro/h |
+| 1 hora | 77,0 oro/h | 78,8 oro/h | 78,8 oro/h |
+| 3 horas | 71,6 oro/h | 73,2 oro/h | 73,2 oro/h |
 | 9 horas | 66,9 oro/h | 68,4 oro/h | 68,4 oro/h |
 | 24 horas | 64,5 oro/h | 66,0 oro/h | 66,0 oro/h |
 
