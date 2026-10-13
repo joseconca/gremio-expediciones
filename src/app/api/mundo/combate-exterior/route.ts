@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { MundoError, readJson, requireUsuario } from "@/lib/mundo/http";
-import { mutateWorldCombat } from "@/lib/mundo/worldCombat";
+import { MundoError, readJson, requireUsuario } from "@/newGame/server/mundo/http";
+import { mutateWorldCombat } from "@/newGame/server/mundo/worldCombat";
 import type { WorldCombatResult, WorldCombatSnapshotDto } from "@/shared/worldCombat";
 
 export const dynamic = "force-dynamic";

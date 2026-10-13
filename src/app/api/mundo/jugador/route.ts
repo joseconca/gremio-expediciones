@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { handleMundoRoute, readJson, requireUsuario } from "@/lib/mundo/http";
-import { createPlayer, loadSession } from "@/lib/mundo/jugador";
-import { mutateMobility } from "@/lib/mundo/travel";
+import { handleMundoRoute, readJson, requireUsuario } from "@/newGame/server/mundo/http";
+import { createPlayer, loadSession } from "@/newGame/server/mundo/jugador";
+import { mutateMobility } from "@/newGame/server/mundo/travel";
 
 export const dynamic = "force-dynamic";
 

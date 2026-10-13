@@ -1,26 +1,26 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 require("./load-typescript.cjs");
-const { PlayerProgression } = require("../src/game/gameplay/PlayerProgression.ts");
-const { VillageProgression } = require("../src/game/gameplay/VillageProgression.ts");
-const { PartyManager } = require("../src/game/gameplay/PartyManager.ts");
-const { createEmbajadorDialogue } = require("../src/game/data/dialogues/embajador.ts");
-const { KeyboardInput } = require("../src/game/input/KeyboardInput.ts");
-const { InputManager } = require("../src/game/input/InputManager.ts");
-const { CombatManager } = require("../src/game/gameplay/CombatManager.ts");
-const { RemotePlayer } = require("../src/game/entities/Characters/RemotePlayer.ts");
-const { OverworldEncounterSpawner } = require("../src/game/systems/OverworldEncounterSpawner.ts");
-const { OverworldMonster } = require("../src/game/entities/Characters/OverworldMonster.ts");
-const { worldPositionToGeographic } = require("../src/shared/worldPosition.ts");
-const { enemyLevelRange, enemyDifficultyColor } = require("../src/shared/enemies.ts");
-const { ENEMY_TURN_DELAY_MS, ATTACK_ANIMATION_MS } = require("../src/shared/combat.ts");
-const { geographicToWorldPoint, isInsideWorldMap } = require("../src/game/world/WorldLocation.ts");
-const { ExpeditionManager } = require("../src/game/gameplay/ExpeditionManager.ts");
-const { WorldCombatManager } = require("../src/game/gameplay/WorldCombatManager.ts");
+const { PlayerProgression } = require("../src/newGame/game/gameplay/PlayerProgression.ts");
+const { VillageProgression } = require("../src/newGame/game/gameplay/VillageProgression.ts");
+const { PartyManager } = require("../src/newGame/game/gameplay/PartyManager.ts");
+const { createEmbajadorDialogue } = require("../src/newGame/game/data/dialogues/embajador.ts");
+const { KeyboardInput } = require("../src/newGame/game/input/KeyboardInput.ts");
+const { InputManager } = require("../src/newGame/game/input/InputManager.ts");
+const { CombatManager } = require("../src/newGame/game/gameplay/CombatManager.ts");
+const { RemotePlayer } = require("../src/newGame/game/entities/Characters/RemotePlayer.ts");
+const { OverworldEncounterSpawner } = require("../src/newGame/game/systems/OverworldEncounterSpawner.ts");
+const { OverworldMonster } = require("../src/newGame/game/entities/Characters/OverworldMonster.ts");
+const { worldPositionToGeographic } = require("../src/newGame/shared/worldPosition.ts");
+const { enemyLevelRange, enemyDifficultyColor } = require("../src/newGame/shared/enemies.ts");
+const { ENEMY_TURN_DELAY_MS, ATTACK_ANIMATION_MS } = require("../src/newGame/shared/combat.ts");
+const { geographicToWorldPoint, isInsideWorldMap } = require("../src/newGame/game/world/WorldLocation.ts");
+const { ExpeditionManager } = require("../src/newGame/game/gameplay/ExpeditionManager.ts");
+const { WorldCombatManager } = require("../src/newGame/game/gameplay/WorldCombatManager.ts");
 const { worldGateway, loadSession } = require("../src/services/worldGateway.ts");
-const { MISSION_BOARD_POSITION } = require("../src/game/entities/MissionBoard.ts");
-const { createRequestId } = require("../src/game/core/requestId.ts");
-const { expeditionCombatSnapshot } = require("../src/game/gameplay/expeditionCombat.ts");
+const { MISSION_BOARD_POSITION } = require("../src/newGame/game/entities/MissionBoard.ts");
+const { createRequestId } = require("../src/newGame/game/core/requestId.ts");
+const { expeditionCombatSnapshot } = require("../src/newGame/game/gameplay/expeditionCombat.ts");
 
 const yieldMicrotasks = () => new Promise((resolve) => setImmediate(resolve));
 test("session lookup rejects empty/malformed successful HTTP responses without crashing or onboarding", async () => {
@@ -268,7 +268,7 @@ function localCombatFixture(enemyAttributes = {}, clock = () => 10_000) {
   const village = new VillageProgression();
   const combat = new CombatManager(player, village, clock);
   const enemy = {
-    id: "turn-test", name: "Araña de prueba", sprite: "/sprites/enemies/arana.png",
+    id: "turn-test", name: "Araña de prueba", sprite: "/newGame/sprites/enemies/arana.png",
     experienceReward: 5, goldReward: 2,
     attributes: { ...player.getState().attributes, currentHealth: 100, maxHealth: 100, ...enemyAttributes },
   };
@@ -447,7 +447,7 @@ test("party supports only supplied living members, rotates alive attackers and k
   const member = { id: "companion", name: "Compañera", isLocalPlayer: false,
     spriteSrc: "/provided.png", attributes: { ...player.getState().attributes, physicalAttack: 20, speed: 100 } };
   assert.equal(combat.getSnapshot().party.length, 1);
-  assert.equal(combat.getSnapshot().party[0].spriteSrc, "/sprites/sheets/characters/hero.png");
+  assert.equal(combat.getSnapshot().party[0].spriteSrc, "/newGame/sprites/sheets/characters/hero.png");
   assert.equal(combat.addPartyMember({ ...member, attributes: { ...member.attributes, currentHealth: 0 } }), false);
   assert.equal(combat.addPartyMember({ ...member, attributes: { ...member.attributes, currentHealth: NaN } }), false);
   assert.equal(combat.addPartyMember({ ...member, isLocalPlayer: true }), false);
@@ -459,7 +459,7 @@ test("party supports only supplied living members, rotates alive attackers and k
   assert.equal(combat.getSnapshot().enemyTurnAt, 11_000);
   assert.equal(combat.getSnapshot().turn, "enemy");
   assert.equal(combat.getSnapshot().party[1].spriteSrc, "/provided.png");
-  assert.equal(combat.getSnapshot().party[2].spriteSrc, "/sprites/sheets/characters/hero.png");
+  assert.equal(combat.getSnapshot().party[2].spriteSrc, "/newGame/sprites/sheets/characters/hero.png");
   member.attributes.physicalAttack = 999;
   combat.update(399);
   assert.equal(player.getState().attributes.currentHealth, 40);
@@ -560,7 +560,7 @@ test("expedition battle automatically opens the common combat view and commands 
   const requests = [];
   const fixture = expeditionFixture();
   const active = { id: "trip", phase: "battle", version: 2,
-    enemy: { name: "Araña de cristal", sprite: "/sprites/enemies/arana.png", level: 3, attack: 2, defense: 0, maxHealth: 18 },
+    enemy: { name: "Araña de cristal", sprite: "/newGame/sprites/enemies/arana.png", level: 3, attack: 2, defense: 0, maxHealth: 18 },
     enemyHealth: 18, playerHealth: 40, playerMaxHealth: 100, outcome: null, log: "Encuentro.",
     mission: { gold: 27, experience: 34 } };
   const manager = new ExpeditionManager({ async expedition(request) {
@@ -598,7 +598,7 @@ test("expedition battle automatically opens the common combat view and commands 
 
 test("old expeditions still project into common overlay without enemy level or loot", () => {
   const data = { ...expeditionFixture(), active: { id: "old", phase: "returning", version: 3, outcome: "fled",
-    enemy: { name: "Araña", sprite: "/sprites/enemies/arana.png", attack: 1, defense: 0, maxHealth: 14 },
+    enemy: { name: "Araña", sprite: "/newGame/sprites/enemies/arana.png", attack: 1, defense: 0, maxHealth: 14 },
     enemyHealth: 6, playerHealth: 39, playerMaxHealth: 100, log: "Retirada", mission: { gold: 20, experience: 25 } } };
   assert.equal(expeditionCombatSnapshot(data).phase, "fled");
   assert.equal(expeditionCombatSnapshot(data).enemy.name, "Araña");
@@ -610,14 +610,14 @@ test("old expeditions still project into common overlay without enemy level or l
 test("expedition adapter forwards initiative, speeds and confirmed animation metadata", () => {
   const action = { id: 3, actor: "enemy", kind: "attack", damage: 4, at: 1000 };
   const data = { ...expeditionFixture(), active: { id: "trip", phase: "battle", version: 3,
-    enemy: { name: "Araña", sprite: "/sprites/enemies/arana.png", speed: 8, attack: 7, defense: 0, maxHealth: 20 },
+    enemy: { name: "Araña", sprite: "/newGame/sprites/enemies/arana.png", speed: 8, attack: 7, defense: 0, maxHealth: 20 },
     enemyHealth: 15, playerHealth: 36, playerMaxHealth: 100, log: "Ataque enemigo",
     mission: { gold: 20, experience: 25 }, playerSpeed: 5, turn: "enemy", enemyTurnAt: 2000, lastAction: action } };
   const view = expeditionCombatSnapshot(data);
   assert.equal(view.turn, "enemy");
   assert.equal(view.enemy.attributes.speed, 8);
   assert.equal(view.party[0].attributes.speed, 5);
-  assert.equal(view.party[0].spriteSrc, "/sprites/sheets/characters/hero.png");
+  assert.equal(view.party[0].spriteSrc, "/newGame/sprites/sheets/characters/hero.png");
   assert.strictEqual(view.lastAction, action);
   assert.equal(view.enemyTurnAt, 2000);
 });
@@ -750,7 +750,7 @@ test("dynamic enemy spawner follows the player, applies party-size level bounds,
 });
 
 test("exterior scene creates initial monsters around the spawn, not as fixed base-relative encounter sites", () => {
-  const source = require("node:fs").readFileSync(require("node:path").resolve(__dirname, "../src/game/scenes/ExteriorWorldScene.ts"), "utf8");
+  const source = require("node:fs").readFileSync(require("node:path").resolve(__dirname, "../src/newGame/game/scenes/ExteriorWorldScene.ts"), "utf8");
   assert.match(source, /this\.encounterSpawner\.update\(2,\s*\{\s*x: initialFeet\.x, y: initialFeet\.y/);
   assert.match(source, /this\.encounterSpawner\.update\(deltaTime,\s*\{\s*x: feet\.x, y: feet\.y/);
   assert.doesNotMatch(source, /this\.homePoint\.x \+ Math\.cos\(angle\) \* radius/);
@@ -761,7 +761,7 @@ test("exterior battle manager polls every four seconds, shares snapshot and only
   const profile = { id: "local", name: "Local", sex: "chico", characterClass: "Novato", level: 3,
     experience: 0, gold: 100, currentHealth: 30, maxHealth: 100 };
   const active = { id: "encounter", phase: "battle", outcome: null,
-    enemy: { id: "slime_acido", level: 3, speed: 2, name: "Slime", sprite: "/sprites/enemies/slime_acido.png",
+    enemy: { id: "slime_acido", level: 3, speed: 2, name: "Slime", sprite: "/newGame/sprites/enemies/slime_acido.png",
       maxHealth: 50, attack: 8, defense: 3, experienceReward: 15, goldReward: 5 },
     enemyHealth: 50, turn: "player", actingMemberId: "other", nextActorId: "other", enemyTurnAt: null,
     version: 4, lastAction: null, log: "Combate compartido", rewardGranted: false,

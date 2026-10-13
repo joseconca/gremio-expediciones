@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { handleMundoRoute, readJson, requireJugador, withWorldLock } from "@/lib/mundo/http";
-import { syncProgress } from "@/lib/mundo/jugador";
-import { getPartySnapshot } from "@/lib/mundo/party";
+import { handleMundoRoute, readJson, requireJugador, withWorldLock } from "@/newGame/server/mundo/http";
+import { syncProgress } from "@/newGame/server/mundo/jugador";
+import { getPartySnapshot } from "@/newGame/server/mundo/party";
 
 /** One round trip per tick: persist reported progress, return the party view. */
 export function POST(request: Request) {

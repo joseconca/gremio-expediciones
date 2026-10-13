@@ -1,25 +1,25 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 require("./load-typescript.cjs");
-const { VillageProgression } = require("../src/game/gameplay/VillageProgression.ts");
-const { calculateVillageExteriorGates } = require("../src/game/gameplay/VillageGateLayout.ts");
-const { DayNightSystem } = require("../src/game/lighting/DayNightSystem.ts");
-const { getShadowVector } = require("../src/game/lighting/DirectionalLight.ts");
-const { SpriteShadowRenderer, shadowSpriteGroundPoint } = require("../src/game/lighting/SpriteShadowRenderer.ts");
-const { Building } = require("../src/game/entities/Building.ts");
-const { townHallDefinitions } = require("../src/game/data/buildings/townHall.ts");
-const { Animator } = require("../src/game/rendering/Animator.ts");
-const { SpriteSheet } = require("../src/game/rendering/SpriteSheet.ts");
-const { GroundProjection } = require("../src/game/rendering/GroundProjection.ts");
-const { BaseScene } = require("../src/game/scenes/BaseScene.ts");
-const { PlayerProgression } = require("../src/game/gameplay/PlayerProgression.ts");
-const { calculateVillageBounds } = require("../src/shared/village.ts");
-const { createVillageMap } = require("../src/game/data/base/baseMap.ts");
-const { createVillageCollision } = require("../src/game/data/base/baseCollision.ts");
-const { CollisionMap } = require("../src/game/world/CollisionMap.ts");
-const { TileMap } = require("../src/game/world/TileMap.ts");
-const { tavernDefinition } = require("../src/game/data/buildings/tavern.ts");
-const { constructibleBuildings } = require("../src/game/data/buildings/constructibleBuildings.ts");
+const { VillageProgression } = require("../src/newGame/game/gameplay/VillageProgression.ts");
+const { calculateVillageExteriorGates } = require("../src/newGame/game/gameplay/VillageGateLayout.ts");
+const { DayNightSystem } = require("../src/newGame/game/lighting/DayNightSystem.ts");
+const { getShadowVector } = require("../src/newGame/game/lighting/DirectionalLight.ts");
+const { SpriteShadowRenderer, shadowSpriteGroundPoint } = require("../src/newGame/game/lighting/SpriteShadowRenderer.ts");
+const { Building } = require("../src/newGame/game/entities/Building.ts");
+const { townHallDefinitions } = require("../src/newGame/game/data/buildings/townHall.ts");
+const { Animator } = require("../src/newGame/game/rendering/Animator.ts");
+const { SpriteSheet } = require("../src/newGame/game/rendering/SpriteSheet.ts");
+const { GroundProjection } = require("../src/newGame/game/rendering/GroundProjection.ts");
+const { BaseScene } = require("../src/newGame/game/scenes/BaseScene.ts");
+const { PlayerProgression } = require("../src/newGame/game/gameplay/PlayerProgression.ts");
+const { calculateVillageBounds } = require("../src/newGame/shared/village.ts");
+const { createVillageMap } = require("../src/newGame/game/data/base/baseMap.ts");
+const { createVillageCollision } = require("../src/newGame/game/data/base/baseCollision.ts");
+const { CollisionMap } = require("../src/newGame/game/world/CollisionMap.ts");
+const { TileMap } = require("../src/newGame/game/world/TileMap.ts");
+const { tavernDefinition } = require("../src/newGame/game/data/buildings/tavern.ts");
+const { constructibleBuildings } = require("../src/newGame/game/data/buildings/constructibleBuildings.ts");
 
 test("224 px spacing and symmetric tile steps for odd/even rows; works include their future slot", () => {
   // Synthetic counts exercise the future layout without extending today's building catalogue.

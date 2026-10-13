@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { MundoError, readJson, requireUsuario } from "@/lib/mundo/http";
-import { loadExpeditions, mutateExpeditions } from "@/lib/mundo/expeditions";
+import { MundoError, readJson, requireUsuario } from "@/newGame/server/mundo/http";
+import { loadExpeditions, mutateExpeditions } from "@/newGame/server/mundo/expeditions";
 import type { ExpeditionResult, ExpeditionSnapshotDto } from "@/shared/expeditions";
 
 export const dynamic = "force-dynamic";

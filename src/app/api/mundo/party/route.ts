@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { handleMundoRoute, MundoError, readJson, requireJugador } from "@/lib/mundo/http";
-import { invitePlayer, leaveParty, respondToInvitation } from "@/lib/mundo/party";
+import { handleMundoRoute, MundoError, readJson, requireJugador } from "@/newGame/server/mundo/http";
+import { invitePlayer, leaveParty, respondToInvitation } from "@/newGame/server/mundo/party";
 
 export function POST(request: Request) {
   return handleMundoRoute(async () => {

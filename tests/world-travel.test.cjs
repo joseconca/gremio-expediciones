@@ -1,11 +1,11 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 require("./load-typescript.cjs");
-const { MobilityManager } = require("../src/game/gameplay/MobilityManager.ts");
-const { MenuManager } = require("../src/game/gameplay/MenuManager.ts");
-const { RETURN_CART_ANIMATIONS } = require("../src/game/entities/ReturnCart.ts");
-const { BASE_RETURN_LOCATION, interpolateJourney } = require("../src/shared/travel.ts");
-const { LightingSystem } = require("../src/game/lighting/LightingSystem.ts");
+const { MobilityManager } = require("../src/newGame/game/gameplay/MobilityManager.ts");
+const { MenuManager } = require("../src/newGame/game/gameplay/MenuManager.ts");
+const { RETURN_CART_ANIMATIONS } = require("../src/newGame/game/entities/ReturnCart.ts");
+const { BASE_RETURN_LOCATION, interpolateJourney } = require("../src/newGame/shared/travel.ts");
+const { LightingSystem } = require("../src/newGame/game/lighting/LightingSystem.ts");
 const yieldMicrotasks = () => new Promise((resolve) => setImmediate(resolve));
 const initial = (location = BASE_RETURN_LOCATION) => ({ revision: 0, location, journey: null, serverNow: 1000 });
 

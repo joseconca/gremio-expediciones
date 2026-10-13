@@ -6,20 +6,20 @@ const vm = require("node:vm");
 const ts = require("typescript");
 const { randomUUID } = require("node:crypto");
 require("./load-typescript.cjs");
-const contracts = require("../src/shared/equipment.ts");
-const world = require("../src/shared/world.ts");
-const { VillageProgression } = require("../src/game/gameplay/VillageProgression.ts");
-const { EquipmentManager } = require("../src/game/gameplay/EquipmentManager.ts");
-const { PartyManager } = require("../src/game/gameplay/PartyManager.ts");
-const { PlayerProgression } = require("../src/game/gameplay/PlayerProgression.ts");
-const { EquipmentInteriorScene } = require("../src/game/scenes/EquipmentInteriorScene.ts");
-const { InputManager } = require("../src/game/input/InputManager.ts");
-const { DialogueManager } = require("../src/game/dialogue/DialogueManager.ts");
-const { calculateVillageBounds } = require("../src/shared/village.ts");
-const { equipmentBuilding } = require("../src/game/data/buildings/armory.ts");
-const { BaseScene } = require("../src/game/scenes/BaseScene.ts");
-const { TownHallInteriorScene } = require("../src/game/scenes/TownHallInteriorScene.ts");
-const { createAlcaldeDialogue } = require("../src/game/data/dialogues/alcalde.ts");
+const contracts = require("../src/newGame/shared/equipment.ts");
+const world = require("../src/newGame/shared/world.ts");
+const { VillageProgression } = require("../src/newGame/game/gameplay/VillageProgression.ts");
+const { EquipmentManager } = require("../src/newGame/game/gameplay/EquipmentManager.ts");
+const { PartyManager } = require("../src/newGame/game/gameplay/PartyManager.ts");
+const { PlayerProgression } = require("../src/newGame/game/gameplay/PlayerProgression.ts");
+const { EquipmentInteriorScene } = require("../src/newGame/game/scenes/EquipmentInteriorScene.ts");
+const { InputManager } = require("../src/newGame/game/input/InputManager.ts");
+const { DialogueManager } = require("../src/newGame/game/dialogue/DialogueManager.ts");
+const { calculateVillageBounds } = require("../src/newGame/shared/village.ts");
+const { equipmentBuilding } = require("../src/newGame/game/data/buildings/armory.ts");
+const { BaseScene } = require("../src/newGame/game/scenes/BaseScene.ts");
+const { TownHallInteriorScene } = require("../src/newGame/game/scenes/TownHallInteriorScene.ts");
+const { createAlcaldeDialogue } = require("../src/newGame/game/data/dialogues/alcalde.ts");
 const { worldGateway } = require("../src/services/worldGateway.ts");
 
 function load(file, deps) {
@@ -60,8 +60,8 @@ function harness() {
     queue = operation.catch(() => {});
     return operation;
   } };
-  const jugador = load("src/lib/mundo/jugador.ts", { "@/lib/prisma": {}, "@/shared/world": world, "./geo": {}, "./http": http, "./travel": {} });
-  const api = load("src/lib/mundo/equipment.ts", { "@/shared/equipment": contracts, "@/shared/world": world, "./http": http, "./jugador": jugador });
+  const jugador = load("src/newGame/server/mundo/jugador.ts", { "@/lib/prisma": {}, "@/shared/world": world, "./geo": {}, "./http": http, "./travel": {} });
+  const api = load("src/newGame/server/mundo/equipment.ts", { "@/shared/equipment": contracts, "@/shared/world": world, "./http": http, "./jugador": jugador });
   return {
     api, jugador, get: () => structuredClone(p), change: (change) => Object.assign(p, change),
     active: () => { active = true; }, fail: () => { fail = true; },
@@ -77,7 +77,7 @@ test("equipment catalog uses only real PNGs, legacy prices and upgrade formula",
     assert.equal(contracts.equipmentUpgradeCost(item.price, 2), item.price * 15);
   }
   for (const name of ["armeria", "herreria", "armeria-herreria"]) {
-    const png = fs.readFileSync(path.join(__dirname, `../public/sprites/buildings/${name}.png`));
+    const png = fs.readFileSync(path.join(__dirname, `../public/newGame/sprites/buildings/${name}.png`));
     assert.equal(png.readUInt32BE(16), 128); assert.equal(png.readUInt32BE(20), 64);
   }
 });
@@ -153,7 +153,7 @@ test("smithy construction requires finished armory, uses annex slot, preserves e
   assert.deepEqual(new VillageProgression(v.getSavedBuildings()).getBuildingPlacements(), v.getBuildingPlacements());
   const bounds = calculateVillageBounds(3);
   assert.ok(v.getBuildingPlacements().every((b) => b.x >= bounds.minX && b.x + 128 <= bounds.maxX));
-  assert.equal(equipmentBuilding("armory", true).sprite.src, "/sprites/buildings/armeria-herreria.png");
+  assert.equal(equipmentBuilding("armory", true).sprite.src, "/newGame/sprites/buildings/armeria-herreria.png");
 });
 
 function sceneConfig(village) {
@@ -291,7 +291,7 @@ test("authoritative equipment adoption keeps construction completed during reque
 test("shop React presentation renders catalog, only owned upgrades, persisted levels and pending retry access", () => {
   const React = require("react");
   const { renderToStaticMarkup } = require("react-dom/server");
-  const { default: EquipmentShop } = load("src/components/game/EquipmentShop.tsx", { "@/shared/equipment": contracts });
+  const { default: EquipmentShop } = load("src/newGame/components/game/EquipmentShop.tsx", { "@/shared/equipment": contracts });
   const snapshot = { open: true, mode: "armory", busy: false, pending: false, error: null, message: null, items: [] };
   const render = (state) => renderToStaticMarkup(React.createElement(EquipmentShop, { manager: {}, snapshot: state, gold: 2000 }));
   const catalog = render(snapshot);

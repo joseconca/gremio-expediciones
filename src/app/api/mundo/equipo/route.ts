@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { equipmentAction } from "@/lib/mundo/equipment";
-import { handleMundoRoute, readJson, requireUsuario } from "@/lib/mundo/http";
+import { equipmentAction } from "@/newGame/server/mundo/equipment";
+import { handleMundoRoute, readJson, requireUsuario } from "@/newGame/server/mundo/http";
 
 export const dynamic = "force-dynamic";
 export function GET() {

@@ -1,14 +1,14 @@
 require("./load-typescript.cjs");
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { battleHeroSprite: sprite } = require("../src/game/data/battleSprites.ts");
-const { heroAnimations } = require("../src/game/data/heroAnimations.ts");
+const { battleHeroSprite: sprite } = require("../src/newGame/game/data/battleSprites.ts");
+const { heroAnimations } = require("../src/newGame/game/data/heroAnimations.ts");
 const fs = require("node:fs");
 const path = require("node:path");
 const ts = require("typescript");
 
 test("battle hero uses the existing sheet and right-facing rows", () => {
-  assert.equal(sprite.src, "/sprites/sheets/characters/hero.png");
+  assert.equal(sprite.src, "/newGame/sprites/sheets/characters/hero.png");
   assert.equal(sprite.frameWidth, 32);
   assert.equal(sprite.frameHeight, 64);
   assert.equal(sprite.columns, 4);
@@ -34,7 +34,7 @@ test("battle animation timing and steps are derived from hero animations", () =>
 });
 
 test("battle motion and damage siblings have distinct keys for repeated attacks on both sides", () => {
-  const filename = path.resolve(__dirname, "../src/components/game/BattleOverlay.tsx");
+  const filename = path.resolve(__dirname, "../src/newGame/components/game/BattleOverlay.tsx");
   const source = fs.readFileSync(filename, "utf8");
   const { outputText } = ts.transpileModule(source, {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX },
