@@ -415,6 +415,15 @@ export async function prepararAccionCombate(
   tipoEsperado?: "pve" | "pvp",
 ): Promise<NextResponse | { contexto: ContextoAccionCombate }> {
   try {
+    const usuarioSesion = await getAuthenticatedUser();
+
+    if (!usuarioSesion) {
+      return NextResponse.json({ error: "Sesión requerida." }, { status: 401 });
+    }
+
+    let bodyJson: unknown;
+
+    try {
       bodyJson = await request.json();
     } catch {
       return NextResponse.json(
@@ -783,6 +792,7 @@ export async function prepararAccionCombate(
       ? [...(combate.log as string[])]
       : [];
 
+    let accionAnimada: AccionAnimadaCombate;
     let consumible: { id: string; nombre: string; curacion: number; inventarioObjetoId: string } | null = null;
 
     // Si se vuelve a usar la misma habilidad, retira sus efectos anteriores antes
