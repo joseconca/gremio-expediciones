@@ -143,8 +143,8 @@ export default function PanelMisiones({
   ];
 
   return (
-    <div className="mb-8 overflow-hidden rounded-lg border-2 border-amber-950/80 bg-[#4a2f1b] shadow-[0_8px_24px_rgba(0,0,0,0.4)]">
-      <div className="relative p-6">
+    <div className="mb-4 overflow-hidden rounded-lg border-2 border-amber-950/80 bg-[#4a2f1b] shadow-[0_8px_24px_rgba(0,0,0,0.4)] sm:mb-8">
+      <div className="relative p-3 sm:p-6">
         {/* Clavos decorativos */}
         <span className="absolute left-3 top-2 h-3 w-3 rounded-full bg-slate-400 shadow-inner" />
         <span className="absolute right-3 top-2 h-3 w-3 rounded-full bg-slate-400 shadow-inner" />
@@ -171,15 +171,15 @@ export default function PanelMisiones({
         </div>
 
         <div className="relative">
-          <div className="mb-5 flex items-center gap-3">
-            <h2 className="text-xl font-black uppercase tracking-[0.15em] text-amber-100">
+          <div className="mb-3 flex items-center gap-3 sm:mb-5">
+            <h2 className="text-base font-black uppercase tracking-[0.1em] text-amber-100 sm:text-xl sm:tracking-[0.15em]">
               Contratos disponibles
             </h2>
           </div>
 
           {/* AVENTURERO OCIOSO */}
           {personaje.estado === "ocioso" && (
-            <div className="flex flex-col items-center justify-between gap-6 rounded-md border border-amber-950/80 bg-[#21170f]/80 p-4">
+            <div className="flex flex-col items-stretch justify-between gap-3 rounded-md border border-amber-950/80 bg-[#21170f]/80 p-3 sm:items-center sm:gap-6 sm:p-4">
               <div>
                 <p className="mt-1 text-sm font-semibold text-amber-100/60">
                   Revisa el mapa para encontrar un nuevo contrato
@@ -188,7 +188,7 @@ export default function PanelMisiones({
 
               <Link
                 href="/expediciones"
-                className="group relative flex items-center overflow-hidden rounded-[3px] border border-amber-950/80 bg-[#e8dcc4] px-6 py-2.5 font-bold text-amber-950 shadow-[inset_0_2px_12px_rgba(139,69,19,0.65)]"
+                className="group relative flex min-h-11 items-center justify-center overflow-hidden rounded-[3px] border border-amber-950/80 bg-[#e8dcc4] px-5 py-2.5 font-bold text-amber-950 shadow-[inset_0_2px_12px_rgba(139,69,19,0.65)] sm:px-6"
               >
                 <span>Ver mapa</span>
               </Link>
@@ -197,7 +197,7 @@ export default function PanelMisiones({
 
           {/* AVENTURERO DE VIAJE */}
           {personaje.estado === "de_viaje" && expedicionActiva && (
-            <div className="relative rounded-lg border border-slate-700 bg-slate-900/50 p-4 transition-colors hover:border-amber-500/50">
+            <div className="relative rounded-lg border border-slate-700 bg-slate-900/50 p-3 transition-colors hover:border-amber-500/50 sm:p-4">
               <div
                 className="flex cursor-pointer flex-col items-center justify-between gap-4 md:flex-row"
                 onClick={onToggleExpedicion}
@@ -236,7 +236,7 @@ export default function PanelMisiones({
                       event.stopPropagation();
                       onResolverLlegada();
                     }}
-                    className="animate-pulse rounded-lg bg-emerald-600 px-6 py-2 font-bold text-white hover:bg-emerald-500"
+                    className="min-h-11 animate-pulse rounded-lg bg-emerald-600 px-3 py-2 text-sm font-bold text-white hover:bg-emerald-500 sm:px-6 sm:text-base"
                   >
                     {expedicionActiva.fase === "regresando"
                       ? "🏠 Recibir al aventurero"
@@ -247,7 +247,7 @@ export default function PanelMisiones({
                       : "⚔️ Enfrentarse al enemigo"}
                   </button>
                 ) : (
-                  <div className="rounded-lg border border-slate-800 bg-slate-950 px-4 py-2 text-center font-mono text-2xl text-slate-300">
+                  <div className="rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-center font-mono text-xl text-slate-300 sm:px-4 sm:text-2xl">
                     ⏳ {formatoTiempo(tiempoRestante)}
                   </div>
                 )}
@@ -265,7 +265,7 @@ export default function PanelMisiones({
                   className="mt-4 overflow-hidden rounded-lg border border-slate-700 bg-slate-900"
                   onClick={(event) => event.stopPropagation()}
                 >
-                  <div className="h-[360px] w-full">
+                  <div className="h-[280px] w-full sm:h-[360px]">
                     <MissionMap
                       baseCoords={baseCoords!}
                       misiones={[]}
@@ -295,7 +295,7 @@ export default function PanelMisiones({
                       <button
                         type="button"
                         onClick={onConfirmarRegreso}
-                        className="w-full rounded-lg border border-red-900/60 bg-red-950/40 px-4 py-2.5 text-sm font-bold text-red-300 transition hover:bg-red-900/50 hover:text-red-200"
+                        className="min-h-11 w-full rounded-lg border border-red-900/60 bg-red-950/40 px-3 py-2.5 text-sm font-bold text-red-300 transition hover:bg-red-900/50 hover:text-red-200 sm:px-4"
                       >
                         ↩️ Regresar de inmediato
                       </button>
