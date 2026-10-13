@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+import { actualizarCombateVersionado } from "@/lib/expediciones/actualizar-combate-versionado";
 import {
   calcularBonusDefensaMuralla,
   resolverAtaqueJugador,
@@ -19,6 +20,7 @@ import {
   calcularPrecisionModificada,
   calcularEvasionModificada,
 } from "../../../lib/expediciones/estados-combate";
+import { normalizarActorHabilidadDefensor, distribuirEfectosHabilidadPvp } from "@/lib/expediciones/contrato-accion-combate";
 import {
   prepararAccionCombate,
   manejarErrorAccionCombate,
@@ -168,10 +170,9 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
 
         enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
 
-        for (const estado of resultadoHabilidad.efectos) {
-          if (estado.objetivo === "enemigo") efectosDefensor = [...efectosDefensor, estado];
-          else efectos = [...efectos, estado];
-        }
+        const efectosRepartidos = distribuirEfectosHabilidadPvp(resultadoHabilidad.efectos, "atacante");
+        efectos = [...efectos, ...efectosRepartidos.efectosAtacante];
+        efectosDefensor = [...efectosDefensor, ...efectosRepartidos.efectosDefensor];
         if (resultadoHabilidad.efectosJugadorActualizados) efectos = resultadoHabilidad.efectosJugadorActualizados;
 
 
@@ -232,7 +233,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
 
         // En PvP, el resolver compartido etiqueta como "jugador" al atacante.
         // Al resolver la habilidad del defensor, traducimos el actor real.
-        accionAnimada = { ...resultadoHabilidad.accion, actor: "enemigo" };
+        accionAnimada = normalizarActorHabilidadDefensor(resultadoHabilidad.accion);
 
         enemigoHp = resultadoHabilidad.jugadorHp;
         enemigoDefensa = resultadoHabilidad.jugadorDefensa;
@@ -240,10 +241,9 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
 
         jugadorHp = Math.max(0, jugadorHp - accionAnimada.dano);
 
-        for (const estado of resultadoHabilidad.efectos) {
-          if (estado.objetivo === "enemigo") efectos = [...efectos, estado];
-          else efectosDefensor = [...efectosDefensor, estado];
-        }
+        const efectosRepartidos = distribuirEfectosHabilidadPvp(resultadoHabilidad.efectos, "defensor");
+        efectos = [...efectos, ...efectosRepartidos.efectosAtacante];
+        efectosDefensor = [...efectosDefensor, ...efectosRepartidos.efectosDefensor];
         if (resultadoHabilidad.efectosJugadorActualizados) efectosDefensor = resultadoHabilidad.efectosJugadorActualizados;
 
 
@@ -385,37 +385,20 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
         siguienteTurno === "atacante" ? atacanteUsuarioId : defensorUsuarioId;
       await regenerarRecursosPorTurno(tx, siguienteUsuarioId);
 
-      const actualizado = await tx.combateActivo.updateMany({
-        where: {
-          id: combate.id,
-          version: combate.version,
-        },
-        data: {
-          jugadorHp,
-          enemigoHp,
-          jugadorDefensa,
-          enemigoDefensa,
-          ronda: siguienteRonda,
-          turno: siguienteTurno,
-          cooldowns,
-          efectos: efectos as unknown as Prisma.InputJsonValue,
-          cooldownsDefensor,
-          efectosDefensor: efectosDefensor as unknown as Prisma.InputJsonValue,
-          ultimoTurnoEn: new Date(),
-          log,
-          ultimaAccion: accionAnimada,
-          version: {
-            increment: 1,
-          },
-        },
-      });
-
-      if (actualizado.count !== 1) {
-        throw new Error("COMBATE_MODIFICADO");
-      }
-
-      return tx.combateActivo.findUniqueOrThrow({
-        where: { id: combate.id },
+      return actualizarCombateVersionado(tx, combate.id, combate.version, {
+        jugadorHp,
+        enemigoHp,
+        jugadorDefensa,
+        enemigoDefensa,
+        ronda: siguienteRonda,
+        turno: siguienteTurno,
+        cooldowns,
+        efectos: efectos as unknown as Prisma.InputJsonValue,
+        cooldownsDefensor,
+        efectosDefensor: efectosDefensor as unknown as Prisma.InputJsonValue,
+        ultimoTurnoEn: new Date(),
+        log,
+        ultimaAccion: accionAnimada,
       });
     });
 

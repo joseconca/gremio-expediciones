@@ -69,3 +69,26 @@ export function validarTurnoAccionCombate(input: {
   }
   return { valido: true, actor: input.turno };
 }
+
+
+/** Traduce la perspectiva interna compartida al actor real del defensor PvP. */
+export function normalizarActorHabilidadDefensor<T extends { actor: unknown }>(
+  accion: T,
+): Omit<T, "actor"> & { actor: "enemigo" } {
+  return { ...accion, actor: "enemigo" };
+}
+
+/** Distribuye los efectos según el participante real que los recibe. */
+export function distribuirEfectosHabilidadPvp<T extends { objetivo?: string }>(
+  efectos: T[],
+  actor: "atacante" | "defensor",
+): { efectosAtacante: T[]; efectosDefensor: T[] } {
+  const efectosAtacante: T[] = [];
+  const efectosDefensor: T[] = [];
+  for (const efecto of efectos) {
+    const objetivoPropio = efecto.objetivo !== "enemigo";
+    const afectaAtacante = actor === "atacante" ? objetivoPropio : !objetivoPropio;
+    (afectaAtacante ? efectosAtacante : efectosDefensor).push(efecto);
+  }
+  return { efectosAtacante, efectosDefensor };
+}
