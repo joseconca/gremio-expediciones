@@ -775,7 +775,10 @@ function makeExpeditionRoutes({ authenticated = true, initialUser = null } = {})
 }
 
 function makeInvalidBodyRoute(relativePath) {
-  const route = loadSource(relativePath, {
+  const rutaPrueba = relativePath === "src/app/api/combate/accion/route.ts"
+    ? "src/server/services/combate/accion-combate.ts"
+    : relativePath;
+  const route = loadSource(rutaPrueba, {
     "next/server": { NextResponse },
     "@prisma/client": { Prisma: PrismaStub },
     "@/lib/auth": { getAuthenticatedUser: async () => ({ id: "u1" }) },
