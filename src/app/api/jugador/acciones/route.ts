@@ -220,7 +220,7 @@ export async function POST(request: Request) {
       const personaje = await sincronizarRegeneracion(usuario.personaje);
       const estadisticas = calcularEstadisticasPersonaje(
         personaje,
-        personaje.habilidades?.map((habilidad) => habilidad.habilidadId) ?? []
+        personaje.habilidades?.filter((habilidad) => habilidad.slot !== null).map((habilidad) => habilidad.habilidadId) ?? []
       );
       const hpMaximo = estadisticas.total.hpMaximo;
 
