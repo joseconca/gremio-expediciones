@@ -189,7 +189,7 @@ function nombreTipoObjeto(objeto: DefinicionObjeto): string {
       case "guantes": return "Guantes";
       case "collar": return "Collar";
       case "anillo": return "Anillo";
-      case "arma": return objeto.manos === 2 ? "Arma a dos manos" : "Arma";
+      case "arma": return "Arma";
       case "armadura": return "Armadura";
     }
   }
