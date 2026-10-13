@@ -9,6 +9,7 @@ const {
   calcularAtaqueModificado,
   calcularPrecisionModificada,
   calcularEvasionModificada,
+  retirarEfectosHabilidad,
 } = require("../src/lib/expediciones/estados-combate.ts");
 
 test("curación progresiva aplica un pulso sin superar la vida máxima", () => {
@@ -65,4 +66,16 @@ test("al expirar los bonus defensivos se restaura la defensa y los debuffs se re
   const resultado = avanzarEfectosCombate(efectos, 18);
   assert.equal(resultado.defensa, 15);
   assert.equal(resultado.efectos.length, 0);
+});
+
+test("reutilizar una habilidad retira sus efectos previos y revierte cambios defensivos", () => {
+  const efectos = [
+    { habilidadId: "guardia_improvisada", tipo: "bonus_defensa", valor: 8, duracionTurnos: 4, turnosRestantes: 2, objetivo: "jugador" },
+    { habilidadId: "guardia_improvisada", tipo: "curacion_progresiva", valor: 5, duracionTurnos: 2, turnosRestantes: 1, objetivo: "jugador" },
+    { habilidadId: "rejuvenecer", tipo: "curacion_progresiva", valor: 7, duracionTurnos: 3, turnosRestantes: 2, objetivo: "jugador" },
+  ];
+  const resultado = retirarEfectosHabilidad(efectos, "guardia_improvisada", 18);
+  assert.equal(resultado.defensa, 10);
+  assert.equal(resultado.efectos.length, 1);
+  assert.equal(resultado.efectos[0].habilidadId, "rejuvenecer");
 });
