@@ -50,10 +50,11 @@ export async function GET() {
 
     return NextResponse.json({
       combate: resultado.combate,
-      rolUsuario:
-        resultado.combate.atacanteUsuarioId === usuario.id
+      rolUsuario: resultado.combate
+        ? resultado.combate.atacanteUsuarioId === usuario.id
           ? "atacante"
-          : "defensor",
+          : "defensor"
+        : null,
       accion: resultado.accion ?? null,
       automatica: resultado.procesado,
       terminado: resultado.terminado ?? false,
