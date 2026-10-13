@@ -402,17 +402,17 @@ export default function ExpedicionesPage() {
     : false;
 
   return (
-    <main className="relative h-screen w-full bg-slate-900 overflow-hidden font-sans">
-      <header className="pointer-events-none absolute left-0 top-0 z-10 w-full p-4">
-        <div className="pointer-events-auto mx-auto flex max-w-4xl items-center justify-between gap-4">
+    <main className="relative h-screen h-[100dvh] w-full overflow-hidden bg-slate-900 font-sans">
+      <header className="pointer-events-none absolute left-0 top-0 z-10 w-full p-2 sm:p-4">
+        <div className="pointer-events-auto mx-auto flex max-w-4xl items-center justify-between gap-2 sm:gap-4">
           <Link
             href="/base"
-            className="rounded-md border border-slate-600/80 bg-slate-950/90 px-4 py-2 font-bold text-slate-200 shadow-lg backdrop-blur-sm transition-colors hover:border-amber-500/50 hover:text-amber-400"
+            className="shrink-0 rounded-md border border-slate-600/80 bg-slate-950/90 px-3 py-2 text-sm font-bold text-slate-200 shadow-lg backdrop-blur-sm transition-colors hover:border-amber-500/50 hover:text-amber-400 sm:px-4"
           >
             ← Volver
           </Link>
-          <div className="rounded-lg border border-amber-900/70 bg-[#3b2617]/95 px-5 py-2 shadow-[0_12px_24px_rgba(0,0,0,0.5)]">
-            <span className="font-black uppercase tracking-[0.15em] text-amber-100">
+          <div className="min-w-0 rounded-lg border border-amber-900/70 bg-[#3b2617]/95 px-2.5 py-2 text-center shadow-[0_12px_24px_rgba(0,0,0,0.5)] sm:px-5">
+            <span className="text-xs font-black uppercase tracking-[0.08em] text-amber-100 sm:text-base sm:tracking-[0.15em]">
               Mapa de contratos
             </span>
           </div>
@@ -450,8 +450,8 @@ export default function ExpedicionesPage() {
 
       {/* PANEL DE SELECCIÓN DE BASE */}
       {baseSeleccionada && !viajeIniciado && !misionSeleccionada && (
-        <div className="absolute bottom-10 left-0 z-20 w-full p-4 pointer-events-none">
-          <div className="pointer-events-auto relative mx-auto max-w-sm transform animate-in slide-in-from-bottom-10">
+        <div className="pointer-events-none fixed inset-x-0 bottom-0 z-20 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain px-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-1 sm:absolute sm:bottom-4 sm:max-h-[calc(100dvh-6rem)] sm:p-4 md:bottom-10">
+          <div className="pointer-events-auto relative mx-auto w-full max-w-sm transform animate-in slide-in-from-bottom-10">
             {/* Postes traseros de sujeción (decorativos) */}
             <div className="absolute -top-4 left-8 h-6 w-3 rounded-t-sm bg-[#3a2214] shadow-[inset_-1px_0_3px_rgba(0,0,0,0.6)]"></div>
             <div className="absolute -top-4 right-8 h-6 w-3 rounded-t-sm bg-[#3a2214] shadow-[inset_-1px_0_3px_rgba(0,0,0,0.6)]"></div>
@@ -469,7 +469,7 @@ export default function ExpedicionesPage() {
               <div className="pointer-events-none absolute left-0 top-2/3 w-full border-b border-[#362214] opacity-60 shadow-[0_1px_0_rgba(255,255,255,0.05)]"></div>
 
               {/* Contenido del Letrero */}
-              <div className="relative z-10 p-5">
+              <div className="relative z-10 p-3 sm:p-5">
                 {/* Botón Cerrar (Como un remache de hierro forjado) */}
                 <button
                   onClick={() => setBaseSeleccionada(null)}
@@ -479,17 +479,17 @@ export default function ExpedicionesPage() {
                 </button>
 
                 {/* Título: Tablilla superpuesta y hundida */}
-                <div className="mx-auto mb-4 w-11/12 rounded bg-[#3a2214] p-2 text-center shadow-[inset_0_3px_6px_rgba(0,0,0,0.6),0_1px_0_rgba(255,255,255,0.1)]">
+                <div className="mx-auto mb-3 w-11/12 rounded bg-[#3a2214] p-2 text-center shadow-[inset_0_3px_6px_rgba(0,0,0,0.6),0_1px_0_rgba(255,255,255,0.1)] sm:mb-4">
                   <span className="block text-[10px] font-bold uppercase tracking-[0.2em] text-[#a88265]">
                     Campamento Enemigo
                   </span>
-                  <h2 className="mt-0.5 text-xl font-black uppercase tracking-widest text-[#e8c39e] drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">
+                  <h2 className="mt-0.5 break-words text-lg font-black uppercase tracking-widest text-[#e8c39e] drop-shadow-[0_2px_2px_rgba(0,0,0,1)] sm:text-xl">
                     {baseSeleccionada.nombre}
                   </h2>
                 </div>
 
                 {/* Descripción */}
-                <p className="mb-5 px-2 text-center text-sm font-medium italic text-[#d4b494] drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                <p className="mb-3 px-1 text-center text-xs font-medium italic text-[#d4b494] drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] sm:mb-5 sm:px-2 sm:text-sm">
                   Has localizado las tierras de este gremio.
                 </p>
 
@@ -498,7 +498,7 @@ export default function ExpedicionesPage() {
                   {/* Asediar */}
                   <button
                     onClick={() => handleSeleccionarAccionBase("asedio")}
-                    className="group relative flex flex-1 flex-col items-center justify-center overflow-hidden rounded-sm border border-[#2a160b] bg-gradient-to-b from-[#4a2e1b] to-[#362013] p-3 shadow-[0_4px_6px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.05)] transition-all hover:-translate-y-0.5 hover:from-[#54341f] hover:to-[#3b2214] hover:shadow-[0_6px_8px_rgba(0,0,0,0.8)] active:translate-y-0 active:shadow-inner"
+                    className="group relative flex flex-1 flex-col items-center justify-center overflow-hidden rounded-sm border border-[#2a160b] bg-gradient-to-b from-[#4a2e1b] to-[#362013] p-2 shadow-[0_4px_6px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.05)] sm:p-3 transition-all hover:-translate-y-0.5 hover:from-[#54341f] hover:to-[#3b2214] hover:shadow-[0_6px_8px_rgba(0,0,0,0.8)] active:translate-y-0 active:shadow-inner"
                   >
                     <span className="mb-1 text-2xl opacity-80 saturate-50 sepia-[.3] transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 group-hover:saturate-100 group-hover:sepia-0 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
                       ⚔️
@@ -511,7 +511,7 @@ export default function ExpedicionesPage() {
                   {/* Comerciar */}
                   <button
                     onClick={() => handleSeleccionarAccionBase("comercio")}
-                    className="group relative flex flex-1 flex-col items-center justify-center overflow-hidden rounded-sm border border-[#2a160b] bg-gradient-to-b from-[#4a2e1b] to-[#362013] p-3 shadow-[0_4px_6px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.05)] transition-all hover:-translate-y-0.5 hover:from-[#54341f] hover:to-[#3b2214] hover:shadow-[0_6px_8px_rgba(0,0,0,0.8)] active:translate-y-0 active:shadow-inner"
+                    className="group relative flex flex-1 flex-col items-center justify-center overflow-hidden rounded-sm border border-[#2a160b] bg-gradient-to-b from-[#4a2e1b] to-[#362013] p-2 shadow-[0_4px_6px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.05)] sm:p-3 transition-all hover:-translate-y-0.5 hover:from-[#54341f] hover:to-[#3b2214] hover:shadow-[0_6px_8px_rgba(0,0,0,0.8)] active:translate-y-0 active:shadow-inner"
                   >
                     <span className="mb-1 text-2xl opacity-80 saturate-50 sepia-[.3] transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 group-hover:saturate-100 group-hover:sepia-0 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
                       🤝
@@ -529,9 +529,9 @@ export default function ExpedicionesPage() {
 
       {/* PANEL EXISTENTE: MISIONES PVE / CONFIRMACIÓN DE VIAJE */}
       {misionSeleccionada && !viajeIniciado && (
-        <div className="absolute bottom-10 left-0 z-20 w-full p-4 pointer-events-none">
+        <div className="pointer-events-none fixed inset-x-0 bottom-0 z-20 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain px-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-1 sm:absolute sm:bottom-4 sm:max-h-[calc(100dvh-6rem)] sm:p-4 md:bottom-10">
           <div
-            className={`pointer-events-auto mx-auto max-w-md transform rounded-xl border-2 p-4 shadow-3xl animate-in slide-in-from-bottom-10 ${
+            className={`pointer-events-auto mx-auto w-full max-w-md transform rounded-t-2xl border-2 p-3 shadow-3xl animate-in slide-in-from-bottom-10 sm:rounded-xl sm:p-4 ${
               misionSeleccionada.tipo === "elite"
                 ? "border-fuchsia-950/80 bg-[#1c1421] text-amber-100 shadow-[0_0_30px_rgba(168,85,247,0.15)]"
                 : "border-[#826747] bg-[#f4ebd0] text-[#2c221e] shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
@@ -542,7 +542,7 @@ export default function ExpedicionesPage() {
               <div className="min-w-0">
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                   <h2
-                    className={`text-2xl font-black uppercase tracking-wide ${
+                    className={`text-lg font-black uppercase tracking-wide sm:text-2xl ${
                       misionSeleccionada.tipo === "elite"
                         ? "text-fuchsia-400 drop-shadow-[0_0_8px_rgba(232,121,249,0.3)]"
                         : "text-[#4a2e18]"
@@ -590,7 +590,7 @@ export default function ExpedicionesPage() {
               }`}
             >
               <p
-                className={`text-sm italic ${
+                className={`line-clamp-2 text-xs italic sm:text-sm sm:line-clamp-none ${
                   misionSeleccionada.tipo === "elite"
                     ? "text-slate-400"
                     : "text-[#5e4838]"
@@ -606,16 +606,16 @@ export default function ExpedicionesPage() {
                 {(() => {
                   const indiceActual = RANGOS_AMENAZA.findIndex((rango) => rango.id === progresoAmenaza.rangoMaximo.id);
                   const siguiente = RANGOS_AMENAZA[indiceActual + 1];
-                  if (!siguiente) return <p className="mt-1">Último rango desbloqueado. Las amenazas seguirán escalando con el nivel Base.</p>;
+                  if (!siguiente) return <p className="mt-1 hidden sm:block">Último rango desbloqueado. Las amenazas seguirán escalando con el nivel Base.</p>;
                   const completados = Array.isArray(progresoAmenaza.rangosCompletados) ? progresoAmenaza.rangosCompletados : [];
                   const rangoAnteriorSuperado = completados.includes(progresoAmenaza.rangoMaximo.id);
-                  return <p className="mt-1">Para desbloquear el Rango {siguiente.id}: nivel Base {siguiente.nivelBaseMinimo}{rangoAnteriorSuperado ? "." : ` y una victoria en Normal dentro del Rango ${progresoAmenaza.rangoMaximo.id}.`}</p>;
+                  return <p className="mt-1 hidden sm:block">Para desbloquear el Rango {siguiente.id}: nivel Base {siguiente.nivelBaseMinimo}{rangoAnteriorSuperado ? "." : ` y una victoria en Normal dentro del Rango ${progresoAmenaza.rangoMaximo.id}.`}</p>;
                 })()}
               </div>
             )}
 
             {misionSeleccionada.tipo === "normal" || misionSeleccionada.tipo === "elite" ? (
-              <section className={`mb-4 rounded-lg border p-3 ${misionSeleccionada.tipo === "elite" ? "border-slate-700 bg-slate-950/40" : "border-[#d8ccb0] bg-[#eee2c5]"}`}>
+              <section className={`mb-3 rounded-lg border p-2.5 sm:mb-4 sm:p-3 ${misionSeleccionada.tipo === "elite" ? "border-slate-700 bg-slate-950/40" : "border-[#d8ccb0] bg-[#eee2c5]"}`}>
                 <p className={`mb-2 text-[11px] font-black uppercase tracking-wider ${misionSeleccionada.tipo === "elite" ? "text-slate-400" : "text-[#6e5642]"}`}>Dificultad del combate</p>
                 <div className="grid grid-cols-3 gap-2">
                   {([
@@ -631,7 +631,7 @@ export default function ExpedicionesPage() {
                         aria-pressed={activa}
                         title={opcion.ayuda}
                         onClick={() => setModoDificultad(opcion.id)}
-                        className={`rounded-md border px-2 py-2 text-center transition-colors ${activa
+                        className={`min-h-11 rounded-md border px-1.5 py-2 text-center transition-colors ${activa
                           ? misionSeleccionada.tipo === "elite"
                             ? "border-fuchsia-400 bg-fuchsia-900/60 text-white shadow-inner"
                             : "border-amber-800 bg-amber-200 text-amber-950 shadow-inner"
@@ -645,7 +645,7 @@ export default function ExpedicionesPage() {
                     );
                   })}
                 </div>
-                <p className={`mt-2 text-[11px] ${misionSeleccionada.tipo === "elite" ? "text-slate-400" : "text-[#6e5642]"}`}>
+                <p className={`mt-2 hidden text-[11px] sm:block ${misionSeleccionada.tipo === "elite" ? "text-slate-400" : "text-[#6e5642]"}`}>
                   {modoDificultad === "facil"
                     ? "El enemigo tendrá un 20 % menos de vida, 15 % menos de ataque y 10 % menos de defensa."
                     : modoDificultad === "dificil"
@@ -684,7 +684,7 @@ export default function ExpedicionesPage() {
               <button
                 onClick={handleEnviarExpedicion}
                 disabled={cargando || !personaje || sinVida}
-                className="relative flex h-24 w-24 shrink-0 flex-col items-center justify-center rounded-full border-4 border-[#7a1215] bg-gradient-to-br from-[#c92a2f] via-[#9b1c20] to-[#5c0b0e] shadow-[0_12px_30px_rgba(0,0,0,0.5),inset_0_8px_16px_rgba(255,255,255,0.2),inset_0_-4px_6px_rgba(0,0,0,0.6)] disabled:cursor-not-allowed disabled:opacity-50 sm:h-28 sm:w-28"
+                className="relative flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-full border-4 border-[#7a1215] sm:h-24 sm:w-24 md:h-28 md:w-28 bg-gradient-to-br from-[#c92a2f] via-[#9b1c20] to-[#5c0b0e] shadow-[0_12px_30px_rgba(0,0,0,0.5),inset_0_8px_16px_rgba(255,255,255,0.2),inset_0_-4px_6px_rgba(0,0,0,0.6)] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {cargando ? (
                   <span className="px-2 text-center text-xs font-bold text-red-200">
@@ -696,7 +696,7 @@ export default function ExpedicionesPage() {
                       Aceptar
                     </span>
 
-                    <span className="mt-0.5 px-2 text-center text-xs font-black uppercase tracking-widest text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                    <span className="mt-0.5 px-1 text-center text-[10px] font-black uppercase tracking-wider text-white sm:px-2 sm:text-xs sm:tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                       {misionSeleccionada.tipo === "comercio"
                         ? "Intercambio"
                         : misionSeleccionada.tipo === "asedio"
@@ -719,7 +719,7 @@ export default function ExpedicionesPage() {
 
             {/* 4. POSIBLES RECOMPENSAS / BOTÍN */}
             <div
-              className={`mt-4 rounded-lg border p-3 ${
+              className={`mt-3 rounded-lg border p-2.5 sm:mt-4 sm:p-3 ${
                 misionSeleccionada.tipo === "elite"
                   ? "border-slate-800 bg-slate-950/40"
                   : "border-[#d4c29c] bg-[#eaddc0]"
@@ -738,7 +738,7 @@ export default function ExpedicionesPage() {
               </span>
 
               {tieneRecompensas ? (
-                <div className="flex items-center justify-center gap-6">
+                <div className="flex items-center justify-center gap-4 sm:gap-6">
                   {misionSeleccionada.recompensa.oro > 0 && (
                     <div className="flex flex-col items-center">
                       <span className="text-lg">🪙</span>
@@ -789,12 +789,12 @@ export default function ExpedicionesPage() {
 
       {/* Pantalla de confirmación de viaje */}
       {viajeIniciado && reporteViaje && (
-        <div className="absolute inset-0 z-30 flex animate-in flex-col items-center justify-center bg-slate-900/95 p-6 text-center fade-in backdrop-blur">
-          <h2 className="mb-4 text-3xl font-bold text-amber-500">
+        <div className="absolute inset-0 z-30 flex animate-in flex-col items-center justify-center overflow-y-auto bg-slate-900/95 p-4 text-center fade-in backdrop-blur sm:p-6">
+          <h2 className="mb-3 text-2xl font-bold text-amber-500 sm:mb-4 sm:text-3xl">
             ¡Expedición en marcha!
           </h2>
 
-          <div className="mb-8 w-full max-w-sm rounded-xl border border-slate-700 bg-slate-800 p-6 shadow-xl">
+          <div className="mb-5 w-full max-w-sm rounded-xl border border-slate-700 bg-slate-800 p-4 shadow-xl sm:mb-8 sm:p-6">
             <p className="mb-4 text-slate-300">
               Tu personaje ha partido hacia{" "}
               <strong className="text-white">
