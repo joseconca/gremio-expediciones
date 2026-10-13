@@ -63,7 +63,10 @@ export type AportesPorAtributo = Record<
 >;
 
 export interface DesgloseEstadisticasPersonaje {
+  /** Base calculada (con los atributos aplicados y redondeada por el sistema). */
   base: ModificadoresEstadisticas;
+  /** Término fijo/nivel anterior a sumar los atributos principales. */
+  baseSinAtributos: ModificadoresEstadisticas;
   mejoras: ModificadoresEstadisticas;
   pasivas: ModificadoresEstadisticas;
   equipo: ModificadoresEstadisticas;
@@ -262,14 +265,8 @@ function obtenerEstadisticasBase(
     obtenerAtributosPrincipales(personaje),
     personaje.nivel
   );
-  const claseBaseLegada = (
-    personaje.clase === "Guerrero" ||
-    personaje.clase === "Explorador" ||
-    personaje.clase === "Comerciante"
-  ) && claseActualId === "novato";
-
   // Las cuentas antiguas conservan sus estadísticas físicas hasta que cambien de profesión.
-  if (claseBaseLegada || (!CLASES[claseActualId] && personaje.clase !== "Novato")) {
+  if (usaEstadisticasLegadas(personaje, claseActualId)) {
     const baseLegada = calcularEstadisticasBase(
       personaje.clase as "Guerrero" | "Explorador" | "Comerciante" | "Novato",
       personaje.nivel
@@ -314,6 +311,19 @@ function obtenerEstadisticasBase(
     regeneracionEnergiaPorTurno: derivadasRpg.regeneracionEnergiaPorTurno,
     regeneracionManaPorTurno: derivadasRpg.regeneracionManaPorTurno,
   };
+}
+
+function usaEstadisticasLegadas(
+  personaje: DatosPersonajeEstadisticas,
+  claseActualId: string
+): boolean {
+  const claseBaseLegada = (
+    personaje.clase === "Guerrero" ||
+    personaje.clase === "Explorador" ||
+    personaje.clase === "Comerciante"
+  ) && claseActualId === "novato";
+
+  return claseBaseLegada || (!CLASES[claseActualId] && personaje.clase !== "Novato");
 }
 
 function calcularAportesPorAtributo(
@@ -369,15 +379,7 @@ function calcularAportesPorAtributo(
     },
   };
 
-  const claseBaseLegada = (
-    personaje.clase === "Guerrero" ||
-    personaje.clase === "Explorador" ||
-    personaje.clase === "Comerciante"
-  ) && claseActualId === "novato";
-  const usaEstadisticasLegadas = claseBaseLegada ||
-    (!CLASES[claseActualId] && personaje.clase !== "Novato");
-
-  if (usaEstadisticasLegadas) {
+  if (usaEstadisticasLegadas(personaje, claseActualId)) {
     // En personajes legacy, vida/ataque/defensa/velocidad/crítico siguen
     // dependiendo de la fórmula antigua de clase y nivel, no de los atributos.
     for (const fuente of Object.values(aportes)) {
@@ -391,6 +393,52 @@ function calcularAportesPorAtributo(
   }
 
   return aportes;
+}
+
+function calcularBaseSinAtributos(
+  personaje: DatosPersonajeEstadisticas,
+  claseActualId: string,
+  baseCalculada: ModificadoresEstadisticas
+): ModificadoresEstadisticas {
+  const c = COEFICIENTES_ATRIBUTOS_RPG;
+  const nivel = Number.isFinite(personaje.nivel) ? Math.max(1, Math.floor(personaje.nivel)) : 1;
+
+  if (usaEstadisticasLegadas(personaje, claseActualId)) {
+    // Las estadísticas heredadas no dependen de atributos, pero las estadísticas
+    // mágicas y los recursos siguen usando las fórmulas del sistema RPG.
+    return {
+      ...baseCalculada,
+      ataqueMagico: c.ataqueMagicoBase,
+      defensaMagica: 0,
+      precision: c.precisionBase,
+      evasion: 0,
+      energiaMaxima: c.energiaBase,
+      manaMaximo: c.manaBase,
+      regeneracionVidaPorTurno: 0,
+      regeneracionEnergiaPorTurno: 0,
+      regeneracionManaPorTurno: 0,
+    };
+  }
+
+  const capacidadLegada = calcularEstadisticasBase("Novato", nivel);
+  return {
+    hpMaximo: c.vidaBase + (nivel - 1) * c.vidaPorNivelBase,
+    ataque: c.ataqueFisicoBase,
+    defensa: 0,
+    velocidad: c.velocidadBase,
+    capacidadCarruaje: capacidadLegada.capacidadCarruaje,
+    probCritico: c.criticoBase,
+    danoCritico: c.multiplicadorCriticoBase,
+    ataqueMagico: c.ataqueMagicoBase,
+    defensaMagica: 0,
+    precision: c.precisionBase,
+    evasion: 0,
+    energiaMaxima: c.energiaBase,
+    manaMaximo: c.manaBase,
+    regeneracionVidaPorTurno: 0,
+    regeneracionEnergiaPorTurno: 0,
+    regeneracionManaPorTurno: 0,
+  };
 }
 
 export function calcularEstadisticasPersonaje(
@@ -437,13 +485,17 @@ export function calcularEstadisticasPersonaje(
     regeneracionManaPorTurno: Math.max(0, totalSinRedondear.regeneracionManaPorTurno ?? 0),
   };
 
+  const atributos = calcularAportesPorAtributo(personaje, claseActualId);
+  const baseSinAtributos = calcularBaseSinAtributos(personaje, claseActualId, base);
+
   return {
     base,
+    baseSinAtributos,
     mejoras,
     pasivas,
     equipo,
     combate,
-    atributos: calcularAportesPorAtributo(personaje, claseActualId),
+    atributos,
     total,
   };
 }
