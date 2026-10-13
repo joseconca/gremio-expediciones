@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
+import { calcularPrecioVentaObjeto } from "@/lib/economia";
 import { useGameStore } from "@/store/useGameStore";
 import {
   calcularEstadisticasObjeto,
@@ -327,7 +328,7 @@ export default function HerreriaPage() {
   const venderObjeto = async (objetoInventarioId: string) => {
     const item = datos?.inventario.find((objeto) => objeto.id === objetoInventarioId);
     if (!item) return;
-    const valor = Math.max(1, Math.floor(item.objeto.precio * Math.max(1, item.cantidad) * 0.35));
+    const valor = calcularPrecioVentaObjeto(item.objeto.precio, item.cantidad);
     if (!window.confirm(`¿Vender ${item.objeto.nombre} por ${valor} de oro? Podrás recomprar únicamente la última venta, por un precio superior.`)) return;
 
     setProcesando(`vender:${objetoInventarioId}`);
