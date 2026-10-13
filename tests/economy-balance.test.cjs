@@ -88,6 +88,19 @@ test("la recompensa secundaria de botín de jefe tiene en cuenta probabilidad y 
   assert.ok(Math.abs(reventaMedia * jefe.probabilidadBotin - 1193.2) < 0.01);
 });
 
+test("el comercio ajusta el ingreso por hora a ida y vuelta y la probabilidad de éxito", () => {
+  const oroExitoso = calcularRecompensaComercio({
+    distanciaKm: 100, nivelPersonaje: 15, nivelMercado: 3,
+    afinidad: 100, capacidadCarruaje: 20, clase: "Comerciante",
+  });
+  const horasIdaVuelta = (100 * 2) / 8;
+  assert.equal(oroExitoso, 1936);
+  assert.equal(horasIdaVuelta, 25);
+  assert.ok(Math.abs((oroExitoso * 0.5) / horasIdaVuelta - 38.72) < 0.001);
+  assert.ok(Math.abs((oroExitoso * 0.75) / horasIdaVuelta - 58.08) < 0.001);
+  assert.ok(Math.abs((oroExitoso * 0.9) / horasIdaVuelta - 69.696) < 0.001);
+});
+
 test("el comercio usa recompensas limitadas y trata entradas no finitas de forma segura", () => {
   assert.equal(calcularOroBaseComercio(100), 800);
   assert.equal(calcularRecompensaComercio({
