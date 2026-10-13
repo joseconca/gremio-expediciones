@@ -8,6 +8,7 @@ import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import { useGameStore } from "@/store/useGameStore";
 import {
   calcularCosteMejoraObjeto,
+  calcularCosteRecursosMejora,
   calcularEstadisticasObjeto,
   obtenerSpriteObjeto,
 } from "@/lib/objetos";
@@ -26,6 +27,9 @@ interface DatosObjetos {
   inventario: ObjetoInventario[];
   equipo: EquipoPersonaje;
   oro: number;
+  madera: number;
+  piedra: number;
+  metal: number;
 }
 
 type TipoEquipamiento = "arma" | "armadura" | "accesorio";
@@ -169,7 +173,7 @@ function obtenerDiferenciasMejora(
 
 export default function HerreriaPage() {
   const router = useRouter();
-  const { personaje, edificios, oro, cargarJugador } = useGameStore();
+  const { personaje, edificios, oro, madera, piedra, metal, cargarJugador } = useGameStore();
 
   const armeria = edificios.armeria;
   const herreria = edificios.herreria;
@@ -491,6 +495,14 @@ export default function HerreriaPage() {
                           objeto.precio,
                           objetoInventario.nivelMejora
                         );
+                        const costeRecursos = calcularCosteRecursosMejora(
+                          objeto,
+                          objetoInventario.nivelMejora
+                        );
+                        const puedePagarRecursos =
+                          madera >= costeRecursos.madera &&
+                          piedra >= costeRecursos.piedra &&
+                          metal >= costeRecursos.metal;
 
                         const puedeMejorar = puedeSubirNivel && equipado;
 
@@ -628,24 +640,35 @@ export default function HerreriaPage() {
                                       void mejorarObjeto(objetoInventario.id)
                                     }
                                     disabled={
-                                      procesando !== null || oro < costeMejora
+                                      procesando !== null ||
+                                      oro < costeMejora ||
+                                      !puedePagarRecursos
                                     }
-                                    className={`flex h-11 w-full items-center justify-between rounded border-2 px-3 text-xs font-black transition-all ${
-                                      oro >= costeMejora
+                                    className={`flex min-h-14 w-full items-center justify-between gap-2 rounded border-2 px-3 py-2 text-xs font-black transition-all ${
+                                      oro >= costeMejora && puedePagarRecursos
                                         ? "border-[#8a703f] bg-[#493b26] text-[#ead9b4] hover:border-[#b29761] hover:bg-[#59482b]"
                                         : "cursor-not-allowed border-[#383a39] bg-[#202120] text-[#656660]"
                                     }`}
                                   >
-                                    <span>
+                                    <span className="text-left">
                                       {mejorando
                                         ? "Forjando..."
                                         : oro < costeMejora
                                         ? "Oro insuficiente"
+                                        : !puedePagarRecursos
+                                        ? "Materiales insuficientes"
                                         : "Mejorar +1"}
                                     </span>
 
-                                    <span className="rounded border border-[#725f3a] bg-[#251d11] px-2 py-1 text-amber-400">
-                                      {costeMejora} 🪙
+                                    <span className="flex shrink-0 flex-col items-end gap-1">
+                                      <span className="rounded border border-[#725f3a] bg-[#251d11] px-2 py-1 text-amber-400">
+                                        {costeMejora} 🪙
+                                      </span>
+                                      <span className="text-[10px] font-bold leading-tight text-[#b5b9ad]" aria-label="Coste en materiales">
+                                        {costeRecursos.madera > 0 ? `${costeRecursos.madera} 🪵 ` : ""}
+                                        {costeRecursos.piedra > 0 ? `${costeRecursos.piedra} 🪨 ` : ""}
+                                        {costeRecursos.metal > 0 ? `${costeRecursos.metal} ⚙️` : ""}
+                                      </span>
                                     </span>
                                   </button>
                                 ) : (
