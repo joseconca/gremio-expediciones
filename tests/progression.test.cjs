@@ -168,7 +168,7 @@ test("forja: los materiales escalan por tipo, rareza y nivel de mejora", () => {
   );
   assert.deepEqual(
     calcularCosteRecursosMejora(obtenerObjetoPorId("armadura_hierro"), 0),
-    { madera: 2, piedra: 0, metal: 0 },
+    { madera: 0, piedra: 2, metal: 4 },
   );
 
   const arcoRaro = {
