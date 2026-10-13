@@ -45,3 +45,20 @@ test("valores desconocidos pasan a Centro y el ataque no cae por debajo de uno",
     ataque: 1, ataqueMagico: 1, defensa: 0, defensaMagica: 0,
   }, "mele"), { ataque: 1, ataqueMagico: 1, defensa: 0, defensaMagica: 0 });
 });
+
+test("schema y migración persisten la preferencia y la instantánea táctica con Centro por defecto", () => {
+  const schemaPath = path.resolve(__dirname, "../prisma/schema.prisma");
+  const migrationPath = path.resolve(
+    __dirname,
+    "../prisma/migrations/20261013190000_posiciones_tacticas_combate/migration.sql",
+  );
+  const schema = fs.readFileSync(schemaPath, "utf8");
+  const migration = fs.readFileSync(migrationPath, "utf8");
+
+  assert.match(schema, /posicionCombate\\s+String\\s+@default\\("centro"\\)/);
+  assert.match(schema, /jugadorPosicion\\s+String\\s+@default\\("centro"\\)/);
+  assert.match(schema, /enemigoPosicion\\s+String\\s+@default\\("centro"\\)/);
+  assert.match(migration, /ADD COLUMN "posicionCombate" TEXT NOT NULL DEFAULT 'centro'/);
+  assert.match(migration, /ADD COLUMN "jugadorPosicion" TEXT NOT NULL DEFAULT 'centro'/);
+  assert.match(migration, /ADD COLUMN "enemigoPosicion" TEXT NOT NULL DEFAULT 'centro'/);
+});
