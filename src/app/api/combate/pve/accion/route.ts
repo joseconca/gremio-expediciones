@@ -1,5 +1,5 @@
-import { procesarAccionCombate } from "@/server/services/combate/accion-combate";
+import { ejecutarAccionPve } from "@/server/services/combate/pve";
 
 export async function POST(request: Request) {
-  return procesarAccionCombate(request, "pve");
+  return ejecutarAccionPve(request);
 }

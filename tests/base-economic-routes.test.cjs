@@ -979,6 +979,17 @@ test("regresión: la entrega de botín en expedición respeta el límite de inve
   assert.match(source, /objetosObtenidos: actualizado\.botinEntregado \? \[actualizado\.botinEntregado\] : \[\]/);
 });
 
+test("combate: rechaza acciones PvP en el servicio PvE antes de consumir objetos", async () => {
+  const route = makeCombatConsumableRoute({ initialHp: 80, initialQuantity: 2 });
+  const response = await route.POST(
+    request({ accion: "usar_objeto", objetoInventarioId: "item-consumible" }),
+    "pvp",
+  );
+  assert.equal(response.status, 409, JSON.stringify(response.body));
+  assert.equal(route.getState().item.cantidad, 2);
+  assert.equal(route.getState().combate.version, 0);
+});
+
 test("combate: las pociones curan hasta el máximo y consumen una unidad atómicamente", async () => {
   const route = makeCombatConsumableRoute({ initialHp: 80, maxHp: 100, initialQuantity: 2 });
   const response = await route.POST(request({ accion: "usar_objeto", objetoInventarioId: "item-consumible" }));
