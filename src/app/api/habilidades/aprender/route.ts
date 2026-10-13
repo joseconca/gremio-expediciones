@@ -65,6 +65,7 @@ export async function POST(request: Request) {
         },
         select: {
           id: true,
+          edificios: true,
           personaje: {
             select: {
               id: true,
@@ -88,6 +89,14 @@ export async function POST(request: Request) {
 
       if (!usuario.personaje) {
         throw new Error("PERSONAJE_NO_ENCONTRADO");
+      }
+
+      const edificios = usuario.edificios && typeof usuario.edificios === "object"
+        ? usuario.edificios as Record<string, unknown>
+        : {};
+      const nivelEscuela = typeof edificios.escuelaCombate === "number" ? edificios.escuelaCombate : 0;
+      if (nivelEscuela < 1) {
+        throw new Error("ESCUELA_NO_CONSTRUIDA");
       }
 
       const profesionActivaId = usuario.personaje.profesionActivaId || "novato";
@@ -167,6 +176,12 @@ export async function POST(request: Request) {
           return NextResponse.json(
             { error: "Usuario no encontrado." },
             { status: 404 }
+          );
+
+        case "ESCUELA_NO_CONSTRUIDA":
+          return NextResponse.json(
+            { error: "Necesitas construir la Escuela de Batalla para aprender habilidades." },
+            { status: 403 }
           );
 
         case "PERSONAJE_NO_ENCONTRADO":
