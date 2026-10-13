@@ -24,7 +24,11 @@ const {
 const { obtenerHabilidadesEnVenta } = require("../src/lib/tiendaHabilidades.ts");
 const { ENEMIGOS, JEFES_ELITE, obtenerRutaSpriteEnemigo, obtenerEnemigosPorDificultad } = require("../src/lib/enemigos.ts");
 const { generarMisionesDisponibles } = require("../src/lib/generadorMisiones.ts");
-const { calcularCosteRecursosMejora, obtenerObjetoPorId } = require("../src/lib/objetos.ts");
+const {
+  calcularCosteRecursosMejora,
+  calcularCosteMejoraObjeto,
+  obtenerObjetoPorId,
+} = require("../src/lib/objetos.ts");
 
 test("el catálogo de clases tiene requisitos válidos y no contiene ciclos", () => {
   for (const clase of Object.values(CLASES)) {
@@ -151,6 +155,15 @@ test("el desglose de estadísticas separa base fija, atributos y redondeos", () 
     -0.5,
     "El desglose conserva el ajuste del redondeo aplicado por la fórmula original",
   );
+});
+
+test("forja: una mejora de rareza superior consume más oro manteniendo el coste creciente por nivel", () => {
+  assert.equal(calcularCosteMejoraObjeto(1000, 0, "comun"), 5000);
+  assert.equal(calcularCosteMejoraObjeto(1000, 0, "poco_comun"), 6000);
+  assert.equal(calcularCosteMejoraObjeto(1000, 0, "raro"), 7500);
+  assert.equal(calcularCosteMejoraObjeto(1000, 0, "epico"), 9500);
+  assert.equal(calcularCosteMejoraObjeto(1000, 0, "legendario"), 12000);
+  assert.equal(calcularCosteMejoraObjeto(1000, 1, "raro"), 15000);
 });
 
 test("forja: los materiales escalan por tipo, rareza y nivel de mejora", () => {
