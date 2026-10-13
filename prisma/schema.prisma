@@ -66,8 +66,7 @@ model Personaje {
   manaActual          Int                  @default(10)
 
   hpActual           Int
-  regeneracionDeVida Float
-  ultimaRegeneracion DateTime             @default(now())
+  comidaPreparada    String?
   estado             String               @default("ocioso")
 
   velocidadMejoras           Int @default(0)
@@ -195,6 +194,7 @@ model ExpedicionActiva {
   recompensa Json
   dificultad Int
   modoDificultad String @default("normal")
+  efectoComida String?
 
   hpPerdido          Int      @default(0)
   experienciaGanada  Int      @default(0)
