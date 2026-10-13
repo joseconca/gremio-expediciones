@@ -1,84 +1,70 @@
 "use client";
 
-import Link from "next/link";
 import ComplejoArmeria from "@/components/base/ComplejoArmeria";
 import EdificioCard from "@/components/base/EdificioCard";
-import { CONFIGURACION_EDIFICIOS, type Edificio, type IdEdificio } from "@/lib/tiposJuego";
+import type { Edificio, IdEdificio } from "@/lib/tiposJuego";
 
 interface PanelEdificiosProps {
   edificios: Edificio[];
 }
 
-const ICONOS_EDIFICIO: Record<IdEdificio, string> = {
-  taberna: "🍺",
-  armeria: "🛡️",
-  herreria: "⚒️",
-  mercado: "🪙",
-  embajada: "🏰",
-  escuelaCombate: "⚔️",
-  muralla: "🧱",
-  almacen: "📦",
-};
+const ORDEN_POBLADO: IdEdificio[] = [
+  "taberna",
+  "armeria",
+  "mercado",
+  "escuelaCombate",
+  "embajada",
+  "almacen",
+  "muralla",
+  "herreria",
+];
 
 export default function PanelEdificios({ edificios }: PanelEdificiosProps) {
   const armeria = edificios.find((edificio) => edificio.id === "armeria");
   const herreria = edificios.find((edificio) => edificio.id === "herreria");
+  const mostrarComplejo = Boolean(armeria && armeria.nivel > 0 && herreria);
 
-  const edificiosConstruidos = edificios.filter(
-    (edificio) =>
-      edificio.nivel > 0 &&
-      edificio.id !== "armeria" &&
-      edificio.id !== "herreria"
-  );
-  const accesosMoviles = edificios
+  const edificiosVisibles = edificios
     .filter((edificio) => edificio.nivel > 0)
-    .sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
+    .filter((edificio) => !(mostrarComplejo && edificio.id === "herreria"))
+    .sort(
+      (a, b) =>
+        ORDEN_POBLADO.indexOf(a.id) - ORDEN_POBLADO.indexOf(b.id)
+    );
 
   return (
-    <>
-      {/* Accesos compactos para móvil: sustituyen las ilustraciones grandes. */}
-      <nav aria-label="Edificios del campamento" className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:hidden">
-        {accesosMoviles.map((edificio) => {
-          const configuracion = CONFIGURACION_EDIFICIOS[edificio.id];
-
-          return (
-            <Link
-              key={edificio.id}
-              href={configuracion.ruta}
-              className="flex min-h-[76px] min-w-0 items-center gap-2 rounded-xl border border-amber-900/80 bg-gradient-to-br from-[#49311d] to-[#21170f] px-3 py-2.5 text-left shadow-[inset_0_1px_0_rgba(255,220,160,0.08),0_3px_0_rgba(0,0,0,0.35)] transition hover:border-amber-600 active:translate-y-px"
-            >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-amber-800/70 bg-stone-950/50 text-xl" aria-hidden="true">
-                {ICONOS_EDIFICIO[edificio.id]}
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block break-words text-sm font-bold leading-tight text-amber-100">
-                  {edificio.nombre}
-                </span>
-                <span className="mt-1 block text-[11px] text-amber-200/60">
-                  Nivel {edificio.nivel}
-                </span>
-              </span>
-              <span className="shrink-0 text-amber-500/80" aria-hidden="true">›</span>
-            </Link>
-          );
-        })}
-        {accesosMoviles.length === 0 && (
-          <p className="col-span-2 rounded-lg border border-dashed border-stone-700 p-4 text-center text-sm text-stone-400">
-            Todavía no hay edificios construidos.
-          </p>
-        )}
-      </nav>
-
-      {/* Se mantiene el poblado ilustrado completo en tablet grande y escritorio. */}
-      <div className="hidden grid-cols-1 md:grid md:grid-cols-3">
-        {armeria && armeria.nivel > 0 && herreria && (
-          <ComplejoArmeria armeria={armeria} herreria={herreria} />
-        )}
-
-        {edificiosConstruidos.map((edificio) => (
-          <EdificioCard key={edificio.id} edificio={edificio} />
-        ))}
+    <section
+      aria-label="Poblado del campamento"
+      data-town-scene="campamento"
+      className="relative isolate overflow-hidden rounded-xl border-2 border-[#60462b] bg-[#1d2a1b] p-2 shadow-[inset_0_0_0_2px_rgba(12,20,12,0.5),0_12px_30px_rgba(0,0,0,0.3)] sm:rounded-2xl sm:p-3"
+    >
+      {/* Suelo y senderos del poblado; las parcelas quedan por encima. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_15%,rgba(116,137,71,0.35),transparent_42%),radial-gradient(ellipse_at_85%_75%,rgba(94,115,55,0.3),transparent_45%),linear-gradient(135deg,#283923,#172319)]" />
+        <div className="absolute inset-x-0 top-[43%] h-7 -translate-y-1/2 border-y border-[#b9a16e]/15 bg-[#9b8050]/10 sm:h-9" />
+        <div className="absolute bottom-0 left-[32%] top-0 w-5 border-x border-[#b9a16e]/10 bg-[#9b8050]/10 sm:w-7" />
+        <div className="absolute right-4 top-3 h-1.5 w-1.5 rounded-full bg-lime-200/15 shadow-[18px_36px_0_rgba(190,214,125,0.12),-28px_92px_0_rgba(190,214,125,0.1)]" />
       </div>
-    </>
+
+      <div className="relative z-10 grid grid-cols-2 items-stretch gap-2 sm:gap-3 md:grid-cols-3">
+        {edificiosVisibles.map((edificio) =>
+          edificio.id === "armeria" && mostrarComplejo && armeria && herreria ? (
+            <ComplejoArmeria
+              key="complejo-armeria"
+              armeria={armeria}
+              herreria={herreria}
+            />
+          ) : (
+            <EdificioCard key={edificio.id} edificio={edificio} />
+          )
+        )}
+        {edificiosVisibles.length === 0 && (
+          <div className="col-span-2 rounded-xl border border-dashed border-[#87936a]/40 bg-[#172319]/70 p-6 text-center sm:p-8 md:col-span-3">
+            <p className="text-sm font-bold text-amber-100">El campamento aún está vacío</p>
+            <p className="mt-1 text-xs text-amber-100/60">Construye tu primera instalación para dar vida al poblado.</p>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
