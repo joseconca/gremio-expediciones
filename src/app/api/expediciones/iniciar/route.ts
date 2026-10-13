@@ -2,7 +2,6 @@ import { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { sincronizarRegeneracion } from "@/lib/regeneracion";
 import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
@@ -136,17 +135,7 @@ export async function POST(request: Request) {
       equipo,
       usuario.personaje!.profesionActivaId
     );
-    const personaje = await sincronizarRegeneracion(
-      usuario.personaje,
-      modificadoresEquipo
-    );
-
-    if (personaje.hpActual <= 0) {
-      return respuestaError(
-        "Tu aventurero necesita curarse antes de partir.",
-        400
-      );
-    }
+    const personaje = usuario.personaje;
 
     const ahora = new Date();
     let mision: DefinicionMision | null = null;
@@ -372,14 +361,11 @@ export async function POST(request: Request) {
 
       const personajeActual = await tx.personaje.findUnique({
         where: { usuarioId: usuario.id },
-        select: { nivel: true, hpActual: true },
+        select: { nivel: true, comidaPreparada: true },
       });
 
       if (!personajeActual) {
         throw new Error("PERSONAJE_NO_ENCONTRADO");
-      }
-      if (personajeActual.hpActual <= 0) {
-        throw new Error("SIN_VIDA");
       }
       if (personajeActual.nivel !== personaje.nivel) {
         throw new Error("PERSONAJE_CAMBIO");
@@ -426,6 +412,7 @@ export async function POST(request: Request) {
           recompensa: recompensaJson,
           dificultad: mision.dificultad,
           modoDificultad: modoDificultadPersistido,
+          efectoComida: tipoExpedicion === "comercio" ? null : personajeActual.comidaPreparada,
           fechaSalida,
           fechaLlegada,
           destinoCoords: {
@@ -437,7 +424,13 @@ export async function POST(request: Request) {
 
       await tx.personaje.update({
         where: { usuarioId: usuario.id },
-        data: { estado: "de_viaje" },
+        data: {
+          estado: "de_viaje",
+          hpActual: Math.max(1, Math.floor(estadisticas.total.hpMaximo)),
+          energiaActual: Math.max(0, Math.floor(estadisticas.total.energiaMaxima ?? 20)),
+          manaActual: Math.max(0, Math.floor(estadisticas.total.manaMaximo ?? 10)),
+          ...(tipoExpedicion === "comercio" ? {} : { comidaPreparada: null }),
+        },
       });
 
       if (esAsedio && objetivoId) {
@@ -486,12 +479,6 @@ export async function POST(request: Request) {
       }
       if (error.message === "PERSONAJE_NO_ENCONTRADO") {
         return respuestaError("No se encontró el personaje.", 404);
-      }
-      if (error.message === "SIN_VIDA") {
-        return respuestaError(
-          "Tu aventurero necesita curarse antes de partir.",
-          400
-        );
       }
       if (error.message === "PERSONAJE_CAMBIO") {
         return respuestaError(
