@@ -794,6 +794,15 @@ function makeInvalidBodyRoute(relativePath) {
       siguienteTurnoAsedio: () => "defensor",
       finalizarAsedio: async () => ({}),
     },
+    "../../../../lib/expediciones/estados-combate": {
+      leerEfectosCombate: (valor) => Array.isArray(valor) ? valor : [],
+      procesarEfectosTurno: (efectos, hp, _maxHp, defensa) => ({ efectos, hp, defensa, mensajes: [] }),
+      procesarTicksPeriodicos: (_efectos, hp) => ({ hp, mensajes: [] }),
+      avanzarEfectosCombate: (efectos, defensa) => ({ efectos, defensa, mensajes: [] }),
+      calcularAtaqueModificado: (ataque) => ataque,
+      calcularPrecisionModificada: (precision) => precision,
+      calcularEvasionModificada: (evasion) => evasion,
+    },
     "../../../../lib/expediciones/dificultad": {
       aplicarMultiplicadorRecompensa: (cantidad) => cantidad,
       calcularExperienciaBaseGanada: () => 0,
