@@ -662,9 +662,10 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
     "@/lib/auth": { getAuthenticatedUser: async () => authenticated ? { id: "u1" } : null },
     "@/lib/prisma": { prisma },
     "@/lib/comidasTaberna": {
-      obtenerComidaTaberna: (id) => id === "carne-cazadora"
-        ? { id, nombre: "Carne del cazador", coste: 8 }
-        : null,
+      obtenerComidaTaberna: (id) => ({
+        "carne-cazadora": { id, nombre: "Carne del cazador", coste: 8, nivelRequerido: 1 },
+        "raices-vigorizantes": { id, nombre: "Guiso de raíces vigorizantes", coste: 16, nivelRequerido: 2 },
+      })[id] ?? null,
     },
     "@/lib/configuracionJuego": {
       CONFIGURACION_ATRIBUTOS: {
@@ -1421,6 +1422,27 @@ test("taberna: preparar una comida la reserva para combate y descuenta el oro", 
   assert.equal(response.status, 200);
   assert.equal(route.getState().user.oro, 992);
   assert.equal(route.getState().user.personaje.comidaPreparada, "carne-cazadora");
+});
+
+test("taberna: bloquea recetas avanzadas hasta mejorar el edificio", async () => {
+  const tabernaNivel1 = makeActionsRoute();
+  const bloqueada = await tabernaNivel1.POST(request({
+    accion: "prepararComida",
+    comidaId: "raices-vigorizantes",
+  }));
+  assert.equal(bloqueada.status, 400);
+  assert.match(bloqueada.body.error, /Taberna de nivel 2/);
+  assert.equal(tabernaNivel1.getState().user.oro, 1000);
+  assert.equal(tabernaNivel1.getState().user.personaje.comidaPreparada, null);
+
+  const tabernaNivel2 = makeActionsRoute({ initialUser: { edificios: { taberna: 2 } } });
+  const permitida = await tabernaNivel2.POST(request({
+    accion: "prepararComida",
+    comidaId: "raices-vigorizantes",
+  }));
+  assert.equal(permitida.status, 200);
+  assert.equal(tabernaNivel2.getState().user.oro, 984);
+  assert.equal(tabernaNivel2.getState().user.personaje.comidaPreparada, "raices-vigorizantes");
 });
 
 test("taberna: no permite preparar una segunda comida ni cobra dos veces", async () => {
