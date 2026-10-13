@@ -86,7 +86,7 @@ export function calcularAtaqueModificado(
   for (const efecto of efectos) {
     if (magico && efecto.tipo === "bonus_ataque_magico") ataque *= 1 + efecto.valor;
     if (!magico && efecto.tipo === "bonus_ataque") ataque *= 1 + efecto.valor;
-    if (!magico && efecto.tipo === "debuff_ataque") ataque *= 1 - efecto.valor;
+    if (efecto.tipo === "debuff_ataque") ataque *= 1 - efecto.valor;
   }
   return Math.max(1, Math.floor(ataque));
 }
