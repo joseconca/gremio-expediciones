@@ -156,7 +156,7 @@ export async function GET() {
 
             return calcularEstadisticasPersonaje(
               personaje,
-              personaje.habilidades.map((habilidad) => habilidad.habilidadId),
+              personaje.habilidades.filter((habilidad) => habilidad.slot !== null).map((habilidad) => habilidad.habilidadId),
               modificadoresEquipo
             );
           })()
