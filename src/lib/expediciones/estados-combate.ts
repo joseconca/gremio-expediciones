@@ -107,7 +107,7 @@ export function calcularAtaqueModificado(
     if (!magico && efecto.tipo === "bonus_ataque") ataque *= 1 + efecto.valor;
     if (efecto.tipo === "debuff_ataque") ataque *= 1 - efecto.valor;
   }
-  return Math.max(1, Math.floor(ataque));
+  return Math.max(1, Math.floor(ataque + Number.EPSILON * Math.max(1, Math.abs(ataque))));
 }
 
 export function calcularPrecisionModificada(precisionBase: number, efectos: readonly EstadoEfectoHabilidad[]): number {
