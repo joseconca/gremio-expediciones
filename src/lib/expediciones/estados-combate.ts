@@ -1,4 +1,4 @@
-import type { EstadoEfectoHabilidad, TipoEfectoTemporalHabilidad } from "@/lib/tiposJuego";
+import type { EstadoEfectoHabilidad, TipoEfectoTemporalHabilidad } from "../tiposJuego";
 
 const TIPOS_VALIDOS: readonly TipoEfectoTemporalHabilidad[] = [
   "bonus_defensa", "debuff_defensa", "bonus_ataque", "debuff_ataque",
