@@ -21,6 +21,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     id: "primeros_auxilios", claseId: "novato", nivelJobRequerido: 3,
     nombre: "Primeros Auxilios", descripcion: "Cura un 15 % de la vida máxima y un 15 % adicional repartido en los dos turnos siguientes.",
     tipo: "activa", efecto: "curacion", animacion: "curacion", curacionPorcentaje: 0.15,
+    duracionTurnos: 2,
     estadosSecundarios: [{ tipo: "curacion_progresiva", valor: 0.075, duracionTurnos: 2, objetivo: "jugador" }],
     costeEnergia: 4, cooldownTurnos: 5,
   }),
