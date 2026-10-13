@@ -17,25 +17,15 @@ export interface CosteEdificio {
   metal: number;
 }
 
-export function calcularCosteEdificio(
-  idEdificio: IdEdificio,
-  nivelActual: number
-): CosteEdificio {
+export function calcularCosteEdificio(idEdificio: IdEdificio, nivelActual: number): CosteEdificio {
   const configuracion = CONFIGURACION_EDIFICIOS[idEdificio];
-
-  const multiplicadorOro = nivelActual === 0 ? 1 : Math.pow(1.5, nivelActual);
-  const multiplicadorRecursos = nivelActual === 0 ? 1 : 1.5 * nivelActual;
-
+  const nivel = Number.isFinite(nivelActual) ? Math.max(0, Math.floor(nivelActual)) : 0;
+  const multiplicador = Math.pow(1.5, nivel);
   return {
-    oro:
-      Math.round((configuracion.costeConstruccion * multiplicadorOro) / 100) *
-      90,
-
-    madera: idEdificio === "muralla" && nivelActual > 0 ? 0 : Math.ceil(configuracion.costeMadera * multiplicadorRecursos),
-
-    piedra: idEdificio === "muralla" && nivelActual > 0 ? Math.ceil(10 * multiplicadorRecursos) : Math.ceil(configuracion.costePiedra * multiplicadorRecursos),
-
-    metal: Math.ceil(configuracion.costeMetal * multiplicadorRecursos),
+    oro: Math.ceil(configuracion.costeConstruccion * multiplicador),
+    madera: idEdificio === "muralla" && nivel > 0 ? 0 : Math.ceil(configuracion.costeMadera * multiplicador),
+    piedra: idEdificio === "muralla" && nivel > 0 ? Math.ceil(10 * multiplicador) : Math.ceil(configuracion.costePiedra * multiplicador),
+    metal: Math.ceil(configuracion.costeMetal * multiplicador),
   };
 }
 

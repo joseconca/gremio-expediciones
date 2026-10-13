@@ -55,7 +55,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     tipo: "consumible",
     descripcion: "Recupera 30 puntos de vida.",
     rareza: "comun",
-    precio: 25,
+    precio: 20,
     curacion: 30,
     limiteCantidad: 3,
   },
@@ -66,7 +66,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     tipo: "consumible",
     descripcion: "Recupera 60 puntos de vida.",
     rareza: "poco_comun",
-    precio: 60,
+    precio: 55,
     curacion: 60,
     limiteCantidad: 3,
   },
@@ -98,7 +98,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     subtipo: "espada",
     descripcion: "Una espada sencilla pero fiable.",
     rareza: "comun",
-    precio: 1000,
+    precio: 800,
     ataqueBase: 6,
     ataquePorMejora: 1,
   },
@@ -112,7 +112,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     subtipo: "espada",
     descripcion: "Una espada resistente y bien equilibrada.",
     rareza: "poco_comun",
-    precio: 12500,
+    precio: 1800,
     ataqueBase: 9,
     ataquePorMejora: 2,
   },
@@ -126,7 +126,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     subtipo: "espada",
     descripcion: "Una espada imbuida con poder mágico.",
     rareza: "raro",
-    precio: 146000,
+    precio: 6500,
     ataqueBase: 10,
     ataquePorMejora: 2.5,
     velocidadPorMejora: 0.5,
@@ -140,7 +140,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     subtipo: "hacha",
     descripcion: "Un hacha robusta utilizada por los orcos.",
     rareza: "raro",
-    precio: 12000,
+    precio: 4200,
     ataqueBase: 5,
     ataquePorMejora: 1.5,
     probCriticoBase: 0.05,
@@ -173,7 +173,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     categoriaArmadura: "ligera",
     descripcion: "Protección ligera para aventureros.",
     rareza: "comun",
-    precio: 1100,
+    precio: 650,
     defensaBase: 6,
     defensaPorMejora: 1,
   },
@@ -186,7 +186,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     categoriaArmadura: "pesada",
     descripcion: "Una armadura pesada y resistente.",
     rareza: "poco_comun",
-    precio: 12500,
+    precio: 2200,
     defensaBase: 9,
     defensaPorMejora: 2,
     velocidadBase: -2,
@@ -200,7 +200,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     categoriaArmadura: "pesada",
     descripcion: "Protección de gran calidad.",
     rareza: "raro",
-    precio: 146000,
+    precio: 5200,
     defensaBase: 12,
     defensaPorMejora: 3,
     velocidadBase: -4,
@@ -217,7 +217,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     slot: "anillo",
     descripcion: "Aumenta ligeramente la velocidad.",
     rareza: "poco_comun",
-    precio: 20000,
+    precio: 1100,
     velocidadBase: 2,
     velocidadPorMejora: 0.5,
   },
@@ -229,7 +229,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     slot: "collar",
     descripcion: "Aumenta la vida máxima del aventurero.",
     rareza: "raro",
-    precio: 55000,
+    precio: 2800,
     hpMaximoBase: 20,
     hpMaximoPorMejora: 5,
   },
@@ -239,19 +239,19 @@ export const OBJETOS: DefinicionObjeto[] = [
     nombre: "Anillo Maldito",
     tipo: "accesorio",
     slot: "anillo",
-    descripcion: "Un anillo que maldice a su portador.",
+    descripcion: "Debilita a su portador al principio, pero mejora con cada refuerzo.",
     rareza: "epico",
-    precio: 500000,
+    precio: 3200,
 
-    ataqueBase: -10,
-    hpMaximoBase: -50,
-    defensaBase: -10,
-    velocidadBase: -10,
+    ataqueBase: -4,
+    hpMaximoBase: -20,
+    defensaBase: -4,
+    velocidadBase: -4,
 
-    ataquePorMejora: 1.5,
-    hpMaximoPorMejora: 7.5,
-    defensaPorMejora: 1.5,
-    velocidadPorMejora: 1.5,
+    ataquePorMejora: 1,
+    hpMaximoPorMejora: 4,
+    defensaPorMejora: 1,
+    velocidadPorMejora: 1,
   },
 
   // Nuevas ranuras de equipo
@@ -262,7 +262,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     slot: "mano_secundaria",
     descripcion: "Un escudo ligero para proteger la mano secundaria.",
     rareza: "basico",
-    precio: 120,
+    precio: 150,
     defensaBase: 2,
   },
   {
@@ -273,7 +273,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     categoriaArmadura: "ligera",
     descripcion: "Protege la cabeza sin limitar demasiado el movimiento.",
     rareza: "comun",
-    precio: 450,
+    precio: 300,
     defensaBase: 2,
     defensaPorMejora: 0.5,
   },
@@ -285,7 +285,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     categoriaArmadura: "ligera",
     descripcion: "Unas perneras resistentes para viajar y combatir.",
     rareza: "comun",
-    precio: 500,
+    precio: 320,
     defensaBase: 2,
     defensaPorMejora: 0.5,
   },
@@ -297,7 +297,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     categoriaArmadura: "ligera",
     descripcion: "Botas cómodas para recorrer largas distancias.",
     rareza: "comun",
-    precio: 400,
+    precio: 280,
     defensaBase: 1,
     velocidadBase: 1,
     defensaPorMejora: 0.25,
@@ -311,7 +311,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     categoriaArmadura: "ligera",
     descripcion: "Protegen las manos sin perder tacto.",
     rareza: "comun",
-    precio: 350,
+    precio: 220,
     defensaBase: 1,
     defensaPorMejora: 0.25,
   },
@@ -322,7 +322,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     slot: "collar",
     descripcion: "Un collar sencillo con una pequeña pieza de cobre.",
     rareza: "poco_comun",
-    precio: 1600,
+    precio: 350,
     hpMaximoBase: 4,
   },
   {
@@ -332,7 +332,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     slot: "anillo",
     descripcion: "Un anillo que ofrece algo de protección.",
     rareza: "poco_comun",
-    precio: 2200,
+    precio: 500,
     defensaBase: 1,
   },
 ]; 
@@ -483,19 +483,22 @@ export function calcularCosteRecursosMejora(
 }
 
 const MULTIPLICADOR_ORO_RAREZA: Record<DefinicionObjeto["rareza"], number> = {
-  basico: 1,
-  comun: 1,
-  poco_comun: 1.2,
-  raro: 1.5,
-  epico: 1.9,
-  legendario: 2.4,
+  basico: 1, comun: 1.25, poco_comun: 1.7, raro: 2.3, epico: 3.2, legendario: 4.5,
+};
+const COSTE_BASE_MEJORA: Record<"arma" | "armadura", number> = { arma: 60, armadura: 50 };
+const MULTIPLICADOR_CATEGORIA_ARMADURA: Record<"ligera" | "media" | "pesada", number> = {
+  ligera: 0.9, media: 1, pesada: 1.2,
 };
 
+/** El coste de mejora no hereda anomalías del precio de compra del catálogo. */
 export function calcularCosteMejoraObjeto(
-  precioObjeto: number,
-  nivelMejora: number,
-  rareza?: DefinicionObjeto["rareza"]
+  objeto: Pick<DefinicionObjeto, "tipo" | "rareza" | "categoriaArmadura">,
+  nivelMejora: number
 ): number {
-  const multiplicadorRareza = rareza ? MULTIPLICADOR_ORO_RAREZA[rareza] : 1;
-  return Math.ceil(precioObjeto * 5 * (nivelMejora + 1) * multiplicadorRareza);
+  if (objeto.tipo !== "arma" && objeto.tipo !== "armadura") return 0;
+  const nivelSeguro = Number.isFinite(nivelMejora) ? Math.max(0, Math.floor(nivelMejora)) : 0;
+  const costeBase = COSTE_BASE_MEJORA[objeto.tipo];
+  const rareza = MULTIPLICADOR_ORO_RAREZA[objeto.rareza];
+  const categoria = objeto.tipo === "arma" ? 1.2 : MULTIPLICADOR_CATEGORIA_ARMADURA[objeto.categoriaArmadura ?? "media"];
+  return Math.max(1, Math.ceil(costeBase * categoria * rareza * Math.pow(nivelSeguro + 1, 1.25)));
 }

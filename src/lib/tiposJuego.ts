@@ -469,7 +469,7 @@ export interface Edificio {
 export const CONFIGURACION_EDIFICIOS = {
   taberna: {
     nombre: "Taberna",
-    costeConstruccion: 700,
+    costeConstruccion: 630,
     costeMadera: 4,
     costePiedra: 2,
     costeMetal: 0,
@@ -481,7 +481,7 @@ export const CONFIGURACION_EDIFICIOS = {
 
   armeria: {
     nombre: "Armería",
-    costeConstruccion: 400,
+    costeConstruccion: 360,
     costeMadera: 3,
     costePiedra: 3,
     costeMetal: 0,
@@ -493,7 +493,7 @@ export const CONFIGURACION_EDIFICIOS = {
 
   herreria: {
     nombre: "Herrería",
-    costeConstruccion: 1250,
+    costeConstruccion: 1125,
     costeMadera: 5,
     costePiedra: 5,
     costeMetal: 10,
@@ -505,7 +505,7 @@ export const CONFIGURACION_EDIFICIOS = {
 
   mercado: {
     nombre: "Mercado",
-    costeConstruccion: 700,
+    costeConstruccion: 630,
     costeMadera: 5,
     costePiedra: 4,
     costeMetal: 0,
@@ -517,7 +517,7 @@ export const CONFIGURACION_EDIFICIOS = {
 
   embajada: {
     nombre: "Embajada",
-    costeConstruccion: 400,
+    costeConstruccion: 360,
     costeMadera: 2,
     costePiedra: 3,
     costeMetal: 0,
@@ -529,7 +529,7 @@ export const CONFIGURACION_EDIFICIOS = {
 
   escuelaCombate: {
     nombre: "Escuela de Combate",
-    costeConstruccion: 1200,
+    costeConstruccion: 1080,
     costeMadera: 5,
     costePiedra: 7,
     costeMetal: 0,
@@ -541,7 +541,7 @@ export const CONFIGURACION_EDIFICIOS = {
 
   muralla: {
     nombre: "Murallas",
-    costeConstruccion: 2000,
+    costeConstruccion: 1800,
     costeMadera: 15,
     costePiedra: 0,
     costeMetal: 0,
@@ -553,7 +553,7 @@ export const CONFIGURACION_EDIFICIOS = {
 
   almacen: {
     nombre: "Almacén",
-    costeConstruccion: 1500,
+    costeConstruccion: 1350,
     costeMadera: 5,
     costePiedra: 5,
     costeMetal: 1,

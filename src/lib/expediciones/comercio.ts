@@ -64,7 +64,29 @@ function simularRuta(
 }
 
 export function calcularOroBaseComercio(distanciaKm: number) {
-  return Math.floor(distanciaKm * 50 );
+  const distanciaSegura = Number.isFinite(distanciaKm) ? Math.max(0, distanciaKm) : 0;
+  return Math.floor(distanciaSegura * 8);
+}
+
+export interface ParametrosRecompensaComercio {
+  distanciaKm: number; nivelPersonaje: number; nivelMercado: number; afinidad: number;
+  capacidadCarruaje: number; clase: string; oroExtraEventos?: number;
+}
+
+/** Calcula oro comercial con bonificaciones acotadas para evitar inflación. */
+export function calcularRecompensaComercio(p: ParametrosRecompensaComercio): number {
+  const nivel = Number.isFinite(p.nivelPersonaje) ? Math.max(1, Math.floor(p.nivelPersonaje)) : 1;
+  const mercado = Number.isFinite(p.nivelMercado) ? Math.max(0, Math.floor(p.nivelMercado)) : 0;
+  const afinidad = Number.isFinite(p.afinidad) ? Math.max(0, Math.min(100, p.afinidad)) : 0;
+  const capacidad = Number.isFinite(p.capacidadCarruaje) ? Math.max(0, p.capacidadCarruaje) : 0;
+  const extra = Number.isFinite(p.oroExtraEventos) ? Math.max(0, p.oroExtraEventos ?? 0) : 0;
+  const porNivel = 1 + Math.min(20, nivel - 1) * 0.02;
+  const porMercado = 1 + Math.min(2, Math.max(0, mercado - 1)) * 0.05;
+  const porAfinidad = 1 + 0.25 * Math.pow(afinidad / 100, 2);
+  const porCapacidad = 1 + Math.min(20, Math.max(0, capacidad - 10)) * 0.025;
+  let oro = Math.floor((calcularOroBaseComercio(p.distanciaKm) + extra) * porNivel * porMercado * porAfinidad * porCapacidad);
+  if (p.clase === "Comerciante" || p.clase === "Mercader") oro = Math.floor(oro * 1.1);
+  return Math.max(0, oro);
 }
 
 export function resolverComercio(
@@ -125,33 +147,14 @@ export function resolverComercio(
   // --- 3. NEGOCIACIÓN Y CÁLCULO DE ORO ---
   const nivelPersonaje = Math.max(1, personaje.nivel ?? 1);
   const nivelMercadoSeguro = Math.max(0, nivelMercado);
-
   const afinidadSegura = Math.max(0, Math.min(afinidad, 100));
-  const porcentajeAfinidad = afinidadSegura / 100;
+  const bonusAfinidad = 0.25 * (afinidadSegura / 100) ** 2;
+  const oroFinal = calcularRecompensaComercio({
+    distanciaKm, nivelPersonaje, nivelMercado: nivelMercadoSeguro,
+    afinidad: afinidadSegura, capacidadCarruaje: personaje.capacidadCarruaje,
+    clase: personaje.clase, oroExtraEventos: oroDeEventos,
+  });
 
-  // El nivel del personaje aumenta progresivamente el valor de los negocios.
-  const multiplicadorNivel = 1 + (nivelPersonaje - 1) * 0.05;
-
-  // El Mercado mejora ligeramente el valor base de las operaciones.
-  const multiplicadorMercado = 1 + Math.max(0, nivelMercadoSeguro - 1) * 0.1;
-
-  const oroBase = Math.floor(
-    calcularOroBaseComercio(distanciaKm) * multiplicadorNivel * multiplicadorMercado
-  );
-
-  const bonusAfinidad = 0.5 * nivelMercadoSeguro * porcentajeAfinidad ** 2;
-
-  const capacidadExtra = Math.max(0, personaje.capacidadCarruaje - 10);
-
-  const multiplicadorCapacidad = 1 + capacidadExtra * 0.05;
-
-  let oroFinal = Math.floor(
-    (oroBase + oroDeEventos) * (1 + bonusAfinidad) * multiplicadorCapacidad
-  );
-
-  if (personaje.clase === "Comerciante" || personaje.clase === "Mercader") {
-    oroFinal = Math.floor(oroFinal * 1.15);
-  }
   logCombate.push(
     `⚖️ Las negociaciones son un éxito. La afinidad con "${nombreBaseAliada}" aporta un bono del ${(
       bonusAfinidad * 100
