@@ -84,4 +84,5 @@ test("el oro y los materiales de edificios escalan juntos por el mismo factor", 
   assert.deepEqual(inicial, { oro: 630, madera: 4, piedra: 2, metal: 0 });
   assert.deepEqual(mejora1, { oro: 945, madera: 6, piedra: 3, metal: 0 });
   assert.deepEqual(mejora2, { oro: 1418, madera: 9, piedra: 5, metal: 0 });
+  assert.equal(calcularCosteEdificio("herreria", 0).oro, 1170);
 });
