@@ -1,12 +1,8 @@
 import type { Prisma } from "@prisma/client";
 import type { AccionAnimadaCombate } from "./combate";
+import type { EstadoEfectoHabilidad } from "../tiposJuego";
 
-export type EfectoCombateAsedio = {
-  habilidadId: string;
-  tipo: "bonus_defensa";
-  valor: number;
-  turnosRestantes: number;
-};
+export type EfectoCombateAsedio = EstadoEfectoHabilidad;
 
 export interface Recursos {
   madera: number;
@@ -386,9 +382,9 @@ export async function finalizarAsedio({
       botinResuelto: true,
 
       cooldowns,
-      efectos,
+      efectos: efectos as unknown as Prisma.InputJsonValue,
       cooldownsDefensor,
-      efectosDefensor,
+      efectosDefensor: efectosDefensor as unknown as Prisma.InputJsonValue,
 
       ultimoTurnoEn: new Date(),
 
