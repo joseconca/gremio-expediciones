@@ -7,73 +7,29 @@ export async function GET() {
     const usuario = await getAuthenticatedUser();
 
     if (!usuario) {
-      return NextResponse.json(
-        { error: "Sesión requerida." },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Sesión requerida." }, { status: 401 });
     }
 
-    const expediciones = await prisma.expedicionActiva.findMany({
+    // Este endpoint entrega combates iniciados, no expediciones que aún viajan.
+    // El cliente puede abrir AsedioModal directamente con este contrato.
+    const combates = await prisma.combateActivo.findMany({
       where: {
-        tipo: "asedio",
-        objetivoId: usuario.id,
-        fase: "en_viaje",
+        tipo: "pvp",
+        defensorUsuarioId: usuario.id,
+        fase: "activo",
       },
-      include: {
-        usuario: {
-          select: {
-            id: true,
-            nombre: true,
-            baseCoords: true,
-            personaje: {
-              select: {
-                nombre: true,
-                clase: true,
-                sexo: true,
-              },
-            },
-          },
-        },
-      },
-      orderBy: {
-        fechaSalida: "desc",
-      },
+      orderBy: { actualizado: "desc" },
+      take: 1,
     });
 
-    const asedios = expediciones.map((expedicion) => {
-      const origenCoords = expedicion.usuario.baseCoords as {
-        lat: number;
-        lng: number;
-      } | null;
-
-      return {
-        id: expedicion.id,
-
-        // Gremio atacante
-        atacanteNombre: expedicion.usuario.nombre,
-
-        // Aventurero atacante
-        atacanteNombreAventurero:
-          expedicion.usuario.personaje?.nombre ?? "Aventurero",
-
-        atacanteClase:
-          expedicion.usuario.personaje?.clase ?? null,
-
-        atacanteSexo:
-          expedicion.usuario.personaje?.sexo ?? null,
-
-        fechaSalida: expedicion.fechaSalida.toISOString(),
-        fechaLlegada: expedicion.fechaLlegada.toISOString(),
-
-        // Base desde la que sale el atacante
-        origenCoords,
-      };
+    return NextResponse.json({
+      combates: combates.map((combate) => ({
+        ...combate,
+        rolUsuario: "defensor" as const,
+      })),
     });
-
-    return NextResponse.json({ asedios });
   } catch (error) {
     console.error("Error obteniendo asedios entrantes:", error);
-
     return NextResponse.json(
       { error: "No se pudieron obtener los asedios entrantes." },
       { status: 500 }
