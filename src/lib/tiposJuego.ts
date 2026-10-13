@@ -493,7 +493,7 @@ export const CONFIGURACION_EDIFICIOS = {
 
   herreria: {
     nombre: "Herrería",
-    costeConstruccion: 1125,
+    costeConstruccion: 1170,
     costeMadera: 5,
     costePiedra: 5,
     costeMetal: 10,
