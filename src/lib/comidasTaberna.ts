@@ -152,7 +152,7 @@ export function aplicarEfectoComida(
       const atributo = efecto.atributo;
       resultado[atributo] = Math.max(
         atributo === "defensa" ? 0 : 1,
-        Math.floor(resultado[atributo] * (1 + efecto.porcentaje))
+        Math.floor(resultado[atributo] * (1 + efecto.porcentaje) + 1e-9)
       );
     } else if (efecto.tipo === "critico") {
       resultado.probCritico = Math.min(
