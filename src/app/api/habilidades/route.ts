@@ -81,12 +81,9 @@ export async function GET() {
 
     const enVenta = habilidadesEnVenta.map((habilidad) => {
       const clasePropietariaId = habilidad.claseId ?? profesionActivaId;
-      const progresoPropietario = usuario.personaje.progresosClase.find(
-        (progreso) => progreso.claseId === clasePropietariaId
-      );
       return {
         ...habilidad,
-        ...evaluarRequisitosAprendizaje(habilidad, progresoPropietario),
+        ...evaluarRequisitosAprendizaje(habilidad, usuario.personaje.progresosClase),
         clasePropietariaId,
         clasePropietariaNombre: CLASES[clasePropietariaId]?.nombre ?? clasePropietariaId,
         modoAprendizaje: "job" as const,
