@@ -342,14 +342,22 @@ export default function HojaPersonajeModal({
                     })
                   : [];
                 const sumaAtributos = aportesAtributos.reduce((suma, fuente) => suma + fuente.valor, 0);
-                const valorBase = desglose?.base[stat.clave];
-                const fuentes = desglose
+                const valorBaseCalculada = desglose?.base[stat.clave];
+                const valorBaseFija = desglose?.baseSinAtributos[stat.clave];
+                const baseYNivel = typeof valorBaseFija === "number"
+                  ? valorBaseFija
+                  : typeof valorBaseCalculada === "number"
+                    ? valorBaseCalculada
+                    : 0;
+                const ajusteBase = (typeof valorBaseCalculada === "number" ? valorBaseCalculada : 0) -
+                  (baseYNivel + sumaAtributos);
+                const fuentesAntesDeAjusteFinal: { nombre: string; valor: number | undefined }[] = desglose
                   ? [
-                      {
-                        nombre: "Base y nivel",
-                        valor: (typeof valorBase === "number" ? valorBase : 0) - sumaAtributos,
-                      },
+                      { nombre: "Base y nivel", valor: baseYNivel },
                       ...aportesAtributos,
+                      ...(Math.abs(ajusteBase) > 0.0001
+                        ? [{ nombre: "Ajuste de base (redondeo/límite)", valor: ajusteBase }]
+                        : []),
                       { nombre: "Mejoras", valor: desglose.mejoras[stat.clave] },
                       ...(desglose.pasivasPorHabilidad ?? []).map((fuente) => ({
                         nombre: `Pasiva: ${fuente.nombre}`,
@@ -359,8 +367,23 @@ export default function HojaPersonajeModal({
                         nombre: `${fuente.ranura}: ${fuente.nombre}`,
                         valor: fuente.modificadores[stat.clave],
                       })),
+                      { nombre: "Combate", valor: desglose.combate[stat.clave] },
                     ].filter((fuente) => typeof fuente.valor === "number" && Math.abs(fuente.valor) > 0.0001)
                   : [];
+                const valorTotalDesglose = desglose?.total[stat.clave];
+                const sumaFuentes = fuentesAntesDeAjusteFinal.reduce(
+                  (suma, fuente) => suma + (typeof fuente.valor === "number" ? fuente.valor : 0),
+                  0
+                );
+                const ajusteFinal = typeof valorTotalDesglose === "number"
+                  ? valorTotalDesglose - sumaFuentes
+                  : 0;
+                const fuentes = [
+                  ...fuentesAntesDeAjusteFinal,
+                  ...(Math.abs(ajusteFinal) > 0.0001
+                    ? [{ nombre: "Ajuste final (redondeo/límite)", valor: ajusteFinal }]
+                    : []),
+                ];
 
                 return (
                   <article key={stat.nombre} className="rounded-sm border border-stone-300 bg-[#efe5cf] shadow-sm">
