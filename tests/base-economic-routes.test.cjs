@@ -389,6 +389,7 @@ function makeMarketRoute({ authenticated = true, initialUser = {} } = {}) {
     "next/server": { NextResponse },
     "@/lib/auth": { getAuthenticatedUser: async () => authenticated ? { id: "u1" } : null },
     "@/lib/prisma": { prisma },
+    "@/lib/economia": require("../src/lib/economia.ts"),
   });
   return { POST: route.POST, getState };
 }
@@ -1095,14 +1096,14 @@ test("mercado: calcula el precio en servidor e ignora costes enviados por el cli
   }));
 
   assert.equal(response.status, 200);
-  assert.equal(response.body.precioUnitario, 100);
-  assert.equal(response.body.costeTotal, 200);
-  assert.equal(route.getState().user.oro, 800);
+  assert.equal(response.body.precioUnitario, 50);
+  assert.equal(response.body.costeTotal, 100);
+  assert.equal(route.getState().user.oro, 900);
   assert.equal(route.getState().user.madera, 2);
 });
 
 test("mercado: dos compras simultáneas no gastan dos veces el mismo oro", async () => {
-  const route = makeMarketRoute({ initialUser: { oro: 100 } });
+  const route = makeMarketRoute({ initialUser: { oro: 50 } });
   const results = await Promise.all([
     route.POST(request({ recurso: "madera", cantidad: 1 })),
     route.POST(request({ recurso: "madera", cantidad: 1 })),

@@ -1,26 +1,15 @@
 import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { PRECIOS_RECURSOS, calcularPrecioRecurso } from "@/lib/economia";
 
-const PRECIOS_BASE = {
-  madera: 100,
-  piedra: 200,
-  metal: 1000,
-} as const;
-
-type Recurso = keyof typeof PRECIOS_BASE;
+type Recurso = keyof typeof PRECIOS_RECURSOS;
 
 const MAX_INT_POSTGRES = 2_147_483_647;
 const MAX_CANTIDAD_COMPRA = 1_000_000;
 
 function esRecursoValido(valor: unknown): valor is Recurso {
   return valor === "madera" || valor === "piedra" || valor === "metal";
-}
-
-function calcularPrecio(recurso: Recurso, nivelMercado: number) {
-  const precioBase = PRECIOS_BASE[recurso];
-  const multiplicador = 1 - (nivelMercado - 1) * 0.1;
-  return Math.max(1, Math.trunc(precioBase * multiplicador));
 }
 
 export async function POST(request: Request) {
@@ -91,7 +80,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const precioUnitario = calcularPrecio(recurso, nivelMercado);
+    const precioUnitario = calcularPrecioRecurso(recurso, nivelMercado);
     const costeTotal = precioUnitario * cantidad;
 
     if (

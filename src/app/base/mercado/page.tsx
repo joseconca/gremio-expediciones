@@ -4,6 +4,7 @@ import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import { useGameStore } from "@/store/useGameStore";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import { PRECIOS_RECURSOS, calcularPrecioRecurso } from "@/lib/economia";
 
 type Recurso = "madera" | "piedra" | "metal";
 
@@ -18,28 +19,24 @@ const RECURSOS: {
     id: "madera",
     nombre: "Madera",
     icono: "🪵",
-    precioBase: 100,
+    precioBase: PRECIOS_RECURSOS.madera,
     color: "amber",
   },
   {
     id: "piedra",
     nombre: "Piedra",
     icono: "🪨",
-    precioBase: 200,
+    precioBase: PRECIOS_RECURSOS.piedra,
     color: "slate",
   },
   {
     id: "metal",
     nombre: "Metal",
     icono: "⚙️",
-    precioBase: 1000,
+    precioBase: PRECIOS_RECURSOS.metal,
     color: "cyan",
   },
 ];
-
-function calcularPrecio(precioBase: number, nivelMercado: number) {
-  return Math.max(1, Math.trunc(precioBase * (1 - (nivelMercado - 1) * 0.1)));
-}
 
 export default function MercadoPage() {
   const { oro, edificios, comprarRecurso } = useGameStore();
@@ -84,7 +81,7 @@ export default function MercadoPage() {
 
   const ofertas = useMemo(() => {
     return RECURSOS.map((recurso) => {
-      const precioUnitario = calcularPrecio(recurso.precioBase, nivelMercado);
+      const precioUnitario = calcularPrecioRecurso(recurso.id, nivelMercado);
 
       const cantidadMaxima = Math.floor(oro / precioUnitario);
 
