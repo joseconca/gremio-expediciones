@@ -234,10 +234,10 @@ export function evaluarDesbloqueoClase(
 }
 
 
-/** Clases ya desbloqueadas o con los requisitos satisfechos, salvo la clase activa. */
+/** Incluye la clase activa, las ya desbloqueadas y las que pueden desbloquearse. */
 export function obtenerClasesVisibles(claseActivaId: string, progresos: readonly ProgresoClaseRequisito[]): DefinicionClase[] {
   return Object.values(CLASES).filter((clase) => {
-    if (clase.id === claseActivaId) return false;
+    if (clase.id === claseActivaId) return true;
     const estado = evaluarDesbloqueoClase(clase.id, progresos);
     return estado.yaDesbloqueada || estado.puedeDesbloquear;
   });
