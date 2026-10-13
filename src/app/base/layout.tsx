@@ -63,7 +63,6 @@ export default function BaseLayout({
     isLoading,
     sesionActiva,
     cargarJugador,
-    aplicarRegeneracion,
   } = useGameStore();
 
   const [mostrarHoja, setMostrarHoja] = useState<boolean>(false);
@@ -82,26 +81,12 @@ export default function BaseLayout({
   }, [isLoading, sesionActiva, baseCoords, router]);
 
   useEffect(() => {
-    const intervaloRegen = setInterval(() => {
-      aplicarRegeneracion();
-    }, 1000);
-
     const intervaloSync = setInterval(() => {
       cargarJugador();
     }, 120000);
 
-    return () => {
-      clearInterval(intervaloRegen);
-      clearInterval(intervaloSync);
-    };
-  }, [aplicarRegeneracion, cargarJugador]);
-
-  const porcentajeVida = personaje
-    ? Math.min(
-        100,
-        Math.max(0, (personaje.hpActual / personaje.hpMaximo) * 100)
-      )
-    : 0;
+    return () => clearInterval(intervaloSync);
+  }, [cargarJugador]);
 
   const nivelPersonaje = personaje?.nivel || 1;
   const experienciaPersonaje = personaje?.experiencia || 0;
@@ -149,22 +134,6 @@ export default function BaseLayout({
               <div className="flex items-center gap-2">
                 <span className="truncate font-bold uppercase tracking-wider text-amber-100">
                   {personaje.nombre}
-                </span>
-              </div>
-
-              {/* Barra de vida */}
-              <div className="flex items-center gap-2">
-                <span className="w-6 shrink-0 text-[11px] font-mono text-stone-400 sm:w-7 sm:text-sm">
-                  HP
-                </span>
-                <div className="h-2.5 w-20 overflow-hidden rounded-full border border-stone-700 bg-stone-950 sm:h-3 sm:w-40">
-                  <div
-                    className="h-full bg-red-700 transition-all duration-300"
-                    style={{ width: `${porcentajeVida}%` }}
-                  />
-                </div>
-                <span className="whitespace-nowrap text-xs font-mono text-stone-300 sm:text-sm">
-                  {Math.floor(personaje.hpActual)}/{personaje.hpMaximo}
                 </span>
               </div>
 
@@ -352,7 +321,7 @@ export default function BaseLayout({
         onCerrar={() => setMostrarHoja(false)}
       />
 
-      <ChatGlobal habilitado={edificios.embajada.nivel > 0} />
+      {!mostrarEdificios && <ChatGlobal habilitado={edificios.embajada.nivel > 0} />}
     </div>
   );
 }
