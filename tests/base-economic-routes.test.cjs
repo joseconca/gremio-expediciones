@@ -766,10 +766,10 @@ function makeExpeditionRoutes({ authenticated = true, initialUser = null } = {})
     },
   };
   const available = loadSource("src/app/api/expediciones/disponibles/route.ts", common);
-  const start = loadSource("src/app/api/expediciones/iniciar/route.ts", common);
+  const start = loadSource("src/server/services/expediciones/iniciar-expedicion.ts", common);
   return {
     getAvailable: available.GET,
-    startExpedition: start.POST,
+    startExpedition: start.iniciarExpedicion,
     wasExpeditionCreated: () => createdExpedition,
   };
 }
