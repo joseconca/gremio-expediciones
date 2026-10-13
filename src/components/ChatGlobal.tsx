@@ -83,7 +83,7 @@ export default function ChatGlobal({
     <section
       className={`${abierto
         ? "fixed inset-x-2 bottom-[calc(4.5rem+env(safe-area-inset-bottom))] mx-auto w-auto max-w-md"
-        : "fixed bottom-[calc(4.5rem+env(safe-area-inset-bottom))] right-3 w-auto max-w-[calc(100vw-1.5rem)]"} z-50 md:sticky md:inset-auto md:bottom-0 md:z-40 md:w-full md:max-w-none
+        : "fixed bottom-[calc(4.5rem+env(safe-area-inset-bottom))] right-3 w-auto max-w-[calc(100vw-1.5rem)]"} z-50 md:sticky md:inset-auto md:bottom-0 md:z-40 md:w-full md:max-w-none`}
     >
       <div className={`pointer-events-auto w-full overflow-hidden rounded-xl border border-slate-600 bg-stone-900 shadow-2xl backdrop-blur md:rounded-none md:border-x-0 md:border-b-0 md:border-t ${abierto ? "max-h-[calc(100dvh-6rem-env(safe-area-inset-bottom))] md:max-h-none" : ""}`}>
         <div
