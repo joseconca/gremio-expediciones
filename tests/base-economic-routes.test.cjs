@@ -451,6 +451,7 @@ function makeObjectRoute({ authenticated = true, initialUser = {}, initialItems 
     nombre: "Espada de prueba",
     tipo: "arma",
     rareza: "basico",
+    vendibleEnArmeria: true,
     precio: 100,
   };
   const route = loadSource("src/app/api/objetos/comprar/route.ts", {
