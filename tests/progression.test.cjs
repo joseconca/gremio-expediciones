@@ -21,7 +21,7 @@ const {
   registrarVictoriaRangoNormal,
   obtenerRangoMaximoDesbloqueado,
 } = require("../src/lib/expediciones/dificultad.ts");
-const { obtenerHabilidadesEnVenta } = require("../src/lib/tiendaHabilidades.ts");
+const { obtenerHabilidadesEnVenta, evaluarRequisitosAprendizaje } = require("../src/lib/tiendaHabilidades.ts");
 const { ENEMIGOS, JEFES_ELITE, obtenerRutaSpriteEnemigo, obtenerEnemigosPorDificultad } = require("../src/lib/enemigos.ts");
 const { generarMisionesDisponibles } = require("../src/lib/generadorMisiones.ts");
 const {
@@ -121,6 +121,33 @@ test("Escuela: muestra siempre las habilidades de la profesión y hereda las ram
   assert.equal(rejuvenecer.cooldownTurnos, 4);
   assert.equal(rejuvenecer.duracionTurnos, 3);
   assert.equal(rejuvenecer.curacionProgresivaPorcentaje, 0.08);
+});
+
+test("las habilidades heredadas usan el nivel y los puntos de su clase propietaria", () => {
+  const { HABILIDADES } = require("../src/lib/habilidades.ts");
+  const aguante = HABILIDADES.find((habilidad) => habilidad.id === "aguante_aprendiz");
+  assert.ok(aguante);
+
+  const progresos = [
+    { claseId: "novato", nivelJob: 10, puntosHabilidadDisponibles: 1, desbloqueada: true },
+    { claseId: "arquero", nivelJob: 6, puntosHabilidadDisponibles: 0, desbloqueada: true },
+  ];
+  const resultado = evaluarRequisitosAprendizaje(aguante, progresos);
+  assert.equal(resultado.nivelJobClase, 10);
+  assert.equal(resultado.puntosHabilidadDisponiblesClase, 1);
+  assert.equal(resultado.puedeAprender, true, "Novato Job 10 cumple Aguante de aprendiz aunque Arquero esté en Job 6");
+
+  const novatoSinNivel = evaluarRequisitosAprendizaje(aguante, [
+    { ...progresos[0], nivelJob: 7, puntosHabilidadDisponibles: 20 },
+    progresos[1],
+  ]);
+  assert.equal(novatoSinNivel.puedeAprender, false, "Los puntos de Arquero no sustituyen el Job requerido de Novato");
+
+  const novatoSinPuntos = evaluarRequisitosAprendizaje(aguante, [
+    { ...progresos[0], puntosHabilidadDisponibles: 0 },
+    { ...progresos[1], puntosHabilidadDisponibles: 20 },
+  ]);
+  assert.equal(novatoSinPuntos.puedeAprender, false, "El coste se descuenta de los puntos de la clase propietaria");
 });
 
 test("el desglose de estadísticas separa base fija, atributos y redondeos", () => {
@@ -481,23 +508,22 @@ test("migración: los personajes actuales pasan a Novato Job 1 sin perder nivel 
 });
 
 
-test("la lista de profesiones solo muestra las ramas desbloqueadas o alcanzables", () => {
+test("la lista de profesiones incluye la clase activa y las ramas desbloqueadas o alcanzables", () => {
   const novato1 = obtenerClasesVisibles("novato", [
     { claseId: "novato", nivelJob: 1, desbloqueada: true },
   ]);
-  assert.deepEqual(novato1, []);
+  assert.deepEqual(novato1.map((clase) => clase.id), ["novato"]);
 
   const novato10 = obtenerClasesVisibles("novato", [
     { claseId: "novato", nivelJob: 10, desbloqueada: true },
   ]);
-  assert.deepEqual(novato10.map((clase) => clase.id).sort(), ["acolito", "arquero", "espadachin", "mago"]);
+  assert.deepEqual(novato10.map((clase) => clase.id).sort(), ["acolito", "arquero", "espadachin", "mago", "novato"]);
 
   const mago40 = obtenerClasesVisibles("mago", [
     { claseId: "novato", nivelJob: 10, desbloqueada: true },
     { claseId: "mago", nivelJob: 40, desbloqueada: true },
   ]).map((clase) => clase.id);
-  for (const id of ["acolito", "arquero", "espadachin", "elementalista", "brujo"]) assert.ok(mago40.includes(id));
-  assert.ok(!mago40.includes("mago"), "La clase activa no debe ofrecerse como cambio");
+  for (const id of ["acolito", "arquero", "espadachin", "mago", "elementalista", "brujo"]) assert.ok(mago40.includes(id));
   assert.ok(!mago40.includes("cruzado"), "Una clase de tier superior no debe mostrarse antes de cumplir todos sus requisitos");
 });
 
