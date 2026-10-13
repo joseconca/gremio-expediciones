@@ -164,7 +164,7 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
 
   const estadisticasAtacante = calcularEstadisticasPersonaje(
     personajeAtacante,
-    personajeAtacante.habilidades.map((habilidad) => habilidad.habilidadId),
+    personajeAtacante.habilidades.filter((habilidad) => habilidad.slot !== null).map((habilidad) => habilidad.habilidadId),
     modificadoresEquipoAtacante
   );
 
@@ -183,7 +183,7 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
 
   const estadisticasDefensor = calcularEstadisticasPersonaje(
     personajeDefensor,
-    personajeDefensor.habilidades.map((habilidad) => habilidad.habilidadId),
+    personajeDefensor.habilidades.filter((habilidad) => habilidad.slot !== null).map((habilidad) => habilidad.habilidadId),
     modificadoresEquipoDefensor
   );
 
