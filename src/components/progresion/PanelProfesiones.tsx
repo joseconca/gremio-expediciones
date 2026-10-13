@@ -55,7 +55,7 @@ interface DatosProfesiones {
   clases: ClaseVista[];
 }
 
-const ANCHO_GRAFO = 592;
+const ANCHO_GRAFO = 1184;
 const ANCHO_NODO = 136;
 const ALTO_NODO = 90;
 const PASO_COLUMNA = 148;
@@ -170,27 +170,63 @@ export default function PanelProfesiones({
     const tierInicial = porTier(0);
     const tierUno = porTier(1);
     const tierDos = porTier(2);
+    const tierDosMedio = porTier(2.5);
     const tierTres = porTier(3);
     const nodos: Array<{ clase: ClaseVista; x: number; y: number }> = [];
-    tierInicial.forEach((clase) => nodos.push({ clase, x: (ANCHO_GRAFO - ANCHO_NODO) / 2, y: 22 }));
-    tierUno.forEach((clase, indice) => nodos.push({ clase, x: indice * PASO_COLUMNA, y: 138 }));
 
-    const indicePorPadre = new Map(tierUno.map((clase, indice) => [clase.id, indice]));
-    const hijosPorPadre = new Map<string, number>();
+    tierInicial.forEach((clase) => {
+      nodos.push({ clase, x: (ANCHO_GRAFO - ANCHO_NODO) / 2, y: 22 });
+    });
+    tierUno.forEach((clase, indice) => {
+      nodos.push({ clase, x: indice * PASO_COLUMNA * 2 + PASO_COLUMNA / 2, y: 138 });
+    });
+
+    const indiceTierUno = new Map(tierUno.map((clase, indice) => [clase.id, indice]));
+    const hijosTierUno = new Map<string, number>();
     tierDos.forEach((clase, indice) => {
       const padreId = clase.requisitos[0]?.claseId;
-      const columna = padreId ? (indicePorPadre.get(padreId) ?? indice % 4) : indice % 4;
-      const fila = padreId ? (hijosPorPadre.get(padreId) ?? 0) : Math.floor(indice / 4);
-      if (padreId) hijosPorPadre.set(padreId, fila + 1);
-      nodos.push({ clase, x: columna * PASO_COLUMNA, y: 254 + fila * 104 });
+      const indicePadre = padreId ? (indiceTierUno.get(padreId) ?? Math.floor(indice / 2)) : Math.floor(indice / 2);
+      const indiceHermano = padreId ? (hijosTierUno.get(padreId) ?? 0) : indice % 2;
+      if (padreId) hijosTierUno.set(padreId, indiceHermano + 1);
+      nodos.push({
+        clase,
+        x: indicePadre * PASO_COLUMNA * 2 + indiceHermano * PASO_COLUMNA,
+        y: 254,
+      });
     });
-    tierTres.forEach((clase, indice) => nodos.push({ clase, x: (ANCHO_GRAFO - ANCHO_NODO) / 2, y: 478 + indice * 104 }));
+
+    const posicionesHibridas: Record<string, number> = {
+      cruzado: PASO_COLUMNA,
+      pirata: PASO_COLUMNA * 2.5,
+      espadachin_runico: PASO_COLUMNA * 4,
+      druida: PASO_COLUMNA * 5.5,
+    };
+    tierDosMedio.forEach((clase, indice) => {
+      const x = posicionesHibridas[clase.id] ?? (indice + 1) * PASO_COLUMNA * 1.4;
+      nodos.push({ clase, x: Math.max(0, Math.min(ANCHO_GRAFO - ANCHO_NODO, x)), y: 390 });
+    });
+
+    const porIdTierDos = new Map(nodos.filter((nodo) => nodo.clase.tier === 2).map((nodo) => [nodo.clase.id, nodo]));
+    const hijosTierDos = new Map<string, number>();
+    tierTres.forEach((clase) => {
+      const padreId = clase.requisitos[0]?.claseId;
+      const padre = padreId ? porIdTierDos.get(padreId) : undefined;
+      const indiceHermano = padreId ? (hijosTierDos.get(padreId) ?? 0) : 0;
+      if (padreId) hijosTierDos.set(padreId, indiceHermano + 1);
+      nodos.push({
+        clase,
+        x: padre ? padre.x : Math.min(ANCHO_GRAFO - ANCHO_NODO, nodos.length % 8 * PASO_COLUMNA),
+        y: 540 + indiceHermano * 110,
+      });
+    });
 
     const nodosPorId = new Map(nodos.map((nodo) => [nodo.clase.id, nodo]));
     const aristas = nodos.flatMap((destino) => destino.clase.requisitos.flatMap((requisito) => {
       const origen = nodosPorId.get(requisito.claseId);
       if (!origen) return [];
-      const progresoOrigen = requisito.claseId === datos?.profesionActivaId ? datos?.progresoActivo : origen.clase.progreso;
+      const progresoOrigen = requisito.claseId === datos?.profesionActivaId
+        ? datos?.progresoActivo
+        : origen.clase.progreso;
       return [{
         id: `${requisito.claseId}-${destino.clase.id}`,
         x1: origen.x + ANCHO_NODO / 2,
@@ -198,10 +234,9 @@ export default function PanelProfesiones({
         x2: destino.x + ANCHO_NODO / 2,
         y2: destino.y,
         cumplida: Boolean(progresoOrigen?.desbloqueada && progresoOrigen.nivelJob >= requisito.nivelJob),
-        vaASegundaFila: destino.clase.tier === 2 && destino.y > 254,
       }];
     }));
-    const alto = Math.max(568, ...nodos.map((nodo) => nodo.y + ALTO_NODO + 12));
+    const alto = Math.max(752, ...nodos.map((nodo) => nodo.y + ALTO_NODO + 12));
     return { nodos, aristas, ancho: ANCHO_GRAFO, alto };
   }, [datos]);
 
@@ -272,10 +307,11 @@ export default function PanelProfesiones({
             </div>
             <div className="overflow-x-auto overscroll-x-contain p-2 sm:p-3">
               <div className="relative mx-auto" style={{ width: grafo.ancho, height: grafo.alto }} aria-label="Árbol de profesiones y requisitos">
-                <div className="absolute left-0 top-0 z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]">Inicio</div>
-                <div className="absolute left-0 top-[116px] z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]">Tier I · Especialización</div>
-                <div className="absolute left-0 top-[232px] z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]">Tier II · Maestría</div>
-                <div className="absolute left-0 top-[456px] z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]">Tier III · Híbrida</div>
+                <div className="absolute left-0 top-0 z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]">Tier 0 · Inicio</div>
+                <div className="absolute left-0 top-[116px] z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]">Tier 1 · Especialización</div>
+                <div className="absolute left-0 top-[232px] z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]">Tier 2 · Maestrías</div>
+                <div className="absolute left-0 top-[368px] z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]">Tier 2.5 · Clases híbridas</div>
+                <div className="absolute left-0 top-[516px] z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]">Tier 3 · Maestría avanzada</div>
                 <svg className="pointer-events-none absolute inset-0 z-0" width={grafo.ancho} height={grafo.alto} viewBox={`0 0 ${grafo.ancho} ${grafo.alto}`} aria-hidden="true">
                   <defs><linearGradient id="linea-profesion" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#8c6c42" /><stop offset="100%" stopColor="#58432c" /></linearGradient></defs>
                   {grafo.aristas.map((arista) => (
@@ -283,8 +319,7 @@ export default function PanelProfesiones({
                       d={arista.vaASegundaFila
                         ? `M ${arista.x1} ${arista.y1} C ${arista.x1} ${arista.y1 + 12}, ${arista.x2 - 5} ${arista.y2 - 18}, ${arista.x2 - 5} ${arista.y2}`
                         : `M ${arista.x1} ${arista.y1} C ${arista.x1} ${arista.y1 + 16}, ${arista.x2} ${arista.y2 - 16}, ${arista.x2} ${arista.y2}`}
-                      fill="none" stroke={arista.cumplida ? "#5e9b6b" : "url(#linea-profesion)"}
-                      strokeWidth={arista.cumplida ? 2.5 : 1.8} strokeLinecap="round" />
+                      fill="none" stroke={arista.cumplida ? "#5e9b6b" : "url(#linea-profesion)"} strokeWidth={arista.cumplida ? 2.5 : 1.8} strokeLinecap="round" />
                   ))}
                 </svg>
                 {grafo.nodos.map(({ clase, x, y }) => {
