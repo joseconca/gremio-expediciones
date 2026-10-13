@@ -8,6 +8,7 @@ import type { CombatePve, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import type { ObjetoInventario } from "@/lib/tiposJuego";
+import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
 
 interface CombateModalProps {
   combate: CombatePve;
@@ -189,6 +190,11 @@ export default function CombateModal({
     actor: "jugador" | "enemigo";
     cantidad: number;
   } | null>(null);
+  const [pulsosEstadoVisibles, setPulsosEstadoVisibles] = useState<{
+    actor: "jugador" | "enemigo";
+    tipo: "curacion" | "dano";
+    cantidad: number;
+  }[]>([]);
 
   const [actorAnimando, setActorAnimando] = useState<
     "jugador" | "enemigo" | null
@@ -218,6 +224,11 @@ export default function CombateModal({
     };
     const dano = accion.dano;
     const curacion = accion.curacion ?? 0;
+    setPulsosEstadoVisibles((accion.pulsosEstado ?? []).map((pulso) => ({
+      actor: pulso.objetivo,
+      tipo: pulso.tipo,
+      cantidad: pulso.cantidad,
+    })));
 
     setAnimacionActual(accion.animacion);
 
@@ -234,6 +245,7 @@ export default function CombateModal({
       setCuracionVisible(null);
       setActorAnimando(null);
       setAnimacionActual(null);
+      setPulsosEstadoVisibles([]);
       comprobarResultadoCombate();
       return;
     }
@@ -254,6 +266,7 @@ export default function CombateModal({
     await esperar(accion.animacion === "ofensiva_potenciada" ? 300 : 200);
     setActorAnimando(null);
     setAnimacionActual(null);
+    setPulsosEstadoVisibles([]);
     comprobarResultadoCombate();
   }, []);
 
@@ -489,6 +502,20 @@ export default function CombateModal({
                     : ""
                 }`}
               >
+                <IndicadoresEfectosCombate
+                  efectos={combate.efectos}
+                  comidaPreparada={personaje.comidaPreparada}
+                  habilidades={personaje.habilidades}
+                />
+                {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "jugador").map((pulso, indice) => (
+                  <div
+                    key={`pulso-jugador-${indice}-${pulso.tipo}`}
+                    className={`absolute bottom-1 z-40 -translate-x-1/2 rounded bg-stone-950/85 px-1.5 py-0.5 font-mono text-lg font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`}
+                    style={{ left: `calc(50% + ${(indice - 0.5) * 28}px)` }}
+                  >
+                    {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}
+                  </div>
+                ))}
                 {/* SOMBRA INVERSA DEL HÉROE */}
                 <div
                   className="absolute inset-0 z-0 opacity-60 blur-xs"
@@ -571,6 +598,16 @@ export default function CombateModal({
                     : ""
                 }`}
               >
+                <IndicadoresEfectosCombate efectos={combate.efectosDefensor ?? []} />
+                {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "enemigo").map((pulso, indice) => (
+                  <div
+                    key={`pulso-enemigo-${indice}-${pulso.tipo}`}
+                    className={`absolute bottom-1 z-40 -translate-x-1/2 rounded bg-stone-950/85 px-1.5 py-0.5 font-mono text-lg font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`}
+                    style={{ left: `calc(50% + ${(indice - 0.5) * 28}px)` }}
+                  >
+                    {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}
+                  </div>
+                ))}
                 {/* SOMBRA INVERSA DEL ENEMIGO */}
                 <div
                   className="absolute inset-0 z-0 opacity-60 blur-xs"

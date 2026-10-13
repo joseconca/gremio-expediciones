@@ -7,6 +7,7 @@ import type { CombateActivo, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { calcularBonusDefensaMuralla } from "@/lib/expediciones/combate";
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
+import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
 
 interface AsedioModalProps {
   combate: CombateActivo;
@@ -89,6 +90,11 @@ export default function AsedioModal({
     actor: ActorVista;
     cantidad: number;
   } | null>(null);
+  const [pulsosEstadoVisibles, setPulsosEstadoVisibles] = useState<{
+    actor: ActorVista;
+    tipo: "curacion" | "dano";
+    cantidad: number;
+  }[]>([]);
 
   const [actorAnimando, setActorAnimando] = useState<ActorVista | null>(null);
 
@@ -270,6 +276,11 @@ export default function AsedioModal({
 
     const dano = accion.dano;
     const curacion = accion.curacion ?? 0;
+    setPulsosEstadoVisibles((accion.pulsosEstado ?? []).map((pulso) => ({
+      actor: esAtacante ? pulso.objetivo : pulso.objetivo === "jugador" ? "enemigo" : "jugador",
+      tipo: pulso.tipo,
+      cantidad: pulso.cantidad,
+    })));
 
     setAnimacionActual(accion.animacion);
 
@@ -292,6 +303,7 @@ export default function AsedioModal({
       setCuracionVisible(null);
       setActorAnimando(null);
       setAnimacionActual(null);
+      setPulsosEstadoVisibles([]);
 
       return;
     }
@@ -319,6 +331,7 @@ export default function AsedioModal({
 
     setActorAnimando(null);
     setAnimacionActual(null);
+    setPulsosEstadoVisibles([]);
   }, [esAtacante]);
 
   useEffect(() => {
@@ -644,6 +657,20 @@ export default function AsedioModal({
                     : ""
                 }`}
               >
+                <IndicadoresEfectosCombate
+                  efectos={esAtacante ? combate.efectos : combate.efectosDefensor}
+                  comidaPreparada={personaje.comidaPreparada}
+                  habilidades={personaje.habilidades}
+                />
+                {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "jugador").map((pulso, indice) => (
+                  <div
+                    key={`pulso-propio-${indice}-${pulso.tipo}`}
+                    className={`absolute bottom-1 z-40 -translate-x-1/2 rounded bg-stone-950/85 px-1.5 py-0.5 font-mono text-lg font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`}
+                    style={{ left: `calc(50% + ${(indice - 0.5) * 28}px)` }}
+                  >
+                    {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}
+                  </div>
+                ))}
                 <div
                   className="absolute inset-0 z-0 opacity-60 blur-xs"
                   style={{
@@ -741,6 +768,18 @@ export default function AsedioModal({
                     : ""
                 }`}
               >
+                <IndicadoresEfectosCombate
+                  efectos={esAtacante ? combate.efectosDefensor : combate.efectos}
+                />
+                {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "enemigo").map((pulso, indice) => (
+                  <div
+                    key={`pulso-rival-${indice}-${pulso.tipo}`}
+                    className={`absolute bottom-1 z-40 -translate-x-1/2 rounded bg-stone-950/85 px-1.5 py-0.5 font-mono text-lg font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`}
+                    style={{ left: `calc(50% + ${(indice - 0.5) * 28}px)` }}
+                  >
+                    {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}
+                  </div>
+                ))}
                 <div
                   className="absolute inset-0 z-0 opacity-60 blur-xs"
                   style={{

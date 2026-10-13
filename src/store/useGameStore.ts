@@ -317,6 +317,7 @@ export interface CombatePve {
 
   cooldowns: Record<string, number>;
   efectos: unknown[];
+  efectosDefensor?: unknown[];
 
   log: string[];
 
