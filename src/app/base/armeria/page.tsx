@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import { calcularPrecioVentaObjeto } from "@/lib/economia";
+import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import { useGameStore } from "@/store/useGameStore";
 import {
   calcularEstadisticasObjeto,
@@ -440,6 +441,103 @@ export default function HerreriaPage() {
 
   const obtenerObjetoEquipado = (tipo: TipoEquipamiento) => datos?.equipo[tipo] ?? null;
 
+  const renderSlot = (tipo: TipoEquipamiento) => {
+    const equipado = obtenerObjetoEquipado(tipo);
+    const desequipando = procesando === `desequipar:${tipo}`;
+    const estadisticas = equipado
+      ? obtenerEstadisticasNoCero(
+          equipado.objeto,
+          equipado.nivelMejora,
+          equipado.bonificaciones
+        )
+      : [];
+
+    return (
+      <article
+        key={tipo}
+        title={equipado?.objeto.descripcion ?? `${nombreTipo(tipo)} sin equipar`}
+        className={`min-w-0 rounded-md border p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.035)] transition-colors sm:p-2 ${
+          equipado
+            ? `bg-[#211a13] hover:bg-[#2b2117] ${estiloRareza(equipado.objeto.rareza)}`
+            : "border-dashed border-[#514334] bg-[#171513]/80"
+        }`}
+      >
+        {equipado ? (
+          <>
+            <div className="flex min-w-0 items-start gap-2">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded border border-[#756044] bg-[#15120e] p-0.5 sm:h-12 sm:w-12">
+                {obtenerSpriteObjeto(equipado.objeto) ? (
+                  <Image
+                    src={obtenerSpriteObjeto(equipado.objeto)!}
+                    alt={equipado.objeto.nombre}
+                    width={64}
+                    height={64}
+                    className="h-full w-full rounded object-contain [image-rendering:pixelated]"
+                  />
+                ) : (
+                  <span className="text-2xl" aria-hidden="true">{iconoTipo(tipo)}</span>
+                )}
+              </div>
+              <div className="flex min-w-0 flex-1 flex-col items-end gap-1">
+                <span className={`max-w-full truncate rounded border px-1.5 py-0.5 text-[8px] font-black uppercase leading-3 tracking-wide sm:text-[9px] ${estiloRareza(equipado.objeto.rareza)}`}>
+                  {nombreRareza(equipado.objeto.rareza)}
+                </span>
+                <span className="rounded border border-[#514536] bg-black/20 px-1 py-0.5 text-[8px] font-bold leading-3 text-[#c4b18f]">
+                  +{equipado.nivelMejora}
+                </span>
+              </div>
+            </div>
+
+            <h3 className="mt-1 line-clamp-2 min-h-7 break-words text-[10px] font-black leading-3 text-[#f0dfbd] sm:text-[11px] sm:leading-4">
+              {equipado.objeto.nombre}
+            </h3>
+
+            {estadisticas.length > 0 ? (
+              <div className="mt-1 flex flex-wrap gap-x-1.5 gap-y-0.5 text-[8px] leading-3 sm:text-[9px]">
+                {estadisticas.map((estadistica) => (
+                  <span key={estadistica.clave} className="whitespace-nowrap">
+                    <span className="text-[#9e8c70]">{estadistica.nombre}</span>{" "}
+                    <span className={estadistica.valor < 0 ? "font-black text-red-400" : "font-black text-emerald-300"}>
+                      {formatearValorEstadistica(estadistica.clave, estadistica.valor)}
+                    </span>
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <p className="mt-1 text-[8px] text-[#83745d]">Sin bonificaciones</p>
+            )}
+
+            <div className="mt-1.5 flex items-center justify-between gap-1 border-t border-white/5 pt-1">
+              <span className="truncate text-[8px] font-bold uppercase tracking-wide text-[#82725b]">
+                {nombreTipo(tipo)}
+              </span>
+              <button
+                type="button"
+                onClick={() => void desequiparObjeto(tipo)}
+                disabled={procesando !== null}
+                aria-label={`Quitar ${equipado.objeto.nombre}`}
+                title="Desequipar"
+                className="min-h-6 shrink-0 rounded border border-[#65523b] bg-[#302519] px-2 py-0.5 text-[9px] font-black text-[#ddc8a6] hover:border-red-800 hover:bg-[#321d1d] hover:text-red-300 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                {desequipando ? "…" : "Quitar"}
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className="flex min-h-[62px] items-center gap-2 opacity-65 sm:min-h-[68px]">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-dashed border-[#65533e] bg-black/15 text-xl">
+              {iconoTipo(tipo)}
+            </div>
+            <div className="min-w-0">
+              <p className="truncate text-[9px] font-black uppercase leading-3 tracking-wide text-[#c0ad8b]">{nombreTipo(tipo)}</p>
+              <p className="mt-1 text-[9px] text-[#786950]">Sin equipar</p>
+            </div>
+          </div>
+        )}
+      </article>
+    );
+  };
+
   if (!personaje || nivelArmeria === 0) {
     return null;
   }
@@ -656,143 +754,70 @@ export default function HerreriaPage() {
           </div>
         )}
 
-        {/* ====================================================== */}
-        {/* EQUIPO                                                   */}
-        {/* ====================================================== */}
-        <section className="mb-3 overflow-hidden rounded-lg border border-[#353a3d] bg-[#1a1d1f] sm:mb-5 sm:border-2">
-            <div className="border-b border-[#353a3d] bg-[#141718] p-2 sm:p-4">
-              <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-                <div>
-                  <h2 className="text-2xl font-black uppercase tracking-[0.08em] text-[#ddd8cf]">
-                    Equipamiento
-                  </h2>
+        {/* EQUIPO · DISTRIBUCIÓN MMORPG */}
+        <section className="mb-3 overflow-hidden rounded-lg border border-[#6d4b2c] bg-[#20170f] shadow-[0_10px_24px_rgba(0,0,0,0.35)] sm:mb-5 sm:border-2">
+          <div className="flex items-center justify-between border-b border-[#6d4b2c] bg-[linear-gradient(135deg,#352518,#21170f)] px-3 py-2 sm:px-4">
+            <div>
+              <h2 className="text-sm font-black uppercase tracking-[0.12em] text-[#e9d4ad] sm:text-lg">Equipo</h2>
+              <p className="text-[9px] text-[#a18a68] sm:text-[10px]">Objetos equipados · Pulsa «Quitar» para liberar una ranura</p>
+            </div>
+            <span className="rounded border border-[#6d4b2c] bg-black/20 px-2 py-1 text-[9px] font-bold text-[#c8ac7d]">
+              {TIPOS_EQUIPAMIENTO.filter((tipo) => Boolean(obtenerObjetoEquipado(tipo))).length}/{TIPOS_EQUIPAMIENTO.length}
+            </span>
+          </div>
+
+          <div className="p-2 sm:p-3">
+            {/* Pantallas medianas y grandes: silueta central con equipo alrededor */}
+            <div className="hidden min-[520px]:grid min-[520px]:grid-cols-[minmax(0,1fr)_148px_minmax(0,1fr)] min-[520px]:gap-2">
+              <div className="grid grid-rows-4 gap-2">
+                {(["casco", "armadura", "pantalones", "botas"] as TipoEquipamiento[]).map(renderSlot)}
+              </div>
+
+              <div className="flex min-w-0 flex-col items-center justify-center">
+                <div className="flex w-full flex-1 items-center justify-center overflow-hidden rounded-lg border border-[#755534] bg-[radial-gradient(ellipse_at_45%_30%,#493521,#261b12_68%)] p-1.5 shadow-[inset_0_0_24px_rgba(0,0,0,0.5)]">
+                  <Image
+                    src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)}
+                    alt={`Personaje equipado: ${personaje.clase}`}
+                    width={180}
+                    height={240}
+                    className="max-h-[300px] w-full object-contain [image-rendering:pixelated]"
+                    priority
+                  />
                 </div>
+                <p className="mt-1 text-center text-[9px] font-black uppercase tracking-[0.14em] text-[#b99a6c]">
+                  {personaje.clase}
+                </p>
+              </div>
+
+              <div className="grid grid-rows-4 gap-2">
+                {(["accesorio", "anillo1", "guantes", "anillo2"] as TipoEquipamiento[]).map(renderSlot)}
+              </div>
+
+              <div className="col-span-3 mx-auto grid w-full max-w-lg grid-cols-2 gap-2 border-t border-[#59432b] pt-2">
+                {(["arma", "manoSecundaria"] as TipoEquipamiento[]).map(renderSlot)}
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-px bg-[#353a3d] lg:grid-cols-3 xl:grid-cols-5">
-              {TIPOS_EQUIPAMIENTO.map((tipo) => {
-                const equipado = obtenerObjetoEquipado(tipo);
-                const desequipando = procesando === `desequipar:${tipo}`;
-
-                return (
-                  <div key={tipo} className="bg-[#1c2021] p-2 sm:p-3">
-                    <div className="mb-2 flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl">{iconoTipo(tipo)}</span>
-
-                        <div>
-                          <h3 className="text-sm font-black uppercase tracking-[0.18em] text-[#c7c7c2]">
-                            {nombreTipo(tipo)}
-                          </h3>
-
-                          <p className="text-[10px] uppercase tracking-wider text-[#63696c]">
-                            Ranura de equipo
-                          </p>
-                        </div>
-                      </div>
-
-                      <span className="text-lg text-[#50575a]">
-                        {equipado ? "◆" : "◇"}
-                      </span>
-                    </div>
-
-                    {equipado ? (
-                      <div className="rounded-md border border-[#4e5659] bg-[linear-gradient(135deg,#292e30,#1c2021)] p-2 sm:p-3">
-                        <div className="flex items-start gap-3">
-                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-[#60676a] bg-[#171a1b] text-xl shadow-[inset_0_0_18px_rgba(0,0,0,0.5)] sm:h-14 sm:w-14 sm:border-2 sm:text-2xl">
-                            {obtenerSpriteObjeto(equipado.objeto) ? (
-                              <Image
-                                src={obtenerSpriteObjeto(equipado.objeto)!}
-                                alt={equipado.objeto.nombre}
-                                width={64}
-                                height={64}
-                                className="rounded-md"
-                              />
-                            ) : (
-                              iconoTipo(tipo)
-                            )}
-                          </div>
-                          <div className="min-w-0">
-                            <div className="flex flex-wrap items-center gap-2">
-                              <span
-                                className={`rounded border px-2 py-1 text-[9px] font-black uppercase tracking-widest ${estiloRareza(
-                                  equipado.objeto.rareza
-                                )}`}
-                              >
-                                {nombreRareza(equipado.objeto.rareza)}
-                              </span>
-
-                              <span className="rounded border border-[#555d60] bg-[#181b1c] px-2 py-1 text-[9px] font-black uppercase tracking-wider text-[#9ba0a2]">
-                                +{equipado.nivelMejora}
-                              </span>
-                            </div>
-
-                            <h4 className="mt-3 truncate text-xl font-black text-[#eeeae2]">
-                              {equipado.objeto.nombre}
-                            </h4>
-                          </div>
-                        </div>
-
-                        <div className="mt-2 flex flex-wrap gap-1.5 sm:mt-3">
-                          {obtenerEstadisticasNoCero(
-                            equipado.objeto,
-                            equipado.nivelMejora,
-                            equipado.bonificaciones
-                          ).map((estadistica) => (
-                            <div
-                              key={estadistica.clave}
-                              className="rounded border border-[#343a3d] bg-[#171a1b] px-2 py-1"
-                            >
-                              <p className="text-[9px] font-black uppercase tracking-wider text-[#646b6e]">
-                                {estadistica.nombre}
-                              </p>
-
-                              <p
-                                className={`mt-1 text-sm font-black ${
-                                  estadistica.valor < 0
-                                    ? "text-red-400"
-                                    : "text-sky-300"
-                                }`}
-                              >
-                                {formatearValorEstadistica(
-                                  estadistica.clave,
-                                  estadistica.valor
-                                )}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-
-                        <button
-                          type="button"
-                          onClick={() => void desequiparObjeto(tipo)}
-                          disabled={procesando !== null}
-                          className="mt-2 min-h-8 w-full rounded border border-[#55575a] bg-[#25282a] px-2 py-1.5 text-[11px] font-bold text-[#a4a5a1] transition-colors hover:border-red-800/60 hover:bg-[#321d1d] hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-50"
-                        >
-                          {desequipando ? "Quitando..." : "Desequipar"}
-                        </button>
-                      </div>
-                    ) : (
-                      <div className="flex min-h-[88px] flex-col items-center justify-center rounded-md border border-dashed border-[#3c4244] bg-[#171a1b] px-2 py-3 text-center sm:min-h-[110px]">
-                        <span className="text-4xl opacity-30">
-                          {iconoTipo(tipo)}
-                        </span>
-
-                        <p className="mt-4 text-sm font-black uppercase tracking-wider text-[#666d70]">
-                          Ranura vacía
-                        </p>
-
-                        <p className="mt-2 max-w-[220px] text-xs leading-5 text-[#4f5659]">
-                          Puedes conseguir una pieza compatible y equiparla desde tu inventario.
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+            {/* Móviles estrechos: retrato arriba y ranuras en dos columnas para mantener legibles los nombres */}
+            <div className="min-[520px]:hidden">
+              <div className="mx-auto mb-2 flex max-w-[116px] flex-col items-center rounded-lg border border-[#755534] bg-[radial-gradient(ellipse_at_45%_30%,#493521,#261b12_68%)] p-2">
+                <Image
+                  src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)}
+                  alt={`Personaje equipado: ${personaje.clase}`}
+                  width={112}
+                  height={144}
+                  className="h-28 w-full object-contain [image-rendering:pixelated]"
+                  priority
+                />
+                <p className="text-center text-[9px] font-black uppercase tracking-wide text-[#b99a6c]">{personaje.clase}</p>
+              </div>
+              <div className="grid grid-cols-2 gap-1.5">
+                {TIPOS_EQUIPAMIENTO.map(renderSlot)}
+              </div>
             </div>
-          </section>
+          </div>
+        </section>
+
         {/* ====================================================== */}
         {/* INVENTARIO                                              */}
         {/* ====================================================== */}
