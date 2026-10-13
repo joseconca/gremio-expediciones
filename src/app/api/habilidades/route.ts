@@ -71,16 +71,18 @@ export async function GET() {
         ? edificios.escuelaCombate
         : 0;
 
-    const profesionActivaId = usuario.personaje.profesionActivaId || "novato";
+    const personaje = usuario.personaje;
+    const progresosClase = personaje.progresosClase;
+    const profesionActivaId = personaje.profesionActivaId || "novato";
     const habilidadesEnVenta = obtenerHabilidadesEnVenta(profesionActivaId);
-    const progresoJob = usuario.personaje.progresosClase.find(
+    const progresoJob = progresosClase.find(
       (progreso) => progreso.claseId === profesionActivaId && progreso.desbloqueada
     );
     const enVenta = habilidadesEnVenta.map((habilidad) => {
       const clasePropietariaId = habilidad.claseId ?? profesionActivaId;
       return {
         ...habilidad,
-        ...evaluarRequisitosAprendizaje(habilidad, usuario.personaje.progresosClase),
+        ...evaluarRequisitosAprendizaje(habilidad, progresosClase),
         clasePropietariaId,
         clasePropietariaNombre: CLASES[clasePropietariaId]?.nombre ?? clasePropietariaId,
         modoAprendizaje: "job" as const,
