@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { obtenerComidaTaberna } from "@/lib/comidasTaberna";
 import { leerEfectosCombate } from "@/lib/expediciones/estados-combate";
@@ -29,7 +29,15 @@ const CONFIGURACION_ESTADO: Record<TipoEfectoTemporalHabilidad, { nombre: string
   bonus_evasion: { nombre: "Evasión aumentada", emoji: "💨", sprite: "bonus_evasion.svg" },
 };
 
-function IconoIndicador({ indicador }: { indicador: Indicador }) {
+function IconoIndicador({
+  indicador,
+  seleccionado,
+  onToggle,
+}: {
+  indicador: Indicador;
+  seleccionado: boolean;
+  onToggle: () => void;
+}) {
   const [spriteFallido, setSpriteFallido] = useState(false);
 
   const duracion = indicador.turnosRestantes === null
@@ -37,11 +45,14 @@ function IconoIndicador({ indicador }: { indicador: Indicador }) {
     : String(indicador.turnosRestantes);
 
   return (
-    <div
+    <button
+      type="button"
       title={indicador.descripcion}
       aria-label={indicador.descripcion}
-      role="img"
-      className="relative flex h-6 w-6 shrink-0 items-center justify-center rounded border border-stone-500/80 bg-stone-950/95 shadow-md"
+      aria-expanded={seleccionado}
+      onClick={onToggle}
+      onContextMenu={(evento) => evento.preventDefault()}
+      className={`relative flex h-7 w-7 shrink-0 touch-manipulation items-center justify-center rounded border bg-stone-950/95 shadow-md transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400 ${seleccionado ? "border-amber-300 ring-1 ring-amber-300/60" : "border-stone-500/80 hover:border-stone-300"}`}
     >
       {spriteFallido ? (
         <span aria-hidden="true" className="text-[17px] leading-none">{indicador.emoji}</span>
@@ -60,7 +71,7 @@ function IconoIndicador({ indicador }: { indicador: Indicador }) {
       <span className="absolute right-0 top-0 flex h-3 min-w-3 items-center justify-center rounded-full border border-stone-950 bg-stone-100 px-[2px] font-mono text-[8px] font-black leading-none text-stone-950 shadow">
         {duracion}
       </span>
-    </div>
+    </button>
   );
 }
 
@@ -115,16 +126,61 @@ export default function IndicadoresEfectosCombate({
     });
   }
 
+  const contenedorRef = useRef<HTMLDivElement>(null);
+  const [indicadorSeleccionadoId, setIndicadorSeleccionadoId] = useState<string | null>(null);
+  const indicadorSeleccionado = indicadores.find((indicador) => indicador.id === indicadorSeleccionadoId) ?? null;
+
+  useEffect(() => {
+    if (!indicadorSeleccionadoId) return;
+
+    const cerrarSiEsExterior = (evento: PointerEvent) => {
+      const destino = evento.target;
+      if (destino instanceof Node && !contenedorRef.current?.contains(destino)) {
+        setIndicadorSeleccionadoId(null);
+      }
+    };
+    const cerrarConEscape = (evento: KeyboardEvent) => {
+      if (evento.key === "Escape") setIndicadorSeleccionadoId(null);
+    };
+
+    document.addEventListener("pointerdown", cerrarSiEsExterior);
+    document.addEventListener("keydown", cerrarConEscape);
+    return () => {
+      document.removeEventListener("pointerdown", cerrarSiEsExterior);
+      document.removeEventListener("keydown", cerrarConEscape);
+    };
+  }, [indicadorSeleccionadoId]);
+
   if (indicadores.length === 0) return null;
 
   return (
-    <div
-      aria-label="Efectos activos de combate"
-      className="flex w-full max-w-full flex-nowrap items-center justify-start gap-1 overflow-x-auto py-0.5"
-    >
-      {indicadores.map((indicador) => (
-        <IconoIndicador key={indicador.id} indicador={indicador} />
-      ))}
+    <div ref={contenedorRef} aria-label="Efectos activos de combate" className="relative z-30 w-full max-w-full">
+      <div className="flex w-full max-w-full flex-nowrap items-center justify-start gap-1 overflow-x-auto overscroll-x-contain py-0.5">
+        {indicadores.map((indicador) => (
+          <IconoIndicador
+            key={indicador.id}
+            indicador={indicador}
+            seleccionado={indicadorSeleccionadoId === indicador.id}
+            onToggle={() => setIndicadorSeleccionadoId((actual) => actual === indicador.id ? null : indicador.id)}
+          />
+        ))}
+      </div>
+      {indicadorSeleccionado && (
+        <div
+          role="tooltip"
+          className="absolute left-0 top-full z-50 mt-1 w-max max-w-[min(15rem,80vw)] rounded-md border border-amber-800/80 bg-stone-950/95 px-3 py-2 text-left shadow-xl backdrop-blur-sm"
+        >
+          <p className="text-xs font-black text-amber-200">{indicadorSeleccionado.nombre}</p>
+          <p className="mt-1 whitespace-normal text-[11px] leading-relaxed text-stone-200">{indicadorSeleccionado.descripcion}</p>
+          <button
+            type="button"
+            onClick={() => setIndicadorSeleccionadoId(null)}
+            className="mt-2 rounded border border-stone-700 px-2 py-1 text-[10px] font-bold text-stone-300 hover:bg-stone-800"
+          >
+            Cerrar
+          </button>
+        </div>
+      )}
     </div>
   );
 }
