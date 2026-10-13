@@ -17,13 +17,10 @@ export async function GET() {
     const combate = await prisma.combateActivo.findFirst({
       where: {
         tipo: "pvp",
+        fase: "activo",
         OR: [
-          {
-            atacanteUsuarioId: usuario.id,
-          },
-          {
-            defensorUsuarioId: usuario.id,
-          },
+          { atacanteUsuarioId: usuario.id },
+          { defensorUsuarioId: usuario.id },
         ],
       },
       orderBy: {
@@ -53,6 +50,10 @@ export async function GET() {
 
     return NextResponse.json({
       combate: resultado.combate,
+      rolUsuario:
+        resultado.combate.atacanteUsuarioId === usuario.id
+          ? "atacante"
+          : "defensor",
       accion: resultado.accion ?? null,
       automatica: resultado.procesado,
       terminado: resultado.terminado ?? false,
