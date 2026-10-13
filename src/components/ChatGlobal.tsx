@@ -73,32 +73,36 @@ export default function ChatGlobal({
 
   if (!habilitado) {
     return (
-      <section className="sticky bottom-0 z-40 shrink-0 border-t border-slate-700 bg-slate-900 px-4 py-2 text-center text-sm text-slate-500 shadow-2xl">
+      <section className="fixed bottom-[calc(4.5rem+env(safe-area-inset-bottom))] right-3 z-50 max-w-[calc(100vw-1.5rem)] rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-xs text-slate-400 shadow-2xl md:sticky md:bottom-0 md:z-40 md:max-w-none md:rounded-none md:border-x-0 md:border-b-0 md:border-t md:px-4 md:py-2 md:text-sm">
         Construye la Embajada para desbloquear el chat global.
       </section>
     );
   }
 
   return (
-    <section className="sticky bottom-0 z-40 shrink-0">
-      <div className="pointer-events-auto w-full border-t border-slate-600 bg-stone-900 shadow-2xl backdrop-blur">
+    <section
+      className={`${abierto
+        ? "fixed inset-x-2 bottom-[calc(4.5rem+env(safe-area-inset-bottom))] mx-auto w-auto max-w-md"
+        : "fixed bottom-[calc(4.5rem+env(safe-area-inset-bottom))] right-3 w-auto max-w-[calc(100vw-1.5rem)]"} z-50 md:sticky md:inset-auto md:bottom-0 md:z-40 md:w-full md:max-w-none
+    >
+      <div className={`pointer-events-auto w-full overflow-hidden rounded-xl border border-slate-600 bg-stone-900 shadow-2xl backdrop-blur md:rounded-none md:border-x-0 md:border-b-0 md:border-t ${abierto ? "max-h-[calc(100dvh-6rem-env(safe-area-inset-bottom))] md:max-h-none" : ""}`}>
         <div
-          className={`flex w-full items-center gap-2 px-4 ${
+          className={`flex w-full items-center gap-2 px-3 sm:px-4 ${
             abierto ? "border-b border-slate-700 py-3" : "py-2"
           }`}
         >
           <button
             type="button"
             onClick={() => setAbierto((valor) => !valor)}
-            className="flex min-w-0 flex-1 items-center gap-3 text-left"
+            className="flex min-w-0 flex-1 items-center gap-2 text-left sm:gap-3"
             aria-expanded={abierto}
           >
-            <span className="text-xl" aria-hidden="true">
+            <span className="text-lg sm:text-xl" aria-hidden="true">
               💬
             </span>
             <span className="font-bold text-amber-400">Chat</span>
             {!abierto && (
-              <span className="min-w-0 flex-1 truncate text-sm text-slate-300">
+              <span className="hidden min-w-0 flex-1 truncate text-sm text-slate-300 md:block">
                 {ultimoMensaje
                   ? `${ultimoMensaje.usuario.nombre}: ${ultimoMensaje.texto}`
                   : "Todavía no hay mensajes"}
@@ -109,7 +113,7 @@ export default function ChatGlobal({
           <button
             type="button"
             onClick={() => setAbierto((valor) => !valor)}
-            className="shrink-0 text-lg leading-none text-slate-500"
+            className="shrink-0 px-1 text-lg leading-none text-slate-300"
             aria-expanded={abierto}
           >
             {abierto ? "⌃" : "⌄"}
@@ -117,8 +121,8 @@ export default function ChatGlobal({
         </div>
 
         {abierto && (
-          <div className="p-4">
-            <div className="mb-4 h-48 flex flex-col gap-2 overflow-y-auto rounded-lg bg-stone-700 p-3">
+          <div className="overflow-y-auto p-3 sm:p-4">
+            <div className="mb-3 flex h-40 max-h-[30dvh] flex-col gap-2 overflow-y-auto rounded-lg bg-stone-700 p-3 sm:mb-4 sm:h-48">
               {mensajes.length === 0 ? (
                 <p className="text-sm text-slate-500">
                   ~No hay mensajes cargados~
@@ -144,7 +148,7 @@ export default function ChatGlobal({
                 placeholder="Escribe en el chat..."
                 className="min-w-0 flex-1 rounded-lg border border-slate-600 bg-stone-700 px-3 py-2 text-white"
               />
-              <button className="rounded-lg bg-amber-600 px-4 py-2 font-bold text-white hover:bg-amber-500">
+              <button className="min-h-10 shrink-0 rounded-lg bg-amber-600 px-3 py-2 text-sm font-bold text-white hover:bg-amber-500 sm:px-4">
                 Enviar
               </button>
             </form>
