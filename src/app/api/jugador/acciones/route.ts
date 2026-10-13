@@ -219,8 +219,12 @@ export async function POST(request: Request) {
           usuario.edificios && typeof usuario.edificios === "object" && !Array.isArray(usuario.edificios)
             ? (usuario.edificios as Record<string, unknown>)
             : {};
-        if (typeof edificios.taberna !== "number" || edificios.taberna <= 0) {
+        const nivelTaberna = typeof edificios.taberna === "number" ? edificios.taberna : 0;
+        if (nivelTaberna <= 0) {
           throw new Error("TABERNA_NO_CONSTRUIDA");
+        }
+        if (nivelTaberna < comida.nivelRequerido) {
+          throw new Error(`NIVEL_TABERNA_INSUFICIENTE:${comida.nivelRequerido}`);
         }
         if (usuario.personaje.comidaPreparada) throw new Error("COMIDA_YA_PREPARADA");
 
@@ -436,6 +440,13 @@ export async function POST(request: Request) {
       }
       if (error.message === "TABERNA_NO_CONSTRUIDA") {
         return NextResponse.json({ error: "Necesitas tener una taberna construida." }, { status: 400 });
+      }
+      if (error.message.startsWith("NIVEL_TABERNA_INSUFICIENTE:")) {
+        const nivel = error.message.split(":")[1];
+        return NextResponse.json(
+          { error: `Necesitas una Taberna de nivel ${nivel} para preparar esta receta.` },
+          { status: 400 }
+        );
       }
       if (error.message === "USUARIO_NO_ENCONTRADO") {
         return NextResponse.json({ error: "Usuario no encontrado." }, { status: 404 });
