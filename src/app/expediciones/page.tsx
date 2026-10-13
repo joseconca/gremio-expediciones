@@ -13,7 +13,6 @@ import type {
   ReporteViaje,
 } from "@/lib/tiposJuego";
 import AsedioModal from "@/components/combate/AsedioModal";
-import SelectorPosicionCombate from "@/components/combate/SelectorPosicionCombate";
 import type { CombateActivo } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { RANGOS_AMENAZA, type ModoDificultad } from "@/lib/expediciones/dificultad";
@@ -680,8 +679,6 @@ export default function ExpedicionesPage() {
                 </p>
               </section>
             ) : null}
-
-            {misionSeleccionada.tipo !== "comercio" && <SelectorPosicionCombate />}
 
             {/* 3. VIAJE + BOTÓN */}
             <div className="flex items-center justify-between gap-4">

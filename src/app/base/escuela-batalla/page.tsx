@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
+import SelectorPosicionCombate from "@/components/combate/SelectorPosicionCombate";
 import PanelProfesiones from "@/components/progresion/PanelProfesiones";
 import { CLASES } from "@/lib/progresion/clases";
 import type { DefinicionHabilidad, Rareza, SlotHabilidad } from "@/lib/tiposJuego";
@@ -18,7 +19,7 @@ type DatosHabilidades = {
   enVenta: HabilidadEnVenta[];
   aprendidas: HabilidadAprendida[];
 };
-type Vista = "aprender" | "gestion" | "profesiones";
+type Vista = "aprender" | "gestion" | "profesiones" | "tacticas";
 type Filtro = "todas" | "activa" | "pasiva" | "disponibles";
 
 const SLOTS_ACTIVAS: SlotHabilidad[] = ["activa_1", "activa_2", "activa_3"];
@@ -148,11 +149,11 @@ export default function EscuelaCombatePage() {
   };
 
   const navegacion = (
-    <nav aria-label="Secciones de la Escuela de Batalla" className="mb-4 grid grid-cols-3 gap-1.5 sm:mb-6 sm:flex sm:flex-wrap sm:gap-2">
-      {([["aprender", "Aprender habilidades"], ["gestion", "Habilidades aprendidas"], ["profesiones", "Profesiones"]] as const).map(([key, label]) => (
+    <nav aria-label="Secciones de la Escuela de Batalla" className="mb-4 grid grid-cols-2 gap-1.5 sm:mb-6 sm:flex sm:flex-wrap sm:gap-2">
+      {([["aprender", "Aprender habilidades"], ["gestion", "Habilidades aprendidas"], ["profesiones", "Profesiones"], ["tacticas", "Tácticas"]] as const).map(([key, label]) => (
         <button key={key} type="button" onClick={() => setVista(key)} aria-pressed={vista === key}
           className={vista === key ? "flex min-w-0 flex-1 items-center justify-center rounded-lg border border-amber-400 bg-amber-900/30 px-2 py-2 text-xs font-semibold text-amber-100 sm:flex-none sm:px-4 sm:text-sm" : "flex min-w-0 flex-1 items-center justify-center rounded-lg border border-[#574631] bg-[#241d15] px-2 py-2 text-xs text-[#c1b49b] hover:border-amber-500/60 sm:flex-none sm:px-4 sm:text-sm"}>
-          <span className="sm:hidden">{key === "aprender" ? "Aprender" : key === "gestion" ? "Equipadas" : "Profesiones"}</span>
+          <span className="sm:hidden">{key === "aprender" ? "Aprender" : key === "gestion" ? "Equipadas" : key === "profesiones" ? "Profesiones" : "Tácticas"}</span>
           <span className="hidden sm:inline">{label}</span>
         </button>
       ))}
@@ -168,7 +169,7 @@ export default function EscuelaCombatePage() {
         <p className="mb-2 -mt-1 line-clamp-1 text-[11px] text-[#7d705c]">{descripcionEdificio}</p>
         {navegacion}
 
-        {vista !== "profesiones" && (
+        {(vista === "aprender" || vista === "gestion") && (
           <section aria-label="Profesión activa" className="mb-3 rounded-lg border border-[#6b5235] bg-[#241d15] p-2 sm:mb-4 sm:p-3">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
@@ -190,9 +191,9 @@ export default function EscuelaCombatePage() {
           </section>
         )}
 
-        {error && <div role="alert" className="mb-5 rounded-lg border border-red-800 bg-red-950/40 p-4 text-sm text-red-200">{error}</div>}
+        {vista !== "tacticas" && error && <div role="alert" className="mb-5 rounded-lg border border-red-800 bg-red-950/40 p-4 text-sm text-red-200">{error}</div>}
 
-        {vista === "profesiones" ? <PanelProfesiones integrado onProfessionChanged={recargarHabilidades} /> : vista === "aprender" ? (
+        {vista === "tacticas" ? <SelectorPosicionCombate /> : vista === "profesiones" ? <PanelProfesiones integrado onProfessionChanged={recargarHabilidades} /> : vista === "aprender" ? (
           <section>
             <div className="mb-2 flex flex-col gap-2 sm:mb-3 sm:gap-3 md:flex-row md:items-center md:justify-between">
               <div>
