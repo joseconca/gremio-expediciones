@@ -751,12 +751,12 @@ export async function POST(request: Request) {
       if (actor === "jugador") {
         if (accion === "atacar") {
           accionAnimada = resolverAtaqueJugador({
-            jugadorAtaque: combate.jugadorAtaque,
+            jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
             jugadorNivel: combate.jugadorNivel,
             jugadorProbCritico: combate.jugadorProbCritico,
             jugadorDanoCritico: combate.jugadorDanoCritico,
-            jugadorPrecision: combate.jugadorPrecision ?? 75,
-            enemigoEvasion: combate.enemigoEvasion ?? 0,
+            jugadorPrecision: calcularPrecisionModificada(combate.jugadorPrecision ?? 75, efectos),
+            enemigoEvasion: calcularEvasionModificada(combate.enemigoEvasion ?? 0, efectosDefensor),
             enemigoDefensa,
             enemigoNombre: combate.enemigoNombre ?? "Enemigo",
           });
@@ -1435,12 +1435,12 @@ export async function POST(request: Request) {
 
       if (accion === "atacar") {
         accionAnimada = resolverAtaqueJugador({
-          jugadorAtaque: combate.jugadorAtaque,
+          jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
           jugadorNivel: combate.jugadorNivel,
           jugadorProbCritico: combate.jugadorProbCritico,
           jugadorDanoCritico: combate.jugadorDanoCritico,
-          jugadorPrecision: combate.jugadorPrecision ?? 75,
-          enemigoEvasion: combate.enemigoEvasion ?? 0,
+          jugadorPrecision: calcularPrecisionModificada(combate.jugadorPrecision ?? 75, efectos),
+          enemigoEvasion: calcularEvasionModificada(combate.enemigoEvasion ?? 0, efectosDefensor),
           enemigoDefensa:
             combate.enemigoDefensa +
             calcularBonusDefensaMuralla(combate.murallaNivel),
@@ -1511,9 +1511,9 @@ export async function POST(request: Request) {
 
       if (accion === "atacar") {
         accionAnimada = resolverAtaqueEnemigo({
-          enemigoAtaque: combate.enemigoAtaque,
-          enemigoPrecision: combate.enemigoPrecision ?? 75,
-          jugadorEvasion: combate.jugadorEvasion ?? 0,
+          enemigoAtaque: calcularAtaqueModificado(combate.enemigoAtaque, efectosDefensor),
+          enemigoPrecision: calcularPrecisionModificada(combate.enemigoPrecision ?? 75, efectosDefensor),
+          jugadorEvasion: calcularEvasionModificada(combate.jugadorEvasion ?? 0, efectos),
           jugadorDefensa,
           enemigoNombre: personaje.nombre,
         });
