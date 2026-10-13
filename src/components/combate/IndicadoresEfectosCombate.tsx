@@ -57,7 +57,7 @@ function IconoIndicador({ indicador }: { indicador: Indicador }) {
           onError={() => setSpriteFallido(true)}
         />
       )}
-      <span className="absolute -right-1 -top-1 flex h-3 min-w-3 items-center justify-center rounded-full border border-stone-950 bg-stone-100 px-[2px] font-mono text-[8px] font-black leading-none text-stone-950 shadow">
+      <span className="absolute right-0 top-0 flex h-3 min-w-3 items-center justify-center rounded-full border border-stone-950 bg-stone-100 px-[2px] font-mono text-[8px] font-black leading-none text-stone-950 shadow">
         {duracion}
       </span>
     </div>
