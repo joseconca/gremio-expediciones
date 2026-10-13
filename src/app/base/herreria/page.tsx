@@ -493,7 +493,8 @@ export default function HerreriaPage() {
 
                         const costeMejora = calcularCosteMejoraObjeto(
                           objeto.precio,
-                          objetoInventario.nivelMejora
+                          objetoInventario.nivelMejora,
+                          objeto.rareza
                         );
                         const costeRecursos = calcularCosteRecursosMejora(
                           objeto,
