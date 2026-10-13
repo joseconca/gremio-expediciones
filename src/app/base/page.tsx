@@ -568,7 +568,7 @@ export default function BasePage() {
   const esAtacante = Boolean(expedicionActiva?.combateActivo);
 
   return (
-    <main className="min-h-screen p-4 md:p-8">
+    <main className="min-h-screen p-3 pb-8 sm:p-4 sm:pb-8 md:p-8">
       {/* ---- MODAL DE COMBATE NORMAL ---- */}
       {combateAbierto &&
         expedicionActiva?.combateActivo &&
@@ -653,7 +653,7 @@ export default function BasePage() {
       />
       <PanelCaravanasEntrantes caravanas={caravanasEntrantes} />
 
-      <div className="max-w-4xl mx-auto">
+      <div className="mx-auto w-full max-w-4xl">
         {/* Profesiones y maestrías están integradas en la Escuela de Combate. */}
 
         {/* 1. PANEL DE MISIONES */}
@@ -676,20 +676,33 @@ export default function BasePage() {
 
         {/* CABECERA DINÁMICA: Instalaciones vs Construcción */}
         {/* Edificios */}
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="flex items-center gap-2 text-2xl font-bold text-slate-200">
-            {modoConstruccion && <p>Construir y mejorar edificios</p>}
-          </h2>
+        <div className="mb-3 flex items-center justify-between gap-3 sm:mb-5">
+          <div className="min-w-0">
+            <h2 className="text-lg font-black uppercase tracking-[0.1em] text-amber-100 sm:text-2xl sm:tracking-[0.15em]">
+              {modoConstruccion ? "Construcción" : "Mi campamento"}
+            </h2>
+            {!modoConstruccion && (
+              <p className="mt-1 hidden text-sm text-amber-100/55 sm:block">
+                Un poblado en crecimiento, con sus instalaciones y caminos.
+              </p>
+            )}
+          </div>
 
           <button
+            type="button"
             onClick={() => setModoConstruccion(!modoConstruccion)}
-            className={`rounded-md border-x border-b-4 border-amber-950 px-4 py-2 font-bold transition-colors ${
+            className={`min-h-10 shrink-0 rounded-md border-x border-b-4 border-amber-950 px-3 py-2 text-xs font-bold transition-colors sm:px-4 sm:text-sm ${
               modoConstruccion
-                ? "border-amber-400 bg-amber-700/40 text-amber-200/70"
-                : "border-stone-700 bg-stone-500 text-stone-200"
+                ? "border-amber-400 bg-amber-700/40 text-amber-200/90"
+                : "border-stone-700 bg-stone-500 text-stone-100 hover:bg-stone-400"
             }`}
           >
-            {modoConstruccion ? "← Volver" : "Construir y mejorar edificios"}
+            {modoConstruccion ? "← Volver" : (
+              <>
+                <span className="sm:hidden">+ Construir</span>
+                <span className="hidden sm:inline">Construir y mejorar edificios</span>
+              </>
+            )}
           </button>
         </div>
 
