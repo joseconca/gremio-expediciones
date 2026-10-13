@@ -119,7 +119,16 @@ async function gastarRecursosHabilidad(
 
   const costeEnergia = Math.max(0, Math.floor(habilidad.costeEnergia ?? 0));
   const costeMana = Math.max(0, Math.floor(habilidad.costeMana ?? 0));
-  if (costeEnergia === 0 && costeMana === 0) return;
+  const recuperacionEnergia = Math.max(0, Math.floor(habilidad.recuperarEnergia ?? 0));
+  if (costeEnergia === 0 && costeMana === 0) {
+    if (recuperacionEnergia > 0) {
+      await tx.personaje.updateMany({
+        where: { id: personajeId },
+        data: { energiaActual: { increment: recuperacionEnergia } },
+      });
+    }
+    return;
+  }
 
   const where: Prisma.PersonajeWhereInput = { id: personajeId };
   const data: Prisma.PersonajeUpdateManyMutationInput = {};
@@ -135,6 +144,12 @@ async function gastarRecursosHabilidad(
   const resultado = await tx.personaje.updateMany({ where, data });
   if (resultado.count !== 1) {
     throw new Error("RECURSO_HABILIDAD_INSUFICIENTE");
+  }
+  if (recuperacionEnergia > 0) {
+    await tx.personaje.updateMany({
+      where: { id: personajeId },
+      data: { energiaActual: { increment: recuperacionEnergia } },
+    });
   }
 }
 
@@ -806,12 +821,7 @@ export async function POST(request: Request) {
             else efectos = [...efectos, estado];
           }
           if (resultadoHabilidad.efectosJugadorActualizados) efectos = resultadoHabilidad.efectosJugadorActualizados;
-          if (habilidad.recuperarEnergia && habilidad.recuperarEnergia > 0) {
-            await prisma.personaje.update({
-              where: { id: personaje.id },
-              data: { energiaActual: { increment: habilidad.recuperarEnergia } },
-            });
-          }
+
 
           const cooldownTurnos = habilidad.cooldownTurnos ?? 0;
 
@@ -1455,9 +1465,7 @@ export async function POST(request: Request) {
           else efectos = [...efectos, estado];
         }
         if (resultadoHabilidad.efectosJugadorActualizados) efectos = resultadoHabilidad.efectosJugadorActualizados;
-        if (habilidad.recuperarEnergia && habilidad.recuperarEnergia > 0) {
-          await prisma.personaje.update({ where: { id: personaje.id }, data: { energiaActual: { increment: habilidad.recuperarEnergia } } });
-        }
+
 
         const cooldownTurnos = habilidad.cooldownTurnos ?? 0;
 
@@ -1526,9 +1534,7 @@ export async function POST(request: Request) {
           else efectosDefensor = [...efectosDefensor, estado];
         }
         if (resultadoHabilidad.efectosJugadorActualizados) efectosDefensor = resultadoHabilidad.efectosJugadorActualizados;
-        if (habilidad.recuperarEnergia && habilidad.recuperarEnergia > 0) {
-          await prisma.personaje.update({ where: { id: personaje.id }, data: { energiaActual: { increment: habilidad.recuperarEnergia } } });
-        }
+
 
         const cooldownTurnos = habilidad.cooldownTurnos ?? 0;
 
