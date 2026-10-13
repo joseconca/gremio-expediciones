@@ -62,7 +62,7 @@ En comercio, la recompensa se obtiene únicamente si se sobrevive a las dos part
 
 Los precios unitarios de materiales pasan a 50 para madera, 100 para piedra y 350 para metal. El metal sigue siendo el recurso más valioso, pero baja su coste relativo para que las mejoras comunes sean alcanzables. Los descuentos del Mercado conservan un 10 % por nivel y quedan limitados al nivel 3.
 
-La Espada de Madera cuesta 100; la Espada de Hierro 800; la Espada de Acero 1.800 y la Espada Rúnica 6.500. La Armadura de Acero rara cuesta 5.200 por su utilidad y penalización de velocidad; el precio no se fija únicamente por rareza. El Anillo Maldito cuesta 3.200, mantiene penalizaciones iniciales pero estas son compensables con mejoras.
+La Espada de Madera cuesta 100; la Espada de Hierro 800; la Espada de Acero 1.800 y la Espada Rúnica 6.500. La Armadura de Acero rara cuesta 5.200 por su utilidad y penalización de velocidad; el precio no se fija únicamente por rareza. El Anillo Maldito cuesta 3.200: aporta +6 de ataque a cambio de −20 de vida, −4 de defensa y −4 de velocidad, por lo que es una pieza ofensiva de riesgo y recompensa. Los accesorios no se pueden mejorar en la Herrería; por eso su catálogo solo declara estadísticas base, sin incrementos de mejora que la interfaz no permitiría obtener.
 
 El coste de oro de la mejora ya no depende del precio comercial. Parte de 60 para armas y 50 para armaduras, aplica multiplicadores por rareza y categoría, y escala con `(nivelMejora + 1)^1,25`. Así una anomalía en el precio de tienda no crea mejoras de cientos de miles o millones. Los costes de materiales siguen escalando por rareza y tramo de mejora.
 
