@@ -48,10 +48,12 @@ test("los estados modifican ataque, precisión y evasión con límites", () => {
     { habilidadId: "trampa_cegadora", tipo: "debuff_precision", valor: 10, duracionTurnos: 2, turnosRestantes: 2, objetivo: "enemigo" },
     { habilidadId: "finta_fulminante", tipo: "bonus_evasion", valor: 0.12, duracionTurnos: 2, turnosRestantes: 2, objetivo: "jugador" },
   ];
-  assert.equal(calcularAtaqueModificado(100, efectos, true), 115);
-  assert.equal(calcularAtaqueModificado(100, efectos, false), 88);
-  assert.equal(calcularPrecisionModificada(75, efectos), 65);
-  assert.equal(calcularEvasionModificada(0.55, efectos), 0.6);
+  const efectosJugador = [efectos[0], efectos[3]];
+  const efectosEnemigo = [efectos[1], efectos[2]];
+  assert.equal(calcularAtaqueModificado(100, efectosJugador, true), 114);
+  assert.equal(calcularAtaqueModificado(100, efectosEnemigo, false), 88);
+  assert.equal(calcularPrecisionModificada(75, efectosEnemigo), 65);
+  assert.equal(calcularEvasionModificada(0.55, efectosJugador), 0.6);
   assert.equal(leerEfectosCombate([...efectos, { tipo: "inventado" }]).length, 4);
 });
 
