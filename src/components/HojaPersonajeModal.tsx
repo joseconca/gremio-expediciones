@@ -11,6 +11,21 @@ import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { experienciaJobParaNivel } from "@/lib/progresion/experiencia";
 import { obtenerSpriteObjeto } from "@/lib/objetos";
 import { ARQUETIPOS_CLASE, CLASES } from "@/lib/progresion/clases";
+import type { ModificadoresEstadisticas } from "@/lib/estadisticasPersonaje";
+
+function formatearValorDesglose(
+  clave: keyof ModificadoresEstadisticas,
+  valor: number
+): string {
+  if (clave === "probCritico" || clave === "evasion") {
+    return `${(valor * 100).toFixed(1)} %`;
+  }
+  if (clave === "precision") {
+    return `${valor.toFixed(1)} %`;
+  }
+  const redondeado = Math.round((valor + Number.EPSILON) * 10) / 10;
+  return Number.isInteger(redondeado) ? String(redondeado) : redondeado.toFixed(1);
+}
 
 interface HojaPersonajeModalProps {
   abierto: boolean;
@@ -95,7 +110,17 @@ export default function HojaPersonajeModal({
     { id: "inteligencia", nombre: "Inteligencia", sigla: "INT", emoji: "✨", valor: personaje.inteligencia },
     { id: "destreza", nombre: "Destreza", sigla: "DES", emoji: "🎯", valor: personaje.destreza },
     { id: "suerte", nombre: "Suerte", sigla: "SUE", emoji: "🍀", valor: personaje.suerte },
-  ];
+  ] as const;
+  const atributosConDesglose = atributos.map((atributo) => {
+    const aporteNivelesBase = Math.floor(
+      (nivel - 1) * arquetipo.crecimientoBase[atributo.id]
+    );
+    return {
+      ...atributo,
+      aporteNivelesBase,
+      aporteNivelesClase: atributo.valor - 1 - aporteNivelesBase,
+    };
+  });
   const ranurasEquipo = [
     { clave: "arma", nombre: "Arma", emoji: "⚔️" },
     { clave: "manoSecundaria", nombre: "Mano secundaria", emoji: "🗡️" },
@@ -256,12 +281,25 @@ export default function HojaPersonajeModal({
               <span className="text-xs font-semibold text-stone-500">Crecimiento automático · {arquetipo.nombre}</span>
             </div>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
-              {atributos.map((atributo) => (
-                <article key={atributo.id} className="rounded-sm border border-stone-300 bg-[#efe5cf] p-3 text-center shadow-sm">
-                  <span aria-hidden="true">{atributo.emoji}</span>
-                  <p className="mt-1 text-[10px] font-black uppercase tracking-wider text-stone-500">{atributo.sigla}</p>
-                  <p className="font-serif text-xs font-bold text-stone-700">{atributo.nombre}</p>
-                  <p className="mt-1 font-serif text-2xl font-black tabular-nums text-stone-900">{atributo.valor}</p>
+              {atributosConDesglose.map((atributo) => (
+                <article key={atributo.id} className="rounded-sm border border-stone-300 bg-[#efe5cf] text-center shadow-sm">
+                  <details className="group">
+                    <summary
+                      className="cursor-pointer list-none rounded-sm p-3 outline-none focus-visible:ring-2 focus-visible:ring-amber-700"
+                      aria-label={`Ver desglose de ${atributo.nombre}`}
+                    >
+                      <span aria-hidden="true">{atributo.emoji}</span>
+                      <p className="mt-1 text-[10px] font-black uppercase tracking-wider text-stone-500">{atributo.sigla}</p>
+                      <p className="font-serif text-xs font-bold text-stone-700">{atributo.nombre}</p>
+                      <p className="mt-1 font-serif text-2xl font-black tabular-nums text-stone-900">{atributo.valor}</p>
+                      <p className="mt-1 text-[10px] font-bold text-stone-500 group-open:text-amber-800">Ver desglose⌄</p>
+                    </summary>
+                    <div className="border-t border-stone-300 bg-[#e4d5b7] px-2 py-2 text-left text-[11px] text-stone-700">
+                      <p className="flex justify-between gap-2"><span>Base inicial</span><strong>1</strong></p>
+                      <p className="mt-1 flex justify-between gap-2"><span>Niveles BASE</span><strong>+{atributo.aporteNivelesBase}</strong></p>
+                      <p className="mt-1 flex justify-between gap-2"><span>Clase activa · {claseActiva.nombre}</span><strong>+{atributo.aporteNivelesClase}</strong></p>
+                    </div>
+                  </details>
                 </article>
               ))}
             </div>
@@ -275,22 +313,63 @@ export default function HojaPersonajeModal({
 
             <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
               {[
-                { nombre: "Vida máxima", valor: personaje.hpMaximo, emoji: "❤️" },
-                { nombre: "Ataque físico", valor: personaje.ataque, emoji: "⚔️" },
-                { nombre: "Defensa física", valor: personaje.defensa, emoji: "🛡️" },
-                { nombre: "Ataque mágico", valor: personaje.ataqueMagico, emoji: "✨" },
-                { nombre: "Defensa mágica", valor: personaje.defensaMagica, emoji: "🔮" },
-                { nombre: "Velocidad", valor: personaje.velocidad, emoji: "💨" },
-                { nombre: "Capacidad", valor: personaje.capacidadCarruaje, emoji: "📦" },
-                { nombre: "Precisión", valor: Math.round(personaje.precision) + "%", emoji: "🎯" },
-                { nombre: "Evasión", valor: (personaje.evasion * 100).toFixed(1) + "%", emoji: "🌀" },
-                { nombre: "Probabilidad crítica", valor: (personaje.probCritico * 100).toFixed(1) + "%", emoji: "💥" },
-              ].map((stat) => (
-                <article key={stat.nombre} className="rounded-sm border border-stone-300 bg-[#efe5cf] px-3 py-2.5 shadow-sm">
-                  <div className="text-[11px] font-bold text-stone-600">{stat.emoji} {stat.nombre}</div>
-                  <div className="mt-0.5 font-serif text-xl font-black text-stone-900">{stat.valor}</div>
-                </article>
-              ))}
+                { nombre: "Vida máxima", clave: "hpMaximo", valor: personaje.hpMaximo, emoji: "❤️" },
+                { nombre: "Ataque físico", clave: "ataque", valor: personaje.ataque, emoji: "⚔️" },
+                { nombre: "Defensa física", clave: "defensa", valor: personaje.defensa, emoji: "🛡️" },
+                { nombre: "Ataque mágico", clave: "ataqueMagico", valor: personaje.ataqueMagico, emoji: "✨" },
+                { nombre: "Defensa mágica", clave: "defensaMagica", valor: personaje.defensaMagica, emoji: "🔮" },
+                { nombre: "Velocidad", clave: "velocidad", valor: personaje.velocidad, emoji: "💨" },
+                { nombre: "Capacidad", clave: "capacidadCarruaje", valor: personaje.capacidadCarruaje, emoji: "📦" },
+                { nombre: "Precisión", clave: "precision", valor: Math.round(personaje.precision) + "%", emoji: "🎯" },
+                { nombre: "Evasión", clave: "evasion", valor: (personaje.evasion * 100).toFixed(1) + "%", emoji: "🌀" },
+                { nombre: "Probabilidad crítica", clave: "probCritico", valor: (personaje.probCritico * 100).toFixed(1) + "%", emoji: "💥" },
+              ].map((stat) => {
+                const desglose = personaje.desgloseEstadisticas;
+                const fuentes = desglose
+                  ? [
+                      { nombre: "Base", valor: desglose.base[stat.clave] },
+                      { nombre: "Mejoras", valor: desglose.mejoras[stat.clave] },
+                      ...(desglose.pasivasPorHabilidad ?? []).map((fuente) => ({
+                        nombre: fuente.nombre,
+                        valor: fuente.modificadores[stat.clave],
+                      })),
+                      ...(desglose.equipoPorObjeto ?? []).map((fuente) => ({
+                        nombre: `${fuente.ranura}: ${fuente.nombre}`,
+                        valor: fuente.modificadores[stat.clave],
+                      })),
+                    ].filter((fuente) => typeof fuente.valor === "number" && Math.abs(fuente.valor) > 0.0001)
+                  : [];
+
+                return (
+                  <article key={stat.nombre} className="rounded-sm border border-stone-300 bg-[#efe5cf] shadow-sm">
+                    <details className="group">
+                      <summary
+                        className="cursor-pointer list-none px-3 py-2.5 outline-none focus-visible:ring-2 focus-visible:ring-amber-700"
+                        aria-label={`Ver desglose de ${stat.nombre}`}
+                        title={`Pulsa para consultar de dónde viene ${stat.nombre.toLowerCase()}`}
+                      >
+                        <div className="text-[11px] font-bold text-stone-600">{stat.emoji} {stat.nombre}</div>
+                        <div className="mt-0.5 font-serif text-xl font-black text-stone-900">{stat.valor}</div>
+                        <div className="mt-1 text-[10px] font-bold text-stone-500 group-open:text-amber-800">Ver desglose⌄</div>
+                      </summary>
+                      <div className="border-t border-stone-300 bg-[#e4d5b7] px-3 py-2 text-[11px] text-stone-700">
+                        {fuentes.length > 0 ? fuentes.map((fuente) => {
+                          if (typeof fuente.valor !== "number") return null;
+                          const prefijo = fuente.nombre === "Base" ? "" : fuente.valor > 0 ? "+" : "";
+                          return (
+                            <p key={fuente.nombre} className="flex items-start justify-between gap-2">
+                              <span className="min-w-0">{fuente.nombre}</span>
+                              <strong className="shrink-0 tabular-nums">{prefijo}{formatearValorDesglose(stat.clave, fuente.valor)}</strong>
+                            </p>
+                          );
+                        }) : (
+                          <p>Desglose no disponible.</p>
+                        )}
+                      </div>
+                    </details>
+                  </article>
+                );
+              })}
             </div>
             <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div className="rounded-sm border border-blue-200 bg-blue-50/70 p-3">
