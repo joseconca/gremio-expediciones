@@ -474,7 +474,7 @@ export const CONFIGURACION_EDIFICIOS = {
     costePiedra: 2,
     costeMetal: 0,
     nivelMax: 3,
-    descripcion: "Descansa y recupera la salud.",
+    descripcion: "Prepara comidas para potenciar tus próximas expediciones.",
     color: "bg-amber-700",
     ruta: "/base/taberna",
   },
