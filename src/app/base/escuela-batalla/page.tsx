@@ -9,7 +9,15 @@ import { CLASES } from "@/lib/progresion/clases";
 import type { DefinicionHabilidad, Rareza, SlotHabilidad } from "@/lib/tiposJuego";
 import { useGameStore } from "@/store/useGameStore";
 
-type HabilidadEnVenta = DefinicionHabilidad & { puedeAprender: boolean; modoAprendizaje?: "job" | "oro" };
+type HabilidadEnVenta = DefinicionHabilidad & {
+  puedeAprender: boolean;
+  nivelJobClase?: number;
+  puntosHabilidadDisponiblesClase?: number;
+  progresoClaseDesbloqueada?: boolean;
+  clasePropietariaId?: string;
+  clasePropietariaNombre?: string;
+  modoAprendizaje?: "job" | "oro";
+};
 type HabilidadAprendida = { id: string; habilidadId: string; slot: string | null; habilidad: DefinicionHabilidad; disponibleParaProfesion?: boolean };
 type DatosHabilidades = {
   escuelaNivel: number;
@@ -175,7 +183,7 @@ export default function EscuelaCombatePage() {
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#a99169]">Tu clase actual</p>
                 <h2 className="mt-1 text-xl font-black text-[#f0dfbd] sm:text-2xl">{datos?.profesionNombre ?? CLASES[profesionId]?.nombre ?? profesionId}</h2>
-                <p className="mt-1 hidden max-w-xl text-sm text-[#b5a68c] sm:block">Puedes aprender habilidades de esta profesión y de sus antecesoras. Todos los requisitos se miden por nivel de Job.</p>
+                <p className="mt-1 hidden max-w-xl text-sm text-[#b5a68c] sm:block">Puedes aprender habilidades de esta profesión y de sus antecesoras. Cada habilidad usa el nivel Job y los puntos de su clase de origen.</p>
               </div>
               <div className="grid grid-cols-2 gap-2 sm:min-w-[300px] sm:gap-3">
                 <div className="min-w-0 rounded-lg border border-[#4c3b27] bg-[#191612] p-2 sm:p-3">
@@ -183,7 +191,7 @@ export default function EscuelaCombatePage() {
                   <p className="mt-1 text-xl font-bold text-amber-200 sm:text-2xl">{nivelJob} / {CLASES[profesionId]?.nivelJobMaximo ?? 10}</p>
                 </div>
                 <div className="min-w-0 rounded-lg border border-[#4c3b27] bg-[#191612] p-2 sm:p-3">
-                  <p className="text-[11px] uppercase tracking-wider text-[#91816a]">Puntos disponibles</p>
+                  <p className="text-[11px] uppercase tracking-wider text-[#91816a]">Puntos Job · {CLASES[profesionId]?.nombre ?? profesionId}</p>
                   <p className="mt-1 text-xl font-bold text-amber-200 sm:text-2xl">{puntosDisponibles}</p>
                 </div>
               </div>
@@ -221,13 +229,18 @@ export default function EscuelaCombatePage() {
                   const aprendida = idsAprendidas.has(habilidad.id);
                   const requerida = habilidad.nivelJobRequerido ?? 1;
                   const coste = Math.max(1, habilidad.costePuntosHabilidad ?? 1);
-                  const puntosInsuficientes = puntosDisponibles < coste;
+                  const clasePropietariaId = habilidad.clasePropietariaId ?? habilidad.claseId ?? profesionId;
+                  const clasePropietaria = habilidad.clasePropietariaNombre ?? CLASES[clasePropietariaId]?.nombre ?? clasePropietariaId;
+                  const heredada = clasePropietariaId !== profesionId;
+                  const nivelJobClase = habilidad.nivelJobClase ?? (heredada ? 0 : nivelJob);
+                  const puntosClaseDisponibles = habilidad.puntosHabilidadDisponiblesClase ?? puntosDisponibles;
+                  const progresoClaseDesbloqueada = habilidad.progresoClaseDesbloqueada ?? !heredada;
+                  const puntosInsuficientes = puntosClaseDisponibles < coste;
                   const puede = habilidad.puedeAprender && !aprendida;
-                  const clasePropietaria = habilidad.claseId ? CLASES[habilidad.claseId]?.nombre ?? habilidad.claseId : "Clase";
-                  const heredada = habilidad.claseId !== profesionId;
                   const clave = `aprender:${habilidad.id}`;
-                  const bloqueo = nivelJob < requerida ? `Requiere Job ${requerida}`
-                    : puntosInsuficientes ? `Necesitas ${coste} punto(s) de habilidad`
+                  const bloqueo = !progresoClaseDesbloqueada ? `No tienes desbloqueada la clase ${clasePropietaria}`
+                    : nivelJobClase < requerida ? `Requiere ${clasePropietaria} Job ${requerida} (actual: ${nivelJobClase})`
+                    : puntosInsuficientes ? `Necesitas ${coste} punto(s); ${puntosClaseDisponibles} disponibles en ${clasePropietaria}`
                     : "No disponible para esta profesión";
                   return (
                     <article key={habilidad.id} className={`flex flex-col rounded-xl border bg-[#211b14] p-2.5 sm:p-4 ${aprendida ? "border-emerald-800/70" : puede ? "border-[#695233]" : "border-[#403427]"}`}>
@@ -248,7 +261,8 @@ export default function EscuelaCombatePage() {
                       <p className="mt-1 line-clamp-2 text-[11px] leading-4 text-[#b2a58e]">{habilidad.descripcion}</p>
                       <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-[#c7b99e] sm:mt-4 sm:gap-2 sm:text-[11px]">
                         <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">Job {requerida}</span>
-                        <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">{coste} punto(s)</span>
+                        {heredada && <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">{clasePropietaria} Job {nivelJobClase}</span>}
+                        <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">{coste} punto(s){heredada ? ` · ${puntosClaseDisponibles} disp.` : ""}</span>
                         {(habilidad.costeEnergia || habilidad.costeMana) && <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">{etiquetaCoste(habilidad)}</span>}
                         {habilidad.cooldownTurnos ? <span className="hidden rounded-md bg-[#302619] px-2 py-1 sm:inline-flex sm:px-2.5">Enfriamiento: {habilidad.cooldownTurnos} turnos</span> : null}
                         {habilidad.duracionTurnos ? <span className="hidden rounded-md bg-[#302619] px-2 py-1 sm:inline-flex sm:px-2.5">Duración: {habilidad.duracionTurnos} turnos</span> : null}
