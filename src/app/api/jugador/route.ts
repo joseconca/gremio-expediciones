@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { sincronizarRegeneracion } from "@/lib/regeneracion";
 import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
@@ -63,19 +62,6 @@ export async function GET() {
         ultimaActividad: new Date(),
       },
     });
-
-    if (usuario.personaje) {
-      const equipo = obtenerEquipoDesdePersonaje(usuario.personaje);
-      const modificadoresEquipo = calcularModificadoresEquipo(
-        equipo,
-        usuario.personaje.profesionActivaId
-      );
-
-      usuario.personaje = await sincronizarRegeneracion(
-        usuario.personaje,
-        modificadoresEquipo
-      );
-    }
 
     const expedicionesEntrantes = await prisma.expedicionActiva.findMany({
       where: { tipo: "comercio", objetivoId: usuario.id },
