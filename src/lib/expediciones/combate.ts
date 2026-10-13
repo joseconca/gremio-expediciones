@@ -328,13 +328,15 @@ export function resolverHabilidadJugador(
     }
 
     case "curacion": {
-      const dado = d20();
-      const esCritico = dado === 20 || Math.random() < probabilidadCritico;
+      const multiplicadorCritico = Math.max(1, habilidad.multiplicadorCritico ?? 1);
+      const dado = multiplicadorCritico > 1 ? d20() : 0;
+      const esCritico = multiplicadorCritico > 1 &&
+        (dado === 20 || Math.random() < probabilidadCritico);
       const cantidadBase = habilidad.curacionPorcentaje !== undefined
         ? Math.floor(combate.jugadorHpMaximo * habilidad.curacionPorcentaje)
         : (habilidad.curacion ?? 0);
       const cantidadCritica = esCritico
-        ? Math.floor(cantidadBase * (habilidad.multiplicadorCritico ?? 1.5))
+        ? Math.floor(cantidadBase * multiplicadorCritico)
         : cantidadBase;
       const cantidad = Math.max(0, Math.floor(cantidadCritica * (1 + bonusCuracion)));
       const curado = Math.min(cantidad, Math.max(0, combate.jugadorHpMaximo - jugadorHp));
