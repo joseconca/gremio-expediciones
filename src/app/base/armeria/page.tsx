@@ -855,7 +855,7 @@ export default function HerreriaPage() {
               </div>
             ) : (
               <div className="space-y-1.5">
-                {inventarioVisible.map((objetoInventario) => {}
+                {inventarioVisible.map((objetoInventario) => {
                   const objeto = objetoInventario.objeto;
 
                   const estaEquipado = TIPOS_EQUIPAMIENTO.some(
@@ -883,8 +883,8 @@ export default function HerreriaPage() {
                       }`}
                     >
                       <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-2 gap-y-1.5 sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:items-center sm:gap-x-3">
-                        <div className="flex min-w-0 items-start gap-2">
-                          {/* Bolsillo / icono */}
+                        {/* Icono: columna propia para alinear toda la lista */}
+                        {/* Bolsillo / icono */}
                           <div
                             className={`flex h-10 w-10 shrink-0 items-center justify-center rounded border text-xl sm:h-11 sm:w-11 ${
                               estaEquipado
@@ -965,7 +965,6 @@ export default function HerreriaPage() {
                               ))}
                             </div>
                           </div>
-                        </div>
 
                         {estaEquipado ? (
                           <div className="col-span-2 flex items-center justify-between gap-2 border-t border-white/5 pt-1 sm:col-span-1 sm:border-0 sm:pt-0">
@@ -989,7 +988,7 @@ export default function HerreriaPage() {
                                     type="button"
                                     onClick={() => void equiparObjeto(objetoInventario.id, "anillo2")}
                                     disabled={procesando !== null}
-                                    className="min-h-8 rounded border border-[#765635] bg-[#42301f] px-2 py-1.5 text-[10px] font-black text-[#ddc8a6] hover:bg-[#513a25] disabled:opacity-50"
+                                    className="min-h-7 rounded border border-[#765635] bg-[#42301f] px-2 py-1 text-[9px] font-black text-[#ddc8a6] hover:bg-[#513a25] disabled:opacity-50"
                                   >Equipar anillo 2</button>
                                 </>
                               ) : (
