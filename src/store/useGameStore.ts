@@ -163,7 +163,7 @@ export interface Personaje {
   // Desglose de procedencia calculado junto con las estadísticas.
   desgloseEstadisticas?: Pick<
     DesgloseEstadisticasPersonaje,
-    "base" | "mejoras" | "pasivas" | "equipo" | "atributos"
+    "base" | "baseSinAtributos" | "mejoras" | "pasivas" | "equipo" | "combate" | "atributos"
   > & {
     pasivasPorHabilidad: {
       habilidadId: string;
@@ -630,9 +630,11 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     hpMaximo: estadisticas.total.hpMaximo,
     desgloseEstadisticas: {
       base: estadisticas.base,
+      baseSinAtributos: estadisticas.baseSinAtributos,
       mejoras: estadisticas.mejoras,
       pasivas: estadisticas.pasivas,
       equipo: estadisticas.equipo,
+      combate: estadisticas.combate,
       atributos: estadisticas.atributos,
       pasivasPorHabilidad,
       equipoPorObjeto,
