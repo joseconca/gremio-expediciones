@@ -26,7 +26,7 @@ export function procesarTicksPeriodicos(
   hpActual: number,
   hpMaximo: number,
   nombreObjetivo: string,
-): { hp: number; mensajes: string[] } {
+): { hp: number; mensajes: string[]; danoAplicado: number; curacionAplicada: number } {
   let hp = Math.max(0, Math.min(Math.floor(hpMaximo), Math.floor(hpActual)));
   const mensajes: string[] = [];
   let danoAplicado = 0;
