@@ -12,6 +12,18 @@ const { calcularCosteEdificio } = require("../src/lib/configuracionJuego.ts");
 
 test("el catálogo completo contiene precios positivos y progresión coherente entre equipo", () => {
   assert.ok(OBJETOS.every((item) => Number.isFinite(item.precio) && item.precio > 0));
+  assert.deepEqual(
+    Object.fromEntries(OBJETOS.map((item) => [item.id, item.precio])),
+    {
+      pocion: 20, pocion_grande: 55,
+      espada_madera: 100, espada_hierro: 800, espada_acero: 1800,
+      espada_runa: 6500, hacha_orca: 4200,
+      tela_andrajosa: 100, armadura_cuero: 650, armadura_hierro: 2200, armadura_acero: 5200,
+      anillo_viajero: 1100, amuleto_vitalidad: 2800, anillo_maldito: 3200,
+      escudo_madera: 150, casco_cuero: 300, pantalones_cuero: 320,
+      botas_cuero: 280, guantes_cuero: 220, collar_cobre: 350, anillo_resistencia: 500,
+    },
+  );
   assert.deepEqual(["espada_madera","espada_hierro","espada_acero","espada_runa"].map((id) => obtenerObjetoPorId(id).precio), [100,800,1800,6500]);
   assert.deepEqual(["tela_andrajosa","armadura_cuero","armadura_hierro","armadura_acero"].map((id) => obtenerObjetoPorId(id).precio), [100,650,2200,5200]);
   const maldito = obtenerObjetoPorId("anillo_maldito");
@@ -173,4 +185,11 @@ test("el oro y los materiales de edificios escalan juntos por el mismo factor", 
   assert.deepEqual(mejora1, { oro: 945, madera: 6, piedra: 3, metal: 0 });
   assert.deepEqual(mejora2, { oro: 1418, madera: 9, piedra: 5, metal: 0 });
   assert.equal(calcularCosteEdificio("herreria", 0).oro, 1170);
+  const costesConstruccion = {
+    taberna: 630, armeria: 360, herreria: 1170, mercado: 630,
+    embajada: 360, escuelaCombate: 1080, muralla: 1800, almacen: 1350,
+  };
+  for (const [id, coste] of Object.entries(costesConstruccion)) {
+    assert.equal(calcularCosteEdificio(id, 0).oro, coste, `coste inicial de ${id}`);
+  }
 });
