@@ -309,7 +309,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
 
   // CRUZADO
   habilidad({
-    id: "golpe_cruzado", claseId: "cruzado", nivelJobRequerido: 1,
+    id: "golpe_cruzado", claseId: "cruzado", nivelJobRequerido: 1, tipoDano: "hibrido",
     nombre: "Golpe cruzado", descripcion: "Un ataque híbrido que combina fuerza física y energía sagrada.",
     tipo: "activa", efecto: "dano", animacion: "ofensiva_potenciada", multiplicadorDano: 1.5,
     costeEnergia: 8, costeMana: 4, cooldownTurnos: 3,
@@ -322,7 +322,7 @@ export const HABILIDADES: DefinicionHabilidad[] = [
     costeEnergia: 4, costeMana: 6, cooldownTurnos: 4,
   }),
   habilidad({
-    id: "juicio_sagrado", claseId: "cruzado", nivelJobRequerido: 25, tipoDano: "magico",
+    id: "juicio_sagrado", claseId: "cruzado", nivelJobRequerido: 25, tipoDano: "hibrido",
     nombre: "Juicio sagrado", descripcion: "Inflige daño híbrido y reduce el ataque enemigo un 8 % durante 2 turnos.",
     tipo: "activa", efecto: "dano", animacion: "ofensiva_potenciada", multiplicadorDano: 1.25,
     estadosSecundarios: [{ tipo: "debuff_ataque", valor: 0.08, duracionTurnos: 2, objetivo: "enemigo" }],
