@@ -46,7 +46,14 @@ function esSlot(valor: string | null): valor is SlotHabilidad {
 }
 function etiquetaEfecto(habilidad: DefinicionHabilidad) {
   if (habilidad.curacionProgresivaPorcentaje) return "Curación progresiva";
+  if (
+    habilidad.efecto === "curacion" &&
+    habilidad.estadosSecundarios?.some((estado) => estado.tipo === "curacion_progresiva")
+  ) return "Curación + progresiva";
   if (habilidad.danoProgresivoPorcentaje) return "Daño progresivo";
+  if (habilidad.estadosSecundarios?.some((estado) => estado.tipo.startsWith("debuff_"))) {
+    return habilidad.efecto === "dano" ? "Ataque y debilitación" : "Debilitación";
+  }
   if (habilidad.efecto === "curacion") return "Curación";
   if (habilidad.efecto === "bonus_defensa") return "Defensa";
   if (habilidad.efecto === "bonus_ataque_magico") return "Potenciación";
