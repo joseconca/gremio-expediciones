@@ -478,6 +478,7 @@ export async function POST(request: Request) {
 
     const personaje = usuario.personaje;
     const bonusCuracion = personaje.habilidades.reduce((total, aprendida) => {
+      if (!aprendida.slot?.startsWith("pasiva_")) return total;
       const definicion = obtenerHabilidadPorId(aprendida.habilidadId);
       if (!definicion || definicion.tipo !== "pasiva") return total;
       if (!puedeUsarHabilidadDeClase(personaje.profesionActivaId || "novato", definicion.claseId)) return total;
@@ -655,14 +656,17 @@ export async function POST(request: Request) {
     let efectosDefensor = obtenerEfectos(combate.efectosDefensor);
 
     if (accion === "usar_habilidad") {
+      const slotsActivos = ["activa_1", "activa_2", "activa_3"];
       const habilidadAprendida = personaje.habilidades.find(
-        (habilidadAprendida) => habilidadAprendida.habilidadId === habilidadId
+        (habilidadAprendida) =>
+          habilidadAprendida.habilidadId === habilidadId &&
+          slotsActivos.includes(habilidadAprendida.slot ?? "")
       );
 
       if (!habilidadAprendida) {
         return NextResponse.json(
           {
-            error: "No tienes esa habilidad equipada.",
+            error: "No tienes esa habilidad equipada en una ranura activa.",
           },
           { status: 403 }
         );
