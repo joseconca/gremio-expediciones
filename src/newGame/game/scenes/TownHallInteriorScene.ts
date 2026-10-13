@@ -30,7 +30,7 @@ export class TownHallInteriorScene extends InteriorScene {
       npc: {
         x: 80,
         y: 16,
-        spriteSrc: "/sprites/sheets/characters/alcalde.png",
+        spriteSrc: "/newGame/sprites/sheets/characters/alcalde.png",
         dialogue: () =>
           createAlcaldeDialogue(
             config.villageProgression.getTownHallLevel(),

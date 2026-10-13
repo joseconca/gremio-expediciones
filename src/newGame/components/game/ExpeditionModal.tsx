@@ -148,7 +148,7 @@ export default function ExpeditionModal({ manager, snapshot, base }: ExpeditionM
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 text-amber-50 backdrop-blur-sm">
       <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby={titleId} aria-describedby={descriptionId} tabIndex={-1}
         className="relative isolate h-[95dvh] min-h-[min(92dvh,800px)] w-[95vw] min-w-0 max-w-[1280px] bg-no-repeat shadow-2xl [image-rendering:pixelated]"
-        style={{ backgroundImage: "url('/sprites/tablonMisiones.png')", backgroundSize: "200% 168.421%", backgroundPosition: "50% 26.923%" }}>
+        style={{ backgroundImage: "url('/newGame/sprites/tablonMisiones.png')", backgroundSize: "200% 168.421%", backgroundPosition: "50% 26.923%" }}>
         <h2 id={titleId} className="sr-only">Tablero de expediciones</h2>
         <p id={descriptionId} className="sr-only">Selecciona un marcador para consultar su misión. Puedes mover y ampliar el mapa. Cerrar no cancela el viaje. Escape cierra primero los detalles y después el tablero.</p>
         <button ref={closeRef} type="button" onClick={() => manager.close()} aria-label="Cerrar expediciones" className={`${buttonClass} absolute right-[6%] top-[max(1%,env(safe-area-inset-top))] z-20 bg-[#21150f]/95 text-sm shadow-lg`}>Cerrar</button>

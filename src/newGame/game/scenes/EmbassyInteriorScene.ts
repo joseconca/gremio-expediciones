@@ -32,7 +32,7 @@ export class EmbassyInteriorScene extends InteriorScene {
       npc: {
         x: 80,
         y: 16,
-        spriteSrc: "/sprites/sheets/characters/embajador.png",
+        spriteSrc: "/newGame/sprites/sheets/characters/embajador.png",
         dialogue: () => createEmbajadorDialogue(config.partyManager.getSnapshot()),
         onChoice: (eventId) => {
           const [action, argument] = eventId.split(":");

@@ -1,5 +1,5 @@
 export const tavernInteriorTileset = {
-  src: "/sprites/tilesets/interiors/tavern-tileset.png",
+  src: "/newGame/sprites/tilesets/interiors/tavern-tileset.png",
   tileWidth: 32,
   tileHeight: 32,
 };

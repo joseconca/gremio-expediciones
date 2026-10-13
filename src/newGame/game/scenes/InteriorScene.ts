@@ -79,7 +79,7 @@ export class InteriorScene extends Scene {
 
     const spawn = this.getSpawnPoint(config.spawnId);
     const playerSprite = new SpriteSheet({
-      src: "/sprites/sheets/characters/hero.png",
+      src: "/newGame/sprites/sheets/characters/hero.png",
       frameWidth: 32,
       frameHeight: 64,
     });

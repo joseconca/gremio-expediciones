@@ -92,11 +92,11 @@ export class CombatManager {
     });
     const party: PartyCombatant[] = [{ id: "local-player", name: player.name,
       level: player.characterLevel,
-      attributes: copyAttributes(player.attributes), isLocalPlayer: true, spriteSrc: "/sprites/sheets/characters/hero.png" }];
+      attributes: copyAttributes(player.attributes), isLocalPlayer: true, spriteSrc: "/newGame/sprites/sheets/characters/hero.png" }];
     for (const companion of companions) {
       if (party.length >= MAX_PARTY_SIZE) break;
       if (companion.isLocalPlayer || companion.attributes.currentHealth <= 0 || party.some((member) => member.id === companion.id)) continue;
-      party.push({ ...companion, attributes: copyAttributes(companion.attributes), spriteSrc: companion.spriteSrc ?? "/sprites/sheets/characters/hero.png" });
+      party.push({ ...companion, attributes: copyAttributes(companion.attributes), spriteSrc: companion.spriteSrc ?? "/newGame/sprites/sheets/characters/hero.png" });
     }
     const initiative = this.createInitiative(party, enemies);
     const first = initiative[0];
@@ -138,7 +138,7 @@ export class CombatManager {
   addPartyMember(member: Omit<PartyCombatant, "attributes"> & { attributes: CharacterAttributes }): boolean {
     if (!this.isActive() || this.snapshot.party.length >= MAX_PARTY_SIZE || !(member.attributes.currentHealth > 0) ||
       this.snapshot.party.some((current) => current.id === member.id) || member.isLocalPlayer) return false;
-    const party = [...this.snapshot.party, { ...member, spriteSrc: member.spriteSrc ?? "/sprites/sheets/characters/hero.png", attributes: copyAttributes(member.attributes) }];
+    const party = [...this.snapshot.party, { ...member, spriteSrc: member.spriteSrc ?? "/newGame/sprites/sheets/characters/hero.png", attributes: copyAttributes(member.attributes) }];
     const initiative = this.createInitiative(party, this.livingEnemies());
     this.commit({ ...this.snapshot, party, initiative });
     return true;

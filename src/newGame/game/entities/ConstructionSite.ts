@@ -25,7 +25,7 @@ const DEFAULT_COLLIDERS: ColliderConfig[] = [
 /** A reusable, in-memory construction visual for a new building footprint. */
 export class ConstructionSite extends GameObject implements GroundRenderable {
   private readonly spriteSheet = new SpriteSheet({
-    src: "/sprites/buildings/buildingArea.png",
+    src: "/newGame/sprites/buildings/buildingArea.png",
     frameWidth: 128,
     frameHeight: 128,
   });

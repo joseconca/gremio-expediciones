@@ -29,7 +29,7 @@ export class EquipmentInteriorScene extends InteriorScene {
         canActivate: () => config.villageProgression.hasBuilding("armory") && config.villageProgression.hasBuilding("smithy"),
       }],
       npc: {
-        x: 64, y: 0, spriteSrc: "/sprites/sheets/characters/hero.png",
+        x: 64, y: 0, spriteSrc: "/newGame/sprites/sheets/characters/hero.png",
         dialogue: {
           id: type, nodes: [{ id: "welcome", speaker: right ? "Armero" : "Herrero",
             text: right ? "Aquí vendo armas y armaduras. Puedes consultar tu equipo en el inventario." : "Mejoro únicamente los objetos que te pertenecen.",

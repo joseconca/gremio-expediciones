@@ -83,7 +83,7 @@ export class ExteriorWorldScene extends Scene {
 
     const start = this.getSpawnPoint(config.spawnId);
     const heroSheet = new SpriteSheet({
-      src: "/sprites/sheets/characters/hero.png",
+      src: "/newGame/sprites/sheets/characters/hero.png",
       frameWidth: 32,
       frameHeight: 64,
     });
@@ -187,7 +187,7 @@ export class ExteriorWorldScene extends Scene {
       seen.add(remote.playerId);
       let entity = this.remotePlayers.get(remote.playerId);
       if (!entity) {
-        const sheet = new SpriteSheet({ src: "/sprites/sheets/characters/hero.png", frameWidth: 32, frameHeight: 64 });
+        const sheet = new SpriteSheet({ src: "/newGame/sprites/sheets/characters/hero.png", frameWidth: 32, frameHeight: 64 });
         const animator = new Animator(sheet, heroAnimations);
         animator.play(`idle-${remote.direction}`);
         entity = new RemotePlayer({ x: point.x, y: point.y, direction: remote.direction, animator,

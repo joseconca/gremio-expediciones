@@ -96,7 +96,7 @@ export class BaseScene extends Scene {
     });
 
     const heroSpriteSheet = new SpriteSheet({
-      src: "/sprites/sheets/characters/hero.png",
+      src: "/newGame/sprites/sheets/characters/hero.png",
       frameWidth: 32,
       frameHeight: 64,
     });
