@@ -15,8 +15,8 @@ export default function EdificioCard({ edificio }: EdificioCardProps) {
   return (
     <article className="group relative isolate flex min-w-0 flex-col overflow-hidden rounded-lg border border-[#5b4026] bg-[#24190f] shadow-[0_5px_0_rgba(12,17,10,0.55),0_8px_16px_rgba(0,0,0,0.22)] transition-colors hover:border-amber-700/80 sm:rounded-xl">
       {/* Cartel de madera: compacto en móvil, descriptivo en pantallas grandes. */}
-      <div className="relative z-20 mx-1.5 -mb-2 mt-1.5 flex min-h-[57px] items-center justify-center sm:mx-3 sm:-mb-5 sm:mt-3">
-        <div className="relative w-full rounded-sm border-2 border-[#362214] bg-gradient-to-b from-[#825329] to-[#56361e] px-2 py-1.5 shadow-[inset_0_1px_0_rgba(255,220,160,0.15),0_3px_5px_rgba(0,0,0,0.35)] sm:border-[3px] sm:px-3 sm:py-2">
+      <div className="relative z-20 mx-1.5 -mb-2 mt-1.5 flex h-[92px] items-center justify-center sm:mx-3 sm:-mb-5 sm:mt-3 sm:h-[116px]">
+        <div className="relative flex h-full w-full flex-col justify-center rounded-sm border-2 border-[#362214] bg-gradient-to-b from-[#825329] to-[#56361e] px-2 py-1.5 shadow-[inset_0_1px_0_rgba(255,220,160,0.15),0_3px_5px_rgba(0,0,0,0.35)] sm:border-[3px] sm:px-3 sm:py-2">
           <span aria-hidden="true" className="absolute left-1 top-1 h-1 w-1 rounded-full bg-[#24170d] sm:left-1.5 sm:top-1.5 sm:h-1.5 sm:w-1.5" />
           <span aria-hidden="true" className="absolute right-1 top-1 h-1 w-1 rounded-full bg-[#24170d] sm:right-1.5 sm:top-1.5 sm:h-1.5 sm:w-1.5" />
           <h3 className="break-words text-center text-xs font-black leading-tight tracking-wide text-amber-200 drop-shadow sm:text-lg">
@@ -88,7 +88,7 @@ export default function EdificioCard({ edificio }: EdificioCardProps) {
         <Link
           href={configuracion.ruta}
           aria-label={`Entrar en ${edificio.nombre}`}
-          className="flex min-h-9 items-center justify-center gap-2 rounded-sm border border-stone-800 bg-gradient-to-b from-stone-500 to-stone-700 px-2 py-1 text-center text-[10px] font-black tracking-[0.12em] text-stone-100 shadow-[inset_0_1px_1px_rgba(255,255,255,0.25),0_2px_0_#17120d] transition-colors hover:from-amber-700 hover:to-amber-900 active:translate-y-px active:shadow-none sm:min-h-10 sm:text-xs sm:tracking-widest"
+          className="flex min-h-9 w-full items-center justify-center gap-2 rounded-sm border border-stone-800 bg-gradient-to-b from-stone-500 to-stone-700 px-2 py-1 text-center text-[10px] font-black tracking-[0.12em] text-stone-100 shadow-[inset_0_1px_1px_rgba(255,255,255,0.25),0_2px_0_#17120d] transition-colors hover:from-amber-700 hover:to-amber-900 active:translate-y-px active:shadow-none sm:min-h-10 sm:text-xs sm:tracking-widest"
         >
           Entrar <span aria-hidden="true" className="text-amber-200">›</span>
         </Link>
