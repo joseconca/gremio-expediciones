@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { getAuthenticatedUser } from "@/lib/auth";
-import { puedeAprenderHabilidad } from "@/lib/configuracionJuego";
 import { obtenerHabilidadesEnVenta } from "@/lib/tiendaHabilidades";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
@@ -52,9 +51,9 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!habilidad.claseId && habilidad.rareza === "legendario") {
+    if (!habilidad.claseId) {
       return NextResponse.json(
-        { error: "Las habilidades legendarias no se pueden comprar." },
+        { error: "Las habilidades antiguas sin profesión ya no están disponibles. Aprende habilidades de tu clase en la Escuela de Batalla." },
         { status: 403 }
       );
     }
@@ -66,8 +65,6 @@ export async function POST(request: Request) {
         },
         select: {
           id: true,
-          oro: true,
-          edificios: true,
           personaje: {
             select: {
               id: true,
@@ -92,11 +89,6 @@ export async function POST(request: Request) {
       if (!usuario.personaje) {
         throw new Error("PERSONAJE_NO_ENCONTRADO");
       }
-
-      const edificios =
-        usuario.edificios && typeof usuario.edificios === "object"
-          ? (usuario.edificios as Record<string, unknown>)
-          : {};
 
       const profesionActivaId = usuario.personaje.profesionActivaId || "novato";
       const habilidadesEnVenta = obtenerHabilidadesEnVenta(profesionActivaId);
@@ -145,33 +137,6 @@ export async function POST(request: Request) {
         if (puntosGastados.count !== 1) {
           throw new Error("PUNTOS_HABILIDAD_INSUFICIENTES");
         }
-      } else {
-        const nivelEscuela =
-          typeof edificios.escuelaCombate === "number"
-            ? edificios.escuelaCombate
-            : 0;
-
-        if (!puedeAprenderHabilidad(habilidad.rareza, nivelEscuela)) {
-          throw new Error("NIVEL_ESCUELA_INSUFICIENTE");
-        }
-
-        const descuento = await tx.usuario.updateMany({
-          where: {
-            id: usuario.id,
-            oro: {
-              gte: habilidad.precio,
-            },
-          },
-          data: {
-            oro: {
-              decrement: habilidad.precio,
-            },
-          },
-        });
-
-        if (descuento.count !== 1) {
-          throw new Error("ORO_INSUFICIENTE");
-        }
       }
 
       const aprendida = await tx.habilidadAprendida.create({
@@ -210,14 +175,6 @@ export async function POST(request: Request) {
             { status: 400 }
           );
 
-        case "NIVEL_ESCUELA_INSUFICIENTE":
-          return NextResponse.json(
-            {
-              error: "El nivel de la Escuela de Combate no es suficiente.",
-            },
-            { status: 403 }
-          );
-
         case "HABILIDAD_YA_APRENDIDA":
           return NextResponse.json(
             { error: "Ya has aprendido esta habilidad." },
@@ -226,7 +183,7 @@ export async function POST(request: Request) {
 
         case "HABILIDAD_NO_EN_VENTA":
           return NextResponse.json(
-            { error: "Esta habilidad no está disponible para tu profesión hoy." },
+            { error: "Esta habilidad no pertenece a tu profesión activa ni a sus antecesoras." },
             { status: 403 }
           );
 
