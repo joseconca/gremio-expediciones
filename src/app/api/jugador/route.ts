@@ -118,6 +118,7 @@ export async function GET() {
             habilidades: {
               select: {
                 habilidadId: true,
+                slot: true,
               },
             },
             equipoEquipado: {
