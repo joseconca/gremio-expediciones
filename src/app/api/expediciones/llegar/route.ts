@@ -16,6 +16,7 @@ import {
 
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 import { calcularMultiplicadoresEnemigo, esModoDificultad } from "../../../../lib/expediciones/dificultad";
+import { aplicarEfectoComida, comidaOtorgaIniciativa } from "@/lib/comidasTaberna";
 
 export async function POST() {
   try {
@@ -303,30 +304,40 @@ export async function POST() {
     const enemigoNivel = dificultad;
 
     const jugadorHpMaximo = estadisticasJugador.total.hpMaximo;
+    const jugadorHp = jugadorHpMaximo;
 
-    const jugadorHp = Math.min(
-      Math.max(1, personaje.hpActual),
-      jugadorHpMaximo
+    const atributosConComida = aplicarEfectoComida(
+      {
+        ataque: estadisticasJugador.total.ataque,
+        ataqueMagico: estadisticasJugador.total.ataqueMagico ?? estadisticasJugador.total.ataque,
+        defensa: estadisticasJugador.total.defensa,
+        velocidad: estadisticasJugador.total.velocidad,
+        probCritico: estadisticasJugador.total.probCritico,
+      },
+      expedicion.efectoComida
     );
 
-    const jugadorAtaque = estadisticasJugador.total.ataque;
-    const jugadorAtaqueMagico = estadisticasJugador.total.ataqueMagico ?? jugadorAtaque;
+    const jugadorAtaque = atributosConComida.ataque;
+    const jugadorAtaqueMagico = atributosConComida.ataqueMagico;
 
-    const jugadorDefensa = estadisticasJugador.total.defensa;
+    const jugadorDefensa = atributosConComida.defensa;
     const jugadorDefensaMagica = estadisticasJugador.total.defensaMagica ?? jugadorDefensa;
 
-    const jugadorVelocidad = estadisticasJugador.total.velocidad;
+    const jugadorVelocidad = atributosConComida.velocidad;
 
     const jugadorNivel = personaje.nivel;
 
-    const jugadorProbCritico = estadisticasJugador.total.probCritico;
+    const jugadorProbCritico = atributosConComida.probCritico;
     const jugadorPrecision = estadisticasJugador.total.precision ?? 75;
     const jugadorEvasion = estadisticasJugador.total.evasion ?? 0;
 
     const jugadorDanoCritico = estadisticasJugador.total.danoCritico;
 
     const primerTurno =
-      jugadorVelocidad >= enemigoVelocidad ? "jugador" : "enemigo";
+      comidaOtorgaIniciativa(expedicion.efectoComida) ||
+      jugadorVelocidad >= enemigoVelocidad
+        ? "jugador"
+        : "enemigo";
 
     const logInicial =
       primerTurno === "jugador"
