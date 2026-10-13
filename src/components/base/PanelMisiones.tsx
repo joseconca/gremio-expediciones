@@ -306,11 +306,11 @@ export default function PanelMisiones({
             </div>
           )}
 
-          {/* AVENTURERO DESCANSANDO */}
+          {/* Compatibilidad con personajes que conservan el antiguo estado de descanso. */}
           {personaje.estado === "descansando" && (
-            <div className="rounded-md border border-red-950/80 bg-[#21170f]/80 p-4">
-              <p className="font-bold text-red-300">
-                El héroe necesita recuperarse en la Taberna.
+            <div className="rounded-md border border-emerald-900/70 bg-emerald-950/20 p-4">
+              <p className="font-bold text-emerald-200">
+                No necesitas recuperar al aventurero en la base. Al iniciar la próxima expedición tendrá la vida, la energía y el maná completos.
               </p>
             </div>
           )}
