@@ -244,7 +244,7 @@ export default function MercadoPage() {
             )}
 
             {mensajeMercader && (
-              <p role="status" className="mb-2 rounded-md border border-emerald-800 bg-emerald-950/60 px-3 py-2 text-[11px] text-emerald-200 sm:hidden">
+              <p role="status" className="mb-2 rounded-md border border-amber-800 bg-amber-950/50 px-3 py-2 text-[11px] text-amber-100 sm:hidden">
                 {mensajeMercader}
               </p>
             )}
