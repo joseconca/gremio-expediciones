@@ -572,7 +572,6 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
         sexo: "chico",
         nivel: 1,
         hpActual: 20,
-        regeneracionDeVida: 0.3,
         estado: "ocioso",
         velocidadMejoras: 0,
         habilidades: [],
@@ -661,7 +660,6 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
     "@prisma/client": { Prisma: PrismaStub },
     "@/lib/auth": { getAuthenticatedUser: async () => authenticated ? { id: "u1" } : null },
     "@/lib/prisma": { prisma },
-    "@/lib/regeneracion": { sincronizarRegeneracion: async (personaje) => personaje },
     "@/lib/comidasTaberna": {
       obtenerComidaTaberna: (id) => id === "carne-cazadora"
         ? { id, nombre: "Carne del cazador", coste: 8 }
