@@ -259,3 +259,42 @@ test("la recompensa PvP se liquida una sola vez aunque se repita la finalizació
   await assert.rejects(finalizarEnTransaccion, /COMBATE_MODIFICADO/);
   assert.deepEqual(state, trasPrimeraLiquidacion);
 });
+
+test("asedios entrantes devuelve expediciones en viaje y no combates activos", async () => {
+  const expedicion = {
+    id: "exp-asedio-entrante",
+    usuarioId: "atacante-1",
+    tipo: "asedio",
+    fase: "en_viaje",
+    fechaSalida: new Date("2026-10-13T10:00:00.000Z"),
+    fechaLlegada: new Date("2026-10-13T11:00:00.000Z"),
+    usuario: {
+      id: "atacante-1",
+      nombre: "Gremio atacante",
+      baseCoords: { lat: 28, lng: -15 },
+      personaje: { nombre: "Asaltante", clase: "Guerrero", sexo: "chico" },
+    },
+  };
+  let filtro;
+  const route = loadSource("src/app/api/asedios/entrantes/route.ts", {
+    "next/server": {
+      NextResponse: { json: (body, init = {}) => ({ body, status: init.status ?? 200, headers: init.headers ?? {} }) },
+    },
+    "@/lib/auth": { getAuthenticatedUser: async () => ({ id: "defensor-1" }) },
+    "@/lib/prisma": {
+      prisma: {
+        expedicionActiva: {
+          findMany: async (args) => { filtro = args; return [structuredClone(expedicion)]; },
+        },
+      },
+    },
+  });
+  const respuesta = await route.GET();
+  assert.equal(respuesta.status, 200);
+  assert.deepEqual(filtro.where, { tipo: "asedio", objetivoId: "defensor-1", fase: "en_viaje" });
+  assert.equal(respuesta.body.asediosEntrantes.length, 1);
+  assert.equal(respuesta.body.asediosEntrantes[0].id, "exp-asedio-entrante");
+  assert.equal(respuesta.body.asediosEntrantes[0].atacanteNombre, "Gremio atacante");
+  assert.equal(Object.hasOwn(respuesta.body, "combates"), false);
+  assert.equal(respuesta.headers["Cache-Control"], "no-store");
+});
