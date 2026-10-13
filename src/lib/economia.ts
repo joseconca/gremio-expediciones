@@ -1,7 +1,7 @@
 export const PRECIOS_RECURSOS = {
   madera: 50,
   piedra: 100,
-  metal: 350,
+  metal: 250,
 } as const;
 
 export type RecursoMercado = keyof typeof PRECIOS_RECURSOS;
