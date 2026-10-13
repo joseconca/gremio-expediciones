@@ -111,6 +111,56 @@ async function otorgarExperienciaJob(
 }
 
 
+async function recuperarEnergiaLimitada(
+  tx: Prisma.TransactionClient,
+  personajeId: string,
+  cantidad: number,
+) {
+  if (cantidad <= 0) return;
+  const personaje = await tx.personaje.findUnique({
+    where: { id: personajeId },
+    select: {
+      id: true,
+      nivel: true,
+      profesionActivaId: true,
+      fuerza: true,
+      agilidad: true,
+      vitalidad: true,
+      inteligencia: true,
+      destreza: true,
+      suerte: true,
+      energiaActual: true,
+      progresosClase: { select: { claseId: true, nivelJob: true, desbloqueada: true } },
+      equipoEquipado: {
+        select: {
+          arma: true, armadura: true, accesorio: true, manoSecundaria: true,
+          casco: true, pantalones: true, botas: true, guantes: true, anillo1: true, anillo2: true,
+        },
+      },
+    },
+  });
+  if (!personaje) return;
+
+  const equipo = obtenerEquipoDesdePersonaje({ equipoEquipado: personaje.equipoEquipado });
+  const modificadoresEquipo = calcularModificadoresEquipo(equipo, personaje.profesionActivaId);
+  const bonificacionesEquipo = mapearBonificacionesEquipoRpg(modificadoresEquipo);
+  const progresoActivo = personaje.progresosClase.find(
+    (progreso) => progreso.claseId === personaje.profesionActivaId && progreso.desbloqueada,
+  );
+  const atributos = calcularAtributosClase(
+    personaje.profesionActivaId,
+    personaje.nivel,
+    progresoActivo?.nivelJob ?? 1,
+  );
+  const maximos = calcularEstadisticasDerivadasRpg(atributos, personaje.nivel, bonificacionesEquipo);
+  const energiaNueva = Math.min(maximos.energiaMaxima, personaje.energiaActual + Math.floor(cantidad));
+  const actualizado = await tx.personaje.updateMany({
+    where: { id: personaje.id, energiaActual: personaje.energiaActual },
+    data: { energiaActual: energiaNueva },
+  });
+  if (actualizado.count !== 1) throw new Error("RECURSO_COMBATE_MODIFICADO");
+}
+
 async function gastarRecursosHabilidad(
   tx: Prisma.TransactionClient,
   personajeId: string,
@@ -122,12 +172,7 @@ async function gastarRecursosHabilidad(
   const costeMana = Math.max(0, Math.floor(habilidad.costeMana ?? 0));
   const recuperacionEnergia = Math.max(0, Math.floor(habilidad.recuperarEnergia ?? 0));
   if (costeEnergia === 0 && costeMana === 0) {
-    if (recuperacionEnergia > 0) {
-      await tx.personaje.updateMany({
-        where: { id: personajeId },
-        data: { energiaActual: { increment: recuperacionEnergia } },
-      });
-    }
+    await recuperarEnergiaLimitada(tx, personajeId, recuperacionEnergia);
     return;
   }
 
@@ -146,12 +191,7 @@ async function gastarRecursosHabilidad(
   if (resultado.count !== 1) {
     throw new Error("RECURSO_HABILIDAD_INSUFICIENTE");
   }
-  if (recuperacionEnergia > 0) {
-    await tx.personaje.updateMany({
-      where: { id: personajeId },
-      data: { energiaActual: { increment: recuperacionEnergia } },
-    });
-  }
+  await recuperarEnergiaLimitada(tx, personajeId, recuperacionEnergia);
 }
 
 async function regenerarRecursosPorTurno(
