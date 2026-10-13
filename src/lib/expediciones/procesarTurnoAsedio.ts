@@ -405,10 +405,10 @@ export async function procesarTurnoAutomaticoAsedio(
         turno: siguienteTurno,
 
         cooldowns,
-        efectos,
+        efectos: efectos as unknown as Prisma.InputJsonValue,
 
         cooldownsDefensor,
-        efectosDefensor,
+        efectosDefensor: efectosDefensor as unknown as Prisma.InputJsonValue,
 
         ultimoTurnoEn: new Date(),
 
