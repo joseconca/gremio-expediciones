@@ -41,7 +41,7 @@ function IconoIndicador({ indicador }: { indicador: Indicador }) {
       title={indicador.descripcion}
       aria-label={indicador.descripcion}
       role="img"
-      className="relative flex h-7 w-7 shrink-0 items-center justify-center rounded border border-stone-500/80 bg-stone-950/95 shadow-md"
+      className="relative flex h-6 w-6 shrink-0 items-center justify-center rounded border border-stone-500/80 bg-stone-950/95 shadow-md"
     >
       {spriteFallido ? (
         <span aria-hidden="true" className="text-[17px] leading-none">{indicador.emoji}</span>
@@ -50,14 +50,14 @@ function IconoIndicador({ indicador }: { indicador: Indicador }) {
           src={indicador.src}
           alt=""
           aria-hidden="true"
-          width={22}
-          height={22}
+          width={18}
+          height={18}
           unoptimized
-          className="h-[22px] w-[22px] object-contain [image-rendering:pixelated]"
+          className="h-[18px] w-[18px] object-contain [image-rendering:pixelated]"
           onError={() => setSpriteFallido(true)}
         />
       )}
-      <span className="absolute -right-1 -top-1 flex h-[13px] min-w-[13px] items-center justify-center rounded-full border border-stone-950 bg-stone-100 px-[2px] font-mono text-[9px] font-black leading-none text-stone-950 shadow">
+      <span className="absolute -right-1 -top-1 flex h-3 min-w-3 items-center justify-center rounded-full border border-stone-950 bg-stone-100 px-[2px] font-mono text-[8px] font-black leading-none text-stone-950 shadow">
         {duracion}
       </span>
     </div>
@@ -120,7 +120,7 @@ export default function IndicadoresEfectosCombate({
   return (
     <div
       aria-label="Efectos activos de combate"
-      className="absolute -top-8 left-1/2 z-30 flex w-max max-w-[190px] -translate-x-1/2 flex-wrap justify-center gap-1"
+      className="flex w-full max-w-full flex-nowrap items-center justify-start gap-1 overflow-x-auto py-0.5"
     >
       {indicadores.map((indicador) => (
         <IconoIndicador key={indicador.id} indicador={indicador} />
