@@ -2,10 +2,10 @@ import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { CLASES } from "@/lib/progresion/clases";
 import { aplicarExperienciaJob } from "@/lib/progresion/experiencia";
-import { calcularEstadisticasDerivadasRpg } from "@/lib/progresion/estadisticas";
-import { calcularAtributosClase } from "@/lib/progresion/atributos-clase";
-import { mapearBonificacionesEquipoRpg } from "@/lib/progresion/bonificaciones-equipo";
-import { calcularModificadoresEquipo } from "@/lib/estadisticasPersonaje";
+import {
+  calcularEstadisticasPersonaje,
+  calcularModificadoresEquipo,
+} from "@/lib/estadisticasPersonaje";
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -121,6 +121,7 @@ async function recuperarEnergiaLimitada(
     where: { id: personajeId },
     select: {
       id: true,
+      clase: true,
       nivel: true,
       profesionActivaId: true,
       fuerza: true,
@@ -129,7 +130,13 @@ async function recuperarEnergiaLimitada(
       inteligencia: true,
       destreza: true,
       suerte: true,
+      velocidadMejoras: true,
+      capacidadCarruajeMejoras: true,
       energiaActual: true,
+      habilidades: {
+        where: { slot: { not: null } },
+        select: { habilidadId: true },
+      },
       progresosClase: { select: { claseId: true, nivelJob: true, desbloqueada: true } },
       equipoEquipado: {
         select: {
@@ -143,17 +150,28 @@ async function recuperarEnergiaLimitada(
 
   const equipo = obtenerEquipoDesdePersonaje({ equipoEquipado: personaje.equipoEquipado });
   const modificadoresEquipo = calcularModificadoresEquipo(equipo, personaje.profesionActivaId);
-  const bonificacionesEquipo = mapearBonificacionesEquipoRpg(modificadoresEquipo);
   const progresoActivo = personaje.progresosClase.find(
     (progreso) => progreso.claseId === personaje.profesionActivaId && progreso.desbloqueada,
   );
-  const atributos = calcularAtributosClase(
-    personaje.profesionActivaId,
-    personaje.nivel,
-    progresoActivo?.nivelJob ?? 1,
+  const estadisticas = calcularEstadisticasPersonaje({
+    clase: personaje.clase,
+    profesionActivaId: personaje.profesionActivaId,
+    nivel: personaje.nivel,
+    nivelJob: progresoActivo?.nivelJob ?? 1,
+    progresosClase: personaje.progresosClase,
+    fuerza: personaje.fuerza,
+    agilidad: personaje.agilidad,
+    vitalidad: personaje.vitalidad,
+    inteligencia: personaje.inteligencia,
+    destreza: personaje.destreza,
+    suerte: personaje.suerte,
+    velocidadMejoras: personaje.velocidadMejoras,
+    capacidadCarruajeMejoras: personaje.capacidadCarruajeMejoras,
+  }, personaje.habilidades.map((habilidad) => habilidad.habilidadId), modificadoresEquipo).total;
+  const energiaNueva = Math.min(
+    estadisticas.energiaMaxima ?? 20,
+    personaje.energiaActual + Math.floor(cantidad),
   );
-  const maximos = calcularEstadisticasDerivadasRpg(atributos, personaje.nivel, bonificacionesEquipo);
-  const energiaNueva = Math.min(maximos.energiaMaxima, personaje.energiaActual + Math.floor(cantidad));
   const actualizado = await tx.personaje.updateMany({
     where: { id: personaje.id, energiaActual: personaje.energiaActual },
     data: { energiaActual: energiaNueva },
@@ -202,6 +220,7 @@ async function regenerarRecursosPorTurno(
     where: { usuarioId },
     select: {
       id: true,
+      clase: true,
       nivel: true,
       profesionActivaId: true,
       progresosClase: { select: { claseId: true, nivelJob: true, desbloqueada: true } },
@@ -211,8 +230,14 @@ async function regenerarRecursosPorTurno(
       inteligencia: true,
       destreza: true,
       suerte: true,
+      velocidadMejoras: true,
+      capacidadCarruajeMejoras: true,
       energiaActual: true,
       manaActual: true,
+      habilidades: {
+        where: { slot: { not: null } },
+        select: { habilidadId: true },
+      },
       equipoEquipado: {
         select: {
           arma: true,
@@ -238,21 +263,36 @@ async function regenerarRecursosPorTurno(
     equipoPersonaje,
     personaje.profesionActivaId
   );
-  const bonificacionesEquipo = mapearBonificacionesEquipoRpg(modificadoresEquipo);
-
   const progresoActivo = personaje.progresosClase.find(
     (progreso) => progreso.claseId === personaje.profesionActivaId && progreso.desbloqueada
   );
-  const atributos = calcularAtributosClase(personaje.profesionActivaId, personaje.nivel, progresoActivo?.nivelJob ?? 1);
-  const maximos = calcularEstadisticasDerivadasRpg(atributos, personaje.nivel, bonificacionesEquipo);
+  const estadisticas = calcularEstadisticasPersonaje({
+    clase: personaje.clase,
+    profesionActivaId: personaje.profesionActivaId,
+    nivel: personaje.nivel,
+    nivelJob: progresoActivo?.nivelJob ?? 1,
+    progresosClase: personaje.progresosClase,
+    fuerza: personaje.fuerza,
+    agilidad: personaje.agilidad,
+    vitalidad: personaje.vitalidad,
+    inteligencia: personaje.inteligencia,
+    destreza: personaje.destreza,
+    suerte: personaje.suerte,
+    velocidadMejoras: personaje.velocidadMejoras,
+    capacidadCarruajeMejoras: personaje.capacidadCarruajeMejoras,
+  }, personaje.habilidades.map((habilidad) => habilidad.habilidadId), modificadoresEquipo).total;
 
+  const energiaMaxima = estadisticas.energiaMaxima ?? 20;
+  const manaMaximo = estadisticas.manaMaximo ?? 10;
+  const regeneracionEnergia = Math.max(1, Math.ceil(estadisticas.regeneracionEnergiaPorTurno ?? 0));
+  const regeneracionMana = Math.max(1, Math.ceil(estadisticas.regeneracionManaPorTurno ?? 0));
   const energiaNueva = Math.min(
-    maximos.energiaMaxima,
-    personaje.energiaActual + Math.max(1, Math.ceil(maximos.regeneracionEnergiaPorTurno))
+    energiaMaxima,
+    personaje.energiaActual + regeneracionEnergia,
   );
   const manaNuevo = Math.min(
-    maximos.manaMaximo,
-    personaje.manaActual + Math.max(1, Math.ceil(maximos.regeneracionManaPorTurno))
+    manaMaximo,
+    personaje.manaActual + regeneracionMana,
   );
 
   if (energiaNueva === personaje.energiaActual && manaNuevo === personaje.manaActual) return;
