@@ -11,6 +11,7 @@ import {
 } from "@/lib/estadisticasPersonaje";
 
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
+import { aplicarEfectoComida, comidaOtorgaIniciativa } from "@/lib/comidasTaberna";
 
 export async function procesarLlegadaAsedio(expedicionId: string) {
   const expedicion = await prisma.expedicionActiva.findUnique({
@@ -232,17 +233,28 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
 
   const jugadorHp = jugadorHpMaximo;
 
-  const jugadorAtaque = estadisticasAtacante.total.ataque;
-  const jugadorAtaqueMagico = estadisticasAtacante.total.ataqueMagico ?? jugadorAtaque;
+  const atributosConComida = aplicarEfectoComida(
+    {
+      ataque: estadisticasAtacante.total.ataque,
+      ataqueMagico: estadisticasAtacante.total.ataqueMagico ?? estadisticasAtacante.total.ataque,
+      defensa: estadisticasAtacante.total.defensa,
+      velocidad: estadisticasAtacante.total.velocidad,
+      probCritico: estadisticasAtacante.total.probCritico,
+    },
+    expedicion.efectoComida
+  );
 
-  const jugadorDefensa = estadisticasAtacante.total.defensa;
+  const jugadorAtaque = atributosConComida.ataque;
+  const jugadorAtaqueMagico = atributosConComida.ataqueMagico;
+
+  const jugadorDefensa = atributosConComida.defensa;
   const jugadorDefensaMagica = estadisticasAtacante.total.defensaMagica ?? jugadorDefensa;
 
-  const jugadorVelocidad = estadisticasAtacante.total.velocidad;
+  const jugadorVelocidad = atributosConComida.velocidad;
 
   const jugadorNivel = personajeAtacante.nivel;
 
-  const jugadorProbCritico = estadisticasAtacante.total.probCritico;
+  const jugadorProbCritico = atributosConComida.probCritico;
   const jugadorPrecision = estadisticasAtacante.total.precision ?? 75;
   const jugadorEvasion = estadisticasAtacante.total.evasion ?? 0;
 
@@ -274,10 +286,12 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
   // INICIATIVA
   // ============================================================
 
-  const primerTurno = determinarPrimerTurnoAsedio({
-    velocidadAtacante: jugadorVelocidad,
-    velocidadDefensor: enemigoVelocidad,
-  });
+  const primerTurno = comidaOtorgaIniciativa(expedicion.efectoComida)
+    ? "atacante"
+    : determinarPrimerTurnoAsedio({
+        velocidadAtacante: jugadorVelocidad,
+        velocidadDefensor: enemigoVelocidad,
+      });
 
   const logInicial =
     primerTurno === "atacante"
