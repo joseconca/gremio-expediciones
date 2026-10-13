@@ -861,9 +861,6 @@ export default function HerreriaPage() {
                   const estaEquipado = TIPOS_EQUIPAMIENTO.some(
                     (ranura) => datos?.equipo[ranura]?.id === objetoInventario.id
                   );
-                  const equipoDelMismoTipo =
-                    TIPOS_EQUIPAMIENTO.map((ranura) => datos?.equipo[ranura] ?? null)
-                      .find((pieza) => pieza?.id === objetoInventario.id) ?? null;
                   const equipando = procesando === `equipar:${objetoInventario.id}`;
                   const vendiendo = procesando === `vender:${objetoInventario.id}`;
                   const precioVenta = Math.max(
@@ -966,14 +963,7 @@ export default function HerreriaPage() {
                             </div>
                           </div>
 
-                        {estaEquipado ? (
-                          <div className="col-span-2 flex items-center justify-between gap-2 border-t border-white/5 pt-1 sm:col-span-1 sm:border-0 sm:pt-0">
-                            <span className="text-[9px] font-black uppercase tracking-wider text-emerald-400">En uso</span>
-                            {equipoDelMismoTipo && (
-                              <span className="text-[9px] text-[#aa906e]">Equipado</span>
-                            )}
-                          </div>
-                        ) : (
+                        {estaEquipado ? null : (
                           <div className="col-span-2 flex min-w-0 flex-wrap items-center justify-end gap-1.5 border-t border-white/5 pt-1.5 sm:col-span-1 sm:max-w-[245px] sm:border-0 sm:pt-0">
                             {esEquipable(objeto) && (
                               ranuraObjeto === "anillo" ? (
