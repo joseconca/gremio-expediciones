@@ -74,10 +74,6 @@ export default function BaseLayout({
   }, [cargarJugador]);
 
   useEffect(() => {
-    setMostrarEdificios(false);
-  }, [pathname]);
-
-  useEffect(() => {
     if (!isLoading && !sesionActiva) {
       router.push("/login");
     } else if (!isLoading && !baseCoords) {
@@ -256,6 +252,7 @@ export default function BaseLayout({
             className="absolute inset-0 bg-black/70 backdrop-blur-sm"
           />
           <section
+            id="menu-edificios-panel"
             role="dialog"
             aria-modal="true"
             aria-labelledby="menu-edificios-titulo"
@@ -340,7 +337,7 @@ export default function BaseLayout({
           type="button"
           onClick={() => setMostrarEdificios((abierto) => !abierto)}
           aria-expanded={mostrarEdificios}
-          aria-controls="menu-edificios-titulo"
+          aria-controls="menu-edificios-panel"
           className={`flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg px-1 py-1 text-[10px] font-semibold leading-tight transition-colors ${mostrarEdificios || (pathname.startsWith("/base/") && pathname !== "/base/escuela-batalla") ? "bg-amber-900/40 text-amber-200" : "text-stone-400 hover:bg-stone-900 hover:text-amber-100"}`}
         >
           <span className="text-lg leading-5" aria-hidden="true">🏘️</span>
