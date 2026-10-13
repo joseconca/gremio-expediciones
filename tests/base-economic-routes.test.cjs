@@ -662,6 +662,11 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
     "@/lib/auth": { getAuthenticatedUser: async () => authenticated ? { id: "u1" } : null },
     "@/lib/prisma": { prisma },
     "@/lib/regeneracion": { sincronizarRegeneracion: async (personaje) => personaje },
+    "@/lib/comidasTaberna": {
+      obtenerComidaTaberna: (id) => id === "carne-cazadora"
+        ? { id, nombre: "Carne del cazador", coste: 8 }
+        : null,
+    },
     "@/lib/configuracionJuego": {
       CONFIGURACION_ATRIBUTOS: {
         velocidad: { campo: "velocidadMejoras", edificio: "mercado", limitePorNivel: 5 },
