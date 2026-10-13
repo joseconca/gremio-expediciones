@@ -54,9 +54,9 @@ El oro base comercial pasa a 8 por kilómetro. Las bonificaciones quedan limitad
 Escenario de referencia: 100 km, nivel 15, Mercado 3, afinidad 100, capacidad 20 y clase Comerciante:
 - Oro base: 800.
 - Recompensa sin eventos: 1.936.
-- Si la velocidad media efectiva es 8 km/h, ida y vuelta suman unas 12,5 horas: cerca de 155 de oro bruto por hora antes de riesgos y eventos.
+- A 8 km/h efectivos, los 200 km de ida y vuelta consumen unas 25 horas: 77,44 de oro bruto por hora de viaje exitoso antes de riesgos y eventos.
 
-En comercio, la recompensa se obtiene únicamente si se sobrevive a las dos partes de la ruta; un fracaso devuelve 0 de oro comercial. Para el escenario de referencia, la sensibilidad sin eventos es: 77,44 oro/h con 50 % de éxito, 116,16 con 75 % y 139,39 con 90 %. Esos porcentajes son escenarios de análisis, no probabilidades simuladas o fijadas por el juego. Las emboscadas y el clima siguen afectando al resultado.
+En comercio, la recompensa se obtiene únicamente si se sobrevive a las dos partes de la ruta; un fracaso devuelve 0 de oro comercial. Para el escenario de referencia, 100 km por trayecto a 8 km/h requieren 25 horas de ida y vuelta. El rendimiento esperado, ajustado por éxito y sin eventos, es 38,72 oro/h con un 50 % de éxito, 58,08 con un 75 % y 69,70 con un 90 %. Esos porcentajes son escenarios de análisis, no probabilidades simuladas o fijadas por el juego. Las emboscadas y el clima siguen afectando al resultado.
 
 ## Materiales y equipamiento
 
