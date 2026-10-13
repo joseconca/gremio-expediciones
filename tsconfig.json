@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,7 +23,21 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/components/game/*": [
+        "./src/newGame/components/game/*"
+      ],
+      "@/game/*": [
+        "./src/newGame/game/*"
+      ],
+      "@/shared/*": [
+        "./src/newGame/shared/*"
+      ],
+      "@/services/worldGateway": [
+        "./src/newGame/services/worldGateway"
+      ],
+      "@/*": [
+        "./src/*"
+      ]
     }
   },
   "include": [
@@ -30,5 +48,7 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
