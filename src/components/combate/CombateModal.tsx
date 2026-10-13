@@ -445,7 +445,7 @@ export default function CombateModal({
         <section className="relative flex min-h-0 flex-1 items-center justify-between overflow-hidden px-4 sm:px-16">
           {/* JUGADOR */}
           <div
-            className={`relative flex w-[40%] justify-center ${
+            className={`relative flex w-[46%] justify-center sm:w-[40%] ${
               actorAnimando === "jugador"
                 ? animacionActual === "ofensiva_potenciada"
                   ? "animate-[combate-ataque-fuerte_900ms_ease-in-out]"
@@ -461,7 +461,6 @@ export default function CombateModal({
 
                 <div className="space-y-1.5">
                   <div className="flex items-center gap-1.5" title="Vida">
-                    <span className="w-6 shrink-0 text-[9px] font-black text-emerald-300">PV</span>
                     <div role="progressbar" aria-label="Vida" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(vidaJugador)} className="h-2 min-w-0 flex-1 overflow-hidden rounded-full border border-stone-700 bg-stone-900 shadow-inner">
                       <div className={`h-full rounded-full bg-gradient-to-r ${obtenerColorVida(vidaJugador)} transition-all duration-500`} style={{ width: `${vidaJugador}%` }} />
                     </div>
@@ -470,7 +469,6 @@ export default function CombateModal({
 
                   {recursoClase !== "mana" && (
                     <div className="flex items-center gap-1.5" title="Energía">
-                      <span className="w-6 shrink-0 text-[9px] font-black text-blue-300">ENE</span>
                       <div role="progressbar" aria-label="Energía" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(porcentajeEnergia)} className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full border border-blue-900/70 bg-blue-950/70">
                         <div className="h-full rounded-full bg-gradient-to-r from-blue-700 to-sky-400 transition-all duration-500" style={{ width: `${porcentajeEnergia}%` }} />
                       </div>
@@ -480,7 +478,6 @@ export default function CombateModal({
 
                   {recursoClase !== "energia" && (
                     <div className="flex items-center gap-1.5" title="Maná">
-                      <span className="w-6 shrink-0 text-[9px] font-black text-violet-300">MAN</span>
                       <div role="progressbar" aria-label="Maná" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(porcentajeMana)} className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full border border-violet-900/70 bg-violet-950/70">
                         <div className="h-full rounded-full bg-gradient-to-r from-violet-700 to-fuchsia-400 transition-all duration-500" style={{ width: `${porcentajeMana}%` }} />
                       </div>
@@ -567,7 +564,7 @@ export default function CombateModal({
 
           {/* ENEMIGO */}
           <div
-            className={`relative flex w-[40%] justify-center ${
+            className={`relative flex w-[46%] justify-center sm:w-[40%] ${
               actorAnimando === "enemigo"
                 ? animacionActual === "ofensiva_potenciada"
                   ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]"
@@ -581,7 +578,6 @@ export default function CombateModal({
                   <span className="truncate text-sm font-bold tracking-wide text-stone-100">{combate.enemigoNombre}</span>
                 </div>
                 <div className="flex items-center gap-1.5" title="Vida del enemigo">
-                  <span className="w-6 shrink-0 text-[9px] font-black text-emerald-300">PV</span>
                   <div role="progressbar" aria-label="Vida del enemigo" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(vidaEnemigo)} className="h-2 min-w-0 flex-1 overflow-hidden rounded-full border border-stone-700 bg-stone-900 shadow-inner">
                     <div className={`h-full rounded-full bg-gradient-to-r ${obtenerColorVida(vidaEnemigo)} transition-all duration-500`} style={{ width: `${vidaEnemigo}%` }} />
                   </div>
