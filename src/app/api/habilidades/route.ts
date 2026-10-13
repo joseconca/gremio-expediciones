@@ -76,9 +76,6 @@ export async function GET() {
     const progresoJob = usuario.personaje.progresosClase.find(
       (progreso) => progreso.claseId === profesionActivaId && progreso.desbloqueada
     );
-    const nivelJob = progresoJob?.nivelJob ?? 1;
-    const puntosHabilidadDisponibles = progresoJob?.puntosHabilidadDisponibles ?? 0;
-
     const enVenta = habilidadesEnVenta.map((habilidad) => {
       const clasePropietariaId = habilidad.claseId ?? profesionActivaId;
       return {
