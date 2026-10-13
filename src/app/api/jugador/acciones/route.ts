@@ -164,8 +164,6 @@ export async function POST(request: Request) {
                 velocidadMejoras: 0,
                 capacidadCarruajeMejoras: 0,
 
-                regeneracionDeVida: 0.3,
-
                 nivel: 1,
                 experiencia: 0,
                 progresosClase: {
