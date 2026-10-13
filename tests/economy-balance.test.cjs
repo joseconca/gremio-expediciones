@@ -36,17 +36,17 @@ test("las mejoras no heredan anomalías del precio de compra", () => {
 });
 
 test("los materiales tienen precios unificados y el metal sigue siendo estratégico", () => {
-  assert.deepEqual(PRECIOS_RECURSOS, { madera: 50, piedra: 100, metal: 350 });
+  assert.deepEqual(PRECIOS_RECURSOS, { madera: 50, piedra: 100, metal: 250 });
   const comun = obtenerObjetoPorId("espada_hierro");
   const rara = obtenerObjetoPorId("espada_runa");
   const armadura = obtenerObjetoPorId("armadura_acero");
   const costeComun = calcularCosteRecursosMejora(comun, 0);
   const costeRaro = calcularCosteRecursosMejora(rara, 0);
   const costeArmadura = calcularCosteRecursosMejora(armadura, 0);
-  assert.equal(costeComun.metal * PRECIOS_RECURSOS.metal, 700);
+  assert.equal(costeComun.metal * PRECIOS_RECURSOS.metal, 500);
   assert.ok(costeComun.metal * PRECIOS_RECURSOS.metal <= comun.precio);
   assert.ok(costeRaro.metal * PRECIOS_RECURSOS.metal < rara.precio);
-  assert.ok(costeArmadura.piedra * 100 + costeArmadura.metal * 350 < armadura.precio);
+  assert.ok(costeArmadura.piedra * 100 + costeArmadura.metal * 250 < armadura.precio);
 });
 
 test("el precio de materiales usa el mismo cálculo y el descuento está limitado al Mercado 3", () => {
@@ -54,8 +54,23 @@ test("el precio de materiales usa el mismo cálculo y el descuento está limitad
   assert.equal(calcularPrecioRecurso("madera", 2), 45);
   assert.equal(calcularPrecioRecurso("madera", 3), 40);
   assert.equal(calcularPrecioRecurso("piedra", 3), 80);
-  assert.equal(calcularPrecioRecurso("metal", 1), 350);
-  assert.equal(calcularPrecioRecurso("metal", 99), 280);
+  assert.equal(calcularPrecioRecurso("metal", 1), 250);
+  assert.equal(calcularPrecioRecurso("metal", 99), 200);
+});
+
+test("la comparación de dificultades incluye escenarios explícitos de victoria y derrota", () => {
+  const probabilidadesEscenario = { facil: 0.9, normal: 0.75, dificil: 0.55 };
+  const tasaEsperada = (mision, dificultad) => {
+    const probVictoria = probabilidadesEscenario[dificultad];
+    const factorPago = probVictoria + (1 - probVictoria) * 0.2;
+    return mision.recompensaBase * 1.1 * factorPago *
+      CONFIGURACION_DIFICULTAD[dificultad].multiplicadorRecompensa / mision.horas;
+  };
+  const corta = MISIONES_POR_DURACION[0];
+  assert.ok(Math.abs(tasaEsperada(corta, "facil") - 86.02) < 0.01);
+  assert.ok(Math.abs(tasaEsperada(corta, "normal") - 88) < 0.01);
+  assert.ok(Math.abs(tasaEsperada(corta, "dificil") - 88) < 0.01);
+  // Las probabilidades son supuestos de sensibilidad, no valores medidos del juego.
 });
 
 test("las recompensas nominales de misiones permiten comparar el oro bruto por hora", () => {
