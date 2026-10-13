@@ -473,7 +473,7 @@ export const CONFIGURACION_EDIFICIOS = {
     costeMadera: 4,
     costePiedra: 2,
     costeMetal: 0,
-    nivelMax: 2,
+    nivelMax: 3,
     descripcion: "Descansa y recupera la salud.",
     color: "bg-amber-700",
     ruta: "/base/taberna",
