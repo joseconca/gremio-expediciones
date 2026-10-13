@@ -2,7 +2,11 @@ import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { obtenerObjetoPorId, calcularCosteMejoraObjeto } from "@/lib/objetos";
+import {
+  obtenerObjetoPorId,
+  calcularCosteMejoraObjeto,
+  calcularCosteRecursosMejora,
+} from "@/lib/objetos";
 import { obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
 
 
@@ -163,11 +167,34 @@ export async function POST(request: Request) {
       objeto.precio,
       objetoInventario.nivelMejora
     );
+    const costeRecursos = calcularCosteRecursosMejora(
+      objeto,
+      objetoInventario.nivelMejora
+    );
 
     if (usuario.oro < coste) {
       return NextResponse.json(
         {
           error: `No tienes suficiente oro. Necesitas ${coste} 🪙.`,
+        },
+        { status: 400 }
+      );
+    }
+
+    if (
+      usuario.madera < costeRecursos.madera ||
+      usuario.piedra < costeRecursos.piedra ||
+      usuario.metal < costeRecursos.metal
+    ) {
+      return NextResponse.json(
+        {
+          error: "No tienes suficientes materiales para esta mejora.",
+          costeRecursos,
+          recursosDisponibles: {
+            madera: usuario.madera,
+            piedra: usuario.piedra,
+            metal: usuario.metal,
+          },
         },
         { status: 400 }
       );
@@ -203,22 +230,26 @@ export async function POST(request: Request) {
       ].includes(objetoInventario.id);
       if (!objetoSigueEquipado) throw new Error("OBJETO_NO_EQUIPADO");
 
+      // El oro y los tres materiales se descuentan en una sola operación
+      // condicional y dentro de la misma transacción que mejora la instancia.
       const usuarioActualizado = await tx.usuario.updateMany({
         where: {
           id: usuario.id,
-          oro: {
-            gte: coste,
-          },
+          oro: { gte: coste },
+          madera: { gte: costeRecursos.madera },
+          piedra: { gte: costeRecursos.piedra },
+          metal: { gte: costeRecursos.metal },
         },
         data: {
-          oro: {
-            decrement: coste,
-          },
+          oro: { decrement: coste },
+          madera: { decrement: costeRecursos.madera },
+          piedra: { decrement: costeRecursos.piedra },
+          metal: { decrement: costeRecursos.metal },
         },
       });
 
       if (usuarioActualizado.count !== 1) {
-        throw new Error("ORO_INSUFICIENTE");
+        throw new Error("COSTE_CAMBIADO");
       }
 
       const objetoActualizado = await tx.inventarioObjeto.updateMany({
@@ -242,6 +273,9 @@ export async function POST(request: Request) {
         },
         select: {
           oro: true,
+          madera: true,
+          piedra: true,
+          metal: true,
         },
       });
 
@@ -252,8 +286,14 @@ export async function POST(request: Request) {
       exito: true,
       mensaje: `Has mejorado ${obtenerNombreObjetoConSufijo(objeto.nombre, objetoInventario.sufijoId)} a +${nivelNuevo}.`,
       oro: resultado.oro,
+      recursos: {
+        madera: resultado.madera,
+        piedra: resultado.piedra,
+        metal: resultado.metal,
+      },
       nivelMejora: nivelNuevo,
       coste,
+      costeRecursos,
     });
   } catch (error) {
     if (error instanceof Error && error.message === "PERSONAJE_OCUPADO") {
@@ -281,6 +321,12 @@ export async function POST(request: Request) {
       return NextResponse.json(
         { error: "No tienes suficiente oro." },
         { status: 400 }
+      );
+    }
+    if (error instanceof Error && error.message === "COSTE_CAMBIADO") {
+      return NextResponse.json(
+        { error: "El saldo de oro o los materiales han cambiado. Actualiza el juego e inténtalo de nuevo." },
+        { status: 409 }
       );
     }
 
