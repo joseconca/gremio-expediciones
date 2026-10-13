@@ -24,6 +24,7 @@ import {
 import {
   validarObjetivoAccionCombate,
   validarTurnoAccionCombate,
+  type ObjetivoAccionCombate,
 } from "@/lib/expediciones/contrato-accion-combate";
 
 type AccionCombate = "atacar" | "usar_habilidad" | "usar_objeto";
@@ -408,7 +409,50 @@ export function manejarErrorAccionCombate(error: unknown) {
   );
 }
 
-export type ContextoAccionCombate = Record<string, any>;
+type UsuarioAccionPayload = Prisma.UsuarioGetPayload<{
+  include: {
+    personaje: {
+      include: {
+        inventario: { include: { objetos: true } };
+        habilidades: { where: { slot: { not: null } } };
+      };
+    };
+    expedicionActiva: {
+      include: {
+        combateActivo: { include: { expedicion: true } };
+      };
+    };
+  };
+}>;
+
+export type ConsumibleCombate = {
+  id: string;
+  nombre: string;
+  curacion: number;
+  inventarioObjetoId: string;
+};
+
+export type ContextoAccionCombate = {
+  accion: AccionCombate;
+  usuario: UsuarioAccionPayload;
+  personaje: NonNullable<UsuarioAccionPayload["personaje"]>;
+  bonusCuracion: number;
+  expedicion: Prisma.ExpedicionActivaGetPayload<{ include: { combateActivo: true } }>;
+  combate: Prisma.CombateActivoGetPayload<{ include: { expedicion: true } }>;
+  esPvp: boolean;
+  actor: string;
+  habilidad: DefinicionHabilidad | null;
+  cooldowns: Record<string, number>;
+  efectos: EfectoCombate[];
+  cooldownsDefensor: Record<string, number>;
+  efectosDefensor: EfectoCombate[];
+  jugadorHp: number;
+  jugadorDefensa: number;
+  enemigoHp: number;
+  enemigoDefensa: number;
+  log: string[];
+  consumible: ConsumibleCombate | null;
+};
 
 export async function prepararAccionCombate(
   request: Request,
@@ -679,10 +723,10 @@ export async function prepararAccionCombate(
 
     let habilidad: DefinicionHabilidad | null = null;
 
-    let cooldowns = obtenerCooldowns(combate.cooldowns);
+    const cooldowns = obtenerCooldowns(combate.cooldowns);
     let efectos = obtenerEfectos(combate.efectos);
 
-    let cooldownsDefensor = obtenerCooldowns(combate.cooldownsDefensor);
+    const cooldownsDefensor = obtenerCooldowns(combate.cooldownsDefensor);
     let efectosDefensor = obtenerEfectos(combate.efectosDefensor);
 
     if (accion === "usar_habilidad") {
@@ -782,17 +826,16 @@ export async function prepararAccionCombate(
     // ESTADO ACTUAL
     // ============================================================
 
-    let jugadorHp = combate.jugadorHp;
+    const jugadorHp = combate.jugadorHp;
     let jugadorDefensa = combate.jugadorDefensa;
 
-    let enemigoHp = combate.enemigoHp;
+    const enemigoHp = combate.enemigoHp;
     let enemigoDefensa = combate.enemigoDefensa;
 
     const log = Array.isArray(combate.log)
       ? [...(combate.log as string[])]
       : [];
 
-    let accionAnimada: AccionAnimadaCombate;
     let consumible: { id: string; nombre: string; curacion: number; inventarioObjetoId: string } | null = null;
 
     // Si se vuelve a usar la misma habilidad, retira sus efectos anteriores antes
@@ -852,8 +895,6 @@ export async function prepararAccionCombate(
     return {
       contexto: {
         accion,
-        habilidadId,
-        objetoInventarioId,
         usuario,
         personaje,
         bonusCuracion,
@@ -872,7 +913,6 @@ export async function prepararAccionCombate(
         enemigoDefensa,
         log,
         consumible,
-        objetivo: body.objetivo,
       },
     };
   } catch (error) {

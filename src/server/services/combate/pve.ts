@@ -46,30 +46,24 @@ export async function ejecutarAccionPve(request: Request) {
 export async function ejecutarAccionPveConContexto(contexto: ContextoAccionCombate) {
   const {
     accion,
-    habilidadId,
-    objetoInventarioId,
     usuario,
     personaje,
     bonusCuracion,
     expedicion,
     combate,
-    esPvp,
     actor,
     habilidad,
-    objetivo,
   } = contexto;
   let {
     cooldowns,
     efectos,
-    cooldownsDefensor,
     efectosDefensor,
     jugadorHp,
     jugadorDefensa,
     enemigoHp,
     enemigoDefensa,
-    log,
-    consumible,
   } = contexto;
+  const { log, consumible } = contexto;
   let accionAnimada: AccionAnimadaCombate;
   try {
       const modoDificultad = esModoDificultad(expedicion.modoDificultad)

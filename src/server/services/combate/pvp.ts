@@ -24,8 +24,6 @@ import { normalizarActorHabilidadDefensor, distribuirEfectosHabilidadPvp } from 
 import {
   prepararAccionCombate,
   manejarErrorAccionCombate,
-  obtenerCooldowns,
-  obtenerEfectos,
   reducirCooldowns,
   actualizarEfectosAlInicioTurnoJugador,
   gastarRecursosHabilidad,
@@ -42,17 +40,13 @@ export async function ejecutarAccionPvp(request: Request) {
 export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionCombate) {
   const {
     accion,
-    habilidadId,
-    objetoInventarioId,
     usuario,
     personaje,
     bonusCuracion,
     expedicion,
     combate,
-    esPvp,
     actor,
     habilidad,
-    objetivo,
   } = contexto;
   let {
     cooldowns,
@@ -63,9 +57,8 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
     jugadorDefensa,
     enemigoHp,
     enemigoDefensa,
-    log,
-    consumible,
   } = contexto;
+  const { log } = contexto;
   let accionAnimada: AccionAnimadaCombate;
   try {
     // PVP
