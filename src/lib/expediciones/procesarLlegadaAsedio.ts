@@ -453,6 +453,9 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
       },
       data: {
         estado: "combatiendo",
+        hpActual: enemigoHpMaximo,
+        energiaActual: Math.max(0, Math.floor(estadisticasDefensor.total.energiaMaxima ?? 20)),
+        manaActual: Math.max(0, Math.floor(estadisticasDefensor.total.manaMaximo ?? 10)),
       },
     });
 
