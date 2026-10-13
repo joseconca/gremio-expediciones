@@ -285,3 +285,43 @@
     opacity: 0;
   }
 }
+
+
+/* Ajustes globales para una experiencia táctil y vertical. */
+html {
+  min-height: 100%;
+  background: #171512;
+}
+
+body {
+  min-height: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a,
+button {
+  touch-action: manipulation;
+}
+
+.mobile-game-nav {
+  padding-bottom: max(0.375rem, env(safe-area-inset-bottom));
+}
+
+@media (max-width: 640px) {
+  /* Evita el zoom automático de Safari al enfocar campos con texto pequeño. */
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-route-marker img,
+  .combat-treasure,
+  .combat-hero,
+  .combat-enemy,
+  .combat-impact {
+    animation: none !important;
+  }
+}
