@@ -72,22 +72,28 @@ test("el precio de materiales usa el mismo cálculo y el descuento está limitad
 
 test("la comparación de dificultades incluye escenarios explícitos de victoria y derrota", () => {
   const probabilidadesEscenario = { facil: 0.9, normal: 0.75, dificil: 0.55 };
+  const recompensaMedia = (mision) =>
+    mision.recompensaBase + (Math.floor(mision.recompensaBase * 0.2) - 1) / 2;
   const tasaEsperada = (mision, dificultad) => {
     const probVictoria = probabilidadesEscenario[dificultad];
     const factorPago = probVictoria + (1 - probVictoria) * 0.2;
-    return mision.recompensaBase * 1.1 * factorPago *
+    return recompensaMedia(mision) * factorPago *
       CONFIGURACION_DIFICULTAD[dificultad].multiplicadorRecompensa / mision.horas;
   };
   const corta = MISIONES_POR_DURACION[0];
-  assert.ok(Math.abs(tasaEsperada(corta, "facil") - 86.02) < 0.01);
-  assert.ok(Math.abs(tasaEsperada(corta, "normal") - 88) < 0.01);
-  assert.ok(Math.abs(tasaEsperada(corta, "dificil") - 88) < 0.01);
+  assert.ok(Math.abs(tasaEsperada(corta, "facil") - 85.238) < 0.01);
+  assert.ok(Math.abs(tasaEsperada(corta, "normal") - 87.2) < 0.01);
+  assert.ok(Math.abs(tasaEsperada(corta, "dificil") - 87.2) < 0.01);
   // Las probabilidades son supuestos de sensibilidad, no valores medidos del juego.
 });
 
 test("las recompensas nominales de misiones permiten comparar el oro bruto por hora", () => {
-  const tasas = MISIONES_POR_DURACION.map((m) => m.recompensaBase * 1.1 / m.horas);
-  const esperadas = [110, 99, 275 / 3, 770 / 9, 82.5];
+  // El generador usa floor(base + rng * base * 0,2): el bonus tiene media
+  // (floor(base * 0,2) - 1) / 2 si rng se distribuye uniformemente.
+  const recompensaMedia = (m) =>
+    m.recompensaBase + (Math.floor(m.recompensaBase * 0.2) - 1) / 2;
+  const tasas = MISIONES_POR_DURACION.map((m) => recompensaMedia(m) / m.horas);
+  const esperadas = [109, 98.5, 91.5, 85.5, 1979.5 / 24];
   assert.equal(tasas.length, 5);
   tasas.forEach((tasa, i) => assert.ok(Math.abs(tasa - esperadas[i]) < 0.01));
   assert.ok(tasas[0] > tasas[4]);
@@ -121,7 +127,8 @@ test("una misión breve cuenta el oro del enemigo, el pago por derrota y el valo
   }, 0) / pesoTotal;
 
   const oroEsperadoPorHora = (probVictoria, dificultad) => {
-    const oroMedioMision = mision.recompensaBase * 1.1;
+    const oroMedioMision = mision.recompensaBase +
+      (Math.floor(mision.recompensaBase * 0.2) - 1) / 2;
     const pagoEsperado = (
       probVictoria * (oroMedioMision + oroEnemigo) +
       (1 - probVictoria) * oroMedioMision * 0.2
@@ -130,9 +137,9 @@ test("una misión breve cuenta el oro del enemigo, el pago por derrota y el valo
     return (pagoEsperado + reventaBotinEsperada) / mision.horas;
   };
 
-  assert.ok(Math.abs(oroEsperadoPorHora(0.9, "facil") - 122.497) < 0.02);
-  assert.ok(Math.abs(oroEsperadoPorHora(0.75, "normal") - 122.4475) < 0.02);
-  assert.ok(Math.abs(oroEsperadoPorHora(0.55, "dificil") - 118.2115) < 0.02);
+  assert.ok(Math.abs(oroEsperadoPorHora(0.9, "facil") - 121.714) < 0.02);
+  assert.ok(Math.abs(oroEsperadoPorHora(0.75, "normal") - 121.6475) < 0.02);
+  assert.ok(Math.abs(oroEsperadoPorHora(0.55, "dificil") - 117.4115) < 0.02);
 });
 
 test("la recompensa secundaria de botín de jefe tiene en cuenta probabilidad y reventa", () => {
