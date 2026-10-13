@@ -16,11 +16,11 @@ loaded.paths = Module._nodeModulePaths(path.dirname(sourcePath));
 loaded._compile(compiled.outputText, sourcePath);
 const { aplicarModificadoresPosicion, normalizarPosicionCombate } = loaded.exports;
 
-test("Melé aumenta ambos ataques un 15 % y reduce ambas defensas un 15 %", () => {
+test("Melé aumenta ambas defensas un 15 % y reduce ambos ataques un 15 %", () => {
   assert.deepEqual(aplicarModificadoresPosicion({
     ataque: 100, ataqueMagico: 80, defensa: 100, defensaMagica: 60,
   }, "mele"), {
-    ataque: 115, ataqueMagico: 92, defensa: 85, defensaMagica: 51,
+    ataque: 85, ataqueMagico: 68, defensa: 115, defensaMagica: 69,
   });
 });
 
@@ -30,11 +30,11 @@ test("Centro conserva todas las estadísticas y no muta la entrada", () => {
   assert.deepEqual(stats, { ataque: 101, ataqueMagico: 93, defensa: 42, defensaMagica: 37 });
 });
 
-test("Retaguardia aumenta ambas defensas un 15 % y reduce ambos ataques un 15 %", () => {
+test("Retaguardia aumenta ambos ataques un 15 % y reduce ambas defensas un 15 %", () => {
   assert.deepEqual(aplicarModificadoresPosicion({
     ataque: 100, ataqueMagico: 80, defensa: 100, defensaMagica: 60,
   }, "retaguardia"), {
-    ataque: 85, ataqueMagico: 68, defensa: 115, defensaMagica: 69,
+    ataque: 115, ataqueMagico: 92, defensa: 85, defensaMagica: 51,
   });
 });
 
