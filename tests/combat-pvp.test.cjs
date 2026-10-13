@@ -126,3 +126,136 @@ test("tras recargar, el endpoint recupera el mismo combate para atacante y defen
   assert.equal(atacante.body.rolUsuario, "atacante");
   assert.equal(defensor.body.rolUsuario, "defensor");
 });
+
+const { finalizarAsedio } = require("../src/lib/expediciones/asedio.ts");
+
+test("la recompensa PvP se liquida una sola vez aunque se repita la finalización", async () => {
+  let state = {
+    combate: {
+      id: "combate-recompensa",
+      version: 4,
+      fase: "activo",
+      turno: "atacante",
+      ganadorUsuarioId: null,
+      botinResuelto: false,
+    },
+    usuarios: {
+      atacante: { id: "atacante", madera: 0, piedra: 0, metal: 0 },
+      defensor: { id: "defensor", madera: 40, piedra: 30, metal: 20 },
+    },
+    personajes: {
+      atacante: { usuarioId: "atacante", hpActual: 100, estado: "de_viaje" },
+      defensor: { usuarioId: "defensor", hpActual: 0, estado: "combatiendo" },
+    },
+    expedicion: { id: "expedicion-atacante", fase: "combatiendo", recompensa: {} },
+  };
+  const clonar = (valor) => structuredClone(valor);
+  const aplicar = (registro, datos) => {
+    for (const [clave, valor] of Object.entries(datos ?? {})) {
+      if (valor && typeof valor === "object" && !Array.isArray(valor)) {
+        if (Object.hasOwn(valor, "decrement")) registro[clave] -= valor.decrement;
+        else if (Object.hasOwn(valor, "increment")) registro[clave] += valor.increment;
+        else registro[clave] = clonar(valor);
+      } else {
+        registro[clave] = valor;
+      }
+    }
+  };
+  const tx = {
+    $queryRaw: async () => [],
+    usuario: {
+      findUnique: async ({ where }) => state.usuarios[where.id]
+        ? clonar(state.usuarios[where.id])
+        : null,
+      updateMany: async ({ where, data }) => {
+        const usuario = state.usuarios[where.id];
+        if (!usuario) return { count: 0 };
+        for (const [clave, condicion] of Object.entries(where)) {
+          if (clave === "id") continue;
+          if (condicion && typeof condicion === "object" && Object.hasOwn(condicion, "gte") &&
+              usuario[clave] < condicion.gte) return { count: 0 };
+        }
+        aplicar(usuario, data);
+        return { count: 1 };
+      },
+    },
+    combateActivo: {
+      updateMany: async ({ where, data }) => {
+        if (state.combate.id !== where.id ||
+            state.combate.version !== where.version ||
+            state.combate.fase !== where.fase) return { count: 0 };
+        aplicar(state.combate, data);
+        return { count: 1 };
+      },
+      findUniqueOrThrow: async () => clonar(state.combate),
+    },
+    expedicionActiva: {
+      update: async ({ where, data }) => {
+        if (state.expedicion.id !== where.id) throw new Error("Expedición no encontrada");
+        aplicar(state.expedicion, data);
+        return clonar(state.expedicion);
+      },
+    },
+    personaje: {
+      update: async ({ where, data }) => {
+        const id = where.usuarioId ??
+          Object.keys(state.personajes).find((key) => state.personajes[key].id === where.id);
+        if (!state.personajes[id]) throw new Error("Personaje no encontrado");
+        aplicar(state.personajes[id], data);
+        return clonar(state.personajes[id]);
+      },
+    },
+  };
+  const argumentos = () => ({
+    tx,
+    combate: {
+      id: "combate-recompensa",
+      version: 4,
+      atacanteUsuarioId: "atacante",
+      defensorUsuarioId: "defensor",
+      jugadorHpMaximo: 100,
+      almacenNivel: 0,
+      capacidadCarruaje: 80,
+      estadoDefensorAnterior: "ocioso",
+    },
+    expedicionId: "expedicion-atacante",
+    jugadorHp: 55,
+    enemigoHp: 0,
+    jugadorDefensa: 4,
+    enemigoDefensa: 3,
+    cooldowns: {},
+    efectos: [],
+    cooldownsDefensor: {},
+    efectosDefensor: [],
+    accion: { actor: "jugador", tipo: "ataque", animacion: "ofensiva", dano: 10, critico: false, texto: "Golpe final." },
+    log: [],
+    ganador: "atacante",
+  });
+  const finalizarEnTransaccion = async () => {
+    const antes = clonar(state);
+    try {
+      return await finalizarAsedio(argumentos());
+    } catch (error) {
+      state = antes;
+      throw error;
+    }
+  };
+
+  const primera = await finalizarEnTransaccion();
+  assert.equal(state.combate.fase, "victoria");
+  assert.equal(state.combate.version, 5);
+  assert.equal(state.combate.botinResuelto, true);
+  assert.deepEqual(state.expedicion.recompensa, {
+    oro: 0,
+    madera: primera.botin.madera,
+    piedra: primera.botin.piedra,
+    metal: primera.botin.metal,
+  });
+  assert.equal(state.usuarios.defensor.madera, 40 - primera.botin.madera);
+  assert.equal(state.usuarios.defensor.piedra, 30 - primera.botin.piedra);
+  assert.equal(state.usuarios.defensor.metal, 20 - primera.botin.metal);
+
+  const trasPrimeraLiquidacion = clonar(state);
+  await assert.rejects(finalizarEnTransaccion, /COMBATE_MODIFICADO/);
+  assert.deepEqual(state, trasPrimeraLiquidacion);
+});

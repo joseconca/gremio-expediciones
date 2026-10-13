@@ -24,7 +24,6 @@ import {
 import {
   validarObjetivoAccionCombate,
   validarTurnoAccionCombate,
-  type ObjetivoAccionCombate,
 } from "@/lib/expediciones/contrato-accion-combate";
 
 type AccionCombate = "atacar" | "usar_habilidad" | "usar_objeto";
