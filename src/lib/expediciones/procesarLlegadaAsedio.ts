@@ -11,7 +11,7 @@ import {
 } from "@/lib/estadisticasPersonaje";
 
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
-import { aplicarEfectoComida, comidaOtorgaIniciativa } from "@/lib/comidasTaberna";
+import { aplicarEfectoComida, comidaOtorgaIniciativa, obtenerComidaTaberna } from "@/lib/comidasTaberna";
 
 export async function procesarLlegadaAsedio(expedicionId: string) {
   const expedicion = await prisma.expedicionActiva.findUnique({
@@ -293,14 +293,17 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
         velocidadDefensor: enemigoVelocidad,
       });
 
-  const logInicial =
+  const comidaActiva = obtenerComidaTaberna(expedicion.efectoComida);
+  const mensajeInicioCombate =
     primerTurno === "atacante"
-      ? [
-          `⚔️ ${personajeAtacante.nombre} tiene la iniciativa y comienza el asedio.`,
-        ]
-      : [
-          `⚔️ ${personajeDefensor.nombre} tiene la iniciativa y defiende el gremio.`,
-        ];
+      ? `⚔️ ${personajeAtacante.nombre} tiene la iniciativa y comienza el asedio.`
+      : `⚔️ ${personajeDefensor.nombre} tiene la iniciativa y defiende el gremio.`;
+  const logInicial = [
+    ...(comidaActiva
+      ? [`🍲 ${comidaActiva.nombre}: ${comidaActiva.descripcion}`]
+      : []),
+    mensajeInicioCombate,
+  ];
 
   // ============================================================
   // CREAR COMBATE Y CAMBIAR ESTADOS
