@@ -6,7 +6,10 @@ import type {
 import { calcularEstadisticasBase } from "./configuracionJuego";
 import { obtenerHabilidadPorId } from "./habilidades";
 import { calcularEstadisticasObjeto } from "./objetos";
-import { calcularEstadisticasDerivadasRpg } from "./progresion/estadisticas";
+import {
+  calcularEstadisticasDerivadasRpg,
+  COEFICIENTES_ATRIBUTOS_RPG,
+} from "./progresion/estadisticas";
 import { calcularAtributosClase } from "./progresion/atributos-clase";
 import {
   CLASES,
@@ -54,12 +57,19 @@ export interface ModificadoresEstadisticas {
   regeneracionManaPorTurno?: number;
 }
 
+export type AportesPorAtributo = Record<
+  keyof AtributosPrincipales,
+  Partial<ModificadoresEstadisticas>
+>;
+
 export interface DesgloseEstadisticasPersonaje {
   base: ModificadoresEstadisticas;
   mejoras: ModificadoresEstadisticas;
   pasivas: ModificadoresEstadisticas;
   equipo: ModificadoresEstadisticas;
   combate: ModificadoresEstadisticas;
+  /** Aporte matemático de cada atributo principal a las estadísticas derivadas. */
+  atributos: AportesPorAtributo;
   total: ModificadoresEstadisticas;
 }
 
@@ -306,6 +316,83 @@ function obtenerEstadisticasBase(
   };
 }
 
+function calcularAportesPorAtributo(
+  personaje: DatosPersonajeEstadisticas,
+  claseActualId: string
+): AportesPorAtributo {
+  const c = COEFICIENTES_ATRIBUTOS_RPG;
+  const atributos = obtenerAtributosPrincipales(personaje);
+  const fuerza = atributos.fuerza;
+  const agilidad = atributos.agilidad;
+  const vitalidad = atributos.vitalidad;
+  const inteligencia = atributos.inteligencia;
+  const destreza = atributos.destreza;
+  const suerte = atributos.suerte;
+
+  const aportes: AportesPorAtributo = {
+    fuerza: {
+      ataque: fuerza * c.ataqueFisicoPorFuerza,
+      defensa: fuerza * c.defensaFisicaPorFuerza,
+      energiaMaxima: fuerza * c.energiaPorFuerza,
+      regeneracionEnergiaPorTurno: fuerza * c.regeneracionEnergiaPorFuerzaVitalidad,
+    },
+    agilidad: {
+      velocidad: agilidad * c.velocidadPorAgilidad,
+      evasion: agilidad * c.evasionPorAgilidad,
+    },
+    vitalidad: {
+      hpMaximo: vitalidad * c.vidaPorVitalidad,
+      energiaMaxima: vitalidad * c.energiaPorVitalidad,
+      defensa: vitalidad * c.defensaFisicaPorVitalidad,
+      defensaMagica: vitalidad * c.defensaMagicaPorVitalidad,
+      regeneracionVidaPorTurno: vitalidad * c.regeneracionVidaPorVitalidad,
+      regeneracionEnergiaPorTurno: vitalidad * c.regeneracionEnergiaPorFuerzaVitalidad,
+    },
+    inteligencia: {
+      manaMaximo: inteligencia * c.manaPorInteligencia,
+      ataqueMagico: inteligencia * c.ataqueMagicoPorInteligencia,
+      defensaMagica: inteligencia * c.defensaMagicaPorInteligencia,
+      regeneracionManaPorTurno: inteligencia * c.regeneracionManaPorInteligencia,
+    },
+    destreza: {
+      ataque: destreza * c.ataqueFisicoPorDestreza,
+      ataqueMagico: destreza * c.ataqueMagicoPorDestreza,
+      precision: destreza * c.precisionPorDestreza,
+      probCritico: destreza * c.criticoPorDestreza,
+      velocidad: destreza * c.velocidadPorDestreza,
+    },
+    suerte: {
+      precision: suerte * c.precisionPorSuerte,
+      probCritico: suerte * c.criticoPorSuerte,
+      danoCritico: suerte * c.multiplicadorCriticoPorSuerte,
+      evasion: suerte * c.evasionPorSuerte,
+    },
+  };
+
+  const claseBaseLegada = (
+    personaje.clase === "Guerrero" ||
+    personaje.clase === "Explorador" ||
+    personaje.clase === "Comerciante"
+  ) && claseActualId === "novato";
+  const usaEstadisticasLegadas = claseBaseLegada ||
+    (!CLASES[claseActualId] && personaje.clase !== "Novato");
+
+  if (usaEstadisticasLegadas) {
+    // En personajes legacy, vida/ataque/defensa/velocidad/crítico siguen
+    // dependiendo de la fórmula antigua de clase y nivel, no de los atributos.
+    for (const fuente of Object.values(aportes)) {
+      delete fuente.hpMaximo;
+      delete fuente.ataque;
+      delete fuente.defensa;
+      delete fuente.velocidad;
+      delete fuente.probCritico;
+      delete fuente.danoCritico;
+    }
+  }
+
+  return aportes;
+}
+
 export function calcularEstadisticasPersonaje(
   personaje: DatosPersonajeEstadisticas,
   habilidadesAprendidas: string[] = [],
@@ -350,5 +437,13 @@ export function calcularEstadisticasPersonaje(
     regeneracionManaPorTurno: Math.max(0, totalSinRedondear.regeneracionManaPorTurno ?? 0),
   };
 
-  return { base, mejoras, pasivas, equipo, combate, total };
+  return {
+    base,
+    mejoras,
+    pasivas,
+    equipo,
+    combate,
+    atributos: calcularAportesPorAtributo(personaje, claseActualId),
+    total,
+  };
 }
