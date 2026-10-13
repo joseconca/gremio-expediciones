@@ -160,7 +160,7 @@ export async function procesarTurnoAutomaticoAsedio(
 
   if (combate.turno === "atacante") {
     const accionAutomatica = resolverAtaqueJugador({
-      jugadorAtaque: combate.jugadorAtaque,
+      jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
       jugadorNivel: combate.jugadorNivel,
       jugadorProbCritico: combate.jugadorProbCritico,
       jugadorDanoCritico: combate.jugadorDanoCritico,
@@ -169,6 +169,8 @@ export async function procesarTurnoAutomaticoAsedio(
         combate.enemigoDefensa +
         calcularBonusDefensaMuralla(combate.murallaNivel),
 
+      jugadorPrecision: calcularPrecisionModificada(combate.jugadorPrecision ?? 75, efectos),
+      enemigoEvasion: calcularEvasionModificada(combate.enemigoEvasion ?? 0, efectosDefensor),
       enemigoNombre:
         combate.defensorNombre ??
         combate.enemigoNombre ??
@@ -183,11 +185,13 @@ export async function procesarTurnoAutomaticoAsedio(
     );
   } else {
     const accionAutomatica = resolverAtaqueEnemigo({
-      enemigoAtaque: combate.enemigoAtaque,
+      enemigoAtaque: calcularAtaqueModificado(combate.enemigoAtaque, efectosDefensor),
       enemigoProbCritico:
         combate.enemigoProbCritico ?? undefined,
       enemigoDanoCritico:
         combate.enemigoDanoCritico ?? undefined,
+      enemigoPrecision: calcularPrecisionModificada(combate.enemigoPrecision ?? 75, efectosDefensor),
+      jugadorEvasion: calcularEvasionModificada(combate.jugadorEvasion ?? 0, efectos),
       jugadorDefensa,
       enemigoNombre:
         combate.atacanteNombre ?? "el atacante",
