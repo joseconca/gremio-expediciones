@@ -12,6 +12,13 @@ import {
   determinarPrimerTurnoAsedio,
   type EfectoCombateAsedio,
 } from "@/lib/expediciones/asedio";
+import {
+  leerEfectosCombate,
+  procesarEfectosTurno,
+  calcularAtaqueModificado,
+  calcularPrecisionModificada,
+  calcularEvasionModificada,
+} from "./estados-combate";
 
 export const TIEMPO_MAXIMO_TURNO_MS = 1.5 * 60 * 1000;
 
@@ -42,61 +49,17 @@ function disminuirCooldowns(
 }
 
 function obtenerEfectos(valor: unknown): EfectoCombateAsedio[] {
-  if (!Array.isArray(valor)) {
-    return [];
-  }
-
-  return valor.filter(
-    (efecto): efecto is EfectoCombateAsedio => {
-      if (!efecto || typeof efecto !== "object") {
-        return false;
-      }
-
-      const registro = efecto as Record<string, unknown>;
-
-      return (
-        typeof registro.habilidadId === "string" &&
-        registro.tipo === "bonus_defensa" &&
-        typeof registro.valor === "number" &&
-        typeof registro.turnosRestantes === "number" &&
-        registro.turnosRestantes > 0
-      );
-    }
-  );
+  return leerEfectosCombate(valor);
 }
 
 function actualizarEfectosAlInicioTurno(
   efectos: EfectoCombateAsedio[],
-  defensaActual: number
-): {
-  efectos: EfectoCombateAsedio[];
-  defensa: number;
-} {
-  let defensa = defensaActual;
-
-  const nuevosEfectos: EfectoCombateAsedio[] = [];
-
-  for (const efecto of efectos) {
-    const turnosRestantes = efecto.turnosRestantes - 1;
-
-    if (turnosRestantes > 0) {
-      nuevosEfectos.push({
-        ...efecto,
-        turnosRestantes,
-      });
-
-      continue;
-    }
-
-    if (efecto.tipo === "bonus_defensa") {
-      defensa = Math.max(0, defensa - efecto.valor);
-    }
-  }
-
-  return {
-    efectos: nuevosEfectos,
-    defensa,
-  };
+  hpActual: number,
+  hpMaximo: number,
+  defensaActual: number,
+  nombreObjetivo: string,
+) {
+  return procesarEfectosTurno(efectos, hpActual, hpMaximo, defensaActual, nombreObjetivo);
 }
 
 export async function procesarTurnoAutomaticoAsedio(
