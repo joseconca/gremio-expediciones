@@ -753,10 +753,7 @@ export default function AsedioModal({
                 </div>
               </div>
 
-              <p className="mb-2 text-[10px] font-bold text-stone-300">
-                Posición: {ETIQUETAS_POSICION_COMBATE[normalizarPosicionCombate(esAtacante ? combate.enemigoPosicion : combate.jugadorPosicion)]}
-              </p>
-              {danioVisible?.actor === "enemigo" && (
+{danioVisible?.actor === "enemigo" && (
                 <div
                   className={`absolute left-1/2 top-0 z-50 -translate-x-1/2 font-black drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] ${
                     danioVisible.critico
