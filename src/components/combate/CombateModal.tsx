@@ -6,6 +6,7 @@ import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import { obtenerRutaSpriteEnemigo } from "@/lib/enemigos";
 import type { CombatePve, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
+import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import type { ObjetoInventario } from "@/lib/tiposJuego";
 
 interface CombateModalProps {
@@ -447,6 +448,9 @@ export default function CombateModal({
                     style={{ width: `${vidaJugador}%` }}
                   />
                 </div>
+                <p className="mt-1 text-[10px] font-bold text-stone-300">
+                  Posición: {ETIQUETAS_POSICION_COMBATE[normalizarPosicionCombate(combate.jugadorPosicion)]}
+                </p>
                 <div className="mt-2 grid grid-cols-2 gap-1 text-[9px] font-mono font-bold">
                   <span className="rounded border border-blue-900/70 bg-blue-950/70 px-1.5 py-1 text-blue-200">
                     ENE {personaje.energiaActual}/{personaje.energiaMaxima}
