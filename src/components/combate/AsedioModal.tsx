@@ -661,7 +661,7 @@ export default function AsedioModal({
               >
                 <IndicadoresEfectosCombate
                   efectos={esAtacante ? combate.efectos : combate.efectosDefensor}
-                  comidaPreparada={esAtacante ? (comidaActiva ?? personaje.comidaPreparada) : null}
+                  comidaPreparada={esAtacante ? (comidaActiva !== undefined ? comidaActiva : personaje.comidaPreparada) : null}
                   habilidades={personaje.habilidades}
                 />
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "jugador").map((pulso, indice) => (
