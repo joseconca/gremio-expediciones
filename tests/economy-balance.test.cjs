@@ -5,8 +5,8 @@ const { OBJETOS, obtenerObjetoPorId, calcularCosteRecursosMejora, calcularCosteM
 const { COMIDAS_TABERNA } = require("../src/lib/comidasTaberna.ts");
 const { MISIONES_POR_DURACION } = require("../src/lib/generadorMisiones.ts");
 const { calcularOroBaseComercio, calcularRecompensaComercio } = require("../src/lib/expediciones/comercio.ts");
-const { CONFIGURACION_DIFICULTAD } = require("../src/lib/expediciones/dificultad.ts");
-const { JEFES_ELITE } = require("../src/lib/enemigos.ts");
+const { CONFIGURACION_DIFICULTAD, calcularOroEnemigo } = require("../src/lib/expediciones/dificultad.ts");
+const { JEFES_ELITE, obtenerEnemigoPorId } = require("../src/lib/enemigos.ts");
 const { PRECIOS_RECURSOS, calcularPrecioRecurso } = require("../src/lib/economia.ts");
 const { calcularCosteEdificio } = require("../src/lib/configuracionJuego.ts");
 
@@ -93,6 +93,34 @@ test("la derrota conserva el 20 % del pago de misión y la dificultad multiplica
   assert.ok(Math.abs(tasaEsperada(MISIONES_POR_DURACION[4], 0.9, "normal") - 75.9) < 0.01);
   assert.equal(CONFIGURACION_DIFICULTAD.facil.multiplicadorRecompensa, 0.85);
   assert.equal(CONFIGURACION_DIFICULTAD.dificil.multiplicadorRecompensa, 1.25);
+});
+
+test("una misión breve cuenta el oro del enemigo, el pago por derrota y el valor esperado del botín", () => {
+  const mision = MISIONES_POR_DURACION[0];
+  const enemigo = obtenerEnemigoPorId("rata_gigante");
+  assert.ok(enemigo);
+  const oroEnemigo = calcularOroEnemigo(enemigo.botin, 1, enemigo.difMin);
+  assert.equal(oroEnemigo, 18);
+  assert.equal(enemigo.probabilidadBotin, 0.08);
+  const pesoTotal = enemigo.tablaLoot.reduce((total, entrada) => total + entrada.peso, 0);
+  const reventaMedia = enemigo.tablaLoot.reduce((total, entrada) => {
+    const objeto = obtenerObjetoPorId(entrada.objetoId);
+    return total + Math.max(1, Math.floor(objeto.precio * 0.35)) * entrada.peso;
+  }, 0) / pesoTotal;
+
+  const oroEsperadoPorHora = (probVictoria, dificultad) => {
+    const oroMedioMision = mision.recompensaBase * 1.1;
+    const pagoEsperado = (
+      probVictoria * (oroMedioMision + oroEnemigo) +
+      (1 - probVictoria) * oroMedioMision * 0.2
+    ) * CONFIGURACION_DIFICULTAD[dificultad].multiplicadorRecompensa;
+    const reventaBotinEsperada = probVictoria * enemigo.probabilidadBotin * reventaMedia;
+    return (pagoEsperado + reventaBotinEsperada) / mision.horas;
+  };
+
+  assert.ok(Math.abs(oroEsperadoPorHora(0.9, "facil") - 122.497) < 0.02);
+  assert.ok(Math.abs(oroEsperadoPorHora(0.75, "normal") - 122.4475) < 0.02);
+  assert.ok(Math.abs(oroEsperadoPorHora(0.55, "dificil") - 118.2115) < 0.02);
 });
 
 test("la recompensa secundaria de botín de jefe tiene en cuenta probabilidad y reventa", () => {
