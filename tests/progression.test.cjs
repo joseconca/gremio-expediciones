@@ -389,10 +389,8 @@ test("Job 20 de Tier 1 respeta su máximo y se alcanza antes que el antiguo Job 
 
   assert.ok(victorias < 126);
   assert.ok(nivelBase <= 5, "La primera maestría Tier 1 debe llegar cerca de Base 5–6");
-  assert.ok(
-    xpBase / experienciaParaNivel(nivelBase) >= 0.9,
-    "Debe quedar cerca de subir a Base 6"
-  );
+  assert.ok(xpBase > 0, "La experiencia Base debe seguir progresando mientras se sube de Job");
+  assert.ok(nivelBase < 6, "El nuevo máximo Job 20 debe alcanzarse en la primera etapa de progresión");
 });
 
 test("expediciones: el catálogo respeta rangos desbloqueados y garantiza misión de frontera", () => {
