@@ -20,7 +20,7 @@ const { equipmentBuilding } = require("../src/newGame/game/data/buildings/armory
 const { BaseScene } = require("../src/newGame/game/scenes/BaseScene.ts");
 const { TownHallInteriorScene } = require("../src/newGame/game/scenes/TownHallInteriorScene.ts");
 const { createAlcaldeDialogue } = require("../src/newGame/game/data/dialogues/alcalde.ts");
-const { worldGateway } = require("../src/services/worldGateway.ts");
+const { worldGateway } = require("../src/newGame/services/worldGateway.ts");
 
 function load(file, deps) {
   const filename = path.resolve(__dirname, "..", file);
