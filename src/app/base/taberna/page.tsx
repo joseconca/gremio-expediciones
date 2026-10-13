@@ -239,7 +239,8 @@ export default function TabernaPage() {
                             {COMIDAS_TABERNA.map((comida) => {
                               const deExpedicion = Boolean(expedicionActiva) || personaje.estado === "de_viaje" || personaje.estado === "combatiendo";
                               const sinOro = oro < comida.coste;
-                              const deshabilitada = deExpedicion || sinOro;
+                              const nivelInsuficiente = edificios.taberna.nivel < comida.nivelRequerido;
+                              const deshabilitada = deExpedicion || sinOro || nivelInsuficiente;
                               return (
                                 <button
                                   key={comida.id}
@@ -252,12 +253,13 @@ export default function TabernaPage() {
                                     <span className="text-3xl" aria-hidden="true">{comida.icono}</span>
                                     <span>
                                       <span className="block font-black text-amber-100">{comida.nombre}</span>
+                                      <span className="mt-1 block text-[10px] font-black uppercase tracking-wide text-amber-300/90">Taberna nivel {comida.nivelRequerido}</span>
                                       <span className="mt-1 block text-xs leading-relaxed text-stone-300">{comida.descripcion}</span>
                                     </span>
                                   </span>
                                   <span className="mt-4 flex items-center justify-between gap-2 border-t border-amber-900/60 pt-3">
                                     <span className="text-sm font-bold text-amber-300">{comida.coste} 🪙</span>
-                                    <span className="text-xs font-black uppercase tracking-wide text-stone-100">{deExpedicion ? "De expedición" : sinOro ? "Falta oro" : "Preparar"}</span>
+                                    <span className="text-xs font-black uppercase tracking-wide text-stone-100">{deExpedicion ? "De expedición" : nivelInsuficiente ? "Mejorar taberna" : sinOro ? "Falta oro" : "Preparar"}</span>
                                   </span>
                                 </button>
                               );
