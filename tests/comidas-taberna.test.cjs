@@ -20,7 +20,7 @@ const atributosBase = {
 test("la taberna ofrece recetas en tres niveles con costes positivos", () => {
   assert.equal(COMIDAS_TABERNA.length, 9);
   assert.ok(COMIDAS_TABERNA.every((comida) => comida.coste > 0));
-  assert.equal(obtenerComidaTaberna("carne-cazadora").coste, 8);
+  assert.equal(obtenerComidaTaberna("carne-cazadora").coste, 20);
   assert.deepEqual(
     COMIDAS_TABERNA.reduce((niveles, comida) => {
       niveles[comida.nivelRequerido] += 1;

@@ -157,13 +157,22 @@ test("el desglose de estadísticas separa base fija, atributos y redondeos", () 
   );
 });
 
-test("forja: una mejora de rareza superior consume más oro manteniendo el coste creciente por nivel", () => {
-  assert.equal(calcularCosteMejoraObjeto(1000, 0, "comun"), 5000);
-  assert.equal(calcularCosteMejoraObjeto(1000, 0, "poco_comun"), 6000);
-  assert.equal(calcularCosteMejoraObjeto(1000, 0, "raro"), 7500);
-  assert.equal(calcularCosteMejoraObjeto(1000, 0, "epico"), 9500);
-  assert.equal(calcularCosteMejoraObjeto(1000, 0, "legendario"), 12000);
-  assert.equal(calcularCosteMejoraObjeto(1000, 1, "raro"), 15000);
+test("forja: el coste de oro depende del tipo, la rareza y el nivel, no del precio comercial", () => {
+  const comun = obtenerObjetoPorId("espada_hierro");
+  const pocoComun = obtenerObjetoPorId("espada_acero");
+  const raro = obtenerObjetoPorId("espada_runa");
+
+  assert.equal(calcularCosteMejoraObjeto(comun, 0), 90);
+  assert.equal(calcularCosteMejoraObjeto(pocoComun, 0), 123);
+  assert.equal(calcularCosteMejoraObjeto(raro, 0), 166);
+  assert.equal(calcularCosteMejoraObjeto({ ...raro, rareza: "epico" }, 0), 231);
+  assert.equal(calcularCosteMejoraObjeto({ ...raro, rareza: "legendario" }, 0), 324);
+  assert.equal(calcularCosteMejoraObjeto({ ...raro, rareza: "legendario" }, 1), 771);
+  assert.equal(calcularCosteMejoraObjeto({ ...raro, precio: 1 }, 0), 166);
+  assert.equal(calcularCosteMejoraObjeto({ ...raro, precio: 1_000_000 }, 0), 166);
+  assert.ok(calcularCosteMejoraObjeto(raro, 1) > calcularCosteMejoraObjeto(raro, 0));
+  assert.equal(calcularCosteMejoraObjeto(obtenerObjetoPorId("armadura_acero"), 0), 138);
+  assert.equal(calcularCosteMejoraObjeto({ tipo: "consumible", rareza: "comun" }, 0), 0);
 });
 
 test("forja: los materiales escalan por tipo, rareza y nivel de mejora", () => {

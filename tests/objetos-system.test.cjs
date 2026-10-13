@@ -309,15 +309,15 @@ test("vender y recomprar restaura la misma instancia, sufijo, mejoras y bonifica
   const api = makeTradeApi();
   const sale = await api.sell({ json: async () => ({ objetoInventarioId: "item-1" }) });
   assert.equal(sale.status, 200);
-  assert.equal(sale.body.oroRecibido, 51100);
+  assert.equal(sale.body.oroRecibido, 2275);
   assert.equal(api.state.items.length, 0);
   assert.equal(api.state.inventario.ultimaVenta.sufijoId, "del_dragon");
-  assert.equal(api.state.inventario.ultimaVenta.precioRecompra, 102200);
-  assert.equal(api.state.user.oro, 251100);
+  assert.equal(api.state.inventario.ultimaVenta.precioRecompra, 4550);
+  assert.equal(api.state.user.oro, 202275);
 
   const repurchase = await api.buyback();
   assert.equal(repurchase.status, 200);
-  assert.equal(api.state.user.oro, 148900);
+  assert.equal(api.state.user.oro, 197725);
   assert.equal(api.state.items.length, 1);
   assert.equal(api.state.items[0].id, "item-1");
   assert.equal(api.state.items[0].objetoId, "espada_runa");
@@ -339,7 +339,7 @@ test("dos peticiones concurrentes solo pueden recomprar una vez el último recib
   assert.equal(results.filter((result) => result.status === 200).length, 1);
   assert.equal(results.filter((result) => result.status === 409).length, 1);
   assert.equal(api.state.items.length, 1);
-  assert.equal(api.state.user.oro, 148900);
+  assert.equal(api.state.user.oro, 197725);
   assert.equal(api.state.inventario.ultimaVenta, null);
 });
 
