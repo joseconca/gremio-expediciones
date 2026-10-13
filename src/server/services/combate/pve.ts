@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+import { actualizarCombateVersionado } from "@/lib/expediciones/actualizar-combate-versionado";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { experienciaParaNivel } from "@/lib/configuracionJuego";
 import {
@@ -295,36 +296,17 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             log.push(`🏅 ¡Has completado la maestría de ${progresoJob.claseNombre}!`);
           }
 
-          const actualizacionCombate = await tx.combateActivo.updateMany({
-            where: {
-              id: combate.id,
-              version: combate.version,
-            },
-            data: {
-              enemigoHp: 0,
-              jugadorDefensa,
-              cooldowns,
-              efectos: efectos as unknown as Prisma.InputJsonValue,
-              fase: "victoria",
-              turno: "jugador",
-              oroGanado,
-              experienciaGanada,
-              log,
-              ultimaAccion: accionAnimada,
-              version: {
-                increment: 1,
-              },
-            },
-          });
-
-          if (actualizacionCombate.count !== 1) {
-            throw new Error("COMBATE_MODIFICADO");
-          }
-
-          const combateActualizado = await tx.combateActivo.findUniqueOrThrow({
-            where: {
-              id: combate.id,
-            },
+          const combateActualizado = await actualizarCombateVersionado(tx, combate.id, combate.version, {
+            enemigoHp: 0,
+            jugadorDefensa,
+            cooldowns,
+            efectos: efectos as unknown as Prisma.InputJsonValue,
+            fase: "victoria",
+            turno: "jugador",
+            oroGanado,
+            experienciaGanada,
+            log,
+            ultimaAccion: accionAnimada,
           });
 
           await tx.expedicionActiva.update({
@@ -484,37 +466,18 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           if (progresoJob && progresoJob.nivelesSubidos > 0) {
             log.push(`⬆️ Job de ${progresoJob.claseNombre}: nivel ${progresoJob.nivelJob}.`);
           }
-          const actualizacionCombate = await tx.combateActivo.updateMany({
-            where: {
-              id: combate.id,
-              version: combate.version,
-            },
-            data: {
-              jugadorHp: 0,
-              jugadorDefensa,
-              enemigoHp,
-              cooldowns,
-              efectos: efectos as unknown as Prisma.InputJsonValue,
-              fase: "derrota",
-              turno: "jugador",
-              oroGanado: oroAsegurado,
-              experienciaGanada,
-              log,
-              ultimaAccion: accionAnimada,
-              version: {
-                increment: 1,
-              },
-            },
-          });
-
-          if (actualizacionCombate.count !== 1) {
-            throw new Error("COMBATE_MODIFICADO");
-          }
-
-          const combateActualizado = await tx.combateActivo.findUniqueOrThrow({
-            where: {
-              id: combate.id,
-            },
+          const combateActualizado = await actualizarCombateVersionado(tx, combate.id, combate.version, {
+            jugadorHp: 0,
+            jugadorDefensa,
+            enemigoHp,
+            cooldowns,
+            efectos: efectos as unknown as Prisma.InputJsonValue,
+            fase: "derrota",
+            turno: "jugador",
+            oroGanado: oroAsegurado,
+            experienciaGanada,
+            log,
+            ultimaAccion: accionAnimada,
           });
 
           const experienciaActual = personaje.experiencia || 0;
@@ -669,36 +632,19 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           await regenerarRecursosPorTurno(tx, usuario.id);
         }
 
-        const actualizado = await tx.combateActivo.updateMany({
-          where: {
-            id: combate.id,
-            version: combate.version,
-          },
-          data: {
-            jugadorHp,
-            jugadorDefensa,
-            enemigoHp,
-            enemigoDefensa,
-            ronda: siguienteRonda,
-            turno: siguienteTurno,
-            cooldowns,
-            efectos: efectos as unknown as Prisma.InputJsonValue,
-            efectosDefensor: efectosDefensor as unknown as Prisma.InputJsonValue,
-            ultimoTurnoEn: new Date(),
-            log,
-            ultimaAccion: accionAnimada,
-            version: {
-              increment: 1,
-            },
-          },
-        });
-
-        if (actualizado.count !== 1) {
-          throw new Error("COMBATE_MODIFICADO");
-        }
-
-        return tx.combateActivo.findUniqueOrThrow({
-          where: { id: combate.id },
+        return actualizarCombateVersionado(tx, combate.id, combate.version, {
+          jugadorHp,
+          jugadorDefensa,
+          enemigoHp,
+          enemigoDefensa,
+          ronda: siguienteRonda,
+          turno: siguienteTurno,
+          cooldowns,
+          efectos: efectos as unknown as Prisma.InputJsonValue,
+          efectosDefensor: efectosDefensor as unknown as Prisma.InputJsonValue,
+          ultimoTurnoEn: new Date(),
+          log,
+          ultimaAccion: accionAnimada,
         });
       });
 
