@@ -166,7 +166,8 @@ export default function EscuelaCombatePage() {
         <p className="mb-6 mt-2 text-sm text-[#a99d84]">{descripcionEdificio}</p>
         {navegacion}
 
-        <section aria-label="Profesión activa" className="mb-6 rounded-xl border border-[#6b5235] bg-[#241d15] p-4 md:p-5">
+        {vista !== "profesiones" && (
+          <section aria-label="Profesión activa" className="mb-6 rounded-xl border border-[#6b5235] bg-[#241d15] p-4 md:p-5">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#a99169]">Tu clase actual</p>
@@ -184,7 +185,8 @@ export default function EscuelaCombatePage() {
                 </div>
               </div>
             </div>
-        </section>
+          </section>
+        )}
 
         {error && <div role="alert" className="mb-5 rounded-lg border border-red-800 bg-red-950/40 p-4 text-sm text-red-200">{error}</div>}
 
