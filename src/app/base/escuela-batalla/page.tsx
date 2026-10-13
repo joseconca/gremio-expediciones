@@ -138,7 +138,8 @@ export default function EscuelaCombatePage() {
         return;
       }
       await recargarHabilidades();
-      if (tipo === "aprender") await cargarJugador();
+      // Equipar o retirar una pasiva cambia las estadísticas calculadas del personaje.
+      await cargarJugador();
     } catch {
       setError("Error de conexión al actualizar las habilidades.");
     } finally {
