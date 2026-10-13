@@ -47,6 +47,7 @@ import {
   calcularAtaqueModificado,
   calcularPrecisionModificada,
   calcularEvasionModificada,
+  retirarEfectosHabilidad,
 } from "../../../../lib/expediciones/estados-combate";
 
 type AccionCombate = "atacar" | "usar_habilidad" | "usar_objeto";
@@ -707,6 +708,27 @@ export async function POST(request: Request) {
 
     let accionAnimada: AccionAnimadaCombate;
     let consumible: { id: string; nombre: string; curacion: number; inventarioObjetoId: string } | null = null;
+
+    // Si se vuelve a usar la misma habilidad, retira sus efectos anteriores antes
+    // de resolverla. Así se renueva la duración sin acumular bonificaciones ni
+    // dejar la defensa alterada al expirar el estado.
+    if (accion === "usar_habilidad" && habilidad) {
+      if (!esPvp || actor === "atacante") {
+        const propios = retirarEfectosHabilidad(efectos, habilidad.id, jugadorDefensa);
+        efectos = propios.efectos;
+        jugadorDefensa = propios.defensa;
+        const objetivo = retirarEfectosHabilidad(efectosDefensor, habilidad.id, enemigoDefensa);
+        efectosDefensor = objetivo.efectos;
+        enemigoDefensa = objetivo.defensa;
+      } else {
+        const propios = retirarEfectosHabilidad(efectosDefensor, habilidad.id, enemigoDefensa);
+        efectosDefensor = propios.efectos;
+        enemigoDefensa = propios.defensa;
+        const objetivo = retirarEfectosHabilidad(efectos, habilidad.id, jugadorDefensa);
+        efectos = objetivo.efectos;
+        jugadorDefensa = objetivo.defensa;
+      }
+    }
 
     if (accion === "usar_objeto") {
       if (esPvp) {
