@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
+import { COMIDAS_TABERNA, obtenerComidaTaberna } from "@/lib/comidasTaberna";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 
@@ -18,10 +19,10 @@ export default function TabernaPage() {
     nombreGremio,
     personaje,
     reclutarPersonaje,
-    calcularCosteCura,
-    curarPersonaje,
+    prepararComida,
     oro,
     edificios,
+    expedicionActiva,
   } = useGameStore();
 
   const [nombre, setNombre] = useState("");
@@ -61,16 +62,17 @@ export default function TabernaPage() {
     setMostrarReclutamiento(true);
   };
 
-  const handleCurar = async () => {
-    const exito = await curarPersonaje();
-    if (exito) {
-      setMensaje("¡Ahí tienes! Un buen guiso y como nuevo.");
+  const handlePrepararComida = async (comidaId: string) => {
+    const resultado = await prepararComida(comidaId);
+    if (resultado.exito) {
+      const comida = obtenerComidaTaberna(comidaId);
+      setMensaje(comida ? `¡Marchando ${comida.nombre}! Te dará fuerzas para tu próxima expedición de combate.` : "Comida preparada para la próxima expedición.");
     } else {
-      setMensaje("Sin monedas no hay comida, colega.");
+      setMensaje(resultado.error || "No se pudo preparar la comida.");
     }
   };
 
-  const infoCura = calcularCosteCura();
+  const comidaPreparadaActual = obtenerComidaTaberna(personaje?.comidaPreparada);
   const descripcionEdificio = edificios.taberna.descripcion;
 
   // Lógica del diálogo del tabernero
@@ -78,13 +80,13 @@ export default function TabernaPage() {
     if (mensaje) return mensaje;
     if (!personaje)
       return "¿Buscas trabajo y gloria? Rellena este contrato y firma abajo.";
-    if (personaje.hpActual >= personaje.hpMaximo)
-      return "Estás lechuga como una fresca. ¿Te pongo una cerveza de todos modos?";
-    if (oro === 0)
-      return "Tienes mala cara, pero sin monedas no puedo servirte nada.";
-    if (personaje.estado === "de_viaje")
-      return `Con ${personaje.nombre} de viaje, esto se siente muy vacío.`;
-    return "Siéntate, descansa esos huesos. Te prepararé algo por unas monedas.";
+    if (expedicionActiva || personaje.estado === "de_viaje" || personaje.estado === "combatiendo")
+      return `Con ${personaje.nombre} de expedición, mejor dejar preparada la próxima comida cuando regrese.`;
+    if (comidaPreparadaActual)
+      return `Buena elección: ${comidaPreparadaActual.nombre}. La he reservado para tu próxima expedición de combate.`;
+    if (oro < Math.min(...COMIDAS_TABERNA.map((comida) => comida.coste)))
+      return "Las recetas están listas, pero te faltan monedas para pagar hasta el plato más sencillo.";
+    return "Una buena comida puede marcar la diferencia en una expedición. Elige qué quieres llevarte.";
   };
 
   return (
@@ -216,68 +218,53 @@ export default function TabernaPage() {
                         {nombreClase(personaje.clase, personaje.sexo)}
                       </p>
 
-                      <div className="mb-2 flex justify-between font-bold text-sm">
-                        <span className="text-stone-300">Salud</span>
-                        <span
-                          className={
-                            personaje.hpActual <= 20
-                              ? "text-red-400"
-                              : "text-emerald-400"
-                          }
-                        >
-                          {Math.floor(personaje.hpActual)} /{" "}
-                          {personaje.hpMaximo}
-                        </span>
-                      </div>
-                      <div className="mb-6 h-4 rounded-full bg-stone-950 border border-stone-700 overflow-hidden shadow-inner">
-                        <div
-                          className={`h-full transition-all duration-700 ${
-                            personaje.hpActual <= 20
-                              ? "bg-red-600"
-                              : "bg-emerald-500"
-                          }`}
-                          style={{
-                            width: `${Math.max(
-                              0,
-                              Math.min(
-                                100,
-                                (personaje.hpActual / personaje.hpMaximo) * 100
-                              )
-                            )}%`,
-                          }}
-                        />
-                      </div>
-
-                      {/* Botón de Acción / Plato de Comida */}
-                      {personaje.hpActual >= personaje.hpMaximo ? (
-                        <div className="w-full rounded-lg bg-emerald-900/30 border border-emerald-700/50 py-3 text-center font-bold text-emerald-400">
-                          Totalmente recuperado
-                        </div>
-                      ) : oro === 0 ? (
-                        <div className="w-full rounded-lg bg-red-950/50 border border-red-800 py-3 text-center font-bold text-red-400">
-                          Bolsillos vacíos. No hay oro.
-                        </div>
-                      ) : (
-                        <button
-                          onClick={handleCurar}
-                          disabled={personaje.estado === "de_viaje"}
-                          className={`group relative w-full flex items-center justify-between rounded-lg border-2 px-4 py-4 font-bold text-white transition-all overflow-hidden ${
-                            personaje.estado === "de_viaje"
-                              ? "border-stone-700 bg-stone-800/80 opacity-60 cursor-not-allowed"
-                              : "border-amber-600 bg-amber-900 hover:bg-amber-800 hover:border-amber-400 hover:shadow-[0_0_20px_rgba(217,119,6,0.4)]"
-                          }`}
-                        >
-                          <span className="relative z-10 flex items-center gap-2">
-                            <span className="text-xl">🍲</span>
-                            {infoCura.aTope
-                              ? "Comer hasta saciarse"
-                              : `Ración humilde (+${infoCura.hpCurado} HP)`}
-                          </span>
-                          <span className="relative z-10 text-amber-300 bg-black/40 px-3 py-1 rounded-md">
-                            {infoCura.coste} 🪙
-                          </span>
-                        </button>
-                      )}
+                      <section className="mt-2 rounded-xl border border-amber-900/70 bg-stone-950/70 p-4 shadow-inner">
+                        <h3 className="mb-1 text-lg font-black text-amber-300">Comida para la expedición</h3>
+                        <p className="mb-4 text-xs leading-relaxed text-stone-400">
+                          Solo puedes preparar un plato cada vez. Su bonificación se consume al iniciar tu próxima expedición de combate; los viajes comerciales no gastan la comida.
+                        </p>
+                        {comidaPreparadaActual ? (
+                          <div className="rounded-lg border-2 border-emerald-700/70 bg-emerald-950/40 p-4">
+                            <div className="flex items-start gap-3">
+                              <span className="text-3xl" aria-hidden="true">{comidaPreparadaActual.icono}</span>
+                              <div className="min-w-0">
+                                <p className="font-black text-emerald-300">{comidaPreparadaActual.nombre}</p>
+                                <p className="mt-1 text-sm text-stone-300">{comidaPreparadaActual.descripcion}</p>
+                                <p className="mt-2 text-[11px] font-bold uppercase tracking-wider text-emerald-400">✓ Preparada</p>
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                            {COMIDAS_TABERNA.map((comida) => {
+                              const deExpedicion = Boolean(expedicionActiva) || personaje.estado === "de_viaje" || personaje.estado === "combatiendo";
+                              const sinOro = oro < comida.coste;
+                              const deshabilitada = deExpedicion || sinOro;
+                              return (
+                                <button
+                                  key={comida.id}
+                                  type="button"
+                                  onClick={() => void handlePrepararComida(comida.id)}
+                                  disabled={deshabilitada}
+                                  className={`flex min-h-36 flex-col justify-between rounded-xl border-2 p-3 text-left transition-all ${deshabilitada ? "cursor-not-allowed border-stone-700 bg-stone-900/50 opacity-60" : "border-amber-800/70 bg-gradient-to-br from-stone-800 to-amber-950/50 hover:border-amber-400 hover:shadow-[0_0_15px_rgba(217,119,6,0.15)]"}`}
+                                >
+                                  <span className="flex items-start gap-3">
+                                    <span className="text-3xl" aria-hidden="true">{comida.icono}</span>
+                                    <span>
+                                      <span className="block font-black text-amber-100">{comida.nombre}</span>
+                                      <span className="mt-1 block text-xs leading-relaxed text-stone-300">{comida.descripcion}</span>
+                                    </span>
+                                  </span>
+                                  <span className="mt-4 flex items-center justify-between gap-2 border-t border-amber-900/60 pt-3">
+                                    <span className="text-sm font-bold text-amber-300">{comida.coste} 🪙</span>
+                                    <span className="text-xs font-black uppercase tracking-wide text-stone-100">{deExpedicion ? "De expedición" : sinOro ? "Falta oro" : "Preparar"}</span>
+                                  </span>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </section>
                     </div>
                   </div>
                 </div>
