@@ -445,7 +445,7 @@ export default function HerreriaPage() {
   }
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#111315] p-4 font-sans text-[#e6e0d5] md:p-8">
+    <main className="relative min-h-screen overflow-hidden bg-[#111315] p-2 font-sans text-[#e6e0d5] sm:p-4 md:p-8">
       {/* ====================================================== */}
       {/* AMBIENTE DE HERRERÍA                                  */}
       {/* ====================================================== */}
@@ -472,8 +472,11 @@ export default function HerreriaPage() {
           nivel={nivelArmeria}
         />
 
-        <div className="-mt-6 mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <p className="text-[#9a9a96]">{descripcionArmeria}</p>
+        <div className="-mt-4 mb-4 flex flex-col gap-2 sm:-mt-6 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
+          <details className="text-sm text-[#9a9a96]">
+            <summary className="w-fit cursor-pointer list-none rounded border border-[#353a3d] px-3 py-1.5 text-xs font-bold text-[#c7c7c2] hover:border-[#777]">ⓘ Sobre la armería</summary>
+            <p className="mt-2 max-w-xl leading-5">{descripcionArmeria}</p>
+          </details>
           {nivelHerreria > 0 && (
             <Link
               href="/base/herreria"
@@ -489,23 +492,23 @@ export default function HerreriaPage() {
         {/* ====================================================== */}
 
         <section className="mb-8 overflow-hidden rounded-lg border-2 border-[#353a3d] bg-[#1a1d1f] shadow-[0_14px_32px_rgba(0,0,0,0.5)]">
-          <div className="border-b-2 border-[#353a3d] bg-[#141718] p-6">
+          <div className="border-b-2 border-[#353a3d] bg-[#141718] p-3 sm:p-6">
             <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
               <div>
-                <h2 className="text-2xl font-black uppercase tracking-[0.08em] text-[#ddd8cf]">
+                <h2 className="text-lg font-black uppercase tracking-[0.08em] text-[#ddd8cf] sm:text-2xl">
                   OBJETOS A LA VENTA
                 </h2>
               </div>
             </div>
           </div>
 
-          <div className="p-4 md:p-5">
+          <div className="p-2 sm:p-4 md:p-5">
             {cargando ? (
               <div className="rounded-md border border-[#3a3f42] bg-[#141617] p-12 text-center text-[#676d70]">
                 Encendiendo la forja...
               </div>
             ) : (
-              <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3 md:gap-5">
                 {(datos?.enVenta ?? []).map((objeto) => {
                   const comprando = procesando === `comprar:${objeto.id}`;
                   const inventarioLleno =
@@ -518,14 +521,14 @@ export default function HerreriaPage() {
                   return (
                     <article
                       key={objeto.id}
-                      className="group flex min-h-[335px] flex-col overflow-hidden rounded-md border border-[#555b5e] bg-[#222628] shadow-[0_10px_22px_rgba(0,0,0,0.4)] transition-colors hover:border-[#72797d]"
+                      className="group flex flex-col overflow-hidden rounded-md border border-[#555b5e] bg-[#222628] shadow-[0_8px_18px_rgba(0,0,0,0.35)] transition-colors hover:border-[#72797d]"
                     >
                       {/* Cabecera pieza */}
-                      <div className="relative border-b border-[#474d50] bg-[linear-gradient(135deg,#303638,#202426)] p-5">
+                      <div className="relative border-b border-[#474d50] bg-[linear-gradient(135deg,#303638,#202426)] p-3 sm:p-4">
                         <div className="pointer-events-none absolute inset-2 border border-[#677075]/20" />
 
-                        <div className="relative flex items-start gap-4">
-                          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-md border-2 border-[#60676a] bg-[#171a1b] text-3xl shadow-[inset_0_0_18px_rgba(0,0,0,0.5)]">
+                        <div className="relative flex items-start gap-3">
+                          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border-2 border-[#60676a] bg-[#171a1b] text-2xl shadow-[inset_0_0_18px_rgba(0,0,0,0.5)] sm:h-16 sm:w-16 sm:text-3xl">
                             {obtenerSpriteObjeto(objeto) ? (
                               <Image
                                 src={obtenerSpriteObjeto(objeto)!}
@@ -554,7 +557,7 @@ export default function HerreriaPage() {
                               </span>
                             </div>
 
-                            <h3 className="text-2xl font-black leading-tight text-[#ece9e3]">
+                            <h3 className="text-lg font-black leading-tight text-[#ece9e3] sm:text-2xl">
                               {objeto.nombre}
                             </h3>
 
@@ -566,26 +569,27 @@ export default function HerreriaPage() {
                           </div>
                         </div>
 
-                        <p className="relative mt-4 text-sm leading-6 text-[#aaa8a3]">
-                          {objeto.descripcion}
-                        </p>
+                        <details className="relative mt-2 text-xs text-[#aaa8a3]">
+                          <summary className="w-fit cursor-pointer list-none rounded border border-[#474d50] px-2 py-1 font-bold text-[#c8c4bb] hover:border-[#72797d]">ⓘ Ver descripción</summary>
+                          <p className="mt-1 leading-5">{objeto.descripcion}</p>
+                        </details>
                       </div>
 
                       {/* Estadísticas */}
-                      <div className="flex-1 p-2">
-                        <div className="grid grid-cols-2 gap-1">
+                      <div className="flex-1 p-2 sm:p-3">
+                        <div className="flex flex-wrap gap-1.5">
                           {obtenerEstadisticasNoCero(objeto, 0).map(
                             (estadistica) => (
                               <div
                                 key={estadistica.clave}
-                                className="rounded border border-[#363b3e] bg-[#181b1c] px-2 py-2"
+                                className="flex items-center gap-1 rounded border border-[#363b3e] bg-[#181b1c] px-2 py-1 sm:py-1.5"
                               >
                                 <p className="text-[9px] font-black uppercase tracking-wider text-[#62686b]">
                                   {estadistica.nombre}
                                 </p>
 
                                 <p
-                                  className={`mt-1 text-sm font-black ${
+                                  className={`text-xs font-black sm:text-sm ${
                                     estadistica.valor < 0
                                       ? "text-red-400"
                                       : "text-emerald-400"
@@ -603,7 +607,7 @@ export default function HerreriaPage() {
                       </div>
 
                       {/* Compra */}
-                      <div className="border-t border-[#464c4e] bg-[#191c1d] p-4">
+                      <div className="border-t border-[#464c4e] bg-[#191c1d] p-2 sm:p-3">
                         <button
                           type="button"
                           onClick={() => void comprarObjeto(objeto.id)}
@@ -614,7 +618,7 @@ export default function HerreriaPage() {
                             oro < objeto.precio ||
                             inventarioLleno
                           }
-                          className={`flex h-12 w-full items-center justify-between rounded border-2 px-4 font-black transition-all ${
+                          className={`flex h-10 w-full items-center justify-between gap-2 rounded border-2 px-3 text-xs font-black transition-all sm:h-12 sm:px-4 sm:text-sm ${
                             objeto.puedeComprar &&
                             oro >= objeto.precio &&
                             !procesando &&

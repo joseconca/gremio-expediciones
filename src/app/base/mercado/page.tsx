@@ -162,30 +162,31 @@ export default function MercadoPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-8 font-sans">
+    <main className="min-h-screen bg-slate-950 p-2 font-sans text-slate-100 sm:p-4 md:p-8">
       <div className="max-w-5xl mx-auto">
         <CabeceraEdificio icono="⚖️" nombre="Mercado" nivel={nivelMercado} />
 
-        <p className="mb-6 -mt-6 text-slate-400 text-center">
-          {edificios.mercado.descripcion}
-        </p>
+        <details className="group mb-3 -mt-3 text-sm text-slate-400 sm:mb-4">
+          <summary className="w-fit cursor-pointer list-none rounded border border-slate-800 px-3 py-1.5 text-xs font-semibold text-slate-300 hover:border-amber-800">ⓘ Sobre el mercado</summary>
+          <p className="mt-2 leading-5">{edificios.mercado.descripcion}</p>
+        </details>
 
         {/* --- EL ESCENARIO DEL MERCADO --- */}
-        <div className="relative w-full rounded-2xl overflow-hidden border-4 border-amber-950 bg-stone-900 shadow-[0_0_50px_rgba(0,0,0,0.6)]">
+        <div className="relative w-full overflow-hidden rounded-xl border-2 border-amber-950 bg-stone-900 shadow-[0_0_32px_rgba(0,0,0,0.5)] sm:rounded-2xl sm:border-4">
           {/* ILUMINACIÓN DE AMBIENTE (Luz solar / Lámparas) */}
           <div className="absolute top-0 left-1/3 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute top-0 right-1/3 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl pointer-events-none" />
 
           {/* TOLDO DEL PUESTO (Estructura superior de madera y tela) */}
-          <div className="relative z-10 w-full bg-gradient-to-r from-amber-950 via-amber-900 to-amber-950 border-b-8 border-stone-950 shadow-lg px-6 py-4 flex justify-between items-center">
+          <div className="relative z-10 flex w-full items-center justify-between border-b-4 border-stone-950 bg-gradient-to-r from-amber-950 via-amber-900 to-amber-950 px-3 py-2 shadow-lg sm:border-b-8 sm:px-6 sm:py-4">
             {/* Adorno de toldo a rayas simulado */}
             <div className="absolute inset-x-0 bottom-0 h-2 bg-amber-600/30" />
             <span className="text-2xl hidden sm:inline">📦</span>
             <div className="text-center mx-auto sm:mx-0">
-              <h2 className="text-xl font-black uppercase tracking-widest text-amber-200 font-serif">
+              <h2 className="text-sm font-black uppercase tracking-wide text-amber-200 sm:text-xl sm:tracking-widest font-serif">
                 Puesto de Comercio Real
               </h2>
-              <p className="text-xs text-amber-400 font-medium">
+              <p className="hidden text-xs font-medium text-amber-400 sm:block">
                 Regido por la ley del libre trueque
               </p>
             </div>
@@ -193,13 +194,13 @@ export default function MercadoPage() {
           </div>
 
           {/* FONDO DEL MERCADO (Sacos, Cajas y Barriles) */}
-          <div className="absolute inset-0 z-0 flex justify-between items-end px-6 opacity-30 pointer-events-none pb-32">
+          <div className="pointer-events-none absolute inset-0 z-0 hidden items-end justify-between px-6 pb-32 opacity-30 sm:flex">
             <div className="text-6xl space-x-2">🪵 🧺 📦</div>
             <div className="text-6xl space-x-2">🪨 ⚙️ 🏺</div>
           </div>
 
           {/* EL MERCADER Y SU BOCA DE DIÁLOGO */}
-          <div className="relative z-10 flex flex-col items-center mt-6 mb-2">
+          <div className="relative z-10 hidden flex-col items-center sm:flex sm:mt-6 sm:mb-2">
             {/* Bocadillo de diálogo */}
             <div className="bg-amber-100 text-amber-950 px-6 py-3 rounded-2xl font-bold shadow-2xl max-w-md text-center border-4 border-amber-900 relative mb-3 animate-fade-in text-sm sm:text-base">
               {dialogoMercader()}
@@ -215,10 +216,10 @@ export default function MercadoPage() {
           </div>
 
           {/* MOSTRADOR DEL MERCADO (Panel de control + Ofertas) */}
-          <div className="relative z-20 w-full bg-stone-950/90 border-t-8 border-amber-900 shadow-[0_-20px_50px_rgba(0,0,0,0.9)] p-4 sm:p-8">
+          <div className="relative z-20 w-full border-t-4 border-amber-900 bg-stone-950/95 p-2 sm:border-t-8 sm:p-5 md:p-8">
             {/* TABLERO DE ORO Y DESCUENTOS (Libro de Cuentas) */}
             {nivelMercado > 1 && (
-              <div className="mb-8 max-w-2xl mx-auto bg-[#e8dcc4] text-stone-900 rounded-lg border-4 border-[#b5a37f] p-4 shadow-[5px_5px_0_rgba(0,0,0,0.4)] flex flex-col sm:flex-row justify-between items-center gap-4">
+              <div className="mx-auto mb-3 flex max-w-2xl flex-col items-center justify-between gap-2 rounded-lg border-2 border-[#b5a37f] bg-[#e8dcc4] p-2 text-stone-900 shadow-[3px_3px_0_rgba(0,0,0,0.35)] sm:mb-6 sm:flex-row sm:gap-4 sm:border-4 sm:p-4">
                 <div className="flex items-center gap-3">
                   <span className="text-3xl">📜</span>
 
@@ -237,13 +238,13 @@ export default function MercadoPage() {
 
             {/* MENSAJE DE ERROR */}
             {error && (
-              <div className="max-w-2xl mx-auto mb-6 p-4 rounded-lg bg-red-950/80 border-2 border-red-800 text-red-200 text-center font-bold shadow-lg">
+              <div className="mx-auto mb-3 max-w-2xl rounded-lg border border-red-800 bg-red-950/80 p-2 text-center text-sm font-bold text-red-200 sm:mb-6 sm:border-2 sm:p-4">
                 ⚠️ {error}
               </div>
             )}
 
             {/* PARRILLA DE MERCANCÍAS (OFERTAS) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3 md:grid-cols-3 md:gap-5">
               {ofertas.map((oferta) => {
                 const cantidad = cantidades[oferta.id];
                 const sinOro = oferta.cantidadMaxima < 1;
@@ -253,25 +254,25 @@ export default function MercadoPage() {
                 return (
                   <div
                     key={oferta.id}
-                    className="bg-stone-900/90 border-4 border-stone-800 hover:border-amber-700/60 transition-colors rounded-xl p-5 shadow-2xl flex flex-col justify-between backdrop-blur-sm relative overflow-hidden group"
+                    className="relative flex flex-col justify-between overflow-hidden rounded-lg border-2 border-stone-800 bg-stone-900/90 p-2 shadow-lg backdrop-blur-sm transition-colors hover:border-amber-700/60 group sm:rounded-xl sm:border-4 sm:p-4 md:p-5"
                   >
                     {/* Detalle visual de esquina de madera */}
                     <div className="absolute -top-2 -right-2 w-8 h-8 bg-amber-950 border-2 border-amber-800 rotate-45 pointer-events-none" />
 
                     <div>
                       {/* CABECERA RECURSO */}
-                      <div className="text-center mb-4 pb-4 border-b-2 border-stone-800">
-                        <div className="text-5xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                      <div className="mb-2 flex items-center justify-center gap-2 border-b border-stone-800 pb-2 sm:mb-4 sm:pb-4 sm:block sm:border-b-2">
+                        <div className="text-3xl transition-transform duration-300 group-hover:scale-110 sm:mb-2 sm:text-5xl">
                           {oferta.icono}
                         </div>
 
-                        <h3 className="text-2xl font-black text-amber-400 font-serif">
+                        <h3 className="text-lg font-black text-amber-400 sm:text-2xl font-serif">
                           {oferta.nombre}
                         </h3>
                       </div>
 
                       {/* PRECIO POR UNIDAD */}
-                      <div className="bg-stone-950/80 border border-stone-800 rounded-lg p-3 mb-5 flex justify-between items-center">
+                      <div className="mb-2 flex items-center justify-between rounded-md border border-stone-800 bg-stone-950/80 px-2 py-1.5 sm:mb-5 sm:rounded-lg sm:p-3">
                         <span className="text-xs font-bold uppercase text-stone-400">
                           Precio / ud.
                         </span>
@@ -282,13 +283,13 @@ export default function MercadoPage() {
                       </div>
 
                       {/* CONTROLES DE CANTIDAD (SLIDER) */}
-                      <div className="mb-5">
+                      <div className="mb-2 sm:mb-5">
                         <div className="flex justify-between items-center mb-2">
                           <span className="text-xs font-bold uppercase text-stone-400">
                             Cantidad:
                           </span>
 
-                          <span className="text-xl font-black text-white bg-amber-950 px-3 py-0.5 rounded border border-amber-800">
+                          <span className="rounded border border-amber-800 bg-amber-950 px-2 py-0.5 text-base font-black text-white sm:px-3 sm:text-xl">
                             {cantidad}
                           </span>
                         </div>
@@ -308,7 +309,7 @@ export default function MercadoPage() {
                           className="w-full accent-amber-500 bg-stone-800 h-2 rounded-lg cursor-pointer disabled:cursor-not-allowed"
                         />
 
-                        <div className="flex justify-between text-[11px] font-bold text-stone-500 mt-1.5">
+                        <div className="mt-1 flex justify-between text-[10px] font-bold text-stone-500 sm:mt-1.5 sm:text-[11px]">
                           <span>1</span>
                           <span>Máx: {oferta.cantidadMaxima}</span>
                         </div>
@@ -317,12 +318,12 @@ export default function MercadoPage() {
 
                     <div>
                       {/* COSTE TOTAL */}
-                      <div className="flex justify-between items-center mb-4 pt-3 border-t-2 border-stone-800/80">
+                      <div className="mb-2 flex items-center justify-between border-t border-stone-800/80 pt-2 sm:mb-4 sm:border-t-2 sm:pt-3">
                         <span className="text-xs font-bold uppercase text-stone-400">
                           Coste total
                         </span>
 
-                        <span className="text-2xl font-black text-amber-400">
+                        <span className="text-xl font-black text-amber-400 sm:text-2xl">
                           {costeTotal} 🪙
                         </span>
                       </div>
@@ -331,7 +332,7 @@ export default function MercadoPage() {
                       <button
                         onClick={() => comprar(oferta.id)}
                         disabled={sinOro || cantidad <= 0 || comprando !== null}
-                        className={`w-full font-black py-3 px-4 rounded-lg uppercase tracking-wider text-sm transition-all transform flex items-center justify-center gap-2 ${
+                        className={`flex w-full items-center justify-center gap-1 rounded-md px-2 py-2 text-xs font-black uppercase tracking-wide transition-all transform sm:gap-2 sm:rounded-lg sm:px-4 sm:py-3 sm:text-sm sm:tracking-wider ${
                           !sinOro && cantidad > 0 && comprando === null
                             ? "bg-amber-700 hover:bg-amber-600 text-amber-50 active:scale-95 shadow-lg border-2 border-amber-500 shadow-amber-950/50"
                             : "bg-stone-800 text-stone-600 border border-stone-700 cursor-not-allowed"

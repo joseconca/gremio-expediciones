@@ -356,7 +356,7 @@ export default function HerreriaPage() {
   }
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#111315] p-4 font-sans text-[#e6e0d5] md:p-8">
+    <main className="relative min-h-screen overflow-hidden bg-[#111315] p-2 font-sans text-[#e6e0d5] sm:p-4 md:p-8">
       {/* ====================================================== */}
       {/* AMBIENTE DE HERRERÍA                                  */}
       {/* ====================================================== */}
@@ -383,8 +383,11 @@ export default function HerreriaPage() {
           nivel={nivelHerreria}
         />
 
-        <div className="-mt-6 mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <p className="text-[#9a9a96]">{descripcionHerreria}</p>
+        <div className="-mt-4 mb-4 flex flex-col gap-2 sm:-mt-6 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
+          <details className="text-sm text-[#9a9a96]">
+            <summary className="w-fit cursor-pointer list-none rounded border border-[#353a3d] px-3 py-1.5 text-xs font-bold text-[#c7c7c2] hover:border-[#777]">ⓘ Sobre la herrería</summary>
+            <p className="mt-2 max-w-xl leading-5">{descripcionHerreria}</p>
+          </details>
           <Link
             href="/base/armeria"
             className="shrink-0 rounded-lg bg-slate-800 px-4 py-2 font-bold text-slate-300 transition-colors hover:bg-slate-700"
@@ -410,10 +413,10 @@ export default function HerreriaPage() {
         {/* ====================================================== */}
         {nivelHerreria > 0 && (
           <section className="mb-8 overflow-hidden rounded-lg border-2 border-[#353a3d] bg-[#1a1d1f] shadow-[0_14px_32px_rgba(0,0,0,0.5)]">
-            <div className="border-b-2 border-[#353a3d] bg-[#141718] p-6">
+            <div className="border-b-2 border-[#353a3d] bg-[#141718] p-3 sm:p-6">
               <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
-                  <h2 className="text-2xl font-black uppercase tracking-[0.08em] text-[#ddd8cf]">
+                  <h2 className="text-lg font-black uppercase tracking-[0.08em] text-[#ddd8cf] sm:text-2xl">
                     Forja
                   </h2>
 
@@ -424,7 +427,7 @@ export default function HerreriaPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-5 p-4 md:grid-cols-3 md:p-5">
+            <div className="grid grid-cols-1 gap-3 p-2 sm:gap-5 sm:p-4 md:grid-cols-3 md:p-5">
               {[
                 {
                   tipo: "arma" as const,
@@ -512,17 +515,17 @@ export default function HerreriaPage() {
                         return (
                           <article
                             key={objetoInventario.id}
-                            className={`p-4 transition-colors ${
+                            className={`p-2 transition-colors sm:p-4 ${
                               equipado
                                 ? "bg-[#25221c] hover:bg-[#2c281f]"
                                 : "bg-[#181b1c] hover:bg-[#1d2021]"
                             }`}
                           >
-                            <div className="flex flex-col gap-4">
+                            <div className="flex flex-col gap-2 sm:gap-4">
                               {/* INFORMACIÓN */}
                               <div className="min-w-0">
                                 <div className="flex flex-wrap items-center gap-2">
-                                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-md border-2 border-[#60676a] bg-[#171a1b] text-3xl shadow-[inset_0_0_18px_rgba(0,0,0,0.5)]">
+                                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border-2 border-[#60676a] bg-[#171a1b] text-2xl shadow-[inset_0_0_18px_rgba(0,0,0,0.5)] sm:h-16 sm:w-16 sm:text-3xl">
                                     {obtenerSpriteObjeto(objeto) ? (
                                       <Image
                                         src={obtenerSpriteObjeto(objeto)!}
@@ -559,12 +562,13 @@ export default function HerreriaPage() {
                                   )}
                                 </div>
 
-                                <p className="mt-1 text-xs text-[#666d70]">
-                                  {objeto.descripcion}
-                                </p>
+                                <details className="mt-2 text-xs text-[#8a9295]">
+                                  <summary className="w-fit cursor-pointer list-none rounded border border-[#343a3d] px-2 py-1 font-bold text-[#c8c4bb] hover:border-[#72797d]">ⓘ Ver descripción</summary>
+                                  <p className="mt-1 leading-5">{objeto.descripcion}</p>
+                                </details>
 
                                 {/* ESTADÍSTICAS */}
-                                <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
+                                <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 sm:mt-3 sm:gap-x-4 sm:gap-y-2">
                                   {obtenerEstadisticasNoCero(
                                     objeto,
                                     objetoInventario.nivelMejora,
@@ -593,33 +597,21 @@ export default function HerreriaPage() {
 
                                 {/* PRÓXIMA MEJORA */}
                                 {puedeMejorar && (
-                                  <div className="mt-3 rounded border border-[#403b32] bg-[#1d1b18] p-3">
-                                    <p className="text-[9px] font-black uppercase tracking-wider text-[#756d60]">
-                                      Siguiente mejora
-                                    </p>
-
+                                  <details className="mt-2 rounded border border-[#403b32] bg-[#1d1b18] px-2 py-1.5 sm:mt-3 sm:p-3">
+                                    <summary className="cursor-pointer text-[10px] font-black uppercase tracking-wider text-[#b7a68c]">Ver efecto de la siguiente mejora</summary>
                                     {diferenciaMejora.length === 0 ? (
-                                      <p className="mt-2 text-xs text-[#77736a]">
-                                        Esta pieza no obtiene nuevas
-                                        estadísticas con la siguiente mejora.
-                                      </p>
+                                      <p className="mt-2 text-xs text-[#77736a]">Esta pieza no obtiene nuevas estadísticas con la siguiente mejora.</p>
                                     ) : (
-                                      <div className="mt-2 flex flex-wrap gap-2">
+                                      <div className="mt-2 flex flex-wrap gap-1.5 sm:gap-2">
                                         {diferenciaMejora.map((diferencia) => (
-                                          <span
-                                            key={diferencia.clave}
-                                            className="rounded border border-[#564a36] bg-[#282117] px-2 py-1 text-[10px] font-black text-amber-300"
-                                          >
+                                          <span key={diferencia.clave} className="rounded border border-[#564a36] bg-[#282117] px-2 py-1 text-[10px] font-black text-amber-300">
                                             {diferencia.nombre}{" "}
-                                            {formatearValorEstadistica(
-                                              diferencia.clave,
-                                              diferencia.valor
-                                            )}
+                                            {formatearValorEstadistica(diferencia.clave, diferencia.valor)}
                                           </span>
                                         ))}
                                       </div>
                                     )}
-                                  </div>
+                                  </details>
                                 )}
                               </div>
 
@@ -644,7 +636,7 @@ export default function HerreriaPage() {
                                       oro < costeMejora ||
                                       !puedePagarRecursos
                                     }
-                                    className={`flex min-h-14 w-full items-center justify-between gap-2 rounded border-2 px-3 py-2 text-xs font-black transition-all ${
+                                    className={`flex min-h-11 w-full items-center justify-between gap-2 rounded border-2 px-2 py-2 text-[11px] font-black transition-all sm:min-h-14 sm:px-3 sm:text-xs ${
                                       oro >= costeMejora && puedePagarRecursos
                                         ? "border-[#8a703f] bg-[#493b26] text-[#ead9b4] hover:border-[#b29761] hover:bg-[#59482b]"
                                         : "cursor-not-allowed border-[#383a39] bg-[#202120] text-[#656660]"

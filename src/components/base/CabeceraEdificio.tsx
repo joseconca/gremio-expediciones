@@ -14,17 +14,17 @@ export default function CabeceraEdificio({
   nivel,
 }: CabeceraEdificioProps) {
   return (
-    <header className="mb-8 flex items-center justify-between gap-4">
+    <header className="mb-4 flex items-center justify-between gap-2 sm:mb-6 sm:gap-4 md:mb-8">
       <div className="flex min-w-0 items-center gap-3">
         <span
-          className="text-3xl"
+          className="text-2xl sm:text-3xl"
           aria-hidden="true"
         >
           {icono}
         </span>
 
         <div className="min-w-0">
-          <h1 className="truncate text-3xl font-bold text-white">
+          <h1 className="truncate text-xl font-bold text-white sm:text-3xl">
             {nombre}
           </h1>
 
@@ -36,7 +36,7 @@ export default function CabeceraEdificio({
 
       <Link
         href="/base"
-        className="shrink-0 rounded-lg bg-slate-800 px-4 py-2 font-bold text-slate-300 transition-colors hover:bg-slate-700"
+        className="shrink-0 rounded-lg bg-slate-800 px-3 py-2 text-sm font-bold text-slate-300 transition-colors hover:bg-slate-700 sm:px-4"
       >
         ← Volver
       </Link>

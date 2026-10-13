@@ -165,7 +165,10 @@ export default function EscuelaCombatePage() {
     <main className="min-h-screen bg-[#171512] p-3 pb-8 text-[#e8dfc8] sm:p-4 sm:pb-8 md:p-8">
       <div className="mx-auto max-w-6xl">
         <CabeceraEdificio icono="⚔️" nombre="Escuela de Batalla" nivel={nivelEscuela} />
-        <p className="mb-4 mt-1 hidden text-sm text-[#a99d84] sm:mb-6 sm:mt-2 sm:block">{descripcionEdificio}</p>
+        <details className="mb-3 mt-1 text-sm text-[#a99d84] sm:mb-4">
+          <summary className="w-fit cursor-pointer list-none rounded border border-[#51412d] px-3 py-1.5 text-xs font-semibold text-[#c1b49b] hover:border-amber-500/60">ⓘ Sobre la escuela</summary>
+          <p className="mt-2 leading-5">{descripcionEdificio}</p>
+        </details>
         {navegacion}
 
         {vista !== "profesiones" && (
@@ -229,7 +232,7 @@ export default function EscuelaCombatePage() {
                     : puntosInsuficientes ? `Necesitas ${coste} punto(s) de habilidad`
                     : "No disponible para esta profesión";
                   return (
-                    <article key={habilidad.id} className={`flex flex-col rounded-xl border bg-[#211b14] p-3 sm:p-4 ${aprendida ? "border-emerald-800/70" : puede ? "border-[#695233]" : "border-[#403427]"}`}>
+                    <article key={habilidad.id} className={`flex flex-col rounded-xl border bg-[#211b14] p-2.5 sm:p-4 ${aprendida ? "border-emerald-800/70" : puede ? "border-[#695233]" : "border-[#403427]"}`}>
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
                           <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -244,8 +247,11 @@ export default function EscuelaCombatePage() {
                             <span className="hidden sm:inline">{heredada ? `Heredada: ${clasePropietaria}` : "Propia de tu clase"}</span>
                           </span>
                       </div>
-                      <p className="mt-2 flex-1 line-clamp-2 text-xs leading-5 text-[#c2b59e] sm:mt-3 sm:text-sm sm:leading-6 sm:line-clamp-none">{habilidad.descripcion}</p>
-                      <div className="mt-3 flex flex-wrap gap-1.5 text-[10px] text-[#c7b99e] sm:mt-4 sm:gap-2 sm:text-[11px]">
+                      <details className="mt-2 text-xs text-[#c2b59e]">
+                        <summary className="w-fit cursor-pointer list-none rounded border border-[#51412d] px-2 py-1 font-semibold text-[#d0bd9d] hover:border-amber-500/60">Ver descripción</summary>
+                        <p className="mt-2 leading-5 sm:text-sm sm:leading-6">{habilidad.descripcion}</p>
+                      </details>
+                      <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-[#c7b99e] sm:mt-4 sm:gap-2 sm:text-[11px]">
                         <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">Job {requerida}</span>
                         <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">{coste} punto(s)</span>
                         {(habilidad.costeEnergia || habilidad.costeMana) && <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">{etiquetaCoste(habilidad)}</span>}
