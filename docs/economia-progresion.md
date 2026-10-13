@@ -69,7 +69,7 @@ Para estimar su contribución económica he convertido el precio de catálogo de
 | Raro | 22 % | 679,50 | 149,49 |
 | Épico | 32 % | 1.664,09 | 532,51 |
 | Legendario | 42 % | 1.764,00 | 740,88 |
-| Jefe | 70 % | 1.704,57 | 1.193,20 |
+| Jefe | 70 % | 1.705,00 | 1.193,50 |
 
 Son medias teóricas para las tablas genéricas de rareza, no pagos garantizados. Un objeto personalizado puede tener otro valor esperado; si el inventario está lleno, el botín se pierde, y si equipas el objeto, su valor de uso puede ser superior a la reventa. La victoria entrega además el oro propio del enemigo, calculado por amenaza y dificultad, que tampoco se incluye en la tabla base.
 

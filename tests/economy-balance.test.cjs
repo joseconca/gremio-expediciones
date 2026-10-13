@@ -7,7 +7,12 @@ const { MISIONES_POR_DURACION } = require("../src/lib/generadorMisiones.ts");
 const { calcularOroBaseComercio, calcularRecompensaComercio } = require("../src/lib/expediciones/comercio.ts");
 const { CONFIGURACION_DIFICULTAD, calcularOroEnemigo } = require("../src/lib/expediciones/dificultad.ts");
 const { JEFES_ELITE, obtenerEnemigoPorId } = require("../src/lib/enemigos.ts");
-const { PRECIOS_RECURSOS, calcularPrecioRecurso } = require("../src/lib/economia.ts");
+const {
+  PRECIOS_RECURSOS,
+  calcularPrecioRecurso,
+  calcularPrecioVentaObjeto,
+  calcularPrecioRecompraObjeto,
+} = require("../src/lib/economia.ts");
 const { calcularCosteEdificio } = require("../src/lib/configuracionJuego.ts");
 
 test("el catálogo completo contiene precios positivos y progresión coherente entre equipo", () => {
@@ -59,6 +64,16 @@ test("los materiales tienen precios unificados y el metal sigue siendo estratég
   assert.ok(costeComun.metal * PRECIOS_RECURSOS.metal <= comun.precio);
   assert.ok(costeRaro.metal * PRECIOS_RECURSOS.metal < rara.precio);
   assert.ok(costeArmadura.piedra * 100 + costeArmadura.metal * 250 < armadura.precio);
+});
+
+test("venta y recompra calculan porcentajes exactos sin errores de coma flotante", () => {
+  assert.equal(calcularPrecioVentaObjeto(6500, 1), 2275);
+  assert.equal(calcularPrecioVentaObjeto(5200, 1), 1820);
+  assert.equal(calcularPrecioVentaObjeto(2800, 1), 980);
+  assert.equal(calcularPrecioVentaObjeto(6500, 2), 4550);
+  assert.equal(calcularPrecioRecompraObjeto(6500, 1, 2275), 4550);
+  assert.equal(calcularPrecioRecompraObjeto(5200, 1, 1820), 3640);
+  assert.equal(calcularPrecioRecompraObjeto(2800, 1, 980), 1960);
 });
 
 test("el precio de materiales usa el mismo cálculo y el descuento está limitado al Mercado 3", () => {
@@ -123,7 +138,7 @@ test("una misión breve cuenta el oro del enemigo, el pago por derrota y el valo
   const pesoTotal = enemigo.tablaLoot.reduce((total, entrada) => total + entrada.peso, 0);
   const reventaMedia = enemigo.tablaLoot.reduce((total, entrada) => {
     const objeto = obtenerObjetoPorId(entrada.objetoId);
-    return total + Math.max(1, Math.floor(objeto.precio * 0.35)) * entrada.peso;
+    return total + calcularPrecioVentaObjeto(objeto.precio, 1) * entrada.peso;
   }, 0) / pesoTotal;
 
   const oroEsperadoPorHora = (probVictoria, dificultad) => {
@@ -148,10 +163,10 @@ test("la recompensa secundaria de botín de jefe tiene en cuenta probabilidad y 
   const pesoTotal = jefe.tablaLoot.reduce((total, entrada) => total + entrada.peso, 0);
   const reventaMedia = jefe.tablaLoot.reduce((total, entrada) => {
     const objeto = obtenerObjetoPorId(entrada.objetoId);
-    return total + Math.max(1, Math.floor(objeto.precio * 0.35)) * entrada.peso;
+    return total + calcularPrecioVentaObjeto(objeto.precio, 1) * entrada.peso;
   }, 0) / pesoTotal;
-  assert.ok(Math.abs(reventaMedia - 1704.5714285714287) < 0.01);
-  assert.ok(Math.abs(reventaMedia * jefe.probabilidadBotin - 1193.2) < 0.01);
+  assert.equal(reventaMedia, 1705);
+  assert.equal(reventaMedia * jefe.probabilidadBotin, 1193.5);
 });
 
 test("el comercio ajusta el ingreso por hora a ida y vuelta y la probabilidad de éxito", () => {

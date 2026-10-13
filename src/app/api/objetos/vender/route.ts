@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
+import { calcularPrecioVentaObjeto, calcularPrecioRecompraObjeto } from "@/lib/economia";
 import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/lib/sufijosObjetos";
 
 const CAMPOS_EQUIPO = [
@@ -64,10 +65,11 @@ export async function POST(request: Request) {
       const definicionActual = obtenerObjetoPorId(existente.objetoId);
       if (!definicionActual) throw new Error("DEFINICION_NO_EXISTE");
       const cantidad = Math.max(1, existente.cantidad);
-      const precioVenta = Math.max(1, Math.floor(definicionActual.precio * cantidad * 0.35));
-      const precioRecompra = Math.max(
-        precioVenta + 1,
-        Math.ceil(definicionActual.precio * cantidad * 0.7)
+      const precioVenta = calcularPrecioVentaObjeto(definicionActual.precio, cantidad);
+      const precioRecompra = calcularPrecioRecompraObjeto(
+        definicionActual.precio,
+        cantidad,
+        precioVenta
       );
       const sufijoId = existente.sufijoId ?? null;
       const snapshot = {

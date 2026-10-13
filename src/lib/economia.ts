@@ -14,3 +14,22 @@ export function calcularPrecioRecurso(recurso: RecursoMercado, nivelMercado: num
   const multiplicador = 1 - (nivelSeguro - 1) * 0.1;
   return Math.max(1, Math.trunc(PRECIOS_RECURSOS[recurso] * multiplicador));
 }
+
+/** Venta: 35 % del precio de catálogo, calculado con aritmética entera. */
+export function calcularPrecioVentaObjeto(precioUnitario: number, cantidad: number): number {
+  const precio = Number.isFinite(precioUnitario) ? Math.max(0, Math.trunc(precioUnitario)) : 0;
+  const unidades = Number.isFinite(cantidad) ? Math.max(1, Math.trunc(cantidad)) : 1;
+  return Math.max(1, Math.floor((precio * unidades * 35) / 100));
+}
+
+/** Recompra: 70 % del catálogo y al menos una moneda más que la venta. */
+export function calcularPrecioRecompraObjeto(
+  precioUnitario: number,
+  cantidad: number,
+  precioVenta: number
+): number {
+  const precio = Number.isFinite(precioUnitario) ? Math.max(0, Math.trunc(precioUnitario)) : 0;
+  const unidades = Number.isFinite(cantidad) ? Math.max(1, Math.trunc(cantidad)) : 1;
+  const venta = Number.isFinite(precioVenta) ? Math.max(1, Math.trunc(precioVenta)) : 1;
+  return Math.max(venta + 1, Math.ceil((precio * unidades * 70) / 100));
+}

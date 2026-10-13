@@ -299,6 +299,7 @@ function makeTradeApi({ oro = 200000, items, equipo = {}, ultimaVenta = null } =
     "@/lib/prisma": { prisma },
     "@/lib/objetos": { obtenerObjetoPorId },
     "@/lib/sufijosObjetos": suffixModule,
+    "@/lib/economia": require("../src/lib/economia.ts"),
     "@/lib/inventario": { LIMITE_INVENTARIO_OBJETOS },
   };
   return { state, sell: loadApiRoute("src/app/api/objetos/vender/route.ts", dependencies).POST,
