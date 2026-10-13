@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import { obtenerRutaSpriteEnemigo } from "@/lib/enemigos";
+import { CLASES } from "@/lib/progresion/clases";
 import type { CombatePve, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
@@ -72,6 +73,7 @@ export default function CombateModal({
   }, [combate.fase]);
 
   const [mostrarStatsEnemigo, setMostrarStatsEnemigo] = useState(false);
+  const [panelStats, setPanelStats] = useState<"jugador" | "enemigo">("enemigo");
   const [habilidades, setHabilidades] = useState<HabilidadEquipable[]>([]);
   const [mostrarHabilidades, setMostrarHabilidades] = useState(false);
   const [mostrarObjetos, setMostrarObjetos] = useState(false);
@@ -176,6 +178,8 @@ export default function CombateModal({
     combate.fase === "huida";
 
   const spriteHeroe = obtenerSpriteHeroe(personaje.clase, personaje.sexo);
+  const claseActiva = CLASES[personaje.profesionActivaId];
+  const recursoClase = claseActiva?.recursoCombate ?? "energia";
 
   /*
    * ============================================================
@@ -417,13 +421,14 @@ export default function CombateModal({
               Batalla
             </p>
             <div className="h-4 w-px bg-stone-700" />
-            <h2
-              onClick={() => setMostrarStatsEnemigo(true)}
-              className="truncate text-sm font-black text-stone-100 sm:text-base tracking-wide cursor-pointer hover:text-stone-300 transition-colors"
-              title="Ver estadísticas del enemigo"
+            <button
+              type="button"
+              onClick={() => { setPanelStats("enemigo"); setMostrarStatsEnemigo(true); }}
+              className="truncate text-left text-sm font-black tracking-wide text-stone-100 transition-colors hover:text-stone-300 sm:text-base"
+              title="Consultar las estadísticas del enemigo y de tu personaje"
             >
               {combate.enemigoNombre}
-            </h2>
+            </button>
           </div>
           <span className="shrink-0 rounded bg-stone-900 px-3 py-1 font-mono text-[10px] sm:text-xs tracking-widest text-stone-500 border border-stone-800 shadow-inner">
             RONDA {combate.ronda}
@@ -463,16 +468,24 @@ export default function CombateModal({
                     style={{ width: `${vidaJugador}%` }}
                   />
                 </div>
-                <p className="mt-1 text-[10px] font-bold text-stone-300">
-                  Posición: {ETIQUETAS_POSICION_COMBATE[normalizarPosicionCombate(combate.jugadorPosicion)]}
-                </p>
-                <div className="mt-2 grid grid-cols-2 gap-1 text-[9px] font-mono font-bold">
-                  <span className="rounded border border-blue-900/70 bg-blue-950/70 px-1.5 py-1 text-blue-200">
-                    ENE {personaje.energiaActual}/{personaje.energiaMaxima}
-                  </span>
-                  <span className="rounded border border-violet-900/70 bg-violet-950/70 px-1.5 py-1 text-violet-200">
-                    MAN {personaje.manaActual}/{personaje.manaMaximo}
-                  </span>
+                <div className="mt-1 min-h-6 w-full">
+                  <IndicadoresEfectosCombate
+                    efectos={combate.efectos}
+                    comidaPreparada={comidaActiva !== undefined ? comidaActiva : personaje.comidaPreparada}
+                    habilidades={personaje.habilidades}
+                  />
+                </div>
+                <div className="mt-1 grid grid-cols-1 gap-1 text-[9px] font-mono font-bold">
+                  {recursoClase !== "mana" && (
+                    <span className="rounded border border-blue-900/70 bg-blue-950/70 px-1.5 py-1 text-blue-200">
+                      ENE {personaje.energiaActual}/{personaje.energiaMaxima}
+                    </span>
+                  )}
+                  {recursoClase !== "energia" && (
+                    <span className="rounded border border-violet-900/70 bg-violet-950/70 px-1.5 py-1 text-violet-200">
+                      MAN {personaje.manaActual}/{personaje.manaMaximo}
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -504,11 +517,6 @@ export default function CombateModal({
                     : ""
                 }`}
               >
-                <IndicadoresEfectosCombate
-                  efectos={combate.efectos}
-                  comidaPreparada={comidaActiva !== undefined ? comidaActiva : personaje.comidaPreparada}
-                  habilidades={personaje.habilidades}
-                />
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "jugador").map((pulso, indice) => (
                   <div
                     key={`pulso-jugador-${indice}-${pulso.tipo}`}
@@ -579,6 +587,8 @@ export default function CombateModal({
                     style={{ width: `${vidaEnemigo}%` }}
                   />
                 </div>
+                <div className="mt-1 min-h-6 w-full">
+                  </div>
               </div>
 
               {danioVisible?.actor === "enemigo" && (
@@ -1058,74 +1068,102 @@ export default function CombateModal({
           )}
         </section>
 
-        {/* MODAL DE ESTADÍSTICAS DEL ENEMIGO */}
+        {/* PANEL DE INFORMACIÓN DE LOS COMBATIENTES */}
         {mostrarStatsEnemigo && (
-          <div className="absolute inset-0 z-[10000] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 animate-fade-in">
-            <div className="w-full max-w-xs rounded-lg border-2 border-stone-700 bg-stone-900 p-5 shadow-2xl relative">
-              {/* Botón Cerrar */}
+          <div className="absolute inset-0 z-[10000] flex items-center justify-center bg-black/75 p-3 backdrop-blur-sm sm:p-4">
+            <div className="relative max-h-[88dvh] w-full max-w-lg overflow-y-auto rounded-xl border border-stone-700 bg-stone-900 p-4 shadow-2xl sm:p-5">
               <button
+                type="button"
                 onClick={() => setMostrarStatsEnemigo(false)}
-                className="absolute right-3 top-3 text-stone-500 hover:text-stone-300 transition-colors"
+                aria-label="Cerrar estadísticas"
+                className="absolute right-3 top-3 z-10 rounded-md px-2 py-1 text-stone-500 transition-colors hover:bg-stone-800 hover:text-white"
               >
                 ✕
               </button>
 
-              {/* Cabecera del Modal */}
-              <div className="mb-4 border-b border-stone-700 pb-3 text-center">
-                <h3 className="text-lg font-black text-stone-100 tracking-wider">
+              <div className="mb-4 border-b border-stone-700 pb-3 pr-8">
+                <h3 className="text-lg font-black tracking-wide text-stone-100">Información de combate</h3>
+                <p className="mt-1 text-xs text-stone-500">Consulta las estadísticas y la posición de ambos combatientes.</p>
+              </div>
+
+              <div className="mb-4 grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={() => setPanelStats("jugador")}
+                  aria-pressed={panelStats === "jugador"}
+                  className={`rounded-lg border px-3 py-2 text-sm font-bold transition-colors ${panelStats === "jugador" ? "border-amber-500 bg-amber-950/60 text-amber-200" : "border-stone-700 bg-stone-950/60 text-stone-400 hover:border-stone-500"}`}
+                >
+                  {personaje.nombre} · Tú
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPanelStats("enemigo")}
+                  aria-pressed={panelStats === "enemigo"}
+                  className={`rounded-lg border px-3 py-2 text-sm font-bold transition-colors ${panelStats === "enemigo" ? "border-red-500 bg-red-950/50 text-red-200" : "border-stone-700 bg-stone-950/60 text-stone-400 hover:border-stone-500"}`}
+                >
                   {combate.enemigoNombre}
-                </h3>
-                <span className="text-[10px] font-mono text-stone-400 uppercase tracking-widest">
-                  Estadísticas del enemigo
-                </span>
+                </button>
               </div>
 
-              {/* Cuadrícula de Estadísticas */}
-              <div className="grid grid-cols-1 gap-3">
-                {/* VIDA */}
-                <div className="flex flex-row items-center justify-around rounded bg-stone-950/50 p-2 border border-stone-800">
-                  <span className="text-[10px] font-bold text-stone-500 uppercase tracking-widest mb-1">
-                    Vida Máx
-                  </span>
-                  <span className="text-emerald-400 font-mono font-bold text-lg">
-                    {combate.enemigoHpMaximo}
-                  </span>
+              {panelStats === "enemigo" ? (
+                <div>
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                      <h4 className="font-black text-stone-100">{combate.enemigoNombre}</h4>
+                      <p className="text-[11px] text-stone-500">Enemigo · Nivel {combate.enemigoNivel}</p>
+                    </div>
+                    <span className="rounded-md border border-stone-700 bg-stone-950 px-2 py-1 text-[10px] font-bold text-stone-300">
+                      Posición: {ETIQUETAS_POSICION_COMBATE[normalizarPosicionCombate(combate.enemigoPosicion)]}
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Vida máxima</p><p className="mt-1 font-mono text-lg font-bold text-emerald-300">{combate.enemigoHpMaximo}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Ataque</p><p className="mt-1 font-mono text-lg font-bold text-red-300">{combate.enemigoAtaque}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Defensa</p><p className="mt-1 font-mono text-lg font-bold text-blue-300">{combate.enemigoDefensa}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Velocidad</p><p className="mt-1 font-mono text-lg font-bold text-amber-300">{combate.enemigoVelocidad}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Prob. crítico</p><p className="mt-1 font-mono text-lg font-bold text-amber-200">{Math.round(combate.enemigoProbCritico * 100)}%</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Daño crítico</p><p className="mt-1 font-mono text-lg font-bold text-amber-200">×{combate.enemigoDanoCritico}</p></div>
+                  </div>
                 </div>
-
-                {/* ATAQUE */}
-                <div className="flex flex-row items-center justify-around rounded bg-stone-950/50 p-2 border border-stone-800">
-                  <span className="text-[10px] font-bold text-stone-500 uppercase tracking-widest mb-1">
-                    Ataque
-                  </span>
-                  <span className="text-red-400 font-mono font-bold text-lg">
-                    {/* Si no lo tienes en 'combate', pon aquí tu lógica de búsqueda (ej: enemigoDb.ataque) */}
-                    {combate.enemigoAtaque ?? "?"}
-                  </span>
+              ) : (
+                <div>
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                      <h4 className="font-black text-stone-100">{personaje.nombre}</h4>
+                      <p className="text-[11px] text-stone-500">{claseActiva?.nombre ?? personaje.clase} · Nivel Base {personaje.nivel} · Job {personaje.nivelJob}</p>
+                    </div>
+                    <span className="rounded-md border border-amber-900/70 bg-amber-950/50 px-2 py-1 text-[10px] font-bold text-amber-200">
+                      Posición: {ETIQUETAS_POSICION_COMBATE[normalizarPosicionCombate(combate.jugadorPosicion)]}
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Vida máxima</p><p className="mt-1 font-mono text-lg font-bold text-emerald-300">{combate.jugadorHpMaximo}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Ataque físico</p><p className="mt-1 font-mono text-lg font-bold text-red-300">{combate.jugadorAtaque}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Defensa física</p><p className="mt-1 font-mono text-lg font-bold text-blue-300">{combate.jugadorDefensa}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Velocidad</p><p className="mt-1 font-mono text-lg font-bold text-amber-300">{combate.jugadorVelocidad}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Ataque mágico</p><p className="mt-1 font-mono text-lg font-bold text-violet-300">{personaje.ataqueMagico}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Defensa mágica</p><p className="mt-1 font-mono text-lg font-bold text-violet-300">{personaje.defensaMagica}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Precisión</p><p className="mt-1 font-mono text-lg font-bold text-sky-300">{personaje.precision}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Evasión</p><p className="mt-1 font-mono text-lg font-bold text-sky-300">{Math.round(personaje.evasion * 100)}%</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Prob. crítico</p><p className="mt-1 font-mono text-lg font-bold text-amber-200">{Math.round(personaje.probCritico * 100)}%</p></div>
+                  </div>
+                  <div className="mt-3 rounded-lg border border-stone-800 bg-stone-950/50 p-3">
+                    <p className="mb-2 text-[10px] font-black uppercase tracking-wider text-stone-500">Atributos</p>
+                    <div className="grid grid-cols-3 gap-2 text-center sm:grid-cols-6">
+                      {([
+                        ["FUE", personaje.fuerza], ["AGI", personaje.agilidad], ["VIT", personaje.vitalidad],
+                        ["INT", personaje.inteligencia], ["DES", personaje.destreza], ["SUE", personaje.suerte],
+                      ] as const).map(([label, value]) => (
+                        <div key={label}><p className="text-[9px] text-stone-500">{label}</p><p className="font-mono font-bold text-stone-200">{value}</p></div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-
-                {/* DEFENSA */}
-                <div className="flex flex-row items-center justify-around rounded bg-stone-950/50 p-2 border border-stone-800">
-                  <span className="text-[10px] font-bold text-stone-500 uppercase tracking-widest mb-1">
-                    Defensa
-                  </span>
-                  <span className="text-blue-400 font-mono font-bold text-lg">
-                    {combate.enemigoDefensa ?? "?"}
-                  </span>
-                </div>
-
-                {/* VELOCIDAD */}
-                <div className="flex flex-row items-center justify-around rounded bg-stone-950/50 p-2 border border-stone-800">
-                  <span className="text-[10px] font-bold text-stone-500 uppercase tracking-widest mb-1">
-                    Velocidad
-                  </span>
-                  <span className="text-amber-400 font-mono font-bold text-lg">
-                    {combate.enemigoVelocidad ?? "?"}
-                  </span>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         )}
+
       </div>
     </div>
   );
