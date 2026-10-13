@@ -165,7 +165,8 @@ export async function POST(request: Request) {
 
     const coste = calcularCosteMejoraObjeto(
       objeto.precio,
-      objetoInventario.nivelMejora
+      objetoInventario.nivelMejora,
+      objeto.rareza
     );
     const costeRecursos = calcularCosteRecursosMejora(
       objeto,
