@@ -17,9 +17,11 @@ import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
   type DesgloseEstadisticasPersonaje,
+  type ModificadoresEstadisticas,
 } from "@/lib/estadisticasPersonaje";
 import { calcularAtributosClase } from "@/lib/progresion/atributos-clase";
 import { obtenerObjetoPorId } from "@/lib/objetos";
+import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { obtenerNombreObjetoConSufijo, sanitizarBonificacionesObjeto } from "@/lib/sufijosObjetos";
 
 const EDIFICIOS_BASE: Record<IdEdificio, Omit<Edificio, "nivel">> = {
@@ -162,7 +164,18 @@ export interface Personaje {
   desgloseEstadisticas?: Pick<
     DesgloseEstadisticasPersonaje,
     "base" | "mejoras" | "pasivas" | "equipo"
-  >;
+  > & {
+    pasivasPorHabilidad: {
+      habilidadId: string;
+      nombre: string;
+      modificadores: ModificadoresEstadisticas;
+    }[];
+    equipoPorObjeto: {
+      ranura: string;
+      nombre: string;
+      modificadores: ModificadoresEstadisticas;
+    }[];
+  };
 
   // Estadísticas calculadas
   hpMaximo: number;
@@ -517,28 +530,78 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
   const nivelJob = typeof progresoActivo?.nivelJob === "number" ? progresoActivo.nivelJob : 1;
   const atributos = calcularAtributosClase(profesionActivaId, datos.nivel, nivelJob);
 
+  const datosEstadisticas = {
+    clase: datos.clase,
+    profesionActivaId,
+    nivel: datos.nivel,
+    nivelJob,
+    progresosClase: progresosClase.map((progreso) => ({
+      claseId: String(progreso.claseId),
+      nivelJob: typeof progreso.nivelJob === "number" ? progreso.nivelJob : 1,
+      desbloqueada: progreso.desbloqueada === true,
+    })),
+    ...atributos,
+    velocidadMejoras:
+      typeof datos.velocidadMejoras === "number" ? datos.velocidadMejoras : 0,
+    capacidadCarruajeMejoras:
+      typeof datos.capacidadCarruajeMejoras === "number"
+        ? datos.capacidadCarruajeMejoras
+        : 0,
+  };
+
   const estadisticas = calcularEstadisticasPersonaje(
-    {
-      clase: datos.clase,
-      profesionActivaId,
-      nivel: datos.nivel,
-      nivelJob,
-      progresosClase: progresosClase.map((progreso) => ({
-        claseId: String(progreso.claseId),
-        nivelJob: typeof progreso.nivelJob === "number" ? progreso.nivelJob : 1,
-        desbloqueada: progreso.desbloqueada === true,
-      })),
-      ...atributos,
-      velocidadMejoras:
-        typeof datos.velocidadMejoras === "number" ? datos.velocidadMejoras : 0,
-      capacidadCarruajeMejoras:
-        typeof datos.capacidadCarruajeMejoras === "number"
-          ? datos.capacidadCarruajeMejoras
-          : 0,
-    },
+    datosEstadisticas,
     habilidadesPasivasEquipadas,
     modificadoresEquipo
   );
+
+  const pasivasPorHabilidad = habilidadesPasivasEquipadas.map((habilidadId) => ({
+    habilidadId,
+    nombre: obtenerHabilidadPorId(habilidadId)?.nombre ?? habilidadId,
+    modificadores: calcularEstadisticasPersonaje(
+      datosEstadisticas,
+      [habilidadId],
+      modificadoresEquipo
+    ).pasivas,
+  }));
+
+  const ranurasConNombre = [
+    { clave: "arma", nombre: "Arma" },
+    { clave: "manoSecundaria", nombre: "Mano secundaria" },
+    { clave: "casco", nombre: "Casco" },
+    { clave: "armadura", nombre: "Armadura" },
+    { clave: "pantalones", nombre: "Pantalones" },
+    { clave: "botas", nombre: "Botas" },
+    { clave: "guantes", nombre: "Guantes" },
+    { clave: "accesorio", nombre: "Accesorio" },
+    { clave: "anillo1", nombre: "Anillo I" },
+    { clave: "anillo2", nombre: "Anillo II" },
+  ] as const;
+
+  const equipoPorObjeto = ranurasConNombre.flatMap(({ clave, nombre }) => {
+    const pieza = equipo[clave];
+    if (!pieza) return [];
+
+    const equipoParcial = {
+      arma: null,
+      manoSecundaria: null,
+      casco: null,
+      armadura: null,
+      pantalones: null,
+      botas: null,
+      guantes: null,
+      accesorio: null,
+      anillo1: null,
+      anillo2: null,
+      [clave]: pieza,
+    } as EquipoPersonaje;
+
+    return [{
+      ranura: nombre,
+      nombre: pieza.objeto.nombre,
+      modificadores: calcularModificadoresEquipo(equipoParcial, profesionActivaId),
+    }];
+  });
 
   return {
     id: typeof datos.id === "string" ? datos.id : undefined,
@@ -570,6 +633,8 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
       mejoras: estadisticas.mejoras,
       pasivas: estadisticas.pasivas,
       equipo: estadisticas.equipo,
+      pasivasPorHabilidad,
+      equipoPorObjeto,
     },
     estado:
       datos.estado === "de_viaje" ||
