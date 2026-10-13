@@ -163,7 +163,7 @@ export interface Personaje {
   // Desglose de procedencia calculado junto con las estadísticas.
   desgloseEstadisticas?: Pick<
     DesgloseEstadisticasPersonaje,
-    "base" | "mejoras" | "pasivas" | "equipo"
+    "base" | "mejoras" | "pasivas" | "equipo" | "atributos"
   > & {
     pasivasPorHabilidad: {
       habilidadId: string;
@@ -633,6 +633,7 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
       mejoras: estadisticas.mejoras,
       pasivas: estadisticas.pasivas,
       equipo: estadisticas.equipo,
+      atributos: estadisticas.atributos,
       pasivasPorHabilidad,
       equipoPorObjeto,
     },
