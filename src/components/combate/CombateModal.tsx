@@ -588,7 +588,8 @@ export default function CombateModal({
                   />
                 </div>
                 <div className="mt-1 min-h-6 w-full">
-                  </div>
+                  <IndicadoresEfectosCombate efectos={combate.efectosDefensor ?? []} />
+                </div>
               </div>
 
               {danioVisible?.actor === "enemigo" && (
@@ -610,7 +611,6 @@ export default function CombateModal({
                     : ""
                 }`}
               >
-                <IndicadoresEfectosCombate efectos={combate.efectosDefensor ?? []} />
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "enemigo").map((pulso, indice) => (
                   <div
                     key={`pulso-enemigo-${indice}-${pulso.tipo}`}
