@@ -7,7 +7,7 @@ export const embassyDefinition: BuildingDefinition = {
   id: "embassy",
   name: "Embajada",
   sprite: {
-    src: "/sprites/buildings/taberna.png",
+    src: "/newGame/sprites/buildings/taberna.png",
     frameWidth: 128,
     frameHeight: 64,
   },

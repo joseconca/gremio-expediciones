@@ -9,7 +9,7 @@ import type { ShadowCaster, ShadowFootprint, ShadowSprite } from "../lighting/Sh
 export const MISSION_BOARD_POSITION = { x: 560 - 9 * 32, y: 800 + 0 * 32 };
 
 export class MissionBoard extends GameObject implements Interactable, ShadowCaster {
-  private readonly sheet = new SpriteSheet({ src: "/sprites/tablonMisiones.png", frameWidth: 128, frameHeight: 64 });
+  private readonly sheet = new SpriteSheet({ src: "/newGame/sprites/tablonMisiones.png", frameWidth: 128, frameHeight: 64 });
   private readonly parts: RenderPart[];
   private readonly shadow: ShadowSprite;
   constructor(config: GameObjectConfig & { onInteract: () => void }) {

@@ -6,7 +6,7 @@ export const tavernDefinition: BuildingDefinition = {
   id: "tavern",
   name: "Taberna",
   sprite: {
-    src: "/sprites/buildings/tavern/taberna.png",
+    src: "/newGame/sprites/buildings/tavern/taberna.png",
     frameWidth: 128,
     frameHeight: 128,
   },

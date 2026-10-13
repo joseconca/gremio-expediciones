@@ -5,7 +5,7 @@ export const genericDoorDefinition: DoorDefinition = {
   name: "Puerta genérica",
 
   sprite: {
-    src: "/sprites/buildings/generic/door-1.png",
+    src: "/newGame/sprites/buildings/generic/door-1.png",
     frameWidth: 32,
     frameHeight: 64,
   },
