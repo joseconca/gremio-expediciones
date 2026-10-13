@@ -486,7 +486,7 @@ export default function CombateModal({
                   )}
                 </div>
 
-                <div className="mt-1 min-h-6 w-full overflow-hidden">
+                <div className="relative mt-1 min-h-6 w-full overflow-visible">
                   <IndicadoresEfectosCombate
                     efectos={combate.efectos}
                     comidaPreparada={comidaActiva !== undefined ? comidaActiva : personaje.comidaPreparada}
@@ -583,7 +583,7 @@ export default function CombateModal({
                   </div>
                   <span className="w-[54px] shrink-0 text-right font-mono text-[9px] font-bold text-stone-200">{Math.max(0, combate.enemigoHp)}/{combate.enemigoHpMaximo}</span>
                 </div>
-                <div className="mt-1 min-h-6 w-full overflow-hidden">
+                <div className="relative mt-1 min-h-6 w-full overflow-visible">
                   <IndicadoresEfectosCombate efectos={combate.efectosDefensor ?? []} />
                 </div>
               </div>
