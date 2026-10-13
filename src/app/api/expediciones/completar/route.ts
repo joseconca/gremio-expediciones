@@ -585,7 +585,7 @@ export async function POST() {
 
     const estadisticasPersonaje = calcularEstadisticasPersonaje(
       usuario.personaje,
-      usuario.personaje.habilidades.map((habilidad) => habilidad.habilidadId),
+      usuario.personaje.habilidades.filter((habilidad) => habilidad.slot !== null).map((habilidad) => habilidad.habilidadId),
       modificadoresEquipo
     );
 
