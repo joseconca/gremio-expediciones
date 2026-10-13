@@ -280,6 +280,8 @@ function loadSource(relativePath, dependencies = {}) {
   })(
     (name) => {
       if (Object.hasOwn(dependencies, name)) return dependencies[name];
+      if (name === "../../../lib/expediciones/dificultad" && Object.hasOwn(dependencies, "../../../../lib/expediciones/dificultad")) return dependencies["../../../../lib/expediciones/dificultad"];
+      if (name === "../../../lib/expediciones/estados-combate" && Object.hasOwn(dependencies, "../../../../lib/expediciones/estados-combate")) return dependencies["../../../../lib/expediciones/estados-combate"];
       if (name === "@/lib/progresion/atributos-clase") {
         return {
           calcularAtributosClase: () => ({
