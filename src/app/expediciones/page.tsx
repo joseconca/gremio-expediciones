@@ -387,7 +387,7 @@ export default function ExpedicionesPage() {
       setProcesandoAsedio(true);
 
       try {
-        const respuesta = await fetch("/api/combate/accion", {
+        const respuesta = await fetch("/api/combate/pvp/accion", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ accion, habilidadId }),

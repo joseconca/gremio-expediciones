@@ -51,5 +51,5 @@ export function aplicarModificadoresPosicion<T extends EstadisticasConPosicion>(
     ...(estadisticas.defensaMagica !== undefined
       ? { defensaMagica: multiplicarSeguro(estadisticas.defensaMagica, multiplicadorDefensa, 0) }
       : {}),
-  };
+  } as T;
 }

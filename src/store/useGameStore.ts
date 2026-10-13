@@ -813,7 +813,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     payload?: string
   ) => {
     try {
-      const respuesta = await fetch("/api/combate/accion", {
+      const respuesta = await fetch("/api/combate/pve/accion", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
