@@ -11,12 +11,14 @@ export interface ComidaTaberna {
   icono: string;
   descripcion: string;
   coste: number;
-  efecto: EfectoComida;
+  nivelRequerido: 1 | 2 | 3;
+  efectos: readonly EfectoComida[];
 }
 
 /**
- * Las comidas son preparaciones de un solo uso. Se compran en la taberna y su
- * identificador queda guardado hasta iniciar la siguiente expedición de combate.
+ * Las comidas se reservan para la siguiente expedición de combate.
+ * Los platos avanzados combinan efectos, en lugar de limitarse a inflar una
+ * única bonificación. El servidor valida siempre el nivel requerido.
  */
 export const COMIDAS_TABERNA: readonly ComidaTaberna[] = [
   {
@@ -25,7 +27,8 @@ export const COMIDAS_TABERNA: readonly ComidaTaberna[] = [
     icono: "🍖",
     descripcion: "Aumenta un 10 % el ataque físico durante la expedición.",
     coste: 8,
-    efecto: { tipo: "porcentaje", atributo: "ataque", porcentaje: 0.10 },
+    nivelRequerido: 1,
+    efectos: [{ tipo: "porcentaje", atributo: "ataque", porcentaje: 0.10 }],
   },
   {
     id: "caldo-guardian",
@@ -33,7 +36,8 @@ export const COMIDAS_TABERNA: readonly ComidaTaberna[] = [
     icono: "🥣",
     descripcion: "Aumenta un 10 % la defensa física durante la expedición.",
     coste: 10,
-    efecto: { tipo: "porcentaje", atributo: "defensa", porcentaje: 0.10 },
+    nivelRequerido: 1,
+    efectos: [{ tipo: "porcentaje", atributo: "defensa", porcentaje: 0.10 }],
   },
   {
     id: "setas-arcanas",
@@ -41,33 +45,85 @@ export const COMIDAS_TABERNA: readonly ComidaTaberna[] = [
     icono: "🍄",
     descripcion: "Aumenta un 10 % el ataque mágico durante la expedición.",
     coste: 10,
-    efecto: { tipo: "porcentaje", atributo: "ataqueMagico", porcentaje: 0.10 },
+    nivelRequerido: 1,
+    efectos: [{ tipo: "porcentaje", atributo: "ataqueMagico", porcentaje: 0.10 }],
   },
   {
     id: "raices-vigorizantes",
-    nombre: "Raíces vigorizantes",
+    nombre: "Guiso de raíces vigorizantes",
     icono: "🥕",
-    descripcion: "Aumenta un 10 % la velocidad durante la expedición.",
-    coste: 10,
-    efecto: { tipo: "porcentaje", atributo: "velocidad", porcentaje: 0.10 },
+    descripcion: "Aumenta un 10 % la velocidad y un 10 % la defensa física.",
+    coste: 16,
+    nivelRequerido: 2,
+    efectos: [
+      { tipo: "porcentaje", atributo: "velocidad", porcentaje: 0.10 },
+      { tipo: "porcentaje", atributo: "defensa", porcentaje: 0.10 },
+    ],
   },
   {
     id: "brocheta-especiada",
     nombre: "Brocheta especiada",
     icono: "🍢",
-    descripcion: "Añade 10 puntos porcentuales a la probabilidad de crítico.",
-    coste: 12,
-    efecto: { tipo: "critico", incremento: 0.10 },
+    descripcion: "Añade 10 puntos porcentuales al crítico y aumenta un 10 % el ataque físico.",
+    coste: 18,
+    nivelRequerido: 2,
+    efectos: [
+      { tipo: "critico", incremento: 0.10 },
+      { tipo: "porcentaje", atributo: "ataque", porcentaje: 0.10 },
+    ],
   },
   {
     id: "desayuno-explorador",
     nombre: "Desayuno del explorador",
     icono: "🍳",
-    descripcion: "Te garantiza la iniciativa en el primer combate de la expedición.",
-    coste: 15,
-    efecto: { tipo: "iniciativa" },
+    descripcion: "Garantiza la iniciativa en el primer combate y aumenta un 10 % la velocidad.",
+    coste: 20,
+    nivelRequerido: 2,
+    efectos: [
+      { tipo: "iniciativa" },
+      { tipo: "porcentaje", atributo: "velocidad", porcentaje: 0.10 },
+    ],
   },
-] as const;
+  {
+    id: "banquete-campeon",
+    nombre: "Banquete del campeón",
+    icono: "🍗",
+    descripcion: "Aumenta un 15 % el ataque físico y la defensa, y añade 10 puntos porcentuales al crítico.",
+    coste: 32,
+    nivelRequerido: 3,
+    efectos: [
+      { tipo: "porcentaje", atributo: "ataque", porcentaje: 0.15 },
+      { tipo: "porcentaje", atributo: "defensa", porcentaje: 0.15 },
+      { tipo: "critico", incremento: 0.10 },
+    ],
+  },
+  {
+    id: "festin-arcano",
+    nombre: "Festín arcano",
+    icono: "✨",
+    descripcion: "Aumenta un 20 % el ataque mágico, un 10 % la velocidad y un 10 % la defensa.",
+    coste: 34,
+    nivelRequerido: 3,
+    efectos: [
+      { tipo: "porcentaje", atributo: "ataqueMagico", porcentaje: 0.20 },
+      { tipo: "porcentaje", atributo: "velocidad", porcentaje: 0.10 },
+      { tipo: "porcentaje", atributo: "defensa", porcentaje: 0.10 },
+    ],
+  },
+  {
+    id: "racion-de-asedio",
+    nombre: "Ración de asedio",
+    icono: "🍲",
+    descripcion: "Garantiza la iniciativa y aumenta un 20 % el ataque físico y un 15 % la defensa.",
+    coste: 36,
+    nivelRequerido: 3,
+    efectos: [
+      { tipo: "iniciativa" },
+      { tipo: "porcentaje", atributo: "ataque", porcentaje: 0.20 },
+      { tipo: "porcentaje", atributo: "defensa", porcentaje: 0.15 },
+    ],
+  },
+] as const satisfies readonly ComidaTaberna[];
 
 export function obtenerComidaTaberna(id: unknown): ComidaTaberna | null {
   if (typeof id !== "string") return null;
@@ -91,22 +147,26 @@ export function aplicarEfectoComida(
 
   if (!comida) return resultado;
 
-  if (comida.efecto.tipo === "porcentaje") {
-    const atributo = comida.efecto.atributo;
-    resultado[atributo] = Math.max(
-      atributo === "defensa" ? 0 : 1,
-      Math.floor(resultado[atributo] * (1 + comida.efecto.porcentaje))
-    );
-  } else if (comida.efecto.tipo === "critico") {
-    resultado.probCritico = Math.min(
-      0.75,
-      resultado.probCritico + comida.efecto.incremento
-    );
+  for (const efecto of comida.efectos) {
+    if (efecto.tipo === "porcentaje") {
+      const atributo = efecto.atributo;
+      resultado[atributo] = Math.max(
+        atributo === "defensa" ? 0 : 1,
+        Math.floor(resultado[atributo] * (1 + efecto.porcentaje))
+      );
+    } else if (efecto.tipo === "critico") {
+      resultado.probCritico = Math.min(
+        0.75,
+        resultado.probCritico + efecto.incremento
+      );
+    }
   }
 
   return resultado;
 }
 
 export function comidaOtorgaIniciativa(comidaId: unknown): boolean {
-  return obtenerComidaTaberna(comidaId)?.efecto.tipo === "iniciativa";
+  return obtenerComidaTaberna(comidaId)?.efectos.some(
+    (efecto) => efecto.tipo === "iniciativa"
+  ) ?? false;
 }
