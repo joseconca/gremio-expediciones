@@ -172,7 +172,7 @@ function makeCombatConsumableRoute({
       catch (error) { state = snapshot; throw error; }
     },
   };
-  const { POST } = loadSource("src/app/api/combate/accion/route.ts", {
+  const { procesarAccionCombate: POST } = loadSource("src/server/services/combate/accion-combate.ts", {
     "next/server": { NextResponse },
     "@prisma/client": {
       Prisma: {
