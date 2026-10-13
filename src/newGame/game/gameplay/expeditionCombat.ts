@@ -25,7 +25,7 @@ export function expeditionCombatSnapshot(data: ExpeditionSnapshotDto): CombatSna
       speed: active.playerSpeed ?? 5, level: data.profile.level,
     }]).map((member) => ({
       id: member.playerId, name: member.name, level: member.level, isLocalPlayer: member.playerId === data.profile.id,
-      spriteSrc: "/sprites/sheets/characters/hero.png",
+      spriteSrc: "/newGame/sprites/sheets/characters/hero.png",
       attributes: attributes(member.currentHealth, member.maxHealth, member.attack, member.defense, member.speed),
     })),
     turn: active.turn === "enemy" ? "enemy" : "player",

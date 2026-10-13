@@ -35,7 +35,7 @@ export class Campfire extends GameObject implements LightEmitter {
     this.dayNight = config.dayNight;
 
     this.spriteSheet = new SpriteSheet({
-      src: "/sprites/sheets/generic/hoguera0.png",
+      src: "/newGame/sprites/sheets/generic/hoguera0.png",
       frameWidth: 64,
       frameHeight: 64,
     });

@@ -6,7 +6,7 @@ export const campBuildingDefinition: BuildingDefinition = {
   id: "player-camp",
   name: "Campamento",
   sprite: {
-    src: "/sprites/buildings/camp.png",
+    src: "/newGame/sprites/buildings/camp.png",
     frameWidth: 128,
     frameHeight: 89,
   },

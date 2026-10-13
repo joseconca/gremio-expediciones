@@ -76,13 +76,13 @@ export const EXPEDITION_ENEMIES = [
   },
   {
     id: "arana",
-    sprite: "/sprites/enemies/arana.png",
+    sprite: "/newGame/sprites/enemies/arana.png",
     normal: ["Araña del camino", "Araña de la espesura", "Araña de las ruinas", "Araña acechadora"],
     elite: ["Matriarca de la espesura", "Araña reina de las ruinas", "Tejedora del abismo", "Araña ancestral"],
   },
   {
     id: "ogro",
-    sprite: "/sprites/enemies/ogro.png",
+    sprite: "/newGame/sprites/enemies/ogro.png",
     normal: ["Ogro del barranco", "Ogro errante", "Ogro de la cantera", "Ogro saqueador"],
     elite: ["Ogro señor del paso", "Ogro caudillo de la frontera", "Ogro guardián de las ruinas", "Ogro coloso del valle"],
   },

@@ -11,7 +11,7 @@ export function getTavernProps(level: number): PropConfig[] {
       y: 24,
       width: 96,
       height: 32,
-      spriteSrc: "/sprites/buildings/tavern/barra1.png",
+      spriteSrc: "/newGame/sprites/buildings/tavern/barra1.png",
       colliders: [
         new Collider({ width: 96, height: 32, offsetX: 0, offsetY: 0 }),
       ],

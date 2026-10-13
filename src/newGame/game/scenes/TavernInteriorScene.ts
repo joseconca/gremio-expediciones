@@ -41,7 +41,7 @@ export class TavernInteriorScene extends InteriorScene {
       npc: {
         x: 48,
         y: -16,
-        spriteSrc: "/sprites/sheets/characters/tabernero.png",
+        spriteSrc: "/newGame/sprites/sheets/characters/tabernero.png",
         dialogue: () =>
           createTaberneroDialogue({
             canBuyWithGold: tavernService.canBuyWithGold(),

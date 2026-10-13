@@ -30,7 +30,7 @@ export class WorldBaseMarker
     super(config);
     this.name = config.name;
     this.onEnter = config.onEnter;
-    this.icon.src = "/sprites/buildings/camp.png";
+    this.icon.src = "/newGame/sprites/buildings/camp.png";
   }
 
   getInteractionArea(): InteractionArea {

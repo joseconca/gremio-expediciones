@@ -16,7 +16,7 @@ for (const [index, direction] of (["right", "up", "left", "down"] as const).entr
 
 /** Non-collidable transport visual. Position and arrival belong to MobilityManager. */
 export class ReturnCart extends GameObject implements ShadowCaster {
-  private readonly sheet = new SpriteSheet({ src: "/sprites/sheets/carts/carro0.png", frameWidth: 128, frameHeight: 128 });
+  private readonly sheet = new SpriteSheet({ src: "/newGame/sprites/sheets/carts/carro0.png", frameWidth: 128, frameHeight: 128 });
   private readonly animator = new Animator(this.sheet, RETURN_CART_ANIMATIONS);
   private readonly parts: RenderPart[];
   constructor(config: GameObjectConfig) {
