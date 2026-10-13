@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test:base": "node --test tests/base-economic-routes.test.cjs tests/objetos-system.test.cjs",
-    "test:progression": "node --test tests/progression.test.cjs tests/progression-api.test.cjs"
+    "test:progression": "node --test tests/progression.test.cjs tests/progression-api.test.cjs tests/combat-effects.test.cjs"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
