@@ -494,3 +494,33 @@ test("objetos: los sprites de armadura se organizan por ranura", () => {
   const cascoSinSprite = obtenerObjetoPorId("casco_cuero");
   assert.equal(obtenerSpriteObjeto(cascoSinSprite), null, "El casco sin arte aún debe usar el icono alternativo");
 });
+
+test("las pasivas equipadas de recurso se reflejan en máximos y regeneración", () => {
+  const { calcularEstadisticasPersonaje } = require("../src/lib/estadisticasPersonaje.ts");
+  const personaje = {
+    clase: "Novato",
+    profesionActivaId: "mago",
+    nivel: 1,
+    nivelJob: 1,
+    progresosClase: [{ claseId: "mago", nivelJob: 1, desbloqueada: true }],
+    fuerza: 1,
+    agilidad: 1,
+    vitalidad: 1,
+    inteligencia: 1,
+    destreza: 1,
+    suerte: 1,
+    velocidadMejoras: 0,
+    capacidadCarruajeMejoras: 0,
+  };
+  const base = calcularEstadisticasPersonaje(personaje, []).total;
+  const equipado = calcularEstadisticasPersonaje(
+    personaje,
+    ["reserva_arcana", "plegaria_constante"],
+  ).total;
+
+  assert.equal(equipado.manaMaximo, base.manaMaximo + 10);
+  assert.equal(
+    equipado.regeneracionManaPorTurno,
+    base.regeneracionManaPorTurno + 1,
+  );
+});
