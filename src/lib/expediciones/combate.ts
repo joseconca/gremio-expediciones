@@ -218,9 +218,12 @@ export function resolverHabilidadJugador(
   let enemigoDefensa = combate.enemigoDefensa;
   const efectos: import("@/lib/tiposJuego").EstadoEfectoHabilidad[] = [];
   const bonusCuracion = Math.max(0, combate.bonusCuracion ?? 0);
+  const ataqueMagico = combate.jugadorAtaqueMagico ?? combate.jugadorAtaque;
   const ataqueEfectivo = habilidad.tipoDano === "magico"
-    ? (combate.jugadorAtaqueMagico ?? combate.jugadorAtaque)
-    : combate.jugadorAtaque;
+    ? ataqueMagico
+    : habilidad.tipoDano === "hibrido"
+      ? Math.floor((combate.jugadorAtaque + ataqueMagico) / 2)
+      : combate.jugadorAtaque;
 
   const agregarEstado = (
     estado: NonNullable<DefinicionHabilidad["estadosSecundarios"]>[number],
@@ -293,9 +296,12 @@ export function resolverHabilidadJugador(
       }
 
       const variacion = 0.8 + Math.random() * 0.4;
+      const defensaMagica = combate.enemigoDefensaMagica ?? enemigoDefensa;
       const defensa = habilidad.tipoDano === "magico"
-        ? (combate.enemigoDefensaMagica ?? enemigoDefensa)
-        : enemigoDefensa;
+        ? defensaMagica
+        : habilidad.tipoDano === "hibrido"
+          ? Math.floor((enemigoDefensa + defensaMagica) / 2)
+          : enemigoDefensa;
       const danoBase = Math.floor(ataqueEfectivo * variacion * (habilidad.multiplicadorDano ?? 1));
       const danoNormal = Math.max(1, danoBase - Math.floor(defensa / 2));
       const esCritico = dado === 20 || Math.random() < probabilidadCritico;
