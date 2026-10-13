@@ -162,6 +162,22 @@ function esEquipable(objeto: DefinicionObjeto): objeto is DefinicionObjeto & {
   return TIPOS_OBJETO_EQUIPABLE.includes(objeto.tipo as TipoObjetoEquipable);
 }
 
+function nombreSubtipoArma(subtipo: string): string {
+  const normalizado = subtipo.trim().toLowerCase();
+  const nombres: Record<string, string> = {
+    espada: "Espada",
+    hacha: "Hacha",
+    lanza: "Lanza",
+    daga: "Daga",
+    arco: "Arco",
+    baston: "Bastón",
+    maza: "Maza",
+    libro: "Libro",
+    "puños": "Puños",
+  };
+  return nombres[normalizado] ?? (normalizado.charAt(0).toLocaleUpperCase("es-ES") + normalizado.slice(1));
+}
+
 function nombreTipoObjeto(objeto: DefinicionObjeto): string {
   const ranura = obtenerRanuraObjeto(objeto);
   if (ranura) {
@@ -647,6 +663,7 @@ export default function HerreriaPage() {
                           </span>
                           <span className="text-[9px] font-bold uppercase leading-3 tracking-wide text-[#887d6b]">
                             {nombreTipoObjeto(objeto)}
+                            {objeto.tipo === "arma" && objeto.subtipo ? ` · ${nombreSubtipoArma(objeto.subtipo)}` : ""}
                             {objeto.manos === 2 ? " · Dos manos" : ""}
                           </span>
                         </div>
@@ -787,33 +804,25 @@ export default function HerreriaPage() {
         {/* INVENTARIO                                              */}
         {/* ====================================================== */}
 
-        <section className="relative overflow-hidden rounded-xl border-2 border-[#62452d] bg-[#261a12] shadow-[0_14px_32px_rgba(0,0,0,0.55)]">
-          {/* Tirantes / costuras decorativas */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-5 border-r border-[#694a2e] bg-[#352317]/70" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-5 border-l border-[#694a2e] bg-[#352317]/70" />
-
-          {/* Textura de cuero */}
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(180,130,75,0.08),transparent_20%),radial-gradient(circle_at_85%_70%,rgba(180,130,75,0.06),transparent_22%)]" />
+        <section className="relative overflow-hidden rounded-lg border border-[#62452d] bg-[#261a12] shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(180,130,75,0.06),transparent_20%),radial-gradient(circle_at_85%_70%,rgba(180,130,75,0.04),transparent_22%)]" />
 
           {/* Cabecera */}
-          <div className="relative border-b border-[#62452d] bg-[linear-gradient(135deg,#392719,#241810)] p-2 sm:p-4">
-            <div className="pointer-events-none absolute inset-2 rounded border border-[#8a6038]/20" />
-
-            <div className="relative flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div className="relative border-b border-[#62452d] bg-[linear-gradient(135deg,#392719,#241810)] px-2.5 py-2 sm:px-3">
+            <div className="relative flex flex-row flex-wrap items-center justify-between gap-2">
               <div>
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl">🎒</span>
-
-                  <h2 className="text-sm font-black uppercase tracking-[0.08em] text-[#e5d2b5] sm:text-xl">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">🎒</span>
+                  <h2 className="text-xs font-black uppercase tracking-[0.08em] text-[#e5d2b5] sm:text-base">
                     Inventario de objetos
                   </h2>
                 </div>
 
-                <p className="mt-1 text-xs font-black text-[#d8b786]">
+                <p className="mt-0.5 text-[10px] font-black text-[#d8b786]">
                   Espacios: {datos?.espaciosInventario.ocupados ?? datos?.inventario.length ?? 0}/{datos?.espaciosInventario.maximo ?? 30}
                 </p>
                 {datos?.ultimaVenta && (
-                  <div className="mt-2 flex flex-col gap-2 rounded border border-amber-700/50 bg-[#2d2115] p-2 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="mt-1.5 flex flex-col gap-1.5 rounded border border-amber-700/50 bg-[#2d2115] p-1.5 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                       <p className="text-xs font-black text-amber-200">Última venta: {datos.ultimaVenta.nombreObjeto}</p>
                       <p className="mt-1 text-xs text-[#bba17a]">Recompra por {datos.ultimaVenta.precioRecompra} de oro. Solo se conserva la venta más reciente.</p>
@@ -837,22 +846,16 @@ export default function HerreriaPage() {
           </div>
 
           {/* Contenido */}
-          <div className="relative p-2 sm:p-3">
+          <div className="relative p-1.5 sm:p-2">
             {inventarioVisible.length === 0 ? (
-              <div className="rounded-lg border-2 border-dashed border-[#61452d] bg-[#211710] p-10 text-center">
-                <div className="text-5xl opacity-30">🎒</div>
-
-                <p className="mt-4 text-sm font-black uppercase tracking-wider text-[#806a52]">
-                  Mochila vacía
-                </p>
-
-                <p className="mt-2 text-xs text-[#645341]">
-                  Todavía no tienes objetos en el inventario.
-                </p>
+              <div className="rounded-md border border-dashed border-[#61452d] bg-[#211710] p-5 text-center sm:p-8">
+                <div className="text-4xl opacity-30">🎒</div>
+                <p className="mt-2 text-xs font-black uppercase tracking-wider text-[#806a52]">Mochila vacía</p>
+                <p className="mt-1 text-[10px] text-[#645341]">Todavía no tienes objetos en el inventario.</p>
               </div>
             ) : (
-              <div className="space-y-2">
-                {inventarioVisible.map((objetoInventario) => {
+              <div className="space-y-1.5">
+                {inventarioVisible.map((objetoInventario) => {}
                   const objeto = objetoInventario.objeto;
 
                   const estaEquipado = TIPOS_EQUIPAMIENTO.some(
@@ -873,20 +876,17 @@ export default function HerreriaPage() {
                     <article
                       key={objetoInventario.id}
                       title={objeto.descripcion}
-                      className={`relative overflow-hidden rounded-lg border p-2 transition-all sm:border-2 sm:p-3 ${
+                      className={`relative overflow-hidden rounded-md border p-1.5 transition-colors sm:border sm:p-2 ${
                         estaEquipado
-                          ? "border-[#9a7748] bg-[linear-gradient(135deg,#473420,#302218)] shadow-[inset_0_1px_0_rgba(255,220,170,0.08),0_4px_10px_rgba(0,0,0,0.25)]"
-                          : "border-[#59402a] bg-[linear-gradient(135deg,#35251a,#291c14)] hover:border-[#765532] hover:bg-[#3a281c]"
+                          ? "border-[#9a7748] bg-[linear-gradient(135deg,#41301f,#2b2017)] shadow-[inset_0_1px_0_rgba(255,220,170,0.05)]"
+                          : "border-[#59402a] bg-[linear-gradient(135deg,#302219,#261a13)] hover:border-[#765532]"
                       }`}
                     >
-                      {/* Costura superior */}
-                      <div className="pointer-events-none absolute inset-x-3 top-2 border-t border-dashed border-[#9a7548]/20" />
-
-                      <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
-                        <div className="flex min-w-0 items-start gap-2 sm:gap-3">
+                      <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-2 gap-y-1.5 sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:items-center sm:gap-x-3">
+                        <div className="flex min-w-0 items-start gap-2">
                           {/* Bolsillo / icono */}
                           <div
-                            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded border text-xl shadow-[inset_0_0_14px_rgba(0,0,0,0.35)] sm:h-12 sm:w-12 sm:text-2xl ${
+                            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded border text-xl sm:h-11 sm:w-11 ${
                               estaEquipado
                                 ? "border-[#8e6d45] bg-[#24190f]"
                                 : "border-[#684a2f] bg-[#211710]"
@@ -907,16 +907,22 @@ export default function HerreriaPage() {
 
                           <div className="min-w-0">
                             <div className="flex flex-wrap items-center gap-2">
-                              <h3 className="font-black text-[#eadcc7]">
+                              <h3 className="text-xs font-black leading-4 text-[#eadcc7] sm:text-sm">
                                 {objeto.nombre}
                               </h3>
 
-                              <span className="rounded border border-[#8a663f] bg-[#241a12] px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-[#ad916a]">
+                              {objeto.tipo === "arma" && objeto.subtipo && (
+                                <span className="text-[9px] font-bold uppercase tracking-wide text-[#c2a16f]">
+                                  {nombreSubtipoArma(objeto.subtipo)}
+                                </span>
+                              )}
+
+                              <span className="rounded border border-[#8a663f] bg-[#241a12] px-1.5 py-0.5 text-[8px] font-black uppercase leading-3 tracking-wide text-[#ad916a]">
                                 +{objetoInventario.nivelMejora}
                               </span>
 
                               <span
-                                className={`rounded border px-2 py-0.5 text-[9px] font-black uppercase tracking-wider ${estiloRareza(
+                                className={`rounded border px-1.5 py-0.5 text-[8px] font-black uppercase leading-3 tracking-wide ${estiloRareza(
                                   objeto.rareza
                                 )}`}
                               >
@@ -924,7 +930,7 @@ export default function HerreriaPage() {
                               </span>
 
                               {estaEquipado && (
-                                <span className="rounded border border-emerald-800/50 bg-[#173022] px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-emerald-400">
+                                <span className="rounded border border-emerald-800/50 bg-[#173022] px-1.5 py-0.5 text-[8px] font-black uppercase leading-3 tracking-wide text-emerald-400">
                                   Equipado
                                 </span>
                               )}
@@ -932,7 +938,7 @@ export default function HerreriaPage() {
 
                             {objetoInventario.cantidad > 1 && <p className="mt-1 text-[10px] text-[#957b60]">Cantidad: {objetoInventario.cantidad}</p>}
 
-                            <div className="mt-1 flex flex-wrap gap-x-2 gap-y-1">
+                            <div className="mt-0.5 flex flex-wrap gap-x-2 gap-y-0.5">
                               {obtenerEstadisticasNoCero(
                                 objeto,
                                 objetoInventario.nivelMejora,
@@ -940,7 +946,7 @@ export default function HerreriaPage() {
                               ).map((estadistica) => (
                                 <span
                                   key={estadistica.clave}
-                                  className="text-[10px] font-bold text-[#a2886a]"
+                                  className="text-[9px] font-bold leading-3 text-[#a2886a] sm:text-[10px]"
                                 >
                                   {estadistica.nombre}{" "}
                                   <span
@@ -962,14 +968,14 @@ export default function HerreriaPage() {
                         </div>
 
                         {estaEquipado ? (
-                          <div className="shrink-0 text-center lg:text-right">
-                            <p className="text-[10px] font-black uppercase tracking-widest text-[#75614b]">En uso</p>
+                          <div className="col-span-2 flex items-center justify-between gap-2 border-t border-white/5 pt-1 sm:col-span-1 sm:border-0 sm:pt-0">
+                            <span className="text-[9px] font-black uppercase tracking-wider text-emerald-400">En uso</span>
                             {equipoDelMismoTipo && (
-                              <p className="mt-1 text-xs font-bold text-[#aa906e]">Equipado actualmente</p>
+                              <span className="text-[9px] text-[#aa906e]">Equipado</span>
                             )}
                           </div>
                         ) : (
-                          <div className="flex shrink-0 flex-wrap items-center gap-2">
+                          <div className="col-span-2 flex min-w-0 flex-wrap items-center justify-end gap-1.5 border-t border-white/5 pt-1.5 sm:col-span-1 sm:max-w-[245px] sm:border-0 sm:pt-0">
                             {esEquipable(objeto) && (
                               ranuraObjeto === "anillo" ? (
                                 <>
@@ -977,7 +983,7 @@ export default function HerreriaPage() {
                                     type="button"
                                     onClick={() => void equiparObjeto(objetoInventario.id, "anillo1")}
                                     disabled={procesando !== null}
-                                    className="min-h-8 rounded border border-[#765635] bg-[#42301f] px-2 py-1.5 text-[10px] font-black text-[#ddc8a6] hover:bg-[#513a25] disabled:opacity-50"
+                                    className="min-h-7 rounded border border-[#765635] bg-[#42301f] px-2 py-1 text-[9px] font-black text-[#ddc8a6] hover:bg-[#513a25] disabled:opacity-50"
                                   >Equipar anillo 1</button>
                                   <button
                                     type="button"
@@ -991,7 +997,7 @@ export default function HerreriaPage() {
                                   type="button"
                                   onClick={() => void equiparObjeto(objetoInventario.id)}
                                   disabled={procesando !== null}
-                                  className="min-h-8 rounded border border-[#765635] bg-[#42301f] px-3 py-1.5 text-[10px] font-black uppercase tracking-wider text-[#ddc8a6] hover:bg-[#513a25] disabled:opacity-50"
+                                  className="min-h-7 rounded border border-[#765635] bg-[#42301f] px-2 py-1 text-[9px] font-black uppercase tracking-wide text-[#ddc8a6] hover:bg-[#513a25] disabled:opacity-50"
                                 >
                                   {equipando ? "Equipando..." : "Equipar"}
                                 </button>
@@ -1001,7 +1007,7 @@ export default function HerreriaPage() {
                               type="button"
                               onClick={() => void venderObjeto(objetoInventario.id)}
                               disabled={procesando !== null}
-                              className="min-h-8 rounded border border-red-900/80 bg-[#351b18] px-3 py-1.5 text-[10px] font-black text-red-200 hover:bg-[#48221e] disabled:opacity-50"
+                              className="min-h-7 rounded border border-red-900/80 bg-[#351b18] px-2 py-1 text-[9px] font-black text-red-200 hover:bg-[#48221e] disabled:opacity-50"
                             >
                               {vendiendo ? "Vendiendo..." : `Vender · ${precioVenta} 🪙`}
                             </button>
