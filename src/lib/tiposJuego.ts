@@ -71,7 +71,7 @@ export interface EstadoEfectoHabilidad extends EstadoSecundarioHabilidad {
   habilidadId: string;
   turnosRestantes: number;
 }
-export type TipoDanoHabilidad = "fisico" | "magico";
+export type TipoDanoHabilidad = "fisico" | "magico" | "hibrido";
 
 export type AnimacionHabilidad =
   | "ofensiva"
