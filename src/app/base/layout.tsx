@@ -14,8 +14,20 @@ import {
 } from "@/lib/configuracionJuego";
 import { experienciaJobParaNivel } from "@/lib/progresion/experiencia";
 import { CLASES } from "@/lib/progresion/clases";
+import { CONFIGURACION_EDIFICIOS, type IdEdificio } from "@/lib/tiposJuego";
 
 // Componente reutilizable para los recursos
+const ICONOS_EDIFICIO: Record<IdEdificio, string> = {
+  taberna: "🍺",
+  armeria: "🛡️",
+  herreria: "⚒️",
+  mercado: "🪙",
+  embajada: "🏰",
+  escuelaCombate: "⚔️",
+  muralla: "🧱",
+  almacen: "📦",
+};
+
 const RecursoBadge = ({
   valor,
   icono,
@@ -55,10 +67,15 @@ export default function BaseLayout({
   } = useGameStore();
 
   const [mostrarHoja, setMostrarHoja] = useState<boolean>(false);
+  const [mostrarEdificios, setMostrarEdificios] = useState(false);
 
   useEffect(() => {
     cargarJugador();
   }, [cargarJugador]);
+
+  useEffect(() => {
+    setMostrarEdificios(false);
+  }, [pathname]);
 
   useEffect(() => {
     if (!isLoading && !sesionActiva) {
@@ -229,6 +246,66 @@ export default function BaseLayout({
         </div>
       </header>
 
+
+      {mostrarEdificios && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          <button
+            type="button"
+            aria-label="Cerrar menú de edificios"
+            onClick={() => setMostrarEdificios(false)}
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+          />
+          <section
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="menu-edificios-titulo"
+            className="absolute inset-x-2 bottom-[calc(4.25rem+env(safe-area-inset-bottom))] mx-auto max-h-[65dvh] max-w-lg overflow-hidden rounded-2xl border border-amber-800/80 bg-[#1b1712] shadow-2xl"
+          >
+            <header className="flex items-center justify-between border-b border-amber-900/70 bg-[#302114] px-4 py-3">
+              <div>
+                <h2 id="menu-edificios-titulo" className="font-black text-amber-100">Edificios del campamento</h2>
+                <p className="mt-0.5 text-xs text-amber-200/60">Acceso rápido a tus instalaciones</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setMostrarEdificios(false)}
+                aria-label="Cerrar"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-amber-900 bg-stone-950/50 text-lg text-amber-100"
+              >
+                ×
+              </button>
+            </header>
+            <div className="grid max-h-[calc(65dvh-4.5rem)] grid-cols-2 gap-2 overflow-y-auto p-3">
+              {Object.values(edificios)
+                .filter((edificio) => edificio.nivel > 0)
+                .sort((a, b) => a.nombre.localeCompare(b.nombre, "es"))
+                .map((edificio) => {
+                  const configuracion = CONFIGURACION_EDIFICIOS[edificio.id];
+                  return (
+                    <Link
+                      key={edificio.id}
+                      href={configuracion.ruta}
+                      onClick={() => setMostrarEdificios(false)}
+                      className="flex min-h-16 min-w-0 items-center gap-2 rounded-xl border border-amber-900/80 bg-gradient-to-br from-[#49311d] to-[#21170f] px-3 py-2 text-left transition hover:border-amber-600 active:translate-y-px"
+                    >
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-amber-800/70 bg-stone-950/50 text-xl" aria-hidden="true">
+                        {ICONOS_EDIFICIO[edificio.id]}
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block break-words text-sm font-bold leading-tight text-amber-100">{edificio.nombre}</span>
+                        <span className="mt-1 block text-[11px] text-amber-200/60">Nivel {edificio.nivel}</span>
+                      </span>
+                    </Link>
+                  );
+                })}
+              {Object.values(edificios).every((edificio) => edificio.nivel <= 0) && (
+                <p className="col-span-2 p-4 text-center text-sm text-stone-400">Todavía no hay edificios construidos.</p>
+              )}
+            </div>
+          </section>
+        </div>
+      )}
+
       <nav
         aria-label="Navegación principal"
         className={`mobile-game-nav fixed inset-x-0 bottom-0 z-40 grid gap-1 border-t border-amber-900/70 bg-stone-950/95 px-2 pt-1.5 shadow-[0_-8px_24px_rgba(0,0,0,0.35)] backdrop-blur-xl md:hidden ${edificios.escuelaCombate.nivel > 0 ? "grid-cols-4" : "grid-cols-3"}`}
@@ -261,12 +338,13 @@ export default function BaseLayout({
         )}
         <button
           type="button"
-          onClick={() => setMostrarHoja(true)}
-          aria-label="Abrir hoja del héroe"
-          className="flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg px-1 py-1 text-[10px] font-semibold leading-tight text-stone-400 transition-colors hover:bg-stone-900 hover:text-amber-100"
+          onClick={() => setMostrarEdificios((abierto) => !abierto)}
+          aria-expanded={mostrarEdificios}
+          aria-controls="menu-edificios-titulo"
+          className={`flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg px-1 py-1 text-[10px] font-semibold leading-tight transition-colors ${mostrarEdificios || (pathname.startsWith("/base/") && pathname !== "/base/escuela-batalla") ? "bg-amber-900/40 text-amber-200" : "text-stone-400 hover:bg-stone-900 hover:text-amber-100"}`}
         >
-          <span className="text-lg leading-5" aria-hidden="true">👤</span>
-          <span>Héroe</span>
+          <span className="text-lg leading-5" aria-hidden="true">🏘️</span>
+          <span>Edificios</span>
         </button>
       </nav>
 
