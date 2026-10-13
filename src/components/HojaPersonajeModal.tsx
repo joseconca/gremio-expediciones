@@ -279,6 +279,7 @@ export default function HojaPersonajeModal({
             <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2 border-b border-stone-400/40 pb-1">
               <h3 className="font-serif text-sm font-black uppercase tracking-widest text-stone-800">Atributos</h3>
               <span className="text-xs font-semibold text-stone-500">Crecimiento automático · {arquetipo.nombre}</span>
+              <p className="w-full text-[11px] text-stone-500">Los atributos principales crecen con el nivel BASE y la clase activa. El equipo aporta bonificaciones a las estadísticas derivadas, no a estos seis atributos.</p>
             </div>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
               {atributosConDesglose.map((atributo) => (
@@ -296,8 +297,8 @@ export default function HojaPersonajeModal({
                     </summary>
                     <div className="border-t border-stone-300 bg-[#e4d5b7] px-2 py-2 text-left text-[11px] text-stone-700">
                       <p className="flex justify-between gap-2"><span>Base inicial</span><strong>1</strong></p>
-                      <p className="mt-1 flex justify-between gap-2"><span>Niveles BASE</span><strong>+{atributo.aporteNivelesBase}</strong></p>
-                      <p className="mt-1 flex justify-between gap-2"><span>Clase activa · {claseActiva.nombre}</span><strong>+{atributo.aporteNivelesClase}</strong></p>
+                      <p className="mt-1 flex justify-between gap-2"><span>Crecimiento por nivel BASE</span><strong>+{atributo.aporteNivelesBase}</strong></p>
+                      <p className="mt-1 flex justify-between gap-2"><span>Nivel de clase activa · {claseActiva.nombre}</span><strong>+{atributo.aporteNivelesClase}</strong></p>
                     </div>
                   </details>
                 </article>
@@ -312,7 +313,7 @@ export default function HojaPersonajeModal({
             </h3>
 
             <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
-              {[
+              {([
                 { nombre: "Vida máxima", clave: "hpMaximo", valor: personaje.hpMaximo, emoji: "❤️" },
                 { nombre: "Ataque físico", clave: "ataque", valor: personaje.ataque, emoji: "⚔️" },
                 { nombre: "Defensa física", clave: "defensa", valor: personaje.defensa, emoji: "🛡️" },
@@ -323,14 +324,35 @@ export default function HojaPersonajeModal({
                 { nombre: "Precisión", clave: "precision", valor: Math.round(personaje.precision) + "%", emoji: "🎯" },
                 { nombre: "Evasión", clave: "evasion", valor: (personaje.evasion * 100).toFixed(1) + "%", emoji: "🌀" },
                 { nombre: "Probabilidad crítica", clave: "probCritico", valor: (personaje.probCritico * 100).toFixed(1) + "%", emoji: "💥" },
-              ].map((stat) => {
+              ] as const).map((stat) => {
                 const desglose = personaje.desgloseEstadisticas;
+                const aportesAtributos = desglose
+                  ? Object.entries(desglose.atributos).flatMap(([id, valores]) => {
+                      const valor = valores[stat.clave];
+                      if (typeof valor !== "number" || Math.abs(valor) <= 0.0001) return [];
+                      const nombres: Record<string, string> = {
+                        fuerza: "Fuerza",
+                        agilidad: "Agilidad",
+                        vitalidad: "Vitalidad",
+                        inteligencia: "Inteligencia",
+                        destreza: "Destreza",
+                        suerte: "Suerte",
+                      };
+                      return [{ nombre: nombres[id] ?? id, valor }];
+                    })
+                  : [];
+                const sumaAtributos = aportesAtributos.reduce((suma, fuente) => suma + fuente.valor, 0);
+                const valorBase = desglose?.base[stat.clave];
                 const fuentes = desglose
                   ? [
-                      { nombre: "Base", valor: desglose.base[stat.clave] },
+                      {
+                        nombre: "Base y nivel",
+                        valor: (typeof valorBase === "number" ? valorBase : 0) - sumaAtributos,
+                      },
+                      ...aportesAtributos,
                       { nombre: "Mejoras", valor: desglose.mejoras[stat.clave] },
                       ...(desglose.pasivasPorHabilidad ?? []).map((fuente) => ({
-                        nombre: fuente.nombre,
+                        nombre: `Pasiva: ${fuente.nombre}`,
                         valor: fuente.modificadores[stat.clave],
                       })),
                       ...(desglose.equipoPorObjeto ?? []).map((fuente) => ({
@@ -355,7 +377,7 @@ export default function HojaPersonajeModal({
                       <div className="border-t border-stone-300 bg-[#e4d5b7] px-3 py-2 text-[11px] text-stone-700">
                         {fuentes.length > 0 ? fuentes.map((fuente) => {
                           if (typeof fuente.valor !== "number") return null;
-                          const prefijo = fuente.nombre === "Base" ? "" : fuente.valor > 0 ? "+" : "";
+                          const prefijo = fuente.nombre === "Base y nivel" ? "" : fuente.valor > 0 ? "+" : "";
                           return (
                             <p key={fuente.nombre} className="flex items-start justify-between gap-2">
                               <span className="min-w-0">{fuente.nombre}</span>
