@@ -1,6 +1,6 @@
-import { procesarAccionCombate } from "@/server/services/combate/accion-combate";
+import { adaptarAccionCombate } from "@/server/services/combate/dispatcher";
 
 /** Ruta de compatibilidad para clientes que todavía usan el endpoint común. */
 export async function POST(request: Request) {
-  return procesarAccionCombate(request);
+  return adaptarAccionCombate(request);
 }

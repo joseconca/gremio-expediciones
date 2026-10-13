@@ -10,6 +10,7 @@ function makeCombatConsumableRoute({
   maxHp = 100,
   initialQuantity = 2,
   itemId = "pocion",
+  initialType = "pve",
 } = {}) {
   let state = {
     user: {
@@ -57,7 +58,7 @@ function makeCombatConsumableRoute({
         combateActivo: {
           id: "combat1",
           version: 0,
-          tipo: "pve",
+          tipo: initialType,
           fase: "activo",
           ronda: 1,
           turno: "jugador",
@@ -172,7 +173,7 @@ function makeCombatConsumableRoute({
       catch (error) { state = snapshot; throw error; }
     },
   };
-  const { procesarAccionCombate: POST } = loadSource("src/server/services/combate/accion-combate.ts", {
+  const commonDependencies = {
     "next/server": { NextResponse },
     "@prisma/client": {
       Prisma: {
@@ -238,7 +239,26 @@ function makeCombatConsumableRoute({
       esModoDificultad: (valor) => ["facil", "normal", "dificil"].includes(valor),
       registrarVictoriaRangoNormal: (_rangos, _nivel) => ["I"],
     },
-  });
+  };
+  commonDependencies["@/lib/expediciones/contrato-accion-combate"] = loadSource(
+    "src/lib/expediciones/contrato-accion-combate.ts",
+  );
+  const common = loadSource("src/server/services/combate/accion-combate.ts", commonDependencies);
+  const pveDependencies = {
+    "next/server": { NextResponse },
+    "@prisma/client": commonDependencies["@prisma/client"],
+    "@/lib/prisma": { prisma },
+    "@/lib/enemigos": commonDependencies["@/lib/enemigos"],
+    "@/lib/configuracionJuego": commonDependencies["@/lib/configuracionJuego"],
+    "@/lib/expediciones/combate": commonDependencies["@/lib/expediciones/combate"],
+    "../../../lib/expediciones/dificultad": commonDependencies["../../../../lib/expediciones/dificultad"],
+    "../../../lib/expediciones/estados-combate": commonDependencies["../../../../lib/expediciones/estados-combate"],
+    "./accion-combate": common,
+  };
+  const { ejecutarAccionPve: POST } = loadSource(
+    "src/server/services/combate/pve.ts",
+    pveDependencies,
+  );
   return { POST, getState: () => state };
 }
 
@@ -980,10 +1000,9 @@ test("regresión: la entrega de botín en expedición respeta el límite de inve
 });
 
 test("combate: rechaza acciones PvP en el servicio PvE antes de consumir objetos", async () => {
-  const route = makeCombatConsumableRoute({ initialHp: 80, initialQuantity: 2 });
+  const route = makeCombatConsumableRoute({ initialHp: 80, initialQuantity: 2, initialType: "pvp" });
   const response = await route.POST(
-    request({ accion: "usar_objeto", objetoInventarioId: "item-consumible" }),
-    "pvp",
+    request({ accion: "usar_objeto", objetivo: "propio", objetoInventarioId: "item-consumible" }),
   );
   assert.equal(response.status, 409, JSON.stringify(response.body));
   assert.equal(route.getState().item.cantidad, 2);
@@ -992,7 +1011,7 @@ test("combate: rechaza acciones PvP en el servicio PvE antes de consumir objetos
 
 test("combate: las pociones curan hasta el máximo y consumen una unidad atómicamente", async () => {
   const route = makeCombatConsumableRoute({ initialHp: 80, maxHp: 100, initialQuantity: 2 });
-  const response = await route.POST(request({ accion: "usar_objeto", objetoInventarioId: "item-consumible" }));
+  const response = await route.POST(request({ accion: "usar_objeto", objetivo: "propio", objetoInventarioId: "item-consumible" }));
   assert.equal(response.status, 200, JSON.stringify(response.body));
   assert.equal(response.body.accion.curacion, 20);
   assert.equal(response.body.combate.jugadorHp, 100);
@@ -1002,15 +1021,15 @@ test("combate: las pociones curan hasta el máximo y consumen una unidad atómic
 
 test("combate: rechaza objeto inexistente, no consumible y salud completa sin gastar inventario", async () => {
   const inexistente = makeCombatConsumableRoute({ initialHp: 80 });
-  assert.equal((await inexistente.POST(request({ accion: "usar_objeto", objetoInventarioId: "otro" }))).status, 404);
+  assert.equal((await inexistente.POST(request({ accion: "usar_objeto", objetivo: "propio", objetoInventarioId: "otro" }))).status, 404);
   assert.equal(inexistente.getState().item.cantidad, 2);
 
   const noConsumible = makeCombatConsumableRoute({ itemId: "espada_madera", initialHp: 80 });
-  assert.equal((await noConsumible.POST(request({ accion: "usar_objeto", objetoInventarioId: "item-consumible" }))).status, 400);
+  assert.equal((await noConsumible.POST(request({ accion: "usar_objeto", objetivo: "propio", objetoInventarioId: "item-consumible" }))).status, 400);
   assert.equal(noConsumible.getState().item.cantidad, 2);
 
   const saludCompleta = makeCombatConsumableRoute({ initialHp: 100, maxHp: 100 });
-  assert.equal((await saludCompleta.POST(request({ accion: "usar_objeto", objetoInventarioId: "item-consumible" }))).status, 400);
+  assert.equal((await saludCompleta.POST(request({ accion: "usar_objeto", objetivo: "propio", objetoInventarioId: "item-consumible" }))).status, 400);
   assert.equal(saludCompleta.getState().item.cantidad, 2);
 });
 
