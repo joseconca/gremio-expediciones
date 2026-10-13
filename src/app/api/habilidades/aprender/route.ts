@@ -128,7 +128,7 @@ export async function POST(request: Request) {
           throw new Error("PROGRESO_JOB_NO_ENCONTRADO");
         }
 
-        const requisitosAprendizaje = evaluarRequisitosAprendizaje(habilidad, progresoJob);
+        const requisitosAprendizaje = evaluarRequisitosAprendizaje(habilidad, [progresoJob]);
         if (!requisitosAprendizaje.cumpleNivelJob) {
           throw new Error("NIVEL_JOB_INSUFICIENTE");
         }
