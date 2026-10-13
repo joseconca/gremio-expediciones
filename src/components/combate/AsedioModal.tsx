@@ -6,6 +6,7 @@ import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import type { CombateActivo, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { calcularBonusDefensaMuralla } from "@/lib/expediciones/combate";
+import { CLASES } from "@/lib/progresion/clases";
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
 
@@ -79,6 +80,7 @@ export default function AsedioModal({
   >(null);
   const [logExpandido, setLogExpandido] = useState(false);
   const [mostrarStatsRival, setMostrarStatsRival] = useState(false);
+  const [panelStatsRival, setPanelStatsRival] = useState<"jugador" | "rival">("rival");
   const mostrarResultado = combate.fase !== "activo";
   const [procesandoLocal, setProcesandoLocal] = useState(false);
 
@@ -492,6 +494,8 @@ export default function AsedioModal({
   };
 
   const spritePropio = obtenerSpriteHeroe(personaje.clase, personaje.sexo);
+  const claseActiva = CLASES[personaje.profesionActivaId];
+  const recursoClase = claseActiva?.recursoCombate ?? "energia";
 
   /*
    * ============================================================
@@ -547,13 +551,14 @@ export default function AsedioModal({
 
             <div className="h-4 w-px bg-stone-700" />
 
-            <h2
-              onClick={() => setMostrarStatsRival(true)}
-              className="cursor-pointer truncate text-sm font-black tracking-wide text-stone-100 transition-colors hover:text-stone-300 sm:text-base"
-              title="Ver estadísticas del rival"
+            <button
+              type="button"
+              onClick={() => { setPanelStatsRival("rival"); setMostrarStatsRival(true); }}
+              className="truncate text-left text-sm font-black tracking-wide text-stone-100 transition-colors hover:text-stone-300 sm:text-base"
+              title="Consultar las estadísticas del rival y de tu personaje"
             >
               {nombreRival}
-            </h2>
+            </button>
           </div>
 
           <div className="flex shrink-0 items-center gap-2">
@@ -617,16 +622,24 @@ export default function AsedioModal({
                     }}
                   />
                 </div>
-                <p className="mt-1 text-[10px] font-bold text-stone-300">
-                  Posición: {ETIQUETAS_POSICION_COMBATE[normalizarPosicionCombate(esAtacante ? combate.jugadorPosicion : combate.enemigoPosicion)]}
-                </p>
-                <div className="mt-2 grid grid-cols-2 gap-1 text-[9px] font-mono font-bold">
-                  <span className="rounded border border-blue-900/70 bg-blue-950/70 px-1.5 py-1 text-blue-200">
-                    ENE {personaje.energiaActual}/{personaje.energiaMaxima}
-                  </span>
-                  <span className="rounded border border-violet-900/70 bg-violet-950/70 px-1.5 py-1 text-violet-200">
-                    MAN {personaje.manaActual}/{personaje.manaMaximo}
-                  </span>
+                <div className="mt-1 min-h-6 w-full">
+                  <IndicadoresEfectosCombate
+                    efectos={esAtacante ? combate.efectos : combate.efectosDefensor}
+                    comidaPreparada={esAtacante ? (comidaActiva !== undefined ? comidaActiva : personaje.comidaPreparada) : null}
+                    habilidades={personaje.habilidades}
+                  />
+                </div>
+                <div className="mt-1 grid grid-cols-1 gap-1 text-[9px] font-mono font-bold">
+                  {recursoClase !== "mana" && (
+                    <span className="rounded border border-blue-900/70 bg-blue-950/70 px-1.5 py-1 text-blue-200">
+                      ENE {personaje.energiaActual}/{personaje.energiaMaxima}
+                    </span>
+                  )}
+                  {recursoClase !== "energia" && (
+                    <span className="rounded border border-violet-900/70 bg-violet-950/70 px-1.5 py-1 text-violet-200">
+                      MAN {personaje.manaActual}/{personaje.manaMaximo}
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -659,11 +672,6 @@ export default function AsedioModal({
                     : ""
                 }`}
               >
-                <IndicadoresEfectosCombate
-                  efectos={esAtacante ? combate.efectos : combate.efectosDefensor}
-                  comidaPreparada={esAtacante ? (comidaActiva !== undefined ? comidaActiva : personaje.comidaPreparada) : null}
-                  habilidades={personaje.habilidades}
-                />
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "jugador").map((pulso, indice) => (
                   <div
                     key={`pulso-propio-${indice}-${pulso.tipo}`}
@@ -740,6 +748,9 @@ export default function AsedioModal({
                     }}
                   />
                 </div>
+                <div className="mt-1 min-h-6 w-full">
+                  <IndicadoresEfectosCombate efectos={esAtacante ? combate.efectosDefensor : combate.efectos} />
+                </div>
               </div>
 
               <p className="mb-2 text-[10px] font-bold text-stone-300">
@@ -770,9 +781,6 @@ export default function AsedioModal({
                     : ""
                 }`}
               >
-                <IndicadoresEfectosCombate
-                  efectos={esAtacante ? combate.efectosDefensor : combate.efectos}
-                />
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "enemigo").map((pulso, indice) => (
                   <div
                     key={`pulso-rival-${indice}-${pulso.tipo}`}
@@ -1153,92 +1161,103 @@ export default function AsedioModal({
           </div>
         </section>
 
-        {/* ====================================================== */}
-        {/* ESTADÍSTICAS DEL RIVAL */}
-        {/* ====================================================== */}
-
+        {/* PANEL DE INFORMACIÓN DE LOS COMBATIENTES */}
         {mostrarStatsRival && (
-          <div className="absolute inset-0 z-[10000] flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
-            <div className="relative w-full max-w-xs rounded-lg border-2 border-stone-700 bg-stone-900 p-5 shadow-2xl">
+          <div className="absolute inset-0 z-[10000] flex items-center justify-center bg-black/75 p-3 backdrop-blur-sm sm:p-4">
+            <div className="relative max-h-[88dvh] w-full max-w-lg overflow-y-auto rounded-xl border border-stone-700 bg-stone-900 p-4 shadow-2xl sm:p-5">
               <button
+                type="button"
                 onClick={() => setMostrarStatsRival(false)}
-                className="absolute right-3 top-3 text-stone-500 transition-colors hover:text-stone-300"
+                aria-label="Cerrar estadísticas"
+                className="absolute right-3 top-3 z-10 rounded-md px-2 py-1 text-stone-500 transition-colors hover:bg-stone-800 hover:text-white"
               >
                 ✕
               </button>
-
-              <div className="mb-4 border-b border-stone-700 pb-3 text-center">
-                <h3 className="text-lg font-black tracking-wider text-stone-100">
-                  {nombreRival}
-                </h3>
-
-                <span className="text-[10px] font-mono uppercase tracking-widest text-stone-400">
-                  Estadísticas del rival
-                </span>
+              <div className="mb-4 border-b border-stone-700 pb-3 pr-8">
+                <h3 className="text-lg font-black tracking-wide text-stone-100">Información del asedio</h3>
+                <p className="mt-1 text-xs text-stone-500">Consulta la clase, posición y estadísticas de ambos combatientes.</p>
               </div>
 
-              <div className="grid grid-cols-1 gap-3">
-                <div className="flex items-center justify-around rounded border border-stone-800 bg-stone-950/50 p-2">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-stone-500">
-                    Nivel
-                  </span>
+              <div className="mb-4 grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={() => setPanelStatsRival("jugador")}
+                  aria-pressed={panelStatsRival === "jugador"}
+                  className={`rounded-lg border px-3 py-2 text-sm font-bold transition-colors ${panelStatsRival === "jugador" ? "border-amber-500 bg-amber-950/60 text-amber-200" : "border-stone-700 bg-stone-950/60 text-stone-400 hover:border-stone-500"}`}
+                >
+                  {personaje.nombre} · Tú
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPanelStatsRival("rival")}
+                  aria-pressed={panelStatsRival === "rival"}
+                  className={`rounded-lg border px-3 py-2 text-sm font-bold transition-colors ${panelStatsRival === "rival" ? "border-red-500 bg-red-950/50 text-red-200" : "border-stone-700 bg-stone-950/60 text-stone-400 hover:border-stone-500"}`}
+                >
+                  {nombreRival}
+                </button>
+              </div>
 
-                  <span className="font-mono text-lg font-bold text-amber-400">
-                    {statsRival.nivel}
-                  </span>
-                </div>
-
-                <div className="flex items-center justify-around rounded border border-stone-800 bg-stone-950/50 p-2">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-stone-500">
-                    Vida Máx
-                  </span>
-
-                  <span className="font-mono text-lg font-bold text-emerald-400">
-                    {statsRival.hpMaximo}
-                  </span>
-                </div>
-
-                <div className="flex items-center justify-around rounded border border-stone-800 bg-stone-950/50 p-2">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-stone-500">
-                    Ataque
-                  </span>
-
-                  <span className="font-mono text-lg font-bold text-red-400">
-                    {statsRival.ataque}
-                  </span>
-                </div>
-
-                <div className="flex items-center justify-around rounded border border-stone-800 bg-stone-950/50 p-2">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-stone-500">
-                    Defensa
-                  </span>
-
-                  <div className="text-right">
-                    <span className="font-mono text-lg font-bold text-blue-400">
-                      {statsRival.defensa}
+              {panelStatsRival === "rival" ? (
+                <div>
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                      <h4 className="font-black text-stone-100">{nombreRival}</h4>
+                      <p className="text-[11px] text-stone-500">
+                        {CLASES[claseRival ?? ""]?.nombre ?? claseRival ?? "Rival"} · Nivel {statsRival.nivel}
+                      </p>
+                    </div>
+                    <span className="rounded-md border border-red-900/70 bg-red-950/50 px-2 py-1 text-[10px] font-bold text-red-200">
+                      Posición: {ETIQUETAS_POSICION_COMBATE[normalizarPosicionCombate(esAtacante ? combate.enemigoPosicion : combate.jugadorPosicion)]}
                     </span>
-
-                    {esAtacante && (combate.murallaNivel ?? 0) > 0 && (
-                      <span className="ml-2 text-[10px] font-bold text-stone-500">
-                        (+{bonusMurallaRival} muralla)
-                      </span>
-                    )}
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Vida máxima</p><p className="mt-1 font-mono text-lg font-bold text-emerald-300">{statsRival.hpMaximo}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Ataque</p><p className="mt-1 font-mono text-lg font-bold text-red-300">{statsRival.ataque}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Defensa</p><p className="mt-1 font-mono text-lg font-bold text-blue-300">{statsRival.defensa}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Velocidad</p><p className="mt-1 font-mono text-lg font-bold text-amber-300">{statsRival.velocidad}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Prob. crítico</p><p className="mt-1 font-mono text-lg font-bold text-amber-200">{Math.round((esAtacante ? combate.enemigoProbCritico : combate.jugadorProbCritico) * 100)}%</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Daño crítico</p><p className="mt-1 font-mono text-lg font-bold text-amber-200">×{esAtacante ? combate.enemigoDanoCritico : combate.jugadorDanoCritico}</p></div>
                   </div>
                 </div>
-
-                <div className="flex items-center justify-around rounded border border-stone-800 bg-stone-950/50 p-2">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-stone-500">
-                    Velocidad
-                  </span>
-
-                  <span className="font-mono text-lg font-bold text-amber-400">
-                    {statsRival.velocidad}
-                  </span>
+              ) : (
+                <div>
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                      <h4 className="font-black text-stone-100">{personaje.nombre}</h4>
+                      <p className="text-[11px] text-stone-500">{claseActiva?.nombre ?? personaje.clase} · Nivel Base {personaje.nivel} · Job {personaje.nivelJob}</p>
+                    </div>
+                    <span className="rounded-md border border-amber-900/70 bg-amber-950/50 px-2 py-1 text-[10px] font-bold text-amber-200">
+                      Posición: {ETIQUETAS_POSICION_COMBATE[normalizarPosicionCombate(esAtacante ? combate.jugadorPosicion : combate.enemigoPosicion)]}
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Vida máxima</p><p className="mt-1 font-mono text-lg font-bold text-emerald-300">{hpMaximoPropio}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Ataque físico</p><p className="mt-1 font-mono text-lg font-bold text-red-300">{esAtacante ? combate.jugadorAtaque : combate.enemigoAtaque}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Defensa física</p><p className="mt-1 font-mono text-lg font-bold text-blue-300">{esAtacante ? combate.jugadorDefensa : combate.enemigoDefensa}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Velocidad</p><p className="mt-1 font-mono text-lg font-bold text-amber-300">{esAtacante ? combate.jugadorVelocidad : combate.enemigoVelocidad}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Ataque mágico</p><p className="mt-1 font-mono text-lg font-bold text-violet-300">{personaje.ataqueMagico}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Defensa mágica</p><p className="mt-1 font-mono text-lg font-bold text-violet-300">{personaje.defensaMagica}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Precisión</p><p className="mt-1 font-mono text-lg font-bold text-sky-300">{esAtacante ? combate.jugadorPrecision ?? personaje.precision : combate.enemigoPrecision ?? personaje.precision}</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Evasión</p><p className="mt-1 font-mono text-lg font-bold text-sky-300">{Math.round((esAtacante ? combate.jugadorEvasion ?? personaje.evasion : combate.enemigoEvasion ?? personaje.evasion) * 100)}%</p></div>
+                    <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3"><p className="text-[10px] uppercase tracking-wider text-stone-500">Prob. crítico</p><p className="mt-1 font-mono text-lg font-bold text-amber-200">{Math.round((esAtacante ? combate.jugadorProbCritico : combate.enemigoProbCritico) * 100)}%</p></div>
+                  </div>
+                  <div className="mt-3 rounded-lg border border-stone-800 bg-stone-950/50 p-3">
+                    <p className="mb-2 text-[10px] font-black uppercase tracking-wider text-stone-500">Atributos</p>
+                    <div className="grid grid-cols-3 gap-2 text-center sm:grid-cols-6">
+                      {([
+                        ["FUE", personaje.fuerza], ["AGI", personaje.agilidad], ["VIT", personaje.vitalidad],
+                        ["INT", personaje.inteligencia], ["DES", personaje.destreza], ["SUE", personaje.suerte],
+                      ] as const).map(([label, value]) => (
+                        <div key={label}><p className="text-[9px] text-stone-500">{label}</p><p className="font-mono font-bold text-stone-200">{value}</p></div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         )}
+
       </div>
     </div>
   );
