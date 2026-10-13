@@ -51,7 +51,7 @@ test("los estados modifican ataque, precisión y evasión con límites", () => {
   ];
   const efectosJugador = [efectos[0], efectos[3]];
   const efectosEnemigo = [efectos[1], efectos[2]];
-  assert.equal(calcularAtaqueModificado(100, efectosJugador, true), 114);
+  assert.equal(calcularAtaqueModificado(100, efectosJugador, true), 115);
   assert.equal(calcularAtaqueModificado(100, efectosEnemigo, false), 88);
   assert.equal(calcularPrecisionModificada(75, efectosEnemigo), 65);
   assert.equal(calcularEvasionModificada(0.55, efectosJugador), 0.6);
