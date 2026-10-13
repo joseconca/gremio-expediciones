@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
+import type { PosicionCombate } from "@/lib/expediciones/posicion-combate";
 import { calcularCosteEdificio, CosteEdificio } from "@/lib/configuracionJuego";
 import type {
   EquipoPersonaje,
@@ -134,6 +135,7 @@ export interface Personaje {
   clase: string;
   profesionActivaId: string;
   sexo: "chico" | "chica";
+  posicionCombate: PosicionCombate;
   fuerza: number;
   agilidad: number;
   vitalidad: number;
@@ -210,6 +212,9 @@ export interface CombateActivo {
   fase: "activo" | "victoria" | "derrota" | "huida";
   ronda: number;
   turno: "atacante" | "defensor";
+  jugadorPosicion?: PosicionCombate;
+  enemigoPosicion?: PosicionCombate;
+  rolUsuario?: "atacante" | "defensor";
   tipo: TipoMision;
 
   jugadorHp: number;
@@ -280,6 +285,8 @@ export interface CombatePve {
   fase: "activo" | "victoria" | "derrota" | "huida";
   ronda: number;
   turno: "jugador" | "enemigo";
+  jugadorPosicion?: PosicionCombate;
+  enemigoPosicion?: PosicionCombate;
   tipo: TipoMision;
 
   jugadorHp: number;
@@ -609,6 +616,9 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     clase: datos.clase,
     profesionActivaId,
     sexo: datos.sexo === "chica" ? "chica" : "chico",
+    posicionCombate: typeof datos.posicionCombate === "string"
+      ? (datos.posicionCombate as PosicionCombate)
+      : "centro",
     ...atributos,
     energiaActual: Math.min(
       typeof datos.energiaActual === "number" ? datos.energiaActual : (estadisticas.total.energiaMaxima ?? 20),

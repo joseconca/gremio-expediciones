@@ -1654,7 +1654,9 @@ export async function POST(request: Request) {
           efectosJugador: efectosDefensor,
         });
 
-        accionAnimada = resultadoHabilidad.accion;
+        // En PvP, el resolver compartido etiqueta como "jugador" al atacante.
+        // Al resolver la habilidad del defensor, traducimos el actor real.
+        accionAnimada = { ...resultadoHabilidad.accion, actor: "enemigo" };
 
         enemigoHp = resultadoHabilidad.jugadorHp;
         enemigoDefensa = resultadoHabilidad.jugadorDefensa;
