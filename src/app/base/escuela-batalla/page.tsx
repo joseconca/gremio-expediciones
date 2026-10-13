@@ -89,7 +89,9 @@ export default function EscuelaCombatePage() {
       router.push("/base");
       return;
     }
-    void recargarHabilidades();
+    Promise.resolve().then(() => {
+      void recargarHabilidades();
+    });
   }, [nivelEscuela, router, recargarHabilidades]);
 
   const aprendidas = useMemo(() => datos?.aprendidas ?? [], [datos?.aprendidas]);
