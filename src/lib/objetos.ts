@@ -51,6 +51,7 @@ export const OBJETOS: DefinicionObjeto[] = [
 
   {
     id: "pocion",
+    vendibleEnArmeria: false,
     nombre: "Poción",
     tipo: "consumible",
     descripcion: "Recupera 30 puntos de vida.",
@@ -62,6 +63,7 @@ export const OBJETOS: DefinicionObjeto[] = [
 
   {
     id: "pocion_grande",
+    vendibleEnArmeria: false,
     nombre: "Poción Grande",
     tipo: "consumible",
     descripcion: "Recupera 60 puntos de vida.",
@@ -77,6 +79,7 @@ export const OBJETOS: DefinicionObjeto[] = [
 
   {
     id: "espada_madera",
+    vendibleEnArmeria: true,
     nombre: "Un palo de madera",
     tipo: "arma",
     slot: "arma",
@@ -90,7 +93,23 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
 
   {
+    id: "espada_piedra",
+    vendibleEnArmeria: true,
+    nombre: "Espada de Piedra",
+    tipo: "arma",
+    slot: "arma",
+    manos: 1,
+    subtipo: "espada",
+    descripcion: "Una espada tosca tallada en piedra, más pesada que una de madera.",
+    rareza: "comun",
+    precio: 350,
+    ataqueBase: 5,
+    ataquePorMejora: 0.75,
+  },
+
+  {
     id: "espada_hierro",
+    vendibleEnArmeria: true,
     nombre: "Espada de Hierro",
     tipo: "arma",
     slot: "arma",
@@ -105,6 +124,7 @@ export const OBJETOS: DefinicionObjeto[] = [
 
   {
     id: "espada_acero",
+    vendibleEnArmeria: true,
     nombre: "Espada de Acero",
     tipo: "arma",
     slot: "arma",
@@ -119,6 +139,7 @@ export const OBJETOS: DefinicionObjeto[] = [
 
   {
     id: "espada_runa",
+    vendibleEnArmeria: false,
     nombre: "Espada Rúnica",
     tipo: "arma",
     slot: "arma",
@@ -133,6 +154,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
   {
     id: "hacha_orca",
+    vendibleEnArmeria: false,
     nombre: "Hacha Orca",
     tipo: "arma",
     slot: "arma",
@@ -155,6 +177,7 @@ export const OBJETOS: DefinicionObjeto[] = [
 
   {
     id: "tela_andrajosa",
+    vendibleEnArmeria: true,
     nombre: "Tela Andrajosa",
     tipo: "armadura",
     slot: "armadura",
@@ -167,6 +190,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
   {
     id: "armadura_cuero",
+    vendibleEnArmeria: true,
     nombre: "Armadura de Cuero",
     tipo: "armadura",
     slot: "armadura",
@@ -180,6 +204,7 @@ export const OBJETOS: DefinicionObjeto[] = [
 
   {
     id: "armadura_hierro",
+    vendibleEnArmeria: true,
     nombre: "Armadura de Hierro",
     tipo: "armadura",
     slot: "armadura",
@@ -194,6 +219,7 @@ export const OBJETOS: DefinicionObjeto[] = [
 
   {
     id: "armadura_acero",
+    vendibleEnArmeria: true,
     nombre: "Armadura de Acero",
     tipo: "armadura",
     slot: "armadura",
@@ -212,6 +238,7 @@ export const OBJETOS: DefinicionObjeto[] = [
 
   {
     id: "anillo_viajero",
+    vendibleEnArmeria: false,
     nombre: "Anillo del Viajero",
     tipo: "accesorio",
     slot: "anillo",
@@ -223,6 +250,7 @@ export const OBJETOS: DefinicionObjeto[] = [
 
   {
     id: "amuleto_vitalidad",
+    vendibleEnArmeria: false,
     nombre: "Amuleto de Vitalidad",
     tipo: "accesorio",
     slot: "collar",
@@ -234,6 +262,7 @@ export const OBJETOS: DefinicionObjeto[] = [
 
   {
     id: "anillo_maldito",
+    vendibleEnArmeria: false,
     nombre: "Anillo Maldito",
     tipo: "accesorio",
     slot: "anillo",
@@ -250,6 +279,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   // Nuevas ranuras de equipo
   {
     id: "escudo_madera",
+    vendibleEnArmeria: true,
     nombre: "Escudo de madera",
     tipo: "accesorio",
     slot: "mano_secundaria",
@@ -260,6 +290,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
   {
     id: "casco_cuero",
+    vendibleEnArmeria: true,
     nombre: "Casco de cuero",
     tipo: "armadura",
     slot: "casco",
@@ -272,6 +303,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
   {
     id: "pantalones_cuero",
+    vendibleEnArmeria: true,
     nombre: "Pantalones de cuero",
     tipo: "armadura",
     slot: "pantalones",
@@ -284,6 +316,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
   {
     id: "botas_cuero",
+    vendibleEnArmeria: true,
     nombre: "Botas de cuero",
     tipo: "armadura",
     slot: "botas",
@@ -298,6 +331,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
   {
     id: "guantes_cuero",
+    vendibleEnArmeria: true,
     nombre: "Guantes de cuero",
     tipo: "armadura",
     slot: "guantes",
@@ -310,6 +344,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
   {
     id: "collar_cobre",
+    vendibleEnArmeria: false,
     nombre: "Collar de cobre",
     tipo: "accesorio",
     slot: "collar",
@@ -320,6 +355,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
   {
     id: "anillo_resistencia",
+    vendibleEnArmeria: false,
     nombre: "Anillo de resistencia",
     tipo: "accesorio",
     slot: "anillo",

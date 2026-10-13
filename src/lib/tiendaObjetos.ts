@@ -57,6 +57,10 @@ export function obtenerObjetosVisiblesEnArmeria(
   }
 
   return OBJETOS.filter((objeto) => {
+    if (!objeto.vendibleEnArmeria) {
+      return false;
+    }
+
     if (objeto.tipo !== "arma" && objeto.tipo !== "armadura" && objeto.tipo !== "accesorio") {
       return false;
     }
@@ -76,7 +80,7 @@ export function puedeComprarObjeto(
   nivelArmeria: number,
   nivelHeroe: number
 ): boolean {
-  if (objeto.tipo !== "arma" && objeto.tipo !== "armadura" && objeto.tipo !== "accesorio") {
+  if (!objeto.vendibleEnArmeria || (objeto.tipo !== "arma" && objeto.tipo !== "armadura" && objeto.tipo !== "accesorio")) {
     return false;
   }
 

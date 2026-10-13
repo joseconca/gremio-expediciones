@@ -440,6 +440,7 @@ export default function HerreriaPage() {
   const inventarioVisible = useMemo(() => datos?.inventario ?? [], [datos?.inventario]);
 
   const obtenerObjetoEquipado = (tipo: TipoEquipamiento) => datos?.equipo[tipo] ?? null;
+  const armaDosManosEquipada = obtenerObjetoEquipado("arma")?.objeto.manos === 2;
 
   const renderSlot = (tipo: TipoEquipamiento) => {
     const equipado = obtenerObjetoEquipado(tipo);
@@ -509,7 +510,7 @@ export default function HerreriaPage() {
 
             <div className="mt-1.5 flex items-center justify-between gap-1 border-t border-white/5 pt-1">
               <span className="truncate text-[8px] font-bold uppercase tracking-wide text-[#82725b]">
-                {nombreTipo(tipo)}
+                {tipo === "arma" && equipado.objeto.manos === 2 ? "Arma a dos manos" : nombreTipo(tipo)}
               </span>
               <button
                 type="button"
@@ -597,143 +598,96 @@ export default function HerreriaPage() {
             </div>
           </div>
 
-          <div className="p-1.5 sm:p-3">
+          <div className="p-1.5 sm:p-2">
             {cargando ? (
-              <div className="rounded-md border border-[#3a3f42] bg-[#141617] p-12 text-center text-[#676d70]">
-                Encendiendo la forja...
+              <div className="rounded-md border border-[#3a3f42] bg-[#141617] p-5 text-center text-xs text-[#a18a68]">
+                Cargando mercancía…
               </div>
+            ) : (datos?.enVenta ?? []).length === 0 ? (
+              <p className="rounded-md border border-dashed border-[#49413a] bg-[#171819] px-3 py-4 text-center text-xs text-[#92836c]">
+                No hay mercancía disponible en este momento.
+              </p>
             ) : (
-              <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
+              <div className="space-y-1.5">
                 {(datos?.enVenta ?? []).map((objeto) => {
                   const comprando = procesando === `comprar:${objeto.id}`;
                   const inventarioLleno =
                     (datos?.espaciosInventario.ocupados ?? datos?.inventario.length ?? 0) >=
                     (datos?.espaciosInventario.maximo ?? 30);
-                  if (!esEquipable(objeto)) {
-                    return null;
-                  }
+                  if (!esEquipable(objeto)) return null;
+
+                  const bloqueadoPorNivel = !objeto.puedeComprar;
+                  const bloqueadoPorOro = oro < objeto.precio;
+                  const puedeComprarAhora = !comprando && !bloqueadoPorNivel && !bloqueadoPorOro && !inventarioLleno && procesando === null;
 
                   return (
                     <article
                       key={objeto.id}
                       title={objeto.descripcion}
-                      className="group flex flex-col overflow-hidden rounded-md border border-[#555b5e] bg-[#222628] shadow-[0_8px_18px_rgba(0,0,0,0.35)] transition-colors hover:border-[#72797d]"
+                      className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-2 gap-y-1 rounded-md border border-[#4b5050] bg-[linear-gradient(110deg,#292522,#1d2021)] p-1.5 transition-colors hover:border-[#82704f] sm:grid-cols-[auto_minmax(0,1fr)_minmax(112px,auto)] sm:items-center sm:gap-3 sm:p-2"
                     >
-                      {/* Cabecera pieza */}
-                      <div className="relative border-b border-[#474d50] bg-[linear-gradient(135deg,#303638,#202426)] p-2 sm:p-3">
-                        <div className="pointer-events-none absolute inset-2 border border-[#677075]/20" />
-
-                        <div className="relative flex items-start gap-3">
-                          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border-2 border-[#60676a] bg-[#171a1b] text-2xl shadow-[inset_0_0_18px_rgba(0,0,0,0.5)] sm:h-16 sm:w-16 sm:text-3xl">
-                            {obtenerSpriteObjeto(objeto) ? (
-                              <Image
-                                src={obtenerSpriteObjeto(objeto)!}
-                                alt={objeto.nombre}
-                                width={64}
-                                height={64}
-                                className="rounded-md"
-                              />
-                            ) : (
-                              iconoTipo(objeto.tipo)
-                            )}
-                          </div>
-
-                          <div className="min-w-0">
-                            <div className="mb-2 flex flex-wrap items-center gap-2">
-                              <span
-                                className={`rounded border px-2 py-1 text-[9px] font-black uppercase tracking-widest ${estiloRareza(
-                                  objeto.rareza
-                                )}`}
-                              >
-                                {nombreRareza(objeto.rareza)}
-                              </span>
-
-                              <span className="text-[9px] font-black uppercase tracking-wider text-[#747b7e]">
-                                {nombreTipoObjeto(objeto)}
-                              </span>
-                            </div>
-
-                            <h3 className="text-lg font-black leading-tight text-[#ece9e3] sm:text-2xl">
-                              {objeto.nombre}
-                            </h3>
-
-                            {objeto.subtipo && (
-                              <p className="mt-1 text-xs font-bold uppercase tracking-wider text-[#767d80]">
-                                {objeto.subtipo}
-                              </p>
-                            )}
-                          </div>
-                        </div>
-
-                        <span className="sr-only">{objeto.descripcion}</span>
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded border border-[#756044] bg-[#15120e] p-0.5 sm:h-14 sm:w-14">
+                        {obtenerSpriteObjeto(objeto) ? (
+                          <Image
+                            src={obtenerSpriteObjeto(objeto)!}
+                            alt={objeto.nombre}
+                            width={64}
+                            height={64}
+                            className="h-full w-full rounded object-contain [image-rendering:pixelated]"
+                          />
+                        ) : (
+                          <span className="text-2xl" aria-hidden="true">{iconoTipo(objeto.tipo)}</span>
+                        )}
                       </div>
 
-                      {/* Estadísticas */}
-                      <div className="flex-1 px-2 py-1.5">
-                        <div className="flex flex-wrap gap-1.5">
-                          {obtenerEstadisticasNoCero(objeto, 0).map(
-                            (estadistica) => (
-                              <div
-                                key={estadistica.clave}
-                                className="flex items-center gap-1 rounded border border-[#363b3e] bg-[#181b1c] px-2 py-1 sm:py-1.5"
-                              >
-                                <p className="text-[9px] font-black uppercase tracking-wider text-[#62686b]">
-                                  {estadistica.nombre}
-                                </p>
-
-                                <p
-                                  className={`text-xs font-black sm:text-sm ${
-                                    estadistica.valor < 0
-                                      ? "text-red-400"
-                                      : "text-emerald-400"
-                                  }`}
-                                >
-                                  {formatearValorEstadistica(
-                                    estadistica.clave,
-                                    estadistica.valor
-                                  )}
-                                </p>
-                              </div>
-                            )
-                          )}
+                      <div className="min-w-0 self-center">
+                        <div className="flex min-w-0 flex-wrap items-center gap-x-1.5 gap-y-0.5">
+                          <span className={`rounded border px-1.5 py-0.5 text-[8px] font-black uppercase leading-3 tracking-wide ${estiloRareza(objeto.rareza)}`}>
+                            {nombreRareza(objeto.rareza)}
+                          </span>
+                          <span className="text-[9px] font-bold uppercase leading-3 tracking-wide text-[#887d6b]">
+                            {nombreTipoObjeto(objeto)}
+                            {objeto.manos === 2 ? " · Dos manos" : ""}
+                          </span>
+                        </div>
+                        <h3 className="mt-0.5 break-words text-xs font-black leading-4 text-[#f0dfbd] sm:text-sm">
+                          {objeto.nombre}
+                        </h3>
+                        <div className="mt-1 flex flex-wrap gap-x-2 gap-y-0.5">
+                          {obtenerEstadisticasNoCero(objeto, 0).map((estadistica) => (
+                            <span key={estadistica.clave} className="whitespace-nowrap text-[9px] leading-3">
+                              <span className="text-[#9e8c70]">{estadistica.nombre}</span>{" "}
+                              <span className={estadistica.valor < 0 ? "font-black text-red-400" : "font-black text-emerald-300"}>
+                                {formatearValorEstadistica(estadistica.clave, estadistica.valor)}
+                              </span>
+                            </span>
+                          ))}
                         </div>
                       </div>
 
-                      {/* Compra */}
-                      <div className="border-t border-[#464c4e] bg-[#191c1d] p-2 sm:p-3">
+                      <div className="col-span-2 flex min-w-0 items-center justify-between gap-2 border-t border-white/5 pt-1.5 sm:col-span-1 sm:flex-col sm:items-stretch sm:border-t-0 sm:pt-0">
+                        <span className="whitespace-nowrap text-xs font-black text-amber-300 sm:text-right">
+                          {objeto.precio} 🪙
+                        </span>
                         <button
                           type="button"
                           onClick={() => void comprarObjeto(objeto.id)}
-                          disabled={
-                            comprando ||
-                            procesando !== null ||
-                            !objeto.puedeComprar ||
-                            oro < objeto.precio ||
-                            inventarioLleno
-                          }
-                          className={`flex h-10 w-full items-center justify-between gap-2 rounded border-2 px-3 text-xs font-black transition-all sm:h-12 sm:px-4 sm:text-sm ${
-                            objeto.puedeComprar &&
-                            oro >= objeto.precio &&
-                            !procesando &&
-                            !inventarioLleno
-                              ? "border-[#8b7752] bg-[#51452f] text-[#eadbbd] shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_8px_rgba(0,0,0,0.3)] hover:border-[#b7a06c] hover:bg-[#635338] active:translate-y-px"
-                              : "cursor-not-allowed border-[#373c3e] bg-[#202324] text-[#5f6669]"
+                          disabled={!puedeComprarAhora}
+                          className={`flex min-h-8 min-w-0 items-center justify-center gap-2 rounded border px-2 py-1.5 text-[10px] font-black leading-3 transition-colors sm:min-w-[104px] ${
+                            puedeComprarAhora
+                              ? "border-[#8b7752] bg-[#51452f] text-[#eadbbd] hover:border-[#b7a06c] hover:bg-[#635338] active:translate-y-px"
+                              : "cursor-not-allowed border-[#373c3e] bg-[#202324] text-[#777774]"
                           }`}
                         >
-                          <span>
-                            {comprando
-                              ? "Comprando..."
-                              : inventarioLleno
-                              ? "Inventario lleno"
-                              : !objeto.puedeComprar
-                              ? `Nivel ${objeto.nivelHeroeNecesario} requerido`
-                              : oro < objeto.precio
-                              ? "Oro insuficiente"
-                              : "Comprar otra unidad"}
-                          </span>
-                          <span className="rounded border border-amber-700/40 bg-[#231d13] px-2 py-1 text-amber-400">
-                            {objeto.precio} 🪙
-                          </span>
+                          {comprando
+                            ? "Comprando…"
+                            : inventarioLleno
+                            ? "Inventario lleno"
+                            : bloqueadoPorNivel
+                            ? `Nivel ${objeto.nivelHeroeNecesario}`
+                            : bloqueadoPorOro
+                            ? "Falta oro"
+                            : "Comprar"}
                         </button>
                       </div>
                     </article>
@@ -794,7 +748,11 @@ export default function HerreriaPage() {
               </div>
 
               <div className="col-span-3 mx-auto grid w-full max-w-lg grid-cols-2 gap-2 border-t border-[#59432b] pt-2">
-                {(["arma", "manoSecundaria"] as TipoEquipamiento[]).map(renderSlot)}
+                {armaDosManosEquipada ? (
+                  <div className="col-span-2">{renderSlot("arma")}</div>
+                ) : (
+                  (["arma", "manoSecundaria"] as TipoEquipamiento[]).map(renderSlot)
+                )}
               </div>
             </div>
 
@@ -812,7 +770,14 @@ export default function HerreriaPage() {
                 <p className="text-center text-[9px] font-black uppercase tracking-wide text-[#b99a6c]">{personaje.clase}</p>
               </div>
               <div className="grid grid-cols-2 gap-1.5">
-                {TIPOS_EQUIPAMIENTO.map(renderSlot)}
+                {(["casco", "armadura", "pantalones", "botas", "accesorio", "anillo1", "guantes", "anillo2"] as TipoEquipamiento[]).map(renderSlot)}
+                <div className="col-span-2 mt-1 grid grid-cols-2 gap-1.5 border-t border-[#59432b] pt-2">
+                  {armaDosManosEquipada ? (
+                    <div className="col-span-2">{renderSlot("arma")}</div>
+                  ) : (
+                    (["arma", "manoSecundaria"] as TipoEquipamiento[]).map(renderSlot)
+                  )}
+                </div>
               </div>
             </div>
           </div>

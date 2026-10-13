@@ -36,6 +36,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Objeto no encontrado." }, { status: 404 });
     }
 
+    if (!objeto.vendibleEnArmeria) {
+      return NextResponse.json(
+        { error: "Este objeto solo se obtiene como botín o mediante fabricación; no está disponible en la Armería." },
+        { status: 400 }
+      );
+    }
+
     if (objeto.tipo !== "arma" && objeto.tipo !== "armadura" && objeto.tipo !== "accesorio") {
       return NextResponse.json(
         { error: "Este objeto no se vende en la Armería." },

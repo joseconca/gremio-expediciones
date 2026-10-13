@@ -181,8 +181,10 @@ export interface DefinicionObjeto {
   categoriaArmadura?: TipoArmadura;
   descripcion: string;
   rareza: Rareza;
+  /** Si aparece en la tienda normal de la Armería; false implica botín o futura fabricación. */
+  vendibleEnArmeria: boolean;
 
-  /** Precio de compra en el Mercado. */
+  /** Precio base del catálogo, usado en compras y reventa. */
   precio: number;
 
   /** Modificadores de equipo. */

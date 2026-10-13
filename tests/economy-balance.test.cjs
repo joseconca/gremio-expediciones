@@ -2,6 +2,7 @@ require("./load-typescript.cjs");
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const { OBJETOS, obtenerObjetoPorId, calcularCosteRecursosMejora, calcularCosteMejoraObjeto } = require("../src/lib/objetos.ts");
+const { obtenerObjetosVisiblesEnArmeria, puedeComprarObjeto } = require("../src/lib/tiendaObjetos.ts");
 const { COMIDAS_TABERNA } = require("../src/lib/comidasTaberna.ts");
 const { MISIONES_POR_DURACION } = require("../src/lib/generadorMisiones.ts");
 const { calcularOroBaseComercio, calcularRecompensaComercio } = require("../src/lib/expediciones/comercio.ts");
@@ -21,7 +22,7 @@ test("el catálogo completo contiene precios positivos y progresión coherente e
     Object.fromEntries(OBJETOS.map((item) => [item.id, item.precio])),
     {
       pocion: 20, pocion_grande: 55,
-      espada_madera: 100, espada_hierro: 800, espada_acero: 1800,
+      espada_madera: 100, espada_piedra: 350, espada_hierro: 800, espada_acero: 1800,
       espada_runa: 6500, hacha_orca: 4200,
       tela_andrajosa: 100, armadura_cuero: 650, armadura_hierro: 2200, armadura_acero: 5200,
       anillo_viajero: 1100, amuleto_vitalidad: 2800, anillo_maldito: 3200,
@@ -29,7 +30,7 @@ test("el catálogo completo contiene precios positivos y progresión coherente e
       botas_cuero: 280, guantes_cuero: 220, collar_cobre: 350, anillo_resistencia: 500,
     },
   );
-  assert.deepEqual(["espada_madera","espada_hierro","espada_acero","espada_runa"].map((id) => obtenerObjetoPorId(id).precio), [100,800,1800,6500]);
+  assert.deepEqual(["espada_madera","espada_piedra","espada_hierro","espada_acero","espada_runa"].map((id) => obtenerObjetoPorId(id).precio), [100,350,800,1800,6500]);
   assert.deepEqual(["tela_andrajosa","armadura_cuero","armadura_hierro","armadura_acero"].map((id) => obtenerObjetoPorId(id).precio), [100,650,2200,5200]);
   const maldito = obtenerObjetoPorId("anillo_maldito");
   assert.equal(maldito.precio, 3200);
@@ -40,6 +41,27 @@ test("el catálogo completo contiene precios positivos y progresión coherente e
   assert.equal(maldito.ataquePorMejora, undefined);
   assert.ok(OBJETOS.filter((item) => item.tipo === "accesorio")
     .every((item) => Object.keys(item).every((key) => !key.endsWith("PorMejora"))));
+});
+
+test("la Armería solo vende equipo básico y reserva objetos especiales para botín o fabricación", () => {
+  assert.ok(OBJETOS.every((item) => typeof item.vendibleEnArmeria === "boolean"));
+
+  const vendiblesEsperados = [
+    "espada_madera", "espada_piedra", "espada_hierro", "espada_acero",
+    "tela_andrajosa", "armadura_cuero", "armadura_hierro", "armadura_acero",
+    "escudo_madera", "casco_cuero", "pantalones_cuero", "botas_cuero", "guantes_cuero",
+  ];
+  assert.deepEqual(obtenerObjetosVisiblesEnArmeria(1).map((item) => item.id), vendiblesEsperados);
+  assert.deepEqual(OBJETOS.filter((item) => item.vendibleEnArmeria).map((item) => item.id), vendiblesEsperados);
+  assert.deepEqual(
+    ["espada_runa", "hacha_orca", "anillo_viajero", "amuleto_vitalidad", "anillo_maldito", "collar_cobre", "anillo_resistencia"]
+      .map((id) => obtenerObjetoPorId(id).vendibleEnArmeria),
+    Array(7).fill(false),
+  );
+  assert.equal(puedeComprarObjeto(obtenerObjetoPorId("espada_madera"), 1, 1), true);
+  assert.equal(puedeComprarObjeto(obtenerObjetoPorId("espada_piedra"), 1, 5), true);
+  assert.equal(puedeComprarObjeto(obtenerObjetoPorId("espada_runa"), 3, 30), false);
+  assert.deepEqual(obtenerObjetosVisiblesEnArmeria(0), []);
 });
 
 test("las mejoras no heredan anomalías del precio de compra", () => {
