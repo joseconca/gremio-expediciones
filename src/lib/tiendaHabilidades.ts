@@ -25,8 +25,9 @@ export interface RequisitosAprendizajeHabilidad {
  */
 export function evaluarRequisitosAprendizaje(
   habilidad: Pick<DefinicionHabilidad, "claseId" | "nivelJobRequerido" | "costePuntosHabilidad">,
-  progreso: ProgresoJobHabilidad | null | undefined,
+  progresos: readonly ProgresoJobHabilidad[],
 ): RequisitosAprendizajeHabilidad {
+  const progreso = progresos.find((item) => item.claseId === habilidad.claseId);
   const nivelJobRequerido = habilidad.nivelJobRequerido ?? 1;
   const costePuntosHabilidad = Math.max(1, Math.floor(habilidad.costePuntosHabilidad ?? 1));
   const nivelJobClase = progreso?.nivelJob ?? 0;
