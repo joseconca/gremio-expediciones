@@ -30,6 +30,18 @@ La siguiente tabla usa el pago base medio, dificultad Normal y el porcentaje que
 
 La fórmula es `(recompensa media × [pVictoria + 0,2 × (1 − pVictoria)] × multiplicadorDificultad) / horas`. Los pagos reales incluyen redondeos. La recompensa por enemigo se excluye de esta tabla porque varía con la amenaza derrotada.
 
+### Ejemplo concreto: misión corta contra una Rata Gigante
+
+Para mostrar cómo influyen los ingresos secundarios, uso una misión nominal de 30 minutos, recompensa base media de 55 de oro y la Rata Gigante de amenaza 1 (botín base 18). En una victoria se obtiene el pago de la misión más el oro del enemigo; en una derrota solo se asegura el 20 % del pago de misión. Se añade el valor esperado de reventa del botín común, suponiendo espacio de inventario y vendiéndolo por el 35 % del catálogo.
+
+| Escenario hipotético | Oro/h de misión y enemigo | Oro/h esperado de reventa de botín | Total esperado |
+|---|---:|---:|---:|
+| Fácil, 90 % de victoria | 113,56 | 8,94 | 122,50 |
+| Normal, 75 % de victoria | 115,00 | 7,45 | 122,45 |
+| Difícil, 55 % de victoria | 112,75 | 5,46 | 118,21 |
+
+Esta no es una simulación del éxito real ni un resultado garantizado: las probabilidades se han supuesto para el análisis, los pagos se redondean en el servidor y el valor de botín se materializa solo si cae un objeto y cabe en el inventario. El equipo equipado no se vende, pero aporta valor de progresión que esta tabla no monetiza.
+
 ### Comparación de dificultades
 
 Como las probabilidades de victoria dependen del combate concreto, no existe un porcentaje fijo por dificultad. Para comparar solo la recompensa de misión, uso un escenario explícito: Fácil con un 90 % de victorias, Normal con un 75 % y Difícil con un 55 %. Se conserva el pago del 20 % al perder y se aplican los multiplicadores configurados (0,85 / 1 / 1,25). No se incluyen oro del enemigo ni equipo.
