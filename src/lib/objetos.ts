@@ -414,6 +414,74 @@ export function obtenerObjetosEquipables(): DefinicionObjeto[] {
   );
 }
 
+export interface CosteRecursosForja {
+  madera: number;
+  piedra: number;
+  metal: number;
+}
+
+const MULTIPLICADOR_RECURSOS_RAREZA: Record<DefinicionObjeto["rareza"], number> = {
+  basico: 1,
+  comun: 1,
+  poco_comun: 2,
+  raro: 3,
+  epico: 4,
+  legendario: 5,
+};
+
+/**
+ * Coste material de la siguiente mejora. La receta depende del tipo de pieza y,
+ * para armas, de su subtipo. La rareza aumenta el consumo y a partir de +3 el
+ * coste vuelve a escalar cada tres niveles de mejora.
+ */
+export function calcularCosteRecursosMejora(
+  objeto: Pick<DefinicionObjeto, "id" | "tipo" | "subtipo" | "categoriaArmadura" | "rareza">,
+  nivelMejora: number
+): CosteRecursosForja {
+  const cero: CosteRecursosForja = { madera: 0, piedra: 0, metal: 0 };
+  if (objeto.tipo !== "arma" && objeto.tipo !== "armadura") return cero;
+
+  let receta: CosteRecursosForja;
+  if (objeto.tipo === "arma") {
+    const subtipo = (objeto.subtipo ?? "").toLowerCase();
+    if (objeto.id === "espada_madera") {
+      receta = { madera: 1, piedra: 0, metal: 0 };
+    } else if (subtipo === "arco") {
+      receta = { madera: 3, piedra: 0, metal: 1 };
+    } else if (subtipo === "hacha") {
+      receta = { madera: 1, piedra: 0, metal: 1 };
+    } else if (subtipo === "baston" || subtipo === "libro") {
+      receta = { madera: 2, piedra: 0, metal: 1 };
+    } else if (subtipo === "lanza" || subtipo === "maza") {
+      receta = { madera: 1, piedra: 0, metal: 2 };
+    } else if (subtipo === "daga" || subtipo === "puños") {
+      receta = { madera: 0, piedra: 0, metal: 1 };
+    } else if (subtipo === "espada") {
+      receta = { madera: 0, piedra: 0, metal: 2 };
+    } else {
+      receta = { madera: 1, piedra: 0, metal: 1 };
+    }
+  } else if (objeto.categoriaArmadura === "pesada") {
+    receta = { madera: 0, piedra: 1, metal: 2 };
+  } else if (objeto.categoriaArmadura === "media") {
+    receta = { madera: 1, piedra: 0, metal: 1 };
+  } else if (objeto.categoriaArmadura === "ligera") {
+    receta = { madera: 2, piedra: 0, metal: 0 };
+  } else {
+    receta = { madera: 1, piedra: 0, metal: 1 };
+  }
+
+  const nivelSeguro = Number.isFinite(nivelMejora) ? Math.max(0, Math.floor(nivelMejora)) : 0;
+  const multiplicadorRareza = MULTIPLICADOR_RECURSOS_RAREZA[objeto.rareza];
+  const multiplicadorNivel = 1 + Math.floor(nivelSeguro / 3);
+
+  return {
+    madera: receta.madera * multiplicadorRareza * multiplicadorNivel,
+    piedra: receta.piedra * multiplicadorRareza * multiplicadorNivel,
+    metal: receta.metal * multiplicadorRareza * multiplicadorNivel,
+  };
+}
+
 export function calcularCosteMejoraObjeto(
   precioObjeto: number,
   nivelMejora: number
