@@ -16,9 +16,13 @@ test("el catálogo completo contiene precios positivos y progresión coherente e
   assert.deepEqual(["tela_andrajosa","armadura_cuero","armadura_hierro","armadura_acero"].map((id) => obtenerObjetoPorId(id).precio), [100,650,2200,5200]);
   const maldito = obtenerObjetoPorId("anillo_maldito");
   assert.equal(maldito.precio, 3200);
-  assert.equal(maldito.ataqueBase, -4);
+  assert.equal(maldito.ataqueBase, 6);
   assert.equal(maldito.hpMaximoBase, -20);
-  assert.equal(maldito.ataquePorMejora, 1);
+  assert.equal(maldito.defensaBase, -4);
+  assert.equal(maldito.velocidadBase, -4);
+  assert.equal(maldito.ataquePorMejora, undefined);
+  assert.ok(OBJETOS.filter((item) => item.tipo === "accesorio")
+    .every((item) => Object.keys(item).every((key) => !key.endsWith("PorMejora"))));
 });
 
 test("las mejoras no heredan anomalías del precio de compra", () => {
