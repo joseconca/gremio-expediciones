@@ -365,7 +365,8 @@ export interface GameState {
   completarExpedicion: () => Promise<ReporteExpedicion | null>;
   accionCombate: (
     accion: "atacar" | "usar_habilidad" | "usar_objeto",
-    payload?: string
+    payload?: string,
+    modo?: "pve" | "pvp"
   ) => Promise<AccionAnimadaCombate | null>;
   cancelarExpedicion: () => Promise<boolean>;
 
@@ -810,16 +811,26 @@ export const useGameStore = create<GameState>((set, get) => ({
 
   accionCombate: async (
     accion: "atacar" | "usar_habilidad" | "usar_objeto",
-    payload?: string
+    payload?: string,
+    modo: "pve" | "pvp" = "pve"
   ) => {
     try {
-      const respuesta = await fetch("/api/combate/pve/accion", {
+      const definicionHabilidad = accion === "usar_habilidad" && payload
+        ? obtenerHabilidadPorId(payload)
+        : null;
+      const objetivo = accion === "usar_objeto"
+        ? "propio"
+        : accion === "usar_habilidad" && definicionHabilidad?.efecto !== "dano"
+          ? "propio"
+          : "oponente";
+      const respuesta = await fetch(`/api/combate/${modo}/accion`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           accion,
+          objetivo,
           ...(accion === "usar_habilidad" && payload ? { habilidadId: payload } : {}),
           ...(accion === "usar_objeto" && payload ? { objetoInventarioId: payload } : {}),
         }),

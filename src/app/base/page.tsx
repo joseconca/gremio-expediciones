@@ -543,14 +543,14 @@ export default function BasePage() {
 
   const ejecutarAccionCombate = useCallback(
     (accion: "atacar" | "usar_habilidad", habilidadId?: string) => {
-      return accionCombate(accion, habilidadId);
+      return accionCombate(accion, habilidadId, "pvp");
     },
     [accionCombate]
   );
 
   const ejecutarAccionCombatePve = useCallback(
     (accion: "atacar" | "usar_habilidad" | "usar_objeto", payload?: string) => {
-      return accionCombate(accion, payload);
+      return accionCombate(accion, payload, "pve");
     },
     [accionCombate]
   );

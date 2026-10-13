@@ -8,6 +8,7 @@ import {
 } from "@/lib/estadisticasPersonaje";
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 import { getAuthenticatedUser } from "@/lib/auth";
+import { validarObjetivoAccionCombate, validarTurnoAccionCombate } from "@/lib/expediciones/contrato-accion-combate";
 import { prisma } from "@/lib/prisma";
 
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
@@ -642,52 +643,19 @@ export async function procesarAccionCombate(request: Request, tipoEsperado?: "pv
 
     const actor = combate.turno;
 
-    if (esPvp) {
-      const usuarioEsAtacante = usuario.id === combate.atacanteUsuarioId;
-
-      const usuarioEsDefensor = usuario.id === combate.defensorUsuarioId;
-
-      if (actor !== "atacante" && actor !== "defensor") {
-        return NextResponse.json(
-          {
-            error: "Turno de combate PvP no válido.",
-          },
-          { status: 409 }
-        );
-      }
-
-      if (
-        (actor === "atacante" && !usuarioEsAtacante) ||
-        (actor === "defensor" && !usuarioEsDefensor)
-      ) {
-        return NextResponse.json(
-          {
-            error: "No es tu turno de combate.",
-          },
-          { status: 409 }
-        );
-      }
-    } else {
-      if (actor !== "jugador" && actor !== "enemigo") {
-        return NextResponse.json(
-          {
-            error: "Turno de combate no válido.",
-          },
-          { status: 409 }
-        );
-      }
-
-      if (
-        (accion === "usar_habilidad" || accion === "usar_objeto") &&
-        actor !== "jugador"
-      ) {
-        return NextResponse.json(
-          {
-            error: "Solo puedes usar habilidades u objetos durante tu turno.",
-          },
-          { status: 409 }
-        );
-      }
+    const validacionTurno = validarTurnoAccionCombate({
+      tipo: esPvp ? "pvp" : "pve",
+      turno: actor,
+      usuarioId: usuario.id,
+      atacanteUsuarioId: combate.atacanteUsuarioId,
+      defensorUsuarioId: combate.defensorUsuarioId,
+      accion,
+    });
+    if (!validacionTurno.valido) {
+      return NextResponse.json(
+        { error: validacionTurno.error },
+        { status: validacionTurno.estado }
+      );
     }
 
     // ============================================================
@@ -782,6 +750,18 @@ export async function procesarAccionCombate(request: Request, tipoEsperado?: "pv
         );
       }
     }
+
+    const validacionObjetivo = validarObjetivoAccionCombate({
+      accion,
+      objetivo: body.objetivo,
+      efectoHabilidad: habilidad?.efecto,
+      // La ruta antigua adapta peticiones sin objetivo al contrato explícito.
+      permitirInferencia: tipoEsperado === undefined,
+    });
+    if (!validacionObjetivo.valido) {
+      return NextResponse.json({ error: validacionObjetivo.error }, { status: 400 });
+    }
+    body.objetivo = validacionObjetivo.objetivo;
 
     // ============================================================
     // ESTADO ACTUAL

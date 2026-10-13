@@ -38,8 +38,8 @@ export function aplicarModificadoresPosicion<T extends EstadisticasConPosicion>(
   posicionOriginal: unknown,
 ): T {
   const posicion = normalizarPosicionCombate(posicionOriginal);
-  const multiplicadorAtaque = posicion === "mele" ? 0.85 : posicion === "retaguardia" ? 1.15 : 1;
-  const multiplicadorDefensa = posicion === "mele" ? 1.15 : posicion === "retaguardia" ? 0.85 : 1;
+  const multiplicadorAtaque = posicion === "mele" ? 1.15 : posicion === "retaguardia" ? 0.85 : 1;
+  const multiplicadorDefensa = posicion === "mele" ? 0.85 : posicion === "retaguardia" ? 1.15 : 1;
 
   return {
     ...estadisticas,
