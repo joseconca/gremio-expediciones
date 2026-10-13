@@ -65,7 +65,13 @@ const ETIQUETAS_TIER: Record<number, string> = {
 const PORCENTAJE = (valor: number) => `${Math.round(valor * 100)}%`;
 const ETIQUETAS_ARQUETIPO: Record<string, string> = { novato: "Generalista", vanguardia: "Vanguardia", apoyo: "Apoyo", agil: "Ágil", arcano: "Arcano", marcial: "Marcial", maldito: "Maldiciones", hibrido: "Híbrido" };
 
-export default function PanelProfesiones({ integrado = false }: { integrado?: boolean } = {}) {
+export default function PanelProfesiones({
+  integrado = false,
+  onProfessionChanged,
+}: {
+  integrado?: boolean;
+  onProfessionChanged?: () => Promise<void> | void;
+} = {}) {
   const { cargarJugador } = useGameStore();
   const [datos, setDatos] = useState<DatosProfesiones | null>(null);
   const [cargando, setCargando] = useState(true);
@@ -152,6 +158,7 @@ export default function PanelProfesiones({ integrado = false }: { integrado?: bo
       setMensaje(resultado.mensaje || "Profesión actualizada.");
       await cargarProfesiones();
       await cargarJugador();
+      await onProfessionChanged?.();
     } catch {
       setError("Error de conexión al actualizar la profesión.");
     } finally {
