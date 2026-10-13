@@ -248,6 +248,7 @@ function makeCombatConsumableRoute({
     "next/server": { NextResponse },
     "@prisma/client": commonDependencies["@prisma/client"],
     "@/lib/prisma": { prisma },
+    "@/lib/expediciones/actualizar-combate-versionado": loadSource("src/lib/expediciones/actualizar-combate-versionado.ts"),
     "@/lib/enemigos": commonDependencies["@/lib/enemigos"],
     "@/lib/configuracionJuego": commonDependencies["@/lib/configuracionJuego"],
     "@/lib/expediciones/combate": commonDependencies["@/lib/expediciones/combate"],
@@ -875,9 +876,7 @@ function makeInvalidBodyRoute(relativePath) {
     },
   });
 
-  return relativePath === "src/app/api/combate/accion/route.ts"
-    ? route.procesarAccionCombate
-    : route.POST;
+  return route.POST;
 }
 
 function makeObjectEquipConflictRoute({ initialState = "ocioso", transactionState = initialState } = {}) {
