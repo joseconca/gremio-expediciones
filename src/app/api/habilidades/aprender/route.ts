@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { getAuthenticatedUser } from "@/lib/auth";
-import { obtenerHabilidadesEnVenta } from "@/lib/tiendaHabilidades";
+import { evaluarRequisitosAprendizaje, obtenerHabilidadesEnVenta } from "@/lib/tiendaHabilidades";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
 
@@ -114,11 +114,12 @@ export async function POST(request: Request) {
           throw new Error("HABILIDAD_CLASE_INCOMPATIBLE");
         }
 
+        const clasePropietariaId = habilidad.claseId;
         const progresoJob = await tx.progresoClase.findUnique({
           where: {
             personajeId_claseId: {
               personajeId: usuario.personaje.id,
-              claseId: profesionActivaId,
+              claseId: clasePropietariaId,
             },
           },
         });
@@ -127,12 +128,12 @@ export async function POST(request: Request) {
           throw new Error("PROGRESO_JOB_NO_ENCONTRADO");
         }
 
-        const nivelJobRequerido = habilidad.nivelJobRequerido ?? 1;
-        if (progresoJob.nivelJob < nivelJobRequerido) {
+        const requisitosAprendizaje = evaluarRequisitosAprendizaje(habilidad, progresoJob);
+        if (!requisitosAprendizaje.cumpleNivelJob) {
           throw new Error("NIVEL_JOB_INSUFICIENTE");
         }
 
-        const costePuntos = Math.max(1, Math.floor(habilidad.costePuntosHabilidad ?? 1));
+        const costePuntos = requisitosAprendizaje.costePuntosHabilidad;
         const puntosGastados = await tx.progresoClase.updateMany({
           where: {
             id: progresoJob.id,
