@@ -137,6 +137,11 @@ export default function TabernaPage() {
           <summary className="w-fit cursor-pointer list-none rounded border border-slate-800 px-3 py-1.5 text-xs font-semibold text-slate-300 hover:border-amber-800">ⓘ Sobre la taberna</summary>
           <p className="mt-2 leading-5">{descripcionEdificio}</p>
         </details>
+        {mensaje && (
+          <p role="status" className="mb-2 rounded-md border border-emerald-800 bg-emerald-950/60 px-3 py-2 text-[11px] text-emerald-200 sm:hidden">
+            {mensaje}
+          </p>
+        )}
 
         {/* --- EL ESCENARIO DE LA TABERNA --- */}
         <div className="relative w-full overflow-hidden rounded-xl border-2 border-stone-900 bg-stone-800 shadow-[0_0_32px_rgba(0,0,0,0.45)] sm:rounded-2xl sm:border-4">
