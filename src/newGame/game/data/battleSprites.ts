@@ -2,7 +2,7 @@ import { heroAnimations } from "./heroAnimations";
 
 /** Custom party sheets must use the same 32×64, four-column, nine-row layout. */
 export const battleHeroSprite = {
-  src: "/sprites/sheets/characters/hero.png",
+  src: "/newGame/sprites/sheets/characters/hero.png",
   frameWidth: 32,
   frameHeight: 64,
   columns: 4,

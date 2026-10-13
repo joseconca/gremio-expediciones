@@ -6,7 +6,7 @@ export function equipmentBuilding(type: "armory" | "smithy", annex = false): Bui
   const center = type === "smithy" ? 84 : annex ? 42 : 63;
   return {
     id: type, name: type === "armory" ? "Armería" : "Herrería",
-    sprite: { src: `/sprites/buildings/${annex ? "armeria-herreria" : type === "armory" ? "armeria" : "herreria"}.png`, frameWidth: 128, frameHeight: 64 },
+    sprite: { src: `/newGame/sprites/buildings/${annex ? "armeria-herreria" : type === "armory" ? "armeria" : "herreria"}.png`, frameWidth: 128, frameHeight: 64 },
     width: 128, height: 64,
     entrance: {
       trigger: { offsetX: center - 8, offsetY: -25, width: 16, height: 10 },
