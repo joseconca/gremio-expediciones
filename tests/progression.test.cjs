@@ -39,6 +39,25 @@ test("el catálogo de clases tiene requisitos válidos y no contiene ciclos", ()
     assert.doesNotThrow(() => obtenerAncestrosClase(clase.id));
   }
 });
+test("el grafo contiene 33 clases y respeta los máximos por tier", () => {
+  const clases = Object.values(CLASES);
+  assert.equal(clases.length, 33);
+  assert.deepEqual(
+    [0, 1, 2, 2.5, 3].map((tier) => clases.filter((clase) => clase.tier === tier).length),
+    [1, 4, 8, 4, 16],
+  );
+  for (const clase of clases) {
+    const maximoEsperado = clase.tier === 0 ? 10 : clase.tier === 1 ? 20 : clase.tier === 2 ? 40 : clase.tier === 2.5 ? 50 : 60;
+    assert.equal(clase.nivelJobMaximo, maximoEsperado, `Máximo Job incorrecto para ${clase.nombre}`);
+  }
+  assert.deepEqual(CLASES.pirata.requisitos.map((requisito) => requisito.claseId), ["duelista", "cazador"]);
+  assert.equal(CLASES.pirata.tier, 2.5);
+  assert.equal(CLASES.pirata.nivelJobMaximo, 50);
+  for (const padreId of ["caballero", "duelista", "sacerdote", "monje", "cazador", "explorador", "elementalista", "brujo"]) {
+    assert.equal(clases.filter((clase) => clase.tier === 3 && clase.requisitos.some((requisito) => requisito.claseId === padreId)).length, 2, `${padreId} debe tener exactamente dos clases de Tier 3`);
+  }
+});
+
 test("Novato Job 10 permite desbloquear Tier 1", () => {
   assert.equal(evaluarDesbloqueoClase("espadachin", [{ claseId: "novato", nivelJob: 9, desbloqueada: true }]).puedeDesbloquear, false);
   assert.equal(evaluarDesbloqueoClase("espadachin", [{ claseId: "novato", nivelJob: 10, desbloqueada: true }]).puedeDesbloquear, true);
@@ -89,8 +108,14 @@ test("Escuela: muestra siempre las habilidades de la profesión y hereda las ram
   }
 
   const catalogo = require("../src/lib/habilidades.ts").HABILIDADES;
-  assert.equal(catalogo.length, 49);
+  assert.equal(catalogo.length, 166);
   assert.ok(catalogo.every((habilidad) => Boolean(habilidad.claseId)), "Todas las habilidades pertenecen a una profesión");
+  for (const clase of Object.values(CLASES)) {
+    const propias = catalogo.filter((habilidad) => habilidad.claseId === clase.id);
+    assert.ok(propias.filter((habilidad) => habilidad.tipo === "activa").length >= 3, `${clase.id} necesita al menos 3 habilidades activas`);
+    assert.ok(propias.filter((habilidad) => habilidad.tipo === "pasiva").length >= 2, `${clase.id} necesita al menos 2 habilidades pasivas`);
+    assert.ok(propias.every((habilidad) => (habilidad.nivelJobRequerido ?? 1) <= clase.nivelJobMaximo), `Todas las habilidades de ${clase.id} deben estar disponibles antes de su máximo Job`);
+  }
   assert.ok(!cruzado.some((habilidadId) => [
     "golpe_poderoso", "golpe_preciso", "defensa_ferrea", "curacion",
     "segundo_aire", "ataque_devastador", "piel_dura", "veterano",
@@ -301,9 +326,9 @@ test("Job: cada nivel concede un punto de habilidad y conserva el exceso de expe
   assert.equal(resultado.maestriaCompletada, false);
 });
 
-test("Job 40 de Tier 1 llega alrededor de Base 6–7 con el ritmo Base/Job", () => {
+test("Job 20 de Tier 1 respeta su máximo y se alcanza antes que el antiguo Job 40", () => {
   const { experienciaParaNivel } = require("../src/lib/configuracionJuego.ts");
-  const totalJob40 = Array.from({ length: 39 }, (_, index) => experienciaJobParaNivel(index + 1))
+  const totalJob20 = Array.from({ length: 19 }, (_, index) => experienciaJobParaNivel(index + 1))
     .reduce((total, xp) => total + xp, 0);
 
   assert.equal(experienciaParaNivel(1), 500);
@@ -312,7 +337,8 @@ test("Job 40 de Tier 1 llega alrededor de Base 6–7 con el ritmo Base/Job", () 
   assert.equal(experienciaParaNivel(4), 6320);
   assert.equal(experienciaJobParaNivel(1), 101);
   assert.equal(experienciaJobParaNivel(10), 134);
-  assert.ok(totalJob40 >= 9_500 && totalJob40 <= 10_000, `XP acumulada Job 1→40 inesperada: ${totalJob40}`);
+  assert.equal(CLASES.espadachin.nivelJobMaximo, 20);
+  assert.ok(totalJob20 > 2_000 && totalJob20 < 3_500, `XP acumulada Job 1→20 inesperada: ${totalJob20}`);
 
   let nivelBase = 1;
   let xpBase = 0;
@@ -325,7 +351,7 @@ test("Job 40 de Tier 1 llega alrededor de Base 6–7 con el ritmo Base/Job", () 
     maestriaCompletada: false,
   };
 
-  while (!(profesion === "tier1" && progresoJob.nivelJob >= 40)) {
+  while (!(profesion === "tier1" && progresoJob.nivelJob >= CLASES.espadachin.nivelJobMaximo)) {
     const amenaza = nivelBase;
     const xpBaseGanada = calcularExperienciaBaseGanada(amenaza, nivelBase, "normal");
     const xpJobGanada = calcularExperienciaJobGanada(
@@ -344,7 +370,7 @@ test("Job 40 de Tier 1 llega alrededor de Base 6–7 con el ritmo Base/Job", () 
     progresoJob = aplicarExperienciaJob(
       progresoJob,
       xpJobGanada,
-      profesion === "novato" ? 10 : 40
+      profesion === "novato" ? CLASES.novato.nivelJobMaximo : CLASES.espadachin.nivelJobMaximo
     );
     victorias += 1;
 
@@ -358,11 +384,11 @@ test("Job 40 de Tier 1 llega alrededor de Base 6–7 con el ritmo Base/Job", () 
       };
     }
 
-    assert.ok(victorias < 200, "La primera maestría Tier 1 debe alcanzarse en un ritmo razonable");
+    assert.ok(victorias < 126, "El nuevo máximo Job 20 debe alcanzarse antes que el antiguo Job 40");
   }
 
-  assert.equal(victorias, 126);
-  assert.equal(nivelBase, 5, "La primera maestría llega cerca de Base 6");
+  assert.ok(victorias < 126);
+  assert.ok(nivelBase <= 5, "La primera maestría Tier 1 debe llegar cerca de Base 5–6");
   assert.ok(
     xpBase / experienciaParaNivel(nivelBase) >= 0.9,
     "Debe quedar cerca de subir a Base 6"
@@ -519,24 +545,24 @@ test("la lista de profesiones incluye la clase activa y las ramas desbloqueadas 
   ]);
   assert.deepEqual(novato10.map((clase) => clase.id).sort(), ["acolito", "arquero", "espadachin", "mago", "novato"]);
 
-  const mago40 = obtenerClasesVisibles("mago", [
+  const mago20 = obtenerClasesVisibles("mago", [
     { claseId: "novato", nivelJob: 10, desbloqueada: true },
-    { claseId: "mago", nivelJob: 40, desbloqueada: true },
+    { claseId: "mago", nivelJob: 20, desbloqueada: true },
   ]).map((clase) => clase.id);
-  for (const id of ["acolito", "arquero", "espadachin", "mago", "elementalista", "brujo"]) assert.ok(mago40.includes(id));
-  assert.ok(!mago40.includes("cruzado"), "Una clase de tier superior no debe mostrarse antes de cumplir todos sus requisitos");
+  for (const id of ["acolito", "arquero", "espadachin", "mago", "elementalista", "brujo"]) assert.ok(mago20.includes(id));
+  assert.ok(!mago20.includes("cruzado"), "Una clase híbrida no debe mostrarse hasta cumplir los dos requisitos");
 });
 
 test("los atributos crecen por nivel Base y reciben bonificaciones Job según el arquetipo", () => {
   const novato = calcularAtributosClase("novato", 20, 1);
   const espadachin = calcularAtributosClase("espadachin", 20, 1);
   const mago = calcularAtributosClase("mago", 20, 1);
-  const espadachinJob40 = calcularAtributosClase("espadachin", 20, 40);
+  const espadachinJobMax = calcularAtributosClase("espadachin", 20, CLASES.espadachin.nivelJobMaximo);
   const magoBase40 = calcularAtributosClase("mago", 40, 1);
   assert.ok(espadachin.fuerza > espadachin.inteligencia);
   assert.ok(mago.inteligencia > mago.fuerza);
   assert.notDeepEqual(novato, espadachin);
-  assert.ok(espadachinJob40.fuerza > espadachin.fuerza);
+  assert.ok(espadachinJobMax.fuerza > espadachin.fuerza);
   assert.ok(magoBase40.inteligencia > mago.inteligencia);
 });
 
