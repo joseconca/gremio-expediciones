@@ -55,9 +55,9 @@ test("schema y migración persisten la preferencia y la instantánea táctica co
   const schema = fs.readFileSync(schemaPath, "utf8");
   const migration = fs.readFileSync(migrationPath, "utf8");
 
-  assert.match(schema, /posicionCombate\\s+String\\s+@default\\("centro"\\)/);
-  assert.match(schema, /jugadorPosicion\\s+String\\s+@default\\("centro"\\)/);
-  assert.match(schema, /enemigoPosicion\\s+String\\s+@default\\("centro"\\)/);
+  assert.ok(schema.includes('posicionCombate    String               @default("centro")'));
+  assert.ok(schema.includes('jugadorPosicion String @default("centro")'));
+  assert.ok(schema.includes('enemigoPosicion String @default("centro")'));
   assert.match(migration, /ADD COLUMN "posicionCombate" TEXT NOT NULL DEFAULT 'centro'/);
   assert.match(migration, /ADD COLUMN "jugadorPosicion" TEXT NOT NULL DEFAULT 'centro'/);
   assert.match(migration, /ADD COLUMN "enemigoPosicion" TEXT NOT NULL DEFAULT 'centro'/);
