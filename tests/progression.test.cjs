@@ -24,6 +24,7 @@ const {
 const { obtenerHabilidadesEnVenta } = require("../src/lib/tiendaHabilidades.ts");
 const { ENEMIGOS, JEFES_ELITE, obtenerRutaSpriteEnemigo, obtenerEnemigosPorDificultad } = require("../src/lib/enemigos.ts");
 const { generarMisionesDisponibles } = require("../src/lib/generadorMisiones.ts");
+const { calcularCosteRecursosMejora, obtenerObjetoPorId } = require("../src/lib/objetos.ts");
 
 test("el catálogo de clases tiene requisitos válidos y no contiene ciclos", () => {
   for (const clase of Object.values(CLASES)) {
@@ -149,6 +150,51 @@ test("el desglose de estadísticas separa base fija, atributos y redondeos", () 
       desglose.atributos.destreza.ataque,
     -0.5,
     "El desglose conserva el ajuste del redondeo aplicado por la fórmula original",
+  );
+});
+
+test("forja: los materiales escalan por tipo, rareza y nivel de mejora", () => {
+  assert.deepEqual(
+    calcularCosteRecursosMejora(obtenerObjetoPorId("espada_madera"), 0),
+    { madera: 1, piedra: 0, metal: 0 },
+  );
+  assert.deepEqual(
+    calcularCosteRecursosMejora(obtenerObjetoPorId("espada_hierro"), 0),
+    { madera: 0, piedra: 0, metal: 2 },
+  );
+  assert.deepEqual(
+    calcularCosteRecursosMejora(obtenerObjetoPorId("hacha_orca"), 0),
+    { madera: 3, piedra: 0, metal: 3 },
+  );
+  assert.deepEqual(
+    calcularCosteRecursosMejora(obtenerObjetoPorId("armadura_hierro"), 0),
+    { madera: 2, piedra: 0, metal: 0 },
+  );
+
+  const arcoRaro = {
+    id: "arco-prueba",
+    tipo: "arma",
+    subtipo: "arco",
+    rareza: "raro",
+  };
+  assert.deepEqual(
+    calcularCosteRecursosMejora(arcoRaro, 0),
+    { madera: 9, piedra: 0, metal: 3 },
+  );
+  assert.deepEqual(
+    calcularCosteRecursosMejora(arcoRaro, 3),
+    { madera: 18, piedra: 0, metal: 6 },
+  );
+
+  const armaduraPesadaRara = {
+    id: "armadura-pesada-prueba",
+    tipo: "armadura",
+    categoriaArmadura: "pesada",
+    rareza: "raro",
+  };
+  assert.deepEqual(
+    calcularCosteRecursosMejora(armaduraPesadaRara, 0),
+    { madera: 0, piedra: 3, metal: 6 },
   );
 });
 
