@@ -16,6 +16,7 @@ import { CONFIGURACION_EDIFICIOS } from "@/lib/tiposJuego";
 import {
   calcularEstadisticasPersonaje,
   calcularModificadoresEquipo,
+  type DesgloseEstadisticasPersonaje,
 } from "@/lib/estadisticasPersonaje";
 import { calcularAtributosClase } from "@/lib/progresion/atributos-clase";
 import { obtenerObjetoPorId } from "@/lib/objetos";
@@ -156,6 +157,12 @@ export interface Personaje {
 
   inventario: ObjetoInventario[];
   equipo: EquipoPersonaje;
+
+  // Desglose de procedencia calculado junto con las estadísticas.
+  desgloseEstadisticas?: Pick<
+    DesgloseEstadisticasPersonaje,
+    "base" | "mejoras" | "pasivas" | "equipo"
+  >;
 
   // Estadísticas calculadas
   hpMaximo: number;
@@ -558,6 +565,12 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
         : 0,
     hpActual: Math.min(datos.hpActual, estadisticas.total.hpMaximo),
     hpMaximo: estadisticas.total.hpMaximo,
+    desgloseEstadisticas: {
+      base: estadisticas.base,
+      mejoras: estadisticas.mejoras,
+      pasivas: estadisticas.pasivas,
+      equipo: estadisticas.equipo,
+    },
     estado:
       datos.estado === "de_viaje" ||
       datos.estado === "descansando" ||
