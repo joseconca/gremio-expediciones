@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useGameStore } from "@/store/useGameStore";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import ChatGlobal from "@/components/ChatGlobal";
 import Sugerencias from "@/components/Sugerencias";
 import HojaPersonajeModal from "@/components/HojaPersonajeModal";
@@ -25,7 +26,7 @@ const RecursoBadge = ({
   colorClases: string;
 }) => (
   <div
-    className={`font-bold bg-stone-900 px-2.5 rounded-b-lg border-x border-b border-stone-700 flex items-center gap-1.5 shadow-sm ${colorClases}`}
+    className={`shrink-0 whitespace-nowrap font-bold bg-stone-900 px-2 py-1 sm:px-2.5 rounded-b-lg border-x border-b border-stone-700 flex items-center gap-1.5 shadow-sm text-xs sm:text-sm ${colorClases}`}
   >
     {valor} {icono}
   </div>
@@ -37,6 +38,7 @@ export default function BaseLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
+  const pathname = usePathname();
 
   const {
     oro,
@@ -109,18 +111,18 @@ export default function BaseLayout({
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="sticky top-0 z-50 flex flex-col md:flex-row md:justify-between items-center md:items-start pointer-events-none">
+    <div className="min-h-screen flex flex-col bg-stone-950/20">
+      <header className="pointer-events-none sticky top-0 z-50 flex flex-col items-center gap-1 border-b border-stone-800/80 bg-stone-950/95 pb-1 backdrop-blur-md md:flex-row md:items-start md:justify-between">
         
         {/* PANEL DEL HÉROE GLOBAL */}
         {personaje && (
           <button
             type="button"
             onClick={() => setMostrarHoja(true)}
-            className="pointer-events-auto group flex w-full flex-nowrap items-center justify-start gap-3 rounded-b-lg border-x border-b border-stone-700 bg-stone-900 px-3 py-2 text-left text-sm transition-all duration-200 hover:border-amber-700/50 hover:bg-stone-800 hover:shadow-[0_0_15px_rgba(180,83,9,0.2)] focus:outline-none focus:ring-2 focus:ring-amber-700/60 md:w-auto md:px-4"
+            className="pointer-events-auto group flex w-full flex-nowrap items-center justify-start gap-2 rounded-b-lg border-x border-b border-stone-700 bg-stone-900 px-2 py-1.5 text-left text-xs transition-all duration-200 hover:border-amber-700/50 hover:bg-stone-800 hover:shadow-[0_0_15px_rgba(180,83,9,0.2)] focus:outline-none focus:ring-2 focus:ring-amber-700/60 sm:gap-3 sm:px-3 sm:py-2 sm:text-sm md:w-auto md:px-4"
             aria-label={`Abrir hoja del aventurero ${personaje.nombre}`}
           >
-            <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border-2 border-amber-700/80 bg-stone-800 shadow-[inset_0_0_8px_rgba(0,0,0,0.6)]">
+            <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-amber-700/80 bg-stone-800 shadow-[inset_0_0_8px_rgba(0,0,0,0.6)] sm:h-12 sm:w-12">
               <Image
                 src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)}
                 alt={`Avatar de ${personaje.nombre}`}
@@ -139,16 +141,16 @@ export default function BaseLayout({
 
               {/* Barra de vida */}
               <div className="flex items-center gap-2">
-                <span className="w-7 shrink-0 text-sm font-mono text-stone-400">
+                <span className="w-6 shrink-0 text-[11px] font-mono text-stone-400 sm:w-7 sm:text-sm">
                   HP
                 </span>
-                <div className="h-3 w-24 overflow-hidden rounded-full border border-stone-700 bg-stone-950 sm:w-40">
+                <div className="h-2.5 w-20 overflow-hidden rounded-full border border-stone-700 bg-stone-950 sm:h-3 sm:w-40">
                   <div
                     className="h-full bg-red-700 transition-all duration-300"
                     style={{ width: `${porcentajeVida}%` }}
                   />
                 </div>
-                <span className="text-sm font-mono text-stone-300">
+                <span className="whitespace-nowrap text-xs font-mono text-stone-300 sm:text-sm">
                   {Math.floor(personaje.hpActual)}/{personaje.hpMaximo}
                 </span>
               </div>
@@ -158,13 +160,13 @@ export default function BaseLayout({
                 <span className="block w-12 shrink-0 text-[10px] font-mono font-bold text-blue-300">
                   BASE {nivelPersonaje}
                 </span>
-                <div className="h-1.5 w-24 overflow-hidden rounded-full border border-stone-700 bg-stone-950 sm:w-40">
+                <div className="hidden h-1.5 w-24 overflow-hidden rounded-full border border-stone-700 bg-stone-950 sm:block sm:w-40">
                   <div
                     className="h-full bg-blue-700 transition-all duration-300"
                     style={{ width: `${porcentajeExperiencia}%` }}
                   />
                 </div>
-                <span className="text-xs font-mono text-stone-300">
+                <span className="hidden text-xs font-mono text-stone-300 sm:inline">
                   BASE XP {experienciaPersonaje}/{experienciaNivel}
                 </span>
               </div>
@@ -173,10 +175,10 @@ export default function BaseLayout({
                 <span className="block w-12 shrink-0 truncate text-[10px] font-mono font-bold text-amber-300" title={claseActiva.nombre}>
                   JOB {nivelJob}
                 </span>
-                <div className="h-1.5 w-24 overflow-hidden rounded-full border border-stone-700 bg-stone-950 sm:w-40">
+                <div className="hidden h-1.5 w-24 overflow-hidden rounded-full border border-stone-700 bg-stone-950 sm:block sm:w-40">
                   <div className="h-full bg-amber-600 transition-all duration-300" style={{ width: `${porcentajeExperienciaJob}%` }} />
                 </div>
-                <span className="text-[10px] font-mono text-stone-300">
+                <span className="hidden text-[10px] font-mono text-stone-300 sm:inline">
                   {nivelJob >= claseActiva.nivelJobMaximo ? "Maestría" : `${claseActiva.nombre} · XP ${experienciaJob}/${experienciaJobNecesaria}`}
                 </span>
               </div>
@@ -190,7 +192,8 @@ export default function BaseLayout({
 
         {/* PANEL DE RECURSOS CONDICIONALES */}
         {/* CAMBIO 3: Añadimos pointer-events-auto al contenedor de recursos para que los botones dentro funcionen */}
-        <div className="pointer-events-auto flex gap-1.5 flex-wrap justify-center text-sm md:text-base">
+        <div className="pointer-events-auto w-full overflow-x-auto px-2 md:w-auto md:overflow-visible md:px-0">
+          <div className="flex w-max min-w-full flex-nowrap items-center justify-start gap-1.5 text-xs sm:text-sm md:min-w-0 md:flex-wrap md:justify-end md:text-base">
           <RecursoBadge
             valor={oro}
             icono="🪙"
@@ -222,10 +225,52 @@ export default function BaseLayout({
           )}
 
           <Sugerencias />
+          </div>
         </div>
       </header>
 
-      <div className="flex-grow">{children}</div>
+      <nav
+        aria-label="Navegación principal"
+        className={`mobile-game-nav fixed inset-x-0 bottom-0 z-40 grid gap-1 border-t border-amber-900/70 bg-stone-950/95 px-2 pt-1.5 shadow-[0_-8px_24px_rgba(0,0,0,0.35)] backdrop-blur-xl md:hidden ${edificios.escuelaCombate.nivel > 0 ? "grid-cols-4" : "grid-cols-3"}`}
+      >
+        <Link
+          href="/base"
+          aria-current={pathname === "/base" ? "page" : undefined}
+          className={`flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg px-1 py-1 text-[10px] font-semibold leading-tight transition-colors ${pathname === "/base" ? "bg-amber-900/40 text-amber-200" : "text-stone-400 hover:bg-stone-900 hover:text-amber-100"}`}
+        >
+          <span className="text-lg leading-5" aria-hidden="true">🏰</span>
+          <span>Base</span>
+        </Link>
+        <Link
+          href="/expediciones"
+          aria-current={pathname === "/expediciones" ? "page" : undefined}
+          className={`flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg px-1 py-1 text-[10px] font-semibold leading-tight transition-colors ${pathname === "/expediciones" ? "bg-amber-900/40 text-amber-200" : "text-stone-400 hover:bg-stone-900 hover:text-amber-100"}`}
+        >
+          <span className="text-lg leading-5" aria-hidden="true">🗺️</span>
+          <span>Expediciones</span>
+        </Link>
+        {edificios.escuelaCombate.nivel > 0 && (
+          <Link
+            href="/base/escuela-batalla"
+            aria-current={pathname === "/base/escuela-batalla" ? "page" : undefined}
+            className={`flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg px-1 py-1 text-[10px] font-semibold leading-tight transition-colors ${pathname === "/base/escuela-batalla" ? "bg-amber-900/40 text-amber-200" : "text-stone-400 hover:bg-stone-900 hover:text-amber-100"}`}
+          >
+            <span className="text-lg leading-5" aria-hidden="true">⚔️</span>
+            <span>Habilidades</span>
+          </Link>
+        )}
+        <button
+          type="button"
+          onClick={() => setMostrarHoja(true)}
+          aria-label="Abrir hoja del héroe"
+          className="flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg px-1 py-1 text-[10px] font-semibold leading-tight text-stone-400 transition-colors hover:bg-stone-900 hover:text-amber-100"
+        >
+          <span className="text-lg leading-5" aria-hidden="true">👤</span>
+          <span>Héroe</span>
+        </button>
+      </nav>
+
+      <div className="flex-grow pb-24 md:pb-0">{children}</div>
 
       <HojaPersonajeModal
         abierto={mostrarHoja}
