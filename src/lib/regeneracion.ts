@@ -17,6 +17,7 @@ interface PersonajeRegen {
   ultimaRegeneracion: Date;
   habilidades?: {
     habilidadId: string;
+    slot?: string | null;
   }[];
 }
 
@@ -28,7 +29,7 @@ export async function sincronizarRegeneracion<T extends PersonajeRegen>(
 
   const estadisticas = calcularEstadisticasPersonaje(
     personaje,
-    personaje.habilidades?.map((habilidad) => habilidad.habilidadId) ?? [],
+    personaje.habilidades?.filter((habilidad) => typeof habilidad.slot === "string").map((habilidad) => habilidad.habilidadId) ?? [],
     equipo
   );
 
