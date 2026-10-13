@@ -47,7 +47,7 @@ import {
   calcularAtaqueModificado,
   calcularPrecisionModificada,
   calcularEvasionModificada,
-} from "@/lib/expediciones/estados-combate";
+} from "../../../../lib/expediciones/estados-combate";
 
 type AccionCombate = "atacar" | "usar_habilidad" | "usar_objeto";
 
