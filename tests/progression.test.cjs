@@ -497,12 +497,10 @@ test("objetos: los sprites de armadura se organizan por ranura", () => {
 
 test("las pasivas equipadas de recurso se reflejan en máximos y regeneración", () => {
   const { calcularEstadisticasPersonaje } = require("../src/lib/estadisticasPersonaje.ts");
-  const personaje = {
+  const basePersonaje = {
     clase: "Novato",
-    profesionActivaId: "mago",
     nivel: 1,
     nivelJob: 1,
-    progresosClase: [{ claseId: "mago", nivelJob: 1, desbloqueada: true }],
     fuerza: 1,
     agilidad: 1,
     vitalidad: 1,
@@ -512,15 +510,30 @@ test("las pasivas equipadas de recurso se reflejan en máximos y regeneración",
     velocidadMejoras: 0,
     capacidadCarruajeMejoras: 0,
   };
-  const base = calcularEstadisticasPersonaje(personaje, []).total;
-  const equipado = calcularEstadisticasPersonaje(
-    personaje,
-    ["reserva_arcana", "plegaria_constante"],
+  const personajeMago = {
+    ...basePersonaje,
+    profesionActivaId: "mago",
+    progresosClase: [{ claseId: "mago", nivelJob: 1, desbloqueada: true }],
+  };
+  const baseMago = calcularEstadisticasPersonaje(personajeMago, []).total;
+  const magoEquipado = calcularEstadisticasPersonaje(
+    personajeMago,
+    ["reserva_arcana"],
   ).total;
+  assert.equal(magoEquipado.manaMaximo, baseMago.manaMaximo + 10);
 
-  assert.equal(equipado.manaMaximo, base.manaMaximo + 10);
+  const personajeAcolito = {
+    ...basePersonaje,
+    profesionActivaId: "acolito",
+    progresosClase: [{ claseId: "acolito", nivelJob: 1, desbloqueada: true }],
+  };
+  const baseAcolito = calcularEstadisticasPersonaje(personajeAcolito, []).total;
+  const acolitoEquipado = calcularEstadisticasPersonaje(
+    personajeAcolito,
+    ["plegaria_constante"],
+  ).total;
   assert.equal(
-    equipado.regeneracionManaPorTurno,
-    base.regeneracionManaPorTurno + 1,
+    acolitoEquipado.regeneracionManaPorTurno,
+    baseAcolito.regeneracionManaPorTurno + 1,
   );
 });
