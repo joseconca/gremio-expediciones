@@ -572,6 +572,7 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
         sexo: "chico",
         nivel: 1,
         hpActual: 20,
+        comidaPreparada: null,
         estado: "ocioso",
         velocidadMejoras: 0,
         habilidades: [],
@@ -1406,4 +1407,43 @@ test("herrería: dos mejoras simultáneas de la misma pieza solo cobran y mejora
   assert.equal(results.filter((result) => result.status === 409).length, 1);
   assert.equal(route.getState().user.oro, 400);
   assert.equal(route.getState().items[0].nivelMejora, 1);
+});
+
+
+
+test("taberna: preparar una comida la reserva para combate y descuenta el oro", async () => {
+  const route = makeActionsRoute();
+  const response = await route.POST(request({
+    accion: "prepararComida",
+    comidaId: "carne-cazadora",
+  }));
+
+  assert.equal(response.status, 200);
+  assert.equal(route.getState().user.oro, 992);
+  assert.equal(route.getState().user.personaje.comidaPreparada, "carne-cazadora");
+});
+
+test("taberna: no permite preparar una segunda comida ni cobra dos veces", async () => {
+  const route = makeActionsRoute();
+  const first = await route.POST(request({ accion: "prepararComida", comidaId: "carne-cazadora" }));
+  const second = await route.POST(request({ accion: "prepararComida", comidaId: "carne-cazadora" }));
+
+  assert.equal(first.status, 200);
+  assert.equal(second.status, 409);
+  assert.equal(route.getState().user.oro, 992);
+  assert.equal(route.getState().user.personaje.comidaPreparada, "carne-cazadora");
+});
+
+test("taberna: revierte la reserva si falta oro y bloquea compras durante una expedición", async () => {
+  const sinOro = makeActionsRoute({ initialUser: { oro: 0 } });
+  const compraSinOro = await sinOro.POST(request({ accion: "prepararComida", comidaId: "carne-cazadora" }));
+  assert.equal(compraSinOro.status, 400);
+  assert.equal(sinOro.getState().user.oro, 0);
+  assert.equal(sinOro.getState().user.personaje.comidaPreparada, null);
+
+  const viajando = makeActionsRoute({ initialUser: { expedicionActiva: { id: "exp1" } } });
+  const compraViajando = await viajando.POST(request({ accion: "prepararComida", comidaId: "carne-cazadora" }));
+  assert.equal(compraViajando.status, 409);
+  assert.equal(viajando.getState().user.oro, 1000);
+  assert.equal(viajando.getState().user.personaje.comidaPreparada, null);
 });
