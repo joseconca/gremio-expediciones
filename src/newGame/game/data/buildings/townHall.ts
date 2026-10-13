@@ -7,7 +7,7 @@ function createTownHallDefinition(level: 0 | 1): BuildingDefinition {
     id: `town-hall-${level}`,
     name: "Ayuntamiento",
     sprite: {
-      src: `/sprites/buildings/townHall/town-hall${level}.png`,
+      src: `/newGame/sprites/buildings/townHall/town-hall${level}.png`,
       frameWidth: 128,
       frameHeight: 128,
     },
