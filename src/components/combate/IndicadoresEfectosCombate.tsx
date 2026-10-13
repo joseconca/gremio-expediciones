@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { obtenerComidaTaberna } from "@/lib/comidasTaberna";
 import { leerEfectosCombate } from "@/lib/expediciones/estados-combate";
@@ -31,10 +31,6 @@ const CONFIGURACION_ESTADO: Record<TipoEfectoTemporalHabilidad, { nombre: string
 
 function IconoIndicador({ indicador }: { indicador: Indicador }) {
   const [spriteFallido, setSpriteFallido] = useState(false);
-
-  useEffect(() => {
-    setSpriteFallido(false);
-  }, [indicador.src]);
 
   const duracion = indicador.turnosRestantes === null
     ? "∞"

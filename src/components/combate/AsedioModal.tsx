@@ -12,6 +12,7 @@ import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCo
 interface AsedioModalProps {
   combate: CombateActivo;
   personaje: Personaje;
+  comidaActiva?: string | null;
   esAtacante: boolean;
   procesando?: boolean;
   onAccionCombate: (
@@ -59,6 +60,7 @@ function esperar(milisegundos: number): Promise<void> {
 export default function AsedioModal({
   combate,
   personaje,
+  comidaActiva,
   esAtacante,
   procesando = false,
   onAccionCombate,
@@ -659,7 +661,7 @@ export default function AsedioModal({
               >
                 <IndicadoresEfectosCombate
                   efectos={esAtacante ? combate.efectos : combate.efectosDefensor}
-                  comidaPreparada={personaje.comidaPreparada}
+                  comidaPreparada={esAtacante ? (comidaActiva ?? personaje.comidaPreparada) : null}
                   habilidades={personaje.habilidades}
                 />
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "jugador").map((pulso, indice) => (

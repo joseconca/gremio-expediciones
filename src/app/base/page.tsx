@@ -577,6 +577,7 @@ export default function BasePage() {
           <CombateModal
             combate={expedicionActiva.combateActivo as CombatePve}
             personaje={personaje}
+            comidaActiva={expedicionActiva.efectoComida ?? null}
             procesando={false}
             onAccionCombate={ejecutarAccionCombatePve}
             onCerrar={() => {
@@ -594,6 +595,7 @@ export default function BasePage() {
           <AsedioModal
             combate={combateVisible as CombateActivo}
             personaje={personaje}
+            comidaActiva={esAtacante ? (expedicionActiva?.efectoComida ?? null) : null}
             esAtacante={esAtacante}
             procesando={false}
             onAccionCombate={ejecutarAccionCombate}

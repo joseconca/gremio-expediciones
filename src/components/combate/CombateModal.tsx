@@ -13,6 +13,7 @@ import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCo
 interface CombateModalProps {
   combate: CombatePve;
   personaje: Personaje;
+  comidaActiva?: string | null;
   procesando?: boolean;
   onAccionCombate: (
     accion: "atacar" | "usar_habilidad" | "usar_objeto",
@@ -57,6 +58,7 @@ function esperar(milisegundos: number): Promise<void> {
 export default function CombateModal({
   combate,
   personaje,
+  comidaActiva,
   procesando = false,
   onAccionCombate,
   onCerrar,
@@ -504,7 +506,7 @@ export default function CombateModal({
               >
                 <IndicadoresEfectosCombate
                   efectos={combate.efectos}
-                  comidaPreparada={personaje.comidaPreparada}
+                  comidaPreparada={comidaActiva !== undefined ? comidaActiva : personaje.comidaPreparada}
                   habilidades={personaje.habilidades}
                 />
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "jugador").map((pulso, indice) => (
