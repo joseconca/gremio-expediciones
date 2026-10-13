@@ -207,13 +207,22 @@ function makeCombatConsumableRoute({
       calcularBonusDefensaMuralla: () => 0,
       resolverAtaqueJugador: () => ({ actor: "jugador", tipo: "ataque", animacion: "ofensiva", dano: 5, critico: false, texto: "Atacas." }),
       resolverAtaqueEnemigo: () => ({ actor: "enemigo", tipo: "ataque", animacion: "ofensiva", dano: 5, critico: false, texto: "Te golpea." }),
-      resolverHabilidadJugador: () => ({ accion: { actor: "jugador", tipo: "habilidad", animacion: "curacion", dano: 0, critico: false, texto: "Habilidad." }, jugadorHp: initialHp, jugadorDefensa: 2 }),
+      resolverHabilidadJugador: () => ({ accion: { actor: "jugador", tipo: "habilidad", animacion: "curacion", dano: 0, critico: false, texto: "Habilidad." }, jugadorHp: initialHp, jugadorDefensa: 2, enemigoDefensa: 2, efectos: [] }),
     },
     "@/lib/expediciones/asedio": {
       determinarGanadorAsedio: () => null,
       determinarPrimerTurnoAsedio: () => "atacante",
       siguienteTurnoAsedio: () => "defensor",
       finalizarAsedio: async () => ({}),
+    },
+    "../../../../lib/expediciones/estados-combate": {
+      leerEfectosCombate: (valor) => Array.isArray(valor) ? valor : [],
+      procesarEfectosTurno: (efectos, hp, _maxHp, defensa) => ({ efectos, hp, defensa, mensajes: [] }),
+      procesarTicksPeriodicos: (_efectos, hp) => ({ hp, mensajes: [] }),
+      avanzarEfectosCombate: (efectos, defensa) => ({ efectos, defensa, mensajes: [] }),
+      calcularAtaqueModificado: (ataque) => ataque,
+      calcularPrecisionModificada: (precision) => precision,
+      calcularEvasionModificada: (evasion) => evasion,
     },
     "../../../../lib/expediciones/dificultad": {
       aplicarMultiplicadorRecompensa: (cantidad) => cantidad,
