@@ -316,9 +316,7 @@ export default function PanelProfesiones({
                   <defs><linearGradient id="linea-profesion" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#8c6c42" /><stop offset="100%" stopColor="#58432c" /></linearGradient></defs>
                   {grafo.aristas.map((arista) => (
                     <path key={arista.id}
-                      d={arista.vaASegundaFila
-                        ? `M ${arista.x1} ${arista.y1} C ${arista.x1} ${arista.y1 + 12}, ${arista.x2 - 5} ${arista.y2 - 18}, ${arista.x2 - 5} ${arista.y2}`
-                        : `M ${arista.x1} ${arista.y1} C ${arista.x1} ${arista.y1 + 16}, ${arista.x2} ${arista.y2 - 16}, ${arista.x2} ${arista.y2}`}
+                      d={`M ${arista.x1} ${arista.y1} C ${arista.x1} ${arista.y1 + 18}, ${arista.x2} ${arista.y2 - 18}, ${arista.x2} ${arista.y2}`}
                       fill="none" stroke={arista.cumplida ? "#5e9b6b" : "url(#linea-profesion)"} strokeWidth={arista.cumplida ? 2.5 : 1.8} strokeLinecap="round" />
                   ))}
                 </svg>
