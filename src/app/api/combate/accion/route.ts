@@ -830,15 +830,39 @@ export async function POST(request: Request) {
           }
         }
       } else {
-        accionAnimada = resolverAtaqueEnemigo({
-          enemigoAtaque: combate.enemigoAtaque,
-          enemigoPrecision: combate.enemigoPrecision ?? 75,
-          jugadorEvasion: combate.jugadorEvasion ?? 0,
-          jugadorDefensa,
-          enemigoNombre: combate.enemigoNombre ?? "Enemigo",
-        });
+        const ticksEnemigo = procesarTicksPeriodicos(
+          efectosDefensor,
+          enemigoHp,
+          combate.enemigoHpMaximo ?? enemigoHp,
+          combate.enemigoNombre ?? "Enemigo",
+        );
+        enemigoHp = ticksEnemigo.hp;
+        log.push(...ticksEnemigo.mensajes);
 
-        jugadorHp = Math.max(0, jugadorHp - accionAnimada.dano);
+        if (enemigoHp <= 0) {
+          accionAnimada = {
+            actor: "enemigo",
+            tipo: "fallo",
+            animacion: "ofensiva",
+            dano: 0,
+            critico: false,
+            texto: `${combate.enemigoNombre ?? "El enemigo"} cae por los efectos acumulados.`,
+          };
+        } else {
+          accionAnimada = resolverAtaqueEnemigo({
+            enemigoAtaque: calcularAtaqueModificado(combate.enemigoAtaque, efectosDefensor),
+            enemigoPrecision: calcularPrecisionModificada(combate.enemigoPrecision ?? 75, efectosDefensor),
+            jugadorEvasion: calcularEvasionModificada(combate.jugadorEvasion ?? 0, efectos),
+            jugadorDefensa,
+            enemigoNombre: combate.enemigoNombre ?? "Enemigo",
+          });
+          jugadorHp = Math.max(0, jugadorHp - accionAnimada.dano);
+        }
+
+        const avanceEnemigo = avanzarEfectosCombate(efectosDefensor, enemigoDefensa);
+        efectosDefensor = avanceEnemigo.efectos;
+        enemigoDefensa = avanceEnemigo.defensa;
+        log.push(...avanceEnemigo.mensajes);
       }
 
       log.push(accionAnimada.texto);
@@ -1326,10 +1350,12 @@ export async function POST(request: Request) {
             jugadorHp,
             jugadorDefensa,
             enemigoHp,
+            enemigoDefensa,
             ronda: siguienteRonda,
             turno: siguienteTurno,
             cooldowns,
             efectos,
+            efectosDefensor,
             ultimoTurnoEn: new Date(),
             log,
             ultimaAccion: accionAnimada,
