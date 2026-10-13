@@ -184,6 +184,7 @@ interface CombateParaHabilidad {
   jugadorAtaque: number;
   jugadorAtaqueMagico?: number;
   jugadorDefensa: number;
+  jugadorDefensaMagica?: number;
   enemigoDefensaMagica?: number;
   jugadorNivel: number;
   jugadorHp: number;
@@ -232,7 +233,19 @@ export function resolverHabilidadJugador(
     let valor = estado.valor;
 
     if (estado.tipo === "dano_progresivo") {
-      valor = Math.max(1, Math.floor(ataqueEfectivo * estado.valor));
+      const danoBruto = Math.max(1, Math.floor(ataqueEfectivo * estado.valor));
+      const defensaFisica = objetivo === "jugador" ? jugadorDefensa : enemigoDefensa;
+      const defensaMagica = objetivo === "jugador"
+        ? (combate.jugadorDefensaMagica ?? jugadorDefensa)
+        : (combate.enemigoDefensaMagica ?? enemigoDefensa);
+      const defensaObjetivo = habilidad.tipoDano === "magico"
+        ? defensaMagica
+        : habilidad.tipoDano === "hibrido"
+          ? Math.floor((defensaFisica + defensaMagica) / 2)
+          : defensaFisica;
+      // Usamos la misma mitigación de defensa que el daño directo; el daño
+      // almacenado ya está mitigado para que cada pulso no vuelva a reducirlo.
+      valor = Math.max(1, danoBruto - Math.floor(Math.max(0, defensaObjetivo) / 2));
     } else if (estado.tipo === "curacion_progresiva") {
       valor = Math.max(1, Math.floor(combate.jugadorHpMaximo * estado.valor * (1 + bonusCuracion)));
     } else if (estado.tipo === "bonus_defensa") {
