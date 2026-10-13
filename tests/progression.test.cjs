@@ -94,10 +94,27 @@ test("Escuela: muestra siempre las habilidades de la profesión y hereda las ram
   assert.ok(cruzado.includes("primeros_auxilios"), "Las clases avanzadas deben heredar habilidades de Novato");
   const { HABILIDADES } = require("../src/lib/habilidades.ts");
   const guardia = HABILIDADES.find((habilidad) => habilidad.id === "guardia_improvisada");
+  assert.equal(guardia.nivelJobRequerido, 5);
+  assert.equal(guardia.costePuntosHabilidad, 1);
+  assert.equal(guardia.costeEnergia, 5);
   assert.equal(guardia.duracionTurnos, 4);
   assert.equal(guardia.cooldownTurnos, 4);
-  assert.equal(HABILIDADES.find((habilidad) => habilidad.id === "primeros_auxilios").curacionPorcentaje, 0.15);
-  assert.equal(HABILIDADES.find((habilidad) => habilidad.id === "rejuvenecer").curacionProgresivaPorcentaje, 0.08);
+
+  const primerosAuxilios = HABILIDADES.find((habilidad) => habilidad.id === "primeros_auxilios");
+  assert.equal(primerosAuxilios.nivelJobRequerido, 3);
+  assert.equal(primerosAuxilios.costeEnergia, 4);
+  assert.equal(primerosAuxilios.cooldownTurnos, 5);
+  assert.equal(primerosAuxilios.curacionPorcentaje, 0.15);
+  assert.equal(primerosAuxilios.duracionTurnos, 2);
+  assert.equal(primerosAuxilios.estadosSecundarios[0].valor, 0.075);
+  assert.equal(primerosAuxilios.estadosSecundarios[0].duracionTurnos, 2);
+
+  const rejuvenecer = HABILIDADES.find((habilidad) => habilidad.id === "rejuvenecer");
+  assert.equal(rejuvenecer.nivelJobRequerido, 10);
+  assert.equal(rejuvenecer.costeMana, 7);
+  assert.equal(rejuvenecer.cooldownTurnos, 4);
+  assert.equal(rejuvenecer.duracionTurnos, 3);
+  assert.equal(rejuvenecer.curacionProgresivaPorcentaje, 0.08);
 });
 
 test("atributos principales generan estadísticas derivadas y valores acotados", () => {
