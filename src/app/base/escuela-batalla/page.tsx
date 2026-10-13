@@ -148,11 +148,12 @@ export default function EscuelaCombatePage() {
   };
 
   const navegacion = (
-    <nav aria-label="Secciones de la Escuela de Batalla" className="mb-6 flex flex-wrap gap-2">
+    <nav aria-label="Secciones de la Escuela de Batalla" className="mb-4 grid grid-cols-3 gap-1.5 sm:mb-6 sm:flex sm:flex-wrap sm:gap-2">
       {([["aprender", "Aprender habilidades"], ["gestion", "Habilidades aprendidas"], ["profesiones", "Profesiones"]] as const).map(([key, label]) => (
         <button key={key} type="button" onClick={() => setVista(key)} aria-pressed={vista === key}
-          className={vista === key ? "rounded-lg border border-amber-400 bg-amber-900/30 px-4 py-2 text-sm font-semibold text-amber-100" : "rounded-lg border border-[#574631] bg-[#241d15] px-4 py-2 text-sm text-[#c1b49b] hover:border-amber-500/60"}>
-          {label}
+          className={vista === key ? "flex min-w-0 flex-1 items-center justify-center rounded-lg border border-amber-400 bg-amber-900/30 px-2 py-2 text-xs font-semibold text-amber-100 sm:flex-none sm:px-4 sm:text-sm" : "flex min-w-0 flex-1 items-center justify-center rounded-lg border border-[#574631] bg-[#241d15] px-2 py-2 text-xs text-[#c1b49b] hover:border-amber-500/60 sm:flex-none sm:px-4 sm:text-sm"}>
+          <span className="sm:hidden">{key === "aprender" ? "Aprender" : key === "gestion" ? "Equipadas" : "Profesiones"}</span>
+          <span className="hidden sm:inline">{label}</span>
         </button>
       ))}
     </nav>
@@ -161,28 +162,28 @@ export default function EscuelaCombatePage() {
   if (nivelEscuela === 0) return null;
 
   return (
-    <main className="min-h-screen bg-[#171512] p-4 text-[#e8dfc8] md:p-8">
+    <main className="min-h-screen bg-[#171512] p-3 pb-8 text-[#e8dfc8] sm:p-4 sm:pb-8 md:p-8">
       <div className="mx-auto max-w-6xl">
         <CabeceraEdificio icono="⚔️" nombre="Escuela de Batalla" nivel={nivelEscuela} />
-        <p className="mb-6 mt-2 text-sm text-[#a99d84]">{descripcionEdificio}</p>
+        <p className="mb-4 mt-1 hidden text-sm text-[#a99d84] sm:mb-6 sm:mt-2 sm:block">{descripcionEdificio}</p>
         {navegacion}
 
         {vista !== "profesiones" && (
-          <section aria-label="Profesión activa" className="mb-6 rounded-xl border border-[#6b5235] bg-[#241d15] p-4 md:p-5">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <section aria-label="Profesión activa" className="mb-4 rounded-xl border border-[#6b5235] bg-[#241d15] p-3 sm:mb-6 sm:p-4 md:p-5">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#a99169]">Tu clase actual</p>
-                <h2 className="mt-1 text-2xl font-black text-[#f0dfbd]">{datos?.profesionNombre ?? CLASES[profesionId]?.nombre ?? profesionId}</h2>
-                <p className="mt-1 max-w-xl text-sm text-[#b5a68c]">Puedes aprender habilidades de esta profesión y de sus antecesoras. Todos los requisitos se miden por nivel de Job.</p>
+                <h2 className="mt-1 text-xl font-black text-[#f0dfbd] sm:text-2xl">{datos?.profesionNombre ?? CLASES[profesionId]?.nombre ?? profesionId}</h2>
+                <p className="mt-1 hidden max-w-xl text-sm text-[#b5a68c] sm:block">Puedes aprender habilidades de esta profesión y de sus antecesoras. Todos los requisitos se miden por nivel de Job.</p>
               </div>
-              <div className="grid grid-cols-2 gap-3 sm:min-w-[300px]">
-                <div className="rounded-lg border border-[#4c3b27] bg-[#191612] p-3">
+              <div className="grid grid-cols-2 gap-2 sm:min-w-[300px] sm:gap-3">
+                <div className="min-w-0 rounded-lg border border-[#4c3b27] bg-[#191612] p-2 sm:p-3">
                   <p className="text-[11px] uppercase tracking-wider text-[#91816a]">Nivel de Job</p>
-                  <p className="mt-1 text-2xl font-bold text-amber-200">{nivelJob} / {CLASES[profesionId]?.nivelJobMaximo ?? 10}</p>
+                  <p className="mt-1 text-xl font-bold text-amber-200 sm:text-2xl">{nivelJob} / {CLASES[profesionId]?.nivelJobMaximo ?? 10}</p>
                 </div>
-                <div className="rounded-lg border border-[#4c3b27] bg-[#191612] p-3">
+                <div className="min-w-0 rounded-lg border border-[#4c3b27] bg-[#191612] p-2 sm:p-3">
                   <p className="text-[11px] uppercase tracking-wider text-[#91816a]">Puntos disponibles</p>
-                  <p className="mt-1 text-2xl font-bold text-amber-200">{puntosDisponibles}</p>
+                  <p className="mt-1 text-xl font-bold text-amber-200 sm:text-2xl">{puntosDisponibles}</p>
                 </div>
               </div>
             </div>
@@ -193,10 +194,10 @@ export default function EscuelaCombatePage() {
 
         {vista === "profesiones" ? <PanelProfesiones integrado onProfessionChanged={recargarHabilidades} /> : vista === "aprender" ? (
           <section>
-            <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div className="mb-3 flex flex-col gap-2 sm:mb-4 sm:gap-3 md:flex-row md:items-center md:justify-between">
               <div>
-                <h2 className="text-xl font-bold text-[#f0dfbd]">Catálogo de habilidades</h2>
-                <p className="mt-1 text-sm text-[#9f927b]">Elige técnicas para desbloquear con tus puntos Job. Las habilidades heredadas están identificadas.</p>
+                <h2 className="text-lg font-bold text-[#f0dfbd] sm:text-xl">Catálogo de habilidades</h2>
+                <p className="mt-1 hidden text-sm text-[#9f927b] sm:block">Elige técnicas para desbloquear con tus puntos Job. Las habilidades heredadas están identificadas.</p>
               </div>
               <label className="flex items-center gap-2 text-sm text-[#c1b49b]">
                 <span className="sr-only">Buscar habilidades</span>
@@ -204,17 +205,17 @@ export default function EscuelaCombatePage() {
                   className="w-full rounded-lg border border-[#594630] bg-[#211b14] px-3 py-2 text-sm text-[#f0e5d0] outline-none focus:border-amber-500 md:w-64" />
               </label>
             </div>
-            <div className="mb-5 flex flex-wrap gap-2" aria-label="Filtrar habilidades">
+            <div className="mb-4 flex gap-2 overflow-x-auto pb-1" aria-label="Filtrar habilidades">
               {([["todas", "Todas"], ["activa", "Activas"], ["pasiva", "Pasivas"], ["disponibles", "Puedo aprender"]] as const).map(([key, label]) => (
                 <button key={key} type="button" onClick={() => setFiltro(key)} aria-pressed={filtro === key}
-                  className={filtro === key ? "rounded-full border border-amber-400 bg-amber-900/30 px-3 py-1.5 text-xs font-semibold text-amber-100" : "rounded-full border border-[#51412d] bg-[#221b14] px-3 py-1.5 text-xs text-[#b5a68c] hover:border-amber-500/60"}>
+                  className={filtro === key ? "min-h-9 shrink-0 whitespace-nowrap rounded-full border border-amber-400 bg-amber-900/30 px-3 py-2 text-xs font-semibold text-amber-100" : "min-h-9 shrink-0 whitespace-nowrap rounded-full border border-[#51412d] bg-[#221b14] px-3 py-2 text-xs text-[#b5a68c] hover:border-amber-500/60"}>
                   {label}
                 </button>
               ))}
             </div>
             {cargando ? <div className="rounded-xl border border-[#51412d] bg-[#211b14] p-10 text-center text-[#a99d84]">Cargando catálogo...</div>
               : habilidadesVisibles.length === 0 ? <div className="rounded-xl border border-dashed border-[#51412d] p-10 text-center text-[#a99d84]">No hay habilidades que coincidan con estos filtros.</div>
-              : <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+              : <div className="grid grid-cols-1 gap-3 sm:gap-4 lg:grid-cols-2">
                 {habilidadesVisibles.map((habilidad) => {
                   const aprendida = idsAprendidas.has(habilidad.id);
                   const requerida = habilidad.nivelJobRequerido ?? 1;
@@ -228,30 +229,33 @@ export default function EscuelaCombatePage() {
                     : puntosInsuficientes ? `Necesitas ${coste} punto(s) de habilidad`
                     : "No disponible para esta profesión";
                   return (
-                    <article key={habilidad.id} className={`flex flex-col rounded-xl border bg-[#211b14] p-4 ${aprendida ? "border-emerald-800/70" : puede ? "border-[#695233]" : "border-[#403427]"}`}>
+                    <article key={habilidad.id} className={`flex flex-col rounded-xl border bg-[#211b14] p-3 sm:p-4 ${aprendida ? "border-emerald-800/70" : puede ? "border-[#695233]" : "border-[#403427]"}`}>
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
                           <div className="mb-2 flex flex-wrap items-center gap-2">
                             <span className="rounded-full border border-[#63513a] bg-[#302619] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[#c8b38b]">{habilidad.tipo === "activa" ? "Activa" : "Pasiva"}</span>
-                            <span className="text-[11px] text-[#98876c]">{nombreRareza(habilidad.rareza)}</span>
+                            <span className="hidden text-[11px] text-[#98876c] sm:inline">{nombreRareza(habilidad.rareza)}</span>
                             <span className="text-[11px] text-[#98876c]">{etiquetaEfecto(habilidad)}</span>
                           </div>
-                          <h3 className="text-lg font-bold text-[#f1e5cf]">{habilidad.nombre}</h3>
+                          <h3 className="text-base font-bold text-[#f1e5cf] sm:text-lg">{habilidad.nombre}</h3>
                         </div>
-                        <span className={`shrink-0 rounded-md px-2 py-1 text-[10px] font-semibold ${heredada ? "bg-sky-950/70 text-sky-200" : "bg-amber-950/70 text-amber-200"}`}>{heredada ? `Heredada: ${clasePropietaria}` : "Propia de tu clase"}</span>
+                        <span className={`shrink-0 rounded-md px-2 py-1 text-[10px] font-semibold ${heredada ? "bg-sky-950/70 text-sky-200" : "bg-amber-950/70 text-amber-200"}`}>
+                            <span className="sm:hidden">{heredada ? "Heredada" : "Propia"}</span>
+                            <span className="hidden sm:inline">{heredada ? `Heredada: ${clasePropietaria}` : "Propia de tu clase"}</span>
+                          </span>
                       </div>
-                      <p className="mt-3 flex-1 text-sm leading-6 text-[#c2b59e]">{habilidad.descripcion}</p>
-                      <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-[#c7b99e]">
-                        <span className="rounded-md bg-[#302619] px-2.5 py-1">Job {requerida}</span>
-                        <span className="rounded-md bg-[#302619] px-2.5 py-1">{coste} punto(s)</span>
-                        {(habilidad.costeEnergia || habilidad.costeMana) && <span className="rounded-md bg-[#302619] px-2.5 py-1">{etiquetaCoste(habilidad)}</span>}
-                        {habilidad.cooldownTurnos ? <span className="rounded-md bg-[#302619] px-2.5 py-1">Enfriamiento: {habilidad.cooldownTurnos} turnos</span> : null}
-                        {habilidad.duracionTurnos ? <span className="rounded-md bg-[#302619] px-2.5 py-1">Duración: {habilidad.duracionTurnos} turnos</span> : null}
+                      <p className="mt-2 flex-1 line-clamp-2 text-xs leading-5 text-[#c2b59e] sm:mt-3 sm:text-sm sm:leading-6 sm:line-clamp-none">{habilidad.descripcion}</p>
+                      <div className="mt-3 flex flex-wrap gap-1.5 text-[10px] text-[#c7b99e] sm:mt-4 sm:gap-2 sm:text-[11px]">
+                        <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">Job {requerida}</span>
+                        <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">{coste} punto(s)</span>
+                        {(habilidad.costeEnergia || habilidad.costeMana) && <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">{etiquetaCoste(habilidad)}</span>}
+                        {habilidad.cooldownTurnos ? <span className="hidden rounded-md bg-[#302619] px-2 py-1 sm:inline-flex sm:px-2.5">Enfriamiento: {habilidad.cooldownTurnos} turnos</span> : null}
+                        {habilidad.duracionTurnos ? <span className="hidden rounded-md bg-[#302619] px-2 py-1 sm:inline-flex sm:px-2.5">Duración: {habilidad.duracionTurnos} turnos</span> : null}
                       </div>
-                      <div className="mt-4 border-t border-[#443624] pt-3">
+                      <div className="mt-3 border-t border-[#443624] pt-3 sm:mt-4">
                         {aprendida ? <p className="text-sm font-semibold text-emerald-300">✓ Habilidad aprendida</p>
                           : puede ? <button type="button" onClick={() => void enviarAccion("aprender", habilidad.id)} disabled={procesando !== null}
-                            className="w-full rounded-lg border border-amber-400/70 bg-amber-900/40 px-4 py-2.5 text-sm font-bold text-amber-100 transition hover:bg-amber-800/60 disabled:cursor-wait disabled:opacity-50">
+                            className="min-h-11 w-full rounded-lg border border-amber-400/70 bg-amber-900/40 px-3 py-2 text-sm font-bold text-amber-100 transition hover:bg-amber-800/60 disabled:cursor-wait disabled:opacity-50 sm:px-4 sm:py-2.5">
                             {procesando === clave ? "Aprendiendo..." : `Aprender por ${coste} punto(s) Job`}
                           </button>
                           : <p className="rounded-lg border border-[#443624] bg-[#191612] px-3 py-2 text-sm text-[#9f927b]">🔒 {bloqueo}</p>}
@@ -265,20 +269,20 @@ export default function EscuelaCombatePage() {
           <section>
             <div className="mb-4">
               <h2 className="text-xl font-bold text-[#f0dfbd]">Configura tus habilidades</h2>
-              <p className="mt-1 text-sm text-[#9f927b]">Puedes equipar hasta 3 habilidades activas y 2 pasivas. Las habilidades de otra rama quedan deshabilitadas.</p>
+              <p className="mt-1 hidden text-sm text-[#9f927b] sm:block">Puedes equipar hasta 3 habilidades activas y 2 pasivas. Las habilidades de otra rama quedan deshabilitadas.</p>
             </div>
-            <div className="mb-6 rounded-xl border border-[#594630] bg-[#211b14] p-4">
+            <div className="mb-4 rounded-xl border border-[#594630] bg-[#211b14] p-3 sm:mb-6 sm:p-4">
               <h3 className="mb-3 font-bold text-[#e8d7b8]">Ranuras equipadas</h3>
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-5">
                 {SLOTS.map((slot) => {
                   const actual = habilidadesEquipadas.find((item) => item.slot === slot);
-                  return <div key={slot} className="rounded-lg border border-[#4c3b27] bg-[#191612] p-3">
+                  return <div key={slot} className="min-w-0 rounded-lg border border-[#4c3b27] bg-[#191612] p-2 sm:p-3">
                     <p className="text-xs font-bold uppercase tracking-wider text-[#a99169]">{etiquetaSlot(slot)}</p>
                     {actual ? <>
-                      <p className="mt-2 font-semibold text-[#f0e5d0]">{actual.habilidad.nombre}</p>
+                      <p className="mt-2 break-words text-sm font-semibold text-[#f0e5d0]">{actual.habilidad.nombre}</p>
                       {actual.disponibleParaProfesion === false && <p className="mt-1 text-xs text-red-300">No disponible para tu clase activa</p>}
                       <button type="button" onClick={() => void enviarAccion("desequipar", actual.habilidadId)} disabled={procesando !== null}
-                        className="mt-3 rounded-md border border-[#594630] px-3 py-1.5 text-xs text-[#c1b49b] hover:border-amber-500/60 disabled:opacity-50">
+                        className="mt-2 min-h-9 rounded-md border border-[#594630] px-2 py-1.5 text-xs text-[#c1b49b] hover:border-amber-500/60 disabled:opacity-50 sm:mt-3 sm:px-3">
                         {procesando === `desequipar:${actual.habilidadId}` ? "Quitando..." : "Desequipar"}
                       </button>
                     </> : <p className="mt-2 text-sm text-[#796c58]">Ranura vacía</p>}
@@ -293,19 +297,19 @@ export default function EscuelaCombatePage() {
                   const habilidad = item.habilidad;
                   const slotsCompatibles = habilidad.tipo === "activa" ? SLOTS_ACTIVAS : SLOTS_PASIVAS;
                   const compatible = item.disponibleParaProfesion !== false;
-                  return <article key={item.id} className="flex flex-col gap-3 rounded-xl border border-[#4d3d2a] bg-[#211b14] p-4 md:flex-row md:items-center md:justify-between">
+                  return <article key={item.id} className="flex flex-col gap-2 rounded-xl border border-[#4d3d2a] bg-[#211b14] p-3 sm:gap-3 sm:p-4 md:flex-row md:items-center md:justify-between">
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-2">
                         <h4 className="font-bold text-[#f0e5d0]">{habilidad.nombre}</h4>
                         <span className="rounded-full bg-[#302619] px-2 py-0.5 text-[10px] uppercase text-[#b9a582]">{habilidad.tipo}</span>
                       </div>
-                      <p className="mt-1 text-sm text-[#a99d84]">{habilidad.descripcion}</p>
+                      <p className="mt-1 line-clamp-2 text-xs leading-5 text-[#a99d84] sm:text-sm sm:line-clamp-none">{habilidad.descripcion}</p>
                       {!compatible && <p className="mt-1 text-xs text-red-300">Esta habilidad pertenece a otra rama y no está disponible con tu clase actual.</p>}
                     </div>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {slotsCompatibles.map((slot) => <button key={slot} type="button" onClick={() => void enviarAccion("equipar", habilidad.id, slot)}
                         disabled={!compatible || procesando !== null}
-                        className="rounded-lg border border-[#594630] bg-[#2d2418] px-3 py-2 text-xs font-semibold text-[#d5c4a4] hover:border-amber-500/70 disabled:cursor-not-allowed disabled:opacity-40">
+                        className="min-h-9 rounded-lg border border-[#594630] bg-[#2d2418] px-2.5 py-2 text-xs font-semibold text-[#d5c4a4] hover:border-amber-500/70 disabled:cursor-not-allowed disabled:opacity-40 sm:px-3">
                         {procesando === `equipar:${habilidad.id}:${slot}` ? "Equipando..." : etiquetaSlot(slot)}
                       </button>)}
                     </div>
