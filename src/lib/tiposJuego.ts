@@ -41,7 +41,36 @@ export type Rareza =
 /** HABILIDADES */
 export type TipoHabilidad = "activa" | "pasiva";
 
-export type EfectoHabilidadActiva = "dano" | "curacion" | "bonus_defensa";
+export type EfectoHabilidadActiva =
+  | "dano"
+  | "curacion"
+  | "bonus_defensa"
+  | "curacion_progresiva"
+  | "bonus_ataque_magico";
+
+export type TipoEfectoTemporalHabilidad =
+  | "bonus_defensa"
+  | "debuff_defensa"
+  | "bonus_ataque"
+  | "debuff_ataque"
+  | "bonus_ataque_magico"
+  | "debuff_precision"
+  | "bonus_evasion"
+  | "dano_progresivo"
+  | "curacion_progresiva";
+
+export interface EstadoSecundarioHabilidad {
+  tipo: TipoEfectoTemporalHabilidad;
+  /** Porcentajes como fracción: 0.12 equivale al 12 %. */
+  valor: number;
+  duracionTurnos: number;
+  objetivo?: "jugador" | "enemigo";
+}
+
+export interface EstadoEfectoHabilidad extends EstadoSecundarioHabilidad {
+  habilidadId: string;
+  turnosRestantes: number;
+}
 export type TipoDanoHabilidad = "fisico" | "magico";
 
 export type AnimacionHabilidad =
@@ -280,8 +309,26 @@ export interface DefinicionHabilidad {
   /** Multiplicador aplicado al ataque. */
   multiplicadorDano?: number;
 
-  /** Cantidad base de curación. */
+  /** Cantidad fija de curación para las habilidades que la utilicen. */
   curacion?: number;
+  /** Fracción de vida máxima que se restaura inmediatamente. */
+  curacionPorcentaje?: number;
+  /** Fracción de vida máxima restaurada en cada pulso progresivo. */
+  curacionProgresivaPorcentaje?: number;
+  /** Fracción del ataque efectivo que inflige cada pulso de daño progresivo. */
+  danoProgresivoPorcentaje?: number;
+  /** Proporción del daño efectivo convertida en curación. */
+  roboVida?: number;
+  /** Bonificación defensiva temporal expresada como fracción de defensa actual. */
+  bonusDefensaPorcentaje?: number;
+  /** Estados secundarios que se aplican al resolver la habilidad. */
+  estadosSecundarios?: EstadoSecundarioHabilidad[];
+  /** Elimina los perjuicios activos del personaje. */
+  limpiarEstadosNegativos?: boolean;
+  /** Fracción adicional de curación para habilidades curativas. */
+  bonusCuracion?: number;
+  /** Energía recuperada al ejecutar una habilidad. */
+  recuperarEnergia?: number;
 
   /** Multiplicador adicional aplicado al efecto de un crítico. */
   multiplicadorCritico?: number;
