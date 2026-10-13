@@ -20,8 +20,8 @@ export default function ComplejoArmeria({
   return (
     <article className="group relative isolate flex min-w-0 flex-col overflow-hidden rounded-lg border border-[#5b4026] bg-[#24190f] shadow-[0_5px_0_rgba(12,17,10,0.55),0_8px_16px_rgba(0,0,0,0.22)] transition-colors hover:border-amber-700/80 sm:rounded-xl">
       {/* Cartel compartido para la armería y la herrería. */}
-      <div className="relative z-20 mx-1.5 -mb-2 mt-1.5 flex min-h-[57px] items-center justify-center sm:mx-3 sm:-mb-5 sm:mt-3">
-        <div className="relative w-full rounded-sm border-2 border-[#362214] bg-gradient-to-b from-[#825329] to-[#56361e] px-1.5 py-1.5 shadow-[inset_0_1px_0_rgba(255,220,160,0.15),0_3px_5px_rgba(0,0,0,0.35)] sm:border-[3px] sm:px-3 sm:py-2">
+      <div className="relative z-20 mx-1.5 -mb-2 mt-1.5 flex h-[92px] items-center justify-center sm:mx-3 sm:-mb-5 sm:mt-3 sm:h-[116px]">
+        <div className="relative flex h-full w-full flex-col justify-center rounded-sm border-2 border-[#362214] bg-gradient-to-b from-[#825329] to-[#56361e] px-2 py-1.5 shadow-[inset_0_1px_0_rgba(255,220,160,0.15),0_3px_5px_rgba(0,0,0,0.35)] sm:border-[3px] sm:px-3 sm:py-2">
           <span aria-hidden="true" className="absolute left-1 top-1 h-1 w-1 rounded-full bg-[#24170d] sm:left-1.5 sm:top-1.5 sm:h-1.5 sm:w-1.5" />
           <span aria-hidden="true" className="absolute right-1 top-1 h-1 w-1 rounded-full bg-[#24170d] sm:right-1.5 sm:top-1.5 sm:h-1.5 sm:w-1.5" />
           <div className={herreriaConstruida ? "grid grid-cols-2 gap-1.5 sm:gap-3" : "grid grid-cols-1"}>
@@ -29,7 +29,7 @@ export default function ComplejoArmeria({
               <h3 className="break-words text-xs font-black leading-tight tracking-wide text-amber-200 drop-shadow sm:text-lg">
                 {armeria.nombre}
               </h3>
-              <p className="mt-1 hidden line-clamp-2 text-[10px] font-semibold leading-tight text-amber-100/70 sm:block">
+              <p className="mt-1 line-clamp-2 text-center text-[9px] font-semibold leading-tight text-amber-100/70 sm:text-xs">
                 {armeria.descripcion}
               </p>
             </div>
@@ -38,7 +38,7 @@ export default function ComplejoArmeria({
                 <h3 className="break-words text-xs font-black leading-tight tracking-wide text-amber-200 drop-shadow sm:text-lg">
                   {herreria.nombre}
                 </h3>
-                <p className="mt-1 hidden line-clamp-2 text-[10px] font-semibold leading-tight text-amber-100/70 sm:block">
+                <p className="mt-1 line-clamp-2 text-center text-[9px] font-semibold leading-tight text-amber-100/70 sm:text-xs">
                   {herreria.descripcion}
                 </p>
               </div>
@@ -99,7 +99,7 @@ export default function ComplejoArmeria({
         </div>
       </div>
 
-      <div className="relative z-30 grid grid-cols-2 gap-1.5 border-t border-[#674728]/70 bg-gradient-to-b from-[#342315] to-[#20160e] p-1.5 sm:gap-2 sm:p-2">
+      <div className="relative z-30 grid min-h-[49px] grid-cols-2 gap-1.5 border-t border-[#674728]/70 bg-gradient-to-b from-[#342315] to-[#20160e] p-1.5 sm:min-h-[57px] sm:gap-2 sm:p-2">
         <Link
           href={CONFIGURACION_EDIFICIOS.armeria.ruta}
           aria-label={`Entrar en ${armeria.nombre}`}
