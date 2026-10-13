@@ -421,6 +421,12 @@ export async function POST(request: Request) {
     }
 
     const personaje = usuario.personaje;
+    const bonusCuracion = personaje.habilidades.reduce((total, aprendida) => {
+      const definicion = obtenerHabilidadPorId(aprendida.habilidadId);
+      if (!definicion || definicion.tipo !== "pasiva") return total;
+      if (!puedeUsarHabilidadDeClase(personaje.profesionActivaId || "novato", definicion.claseId)) return total;
+      return total + (definicion.bonusCuracion ?? 0);
+    }, 0);
 
     // ============================================================
     // LOCALIZAR COMBATE
@@ -770,12 +776,12 @@ export async function POST(request: Request) {
           }
 
           const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
-            jugadorAtaque: combate.jugadorAtaque,
-            jugadorAtaqueMagico: combate.jugadorAtaqueMagico,
+            jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
+            jugadorAtaqueMagico: calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true),
             jugadorProbCritico: combate.jugadorProbCritico,
             jugadorDanoCritico: combate.jugadorDanoCritico,
-            jugadorPrecision: combate.jugadorPrecision ?? 75,
-            enemigoEvasion: combate.enemigoEvasion ?? 0,
+            jugadorPrecision: calcularPrecisionModificada(combate.jugadorPrecision ?? 75, efectos),
+            enemigoEvasion: calcularEvasionModificada(combate.enemigoEvasion ?? 0, efectosDefensor),
             jugadorDefensa,
             jugadorNivel: combate.jugadorNivel,
             jugadorHp,
@@ -783,17 +789,28 @@ export async function POST(request: Request) {
             enemigoDefensa,
             enemigoDefensaMagica: combate.enemigoDefensaMagica ?? enemigoDefensa,
             enemigoNombre: combate.enemigoNombre ?? "Enemigo",
+            bonusCuracion,
+            efectosJugador: efectos,
           });
 
           accionAnimada = resultadoHabilidad.accion;
 
           jugadorHp = resultadoHabilidad.jugadorHp;
           jugadorDefensa = resultadoHabilidad.jugadorDefensa;
+          enemigoDefensa = resultadoHabilidad.enemigoDefensa;
 
           enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
 
-          if (resultadoHabilidad.efecto) {
-            efectos = [...efectos, resultadoHabilidad.efecto];
+          for (const estado of resultadoHabilidad.efectos) {
+            if (estado.objetivo === "enemigo") efectosDefensor = [...efectosDefensor, estado];
+            else efectos = [...efectos, estado];
+          }
+          if (resultadoHabilidad.efectosJugadorActualizados) efectos = resultadoHabilidad.efectosJugadorActualizados;
+          if (habilidad.recuperarEnergia && habilidad.recuperarEnergia > 0) {
+            await prisma.personaje.update({
+              where: { id: personaje.id },
+              data: { energiaActual: { increment: habilidad.recuperarEnergia } },
+            });
           }
 
           const cooldownTurnos = habilidad.cooldownTurnos ?? 0;
@@ -1257,12 +1274,13 @@ export async function POST(request: Request) {
         cooldowns = reducirCooldowns(cooldowns);
 
         const efectosActualizados = actualizarEfectosAlInicioTurnoJugador(
-          efectos,
-          jugadorDefensa
+          efectos, jugadorHp, combate.jugadorHpMaximo, jugadorDefensa, personaje.nombre
         );
 
         efectos = efectosActualizados.efectos;
+        jugadorHp = efectosActualizados.hp;
         jugadorDefensa = efectosActualizados.defensa;
+        log.push(...efectosActualizados.mensajes);
       }
 
       const combateActualizado = await prisma.$transaction(async (tx) => {
@@ -1391,6 +1409,8 @@ export async function POST(request: Request) {
             combate.enemigoDefensa +
             calcularBonusDefensaMuralla(combate.murallaNivel),
           enemigoNombre: combate.enemigoNombre ?? "Defensor",
+          bonusCuracion,
+          efectosJugador: efectos,
         });
 
         enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
@@ -1405,8 +1425,8 @@ export async function POST(request: Request) {
         }
 
         const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
-          jugadorAtaque: combate.jugadorAtaque,
-          jugadorAtaqueMagico: combate.jugadorAtaqueMagico,
+          jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
+          jugadorAtaqueMagico: calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true),
           jugadorProbCritico: combate.jugadorProbCritico,
           jugadorDanoCritico: combate.jugadorDanoCritico,
           jugadorDefensa,
@@ -1425,13 +1445,18 @@ export async function POST(request: Request) {
         accionAnimada = resultadoHabilidad.accion;
 
         jugadorHp = resultadoHabilidad.jugadorHp;
-
         jugadorDefensa = resultadoHabilidad.jugadorDefensa;
+        enemigoDefensa = resultadoHabilidad.enemigoDefensa;
 
         enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
 
-        if (resultadoHabilidad.efecto) {
-          efectos = [...efectos, resultadoHabilidad.efecto];
+        for (const estado of resultadoHabilidad.efectos) {
+          if (estado.objetivo === "enemigo") efectosDefensor = [...efectosDefensor, estado];
+          else efectos = [...efectos, estado];
+        }
+        if (resultadoHabilidad.efectosJugadorActualizados) efectos = resultadoHabilidad.efectosJugadorActualizados;
+        if (habilidad.recuperarEnergia && habilidad.recuperarEnergia > 0) {
+          await prisma.personaje.update({ where: { id: personaje.id }, data: { energiaActual: { increment: habilidad.recuperarEnergia } } });
         }
 
         const cooldownTurnos = habilidad.cooldownTurnos ?? 0;
@@ -1471,12 +1496,12 @@ export async function POST(request: Request) {
         }
 
         const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
-          jugadorAtaque: combate.enemigoAtaque,
-          jugadorAtaqueMagico: combate.enemigoAtaqueMagico ?? combate.enemigoAtaque,
+          jugadorAtaque: calcularAtaqueModificado(combate.enemigoAtaque, efectosDefensor),
+          jugadorAtaqueMagico: calcularAtaqueModificado(combate.enemigoAtaqueMagico ?? combate.enemigoAtaque, efectosDefensor, true),
           jugadorProbCritico: combate.enemigoProbCritico,
           jugadorDanoCritico: combate.enemigoDanoCritico,
-          jugadorPrecision: combate.enemigoPrecision ?? 75,
-          enemigoEvasion: combate.jugadorEvasion ?? 0,
+          jugadorPrecision: calcularPrecisionModificada(combate.enemigoPrecision ?? 75, efectosDefensor),
+          enemigoEvasion: calcularEvasionModificada(combate.jugadorEvasion ?? 0, efectos),
           jugadorDefensa: enemigoDefensa,
           jugadorNivel: combate.enemigoNivel,
           jugadorHp: enemigoHp,
@@ -1484,17 +1509,25 @@ export async function POST(request: Request) {
           enemigoDefensa: jugadorDefensa,
           enemigoDefensaMagica: combate.jugadorDefensaMagica,
           enemigoNombre: "Atacante",
+          bonusCuracion,
+          efectosJugador: efectosDefensor,
         });
 
         accionAnimada = resultadoHabilidad.accion;
 
         enemigoHp = resultadoHabilidad.jugadorHp;
         enemigoDefensa = resultadoHabilidad.jugadorDefensa;
+        jugadorDefensa = resultadoHabilidad.enemigoDefensa;
 
         jugadorHp = Math.max(0, jugadorHp - accionAnimada.dano);
 
-        if (resultadoHabilidad.efecto) {
-          efectosDefensor = [...efectosDefensor, resultadoHabilidad.efecto];
+        for (const estado of resultadoHabilidad.efectos) {
+          if (estado.objetivo === "enemigo") efectos = [...efectos, estado];
+          else efectosDefensor = [...efectosDefensor, estado];
+        }
+        if (resultadoHabilidad.efectosJugadorActualizados) efectosDefensor = resultadoHabilidad.efectosJugadorActualizados;
+        if (habilidad.recuperarEnergia && habilidad.recuperarEnergia > 0) {
+          await prisma.personaje.update({ where: { id: personaje.id }, data: { energiaActual: { increment: habilidad.recuperarEnergia } } });
         }
 
         const cooldownTurnos = habilidad.cooldownTurnos ?? 0;
@@ -1607,24 +1640,26 @@ export async function POST(request: Request) {
       cooldowns = reducirCooldowns(cooldowns);
 
       const efectosActualizados = actualizarEfectosAlInicioTurnoJugador(
-        efectos,
-        jugadorDefensa
+        efectos, jugadorHp, combate.jugadorHpMaximo, jugadorDefensa, combate.atacanteNombre ?? personaje.nombre
       );
 
       efectos = efectosActualizados.efectos;
+      jugadorHp = efectosActualizados.hp;
       jugadorDefensa = efectosActualizados.defensa;
+      log.push(...efectosActualizados.mensajes);
     }
 
     if (siguienteTurno === "defensor") {
       cooldownsDefensor = reducirCooldowns(cooldownsDefensor);
 
       const efectosActualizados = actualizarEfectosAlInicioTurnoJugador(
-        efectosDefensor,
-        enemigoDefensa
+        efectosDefensor, enemigoHp, combate.enemigoHpMaximo ?? enemigoHp, enemigoDefensa, combate.defensorNombre ?? combate.enemigoNombre ?? "Defensor"
       );
 
       efectosDefensor = efectosActualizados.efectos;
+      enemigoHp = efectosActualizados.hp;
       enemigoDefensa = efectosActualizados.defensa;
+      log.push(...efectosActualizados.mensajes);
     }
 
     const combateActualizado = await prisma.$transaction(async (tx) => {
