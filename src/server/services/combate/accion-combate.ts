@@ -29,10 +29,6 @@ import {
 type AccionCombate = "atacar" | "usar_habilidad" | "usar_objeto";
 type EfectoCombate = EstadoEfectoHabilidad;
 
-type AccionCombate = "atacar" | "usar_habilidad" | "usar_objeto";
-
-type EfectoCombate = EstadoEfectoHabilidad;
-
 
 export async function otorgarExperienciaJob(
   tx: Prisma.TransactionClient,
@@ -408,6 +404,27 @@ export function manejarErrorAccionCombate(error: unknown) {
   );
 }
 
+type CombateAccionPayload = Omit<
+  Prisma.CombateActivoGetPayload<{ include: { expedicion: true } }>,
+  | "enemigoHp"
+  | "enemigoHpMaximo"
+  | "enemigoAtaque"
+  | "enemigoDefensa"
+  | "enemigoVelocidad"
+  | "enemigoProbCritico"
+  | "enemigoDanoCritico"
+  | "enemigoNivel"
+> & {
+  enemigoHp: number;
+  enemigoHpMaximo: number;
+  enemigoAtaque: number;
+  enemigoDefensa: number;
+  enemigoVelocidad: number;
+  enemigoProbCritico: number;
+  enemigoDanoCritico: number;
+  enemigoNivel: number;
+};
+
 type UsuarioAccionPayload = Prisma.UsuarioGetPayload<{
   include: {
     personaje: {
@@ -437,7 +454,7 @@ export type ContextoAccionCombate = {
   personaje: NonNullable<UsuarioAccionPayload["personaje"]>;
   bonusCuracion: number;
   expedicion: Prisma.ExpedicionActivaGetPayload<{ include: { combateActivo: true } }>;
-  combate: Prisma.CombateActivoGetPayload<{ include: { expedicion: true } }>;
+  combate: CombateAccionPayload;
   esPvp: boolean;
   actor: string;
   habilidad: DefinicionHabilidad | null;
@@ -898,7 +915,7 @@ export async function prepararAccionCombate(
         personaje,
         bonusCuracion,
         expedicion,
-        combate,
+        combate: combate as CombateAccionPayload,
         esPvp,
         actor,
         habilidad,

@@ -121,7 +121,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
           enemigoEvasion: calcularEvasionModificada(combate.enemigoEvasion ?? 0, efectosDefensor),
           enemigoDefensa:
             combate.enemigoDefensa +
-            calcularBonusDefensaMuralla(combate.murallaNivel),
+            calcularBonusDefensaMuralla(combate.murallaNivel ?? 0),
           enemigoNombre: combate.enemigoNombre ?? "Defensor",
         });
 
@@ -148,10 +148,10 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
           jugadorHpMaximo: combate.jugadorHpMaximo,
           enemigoDefensa:
             combate.enemigoDefensa +
-            calcularBonusDefensaMuralla(combate.murallaNivel),
+            calcularBonusDefensaMuralla(combate.murallaNivel ?? 0),
           enemigoDefensaMagica:
             (combate.enemigoDefensaMagica ?? combate.enemigoDefensa) +
-            calcularBonusDefensaMuralla(combate.murallaNivel),
+            calcularBonusDefensaMuralla(combate.murallaNivel ?? 0),
           enemigoNombre: combate.enemigoNombre ?? "Defensor",
         });
 
