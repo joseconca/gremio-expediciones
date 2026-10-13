@@ -12,6 +12,7 @@ import {
 
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 import { aplicarEfectoComida, comidaOtorgaIniciativa, obtenerComidaTaberna } from "@/lib/comidasTaberna";
+import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 
 export async function procesarLlegadaAsedio(expedicionId: string) {
   const expedicion = await prisma.expedicionActiva.findUnique({
@@ -244,11 +245,19 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
     expedicion.efectoComida
   );
 
-  const jugadorAtaque = atributosConComida.ataque;
-  const jugadorAtaqueMagico = atributosConComida.ataqueMagico;
+  const posicionAtacante = normalizarPosicionCombate(personajeAtacante.posicionCombate);
+  const estadisticasAtacantePosicionadas = aplicarModificadoresPosicion({
+    ataque: atributosConComida.ataque,
+    ataqueMagico: atributosConComida.ataqueMagico,
+    defensa: atributosConComida.defensa,
+    defensaMagica: estadisticasAtacante.total.defensaMagica ?? atributosConComida.defensa,
+  }, posicionAtacante);
 
-  const jugadorDefensa = atributosConComida.defensa;
-  const jugadorDefensaMagica = estadisticasAtacante.total.defensaMagica ?? jugadorDefensa;
+  const jugadorAtaque = estadisticasAtacantePosicionadas.ataque;
+  const jugadorAtaqueMagico = estadisticasAtacantePosicionadas.ataqueMagico ?? atributosConComida.ataqueMagico;
+
+  const jugadorDefensa = estadisticasAtacantePosicionadas.defensa;
+  const jugadorDefensaMagica = estadisticasAtacantePosicionadas.defensaMagica ?? jugadorDefensa;
 
   const jugadorVelocidad = atributosConComida.velocidad;
 
@@ -266,11 +275,19 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
 
   const enemigoHp = enemigoHpMaximo;
 
-  const enemigoAtaque = estadisticasDefensor.total.ataque;
-  const enemigoAtaqueMagico = estadisticasDefensor.total.ataqueMagico ?? enemigoAtaque;
+  const posicionDefensor = normalizarPosicionCombate(personajeDefensor.posicionCombate);
+  const estadisticasDefensorPosicionadas = aplicarModificadoresPosicion({
+    ataque: estadisticasDefensor.total.ataque,
+    ataqueMagico: estadisticasDefensor.total.ataqueMagico ?? estadisticasDefensor.total.ataque,
+    defensa: estadisticasDefensor.total.defensa,
+    defensaMagica: estadisticasDefensor.total.defensaMagica ?? estadisticasDefensor.total.defensa,
+  }, posicionDefensor);
 
-  const enemigoDefensa = estadisticasDefensor.total.defensa;
-  const enemigoDefensaMagica = estadisticasDefensor.total.defensaMagica ?? enemigoDefensa;
+  const enemigoAtaque = estadisticasDefensorPosicionadas.ataque;
+  const enemigoAtaqueMagico = estadisticasDefensorPosicionadas.ataqueMagico ?? enemigoAtaque;
+
+  const enemigoDefensa = estadisticasDefensorPosicionadas.defensa;
+  const enemigoDefensaMagica = estadisticasDefensorPosicionadas.defensaMagica ?? enemigoDefensa;
 
   const enemigoVelocidad = estadisticasDefensor.total.velocidad;
 
@@ -302,6 +319,7 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
     ...(comidaActiva
       ? [`🍲 ${comidaActiva.nombre}: ${comidaActiva.descripcion}`]
       : []),
+    `📍 ${personajeAtacante.nombre}: ${posicionAtacante === "mele" ? "Melé" : posicionAtacante === "retaguardia" ? "Retaguardia" : "Centro"} · ${personajeDefensor.nombre}: ${posicionDefensor === "mele" ? "Melé" : posicionDefensor === "retaguardia" ? "Retaguardia" : "Centro"}.`,
     mensajeInicioCombate,
   ];
 
@@ -377,6 +395,8 @@ export async function procesarLlegadaAsedio(expedicionId: string) {
         fase: "activo",
         ronda: 1,
         turno: primerTurno,
+        jugadorPosicion: posicionAtacante,
+        enemigoPosicion: posicionDefensor,
         ultimoTurnoEn: new Date(),
 
         tipo: "pvp",

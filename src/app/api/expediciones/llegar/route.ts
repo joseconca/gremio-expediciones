@@ -17,6 +17,7 @@ import {
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 import { calcularMultiplicadoresEnemigo, esModoDificultad } from "../../../../lib/expediciones/dificultad";
 import { aplicarEfectoComida, comidaOtorgaIniciativa, obtenerComidaTaberna } from "@/lib/comidasTaberna";
+import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 
 export async function POST() {
   try {
@@ -317,11 +318,19 @@ export async function POST() {
       expedicion.efectoComida
     );
 
-    const jugadorAtaque = atributosConComida.ataque;
-    const jugadorAtaqueMagico = atributosConComida.ataqueMagico;
+    const posicionJugador = normalizarPosicionCombate(personaje.posicionCombate);
+    const atributosDeCombate = aplicarModificadoresPosicion({
+      ataque: atributosConComida.ataque,
+      ataqueMagico: atributosConComida.ataqueMagico,
+      defensa: atributosConComida.defensa,
+      defensaMagica: estadisticasJugador.total.defensaMagica ?? atributosConComida.defensa,
+    }, posicionJugador);
 
-    const jugadorDefensa = atributosConComida.defensa;
-    const jugadorDefensaMagica = estadisticasJugador.total.defensaMagica ?? jugadorDefensa;
+    const jugadorAtaque = atributosDeCombate.ataque;
+    const jugadorAtaqueMagico = atributosDeCombate.ataqueMagico ?? atributosConComida.ataqueMagico;
+
+    const jugadorDefensa = atributosDeCombate.defensa;
+    const jugadorDefensaMagica = atributosDeCombate.defensaMagica ?? jugadorDefensa;
 
     const jugadorVelocidad = atributosConComida.velocidad;
 
@@ -348,6 +357,7 @@ export async function POST() {
       ...(comidaActiva
         ? [`🍲 ${comidaActiva.nombre}: ${comidaActiva.descripcion}`]
         : []),
+      `📍 Posición táctica: ${posicionJugador === "mele" ? "Melé" : posicionJugador === "retaguardia" ? "Retaguardia" : "Centro"}.`,
       mensajeInicioCombate,
     ];
 
@@ -363,6 +373,8 @@ export async function POST() {
           fase: "activo",
           ronda: 1,
           turno: primerTurno,
+          jugadorPosicion: posicionJugador,
+          enemigoPosicion: "centro",
 
           enemigoId: monstruoBase.id,
 
