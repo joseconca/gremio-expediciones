@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getAuthenticatedUser } from "@/lib/auth";
-import { puedeAprenderHabilidad } from "@/lib/configuracionJuego";
 import { obtenerHabilidadesEnVenta } from "@/lib/tiendaHabilidades";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { CLASES, puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
@@ -82,11 +81,10 @@ export async function GET() {
 
     const enVenta = habilidadesEnVenta.map((habilidad) => ({
       ...habilidad,
-      puedeAprender: habilidad.claseId
-        ? nivelJob >= (habilidad.nivelJobRequerido ?? 1) &&
-          puntosHabilidadDisponibles >= (habilidad.costePuntosHabilidad ?? 1)
-        : puedeAprenderHabilidad(habilidad.rareza, nivelEscuela),
-      modoAprendizaje: habilidad.claseId ? "job" : "oro",
+      puedeAprender:
+        nivelJob >= (habilidad.nivelJobRequerido ?? 1) &&
+        puntosHabilidadDisponibles >= (habilidad.costePuntosHabilidad ?? 1),
+      modoAprendizaje: "job" as const,
     }));
 
     const habilidadesAprendidas = usuario.personaje.habilidades
