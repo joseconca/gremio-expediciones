@@ -19,6 +19,8 @@ export interface DefinicionClase {
   nombre: string;
   descripcion: string;
   arquetipo: ArquetipoClaseId;
+  /** Recurso principal que consume la clase en combate. */
+  recursoCombate: "energia" | "mana" | "ambos";
   tier: number;
   nivelJobMaximo: number;
   requisitos: readonly RequisitoClase[];
@@ -50,65 +52,76 @@ export const ARQUETIPOS_CLASE = {
 const DEFINICIONES = {
   novato: {
     id: "novato", nombre: "Novato", descripcion: "El punto de partida de todo aventurero.", arquetipo: "novato",
+    recursoCombate: "energia",
     tier: 0, nivelJobMaximo: 10, requisitos: [], armasDominadas: [],
     armadurasDominadas: ["ligera"], bonoAtaqueArmaDominada: 0, bonoDefensaArmaduraDominada: 0,
   },
   espadachin: {
     id: "espadachin", nombre: "Espadachín", descripcion: "Especialista en combate frontal.", arquetipo: "vanguardia",
+    recursoCombate: "energia",
     tier: 1, nivelJobMaximo: 40, requisitos: NOVATO_JOB_10,
     armasDominadas: ["espada", "lanza"], armadurasDominadas: ["media", "pesada"],
     bonoAtaqueArmaDominada: 0.15, bonoDefensaArmaduraDominada: 0.1,
   },
   acolito: {
     id: "acolito", nombre: "Acólito", descripcion: "Aprendiz de apoyo y artes sagradas.", arquetipo: "apoyo",
+    recursoCombate: "mana",
     tier: 1, nivelJobMaximo: 40, requisitos: NOVATO_JOB_10,
     armasDominadas: ["maza", "baston"], armadurasDominadas: ["ligera", "media"],
     bonoAtaqueArmaDominada: 0.1, bonoDefensaArmaduraDominada: 0.1,
   },
   arquero: {
     id: "arquero", nombre: "Arquero", descripcion: "Especialista en precisión y armas a distancia.", arquetipo: "agil",
+    recursoCombate: "energia",
     tier: 1, nivelJobMaximo: 40, requisitos: NOVATO_JOB_10,
     armasDominadas: ["arco", "daga"], armadurasDominadas: ["ligera"],
     bonoAtaqueArmaDominada: 0.15, bonoDefensaArmaduraDominada: 0.05,
   },
   mago: {
     id: "mago", nombre: "Mago", descripcion: "Aprendiz de las artes arcanas.", arquetipo: "arcano",
+    recursoCombate: "mana",
     tier: 1, nivelJobMaximo: 40, requisitos: NOVATO_JOB_10,
     armasDominadas: ["baston", "libro"], armadurasDominadas: ["ligera"],
     bonoAtaqueArmaDominada: 0.15, bonoDefensaArmaduraDominada: 0.05,
   },
   caballero: {
     id: "caballero", nombre: "Caballero", descripcion: "Evolución defensiva del Espadachín.", arquetipo: "vanguardia",
+    recursoCombate: "energia",
     tier: 2, nivelJobMaximo: 40, requisitos: ESPADACHIN_JOB_40,
     armasDominadas: ["espada", "lanza"], armadurasDominadas: ["media", "pesada"],
     bonoAtaqueArmaDominada: 0.2, bonoDefensaArmaduraDominada: 0.15,
   },
   duelista: {
     id: "duelista", nombre: "Duelista", descripcion: "Evolución ofensiva y móvil del Espadachín.", arquetipo: "agil",
+    recursoCombate: "energia",
     tier: 2, nivelJobMaximo: 40, requisitos: ESPADACHIN_JOB_40,
     armasDominadas: ["espada", "daga"], armadurasDominadas: ["ligera", "media"],
     bonoAtaqueArmaDominada: 0.2, bonoDefensaArmaduraDominada: 0.05,
   },
   sacerdote: {
     id: "sacerdote", nombre: "Sacerdote", descripcion: "Especialista en curación y protección.", arquetipo: "apoyo",
+    recursoCombate: "mana",
     tier: 2, nivelJobMaximo: 40, requisitos: ACOLITO_JOB_40,
     armasDominadas: ["maza", "baston", "libro"], armadurasDominadas: ["ligera", "media"],
     bonoAtaqueArmaDominada: 0.1, bonoDefensaArmaduraDominada: 0.15,
   },
   monje: {
     id: "monje", nombre: "Monje", descripcion: "Especialista en combate físico y disciplina.", arquetipo: "marcial",
+    recursoCombate: "energia",
     tier: 2, nivelJobMaximo: 40, requisitos: ACOLITO_JOB_40,
     armasDominadas: ["puños", "maza"], armadurasDominadas: ["media", "pesada"],
     bonoAtaqueArmaDominada: 0.2, bonoDefensaArmaduraDominada: 0.1,
   },
   cazador: {
     id: "cazador", nombre: "Cazador", descripcion: "Evolución técnica del Arquero.", arquetipo: "agil",
+    recursoCombate: "energia",
     tier: 2, nivelJobMaximo: 40, requisitos: ARQUERO_JOB_40,
     armasDominadas: ["arco", "daga"], armadurasDominadas: ["ligera", "media"],
     bonoAtaqueArmaDominada: 0.2, bonoDefensaArmaduraDominada: 0.05,
   },
   explorador: {
     id: "explorador", nombre: "Explorador", descripcion: "Evolución móvil del Arquero.", arquetipo: "agil",
+    recursoCombate: "energia",
     tier: 2, nivelJobMaximo: 40, requisitos: ARQUERO_JOB_40,
     armasDominadas: ["arco", "daga"], armadurasDominadas: ["ligera"],
     bonoAtaqueArmaDominada: 0.15, bonoDefensaArmaduraDominada: 0.05,
@@ -116,18 +129,21 @@ const DEFINICIONES = {
   },
   elementalista: {
     id: "elementalista", nombre: "Elementalista", descripcion: "Especialista en magia elemental.", arquetipo: "arcano",
+    recursoCombate: "mana",
     tier: 2, nivelJobMaximo: 40, requisitos: MAGO_JOB_40,
     armasDominadas: ["baston", "libro"], armadurasDominadas: ["ligera"],
     bonoAtaqueArmaDominada: 0.2, bonoDefensaArmaduraDominada: 0.05,
   },
   brujo: {
     id: "brujo", nombre: "Brujo", descripcion: "Especialista en magia oscura y debilitaciones.", arquetipo: "maldito",
+    recursoCombate: "mana",
     tier: 2, nivelJobMaximo: 40, requisitos: MAGO_JOB_40,
     armasDominadas: ["baston", "libro", "daga"], armadurasDominadas: ["ligera"],
     bonoAtaqueArmaDominada: 0.2, bonoDefensaArmaduraDominada: 0,
   },
   cruzado: {
     id: "cruzado", nombre: "Cruzado", descripcion: "Híbrida de defensa y apoyo que combina las ramas de Caballero y Sacerdote.", arquetipo: "hibrido",
+    recursoCombate: "ambos",
     tier: 3, nivelJobMaximo: 50,
     requisitos: [
       { claseId: "caballero", nivelJob: 40 },
