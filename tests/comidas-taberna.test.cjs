@@ -35,7 +35,7 @@ test("cada receta aplica su bonificación al atributo correcto", () => {
   assert.equal(aplicarEfectoComida(atributosBase, "caldo-guardian").defensa, 55);
   assert.equal(aplicarEfectoComida(atributosBase, "setas-arcanas").ataqueMagico, 88);
   assert.equal(aplicarEfectoComida(atributosBase, "raices-vigorizantes").velocidad, 33);
-  assert.equal(aplicarEfectoComida(atributosBase, "brocheta-especiada").probCritico, 0.3);
+  assert.ok(Math.abs(aplicarEfectoComida(atributosBase, "brocheta-especiada").probCritico - 0.3) < 1e-10);
 });
 
 test("el desayuno del explorador concede iniciativa garantizada", () => {
