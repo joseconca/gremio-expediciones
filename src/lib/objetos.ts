@@ -482,9 +482,20 @@ export function calcularCosteRecursosMejora(
   };
 }
 
+const MULTIPLICADOR_ORO_RAREZA: Record<DefinicionObjeto["rareza"], number> = {
+  basico: 1,
+  comun: 1,
+  poco_comun: 1.2,
+  raro: 1.5,
+  epico: 1.9,
+  legendario: 2.4,
+};
+
 export function calcularCosteMejoraObjeto(
   precioObjeto: number,
-  nivelMejora: number
+  nivelMejora: number,
+  rareza?: DefinicionObjeto["rareza"]
 ): number {
-  return Math.ceil(precioObjeto * 5 * (nivelMejora + 1));
+  const multiplicadorRareza = rareza ? MULTIPLICADOR_ORO_RAREZA[rareza] : 1;
+  return Math.ceil(precioObjeto * 5 * (nivelMejora + 1) * multiplicadorRareza);
 }
