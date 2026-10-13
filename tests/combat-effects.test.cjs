@@ -11,6 +11,7 @@ const {
   calcularEvasionModificada,
   retirarEfectosHabilidad,
 } = require("../src/lib/expediciones/estados-combate.ts");
+const { resolverHabilidadJugador } = require("../src/lib/expediciones/combate.ts");
 
 test("curación progresiva aplica un pulso sin superar la vida máxima", () => {
   const efectos = [{
@@ -78,4 +79,44 @@ test("reutilizar una habilidad retira sus efectos previos y revierte cambios def
   assert.equal(resultado.defensa, 10);
   assert.equal(resultado.efectos.length, 1);
   assert.equal(resultado.efectos[0].habilidadId, "rejuvenecer");
+});
+
+test("el daño progresivo se mitiga con la defensa física o mágica del objetivo", () => {
+  const habilidad = {
+    id: "bola_fuego",
+    claseId: "mago",
+    nombre: "Bola de fuego",
+    tipo: "activa",
+    efecto: "dano",
+    tipoDano: "magico",
+    animacion: "ofensiva_potenciada",
+    multiplicadorDano: 1,
+    danoProgresivoPorcentaje: 0.25,
+    duracionTurnos: 2,
+  };
+  const originalRandom = Math.random;
+  try {
+    // D20=11, impacta, variación de daño 1.0, sin crítico.
+    const valores = [0.5, 0, 0.5, 0.99];
+    Math.random = () => valores.shift() ?? 0.99;
+    const resultado = resolverHabilidadJugador(habilidad, {
+      jugadorAtaque: 100,
+      jugadorAtaqueMagico: 100,
+      jugadorDefensa: 10,
+      jugadorDefensaMagica: 20,
+      jugadorNivel: 1,
+      jugadorHp: 50,
+      jugadorHpMaximo: 100,
+      jugadorProbCritico: 0,
+      jugadorDanoCritico: 1.5,
+      enemigoDefensa: 20,
+      enemigoDefensaMagica: 40,
+      enemigoNombre: "Goblin",
+      jugadorPrecision: 100,
+      enemigoEvasion: 0,
+    });
+    assert.equal(resultado.efectos.find((efecto) => efecto.tipo === "dano_progresivo").valor, 5);
+  } finally {
+    Math.random = originalRandom;
+  }
 });
