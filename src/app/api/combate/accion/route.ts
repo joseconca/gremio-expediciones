@@ -998,7 +998,7 @@ export async function POST(request: Request) {
               enemigoHp: 0,
               jugadorDefensa,
               cooldowns,
-              efectos,
+              efectos: efectos as unknown as Prisma.InputJsonValue,
               fase: "victoria",
               turno: "jugador",
               oroGanado,
@@ -1188,7 +1188,7 @@ export async function POST(request: Request) {
               jugadorDefensa,
               enemigoHp,
               cooldowns,
-              efectos,
+              efectos: efectos as unknown as Prisma.InputJsonValue,
               fase: "derrota",
               turno: "jugador",
               oroGanado: oroAsegurado,
@@ -1376,8 +1376,8 @@ export async function POST(request: Request) {
             ronda: siguienteRonda,
             turno: siguienteTurno,
             cooldowns,
-            efectos,
-            efectosDefensor,
+            efectos: efectos as unknown as Prisma.InputJsonValue,
+            efectosDefensor: efectosDefensor as unknown as Prisma.InputJsonValue,
             ultimoTurnoEn: new Date(),
             log,
             ultimaAccion: accionAnimada,
@@ -1467,8 +1467,6 @@ export async function POST(request: Request) {
             combate.enemigoDefensa +
             calcularBonusDefensaMuralla(combate.murallaNivel),
           enemigoNombre: combate.enemigoNombre ?? "Defensor",
-          bonusCuracion,
-          efectosJugador: efectos,
         });
 
         enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
@@ -1650,9 +1648,9 @@ export async function POST(request: Request) {
           enemigoDefensa,
 
           cooldowns,
-          efectos,
+          efectos: efectos as unknown as import("@/lib/tiposJuego").EstadoEfectoHabilidad[],
           cooldownsDefensor,
-          efectosDefensor,
+          efectosDefensor: efectosDefensor as unknown as import("@/lib/tiposJuego").EstadoEfectoHabilidad[],
 
           accion: accionAnimada,
           log,
@@ -1735,9 +1733,9 @@ export async function POST(request: Request) {
           ronda: siguienteRonda,
           turno: siguienteTurno,
           cooldowns,
-          efectos,
+          efectos: efectos as unknown as Prisma.InputJsonValue,
           cooldownsDefensor,
-          efectosDefensor,
+          efectosDefensor: efectosDefensor as unknown as Prisma.InputJsonValue,
           ultimoTurnoEn: new Date(),
           log,
           ultimaAccion: accionAnimada,
