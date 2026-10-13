@@ -145,7 +145,7 @@ export interface Personaje {
   puntosHabilidadDisponibles: number;
   hpActual: number;
   estado: "ocioso" | "de_viaje" | "descansando" | "combatiendo";
-  regeneracionDeVida: number;
+  comidaPreparada: string | null;
   nivel: number;
   experiencia: number;
 
@@ -309,17 +309,12 @@ export interface ExpedicionActiva {
   tipo: TipoMision;
   fase: "en_viaje" | "combatiendo" | "regresando";
   resultadoFinal?: ResultadoExpedicion | null;
+  efectoComida?: string | null;
   hpPerdido: number;
   experienciaGanada: number;
   objetivoId?: string | null;
   destinoCoords: { lat: number; lng: number };
   combateActivo?: CombateVisible  | null;
-}
-
-export interface InfoCura {
-  coste: number;
-  hpCurado: number;
-  aTope: boolean;
 }
 
 export interface GameState {
@@ -347,9 +342,7 @@ export interface GameState {
   ) => Promise<AccionAnimadaCombate | null>;
   cancelarExpedicion: () => Promise<boolean>;
 
-  calcularCosteCura: () => InfoCura;
-  curarPersonaje: () => Promise<boolean>;
-  aplicarRegeneracion: () => void;
+  prepararComida: (comidaId: string) => Promise<{ exito: boolean; error?: string }>;
 
   mejorarAtributo: (
     atributo: keyof Pick<Personaje, "velocidad" | "capacidadCarruaje">
@@ -428,8 +421,7 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     typeof datos.nombre !== "string" ||
     typeof datos.clase !== "string" ||
     typeof datos.hpActual !== "number" ||
-    typeof datos.nivel !== "number" ||
-    typeof datos.regeneracionDeVida !== "number"
+    typeof datos.nivel !== "number"
   ) {
     return null;
   }
@@ -595,7 +587,7 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     habilidades,
     inventario,
     equipo,
-    regeneracionDeVida: datos.regeneracionDeVida,
+    comidaPreparada: typeof datos.comidaPreparada === "string" ? datos.comidaPreparada : null,
     nivel: datos.nivel,
     experiencia: typeof datos.experiencia === "number" ? datos.experiencia : 0,
   };
@@ -820,65 +812,16 @@ export const useGameStore = create<GameState>((set, get) => ({
     }
   },
 
-  calcularCosteCura: () => {
-    const state = get();
-    const personaje = state.personaje;
-    if (!personaje || personaje.hpActual >= personaje.hpMaximo)
-      return { coste: 0, hpCurado: 0, aTope: true };
-
-    const CURA_POR_ORO = 2;
-    const multiplicador = 1 + (state.edificios.taberna.nivel - 1) * 0.1;
-    const curaEfectivaPorOro = CURA_POR_ORO * multiplicador;
-
-    const hpFaltante = personaje.hpMaximo - personaje.hpActual;
-    const costeMaximo = Math.ceil(hpFaltante / curaEfectivaPorOro);
-
-    if (state.oro >= costeMaximo) {
-      return { coste: costeMaximo, hpCurado: hpFaltante, aTope: true };
-    } else {
-      return {
-        coste: state.oro,
-        hpCurado: Math.floor(state.oro * curaEfectivaPorOro),
-        aTope: false,
-      };
-    }
-  },
-
-  curarPersonaje: async () => {
+  prepararComida: async (comidaId) => {
     try {
-      const datos = await ejecutarAccion("curar");
+      const datos = await ejecutarAccion("prepararComida", { comidaId });
       aplicarDatosJugador(set, datos);
-      return true;
+      return { exito: true };
     } catch (error) {
-      console.error(error);
-      return false;
+      const mensaje = error instanceof Error ? error.message : "No se pudo preparar la comida.";
+      console.error("Error al preparar comida:", error);
+      return { exito: false, error: mensaje };
     }
-  },
-
-  aplicarRegeneracion: () => {
-    const state = get();
-    const personaje = state.personaje;
-
-    if (
-      !personaje ||
-      personaje.estado === "de_viaje" ||
-      personaje.hpActual >= personaje.hpMaximo
-    )
-      return;
-
-    //todo: revisar que regeneración de vida funciona con decimales
-    const nuevoHp = Math.min(
-      personaje.hpMaximo,
-      personaje.hpActual + personaje.regeneracionDeVida
-    );
-
-    set({
-      personaje: {
-        ...personaje,
-        hpActual: nuevoHp,
-        estado: nuevoHp >= personaje.hpMaximo ? "ocioso" : personaje.estado,
-      },
-    });
   },
 
   mejorarAtributo: async (atributo) => {
