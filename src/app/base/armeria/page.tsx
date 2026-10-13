@@ -472,11 +472,8 @@ export default function HerreriaPage() {
           nivel={nivelArmeria}
         />
 
-        <div className="-mt-4 mb-4 flex flex-col gap-2 sm:-mt-6 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
-          <details className="text-sm text-[#9a9a96]">
-            <summary className="w-fit cursor-pointer list-none rounded border border-[#353a3d] px-3 py-1.5 text-xs font-bold text-[#c7c7c2] hover:border-[#777]">ⓘ Sobre la armería</summary>
-            <p className="mt-2 max-w-xl leading-5">{descripcionArmeria}</p>
-          </details>
+        <div className="-mt-4 mb-3 flex flex-col gap-2 sm:-mt-6 sm:mb-5 sm:flex-row sm:items-end sm:justify-between">
+          <p className="sr-only">{descripcionArmeria}</p>
           {nivelHerreria > 0 && (
             <Link
               href="/base/herreria"
@@ -491,24 +488,24 @@ export default function HerreriaPage() {
         {/* TIENDA                                                 */}
         {/* ====================================================== */}
 
-        <section className="mb-8 overflow-hidden rounded-lg border-2 border-[#353a3d] bg-[#1a1d1f] shadow-[0_14px_32px_rgba(0,0,0,0.5)]">
-          <div className="border-b-2 border-[#353a3d] bg-[#141718] p-3 sm:p-6">
+        <section className="mb-3 overflow-hidden rounded-lg border border-[#353a3d] bg-[#1a1d1f] sm:mb-5 sm:border-2">
+          <div className="border-b border-[#353a3d] bg-[#141718] p-2 sm:border-b-2 sm:p-4">
             <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
               <div>
-                <h2 className="text-lg font-black uppercase tracking-[0.08em] text-[#ddd8cf] sm:text-2xl">
+                <h2 className="text-sm font-black uppercase tracking-[0.08em] text-[#ddd8cf] sm:text-xl">
                   OBJETOS A LA VENTA
                 </h2>
               </div>
             </div>
           </div>
 
-          <div className="p-2 sm:p-4 md:p-5">
+          <div className="p-1.5 sm:p-3">
             {cargando ? (
               <div className="rounded-md border border-[#3a3f42] bg-[#141617] p-12 text-center text-[#676d70]">
                 Encendiendo la forja...
               </div>
             ) : (
-              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3 md:gap-5">
+              <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
                 {(datos?.enVenta ?? []).map((objeto) => {
                   const comprando = procesando === `comprar:${objeto.id}`;
                   const inventarioLleno =
@@ -524,7 +521,7 @@ export default function HerreriaPage() {
                       className="group flex flex-col overflow-hidden rounded-md border border-[#555b5e] bg-[#222628] shadow-[0_8px_18px_rgba(0,0,0,0.35)] transition-colors hover:border-[#72797d]"
                     >
                       {/* Cabecera pieza */}
-                      <div className="relative border-b border-[#474d50] bg-[linear-gradient(135deg,#303638,#202426)] p-3 sm:p-4">
+                      <div className="relative border-b border-[#474d50] bg-[linear-gradient(135deg,#303638,#202426)] p-2 sm:p-3">
                         <div className="pointer-events-none absolute inset-2 border border-[#677075]/20" />
 
                         <div className="relative flex items-start gap-3">
@@ -569,14 +566,11 @@ export default function HerreriaPage() {
                           </div>
                         </div>
 
-                        <details className="relative mt-2 text-xs text-[#aaa8a3]">
-                          <summary className="w-fit cursor-pointer list-none rounded border border-[#474d50] px-2 py-1 font-bold text-[#c8c4bb] hover:border-[#72797d]">ⓘ Ver descripción</summary>
-                          <p className="mt-1 leading-5">{objeto.descripcion}</p>
-                        </details>
+                        <span className="sr-only">{objeto.descripcion}</span>
                       </div>
 
                       {/* Estadísticas */}
-                      <div className="flex-1 p-2 sm:p-3">
+                      <div className="flex-1 px-2 py-1.5">
                         <div className="flex flex-wrap gap-1.5">
                           {obtenerEstadisticasNoCero(objeto, 0).map(
                             (estadistica) => (
@@ -664,8 +658,8 @@ export default function HerreriaPage() {
         {/* ====================================================== */}
         {/* EQUIPO                                                   */}
         {/* ====================================================== */}
-        <section className="mb-8 overflow-hidden rounded-lg border-2 border-[#353a3d] bg-[#1a1d1f] shadow-[0_14px_32px_rgba(0,0,0,0.5)]">
-            <div className="border-b-2 border-[#353a3d] bg-[#141718] p-6">
+        <section className="mb-3 overflow-hidden rounded-lg border border-[#353a3d] bg-[#1a1d1f] sm:mb-5 sm:border-2">
+            <div className="border-b border-[#353a3d] bg-[#141718] p-2 sm:p-4">
               <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
                 <div>
                   <h2 className="text-2xl font-black uppercase tracking-[0.08em] text-[#ddd8cf]">
@@ -681,8 +675,8 @@ export default function HerreriaPage() {
                 const desequipando = procesando === `desequipar:${tipo}`;
 
                 return (
-                  <div key={tipo} className="bg-[#1c2021] p-5">
-                    <div className="mb-4 flex items-center justify-between">
+                  <div key={tipo} className="bg-[#1c2021] p-2 sm:p-3">
+                    <div className="mb-2 flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <span className="text-2xl">{iconoTipo(tipo)}</span>
 
@@ -703,9 +697,9 @@ export default function HerreriaPage() {
                     </div>
 
                     {equipado ? (
-                      <div className="rounded-md border border-[#4e5659] bg-[linear-gradient(135deg,#292e30,#1c2021)] p-4 shadow-[inset_0_0_20px_rgba(0,0,0,0.25)]">
+                      <div className="rounded-md border border-[#4e5659] bg-[linear-gradient(135deg,#292e30,#1c2021)] p-2 sm:p-3">
                         <div className="flex items-start gap-3">
-                          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-md border-2 border-[#60676a] bg-[#171a1b] text-3xl shadow-[inset_0_0_18px_rgba(0,0,0,0.5)]">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-[#60676a] bg-[#171a1b] text-xl shadow-[inset_0_0_18px_rgba(0,0,0,0.5)] sm:h-14 sm:w-14 sm:border-2 sm:text-2xl">
                             {obtenerSpriteObjeto(equipado.objeto) ? (
                               <Image
                                 src={obtenerSpriteObjeto(equipado.objeto)!}
@@ -739,7 +733,7 @@ export default function HerreriaPage() {
                           </div>
                         </div>
 
-                        <div className="mt-4 grid grid-cols-2 gap-2">
+                        <div className="mt-2 flex flex-wrap gap-1.5 sm:mt-3">
                           {obtenerEstadisticasNoCero(
                             equipado.objeto,
                             equipado.nivelMejora,
@@ -747,7 +741,7 @@ export default function HerreriaPage() {
                           ).map((estadistica) => (
                             <div
                               key={estadistica.clave}
-                              className="rounded border border-[#343a3d] bg-[#171a1b] px-3 py-2"
+                              className="rounded border border-[#343a3d] bg-[#171a1b] px-2 py-1"
                             >
                               <p className="text-[9px] font-black uppercase tracking-wider text-[#646b6e]">
                                 {estadistica.nombre}
@@ -773,13 +767,13 @@ export default function HerreriaPage() {
                           type="button"
                           onClick={() => void desequiparObjeto(tipo)}
                           disabled={procesando !== null}
-                          className="mt-4 w-full rounded border border-[#55575a] bg-[#25282a] px-3 py-2 text-xs font-bold text-[#a4a5a1] transition-colors hover:border-red-800/60 hover:bg-[#321d1d] hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-50"
+                          className="mt-2 min-h-8 w-full rounded border border-[#55575a] bg-[#25282a] px-2 py-1.5 text-[11px] font-bold text-[#a4a5a1] transition-colors hover:border-red-800/60 hover:bg-[#321d1d] hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-50"
                         >
                           {desequipando ? "Quitando..." : "Desequipar"}
                         </button>
                       </div>
                     ) : (
-                      <div className="flex min-h-[230px] flex-col items-center justify-center rounded-md border border-dashed border-[#3c4244] bg-[#171a1b] px-5 text-center">
+                      <div className="flex min-h-[88px] flex-col items-center justify-center rounded-md border border-dashed border-[#3c4244] bg-[#171a1b] px-2 py-3 text-center sm:min-h-[110px]">
                         <span className="text-4xl opacity-30">
                           {iconoTipo(tipo)}
                         </span>
@@ -811,7 +805,7 @@ export default function HerreriaPage() {
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(180,130,75,0.08),transparent_20%),radial-gradient(circle_at_85%_70%,rgba(180,130,75,0.06),transparent_22%)]" />
 
           {/* Cabecera */}
-          <div className="relative border-b-2 border-[#62452d] bg-[linear-gradient(135deg,#392719,#241810)] p-6">
+          <div className="relative border-b border-[#62452d] bg-[linear-gradient(135deg,#392719,#241810)] p-2 sm:p-4">
             <div className="pointer-events-none absolute inset-2 rounded border border-[#8a6038]/20" />
 
             <div className="relative flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
@@ -819,19 +813,16 @@ export default function HerreriaPage() {
                 <div className="flex items-center gap-3">
                   <span className="text-3xl">🎒</span>
 
-                  <h2 className="text-2xl font-black uppercase tracking-[0.08em] text-[#e5d2b5]">
+                  <h2 className="text-sm font-black uppercase tracking-[0.08em] text-[#e5d2b5] sm:text-xl">
                     Inventario de objetos
                   </h2>
                 </div>
 
-                <p className="mt-2 text-xs leading-5 text-[#9b8266]">
-                  Hasta 30 espacios para equipo, botín y consumibles.
-                </p>
-                <p className="mt-2 text-sm font-black text-[#d8b786]">
+                <p className="mt-1 text-xs font-black text-[#d8b786]">
                   Espacios: {datos?.espaciosInventario.ocupados ?? datos?.inventario.length ?? 0}/{datos?.espaciosInventario.maximo ?? 30}
                 </p>
                 {datos?.ultimaVenta && (
-                  <div className="mt-3 flex flex-col gap-2 rounded border border-amber-700/50 bg-[#2d2115] p-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="mt-2 flex flex-col gap-2 rounded border border-amber-700/50 bg-[#2d2115] p-2 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                       <p className="text-xs font-black text-amber-200">Última venta: {datos.ultimaVenta.nombreObjeto}</p>
                       <p className="mt-1 text-xs text-[#bba17a]">Recompra por {datos.ultimaVenta.precioRecompra} de oro. Solo se conserva la venta más reciente.</p>
@@ -855,7 +846,7 @@ export default function HerreriaPage() {
           </div>
 
           {/* Contenido */}
-          <div className="relative p-4 md:p-6">
+          <div className="relative p-2 sm:p-3">
             {inventarioVisible.length === 0 ? (
               <div className="rounded-lg border-2 border-dashed border-[#61452d] bg-[#211710] p-10 text-center">
                 <div className="text-5xl opacity-30">🎒</div>
@@ -869,7 +860,7 @@ export default function HerreriaPage() {
                 </p>
               </div>
             ) : (
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {inventarioVisible.map((objetoInventario) => {
                   const objeto = objetoInventario.objeto;
 
@@ -890,7 +881,7 @@ export default function HerreriaPage() {
                   return (
                     <article
                       key={objetoInventario.id}
-                      className={`relative overflow-hidden rounded-lg border-2 p-4 transition-all ${
+                      className={`relative overflow-hidden rounded-lg border p-2 transition-all sm:border-2 sm:p-3 ${
                         estaEquipado
                           ? "border-[#9a7748] bg-[linear-gradient(135deg,#473420,#302218)] shadow-[inset_0_1px_0_rgba(255,220,170,0.08),0_4px_10px_rgba(0,0,0,0.25)]"
                           : "border-[#59402a] bg-[linear-gradient(135deg,#35251a,#291c14)] hover:border-[#765532] hover:bg-[#3a281c]"
@@ -899,11 +890,11 @@ export default function HerreriaPage() {
                       {/* Costura superior */}
                       <div className="pointer-events-none absolute inset-x-3 top-2 border-t border-dashed border-[#9a7548]/20" />
 
-                      <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                        <div className="flex min-w-0 items-start gap-4">
+                      <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
+                        <div className="flex min-w-0 items-start gap-2 sm:gap-3">
                           {/* Bolsillo / icono */}
                           <div
-                            className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-lg border-2 text-2xl shadow-[inset_0_0_14px_rgba(0,0,0,0.35)] ${
+                            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded border text-xl shadow-[inset_0_0_14px_rgba(0,0,0,0.35)] sm:h-12 sm:w-12 sm:text-2xl ${
                               estaEquipado
                                 ? "border-[#8e6d45] bg-[#24190f]"
                                 : "border-[#684a2f] bg-[#211710]"
@@ -947,12 +938,9 @@ export default function HerreriaPage() {
                               )}
                             </div>
 
-                            <p className="mt-1 text-xs text-[#957b60]">
-                              {objeto.descripcion}
-                              {objetoInventario.cantidad > 1 ? ` · Cantidad: ${objetoInventario.cantidad}` : ""}
-                            </p>
+                            {objetoInventario.cantidad > 1 && <p className="mt-1 text-[10px] text-[#957b60]">Cantidad: {objetoInventario.cantidad}</p>}
 
-                            <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+                            <div className="mt-1 flex flex-wrap gap-x-2 gap-y-1">
                               {obtenerEstadisticasNoCero(
                                 objeto,
                                 objetoInventario.nivelMejora,
@@ -997,13 +985,13 @@ export default function HerreriaPage() {
                                     type="button"
                                     onClick={() => void equiparObjeto(objetoInventario.id, "anillo1")}
                                     disabled={procesando !== null}
-                                    className="rounded-lg border-2 border-[#765635] bg-[#42301f] px-3 py-2.5 text-xs font-black text-[#ddc8a6] hover:bg-[#513a25] disabled:opacity-50"
+                                    className="min-h-8 rounded border border-[#765635] bg-[#42301f] px-2 py-1.5 text-[10px] font-black text-[#ddc8a6] hover:bg-[#513a25] disabled:opacity-50"
                                   >Equipar anillo 1</button>
                                   <button
                                     type="button"
                                     onClick={() => void equiparObjeto(objetoInventario.id, "anillo2")}
                                     disabled={procesando !== null}
-                                    className="rounded-lg border-2 border-[#765635] bg-[#42301f] px-3 py-2.5 text-xs font-black text-[#ddc8a6] hover:bg-[#513a25] disabled:opacity-50"
+                                    className="min-h-8 rounded border border-[#765635] bg-[#42301f] px-2 py-1.5 text-[10px] font-black text-[#ddc8a6] hover:bg-[#513a25] disabled:opacity-50"
                                   >Equipar anillo 2</button>
                                 </>
                               ) : (
@@ -1011,7 +999,7 @@ export default function HerreriaPage() {
                                   type="button"
                                   onClick={() => void equiparObjeto(objetoInventario.id)}
                                   disabled={procesando !== null}
-                                  className="rounded-lg border-2 border-[#765635] bg-[#42301f] px-4 py-2.5 text-xs font-black uppercase tracking-wider text-[#ddc8a6] hover:bg-[#513a25] disabled:opacity-50"
+                                  className="min-h-8 rounded border border-[#765635] bg-[#42301f] px-3 py-1.5 text-[10px] font-black uppercase tracking-wider text-[#ddc8a6] hover:bg-[#513a25] disabled:opacity-50"
                                 >
                                   {equipando ? "Equipando..." : "Equipar"}
                                 </button>
@@ -1021,7 +1009,7 @@ export default function HerreriaPage() {
                               type="button"
                               onClick={() => void venderObjeto(objetoInventario.id)}
                               disabled={procesando !== null}
-                              className="rounded-lg border border-red-900/80 bg-[#351b18] px-4 py-2.5 text-xs font-black text-red-200 hover:bg-[#48221e] disabled:opacity-50"
+                              className="min-h-8 rounded border border-red-900/80 bg-[#351b18] px-3 py-1.5 text-[10px] font-black text-red-200 hover:bg-[#48221e] disabled:opacity-50"
                             >
                               {vendiendo ? "Vendiendo..." : `Vender · ${precioVenta} 🪙`}
                             </button>

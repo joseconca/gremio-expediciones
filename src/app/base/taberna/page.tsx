@@ -186,47 +186,12 @@ export default function TabernaPage() {
             <div className="relative z-30 max-w-3xl mx-auto">
               {personaje ? (
                 /* --- FICHA DE DESCANSO SOBRE LA BARRA --- */
-                <div className="mx-auto max-w-xl rounded-xl border-2 border-stone-700/50 bg-stone-900/90 p-2 shadow-2xl backdrop-blur-sm sm:border-4 sm:p-6">
-                  <div className="flex flex-row items-start gap-3 sm:gap-6">
-                    {/* Retrato apoyado en la barra */}
-                    <div className="relative flex h-20 w-16 shrink-0 items-end justify-center overflow-hidden rounded-lg border-2 border-amber-900 bg-stone-950 shadow-inner sm:h-40 sm:w-32 sm:border-4">
-                      <Image
-                        src={obtenerSpriteHeroe(
-                          personaje.clase,
-                          personaje.sexo
-                        )}
-                        alt="Héroe en la barra"
-                        width={128}
-                        height={128}
-                        className="h-14 w-14 object-contain [image-rendering:pixelated] sm:h-28 sm:w-28"
-                      />
-                      <div className="absolute top-2 left-2 bg-black/80 px-2 py-1 rounded text-xs font-bold text-amber-400">
-                        Nvl {personaje.nivel}
-                      </div>
-                      {personaje.estado === "descansando" && (
-                        <div className="absolute top-2 right-2 text-2xl animate-bounce">
-                          🍺
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="w-full">
-                      <h2 className="mb-1 text-lg font-black text-amber-400 sm:text-3xl">
-                        {personaje.nombre}
-                      </h2>
-                      <p className="mb-2 text-xs text-stone-400 sm:mb-4 sm:text-sm">
-                        {personaje.sexo === "chica" ? "La" : "El"}{" "}
-                        {nombreClase(personaje.clase, personaje.sexo)}
-                      </p>
-
-                      <section className="mt-2 rounded-xl border border-amber-900/70 bg-stone-950/70 p-2 shadow-inner sm:p-4">
-                        <h3 className="mb-1 text-lg font-black text-amber-300">Comida para la expedición</h3>
-                        <details className="mb-3 text-xs text-stone-400">
-                          <summary className="w-fit cursor-pointer list-none rounded border border-stone-700 px-2 py-1 font-semibold">ℹ️ Cómo funciona</summary>
-                          <p className="mt-2 leading-5">Solo puedes preparar un plato cada vez. Su bonificación se consume al iniciar tu próxima expedición de combate; los viajes comerciales no gastan la comida.</p>
-                        </details>
+                <div className="mx-auto max-w-4xl rounded-xl border border-amber-900/70 bg-stone-950/80 p-2 shadow-inner sm:p-3">
+                      <section className="rounded-lg">
+                        <h3 className="mb-1 text-sm font-black uppercase tracking-wide text-amber-300 sm:text-base">Comida para la expedición</h3>
+                        <p className="mb-2 text-[10px] leading-4 text-stone-500">El efecto se consume en la próxima expedición de combate; no afecta a los viajes comerciales.</p>
                         {comidaPreparadaActual ? (
-                          <div className="rounded-lg border-2 border-emerald-700/70 bg-emerald-950/40 p-4">
+                          <div className="rounded-lg border border-emerald-700/70 bg-emerald-950/40 p-2 sm:p-3">
                             <div className="flex items-start gap-3">
                               <span className="text-3xl" aria-hidden="true">{comidaPreparadaActual.icono}</span>
                               <div className="min-w-0">
@@ -255,10 +220,7 @@ export default function TabernaPage() {
                                       <p className="mt-1 text-[9px] font-black uppercase tracking-wide text-amber-300/90">Nivel {comida.nivelRequerido}</p>
                                     </div>
                                   </div>
-                                  <details className="mt-2 text-[10px] text-stone-300">
-                                    <summary className="w-fit cursor-pointer list-none rounded border border-amber-900/70 px-2 py-1 font-semibold text-amber-200">Ver efecto</summary>
-                                    <p className="mt-1 leading-4">{comida.descripcion}</p>
-                                  </details>
+                                  <p className="mt-1 line-clamp-2 text-[10px] leading-4 text-stone-300">{comida.descripcion}</p>
                                   <div className="mt-2 flex items-center justify-between gap-1 border-t border-amber-900/60 pt-2">
                                     <span className="shrink-0 text-xs font-bold text-amber-300">{comida.coste} 🪙</span>
                                     <button
@@ -276,9 +238,7 @@ export default function TabernaPage() {
                           </div>
                         )}
                       </section>
-                    </div>
                   </div>
-                </div>
               ) : (
                 /* --- CONTRATO DE RECLUTAMIENTO SOBRE LA BARRA --- */
                 <form

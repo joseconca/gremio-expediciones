@@ -383,11 +383,8 @@ export default function HerreriaPage() {
           nivel={nivelHerreria}
         />
 
-        <div className="-mt-4 mb-4 flex flex-col gap-2 sm:-mt-6 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
-          <details className="text-sm text-[#9a9a96]">
-            <summary className="w-fit cursor-pointer list-none rounded border border-[#353a3d] px-3 py-1.5 text-xs font-bold text-[#c7c7c2] hover:border-[#777]">ⓘ Sobre la herrería</summary>
-            <p className="mt-2 max-w-xl leading-5">{descripcionHerreria}</p>
-          </details>
+        <div className="-mt-4 mb-3 flex flex-col gap-2 sm:-mt-6 sm:mb-5 sm:flex-row sm:items-end sm:justify-between">
+          <p className="sr-only">{descripcionHerreria}</p>
           <Link
             href="/base/armeria"
             className="shrink-0 rounded-lg bg-slate-800 px-4 py-2 font-bold text-slate-300 transition-colors hover:bg-slate-700"
@@ -412,8 +409,8 @@ export default function HerreriaPage() {
         {/* FORJA                                                   */}
         {/* ====================================================== */}
         {nivelHerreria > 0 && (
-          <section className="mb-8 overflow-hidden rounded-lg border-2 border-[#353a3d] bg-[#1a1d1f] shadow-[0_14px_32px_rgba(0,0,0,0.5)]">
-            <div className="border-b-2 border-[#353a3d] bg-[#141718] p-3 sm:p-6">
+          <section className="mb-3 overflow-hidden rounded-lg border border-[#353a3d] bg-[#1a1d1f] sm:mb-5 sm:border-2">
+            <div className="border-b border-[#353a3d] bg-[#141718] p-2 sm:border-b-2 sm:p-4">
               <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
                   <h2 className="text-lg font-black uppercase tracking-[0.08em] text-[#ddd8cf] sm:text-2xl">
@@ -427,7 +424,7 @@ export default function HerreriaPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-3 p-2 sm:gap-5 sm:p-4 md:grid-cols-3 md:p-5">
+            <div className="grid grid-cols-1 gap-2 p-1.5 sm:gap-3 sm:p-3 md:grid-cols-3">
               {[
                 {
                   tipo: "arma" as const,
@@ -453,9 +450,9 @@ export default function HerreriaPage() {
                   className="overflow-hidden rounded-md border border-[#3d4345] bg-[#151819]"
                 >
                   {/* CABECERA CATEGORÍA */}
-                  <div className="flex items-center justify-between border-b border-[#3d4345] bg-[#1d2122] px-4 py-3">
+                  <div className="flex items-center justify-between border-b border-[#3d4345] bg-[#1d2122] px-2 py-1.5">
                     <div className="flex items-center gap-3">
-                      <span className="text-2xl">{categoria.icono}</span>
+                      <span className="text-xl">{categoria.icono}</span>
 
                       <div>
                         <h3 className="text-sm font-black uppercase tracking-[0.16em] text-[#c9c8c3]">
@@ -467,7 +464,7 @@ export default function HerreriaPage() {
 
                   {/* OBJETOS */}
                   {categoria.objetos.length === 0 ? (
-                    <div className="p-8 text-center">
+                    <div className="p-3 text-center">
                       <p className="text-sm font-bold text-[#62696c]">
                         No tienes {categoria.nombre.toLowerCase()} en el
                         inventario.
@@ -515,7 +512,7 @@ export default function HerreriaPage() {
                         return (
                           <article
                             key={objetoInventario.id}
-                            className={`p-2 transition-colors sm:p-4 ${
+                            className={`p-2 transition-colors sm:p-3 ${
                               equipado
                                 ? "bg-[#25221c] hover:bg-[#2c281f]"
                                 : "bg-[#181b1c] hover:bg-[#1d2021]"
@@ -562,13 +559,10 @@ export default function HerreriaPage() {
                                   )}
                                 </div>
 
-                                <details className="mt-2 text-xs text-[#8a9295]">
-                                  <summary className="w-fit cursor-pointer list-none rounded border border-[#343a3d] px-2 py-1 font-bold text-[#c8c4bb] hover:border-[#72797d]">ⓘ Ver descripción</summary>
-                                  <p className="mt-1 leading-5">{objeto.descripcion}</p>
-                                </details>
+                                <span className="sr-only">{objeto.descripcion}</span>
 
                                 {/* ESTADÍSTICAS */}
-                                <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 sm:mt-3 sm:gap-x-4 sm:gap-y-2">
+                                <div className="mt-1 flex flex-wrap gap-x-2 gap-y-0.5 sm:mt-2 sm:gap-x-3">
                                   {obtenerEstadisticasNoCero(
                                     objeto,
                                     objetoInventario.nivelMejora,
@@ -596,22 +590,15 @@ export default function HerreriaPage() {
                                 </div>
 
                                 {/* PRÓXIMA MEJORA */}
-                                {puedeMejorar && (
-                                  <details className="mt-2 rounded border border-[#403b32] bg-[#1d1b18] px-2 py-1.5 sm:mt-3 sm:p-3">
-                                    <summary className="cursor-pointer text-[10px] font-black uppercase tracking-wider text-[#b7a68c]">Ver efecto de la siguiente mejora</summary>
-                                    {diferenciaMejora.length === 0 ? (
-                                      <p className="mt-2 text-xs text-[#77736a]">Esta pieza no obtiene nuevas estadísticas con la siguiente mejora.</p>
-                                    ) : (
-                                      <div className="mt-2 flex flex-wrap gap-1.5 sm:gap-2">
-                                        {diferenciaMejora.map((diferencia) => (
-                                          <span key={diferencia.clave} className="rounded border border-[#564a36] bg-[#282117] px-2 py-1 text-[10px] font-black text-amber-300">
-                                            {diferencia.nombre}{" "}
-                                            {formatearValorEstadistica(diferencia.clave, diferencia.valor)}
-                                          </span>
-                                        ))}
-                                      </div>
-                                    )}
-                                  </details>
+                                {puedeMejorar && diferenciaMejora.length > 0 && (
+                                  <div className="mt-1 flex flex-wrap items-center gap-1 text-[9px] font-bold text-amber-300">
+                                    <span className="text-[#82745e]">SIG.:</span>
+                                    {diferenciaMejora.map((diferencia) => (
+                                      <span key={diferencia.clave} className="rounded border border-[#564a36] bg-[#282117] px-1.5 py-0.5">
+                                        {diferencia.nombre} {formatearValorEstadistica(diferencia.clave, diferencia.valor)}
+                                      </span>
+                                    ))}
+                                  </div>
                                 )}
                               </div>
 

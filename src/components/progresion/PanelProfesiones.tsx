@@ -55,15 +55,10 @@ interface DatosProfesiones {
   clases: ClaseVista[];
 }
 
-const ETIQUETAS_TIER: Record<number, string> = {
-  0: "Inicial",
-  1: "Tier 1",
-  2: "Tier 2",
-  3: "Híbrida / Tier 3",
-};
-
-const PORCENTAJE = (valor: number) => `${Math.round(valor * 100)}%`;
-const ETIQUETAS_ARQUETIPO: Record<string, string> = { novato: "Generalista", vanguardia: "Vanguardia", apoyo: "Apoyo", agil: "Ágil", arcano: "Arcano", marcial: "Marcial", maldito: "Maldiciones", hibrido: "Híbrido" };
+const ANCHO_GRAFO = 592;
+const ANCHO_NODO = 136;
+const ALTO_NODO = 90;
+const PASO_COLUMNA = 148;
 
 export default function PanelProfesiones({
   integrado = false,
@@ -166,19 +161,52 @@ export default function PanelProfesiones({
     }
   };
 
-  const grupos = useMemo(() => {
-    const clases = datos?.clases ?? [];
-    return [0, 1, 2, 3].map((tier) => ({
-      tier,
-      clases: clases.filter((clase) => clase.tier === tier),
-    })).filter((grupo) => grupo.clases.length > 0);
-  }, [datos?.clases]);
-
   const nombreClase = (claseId: string) =>
     CLASES[claseId]?.nombre ?? datos?.clases.find((clase) => clase.id === claseId)?.nombre ?? claseId;
 
+  const grafo = useMemo(() => {
+    const clases = datos?.clases ?? [];
+    const porTier = (tier: number) => clases.filter((clase) => clase.tier === tier);
+    const tierInicial = porTier(0);
+    const tierUno = porTier(1);
+    const tierDos = porTier(2);
+    const tierTres = porTier(3);
+    const nodos: Array<{ clase: ClaseVista; x: number; y: number }> = [];
+    tierInicial.forEach((clase) => nodos.push({ clase, x: (ANCHO_GRAFO - ANCHO_NODO) / 2, y: 22 }));
+    tierUno.forEach((clase, indice) => nodos.push({ clase, x: indice * PASO_COLUMNA, y: 138 }));
+
+    const indicePorPadre = new Map(tierUno.map((clase, indice) => [clase.id, indice]));
+    const hijosPorPadre = new Map<string, number>();
+    tierDos.forEach((clase, indice) => {
+      const padreId = clase.requisitos[0]?.claseId;
+      const columna = padreId ? (indicePorPadre.get(padreId) ?? indice % 4) : indice % 4;
+      const fila = padreId ? (hijosPorPadre.get(padreId) ?? 0) : Math.floor(indice / 4);
+      if (padreId) hijosPorPadre.set(padreId, fila + 1);
+      nodos.push({ clase, x: columna * PASO_COLUMNA, y: 254 + fila * 104 });
+    });
+    tierTres.forEach((clase, indice) => nodos.push({ clase, x: (ANCHO_GRAFO - ANCHO_NODO) / 2, y: 478 + indice * 104 }));
+
+    const nodosPorId = new Map(nodos.map((nodo) => [nodo.clase.id, nodo]));
+    const aristas = nodos.flatMap((destino) => destino.clase.requisitos.flatMap((requisito) => {
+      const origen = nodosPorId.get(requisito.claseId);
+      if (!origen) return [];
+      const progresoOrigen = requisito.claseId === datos?.profesionActivaId ? datos?.progresoActivo : origen.clase.progreso;
+      return [{
+        id: `${requisito.claseId}-${destino.clase.id}`,
+        x1: origen.x + ANCHO_NODO / 2,
+        y1: origen.y + ALTO_NODO,
+        x2: destino.x + ANCHO_NODO / 2,
+        y2: destino.y,
+        cumplida: Boolean(progresoOrigen?.desbloqueada && progresoOrigen.nivelJob >= requisito.nivelJob),
+        vaASegundaFila: destino.clase.tier === 2 && destino.y > 254,
+      }];
+    }));
+    const alto = Math.max(568, ...nodos.map((nodo) => nodo.y + ALTO_NODO + 12));
+    return { nodos, aristas, ancho: ANCHO_GRAFO, alto };
+  }, [datos]);
+
   return (
-    <div className="min-h-screen bg-[#171512] p-4 text-[#e8dfc8] md:p-8">
+    <div className={integrado ? "bg-transparent p-0 text-[#e8dfc8]" : "min-h-screen bg-[#171512] p-2 text-[#e8dfc8] sm:p-4 md:p-8"}>
       <div className="mx-auto max-w-6xl">
         {!integrado && (
         <header className="mb-8 flex flex-wrap items-center justify-between gap-4">
@@ -204,192 +232,106 @@ export default function PanelProfesiones({
         )}
 
         {datos && (
-          <section className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
-            <div className="rounded-lg border border-[#4d3927] bg-[#241c15] p-4">
-              <p className="text-xs font-black uppercase tracking-widest text-[#94836b]">Nivel Base</p>
-              <p className="mt-1 text-2xl font-black text-[#f1dfb5]">{datos.nivelBase}</p>
-              <p className="mt-1 text-xs text-[#8e7b60]">{datos.experienciaBase} XP Base</p>
-            </div>
-            <div className="rounded-lg border border-[#4d3927] bg-[#241c15] p-4">
-              <p className="text-xs font-black uppercase tracking-widest text-[#94836b]">Profesión activa</p>
-              <p className="mt-1 text-2xl font-black text-[#f1dfb5]">
+          <section className="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-[#4d3927] bg-[#241c15] px-3 py-2">
+            <div className="min-w-0">
+              <p className="text-[9px] font-black uppercase tracking-[0.16em] text-[#94836b]">Profesión activa</p>
+              <p className="truncate text-sm font-black text-[#f1dfb5]">
                 {datos.profesionActiva?.nombre ?? "Novato"}
-              </p>
-              <p className="mt-1 text-xs text-[#8e7b60]">
-                Job {datos.progresoActivo?.nivelJob ?? 1}
-                {" / "}
-                {datos.profesionActiva?.id
-                  ? datos.clases.find((c) => c.id === datos.profesionActivaId)?.nivelJobMaximo ?? 10
-                  : 10}
+                <span className="ml-2 text-[11px] font-semibold text-[#b6a183]">
+                  Job {datos.progresoActivo?.nivelJob ?? 1}/{datos.profesionActiva?.id
+                    ? datos.clases.find((c) => c.id === datos.profesionActivaId)?.nivelJobMaximo ?? 10
+                    : 10}
+                </span>
               </p>
             </div>
-            <div className="rounded-lg border border-[#4d3927] bg-[#241c15] p-4">
-              <p className="text-xs font-black uppercase tracking-widest text-[#94836b]">Puntos de habilidad</p>
-              <p className="mt-1 text-2xl font-black text-[#f1dfb5]">
-                {datos.progresoActivo?.puntosHabilidadDisponibles ?? 0}
-              </p>
-              <p className="mt-1 text-xs text-[#8e7b60]">
-                El Job ganado en combate también progresa la profesión activa.
-              </p>
+            <div className="shrink-0 border-l border-[#4d3927] pl-3 text-right">
+              <p className="text-[9px] font-black uppercase tracking-[0.12em] text-[#94836b]">Puntos Job</p>
+              <p className="text-sm font-black text-amber-200">{datos.progresoActivo?.puntosHabilidadDisponibles ?? 0}</p>
             </div>
           </section>
         )}
 
         {error && (
-          <div role="alert" className="mb-5 rounded-md border border-red-900 bg-[#351816] p-4 text-sm font-bold text-red-200">
+          <div role="alert" className="mb-3 rounded-md border border-red-900 bg-[#351816] px-3 py-2 text-xs font-bold text-red-200">
             {error}
           </div>
         )}
         {mensaje && (
-          <div role="status" className="mb-5 rounded-md border border-emerald-900 bg-[#142b1f] p-4 text-sm font-bold text-emerald-200">
+          <div role="status" className="mb-3 rounded-md border border-emerald-900 bg-[#142b1f] px-3 py-2 text-xs font-bold text-emerald-200">
             {mensaje}
           </div>
         )}
 
         {cargando ? (
-          <div className="rounded-lg border border-[#4d3927] bg-[#241c15] p-10 text-center text-[#a99d84]">
-            Consultando el grafo de profesiones...
-          </div>
+          <div className="rounded-lg border border-[#4d3927] bg-[#241c15] p-4 text-center text-xs text-[#a99d84]">Preparando el árbol de profesiones…</div>
         ) : (
-          <div className="space-y-8">
-            {grupos.map((grupo) => (
-              <section key={grupo.tier}>
-                <div className="mb-3 flex items-end justify-between gap-3">
-                  <h2 className="text-xl font-black text-[#e8d4ab]">
-                    {ETIQUETAS_TIER[grupo.tier] ?? `Tier ${grupo.tier}`}
-                  </h2>
-                  <p className="text-xs text-[#8e7b60]">
-                    {grupo.clases.length} profesiones
-                  </p>
-                </div>
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-                  {grupo.clases.map((clase) => {
-                    const desbloqueando = procesandoId === `desbloquear:${clase.id}`;
-                    const cambiando = procesandoId === `cambiar:${clase.id}`;
-                    const progreso = clase.progreso;
-                    return (
-                      <article
-                        key={clase.id}
-                        className={`flex h-full flex-col rounded-lg border bg-[#211a14] p-5 shadow-lg ${
-                          clase.esActiva
-                            ? "border-amber-500/80 ring-1 ring-amber-500/20"
-                            : clase.yaDesbloqueada
-                              ? "border-emerald-900/70"
-                              : "border-[#4d3927]"
-                        }`}
-                      >
-                        <div className="flex items-start justify-between gap-3">
-                          <div>
-                            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#9c8867]">
-                              Job máximo {clase.nivelJobMaximo}
-                            </p>
-                            <h3 className="mt-1 text-xl font-black text-[#f0dfba]">{clase.nombre}</h3>
-                          </div>
-                          {clase.esActiva ? (
-                            <span className="rounded border border-amber-700 bg-amber-950/50 px-2 py-1 text-[10px] font-black uppercase text-amber-300">Activa</span>
-                          ) : clase.yaDesbloqueada ? (
-                            <span className="rounded border border-emerald-900 bg-emerald-950/30 px-2 py-1 text-[10px] font-black uppercase text-emerald-300">Desbloqueada</span>
-                          ) : (
-                            <span className="rounded border border-[#5a4630] bg-[#302319] px-2 py-1 text-[10px] font-black uppercase text-[#b49a70]">Bloqueada</span>
-                          )}
+          <section className="overflow-hidden rounded-lg border border-[#59442d] bg-[radial-gradient(ellipse_at_top,#302319,#1a1510_65%)]">
+            <div className="flex items-center justify-between border-b border-[#59442d] bg-[#2a2017] px-3 py-2">
+              <h2 className="text-xs font-black uppercase tracking-[0.14em] text-[#e8d4ab]">Árbol de profesiones</h2>
+              <p className="text-[9px] text-[#988064]">Desliza para explorar</p>
+            </div>
+            <div className="overflow-x-auto overscroll-x-contain p-2 sm:p-3">
+              <div className="relative mx-auto" style={{ width: grafo.ancho, height: grafo.alto }} aria-label="Árbol de profesiones y requisitos">
+                <div className="absolute left-0 top-0 z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]">Inicio</div>
+                <div className="absolute left-0 top-[116px] z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]">Tier I · Especialización</div>
+                <div className="absolute left-0 top-[232px] z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]">Tier II · Maestría</div>
+                <div className="absolute left-0 top-[456px] z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]">Tier III · Híbrida</div>
+                <svg className="pointer-events-none absolute inset-0 z-0" width={grafo.ancho} height={grafo.alto} viewBox={`0 0 ${grafo.ancho} ${grafo.alto}`} aria-hidden="true">
+                  <defs><linearGradient id="linea-profesion" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#8c6c42" /><stop offset="100%" stopColor="#58432c" /></linearGradient></defs>
+                  {grafo.aristas.map((arista) => (
+                    <path key={arista.id}
+                      d={arista.vaASegundaFila
+                        ? `M ${arista.x1} ${arista.y1} C ${arista.x1} ${arista.y1 + 12}, ${arista.x2 - 5} ${arista.y2 - 18}, ${arista.x2 - 5} ${arista.y2}`
+                        : `M ${arista.x1} ${arista.y1} C ${arista.x1} ${arista.y1 + 16}, ${arista.x2} ${arista.y2 - 16}, ${arista.x2} ${arista.y2}`}
+                      fill="none" stroke={arista.cumplida ? "#5e9b6b" : "url(#linea-profesion)"}
+                      strokeWidth={arista.cumplida ? 2.5 : 1.8} strokeLinecap="round" />
+                  ))}
+                </svg>
+                {grafo.nodos.map(({ clase, x, y }) => {
+                  const desbloqueando = procesandoId === `desbloquear:${clase.id}`;
+                  const cambiando = procesandoId === `cambiar:${clase.id}`;
+                  const progreso = clase.progreso;
+                  const requisitos = clase.requisitos.length ? clase.requisitos.map((req) => `${nombreClase(req.claseId)} Job ${req.nivelJob}`).join(" + ") : "Profesión inicial";
+                  const dominio = `Armas: ${clase.armasDominadas.join(", ") || "sin especialización"}. Armaduras: ${clase.armadurasDominadas.join(", ") || "sin especialización"}. Bonus: +${Math.round(clase.bonoAtaqueArmaDominada * 100)}% ataque y +${Math.round(clase.bonoDefensaArmaduraDominada * 100)}% defensa al equipo compatible.`;
+                  const tooltip = `${clase.descripcion} Requisitos: ${requisitos}. ${dominio}${progreso?.maestriaCompletada ? " Maestría completada." : ""}`;
+                  return (
+                    <article key={clase.id} title={tooltip} className={`absolute z-10 flex flex-col justify-between overflow-hidden rounded-md border px-2 py-1.5 shadow-md transition-colors ${
+                      clase.esActiva ? "border-amber-400 bg-[#49331d] ring-1 ring-amber-400/40"
+                        : clase.yaDesbloqueada ? "border-emerald-800 bg-[#1d3022]"
+                        : clase.puedeDesbloquear ? "border-[#b38a4d] bg-[#382819]"
+                        : "border-[#59442d] bg-[#211a14]"
+                    }`} style={{ left: x, top: y, width: ANCHO_NODO, height: ALTO_NODO }}>
+                      <div className="min-w-0">
+                        <div className="flex items-start justify-between gap-1">
+                          <h3 className="line-clamp-2 text-[11px] font-black leading-4 text-[#f1dfba]">{clase.nombre}</h3>
+                          <span className={`shrink-0 text-[9px] font-black ${
+                            clase.esActiva ? "text-amber-300" : clase.yaDesbloqueada ? "text-emerald-300" : clase.puedeDesbloquear ? "text-amber-300" : "text-[#8a765d]"
+                          }`}>{clase.esActiva ? "◆" : clase.yaDesbloqueada ? "✓" : clase.puedeDesbloquear ? "!" : "🔒"}</span>
                         </div>
-
-                        <p className="mt-3 min-h-12 text-sm leading-6 text-[#b4a48b]">{clase.descripcion}</p>
-                        <p className="mt-1 text-xs font-bold uppercase tracking-wider text-amber-500/80">Arquetipo: {ETIQUETAS_ARQUETIPO[clase.arquetipo] ?? clase.arquetipo}</p>
-
-                        {progreso && (
-                          <div className="mt-3 rounded border border-[#493723] bg-[#19140f] p-3">
-                            <div className="flex justify-between text-sm">
-                              <span className="text-[#a99d84]">Progreso Job</span>
-                              <span className="font-bold text-[#f1dfb5]">
-                                {progreso.nivelJob}/{clase.nivelJobMaximo}
-                              </span>
-                            </div>
-                            <div className="mt-2 h-2 overflow-hidden rounded bg-black/40">
-                              <div
-                                className="h-full rounded bg-amber-600"
-                                style={{ width: `${Math.min(100, progreso.nivelJob / clase.nivelJobMaximo * 100)}%` }}
-                              />
-                            </div>
-                            <p className="mt-2 text-xs text-[#9b896e]">
-                              {progreso.puntosHabilidadDisponibles} puntos de habilidad
-                              {progreso.maestriaCompletada ? " · Maestría completada" : ""}
-                            </p>
-                          </div>
+                        <p className="mt-0.5 truncate text-[9px] text-[#b69b73]">{progreso ? `Job ${progreso.nivelJob}/${clase.nivelJobMaximo}` : clase.requisitosPendientes.length ? `Req. Job ${clase.requisitosPendientes[0].nivelJobRequerido}` : `Job máx. ${clase.nivelJobMaximo}`}</p>
+                      </div>
+                      {clase.esActiva ? <span className="mt-1 block text-center text-[9px] font-black uppercase tracking-wide text-amber-300">En uso</span>
+                        : clase.yaDesbloqueada ? (
+                          <button type="button" onClick={() => void ejecutarAccion(clase, "cambiar")} disabled={procesandoId !== null}
+                            className="mt-1 min-h-6 w-full rounded border border-emerald-800 bg-emerald-950/70 px-1 py-1 text-[9px] font-black text-emerald-200 disabled:opacity-50">{cambiando ? "…" : "Elegir"}</button>
+                        ) : clase.puedeDesbloquear ? (
+                          <button type="button" onClick={() => void ejecutarAccion(clase, "desbloquear")} disabled={procesandoId !== null}
+                            className="mt-1 min-h-6 w-full rounded border border-amber-600 bg-amber-900/60 px-1 py-1 text-[9px] font-black text-amber-100 disabled:opacity-50">{desbloqueando ? "…" : "Desbloquear"}</button>
+                        ) : (
+                          <span className="mt-1 block truncate text-center text-[8px] text-[#938068]">{clase.requisitosPendientes[0] ? `${clase.requisitosPendientes[0].nombreClase} · Job ${clase.requisitosPendientes[0].nivelJobRequerido}` : "Bloqueada"}</span>
                         )}
-
-                        <div className="mt-4 space-y-3">
-                          <div>
-                            <p className="text-[10px] font-black uppercase tracking-widest text-[#84745e]">Requisitos</p>
-                            {clase.requisitos.length === 0 ? (
-                              <p className="mt-1 text-sm text-[#c7b899]">Profesión inicial</p>
-                            ) : (
-                              <ul className="mt-1 space-y-1">
-                                {clase.requisitos.map((req) => {
-                                  const progresoRequerido = req.claseId === datos?.profesionActivaId
-                                    ? datos?.progresoActivo
-                                    : datos?.clases.find((c) => c.id === req.claseId)?.progreso;
-                                  const cumplido = !!progresoRequerido?.desbloqueada &&
-                                    progresoRequerido.nivelJob >= req.nivelJob;
-                                  return (
-                                    <li key={req.claseId} className={`text-sm ${cumplido ? "text-emerald-300" : "text-[#c7b899]"}`}>
-                                      {cumplido ? "✓" : "•"} {nombreClase(req.claseId)} Job {req.nivelJob}
-                                    </li>
-                                  );
-                                })}
-                              </ul>
-                            )}
-                            {clase.requisitosPendientes.length > 0 && (
-                              <p className="mt-2 text-xs text-amber-500">
-                                Pendiente: {clase.requisitosPendientes.map((r) => `${r.nombreClase} Job ${r.nivelJobRequerido}`).join(" + ")}
-                              </p>
-                            )}
-                          </div>
-
-                          <div>
-                            <p className="text-[10px] font-black uppercase tracking-widest text-[#84745e]">Dominio de equipo</p>
-                            <p className="mt-1 text-xs leading-5 text-[#b4a48b]">
-                              Armas: {clase.armasDominadas.length ? clase.armasDominadas.join(", ") : "sin especialización"}.
-                              {" "}Armaduras: {clase.armadurasDominadas.length ? clase.armadurasDominadas.join(", ") : "sin especialización"}.
-                            </p>
-                            <p className="mt-1 text-xs text-[#9b896e]">
-                              Bonus de dominio: +{PORCENTAJE(clase.bonoAtaqueArmaDominada)} al ataque de arma y +{PORCENTAJE(clase.bonoDefensaArmaduraDominada)} a la defensa de armadura compatibles.
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="mt-auto pt-5">
-                          {clase.esActiva ? (
-                            <div className="rounded-md border border-amber-800/60 bg-amber-950/20 px-3 py-2 text-center text-sm font-bold text-amber-300">
-                              Profesión seleccionada
-                            </div>
-                          ) : clase.yaDesbloqueada ? (
-                            <button
-                              type="button"
-                              onClick={() => void ejecutarAccion(clase, "cambiar")}
-                              disabled={procesandoId !== null}
-                              className="w-full rounded-md border border-emerald-800 bg-emerald-950/40 px-4 py-3 text-sm font-black text-emerald-200 transition hover:bg-emerald-900/60 disabled:cursor-not-allowed disabled:opacity-50"
-                            >
-                              {cambiando ? "Cambiando..." : "Cambiar a esta profesión"}
-                            </button>
-                          ) : (
-                            <button
-                              type="button"
-                              onClick={() => void ejecutarAccion(clase, "desbloquear")}
-                              disabled={!clase.puedeDesbloquear || procesandoId !== null}
-                              className="w-full rounded-md border border-[#785729] bg-[#49331e] px-4 py-3 text-sm font-black text-[#e8d4ab] transition hover:bg-[#624427] disabled:cursor-not-allowed disabled:opacity-40"
-                            >
-                              {desbloqueando ? "Desbloqueando..." : clase.puedeDesbloquear ? "Desbloquear profesión" : "Aún no cumples los requisitos"}
-                            </button>
-                          )}
-                        </div>
-                      </article>
-                    );
-                  })}
-                </div>
-              </section>
-            ))}
-          </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-[#59442d] bg-[#221a13] px-3 py-2 text-[9px] text-[#a8916e]">
+              <span><span className="text-amber-300">◆</span> Activa</span>
+              <span><span className="text-emerald-300">✓</span> Desbloqueada</span>
+              <span><span className="text-amber-300">!</span> Lista para desbloquear</span>
+              <span><span className="text-[#8a765d]">🔒</span> Bloqueada</span>
+            </div>
+          </section>
         )}
       </div>
     </div>

@@ -168,7 +168,7 @@ export default function MercadoPage() {
 
         <details className="group mb-3 -mt-3 text-sm text-slate-400 sm:mb-4">
           <summary className="w-fit cursor-pointer list-none rounded border border-slate-800 px-3 py-1.5 text-xs font-semibold text-slate-300 hover:border-amber-800">ⓘ Sobre el mercado</summary>
-          <p className="mt-2 leading-5">{edificios.mercado.descripcion}</p>
+          <p className="mt-1 max-w-xl leading-5">{edificios.mercado.descripcion}</p>
         </details>
 
         {/* --- EL ESCENARIO DEL MERCADO --- */}
@@ -216,10 +216,10 @@ export default function MercadoPage() {
           </div>
 
           {/* MOSTRADOR DEL MERCADO (Panel de control + Ofertas) */}
-          <div className="relative z-20 w-full border-t-4 border-amber-900 bg-stone-950/95 p-2 sm:border-t-8 sm:p-5 md:p-8">
+          <div className="relative z-20 w-full border-t-2 border-amber-900 bg-stone-950/95 p-2 sm:border-t-4 sm:p-4">
             {/* TABLERO DE ORO Y DESCUENTOS (Libro de Cuentas) */}
             {nivelMercado > 1 && (
-              <div className="mx-auto mb-3 flex max-w-2xl flex-col items-center justify-between gap-2 rounded-lg border-2 border-[#b5a37f] bg-[#e8dcc4] p-2 text-stone-900 shadow-[3px_3px_0_rgba(0,0,0,0.35)] sm:mb-6 sm:flex-row sm:gap-4 sm:border-4 sm:p-4">
+              <div className="mx-auto mb-2 flex max-w-2xl items-center justify-center gap-2 rounded-md border border-[#b5a37f] bg-[#e8dcc4] px-3 py-1.5 text-stone-900 sm:mb-4 sm:justify-start sm:gap-4 sm:p-3">
                 <div className="flex items-center gap-3">
                   <span className="text-3xl">📜</span>
 
@@ -244,113 +244,43 @@ export default function MercadoPage() {
             )}
 
             {/* PARRILLA DE MERCANCÍAS (OFERTAS) */}
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3 md:grid-cols-3 md:gap-5">
+            <div className="space-y-2">
               {ofertas.map((oferta) => {
                 const cantidad = cantidades[oferta.id];
                 const sinOro = oferta.cantidadMaxima < 1;
-
                 const costeTotal = cantidad * oferta.precioUnitario;
-
                 return (
-                  <div
-                    key={oferta.id}
-                    className="relative flex flex-col justify-between overflow-hidden rounded-lg border-2 border-stone-800 bg-stone-900/90 p-2 shadow-lg backdrop-blur-sm transition-colors hover:border-amber-700/60 group sm:rounded-xl sm:border-4 sm:p-4 md:p-5"
-                  >
-                    {/* Detalle visual de esquina de madera */}
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-amber-950 border-2 border-amber-800 rotate-45 pointer-events-none" />
-
-                    <div>
-                      {/* CABECERA RECURSO */}
-                      <div className="mb-2 flex items-center justify-center gap-2 border-b border-stone-800 pb-2 sm:mb-4 sm:pb-4 sm:block sm:border-b-2">
-                        <div className="text-3xl transition-transform duration-300 group-hover:scale-110 sm:mb-2 sm:text-5xl">
-                          {oferta.icono}
-                        </div>
-
-                        <h3 className="text-lg font-black text-amber-400 sm:text-2xl font-serif">
-                          {oferta.nombre}
-                        </h3>
+                  <article key={oferta.id} className="rounded-lg border border-amber-950/90 bg-stone-900/95 p-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] sm:p-3">
+                    <div className="flex min-w-0 items-center gap-2">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-amber-900/70 bg-stone-950 text-2xl" aria-hidden="true">{oferta.icono}</span>
+                      <div className="min-w-0 flex-1">
+                        <h3 className="truncate text-sm font-black text-amber-200 sm:text-base">{oferta.nombre}</h3>
+                        <p className="text-[11px] text-stone-400">{oferta.precioUnitario} 🪙 / unidad</p>
                       </div>
-
-                      {/* PRECIO POR UNIDAD */}
-                      <div className="mb-2 flex items-center justify-between rounded-md border border-stone-800 bg-stone-950/80 px-2 py-1.5 sm:mb-5 sm:rounded-lg sm:p-3">
-                        <span className="text-xs font-bold uppercase text-stone-400">
-                          Precio / ud.
-                        </span>
-
-                        <span className="font-extrabold text-amber-400 flex items-center gap-1">
-                          {oferta.precioUnitario} 🪙
-                        </span>
-                      </div>
-
-                      {/* CONTROLES DE CANTIDAD (SLIDER) */}
-                      <div className="mb-2 sm:mb-5">
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="text-xs font-bold uppercase text-stone-400">
-                            Cantidad:
-                          </span>
-
-                          <span className="rounded border border-amber-800 bg-amber-950 px-2 py-0.5 text-base font-black text-white sm:px-3 sm:text-xl">
-                            {cantidad}
-                          </span>
-                        </div>
-
-                        <input
-                          type="range"
-                          min={sinOro ? 0 : 1}
-                          max={Math.max(1, oferta.cantidadMaxima)}
-                          value={cantidad}
-                          onChange={(event) =>
-                            cambiarCantidad(
-                              oferta.id,
-                              Number(event.target.value)
-                            )
-                          }
-                          disabled={sinOro}
-                          className="w-full accent-amber-500 bg-stone-800 h-2 rounded-lg cursor-pointer disabled:cursor-not-allowed"
-                        />
-
-                        <div className="mt-1 flex justify-between text-[10px] font-bold text-stone-500 sm:mt-1.5 sm:text-[11px]">
-                          <span>1</span>
-                          <span>Máx: {oferta.cantidadMaxima}</span>
-                        </div>
-                      </div>
+                      <span className="shrink-0 text-xs font-bold text-stone-300">Máx. {oferta.cantidadMaxima}</span>
                     </div>
-
-                    <div>
-                      {/* COSTE TOTAL */}
-                      <div className="mb-2 flex items-center justify-between border-t border-stone-800/80 pt-2 sm:mb-4 sm:border-t-2 sm:pt-3">
-                        <span className="text-xs font-bold uppercase text-stone-400">
-                          Coste total
-                        </span>
-
-                        <span className="text-xl font-black text-amber-400 sm:text-2xl">
-                          {costeTotal} 🪙
-                        </span>
+                    <div className="mt-2 flex items-center gap-2 border-t border-stone-800 pt-2">
+                      <label htmlFor={`cantidad-${oferta.id}`} className="text-[11px] font-bold text-stone-400">Cant.</label>
+                      <input id={`cantidad-${oferta.id}`} type="number" inputMode="numeric" min={sinOro ? 0 : 1}
+                        max={Math.max(1, oferta.cantidadMaxima)} value={cantidad}
+                        onChange={(event) => cambiarCantidad(oferta.id, Number(event.target.value))}
+                        disabled={sinOro}
+                        className="h-9 w-16 rounded border border-stone-700 bg-stone-950 px-2 text-center text-sm font-bold text-white outline-none focus:border-amber-500 disabled:opacity-50"
+                      />
+                      <div className="min-w-0 flex-1 text-right">
+                        <p className="text-[9px] font-bold uppercase tracking-wide text-stone-500">Total</p>
+                        <p className="whitespace-nowrap text-sm font-black text-amber-300">{costeTotal} 🪙</p>
                       </div>
-
-                      {/* BOTÓN DE COMPRA */}
-                      <button
-                        onClick={() => comprar(oferta.id)}
+                      <button type="button" onClick={() => comprar(oferta.id)}
                         disabled={sinOro || cantidad <= 0 || comprando !== null}
-                        className={`flex w-full items-center justify-center gap-1 rounded-md px-2 py-2 text-xs font-black uppercase tracking-wide transition-all transform sm:gap-2 sm:rounded-lg sm:px-4 sm:py-3 sm:text-sm sm:tracking-wider ${
+                        className={`min-h-9 shrink-0 rounded border px-3 py-2 text-xs font-black transition-colors ${
                           !sinOro && cantidad > 0 && comprando === null
-                            ? "bg-amber-700 hover:bg-amber-600 text-amber-50 active:scale-95 shadow-lg border-2 border-amber-500 shadow-amber-950/50"
-                            : "bg-stone-800 text-stone-600 border border-stone-700 cursor-not-allowed"
+                            ? "border-amber-500 bg-amber-800 text-amber-50 hover:bg-amber-700 active:bg-amber-600"
+                            : "cursor-not-allowed border-stone-700 bg-stone-800 text-stone-500"
                         }`}
-                      >
-                        <span>
-                          {comprando === oferta.id
-                            ? "Comprando..."
-                            : sinOro
-                            ? "Sin oro suficiente"
-                            : `Comprar ${cantidad} ${oferta.nombre.toLowerCase()}`}
-                        </span>
-                        {!sinOro && cantidad > 0 && comprando === null && (
-                          <span>🤝</span>
-                        )}
-                      </button>
+                      >{comprando === oferta.id ? "…" : sinOro ? "Sin oro" : "Comprar"}</button>
                     </div>
-                  </div>
+                  </article>
                 );
               })}
             </div>

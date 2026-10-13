@@ -165,14 +165,11 @@ export default function EscuelaCombatePage() {
     <main className="min-h-screen bg-[#171512] p-3 pb-8 text-[#e8dfc8] sm:p-4 sm:pb-8 md:p-8">
       <div className="mx-auto max-w-6xl">
         <CabeceraEdificio icono="⚔️" nombre="Escuela de Batalla" nivel={nivelEscuela} />
-        <details className="mb-3 mt-1 text-sm text-[#a99d84] sm:mb-4">
-          <summary className="w-fit cursor-pointer list-none rounded border border-[#51412d] px-3 py-1.5 text-xs font-semibold text-[#c1b49b] hover:border-amber-500/60">ⓘ Sobre la escuela</summary>
-          <p className="mt-2 leading-5">{descripcionEdificio}</p>
-        </details>
+        <p className="mb-2 -mt-1 line-clamp-1 text-[11px] text-[#7d705c]">{descripcionEdificio}</p>
         {navegacion}
 
         {vista !== "profesiones" && (
-          <section aria-label="Profesión activa" className="mb-4 rounded-xl border border-[#6b5235] bg-[#241d15] p-3 sm:mb-6 sm:p-4 md:p-5">
+          <section aria-label="Profesión activa" className="mb-3 rounded-lg border border-[#6b5235] bg-[#241d15] p-2 sm:mb-4 sm:p-3">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#a99169]">Tu clase actual</p>
@@ -197,7 +194,7 @@ export default function EscuelaCombatePage() {
 
         {vista === "profesiones" ? <PanelProfesiones integrado onProfessionChanged={recargarHabilidades} /> : vista === "aprender" ? (
           <section>
-            <div className="mb-3 flex flex-col gap-2 sm:mb-4 sm:gap-3 md:flex-row md:items-center md:justify-between">
+            <div className="mb-2 flex flex-col gap-2 sm:mb-3 sm:gap-3 md:flex-row md:items-center md:justify-between">
               <div>
                 <h2 className="text-lg font-bold text-[#f0dfbd] sm:text-xl">Catálogo de habilidades</h2>
                 <p className="mt-1 hidden text-sm text-[#9f927b] sm:block">Elige técnicas para desbloquear con tus puntos Job. Las habilidades heredadas están identificadas.</p>
@@ -218,7 +215,7 @@ export default function EscuelaCombatePage() {
             </div>
             {cargando ? <div className="rounded-xl border border-[#51412d] bg-[#211b14] p-10 text-center text-[#a99d84]">Cargando catálogo...</div>
               : habilidadesVisibles.length === 0 ? <div className="rounded-xl border border-dashed border-[#51412d] p-10 text-center text-[#a99d84]">No hay habilidades que coincidan con estos filtros.</div>
-              : <div className="grid grid-cols-1 gap-3 sm:gap-4 lg:grid-cols-2">
+              : <div className="grid grid-cols-1 gap-2 sm:gap-3 xl:grid-cols-2">
                 {habilidadesVisibles.map((habilidad) => {
                   const aprendida = idsAprendidas.has(habilidad.id);
                   const requerida = habilidad.nivelJobRequerido ?? 1;
@@ -247,10 +244,7 @@ export default function EscuelaCombatePage() {
                             <span className="hidden sm:inline">{heredada ? `Heredada: ${clasePropietaria}` : "Propia de tu clase"}</span>
                           </span>
                       </div>
-                      <details className="mt-2 text-xs text-[#c2b59e]">
-                        <summary className="w-fit cursor-pointer list-none rounded border border-[#51412d] px-2 py-1 font-semibold text-[#d0bd9d] hover:border-amber-500/60">Ver descripción</summary>
-                        <p className="mt-2 leading-5 sm:text-sm sm:leading-6">{habilidad.descripcion}</p>
-                      </details>
+                      <p className="mt-1 line-clamp-2 text-[11px] leading-4 text-[#b2a58e]">{habilidad.descripcion}</p>
                       <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-[#c7b99e] sm:mt-4 sm:gap-2 sm:text-[11px]">
                         <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">Job {requerida}</span>
                         <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">{coste} punto(s)</span>
@@ -258,7 +252,7 @@ export default function EscuelaCombatePage() {
                         {habilidad.cooldownTurnos ? <span className="hidden rounded-md bg-[#302619] px-2 py-1 sm:inline-flex sm:px-2.5">Enfriamiento: {habilidad.cooldownTurnos} turnos</span> : null}
                         {habilidad.duracionTurnos ? <span className="hidden rounded-md bg-[#302619] px-2 py-1 sm:inline-flex sm:px-2.5">Duración: {habilidad.duracionTurnos} turnos</span> : null}
                       </div>
-                      <div className="mt-3 border-t border-[#443624] pt-3 sm:mt-4">
+                      <div className="mt-2 border-t border-[#443624] pt-2 sm:mt-3">
                         {aprendida ? <p className="text-sm font-semibold text-emerald-300">✓ Habilidad aprendida</p>
                           : puede ? <button type="button" onClick={() => void enviarAccion("aprender", habilidad.id)} disabled={procesando !== null}
                             className="min-h-11 w-full rounded-lg border border-amber-400/70 bg-amber-900/40 px-3 py-2 text-sm font-bold text-amber-100 transition hover:bg-amber-800/60 disabled:cursor-wait disabled:opacity-50 sm:px-4 sm:py-2.5">
