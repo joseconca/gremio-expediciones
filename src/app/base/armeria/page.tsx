@@ -518,6 +518,7 @@ export default function HerreriaPage() {
                   return (
                     <article
                       key={objeto.id}
+                      title={objeto.descripcion}
                       className="group flex flex-col overflow-hidden rounded-md border border-[#555b5e] bg-[#222628] shadow-[0_8px_18px_rgba(0,0,0,0.35)] transition-colors hover:border-[#72797d]"
                     >
                       {/* Cabecera pieza */}
@@ -881,6 +882,7 @@ export default function HerreriaPage() {
                   return (
                     <article
                       key={objetoInventario.id}
+                      title={objeto.descripcion}
                       className={`relative overflow-hidden rounded-lg border p-2 transition-all sm:border-2 sm:p-3 ${
                         estaEquipado
                           ? "border-[#9a7748] bg-[linear-gradient(135deg,#473420,#302218)] shadow-[inset_0_1px_0_rgba(255,220,170,0.08),0_4px_10px_rgba(0,0,0,0.25)]"

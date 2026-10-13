@@ -246,8 +246,8 @@ export default function MercadoPage() {
             {/* PARRILLA DE MERCANCÍAS (OFERTAS) */}
             <div className="space-y-2">
               {ofertas.map((oferta) => {
-                const cantidad = cantidades[oferta.id];
                 const sinOro = oferta.cantidadMaxima < 1;
+                const cantidad = sinOro ? 0 : cantidades[oferta.id];
                 const costeTotal = cantidad * oferta.precioUnitario;
                 return (
                   <article key={oferta.id} className="rounded-lg border border-amber-950/90 bg-stone-900/95 p-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] sm:p-3">
@@ -265,7 +265,7 @@ export default function MercadoPage() {
                         max={Math.max(1, oferta.cantidadMaxima)} value={cantidad}
                         onChange={(event) => cambiarCantidad(oferta.id, Number(event.target.value))}
                         disabled={sinOro}
-                        className="h-9 w-16 rounded border border-stone-700 bg-stone-950 px-2 text-center text-sm font-bold text-white outline-none focus:border-amber-500 disabled:opacity-50"
+                        className="h-10 w-16 rounded border border-stone-700 bg-stone-950 px-2 text-center text-sm font-bold text-white outline-none focus:border-amber-500 disabled:opacity-50"
                       />
                       <div className="min-w-0 flex-1 text-right">
                         <p className="text-[9px] font-bold uppercase tracking-wide text-stone-500">Total</p>
@@ -273,7 +273,7 @@ export default function MercadoPage() {
                       </div>
                       <button type="button" onClick={() => comprar(oferta.id)}
                         disabled={sinOro || cantidad <= 0 || comprando !== null}
-                        className={`min-h-9 shrink-0 rounded border px-3 py-2 text-xs font-black transition-colors ${
+                        className={`min-h-10 shrink-0 rounded border px-3 py-2 text-xs font-black transition-colors ${
                           !sinOro && cantidad > 0 && comprando === null
                             ? "border-amber-500 bg-amber-800 text-amber-50 hover:bg-amber-700 active:bg-amber-600"
                             : "cursor-not-allowed border-stone-700 bg-stone-800 text-stone-500"

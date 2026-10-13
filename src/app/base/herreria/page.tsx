@@ -512,6 +512,7 @@ export default function HerreriaPage() {
                         return (
                           <article
                             key={objetoInventario.id}
+                            title={objeto.descripcion}
                             className={`p-2 transition-colors sm:p-3 ${
                               equipado
                                 ? "bg-[#25221c] hover:bg-[#2c281f]"
