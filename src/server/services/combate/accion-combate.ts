@@ -363,12 +363,7 @@ export function actualizarEfectosAlInicioTurnoJugador(
   hpMaximo: number,
   defensaActual: number,
   nombreObjetivo: string,
-): {
-  efectos: EfectoCombate[];
-  hp: number;
-  defensa: number;
-  mensajes: string[];
-} {
+): ReturnType<typeof procesarEfectosTurno> {
   return procesarEfectosTurno(efectos, hpActual, hpMaximo, defensaActual, nombreObjetivo);
 }
 

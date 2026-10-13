@@ -1,6 +1,17 @@
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+
+function adjuntarPulsosEstado(
+  accion: AccionAnimadaCombate,
+  objetivo: "jugador" | "enemigo",
+  cambios: { danoAplicado: number; curacionAplicada: number },
+): AccionAnimadaCombate {
+  const pulsosEstado = [...(accion.pulsosEstado ?? [])];
+  if (cambios.danoAplicado > 0) pulsosEstado.push({ objetivo, tipo: "dano", cantidad: cambios.danoAplicado });
+  if (cambios.curacionAplicada > 0) pulsosEstado.push({ objetivo, tipo: "curacion", cantidad: cambios.curacionAplicada });
+  return { ...accion, ...(pulsosEstado.length > 0 ? { pulsosEstado } : {}) };
+}
 import { actualizarCombateVersionado } from "@/lib/expediciones/actualizar-combate-versionado";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { experienciaParaNivel } from "@/lib/configuracionJuego";
@@ -182,6 +193,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           jugadorHp = Math.max(0, jugadorHp - accionAnimada.dano);
         }
 
+        accionAnimada = adjuntarPulsosEstado(accionAnimada, "enemigo", ticksEnemigo);
         const avanceEnemigo = avanzarEfectosCombate(efectosDefensor, enemigoDefensa);
         efectosDefensor = avanceEnemigo.efectos;
         enemigoDefensa = avanceEnemigo.defensa;
@@ -599,6 +611,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
         efectos = efectosActualizados.efectos;
         jugadorHp = efectosActualizados.hp;
         jugadorDefensa = efectosActualizados.defensa;
+        accionAnimada = adjuntarPulsosEstado(accionAnimada, "jugador", efectosActualizados);
         log.push(...efectosActualizados.mensajes);
       }
 

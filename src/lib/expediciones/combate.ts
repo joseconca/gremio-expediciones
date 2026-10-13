@@ -12,6 +12,12 @@ export type AccionAnimadaCombate = {
   dano: number;
   critico: boolean;
   curacion?: number;
+  /** Pulsos de daño/curación causados por estados durante esta acción. */
+  pulsosEstado?: {
+    objetivo: "jugador" | "enemigo";
+    tipo: "dano" | "curacion";
+    cantidad: number;
+  }[];
   texto: string;
 };
 

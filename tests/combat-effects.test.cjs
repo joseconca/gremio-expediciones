@@ -12,6 +12,7 @@ const {
   retirarEfectosHabilidad,
 } = require("../src/lib/expediciones/estados-combate.ts");
 const { resolverHabilidadJugador } = require("../src/lib/expediciones/combate.ts");
+const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
 
 test("curación progresiva aplica un pulso sin superar la vida máxima", () => {
   const efectos = [{
@@ -119,4 +120,47 @@ test("el daño progresivo se mitiga con la defensa física o mágica del objetiv
   } finally {
     Math.random = originalRandom;
   }
+});
+
+test("Primeros Auxilios aplica la curación inmediata y los dos pulsos progresivos", () => {
+  const habilidad = obtenerHabilidadPorId("primeros_auxilios");
+  assert.ok(habilidad, "La habilidad debe existir en el catálogo");
+  const resultado = resolverHabilidadJugador(habilidad, {
+    jugadorAtaque: 10,
+    jugadorAtaqueMagico: 10,
+    jugadorProbCritico: 0,
+    jugadorDanoCritico: 1.5,
+    jugadorPrecision: 100,
+    enemigoEvasion: 0,
+    jugadorDefensa: 5,
+    jugadorDefensaMagica: 5,
+    jugadorNivel: 1,
+    jugadorHp: 40,
+    jugadorHpMaximo: 100,
+    enemigoDefensa: 5,
+    enemigoDefensaMagica: 5,
+    enemigoNombre: "Slime",
+  });
+
+  assert.equal(resultado.accion.curacion, 15);
+  assert.equal(resultado.jugadorHp, 55);
+  assert.equal(resultado.efectos.length, 1);
+  assert.equal(resultado.efectos[0].tipo, "curacion_progresiva");
+  assert.equal(resultado.efectos[0].turnosRestantes, 2);
+
+  const primerTurno = procesarEfectosTurno(
+    resultado.efectos, resultado.jugadorHp, 100, resultado.jugadorDefensa, "Aventurero",
+  );
+  assert.equal(primerTurno.curacionAplicada, 7);
+  assert.equal(primerTurno.hp, 62);
+  assert.equal(primerTurno.efectos[0].turnosRestantes, 1);
+  assert.match(primerTurno.mensajes.join(" "), /recupera 7 HP por curación progresiva/);
+
+  const segundoTurno = procesarEfectosTurno(
+    primerTurno.efectos, primerTurno.hp, 100, primerTurno.defensa, "Aventurero",
+  );
+  assert.equal(segundoTurno.curacionAplicada, 7);
+  assert.equal(segundoTurno.hp, 69);
+  assert.equal(segundoTurno.efectos.length, 0);
+  assert.match(segundoTurno.mensajes.join(" "), /recupera 7 HP por curación progresiva/);
 });

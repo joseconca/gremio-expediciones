@@ -29,18 +29,23 @@ export function procesarTicksPeriodicos(
 ): { hp: number; mensajes: string[] } {
   let hp = Math.max(0, Math.min(Math.floor(hpMaximo), Math.floor(hpActual)));
   const mensajes: string[] = [];
+  let danoAplicado = 0;
+  let curacionAplicada = 0;
   for (const efecto of efectos) {
     if (efecto.tipo === "dano_progresivo" && hp > 0) {
-      const dano = Math.max(0, Math.floor(efecto.valor));
+      const danoSolicitado = Math.max(0, Math.floor(efecto.valor));
+      const dano = Math.min(hp, danoSolicitado);
       hp = Math.max(0, hp - dano);
+      danoAplicado += dano;
       if (dano > 0) mensajes.push(`🩸 ${nombreObjetivo} recibe ${dano} de daño progresivo de ${efecto.habilidadId}.`);
     } else if (efecto.tipo === "curacion_progresiva" && hp > 0) {
       const curacion = Math.min(Math.max(0, Math.floor(efecto.valor)), Math.max(0, Math.floor(hpMaximo) - hp));
       hp += curacion;
+      curacionAplicada += curacion;
       if (curacion > 0) mensajes.push(`✨ ${nombreObjetivo} recupera ${curacion} HP por curación progresiva.`);
     }
   }
-  return { hp, mensajes };
+  return { hp, mensajes, danoAplicado, curacionAplicada };
 }
 
 /** Consume un turno y revierte las modificaciones de defensa al expirar. */
@@ -90,10 +95,24 @@ export function procesarEfectosTurno(
   hpMaximo: number,
   defensaActual: number,
   nombreObjetivo: string,
-): { efectos: EstadoEfectoHabilidad[]; hp: number; defensa: number; mensajes: string[] } {
+): {
+  efectos: EstadoEfectoHabilidad[];
+  hp: number;
+  defensa: number;
+  mensajes: string[];
+  danoAplicado: number;
+  curacionAplicada: number;
+} {
   const ticks = procesarTicksPeriodicos(efectos, hpActual, hpMaximo, nombreObjetivo);
   const duracion = avanzarEfectosCombate(efectos, defensaActual);
-  return { efectos: duracion.efectos, hp: ticks.hp, defensa: duracion.defensa, mensajes: [...ticks.mensajes, ...duracion.mensajes] };
+  return {
+    efectos: duracion.efectos,
+    hp: ticks.hp,
+    defensa: duracion.defensa,
+    mensajes: [...ticks.mensajes, ...duracion.mensajes],
+    danoAplicado: ticks.danoAplicado,
+    curacionAplicada: ticks.curacionAplicada,
+  };
 }
 
 export function calcularAtaqueModificado(
