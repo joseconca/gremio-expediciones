@@ -215,11 +215,10 @@ export const OBJETOS: DefinicionObjeto[] = [
     nombre: "Anillo del Viajero",
     tipo: "accesorio",
     slot: "anillo",
-    descripcion: "Aumenta ligeramente la velocidad.",
+    descripcion: "Aumenta la velocidad en 2 puntos.",
     rareza: "poco_comun",
     precio: 1100,
     velocidadBase: 2,
-    velocidadPorMejora: 0.5,
   },
 
   {
@@ -227,11 +226,10 @@ export const OBJETOS: DefinicionObjeto[] = [
     nombre: "Amuleto de Vitalidad",
     tipo: "accesorio",
     slot: "collar",
-    descripcion: "Aumenta la vida máxima del aventurero.",
+    descripcion: "Aumenta la vida máxima en 20 puntos.",
     rareza: "raro",
     precio: 2800,
     hpMaximoBase: 20,
-    hpMaximoPorMejora: 5,
   },
 
   {
@@ -239,19 +237,14 @@ export const OBJETOS: DefinicionObjeto[] = [
     nombre: "Anillo Maldito",
     tipo: "accesorio",
     slot: "anillo",
-    descripcion: "Debilita a su portador al principio, pero mejora con cada refuerzo.",
+    descripcion: "Aumenta el ataque, pero reduce la vida, la defensa y la velocidad.",
     rareza: "epico",
     precio: 3200,
 
-    ataqueBase: -4,
+    ataqueBase: 6,
     hpMaximoBase: -20,
     defensaBase: -4,
     velocidadBase: -4,
-
-    ataquePorMejora: 1,
-    hpMaximoPorMejora: 4,
-    defensaPorMejora: 1,
-    velocidadPorMejora: 1,
   },
 
   // Nuevas ranuras de equipo
