@@ -970,7 +970,7 @@ function makeAbilityEquipConflictRoute(errorCode = "P2002") {
 
 test("regresión: la entrega de botín en expedición respeta el límite de inventario y comunica si se pierde", () => {
   const source = fs.readFileSync(
-    path.resolve(__dirname, "../src/app/api/expediciones/completar/route.ts"),
+    path.resolve(__dirname, "../src/server/services/expediciones/completar-expedicion.ts"),
     "utf8",
   );
   assert.match(source, /espaciosOcupados < LIMITE_INVENTARIO_OBJETOS/);
