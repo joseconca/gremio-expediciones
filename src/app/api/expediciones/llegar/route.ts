@@ -16,7 +16,7 @@ import {
 
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 import { calcularMultiplicadoresEnemigo, esModoDificultad } from "../../../../lib/expediciones/dificultad";
-import { aplicarEfectoComida, comidaOtorgaIniciativa } from "@/lib/comidasTaberna";
+import { aplicarEfectoComida, comidaOtorgaIniciativa, obtenerComidaTaberna } from "@/lib/comidasTaberna";
 
 export async function POST() {
   try {
@@ -339,14 +339,17 @@ export async function POST() {
         ? "jugador"
         : "enemigo";
 
-    const logInicial =
+    const comidaActiva = obtenerComidaTaberna(expedicion.efectoComida);
+    const mensajeInicioCombate =
       primerTurno === "jugador"
-        ? [
-            `⚔️ Has encontrado un ${enemigoNombre} (amenaza ${expedicion.dificultad}, modo ${modoDificultad}). ${usuario.personaje.nombre} tiene la iniciativa.`,
-          ]
-        : [
-            `⚔️ Has encontrado un ${enemigoNombre} (amenaza ${expedicion.dificultad}, modo ${modoDificultad}). ${enemigoNombre} tiene la iniciativa.`,
-          ];
+        ? `⚔️ Has encontrado un ${enemigoNombre} (amenaza ${expedicion.dificultad}, modo ${modoDificultad}). ${usuario.personaje.nombre} tiene la iniciativa.`
+        : `⚔️ Has encontrado un ${enemigoNombre} (amenaza ${expedicion.dificultad}, modo ${modoDificultad}). ${enemigoNombre} tiene la iniciativa.`;
+    const logInicial = [
+      ...(comidaActiva
+        ? [`🍲 ${comidaActiva.nombre}: ${comidaActiva.descripcion}`]
+        : []),
+      mensajeInicioCombate,
+    ];
 
     // ============================================================
     // CREAR COMBATE PvE
