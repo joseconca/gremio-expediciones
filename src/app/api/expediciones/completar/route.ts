@@ -293,11 +293,9 @@ export async function POST() {
         await tx.personaje.update({
           where: { usuarioId: usuario.id },
           data: {
-            estado: asedioEntrante
-              ? "combatiendo"
-              : usuario.personaje!.hpActual > 0
-              ? "ocioso"
-              : "descansando",
+            // Los recursos agotados no obligan a descansar en la base:
+            // vuelven al máximo al iniciar una nueva expedición.
+            estado: asedioEntrante ? "combatiendo" : "ocioso",
           },
         });
 
