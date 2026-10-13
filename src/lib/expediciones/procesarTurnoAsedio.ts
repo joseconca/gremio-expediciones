@@ -205,18 +205,76 @@ export async function procesarTurnoAutomaticoAsedio(
     );
   }
 
-  const ganador = determinarGanadorAsedio({
-    hpAtacante: jugadorHp,
-    hpDefensor: enemigoHp,
-  });
-
   const nuevoLog = Array.isArray(combate.log)
     ? [...(combate.log as string[]), accion.texto]
     : [accion.texto];
 
   // ============================================================
-  // COMBATE TERMINADO
+  // PREPARAR SIGUIENTE TURNO
   // ============================================================
+
+  const siguienteTurno = siguienteTurnoAsedio(
+    combate.turno
+  );
+
+  let siguienteRonda = combate.ronda;
+
+  const primerTurno = determinarPrimerTurnoAsedio({
+    velocidadAtacante:
+      combate.jugadorVelocidad,
+
+    velocidadDefensor:
+      combate.enemigoVelocidad ?? 0,
+  });
+
+  if (siguienteTurno === primerTurno) {
+    siguienteRonda += 1;
+  }
+
+  // ============================================================
+  // ACTUALIZAR COOLDOWNS Y EFECTOS DEL JUGADOR
+  // QUE VA A ACTUAR
+  // ============================================================
+
+  if (siguienteTurno === "atacante") {
+    cooldowns = disminuirCooldowns(cooldowns);
+
+    const efectosActualizados = actualizarEfectosAlInicioTurno(
+      efectos,
+      jugadorHp,
+      combate.jugadorHpMaximo,
+      jugadorDefensa,
+      combate.atacanteNombre ?? "El atacante",
+    );
+
+    efectos = efectosActualizados.efectos;
+    jugadorHp = efectosActualizados.hp;
+    jugadorDefensa = efectosActualizados.defensa;
+    nuevoLog.push(...efectosActualizados.mensajes);
+  }
+
+  if (siguienteTurno === "defensor") {
+    cooldownsDefensor =
+      disminuirCooldowns(cooldownsDefensor);
+
+    const efectosActualizados = actualizarEfectosAlInicioTurno(
+      efectosDefensor,
+      enemigoHp,
+      combate.enemigoHpMaximo,
+      enemigoDefensa,
+      combate.defensorNombre ?? combate.enemigoNombre ?? "El defensor",
+    );
+
+    efectosDefensor = efectosActualizados.efectos;
+    enemigoHp = efectosActualizados.hp;
+    enemigoDefensa = efectosActualizados.defensa;
+    nuevoLog.push(...efectosActualizados.mensajes);
+  }
+
+  const ganador = determinarGanadorAsedio({
+    hpAtacante: jugadorHp,
+    hpDefensor: enemigoHp,
+  });
 
   if (ganador) {
     nuevoLog.push(
@@ -290,64 +348,6 @@ export async function procesarTurnoAutomaticoAsedio(
       terminado: true,
       botin: resultado.botin,
     };
-  }
-
-  // ============================================================
-  // PREPARAR SIGUIENTE TURNO
-  // ============================================================
-
-  const siguienteTurno = siguienteTurnoAsedio(
-    combate.turno
-  );
-
-  let siguienteRonda = combate.ronda;
-
-  const primerTurno = determinarPrimerTurnoAsedio({
-    velocidadAtacante:
-      combate.jugadorVelocidad,
-
-    velocidadDefensor:
-      combate.enemigoVelocidad ?? 0,
-  });
-
-  if (siguienteTurno === primerTurno) {
-    siguienteRonda += 1;
-  }
-
-  // ============================================================
-  // ACTUALIZAR COOLDOWNS Y EFECTOS DEL JUGADOR
-  // QUE VA A ACTUAR
-  // ============================================================
-
-  if (siguienteTurno === "atacante") {
-    cooldowns = disminuirCooldowns(cooldowns);
-
-    const efectosActualizados =
-      actualizarEfectosAlInicioTurno(
-        efectos,
-        jugadorDefensa
-      );
-
-    efectos = efectosActualizados.efectos;
-    jugadorDefensa =
-      efectosActualizados.defensa;
-  }
-
-  if (siguienteTurno === "defensor") {
-    cooldownsDefensor =
-      disminuirCooldowns(cooldownsDefensor);
-
-    const efectosActualizados =
-      actualizarEfectosAlInicioTurno(
-        efectosDefensor,
-        enemigoDefensa
-      );
-
-    efectosDefensor =
-      efectosActualizados.efectos;
-
-    enemigoDefensa =
-      efectosActualizados.defensa;
   }
 
   // ============================================================
