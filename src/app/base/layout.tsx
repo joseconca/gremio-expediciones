@@ -138,30 +138,30 @@ export default function BaseLayout({
               </div>
 
               {/* Nivel Base y experiencia Base */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 sm:gap-2">
                 <span className="block w-12 shrink-0 text-[10px] font-mono font-bold text-blue-300">
                   BASE {nivelPersonaje}
                 </span>
-                <div className="hidden h-1.5 w-24 overflow-hidden rounded-full border border-stone-700 bg-stone-950 sm:block sm:w-40">
+                <div className="block h-1.5 w-14 shrink-0 overflow-hidden rounded-full border border-stone-700 bg-stone-950 sm:w-40">
                   <div
                     className="h-full bg-blue-700 transition-all duration-300"
                     style={{ width: `${porcentajeExperiencia}%` }}
                   />
                 </div>
-                <span className="hidden text-xs font-mono text-stone-300 sm:inline">
-                  BASE XP {experienciaPersonaje}/{experienciaNivel}
+                <span className="whitespace-nowrap text-[9px] font-mono text-stone-300 sm:text-xs">
+                  XP {experienciaPersonaje}/{experienciaNivel}
                 </span>
               </div>
               {/* Nivel de clase (Job) y experiencia Job */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 sm:gap-2">
                 <span className="block w-12 shrink-0 truncate text-[10px] font-mono font-bold text-amber-300" title={claseActiva.nombre}>
-                  JOB {nivelJob}
+                  CLASE {nivelJob}
                 </span>
-                <div className="hidden h-1.5 w-24 overflow-hidden rounded-full border border-stone-700 bg-stone-950 sm:block sm:w-40">
+                <div className="block h-1.5 w-14 shrink-0 overflow-hidden rounded-full border border-stone-700 bg-stone-950 sm:w-40">
                   <div className="h-full bg-amber-600 transition-all duration-300" style={{ width: `${porcentajeExperienciaJob}%` }} />
                 </div>
-                <span className="hidden text-[10px] font-mono text-stone-300 sm:inline">
-                  {nivelJob >= claseActiva.nivelJobMaximo ? "Maestría" : `${claseActiva.nombre} · XP ${experienciaJob}/${experienciaJobNecesaria}`}
+                <span className="whitespace-nowrap text-[9px] font-mono text-stone-300 sm:text-[10px]">
+                  {nivelJob >= claseActiva.nivelJobMaximo ? "Maestría" : `XP ${experienciaJob}/${experienciaJobNecesaria}`}
                 </span>
               </div>
             </div>
