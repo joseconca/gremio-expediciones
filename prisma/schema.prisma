@@ -54,6 +54,7 @@ model Personaje {
   profesionActivaId  String               @default("novato")
   sexo               String               @default("chico")
   nombre             String
+  posicionCombate    String               @default("centro")
 
   fuerza              Int                  @default(1)
   agilidad            Int                  @default(1)
@@ -220,6 +221,10 @@ model CombateActivo {
   turno String @default("jugador")
 
   tipo String @default("pve")
+
+  // Posiciones tácticas congeladas al crear el combate.
+  jugadorPosicion String @default("centro")
+  enemigoPosicion String @default("centro")
 
  // Solo PvP
   atacanteUsuarioId String?
