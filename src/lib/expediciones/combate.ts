@@ -340,11 +340,19 @@ export function resolverHabilidadJugador(
       const curado = Math.min(cantidad, Math.max(0, combate.jugadorHpMaximo - jugadorHp));
       jugadorHp += curado;
       agregarEstadosExtra();
-      const efectosJugadorActualizados = habilidad.limpiarEstadosNegativos
-        ? (combate.efectosJugador ?? []).filter((efecto) =>
-            !["debuff_ataque", "debuff_defensa", "debuff_precision", "dano_progresivo"].includes(efecto.tipo),
-          )
-        : undefined;
+      let efectosJugadorActualizados: import("@/lib/tiposJuego").EstadoEfectoHabilidad[] | undefined;
+      if (habilidad.limpiarEstadosNegativos) {
+        const efectosPrevios = combate.efectosJugador ?? [];
+        const tiposNegativos = ["debuff_ataque", "debuff_defensa", "debuff_precision", "dano_progresivo"];
+        const eliminados = efectosPrevios.filter((efecto) => tiposNegativos.includes(efecto.tipo));
+        // Los debuffs de defensa se aplicaron al valor absoluto de defensa; al
+        // purificarlos hay que revertir esa reducción, además de retirar el estado.
+        jugadorDefensa += eliminados.reduce(
+          (total, efecto) => total + (efecto.tipo === "debuff_defensa" ? efecto.valor : 0),
+          0,
+        );
+        efectosJugadorActualizados = efectosPrevios.filter((efecto) => !tiposNegativos.includes(efecto.tipo));
+      }
       return {
         accion: crearAccion({
           actor: "jugador", tipo: "habilidad",
