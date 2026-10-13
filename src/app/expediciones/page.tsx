@@ -13,6 +13,7 @@ import type {
   ReporteViaje,
 } from "@/lib/tiposJuego";
 import AsedioModal from "@/components/combate/AsedioModal";
+import SelectorPosicionCombate from "@/components/combate/SelectorPosicionCombate";
 import type { CombateActivo } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { RANGOS_AMENAZA, type ModoDificultad } from "@/lib/expediciones/dificultad";
@@ -56,6 +57,31 @@ export default function ExpedicionesPage() {
   useEffect(() => {
     cargarJugador();
   }, [cargarJugador]);
+
+  useEffect(() => {
+    if (!sesionActiva || combateAsedio) return;
+
+    let cancelado = false;
+    const recuperarCombate = async () => {
+      try {
+        const respuesta = await fetch("/api/combate/estado", { cache: "no-store" });
+        if (!respuesta.ok) return;
+        const datos = await respuesta.json();
+        if (cancelado || !datos.combate) return;
+        setCombateAsedio(datos.combate as CombateActivo);
+        setEsAtacanteAsedio(datos.rolUsuario === "atacante");
+      } catch (error) {
+        console.error("Error recuperando el combate PvP:", error);
+      }
+    };
+
+    void recuperarCombate();
+    const intervalo = window.setInterval(recuperarCombate, 5000);
+    return () => {
+      cancelado = true;
+      window.clearInterval(intervalo);
+    };
+  }, [sesionActiva, combateAsedio]);
 
   useEffect(() => {
     if (!expedicionActiva) return;
@@ -654,6 +680,8 @@ export default function ExpedicionesPage() {
                 </p>
               </section>
             ) : null}
+
+            {misionSeleccionada.tipo !== "comercio" && <SelectorPosicionCombate />}
 
             {/* 3. VIAJE + BOTÓN */}
             <div className="flex items-center justify-between gap-4">

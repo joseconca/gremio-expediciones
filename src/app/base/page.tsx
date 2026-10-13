@@ -5,6 +5,7 @@ import { CombateActivo, CombatePve, useGameStore } from "@/store/useGameStore";
 import type { ReporteExpedicion as ReporteExpedicionTipo } from "@/lib/tiposJuego";
 import CombateModal from "@/components/combate/CombateModal";
 import AsedioModal from "@/components/combate/AsedioModal";
+import SelectorPosicionCombate from "@/components/combate/SelectorPosicionCombate";
 import PanelEdificios from "@/components/base/PanelEdificios";
 import ReporteExpedicion from "@/components/reportes/ReporteExpedicion";
 import PanelMisiones from "@/components/base/PanelMisiones";
@@ -654,6 +655,7 @@ export default function BasePage() {
       <PanelCaravanasEntrantes caravanas={caravanasEntrantes} />
 
       <div className="mx-auto w-full max-w-4xl">
+        <SelectorPosicionCombate />
         {/* Profesiones y maestrías están integradas en la Escuela de Combate. */}
 
         {/* 1. PANEL DE MISIONES */}

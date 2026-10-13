@@ -6,6 +6,7 @@ import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import type { CombateActivo, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { calcularBonusDefensaMuralla } from "@/lib/expediciones/combate";
+import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 
 interface AsedioModalProps {
   combate: CombateActivo;
@@ -580,6 +581,9 @@ export default function AsedioModal({
                 <div className="mb-1.5 flex items-end justify-between rounded border border-stone-800/80 bg-black/50 px-2.5 py-1 shadow-sm backdrop-blur-sm">
                   <span className="text-sm font-bold tracking-wide text-stone-100">
                     {personaje.nombre}
+                  <span className="ml-1 text-[9px] font-black uppercase tracking-wide text-sky-300">
+                    · TÚ · {esAtacante ? "ATACANTE" : "DEFENSOR"}
+                  </span>
                   </span>
 
                   <span className="font-mono text-xs font-bold text-stone-200">
@@ -598,6 +602,9 @@ export default function AsedioModal({
                     }}
                   />
                 </div>
+                <p className="mt-1 text-[10px] font-bold text-stone-300">
+                  Posición: {ETIQUETAS_POSICION_COMBATE[normalizarPosicionCombate(esAtacante ? combate.jugadorPosicion : combate.enemigoPosicion)]}
+                </p>
                 <div className="mt-2 grid grid-cols-2 gap-1 text-[9px] font-mono font-bold">
                   <span className="rounded border border-blue-900/70 bg-blue-950/70 px-1.5 py-1 text-blue-200">
                     ENE {personaje.energiaActual}/{personaje.energiaMaxima}
@@ -683,6 +690,9 @@ export default function AsedioModal({
                 <div className="mb-1.5 flex items-end justify-between rounded border border-stone-800/80 bg-black/50 px-2.5 py-1 shadow-sm backdrop-blur-sm">
                   <span className="text-sm font-bold tracking-wide text-stone-100">
                     {nombreRival}
+                    <span className="ml-1 text-[9px] font-black uppercase tracking-wide text-amber-300">
+                      · RIVAL · {esAtacante ? "DEFENSOR" : "ATACANTE"}
+                    </span>
                   </span>
 
                   <span className="font-mono text-xs font-bold text-stone-200">
@@ -703,6 +713,9 @@ export default function AsedioModal({
                 </div>
               </div>
 
+              <p className="mb-2 text-[10px] font-bold text-stone-300">
+                Posición: {ETIQUETAS_POSICION_COMBATE[normalizarPosicionCombate(esAtacante ? combate.enemigoPosicion : combate.jugadorPosicion)]}
+              </p>
               {danioVisible?.actor === "enemigo" && (
                 <div
                   className={`absolute left-1/2 top-0 z-50 -translate-x-1/2 font-black drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] ${
