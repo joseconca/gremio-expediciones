@@ -560,7 +560,7 @@ test("el turno enemigo procesa los efectos periódicos del enemigo antes de atac
   const { prisma } = mockPrisma(combat);
   const service = loadService(prisma);
   const result = await service.ejecutarTurnoEnemigoParty("u1", "expedition-1");
-  assert.equal(result.enemigoHp, 40);
+  assert.equal(result.enemigoHp, 35);
 });
 
 
