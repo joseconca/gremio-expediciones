@@ -153,6 +153,18 @@ export default function PanelParty() {
     setError(null);
   }, []);
 
+  const guardarResultadoCombate = (
+    expedicionPartyId: string,
+    datos: { fase?: string; recompensas?: ResultadoRecompensasParty | null },
+  ) => {
+    if (datos.fase !== "victoria" && datos.fase !== "derrota") return;
+    setUltimoResultadoCombate({
+      expedicionPartyId,
+      fase: datos.fase,
+      recompensas: datos.fase === "victoria" ? (datos.recompensas ?? null) : null,
+    });
+  };
+
   useEffect(() => {
     let activo = true;
     const cargar = async () => {
@@ -349,18 +361,6 @@ export default function PanelParty() {
     } finally {
       setAccion(null);
     }
-  };
-
-  const guardarResultadoCombate = (
-    expedicionPartyId: string,
-    datos: { fase?: string; recompensas?: ResultadoRecompensasParty | null },
-  ) => {
-    if (datos.fase !== "victoria" && datos.fase !== "derrota") return;
-    setUltimoResultadoCombate({
-      expedicionPartyId,
-      fase: datos.fase,
-      recompensas: datos.fase === "victoria" ? (datos.recompensas ?? null) : null,
-    });
   };
 
   const ejecutarAccionCombatePartyUI = async (
