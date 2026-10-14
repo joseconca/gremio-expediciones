@@ -21,6 +21,29 @@ const MissionMap = dynamic(() => import("@/components/MissionMap"), {
   ssr: false,
 });
 
+type EstadoPartyMapa = {
+  usuarioId: string;
+  party: {
+    id: string;
+    liderUsuarioId: string;
+    lider: { id: string; nombre: string };
+    miembros: { usuarioId: string }[];
+  } | null;
+  expedicionActiva: {
+    id: string;
+    tipo: string;
+    nombre: string;
+    dificultad: number;
+    modoDificultad: string;
+    fase: string;
+    fechaSalida: string;
+    fechaLlegada: string;
+    destinoCoords: { lat: number; lng: number };
+    participantes: { usuarioId: string; estado: string }[];
+  } | null;
+};
+
+
 export default function ExpedicionesPage() {
   const router = useRouter();
   const {
@@ -55,10 +78,46 @@ export default function ExpedicionesPage() {
   const [solicitandoVisita, setSolicitandoVisita] = useState(false);
   const [errorVisita, setErrorVisita] = useState<string | null>(null);
   const [mensajeVisita, setMensajeVisita] = useState<string | null>(null);
+  const [estadoParty, setEstadoParty] = useState<EstadoPartyMapa | null>(null);
+  const [cargandoEstadoParty, setCargandoEstadoParty] = useState(true);
+
+  const cargarEstadoParty = useCallback(async () => {
+    try {
+      const respuesta = await fetch("/api/party", { cache: "no-store" });
+      const datos = await respuesta.json();
+      if (!respuesta.ok) throw new Error(datos.error || "No se pudo consultar la party.");
+      setEstadoParty(datos as EstadoPartyMapa);
+    } catch (error) {
+      console.error("Error al consultar la party:", error);
+    } finally {
+      setCargandoEstadoParty(false);
+    }
+  }, []);
 
   useEffect(() => {
     cargarJugador();
   }, [cargarJugador]);
+
+  useEffect(() => {
+    let cancelado = false;
+    const actualizar = async () => {
+      try {
+        const respuesta = await fetch("/api/party", { cache: "no-store" });
+        const datos = await respuesta.json();
+        if (respuesta.ok && !cancelado) setEstadoParty(datos as EstadoPartyMapa);
+      } catch (error) {
+        if (!cancelado) console.error("Error actualizando estado de party:", error);
+      } finally {
+        if (!cancelado) setCargandoEstadoParty(false);
+      }
+    };
+    void actualizar();
+    const intervalo = window.setInterval(() => void actualizar(), 5000);
+    return () => {
+      cancelado = true;
+      window.clearInterval(intervalo);
+    };
+  }, []);
 
   useEffect(() => {
     if (!sesionActiva || combateAsedio) return;
@@ -294,6 +353,17 @@ export default function ExpedicionesPage() {
 
   const sinPersonaje = !personaje;
   const [errorEnvio, setErrorEnvio] = useState<string | null>(null);
+  const esLiderParty = Boolean(
+    estadoParty?.party && estadoParty.party.liderUsuarioId === estadoParty.usuarioId,
+  );
+  const partyEnExpedicion = Boolean(
+    estadoParty?.expedicionActiva &&
+    ["en_viaje", "lista_para_combate", "combatiendo", "regresando"].includes(estadoParty.expedicionActiva.fase),
+  );
+  const misionCompatibleConParty = Boolean(
+    misionSeleccionada &&
+    (misionSeleccionada.tipo === "normal" || misionSeleccionada.tipo === "elite"),
+  );
 
   const handleSeleccionarAccionBase = (tipo: "asedio" | "comercio") => {
     if (!baseSeleccionada || !baseCoords || !personaje) return;
@@ -378,13 +448,29 @@ export default function ExpedicionesPage() {
   };
 
   const handleEnviarExpedicion = async () => {
-    if (!misionSeleccionada || !baseCoords || sinPersonaje) return;
+    if (!misionSeleccionada || !baseCoords || sinPersonaje || cargandoEstadoParty) return;
+
+    if (estadoParty?.party && !esLiderParty) {
+      setErrorEnvio("Solo el líder de la party puede iniciar una expedición compartida.");
+      return;
+    }
+    if (estadoParty?.party && !misionCompatibleConParty) {
+      setErrorEnvio("Las expediciones compartidas solo admiten misiones normales o de élite.");
+      return;
+    }
+    if (partyEnExpedicion) {
+      setErrorEnvio("Tu party ya tiene una expedición compartida en curso.");
+      return;
+    }
 
     setCargando(true);
     setErrorEnvio(null);
 
     try {
-      const res = await fetch("/api/expediciones/iniciar", {
+      const rutaInicio = estadoParty?.party
+        ? "/api/expediciones/party/iniciar"
+        : "/api/expediciones/iniciar";
+      const res = await fetch(rutaInicio, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -398,11 +484,10 @@ export default function ExpedicionesPage() {
       if (res.ok && data.exito) {
         setReporteViaje(data);
         setViajeIniciado(true);
-        // El estado de la expedición se obtiene del servidor, no del objeto seleccionado.
-        await cargarJugador();
+        await Promise.all([cargarJugador(), cargarEstadoParty()]);
       } else {
         setErrorEnvio(data.mensaje || data.error || "No se pudo iniciar la expedición.");
-        await cargarJugador();
+        await Promise.all([cargarJugador(), cargarEstadoParty()]);
       }
     } catch {
       console.error("Error al enviar expedición");
@@ -569,12 +654,14 @@ export default function ExpedicionesPage() {
 
                 {/* Descripción */}
                 <p className="mb-3 px-1 text-center text-xs font-medium italic text-[#d4b494] drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] sm:mb-5 sm:px-2 sm:text-sm">
-                  Puedes comerciar, asediar o enviar a tu aventurero de visita.
+                  {estadoParty?.party
+                    ? "Ya perteneces a una party. No puedes solicitar otra visita."
+                    : "Puedes comerciar, asediar o enviar a tu aventurero de visita."}
                 </p>
 
                 {/* Botones de acción: las visitas no requieren Embajada. */}
-                <div className={`grid gap-2 ${baseSeleccionada.tieneEmbajada ? "grid-cols-3" : "grid-cols-1"}`}>
-                  {baseSeleccionada.tieneEmbajada && (
+                <div className={`grid gap-2 ${!estadoParty?.party && !partyEnExpedicion && baseSeleccionada.tieneEmbajada ? "grid-cols-3" : "grid-cols-1"}`}>
+                  {!estadoParty?.party && !partyEnExpedicion && baseSeleccionada.tieneEmbajada && (
                     <>
                       <button
                         type="button"
@@ -594,22 +681,34 @@ export default function ExpedicionesPage() {
                       </button>
                     </>
                   )}
-                  <button
-                    type="button"
-                    onClick={() => void handleSolicitarVisita()}
-                    disabled={
-                      solicitandoVisita ||
-                      !personaje ||
-                      personaje.estado !== "ocioso" ||
-                      Boolean(expedicionActiva)
-                    }
-                    className="group relative flex flex-col items-center justify-center rounded-sm border border-[#2a160b] bg-gradient-to-b from-[#36513a] to-[#223b2a] p-2 shadow-lg transition hover:from-[#426747] disabled:cursor-not-allowed disabled:opacity-50"
-                  >
-                    <span className="mb-1 text-2xl">{solicitandoVisita ? "⏳" : "🏠"}</span>
-                    <span className="text-center text-[11px] font-black uppercase tracking-widest text-emerald-200">
-                      {solicitandoVisita ? "Enviando..." : "Visitar base"}
-                    </span>
-                  </button>
+                  {!estadoParty?.party && !partyEnExpedicion && (
+                    <button
+                      type="button"
+                      onClick={() => void handleSolicitarVisita()}
+                      disabled={
+                        solicitandoVisita ||
+                        !personaje ||
+                        personaje.estado !== "ocioso" ||
+                        Boolean(expedicionActiva)
+                      }
+                      className="group relative flex flex-col items-center justify-center rounded-sm border border-[#2a160b] bg-gradient-to-b from-[#36513a] to-[#223b2a] p-2 shadow-lg transition hover:from-[#426747] disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                      <span className="mb-1 text-2xl">{solicitandoVisita ? "⏳" : "🏠"}</span>
+                      <span className="text-center text-[11px] font-black uppercase tracking-widest text-emerald-200">
+                        {solicitandoVisita ? "Enviando..." : "Visitar base"}
+                      </span>
+                    </button>
+                  )}
+                  {estadoParty?.party && (
+                    <p className="self-center p-2 text-center text-xs text-amber-100/80">
+                      Solo el líder puede organizar una expedición para toda la party.
+                    </p>
+                  )}
+                  {partyEnExpedicion && (
+                    <p className="self-center p-2 text-center text-xs text-sky-100/80">
+                      La party ya está de camino o resolviendo su expedición.
+                    </p>
+                  )}
                 </div>
                 {errorVisita && (
                   <p role="alert" className="mt-3 rounded border border-red-900/70 bg-red-950/60 p-2 text-center text-xs font-semibold text-red-200">
@@ -778,7 +877,14 @@ export default function ExpedicionesPage() {
               {/* Botón */}
               <button
                 onClick={handleEnviarExpedicion}
-                disabled={cargando || sinPersonaje}
+                disabled={
+                  cargando ||
+                  sinPersonaje ||
+                  cargandoEstadoParty ||
+                  partyEnExpedicion ||
+                  Boolean(estadoParty?.party && !esLiderParty) ||
+                  Boolean(estadoParty?.party && !misionCompatibleConParty)
+                }
                 className="relative flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-full border-4 border-[#7a1215] sm:h-24 sm:w-24 md:h-28 md:w-28 bg-gradient-to-br from-[#c92a2f] via-[#9b1c20] to-[#5c0b0e] shadow-[0_12px_30px_rgba(0,0,0,0.5),inset_0_8px_16px_rgba(255,255,255,0.2),inset_0_-4px_6px_rgba(0,0,0,0.6)] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {cargando ? (
@@ -792,16 +898,26 @@ export default function ExpedicionesPage() {
                     </span>
 
                     <span className="mt-0.5 px-1 text-center text-[10px] font-black uppercase tracking-wider text-white sm:px-2 sm:text-xs sm:tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-                      {misionSeleccionada.tipo === "comercio"
-                        ? "Intercambio"
-                        : misionSeleccionada.tipo === "asedio"
-                        ? "Asedio"
-                        : "Caza"}
+                      {estadoParty?.party
+                        ? "Party"
+                        : misionSeleccionada.tipo === "comercio"
+                          ? "Intercambio"
+                          : misionSeleccionada.tipo === "asedio"
+                            ? "Asedio"
+                            : "Caza"}
                     </span>
                   </>
                 )}
               </button>
             </div>
+
+            {estadoParty?.party && (
+              <p className="mt-2 text-center text-xs font-semibold text-[#6e5642]">
+                {esLiderParty
+                  ? "Toda la party viajará junta y la llegada se calculará según el aventurero más lento."
+                  : `Esperando a que ${estadoParty.party.lider.nombre} organice la expedición compartida.`}
+              </p>
+            )}
 
             {errorEnvio && (
               <p
@@ -891,7 +1007,7 @@ export default function ExpedicionesPage() {
 
           <div className="mb-5 w-full max-w-sm rounded-xl border border-slate-700 bg-slate-800 p-4 shadow-xl sm:mb-8 sm:p-6">
             <p className="mb-4 text-slate-300">
-              Tu personaje ha partido hacia{" "}
+              {estadoParty?.party ? "Tu party ha partido hacia " : "Tu personaje ha partido hacia "}
               <strong className="text-white">
                 {misionSeleccionada?.nombre}
               </strong>

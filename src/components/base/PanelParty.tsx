@@ -25,6 +25,23 @@ type TrasladoVista = {
   visitante?: PersonaVista;
   anfitrion?: PersonaVista;
 };
+type ExpedicionPartyVista = {
+  id: string;
+  tipo: string;
+  nombre: string;
+  dificultad: number;
+  modoDificultad: string;
+  fase: string;
+  fechaSalida: string;
+  fechaLlegada: string;
+  participantes: {
+    id: string;
+    usuarioId: string;
+    estado: string;
+    usuario?: PersonaVista;
+  }[];
+};
+
 type EstadoParty = {
   usuarioId: string;
   party: {
@@ -33,6 +50,7 @@ type EstadoParty = {
     lider: PersonaVista;
     miembros: MiembroVista[];
   } | null;
+  expedicionActiva: ExpedicionPartyVista | null;
   trasladosPropios: TrasladoVista[];
   visitasEntrantes: TrasladoVista[];
 };
@@ -52,12 +70,13 @@ function formatoCuentaAtras(total: number): string {
 
 async function enviarAccion(
   url: string,
-  trasladoId?: string,
+  id?: string,
+  campoId = "trasladoId",
 ): Promise<void> {
   const respuesta = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(trasladoId ? { trasladoId } : {}),
+    body: JSON.stringify(id ? { [campoId]: id } : {}),
   });
   const datos = await respuesta.json().catch(() => ({}));
   if (!respuesta.ok) {
@@ -141,6 +160,37 @@ export default function PanelParty() {
       })();
     }
   }, [estado?.trasladosPropios, ahora, actualizarEstado, cargarJugador]);
+
+  useEffect(() => {
+    const expedicion = estado?.expedicionActiva;
+    if (!expedicion || expedicion.fase !== "en_viaje") return;
+    if (new Date(expedicion.fechaLlegada).getTime() > ahora) return;
+
+    const clave = `expedicion-party:${expedicion.id}:llegar`;
+    if (procesandoAutomatico.current.has(clave)) return;
+    procesandoAutomatico.current.add(clave);
+
+    void (async () => {
+      try {
+        await enviarAccion(
+          "/api/expediciones/party/llegar",
+          expedicion.id,
+          "expedicionPartyId",
+        );
+        await actualizarEstado();
+        await cargarJugador();
+      } catch (err) {
+        const mensaje = err instanceof Error ? err.message : "";
+        // Otra pestaña o integrante puede haber procesado la misma llegada.
+        await actualizarEstado().catch(() => undefined);
+        if (!/viaje|llegada|estado|procesad|modificad|destino/i.test(mensaje)) {
+          setError(mensaje || "No se pudo confirmar la llegada de la party.");
+        }
+      } finally {
+        procesandoAutomatico.current.delete(clave);
+      }
+    })();
+  }, [estado?.expedicionActiva, ahora, actualizarEstado, cargarJugador]);
 
   const ejecutar = async (clave: string, ruta: string, trasladoId?: string) => {
     if (accion) return;
@@ -237,6 +287,40 @@ export default function PanelParty() {
             </p>
           )}
         </div>
+      )}
+
+      {estado?.expedicionActiva && (
+        <article className="mb-3 rounded-lg border border-amber-700/60 bg-amber-950/20 p-3">
+          <div className="flex items-start gap-3">
+            <span className="text-2xl" aria-hidden="true">🧭</span>
+            <div className="min-w-0 flex-1">
+              <p className="font-black text-amber-100">Expedición compartida: {estado.expedicionActiva.nombre}</p>
+              <p className="mt-1 text-xs text-slate-300">
+                Amenaza {estado.expedicionActiva.dificultad} · Dificultad {estado.expedicionActiva.modoDificultad} · {estado.expedicionActiva.participantes.length} aventureros
+              </p>
+              {estado.expedicionActiva.fase === "en_viaje" ? (
+                <p className="mt-2 text-sm text-sky-200">
+                  La party está de camino. Llegada estimada en {formatoCuentaAtras(segundosRestantes(estado.expedicionActiva.fechaLlegada, ahora))}.
+                </p>
+              ) : estado.expedicionActiva.fase === "lista_para_combate" ? (
+                <p className="mt-2 text-sm text-emerald-200">
+                  La party ha llegado al destino. La próxima fase activará el combate compartido.
+                </p>
+              ) : estado.expedicionActiva.fase === "combatiendo" ? (
+                <p className="mt-2 text-sm text-red-200">La party está combatiendo.</p>
+              ) : (
+                <p className="mt-2 text-sm text-slate-300">La party está regresando a sus bases.</p>
+              )}
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {estado.expedicionActiva.participantes.map((participante) => (
+                  <span key={participante.id} className="rounded border border-slate-700 bg-slate-900 px-2 py-1 text-[11px] text-slate-300">
+                    {participante.usuario?.personaje?.nombre ?? participante.usuario?.nombre ?? "Aventurero"} · {participante.estado.replaceAll("_", " ")}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </article>
       )}
 
       {trasladosPropios.map((traslado) => {

@@ -8,6 +8,7 @@ import {
   obtenerEstadoFinalTraslado,
   type CoordenadasBase,
 } from "@/lib/party/reglas";
+import { ESTADOS_EXPEDICION_PARTY_ACTIVOS } from "@/lib/party/expedicion-reglas";
 
 const AISLAMIENTO = {
   isolationLevel: Prisma.TransactionIsolationLevel.Serializable,
@@ -594,9 +595,34 @@ export async function obtenerEstadoParty(usuarioId: string) {
       }
     : null;
 
+  const expedicionActiva = membresia
+    ? await prisma.expedicionParty.findFirst({
+        where: {
+          partyId: membresia.partyId,
+          fase: { in: [...ESTADOS_EXPEDICION_PARTY_ACTIVOS] },
+        },
+        orderBy: { creado: "desc" },
+        include: {
+          participantes: {
+            orderBy: { creado: "asc" },
+            include: {
+              usuario: {
+                select: {
+                  id: true,
+                  nombre: true,
+                  personaje: { select: { nombre: true, nivel: true, estado: true } },
+                },
+              },
+            },
+          },
+        },
+      })
+    : null;
+
   return {
     usuarioId,
     party,
+    expedicionActiva,
     trasladosPropios: traslados.filter((traslado) => traslado.visitanteUsuarioId === usuarioId),
     visitasEntrantes: traslados.filter(
       (traslado) =>
