@@ -713,3 +713,17 @@ test("las pasivas equipadas de recurso se reflejan en máximos y regeneración",
     baseAcolito.regeneracionManaPorTurno + 1,
   );
 });
+
+
+test("la ficha de habilidad compara valores actuales con la siguiente mejora", () => {
+  const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
+  const { compararMejoraHabilidad } = require("../src/lib/descripcionesHabilidades.ts");
+  const definicion = obtenerHabilidadPorId("guardia_improvisada");
+  const actual = ajustarHabilidadPorNivel(definicion, 2);
+  const siguiente = ajustarHabilidadPorNivel(definicion, 3);
+  const cambios = compararMejoraHabilidad(actual, siguiente);
+
+  assert.ok(cambios.some((cambio) => cambio.etiqueta === "Defensa aumentada"));
+  assert.ok(cambios.some((cambio) => cambio.etiqueta === "Duración" && cambio.valorActual.includes("4 turnos") && cambio.valorSiguiente.includes("5 turnos")));
+  assert.ok(cambios.some((cambio) => cambio.etiqueta === "Reutilización" && cambio.valorActual.includes("4 turnos") && cambio.valorSiguiente.includes("3 turnos")));
+});

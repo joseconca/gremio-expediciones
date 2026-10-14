@@ -7,6 +7,7 @@ import SelectorPosicionCombate from "@/components/combate/SelectorPosicionCombat
 import PanelProfesiones from "@/components/progresion/PanelProfesiones";
 import DescripcionTactil from "@/components/ui/DescripcionTactil";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
+import PanelMejoraHabilidad, { IndicadorNivelHabilidad } from "@/components/habilidades/PanelMejoraHabilidad";
 import { descripcionSimpleHabilidad, detalleNumericoHabilidad } from "@/lib/descripcionesHabilidades";
 import { CLASES } from "@/lib/progresion/clases";
 import { ajustarHabilidadPorNivel, costeReinicioHabilidades, nivelMaximoHabilidad } from "@/lib/progresion/niveles-habilidad";
@@ -317,9 +318,21 @@ export default function EscuelaCombatePage() {
                               titulo={habilidad.nombre}
                               resumen={descripcionSimpleHabilidad(habilidadVista)}
                               detalles={detalleNumericoHabilidad(habilidadVista)}
+                              etiquetaDetalles={aprendida ? `Efectos actuales · Nivel ${nivelActualHabilidad}` : "Efectos al aprender · Nivel 1"}
+                              contenidoAdicional={
+                                <PanelMejoraHabilidad
+                                  habilidad={habilidad}
+                                  nivelActual={nivelActualHabilidad}
+                                  nivelMaximo={nivelMaximo}
+                                  aprendida={aprendida}
+                                  puntosDisponibles={puntosClaseDisponibles}
+                                  clasePropietaria={clasePropietaria}
+                                  requisitoJob={requerida}
+                                />
+                              }
                               variante="madera"
                               etiquetaAccesible={`Ver detalles de ${habilidad.nombre}`}
-                              claseBoton="flex h-10 w-10 shrink-0 touch-manipulation items-center justify-center rounded-md border border-[#594630] bg-[#191612] p-1 transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
+                              claseBoton="flex h-12 w-12 shrink-0 touch-manipulation items-center justify-center rounded-lg border border-amber-800/80 bg-gradient-to-br from-[#44331d] to-[#191612] p-1 shadow-[inset_0_1px_0_rgba(255,230,170,0.12)] transition hover:scale-105 hover:border-amber-400 hover:shadow-[0_0_16px_rgba(245,158,11,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
                             >
                               <IconoHabilidad habilidadId={habilidad.id} className="h-8 w-8" />
                             </DescripcionTactil>
@@ -332,6 +345,11 @@ export default function EscuelaCombatePage() {
                           </span>
                       </div>
                       <p className="mt-1 line-clamp-2 text-[11px] leading-4 text-[#b2a58e]">{descripcionSimpleHabilidad(habilidadVista)}</p>
+                      {aprendida && (
+                        <div className="mt-2 rounded-lg border border-[#4c3b27] bg-[#191612]/80 px-2.5 py-2">
+                          <IndicadorNivelHabilidad nivel={nivelActualHabilidad} maximo={nivelMaximo} />
+                        </div>
+                      )}
                       {!aprendida && (
                         <p className="mt-2 rounded-md border border-amber-700/70 bg-amber-950/35 px-3 py-2 text-xs font-extrabold tracking-wide text-amber-200">
                           <strong>Requisito: {clasePropietaria} {requerida}</strong>
@@ -386,9 +404,21 @@ export default function EscuelaCombatePage() {
                           titulo={actual.habilidad.nombre}
                           resumen={descripcionSimpleHabilidad(ajustarHabilidadPorNivel(actual.habilidad, actual.nivel))}
                           detalles={detalleNumericoHabilidad(ajustarHabilidadPorNivel(actual.habilidad, actual.nivel))}
+                          etiquetaDetalles={`Efectos actuales · Nivel ${actual.nivel}`}
+                          contenidoAdicional={
+                            <PanelMejoraHabilidad
+                              habilidad={actual.habilidad}
+                              nivelActual={actual.nivel}
+                              nivelMaximo={actual.nivelMaximo}
+                              aprendida
+                              puntosDisponibles={actual.puntosHabilidadDisponiblesClase}
+                              clasePropietaria={CLASES[actual.habilidad.claseId ?? "novato"]?.nombre ?? actual.habilidad.claseId ?? "Novato"}
+                              requisitoJob={actual.habilidad.nivelJobRequerido ?? 1}
+                            />
+                          }
                           variante="madera"
                           etiquetaAccesible={`Ver detalles de ${actual.habilidad.nombre}`}
-                          claseBoton="flex h-10 w-10 shrink-0 touch-manipulation items-center justify-center rounded-md border border-[#594630] bg-[#191612] p-1 transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
+                          claseBoton="flex h-11 w-11 shrink-0 touch-manipulation items-center justify-center rounded-lg border border-amber-800/80 bg-gradient-to-br from-[#44331d] to-[#191612] p-1 shadow-[inset_0_1px_0_rgba(255,230,170,0.12)] transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
                         >
                           <IconoHabilidad habilidadId={actual.habilidad.id} className="h-8 w-8" />
                         </DescripcionTactil>
@@ -415,11 +445,35 @@ export default function EscuelaCombatePage() {
                   return <article key={item.id} className="flex flex-col gap-2 rounded-xl border border-[#4d3d2a] bg-[#211b14] p-3 sm:gap-3 sm:p-4 md:flex-row md:items-center md:justify-between">
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-2">
-                        <IconoHabilidad habilidadId={habilidad.id} className="h-9 w-9 shrink-0" />
+                        <DescripcionTactil
+                          titulo={habilidad.nombre}
+                          resumen={descripcionSimpleHabilidad(habilidadVista)}
+                          detalles={detalleNumericoHabilidad(habilidadVista)}
+                          etiquetaDetalles={`Efectos actuales · Nivel ${item.nivel}`}
+                          contenidoAdicional={
+                            <PanelMejoraHabilidad
+                              habilidad={habilidad}
+                              nivelActual={item.nivel}
+                              nivelMaximo={item.nivelMaximo}
+                              aprendida
+                              puntosDisponibles={item.puntosHabilidadDisponiblesClase}
+                              clasePropietaria={CLASES[habilidad.claseId ?? "novato"]?.nombre ?? habilidad.claseId ?? "Novato"}
+                              requisitoJob={habilidad.nivelJobRequerido ?? 1}
+                            />
+                          }
+                          variante="madera"
+                          etiquetaAccesible={`Ver detalles de ${habilidad.nombre}`}
+                          claseBoton="flex h-11 w-11 shrink-0 touch-manipulation items-center justify-center rounded-lg border border-amber-800/80 bg-gradient-to-br from-[#44331d] to-[#191612] p-1 shadow-[inset_0_1px_0_rgba(255,230,170,0.12)] transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
+                        >
+                          <IconoHabilidad habilidadId={habilidad.id} className="h-9 w-9" />
+                        </DescripcionTactil>
                         <h4 className="font-bold text-[#f0e5d0]">{habilidad.nombre} <span className="text-xs text-amber-300">Nv. {item.nivel}/{item.nivelMaximo}</span></h4>
                         <span className="rounded-full bg-[#302619] px-2 py-0.5 text-[10px] uppercase text-[#b9a582]">{habilidad.tipo}</span>
                       </div>
                       <p className="mt-1 text-xs leading-5 text-[#a99d84] sm:text-sm">{descripcionSimpleHabilidad(habilidadVista)}</p>
+                      <div className="mt-2 max-w-xs rounded-lg border border-[#4c3b27] bg-[#191612]/80 px-2.5 py-2">
+                        <IndicadorNivelHabilidad nivel={item.nivel} maximo={item.nivelMaximo} />
+                      </div>
                       {!compatible && <p className="mt-1 text-xs text-red-300">Esta habilidad pertenece a otra rama y no está disponible con tu clase actual.</p>}
                     </div>
                     <div className="flex flex-wrap gap-1.5 sm:gap-2">

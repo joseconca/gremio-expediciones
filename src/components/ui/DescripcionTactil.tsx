@@ -11,6 +11,10 @@ interface DescripcionTactilProps {
   children?: ReactNode;
   claseBoton?: string;
   variante?: "oscura" | "madera" | "metal";
+  /** Etiqueta del bloque numérico para diferenciar los valores actuales. */
+  etiquetaDetalles?: string;
+  /** Contenido adicional específico, como una comparación de nivel. */
+  contenidoAdicional?: ReactNode;
 }
 
 /**
@@ -27,6 +31,8 @@ export default function DescripcionTactil({
   children,
   claseBoton,
   variante = "oscura",
+  etiquetaDetalles,
+  contenidoAdicional,
 }: DescripcionTactilProps) {
   const botonRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -115,12 +121,18 @@ export default function DescripcionTactil({
           </div>
           {resumen && <p className="mt-2 text-xs leading-relaxed opacity-80">{resumen}</p>}
           {lineas.length > 0 && (
-            <div className="mt-2 space-y-1.5 border-t border-current/15 pt-2">
+            <div className="mt-3 border-t border-current/15 pt-2.5">
+              {etiquetaDetalles && (
+                <p className="mb-2 text-[9px] font-black uppercase tracking-[0.16em] opacity-60">{etiquetaDetalles}</p>
+              )}
+              <div className="space-y-1.5">
               {lineas.map((linea, indice) => (
                 <p key={`${indice}:${linea}`} className="whitespace-normal text-xs leading-relaxed opacity-90">{linea}</p>
               ))}
+              </div>
             </div>
           )}
+          {contenidoAdicional && <div className="mt-3">{contenidoAdicional}</div>}
         </div>,
         document.body
       )}

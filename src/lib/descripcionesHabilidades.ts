@@ -58,11 +58,15 @@ export function detalleNumericoHabilidad(habilidad: DefinicionHabilidad): string
   } else if (habilidad.multiplicadorDano) {
     lineas.push(`Daño físico: multiplicador ×${habilidad.multiplicadorDano} del ataque.`);
   }
+  if (habilidad.danoBase) lineas.push(`Daño fijo adicional: +${habilidad.danoBase}.`);
+  if (habilidad.curacion) lineas.push(`Curación fija: ${habilidad.curacion} puntos.`);
 
   if (habilidad.curacionPorcentaje) lineas.push(`Curación inmediata: ${porcentaje(habilidad.curacionPorcentaje)} de la vida máxima.`);
   if (habilidad.curacionProgresivaPorcentaje) lineas.push(`Curación progresiva: ${porcentaje(habilidad.curacionProgresivaPorcentaje)} de la vida máxima por turno.`);
   if (habilidad.danoProgresivoPorcentaje) lineas.push(`Daño progresivo: ${porcentaje(habilidad.danoProgresivoPorcentaje)} del ataque efectivo por pulso.`);
   if (habilidad.roboVida) lineas.push(`Robo de vida: recuperas ${porcentaje(habilidad.roboVida)} del daño efectivo.`);
+  if (habilidad.bonusCuracion) lineas.push(`Bonificación de curación: +${porcentaje(habilidad.bonusCuracion)}.`);
+  if (habilidad.multiplicadorCritico && habilidad.multiplicadorCritico > 1) lineas.push(`Multiplicador de daño crítico: ×${habilidad.multiplicadorCritico}.`);
   if (habilidad.bonusDefensaPorcentaje) lineas.push(`Defensa aumentada: +${porcentaje(habilidad.bonusDefensaPorcentaje)}.`);
   if (habilidad.bonusAtaque) lineas.push(`Ataque físico: +${habilidad.bonusAtaque}.`);
   if (habilidad.bonusAtaqueMagico) lineas.push(`Ataque mágico: +${habilidad.bonusAtaqueMagico}.`);
@@ -103,4 +107,60 @@ export function detalleNumericoHabilidad(habilidad: DefinicionHabilidad): string
   lineas.push(`Descripción: ${habilidad.descripcion}`);
 
   return [...new Set(lineas)];
+}
+
+export interface ComparacionMejoraHabilidad {
+  etiqueta: string;
+  valorActual: string;
+  valorSiguiente: string;
+}
+
+function claveDetalleComparacion(linea: string): string {
+  return linea
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[-+]?\d+(?:[.,]\d+)?/g, "#")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLocaleLowerCase("es");
+}
+
+/** Devuelve solo las líneas numéricas que cambian al subir un rango. */
+export function compararMejoraHabilidad(
+  actual: DefinicionHabilidad,
+  siguiente: DefinicionHabilidad,
+): ComparacionMejoraHabilidad[] {
+  const lineasActuales = new Map<string, string[]>();
+  for (const linea of detalleNumericoHabilidad(actual)) {
+    const clave = claveDetalleComparacion(linea);
+    const grupo = lineasActuales.get(clave) ?? [];
+    grupo.push(linea);
+    lineasActuales.set(clave, grupo);
+  }
+
+  const cambios: ComparacionMejoraHabilidad[] = [];
+  for (const lineaSiguiente of detalleNumericoHabilidad(siguiente)) {
+    const grupo = lineasActuales.get(claveDetalleComparacion(lineaSiguiente));
+    const lineaActual = grupo?.shift();
+    if (!lineaActual || lineaActual === lineaSiguiente) continue;
+
+    const separadorActual = lineaActual.indexOf(":");
+    const separadorSiguiente = lineaSiguiente.indexOf(":");
+    const tieneEtiquetaCompartida =
+      separadorActual > 0 &&
+      separadorSiguiente > 0 &&
+      lineaActual.slice(0, separadorActual) === lineaSiguiente.slice(0, separadorSiguiente);
+    const etiqueta = tieneEtiquetaCompartida
+      ? lineaActual.slice(0, separadorActual)
+      : "Efecto adicional";
+    const valorActual = tieneEtiquetaCompartida
+      ? lineaActual.slice(separadorActual + 1).trim().replace(/\.$/, "")
+      : lineaActual.replace(/\.$/, "");
+    const valorSiguiente = tieneEtiquetaCompartida
+      ? lineaSiguiente.slice(separadorSiguiente + 1).trim().replace(/\.$/, "")
+      : lineaSiguiente.replace(/\.$/, "");
+
+    cambios.push({ etiqueta, valorActual, valorSiguiente });
+  }
+  return cambios;
 }
