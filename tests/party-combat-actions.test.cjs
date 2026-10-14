@@ -74,6 +74,16 @@ function loadService(prisma) {
     "@/server/services/combate/accion-combate": {
       reducirCooldowns: (cooldowns) => cooldowns,
       obtenerCooldowns: (valor) => valor && typeof valor === "object" && !Array.isArray(valor) ? valor : {},
+      otorgarExperienciaJob: async () => null,
+    },
+    "@/lib/enemigos": { obtenerEnemigoPorId: () => ({ id: "slime", botin: 10, difMin: 1 }) },
+    "@/lib/configuracionJuego": { experienciaParaNivel: () => 500 },
+    "@/lib/expediciones/dificultad": {
+      esModoDificultad: (value) => ["facil", "normal", "dificil"].includes(value),
+      calcularExperienciaBaseGanada: () => 45,
+      calcularOroEnemigo: () => 10,
+      aplicarMultiplicadorRecompensa: (value) => value,
+      registrarVictoriaRangoNormal: (prev, nivel) => [...(Array.isArray(prev) ? prev : []), nivel],
     },
     "@/lib/party/expedicion-reglas": {
       ...reglasExpedicion,
@@ -152,9 +162,17 @@ function mkCombat(overrides = {}) {
 }
 
 function mockPrisma(combat, options = {}) {
-  const calls = { combatWrites: [], participantWrites: [], characterWrites: [], expeditionWrites: [], expeditionParticipantWrites: [], resourceWrites: [], inventoryWrites: [] };
+  const calls = {
+    combatWrites: [], participantWrites: [], characterWrites: [], expeditionWrites: [],
+    expeditionParticipantWrites: [], resourceWrites: [], inventoryWrites: [], userWrites: [],
+    inventoryCreates: [], inventoryStackWrites: [], progressionWrites: [],
+  };
   const character = {
     id: "personaje-u1",
+    usuarioId: "u1",
+    nivel: 3,
+    experiencia: 0,
+    rangosAmenazaCompletados: [],
     profesionActivaId: "novato",
     energiaActual: options.energiaActual ?? 20,
     manaActual: options.manaActual ?? 10,
@@ -163,37 +181,93 @@ function mockPrisma(combat, options = {}) {
   };
   const tx = {
     combateParty: {
-      findUnique: async () => combat,
+      findUnique: async ({ select } = {}) => select?.recompensasResueltas !== undefined
+        ? { recompensasResueltas: Boolean(combat.recompensasResueltas) }
+        : combat,
       updateMany: async ({ where, data }) => {
         calls.combatWrites.push({ where, data });
         if (options.rejectCombatUpdate) return { count: 0 };
         if (where.version !== combat.version || where.fase !== combat.fase || where.faseTurno !== combat.faseTurno) return { count: 0 };
         if (where.turnoActualUsuarioId && where.turnoActualUsuarioId !== combat.turnoActualUsuarioId) return { count: 0 };
+        if (where.recompensasResueltas === false && combat.recompensasResueltas === true) return { count: 0 };
+        if (where.fase === "victoria" && combat.fase !== "victoria") return { count: 0 };
         Object.assign(combat, data, { version: combat.version + 1 });
         return { count: 1 };
       },
     },
     expedicionParty: {
-      findUnique: async () => ({
-        id: "expedition-1",
-        fase: "combatiendo",
-        resultadoFinal: null,
-        origenCoords: { lat: 27.9, lng: -15.4 },
-        destinoCoords: { lat: 28.0, lng: -15.5 },
-        participantes: combat.participantes.map((p) => ({
-          id: "exp-part-" + p.usuarioId,
-          usuarioId: p.usuarioId,
-          personajeId: p.personajeId,
-          estado: p.estado,
-          velocidadViajeKmh: 6,
-          usuario: { id: p.usuarioId, baseCoords: { lat: 27.9, lng: -15.4 }, personaje: { estado: "combatiendo" } },
-        })),
-      }),
+      findUnique: async ({ select } = {}) => {
+        if (select?.fase) return { fase: "regresando" };
+        return {
+          id: "expedition-1",
+          fase: "combatiendo",
+          tipo: "normal",
+          dificultad: 3,
+          modoDificultad: "normal",
+          recompensa: options.recompensa ?? { oro: 11, madera: 4, piedra: 2, metal: 1, objetos: [{ objetoId: "pocion", cantidad: 2 }] },
+          resultadoFinal: null,
+          origenCoords: { lat: 27.9, lng: -15.4 },
+          destinoCoords: { lat: 28.0, lng: -15.5 },
+          participantes: combat.participantes.map((p) => ({
+            id: "exp-part-" + p.usuarioId,
+            usuarioId: p.usuarioId,
+            personajeId: p.personajeId,
+            estado: p.estado,
+            velocidadViajeKmh: 6,
+            usuario: { id: p.usuarioId, baseCoords: { lat: 27.9, lng: -15.4 }, personaje: { estado: "combatiendo" } },
+            personaje: p.usuarioId === "u1" ? character : {
+              id: p.personajeId,
+              usuarioId: p.usuarioId,
+              nivel: 3,
+              experiencia: 0,
+              profesionActivaId: "novato",
+              rangosAmenazaCompletados: [],
+              inventario: { id: "inventario-" + p.usuarioId },
+            },
+          })),
+        };
+      },
       updateMany: async ({ where, data }) => {
         calls.expeditionWrites.push({ where, data });
         if (options.rejectExpeditionUpdate) return { count: 0 };
         return { count: 1 };
       },
+    },
+    usuario: {
+      update: async ({ where, data }) => {
+        calls.userWrites.push({ where, data });
+        return { id: where.id, ...data };
+      },
+    },
+    progresoClase: {
+      findUnique: async () => null,
+      update: async (args) => {
+        calls.progressionWrites.push(args);
+        return args.data;
+      },
+    },
+    inventario: {
+      findUnique: async ({ where }) => ({ id: "inventario-" + where.personajeId }),
+      create: async ({ data }) => {
+        calls.inventoryCreates.push(data);
+        return { id: "inventario-" + data.personajeId };
+      },
+    },
+    inventarioObjeto: {
+      findFirst: async () => null,
+      create: async ({ data }) => {
+        calls.inventoryStackWrites.push(data);
+        return data;
+      },
+      update: async ({ where, data }) => {
+        calls.inventoryStackWrites.push({ where, data });
+        return data;
+      },
+      updateMany: async ({ where, data }) => {
+        calls.inventoryWrites.push({ where, data });
+        return { count: 1 };
+      },
+      deleteMany: async () => ({ count: 0 }),
     },
     expedicionPartyParticipante: {
       updateMany: async ({ where, data }) => {
@@ -380,4 +454,32 @@ test("el turno enemigo procesa los efectos periódicos del enemigo antes de atac
   const service = loadService(prisma);
   const result = await service.ejecutarTurnoEnemigoParty("u1", "expedition-1");
   assert.equal(result.enemigoHp, 40);
+});
+
+
+test("la victoria reparte oro, recursos y objetos de misión sin generar unidades", async () => {
+  const combat = mkCombat({ enemigoHp: 10 });
+  const { prisma, calls } = mockPrisma(combat);
+  const service = loadService(prisma);
+  const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "atacar");
+  assert.equal(result.fase, "victoria");
+  assert.equal(combat.recompensasResueltas, true);
+  assert.equal(calls.userWrites.length, 2);
+  assert.equal(calls.userWrites.reduce((s, w) => s + w.data.oro.increment, 0), 31);
+  assert.equal(calls.userWrites.reduce((s, w) => s + w.data.madera.increment, 0), 4);
+  assert.equal(calls.userWrites.reduce((s, w) => s + w.data.piedra.increment, 0), 2);
+  assert.equal(calls.userWrites.reduce((s, w) => s + w.data.metal.increment, 0), 1);
+  assert.equal(calls.inventoryStackWrites.reduce((s, w) => s + (w.cantidad ?? 0), 0), 2);
+  assert.equal(result.recompensas.recompensas.length, 2);
+});
+
+test("una liquidación persistida impide volver a otorgar la recompensa", async () => {
+  const combat = mkCombat({ fase: "victoria", enemigoHp: 0, recompensasResueltas: true });
+  const { prisma, calls } = mockPrisma(combat);
+  const service = loadService(prisma);
+  await assert.rejects(
+    service.ejecutarAccionCombateParty("u1", "expedition-1", "atacar"),
+    (error) => error.code === "COMBATE_PARTY_TERMINADO",
+  );
+  assert.equal(calls.userWrites.length, 0);
 });
