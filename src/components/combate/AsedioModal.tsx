@@ -9,6 +9,7 @@ import { calcularBonusDefensaMuralla } from "@/lib/expediciones/combate";
 import { CLASES } from "@/lib/progresion/clases";
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
+import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 
 interface AsedioModalProps {
   combate: CombateActivo;
@@ -998,22 +999,17 @@ export default function AsedioModal({
                             }`}
                           />
 
-                          <div className="relative z-10 min-w-0 flex-1 pr-2">
-                            <p
-                              className={`truncate text-xs font-bold tracking-wide sm:text-sm ${
-                                seleccionada
-                                  ? "text-stone-400"
-                                  : "text-stone-200"
-                              }`}
-                            >
-                              {h.habilidad.nombre}
-                            </p>
-                            <p className={`mt-1 text-[9px] font-mono ${recursoInsuficiente ? "text-red-400" : "text-stone-500"}`}>
-                              {costeEnergia > 0 ? `${costeEnergia} ENE` : ""}
-                              {costeEnergia > 0 && costeMana > 0 ? " + " : ""}
-                              {costeMana > 0 ? `${costeMana} MAN` : ""}
-                              {costeEnergia === 0 && costeMana === 0 ? "Sin coste de recurso" : ""}
-                            </p>
+                          <div className="relative z-10 flex min-w-0 flex-1 items-center gap-2 pr-2">
+                            <IconoHabilidad habilidadId={h.habilidadId} className="h-9 w-9 shrink-0 rounded-md border border-stone-700 bg-stone-900 p-0.5" />
+                            <div className="min-w-0 flex-1">
+                              <p className={`truncate text-xs font-bold tracking-wide sm:text-sm ${seleccionada ? "text-stone-400" : "text-stone-200"}`}>{h.habilidad.nombre}</p>
+                              <p className={`mt-1 text-[9px] font-mono ${recursoInsuficiente ? "text-red-400" : "text-stone-500"}`}>
+                                {costeEnergia > 0 ? `${costeEnergia} ENE` : ""}
+                                {costeEnergia > 0 && costeMana > 0 ? " + " : ""}
+                                {costeMana > 0 ? `${costeMana} MAN` : ""}
+                                {costeEnergia === 0 && costeMana === 0 ? "Sin coste de recurso" : ""}
+                              </p>
+                            </div>
                           </div>
 
                           <div className="relative z-10 flex shrink-0 items-center justify-end">

@@ -120,7 +120,7 @@ export default function IndicadoresEfectosCombate({
       id: `pasiva:${habilidad.id}`,
       nombre: habilidad.nombre,
       descripcion: `${habilidad.nombre}: pasiva equipada, activa durante el combate.`,
-      src: "/sprites/effects/state/pasiva.svg",
+      src: `/sprites/habilidades/${habilidad.id}.svg`,
       emoji: "⭐",
       turnosRestantes: null,
     });

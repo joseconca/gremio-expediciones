@@ -10,6 +10,7 @@ import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import type { ObjetoInventario } from "@/lib/tiposJuego";
 import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
+import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 
 interface CombateModalProps {
   combate: CombatePve;
@@ -912,22 +913,17 @@ export default function CombateModal({
                             }`}
                           />
 
-                          <div className="relative z-10 flex-1 min-w-0 pr-2">
-                            <p
-                              className={`text-xs sm:text-sm font-bold tracking-wide transition-colors truncate ${
-                                seleccionada
-                                  ? "text-stone-400"
-                                  : "text-stone-200 group-hover:text-stone-100"
-                              }`}
-                            >
-                              {h.habilidad.nombre}
-                            </p>
-                            <p className={`mt-1 text-[9px] font-mono ${recursoInsuficiente ? "text-red-400" : "text-stone-500"}`}>
-                              {costeEnergia > 0 ? `${costeEnergia} ENE` : ""}
-                              {costeEnergia > 0 && costeMana > 0 ? " + " : ""}
-                              {costeMana > 0 ? `${costeMana} MAN` : ""}
-                              {costeEnergia === 0 && costeMana === 0 ? "Sin coste de recurso" : ""}
-                            </p>
+                          <div className="relative z-10 flex min-w-0 flex-1 items-center gap-2 pr-2">
+                            <IconoHabilidad habilidadId={h.habilidadId} className="h-9 w-9 shrink-0 rounded-md border border-stone-700 bg-stone-900 p-0.5" />
+                            <div className="min-w-0 flex-1">
+                              <p className={`truncate text-xs font-bold tracking-wide transition-colors sm:text-sm ${seleccionada ? "text-stone-400" : "text-stone-200 group-hover:text-stone-100"}`}>{h.habilidad.nombre}</p>
+                              <p className={`mt-1 text-[9px] font-mono ${recursoInsuficiente ? "text-red-400" : "text-stone-500"}`}>
+                                {costeEnergia > 0 ? `${costeEnergia} ENE` : ""}
+                                {costeEnergia > 0 && costeMana > 0 ? " + " : ""}
+                                {costeMana > 0 ? `${costeMana} MAN` : ""}
+                                {costeEnergia === 0 && costeMana === 0 ? "Sin coste de recurso" : ""}
+                              </p>
+                            </div>
                           </div>
 
                           <div className="relative z-10 flex shrink-0 items-center justify-end">
