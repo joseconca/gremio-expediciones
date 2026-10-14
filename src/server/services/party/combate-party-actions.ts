@@ -231,7 +231,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
     log.push(...ticks.mensajes);
 
     let accion: AccionAnimadaCombate;
-    let objetivo = obtenerParticipantesVivos(obtenerEstadoParticipantes(combate.participantes))
+    const objetivo = obtenerParticipantesVivos(obtenerEstadoParticipantes(combate.participantes))
       .map((vivo) => combate.participantes.find((p) => p.usuarioId === vivo.usuarioId)!)
       .sort((a, b) =>
         a.jugadorHp / Math.max(1, a.jugadorHpMaximo) -
