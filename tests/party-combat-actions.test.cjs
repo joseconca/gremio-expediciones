@@ -58,14 +58,24 @@ function loadService(prisma, testOptions = {}) {
         };
       },
       avanzarEfectosCombate: (effects, defensa) => ({ efectos: effects, defensa, mensajes: [] }),
-      procesarEfectosTurno: (effects, hp, hpMax, defensa, nombre) => ({
-        efectos: effects,
-        hp,
-        defensa,
-        mensajes: [],
-        danoAplicado: 0,
-        curacionAplicada: 0,
-      }),
+      procesarEfectosTurno: (effects, hp, hpMax, defensa, nombre) => {
+        const lista = Array.isArray(effects) ? effects : [];
+        const danoAplicado = lista.reduce((total, efecto) =>
+          efecto.tipo === "dano_progresivo" ? total + efecto.valor : total, 0);
+        const curacionAplicada = lista.reduce((total, efecto) =>
+          efecto.tipo === "curacion_progresiva" ? total + efecto.valor : total, 0);
+        return {
+          efectos: lista,
+          hp: Math.min(hpMax, Math.max(0, hp - danoAplicado + curacionAplicada)),
+          defensa,
+          mensajes: [
+            ...(danoAplicado > 0 ? [`Daño periódico: ${danoAplicado}.`] : []),
+            ...(curacionAplicada > 0 ? [`Curación periódica: ${curacionAplicada}.`] : []),
+          ],
+          danoAplicado,
+          curacionAplicada,
+        };
+      },
     },
     "@/lib/party/combate-reglas": reglas,
     "@/lib/habilidades": {
