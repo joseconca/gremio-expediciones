@@ -14,7 +14,6 @@ CREATE TABLE "ExpedicionParty" (
   "resultadoFinal" TEXT,
   "fechaSalida" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "fechaLlegada" TIMESTAMP(3) NOT NULL,
-  "origenCoords" JSONB NOT NULL,
   "destinoCoords" JSONB NOT NULL,
   "creado" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "actualizado" TIMESTAMP(3) NOT NULL,
@@ -31,7 +30,6 @@ CREATE TABLE "ExpedicionPartyParticipante" (
   "energiaInicio" INTEGER NOT NULL,
   "manaInicio" INTEGER NOT NULL,
   "efectoComida" TEXT,
-  "velocidadViajeKmh" DOUBLE PRECISION NOT NULL DEFAULT 6,
   "creado" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "actualizado" TIMESTAMP(3) NOT NULL,
   CONSTRAINT "ExpedicionPartyParticipante_pkey" PRIMARY KEY ("id")

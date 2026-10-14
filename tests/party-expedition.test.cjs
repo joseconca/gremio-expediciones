@@ -373,7 +373,7 @@ test("completar regreso de party requiere llegada y finaliza de forma idempotent
 
 function makeExpeditionReturnPrisma() {
   let fase = "regresando";
-  const fechas = { salida: new Date(Date.now() - 60_000), llegada: new Date(Date.now() - 1_000) };
+  const fechas = { salida: new Date(Date.now() - 60_000), llegada: new Date(Date.now() + 60_000) };
   const expedicion = {
     id: "exp-party-regreso",
     fase,
@@ -382,8 +382,8 @@ function makeExpeditionReturnPrisma() {
     origenCoords: { lat: 27.9, lng: -15.4 },
     destinoCoords: { lat: 28.0, lng: -15.5 },
     participantes: [
-      { id: "ep1", usuarioId: "leader", personajeId: "char-leader", estado: "regresando" },
-      { id: "ep2", usuarioId: "guest", personajeId: "char-guest", estado: "regresando" },
+      { id: "ep1", usuarioId: "leader", personajeId: "char-leader", estado: "regresando", velocidadViajeKmh: 6 },
+      { id: "ep2", usuarioId: "guest", personajeId: "char-guest", estado: "regresando", velocidadViajeKmh: 4 },
     ],
   };
   const calls = { expeditionWrites: [], participantWrites: [], characterWrites: [] };

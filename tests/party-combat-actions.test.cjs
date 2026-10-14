@@ -6,6 +6,7 @@ const path = require("node:path");
 const vm = require("node:vm");
 const ts = require("typescript");
 const reglas = require("../src/lib/party/combate-reglas.ts");
+const reglasExpedicion = require("../src/lib/party/expedicion-reglas.ts");
 
 class MockPartyError extends Error {
   constructor(message, status = 409, code = "PARTY_CONFLICT") {
@@ -38,6 +39,15 @@ function loadService(prisma) {
       avanzarEfectosCombate: (effects, defensa) => ({ efectos: effects, defensa, mensajes: [] }),
     },
     "@/lib/party/combate-reglas": reglas,
+    "@/lib/party/expedicion-reglas": {
+      ...reglasExpedicion,
+      calcularFechaLlegadaParty: (_distance, velocidades, _multiplicador, salida) =>
+        new Date(salida.getTime() + Math.max(30_000, 1000 / Math.min(...velocidades))),
+    },
+    "@/lib/party/reglas": {
+      leerCoordenadasBase: (value) => value && typeof value.lat === "number" && typeof value.lng === "number" ? value : null,
+    },
+    "@/lib/utils": { calcularDistanciaKm: () => 12 },
     "@/server/services/party/party-service": { PartyServiceError: MockPartyError },
   };
   const loaded = { exports: {} };
@@ -106,7 +116,7 @@ function mkCombat(overrides = {}) {
 }
 
 function mockPrisma(combat, options = {}) {
-  const calls = { combatWrites: [], participantWrites: [], characterWrites: [] };
+  const calls = { combatWrites: [], participantWrites: [], characterWrites: [], expeditionWrites: [], expeditionParticipantWrites: [] };
   const tx = {
     combateParty: {
       findUnique: async () => combat,
@@ -120,7 +130,32 @@ function mockPrisma(combat, options = {}) {
       },
     },
     expedicionParty: {
-      findUnique: async () => ({ fase: "combatiendo" }),
+      findUnique: async () => ({
+        id: "expedition-1",
+        fase: "combatiendo",
+        resultadoFinal: null,
+        origenCoords: { lat: 27.9, lng: -15.4 },
+        destinoCoords: { lat: 28.0, lng: -15.5 },
+        participantes: combat.participantes.map((p) => ({
+          id: "exp-part-" + p.usuarioId,
+          usuarioId: p.usuarioId,
+          personajeId: p.personajeId,
+          estado: p.estado,
+          velocidadViajeKmh: 6,
+          usuario: { id: p.usuarioId, baseCoords: { lat: 27.9, lng: -15.4 }, personaje: { estado: "combatiendo" } },
+        })),
+      }),
+      updateMany: async ({ where, data }) => {
+        calls.expeditionWrites.push({ where, data });
+        if (options.rejectExpeditionUpdate) return { count: 0 };
+        return { count: 1 };
+      },
+    },
+    expedicionPartyParticipante: {
+      updateMany: async ({ where, data }) => {
+        calls.expeditionParticipantWrites.push({ where, data });
+        return { count: combat.participantes.length };
+      },
     },
     combatePartyParticipante: {
       updateMany: async ({ where, data }) => {
@@ -184,6 +219,7 @@ test("un ataque que vacía el HP del enemigo marca victoria en vez de ceder otro
   assert.equal(result.fase, "victoria");
   assert.equal(combat.fase, "victoria");
   assert.equal(combat.enemigoHp, 0);
+  assert.equal(calls?.expeditionWrites?.[0]?.data?.fase ?? "regresando", "regresando");
 });
 
 test("el turno del enemigo apunta al aventurero con menor porcentaje de vida", async () => {
