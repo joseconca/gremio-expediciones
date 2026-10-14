@@ -4,6 +4,7 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { evaluarRequisitosAprendizaje, obtenerHabilidadesEnVenta } from "@/lib/tiendaHabilidades";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { CLASES, puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
+import { nivelMaximoHabilidad } from "@/lib/progresion/niveles-habilidad";
 
 export async function GET() {
   try {
@@ -19,6 +20,7 @@ export async function GET() {
       },
       select: {
         edificios: true,
+        oro: true,
         personaje: {
           select: {
             id: true,
@@ -36,6 +38,7 @@ export async function GET() {
               select: {
                 id: true,
                 habilidadId: true,
+                nivel: true,
                 slot: true,
               },
               orderBy: {
@@ -83,6 +86,7 @@ export async function GET() {
       return {
         ...habilidad,
         ...evaluarRequisitosAprendizaje(habilidad, progresosClase),
+        nivelMaximo: nivelMaximoHabilidad(clasePropietariaId),
         clasePropietariaId,
         clasePropietariaNombre: CLASES[clasePropietariaId]?.nombre ?? clasePropietariaId,
         modoAprendizaje: "job" as const,
@@ -97,10 +101,17 @@ export async function GET() {
           return null;
         }
 
+        const clasePropietariaId = habilidad.claseId ?? "novato";
+        const progresoPropietario = progresosClase.find((progreso) => progreso.claseId === clasePropietariaId);
         return {
           id: habilidadAprendida.id,
           habilidadId: habilidadAprendida.habilidadId,
+          nivel: habilidadAprendida.nivel,
+          nivelMaximo: nivelMaximoHabilidad(clasePropietariaId),
           slot: habilidadAprendida.slot,
+          puntosHabilidadDisponiblesClase: progresoPropietario?.puntosHabilidadDisponibles ?? 0,
+          nivelJobClase: progresoPropietario?.nivelJob ?? 0,
+          progresoClaseDesbloqueada: Boolean(progresoPropietario?.desbloqueada),
           habilidad,
         };
       })
@@ -112,6 +123,7 @@ export async function GET() {
       );
 
     return NextResponse.json({
+      oro: usuario.oro,
       escuelaNivel: nivelEscuela,
       profesionActivaId,
       profesionNombre: CLASES[profesionActivaId]?.nombre ?? profesionActivaId,
