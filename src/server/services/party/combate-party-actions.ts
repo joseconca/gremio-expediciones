@@ -466,12 +466,6 @@ async function liquidarRecompensasParty(
     ? calcularOroEnemigo(enemigo.botin, expedicion.dificultad, enemigo.difMin)
     : 0;
   const oroTotal = aplicarMultiplicadorRecompensa(recompensaMision.oro + oroEnemigo, modoDificultad);
-  const dropEnemigo = enemigo
-    ? tirarBotinEnemigo(enemigo, crearRngDeterminista(`${combate.id}:${enemigo.id}:botin`))
-    : null;
-  const indiceReceptorDrop = dropEnemigo
-    ? hashDeterminista(`${combate.id}:${enemigo?.id ?? "enemigo"}:receptor`) % participantes.length
-    : -1;
   const totalMiembros = participantes.length;
   const versionEsperadaLiquidada = combate.version + 1;
   const liquidado = await tx.combateParty.updateMany({
@@ -587,25 +581,41 @@ async function liquidarRecompensasParty(
     );
   }
 
-  let dropEnemigoAdjudicado: { objetoId: string; nombre: string; cantidad: number; sufijoId: string | null } | null = null;
-  if (dropEnemigo) {
-    for (let desplazamiento = 0; desplazamiento < participantes.length; desplazamiento += 1) {
-      const indice = (indiceReceptorDrop + desplazamiento) % participantes.length;
+  const dropsEnemigo: {
+    usuarioId: string;
+    objetoId: string;
+    nombre: string;
+    cantidad: number;
+    sufijoId: string | null;
+  }[] = [];
+  if (enemigo) {
+    for (let indice = 0; indice < participantes.length; indice += 1) {
       const miembro = participantes[indice];
-      const agregado = await agregarInstanciaBotinAlInventario(tx, miembro.personaje.id, dropEnemigo);
-      if (!agregado) continue;
-      detalle[indice].objetos.push({ objetoId: dropEnemigo.objeto.id, cantidad: 1 });
-      dropEnemigoAdjudicado = {
-        objetoId: dropEnemigo.objeto.id,
-        nombre: dropEnemigo.objeto.nombre,
+      const drop = tirarBotinEnemigo(
+        enemigo,
+        crearRngDeterminista(`${combate.id}:${enemigo.id}:botin:${miembro.usuarioId}`),
+      );
+      if (!drop) continue;
+
+      const agregado = await agregarInstanciaBotinAlInventario(tx, miembro.personaje.id, drop);
+      if (!agregado) {
+        logLiquidacion.push(
+          `🎒 El botín de ${combate.enemigoNombre} para ${miembro.usuarioId} se ha perdido porque su inventario está lleno.`,
+        );
+        continue;
+      }
+
+      detalle[indice].objetos.push({ objetoId: drop.objeto.id, cantidad: 1 });
+      dropsEnemigo.push({
+        usuarioId: miembro.usuarioId,
+        objetoId: drop.objeto.id,
+        nombre: drop.objeto.nombre,
         cantidad: 1,
-        sufijoId: dropEnemigo.sufijoId,
-      };
-      logLiquidacion.push(`🎲 Botín de ${combate.enemigoNombre}: ${dropEnemigo.objeto.nombre}${dropEnemigo.sufijoId ? ` (${dropEnemigo.sufijoId})` : ""} para ${miembro.usuarioId}.`);
-      break;
-    }
-    if (!dropEnemigoAdjudicado) {
-      logLiquidacion.push("🎒 El botín del enemigo no se pudo guardar porque todos los inventarios de la party están llenos.");
+        sufijoId: drop.sufijoId,
+      });
+      logLiquidacion.push(
+        `🎲 Botín de ${combate.enemigoNombre}: ${drop.objeto.nombre}${drop.sufijoId ? ` (${drop.sufijoId})` : ""} para ${miembro.usuarioId}.`,
+      );
     }
   }
 
@@ -624,7 +634,7 @@ async function liquidarRecompensasParty(
   return {
     liquidacionYaResuelta: false,
     oroTotal,
-    dropEnemigo: dropEnemigoAdjudicado,
+    dropsEnemigo,
     experienciaPorMiembro: detalle.map((d) => ({ usuarioId: d.usuarioId, experiencia: d.experiencia })),
     recompensas: detalle,
   };
