@@ -630,25 +630,30 @@ async function liquidarRecompensasParty(
     }
   }
 
-  const logGuardado = await tx.combateParty.updateMany({
-    where: {
-      id: combatePartyId,
-      recompensasResueltas: true,
-      version: versionEsperadaLiquidada,
-    },
-    data: { log: logLiquidacion as unknown as Prisma.InputJsonValue },
-  });
-  if (logGuardado.count !== 1) {
-    throw new PartyServiceError("No se pudo registrar el resumen de recompensas.", 409, "COMBATE_PARTY_MODIFICADO");
-  }
-
-  return {
+  const resultadoRecompensas = {
     liquidacionYaResuelta: false,
     oroTotal,
     dropsEnemigo,
     experienciaPorMiembro: detalle.map((d) => ({ usuarioId: d.usuarioId, experiencia: d.experiencia })),
     recompensas: detalle,
   };
+
+  const logGuardado = await tx.combateParty.updateMany({
+    where: {
+      id: combatePartyId,
+      recompensasResueltas: true,
+      version: versionEsperadaLiquidada,
+    },
+    data: {
+      log: logLiquidacion as unknown as Prisma.InputJsonValue,
+      recompensasResultado: resultadoRecompensas as unknown as Prisma.InputJsonValue,
+    },
+  });
+  if (logGuardado.count !== 1) {
+    throw new PartyServiceError("No se pudo registrar el resumen de recompensas.", 409, "COMBATE_PARTY_MODIFICADO");
+  }
+
+  return resultadoRecompensas;
 }
 
 export async function ejecutarAccionCombateParty(
