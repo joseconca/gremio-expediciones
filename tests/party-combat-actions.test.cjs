@@ -232,7 +232,14 @@ function mockPrisma(combat, options = {}) {
             estado: p.estado,
             velocidadViajeKmh: 6,
             usuario: { id: p.usuarioId, baseCoords: { lat: 27.9, lng: -15.4 }, personaje: { estado: "combatiendo" } },
-          })) };
+            creado: new Date(0),
+            velocidadViajeKmh: 6,
+          })),
+          origenCoords: { lat: 27.9, lng: -15.4 },
+          destinoCoords: { lat: 28.0, lng: -15.5 },
+          fechaLlegada: new Date(Date.now() + 1000),
+          resultadoFinal: null,
+        };
         }
         return {
           id: "expedition-1",
