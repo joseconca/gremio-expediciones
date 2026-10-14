@@ -158,7 +158,20 @@ export default function PanelParty() {
     if (!respuesta.ok) {
       throw new Error(datos.error || "No se pudo consultar la party.");
     }
-    setEstado(datos as EstadoParty);
+
+    const estadoNuevo = datos as EstadoParty;
+    setEstado(estadoNuevo);
+    const expedicion = estadoNuevo.expedicionActiva;
+    const combate = expedicion?.combate;
+    if (expedicion && combate && (combate.fase === "victoria" || combate.fase === "derrota")) {
+      setUltimoResultadoCombate((actual) => actual?.expedicionPartyId === expedicion.id
+        ? actual
+        : {
+            expedicionPartyId: expedicion.id,
+            fase: combate.fase as "victoria" | "derrota",
+            recompensas: combate.fase === "victoria" ? (combate.recompensasResultado ?? null) : null,
+          });
+    }
     setError(null);
   }, []);
 
@@ -173,24 +186,6 @@ export default function PanelParty() {
       recompensas: datos.fase === "victoria" ? (datos.recompensas ?? null) : null,
     });
   };
-
-  useEffect(() => {
-    const expedicion = estado?.expedicionActiva;
-    const combate = expedicion?.combate;
-    if (!expedicion || !combate || (combate.fase !== "victoria" && combate.fase !== "derrota")) return;
-    if (ultimoResultadoCombate?.expedicionPartyId === expedicion.id) return;
-
-    setUltimoResultadoCombate({
-      expedicionPartyId: expedicion.id,
-      fase: combate.fase,
-      recompensas: combate.fase === "victoria" ? (combate.recompensasResultado ?? null) : null,
-    });
-  }, [
-    estado?.expedicionActiva?.id,
-    estado?.expedicionActiva?.combate?.fase,
-    estado?.expedicionActiva?.combate?.recompensasResultado,
-    ultimoResultadoCombate?.expedicionPartyId,
-  ]);
 
   useEffect(() => {
     let activo = true;
