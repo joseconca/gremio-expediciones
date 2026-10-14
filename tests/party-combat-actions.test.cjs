@@ -188,8 +188,10 @@ function mockPrisma(combat, options = {}) {
       updateMany: async ({ where, data }) => {
         calls.combatWrites.push({ where, data });
         if (options.rejectCombatUpdate) return { count: 0 };
-        if (where.version !== combat.version || where.fase !== combat.fase || where.faseTurno !== combat.faseTurno) return { count: 0 };
-        if (where.turnoActualUsuarioId && where.turnoActualUsuarioId !== combat.turnoActualUsuarioId) return { count: 0 };
+        if (where.version !== undefined && where.version !== combat.version) return { count: 0 };
+        if (where.fase !== undefined && where.fase !== combat.fase) return { count: 0 };
+        if (where.faseTurno !== undefined && where.faseTurno !== combat.faseTurno) return { count: 0 };
+        if (where.turnoActualUsuarioId !== undefined && where.turnoActualUsuarioId !== combat.turnoActualUsuarioId) return { count: 0 };
         if (where.recompensasResueltas === false && combat.recompensasResueltas === true) return { count: 0 };
         if (where.fase === "victoria" && combat.fase !== "victoria") return { count: 0 };
         if (data.recompensasResueltas === true) combat.recompensasResueltas = true;
