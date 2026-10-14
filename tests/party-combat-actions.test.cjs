@@ -58,11 +58,13 @@ function loadService(prisma, testOptions = {}) {
         };
       },
       avanzarEfectosCombate: (effects, defensa) => ({ efectos: effects, defensa, mensajes: [] }),
-      procesarEfectosTurno: (effects, hp, hpMax, defensa, nombre) => {
+      procesarEfectosTurno: (effects, hp, hpMax, defensa, nombre, personajeId) => {
         const lista = Array.isArray(effects) ? effects : [];
-        const danoAplicado = lista.reduce((total, efecto) =>
+        const propios = lista.filter((efecto) =>
+          efecto.objetivo === (personajeId === undefined ? "enemigo" : "jugador"));
+        const danoAplicado = propios.reduce((total, efecto) =>
           efecto.tipo === "dano_progresivo" ? total + efecto.valor : total, 0);
-        const curacionAplicada = lista.reduce((total, efecto) =>
+        const curacionAplicada = propios.reduce((total, efecto) =>
           efecto.tipo === "curacion_progresiva" ? total + efecto.valor : total, 0);
         return {
           efectos: lista,
