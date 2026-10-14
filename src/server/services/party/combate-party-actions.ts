@@ -20,6 +20,9 @@ import {
   type ParticipanteTurnoParty,
 } from "@/lib/party/combate-reglas";
 import { PartyServiceError } from "@/server/services/party/party-service";
+import { calcularFechaLlegadaParty } from "@/lib/party/expedicion-reglas";
+import { calcularDistanciaKm } from "@/lib/utils";
+import { leerCoordenadasBase } from "@/lib/party/reglas";
 
 const AISLAMIENTO = { isolationLevel: Prisma.TransactionIsolationLevel.Serializable } as const;
 
@@ -93,6 +96,92 @@ function prepararSiguienteTurno(
     ronda: combate.ronda,
     turnoInicialEnemigo: combate.turnoInicialEnemigo,
   }, participantes);
+}
+
+async function iniciarRegresoParty(
+  tx: Prisma.TransactionClient,
+  expedicionPartyId: string,
+  resultadoFinal: "exito" | "derrota",
+) {
+  const expedicion = await tx.expedicionParty.findUnique({
+    where: { id: expedicionPartyId },
+    include: {
+      participantes: {
+        orderBy: { creado: "asc" },
+        include: { usuario: { select: { id: true, baseCoords: true, personaje: { select: { estado: true } } } } },
+      },
+    },
+  });
+  if (!expedicion) {
+    throw new PartyServiceError("No se encontró la expedición para iniciar el regreso.", 404, "EXPEDICION_PARTY_NO_ENCONTRADA");
+  }
+  if (expedicion.fase === "regresando" && expedicion.resultadoFinal === resultadoFinal) {
+    return { fase: "regresando", regresoYaIniciado: true, fechaLlegada: expedicion.fechaLlegada };
+  }
+  if (expedicion.fase !== "combatiendo") {
+    throw new PartyServiceError("La expedición no está disponible para iniciar el regreso.", 409, "EXPEDICION_PARTY_NO_COMBATIENDO");
+  }
+  const origenRaw = leerCoordenadasBase(expedicion.destinoCoords);
+  const destinoRaw = leerCoordenadasBase(expedicion.origenCoords);
+  if (!origenRaw || !destinoRaw) {
+    throw new PartyServiceError("La expedición no tiene coordenadas de origen y destino válidas para regresar.", 409, "COORDENADAS_REGRESO_NO_DISPONIBLES");
+  }
+
+  const participantes = expedicion.participantes;
+  if (participantes.length < 2 || participantes.length > 3) {
+    throw new PartyServiceError("La expedición no tiene una composición válida para regresar.", 409, "NUMERO_MIEMBROS_INVALIDO");
+  }
+  const velocidades: number[] = [];
+  for (const participante of participantes) {
+    const coords = leerCoordenadasBase(participante.usuario.baseCoords);
+    if (!coords) {
+      throw new PartyServiceError("Uno de los miembros no tiene coordenadas de base válidas.", 409, "COORDENADAS_REGRESO_NO_DISPONIBLES");
+    }
+    const distancia = calcularDistanciaKm(coords.lat, coords.lng, origenRaw.lat, origenRaw.lng);
+    // Se conserva la velocidad congelada durante el viaje de ida mediante el
+    // tiempo original: distancia/tiempo es equivalente a la velocidad del miembro.
+    const horasViajeIda = Math.max(1 / 60, (calcularDistanciaKm(destinoRaw.lat, destinoRaw.lng, origenRaw.lat, origenRaw.lng) / 6));
+    const horasViajeMiembro = Math.max(1 / 60, distancia / 6);
+    velocidades.push(Math.max(1, horasViajeIda / horasViajeMiembro * 6));
+  }
+
+  const velocidadRegreso = Math.min(...velocidades);
+  const distanciaRegreso = calcularDistanciaKm(origenRaw.lat, origenRaw.lng, destinoRaw.lat, destinoRaw.lng);
+  const salida = new Date();
+  const fechaLlegada = calcularFechaLlegadaParty(distanciaRegreso, velocidades, 1, salida);
+  const actualizado = await tx.expedicionParty.updateMany({
+    where: { id: expedicionPartyId, fase: "combatiendo" },
+    data: {
+      fase: "regresando",
+      resultadoFinal,
+      fechaSalida: salida,
+      fechaLlegada,
+    },
+  });
+  if (actualizado.count !== 1) {
+    throw new PartyServiceError("El resultado de combate ya se está procesando.", 409, "EXPEDICION_PARTY_MODIFICADA");
+  }
+
+  await tx.expedicionPartyParticipante.updateMany({
+    where: { expedicionPartyId, estado: { in: ["activo", "caido", "en_destino"] } },
+    data: { estado: "regresando" },
+  });
+  for (const participante of participantes) {
+    const personaje = await tx.personaje.updateMany({
+      where: { id: participante.personajeId, usuarioId: participante.usuarioId, estado: "combatiendo" },
+      data: { estado: "de_viaje" },
+    });
+    if (personaje.count !== 1) {
+      throw new PartyServiceError("El estado de un personaje cambió al comenzar el regreso.", 409, "PERSONAJE_MODIFICADO");
+    }
+  }
+  return {
+    fase: "regresando",
+    resultadoFinal,
+    fechaSalida: salida.toISOString(),
+    fechaLlegada: fechaLlegada.toISOString(),
+    velocidadRegreso,
+  };
 }
 
 export async function ejecutarAccionCombateParty(
@@ -185,6 +274,10 @@ export async function ejecutarAccionCombateParty(
       throw new PartyServiceError("El combate ha cambiado mientras se resolvía tu acción. Actualiza e inténtalo de nuevo.", 409, "COMBATE_PARTY_MODIFICADO");
     }
 
+    const regreso = fase === "victoria" || fase === "derrota"
+      ? await iniciarRegresoParty(tx, expedicionPartyId, fase === "victoria" ? "exito" : "derrota")
+      : null;
+
     return {
       expedicionPartyId,
       combatePartyId: combate.id,
@@ -193,6 +286,7 @@ export async function ejecutarAccionCombateParty(
       faseTurno,
       turnoActualUsuarioId,
       enemigoHp,
+      ...(regreso ? { regreso } : {}),
       accion,
     };
   }, AISLAMIENTO);
@@ -360,6 +454,10 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       throw new PartyServiceError("El turno enemigo ya se procesó en otra petición.", 409, "COMBATE_PARTY_MODIFICADO");
     }
 
+    const regreso = fase === "victoria" || fase === "derrota"
+      ? await iniciarRegresoParty(tx, expedicionPartyId, fase === "victoria" ? "exito" : "derrota")
+      : null;
+
     return {
       expedicionPartyId,
       combatePartyId: combate.id,
@@ -369,6 +467,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       turnoActualUsuarioId,
       enemigoHp,
       objetivoUsuarioId: objetivo?.usuarioId ?? null,
+      ...(regreso ? { regreso } : {}),
       accion,
     };
   }, AISLAMIENTO);
