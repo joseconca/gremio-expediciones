@@ -9,6 +9,7 @@ import DescripcionTactil from "@/components/ui/DescripcionTactil";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 import { descripcionSimpleHabilidad, detalleNumericoHabilidad } from "@/lib/descripcionesHabilidades";
 import { CLASES } from "@/lib/progresion/clases";
+import { ajustarHabilidadPorNivel, costeReinicioHabilidades, nivelMaximoHabilidad } from "@/lib/progresion/niveles-habilidad";
 import type { DefinicionHabilidad, Rareza, SlotHabilidad } from "@/lib/tiposJuego";
 import { useGameStore } from "@/store/useGameStore";
 
@@ -21,8 +22,20 @@ type HabilidadEnVenta = DefinicionHabilidad & {
   clasePropietariaNombre?: string;
   modoAprendizaje?: "job" | "oro";
 };
-type HabilidadAprendida = { id: string; habilidadId: string; slot: string | null; habilidad: DefinicionHabilidad; disponibleParaProfesion?: boolean };
+type HabilidadAprendida = {
+  id: string;
+  habilidadId: string;
+  nivel: number;
+  nivelMaximo: number;
+  slot: string | null;
+  puntosHabilidadDisponiblesClase?: number;
+  nivelJobClase?: number;
+  progresoClaseDesbloqueada?: boolean;
+  habilidad: DefinicionHabilidad;
+  disponibleParaProfesion?: boolean;
+};
 type DatosHabilidades = {
+  oro: number;
   escuelaNivel: number;
   profesionActivaId?: string;
   profesionNombre?: string;
@@ -109,11 +122,17 @@ export default function EscuelaCombatePage() {
 
   const aprendidas = useMemo(() => datos?.aprendidas ?? [], [datos?.aprendidas]);
   const idsAprendidas = useMemo(() => new Set(aprendidas.map((item) => item.habilidadId)), [aprendidas]);
+  const aprendidasPorId = useMemo(() => new Map(aprendidas.map((item) => [item.habilidadId, item])), [aprendidas]);
   const habilidadesEquipadas = useMemo(() => aprendidas.filter((item) => esSlot(item.slot)), [aprendidas]);
   const habilidadesNoEquipadas = useMemo(() => aprendidas.filter((item) => !esSlot(item.slot)), [aprendidas]);
   const nivelJob = datos?.progresoJob?.nivelJob ?? 1;
   const puntosDisponibles = datos?.progresoJob?.puntosHabilidadDisponibles ?? 0;
   const profesionId = datos?.profesionActivaId ?? "novato";
+  const costeReseteo = costeReinicioHabilidades(nivelJob);
+  const habilidadesPropias = useMemo(
+    () => aprendidas.filter((item) => (item.habilidad.claseId ?? "novato") === profesionId),
+    [aprendidas, profesionId],
+  );
 
   const habilidadesVisibles = useMemo(() => {
     const query = busqueda.trim().toLocaleLowerCase("es");
@@ -126,12 +145,13 @@ export default function EscuelaCombatePage() {
     });
   }, [datos?.enVenta, filtro, busqueda, idsAprendidas]);
 
-  const enviarAccion = async (tipo: "aprender" | "equipar" | "desequipar", habilidadId: string, slot?: SlotHabilidad) => {
+  const enviarAccion = async (tipo: "aprender" | "mejorar" | "equipar" | "desequipar", habilidadId: string, slot?: SlotHabilidad) => {
     const clave = tipo === "equipar" ? `${tipo}:${habilidadId}:${slot}` : `${tipo}:${habilidadId}`;
     setProcesando(clave);
     setError(null);
     try {
       const endpoint = tipo === "aprender" ? "/api/habilidades/aprender"
+        : tipo === "mejorar" ? "/api/habilidades/mejorar"
         : tipo === "equipar" ? "/api/habilidades/equipar" : "/api/habilidades/desequipar";
       const respuesta = await fetch(endpoint, {
         method: "POST",
@@ -148,6 +168,27 @@ export default function EscuelaCombatePage() {
       await cargarJugador();
     } catch {
       setError("Error de conexión al actualizar las habilidades.");
+    } finally {
+      setProcesando(null);
+    }
+  };
+
+  const reiniciarHabilidades = async () => {
+    const nombreClase = datos?.profesionNombre ?? CLASES[profesionId]?.nombre ?? profesionId;
+    if (!window.confirm(`¿Reiniciar las habilidades propias de ${nombreClase}? Costará ${costeReseteo} de oro y devolverá los puntos invertidos. El nivel Job, los desbloqueos y las habilidades de otras profesiones se conservarán.`)) return;
+    setProcesando("reiniciar");
+    setError(null);
+    try {
+      const respuesta = await fetch("/api/habilidades/reiniciar", { method: "POST" });
+      const resultado = await respuesta.json();
+      if (!respuesta.ok) {
+        setError(resultado.error || "No se pudieron reiniciar las habilidades.");
+        return;
+      }
+      await recargarHabilidades();
+      await cargarJugador();
+    } catch {
+      setError("Error de conexión al reiniciar las habilidades.");
     } finally {
       setProcesando(null);
     }
@@ -196,7 +237,26 @@ export default function EscuelaCombatePage() {
           </section>
         )}
 
-        {vista !== "tacticas" && error && <div role="alert" className="mb-5 rounded-lg border border-red-800 bg-red-950/40 p-4 text-sm text-red-200">{error}</div>}
+        {(vista === "aprender" || vista === "gestion") && (
+          <section className="mb-4 flex flex-col gap-3 rounded-lg border border-[#594630] bg-[#211b14] p-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
+              <p className="text-sm font-bold text-[#e8d7b8]">Redistribuir habilidades de {datos?.profesionNombre ?? CLASES[profesionId]?.nombre ?? profesionId}</p>
+              <p className="mt-1 text-xs leading-5 text-[#a99d84]">
+                Reinicia solo las habilidades propias de esta profesión y devuelve los puntos invertidos. El Job y las habilidades de otras profesiones se conservan. Coste: 100 de oro por nivel Job ({costeReseteo} de oro).
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => void reiniciarHabilidades()}
+              disabled={procesando !== null || habilidadesPropias.length === 0 || (datos?.oro ?? 0) < costeReseteo}
+              className="min-h-10 shrink-0 rounded-lg border border-red-700/70 bg-red-950/35 px-3 py-2 text-xs font-bold text-red-200 hover:border-red-500 disabled:cursor-not-allowed disabled:opacity-40 sm:text-sm"
+            >
+              {procesando === "reiniciar" ? "Reiniciando..." : (datos?.oro ?? 0) < costeReseteo ? "Oro insuficiente" : habilidadesPropias.length === 0 ? "Sin habilidades propias" : `Reiniciar · ${costeReseteo} oro`}
+            </button>
+          </section>
+        )}
+
+        {vista !== "tacticas" && error && <div role="alert" className="mb-5 rounded-lg border border-red-800 bg-red-950/40 p-4 text-sm text-red-200">{error}</div>
 
         {vista === "tacticas" ? <SelectorPosicionCombate /> : vista === "profesiones" ? <PanelProfesiones integrado onProfessionChanged={recargarHabilidades} /> : vista === "aprender" ? (
           <section>
@@ -223,7 +283,11 @@ export default function EscuelaCombatePage() {
               : habilidadesVisibles.length === 0 ? <div className="rounded-xl border border-dashed border-[#51412d] p-10 text-center text-[#a99d84]">No hay habilidades que coincidan con estos filtros.</div>
               : <div className="grid grid-cols-1 gap-2 sm:gap-3 xl:grid-cols-2">
                 {habilidadesVisibles.map((habilidad) => {
+                  const itemAprendido = aprendidasPorId.get(habilidad.id);
                   const aprendida = idsAprendidas.has(habilidad.id);
+                  const nivelActualHabilidad = itemAprendido?.nivel ?? 0;
+                  const nivelMaximo = nivelMaximoHabilidad(habilidad.claseId);
+                  const habilidadVista = aprendida ? ajustarHabilidadPorNivel(habilidad, nivelActualHabilidad) : habilidad;
                   const requerida = habilidad.nivelJobRequerido ?? 1;
                   const coste = Math.max(1, habilidad.costePuntosHabilidad ?? 1);
                   const clasePropietariaId = habilidad.clasePropietariaId ?? habilidad.claseId ?? profesionId;
@@ -251,8 +315,8 @@ export default function EscuelaCombatePage() {
                           <div className="flex items-center gap-2">
                             <DescripcionTactil
                               titulo={habilidad.nombre}
-                              resumen={descripcionSimpleHabilidad(habilidad)}
-                              detalles={detalleNumericoHabilidad(habilidad)}
+                              resumen={descripcionSimpleHabilidad(habilidadVista)}
+                              detalles={detalleNumericoHabilidad(habilidadVista)}
                               variante="madera"
                               etiquetaAccesible={`Ver detalles de ${habilidad.nombre}`}
                               claseBoton="flex h-10 w-10 shrink-0 touch-manipulation items-center justify-center rounded-md border border-[#594630] bg-[#191612] p-1 transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
@@ -267,7 +331,7 @@ export default function EscuelaCombatePage() {
                             <span className="hidden sm:inline">{heredada ? `Heredada: ${clasePropietaria}` : "Propia de tu clase"}</span>
                           </span>
                       </div>
-                      <p className="mt-1 line-clamp-2 text-[11px] leading-4 text-[#b2a58e]">{descripcionSimpleHabilidad(habilidad)}</p>
+                      <p className="mt-1 line-clamp-2 text-[11px] leading-4 text-[#b2a58e]">{descripcionSimpleHabilidad(habilidadVista)}</p>
                       {!aprendida && (
                         <p className="mt-2 rounded-md border border-amber-700/70 bg-amber-950/35 px-3 py-2 text-xs font-extrabold tracking-wide text-amber-200">
                           <strong>Requisito: {clasePropietaria} {requerida}</strong>
@@ -275,13 +339,26 @@ export default function EscuelaCombatePage() {
                       )}
                       <div className="mt-2 border-t border-[#443624] pt-2 sm:mt-3">
                         {aprendida ? (
-                          <div className="flex flex-col gap-1">
-                            <p className="text-sm font-semibold text-emerald-300">✓ Habilidad aprendida</p>
-                            <p className="pt-1 text-[10px] font-medium text-[#786d5b]">Requisito: {clasePropietaria} {requerida}</p>
+                          <div className="flex flex-col gap-2">
+                            <div className="flex flex-wrap items-center justify-between gap-2">
+                              <p className="text-sm font-semibold text-emerald-300">✓ Nivel {nivelActualHabilidad}/{nivelMaximo}</p>
+                              <p className="pt-1 text-[10px] font-medium text-[#786d5b]">Requisito: {clasePropietaria} {requerida}</p>
+                            </div>
+                            {nivelActualHabilidad < nivelMaximo ? <>
+                              <button
+                                type="button"
+                                onClick={() => void enviarAccion("mejorar", habilidad.id)}
+                                disabled={procesando !== null || !progresoClaseDesbloqueada || puntosClaseDisponibles < 1}
+                                className="min-h-10 w-full rounded-lg border border-sky-600/70 bg-sky-950/35 px-3 py-2 text-sm font-bold text-sky-100 transition hover:border-sky-400 disabled:cursor-not-allowed disabled:opacity-40"
+                              >
+                                {procesando === `mejorar:${habilidad.id}` ? "Mejorando..." : `Mejorar a nivel ${nivelActualHabilidad + 1} · 1 punto`}
+                              </button>
+                              {puntosClaseDisponibles < 1 && <p className="text-[11px] text-[#9f927b]">Sin puntos Job de {clasePropietaria} disponibles.</p>}
+                            </> : <p className="text-xs font-bold text-amber-300">Nivel máximo alcanzado</p>}
                           </div>
                         ) : puede ? <button type="button" onClick={() => void enviarAccion("aprender", habilidad.id)} disabled={procesando !== null}
                             className="min-h-11 w-full rounded-lg border border-amber-400/70 bg-amber-900/40 px-3 py-2 text-sm font-bold text-amber-100 transition hover:bg-amber-800/60 disabled:cursor-wait disabled:opacity-50 sm:px-4 sm:py-2.5">
-                            {procesando === clave ? "Aprendiendo..." : "Aprender"}
+                            {procesando === clave ? "Aprendiendo..." : "Aprender · 1 punto"}
                           </button>
                           : <p className="rounded-lg border border-[#443624] bg-[#191612] px-3 py-2 text-sm text-[#9f927b]">🔒 {bloqueo}</p>}
                       </div>
@@ -307,15 +384,15 @@ export default function EscuelaCombatePage() {
                       <div className="mt-2 flex items-center gap-2">
                         <DescripcionTactil
                           titulo={actual.habilidad.nombre}
-                          resumen={descripcionSimpleHabilidad(actual.habilidad)}
-                          detalles={detalleNumericoHabilidad(actual.habilidad)}
+                          resumen={descripcionSimpleHabilidad(ajustarHabilidadPorNivel(actual.habilidad, actual.nivel))}
+                          detalles={detalleNumericoHabilidad(ajustarHabilidadPorNivel(actual.habilidad, actual.nivel))}
                           variante="madera"
                           etiquetaAccesible={`Ver detalles de ${actual.habilidad.nombre}`}
                           claseBoton="flex h-10 w-10 shrink-0 touch-manipulation items-center justify-center rounded-md border border-[#594630] bg-[#191612] p-1 transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
                         >
                           <IconoHabilidad habilidadId={actual.habilidad.id} className="h-8 w-8" />
                         </DescripcionTactil>
-                        <p className="min-w-0 flex-1 break-words text-sm font-semibold text-[#f0e5d0]">{actual.habilidad.nombre}</p>
+                        <p className="min-w-0 flex-1 break-words text-sm font-semibold text-[#f0e5d0]">{actual.habilidad.nombre} <span className="text-xs text-amber-300">Nv. {actual.nivel}/{actual.nivelMaximo}</span></p>
                       </div>
                       {actual.disponibleParaProfesion === false && <p className="mt-1 text-xs text-red-300">No disponible para tu clase activa</p>}
                       <button type="button" onClick={() => void enviarAccion("desequipar", actual.habilidadId)} disabled={procesando !== null}
@@ -332,16 +409,17 @@ export default function EscuelaCombatePage() {
               {habilidadesNoEquipadas.length === 0 ? <div className="rounded-xl border border-dashed border-[#51412d] p-8 text-center text-sm text-[#9f927b]">No tienes habilidades sin equipar.</div>
                 : habilidadesNoEquipadas.map((item) => {
                   const habilidad = item.habilidad;
+                  const habilidadVista = ajustarHabilidadPorNivel(habilidad, item.nivel);
                   const slotsCompatibles = habilidad.tipo === "activa" ? SLOTS_ACTIVAS : SLOTS_PASIVAS;
                   const compatible = item.disponibleParaProfesion !== false;
                   return <article key={item.id} className="flex flex-col gap-2 rounded-xl border border-[#4d3d2a] bg-[#211b14] p-3 sm:gap-3 sm:p-4 md:flex-row md:items-center md:justify-between">
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-2">
                         <IconoHabilidad habilidadId={habilidad.id} className="h-9 w-9 shrink-0" />
-                        <h4 className="font-bold text-[#f0e5d0]">{habilidad.nombre}</h4>
+                        <h4 className="font-bold text-[#f0e5d0]">{habilidad.nombre} <span className="text-xs text-amber-300">Nv. {item.nivel}/{item.nivelMaximo}</span></h4>
                         <span className="rounded-full bg-[#302619] px-2 py-0.5 text-[10px] uppercase text-[#b9a582]">{habilidad.tipo}</span>
                       </div>
-                      <p className="mt-1 text-xs leading-5 text-[#a99d84] sm:text-sm">{habilidad.descripcion}</p>
+                      <p className="mt-1 text-xs leading-5 text-[#a99d84] sm:text-sm">{descripcionSimpleHabilidad(habilidadVista)}</p>
                       {!compatible && <p className="mt-1 text-xs text-red-300">Esta habilidad pertenece a otra rama y no está disponible con tu clase actual.</p>}
                     </div>
                     <div className="flex flex-wrap gap-1.5 sm:gap-2">
