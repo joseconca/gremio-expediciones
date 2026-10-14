@@ -196,8 +196,18 @@ function mockPrisma(combat, options = {}) {
       },
     },
     expedicionParty: {
-      findUnique: async ({ select } = {}) => {
+      findUnique: async ({ select, include } = {}) => {
         if (select?.fase) return { fase: "regresando" };
+        if (include?.participantes && include.participantes.select) {
+          return { id: "expedition-1", fase: "combatiendo", participantes: combat.participantes.map((p) => ({
+            id: "exp-part-" + p.usuarioId,
+            usuarioId: p.usuarioId,
+            personajeId: p.personajeId,
+            estado: p.estado,
+            velocidadViajeKmh: 6,
+            usuario: { id: p.usuarioId, baseCoords: { lat: 27.9, lng: -15.4 }, personaje: { estado: "combatiendo" } },
+          })) };
+        }
         return {
           id: "expedition-1",
           fase: "combatiendo",
