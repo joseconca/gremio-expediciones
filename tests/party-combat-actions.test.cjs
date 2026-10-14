@@ -65,6 +65,7 @@ function loadService(prisma) {
     },
     "@/server/services/combate/accion-combate": {
       reducirCooldowns: (cooldowns) => cooldowns,
+      obtenerCooldowns: (valor) => valor && typeof valor === "object" && !Array.isArray(valor) ? valor : {},
     },
     "@/lib/party/expedicion-reglas": {
       ...reglasExpedicion,
