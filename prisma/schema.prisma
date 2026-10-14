@@ -35,6 +35,8 @@ model Usuario {
   partyMembresia             PartyMember?
   trasladosComoVisitante     PartyTransfer[] @relation("TransferVisitante")
   trasladosComoAnfitrion     PartyTransfer[] @relation("TransferAnfitrion")
+  expedicionesPartyLideradas ExpedicionParty[] @relation("ExpedicionPartyLider")
+  expedicionesPartyParticipaciones ExpedicionPartyParticipante[] @relation("ExpedicionPartyUsuario")
 }
 
 model Sesion {
@@ -86,6 +88,7 @@ model Personaje {
   equipoEquipado     EquipoEquipado?
   progresosClase     ProgresoClase[]
   rangosAmenazaCompletados Json @default("[]")
+  expedicionesPartyParticipaciones ExpedicionPartyParticipante[]
 }
 
 model ProgresoClase {
@@ -362,6 +365,7 @@ model Party {
   actualizado    DateTime @updatedAt
 
   miembros PartyMember[]
+  expediciones ExpedicionParty[]
 }
 
 model PartyMember {
@@ -395,4 +399,55 @@ model PartyTransfer {
 
   @@index([visitanteUsuarioId, estado])
   @@index([anfitrionUsuarioId, estado, fechaLlegada])
+}
+
+
+model ExpedicionParty {
+  id             String   @id @default(uuid())
+  partyId        String
+  liderUsuarioId String
+  tipo           String
+  misionId       String
+  enemigoId      String?
+  nombre         String
+  recompensa     Json
+  dificultad     Int
+  modoDificultad String   @default("normal")
+  fase           String   @default("en_viaje")
+  resultadoFinal String?
+  fechaSalida    DateTime @default(now())
+  fechaLlegada   DateTime
+  destinoCoords  Json
+  creado         DateTime @default(now())
+  actualizado    DateTime @updatedAt
+
+  party Party  @relation(fields: [partyId], references: [id], onDelete: Restrict)
+  liderUsuario Usuario @relation("ExpedicionPartyLider", fields: [liderUsuarioId], references: [id], onDelete: Cascade)
+  participantes ExpedicionPartyParticipante[]
+
+  @@index([partyId, fase])
+  @@index([fase, fechaLlegada])
+}
+
+model ExpedicionPartyParticipante {
+  id                 String   @id @default(uuid())
+  expedicionPartyId  String
+  usuarioId          String
+  personajeId        String
+  estado             String   @default("en_viaje")
+  hpInicio           Int
+  energiaInicio      Int
+  manaInicio         Int
+  efectoComida       String?
+  creado             DateTime @default(now())
+  actualizado        DateTime @updatedAt
+
+  expedicionParty ExpedicionParty @relation(fields: [expedicionPartyId], references: [id], onDelete: Cascade)
+  usuario         Usuario         @relation("ExpedicionPartyUsuario", fields: [usuarioId], references: [id], onDelete: Cascade)
+  personaje       Personaje       @relation(fields: [personajeId], references: [id], onDelete: Cascade)
+
+  @@unique([expedicionPartyId, usuarioId])
+  @@unique([expedicionPartyId, personajeId])
+  @@index([usuarioId, estado])
+  @@index([personajeId, estado])
 }
