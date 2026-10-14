@@ -74,6 +74,14 @@ type PersonajeAccionesVista = {
 type ResultadoRecompensasParty = {
   liquidacionYaResuelta: boolean;
   oroTotal?: number;
+  /** Un resultado por aventurero: cada miembro tira su propio botín enemigo. */
+  dropsEnemigo?: {
+    usuarioId: string;
+    objetoId: string;
+    nombre: string;
+    cantidad: number;
+    sufijoId: string | null;
+  }[];
   recompensas: {
     usuarioId: string;
     oro: number;
