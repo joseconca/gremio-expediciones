@@ -654,6 +654,7 @@ export async function obtenerEstadoParty(usuarioId: string) {
               enemigoHpMaximo: expedicionActivaRaw.combate.enemigoHpMaximo,
               log: expedicionActivaRaw.combate.log,
               ultimaAccion: expedicionActivaRaw.combate.ultimaAccion,
+              recompensasResultado: expedicionActivaRaw.combate.recompensasResultado,
               participantes: expedicionActivaRaw.combate.participantes.map((p) => ({
                 id: p.id,
                 usuarioId: p.usuarioId,
