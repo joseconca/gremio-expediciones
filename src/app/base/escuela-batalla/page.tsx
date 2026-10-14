@@ -235,9 +235,9 @@ export default function EscuelaCombatePage() {
                   const puntosInsuficientes = puntosClaseDisponibles < coste;
                   const puede = habilidad.puedeAprender && !aprendida;
                   const clave = `aprender:${habilidad.id}`;
-                  const bloqueo = !progresoClaseDesbloqueada ? `No tienes desbloqueada la clase ${clasePropietaria}`
-                    : nivelJobClase < requerida ? `Requiere ${clasePropietaria} Job ${requerida} (actual: ${nivelJobClase})`
-                    : puntosInsuficientes ? `Necesitas ${coste} punto(s); ${puntosClaseDisponibles} disponibles en ${clasePropietaria}`
+                  const bloqueo = !progresoClaseDesbloqueada ? `Primero debes desbloquear ${clasePropietaria}`
+                    : nivelJobClase < requerida ? `Aún no cumples el requisito de ${clasePropietaria} ${requerida}`
+                    : puntosInsuficientes ? "Te falta al menos un punto de habilidad"
                     : "No disponible para esta profesión";
                   return (
                     <article key={habilidad.id} className={`flex flex-col rounded-xl border bg-[#211b14] p-2.5 sm:p-4 ${aprendida ? "border-emerald-800/70" : puede ? "border-[#695233]" : "border-[#403427]"}`}>
