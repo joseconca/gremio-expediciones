@@ -246,6 +246,35 @@ export default function PanelParty() {
 
   useEffect(() => {
     const expedicion = estado?.expedicionActiva;
+    if (!expedicion || expedicion.fase !== "regresando" || new Date(expedicion.fechaLlegada).getTime() > ahora) return;
+
+    const clave = `expedicion-party:${expedicion.id}:regreso`;
+    if (procesandoAutomatico.current.has(clave)) return;
+    procesandoAutomatico.current.add(clave);
+
+    void (async () => {
+      try {
+        await enviarAccion(
+          "/api/expediciones/party/regreso",
+          expedicion.id,
+          "expedicionPartyId",
+        );
+        await actualizarEstado();
+        await cargarJugador();
+      } catch (err) {
+        const mensaje = err instanceof Error ? err.message : "";
+        await actualizarEstado().catch(() => undefined);
+        if (!/regreso|llegada|estado|procesad|modificad/i.test(mensaje)) {
+          setError(mensaje || "No se pudo completar el regreso de la party.");
+        }
+      } finally {
+        procesandoAutomatico.current.delete(clave);
+      }
+    })();
+  }, [estado?.expedicionActiva, ahora, actualizarEstado, cargarJugador]);
+
+  useEffect(() => {
+    const expedicion = estado?.expedicionActiva;
     const combate = expedicion?.combate;
     if (!expedicion || expedicion.fase !== "combatiendo" || !combate ||
         combate.fase !== "activo" || combate.faseTurno !== "enemigo") return;

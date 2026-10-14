@@ -379,6 +379,8 @@ function makeExpeditionReturnPrisma() {
     fase,
     fechaSalida: fechas.salida,
     fechaLlegada: fechas.llegada,
+    origenCoords: { lat: 27.9, lng: -15.4 },
+    destinoCoords: { lat: 28.0, lng: -15.5 },
     participantes: [
       { id: "ep1", usuarioId: "leader", personajeId: "char-leader", estado: "regresando" },
       { id: "ep2", usuarioId: "guest", personajeId: "char-guest", estado: "regresando" },
