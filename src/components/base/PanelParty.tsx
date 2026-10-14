@@ -42,6 +42,7 @@ type ExpedicionPartyVista = {
   }[];
   combate?: {
     id: string;
+    version: number;
     fase: string;
     ronda: number;
     faseTurno: string;
@@ -243,6 +244,39 @@ export default function PanelParty() {
     })();
   }, [estado?.expedicionActiva, actualizarEstado, cargarJugador]);
 
+  useEffect(() => {
+    const expedicion = estado?.expedicionActiva;
+    const combate = expedicion?.combate;
+    if (!expedicion || expedicion.fase !== "combatiendo" || !combate ||
+        combate.fase !== "activo" || combate.faseTurno !== "enemigo") return;
+
+    const clave = `combate-party:${combate.id}:v${combate.version}:enemigo`;
+    if (procesandoAutomatico.current.has(clave)) return;
+    procesandoAutomatico.current.add(clave);
+
+    void (async () => {
+      try {
+        await enviarAccion(
+          "/api/expediciones/party/combate/turno-enemigo",
+          expedicion.id,
+          "expedicionPartyId",
+        );
+        await actualizarEstado();
+        await cargarJugador();
+      } catch (err) {
+        const mensaje = err instanceof Error ? err.message : "";
+        // Varias pantallas pueden reclamar el turno: el control de versión
+        // del servidor garantiza que solo una lo resuelva.
+        await actualizarEstado().catch(() => undefined);
+        if (!/turno|combate|modificado|procesad|fase/i.test(mensaje)) {
+          setError(mensaje || "No se pudo resolver el turno del enemigo.");
+        }
+      } finally {
+        procesandoAutomatico.current.delete(clave);
+      }
+    })();
+  }, [estado?.expedicionActiva, actualizarEstado, cargarJugador]);
+
   const ejecutar = async (clave: string, ruta: string, trasladoId?: string) => {
     if (accion) return;
     setAccion(clave);
@@ -254,6 +288,30 @@ export default function PanelParty() {
     } catch (err) {
       setError(err instanceof Error ? err.message : "No se pudo completar la operación.");
       await actualizarEstado().catch(() => undefined);
+    } finally {
+      setAccion(null);
+    }
+  };
+
+  const ejecutarAtaqueParty = async () => {
+    const expedicion = estado?.expedicionActiva;
+    if (!expedicion || !expedicion.combate || accion) return;
+    setAccion("ataque-party");
+    setError(null);
+    try {
+      const respuesta = await fetch("/api/expediciones/party/combate/accion", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ expedicionPartyId: expedicion.id, accion: "atacar" }),
+      });
+      const datos = await respuesta.json().catch(() => ({}));
+      if (!respuesta.ok) throw new Error(datos.error || "No se pudo ejecutar el ataque.");
+      await actualizarEstado();
+      await cargarJugador();
+    } catch (err) {
+      const mensaje = err instanceof Error ? err.message : "No se pudo ejecutar el ataque.";
+      await actualizarEstado().catch(() => undefined);
+      if (!/turno|modificado|cambio|combate ha terminado/i.test(mensaje)) setError(mensaje);
     } finally {
       setAccion(null);
     }
@@ -370,12 +428,26 @@ export default function PanelParty() {
                     {estado.expedicionActiva.combate.enemigoHp}/{estado.expedicionActiva.combate.enemigoHpMaximo} HP
                   </p>
                   <p className="mt-2 text-xs font-bold text-amber-200">
-                    {estado.expedicionActiva.combate.faseTurno === "enemigo"
-                      ? "Turno del enemigo"
-                      : estado.expedicionActiva.combate.turnoActualUsuarioId === estado.usuarioId
-                        ? "¡Es tu turno!"
-                        : `Turno de ${estado.expedicionActiva.combate.participantes.find((p) => p.usuarioId === estado.expedicionActiva?.combate?.turnoActualUsuarioId)?.usuario?.nombre ?? "otro aventurero"}`}
+                    {estado.expedicionActiva.combate.fase !== "activo"
+                      ? estado.expedicionActiva.combate.fase === "victoria" ? "¡Victoria! Se preparará el regreso y el reparto del botín." : "El grupo ha sido derrotado. Se preparará el regreso."
+                      : estado.expedicionActiva.combate.faseTurno === "enemigo"
+                        ? "Turno del enemigo"
+                        : estado.expedicionActiva.combate.turnoActualUsuarioId === estado.usuarioId
+                          ? "¡Es tu turno!"
+                          : `Turno de ${estado.expedicionActiva.combate.participantes.find((p) => p.usuarioId === estado.expedicionActiva?.combate?.turnoActualUsuarioId)?.usuario?.nombre ?? "otro aventurero"}`}
                   </p>
+                  {estado.expedicionActiva.combate.fase === "activo" &&
+                    estado.expedicionActiva.combate.faseTurno === "jugador" &&
+                    estado.expedicionActiva.combate.turnoActualUsuarioId === estado.usuarioId && (
+                      <button
+                        type="button"
+                        disabled={Boolean(accion)}
+                        onClick={() => void ejecutarAtaqueParty()}
+                        className="mt-3 w-full rounded-md border border-amber-600/80 bg-amber-700 px-3 py-2 text-sm font-black uppercase tracking-wide text-amber-50 transition hover:bg-amber-600 disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        {accion === "ataque-party" ? "Atacando..." : "⚔️ Ataque básico"}
+                      </button>
+                    )}
                   <div className="mt-3 space-y-2">
                     {estado.expedicionActiva.combate.participantes.map((participante) => (
                       <div key={participante.id}>

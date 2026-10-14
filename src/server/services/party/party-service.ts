@@ -641,6 +641,7 @@ export async function obtenerEstadoParty(usuarioId: string) {
         combate: expedicionActivaRaw.combate
           ? {
               id: expedicionActivaRaw.combate.id,
+              version: expedicionActivaRaw.combate.version,
               fase: expedicionActivaRaw.combate.fase,
               ronda: expedicionActivaRaw.combate.ronda,
               faseTurno: expedicionActivaRaw.combate.faseTurno,
