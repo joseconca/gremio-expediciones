@@ -300,6 +300,108 @@ function repartirCantidadEntera(total: number, numeroMiembros: number, indice: n
   return base + (indice < resto ? 1 : 0);
 }
 
+function hashDeterminista(texto: string): number {
+  let hash = 2166136261;
+  for (let indice = 0; indice < texto.length; indice += 1) {
+    hash ^= texto.charCodeAt(indice);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function pseudoaleatorioDeterminista(semilla: number): number {
+  let valor = (semilla + 0x6D2B79F5) >>> 0;
+  valor = Math.imul(valor ^ (valor >>> 15), valor | 1);
+  valor ^= valor + Math.imul(valor ^ (valor >>> 7), valor | 61);
+  return ((valor ^ (valor >>> 14)) >>> 0) / 4294967296;
+}
+
+function resolverDropEnemigo(
+  combateId: string,
+  enemigo: ReturnType<typeof obtenerEnemigoPorId>,
+): { objetoId: string; cantidad: number } | null {
+  if (!enemigo) return null;
+  const probabilidad = typeof enemigo.probabilidadBotin === "number" && Number.isFinite(enemigo.probabilidadBotin)
+    ? Math.max(0, Math.min(1, enemigo.probabilidadBotin))
+    : 0;
+  const semilla = hashDeterminista(`${combateId}:${enemigo.id}`);
+  if (pseudoaleatorioDeterminista(semilla) >= probabilidad) return null;
+
+  const tabla = (enemigo.tablaLoot?.length
+    ? enemigo.tablaLoot
+    : enemigo.objetoDropId
+      ? [{ objetoId: enemigo.objetoDropId, peso: 1 }]
+      : [])
+    .filter((entrada) =>
+      typeof entrada.objetoId === "string" &&
+      entrada.objetoId.trim().length > 0 &&
+      Number.isFinite(entrada.peso) &&
+      entrada.peso > 0 &&
+      Boolean(obtenerObjetoPorId(entrada.objetoId))
+    );
+  const pesoTotal = tabla.reduce((suma, entrada) => suma + entrada.peso, 0);
+  if (pesoTotal <= 0) return null;
+
+  let pesoElegido = pseudoaleatorioDeterminista(hashDeterminista(`${combateId}:${enemigo.id}:tabla`)) * pesoTotal;
+  for (const entrada of tabla) {
+    pesoElegido -= entrada.peso;
+    if (pesoElegido < 0) return { objetoId: entrada.objetoId, cantidad: 1 };
+  }
+  const ultimo = tabla[tabla.length - 1];
+  return ultimo ? { objetoId: ultimo.objetoId, cantidad: 1 } : null;
+}
+
+function registrarObjetoRecompensa(
+  lista: { objetoId: string; cantidad: number }[],
+  objetoId: string,
+  cantidad: number,
+) {
+  if (cantidad <= 0) return;
+  const existente = lista.find((objeto) => objeto.objetoId === objetoId);
+  if (existente) existente.cantidad += cantidad;
+  else lista.push({ objetoId, cantidad });
+}
+
+async function agregarObjetoAlInventario(
+  tx: Prisma.TransactionClient,
+  personajeId: string,
+  objetoId: string,
+  cantidad: number,
+): Promise<boolean> {
+  if (cantidad <= 0 || !Number.isInteger(cantidad) || !obtenerObjetoPorId(objetoId)) return false;
+  const inventarioExistente = await tx.inventario.findUnique({
+    where: { personajeId },
+    select: { id: true },
+  });
+  const inventario = inventarioExistente ?? await tx.inventario.create({
+    data: { personajeId },
+    select: { id: true },
+  });
+  const stack = await tx.inventarioObjeto.findFirst({
+    where: { inventarioId: inventario.id, objetoId },
+    select: { id: true, cantidad: true },
+    orderBy: { id: "asc" },
+  });
+  if (stack) {
+    await tx.inventarioObjeto.update({
+      where: { id: stack.id },
+      data: { cantidad: { increment: cantidad } },
+    });
+  } else {
+    await tx.inventarioObjeto.create({
+      data: {
+        inventarioId: inventario.id,
+        objetoId,
+        cantidad,
+        nivelMejora: 0,
+        sufijoId: null,
+        bonificaciones: {},
+      },
+    });
+  }
+  return true;
+}
+
 /** Liquida una victoria compartida exactamente una vez dentro de la transacción serializable. */
 async function liquidarRecompensasParty(
   tx: Prisma.TransactionClient,
@@ -363,6 +465,10 @@ async function liquidarRecompensasParty(
     ? calcularOroEnemigo(enemigo.botin, expedicion.dificultad, enemigo.difMin)
     : 0;
   const oroTotal = aplicarMultiplicadorRecompensa(recompensaMision.oro + oroEnemigo, modoDificultad);
+  const dropEnemigo = resolverDropEnemigo(combate.id, enemigo);
+  const indiceReceptorDrop = dropEnemigo
+    ? hashDeterminista(`${combate.id}:${enemigo?.id ?? "enemigo"}:receptor`) % participantes.length
+    : -1;
   const totalMiembros = participantes.length;
   const liquidado = await tx.combateParty.updateMany({
     where: {
@@ -387,6 +493,7 @@ async function liquidarRecompensasParty(
     throw new PartyServiceError("El estado de liquidación cambió; no se duplicarán las recompensas.", 409, "RECOMPENSA_PARTY_MODIFICADA");
   }
 
+  const logLiquidacion = obtenerLog(combate.log);
   const detalle: {
     usuarioId: string;
     oro: number;
@@ -459,39 +566,20 @@ async function liquidarRecompensasParty(
     for (const objeto of recompensaMision.objetos) {
       const cantidad = repartirCantidadEntera(objeto.cantidad, totalMiembros, indice);
       if (cantidad <= 0) continue;
-      const definicionObjeto = obtenerObjetoPorId(objeto.objetoId);
-      if (!definicionObjeto) continue;
-      const inventarioExistente = await tx.inventario.findUnique({
-        where: { personajeId: personaje.id },
-        select: { id: true },
-      });
-      const inventario = inventarioExistente ?? await tx.inventario.create({
-        data: { personajeId: personaje.id },
-        select: { id: true },
-      });
-      const stack = await tx.inventarioObjeto.findFirst({
-        where: { inventarioId: inventario.id, objetoId: objeto.objetoId },
-        select: { id: true, cantidad: true },
-        orderBy: { id: "asc" },
-      });
-      if (stack) {
-        await tx.inventarioObjeto.update({
-          where: { id: stack.id },
-          data: { cantidad: { increment: cantidad } },
-        });
-      } else {
-        await tx.inventarioObjeto.create({
-          data: {
-            inventarioId: inventario.id,
-            objetoId: objeto.objetoId,
-            cantidad,
-            nivelMejora: 0,
-            sufijoId: null,
-            bonificaciones: {},
-          },
-        });
+      const agregado = await agregarObjetoAlInventario(tx, personaje.id, objeto.objetoId, cantidad);
+      if (agregado) registrarObjetoRecompensa(objetosRepartidos, objeto.objetoId, cantidad);
+    }
+    if (dropEnemigo && indice === indiceReceptorDrop) {
+      const agregado = await agregarObjetoAlInventario(
+        tx,
+        personaje.id,
+        dropEnemigo.objetoId,
+        dropEnemigo.cantidad,
+      );
+      if (agregado) {
+        registrarObjetoRecompensa(objetosRepartidos, dropEnemigo.objetoId, dropEnemigo.cantidad);
+        logLiquidacion.push(`🎲 Botín de ${combate.enemigoNombre}: ${dropEnemigo.objetoId} para ${miembro.usuarioId}.`);
       }
-      objetosRepartidos.push({ objetoId: objeto.objetoId, cantidad });
     }
 
     detalle.push({
@@ -503,20 +591,30 @@ async function liquidarRecompensasParty(
       experiencia,
       objetos: objetosRepartidos,
     });
-    const log = obtenerLog(combate.log);
-    log.push(
+    logLiquidacion.push(
       `🎁 ${miembro.usuarioId}: +${oro} oro, +${madera} madera, +${piedra} piedra, +${metal} metal y +${experiencia} XP.${mensajesBase}${mensajesJob}`,
     );
-    const logGuardado = await tx.combateParty.updateMany({
-      where: { id: combatePartyId, recompensasResueltas: true },
-      data: { log: log as unknown as Prisma.InputJsonValue },
-    });
-    if (logGuardado.count !== 1) {
-      throw new PartyServiceError("No se pudo registrar el resumen de recompensas.", 409, "COMBATE_PARTY_MODIFICADO");
-    }
   }
 
-  return { liquidacionYaResuelta: false, oroTotal, experienciaPorMiembro: detalle.map((d) => ({ usuarioId: d.usuarioId, experiencia: d.experiencia })), recompensas: detalle };
+  const logGuardado = await tx.combateParty.updateMany({
+    where: {
+      id: combatePartyId,
+      recompensasResueltas: true,
+      version: combate.version + 1,
+    },
+    data: { log: logLiquidacion as unknown as Prisma.InputJsonValue },
+  });
+  if (logGuardado.count !== 1) {
+    throw new PartyServiceError("No se pudo registrar el resumen de recompensas.", 409, "COMBATE_PARTY_MODIFICADO");
+  }
+
+  return {
+    liquidacionYaResuelta: false,
+    oroTotal,
+    dropEnemigo,
+    experienciaPorMiembro: detalle.map((d) => ({ usuarioId: d.usuarioId, experiencia: d.experiencia })),
+    recompensas: detalle,
+  };
 }
 
 export async function ejecutarAccionCombateParty(
