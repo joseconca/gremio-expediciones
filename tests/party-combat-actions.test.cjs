@@ -670,4 +670,5 @@ test("cada aventurero conserva su propio límite de inventario al recibir el dro
   assert.equal(calls.inventoryStackWrites.length, 0);
   assert.equal(combat.log.filter((line) => line.includes("su inventario está lleno")).length, 2);
   assert.equal(combat.log.filter((line) => line.includes("no ha podido recibir") && line.includes("inventario está lleno")).length, 2);
+  assert.equal(combat.log.filter((line) => line.includes("inventarios de la party están llenos")).length, 0);
 });
