@@ -485,6 +485,7 @@ model CombateParty {
   efectosEnemigo        Json     @default("[]")
   log                   Json     @default("[]")
   ultimaAccion          Json?
+  recompensasResueltas   Boolean  @default(false)
   creado                DateTime @default(now())
   actualizado           DateTime @updatedAt
 
