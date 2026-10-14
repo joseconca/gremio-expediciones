@@ -322,6 +322,8 @@ test("el último informe de combate se conserva después del regreso y queda lim
   const tx = {
     partyMember: { findUnique: async () => null },
     partyTransfer: { findMany: async () => [] },
+    party: { findUnique: async () => null },
+    usuario: { findUnique: async () => null },
     expedicionParty: {
       findFirst: async (args) => {
         llamadaHistorial.push(args);
