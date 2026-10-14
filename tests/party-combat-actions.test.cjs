@@ -215,13 +215,13 @@ test("un ataque básico reduce al enemigo y avanza al siguiente miembro", async 
 
 test("un ataque que vacía el HP del enemigo marca victoria en vez de ceder otro turno", async () => {
   const combat = mkCombat({ enemigoHp: 10 });
-  const { prisma } = mockPrisma(combat);
+  const { prisma, calls } = mockPrisma(combat);
   const service = loadService(prisma);
   const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "atacar");
   assert.equal(result.fase, "victoria");
   assert.equal(combat.fase, "victoria");
   assert.equal(combat.enemigoHp, 0);
-  assert.equal(calls?.expeditionWrites?.[0]?.data?.fase ?? "regresando", "regresando");
+  assert.equal(calls.expeditionWrites[0].data.fase, "regresando");
 });
 
 test("el turno del enemigo apunta al aventurero con menor porcentaje de vida", async () => {
