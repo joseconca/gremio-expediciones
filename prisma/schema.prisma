@@ -171,6 +171,7 @@ model HabilidadAprendida {
   id          String  @id @default(uuid())
   personajeId String
   habilidadId String
+  nivel       Int     @default(1)
   slot        String?
 
   personaje Personaje @relation(fields: [personajeId], references: [id], onDelete: Cascade)

@@ -281,7 +281,7 @@ export async function iniciarExpedicion(request: Request) {
 
     const estadisticas = calcularEstadisticasPersonaje(
       personaje,
-      personaje.habilidades.filter((habilidad) => habilidad.slot !== null).map((habilidad) => habilidad.habilidadId),
+      personaje.habilidades.filter((habilidad) => habilidad.slot !== null).map((habilidad) => ({ habilidadId: habilidad.habilidadId, nivel: habilidad.nivel })),
       modificadoresEquipo
     );
 

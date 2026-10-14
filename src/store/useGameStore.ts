@@ -125,6 +125,7 @@ function construirEdificios(
 
 export interface HabilidadPersonaje {
   habilidadId: string;
+  nivel: number;
   slot: SlotHabilidad | null;
 }
 
@@ -464,6 +465,7 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
         .filter((habilidad) => typeof habilidad.habilidadId === "string")
         .map((habilidad) => ({
           habilidadId: habilidad.habilidadId as string,
+          nivel: typeof habilidad.nivel === "number" ? Math.max(1, Math.floor(habilidad.nivel)) : 1,
           slot:
             typeof habilidad.slot === "string"
               ? (habilidad.slot as SlotHabilidad)
@@ -476,7 +478,7 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
       (habilidad) =>
         habilidad.slot === "pasiva_1" || habilidad.slot === "pasiva_2"
     )
-    .map((habilidad) => habilidad.habilidadId);
+    .map((habilidad) => ({ habilidadId: habilidad.habilidadId, nivel: habilidad.nivel }));
 
   const inventario: ObjetoInventario[] =
     datos.inventario &&
@@ -564,12 +566,12 @@ function construirPersonaje(datosPersonaje: unknown): Personaje | null {
     modificadoresEquipo
   );
 
-  const pasivasPorHabilidad = habilidadesPasivasEquipadas.map((habilidadId) => ({
-    habilidadId,
-    nombre: obtenerHabilidadPorId(habilidadId)?.nombre ?? habilidadId,
+  const pasivasPorHabilidad = habilidadesPasivasEquipadas.map((habilidad) => ({
+    habilidadId: habilidad.habilidadId,
+    nombre: obtenerHabilidadPorId(habilidad.habilidadId)?.nombre ?? habilidad.habilidadId,
     modificadores: calcularEstadisticasPersonaje(
       datosEstadisticas,
-      [habilidadId],
+      [habilidad],
       modificadoresEquipo
     ).pasivas,
   }));

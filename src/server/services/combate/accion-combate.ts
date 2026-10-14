@@ -11,6 +11,7 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
+import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
 import type { DefinicionHabilidad, RecompensaMision, EstadoEfectoHabilidad } from "@/lib/tiposJuego";
 import {
   leerEfectosCombate,
@@ -110,7 +111,7 @@ async function recuperarEnergiaLimitada(
       energiaActual: true,
       habilidades: {
         where: { slot: { not: null } },
-        select: { habilidadId: true },
+        select: { habilidadId: true, nivel: true },
       },
       progresosClase: { select: { claseId: true, nivelJob: true, desbloqueada: true } },
       equipoEquipado: {
@@ -142,7 +143,7 @@ async function recuperarEnergiaLimitada(
     suerte: personaje.suerte,
     velocidadMejoras: personaje.velocidadMejoras,
     capacidadCarruajeMejoras: personaje.capacidadCarruajeMejoras,
-  }, personaje.habilidades.map((habilidad) => habilidad.habilidadId), modificadoresEquipo).total;
+  }, personaje.habilidades.map((habilidad) => ({ habilidadId: habilidad.habilidadId, nivel: habilidad.nivel })), modificadoresEquipo).total;
   const energiaNueva = Math.min(
     estadisticas.energiaMaxima ?? 20,
     personaje.energiaActual + Math.floor(cantidad),
@@ -211,7 +212,7 @@ export async function regenerarRecursosPorTurno(
       manaActual: true,
       habilidades: {
         where: { slot: { not: null } },
-        select: { habilidadId: true },
+        select: { habilidadId: true, nivel: true },
       },
       equipoEquipado: {
         select: {
@@ -255,7 +256,7 @@ export async function regenerarRecursosPorTurno(
     suerte: personaje.suerte,
     velocidadMejoras: personaje.velocidadMejoras,
     capacidadCarruajeMejoras: personaje.capacidadCarruajeMejoras,
-  }, personaje.habilidades.map((habilidad) => habilidad.habilidadId), modificadoresEquipo).total;
+  }, personaje.habilidades.map((habilidad) => ({ habilidadId: habilidad.habilidadId, nivel: habilidad.nivel })), modificadoresEquipo).total;
 
   const energiaMaxima = estadisticas.energiaMaxima ?? 20;
   const manaMaximo = estadisticas.manaMaximo ?? 10;
@@ -593,7 +594,7 @@ export async function prepararAccionCombate(
       const definicion = obtenerHabilidadPorId(aprendida.habilidadId);
       if (!definicion || definicion.tipo !== "pasiva") return total;
       if (!puedeUsarHabilidadDeClase(personaje.profesionActivaId || "novato", definicion.claseId)) return total;
-      return total + (definicion.bonusCuracion ?? 0);
+      return total + (ajustarHabilidadPorNivel(definicion, aprendida.nivel).bonusCuracion ?? 0);
     }, 0);
 
     // ============================================================
@@ -770,7 +771,7 @@ export async function prepararAccionCombate(
         );
       }
 
-      habilidad = habilidadEncontrada;
+      habilidad = ajustarHabilidadPorNivel(habilidadEncontrada, habilidadAprendida.nivel);
 
       if (!puedeUsarHabilidadDeClase(personaje.profesionActivaId || "novato", habilidad.claseId)) {
         return NextResponse.json(

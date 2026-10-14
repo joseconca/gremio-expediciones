@@ -10,6 +10,7 @@ const {
 const { calcularEstadisticasDerivadasRpg } = require("../src/lib/progresion/estadisticas.ts");
 const { calcularEstadisticasPersonaje } = require("../src/lib/estadisticasPersonaje.ts");
 const { calcularAtributosClase } = require("../src/lib/progresion/atributos-clase.ts");
+const { ajustarHabilidadPorNivel, nivelMaximoHabilidad, costeReinicioHabilidades } = require("../src/lib/progresion/niveles-habilidad.ts");
 const { mapearBonificacionesEquipoRpg } = require("../src/lib/progresion/bonificaciones-equipo.ts");
 const { aplicarExperienciaJob, experienciaJobParaNivel } = require("../src/lib/progresion/experiencia.ts");
 const {
@@ -309,6 +310,28 @@ test("las bonificaciones de equipo se aplican a máximos y regeneración de recu
   assert.equal(equipado.manaMaximo, base.manaMaximo + 8);
   assert.equal(equipado.regeneracionEnergiaPorTurno, base.regeneracionEnergiaPorTurno + 2);
   assert.equal(equipado.regeneracionManaPorTurno, base.regeneracionManaPorTurno + 1);
+});
+
+test("habilidades: límites por tier, progresión de efectos y coste de reseteo", () => {
+  const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
+  assert.equal(nivelMaximoHabilidad("novato"), 3);
+  assert.equal(nivelMaximoHabilidad("espadachin"), 5);
+  assert.equal(nivelMaximoHabilidad("caballero"), 10);
+  assert.equal(nivelMaximoHabilidad("cruzado"), 10);
+  assert.equal(costeReinicioHabilidades(10), 1000);
+  assert.equal(costeReinicioHabilidades(1), 100);
+  const basica = obtenerHabilidadPorId("golpe_apresurado");
+  const nivel1 = ajustarHabilidadPorNivel(basica, 1);
+  const nivel3 = ajustarHabilidadPorNivel(basica, 3);
+  assert.equal(nivel1.multiplicadorDano, basica.multiplicadorDano);
+  assert.ok(nivel3.multiplicadorDano > nivel1.multiplicadorDano);
+  assert.ok(nivel3.cooldownTurnos < nivel1.cooldownTurnos);
+  assert.equal(ajustarHabilidadPorNivel(basica, 99).cooldownTurnos, nivel3.cooldownTurnos);
+  const avanzada = obtenerHabilidadPorId("descarga_elemental");
+  const avanzadaN1 = ajustarHabilidadPorNivel(avanzada, 1);
+  const avanzadaN10 = ajustarHabilidadPorNivel(avanzada, 10);
+  assert.ok(avanzadaN10.multiplicadorDano > avanzadaN1.multiplicadorDano);
+  assert.equal(avanzadaN10.costeMana, avanzadaN1.costeMana);
 });
 
 test("Job: cada nivel concede un punto de habilidad y conserva el exceso de experiencia", () => {

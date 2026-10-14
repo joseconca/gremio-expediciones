@@ -5,6 +5,7 @@ import type {
 } from "./tiposJuego";
 import { calcularEstadisticasBase } from "./configuracionJuego";
 import { obtenerHabilidadPorId } from "./habilidades";
+import { ajustarHabilidadPorNivel, type HabilidadAprendidaConNivel } from "./progresion/niveles-habilidad";
 import { calcularEstadisticasObjeto } from "./objetos";
 import {
   calcularEstadisticasDerivadasRpg,
@@ -215,11 +216,16 @@ export function calcularModificadoresEquipo(
 }
 
 function obtenerModificadoresPasivas(
-  habilidadesAprendidas: string[],
+  habilidadesAprendidas: HabilidadAprendidaConNivel[],
   claseActualId: string
 ): ModificadoresEstadisticas {
   const pasivas: DefinicionHabilidad[] = habilidadesAprendidas
-    .map((habilidadId) => obtenerHabilidadPorId(habilidadId))
+    .map((entrada) => {
+      const habilidadId = typeof entrada === "string" ? entrada : entrada.habilidadId;
+      const nivel = typeof entrada === "string" ? 1 : entrada.nivel ?? 1;
+      const habilidad = obtenerHabilidadPorId(habilidadId);
+      return habilidad ? ajustarHabilidadPorNivel(habilidad, nivel) : undefined;
+    })
     .filter(
       (habilidad): habilidad is DefinicionHabilidad =>
         habilidad !== undefined &&
@@ -443,7 +449,7 @@ function calcularBaseSinAtributos(
 
 export function calcularEstadisticasPersonaje(
   personaje: DatosPersonajeEstadisticas,
-  habilidadesAprendidas: string[] = [],
+  habilidadesAprendidas: HabilidadAprendidaConNivel[] = [],
   equipo: ModificadoresEstadisticas = MODIFICADORES_VACIOS,
   combate: ModificadoresEstadisticas = MODIFICADORES_VACIOS
 ): DesgloseEstadisticasPersonaje {
