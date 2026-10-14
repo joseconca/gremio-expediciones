@@ -192,6 +192,7 @@ function mockPrisma(combat, options = {}) {
         if (where.turnoActualUsuarioId && where.turnoActualUsuarioId !== combat.turnoActualUsuarioId) return { count: 0 };
         if (where.recompensasResueltas === false && combat.recompensasResueltas === true) return { count: 0 };
         if (where.fase === "victoria" && combat.fase !== "victoria") return { count: 0 };
+        if (data.recompensasResueltas === true) combat.recompensasResueltas = true;
         Object.assign(combat, data, { version: combat.version + 1 });
         return { count: 1 };
       },
