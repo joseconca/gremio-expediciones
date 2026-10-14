@@ -27,6 +27,16 @@ import {
   type ParticipanteTurnoParty,
 } from "@/lib/party/combate-reglas";
 import { PartyServiceError } from "@/server/services/party/party-service";
+import { obtenerEnemigoPorId } from "@/lib/enemigos";
+import { experienciaParaNivel } from "@/lib/configuracionJuego";
+import {
+  aplicarMultiplicadorRecompensa,
+  calcularExperienciaBaseGanada,
+  calcularOroEnemigo,
+  esModoDificultad,
+  registrarVictoriaRangoNormal,
+} from "@/lib/expediciones/dificultad";
+import { otorgarExperienciaJob } from "@/server/services/combate/accion-combate";
 import { reducirCooldowns, obtenerCooldowns } from "@/server/services/combate/accion-combate";
 import { calcularFechaLlegadaParty } from "@/lib/party/expedicion-reglas";
 import { calcularDistanciaKm } from "@/lib/utils";
@@ -246,6 +256,267 @@ async function gastarCostesHabilidad(
   if (resultado.count !== 1) {
     throw new PartyServiceError("Los recursos cambiaron antes de ejecutar la habilidad.", 409, "RECURSOS_COMBATE_MODIFICADOS");
   }
+}
+
+type RecompensaRecursosParty = {
+  oro: number;
+  madera: number;
+  piedra: number;
+  metal: number;
+  objetos: { objetoId: string; cantidad: number }[];
+};
+
+function leerRecompensaParty(valor: unknown): RecompensaRecursosParty {
+  if (!valor || typeof valor !== "object" || Array.isArray(valor)) {
+    return { oro: 0, madera: 0, piedra: 0, metal: 0, objetos: [] };
+  }
+  const record = valor as Record<string, unknown>;
+  const cantidad = (key: string) =>
+    typeof record[key] === "number" && Number.isFinite(record[key])
+      ? Math.max(0, Math.floor(record[key] as number))
+      : 0;
+  const objetos = Array.isArray(record.objetos)
+    ? record.objetos.flatMap((item) => {
+        if (!item || typeof item !== "object" || Array.isArray(item)) return [];
+        const objeto = item as Record<string, unknown>;
+        if (
+          typeof objeto.objetoId !== "string" ||
+          !objeto.objetoId.trim() ||
+          typeof objeto.cantidad !== "number" ||
+          !Number.isFinite(objeto.cantidad) ||
+          objeto.cantidad <= 0
+        ) return [];
+        return [{ objetoId: objeto.objetoId.trim(), cantidad: Math.floor(objeto.cantidad) }].filter((x) => x.cantidad > 0);
+      })
+    : [];
+  return { oro: cantidad("oro"), madera: cantidad("madera"), piedra: cantidad("piedra"), metal: cantidad("metal"), objetos };
+}
+
+function repartirCantidadEntera(total: number, numeroMiembros: number, indice: number): number {
+  if (numeroMiembros <= 0) return 0;
+  const cantidad = Math.max(0, Math.floor(total));
+  const base = Math.floor(cantidad / numeroMiembros);
+  const resto = cantidad % numeroMiembros;
+  return base + (indice < resto ? 1 : 0);
+}
+
+/** Liquida una victoria compartida exactamente una vez dentro de la transacción serializable. */
+async function liquidarRecompensasParty(
+  tx: Prisma.TransactionClient,
+  expedicionPartyId: string,
+  combatePartyId: string,
+) {
+  const combate = await tx.combateParty.findUnique({
+    where: { id: combatePartyId },
+    include: { participantes: { orderBy: { ordenTurno: "asc" } } },
+  });
+  if (!combate) {
+    throw new PartyServiceError("No se encontró el combate para liquidar las recompensas.", 404, "COMBATE_PARTY_NO_ENCONTRADO");
+  }
+  if (combate.fase !== "victoria") {
+    throw new PartyServiceError("Solo se liquidan recompensas tras una victoria.", 409, "COMBATE_PARTY_NO_VICTORIA");
+  }
+  if (combate.recompensasResueltas) {
+    return { liquidacionYaResuelta: true, recompensas: [] as unknown[] };
+  }
+
+  const expedicion = await tx.expedicionParty.findUnique({
+    where: { id: expedicionPartyId },
+    include: {
+      participantes: {
+        orderBy: { creado: "asc" },
+        include: {
+          usuario: { select: { id: true } },
+          personaje: {
+            select: {
+              id: true,
+              usuarioId: true,
+              nivel: true,
+              experiencia: true,
+              profesionActivaId: true,
+              rangosAmenazaCompletados: true,
+              inventario: { select: { id: true } },
+            },
+          },
+        },
+      },
+    },
+  });
+  if (!expedicion || expedicion.fase !== "combatiendo") {
+    throw new PartyServiceError("La expedición no está disponible para liquidar la victoria.", 409, "EXPEDICION_PARTY_NO_COMBATIENDO");
+  }
+  if (expedicion.participantes.length < 2 || expedicion.participantes.length > 3) {
+    throw new PartyServiceError("La party no tiene una composición válida para recibir recompensas.", 409, "NUMERO_MIEMBROS_INVALIDO");
+  }
+  const porUsuario = new Map(combate.participantes.map((p) => [p.usuarioId, p]));
+  const participantes = [...expedicion.participantes].sort((a, b) =>
+    (porUsuario.get(a.usuarioId)?.ordenTurno ?? 999) - (porUsuario.get(b.usuarioId)?.ordenTurno ?? 999),
+  );
+  if (participantes.some((p) => !porUsuario.has(p.usuarioId))) {
+    throw new PartyServiceError("La composición del combate no coincide con la expedición.", 409, "PARTY_COMBAT_PARTICIPANTS_MISMATCH");
+  }
+
+  const recompensaMision = leerRecompensaParty(expedicion.recompensa);
+  const enemigo = obtenerEnemigoPorId(combate.enemigoId);
+  const modoDificultad = esModoDificultad(expedicion.modoDificultad) ? expedicion.modoDificultad : "normal";
+  const oroEnemigo = enemigo
+    ? calcularOroEnemigo(enemigo.botin, expedicion.dificultad, enemigo.difMin)
+    : 0;
+  const oroTotal = aplicarMultiplicadorRecompensa(recompensaMision.oro + oroEnemigo, modoDificultad);
+  const totalMiembros = participantes.length;
+  const liquidado = await tx.combateParty.updateMany({
+    where: {
+      id: combatePartyId,
+      fase: "victoria",
+      version: combate.version,
+      recompensasResueltas: false,
+    },
+    data: {
+      recompensasResueltas: true,
+      version: { increment: 1 },
+    },
+  });
+  if (liquidado.count !== 1) {
+    const estadoActual = await tx.combateParty.findUnique({
+      where: { id: combatePartyId },
+      select: { recompensasResueltas: true },
+    });
+    if (estadoActual?.recompensasResueltas) {
+      return { liquidacionYaResuelta: true, recompensas: [] as unknown[] };
+    }
+    throw new PartyServiceError("El estado de liquidación cambió; no se duplicarán las recompensas.", 409, "RECOMPENSA_PARTY_MODIFICADA");
+  }
+
+  const detalle: {
+    usuarioId: string;
+    oro: number;
+    madera: number;
+    piedra: number;
+    metal: number;
+    experiencia: number;
+    objetos: { objetoId: string; cantidad: number }[];
+  }[] = [];
+  for (let indice = 0; indice < participantes.length; indice += 1) {
+    const miembro = participantes[indice];
+    const personaje = miembro.personaje;
+    if (!personaje) {
+      throw new PartyServiceError("Uno de los integrantes ya no tiene personaje.", 409, "PERSONAJE_NO_ENCONTRADO");
+    }
+
+    const oro = repartirCantidadEntera(oroTotal, totalMiembros, indice);
+    const madera = repartirCantidadEntera(recompensaMision.madera, totalMiembros, indice);
+    const piedra = repartirCantidadEntera(recompensaMision.piedra, totalMiembros, indice);
+    const metal = repartirCantidadEntera(recompensaMision.metal, totalMiembros, indice);
+    const experiencia = calcularExperienciaBaseGanada(expedicion.dificultad, personaje.nivel, modoDificultad);
+    const experienciaActual = Math.max(0, Math.floor(personaje.experiencia ?? 0));
+    let nivel = Math.max(1, Math.floor(personaje.nivel ?? 1));
+    let experienciaNueva = experienciaActual + experiencia;
+    let nivelesSubidos = 0;
+    while (experienciaNueva >= experienciaParaNivel(nivel)) {
+      experienciaNueva -= experienciaParaNivel(nivel);
+      nivel += 1;
+      nivelesSubidos += 1;
+    }
+    const rangosAmenazaCompletados =
+      expedicion.tipo === "normal" && modoDificultad === "normal"
+        ? registrarVictoriaRangoNormal(personaje.rangosAmenazaCompletados, expedicion.dificultad)
+        : undefined;
+
+    await tx.usuario.update({
+      where: { id: miembro.usuarioId },
+      data: {
+        oro: { increment: oro },
+        madera: { increment: madera },
+        piedra: { increment: piedra },
+        metal: { increment: metal },
+      },
+    });
+    const personajeActualizado = await tx.personaje.updateMany({
+      where: { id: personaje.id, usuarioId: miembro.usuarioId },
+      data: {
+        nivel,
+        experiencia: experienciaNueva,
+        ...(rangosAmenazaCompletados ? { rangosAmenazaCompletados } : {}),
+      },
+    });
+    if (personajeActualizado.count !== 1) {
+      throw new PartyServiceError("No se pudo actualizar la progresión de un aventurero.", 409, "PERSONAJE_RECOMPENSA_MODIFICADO");
+    }
+
+    const progresoJob = await otorgarExperienciaJob(
+      tx,
+      { id: personaje.id, profesionActivaId: personaje.profesionActivaId || "novato" },
+      expedicion.dificultad,
+      personaje.nivel,
+      modoDificultad,
+    );
+    const mensajesJob = progresoJob?.nivelesSubidos
+      ? ` Job +${progresoJob.nivelesSubidos} nivel(es).`
+      : "";
+    const mensajesBase = nivelesSubidos > 0 ? ` Base +${nivelesSubidos} nivel(es).` : "";
+
+    const objetosRepartidos: { objetoId: string; cantidad: number }[] = [];
+    for (const objeto of recompensaMision.objetos) {
+      const cantidad = repartirCantidadEntera(objeto.cantidad, totalMiembros, indice);
+      if (cantidad <= 0) continue;
+      const definicionObjeto = obtenerObjetoPorId(objeto.objetoId);
+      if (!definicionObjeto) continue;
+      const inventarioExistente = await tx.inventario.findUnique({
+        where: { personajeId: personaje.id },
+        select: { id: true },
+      });
+      const inventario = inventarioExistente ?? await tx.inventario.create({
+        data: { personajeId: personaje.id },
+        select: { id: true },
+      });
+      const stack = await tx.inventarioObjeto.findFirst({
+        where: { inventarioId: inventario.id, objetoId: objeto.objetoId },
+        select: { id: true, cantidad: true },
+        orderBy: { id: "asc" },
+      });
+      if (stack) {
+        await tx.inventarioObjeto.update({
+          where: { id: stack.id },
+          data: { cantidad: { increment: cantidad } },
+        });
+      } else {
+        await tx.inventarioObjeto.create({
+          data: {
+            inventarioId: inventario.id,
+            objetoId: objeto.objetoId,
+            cantidad,
+            nivelMejora: 0,
+            sufijoId: null,
+            bonificaciones: {},
+          },
+        });
+      }
+      objetosRepartidos.push({ objetoId: objeto.objetoId, cantidad });
+    }
+
+    detalle.push({
+      usuarioId: miembro.usuarioId,
+      oro,
+      madera,
+      piedra,
+      metal,
+      experiencia,
+      objetos: objetosRepartidos,
+    });
+    const log = obtenerLog(combate.log);
+    log.push(
+      `🎁 ${miembro.usuarioId}: +${oro} oro, +${madera} madera, +${piedra} piedra, +${metal} metal y +${experiencia} XP.${mensajesBase}${mensajesJob}`,
+    );
+    const logGuardado = await tx.combateParty.updateMany({
+      where: { id: combatePartyId, recompensasResueltas: true },
+      data: { log: log as unknown as Prisma.InputJsonValue },
+    });
+    if (logGuardado.count !== 1) {
+      throw new PartyServiceError("No se pudo registrar el resumen de recompensas.", 409, "COMBATE_PARTY_MODIFICADO");
+    }
+  }
+
+  return { liquidacionYaResuelta: false, oroTotal, experienciaPorMiembro: detalle.map((d) => ({ usuarioId: d.usuarioId, experiencia: d.experiencia })), recompensas: detalle };
 }
 
 export async function ejecutarAccionCombateParty(
@@ -485,6 +756,9 @@ export async function ejecutarAccionCombateParty(
       await tx.inventarioObjeto.deleteMany({ where: { id: objetoConsumible.inventarioObjetoId, cantidad: { lte: 0 } } });
     }
 
+    const recompensas = fase === "victoria"
+      ? await liquidarRecompensasParty(tx, expedicionPartyId, combate.id)
+      : null;
     const regreso = fase === "victoria" || fase === "derrota"
       ? await iniciarRegresoParty(tx, expedicionPartyId, fase === "victoria" ? "exito" : "derrota")
       : null;
@@ -498,6 +772,7 @@ export async function ejecutarAccionCombateParty(
       turnoActualUsuarioId,
       enemigoHp,
       jugadorHp,
+      ...(recompensas ? { recompensas } : {}),
       ...(regreso ? { regreso } : {}),
       accion,
     };
@@ -685,6 +960,9 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       throw new PartyServiceError("El turno enemigo ya se procesó en otra petición.", 409, "COMBATE_PARTY_MODIFICADO");
     }
 
+    const recompensas = fase === "victoria"
+      ? await liquidarRecompensasParty(tx, expedicionPartyId, combate.id)
+      : null;
     const regreso = fase === "victoria" || fase === "derrota"
       ? await iniciarRegresoParty(tx, expedicionPartyId, fase === "victoria" ? "exito" : "derrota")
       : null;
@@ -698,6 +976,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       turnoActualUsuarioId,
       enemigoHp,
       objetivoUsuarioId: objetivo?.usuarioId ?? null,
+      ...(recompensas ? { recompensas } : {}),
       ...(regreso ? { regreso } : {}),
       accion,
     };
