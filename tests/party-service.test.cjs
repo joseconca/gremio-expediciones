@@ -340,7 +340,19 @@ test("el último informe de combate se conserva después del regreso y queda lim
     },
     personaje: { findUnique: async () => null },
   };
-  const servicio = loadService(makePrisma(tx));
+  const prisma = {
+    partyMember: tx.partyMember,
+    partyTransfer: tx.partyTransfer,
+    party: tx.party,
+    usuario: tx.usuario,
+    expedicionParty: tx.expedicionParty,
+    personaje: tx.personaje,
+    $transaction: async (callback, options) => {
+      assert.equal(options?.isolationLevel, "Serializable");
+      return callback(tx);
+    },
+  };
+  const servicio = loadService(prisma);
   const estado = await servicio.obtenerEstadoParty("u1");
 
   assert.equal(llamadaHistorial.length, 1);
