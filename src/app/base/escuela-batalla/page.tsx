@@ -46,12 +46,6 @@ function nombreRareza(rareza: Rareza) {
 function etiquetaSlot(slot: SlotHabilidad) {
   return slot.startsWith("activa_") ? `Activa ${slot.slice(-1)}` : `Pasiva ${slot.slice(-1)}`;
 }
-function etiquetaCoste(habilidad: DefinicionHabilidad) {
-  const partes: string[] = [];
-  if (habilidad.costeEnergia) partes.push(`${habilidad.costeEnergia} Energía`);
-  if (habilidad.costeMana) partes.push(`${habilidad.costeMana} Maná`);
-  return partes.length ? partes.join(" + ") : "Sin coste de recurso";
-}
 function esSlot(valor: string | null): valor is SlotHabilidad {
   return valor !== null && SLOTS.includes(valor as SlotHabilidad);
 }
