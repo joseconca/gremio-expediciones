@@ -564,8 +564,7 @@ export default function HerreriaPage() {
                                   )}
                                 </div>
 
-                                <p className="mt-2 line-clamp-2 border-b border-[#60676a]/70 pb-1 text-xs leading-4 text-[#9ba0a2]">{objeto.descripcion}</p>
-
+                                
                                 {/* ESTADÍSTICAS */}
                                 <div className="mt-1 flex flex-wrap gap-x-2 gap-y-0.5 sm:mt-2 sm:gap-x-3">
                                   {obtenerEstadisticasNoCero(
