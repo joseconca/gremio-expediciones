@@ -54,7 +54,19 @@ function loadService(prisma) {
     "@/lib/utils": { calcularDistanciaKm: () => 12 },
     "@/lib/generadorMisiones": { generarMisionesDisponibles: () => [mission] },
     "@/lib/progresion/clases": { obtenerDefinicionClase: () => null },
-    "@/lib/enemigos": { obtenerEnemigoPorId: () => undefined },
+    "@/lib/enemigos": {
+      obtenerEnemigoPorId: (id) => id === "enemigo-test" ? {
+        id: "enemigo-test",
+        nombre: "Enemigo de prueba",
+        hp: 90,
+        ataque: 12,
+        defensa: 5,
+        velocidad: 8,
+        botin: 20,
+        difMin: 2,
+        rareza: "comun",
+      } : undefined,
+    },
     "@/lib/party/combate-reglas": {
       crearEstadoInicialTurnoParty: () => ({
         faseCombate: "activo",
@@ -264,4 +276,87 @@ test("la llegada compartida es atómica y mueve a la party a lista para combate"
   const result = await service.llegarExpedicionParty("guest", "exp-party-1");
   assert.equal(result.fase, "lista_para_combate");
   assert.equal(participantesActualizados, 2);
+});
+
+
+test("el inicializador del combate compartido rechaza expediciones que aún no han llegado", async () => {
+  const tx = {
+    expedicionParty: {
+      findUnique: async () => ({
+        id: "exp-party-1",
+        fase: "en_viaje",
+        participantes: [],
+        combate: null,
+      }),
+    },
+  };
+  const service = loadService({
+    $transaction: async (callback, options) => {
+      assert.equal(options?.isolationLevel, "Serializable");
+      return callback(tx);
+    },
+  });
+  await assert.rejects(
+    service.crearCombatePartySiProcede("exp-party-1"),
+    (error) => error.status === 409 && error.code === "EXPEDICION_PARTY_NO_LISTA",
+  );
+});
+
+test("el inicializador devuelve el combate existente en vez de crear otro", async () => {
+  let creaciones = 0;
+  const tx = {
+    expedicionParty: {
+      findUnique: async () => ({
+        id: "exp-party-1",
+        fase: "combatiendo",
+        participantes: [],
+        combate: { id: "combate-existente", fase: "activo" },
+      }),
+      combate: null,
+    },
+    combateParty: {
+      create: async () => {
+        creaciones += 1;
+        throw new Error("No debe crear un segundo combate.");
+      },
+    },
+  };
+  const service = loadService({
+    $transaction: async (callback, options) => {
+      assert.equal(options?.isolationLevel, "Serializable");
+      return callback(tx);
+    },
+  });
+  const resultado = await service.crearCombatePartySiProcede("exp-party-1");
+  assert.deepEqual(resultado, { combatePartyId: "combate-existente", fase: "activo" });
+  assert.equal(creaciones, 0);
+});
+
+test("el inicializador requiere un enemigo válido antes de crear el combate", async () => {
+  const participantes = [
+    { id: "p1", usuarioId: "leader", estado: "en_destino", personaje: makePersonaje("leader", 1) },
+    { id: "p2", usuarioId: "guest", estado: "en_destino", personaje: makePersonaje("guest", 1) },
+  ];
+  const tx = {
+    expedicionParty: {
+      findUnique: async () => ({
+        id: "exp-party-1",
+        fase: "lista_para_combate",
+        dificultad: 2,
+        enemigoId: "enemy-inexistente",
+        participantes,
+        combate: null,
+      }),
+    },
+  };
+  const service = loadService({
+    $transaction: async (callback, options) => {
+      assert.equal(options?.isolationLevel, "Serializable");
+      return callback(tx);
+    },
+  });
+  await assert.rejects(
+    service.crearCombatePartySiProcede("exp-party-1"),
+    (error) => error.status === 409 && error.code === "ENEMIGO_NO_ENCONTRADO",
+  );
 });
