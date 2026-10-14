@@ -307,7 +307,7 @@ test("el propietario puede rechazar una visita llegada aunque siga marcada en vi
   assert.deepEqual(llamadasEstado, ["pendiente", "regresando"]);
 });
 
-test("el último informe de combate se conserva después del regreso y solo incluye a sus participantes", async () => {
+test("el último informe de combate se conserva después del regreso y queda limitado a sus participantes", async () => {
   const informe = {
     liquidacionYaResuelta: false,
     oroTotal: 21,
@@ -337,7 +337,7 @@ test("el último informe de combate se conserva después del regreso y solo incl
     },
     personaje: { findUnique: async () => null },
   };
-  const servicio = loadService(tx);
+  const servicio = loadService(makePrisma(tx));
   const estado = await servicio.obtenerEstadoParty("u1");
 
   assert.equal(llamadaHistorial.length, 1);
