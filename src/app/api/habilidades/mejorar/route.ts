@@ -20,6 +20,7 @@ export async function POST(request: Request) {
     const habilidadId = ((body as Record<string, string>).habilidadId).trim();
     const definicion = obtenerHabilidadPorId(habilidadId);
     if (!definicion?.claseId) return NextResponse.json({ error: "La habilidad no existe o no pertenece a una profesión." }, { status: 404 });
+    const clasePropietariaId = definicion.claseId;
 
     const resultado = await prisma.$transaction(async (tx) => {
       const usuario = await tx.usuario.findUnique({
@@ -40,13 +41,13 @@ export async function POST(request: Request) {
       if (typeof edificios.escuelaCombate !== "number" || edificios.escuelaCombate < 1) throw new Error("ESCUELA_NO_CONSTRUIDA");
       if (usuario.expedicionActiva || usuario.personaje.estado === "combatiendo") throw new Error("PROGRESO_BLOQUEADO");
       const profesionActiva = usuario.personaje.profesionActivaId || "novato";
-      if (!puedeUsarHabilidadDeClase(profesionActiva, definicion.claseId)) throw new Error("HABILIDAD_CLASE_INCOMPATIBLE");
+      if (!puedeUsarHabilidadDeClase(profesionActiva, clasePropietariaId)) throw new Error("HABILIDAD_CLASE_INCOMPATIBLE");
       const aprendida = usuario.personaje.habilidades[0];
       if (!aprendida) throw new Error("HABILIDAD_NO_APRENDIDA");
-      const maximo = nivelMaximoHabilidad(definicion.claseId);
+      const maximo = nivelMaximoHabilidad(clasePropietariaId);
       if (aprendida.nivel >= maximo) throw new Error("NIVEL_MAXIMO");
       const progreso = await tx.progresoClase.findUnique({
-        where: { personajeId_claseId: { personajeId: usuario.personaje.id, claseId: definicion.claseId } },
+        where: { personajeId_claseId: { personajeId: usuario.personaje.id, claseId: clasePropietariaId } },
       });
       if (!progreso?.desbloqueada) throw new Error("PROGRESO_JOB_NO_ENCONTRADO");
       const gastado = await tx.progresoClase.updateMany({
