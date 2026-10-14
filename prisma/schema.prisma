@@ -486,6 +486,7 @@ model CombateParty {
   log                   Json     @default("[]")
   ultimaAccion          Json?
   recompensasResueltas   Boolean  @default(false)
+  recompensasResultado   Json?
   creado                DateTime @default(now())
   actualizado           DateTime @updatedAt
 
