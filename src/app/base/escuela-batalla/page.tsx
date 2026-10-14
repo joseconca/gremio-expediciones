@@ -6,6 +6,7 @@ import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import SelectorPosicionCombate from "@/components/combate/SelectorPosicionCombate";
 import PanelProfesiones from "@/components/progresion/PanelProfesiones";
 import DescripcionTactil from "@/components/ui/DescripcionTactil";
+import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 import { descripcionSimpleHabilidad, detalleNumericoHabilidad } from "@/lib/descripcionesHabilidades";
 import { CLASES } from "@/lib/progresion/clases";
 import type { DefinicionHabilidad, Rareza, SlotHabilidad } from "@/lib/tiposJuego";
@@ -248,16 +249,17 @@ export default function EscuelaCombatePage() {
                             <span className="text-[11px] text-[#98876c]">{etiquetaEfecto(habilidad)}</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <h3 className="min-w-0 text-base font-bold text-[#f1e5cf] sm:text-lg">{habilidad.nombre}</h3>
                             <DescripcionTactil
                               titulo={habilidad.nombre}
                               resumen={descripcionSimpleHabilidad(habilidad)}
-                              detalles={[
-                                ...detalleNumericoHabilidad(habilidad, clasePropietaria),
-                                `Progreso de ${clasePropietaria}: Job ${nivelJobClase}; ${puntosClaseDisponibles} ${puntosClaseDisponibles === 1 ? "punto disponible" : "puntos disponibles"}.`,
-                              ]}
+                              detalles={detalleNumericoHabilidad(habilidad)}
                               variante="madera"
-                            />
+                              etiquetaAccesible={`Ver detalles de ${habilidad.nombre}`}
+                              claseBoton="flex h-10 w-10 shrink-0 touch-manipulation items-center justify-center rounded-md border border-[#594630] bg-[#191612] p-1 transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
+                            >
+                              <IconoHabilidad habilidadId={habilidad.id} className="h-8 w-8" />
+                            </DescripcionTactil>
+                            <h3 className="min-w-0 text-base font-bold text-[#f1e5cf] sm:text-lg">{habilidad.nombre}</h3>
                           </div>
                         </div>
                         <span className={`shrink-0 rounded-md px-2 py-1 text-[10px] font-semibold ${heredada ? "bg-sky-950/70 text-sky-200" : "bg-amber-950/70 text-amber-200"}`}>
@@ -266,12 +268,18 @@ export default function EscuelaCombatePage() {
                           </span>
                       </div>
                       <p className="mt-1 line-clamp-2 text-[11px] leading-4 text-[#b2a58e]">{descripcionSimpleHabilidad(habilidad)}</p>
-                      <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-[#c7b99e] sm:mt-3 sm:gap-2 sm:text-[11px]">
-                        <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">Requisito: {clasePropietaria} {requerida}</span>
-                      </div>
+                      {!aprendida && (
+                        <p className="mt-2 rounded-md border border-amber-700/70 bg-amber-950/35 px-3 py-2 text-xs font-extrabold tracking-wide text-amber-200">
+                          <strong>Requisito: {clasePropietaria} {requerida}</strong>
+                        </p>
+                      )}
                       <div className="mt-2 border-t border-[#443624] pt-2 sm:mt-3">
-                        {aprendida ? <p className="text-sm font-semibold text-emerald-300">✓ Habilidad aprendida</p>
-                          : puede ? <button type="button" onClick={() => void enviarAccion("aprender", habilidad.id)} disabled={procesando !== null}
+                        {aprendida ? (
+                          <div className="flex flex-col gap-1">
+                            <p className="text-sm font-semibold text-emerald-300">✓ Habilidad aprendida</p>
+                            <p className="pt-1 text-[10px] font-medium text-[#786d5b]">Requisito: {clasePropietaria} {requerida}</p>
+                          </div>
+                        ) : puede ? <button type="button" onClick={() => void enviarAccion("aprender", habilidad.id)} disabled={procesando !== null}
                             className="min-h-11 w-full rounded-lg border border-amber-400/70 bg-amber-900/40 px-3 py-2 text-sm font-bold text-amber-100 transition hover:bg-amber-800/60 disabled:cursor-wait disabled:opacity-50 sm:px-4 sm:py-2.5">
                             {procesando === clave ? "Aprendiendo..." : "Aprender"}
                           </button>
@@ -296,14 +304,18 @@ export default function EscuelaCombatePage() {
                   return <div key={slot} className="min-w-0 rounded-lg border border-[#4c3b27] bg-[#191612] p-2 sm:p-3">
                     <p className="text-xs font-bold uppercase tracking-wider text-[#a99169]">{etiquetaSlot(slot)}</p>
                     {actual ? <>
-                      <div className="mt-2 flex items-start gap-1.5">
-                        <p className="min-w-0 flex-1 break-words text-sm font-semibold text-[#f0e5d0]">{actual.habilidad.nombre}</p>
+                      <div className="mt-2 flex items-center gap-2">
                         <DescripcionTactil
                           titulo={actual.habilidad.nombre}
                           resumen={descripcionSimpleHabilidad(actual.habilidad)}
-                          detalles={detalleNumericoHabilidad(actual.habilidad, CLASES[actual.habilidad.claseId ?? profesionId]?.nombre ?? actual.habilidad.claseId ?? profesionId)}
+                          detalles={detalleNumericoHabilidad(actual.habilidad)}
                           variante="madera"
-                        />
+                          etiquetaAccesible={`Ver detalles de ${actual.habilidad.nombre}`}
+                          claseBoton="flex h-10 w-10 shrink-0 touch-manipulation items-center justify-center rounded-md border border-[#594630] bg-[#191612] p-1 transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
+                        >
+                          <IconoHabilidad habilidadId={actual.habilidad.id} className="h-8 w-8" />
+                        </DescripcionTactil>
+                        <p className="min-w-0 flex-1 break-words text-sm font-semibold text-[#f0e5d0]">{actual.habilidad.nombre}</p>
                       </div>
                       {actual.disponibleParaProfesion === false && <p className="mt-1 text-xs text-red-300">No disponible para tu clase activa</p>}
                       <button type="button" onClick={() => void enviarAccion("desequipar", actual.habilidadId)} disabled={procesando !== null}
@@ -325,13 +337,11 @@ export default function EscuelaCombatePage() {
                   return <article key={item.id} className="flex flex-col gap-2 rounded-xl border border-[#4d3d2a] bg-[#211b14] p-3 sm:gap-3 sm:p-4 md:flex-row md:items-center md:justify-between">
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-2">
+                        <IconoHabilidad habilidadId={habilidad.id} className="h-9 w-9 shrink-0" />
                         <h4 className="font-bold text-[#f0e5d0]">{habilidad.nombre}</h4>
                         <span className="rounded-full bg-[#302619] px-2 py-0.5 text-[10px] uppercase text-[#b9a582]">{habilidad.tipo}</span>
                       </div>
-                      <div className="mt-1 flex items-start gap-2">
-                        <p className="min-w-0 flex-1 line-clamp-2 text-xs leading-5 text-[#a99d84] sm:text-sm">{descripcionSimpleHabilidad(habilidad)}</p>
-                        <DescripcionTactil titulo={habilidad.nombre} resumen={descripcionSimpleHabilidad(habilidad)} detalles={detalleNumericoHabilidad(habilidad, CLASES[habilidad.claseId ?? profesionId]?.nombre ?? habilidad.claseId ?? profesionId)} variante="madera" />
-                      </div>
+                      <p className="mt-1 text-xs leading-5 text-[#a99d84] sm:text-sm">{habilidad.descripcion}</p>
                       {!compatible && <p className="mt-1 text-xs text-red-300">Esta habilidad pertenece a otra rama y no está disponible con tu clase actual.</p>}
                     </div>
                     <div className="flex flex-wrap gap-1.5 sm:gap-2">

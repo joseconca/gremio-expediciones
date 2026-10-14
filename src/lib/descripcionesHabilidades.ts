@@ -50,16 +50,8 @@ export function descripcionSimpleHabilidad(habilidad: DefinicionHabilidad): stri
 }
 
 /** Detalle numérico fiable construido a partir de los parámetros mecánicos. */
-export function detalleNumericoHabilidad(
-  habilidad: DefinicionHabilidad,
-  nombreClasePropietaria: string,
-): string[] {
+export function detalleNumericoHabilidad(habilidad: DefinicionHabilidad): string[] {
   const lineas: string[] = [];
-  const requisito = habilidad.nivelJobRequerido ?? 1;
-  lineas.push(`Requisito: ${nombreClasePropietaria} ${requisito}.`);
-  const puntos = Math.max(1, Math.floor(habilidad.costePuntosHabilidad ?? 1));
-  lineas.push(`Coste de aprendizaje: ${puntos} ${puntos === 1 ? "punto de habilidad" : "puntos de habilidad"}.`);
-
   if (habilidad.tipoDano) {
     const tipoDano = habilidad.tipoDano === "magico" ? "mágico" : habilidad.tipoDano === "hibrido" ? "híbrido" : "físico";
     if (habilidad.multiplicadorDano) lineas.push(`Daño ${tipoDano}: multiplicador ×${habilidad.multiplicadorDano} del ataque.`);
