@@ -29,6 +29,13 @@ function loadService(prisma) {
     "@/lib/expediciones/combate": {
       resolverAtaqueJugador: () => ({ actor: "jugador", tipo: "ataque", animacion: "ofensiva", dano: 12, critico: false, texto: "El aventurero inflige 12 de daño." }),
       resolverAtaqueEnemigo: () => ({ actor: "enemigo", tipo: "ataque", animacion: "ofensiva", dano: 10, critico: false, texto: "El enemigo inflige 10 de daño." }),
+      resolverHabilidadJugador: (_habilidad, combate) => ({
+        accion: { actor: "jugador", tipo: "habilidad", animacion: "ofensiva", dano: 20, critico: false, texto: "Habilidad de prueba." },
+        jugadorHp: combate.jugadorHp,
+        jugadorDefensa: combate.jugadorDefensa,
+        enemigoDefensa: combate.enemigoDefensa,
+        efectos: [{ habilidadId: "golpe_arcano", tipo: "bonus_defensa", valor: 2, duracionTurnos: 2, turnosRestantes: 2, objetivo: "jugador" }],
+      }),
     },
     "@/lib/expediciones/estados-combate": {
       calcularAtaqueModificado: (value) => value,
@@ -39,6 +46,23 @@ function loadService(prisma) {
       avanzarEfectosCombate: (effects, defensa) => ({ efectos: effects, defensa, mensajes: [] }),
     },
     "@/lib/party/combate-reglas": reglas,
+    "@/lib/habilidades": {
+      obtenerHabilidadPorId: (id) => id === "golpe_arcano" ? {
+        id: "golpe_arcano", claseId: "novato", nombre: "Golpe arcano", descripcion: "Habilidad de test.",
+        tipo: "activa", efecto: "dano", costeEnergia: 5, costeMana: 0, cooldownTurnos: 2, multiplicadorDano: 1.5,
+      } : undefined,
+    },
+    "@/lib/objetos": {
+      obtenerObjetoPorId: (id) => id === "pocion" ? {
+        id: "pocion", nombre: "Poción", tipo: "consumible", curacion: 30,
+      } : undefined,
+    },
+    "@/lib/progresion/niveles-habilidad": {
+      ajustarHabilidadPorNivel: (habilidad, nivel) => ({ ...habilidad, nivel }),
+    },
+    "@/lib/progresion/clases": {
+      puedeUsarHabilidadDeClase: () => true,
+    },
     "@/server/services/combate/accion-combate": {
       reducirCooldowns: (cooldowns) => cooldowns,
     },
@@ -120,6 +144,14 @@ function mkCombat(overrides = {}) {
 
 function mockPrisma(combat, options = {}) {
   const calls = { combatWrites: [], participantWrites: [], characterWrites: [], expeditionWrites: [], expeditionParticipantWrites: [] };
+  const character = {
+    id: "personaje-u1",
+    profesionActivaId: "novato",
+    energiaActual: options.energiaActual ?? 20,
+    manaActual: options.manaActual ?? 10,
+    habilidades: options.habilidades ?? [],
+    inventario: options.inventario ?? { id: "inventario-u1", objetos: [{ id: "inv-pocion-1", objetoId: "pocion", cantidad: 1 }] },
+  };
   const tx = {
     combateParty: {
       findUnique: async () => combat,
@@ -173,6 +205,7 @@ function mockPrisma(combat, options = {}) {
       },
     },
     personaje: {
+      findUnique: async () => character,
       updateMany: async ({ where, data }) => {
         calls.characterWrites.push({ where, data });
         if (options.rejectCharacterUpdate) return { count: 0 };
@@ -252,4 +285,45 @@ test("si falla el control de versión, no se puede completar dos veces el turno"
     service.ejecutarAccionCombateParty("u1", "expedition-1", "atacar"),
     (error) => error.status === 409 && error.code === "COMBATE_PARTY_MODIFICADO",
   );
+});
+
+
+test("una habilidad activa equipada aplica daño, gasta recursos y guarda cooldown y efectos individuales", async () => {
+  const combat = mkCombat();
+  const { prisma, calls } = mockPrisma(combat, {
+    habilidades: [{ habilidadId: "golpe_arcano", nivel: 1, slot: "activa_1" }],
+    energiaActual: 20,
+    manaActual: 10,
+  });
+  const service = loadService(prisma);
+  const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad", { habilidadId: "golpe_arcano" });
+  assert.equal(result.accion.texto, "Habilidad de prueba.");
+  assert.equal(combat.enemigoHp, 20);
+  assert.equal(combat.participantes[0].cooldowns.golpe_arcano, 2);
+  assert.equal(calls.participantWrites.some((c) => c.data.efectos), true);
+  assert.equal(calls.characterWrites.some((c) => c.data.energiaActual?.decrement === 5), true);
+});
+
+test("una habilidad sin Energía suficiente se rechaza sin avanzar el turno", async () => {
+  const combat = mkCombat();
+  const { prisma, calls } = mockPrisma(combat, {
+    habilidades: [{ habilidadId: "golpe_arcano", nivel: 1, slot: "activa_1" }],
+    energiaActual: 0,
+  });
+  const service = loadService(prisma);
+  await assert.rejects(
+    service.ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad", { habilidadId: "golpe_arcano" }),
+    (error) => error.code === "ENERGIA_INSUFICIENTE",
+  );
+  assert.equal(calls.combatWrites.length, 0);
+});
+
+test("usar una poción cura al aventurero y consume una unidad de inventario", async () => {
+  const combat = mkCombat({ participantes: [mkParticipant("u1", 0, 50, 100), mkParticipant("u2", 1)] });
+  const { prisma, calls } = mockPrisma(combat);
+  const service = loadService(prisma);
+  const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "usar_objeto", { objetoInventarioId: "inv-pocion-1" });
+  assert.equal(result.jugadorHp, 80);
+  assert.equal(combat.participantes[0].jugadorHp, 80);
+  assert.equal(calls.characterWrites.some((c) => c.data.hpActual === 80), true);
 });
