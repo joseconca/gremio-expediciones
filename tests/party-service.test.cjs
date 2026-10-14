@@ -327,6 +327,7 @@ test("el último informe de combate se conserva después del regreso y queda lim
     expedicionParty: {
       findFirst: async (args) => {
         llamadaHistorial.push(args);
+        if (args.where.partyId) return null;
         return {
           id: "expedicion-terminada",
           combate: { fase: "victoria", recompensasResultado: informe },
