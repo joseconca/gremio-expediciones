@@ -568,6 +568,11 @@ test("la victoria tira botín de forma independiente para cada miembro y mantien
   assert.equal(objetosOtorgados, 5, "dos objetos de misión más un objeto independiente para cada aventurero");
   assert.equal(calls.inventoryStackWrites.reduce((s, w) => s + (w.cantidad ?? 0), 0), 5);
   assert.equal(calls.userWrites.length, 3);
+
+  const informePersistido = calls.combatWrites.find((write) => write.data.recompensasResultado);
+  assert.ok(informePersistido, "el informe estructurado debe guardarse en el combate");
+  assert.deepEqual(informePersistido.data.recompensasResultado.dropsEnemigo.map((drop) => drop.usuarioId), ["u1", "u2", "u3"]);
+  assert.deepEqual(informePersistido.data.recompensasResultado.recompensas.map((miembro) => miembro.experiencia), [30, 30, 30]);
 });
 
 test("cada aventurero conserva su propio límite de inventario al recibir el drop", async () => {
