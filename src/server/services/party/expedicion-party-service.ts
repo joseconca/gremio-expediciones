@@ -528,6 +528,70 @@ export async function crearCombatePartySiProcede(expedicionPartyId: string) {
   }, AISLAMIENTO);
 }
 
+export async function completarRegresoExpedicionParty(usuarioId: string, idDesconocido: unknown) {
+  if (typeof idDesconocido !== "string" || idDesconocido.trim().length === 0 || idDesconocido.length > 100) {
+    throw new PartyServiceError("El identificador de expedición no es válido.", 400, "EXPEDICION_ID_INVALIDO");
+  }
+  const expedicionPartyId = idDesconocido.trim();
+  return prisma.$transaction(async (tx) => {
+    const expedicion = await tx.expedicionParty.findUnique({
+      where: { id: expedicionPartyId },
+      include: { participantes: { select: { id: true, usuarioId: true, personajeId: true, estado: true } } },
+    });
+    if (!expedicion) {
+      throw new PartyServiceError("No se encontró la expedición compartida.", 404, "EXPEDICION_PARTY_NO_ENCONTRADA");
+    }
+    const participante = expedicion.participantes.find((p) => p.usuarioId === usuarioId);
+    if (!participante) {
+      throw new PartyServiceError("No perteneces a esta expedición compartida.", 403, "NO_ES_PARTICIPANTE");
+    }
+    if (expedicion.fase === "completada") {
+      return { expedicionPartyId, fase: "completada", llegadaProcesada: true };
+    }
+    if (expedicion.fase !== "regresando") {
+      throw new PartyServiceError("La expedición no está en fase de regreso.", 409, "EXPEDICION_PARTY_NO_REGRESANDO");
+    }
+    if (expedicion.fechaLlegada > new Date()) {
+      throw new PartyServiceError("La party todavía está de camino a sus bases.", 409, "REGRESO_PARTY_NO_LLEGADO");
+    }
+
+    const actualizado = await tx.expedicionParty.updateMany({
+      where: { id: expedicionPartyId, fase: "regresando" },
+      data: { fase: "completada" },
+    });
+    if (actualizado.count !== 1) {
+      const actual = await tx.expedicionParty.findUnique({
+        where: { id: expedicionPartyId },
+        select: { fase: true },
+      });
+      if (actual?.fase === "completada") {
+        return { expedicionPartyId, fase: "completada", llegadaProcesada: true };
+      }
+      throw new PartyServiceError("El regreso compartido ya ha sido procesado.", 409, "REGRESO_PARTY_MODIFICADO");
+    }
+
+    await tx.expedicionPartyParticipante.updateMany({
+      where: { expedicionPartyId, estado: "regresando" },
+      data: { estado: "completado" },
+    });
+    for (const miembro of expedicion.participantes) {
+      const personaje = await tx.personaje.updateMany({
+        where: {
+          id: miembro.personajeId,
+          usuarioId: miembro.usuarioId,
+          estado: "de_viaje",
+        },
+        data: { estado: "ocioso" },
+      });
+      if (personaje.count !== 1) {
+        throw new PartyServiceError("El estado de un personaje cambió al finalizar el regreso.", 409, "PERSONAJE_MODIFICADO");
+      }
+    }
+
+    return { expedicionPartyId, fase: "completada", llegadaProcesada: true };
+  }, AISLAMIENTO);
+}
+
 export async function llegarExpedicionParty(usuarioId: string, idDesconocido: unknown) {
   if (typeof idDesconocido !== "string" || idDesconocido.trim().length === 0 || idDesconocido.length > 100) {
     throw new PartyServiceError("El identificador de expedición no es válido.", 400, "EXPEDICION_ID_INVALIDO");

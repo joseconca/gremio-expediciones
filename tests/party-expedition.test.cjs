@@ -360,3 +360,61 @@ test("el inicializador requiere un enemigo válido antes de crear el combate", a
     (error) => error.status === 409 && error.code === "ENEMIGO_NO_ENCONTRADO",
   );
 });
+
+
+test("completar regreso de party requiere llegada y finaliza de forma idempotente", async () => {
+  const { prisma, calls } = makeExpeditionReturnPrisma();
+  const servicio = loadService(prisma);
+  await assert.rejects(
+    servicio.completarRegresoExpedicionParty("leader", "exp-party-regreso"),
+    (error) => error.status === 409 && error.code === "REGRESO_PARTY_NO_LLEGADO",
+  );
+});
+
+function makeExpeditionReturnPrisma() {
+  let fase = "regresando";
+  const fechas = { salida: new Date(Date.now() - 60_000), llegada: new Date(Date.now() - 1_000) };
+  const expedicion = {
+    id: "exp-party-regreso",
+    fase,
+    fechaSalida: fechas.salida,
+    fechaLlegada: fechas.llegada,
+    participantes: [
+      { id: "ep1", usuarioId: "leader", personajeId: "char-leader", estado: "regresando" },
+      { id: "ep2", usuarioId: "guest", personajeId: "char-guest", estado: "regresando" },
+    ],
+  };
+  const calls = { expeditionWrites: [], participantWrites: [], characterWrites: [] };
+  const tx = {
+    expedicionParty: {
+      findUnique: async ({ select } = {}) => select ? { fase } : { ...expedicion, fase },
+      updateMany: async ({ where, data }) => {
+        calls.expeditionWrites.push({ where, data });
+        if (fase !== where.fase) return { count: 0 };
+        fase = data.fase;
+        return { count: 1 };
+      },
+    },
+    expedicionPartyParticipante: {
+      updateMany: async ({ where, data }) => {
+        calls.participantWrites.push({ where, data });
+        return { count: 2 };
+      },
+    },
+    personaje: {
+      updateMany: async ({ where, data }) => {
+        calls.characterWrites.push({ where, data });
+        return { count: 1 };
+      },
+    },
+  };
+  return {
+    calls,
+    prisma: {
+      $transaction: async (callback, options) => {
+        assert.equal(options?.isolationLevel, "Serializable");
+        return callback(tx);
+      },
+    },
+  };
+}
