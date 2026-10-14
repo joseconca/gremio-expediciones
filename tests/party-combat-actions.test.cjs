@@ -39,6 +39,9 @@ function loadService(prisma) {
       avanzarEfectosCombate: (effects, defensa) => ({ efectos: effects, defensa, mensajes: [] }),
     },
     "@/lib/party/combate-reglas": reglas,
+    "@/server/services/combate/accion-combate": {
+      reducirCooldowns: (cooldowns) => cooldowns,
+    },
     "@/lib/party/expedicion-reglas": {
       ...reglasExpedicion,
       calcularFechaLlegadaParty: (_distance, velocidades, _multiplicador, salida) =>
