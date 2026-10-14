@@ -37,6 +37,7 @@ model Usuario {
   trasladosComoAnfitrion     PartyTransfer[] @relation("TransferAnfitrion")
   expedicionesPartyLideradas ExpedicionParty[] @relation("ExpedicionPartyLider")
   expedicionesPartyParticipaciones ExpedicionPartyParticipante[] @relation("ExpedicionPartyUsuario")
+  combatesPartyParticipaciones CombatePartyParticipante[] @relation("CombatePartyUsuario")
 }
 
 model Sesion {
@@ -89,6 +90,7 @@ model Personaje {
   progresosClase     ProgresoClase[]
   rangosAmenazaCompletados Json @default("[]")
   expedicionesPartyParticipaciones ExpedicionPartyParticipante[]
+  combatesPartyParticipaciones CombatePartyParticipante[] @relation("CombatePartyPersonaje")
 }
 
 model ProgresoClase {
@@ -424,6 +426,7 @@ model ExpedicionParty {
   party Party  @relation(fields: [partyId], references: [id], onDelete: Restrict)
   liderUsuario Usuario @relation("ExpedicionPartyLider", fields: [liderUsuarioId], references: [id], onDelete: Cascade)
   participantes ExpedicionPartyParticipante[]
+  combate CombateParty?
 
   @@index([partyId, fase])
   @@index([fase, fechaLlegada])
@@ -448,6 +451,78 @@ model ExpedicionPartyParticipante {
 
   @@unique([expedicionPartyId, usuarioId])
   @@unique([expedicionPartyId, personajeId])
+  @@index([usuarioId, estado])
+  @@index([personajeId, estado])
+}
+
+
+model CombateParty {
+  id                    String   @id @default(uuid())
+  expedicionPartyId     String   @unique
+  expedicionParty       ExpedicionParty @relation(fields: [expedicionPartyId], references: [id], onDelete: Cascade)
+  version               Int      @default(0)
+  fase                  String   @default("activo")
+  ronda                 Int      @default(1)
+  faseTurno             String   @default("jugador")
+  turnoActualUsuarioId  String?
+  enemigoId             String
+  enemigoNombre         String
+  enemigoHp             Int
+  enemigoHpMaximo       Int
+  enemigoAtaque         Int
+  enemigoAtaqueMagico   Int
+  enemigoDefensa        Int
+  enemigoDefensaMagica  Int
+  enemigoVelocidad      Int
+  enemigoProbCritico    Float
+  enemigoDanoCritico    Float
+  enemigoPrecision      Float    @default(75)
+  enemigoEvasion        Float    @default(0)
+  enemigoNivel          Int
+  efectosEnemigo        Json     @default("[]")
+  log                   Json     @default("[]")
+  ultimaAccion          Json?
+  creado                DateTime @default(now())
+  actualizado           DateTime @updatedAt
+
+  participantes CombatePartyParticipante[]
+
+  @@index([fase, actualizado])
+  @@index([faseTurno, turnoActualUsuarioId])
+}
+
+model CombatePartyParticipante {
+  id                    String   @id @default(uuid())
+  combatePartyId        String
+  usuarioId             String
+  personajeId           String
+  ordenTurno            Int
+  estado                String   @default("activo")
+  jugadorPosicion       String   @default("centro")
+  jugadorHp             Int
+  jugadorHpMaximo       Int
+  jugadorAtaque         Int
+  jugadorAtaqueMagico   Int      @default(1)
+  jugadorDefensa        Int
+  jugadorDefensaMagica  Int      @default(0)
+  jugadorVelocidad      Int
+  jugadorProbCritico    Float
+  jugadorDanoCritico    Float
+  jugadorPrecision      Float    @default(75)
+  jugadorEvasion        Float    @default(0)
+  jugadorNivel          Int
+  cooldowns             Json     @default("{}")
+  efectos               Json     @default("[]")
+  creado                DateTime @default(now())
+  actualizado           DateTime @updatedAt
+
+  combateParty CombateParty @relation(fields: [combatePartyId], references: [id], onDelete: Cascade)
+  usuario      Usuario      @relation("CombatePartyUsuario", fields: [usuarioId], references: [id], onDelete: Cascade)
+  personaje    Personaje    @relation("CombatePartyPersonaje", fields: [personajeId], references: [id], onDelete: Cascade)
+
+  @@unique([combatePartyId, usuarioId])
+  @@unique([combatePartyId, personajeId])
+  @@unique([combatePartyId, ordenTurno])
   @@index([usuarioId, estado])
   @@index([personajeId, estado])
 }
