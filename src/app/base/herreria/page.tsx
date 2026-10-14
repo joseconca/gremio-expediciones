@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image"
 import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
+import DescripcionTactil from "@/components/ui/DescripcionTactil";
 import { useGameStore } from "@/store/useGameStore";
 import {
   calcularCosteMejoraObjeto,
@@ -537,9 +538,23 @@ export default function HerreriaPage() {
                                     )}
                                   </div>
 
-                                  <h4 className="text-lg font-black text-[#e3dfd8]">
+                                  <h4 className="min-w-0 text-lg font-black text-[#e3dfd8]">
                                     {objeto.nombre}
                                   </h4>
+                                  <DescripcionTactil
+                                    titulo={objeto.nombre}
+                                    resumen={objeto.descripcion}
+                                    detalles={[
+                                      objeto.descripcion,
+                                      ...obtenerEstadisticasNoCero(
+                                        objeto,
+                                        objetoInventario.nivelMejora,
+                                        objetoInventario.bonificaciones
+                                      ).map((estadistica) => `${estadistica.nombre}: ${formatearValorEstadistica(estadistica.clave, estadistica.valor)}`),
+                                      ...(objeto.manos === 2 ? ["Ocupa ambas manos y bloquea la ranura secundaria."] : []),
+                                    ]}
+                                    variante="metal"
+                                  />
 
                                   <span
                                     className={`rounded border px-2 py-0.5 text-[9px] font-black uppercase tracking-wider ${estiloRareza(
