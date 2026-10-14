@@ -669,6 +669,46 @@ export async function obtenerEstadoParty(usuarioId: string) {
       }
     : null;
 
+  const ultimaExpedicionConResultadoRaw = !expedicionActivaRaw
+    ? await prisma.expedicionParty.findFirst({
+        where: {
+          participantes: { some: { usuarioId } },
+          combate: { is: { fase: { in: ["victoria", "derrota"] } } },
+        },
+        orderBy: { creado: "desc" },
+        select: {
+          id: true,
+          combate: { select: { fase: true, recompensasResultado: true } },
+          participantes: {
+            orderBy: { creado: "asc" },
+            include: {
+              usuario: {
+                select: {
+                  id: true,
+                  nombre: true,
+                  personaje: { select: { nombre: true, nivel: true, estado: true } },
+                },
+              },
+            },
+          },
+        },
+      })
+    : null;
+  const ultimoResultadoExpedicion =
+    ultimaExpedicionConResultadoRaw?.combate &&
+    (ultimaExpedicionConResultadoRaw.combate.fase === "victoria" ||
+      ultimaExpedicionConResultadoRaw.combate.fase === "derrota")
+      ? {
+          expedicionPartyId: ultimaExpedicionConResultadoRaw.id,
+          fase: ultimaExpedicionConResultadoRaw.combate.fase,
+          recompensas: ultimaExpedicionConResultadoRaw.combate.recompensasResultado,
+          participantes: ultimaExpedicionConResultadoRaw.participantes.map((participante) => ({
+            usuarioId: participante.usuarioId,
+            usuario: participante.usuario,
+          })),
+        }
+      : null;
+
   const personajeAcciones = await prisma.personaje.findUnique({
     where: { usuarioId },
     select: {
@@ -713,6 +753,7 @@ export async function obtenerEstadoParty(usuarioId: string) {
     party,
     personajeAcciones: personajeAccionesVista,
     expedicionActiva,
+    ultimoResultadoExpedicion,
     trasladosPropios: traslados.filter((traslado) => traslado.visitanteUsuarioId === usuarioId),
     visitasEntrantes: traslados.filter(
       (traslado) =>
