@@ -42,7 +42,11 @@ function loadService(prisma, testOptions = {}) {
       calcularEvasionModificada: (value) => value,
       calcularPrecisionModificada: (value) => value,
       leerEfectosCombate: (value) => Array.isArray(value) ? value : [],
-      procesarTicksPeriodicos: (_effects, hp) => ({ hp, mensajes: [], danoAplicado: 0, curacionAplicada: 0 }),
+      procesarTicksPeriodicos: (effects, hp) => {
+        const dano = Array.isArray(effects) ? effects.reduce((total, efecto) =>
+          efecto.tipo === "dano_progresivo" ? total + efecto.valor : total, 0) : 0;
+        return { hp: Math.max(0, hp - dano), mensajes: dano > 0 ? [`Daño periódico: ${dano}.`] : [], danoAplicado: dano, curacionAplicada: 0 };
+      },
       avanzarEfectosCombate: (effects, defensa) => ({ efectos: effects, defensa, mensajes: [] }),
       procesarEfectosTurno: (effects, hp, hpMax, defensa, nombre) => ({
         efectos: effects,
@@ -482,6 +486,31 @@ test("usar una poción cura al aventurero y consume una unidad de inventario", a
   assert.equal(calls.inventoryWrites.some((c) => c.data.cantidad?.decrement === 1), true);
 });
 
+
+test("el daño periódico puede ganar el combate en el turno enemigo y liquida una sola vez", async () => {
+  const combat = mkCombat({
+    faseTurno: "enemigo",
+    turnoActualUsuarioId: null,
+    enemigoHp: 5,
+    id: "combat-periodic-victory",
+    efectosEnemigo: [
+      { habilidadId: "quemadura", tipo: "dano_progresivo", valor: 5, duracionTurnos: 2, turnosRestantes: 2, objetivo: "enemigo" },
+    ],
+  });
+  const { prisma, calls } = mockPrisma(combat);
+  const service = loadService(prisma);
+  const result = await service.ejecutarTurnoEnemigoParty("u1", "expedition-1");
+
+  assert.equal(result.fase, "victoria");
+  assert.equal(combat.fase, "victoria");
+  assert.equal(combat.enemigoHp, 0);
+  assert.equal(combat.recompensasResueltas, true);
+  assert.equal(calls.userWrites.length, 2);
+  assert.equal(calls.expeditionWrites[0].data.fase, "regresando");
+  const informe = calls.combatWrites.find((write) => write.data.recompensasResultado);
+  assert.ok(informe, "el informe debe persistirse también en la victoria por daño periódico");
+  assert.equal(informe.data.recompensasResultado.recompensas.length, 2);
+});
 
 test("los efectos del aventurero se procesan al empezar su turno", async () => {
   const combat = mkCombat({
