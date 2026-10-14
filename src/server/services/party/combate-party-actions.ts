@@ -576,7 +576,13 @@ async function liquidarRecompensasParty(
       const cantidad = repartirCantidadEntera(objeto.cantidad, totalMiembros, indice);
       if (cantidad <= 0) continue;
       const agregado = await agregarObjetoAlInventario(tx, personaje.id, objeto.objetoId, cantidad);
-      if (agregado) registrarObjetoRecompensa(objetosRepartidos, objeto.objetoId, cantidad);
+      if (agregado) {
+        registrarObjetoRecompensa(objetosRepartidos, objeto.objetoId, cantidad);
+      } else {
+        logLiquidacion.push(
+          `🎒 ${miembro.usuarioId} no ha podido recibir ${objeto.objetoId} ×${cantidad} de la misión porque su inventario está lleno o el objeto ya no existe.`,
+        );
+      }
     }
     detalle.push({
       usuarioId: miembro.usuarioId,
