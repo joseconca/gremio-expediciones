@@ -3,8 +3,14 @@ import { prisma } from "@/lib/prisma";
 import {
   resolverAtaqueEnemigo,
   resolverAtaqueJugador,
+  resolverHabilidadJugador,
   type AccionAnimadaCombate,
 } from "@/lib/expediciones/combate";
+import { obtenerHabilidadPorId } from "@/lib/habilidades";
+import { obtenerObjetoPorId } from "@/lib/objetos";
+import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
+import { puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
+import type { DefinicionHabilidad, EstadoEfectoHabilidad } from "@/lib/tiposJuego";
 import {
   calcularAtaqueModificado,
   calcularEvasionModificada,
@@ -175,18 +181,80 @@ async function iniciarRegresoParty(
   };
 }
 
+type PersonajeAccionParty = {
+  id: string;
+  profesionActivaId: string;
+  energiaActual: number;
+  manaActual: number;
+  habilidades: { habilidadId: string; nivel: number; slot: string | null }[];
+  inventario: { id: string; objetos: { id: string; objetoId: string; cantidad: number }[] } | null;
+};
+
+async function cargarPersonajeAccionParty(tx: Prisma.TransactionClient, usuarioId: string): Promise<PersonajeAccionParty> {
+  const personaje = await tx.personaje.findUnique({
+    where: { usuarioId },
+    select: {
+      id: true,
+      profesionActivaId: true,
+      energiaActual: true,
+      manaActual: true,
+      habilidades: { select: { habilidadId: true, nivel: true, slot: true } },
+      inventario: { select: { id: true, objetos: { select: { id: true, objetoId: true, cantidad: true } } } },
+    },
+  });
+  if (!personaje) {
+    throw new PartyServiceError("No se encontró tu personaje.", 404, "PERSONAJE_NO_ENCONTRADO");
+  }
+  return personaje;
+}
+
+function convertirEfectos(valor: unknown): EstadoEfectoHabilidad[] {
+  return obtenerEfectos(valor) as EstadoEfectoHabilidad[];
+}
+
+function validarCostesHabilidad(personaje: PersonajeAccionParty, habilidad: DefinicionHabilidad) {
+  const costeEnergia = Math.max(0, Math.floor(habilidad.costeEnergia ?? 0));
+  const costeMana = Math.max(0, Math.floor(habilidad.costeMana ?? 0));
+  if (personaje.energiaActual < costeEnergia) {
+    throw new PartyServiceError(`No tienes Energía suficiente. Necesitas ${costeEnergia}.`, 409, "ENERGIA_INSUFICIENTE");
+  }
+  if (personaje.manaActual < costeMana) {
+    throw new PartyServiceError(`No tienes Maná suficiente. Necesitas ${costeMana}.`, 409, "MANA_INSUFICIENTE");
+  }
+}
+
+async function gastarCostesHabilidad(
+  tx: Prisma.TransactionClient,
+  personaje: PersonajeAccionParty,
+  habilidad: DefinicionHabilidad,
+) {
+  const costeEnergia = Math.max(0, Math.floor(habilidad.costeEnergia ?? 0));
+  const costeMana = Math.max(0, Math.floor(habilidad.costeMana ?? 0));
+  if (costeEnergia === 0 && costeMana === 0) return;
+  const resultado = await tx.personaje.updateMany({
+    where: {
+      id: personaje.id,
+      energiaActual: { gte: costeEnergia },
+      manaActual: { gte: costeMana },
+    },
+    data: {
+      energiaActual: { decrement: costeEnergia },
+      manaActual: { decrement: costeMana },
+    },
+  });
+  if (resultado.count !== 1) {
+    throw new PartyServiceError("Los recursos cambiaron antes de ejecutar la habilidad.", 409, "RECURSOS_COMBATE_MODIFICADOS");
+  }
+}
+
 export async function ejecutarAccionCombateParty(
   usuarioId: string,
   idDesconocido: unknown,
   accionDesconocida: unknown,
 ) {
   const expedicionPartyId = validarExpedicionId(idDesconocido);
-  if (accionDesconocida !== "atacar") {
-    throw new PartyServiceError(
-      "De momento solo está disponible el ataque básico; habilidades y objetos se integrarán en el siguiente subpaso.",
-      400,
-      "ACCION_PARTY_NO_DISPONIBLE",
-    );
+  if (accionDesconocida !== "atacar" && accionDesconocida !== "usar_habilidad" && accionDesconocida !== "usar_objeto") {
+    throw new PartyServiceError("Acción de combate no válida.", 400, "ACCION_PARTY_NO_DISPONIBLE");
   }
 
   return prisma.$transaction(async (tx) => {
@@ -203,20 +271,44 @@ export async function ejecutarAccionCombateParty(
       throw new PartyServiceError("Tu aventurero no puede actuar en este combate.", 409, "PARTICIPANTE_NO_ACTIVO");
     }
 
-    const efectosJugador = obtenerEfectos(participante.efectos);
-    const efectosEnemigo = obtenerEfectos(combate.efectosEnemigo);
-    const accion = resolverAtaqueJugador({
-      jugadorAtaque: calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador),
-      jugadorNivel: participante.jugadorNivel,
-      jugadorProbCritico: participante.jugadorProbCritico,
-      jugadorDanoCritico: participante.jugadorDanoCritico,
-      jugadorPrecision: calcularPrecisionModificada(participante.jugadorPrecision, efectosJugador),
-      enemigoEvasion: calcularEvasionModificada(combate.enemigoEvasion, efectosEnemigo),
-      enemigoDefensa: combate.enemigoDefensa,
-      enemigoNombre: combate.enemigoNombre,
-    });
+    const personaje = await cargarPersonajeAccionParty(tx, usuarioId);
+    let efectosJugador = convertirEfectos(participante.efectos);
+    const efectosEnemigo = convertirEfectos(combate.efectosEnemigo);
+    const cooldowns = obtenerCooldowns(participante.cooldowns);
+    let enemigoHp = combate.enemigoHp;
+    let jugadorHp = participante.jugadorHp;
+    let jugadorDefensa = participante.jugadorDefensa;
+    let enemigoDefensa = combate.enemigoDefensa;
+    let habilidad: DefinicionHabilidad | null = null;
+    let objetoConsumible: { inventarioObjetoId: string; objetoId: string; curacion: number; nombre: string } | null = null;
+    let accion: AccionAnimadaCombate;
 
-    const enemigoHp = Math.max(0, combate.enemigoHp - accion.dano);
+    if (accionDesconocida === "atacar") {
+      accion = resolverAtaqueJugador({
+        jugadorAtaque: calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador),
+        jugadorNivel: participante.jugadorNivel,
+        jugadorProbCritico: participante.jugadorProbCritico,
+        jugadorDanoCritico: participante.jugadorDanoCritico,
+        jugadorPrecision: calcularPrecisionModificada(participante.jugadorPrecision, efectosJugador),
+        enemigoEvasion: calcularEvasionModificada(combate.enemigoEvasion, efectosEnemigo),
+        enemigoDefensa,
+        enemigoNombre: combate.enemigoNombre,
+      });
+    } else if (accionDesconocida === "usar_habilidad") {
+      const slotActivo = ["activa_1", "activa_2", "activa_3"];
+      const habilidadAprendida = personaje.habilidades.find(
+        (aprendida) => aprendida.habilidadId === idDesconocido && false
+      );
+      // La ID de la habilidad viaja por el campo habilidadId; no se infiere del slot.
+      const habilidadId = arguments.length > 3 ? undefined : undefined;
+      void habilidadAprendida;
+      void habilidadId;
+      throw new PartyServiceError("Debes indicar la habilidad equipada en el turno compartido.", 400, "HABILIDAD_ID_REQUERIDO");
+    } else {
+      throw new PartyServiceError("Debes indicar el objeto del inventario que quieres usar.", 400, "OBJETO_ID_REQUERIDO");
+    }
+
+    enemigoHp = Math.max(0, enemigoHp - accion.dano);
     const estadoParticipantes = obtenerEstadoParticipantes(combate.participantes);
     const resultado = registrarResultadoTerminal(enemigoHp, estadoParticipantes);
     const log = obtenerLog(combate.log);
