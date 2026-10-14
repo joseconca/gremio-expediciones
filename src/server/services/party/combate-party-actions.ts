@@ -26,7 +26,7 @@ import {
   type ParticipanteTurnoParty,
 } from "@/lib/party/combate-reglas";
 import { PartyServiceError } from "@/server/services/party/party-service";
-import { reducirCooldowns } from "@/server/services/combate/accion-combate";
+import { reducirCooldowns, obtenerCooldowns } from "@/server/services/combate/accion-combate";
 import { calcularFechaLlegadaParty } from "@/lib/party/expedicion-reglas";
 import { calcularDistanciaKm } from "@/lib/utils";
 import { leerCoordenadasBase } from "@/lib/party/reglas";
