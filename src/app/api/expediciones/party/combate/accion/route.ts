@@ -3,7 +3,10 @@ import { ejecutarAccionCombateParty } from "@/server/services/party/combate-part
 
 export async function POST(request: Request) {
   return ejecutarRutaParty(
-    (usuarioId, body) => ejecutarAccionCombateParty(usuarioId, body?.expedicionPartyId, body?.accion),
+    (usuarioId, body) => ejecutarAccionCombateParty(usuarioId, body?.expedicionPartyId, body?.accion, {
+      habilidadId: body?.habilidadId,
+      objetoInventarioId: body?.objetoInventarioId,
+    }),
     request,
   );
 }

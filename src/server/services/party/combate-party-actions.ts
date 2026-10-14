@@ -251,6 +251,7 @@ export async function ejecutarAccionCombateParty(
   usuarioId: string,
   idDesconocido: unknown,
   accionDesconocida: unknown,
+  payload?: { habilidadId?: unknown; objetoInventarioId?: unknown },
 ) {
   const expedicionPartyId = validarExpedicionId(idDesconocido);
   if (accionDesconocida !== "atacar" && accionDesconocida !== "usar_habilidad" && accionDesconocida !== "usar_objeto") {
@@ -273,7 +274,7 @@ export async function ejecutarAccionCombateParty(
 
     const personaje = await cargarPersonajeAccionParty(tx, usuarioId);
     let efectosJugador = convertirEfectos(participante.efectos);
-    const efectosEnemigo = convertirEfectos(combate.efectosEnemigo);
+    let efectosEnemigo = convertirEfectos(combate.efectosEnemigo);
     const cooldowns = obtenerCooldowns(participante.cooldowns);
     let enemigoHp = combate.enemigoHp;
     let jugadorHp = participante.jugadorHp;
@@ -295,22 +296,102 @@ export async function ejecutarAccionCombateParty(
         enemigoNombre: combate.enemigoNombre,
       });
     } else if (accionDesconocida === "usar_habilidad") {
-      const slotActivo = ["activa_1", "activa_2", "activa_3"];
+      if (typeof payload?.habilidadId !== "string" || !payload.habilidadId.trim()) {
+        throw new PartyServiceError("Debes indicar una habilidad.", 400, "HABILIDAD_ID_REQUERIDO");
+      }
       const habilidadAprendida = personaje.habilidades.find(
-        (aprendida) => aprendida.habilidadId === idDesconocido && false
+        (aprendida) =>
+          aprendida.habilidadId === payload.habilidadId &&
+          ["activa_1", "activa_2", "activa_3"].includes(aprendida.slot ?? ""),
       );
-      // La ID de la habilidad viaja por el campo habilidadId; no se infiere del slot.
-      const habilidadId = arguments.length > 3 ? undefined : undefined;
-      void habilidadAprendida;
-      void habilidadId;
-      throw new PartyServiceError("Debes indicar la habilidad equipada en el turno compartido.", 400, "HABILIDAD_ID_REQUERIDO");
+      if (!habilidadAprendida) {
+        throw new PartyServiceError("No tienes esa habilidad equipada en una ranura activa.", 403, "HABILIDAD_NO_EQUIPADA");
+      }
+      const definicion = obtenerHabilidadPorId(habilidadAprendida.habilidadId);
+      if (!definicion) {
+        throw new PartyServiceError("No se encontró la definición de la habilidad.", 404, "HABILIDAD_NO_ENCONTRADA");
+      }
+      habilidad = ajustarHabilidadPorNivel(definicion, habilidadAprendida.nivel);
+      if (habilidad.tipo !== "activa") {
+        throw new PartyServiceError("Solo puedes utilizar habilidades activas durante el combate.", 400, "HABILIDAD_NO_ACTIVA");
+      }
+      if (!puedeUsarHabilidadDeClase(personaje.profesionActivaId || "novato", habilidad.claseId)) {
+        throw new PartyServiceError("Tu profesión no puede utilizar esa habilidad.", 403, "HABILIDAD_CLASE_NO_VALIDA");
+      }
+      if ((cooldowns[habilidad.id] ?? 0) > 0) {
+        throw new PartyServiceError(`Esta habilidad está en cooldown durante ${cooldowns[habilidad.id]} turno(s).`, 409, "HABILIDAD_EN_COOLDOWN");
+      }
+      validarCostesHabilidad(personaje, habilidad);
+
+      const resultado = resolverHabilidadJugador(habilidad, {
+        jugadorAtaque: calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador),
+        jugadorAtaqueMagico: calcularAtaqueModificado(participante.jugadorAtaqueMagico, efectosJugador, true),
+        jugadorProbCritico: participante.jugadorProbCritico,
+        jugadorDanoCritico: participante.jugadorDanoCritico,
+        jugadorPrecision: calcularPrecisionModificada(participante.jugadorPrecision, efectosJugador),
+        enemigoEvasion: calcularEvasionModificada(combate.enemigoEvasion, efectosEnemigo),
+        jugadorDefensa,
+        jugadorDefensaMagica: participante.jugadorDefensaMagica,
+        jugadorNivel: participante.jugadorNivel,
+        jugadorHp,
+        jugadorHpMaximo: participante.jugadorHpMaximo,
+        enemigoDefensa,
+        enemigoDefensaMagica: combate.enemigoDefensaMagica,
+        enemigoNombre: combate.enemigoNombre,
+        efectosJugador,
+      });
+      accion = resultado.accion;
+      jugadorHp = resultado.jugadorHp;
+      jugadorDefensa = resultado.jugadorDefensa;
+      enemigoDefensa = resultado.enemigoDefensa;
+      enemigoHp = Math.max(0, enemigoHp - accion.dano);
+      efectosJugador = [
+        ...efectosJugador.filter((efecto) => !resultado.efectosJugadorActualizados?.some((actualizado) =>
+          actualizado.habilidadId === efecto.habilidadId && actualizado.objetivo === efecto.objetivo)),
+        ...(resultado.efectosJugadorActualizados ?? []),
+        ...resultado.efectos.filter((efecto) => efecto.objetivo === "jugador"),
+      ];
+      efectosEnemigo = [
+        ...efectosEnemigo.filter((efecto) => !resultado.efectos.some((nuevo) =>
+          nuevo.habilidadId === efecto.habilidadId && nuevo.objetivo === "enemigo")),
+        ...resultado.efectos.filter((efecto) => efecto.objetivo === "enemigo"),
+      ];
+      if ((habilidad.cooldownTurnos ?? 0) > 0) cooldowns[habilidad.id] = habilidad.cooldownTurnos!;
+      await gastarCostesHabilidad(tx, personaje, habilidad);
     } else {
-      throw new PartyServiceError("Debes indicar el objeto del inventario que quieres usar.", 400, "OBJETO_ID_REQUERIDO");
+      if (typeof payload?.objetoInventarioId !== "string" || !payload.objetoInventarioId.trim()) {
+        throw new PartyServiceError("Debes seleccionar una poción del inventario.", 400, "OBJETO_ID_REQUERIDO");
+      }
+      const item = personaje.inventario?.objetos.find((entrada) => entrada.id === payload.objetoInventarioId);
+      if (!item || item.cantidad < 1) {
+        throw new PartyServiceError("No tienes ese objeto en el inventario.", 404, "OBJETO_NO_DISPONIBLE");
+      }
+      const definicion = obtenerObjetoPorId(item.objetoId);
+      if (!definicion || definicion.tipo !== "consumible" || !Number.isFinite(definicion.curacion) || (definicion.curacion ?? 0) <= 0) {
+        throw new PartyServiceError("Solo se pueden usar consumibles de curación durante el combate.", 400, "OBJETO_NO_USABLE");
+      }
+      const curacion = Math.min(Math.floor(definicion.curacion ?? 0), participante.jugadorHpMaximo - jugadorHp);
+      if (curacion <= 0) {
+        throw new PartyServiceError("Tu aventurero ya tiene la salud al máximo.", 409, "VIDA_AL_MAXIMO");
+      }
+      objetoConsumible = { inventarioObjetoId: item.id, objetoId: item.objetoId, curacion, nombre: definicion.nombre };
+      jugadorHp += curacion;
+      accion = {
+        actor: "jugador",
+        tipo: "habilidad",
+        animacion: "curacion",
+        dano: 0,
+        curacion,
+        critico: false,
+        texto: `Usas ${definicion.nombre} y recuperas ${curacion} puntos de vida.`,
+      };
     }
 
     enemigoHp = Math.max(0, enemigoHp - accion.dano);
-    const estadoParticipantes = obtenerEstadoParticipantes(combate.participantes);
-    const resultado = registrarResultadoTerminal(enemigoHp, estadoParticipantes);
+    const estadoParticipantes = obtenerEstadoParticipantes(combate.participantes).map((p) =>
+      p.usuarioId === usuarioId ? { ...p, jugadorHp, estado: jugadorHp > 0 ? "activo" : "caido" } : p,
+    );
+    const resultadoTerminal = registrarResultadoTerminal(enemigoHp, estadoParticipantes);
     const log = obtenerLog(combate.log);
     log.push(accion.texto);
 
@@ -318,10 +399,10 @@ export async function ejecutarAccionCombateParty(
     let turnoActualUsuarioId: string | null = null;
     let ronda = combate.ronda;
     let fase = "activo";
-    if (resultado === "victoria") {
+    if (resultadoTerminal === "victoria") {
       fase = "victoria";
       log.push(`🏆 ¡${combate.enemigoNombre} ha sido derrotado!`);
-    } else if (resultado === "derrota") {
+    } else if (resultadoTerminal === "derrota") {
       fase = "derrota";
       log.push("💀 Todos los aventureros han caído.");
     } else {
@@ -331,8 +412,7 @@ export async function ejecutarAccionCombateParty(
       ronda = siguiente.ronda;
     }
 
-    // La escritura con versión se ejecuta al final de la transacción. Si otra
-    // petición gastó este turno, se lanza un error y se revierte todo.
+    // Todos los cambios de recursos/inventario y el avance del turno son atómicos.
     const actualizado = await tx.combateParty.updateMany({
       where: {
         id: combate.id,
@@ -349,12 +429,47 @@ export async function ejecutarAccionCombateParty(
         ronda,
         turnoInicialEnemigo: false,
         enemigoHp,
+        enemigoDefensa,
+        efectosEnemigo: efectosEnemigo as unknown as Prisma.InputJsonValue,
         log: log as unknown as Prisma.InputJsonValue,
         ultimaAccion: accion as unknown as Prisma.InputJsonValue,
       },
     });
     if (actualizado.count !== 1) {
       throw new PartyServiceError("El combate ha cambiado mientras se resolvía tu acción. Actualiza e inténtalo de nuevo.", 409, "COMBATE_PARTY_MODIFICADO");
+    }
+
+    const participanteActualizado = await tx.combatePartyParticipante.updateMany({
+      where: { id: participante.id, jugadorHp: participante.jugadorHp },
+      data: {
+        jugadorHp,
+        jugadorDefensa,
+        estado: jugadorHp > 0 ? "activo" : "caido",
+        efectos: efectosJugador as unknown as Prisma.InputJsonValue,
+        cooldowns: cooldowns as unknown as Prisma.InputJsonValue,
+      },
+    });
+    if (participanteActualizado.count !== 1) {
+      throw new PartyServiceError("El estado individual del aventurero cambió durante la acción.", 409, "PARTICIPANTE_PARTY_MODIFICADO");
+    }
+
+    const personajeActualizado = await tx.personaje.updateMany({
+      where: { id: personaje.id, usuarioId, estado: "combatiendo" },
+      data: { hpActual: jugadorHp },
+    });
+    if (personajeActualizado.count !== 1) {
+      throw new PartyServiceError("No se pudo sincronizar la salud del aventurero.", 409, "PERSONAJE_PARTY_MODIFICADO");
+    }
+
+    if (objetoConsumible) {
+      const consumido = await tx.inventarioObjeto.updateMany({
+        where: { id: objetoConsumible.inventarioObjetoId, cantidad: { gte: 1 } },
+        data: { cantidad: { decrement: 1 } },
+      });
+      if (consumido.count !== 1) {
+        throw new PartyServiceError("El consumible ya no está disponible.", 409, "OBJETO_PARTY_MODIFICADO");
+      }
+      await tx.inventarioObjeto.deleteMany({ where: { id: objetoConsumible.inventarioObjetoId, cantidad: { lte: 0 } } });
     }
 
     const regreso = fase === "victoria" || fase === "derrota"
@@ -369,6 +484,7 @@ export async function ejecutarAccionCombateParty(
       faseTurno,
       turnoActualUsuarioId,
       enemigoHp,
+      jugadorHp,
       ...(regreso ? { regreso } : {}),
       accion,
     };
