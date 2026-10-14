@@ -20,6 +20,7 @@ import {
   type ParticipanteTurnoParty,
 } from "@/lib/party/combate-reglas";
 import { PartyServiceError } from "@/server/services/party/party-service";
+import { reducirCooldowns } from "@/server/services/combate/accion-combate";
 import { calcularFechaLlegadaParty } from "@/lib/party/expedicion-reglas";
 import { calcularDistanciaKm } from "@/lib/utils";
 import { leerCoordenadasBase } from "@/lib/party/reglas";
@@ -354,6 +355,22 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       });
     }
     log.push(accion.texto);
+
+    // El cooldown avanza una vez por ronda completa, al terminar el turno enemigo.
+    for (const miembro of combate.participantes) {
+      const valor = miembro.cooldowns;
+      const bruto = valor && typeof valor === "object" && !Array.isArray(valor)
+        ? Object.fromEntries(Object.entries(valor).filter(([, n]) => typeof n === "number" && Number.isFinite(n) && n > 0))
+        : {};
+      const cooldownsReducidos = reducirCooldowns(bruto as Record<string, number>);
+      const guardado = await tx.combatePartyParticipante.updateMany({
+        where: { id: miembro.id, combatePartyId: combate.id },
+        data: { cooldowns: cooldownsReducidos as unknown as Prisma.InputJsonValue },
+      });
+      if (guardado.count !== 1) {
+        throw new PartyServiceError("No se pudieron actualizar los cooldowns de la party.", 409, "PARTICIPANTE_PARTY_MODIFICADO");
+      }
+    }
 
     let participantesActualizados = obtenerEstadoParticipantes(combate.participantes);
     if (objetivo && enemigoHp > 0) {

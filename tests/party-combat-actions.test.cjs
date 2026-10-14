@@ -161,7 +161,9 @@ function mockPrisma(combat, options = {}) {
       updateMany: async ({ where, data }) => {
         calls.participantWrites.push({ where, data });
         if (options.rejectParticipantUpdate) return { count: 0 };
-        const target = combat.participantes.find((p) => p.id === where.id && p.jugadorHp === where.jugadorHp);
+        const target = combat.participantes.find((p) =>
+          p.id === where.id && (where.jugadorHp === undefined || p.jugadorHp === where.jugadorHp)
+        );
         if (!target) return { count: 0 };
         Object.assign(target, data);
         return { count: 1 };
