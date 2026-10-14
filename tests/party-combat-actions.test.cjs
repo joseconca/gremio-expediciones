@@ -44,6 +44,14 @@ function loadService(prisma) {
       leerEfectosCombate: (value) => Array.isArray(value) ? value : [],
       procesarTicksPeriodicos: (_effects, hp) => ({ hp, mensajes: [], danoAplicado: 0, curacionAplicada: 0 }),
       avanzarEfectosCombate: (effects, defensa) => ({ efectos: effects, defensa, mensajes: [] }),
+      procesarEfectosTurno: (effects, hp, hpMax, defensa, nombre) => ({
+        efectos: effects,
+        hp,
+        defensa,
+        mensajes: [],
+        danoAplicado: 0,
+        curacionAplicada: 0,
+      }),
     },
     "@/lib/party/combate-reglas": reglas,
     "@/lib/habilidades": {
@@ -342,4 +350,34 @@ test("usar una poción cura al aventurero y consume una unidad de inventario", a
   assert.equal(combat.participantes[0].jugadorHp, 80);
   assert.equal(calls.characterWrites.some((c) => c.data.hpActual === 80), true);
   assert.equal(calls.inventoryWrites.some((c) => c.data.cantidad?.decrement === 1), true);
+});
+
+
+test("los efectos del aventurero se procesan al empezar su turno", async () => {
+  const combat = mkCombat({
+    participantes: [
+      {
+        ...mkParticipant("u1", 0, 30, 100),
+        efectos: [{ habilidadId: "sangrado", tipo: "dano_progresivo", valor: 10, duracionTurnos: 2, turnosRestantes: 2, objetivo: "jugador" }],
+      },
+      mkParticipant("u2", 1),
+    ],
+  });
+  const { prisma, calls } = mockPrisma(combat);
+  const service = loadService(prisma);
+  const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "atacar");
+  assert.equal(result.jugadorHp, 30);
+  assert.equal(calls.participantWrites.some((c) => Array.isArray(c.data.efectos)), true);
+});
+
+test("el turno enemigo procesa los efectos periódicos del enemigo antes de atacar", async () => {
+  const combat = mkCombat({
+    faseTurno: "enemigo",
+    turnoActualUsuarioId: null,
+    efectosEnemigo: [{ habilidadId: "quemadura", tipo: "dano_progresivo", valor: 5, duracionTurnos: 2, turnosRestantes: 2, objetivo: "enemigo" }],
+  });
+  const { prisma } = mockPrisma(combat);
+  const service = loadService(prisma);
+  const result = await service.ejecutarTurnoEnemigoParty("u1", "expedition-1");
+  assert.equal(result.enemigoHp, 40);
 });
