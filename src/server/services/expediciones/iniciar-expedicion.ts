@@ -111,6 +111,12 @@ export async function iniciarExpedicion(request: Request) {
           },
         },
         expedicionActiva: true,
+        partyMembresia: { select: { id: true } },
+        trasladosComoVisitante: {
+          where: { estado: { in: ["en_viaje", "pendiente", "regresando"] } },
+          select: { id: true },
+          take: 1,
+        },
       },
     });
 
@@ -122,25 +128,14 @@ export async function iniciarExpedicion(request: Request) {
       return respuestaError("Ya tienes una expedición activa.", 409);
     }
 
-    const membresiaParty = await prisma.partyMember.findUnique({
-      where: { usuarioId: usuario.id },
-      select: { id: true },
-    });
-    if (membresiaParty) {
+    if (usuario.partyMembresia) {
       return respuestaError(
         "Formas parte de una party. Las expediciones de grupo se habilitarán en la siguiente fase.",
         409
       );
     }
 
-    const trasladoActivo = await prisma.partyTransfer.findFirst({
-      where: {
-        visitanteUsuarioId: usuario.id,
-        estado: { in: ["en_viaje", "pendiente", "regresando"] },
-      },
-      select: { id: true },
-    });
-    if (trasladoActivo) {
+    if (usuario.trasladosComoVisitante?.length) {
       return respuestaError(
         "Debes terminar el traslado entre bases antes de iniciar una expedición.",
         409
