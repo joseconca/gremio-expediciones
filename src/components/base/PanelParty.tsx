@@ -213,6 +213,36 @@ export default function PanelParty() {
     })();
   }, [estado?.expedicionActiva, ahora, actualizarEstado, cargarJugador]);
 
+  useEffect(() => {
+    const expedicion = estado?.expedicionActiva;
+    if (!expedicion || expedicion.fase !== "lista_para_combate" || expedicion.combate) return;
+
+    const clave = `expedicion-party:${expedicion.id}:iniciar-combate`;
+    if (procesandoAutomatico.current.has(clave)) return;
+    procesandoAutomatico.current.add(clave);
+
+    void (async () => {
+      try {
+        await enviarAccion(
+          "/api/expediciones/party/combate/iniciar",
+          expedicion.id,
+          "expedicionPartyId",
+        );
+        await actualizarEstado();
+        await cargarJugador();
+      } catch (err) {
+        const mensaje = err instanceof Error ? err.message : "";
+        // Otra pestaña o integrante puede haber iniciado el mismo combate.
+        await actualizarEstado().catch(() => undefined);
+        if (!/expedición|expedicion|combate|party|cambio|llegada/i.test(mensaje)) {
+          setError(mensaje || "No se pudo iniciar el combate compartido.");
+        }
+      } finally {
+        procesandoAutomatico.current.delete(clave);
+      }
+    })();
+  }, [estado?.expedicionActiva, actualizarEstado, cargarJugador]);
+
   const ejecutar = async (clave: string, ruta: string, trasladoId?: string) => {
     if (accion) return;
     setAccion(clave);
@@ -381,7 +411,57 @@ export default function PanelParty() {
                   La party ha llegado al destino. La próxima fase activará el combate compartido.
                 </p>
               ) : estado.expedicionActiva.fase === "combatiendo" ? (
-                <p className="mt-2 text-sm text-red-200">La party está combatiendo.</p>
+                <div className="mt-2 rounded-lg border border-red-900/70 bg-red-950/30 p-3">
+                  {estado.expedicionActiva.combate ? (
+                    <>
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <p className="font-black text-red-100">⚔️ {estado.expedicionActiva.combate.enemigoNombre}</p>
+                        <span className="rounded border border-red-900 bg-red-950 px-2 py-1 text-xs font-bold text-red-200">
+                          Ronda {estado.expedicionActiva.combate.ronda}
+                        </span>
+                      </div>
+                      <p className="mt-1 text-xs text-red-200">
+                        HP del enemigo: {estado.expedicionActiva.combate.enemigoHp} / {estado.expedicionActiva.combate.enemigoHpMaximo}
+                      </p>
+                      <div className="mt-1 h-2 overflow-hidden rounded bg-slate-900">
+                        <div
+                          className="h-full rounded bg-red-600 transition-all"
+                          style={{ width: `${Math.max(0, Math.min(100, estado.expedicionActiva.combate.enemigoHp / Math.max(1, estado.expedicionActiva.combate.enemigoHpMaximo) * 100))}%` }}
+                        />
+                      </div>
+                      <p className="mt-2 text-xs font-semibold text-amber-200">
+                        {estado.expedicionActiva.combate.faseTurno === "enemigo"
+                          ? "Turno del enemigo."
+                          : estado.expedicionActiva.combate.turnoActualUsuarioId === estado.usuarioId
+                            ? "¡Es tu turno!"
+                            : `Actúa: ${estado.expedicionActiva.combate.participantes.find((p) => p.usuarioId === estado.expedicionActiva?.combate?.turnoActualUsuarioId)?.usuario?.personaje?.nombre ?? "otro aventurero"}.`}
+                      </p>
+                      <div className="mt-3 grid gap-2 sm:grid-cols-3">
+                        {estado.expedicionActiva.combate.participantes.map((participante) => (
+                          <div key={participante.id} className="rounded border border-slate-700 bg-slate-950/70 p-2">
+                            <p className="truncate text-xs font-bold text-slate-100">
+                              {participante.usuario?.personaje?.nombre ?? participante.usuario?.nombre ?? "Aventurero"}
+                            </p>
+                            <p className="mt-1 text-[11px] text-slate-300">
+                              {participante.estado === "caido" ? "Caído" : `HP ${participante.jugadorHp}/${participante.jugadorHpMaximo}`}
+                            </p>
+                            <div className="mt-1 h-1.5 overflow-hidden rounded bg-slate-800">
+                              <div
+                                className={`h-full rounded ${participante.estado === "caido" ? "bg-slate-600" : "bg-emerald-600"}`}
+                                style={{ width: `${Math.max(0, Math.min(100, participante.jugadorHp / Math.max(1, participante.jugadorHpMaximo) * 100))}%` }}
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <p className="mt-3 text-[11px] text-slate-400">
+                        El estado se sincroniza automáticamente entre los integrantes.
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-sm text-red-200">Preparando el combate compartido...</p>
+                  )}
+                </div>
               ) : (
                 <p className="mt-2 text-sm text-slate-300">La party está regresando a sus bases.</p>
               )}
