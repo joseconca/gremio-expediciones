@@ -52,6 +52,7 @@ type ExpedicionPartyVista = {
     enemigoHpMaximo: number;
     log: unknown;
     ultimaAccion: unknown;
+    recompensasResultado?: ResultadoRecompensasParty | null;
     participantes: {
       id: string;
       usuarioId: string;
@@ -172,6 +173,24 @@ export default function PanelParty() {
       recompensas: datos.fase === "victoria" ? (datos.recompensas ?? null) : null,
     });
   };
+
+  useEffect(() => {
+    const expedicion = estado?.expedicionActiva;
+    const combate = expedicion?.combate;
+    if (!expedicion || !combate || (combate.fase !== "victoria" && combate.fase !== "derrota")) return;
+    if (ultimoResultadoCombate?.expedicionPartyId === expedicion.id) return;
+
+    setUltimoResultadoCombate({
+      expedicionPartyId: expedicion.id,
+      fase: combate.fase,
+      recompensas: combate.fase === "victoria" ? (combate.recompensasResultado ?? null) : null,
+    });
+  }, [
+    estado?.expedicionActiva?.id,
+    estado?.expedicionActiva?.combate?.fase,
+    estado?.expedicionActiva?.combate?.recompensasResultado,
+    ultimoResultadoCombate?.expedicionPartyId,
+  ]);
 
   useEffect(() => {
     let activo = true;
@@ -666,6 +685,8 @@ export default function PanelParty() {
               {ultimoResultadoCombate.recompensas.recompensas.map((recompensa) => {
                 const miembro = estado?.expedicionActiva?.participantes.find((p) => p.usuarioId === recompensa.usuarioId);
                 const nombre = miembro?.usuario?.personaje?.nombre ?? miembro?.usuario?.nombre ?? (recompensa.usuarioId === estado?.usuarioId ? "Tú" : "Aventurero");
+                const dropsEnemigo = (ultimoResultadoCombate.recompensas?.dropsEnemigo ?? [])
+                  .filter((drop) => drop.usuarioId === recompensa.usuarioId);
                 return (
                   <div key={recompensa.usuarioId} className="rounded-md border border-slate-800 bg-slate-950/70 p-2">
                     <p className="text-xs font-bold text-amber-100">{nombre}</p>
@@ -674,7 +695,12 @@ export default function PanelParty() {
                     </p>
                     {recompensa.objetos.length > 0 && (
                       <p className="mt-1 text-[11px] text-emerald-200">
-                        Objetos: {recompensa.objetos.map((objeto) => `${objeto.objetoId} ×${objeto.cantidad}`).join(", ")}
+                        Objetos de misión: {recompensa.objetos.map((objeto) => `${objeto.objetoId} ×${objeto.cantidad}`).join(", ")}
+                      </p>
+                    )}
+                    {dropsEnemigo.length > 0 && (
+                      <p className="mt-1 text-[11px] text-amber-200">
+                        Botín del enemigo: {dropsEnemigo.map((drop) => `${drop.nombre}${drop.sufijoId ? ` ${drop.sufijoId}` : ""} ×${drop.cantidad}`).join(", ")}
                       </p>
                     )}
                   </div>
