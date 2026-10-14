@@ -229,7 +229,7 @@ function mockPrisma(combat, options = {}) {
             estado: p.estado,
             velocidadViajeKmh: 6,
             usuario: { id: p.usuarioId, baseCoords: { lat: 27.9, lng: -15.4 }, personaje: { estado: "combatiendo" } },
-            personaje: p.usuarioId === "u1" ? character : {
+            personaje: p.usuarioId === "u1" ? { ...character, id: p.personajeId } : {
               id: p.personajeId,
               usuarioId: p.usuarioId,
               nivel: 3,
