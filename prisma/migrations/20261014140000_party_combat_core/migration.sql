@@ -89,7 +89,3 @@ ALTER TABLE "CombatePartyParticipante"
   ADD CONSTRAINT "CombatePartyParticipante_personajeId_fkey"
   FOREIGN KEY ("personajeId") REFERENCES "Personaje"("id")
   ON DELETE CASCADE ON UPDATE CASCADE;
-
-
-ALTER TABLE "CombateParty"
-  ADD COLUMN "recompensasResueltas" BOOLEAN NOT NULL DEFAULT FALSE;
