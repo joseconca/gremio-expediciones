@@ -103,6 +103,12 @@ type EstadoParty = {
     miembros: MiembroVista[];
   } | null;
   expedicionActiva: ExpedicionPartyVista | null;
+  ultimoResultadoExpedicion?: {
+    expedicionPartyId: string;
+    fase: "victoria" | "derrota";
+    recompensas: ResultadoRecompensasParty | null;
+    participantes: { usuarioId: string; usuario?: PersonaVista }[];
+  } | null;
   trasladosPropios: TrasladoVista[];
   visitasEntrantes: TrasladoVista[];
 };
@@ -168,9 +174,22 @@ export default function PanelParty() {
         ? actual
         : {
             expedicionPartyId: expedicion.id,
-            fase: combate.fase as "victoria" | "derrota",
+            fase: combate.fase,
             recompensas: combate.fase === "victoria" ? (combate.recompensasResultado ?? null) : null,
           });
+    } else if (expedicion) {
+      setUltimoResultadoCombate((actual) => actual?.expedicionPartyId === expedicion.id ? actual : null);
+    } else if (estadoNuevo.ultimoResultadoExpedicion) {
+      const resultado = estadoNuevo.ultimoResultadoExpedicion;
+      setUltimoResultadoCombate((actual) => actual?.expedicionPartyId === resultado.expedicionPartyId
+        ? actual
+        : {
+            expedicionPartyId: resultado.expedicionPartyId,
+            fase: resultado.fase,
+            recompensas: resultado.fase === "victoria" ? resultado.recompensas : null,
+          });
+    } else {
+      setUltimoResultadoCombate(null);
     }
     setError(null);
   }, []);
@@ -678,7 +697,8 @@ export default function PanelParty() {
                 Oro total repartido: {ultimoResultadoCombate.recompensas.oroTotal ?? 0} 🪙. La experiencia Base y Job se aplica individualmente.
               </p>
               {ultimoResultadoCombate.recompensas.recompensas.map((recompensa) => {
-                const miembro = estado?.expedicionActiva?.participantes.find((p) => p.usuarioId === recompensa.usuarioId);
+                const miembro = estado?.expedicionActiva?.participantes.find((p) => p.usuarioId === recompensa.usuarioId)
+                  ?? estado?.ultimoResultadoExpedicion?.participantes.find((p) => p.usuarioId === recompensa.usuarioId);
                 const nombre = miembro?.usuario?.personaje?.nombre ?? miembro?.usuario?.nombre ?? (recompensa.usuarioId === estado?.usuarioId ? "Tú" : "Aventurero");
                 const dropsEnemigo = (ultimoResultadoCombate.recompensas?.dropsEnemigo ?? [])
                   .filter((drop) => drop.usuarioId === recompensa.usuarioId);
