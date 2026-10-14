@@ -88,7 +88,6 @@ export default function PanelParty() {
 
   useEffect(() => {
     let activo = true;
-    setAhora(Date.now());
     const cargar = async () => {
       try {
         await actualizarEstado();
