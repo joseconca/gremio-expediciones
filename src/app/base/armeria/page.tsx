@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
+import DescripcionTactil from "@/components/ui/DescripcionTactil";
 import { calcularPrecioVentaObjeto } from "@/lib/economia";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import { useGameStore } from "@/store/useGameStore";
@@ -505,9 +506,21 @@ export default function HerreriaPage() {
               </div>
             </div>
 
-            <h3 className="mt-1 line-clamp-2 min-h-7 break-words text-[10px] font-black leading-3 text-[#f0dfbd] sm:text-[11px] sm:leading-4">
-              {equipado.objeto.nombre}
-            </h3>
+            <div className="mt-1 flex items-start gap-1">
+              <h3 className="min-w-0 flex-1 line-clamp-2 min-h-7 break-words text-[10px] font-black leading-3 text-[#f0dfbd] sm:text-[11px] sm:leading-4">
+                {equipado.objeto.nombre}
+              </h3>
+              <DescripcionTactil
+                titulo={equipado.objeto.nombre}
+                resumen={equipado.objeto.descripcion}
+                detalles={[
+                  equipado.objeto.descripcion,
+                  ...estadisticas.map((estadistica) => `${estadistica.nombre}: ${formatearValorEstadistica(estadistica.clave, estadistica.valor)}`),
+                  ...(equipado.objeto.manos === 2 ? ["Ocupa ambas manos y bloquea la ranura secundaria."] : []),
+                ]}
+                variante="madera"
+              />
+            </div>
 
             {estadisticas.length > 0 ? (
               <div className="mt-1 flex flex-wrap gap-x-1.5 gap-y-0.5 text-[8px] leading-3 sm:text-[9px]">
@@ -667,9 +680,22 @@ export default function HerreriaPage() {
                             {objeto.manos === 2 ? " · Dos manos" : ""}
                           </span>
                         </div>
-                        <h3 className="mt-0.5 break-words text-xs font-black leading-4 text-[#f0dfbd] sm:text-sm">
-                          {objeto.nombre}
-                        </h3>
+                        <div className="mt-0.5 flex items-start gap-1">
+                          <h3 className="min-w-0 flex-1 break-words text-xs font-black leading-4 text-[#f0dfbd] sm:text-sm">
+                            {objeto.nombre}
+                          </h3>
+                          <DescripcionTactil
+                            titulo={objeto.nombre}
+                            resumen={objeto.descripcion}
+                            detalles={[
+                              objeto.descripcion,
+                              `Nivel de héroe requerido: ${objeto.nivelHeroeNecesario}.`,
+                              `Tipo: ${nombreTipoObjeto(objeto)}${objeto.tipo === "arma" && objeto.subtipo ? ` · ${nombreSubtipoArma(objeto.subtipo)}` : ""}.`,
+                              ...(objeto.manos === 2 ? ["Arma a dos manos: ocupa la mano principal y la secundaria."] : []),
+                            ]}
+                            variante="metal"
+                          />
+                        </div>
                         <div className="mt-1 flex flex-wrap gap-x-2 gap-y-0.5">
                           {obtenerEstadisticasNoCero(objeto, 0).map((estadistica) => (
                             <span key={estadistica.clave} className="whitespace-nowrap text-[9px] leading-3">
@@ -904,9 +930,20 @@ export default function HerreriaPage() {
 
                           <div className="min-w-0">
                             <div className="flex flex-wrap items-center gap-2">
-                              <h3 className="text-xs font-black leading-4 text-[#eadcc7] sm:text-sm">
+                              <h3 className="min-w-0 text-xs font-black leading-4 text-[#eadcc7] sm:text-sm">
                                 {objeto.nombre}
                               </h3>
+                              <DescripcionTactil
+                                titulo={objeto.nombre}
+                                resumen={objeto.descripcion}
+                                detalles={[
+                                  objeto.descripcion,
+                                  ...obtenerEstadisticasNoCero(objeto, objetoInventario.nivelMejora, objetoInventario.bonificaciones)
+                                    .map((estadistica) => `${estadistica.nombre}: ${formatearValorEstadistica(estadistica.clave, estadistica.valor)}`),
+                                  ...(objeto.manos === 2 ? ["Ocupa ambas manos y bloquea la ranura secundaria."] : []),
+                                ]}
+                                variante="madera"
+                              />
 
                               {objeto.tipo === "arma" && objeto.subtipo && (
                                 <span className="text-[9px] font-bold uppercase tracking-wide text-[#c2a16f]">
