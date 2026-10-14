@@ -314,7 +314,6 @@ test("una habilidad activa equipada aplica daño, gasta recursos y guarda cooldo
   assert.equal(result.accion.texto, "Habilidad de prueba.");
   assert.equal(result.enemigoHp, 20);
   assert.equal(combat.participantes[0].cooldowns.golpe_arcano, 2);
-  assert.equal(combat.participantes[0].cooldowns.golpe_arcano, 2);
   assert.equal(calls.participantWrites.some((c) => c.data.efectos), true);
   assert.equal(calls.resourceWrites.some((c) => c.data.energiaActual?.decrement === 5), true);
   assert.equal(calls.resourceWrites.some((c) => c.data.manaActual?.decrement === 0), true);
