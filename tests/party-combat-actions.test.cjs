@@ -45,7 +45,17 @@ function loadService(prisma, testOptions = {}) {
       procesarTicksPeriodicos: (effects, hp) => {
         const dano = Array.isArray(effects) ? effects.reduce((total, efecto) =>
           efecto.tipo === "dano_progresivo" ? total + efecto.valor : total, 0) : 0;
-        return { hp: Math.max(0, hp - dano), mensajes: dano > 0 ? [`Daño periódico: ${dano}.`] : [], danoAplicado: dano, curacionAplicada: 0 };
+        const curacion = Array.isArray(effects) ? effects.reduce((total, efecto) =>
+          efecto.tipo === "curacion_progresiva" ? total + efecto.valor : total, 0) : 0;
+        return {
+          hp: Math.max(0, hp - dano + curacion),
+          mensajes: [
+            ...(dano > 0 ? [`Daño periódico: ${dano}.`] : []),
+            ...(curacion > 0 ? [`Curación periódica: ${curacion}.`] : []),
+          ],
+          danoAplicado: dano,
+          curacionAplicada: curacion,
+        };
       },
       avanzarEfectosCombate: (effects, defensa) => ({ efectos: effects, defensa, mensajes: [] }),
       procesarEfectosTurno: (effects, hp, hpMax, defensa, nombre) => ({
