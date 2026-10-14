@@ -443,6 +443,7 @@ model ExpedicionPartyParticipante {
   energiaInicio      Int
   manaInicio         Int
   efectoComida       String?
+  velocidadViajeKmh  Float    @default(6)
   creado             DateTime @default(now())
   actualizado        DateTime @updatedAt
 

@@ -289,6 +289,7 @@ export async function iniciarExpedicionParty(
         energiaInicio: datosViaje.energiaMaxima,
         manaInicio: datosViaje.manaMaximo,
         efectoComida: datosViaje.efectoComida,
+        velocidadViajeKmh: datosViaje.velocidadKmh,
       };
     });
 

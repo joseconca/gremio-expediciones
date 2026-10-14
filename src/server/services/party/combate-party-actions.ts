@@ -131,20 +131,10 @@ async function iniciarRegresoParty(
   if (participantes.length < 2 || participantes.length > 3) {
     throw new PartyServiceError("La expedición no tiene una composición válida para regresar.", 409, "NUMERO_MIEMBROS_INVALIDO");
   }
-  const velocidades: number[] = [];
-  for (const participante of participantes) {
-    const coords = leerCoordenadasBase(participante.usuario.baseCoords);
-    if (!coords) {
-      throw new PartyServiceError("Uno de los miembros no tiene coordenadas de base válidas.", 409, "COORDENADAS_REGRESO_NO_DISPONIBLES");
-    }
-    const distancia = calcularDistanciaKm(coords.lat, coords.lng, origenRaw.lat, origenRaw.lng);
-    // Se conserva la velocidad congelada durante el viaje de ida mediante el
-    // tiempo original: distancia/tiempo es equivalente a la velocidad del miembro.
-    const horasViajeIda = Math.max(1 / 60, (calcularDistanciaKm(destinoRaw.lat, destinoRaw.lng, origenRaw.lat, origenRaw.lng) / 6));
-    const horasViajeMiembro = Math.max(1 / 60, distancia / 6);
-    velocidades.push(Math.max(1, horasViajeIda / horasViajeMiembro * 6));
+  const velocidades = participantes.map((participante) => participante.velocidadViajeKmh);
+  if (velocidades.some((velocidad) => !Number.isFinite(velocidad) || velocidad <= 0)) {
+    throw new PartyServiceError("La expedición no conserva velocidades válidas para calcular el regreso.", 409, "VELOCIDAD_REGRESO_NO_DISPONIBLE");
   }
-
   const velocidadRegreso = Math.min(...velocidades);
   const distanciaRegreso = calcularDistanciaKm(origenRaw.lat, origenRaw.lng, destinoRaw.lat, destinoRaw.lng);
   const salida = new Date();
