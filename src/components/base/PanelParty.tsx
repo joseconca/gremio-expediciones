@@ -64,8 +64,16 @@ type ExpedicionPartyVista = {
   } | null;
 };
 
+type PersonajeAccionesVista = {
+  profesionActivaId: string;
+  energiaActual: number;
+  manaActual: number;
+  habilidades: { habilidadId: string; nombre: string; descripcion: string; costeEnergia: number; costeMana: number; cooldownTurnos: number; nivel: number; slot: string | null }[];
+  objetos: { inventarioObjetoId: string; objetoId: string; nombre: string; curacion: number; cantidad: number }[];
+};
 type EstadoParty = {
   usuarioId: string;
+  personajeAcciones?: PersonajeAccionesVista;
   party: {
     id: string;
     liderUsuarioId: string;
@@ -322,6 +330,37 @@ export default function PanelParty() {
     }
   };
 
+  const ejecutarAccionCombatePartyUI = async (
+    tipo: "usar_habilidad" | "usar_objeto",
+    id: string,
+  ) => {
+    const expedicion = estado?.expedicionActiva;
+    if (!expedicion || !expedicion.combate || accion) return;
+    setAccion(`accion-party:${id}`);
+    setError(null);
+    try {
+      const respuesta = await fetch("/api/expediciones/party/combate/accion", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          expedicionPartyId: expedicion.id,
+          accion: tipo,
+          ...(tipo === "usar_habilidad" ? { habilidadId: id } : { objetoInventarioId: id }),
+        }),
+      });
+      const datos = await respuesta.json().catch(() => ({}));
+      if (!respuesta.ok) throw new Error(datos.error || "No se pudo ejecutar la acción.");
+      await actualizarEstado();
+      await cargarJugador();
+    } catch (err) {
+      const mensaje = err instanceof Error ? err.message : "No se pudo ejecutar la acción.";
+      await actualizarEstado().catch(() => undefined);
+      if (!/turno|modificado|cambio|combate ha terminado/i.test(mensaje)) setError(mensaje);
+    } finally {
+      setAccion(null);
+    }
+  };
+
   const ejecutarAtaqueParty = async () => {
     const expedicion = estado?.expedicionActiva;
     if (!expedicion || !expedicion.combate || accion) return;
@@ -476,6 +515,62 @@ export default function PanelParty() {
                       >
                         {accion === "ataque-party" ? "Atacando..." : "⚔️ Ataque básico"}
                       </button>
+                    )}
+                  {estado.expedicionActiva.combate.fase === "activo" &&
+                    estado.expedicionActiva.combate.faseTurno === "jugador" &&
+                    estado.expedicionActiva.combate.turnoActualUsuarioId === estado.usuarioId && (
+                      <div className="mt-3 space-y-3">
+                        {Boolean(estado.personajeAcciones?.habilidades.length) && (
+                          <div>
+                            <p className="mb-1 text-[11px] font-black uppercase tracking-wide text-sky-200">Habilidades activas</p>
+                            <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                              {estado.personajeAcciones?.habilidades.map((habilidad) => (
+                                <button
+                                  key={habilidad.habilidadId}
+                                  type="button"
+                                  disabled={Boolean(accion) ||
+                                    estado.personajeAcciones!.energiaActual < habilidad.costeEnergia ||
+                                    estado.personajeAcciones!.manaActual < habilidad.costeMana}
+                                  onClick={() => void ejecutarAccionCombatePartyUI("usar_habilidad", habilidad.habilidadId)}
+                                  className="rounded-md border border-sky-800 bg-sky-950/70 px-2 py-2 text-left text-xs text-sky-50 hover:bg-sky-900 disabled:cursor-not-allowed disabled:opacity-40"
+                                  title={habilidad.descripcion}
+                                >
+                                  <span className="block font-bold">{habilidad.nombre} · Nv. {habilidad.nivel}</span>
+                                  <span className="mt-0.5 block text-[10px] text-sky-200">
+                                    {habilidad.costeEnergia > 0 ? `Energía ${habilidad.costeEnergia}` : ""}
+                                    {habilidad.costeEnergia > 0 && habilidad.costeMana > 0 ? " · " : ""}
+                                    {habilidad.costeMana > 0 ? `Maná ${habilidad.costeMana}` : ""}
+                                    {habilidad.cooldownTurnos > 0 ? ` · CD ${habilidad.cooldownTurnos}` : ""}
+                                  </span>
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {Boolean(estado.personajeAcciones?.objetos.length) && (
+                          <div>
+                            <p className="mb-1 text-[11px] font-black uppercase tracking-wide text-emerald-200">Consumibles curativos</p>
+                            <div className="flex flex-wrap gap-1.5">
+                              {estado.personajeAcciones?.objetos.map((objeto) => (
+                                <button
+                                  key={objeto.inventarioObjetoId}
+                                  type="button"
+                                  disabled={Boolean(accion) || objeto.cantidad < 1 ||
+                                    (estado.expedicionActiva?.combate?.participantes.find((p) => p.usuarioId === estado.usuarioId)?.jugadorHp ?? 0) >=
+                                    (estado.expedicionActiva?.combate?.participantes.find((p) => p.usuarioId === estado.usuarioId)?.jugadorHpMaximo ?? 0)}
+                                  onClick={() => void ejecutarAccionCombatePartyUI("usar_objeto", objeto.inventarioObjetoId)}
+                                  className="rounded-md border border-emerald-800 bg-emerald-950/70 px-3 py-2 text-xs text-emerald-50 hover:bg-emerald-900 disabled:cursor-not-allowed disabled:opacity-40"
+                                >
+                                  🧪 {objeto.nombre} ×{objeto.cantidad} (+{objeto.curacion} HP)
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        <p className="text-[10px] text-slate-500">
+                          Recursos: {estado.personajeAcciones?.energiaActual ?? 0} Energía · {estado.personajeAcciones?.manaActual ?? 0} Maná
+                        </p>
+                      </div>
                     )}
                   <div className="mt-3 space-y-2">
                     {estado.expedicionActiva.combate.participantes.map((participante) => (
