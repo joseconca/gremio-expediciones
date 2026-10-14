@@ -28,6 +28,8 @@ import {
 } from "@/lib/party/combate-reglas";
 import { PartyServiceError } from "@/server/services/party/party-service";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
+import { tirarBotinEnemigo } from "@/lib/lootObjetos";
+import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
 import { experienciaParaNivel } from "@/lib/configuracionJuego";
 import {
   aplicarMultiplicadorRecompensa,
@@ -309,46 +311,15 @@ function hashDeterminista(texto: string): number {
   return hash >>> 0;
 }
 
-function pseudoaleatorioDeterminista(semilla: number): number {
-  let valor = (semilla + 0x6D2B79F5) >>> 0;
-  valor = Math.imul(valor ^ (valor >>> 15), valor | 1);
-  valor ^= valor + Math.imul(valor ^ (valor >>> 7), valor | 61);
-  return ((valor ^ (valor >>> 14)) >>> 0) / 4294967296;
-}
-
-function resolverDropEnemigo(
-  combateId: string,
-  enemigo: ReturnType<typeof obtenerEnemigoPorId>,
-): { objetoId: string; cantidad: number } | null {
-  if (!enemigo) return null;
-  const probabilidad = typeof enemigo.probabilidadBotin === "number" && Number.isFinite(enemigo.probabilidadBotin)
-    ? Math.max(0, Math.min(1, enemigo.probabilidadBotin))
-    : 0;
-  const semilla = hashDeterminista(`${combateId}:${enemigo.id}`);
-  if (pseudoaleatorioDeterminista(semilla) >= probabilidad) return null;
-
-  const tabla = (enemigo.tablaLoot?.length
-    ? enemigo.tablaLoot
-    : enemigo.objetoDropId
-      ? [{ objetoId: enemigo.objetoDropId, peso: 1 }]
-      : [])
-    .filter((entrada) =>
-      typeof entrada.objetoId === "string" &&
-      entrada.objetoId.trim().length > 0 &&
-      Number.isFinite(entrada.peso) &&
-      entrada.peso > 0 &&
-      Boolean(obtenerObjetoPorId(entrada.objetoId))
-    );
-  const pesoTotal = tabla.reduce((suma, entrada) => suma + entrada.peso, 0);
-  if (pesoTotal <= 0) return null;
-
-  let pesoElegido = pseudoaleatorioDeterminista(hashDeterminista(`${combateId}:${enemigo.id}:tabla`)) * pesoTotal;
-  for (const entrada of tabla) {
-    pesoElegido -= entrada.peso;
-    if (pesoElegido < 0) return { objetoId: entrada.objetoId, cantidad: 1 };
-  }
-  const ultimo = tabla[tabla.length - 1];
-  return ultimo ? { objetoId: ultimo.objetoId, cantidad: 1 } : null;
+function crearRngDeterminista(semillaInicial: string): () => number {
+  let estado = hashDeterminista(semillaInicial);
+  return () => {
+    estado = (estado + 0x6D2B79F5) >>> 0;
+    let valor = estado;
+    valor = Math.imul(valor ^ (valor >>> 15), valor | 1);
+    valor ^= valor + Math.imul(valor ^ (valor >>> 7), valor | 61);
+    return ((valor ^ (valor >>> 14)) >>> 0) / 4294967296;
+  };
 }
 
 function registrarObjetoRecompensa(
@@ -387,18 +358,48 @@ async function agregarObjetoAlInventario(
       where: { id: stack.id },
       data: { cantidad: { increment: cantidad } },
     });
-  } else {
-    await tx.inventarioObjeto.create({
-      data: {
-        inventarioId: inventario.id,
-        objetoId,
-        cantidad,
-        nivelMejora: 0,
-        sufijoId: null,
-        bonificaciones: {},
-      },
-    });
+    return true;
   }
+  const ocupados = await tx.inventarioObjeto.count({ where: { inventarioId: inventario.id } });
+  if (ocupados >= LIMITE_INVENTARIO_OBJETOS) return false;
+  await tx.inventarioObjeto.create({
+    data: {
+      inventarioId: inventario.id,
+      objetoId,
+      cantidad,
+      nivelMejora: 0,
+      sufijoId: null,
+      bonificaciones: {},
+    },
+  });
+  return true;
+}
+
+async function agregarInstanciaBotinAlInventario(
+  tx: Prisma.TransactionClient,
+  personajeId: string,
+  botin: NonNullable<ReturnType<typeof tirarBotinEnemigo>>,
+): Promise<boolean> {
+  const inventarioExistente = await tx.inventario.findUnique({
+    where: { personajeId },
+    select: { id: true },
+  });
+  const inventario = inventarioExistente ?? await tx.inventario.create({
+    data: { personajeId },
+    select: { id: true },
+  });
+  const ocupados = await tx.inventarioObjeto.count({ where: { inventarioId: inventario.id } });
+  if (ocupados >= LIMITE_INVENTARIO_OBJETOS) return false;
+  await tx.inventarioObjeto.create({
+    data: {
+      inventarioId: inventario.id,
+      objetoId: botin.objeto.id,
+      cantidad: 1,
+      nivelMejora: 0,
+      sufijoId: botin.sufijoId,
+      bonificaciones: botin.bonificaciones as unknown as Prisma.InputJsonValue,
+    },
+  });
   return true;
 }
 
@@ -465,11 +466,14 @@ async function liquidarRecompensasParty(
     ? calcularOroEnemigo(enemigo.botin, expedicion.dificultad, enemigo.difMin)
     : 0;
   const oroTotal = aplicarMultiplicadorRecompensa(recompensaMision.oro + oroEnemigo, modoDificultad);
-  const dropEnemigo = resolverDropEnemigo(combate.id, enemigo);
+  const dropEnemigo = enemigo
+    ? tirarBotinEnemigo(enemigo, crearRngDeterminista(`${combate.id}:${enemigo.id}:botin`))
+    : null;
   const indiceReceptorDrop = dropEnemigo
     ? hashDeterminista(`${combate.id}:${enemigo?.id ?? "enemigo"}:receptor`) % participantes.length
     : -1;
   const totalMiembros = participantes.length;
+  const versionEsperadaLiquidada = combate.version + 1;
   const liquidado = await tx.combateParty.updateMany({
     where: {
       id: combatePartyId,
@@ -569,19 +573,6 @@ async function liquidarRecompensasParty(
       const agregado = await agregarObjetoAlInventario(tx, personaje.id, objeto.objetoId, cantidad);
       if (agregado) registrarObjetoRecompensa(objetosRepartidos, objeto.objetoId, cantidad);
     }
-    if (dropEnemigo && indice === indiceReceptorDrop) {
-      const agregado = await agregarObjetoAlInventario(
-        tx,
-        personaje.id,
-        dropEnemigo.objetoId,
-        dropEnemigo.cantidad,
-      );
-      if (agregado) {
-        registrarObjetoRecompensa(objetosRepartidos, dropEnemigo.objetoId, dropEnemigo.cantidad);
-        logLiquidacion.push(`🎲 Botín de ${combate.enemigoNombre}: ${dropEnemigo.objetoId} para ${miembro.usuarioId}.`);
-      }
-    }
-
     detalle.push({
       usuarioId: miembro.usuarioId,
       oro,
@@ -596,11 +587,33 @@ async function liquidarRecompensasParty(
     );
   }
 
+  let dropEnemigoAdjudicado: { objetoId: string; nombre: string; cantidad: number; sufijoId: string | null } | null = null;
+  if (dropEnemigo) {
+    for (let desplazamiento = 0; desplazamiento < participantes.length; desplazamiento += 1) {
+      const indice = (indiceReceptorDrop + desplazamiento) % participantes.length;
+      const miembro = participantes[indice];
+      const agregado = await agregarInstanciaBotinAlInventario(tx, miembro.personaje.id, dropEnemigo);
+      if (!agregado) continue;
+      detalle[indice].objetos.push({ objetoId: dropEnemigo.objeto.id, cantidad: 1 });
+      dropEnemigoAdjudicado = {
+        objetoId: dropEnemigo.objeto.id,
+        nombre: dropEnemigo.objeto.nombre,
+        cantidad: 1,
+        sufijoId: dropEnemigo.sufijoId,
+      };
+      logLiquidacion.push(`🎲 Botín de ${combate.enemigoNombre}: ${dropEnemigo.objeto.nombre}${dropEnemigo.sufijoId ? ` (${dropEnemigo.sufijoId})` : ""} para ${miembro.usuarioId}.`);
+      break;
+    }
+    if (!dropEnemigoAdjudicado) {
+      logLiquidacion.push("🎒 El botín del enemigo no se pudo guardar porque todos los inventarios de la party están llenos.");
+    }
+  }
+
   const logGuardado = await tx.combateParty.updateMany({
     where: {
       id: combatePartyId,
       recompensasResueltas: true,
-      version: combate.version + 1,
+      version: versionEsperadaLiquidada,
     },
     data: { log: logLiquidacion as unknown as Prisma.InputJsonValue },
   });
@@ -611,7 +624,7 @@ async function liquidarRecompensasParty(
   return {
     liquidacionYaResuelta: false,
     oroTotal,
-    dropEnemigo,
+    dropEnemigo: dropEnemigoAdjudicado,
     experienciaPorMiembro: detalle.map((d) => ({ usuarioId: d.usuarioId, experiencia: d.experiencia })),
     recompensas: detalle,
   };
