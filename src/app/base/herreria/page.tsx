@@ -513,7 +513,6 @@ export default function HerreriaPage() {
                         return (
                           <article
                             key={objetoInventario.id}
-                            title={objeto.descripcion}
                             className={`p-2 transition-colors sm:p-3 ${
                               equipado
                                 ? "bg-[#25221c] hover:bg-[#2c281f]"
@@ -524,37 +523,27 @@ export default function HerreriaPage() {
                               {/* INFORMACIÓN */}
                               <div className="min-w-0">
                                 <div className="flex flex-wrap items-center gap-2">
-                                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border-2 border-[#60676a] bg-[#171a1b] text-2xl shadow-[inset_0_0_18px_rgba(0,0,0,0.5)] sm:h-16 sm:w-16 sm:text-3xl">
-                                    {obtenerSpriteObjeto(objeto) ? (
-                                      <Image
-                                        src={obtenerSpriteObjeto(objeto)!}
-                                        alt={objeto.nombre}
-                                        width={64}
-                                        height={64}
-                                        className="rounded-md"
-                                      />
-                                    ) : (
-                                      iconoTipo(categoria.tipo)
-                                    )}
-                                  </div>
-
-                                  <h4 className="min-w-0 text-lg font-black text-[#e3dfd8]">
-                                    {objeto.nombre}
-                                  </h4>
                                   <DescripcionTactil
                                     titulo={objeto.nombre}
                                     resumen={objeto.descripcion}
                                     detalles={[
-                                      objeto.descripcion,
-                                      ...obtenerEstadisticasNoCero(
-                                        objeto,
-                                        objetoInventario.nivelMejora,
-                                        objetoInventario.bonificaciones
-                                      ).map((estadistica) => `${estadistica.nombre}: ${formatearValorEstadistica(estadistica.clave, estadistica.valor)}`),
+                                      ...obtenerEstadisticasNoCero(objeto, objetoInventario.nivelMejora, objetoInventario.bonificaciones)
+                                        .map((estadistica) => `${estadistica.nombre}: ${formatearValorEstadistica(estadistica.clave, estadistica.valor)}`),
                                       ...(objeto.manos === 2 ? ["Ocupa ambas manos y bloquea la ranura secundaria."] : []),
                                     ]}
                                     variante="metal"
-                                  />
+                                    etiquetaAccesible={`Consultar ${objeto.nombre}`}
+                                    claseBoton="flex h-12 w-12 shrink-0 touch-manipulation items-center justify-center rounded-md border-2 border-[#60676a] bg-[#171a1b] p-1 text-2xl shadow-[inset_0_0_18px_rgba(0,0,0,0.5)] transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400 sm:h-16 sm:w-16 sm:text-3xl"
+                                  >
+                                    {obtenerSpriteObjeto(objeto) ? (
+                                      <Image src={obtenerSpriteObjeto(objeto)!} alt="" aria-hidden="true" width={64} height={64} className="h-full w-full rounded-md object-contain [image-rendering:pixelated]" />
+                                    ) : iconoTipo(categoria.tipo)}
+                                  </DescripcionTactil>
+
+                                  <h4 className="min-w-0 text-lg font-black text-[#e3dfd8]">
+                                    {objeto.nombre}
+                                  </h4>
+
 
                                   <span
                                     className={`rounded border px-2 py-0.5 text-[9px] font-black uppercase tracking-wider ${estiloRareza(
@@ -575,7 +564,7 @@ export default function HerreriaPage() {
                                   )}
                                 </div>
 
-                                <span className="sr-only">{objeto.descripcion}</span>
+                                <p className="mt-2 line-clamp-2 border-b border-[#60676a]/70 pb-1 text-xs leading-4 text-[#9ba0a2]">{objeto.descripcion}</p>
 
                                 {/* ESTADÍSTICAS */}
                                 <div className="mt-1 flex flex-wrap gap-x-2 gap-y-0.5 sm:mt-2 sm:gap-x-3">
