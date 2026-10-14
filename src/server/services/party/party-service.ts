@@ -666,9 +666,49 @@ export async function obtenerEstadoParty(usuarioId: string) {
       }
     : null;
 
+  const personajeAcciones = await prisma.personaje.findUnique({
+    where: { usuarioId },
+    select: {
+      profesionActivaId: true,
+      energiaActual: true,
+      manaActual: true,
+      habilidades: {
+        where: { slot: { in: ["activa_1", "activa_2", "activa_3"] } },
+        select: { habilidadId: true, nivel: true, slot: true },
+      },
+      inventario: {
+        select: {
+          objetos: {
+            where: { cantidad: { gt: 0 } },
+            select: { id: true, objetoId: true, cantidad: true },
+          },
+        },
+      },
+    },
+  });
+
+  const personajeAccionesVista = {
+    profesionActivaId: personajeAcciones?.profesionActivaId ?? "novato",
+    energiaActual: personajeAcciones?.energiaActual ?? 0,
+    manaActual: personajeAcciones?.manaActual ?? 0,
+    habilidades: (personajeAcciones?.habilidades ?? []).flatMap((h) => {
+      const definicion = obtenerHabilidadPorId(h.habilidadId);
+      return definicion?.tipo === "activa"
+        ? [{ habilidadId: h.habilidadId, nombre: definicion.nombre, descripcion: definicion.descripcion, costeEnergia: definicion.costeEnergia ?? 0, costeMana: definicion.costeMana ?? 0, cooldownTurnos: definicion.cooldownTurnos ?? 0, nivel: h.nivel, slot: h.slot }]
+        : [];
+    }),
+    objetos: (personajeAcciones?.inventario?.objetos ?? []).flatMap((objeto) => {
+      const definicion = obtenerObjetoPorId(objeto.objetoId);
+      return definicion?.tipo === "consumible" && (definicion.curacion ?? 0) > 0
+        ? [{ inventarioObjetoId: objeto.id, objetoId: objeto.objetoId, nombre: definicion.nombre, curacion: definicion.curacion ?? 0, cantidad: objeto.cantidad }]
+        : [];
+    }),
+  };
+
   return {
     usuarioId,
     party,
+    personajeAcciones: personajeAccionesVista,
     expedicionActiva,
     trasladosPropios: traslados.filter((traslado) => traslado.visitanteUsuarioId === usuarioId),
     visitasEntrantes: traslados.filter(
