@@ -71,6 +71,19 @@ type PersonajeAccionesVista = {
   habilidades: { habilidadId: string; nombre: string; descripcion: string; costeEnergia: number; costeMana: number; cooldownTurnos: number; nivel: number; slot: string | null }[];
   objetos: { inventarioObjetoId: string; objetoId: string; nombre: string; curacion: number; cantidad: number }[];
 };
+type ResultadoRecompensasParty = {
+  liquidacionYaResuelta: boolean;
+  oroTotal?: number;
+  recompensas: {
+    usuarioId: string;
+    oro: number;
+    madera: number;
+    piedra: number;
+    metal: number;
+    experiencia: number;
+    objetos: { objetoId: string; cantidad: number }[];
+  }[];
+};
 type EstadoParty = {
   usuarioId: string;
   personajeAcciones?: PersonajeAccionesVista;
@@ -123,6 +136,11 @@ export default function PanelParty() {
   const [cargando, setCargando] = useState(true);
   const [accion, setAccion] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [ultimoResultadoCombate, setUltimoResultadoCombate] = useState<{
+    expedicionPartyId: string;
+    fase: "victoria" | "derrota";
+    recompensas: ResultadoRecompensasParty | null;
+  } | null>(null);
   const procesandoAutomatico = useRef(new Set<string>());
 
   const actualizarEstado = useCallback(async () => {
@@ -293,11 +311,14 @@ export default function PanelParty() {
 
     void (async () => {
       try {
-        await enviarAccion(
-          "/api/expediciones/party/combate/turno-enemigo",
-          expedicion.id,
-          "expedicionPartyId",
-        );
+        const respuestaTurno = await fetch("/api/expediciones/party/combate/turno-enemigo", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ expedicionPartyId: expedicion.id }),
+        });
+        const datosTurno = await respuestaTurno.json().catch(() => ({}));
+        if (!respuestaTurno.ok) throw new Error(datosTurno.error || "No se pudo resolver el turno del enemigo.");
+        guardarResultadoCombate(expedicion.id, datosTurno);
         await actualizarEstado();
         await cargarJugador();
       } catch (err) {
@@ -330,6 +351,18 @@ export default function PanelParty() {
     }
   };
 
+  const guardarResultadoCombate = (
+    expedicionPartyId: string,
+    datos: { fase?: string; recompensas?: ResultadoRecompensasParty | null },
+  ) => {
+    if (datos.fase !== "victoria" && datos.fase !== "derrota") return;
+    setUltimoResultadoCombate({
+      expedicionPartyId,
+      fase: datos.fase,
+      recompensas: datos.fase === "victoria" ? (datos.recompensas ?? null) : null,
+    });
+  };
+
   const ejecutarAccionCombatePartyUI = async (
     tipo: "usar_habilidad" | "usar_objeto",
     id: string,
@@ -350,6 +383,7 @@ export default function PanelParty() {
       });
       const datos = await respuesta.json().catch(() => ({}));
       if (!respuesta.ok) throw new Error(datos.error || "No se pudo ejecutar la acción.");
+      guardarResultadoCombate(expedicion.id, datos);
       await actualizarEstado();
       await cargarJugador();
     } catch (err) {
@@ -374,6 +408,7 @@ export default function PanelParty() {
       });
       const datos = await respuesta.json().catch(() => ({}));
       if (!respuesta.ok) throw new Error(datos.error || "No se pudo ejecutar el ataque.");
+      guardarResultadoCombate(expedicion.id, datos);
       await actualizarEstado();
       await cargarJugador();
     } catch (err) {
@@ -607,6 +642,42 @@ export default function PanelParty() {
               </div>
             </div>
           </div>
+        </article>
+      )}
+
+      {ultimoResultadoCombate && (
+        <article className={`mb-3 rounded-lg border p-3 ${ultimoResultadoCombate.fase === "victoria" ? "border-emerald-800 bg-emerald-950/30" : "border-red-900 bg-red-950/20"}`}>
+          <p className={`font-black ${ultimoResultadoCombate.fase === "victoria" ? "text-emerald-200" : "text-red-200"}`}>
+            {ultimoResultadoCombate.fase === "victoria" ? "🎁 Recompensas de la expedición" : "⚔️ Resultado del combate"}
+          </p>
+          {ultimoResultadoCombate.fase === "victoria" && ultimoResultadoCombate.recompensas ? (
+            <div className="mt-2 space-y-2">
+              <p className="text-[11px] text-slate-300">
+                Oro total repartido: {ultimoResultadoCombate.recompensas.oroTotal ?? 0} 🪙. La experiencia Base y Job se aplica individualmente.
+              </p>
+              {ultimoResultadoCombate.recompensas.recompensas.map((recompensa) => {
+                const miembro = estado?.expedicionActiva?.participantes.find((p) => p.usuarioId === recompensa.usuarioId);
+                const nombre = miembro?.usuario?.personaje?.nombre ?? miembro?.usuario?.nombre ?? (recompensa.usuarioId === estado?.usuarioId ? "Tú" : "Aventurero");
+                return (
+                  <div key={recompensa.usuarioId} className="rounded-md border border-slate-800 bg-slate-950/70 p-2">
+                    <p className="text-xs font-bold text-amber-100">{nombre}</p>
+                    <p className="mt-1 text-[11px] text-slate-300">
+                      +{recompensa.oro} oro · +{recompensa.madera} madera · +{recompensa.piedra} piedra · +{recompensa.metal} metal · +{recompensa.experiencia} XP
+                    </p>
+                    {recompensa.objetos.length > 0 && (
+                      <p className="mt-1 text-[11px] text-emerald-200">
+                        Objetos: {recompensa.objetos.map((objeto) => `${objeto.objetoId} ×${objeto.cantidad}`).join(", ")}
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          ) : ultimoResultadoCombate.fase === "derrota" ? (
+            <p className="mt-1 text-xs text-slate-300">El grupo ha sido derrotado; no se han otorgado recompensas de victoria.</p>
+          ) : (
+            <p className="mt-1 text-xs text-slate-300">La victoria se ha registrado; no hay un resumen adicional disponible en esta respuesta.</p>
+          )}
         </article>
       )}
 
