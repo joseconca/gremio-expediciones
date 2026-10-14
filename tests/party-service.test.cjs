@@ -306,3 +306,46 @@ test("el propietario puede rechazar una visita llegada aunque siga marcada en vi
   assert.equal(resultado.decision, "rechazada");
   assert.deepEqual(llamadasEstado, ["pendiente", "regresando"]);
 });
+
+test("el último informe de combate se conserva después del regreso y solo incluye a sus participantes", async () => {
+  const informe = {
+    liquidacionYaResuelta: false,
+    oroTotal: 21,
+    dropsEnemigo: [{ usuarioId: "u1", objetoId: "pocion", nombre: "Poción", cantidad: 1, sufijoId: "del test" }],
+    experienciaPorMiembro: [{ usuarioId: "u1", experiencia: 45 }, { usuarioId: "u2", experiencia: 45 }],
+    recompensas: [
+      { usuarioId: "u1", oro: 11, madera: 2, piedra: 1, metal: 1, experiencia: 45, objetos: [] },
+      { usuarioId: "u2", oro: 10, madera: 2, piedra: 1, metal: 0, experiencia: 45, objetos: [] },
+    ],
+  };
+  const llamadaHistorial = [];
+  const tx = {
+    partyMember: { findUnique: async () => null },
+    partyTransfer: { findMany: async () => [] },
+    expedicionParty: {
+      findFirst: async (args) => {
+        llamadaHistorial.push(args);
+        return {
+          id: "expedicion-terminada",
+          combate: { fase: "victoria", recompensasResultado: informe },
+          participantes: [
+            { usuarioId: "u1", usuario: { id: "u1", nombre: "uno", personaje: { nombre: "Aventurero Uno", nivel: 4, estado: "ocioso" } } },
+            { usuarioId: "u2", usuario: { id: "u2", nombre: "dos", personaje: { nombre: "Aventurero Dos", nivel: 4, estado: "ocioso" } } },
+          ],
+        };
+      },
+    },
+    personaje: { findUnique: async () => null },
+  };
+  const servicio = loadService(tx);
+  const estado = await servicio.obtenerEstadoParty("u1");
+
+  assert.equal(llamadaHistorial.length, 1);
+  assert.deepEqual(llamadaHistorial[0].where.participantes, { some: { usuarioId: "u1" } });
+  assert.deepEqual(llamadaHistorial[0].where.combate.is.fase.in, ["victoria", "derrota"]);
+  assert.equal(estado.expedicionActiva, null);
+  assert.equal(estado.ultimoResultadoExpedicion.expedicionPartyId, "expedicion-terminada");
+  assert.equal(estado.ultimoResultadoExpedicion.fase, "victoria");
+  assert.deepEqual(estado.ultimoResultadoExpedicion.recompensas.dropsEnemigo.map((drop) => drop.usuarioId), ["u1"]);
+  assert.deepEqual(estado.ultimoResultadoExpedicion.participantes.map((p) => p.usuario.personaje.nombre), ["Aventurero Uno", "Aventurero Dos"]);
+});
