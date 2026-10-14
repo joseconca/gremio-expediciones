@@ -50,8 +50,8 @@ test("los aventureros actúan por orden y después actúa el enemigo", () => {
 test("se salta a personajes caídos sin ceder dos turnos al mismo jugador", () => {
   const grupo = participantes();
   let estado = crearEstadoInicialTurnoParty(grupo);
-  grupo[1].jugadorHp = 0;
-  grupo[1].estado = "caido";
+  grupo[0].jugadorHp = 0;
+  grupo[0].estado = "caido";
   estado = calcularSiguienteTurnoParty(estado, grupo);
   assert.equal(estado.turnoActualUsuarioId, "u3");
 
