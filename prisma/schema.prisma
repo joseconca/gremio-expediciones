@@ -30,6 +30,11 @@ model Usuario {
   sesiones         Sesion[]
   mensajesChat     MensajeChat[]
   sugerencias      Sugerencia[]
+
+  partyLiderada             Party[]         @relation("PartyLider")
+  partyMembresia             PartyMember?
+  trasladosComoVisitante     PartyTransfer[] @relation("TransferVisitante")
+  trasladosComoAnfitrion     PartyTransfer[] @relation("TransferAnfitrion")
 }
 
 model Sesion {
@@ -347,3 +352,47 @@ model Sugerencia {
   @@index([creado])
 }
 
+
+
+model Party {
+  id             String   @id @default(uuid())
+  liderUsuarioId String   @unique
+  liderUsuario   Usuario  @relation("PartyLider", fields: [liderUsuarioId], references: [id], onDelete: Cascade)
+  creado         DateTime @default(now())
+  actualizado    DateTime @updatedAt
+
+  miembros PartyMember[]
+}
+
+model PartyMember {
+  id        String   @id @default(uuid())
+  partyId   String
+  usuarioId String   @unique
+  unidoEn   DateTime @default(now())
+
+  party   Party   @relation(fields: [partyId], references: [id], onDelete: Cascade)
+  usuario Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+
+  @@index([partyId, unidoEn])
+}
+
+model PartyTransfer {
+  id                 String   @id @default(uuid())
+  visitanteUsuarioId String
+  anfitrionUsuarioId String
+  estado             String   @default("en_viaje")
+  decision           String?
+  fechaSalida        DateTime @default(now())
+  fechaLlegada       DateTime
+  fechaResolucion    DateTime?
+  origenCoords       Json
+  destinoCoords      Json
+  creado             DateTime @default(now())
+  actualizado        DateTime @updatedAt
+
+  visitante Usuario @relation("TransferVisitante", fields: [visitanteUsuarioId], references: [id], onDelete: Cascade)
+  anfitrion Usuario @relation("TransferAnfitrion", fields: [anfitrionUsuarioId], references: [id], onDelete: Cascade)
+
+  @@index([visitanteUsuarioId, estado])
+  @@index([anfitrionUsuarioId, estado, fechaLlegada])
+}
