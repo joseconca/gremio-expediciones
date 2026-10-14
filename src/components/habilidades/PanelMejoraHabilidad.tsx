@@ -60,6 +60,13 @@ export default function PanelMejoraHabilidad({
         <span className="shrink-0 rounded-md border border-sky-600/70 bg-sky-900/40 px-2 py-1 text-[10px] font-bold text-sky-100">1 punto Job</span>
       </header>
       <div className="space-y-2 p-3">
+        {cambios.length > 0 && (
+          <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] gap-1.5 px-2.5 text-[9px] font-black uppercase tracking-[0.14em] text-sky-200/65">
+            <span>Actual</span>
+            <span aria-hidden="true">→</span>
+            <span>Siguiente</span>
+          </div>
+        )}
         {cambios.length > 0 ? cambios.map((cambio, indice) => (
           <div key={cambio.etiqueta + ":" + indice} className="rounded-md border border-white/5 bg-black/20 px-2.5 py-2">
             <p className="text-[9px] font-bold uppercase tracking-wider text-slate-400">{cambio.etiqueta}</p>

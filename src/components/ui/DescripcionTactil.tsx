@@ -50,7 +50,7 @@ export default function DescripcionTactil({
     const rect = botonRef.current?.getBoundingClientRect();
     if (rect) {
       const anchoPanel = Math.min(304, window.innerWidth - 24);
-      const altoEstimado = Math.min(window.innerHeight * 0.55, 320);
+      const altoEstimado = Math.min(window.innerHeight * 0.55, 384);
       const izquierda = Math.max(12, Math.min(rect.left, window.innerWidth - anchoPanel - 12));
       const debajo = rect.bottom + 8;
       const arriba = debajo + altoEstimado > window.innerHeight - 12
@@ -106,7 +106,8 @@ export default function DescripcionTactil({
       {abierto && typeof document !== "undefined" && createPortal(
         <div
           ref={panelRef}
-          role="tooltip"
+          role="dialog"
+          aria-label={`Detalles de ${titulo}`}
           className={`fixed z-[20000] max-h-[min(55dvh,24rem)] w-[min(19rem,calc(100vw-24px))] overflow-y-auto rounded-lg border p-3 text-left shadow-2xl backdrop-blur-md ${estilos}`}
           style={{ left: posicion.left, top: posicion.top }}
         >
