@@ -16,7 +16,7 @@ class MockPartyError extends Error {
   }
 }
 
-function loadService(prisma) {
+function loadService(prisma, testOptions = {}) {
   const filename = path.resolve(__dirname, "../src/server/services/party/combate-party-actions.ts");
   const source = fs.readFileSync(filename, "utf8");
   const { outputText } = ts.transpileModule(source, {
@@ -76,7 +76,21 @@ function loadService(prisma) {
       obtenerCooldowns: (valor) => valor && typeof valor === "object" && !Array.isArray(valor) ? valor : {},
       otorgarExperienciaJob: async () => null,
     },
-    "@/lib/enemigos": { obtenerEnemigoPorId: () => ({ id: "slime", botin: 10, difMin: 1 }) },
+    "@/lib/enemigos": {
+      obtenerEnemigoPorId: (id) => ({ id, botin: 10, difMin: 1, ...(testOptions.enemigo ?? {}) }),
+    },
+    "@/lib/lootObjetos": {
+      tirarBotinEnemigo: (enemigo, rng = Math.random) => {
+        if (!enemigo?.tablaLoot?.length || rng() >= (enemigo.probabilidadBotin ?? 0)) return null;
+        const entrada = enemigo.tablaLoot.find((item) => item.peso > 0);
+        if (!entrada) return null;
+        const objeto = entrada.objetoId === "pocion"
+          ? { id: "pocion", nombre: "Poción", tipo: "consumible", rareza: "comun" }
+          : undefined;
+        return objeto ? { objeto, sufijoId: "del test", bonificaciones: { vitalidad: 1 } } : null;
+      },
+    },
+    "@/lib/inventario": { LIMITE_INVENTARIO_OBJETOS: 30 },
     "@/lib/configuracionJuego": { experienciaParaNivel: () => 500 },
     "@/lib/expediciones/dificultad": {
       esModoDificultad: (value) => ["facil", "normal", "dificil"].includes(value),
@@ -299,6 +313,7 @@ function mockPrisma(combat, options = {}) {
       },
     },
     inventarioObjeto: {
+      count: async () => options.inventoryCount ?? 0,
       findFirst: async () => null,
       create: async ({ data }) => {
         calls.inventoryStackWrites.push(data);
@@ -509,6 +524,7 @@ test("la victoria reparte oro, recursos y objetos de misión sin generar unidade
   assert.equal(calls.userWrites.reduce((s, w) => s + w.data.metal.increment, 0), 1);
   assert.equal(calls.inventoryStackWrites.reduce((s, w) => s + (w.cantidad ?? 0), 0), 2);
   assert.equal(result.recompensas.recompensas.length, 2);
+  assert.equal(combat.log.filter((line) => line.startsWith("🎁 ")).length, 2);
 });
 
 test("una liquidación persistida impide volver a otorgar la recompensa", async () => {
@@ -520,4 +536,36 @@ test("una liquidación persistida impide volver a otorgar la recompensa", async 
     (error) => error.code === "COMBATE_PARTY_TERMINADO",
   );
   assert.equal(calls.userWrites.length, 0);
+});
+
+
+test("la victoria concede un drop determinista del enemigo a un miembro de la party", async () => {
+  const combat = mkCombat({ enemigoHp: 10, id: "combat-loot-1" });
+  const { prisma, calls } = mockPrisma(combat);
+  const service = loadService(prisma, {
+    enemigo: { probabilidadBotin: 1, tablaLoot: [{ objetoId: "pocion", peso: 1 }] },
+  });
+  const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "atacar");
+  assert.equal(result.fase, "victoria");
+  assert.equal(result.recompensas.dropEnemigo.objetoId, "pocion");
+  assert.equal(result.recompensas.dropEnemigo.sufijoId, "del test");
+  const objetosOtorgados = result.recompensas.recompensas.reduce(
+    (suma, miembro) => suma + miembro.objetos.reduce((subtotal, objeto) => subtotal + objeto.cantidad, 0),
+    0,
+  );
+  assert.equal(objetosOtorgados, 3);
+  assert.equal(calls.inventoryStackWrites.reduce((s, w) => s + (w.cantidad ?? 0), 0), 3);
+});
+
+test("el drop no supera el límite de inventario si toda la party está llena", async () => {
+  const combat = mkCombat({ enemigoHp: 10, id: "combat-loot-full" });
+  const { prisma, calls } = mockPrisma(combat, { inventoryCount: 30 });
+  const service = loadService(prisma, {
+    enemigo: { probabilidadBotin: 1, tablaLoot: [{ objetoId: "pocion", peso: 1 }] },
+  });
+  const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "atacar");
+  assert.equal(result.fase, "victoria");
+  assert.equal(result.recompensas.dropEnemigo, null);
+  assert.equal(calls.inventoryStackWrites.length, 0);
+  assert.equal(combat.log.some((line) => line.includes("inventarios de la party están llenos")), true);
 });
