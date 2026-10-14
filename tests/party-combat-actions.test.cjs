@@ -81,7 +81,10 @@ function loadService(prisma, testOptions = {}) {
     },
     "@/lib/lootObjetos": {
       tirarBotinEnemigo: (enemigo, rng = Math.random) => {
-        if (!enemigo?.tablaLoot?.length || rng() >= (enemigo.probabilidadBotin ?? 0)) return null;
+        if (!enemigo?.tablaLoot?.length) return null;
+        const tirada = rng();
+        if (Array.isArray(testOptions.lootRolls)) testOptions.lootRolls.push(tirada);
+        if (tirada >= (enemigo.probabilidadBotin ?? 0)) return null;
         const entrada = enemigo.tablaLoot.find((item) => item.peso > 0);
         if (!entrada) return null;
         const objeto = entrada.objetoId === "pocion"
@@ -94,7 +97,7 @@ function loadService(prisma, testOptions = {}) {
     "@/lib/configuracionJuego": { experienciaParaNivel: () => 500 },
     "@/lib/expediciones/dificultad": {
       esModoDificultad: (value) => ["facil", "normal", "dificil"].includes(value),
-      calcularExperienciaBaseGanada: () => 45,
+      calcularExperienciaBaseGanada: (_dificultad, nivel) => nivel * 10,
       calcularOroEnemigo: () => 10,
       aplicarMultiplicadorRecompensa: (value) => value,
       registrarVictoriaRangoNormal: (prev, nivel) => [...(Array.isArray(prev) ? prev : []), nivel],
@@ -232,7 +235,7 @@ function mockPrisma(combat, options = {}) {
               creado: new Date(0),
               usuario: { id: p.usuarioId },
               personaje: p.usuarioId === "u1" ? { ...character, id: p.personajeId } : {
-                id: p.personajeId, usuarioId: p.usuarioId, nivel: 3, experiencia: 0,
+                id: p.personajeId, usuarioId: p.usuarioId, nivel: p.usuarioId === "u3" ? 7 : 3, experiencia: 0,
                 profesionActivaId: "novato", rangosAmenazaCompletados: [], inventario: { id: "inventario-" + p.usuarioId },
               },
             })),
@@ -275,7 +278,7 @@ function mockPrisma(combat, options = {}) {
             personaje: p.usuarioId === "u1" ? { ...character, id: p.personajeId } : {
               id: p.personajeId,
               usuarioId: p.usuarioId,
-              nivel: 3,
+              nivel: p.usuarioId === "u3" ? 7 : 3,
               experiencia: 0,
               profesionActivaId: "novato",
               rangosAmenazaCompletados: [],
@@ -539,33 +542,46 @@ test("una liquidación persistida impide volver a otorgar la recompensa", async 
 });
 
 
-test("la victoria concede un drop determinista del enemigo a un miembro de la party", async () => {
-  const combat = mkCombat({ enemigoHp: 10, id: "combat-loot-1" });
+test("la victoria tira botín de forma independiente para cada miembro y mantiene la XP Base común", async () => {
+  const lootRolls = [];
+  const combat = mkCombat({
+    enemigoHp: 10,
+    id: "combat-loot-independent",
+    participantes: [mkParticipant("u1", 0), mkParticipant("u2", 1), mkParticipant("u3", 2)],
+  });
   const { prisma, calls } = mockPrisma(combat);
   const service = loadService(prisma, {
+    lootRolls,
     enemigo: { probabilidadBotin: 1, tablaLoot: [{ objetoId: "pocion", peso: 1 }] },
   });
   const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "atacar");
   assert.equal(result.fase, "victoria");
-  assert.equal(result.recompensas.dropEnemigo.objetoId, "pocion");
-  assert.equal(result.recompensas.dropEnemigo.sufijoId, "del test");
+  assert.equal(lootRolls.length, 3, "cada aventurero debe tener una tirada independiente");
+  assert.deepEqual(result.recompensas.dropsEnemigo.map((drop) => drop.usuarioId), ["u1", "u2", "u3"]);
+  assert.ok(result.recompensas.dropsEnemigo.every((drop) => drop.objetoId === "pocion" && drop.sufijoId === "del test"));
+  assert.deepEqual(result.recompensas.recompensas.map((miembro) => miembro.experiencia), [30, 30, 30]);
+  assert.equal(result.recompensas.recompensas.length, 3);
   const objetosOtorgados = result.recompensas.recompensas.reduce(
     (suma, miembro) => suma + miembro.objetos.reduce((subtotal, objeto) => subtotal + objeto.cantidad, 0),
     0,
   );
-  assert.equal(objetosOtorgados, 3);
-  assert.equal(calls.inventoryStackWrites.reduce((s, w) => s + (w.cantidad ?? 0), 0), 3);
+  assert.equal(objetosOtorgados, 5, "dos objetos de misión más un objeto independiente para cada aventurero");
+  assert.equal(calls.inventoryStackWrites.reduce((s, w) => s + (w.cantidad ?? 0), 0), 5);
+  assert.equal(calls.userWrites.length, 3);
 });
 
-test("el drop no supera el límite de inventario si toda la party está llena", async () => {
+test("cada aventurero conserva su propio límite de inventario al recibir el drop", async () => {
+  const lootRolls = [];
   const combat = mkCombat({ enemigoHp: 10, id: "combat-loot-full" });
   const { prisma, calls } = mockPrisma(combat, { inventoryCount: 30 });
   const service = loadService(prisma, {
+    lootRolls,
     enemigo: { probabilidadBotin: 1, tablaLoot: [{ objetoId: "pocion", peso: 1 }] },
   });
   const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "atacar");
   assert.equal(result.fase, "victoria");
-  assert.equal(result.recompensas.dropEnemigo, null);
+  assert.deepEqual(result.recompensas.dropsEnemigo, []);
+  assert.equal(lootRolls.length, 2, "se realizan dos tiradas aunque los inventarios estén llenos");
   assert.equal(calls.inventoryStackWrites.length, 0);
-  assert.equal(combat.log.some((line) => line.includes("inventarios de la party están llenos")), true);
+  assert.equal(combat.log.filter((line) => line.includes("su inventario está lleno")).length, 2);
 });
