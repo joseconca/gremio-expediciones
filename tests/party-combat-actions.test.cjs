@@ -325,14 +325,7 @@ function mockPrisma(combat, options = {}) {
         return { count: 1 };
       },
     },
-    inventarioObjeto: {
-      updateMany: async ({ where, data }) => {
-        calls.inventoryWrites = calls.inventoryWrites || [];
-        calls.inventoryWrites.push({ where, data });
-        return { count: 1 };
-      },
-      deleteMany: async () => ({ count: 0 }),
-    },
+
     personaje: {
       findUnique: async () => character,
       updateMany: async ({ where, data }) => {
