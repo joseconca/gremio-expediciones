@@ -5,6 +5,7 @@ on:
     branches:
       - refactor-en-server-y-limpieza
       - estabilizacion-clases-objetos
+      - feature/party-fase-1-core
   pull_request:
     branches:
       - main
@@ -38,6 +39,9 @@ jobs:
 
       - name: Test RPG progression rules
         run: npm run test:progression
+
+      - name: Test party and transfer rules
+        run: npm run test:party
 
       - name: Lint
         run: npm run lint
