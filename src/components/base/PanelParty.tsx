@@ -174,7 +174,7 @@ export default function PanelParty() {
         ? actual
         : {
             expedicionPartyId: expedicion.id,
-            fase: combate.fase,
+            fase: combate.fase as "victoria" | "derrota",
             recompensas: combate.fase === "victoria" ? (combate.recompensasResultado ?? null) : null,
           });
     } else if (expedicion) {
