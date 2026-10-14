@@ -595,7 +595,7 @@ export async function obtenerEstadoParty(usuarioId: string) {
       }
     : null;
 
-  const expedicionActiva = membresia
+  const expedicionActivaRaw = membresia
     ? await prisma.expedicionParty.findFirst({
         where: {
           partyId: membresia.partyId,
@@ -615,8 +615,54 @@ export async function obtenerEstadoParty(usuarioId: string) {
               },
             },
           },
+          combate: {
+            include: {
+              participantes: {
+                orderBy: { ordenTurno: "asc" },
+                include: {
+                  usuario: {
+                    select: {
+                      id: true,
+                      nombre: true,
+                      personaje: { select: { nombre: true, nivel: true, estado: true } },
+                    },
+                  },
+                },
+              },
+            },
+          },
         },
       })
+    : null;
+
+  const expedicionActiva = expedicionActivaRaw
+    ? {
+        ...expedicionActivaRaw,
+        combate: expedicionActivaRaw.combate
+          ? {
+              id: expedicionActivaRaw.combate.id,
+              fase: expedicionActivaRaw.combate.fase,
+              ronda: expedicionActivaRaw.combate.ronda,
+              faseTurno: expedicionActivaRaw.combate.faseTurno,
+              turnoActualUsuarioId: expedicionActivaRaw.combate.turnoActualUsuarioId,
+              enemigoId: expedicionActivaRaw.combate.enemigoId,
+              enemigoNombre: expedicionActivaRaw.combate.enemigoNombre,
+              enemigoHp: expedicionActivaRaw.combate.enemigoHp,
+              enemigoHpMaximo: expedicionActivaRaw.combate.enemigoHpMaximo,
+              log: expedicionActivaRaw.combate.log,
+              ultimaAccion: expedicionActivaRaw.combate.ultimaAccion,
+              participantes: expedicionActivaRaw.combate.participantes.map((p) => ({
+                id: p.id,
+                usuarioId: p.usuarioId,
+                estado: p.estado,
+                ordenTurno: p.ordenTurno,
+                jugadorHp: p.jugadorHp,
+                jugadorHpMaximo: p.jugadorHpMaximo,
+                usuario: p.usuario,
+              })),
+            }
+          : null,
+      }
     : null;
 
   return {
