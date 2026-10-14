@@ -179,6 +179,7 @@ function mockPrisma(combat, options = {}) {
     habilidades: options.habilidades ?? [],
     inventario: options.inventario ?? { id: "inventario-u1", objetos: [{ id: "inv-pocion-1", objetoId: "pocion", cantidad: 1 }] },
   };
+  let faseExpedicion = "combatiendo";
   const tx = {
     combateParty: {
       findUnique: async ({ select } = {}) => select?.recompensasResueltas !== undefined
@@ -197,7 +198,7 @@ function mockPrisma(combat, options = {}) {
     },
     expedicionParty: {
       findUnique: async ({ select, include } = {}) => {
-        if (select?.fase) return { fase: "regresando" };
+        if (select?.fase) return { fase: faseExpedicion };
         if (include?.participantes?.include?.usuario) {
           return { id: "expedition-1", fase: "combatiendo", participantes: combat.participantes.map((p) => ({
             id: "exp-part-" + p.usuarioId,
@@ -210,7 +211,7 @@ function mockPrisma(combat, options = {}) {
         }
         return {
           id: "expedition-1",
-          fase: "combatiendo",
+          fase: faseExpedicion,
           tipo: "normal",
           dificultad: 3,
           modoDificultad: "normal",
@@ -240,6 +241,8 @@ function mockPrisma(combat, options = {}) {
       updateMany: async ({ where, data }) => {
         calls.expeditionWrites.push({ where, data });
         if (options.rejectExpeditionUpdate) return { count: 0 };
+        if (where.fase && where.fase !== faseExpedicion) return { count: 0 };
+        if (data.fase) faseExpedicion = data.fase;
         return { count: 1 };
       },
     },
