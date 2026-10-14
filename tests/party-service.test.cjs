@@ -222,3 +222,83 @@ test("aceptar visita rechaza una party que ya tiene tres miembros", async () => 
     (error) => error.status === 409 && error.code === "PARTY_LLENA",
   );
 });
+
+
+test("el propietario puede aceptar una visita recién llegada sin que el visitante confirme primero", async () => {
+  let estadoTraslado = "en_viaje";
+  const llamadasEstado = [];
+  const transfer = {
+    id: "t-arrived",
+    visitanteUsuarioId: "visitante",
+    anfitrionUsuarioId: "anfitrion",
+    estado: "en_viaje",
+    decision: null,
+    fechaLlegada: new Date(Date.now() - 1_000),
+  };
+  const tx = {
+    partyTransfer: {
+      findUnique: async () => ({ ...transfer, estado: estadoTraslado }),
+      updateMany: async ({ where, data }) => {
+        if (where.estado !== estadoTraslado) return { count: 0 };
+        if (where.fechaLlegada?.lte && transfer.fechaLlegada > where.fechaLlegada.lte) return { count: 0 };
+        llamadasEstado.push(data.estado);
+        estadoTraslado = data.estado;
+        return { count: 1 };
+      },
+    },
+    usuario: {
+      findUnique: async ({ where }) => where.id === "visitante"
+        ? user("visitante", "de_viaje")
+        : user("anfitrion"),
+    },
+    partyMember: {
+      findUnique: async () => null,
+      create: async ({ data }) => ({ id: "miembro", ...data }),
+    },
+    party: {
+      create: async ({ data }) => {
+        assert.equal(data.liderUsuarioId, "anfitrion");
+        return { id: "party-llegada" };
+      },
+    },
+    personaje: {
+      update: async () => undefined,
+    },
+  };
+  const servicio = loadService(makePrisma(tx));
+  const resultado = await servicio.aceptarVisita("anfitrion", "t-arrived");
+  assert.equal(resultado.partyId, "party-llegada");
+  assert.deepEqual(llamadasEstado, ["pendiente", "aceptada"]);
+});
+
+test("el propietario puede rechazar una visita llegada aunque siga marcada en viaje", async () => {
+  let estadoTraslado = "en_viaje";
+  const llamadasEstado = [];
+  const transfer = {
+    id: "t-reject",
+    visitanteUsuarioId: "visitante",
+    anfitrionUsuarioId: "anfitrion",
+    estado: "en_viaje",
+    decision: null,
+    fechaLlegada: new Date(Date.now() - 1_000),
+    origenCoords: { lat: 27.9, lng: -15.4 },
+    destinoCoords: { lat: 28.0, lng: -15.5 },
+  };
+  const tx = {
+    partyTransfer: {
+      findUnique: async () => ({ ...transfer, estado: estadoTraslado }),
+      updateMany: async ({ where, data }) => {
+        if (where.estado !== estadoTraslado) return { count: 0 };
+        if (where.fechaLlegada?.lte && transfer.fechaLlegada > where.fechaLlegada.lte) return { count: 0 };
+        llamadasEstado.push(data.estado);
+        estadoTraslado = data.estado;
+        return { count: 1 };
+      },
+    },
+  };
+  const servicio = loadService(makePrisma(tx));
+  const resultado = await servicio.rechazarVisita("anfitrion", "t-reject");
+  assert.equal(resultado.estado, "regresando");
+  assert.equal(resultado.decision, "rechazada");
+  assert.deepEqual(llamadasEstado, ["pendiente", "regresando"]);
+});

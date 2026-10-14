@@ -262,6 +262,8 @@ export interface BaseMapa {
   lng: number;
   nivel: number;
   nivelPersonaje: number;
+  /** Las rutas comerciales y los asedios requieren Embajada; las visitas no. */
+  tieneEmbajada?: boolean;
 }
 
 export interface ReporteViaje {

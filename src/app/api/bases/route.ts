@@ -56,6 +56,7 @@ export async function GET(request: Request) {
           lng: coords.lng,
           nivel: niveles.length ? Math.max(...niveles) : 1,
           nivelPersonaje: otroUsuario.personaje?.nivel || 1,
+          tieneEmbajada: edificios?.embajada === 1 || edificios?.embajada === 2,
         },
       ];
     });

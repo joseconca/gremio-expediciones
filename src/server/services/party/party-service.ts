@@ -247,11 +247,23 @@ export async function aceptarVisita(anfitrionUsuarioId: string, idDesconocido: u
     if (traslado.anfitrionUsuarioId !== anfitrionUsuarioId) {
       throw new PartyServiceError("Solo el propietario de la base de destino puede aceptar esta visita.", 403, "NO_ES_ANFITRION");
     }
-    if (traslado.estado !== "pendiente" || traslado.decision) {
+    if ((traslado.estado !== "pendiente" && traslado.estado !== "en_viaje") || traslado.decision) {
       throw new PartyServiceError("La visita no está pendiente de aceptación.", 409, "VISITA_NO_PENDIENTE");
     }
-    if (traslado.fechaLlegada > new Date()) {
+    const ahora = new Date();
+    if (traslado.fechaLlegada > ahora) {
       throw new PartyServiceError("El aventurero todavía no ha llegado a la base.", 409, "TRASLADO_NO_LLEGADO");
+    }
+    // El anfitrión puede resolver una llegada aunque el visitante aún no haya
+    // abierto el juego para confirmar manualmente que terminó el viaje.
+    if (traslado.estado === "en_viaje") {
+      const llegadaConfirmada = await tx.partyTransfer.updateMany({
+        where: { id: trasladoId, estado: "en_viaje", decision: null, fechaLlegada: { lte: ahora } },
+        data: { estado: "pendiente" },
+      });
+      if (llegadaConfirmada.count !== 1) {
+        throw new PartyServiceError("La llegada ya ha sido procesada.", 409, "TRASLADO_MODIFICADO");
+      }
     }
 
     const visitante = await obtenerUsuarioBase(tx, traslado.visitanteUsuarioId);
@@ -332,11 +344,21 @@ export async function rechazarVisita(anfitrionUsuarioId: string, idDesconocido: 
     if (traslado.anfitrionUsuarioId !== anfitrionUsuarioId) {
       throw new PartyServiceError("Solo el propietario de la base de destino puede rechazar esta visita.", 403, "NO_ES_ANFITRION");
     }
-    if (traslado.estado !== "pendiente" || traslado.decision) {
+    if ((traslado.estado !== "pendiente" && traslado.estado !== "en_viaje") || traslado.decision) {
       throw new PartyServiceError("La visita no está pendiente de resolución.", 409, "VISITA_NO_PENDIENTE");
     }
-    if (traslado.fechaLlegada > new Date()) {
+    const ahora = new Date();
+    if (traslado.fechaLlegada > ahora) {
       throw new PartyServiceError("El aventurero todavía no ha llegado a la base.", 409, "TRASLADO_NO_LLEGADO");
+    }
+    if (traslado.estado === "en_viaje") {
+      const llegadaConfirmada = await tx.partyTransfer.updateMany({
+        where: { id: trasladoId, estado: "en_viaje", decision: null, fechaLlegada: { lte: ahora } },
+        data: { estado: "pendiente" },
+      });
+      if (llegadaConfirmada.count !== 1) {
+        throw new PartyServiceError("La llegada ya ha sido procesada.", 409, "TRASLADO_MODIFICADO");
+      }
     }
 
     const origen = exigirCoordenadas(traslado.destinoCoords, "la base actual");
@@ -573,6 +595,7 @@ export async function obtenerEstadoParty(usuarioId: string) {
     : null;
 
   return {
+    usuarioId,
     party,
     trasladosPropios: traslados.filter((traslado) => traslado.visitanteUsuarioId === usuarioId),
     visitasEntrantes: traslados.filter(

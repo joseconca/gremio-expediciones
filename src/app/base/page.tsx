@@ -9,6 +9,7 @@ import PanelEdificios from "@/components/base/PanelEdificios";
 import ReporteExpedicion from "@/components/reportes/ReporteExpedicion";
 import PanelMisiones from "@/components/base/PanelMisiones";
 import PanelConstruccion from "@/components/base/PanelConstruccion";
+import PanelParty from "@/components/base/PanelParty";
 
 interface CaravanaEntrante {
   id: string;
@@ -654,6 +655,7 @@ export default function BasePage() {
         comenzandoAsedio={comenzandoAsedio}
       />
       <PanelCaravanasEntrantes caravanas={caravanasEntrantes} />
+      <PanelParty />
 
       <div className="mx-auto w-full max-w-4xl">
         {/* Profesiones y maestrías están integradas en la Escuela de Combate. */}

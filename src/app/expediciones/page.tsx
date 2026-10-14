@@ -52,6 +52,9 @@ export default function ExpedicionesPage() {
   );
   const [esAtacanteAsedio, setEsAtacanteAsedio] = useState(false);
   const [procesandoAsedio, setProcesandoAsedio] = useState(false);
+  const [solicitandoVisita, setSolicitandoVisita] = useState(false);
+  const [errorVisita, setErrorVisita] = useState<string | null>(null);
+  const [mensajeVisita, setMensajeVisita] = useState<string | null>(null);
 
   useEffect(() => {
     cargarJugador();
@@ -168,7 +171,7 @@ export default function ExpedicionesPage() {
   }, [isLoading, sesionActiva, baseCoords, router]);
 
   useEffect(() => {
-    fetch("/api/bases")
+    fetch("/api/bases?todas=1")
       .then((res) => res.json())
       .then((data) => {
         if (data.bases) setBasesAjenas(data.bases);
@@ -341,6 +344,39 @@ export default function ExpedicionesPage() {
     setBaseSeleccionada(null);
   };
 
+  const handleSolicitarVisita = async () => {
+    if (!baseSeleccionada || solicitandoVisita) return;
+
+    setSolicitandoVisita(true);
+    setErrorVisita(null);
+    setMensajeVisita(null);
+
+    try {
+      const respuesta = await fetch("/api/party/transfer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ anfitrionUsuarioId: baseSeleccionada.id }),
+      });
+      const datos = await respuesta.json();
+
+      if (!respuesta.ok || !datos.exito) {
+        throw new Error(datos.error || datos.mensaje || "No se pudo enviar al aventurero.");
+      }
+
+      setMensajeVisita(
+        `Tu aventurero ha salido hacia la base de ${baseSeleccionada.nombre}. El propietario tendrá que aceptar la visita cuando llegue.`
+      );
+      setBaseSeleccionada(null);
+      await cargarJugador();
+    } catch (error) {
+      setErrorVisita(
+        error instanceof Error ? error.message : "No se pudo enviar al aventurero."
+      );
+    } finally {
+      setSolicitandoVisita(false);
+    }
+  };
+
   const handleEnviarExpedicion = async () => {
     if (!misionSeleccionada || !baseCoords || sinPersonaje) return;
 
@@ -444,6 +480,22 @@ export default function ExpedicionesPage() {
         </div>
       </header>
 
+      {mensajeVisita && (
+        <div className="pointer-events-auto fixed right-3 top-20 z-30 max-w-sm rounded-lg border border-emerald-700/80 bg-slate-950/95 p-3 text-sm text-emerald-100 shadow-xl">
+          <div className="flex items-start gap-3">
+            <p className="flex-1">{mensajeVisita}</p>
+            <button
+              type="button"
+              onClick={() => setMensajeVisita(null)}
+              aria-label="Cerrar aviso de visita"
+              className="text-emerald-300 hover:text-white"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Capa del Mapa */}
       {baseCoords && (
         <div className="absolute inset-0 z-0">
@@ -468,6 +520,8 @@ export default function ExpedicionesPage() {
               setBaseSeleccionada(base);
               setMisionSeleccionada(null);
               setErrorEnvio(null);
+              setErrorVisita(null);
+              setMensajeVisita(null);
             }}
           />
         </div>
@@ -506,7 +560,7 @@ export default function ExpedicionesPage() {
                 {/* Título: Tablilla superpuesta y hundida */}
                 <div className="mx-auto mb-3 w-11/12 rounded bg-[#3a2214] p-2 text-center shadow-[inset_0_3px_6px_rgba(0,0,0,0.6),0_1px_0_rgba(255,255,255,0.1)] sm:mb-4">
                   <span className="block text-[10px] font-bold uppercase tracking-[0.2em] text-[#a88265]">
-                    Campamento Enemigo
+                    Base de otro gremio
                   </span>
                   <h2 className="mt-0.5 break-words text-lg font-black uppercase tracking-widest text-[#e8c39e] drop-shadow-[0_2px_2px_rgba(0,0,0,1)] sm:text-xl">
                     {baseSeleccionada.nombre}
@@ -515,37 +569,53 @@ export default function ExpedicionesPage() {
 
                 {/* Descripción */}
                 <p className="mb-3 px-1 text-center text-xs font-medium italic text-[#d4b494] drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] sm:mb-5 sm:px-2 sm:text-sm">
-                  Has localizado las tierras de este gremio.
+                  Puedes comerciar, asediar o enviar a tu aventurero de visita.
                 </p>
 
-                {/* Botones de acción (Placas de madera tallada) */}
-                <div className="flex gap-4">
-                  {/* Asediar */}
+                {/* Botones de acción: las visitas no requieren Embajada. */}
+                <div className={`grid gap-2 ${baseSeleccionada.tieneEmbajada ? "grid-cols-3" : "grid-cols-1"}`}>
+                  {baseSeleccionada.tieneEmbajada && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => handleSeleccionarAccionBase("asedio")}
+                        className="group relative flex flex-col items-center justify-center rounded-sm border border-[#2a160b] bg-gradient-to-b from-[#4a2e1b] to-[#362013] p-2 shadow-lg transition hover:from-[#54341f] disabled:opacity-50"
+                      >
+                        <span className="mb-1 text-2xl">⚔️</span>
+                        <span className="text-[11px] font-black uppercase tracking-widest text-[#c27373]">Asediar</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleSeleccionarAccionBase("comercio")}
+                        className="group relative flex flex-col items-center justify-center rounded-sm border border-[#2a160b] bg-gradient-to-b from-[#4a2e1b] to-[#362013] p-2 shadow-lg transition hover:from-[#54341f]"
+                      >
+                        <span className="mb-1 text-2xl">🤝</span>
+                        <span className="text-[11px] font-black uppercase tracking-widest text-[#a1b893]">Comerciar</span>
+                      </button>
+                    </>
+                  )}
                   <button
-                    onClick={() => handleSeleccionarAccionBase("asedio")}
-                    className="group relative flex flex-1 flex-col items-center justify-center overflow-hidden rounded-sm border border-[#2a160b] bg-gradient-to-b from-[#4a2e1b] to-[#362013] p-2 shadow-[0_4px_6px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.05)] sm:p-3 transition-all hover:-translate-y-0.5 hover:from-[#54341f] hover:to-[#3b2214] hover:shadow-[0_6px_8px_rgba(0,0,0,0.8)] active:translate-y-0 active:shadow-inner"
+                    type="button"
+                    onClick={() => void handleSolicitarVisita()}
+                    disabled={
+                      solicitandoVisita ||
+                      !personaje ||
+                      personaje.estado !== "ocioso" ||
+                      Boolean(expedicionActiva)
+                    }
+                    className="group relative flex flex-col items-center justify-center rounded-sm border border-[#2a160b] bg-gradient-to-b from-[#36513a] to-[#223b2a] p-2 shadow-lg transition hover:from-[#426747] disabled:cursor-not-allowed disabled:opacity-50"
                   >
-                    <span className="mb-1 text-2xl opacity-80 saturate-50 sepia-[.3] transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 group-hover:saturate-100 group-hover:sepia-0 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
-                      ⚔️
-                    </span>
-                    <span className="text-[11px] font-black uppercase tracking-widest text-[#c27373] drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] transition-colors group-hover:text-[#d18484]">
-                      Asediar
-                    </span>
-                  </button>
-
-                  {/* Comerciar */}
-                  <button
-                    onClick={() => handleSeleccionarAccionBase("comercio")}
-                    className="group relative flex flex-1 flex-col items-center justify-center overflow-hidden rounded-sm border border-[#2a160b] bg-gradient-to-b from-[#4a2e1b] to-[#362013] p-2 shadow-[0_4px_6px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.05)] sm:p-3 transition-all hover:-translate-y-0.5 hover:from-[#54341f] hover:to-[#3b2214] hover:shadow-[0_6px_8px_rgba(0,0,0,0.8)] active:translate-y-0 active:shadow-inner"
-                  >
-                    <span className="mb-1 text-2xl opacity-80 saturate-50 sepia-[.3] transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 group-hover:saturate-100 group-hover:sepia-0 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
-                      🤝
-                    </span>
-                    <span className="text-[11px] font-black uppercase tracking-widest text-[#8fa382] drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] transition-colors group-hover:text-[#a1b893]">
-                      Comerciar
+                    <span className="mb-1 text-2xl">{solicitandoVisita ? "⏳" : "🏠"}</span>
+                    <span className="text-center text-[11px] font-black uppercase tracking-widest text-emerald-200">
+                      {solicitandoVisita ? "Enviando..." : "Visitar base"}
                     </span>
                   </button>
                 </div>
+                {errorVisita && (
+                  <p role="alert" className="mt-3 rounded border border-red-900/70 bg-red-950/60 p-2 text-center text-xs font-semibold text-red-200">
+                    {errorVisita}
+                  </p>
+                )}
               </div>
             </div>
           </div>
