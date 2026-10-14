@@ -616,7 +616,6 @@ async function liquidarRecompensasParty(
         continue;
       }
 
-      detalle[indice].objetos.push({ objetoId: drop.objeto.id, cantidad: 1 });
       dropsEnemigo.push({
         usuarioId: miembro.usuarioId,
         objetoId: drop.objeto.id,
