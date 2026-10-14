@@ -198,7 +198,7 @@ function mockPrisma(combat, options = {}) {
     expedicionParty: {
       findUnique: async ({ select, include } = {}) => {
         if (select?.fase) return { fase: "regresando" };
-        if (include?.participantes && include.participantes.select) {
+        if (include?.participantes?.include?.usuario) {
           return { id: "expedition-1", fase: "combatiendo", participantes: combat.participantes.map((p) => ({
             id: "exp-part-" + p.usuarioId,
             usuarioId: p.usuarioId,
