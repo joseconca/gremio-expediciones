@@ -54,6 +54,15 @@ function loadService(prisma) {
     "@/lib/utils": { calcularDistanciaKm: () => 12 },
     "@/lib/generadorMisiones": { generarMisionesDisponibles: () => [mission] },
     "@/lib/progresion/clases": { obtenerDefinicionClase: () => null },
+    "@/lib/enemigos": { obtenerEnemigoPorId: () => undefined },
+    "@/lib/party/combate-reglas": {
+      crearEstadoInicialTurnoParty: () => ({
+        faseCombate: "activo",
+        faseTurno: "jugador",
+        turnoActualUsuarioId: "leader",
+        ronda: 1,
+      }),
+    },
     "@/lib/party/reglas": {
       ...partyRules,
       leerCoordenadasBase: (value) =>
