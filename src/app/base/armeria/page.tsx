@@ -679,8 +679,7 @@ export default function HerreriaPage() {
                             {objeto.nombre}
                           </h3>
 </div>
-                        <p className="mt-1 line-clamp-2 border-b border-[#4b5050]/70 pb-1 text-[10px] leading-4 text-[#a99b84]">{objeto.descripcion}</p>
-                        <div className="mt-1 flex flex-wrap gap-x-2 gap-y-0.5">
+                                                <div className="mt-1 flex flex-wrap gap-x-2 gap-y-0.5">
                           {obtenerEstadisticasNoCero(objeto, 0).map((estadistica) => (
                             <span key={estadistica.clave} className="whitespace-nowrap text-[9px] leading-3">
                               <span className="text-[#9e8c70]">{estadistica.nombre}</span>{" "}
@@ -891,8 +890,7 @@ export default function HerreriaPage() {
                       <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-2 gap-y-1.5 sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:items-center sm:gap-x-3">
                         {/* Icono: columna propia para alinear toda la lista */}
                         {/* Bolsillo / icono */}
-                          <div
-<DescripcionTactil
+                          <DescripcionTactil
                             titulo={objeto.nombre}
                             resumen={objeto.descripcion}
                             detalles={[
@@ -940,8 +938,7 @@ export default function HerreriaPage() {
                               )}
                             </div>
 
-                            <p className="mt-1 line-clamp-2 border-b border-[#684a2f]/70 pb-1 text-[10px] leading-4 text-[#b6a186]">{objeto.descripcion}</p>
-                            {objetoInventario.cantidad > 1 && <p className="mt-1 text-[10px] text-[#957b60]">Cantidad: {objetoInventario.cantidad}</p>}
+                                                        {objetoInventario.cantidad > 1 && <p className="mt-1 text-[10px] text-[#957b60]">Cantidad: {objetoInventario.cantidad}</p>}
 
                             <div className="mt-1 flex flex-wrap gap-x-2 gap-y-0.5">
                               {obtenerEstadisticasNoCero(
