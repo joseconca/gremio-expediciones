@@ -464,6 +464,7 @@ model CombateParty {
   fase                  String   @default("activo")
   ronda                 Int      @default(1)
   faseTurno             String   @default("jugador")
+  turnoInicialEnemigo   Boolean  @default(false)
   turnoActualUsuarioId  String?
   enemigoId             String
   enemigoNombre         String

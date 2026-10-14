@@ -6,6 +6,7 @@ CREATE TABLE "CombateParty" (
   "fase" TEXT NOT NULL DEFAULT 'activo',
   "ronda" INTEGER NOT NULL DEFAULT 1,
   "faseTurno" TEXT NOT NULL DEFAULT 'jugador',
+  "turnoInicialEnemigo" BOOLEAN NOT NULL DEFAULT false,
   "turnoActualUsuarioId" TEXT,
   "enemigoId" TEXT NOT NULL,
   "enemigoNombre" TEXT NOT NULL,

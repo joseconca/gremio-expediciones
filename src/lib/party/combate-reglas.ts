@@ -13,6 +13,7 @@ export interface EstadoTurnoParty {
   faseTurno: FaseTurnoParty;
   turnoActualUsuarioId: string | null;
   ronda: number;
+  turnoInicialEnemigo?: boolean;
 }
 
 function ordenarParticipantes(participantes: ParticipanteTurnoParty[]) {
@@ -92,16 +93,26 @@ export function calcularSiguienteTurnoParty(
     faseCombate: "activo",
     faseTurno: "jugador",
     turnoActualUsuarioId: vivos[0].usuarioId,
-    ronda: estado.ronda + 1,
+    ronda: estado.ronda + (estado.turnoInicialEnemigo ? 0 : 1),
   };
 }
 
 export function crearEstadoInicialTurnoParty(
   participantes: ParticipanteTurnoParty[],
+  iniciarJugador = true,
 ): EstadoTurnoParty {
   const vivos = obtenerParticipantesVivos(participantes);
   if (vivos.length < 2 || vivos.length > 3) {
     throw new RangeError("El combate de party requiere dos o tres participantes vivos.");
+  }
+  if (!iniciarJugador) {
+    return {
+      faseCombate: "activo",
+      faseTurno: "enemigo",
+      turnoActualUsuarioId: null,
+      ronda: 1,
+      turnoInicialEnemigo: true,
+    };
   }
   return {
     faseCombate: "activo",

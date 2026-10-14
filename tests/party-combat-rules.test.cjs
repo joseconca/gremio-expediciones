@@ -79,3 +79,23 @@ test("al inicio y al avanzar un turno se exigen estados coherentes", () => {
   const terminado = { faseCombate: "victoria", faseTurno: "enemigo", turnoActualUsuarioId: null, ronda: 7 };
   assert.deepEqual(calcularSiguienteTurnoParty(terminado, participantes()), terminado);
 });
+
+
+test("si el enemigo tiene la iniciativa, su primer turno no salta la ronda", () => {
+  const grupo = participantes();
+  let estado = crearEstadoInicialTurnoParty(grupo, false);
+  assert.equal(estado.faseTurno, "enemigo");
+  assert.equal(estado.turnoInicialEnemigo, true);
+  estado = calcularSiguienteTurnoParty(estado, grupo);
+  assert.deepEqual(
+    { faseTurno: estado.faseTurno, turnoActualUsuarioId: estado.turnoActualUsuarioId, ronda: estado.ronda },
+    { faseTurno: "jugador", turnoActualUsuarioId: "u1", ronda: 1 },
+  );
+
+  estado = calcularSiguienteTurnoParty(estado, grupo);
+  estado = calcularSiguienteTurnoParty(estado, grupo);
+  estado = calcularSiguienteTurnoParty(estado, grupo);
+  assert.equal(estado.faseTurno, "enemigo");
+  estado = calcularSiguienteTurnoParty(estado, grupo);
+  assert.equal(estado.ronda, 2);
+});
