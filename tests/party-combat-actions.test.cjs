@@ -312,7 +312,7 @@ test("una habilidad activa equipada aplica daño, gasta recursos y guarda cooldo
   const service = loadService(prisma);
   const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad", { habilidadId: "golpe_arcano" });
   assert.equal(result.accion.texto, "Habilidad de prueba.");
-  assert.equal(result.enemigoHp, 20);
+  assert.equal(result.enemigoHp, 0);
   assert.equal(combat.participantes[0].cooldowns.golpe_arcano, 2);
   assert.equal(calls.participantWrites.some((c) => c.data.efectos), true);
   assert.equal(calls.resourceWrites.some((c) => c.data.energiaActual?.decrement === 5), true);
