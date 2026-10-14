@@ -473,7 +473,6 @@ export default function HerreriaPage() {
     return (
       <article
         key={tipo}
-        title={equipado?.objeto.descripcion ?? `${nombreTipo(tipo)} sin equipar`}
         className={`min-w-0 rounded-md border p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.035)] transition-colors sm:p-2 ${
           equipado
             ? `bg-[#211a13] hover:bg-[#2b2117] ${estiloRareza(equipado.objeto.rareza)}`
@@ -483,19 +482,21 @@ export default function HerreriaPage() {
         {equipado ? (
           <>
             <div className="flex min-w-0 items-start gap-2">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded border border-[#756044] bg-[#15120e] p-0.5 sm:h-12 sm:w-12">
+              <DescripcionTactil
+                titulo={equipado.objeto.nombre}
+                resumen={equipado.objeto.descripcion}
+                detalles={[
+                  ...estadisticas.map((estadistica) => `${estadistica.nombre}: ${formatearValorEstadistica(estadistica.clave, estadistica.valor)}`),
+                  ...(equipado.objeto.manos === 2 ? ["Ocupa ambas manos y bloquea la ranura secundaria."] : []),
+                ]}
+                variante="madera"
+                etiquetaAccesible={`Consultar ${equipado.objeto.nombre}`}
+                claseBoton="flex h-11 w-11 shrink-0 touch-manipulation items-center justify-center rounded border border-[#756044] bg-[#15120e] p-0.5 transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400 sm:h-12 sm:w-12"
+              >
                 {obtenerSpriteObjeto(equipado.objeto) ? (
-                  <Image
-                    src={obtenerSpriteObjeto(equipado.objeto)!}
-                    alt={equipado.objeto.nombre}
-                    width={64}
-                    height={64}
-                    className="h-full w-full rounded object-contain [image-rendering:pixelated]"
-                  />
-                ) : (
-                  <span className="text-2xl" aria-hidden="true">{iconoTipo(tipo)}</span>
-                )}
-              </div>
+                  <Image src={obtenerSpriteObjeto(equipado.objeto)!} alt="" aria-hidden="true" width={64} height={64} className="h-full w-full rounded object-contain [image-rendering:pixelated]" />
+                ) : <span className="text-2xl" aria-hidden="true">{iconoTipo(tipo)}</span>}
+              </DescripcionTactil>
               <div className="flex min-w-0 flex-1 flex-col items-end gap-1">
                 <span className={`max-w-full truncate rounded border px-1.5 py-0.5 text-[8px] font-black uppercase leading-3 tracking-wide sm:text-[9px] ${estiloRareza(equipado.objeto.rareza)}`}>
                   {nombreRareza(equipado.objeto.rareza)}
@@ -510,17 +511,7 @@ export default function HerreriaPage() {
               <h3 className="min-w-0 flex-1 line-clamp-2 min-h-7 break-words text-[10px] font-black leading-3 text-[#f0dfbd] sm:text-[11px] sm:leading-4">
                 {equipado.objeto.nombre}
               </h3>
-              <DescripcionTactil
-                titulo={equipado.objeto.nombre}
-                resumen={equipado.objeto.descripcion}
-                detalles={[
-                  equipado.objeto.descripcion,
-                  ...estadisticas.map((estadistica) => `${estadistica.nombre}: ${formatearValorEstadistica(estadistica.clave, estadistica.valor)}`),
-                  ...(equipado.objeto.manos === 2 ? ["Ocupa ambas manos y bloquea la ranura secundaria."] : []),
-                ]}
-                variante="madera"
-              />
-            </div>
+</div>
 
             {estadisticas.length > 0 ? (
               <div className="mt-1 flex flex-wrap gap-x-1.5 gap-y-0.5 text-[8px] leading-3 sm:text-[9px]">
@@ -652,22 +643,25 @@ export default function HerreriaPage() {
                   return (
                     <article
                       key={objeto.id}
-                      title={objeto.descripcion}
                       className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-2 gap-y-1 rounded-md border border-[#4b5050] bg-[linear-gradient(110deg,#292522,#1d2021)] p-1.5 transition-colors hover:border-[#82704f] sm:grid-cols-[auto_minmax(0,1fr)_minmax(112px,auto)] sm:items-center sm:gap-3 sm:p-2"
                     >
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded border border-[#756044] bg-[#15120e] p-0.5 sm:h-14 sm:w-14">
+                      <DescripcionTactil
+                        titulo={objeto.nombre}
+                        resumen={objeto.descripcion}
+                        detalles={[
+                          `Nivel de héroe requerido: ${objeto.nivelHeroeNecesario}.`,
+                          `Tipo: ${nombreTipoObjeto(objeto)}${objeto.tipo === "arma" && objeto.subtipo ? ` · ${nombreSubtipoArma(objeto.subtipo)}` : ""}.`,
+                          ...obtenerEstadisticasNoCero(objeto, 0).map((estadistica) => `${estadistica.nombre}: ${formatearValorEstadistica(estadistica.clave, estadistica.valor)}`),
+                          ...(objeto.manos === 2 ? ["Arma a dos manos: ocupa la mano principal y la secundaria."] : []),
+                        ]}
+                        variante="metal"
+                        etiquetaAccesible={`Consultar ${objeto.nombre}`}
+                        claseBoton="flex h-12 w-12 shrink-0 touch-manipulation items-center justify-center rounded border border-[#756044] bg-[#15120e] p-0.5 transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400 sm:h-14 sm:w-14"
+                      >
                         {obtenerSpriteObjeto(objeto) ? (
-                          <Image
-                            src={obtenerSpriteObjeto(objeto)!}
-                            alt={objeto.nombre}
-                            width={64}
-                            height={64}
-                            className="h-full w-full rounded object-contain [image-rendering:pixelated]"
-                          />
-                        ) : (
-                          <span className="text-2xl" aria-hidden="true">{iconoTipo(objeto.tipo)}</span>
-                        )}
-                      </div>
+                          <Image src={obtenerSpriteObjeto(objeto)!} alt="" aria-hidden="true" width={64} height={64} className="h-full w-full rounded object-contain [image-rendering:pixelated]" />
+                        ) : <span className="text-2xl" aria-hidden="true">{iconoTipo(objeto.tipo)}</span>}
+                      </DescripcionTactil>
 
                       <div className="min-w-0 self-center">
                         <div className="flex min-w-0 flex-wrap items-center gap-x-1.5 gap-y-0.5">
@@ -684,18 +678,8 @@ export default function HerreriaPage() {
                           <h3 className="min-w-0 flex-1 break-words text-xs font-black leading-4 text-[#f0dfbd] sm:text-sm">
                             {objeto.nombre}
                           </h3>
-                          <DescripcionTactil
-                            titulo={objeto.nombre}
-                            resumen={objeto.descripcion}
-                            detalles={[
-                              objeto.descripcion,
-                              `Nivel de héroe requerido: ${objeto.nivelHeroeNecesario}.`,
-                              `Tipo: ${nombreTipoObjeto(objeto)}${objeto.tipo === "arma" && objeto.subtipo ? ` · ${nombreSubtipoArma(objeto.subtipo)}` : ""}.`,
-                              ...(objeto.manos === 2 ? ["Arma a dos manos: ocupa la mano principal y la secundaria."] : []),
-                            ]}
-                            variante="metal"
-                          />
-                        </div>
+</div>
+                        <p className="mt-1 line-clamp-2 border-b border-[#4b5050]/70 pb-1 text-[10px] leading-4 text-[#a99b84]">{objeto.descripcion}</p>
                         <div className="mt-1 flex flex-wrap gap-x-2 gap-y-0.5">
                           {obtenerEstadisticasNoCero(objeto, 0).map((estadistica) => (
                             <span key={estadistica.clave} className="whitespace-nowrap text-[9px] leading-3">
@@ -898,7 +882,6 @@ export default function HerreriaPage() {
                   return (
                     <article
                       key={objetoInventario.id}
-                      title={objeto.descripcion}
                       className={`relative overflow-hidden rounded-md border p-1.5 transition-colors sm:border sm:p-2 ${
                         estaEquipado
                           ? "border-[#9a7748] bg-[linear-gradient(135deg,#41301f,#2b2017)] shadow-[inset_0_1px_0_rgba(255,220,170,0.05)]"
@@ -909,43 +892,30 @@ export default function HerreriaPage() {
                         {/* Icono: columna propia para alinear toda la lista */}
                         {/* Bolsillo / icono */}
                           <div
-                            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded border text-xl sm:h-11 sm:w-11 ${
-                              estaEquipado
-                                ? "border-[#8e6d45] bg-[#24190f]"
-                                : "border-[#684a2f] bg-[#211710]"
-                            }`}
+<DescripcionTactil
+                            titulo={objeto.nombre}
+                            resumen={objeto.descripcion}
+                            detalles={[
+                              ...obtenerEstadisticasNoCero(objeto, objetoInventario.nivelMejora, objetoInventario.bonificaciones)
+                                .map((estadistica) => `${estadistica.nombre}: ${formatearValorEstadistica(estadistica.clave, estadistica.valor)}`),
+                              ...(objeto.manos === 2 ? ["Ocupa ambas manos y bloquea la ranura secundaria."] : []),
+                              ...(objetoInventario.cantidad > 1 ? [`Cantidad: ${objetoInventario.cantidad}.`] : []),
+                            ]}
+                            variante="madera"
+                            etiquetaAccesible={`Consultar ${objeto.nombre}`}
+                            claseBoton={`flex h-10 w-10 shrink-0 touch-manipulation items-center justify-center rounded border text-xl transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400 sm:h-11 sm:w-11 ${estaEquipado ? "border-[#8e6d45] bg-[#24190f]" : "border-[#684a2f] bg-[#211710]"}`}
                           >
                             {obtenerSpriteObjeto(objeto) ? (
-                              <Image
-                                src={obtenerSpriteObjeto(objeto)!}
-                                alt={objeto.nombre}
-                                width={64}
-                                height={64}
-                                className="rounded-md"
-                              />
-                            ) : (
-                              iconoTipo(objeto.tipo)
-                            )}
-                          </div>
+                              <Image src={obtenerSpriteObjeto(objeto)!} alt="" aria-hidden="true" width={64} height={64} className="h-full w-full rounded-md object-contain [image-rendering:pixelated]" />
+                            ) : iconoTipo(objeto.tipo)}
+                          </DescripcionTactil>
 
                           <div className="min-w-0">
                             <div className="flex flex-wrap items-center gap-2">
                               <h3 className="min-w-0 text-xs font-black leading-4 text-[#eadcc7] sm:text-sm">
                                 {objeto.nombre}
                               </h3>
-                              <DescripcionTactil
-                                titulo={objeto.nombre}
-                                resumen={objeto.descripcion}
-                                detalles={[
-                                  objeto.descripcion,
-                                  ...obtenerEstadisticasNoCero(objeto, objetoInventario.nivelMejora, objetoInventario.bonificaciones)
-                                    .map((estadistica) => `${estadistica.nombre}: ${formatearValorEstadistica(estadistica.clave, estadistica.valor)}`),
-                                  ...(objeto.manos === 2 ? ["Ocupa ambas manos y bloquea la ranura secundaria."] : []),
-                                ]}
-                                variante="madera"
-                              />
-
-                              {objeto.tipo === "arma" && objeto.subtipo && (
+{objeto.tipo === "arma" && objeto.subtipo && (
                                 <span className="text-[9px] font-bold uppercase tracking-wide text-[#c2a16f]">
                                   {nombreSubtipoArma(objeto.subtipo)}
                                 </span>
@@ -970,9 +940,10 @@ export default function HerreriaPage() {
                               )}
                             </div>
 
+                            <p className="mt-1 line-clamp-2 border-b border-[#684a2f]/70 pb-1 text-[10px] leading-4 text-[#b6a186]">{objeto.descripcion}</p>
                             {objetoInventario.cantidad > 1 && <p className="mt-1 text-[10px] text-[#957b60]">Cantidad: {objetoInventario.cantidad}</p>}
 
-                            <div className="mt-0.5 flex flex-wrap gap-x-2 gap-y-0.5">
+                            <div className="mt-1 flex flex-wrap gap-x-2 gap-y-0.5">
                               {obtenerEstadisticasNoCero(
                                 objeto,
                                 objetoInventario.nivelMejora,
