@@ -6,6 +6,7 @@ const path = require("node:path");
 const vm = require("node:vm");
 const ts = require("typescript");
 const reglas = require("../src/lib/party/reglas.ts");
+const reglasExpedicionParty = require("../src/lib/party/expedicion-reglas.ts");
 
 function loadService(prisma) {
   const filename = path.resolve(__dirname, "../src/server/services/party/party-service.ts");
@@ -20,6 +21,7 @@ function loadService(prisma) {
     "@/lib/prisma": { prisma },
     "@/lib/utils": { calcularDistanciaKm: () => 12 },
     "@/lib/party/reglas": reglas,
+    "@/lib/party/expedicion-reglas": reglasExpedicionParty,
   };
   vm.runInThisContext("(function(require, module, exports) {" + outputText + "\n})", { filename })(
     (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
