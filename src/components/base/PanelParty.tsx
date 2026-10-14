@@ -70,7 +70,7 @@ export default function PanelParty() {
   const personaje = useGameStore((state) => state.personaje);
   const expedicionActiva = useGameStore((state) => state.expedicionActiva);
   const [estado, setEstado] = useState<EstadoParty | null>(null);
-  const [ahora, setAhora] = useState(Date.now());
+  const [ahora, setAhora] = useState(0);
   const [cargando, setCargando] = useState(true);
   const [accion, setAccion] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -88,6 +88,7 @@ export default function PanelParty() {
 
   useEffect(() => {
     let activo = true;
+    setAhora(Date.now());
     const cargar = async () => {
       try {
         await actualizarEstado();
