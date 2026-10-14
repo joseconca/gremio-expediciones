@@ -332,6 +332,7 @@ export async function iniciarExpedicionParty(
         fase: "en_viaje",
         fechaSalida,
         fechaLlegada,
+        origenCoords: coordenadasActuales as unknown as Prisma.InputJsonValue,
         destinoCoords: { lat: mision.lat, lng: mision.lng },
       },
     });

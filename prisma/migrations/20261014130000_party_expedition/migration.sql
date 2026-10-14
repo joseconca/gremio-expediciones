@@ -14,6 +14,7 @@ CREATE TABLE "ExpedicionParty" (
   "resultadoFinal" TEXT,
   "fechaSalida" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "fechaLlegada" TIMESTAMP(3) NOT NULL,
+  "origenCoords" JSONB NOT NULL,
   "destinoCoords" JSONB NOT NULL,
   "creado" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "actualizado" TIMESTAMP(3) NOT NULL,

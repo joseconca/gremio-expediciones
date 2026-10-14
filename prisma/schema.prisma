@@ -419,6 +419,7 @@ model ExpedicionParty {
   resultadoFinal String?
   fechaSalida    DateTime @default(now())
   fechaLlegada   DateTime
+  origenCoords   Json
   destinoCoords  Json
   creado         DateTime @default(now())
   actualizado    DateTime @updatedAt
