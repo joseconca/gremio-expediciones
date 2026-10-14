@@ -12,6 +12,9 @@ import {
   ESTADOS_EXPEDICION_PARTY_ACTIVOS,
 } from "@/lib/party/expedicion-reglas";
 import { PartyServiceError } from "@/server/services/party/party-service";
+import { obtenerEnemigoPorId } from "@/lib/enemigos";
+import { crearEstadoInicialTurnoParty } from "@/lib/party/combate-reglas";
+import type { DefinicionEnemigo } from "@/lib/tiposJuego";
 import { esModoDificultad, type ModoDificultad } from "../../../lib/expediciones/dificultad";
 import type { DefinicionMision } from "@/lib/tiposJuego";
 
