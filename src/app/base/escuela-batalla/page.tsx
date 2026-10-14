@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import SelectorPosicionCombate from "@/components/combate/SelectorPosicionCombate";
 import PanelProfesiones from "@/components/progresion/PanelProfesiones";
+import DescripcionTactil from "@/components/ui/DescripcionTactil";
+import { descripcionSimpleHabilidad, detalleNumericoHabilidad } from "@/lib/descripcionesHabilidades";
 import { CLASES } from "@/lib/progresion/clases";
 import type { DefinicionHabilidad, Rareza, SlotHabilidad } from "@/lib/tiposJuego";
 import { useGameStore } from "@/store/useGameStore";
@@ -251,27 +253,33 @@ export default function EscuelaCombatePage() {
                             <span className="hidden text-[11px] text-[#98876c] sm:inline">{nombreRareza(habilidad.rareza)}</span>
                             <span className="text-[11px] text-[#98876c]">{etiquetaEfecto(habilidad)}</span>
                           </div>
-                          <h3 className="text-base font-bold text-[#f1e5cf] sm:text-lg">{habilidad.nombre}</h3>
+                          <div className="flex items-center gap-2">
+                            <h3 className="min-w-0 text-base font-bold text-[#f1e5cf] sm:text-lg">{habilidad.nombre}</h3>
+                            <DescripcionTactil
+                              titulo={habilidad.nombre}
+                              resumen={descripcionSimpleHabilidad(habilidad)}
+                              detalles={[
+                                ...detalleNumericoHabilidad(habilidad, clasePropietaria),
+                                `Progreso de ${clasePropietaria}: Job ${nivelJobClase}; ${puntosClaseDisponibles} ${puntosClaseDisponibles === 1 ? "punto disponible" : "puntos disponibles"}.`,
+                              ]}
+                              variante="madera"
+                            />
+                          </div>
                         </div>
                         <span className={`shrink-0 rounded-md px-2 py-1 text-[10px] font-semibold ${heredada ? "bg-sky-950/70 text-sky-200" : "bg-amber-950/70 text-amber-200"}`}>
                             <span className="sm:hidden">{heredada ? "Heredada" : "Propia"}</span>
                             <span className="hidden sm:inline">{heredada ? `Heredada: ${clasePropietaria}` : "Propia de tu clase"}</span>
                           </span>
                       </div>
-                      <p className="mt-1 line-clamp-2 text-[11px] leading-4 text-[#b2a58e]">{habilidad.descripcion}</p>
-                      <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-[#c7b99e] sm:mt-4 sm:gap-2 sm:text-[11px]">
-                        <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">Job {requerida}</span>
-                        {heredada && <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">{clasePropietaria} Job {nivelJobClase}</span>}
-                        <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">{coste} punto(s){heredada ? ` · ${puntosClaseDisponibles} disp.` : ""}</span>
-                        {(habilidad.costeEnergia || habilidad.costeMana) && <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">{etiquetaCoste(habilidad)}</span>}
-                        {habilidad.cooldownTurnos ? <span className="hidden rounded-md bg-[#302619] px-2 py-1 sm:inline-flex sm:px-2.5">Enfriamiento: {habilidad.cooldownTurnos} turnos</span> : null}
-                        {habilidad.duracionTurnos ? <span className="hidden rounded-md bg-[#302619] px-2 py-1 sm:inline-flex sm:px-2.5">Duración: {habilidad.duracionTurnos} turnos</span> : null}
+                      <p className="mt-1 line-clamp-2 text-[11px] leading-4 text-[#b2a58e]">{descripcionSimpleHabilidad(habilidad)}</p>
+                      <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-[#c7b99e] sm:mt-3 sm:gap-2 sm:text-[11px]">
+                        <span className="rounded-md bg-[#302619] px-2 py-1 sm:px-2.5">Requisito: {clasePropietaria} {requerida}</span>
                       </div>
                       <div className="mt-2 border-t border-[#443624] pt-2 sm:mt-3">
                         {aprendida ? <p className="text-sm font-semibold text-emerald-300">✓ Habilidad aprendida</p>
                           : puede ? <button type="button" onClick={() => void enviarAccion("aprender", habilidad.id)} disabled={procesando !== null}
                             className="min-h-11 w-full rounded-lg border border-amber-400/70 bg-amber-900/40 px-3 py-2 text-sm font-bold text-amber-100 transition hover:bg-amber-800/60 disabled:cursor-wait disabled:opacity-50 sm:px-4 sm:py-2.5">
-                            {procesando === clave ? "Aprendiendo..." : `Aprender por ${coste} punto(s) Job`}
+                            {procesando === clave ? "Aprendiendo..." : "Aprender"}
                           </button>
                           : <p className="rounded-lg border border-[#443624] bg-[#191612] px-3 py-2 text-sm text-[#9f927b]">🔒 {bloqueo}</p>}
                       </div>
@@ -294,7 +302,15 @@ export default function EscuelaCombatePage() {
                   return <div key={slot} className="min-w-0 rounded-lg border border-[#4c3b27] bg-[#191612] p-2 sm:p-3">
                     <p className="text-xs font-bold uppercase tracking-wider text-[#a99169]">{etiquetaSlot(slot)}</p>
                     {actual ? <>
-                      <p className="mt-2 break-words text-sm font-semibold text-[#f0e5d0]">{actual.habilidad.nombre}</p>
+                      <div className="mt-2 flex items-start gap-1.5">
+                        <p className="min-w-0 flex-1 break-words text-sm font-semibold text-[#f0e5d0]">{actual.habilidad.nombre}</p>
+                        <DescripcionTactil
+                          titulo={actual.habilidad.nombre}
+                          resumen={descripcionSimpleHabilidad(actual.habilidad)}
+                          detalles={detalleNumericoHabilidad(actual.habilidad, CLASES[actual.habilidad.claseId ?? profesionId]?.nombre ?? actual.habilidad.claseId ?? profesionId)}
+                          variante="madera"
+                        />
+                      </div>
                       {actual.disponibleParaProfesion === false && <p className="mt-1 text-xs text-red-300">No disponible para tu clase activa</p>}
                       <button type="button" onClick={() => void enviarAccion("desequipar", actual.habilidadId)} disabled={procesando !== null}
                         className="mt-2 min-h-9 rounded-md border border-[#594630] px-2 py-1.5 text-xs text-[#c1b49b] hover:border-amber-500/60 disabled:opacity-50 sm:mt-3 sm:px-3">
@@ -318,7 +334,10 @@ export default function EscuelaCombatePage() {
                         <h4 className="font-bold text-[#f0e5d0]">{habilidad.nombre}</h4>
                         <span className="rounded-full bg-[#302619] px-2 py-0.5 text-[10px] uppercase text-[#b9a582]">{habilidad.tipo}</span>
                       </div>
-                      <p className="mt-1 line-clamp-2 text-xs leading-5 text-[#a99d84] sm:text-sm sm:line-clamp-none">{habilidad.descripcion}</p>
+                      <div className="mt-1 flex items-start gap-2">
+                        <p className="min-w-0 flex-1 line-clamp-2 text-xs leading-5 text-[#a99d84] sm:text-sm">{descripcionSimpleHabilidad(habilidad)}</p>
+                        <DescripcionTactil titulo={habilidad.nombre} resumen={descripcionSimpleHabilidad(habilidad)} detalles={detalleNumericoHabilidad(habilidad, CLASES[habilidad.claseId ?? profesionId]?.nombre ?? habilidad.claseId ?? profesionId)} variante="madera" />
+                      </div>
                       {!compatible && <p className="mt-1 text-xs text-red-300">Esta habilidad pertenece a otra rama y no está disponible con tu clase actual.</p>}
                     </div>
                     <div className="flex flex-wrap gap-1.5 sm:gap-2">
