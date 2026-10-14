@@ -48,6 +48,34 @@ import {
   type ContextoAccionCombate,
 } from "./accion-combate";
 
+// La respuesta de fin de combate se aplica directamente al store.
+// Incluimos las relaciones que necesita construirPersonaje para no reiniciar
+// temporalmente el Job a nivel 1 ni vaciar habilidades/equipo del personaje.
+const incluirUsuarioTrasCombate = {
+  personaje: {
+    include: {
+      habilidades: true,
+      inventario: { include: { objetos: true } },
+      equipoEquipado: {
+        include: {
+          arma: true,
+          armadura: true,
+          accesorio: true,
+          manoSecundaria: true,
+          casco: true,
+          pantalones: true,
+          botas: true,
+          guantes: true,
+          anillo1: true,
+          anillo2: true,
+        },
+      },
+      progresosClase: true,
+    },
+  },
+  expedicionActiva: { include: { combateActivo: true } },
+} satisfies Prisma.UsuarioInclude;
+
 export async function ejecutarAccionPve(request: Request) {
   const preparado = await prepararAccionCombate(request, "pve");
   if (!("contexto" in preparado)) return preparado;
@@ -367,14 +395,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             where: {
               id: usuario.id,
             },
-            include: {
-              personaje: true,
-              expedicionActiva: {
-                include: {
-                  combateActivo: true,
-                },
-              },
-            },
+            include: incluirUsuarioTrasCombate,
           });
 
           return {
@@ -541,14 +562,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             where: {
               id: usuario.id,
             },
-            include: {
-              personaje: true,
-              expedicionActiva: {
-                include: {
-                  combateActivo: true,
-                },
-              },
-            },
+            include: incluirUsuarioTrasCombate,
           });
 
           return {
