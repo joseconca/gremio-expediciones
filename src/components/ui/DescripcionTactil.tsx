@@ -31,10 +31,8 @@ export default function DescripcionTactil({
   const botonRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const [abierto, setAbierto] = useState(false);
-  const [montado, setMontado] = useState(false);
   const [posicion, setPosicion] = useState({ left: 12, top: 12 });
 
-  useEffect(() => setMontado(true), []);
 
   const cerrar = () => setAbierto(false);
 
@@ -45,10 +43,14 @@ export default function DescripcionTactil({
     }
     const rect = botonRef.current?.getBoundingClientRect();
     if (rect) {
-      setPosicion({
-        left: Math.max(12, Math.min(rect.left, window.innerWidth - 300)),
-        top: Math.min(rect.bottom + 8, window.innerHeight - 120),
-      });
+      const anchoPanel = Math.min(304, window.innerWidth - 24);
+      const altoEstimado = Math.min(window.innerHeight * 0.55, 320);
+      const izquierda = Math.max(12, Math.min(rect.left, window.innerWidth - anchoPanel - 12));
+      const debajo = rect.bottom + 8;
+      const arriba = debajo + altoEstimado > window.innerHeight - 12
+        ? Math.max(12, rect.top - altoEstimado - 8)
+        : debajo;
+      setPosicion({ left: izquierda, top: arriba });
     }
     setAbierto(true);
   };
@@ -74,16 +76,6 @@ export default function DescripcionTactil({
     };
   }, [abierto]);
 
-  useEffect(() => {
-    if (!abierto || !panelRef.current) return;
-    const rect = panelRef.current.getBoundingClientRect();
-    const left = Math.max(12, Math.min(posicion.left, window.innerWidth - rect.width - 12));
-    const top = rect.bottom > window.innerHeight - 12
-      ? Math.max(12, window.innerHeight - rect.height - 12)
-      : Math.max(12, posicion.top);
-    if (left !== posicion.left || top !== posicion.top) setPosicion({ left, top });
-  }, [abierto, posicion]);
-
   const estilos = variante === "madera"
     ? "border-amber-800/80 bg-[#211710] text-amber-100"
     : variante === "metal"
@@ -105,7 +97,7 @@ export default function DescripcionTactil({
       >
         {children ?? "ⓘ"}
       </button>
-      {montado && abierto && createPortal(
+      {abierto && typeof document !== "undefined" && createPortal(
         <div
           ref={panelRef}
           role="tooltip"
