@@ -6,6 +6,39 @@ import { useGameStore } from "@/store/useGameStore";
 import { COMIDAS_TABERNA, obtenerComidaTaberna } from "@/lib/comidasTaberna";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
+import DescripcionTactil from "@/components/ui/DescripcionTactil";
+
+function descripcionSimpleComida(comida: (typeof COMIDAS_TABERNA)[number]) {
+  const resúmenes = comida.efectos.map((efecto) => {
+    if (efecto.tipo === "iniciativa") return "Otorga la iniciativa en el primer combate.";
+    if (efecto.tipo === "critico") return "Mejora los golpes críticos.";
+    switch (efecto.atributo) {
+      case "ataque": return "Potencia el ataque físico.";
+      case "ataqueMagico": return "Potencia el ataque mágico.";
+      case "defensa": return "Refuerza la defensa física.";
+      case "velocidad": return "Aumenta la velocidad.";
+    }
+  });
+  return [...new Set(resúmenes)].join(" ");
+}
+
+function detallesComida(comida: (typeof COMIDAS_TABERNA)[number]) {
+  return [
+    comida.descripcion,
+    ...comida.efectos.map((efecto) => {
+      if (efecto.tipo === "iniciativa") return "Otorga la iniciativa en el primer combate de la expedición.";
+      if (efecto.tipo === "critico") return `Probabilidad crítica: +${Math.round(efecto.incremento * 100)} puntos porcentuales.`;
+      const atributo = ({
+        ataque: "Ataque físico",
+        ataqueMagico: "Ataque mágico",
+        defensa: "Defensa física",
+        velocidad: "Velocidad",
+      } as const)[efecto.atributo];
+      return `${atributo}: +${Math.round(efecto.porcentaje * 100)} % durante la expedición.`;
+    }),
+    "Se reserva para la próxima expedición de combate; no afecta a los viajes comerciales.",
+  ];
+}
 
 function nombreClase(clase: string, sexo: "chico" | "chica") {
   if (sexo === "chica" && clase === "Novato") return "Novata";
@@ -200,8 +233,11 @@ export default function TabernaPage() {
                             <div className="flex items-start gap-3">
                               <span className="text-3xl" aria-hidden="true">{comidaPreparadaActual.icono}</span>
                               <div className="min-w-0">
-                                <p className="font-black text-emerald-300">{comidaPreparadaActual.nombre}</p>
-                                <p className="mt-1 text-sm text-stone-300">{comidaPreparadaActual.descripcion}</p>
+                                <div className="flex items-start gap-2">
+                                  <p className="min-w-0 flex-1 font-black text-emerald-300">{comidaPreparadaActual.nombre}</p>
+                                  <DescripcionTactil titulo={comidaPreparadaActual.nombre} resumen={descripcionSimpleComida(comidaPreparadaActual)} detalles={detallesComida(comidaPreparadaActual)} variante="madera" />
+                                </div>
+                                <p className="mt-1 text-sm text-stone-300">{descripcionSimpleComida(comidaPreparadaActual)}</p>
                                 <p className="mt-2 text-[11px] font-bold uppercase tracking-wider text-emerald-400">✓ Preparada</p>
                               </div>
                             </div>
@@ -220,12 +256,15 @@ export default function TabernaPage() {
                                 >
                                   <div className="flex min-w-0 items-start gap-2">
                                     <span className="text-2xl sm:text-3xl" aria-hidden="true">{comida.icono}</span>
-                                    <div className="min-w-0">
-                                      <p className="break-words text-xs font-black text-amber-100 sm:text-sm">{comida.nombre}</p>
+                                    <div className="min-w-0 flex-1">
+                                      <div className="flex items-start gap-1">
+                                        <p className="min-w-0 flex-1 break-words text-xs font-black text-amber-100 sm:text-sm">{comida.nombre}</p>
+                                        <DescripcionTactil titulo={comida.nombre} resumen={descripcionSimpleComida(comida)} detalles={detallesComida(comida)} variante="madera" />
+                                      </div>
                                       <p className="mt-1 text-[9px] font-black uppercase tracking-wide text-amber-300/90">Nivel {comida.nivelRequerido}</p>
                                     </div>
                                   </div>
-                                  <p className="mt-1 line-clamp-2 text-[10px] leading-4 text-stone-300">{comida.descripcion}</p>
+                                  <p className="mt-1 line-clamp-2 text-[10px] leading-4 text-stone-300">{descripcionSimpleComida(comida)}</p>
                                   <div className="mt-2 flex items-center justify-between gap-1 border-t border-amber-900/60 pt-2">
                                     <span className="shrink-0 text-xs font-bold text-amber-300">{comida.coste} 🪙</span>
                                     <button
