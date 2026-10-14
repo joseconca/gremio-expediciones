@@ -561,11 +561,12 @@ test("la victoria tira botín de forma independiente para cada miembro y mantien
   assert.ok(result.recompensas.dropsEnemigo.every((drop) => drop.objetoId === "pocion" && drop.sufijoId === "del test"));
   assert.deepEqual(result.recompensas.recompensas.map((miembro) => miembro.experiencia), [30, 30, 30]);
   assert.equal(result.recompensas.recompensas.length, 3);
-  const objetosOtorgados = result.recompensas.recompensas.reduce(
+  const objetosMisionRepartidos = result.recompensas.recompensas.reduce(
     (suma, miembro) => suma + miembro.objetos.reduce((subtotal, objeto) => subtotal + objeto.cantidad, 0),
     0,
   );
-  assert.equal(objetosOtorgados, 5, "dos objetos de misión más un objeto independiente para cada aventurero");
+  assert.equal(objetosMisionRepartidos, 2);
+  assert.equal(result.recompensas.dropsEnemigo.length, 3, "el botín del enemigo se registra por separado");
   assert.equal(calls.inventoryStackWrites.reduce((s, w) => s + (w.cantidad ?? 0), 0), 5);
   assert.equal(calls.userWrites.length, 3);
 
@@ -573,6 +574,7 @@ test("la victoria tira botín de forma independiente para cada miembro y mantien
   assert.ok(informePersistido, "el informe estructurado debe guardarse en el combate");
   assert.deepEqual(informePersistido.data.recompensasResultado.dropsEnemigo.map((drop) => drop.usuarioId), ["u1", "u2", "u3"]);
   assert.deepEqual(informePersistido.data.recompensasResultado.recompensas.map((miembro) => miembro.experiencia), [30, 30, 30]);
+  assert.deepEqual(informePersistido.data.recompensasResultado.recompensas.map((miembro) => miembro.objetos.reduce((n, obj) => n + obj.cantidad, 0)), [1, 1, 0]);
 });
 
 test("cada aventurero conserva su propio límite de inventario al recibir el drop", async () => {
