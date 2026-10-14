@@ -202,7 +202,29 @@ function mockPrisma(combat, options = {}) {
     expedicionParty: {
       findUnique: async ({ select, include } = {}) => {
         if (select?.fase) return { fase: faseExpedicion };
-        if (include?.participantes?.include?.usuario && !include.participantes.include.personaje) {
+        if (include?.participantes?.include?.personaje) {
+          return {
+            id: "expedition-1",
+            fase: "combatiendo",
+            tipo: "normal",
+            dificultad: 3,
+            modoDificultad: "normal",
+            recompensa: options.recompensa ?? { oro: 11, madera: 4, piedra: 2, metal: 1, objetos: [{ objetoId: "pocion", cantidad: 2 }] },
+            participantes: combat.participantes.map((p) => ({
+              id: "exp-part-" + p.usuarioId,
+              usuarioId: p.usuarioId,
+              personajeId: p.personajeId,
+              estado: p.estado,
+              creado: new Date(0),
+              usuario: { id: p.usuarioId },
+              personaje: p.usuarioId === "u1" ? { ...character, id: p.personajeId } : {
+                id: p.personajeId, usuarioId: p.usuarioId, nivel: 3, experiencia: 0,
+                profesionActivaId: "novato", rangosAmenazaCompletados: [], inventario: { id: "inventario-" + p.usuarioId },
+              },
+            })),
+          };
+        }
+        if (include?.participantes?.include?.usuario) {
           return { id: "expedition-1", fase: faseExpedicion, participantes: combat.participantes.map((p) => ({
             id: "exp-part-" + p.usuarioId,
             usuarioId: p.usuarioId,
