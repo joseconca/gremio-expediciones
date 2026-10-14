@@ -628,6 +628,33 @@ test("la victoria tira botín de forma independiente para cada miembro y mantien
   assert.deepEqual(informePersistido.data.recompensasResultado.recompensas.map((miembro) => miembro.objetos.reduce((n, obj) => n + obj.cantidad, 0)), [1, 1, 0]);
 });
 
+test("el informe registra los objetos de misión que no caben en el inventario", async () => {
+  const combat = mkCombat({
+    enemigoHp: 10,
+    id: "combat-mission-loot-full",
+    participantes: [mkParticipant("u1", 0), mkParticipant("u2", 1)],
+  });
+  const { prisma, calls } = mockPrisma(combat, {
+    inventoryCount: 30,
+    recompensa: {
+      oro: 11, madera: 4, piedra: 2, metal: 1,
+      objetos: [{ objetoId: "pocion", cantidad: 2 }],
+    },
+  });
+  const service = loadService(prisma, {
+    enemigo: { probabilidadBotin: 0, tablaLoot: [{ objetoId: "pocion", peso: 1 }] },
+  });
+  const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "atacar");
+
+  assert.equal(result.fase, "victoria");
+  assert.deepEqual(result.recompensas.recompensas.map((miembro) => miembro.objetos), [[], []]);
+  assert.equal(combat.log.filter((line) => line.includes("no ha podido recibir") && line.includes("inventario está lleno")).length, 2);
+  const informePersistido = calls.combatWrites.find((write) => write.data.recompensasResultado)?.data.recompensasResultado;
+  assert.ok(informePersistido);
+  assert.deepEqual(informePersistido.recompensas.map((miembro) => miembro.objetos), [[], []]);
+  assert.equal(informePersistido.dropsEnemigo.length, 0);
+});
+
 test("cada aventurero conserva su propio límite de inventario al recibir el drop", async () => {
   const lootRolls = [];
   const combat = mkCombat({ enemigoHp: 10, id: "combat-loot-full" });
