@@ -231,11 +231,19 @@ export default function TabernaPage() {
                         {comidaPreparadaActual ? (
                           <div className="rounded-lg border border-emerald-700/70 bg-emerald-950/40 p-2 sm:p-3">
                             <div className="flex items-start gap-3">
-                              <span className="text-3xl" aria-hidden="true">{comidaPreparadaActual.icono}</span>
+                              <DescripcionTactil
+                                titulo={comidaPreparadaActual.nombre}
+                                resumen={descripcionSimpleComida(comidaPreparadaActual)}
+                                detalles={detallesComida(comidaPreparadaActual)}
+                                variante="madera"
+                                etiquetaAccesible={`Ver detalles de ${comidaPreparadaActual.nombre}`}
+                                claseBoton="flex h-12 w-12 shrink-0 touch-manipulation items-center justify-center rounded-md border border-emerald-700/70 bg-stone-950/60 text-3xl transition hover:border-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
+                              >
+                                {comidaPreparadaActual.icono}
+                              </DescripcionTactil>
                               <div className="min-w-0">
                                 <div className="flex items-start gap-2">
                                   <p className="min-w-0 flex-1 font-black text-emerald-300">{comidaPreparadaActual.nombre}</p>
-                                  <DescripcionTactil titulo={comidaPreparadaActual.nombre} resumen={descripcionSimpleComida(comidaPreparadaActual)} detalles={detallesComida(comidaPreparadaActual)} variante="madera" />
                                 </div>
                                 <p className="mt-1 text-sm text-stone-300">{descripcionSimpleComida(comidaPreparadaActual)}</p>
                                 <p className="mt-2 text-[11px] font-bold uppercase tracking-wider text-emerald-400">✓ Preparada</p>
@@ -255,11 +263,19 @@ export default function TabernaPage() {
                                   className={`flex min-w-0 flex-col rounded-lg border p-2 sm:p-3 ${deshabilitada ? "border-stone-700 bg-stone-900/50 opacity-60" : "border-amber-800/70 bg-gradient-to-br from-stone-800 to-amber-950/50"}`}
                                 >
                                   <div className="flex min-w-0 items-start gap-2">
-                                    <span className="text-2xl sm:text-3xl" aria-hidden="true">{comida.icono}</span>
+                                    <DescripcionTactil
+                                      titulo={comida.nombre}
+                                      resumen={descripcionSimpleComida(comida)}
+                                      detalles={detallesComida(comida)}
+                                      variante="madera"
+                                      etiquetaAccesible={`Ver detalles de ${comida.nombre}`}
+                                      claseBoton="flex h-10 w-10 shrink-0 touch-manipulation items-center justify-center rounded-md border border-amber-900/70 bg-stone-950/40 text-2xl transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400 sm:h-12 sm:w-12 sm:text-3xl"
+                                    >
+                                      {comida.icono}
+                                    </DescripcionTactil>
                                     <div className="min-w-0 flex-1">
                                       <div className="flex items-start gap-1">
                                         <p className="min-w-0 flex-1 break-words text-xs font-black text-amber-100 sm:text-sm">{comida.nombre}</p>
-                                        <DescripcionTactil titulo={comida.nombre} resumen={descripcionSimpleComida(comida)} detalles={detallesComida(comida)} variante="madera" />
                                       </div>
                                       <p className="mt-1 text-[9px] font-black uppercase tracking-wide text-amber-300/90">Nivel {comida.nivelRequerido}</p>
                                     </div>
