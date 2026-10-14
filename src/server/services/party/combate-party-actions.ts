@@ -18,6 +18,7 @@ import {
   leerEfectosCombate,
   procesarTicksPeriodicos,
   avanzarEfectosCombate,
+  procesarEfectosTurno,
 } from "@/lib/expediciones/estados-combate";
 import {
   calcularSiguienteTurnoParty,
@@ -277,9 +278,20 @@ export async function ejecutarAccionCombateParty(
     let efectosEnemigo = convertirEfectos(combate.efectosEnemigo);
     const cooldowns = obtenerCooldowns(participante.cooldowns);
     let enemigoHp = combate.enemigoHp;
-    let jugadorHp = participante.jugadorHp;
-    let jugadorDefensa = participante.jugadorDefensa;
+    const estadoInicioTurno = procesarEfectosTurno(
+      efectosJugador,
+      participante.jugadorHp,
+      participante.jugadorHpMaximo,
+      participante.jugadorDefensa,
+      personaje.id,
+    );
+    let jugadorHp = estadoInicioTurno.hp;
+    let jugadorDefensa = estadoInicioTurno.defensa;
+    efectosJugador = estadoInicioTurno.efectos;
     let enemigoDefensa = combate.enemigoDefensa;
+    if (estadoInicioTurno.mensajes.length > 0) {
+      efectosJugador = estadoInicioTurno.efectos;
+    }
     let habilidad: DefinicionHabilidad | null = null;
     let objetoConsumible: { inventarioObjetoId: string; objetoId: string; curacion: number; nombre: string } | null = null;
     let accion: AccionAnimadaCombate;
@@ -393,6 +405,7 @@ export async function ejecutarAccionCombateParty(
     );
     const resultadoTerminal = registrarResultadoTerminal(enemigoHp, estadoParticipantes);
     const log = obtenerLog(combate.log);
+    log.push(...estadoInicioTurno.mensajes);
     log.push(accion.texto);
 
     let faseTurno: "jugador" | "enemigo" = "enemigo";
@@ -514,13 +527,16 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
     let enemigoHp = combate.enemigoHp;
     let enemigoDefensa = combate.enemigoDefensa;
     let efectosEnemigo = obtenerEfectos(combate.efectosEnemigo);
-    const ticks = procesarTicksPeriodicos(
+    const ticks = procesarEfectosTurno(
       efectosEnemigo,
       enemigoHp,
       combate.enemigoHpMaximo,
+      enemigoDefensa,
       combate.enemigoNombre,
     );
     enemigoHp = ticks.hp;
+    enemigoDefensa = ticks.defensa;
+    efectosEnemigo = ticks.efectos;
     log.push(...ticks.mensajes);
 
     let accion: AccionAnimadaCombate;
