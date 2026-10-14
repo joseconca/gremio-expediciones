@@ -9,6 +9,8 @@ import {
   type CoordenadasBase,
 } from "@/lib/party/reglas";
 import { ESTADOS_EXPEDICION_PARTY_ACTIVOS } from "@/lib/party/expedicion-reglas";
+import { obtenerHabilidadPorId } from "@/lib/habilidades";
+import { obtenerObjetoPorId } from "@/lib/objetos";
 
 const AISLAMIENTO = {
   isolationLevel: Prisma.TransactionIsolationLevel.Serializable,
