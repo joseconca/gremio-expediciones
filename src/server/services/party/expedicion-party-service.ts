@@ -373,6 +373,159 @@ export async function iniciarExpedicionParty(
   };
 }
 
+type PersonajePartyConEstadisticas = NonNullable<Prisma.PersonajeGetPayload<{ include: typeof incluirPersonaje }>>;
+
+function obtenerEstadisticasCombateParty(personaje: PersonajePartyConEstadisticas) {
+  const equipo = obtenerEquipoDesdePersonaje(personaje);
+  const modificadoresEquipo = calcularModificadoresEquipo(equipo, personaje.profesionActivaId);
+  const habilidades = personaje.habilidades
+    .filter((habilidad) => habilidad.slot !== null)
+    .map((habilidad) => ({ habilidadId: habilidad.habilidadId, nivel: habilidad.nivel }));
+  const stats = calcularEstadisticasPersonaje(personaje, habilidades, modificadoresEquipo).total;
+  return {
+    jugadorHpMaximo: Math.max(1, Math.floor(stats.hpMaximo)),
+    jugadorAtaque: Math.max(1, Math.floor(stats.ataque)),
+    jugadorAtaqueMagico: Math.max(1, Math.floor(stats.ataqueMagico ?? stats.ataque)),
+    jugadorDefensa: Math.max(0, Math.floor(stats.defensa)),
+    jugadorDefensaMagica: Math.max(0, Math.floor(stats.defensaMagica ?? stats.defensa)),
+    jugadorVelocidad: Math.max(1, Math.floor(stats.velocidad)),
+    jugadorProbCritico: Math.max(0, Math.min(0.75, stats.probCritico)),
+    jugadorDanoCritico: Math.max(1, stats.danoCritico),
+    jugadorPrecision: Math.max(1, Math.min(100, stats.precision ?? 75)),
+    jugadorEvasion: Math.max(0, Math.min(0.6, stats.evasion ?? 0)),
+    jugadorNivel: Math.max(1, personaje.nivel),
+    hpActual: Math.max(1, Math.min(Math.floor(stats.hpMaximo), Math.floor(personaje.hpActual ?? stats.hpMaximo))),
+    energiaActual: Math.max(0, Math.floor(personaje.energiaActual ?? 0)),
+    manaActual: Math.max(0, Math.floor(personaje.manaActual ?? 0)),
+    energiaMaxima: Math.max(1, Math.floor(stats.energiaMaxima ?? 1)),
+    manaMaxima: Math.max(1, Math.floor(stats.manaMaximo ?? 1)),
+  };
+}
+
+function construirSnapshotEnemigo(enemigo: DefinicionEnemigo, dificultad: number) {
+  const factorNivel = Math.max(1, dificultad);
+  const escala = Math.max(0, factorNivel - Math.max(1, enemigo.difMin));
+  const hpMaximo = Math.max(1, Math.floor(enemigo.hp * (1 + escala * 0.08)));
+  return {
+    enemigoId: enemigo.id,
+    enemigoNombre: enemigo.nombre,
+    enemigoHp: hpMaximo,
+    enemigoHpMaximo: hpMaximo,
+    enemigoAtaque: Math.max(1, Math.floor(enemigo.ataque * (1 + escala * 0.04))),
+    enemigoAtaqueMagico: Math.max(1, Math.floor(enemigo.ataque * 0.75)),
+    enemigoDefensa: Math.max(0, Math.floor(enemigo.defensa)),
+    enemigoDefensaMagica: Math.max(0, Math.floor(enemigo.defensa * 0.75)),
+    enemigoVelocidad: Math.max(1, Math.floor(enemigo.velocidad)),
+    enemigoProbCritico: 0.1,
+    enemigoDanoCritico: 1.5,
+    enemigoPrecision: 75,
+    enemigoEvasion: 0,
+    enemigoNivel: factorNivel,
+  };
+}
+
+/** Crea una sola instancia de combate compartida para todos los integrantes. */
+export async function crearCombatePartySiProcede(expedicionPartyId: string) {
+  return prisma.$transaction(async (tx) => {
+    const expedicion = await tx.expedicionParty.findUnique({
+      where: { id: expedicionPartyId },
+      include: {
+        participantes: {
+          orderBy: { creado: "asc" },
+          include: { personaje: { include: incluirPersonaje } },
+        },
+        combate: true,
+      },
+    });
+    if (!expedicion) {
+      throw new PartyServiceError("No se encontró la expedición compartida.", 404, "EXPEDICION_PARTY_NO_ENCONTRADA");
+    }
+    if (expedicion.combate) {
+      return { combatePartyId: expedicion.combate.id, fase: expedicion.combate.fase };
+    }
+    if (expedicion.fase !== "lista_para_combate") {
+      throw new PartyServiceError("La expedición todavía no está lista para combatir.", 409, "EXPEDICION_PARTY_NO_LISTA");
+    }
+    if (expedicion.participantes.length < 2 || expedicion.participantes.length > 3) {
+      throw new PartyServiceError("La expedición requiere dos o tres aventureros.", 409, "NUMERO_MIEMBROS_INVALIDO");
+    }
+
+    const enemigo = obtenerEnemigoPorId(expedicion.enemigoId ?? "");
+    if (!enemigo) {
+      throw new PartyServiceError("No se ha encontrado el enemigo de la expedición.", 409, "ENEMIGO_NO_ENCONTRADO");
+    }
+
+    const datosParticipantes = expedicion.participantes.map((participante, ordenTurno) => {
+      const personaje = participante.personaje;
+      if (participante.estado !== "en_destino" || personaje.estado !== "de_viaje") {
+        throw new PartyServiceError("Todos los aventureros deben haber llegado al destino.", 409, "MIEMBRO_NO_EN_DESTINO");
+      }
+      const stats = obtenerEstadisticasCombateParty(personaje);
+      return {
+        usuarioId: participante.usuarioId,
+        personajeId: personaje.id,
+        ordenTurno,
+        estado: "activo",
+        jugadorPosicion: ordenTurno === 0 ? "centro" : ordenTurno === 1 ? "izquierda" : "derecha",
+        ...stats,
+      };
+    });
+    const turnoInicial = crearEstadoInicialTurnoParty(
+      datosParticipantes.map((p) => ({
+        usuarioId: p.usuarioId,
+        ordenTurno: p.ordenTurno,
+        jugadorHp: p.hpActual,
+        estado: p.estado,
+      })),
+    );
+    const enemigoSnapshot = construirSnapshotEnemigo(enemigo, expedicion.dificultad);
+    const combate = await tx.combateParty.create({
+      data: {
+        expedicionPartyId,
+        ...enemigoSnapshot,
+        fase: "activo",
+        ronda: turnoInicial.ronda,
+        faseTurno: turnoInicial.faseTurno,
+        turnoActualUsuarioId: turnoInicial.turnoActualUsuarioId,
+        efectosEnemigo: [],
+        log: [`⚔️ La party se enfrenta a ${enemigoSnapshot.enemigoNombre}.`],
+        participantes: {
+          create: datosParticipantes.map((p) => ({
+            usuarioId: p.usuarioId,
+            personajeId: p.personajeId,
+            ordenTurno: p.ordenTurno,
+            estado: p.estado,
+            jugadorPosicion: p.jugadorPosicion,
+            jugadorHp: p.hpActual,
+            jugadorHpMaximo: p.jugadorHpMaximo,
+            jugadorAtaque: p.jugadorAtaque,
+            jugadorAtaqueMagico: p.jugadorAtaqueMagico,
+            jugadorDefensa: p.jugadorDefensa,
+            jugadorDefensaMagica: p.jugadorDefensaMagica,
+            jugadorVelocidad: p.jugadorVelocidad,
+            jugadorProbCritico: p.jugadorProbCritico,
+            jugadorDanoCritico: p.jugadorDanoCritico,
+            jugadorPrecision: p.jugadorPrecision,
+            jugadorEvasion: p.jugadorEvasion,
+            jugadorNivel: p.jugadorNivel,
+            cooldowns: {},
+            efectos: [],
+          })),
+        },
+      },
+      include: { participantes: true },
+    });
+    const actualizado = await tx.expedicionParty.updateMany({
+      where: { id: expedicionPartyId, fase: "lista_para_combate" },
+      data: { fase: "combatiendo" },
+    });
+    if (actualizado.count !== 1) {
+      throw new PartyServiceError("La expedición ha cambiado de fase al crear el combate.", 409, "EXPEDICION_PARTY_MODIFICADA");
+    }
+    return { combatePartyId: combate.id, fase: combate.fase };
+  }, AISLAMIENTO);
+}
+
 export async function llegarExpedicionParty(usuarioId: string, idDesconocido: unknown) {
   if (typeof idDesconocido !== "string" || idDesconocido.trim().length === 0 || idDesconocido.length > 100) {
     throw new PartyServiceError("El identificador de expedición no es válido.", 400, "EXPEDICION_ID_INVALIDO");
