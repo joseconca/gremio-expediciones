@@ -144,7 +144,7 @@ function mkCombat(overrides = {}) {
 }
 
 function mockPrisma(combat, options = {}) {
-  const calls = { combatWrites: [], participantWrites: [], characterWrites: [], expeditionWrites: [], expeditionParticipantWrites: [] };
+  const calls = { combatWrites: [], participantWrites: [], characterWrites: [], expeditionWrites: [], expeditionParticipantWrites: [], resourceWrites: [], inventoryWrites: [] };
   const character = {
     id: "personaje-u1",
     profesionActivaId: "novato",
@@ -217,6 +217,11 @@ function mockPrisma(combat, options = {}) {
       findUnique: async () => character,
       updateMany: async ({ where, data }) => {
         calls.characterWrites.push({ where, data });
+        if (data.energiaActual?.decrement !== undefined || data.manaActual?.decrement !== undefined) {
+          calls.resourceWrites.push({ where, data });
+          character.energiaActual -= data.energiaActual?.decrement ?? 0;
+          character.manaActual -= data.manaActual?.decrement ?? 0;
+        }
         if (options.rejectCharacterUpdate) return { count: 0 };
         return { count: 1 };
       },
@@ -310,7 +315,8 @@ test("una habilidad activa equipada aplica daño, gasta recursos y guarda cooldo
   assert.equal(combat.enemigoHp, 20);
   assert.equal(combat.participantes[0].cooldowns.golpe_arcano, 2);
   assert.equal(calls.participantWrites.some((c) => c.data.efectos), true);
-  assert.equal(calls.characterWrites.some((c) => c.data.energiaActual?.decrement === 5), false);
+  assert.equal(calls.resourceWrites.some((c) => c.data.energiaActual?.decrement === 5), true);
+  assert.equal(calls.resourceWrites.some((c) => c.data.manaActual?.decrement === 0), true);
 });
 
 test("una habilidad sin Energía suficiente se rechaza sin avanzar el turno", async () => {
