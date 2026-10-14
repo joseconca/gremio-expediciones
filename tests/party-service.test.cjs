@@ -22,6 +22,8 @@ function loadService(prisma) {
     "@/lib/utils": { calcularDistanciaKm: () => 12 },
     "@/lib/party/reglas": reglas,
     "@/lib/party/expedicion-reglas": reglasExpedicionParty,
+    "@/lib/habilidades": { obtenerHabilidadPorId: () => undefined },
+    "@/lib/objetos": { obtenerObjetoPorId: () => undefined },
   };
   vm.runInThisContext("(function(require, module, exports) {" + outputText + "\n})", { filename })(
     (name) => Object.hasOwn(dependencies, name) ? dependencies[name] : require(name),
