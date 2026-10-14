@@ -668,7 +668,7 @@ test("cada aventurero conserva su propio límite de inventario al recibir el dro
   assert.deepEqual(result.recompensas.dropsEnemigo, []);
   assert.equal(lootRolls.length, 2, "se realizan dos tiradas aunque los inventarios estén llenos");
   assert.equal(calls.inventoryStackWrites.length, 0);
-  assert.equal(combat.log.filter((line) => line.includes("su inventario está lleno")).length, 2);
+  assert.equal(combat.log.filter((line) => line.includes("El botín de Slime para") && line.includes("su inventario está lleno")).length, 2);
   assert.equal(combat.log.filter((line) => line.includes("no ha podido recibir") && line.includes("inventario está lleno")).length, 2);
   assert.equal(combat.log.filter((line) => line.includes("inventarios de la party están llenos")).length, 0);
 });
