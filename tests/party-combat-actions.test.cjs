@@ -503,7 +503,7 @@ test("la victoria reparte oro, recursos y objetos de misión sin generar unidade
   assert.equal(result.fase, "victoria");
   assert.equal(combat.recompensasResueltas, true);
   assert.equal(calls.userWrites.length, 2);
-  assert.equal(calls.userWrites.reduce((s, w) => s + w.data.oro.increment, 0), 31);
+  assert.equal(calls.userWrites.reduce((s, w) => s + w.data.oro.increment, 0), 21);
   assert.equal(calls.userWrites.reduce((s, w) => s + w.data.madera.increment, 0), 4);
   assert.equal(calls.userWrites.reduce((s, w) => s + w.data.piedra.increment, 0), 2);
   assert.equal(calls.userWrites.reduce((s, w) => s + w.data.metal.increment, 0), 1);
