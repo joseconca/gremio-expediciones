@@ -534,6 +534,26 @@ test("el daño periódico puede ganar el combate en el turno enemigo y liquida u
   assert.equal(informe.data.recompensasResultado.recompensas.length, 2);
 });
 
+test("repetir el turno enemigo tras la victoria no liquida recompensas ni inicia otro regreso", async () => {
+  const combat = mkCombat({
+    fase: "victoria",
+    faseTurno: "enemigo",
+    turnoActualUsuarioId: null,
+    enemigoHp: 0,
+    recompensasResueltas: true,
+    id: "combat-already-won",
+  });
+  const { prisma, calls } = mockPrisma(combat);
+  const service = loadService(prisma);
+  const result = await service.ejecutarTurnoEnemigoParty("u1", "expedition-1");
+
+  assert.equal(result.fase, "victoria");
+  assert.equal(result.yaTerminado, true);
+  assert.equal(calls.userWrites.length, 0);
+  assert.equal(calls.expeditionWrites.length, 0);
+  assert.equal(calls.inventoryStackWrites.length, 0);
+});
+
 test("los efectos del aventurero se procesan al empezar su turno", async () => {
   const combat = mkCombat({
     participantes: [
