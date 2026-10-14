@@ -467,6 +467,17 @@ async function liquidarRecompensasParty(
     : 0;
   const oroTotal = aplicarMultiplicadorRecompensa(recompensaMision.oro + oroEnemigo, modoDificultad);
   const totalMiembros = participantes.length;
+  const primerPersonaje = participantes[0]?.personaje;
+  if (!primerPersonaje) {
+    throw new PartyServiceError("Uno de los integrantes ya no tiene personaje.", 409, "PERSONAJE_NO_ENCONTRADO");
+  }
+  // La XP Base es una recompensa común del resultado: el nivel individual solo
+  // se utiliza para progresión propia, nunca para cambiar la XP que recibe cada miembro.
+  const experienciaBaseComun = calcularExperienciaBaseGanada(
+    expedicion.dificultad,
+    primerPersonaje.nivel,
+    modoDificultad,
+  );
   const versionEsperadaLiquidada = combate.version + 1;
   const liquidado = await tx.combateParty.updateMany({
     where: {
@@ -512,7 +523,7 @@ async function liquidarRecompensasParty(
     const madera = repartirCantidadEntera(recompensaMision.madera, totalMiembros, indice);
     const piedra = repartirCantidadEntera(recompensaMision.piedra, totalMiembros, indice);
     const metal = repartirCantidadEntera(recompensaMision.metal, totalMiembros, indice);
-    const experiencia = calcularExperienciaBaseGanada(expedicion.dificultad, personaje.nivel, modoDificultad);
+    const experiencia = experienciaBaseComun;
     const experienciaActual = Math.max(0, Math.floor(personaje.experiencia ?? 0));
     let nivel = Math.max(1, Math.floor(personaje.nivel ?? 1));
     let experienciaNueva = experienciaActual + experiencia;
