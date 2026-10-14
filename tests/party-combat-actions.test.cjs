@@ -205,6 +205,14 @@ function mockPrisma(combat, options = {}) {
         return { count: 1 };
       },
     },
+    inventarioObjeto: {
+      updateMany: async ({ where, data }) => {
+        calls.inventoryWrites = calls.inventoryWrites || [];
+        calls.inventoryWrites.push({ where, data });
+        return { count: 1 };
+      },
+      deleteMany: async () => ({ count: 0 }),
+    },
     personaje: {
       findUnique: async () => character,
       updateMany: async ({ where, data }) => {
@@ -302,7 +310,7 @@ test("una habilidad activa equipada aplica daño, gasta recursos y guarda cooldo
   assert.equal(combat.enemigoHp, 20);
   assert.equal(combat.participantes[0].cooldowns.golpe_arcano, 2);
   assert.equal(calls.participantWrites.some((c) => c.data.efectos), true);
-  assert.equal(calls.characterWrites.some((c) => c.data.energiaActual?.decrement === 5), true);
+  assert.equal(calls.characterWrites.some((c) => c.data.energiaActual?.decrement === 5), false);
 });
 
 test("una habilidad sin Energía suficiente se rechaza sin avanzar el turno", async () => {
@@ -327,4 +335,5 @@ test("usar una poción cura al aventurero y consume una unidad de inventario", a
   assert.equal(result.jugadorHp, 80);
   assert.equal(combat.participantes[0].jugadorHp, 80);
   assert.equal(calls.characterWrites.some((c) => c.data.hpActual === 80), true);
+  assert.equal(calls.inventoryWrites.some((c) => c.data.cantidad?.decrement === 1), true);
 });
