@@ -233,8 +233,23 @@ export default function PanelParty() {
   };
 
   useEffect(() => {
-    // El tablón forma parte de PanelMisiones y existe al completar el montaje.
-    setDestinoTablon(document.getElementById("party-expedition-slot"));
+    // PanelMisiones puede montarse después de cargar el personaje. Espera al
+    // tablón aunque todavía no exista en el primer render de la base.
+    const localizarTablon = () => document.getElementById("party-expedition-slot");
+    const existente = localizarTablon();
+    if (existente) {
+      setDestinoTablon(existente);
+      return;
+    }
+
+    const observador = new MutationObserver(() => {
+      const destino = localizarTablon();
+      if (!destino) return;
+      setDestinoTablon(destino);
+      observador.disconnect();
+    });
+    observador.observe(document.body, { childList: true, subtree: true });
+    return () => observador.disconnect();
   }, []);
 
   const intervaloConsultaMs = estado?.expedicionActiva?.fase === "combatiendo"
@@ -550,10 +565,6 @@ export default function PanelParty() {
 
   // En la base no mostramos un panel vacío. Se mantiene visible únicamente
   // cuando hay un grupo, una expedición o un traslado que requiere atención.
-  if (!party && !estado?.expedicionActiva && trasladosPropios.length === 0 && visitasEntrantes.length === 0 && !error) {
-    return null;
-  }
-
   if (!party && !estado?.expedicionActiva && !ultimoResultadoCombate && trasladosPropios.length === 0 && visitasEntrantes.length === 0 && !error) {
     return null;
   }
