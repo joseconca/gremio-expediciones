@@ -8,6 +8,9 @@ export type TipoArma =
   | "baston" | "maza" | "libro" | "puños";
 export type TipoArmadura = "ligera" | "media" | "pesada";
 
+/** Familias de equipamiento con dominio de clase, incluidas manos secundarias y futuros focos. */
+export type TipoEquipoDominado = TipoArma | "escudo" | "varita" | "idolo" | "orbe";
+
 export interface AtributosPrincipales {
   fuerza: number;
   agilidad: number;

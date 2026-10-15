@@ -151,6 +151,18 @@ function calcularEstadisticasPiezaEquipamiento(
     if (typeof estadisticas.ataqueMagico === "number") {
       estadisticas.ataqueMagico *= dominio.multiplicadorAtaqueArma;
     }
+  } else if (pieza.objeto.tipo === "armadura" && pieza.objeto.slot === "mano_secundaria") {
+    // El escudo se domina como un tipo de equipamiento de mano, no como
+    // armadura ligera/media/pesada. Las piezas legacy sin subtipo se tratan como escudos.
+    const tipoEscudo = pieza.objeto.subtipo ?? "escudo";
+    const dominio = calcularBonificacionesDominioEquipo(
+      claseId,
+      tipoEscudo
+    );
+    estadisticas.defensa *= dominio.multiplicadorAtaqueArma;
+    if (typeof estadisticas.defensaMagica === "number") {
+      estadisticas.defensaMagica *= dominio.multiplicadorAtaqueArma;
+    }
   } else if (pieza.objeto.tipo === "armadura") {
     // Una armadura sin subtipo conocido se trata como no dominada, nunca como
     // una pieza que evita por accidente la penalización.

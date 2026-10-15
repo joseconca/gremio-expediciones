@@ -106,6 +106,8 @@ test("el dominio de armas da bono a las dominadas y penaliza un 25 % las no domi
   assert.deepEqual(calcularBonificacionesDominioEquipo("espadachin", "arco", "ligera"), {
     multiplicadorAtaqueArma: 0.75, multiplicadorDefensaArmadura: 0.75,
   });
+  assert.equal(calcularBonificacionesDominioEquipo("espadachin", "escudo").multiplicadorAtaqueArma, 1.15, "El Espadachín domina el escudo como equipo de mano");
+  assert.equal(calcularBonificacionesDominioEquipo("arquero", "escudo").multiplicadorAtaqueArma, 0.75, "El Arquero no domina el escudo");
   assert.equal(calcularBonificacionesDominioEquipo("novato", undefined, "ligera").multiplicadorDefensaArmadura, 0.75, "Sin bonus de defensa, la armadura también sufre penalización");
   assert.equal(calcularBonificacionesDominioEquipo("brujo", undefined, "ligera").multiplicadorDefensaArmadura, 0.75, "El Brujo no tiene bonus defensivo de armadura");
 });
@@ -117,7 +119,13 @@ test("las armaduras declaran subtipo y reciben penalización en todas las ranura
   for (const armadura of armaduras) {
     assert.ok(armadura.subtipo, `${armadura.id} debe declarar subtipo`);
     assert.ok(["ligera", "media", "pesada"].includes(obtenerSubtipoArmadura(armadura)), `${armadura.id} debe declarar un subtipo de armadura válido`);
-    assert.equal(obtenerSubtipoArmadura(armadura), armadura.categoriaArmadura);
+    if (armadura.slot === "mano_secundaria") {
+      assert.equal(armadura.subtipo, "escudo", "El escudo tiene dominio propio, no categoría de armadura");
+      assert.equal(armadura.categoriaArmadura, undefined);
+    } else {
+      assert.ok(["ligera", "media", "pesada"].includes(obtenerSubtipoArmadura(armadura)));
+      assert.equal(obtenerSubtipoArmadura(armadura), armadura.categoriaArmadura);
+    }
   }
   for (const arma of OBJETOS.filter((objeto) => objeto.tipo === "arma")) {
     assert.ok(arma.subtipo, `${arma.id} debe declarar subtipo de arma`);
@@ -141,8 +149,10 @@ test("las armaduras declaran subtipo y reciben penalización en todas las ranura
   };
   const { calcularModificadoresEquipo } = require("../src/lib/estadisticasPersonaje.ts");
   const stats = calcularModificadoresEquipo(equipo, "espadachin");
-  const defensaArmaduras = ["escudo_madera", "casco_cuero", "armadura_cuero", "pantalones_cuero", "botas_cuero", "guantes_cuero"]
+  const defensaEscudo = calcularEstadisticasObjeto(obtenerObjetoPorId("escudo_madera"), 0).defensa * 1.15;
+  const defensaOtrasArmaduras = ["casco_cuero", "armadura_cuero", "pantalones_cuero", "botas_cuero", "guantes_cuero"]
     .reduce((total, id) => total + calcularEstadisticasObjeto(obtenerObjetoPorId(id), 0).defensa * 0.75, 0);
+  const defensaArmaduras = defensaEscudo + defensaOtrasArmaduras;
   const defensaJoyeria = calcularEstadisticasObjeto(obtenerObjetoPorId("anillo_resistencia"), 0).defensa
     + calcularEstadisticasObjeto(obtenerObjetoPorId("anillo_maldito"), 0).defensa;
   assert.equal(stats.defensa, defensaArmaduras + defensaJoyeria);

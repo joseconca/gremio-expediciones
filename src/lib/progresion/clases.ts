@@ -1,4 +1,4 @@
-import type { TipoArmadura, TipoArma } from "../tiposJuego";
+import type { TipoArmadura, TipoEquipoDominado } from "../tiposJuego";
 
 export interface RequisitoClase {
   claseId: string;
@@ -24,7 +24,7 @@ export interface DefinicionClase {
   tier: number;
   nivelJobMaximo: number;
   requisitos: readonly RequisitoClase[];
-  armasDominadas: readonly TipoArma[];
+  armasDominadas: readonly TipoEquipoDominado[];
   armadurasDominadas: readonly TipoArmadura[];
   bonoAtaqueArmaDominada: number;
   bonoDefensaArmaduraDominada: number;
@@ -61,7 +61,7 @@ const DEFINICIONES = {
   espadachin: {
     id: "espadachin", nombre: "Espadachín", descripcion: "Especialista en combate frontal y armas de filo.", arquetipo: "vanguardia",
     recursoCombate: "energia", tier: 1, nivelJobMaximo: 20, requisitos: NOVATO_JOB_10,
-    armasDominadas: ["espada", "lanza"], armadurasDominadas: ["media", "pesada"],
+    armasDominadas: ["espada", "lanza", "escudo"], armadurasDominadas: ["media", "pesada"],
     bonoAtaqueArmaDominada: 0.15, bonoDefensaArmaduraDominada: 0.1,
   },
   acolito: {
@@ -87,7 +87,7 @@ const DEFINICIONES = {
   caballero: {
     id: "caballero", nombre: "Caballero", descripcion: "Guardián de primera línea que prioriza la defensa y la protección.", arquetipo: "vanguardia",
     recursoCombate: "energia", tier: 2, nivelJobMaximo: 40, requisitos: ESPADACHIN_JOB_20,
-    armasDominadas: ["espada", "lanza"], armadurasDominadas: ["media", "pesada"],
+    armasDominadas: ["espada", "lanza", "escudo"], armadurasDominadas: ["media", "pesada"],
     bonoAtaqueArmaDominada: 0.2, bonoDefensaArmaduraDominada: 0.15,
   },
   duelista: {
@@ -138,7 +138,7 @@ const DEFINICIONES = {
     id: "cruzado", nombre: "Cruzado", descripcion: "Combina la resistencia del Caballero con la curación del Sacerdote.", arquetipo: "hibrido",
     recursoCombate: "ambos", tier: 2.5, nivelJobMaximo: 50,
     requisitos: [{ claseId: "caballero", nivelJob: 40 }, { claseId: "sacerdote", nivelJob: 40 }],
-    armasDominadas: ["espada", "maza", "lanza"], armadurasDominadas: ["media", "pesada"],
+    armasDominadas: ["espada", "maza", "lanza", "escudo"], armadurasDominadas: ["media", "pesada"],
     bonoAtaqueArmaDominada: 0.2, bonoDefensaArmaduraDominada: 0.2,
   },
   pirata: {
@@ -167,13 +167,13 @@ const DEFINICIONES = {
   paladin: {
     id: "paladin", nombre: "Paladín", descripcion: "Un campeón defensivo que refuerza sus ataques con poder sagrado.", arquetipo: "hibrido",
     recursoCombate: "ambos", tier: 3, nivelJobMaximo: 60, requisitos: [{ claseId: "caballero", nivelJob: 40 }],
-    armasDominadas: ["espada", "maza", "lanza"], armadurasDominadas: ["media", "pesada"],
+    armasDominadas: ["espada", "maza", "lanza", "escudo"], armadurasDominadas: ["media", "pesada"],
     bonoAtaqueArmaDominada: 0.2, bonoDefensaArmaduraDominada: 0.2,
   },
   guardian_real: {
     id: "guardian_real", nombre: "Guardián real", descripcion: "La élite de la defensa: protege a sus aliados y resiste golpes devastadores.", arquetipo: "vanguardia",
     recursoCombate: "energia", tier: 3, nivelJobMaximo: 60, requisitos: [{ claseId: "caballero", nivelJob: 40 }],
-    armasDominadas: ["espada", "lanza"], armadurasDominadas: ["pesada"],
+    armasDominadas: ["espada", "lanza", "escudo"], armadurasDominadas: ["pesada"],
     bonoAtaqueArmaDominada: 0.15, bonoDefensaArmaduraDominada: 0.25,
   },
   asesino: {
@@ -373,7 +373,7 @@ export function calcularBonificacionesDominioEquipo(
 ): { multiplicadorAtaqueArma: number; multiplicadorDefensaArmadura: number } {
   const clase = obtenerDefinicionClase(claseId);
   if (!clase) return { multiplicadorAtaqueArma: 1, multiplicadorDefensaArmadura: 1 };
-  const dominaArma = !!tipoArma && clase.armasDominadas.includes(tipoArma as TipoArma);
+  const dominaArma = !!tipoArma && clase.armasDominadas.includes(tipoArma as TipoEquipoDominado);
   const dominaArmadura = !!categoriaArmadura && clase.armadurasDominadas.includes(categoriaArmadura as TipoArmadura);
   // El dominio listado en la clase conserva su bono. Si la categoría no
   // está dominada, la eficacia del equipo baja al 75 %.
