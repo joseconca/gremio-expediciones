@@ -31,7 +31,7 @@ const {
   calcularPesoRarezaEnemigo,
   PROBABILIDAD_ENCUENTRO_MIMICO,
 } = require("../src/lib/expediciones/normal.ts");
-const { generarMisionesDisponibles } = require("../src/lib/generadorMisiones.ts");
+const { generarMisionesDisponibles, MISIONES_POR_DURACION } = require("../src/lib/generadorMisiones.ts");
 const {
   calcularCosteRecursosMejora,
   calcularCosteMejoraObjeto,
@@ -423,8 +423,29 @@ test("Job 20 de Tier 1 respeta su máximo y se alcanza antes que el antiguo Job 
   assert.ok(nivelBase < 6, "El nuevo máximo Job 20 debe alcanzarse en la primera etapa de progresión");
 });
 
-test("expediciones: el catálogo respeta rangos desbloqueados y garantiza misión de frontera", () => {
+test("expediciones: cada duración ofrece todas las amenazas desbloqueadas desde 0", () => {
   const ahora = new Date("2026-10-12T12:00:00.000Z");
+  const validarCobertura = (misiones, amenazaMaxima) => {
+    const normales = misiones.filter((mision) => mision.tipo === "normal");
+    const cantidadEsperada = MISIONES_POR_DURACION.length * (amenazaMaxima + 1);
+    assert.equal(normales.length, cantidadEsperada);
+    assert.equal(new Set(normales.map((mision) => mision.id)).size, normales.length, "Los identificadores deben ser únicos");
+
+    const amenazasEsperadas = Array.from({ length: amenazaMaxima + 1 }, (_, amenaza) => amenaza);
+    for (const configuracion of MISIONES_POR_DURACION) {
+      const porDuracion = normales.filter(
+        (mision) => mision.duracionObjetivoHoras === configuracion.horas
+      );
+      assert.equal(porDuracion.length, amenazaMaxima + 1, `Cantidad incorrecta para duración ${configuracion.horas}h`);
+      assert.deepEqual(
+        porDuracion.map((mision) => mision.dificultad).sort((a, b) => a - b),
+        amenazasEsperadas,
+        `La duración ${configuracion.horas}h debe incluir todas las amenazas de 0 a ${amenazaMaxima}`
+      );
+    }
+    return normales;
+  };
+
   const inicial = generarMisionesDisponibles({
     baseLat: 28,
     baseLng: -15,
@@ -433,12 +454,21 @@ test("expediciones: el catálogo respeta rangos desbloqueados y garantiza misió
     ultimaMisionElite: null,
     ahora,
   });
-  const normalesIniciales = inicial.filter((mision) => mision.tipo === "normal");
-  assert.ok(normalesIniciales.some((mision) => mision.dificultad === 1));
-  assert.ok(normalesIniciales.some((mision) => mision.dificultad === 3));
-  assert.ok(normalesIniciales.every((mision) => mision.dificultad <= 3));
+  validarCobertura(inicial, 3);
   assert.ok(!inicial.some((mision) => mision.tipo === "elite"));
 
+  // Subir de nivel Base no desbloquea por sí solo el rango siguiente.
+  const rangoDosBloqueado = generarMisionesDisponibles({
+    baseLat: 28,
+    baseLng: -15,
+    nivelPersonaje: 4,
+    rangosAmenazaCompletados: [],
+    ultimaMisionElite: null,
+    ahora,
+  });
+  validarCobertura(rangoDosBloqueado, 3);
+
+  // Con Base 4 y una victoria Normal en el rango I, se abre el rango II.
   const rangoDos = generarMisionesDisponibles({
     baseLat: 28,
     baseLng: -15,
@@ -446,11 +476,9 @@ test("expediciones: el catálogo respeta rangos desbloqueados y garantiza misió
     rangosAmenazaCompletados: ["I"],
     ultimaMisionElite: null,
     ahora,
-  }).filter((mision) => mision.tipo === "normal");
-  assert.ok(rangoDos.some((mision) => mision.dificultad === 6));
-  assert.ok(rangoDos.every((mision) => mision.dificultad <= 6));
+  });
+  validarCobertura(rangoDos, 6);
 });
-
 test("dificultad: los rangos exigen nivel Base y victoria Normal del rango anterior", () => {
   assert.equal(obtenerRangoMaximoDesbloqueado(4, []).id, "I");
   assert.equal(obtenerRangoMaximoDesbloqueado(4, ["I"]).id, "II");

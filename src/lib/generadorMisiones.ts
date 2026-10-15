@@ -33,27 +33,22 @@ export const MISIONES_POR_DURACION = [
   {
     horas: 0.5,
     recompensaBase: 50,
-    maxMisiones: 7,
   },
   {
     horas: 1,
     recompensaBase: 90,
-    maxMisiones: 6,
   },
   {
     horas: 3,
     recompensaBase: 250,
-    maxMisiones: 5,
   },
   {
     horas: 9,
     recompensaBase: 700,
-    maxMisiones: 4,
   },
   {
     horas: 24,
     recompensaBase: 1800,
-    maxMisiones: 3,
   },
 ];
 
@@ -259,45 +254,25 @@ export function generarMisionesDisponibles({
   const maximoAmenaza = obtenerNivelMaximoAmenazaDesbloqueada(nivelBase, rangosAmenazaCompletados);
 
   MISIONES_POR_DURACION.forEach((configuracion, indiceDuracion) => {
-    let minimo: number;
-    let maximo: number;
-
-    switch (indiceDuracion) {
-      case 0:
-        minimo = 1;
-        maximo = nivelBase + 2;
-        break;
-      case 1:
-      case 2:
-        minimo = Math.max(1, nivelBase - 2);
-        maximo = nivelBase + 3;
-        break;
-      case 3:
-      case 4:
-        minimo = Math.max(1, nivelBase - 2);
-        maximo = nivelBase + 4;
-        break;
-      default:
-        return;
-    }
-
-    maximo = Math.min(maximo, maximoAmenaza);
-    if (minimo > maximo) minimo = Math.max(1, maximo - 4);
-
+    // Cada duración ofrece todas las amenazas desde 0 hasta el máximo
+    // permitido por las reglas de desbloqueo del personaje.
     const dificultades = generarDificultades(
-      minimo,
-      maximo,
-      configuracion.maxMisiones,
+      0,
+      maximoAmenaza,
+      maximoAmenaza + 1,
       horaActual * 100 + indiceDuracion + offset
     );
 
-    dificultades.forEach((dificultad, indiceMision) => {
+    dificultades.forEach((dificultad) => {
+      // Reserva un bloque de índices por duración para que cada misión tenga
+      // un identificador único incluso con catálogos de muchas amenazas.
+      const indiceMision = indiceDuracion * (maximoAmenaza + 1) + dificultad;
       nuevasMisiones.push(
         generarMision(
           baseLat,
           baseLng,
           horaActual,
-          indiceDuracion * 10 + indiceMision,
+          indiceMision,
           dificultad,
           configuracion,
           offset
@@ -306,34 +281,6 @@ export function generarMisionesDisponibles({
     });
   });
 
-  // Siempre mantiene una misión segura y otra en la frontera de progreso.
-  // Son necesarias para farmear con poco riesgo o demostrar preparación
-  // para el siguiente rango sin depender de la selección aleatoria.
-  const amenazaFrontera = Math.min(maximoAmenaza, nivelBase + 2);
-  const asegurarAmenaza = (amenaza: number, indiceUnico: number) => {
-    if (nuevasMisiones.some((mision) => mision.tipo === "normal" && mision.dificultad === amenaza)) return;
-    const indiceReemplazo = nuevasMisiones.findIndex(
-      (mision) =>
-        mision.tipo === "normal" &&
-        mision.duracionObjetivoHoras === 0.5 &&
-        mision.dificultad !== 1 &&
-        mision.dificultad !== amenazaFrontera
-    );
-    if (indiceReemplazo >= 0) nuevasMisiones.splice(indiceReemplazo, 1);
-    nuevasMisiones.push(
-      generarMision(
-        baseLat,
-        baseLng,
-        horaActual,
-        900 + indiceUnico,
-        amenaza,
-        MISIONES_POR_DURACION[0],
-        10 + indiceUnico
-      )
-    );
-  };
-  asegurarAmenaza(1, 1);
-  asegurarAmenaza(amenazaFrontera, 2);
 
   const fechaUltimaElite =
     ultimaMisionElite === null
