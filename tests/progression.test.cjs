@@ -156,7 +156,7 @@ test("las armaduras declaran subtipo y reciben penalización en todas las ranura
     + calcularEstadisticasObjeto(obtenerObjetoPorId("anillo_maldito"), 0).defensa;
   assert.equal(stats.defensa, defensaArmaduras + defensaJoyeria);
   assert.equal(stats.ataque, 6 * 1.15, "La espada dominada aplica su bonus");
-  assert.equal(stats.hpMaximo, 20, "El collar conserva sus estadísticas sin penalización de armadura");
+  assert.equal(stats.hpMaximo, 0, "El collar (+20) y el anillo maldito (-20) conservan sus estadísticas sin penalización de armadura");
 });
 test("Escuela: muestra siempre las habilidades de la profesión y hereda las ramas superiores", () => {
   const caballero = obtenerHabilidadesEnVenta("caballero").map((habilidad) => habilidad.id);
