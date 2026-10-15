@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+import { calcularFechasRegresoProgramadas } from "@/lib/expediciones/tiempos";
 
 function adjuntarPulsosEstado(
   accion: AccionAnimadaCombate,
@@ -135,6 +136,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             where: { id: expedicion.id },
             data: {
               fase: "regresando",
+              ...calcularFechasRegresoProgramadas(expedicion.fechaSalida, expedicion.fechaLlegada),
               recompensa: { oro: 0, madera: 0, piedra: 0, metal: 0 },
               resultadoFinal: "huida",
               hpPerdido: Math.max(0, combate.jugadorHpMaximo - jugadorHp),
@@ -406,6 +408,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             },
             data: {
               fase: "regresando",
+              ...calcularFechasRegresoProgramadas(expedicion.fechaSalida, expedicion.fechaLlegada),
               recompensa: {
                 oro: oroGanado,
                 madera: recompensaMision.madera,
@@ -603,6 +606,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             },
             data: {
               fase: "regresando",
+              ...calcularFechasRegresoProgramadas(expedicion.fechaSalida, expedicion.fechaLlegada),
               recompensa: {
                 oro: oroAsegurado,
                 madera: 0,
