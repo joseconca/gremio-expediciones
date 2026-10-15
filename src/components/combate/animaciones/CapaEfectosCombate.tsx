@@ -42,7 +42,7 @@ export default function CapaEfectosCombate({ proyectiles }: { proyectiles: Proye
       const capa = capaRef.current;
       if (!capa) return;
       const cajaCapa = capa.getBoundingClientRect();
-      const anclas = Array.from(document.querySelectorAll<HTMLElement>("[data-combate-ancla]"));
+      const anclas = Array.from(capa.parentElement?.querySelectorAll<HTMLElement>("[data-combate-ancla]") ?? []);
       const encontrar = (id: string) => anclas.find((ancla) => ancla.dataset.combateAncla === id);
       const siguientes = proyectiles.flatMap((proyectil) => {
         const origen = encontrar(proyectil.origen);
@@ -54,7 +54,12 @@ export default function CapaEfectosCombate({ proyectiles }: { proyectiles: Proye
         const y = a.top + a.height * 0.42 - cajaCapa.top;
         const destinoX = b.left + b.width / 2 - cajaCapa.left;
         const destinoY = b.top + b.height * 0.42 - cajaCapa.top;
-        const dx = destinoX - x, dy = destinoY - y;
+        const vectorX = destinoX - x, vectorY = destinoY - y;
+        const distancia = Math.hypot(vectorX, vectorY) || 1;
+        // En una esquiva la flecha pasa por un lateral en lugar de acabar sobre el sprite.
+        const desvio = proyectil.fallido ? 26 : 0;
+        const dx = vectorX - (vectorY / distancia) * desvio;
+        const dy = vectorY + (vectorX / distancia) * desvio;
         return [{ ...proyectil, x, y, dx, dy, angulo: Math.atan2(dy, dx) }];
       });
       setPosicionados(siguientes);

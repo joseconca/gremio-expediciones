@@ -16,6 +16,7 @@ export interface ProyectilVisibleCombate {
   origen: string;
   destino: string;
   duracionMs: number;
+  fallido: boolean;
 }
 
 export interface DestinosVisualesAccionCombate {
@@ -141,6 +142,7 @@ export function useAnimacionesCombate() {
         origen: actorVisual,
         destino: objetivoVisual,
         duracionMs: 440,
+        fallido: accion.tipo === "fallo" || dano <= 0,
       }]);
       await esperar(440, temporizadoresRef.current);
       if (!sigueActiva()) return;
