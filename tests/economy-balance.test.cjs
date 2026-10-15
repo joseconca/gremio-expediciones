@@ -24,7 +24,9 @@ test("el catálogo completo contiene precios positivos y progresión coherente e
       pocion: 20, pocion_grande: 55,
       espada_madera: 100, espada_piedra: 350, espada_hierro: 800, espada_acero: 1800,
       espada_runa: 6500, hacha_orca: 4200,
-      tela_andrajosa: 100, armadura_cuero: 650, armadura_hierro: 2200, armadura_acero: 5200,
+      hacha_piedra: 300, lanza_madera: 350, daga_hierro: 300, arco_madera: 450,
+      baston_madera: 350, maza_madera: 350, libro_aprendiz: 400, guantes_lucha: 250,
+      tela_andrajosa: 100, armadura_cuero: 650, cota_malla: 1400, armadura_hierro: 2200, armadura_acero: 5200,
       anillo_viajero: 1100, amuleto_vitalidad: 2800, anillo_maldito: 3200,
       escudo_madera: 150, casco_cuero: 300, pantalones_cuero: 320,
       botas_cuero: 280, guantes_cuero: 220, collar_cobre: 350, anillo_resistencia: 500,
@@ -48,7 +50,9 @@ test("la Armería solo vende equipo básico y reserva objetos especiales para bo
 
   const vendiblesEsperados = [
     "espada_madera", "espada_piedra", "espada_hierro", "espada_acero",
-    "tela_andrajosa", "armadura_cuero", "armadura_hierro", "armadura_acero",
+    "hacha_piedra", "lanza_madera", "daga_hierro", "arco_madera", "baston_madera",
+    "maza_madera", "libro_aprendiz", "guantes_lucha",
+    "tela_andrajosa", "armadura_cuero", "cota_malla", "armadura_hierro", "armadura_acero",
     "escudo_madera", "casco_cuero", "pantalones_cuero", "botas_cuero", "guantes_cuero",
   ];
   assert.deepEqual(obtenerObjetosVisiblesEnArmeria(1).map((item) => item.id), vendiblesEsperados);

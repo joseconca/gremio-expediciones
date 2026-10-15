@@ -143,9 +143,12 @@ function calcularEstadisticasPiezaEquipamiento(
   if (!claseId) return estadisticas;
 
   if (pieza.objeto.tipo === "arma") {
+    // Un arma sin subtipo explícito se considera no dominada para que no
+    // pueda eludir la penalización del 25 %.
+    const tipoArma = pieza.objeto.subtipo ?? "__sin_tipo__";
     const dominio = calcularBonificacionesDominioEquipo(
       claseId,
-      pieza.objeto.subtipo
+      tipoArma
     );
     estadisticas.ataque *= dominio.multiplicadorAtaqueArma;
     if (typeof estadisticas.ataqueMagico === "number") {

@@ -114,6 +114,27 @@ test("el dominio de armas da bono a las dominadas y penaliza un 25 % las no domi
   assert.deepEqual(CLASES.brujo.armadurasDominadas, [], "El Brujo no debe figurar como dominador de armadura ligera si no la bonifica");
 });
 
+test("el catálogo cubre todos los tipos actuales de arma y todas las categorías de armadura", () => {
+  const { OBJETOS, obtenerObjetoPorId, obtenerSpriteObjeto } = require("../src/lib/objetos.ts");
+  const subtiposArma = new Set(
+    OBJETOS.filter((objeto) => objeto.tipo === "arma").map((objeto) => objeto.subtipo)
+  );
+  for (const subtipo of ["espada", "hacha", "lanza", "daga", "arco", "baston", "maza", "libro", "puños"]) {
+    assert.ok(subtiposArma.has(subtipo), `Falta un arma de tipo ${subtipo}`);
+  }
+
+  const categoriasArmadura = new Set(
+    OBJETOS.filter((objeto) => objeto.tipo === "armadura" && objeto.slot !== "mano_secundaria")
+      .map((objeto) => objeto.categoriaArmadura)
+  );
+  for (const categoria of ["ligera", "media", "pesada"]) {
+    assert.ok(categoriasArmadura.has(categoria), `Falta armadura de categoría ${categoria}`);
+  }
+  for (const id of ["hacha_piedra", "lanza_madera", "daga_hierro", "arco_madera", "baston_madera", "maza_madera", "libro_aprendiz", "guantes_lucha", "cota_malla"]) {
+    assert.equal(obtenerSpriteObjeto(obtenerObjetoPorId(id)), null, `${id} debe usar un icono alternativo mientras no tenga sprite propio`);
+  }
+});
+
 test("las armaduras declaran subtipo y reciben penalización en todas las ranuras salvo joyería", () => {
   const { OBJETOS, obtenerObjetoPorId, obtenerSubtipoArmadura, calcularEstadisticasObjeto } = require("../src/lib/objetos.ts");
   const armaduras = OBJETOS.filter((objeto) => objeto.tipo === "armadura");
@@ -158,6 +179,21 @@ test("las armaduras declaran subtipo y reciben penalización en todas las ranura
     + calcularEstadisticasObjeto(obtenerObjetoPorId("anillo_maldito"), 0).defensa;
   assert.equal(stats.defensa, defensaArmaduras + defensaJoyeria);
   assert.equal(stats.ataque, 6 * 1.15, "La espada dominada aplica su bonus");
+  const armaSinTipo = {
+    id: "inv-arma-sin-tipo",
+    objetoId: "arma_sin_tipo",
+    cantidad: 1,
+    nivelMejora: 0,
+    sufijoId: null,
+    bonificaciones: {},
+    objeto: { id: "arma_sin_tipo", nombre: "Arma sin tipo", tipo: "arma", slot: "arma", descripcion: "", rareza: "basico", vendibleEnArmeria: false, precio: 1, ataqueBase: 10 },
+  };
+  const { calcularModificadoresEquipo: calcularEquipo } = require("../src/lib/estadisticasPersonaje.ts");
+  assert.equal(
+    calcularEquipo({ arma: armaSinTipo, manoSecundaria: null, casco: null, armadura: null, pantalones: null, botas: null, guantes: null, accesorio: null, anillo1: null, anillo2: null }, "arquero").ataque,
+    7.5,
+    "Un arma sin subtipo no debe eludir la penalización por falta de maestría",
+  );
   assert.equal(stats.hpMaximo, 0, "El collar (+20) y el anillo maldito (-20) conservan sus estadísticas sin penalización de armadura");
 });
 test("Escuela: muestra siempre las habilidades de la profesión y hereda las ramas superiores", () => {
