@@ -485,6 +485,8 @@ test("dificultad: los rangos exigen nivel Base y victoria Normal del rango anter
   assert.equal(obtenerRangoMaximoDesbloqueado(7, ["I", "II"]).id, "III");
   assert.equal(obtenerRangoMaximoDesbloqueado(13, ["I", "II", "III", "IV"]).id, "V");
   assert.deepEqual(registrarVictoriaRangoNormal(["I"], 4), ["I", "II"]);
+  assert.deepEqual(registrarVictoriaRangoNormal([], 0), [], "Amenaza 0 no debe acreditar una victoria de rango");
+  assert.deepEqual(registrarVictoriaRangoNormal(["I"], 0), ["I"], "Amenaza 0 no debe desbloquear rangos nuevos");
   assert.deepEqual(RANGOS_AMENAZA.map((rango) => rango.id), ["I", "II", "III", "IV", "V"]);
 });
 

@@ -20,6 +20,8 @@ El servidor valida el identificador de misión, el rango desbloqueado y el modo.
 
 Para desbloquear el siguiente rango se requieren el nivel Base mínimo de ese rango y una victoria en Normal en el rango anterior. El rango V escala su techo de amenaza con Base + 4. Los rangos anteriores siguen accesibles para misiones más seguras.
 
+El catálogo normal ofrece una misión por cada nivel de amenaza desde 0 hasta el máximo desbloqueado, en cada duración disponible (30 minutos, 1, 3, 9 y 24 horas). La amenaza 0 es una opción segura fuera de los rangos I–V: una victoria en ella no acredita la victoria Normal necesaria para desbloquear el siguiente rango.
+
 Para evitar regresiones de personajes existentes, la migración `20261012210000_expedition_difficulty_progression` marca los rangos anteriores como superados según el nivel Base actual. Los personajes nuevos comienzan con el JSON por defecto vacío.
 
 ## Modos

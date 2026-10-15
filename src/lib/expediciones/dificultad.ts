@@ -70,7 +70,15 @@ export function obtenerNivelMaximoAmenazaDesbloqueada(nivelBase: number, rangosC
 
 export function registrarVictoriaRangoNormal(rangosCompletados: unknown, nivelAmenaza: number): IdRangoAmenaza[] {
   const completados = new Set(leerRangosAmenazaCompletados(rangosCompletados));
-  completados.add(obtenerRangoAmenaza(nivelAmenaza).id);
+  const nivel = Number.isFinite(nivelAmenaza) ? Math.floor(nivelAmenaza) : 0;
+
+  // La amenaza 0 es una expedición segura, pero está fuera de los rangos I–V.
+  // Tampoco debe desbloquearlos una amenaza inválida o inferior a 1.
+  if (nivel < RANGOS_AMENAZA[0].minimo) {
+    return RANGOS_AMENAZA.filter((rango) => completados.has(rango.id)).map((rango) => rango.id);
+  }
+
+  completados.add(obtenerRangoAmenaza(nivel).id);
   return RANGOS_AMENAZA.filter((rango) => completados.has(rango.id)).map((rango) => rango.id);
 }
 
