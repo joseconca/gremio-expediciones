@@ -103,8 +103,8 @@ export function crearEstadoInicialTurnoParty(
   iniciarJugador = true,
 ): EstadoTurnoParty {
   const vivos = obtenerParticipantesVivos(participantes);
-  if (vivos.length < 1 || vivos.length > 3) {
-    throw new RangeError("El combate requiere al menos un participante vivo y un máximo de tres.");
+  if (vivos.length < 2 || vivos.length > 3) {
+    throw new RangeError("El combate de party requiere dos o tres participantes vivos.");
   }
   if (!iniciarJugador) {
     return {

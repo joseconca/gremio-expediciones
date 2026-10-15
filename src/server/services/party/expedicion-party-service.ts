@@ -449,8 +449,8 @@ export async function crearCombatePartySiProcede(expedicionPartyId: string) {
       throw new PartyServiceError("La expedición todavía no está lista para combatir.", 409, "EXPEDICION_PARTY_NO_LISTA");
     }
     const participantesActivos = expedicion.participantes.filter((participante) => participante.estado !== "retirado");
-    if (participantesActivos.length < 1 || participantesActivos.length > 3) {
-      throw new PartyServiceError("No queda ningún aventurero activo para iniciar el combate.", 409, "NUMERO_MIEMBROS_INVALIDO");
+    if (participantesActivos.length < 2 || participantesActivos.length > 3) {
+      throw new PartyServiceError("La expedición requiere dos o tres aventureros activos para iniciar el combate.", 409, "NUMERO_MIEMBROS_INVALIDO");
     }
 
     const enemigo = obtenerEnemigoPorId(expedicion.enemigoId ?? "");

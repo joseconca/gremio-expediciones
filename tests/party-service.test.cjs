@@ -359,7 +359,7 @@ test("el último informe de combate se conserva después del regreso y queda lim
 
   assert.equal(llamadaHistorial.length, 1);
   assert.deepEqual(llamadaHistorial[0].where.participantes, { some: { usuarioId: "u1" } });
-  assert.deepEqual(llamadaHistorial[0].where.combate.is.fase.in, ["victoria", "derrota"]);
+  assert.deepEqual(llamadaHistorial[0].where.combate.is.fase.in, ["victoria", "derrota", "huida"]);
   assert.equal(estado.expedicionActiva, null);
   assert.equal(estado.ultimoResultadoExpedicion.expedicionPartyId, "expedicion-terminada");
   assert.equal(estado.ultimoResultadoExpedicion.fase, "victoria");
