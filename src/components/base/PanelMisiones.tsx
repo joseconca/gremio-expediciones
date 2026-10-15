@@ -54,7 +54,9 @@ function PanelMovimientosReino({
   comenzandoAsedio: boolean;
 }) {
   const [ahora, setAhora] = useState(0);
-  const [avisosAbiertos, setAvisosAbiertos] = useState<Record<string, boolean>>({});
+  const [avisoSeleccionado, setAvisoSeleccionado] = useState<
+    { tipo: "caravana"; id: string } | { tipo: "asedio"; id: string } | null
+  >(null);
 
   useEffect(() => {
     if (caravanas.length === 0 && asedios.length === 0) return;
@@ -62,11 +64,22 @@ function PanelMovimientosReino({
     return () => window.clearInterval(intervalo);
   }, [caravanas.length, asedios.length]);
 
+  useEffect(() => {
+    if (!avisoSeleccionado) return;
+    const anteriorOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const manejarTecla = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setAvisoSeleccionado(null);
+    };
+    window.addEventListener("keydown", manejarTecla);
+    return () => {
+      document.body.style.overflow = anteriorOverflow;
+      window.removeEventListener("keydown", manejarTecla);
+    };
+  }, [avisoSeleccionado]);
+
   if (caravanas.length === 0 && asedios.length === 0) return null;
 
-  const alternarAviso = (id: string) => {
-    setAvisosAbiertos((actual) => ({ ...actual, [id]: !actual[id] }));
-  };
   const reloj = ahora;
   const formatearFecha = (fecha: string) =>
     new Intl.DateTimeFormat("es-ES", {
@@ -75,6 +88,21 @@ function PanelMovimientosReino({
       hour: "2-digit",
       minute: "2-digit",
     }).format(new Date(fecha));
+
+  const caravanaActiva = avisoSeleccionado?.tipo === "caravana"
+    ? caravanas.find((caravana) => caravana.id === avisoSeleccionado.id)
+    : undefined;
+  const asedioActivo = avisoSeleccionado?.tipo === "asedio"
+    ? asedios.find((asedio) => asedio.id === avisoSeleccionado.id)
+    : undefined;
+
+  const calcularProgreso = (salidaTexto: string, llegadaTexto: string) => {
+    if (reloj === 0) return 0;
+    const salida = new Date(salidaTexto).getTime();
+    const llegada = new Date(llegadaTexto).getTime();
+    const duracion = Math.max(1, llegada - salida);
+    return Math.max(0, Math.min(100, ((reloj - salida) / duracion) * 100));
+  };
 
   return (
     <section className="mb-3 overflow-hidden rounded-md border border-[#73502b] bg-[linear-gradient(135deg,rgba(39,27,16,0.96),rgba(24,17,12,0.96))] shadow-inner">
@@ -106,21 +134,16 @@ function PanelMovimientosReino({
         </div>
       </div>
 
-      <div className="grid gap-3 p-3 sm:p-4 lg:grid-cols-2">
+      <div
+        className="grid justify-start gap-3 p-3 sm:p-4"
+        style={{ gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 300px), 360px))" }}
+      >
         {caravanas.map((caravana) => {
-          const salida = new Date(caravana.fechaSalida).getTime();
-          const llegada = new Date(caravana.fechaLlegada).getTime();
-          const duracion = Math.max(1, llegada - salida);
-          const progreso = reloj > 0
-            ? Math.max(0, Math.min(100, ((reloj - salida) / duracion) * 100))
-            : 0;
-          const abierto = Boolean(avisosAbiertos[`caravana-${caravana.id}`]);
-          const detalleId = `detalle-caravana-${caravana.id}`;
-
+          const progreso = calcularProgreso(caravana.fechaSalida, caravana.fechaLlegada);
           return (
             <article
               key={caravana.id}
-              className="relative isolate overflow-hidden border border-[#92744a] bg-[linear-gradient(155deg,#eadbb8_0%,#dec99e_54%,#cdb486_100%)] text-[#3e2b1b] shadow-[2px_4px_0_rgba(0,0,0,0.28),inset_0_0_0_2px_rgba(255,247,215,0.28)] transition-transform duration-200 hover:-translate-y-0.5"
+              className="relative isolate w-full overflow-hidden border border-[#92744a] bg-[linear-gradient(155deg,#eadbb8_0%,#dec99e_54%,#cdb486_100%)] text-[#3e2b1b] shadow-[2px_4px_0_rgba(0,0,0,0.28),inset_0_0_0_2px_rgba(255,247,215,0.28)] transition-transform duration-200 hover:-translate-y-0.5"
               style={{ clipPath: "polygon(0 0, 98.8% 0.6%, 100% 2.5%, 99.5% 98%, 97% 100%, 1% 99.2%, 0 97%)" }}
             >
               <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-35">
@@ -128,18 +151,16 @@ function PanelMovimientosReino({
                 <div className="absolute -right-5 -top-5 h-28 w-28 rounded-full bg-[#b89a65]/25 blur-2xl" />
               </div>
               <span aria-hidden="true" className="absolute left-1/2 top-1.5 z-10 h-3 w-3 -translate-x-1/2 rounded-full border border-[#6d281e] bg-[#a43c2b] shadow-[0_1px_2px_rgba(0,0,0,0.65),inset_0_1px_1px_rgba(255,220,180,0.6)]" />
-
               <button
                 type="button"
-                aria-expanded={abierto}
-                aria-controls={detalleId}
-                onClick={() => alternarAviso(`caravana-${caravana.id}`)}
-                className="relative flex min-h-[104px] w-full items-center gap-3 px-3 pb-3 pt-5 text-left outline-none transition-colors hover:bg-[#f4e7c8]/35 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#68472c] sm:px-4"
+                aria-haspopup="dialog"
+                onClick={() => setAvisoSeleccionado({ tipo: "caravana", id: caravana.id })}
+                className="relative flex min-h-[104px] w-full items-center gap-3 px-3 pb-3 pt-5 text-left outline-none transition-colors hover:bg-[#f4e7c8]/35 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#68472c]"
               >
                 <span aria-hidden="true" className="flex h-11 w-11 shrink-0 items-center justify-center border border-[#a38a5c] bg-[#d4bf91]/75 text-2xl shadow-[inset_0_0_0_2px_rgba(255,245,210,0.3)]">🐪</span>
                 <span className="min-w-0 flex-1">
                   <span className="block text-[9px] font-black uppercase tracking-[0.2em] text-[#6f4b2b]">Comercio · aviso de ruta</span>
-                  <span className="mt-0.5 block truncate font-serif text-base font-black leading-tight text-[#352318] sm:text-lg">
+                  <span className="mt-0.5 block truncate font-serif text-base font-black leading-tight text-[#352318]">
                     Desde {caravana.gremioOrigen}
                   </span>
                   <span className="mt-1 block truncate text-[11px] font-semibold text-[#664a2d]">
@@ -148,78 +169,24 @@ function PanelMovimientosReino({
                 </span>
                 <span className="shrink-0 text-right">
                   <span className="block text-[8px] font-black uppercase tracking-wider text-[#765938]">Llegada</span>
-                  <span className="block font-mono text-lg font-black tabular-nums text-[#36543a]">
+                  <span className="block font-mono text-base font-black tabular-nums text-[#36543a]">
                     {reloj === 0 ? "--:--" : formatearCuentaAtras(caravana.fechaLlegada, reloj)}
                   </span>
-                  <span className="mt-1 block text-[10px] font-bold text-[#735536]">
-                    {abierto ? "Cerrar aviso ⌃" : "Leer aviso ⌄"}
-                  </span>
+                  <span className="mt-1 block text-[10px] font-bold text-[#735536]">Leer edicto ↗</span>
                 </span>
               </button>
-
-              {abierto && (
-                <div id={detalleId} className="relative border-t border-dashed border-[#957448] bg-[#f0e2c0]/55 px-3 py-3 sm:px-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="text-[9px] font-black uppercase tracking-[0.18em] text-[#765536]">Edicto mercantil</p>
-                      <p className="mt-1 font-serif text-sm font-bold text-[#392619]">
-                        Una caravana atraviesa los caminos del reino rumbo a tu campamento.
-                      </p>
-                    </div>
-                    <span aria-hidden="true" className="shrink-0 -rotate-6 border border-[#9a7950] bg-[#d8c39a] px-2 py-1 text-[9px] font-black uppercase tracking-wider text-[#654528]">
-                      Sellado
-                    </span>
-                  </div>
-                  <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 border-y border-[#a28a5e]/60 py-2 text-[11px]">
-                    <div>
-                      <p className="text-[9px] font-black uppercase tracking-wider text-[#806341]">Gremio de origen</p>
-                      <p className="mt-0.5 font-bold text-[#38271a]">{caravana.gremioOrigen}</p>
-                    </div>
-                    <div>
-                      <p className="text-[9px] font-black uppercase tracking-wider text-[#806341]">Hora de llegada</p>
-                      <p className="mt-0.5 font-bold text-[#38271a]">{formatearFecha(caravana.fechaLlegada)}</p>
-                    </div>
-                    <div>
-                      <p className="text-[9px] font-black uppercase tracking-wider text-[#806341]">Partida</p>
-                      <p className="mt-0.5 font-bold text-[#38271a]">{formatearFecha(caravana.fechaSalida)}</p>
-                    </div>
-                    <div>
-                      <p className="text-[9px] font-black uppercase tracking-wider text-[#806341]">Estado</p>
-                      <p className="mt-0.5 font-bold text-[#36543a]">
-                        {reloj > 0 && reloj >= llegada ? "Ha llegado" : "En camino"}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mt-3">
-                    <div className="flex items-center justify-between gap-2 text-[10px] font-bold text-[#694c2d]">
-                      <span>Avance por los caminos</span><span>{Math.round(progreso)}%</span>
-                    </div>
-                    <div className="mt-1 h-2 overflow-hidden border border-[#92754d] bg-[#b9a276] shadow-inner">
-                      <div className="h-full bg-gradient-to-r from-[#38573a] to-[#78934d] transition-[width] duration-1000" style={{ width: `${progreso}%` }} />
-                    </div>
-                  </div>
-                </div>
-              )}
               <div aria-hidden="true" className="pointer-events-none absolute bottom-0 right-0 h-1 w-16 bg-[#8a6040]/25" />
             </article>
           );
         })}
 
         {asedios.map((asedio) => {
-          const salida = new Date(asedio.fechaSalida).getTime();
-          const llegada = new Date(asedio.fechaLlegada).getTime();
-          const duracion = Math.max(1, llegada - salida);
-          const progreso = reloj > 0
-            ? Math.max(0, Math.min(100, ((reloj - salida) / duracion) * 100))
-            : 0;
-          const haLlegado = reloj > 0 && reloj >= llegada;
-          const abierto = Boolean(avisosAbiertos[`asedio-${asedio.id}`]);
-          const detalleId = `detalle-asedio-${asedio.id}`;
-
+          const progreso = calcularProgreso(asedio.fechaSalida, asedio.fechaLlegada);
+          const haLlegado = reloj > 0 && reloj >= new Date(asedio.fechaLlegada).getTime();
           return (
             <article
               key={asedio.id}
-              className="relative isolate overflow-hidden border border-[#94704c] bg-[linear-gradient(155deg,#e5d2ac_0%,#d7bc90_58%,#c7a77b_100%)] text-[#3d281d] shadow-[2px_4px_0_rgba(0,0,0,0.32),inset_0_0_0_2px_rgba(255,241,211,0.25)] transition-transform duration-200 hover:-translate-y-0.5"
+              className="relative isolate w-full overflow-hidden border border-[#94704c] bg-[linear-gradient(155deg,#e5d2ac_0%,#d7bc90_58%,#c7a77b_100%)] text-[#3d281d] shadow-[2px_4px_0_rgba(0,0,0,0.32),inset_0_0_0_2px_rgba(255,241,211,0.25)] transition-transform duration-200 hover:-translate-y-0.5"
               style={{ clipPath: "polygon(0.8% 0, 100% 0.8%, 99.4% 97.5%, 97.5% 100%, 0 99%)" }}
             >
               <span aria-hidden="true" className="absolute left-1/2 top-1.5 z-10 h-3 w-3 -translate-x-1/2 rounded-full border border-[#52221c] bg-[#782b22] shadow-[0_1px_2px_rgba(0,0,0,0.65),inset_0_1px_1px_rgba(255,220,180,0.5)]" />
@@ -227,96 +194,154 @@ function PanelMovimientosReino({
                 <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent_0,transparent_21px,rgba(106,50,32,0.13)_22px,transparent_23px)]" />
                 <div className="absolute -right-4 top-0 h-32 w-32 rounded-full bg-[#a94d37]/20 blur-2xl" />
               </div>
-
               <button
                 type="button"
-                aria-expanded={abierto}
-                aria-controls={detalleId}
-                onClick={() => alternarAviso(`asedio-${asedio.id}`)}
-                className="relative flex min-h-[104px] w-full items-center gap-3 px-3 pb-3 pt-5 text-left outline-none transition-colors hover:bg-[#f4e7c8]/35 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#702d22] sm:px-4"
+                aria-haspopup="dialog"
+                onClick={() => setAvisoSeleccionado({ tipo: "asedio", id: asedio.id })}
+                className="relative flex min-h-[104px] w-full items-center gap-3 px-3 pb-3 pt-5 text-left outline-none transition-colors hover:bg-[#f4e7c8]/35 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#702d22]"
               >
                 <span aria-hidden="true" className="flex h-11 w-11 shrink-0 items-center justify-center border border-[#a9875f] bg-[#ddc5a0]/80 text-2xl shadow-[inset_0_0_0_2px_rgba(255,240,210,0.25)]">🛡️</span>
                 <span className="min-w-0 flex-1">
                   <span className="block text-[9px] font-black uppercase tracking-[0.2em] text-[#802f24]">
-                    {haLlegado ? "Peligro inmediato · edicto urgente" : "Asedio · aviso de guerra"}
+                    {haLlegado ? "Peligro inmediato" : "Asedio · aviso de guerra"}
                   </span>
-                  <span className="mt-0.5 block truncate font-serif text-base font-black leading-tight text-[#352018] sm:text-lg">
+                  <span className="mt-0.5 block truncate font-serif text-base font-black leading-tight text-[#352018]">
                     Fuerzas de {asedio.atacanteNombre}
                   </span>
                   <span className="mt-1 block truncate text-[11px] font-semibold text-[#664532]">
                     {asedio.atacanteNombreAventurero}
-                    {haLlegado ? " aguarda ante las murallas" : " encabeza las tropas enemigas"}
                   </span>
                 </span>
                 <span className="shrink-0 text-right">
                   <span className="block text-[8px] font-black uppercase tracking-wider text-[#7c4b37]">{haLlegado ? "Estado" : "Llegada"}</span>
-                  <span className={`block max-w-[108px] font-mono text-sm font-black leading-tight tabular-nums sm:text-base ${haLlegado ? "text-[#922f25]" : "text-[#744332]"}`}>
+                  <span className={`block max-w-[108px] font-mono text-sm font-black leading-tight tabular-nums ${haLlegado ? "text-[#922f25]" : "text-[#744332]"}`}>
                     {haLlegado ? "A las puertas" : reloj === 0 ? "--:--" : formatearCuentaAtras(asedio.fechaLlegada, reloj)}
                   </span>
-                  <span className="mt-1 block text-[10px] font-bold text-[#735536]">
-                    {abierto ? "Cerrar aviso ⌃" : "Leer aviso ⌄"}
-                  </span>
+                  <span className="mt-1 block text-[10px] font-bold text-[#735536]">Leer edicto ↗</span>
                 </span>
               </button>
-
-              {abierto && (
-                <div id={detalleId} className="relative border-t border-dashed border-[#9e7656] bg-[#efdfbd]/60 px-3 py-3 sm:px-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="text-[9px] font-black uppercase tracking-[0.18em] text-[#8b3228]">Orden de defensa</p>
-                      <p className="mt-1 font-serif text-sm font-bold text-[#392619]">
-                        {haLlegado
-                          ? "Las fuerzas enemigas han alcanzado las murallas. ¡Prepara la defensa!"
-                          : "Exploradores informan de una fuerza hostil que se aproxima al campamento."}
-                      </p>
-                    </div>
-                    <span aria-hidden="true" className="shrink-0 -rotate-6 border border-[#984b3b] bg-[#b75a43] px-2 py-1 text-[9px] font-black uppercase tracking-wider text-[#fff0d5] shadow-sm">
-                      {haLlegado ? "Urgente" : "Amenaza"}
-                    </span>
-                  </div>
-                  <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 border-y border-[#a28a5e]/60 py-2 text-[11px]">
-                    <div>
-                      <p className="text-[9px] font-black uppercase tracking-wider text-[#806341]">Atacante</p>
-                      <p className="mt-0.5 font-bold text-[#38271a]">{asedio.atacanteNombre}</p>
-                    </div>
-                    <div>
-                      <p className="text-[9px] font-black uppercase tracking-wider text-[#806341]">Comandante avistado</p>
-                      <p className="mt-0.5 font-bold text-[#38271a]">{asedio.atacanteNombreAventurero}</p>
-                    </div>
-                    <div>
-                      <p className="text-[9px] font-black uppercase tracking-wider text-[#806341]">Salida</p>
-                      <p className="mt-0.5 font-bold text-[#38271a]">{formatearFecha(asedio.fechaSalida)}</p>
-                    </div>
-                    <div>
-                      <p className="text-[9px] font-black uppercase tracking-wider text-[#806341]">Llegada estimada</p>
-                      <p className="mt-0.5 font-bold text-[#38271a]">{formatearFecha(asedio.fechaLlegada)}</p>
-                    </div>
-                  </div>
-                  <div className="mt-3">
-                    <div className="flex items-center justify-between gap-2 text-[10px] font-bold text-[#694c2d]">
-                      <span>{haLlegado ? "Las tropas han llegado" : "Avance de las tropas"}</span><span>{Math.round(progreso)}%</span>
-                    </div>
-                    <div className="mt-1 h-2 overflow-hidden border border-[#92754d] bg-[#b9a276] shadow-inner">
-                      <div className={`h-full transition-[width] duration-1000 ${haLlegado ? "bg-gradient-to-r from-[#6c1f1e] to-[#b53029]" : "bg-gradient-to-r from-[#7c2722] to-[#cf6b3d]"}`} style={{ width: `${progreso}%` }} />
-                    </div>
-                  </div>
-                  {haLlegado && (
-                    <button
-                      type="button"
-                      onClick={onComenzarAsedio}
-                      disabled={comenzandoAsedio}
-                      className="mt-3 min-h-10 w-full border border-[#5f2019] bg-[linear-gradient(#a33b2d,#5b1e19)] px-3 py-2 text-xs font-black uppercase tracking-[0.12em] text-[#fff0d5] shadow-[inset_0_1px_rgba(255,220,170,0.2),0_2px_0_rgba(0,0,0,0.3)] transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
-                    >
-                      {comenzandoAsedio ? "Preparando la defensa..." : "⚔ Defender las murallas"}
-                    </button>
-                  )}
-                </div>
-              )}
               <div aria-hidden="true" className="pointer-events-none absolute bottom-0 right-0 h-1 w-16 bg-[#7e4830]/25" />
             </article>
           );
         })}
       </div>
+
+      {(caravanaActiva || asedioActivo) && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/80 p-3 backdrop-blur-sm sm:p-5"
+          onClick={() => setAvisoSeleccionado(null)}
+        >
+          <section
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="titulo-detalle-edicto"
+            className="relative max-h-[90vh] w-full max-w-xl overflow-y-auto border-2 border-[#87623a] bg-[linear-gradient(145deg,#261c10_0%,#15100a_100%)] p-2.5 text-[#f8edcf] shadow-[0_24px_80px_rgba(0,0,0,0.75)] sm:p-4"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="relative overflow-hidden border border-[#73502b] bg-[linear-gradient(155deg,#eadbb8_0%,#dec99e_54%,#cdb486_100%)] text-[#3e2b1b]">
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-35">
+                <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent_0,transparent_23px,rgba(106,75,39,0.12)_24px,transparent_25px)]" />
+              </div>
+              <span aria-hidden="true" className="absolute left-1/2 top-2 z-10 h-3 w-3 -translate-x-1/2 rounded-full border border-[#6d281e] bg-[#a43c2b] shadow-md" />
+              <header className="relative flex items-start justify-between gap-3 border-b border-dashed border-[#957448] px-4 pb-3 pt-6 sm:px-5">
+                <div className="flex min-w-0 items-start gap-3">
+                  <span aria-hidden="true" className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center border border-[#a38a5c] bg-[#d4bf91]/75 text-2xl">
+                    {caravanaActiva ? "🐪" : "🛡️"}
+                  </span>
+                  <div className="min-w-0">
+                    <p className={`text-[9px] font-black uppercase tracking-[0.2em] ${caravanaActiva ? "text-[#567044]" : "text-[#8b3228]"}`}>
+                      {caravanaActiva ? "Edicto mercantil" : "Orden de defensa"}
+                    </p>
+                    <h2 id="titulo-detalle-edicto" className="mt-1 font-serif text-xl font-black leading-tight sm:text-2xl">
+                      {caravanaActiva ? `Comercio desde ${caravanaActiva.gremioOrigen}` : `Fuerzas de ${asedioActivo?.atacanteNombre ?? ""}`}
+                    </h2>
+                    <p className="mt-1 text-xs font-semibold text-[#664a2d]">
+                      {caravanaActiva
+                        ? `Escolta: ${caravanaActiva.nombreAventurero}`
+                        : `Comandante avistado: ${asedioActivo?.atacanteNombreAventurero ?? ""}`}
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  aria-label="Cerrar edicto"
+                  onClick={() => setAvisoSeleccionado(null)}
+                  className="flex h-9 w-9 shrink-0 items-center justify-center border border-[#93764c] bg-[#d4bf91] text-lg font-black text-[#4b321f] shadow-sm hover:bg-[#f0e2c0]"
+                >
+                  ×
+                </button>
+              </header>
+
+              {caravanaActiva && (() => {
+                const progreso = calcularProgreso(caravanaActiva.fechaSalida, caravanaActiva.fechaLlegada);
+                const haLlegado = reloj > 0 && reloj >= new Date(caravanaActiva.fechaLlegada).getTime();
+                return (
+                  <div className="relative px-4 py-4 sm:px-5">
+                    <p className="font-serif text-sm font-bold">
+                      Una caravana mercante atraviesa los caminos del reino rumbo a tu campamento.
+                    </p>
+                    <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 border-y border-[#a28a5e]/60 py-3 text-xs">
+                      <div><p className="text-[9px] font-black uppercase tracking-wider text-[#806341]">Gremio de origen</p><p className="mt-1 font-bold">{caravanaActiva.gremioOrigen}</p></div>
+                      <div><p className="text-[9px] font-black uppercase tracking-wider text-[#806341]">Estado</p><p className={`mt-1 font-bold ${haLlegado ? "text-[#36543a]" : "text-[#664a2d]"}`}>{haLlegado ? "Ha llegado" : "En camino"}</p></div>
+                      <div><p className="text-[9px] font-black uppercase tracking-wider text-[#806341]">Partida</p><p className="mt-1 font-bold">{formatearFecha(caravanaActiva.fechaSalida)}</p></div>
+                      <div><p className="text-[9px] font-black uppercase tracking-wider text-[#806341]">Llegada estimada</p><p className="mt-1 font-bold">{formatearFecha(caravanaActiva.fechaLlegada)}</p></div>
+                    </div>
+                    <div className="mt-4">
+                      <div className="flex items-center justify-between gap-2 text-[10px] font-bold"><span>Avance por los caminos</span><span>{Math.round(progreso)}%</span></div>
+                      <div className="mt-1 h-2 overflow-hidden border border-[#92754d] bg-[#b9a276] shadow-inner"><div className="h-full bg-gradient-to-r from-[#38573a] to-[#78934d] transition-[width] duration-1000" style={{ width: `${progreso}%` }} /></div>
+                      <p className="mt-2 text-right font-mono text-sm font-black text-[#36543a]">{haLlegado ? "La caravana ha llegado" : `Llegada en ${formatearCuentaAtras(caravanaActiva.fechaLlegada, reloj)}`}</p>
+                    </div>
+                    <div className="mt-4 border-t border-[#a28a5e]/60 pt-3 text-[10px] italic text-[#765536]">
+                      Sellado por la oficina de comercio de los gremios.
+                    </div>
+                  </div>
+                );
+              })()}
+
+              {asedioActivo && (() => {
+                const progreso = calcularProgreso(asedioActivo.fechaSalida, asedioActivo.fechaLlegada);
+                const haLlegado = reloj > 0 && reloj >= new Date(asedioActivo.fechaLlegada).getTime();
+                return (
+                  <div className="relative px-4 py-4 sm:px-5">
+                    <p className="font-serif text-sm font-bold">
+                      {haLlegado
+                        ? "Las fuerzas enemigas han alcanzado las murallas. ¡Prepara la defensa!"
+                        : "Exploradores informan de una fuerza hostil que se aproxima al campamento."}
+                    </p>
+                    <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 border-y border-[#a28a5e]/60 py-3 text-xs">
+                      <div><p className="text-[9px] font-black uppercase tracking-wider text-[#806341]">Atacante</p><p className="mt-1 font-bold">{asedioActivo.atacanteNombre}</p></div>
+                      <div><p className="text-[9px] font-black uppercase tracking-wider text-[#806341]">Comandante</p><p className="mt-1 font-bold">{asedioActivo.atacanteNombreAventurero}</p></div>
+                      <div><p className="text-[9px] font-black uppercase tracking-wider text-[#806341]">Salida</p><p className="mt-1 font-bold">{formatearFecha(asedioActivo.fechaSalida)}</p></div>
+                      <div><p className="text-[9px] font-black uppercase tracking-wider text-[#806341]">Llegada estimada</p><p className="mt-1 font-bold">{formatearFecha(asedioActivo.fechaLlegada)}</p></div>
+                      <div className="col-span-2"><p className="text-[9px] font-black uppercase tracking-wider text-[#806341]">Estado de la amenaza</p><p className={`mt-1 font-bold ${haLlegado ? "text-[#922f25]" : "text-[#744332]"}`}>{haLlegado ? "Las tropas están ante las murallas" : `En camino · ${formatearCuentaAtras(asedioActivo.fechaLlegada, reloj)} restantes`}</p></div>
+                    </div>
+                    <div className="mt-4">
+                      <div className="flex items-center justify-between gap-2 text-[10px] font-bold"><span>{haLlegado ? "Las tropas han llegado" : "Avance de las tropas"}</span><span>{Math.round(progreso)}%</span></div>
+                      <div className="mt-1 h-2 overflow-hidden border border-[#92754d] bg-[#b9a276] shadow-inner"><div className={`h-full transition-[width] duration-1000 ${haLlegado ? "bg-gradient-to-r from-[#6c1f1e] to-[#b53029]" : "bg-gradient-to-r from-[#7c2722] to-[#cf6b3d]"}`} style={{ width: `${progreso}%` }} /></div>
+                    </div>
+                    {haLlegado && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setAvisoSeleccionado(null);
+                          onComenzarAsedio();
+                        }}
+                        disabled={comenzandoAsedio}
+                        className="mt-4 min-h-11 w-full border border-[#5f2019] bg-[linear-gradient(#a33b2d,#5b1e19)] px-3 py-2 text-xs font-black uppercase tracking-[0.12em] text-[#fff0d5] shadow-[inset_0_1px_rgba(255,220,170,0.2),0_2px_0_rgba(0,0,0,0.3)] transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        {comenzandoAsedio ? "Preparando la defensa..." : "⚔ Defender las murallas"}
+                      </button>
+                    )}
+                    <div className="mt-4 border-t border-[#a28a5e]/60 pt-3 text-[10px] italic text-[#8b3228]">
+                      Aviso urgente del puesto de guardia.
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
+          </section>
+        </div>
+      )}
     </section>
   );
 }
