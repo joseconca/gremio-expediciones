@@ -309,6 +309,69 @@ test("el propietario puede rechazar una visita llegada aunque siga marcada en vi
   assert.deepEqual(llamadasEstado, ["pendiente", "regresando"]);
 });
 
+test("el visitante puede cancelar una visita pendiente y regresar a su base", async () => {
+  const transfer = {
+    id: "t-volver",
+    visitanteUsuarioId: "visitante",
+    anfitrionUsuarioId: "anfitrion",
+    estado: "pendiente",
+    decision: null,
+    fechaLlegada: new Date(Date.now() - 1_000),
+    fechaSalida: new Date(Date.now() - 60_000),
+    fechaResolucion: null,
+    origenCoords: { lat: 27.9, lng: -15.4 },
+    destinoCoords: { lat: 28.0, lng: -15.5 },
+  };
+  let estado = "pendiente";
+  let datosActualizacion = null;
+  const tx = {
+    partyTransfer: {
+      findUnique: async () => ({ ...transfer, estado }),
+      updateMany: async ({ where, data }) => {
+        if (where.id !== transfer.id || where.visitanteUsuarioId !== "visitante" ||
+            where.estado !== estado || estado !== "pendiente" || where.decision !== null ||
+            transfer.decision !== null) return { count: 0 };
+        estado = data.estado;
+        datosActualizacion = data;
+        return { count: 1 };
+      },
+    },
+    usuario: {
+      findUnique: async ({ where }) => where.id === "visitante"
+        ? user("visitante", "de_viaje", transfer.origenCoords)
+        : null,
+    },
+  };
+  const servicio = loadService(makePrisma(tx));
+  const resultado = await servicio.volverDeVisita("visitante", "t-volver");
+
+  assert.equal(resultado.estado, "regresando");
+  assert.equal(resultado.decision, "visitante_volver");
+  assert.equal(estado, "regresando");
+  assert.deepEqual(datosActualizacion.origenCoords, transfer.destinoCoords);
+  assert.deepEqual(datosActualizacion.destinoCoords, transfer.origenCoords);
+  assert.ok(datosActualizacion.fechaLlegada > datosActualizacion.fechaSalida);
+});
+
+test("un visitante no puede volver si la visita ya está resuelta o aún no ha llegado", async () => {
+  const transfer = {
+    id: "t-no-pendiente",
+    visitanteUsuarioId: "visitante",
+    anfitrionUsuarioId: "anfitrion",
+    estado: "aceptada",
+    decision: "aceptada",
+    fechaLlegada: new Date(Date.now() - 1_000),
+    origenCoords: { lat: 27.9, lng: -15.4 },
+    destinoCoords: { lat: 28.0, lng: -15.5 },
+  };
+  const tx = { partyTransfer: { findUnique: async () => transfer } };
+  const servicio = loadService(makePrisma(tx));
+  await assert.rejects(
+    servicio.volverDeVisita("visitante", transfer.id),
+    (error) => error.status === 409 && error.code === "VISITA_NO_PENDIENTE",
+  );
+});
+
 test("el último informe de combate se conserva después del regreso y queda limitado a sus participantes", async () => {
   const informe = {
     liquidacionYaResuelta: false,

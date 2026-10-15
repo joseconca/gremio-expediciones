@@ -42,6 +42,7 @@ Persiste visitas y regresos entre bases. Guarda visitante, anfitrión, decisión
 Estados que aparecen en el flujo:
 - Visita: `en_viaje` → `pendiente` → `aceptada`.
 - Rechazo: `en_viaje`/`pendiente` → `regresando` → `rechazada`.
+- Regreso voluntario del visitante: `pendiente` → `regresando` → `completada`, usando `decision = visitante_volver`. Solo se permite una vez confirmada la llegada y si el anfitrión todavía no ha aceptado ni rechazado.
 - Salida voluntaria o disolución del líder: `regresando` → `completada`.
 
 El propietario puede aceptar o rechazar cuando vence la hora estimada de llegada aunque el visitante todavía no haya abierto el juego para marcar la llegada. Antes de esa hora se rechaza la resolución.
@@ -58,7 +59,7 @@ El combate mantiene un enemigo común, turnos ordenados, versión y liquidación
 
 ## Recorrido funcional actual
 
-1. **Visitas y composición.** El dueño de la base acepta o rechaza la visita; el líder cuenta para el límite de tres miembros.
+1. **Visitas y composición.** El dueño de la base acepta o rechaza la visita; el líder cuenta para el límite de tres miembros. Si el visitante ya llegó y sigue esperando, puede pulsar `Volver a mi base`: la visita pasa atómicamente a regreso, invirtiendo origen/destino. La aceptación, el rechazo y la cancelación del visitante son operaciones mutuamente excluyentes.
 2. **Expedición compartida.** El líder inicia misiones PvE compatibles y cada jugador conserva su personaje, economía, inventario y progresión.
 3. **Huida individual.** `HUIR` marca el combate como `huida`, inicia el regreso y entrega cero oro, XP y recompensas de misión/enemigo.
 4. **Huida en party.** El participante pasa a `huyo`, ya no puede actuar ni ser seleccionado como objetivo del enemigo, pero continúa en la party esperando al resto. Si ganan, recibe su cuota de oro y su parte de los recursos/objetos de misión, pero no XP Base/Job ni botín individual del enemigo. Si todos huyen, no hay liquidación de victoria.

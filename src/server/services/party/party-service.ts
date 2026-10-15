@@ -455,6 +455,60 @@ export async function rechazarVisita(anfitrionUsuarioId: string, idDesconocido: 
   }, AISLAMIENTO);
 }
 
+/**
+ * Permite que un visitante cancele la espera de aceptación y vuelva a su base.
+ * Solo se admite cuando ya llegó y el traslado está pendiente sin decisión.
+ */
+export async function volverDeVisita(visitanteUsuarioId: string, idDesconocido: unknown) {
+  const trasladoId = exigirId(idDesconocido, "el traslado");
+  return prisma.$transaction(async (tx) => {
+    const traslado = await tx.partyTransfer.findUnique({ where: { id: trasladoId } });
+    if (!traslado) throw new PartyServiceError("No se encontró la visita.", 404, "TRASLADO_NO_ENCONTRADO");
+    if (traslado.visitanteUsuarioId !== visitanteUsuarioId) {
+      throw new PartyServiceError("No puedes cancelar la visita de otro aventurero.", 403, "TRASLADO_AJENO");
+    }
+    if (traslado.estado !== "pendiente" || traslado.decision !== null) {
+      throw new PartyServiceError("Solo puedes volver cuando ya has llegado y la visita sigue pendiente de aceptación.", 409, "VISITA_NO_PENDIENTE");
+    }
+
+    const ahora = new Date();
+    if (traslado.fechaLlegada > ahora) {
+      throw new PartyServiceError("Todavía estás de camino a la base de destino.", 409, "TRASLADO_NO_LLEGADO");
+    }
+
+    const visitante = await obtenerUsuarioBase(tx, visitanteUsuarioId);
+    if (!visitante || !visitante.personaje || visitante.expedicionActiva || visitante.personaje.estado !== "de_viaje") {
+      throw new PartyServiceError("Tu personaje ya no está disponible para volver desde esta visita.", 409, "VISITANTE_NO_DISPONIBLE");
+    }
+
+    const origen = exigirCoordenadas(traslado.destinoCoords, "la base actual");
+    const destino = exigirCoordenadas(traslado.origenCoords, "tu base de origen");
+    const fechaLlegada = calcularLlegada(origen, destino, ahora);
+    const actualizado = await tx.partyTransfer.updateMany({
+      where: {
+        id: trasladoId,
+        visitanteUsuarioId,
+        estado: "pendiente",
+        decision: null,
+      },
+      data: {
+        estado: "regresando",
+        decision: "visitante_volver",
+        fechaSalida: ahora,
+        fechaLlegada,
+        fechaResolucion: ahora,
+        origenCoords: origen as unknown as Prisma.InputJsonValue,
+        destinoCoords: destino as unknown as Prisma.InputJsonValue,
+      },
+    });
+    if (actualizado.count !== 1) {
+      throw new PartyServiceError("La visita acaba de ser aceptada o rechazada; actualiza el estado antes de continuar.", 409, "VISITA_RESUELTA");
+    }
+
+    return { trasladoId, estado: "regresando", decision: "visitante_volver", fechaLlegada };
+  }, AISLAMIENTO);
+}
+
 export async function completarRegreso(visitanteUsuarioId: string, idDesconocido: unknown) {
   const trasladoId = exigirId(idDesconocido, "el traslado");
   return prisma.$transaction(async (tx) => {

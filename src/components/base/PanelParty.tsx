@@ -742,6 +742,26 @@ export default function PanelParty() {
                   ? `Has llegado. El propietario de ${destino} debe aceptar o rechazar la visita.`
                   : `Llegada estimada en ${formatoCuentaAtras(restante)}.`}
             </p>
+            {esperando && (
+              <div className="mt-3 rounded-md border border-sky-900/70 bg-slate-950/50 p-2">
+                <p className="text-[11px] text-slate-300">
+                  No tienes que esperar indefinidamente: puedes volver a tu base ahora. La visita se cancelará y no se creará una party.
+                </p>
+                <button
+                  type="button"
+                  disabled={Boolean(accion)}
+                  onClick={() => void ejecutar("volver:" + traslado.id, "/api/party/transfer/volver", traslado.id)}
+                  className="mt-2 min-h-10 w-full rounded-md border border-sky-700/80 bg-sky-950/70 px-3 py-2 text-xs font-black text-sky-100 hover:bg-sky-900 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {accion === "volver:" + traslado.id ? "Organizando regreso..." : "↩ Volver a mi base"}
+                </button>
+              </div>
+            )}
+            {traslado.decision === "visitante_volver" && (
+              <p className="mt-2 rounded border border-sky-900/70 bg-sky-950/30 p-2 text-[11px] text-sky-200">
+                Has cancelado la espera de aceptación y estás regresando a tu propia base.
+              </p>
+            )}
             {traslado.decision === "lider_disuelve" && (
               <p className="mt-2 rounded border border-amber-800/70 bg-amber-950/30 p-2 text-[11px] text-amber-200">
                 Este traslado se inició al disolver la compañía; la membresía de la party ya no está activa.
