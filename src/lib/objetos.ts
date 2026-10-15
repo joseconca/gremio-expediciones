@@ -1,4 +1,4 @@
-import type { DefinicionObjeto } from "./tiposJuego";
+import type { DefinicionObjeto, TipoArmadura } from "./tiposJuego";
 import type { ModificadoresEstadisticas } from "./estadisticasPersonaje";
 
 export function calcularEstadisticasObjeto(
@@ -42,6 +42,21 @@ export function calcularEstadisticasObjeto(
     regeneracionManaPorTurno:
       (objeto.regeneracionManaPorTurnoBase ?? 0) + (objeto.regeneracionManaPorTurnoPorMejora ?? 0) * nivelSeguro + (bonificaciones.regeneracionManaPorTurno ?? 0),
   };
+}
+
+/**
+ * Devuelve el subtipo de protección (ligera, media o pesada).
+ * categoriaArmadura se conserva como respaldo para datos anteriores.
+ */
+export function obtenerSubtipoArmadura(
+  objeto: Pick<DefinicionObjeto, "subtipo" | "categoriaArmadura">
+): TipoArmadura | undefined {
+  const tiposValidos: readonly TipoArmadura[] = ["ligera", "media", "pesada"];
+  const subtipo = objeto.subtipo?.trim().toLowerCase();
+  if (subtipo && tiposValidos.includes(subtipo as TipoArmadura)) {
+    return subtipo as TipoArmadura;
+  }
+  return objeto.categoriaArmadura;
 }
 
 export const OBJETOS: DefinicionObjeto[] = [
@@ -180,6 +195,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     vendibleEnArmeria: true,
     nombre: "Tela Andrajosa",
     tipo: "armadura",
+    subtipo: "ligera",
     slot: "armadura",
     categoriaArmadura: "ligera",
     descripcion: "Protección para tapar vergüenzas.",
@@ -193,6 +209,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     vendibleEnArmeria: true,
     nombre: "Armadura de Cuero",
     tipo: "armadura",
+    subtipo: "ligera",
     slot: "armadura",
     categoriaArmadura: "ligera",
     descripcion: "Protección ligera para aventureros.",
@@ -207,6 +224,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     vendibleEnArmeria: true,
     nombre: "Armadura de Hierro",
     tipo: "armadura",
+    subtipo: "pesada",
     slot: "armadura",
     categoriaArmadura: "pesada",
     descripcion: "Una armadura pesada y resistente.",
@@ -222,6 +240,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     vendibleEnArmeria: true,
     nombre: "Armadura de Acero",
     tipo: "armadura",
+    subtipo: "pesada",
     slot: "armadura",
     categoriaArmadura: "pesada",
     descripcion: "Protección de gran calidad.",
@@ -282,6 +301,8 @@ export const OBJETOS: DefinicionObjeto[] = [
     vendibleEnArmeria: true,
     nombre: "Escudo de madera",
     tipo: "armadura",
+    subtipo: "ligera",
+    categoriaArmadura: "ligera",
     slot: "mano_secundaria",
     descripcion: "Un escudo ligero para proteger la mano secundaria.",
     rareza: "basico",
@@ -293,6 +314,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     vendibleEnArmeria: true,
     nombre: "Casco de cuero",
     tipo: "armadura",
+    subtipo: "ligera",
     slot: "casco",
     categoriaArmadura: "ligera",
     descripcion: "Protege la cabeza sin limitar demasiado el movimiento.",
@@ -306,6 +328,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     vendibleEnArmeria: true,
     nombre: "Pantalones de cuero",
     tipo: "armadura",
+    subtipo: "ligera",
     slot: "pantalones",
     categoriaArmadura: "ligera",
     descripcion: "Unas perneras resistentes para viajar y combatir.",
@@ -319,6 +342,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     vendibleEnArmeria: true,
     nombre: "Botas de cuero",
     tipo: "armadura",
+    subtipo: "ligera",
     slot: "botas",
     categoriaArmadura: "ligera",
     descripcion: "Botas cómodas para recorrer largas distancias.",
@@ -334,6 +358,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     vendibleEnArmeria: true,
     nombre: "Guantes de cuero",
     tipo: "armadura",
+    subtipo: "ligera",
     slot: "guantes",
     categoriaArmadura: "ligera",
     descripcion: "Protegen las manos sin perder tacto.",

@@ -179,6 +179,27 @@ function nombreSubtipoArma(subtipo: string): string {
   return nombres[normalizado] ?? (normalizado.charAt(0).toLocaleUpperCase("es-ES") + normalizado.slice(1));
 }
 
+function nombreSubtipoArmadura(subtipo: string): string {
+  switch (subtipo.trim().toLowerCase()) {
+    case "ligera": return "Ligera";
+    case "media": return "Media";
+    case "pesada": return "Pesada";
+    default:
+      return subtipo.trim().charAt(0).toLocaleUpperCase("es-ES") + subtipo.trim().slice(1);
+  }
+}
+
+function detalleSubtipoObjeto(objeto: DefinicionObjeto): string {
+  if (objeto.tipo === "arma" && objeto.subtipo) {
+    return ` · ${nombreSubtipoArma(objeto.subtipo)}`;
+  }
+  if (objeto.tipo === "armadura") {
+    const subtipo = objeto.subtipo ?? objeto.categoriaArmadura;
+    if (subtipo) return ` · ${nombreSubtipoArmadura(subtipo)}`;
+  }
+  return "";
+}
+
 function nombreTipoObjeto(objeto: DefinicionObjeto): string {
   const ranura = obtenerRanuraObjeto(objeto);
   if (ranura) {
@@ -650,7 +671,7 @@ export default function HerreriaPage() {
                         resumen={objeto.descripcion}
                         detalles={[
                           `Nivel de héroe requerido: ${objeto.nivelHeroeNecesario}.`,
-                          `Tipo: ${nombreTipoObjeto(objeto)}${objeto.tipo === "arma" && objeto.subtipo ? ` · ${nombreSubtipoArma(objeto.subtipo)}` : ""}.`,
+                          `Tipo: ${nombreTipoObjeto(objeto)}${detalleSubtipoObjeto(objeto)}.`,
                           ...obtenerEstadisticasNoCero(objeto, 0).map((estadistica) => `${estadistica.nombre}: ${formatearValorEstadistica(estadistica.clave, estadistica.valor)}`),
                           ...(objeto.manos === 2 ? ["Arma a dos manos: ocupa la mano principal y la secundaria."] : []),
                         ]}
@@ -670,7 +691,7 @@ export default function HerreriaPage() {
                           </span>
                           <span className="text-[9px] font-bold uppercase leading-3 tracking-wide text-[#887d6b]">
                             {nombreTipoObjeto(objeto)}
-                            {objeto.tipo === "arma" && objeto.subtipo ? ` · ${nombreSubtipoArma(objeto.subtipo)}` : ""}
+                            {detalleSubtipoObjeto(objeto)}
                             {objeto.manos === 2 ? " · Dos manos" : ""}
                           </span>
                         </div>

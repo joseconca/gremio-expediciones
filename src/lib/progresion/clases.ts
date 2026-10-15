@@ -375,8 +375,18 @@ export function calcularBonificacionesDominioEquipo(
   if (!clase) return { multiplicadorAtaqueArma: 1, multiplicadorDefensaArmadura: 1 };
   const dominaArma = !!tipoArma && clase.armasDominadas.includes(tipoArma as TipoArma);
   const dominaArmadura = !!categoriaArmadura && clase.armadurasDominadas.includes(categoriaArmadura as TipoArmadura);
+  // El dominio listado en la clase conserva su bono. Si la categoría no
+  // está dominada, la eficacia del equipo baja al 75 %.
   return {
-    multiplicadorAtaqueArma: dominaArma ? 1 + clase.bonoAtaqueArmaDominada : 1,
-    multiplicadorDefensaArmadura: dominaArmadura ? 1 + clase.bonoDefensaArmaduraDominada : 1,
+    multiplicadorAtaqueArma: !tipoArma
+      ? 1
+      : dominaArma
+        ? 1 + clase.bonoAtaqueArmaDominada
+        : 0.75,
+    multiplicadorDefensaArmadura: !categoriaArmadura
+      ? 1
+      : dominaArmadura
+        ? 1 + clase.bonoDefensaArmaduraDominada
+        : 0.75,
   };
 }

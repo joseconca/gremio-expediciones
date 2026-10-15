@@ -174,6 +174,7 @@ export interface DefinicionObjeto {
   id: string;
   nombre: string;
   tipo: TipoObjeto;
+  /** Armas: familia (espada, arco, etc.); armaduras: protección ligera, media o pesada. */
   subtipo?: string;
   slot?: SlotObjeto;
   /** Las armas de dos manos bloquean la mano secundaria. */

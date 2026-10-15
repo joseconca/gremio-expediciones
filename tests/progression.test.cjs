@@ -90,13 +90,62 @@ test("la clase híbrida exige cumplir todos sus requisitos", () => {
     { claseId: "sacerdote", nivelJob: 40, desbloqueada: true },
   ]).puedeDesbloquear, true);
 });
-test("el dominio de armas y armaduras aplica solo los bonus definidos", () => {
+test("el dominio de armas da bono a las dominadas y penaliza un 25 % las no dominadas", () => {
   assert.deepEqual(calcularBonificacionesDominioEquipo("espadachin", "espada", "pesada"), {
     multiplicadorAtaqueArma: 1.15, multiplicadorDefensaArmadura: 1.1,
   });
-  assert.deepEqual(calcularBonificacionesDominioEquipo("arquero", "arco", "pesada"), {
-    multiplicadorAtaqueArma: 1.15, multiplicadorDefensaArmadura: 1,
+  assert.deepEqual(calcularBonificacionesDominioEquipo("arquero", "arco", "ligera"), {
+    multiplicadorAtaqueArma: 1.15, multiplicadorDefensaArmadura: 1.05,
   });
+  assert.deepEqual(calcularBonificacionesDominioEquipo("arquero", "daga", "ligera"), {
+    multiplicadorAtaqueArma: 1.15, multiplicadorDefensaArmadura: 1.05,
+  });
+  assert.deepEqual(calcularBonificacionesDominioEquipo("arquero", "espada", "pesada"), {
+    multiplicadorAtaqueArma: 0.75, multiplicadorDefensaArmadura: 0.75,
+  });
+  assert.deepEqual(calcularBonificacionesDominioEquipo("espadachin", "arco", "ligera"), {
+    multiplicadorAtaqueArma: 0.75, multiplicadorDefensaArmadura: 0.75,
+  });
+});
+
+test("las armaduras declaran subtipo y reciben penalización en todas las ranuras salvo joyería", () => {
+  const { OBJETOS, obtenerObjetoPorId, obtenerSubtipoArmadura, calcularEstadisticasObjeto } = require("../src/lib/objetos.ts");
+  const armaduras = OBJETOS.filter((objeto) => objeto.tipo === "armadura");
+  assert.ok(armaduras.length > 0);
+  for (const armadura of armaduras) {
+    assert.ok(armadura.subtipo, `${armadura.id} debe declarar subtipo`);
+    assert.ok(["ligera", "media", "pesada"].includes(obtenerSubtipoArmadura(armadura)), `${armadura.id} debe declarar un subtipo de armadura válido`);
+    assert.equal(obtenerSubtipoArmadura(armadura), armadura.categoriaArmadura);
+  }
+  for (const arma of OBJETOS.filter((objeto) => objeto.tipo === "arma")) {
+    assert.ok(arma.subtipo, `${arma.id} debe declarar subtipo de arma`);
+  }
+
+  const pieza = (id) => {
+    const objeto = obtenerObjetoPorId(id);
+    return { id: `inv-${id}`, objetoId: id, objeto, cantidad: 1, nivelMejora: 0, sufijoId: null, bonificaciones: {} };
+  };
+  const equipo = {
+    arma: pieza("espada_hierro"),
+    manoSecundaria: pieza("escudo_madera"),
+    casco: pieza("casco_cuero"),
+    armadura: pieza("armadura_cuero"),
+    pantalones: pieza("pantalones_cuero"),
+    botas: pieza("botas_cuero"),
+    guantes: pieza("guantes_cuero"),
+    accesorio: pieza("amuleto_vitalidad"),
+    anillo1: pieza("anillo_resistencia"),
+    anillo2: pieza("anillo_maldito"),
+  };
+  const { calcularModificadoresEquipo } = require("../src/lib/estadisticasPersonaje.ts");
+  const stats = calcularModificadoresEquipo(equipo, "espadachin");
+  const defensaArmaduras = ["escudo_madera", "casco_cuero", "armadura_cuero", "pantalones_cuero", "botas_cuero", "guantes_cuero"]
+    .reduce((total, id) => total + calcularEstadisticasObjeto(obtenerObjetoPorId(id), 0).defensa * 0.75, 0);
+  const defensaJoyeria = calcularEstadisticasObjeto(obtenerObjetoPorId("anillo_resistencia"), 0).defensa
+    + calcularEstadisticasObjeto(obtenerObjetoPorId("anillo_maldito"), 0).defensa;
+  assert.equal(stats.defensa, defensaArmaduras + defensaJoyeria);
+  assert.equal(stats.ataque, 6 * 1.15, "La espada dominada aplica su bonus");
+  assert.equal(stats.hpMaximo, 20, "El collar conserva sus estadísticas sin penalización de armadura");
 });
 test("Escuela: muestra siempre las habilidades de la profesión y hereda las ramas superiores", () => {
   const caballero = obtenerHabilidadesEnVenta("caballero").map((habilidad) => habilidad.id);

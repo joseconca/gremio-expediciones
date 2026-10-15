@@ -1,12 +1,13 @@
 import type {
   DefinicionHabilidad,
   EquipoPersonaje,
+  ObjetoInventario,
   AtributosPrincipales,
 } from "./tiposJuego";
 import { calcularEstadisticasBase } from "./configuracionJuego";
 import { obtenerHabilidadPorId } from "./habilidades";
 import { ajustarHabilidadPorNivel, type HabilidadAprendidaConNivel } from "./progresion/niveles-habilidad";
-import { calcularEstadisticasObjeto } from "./objetos";
+import { calcularEstadisticasObjeto, obtenerSubtipoArmadura } from "./objetos";
 import {
   calcularEstadisticasDerivadasRpg,
   COEFICIENTES_ATRIBUTOS_RPG,
@@ -125,94 +126,72 @@ function sumarModificadores(
   };
 }
 
-/** Aplica los dominios profesionales a la categoría de arma y armadura correspondiente. */
+/**
+ * Calcula las estadísticas de una pieza y aplica dominio de armas/armaduras.
+ * Las joyas son objetos de tipo "accesorio", por lo que quedan fuera de la
+ * penalización de armadura aunque aporten defensa.
+ */
+function calcularEstadisticasPiezaEquipamiento(
+  pieza: ObjetoInventario,
+  claseId?: string | null
+): ModificadoresEstadisticas {
+  const estadisticas = calcularEstadisticasObjeto(
+    pieza.objeto,
+    pieza.nivelMejora,
+    pieza.bonificaciones
+  );
+  if (!claseId) return estadisticas;
+
+  if (pieza.objeto.tipo === "arma") {
+    const dominio = calcularBonificacionesDominioEquipo(
+      claseId,
+      pieza.objeto.subtipo
+    );
+    estadisticas.ataque *= dominio.multiplicadorAtaqueArma;
+    if (typeof estadisticas.ataqueMagico === "number") {
+      estadisticas.ataqueMagico *= dominio.multiplicadorAtaqueArma;
+    }
+  } else if (pieza.objeto.tipo === "armadura") {
+    // Una armadura sin subtipo conocido se trata como no dominada, nunca como
+    // una pieza que evita por accidente la penalización.
+    const subtipo = obtenerSubtipoArmadura(pieza.objeto) ?? "__sin_subtipo__";
+    const dominio = calcularBonificacionesDominioEquipo(
+      claseId,
+      undefined,
+      subtipo
+    );
+    estadisticas.defensa *= dominio.multiplicadorDefensaArmadura;
+    if (typeof estadisticas.defensaMagica === "number") {
+      estadisticas.defensaMagica *= dominio.multiplicadorDefensaArmadura;
+    }
+  }
+
+  return estadisticas;
+}
+
+/** Aplica dominios en todas las ranuras; las joyas no se consideran armadura. */
 export function calcularModificadoresEquipo(
   equipo: EquipoPersonaje,
   claseId?: string | null
 ): ModificadoresEstadisticas {
-  const modificadores: ModificadoresEstadisticas[] = [];
-
-  if (equipo.arma) {
-    const estadisticasArma = calcularEstadisticasObjeto(
-      equipo.arma.objeto,
-      equipo.arma.nivelMejora,
-      equipo.arma.bonificaciones
-    );
-    if (claseId) {
-      const dominio = calcularBonificacionesDominioEquipo(
-        claseId,
-        equipo.arma.objeto.subtipo
-      );
-      estadisticasArma.ataque *= dominio.multiplicadorAtaqueArma;
-      if (estadisticasArma.ataqueMagico) {
-        estadisticasArma.ataqueMagico *= dominio.multiplicadorAtaqueArma;
-      }
-    }
-    modificadores.push(estadisticasArma);
-  }
-
-  if (equipo.armadura) {
-    const estadisticasArmadura = calcularEstadisticasObjeto(
-      equipo.armadura.objeto,
-      equipo.armadura.nivelMejora,
-      equipo.armadura.bonificaciones
-    );
-    if (claseId) {
-      const dominio = calcularBonificacionesDominioEquipo(
-        claseId,
-        undefined,
-        equipo.armadura.objeto.categoriaArmadura
-      );
-      estadisticasArmadura.defensa *= dominio.multiplicadorDefensaArmadura;
-      if (estadisticasArmadura.defensaMagica) {
-        estadisticasArmadura.defensaMagica *= dominio.multiplicadorDefensaArmadura;
-      }
-    }
-    modificadores.push(estadisticasArmadura);
-  }
-
-  if (equipo.accesorio) {
-    modificadores.push(
-      calcularEstadisticasObjeto(
-        equipo.accesorio.objeto,
-        equipo.accesorio.nivelMejora,
-        equipo.accesorio.bonificaciones
-      )
-    );
-  }
-
-  const piezasAdicionales = [
+  const piezas: Array<ObjetoInventario | null> = [
+    equipo.arma,
     equipo.manoSecundaria,
     equipo.casco,
+    equipo.armadura,
     equipo.pantalones,
     equipo.botas,
     equipo.guantes,
+    equipo.accesorio,
     equipo.anillo1,
     equipo.anillo2,
   ];
 
-  for (const pieza of piezasAdicionales) {
-    if (!pieza) continue;
-    const estadisticas = calcularEstadisticasObjeto(
-      pieza.objeto,
-      pieza.nivelMejora,
-      pieza.bonificaciones
-    );
-    if (claseId && pieza.objeto.tipo === "armadura") {
-      const dominio = calcularBonificacionesDominioEquipo(
-        claseId,
-        undefined,
-        pieza.objeto.categoriaArmadura
-      );
-      estadisticas.defensa *= dominio.multiplicadorDefensaArmadura;
-      if (estadisticas.defensaMagica) {
-        estadisticas.defensaMagica *= dominio.multiplicadorDefensaArmadura;
-      }
-    }
-    modificadores.push(estadisticas);
-  }
-
-  return sumarModificadores(...modificadores);
+  return sumarModificadores(
+    ...piezas
+      .filter((pieza): pieza is ObjetoInventario => pieza !== null)
+      .map((pieza) => calcularEstadisticasPiezaEquipamiento(pieza, claseId))
+  );
 }
 
 function obtenerModificadoresPasivas(
