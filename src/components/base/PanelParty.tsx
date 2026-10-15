@@ -8,6 +8,7 @@ import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import CombateModal from "@/components/combate/CombateModal";
 import { puedeGestionarVisitas } from "@/lib/party/reglas";
 import { obtenerObjetoPorId } from "@/lib/objetos";
+import MissionMap from "@/components/MissionMap";
 
 type PersonaVista = {
   id: string;
@@ -28,6 +29,8 @@ type TrasladoVista = {
   decision: string | null;
   fechaSalida: string;
   fechaLlegada: string;
+  origenCoords: { lat: number; lng: number } | null;
+  destinoCoords: { lat: number; lng: number } | null;
   haLlegadoEnServidor?: boolean;
   visitante?: PersonaVista;
   anfitrion?: PersonaVista;
@@ -742,6 +745,40 @@ export default function PanelParty() {
                   ? `Has llegado. El propietario de ${destino} debe aceptar o rechazar la visita.`
                   : `Llegada estimada en ${formatoCuentaAtras(restante)}.`}
             </p>
+            {traslado.origenCoords && traslado.destinoCoords && (
+              <div className="mt-3 overflow-hidden rounded-lg border border-sky-900/70 bg-slate-950/60">
+                <div className="flex items-center justify-between gap-2 border-b border-sky-900/60 px-3 py-2">
+                  <p className="text-[10px] font-black uppercase tracking-[0.14em] text-sky-200">
+                    Recorrido del traslado
+                  </p>
+                  <span className="text-[10px] text-slate-400">
+                    {regresando ? "Regreso a tu base" : esperando ? "Has llegado al destino" : "En camino"}
+                  </span>
+                </div>
+                <div className="relative h-64 w-full">
+                  <MissionMap
+                    baseCoords={regresando ? traslado.destinoCoords : traslado.origenCoords}
+                    misiones={[]}
+                    destinoExpedicion={regresando ? traslado.origenCoords : traslado.destinoCoords}
+                    fechaSalida={traslado.fechaSalida}
+                    fechaLlegada={traslado.fechaLlegada}
+                    nombreHeroe={personaje?.nombre ?? "Tu aventurero"}
+                    claseHeroe={personaje?.clase}
+                    sexoHeroe={personaje?.sexo}
+                    regresando={regresando}
+                    ajustarVistaRuta
+                    etiquetaBase="Tu base"
+                    etiquetaDestino={regresando ? "Base desde la que regresas" : "Base que visitas"}
+                    rutasEntrantes={[]}
+                    onSelectMission={() => undefined}
+                  />
+                </div>
+                <div className="flex justify-between gap-2 px-3 py-2 text-[10px] text-slate-400">
+                  <span>{regresando ? "Punto de salida" : "Tu base"}</span>
+                  <span>{regresando ? "Tu base de regreso" : "Base de " + destino}</span>
+                </div>
+              </div>
+            )}
             {esperando && (
               <div className="mt-3 rounded-md border border-sky-900/70 bg-slate-950/50 p-2">
                 <p className="text-[11px] text-slate-300">

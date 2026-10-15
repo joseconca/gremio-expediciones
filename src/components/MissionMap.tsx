@@ -9,6 +9,7 @@ import {
   Popup,
   Polyline,
   Tooltip,
+  useMap,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -56,6 +57,7 @@ function RutaExpedicion({
   claseHeroe,
   sexoHeroe,
   regresando = false,
+  etiquetaDestino,
 }: {
   baseCoords: { lat: number; lng: number };
   destino: { lat: number; lng: number } | null;
@@ -65,6 +67,7 @@ function RutaExpedicion({
   claseHeroe?: string | null;
   sexoHeroe?: string | null;
   regresando?: boolean;
+  etiquetaDestino?: string;
 }) {
   const [progreso, setProgreso] = useState(0);
 
@@ -125,7 +128,7 @@ function RutaExpedicion({
       />
       <Marker position={[destino.lat, destino.lng]} icon={destinationIcon}>
         <Popup>
-          {regresando ? "Lugar de la misión" : "Destino de la expedición"}
+          {etiquetaDestino ?? (regresando ? "Lugar de la misión" : "Destino de la expedición")}
         </Popup>
       </Marker>
       <Marker
@@ -155,9 +158,36 @@ interface RutaEntrante {
   sexoHeroe?: string | null;
 }
 
+function AjustarVistaRuta({
+  baseCoords,
+  destino,
+}: {
+  baseCoords: { lat: number; lng: number };
+  destino: { lat: number; lng: number };
+}) {
+  const mapa = useMap();
+
+  useEffect(() => {
+    const bounds = L.latLngBounds(
+      [baseCoords.lat, baseCoords.lng],
+      [destino.lat, destino.lng],
+    );
+    mapa.fitBounds(bounds, {
+      padding: [42, 42],
+      maxZoom: 11,
+      animate: false,
+    });
+  }, [mapa, baseCoords.lat, baseCoords.lng, destino.lat, destino.lng]);
+
+  return null;
+}
+
 interface MissionMapProps {
   baseCoords: { lat: number; lng: number };
   misiones: DefinicionMision[];
+  ajustarVistaRuta?: boolean;
+  etiquetaBase?: string;
+  etiquetaDestino?: string;
   basesAjenas?: BaseMapa[];
   destinoExpedicion?: { lat: number; lng: number } | null;
   fechaSalida?: string;
@@ -185,6 +215,9 @@ export default function MissionMap({
   nombreHeroe = "Aventurero",
   rutasEntrantes = [],
   regresando = false,
+  ajustarVistaRuta = false,
+  etiquetaBase = "Tu Gremio",
+  etiquetaDestino,
 }: MissionMapProps) {
   return (
     <div className="h-full w-full z-0">
@@ -201,9 +234,14 @@ export default function MissionMap({
           maxZoom={17}
         />
 
-        {/* Marcador de tu base */}
+        {/* Encaja los dos extremos en pantalla cuando el mapa representa un traslado. */}
+        {ajustarVistaRuta && destinoExpedicion && (
+          <AjustarVistaRuta baseCoords={baseCoords} destino={destinoExpedicion} />
+        )}
+
+        {/* Marcador de la base de referencia */}
         <Marker position={[baseCoords.lat, baseCoords.lng]} icon={campIcon}>
-          <Popup>Tu Gremio</Popup>
+          <Popup>{etiquetaBase}</Popup>
         </Marker>
 
         <RutaExpedicion
@@ -220,6 +258,7 @@ export default function MissionMap({
           claseHeroe={claseHeroe}
           sexoHeroe={sexoHeroe}
           regresando={regresando}
+          etiquetaDestino={etiquetaDestino}
         />
 
         {rutasEntrantes.map((ruta) => (
