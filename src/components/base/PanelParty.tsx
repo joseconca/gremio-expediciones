@@ -11,7 +11,7 @@ import { puedeGestionarVisitas } from "@/lib/party/reglas";
 type PersonaVista = {
   id: string;
   nombre: string;
-  personaje: { nombre: string; nivel: number; estado: string } | null;
+  personaje: { nombre: string; nivel: number; estado: string; clase?: string; sexo?: string } | null;
 };
 type MiembroVista = {
   usuarioId: string;
@@ -921,6 +921,10 @@ export default function PanelParty() {
               id: participante.id,
               usuarioId: participante.usuarioId,
               nombre: participante.usuario?.personaje?.nombre ?? participante.usuario?.nombre ?? "Aventurero",
+              clase: participante.usuario?.personaje?.clase ?? "novato",
+              sexo: participante.usuario?.personaje?.sexo === "chica" ? "chica" : "chico",
+              esLider: participante.usuarioId === estado.party?.liderUsuarioId,
+              ordenTurno: participante.ordenTurno,
               estado: participante.estado,
               jugadorPosicion: participante.jugadorPosicion,
               jugadorHp: participante.jugadorHp,

@@ -756,7 +756,7 @@ export async function ejecutarAccionCombateParty(
           turnoActualUsuarioId,
           ronda,
           log: log as unknown as Prisma.InputJsonValue,
-          ultimaAccion: { actor: "jugador", tipo: "fallo", animacion: "defensiva", dano: 0, critico: false, texto: "Huyes del combate." } as unknown as Prisma.InputJsonValue,
+          ultimaAccion: { actor: "jugador", actorUsuarioId: usuarioId, tipo: "fallo", animacion: "defensiva", dano: 0, critico: false, texto: "Huyes del combate." } as unknown as Prisma.InputJsonValue,
         },
       });
       if (actualizado.count !== 1) throw new PartyServiceError("El combate cambió al procesar la huida.", 409, "COMBATE_PARTY_MODIFICADO");
@@ -968,7 +968,7 @@ export async function ejecutarAccionCombateParty(
         enemigoDefensa,
         efectosEnemigo: efectosEnemigo as unknown as Prisma.InputJsonValue,
         log: log as unknown as Prisma.InputJsonValue,
-        ultimaAccion: accion as unknown as Prisma.InputJsonValue,
+        ultimaAccion: { ...accion, actorUsuarioId: usuarioId } as unknown as Prisma.InputJsonValue,
       },
     });
     if (actualizado.count !== 1) {
@@ -1209,7 +1209,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
         enemigoDefensa,
         efectosEnemigo: efectosEnemigo as unknown as Prisma.InputJsonValue,
         log: log as unknown as Prisma.InputJsonValue,
-        ultimaAccion: accion as unknown as Prisma.InputJsonValue,
+        ultimaAccion: { ...accion, objetivoUsuarioId: enemigoHp > 0 ? objetivo?.usuarioId ?? null : null } as unknown as Prisma.InputJsonValue,
       },
     });
     if (actualizado.count !== 1) {

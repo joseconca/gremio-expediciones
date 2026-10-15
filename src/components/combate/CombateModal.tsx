@@ -18,10 +18,55 @@ interface ParticipanteCombatePartyUI {
   id: string;
   usuarioId: string;
   nombre: string;
+  clase: string;
+  sexo: "chico" | "chica";
+  esLider: boolean;
+  ordenTurno: number;
   estado: string;
   jugadorPosicion: string;
   jugadorHp: number;
   jugadorHpMaximo: number;
+}
+
+interface AccionAnimadaPartyUI extends AccionAnimadaCombate {
+  actorUsuarioId?: string | null;
+  objetivoUsuarioId?: string | null;
+}
+
+function distribuirFormacionParty(
+  participantes: ParticipanteCombatePartyUI[],
+): { participante: ParticipanteCombatePartyUI; x: number; y: number }[] {
+  const columnas = { retaguardia: 18, centro: 50, mele: 82 } as const;
+  const grupos: Record<keyof typeof columnas, ParticipanteCombatePartyUI[]> = {
+    retaguardia: [],
+    centro: [],
+    mele: [],
+  };
+  for (const participante of participantes) {
+    const posicion = normalizarPosicionCombate(participante.jugadorPosicion);
+    grupos[posicion].push(participante);
+  }
+
+  const resultado: { participante: ParticipanteCombatePartyUI; x: number; y: number }[] = [];
+  for (const posicion of ["retaguardia", "centro", "mele"] as const) {
+    // Los aventureros en carriles distintos se alinean horizontalmente.
+    // Si comparten carril, se escalonan verticalmente y el líder queda abajo.
+    const grupo = grupos[posicion].sort((a, b) =>
+      Number(a.esLider) - Number(b.esLider) ||
+      a.ordenTurno - b.ordenTurno,
+    );
+    const nivelesY = grupo.length === 1
+      ? [50]
+      : grupo.length === 2
+        ? [31, 69]
+        : grupo.length === 3
+          ? [20, 50, 80]
+          : grupo.map((_, indice) => 12 + indice * (76 / Math.max(1, grupo.length - 1)));
+    grupo.forEach((participante, indice) => {
+      resultado.push({ participante, x: columnas[posicion], y: nivelesY[indice] });
+    });
+  }
+  return resultado;
 }
 
 interface CombatePartyModalUI {
@@ -31,7 +76,7 @@ interface CombatePartyModalUI {
   turnoActualUsuarioId: string | null;
   estadoJugador: string;
   participantes: ParticipanteCombatePartyUI[];
-  ultimaAccion: AccionAnimadaCombate | null;
+  ultimaAccion: AccionAnimadaPartyUI | null;
   onAccionParty: (accion: AccionCombatePartyUI, payload?: string) => Promise<AccionAnimadaCombate | null>;
 }
 
@@ -235,27 +280,23 @@ export default function CombateModal({
    * ============================================================
    */
   const [danioVisible, setDanioVisible] = useState<{
-    actor: "jugador" | "enemigo";
+    actor: string;
     dano: number;
     critico: boolean;
   } | null>(null);
 
   const [curacionVisible, setCuracionVisible] = useState<{
-    actor: "jugador" | "enemigo";
+    actor: string;
     cantidad: number;
   } | null>(null);
   const [pulsosEstadoVisibles, setPulsosEstadoVisibles] = useState<{
-    actor: "jugador" | "enemigo";
+    actor: string;
     tipo: "curacion" | "dano";
     cantidad: number;
   }[]>([]);
 
-  const [actorAnimando, setActorAnimando] = useState<
-    "jugador" | "enemigo" | null
-  >(null);
-  const [actorImpactado, setActorImpactado] = useState<
-    "jugador" | "enemigo" | null
-  >(null);
+  const [actorAnimando, setActorAnimando] = useState<string | null>(null);
+  const [actorImpactado, setActorImpactado] = useState<string | null>(null);
   const [animacionActual, setAnimacionActual] = useState<
     AccionAnimadaCombate["animacion"] | null
   >(null);
@@ -269,7 +310,11 @@ export default function CombateModal({
    * MOSTRAR RESULTADO DE ACCIÓN
    * ============================================================
    */
-  const mostrarResultadoAccion = useCallback(async (accion: AccionAnimadaCombate) => {
+  const mostrarResultadoAccion = useCallback(async (
+    accion: AccionAnimadaCombate,
+    actorUsuarioId?: string | null,
+    objetivoUsuarioId?: string | null,
+  ) => {
     const comprobarResultadoCombate = () => {
       const fase = faseCombateRef.current;
       if (fase === "victoria" || fase === "derrota" || fase === "huida") {
@@ -278,8 +323,20 @@ export default function CombateModal({
     };
     const dano = accion.dano;
     const curacion = accion.curacion ?? 0;
+    const actorVisual = partyMode
+      ? accion.actor === "enemigo" ? "enemigo" : actorUsuarioId ?? partyMode.usuarioId
+      : accion.actor;
+    const objetivoVisual = partyMode
+      ? accion.actor === "enemigo" ? objetivoUsuarioId ?? partyMode.usuarioId : "enemigo"
+      : accion.actor === "jugador" ? "enemigo" : "jugador";
     setPulsosEstadoVisibles((accion.pulsosEstado ?? []).map((pulso) => ({
-      actor: pulso.objetivo,
+      actor: partyMode
+        ? pulso.objetivo === "enemigo"
+          ? "enemigo"
+          : accion.actor === "enemigo"
+            ? objetivoUsuarioId ?? partyMode.usuarioId
+            : actorVisual
+        : pulso.objetivo,
       tipo: pulso.tipo,
       cantidad: pulso.cantidad,
     })));
@@ -291,9 +348,9 @@ export default function CombateModal({
       accion.animacion === "defensiva" ||
       accion.animacion === "escudo"
     ) {
-      setActorAnimando(accion.actor);
+      setActorAnimando(actorVisual);
       if (curacion > 0) {
-        setCuracionVisible({ actor: accion.actor, cantidad: curacion });
+        setCuracionVisible({ actor: actorVisual, cantidad: curacion });
       }
       await esperar(700);
       setCuracionVisible(null);
@@ -304,8 +361,8 @@ export default function CombateModal({
       return;
     }
 
-    const objetivo = accion.actor === "jugador" ? "enemigo" : "jugador";
-    setActorAnimando(accion.actor);
+    const objetivo = objetivoVisual;
+    setActorAnimando(actorVisual);
 
     await esperar(accion.animacion === "ofensiva_potenciada" ? 350 : 250);
     setActorImpactado(objetivo);
@@ -333,7 +390,7 @@ export default function CombateModal({
     try {
       const accion = await solicitarAccion("escapar");
       if (!accion) return;
-      await mostrarResultadoAccion(accion);
+      await mostrarResultadoAccion(accion, partyMode?.usuarioId);
       // En party, huir solo retira a este miembro; el resto continúa.
       if (!partyMode) setMostrarResultado(true);
     } finally {
@@ -356,7 +413,7 @@ export default function CombateModal({
     try {
       const accion = await solicitarAccion("atacar");
       if (!accion) return;
-      await mostrarResultadoAccion(accion);
+      await mostrarResultadoAccion(accion, partyMode?.usuarioId);
     } finally {
       accionEnCurso.current = false;
       setProcesandoLocal(false);
@@ -377,7 +434,7 @@ export default function CombateModal({
     try {
       const accion = await solicitarAccion("usar_habilidad", habilidadId);
       if (!accion) return;
-      await mostrarResultadoAccion(accion);
+      await mostrarResultadoAccion(accion, partyMode?.usuarioId);
     } finally {
       accionEnCurso.current = false;
       setProcesandoLocal(false);
@@ -398,7 +455,7 @@ export default function CombateModal({
     try {
       const accion = await solicitarAccion("usar_objeto", objetoInventario.id);
       if (!accion) return;
-      await mostrarResultadoAccion(accion);
+      await mostrarResultadoAccion(accion, partyMode?.usuarioId);
     } finally {
       accionEnCurso.current = false;
       setProcesandoLocal(false);
@@ -479,13 +536,17 @@ export default function CombateModal({
     }
     if (!accion || clave === ultimaAccionPartyClave.current) return;
     ultimaAccionPartyClave.current = clave;
-    if (accion.actor !== "enemigo") return;
+    const actorUsuarioId = accion.actorUsuarioId ?? null;
+    const accionDeOtroMiembro = accion.actor === "jugador" &&
+      Boolean(actorUsuarioId) &&
+      actorUsuarioId !== partyMode.usuarioId;
+    const accionEnemiga = accion.actor === "enemigo";
+    if (!accionDeOtroMiembro && !accionEnemiga) return;
 
-    // La acción llega desde el sondeo externo del estado de la party.
-    // Programamos la animación en el siguiente frame para no actualizar
-    // estado React de forma síncrona desde el efecto.
+    // Las acciones recibidas por sondeo animan al compañero que las ejecutó
+    // o al miembro golpeado por el enemigo.
     const frame = window.requestAnimationFrame(() => {
-      void mostrarResultadoAccion(accion);
+      void mostrarResultadoAccion(accion, actorUsuarioId, accion.objetivoUsuarioId);
     });
     return () => window.cancelAnimationFrame(frame);
   }, [partyMode?.ultimaAccion, partyMode, mostrarResultadoAccion]);
@@ -544,38 +605,76 @@ export default function CombateModal({
           </div>
         </header>
 
-        {partyMode && (
-          <div className="flex shrink-0 gap-2 overflow-x-auto border-b border-stone-800 bg-stone-950/85 px-2 py-1.5 sm:justify-center sm:px-4">
-            {partyMode.participantes.map((participante) => {
-              const vida = Math.max(0, Math.min(100, participante.jugadorHp / Math.max(1, participante.jugadorHpMaximo) * 100));
-              const propia = participante.usuarioId === partyMode.usuarioId;
-              const caido = participante.estado === "caido";
-              const huyo = participante.estado === "huyo";
-              return (
-                <div key={participante.id} className={`min-w-[112px] max-w-[150px] flex-1 rounded border px-2 py-1 ${propia ? "border-amber-600/80 bg-amber-950/45" : "border-stone-800 bg-black/40"}`}>
-                  <div className="flex items-center gap-1.5">
-                    <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[9px] font-black ${huyo ? "bg-amber-950 text-amber-300" : caido ? "bg-stone-800 text-stone-500" : propia ? "bg-amber-700 text-white" : "bg-emerald-950 text-emerald-200"}`}>
-                      {huyo ? "↩" : caido ? "×" : participante.nombre.trim().slice(0, 1).toUpperCase()}
-                    </span>
-                    <span className="min-w-0 flex-1 truncate text-[10px] font-bold text-stone-200">{participante.nombre}{propia ? " (tú)" : ""}</span>
-                  </div>
-                  <div className="mt-1.5 h-1 overflow-hidden rounded bg-stone-800">
-                    <div className={`h-full transition-all ${huyo ? "bg-amber-600" : caido ? "bg-stone-600" : "bg-emerald-500"}`} style={{ width: `${vida}%` }} />
-                  </div>
-                  <div className="mt-0.5 flex items-center justify-between gap-1 text-[9px] text-stone-400">
-                    <span>{huyo ? "Ha huido" : caido ? "Caído" : propia && partyMode.faseTurno === "jugador" && partyMode.turnoActualUsuarioId === partyMode.usuarioId ? "Tu turno" : "En combate"}</span>
-                    <span className="font-mono">{Math.max(0, participante.jugadorHp)}/{participante.jugadorHpMaximo}</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )}
+        {/* La formación de party se representa dentro de la escena de batalla. */}
 
         {/* ESCENA */}
         <section className="relative flex min-h-0 flex-1 items-center justify-between overflow-hidden px-4 sm:px-16">
-          {/* JUGADOR */}
-          <div
+          {/* EQUIPO: todos los aventureros ocupan una casilla de la formación */}
+          {partyMode ? (
+            <div className="relative flex h-full w-[66%] min-w-0 items-center overflow-visible">
+              <div aria-hidden="true" className="pointer-events-none absolute inset-y-3 left-1 right-1 rounded-lg border border-stone-700/25 bg-black/10">
+                <div className="absolute inset-y-0 left-[33%] border-l border-dashed border-stone-200/10" />
+                <div className="absolute inset-y-0 left-[66%] border-l border-dashed border-stone-200/10" />
+                <div className="absolute inset-x-0 top-1/3 border-t border-dashed border-stone-200/10" />
+                <div className="absolute inset-x-0 top-2/3 border-t border-dashed border-stone-200/10" />
+              </div>
+              {distribuirFormacionParty(partyMode.participantes).map(({ participante, x, y }) => {
+                const vida = Math.max(0, Math.min(100, participante.jugadorHp / Math.max(1, participante.jugadorHpMaximo) * 100));
+                const retirado = participante.estado === "huyo";
+                const caido = participante.estado === "caido";
+                const animando = actorAnimando === participante.usuarioId;
+                const impactado = actorImpactado === participante.usuarioId;
+                const sprite = obtenerSpriteHeroe(participante.clase, participante.sexo);
+                return (
+                  <div
+                    key={participante.id}
+                    className={`absolute z-10 flex w-[31%] max-w-[112px] -translate-x-1/2 -translate-y-1/2 flex-col items-center transition-[left,top] duration-300 ${animando ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque_700ms_ease-in-out]") : ""} ${retirado ? "opacity-50 grayscale-[35%]" : caido ? "opacity-55 grayscale" : ""}`}
+                    style={{ left: `${x}%`, top: `${y}%` }}
+                    aria-label={`${participante.nombre}, ${participante.jugadorHp} de ${participante.jugadorHpMaximo} puntos de vida`}
+                  >
+                    {danioVisible?.actor === participante.usuarioId && (
+                      <div className={`absolute top-1 z-50 -translate-y-full whitespace-nowrap font-black drop-shadow-[0_3px_3px_rgba(0,0,0,0.9)] ${danioVisible.critico ? "animate-bounce text-2xl text-amber-300" : "text-xl text-red-300"}`}>
+                        -{danioVisible.dano}
+                      </div>
+                    )}
+                    {curacionVisible?.actor === participante.usuarioId && (
+                      <div className="absolute top-1 z-50 -translate-y-full animate-bounce whitespace-nowrap text-xl font-black text-emerald-300 drop-shadow-[0_3px_3px_rgba(0,0,0,0.9)]">
+                        +{curacionVisible.cantidad}
+                      </div>
+                    )}
+                    <div className={`relative h-[64px] w-[54px] transition-all duration-200 sm:h-[92px] sm:w-[78px] ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""} ${animacionActual === "curacion" && animando ? "drop-shadow-[0_0_16px_rgba(52,211,153,0.7)]" : ""}`}>
+                      <div className="absolute inset-0 z-0 opacity-45 blur-[1px]" style={{ transform: "translateY(36%) perspective(110px) rotateX(65deg) scale(1.05,-0.65)" }}>
+                        <Image src={sprite} alt="" fill sizes="78px" className="object-contain brightness-0" />
+                      </div>
+                      <Image
+                        src={sprite}
+                        alt={participante.nombre}
+                        fill
+                        sizes="(max-width: 640px) 54px, 78px"
+                        className="relative z-10 object-contain [image-rendering:pixelated]"
+                        priority
+                      />
+                      {pulsosEstadoVisibles.filter((pulso) => pulso.actor === participante.usuarioId).map((pulso, indice) => (
+                        <span key={`party-${participante.id}-${indice}-${pulso.tipo}`} className={`absolute bottom-0 z-40 -translate-x-1/2 rounded bg-stone-950/90 px-1 py-0.5 font-mono text-xs font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`} style={{ left: `calc(50% + ${(indice - 0.5) * 20}px)` }}>
+                          {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}
+                        </span>
+                      ))}
+                    </div>
+                    <span className="mt-0.5 flex max-w-full items-center gap-0.5 rounded bg-black/65 px-1 text-center text-[9px] font-black leading-tight text-stone-100 shadow sm:text-[10px]">
+                      <span className="max-w-full truncate">{participante.nombre}</span>{participante.esLider ? <span className="text-amber-300" title="Líder">♛</span> : null}
+                    </span>
+                    <div className="mt-0.5 h-1.5 w-[80%] max-w-[82px] overflow-hidden rounded-sm border border-stone-700 bg-stone-950/90">
+                      <div className={`h-full transition-all duration-300 ${retirado ? "bg-amber-600" : caido ? "bg-stone-500" : vida >= 50 ? "bg-emerald-500" : vida >= 25 ? "bg-orange-400" : "bg-red-500"}`} style={{ width: `${vida}%` }} />
+                    </div>
+                    <span className="max-w-full truncate text-[8px] leading-none text-stone-300/90 sm:text-[9px]">
+                      {retirado ? "Retirado" : caido ? "Caído" : ETIQUETAS_POSICION_COMBATE[normalizarPosicionCombate(participante.jugadorPosicion)]}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+<div
             className={`relative flex w-[46%] justify-center sm:w-[40%] ${
               actorAnimando === "jugador"
                 ? animacionActual === "ofensiva_potenciada"
@@ -692,10 +791,11 @@ export default function CombateModal({
               </div>
             </div>
           </div>
+          )}
 
           {/* ENEMIGO */}
           <div
-            className={`relative flex w-[46%] justify-center sm:w-[40%] ${
+            className={`relative flex ${partyMode ? "w-[32%] justify-center px-0" : "w-[46%] justify-center sm:w-[40%]"} ${
               actorAnimando === "enemigo"
                 ? animacionActual === "ofensiva_potenciada"
                   ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]"
@@ -732,7 +832,7 @@ export default function CombateModal({
               )}
 
               <div
-                className={`relative h-[180px] w-[180px] ${
+                className={`relative ${partyMode ? "h-[116px] w-[104px] sm:h-[166px] sm:w-[150px]" : "h-[180px] w-[180px]"} ${
                   actorImpactado === "enemigo"
                     ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]"
                     : ""
@@ -759,7 +859,7 @@ export default function CombateModal({
                     src={obtenerRutaSpriteEnemigo(combate.enemigoId)}
                     alt="Sombra del enemigo"
                     fill
-                    sizes="180px"
+                    sizes="(max-width: 640px) 104px, 150px"
                     style={{ transform: "scaleX(-1)" }}
                     className="object-contain brightness-0"
                   />
@@ -770,7 +870,7 @@ export default function CombateModal({
                   src={obtenerRutaSpriteEnemigo(combate.enemigoId)}
                   alt={combate.enemigoNombre || "Enemigo"}
                   fill
-                  sizes="180px"
+                  sizes="(max-width: 640px) 104px, 150px"
                   style={{ transform: "scaleX(-1)" }}
                   className="relative z-10 object-contain [image-rendering:pixelated]"
                   priority

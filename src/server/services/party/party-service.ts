@@ -769,7 +769,7 @@ export async function obtenerEstadoParty(usuarioId: string) {
                     select: {
                       id: true,
                       nombre: true,
-                      personaje: { select: { nombre: true, nivel: true, estado: true } },
+                      personaje: { select: { nombre: true, nivel: true, estado: true, clase: true, sexo: true } },
                     },
                   },
                 },
