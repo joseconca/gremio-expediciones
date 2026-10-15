@@ -28,10 +28,7 @@ interface ParticipanteCombatePartyUI {
   jugadorHpMaximo: number;
 }
 
-interface AccionAnimadaPartyUI extends AccionAnimadaCombate {
-  actorUsuarioId?: string | null;
-  objetivoUsuarioId?: string | null;
-}
+type AccionAnimadaPartyUI = AccionAnimadaCombate;
 
 function distribuirFormacionParty(
   participantes: ParticipanteCombatePartyUI[],

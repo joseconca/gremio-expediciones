@@ -76,6 +76,60 @@ export interface EstadoEfectoHabilidad extends EstadoSecundarioHabilidad {
 }
 export type TipoDanoHabilidad = "fisico" | "magico" | "hibrido";
 
+/**
+ * Modo de presentación visual de una acción de combate.
+ * Describe cómo se representa en pantalla; nunca determina daño, precisión ni reglas.
+ */
+export type ModoPresentacionCombate =
+  | "cuerpo_a_cuerpo"
+  | "proyectil"
+  | "curacion"
+  | "defensiva"
+  | "estado"
+  | "area";
+
+/** Recursos visuales reutilizables para los proyectiles; no son IDs de habilidades. */
+export type TipoProyectilCombate =
+  | "flecha"
+  | "esfera_arcana"
+  | "bola_fuego"
+  | "esquirla_hielo"
+  | "rayo"
+  | "energia_sagrada"
+  | "semilla_natural"
+  | "orbe_sombra";
+
+export type ElementoVisualCombate =
+  | "fisico"
+  | "arcano"
+  | "fuego"
+  | "hielo"
+  | "rayo"
+  | "sagrado"
+  | "naturaleza"
+  | "sombras";
+
+export type EfectoImpactoVisualCombate =
+  | "golpe"
+  | "destello"
+  | "explosion"
+  | "escarcha"
+  | "onda"
+  | "veneno"
+  | "sagrado";
+
+/**
+ * Metadatos opcionales y serializables que permiten al cliente escoger una
+ * presentación explícita sin deducirla del daño ni de la clase del actor.
+ * Se mantienen opcionales durante la migración desde AnimacionHabilidad.
+ */
+export interface PresentacionVisualCombate {
+  modo: ModoPresentacionCombate;
+  proyectil?: TipoProyectilCombate;
+  elemento?: ElementoVisualCombate;
+  impacto?: EfectoImpactoVisualCombate;
+}
+
 export type AnimacionHabilidad =
   | "ofensiva"
   | "ofensiva_potenciada"
@@ -305,8 +359,14 @@ export interface DefinicionHabilidad {
   /** Efecto principal de una habilidad activa. */
   efecto?: EfectoHabilidadActiva;
 
-  /** Animación utilizada al ejecutar una habilidad activa. */
+  /** Animación heredada, conservada por compatibilidad. */
   animacion?: AnimacionHabilidad;
+
+  /**
+   * Presentación visual explícita de la habilidad.
+   * Si no se define, el cliente conserva el comportamiento visual heredado.
+   */
+  presentacionVisual?: PresentacionVisualCombate;
 
   /** Tiempo de reutilización en turnos. */
   cooldownTurnos?: number;

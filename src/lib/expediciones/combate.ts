@@ -1,4 +1,4 @@
-import type { DefinicionHabilidad } from "@/lib/tiposJuego";
+import type { DefinicionHabilidad, PresentacionVisualCombate } from "@/lib/tiposJuego";
 
 export type AccionAnimadaCombate = {
   actor: "jugador" | "enemigo";
@@ -12,9 +12,24 @@ export type AccionAnimadaCombate = {
   dano: number;
   critico: boolean;
   curacion?: number;
+
+  /**
+   * Identidades visuales opcionales. En party, actorUsuarioId y objetivoUsuarioId
+   * identifican al participante real; sin estos campos se conserva la semántica
+   * heredada de jugador/enemigo.
+   */
+  actorUsuarioId?: string | null;
+  objetivoUsuarioId?: string | null;
+  objetivosUsuarioIds?: string[];
+
+  /** La presentación explícita tiene prioridad sobre el modo heredado de animacion. */
+  presentacion?: PresentacionVisualCombate;
+
   /** Pulsos de daño/curación causados por estados durante esta acción. */
   pulsosEstado?: {
     objetivo: "jugador" | "enemigo";
+    /** Identidad del miembro real si el pulso afecta a un participante de party. */
+    objetivoUsuarioId?: string | null;
     tipo: "dano" | "curacion";
     cantidad: number;
   }[];
