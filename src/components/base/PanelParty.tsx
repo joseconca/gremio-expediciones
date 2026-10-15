@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useGameStore } from "@/store/useGameStore";
 import { puedeGestionarVisitas } from "@/lib/party/reglas";
 
@@ -159,6 +160,8 @@ export default function PanelParty() {
     fase: "victoria" | "derrota" | "huida";
     recompensas: ResultadoRecompensasParty | null;
   } | null>(null);
+  const [destinoTablon, setDestinoTablon] = useState<HTMLElement | null>(null);
+  const [expedicionDetalleAbierto, setExpedicionDetalleAbierto] = useState(false);
   const procesandoAutomatico = useRef(new Set<string>());
   const siguienteIntentoTraslado = useRef(new Map<string, number>());
   const solicitudEstado = useRef<Promise<void> | null>(null);
@@ -228,6 +231,11 @@ export default function PanelParty() {
       recompensas: datos.fase === "victoria" ? (datos.recompensas ?? null) : null,
     });
   };
+
+  useEffect(() => {
+    // El tablón forma parte de PanelMisiones y existe al completar el montaje.
+    setDestinoTablon(document.getElementById("party-expedition-slot"));
+  }, []);
 
   const intervaloConsultaMs = estado?.expedicionActiva?.fase === "combatiendo"
     ? 3000
@@ -546,69 +554,42 @@ export default function PanelParty() {
     return null;
   }
 
+  if (!party && !estado?.expedicionActiva && !ultimoResultadoCombate && trasladosPropios.length === 0 && visitasEntrantes.length === 0 && !error) {
+    return null;
+  }
+
   return (
-    <section className="relative mx-auto mb-4 w-full max-w-4xl overflow-hidden rounded-xl border-2 border-[#80602f] bg-[linear-gradient(135deg,#2a2013_0%,#15110b_54%,#241a0f_100%)] p-3 text-[#f8edcf] shadow-[0_10px_28px_rgba(0,0,0,0.45)] sm:p-4">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-1 rounded-lg border border-[#604824]/80" />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-amber-400/80 to-transparent" />
-      <header className="relative mb-3 flex items-center justify-between gap-3 border-b border-[#69502d] pb-3">
-        <div className="flex min-w-0 items-center gap-3">
-          <span aria-hidden="true" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border-2 border-[#9b773d] bg-[linear-gradient(145deg,#4b371c,#21180e)] text-xl text-amber-200 shadow-[inset_0_1px_0_rgba(255,226,170,0.18)]">
-            ⚔
-          </span>
-          <div className="min-w-0">
-            <p className="text-[9px] font-black uppercase tracking-[0.24em] text-amber-500 sm:text-[10px]">Registro del gremio</p>
-            <h2 className="font-serif text-base font-black uppercase tracking-[0.08em] text-amber-100 sm:text-lg">
-              Compañía de aventureros
+    <>
+      <aside className="relative w-full overflow-hidden rounded-md border border-[#80602f] bg-[linear-gradient(145deg,#261c10_0%,#15100a_100%)] p-2.5 text-[#f8edcf] shadow-lg sm:p-3">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-1 rounded border border-[#604824]/70" />
+        <header className="relative flex items-center gap-2 border-b border-[#604824] pb-2">
+          <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded border border-[#8b6836] bg-[#302113] text-amber-200">♛</span>
+          <div className="min-w-0 flex-1">
+            <p className="text-[9px] font-black uppercase tracking-[0.18em] text-amber-500">
+              {party ? "Compañía" : "Mensajería del gremio"}
+            </p>
+            <h2 className="truncate font-serif text-sm font-black text-amber-100">
+              {party ? `Compañía de ${party.lider.nombre}` : visitasEntrantes.length > 0 ? "Visitas entrantes" : "Traslado entre bases"}
             </h2>
-            <p className="mt-0.5 text-[11px] text-[#c4b28e] sm:text-xs">
-              {party ? "Unidos por el oro, la gloria y la aventura." : "Visitas y traslados entre bases."}
-            </p>
           </div>
-        </div>
-        <span className="relative shrink-0 rounded-sm border border-[#80602f] bg-[#1a140c] px-2 py-1 text-[10px] font-black uppercase tracking-wide text-amber-200 sm:text-xs">
-          {party ? `${party.miembros.length}/3 aventureros` : visitasEntrantes.length > 0 ? "Visita entrante" : "En camino"}
-        </span>
-      </header>
+          {party && <span className="shrink-0 rounded border border-[#80602f] bg-[#1a140c] px-1.5 py-1 text-[10px] font-black text-amber-200">{party.miembros.length}/3</span>}
+        </header>
 
-      {error && (
-        <p role="alert" className="mb-3 rounded-md border border-red-900/80 bg-red-950/50 p-2 text-sm text-red-200">
-          {error}
-        </p>
-      )}
+        {error && (
+          <p role="alert" className="relative mt-2 rounded border border-red-900/80 bg-red-950/50 p-2 text-xs text-red-200">{error}</p>
+        )}
 
-      {cargando && !estado && (
-        <p className="py-3 text-sm text-slate-400">Consultando party y traslados...</p>
-      )}
-
-      {party && (
-        <div className="mb-4">
-          <div className="grid gap-2 sm:grid-cols-3">
-            {party.miembros.map((miembro) => (
-              <article key={miembro.usuarioId} className="group relative overflow-hidden rounded-md border border-[#66502e] bg-[#21190f]/90 p-3 shadow-[inset_0_1px_0_rgba(255,223,160,0.06)]">
-                <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-500/60 to-transparent" />
-                <div className="relative flex items-start gap-2.5">
-                  <span aria-hidden="true" className={`flex h-8 w-8 shrink-0 items-center justify-center rounded border ${miembro.esLider ? "border-amber-600/80 bg-amber-950/70 text-amber-300" : "border-[#66502e] bg-[#18120b] text-[#c9b387]"}`}>
-                    {miembro.esLider ? "♛" : "⚔"}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-black text-[#fff1d0]">
-                      {miembro.usuario.personaje?.nombre ?? "Aventurero"}{miembro.esLider ? <span className="text-amber-400"> (líder)</span> : ""}
-                    </p>
-                    <p className="mt-1 truncate text-xs text-[#c4b28e]">{miembro.usuario.nombre}</p>
-                    <p className="mt-1 text-[10px] font-bold uppercase tracking-wider text-[#8f7b57]">
-                      Nivel {miembro.usuario.personaje?.nivel ?? "—"}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-slate-800 pt-3">
-            <p className="text-xs text-slate-400">
-              {esLider
-                ? "Tu base es el punto de reunión y tú lideras la party."
-                : `Líder de la party: ${party.lider.nombre}. Puedes volver a tu base abandonando el grupo.`}
-            </p>
+        {party && (
+          <div className="relative pt-2">
+            <div className="flex flex-wrap gap-1.5">
+              {party.miembros.map((miembro) => (
+                <span key={miembro.usuarioId} className={`inline-flex max-w-full items-center gap-1 rounded-sm border px-2 py-1 text-[11px] ${miembro.esLider ? "border-amber-600/70 bg-amber-950/70 font-black text-amber-100" : "border-[#594326] bg-[#1a140c] text-[#e0d0ac]"}`}>
+                  {miembro.esLider ? "♛" : "⚔"}
+                  <span className="truncate">{miembro.usuario.personaje?.nombre ?? "Aventurero"}</span>
+                  {miembro.esLider && <span className="text-[9px] text-amber-400">líder</span>}
+                </span>
+              ))}
+            </div>
             <button
               type="button"
               disabled={Boolean(accion) || bloqueadaLaSalida}
@@ -616,31 +597,138 @@ export default function PanelParty() {
                 esLider ? "disolver" : "abandonar",
                 esLider ? "/api/party/disolver" : "/api/party/abandonar",
               )}
-              className="rounded-md border border-red-900 bg-red-950/70 px-3 py-2 text-xs font-black uppercase tracking-wide text-red-200 transition hover:bg-red-900 disabled:cursor-not-allowed disabled:opacity-40"
+              className="mt-2 min-h-9 w-full rounded-sm border border-red-900/80 bg-red-950/40 px-2 py-1.5 text-[11px] font-black uppercase tracking-wide text-red-200 transition hover:bg-red-900/70 disabled:cursor-not-allowed disabled:opacity-40"
               title={bloqueadaLaSalida ? (expedicionPartyActiva ? "Debes esperar a que termine la expedición para abandonar la party." : "El personaje debe estar disponible en la base.") : undefined}
             >
               {accion === (esLider ? "disolver" : "abandonar")
                 ? "Procesando..."
-                : esLider ? "Disolver party y enviar al grupo a casa" : "Abandonar party"}
+                : esLider ? "Disolver compañía" : "Abandonar compañía"}
             </button>
+            {ocupado && (
+              <p className="mt-1.5 text-[10px] leading-snug text-amber-400/80">
+                {expedicionPartyActiva
+                  ? esLider ? "Como líder, puedes disolver la compañía durante la expedición." : "La salida se habilita al terminar la expedición."
+                  : "Debes estar en tu base y sin actividad para salir."}
+              </p>
+            )}
           </div>
-          {ocupado && (
-            <p className="mt-2 text-xs text-amber-500/90">
-              {expedicionPartyActiva ? (esLider ? "Disolver ahora cancela la expedición o envía a todos desde su posición actual a sus propias bases." : "Huir del combate no te expulsa de la party. Espera a que termine la expedición para abandonarla explícitamente.") : "La salida de una party requiere que el personaje esté disponible en la base."}
+        )}
+
+        {cargando && !estado && <p className="relative py-2 text-[11px] text-[#b9a681]">Consultando el registro...</p>}
+
+        <div className="relative mt-2 space-y-1.5">
+      {trasladosPropios.map((traslado) => {
+        const restante = segundosRestantes(traslado.fechaLlegada, ahora);
+        const destino = traslado.anfitrion?.nombre ?? "la base de destino";
+        const regresando = traslado.estado === "regresando";
+        const esperando = traslado.estado === "pendiente";
+        return (
+          <article key={traslado.id} className="mb-2 rounded-lg border border-sky-900/60 bg-sky-950/20 p-3">
+            <p className="font-bold text-sky-100">
+              {regresando ? "↩ Regresando a tu base" : esperando ? "⏳ En espera de aceptación" : `🚶 Camino a la base de ${destino}`}
             </p>
-          )}
+            <p className="mt-1 text-xs text-slate-300">
+              {regresando
+                ? `Llegada estimada: ${restante === 0 ? "procesando llegada..." : formatoCuentaAtras(restante)}`
+                : esperando
+                  ? `Has llegado. El propietario de ${destino} debe aceptar o rechazar la visita.`
+                  : `Llegada estimada en ${formatoCuentaAtras(restante)}.`}
+            </p>
+          </article>
+        );
+      })}
+
+      {visitasEntrantes.length > 0 && (
+        <div className="mt-3">
+          <h3 className="mb-2 text-sm font-black uppercase tracking-wide text-amber-200">
+            Visitas entrantes
+          </h3>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {visitasEntrantes.map((traslado) => {
+              const visitante = traslado.visitante;
+              const restante = segundosRestantes(traslado.fechaLlegada, ahora);
+              const haLlegado = traslado.haLlegadoEnServidor ?? restante === 0;
+              const llegadaEsperandoConfirmacion = restante === 0 && !haLlegado;
+              return (
+                <article key={traslado.id} className="rounded-lg border border-amber-900/60 bg-amber-950/20 p-3">
+                  <p className="font-bold text-white">{visitante?.personaje?.nombre ?? "Aventurero visitante"}</p>
+                  <p className="mt-1 text-sm text-slate-300">{visitante?.nombre ?? "Gremio desconocido"}</p>
+                  <p className="mt-1 text-xs text-slate-400">
+                    {haLlegado
+                      ? "Ha llegado a tu base; decide si incorporarlo."
+                      : llegadaEsperandoConfirmacion
+                        ? "Confirmando la llegada con el servidor..."
+                        : `En camino: ${formatoCuentaAtras(restante)}`}
+                  </p>
+                  {haLlegado ? (
+                    <div className="mt-3 flex gap-2">
+                      <button
+                        type="button"
+                        disabled={Boolean(accion) || !puedeGestionarVisitasParty || ocupado}
+                        onClick={() => void ejecutar("aceptar:" + traslado.id, "/api/party/transfer/aceptar", traslado.id)}
+                        title={ocupado ? "Tu personaje debe estar disponible en la base." : !puedeGestionarVisitasParty ? "Solo el líder de una party puede aceptar visitas." : undefined}
+                        className="flex-1 rounded-md border border-emerald-800 bg-emerald-950/70 px-2 py-2 text-xs font-black text-emerald-200 hover:bg-emerald-900 disabled:cursor-not-allowed disabled:opacity-40"
+                      >
+                        {accion === "aceptar:" + traslado.id ? "Aceptando..." : "Aceptar"}
+                      </button>
+                      <button
+                        type="button"
+                        disabled={Boolean(accion) || !puedeGestionarVisitasParty || ocupado}
+                        onClick={() => void ejecutar("rechazar:" + traslado.id, "/api/party/transfer/rechazar", traslado.id)}
+                        title={ocupado ? "Tu personaje debe estar disponible en la base." : !puedeGestionarVisitasParty ? "Solo el líder de una party puede rechazar visitas." : undefined}
+                        className="flex-1 rounded-md border border-red-900 bg-red-950/70 px-2 py-2 text-xs font-black text-red-200 hover:bg-red-900 disabled:cursor-not-allowed disabled:opacity-40"
+                      >
+                        {accion === "rechazar:" + traslado.id ? "Rechazando..." : "Rechazar"}
+                      </button>
+                    </div>
+                  ) : (
+                    <p className="mt-2 text-xs text-amber-300/80">Las opciones aparecerán cuando llegue.</p>
+                  )}
+                </article>
+              );
+            })}
+          </div>
         </div>
       )}
-
+        </div>
+      </aside>
+      {destinoTablon && (estado?.expedicionActiva || ultimoResultadoCombate) && createPortal(
+        <>
       {estado?.expedicionActiva && (
-        <article className="mb-3 rounded-lg border border-amber-700/60 bg-amber-950/20 p-3">
-          <div className="flex items-start gap-3">
-            <span className="text-2xl" aria-hidden="true">🧭</span>
-            <div className="min-w-0 flex-1">
-              <p className="font-black text-amber-100">Expedición compartida: {estado.expedicionActiva.nombre}</p>
-              <p className="mt-1 text-xs text-slate-300">
-                Amenaza {estado.expedicionActiva.dificultad} · Dificultad {estado.expedicionActiva.modoDificultad} · {estado.expedicionActiva.participantes.length} aventureros
-              </p>
+        <article className="overflow-hidden rounded-md border border-[#73552d] bg-[#1c150d]/95 shadow-sm">
+          <button
+            type="button"
+            onClick={() => setExpedicionDetalleAbierto((abierto) => !abierto)}
+            aria-expanded={expedicionDetalleAbierto}
+            className="flex min-h-14 w-full items-center gap-2.5 p-2.5 text-left transition hover:bg-amber-950/30"
+          >
+            <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-[#8b6836] bg-[#302113] text-lg text-amber-200">🧭</span>
+            <span className="min-w-0 flex-1">
+              <span className="block truncate text-sm font-black text-amber-100">{estado.expedicionActiva.nombre}</span>
+              <span className={`mt-0.5 block truncate text-[11px] font-semibold ${estado.expedicionActiva.fase === "combatiendo" ? "text-red-200" : estado.expedicionActiva.fase === "regresando" ? "text-sky-200" : "text-amber-200/80"}`}>
+                {estado.expedicionActiva.fase === "en_viaje"
+                  ? `En ruta · ${formatoCuentaAtras(segundosRestantes(estado.expedicionActiva.fechaLlegada, ahora))}`
+                  : estado.expedicionActiva.fase === "lista_para_combate"
+                    ? "Llegada · preparando combate"
+                    : estado.expedicionActiva.fase === "regresando"
+                      ? `Regresando · ${formatoCuentaAtras(segundosRestantes(estado.expedicionActiva.fechaLlegada, ahora))}`
+                      : estado.expedicionActiva.combate?.fase !== "activo"
+                        ? estado.expedicionActiva.combate?.fase === "victoria" ? "Victoria · regresando con botín" : estado.expedicionActiva.combate?.fase === "huida" ? "Retirada del grupo" : "Combate terminado"
+                        : estado.expedicionActiva.combate.turnoActualUsuarioId === estado.usuarioId && estado.expedicionActiva.combate.faseTurno === "jugador"
+                          ? "¡Tu turno! · toca para actuar"
+                          : estado.expedicionActiva.combate.faseTurno === "enemigo"
+                            ? "Turno del enemigo"
+                            : "Combate compartido"}
+              </span>
+              <span className="mt-1 block truncate text-[10px] text-[#b9a681]">
+                Amenaza {estado.expedicionActiva.dificultad} · {estado.expedicionActiva.modoDificultad} · {estado.expedicionActiva.participantes.length} aventureros
+                {estado.expedicionActiva.combate ? ` · Enemigo ${estado.expedicionActiva.combate.enemigoHp}/${estado.expedicionActiva.combate.enemigoHpMaximo} HP` : ""}
+              </span>
+            </span>
+            <span aria-hidden="true" className="shrink-0 text-sm text-amber-400">{expedicionDetalleAbierto ? "⌃" : "⌄"}</span>
+          </button>
+          {expedicionDetalleAbierto && (
+            <div className="border-t border-[#5d4526] p-2 sm:p-3">
               {estado.expedicionActiva.fase === "en_viaje" ? (
                 <p className="mt-2 text-sm text-sky-200">
                   La party está de camino. Llegada estimada en {formatoCuentaAtras(segundosRestantes(estado.expedicionActiva.fechaLlegada, ahora))}.
@@ -841,17 +929,16 @@ export default function PanelParty() {
                 ))}
               </div>
             </div>
-          </div>
+          )}
         </article>
       )}
-
       {ultimoResultadoCombate && (
-        <article className={`mb-3 rounded-lg border p-3 ${ultimoResultadoCombate.fase === "victoria" ? "border-emerald-800 bg-emerald-950/30" : "border-red-900 bg-red-950/20"}`}>
-          <p className={`font-black ${ultimoResultadoCombate.fase === "victoria" ? "text-emerald-200" : "text-red-200"}`}>
+        <article className={`overflow-hidden rounded-md border p-2.5 ${ultimoResultadoCombate.fase === "victoria" ? "border-emerald-800 bg-emerald-950/30" : "border-red-900 bg-red-950/20"}`}>
+          <p className={`text-sm font-black ${ultimoResultadoCombate.fase === "victoria" ? "text-emerald-200" : "text-red-200"}`}>
             {ultimoResultadoCombate.fase === "victoria" ? "🎁 Recompensas de la expedición" : "⚔️ Resultado del combate"}
           </p>
           {ultimoResultadoCombate.fase === "victoria" && ultimoResultadoCombate.recompensas ? (
-            <div className="mt-2 space-y-2">
+            <div className="mt-2 space-y-1.5">
               <p className="text-[11px] text-slate-300">
                 Oro total repartido: {ultimoResultadoCombate.recompensas.oroTotal ?? 0} 🪙. La experiencia Base y Job se aplica individualmente.
               </p>
@@ -888,86 +975,9 @@ export default function PanelParty() {
           )}
         </article>
       )}
-
-      {trasladosPropios.map((traslado) => {
-        const restante = segundosRestantes(traslado.fechaLlegada, ahora);
-        const destino = traslado.anfitrion?.nombre ?? "la base de destino";
-        const regresando = traslado.estado === "regresando";
-        const esperando = traslado.estado === "pendiente";
-        return (
-          <article key={traslado.id} className="mb-2 rounded-lg border border-sky-900/60 bg-sky-950/20 p-3">
-            <p className="font-bold text-sky-100">
-              {regresando ? "↩ Regresando a tu base" : esperando ? "⏳ En espera de aceptación" : `🚶 Camino a la base de ${destino}`}
-            </p>
-            <p className="mt-1 text-xs text-slate-300">
-              {regresando
-                ? `Llegada estimada: ${restante === 0 ? "procesando llegada..." : formatoCuentaAtras(restante)}`
-                : esperando
-                  ? `Has llegado. El propietario de ${destino} debe aceptar o rechazar la visita.`
-                  : `Llegada estimada en ${formatoCuentaAtras(restante)}.`}
-            </p>
-          </article>
-        );
-      })}
-
-      {visitasEntrantes.length > 0 && (
-        <div className="mt-3">
-          <h3 className="mb-2 text-sm font-black uppercase tracking-wide text-amber-200">
-            Visitas entrantes
-          </h3>
-          <div className="grid gap-2 sm:grid-cols-2">
-            {visitasEntrantes.map((traslado) => {
-              const visitante = traslado.visitante;
-              const restante = segundosRestantes(traslado.fechaLlegada, ahora);
-              const haLlegado = traslado.haLlegadoEnServidor ?? restante === 0;
-              const llegadaEsperandoConfirmacion = restante === 0 && !haLlegado;
-              return (
-                <article key={traslado.id} className="rounded-lg border border-amber-900/60 bg-amber-950/20 p-3">
-                  <p className="font-bold text-white">{visitante?.personaje?.nombre ?? "Aventurero visitante"}</p>
-                  <p className="mt-1 text-sm text-slate-300">{visitante?.nombre ?? "Gremio desconocido"}</p>
-                  <p className="mt-1 text-xs text-slate-400">
-                    {haLlegado
-                      ? "Ha llegado a tu base; decide si incorporarlo."
-                      : llegadaEsperandoConfirmacion
-                        ? "Confirmando la llegada con el servidor..."
-                        : `En camino: ${formatoCuentaAtras(restante)}`}
-                  </p>
-                  {haLlegado ? (
-                    <div className="mt-3 flex gap-2">
-                      <button
-                        type="button"
-                        disabled={Boolean(accion) || !puedeGestionarVisitasParty || ocupado}
-                        onClick={() => void ejecutar("aceptar:" + traslado.id, "/api/party/transfer/aceptar", traslado.id)}
-                        title={ocupado ? "Tu personaje debe estar disponible en la base." : !puedeGestionarVisitasParty ? "Solo el líder de una party puede aceptar visitas." : undefined}
-                        className="flex-1 rounded-md border border-emerald-800 bg-emerald-950/70 px-2 py-2 text-xs font-black text-emerald-200 hover:bg-emerald-900 disabled:cursor-not-allowed disabled:opacity-40"
-                      >
-                        {accion === "aceptar:" + traslado.id ? "Aceptando..." : "Aceptar"}
-                      </button>
-                      <button
-                        type="button"
-                        disabled={Boolean(accion) || !puedeGestionarVisitasParty || ocupado}
-                        onClick={() => void ejecutar("rechazar:" + traslado.id, "/api/party/transfer/rechazar", traslado.id)}
-                        title={ocupado ? "Tu personaje debe estar disponible en la base." : !puedeGestionarVisitasParty ? "Solo el líder de una party puede rechazar visitas." : undefined}
-                        className="flex-1 rounded-md border border-red-900 bg-red-950/70 px-2 py-2 text-xs font-black text-red-200 hover:bg-red-900 disabled:cursor-not-allowed disabled:opacity-40"
-                      >
-                        {accion === "rechazar:" + traslado.id ? "Rechazando..." : "Rechazar"}
-                      </button>
-                    </div>
-                  ) : (
-                    <p className="mt-2 text-xs text-amber-300/80">Las opciones aparecerán cuando llegue.</p>
-                  )}
-                </article>
-              );
-            })}
-          </div>
-        </div>
+        </>,
+        destinoTablon,
       )}
-
-      {!party && trasladosPropios.length === 0 && visitasEntrantes.length === 0 && !cargando && (
-        <p className="rounded-lg border border-dashed border-slate-700 p-3 text-sm text-slate-400">
-          Todavía no tienes party ni visitas pendientes. En el mapa de expediciones puedes enviar a tu aventurero a otra base.
-        </p>
-      )}
-    </section>
+    </>
   );
 }

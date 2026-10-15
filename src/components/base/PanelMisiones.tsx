@@ -176,6 +176,7 @@ export default function PanelMisiones({
               Contratos disponibles
             </h2>
           </div>
+          <div id="party-expedition-slot" className="mb-3 space-y-2" aria-live="polite" />
 
           {/* AVENTURERO OCIOSO */}
           {personaje.estado === "ocioso" && (

@@ -655,9 +655,11 @@ export default function BasePage() {
         comenzandoAsedio={comenzandoAsedio}
       />
       <PanelCaravanasEntrantes caravanas={caravanasEntrantes} />
-      <PanelParty />
-
-      <div className="mx-auto w-full max-w-4xl">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-3 lg:grid-cols-[minmax(0,1fr)_250px]">
+        <aside className="order-1 min-w-0 lg:sticky lg:top-3 lg:order-2">
+          <PanelParty />
+        </aside>
+        <div className="order-2 min-w-0 w-full lg:order-1">
         {/* Profesiones y maestrías están integradas en la Escuela de Combate. */}
 
         {/* 1. PANEL DE MISIONES */}
@@ -724,6 +726,7 @@ export default function BasePage() {
         ) : (
           <PanelEdificios edificios={Object.values(edificios)} />
         )}
+        </div>
       </div>
     </main>
   );
