@@ -268,9 +268,12 @@ export default function ExpedicionesPage() {
   const baseLat = baseCoords?.lat ?? null;
   const baseLng = baseCoords?.lng ?? null;
   const nivelPersonaje = personaje?.nivel ?? null;
+  const esMiembroNoLiderParty = Boolean(
+    estadoParty?.party && estadoParty.party.liderUsuarioId !== estadoParty.usuarioId,
+  );
 
   useEffect(() => {
-    if (cargandoEstadoParty || (estadoParty?.party && estadoParty.party.liderUsuarioId !== estadoParty.usuarioId)) return;
+    if (cargandoEstadoParty || esMiembroNoLiderParty) return;
     if (
       isLoading ||
       !sesionActiva ||
@@ -322,8 +325,7 @@ export default function ExpedicionesPage() {
     baseLat,
     baseLng,
     cargandoEstadoParty,
-    estadoParty?.party?.liderUsuarioId,
-    estadoParty?.usuarioId,
+    esMiembroNoLiderParty,
     isLoading,
     nivelPersonaje,
     sesionActiva,
