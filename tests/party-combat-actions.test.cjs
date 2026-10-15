@@ -133,6 +133,7 @@ function loadService(prisma, testOptions = {}) {
       calcularFechaLlegadaParty: (_distance, velocidades, _multiplicador, salida) =>
         new Date(salida.getTime() + Math.max(30_000, 1000 / Math.min(...velocidades))),
     },
+    "@/lib/expediciones/tiempos": require("../src/lib/expediciones/tiempos.ts"),
     "@/lib/party/reglas": {
       leerCoordenadasBase: (value) => value && typeof value.lat === "number" && typeof value.lng === "number" ? value : null,
     },
@@ -281,7 +282,8 @@ function mockPrisma(combat, options = {}) {
           })),
           origenCoords: { lat: 27.9, lng: -15.4 },
           destinoCoords: { lat: 28.0, lng: -15.5 },
-          fechaLlegada: new Date(Date.now() + 1000),
+          fechaSalida: new Date("2026-10-15T10:00:00.000Z"),
+          fechaLlegada: new Date("2026-10-15T10:15:00.000Z"),
           resultadoFinal: null,
         };
         }
@@ -437,6 +439,8 @@ test("un ataque que vacía el HP del enemigo marca victoria en vez de ceder otro
   assert.equal(combat.fase, "victoria");
   assert.equal(combat.enemigoHp, 0);
   assert.equal(calls.expeditionWrites[0].data.fase, "regresando");
+  assert.equal(calls.expeditionWrites[0].data.fechaSalida.toISOString(), "2026-10-15T10:15:00.000Z");
+  assert.equal(calls.expeditionWrites[0].data.fechaLlegada.toISOString(), "2026-10-15T10:30:00.000Z");
 });
 
 test("el turno del enemigo apunta al aventurero con menor porcentaje de vida", async () => {
