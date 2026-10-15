@@ -62,7 +62,7 @@ function PanelMovimientosReino({
   }, [caravanas.length, asedios.length]);
 
   if (caravanas.length === 0 && asedios.length === 0) return null;
-  const reloj = ahora || Date.now();
+  const reloj = ahora;
 
   return (
     <section className="mb-3 overflow-hidden rounded-md border border-[#73502b] bg-[linear-gradient(135deg,rgba(39,27,16,0.96),rgba(24,17,12,0.96))] shadow-inner">
@@ -115,7 +115,7 @@ function PanelMovimientosReino({
                 </div>
                 <div className="shrink-0 text-right">
                   <p className="text-[9px] uppercase tracking-wider text-slate-400">Llegada</p>
-                  <p className="font-mono text-base font-bold tabular-nums text-emerald-200">{formatearCuentaAtras(caravana.fechaLlegada, reloj)}</p>
+                  <p className="font-mono text-base font-bold tabular-nums text-emerald-200">{reloj === 0 ? "Calculando..." : formatearCuentaAtras(caravana.fechaLlegada, reloj)}</p>
                 </div>
               </div>
               <div className="relative mt-3">
@@ -152,7 +152,7 @@ function PanelMovimientosReino({
                 <div className="shrink-0 text-right">
                   <p className="text-[9px] uppercase tracking-wider text-slate-400">{haLlegado ? "Estado" : "Llegada"}</p>
                   <p className={`font-mono text-base font-bold tabular-nums ${haLlegado ? "text-red-200" : "text-red-300"}`}>
-                    {haLlegado ? "A las puertas" : formatearCuentaAtras(asedio.fechaLlegada, reloj)}
+                    {haLlegado ? "A las puertas" : reloj === 0 ? "Calculando..." : formatearCuentaAtras(asedio.fechaLlegada, reloj)}
                   </p>
                 </div>
               </div>

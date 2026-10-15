@@ -53,7 +53,6 @@ export default function BasePage() {
     piedra,
     metal,
     personaje,
-    cargarJugador,
     expedicionActiva,
     baseCoords,
     llegarExpedicion,
