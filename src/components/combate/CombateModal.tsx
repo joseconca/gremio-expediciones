@@ -479,7 +479,15 @@ export default function CombateModal({
     }
     if (!accion || clave === ultimaAccionPartyClave.current) return;
     ultimaAccionPartyClave.current = clave;
-    if (accion.actor === "enemigo") void mostrarResultadoAccion(accion);
+    if (accion.actor !== "enemigo") return;
+
+    // La acción llega desde el sondeo externo del estado de la party.
+    // Programamos la animación en el siguiente frame para no actualizar
+    // estado React de forma síncrona desde el efecto.
+    const frame = window.requestAnimationFrame(() => {
+      void mostrarResultadoAccion(accion);
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, [partyMode?.ultimaAccion, partyMode, mostrarResultadoAccion]);
 
   const habilidadSeleccionada = habilidades.find(
