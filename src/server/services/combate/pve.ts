@@ -320,8 +320,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
         const recompensaMision = obtenerRecompensaMision(expedicion.recompensa);
         const recompensaEnemigo = calcularOroEnemigo(
           enemigo.botin,
-          expedicion.dificultad,
-          enemigo.difMin
+          expedicion.dificultad
         );
         const oroSinMultiplicar = recompensaMision.oro + recompensaEnemigo;
         const oroGanado = aplicarMultiplicadorRecompensa(oroSinMultiplicar, modoDificultad);

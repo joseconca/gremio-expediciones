@@ -55,7 +55,7 @@ function falloPorPrecision(actor: "jugador" | "enemigo", nombre: string): Accion
   };
 }
 
-const K_DEFENSA = 50;
+const K_DEFENSA = 100;
 
 /**
  * Fórmula única de mitigación para ataques básicos, habilidades y daño progresivo.

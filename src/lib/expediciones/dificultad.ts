@@ -150,10 +150,15 @@ export function calcularMultiplicadoresEnemigo(nivelAmenaza: number, modo: ModoD
   };
 }
 
-export function calcularOroEnemigo(base: number, nivelAmenaza: number, dificultadMinima: number): number {
-  const exceso = Math.max(0, Math.floor(nivelAmenaza) - Math.max(1, Math.floor(dificultadMinima)));
-  const factorAmenaza = Math.min(1.5, 1 + exceso * 0.02);
-  return Math.max(0, Math.floor(base * factorAmenaza));
+/**
+ * El botín escala con la amenaza de la misión, sin depender del difMin de la especie.
+ * El tope ×1,5 evita que el oro del enemigo descontrole la economía a niveles muy altos.
+ */
+export function calcularOroEnemigo(base: number, nivelAmenaza: number): number {
+  const baseSegura = Number.isFinite(base) ? Math.max(0, Math.floor(base)) : 0;
+  const amenazaSegura = Number.isFinite(nivelAmenaza) ? Math.max(0, Math.floor(nivelAmenaza)) : 0;
+  const factorAmenaza = Math.min(1.5, 1 + amenazaSegura * 0.02);
+  return Math.max(0, Math.floor(baseSegura * factorAmenaza));
 }
 
 export function aplicarMultiplicadorRecompensa(cantidad: number, modo: ModoDificultad): number {
