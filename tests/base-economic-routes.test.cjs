@@ -1310,7 +1310,9 @@ test("expediciones: rutas requieren sesión y las misiones manipuladas se rechaz
 
 
 test("asedios concurrentes: el botín se calcula con los recursos restantes y nunca los hace negativos", async () => {
-  const { finalizarAsedio } = loadSource("src/lib/expediciones/asedio.ts");
+  const { finalizarAsedio } = loadSource("src/lib/expediciones/asedio.ts", {
+    "./tiempos": loadSource("src/lib/expediciones/tiempos.ts"),
+  });
   const state = {
     users: {
       defensor: { id: "defensor", madera: 100, piedra: 0, metal: 0 },
@@ -1320,8 +1322,16 @@ test("asedios concurrentes: el botín se calcula con los recursos restantes y nu
       combate2: { id: "combate2", version: 0, fase: "activo" },
     },
     expeditions: {
-      expedicion1: { id: "expedicion1" },
-      expedicion2: { id: "expedicion2" },
+      expedicion1: {
+        id: "expedicion1",
+        fechaSalida: new Date("2026-10-15T10:00:00.000Z"),
+        fechaLlegada: new Date("2026-10-15T10:15:00.000Z"),
+      },
+      expedicion2: {
+        id: "expedicion2",
+        fechaSalida: new Date("2026-10-15T11:00:00.000Z"),
+        fechaLlegada: new Date("2026-10-15T11:15:00.000Z"),
+      },
     },
     characters: {
       atacante1: { usuarioId: "atacante1", hpActual: 10 },
@@ -1374,6 +1384,7 @@ test("asedios concurrentes: el botín se calcula con los recursos restantes y nu
         },
       },
       expedicionActiva: {
+        findUnique: async ({ where }) => clone(state.expeditions[where.id] ?? null),
         update: async ({ where, data }) => {
           const expedition = state.expeditions[where.id];
           if (!expedition) throw new Error("Expedición no encontrada");
