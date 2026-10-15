@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "test:base": "node --test tests/base-economic-routes.test.cjs tests/objetos-system.test.cjs tests/comidas-taberna.test.cjs tests/economy-balance.test.cjs",
-    "test:progression": "node --test tests/progression.test.cjs tests/progression-api.test.cjs tests/combat-effects.test.cjs tests/combat-positions.test.cjs tests/combat-contract.test.cjs tests/combat-pvp.test.cjs",
+    "test:progression": "node --test tests/progression.test.cjs tests/progression-api.test.cjs tests/combat-effects.test.cjs tests/combat-positions.test.cjs tests/combat-contract.test.cjs tests/combat-pvp.test.cjs tests/combat-presentacion.test.cjs",
     "test:party": "node --test tests/party-rules.test.cjs tests/party-service.test.cjs tests/party-expedition-rules.test.cjs tests/party-expedition.test.cjs tests/party-combat-rules.test.cjs tests/party-combat-service.test.cjs tests/party-combat-actions.test.cjs"
   },
   "dependencies": {

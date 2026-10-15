@@ -75,11 +75,13 @@ No inferir el elemento solo por `tipoDano: "magico"`; una habilidad debe configu
 
 ### Fase 4 — proyectiles físicos
 
-- Añadir una biblioteca de sprites de proyectil separada de los iconos de habilidades.
-- Implementar un movimiento origen-destino medido desde las posiciones reales de los sprites, no con distancias fijas.
-- Empezar por una flecha para ataques básicos y habilidades de arco.
-- Mostrar impacto solo cuando corresponda; fallos y esquivas deben usar una secuencia distinta.
-- Cubrir tanto el movimiento jugador→enemigo como enemigo→jugador y participante→enemigo.
+- [x] Reutilizar `public/sprites/projectiles/arrow.png`, añadido previamente a `main`, sin duplicar el recurso.
+- [x] Crear una capa de efectos fuera de los contenedores de los personajes y medir las anclas reales para calcular origen, destino, vector y ángulo.
+- [x] Marcar los ataques básicos con arco mediante metadatos visuales explícitos en PvE, PvP/asedio y turnos de jugadores de party.
+- [x] Mantener los proyectiles separados de la lógica de daño y no ejecutar el desplazamiento cuerpo a cuerpo durante su vuelo.
+- [x] No mostrar un impacto válido en fallos; si falta el sprite, utilizar un símbolo alternativo sin interrumpir el combate.
+- [ ] Validación visual y automatizada pendiente por el fallo de `test:base` descrito en la fase 1.
+- [ ] Los proyectiles mágicos y la asignación de presentación por habilidad quedan para la fase 5; los perfiles de enemigos aún no declaran tipo de ataque a distancia.
 
 ### Fase 5 — magia elemental
 

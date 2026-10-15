@@ -2,11 +2,20 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
+import type { ModoPresentacionCombate, TipoProyectilCombate } from "@/lib/tiposJuego";
 
 export interface PulsoEstadoVisibleCombate {
   actor: string;
   tipo: "curacion" | "dano";
   cantidad: number;
+}
+
+export interface ProyectilVisibleCombate {
+  id: number;
+  tipo: TipoProyectilCombate;
+  origen: string;
+  destino: string;
+  duracionMs: number;
 }
 
 export interface DestinosVisualesAccionCombate {
@@ -56,6 +65,8 @@ export function useAnimacionesCombate() {
   const [actorAnimando, setActorAnimando] = useState<string | null>(null);
   const [actorImpactado, setActorImpactado] = useState<string | null>(null);
   const [animacionActual, setAnimacionActual] = useState<AccionAnimadaCombate["animacion"] | null>(null);
+  const [modoPresentacionActual, setModoPresentacionActual] = useState<ModoPresentacionCombate | null>(null);
+  const [proyectilesVisibles, setProyectilesVisibles] = useState<ProyectilVisibleCombate[]>([]);
 
   const secuenciaRef = useRef(0);
   const montadoRef = useRef(true);
@@ -80,16 +91,28 @@ export function useAnimacionesCombate() {
     const { actorVisual, objetivoVisual } = destinos;
     const curacion = accion.curacion ?? 0;
     const dano = accion.dano;
-    const animacionSoporte = accion.presentacion?.modo === "curacion" ||
+    const modoPresentacion = accion.presentacion?.modo ?? (
+      accion.animacion === "curacion"
+        ? "curacion"
+        : accion.animacion === "defensiva" || accion.animacion === "escudo"
+          ? "defensiva"
+          : accion.animacion === "ofensiva" || accion.animacion === "ofensiva_potenciada"
+            ? "cuerpo_a_cuerpo"
+            : "estado"
+    );
+    const animacionSoporte = modoPresentacion === "curacion" ||
       accion.animacion === "curacion" ||
       accion.animacion === "defensiva" ||
       accion.animacion === "escudo";
+    const esProyectil = modoPresentacion === "proyectil" && Boolean(accion.presentacion?.proyectil);
 
     setDanioVisible(null);
     setCuracionVisible(null);
     setActorImpactado(null);
+    setProyectilesVisibles([]);
     setPulsosEstadoVisibles(destinos.pulsosEstadoVisibles);
     setAnimacionActual(accion.animacion);
+    setModoPresentacionActual(modoPresentacion);
     setActorAnimando(
       accion.presentacion?.modo === "curacion" ? objetivoVisual : actorVisual,
     );
@@ -106,14 +129,29 @@ export function useAnimacionesCombate() {
       setCuracionVisible(null);
       setActorAnimando(null);
       setAnimacionActual(null);
+      setModoPresentacionActual(null);
       setPulsosEstadoVisibles([]);
       return;
     }
 
-    await esperar(accion.animacion === "ofensiva_potenciada" ? 350 : 250, temporizadoresRef.current);
-    if (!sigueActiva()) return;
+    if (esProyectil && accion.presentacion?.proyectil) {
+      setProyectilesVisibles([{
+        id: secuencia,
+        tipo: accion.presentacion.proyectil,
+        origen: actorVisual,
+        destino: objetivoVisual,
+        duracionMs: 440,
+      }]);
+      await esperar(440, temporizadoresRef.current);
+      if (!sigueActiva()) return;
+      setProyectilesVisibles([]);
+    } else {
+      await esperar(accion.animacion === "ofensiva_potenciada" ? 350 : 250, temporizadoresRef.current);
+      if (!sigueActiva()) return;
+    }
 
-    setActorImpactado(objetivoVisual);
+    const fallo = accion.tipo === "fallo" || dano <= 0;
+    if (!fallo) setActorImpactado(objetivoVisual);
     if (dano > 0) {
       setDanioVisible({ actor: objetivoVisual, dano, critico: accion.critico });
     }
@@ -140,6 +178,8 @@ export function useAnimacionesCombate() {
 
     setActorAnimando(null);
     setAnimacionActual(null);
+    setModoPresentacionActual(null);
+    setProyectilesVisibles([]);
     setPulsosEstadoVisibles([]);
   }, []);
 
@@ -150,6 +190,8 @@ export function useAnimacionesCombate() {
     actorAnimando,
     actorImpactado,
     animacionActual,
+    modoPresentacionActual,
+    proyectilesVisibles,
     mostrarResultadoVisual,
   };
 }

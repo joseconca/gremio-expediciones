@@ -8,6 +8,7 @@ import { CLASES } from "@/lib/progresion/clases";
 import type { CombatePve, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { useAnimacionesCombate } from "@/components/combate/animaciones/useAnimacionesCombate";
+import CapaEfectosCombate from "@/components/combate/animaciones/CapaEfectosCombate";
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import type { ObjetoInventario } from "@/lib/tiposJuego";
 import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
@@ -279,6 +280,8 @@ export default function CombateModal({
     actorAnimando,
     actorImpactado,
     animacionActual,
+    modoPresentacionActual,
+    proyectilesVisibles,
     mostrarResultadoVisual,
   } = useAnimacionesCombate();
 
@@ -588,7 +591,7 @@ export default function CombateModal({
                 return (
                   <div
                     key={participante.id}
-                    className={`absolute z-10 flex w-[31%] max-w-[112px] -translate-x-1/2 -translate-y-1/2 flex-col items-center transition-[left,top] duration-300 ${animando && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque_700ms_ease-in-out]") : ""} ${retirado ? "opacity-50 grayscale-[35%]" : caido ? "opacity-55 grayscale" : ""}`}
+                    className={`absolute z-10 flex w-[31%] max-w-[112px] -translate-x-1/2 -translate-y-1/2 flex-col items-center transition-[left,top] duration-300 ${animando && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque_700ms_ease-in-out]") : ""} ${retirado ? "opacity-50 grayscale-[35%]" : caido ? "opacity-55 grayscale" : ""}`}
                     style={{ left: `${x}%`, top: `${y}%` }}
                     aria-label={`${participante.nombre}, ${participante.jugadorHp} de ${participante.jugadorHpMaximo} puntos de vida`}
                   >
@@ -602,7 +605,8 @@ export default function CombateModal({
                         <span className="combate-numero-curacion">+{curacionVisible.cantidad}</span>
                       </div>
                     )}
-                    <div className={`relative h-[64px] w-[54px] transition-all duration-200 sm:h-[92px] sm:w-[78px] ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}>
+                    <div className={`relative h-[64px] w-[54px] transition-all duration-200 sm:h-[92px] sm:w-[78px] ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}
+                      data-combate-ancla={participante.usuarioId}>
                       <div className="absolute inset-0 z-0 opacity-45 blur-[1px]" style={{ transform: "translateY(36%) perspective(110px) rotateX(65deg) scale(1.05,-0.65)" }}>
                         <Image src={sprite} alt="" fill sizes="78px" className="object-contain brightness-0" />
                       </div>
@@ -636,7 +640,7 @@ export default function CombateModal({
           ) : (
 <div
             className={`relative flex w-[46%] justify-center sm:w-[40%] ${
-              actorAnimando === "jugador" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada")
+              actorAnimando === "jugador" && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada")
                 ? animacionActual === "ofensiva_potenciada"
                   ? "animate-[combate-ataque-fuerte_900ms_ease-in-out]"
                   : "animate-[combate-ataque_700ms_ease-in-out]"
@@ -708,6 +712,7 @@ export default function CombateModal({
                     ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]"
                     : ""
                 }`}
+                data-combate-ancla="jugador"
               >
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "jugador").map((pulso, indice) => (
                   <div
@@ -752,7 +757,7 @@ export default function CombateModal({
           {/* ENEMIGO */}
           <div
             className={`relative flex ${partyMode ? "w-[32%] justify-center px-0" : "w-[46%] justify-center sm:w-[40%]"} ${
-              actorAnimando === "enemigo" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada")
+              actorAnimando === "enemigo" && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada")
                 ? animacionActual === "ofensiva_potenciada"
                   ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]"
                   : "animate-[combate-ataque-enemigo_700ms_ease-in-out]"
@@ -793,6 +798,7 @@ export default function CombateModal({
                     ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]"
                     : ""
                 }`}
+                data-combate-ancla="enemigo"
               >
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "enemigo").map((pulso, indice) => (
                   <div
@@ -834,6 +840,8 @@ export default function CombateModal({
               </div>
             </div>
           </div>
+
+          <CapaEfectosCombate proyectiles={proyectilesVisibles} />
 
           {/* RESULTADO */}
           {combateTerminado && (mostrarResultado || Boolean(partyMode)) && (

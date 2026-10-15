@@ -6,6 +6,7 @@ import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import type { CombateActivo, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { useAnimacionesCombate } from "@/components/combate/animaciones/useAnimacionesCombate";
+import CapaEfectosCombate from "@/components/combate/animaciones/CapaEfectosCombate";
 import { calcularBonusDefensaMuralla } from "@/lib/expediciones/combate";
 import { CLASES } from "@/lib/progresion/clases";
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
@@ -93,6 +94,8 @@ export default function AsedioModal({
     actorAnimando,
     actorImpactado,
     animacionActual,
+    modoPresentacionActual,
+    proyectilesVisibles,
     mostrarResultadoVisual,
   } = useAnimacionesCombate();
 
@@ -540,7 +543,7 @@ export default function AsedioModal({
 
           <div
             className={`relative flex w-[46%] justify-center sm:w-[40%] ${
-              actorAnimando === "jugador" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada")
+              actorAnimando === "jugador" && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada")
                 ? animacionActual === "ofensiva_potenciada"
                   ? "animate-[combate-ataque-fuerte_900ms_ease-in-out]"
                   : "animate-[combate-ataque_700ms_ease-in-out]"
@@ -618,6 +621,7 @@ export default function AsedioModal({
                     ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]"
                     : ""
                 }`}
+                data-combate-ancla="jugador"
               >
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "jugador").map((pulso, indice) => (
                   <div
@@ -662,7 +666,7 @@ export default function AsedioModal({
 
           <div
             className={`relative flex w-[46%] justify-center sm:w-[40%] ${
-              actorAnimando === "enemigo" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada")
+              actorAnimando === "enemigo" && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada")
                 ? animacionActual === "ofensiva_potenciada"
                   ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]"
                   : "animate-[combate-ataque-enemigo_700ms_ease-in-out]"
@@ -716,6 +720,7 @@ export default function AsedioModal({
                     ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]"
                     : ""
                 }`}
+                data-combate-ancla="enemigo"
               >
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "enemigo").map((pulso, indice) => (
                   <div
@@ -759,6 +764,8 @@ export default function AsedioModal({
               </div>
             </div>
           </div>
+
+          <CapaEfectosCombate proyectiles={proyectilesVisibles} />
 
           {/* ==================================================== */}
           {/* RESULTADO */}

@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+import { obtenerObjetoPorId } from "@/lib/objetos";
+import { obtenerPresentacionAtaqueBasico } from "@/lib/expediciones/presentacion-combate";
 
 function adjuntarPulsosEstado(
   accion: AccionAnimadaCombate,
@@ -264,6 +266,13 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
         },
         { status: 409 }
       );
+    }
+
+    if (accion === "atacar") {
+      const presentacionArma = obtenerPresentacionAtaqueBasico(
+        obtenerObjetoPorId(personaje.equipoEquipado?.arma?.objetoId)?.subtipo,
+      );
+      if (presentacionArma) accionAnimada = { ...accionAnimada, presentacion: presentacionArma };
     }
 
     log.push(accionAnimada.texto);

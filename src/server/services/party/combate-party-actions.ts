@@ -8,6 +8,7 @@ import {
 } from "@/lib/expediciones/combate";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { obtenerObjetoPorId } from "@/lib/objetos";
+import { obtenerPresentacionAtaqueBasico } from "@/lib/expediciones/presentacion-combate";
 import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
 import { puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
 import type { DefinicionHabilidad, EstadoEfectoHabilidad } from "@/lib/tiposJuego";
@@ -201,6 +202,7 @@ type PersonajeAccionParty = {
   manaActual: number;
   habilidades: { habilidadId: string; nivel: number; slot: string | null }[];
   inventario: { id: string; objetos: { id: string; objetoId: string; cantidad: number }[] } | null;
+  equipoEquipado: { arma: { objetoId: string } | null } | null;
 };
 
 async function cargarPersonajeAccionParty(tx: Prisma.TransactionClient, usuarioId: string): Promise<PersonajeAccionParty> {
@@ -213,6 +215,7 @@ async function cargarPersonajeAccionParty(tx: Prisma.TransactionClient, usuarioI
       manaActual: true,
       habilidades: { select: { habilidadId: true, nivel: true, slot: true } },
       inventario: { select: { id: true, objetos: { select: { id: true, objetoId: true, cantidad: true } } } },
+      equipoEquipado: { select: { arma: { select: { objetoId: true } } } },
     },
   });
   if (!personaje) {
@@ -836,6 +839,10 @@ export async function ejecutarAccionCombateParty(
         enemigoDefensa,
         enemigoNombre: combate.enemigoNombre,
       });
+      const presentacionArma = obtenerPresentacionAtaqueBasico(
+        obtenerObjetoPorId(personaje.equipoEquipado?.arma?.objetoId)?.subtipo,
+      );
+      if (presentacionArma) accion = { ...accion, presentacion: presentacionArma };
     } else if (accionDesconocida === "usar_habilidad") {
       if (typeof payload?.habilidadId !== "string" || !payload.habilidadId.trim()) {
         throw new PartyServiceError("Debes indicar una habilidad.", 400, "HABILIDAD_ID_REQUERIDO");

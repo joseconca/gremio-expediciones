@@ -15,6 +15,8 @@ function adjuntarPulsosEstado(
 }
 import { actualizarCombateVersionado } from "@/lib/expediciones/actualizar-combate-versionado";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
+import { obtenerObjetoPorId } from "@/lib/objetos";
+import { obtenerPresentacionAtaqueBasico } from "@/lib/expediciones/presentacion-combate";
 import { experienciaParaNivel } from "@/lib/configuracionJuego";
 import {
   aplicarMultiplicadorRecompensa,
@@ -181,6 +183,11 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             enemigoDefensa,
             enemigoNombre: combate.enemigoNombre ?? "Enemigo",
           });
+
+          const presentacionArma = obtenerPresentacionAtaqueBasico(
+            obtenerObjetoPorId(personaje.equipoEquipado?.arma?.objetoId)?.subtipo,
+          );
+          if (presentacionArma) accionAnimada = { ...accionAnimada, presentacion: presentacionArma };
 
           enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
         } else if (accion === "usar_objeto") {

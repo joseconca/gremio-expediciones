@@ -428,6 +428,7 @@ type UsuarioAccionPayload = Prisma.UsuarioGetPayload<{
       include: {
         inventario: { include: { objetos: true } };
         habilidades: { where: { slot: { not: null } } };
+        equipoEquipado: { include: { arma: true } };
       };
     };
     expedicionActiva: {
@@ -567,6 +568,7 @@ export async function prepararAccionCombate(
                 },
               },
             },
+            equipoEquipado: { include: { arma: true } },
           },
         },
         expedicionActiva: {
