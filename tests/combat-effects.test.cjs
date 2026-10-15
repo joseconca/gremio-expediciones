@@ -11,7 +11,7 @@ const {
   calcularEvasionModificada,
   retirarEfectosHabilidad,
 } = require("../src/lib/expediciones/estados-combate.ts");
-const { resolverHabilidadJugador, resolverAtaqueJugador } = require("../src/lib/expediciones/combate.ts");
+const { resolverHabilidadJugador, resolverAtaqueJugador, calcularDanoMitigado } = require("../src/lib/expediciones/combate.ts");
 const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
 
 test("curación progresiva aplica un pulso sin superar la vida máxima", () => {
@@ -116,12 +116,18 @@ test("el daño progresivo se mitiga con la defensa física o mágica del objetiv
       jugadorPrecision: 100,
       enemigoEvasion: 0,
     });
-    assert.equal(resultado.efectos.find((efecto) => efecto.tipo === "dano_progresivo").valor, 8);
+    assert.equal(resultado.efectos.find((efecto) => efecto.tipo === "dano_progresivo").valor, 13);
   } finally {
     Math.random = originalRandom;
   }
 });
 
+
+
+test("la defensa mitiga el 50% a 50 puntos de defensa", () => {
+  assert.equal(calcularDanoMitigado(100, 50), 50);
+  assert.equal(calcularDanoMitigado(100, 20), 71);
+});
 
 test("ataques básicos y habilidades comparten la misma fórmula de mitigación", () => {
   const originalRandom = Math.random;
@@ -168,8 +174,8 @@ test("ataques básicos y habilidades comparten la misma fórmula de mitigación"
       enemigoEvasion: 0,
     }).accion;
 
-    assert.equal(basico.dano, 50);
-    assert.equal(habilidad.dano, 50);
+    assert.equal(basico.dano, 71);
+    assert.equal(habilidad.dano, 71);
   } finally {
     Math.random = originalRandom;
   }

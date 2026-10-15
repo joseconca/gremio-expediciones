@@ -501,7 +501,7 @@ test("Job: la recompensa depende de amenaza, no del nivel Job ni de un porcentaj
   assert.ok(dificil > amenazaInicial);
 });
 
-test("dificultad: amenaza escala un 15% por nivel desde cero y después aplica el modo", () => {
+test("dificultad: amenaza escala un 30% por nivel desde cero y después aplica el modo", () => {
   const base = calcularMultiplicadoresEnemigo(0, "normal");
   const facil = calcularMultiplicadoresEnemigo(0, "facil");
   const dificil = calcularMultiplicadoresEnemigo(0, "dificil");
@@ -509,12 +509,12 @@ test("dificultad: amenaza escala un 15% por nivel desde cero y después aplica e
   assert.deepEqual(facil, { vida: 0.8, ataque: 0.85, defensa: 0.9 });
   assert.deepEqual(dificil, { vida: 1.25, ataque: 1.15, defensa: 1.1 });
 
-  assert.deepEqual(calcularMultiplicadoresEnemigo(6, "normal"), { vida: 1.9, ataque: 1.9, defensa: 1.9 });
-  assert.deepEqual(calcularMultiplicadoresEnemigo(9, "normal"), { vida: 2.35, ataque: 2.35, defensa: 2.35 });
+  assert.deepEqual(calcularMultiplicadoresEnemigo(6, "normal"), { vida: 2.8, ataque: 2.8, defensa: 2.8 });
+  assert.deepEqual(calcularMultiplicadoresEnemigo(9, "normal"), { vida: 3.7, ataque: 3.7, defensa: 3.7 });
   const dificilAmenaza6 = calcularMultiplicadoresEnemigo(6, "dificil");
-  assert.equal(dificilAmenaza6.vida, 2.375);
-  assert.ok(Math.abs(dificilAmenaza6.ataque - 2.185) < 1e-12);
-  assert.equal(dificilAmenaza6.defensa, 2.09);
+  assert.equal(dificilAmenaza6.vida, 3.5);
+  assert.ok(Math.abs(dificilAmenaza6.ataque - 3.22) < 1e-12);
+  assert.ok(Math.abs(dificilAmenaza6.defensa - 3.08) < 1e-12);
 });
 
 test("Job: al alcanzar el máximo completa maestría y no acumula experiencia extra", () => {
