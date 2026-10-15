@@ -19,11 +19,18 @@ const {
   calcularExperienciaJobGanada,
   calcularFactorExperienciaAmenaza,
   calcularMultiplicadoresEnemigo,
+  calcularOroEnemigo,
   registrarVictoriaRangoNormal,
   obtenerRangoMaximoDesbloqueado,
 } = require("../src/lib/expediciones/dificultad.ts");
 const { obtenerHabilidadesEnVenta, evaluarRequisitosAprendizaje } = require("../src/lib/tiendaHabilidades.ts");
 const { ENEMIGOS, JEFES_ELITE, obtenerRutaSpriteEnemigo, obtenerEnemigosPorDificultad } = require("../src/lib/enemigos.ts");
+const {
+  seleccionarEnemigoNormal,
+  calcularPesoDifMinEnemigo,
+  calcularPesoRarezaEnemigo,
+  PROBABILIDAD_ENCUENTRO_MIMICO,
+} = require("../src/lib/expediciones/normal.ts");
 const { generarMisionesDisponibles } = require("../src/lib/generadorMisiones.ts");
 const {
   calcularCosteRecursosMejora,
@@ -453,18 +460,86 @@ test("dificultad: los rangos exigen nivel Base y victoria Normal del rango anter
   assert.deepEqual(RANGOS_AMENAZA.map((rango) => rango.id), ["I", "II", "III", "IV", "V"]);
 });
 
-test("enemigos: el Rango V mantiene candidatos por encima del mayor difMin del catálogo", () => {
+test("enemigos: cualquier amenaza conserva candidatos desde difMin 0 hasta el máximo disponible", () => {
   const catalogo = ENEMIGOS.filter((enemigo) => enemigo.id !== "mimic");
   const nivelMaximoCatalogo = Math.max(
-    ...catalogo.map((enemigo) => Math.max(1, enemigo.difMin))
+    ...catalogo.map((enemigo) => Math.max(0, enemigo.difMin))
   );
-  const minimoCatalogo = Math.max(0, nivelMaximoCatalogo - 3);
-  const normales = obtenerEnemigosPorDificultad(30);
-  assert.ok(normales.length > 0);
-  assert.ok(normales.every((enemigo) =>
-    enemigo.difMin >= minimoCatalogo && enemigo.difMin <= nivelMaximoCatalogo
-  ));
+  for (const amenaza of [1, 5, 8, 17, 30]) {
+    const normales = obtenerEnemigosPorDificultad(amenaza);
+    assert.ok(normales.length > 0, `Debe haber candidatos en amenaza ${amenaza}`);
+    assert.ok(normales.some((enemigo) => enemigo.difMin === 0), "difMin 0 debe seguir disponible");
+    assert.ok(normales.every((enemigo) =>
+      enemigo.difMin >= 0 && enemigo.difMin <= Math.min(amenaza, nivelMaximoCatalogo)
+    ));
+    assert.ok(!normales.some((enemigo) => enemigo.id === "mimic"), "El Mímico se sortea aparte");
+  }
   assert.ok(obtenerEnemigosPorDificultad(17).length > 0);
+});
+
+test("selección: cada nivel difMin tiene tres veces el peso del anterior", () => {
+  assert.equal(calcularPesoDifMinEnemigo(8) / calcularPesoDifMinEnemigo(7), 3);
+  assert.equal(calcularPesoDifMinEnemigo(7) / calcularPesoDifMinEnemigo(6), 3);
+  assert.equal(calcularPesoDifMinEnemigo(1) / calcularPesoDifMinEnemigo(0), 3);
+  assert.ok(calcularPesoDifMinEnemigo(0) > 0);
+});
+
+test("selección: la rareza común pesa más que poco común, raro, épico y legendario", () => {
+  const pesos = ["comun", "poco_comun", "raro", "epico", "legendario"].map(calcularPesoRarezaEnemigo);
+  assert.deepEqual(pesos, [70, 50, 35, 20, 1]);
+  assert.ok(pesos.every((peso, indice) => indice === 0 || pesos[indice - 1] > peso));
+});
+
+test("selección: el Mímico tiene un 1% independiente del nivel de amenaza", () => {
+  assert.equal(PROBABILIDAD_ENCUENTRO_MIMICO, 0.01);
+  const originalRandom = Math.random;
+  try {
+    Math.random = () => 0.009;
+    assert.equal(seleccionarEnemigoNormal(1).id, "mimic");
+    assert.equal(seleccionarEnemigoNormal(30).id, "mimic");
+  } finally {
+    Math.random = originalRandom;
+  }
+});
+
+test("selección: amenaza 8 favorece difMin 8 sin eliminar difMin 0", () => {
+  const originalRandom = Math.random;
+  const elegirConSecuencia = (secuencia) => {
+    let indice = 0;
+    Math.random = () => secuencia[indice++] ?? 0.5;
+    return seleccionarEnemigoNormal(8);
+  };
+  try {
+    const enemigoBajo = elegirConSecuencia([0.5, 0.0000001, 0.1, 0.1]);
+    const enemigoAlto = elegirConSecuencia([0.5, 0.99, 0.1, 0.1]);
+    assert.equal(enemigoBajo.difMin, 0);
+    assert.equal(enemigoAlto.difMin, 8);
+  } finally {
+    Math.random = originalRandom;
+  }
+});
+
+test("selección: dentro de difMin 3, común aparece con más peso que poco común", () => {
+  const originalRandom = Math.random;
+  const elegirConRareza = (tiradaRareza) => {
+    const secuencia = [0.5, 0.9, tiradaRareza, 0.5];
+    let indice = 0;
+    Math.random = () => secuencia[indice++] ?? 0.5;
+    return seleccionarEnemigoNormal(3);
+  };
+  try {
+    assert.equal(elegirConRareza(0.2).rareza, "comun");
+    assert.equal(elegirConRareza(0.9).rareza, "poco_comun");
+  } finally {
+    Math.random = originalRandom;
+  }
+});
+
+test("oro enemigo escala con amenaza de misión y mantiene un límite económico", () => {
+  assert.equal(calcularOroEnemigo(500, 0), 500);
+  assert.equal(calcularOroEnemigo(500, 5), 550);
+  assert.equal(calcularOroEnemigo(500, 10), 600);
+  assert.equal(calcularOroEnemigo(500, 30), 750);
 });
 
 test("sprites de enemigos: cada enemigo del catálogo tiene sprite organizado por rango", () => {

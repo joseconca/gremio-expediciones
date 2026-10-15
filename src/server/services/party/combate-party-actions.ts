@@ -464,7 +464,7 @@ async function liquidarRecompensasParty(
   const enemigo = obtenerEnemigoPorId(combate.enemigoId);
   const modoDificultad = esModoDificultad(expedicion.modoDificultad) ? expedicion.modoDificultad : "normal";
   const oroEnemigo = enemigo
-    ? calcularOroEnemigo(enemigo.botin, expedicion.dificultad, enemigo.difMin)
+    ? calcularOroEnemigo(enemigo.botin, expedicion.dificultad)
     : 0;
   const oroTotal = aplicarMultiplicadorRecompensa(recompensaMision.oro + oroEnemigo, modoDificultad);
   const totalMiembros = participantes.length;
