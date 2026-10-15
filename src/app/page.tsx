@@ -11,10 +11,11 @@ export default function Home() {
   useEffect(() => {
     let cancelled = false;
 
-    fetch("/api/mundo/jugador", { cache: "no-store" })
-      .then((response) => {
+    fetch("/api/auth/session", { cache: "no-store" })
+      .then(async (response) => {
+        const datos: { autenticado?: boolean } = await response.json().catch(() => ({}));
         if (cancelled) return;
-        if (response.ok) router.replace("/base");
+        if (response.ok && datos.autenticado) router.replace("/base");
         else setChecking(false);
       })
       .catch(() => {
@@ -39,7 +40,7 @@ export default function Home() {
       <div className="max-w-xl text-center">
         <h1 className="mb-4 text-4xl font-bold text-amber-500">Gremio de Expediciones</h1>
         <p className="mb-8 text-lg text-slate-300">
-          Levanta tu poblado en el mapa real, explora y combate junto a otros aventureros.
+          Construye tu base, prepara a tus aventureros y lánzate a expediciones junto a tu party.
         </p>
         <Link
           href="/login"
