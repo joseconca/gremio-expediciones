@@ -147,7 +147,13 @@ test("la recompensa PvP se liquida una sola vez aunque se repita la finalizació
       atacante: { usuarioId: "atacante", hpActual: 100, estado: "de_viaje" },
       defensor: { usuarioId: "defensor", hpActual: 0, estado: "combatiendo" },
     },
-    expedicion: { id: "expedicion-atacante", fase: "combatiendo", recompensa: {} },
+    expedicion: {
+      id: "expedicion-atacante",
+      fase: "combatiendo",
+      recompensa: {},
+      fechaSalida: new Date("2026-10-15T10:00:00.000Z"),
+      fechaLlegada: new Date("2026-10-15T10:15:00.000Z"),
+    },
   };
   const clonar = (valor) => structuredClone(valor);
   const aplicar = (registro, datos) => {
@@ -190,6 +196,13 @@ test("la recompensa PvP se liquida una sola vez aunque se repita la finalizació
       findUniqueOrThrow: async () => clonar(state.combate),
     },
     expedicionActiva: {
+      findUnique: async ({ where }) => {
+        if (state.expedicion.id !== where.id) return null;
+        return {
+          fechaSalida: new Date(state.expedicion.fechaSalida),
+          fechaLlegada: new Date(state.expedicion.fechaLlegada),
+        };
+      },
       update: async ({ where, data }) => {
         if (state.expedicion.id !== where.id) throw new Error("Expedición no encontrada");
         aplicar(state.expedicion, data);
@@ -245,6 +258,8 @@ test("la recompensa PvP se liquida una sola vez aunque se repita la finalizació
   assert.equal(state.combate.fase, "victoria");
   assert.equal(state.combate.version, 5);
   assert.equal(state.combate.botinResuelto, true);
+  assert.equal(state.expedicion.fechaSalida.toISOString(), "2026-10-15T10:15:00.000Z");
+  assert.equal(state.expedicion.fechaLlegada.toISOString(), "2026-10-15T10:30:00.000Z");
   assert.deepEqual(state.expedicion.recompensa, {
     oro: 0,
     madera: primera.botin.madera,
