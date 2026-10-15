@@ -158,41 +158,60 @@ export default function PanelParty() {
     recompensas: ResultadoRecompensasParty | null;
   } | null>(null);
   const procesandoAutomatico = useRef(new Set<string>());
+  const solicitudEstado = useRef<Promise<void> | null>(null);
+  const revisionEstado = useRef(0);
 
-  const actualizarEstado = useCallback(async () => {
-    const respuesta = await fetch("/api/party", { cache: "no-store" });
-    const datos = await respuesta.json().catch(() => ({}));
-    if (!respuesta.ok) {
-      throw new Error(datos.error || "No se pudo consultar la party.");
-    }
+  // Comparte una consulta ya en curso para que el sondeo, los eventos de foco
+  // y los efectos de la UI no disparen GET duplicados. Una actualización forzada
+  // después de una acción invalida las respuestas anteriores para evitar estado obsoleto.
+  const actualizarEstado = useCallback((forzar = false): Promise<void> => {
+    if (!forzar && solicitudEstado.current) return solicitudEstado.current;
 
-    const estadoNuevo = datos as EstadoParty;
-    setEstado(estadoNuevo);
-    const expedicion = estadoNuevo.expedicionActiva;
-    const combate = expedicion?.combate;
-    if (expedicion && combate && (combate.fase === "victoria" || combate.fase === "derrota" || combate.fase === "huida")) {
-      setUltimoResultadoCombate((actual) => actual?.expedicionPartyId === expedicion.id
-        ? actual
-        : {
-            expedicionPartyId: expedicion.id,
-            fase: combate.fase as "victoria" | "derrota" | "huida",
-            recompensas: combate.fase === "victoria" ? (combate.recompensasResultado ?? null) : null,
-          });
-    } else if (expedicion) {
-      setUltimoResultadoCombate((actual) => actual?.expedicionPartyId === expedicion.id ? actual : null);
-    } else if (estadoNuevo.ultimoResultadoExpedicion) {
-      const resultado = estadoNuevo.ultimoResultadoExpedicion;
-      setUltimoResultadoCombate((actual) => actual?.expedicionPartyId === resultado.expedicionPartyId
-        ? actual
-        : {
-            expedicionPartyId: resultado.expedicionPartyId,
-            fase: resultado.fase,
-            recompensas: resultado.fase === "victoria" ? resultado.recompensas : null,
-          });
-    } else {
-      setUltimoResultadoCombate(null);
-    }
-    setError(null);
+    const revision = ++revisionEstado.current;
+    const solicitud = (async () => {
+      const respuesta = await fetch("/api/party", { cache: "no-store" });
+      const datos = await respuesta.json().catch(() => ({}));
+      if (!respuesta.ok) {
+        throw new Error(datos.error || "No se pudo consultar la party.");
+      }
+
+      if (revision !== revisionEstado.current) return;
+
+      const estadoNuevo = datos as EstadoParty;
+      setEstado(estadoNuevo);
+      const expedicion = estadoNuevo.expedicionActiva;
+      const combate = expedicion?.combate;
+      if (expedicion && combate && (combate.fase === "victoria" || combate.fase === "derrota" || combate.fase === "huida")) {
+        setUltimoResultadoCombate((actual) => actual?.expedicionPartyId === expedicion.id
+          ? actual
+          : {
+              expedicionPartyId: expedicion.id,
+              fase: combate.fase as "victoria" | "derrota" | "huida",
+              recompensas: combate.fase === "victoria" ? (combate.recompensasResultado ?? null) : null,
+            });
+      } else if (expedicion) {
+        setUltimoResultadoCombate((actual) => actual?.expedicionPartyId === expedicion.id ? actual : null);
+      } else if (estadoNuevo.ultimoResultadoExpedicion) {
+        const resultado = estadoNuevo.ultimoResultadoExpedicion;
+        setUltimoResultadoCombate((actual) => actual?.expedicionPartyId === resultado.expedicionPartyId
+          ? actual
+          : {
+              expedicionPartyId: resultado.expedicionPartyId,
+              fase: resultado.fase,
+              recompensas: resultado.fase === "victoria" ? resultado.recompensas : null,
+            });
+      } else {
+        setUltimoResultadoCombate(null);
+      }
+      setError(null);
+    })();
+
+    solicitudEstado.current = solicitud;
+    const limpiarSolicitud = () => {
+      if (solicitudEstado.current === solicitud) solicitudEstado.current = null;
+    };
+    void solicitud.then(limpiarSolicitud, limpiarSolicitud);
+    return solicitud;
   }, []);
 
   const guardarResultadoCombate = (
@@ -207,26 +226,49 @@ export default function PanelParty() {
     });
   };
 
+  const intervaloConsultaMs = estado?.expedicionActiva?.fase === "combatiendo"
+    ? 3000
+    : estado?.expedicionActiva || (estado?.trasladosPropios.length ?? 0) > 0
+      ? 5000
+      : (estado?.visitasEntrantes.length ?? 0) > 0
+        ? 10000
+        : estado?.party
+          ? 15000
+          : 30000;
+
   useEffect(() => {
     let activo = true;
-    const cargar = async () => {
+    const cargar = async (forzar = false) => {
       try {
-        await actualizarEstado();
+        await actualizarEstado(forzar);
       } catch (err) {
         if (activo) setError(err instanceof Error ? err.message : "Error al consultar la party.");
       } finally {
         if (activo) setCargando(false);
       }
     };
+    const alCambiarVisibilidad = () => {
+      if (document.visibilityState !== "visible") return;
+      setAhora(Date.now());
+      void cargar(true);
+    };
+
     void cargar();
-    const intervaloDatos = window.setInterval(() => void cargar(), 5000);
-    const intervaloReloj = window.setInterval(() => setAhora(Date.now()), 1000);
+    const intervaloDatos = window.setInterval(() => {
+      if (document.visibilityState === "visible") void cargar();
+    }, intervaloConsultaMs);
+    const intervaloReloj = window.setInterval(() => {
+      if (document.visibilityState === "visible") setAhora(Date.now());
+    }, 1000);
+    document.addEventListener("visibilitychange", alCambiarVisibilidad);
+
     return () => {
       activo = false;
+      document.removeEventListener("visibilitychange", alCambiarVisibilidad);
       window.clearInterval(intervaloDatos);
       window.clearInterval(intervaloReloj);
     };
-  }, [actualizarEstado]);
+  }, [actualizarEstado, intervaloConsultaMs]);
 
   useEffect(() => {
     for (const traslado of estado?.trasladosPropios ?? []) {
@@ -246,7 +288,7 @@ export default function PanelParty() {
       void (async () => {
         try {
           await enviarAccion(ruta, traslado.id);
-          await actualizarEstado();
+          await actualizarEstado(true);
           await cargarJugador();
         } catch (err) {
           // 409 normalmente indica que el anfitrión ya aceptó/rechazó o que
@@ -255,7 +297,7 @@ export default function PanelParty() {
           if (!/llegado|procesad|pendiente|actualizado|regreso/i.test(mensaje)) {
             setError(mensaje || "No se pudo actualizar el traslado.");
           }
-          await actualizarEstado().catch(() => undefined);
+          await actualizarEstado(true).catch(() => undefined);
         } finally {
           procesandoAutomatico.current.delete(clave);
         }
@@ -279,12 +321,12 @@ export default function PanelParty() {
           expedicion.id,
           "expedicionPartyId",
         );
-        await actualizarEstado();
+        await actualizarEstado(true);
         await cargarJugador();
       } catch (err) {
         const mensaje = err instanceof Error ? err.message : "";
         // Otra pestaña o integrante puede haber procesado la misma llegada.
-        await actualizarEstado().catch(() => undefined);
+        await actualizarEstado(true).catch(() => undefined);
         if (!/viaje|llegada|estado|procesad|modificad|destino/i.test(mensaje)) {
           setError(mensaje || "No se pudo confirmar la llegada de la party.");
         }
@@ -309,12 +351,12 @@ export default function PanelParty() {
           expedicion.id,
           "expedicionPartyId",
         );
-        await actualizarEstado();
+        await actualizarEstado(true);
         await cargarJugador();
       } catch (err) {
         const mensaje = err instanceof Error ? err.message : "";
         // Otra pestaña o integrante puede haber iniciado el mismo combate.
-        await actualizarEstado().catch(() => undefined);
+        await actualizarEstado(true).catch(() => undefined);
         if (!/expedición|expedicion|combate|party|cambio|llegada/i.test(mensaje)) {
           setError(mensaje || "No se pudo iniciar el combate compartido.");
         }
@@ -339,11 +381,11 @@ export default function PanelParty() {
           expedicion.id,
           "expedicionPartyId",
         );
-        await actualizarEstado();
+        await actualizarEstado(true);
         await cargarJugador();
       } catch (err) {
         const mensaje = err instanceof Error ? err.message : "";
-        await actualizarEstado().catch(() => undefined);
+        await actualizarEstado(true).catch(() => undefined);
         if (!/regreso|llegada|estado|procesad|modificad/i.test(mensaje)) {
           setError(mensaje || "No se pudo completar el regreso de la party.");
         }
@@ -373,13 +415,13 @@ export default function PanelParty() {
         const datosTurno = await respuestaTurno.json().catch(() => ({}));
         if (!respuestaTurno.ok) throw new Error(datosTurno.error || "No se pudo resolver el turno del enemigo.");
         guardarResultadoCombate(expedicion.id, datosTurno);
-        await actualizarEstado();
+        await actualizarEstado(true);
         await cargarJugador();
       } catch (err) {
         const mensaje = err instanceof Error ? err.message : "";
         // Varias pantallas pueden reclamar el turno: el control de versión
         // del servidor garantiza que solo una lo resuelva.
-        await actualizarEstado().catch(() => undefined);
+        await actualizarEstado(true).catch(() => undefined);
         if (!/turno|combate|modificado|procesad|fase/i.test(mensaje)) {
           setError(mensaje || "No se pudo resolver el turno del enemigo.");
         }
@@ -395,11 +437,11 @@ export default function PanelParty() {
     setError(null);
     try {
       await enviarAccion(ruta, trasladoId);
-      await actualizarEstado();
+      await actualizarEstado(true);
       await cargarJugador();
     } catch (err) {
       setError(err instanceof Error ? err.message : "No se pudo completar la operación.");
-      await actualizarEstado().catch(() => undefined);
+      await actualizarEstado(true).catch(() => undefined);
     } finally {
       setAccion(null);
     }
@@ -428,11 +470,11 @@ export default function PanelParty() {
       const datos = await respuesta.json().catch(() => ({}));
       if (!respuesta.ok) throw new Error(datos.error || "No se pudo ejecutar la acción.");
       guardarResultadoCombate(expedicion.id, datos);
-      await actualizarEstado();
+      await actualizarEstado(true);
       await cargarJugador();
     } catch (err) {
       const mensaje = err instanceof Error ? err.message : "No se pudo ejecutar la acción.";
-      await actualizarEstado().catch(() => undefined);
+      await actualizarEstado(true).catch(() => undefined);
       if (!/turno|modificado|cambio|combate ha terminado/i.test(mensaje)) setError(mensaje);
     } finally {
       setAccion(null);
@@ -453,11 +495,11 @@ export default function PanelParty() {
       const datos = await respuesta.json().catch(() => ({}));
       if (!respuesta.ok) throw new Error(datos.error || "No se pudo ejecutar el ataque.");
       guardarResultadoCombate(expedicion.id, datos);
-      await actualizarEstado();
+      await actualizarEstado(true);
       await cargarJugador();
     } catch (err) {
       const mensaje = err instanceof Error ? err.message : "No se pudo ejecutar el ataque.";
-      await actualizarEstado().catch(() => undefined);
+      await actualizarEstado(true).catch(() => undefined);
       if (!/turno|modificado|cambio|combate ha terminado/i.test(mensaje)) setError(mensaje);
     } finally {
       setAccion(null);
