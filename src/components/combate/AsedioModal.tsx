@@ -540,7 +540,7 @@ export default function AsedioModal({
 
           <div
             className={`relative flex w-[46%] justify-center sm:w-[40%] ${
-              actorAnimando === "jugador"
+              actorAnimando === "jugador" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada")
                 ? animacionActual === "ofensiva_potenciada"
                   ? "animate-[combate-ataque-fuerte_900ms_ease-in-out]"
                   : "animate-[combate-ataque_700ms_ease-in-out]"
@@ -607,17 +607,13 @@ export default function AsedioModal({
               )}
 
               {curacionVisible?.actor === "jugador" && (
-                <div className="absolute left-1/2 top-0 z-50 -translate-x-1/2 animate-bounce text-4xl font-black text-emerald-400 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">
-                  +{curacionVisible.cantidad}
+                <div className="absolute left-1/2 top-0 z-50 -translate-x-1/2 text-4xl font-black text-emerald-400 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">
+                  <span className="combate-numero-curacion">+{curacionVisible.cantidad}</span>
                 </div>
               )}
 
               <div
                 className={`relative h-[180px] w-[180px] transition-all duration-300 ${
-                  animacionActual === "curacion"
-                    ? "drop-shadow-[0_0_30px_rgba(52,211,153,0.6)]"
-                    : ""
-                } ${
                   actorImpactado === "jugador"
                     ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]"
                     : ""
@@ -653,7 +649,7 @@ export default function AsedioModal({
                   alt={personaje.nombre}
                   fill
                   sizes="180px"
-                  className="relative z-10 object-contain [image-rendering:pixelated]"
+                  className={`relative z-10 object-contain [image-rendering:pixelated] ${animacionActual === "curacion" && actorAnimando === "jugador" ? "combate-curacion-resplandor" : ""}`}
                   priority
                 />
               </div>
@@ -666,7 +662,7 @@ export default function AsedioModal({
 
           <div
             className={`relative flex w-[46%] justify-center sm:w-[40%] ${
-              actorAnimando === "enemigo"
+              actorAnimando === "enemigo" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada")
                 ? animacionActual === "ofensiva_potenciada"
                   ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]"
                   : "animate-[combate-ataque-enemigo_700ms_ease-in-out]"
@@ -709,8 +705,8 @@ export default function AsedioModal({
               )}
 
               {curacionVisible?.actor === "enemigo" && (
-                <div className="absolute left-1/2 top-0 z-50 -translate-x-1/2 animate-bounce text-4xl font-black text-emerald-400 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">
-                  +{curacionVisible.cantidad}
+                <div className="absolute left-1/2 top-0 z-50 -translate-x-1/2 text-4xl font-black text-emerald-400 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">
+                  <span className="combate-numero-curacion">+{curacionVisible.cantidad}</span>
                 </div>
               )}
 
@@ -757,7 +753,7 @@ export default function AsedioModal({
                   style={{
                     transform: "scaleX(-1)",
                   }}
-                  className="relative z-10 object-contain [image-rendering:pixelated]"
+                  className={`relative z-10 object-contain [image-rendering:pixelated] ${animacionActual === "curacion" && actorAnimando === "enemigo" ? "combate-curacion-resplandor" : ""}`}
                   priority
                 />
               </div>

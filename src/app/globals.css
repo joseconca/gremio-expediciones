@@ -316,12 +316,85 @@ button {
   }
 }
 
+
+/* Feedback explícito de curación: ascenso legible y halo blanco/verde sobre el sprite. */
+.combate-numero-curacion {
+  display: inline-block;
+  transform-origin: center;
+  animation: combate-numero-curacion 1550ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, translate, scale;
+}
+
+@keyframes combate-numero-curacion {
+  0% {
+    opacity: 0;
+    translate: 0 9px;
+    scale: 0.86;
+  }
+  16% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1.12;
+  }
+  32% {
+    opacity: 1;
+    translate: 0 -1px;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+    translate: 0 -30px;
+    scale: 1;
+  }
+}
+
+.combate-curacion-resplandor {
+  filter:
+    drop-shadow(0 0 1px rgb(255 255 255 / 100%))
+    drop-shadow(0 0 4px rgb(255 255 255 / 95%))
+    drop-shadow(0 0 12px rgb(16 185 129 / 95%));
+  animation: combate-curacion-resplandor 1550ms ease-out both;
+  will-change: filter;
+}
+
+@keyframes combate-curacion-resplandor {
+  0%, 18% {
+    filter:
+      drop-shadow(0 0 1px rgb(255 255 255 / 100%))
+      drop-shadow(0 0 4px rgb(255 255 255 / 95%))
+      drop-shadow(0 0 12px rgb(16 185 129 / 95%));
+  }
+  45% {
+    filter:
+      drop-shadow(0 0 2px rgb(255 255 255 / 100%))
+      drop-shadow(0 0 6px rgb(255 255 255 / 100%))
+      drop-shadow(0 0 16px rgb(16 185 129 / 100%));
+  }
+  100% {
+    filter:
+      drop-shadow(0 0 0 rgb(255 255 255 / 0%))
+      drop-shadow(0 0 0 rgb(16 185 129 / 0%));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-route-marker img,
   .combat-treasure,
   .combat-hero,
   .combat-enemy,
-  .combat-impact {
+  .combat-impact,
+  .combate-numero-curacion {
     animation: none !important;
+  }
+
+  .combate-numero-curacion {
+    opacity: 1;
+    translate: none;
+    scale: 1;
+  }
+
+  .combate-curacion-resplandor {
+    animation: none !important;
+    filter: drop-shadow(0 0 2px rgb(255 255 255 / 100%)) drop-shadow(0 0 6px rgb(16 185 129 / 85%));
   }
 }

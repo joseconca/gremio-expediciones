@@ -50,29 +50,28 @@ No inferir el elemento solo por `tipoDano: "magico"`; una habilidad debe configu
 
 ## Plan por fases
 
-### Fase 1 — contrato de acciones e inventario del sistema (este commit)
+### Fase 1 — contrato de acciones e inventario del sistema
 
 - [x] Añadir tipos serializables y opcionales para la presentación visual.
 - [x] Recoger en `AccionAnimadaCombate` los IDs de participantes que ya se transmitían ad hoc en party.
 - [x] Exponer metadatos visuales opcionales en `DefinicionHabilidad`.
 - [x] Documentar el diseño y las limitaciones confirmadas.
-- [ ] Ejecutar validación automatizada local/CI para este cambio.
+- [ ] Validación completa pendiente: Regression llega a `test:base` y falla en `las mejoras no heredan anomalías del precio de compra` (esperado 138, real 75). Es una prueba económica de archivos no modificados en esta rama; el job omite entonces progresión, party, lint y build. Hay otra ejecución para el commit actual en curso.
 
 ### Fase 2 — controlador compartido
 
-- Crear un hook/controlador común para ejecutar y cancelar secuencias, gestionar IDs de eventos y garantizar la limpieza de temporizadores.
-- Extraer la capa de efectos superpuestos a la escena para evitar que el proyectil quede recortado por contenedores de personajes.
-- Migrar primero el ataque cuerpo a cuerpo conservando tiempos, estados y estilos heredados.
-- Sustituir el código duplicado de secuenciación en `CombateModal` y `AsedioModal` por el controlador común.
-- Mantener una espera de seguridad para eventos de animación y cancelar trabajo al desmontar la vista.
+- [x] Crear un hook/controlador común para ejecutar y cancelar secuencias, gestionar IDs de eventos y garantizar la limpieza de temporizadores.
+- [ ] Extraer la capa de efectos superpuestos a la escena para evitar que el proyectil quede recortado por contenedores de personajes.
+- [x] Migrar primero el ataque cuerpo a cuerpo conservando tiempos, estados y estilos heredados.
+- [x] Sustituir el código duplicado de secuenciación en `CombateModal` y `AsedioModal` por el controlador común.
+- [x] Mantener la cancelación de temporizadores y evitar que una secuencia desactualizada limpie una acción posterior.
 
 ### Fase 3 — curación y efectos de estado
 
-- Elevar y desvanecer los números flotantes (objetivo inicial: 1,4–1,7 s).
-- Añadir contorno blanco brillante y halo verde al personaje que recibe curación.
-- Reutilizar el efecto para pociones, curación progresiva y robo de vida, permitiendo que el daño y la recuperación aparezcan como efectos separados.
-- Añadir presentación propia para defensa/escudo y hacer legibles los pulsos de estados.
-- Evitar que efectos simultáneos se sobrescriban entre sí; cada evento debe tener una clave estable y su propio ciclo de vida.
+- [x] Elevar y desvanecer los números de curación durante 1,55 s.
+- [x] Añadir contorno blanco brillante y halo verde al sprite que recibe curación, también si el objetivo es un enemigo o un miembro de party.
+- [x] Reutilizar el indicador en curaciones directas y en el robo de vida, manteniendo el daño y la recuperación como señales independientes.
+- [ ] Pulir los pulsos de curación progresiva, la presentación de defensa/escudo y el solapamiento de múltiples efectos de estado.
 
 ### Fase 4 — proyectiles físicos
 

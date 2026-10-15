@@ -588,7 +588,7 @@ export default function CombateModal({
                 return (
                   <div
                     key={participante.id}
-                    className={`absolute z-10 flex w-[31%] max-w-[112px] -translate-x-1/2 -translate-y-1/2 flex-col items-center transition-[left,top] duration-300 ${animando ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque_700ms_ease-in-out]") : ""} ${retirado ? "opacity-50 grayscale-[35%]" : caido ? "opacity-55 grayscale" : ""}`}
+                    className={`absolute z-10 flex w-[31%] max-w-[112px] -translate-x-1/2 -translate-y-1/2 flex-col items-center transition-[left,top] duration-300 ${animando && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque_700ms_ease-in-out]") : ""} ${retirado ? "opacity-50 grayscale-[35%]" : caido ? "opacity-55 grayscale" : ""}`}
                     style={{ left: `${x}%`, top: `${y}%` }}
                     aria-label={`${participante.nombre}, ${participante.jugadorHp} de ${participante.jugadorHpMaximo} puntos de vida`}
                   >
@@ -598,11 +598,11 @@ export default function CombateModal({
                       </div>
                     )}
                     {curacionVisible?.actor === participante.usuarioId && (
-                      <div className="absolute top-1 z-50 -translate-y-full animate-bounce whitespace-nowrap text-xl font-black text-emerald-300 drop-shadow-[0_3px_3px_rgba(0,0,0,0.9)]">
-                        +{curacionVisible.cantidad}
+                      <div className="absolute top-1 z-50 -translate-y-full whitespace-nowrap text-xl font-black text-emerald-300 drop-shadow-[0_3px_3px_rgba(0,0,0,0.9)]">
+                        <span className="combate-numero-curacion">+{curacionVisible.cantidad}</span>
                       </div>
                     )}
-                    <div className={`relative h-[64px] w-[54px] transition-all duration-200 sm:h-[92px] sm:w-[78px] ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""} ${animacionActual === "curacion" && animando ? "drop-shadow-[0_0_16px_rgba(52,211,153,0.7)]" : ""}`}>
+                    <div className={`relative h-[64px] w-[54px] transition-all duration-200 sm:h-[92px] sm:w-[78px] ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}>
                       <div className="absolute inset-0 z-0 opacity-45 blur-[1px]" style={{ transform: "translateY(36%) perspective(110px) rotateX(65deg) scale(1.05,-0.65)" }}>
                         <Image src={sprite} alt="" fill sizes="78px" className="object-contain brightness-0" />
                       </div>
@@ -611,7 +611,7 @@ export default function CombateModal({
                         alt={participante.nombre}
                         fill
                         sizes="(max-width: 640px) 54px, 78px"
-                        className="relative z-10 object-contain [image-rendering:pixelated]"
+                        className={`relative z-10 object-contain [image-rendering:pixelated] ${animacionActual === "curacion" && animando ? "combate-curacion-resplandor" : ""}`}
                         priority
                       />
                       {pulsosEstadoVisibles.filter((pulso) => pulso.actor === participante.usuarioId).map((pulso, indice) => (
@@ -636,7 +636,7 @@ export default function CombateModal({
           ) : (
 <div
             className={`relative flex w-[46%] justify-center sm:w-[40%] ${
-              actorAnimando === "jugador"
+              actorAnimando === "jugador" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada")
                 ? animacionActual === "ofensiva_potenciada"
                   ? "animate-[combate-ataque-fuerte_900ms_ease-in-out]"
                   : "animate-[combate-ataque_700ms_ease-in-out]"
@@ -697,17 +697,13 @@ export default function CombateModal({
                 </div>
               )}
               {curacionVisible?.actor === "jugador" && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 animate-bounce text-4xl font-black text-emerald-400 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] z-50">
-                  +{curacionVisible.cantidad}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 text-4xl font-black text-emerald-400 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] z-50">
+                  <span className="combate-numero-curacion">+{curacionVisible.cantidad}</span>
                 </div>
               )}
 
               <div
                 className={`relative h-[180px] w-[180px] transition-all duration-300 ${
-                  animacionActual === "curacion"
-                    ? "drop-shadow-[0_0_30px_rgba(52,211,153,0.6)]"
-                    : ""
-                } ${
                   actorImpactado === "jugador"
                     ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]"
                     : ""
@@ -745,7 +741,7 @@ export default function CombateModal({
                   alt={personaje.nombre}
                   fill
                   sizes="180px"
-                  className="relative z-10 object-contain [image-rendering:pixelated]"
+                  className={`relative z-10 object-contain [image-rendering:pixelated] ${animacionActual === "curacion" && actorAnimando === "jugador" ? "combate-curacion-resplandor" : ""}`}
                   priority
                 />
               </div>
@@ -756,7 +752,7 @@ export default function CombateModal({
           {/* ENEMIGO */}
           <div
             className={`relative flex ${partyMode ? "w-[32%] justify-center px-0" : "w-[46%] justify-center sm:w-[40%]"} ${
-              actorAnimando === "enemigo"
+              actorAnimando === "enemigo" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada")
                 ? animacionActual === "ofensiva_potenciada"
                   ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]"
                   : "animate-[combate-ataque-enemigo_700ms_ease-in-out]"
@@ -832,7 +828,7 @@ export default function CombateModal({
                   fill
                   sizes="(max-width: 640px) 104px, 150px"
                   style={{ transform: "scaleX(-1)" }}
-                  className="relative z-10 object-contain [image-rendering:pixelated]"
+                  className={`relative z-10 object-contain [image-rendering:pixelated] ${animacionActual === "curacion" && actorAnimando === "enemigo" ? "combate-curacion-resplandor" : ""}`}
                   priority
                 />
               </div>

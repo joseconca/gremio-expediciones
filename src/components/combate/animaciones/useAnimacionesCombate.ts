@@ -15,6 +15,8 @@ export interface DestinosVisualesAccionCombate {
   pulsosEstadoVisibles: PulsoEstadoVisibleCombate[];
 }
 
+const DURACION_CURACION_VISIBLE_MS = 1550;
+
 interface DanoVisibleCombate {
   actor: string;
   dano: number;
@@ -99,7 +101,7 @@ export function useAnimacionesCombate() {
           cantidad: curacion,
         });
       }
-      await esperar(700, temporizadoresRef.current);
+      await esperar(DURACION_CURACION_VISIBLE_MS, temporizadoresRef.current);
       if (!sigueActiva()) return;
       setCuracionVisible(null);
       setActorAnimando(null);
@@ -128,7 +130,7 @@ export function useAnimacionesCombate() {
     setActorImpactado(null);
 
     if (curacion > 0) {
-      await esperar(700, temporizadoresRef.current);
+      await esperar(DURACION_CURACION_VISIBLE_MS, temporizadoresRef.current);
       if (!sigueActiva()) return;
       setCuracionVisible(null);
     }
