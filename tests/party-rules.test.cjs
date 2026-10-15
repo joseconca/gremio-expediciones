@@ -6,6 +6,7 @@ const {
   leerCoordenadasBase,
   calcularFechaLlegadaTraslado,
   puedeAceptarMiembro,
+  puedeGestionarVisitas,
   esTrasladoActivo,
   obtenerEstadoFinalTraslado,
 } = require("../src/lib/party/reglas.ts");
@@ -35,6 +36,15 @@ test("una party admite como máximo tres personas contando al líder", () => {
   assert.equal(puedeAceptarMiembro(3), false);
   assert.equal(puedeAceptarMiembro(0), false);
   assert.equal(puedeAceptarMiembro(1.5), false);
+});
+
+test("un anfitrión sin party puede aceptar la primera visita y convertirse en líder", () => {
+  assert.equal(puedeGestionarVisitas(false, false), true);
+});
+
+test("solo el líder puede gestionar visitas cuando el anfitrión ya pertenece a una party", () => {
+  assert.equal(puedeGestionarVisitas(true, true), true);
+  assert.equal(puedeGestionarVisitas(true, false), false);
 });
 
 test("los estados de traslado activos y finales son explícitos", () => {

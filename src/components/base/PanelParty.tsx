@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useGameStore } from "@/store/useGameStore";
+import { puedeGestionarVisitas } from "@/lib/party/reglas";
 
 type PersonaVista = {
   id: string;
@@ -158,6 +159,7 @@ export default function PanelParty() {
     recompensas: ResultadoRecompensasParty | null;
   } | null>(null);
   const procesandoAutomatico = useRef(new Set<string>());
+  const siguienteIntentoTraslado = useRef(new Map<string, number>());
   const solicitudEstado = useRef<Promise<void> | null>(null);
   const revisionEstado = useRef(0);
 
@@ -283,21 +285,30 @@ export default function PanelParty() {
 
       const clave = `${traslado.id}:${traslado.estado}`;
       if (procesandoAutomatico.current.has(clave)) continue;
+      // Si los relojes del navegador y del servidor difieren unos segundos,
+      // no repitamos el POST ni la consulta de estado en cada tick del contador.
+      if (Date.now() < (siguienteIntentoTraslado.current.get(clave) ?? 0)) continue;
       procesandoAutomatico.current.add(clave);
 
       void (async () => {
         try {
           await enviarAccion(ruta, traslado.id);
+          siguienteIntentoTraslado.current.delete(clave);
           await actualizarEstado(true);
           await cargarJugador();
         } catch (err) {
-          // 409 normalmente indica que el anfitrión ya aceptó/rechazó o que
-          // otra pestaña resolvió la transición. El siguiente refresco lo aclara.
           const mensaje = err instanceof Error ? err.message : "";
-          if (!/llegado|procesad|pendiente|actualizado|regreso/i.test(mensaje)) {
-            setError(mensaje || "No se pudo actualizar el traslado.");
+          const llegadaAunNoConfirmada = /todav[ií]a.*(?:camino|llegado)|no ha llegado/i.test(mensaje);
+          if (llegadaAunNoConfirmada) {
+            // El reloj del servidor aún considera que falta un instante para
+            // llegar. Se reintenta en 5 s sin mostrar un error rojo al jugador.
+            siguienteIntentoTraslado.current.set(clave, Date.now() + 5000);
+          } else {
+            if (!/llegado|procesad|pendiente|actualizado|regreso|camino/i.test(mensaje)) {
+              setError(mensaje || "No se pudo actualizar el traslado.");
+            }
+            await actualizarEstado(true).catch(() => undefined);
           }
-          await actualizarEstado(true).catch(() => undefined);
         } finally {
           procesandoAutomatico.current.delete(clave);
         }
@@ -440,7 +451,14 @@ export default function PanelParty() {
       await actualizarEstado(true);
       await cargarJugador();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "No se pudo completar la operación.");
+      const mensaje = err instanceof Error ? err.message : "No se pudo completar la operación.";
+      // La fecha de llegada la valida el servidor. Si su reloj aún considera
+      // que falta un instante, refrescamos sin dejar un aviso de error rojo.
+      if (/todav[ií]a.*(?:camino|llegado)|no ha llegado/i.test(mensaje)) {
+        setError(null);
+      } else {
+        setError(mensaje);
+      }
       await actualizarEstado(true).catch(() => undefined);
     } finally {
       setAccion(null);
@@ -511,6 +529,7 @@ export default function PanelParty() {
   const expedicionPartyActiva = Boolean(estado?.expedicionActiva);
   const bloqueadaLaSalida = expedicionPartyActiva ? !esLider : ocupado;
   const party = estado?.party ?? null;
+  const puedeGestionarVisitasParty = puedeGestionarVisitas(Boolean(party), esLider);
   const trasladosPropios = estado?.trasladosPropios ?? [];
   const visitasEntrantes = estado?.visitasEntrantes ?? [];
 
@@ -905,17 +924,19 @@ export default function PanelParty() {
                     <div className="mt-3 flex gap-2">
                       <button
                         type="button"
-                        disabled={Boolean(accion) || !esLider || ocupado}
+                        disabled={Boolean(accion) || !puedeGestionarVisitasParty || ocupado}
                         onClick={() => void ejecutar("aceptar:" + traslado.id, "/api/party/transfer/aceptar", traslado.id)}
-                        className="flex-1 rounded-md border border-emerald-800 bg-emerald-950/70 px-2 py-2 text-xs font-black text-emerald-200 hover:bg-emerald-900 disabled:opacity-40"
+                        title={ocupado ? "Tu personaje debe estar disponible en la base." : !puedeGestionarVisitasParty ? "Solo el líder de una party puede aceptar visitas." : undefined}
+                        className="flex-1 rounded-md border border-emerald-800 bg-emerald-950/70 px-2 py-2 text-xs font-black text-emerald-200 hover:bg-emerald-900 disabled:cursor-not-allowed disabled:opacity-40"
                       >
                         {accion === "aceptar:" + traslado.id ? "Aceptando..." : "Aceptar"}
                       </button>
                       <button
                         type="button"
-                        disabled={Boolean(accion) || !esLider || ocupado}
+                        disabled={Boolean(accion) || !puedeGestionarVisitasParty || ocupado}
                         onClick={() => void ejecutar("rechazar:" + traslado.id, "/api/party/transfer/rechazar", traslado.id)}
-                        className="flex-1 rounded-md border border-red-900 bg-red-950/70 px-2 py-2 text-xs font-black text-red-200 hover:bg-red-900 disabled:opacity-40"
+                        title={ocupado ? "Tu personaje debe estar disponible en la base." : !puedeGestionarVisitasParty ? "Solo el líder de una party puede rechazar visitas." : undefined}
+                        className="flex-1 rounded-md border border-red-900 bg-red-950/70 px-2 py-2 text-xs font-black text-red-200 hover:bg-red-900 disabled:cursor-not-allowed disabled:opacity-40"
                       >
                         {accion === "rechazar:" + traslado.id ? "Rechazando..." : "Rechazar"}
                       </button>

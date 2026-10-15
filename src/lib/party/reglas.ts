@@ -66,6 +66,14 @@ export function puedeAceptarMiembro(miembrosActuales: number): boolean {
   );
 }
 
+/**
+ * Un anfitrión sin party puede aceptar la primera visita y convertirse en líder.
+ * Si ya pertenece a una party, solo el líder puede gestionar las incorporaciones.
+ */
+export function puedeGestionarVisitas(tieneParty: boolean, esLider: boolean): boolean {
+  return !tieneParty || esLider;
+}
+
 export function esTrasladoActivo(estado: string): boolean {
   return (ESTADOS_TRASLADO_ACTIVOS as readonly string[]).includes(estado);
 }
