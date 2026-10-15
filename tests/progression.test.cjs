@@ -106,6 +106,8 @@ test("el dominio de armas da bono a las dominadas y penaliza un 25 % las no domi
   assert.deepEqual(calcularBonificacionesDominioEquipo("espadachin", "arco", "ligera"), {
     multiplicadorAtaqueArma: 0.75, multiplicadorDefensaArmadura: 0.75,
   });
+  assert.equal(calcularBonificacionesDominioEquipo("novato", undefined, "ligera").multiplicadorDefensaArmadura, 0.75, "Sin bonus de defensa, la armadura también sufre penalización");
+  assert.equal(calcularBonificacionesDominioEquipo("brujo", undefined, "ligera").multiplicadorDefensaArmadura, 0.75, "El Brujo no tiene bonus defensivo de armadura");
 });
 
 test("las armaduras declaran subtipo y reciben penalización en todas las ranuras salvo joyería", () => {

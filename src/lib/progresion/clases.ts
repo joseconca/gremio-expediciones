@@ -380,12 +380,12 @@ export function calcularBonificacionesDominioEquipo(
   return {
     multiplicadorAtaqueArma: !tipoArma
       ? 1
-      : dominaArma
+      : dominaArma && clase.bonoAtaqueArmaDominada > 0
         ? 1 + clase.bonoAtaqueArmaDominada
         : 0.75,
     multiplicadorDefensaArmadura: !categoriaArmadura
       ? 1
-      : dominaArmadura
+      : dominaArmadura && clase.bonoDefensaArmaduraDominada > 0
         ? 1 + clase.bonoDefensaArmaduraDominada
         : 0.75,
   };
