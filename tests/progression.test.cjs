@@ -90,6 +90,17 @@ test("la clase híbrida exige cumplir todos sus requisitos", () => {
     { claseId: "sacerdote", nivelJob: 40, desbloqueada: true },
   ]).puedeDesbloquear, true);
 });
+test("las categorías dominadas siempre tienen una bonificación positiva", () => {
+  for (const clase of Object.values(CLASES)) {
+    if (clase.armasDominadas.length > 0) {
+      assert.ok(clase.bonoAtaqueArmaDominada > 0, `${clase.id} declara armas dominadas sin bonus de ataque positivo`);
+    }
+    if (clase.armadurasDominadas.length > 0) {
+      assert.ok(clase.bonoDefensaArmaduraDominada > 0, `${clase.id} declara armaduras dominadas sin bonus de defensa positivo`);
+    }
+  }
+});
+
 test("el dominio de armas da bono a las dominadas y penaliza un 25 % las no dominadas", () => {
   assert.deepEqual(calcularBonificacionesDominioEquipo("espadachin", "espada", "pesada"), {
     multiplicadorAtaqueArma: 1.15, multiplicadorDefensaArmadura: 1.1,

@@ -439,7 +439,7 @@ export const OBJETOS: DefinicionObjeto[] = [
     tipo: "armadura",
     subtipo: "escudo",
     slot: "mano_secundaria",
-    descripcion: "Un escudo ligero para proteger la mano secundaria.",
+    descripcion: "Un escudo de madera para proteger la mano secundaria.",
     rareza: "basico",
     precio: 150,
     defensaBase: 2,
