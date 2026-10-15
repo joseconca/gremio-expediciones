@@ -7,6 +7,7 @@ import type { CombatePve } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import CombateModal from "@/components/combate/CombateModal";
 import { puedeGestionarVisitas } from "@/lib/party/reglas";
+import { obtenerObjetoPorId } from "@/lib/objetos";
 
 type PersonaVista = {
   id: string;
@@ -113,6 +114,9 @@ type ResultadoRecompensasParty = {
     piedra: number;
     metal: number;
     experiencia: number;
+    experienciaJob?: number;
+    nivelesBaseSubidos?: number;
+    nivelesJobSubidos?: number;
     objetos: { objetoId: string; cantidad: number }[];
   }[];
 };
@@ -147,6 +151,10 @@ function formatoCuentaAtras(total: number): string {
   return horas > 0
     ? `${horas}h ${minutos.toString().padStart(2, "0")}m`
     : `${minutos}m ${segundos.toString().padStart(2, "0")}s`;
+}
+
+function nombreObjetoRecompensa(objetoId: string): string {
+  return obtenerObjetoPorId(objetoId)?.nombre ?? objetoId.replace(/[_-]+/g, " ");
 }
 
 async function enviarAccion(
@@ -878,11 +886,19 @@ export default function PanelParty() {
                   <div key={recompensa.usuarioId} className="rounded-md border border-slate-800 bg-slate-950/70 p-2">
                     <p className="text-xs font-bold text-amber-100">{nombre}</p>
                     <p className="mt-1 text-[11px] text-slate-300">
-                      +{recompensa.oro} oro · +{recompensa.madera} madera · +{recompensa.piedra} piedra · +{recompensa.metal} metal · +{recompensa.experiencia} XP
+                      +{recompensa.oro} oro · +{recompensa.madera} madera · +{recompensa.piedra} piedra · +{recompensa.metal} metal · +{recompensa.experiencia} XP Base
+                      {typeof recompensa.experienciaJob === "number" ? ` · +${recompensa.experienciaJob} XP Job` : ""}
                     </p>
+                    {((recompensa.nivelesBaseSubidos ?? 0) > 0 || (recompensa.nivelesJobSubidos ?? 0) > 0) && (
+                      <p className="mt-1 text-[11px] font-semibold text-emerald-200">
+                        {(recompensa.nivelesBaseSubidos ?? 0) > 0 ? `Nivel Base +${recompensa.nivelesBaseSubidos}` : ""}
+                        {(recompensa.nivelesBaseSubidos ?? 0) > 0 && (recompensa.nivelesJobSubidos ?? 0) > 0 ? " · " : ""}
+                        {(recompensa.nivelesJobSubidos ?? 0) > 0 ? `Nivel Job +${recompensa.nivelesJobSubidos}` : ""}
+                      </p>
+                    )}
                     {recompensa.objetos.length > 0 && (
                       <p className="mt-1 text-[11px] text-emerald-200">
-                        Objetos de misión: {recompensa.objetos.map((objeto) => `${objeto.objetoId} ×${objeto.cantidad}`).join(", ")}
+                        Objetos de misión: {recompensa.objetos.map((objeto) => `${nombreObjetoRecompensa(objeto.objetoId)} ×${objeto.cantidad}`).join(", ")}
                       </p>
                     )}
                     {dropsEnemigo.length > 0 && (

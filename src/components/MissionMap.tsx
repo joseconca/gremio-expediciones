@@ -164,6 +164,7 @@ interface MissionMapProps {
   fechaLlegada?: string;
   claseHeroe?: string | null;
   sexoHeroe?: string | null;
+  nombreHeroe?: string;
   rutasEntrantes?: RutaEntrante[];
   regresando?: boolean;
   onSelectMission: (mision: DefinicionMision) => void;
@@ -181,6 +182,7 @@ export default function MissionMap({
   fechaLlegada,
   claseHeroe,
   sexoHeroe,
+  nombreHeroe = "Aventurero",
   rutasEntrantes = [],
   regresando = false,
 }: MissionMapProps) {
@@ -213,6 +215,7 @@ export default function MissionMap({
           destino={destinoExpedicion}
           fechaSalida={fechaSalida}
           fechaLlegada={fechaLlegada}
+          nombreHeroe={nombreHeroe}
           claseHeroe={claseHeroe}
           sexoHeroe={sexoHeroe}
           regresando={regresando}

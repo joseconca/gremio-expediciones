@@ -26,7 +26,7 @@ type EstadoPartyMapa = {
   party: {
     id: string;
     liderUsuarioId: string;
-    lider: { id: string; nombre: string };
+    lider: { id: string; nombre: string; baseCoords?: { lat: number; lng: number } | null };
     miembros: { usuarioId: string }[];
   } | null;
   expedicionActiva: {
@@ -270,6 +270,11 @@ export default function ExpedicionesPage() {
   const nivelPersonaje = personaje?.nivel ?? null;
 
   useEffect(() => {
+    if (cargandoEstadoParty) return;
+    if (estadoParty?.party && estadoParty.party.liderUsuarioId !== estadoParty.usuarioId) {
+      setMisionesGeneradas([]);
+      return;
+    }
     if (
       isLoading ||
       !sesionActiva ||
@@ -317,10 +322,21 @@ export default function ExpedicionesPage() {
       cancelado = true;
       clearInterval(intervalo);
     };
-  }, [baseLat, baseLng, isLoading, nivelPersonaje, sesionActiva]);
+  }, [
+    baseLat,
+    baseLng,
+    cargandoEstadoParty,
+    estadoParty?.party?.liderUsuarioId,
+    estadoParty?.usuarioId,
+    isLoading,
+    nivelPersonaje,
+    sesionActiva,
+  ]);
 
   const misionesVisibles =
     !isLoading &&
+    !cargandoEstadoParty &&
+    (!estadoParty?.party || estadoParty.party.liderUsuarioId === estadoParty.usuarioId) &&
     sesionActiva &&
     baseLat !== null &&
     baseLng !== null &&
@@ -364,6 +380,21 @@ export default function ExpedicionesPage() {
     misionSeleccionada &&
     (misionSeleccionada.tipo === "normal" || misionSeleccionada.tipo === "elite"),
   );
+  const coordenadasLiderParty = estadoParty?.party?.lider.baseCoords;
+  const coordenadasMapa =
+    estadoParty?.party &&
+    !esLiderParty &&
+    coordenadasLiderParty &&
+    Number.isFinite(coordenadasLiderParty.lat) &&
+    Number.isFinite(coordenadasLiderParty.lng)
+      ? coordenadasLiderParty
+      : baseCoords;
+
+  useEffect(() => {
+    if (!estadoParty?.party || estadoParty.party.liderUsuarioId === estadoParty.usuarioId) return;
+    setMisionSeleccionada(null);
+    setErrorEnvio(null);
+  }, [estadoParty?.party?.liderUsuarioId, estadoParty?.usuarioId]);
 
   const handleSeleccionarAccionBase = (tipo: "asedio" | "comercio") => {
     if (!baseSeleccionada || !baseCoords || !personaje) return;
@@ -581,21 +612,39 @@ export default function ExpedicionesPage() {
         </div>
       )}
 
+      {estadoParty?.party && !esLiderParty && (
+        <div className="pointer-events-auto fixed left-3 right-3 top-20 z-20 mx-auto max-w-lg rounded-md border border-amber-700/80 bg-[#24180d]/95 p-3 text-amber-100 shadow-xl backdrop-blur-sm">
+          <p className="text-xs font-black uppercase tracking-wider text-amber-300">
+            Compañía de {estadoParty.party.lider.nombre}
+          </p>
+          <p className="mt-1 text-sm">
+            Tu aventurero permanece reunido en la base del líder y sigue siendo integrante de la party.
+          </p>
+          <p className="mt-1 text-xs text-amber-100/80">
+            {partyEnExpedicion
+              ? "La expedición compartida está en curso. No se pueden elegir otros contratos hasta regresar."
+              : "Solo el líder puede elegir e iniciar la siguiente expedición. Saldrás con el grupo automáticamente."}
+          </p>
+        </div>
+      )}
+
       {/* Capa del Mapa */}
-      {baseCoords && (
+      {coordenadasMapa && (
         <div className="absolute inset-0 z-0">
           <MissionMap
-            baseCoords={baseCoords}
-            misiones={misionesVisibles}
+            baseCoords={coordenadasMapa}
+            nombreHeroe={estadoParty?.expedicionActiva ? "La party" : personaje?.nombre ?? "Aventurero"}
+            misiones={partyEnExpedicion ? [] : misionesVisibles}
             basesAjenas={basesAjenas}
-            destinoExpedicion={expedicionActiva?.destinoCoords ?? null}
-            fechaSalida={expedicionActiva?.fechaSalida}
-            fechaLlegada={expedicionActiva?.fechaLlegada}
+            destinoExpedicion={estadoParty?.expedicionActiva?.destinoCoords ?? expedicionActiva?.destinoCoords ?? null}
+            fechaSalida={estadoParty?.expedicionActiva?.fechaSalida ?? expedicionActiva?.fechaSalida}
+            fechaLlegada={estadoParty?.expedicionActiva?.fechaLlegada ?? expedicionActiva?.fechaLlegada}
             claseHeroe={personaje?.clase}
             sexoHeroe={personaje?.sexo}
             rutasEntrantes={[]}
-            regresando={expedicionActiva?.fase === "regresando"}
+            regresando={estadoParty?.expedicionActiva?.fase === "regresando" || expedicionActiva?.fase === "regresando"}
             onSelectMission={(mision) => {
+              if (cargandoEstadoParty || (estadoParty?.party && !esLiderParty) || partyEnExpedicion) return;
               setMisionSeleccionada(mision);
               setModoDificultad("normal");
               setBaseSeleccionada(null);
@@ -722,7 +771,7 @@ export default function ExpedicionesPage() {
       )}
 
       {/* PANEL EXISTENTE: MISIONES PVE / CONFIRMACIÓN DE VIAJE */}
-      {misionSeleccionada && !viajeIniciado && (
+      {misionSeleccionada && !viajeIniciado && (!estadoParty?.party || esLiderParty) && (
         <div className="pointer-events-none fixed inset-x-0 bottom-0 z-20 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain px-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-1 sm:absolute sm:bottom-4 sm:max-h-[calc(100dvh-6rem)] sm:p-4 md:bottom-10">
           <div
             className={`pointer-events-auto mx-auto w-full max-w-md transform rounded-t-2xl border-2 p-3 shadow-3xl animate-in slide-in-from-bottom-10 sm:rounded-xl sm:p-4 ${

@@ -2,7 +2,7 @@
 
 > Documento de continuidad técnica para futuras sesiones y agentes. Describe el comportamiento comprobado del código, no solo el diseño deseado. Si este documento contradice el código, verifica primero el código y actualiza la documentación en el mismo cambio funcional.
 >
-> Revisión funcional de la rama `feature/party-fase-1-core`: 15-10-2026. Reemplazar esta fecha por el SHA del commit una vez verificada su CI.
+> Revisión funcional de la rama `feature/party-fase-1-core`: 15-10-2026.
 
 ## Estado general
 
@@ -62,8 +62,10 @@ El combate mantiene un enemigo común, turnos ordenados, versión y liquidación
 2. **Expedición compartida.** El líder inicia misiones PvE compatibles y cada jugador conserva su personaje, economía, inventario y progresión.
 3. **Huida individual.** `HUIR` marca el combate como `huida`, inicia el regreso y entrega cero oro, XP y recompensas de misión/enemigo.
 4. **Huida en party.** El participante pasa a `huyo`, ya no puede actuar ni ser seleccionado como objetivo del enemigo, pero continúa en la party esperando al resto. Si ganan, recibe su cuota de oro y su parte de los recursos/objetos de misión, pero no XP Base/Job ni botín individual del enemigo. Si todos huyen, no hay liquidación de victoria.
-5. **Salida voluntaria de la party.** El botón para abandonar se habilita cuando no hay expedición activa y el personaje está disponible en la base. Huir del combate no cambia la membresía.
-6. **Disolución del líder.** Si existe una expedición activa, cada integrante que siga en ella recibe un traslado desde la posición actual a su propia base. Si el resultado todavía no está fijado, el viaje/combate se cancela sin recompensas de victoria; si ya estaba regresando con resultado fijado, se conserva el resultado. La party queda `disuelta`, conservando su historial y pudiendo reactivarse en el futuro.
+5. **Regreso tras el combate.** La party regresa junta a las coordenadas de origen de la expedición, que son las de la base del líder. Al completar la llegada, todos los personajes activos pasan a `ocioso`, pero se conservan las membresías y el liderazgo. El informe de recompensas permanece disponible tras recargar la página e incluye recursos, XP Base/Job, subidas de nivel, objetos de misión y drops del enemigo.
+6. **Nueva expedición.** Solo el líder puede elegir e iniciar el siguiente contrato compartido. Los integrantes normales no reciben marcadores seleccionables en el mapa y el endpoint de expedición individual los rechaza mientras pertenezcan a la party.
+7. **Salida voluntaria de la party.** El botón para abandonar se habilita cuando no hay expedición activa y el personaje está disponible en la base. Huir del combate no cambia la membresía.
+8. **Disolución del líder.** Si existe una expedición activa, cada integrante que siga en ella recibe un traslado desde la posición actual a su propia base. Si el resultado todavía no está fijado, el viaje/combate se cancela sin recompensas de victoria; si ya estaba regresando con resultado fijado, se conserva el resultado. La party queda `disuelta`, conservando su historial y pudiendo reactivarse en el futuro.
 7. **Regreso e informe.** Los traslados individuales se completan por la ruta existente y el informe histórico permanece disponible.
 
 ## Reglas de combate y economía implementadas
@@ -85,7 +87,7 @@ La victoria liquida en una transacción serializable. `recompensasResueltas` y `
 
 ## Interfaz
 
-La interfaz principal de party está en `src/components/base/PanelParty.tsx`. Presenta roster y líder, traslados/visitas, expedición compartida, turno y HP por participante, una formación visual responsiva y un selector de posición `Melé`, `Centro` o `Retaguardia`. El líder se dibuja en la parte inferior y los demás progresivamente más arriba; la elección mueve al aventurero hacia el frente/centro/retaguardia.
+La interfaz principal de party está en `src/components/base/PanelParty.tsx`. Presenta roster y líder, traslados/visitas, expedición compartida, turno y HP por participante, una formación visual responsiva y un selector de posición `Melé`, `Centro` o `Retaguardia`. El líder se dibuja en la parte inferior y los demás progresivamente más arriba; la elección mueve al aventurero hacia el frente/centro/retaguardia. Tras volver, el informe presenta XP Base/Job, niveles subidos y objetos de misión con nombre. En el mapa de expediciones, los integrantes normales ven el contexto de la base del líder y el recorrido compartido, pero no pueden seleccionar contratos; al líder le aparecen de nuevo cuando no hay una expedición activa.
 
 El panel obtiene su estado mediante `GET /api/party` y mantiene parte de la presentación en estado local de React; no todo el estado social se centraliza en Zustand. La selección de una base ajena se integra mediante el mapa existente.
 

@@ -100,7 +100,7 @@ function loadService(prisma, testOptions = {}) {
     "@/server/services/combate/accion-combate": {
       reducirCooldowns: (cooldowns) => cooldowns,
       obtenerCooldowns: (valor) => valor && typeof valor === "object" && !Array.isArray(valor) ? valor : {},
-      otorgarExperienciaJob: async () => null,
+      otorgarExperienciaJob: testOptions.otorgarExperienciaJob ?? (async () => null),
     },
     "@/lib/enemigos": {
       obtenerEnemigoPorId: (id) => ({ id, botin: 10, difMin: 1, ...(testOptions.enemigo ?? {}) }),
@@ -588,7 +588,9 @@ test("el turno enemigo procesa los efectos periódicos del enemigo antes de atac
 test("la victoria reparte oro, recursos y objetos de misión sin generar unidades", async () => {
   const combat = mkCombat({ enemigoHp: 10 });
   const { prisma, calls } = mockPrisma(combat);
-  const service = loadService(prisma);
+  const service = loadService(prisma, {
+    otorgarExperienciaJob: async () => ({ experienciaJobGanada: 12, nivelesSubidos: 1 }),
+  });
   const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "atacar");
   assert.equal(result.fase, "victoria");
   assert.equal(combat.recompensasResueltas, true);
@@ -599,6 +601,10 @@ test("la victoria reparte oro, recursos y objetos de misión sin generar unidade
   assert.equal(calls.userWrites.reduce((s, w) => s + w.data.metal.increment, 0), 1);
   assert.equal(calls.inventoryStackWrites.reduce((s, w) => s + (w.cantidad ?? 0), 0), 2);
   assert.equal(result.recompensas.recompensas.length, 2);
+  assert.deepEqual(result.recompensas.recompensas.map((miembro) => miembro.experienciaJob), [12, 12]);
+  assert.deepEqual(result.recompensas.recompensas.map((miembro) => miembro.nivelesJobSubidos), [1, 1]);
+  const informePersistido = calls.combatWrites.find((write) => write.data.recompensasResultado);
+  assert.deepEqual(informePersistido.data.recompensasResultado.experienciaPorMiembro.map((miembro) => miembro.experienciaJob), [12, 12]);
   assert.equal(combat.log.filter((line) => line.startsWith("🎁 ")).length, 2);
 });
 

@@ -123,11 +123,11 @@ function makePersonaje(id, velocidadPrueba = 1) {
   };
 }
 
-function makeUser(id, { leaderId = "leader", estado = "ocioso", speed = 1 } = {}) {
+function makeUser(id, { leaderId = "leader", estado = "ocioso", speed = 1, baseCoords = { lat: 27.9, lng: -15.4 } } = {}) {
   return {
     id,
     nombre: "Gremio " + id,
-    baseCoords: { lat: 27.9, lng: -15.4 },
+    baseCoords,
     ultimaMisionElite: null,
     personaje: { ...makePersonaje(id, speed), estado },
     expedicionActiva: null,
@@ -165,8 +165,8 @@ test("solo el líder puede iniciar la expedición compartida", async () => {
 });
 
 test("iniciar una party registra a todos con destino, llegada y estado comunes", async () => {
-  const leader = makeUser("leader", { speed: 12 });
-  const guest = makeUser("guest", { speed: 3 });
+  const leader = makeUser("leader", { speed: 12, baseCoords: { lat: 27.9, lng: -15.4 } });
+  const guest = makeUser("guest", { speed: 3, baseCoords: { lat: 28.4, lng: -15.9 } });
   const members = [memberRecord(leader), memberRecord(guest)];
   let createdExpedition = null;
   let createdParticipants = [];
@@ -218,6 +218,8 @@ test("iniciar una party registra a todos con destino, llegada y estado comunes",
     assert.equal(result.numeroParticipantes, 2);
     assert.equal(createdExpedition.fase, "en_viaje");
     assert.equal(createdExpedition.tipo, "normal");
+    assert.deepEqual(createdExpedition.origenCoords, leader.baseCoords, "el origen y futuro regreso son la base del líder");
+    assert.deepEqual(createdExpedition.destinoCoords, { lat: mission.lat, lng: mission.lng });
     assert.equal(createdParticipants.length, 2);
     assert.deepEqual(createdParticipants.map((p) => p.usuarioId).sort(), ["guest", "leader"]);
     assert.ok(createdParticipants.every((p) => p.expedicionPartyId === "exp-party-1" && p.estado === "en_viaje"));
@@ -362,8 +364,8 @@ test("el inicializador requiere un enemigo válido antes de crear el combate", a
 });
 
 
-test("completar regreso de party requiere llegada y finaliza de forma idempotente", async () => {
-  const { prisma, calls } = makeExpeditionReturnPrisma();
+test("completar regreso de party rechaza una llegada anticipada", async () => {
+  const { prisma } = makeExpeditionReturnPrisma();
   const servicio = loadService(prisma);
   await assert.rejects(
     servicio.completarRegresoExpedicionParty("leader", "exp-party-regreso"),
@@ -371,9 +373,22 @@ test("completar regreso de party requiere llegada y finaliza de forma idempotent
   );
 });
 
-function makeExpeditionReturnPrisma() {
+test("al completar el regreso, todos quedan disponibles y la membresía se mantiene intacta", async () => {
+  const { prisma, calls } = makeExpeditionReturnPrisma(new Date(Date.now() - 1_000));
+  const servicio = loadService(prisma);
+  const resultado = await servicio.completarRegresoExpedicionParty("leader", "exp-party-regreso");
+
+  assert.equal(resultado.fase, "completada");
+  assert.equal(resultado.llegadaProcesada, true);
+  assert.equal(calls.expeditionWrites[0].data.fase, "completada");
+  assert.equal(calls.participantWrites[0].data.estado, "completado");
+  assert.deepEqual(calls.characterWrites.map((write) => write.data.estado), ["ocioso", "ocioso"]);
+  assert.ok(calls.characterWrites.every((write) => write.where.estado === "de_viaje"));
+});
+
+function makeExpeditionReturnPrisma(fechaLlegada = new Date(Date.now() + 60_000)) {
   let fase = "regresando";
-  const fechas = { salida: new Date(Date.now() - 60_000), llegada: new Date(Date.now() + 60_000) };
+  const fechas = { salida: new Date(Date.now() - 60_000), llegada: fechaLlegada };
   const expedicion = {
     id: "exp-party-regreso",
     fase,

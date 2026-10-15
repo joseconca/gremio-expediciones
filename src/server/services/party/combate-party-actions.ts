@@ -511,6 +511,9 @@ async function liquidarRecompensasParty(
     piedra: number;
     metal: number;
     experiencia: number;
+    experienciaJob: number;
+    nivelesBaseSubidos: number;
+    nivelesJobSubidos: number;
     objetos: { objetoId: string; cantidad: number }[];
   }[] = [];
   for (let indice = 0; indice < participantes.length; indice += 1) {
@@ -594,6 +597,9 @@ async function liquidarRecompensasParty(
       piedra,
       metal,
       experiencia,
+      experienciaJob: progresoJob?.experienciaJobGanada ?? 0,
+      nivelesBaseSubidos: nivelesSubidos,
+      nivelesJobSubidos: progresoJob?.nivelesSubidos ?? 0,
       objetos: objetosRepartidos,
     });
     logLiquidacion.push(
@@ -643,7 +649,11 @@ async function liquidarRecompensasParty(
     liquidacionYaResuelta: false,
     oroTotal,
     dropsEnemigo,
-    experienciaPorMiembro: detalle.map((d) => ({ usuarioId: d.usuarioId, experiencia: d.experiencia })),
+    experienciaPorMiembro: detalle.map((d) => ({
+      usuarioId: d.usuarioId,
+      experiencia: d.experiencia,
+      experienciaJob: d.experienciaJob,
+    })),
     recompensas: detalle,
   };
 

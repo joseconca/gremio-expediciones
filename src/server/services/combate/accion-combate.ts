@@ -82,6 +82,7 @@ export async function otorgarExperienciaJob(
     nivelAnterior: progreso.nivelJob,
     nivelJob: actualizado.nivelJob,
     nivelesSubidos: actualizado.nivelesSubidos,
+    experienciaJobGanada,
     maestriaCompletada: actualizado.maestriaCompletada && !progreso.maestriaCompletada,
   };
 }

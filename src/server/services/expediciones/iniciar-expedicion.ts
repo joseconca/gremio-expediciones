@@ -130,7 +130,7 @@ export async function iniciarExpedicion(request: Request) {
 
     if (usuario.partyMembresia) {
       return respuestaError(
-        "Formas parte de una party. Las expediciones de grupo se habilitarán en la siguiente fase.",
+        "Formas parte de una party. Solo el líder puede iniciar una expedición compartida; tu personaje saldrá automáticamente con el grupo.",
         409
       );
     }
