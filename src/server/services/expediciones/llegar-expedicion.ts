@@ -277,11 +277,7 @@ export async function llegarExpedicion() {
     const modoDificultad = esModoDificultad(expedicion.modoDificultad)
       ? expedicion.modoDificultad
       : "normal";
-    const multiplicadores = calcularMultiplicadoresEnemigo(
-      dificultad,
-      monstruoBase.difMin,
-      modoDificultad
-    );
+    const multiplicadores = calcularMultiplicadoresEnemigo(dificultad, modoDificultad);
 
     // Escalado determinista: rareza solo afecta a selección/loot, no a la
     // fórmula de atributos. El modo se aplica exactamente una vez.

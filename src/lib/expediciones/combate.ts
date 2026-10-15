@@ -57,10 +57,14 @@ function falloPorPrecision(actor: "jugador" | "enemigo", nombre: string): Accion
 
 const K_DEFENSA = 20;
 
-function calcularDanoMitigado(danoBase: number, defensa: number): number {
-  const defensaSegura = Math.max(0, defensa);
-
-  const dano = (danoBase * K_DEFENSA) / (defensaSegura + K_DEFENSA);
+/**
+ * Fórmula única de mitigación para ataques básicos, habilidades y daño progresivo.
+ * La defensa reduce el daño de forma decreciente, manteniendo al menos 1 punto.
+ */
+export function calcularDanoMitigado(danoBase: number, defensa: number): number {
+  const danoBaseSeguro = Number.isFinite(danoBase) ? Math.max(0, danoBase) : 0;
+  const defensaSegura = Number.isFinite(defensa) ? Math.max(0, defensa) : 0;
+  const dano = (danoBaseSeguro * K_DEFENSA) / (defensaSegura + K_DEFENSA);
 
   return Math.max(1, Math.floor(dano));
 }
@@ -251,7 +255,7 @@ export function resolverHabilidadJugador(
           : defensaFisica;
       // Usamos la misma mitigación de defensa que el daño directo; el daño
       // almacenado ya está mitigado para que cada pulso no vuelva a reducirlo.
-      valor = Math.max(1, danoBruto - Math.floor(Math.max(0, defensaObjetivo) / 2));
+      valor = calcularDanoMitigado(danoBruto, defensaObjetivo);
     } else if (estado.tipo === "curacion_progresiva") {
       valor = Math.max(1, Math.floor(combate.jugadorHpMaximo * estado.valor * (1 + bonusCuracion)));
     } else if (estado.tipo === "bonus_defensa") {
@@ -322,7 +326,7 @@ export function resolverHabilidadJugador(
           ? Math.floor((enemigoDefensa + defensaMagica) / 2)
           : enemigoDefensa;
       const danoBase = Math.floor(ataqueEfectivo * variacion * (habilidad.multiplicadorDano ?? 1));
-      const danoNormal = Math.max(1, danoBase - Math.floor(defensa / 2));
+      const danoNormal = calcularDanoMitigado(danoBase, defensa);
       const esCritico = dado === 20 || Math.random() < probabilidadCritico;
       const multiplicadorCritico = (combate.jugadorDanoCritico ?? 1.5) + (habilidad.multiplicadorCritico ?? 0);
       const dano = esCritico ? Math.max(1, Math.floor(danoNormal * multiplicadorCritico)) : danoNormal;

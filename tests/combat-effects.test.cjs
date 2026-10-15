@@ -11,7 +11,7 @@ const {
   calcularEvasionModificada,
   retirarEfectosHabilidad,
 } = require("../src/lib/expediciones/estados-combate.ts");
-const { resolverHabilidadJugador } = require("../src/lib/expediciones/combate.ts");
+const { resolverHabilidadJugador, resolverAtaqueJugador } = require("../src/lib/expediciones/combate.ts");
 const { obtenerHabilidadPorId } = require("../src/lib/habilidades.ts");
 
 test("curación progresiva aplica un pulso sin superar la vida máxima", () => {
@@ -116,7 +116,60 @@ test("el daño progresivo se mitiga con la defensa física o mágica del objetiv
       jugadorPrecision: 100,
       enemigoEvasion: 0,
     });
-    assert.equal(resultado.efectos.find((efecto) => efecto.tipo === "dano_progresivo").valor, 5);
+    assert.equal(resultado.efectos.find((efecto) => efecto.tipo === "dano_progresivo").valor, 8);
+  } finally {
+    Math.random = originalRandom;
+  }
+});
+
+
+test("ataques básicos y habilidades comparten la misma fórmula de mitigación", () => {
+  const originalRandom = Math.random;
+  const secuencia = () => {
+    const valores = [0.5, 0, 0.5, 0.99];
+    Math.random = () => valores.shift() ?? 0.99;
+  };
+  try {
+    secuencia();
+    const basico = resolverAtaqueJugador({
+      jugadorAtaque: 99,
+      jugadorNivel: 1,
+      jugadorProbCritico: 0,
+      jugadorDanoCritico: 1.5,
+      enemigoDefensa: 20,
+      enemigoNombre: "Objetivo de prueba",
+      jugadorPrecision: 100,
+      enemigoEvasion: 0,
+    });
+
+    secuencia();
+    const habilidad = resolverHabilidadJugador({
+      id: "golpe_prueba",
+      claseId: "novato",
+      nombre: "Golpe de prueba",
+      tipo: "activa",
+      efecto: "dano",
+      tipoDano: "fisico",
+      multiplicadorDano: 1,
+    }, {
+      jugadorAtaque: 100,
+      jugadorAtaqueMagico: 100,
+      jugadorDefensa: 0,
+      jugadorDefensaMagica: 0,
+      jugadorNivel: 1,
+      jugadorHp: 100,
+      jugadorHpMaximo: 100,
+      jugadorProbCritico: 0,
+      jugadorDanoCritico: 1.5,
+      enemigoDefensa: 20,
+      enemigoDefensaMagica: 20,
+      enemigoNombre: "Objetivo de prueba",
+      jugadorPrecision: 100,
+      enemigoEvasion: 0,
+    }).accion;
+
+    assert.equal(basico.dano, 50);
+    assert.equal(habilidad.dano, 50);
   } finally {
     Math.random = originalRandom;
   }

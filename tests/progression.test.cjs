@@ -501,14 +501,17 @@ test("Job: la recompensa depende de amenaza, no del nivel Job ni de un porcentaj
   assert.ok(dificil > amenazaInicial);
 });
 
-test("dificultad: los modificadores de modo solo cambian las estadísticas declaradas", () => {
-  const facil = calcularMultiplicadoresEnemigo(7, 7, "facil");
-  const normal = calcularMultiplicadoresEnemigo(7, 7, "normal");
-  const dificil = calcularMultiplicadoresEnemigo(7, 7, "dificil");
+test("dificultad: amenaza escala un 15% por nivel desde cero y después aplica el modo", () => {
+  const base = calcularMultiplicadoresEnemigo(0, "normal");
+  const facil = calcularMultiplicadoresEnemigo(0, "facil");
+  const dificil = calcularMultiplicadoresEnemigo(0, "dificil");
+  assert.deepEqual(base, { vida: 1, ataque: 1, defensa: 1 });
   assert.deepEqual(facil, { vida: 0.8, ataque: 0.85, defensa: 0.9 });
-  assert.deepEqual(normal, { vida: 1, ataque: 1, defensa: 1 });
   assert.deepEqual(dificil, { vida: 1.25, ataque: 1.15, defensa: 1.1 });
-  assert.equal(calcularMultiplicadoresEnemigo(9, 7, "normal").vida, 1.06);
+
+  assert.deepEqual(calcularMultiplicadoresEnemigo(6, "normal"), { vida: 1.9, ataque: 1.9, defensa: 1.9 });
+  assert.deepEqual(calcularMultiplicadoresEnemigo(9, "normal"), { vida: 2.35, ataque: 2.35, defensa: 2.35 });
+  assert.deepEqual(calcularMultiplicadoresEnemigo(6, "dificil"), { vida: 2.375, ataque: 2.185, defensa: 2.09 });
 });
 
 test("Job: al alcanzar el máximo completa maestría y no acumula experiencia extra", () => {

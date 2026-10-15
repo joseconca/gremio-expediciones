@@ -164,7 +164,6 @@ export async function iniciarCombateParty(usuarioId: string, idDesconocido: unkn
       : "normal";
     const multiplicadores = calcularMultiplicadoresEnemigo(
       Math.max(0, expedicion.dificultad),
-      enemigoBase.difMin,
       modoDificultad,
     );
     const enemigoHp = Math.max(1, Math.floor(enemigoBase.hp * multiplicadores.vida));

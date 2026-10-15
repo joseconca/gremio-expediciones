@@ -134,9 +134,13 @@ export function calcularExperienciaJobGanada(
   );
 }
 
-export function calcularMultiplicadoresEnemigo(nivelAmenaza: number, dificultadMinima: number, modo: ModoDificultad) {
-  const exceso = Math.max(0, Math.floor(nivelAmenaza) - Math.max(1, Math.floor(dificultadMinima)));
-  const factorAmenaza = 1 + exceso * 0.03;
+/**
+ * Escalado lineal global: amenaza 0 conserva las estadísticas base del catálogo.
+ * La rareza y difMin determinan la selección del enemigo, no su factor de estadísticas.
+ */
+export function calcularMultiplicadoresEnemigo(nivelAmenaza: number, modo: ModoDificultad) {
+  const amenazaSegura = Number.isFinite(nivelAmenaza) ? Math.max(0, Math.floor(nivelAmenaza)) : 0;
+  const factorAmenaza = 1 + amenazaSegura * 0.15;
   const configuracion = CONFIGURACION_DIFICULTAD[modo];
   return {
     vida: factorAmenaza * configuracion.vidaEnemigo,

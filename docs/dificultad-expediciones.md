@@ -36,9 +36,9 @@ Velocidad e iniciativa no se modifican por modo. El modo se guarda en la expedic
 
 La rareza decide principalmente la frecuencia de aparición y el botín, no un multiplicador oculto de estadísticas.
 
-`factorAmenaza = 1 + 0,03 × max(0, nivelAmenaza − difMin)`
+`factorAmenaza = 1 + 0,15 × max(0, nivelAmenaza)`
 
-Vida, ataque y defensa se calculan como su estadística de catálogo por el factor de amenaza y por el factor del modo. Cada resultado se redondea hacia abajo y se aplica un mínimo razonable. El nivel Base no se suma otra vez al nivel de amenaza.
+La amenaza 0 conserva exactamente las estadísticas base del catálogo. Cada nivel de amenaza añade un 15 % lineal a vida, ataque y defensa, independientemente del `difMin` del monstruo; `difMin` solo condiciona qué enemigos pueden aparecer. Por ejemplo, amenaza 6 aplica ×1,90 y amenaza 10 aplica ×2,50 antes del modo. Cada resultado se redondea hacia abajo y se aplica un mínimo razonable. El nivel Base no se suma otra vez al nivel de amenaza.
 
 El catálogo de enemigos usa una ventana de amenazas próximas, con pesos por rareza; el Mímico de prueba está excluido de encuentros aleatorios para evitar usar sus estadísticas de 1 HP y botín de 500 como exploit. Por encima del mayor `difMin` del catálogo se reutiliza el grupo de monstruos superior y se escala según la amenaza real, de modo que el Rango V no se queda sin candidatos. Los sprites de combate/reportes se sirven desde `public/sprites/enemies/{I,II,III,IV,V}/`.
 
