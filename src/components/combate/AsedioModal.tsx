@@ -56,8 +56,6 @@ interface HabilidadEquipable {
   habilidad: HabilidadCombate;
 }
 
-type ActorVista = "jugador" | "enemigo";
-
 export default function AsedioModal({
   combate,
   personaje,
