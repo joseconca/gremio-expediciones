@@ -95,11 +95,12 @@ No inferir el elemento solo por `tipoDano: "magico"`; una habilidad debe configu
 
 ### Fase 6 — objetivos y efectos compuestos
 
-- Resolver de forma consistente el ID del origen y del destino para jugador, enemigo y cada miembro de party.
-- Permitir efectos sobre aliados solo junto a una ampliación explícita de las reglas/servicios de selección y resolución de objetivos; no basta con animarlos.
-- Añadir cobertura de multiobjetivo/área cuando exista selección de objetivos compatible.
-- Representar daño, curación y estados derivados de una sola acción como eventos visuales independientes.
-- Comprobar enemigos que se curan, objetivos caídos/retirados y cierre del modal durante una animación.
+- [x] Extraer un resolvedor puro común de destinos visuales y reutilizarlo en PvE, party y ambas perspectivas del asedio PvP.
+- [x] Dar prioridad a los IDs explícitos de actor/objetivo sobre los fallbacks visuales y asociar los pulsos de estado al destinatario real.
+- [x] Mantener diferenciados el daño al objetivo y la curación por robo de vida sobre el actor de origen.
+- [x] Añadir pruebas unitarias para PvE, atacante/objetivo de party, turno enemigo de party, destino de curación, robo de vida y perspectiva de defensor PvP.
+- [ ] No se ha habilitado aún la selección de objetivos aliados o multiobjetivo: requiere ampliación coordinada del contrato de petición, validación, servicios de combate y reglas de efectos; el metadato `objetivosUsuarioIds` por sí solo no debe simular esa lógica.
+- [ ] Añadir pruebas de integración para estados compuestos y objetivos caídos/retirados; la CI sigue reportando fallos independientes en tests de economía, aunque party, lint y build pasan en la última ejecución.
 
 ### Fase 7 — pruebas, accesibilidad y rendimiento
 

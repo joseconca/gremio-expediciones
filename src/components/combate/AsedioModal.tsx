@@ -6,6 +6,7 @@ import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import type { CombateActivo, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { useAnimacionesCombate } from "@/components/combate/animaciones/useAnimacionesCombate";
+import { resolverDestinosVisualesAccion } from "@/lib/expediciones/destinos-animacion-combate";
 import CapaEfectosCombate from "@/components/combate/animaciones/CapaEfectosCombate";
 import { calcularBonusDefensaMuralla } from "@/lib/expediciones/combate";
 import { CLASES } from "@/lib/progresion/clases";
@@ -257,29 +258,11 @@ export default function AsedioModal({
     });
 
   const mostrarResultadoAccion = useCallback(async (accion: AccionAnimadaCombate) => {
-    const actorVisual: ActorVista = esAtacante
-      ? accion.actor
-      : accion.actor === "jugador" ? "enemigo" : "jugador";
-    const esSoporte = accion.presentacion?.modo === "curacion" ||
-      accion.animacion === "curacion" ||
-      accion.animacion === "defensiva" ||
-      accion.animacion === "escudo";
-    const objetivoVisual: ActorVista = esSoporte
-      ? actorVisual
-      : actorVisual === "jugador" ? "enemigo" : "jugador";
-    const pulsos = (accion.pulsosEstado ?? []).map((pulso) => ({
-      actor: (esAtacante
-        ? pulso.objetivo
-        : pulso.objetivo === "jugador" ? "enemigo" : "jugador") as ActorVista,
-      tipo: pulso.tipo,
-      cantidad: pulso.cantidad,
-    }));
-
-    await mostrarResultadoVisual(accion, {
-      actorVisual,
-      objetivoVisual,
-      pulsosEstadoVisibles: pulsos,
+    const destinos = resolverDestinosVisualesAccion({
+      accion,
+      contexto: { modo: "pvp", esAtacante },
     });
+    await mostrarResultadoVisual(accion, destinos);
   }, [esAtacante, mostrarResultadoVisual]);
 
   useEffect(() => {

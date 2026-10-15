@@ -8,6 +8,7 @@ import { CLASES } from "@/lib/progresion/clases";
 import type { CombatePve, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { useAnimacionesCombate } from "@/components/combate/animaciones/useAnimacionesCombate";
+import { resolverDestinosVisualesAccion } from "@/lib/expediciones/destinos-animacion-combate";
 import CapaEfectosCombate from "@/components/combate/animaciones/CapaEfectosCombate";
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import type { ObjetoInventario } from "@/lib/tiposJuego";
@@ -306,41 +307,15 @@ export default function CombateModal({
         setMostrarResultado(true);
       }
     };
-    const actorReal = actorUsuarioId ?? accion.actorUsuarioId ?? null;
-    const objetivoReal = objetivoUsuarioId ?? accion.objetivoUsuarioId ?? null;
-    const actorVisual = partyMode
-      ? accion.actor === "enemigo" ? "enemigo" : actorReal ?? partyMode.usuarioId
-      : accion.actor;
-    const esSoporte = accion.presentacion?.modo === "curacion" ||
-      accion.animacion === "curacion" ||
-      accion.animacion === "defensiva" ||
-      accion.animacion === "escudo";
-    const objetivoVisual = partyMode
-      ? objetivoReal ?? (esSoporte
-        ? actorVisual
-        : accion.actor === "enemigo" ? partyMode.usuarioId : "enemigo")
-      : esSoporte
-        ? actorVisual
-        : accion.actor === "jugador" ? "enemigo" : "jugador";
-    const pulsos = (accion.pulsosEstado ?? []).map((pulso) => ({
-      actor: partyMode
-        ? pulso.objetivoUsuarioId ?? (
-            pulso.objetivo === "enemigo"
-              ? "enemigo"
-              : accion.actor === "enemigo"
-                ? objetivoReal ?? partyMode.usuarioId
-                : actorVisual
-          )
-        : pulso.objetivo,
-      tipo: pulso.tipo,
-      cantidad: pulso.cantidad,
-    }));
-
-    await mostrarResultadoVisual(accion, {
-      actorVisual,
-      objetivoVisual,
-      pulsosEstadoVisibles: pulsos,
+    const destinos = resolverDestinosVisualesAccion({
+      accion,
+      contexto: partyMode
+        ? { modo: "party", usuarioId: partyMode.usuarioId }
+        : { modo: "pve" },
+      actorUsuarioId,
+      objetivoUsuarioId,
     });
+    await mostrarResultadoVisual(accion, destinos);
     comprobarResultadoCombate();
   }, [partyMode, mostrarResultadoVisual]);
 
