@@ -143,6 +143,62 @@ async function crearRegreso(
   return creado;
 }
 
+function obtenerPosicionActualExpedicion(
+  expedicion: { fechaSalida: Date; fechaLlegada: Date; origenCoords: unknown; destinoCoords: unknown },
+  ahora: Date,
+): CoordenadasBase {
+  const origen = exigirCoordenadas(expedicion.origenCoords, "el origen de la expedición");
+  const destino = exigirCoordenadas(expedicion.destinoCoords, "el destino de la expedición");
+  const inicio = expedicion.fechaSalida.getTime();
+  const fin = expedicion.fechaLlegada.getTime();
+  const progreso = fin > inicio
+    ? Math.max(0, Math.min(1, (ahora.getTime() - inicio) / (fin - inicio)))
+    : 1;
+  return {
+    lat: origen.lat + (destino.lat - origen.lat) * progreso,
+    lng: origen.lng + (destino.lng - origen.lng) * progreso,
+  };
+}
+
+async function crearRegresoDesdeExpedicion(
+  tx: Prisma.TransactionClient,
+  datos: {
+    visitanteUsuarioId: string;
+    anfitrionUsuarioId: string;
+    origen: CoordenadasBase;
+    destino: CoordenadasBase;
+    salida: Date;
+  },
+) {
+  await exigirSinTrasladoActivo(tx, datos.visitanteUsuarioId);
+  const fechaLlegada = calcularLlegada(datos.origen, datos.destino, datos.salida);
+  const traslado = await tx.partyTransfer.create({
+    data: {
+      visitanteUsuarioId: datos.visitanteUsuarioId,
+      anfitrionUsuarioId: datos.anfitrionUsuarioId,
+      estado: "regresando",
+      decision: "lider_disuelve",
+      fechaSalida: datos.salida,
+      fechaLlegada,
+      fechaResolucion: datos.salida,
+      origenCoords: datos.origen as unknown as Prisma.InputJsonValue,
+      destinoCoords: datos.destino as unknown as Prisma.InputJsonValue,
+    },
+  });
+  const personajeActualizado = await tx.personaje.updateMany({
+    where: { usuarioId: datos.visitanteUsuarioId, estado: "de_viaje" },
+    data: { estado: "de_viaje" },
+  });
+  if (personajeActualizado.count !== 1) {
+    throw new PartyServiceError(
+      "El personaje ya no está en el viaje compartido y no puede regresar.",
+      409,
+      "PERSONAJE_MODIFICADO",
+    );
+  }
+  return traslado;
+}
+
 
 export async function solicitarVisita(visitanteUsuarioId: string, anfitrionIdDesconocido: unknown) {
   const anfitrionUsuarioId = exigirId(anfitrionIdDesconocido, "la base de destino");
@@ -508,45 +564,102 @@ export async function disolverParty(liderUsuarioId: string) {
       throw new PartyServiceError("No lideras ninguna party activa.", 409, "SIN_PARTY_LIDERADA");
     }
 
-    const expedicionActiva = await tx.expedicionParty.findFirst({
+    const expedicion = await tx.expedicionParty.findFirst({
       where: { partyId: party.id, fase: { in: [...ESTADOS_EXPEDICION_PARTY_ACTIVOS] } },
-      select: { id: true },
+      orderBy: { creado: "desc" },
+      include: {
+        participantes: { orderBy: { creado: "asc" }, select: { usuarioId: true, estado: true } },
+        combate: { select: { id: true, fase: true } },
+      },
     });
-    if (expedicionActiva) {
-      throw new PartyServiceError(
-        "La compañía no se puede disolver mientras haya una expedición compartida en curso. Esperad a regresar a la base del líder; después podréis disolverla explícitamente.",
-        409,
-        "PARTY_EXPEDICION_ACTIVA",
-      );
-    }
-
-    if (!party.liderUsuario.personaje || party.liderUsuario.personaje.estado !== "ocioso") {
-      throw new PartyServiceError("El personaje líder no está disponible en su base.", 409, "LIDER_NO_DISPONIBLE");
-    }
 
     const ahora = new Date();
-    const origen = exigirCoordenadas(party.liderUsuario.baseCoords, "la base del líder");
-    const invitados = party.miembros.filter((miembro) => miembro.usuarioId !== liderUsuarioId);
     let integrantesEnRegreso = 0;
-    for (const miembro of invitados) {
-      if (!miembro.usuario.personaje || miembro.usuario.personaje.estado !== "ocioso" || miembro.usuario.expedicionActiva) {
-        throw new PartyServiceError("Uno de los integrantes no está disponible para regresar.", 409, "MIEMBRO_NO_DISPONIBLE");
+    let expedicionPartyId: string | null = null;
+
+    if (expedicion) {
+      // Solo se permite la disolución mientras la party viaja hacia el contrato.
+      // Desde la llegada/preparación del combate y durante el combate o retorno,
+      // el grupo debe completar el ciclo compartido.
+      if (expedicion.fase !== "en_viaje" || expedicion.combate) {
+        throw new PartyServiceError(
+          "Solo puedes disolver la compañía durante el viaje hacia el contrato, antes de que empiece el combate.",
+          409,
+          "PARTY_EXPEDICION_ACTIVA",
+        );
       }
-      await exigirSinTrasladoActivo(tx, miembro.usuarioId);
-      await crearRegreso(tx, {
-        visitanteUsuarioId: miembro.usuarioId,
-        anfitrionUsuarioId: liderUsuarioId,
-        origen,
-        destino: exigirCoordenadas(miembro.usuario.baseCoords, "la base de un integrante"),
-        decision: "lider_disuelve",
-        salida: ahora,
+
+      const miembrosIds = new Set(party.miembros.map((miembro) => miembro.usuarioId));
+      const participantesIds = new Set(expedicion.participantes.filter((p) => p.estado === "en_viaje").map((p) => p.usuarioId));
+      if (miembrosIds.size !== participantesIds.size || [...miembrosIds].some((id) => !participantesIds.has(id))) {
+        throw new PartyServiceError(
+          "La composición de la party ya no coincide con los participantes del viaje.",
+          409,
+          "PARTY_PARTICIPANTS_MISMATCH",
+        );
+      }
+
+      const origenCompartido = obtenerPosicionActualExpedicion(expedicion, ahora);
+      for (const miembro of party.miembros) {
+        if (!miembro.usuario.personaje || miembro.usuario.personaje.estado !== "de_viaje" || miembro.usuario.expedicionActiva) {
+          throw new PartyServiceError(
+            "Todos los integrantes deben seguir en el viaje compartido para ordenar el regreso.",
+            409,
+            "MIEMBRO_NO_DISPONIBLE",
+          );
+        }
+        await crearRegresoDesdeExpedicion(tx, {
+          visitanteUsuarioId: miembro.usuarioId,
+          anfitrionUsuarioId: liderUsuarioId,
+          origen: origenCompartido,
+          destino: exigirCoordenadas(miembro.usuario.baseCoords, "la base de un integrante"),
+          salida: ahora,
+        });
+        integrantesEnRegreso += 1;
+      }
+
+      const participantesRetirados = await tx.expedicionPartyParticipante.updateMany({
+        where: { expedicionPartyId: expedicion.id, estado: "en_viaje" },
+        data: { estado: "retirado" },
       });
-      integrantesEnRegreso += 1;
+      if (participantesRetirados.count !== party.miembros.length) {
+        throw new PartyServiceError("No se pudo retirar a todos los integrantes de la expedición.", 409, "EXPEDICION_PARTY_MODIFICADA");
+      }
+      const expedicionCancelada = await tx.expedicionParty.updateMany({
+        where: { id: expedicion.id, fase: "en_viaje" },
+        data: { fase: "cancelada", resultadoFinal: "cancelada" },
+      });
+      if (expedicionCancelada.count !== 1) {
+        throw new PartyServiceError("La expedición acaba de cambiar de fase y no se puede disolver.", 409, "EXPEDICION_PARTY_MODIFICADA");
+      }
+      expedicionPartyId = expedicion.id;
+    } else {
+      if (!party.liderUsuario.personaje || party.liderUsuario.personaje.estado !== "ocioso") {
+        throw new PartyServiceError("El personaje líder no está disponible en su base.", 409, "LIDER_NO_DISPONIBLE");
+      }
+
+      const origen = exigirCoordenadas(party.liderUsuario.baseCoords, "la base del líder");
+      const invitados = party.miembros.filter((miembro) => miembro.usuarioId !== liderUsuarioId);
+      for (const miembro of invitados) {
+        if (!miembro.usuario.personaje || miembro.usuario.personaje.estado !== "ocioso" || miembro.usuario.expedicionActiva) {
+          throw new PartyServiceError("Uno de los integrantes no está disponible para regresar.", 409, "MIEMBRO_NO_DISPONIBLE");
+        }
+        await exigirSinTrasladoActivo(tx, miembro.usuarioId);
+        await crearRegreso(tx, {
+          visitanteUsuarioId: miembro.usuarioId,
+          anfitrionUsuarioId: liderUsuarioId,
+          origen,
+          destino: exigirCoordenadas(miembro.usuario.baseCoords, "la base de un integrante"),
+          decision: "lider_disuelve",
+          salida: ahora,
+        });
+        integrantesEnRegreso += 1;
+      }
     }
 
     await tx.partyMember.deleteMany({ where: { partyId: party.id } });
     await tx.party.update({ where: { id: party.id }, data: { estado: "disuelta" } });
-    return { partyDisuelta: true, integrantesEnRegreso, expedicionPartyId: null };
+    return { partyDisuelta: true, integrantesEnRegreso, expedicionPartyId };
   }, AISLAMIENTO);
 }
 

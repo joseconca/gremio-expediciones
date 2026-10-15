@@ -190,6 +190,7 @@ export default function PanelParty() {
   const [destinoTablon, setDestinoTablon] = useState<HTMLElement | null>(null);
   const [expedicionDetalleAbierto, setExpedicionDetalleAbierto] = useState(false);
   const [combatePartyCerradoId, setCombatePartyCerradoId] = useState<string | null>(null);
+  const [confirmarDisolucion, setConfirmarDisolucion] = useState(false);
   const procesandoAutomatico = useRef(new Set<string>());
   const siguienteIntentoTraslado = useRef(new Map<string, number>());
   const solicitudEstado = useRef<Promise<void> | null>(null);
@@ -565,7 +566,14 @@ export default function PanelParty() {
   const ocupado = Boolean(expedicionActiva) || Boolean(personaje && personaje.estado !== "ocioso");
   const esLider = Boolean(estado?.party && estado.party.liderUsuarioId === estado.usuarioId);
   const expedicionPartyActiva = Boolean(estado?.expedicionActiva);
-  const bloqueadaLaSalida = expedicionPartyActiva || ocupado;
+  const puedeDisolverDuranteViaje = Boolean(
+    esLider &&
+    estado?.expedicionActiva?.fase === "en_viaje" &&
+    !estado.expedicionActiva.combate,
+  );
+  const bloqueadaLaSalida = expedicionPartyActiva
+    ? !puedeDisolverDuranteViaje
+    : ocupado;
   const party = estado?.party ?? null;
   const puedeGestionarVisitasParty = puedeGestionarVisitas(Boolean(party), esLider);
   const trasladosPropios = estado?.trasladosPropios ?? [];
@@ -678,12 +686,21 @@ export default function PanelParty() {
             <button
               type="button"
               disabled={Boolean(accion) || bloqueadaLaSalida}
-              onClick={() => void ejecutar(
-                esLider ? "disolver" : "abandonar",
-                esLider ? "/api/party/disolver" : "/api/party/abandonar",
-              )}
+              onClick={() => {
+                if (esLider) {
+                  setConfirmarDisolucion(true);
+                  return;
+                }
+                void ejecutar("abandonar", "/api/party/abandonar");
+              }}
               className="mt-2 min-h-9 w-full rounded-sm border border-red-900/80 bg-red-950/40 px-2 py-1.5 text-[11px] font-black uppercase tracking-wide text-red-200 transition hover:bg-red-900/70 disabled:cursor-not-allowed disabled:opacity-40"
-              title={bloqueadaLaSalida ? (expedicionPartyActiva ? "La party se mantiene unida durante la expedición y el regreso." : "El personaje debe estar disponible en la base.") : undefined}
+              title={bloqueadaLaSalida ? (
+                expedicionPartyActiva
+                  ? estado?.expedicionActiva?.fase === "combatiendo" || estado?.expedicionActiva?.combate
+                    ? "No se puede disolver la party durante el combate."
+                    : "Solo se puede disolver durante el viaje de ida, antes del combate."
+                  : "El personaje debe estar disponible en la base."
+              ) : undefined}
             >
               {accion === (esLider ? "disolver" : "abandonar")
                 ? "Procesando..."
@@ -692,7 +709,11 @@ export default function PanelParty() {
             {ocupado && (
               <p className="mt-1.5 text-[10px] leading-snug text-amber-400/80">
                 {expedicionPartyActiva
-                  ? "La compañía se mantiene unida durante el viaje, el combate y el regreso. La salida o disolución se habilita cuando todos hayan vuelto."
+                  ? puedeDisolverDuranteViaje
+                    ? "Puedes cancelar el contrato durante el viaje de ida. Todos regresarán a sus respectivas bases y la compañía quedará disuelta."
+                    : estado?.expedicionActiva?.fase === "combatiendo" || estado?.expedicionActiva?.combate
+                      ? "No se puede disolver la compañía durante el combate."
+                      : "La disolución no está disponible en esta fase de la expedición."
                   : "Debes estar en tu base y sin actividad para salir."}
               </p>
             )}
@@ -917,6 +938,53 @@ export default function PanelParty() {
       )}
         </>,
         destinoTablon,
+      )}
+      {confirmarDisolucion && esLider && (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/85 p-4 backdrop-blur-sm">
+          <section
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="confirmar-disolucion-party-titulo"
+            className="w-full max-w-md rounded-xl border-2 border-red-900/80 bg-[#1c150d] p-5 text-amber-50 shadow-2xl"
+          >
+            <h2 id="confirmar-disolucion-party-titulo" className="text-lg font-black text-red-200">
+              ¿Disolver la compañía?
+            </h2>
+            {estado?.expedicionActiva?.fase === "en_viaje" ? (
+              <p className="mt-3 text-sm leading-6 text-slate-200">
+                Se cancelará el contrato antes del combate. Cada integrante, incluido tú, abandonará la party y regresará desde la posición actual a su propia base. No se iniciará el combate ni se obtendrán recompensas de esta expedición.
+              </p>
+            ) : (
+              <p className="mt-3 text-sm leading-6 text-slate-200">
+                La compañía se disolverá. Los integrantes regresarán a sus bases mediante traslados individuales.
+              </p>
+            )}
+            <p className="mt-2 text-xs text-amber-300/80">
+              Esta acción no se puede deshacer automáticamente.
+            </p>
+            <div className="mt-5 flex gap-2">
+              <button
+                type="button"
+                onClick={() => setConfirmarDisolucion(false)}
+                disabled={Boolean(accion)}
+                className="min-h-11 flex-1 rounded-md border border-slate-600 bg-slate-800 px-4 py-2 font-bold text-slate-200 hover:bg-slate-700 disabled:opacity-50"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setConfirmarDisolucion(false);
+                  void ejecutar("disolver", "/api/party/disolver");
+                }}
+                disabled={Boolean(accion)}
+                className="min-h-11 flex-1 rounded-md border border-red-700 bg-red-900 px-4 py-2 font-black text-red-50 hover:bg-red-800 disabled:opacity-50"
+              >
+                {accion === "disolver" ? "Disolviendo..." : "Sí, disolver"}
+              </button>
+            </div>
+          </section>
+        </div>
       )}
       {mostrarCombateParty && combateModalParty && combatePartyDatos && personaje && estado && (
         <CombateModal

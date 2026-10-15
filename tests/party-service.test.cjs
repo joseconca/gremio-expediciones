@@ -368,31 +368,114 @@ test("el último informe de combate se conserva después del regreso y queda lim
 });
 
 
-test("el líder no puede disolver la party durante una expedición activa", async () => {
+test("el líder no puede disolver la party al llegar al combate ni durante el combate", async () => {
+  for (const fase of ["lista_para_combate", "combatiendo", "regresando"]) {
+    let seBorroMembresia = false;
+    let seMarcoDisuelta = false;
+    const tx = {
+      party: {
+        findUnique: async () => ({
+          id: "p1",
+          estado: "activa",
+          liderUsuarioId: "lider",
+          liderUsuario: { id: "lider", baseCoords: { lat: 27.99, lng: -15.42 }, personaje: { id: "char-lider", estado: "de_viaje" } },
+          miembros: [{ id: "m1", usuarioId: "lider" }, { id: "m2", usuarioId: "invitado" }],
+        }),
+        update: async () => { seMarcoDisuelta = true; },
+      },
+      expedicionParty: { findFirst: async () => ({ id: "exp-activa", fase, combate: fase === "combatiendo" ? { id: "combat-1" } : null, participantes: [] }) },
+      partyMember: { deleteMany: async () => { seBorroMembresia = true; } },
+    };
+    const servicio = loadService(makePrisma(tx));
+    await assert.rejects(
+      servicio.disolverParty("lider"),
+      (error) => error.status === 409 && error.code === "PARTY_EXPEDICION_ACTIVA",
+    );
+    assert.equal(seBorroMembresia, false);
+    assert.equal(seMarcoDisuelta, false);
+  }
+});
+
+test("el líder puede disolver durante el viaje y manda a todos desde la posición actual a sus bases", async () => {
   let seBorroMembresia = false;
   let seMarcoDisuelta = false;
+  let participantesRetirados = null;
+  let expedicionCancelada = null;
+  const now = Date.now();
+  const bases = {
+    lider: { lat: 27.9, lng: -15.4 },
+    invitado: { lat: 28.4, lng: -15.9 },
+  };
+  const miembros = ["lider", "invitado"].map((id) => ({
+    id: "m-" + id,
+    usuarioId: id,
+    usuario: {
+      id,
+      baseCoords: bases[id],
+      personaje: { id: "char-" + id, estado: "de_viaje" },
+      expedicionActiva: null,
+    },
+  }));
+  const transfers = [];
   const tx = {
     party: {
       findUnique: async () => ({
         id: "p1",
         estado: "activa",
         liderUsuarioId: "lider",
-        liderUsuario: { id: "lider", baseCoords: { lat: 27.99, lng: -15.42 }, personaje: { id: "char-lider", estado: "ocioso" } },
-        miembros: [{ id: "m1", usuarioId: "lider" }, { id: "m2", usuarioId: "invitado" }],
+        liderUsuario: { id: "lider", baseCoords: bases.lider, personaje: { id: "char-lider", estado: "de_viaje" } },
+        miembros,
       }),
-      update: async () => { seMarcoDisuelta = true; },
+      update: async ({ data }) => { seMarcoDisuelta = data.estado === "disuelta"; },
     },
-    expedicionParty: { findFirst: async () => ({ id: "exp-activa", fase: "regresando" }) },
+    expedicionParty: {
+      findFirst: async () => ({
+        id: "exp-ida",
+        fase: "en_viaje",
+        fechaSalida: new Date(now - 30_000),
+        fechaLlegada: new Date(now + 30_000),
+        origenCoords: bases.lider,
+        destinoCoords: { lat: 28.2, lng: -15.7 },
+        participantes: [{ usuarioId: "lider", estado: "en_viaje" }, { usuarioId: "invitado", estado: "en_viaje" }],
+        combate: null,
+      }),
+      updateMany: async ({ where, data }) => {
+        expedicionCancelada = { where, data };
+        return { count: 1 };
+      },
+    },
+    expedicionPartyParticipante: {
+      updateMany: async ({ where, data }) => {
+        participantesRetirados = { where, data };
+        return { count: 2 };
+      },
+    },
+    partyTransfer: {
+      findFirst: async () => null,
+      create: async ({ data }) => { transfers.push(data); return { id: "transfer-" + transfers.length, ...data }; },
+    },
+    personaje: {
+      updateMany: async ({ where }) => where.estado === "de_viaje" ? { count: 1 } : { count: 0 },
+    },
     partyMember: { deleteMany: async () => { seBorroMembresia = true; } },
-    partyTransfer: { create: async () => { throw new Error("No se deben crear traslados"); } },
   };
   const servicio = loadService(makePrisma(tx));
-  await assert.rejects(
-    servicio.disolverParty("lider"),
-    (error) => error.status === 409 && error.code === "PARTY_EXPEDICION_ACTIVA",
-  );
-  assert.equal(seBorroMembresia, false);
-  assert.equal(seMarcoDisuelta, false);
+  const resultado = await servicio.disolverParty("lider");
+
+  assert.equal(resultado.partyDisuelta, true);
+  assert.equal(resultado.integrantesEnRegreso, 2);
+  assert.equal(resultado.expedicionPartyId, "exp-ida");
+  assert.equal(transfers.length, 2);
+  assert.deepEqual(transfers.map((t) => t.visitanteUsuarioId).sort(), ["invitado", "lider"]);
+  assert.ok(transfers.every((t) => t.estado === "regresando" && t.decision === "lider_disuelve"));
+  assert.ok(transfers.every((t) => t.origenCoords.lat > bases.lider.lat && t.origenCoords.lat < 28.2));
+  assert.deepEqual(transfers.find((t) => t.visitanteUsuarioId === "lider").destinoCoords, bases.lider);
+  assert.deepEqual(transfers.find((t) => t.visitanteUsuarioId === "invitado").destinoCoords, bases.invitado);
+  assert.equal(participantesRetirados.data.estado, "retirado");
+  assert.equal(expedicionCancelada.data.fase, "cancelada");
+  assert.equal(expedicionCancelada.data.resultadoFinal, "cancelada");
+  assert.equal(seBorroMembresia, true);
+  assert.equal(seMarcoDisuelta, true);
 });
 
 test("abandonar party se bloquea durante una expedición aunque el miembro haya huido del combate", async () => {
