@@ -893,18 +893,32 @@ export async function obtenerEstadoParty(usuarioId: string) {
     }),
   };
 
+  // La habilitación de Aceptar/Rechazar debe basarse en el reloj del servidor,
+  // no en el reloj local de cada navegador.
+  const ahoraServidor = new Date();
+  const prepararTrasladoVista = <T extends { fechaLlegada: Date }>(traslado: T) => ({
+    ...traslado,
+    haLlegadoEnServidor: traslado.fechaLlegada <= ahoraServidor,
+  });
+  const trasladosPropios = traslados
+    .filter((traslado) => traslado.visitanteUsuarioId === usuarioId)
+    .map(prepararTrasladoVista);
+  const visitasEntrantes = traslados
+    .filter(
+      (traslado) =>
+        traslado.anfitrionUsuarioId === usuarioId &&
+        (traslado.estado === "en_viaje" || traslado.estado === "pendiente") &&
+        traslado.decision === null,
+    )
+    .map(prepararTrasladoVista);
+
   return {
     usuarioId,
     party,
     personajeAcciones: personajeAccionesVista,
     expedicionActiva,
     ultimoResultadoExpedicion,
-    trasladosPropios: traslados.filter((traslado) => traslado.visitanteUsuarioId === usuarioId),
-    visitasEntrantes: traslados.filter(
-      (traslado) =>
-        traslado.anfitrionUsuarioId === usuarioId &&
-        (traslado.estado === "en_viaje" || traslado.estado === "pendiente") &&
-        traslado.decision === null,
-    ),
+    trasladosPropios,
+    visitasEntrantes,
   };
 }

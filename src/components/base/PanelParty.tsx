@@ -23,6 +23,7 @@ type TrasladoVista = {
   decision: string | null;
   fechaSalida: string;
   fechaLlegada: string;
+  haLlegadoEnServidor?: boolean;
   visitante?: PersonaVista;
   anfitrion?: PersonaVista;
 };
@@ -232,9 +233,15 @@ export default function PanelParty() {
     ? 3000
     : estado?.expedicionActiva || (estado?.trasladosPropios.length ?? 0) > 0
       ? 5000
-      : (estado?.visitasEntrantes.length ?? 0) > 0
-        ? 10000
-        : estado?.party
+      : (estado?.visitasEntrantes ?? []).some(
+          (traslado) =>
+            !traslado.haLlegadoEnServidor &&
+            new Date(traslado.fechaLlegada).getTime() - ahora <= 15_000,
+        )
+        ? 2000
+        : (estado?.visitasEntrantes.length ?? 0) > 0
+          ? 5000
+          : estado?.party
           ? 15000
           : 30000;
 
@@ -912,13 +919,18 @@ export default function PanelParty() {
             {visitasEntrantes.map((traslado) => {
               const visitante = traslado.visitante;
               const restante = segundosRestantes(traslado.fechaLlegada, ahora);
-              const haLlegado = restante === 0;
+              const haLlegado = traslado.haLlegadoEnServidor ?? restante === 0;
+              const llegadaEsperandoConfirmacion = restante === 0 && !haLlegado;
               return (
                 <article key={traslado.id} className="rounded-lg border border-amber-900/60 bg-amber-950/20 p-3">
                   <p className="font-bold text-white">{visitante?.personaje?.nombre ?? "Aventurero visitante"}</p>
                   <p className="mt-1 text-sm text-slate-300">{visitante?.nombre ?? "Gremio desconocido"}</p>
                   <p className="mt-1 text-xs text-slate-400">
-                    {haLlegado ? "Ha llegado a tu base; decide si incorporarlo." : `En camino: ${formatoCuentaAtras(restante)}`}
+                    {haLlegado
+                      ? "Ha llegado a tu base; decide si incorporarlo."
+                      : llegadaEsperandoConfirmacion
+                        ? "Confirmando la llegada con el servidor..."
+                        : `En camino: ${formatoCuentaAtras(restante)}`}
                   </p>
                   {haLlegado ? (
                     <div className="mt-3 flex gap-2">
