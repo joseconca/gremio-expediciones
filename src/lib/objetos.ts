@@ -514,6 +514,10 @@ export function calcularCosteRecursosMejora(
     } else {
       receta = { madera: 1, piedra: 0, metal: 1 };
     }
+  } else if (objeto.subtipo === "escudo") {
+    // Aunque use una afinidad de mano secundaria, el escudo de madera
+    // conserva una receta centrada en madera y no en armadura corporal.
+    receta = { madera: 2, piedra: 0, metal: 0 };
   } else if (objeto.categoriaArmadura === "pesada") {
     receta = { madera: 0, piedra: 1, metal: 2 };
   } else if (objeto.categoriaArmadura === "media") {
@@ -545,13 +549,17 @@ const MULTIPLICADOR_CATEGORIA_ARMADURA: Record<"ligera" | "media" | "pesada", nu
 
 /** El coste de mejora no hereda anomalías del precio de compra del catálogo. */
 export function calcularCosteMejoraObjeto(
-  objeto: Pick<DefinicionObjeto, "tipo" | "rareza" | "categoriaArmadura">,
+  objeto: Pick<DefinicionObjeto, "tipo" | "rareza" | "categoriaArmadura" | "subtipo">,
   nivelMejora: number
 ): number {
   if (objeto.tipo !== "arma" && objeto.tipo !== "armadura") return 0;
   const nivelSeguro = Number.isFinite(nivelMejora) ? Math.max(0, Math.floor(nivelMejora)) : 0;
   const costeBase = COSTE_BASE_MEJORA[objeto.tipo];
   const rareza = MULTIPLICADOR_ORO_RAREZA[objeto.rareza];
-  const categoria = objeto.tipo === "arma" ? 1.2 : MULTIPLICADOR_CATEGORIA_ARMADURA[objeto.categoriaArmadura ?? "media"];
+  const categoria = objeto.tipo === "arma"
+    ? 1.2
+    : objeto.subtipo === "escudo"
+      ? MULTIPLICADOR_CATEGORIA_ARMADURA.ligera
+      : MULTIPLICADOR_CATEGORIA_ARMADURA[objeto.categoriaArmadura ?? "media"];
   return Math.max(1, Math.ceil(costeBase * categoria * rareza * Math.pow(nivelSeguro + 1, 1.25)));
 }

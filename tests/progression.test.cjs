@@ -294,6 +294,7 @@ test("forja: el coste de oro depende del tipo, la rareza y el nivel, no del prec
   assert.equal(calcularCosteMejoraObjeto({ ...raro, precio: 1_000_000 }, 0), 166);
   assert.ok(calcularCosteMejoraObjeto(raro, 1) > calcularCosteMejoraObjeto(raro, 0));
   assert.equal(calcularCosteMejoraObjeto(obtenerObjetoPorId("armadura_acero"), 0), 138);
+  assert.equal(calcularCosteMejoraObjeto(obtenerObjetoPorId("escudo_madera"), 0), 45, "El escudo conserva su coste de mejora de categoría ligera sin considerarse armadura ligera para maestrías");
   assert.equal(calcularCosteMejoraObjeto({ tipo: "consumible", rareza: "comun" }, 0), 0);
 });
 
@@ -313,6 +314,11 @@ test("forja: los materiales escalan por tipo, rareza y nivel de mejora", () => {
   assert.deepEqual(
     calcularCosteRecursosMejora(obtenerObjetoPorId("armadura_hierro"), 0),
     { madera: 0, piedra: 2, metal: 4 },
+  );
+  assert.deepEqual(
+    calcularCosteRecursosMejora(obtenerObjetoPorId("escudo_madera"), 0),
+    { madera: 2, piedra: 0, metal: 0 },
+    "El subtipo escudo usa su propia receta de madera",
   );
 
   const arcoRaro = {
