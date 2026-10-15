@@ -6,8 +6,10 @@ import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { CLASES, puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
 import { nivelMaximoHabilidad } from "@/lib/progresion/niveles-habilidad";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    const url = new URL(request.url);
+    const incluirOtrasClasesRama = url.searchParams.get("incluirOtrasClasesRama") === "true";
     const usuarioSesion = await getAuthenticatedUser();
 
     if (!usuarioSesion) {
@@ -77,7 +79,9 @@ export async function GET() {
     const personaje = usuario.personaje;
     const progresosClase = personaje.progresosClase;
     const profesionActivaId = personaje.profesionActivaId || "novato";
-    const habilidadesEnVenta = obtenerHabilidadesEnVenta(profesionActivaId);
+    const habilidadesEnVenta = obtenerHabilidadesEnVenta(profesionActivaId).filter((habilidad) =>
+      incluirOtrasClasesRama || (habilidad.claseId ?? profesionActivaId) === profesionActivaId
+    );
     const progresoJob = progresosClase.find(
       (progreso) => progreso.claseId === profesionActivaId && progreso.desbloqueada
     );
@@ -127,6 +131,7 @@ export async function GET() {
       escuelaNivel: nivelEscuela,
       profesionActivaId,
       profesionNombre: CLASES[profesionActivaId]?.nombre ?? profesionActivaId,
+      incluirOtrasClasesRama,
       progresoJob: progresoJob ?? null,
       enVenta,
       aprendidas: habilidadesAprendidas.map((aprendida) => ({

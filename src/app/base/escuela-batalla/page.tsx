@@ -93,10 +93,11 @@ export default function EscuelaCombatePage() {
   const [vista, setVista] = useState<Vista>("aprender");
   const [filtro, setFiltro] = useState<Filtro>("todas");
   const [busqueda, setBusqueda] = useState("");
+  const [incluirOtrasClasesRama, setIncluirOtrasClasesRama] = useState(false);
 
   const recargarHabilidades = useCallback(async () => {
     try {
-      const respuesta = await fetch("/api/habilidades");
+      const respuesta = await fetch(`/api/habilidades?incluirOtrasClasesRama=${incluirOtrasClasesRama}`);
       const resultado = await respuesta.json();
       if (!respuesta.ok) {
         setError(resultado.error || "No se pudieron cargar las habilidades.");
@@ -109,7 +110,7 @@ export default function EscuelaCombatePage() {
     } finally {
       setCargando(false);
     }
-  }, []);
+  }, [incluirOtrasClasesRama]);
 
   useEffect(() => {
     if (nivelEscuela === 0) {
@@ -272,6 +273,14 @@ export default function EscuelaCombatePage() {
                   className="w-full rounded-lg border border-[#594630] bg-[#211b14] px-3 py-2 text-sm text-[#f0e5d0] outline-none focus:border-amber-500 md:w-64" />
               </label>
             </div>
+            <label className="mb-3 flex cursor-pointer items-start gap-3 rounded-lg border border-[#5b4932] bg-[#1d1913] px-3 py-3 transition-colors hover:border-amber-700/70 sm:mb-4 sm:items-center">
+              <input type="checkbox" checked={incluirOtrasClasesRama} onChange={(event) => setIncluirOtrasClasesRama(event.target.checked)} className="mt-0.5 h-4 w-4 shrink-0 accent-amber-500 sm:mt-0" />
+              <span className="min-w-0 flex-1">
+                <span className="block text-sm font-semibold text-[#e8d7b8]">Incluir habilidades de otras clases de mi rama</span>
+                <span className="mt-0.5 block text-xs leading-5 text-[#a99d84]">{incluirOtrasClasesRama ? "Se muestran también las habilidades heredadas de las clases anteriores de tu rama." : "Solo se muestran las habilidades propias de tu clase actual."}</span>
+              </span>
+              <span className={`shrink-0 rounded-full border px-2 py-1 text-[10px] font-bold ${incluirOtrasClasesRama ? "border-sky-700/70 bg-sky-950/50 text-sky-200" : "border-[#51412d] bg-[#292117] text-[#a99d84]"}`}>{incluirOtrasClasesRama ? "Rama completa" : "Solo mi clase"}</span>
+            </label>
             <div className="mb-4 flex gap-2 overflow-x-auto pb-1" aria-label="Filtrar habilidades">
               {([["todas", "Todas"], ["activa", "Activas"], ["pasiva", "Pasivas"], ["disponibles", "Puedo aprender"]] as const).map(([key, label]) => (
                 <button key={key} type="button" onClick={() => setFiltro(key)} aria-pressed={filtro === key}
