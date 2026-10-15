@@ -140,7 +140,8 @@ export function calcularExperienciaJobGanada(
  */
 export function calcularMultiplicadoresEnemigo(nivelAmenaza: number, modo: ModoDificultad) {
   const amenazaSegura = Number.isFinite(nivelAmenaza) ? Math.max(0, Math.floor(nivelAmenaza)) : 0;
-  const factorAmenaza = 1 + amenazaSegura * 0.15;
+  // Trabajar desde porcentajes enteros evita que 1 + 9 * 0.15 se redondee a 2.349999….
+  const factorAmenaza = (100 + amenazaSegura * 15) / 100;
   const configuracion = CONFIGURACION_DIFICULTAD[modo];
   return {
     vida: factorAmenaza * configuracion.vidaEnemigo,

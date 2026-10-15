@@ -511,7 +511,10 @@ test("dificultad: amenaza escala un 15% por nivel desde cero y después aplica e
 
   assert.deepEqual(calcularMultiplicadoresEnemigo(6, "normal"), { vida: 1.9, ataque: 1.9, defensa: 1.9 });
   assert.deepEqual(calcularMultiplicadoresEnemigo(9, "normal"), { vida: 2.35, ataque: 2.35, defensa: 2.35 });
-  assert.deepEqual(calcularMultiplicadoresEnemigo(6, "dificil"), { vida: 2.375, ataque: 2.185, defensa: 2.09 });
+  const dificilAmenaza6 = calcularMultiplicadoresEnemigo(6, "dificil");
+  assert.equal(dificilAmenaza6.vida, 2.375);
+  assert.ok(Math.abs(dificilAmenaza6.ataque - 2.185) < 1e-12);
+  assert.equal(dificilAmenaza6.defensa, 2.09);
 });
 
 test("Job: al alcanzar el máximo completa maestría y no acumula experiencia extra", () => {
