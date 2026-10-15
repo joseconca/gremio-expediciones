@@ -546,7 +546,7 @@ export async function disolverParty(liderUsuarioId: string) {
 
     await tx.partyMember.deleteMany({ where: { partyId: party.id } });
     await tx.party.update({ where: { id: party.id }, data: { estado: "disuelta" } });
-    return { partyDisuelta: true, integrantesEnRegreso, expedicionPartyId: expedicion?.id ?? null };
+    return { partyDisuelta: true, integrantesEnRegreso, expedicionPartyId: null };
   }, AISLAMIENTO);
 }
 
