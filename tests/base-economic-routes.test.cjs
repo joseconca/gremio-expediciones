@@ -249,6 +249,7 @@ function makeCombatConsumableRoute({
     "next/server": { NextResponse },
     "@prisma/client": commonDependencies["@prisma/client"],
     "@/lib/prisma": { prisma },
+    "@/lib/expediciones/tiempos": loadSource("src/lib/expediciones/tiempos.ts"),
     "@/lib/expediciones/actualizar-combate-versionado": loadSource("src/lib/expediciones/actualizar-combate-versionado.ts"),
     "@/lib/enemigos": commonDependencies["@/lib/enemigos"],
     "@/lib/configuracionJuego": commonDependencies["@/lib/configuracionJuego"],
