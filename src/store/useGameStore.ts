@@ -366,7 +366,7 @@ export interface GameState {
   llegarExpedicion: () => Promise<boolean>;
   completarExpedicion: () => Promise<ReporteExpedicion | null>;
   accionCombate: (
-    accion: "atacar" | "usar_habilidad" | "usar_objeto",
+    accion: "atacar" | "usar_habilidad" | "usar_objeto" | "escapar",
     payload?: string,
     modo?: "pve" | "pvp"
   ) => Promise<AccionAnimadaCombate | null>;
@@ -813,7 +813,7 @@ export const useGameStore = create<GameState>((set, get) => ({
   },
 
   accionCombate: async (
-    accion: "atacar" | "usar_habilidad" | "usar_objeto",
+    accion: "atacar" | "usar_habilidad" | "usar_objeto" | "escapar",
     payload?: string,
     modo: "pve" | "pvp" = "pve"
   ) => {
@@ -821,7 +821,7 @@ export const useGameStore = create<GameState>((set, get) => ({
       const definicionHabilidad = accion === "usar_habilidad" && payload
         ? obtenerHabilidadPorId(payload)
         : null;
-      const objetivo = accion === "usar_objeto"
+      const objetivo = accion === "usar_objeto" || accion === "escapar"
         ? "propio"
         : accion === "usar_habilidad" && definicionHabilidad?.efecto !== "dano"
           ? "propio"

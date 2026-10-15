@@ -155,6 +155,7 @@ function mkParticipant(id, order, hp = 100, hpMax = 100, status = "activo") {
     usuarioId: id,
     personajeId: "personaje-" + id,
     ordenTurno: order,
+    jugadorPosicion: order === 0 ? "mele" : "centro",
     estado: status,
     jugadorHp: hp,
     jugadorHpMaximo: hpMax,
@@ -691,4 +692,55 @@ test("cada aventurero conserva su propio límite de inventario al recibir el dro
   assert.equal(combat.log.filter((line) => line.includes("El botín de Slime para") && line.includes("su inventario está lleno")).length, 2);
   assert.equal(combat.log.filter((line) => line.includes("no ha podido recibir") && line.includes("inventario está lleno")).length, 2);
   assert.equal(combat.log.filter((line) => line.includes("inventarios de la party están llenos")).length, 0);
+});
+
+
+test("huir en party saca al jugador del turno sin expulsarlo de la party", async () => {
+  const combat = mkCombat();
+  const { prisma, calls } = mockPrisma(combat);
+  const service = loadService(prisma);
+  const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "escapar");
+  assert.equal(result.fase, "activo");
+  assert.equal(result.turnoActualUsuarioId, "u2");
+  assert.equal(combat.participantes[0].estado, "huyo");
+  assert.equal(calls.expeditionParticipantWrites.some((write) => write.data.estado === "huyo"), true);
+  assert.match(combat.log.join(" "), /huye del combate/);
+});
+
+test("cambiar la posición es visual, se persiste y no consume el turno", async () => {
+  const combat = mkCombat();
+  const { prisma, calls } = mockPrisma(combat);
+  const service = loadService(prisma);
+  const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "cambiar_posicion", { posicion: "retaguardia" });
+  assert.equal(result.jugadorPosicion, "retaguardia");
+  assert.equal(combat.participantes[0].jugadorPosicion, "retaguardia");
+  assert.equal(combat.faseTurno, "jugador");
+  assert.equal(combat.turnoActualUsuarioId, "u1");
+  assert.equal(calls.participantWrites.some((write) => write.data.jugadorPosicion === "retaguardia"), true);
+  assert.equal(calls.characterWrites.length, 0);
+});
+
+
+test("quien huye recibe oro y objetos de misión, pero no XP ni botín enemigo", async () => {
+  const lootRolls = [];
+  const combat = mkCombat({
+    enemigoHp: 10,
+    id: "combat-flee-rewards",
+    participantes: [mkParticipant("u1", 0), mkParticipant("u2", 1), mkParticipant("u3", 2)],
+  });
+  const { prisma } = mockPrisma(combat);
+  const service = loadService(prisma, {
+    lootRolls,
+    enemigo: { probabilidadBotin: 1, tablaLoot: [{ objetoId: "pocion", peso: 1 }] },
+  });
+  const huida = await service.ejecutarAccionCombateParty("u1", "expedition-1", "escapar");
+  assert.equal(huida.turnoActualUsuarioId, "u2");
+  const victoria = await service.ejecutarAccionCombateParty("u2", "expedition-1", "atacar");
+  assert.equal(victoria.fase, "victoria");
+  const recompensa = victoria.recompensas.recompensas.find((miembro) => miembro.usuarioId === "u1");
+  assert.ok(recompensa.oro > 0, "la cuota de oro se mantiene");
+  assert.equal(recompensa.experiencia, 0, "no recibe XP por el enemigo");
+  assert.ok(recompensa.objetos.length > 0, "conserva su reparto de objetos de misión");
+  assert.equal(victoria.recompensas.dropsEnemigo.some((drop) => drop.usuarioId === "u1"), false);
+  assert.equal(lootRolls.length, 2, "solo los dos participantes que permanecieron combatiendo tiran botín");
 });

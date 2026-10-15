@@ -203,6 +203,10 @@ export async function completarExpedicion() {
         logRegreso = [
           `💀 ${usuario.personaje.nombre} regresa al gremio tras ser derrotado.`,
         ];
+      } else if (resultadoFinal === "huida") {
+        logRegreso = [
+          `🏃 ${usuario.personaje.nombre} huye del combate y regresa sin completar la misión.`,
+        ];
       } else {
         logRegreso = [
           `↩️ ${usuario.personaje.nombre} regresa al gremio tras cancelar la expedición.`,
@@ -426,7 +430,7 @@ export async function completarExpedicion() {
           objetosObtenidos: actualizado.botinEntregado ? [actualizado.botinEntregado] : [],
           logCombate: [...logCombate, ...logRegreso],
         };
-      } else if (resultadoFinal === "cancelada") {
+      } else if (resultadoFinal === "cancelada" || resultadoFinal === "huida") {
         reporte = {
           exito,
           resultadoFinal,

@@ -172,6 +172,7 @@ test("aceptar visita crea una party con el dueño como líder y el visitante com
       },
     },
     party: {
+      findUnique: async () => null,
       create: async ({ data }) => {
         assert.equal(data.liderUsuarioId, "anfitrion");
         assert.equal(data.miembros.create.usuarioId, "anfitrion");
@@ -260,6 +261,7 @@ test("el propietario puede aceptar una visita recién llegada sin que el visitan
       create: async ({ data }) => ({ id: "miembro", ...data }),
     },
     party: {
+      findUnique: async () => null,
       create: async ({ data }) => {
         assert.equal(data.liderUsuarioId, "anfitrion");
         return { id: "party-llegada" };
@@ -363,4 +365,31 @@ test("el último informe de combate se conserva después del regreso y queda lim
   assert.equal(estado.ultimoResultadoExpedicion.fase, "victoria");
   assert.deepEqual(estado.ultimoResultadoExpedicion.recompensas.dropsEnemigo.map((drop) => drop.usuarioId), ["u1"]);
   assert.deepEqual(estado.ultimoResultadoExpedicion.participantes.map((p) => p.usuario.personaje.nombre), ["Aventurero Uno", "Aventurero Dos"]);
+});
+
+
+test("abandonar party se bloquea durante una expedición aunque el miembro haya huido del combate", async () => {
+  const tx = {
+    partyMember: {
+      findUnique: async () => ({
+        id: "m-visitante",
+        partyId: "p1",
+        party: {
+          id: "p1",
+          estado: "activa",
+          liderUsuarioId: "lider",
+          liderUsuario: { id: "lider", baseCoords: { lat: 27.99, lng: -15.42 } },
+          miembros: [{ id: "m-lider", usuarioId: "lider" }, { id: "m-visitante", usuarioId: "visitante" }],
+        },
+      }),
+    },
+    expedicionParty: {
+      findFirst: async () => ({ id: "expedicion-activa" }),
+    },
+  };
+  const servicio = loadService(makePrisma(tx));
+  await assert.rejects(
+    servicio.abandonarParty("visitante"),
+    (error) => error.status === 409 && error.code === "PARTY_EXPEDICION_ACTIVA",
+  );
 });

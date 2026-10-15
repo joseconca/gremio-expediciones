@@ -1,5 +1,5 @@
 export type FaseTurnoParty = "jugador" | "enemigo";
-export type FaseCombateParty = "activo" | "victoria" | "derrota";
+export type FaseCombateParty = "activo" | "victoria" | "derrota" | "huida";
 
 export interface ParticipanteTurnoParty {
   usuarioId: string;
@@ -34,7 +34,8 @@ export function resolverResultadoCombateParty(
 ): FaseCombateParty {
   if (!Number.isFinite(enemigoHp)) throw new RangeError("El HP del enemigo debe ser un número finito.");
   if (enemigoHp <= 0) return "victoria";
-  return obtenerParticipantesVivos(participantes).length > 0 ? "activo" : "derrota";
+  if (obtenerParticipantesVivos(participantes).length > 0) return "activo";
+  return participantes.some((participante) => participante.estado === "huyo") ? "huida" : "derrota";
 }
 
 /**
@@ -51,7 +52,7 @@ export function calcularSiguienteTurnoParty(
   const vivos = obtenerParticipantesVivos(participantes);
   if (vivos.length === 0) {
     return {
-      faseCombate: "derrota",
+      faseCombate: participantes.some((participante) => participante.estado === "huyo") ? "huida" : "derrota",
       faseTurno: "enemigo",
       turnoActualUsuarioId: null,
       ronda: estado.ronda,
@@ -102,8 +103,8 @@ export function crearEstadoInicialTurnoParty(
   iniciarJugador = true,
 ): EstadoTurnoParty {
   const vivos = obtenerParticipantesVivos(participantes);
-  if (vivos.length < 2 || vivos.length > 3) {
-    throw new RangeError("El combate de party requiere dos o tres participantes vivos.");
+  if (vivos.length < 1 || vivos.length > 3) {
+    throw new RangeError("El combate requiere al menos un participante vivo y un máximo de tres.");
   }
   if (!iniciarJugador) {
     return {

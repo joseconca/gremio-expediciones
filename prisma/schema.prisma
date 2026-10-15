@@ -365,6 +365,7 @@ model Party {
   liderUsuario   Usuario  @relation("PartyLider", fields: [liderUsuarioId], references: [id], onDelete: Cascade)
   creado         DateTime @default(now())
   actualizado    DateTime @updatedAt
+  estado         String   @default("activa")
 
   miembros PartyMember[]
   expediciones ExpedicionParty[]

@@ -55,3 +55,14 @@ test("PvE: solo el turno del jugador permite habilidades y consumibles", () => {
     tipo: "pve", turno: "enemigo", usuarioId: "u", accion: "usar_objeto",
   }).valido, false);
 });
+
+
+test("PvE: huir es una acción propia permitida solo durante el turno del jugador", () => {
+  assert.equal(obtenerObjetivoEsperadoAccion("escapar"), "propio");
+  assert.equal(validarObjetivoAccionCombate({ accion: "escapar", objetivo: "propio" }).valido, true);
+  assert.equal(validarTurnoAccionCombate({ tipo: "pve", turno: "jugador", usuarioId: "u", accion: "escapar" }).valido, true);
+  assert.equal(validarTurnoAccionCombate({ tipo: "pve", turno: "enemigo", usuarioId: "u", accion: "escapar" }).valido, false);
+  assert.deepEqual(validarTurnoAccionCombate({
+    tipo: "pvp", turno: "atacante", usuarioId: "a", atacanteUsuarioId: "a", defensorUsuarioId: "d", accion: "escapar",
+  }), { valido: false, estado: 400, error: "No puedes huir de un combate PvP." });
+});

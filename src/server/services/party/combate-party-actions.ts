@@ -95,7 +95,7 @@ async function cargarCombateParty(tx: Prisma.TransactionClient, expedicionPartyI
 function registrarResultadoTerminal(
   enemigoHp: number,
   participantes: ParticipanteTurnoParty[],
-): "activo" | "victoria" | "derrota" {
+): "activo" | "victoria" | "derrota" | "huida" {
   return resolverResultadoCombateParty(enemigoHp, participantes);
 }
 
@@ -121,7 +121,7 @@ function prepararSiguienteTurno(
 async function iniciarRegresoParty(
   tx: Prisma.TransactionClient,
   expedicionPartyId: string,
-  resultadoFinal: "exito" | "derrota",
+  resultadoFinal: "exito" | "derrota" | "huida",
 ) {
   const expedicion = await tx.expedicionParty.findUnique({
     where: { id: expedicionPartyId },
@@ -147,9 +147,9 @@ async function iniciarRegresoParty(
     throw new PartyServiceError("La expedición no tiene coordenadas de origen y destino válidas para regresar.", 409, "COORDENADAS_REGRESO_NO_DISPONIBLES");
   }
 
-  const participantes = expedicion.participantes;
-  if (participantes.length < 2 || participantes.length > 3) {
-    throw new PartyServiceError("La expedición no tiene una composición válida para regresar.", 409, "NUMERO_MIEMBROS_INVALIDO");
+  const participantes = expedicion.participantes.filter((participante) => participante.estado !== "retirado");
+  if (participantes.length < 1 || participantes.length > 3) {
+    throw new PartyServiceError("La expedición no tiene participantes activos para regresar.", 409, "NUMERO_MIEMBROS_INVALIDO");
   }
   const velocidades = participantes.map((participante) => participante.velocidadViajeKmh);
   if (velocidades.some((velocidad) => !Number.isFinite(velocidad) || velocidad <= 0)) {
@@ -173,10 +173,11 @@ async function iniciarRegresoParty(
   }
 
   await tx.expedicionPartyParticipante.updateMany({
-    where: { expedicionPartyId, estado: { in: ["activo", "caido", "en_destino"] } },
+    where: { expedicionPartyId, estado: { in: ["activo", "caido", "en_destino", "huyo"] } },
     data: { estado: "regresando" },
   });
   for (const participante of participantes) {
+    if (participante.estado === "retirado") continue;
     const personaje = await tx.personaje.updateMany({
       where: { id: participante.personajeId, usuarioId: participante.usuarioId, estado: "combatiendo" },
       data: { estado: "de_viaje" },
@@ -448,13 +449,13 @@ async function liquidarRecompensasParty(
   if (!expedicion || expedicion.fase !== "combatiendo") {
     throw new PartyServiceError("La expedición no está disponible para liquidar la victoria.", 409, "EXPEDICION_PARTY_NO_COMBATIENDO");
   }
-  if (expedicion.participantes.length < 2 || expedicion.participantes.length > 3) {
-    throw new PartyServiceError("La party no tiene una composición válida para recibir recompensas.", 409, "NUMERO_MIEMBROS_INVALIDO");
-  }
   const porUsuario = new Map(combate.participantes.map((p) => [p.usuarioId, p]));
-  const participantes = [...expedicion.participantes].sort((a, b) =>
-    (porUsuario.get(a.usuarioId)?.ordenTurno ?? 999) - (porUsuario.get(b.usuarioId)?.ordenTurno ?? 999),
-  );
+  const participantes = expedicion.participantes
+    .filter((p) => p.estado !== "retirado")
+    .sort((a, b) => (porUsuario.get(a.usuarioId)?.ordenTurno ?? 999) - (porUsuario.get(b.usuarioId)?.ordenTurno ?? 999));
+  if (participantes.length < 1 || participantes.length > 3) {
+    throw new PartyServiceError("La party no tiene integrantes activos para recibir las recompensas de misión.", 409, "NUMERO_MIEMBROS_INVALIDO");
+  }
   if (participantes.some((p) => !porUsuario.has(p.usuarioId))) {
     throw new PartyServiceError("La composición del combate no coincide con la expedición.", 409, "PARTY_COMBAT_PARTICIPANTS_MISMATCH");
   }
@@ -467,7 +468,7 @@ async function liquidarRecompensasParty(
     : 0;
   const oroTotal = aplicarMultiplicadorRecompensa(recompensaMision.oro + oroEnemigo, modoDificultad);
   const totalMiembros = participantes.length;
-  const primerPersonaje = participantes[0]?.personaje;
+  const primerPersonaje = (participantes.find((p) => porUsuario.get(p.usuarioId)?.estado !== "huyo") ?? participantes[0])?.personaje;
   if (!primerPersonaje) {
     throw new PartyServiceError("Uno de los integrantes ya no tiene personaje.", 409, "PERSONAJE_NO_ENCONTRADO");
   }
@@ -519,11 +520,13 @@ async function liquidarRecompensasParty(
       throw new PartyServiceError("Uno de los integrantes ya no tiene personaje.", 409, "PERSONAJE_NO_ENCONTRADO");
     }
 
+    const combateParticipante = porUsuario.get(miembro.usuarioId);
+    const huyo = combateParticipante?.estado === "huyo" || miembro.estado === "huyo";
     const oro = repartirCantidadEntera(oroTotal, totalMiembros, indice);
     const madera = repartirCantidadEntera(recompensaMision.madera, totalMiembros, indice);
     const piedra = repartirCantidadEntera(recompensaMision.piedra, totalMiembros, indice);
     const metal = repartirCantidadEntera(recompensaMision.metal, totalMiembros, indice);
-    const experiencia = experienciaBaseComun;
+    const experiencia = huyo ? 0 : experienciaBaseComun;
     const experienciaActual = Math.max(0, Math.floor(personaje.experiencia ?? 0));
     let nivel = Math.max(1, Math.floor(personaje.nivel ?? 1));
     let experienciaNueva = experienciaActual + experiencia;
@@ -559,7 +562,7 @@ async function liquidarRecompensasParty(
       throw new PartyServiceError("No se pudo actualizar la progresión de un aventurero.", 409, "PERSONAJE_RECOMPENSA_MODIFICADO");
     }
 
-    const progresoJob = await otorgarExperienciaJob(
+    const progresoJob = huyo ? null : await otorgarExperienciaJob(
       tx,
       { id: personaje.id, profesionActivaId: personaje.profesionActivaId || "novato" },
       expedicion.dificultad,
@@ -608,6 +611,7 @@ async function liquidarRecompensasParty(
   if (enemigo) {
     for (let indice = 0; indice < participantes.length; indice += 1) {
       const miembro = participantes[indice];
+      if (porUsuario.get(miembro.usuarioId)?.estado === "huyo" || miembro.estado === "huyo") continue;
       const drop = tirarBotinEnemigo(
         enemigo,
         crearRngDeterminista(`${combate.id}:${enemigo.id}:botin:${miembro.usuarioId}`),
@@ -665,10 +669,10 @@ export async function ejecutarAccionCombateParty(
   usuarioId: string,
   idDesconocido: unknown,
   accionDesconocida: unknown,
-  payload?: { habilidadId?: unknown; objetoInventarioId?: unknown },
+  payload?: { habilidadId?: unknown; objetoInventarioId?: unknown; posicion?: unknown },
 ) {
   const expedicionPartyId = validarExpedicionId(idDesconocido);
-  if (accionDesconocida !== "atacar" && accionDesconocida !== "usar_habilidad" && accionDesconocida !== "usar_objeto") {
+  if (accionDesconocida !== "atacar" && accionDesconocida !== "usar_habilidad" && accionDesconocida !== "usar_objeto" && accionDesconocida !== "escapar" && accionDesconocida !== "cambiar_posicion") {
     throw new PartyServiceError("Acción de combate no válida.", 400, "ACCION_PARTY_NO_DISPONIBLE");
   }
 
@@ -684,6 +688,109 @@ export async function ejecutarAccionCombateParty(
     const participante = combate.participantes.find((p) => p.usuarioId === usuarioId);
     if (!participante || participante.estado !== "activo" || participante.jugadorHp <= 0) {
       throw new PartyServiceError("Tu aventurero no puede actuar en este combate.", 409, "PARTICIPANTE_NO_ACTIVO");
+    }
+
+    if (accionDesconocida === "cambiar_posicion") {
+      const posiciones = ["mele", "centro", "retaguardia"];
+      if (typeof payload?.posicion !== "string" || !posiciones.includes(payload.posicion)) {
+        throw new PartyServiceError("La posición debe ser melé, centro o retaguardia.", 400, "POSICION_PARTY_INVALIDA");
+      }
+      if (participante.jugadorPosicion === payload.posicion) {
+        throw new PartyServiceError("Ya estás en esa posición.", 409, "POSICION_PARTY_SIN_CAMBIOS");
+      }
+      const log = obtenerLog(combate.log);
+      const etiquetas: Record<string, string> = { mele: "melé", centro: "centro", retaguardia: "retaguardia" };
+      log.push(`↔️ ${usuarioId} cambia a la posición de ${etiquetas[payload.posicion]}.`);
+      const actualizado = await tx.combateParty.updateMany({
+        where: { id: combate.id, version: combate.version, fase: "activo", faseTurno: "jugador", turnoActualUsuarioId: usuarioId },
+        data: { version: { increment: 1 }, log: log as unknown as Prisma.InputJsonValue },
+      });
+      if (actualizado.count !== 1) throw new PartyServiceError("El combate cambió al guardar la formación.", 409, "COMBATE_PARTY_MODIFICADO");
+      const actualizadoPosicion = await tx.combatePartyParticipante.updateMany({
+        where: { id: participante.id, estado: "activo" },
+        data: { jugadorPosicion: payload.posicion },
+      });
+      if (actualizadoPosicion.count !== 1) throw new PartyServiceError("No se pudo guardar la posición del aventurero.", 409, "PARTICIPANTE_PARTY_MODIFICADO");
+      return {
+        expedicionPartyId,
+        combatePartyId: combate.id,
+        fase: combate.fase,
+        faseTurno: combate.faseTurno,
+        turnoActualUsuarioId: combate.turnoActualUsuarioId,
+        ronda: combate.ronda,
+        jugadorPosicion: payload.posicion,
+      };
+    }
+
+    if (accionDesconocida === "escapar") {
+      const estadoParticipantes = obtenerEstadoParticipantes(combate.participantes).map((p) =>
+        p.usuarioId === usuarioId ? { ...p, estado: "huyo" } : p,
+      );
+      const resultadoTerminal = registrarResultadoTerminal(combate.enemigoHp, estadoParticipantes);
+      const log = obtenerLog(combate.log);
+      log.push(`🏃 ${usuarioId} huye del combate. Si sus compañeros vencen, conservará su parte del oro, pero no recibirá XP ni botín del enemigo.`);
+      const terminal = resultadoTerminal !== "activo";
+      let faseTurno: "jugador" | "enemigo" = "enemigo";
+      let turnoActualUsuarioId: string | null = null;
+      let ronda = combate.ronda;
+      if (!terminal) {
+        const siguiente = prepararSiguienteTurno(combate, estadoParticipantes);
+        faseTurno = siguiente.faseTurno;
+        turnoActualUsuarioId = siguiente.turnoActualUsuarioId;
+        ronda = siguiente.ronda;
+      } else {
+        log.push(
+          resultadoTerminal === "victoria"
+            ? `🏆 ${combate.enemigoNombre} ya había caído.`
+            : resultadoTerminal === "huida"
+              ? "🏃 Toda la party ha abandonado el combate."
+              : "💀 No quedan aventureros capaces de continuar.",
+        );
+      }
+      const actualizado = await tx.combateParty.updateMany({
+        where: { id: combate.id, version: combate.version, fase: "activo", faseTurno: "jugador", turnoActualUsuarioId: usuarioId },
+        data: {
+          version: { increment: 1 },
+          fase: terminal ? resultadoTerminal : "activo",
+          faseTurno,
+          turnoActualUsuarioId,
+          ronda,
+          log: log as unknown as Prisma.InputJsonValue,
+          ultimaAccion: { actor: "jugador", tipo: "fallo", animacion: "defensiva", dano: 0, critico: false, texto: "Huyes del combate." } as unknown as Prisma.InputJsonValue,
+        },
+      });
+      if (actualizado.count !== 1) throw new PartyServiceError("El combate cambió al procesar la huida.", 409, "COMBATE_PARTY_MODIFICADO");
+      await tx.combatePartyParticipante.updateMany({
+        where: { id: participante.id, estado: "activo" },
+        data: { estado: "huyo" },
+      });
+      await tx.expedicionPartyParticipante.updateMany({
+        where: { expedicionPartyId, usuarioId, estado: { not: "retirado" } },
+        data: { estado: "huyo" },
+      });
+      const recompensas = terminal && resultadoTerminal === "victoria"
+        ? await liquidarRecompensasParty(tx, expedicionPartyId, combate.id)
+        : null;
+      const regreso = terminal
+        ? await iniciarRegresoParty(
+            tx,
+            expedicionPartyId,
+            resultadoTerminal === "victoria" ? "exito" : resultadoTerminal === "huida" ? "huida" : "derrota",
+          )
+        : null;
+      return {
+        expedicionPartyId,
+        combatePartyId: combate.id,
+        fase: terminal ? resultadoTerminal : "activo",
+        ronda,
+        faseTurno,
+        turnoActualUsuarioId,
+        enemigoHp: combate.enemigoHp,
+        jugadorHp: participante.jugadorHp,
+        ...(recompensas ? { recompensas } : {}),
+        ...(regreso ? { regreso } : {}),
+        accion: { actor: "jugador", tipo: "fallo", animacion: "defensiva", dano: 0, critico: false, texto: "Huyes del combate." },
+      };
     }
 
     const personaje = await cargarPersonajeAccionParty(tx, usuarioId);
@@ -831,6 +938,9 @@ export async function ejecutarAccionCombateParty(
     } else if (resultadoTerminal === "derrota") {
       fase = "derrota";
       log.push("💀 Todos los aventureros han caído.");
+    } else if (resultadoTerminal === "huida") {
+      fase = "huida";
+      log.push("🏃 Todos los aventureros han abandonado el combate.");
     } else {
       const siguiente = prepararSiguienteTurno(combate, estadoParticipantes);
       faseTurno = siguiente.faseTurno;
@@ -901,8 +1011,8 @@ export async function ejecutarAccionCombateParty(
     const recompensas = fase === "victoria"
       ? await liquidarRecompensasParty(tx, expedicionPartyId, combate.id)
       : null;
-    const regreso = fase === "victoria" || fase === "derrota"
-      ? await iniciarRegresoParty(tx, expedicionPartyId, fase === "victoria" ? "exito" : "derrota")
+    const regreso = fase === "victoria" || fase === "derrota" || fase === "huida"
+      ? await iniciarRegresoParty(tx, expedicionPartyId, fase === "victoria" ? "exito" : fase === "huida" ? "huida" : "derrota")
       : null;
 
     return {
@@ -1065,6 +1175,10 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       fase = "derrota";
       faseTurno = "enemigo";
       log.push("💀 Todos los aventureros han caído.");
+    } else if (resultado === "huida") {
+      fase = "huida";
+      faseTurno = "enemigo";
+      log.push("🏃 Todos los aventureros han abandonado el combate.");
     } else {
       const siguiente = prepararSiguienteTurno(combate, participantesActualizados);
       faseTurno = siguiente.faseTurno;
@@ -1105,8 +1219,8 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
     const recompensas = fase === "victoria"
       ? await liquidarRecompensasParty(tx, expedicionPartyId, combate.id)
       : null;
-    const regreso = fase === "victoria" || fase === "derrota"
-      ? await iniciarRegresoParty(tx, expedicionPartyId, fase === "victoria" ? "exito" : "derrota")
+    const regreso = fase === "victoria" || fase === "derrota" || fase === "huida"
+      ? await iniciarRegresoParty(tx, expedicionPartyId, fase === "victoria" ? "exito" : fase === "huida" ? "huida" : "derrota")
       : null;
 
     return {

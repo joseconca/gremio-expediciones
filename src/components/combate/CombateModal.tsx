@@ -18,7 +18,7 @@ interface CombateModalProps {
   comidaActiva?: string | null;
   procesando?: boolean;
   onAccionCombate: (
-    accion: "atacar" | "usar_habilidad" | "usar_objeto",
+    accion: "atacar" | "usar_habilidad" | "usar_objeto" | "escapar",
     payload?: string
   ) => Promise<AccionAnimadaCombate | null>;
   onCerrar?: () => void;
@@ -282,6 +282,23 @@ export default function CombateModal({
     setPulsosEstadoVisibles([]);
     comprobarResultadoCombate();
   }, []);
+
+  const ejecutarHuida = async () => {
+    if (accionEnCurso.current || procesando || combateTerminado || combate.turno !== "jugador") return;
+    accionEnCurso.current = true;
+    setProcesandoLocal(true);
+    setMostrarHabilidades(false);
+    setMostrarObjetos(false);
+    try {
+      const accion = await onAccionCombate("escapar");
+      if (!accion) return;
+      await mostrarResultadoAccion(accion);
+      setMostrarResultado(true);
+    } finally {
+      accionEnCurso.current = false;
+      setProcesandoLocal(false);
+    }
+  };
 
   const ejecutarAtaqueJugador = async () => {
     if (
@@ -769,12 +786,11 @@ export default function CombateModal({
               </button>
 
               <button
-                disabled
-                className="group flex w-full items-center justify-between rounded border border-stone-800 bg-stone-950 px-3 py-2 sm:px-4 sm:py-2.5 opacity-40"
+                onClick={() => void ejecutarHuida()}
+                disabled={procesando || procesandoLocal || combateTerminado || combate.turno !== "jugador"}
+                className="group flex w-full items-center justify-between rounded border border-red-900/70 bg-red-950/60 px-3 py-2 sm:px-4 sm:py-2.5 transition hover:bg-red-900/70 disabled:cursor-not-allowed disabled:opacity-40"
               >
-                <span className="text-xs sm:text-sm font-bold tracking-widest text-stone-500">
-                  HUIR
-                </span>
+                <span className="text-xs sm:text-sm font-bold tracking-widest text-red-200">HUIR</span>
               </button>
             </div>
           </div>

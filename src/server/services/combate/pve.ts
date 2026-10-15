@@ -105,6 +105,64 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
   const { log, consumible } = contexto;
   let accionAnimada: AccionAnimadaCombate;
   try {
+      if (accion === "escapar") {
+        const accionHuida: AccionAnimadaCombate = {
+          actor: "jugador",
+          tipo: "fallo",
+          animacion: "defensiva",
+          dano: 0,
+          critico: false,
+          texto: "🏃 Huyes del combate y regresas sin completar la misión.",
+        };
+        log.push(accionHuida.texto);
+        const resultado = await prisma.$transaction(async (tx) => {
+          const combateActualizado = await actualizarCombateVersionado(tx, combate.id, combate.version, {
+            jugadorHp: Math.max(1, jugadorHp),
+            jugadorDefensa,
+            enemigoHp,
+            enemigoDefensa,
+            cooldowns,
+            efectos: efectos as unknown as Prisma.InputJsonValue,
+            efectosDefensor: efectosDefensor as unknown as Prisma.InputJsonValue,
+            fase: "huida",
+            turno: "jugador",
+            oroGanado: 0,
+            experienciaGanada: 0,
+            log,
+            ultimaAccion: accionHuida,
+          });
+          await tx.expedicionActiva.update({
+            where: { id: expedicion.id },
+            data: {
+              fase: "regresando",
+              recompensa: { oro: 0, madera: 0, piedra: 0, metal: 0 },
+              resultadoFinal: "huida",
+              hpPerdido: Math.max(0, combate.jugadorHpMaximo - jugadorHp),
+              experienciaGanada: 0,
+            },
+          });
+          await tx.personaje.update({
+            where: { id: personaje.id },
+            data: { hpActual: Math.max(1, jugadorHp), estado: "de_viaje" },
+          });
+          const usuarioActualizado = await tx.usuario.findUnique({
+            where: { id: usuario.id },
+            include: incluirUsuarioTrasCombate,
+          });
+          return { combate: combateActualizado, usuario: usuarioActualizado };
+        });
+        const datosUsuario = resultado.usuario
+          ? Object.fromEntries(Object.entries(resultado.usuario).filter(([clave]) => clave !== "password"))
+          : null;
+        return NextResponse.json({
+          exito: true,
+          combate: resultado.combate,
+          usuario: datosUsuario,
+          terminado: true,
+          accion: accionHuida,
+        });
+      }
+
       const modoDificultad = esModoDificultad(expedicion.modoDificultad)
         ? expedicion.modoDificultad
         : "normal";

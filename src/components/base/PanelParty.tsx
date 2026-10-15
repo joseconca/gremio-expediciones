@@ -58,6 +58,7 @@ type ExpedicionPartyVista = {
       usuarioId: string;
       estado: string;
       ordenTurno: number;
+      jugadorPosicion: string;
       jugadorHp: number;
       jugadorHpMaximo: number;
       usuario?: PersonaVista;
@@ -105,7 +106,7 @@ type EstadoParty = {
   expedicionActiva: ExpedicionPartyVista | null;
   ultimoResultadoExpedicion?: {
     expedicionPartyId: string;
-    fase: "victoria" | "derrota";
+    fase: "victoria" | "derrota" | "huida";
     recompensas: ResultadoRecompensasParty | null;
     participantes: { usuarioId: string; usuario?: PersonaVista }[];
   } | null;
@@ -153,7 +154,7 @@ export default function PanelParty() {
   const [error, setError] = useState<string | null>(null);
   const [ultimoResultadoCombate, setUltimoResultadoCombate] = useState<{
     expedicionPartyId: string;
-    fase: "victoria" | "derrota";
+    fase: "victoria" | "derrota" | "huida";
     recompensas: ResultadoRecompensasParty | null;
   } | null>(null);
   const procesandoAutomatico = useRef(new Set<string>());
@@ -169,12 +170,12 @@ export default function PanelParty() {
     setEstado(estadoNuevo);
     const expedicion = estadoNuevo.expedicionActiva;
     const combate = expedicion?.combate;
-    if (expedicion && combate && (combate.fase === "victoria" || combate.fase === "derrota")) {
+    if (expedicion && combate && (combate.fase === "victoria" || combate.fase === "derrota" || combate.fase === "huida")) {
       setUltimoResultadoCombate((actual) => actual?.expedicionPartyId === expedicion.id
         ? actual
         : {
             expedicionPartyId: expedicion.id,
-            fase: combate.fase as "victoria" | "derrota",
+            fase: combate.fase as "victoria" | "derrota" | "huida",
             recompensas: combate.fase === "victoria" ? (combate.recompensasResultado ?? null) : null,
           });
     } else if (expedicion) {
@@ -198,7 +199,7 @@ export default function PanelParty() {
     expedicionPartyId: string,
     datos: { fase?: string; recompensas?: ResultadoRecompensasParty | null },
   ) => {
-    if (datos.fase !== "victoria" && datos.fase !== "derrota") return;
+    if (datos.fase !== "victoria" && datos.fase !== "derrota" && datos.fase !== "huida") return;
     setUltimoResultadoCombate({
       expedicionPartyId,
       fase: datos.fase,
@@ -405,8 +406,8 @@ export default function PanelParty() {
   };
 
   const ejecutarAccionCombatePartyUI = async (
-    tipo: "usar_habilidad" | "usar_objeto",
-    id: string,
+    tipo: "usar_habilidad" | "usar_objeto" | "escapar" | "cambiar_posicion",
+    id?: string,
   ) => {
     const expedicion = estado?.expedicionActiva;
     if (!expedicion || !expedicion.combate || accion) return;
@@ -419,7 +420,9 @@ export default function PanelParty() {
         body: JSON.stringify({
           expedicionPartyId: expedicion.id,
           accion: tipo,
-          ...(tipo === "usar_habilidad" ? { habilidadId: id } : { objetoInventarioId: id }),
+          ...(tipo === "usar_habilidad" && id ? { habilidadId: id } : {}),
+          ...(tipo === "usar_objeto" && id ? { objetoInventarioId: id } : {}),
+          ...(tipo === "cambiar_posicion" && id ? { posicion: id } : {}),
         }),
       });
       const datos = await respuesta.json().catch(() => ({}));
@@ -463,6 +466,8 @@ export default function PanelParty() {
 
   const ocupado = Boolean(expedicionActiva) || Boolean(personaje && personaje.estado !== "ocioso");
   const esLider = Boolean(estado?.party && estado.party.liderUsuarioId === estado.usuarioId);
+  const expedicionPartyActiva = Boolean(estado?.expedicionActiva);
+  const bloqueadaLaSalida = expedicionPartyActiva ? !esLider : ocupado;
   const party = estado?.party ?? null;
   const trasladosPropios = estado?.trasladosPropios ?? [];
   const visitasEntrantes = estado?.visitasEntrantes ?? [];
@@ -521,13 +526,13 @@ export default function PanelParty() {
             </p>
             <button
               type="button"
-              disabled={Boolean(accion) || ocupado}
+              disabled={Boolean(accion) || bloqueadaLaSalida}
               onClick={() => void ejecutar(
                 esLider ? "disolver" : "abandonar",
                 esLider ? "/api/party/disolver" : "/api/party/abandonar",
               )}
               className="rounded-md border border-red-900 bg-red-950/70 px-3 py-2 text-xs font-black uppercase tracking-wide text-red-200 transition hover:bg-red-900 disabled:cursor-not-allowed disabled:opacity-40"
-              title={ocupado ? "El personaje debe estar disponible en la base." : undefined}
+              title={bloqueadaLaSalida ? (expedicionPartyActiva ? "Debes esperar a que termine la expedición para abandonar la party." : "El personaje debe estar disponible en la base.") : undefined}
             >
               {accion === (esLider ? "disolver" : "abandonar")
                 ? "Procesando..."
@@ -536,7 +541,7 @@ export default function PanelParty() {
           </div>
           {ocupado && (
             <p className="mt-2 text-xs text-amber-500/90">
-              La salida se habilita cuando el personaje vuelve a estar disponible en la base.
+              {expedicionPartyActiva ? (esLider ? "Disolver ahora cancela la expedición o envía a todos desde su posición actual a sus propias bases." : "Huir del combate no te expulsa de la party. Espera a que termine la expedición para abandonarla explícitamente.") : "La salida de una party requiere que el personaje esté disponible en la base."}
             </p>
           )}
         </div>
@@ -573,13 +578,51 @@ export default function PanelParty() {
                   </p>
                   <p className="mt-2 text-xs font-bold text-amber-200">
                     {estado.expedicionActiva.combate.fase !== "activo"
-                      ? estado.expedicionActiva.combate.fase === "victoria" ? "¡Victoria! Se preparará el regreso y el reparto del botín." : "El grupo ha sido derrotado. Se preparará el regreso."
-                      : estado.expedicionActiva.combate.faseTurno === "enemigo"
-                        ? "Turno del enemigo"
-                        : estado.expedicionActiva.combate.turnoActualUsuarioId === estado.usuarioId
-                          ? "¡Es tu turno!"
-                          : `Turno de ${estado.expedicionActiva.combate.participantes.find((p) => p.usuarioId === estado.expedicionActiva?.combate?.turnoActualUsuarioId)?.usuario?.nombre ?? "otro aventurero"}`}
+                      ? estado.expedicionActiva.combate.fase === "victoria" ? "¡Victoria! Se preparará el regreso y el reparto del botín." : estado.expedicionActiva.combate.fase === "huida" ? "Toda la party ha huido. Regreso sin recompensa de victoria." : "El grupo ha sido derrotado. Se preparará el regreso."
+                      : estado.expedicionActiva.combate.participantes.find((p) => p.usuarioId === estado.usuarioId)?.estado === "huyo"
+                        ? "Has huido del combate y esperas a que tus compañeros terminen. Sigues dentro de la party."
+                        : estado.expedicionActiva.combate.faseTurno === "enemigo"
+                          ? "Turno del enemigo"
+                          : estado.expedicionActiva.combate.turnoActualUsuarioId === estado.usuarioId
+                            ? "¡Es tu turno!"
+                            : `Turno de ${estado.expedicionActiva.combate.participantes.find((p) => p.usuarioId === estado.expedicionActiva?.combate?.turnoActualUsuarioId)?.usuario?.nombre ?? "otro aventurero"}`}
                   </p>
+                  {estado.expedicionActiva.combate.fase === "activo" &&
+                    estado.expedicionActiva.combate.faseTurno === "jugador" &&
+                    estado.expedicionActiva.combate.turnoActualUsuarioId === estado.usuarioId && (
+                      <div className="mt-3">
+                        <p className="mb-1 text-[10px] font-black uppercase tracking-wide text-slate-400">Posición de combate · gratuita</p>
+                        <div className="grid grid-cols-3 gap-1">
+                          {([
+                            { id: "mele", label: "Melé", icon: "⚔️" },
+                            { id: "centro", label: "Centro", icon: "🛡️" },
+                            { id: "retaguardia", label: "Retaguardia", icon: "🏹" },
+                          ] as const).map((posicion) => {
+                            const propia = estado.expedicionActiva?.combate?.participantes.find((p) => p.usuarioId === estado.usuarioId);
+                            const seleccionada = propia?.jugadorPosicion === posicion.id;
+                            return (
+                              <button key={posicion.id} type="button" disabled={Boolean(accion) || seleccionada}
+                                onClick={() => void ejecutarAccionCombatePartyUI("cambiar_posicion", posicion.id)}
+                                className={`rounded border px-1 py-1.5 text-[10px] font-bold transition disabled:opacity-60 ${seleccionada ? "border-amber-500 bg-amber-900/70 text-amber-100" : "border-slate-700 bg-slate-900 text-slate-300 hover:border-amber-700"}`}>
+                                {posicion.icon} {posicion.label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  {estado.expedicionActiva.combate.fase === "activo" &&
+                    estado.expedicionActiva.combate.faseTurno === "jugador" &&
+                    estado.expedicionActiva.combate.turnoActualUsuarioId === estado.usuarioId && (
+                      <button
+                        type="button"
+                        disabled={Boolean(accion)}
+                        onClick={() => void ejecutarAccionCombatePartyUI("escapar")} 
+                        className="mt-2 w-full rounded-md border border-red-900 bg-red-950/60 px-3 py-2 text-xs font-black uppercase tracking-wide text-red-200 transition hover:bg-red-900/70 disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        🏃 Huir y esperar al grupo
+                      </button>
+                    )}
                   {estado.expedicionActiva.combate.fase === "activo" &&
                     estado.expedicionActiva.combate.faseTurno === "jugador" &&
                     estado.expedicionActiva.combate.turnoActualUsuarioId === estado.usuarioId && (
@@ -648,23 +691,54 @@ export default function PanelParty() {
                         </p>
                       </div>
                     )}
-                  <div className="mt-3 space-y-2">
-                    {estado.expedicionActiva.combate.participantes.map((participante) => (
-                      <div key={participante.id}>
-                        <div className="flex justify-between gap-2 text-[11px]">
-                          <span className={participante.usuarioId === estado.usuarioId ? "font-bold text-amber-100" : "text-slate-300"}>
-                            {participante.usuario?.personaje?.nombre ?? participante.usuario?.nombre ?? "Aventurero"}
-                            {participante.usuarioId === estado.usuarioId ? " (tú)" : ""}
-                          </span>
-                          <span className={participante.estado === "activo" ? "text-emerald-300" : "text-red-300"}>
-                            {participante.jugadorHp}/{participante.jugadorHpMaximo} HP
-                          </span>
-                        </div>
-                        <div className="mt-1 h-1.5 overflow-hidden rounded bg-slate-800">
-                          <div className={participante.estado === "activo" ? "h-full bg-emerald-600" : "h-full bg-slate-600"} style={{ width: `${Math.max(0, Math.min(100, participante.jugadorHp / participante.jugadorHpMaximo * 100))}%` }} />
-                        </div>
+                  <div className="mt-4 rounded-lg border border-slate-800 bg-slate-950/70 p-2 sm:p-3">
+                    <p className="mb-1 text-[10px] font-black uppercase tracking-wider text-slate-500">Formación · líder abajo</p>
+                    <div className="relative h-[148px] overflow-hidden rounded-md border border-slate-800/80 bg-gradient-to-b from-slate-900/70 to-slate-950 sm:h-[166px]">
+                      <div className="absolute inset-y-0 right-0 w-[26%] border-l border-red-900/30 bg-red-950/10" />
+                      {estado.expedicionActiva.combate.participantes.map((participante, indice) => {
+                        const nombre = participante.usuario?.personaje?.nombre ?? participante.usuario?.nombre ?? "Aventurero";
+                        const inicial = nombre.trim().slice(0, 1).toUpperCase() || "A";
+                        const posicion = ["mele", "centro", "retaguardia"].includes(participante.jugadorPosicion) ? participante.jugadorPosicion : (indice === 0 ? "mele" : indice === 1 ? "centro" : "retaguardia");
+                        const x = posicion === "mele" ? 57 : posicion === "centro" ? 36 : 15;
+                        const y = indice === 0 ? 68 : indice === 1 ? 39 : 10;
+                        const caido = participante.estado === "caido";
+                        const huyo = participante.estado === "huyo";
+                        return (
+                          <div key={participante.id} className="absolute z-10 flex w-[35%] max-w-[118px] flex-col items-center transition-all duration-300 sm:w-[27%]"
+                            style={{ left: `${x}%`, top: `${y}%`, opacity: caido ? 0.45 : 1, transform: "translateY(-10%)" }}>
+                            <div className={`flex h-8 w-8 items-center justify-center rounded-full border text-xs font-black shadow-lg sm:h-9 sm:w-9 ${huyo ? "border-amber-700 bg-amber-950 text-amber-300" : caido ? "border-slate-700 bg-slate-900 text-slate-500" : participante.usuarioId === estado.usuarioId ? "border-amber-400 bg-amber-700 text-white" : "border-emerald-700 bg-emerald-950 text-emerald-200"}`}>
+                              {huyo ? "↩" : caido ? "×" : inicial}
+                            </div>
+                            <span className="mt-1 max-w-full truncate text-center text-[9px] font-bold text-slate-200 sm:text-[10px]">{nombre}</span>
+                            <span className="text-[8px] uppercase tracking-wide text-slate-500">{posicion === "mele" ? "Melé" : posicion === "centro" ? "Centro" : "Retaguardia"}</span>
+                          </div>
+                        );
+                      })}
+                      <div className="absolute right-[2%] top-[35%] flex w-[23%] max-w-[85px] flex-col items-center sm:right-[4%]">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-red-600 bg-red-950 text-xl shadow-lg sm:h-12 sm:w-12">👹</div>
+                        <span className="mt-1 max-w-full truncate text-center text-[9px] font-black text-red-200 sm:text-[10px]">{estado.expedicionActiva.combate.enemigoNombre}</span>
+                        <span className="text-[8px] text-slate-500">Enemigo</span>
                       </div>
-                    ))}
+                    </div>
+                    <div className="mt-3 space-y-2">
+                      {estado.expedicionActiva.combate.participantes.map((participante) => (
+                        <div key={participante.id}>
+                          <div className="flex justify-between gap-2 text-[11px]">
+                            <span className={participante.usuarioId === estado.usuarioId ? "font-bold text-amber-100" : "text-slate-300"}>
+                              {participante.usuario?.personaje?.nombre ?? participante.usuario?.nombre ?? "Aventurero"}{participante.usuarioId === estado.usuarioId ? " (tú)" : ""}
+                              {participante.estado === "huyo" ? " · esperando" : ""}
+                            </span>
+                            <span className={participante.estado === "activo" ? "text-emerald-300" : participante.estado === "huyo" ? "text-amber-300" : "text-red-300"}>
+                              {participante.jugadorHp}/{participante.jugadorHpMaximo} HP
+                            </span>
+                          </div>
+                          <div className="mt-1 h-1.5 overflow-hidden rounded bg-slate-800">
+                            <div className={participante.estado === "activo" ? "h-full bg-emerald-600" : participante.estado === "huyo" ? "h-full bg-amber-600" : "h-full bg-slate-600"}
+                              style={{ width: `${Math.max(0, Math.min(100, participante.jugadorHp / participante.jugadorHpMaximo * 100))}%` }} />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ) : estado.expedicionActiva.fase === "combatiendo" ? (

@@ -2,18 +2,15 @@
 
 > Documento de continuidad técnica para futuras sesiones y agentes. Describe el comportamiento comprobado del código, no solo el diseño deseado. Si este documento contradice el código, verifica primero el código y actualiza la documentación en el mismo cambio funcional.
 >
-> Auditoría de referencia: rama `feature/party-fase-1-core`, commit de código `170fd40f939eb0c7dfb90cd008c885bd3d8c7742` (14-10-2026, antes de añadir este documento).
+> Revisión funcional de la rama `feature/party-fase-1-core`: 15-10-2026. Reemplazar esta fecha por el SHA del commit una vez verificada su CI.
 
 ## Estado general
 
-El sistema ya implementa visitas entre bases, aceptación/rechazo, composición de grupos, expediciones PvE compartidas, combate contra un enemigo común, recompensas individuales, regreso y consulta de informes históricos. La ruta de regresión de la rama estaba verde en el commit auditado.
+El sistema de party incorpora composición de grupo, visitas/aceptación, expediciones PvE compartidas, combate contra enemigo común, recompensas por participante, huida y regreso. Las retiradas/disoluciones deben conservar el historial; las expediciones previas no deben borrarse mediante cascadas.
 
-**No debe considerarse cerrado al 100 % respecto al plan original.** Los principales pendientes funcionales identificados son:
+El cambio incluye una migración para registrar el ciclo de vida de Party. Después de actualizar la rama, ejecutar `npx prisma migrate status` y aplicar las migraciones pendientes con `npx prisma migrate deploy`.
 
-1. El miembro no puede abandonar la party durante una expedición activa. El líder tampoco puede disolverla para cancelar el viaje o combate y ordenar el regreso del grupo.
-2. La XP base es idéntica entre participantes, pero se calcula usando el nivel del primer participante ordenado por turno, no el nivel medio del grupo propuesto inicialmente.
-3. La API/UI de combate no permite seleccionar a un aliado como objetivo de habilidad o consumible; las habilidades y pociones se resuelven sobre el aventurero que actúa y/o el enemigo.
-4. La cobertura de pruebas no demuestra todavía todas las transiciones de abandono/disolución, en particular mientras el grupo está de viaje o combatiendo.
+Pendientes ajenos a este cambio: la experiencia común se calcula usando el nivel del primer integrante por orden de turno (no el nivel medio propuesto); la API/UI no permite seleccionar aliados como objetivo; conviene seguir ampliando pruebas de concurrencia y recuperación.
 
 ## Principios que hay que conservar
 
@@ -28,11 +25,11 @@ El sistema ya implementa visitas entre bases, aceptación/rechazo, composición 
 
 ## Modelos Prisma
 
-Definidos en `prisma/schema.prisma`; migraciones del sistema en `prisma/migrations/20261014120000_party_core/`, `20261014130000_party_expedition/`, `20261014140000_party_combat_core/`, `20261014150000_party_return_metadata/`, `20261014200000_party_reward_settlement/` y `20261014210000_party_reward_report/`.
+Definidos en `prisma/schema.prisma`; las migraciones incluyen `20261014120000_party_core`, `20261014130000_party_expedition`, `20261014140000_party_combat_core`, `20261014150000_party_return_metadata`, `20261014200000_party_reward_settlement`, `20261014210000_party_reward_report` y `20261015120000_party_withdrawal_lifecycle`.
 
 ### `Party`
 
-Representa el grupo activo. Guarda `liderUsuarioId`, fecha de creación/actualización y la relación a sus miembros y expediciones. La disolución elimina el registro de party; no existe actualmente un estado histórico de party disuelta en este modelo.
+Representa la party actual y sirve también de vínculo de sus expediciones históricas. Incluye `estado` (`activa` o `disuelta`). Al disolver, se eliminan sus filas `PartyMember`, pero se conserva el registro de party porque `ExpedicionParty` mantiene una relación `onDelete: Restrict`. Si el líder crea un grupo nuevo, se reactiva la fila existente y se restaura su membresía.
 
 ### `PartyMember`
 
@@ -51,33 +48,23 @@ El propietario puede aceptar o rechazar cuando vence la hora estimada de llegada
 
 ### `ExpedicionParty` y `ExpedicionPartyParticipante`
 
-`ExpedicionParty` guarda la misión/destino común, dificultad, recompensa de misión, coordenadas, fechas, fase y resultado final. Cada participante conserva usuario/personaje y datos propios del viaje (HP, Energía, Maná, efecto de comida y velocidad de viaje).
+La expedición conserva misión, destino, dificultad, recompensa, itinerario y participantes originales para fines históricos. Fases principales: `en_viaje` → `lista_para_combate` → `combatiendo` → `regresando` → `completada`; una disolución antes del resultado terminal puede marcarla `cancelada`. Los resultados finales son `exito`, `derrota` o `huida`.
 
-Fases principales de expedición:
-`en_viaje` → `lista_para_combate` → `combatiendo` → `regresando` → `completada`.
-
-El resultado final del viaje se registra como `exito` o `derrota`. La creación de expedición valida que no exista ya una expedición activa para esa party. Para iniciar se requieren dos o tres personajes disponibles, sin expedición individual ni traslado incompatible.
-
-El flujo compartido está limitado a misiones PvE normales y de élite compatibles. La llegada es común al grupo y utiliza la velocidad mínima registrada entre participantes para calcular la duración del viaje.
+Los estados de participante `huyo` y `retirado` son distintos: `huyo` deja al jugador fuera del combate, pero conserva su membresía y espera a que termine la party; `retirado` es un estado histórico que puede aparecer al disolver una expedición y ya no participa en el reparto. La salida voluntaria de la party se ejecuta explícitamente cuando no hay una expedición activa.
 
 ### `CombateParty` y `CombatePartyParticipante`
 
-`CombateParty` guarda un enemigo común, su estado y efectos, ronda, fase/turno, usuario cuyo turno corresponde, versión, log, última acción y liquidación de recompensas.
-
-Fases de combate: `activo`, `victoria`, `derrota`. El turno alterna entre `jugador` y `enemigo`.
-
-`CombatePartyParticipante` mantiene por aventurero la iniciativa/orden de turno, HP máximo y actual, snapshot de atributos de combate, estado, posición, efectos y cooldowns. Energía/Maná e inventario se leen/escriben en el personaje del propio usuario cuando ejecuta habilidades u objetos.
+El combate mantiene un enemigo común, turnos ordenados, versión y liquidación idempotente. Fases: `activo`, `victoria`, `derrota`, `huida` y `cancelada`. `huyo` excluye al miembro de turnos posteriores y del botín del enemigo, pero no de su cuota de oro ni de las recompensas de misión. `jugadorPosicion` guarda `mele`, `centro` o `retaguardia` para la formación visual.
 
 ## Recorrido funcional actual
 
-1. **Visita a otra base.** `POST /api/party/transfer` crea el traslado y pone al personaje en estado de viaje. El usuario no puede visitar su propia base, formar parte ya de otra party ni tener una actividad incompatible.
-2. **Llegada y decisión del anfitrión.** `POST /api/party/transfer/llegar` marca la visita como pendiente cuando vence la fecha. `POST /api/party/transfer/aceptar` incorpora al visitante a la party o crea una party con el anfitrión como líder. `POST /api/party/transfer/rechazar` inicia el regreso a la base de origen.
-3. **Gestión de la party.** `GET /api/party` devuelve la membresía, traslados, expedición activa y último resultado que corresponda al usuario. `POST /api/party/abandonar` permite al no líder salir si su personaje está ocioso. `POST /api/party/disolver` permite al líder enviar a los integrantes a sus bases si todo el grupo está disponible en base; después elimina la party.
-4. **Inicio de expedición.** `POST /api/expediciones/party/iniciar` lo puede invocar solo el líder. Registra la composición de participantes y un viaje compartido.
-5. **Llegada e inicialización del combate.** `POST /api/expediciones/party/llegar` hace avanzar el viaje cuando vence la fecha. `POST /api/expediciones/party/combate/iniciar` inicializa el enemigo y snapshots de participantes; una petición repetida reutiliza el combate ya creado.
-6. **Acciones y turno enemigo.** `POST /api/expediciones/party/combate/accion` permite `atacar`, `usar_habilidad` y `usar_objeto` cuando le corresponde al jugador. `POST /api/expediciones/party/combate/turno-enemigo` resuelve el turno del enemigo. Ambos caminos controlan fase, usuario, estado de participante y versión.
-7. **Resultado y regreso.** Una victoria liquida recompensas y luego prepara el regreso; una derrota prepara el regreso sin recompensas de victoria. `POST /api/expediciones/party/regreso` completa la llegada de regreso cuando vence la fecha. Las transiciones están protegidas por actualizaciones condicionales.
-8. **Informe histórico.** El resumen estructurado de la victoria se persiste en `CombateParty.recompensasResultado`. El servicio permite recuperar el último resultado compartido a quienes participaron en esa expedición, y la interfaz lo restaura tras recargar.
+1. **Visitas y composición.** El dueño de la base acepta o rechaza la visita; el líder cuenta para el límite de tres miembros.
+2. **Expedición compartida.** El líder inicia misiones PvE compatibles y cada jugador conserva su personaje, economía, inventario y progresión.
+3. **Huida individual.** `HUIR` marca el combate como `huida`, inicia el regreso y entrega cero oro, XP y recompensas de misión/enemigo.
+4. **Huida en party.** El participante pasa a `huyo`, ya no puede actuar ni ser seleccionado como objetivo del enemigo, pero continúa en la party esperando al resto. Si ganan, recibe su cuota de oro y su parte de los recursos/objetos de misión, pero no XP Base/Job ni botín individual del enemigo. Si todos huyen, no hay liquidación de victoria.
+5. **Salida voluntaria de la party.** El botón para abandonar se habilita cuando no hay expedición activa y el personaje está disponible en la base. Huir del combate no cambia la membresía.
+6. **Disolución del líder.** Si existe una expedición activa, cada integrante que siga en ella recibe un traslado desde la posición actual a su propia base. Si el resultado todavía no está fijado, el viaje/combate se cancela sin recompensas de victoria; si ya estaba regresando con resultado fijado, se conserva el resultado. La party queda `disuelta`, conservando su historial y pudiendo reactivarse en el futuro.
+7. **Regreso e informe.** Los traslados individuales se completan por la ruta existente y el informe histórico permanece disponible.
 
 ## Reglas de combate y economía implementadas
 
@@ -89,27 +76,20 @@ Fases de combate: `activo`, `victoria`, `derrota`. El turno alterna entre `jugad
 - Cooldowns y efectos del personaje no se comparten con los demás participantes.
 - La versión de combate y actualizaciones condicionales impiden confirmar dos veces la misma acción. El turno enemigo posterior a una victoria no debe volver a liquidar recompensas ni iniciar otro regreso.
 
-### Liquidación de victoria
+### Huida y liquidación de victoria
 
-La liquidación corre dentro de una transacción y comprueba la fase, la versión y `recompensasResueltas`. Si no puede cerrar el estado esperado, aborta; no debe distribuir parcialmente ni repetir los pagos.
+La huida se permite en PvE, nunca en PvP. En solo se marca el combate como `huida`, se inicia el regreso y se entregan cero oro, recursos y XP. En party, quien huye conserva su parte del oro y de los recursos/objetos de misión si los compañeros vencen, pero no recibe XP Base/Job ni botín del enemigo. Si todos huyen, no hay liquidación de victoria.
 
-- **Oro:** suma la recompensa de oro de la misión y el oro del enemigo, aplica el multiplicador de dificultad y reparte el total entre los participantes registrados.
-- **Madera, piedra y metal:** se reparten desde la recompensa de misión.
-- **Redondeos:** `repartirCantidadEntera` asigna las unidades enteras de forma determinista según el índice en la lista ordenada de participantes.
-- **XP Base:** todos los participantes reciben la misma cantidad calculada una vez para el resultado. Actualmente se usa el nivel del primer personaje ordenado por turno, no el promedio de niveles del grupo del diseño inicial. Después, cada personaje progresa con sus propios niveles y experiencia.
-- **XP Job:** se otorga por personaje usando su profesión activa y el sistema de progresión existente.
-- **Objetos de misión:** las cantidades se distribuyen entre participantes; un aventurero puede recibir cero unidades si la cantidad no alcanza a todos.
-- **Botín enemigo:** se tira por separado para cada usuario. La semilla determinista incluye combate, enemigo y usuario, evitando que un reintento cambie el resultado de una liquidación.
-- **Inventario lleno/objeto inválido:** el objeto que no se puede añadir se pierde y se deja constancia en el log. El informe estructurado incluye los objetos que sí se entregaron; consulta el log si necesitas auditar una entrega fallida.
-- **Derrota:** no se abonan las recompensas de victoria.
+La victoria liquida en una transacción serializable. `recompensasResueltas` y `version` protegen contra duplicados. El oro enemigo y el de misión se suman y se reparten; los recursos y objetos de misión se reparten entre integrantes no retirados, incluidos quienes huyeron. La XP Base/Job se concede a quienes permanecieron combatiendo, y cada participante que no huyó puede obtener su drop individual. La posición táctica es, por ahora, visual: cambiarla no consume el turno ni modifica el alcance o las estadísticas.
+
 
 ## Interfaz
 
-La interfaz principal de party está en `src/components/base/PanelParty.tsx`. Presenta roster y líder, traslados/visitas, acciones de aceptar/rechazar, expedición compartida, estado de combate, acciones disponibles en el turno propio, HP por participante e informe de recompensas.
+La interfaz principal de party está en `src/components/base/PanelParty.tsx`. Presenta roster y líder, traslados/visitas, expedición compartida, turno y HP por participante, una formación visual responsiva y un selector de posición `Melé`, `Centro` o `Retaguardia`. El líder se dibuja en la parte inferior y los demás progresivamente más arriba; la elección mueve al aventurero hacia el frente/centro/retaguardia.
 
 El panel obtiene su estado mediante `GET /api/party` y mantiene parte de la presentación en estado local de React; no todo el estado social se centraliza en Zustand. La selección de una base ajena se integra mediante el mapa existente.
 
-La salida de party en la interfaz está deshabilitada mientras el personaje está ocupado. Esta restricción coincide con el servicio y es una de las diferencias con el plan original. La interfaz de combate no envía `objetivoUsuarioId` ni otro selector de aliado: no hay selección de objetivo aliado implementada en este contrato de API.
+La salida de la party queda deshabilitada mientras hay una expedición activa, excepto la acción del líder para disolverla. No existe todavía selección de aliado como objetivo de habilidades curativas: las curas se aplican al propio aventurero. El contrato de combate solo contempla un enemigo; las batallas con varios enemigos requieren modelar el conjunto de enemigos con HP/efectos individuales y añadir selección de objetivo, orden/turnos y resolución de victoria cuando todos caigan.
 
 ## Archivos relevantes
 
@@ -136,7 +116,7 @@ Rutas API específicas:
 - `POST /api/expediciones/party/iniciar`
 - `POST /api/expediciones/party/llegar`
 - `POST /api/expediciones/party/combate/iniciar`
-- `POST /api/expediciones/party/combate/accion`
+- `POST /api/expediciones/party/combate/accion` (ataque, habilidad, objeto, huida y cambio de posición visual)
 - `POST /api/expediciones/party/combate/turno-enemigo`
 - `POST /api/expediciones/party/regreso`
 
@@ -160,26 +140,24 @@ npm run lint
 npm run build
 ```
 
-La CI `.github/workflows/regression.yml` ejecuta estas cinco comprobaciones en la rama `feature/party-fase-1-core`. En la auditoría base, la ejecución del commit `170fd40f939eb0c7dfb90cd008c885bd3d8c7742` terminó con éxito.
+La CI `.github/workflows/regression.yml` ejecuta estas cinco comprobaciones en la rama `feature/party-fase-1-core`. La referencia de CI que debe usarse para valorar estos cambios es la ejecución del nuevo commit, no la verde de la revisión anterior.
 
 ## Matriz del plan original
 
-| Fase | Estado actual | Diferencias o trabajo que queda |
+| Fase | Estado | Notas |
 |---|---|---|
-| 1. Modelo y gestión social | Implementada en lo principal | Añadir/confirmar pruebas para abandono y disolución; comprobar carreras de aceptación y capacidad máxima. |
-| 2. Interfaz y estado | Funcional, con diferencias de diseño | El panel presenta el grupo y las visitas, pero no toda la información social vive en Zustand. Revisar si se quiere una representación visual de los visitantes junto al sprite dentro de la base; el roster del panel sí existe. |
-| 3. Expedición compartida | Implementada en lo principal | Mantener las restricciones de misión compartida documentadas y ampliar pruebas de transiciones. |
-| 4. Combate compartido | Implementada en lo principal | Sin selección de objetivo aliado en API/UI. Añadir solo si hay habilidades que necesiten curar/proteger a otro miembro. |
-| 5. Recompensas, abandono y regreso | Parcial | La liquidación y el regreso normal están implementados; falta salida voluntaria durante el viaje/combate y cancelación/disolución activa del líder. La XP no usa el nivel medio propuesto. |
-| 6. Informe y estabilización | Parcialmente cubierta | El informe persiste y se restaura; faltan pruebas de las transiciones críticas indicadas arriba. CI verde en el commit auditado. |
+| 1. Modelo y gestión social | Implementada, pendiente de CI | Visitas, membresía y estado activa/disuelta. |
+| 2. Interfaz y estado | Implementada en lo esencial | Roster, turnos, botones de huida/abandono/disolución e informes. |
+| 3. Expedición compartida | Implementada en lo esencial | Viaje, llegada, retirada individual y regreso. |
+| 4. Combate compartido | Implementada, pendiente de CI | Huida, turnos y liquidación grupal. |
+| 5. Recompensas, abandono y regreso | Implementada, pendiente de CI | Oro para quien huyó; sin XP/botín enemigo; regreso a base propia al retirarse/disolver. |
+| 6. Informe y estabilización | En verificación | La CI del nuevo commit debe terminar verde antes de probar en local. |
 
 ## Próximos pasos recomendados
 
-1. Diseñar y probar las transiciones de abandono de un miembro durante viaje/combate: retirar su elegibilidad si el resultado aún no se ha fijado, sacarlo del turno y devolverlo a su base sin bloquear al resto.
-2. Diseñar y probar la disolución por el líder durante viaje/combate: cancelar la expedición activa y enviar a cada integrante a su propia base; si el resultado ya está fijado, conservar las recompensas y organizar el regreso.
-3. Decidir expresamente si se mantiene XP basada en el primer participante o se cambia a nivel medio. No modificar esa economía sin actualizar tests y este documento.
-4. Añadir pruebas de regresión para: rechazo/abandono/disolución en cada fase; usuario ajeno; reintentos y concurrencia; coherencia de estados de personajes y participantes.
-5. Si se añaden habilidades de apoyo a aliados, extender el contrato de API, el servicio, la validación de objetivo y la interfaz con pruebas específicas.
+1. Decidir si conviene calcular la XP compartida con el nivel medio del grupo.
+2. Ampliar pruebas de concurrencia/reintentos en transiciones de abandono y disolución.
+3. Si se añaden habilidades de apoyo a aliados, extender API, validación de objetivo, motor y UI con pruebas específicas.
 
 ## Instrucción para futuras sesiones/prompts
 

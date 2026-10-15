@@ -27,7 +27,7 @@ import {
   validarTurnoAccionCombate,
 } from "@/lib/expediciones/contrato-accion-combate";
 
-type AccionCombate = "atacar" | "usar_habilidad" | "usar_objeto";
+type AccionCombate = "atacar" | "usar_habilidad" | "usar_objeto" | "escapar";
 type EfectoCombate = EstadoEfectoHabilidad;
 
 
@@ -502,7 +502,8 @@ export async function prepararAccionCombate(
     if (
       accionValor !== "atacar" &&
       accionValor !== "usar_habilidad" &&
-      accionValor !== "usar_objeto"
+      accionValor !== "usar_objeto" &&
+      accionValor !== "escapar"
     ) {
       return NextResponse.json(
         {

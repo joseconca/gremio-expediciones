@@ -448,8 +448,9 @@ export async function crearCombatePartySiProcede(expedicionPartyId: string) {
     if (expedicion.fase !== "lista_para_combate") {
       throw new PartyServiceError("La expedición todavía no está lista para combatir.", 409, "EXPEDICION_PARTY_NO_LISTA");
     }
-    if (expedicion.participantes.length < 2 || expedicion.participantes.length > 3) {
-      throw new PartyServiceError("La expedición requiere dos o tres aventureros.", 409, "NUMERO_MIEMBROS_INVALIDO");
+    const participantesActivos = expedicion.participantes.filter((participante) => participante.estado !== "retirado");
+    if (participantesActivos.length < 1 || participantesActivos.length > 3) {
+      throw new PartyServiceError("No queda ningún aventurero activo para iniciar el combate.", 409, "NUMERO_MIEMBROS_INVALIDO");
     }
 
     const enemigo = obtenerEnemigoPorId(expedicion.enemigoId ?? "");
@@ -457,7 +458,7 @@ export async function crearCombatePartySiProcede(expedicionPartyId: string) {
       throw new PartyServiceError("No se ha encontrado el enemigo de la expedición.", 409, "ENEMIGO_NO_ENCONTRADO");
     }
 
-    const datosParticipantes = expedicion.participantes.map((participante, ordenTurno) => {
+    const datosParticipantes = participantesActivos.map((participante, ordenTurno) => {
       const personaje = participante.personaje;
       if (participante.estado !== "en_destino" || personaje.estado !== "de_viaje") {
         throw new PartyServiceError("Todos los aventureros deben haber llegado al destino.", 409, "MIEMBRO_NO_EN_DESTINO");
@@ -468,7 +469,7 @@ export async function crearCombatePartySiProcede(expedicionPartyId: string) {
         personajeId: personaje.id,
         ordenTurno,
         estado: "activo",
-        jugadorPosicion: ordenTurno === 0 ? "centro" : ordenTurno === 1 ? "izquierda" : "derecha",
+        jugadorPosicion: ordenTurno === 0 ? "mele" : ordenTurno === 1 ? "centro" : "retaguardia",
         ...stats,
       };
     });
@@ -575,6 +576,7 @@ export async function completarRegresoExpedicionParty(usuarioId: string, idDesco
       data: { estado: "completado" },
     });
     for (const miembro of expedicion.participantes) {
+      if (miembro.estado === "retirado") continue;
       const personaje = await tx.personaje.updateMany({
         where: {
           id: miembro.personajeId,

@@ -143,6 +143,76 @@ async function crearRegreso(
   return creado;
 }
 
+
+function interpolarCoordenadas(
+  origen: CoordenadasBase,
+  destino: CoordenadasBase,
+  fechaSalida: Date,
+  fechaLlegada: Date,
+  ahora: Date,
+): CoordenadasBase {
+  const inicio = fechaSalida.getTime();
+  const fin = fechaLlegada.getTime();
+  const proporcion = fin > inicio
+    ? Math.max(0, Math.min(1, (ahora.getTime() - inicio) / (fin - inicio)))
+    : 1;
+  return {
+    lat: origen.lat + (destino.lat - origen.lat) * proporcion,
+    lng: origen.lng + (destino.lng - origen.lng) * proporcion,
+  };
+}
+
+function obtenerPosicionActualExpedicion(expedicion: {
+  fase: string;
+  fechaSalida: Date;
+  fechaLlegada: Date;
+  origenCoords: unknown;
+  destinoCoords: unknown;
+}, ahora = new Date()): CoordenadasBase {
+  const origen = exigirCoordenadas(expedicion.origenCoords, "el origen de la expedición");
+  const destino = exigirCoordenadas(expedicion.destinoCoords, "el destino de la expedición");
+  if (expedicion.fase === "lista_para_combate" || expedicion.fase === "combatiendo") return destino;
+  if (expedicion.fase === "regresando") {
+    return interpolarCoordenadas(destino, origen, expedicion.fechaSalida, expedicion.fechaLlegada, ahora);
+  }
+  return interpolarCoordenadas(origen, destino, expedicion.fechaSalida, expedicion.fechaLlegada, ahora);
+}
+
+async function crearRegresoDesdeExpedicion(
+  tx: Prisma.TransactionClient,
+  datos: {
+    visitanteUsuarioId: string;
+    anfitrionUsuarioId: string;
+    origen: CoordenadasBase;
+    destino: CoordenadasBase;
+    decision: "salida_voluntaria" | "lider_disuelve";
+    salida: Date;
+  },
+) {
+  const fechaLlegada = calcularLlegada(datos.origen, datos.destino, datos.salida);
+  const transferencia = await tx.partyTransfer.create({
+    data: {
+      visitanteUsuarioId: datos.visitanteUsuarioId,
+      anfitrionUsuarioId: datos.anfitrionUsuarioId,
+      estado: "regresando",
+      decision: datos.decision,
+      fechaSalida: datos.salida,
+      fechaLlegada,
+      fechaResolucion: datos.salida,
+      origenCoords: datos.origen as unknown as Prisma.InputJsonValue,
+      destinoCoords: datos.destino as unknown as Prisma.InputJsonValue,
+    },
+  });
+  const actualizado = await tx.personaje.updateMany({
+    where: { usuarioId: datos.visitanteUsuarioId, estado: { in: ["de_viaje", "combatiendo"] } },
+    data: { estado: "de_viaje" },
+  });
+  if (actualizado.count !== 1) {
+    throw new PartyServiceError("El estado del personaje cambió al iniciar su regreso individual.", 409, "PERSONAJE_MODIFICADO");
+  }
+  return transferencia;
+}
+
 export async function solicitarVisita(visitanteUsuarioId: string, anfitrionIdDesconocido: unknown) {
   const anfitrionUsuarioId = exigirId(anfitrionIdDesconocido, "la base de destino");
   if (visitanteUsuarioId === anfitrionUsuarioId) {
@@ -178,7 +248,7 @@ export async function solicitarVisita(visitanteUsuarioId: string, anfitrionIdDes
         where: { liderUsuarioId: anfitrionUsuarioId },
         include: { miembros: { select: { id: true, usuarioId: true } } },
       });
-      const miembrosActuales = partyExistente ? partyExistente.miembros.length : 1;
+      const miembrosActuales = partyExistente?.estado === "disuelta" ? 1 : (partyExistente ? partyExistente.miembros.length : 1);
       if (!puedeAceptarMiembro(miembrosActuales)) {
         throw new PartyServiceError("La party del anfitrión ya tiene el máximo de tres integrantes.", 409, "PARTY_LLENA");
       }
@@ -305,13 +375,23 @@ export async function aceptarVisita(anfitrionUsuarioId: string, idDesconocido: u
       }
       partyId = membresiaAnfitrion.partyId;
     } else {
-      const party = await tx.party.create({
-        data: {
-          liderUsuarioId: anfitrionUsuarioId,
-          miembros: { create: { usuarioId: anfitrionUsuarioId } },
-        },
-      });
-      partyId = party.id;
+      const partyExistente = await tx.party.findUnique({ where: { liderUsuarioId: anfitrionUsuarioId } });
+      if (partyExistente?.estado === "disuelta") {
+        await tx.party.update({ where: { id: partyExistente.id }, data: { estado: "activa" } });
+        await tx.partyMember.create({ data: { partyId: partyExistente.id, usuarioId: anfitrionUsuarioId } });
+        partyId = partyExistente.id;
+      } else if (partyExistente) {
+        throw new PartyServiceError("La party del anfitrión no está disponible para nuevas incorporaciones.", 409, "PARTY_NO_DISPONIBLE");
+      } else {
+        const party = await tx.party.create({
+          data: {
+            liderUsuarioId: anfitrionUsuarioId,
+            estado: "activa",
+            miembros: { create: { usuarioId: anfitrionUsuarioId } },
+          },
+        });
+        partyId = party.id;
+      }
     }
 
     await tx.partyMember.create({
@@ -433,9 +513,25 @@ export async function abandonarParty(usuarioId: string) {
         },
       },
     });
-    if (!membresia) throw new PartyServiceError("No perteneces a ninguna party.", 409, "SIN_PARTY");
+    if (!membresia || membresia.party.estado !== "activa") {
+      throw new PartyServiceError("No perteneces a ninguna party activa.", 409, "SIN_PARTY");
+    }
     if (membresia.party.liderUsuarioId === usuarioId) {
       throw new PartyServiceError("El líder debe disolver la party para que todos regresen a sus bases.", 409, "LIDER_DEBE_DISOLVER");
+    }
+
+    // Huir del combate no implica abandonar la party. La salida social solo se
+    // puede confirmar desde fuera de una expedición activa, con el personaje en base.
+    const expedicionActiva = await tx.expedicionParty.findFirst({
+      where: { partyId: membresia.partyId, fase: { in: [...ESTADOS_EXPEDICION_PARTY_ACTIVOS] } },
+      select: { id: true },
+    });
+    if (expedicionActiva) {
+      throw new PartyServiceError(
+        "Primero debe terminar la expedición compartida. Huir del combate no te expulsa de la party.",
+        409,
+        "PARTY_EXPEDICION_ACTIVA",
+      );
     }
 
     const visitante = await obtenerUsuarioBase(tx, usuarioId);
@@ -444,23 +540,23 @@ export async function abandonarParty(usuarioId: string) {
 
     const origen = exigirCoordenadas(membresia.party.liderUsuario.baseCoords, "la base del líder");
     const destino = exigirCoordenadas(visitante.baseCoords, "tu base de origen");
-    const salida = new Date();
-
     const transferencia = await crearRegreso(tx, {
       visitanteUsuarioId: usuarioId,
       anfitrionUsuarioId: membresia.party.liderUsuarioId,
       origen,
       destino,
       decision: "salida_voluntaria",
-      salida,
+      salida: new Date(),
     });
 
     await tx.partyMember.delete({ where: { usuarioId } });
-    if (membresia.party.miembros.length <= 2) {
-      await tx.party.delete({ where: { id: membresia.partyId } });
+    const partyDisuelta = membresia.party.miembros.length <= 2;
+    if (partyDisuelta) {
+      await tx.partyMember.deleteMany({ where: { partyId: membresia.partyId } });
+      await tx.party.update({ where: { id: membresia.partyId }, data: { estado: "disuelta" } });
     }
 
-    return { traslado: transferencia, partyDisuelta: membresia.party.miembros.length <= 2 };
+    return { traslado: transferencia, partyDisuelta };
   }, AISLAMIENTO);
 }
 
@@ -469,58 +565,105 @@ export async function disolverParty(liderUsuarioId: string) {
     const party = await tx.party.findUnique({
       where: { liderUsuarioId },
       include: {
-        liderUsuario: {
-          select: {
-            id: true,
-            baseCoords: true,
-            personaje: { select: { id: true, estado: true } },
-          },
-        },
+        liderUsuario: { select: { id: true, baseCoords: true, personaje: { select: { id: true, estado: true } } } },
         miembros: {
           include: {
-            usuario: {
-              select: {
-                id: true,
-                baseCoords: true,
-                personaje: { select: { id: true, estado: true } },
-                expedicionActiva: { select: { id: true } },
-              },
-            },
+            usuario: { select: { id: true, baseCoords: true, personaje: { select: { id: true, estado: true } }, expedicionActiva: { select: { id: true } } } },
           },
         },
       },
     });
-    if (!party) throw new PartyServiceError("No lideras ninguna party activa.", 409, "SIN_PARTY_LIDERADA");
-    if (!party.liderUsuario.personaje || party.liderUsuario.personaje.estado !== "ocioso") {
-      throw new PartyServiceError("El personaje líder no está disponible en su base.", 409, "LIDER_NO_DISPONIBLE");
+    if (!party || party.estado !== "activa") {
+      throw new PartyServiceError("No lideras ninguna party activa.", 409, "SIN_PARTY_LIDERADA");
     }
 
-    const origen = exigirCoordenadas(party.liderUsuario.baseCoords, "la base del líder");
-    const invitados = party.miembros.filter((miembro) => miembro.usuarioId !== liderUsuarioId);
-    const regresos = invitados.map((miembro) => {
-      if (!miembro.usuario.personaje || miembro.usuario.personaje.estado !== "ocioso" || miembro.usuario.expedicionActiva) {
-        throw new PartyServiceError("Uno de los integrantes no está disponible para regresar.", 409, "MIEMBRO_NO_DISPONIBLE");
-      }
-      return {
-        usuarioId: miembro.usuarioId,
-        destino: exigirCoordenadas(miembro.usuario.baseCoords, "la base de un integrante"),
-      };
+    const ahora = new Date();
+    const expedicion = await tx.expedicionParty.findFirst({
+      where: { partyId: party.id, fase: { in: [...ESTADOS_EXPEDICION_PARTY_ACTIVOS] } },
+      orderBy: { creado: "desc" },
+      include: {
+        participantes: { include: { usuario: { select: { id: true, baseCoords: true, personaje: { select: { estado: true } } } } } },
+        combate: { include: { participantes: { orderBy: { ordenTurno: "asc" } } } },
+      },
     });
+    let integrantesEnRegreso = 0;
 
-    for (const regreso of regresos) {
-      await exigirSinTrasladoActivo(tx, regreso.usuarioId);
-      await crearRegreso(tx, {
-        visitanteUsuarioId: regreso.usuarioId,
-        anfitrionUsuarioId: liderUsuarioId,
-        origen,
-        destino: regreso.destino,
-        decision: "lider_disuelve",
-        salida: new Date(),
+    if (expedicion) {
+      const origenComun = obtenerPosicionActualExpedicion(expedicion, ahora);
+      for (const participante of expedicion.participantes) {
+        if (participante.estado === "retirado") continue;
+        const destino = exigirCoordenadas(participante.usuario.baseCoords, "la base de un integrante");
+        await exigirSinTrasladoActivo(tx, participante.usuarioId);
+        await crearRegresoDesdeExpedicion(tx, {
+          visitanteUsuarioId: participante.usuarioId,
+          anfitrionUsuarioId: liderUsuarioId,
+          origen: origenComun,
+          destino,
+          decision: "lider_disuelve",
+          salida: ahora,
+        });
+        integrantesEnRegreso += 1;
+      }
+
+      await tx.expedicionPartyParticipante.updateMany({
+        where: { expedicionPartyId: expedicion.id, estado: { not: "retirado" } },
+        data: { estado: "retirado" },
       });
+      if (expedicion.combate) {
+        await tx.combatePartyParticipante.updateMany({
+          where: { combatePartyId: expedicion.combate.id, estado: { not: "retirado" } },
+          data: { estado: "retirado" },
+        });
+        if (expedicion.combate.fase === "activo" && expedicion.fase !== "regresando") {
+          const logPrevio = Array.isArray(expedicion.combate.log)
+            ? expedicion.combate.log.filter((e): e is string => typeof e === "string")
+            : [];
+          await tx.combateParty.updateMany({
+            where: { id: expedicion.combate.id, version: expedicion.combate.version, fase: "activo" },
+            data: {
+              version: { increment: 1 },
+              fase: "cancelada",
+              faseTurno: "enemigo",
+              turnoActualUsuarioId: null,
+              log: [...logPrevio, "🛑 El líder disuelve la party y cancela la expedición."] as unknown as Prisma.InputJsonValue,
+            },
+          });
+        }
+      }
+      const faseFinal = expedicion.fase === "regresando" ? "completada" : "cancelada";
+      await tx.expedicionParty.updateMany({
+        where: { id: expedicion.id, fase: expedicion.fase },
+        data: {
+          fase: faseFinal,
+          ...(faseFinal === "cancelada" ? { resultadoFinal: "cancelada" } : {}),
+        },
+      });
+    } else {
+      if (!party.liderUsuario.personaje || party.liderUsuario.personaje.estado !== "ocioso") {
+        throw new PartyServiceError("El personaje líder no está disponible en su base.", 409, "LIDER_NO_DISPONIBLE");
+      }
+      const origen = exigirCoordenadas(party.liderUsuario.baseCoords, "la base del líder");
+      const invitados = party.miembros.filter((miembro) => miembro.usuarioId !== liderUsuarioId);
+      for (const miembro of invitados) {
+        if (!miembro.usuario.personaje || miembro.usuario.personaje.estado !== "ocioso" || miembro.usuario.expedicionActiva) {
+          throw new PartyServiceError("Uno de los integrantes no está disponible para regresar.", 409, "MIEMBRO_NO_DISPONIBLE");
+        }
+        await exigirSinTrasladoActivo(tx, miembro.usuarioId);
+        await crearRegreso(tx, {
+          visitanteUsuarioId: miembro.usuarioId,
+          anfitrionUsuarioId: liderUsuarioId,
+          origen,
+          destino: exigirCoordenadas(miembro.usuario.baseCoords, "la base de un integrante"),
+          decision: "lider_disuelve",
+          salida: ahora,
+        });
+        integrantesEnRegreso += 1;
+      }
     }
 
-    await tx.party.delete({ where: { id: party.id } });
-    return { partyDisuelta: true, integrantesEnRegreso: regresos.length };
+    await tx.partyMember.deleteMany({ where: { partyId: party.id } });
+    await tx.party.update({ where: { id: party.id }, data: { estado: "disuelta" } });
+    return { partyDisuelta: true, integrantesEnRegreso, expedicionPartyId: expedicion?.id ?? null };
   }, AISLAMIENTO);
 }
 
@@ -660,6 +803,7 @@ export async function obtenerEstadoParty(usuarioId: string) {
                 usuarioId: p.usuarioId,
                 estado: p.estado,
                 ordenTurno: p.ordenTurno,
+                jugadorPosicion: p.jugadorPosicion,
                 jugadorHp: p.jugadorHp,
                 jugadorHpMaximo: p.jugadorHpMaximo,
                 usuario: p.usuario,
@@ -673,7 +817,7 @@ export async function obtenerEstadoParty(usuarioId: string) {
     ? await prisma.expedicionParty.findFirst({
         where: {
           participantes: { some: { usuarioId } },
-          combate: { is: { fase: { in: ["victoria", "derrota"] } } },
+          combate: { is: { fase: { in: ["victoria", "derrota", "huida"] } } },
         },
         orderBy: { creado: "desc" },
         select: {
@@ -697,7 +841,8 @@ export async function obtenerEstadoParty(usuarioId: string) {
   const ultimoResultadoExpedicion =
     ultimaExpedicionConResultadoRaw?.combate &&
     (ultimaExpedicionConResultadoRaw.combate.fase === "victoria" ||
-      ultimaExpedicionConResultadoRaw.combate.fase === "derrota")
+      ultimaExpedicionConResultadoRaw.combate.fase === "derrota" ||
+      ultimaExpedicionConResultadoRaw.combate.fase === "huida")
       ? {
           expedicionPartyId: ultimaExpedicionConResultadoRaw.id,
           fase: ultimaExpedicionConResultadoRaw.combate.fase,

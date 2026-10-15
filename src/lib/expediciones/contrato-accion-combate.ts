@@ -1,12 +1,12 @@
 export type ObjetivoAccionCombate = "propio" | "oponente";
-export type TipoAccionContrato = "atacar" | "usar_habilidad" | "usar_objeto";
+export type TipoAccionContrato = "atacar" | "usar_habilidad" | "usar_objeto" | "escapar";
 export type TipoCombateContrato = "pve" | "pvp";
 
 export function obtenerObjetivoEsperadoAccion(
   accion: TipoAccionContrato,
   efectoHabilidad?: string | null,
 ): ObjetivoAccionCombate {
-  if (accion === "usar_objeto") return "propio";
+  if (accion === "usar_objeto" || accion === "escapar") return "propio";
   if (accion === "usar_habilidad" && efectoHabilidad !== "dano") return "propio";
   return "oponente";
 }
@@ -51,6 +51,9 @@ export function validarTurnoAccionCombate(input: {
   | { valido: true; actor: "jugador" | "enemigo" | "atacante" | "defensor" }
   | { valido: false; estado: number; error: string } {
   if (input.tipo === "pvp") {
+    if (input.accion === "escapar") {
+      return { valido: false, estado: 400, error: "No puedes huir de un combate PvP." };
+    }
     if (input.turno !== "atacante" && input.turno !== "defensor") {
       return { valido: false, estado: 409, error: "Turno de combate PvP no válido." };
     }
@@ -64,7 +67,7 @@ export function validarTurnoAccionCombate(input: {
   if (input.turno !== "jugador" && input.turno !== "enemigo") {
     return { valido: false, estado: 409, error: "Turno de combate no válido." };
   }
-  if ((input.accion === "usar_habilidad" || input.accion === "usar_objeto") && input.turno !== "jugador") {
+  if ((input.accion === "usar_habilidad" || input.accion === "usar_objeto" || input.accion === "escapar") && input.turno !== "jugador") {
     return { valido: false, estado: 409, error: "Solo puedes usar habilidades u objetos durante tu turno." };
   }
   return { valido: true, actor: input.turno };

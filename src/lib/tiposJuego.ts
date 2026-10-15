@@ -108,7 +108,7 @@ export type FaseCombate = "activo" | "victoria" | "derrota" | "huida";
 
 export type FaseExpedicion = "en_viaje" | "combatiendo" | "regresando";
 
-export type ResultadoExpedicion = "exito" | "derrota" | "cancelada";
+export type ResultadoExpedicion = "exito" | "derrota" | "cancelada" | "huida";
 
 /** EXPEDICIONES */
 export type TipoReporteExpedicion = "combate" | "comercio";
@@ -127,7 +127,7 @@ export type ReporteCombate = ReporteExpedicionBase & {
   tipo: "combate";
 } & (
     | {
-        resultadoFinal: "cancelada";
+        resultadoFinal: "cancelada" | "huida";
       }
     | {
         resultadoFinal: "exito" | "derrota";

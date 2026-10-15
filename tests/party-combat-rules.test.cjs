@@ -99,3 +99,33 @@ test("si el enemigo tiene la iniciativa, su primer turno no salta la ronda", () 
   estado = calcularSiguienteTurnoParty(estado, grupo);
   assert.equal(estado.ronda, 2);
 });
+
+
+test("la huida saca al aventurero del orden y termina si ya no queda nadie activo", () => {
+  const grupo = participantes();
+  grupo[0].estado = "huyo";
+  const siguiente = calcularSiguienteTurnoParty({
+    faseCombate: "activo",
+    faseTurno: "jugador",
+    turnoActualUsuarioId: "u2",
+    ronda: 1,
+  }, grupo);
+  assert.equal(siguiente.turnoActualUsuarioId, "u3");
+  assert.equal(siguiente.faseTurno, "jugador");
+
+  grupo[2].estado = "huyo";
+  grupo[1].estado = "caido";
+  assert.equal(resolverResultadoCombateParty(10, grupo), "huida");
+  const terminal = calcularSiguienteTurnoParty({
+    faseCombate: "activo",
+    faseTurno: "jugador",
+    turnoActualUsuarioId: "u1",
+    ronda: 1,
+  }, grupo);
+  assert.equal(terminal.faseCombate, "huida");
+});
+
+test("una derrota sin nadie que haya huido no se convierte en huida", () => {
+  const grupo = participantes().map((p) => ({ ...p, estado: "caido", jugadorHp: 0 }));
+  assert.equal(resolverResultadoCombateParty(10, grupo), "derrota");
+});

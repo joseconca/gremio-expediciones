@@ -550,7 +550,7 @@ export default function BasePage() {
   );
 
   const ejecutarAccionCombatePve = useCallback(
-    (accion: "atacar" | "usar_habilidad" | "usar_objeto", payload?: string) => {
+    (accion: "atacar" | "usar_habilidad" | "usar_objeto" | "escapar", payload?: string) => {
       return accionCombate(accion, payload, "pve");
     },
     [accionCombate]

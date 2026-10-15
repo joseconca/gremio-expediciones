@@ -1,0 +1,1 @@
+ALTER TABLE "Party" ADD COLUMN "estado" TEXT NOT NULL DEFAULT 'activa';
