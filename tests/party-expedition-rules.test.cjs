@@ -28,6 +28,14 @@ test("la llegada usa una única fecha, tiempo mínimo de 30 segundos y clima", (
   const salida = new Date("2026-10-14T12:00:00.000Z");
   const llegada = calcularFechaLlegadaParty(12, [8, 4], 1, salida);
   assert.equal(llegada.getTime() - salida.getTime(), 90 * 60 * 1000);
+
+  const salidaMisionMediaHora = new Date("2026-10-14T12:00:00.000Z");
+  const llegadaMisionMediaHora = calcularFechaLlegadaParty(3, [6, 6], 1, salidaMisionMediaHora);
+  assert.equal(
+    llegadaMisionMediaHora.getTime() - salidaMisionMediaHora.getTime(),
+    15 * 60 * 1000,
+    "si la duración total prevista es 30 minutos, el encuentro se programa a los 15",
+  );
   assert.equal(
     calcularFechaLlegadaParty(0, [8, 4], 1, salida).getTime() - salida.getTime(),
     30_000,
