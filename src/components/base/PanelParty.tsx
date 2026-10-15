@@ -472,19 +472,33 @@ export default function PanelParty() {
   const trasladosPropios = estado?.trasladosPropios ?? [];
   const visitasEntrantes = estado?.visitasEntrantes ?? [];
 
+  // En la base no mostramos un panel vacío. Se mantiene visible únicamente
+  // cuando hay un grupo, una expedición o un traslado que requiere atención.
+  if (!party && !estado?.expedicionActiva && trasladosPropios.length === 0 && visitasEntrantes.length === 0 && !error) {
+    return null;
+  }
+
   return (
-    <section className="mx-auto mb-4 w-full max-w-4xl rounded-xl border border-amber-950/80 bg-slate-950/90 p-3 text-amber-50 shadow-xl sm:p-4">
-      <header className="mb-3 flex items-center justify-between gap-3">
-        <div>
-          <h2 className="text-base font-black uppercase tracking-wider text-amber-300 sm:text-lg">
-            ⚔️ Compañía de aventureros
-          </h2>
-          <p className="mt-1 text-xs text-slate-400">
-            Las visitas requieren aceptación del propietario de la base.
-          </p>
+    <section className="relative mx-auto mb-4 w-full max-w-4xl overflow-hidden rounded-xl border-2 border-[#80602f] bg-[linear-gradient(135deg,#2a2013_0%,#15110b_54%,#241a0f_100%)] p-3 text-[#f8edcf] shadow-[0_10px_28px_rgba(0,0,0,0.45)] sm:p-4">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-1 rounded-lg border border-[#604824]/80" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-amber-400/80 to-transparent" />
+      <header className="relative mb-3 flex items-center justify-between gap-3 border-b border-[#69502d] pb-3">
+        <div className="flex min-w-0 items-center gap-3">
+          <span aria-hidden="true" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border-2 border-[#9b773d] bg-[linear-gradient(145deg,#4b371c,#21180e)] text-xl text-amber-200 shadow-[inset_0_1px_0_rgba(255,226,170,0.18)]">
+            ⚔
+          </span>
+          <div className="min-w-0">
+            <p className="text-[9px] font-black uppercase tracking-[0.24em] text-amber-500 sm:text-[10px]">Registro del gremio</p>
+            <h2 className="font-serif text-base font-black uppercase tracking-[0.08em] text-amber-100 sm:text-lg">
+              Compañía de aventureros
+            </h2>
+            <p className="mt-0.5 text-[11px] text-[#c4b28e] sm:text-xs">
+              {party ? "Unidos por el oro, la gloria y la aventura." : "Visitas y traslados entre bases."}
+            </p>
+          </div>
         </div>
-        <span className="shrink-0 rounded-md border border-slate-700 bg-slate-900 px-2 py-1 text-xs font-bold text-slate-300">
-          {party ? `${party.miembros.length}/3` : "Sin party"}
+        <span className="relative shrink-0 rounded-sm border border-[#80602f] bg-[#1a140c] px-2 py-1 text-[10px] font-black uppercase tracking-wide text-amber-200 sm:text-xs">
+          {party ? `${party.miembros.length}/3 aventureros` : visitasEntrantes.length > 0 ? "Visita entrante" : "En camino"}
         </span>
       </header>
 
@@ -502,19 +516,22 @@ export default function PanelParty() {
         <div className="mb-4">
           <div className="grid gap-2 sm:grid-cols-3">
             {party.miembros.map((miembro) => (
-              <article key={miembro.usuarioId} className="rounded-lg border border-slate-800 bg-slate-900/80 p-3">
-                <div className="flex items-start justify-between gap-2">
-                  <p className="font-bold text-white">{miembro.usuario.personaje?.nombre ?? "Aventurero"}</p>
-                  {miembro.esLider && (
-                    <span className="rounded border border-amber-700/70 bg-amber-950/50 px-1.5 py-0.5 text-[10px] font-black uppercase text-amber-300">
-                      Líder
-                    </span>
-                  )}
+              <article key={miembro.usuarioId} className="group relative overflow-hidden rounded-md border border-[#66502e] bg-[#21190f]/90 p-3 shadow-[inset_0_1px_0_rgba(255,223,160,0.06)]">
+                <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-500/60 to-transparent" />
+                <div className="relative flex items-start gap-2.5">
+                  <span aria-hidden="true" className={`flex h-8 w-8 shrink-0 items-center justify-center rounded border ${miembro.esLider ? "border-amber-600/80 bg-amber-950/70 text-amber-300" : "border-[#66502e] bg-[#18120b] text-[#c9b387]"}`}>
+                    {miembro.esLider ? "♛" : "⚔"}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-black text-[#fff1d0]">
+                      {miembro.usuario.personaje?.nombre ?? "Aventurero"}{miembro.esLider ? <span className="text-amber-400"> (líder)</span> : ""}
+                    </p>
+                    <p className="mt-1 truncate text-xs text-[#c4b28e]">{miembro.usuario.nombre}</p>
+                    <p className="mt-1 text-[10px] font-bold uppercase tracking-wider text-[#8f7b57]">
+                      Nivel {miembro.usuario.personaje?.nivel ?? "—"}
+                    </p>
+                  </div>
                 </div>
-                <p className="mt-1 text-sm text-slate-300">{miembro.usuario.nombre}</p>
-                <p className="mt-1 text-xs text-slate-500">
-                  Nivel {miembro.usuario.personaje?.nivel ?? "—"}
-                </p>
               </article>
             ))}
           </div>
