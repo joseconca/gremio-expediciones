@@ -154,7 +154,7 @@ test("una misión breve cuenta el oro del enemigo, el pago por derrota y el valo
   const mision = MISIONES_POR_DURACION[0];
   const enemigo = obtenerEnemigoPorId("rata_gigante");
   assert.ok(enemigo);
-  const oroEnemigo = calcularOroEnemigo(enemigo.botin, 1, enemigo.difMin);
+  const oroEnemigo = calcularOroEnemigo(enemigo.botin, 1);
   assert.equal(oroEnemigo, 18);
   assert.equal(enemigo.probabilidadBotin, 0.08);
   const pesoTotal = enemigo.tablaLoot.reduce((total, entrada) => total + entrada.peso, 0);
