@@ -54,7 +54,7 @@ const DEFINICIONES = {
   novato: {
     id: "novato", nombre: "Novato", descripcion: "El punto de partida de todo aventurero.", arquetipo: "novato",
     recursoCombate: "energia", tier: 0, nivelJobMaximo: 10, requisitos: [], armasDominadas: [],
-    armadurasDominadas: ["ligera"], bonoAtaqueArmaDominada: 0, bonoDefensaArmaduraDominada: 0,
+    armadurasDominadas: [], bonoAtaqueArmaDominada: 0, bonoDefensaArmaduraDominada: 0,
   },
 
   // TIER 1 · cuatro ramas de especialización
@@ -129,7 +129,7 @@ const DEFINICIONES = {
   brujo: {
     id: "brujo", nombre: "Brujo", descripcion: "Manipula maldiciones, drenajes y magia oscura.", arquetipo: "maldito",
     recursoCombate: "mana", tier: 2, nivelJobMaximo: 40, requisitos: MAGO_JOB_20,
-    armasDominadas: ["baston", "libro", "daga"], armadurasDominadas: ["ligera"],
+    armasDominadas: ["baston", "libro", "daga"], armadurasDominadas: [],
     bonoAtaqueArmaDominada: 0.2, bonoDefensaArmaduraDominada: 0,
   },
 
@@ -251,13 +251,13 @@ const DEFINICIONES = {
   nigromante: {
     id: "nigromante", nombre: "Nigromante", descripcion: "Domina el drenaje vital, el veneno y la magia funeraria.", arquetipo: "maldito",
     recursoCombate: "mana", tier: 3, nivelJobMaximo: 60, requisitos: [{ claseId: "brujo", nivelJob: 40 }],
-    armasDominadas: ["baston", "libro", "daga"], armadurasDominadas: ["ligera"],
+    armasDominadas: ["baston", "libro", "daga"], armadurasDominadas: [],
     bonoAtaqueArmaDominada: 0.25, bonoDefensaArmaduraDominada: 0,
   },
   demonologo: {
     id: "demonologo", nombre: "Demonólogo", descripcion: "Forma pactos peligrosos para sacrificar defensa a cambio de poder mágico.", arquetipo: "maldito",
     recursoCombate: "mana", tier: 3, nivelJobMaximo: 60, requisitos: [{ claseId: "brujo", nivelJob: 40 }],
-    armasDominadas: ["baston", "libro", "daga"], armadurasDominadas: ["ligera"],
+    armasDominadas: ["baston", "libro", "daga"], armadurasDominadas: [],
     bonoAtaqueArmaDominada: 0.25, bonoDefensaArmaduraDominada: 0,
   },
 } as const satisfies Record<string, DefinicionClase>;

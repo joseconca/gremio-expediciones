@@ -325,7 +325,7 @@ export default function PanelProfesiones({
                   const cambiando = procesandoId === `cambiar:${clase.id}`;
                   const progreso = clase.progreso;
                   const requisitos = clase.requisitos.length ? clase.requisitos.map((req) => `${nombreClase(req.claseId)} Job ${req.nivelJob}`).join(" + ") : "Profesión inicial";
-                  const dominio = `Armas: ${clase.armasDominadas.join(", ") || "sin especialización"}. Armaduras: ${clase.armadurasDominadas.join(", ") || "sin especialización"}. Bonus: +${Math.round(clase.bonoAtaqueArmaDominada * 100)}% ataque y +${Math.round(clase.bonoDefensaArmaduraDominada * 100)}% defensa al equipo compatible.`;
+                  const dominio = `Armas y equipo de mano dominados: ${clase.armasDominadas.join(", ") || "ninguno"}. Armas: +${Math.round(clase.bonoAtaqueArmaDominada * 100)}% ataque; escudo/mano secundaria: +${Math.round(clase.bonoAtaqueArmaDominada * 100)}% defensa. Armaduras corporales dominadas: ${clase.armadurasDominadas.join(", ") || "ninguna"}; aplican +${Math.round(clase.bonoDefensaArmaduraDominada * 100)}% defensa. Los tipos no dominados o sin bonificación positiva aportan el 75% de su estadística relevante.`;
                   const tooltip = `${clase.descripcion} Requisitos: ${requisitos}. ${dominio}${progreso?.maestriaCompletada ? " Maestría completada." : ""}`;
                   return (
                     <article key={clase.id} title={tooltip} className={`absolute z-10 flex flex-col justify-between overflow-hidden rounded-md border px-2 py-1.5 shadow-md transition-colors ${

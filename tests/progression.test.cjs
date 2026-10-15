@@ -110,6 +110,8 @@ test("el dominio de armas da bono a las dominadas y penaliza un 25 % las no domi
   assert.equal(calcularBonificacionesDominioEquipo("arquero", "escudo").multiplicadorAtaqueArma, 0.75, "El Arquero no domina el escudo");
   assert.equal(calcularBonificacionesDominioEquipo("novato", undefined, "ligera").multiplicadorDefensaArmadura, 0.75, "Sin bonus de defensa, la armadura también sufre penalización");
   assert.equal(calcularBonificacionesDominioEquipo("brujo", undefined, "ligera").multiplicadorDefensaArmadura, 0.75, "El Brujo no tiene bonus defensivo de armadura");
+  assert.deepEqual(CLASES.novato.armadurasDominadas, [], "El Novato no debe figurar como dominador de una categoría que no bonifica");
+  assert.deepEqual(CLASES.brujo.armadurasDominadas, [], "El Brujo no debe figurar como dominador de armadura ligera si no la bonifica");
 });
 
 test("las armaduras declaran subtipo y reciben penalización en todas las ranuras salvo joyería", () => {
