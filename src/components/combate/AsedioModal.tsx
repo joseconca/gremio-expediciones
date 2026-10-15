@@ -5,6 +5,7 @@ import Image from "next/image";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import type { CombateActivo, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
+import { useAnimacionesCombate } from "@/components/combate/animaciones/useAnimacionesCombate";
 import { calcularBonusDefensaMuralla } from "@/lib/expediciones/combate";
 import { CLASES } from "@/lib/progresion/clases";
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
@@ -85,29 +86,15 @@ export default function AsedioModal({
   const mostrarResultado = combate.fase !== "activo";
   const [procesandoLocal, setProcesandoLocal] = useState(false);
 
-  const [danioVisible, setDanioVisible] = useState<{
-    actor: ActorVista;
-    dano: number;
-    critico: boolean;
-  } | null>(null);
-
-  const [curacionVisible, setCuracionVisible] = useState<{
-    actor: ActorVista;
-    cantidad: number;
-  } | null>(null);
-  const [pulsosEstadoVisibles, setPulsosEstadoVisibles] = useState<{
-    actor: ActorVista;
-    tipo: "curacion" | "dano";
-    cantidad: number;
-  }[]>([]);
-
-  const [actorAnimando, setActorAnimando] = useState<ActorVista | null>(null);
-
-  const [actorImpactado, setActorImpactado] = useState<ActorVista | null>(null);
-
-  const [animacionActual, setAnimacionActual] = useState<
-    AccionAnimadaCombate["animacion"] | null
-  >(null);
+  const {
+    danioVisible,
+    curacionVisible,
+    pulsosEstadoVisibles,
+    actorAnimando,
+    actorImpactado,
+    animacionActual,
+    mostrarResultadoVisual,
+  } = useAnimacionesCombate();
 
   /*
    * ============================================================
@@ -271,73 +258,30 @@ export default function AsedioModal({
     });
 
   const mostrarResultadoAccion = useCallback(async (accion: AccionAnimadaCombate) => {
-    const actorVista: ActorVista = esAtacante
+    const actorVisual: ActorVista = esAtacante
       ? accion.actor
-      : accion.actor === "jugador"
-        ? "enemigo"
-        : "jugador";
-    const objetivo: ActorVista =
-      actorVista === "jugador" ? "enemigo" : "jugador";
-
-    const dano = accion.dano;
-    const curacion = accion.curacion ?? 0;
-    setPulsosEstadoVisibles((accion.pulsosEstado ?? []).map((pulso) => ({
-      actor: esAtacante ? pulso.objetivo : pulso.objetivo === "jugador" ? "enemigo" : "jugador",
-      tipo: pulso.tipo,
-      cantidad: pulso.cantidad,
-    })));
-
-    setAnimacionActual(accion.animacion);
-
-    if (
+      : accion.actor === "jugador" ? "enemigo" : "jugador";
+    const esSoporte = accion.presentacion?.modo === "curacion" ||
       accion.animacion === "curacion" ||
       accion.animacion === "defensiva" ||
-      accion.animacion === "escudo"
-    ) {
-      setActorAnimando(actorVista);
+      accion.animacion === "escudo";
+    const objetivoVisual: ActorVista = esSoporte
+      ? actorVisual
+      : actorVisual === "jugador" ? "enemigo" : "jugador";
+    const pulsos = (accion.pulsosEstado ?? []).map((pulso) => ({
+      actor: (esAtacante
+        ? pulso.objetivo
+        : pulso.objetivo === "jugador" ? "enemigo" : "jugador") as ActorVista,
+      tipo: pulso.tipo,
+      cantidad: pulso.cantidad,
+    }));
 
-      if (curacion > 0) {
-        setCuracionVisible({
-          actor: actorVista,
-          cantidad: curacion,
-        });
-      }
-
-      await esperar(700);
-
-      setCuracionVisible(null);
-      setActorAnimando(null);
-      setAnimacionActual(null);
-      setPulsosEstadoVisibles([]);
-
-      return;
-    }
-
-    setActorAnimando(actorVista);
-
-    await esperar(accion.animacion === "ofensiva_potenciada" ? 350 : 250);
-
-    setActorImpactado(objetivo);
-
-    if (dano > 0) {
-      setDanioVisible({
-        actor: objetivo,
-        dano,
-        critico: accion.critico,
-      });
-    }
-
-    await esperar(accion.animacion === "ofensiva_potenciada" ? 450 : 300);
-
-    setDanioVisible(null);
-    setActorImpactado(null);
-
-    await esperar(accion.animacion === "ofensiva_potenciada" ? 300 : 200);
-
-    setActorAnimando(null);
-    setAnimacionActual(null);
-    setPulsosEstadoVisibles([]);
-  }, [esAtacante]);
+    await mostrarResultadoVisual(accion, {
+      actorVisual,
+      objetivoVisual,
+      pulsosEstadoVisibles: pulsos,
+    });
+  }, [esAtacante, mostrarResultadoVisual]);
 
   useEffect(() => {
     const ultimaAccion = combate.ultimaAccion;

@@ -7,6 +7,7 @@ import { obtenerRutaSpriteEnemigo } from "@/lib/enemigos";
 import { CLASES } from "@/lib/progresion/clases";
 import type { CombatePve, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
+import { useAnimacionesCombate } from "@/components/combate/animaciones/useAnimacionesCombate";
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import type { ObjetoInventario } from "@/lib/tiposJuego";
 import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
@@ -271,32 +272,16 @@ export default function CombateModal({
     ? Math.max(0, Math.min(100, (personaje.manaActual / personaje.manaMaximo) * 100))
     : 0;
 
-  /*
-   * ============================================================
-   * ANIMACIONES
-   * ============================================================
-   */
-  const [danioVisible, setDanioVisible] = useState<{
-    actor: string;
-    dano: number;
-    critico: boolean;
-  } | null>(null);
+  const {
+    danioVisible,
+    curacionVisible,
+    pulsosEstadoVisibles,
+    actorAnimando,
+    actorImpactado,
+    animacionActual,
+    mostrarResultadoVisual,
+  } = useAnimacionesCombate();
 
-  const [curacionVisible, setCuracionVisible] = useState<{
-    actor: string;
-    cantidad: number;
-  } | null>(null);
-  const [pulsosEstadoVisibles, setPulsosEstadoVisibles] = useState<{
-    actor: string;
-    tipo: "curacion" | "dano";
-    cantidad: number;
-  }[]>([]);
-
-  const [actorAnimando, setActorAnimando] = useState<string | null>(null);
-  const [actorImpactado, setActorImpactado] = useState<string | null>(null);
-  const [animacionActual, setAnimacionActual] = useState<
-    AccionAnimadaCombate["animacion"] | null
-  >(null);
   const [procesandoLocal, setProcesandoLocal] = useState(false);
 
   const turnoEnemigoEnCurso = useRef(false);
@@ -318,65 +303,43 @@ export default function CombateModal({
         setMostrarResultado(true);
       }
     };
-    const dano = accion.dano;
-    const curacion = accion.curacion ?? 0;
+    const actorReal = actorUsuarioId ?? accion.actorUsuarioId ?? null;
+    const objetivoReal = objetivoUsuarioId ?? accion.objetivoUsuarioId ?? null;
     const actorVisual = partyMode
-      ? accion.actor === "enemigo" ? "enemigo" : actorUsuarioId ?? partyMode.usuarioId
+      ? accion.actor === "enemigo" ? "enemigo" : actorReal ?? partyMode.usuarioId
       : accion.actor;
+    const esSoporte = accion.presentacion?.modo === "curacion" ||
+      accion.animacion === "curacion" ||
+      accion.animacion === "defensiva" ||
+      accion.animacion === "escudo";
     const objetivoVisual = partyMode
-      ? accion.actor === "enemigo" ? objetivoUsuarioId ?? partyMode.usuarioId : "enemigo"
-      : accion.actor === "jugador" ? "enemigo" : "jugador";
-    setPulsosEstadoVisibles((accion.pulsosEstado ?? []).map((pulso) => ({
+      ? objetivoReal ?? (esSoporte
+        ? actorVisual
+        : accion.actor === "enemigo" ? partyMode.usuarioId : "enemigo")
+      : esSoporte
+        ? actorVisual
+        : accion.actor === "jugador" ? "enemigo" : "jugador";
+    const pulsos = (accion.pulsosEstado ?? []).map((pulso) => ({
       actor: partyMode
-        ? pulso.objetivo === "enemigo"
-          ? "enemigo"
-          : accion.actor === "enemigo"
-            ? objetivoUsuarioId ?? partyMode.usuarioId
-            : actorVisual
+        ? pulso.objetivoUsuarioId ?? (
+            pulso.objetivo === "enemigo"
+              ? "enemigo"
+              : accion.actor === "enemigo"
+                ? objetivoReal ?? partyMode.usuarioId
+                : actorVisual
+          )
         : pulso.objetivo,
       tipo: pulso.tipo,
       cantidad: pulso.cantidad,
-    })));
+    }));
 
-    setAnimacionActual(accion.animacion);
-
-    if (
-      accion.animacion === "curacion" ||
-      accion.animacion === "defensiva" ||
-      accion.animacion === "escudo"
-    ) {
-      setActorAnimando(actorVisual);
-      if (curacion > 0) {
-        setCuracionVisible({ actor: actorVisual, cantidad: curacion });
-      }
-      await esperar(700);
-      setCuracionVisible(null);
-      setActorAnimando(null);
-      setAnimacionActual(null);
-      setPulsosEstadoVisibles([]);
-      comprobarResultadoCombate();
-      return;
-    }
-
-    const objetivo = objetivoVisual;
-    setActorAnimando(actorVisual);
-
-    await esperar(accion.animacion === "ofensiva_potenciada" ? 350 : 250);
-    setActorImpactado(objetivo);
-
-    if (dano > 0) {
-      setDanioVisible({ actor: objetivo, dano, critico: accion.critico });
-    }
-
-    await esperar(accion.animacion === "ofensiva_potenciada" ? 450 : 300);
-    setDanioVisible(null);
-    setActorImpactado(null);
-    await esperar(accion.animacion === "ofensiva_potenciada" ? 300 : 200);
-    setActorAnimando(null);
-    setAnimacionActual(null);
-    setPulsosEstadoVisibles([]);
+    await mostrarResultadoVisual(accion, {
+      actorVisual,
+      objetivoVisual,
+      pulsosEstadoVisibles: pulsos,
+    });
     comprobarResultadoCombate();
-  }, []);
+  }, [partyMode, mostrarResultadoVisual]);
 
   const ejecutarHuida = async () => {
     if (accionEnCurso.current || procesando || combateTerminado || combate.turno !== "jugador") return;
