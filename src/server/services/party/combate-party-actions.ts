@@ -40,8 +40,7 @@ import {
 } from "@/lib/expediciones/dificultad";
 import { otorgarExperienciaJob } from "@/server/services/combate/accion-combate";
 import { reducirCooldowns, obtenerCooldowns } from "@/server/services/combate/accion-combate";
-import { calcularFechaLlegadaParty } from "@/lib/party/expedicion-reglas";
-import { calcularDistanciaKm } from "@/lib/utils";
+import { calcularFechasRegresoProgramadas } from "@/lib/expediciones/tiempos";
 import { leerCoordenadasBase } from "@/lib/party/reglas";
 
 const AISLAMIENTO = { isolationLevel: Prisma.TransactionIsolationLevel.Serializable } as const;
@@ -156,9 +155,9 @@ async function iniciarRegresoParty(
     throw new PartyServiceError("La expedición no conserva velocidades válidas para calcular el regreso.", 409, "VELOCIDAD_REGRESO_NO_DISPONIBLE");
   }
   const velocidadRegreso = Math.min(...velocidades);
-  const distanciaRegreso = calcularDistanciaKm(origenRaw.lat, origenRaw.lng, destinoRaw.lat, destinoRaw.lng);
-  const salida = new Date();
-  const fechaLlegada = calcularFechaLlegadaParty(distanciaRegreso, velocidades, 1, salida);
+  const fechasRegreso = calcularFechasRegresoProgramadas(expedicion.fechaSalida, expedicion.fechaLlegada);
+  const salida = fechasRegreso.fechaSalida;
+  const fechaLlegada = fechasRegreso.fechaLlegada;
   const actualizado = await tx.expedicionParty.updateMany({
     where: { id: expedicionPartyId, fase: "combatiendo" },
     data: {
