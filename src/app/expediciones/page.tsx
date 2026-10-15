@@ -270,11 +270,7 @@ export default function ExpedicionesPage() {
   const nivelPersonaje = personaje?.nivel ?? null;
 
   useEffect(() => {
-    if (cargandoEstadoParty) return;
-    if (estadoParty?.party && estadoParty.party.liderUsuarioId !== estadoParty.usuarioId) {
-      setMisionesGeneradas([]);
-      return;
-    }
+    if (cargandoEstadoParty || (estadoParty?.party && estadoParty.party.liderUsuarioId !== estadoParty.usuarioId)) return;
     if (
       isLoading ||
       !sesionActiva ||
@@ -389,12 +385,6 @@ export default function ExpedicionesPage() {
     Number.isFinite(coordenadasLiderParty.lng)
       ? coordenadasLiderParty
       : baseCoords;
-
-  useEffect(() => {
-    if (!estadoParty?.party || estadoParty.party.liderUsuarioId === estadoParty.usuarioId) return;
-    setMisionSeleccionada(null);
-    setErrorEnvio(null);
-  }, [estadoParty?.party?.liderUsuarioId, estadoParty?.usuarioId]);
 
   const handleSeleccionarAccionBase = (tipo: "asedio" | "comercio") => {
     if (!baseSeleccionada || !baseCoords || !personaje) return;
