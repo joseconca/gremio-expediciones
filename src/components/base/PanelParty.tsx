@@ -653,6 +653,8 @@ export default function PanelParty() {
 
   return (
     <>
+      {destinoTablon && createPortal(
+        <>
       <aside className="relative w-full overflow-hidden rounded-md border border-[#80602f] bg-[linear-gradient(145deg,#261c10_0%,#15100a_100%)] p-2.5 text-[#f8edcf] shadow-lg sm:p-3">
         <div aria-hidden="true" className="pointer-events-none absolute inset-1 rounded border border-[#604824]/70" />
         <header className="relative flex items-center gap-2 border-b border-[#604824] pb-2">
@@ -803,8 +805,6 @@ export default function PanelParty() {
       )}
         </div>
       </aside>
-      {destinoTablon && (estado?.expedicionActiva || ultimoResultadoCombate) && createPortal(
-        <>
       {estado?.expedicionActiva && (
         <article className="overflow-hidden rounded-md border border-[#73552d] bg-[#1c150d]/95 shadow-sm">
           <button
