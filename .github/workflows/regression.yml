@@ -29,22 +29,28 @@ jobs:
           cache: npm
 
       - name: Install dependencies
+        id: install_deps
         run: npm ci
 
       - name: Generate Prisma Client
+        id: prisma_generate
         run: npx prisma generate
 
       - name: Test base-game API route regressions
         run: npm run test:base
 
       - name: Test RPG progression rules
+        if: ${{ always() && !cancelled() && steps.install_deps.outcome == 'success' && steps.prisma_generate.outcome == 'success' }}
         run: npm run test:progression
 
       - name: Test party and transfer rules
+        if: ${{ always() && !cancelled() && steps.install_deps.outcome == 'success' && steps.prisma_generate.outcome == 'success' }}
         run: npm run test:party
 
       - name: Lint
+        if: ${{ always() && !cancelled() && steps.install_deps.outcome == 'success' && steps.prisma_generate.outcome == 'success' }}
         run: npm run lint
 
       - name: Build
+        if: ${{ always() && !cancelled() && steps.install_deps.outcome == 'success' && steps.prisma_generate.outcome == 'success' }}
         run: npm run build

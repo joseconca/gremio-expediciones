@@ -56,7 +56,7 @@ No inferir el elemento solo por `tipoDano: "magico"`; una habilidad debe configu
 - [x] Recoger en `AccionAnimadaCombate` los IDs de participantes que ya se transmitían ad hoc en party.
 - [x] Exponer metadatos visuales opcionales en `DefinicionHabilidad`.
 - [x] Documentar el diseño y las limitaciones confirmadas.
-- [ ] Validación completa pendiente: Regression llega a `test:base` y falla en `las mejoras no heredan anomalías del precio de compra` (esperado 138, real 75). Es una prueba económica de archivos no modificados en esta rama; el job omite entonces progresión, party, lint y build. Hay otra ejecución para el commit actual en curso.
+- [ ] `test:base` falla en `las mejoras no heredan anomalías del precio de compra` (esperado 138, real 75), una prueba económica de archivos no modificados en esta rama. La workflow se ha ajustado en un commit de CI separado para ejecutar progresión, party, lint y build igualmente siempre que la instalación y Prisma hayan terminado correctamente; queda pendiente observar ese resultado.
 
 ### Fase 2 — controlador compartido
 
@@ -80,7 +80,7 @@ No inferir el elemento solo por `tipoDano: "magico"`; una habilidad debe configu
 - [x] Marcar los ataques básicos con arco mediante metadatos visuales explícitos en PvE, PvP/asedio y turnos de jugadores de party.
 - [x] Mantener los proyectiles separados de la lógica de daño y no ejecutar el desplazamiento cuerpo a cuerpo durante su vuelo.
 - [x] No mostrar un impacto válido en fallos; si falta el sprite, utilizar un símbolo alternativo sin interrumpir el combate.
-- [ ] Validación visual y automatizada pendiente por el fallo de `test:base` descrito en la fase 1.
+- [ ] Validación visual y automatizada pendiente; `test:base` falla por la regresión económica preexistente descrita en la fase 1. Los demás checks ahora se ejecutarán por separado para que ese fallo no los oculte.
 - [ ] Los proyectiles mágicos y la asignación de presentación por habilidad quedan para la fase 5; los perfiles de enemigos aún no declaran tipo de ataque a distancia.
 
 ### Fase 5 — magia elemental
@@ -91,7 +91,7 @@ No inferir el elemento solo por `tipoDano: "magico"`; una habilidad debe configu
 - [x] Mantener los efectos lógicos de habilidades como la quemadura separados de su presentación.
 - [x] Añadir pruebas de selección visual y de propagación del metadato en aciertos y fallos.
 - [x] Mantener fallback si un sprite no se carga.
-- [ ] Validación completa de CI pendiente: el job sigue detenido antes de `test:progression`, `test:party`, lint y build por el fallo preexistente de `test:base` descrito en la fase 1.
+- [ ] Validación completa pendiente: el fallo de `test:base` se reportará igualmente, pero los checks de progresión, party, lint y build se ejecutan de forma independiente si las dependencias y Prisma se preparan correctamente.
 
 ### Fase 6 — objetivos y efectos compuestos
 
