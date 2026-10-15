@@ -123,12 +123,12 @@ export type EfectoImpactoVisualCombate =
  * presentación explícita sin deducirla del daño ni de la clase del actor.
  * Se mantienen opcionales durante la migración desde AnimacionHabilidad.
  */
-export interface PresentacionVisualCombate {
+export type PresentacionVisualCombate = {
   modo: ModoPresentacionCombate;
   proyectil?: TipoProyectilCombate;
   elemento?: ElementoVisualCombate;
   impacto?: EfectoImpactoVisualCombate;
-}
+};
 
 export type AnimacionHabilidad =
   | "ofensiva"

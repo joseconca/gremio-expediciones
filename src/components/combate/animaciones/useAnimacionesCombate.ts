@@ -75,11 +75,12 @@ export function useAnimacionesCombate() {
 
   useEffect(() => {
     montadoRef.current = true;
+    const temporizadores = temporizadoresRef.current;
     return () => {
       montadoRef.current = false;
       secuenciaRef.current += 1;
-      for (const cancelar of temporizadoresRef.current.values()) cancelar();
-      temporizadoresRef.current.clear();
+      for (const cancelar of temporizadores.values()) cancelar();
+      temporizadores.clear();
     };
   }, []);
 

@@ -37,7 +37,7 @@ export default function CapaEfectosCombate({ proyectiles }: { proyectiles: Proye
   const [posicionados, setPosicionados] = useState<ProyectilPosicionado[]>([]);
 
   useEffect(() => {
-    if (!proyectiles.length) { setPosicionados([]); return; }
+    if (!proyectiles.length) return;
     const frame = window.requestAnimationFrame(() => {
       const capa = capaRef.current;
       if (!capa) return;
@@ -67,8 +67,11 @@ export default function CapaEfectosCombate({ proyectiles }: { proyectiles: Proye
     return () => window.cancelAnimationFrame(frame);
   }, [proyectiles]);
 
+  const idsActuales = new Set(proyectiles.map((proyectil) => proyectil.id));
+  const proyectilesPosicionadosActivos = posicionados.filter((proyectil) => idsActuales.has(proyectil.id));
+
   return <div ref={capaRef} aria-hidden="true" className="pointer-events-none absolute inset-0 z-30 overflow-hidden">
-    {posicionados.map((proyectil) => {
+    {proyectilesPosicionadosActivos.map((proyectil) => {
       const style = {
         left: proyectil.x, top: proyectil.y, animationDuration: `${proyectil.duracionMs}ms`,
         "--proyectil-dx": `${proyectil.dx}px`, "--proyectil-dy": `${proyectil.dy}px`,

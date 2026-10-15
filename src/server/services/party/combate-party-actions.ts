@@ -839,9 +839,9 @@ export async function ejecutarAccionCombateParty(
         enemigoDefensa,
         enemigoNombre: combate.enemigoNombre,
       });
-      const presentacionArma = obtenerPresentacionAtaqueBasico(
-        obtenerObjetoPorId(personaje.equipoEquipado?.arma?.objetoId)?.subtipo,
-      );
+      const armaEquipadaId = personaje.equipoEquipado?.arma?.objetoId;
+      const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
+      const presentacionArma = obtenerPresentacionAtaqueBasico(subtipoArma);
       if (presentacionArma) accion = { ...accion, presentacion: presentacionArma };
     } else if (accionDesconocida === "usar_habilidad") {
       if (typeof payload?.habilidadId !== "string" || !payload.habilidadId.trim()) {

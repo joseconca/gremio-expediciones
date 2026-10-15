@@ -269,9 +269,9 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
     }
 
     if (accion === "atacar") {
-      const presentacionArma = obtenerPresentacionAtaqueBasico(
-        obtenerObjetoPorId(personaje.equipoEquipado?.arma?.objetoId)?.subtipo,
-      );
+      const armaEquipadaId = personaje.equipoEquipado?.arma?.objetoId;
+      const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
+      const presentacionArma = obtenerPresentacionAtaqueBasico(subtipoArma);
       if (presentacionArma) accionAnimada = { ...accionAnimada, presentacion: presentacionArma };
     }
 

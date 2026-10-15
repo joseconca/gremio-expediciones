@@ -57,10 +57,6 @@ interface HabilidadEquipable {
 
 type ActorVista = "jugador" | "enemigo";
 
-function esperar(milisegundos: number): Promise<void> {
-  return new Promise((resolver) => window.setTimeout(resolver, milisegundos));
-}
-
 export default function AsedioModal({
   combate,
   personaje,

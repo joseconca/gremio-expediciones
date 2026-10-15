@@ -184,9 +184,9 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             enemigoNombre: combate.enemigoNombre ?? "Enemigo",
           });
 
-          const presentacionArma = obtenerPresentacionAtaqueBasico(
-            obtenerObjetoPorId(personaje.equipoEquipado?.arma?.objetoId)?.subtipo,
-          );
+          const armaEquipadaId = personaje.equipoEquipado?.arma?.objetoId;
+          const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
+          const presentacionArma = obtenerPresentacionAtaqueBasico(subtipoArma);
           if (presentacionArma) accionAnimada = { ...accionAnimada, presentacion: presentacionArma };
 
           enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
