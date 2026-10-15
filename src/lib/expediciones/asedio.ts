@@ -1,6 +1,7 @@
 import type { Prisma } from "@prisma/client";
 import type { AccionAnimadaCombate } from "./combate";
 import type { EstadoEfectoHabilidad } from "../tiposJuego";
+import { calcularFechasRegresoProgramadas } from "./tiempos";
 
 export type EfectoCombateAsedio = EstadoEfectoHabilidad;
 
@@ -411,12 +412,22 @@ export async function finalizarAsedio({
   // EXPEDICIÓN DEL ATACANTE
   // ==========================================================
 
+  const expedicion = await tx.expedicionActiva.findUnique({
+    where: { id: expedicionId },
+    select: { fechaSalida: true, fechaLlegada: true },
+  });
+  if (!expedicion) {
+    throw new Error("EXPEDICION_NO_ENCONTRADA");
+  }
+  const fechasRegreso = calcularFechasRegresoProgramadas(expedicion.fechaSalida, expedicion.fechaLlegada);
+
   await tx.expedicionActiva.update({
     where: {
       id: expedicionId,
     },
     data: {
       fase: "regresando",
+      ...fechasRegreso,
 
       resultadoFinal: atacanteGana ? "exito" : "derrota",
 
