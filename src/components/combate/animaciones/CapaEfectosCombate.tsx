@@ -11,13 +11,13 @@ interface ProyectilPosicionado extends ProyectilVisibleCombate {
 
 const RUTAS_PROYECTIL: Record<TipoProyectilCombate, string> = {
   flecha: "/sprites/projectiles/arrow.png",
-  esfera_arcana: "/sprites/projectiles/esfera_arcana.png",
-  bola_fuego: "/sprites/projectiles/bola_fuego.png",
-  esquirla_hielo: "/sprites/projectiles/esquirla_hielo.png",
-  rayo: "/sprites/projectiles/rayo.png",
-  energia_sagrada: "/sprites/projectiles/energia_sagrada.png",
-  semilla_natural: "/sprites/projectiles/semilla_natural.png",
-  orbe_sombra: "/sprites/projectiles/orbe_sombra.png",
+  esfera_arcana: "/sprites/projectiles/esfera_arcana.svg",
+  bola_fuego: "/sprites/projectiles/bola_fuego.svg",
+  esquirla_hielo: "/sprites/projectiles/esquirla_hielo.svg",
+  rayo: "/sprites/projectiles/rayo.svg",
+  energia_sagrada: "/sprites/projectiles/energia_sagrada.svg",
+  semilla_natural: "/sprites/projectiles/semilla_natural.svg",
+  orbe_sombra: "/sprites/projectiles/orbe_sombra.svg",
 };
 const ALTERNATIVAS: Record<TipoProyectilCombate, string> = {
   flecha: "➶", esfera_arcana: "✦", bola_fuego: "🔥", esquirla_hielo: "❄",

@@ -316,21 +316,26 @@ export function resolverHabilidadJugador(
     efectos: [] as import("@/lib/tiposJuego").EstadoEfectoHabilidad[],
   });
 
+  const presentarAccion = (accion: AccionAnimadaCombate): AccionAnimadaCombate =>
+    habilidad.presentacionVisual
+      ? { ...accion, presentacion: habilidad.presentacionVisual }
+      : accion;
+
   switch (habilidad.efecto) {
     case "dano": {
       const dado = d20();
       if (dado === 1) {
         return {
-          accion: crearAccion({
+          accion: presentarAccion(crearAccion({
             actor: "jugador", tipo: "fallo",
             animacion: habilidad.animacion === "ofensiva_potenciada" ? "ofensiva_potenciada" : "ofensiva",
             texto: `🤡 Pifia. Fallas ${habilidad.nombre} contra ${combate.enemigoNombre}.`,
-          }),
+          })),
           ...resultadoBasico(),
         };
       }
       if (dado !== 20 && Math.random() > calcularProbabilidadImpacto(combate.jugadorPrecision, combate.enemigoEvasion)) {
-        return { accion: falloPorPrecision("jugador", combate.enemigoNombre), ...resultadoBasico() };
+        return { accion: presentarAccion(falloPorPrecision("jugador", combate.enemigoNombre)), ...resultadoBasico() };
       }
 
       const variacion = 0.8 + Math.random() * 0.4;
@@ -352,7 +357,7 @@ export function resolverHabilidadJugador(
       }
       agregarEstadosExtra();
       return {
-        accion: crearAccion({
+        accion: presentarAccion(crearAccion({
           actor: "jugador", tipo: "habilidad",
           animacion: esCritico && habilidad.animacion === "ofensiva" ? "ofensiva_potenciada" : habilidad.animacion ?? "ofensiva",
           dano, critico: esCritico,
@@ -360,7 +365,7 @@ export function resolverHabilidadJugador(
           texto: esCritico
             ? `💥 ¡${habilidad.nombre} crítico! Infliges ${dano} de daño a ${combate.enemigoNombre}.`
             : `⚔️ Usas ${habilidad.nombre} e infliges ${dano} de daño a ${combate.enemigoNombre}.`,
-        }),
+        })),
         jugadorHp, jugadorDefensa, enemigoDefensa, efectos,
       };
     }
@@ -394,11 +399,11 @@ export function resolverHabilidadJugador(
         efectosJugadorActualizados = efectosPrevios.filter((efecto) => !tiposNegativos.includes(efecto.tipo));
       }
       return {
-        accion: crearAccion({
+        accion: presentarAccion(crearAccion({
           actor: "jugador", tipo: "habilidad",
           animacion: habilidad.animacion ?? "curacion", critico: esCritico, curacion: curado,
           texto: `✨ Usas ${habilidad.nombre} y recuperas ${curado} HP.${habilidad.limpiarEstadosNegativos ? " Los perjuicios han sido purificados." : ""}`,
-        }),
+        })),
         jugadorHp, jugadorDefensa, enemigoDefensa, efectos, efectosJugadorActualizados,
       };
     }
@@ -411,10 +416,10 @@ export function resolverHabilidadJugador(
         objetivo: "jugador",
       });
       return {
-        accion: crearAccion({
+        accion: presentarAccion(crearAccion({
           actor: "jugador", tipo: "habilidad", animacion: habilidad.animacion ?? "curacion",
           texto: `✨ Usas ${habilidad.nombre}; la curación progresiva durará ${habilidad.duracionTurnos ?? 1} turnos.`,
-        }),
+        })),
         jugadorHp, jugadorDefensa, enemigoDefensa, efectos,
       };
     }
@@ -432,10 +437,10 @@ export function resolverHabilidadJugador(
       });
       agregarEstadosExtra();
       return {
-        accion: crearAccion({
+        accion: presentarAccion(crearAccion({
           actor: "jugador", tipo: "habilidad", animacion: habilidad.animacion ?? "defensiva",
           texto: `🛡️ Usas ${habilidad.nombre}. Tu defensa aumenta en ${bonus} durante ${habilidad.duracionTurnos ?? 1} turnos.`,
-        }),
+        })),
         jugadorHp, jugadorDefensa, enemigoDefensa, efectos,
       };
     }
@@ -443,10 +448,10 @@ export function resolverHabilidadJugador(
     case "bonus_ataque_magico": {
       agregarEstadosExtra();
       return {
-        accion: crearAccion({
+        accion: presentarAccion(crearAccion({
           actor: "jugador", tipo: "habilidad", animacion: habilidad.animacion ?? "defensiva",
           texto: `✨ Usas ${habilidad.nombre}. Tu poder mágico aumenta temporalmente.`,
-        }),
+        })),
         jugadorHp, jugadorDefensa, enemigoDefensa, efectos,
       };
     }

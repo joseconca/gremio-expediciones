@@ -96,20 +96,26 @@ export const HABILIDADES: DefinicionHabilidad[] = [
 
   // ARQUERO
   habilidad({
-    id: "disparo_arquero", claseId: "arquero", nivelJobRequerido: 1,
+    id: "disparo_arquero",
+    presentacionVisual: {"modo":"proyectil","proyectil":"flecha","elemento":"fisico","impacto":"golpe"},
+    claseId: "arquero", nivelJobRequerido: 1,
     nombre: "Disparo preciso", descripcion: "Un disparo certero con una bonificación crítica.",
     tipo: "activa", efecto: "dano", animacion: "ofensiva_potenciada", multiplicadorDano: 1.5,
     probabilidadCritico: 0.1, costeEnergia: 5, cooldownTurnos: 2,
   }),
   habilidad({
-    id: "flecha_penetrante", claseId: "arquero", nivelJobRequerido: 10,
+    id: "flecha_penetrante",
+    presentacionVisual: {"modo":"proyectil","proyectil":"flecha","elemento":"fisico","impacto":"golpe"},
+    claseId: "arquero", nivelJobRequerido: 10,
     nombre: "Flecha penetrante", descripcion: "Inflige daño y reduce la defensa enemiga un 12 % durante 2 turnos.",
     tipo: "activa", efecto: "dano", animacion: "ofensiva_potenciada", multiplicadorDano: 1.2,
     estadosSecundarios: [{ tipo: "debuff_defensa", valor: 0.12, duracionTurnos: 2, objetivo: "enemigo" }],
     costeEnergia: 7, cooldownTurnos: 3,
   }),
   habilidad({
-    id: "tiro_oportunidad", claseId: "arquero", nivelJobRequerido: 20,
+    id: "tiro_oportunidad",
+    presentacionVisual: {"modo":"proyectil","proyectil":"flecha","elemento":"fisico","impacto":"golpe"},
+    claseId: "arquero", nivelJobRequerido: 20,
     nombre: "Tiro de oportunidad", descripcion: "Un disparo moderado con un 25 % adicional de probabilidad crítica.",
     tipo: "activa", efecto: "dano", animacion: "ofensiva_potenciada", multiplicadorDano: 1.1,
     probabilidadCritico: 0.25, costeEnergia: 7, cooldownTurnos: 3,
@@ -122,13 +128,17 @@ export const HABILIDADES: DefinicionHabilidad[] = [
 
   // MAGO
   habilidad({
-    id: "chispa_mago", claseId: "mago", nivelJobRequerido: 1, tipoDano: "magico",
+    id: "chispa_mago",
+    presentacionVisual: {"modo":"proyectil","proyectil":"esfera_arcana","elemento":"arcano","impacto":"destello"},
+    claseId: "mago", nivelJobRequerido: 1, tipoDano: "magico",
     nombre: "Chispa arcana", descripcion: "Un proyectil mágico de daño directo.",
     tipo: "activa", efecto: "dano", animacion: "ofensiva_potenciada", multiplicadorDano: 1.6,
     costeMana: 7, cooldownTurnos: 2,
   }),
   habilidad({
-    id: "bola_fuego", claseId: "mago", nivelJobRequerido: 10, tipoDano: "magico",
+    id: "bola_fuego",
+    presentacionVisual: {"modo":"proyectil","proyectil":"bola_fuego","elemento":"fuego","impacto":"explosion"},
+    claseId: "mago", nivelJobRequerido: 10, tipoDano: "magico",
     nombre: "Bola de fuego", descripcion: "Inflige daño mágico y aplica quemadura durante 2 turnos.",
     tipo: "activa", efecto: "dano", animacion: "ofensiva_potenciada", multiplicadorDano: 1.2,
     danoProgresivoPorcentaje: 0.25, duracionTurnos: 2, costeMana: 10, cooldownTurnos: 3,
@@ -226,14 +236,18 @@ export const HABILIDADES: DefinicionHabilidad[] = [
 
   // CAZADOR
   habilidad({
-    id: "marca_presa", claseId: "cazador", nivelJobRequerido: 1,
+    id: "marca_presa",
+    presentacionVisual: {"modo":"proyectil","proyectil":"flecha","elemento":"naturaleza","impacto":"destello"},
+    claseId: "cazador", nivelJobRequerido: 1,
     nombre: "Marca de presa", descripcion: "Golpea y reduce la defensa enemiga un 12 % durante 2 turnos.",
     tipo: "activa", efecto: "dano", animacion: "ofensiva", multiplicadorDano: 1,
     estadosSecundarios: [{ tipo: "debuff_defensa", valor: 0.12, duracionTurnos: 2, objetivo: "enemigo" }],
     costeEnergia: 7, cooldownTurnos: 4,
   }),
   habilidad({
-    id: "flecha_mortal", claseId: "cazador", nivelJobRequerido: 15,
+    id: "flecha_mortal",
+    presentacionVisual: {"modo":"proyectil","proyectil":"flecha","elemento":"fisico","impacto":"golpe"},
+    claseId: "cazador", nivelJobRequerido: 15,
     nombre: "Flecha mortal", descripcion: "Un disparo de daño elevado con una bonificación crítica.",
     tipo: "activa", efecto: "dano", animacion: "ofensiva_potenciada", multiplicadorDano: 1.55,
     probabilidadCritico: 0.1, costeEnergia: 9, cooldownTurnos: 4,
@@ -267,7 +281,9 @@ export const HABILIDADES: DefinicionHabilidad[] = [
 
   // ELEMENTALISTA
   habilidad({
-    id: "descarga_elemental", claseId: "elementalista", nivelJobRequerido: 1, tipoDano: "magico",
+    id: "descarga_elemental",
+    presentacionVisual: {"modo":"proyectil","proyectil":"rayo","elemento":"rayo","impacto":"destello"},
+    claseId: "elementalista", nivelJobRequerido: 1, tipoDano: "magico",
     nombre: "Descarga elemental", descripcion: "Un ataque mágico concentrado de gran potencia.",
     tipo: "activa", efecto: "dano", animacion: "ofensiva_potenciada", multiplicadorDano: 1.8,
     costeMana: 12, cooldownTurnos: 3,
@@ -287,7 +303,9 @@ export const HABILIDADES: DefinicionHabilidad[] = [
 
   // BRUJO
   habilidad({
-    id: "drenaje_vital", claseId: "brujo", nivelJobRequerido: 1, tipoDano: "magico",
+    id: "drenaje_vital",
+    presentacionVisual: {"modo":"proyectil","proyectil":"orbe_sombra","elemento":"sombras","impacto":"destello"},
+    claseId: "brujo", nivelJobRequerido: 1, tipoDano: "magico",
     nombre: "Drenaje vital", descripcion: "Inflige daño mágico y restaura un 20 % del daño efectivo como vida.",
     tipo: "activa", efecto: "dano", animacion: "ofensiva_potenciada", multiplicadorDano: 1.15,
     roboVida: 0.2, costeMana: 8, cooldownTurnos: 3,

@@ -85,10 +85,13 @@ No inferir el elemento solo por `tipoDano: "magico"`; una habilidad debe configu
 
 ### Fase 5 — magia elemental
 
-- Reutilizar el motor de proyectiles para fuego, hielo, arcano y futuros elementos.
-- Configurar por habilidad `presentacionVisual` y no deducir fuego únicamente a partir del daño mágico.
-- Separar trayectoria, efecto de impacto y aplicación lógica de estados como quemadura.
-- Proporcionar fallback visual si falla la carga de un sprite.
+- [x] Reutilizar el motor de proyectiles para habilidades mágicas; el modo, el sprite, el elemento y el impacto se configuran explícitamente por habilidad.
+- [x] Asignar proyectiles a Chispa arcana (esfera arcana), Bola de fuego (fuego), Descarga elemental (rayo) y Drenaje vital (orbe de sombra), además de las habilidades de arco existentes.
+- [x] Añadir recursos SVG transparentes para esfera arcana, bola de fuego, esquirla de hielo, rayo, energía sagrada, semilla natural y orbe de sombra. Se conserva `arrow.png` para la flecha.
+- [x] Mantener los efectos lógicos de habilidades como la quemadura separados de su presentación.
+- [x] Añadir pruebas de selección visual y de propagación del metadato en aciertos y fallos.
+- [x] Mantener fallback si un sprite no se carga.
+- [ ] Validación completa de CI pendiente: el job sigue detenido antes de `test:progression`, `test:party`, lint y build por el fallo preexistente de `test:base` descrito en la fase 1.
 
 ### Fase 6 — objetivos y efectos compuestos
 
