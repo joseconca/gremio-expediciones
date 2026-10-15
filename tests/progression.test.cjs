@@ -189,7 +189,7 @@ test("las armaduras declaran subtipo y reciben penalización en todas las ranura
   const defensaJoyeria = calcularEstadisticasObjeto(obtenerObjetoPorId("anillo_resistencia"), 0).defensa
     + calcularEstadisticasObjeto(obtenerObjetoPorId("anillo_maldito"), 0).defensa;
   assert.equal(stats.defensa, defensaArmaduras + defensaJoyeria);
-  assert.equal(stats.ataque, 6 * 1.15, "La espada dominada aplica su bonus");
+  assert.equal(stats.ataque, 6 * 1.15 + 6, "La espada dominada aplica su bonus y el anillo conserva su ataque íntegro");
   const armaSinTipo = {
     id: "inv-arma-sin-tipo",
     objetoId: "arma_sin_tipo",
