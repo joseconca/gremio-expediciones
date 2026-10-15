@@ -235,21 +235,29 @@ export default function PanelParty() {
   useEffect(() => {
     // PanelMisiones puede montarse después de cargar el personaje. Espera al
     // tablón aunque todavía no exista en el primer render de la base.
-    const localizarTablon = () => document.getElementById("party-expedition-slot");
-    const existente = localizarTablon();
+    let frame: number | null = null;
+    let observador: MutationObserver | null = null;
+    const publicarDestino = (destino: HTMLElement) => {
+      // La actualización ocurre en el siguiente frame, fuera del cuerpo del efecto.
+      frame = window.requestAnimationFrame(() => setDestinoTablon(destino));
+    };
+    const existente = document.getElementById("party-expedition-slot");
     if (existente) {
-      setDestinoTablon(existente);
-      return;
+      publicarDestino(existente);
+    } else {
+      observador = new MutationObserver(() => {
+        const destino = document.getElementById("party-expedition-slot");
+        if (!destino) return;
+        observador?.disconnect();
+        publicarDestino(destino);
+      });
+      observador.observe(document.body, { childList: true, subtree: true });
     }
 
-    const observador = new MutationObserver(() => {
-      const destino = localizarTablon();
-      if (!destino) return;
-      setDestinoTablon(destino);
-      observador.disconnect();
-    });
-    observador.observe(document.body, { childList: true, subtree: true });
-    return () => observador.disconnect();
+    return () => {
+      observador?.disconnect();
+      if (frame !== null) window.cancelAnimationFrame(frame);
+    };
   }, []);
 
   const intervaloConsultaMs = estado?.expedicionActiva?.fase === "combatiendo"
