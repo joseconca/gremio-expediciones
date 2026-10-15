@@ -56,8 +56,10 @@ export function seleccionarEnemigoNormal(dificultad: number): DefinicionEnemigo 
     grupo.push(enemigo);
     enemigosPorDifMin.set(enemigo.difMin, grupo);
   }
+  const gruposOrdenados = [...enemigosPorDifMin.entries()]
+    .sort(([difMinA], [difMinB]) => difMinA - difMinB);
   const grupoElegido = seleccionarPonderado(
-    [...enemigosPorDifMin.entries()].map(([difMin, enemigos]) => ({
+    gruposOrdenados.map(([difMin, enemigos]) => ({
       valor: { difMin, enemigos },
       peso: calcularPesoDifMinEnemigo(difMin),
     })),
@@ -66,7 +68,10 @@ export function seleccionarEnemigoNormal(dificultad: number): DefinicionEnemigo 
   // Luego se elige rareza según su peso y después la especie uniformemente.
   const rarezasDisponibles = [...new Set(
     grupoElegido.enemigos.map((enemigo) => enemigo.rareza ?? "comun"),
-  )];
+  )].sort(
+    (rarezaA, rarezaB) =>
+      calcularPesoRarezaEnemigo(rarezaB) - calcularPesoRarezaEnemigo(rarezaA),
+  );
   const rarezaElegida = seleccionarPonderado(
     rarezasDisponibles.map((rareza) => ({
       valor: rareza,
