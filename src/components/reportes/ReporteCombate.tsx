@@ -60,7 +60,7 @@ export default function ReporteCombate({
 }: ReporteCombateProps) {
   const personaje = useGameStore((state) => state.personaje);
 
-  const esCancelada = reporte.resultadoFinal === "cancelada";
+  const esCancelada = reporte.resultadoFinal === "cancelada" || reporte.resultadoFinal === "huida";
   const esVictoria = reporte.resultadoFinal === "exito";
 
   const vidaHeroe = Math.max(8, 100 - Math.min(92, reporte.hpPerdido * 2));
@@ -104,14 +104,14 @@ export default function ReporteCombate({
               ? "Misión Completada"
               : reporte.resultadoFinal === "derrota"
               ? "Expedición Fallida"
-              : "Expedición Cancelada"}
+              : reporte.resultadoFinal === "huida" ? "Retirada del Combate" : "Expedición Cancelada"}
           </h2>
         </div>
 
         <div className="combat-scene border-b border-slate-700 bg-[radial-gradient(circle_at_50%_35%,#334155,#0f172a_72%)] p-5">
           <div className="mb-3 flex items-center justify-between text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
             <span>
-              {esCancelada ? "Expedición cancelada" : reporte.enemigo}
+              {reporte.resultadoFinal === "huida" ? "Huida del combate" : esCancelada ? "Expedición cancelada" : reporte.enemigo}
             </span>
 
             <span>{esCancelada ? "Regreso" : `${reporte.rondas} rondas`}</span>
