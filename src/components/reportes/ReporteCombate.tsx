@@ -61,7 +61,13 @@ export default function ReporteCombate({
   const personaje = useGameStore((state) => state.personaje);
 
   const esCancelada = reporte.resultadoFinal === "cancelada" || reporte.resultadoFinal === "huida";
+  const esHuida = reporte.resultadoFinal === "huida";
   const esVictoria = reporte.resultadoFinal === "exito";
+  const combateConEnemigo = "enemigoId" in reporte ? reporte : null;
+  const enemigoId = combateConEnemigo?.enemigoId ?? "";
+  const enemigo = combateConEnemigo?.enemigo ?? (esHuida ? "Enemigo evitado" : "Sin enemigo");
+  const rondas = combateConEnemigo?.rondas ?? 0;
+  const poderHeroe = combateConEnemigo?.poderHeroe ?? 0;
 
   const vidaHeroe = Math.max(8, 100 - Math.min(92, reporte.hpPerdido * 2));
 
@@ -71,13 +77,13 @@ export default function ReporteCombate({
     ? "/sprites/buildings/camp.png"
     : esVictoria
     ? "/sprites/tesoro.png"
-    : obtenerRutaSpriteEnemigo(reporte.enemigoId);
+    : obtenerRutaSpriteEnemigo(enemigoId);
 
   const escenaAlt = esCancelada
     ? "Regreso a la base"
     : esVictoria
     ? "Tesoro encontrado"
-    : reporte.enemigo;
+    : enemigo;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 p-4 backdrop-blur-sm">
@@ -111,10 +117,10 @@ export default function ReporteCombate({
         <div className="combat-scene border-b border-slate-700 bg-[radial-gradient(circle_at_50%_35%,#334155,#0f172a_72%)] p-5">
           <div className="mb-3 flex items-center justify-between text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
             <span>
-              {reporte.resultadoFinal === "huida" ? "Huida del combate" : esCancelada ? "Expedición cancelada" : reporte.enemigo}
+              {esHuida ? "Huida del combate" : esCancelada ? "Expedición cancelada" : enemigo}
             </span>
 
-            <span>{esCancelada ? "Regreso" : `${reporte.rondas} rondas`}</span>
+            <span>{esCancelada ? "Regreso" : `${rondas} rondas`}</span>
           </div>
 
           <div className="relative flex h-44 items-end justify-between overflow-hidden rounded-lg border border-slate-600/80 bg-slate-950/50 px-8 sm:px-20">
@@ -193,7 +199,7 @@ export default function ReporteCombate({
               </span>
 
               <span className="block truncate font-bold text-white">
-                {reporte.enemigo}
+                {enemigo}
               </span>
             </div>
 
@@ -203,7 +209,7 @@ export default function ReporteCombate({
               </span>
 
               <span className="block font-black text-white">
-                {reporte.poderHeroe}
+                {poderHeroe}
               </span>
             </div>
 
@@ -213,7 +219,7 @@ export default function ReporteCombate({
               </span>
 
               <span className="block font-black text-white">
-                {reporte.rondas}
+                {rondas}
               </span>
             </div>
           </div>
