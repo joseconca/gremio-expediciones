@@ -12,15 +12,39 @@ import type { ObjetoInventario } from "@/lib/tiposJuego";
 import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 
+type AccionCombatePartyUI = "atacar" | "usar_habilidad" | "usar_objeto" | "escapar" | "cambiar_posicion";
+
+interface ParticipanteCombatePartyUI {
+  id: string;
+  usuarioId: string;
+  nombre: string;
+  estado: string;
+  jugadorPosicion: string;
+  jugadorHp: number;
+  jugadorHpMaximo: number;
+}
+
+interface CombatePartyModalUI {
+  usuarioId: string;
+  nombreExpedicion: string;
+  faseTurno: "jugador" | "enemigo";
+  turnoActualUsuarioId: string | null;
+  estadoJugador: string;
+  participantes: ParticipanteCombatePartyUI[];
+  ultimaAccion: AccionAnimadaCombate | null;
+  onAccionParty: (accion: AccionCombatePartyUI, payload?: string) => Promise<AccionAnimadaCombate | null>;
+}
+
 interface CombateModalProps {
   combate: CombatePve;
   personaje: Personaje;
   comidaActiva?: string | null;
   procesando?: boolean;
-  onAccionCombate: (
+  onAccionCombate?: (
     accion: "atacar" | "usar_habilidad" | "usar_objeto" | "escapar",
     payload?: string
   ) => Promise<AccionAnimadaCombate | null>;
+  partyMode?: CombatePartyModalUI;
   onCerrar?: () => void;
 }
 
@@ -63,6 +87,7 @@ export default function CombateModal({
   comidaActiva,
   procesando = false,
   onAccionCombate,
+  partyMode,
   onCerrar,
 }: CombateModalProps) {
   const logRef = useRef<HTMLDivElement>(null);
@@ -177,6 +202,22 @@ export default function CombateModal({
     combate.fase === "victoria" ||
     combate.fase === "derrota" ||
     combate.fase === "huida";
+  const puedeActuarJugador = partyMode
+    ? combate.fase === "activo" &&
+      partyMode.faseTurno === "jugador" &&
+      partyMode.turnoActualUsuarioId === partyMode.usuarioId &&
+      partyMode.estadoJugador === "activo"
+    : combate.turno === "jugador";
+
+  const solicitarAccion = useCallback(
+    (
+      accion: "atacar" | "usar_habilidad" | "usar_objeto" | "escapar",
+      payload?: string,
+    ) => partyMode
+      ? partyMode.onAccionParty(accion, payload)
+      : onAccionCombate?.(accion, payload) ?? Promise.resolve(null),
+    [onAccionCombate, partyMode],
+  );
 
   const spriteHeroe = obtenerSpriteHeroe(personaje.clase, personaje.sexo);
   const claseActiva = CLASES[personaje.profesionActivaId];
@@ -290,10 +331,11 @@ export default function CombateModal({
     setMostrarHabilidades(false);
     setMostrarObjetos(false);
     try {
-      const accion = await onAccionCombate("escapar");
+      const accion = await solicitarAccion("escapar");
       if (!accion) return;
       await mostrarResultadoAccion(accion);
-      setMostrarResultado(true);
+      // En party, huir solo retira a este miembro; el resto continúa.
+      if (!partyMode) setMostrarResultado(true);
     } finally {
       accionEnCurso.current = false;
       setProcesandoLocal(false);
@@ -305,14 +347,14 @@ export default function CombateModal({
       accionEnCurso.current ||
       procesando ||
       combateTerminado ||
-      combate.turno !== "jugador"
+      !puedeActuarJugador
     )
       return;
     accionEnCurso.current = true;
     setProcesandoLocal(true);
     setMostrarHabilidades(false);
     try {
-      const accion = await onAccionCombate("atacar");
+      const accion = await solicitarAccion("atacar");
       if (!accion) return;
       await mostrarResultadoAccion(accion);
     } finally {
@@ -326,14 +368,14 @@ export default function CombateModal({
       accionEnCurso.current ||
       procesando ||
       combateTerminado ||
-      combate.turno !== "jugador"
+      !puedeActuarJugador
     )
       return;
     accionEnCurso.current = true;
     setProcesandoLocal(true);
     setMostrarHabilidades(false);
     try {
-      const accion = await onAccionCombate("usar_habilidad", habilidadId);
+      const accion = await solicitarAccion("usar_habilidad", habilidadId);
       if (!accion) return;
       await mostrarResultadoAccion(accion);
     } finally {
@@ -347,14 +389,14 @@ export default function CombateModal({
       accionEnCurso.current ||
       procesando ||
       combateTerminado ||
-      combate.turno !== "jugador"
+      !puedeActuarJugador
     ) return;
 
     accionEnCurso.current = true;
     setProcesandoLocal(true);
     setMostrarObjetos(false);
     try {
-      const accion = await onAccionCombate("usar_objeto", objetoInventario.id);
+      const accion = await solicitarAccion("usar_objeto", objetoInventario.id);
       if (!accion) return;
       await mostrarResultadoAccion(accion);
     } finally {
@@ -370,6 +412,7 @@ export default function CombateModal({
 
   useEffect(() => {
     if (
+      partyMode ||
       combate.fase !== "activo" ||
       combate.turno !== "enemigo" ||
       procesando ||
@@ -386,7 +429,7 @@ export default function CombateModal({
       try {
         const tiempoEsperaEnemigo = Math.random() * 1200 + 300;
         await esperar(tiempoEsperaEnemigo);
-        const accion = await onAccionCombate("atacar");
+        const accion = await solicitarAccion("atacar");
         if (!accion) return;
         await mostrarResultadoAccion(accion);
       } catch (error) {
@@ -403,6 +446,8 @@ export default function CombateModal({
     procesando,
     procesandoLocal,
     onAccionCombate,
+    partyMode,
+    solicitarAccion,
     mostrarResultadoAccion,
   ]);
 
@@ -422,6 +467,21 @@ export default function CombateModal({
     combate.log.length > 0
       ? combate.log[combate.log.length - 1]
       : "El combate comienza...";
+
+  const ultimaAccionPartyClave = useRef<string | null | undefined>(undefined);
+  useEffect(() => {
+    if (!partyMode) return;
+    const accion = partyMode.ultimaAccion;
+    const clave = accion ? JSON.stringify(accion) : null;
+    if (ultimaAccionPartyClave.current === undefined) {
+      ultimaAccionPartyClave.current = clave;
+      return;
+    }
+    if (!accion || clave === ultimaAccionPartyClave.current) return;
+    ultimaAccionPartyClave.current = clave;
+    if (accion.actor === "enemigo") void mostrarResultadoAccion(accion);
+  }, [partyMode?.ultimaAccion, partyMode, mostrarResultadoAccion]);
+
   const habilidadSeleccionada = habilidades.find(
     (h) => h.habilidadId === habilidadSeleccionadaId
   );
@@ -442,7 +502,7 @@ export default function CombateModal({
         <header className="flex h-12 shrink-0 items-center justify-between bg-stone-950/80 px-4 sm:h-14 sm:px-6 backdrop-blur-sm border-b border-stone-800">
           <div className="flex items-center gap-4 min-w-0">
             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-stone-500">
-              Batalla
+              {partyMode ? "Combate de party" : "Batalla"}
             </p>
             <div className="h-4 w-px bg-stone-700" />
             <button
@@ -454,10 +514,55 @@ export default function CombateModal({
               {combate.enemigoNombre}
             </button>
           </div>
-          <span className="shrink-0 rounded bg-stone-900 px-3 py-1 font-mono text-[10px] sm:text-xs tracking-widest text-stone-500 border border-stone-800 shadow-inner">
-            RONDA {combate.ronda}
-          </span>
+          <div className="flex shrink-0 items-center gap-2">
+            {partyMode && (
+              <span className="hidden max-w-[150px] truncate rounded border border-amber-900/70 bg-amber-950/50 px-2 py-1 text-[9px] font-black uppercase tracking-wider text-amber-200 sm:inline">
+                {partyMode.turnoActualUsuarioId === partyMode.usuarioId && partyMode.faseTurno === "jugador"
+                  ? "Tu turno"
+                  : partyMode.faseTurno === "enemigo"
+                    ? "Turno enemigo"
+                    : `Turno de ${partyMode.participantes.find((p) => p.usuarioId === partyMode.turnoActualUsuarioId)?.nombre ?? "otro aventurero"}`}
+              </span>
+            )}
+            <span className="shrink-0 rounded bg-stone-900 px-3 py-1 font-mono text-[10px] sm:text-xs tracking-widest text-stone-500 border border-stone-800 shadow-inner">
+              RONDA {combate.ronda}
+            </span>
+            {partyMode && onCerrar && (
+              <button type="button" onClick={onCerrar} aria-label="Cerrar ventana de combate"
+                className="flex h-8 w-8 items-center justify-center rounded border border-stone-700 bg-stone-900 text-stone-300 hover:bg-stone-800">
+                ✕
+              </button>
+            )}
+          </div>
         </header>
+
+        {partyMode && (
+          <div className="flex shrink-0 gap-2 overflow-x-auto border-b border-stone-800 bg-stone-950/85 px-2 py-1.5 sm:justify-center sm:px-4">
+            {partyMode.participantes.map((participante) => {
+              const vida = Math.max(0, Math.min(100, participante.jugadorHp / Math.max(1, participante.jugadorHpMaximo) * 100));
+              const propia = participante.usuarioId === partyMode.usuarioId;
+              const caido = participante.estado === "caido";
+              const huyo = participante.estado === "huyo";
+              return (
+                <div key={participante.id} className={`min-w-[112px] max-w-[150px] flex-1 rounded border px-2 py-1 ${propia ? "border-amber-600/80 bg-amber-950/45" : "border-stone-800 bg-black/40"}`}>
+                  <div className="flex items-center gap-1.5">
+                    <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[9px] font-black ${huyo ? "bg-amber-950 text-amber-300" : caido ? "bg-stone-800 text-stone-500" : propia ? "bg-amber-700 text-white" : "bg-emerald-950 text-emerald-200"}`}>
+                      {huyo ? "↩" : caido ? "×" : participante.nombre.trim().slice(0, 1).toUpperCase()}
+                    </span>
+                    <span className="min-w-0 flex-1 truncate text-[10px] font-bold text-stone-200">{participante.nombre}{propia ? " (tú)" : ""}</span>
+                  </div>
+                  <div className="mt-1.5 h-1 overflow-hidden rounded bg-stone-800">
+                    <div className={`h-full transition-all ${huyo ? "bg-amber-600" : caido ? "bg-stone-600" : "bg-emerald-500"}`} style={{ width: `${vida}%` }} />
+                  </div>
+                  <div className="mt-0.5 flex items-center justify-between gap-1 text-[9px] text-stone-400">
+                    <span>{huyo ? "Ha huido" : caido ? "Caído" : propia && partyMode.faseTurno === "jugador" && partyMode.turnoActualUsuarioId === partyMode.usuarioId ? "Tu turno" : "En combate"}</span>
+                    <span className="font-mono">{Math.max(0, participante.jugadorHp)}/{participante.jugadorHpMaximo}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
 
         {/* ESCENA */}
         <section className="relative flex min-h-0 flex-1 items-center justify-between overflow-hidden px-4 sm:px-16">
@@ -667,7 +772,7 @@ export default function CombateModal({
           </div>
 
           {/* RESULTADO */}
-          {combateTerminado && mostrarResultado && (
+          {combateTerminado && (mostrarResultado || Boolean(partyMode)) && (
             <div className="absolute inset-0 z-[100] flex items-center justify-center bg-stone-950/80 p-4 backdrop-blur-md">
               <div className="w-full max-w-md rounded-lg border-2 border-stone-700 bg-stone-900 p-8 text-center shadow-2xl">
                 <p
@@ -687,11 +792,17 @@ export default function CombateModal({
                 </p>
                 <div className="h-px w-16 bg-stone-600 mx-auto my-4" />
                 <p className="text-stone-300">
-                  {combate.fase === "victoria"
-                    ? `${personaje.nombre} ha derrotado a ${combate.enemigoNombre}.`
-                    : combate.fase === "derrota"
-                    ? `${personaje.nombre} ha caído en combate.`
-                    : "Has abandonado el combate."}
+                  {partyMode
+                    ? combate.fase === "victoria"
+                      ? `La party ha derrotado a ${combate.enemigoNombre}.`
+                      : combate.fase === "derrota"
+                        ? "Todos los aventureros han caído en combate."
+                        : "Toda la party ha abandonado el combate."
+                    : combate.fase === "victoria"
+                      ? `${personaje.nombre} ha derrotado a ${combate.enemigoNombre}.`
+                      : combate.fase === "derrota"
+                        ? `${personaje.nombre} ha caído en combate.`
+                        : "Has abandonado el combate."}
                 </p>
                 {onCerrar && (
                   <button
@@ -707,7 +818,7 @@ export default function CombateModal({
         </section>
 
         {/* ZONA INFERIOR (Acciones Flexibles | Panel Dinámico) */}
-        <section className="relative h-[220px] shrink-0 bg-stone-950/95 border-t border-stone-800 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] flex flex-row">
+        <section className={`relative ${partyMode ? "h-[244px] sm:h-[220px]" : "h-[220px]"} shrink-0 bg-stone-950/95 border-t border-stone-800 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] flex flex-row`}>
           {/* IZQUIERDA: PANEL DE ACCIONES (Fijo en PC, 1/3 en Móvil) */}
           <div className="w-2/5 sm:w-1/6 shrink-0 p-3 sm:p-5 border-r border-stone-800 flex items-center justify-center relative z-20">
             <div className="flex flex-col gap-2 w-full max-w-[200px]">
@@ -717,7 +828,7 @@ export default function CombateModal({
                   procesando ||
                   procesandoLocal ||
                   combateTerminado ||
-                  combate.turno !== "jugador"
+                  !puedeActuarJugador
                 }
                 className="group flex w-full items-center justify-between rounded border border-stone-600 bg-stone-700 px-3 py-2 sm:px-4 sm:py-2.5 shadow-md transition-all disabled:cursor-not-allowed disabled:opacity-40"
               >
@@ -741,7 +852,7 @@ export default function CombateModal({
                   procesando ||
                   procesandoLocal ||
                   combateTerminado ||
-                  combate.turno !== "jugador" ||
+                  !puedeActuarJugador ||
                   habilidades.length === 0
                 }
                 className={`group flex w-full items-center justify-between rounded border px-3 py-2 sm:px-4 sm:py-2.5 shadow-md transition-all disabled:cursor-not-allowed disabled:opacity-40
@@ -773,7 +884,7 @@ export default function CombateModal({
                 }}
                 disabled={
                   procesando || procesandoLocal || combateTerminado ||
-                  combate.turno !== "jugador" || objetosConsumibles.length === 0
+                  !puedeActuarJugador || objetosConsumibles.length === 0
                 }
                 className={`group flex w-full items-center justify-between rounded border px-3 py-2 sm:px-4 sm:py-2.5 shadow-md transition-all disabled:cursor-not-allowed disabled:opacity-40 ${mostrarObjetos ? "border-emerald-700 bg-emerald-950" : "border-stone-600 bg-stone-700"}`}
               >
@@ -787,13 +898,56 @@ export default function CombateModal({
 
               <button
                 onClick={() => void ejecutarHuida()}
-                disabled={procesando || procesandoLocal || combateTerminado || combate.turno !== "jugador"}
+                disabled={procesando || procesandoLocal || combateTerminado || !puedeActuarJugador}
                 className="group flex w-full items-center justify-between rounded border border-red-900/70 bg-red-950/60 px-3 py-2 sm:px-4 sm:py-2.5 transition hover:bg-red-900/70 disabled:cursor-not-allowed disabled:opacity-40"
               >
                 <span className="text-xs sm:text-sm font-bold tracking-widest text-red-200">HUIR</span>
               </button>
+              {partyMode && (
+                <div className="mt-1 grid grid-cols-3 gap-1">
+                  {([
+                    { id: "mele", label: "Melé", icon: "⚔️" },
+                    { id: "centro", label: "Centro", icon: "🛡️" },
+                    { id: "retaguardia", label: "Atrás", icon: "🏹" },
+                  ] as const).map((posicion) => {
+                    const seleccionada = normalizarPosicionCombate(combate.jugadorPosicion) === posicion.id;
+                    return (
+                      <button key={posicion.id} type="button"
+                        disabled={!puedeActuarJugador || procesando || procesandoLocal || seleccionada}
+                        onClick={() => {
+                          if (!partyMode || !puedeActuarJugador || accionEnCurso.current) return;
+                          accionEnCurso.current = true;
+                          setProcesandoLocal(true);
+                          void partyMode.onAccionParty("cambiar_posicion", posicion.id).finally(() => {
+                            accionEnCurso.current = false;
+                            setProcesandoLocal(false);
+                          });
+                        }}
+                        className={`rounded border px-1 py-1 text-[9px] font-black transition disabled:cursor-not-allowed disabled:opacity-40 ${seleccionada ? "border-amber-600 bg-amber-950 text-amber-100" : "border-stone-700 bg-stone-900 text-stone-300 hover:border-amber-800"}`}>
+                        {posicion.icon} {posicion.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </div>
+
+          {partyMode && (
+            <div className="absolute bottom-full left-0 right-0 z-10 border-b border-stone-800 bg-stone-950/95 px-3 py-1.5">
+              <p className="truncate text-center text-[10px] font-bold text-amber-200">
+                {partyMode.estadoJugador === "huyo"
+                  ? "Has huido de la batalla; sigues en la party y esperas a que termine."
+                  : partyMode.estadoJugador === "caido"
+                    ? "Has caído en combate. El grupo sigue luchando."
+                    : puedeActuarJugador
+                      ? "Es tu turno: elige una acción o cambia tu posición."
+                      : partyMode.faseTurno === "enemigo"
+                        ? "El enemigo está actuando..."
+                        : `Esperando el turno de ${partyMode.participantes.find((p) => p.usuarioId === partyMode.turnoActualUsuarioId)?.nombre ?? "otro aventurero"}.`}
+              </p>
+            </div>
+          )}
 
           {/* DERECHA: PANEL DINÁMICO (Registro / Menús) - Ocupa el resto del espacio */}
           <div className="flex-1 p-4 sm:p-6 relative flex flex-col justify-center bg-stone-900/30 overflow-hidden">
