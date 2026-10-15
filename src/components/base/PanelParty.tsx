@@ -225,16 +225,9 @@ export default function PanelParty() {
             });
       } else if (expedicion) {
         setUltimoResultadoCombate((actual) => actual?.expedicionPartyId === expedicion.id ? actual : null);
-      } else if (estadoNuevo.ultimoResultadoExpedicion) {
-        const resultado = estadoNuevo.ultimoResultadoExpedicion;
-        setUltimoResultadoCombate((actual) => actual?.expedicionPartyId === resultado.expedicionPartyId
-          ? actual
-          : {
-              expedicionPartyId: resultado.expedicionPartyId,
-              fase: resultado.fase,
-              recompensas: resultado.fase === "victoria" ? resultado.recompensas : null,
-            });
       } else {
+        // El resumen solo se muestra mientras la expedición está activa (incluido
+        // el regreso). Al completar el regreso, el informe anterior desaparece.
         setUltimoResultadoCombate(null);
       }
       setError(null);
@@ -572,7 +565,7 @@ export default function PanelParty() {
   const ocupado = Boolean(expedicionActiva) || Boolean(personaje && personaje.estado !== "ocioso");
   const esLider = Boolean(estado?.party && estado.party.liderUsuarioId === estado.usuarioId);
   const expedicionPartyActiva = Boolean(estado?.expedicionActiva);
-  const bloqueadaLaSalida = expedicionPartyActiva ? !esLider : ocupado;
+  const bloqueadaLaSalida = expedicionPartyActiva || ocupado;
   const party = estado?.party ?? null;
   const puedeGestionarVisitasParty = puedeGestionarVisitas(Boolean(party), esLider);
   const trasladosPropios = estado?.trasladosPropios ?? [];
@@ -690,7 +683,7 @@ export default function PanelParty() {
                 esLider ? "/api/party/disolver" : "/api/party/abandonar",
               )}
               className="mt-2 min-h-9 w-full rounded-sm border border-red-900/80 bg-red-950/40 px-2 py-1.5 text-[11px] font-black uppercase tracking-wide text-red-200 transition hover:bg-red-900/70 disabled:cursor-not-allowed disabled:opacity-40"
-              title={bloqueadaLaSalida ? (expedicionPartyActiva ? "Debes esperar a que termine la expedición para abandonar la party." : "El personaje debe estar disponible en la base.") : undefined}
+              title={bloqueadaLaSalida ? (expedicionPartyActiva ? "La party se mantiene unida durante la expedición y el regreso." : "El personaje debe estar disponible en la base.") : undefined}
             >
               {accion === (esLider ? "disolver" : "abandonar")
                 ? "Procesando..."
@@ -699,7 +692,7 @@ export default function PanelParty() {
             {ocupado && (
               <p className="mt-1.5 text-[10px] leading-snug text-amber-400/80">
                 {expedicionPartyActiva
-                  ? esLider ? "Como líder, puedes disolver la compañía durante la expedición." : "La salida se habilita al terminar la expedición."
+                  ? "La compañía se mantiene unida durante el viaje, el combate y el regreso. La salida o disolución se habilita cuando todos hayan vuelto."
                   : "Debes estar en tu base y sin actividad para salir."}
               </p>
             )}
@@ -726,6 +719,11 @@ export default function PanelParty() {
                   ? `Has llegado. El propietario de ${destino} debe aceptar o rechazar la visita.`
                   : `Llegada estimada en ${formatoCuentaAtras(restante)}.`}
             </p>
+            {traslado.decision === "lider_disuelve" && (
+              <p className="mt-2 rounded border border-amber-800/70 bg-amber-950/30 p-2 text-[11px] text-amber-200">
+                Este traslado se inició al disolver la compañía; la membresía de la party ya no está activa.
+              </p>
+            )}
           </article>
         );
       })}

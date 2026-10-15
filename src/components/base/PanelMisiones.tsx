@@ -25,6 +25,12 @@ interface CaravanaEntrante {
 
 interface PanelMisionesProps {
   personaje: Personaje;
+  estadoParty: {
+    usuarioId: string;
+    party: { liderUsuarioId: string; lider: { nombre: string } } | null;
+    expedicionActiva: { id: string; fase: string; nombre: string } | null;
+  } | null;
+  cargandoEstadoParty: boolean;
   expedicionActiva: ExpedicionActiva | null;
   baseCoords: { lat: number; lng: number } | null;
   caravanasEntrantes: CaravanaEntrante[];
@@ -38,6 +44,8 @@ interface PanelMisionesProps {
 
 export default function PanelMisiones({
   personaje,
+  estadoParty,
+  cargandoEstadoParty,
   expedicionActiva,
   baseCoords,
   caravanasEntrantes,
@@ -173,7 +181,11 @@ export default function PanelMisiones({
         <div className="relative">
           <div className="mb-3 flex items-center gap-3 sm:mb-5">
             <h2 className="text-base font-black uppercase tracking-[0.1em] text-amber-100 sm:text-xl sm:tracking-[0.15em]">
-              Contratos disponibles
+              {estadoParty?.party
+                ? estadoParty.party.liderUsuarioId === estadoParty.usuarioId
+                  ? "Expediciones de la compañía"
+                  : `Compañía de ${estadoParty.party.lider.nombre}`
+                : "Contratos disponibles"}
             </h2>
           </div>
           <div id="party-expedition-slot" className="mb-3 space-y-2" aria-live="polite" />
@@ -182,17 +194,25 @@ export default function PanelMisiones({
           {personaje.estado === "ocioso" && (
             <div className="flex flex-col items-stretch justify-between gap-3 rounded-md border border-amber-950/80 bg-[#21170f]/80 p-3 sm:items-center sm:gap-6 sm:p-4">
               <div>
-                <p className="mt-1 text-sm font-semibold text-amber-100/60">
-                  Revisa el mapa para encontrar un nuevo contrato
+                <p className="mt-1 text-sm font-semibold text-amber-100/80">
+                  {cargandoEstadoParty
+                    ? "Comprobando el estado de la compañía..."
+                    : estadoParty?.party && estadoParty.party.liderUsuarioId !== estadoParty.usuarioId
+                      ? `Sigues en la compañía de ${estadoParty.party.lider.nombre}. Tu aventurero esperará aquí a que el líder organice la siguiente expedición.`
+                      : estadoParty?.party
+                        ? "Como líder, elige un contrato y saldréis juntos en una expedición compartida."
+                        : "Revisa el mapa para encontrar un nuevo contrato."}
                 </p>
               </div>
 
-              <Link
-                href="/expediciones"
-                className="group relative flex min-h-11 items-center justify-center overflow-hidden rounded-[3px] border border-amber-950/80 bg-[#e8dcc4] px-5 py-2.5 font-bold text-amber-950 shadow-[inset_0_2px_12px_rgba(139,69,19,0.65)] sm:px-6"
-              >
-                <span>Ver mapa</span>
-              </Link>
+              {!cargandoEstadoParty && (!estadoParty?.party || estadoParty.party.liderUsuarioId === estadoParty.usuarioId) && (
+                <Link
+                  href="/expediciones"
+                  className="group relative flex min-h-11 items-center justify-center overflow-hidden rounded-[3px] border border-amber-950/80 bg-[#e8dcc4] px-5 py-2.5 font-bold text-amber-950 shadow-[inset_0_2px_12px_rgba(139,69,19,0.65)] sm:px-6"
+                >
+                  <span>{estadoParty?.party ? "Elegir expedición compartida" : "Ver mapa"}</span>
+                </Link>
+              )}
             </div>
           )}
 

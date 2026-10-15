@@ -368,6 +368,33 @@ test("el último informe de combate se conserva después del regreso y queda lim
 });
 
 
+test("el líder no puede disolver la party durante una expedición activa", async () => {
+  let seBorroMembresia = false;
+  let seMarcoDisuelta = false;
+  const tx = {
+    party: {
+      findUnique: async () => ({
+        id: "p1",
+        estado: "activa",
+        liderUsuarioId: "lider",
+        liderUsuario: { id: "lider", baseCoords: { lat: 27.99, lng: -15.42 }, personaje: { id: "char-lider", estado: "ocioso" } },
+        miembros: [{ id: "m1", usuarioId: "lider" }, { id: "m2", usuarioId: "invitado" }],
+      }),
+      update: async () => { seMarcoDisuelta = true; },
+    },
+    expedicionParty: { findFirst: async () => ({ id: "exp-activa", fase: "regresando" }) },
+    partyMember: { deleteMany: async () => { seBorroMembresia = true; } },
+    partyTransfer: { create: async () => { throw new Error("No se deben crear traslados"); } },
+  };
+  const servicio = loadService(makePrisma(tx));
+  await assert.rejects(
+    servicio.disolverParty("lider"),
+    (error) => error.status === 409 && error.code === "PARTY_EXPEDICION_ACTIVA",
+  );
+  assert.equal(seBorroMembresia, false);
+  assert.equal(seMarcoDisuelta, false);
+});
+
 test("abandonar party se bloquea durante una expedición aunque el miembro haya huido del combate", async () => {
   const tx = {
     partyMember: {

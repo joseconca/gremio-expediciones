@@ -11,6 +11,16 @@ import PanelMisiones from "@/components/base/PanelMisiones";
 import PanelConstruccion from "@/components/base/PanelConstruccion";
 import PanelParty from "@/components/base/PanelParty";
 
+interface EstadoPartyBase {
+  usuarioId: string;
+  party: {
+    id: string;
+    liderUsuarioId: string;
+    lider: { nombre: string };
+  } | null;
+  expedicionActiva: { id: string; fase: string; nombre: string } | null;
+}
+
 interface CaravanaEntrante {
   id: string;
   gremioOrigen: string;
@@ -311,6 +321,8 @@ export default function BasePage() {
   } = useGameStore();
 
   const [tiempoRestante, setTiempoRestante] = useState<number>(0);
+  const [estadoPartyBase, setEstadoPartyBase] = useState<EstadoPartyBase | null>(null);
+  const [cargandoEstadoPartyBase, setCargandoEstadoPartyBase] = useState(true);
   const [listoParaResolver, setListoParaResolver] = useState(false);
   const [reporte, setReporte] = useState<ReporteExpedicionTipo | null>(null);
 
@@ -331,6 +343,31 @@ export default function BasePage() {
   const [asediosEntrantes, setAsediosEntrantes] = useState<AsedioEntrante[]>(
     []
   );
+
+  useEffect(() => {
+    let activo = true;
+    const consultarParty = async () => {
+      try {
+        const respuesta = await fetch("/api/party", { cache: "no-store" });
+        const datos = await respuesta.json();
+        if (!respuesta.ok) throw new Error(datos.error || "No se pudo consultar la party.");
+        if (activo) setEstadoPartyBase(datos as EstadoPartyBase);
+      } catch (error) {
+        if (activo) {
+          console.error("Error consultando party para contratos de base:", error);
+          setEstadoPartyBase(null);
+        }
+      } finally {
+        if (activo) setCargandoEstadoPartyBase(false);
+      }
+    };
+    void consultarParty();
+    const intervalo = window.setInterval(() => void consultarParty(), 10000);
+    return () => {
+      activo = false;
+      window.clearInterval(intervalo);
+    };
+  }, []);
 
   useEffect(() => {
     fetch("/api/jugador")
@@ -666,6 +703,8 @@ export default function BasePage() {
         {personaje && (
           <PanelMisiones
             personaje={personaje}
+            estadoParty={estadoPartyBase}
+            cargandoEstadoParty={cargandoEstadoPartyBase}
             expedicionActiva={expedicionActiva}
             baseCoords={baseCoords}
             caravanasEntrantes={caravanasEntrantes}

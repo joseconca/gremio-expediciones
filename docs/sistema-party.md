@@ -91,7 +91,7 @@ La interfaz principal de party está en `src/components/base/PanelParty.tsx`. Pr
 
 El panel obtiene su estado mediante `GET /api/party` y mantiene parte de la presentación en estado local de React; no todo el estado social se centraliza en Zustand. La selección de una base ajena se integra mediante el mapa existente.
 
-La salida de la party queda deshabilitada mientras hay una expedición activa, excepto la acción del líder para disolverla. No existe todavía selección de aliado como objetivo de habilidades curativas: las curas se aplican al propio aventurero. El contrato de combate solo contempla un enemigo; las batallas con varios enemigos requieren modelar el conjunto de enemigos con HP/efectos individuales y añadir selección de objetivo, orden/turnos y resolución de victoria cuando todos caigan.
+La salida y la disolución de la party quedan deshabilitadas durante todo el ciclo de expedición, incluido el regreso. La party solo puede disolverse explícitamente cuando no haya expedición activa y todos los personajes estén disponibles en la base. El informe de recompensas se muestra mientras la expedición está activa, pero desaparece al completar el regreso; los integrantes no líderes tampoco reciben el enlace para seleccionar contratos desde el panel de misiones. No existe todavía selección de aliado como objetivo de habilidades curativas: las curas se aplican al propio aventurero. El contrato de combate solo contempla un enemigo; las batallas con varios enemigos requieren modelar el conjunto de enemigos con HP/efectos individuales y añadir selección de objetivo, orden/turnos y resolución de victoria cuando todos caigan.
 
 ## Archivos relevantes
 

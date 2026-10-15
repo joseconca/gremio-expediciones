@@ -586,6 +586,13 @@ export async function disolverParty(liderUsuarioId: string) {
         combate: { include: { participantes: { orderBy: { ordenTurno: "asc" } } } },
       },
     });
+    if (expedicion) {
+      throw new PartyServiceError(
+        "La compañía no se puede disolver mientras haya una expedición compartida en curso. Esperad a regresar a la base del líder; después podréis disolverla explícitamente.",
+        409,
+        "PARTY_EXPEDICION_ACTIVA",
+      );
+    }
     let integrantesEnRegreso = 0;
 
     if (expedicion) {
