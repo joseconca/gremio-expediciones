@@ -118,12 +118,11 @@ test("las armaduras declaran subtipo y reciben penalización en todas las ranura
   assert.ok(armaduras.length > 0);
   for (const armadura of armaduras) {
     assert.ok(armadura.subtipo, `${armadura.id} debe declarar subtipo`);
-    assert.ok(["ligera", "media", "pesada"].includes(obtenerSubtipoArmadura(armadura)), `${armadura.id} debe declarar un subtipo de armadura válido`);
     if (armadura.slot === "mano_secundaria") {
       assert.equal(armadura.subtipo, "escudo", "El escudo tiene dominio propio, no categoría de armadura");
       assert.equal(armadura.categoriaArmadura, undefined);
     } else {
-      assert.ok(["ligera", "media", "pesada"].includes(obtenerSubtipoArmadura(armadura)));
+      assert.ok(["ligera", "media", "pesada"].includes(obtenerSubtipoArmadura(armadura)), `${armadura.id} debe declarar categoría ligera/media/pesada`);
       assert.equal(obtenerSubtipoArmadura(armadura), armadura.categoriaArmadura);
     }
   }

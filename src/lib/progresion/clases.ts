@@ -368,7 +368,7 @@ export function obtenerClasesVisibles(claseActivaId: string, progresos: readonly
 
 export function calcularBonificacionesDominioEquipo(
   claseId: string,
-  tipoArma?: TipoArma | string | null,
+  tipoArma?: string | null,
   categoriaArmadura?: TipoArmadura | string | null
 ): { multiplicadorAtaqueArma: number; multiplicadorDefensaArmadura: number } {
   const clase = obtenerDefinicionClase(claseId);
