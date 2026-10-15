@@ -189,6 +189,7 @@ export default function MissionMap({
   return (
     <div className="h-full w-full z-0">
       <MapContainer
+        key={`${baseCoords.lat}:${baseCoords.lng}`}
         center={[baseCoords.lat, baseCoords.lng]}
         zoom={11}
         className="h-full w-full"
