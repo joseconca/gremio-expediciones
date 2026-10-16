@@ -501,23 +501,25 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
 
         const recompensaMision = obtenerRecompensaMision(expedicion.recompensa);
         const recompensaEnemigo = definicionesEnemigos.reduce(
-          (total, entrada) => total + calcularOroEnemigo(entrada.definicion!.botin, expedicion.dificultad),
+          (total, entrada) => total + calcularOroEnemigo(entrada.definicion!.botin, entrada.combate.difMin),
           0,
         );
         const oroSinMultiplicar = recompensaMision.oro + recompensaEnemigo;
         const oroGanado = aplicarMultiplicadorRecompensa(oroSinMultiplicar, modoDificultad);
-        const experienciaPorEnemigo = calcularExperienciaBaseGanada(
-          expedicion.dificultad,
-          personaje.nivel,
-          modoDificultad
+        const experienciaGanada = definicionesEnemigos.reduce(
+          (total, entrada) => total + calcularExperienciaBaseGanada(
+            entrada.combate.difMin,
+            personaje.nivel,
+            modoDificultad,
+          ),
+          0,
         );
-        const experienciaGanada = experienciaPorEnemigo * definicionesEnemigos.length;
 
         log.push(
-          `💰 Recompensa base: ${recompensaMision.oro} 🪙 por la misión + ${recompensaEnemigo} 🪙 por ${definicionesEnemigos.length} ${definicionesEnemigos.length === 1 ? "enemigo" : "enemigos"}. Modo ${CONFIGURACION_DIFICULTAD[modoDificultad].nombre}: cobras ${oroGanado} 🪙 en total.`
+          `💰 Recompensa base: ${recompensaMision.oro} 🪙 por la misión + ${recompensaEnemigo} 🪙 por ${definicionesEnemigos.length} ${definicionesEnemigos.length === 1 ? "enemigo" : "enemigos"} (según la amenaza de cada criatura). Modo ${CONFIGURACION_DIFICULTAD[modoDificultad].nombre}: cobras ${oroGanado} 🪙 en total.`
         );
 
-        log.push(`⭐ Obtienes ${experienciaGanada} XP (${experienciaPorEnemigo} por enemigo).`);
+        log.push(`⭐ Obtienes ${experienciaGanada} XP por derrotar al grupo enemigo.`);
 
         const experienciaActual = personaje.experiencia || 0;
 
