@@ -851,6 +851,7 @@ export async function obtenerEstadoParty(usuarioId: string) {
               enemigoProbCritico: expedicionActivaRaw.combate.enemigoProbCritico,
               enemigoDanoCritico: expedicionActivaRaw.combate.enemigoDanoCritico,
               enemigoNivel: expedicionActivaRaw.combate.enemigoNivel,
+              enemigos: expedicionActivaRaw.combate.enemigos,
               efectosEnemigo: expedicionActivaRaw.combate.efectosEnemigo,
               log: expedicionActivaRaw.combate.log,
               ultimaAccion: expedicionActivaRaw.combate.ultimaAccion,
