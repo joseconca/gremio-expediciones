@@ -509,6 +509,7 @@ export default function CombateModal({
   const botinPerdidoInforme = combate.log
     .filter((linea) => linea.startsWith("🎒 Botín perdido:"))
     .map((linea) => linea.replace("🎒 Botín perdido:", "").trim());
+  const experienciaJobInforme = Number(combate.log.find((linea) => linea.startsWith("⭐ Job XP:"))?.match(/\d+/)?.[0] ?? 0);
 
   const ultimaAccionPartyClave = useRef<string | null | undefined>(undefined);
   useEffect(() => {
@@ -1072,6 +1073,10 @@ export default function CombateModal({
                       <div className="rounded border border-blue-900/50 bg-blue-950/30 p-2">
                         <span className="block text-[9px] text-blue-200/75">Experiencia Base</span>
                         <span className="block text-sm font-black text-blue-300">+{Math.max(0, combate.experienciaGanada)} XP</span>
+                      </div>
+                      <div className="rounded border border-violet-900/50 bg-violet-950/20 p-2">
+                        <span className="block text-[9px] text-violet-200/75">Experiencia Job</span>
+                        <span className="block text-sm font-black text-violet-300">+{experienciaJobInforme} XP</span>
                       </div>
                       <div className="rounded border border-emerald-900/50 bg-emerald-950/20 p-2">
                         <span className="block text-[9px] text-emerald-200/75">Madera asegurada</span>
