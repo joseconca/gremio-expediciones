@@ -40,8 +40,16 @@ export function crearEnemigosEnCombate(
     throw new RangeError("Un combate debe contener entre uno y nueve enemigos.");
   }
 
+  const casillasIniciales = definiciones.length === 1
+    ? [4]
+    : definiciones.length === 2
+      ? [1, 4]
+      : definiciones.length === 3
+        ? [1, 4, 7]
+        : Array.from({ length: definiciones.length }, (_, indice) => indice);
+
   return definiciones.map((enemigo, indice) => {
-    const casilla = indice;
+    const casilla = casillasIniciales[indice];
     const { posicion, columna } = posicionDesdeIndiceCasilla(casilla);
     const multiplicadores = calcularMultiplicadoresEnemigo(enemigo.difMin, modo);
     const hpMaximo = Math.max(1, Math.floor(enemigo.hp * multiplicadores.vida));
