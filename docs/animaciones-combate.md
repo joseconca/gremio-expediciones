@@ -111,7 +111,7 @@ No inferir el elemento solo por `tipoDano: "magico"`; una habilidad debe configu
 - [ ] Ejecutar y dejar verde `npm run test:base`, `npm run test:progression`, `npm run test:party`, `npm run lint` y `npm run build`; dos grupos de expectativas de economía/forja siguen fallando fuera de esta funcionalidad en la última ejecución completada.
 - [ ] Verificar visualmente PC, móvil, varios participantes y el modo asedio/PvP en un navegador conectado al juego. No se ha realizado aún una inspección visual manual.
 - [x] Mantener la resolución del turno separada de los metadatos de animación y cancelar temporizadores al desmontar o sustituir una secuencia.
-- [ ] Pulir la presentación de defensa/estados y probar visualmente enemigos caídos, acciones simultáneas y cambios de objetivo durante una animación.
+- [ ] Probar visualmente en navegador enemigos caídos, acciones simultáneas y cambios de objetivo durante una animación; la mejora básica de defensa/estados ya está implementada.
 
 ## Criterios de aceptación globales
 
