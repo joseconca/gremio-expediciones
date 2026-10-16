@@ -280,6 +280,8 @@ export default function CombateModal({
 
   const {
     danioVisible,
+    daniosEnemigosVisibles,
+    enemigosImpactados,
     curacionVisible,
     pulsosEstadoVisibles,
     actorAnimando,
@@ -844,7 +846,7 @@ export default function CombateModal({
               const vivo = enemigo.hp > 0;
               const seleccionado = enemigoObjetivoElegidoId === enemigo.id;
               const animando = actorAnimando === enemigo.id;
-              const impactado = actorImpactado === enemigo.id;
+              const impactado = actorImpactado === enemigo.id || enemigosImpactados.includes(enemigo.id);
               const x = 17 + enemigo.columna * 33;
               const y = enemigo.posicion === "mele" ? 18 : enemigo.posicion === "retaguardia" ? 82 : 50;
               const sprite = obtenerRutaSpriteEnemigo(enemigo.enemigoId);
@@ -872,6 +874,11 @@ export default function CombateModal({
                   {danioVisible?.actor === enemigo.id && (
                     <span className={`absolute top-6 z-50 -translate-y-full whitespace-nowrap font-black drop-shadow-[0_3px_3px_rgba(0,0,0,0.9)] ${danioVisible.critico ? "animate-bounce text-2xl text-amber-300" : "text-xl text-red-300"}`}>-{danioVisible.dano}</span>
                   )}
+                  {daniosEnemigosVisibles.filter((impacto) => impacto.enemigoId === enemigo.id).map((impacto, indice) => (
+                    <span key={`impacto-${enemigo.id}-${indice}`} className={`absolute top-6 z-50 -translate-y-full whitespace-nowrap font-black drop-shadow-[0_3px_3px_rgba(0,0,0,0.9)] ${impacto.critico ? "animate-bounce text-2xl text-amber-300" : "text-xl text-red-300"}`}>
+                      -{impacto.dano}
+                    </span>
+                  ))}
                   {curacionVisible?.actor === enemigo.id && (
                     <span className="absolute top-6 z-50 -translate-y-full whitespace-nowrap text-xl font-black text-emerald-300 drop-shadow-[0_3px_3px_rgba(0,0,0,0.9)]">+{curacionVisible.cantidad}</span>
                   )}
