@@ -563,6 +563,7 @@ test("una habilidad de curación en área persiste a todos los aliados vivos y e
 
   assert.deepEqual(combat.participantes.map((p) => p.jugadorHp), [80, 60, 40]);
   assert.deepEqual(result.accion.objetivosUsuarioIds, ["u1", "u2", "u3"]);
+  assert.equal(result.accion.curacion, undefined, "el total agregado no debe duplicar el pulso del primer objetivo");
   assert.deepEqual(
     result.accion.pulsosEstado.map((pulso) => [pulso.objetivoUsuarioId, pulso.cantidad]),
     [["u1", 20], ["u2", 20], ["u3", 20]],
