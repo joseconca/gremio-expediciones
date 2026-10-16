@@ -492,7 +492,7 @@ async function liquidarRecompensasParty(
   }
   const modoDificultad = esModoDificultad(expedicion.modoDificultad) ? expedicion.modoDificultad : "normal";
   const oroEnemigo = definicionesEnemigos.reduce(
-    (total, entrada) => total + calcularOroEnemigo(entrada.definicion.botin, expedicion.dificultad),
+    (total, entrada) => total + calcularOroEnemigo(entrada.definicion.botin, entrada.snapshot.difMin),
     0,
   );
   const oroTotal = aplicarMultiplicadorRecompensa(recompensaMision.oro + oroEnemigo, modoDificultad);
@@ -503,12 +503,14 @@ async function liquidarRecompensasParty(
   }
   // La XP Base es una recompensa común del resultado: el nivel individual solo
   // se utiliza para progresión propia, nunca para cambiar la XP que recibe cada miembro.
-  const experienciaPorEnemigo = calcularExperienciaBaseGanada(
-    expedicion.dificultad,
-    primerPersonaje.nivel,
-    modoDificultad,
+  const experienciaBaseComun = definicionesEnemigos.reduce(
+    (total, entrada) => total + calcularExperienciaBaseGanada(
+      entrada.snapshot.difMin,
+      primerPersonaje.nivel,
+      modoDificultad,
+    ),
+    0,
   );
-  const experienciaBaseComun = experienciaPorEnemigo * definicionesEnemigos.length;
   const versionEsperadaLiquidada = combate.version + 1;
   const liquidado = await tx.combateParty.updateMany({
     where: {
