@@ -240,8 +240,6 @@ export interface CombateActivo {
   enemigoEvasion?: number;
   enemigoProbCritico: number;
   enemigoDanoCritico: number;
-  enemigoPrecision?: number;
-  enemigoEvasion?: number;
   enemigoNivel: number;
 
   atacanteUsuarioId?: string | null;
@@ -309,6 +307,8 @@ export interface CombatePve {
   enemigoAtaque: number;
   enemigoDefensa: number;
   enemigoVelocidad: number;
+  enemigoPrecision?: number;
+  enemigoEvasion?: number;
   enemigoProbCritico: number;
   enemigoDanoCritico: number;
   enemigoNivel: number;
