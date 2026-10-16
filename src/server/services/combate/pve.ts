@@ -374,42 +374,102 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           }
         }
       } else {
-        const ticksEnemigo = procesarTicksPeriodicos(
-          efectosDefensor,
-          enemigoHp,
-          combate.enemigoHpMaximo ?? enemigoHp,
-          combate.enemigoNombre ?? "Enemigo",
-        );
-        enemigoHp = ticksEnemigo.hp;
-        log.push(...ticksEnemigo.mensajes);
-
-        if (enemigoHp <= 0) {
-          accionAnimada = {
-            actor: "enemigo",
-            tipo: "fallo",
-            animacion: "ofensiva",
-            dano: 0,
-            critico: false,
-            texto: `${combate.enemigoNombre ?? "El enemigo"} cae por los efectos acumulados.`,
+        const impactos: { enemigo: EnemigoEnCombate; dano: number; critico: boolean }[] = [];
+        const textos: string[] = [];
+        for (const enemigoInicial of [...enemigosEnCombate].sort((a, b) => a.casilla - b.casilla)) {
+          const enemigo = enemigosEnCombate.find((entrada) => entrada.id === enemigoInicial.id);
+          if (!enemigo || enemigo.hp <= 0) continue;
+          const efectosDelEnemigo = leerEfectosCombate(enemigo.efectos);
+          const ticksEnemigo = procesarTicksPeriodicos(
+            efectosDelEnemigo,
+            enemigo.hp,
+            enemigo.hpMaximo,
+            enemigo.defensa,
+            enemigo.nombre,
+          );
+          log.push(...ticksEnemigo.mensajes.map((mensaje) => `${enemigo.nombre}: ${mensaje}`));
+          let enemigoActualizado: EnemigoEnCombate = {
+            ...enemigo,
+            hp: ticksEnemigo.hp,
+            defensa: ticksEnemigo.defensa,
+            efectos: ticksEnemigo.efectos,
           };
-        } else {
-          accionAnimada = resolverAtaqueEnemigo({
-            enemigoAtaque: calcularAtaqueModificado(combate.enemigoAtaque, efectosDefensor),
-            enemigoPrecision: calcularPrecisionModificada(combate.enemigoPrecision ?? 75, efectosDefensor),
-            jugadorEvasion: calcularEvasionModificada(combate.jugadorEvasion ?? 0, efectos),
-            jugadorDefensa,
-            enemigoNombre: combate.enemigoNombre ?? "Enemigo",
+          if (enemigoActualizado.hp > 0 && jugadorHp > 0) {
+            const accionDelEnemigo = resolverAtaqueEnemigo({
+              enemigoAtaque: calcularAtaqueModificado(enemigoActualizado.ataque, enemigoActualizado.efectos),
+              enemigoProbCritico: enemigoActualizado.probCritico,
+              enemigoDanoCritico: enemigoActualizado.danoCritico,
+              enemigoPrecision: calcularPrecisionModificada(enemigoActualizado.precision, enemigoActualizado.efectos),
+              jugadorEvasion: calcularEvasionModificada(combate.jugadorEvasion ?? 0, efectos),
+              jugadorDefensa,
+              enemigoNombre: enemigoActualizado.nombre,
+            });
+            jugadorHp = Math.max(0, jugadorHp - accionDelEnemigo.dano);
+            impactos.push({ enemigo: enemigoActualizado, dano: accionDelEnemigo.dano, critico: accionDelEnemigo.critico });
+            textos.push(accionDelEnemigo.texto);
+            log.push(accionDelEnemigo.texto);
+          } else if (enemigoActualizado.hp <= 0) {
+            textos.push(`${enemigoActualizado.nombre} cae por los efectos acumulados.`);
+            log.push(`☠️ ${enemigoActualizado.nombre} cae por los efectos acumulados.`);
+          }
+          const avance = avanzarEfectosCombate(enemigoActualizado.efectos, enemigoActualizado.defensa);
+          enemigoActualizado = { ...enemigoActualizado, efectos: avance.efectos, defensa: avance.defensa };
+          log.push(...avance.mensajes.map((mensaje) => `${enemigoActualizado.nombre}: ${mensaje}`));
+          efectosEnemigoPorId.set(enemigoActualizado.id, {
+            defensa: enemigoActualizado.defensa,
+            efectos: leerEfectosCombate(enemigoActualizado.efectos),
           });
-          jugadorHp = Math.max(0, jugadorHp - accionAnimada.dano);
+          // Se conserva el HP del enemigo procesado tras sus estados.
+          danoEnemigoPorId.set(`__hp__:${enemigoActualizado.id}`, enemigoActualizado.hp);
         }
-
-        accionAnimada = adjuntarPulsosEstado(accionAnimada, "enemigo", ticksEnemigo);
-        const avanceEnemigo = avanzarEfectosCombate(efectosDefensor, enemigoDefensa);
-        efectosDefensor = avanceEnemigo.efectos;
-        enemigoDefensa = avanceEnemigo.defensa;
-        log.push(...avanceEnemigo.mensajes);
+        const danoTotal = impactos.reduce((total, impacto) => total + impacto.dano, 0);
+        const primero = impactos[0];
+        accionAnimada = impactos.length > 0 ? {
+          actor: "enemigo",
+          actorEnemigoId: primero.enemigo.id,
+          actoresEnemigoIds: impactos.map((impacto) => impacto.enemigo.id),
+          dano: danoTotal,
+          critico: impactos.some((impacto) => impacto.critico),
+          tipo: "ataque",
+          animacion: "ofensiva",
+          texto: impactos.length === 1
+            ? textos[0]
+            : `${impactos.length} enemigos atacan e infligen ${danoTotal} de daño total.`,
+          ...(impactos.length > 1 ? {
+            pulsosEstado: impactos.filter((impacto) => impacto.dano > 0).map((impacto) => ({
+              objetivo: "jugador" as const,
+              tipo: "dano" as const,
+              cantidad: impacto.dano,
+            })),
+          } : {}),
+        } : {
+          actor: "enemigo",
+          tipo: "fallo",
+          animacion: "ofensiva",
+          dano: 0,
+          critico: false,
+          texto: "Los enemigos restantes han caído o no pueden atacar.",
+        };
       }
 
+      // La lista de enemigos es la fuente autoritativa. Los campos escalares se
+      // conservan para compatibilidad con interfaces y registros antiguos.
+      enemigosEnCombate = enemigosEnCombate.map((enemigo) => {
+        const hpTick = danoEnemigoPorId.get(`__hp__:${enemigo.id}`);
+        const extras = efectosEnemigoPorId.get(enemigo.id);
+        const hpTrasImpacto = hpTick ?? enemigo.hp;
+        return {
+          ...enemigo,
+          hp: Math.max(0, hpTrasImpacto - (danoEnemigoPorId.get(enemigo.id) ?? 0)),
+          defensa: extras?.defensa ?? enemigo.defensa,
+          efectos: extras?.efectos ?? enemigo.efectos,
+        };
+      });
+      const enemigosVivos = enemigosEnCombate.filter((enemigo) => enemigo.hp > 0);
+      const enemigoPrincipal = enemigosVivos[0] ?? enemigosEnCombate[0];
+      enemigoHp = enemigosVivos.length > 0 ? enemigoPrincipal.hp : 0;
+      enemigoDefensa = enemigoPrincipal.defensa;
+      efectosDefensor = leerEfectosCombate(enemigoPrincipal.efectos);
       log.push(accionAnimada.texto);
 
       // ==========================================================
