@@ -62,7 +62,7 @@ function participante(id, velocidad, orden = 0, comida = null) {
   };
 }
 
-function loadService(prisma, opciones = {}) {
+function loadService(prisma) {
   const filename = path.resolve(__dirname, "../src/server/services/party/combate-party-service.ts");
   const source = fs.readFileSync(filename, "utf8");
   const { outputText } = ts.transpileModule(source, {
