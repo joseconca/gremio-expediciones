@@ -1122,7 +1122,14 @@ export async function ejecutarAccionCombateParty(
           dano: danoTotal,
           enemigoObjetivoId: primero.enemigo.id,
           objetivosEnemigoIds: resultados.map((entrada) => entrada.enemigo.id),
-          ...(resultados.length > 1 ? { texto: habilidad.nombre + " afecta a " + resultados.length + " enemigos." } : {}),
+          ...(resultados.length > 1 ? {
+            impactosEnemigo: resultados.map((entrada) => ({
+              enemigoId: entrada.enemigo.id,
+              dano: entrada.resultado.accion.dano,
+              critico: entrada.resultado.accion.critico,
+            })),
+            texto: habilidad.nombre + " afecta a " + resultados.length + " enemigos.",
+          } : {}),
         };
         jugadorHp = primero.resultado.jugadorHp;
         jugadorDefensa = primero.resultado.jugadorDefensa;
