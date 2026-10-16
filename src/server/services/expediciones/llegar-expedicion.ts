@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { Prisma } from "@prisma/client";
 
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -282,7 +283,6 @@ export async function llegarExpedicion() {
       : "normal";
     const enemigosEnCombate = crearEnemigosEnCombate(grupoMonstruosBase, modoDificultad);
     const enemigoPrincipal = enemigosEnCombate[0];
-    const enemigoNombre = enemigoPrincipal.nombre;
     // Los campos escalares se conservan como compatibilidad y apuntan al
     // primer enemigo; la formación completa vive en enemigosEnCombate.
     const enemigoHp = enemigoPrincipal.hp;
