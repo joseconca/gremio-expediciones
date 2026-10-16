@@ -142,13 +142,14 @@ export function resolverObjetivosHabilidad(
 ): ResultadoResolverObjetivos {
   const { habilidad, combatientes, actorId } = solicitud;
   const regla = obtenerReglaObjetivoHabilidad(habilidad);
-  const aliadosTodos = combatientes.filter((c) => c.equipo === "aliado" && estaVivo(c));
-  const enemigosTodos = combatientes.filter((c) => c.equipo === "enemigo" && estaVivo(c));
-
-  if (aliadosTodos.length > MAX_ALIADOS_COMBATE || enemigosTodos.length > MAX_ENEMIGOS_COMBATE) {
+  const formacionAliada = combatientes.filter((c) => c.equipo === "aliado");
+  const formacionEnemiga = combatientes.filter((c) => c.equipo === "enemigo");
+  if (formacionAliada.length > MAX_ALIADOS_COMBATE || formacionEnemiga.length > MAX_ENEMIGOS_COMBATE) {
     return { objetivos: [], objetivoPrincipal: null, error: "limite_formacion_excedido" };
   }
 
+  const aliadosTodos = formacionAliada.filter(estaVivo);
+  const enemigosTodos = formacionEnemiga.filter(estaVivo);
   const actor = aliadosTodos.find((c) => c.id === actorId);
   let candidatos: CombatienteObjetivo[];
   if (regla.equipo === "propio") {
