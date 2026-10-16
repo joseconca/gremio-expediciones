@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
+import type { EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
 import type { PosicionCombate } from "@/lib/expediciones/posicion-combate";
 import { calcularCosteEdificio, CosteEdificio } from "@/lib/configuracionJuego";
 import type {
@@ -207,6 +208,7 @@ export interface DatosReclutamiento {
 export interface CombateActivo {
   id: string;
   version: number;
+  enemigos?: EnemigoEnCombate[];
 
   expedicionId: string;
 
@@ -280,6 +282,7 @@ export type CombateVisible = CombatePve | CombateActivo;
 export interface CombatePve {
   id: string;
   version: number;
+  enemigos?: EnemigoEnCombate[];
 
   expedicionId: string;
 
