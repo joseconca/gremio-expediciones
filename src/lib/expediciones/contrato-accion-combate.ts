@@ -67,7 +67,12 @@ export function validarTurnoAccionCombate(input: {
   if (input.turno !== "jugador" && input.turno !== "enemigo") {
     return { valido: false, estado: 409, error: "Turno de combate no válido." };
   }
-  if ((input.accion === "usar_habilidad" || input.accion === "usar_objeto" || input.accion === "escapar") && input.turno !== "jugador") {
+  // Huir no consume la acción del turno y puede hacerse mientras actúa el enemigo.
+  // PvP ya se rechaza arriba, porque en ese modo no existe la huida.
+  if (input.accion === "escapar") {
+    return { valido: true, actor: input.turno };
+  }
+  if ((input.accion === "usar_habilidad" || input.accion === "usar_objeto") && input.turno !== "jugador") {
     return { valido: false, estado: 409, error: "Solo puedes usar habilidades u objetos durante tu turno." };
   }
   return { valido: true, actor: input.turno };
