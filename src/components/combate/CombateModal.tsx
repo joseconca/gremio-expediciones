@@ -174,6 +174,13 @@ export default function CombateModal({
   const [enemigoObjetivoId, setEnemigoObjetivoId] = useState<string | null>(null);
   const [mostrarResultado, setMostrarResultado] = useState(false);
 
+  useEffect(() => {
+    // No arrastrar objetivos de un combate anterior a una nueva expedición.
+    setEnemigoObjetivoId(null);
+    setObjetivoHabilidadId(null);
+    setHabilidadEsperandoObjetivoId(null);
+  }, [combate.id]);
+
   /*
    * ============================================================
    * BLOQUEAR SCROLL DEL FONDO
@@ -626,14 +633,14 @@ export default function CombateModal({
               nombre: personaje.nombre,
               detalle: "Tú · objetivo propio",
             }];
-  const objetivoElegidoId = objetivosDisponibles.some((o) => o.id === objetivoHabilidadId)
-    ? objetivoHabilidadId
-    : reglaObjetivoSeleccionada?.equipo === "enemigo"
-      ? objetivosDisponibles.some((o) => o.id === enemigoObjetivoElegidoId)
-        ? enemigoObjetivoElegidoId
-        : null
-      : reglaObjetivoSeleccionada?.equipo === "propio"
-        ? objetivosDisponibles[0]?.id ?? null
+  const objetivoElegidoId = reglaObjetivoSeleccionada?.equipo === "enemigo"
+    ? objetivosDisponibles.some((o) => o.id === enemigoObjetivoElegidoId)
+      ? enemigoObjetivoElegidoId
+      : null
+    : reglaObjetivoSeleccionada?.equipo === "propio"
+      ? objetivosDisponibles[0]?.id ?? null
+      : objetivosDisponibles.some((o) => o.id === objetivoHabilidadId)
+        ? objetivoHabilidadId
         : null;
   const idObjetivoPropio = partyMode?.usuarioId ?? personaje.id ?? "jugador";
   const propioEsObjetivoHabilidad = Boolean(
@@ -989,6 +996,11 @@ export default function CombateModal({
                         reglaObjetivoSeleccionada.patron !== "todos"
                       ) {
                         setObjetivoHabilidadId(enemigo.id);
+                      } else {
+                        // El enemigo marcado en combate es la única fuente de
+                        // verdad para habilidades ofensivas; no conservar un
+                        // objetivo de una habilidad anterior.
+                        setObjetivoHabilidadId(null);
                       }
                     }}
                     className={`group relative flex w-full flex-col items-center gap-0 rounded p-0 transition-[filter,opacity] focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 ${vivo ? "hover:brightness-110" : "cursor-not-allowed"}`}
