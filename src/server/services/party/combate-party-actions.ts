@@ -772,7 +772,11 @@ export async function ejecutarAccionCombateParty(
     if (combate.fase !== "activo") {
       throw new PartyServiceError("El combate ya ha terminado.", 409, "COMBATE_PARTY_TERMINADO");
     }
-    if (combate.faseTurno !== "jugador" || combate.turnoActualUsuarioId !== usuarioId) {
+    const esHuida = accionDesconocida === "escapar";
+    const esTurnoDelUsuario = combate.faseTurno === "jugador" && combate.turnoActualUsuarioId === usuarioId;
+    // Huir es una acción de emergencia disponible para cualquier miembro activo.
+    // El resto de acciones sigue estrictamente limitado al turno correspondiente.
+    if (!esHuida && !esTurnoDelUsuario) {
       throw new PartyServiceError("No es tu turno de combate.", 409, "NO_ES_TU_TURNO");
     }
 
@@ -821,15 +825,20 @@ export async function ejecutarAccionCombateParty(
       const log = obtenerLog(combate.log);
       log.push(`🏃 ${usuarioId} huye del combate. Si sus compañeros vencen, conservará su parte del oro, pero no recibirá XP ni botín del enemigo.`);
       const terminal = resultadoTerminal !== "activo";
-      let faseTurno: "jugador" | "enemigo" = "enemigo";
-      let turnoActualUsuarioId: string | null = null;
+      const huyeEnSuTurno = combate.faseTurno === "jugador" && combate.turnoActualUsuarioId === usuarioId;
+      let faseTurno: "jugador" | "enemigo" = terminal
+        ? "enemigo"
+        : combate.faseTurno as "jugador" | "enemigo";
+      let turnoActualUsuarioId: string | null = terminal ? null : combate.turnoActualUsuarioId;
       let ronda = combate.ronda;
-      if (!terminal) {
+
+      if (!terminal && huyeEnSuTurno) {
+        // Si era su turno, la huida consume ese turno y avanza la secuencia.
         const siguiente = prepararSiguienteTurno(combate, estadoParticipantes);
         faseTurno = siguiente.faseTurno;
         turnoActualUsuarioId = siguiente.turnoActualUsuarioId;
         ronda = siguiente.ronda;
-      } else {
+      } else if (terminal) {
         log.push(
           resultadoTerminal === "victoria"
             ? `🏆 ${combate.enemigoNombre} ya había caído.`
@@ -839,7 +848,9 @@ export async function ejecutarAccionCombateParty(
         );
       }
       const actualizado = await tx.combateParty.updateMany({
-        where: { id: combate.id, version: combate.version, fase: "activo", faseTurno: "jugador", turnoActualUsuarioId: usuarioId },
+        // Se valida fase+versión, pero no el turno: la huida puede ocurrir
+        // cuando actúa otro aliado o durante el turno de los enemigos.
+        where: { id: combate.id, version: combate.version, fase: "activo" },
         data: {
           version: { increment: 1 },
           fase: terminal ? resultadoTerminal : "activo",
