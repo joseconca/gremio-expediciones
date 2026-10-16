@@ -986,9 +986,21 @@ export async function ejecutarAccionCombateParty(
         accion = {
           ...primera.resultado.accion,
           dano: danoTotal,
-          ...(curacionTotal > 0 ? { curacion: curacionTotal } : {}),
+          ...(curacionTotal > 0 && resultados.length === 1 ? { curacion: curacionTotal } : {}),
           objetivoUsuarioId: primera.objetivoUsuarioId,
           objetivosUsuarioIds: resultados.map((resultado) => resultado.objetivoUsuarioId),
+          ...(resultados.length > 1
+            ? {
+                pulsosEstado: resultados
+                  .filter((resultado) => resultado.curacion > 0)
+                  .map((resultado) => ({
+                    objetivo: "jugador" as const,
+                    objetivoUsuarioId: resultado.objetivoUsuarioId,
+                    tipo: "curacion" as const,
+                    cantidad: resultado.curacion,
+                  })),
+              }
+            : {}),
           texto: resultados.length > 1
             ? habilidad.nombre + " afecta a " + resultados.length + " aliados."
             : primera.resultado.accion.texto,
