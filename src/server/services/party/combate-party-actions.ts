@@ -465,11 +465,36 @@ async function liquidarRecompensasParty(
   }
 
   const recompensaMision = leerRecompensaParty(expedicion.recompensa);
-  const enemigo = obtenerEnemigoPorId(combate.enemigoId);
+  const rosterGuardado = leerEnemigosEnCombate(combate.enemigos);
+  const enemigoLegacy = crearEnemigoLegacy({
+    enemigoId: combate.enemigoId,
+    enemigoNombre: combate.enemigoNombre,
+    enemigoHp: combate.enemigoHp,
+    enemigoHpMaximo: combate.enemigoHpMaximo,
+    enemigoAtaque: combate.enemigoAtaque,
+    enemigoAtaqueMagico: combate.enemigoAtaqueMagico,
+    enemigoDefensa: combate.enemigoDefensa,
+    enemigoDefensaMagica: combate.enemigoDefensaMagica,
+    enemigoVelocidad: combate.enemigoVelocidad,
+    enemigoProbCritico: combate.enemigoProbCritico,
+    enemigoDanoCritico: combate.enemigoDanoCritico,
+    enemigoPrecision: combate.enemigoPrecision,
+    enemigoEvasion: combate.enemigoEvasion,
+    enemigoNivel: combate.enemigoNivel,
+    efectos: combate.efectosEnemigo,
+  });
+  const enemigosDelCombate = rosterGuardado.length > 0 ? rosterGuardado : enemigoLegacy ? [enemigoLegacy] : [];
+  const definicionesEnemigos = enemigosDelCombate
+    .map((snapshot) => ({ snapshot, definicion: obtenerEnemigoPorId(snapshot.enemigoId) }))
+    .filter((entrada): entrada is { snapshot: EnemigoEnCombate; definicion: NonNullable<ReturnType<typeof obtenerEnemigoPorId>> } => Boolean(entrada.definicion));
+  if (definicionesEnemigos.length === 0) {
+    throw new PartyServiceError("No se pudieron resolver las criaturas derrotadas para las recompensas.", 500, "RECOMPENSAS_ENEMIGOS_INVALIDOS");
+  }
   const modoDificultad = esModoDificultad(expedicion.modoDificultad) ? expedicion.modoDificultad : "normal";
-  const oroEnemigo = enemigo
-    ? calcularOroEnemigo(enemigo.botin, expedicion.dificultad)
-    : 0;
+  const oroEnemigo = definicionesEnemigos.reduce(
+    (total, entrada) => total + calcularOroEnemigo(entrada.definicion.botin, expedicion.dificultad),
+    0,
+  );
   const oroTotal = aplicarMultiplicadorRecompensa(recompensaMision.oro + oroEnemigo, modoDificultad);
   const totalMiembros = participantes.length;
   const primerPersonaje = (participantes.find((p) => porUsuario.get(p.usuarioId)?.estado !== "huyo") ?? participantes[0])?.personaje;
@@ -478,11 +503,12 @@ async function liquidarRecompensasParty(
   }
   // La XP Base es una recompensa común del resultado: el nivel individual solo
   // se utiliza para progresión propia, nunca para cambiar la XP que recibe cada miembro.
-  const experienciaBaseComun = calcularExperienciaBaseGanada(
+  const experienciaPorEnemigo = calcularExperienciaBaseGanada(
     expedicion.dificultad,
     primerPersonaje.nivel,
     modoDificultad,
   );
+  const experienciaBaseComun = experienciaPorEnemigo * definicionesEnemigos.length;
   const versionEsperadaLiquidada = combate.version + 1;
   const liquidado = await tx.combateParty.updateMany({
     where: {
@@ -618,20 +644,20 @@ async function liquidarRecompensasParty(
     cantidad: number;
     sufijoId: string | null;
   }[] = [];
-  if (enemigo) {
+  for (const entradaEnemigo of definicionesEnemigos) {
     for (let indice = 0; indice < participantes.length; indice += 1) {
       const miembro = participantes[indice];
       if (porUsuario.get(miembro.usuarioId)?.estado === "huyo" || miembro.estado === "huyo") continue;
       const drop = tirarBotinEnemigo(
-        enemigo,
-        crearRngDeterminista(`${combate.id}:${enemigo.id}:botin:${miembro.usuarioId}`),
+        entradaEnemigo.definicion,
+        crearRngDeterminista(`${combate.id}:${entradaEnemigo.snapshot.id}:botin:${miembro.usuarioId}`),
       );
       if (!drop) continue;
 
       const agregado = await agregarInstanciaBotinAlInventario(tx, miembro.personaje.id, drop);
       if (!agregado) {
         logLiquidacion.push(
-          `🎒 El botín de ${combate.enemigoNombre} para ${miembro.usuarioId} se ha perdido porque su inventario está lleno.`,
+          `🎒 El botín de ${entradaEnemigo.snapshot.nombre} para ${miembro.usuarioId} se ha perdido porque su inventario está lleno.`,
         );
         continue;
       }
@@ -644,7 +670,7 @@ async function liquidarRecompensasParty(
         sufijoId: drop.sufijoId,
       });
       logLiquidacion.push(
-        `🎲 Botín de ${combate.enemigoNombre}: ${drop.objeto.nombre}${drop.sufijoId ? ` (${drop.sufijoId})` : ""} para ${miembro.usuarioId}.`,
+        `🎲 Botín de ${entradaEnemigo.snapshot.nombre}: ${drop.objeto.nombre}${drop.sufijoId ? ` (${drop.sufijoId})` : ""} para ${miembro.usuarioId}.`,
       );
     }
   }
