@@ -17,13 +17,11 @@ import {
   calcularEvasionModificada,
   calcularPrecisionModificada,
   leerEfectosCombate,
-  procesarTicksPeriodicos,
   avanzarEfectosCombate,
   procesarEfectosTurno,
 } from "@/lib/expediciones/estados-combate";
 import {
   calcularSiguienteTurnoParty,
-  obtenerParticipantesVivos,
   resolverResultadoCombateParty,
   type ParticipanteTurnoParty,
 } from "@/lib/party/combate-reglas";
@@ -856,7 +854,7 @@ export async function ejecutarAccionCombateParty(
       enemigoNivel: combate.enemigoNivel,
       efectos: combate.efectosEnemigo,
     });
-    let enemigosEnCombate: EnemigoEnCombate[] = rosterGuardado.length > 0
+    const enemigosEnCombate: EnemigoEnCombate[] = rosterGuardado.length > 0
       ? rosterGuardado
       : enemigoLegacy ? [enemigoLegacy] : [];
     if (enemigosEnCombate.length === 0) {
@@ -1566,7 +1564,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
     if (resultado === "victoria") {
       fase = "victoria";
       faseTurno = "enemigo";
-      log.push(`🏆 ¡${combate.enemigoNombre} ha sido derrotado!`);
+      log.push("🏆 ¡Has derrotado a todos los enemigos del grupo!");
     } else if (resultado === "derrota") {
       fase = "derrota";
       faseTurno = "enemigo";
@@ -1626,6 +1624,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       faseTurno,
       turnoActualUsuarioId,
       enemigoHp,
+      objetivoUsuarioId: primerImpacto?.objetivoUsuarioId ?? null,
       enemigos: enemigosEnCombate,
       ...(recompensas ? { recompensas } : {}),
       ...(regreso ? { regreso } : {}),
