@@ -986,7 +986,11 @@ export async function ejecutarAccionCombateParty(
         accion = {
           ...primera.resultado.accion,
           dano: danoTotal,
-          ...(curacionTotal > 0 && resultados.length === 1 ? { curacion: curacionTotal } : {}),
+          ...(resultados.length > 1
+            ? { curacion: undefined }
+            : curacionTotal > 0
+              ? { curacion: curacionTotal }
+              : {}),
           objetivoUsuarioId: primera.objetivoUsuarioId,
           objetivosUsuarioIds: resultados.map((resultado) => resultado.objetivoUsuarioId),
           ...(resultados.length > 1
