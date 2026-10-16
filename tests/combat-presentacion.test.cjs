@@ -24,6 +24,13 @@ test("armas de melé o tipos ausentes conservan la presentación heredada", () =
   assert.equal(obtenerPresentacionAtaqueBasico(null), undefined);
 });
 
+test("Bola de fuego declara área adyacente además de su presentación de explosión", () => {
+  const bola = obtenerHabilidadPorId("bola_fuego");
+  assert.equal(bola?.presentacionVisual?.modo, "proyectil");
+  assert.equal(bola?.presentacionVisual?.impacto, "explosion");
+  assert.deepEqual(bola?.objetivo, { equipo: "enemigo", patron: "adyacentes" });
+});
+
 test("las habilidades de proyectil declaran una presentación explícita por elemento", () => {
   assert.equal(obtenerHabilidadPorId("chispa_mago")?.presentacionVisual?.proyectil, "esfera_arcana");
   assert.equal(obtenerHabilidadPorId("chispa_mago")?.presentacionVisual?.elemento, "arcano");
