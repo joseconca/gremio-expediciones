@@ -8,7 +8,7 @@ import type { DefinicionEnemigo } from "@/lib/tiposJuego";
 import { seleccionarJefeElite } from "@/lib/expediciones/elite";
 import { aplicarEfectoComida, comidaOtorgaIniciativa, obtenerComidaTaberna } from "@/lib/comidasTaberna";
 import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
-import { calcularMultiplicadoresEnemigo, esModoDificultad } from "@/lib/expediciones/dificultad";
+import { esModoDificultad } from "@/lib/expediciones/dificultad";
 import { crearEstadoInicialTurnoParty } from "@/lib/party/combate-reglas";
 import { PartyServiceError } from "@/server/services/party/party-service";
 
