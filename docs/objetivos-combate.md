@@ -18,7 +18,7 @@ Si no se declara la regla, una habilidad con efecto \`dano\` apunta a un enemigo
 
 ## Formación y patrones de área
 
-La formación lógica tiene tres filas tácticas y tres columnas por fila, con un máximo de nueve combatientes por equipo:
+La formación lógica admite hasta nueve casillas para enemigos. Usa tres filas tácticas y tres columnas por fila. La party actual mantiene su límite propio de tres participantes; compartir el esquema geométrico no eleva ese límite:
 
 | Fila táctica | Índices de casilla |
 | --- | --- |
