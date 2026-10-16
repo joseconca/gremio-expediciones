@@ -217,23 +217,26 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
 
       if (actor === "jugador") {
         if (accion === "atacar") {
+          const objetivo = enemigosEnCombate.find((enemigo) => enemigo.id === enemigoObjetivoId && enemigo.hp > 0)
+            ?? enemigosEnCombate.find((enemigo) => enemigo.hp > 0);
+          if (!objetivo) return NextResponse.json({ error: "No quedan enemigos vivos a los que atacar." }, { status: 409 });
+          const efectosObjetivo = leerEfectosCombate(objetivo.efectos);
           accionAnimada = resolverAtaqueJugador({
             jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
             jugadorNivel: combate.jugadorNivel,
             jugadorProbCritico: combate.jugadorProbCritico,
             jugadorDanoCritico: combate.jugadorDanoCritico,
             jugadorPrecision: calcularPrecisionModificada(combate.jugadorPrecision ?? 75, efectos),
-            enemigoEvasion: calcularEvasionModificada(combate.enemigoEvasion ?? 0, efectosDefensor),
-            enemigoDefensa,
-            enemigoNombre: combate.enemigoNombre ?? "Enemigo",
+            enemigoEvasion: calcularEvasionModificada(objetivo.evasion, efectosObjetivo),
+            enemigoDefensa: objetivo.defensa,
+            enemigoNombre: objetivo.nombre,
           });
-
+          accionAnimada = { ...accionAnimada, enemigoObjetivoId: objetivo.id };
+          danoEnemigoPorId.set(objetivo.id, accionAnimada.dano);
           const armaEquipadaId = personaje.equipoEquipado?.arma?.objetoId;
           const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
           const presentacionArma = obtenerPresentacionAtaqueBasico(subtipoArma);
           if (presentacionArma) accionAnimada = { ...accionAnimada, presentacion: presentacionArma };
-
-          enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
         } else if (accion === "usar_objeto") {
           if (!consumible) {
             return NextResponse.json({ error: "Objeto de combate no válido." }, { status: 400 });
@@ -254,47 +257,115 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           };
         } else {
           if (!habilidad) {
-            return NextResponse.json(
-              {
-                error: "Habilidad no encontrada.",
-              },
-              { status: 404 }
-            );
+            return NextResponse.json({ error: "Habilidad no encontrada." }, { status: 404 });
           }
 
-          const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
-            jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
-            jugadorAtaqueMagico: calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true),
-            jugadorProbCritico: combate.jugadorProbCritico,
-            jugadorDanoCritico: combate.jugadorDanoCritico,
-            jugadorPrecision: calcularPrecisionModificada(combate.jugadorPrecision ?? 75, efectos),
-            enemigoEvasion: calcularEvasionModificada(combate.enemigoEvasion ?? 0, efectosDefensor),
-            jugadorDefensa,
-            jugadorDefensaMagica: combate.jugadorDefensaMagica ?? jugadorDefensa,
-            jugadorNivel: combate.jugadorNivel,
-            jugadorHp,
-            jugadorHpMaximo: combate.jugadorHpMaximo,
-            enemigoDefensa,
-            enemigoDefensaMagica: combate.enemigoDefensaMagica ?? enemigoDefensa,
-            enemigoNombre: combate.enemigoNombre ?? "Enemigo",
-            bonusCuracion,
-            efectosJugador: efectos,
-          });
+          const reglaObjetivo = obtenerReglaObjetivoHabilidad(habilidad);
+          if (reglaObjetivo.equipo === "enemigo") {
+            const seleccion = resolverObjetivosHabilidad({
+              habilidad,
+              actorId: personaje.id,
+              objetivoId: enemigoObjetivoId,
+              combatientes: [
+                { id: personaje.id, nombre: personaje.nombre, equipo: "aliado", posicion: combate.jugadorPosicion, hpActual: jugadorHp, estado: jugadorHp > 0 ? "activo" : "caido" },
+                ...enemigosEnCombate.map((enemigo) => ({
+                  id: enemigo.id,
+                  nombre: enemigo.nombre,
+                  equipo: "enemigo" as const,
+                  posicion: enemigo.posicion,
+                  columna: enemigo.columna,
+                  casilla: enemigo.casilla,
+                  hpActual: enemigo.hp,
+                  estado: enemigo.hp > 0 ? "activo" : "caido",
+                })),
+              ],
+            });
+            if (seleccion.error || seleccion.objetivos.length === 0) {
+              return NextResponse.json({ error: "No hay enemigos válidos para esa habilidad." }, { status: 409 });
+            }
+            const resultados = seleccion.objetivos.map((seleccionado) => {
+              const enemigo = enemigosEnCombate.find((entrada) => entrada.id === seleccionado.id);
+              if (!enemigo || enemigo.hp <= 0) {
+                throw new Error("ENEMIGO_OBJETIVO_NO_ACTIVO");
+              }
+              const efectosObjetivo = leerEfectosCombate(enemigo.efectos);
+              const resultado = resolverHabilidadJugador(habilidad!, {
+                jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
+                jugadorAtaqueMagico: calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true),
+                jugadorProbCritico: combate.jugadorProbCritico,
+                jugadorDanoCritico: combate.jugadorDanoCritico,
+                jugadorPrecision: calcularPrecisionModificada(combate.jugadorPrecision ?? 75, efectos),
+                enemigoEvasion: calcularEvasionModificada(enemigo.evasion, efectosObjetivo),
+                jugadorDefensa,
+                jugadorDefensaMagica: combate.jugadorDefensaMagica ?? jugadorDefensa,
+                jugadorNivel: combate.jugadorNivel,
+                jugadorHp,
+                jugadorHpMaximo: combate.jugadorHpMaximo,
+                enemigoDefensa: enemigo.defensa,
+                enemigoDefensaMagica: enemigo.defensaMagica,
+                enemigoNombre: enemigo.nombre,
+                bonusCuracion,
+                efectosJugador: efectos,
+              });
+              const efectosNuevos = [
+                ...efectosObjetivo.filter((efecto) => !resultado.efectos.some((nuevo) =>
+                  nuevo.objetivo === "enemigo" && nuevo.habilidadId === efecto.habilidadId)),
+                ...resultado.efectos.filter((efecto) => efecto.objetivo === "enemigo"),
+              ];
+              efectosEnemigoPorId.set(enemigo.id, {
+                defensa: resultado.enemigoDefensa,
+                efectos: efectosNuevos,
+              });
+              danoEnemigoPorId.set(enemigo.id, resultado.accion.dano);
+              return { enemigo, resultado };
+            });
+            const primero = resultados[0];
+            const danoTotal = resultados.reduce((total, entrada) => total + entrada.resultado.accion.dano, 0);
+            accionAnimada = {
+              ...primero.resultado.accion,
+              dano: danoTotal,
+              enemigoObjetivoId: primero.enemigo.id,
+              objetivosEnemigoIds: resultados.map((entrada) => entrada.enemigo.id),
+              ...(resultados.length > 1 ? { texto: `${habilidad.nombre} afecta a ${resultados.length} enemigos.` } : {}),
+            };
+            jugadorHp = primero.resultado.jugadorHp;
+            jugadorDefensa = primero.resultado.jugadorDefensa;
+            efectos = [
+              ...efectos.filter((efecto) => !primero.resultado.efectosJugadorActualizados?.some((actualizado) =>
+                actualizado.habilidadId === efecto.habilidadId && actualizado.objetivo === efecto.objetivo)),
+              ...(primero.resultado.efectosJugadorActualizados ?? []),
+              ...primero.resultado.efectos.filter((efecto) => efecto.objetivo === "jugador"),
+            ];
+          } else {
+            const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
+              jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
+              jugadorAtaqueMagico: calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true),
+              jugadorProbCritico: combate.jugadorProbCritico,
+              jugadorDanoCritico: combate.jugadorDanoCritico,
+              jugadorPrecision: calcularPrecisionModificada(combate.jugadorPrecision ?? 75, efectos),
+              enemigoEvasion: calcularEvasionModificada(combate.enemigoEvasion ?? 0, efectosDefensor),
+              jugadorDefensa,
+              jugadorDefensaMagica: combate.jugadorDefensaMagica ?? jugadorDefensa,
+              jugadorNivel: combate.jugadorNivel,
+              jugadorHp,
+              jugadorHpMaximo: combate.jugadorHpMaximo,
+              enemigoDefensa,
+              enemigoDefensaMagica: combate.enemigoDefensaMagica ?? enemigoDefensa,
+              enemigoNombre: combate.enemigoNombre ?? "Enemigo",
+              bonusCuracion,
+              efectosJugador: efectos,
+            });
 
-          accionAnimada = resultadoHabilidad.accion;
-
-          jugadorHp = resultadoHabilidad.jugadorHp;
-          jugadorDefensa = resultadoHabilidad.jugadorDefensa;
-          enemigoDefensa = resultadoHabilidad.enemigoDefensa;
-
-          enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
-
-          for (const estado of resultadoHabilidad.efectos) {
-            if (estado.objetivo === "enemigo") efectosDefensor = [...efectosDefensor, estado];
-            else efectos = [...efectos, estado];
+            accionAnimada = resultadoHabilidad.accion;
+            jugadorHp = resultadoHabilidad.jugadorHp;
+            jugadorDefensa = resultadoHabilidad.jugadorDefensa;
+            enemigoDefensa = resultadoHabilidad.enemigoDefensa;
+            for (const estado of resultadoHabilidad.efectos) {
+              if (estado.objetivo === "enemigo") efectosDefensor = [...efectosDefensor, estado];
+              else efectos = [...efectos, estado];
+            }
+            if (resultadoHabilidad.efectosJugadorActualizados) efectos = resultadoHabilidad.efectosJugadorActualizados;
           }
-          if (resultadoHabilidad.efectosJugadorActualizados) efectos = resultadoHabilidad.efectosJugadorActualizados;
-
 
           const cooldownTurnos = habilidad.cooldownTurnos ?? 0;
 
