@@ -2,9 +2,10 @@ import { NextResponse } from "next/server";
 
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import type { TipoMision } from "@/lib/tiposJuego";
+import type { DefinicionEnemigo, TipoMision } from "@/lib/tiposJuego";
 
-import { seleccionarEnemigoNormal } from "@/lib/expediciones/normal";
+import { seleccionarEnemigosNormales } from "@/lib/expediciones/normal";
+import { crearEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 import { seleccionarJefeElite } from "@/lib/expediciones/elite";
 
 import { procesarLlegadaAsedio } from "@/lib/expediciones/procesarLlegadaAsedio";
@@ -218,7 +219,8 @@ export async function llegarExpedicion() {
 
     const tipoMision = expedicion.tipo as TipoMision;
 
-    let monstruoBase;
+    let monstruoBase: DefinicionEnemigo;
+    let grupoMonstruosBase: DefinicionEnemigo[];
 
     try {
       if (tipoMision === "elite") {
@@ -232,8 +234,10 @@ export async function llegarExpedicion() {
         }
 
         monstruoBase = seleccionarJefeElite(expedicion.enemigoId);
+        grupoMonstruosBase = [monstruoBase];
       } else if (tipoMision === "normal") {
-        monstruoBase = seleccionarEnemigoNormal(expedicion.dificultad);
+        grupoMonstruosBase = seleccionarEnemigosNormales(expedicion.dificultad, false);
+        monstruoBase = grupoMonstruosBase[0];
 
       } else {
         return NextResponse.json(
@@ -273,32 +277,25 @@ export async function llegarExpedicion() {
       modificadoresEquipo
     );
 
-    const enemigoNombre = monstruoBase.nombre;
     const modoDificultad = esModoDificultad(expedicion.modoDificultad)
       ? expedicion.modoDificultad
       : "normal";
-    const multiplicadores = calcularMultiplicadoresEnemigo(dificultad, modoDificultad);
-
-    // Escalado determinista: rareza solo afecta a selección/loot, no a la
-    // fórmula de atributos. El modo se aplica exactamente una vez.
-    const enemigoHp = Math.max(1, Math.floor(monstruoBase.hp * multiplicadores.vida));
-    const enemigoAtaque = Math.max(1, Math.floor(monstruoBase.ataque * multiplicadores.ataque));
-    const enemigoAtaqueMagico = Math.max(
-      1,
-      Math.floor((monstruoBase.ataqueMagico ?? monstruoBase.ataque) * multiplicadores.ataque)
-    );
-    const enemigoDefensa = Math.max(0, Math.floor(monstruoBase.defensa * multiplicadores.defensa));
-    const enemigoDefensaMagica = Math.max(
-      0,
-      Math.floor((monstruoBase.defensaMagica ?? monstruoBase.defensa) * multiplicadores.defensa)
-    );
-    const enemigoVelocidad = Math.max(1, Math.floor(monstruoBase.velocidad));
-
-    const enemigoProbCritico = 0.1;
-    const enemigoDanoCritico = 2;
-    const enemigoPrecision = 75;
-    const enemigoEvasion = 0;
-    const enemigoNivel = dificultad;
+    const enemigosEnCombate = crearEnemigosEnCombate(grupoMonstruosBase, modoDificultad);
+    const enemigoPrincipal = enemigosEnCombate[0];
+    const enemigoNombre = enemigoPrincipal.nombre;
+    // Los campos escalares se conservan como compatibilidad y apuntan al
+    // primer enemigo; la formación completa vive en enemigosEnCombate.
+    const enemigoHp = enemigoPrincipal.hp;
+    const enemigoAtaque = enemigoPrincipal.ataque;
+    const enemigoAtaqueMagico = enemigoPrincipal.ataqueMagico;
+    const enemigoDefensa = enemigoPrincipal.defensa;
+    const enemigoDefensaMagica = enemigoPrincipal.defensaMagica;
+    const enemigoVelocidad = enemigoPrincipal.velocidad;
+    const enemigoProbCritico = enemigoPrincipal.probCritico;
+    const enemigoDanoCritico = enemigoPrincipal.danoCritico;
+    const enemigoPrecision = enemigoPrincipal.precision;
+    const enemigoEvasion = enemigoPrincipal.evasion;
+    const enemigoNivel = enemigoPrincipal.nivel;
 
     const jugadorHpMaximo = estadisticasJugador.total.hpMaximo;
     const jugadorHp = jugadorHpMaximo;
@@ -338,17 +335,24 @@ export async function llegarExpedicion() {
 
     const jugadorDanoCritico = estadisticasJugador.total.danoCritico;
 
+    const velocidadEnemigoMasRapido = Math.max(...enemigosEnCombate.map((enemigo) => enemigo.velocidad));
     const primerTurno =
       comidaOtorgaIniciativa(expedicion.efectoComida) ||
-      jugadorVelocidad >= enemigoVelocidad
+      jugadorVelocidad >= velocidadEnemigoMasRapido
         ? "jugador"
         : "enemigo";
 
     const comidaActiva = obtenerComidaTaberna(expedicion.efectoComida);
+    const nombresEnemigos = enemigosEnCombate.map((enemigo) => enemigo.nombre);
+    const resumenEnemigos = nombresEnemigos.length === 1
+      ? nombresEnemigos[0]
+      : nombresEnemigos.length === 2
+        ? nombresEnemigos.join(" y ")
+        : nombresEnemigos.slice(0, -1).join(", ") + " y " + nombresEnemigos[nombresEnemigos.length - 1];
     const mensajeInicioCombate =
       primerTurno === "jugador"
-        ? `⚔️ Has encontrado un ${enemigoNombre} (amenaza ${expedicion.dificultad}, modo ${modoDificultad}). ${usuario.personaje.nombre} tiene la iniciativa.`
-        : `⚔️ Has encontrado un ${enemigoNombre} (amenaza ${expedicion.dificultad}, modo ${modoDificultad}). ${enemigoNombre} tiene la iniciativa.`;
+        ? `⚔️ Te enfrentas a ${resumenEnemigos} (${enemigosEnCombate.length} ${enemigosEnCombate.length === 1 ? "enemigo" : "enemigos"}, amenaza ${expedicion.dificultad}, modo ${modoDificultad}). ${usuario.personaje.nombre} tiene la iniciativa.`
+        : `⚔️ Te enfrentas a ${resumenEnemigos} (${enemigosEnCombate.length} ${enemigosEnCombate.length === 1 ? "enemigo" : "enemigos"}, amenaza ${expedicion.dificultad}, modo ${modoDificultad}). ${resumenEnemigos} tiene la iniciativa.`;
     const logInicial = [
       ...(comidaActiva
         ? [`🍲 ${comidaActiva.nombre}: ${comidaActiva.descripcion}`]
@@ -389,6 +393,7 @@ export async function llegarExpedicion() {
           enemigoPrecision,
           enemigoEvasion,
           enemigoNivel,
+          enemigos: enemigosEnCombate as unknown as Prisma.InputJsonValue,
 
           jugadorHp,
           jugadorHpMaximo: jugadorHpMaximo,
