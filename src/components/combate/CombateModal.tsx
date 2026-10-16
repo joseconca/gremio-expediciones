@@ -11,7 +11,7 @@ import { useAnimacionesCombate } from "@/components/combate/animaciones/useAnima
 import { resolverDestinosVisualesAccion } from "@/lib/expediciones/destinos-animacion-combate";
 import CapaEfectosCombate from "@/components/combate/animaciones/CapaEfectosCombate";
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
-import type { ObjetoInventario, ReglaObjetivoHabilidad } from "@/lib/tiposJuego";
+import type { ObjetoInventario, ReglaObjetivoHabilidad, RecompensaMision } from "@/lib/tiposJuego";
 import { obtenerReglaObjetivoHabilidad } from "@/lib/expediciones/objetivos-combate";
 import { crearEnemigoLegacy, leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
@@ -86,6 +86,7 @@ interface CombateModalProps {
   combate: CombatePve;
   personaje: Personaje;
   comidaActiva?: string | null;
+  recompensa?: RecompensaMision | null;
   procesando?: boolean;
   onAccionCombate?: (
     accion: "atacar" | "usar_habilidad" | "usar_objeto" | "escapar",
@@ -134,6 +135,7 @@ export default function CombateModal({
   combate,
   personaje,
   comidaActiva,
+  recompensa = null,
   procesando = false,
   onAccionCombate,
   partyMode,
@@ -155,6 +157,7 @@ export default function CombateModal({
   const [objetoSeleccionadoId, setObjetoSeleccionadoId] = useState<string | null>(null);
   const [logExpandido, setLogExpandido] = useState(false);
   const [habilidadSeleccionadaId, setHabilidadSeleccionadaId] = useState<string | null>(null);
+  const [habilidadEsperandoObjetivoId, setHabilidadEsperandoObjetivoId] = useState<string | null>(null);
   const [objetivoHabilidadId, setObjetivoHabilidadId] = useState<string | null>(null);
   const [enemigoObjetivoId, setEnemigoObjetivoId] = useState<string | null>(null);
   const [mostrarResultado, setMostrarResultado] = useState(false);
@@ -328,6 +331,7 @@ export default function CombateModal({
     accionEnCurso.current = true;
     setProcesandoLocal(true);
     setMostrarHabilidades(false);
+    setHabilidadEsperandoObjetivoId(null);
     setMostrarObjetos(false);
     try {
       const accion = await solicitarAccion("escapar");
@@ -352,6 +356,7 @@ export default function CombateModal({
     accionEnCurso.current = true;
     setProcesandoLocal(true);
     setMostrarHabilidades(false);
+    setHabilidadEsperandoObjetivoId(null);
     try {
       const accion = await solicitarAccion("atacar", JSON.stringify({
         enemigoObjetivoId: enemigoObjetivoElegidoId,
@@ -365,27 +370,46 @@ export default function CombateModal({
   };
 
   const ejecutarHabilidad = async (habilidadId: string, objetivoId?: string | null) => {
-    if (
-      accionEnCurso.current ||
-      procesando ||
-      combateTerminado ||
-      !puedeActuarJugador
-    )
-      return;
+    if (accionEnCurso.current || procesando || combateTerminado || !puedeActuarJugador) return;
+
+    const habilidadUsada = habilidades.find((entrada) => entrada.habilidadId === habilidadId)?.habilidad;
+    const regla = habilidadUsada
+      ? obtenerReglaObjetivoHabilidad(habilidadUsada)
+      : { equipo: "enemigo" as const, patron: "individual" as const };
+    const objetivoSolicitado = objetivoId ?? objetivoHabilidadId;
+    let objetivoResuelto: string | null = null;
+
+    if (regla.equipo === "enemigo") {
+      objetivoResuelto = enemigosVivos.some((enemigo) => enemigo.id === objetivoSolicitado)
+        ? objetivoSolicitado
+        : enemigoObjetivoElegidoId;
+    } else if (regla.equipo === "propio") {
+      objetivoResuelto = partyMode?.usuarioId ?? personaje.id ?? "jugador";
+    } else {
+      const objetivosAliados = partyMode
+        ? partyMode.participantes
+            .filter((participante) => participante.estado === "activo" && participante.jugadorHp > 0 &&
+              (regla.incluirPropio !== false || participante.usuarioId !== partyMode.usuarioId))
+            .map((participante) => participante.usuarioId)
+        : [personaje.id ?? "jugador"];
+      const objetivoPropio = partyMode?.usuarioId ?? personaje.id ?? "jugador";
+      objetivoResuelto = objetivosAliados.includes(objetivoSolicitado ?? "")
+        ? objetivoSolicitado
+        : objetivosAliados.includes(objetivoPropio)
+          ? objetivoPropio
+          : objetivosAliados[0] ?? null;
+    }
+
     accionEnCurso.current = true;
     setProcesandoLocal(true);
     setMostrarHabilidades(false);
+    setHabilidadEsperandoObjetivoId(null);
     try {
-      const regla = habilidadSeleccionada?.habilidad
-        ? obtenerReglaObjetivoHabilidad(habilidadSeleccionada.habilidad)
-        : { equipo: "enemigo" as const, patron: "individual" as const };
       const payloadHabilidad = JSON.stringify({
         habilidadId,
         ...(regla.equipo === "enemigo"
-          ? { enemigoObjetivoId: objetivoId ?? enemigoObjetivoElegidoId }
-          : objetivoId
-            ? { objetivoId }
-            : {}),
+          ? { enemigoObjetivoId: objetivoResuelto ?? enemigoObjetivoElegidoId }
+          : objetivoResuelto ? { objetivoId: objetivoResuelto } : {}),
       });
       const accion = await solicitarAccion("usar_habilidad", payloadHabilidad);
       if (!accion) return;
@@ -395,7 +419,6 @@ export default function CombateModal({
       setProcesandoLocal(false);
     }
   };
-
   const ejecutarObjeto = async (objetoInventario: ObjetoInventario) => {
     if (
       accionEnCurso.current ||
@@ -479,6 +502,13 @@ export default function CombateModal({
     combate.log.length > 0
       ? combate.log[combate.log.length - 1]
       : "El combate comienza...";
+  const enemigosDerrotados = enemigosVisibles.filter((enemigo) => enemigo.hp <= 0);
+  const botinObtenidoInforme = combate.log
+    .filter((linea) => linea.startsWith("🎁 Botín obtenido:"))
+    .map((linea) => linea.replace("🎁 Botín obtenido:", "").trim());
+  const botinPerdidoInforme = combate.log
+    .filter((linea) => linea.startsWith("🎒 Botín perdido:"))
+    .map((linea) => linea.replace("🎒 Botín perdido:", "").trim());
 
   const ultimaAccionPartyClave = useRef<string | null | undefined>(undefined);
   useEffect(() => {
