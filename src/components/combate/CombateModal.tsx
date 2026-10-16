@@ -618,7 +618,9 @@ export default function CombateModal({
               className="truncate text-left text-sm font-black tracking-wide text-stone-100 transition-colors hover:text-stone-300 sm:text-base"
               title="Consultar las estadísticas del enemigo y de tu personaje"
             >
-              {combate.enemigoNombre}
+              {enemigosVivos.length > 1
+                ? `${enemigosVivos.length} enemigos`
+                : enemigosVivos[0]?.nombre ?? combate.enemigoNombre}
             </button>
           </div>
           <div className="flex shrink-0 items-center gap-2">
