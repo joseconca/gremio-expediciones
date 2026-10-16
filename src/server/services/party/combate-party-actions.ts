@@ -631,6 +631,7 @@ async function liquidarRecompensasParty(
       faseResultado === "derrota" ? 0.1 : undefined,
     );
     let experienciaJobTotal = progresoJob?.experienciaJobGanada ?? 0;
+    let nivelesJobTotal = progresoJob?.nivelesSubidos ?? 0;
     if (faseResultado === "derrota" && !huyo) {
       for (const entradaEnemigo of definicionesRecompensables) {
         const progresoJobEnemigo = await otorgarExperienciaJob(
@@ -641,6 +642,7 @@ async function liquidarRecompensasParty(
           modoDificultad,
         );
         experienciaJobTotal += progresoJobEnemigo?.experienciaJobGanada ?? 0;
+        nivelesJobTotal += progresoJobEnemigo?.nivelesSubidos ?? 0;
         if (progresoJobEnemigo?.nivelesSubidos) {
           logLiquidacion.push(`⬆️ Job de ${progresoJobEnemigo.claseNombre}: nivel ${progresoJobEnemigo.nivelJob} tras abatir a ${entradaEnemigo.snapshot.nombre} para ${miembro.usuarioId}.`);
         }
@@ -673,7 +675,7 @@ async function liquidarRecompensasParty(
       experiencia,
       experienciaJob: experienciaJobTotal,
       nivelesBaseSubidos: nivelesSubidos,
-      nivelesJobSubidos: progresoJob?.nivelesSubidos ?? 0,
+      nivelesJobSubidos: nivelesJobTotal,
       objetos: objetosRepartidos,
     });
     logLiquidacion.push(
