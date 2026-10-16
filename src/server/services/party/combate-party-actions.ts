@@ -1467,6 +1467,11 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
 
     const totalDanoEnemigos = impactos.reduce((total, impacto) => total + impacto.dano, 0);
     const primerImpacto = impactos[0];
+    const impactosAgrupadosPorAliado = [...danoPorUsuario.entries()].map(([usuarioObjetivoId, dano]) => ({
+      objetivoId: usuarioObjetivoId,
+      dano,
+      critico: impactos.some((impacto) => impacto.objetivoUsuarioId === usuarioObjetivoId && impacto.critico),
+    }));
     const accion: AccionAnimadaCombate = impactos.length > 0 ? {
       actor: "enemigo",
       actorEnemigoId: primerImpacto.actorEnemigoId,
@@ -1476,6 +1481,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       critico: impactos.some((impacto) => impacto.critico),
       tipo: "ataque",
       animacion: "ofensiva",
+      ...(impactos.length > 1 ? { impactosMultiples: impactosAgrupadosPorAliado } : {}),
       texto: impactos.length === 1
         ? `Los enemigos atacan: ${primerImpacto.objetivoUsuarioId} recibe ${totalDanoEnemigos} de daño.`
         : `${impactos.length} enemigos atacan; el grupo recibe ${totalDanoEnemigos} de daño en total.`,
@@ -1487,14 +1493,6 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       critico: false,
       texto: "No quedan enemigos capaces de atacar.",
     };
-    if (impactos.length > 1) {
-      accion.pulsosEstado = impactos.map((impacto) => ({
-        objetivo: "jugador" as const,
-        objetivoUsuarioId: impacto.objetivoUsuarioId,
-        tipo: "dano" as const,
-        cantidad: impacto.dano,
-      }));
-    }
 
     // El cooldown avanza una vez por ronda completa, al terminar el turno enemigo.
     for (const miembro of combate.participantes) {
