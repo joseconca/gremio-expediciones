@@ -417,6 +417,7 @@ function mockPrisma(combat, options = {}) {
       },
     },
     calls,
+    options,
   };
 }
 
@@ -507,7 +508,7 @@ test("una curación individual de party se aplica y persiste en el aliado selecc
   const combat = mkCombat({
     participantes: [mkParticipant("u1", 0, 60, 100), mkParticipant("u2", 1, 40, 100)],
   });
-  const { prisma, calls } = mockPrisma(combat, {
+  const { prisma, calls, options: opcionesServicio } = mockPrisma(combat, {
     habilidades: [{ habilidadId: "primeros_auxilios", nivel: 1, slot: "activa_1" }],
     habilidadesPorId: {
       primeros_auxilios: {
@@ -518,7 +519,7 @@ test("una curación individual de party se aplica y persiste en el aliado selecc
       },
     },
   });
-  const service = loadService(prisma);
+  const service = loadService(prisma, opcionesServicio);
   const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad", {
     habilidadId: "primeros_auxilios",
     objetivoId: "u2",
@@ -544,7 +545,7 @@ test("una habilidad de curación en área persiste a todos los aliados vivos y e
       mkParticipant("u3", 2, 20, 100),
     ],
   });
-  const { prisma, calls } = mockPrisma(combat, {
+  const { prisma, calls, options: opcionesServicio } = mockPrisma(combat, {
     habilidades: [{ habilidadId: "onda_curativa", nivel: 1, slot: "activa_1" }],
     habilidadesPorId: {
       onda_curativa: {
@@ -555,7 +556,7 @@ test("una habilidad de curación en área persiste a todos los aliados vivos y e
       },
     },
   });
-  const service = loadService(prisma);
+  const service = loadService(prisma, opcionesServicio);
   const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad", {
     habilidadId: "onda_curativa",
   });
