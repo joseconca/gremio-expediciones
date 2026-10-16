@@ -706,7 +706,10 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             snapshot,
             botin: tirarBotinEnemigo(definicion),
           }))
-          .filter((entrada): entrada is typeof entrada & { botin: NonNullable<typeof entrada.botin> } => Boolean(entrada.botin));
+          .filter((entrada): entrada is {
+            snapshot: EnemigoEnCombate;
+            botin: NonNullable<ReturnType<typeof tirarBotinEnemigo>>;
+          } => Boolean(entrada.botin));
 
         log.push(
           `💰 Aseguras ${liquidacion.oroConsolacion} 🪙 de la misión y ${liquidacion.oroPorEnemigos} 🪙 por las criaturas abatidas.`,
@@ -843,7 +846,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             data: {
               fase: "regresando",
               ...calcularFechasRegresoProgramadas(expedicion.fechaSalida, expedicion.fechaLlegada),
-              recompensa: liquidacion.recompensa,
+              recompensa: liquidacion.recompensa as unknown as Prisma.InputJsonValue,
               experienciaGanada,
               resultadoFinal: "derrota",
               hpPerdido: Math.max(0, combate.jugadorHpMaximo - jugadorHp),
