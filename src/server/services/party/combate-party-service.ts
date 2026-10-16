@@ -2,7 +2,9 @@ import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/estadisticasPersonaje";
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
-import { seleccionarEnemigoNormal } from "@/lib/expediciones/normal";
+import { seleccionarEnemigosNormales } from "@/lib/expediciones/normal";
+import { crearEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
+import type { DefinicionEnemigo } from "@/lib/tiposJuego";
 import { seleccionarJefeElite } from "@/lib/expediciones/elite";
 import { aplicarEfectoComida, comidaOtorgaIniciativa, obtenerComidaTaberna } from "@/lib/comidasTaberna";
 import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
@@ -144,44 +146,39 @@ export async function iniciarCombateParty(usuarioId: string, idDesconocido: unkn
       throw new PartyServiceError("Todos los aventureros deben haber llegado al destino.", 409, "PARTICIPANTES_NO_EN_DESTINO");
     }
 
-    let enemigoBase;
+    let enemigoBase: DefinicionEnemigo;
+    let grupoMonstruosBase: DefinicionEnemigo[];
     try {
       if (expedicion.tipo === "elite") {
         if (!expedicion.enemigoId) {
           throw new PartyServiceError("La misión de élite no tiene un jefe asignado.", 409, "JEFE_ELITE_NO_ASIGNADO");
         }
         enemigoBase = seleccionarJefeElite(expedicion.enemigoId);
+        grupoMonstruosBase = [enemigoBase];
       } else {
-        enemigoBase = seleccionarEnemigoNormal(expedicion.dificultad);
+        grupoMonstruosBase = seleccionarEnemigosNormales(expedicion.dificultad, true);
+        enemigoBase = grupoMonstruosBase[0];
       }
     } catch (error) {
       if (error instanceof PartyServiceError) throw error;
-      throw new PartyServiceError("No se pudo seleccionar el enemigo del combate compartido.", 500, "ENEMIGO_NO_DISPONIBLE");
+      throw new PartyServiceError("No se pudo seleccionar el grupo enemigo del combate compartido.", 500, "ENEMIGO_NO_DISPONIBLE");
     }
 
     const modoDificultad = esModoDificultad(expedicion.modoDificultad)
       ? expedicion.modoDificultad
       : "normal";
-    const multiplicadores = calcularMultiplicadoresEnemigo(
-      Math.max(0, expedicion.dificultad),
-      modoDificultad,
-    );
-    const enemigoHp = Math.max(1, Math.floor(enemigoBase.hp * multiplicadores.vida));
-    const enemigoAtaque = Math.max(1, Math.floor(enemigoBase.ataque * multiplicadores.ataque));
-    const enemigoAtaqueMagico = Math.max(
-      1,
-      Math.floor((enemigoBase.ataqueMagico ?? enemigoBase.ataque) * multiplicadores.ataque),
-    );
-    const enemigoDefensa = Math.max(0, Math.floor(enemigoBase.defensa * multiplicadores.defensa));
-    const enemigoDefensaMagica = Math.max(
-      0,
-      Math.floor((enemigoBase.defensaMagica ?? enemigoBase.defensa) * multiplicadores.defensa),
-    );
-    const enemigoVelocidad = Math.max(1, Math.floor(enemigoBase.velocidad));
-    const enemigoProbCritico = 0.1;
-    const enemigoDanoCritico = 2;
-    const enemigoPrecision = 75;
-    const enemigoEvasion = 0;
+    const enemigosEnCombate = crearEnemigosEnCombate(grupoMonstruosBase, modoDificultad);
+    const enemigoPrincipal = enemigosEnCombate[0];
+    const enemigoHp = enemigoPrincipal.hp;
+    const enemigoAtaque = enemigoPrincipal.ataque;
+    const enemigoAtaqueMagico = enemigoPrincipal.ataqueMagico;
+    const enemigoDefensa = enemigoPrincipal.defensa;
+    const enemigoDefensaMagica = enemigoPrincipal.defensaMagica;
+    const enemigoVelocidad = enemigoPrincipal.velocidad;
+    const enemigoProbCritico = enemigoPrincipal.probCritico;
+    const enemigoDanoCritico = enemigoPrincipal.danoCritico;
+    const enemigoPrecision = enemigoPrincipal.precision;
+    const enemigoEvasion = enemigoPrincipal.evasion;
 
     const participantesCalculados = expedicion.participantes.map((participante) => {
       if (!participante.personaje) {
@@ -196,7 +193,7 @@ export async function iniciarCombateParty(usuarioId: string, idDesconocido: unkn
 
     const primerTurnoJugador =
       participantesCalculados.some((participante) => comidaOtorgaIniciativa(participante.comida)) ||
-      participantesCalculados[0].velocidad >= enemigoVelocidad;
+      participantesCalculados[0].velocidad >= Math.max(...enemigosEnCombate.map((enemigo) => enemigo.velocidad));
 
     const estadoTurno = crearEstadoInicialTurnoParty(
       participantesCalculados.map((participante, ordenTurno) => ({
@@ -208,8 +205,14 @@ export async function iniciarCombateParty(usuarioId: string, idDesconocido: unkn
       primerTurnoJugador,
     );
 
+    const nombresEnemigos = enemigosEnCombate.map((enemigo) => enemigo.nombre);
+    const resumenEnemigos = nombresEnemigos.length === 1
+      ? nombresEnemigos[0]
+      : nombresEnemigos.length === 2
+        ? nombresEnemigos.join(" y ")
+        : nombresEnemigos.slice(0, -1).join(", ") + " y " + nombresEnemigos[nombresEnemigos.length - 1];
     const log = [
-      `⚔️ La party se enfrenta a ${enemigoBase.nombre} (amenaza ${expedicion.dificultad}, modo ${modoDificultad}).`,
+      `⚔️ La party se enfrenta a ${resumenEnemigos} (${enemigosEnCombate.length} ${enemigosEnCombate.length === 1 ? "enemigo" : "enemigos"}, amenaza ${expedicion.dificultad}, modo ${modoDificultad}).`,
       ...participantesCalculados.map((participante) =>
         `📍 ${participante.personajeNombre}: ${participante.posicion === "mele" ? "Melé" : participante.posicion === "retaguardia" ? "Retaguardia" : "Centro"}.`
       ),
@@ -243,7 +246,8 @@ export async function iniciarCombateParty(usuarioId: string, idDesconocido: unkn
         enemigoDanoCritico,
         enemigoPrecision,
         enemigoEvasion,
-        enemigoNivel: Math.max(1, expedicion.dificultad),
+        enemigoNivel: Math.max(1, enemigoPrincipal.nivel),
+        enemigos: enemigosEnCombate as unknown as Prisma.InputJsonValue,
         efectosEnemigo: [],
         log,
       },
