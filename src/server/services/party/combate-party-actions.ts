@@ -862,6 +862,8 @@ export async function ejecutarAccionCombateParty(
     let habilidad: DefinicionHabilidad | null = null;
     let objetoConsumible: { inventarioObjetoId: string; objetoId: string; curacion: number; nombre: string } | null = null;
     let accion: AccionAnimadaCombate;
+    const danoEnemigoPorId = new Map<string, number>();
+    const efectosEnemigoPorId = new Map<string, { defensa: number; efectos: ReturnType<typeof obtenerEfectos> }>();
     const objetivosAliadosModificados = new Map<string, {
       usuarioId: string;
       participanteId: string;
@@ -883,6 +885,8 @@ export async function ejecutarAccionCombateParty(
         enemigoDefensa,
         enemigoNombre: enemigoSeleccionado.nombre,
       });
+      accion = { ...accion, enemigoObjetivoId: enemigoSeleccionado.id };
+      danoEnemigoPorId.set(enemigoSeleccionado.id, accion.dano);
       const armaEquipadaId = personaje.equipoEquipado?.arma?.objetoId;
       const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
       const presentacionArma = obtenerPresentacionAtaqueBasico(subtipoArma);
@@ -919,7 +923,9 @@ export async function ejecutarAccionCombateParty(
       const seleccionObjetivos = resolverObjetivosHabilidad({
         habilidad,
         actorId: usuarioId,
-        objetivoId: typeof payload?.objetivoId === "string" ? payload.objetivoId : null,
+        objetivoId: reglaObjetivo.equipo === "enemigo"
+          ? idEnemigoSolicitado
+          : typeof payload?.objetivoId === "string" ? payload.objetivoId : null,
         combatientes: [
           ...combate.participantes.map((p) => ({
             id: p.usuarioId,
@@ -930,15 +936,16 @@ export async function ejecutarAccionCombateParty(
             hpActual: p.jugadorHp,
             estado: p.estado,
           })),
-          {
-            id: "enemigo",
-            nombre: combate.enemigoNombre,
+          ...enemigosEnCombate.map((enemigo) => ({
+            id: enemigo.id,
+            nombre: enemigo.nombre,
             equipo: "enemigo" as const,
-            posicion: "centro",
-            columna: 1,
-            hpActual: enemigoHp,
-            estado: enemigoHp > 0 ? "activo" : "caido",
-          },
+            posicion: enemigo.posicion,
+            columna: enemigo.columna,
+            casilla: enemigo.casilla,
+            hpActual: enemigo.hp,
+            estado: enemigo.hp > 0 ? "activo" : "caido",
+          })),
         ],
       });
       if (seleccionObjetivos.error || seleccionObjetivos.objetivos.length === 0) {
@@ -1042,39 +1049,65 @@ export async function ejecutarAccionCombateParty(
             : primera.resultado.accion.texto,
         };
       } else {
-        const resultado = resolverHabilidadJugador(habilidad, {
-          jugadorAtaque: calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador),
-          jugadorAtaqueMagico: calcularAtaqueModificado(participante.jugadorAtaqueMagico, efectosJugador, true),
-          jugadorProbCritico: participante.jugadorProbCritico,
-          jugadorDanoCritico: participante.jugadorDanoCritico,
-          jugadorPrecision: calcularPrecisionModificada(participante.jugadorPrecision, efectosJugador),
-          enemigoEvasion: calcularEvasionModificada(combate.enemigoEvasion, efectosEnemigo),
-          jugadorDefensa,
-          jugadorDefensaMagica: participante.jugadorDefensaMagica,
-          jugadorNivel: participante.jugadorNivel,
-          jugadorHp,
-          jugadorHpMaximo: participante.jugadorHpMaximo,
-          enemigoDefensa,
-          enemigoDefensaMagica: combate.enemigoDefensaMagica,
-          enemigoNombre: combate.enemigoNombre,
-          efectosJugador,
+        const objetivosEnemigos = seleccionObjetivos.objetivos.filter((objetivo) => objetivo.equipo === "enemigo");
+        if (objetivosEnemigos.length === 0) {
+          throw new PartyServiceError("La habilidad ofensiva no tiene enemigos válidos.", 409, "SIN_ENEMIGOS_OBJETIVO");
+        }
+        const resultados = objetivosEnemigos.map((objetivo) => {
+          const enemigo = enemigosEnCombate.find((entrada) => entrada.id === objetivo.id);
+          if (!enemigo || enemigo.hp <= 0) {
+            throw new PartyServiceError("Uno de los enemigos elegidos ya no está activo.", 409, "ENEMIGO_OBJETIVO_NO_ACTIVO");
+          }
+          const efectosDelEnemigo = obtenerEfectos(enemigo.efectos);
+          const resultado = resolverHabilidadJugador(habilidad!, {
+            jugadorAtaque: calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador),
+            jugadorAtaqueMagico: calcularAtaqueModificado(participante.jugadorAtaqueMagico, efectosJugador, true),
+            jugadorProbCritico: participante.jugadorProbCritico,
+            jugadorDanoCritico: participante.jugadorDanoCritico,
+            jugadorPrecision: calcularPrecisionModificada(participante.jugadorPrecision, efectosJugador),
+            enemigoEvasion: calcularEvasionModificada(enemigo.evasion, efectosDelEnemigo),
+            jugadorDefensa,
+            jugadorDefensaMagica: participante.jugadorDefensaMagica,
+            jugadorNivel: participante.jugadorNivel,
+            jugadorHp,
+            jugadorHpMaximo: participante.jugadorHpMaximo,
+            enemigoDefensa: enemigo.defensa,
+            enemigoDefensaMagica: enemigo.defensaMagica,
+            enemigoNombre: enemigo.nombre,
+            efectosJugador,
+          });
+          const nuevosEfectosEnemigo = [
+            ...efectosDelEnemigo.filter((efecto) => !resultado.efectos.some((nuevo) =>
+              nuevo.objetivo === "enemigo" && nuevo.habilidadId === efecto.habilidadId)),
+            ...resultado.efectos.filter((efecto) => efecto.objetivo === "enemigo"),
+          ];
+          efectosEnemigoPorId.set(enemigo.id, {
+            defensa: resultado.enemigoDefensa,
+            efectos: nuevosEfectosEnemigo,
+          });
+          danoEnemigoPorId.set(enemigo.id, resultado.accion.dano);
+          return { enemigo, resultado };
         });
-        accion = { ...resultado.accion, objetivoUsuarioId: "enemigo" };
-        jugadorHp = resultado.jugadorHp;
-        jugadorDefensa = resultado.jugadorDefensa;
-        enemigoDefensa = resultado.enemigoDefensa;
-        enemigoHp = Math.max(0, enemigoHp - accion.dano);
+        const primero = resultados[0];
+        const danoTotal = resultados.reduce((total, entrada) => total + entrada.resultado.accion.dano, 0);
+        const accionBase = { ...primero.resultado.accion };
+        accion = {
+          ...accionBase,
+          dano: danoTotal,
+          enemigoObjetivoId: primero.enemigo.id,
+          objetivosEnemigoIds: resultados.map((entrada) => entrada.enemigo.id),
+          ...(resultados.length > 1 ? { texto: habilidad.nombre + " afecta a " + resultados.length + " enemigos." } : {}),
+        };
+        jugadorHp = primero.resultado.jugadorHp;
+        jugadorDefensa = primero.resultado.jugadorDefensa;
         efectosJugador = [
-          ...efectosJugador.filter((efecto) => !resultado.efectosJugadorActualizados?.some((actualizado) =>
+          ...efectosJugador.filter((efecto) => !primero.resultado.efectosJugadorActualizados?.some((actualizado) =>
             actualizado.habilidadId === efecto.habilidadId && actualizado.objetivo === efecto.objetivo)),
-          ...(resultado.efectosJugadorActualizados ?? []),
-          ...resultado.efectos.filter((efecto) => efecto.objetivo === "jugador"),
+          ...(primero.resultado.efectosJugadorActualizados ?? []),
+          ...primero.resultado.efectos.filter((efecto) => efecto.objetivo === "jugador"),
         ];
-        efectosEnemigo = [
-          ...efectosEnemigo.filter((efecto) => !resultado.efectos.some((nuevo) =>
-            nuevo.habilidadId === efecto.habilidadId && nuevo.objetivo === "enemigo")),
-          ...resultado.efectos.filter((efecto) => efecto.objetivo === "enemigo"),
-        ];
+        const enemigoActual = enemigosEnCombate.find((enemigo) => enemigo.id === primero.enemigo.id);
+        enemigoDefensa = enemigoActual?.defensa ?? enemigoDefensa;
       }
       if ((habilidad.cooldownTurnos ?? 0) > 0) cooldowns[habilidad.id] = habilidad.cooldownTurnos!;
       await gastarCostesHabilidad(tx, personaje, habilidad);
@@ -1107,7 +1140,21 @@ export async function ejecutarAccionCombateParty(
       };
     }
 
-    enemigoHp = Math.max(0, enemigoHp - accion.dano);
+    enemigosEnCombate = enemigosEnCombate.map((enemigo) => {
+      const dano = danoEnemigoPorId.get(enemigo.id) ?? 0;
+      const extras = efectosEnemigoPorId.get(enemigo.id);
+      return {
+        ...enemigo,
+        hp: Math.max(0, enemigo.hp - dano),
+        defensa: extras?.defensa ?? enemigo.defensa,
+        efectos: extras?.efectos ?? enemigo.efectos,
+      };
+    });
+    const enemigosVivosTrasAccion = enemigosEnCombate.filter((enemigo) => enemigo.hp > 0);
+    const enemigoPrincipalTrasAccion = enemigosVivosTrasAccion[0] ?? enemigosEnCombate[0];
+    enemigoHp = enemigosVivosTrasAccion.length > 0 ? enemigoPrincipalTrasAccion.hp : 0;
+    enemigoDefensa = enemigoPrincipalTrasAccion.defensa;
+    efectosEnemigo = obtenerEfectos(enemigoPrincipalTrasAccion.efectos);
     const estadoParticipantes = obtenerEstadoParticipantes(combate.participantes).map((p) =>
       p.usuarioId === usuarioId ? { ...p, jugadorHp, estado: jugadorHp > 0 ? "activo" : "caido" } : p,
     );
@@ -1154,6 +1201,7 @@ export async function ejecutarAccionCombateParty(
         turnoInicialEnemigo: false,
         enemigoHp,
         enemigoDefensa,
+        enemigos: enemigosEnCombate as unknown as Prisma.InputJsonValue,
         efectosEnemigo: efectosEnemigo as unknown as Prisma.InputJsonValue,
         log: log as unknown as Prisma.InputJsonValue,
         ultimaAccion: { ...accion, actorUsuarioId: usuarioId } as unknown as Prisma.InputJsonValue,
