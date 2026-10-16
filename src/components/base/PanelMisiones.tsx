@@ -139,7 +139,6 @@ function PanelMovimientosReino({
         style={{ gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 300px), 360px))" }}
       >
         {caravanas.map((caravana) => {
-          const progreso = calcularProgreso(caravana.fechaSalida, caravana.fechaLlegada);
           return (
             <article
               key={caravana.id}
@@ -181,7 +180,6 @@ function PanelMovimientosReino({
         })}
 
         {asedios.map((asedio) => {
-          const progreso = calcularProgreso(asedio.fechaSalida, asedio.fechaLlegada);
           const haLlegado = reloj > 0 && reloj >= new Date(asedio.fechaLlegada).getTime();
           return (
             <article
