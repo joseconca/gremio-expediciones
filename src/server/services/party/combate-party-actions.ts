@@ -1169,7 +1169,7 @@ export async function ejecutarAccionCombateParty(
     let fase = "activo";
     if (resultadoTerminal === "victoria") {
       fase = "victoria";
-      log.push(`🏆 ¡${combate.enemigoNombre} ha sido derrotado!`);
+      log.push("🏆 ¡Has derrotado a todos los enemigos del grupo!");
     } else if (resultadoTerminal === "derrota") {
       fase = "derrota";
       log.push("💀 Todos los aventureros han caído.");
@@ -1479,16 +1479,17 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       }
     }
 
-    let participantesActualizados = obtenerEstadoParticipantes(combate.participantes);
-    if (objetivo && enemigoHp > 0) {
-      const nuevoHp = Math.max(0, objetivo.jugadorHp - accion.dano);
+    for (const miembro of combate.participantes) {
+      const dano = danoPorUsuario.get(miembro.usuarioId) ?? 0;
+      if (dano <= 0 || miembro.estado !== "activo" || miembro.jugadorHp <= 0) continue;
+      const nuevoHp = Math.max(0, miembro.jugadorHp - dano);
       const caido = nuevoHp <= 0;
       const actualizadoParticipante = await tx.combatePartyParticipante.updateMany({
         where: {
-          id: objetivo.id,
+          id: miembro.id,
           combatePartyId: combate.id,
           estado: "activo",
-          jugadorHp: objetivo.jugadorHp,
+          jugadorHp: miembro.jugadorHp,
         },
         data: {
           jugadorHp: nuevoHp,
@@ -1500,8 +1501,8 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       }
       const personajeActualizado = await tx.personaje.updateMany({
         where: {
-          id: objetivo.personajeId,
-          usuarioId: objetivo.usuarioId,
+          id: miembro.personajeId,
+          usuarioId: miembro.usuarioId,
           estado: "combatiendo",
         },
         data: { hpActual: nuevoHp },
@@ -1509,14 +1510,18 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       if (personajeActualizado.count !== 1) {
         throw new PartyServiceError("El personaje ya no está disponible para recibir el resultado del turno enemigo.", 409, "PERSONAJE_MODIFICADO");
       }
-      if (caido) log.push(`💀 ${objetivo.usuarioId} ha caído en combate.`);
       participantesActualizados = participantesActualizados.map((p) =>
-        p.usuarioId === objetivo!.usuarioId
+        p.usuarioId === miembro.usuarioId
           ? { ...p, jugadorHp: nuevoHp, estado: caido ? "caido" : "activo" }
           : p,
       );
     }
 
+    const hayEnemigosVivos = enemigosEnCombate.some((enemigo) => enemigo.hp > 0);
+    const enemigoPrincipalTrasTurno = enemigosEnCombate.find((enemigo) => enemigo.hp > 0) ?? enemigosEnCombate[0];
+    const enemigoHp = hayEnemigosVivos ? enemigoPrincipalTrasTurno.hp : 0;
+    const enemigoDefensa = enemigoPrincipalTrasTurno.defensa;
+    const efectosEnemigo = obtenerEfectos(enemigoPrincipalTrasTurno.efectos);
     const resultado = registrarResultadoTerminal(enemigoHp, participantesActualizados);
     let fase = "activo";
     let faseTurno: "jugador" | "enemigo" = "jugador";
@@ -1542,11 +1547,6 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       ronda = siguiente.ronda;
     }
 
-    const avancesEfectos = avanzarEfectosCombate(efectosEnemigo, enemigoDefensa);
-    efectosEnemigo = avancesEfectos.efectos;
-    enemigoDefensa = avancesEfectos.defensa;
-    log.push(...avancesEfectos.mensajes);
-
     const actualizado = await tx.combateParty.updateMany({
       where: {
         id: combate.id,
@@ -1563,9 +1563,13 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
         turnoInicialEnemigo: false,
         enemigoHp,
         enemigoDefensa,
+        enemigos: enemigosEnCombate as unknown as Prisma.InputJsonValue,
         efectosEnemigo: efectosEnemigo as unknown as Prisma.InputJsonValue,
         log: log as unknown as Prisma.InputJsonValue,
-        ultimaAccion: { ...accion, objetivoUsuarioId: enemigoHp > 0 ? objetivo?.usuarioId ?? null : null } as unknown as Prisma.InputJsonValue,
+        ultimaAccion: {
+          ...accion,
+          enemigoObjetivoId: accion.enemigoObjetivoId ?? null,
+        } as unknown as Prisma.InputJsonValue,
       },
     });
     if (actualizado.count !== 1) {
@@ -1587,7 +1591,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       faseTurno,
       turnoActualUsuarioId,
       enemigoHp,
-      objetivoUsuarioId: objetivo?.usuarioId ?? null,
+      enemigos: enemigosEnCombate,
       ...(recompensas ? { recompensas } : {}),
       ...(regreso ? { regreso } : {}),
       accion,
