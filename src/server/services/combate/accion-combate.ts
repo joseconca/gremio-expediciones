@@ -26,6 +26,7 @@ import {
   validarObjetivoAccionCombate,
   validarTurnoAccionCombate,
 } from "@/lib/expediciones/contrato-accion-combate";
+import { crearEnemigoLegacy, leerEnemigosEnCombate, obtenerEnemigoVivoPorId, type EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
 
 type AccionCombate = "atacar" | "usar_habilidad" | "usar_objeto" | "escapar";
 type EfectoCombate = EstadoEfectoHabilidad;
@@ -466,6 +467,8 @@ export type ContextoAccionCombate = {
   enemigoDefensa: number;
   log: string[];
   consumible: ConsumibleCombate | null;
+  enemigos: EnemigoEnCombate[];
+  enemigoObjetivoId: string | null;
 };
 
 export async function prepararAccionCombate(
@@ -691,7 +694,7 @@ export async function prepararAccionCombate(
     }
 
     // ============================================================
-    // VALIDAR CAMPOS NECESARIOS DEL OPONENTE
+    // VALIDAR CAMPOS NECESARIOS DEL OPONENTE / FORMACIÓN
     // ============================================================
 
     if (
@@ -710,6 +713,65 @@ export async function prepararAccionCombate(
         },
         { status: 500 }
       );
+    }
+
+    let enemigosPve: EnemigoEnCombate[] = [];
+    let enemigoObjetivoId: string | null = null;
+    let combateParaResolver = combate as CombateAccionPayload;
+    if (!esPvp) {
+      const guardados = leerEnemigosEnCombate(combate.enemigos);
+      const legado = crearEnemigoLegacy({
+        enemigoId: combate.enemigoId,
+        enemigoNombre: combate.enemigoNombre,
+        enemigoHp: combate.enemigoHp,
+        enemigoHpMaximo: combate.enemigoHpMaximo,
+        enemigoAtaque: combate.enemigoAtaque,
+        enemigoAtaqueMagico: combate.enemigoAtaqueMagico,
+        enemigoDefensa: combate.enemigoDefensa,
+        enemigoDefensaMagica: combate.enemigoDefensaMagica,
+        enemigoVelocidad: combate.enemigoVelocidad,
+        enemigoProbCritico: combate.enemigoProbCritico,
+        enemigoDanoCritico: combate.enemigoDanoCritico,
+        enemigoPrecision: combate.enemigoPrecision,
+        enemigoEvasion: combate.enemigoEvasion,
+        enemigoNivel: combate.enemigoNivel,
+        enemigoPosicion: combate.enemigoPosicion,
+        efectos: combate.efectosDefensor,
+      });
+      enemigosPve = guardados.length > 0 ? guardados : legado ? [legado] : [];
+      if (enemigosPve.length < 1 || enemigosPve.length > 9) {
+        return NextResponse.json({ error: "La formación de enemigos no es válida." }, { status: 409 });
+      }
+      const solicitado = typeof body.enemigoObjetivoId === "string" && body.enemigoObjetivoId.length <= 100
+        ? body.enemigoObjetivoId
+        : null;
+      const seleccionado = obtenerEnemigoVivoPorId(enemigosPve, solicitado);
+      if (solicitado && !seleccionado) {
+        return NextResponse.json({ error: "El enemigo seleccionado ya no está activo." }, { status: 409 });
+      }
+      if (!seleccionado) {
+        return NextResponse.json({ error: "No quedan enemigos vivos a los que atacar." }, { status: 409 });
+      }
+      enemigoObjetivoId = seleccionado.id;
+      combateParaResolver = {
+        ...combate,
+        enemigoId: seleccionado.enemigoId,
+        enemigoNombre: seleccionado.nombre,
+        enemigoHp: seleccionado.hp,
+        enemigoHpMaximo: seleccionado.hpMaximo,
+        enemigoAtaque: seleccionado.ataque,
+        enemigoAtaqueMagico: seleccionado.ataqueMagico,
+        enemigoDefensa: seleccionado.defensa,
+        enemigoDefensaMagica: seleccionado.defensaMagica,
+        enemigoVelocidad: seleccionado.velocidad,
+        enemigoProbCritico: seleccionado.probCritico,
+        enemigoDanoCritico: seleccionado.danoCritico,
+        enemigoPrecision: seleccionado.precision,
+        enemigoEvasion: seleccionado.evasion,
+        enemigoNivel: seleccionado.nivel,
+        efectosDefensor: seleccionado.efectos as unknown as Prisma.InputJsonValue,
+        enemigoPosicion: seleccionado.posicion,
+      } as CombateAccionPayload;
     }
 
     // ============================================================
@@ -743,7 +805,7 @@ export async function prepararAccionCombate(
     let efectos = obtenerEfectos(combate.efectos);
 
     const cooldownsDefensor = obtenerCooldowns(combate.cooldownsDefensor);
-    let efectosDefensor = obtenerEfectos(combate.efectosDefensor);
+    let efectosDefensor = obtenerEfectos(combateParaResolver.efectosDefensor);
 
     if (accion === "usar_habilidad") {
       const slotsActivos = ["activa_1", "activa_2", "activa_3"];
@@ -845,8 +907,8 @@ export async function prepararAccionCombate(
     const jugadorHp = combate.jugadorHp;
     let jugadorDefensa = combate.jugadorDefensa;
 
-    const enemigoHp = combate.enemigoHp;
-    let enemigoDefensa = combate.enemigoDefensa;
+    const enemigoHp = combateParaResolver.enemigoHp;
+    let enemigoDefensa = combateParaResolver.enemigoDefensa;
 
     const log = Array.isArray(combate.log)
       ? [...(combate.log as string[])]
@@ -915,7 +977,9 @@ export async function prepararAccionCombate(
         personaje,
         bonusCuracion,
         expedicion,
-        combate: combate as CombateAccionPayload,
+        combate: combateParaResolver,
+        enemigos: enemigosPve,
+        enemigoObjetivoId,
         esPvp,
         actor,
         habilidad,
