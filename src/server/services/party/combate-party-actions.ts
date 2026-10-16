@@ -1331,61 +1331,137 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
     }
 
     const log = obtenerLog(combate.log);
-    let enemigoHp = combate.enemigoHp;
-    let enemigoDefensa = combate.enemigoDefensa;
-    let efectosEnemigo = obtenerEfectos(combate.efectosEnemigo);
-    const ticks = procesarEfectosTurno(
-      efectosEnemigo,
-      enemigoHp,
-      combate.enemigoHpMaximo,
-      enemigoDefensa,
-      combate.enemigoNombre,
-    );
-    enemigoHp = ticks.hp;
-    enemigoDefensa = ticks.defensa;
-    efectosEnemigo = ticks.efectos;
-    log.push(...ticks.mensajes);
+    const rosterGuardado = leerEnemigosEnCombate(combate.enemigos);
+    const enemigoLegacy = crearEnemigoLegacy({
+      enemigoId: combate.enemigoId,
+      enemigoNombre: combate.enemigoNombre,
+      enemigoHp: combate.enemigoHp,
+      enemigoHpMaximo: combate.enemigoHpMaximo,
+      enemigoAtaque: combate.enemigoAtaque,
+      enemigoAtaqueMagico: combate.enemigoAtaqueMagico,
+      enemigoDefensa: combate.enemigoDefensa,
+      enemigoDefensaMagica: combate.enemigoDefensaMagica,
+      enemigoVelocidad: combate.enemigoVelocidad,
+      enemigoProbCritico: combate.enemigoProbCritico,
+      enemigoDanoCritico: combate.enemigoDanoCritico,
+      enemigoPrecision: combate.enemigoPrecision,
+      enemigoEvasion: combate.enemigoEvasion,
+      enemigoNivel: combate.enemigoNivel,
+      efectos: combate.efectosEnemigo,
+    });
+    let enemigosEnCombate: EnemigoEnCombate[] = rosterGuardado.length > 0
+      ? rosterGuardado
+      : enemigoLegacy ? [enemigoLegacy] : [];
+    if (enemigosEnCombate.length === 0) {
+      throw new PartyServiceError("El combate no contiene enemigos válidos.", 500, "ROSTER_ENEMIGO_INVALIDO");
+    }
 
-    let accion: AccionAnimadaCombate;
-    const objetivo = obtenerParticipantesVivos(obtenerEstadoParticipantes(combate.participantes))
-      .map((vivo) => combate.participantes.find((p) => p.usuarioId === vivo.usuarioId)!)
-      .sort((a, b) =>
-        a.jugadorHp / Math.max(1, a.jugadorHpMaximo) -
-        b.jugadorHp / Math.max(1, b.jugadorHpMaximo) ||
-        a.ordenTurno - b.ordenTurno,
-      )[0];
+    // Cada enemigo vivo procesa sus estados y, si sobrevive, ataca una vez.
+    let participantesActualizados = obtenerEstadoParticipantes(combate.participantes);
+    const danoPorUsuario = new Map<string, number>();
+    const impactos: { actorEnemigoId: string; objetivoUsuarioId: string; dano: number; critico: boolean }[] = [];
+    const actoresEnemigoIds: string[] = [];
+    for (const enemigoInicial of [...enemigosEnCombate].sort((a, b) => a.casilla - b.casilla)) {
+      const indiceEnemigo = enemigosEnCombate.findIndex((enemigo) => enemigo.id === enemigoInicial.id);
+      let enemigo = enemigosEnCombate[indiceEnemigo];
+      if (enemigo.hp <= 0) continue;
 
-    if (enemigoHp <= 0) {
-      accion = {
-        actor: "enemigo",
-        tipo: "fallo",
-        animacion: "ofensiva",
-        dano: 0,
-        critico: false,
-        texto: `🏆 ${combate.enemigoNombre} cae por los efectos acumulados.`,
+      const efectosIniciales = obtenerEfectos(enemigo.efectos);
+      const ticks = procesarEfectosTurno(
+        efectosIniciales,
+        enemigo.hp,
+        enemigo.hpMaximo,
+        enemigo.defensa,
+        enemigo.nombre,
+      );
+      enemigo = {
+        ...enemigo,
+        hp: ticks.hp,
+        defensa: ticks.defensa,
+        efectos: ticks.efectos,
       };
-    } else if (!objetivo) {
-      accion = {
-        actor: "enemigo",
-        tipo: "fallo",
-        animacion: "ofensiva",
-        dano: 0,
-        critico: false,
-        texto: "No quedan aventureros capaces de continuar.",
-      };
-    } else {
+      log.push(...ticks.mensajes.map((mensaje) => enemigo.nombre + ": " + mensaje));
+      if (enemigo.hp <= 0) {
+        log.push(`☠️ ${enemigo.nombre} cae por los efectos acumulados.`);
+        enemigosEnCombate[indiceEnemigo] = enemigo;
+        continue;
+      }
+
+      const objetivo = participantesActualizados
+        .filter((p) => p.estado === "activo" && p.jugadorHp > 0)
+        .map((p) => combate.participantes.find((miembro) => miembro.usuarioId === p.usuarioId)!)
+        .sort((a, b) =>
+          (a.jugadorHp - (danoPorUsuario.get(a.usuarioId) ?? 0)) / Math.max(1, a.jugadorHpMaximo) -
+          (b.jugadorHp - (danoPorUsuario.get(b.usuarioId) ?? 0)) / Math.max(1, b.jugadorHpMaximo) ||
+          a.ordenTurno - b.ordenTurno,
+        )[0];
+      if (!objetivo) break;
+
+      const participanteHpActual = Math.max(0, objetivo.jugadorHp - (danoPorUsuario.get(objetivo.usuarioId) ?? 0));
       const efectosObjetivo = obtenerEfectos(objetivo.efectos);
-      accion = resolverAtaqueEnemigo({
-        enemigoAtaque: calcularAtaqueModificado(combate.enemigoAtaque, efectosEnemigo),
-        enemigoProbCritico: combate.enemigoProbCritico,
-        enemigoDanoCritico: combate.enemigoDanoCritico,
-        enemigoPrecision: calcularPrecisionModificada(combate.enemigoPrecision, efectosEnemigo),
+      const accionEnemiga = resolverAtaqueEnemigo({
+        enemigoAtaque: calcularAtaqueModificado(enemigo.ataque, enemigo.efectos),
+        enemigoProbCritico: enemigo.probCritico,
+        enemigoDanoCritico: enemigo.danoCritico,
+        enemigoPrecision: calcularPrecisionModificada(enemigo.precision, enemigo.efectos),
         jugadorEvasion: calcularEvasionModificada(objetivo.jugadorEvasion, efectosObjetivo),
         jugadorDefensa: objetivo.jugadorDefensa,
-        enemigoNombre: combate.enemigoNombre,
+        enemigoNombre: enemigo.nombre,
       });
+      danoPorUsuario.set(objetivo.usuarioId, (danoPorUsuario.get(objetivo.usuarioId) ?? 0) + accionEnemiga.dano);
+      actoresEnemigoIds.push(enemigo.id);
+      impactos.push({
+        actorEnemigoId: enemigo.id,
+        objetivoUsuarioId: objetivo.usuarioId,
+        dano: accionEnemiga.dano,
+        critico: accionEnemiga.critico,
+      });
+      log.push(accionEnemiga.texto);
+      const hpFinalPrevisto = Math.max(0, participanteHpActual - accionEnemiga.dano);
+      if (hpFinalPrevisto <= 0) {
+        log.push(`💀 ${objetivo.usuarioId} cae ante ${enemigo.nombre}.`);
+        // Los enemigos posteriores pueden dirigir sus ataques contra otros aliados vivos.
+        participantesActualizados = participantesActualizados.map((p) =>
+          p.usuarioId === objetivo.usuarioId ? { ...p, jugadorHp: 0, estado: "caido" } : p,
+        );
+      }
+
+      const avances = avanzarEfectosCombate(enemigo.efectos, enemigo.defensa);
+      enemigo = { ...enemigo, efectos: avances.efectos, defensa: avances.defensa };
+      log.push(...avances.mensajes.map((mensaje) => enemigo.nombre + ": " + mensaje));
+      enemigosEnCombate[indiceEnemigo] = enemigo;
     }
-    log.push(accion.texto);
+
+    const totalDanoEnemigos = impactos.reduce((total, impacto) => total + impacto.dano, 0);
+    const primerImpacto = impactos[0];
+    const accion: AccionAnimadaCombate = impactos.length > 0 ? {
+      actor: "enemigo",
+      actorEnemigoId: primerImpacto.actorEnemigoId,
+      actoresEnemigoIds,
+      objetivoUsuarioId: primerImpacto.objetivoUsuarioId,
+      dano: totalDanoEnemigos,
+      critico: impactos.some((impacto) => impacto.critico),
+      tipo: "ataque",
+      animacion: "ofensiva",
+      texto: impactos.length === 1
+        ? `Los enemigos atacan: ${primerImpacto.objetivoUsuarioId} recibe ${totalDanoEnemigos} de daño.`
+        : `${impactos.length} enemigos atacan; el grupo recibe ${totalDanoEnemigos} de daño en total.`,
+    } : {
+      actor: "enemigo",
+      tipo: "fallo",
+      animacion: "ofensiva",
+      dano: 0,
+      critico: false,
+      texto: "No quedan enemigos capaces de atacar.",
+    };
+    if (impactos.length > 1) {
+      accion.pulsosEstado = impactos.map((impacto) => ({
+        objetivo: "jugador" as const,
+        objetivoUsuarioId: impacto.objetivoUsuarioId,
+        tipo: "dano" as const,
+        cantidad: impacto.dano,
+      }));
+    }
 
     // El cooldown avanza una vez por ronda completa, al terminar el turno enemigo.
     for (const miembro of combate.participantes) {
