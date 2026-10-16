@@ -39,8 +39,9 @@ test("PvE, party y asedio montan la capa con anclas de todos los combatientes", 
   for (const contenido of [pveParty, asedio]) {
     assert.match(contenido, /<CapaEfectosCombate proyectiles=\{proyectilesVisibles\} \/>/);
     assert.match(contenido, /data-combate-ancla="jugador"/);
-    assert.match(contenido, /data-combate-ancla="enemigo"/);
   }
+  assert.match(pveParty, /data-combate-ancla=\{enemigo\.id\}/, "cada enemigo debe aportar su propia ancla");
+  assert.match(asedio, /data-combate-ancla="enemigo"/, "el asedio PvP conserva su ancla singular");
   assert.match(pveParty, /data-combate-ancla=\{participante\.usuarioId\}/);
 });
 
