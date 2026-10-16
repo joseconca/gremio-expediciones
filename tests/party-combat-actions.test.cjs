@@ -101,7 +101,6 @@ function loadService(prisma, testOptions = {}) {
         tipo: "activa", efecto: "dano", costeEnergia: 5, costeMana: 0, cooldownTurnos: 2, multiplicadorDano: 1.5,
       } : undefined),
     },
-    "@/lib/expediciones/objetivos-combate": require("../src/lib/expediciones/objetivos-combate.ts"),
     "@/lib/objetos": {
       obtenerObjetoPorId: (id) => id === "pocion" ? {
         id: "pocion", nombre: "Poción", tipo: "consumible", curacion: 30,
@@ -503,6 +502,77 @@ test("una habilidad activa equipada aplica daño, gasta recursos y guarda cooldo
   assert.equal(calls.participantWrites.some((c) => c.data.efectos), true);
   assert.equal(calls.resourceWrites.some((c) => c.data.energiaActual?.decrement === 5), true);
   assert.equal(calls.resourceWrites.some((c) => c.data.manaActual?.decrement === 0), true);
+});
+
+test("un ataque básico golpea al enemigo seleccionado y no modifica el HP de los demás", async () => {
+  const combat = mkCombat({
+    enemigos: [
+      {
+        id: "enemigo-1", enemigoId: "slime", nombre: "Slime frontal", difMin: 2,
+        casilla: 1, posicion: "mele", columna: 1, hp: 60, hpMaximo: 60,
+        ataque: 12, ataqueMagico: 8, defensa: 4, defensaMagica: 3,
+        velocidad: 5, probCritico: 0.1, danoCritico: 2, precision: 75, evasion: 0, nivel: 2, efectos: [],
+      },
+      {
+        id: "enemigo-2", enemigoId: "raton", nombre: "Ratón del fondo", difMin: 1,
+        casilla: 4, posicion: "centro", columna: 1, hp: 30, hpMaximo: 30,
+        ataque: 7, ataqueMagico: 5, defensa: 2, defensaMagica: 2,
+        velocidad: 6, probCritico: 0.1, danoCritico: 2, precision: 75, evasion: 0, nivel: 1, efectos: [],
+      },
+    ],
+  });
+  const { prisma } = mockPrisma(combat);
+  const service = loadService(prisma);
+  const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "atacar", {
+    enemigoObjetivoId: "enemigo-2",
+  });
+
+  assert.equal(combat.enemigos[0].hp, 60);
+  assert.equal(combat.enemigos[1].hp, 18);
+  assert.equal(result.enemigoHp, 60, "el campo heredado representa al primer enemigo vivo, no el seleccionado");
+  assert.equal(result.accion.enemigoObjetivoId, "enemigo-2");
+});
+
+test("Bola de fuego aplica daño independiente al objetivo y a sus enemigos adyacentes", async () => {
+  const combat = mkCombat({
+    enemigos: [
+      {
+        id: "enemigo-1", enemigoId: "slime", nombre: "Slime frontal", difMin: 2,
+        casilla: 1, posicion: "mele", columna: 1, hp: 60, hpMaximo: 60,
+        ataque: 12, ataqueMagico: 8, defensa: 4, defensaMagica: 3,
+        velocidad: 5, probCritico: 0.1, danoCritico: 2, precision: 75, evasion: 0, nivel: 2, efectos: [],
+      },
+      {
+        id: "enemigo-2", enemigoId: "raton", nombre: "Ratón del fondo", difMin: 1,
+        casilla: 4, posicion: "centro", columna: 1, hp: 30, hpMaximo: 30,
+        ataque: 7, ataqueMagico: 5, defensa: 2, defensaMagica: 2,
+        velocidad: 6, probCritico: 0.1, danoCritico: 2, precision: 75, evasion: 0, nivel: 1, efectos: [],
+      },
+    ],
+  });
+  const { prisma, options: opcionesServicio } = mockPrisma(combat, {
+    habilidades: [{ habilidadId: "bola_fuego", nivel: 1, slot: "activa_1" }],
+    habilidadesPorId: {
+      bola_fuego: {
+        id: "bola_fuego", claseId: "novato", nombre: "Bola de fuego", descripcion: "Explosión adyacente.",
+        tipo: "activa", efecto: "dano", costeEnergia: 1, cooldownTurnos: 2,
+        objetivo: { equipo: "enemigo", patron: "adyacentes" },
+      },
+    },
+  });
+  const service = loadService(prisma, opcionesServicio);
+  const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad", {
+    habilidadId: "bola_fuego",
+    enemigoObjetivoId: "enemigo-2",
+  });
+
+  assert.deepEqual(combat.enemigos.map((enemigo) => enemigo.hp), [40, 10]);
+  assert.deepEqual(result.accion.objetivosEnemigoIds, ["enemigo-1", "enemigo-2"]);
+  assert.deepEqual(
+    result.accion.impactosMultiples.map((impacto) => [impacto.objetivoId, impacto.dano]),
+    [["enemigo-1", 20], ["enemigo-2", 20]],
+  );
+  assert.equal(result.enemigoHp, 40);
 });
 
 test("una curación individual de party se aplica y persiste en el aliado seleccionado", async () => {
