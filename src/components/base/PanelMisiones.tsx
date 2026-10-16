@@ -186,7 +186,7 @@ function PanelMovimientosReino({
           return (
             <article
               key={asedio.id}
-              className="relative isolate w-full overflow-hidden border border-[#94704c] bg-[linear-gradient(155deg,#e5d2ac_0%,#d7bc90_58%,#c7a77b_100%)] text-[#3d281d] shadow-[2px_4px_0_rgba(0,0,0,0.32),inset_0_0_0_2px_rgba(255,241,211,0.25)] transition-transform duration-200 hover:-translate-y-0.5"
+              className="relative isolate w-full overflow-hidden border border-[#a45449] bg-[linear-gradient(155deg,#f1c9bd_0%,#e5aaa0_58%,#d48b81_100%)] text-[#49231f] shadow-[2px_4px_0_rgba(0,0,0,0.32),inset_0_0_0_2px_rgba(255,231,220,0.32)] transition-transform duration-200 hover:-translate-y-0.5"
               style={{ clipPath: "polygon(0.8% 0, 100% 0.8%, 99.4% 97.5%, 97.5% 100%, 0 99%)" }}
             >
               <span aria-hidden="true" className="absolute left-1/2 top-1.5 z-10 h-3 w-3 -translate-x-1/2 rounded-full border border-[#52221c] bg-[#782b22] shadow-[0_1px_2px_rgba(0,0,0,0.65),inset_0_1px_1px_rgba(255,220,180,0.5)]" />
@@ -238,9 +238,9 @@ function PanelMovimientosReino({
             className="relative max-h-[90vh] w-full max-w-xl overflow-y-auto border-2 border-[#87623a] bg-[linear-gradient(145deg,#261c10_0%,#15100a_100%)] p-2.5 text-[#f8edcf] shadow-[0_24px_80px_rgba(0,0,0,0.75)] sm:p-4"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="relative overflow-hidden border border-[#73502b] bg-[linear-gradient(155deg,#eadbb8_0%,#dec99e_54%,#cdb486_100%)] text-[#3e2b1b]">
+            <div className={`relative overflow-hidden border ${caravanaActiva ? "border-[#73502b] bg-[linear-gradient(155deg,#eadbb8_0%,#dec99e_54%,#cdb486_100%)] text-[#3e2b1b]" : "border-[#a45449] bg-[linear-gradient(155deg,#f1c9bd_0%,#e5aaa0_54%,#d48b81_100%)] text-[#49231f]"}`}>
               <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-35">
-                <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent_0,transparent_23px,rgba(106,75,39,0.12)_24px,transparent_25px)]" />
+                <div className={`absolute inset-0 ${caravanaActiva ? "bg-[repeating-linear-gradient(0deg,transparent_0,transparent_23px,rgba(106,75,39,0.12)_24px,transparent_25px)]" : "bg-[repeating-linear-gradient(0deg,transparent_0,transparent_23px,rgba(124,42,35,0.15)_24px,transparent_25px)]"}`} />
               </div>
               <span aria-hidden="true" className="absolute left-1/2 top-2 z-10 h-3 w-3 -translate-x-1/2 rounded-full border border-[#6d281e] bg-[#a43c2b] shadow-md" />
               <header className="relative flex items-start justify-between gap-3 border-b border-dashed border-[#957448] px-4 pb-3 pt-6 sm:px-5">
@@ -553,9 +553,16 @@ export default function PanelMisiones({
 
           {/* AVENTURERO DE VIAJE */}
           {personaje.estado === "de_viaje" && expedicionActiva && (
-            <div className="relative rounded-lg border border-slate-700 bg-slate-900/50 p-3 transition-colors hover:border-amber-500/50 sm:p-4">
+            <div
+              className={`relative isolate w-full overflow-hidden border p-3 text-[#352b25] shadow-[2px_4px_0_rgba(0,0,0,0.28),inset_0_0_0_2px_rgba(255,255,255,0.38)] transition-transform duration-200 hover:-translate-y-0.5 sm:p-4 ${expedicionActiva.tipo === "comercio" ? "border-[#92744a] bg-[linear-gradient(155deg,#eadbb8_0%,#dec99e_54%,#cdb486_100%)]" : expedicionActiva.tipo === "asedio" ? "border-[#a45449] bg-[linear-gradient(155deg,#f1c9bd_0%,#e5aaa0_54%,#d48b81_100%)]" : "border-[#b8b7ab] bg-[linear-gradient(155deg,#fffef8_0%,#f0efe8_54%,#deddd3_100%)]"}`}
+              style={{ clipPath: "polygon(0 0, 98.8% 0.6%, 100% 2.5%, 99.5% 98%, 97% 100%, 1% 99.2%, 0 97%)" }}
+            >
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 opacity-35">
+                <div className={`absolute inset-0 ${expedicionActiva.tipo === "asedio" ? "bg-[repeating-linear-gradient(0deg,transparent_0,transparent_21px,rgba(124,42,35,0.15)_22px,transparent_23px)]" : expedicionActiva.tipo === "comercio" ? "bg-[repeating-linear-gradient(0deg,transparent_0,transparent_21px,rgba(106,75,39,0.12)_22px,transparent_23px)]" : "bg-[repeating-linear-gradient(0deg,transparent_0,transparent_21px,rgba(65,65,58,0.10)_22px,transparent_23px)]"}`} />
+              </div>
+              <span aria-hidden="true" className={`absolute left-1/2 top-1.5 z-20 h-3 w-3 -translate-x-1/2 rounded-full border shadow-[0_1px_2px_rgba(0,0,0,0.65),inset_0_1px_1px_rgba(255,240,220,0.6)] ${expedicionActiva.tipo === "asedio" ? "border-[#52221c] bg-[#782b22]" : expedicionActiva.tipo === "comercio" ? "border-[#6d281e] bg-[#a43c2b]" : "border-[#77756b] bg-[#9d9b90]"}`} />
               <div
-                className="flex cursor-pointer flex-col items-center justify-between gap-4 md:flex-row"
+                className="relative z-10 flex cursor-pointer flex-col items-center justify-between gap-4 px-1 pb-1 pt-5 md:flex-row"
                 onClick={onToggleExpedicion}
                 onKeyDown={(event) => {
                   if (event.key === "Enter" || event.key === " ") {
@@ -568,11 +575,11 @@ export default function PanelMisiones({
                 aria-expanded={expedicionExpandida}
               >
                 <div className="flex min-w-0 items-center gap-3">
-                  <p className="font-bold text-amber-400">
+                  <p className={`font-serif font-black ${expedicionActiva.tipo === "asedio" ? "text-[#722a24]" : expedicionActiva.tipo === "comercio" ? "text-[#4d3a20]" : "text-[#343b3a]"}`}>
                     {expedicionActiva.nombre}
                   </p>
 
-                  <p className="text-sm text-slate-400">
+                  <p className={`text-sm ${expedicionActiva.tipo === "asedio" ? "text-[#713d37]" : expedicionActiva.tipo === "comercio" ? "text-[#664a2d]" : "text-[#515651]"}`}>
                     {expedicionActiva.fase === "combatiendo"
                       ? `⚔️ ${personaje.nombre} está combatiendo`
                       : listoParaResolver
@@ -603,13 +610,13 @@ export default function PanelMisiones({
                       : "⚔️ Enfrentarse al enemigo"}
                   </button>
                 ) : (
-                  <div className="rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-center font-mono text-xl text-slate-300 sm:px-4 sm:text-2xl">
+                  <div className={`border px-3 py-2 text-center font-mono text-xl shadow-inner sm:px-4 sm:text-2xl ${expedicionActiva.tipo === "asedio" ? "border-[#ad6157] bg-[#f7d9d2]/70 text-[#792e28]" : expedicionActiva.tipo === "comercio" ? "border-[#a58a58] bg-[#f6e8c7]/75 text-[#4c653b]" : "border-[#bbb9ad] bg-[#fffef7]/75 text-[#505c55]"}`}>
                     ⏳ {formatoTiempo(tiempoRestante)}
                   </div>
                 )}
 
                 <span
-                  className="pointer-events-none absolute right-1 top-15 text-lg leading-none text-slate-500"
+                  className={`pointer-events-none absolute right-1 top-15 z-10 text-lg leading-none ${expedicionActiva.tipo === "asedio" ? "text-[#8a3027]" : expedicionActiva.tipo === "comercio" ? "text-[#785b31]" : "text-[#72746c]"}`}
                   aria-hidden="true"
                 >
                   {expedicionExpandida ? "⌃" : "⌄"}
@@ -618,7 +625,7 @@ export default function PanelMisiones({
 
               {expedicionExpandida && (
                 <div
-                  className="mt-4 overflow-hidden rounded-lg border border-slate-700 bg-slate-900"
+                  className="relative z-10 mt-4 overflow-hidden rounded-lg border border-slate-700 bg-slate-900"
                   onClick={(event) => event.stopPropagation()}
                 >
                   <div className="h-[280px] w-full sm:h-[360px]">
