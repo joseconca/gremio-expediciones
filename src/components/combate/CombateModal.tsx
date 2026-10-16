@@ -11,7 +11,8 @@ import { useAnimacionesCombate } from "@/components/combate/animaciones/useAnima
 import { resolverDestinosVisualesAccion } from "@/lib/expediciones/destinos-animacion-combate";
 import CapaEfectosCombate from "@/components/combate/animaciones/CapaEfectosCombate";
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
-import type { ObjetoInventario } from "@/lib/tiposJuego";
+import type { ObjetoInventario, ReglaObjetivoHabilidad } from "@/lib/tiposJuego";
+import { obtenerReglaObjetivoHabilidad } from "@/lib/expediciones/objetivos-combate";
 import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 
@@ -98,6 +99,8 @@ interface HabilidadCombate {
   nombre: string;
   descripcion: string;
   tipo: "activa" | "pasiva";
+  efecto?: string;
+  objetivo?: ReglaObjetivoHabilidad;
   rareza: string;
   precio: number;
   costeEnergia?: number;
@@ -150,9 +153,8 @@ export default function CombateModal({
   const [mostrarObjetos, setMostrarObjetos] = useState(false);
   const [objetoSeleccionadoId, setObjetoSeleccionadoId] = useState<string | null>(null);
   const [logExpandido, setLogExpandido] = useState(false);
-  const [habilidadSeleccionadaId, setHabilidadSeleccionadaId] = useState<
-    string | null
-  >(null);
+  const [habilidadSeleccionadaId, setHabilidadSeleccionadaId] = useState<string | null>(null);
+  const [objetivoHabilidadId, setObjetivoHabilidadId] = useState<string | null>(null);
   const [mostrarResultado, setMostrarResultado] = useState(false);
 
   /*
@@ -358,7 +360,7 @@ export default function CombateModal({
     }
   };
 
-  const ejecutarHabilidad = async (habilidadId: string) => {
+  const ejecutarHabilidad = async (habilidadId: string, objetivoId?: string | null) => {
     if (
       accionEnCurso.current ||
       procesando ||
@@ -370,7 +372,10 @@ export default function CombateModal({
     setProcesandoLocal(true);
     setMostrarHabilidades(false);
     try {
-      const accion = await solicitarAccion("usar_habilidad", habilidadId);
+      const payloadHabilidad = partyMode
+        ? JSON.stringify({ habilidadId, ...(objetivoId ? { objetivoId } : {}) })
+        : habilidadId;
+      const accion = await solicitarAccion("usar_habilidad", payloadHabilidad);
       if (!accion) return;
       await mostrarResultadoAccion(accion, partyMode?.usuarioId);
     } finally {
@@ -491,6 +496,55 @@ export default function CombateModal({
 
   const habilidadSeleccionada = habilidades.find(
     (h) => h.habilidadId === habilidadSeleccionadaId
+  );
+  const reglaObjetivoSeleccionada = habilidadSeleccionada
+    ? obtenerReglaObjetivoHabilidad(habilidadSeleccionada.habilidad)
+    : null;
+  const objetivosDisponibles = !reglaObjetivoSeleccionada
+    ? []
+    : reglaObjetivoSeleccionada.equipo === "enemigo"
+      ? [{
+          id: "enemigo",
+          nombre: combate.enemigoNombre || "Enemigo",
+          detalle: "Enemigo · " + ETIQUETAS_POSICION_COMBATE[normalizarPosicionCombate(combate.enemigoPosicion)],
+        }]
+      : reglaObjetivoSeleccionada.equipo === "propio"
+        ? [{
+            id: partyMode?.usuarioId ?? personaje.id ?? "jugador",
+            nombre: personaje.nombre,
+            detalle: "Tu aventurero",
+          }]
+        : partyMode
+          ? partyMode.participantes
+              .filter((p) => p.estado === "activo" && p.jugadorHp > 0)
+              .map((p) => ({
+                id: p.usuarioId,
+                nombre: p.nombre,
+                detalle: "Aliado · " + ETIQUETAS_POSICION_COMBATE[normalizarPosicionCombate(p.jugadorPosicion)],
+              }))
+              .filter((p) => reglaObjetivoSeleccionada.incluirPropio !== false || p.id !== partyMode.usuarioId)
+          : [{
+              id: personaje.id ?? "jugador",
+              nombre: personaje.nombre,
+              detalle: "Tú · objetivo propio",
+            }];
+  const objetivoElegidoId = objetivosDisponibles.some((o) => o.id === objetivoHabilidadId)
+    ? objetivoHabilidadId
+    : objetivosDisponibles[0]?.id ?? null;
+  const patronObjetivoEtiqueta = reglaObjetivoSeleccionada?.patron === "adyacentes"
+    ? "Casillas adyacentes"
+    : reglaObjetivoSeleccionada?.patron === "fila"
+      ? "Toda la fila"
+      : reglaObjetivoSeleccionada?.patron === "columna"
+        ? "Toda la columna"
+        : reglaObjetivoSeleccionada?.patron === "todos"
+          ? "Todos los objetivos válidos"
+          : "Objetivo individual";
+  const necesitaSeleccionObjetivo = Boolean(
+    reglaObjetivoSeleccionada &&
+    reglaObjetivoSeleccionada.patron !== "todos" &&
+    reglaObjetivoSeleccionada.equipo !== "propio" &&
+    objetivosDisponibles.length > 1
   );
 
   return (
@@ -1111,7 +1165,7 @@ export default function CombateModal({
                       return (
                         <button
                           key={h.id}
-                          onClick={() => void ejecutarHabilidad(h.habilidadId)}
+                          onClick={() => setHabilidadSeleccionadaId(h.habilidadId)}
                           onMouseEnter={() =>
                             setHabilidadSeleccionadaId(h.habilidadId)
                           }
@@ -1150,7 +1204,7 @@ export default function CombateModal({
                               </span>
                             ) : (
                               <span className="text-[9px] sm:text-[10px] font-black tracking-widest text-stone-500 group-hover:text-emerald-400 transition-colors">
-                                USAR
+                                {seleccionada ? "SELECCIONADA" : "ELEGIR"}
                               </span>
                             )}
                           </div>
@@ -1216,6 +1270,45 @@ export default function CombateModal({
                     )}
                   </div>
                 </div>
+                {habilidadSeleccionada && (
+                  <div className="mt-2 grid shrink-0 grid-cols-1 gap-2 rounded border border-indigo-900/50 bg-stone-950/90 p-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:px-3">
+                    <div className="min-w-0">
+                      <label htmlFor="objetivo-habilidad-combate" className="mb-1 block text-[9px] font-black uppercase tracking-[0.15em] text-stone-500">
+                        {patronObjetivoEtiqueta}
+                      </label>
+                      {reglaObjetivoSeleccionada?.patron === "todos" ? (
+                        <p className="text-xs font-semibold text-indigo-200">Se afectará a todos los objetivos válidos.</p>
+                      ) : necesitaSeleccionObjetivo ? (
+                        <select
+                          id="objetivo-habilidad-combate"
+                          value={objetivoElegidoId ?? ""}
+                          onChange={(event) => setObjetivoHabilidadId(event.target.value)}
+                          className="min-h-9 w-full rounded border border-stone-700 bg-stone-900 px-2 text-xs font-semibold text-stone-100 outline-none focus:border-indigo-500"
+                          aria-label="Seleccionar objetivo de la habilidad"
+                        >
+                          {objetivosDisponibles.map((objetivo) => (
+                            <option key={objetivo.id} value={objetivo.id}>
+                              {objetivo.nombre} · {objetivo.detalle}
+                            </option>
+                          ))}
+                        </select>
+                      ) : (
+                        <p className="truncate text-xs font-semibold text-indigo-200">
+                          {objetivosDisponibles[0]?.nombre ?? "Sin objetivos válidos"}
+                          {objetivosDisponibles[0]?.detalle ? " · " + objetivosDisponibles[0].detalle : ""}
+                        </p>
+                      )}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => void ejecutarHabilidad(habilidadSeleccionada.habilidadId, objetivoElegidoId)}
+                      disabled={!puedeActuarJugador || procesando || procesandoLocal || objetivosDisponibles.length === 0}
+                      className="min-h-10 rounded border border-indigo-700 bg-indigo-950 px-4 py-2 text-[10px] font-black tracking-widest text-indigo-200 transition hover:bg-indigo-900 disabled:cursor-not-allowed disabled:opacity-40 sm:min-w-36"
+                    >
+                      LANZAR HABILIDAD
+                    </button>
+                  </div>
+                )}
               </div>
             ) : (
               /* ESTADO B: MOSTRAR REGISTRO (LOG) */
