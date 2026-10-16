@@ -200,7 +200,7 @@ export async function iniciarExpedicionParty(
     throw new PartyServiceError("El personaje líder no está disponible en la base.", 409, "PERSONAJE_NO_DISPONIBLE");
   }
 
-  const coordenadasOrigen = exigirCoordenadas(lider.baseCoords, "la base del líder");
+  exigirCoordenadas(lider.baseCoords, "la base del líder");
   const misionInicial = obtenerMisionDisponible(lider, misionId, ahoraInicial);
 
   const miembrosIniciales = await prisma.partyMember.findMany({
