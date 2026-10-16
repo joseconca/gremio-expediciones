@@ -18,6 +18,8 @@ test("las habilidades se ejecutan desde la lista o al tocar el objetivo, sin bot
 test("la derrota presenta oro, XP Base y Job, recursos asegurados y botín realmente obtenido", () => {
   const modal = leer("src/components/combate/CombateModal.tsx");
   const accionesPve = leer("src/server/services/combate/pve.ts");
+  const accionesParty = leer("src/server/services/party/combate-party-actions.ts");
+  const panelParty = leer("src/components/base/PanelParty.tsx");
   const base = leer("src/app/base/page.tsx");
   assert.match(modal, /Informe de combate/);
   assert.match(modal, /Experiencia Base/);
@@ -30,4 +32,10 @@ test("la derrota presenta oro, XP Base y Job, recursos asegurados y botín realm
   assert.match(accionesPve, /Botín obtenido:/);
   assert.match(accionesPve, /⭐ Job XP:/);
   assert.match(base, /recompensa=\{expedicionActiva\.recompensa\}/);
+  assert.match(accionesParty, /calcularRecompensasParcialesDerrota/);
+  assert.match(accionesParty, /faseResultado === "derrota"/);
+  assert.match(accionesParty, /for \(const entradaEnemigo of definicionesRecompensables\)/);
+  assert.match(accionesParty, /recompensasResultado: resultadoRecompensas/);
+  assert.match(panelParty, /recompensas: combate\.fase === "victoria" \|\| combate\.fase === "derrota"/);
+  assert.match(panelParty, /recompensaInforme=\{recompensaInformeParty/);
 });
