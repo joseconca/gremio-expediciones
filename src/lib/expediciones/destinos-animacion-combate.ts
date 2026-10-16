@@ -46,7 +46,9 @@ export function resolverDestinosVisualesAccion(input: {
 
   let actorVisual: string;
   if (contexto.modo === "party") {
-    actorVisual = accion.actor === "enemigo" ? "enemigo" : actorUsuarioId ?? contexto.usuarioId;
+    actorVisual = accion.actor === "enemigo"
+      ? accion.actorEnemigoId ?? accion.actoresEnemigoIds?.[0] ?? "enemigo"
+      : actorUsuarioId ?? contexto.usuarioId;
   } else if (contexto.modo === "pvp" && !contexto.esAtacante) {
     actorVisual = opuesto(accion.actor);
   } else {
@@ -57,7 +59,9 @@ export function resolverDestinosVisualesAccion(input: {
   if (contexto.modo === "party") {
     objetivoVisual = objetivoUsuarioId ?? (soporte
       ? actorVisual
-      : accion.actor === "enemigo" ? contexto.usuarioId : "enemigo");
+      : accion.actor === "enemigo" ? contexto.usuarioId : accion.enemigoObjetivoId ?? "enemigo");
+  } else if (accion.enemigoObjetivoId) {
+    objetivoVisual = accion.enemigoObjetivoId;
   } else {
     objetivoVisual = soporte ? actorVisual : opuesto(actorVisual as "jugador" | "enemigo");
   }
