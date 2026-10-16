@@ -446,11 +446,11 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             ? textos[0]
             : `${impactos.length} enemigos atacan e infligen ${danoTotal} de daño total.`,
           ...(impactos.length > 1 ? {
-            pulsosEstado: impactos.filter((impacto) => impacto.dano > 0).map((impacto) => ({
-              objetivo: "jugador" as const,
-              tipo: "dano" as const,
-              cantidad: impacto.dano,
-            })),
+            impactosMultiples: [{
+              objetivoId: "jugador",
+              dano: danoTotal,
+              critico: impactos.some((impacto) => impacto.critico),
+            }],
           } : {}),
         } : {
           actor: "enemigo",
