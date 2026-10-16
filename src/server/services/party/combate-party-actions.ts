@@ -40,6 +40,7 @@ import {
 import { otorgarExperienciaJob } from "@/server/services/combate/accion-combate";
 import { reducirCooldowns, obtenerCooldowns } from "@/server/services/combate/accion-combate";
 import { calcularFechasRegresoProgramadas } from "@/lib/expediciones/tiempos";
+import { calcularRecompensasParcialesDerrota } from "@/lib/expediciones/recompensas-derrota";
 import { leerCoordenadasBase } from "@/lib/party/reglas";
 import { obtenerReglaObjetivoHabilidad, resolverObjetivosHabilidad } from "@/lib/expediciones/objetivos-combate";
 import { crearEnemigoLegacy, leerEnemigosEnCombate, obtenerEnemigoVivoPorId, type EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
@@ -411,6 +412,7 @@ async function liquidarRecompensasParty(
   tx: Prisma.TransactionClient,
   expedicionPartyId: string,
   combatePartyId: string,
+  faseResultado: "victoria" | "derrota" = "victoria",
 ) {
   const combate = await tx.combateParty.findUnique({
     where: { id: combatePartyId },
@@ -419,8 +421,8 @@ async function liquidarRecompensasParty(
   if (!combate) {
     throw new PartyServiceError("No se encontró el combate para liquidar las recompensas.", 404, "COMBATE_PARTY_NO_ENCONTRADO");
   }
-  if (combate.fase !== "victoria") {
-    throw new PartyServiceError("Solo se liquidan recompensas tras una victoria.", 409, "COMBATE_PARTY_NO_VICTORIA");
+  if (combate.fase !== faseResultado) {
+    throw new PartyServiceError("La fase del combate no coincide con la liquidación de recompensas.", 409, "COMBATE_PARTY_RESULTADO_NO_COINCIDE");
   }
   if (combate.recompensasResueltas) {
     return { liquidacionYaResuelta: true, recompensas: [] as unknown[] };
@@ -486,22 +488,35 @@ async function liquidarRecompensasParty(
     .map((snapshot) => ({ snapshot, definicion: obtenerEnemigoPorId(snapshot.enemigoId) }))
     .filter((entrada): entrada is { snapshot: EnemigoEnCombate; definicion: NonNullable<ReturnType<typeof obtenerEnemigoPorId>> } => Boolean(entrada.definicion));
   if (definicionesEnemigos.length === 0) {
-    throw new PartyServiceError("No se pudieron resolver las criaturas derrotadas para las recompensas.", 500, "RECOMPENSAS_ENEMIGOS_INVALIDOS");
+    throw new PartyServiceError("No se pudieron resolver las criaturas del combate para las recompensas.", 500, "RECOMPENSAS_ENEMIGOS_INVALIDOS");
   }
   const modoDificultad = esModoDificultad(expedicion.modoDificultad) ? expedicion.modoDificultad : "normal";
-  const oroEnemigo = definicionesEnemigos.reduce(
-    (total, entrada) => total + calcularOroEnemigo(entrada.definicion.botin, entrada.snapshot.difMin),
-    0,
-  );
-  const oroTotal = aplicarMultiplicadorRecompensa(recompensaMision.oro + oroEnemigo, modoDificultad);
   const totalMiembros = participantes.length;
   const primerPersonaje = (participantes.find((p) => porUsuario.get(p.usuarioId)?.estado !== "huyo") ?? participantes[0])?.personaje;
   if (!primerPersonaje) {
     throw new PartyServiceError("Uno de los integrantes ya no tiene personaje.", 409, "PERSONAJE_NO_ENCONTRADO");
   }
-  // La XP Base es una recompensa común del resultado: el nivel individual solo
-  // se utiliza para progresión propia, nunca para cambiar la XP que recibe cada miembro.
-  const experienciaBaseComun = definicionesEnemigos.reduce(
+  const liquidacionDerrota = faseResultado === "derrota"
+    ? calcularRecompensasParcialesDerrota({
+        enemigos: enemigosDelCombate,
+        recompensaMision,
+        dificultadMision: expedicion.dificultad,
+        nivelBase: primerPersonaje.nivel,
+        modoDificultad,
+      })
+    : null;
+  const definicionesRecompensables = faseResultado === "derrota"
+    ? definicionesEnemigos.filter((entrada) => entrada.snapshot.hp <= 0)
+    : definicionesEnemigos;
+  const oroEnemigo = definicionesRecompensables.reduce(
+    (total, entrada) => total + calcularOroEnemigo(entrada.definicion.botin, entrada.snapshot.difMin),
+    0,
+  );
+  const oroTotal = liquidacionDerrota?.oro ?? aplicarMultiplicadorRecompensa(recompensaMision.oro + oroEnemigo, modoDificultad);
+  const recompensaRecursos = liquidacionDerrota?.recompensa ?? recompensaMision;
+  // En derrota solo se concede la consolación y las recompensas de los enemigos realmente abatidos.
+  // Las recompensas Base/Job son iguales para los miembros que no huyeron.
+  const experienciaBaseComun = liquidacionDerrota?.experiencia ?? definicionesRecompensables.reduce(
     (total, entrada) => total + calcularExperienciaBaseGanada(
       entrada.snapshot.difMin,
       primerPersonaje.nivel,
@@ -509,11 +524,24 @@ async function liquidarRecompensasParty(
     ),
     0,
   );
+  const logLiquidacion = obtenerLog(combate.log);
+  if (faseResultado === "derrota") {
+    const abatidos = definicionesRecompensables.map((entrada) => entrada.snapshot.nombre);
+    logLiquidacion.push(abatidos.length
+      ? `⚔️ Criaturas abatidas antes de caer: ${abatidos.join(", ")}.`
+      : "⚔️ La party no había abatido ninguna criatura antes de caer.");
+    logLiquidacion.push(`💰 Oro parcial total de la party: ${oroTotal} 🪙.`);
+    logLiquidacion.push(`⭐ XP Base parcial por aventurero activo: ${experienciaBaseComun}.`);
+    if (recompensaRecursos.madera > 0) logLiquidacion.push(`🪵 Madera parcial asegurada: ${recompensaRecursos.madera}.`);
+    if (recompensaRecursos.piedra > 0) logLiquidacion.push(`🪨 Piedra parcial asegurada: ${recompensaRecursos.piedra}.`);
+    if (recompensaRecursos.metal > 0) logLiquidacion.push(`⚙️ Metal parcial asegurado: ${recompensaRecursos.metal}.`);
+  }
+
   const versionEsperadaLiquidada = combate.version + 1;
   const liquidado = await tx.combateParty.updateMany({
     where: {
       id: combatePartyId,
-      fase: "victoria",
+      fase: faseResultado,
       version: combate.version,
       recompensasResueltas: false,
     },
@@ -556,9 +584,9 @@ async function liquidarRecompensasParty(
     const combateParticipante = porUsuario.get(miembro.usuarioId);
     const huyo = combateParticipante?.estado === "huyo" || miembro.estado === "huyo";
     const oro = repartirCantidadEntera(oroTotal, totalMiembros, indice);
-    const madera = repartirCantidadEntera(recompensaMision.madera, totalMiembros, indice);
-    const piedra = repartirCantidadEntera(recompensaMision.piedra, totalMiembros, indice);
-    const metal = repartirCantidadEntera(recompensaMision.metal, totalMiembros, indice);
+    const madera = repartirCantidadEntera(recompensaRecursos.madera, totalMiembros, indice);
+    const piedra = repartirCantidadEntera(recompensaRecursos.piedra, totalMiembros, indice);
+    const metal = repartirCantidadEntera(recompensaRecursos.metal, totalMiembros, indice);
     const experiencia = huyo ? 0 : experienciaBaseComun;
     const experienciaActual = Math.max(0, Math.floor(personaje.experiencia ?? 0));
     let nivel = Math.max(1, Math.floor(personaje.nivel ?? 1));
@@ -570,7 +598,7 @@ async function liquidarRecompensasParty(
       nivelesSubidos += 1;
     }
     const rangosAmenazaCompletados =
-      expedicion.tipo === "normal" && modoDificultad === "normal"
+      faseResultado === "victoria" && expedicion.tipo === "normal" && modoDificultad === "normal"
         ? registrarVictoriaRangoNormal(personaje.rangosAmenazaCompletados, expedicion.dificultad)
         : undefined;
 
@@ -601,14 +629,31 @@ async function liquidarRecompensasParty(
       expedicion.dificultad,
       personaje.nivel,
       modoDificultad,
+      faseResultado === "derrota" ? 0.1 : undefined,
     );
-    const mensajesJob = progresoJob?.nivelesSubidos
-      ? ` Job +${progresoJob.nivelesSubidos} nivel(es).`
+    let experienciaJobTotal = progresoJob?.experienciaJobGanada ?? 0;
+    if (faseResultado === "derrota" && !huyo) {
+      for (const entradaEnemigo of definicionesRecompensables) {
+        const progresoJobEnemigo = await otorgarExperienciaJob(
+          tx,
+          { id: personaje.id, profesionActivaId: personaje.profesionActivaId || "novato" },
+          entradaEnemigo.snapshot.difMin,
+          personaje.nivel,
+          modoDificultad,
+        );
+        experienciaJobTotal += progresoJobEnemigo?.experienciaJobGanada ?? 0;
+        if (progresoJobEnemigo?.nivelesSubidos) {
+          logLiquidacion.push(`⬆️ Job de ${progresoJobEnemigo.claseNombre}: nivel ${progresoJobEnemigo.nivelJob} tras abatir a ${entradaEnemigo.snapshot.nombre} para ${miembro.usuarioId}.`);
+        }
+      }
+    }
+    const mensajesJob = experienciaJobTotal > 0
+      ? ` Job +${experienciaJobTotal} XP.`
       : "";
     const mensajesBase = nivelesSubidos > 0 ? ` Base +${nivelesSubidos} nivel(es).` : "";
 
     const objetosRepartidos: { objetoId: string; cantidad: number }[] = [];
-    for (const objeto of recompensaMision.objetos) {
+    for (const objeto of (faseResultado === "victoria" ? recompensaMision.objetos : [])) {
       const cantidad = repartirCantidadEntera(objeto.cantidad, totalMiembros, indice);
       if (cantidad <= 0) continue;
       const agregado = await agregarObjetoAlInventario(tx, personaje.id, objeto.objetoId, cantidad);
@@ -627,7 +672,7 @@ async function liquidarRecompensasParty(
       piedra,
       metal,
       experiencia,
-      experienciaJob: progresoJob?.experienciaJobGanada ?? 0,
+      experienciaJob: experienciaJobTotal,
       nivelesBaseSubidos: nivelesSubidos,
       nivelesJobSubidos: progresoJob?.nivelesSubidos ?? 0,
       objetos: objetosRepartidos,
@@ -644,7 +689,7 @@ async function liquidarRecompensasParty(
     cantidad: number;
     sufijoId: string | null;
   }[] = [];
-  for (const entradaEnemigo of definicionesEnemigos) {
+  for (const entradaEnemigo of definicionesRecompensables) {
     for (let indice = 0; indice < participantes.length; indice += 1) {
       const miembro = participantes[indice];
       if (porUsuario.get(miembro.usuarioId)?.estado === "huyo" || miembro.estado === "huyo") continue;
@@ -677,7 +722,12 @@ async function liquidarRecompensasParty(
 
   const resultadoRecompensas = {
     liquidacionYaResuelta: false,
+    resultadoFinal: faseResultado,
     oroTotal,
+    enemigosDerrotados: definicionesRecompensables.map((entrada) => ({
+      id: entrada.snapshot.id,
+      nombre: entrada.snapshot.nombre,
+    })),
     dropsEnemigo,
     experienciaPorMiembro: detalle.map((d) => ({
       usuarioId: d.usuarioId,
