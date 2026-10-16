@@ -577,22 +577,6 @@ export default function CombateModal({
   const objetivoElegidoId = objetivosDisponibles.some((o) => o.id === objetivoHabilidadId)
     ? objetivoHabilidadId
     : objetivoPorDefectoId ?? null;
-  const patronObjetivoEtiqueta = reglaObjetivoSeleccionada?.patron === "adyacentes"
-    ? "Casillas adyacentes"
-    : reglaObjetivoSeleccionada?.patron === "fila"
-      ? "Toda la fila"
-      : reglaObjetivoSeleccionada?.patron === "columna"
-        ? "Toda la columna"
-        : reglaObjetivoSeleccionada?.patron === "todos"
-          ? "Todos los objetivos válidos"
-          : "Objetivo individual";
-  const necesitaSeleccionObjetivo = Boolean(
-    reglaObjetivoSeleccionada &&
-    reglaObjetivoSeleccionada.patron !== "todos" &&
-    reglaObjetivoSeleccionada.equipo !== "propio" &&
-    objetivosDisponibles.length > 1
-  );
-  const objetivoElegido = objetivosDisponibles.find((objetivo) => objetivo.id === objetivoElegidoId);
   const idObjetivoPropio = partyMode?.usuarioId ?? personaje.id ?? "jugador";
   const propioEsObjetivoHabilidad = Boolean(
     mostrarHabilidades &&
@@ -657,16 +641,10 @@ export default function CombateModal({
         {/* La formación de party se representa dentro de la escena de batalla. */}
 
         {/* ESCENA */}
-        <section className="relative flex min-h-0 flex-1 items-center justify-between overflow-hidden px-4 sm:px-16">
+        <section className="relative flex min-h-0 flex-1 items-center justify-between overflow-hidden px-2 sm:px-8">
           {/* EQUIPO: todos los aventureros ocupan una casilla de la formación */}
           {partyMode ? (
-            <div className="relative flex h-full w-[66%] min-w-0 items-center overflow-visible">
-              <div aria-hidden="true" className="pointer-events-none absolute inset-y-3 left-1 right-1 rounded-lg border border-stone-700/25 bg-black/10">
-                <div className="absolute inset-y-0 left-[33%] border-l border-dashed border-stone-200/10" />
-                <div className="absolute inset-y-0 left-[66%] border-l border-dashed border-stone-200/10" />
-                <div className="absolute inset-x-0 top-1/3 border-t border-dashed border-stone-200/10" />
-                <div className="absolute inset-x-0 top-2/3 border-t border-dashed border-stone-200/10" />
-              </div>
+            <div className="relative flex h-full w-1/2 min-w-0 items-center overflow-visible">
               {distribuirFormacionParty(partyMode.participantes).map(({ participante, x, y }) => {
                 const vida = Math.max(0, Math.min(100, participante.jugadorHp / Math.max(1, participante.jugadorHpMaximo) * 100));
                 const retirado = participante.estado === "huyo";
@@ -710,10 +688,10 @@ export default function CombateModal({
                         <span className="combate-numero-curacion">+{curacionVisible.cantidad}</span>
                       </div>
                     )}
-                    <div className={`relative h-[64px] w-[54px] transition-all duration-200 sm:h-[92px] sm:w-[78px] ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}
+                    <div className={`relative h-[78px] w-[68px] transition-all duration-200 sm:h-[104px] sm:w-[88px] ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}
                       data-combate-ancla={participante.usuarioId}>
                       <div className="absolute inset-0 z-0 opacity-45 blur-[1px]" style={{ transform: "translateY(36%) perspective(110px) rotateX(65deg) scale(1.05,-0.65)" }}>
-                        <Image src={sprite} alt="" fill sizes="78px" className="object-contain brightness-0" />
+                        <Image src={sprite} alt="" fill sizes="88px" className="object-contain brightness-0" />
                       </div>
                       {seleccionadoComoObjetivo && (
                         <div aria-hidden="true" className="pointer-events-none absolute -inset-px z-[5]">
@@ -730,7 +708,7 @@ export default function CombateModal({
                         src={sprite}
                         alt={participante.nombre}
                         fill
-                        sizes="(max-width: 640px) 54px, 78px"
+                        sizes="(max-width: 640px) 68px, 88px"
                         className={`relative z-10 object-contain [image-rendering:pixelated] ${modoPresentacionActual === "curacion" && animando ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && animando ? "combate-defensa-resplandor" : ""}`}
                         priority
                       />
@@ -897,13 +875,7 @@ export default function CombateModal({
           )}
 
           {/* FORMACIÓN ENEMIGA: cada criatura mantiene su propia casilla, vida y ancla de animación. */}
-          <div className={`relative h-full ${partyMode ? "w-[32%]" : "w-[46%] sm:w-[40%]"} min-w-0`}>
-            <div aria-hidden="true" className="pointer-events-none absolute inset-2 rounded-lg border border-red-900/20 bg-black/5">
-              <div className="absolute inset-y-0 left-1/3 border-l border-dashed border-red-100/10" />
-              <div className="absolute inset-y-0 left-2/3 border-l border-dashed border-red-100/10" />
-              <div className="absolute inset-x-0 top-1/3 border-t border-dashed border-red-100/10" />
-              <div className="absolute inset-x-0 top-2/3 border-t border-dashed border-red-100/10" />
-            </div>
+          <div className={`relative h-full ${partyMode ? "w-1/2" : "w-[46%] sm:w-[40%]"} min-w-0`}>
             {enemigosVisibles.map((enemigo) => {
               const vida = Math.max(0, Math.min(100, enemigo.hp / Math.max(1, enemigo.hpMaximo) * 100));
               const vivo = enemigo.hp > 0;
@@ -914,7 +886,9 @@ export default function CombateModal({
                 : enemigoObjetivoElegidoId === enemigo.id;
               const animando = actorAnimando === enemigo.id || actoresAnimando.includes(enemigo.id);
               const impactado = actorImpactado === enemigo.id || objetivosMultiplesImpactados.includes(enemigo.id);
-              const x = 17 + enemigo.columna * 33;
+              // Desplaza ligeramente cada fila para que las criaturas grandes no formen una cuadrícula rígida.
+              const desplazamientoFila = enemigo.posicion === "centro" ? 4 : enemigo.posicion === "retaguardia" ? 8 : 0;
+              const x = 15 + enemigo.columna * 29 + desplazamientoFila;
               const y = enemigo.posicion === "mele" ? 18 : enemigo.posicion === "retaguardia" ? 82 : 50;
               const sprite = obtenerRutaSpriteEnemigo(enemigo.enemigoId);
               return (
@@ -934,7 +908,7 @@ export default function CombateModal({
                       setObjetivoHabilidadId(enemigo.id);
                     }
                   }}
-                  className={`absolute z-10 flex w-[35%] max-w-[112px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-0 rounded p-0 transition-[filter,opacity] focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 ${!vivo ? "opacity-45 grayscale" : "hover:brightness-110"} ${animando && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque-enemigo_700ms_ease-in-out]") : ""}`}
+                  className={`absolute z-10 flex w-[35%] max-w-[116px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-0 rounded p-0 transition-[filter,opacity] focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 ${!vivo ? "opacity-45 grayscale" : "hover:brightness-110"} ${animando && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque-enemigo_700ms_ease-in-out]") : ""}`}
                   style={{ left: `${x}%`, top: `${y}%`, touchAction: "manipulation" }}
                   title={`${enemigo.nombre}: ${Math.max(0, enemigo.hp)}/${enemigo.hpMaximo} PV`}
                 >
@@ -956,7 +930,7 @@ export default function CombateModal({
                     <span className="absolute top-6 z-50 -translate-y-full whitespace-nowrap text-xl font-black text-emerald-300 drop-shadow-[0_3px_3px_rgba(0,0,0,0.9)]">+{curacionVisible.cantidad}</span>
                   )}
                   <div
-                    className={`relative ${partyMode ? "h-[62px] w-[58px] sm:h-[82px] sm:w-[74px]" : "h-[76px] w-[72px] sm:h-[104px] sm:w-[96px]"} transition-all duration-200 ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}
+                    className={`relative h-[86px] w-[78px] sm:h-[116px] sm:w-[104px] transition-all duration-200 ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}
                     data-combate-ancla={enemigo.id}
                   >
                     <div className="absolute inset-0 z-0 opacity-45 blur-[1px]" style={{ transform: "translateY(36%) perspective(110px) rotateX(65deg) scale(1.05,-0.65)" }}>
@@ -983,7 +957,7 @@ export default function CombateModal({
                       src={sprite}
                       alt={enemigo.nombre}
                       fill
-                      sizes="(max-width: 640px) 58px, 96px"
+                      sizes="(max-width: 640px) 78px, 104px"
                       style={{ transform: "scaleX(-1)" }}
                       className={`relative z-10 object-contain [image-rendering:pixelated] ${modoPresentacionActual === "curacion" && animando ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && animando ? "combate-defensa-resplandor" : ""}`}
                     />
@@ -1395,30 +1369,14 @@ export default function CombateModal({
                   </div>
                 </div>
                 {habilidadSeleccionada && (
-                  <div className="mt-2 flex shrink-0 items-center gap-2 rounded border border-indigo-900/50 bg-stone-950/90 p-2 sm:px-3">
-                    <div className="min-w-0 flex-1">
-                      <span className="block text-[8px] font-black uppercase tracking-[0.12em] text-stone-500">
-                        {patronObjetivoEtiqueta}
-                      </span>
-                      <p className="truncate text-[10px] font-semibold text-indigo-200 sm:text-xs">
-                        {reglaObjetivoSeleccionada?.patron === "todos"
-                          ? reglaObjetivoSeleccionada.equipo === "enemigo"
-                            ? "Todos los enemigos vivos"
-                            : reglaObjetivoSeleccionada.equipo === "aliado"
-                              ? "Todos los aliados activos"
-                              : "Tu aventurero"
-                          : necesitaSeleccionObjetivo
-                            ? `${objetivoElegido?.nombre ?? "Elige objetivo"} · toca una figura para cambiar`
-                            : objetivoElegido?.nombre ?? "Sin objetivos válidos"}
-                      </p>
-                    </div>
+                  <div className="mt-2 flex shrink-0 justify-end">
                     <button
                       type="button"
                       onClick={() => void ejecutarHabilidad(habilidadSeleccionada.habilidadId, objetivoElegidoId)}
                       disabled={!puedeActuarJugador || procesando || procesandoLocal || objetivosDisponibles.length === 0}
-                      className="min-h-9 shrink-0 rounded border border-indigo-700 bg-indigo-950 px-2.5 py-1.5 text-[9px] font-black tracking-wide text-indigo-200 transition hover:bg-indigo-900 disabled:cursor-not-allowed disabled:opacity-40 sm:min-h-10 sm:px-4 sm:text-[10px] sm:tracking-widest"
+                      className="min-h-10 w-full rounded border border-indigo-700 bg-indigo-950 px-4 py-2 text-[10px] font-black tracking-widest text-indigo-200 transition hover:bg-indigo-900 disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto sm:min-w-44"
                     >
-                      LANZAR
+                      LANZAR HABILIDAD
                     </button>
                   </div>
                 )}
