@@ -56,7 +56,7 @@ No inferir el elemento solo por `tipoDano: "magico"`; una habilidad debe configu
 - [x] Recoger en `AccionAnimadaCombate` los IDs de participantes que ya se transmitían ad hoc en party.
 - [x] Exponer metadatos visuales opcionales en `DefinicionHabilidad`.
 - [x] Documentar el diseño y las limitaciones confirmadas.
-- [ ] En la última ejecución completa del código (`f12c6ec`), `test:base` falla en `las mejoras no heredan anomalías del precio de compra` (esperado 138, real 75) y `test:progression` falla en dos expectativas de costes de forja/materiales (oro esperado 123, real 90, más una comparación de materiales). Son pruebas de economía fuera del alcance de las animaciones. Las pruebas nuevas de animación, `test:party`, lint y build pasaron.
+- [x] Registrar la validación de la rama. La última ejecución completa antes de las pruebas nuevas de targeting dejó pasar las pruebas de animación, `test:party`, lint y build; los fallos pendientes son expectativas económicas/forja relacionadas con el cambio de rarezas/precios: `test:base` espera 138 y obtiene 75; `test:progression` espera 123 de oro de forja y obtiene 90, y falla una comparación de materiales.
 
 ### Fase 2 — controlador compartido
 
@@ -92,7 +92,7 @@ No inferir el elemento solo por `tipoDano: "magico"`; una habilidad debe configu
 - [x] Mantener los efectos lógicos de habilidades como la quemadura separados de su presentación.
 - [x] Añadir pruebas de selección visual y de propagación del metadato en aciertos y fallos.
 - [x] Mantener fallback si un sprite no se carga.
-- [ ] Validación global completa pendiente: las pruebas específicas de presentación y propagación de metadatos pasan; `test:base` y dos expectativas económicas/forja de `test:progression` fallan, mientras `test:party`, lint y build pasan.
+- [x] Las pruebas específicas de presentación, propagación de metadatos y targeting pasan en las ejecuciones posteriores a las correcciones; el estado global sigue condicionado por las expectativas económicas/forja descritas en la fase 1.
 
 ### Fase 6 — objetivos y efectos compuestos
 
@@ -100,15 +100,15 @@ No inferir el elemento solo por `tipoDano: "magico"`; una habilidad debe configu
 - [x] Dar prioridad a los IDs explícitos de actor/objetivo sobre los fallbacks visuales y asociar los pulsos de estado al destinatario real.
 - [x] Mantener diferenciados el daño al objetivo y la curación por robo de vida sobre el actor de origen.
 - [x] Añadir pruebas unitarias para PvE, atacante/objetivo de party, turno enemigo de party, destino de curación, robo de vida y perspectiva de defensor PvP.
-- [ ] No se ha habilitado aún la selección de objetivos aliados o multiobjetivo: requiere ampliación coordinada del contrato de petición, validación, servicios de combate y reglas de efectos; el metadato `objetivosUsuarioIds` por sí solo no debe simular esa lógica.
-- [ ] Añadir pruebas de integración para estados compuestos y objetivos caídos/retirados; la CI sigue reportando fallos independientes en tests de economía, aunque party, lint y build pasan en la última ejecución.
+- [x] Integrar selección de habilidad y objetivo en el modal, regla lógica por equipo/patrón y validación real en el servidor de party. El servicio persiste curaciones/mejoras sobre un aliado o varios de manera transaccional; las curaciones de área emiten feedback por destinatario. Ver [docs/objetivos-combate.md](https://github.com/joseconca/gremio-expediciones/blob/mejora-animaciones/docs/objetivos-combate.md).
+- [x] Añadir pruebas para formación 3×3, objetivos inválidos, casillas/filas/columnas/adyacentes, selección propia por defecto, objetivos caídos/retirados y curación/mejora individual y de área en party. Las batallas reales con varios enemigos quedan pendientes de la colección persistida por enemigo.
 
 ### Fase 7 — pruebas, accesibilidad y rendimiento
 
 - [x] Añadir pruebas del contrato y propagación de la presentación, mapeo de objetivos y señales compuestas daño/curación.
 - [x] Añadir comprobaciones de existencia de todos los assets de proyectil, fallback de carga, anclas de escena y capa superpuesta.
 - [x] Añadir comprobaciones de `prefers-reduced-motion`, cancelación de temporizadores y filtrado de proyectiles obsoletos.
-- [ ] Ejecutar y dejar verde `npm run test:base`, `npm run test:progression`, `npm run test:party`, `npm run lint` y `npm run build`; dos grupos de expectativas de economía/forja siguen fallando fuera de esta funcionalidad en la última ejecución completada.
+- [ ] Validar el global de suites sin confundirlo con el alcance funcional: los tests de targeting/party, lint y build pasan; `test:base` y dos expectativas de `test:progression` siguen fallando por expectativas de rareza/forja pendientes de actualización.
 - [ ] Verificar visualmente PC, móvil, varios participantes y el modo asedio/PvP en un navegador conectado al juego. No se ha realizado aún una inspección visual manual.
 - [x] Mantener la resolución del turno separada de los metadatos de animación y cancelar temporizadores al desmontar o sustituir una secuencia.
 - [ ] Probar visualmente en navegador enemigos caídos, acciones simultáneas y cambios de objetivo durante una animación; la mejora básica de defensa/estados ya está implementada.
