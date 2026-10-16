@@ -33,6 +33,12 @@ interface DanoVisibleCombate {
   critico: boolean;
 }
 
+interface DanoEnemigoVisibleCombate {
+  enemigoId: string;
+  dano: number;
+  critico: boolean;
+}
+
 interface CuracionVisibleCombate {
   actor: string;
   cantidad: number;
@@ -61,6 +67,8 @@ function esperar(milisegundos: number, temporizadores: Map<number, () => void>):
  */
 export function useAnimacionesCombate() {
   const [danioVisible, setDanioVisible] = useState<DanoVisibleCombate | null>(null);
+  const [daniosEnemigosVisibles, setDaniosEnemigosVisibles] = useState<DanoEnemigoVisibleCombate[]>([]);
+  const [enemigosImpactados, setEnemigosImpactados] = useState<string[]>([]);
   const [curacionVisible, setCuracionVisible] = useState<CuracionVisibleCombate | null>(null);
   const [pulsosEstadoVisibles, setPulsosEstadoVisibles] = useState<PulsoEstadoVisibleCombate[]>([]);
   const [actorAnimando, setActorAnimando] = useState<string | null>(null);
@@ -109,6 +117,8 @@ export function useAnimacionesCombate() {
     const esProyectil = modoPresentacion === "proyectil" && Boolean(accion.presentacion?.proyectil);
 
     setDanioVisible(null);
+    setDaniosEnemigosVisibles([]);
+    setEnemigosImpactados([]);
     setCuracionVisible(null);
     setActorImpactado(null);
     setProyectilesVisibles([]);
@@ -154,8 +164,15 @@ export function useAnimacionesCombate() {
     }
 
     const fallo = accion.tipo === "fallo" || dano <= 0;
-    if (!fallo) setActorImpactado(objetivoVisual);
-    if (dano > 0) {
+    const impactosEnemigos = accion.impactosEnemigo ?? [];
+    const esImpactoDeArea = impactosEnemigos.length > 1;
+    if (!fallo) {
+      if (esImpactoDeArea) setEnemigosImpactados(impactosEnemigos.map((impacto) => impacto.enemigoId));
+      else setActorImpactado(objetivoVisual);
+    }
+    if (esImpactoDeArea) {
+      setDaniosEnemigosVisibles(impactosEnemigos);
+    } else if (dano > 0) {
       setDanioVisible({ actor: objetivoVisual, dano, critico: accion.critico });
     }
     // El robo de vida es un segundo efecto de la misma acción: el daño aparece
@@ -168,6 +185,8 @@ export function useAnimacionesCombate() {
     if (!sigueActiva()) return;
 
     setDanioVisible(null);
+    setDaniosEnemigosVisibles([]);
+    setEnemigosImpactados([]);
     setActorImpactado(null);
 
     if (curacion > 0) {
@@ -179,6 +198,8 @@ export function useAnimacionesCombate() {
     await esperar(accion.animacion === "ofensiva_potenciada" ? 300 : 200, temporizadoresRef.current);
     if (!sigueActiva()) return;
 
+    setDaniosEnemigosVisibles([]);
+    setEnemigosImpactados([]);
     setActorAnimando(null);
     setAnimacionActual(null);
     setModoPresentacionActual(null);
@@ -188,6 +209,8 @@ export function useAnimacionesCombate() {
 
   return {
     danioVisible,
+    daniosEnemigosVisibles,
+    enemigosImpactados,
     curacionVisible,
     pulsosEstadoVisibles,
     actorAnimando,
