@@ -44,6 +44,7 @@ import { reducirCooldowns, obtenerCooldowns } from "@/server/services/combate/ac
 import { calcularFechasRegresoProgramadas } from "@/lib/expediciones/tiempos";
 import { leerCoordenadasBase } from "@/lib/party/reglas";
 import { obtenerReglaObjetivoHabilidad, resolverObjetivosHabilidad } from "@/lib/expediciones/objetivos-combate";
+import { crearEnemigoLegacy, leerEnemigosEnCombate, obtenerEnemigoVivoPorId, type EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
 
 const AISLAMIENTO = { isolationLevel: Prisma.TransactionIsolationLevel.Serializable } as const;
 
@@ -682,7 +683,7 @@ export async function ejecutarAccionCombateParty(
   usuarioId: string,
   idDesconocido: unknown,
   accionDesconocida: unknown,
-  payload?: { habilidadId?: unknown; objetivoId?: unknown; objetoInventarioId?: unknown; posicion?: unknown },
+  payload?: { habilidadId?: unknown; objetivoId?: unknown; enemigoObjetivoId?: unknown; objetoInventarioId?: unknown; posicion?: unknown },
 ) {
   const expedicionPartyId = validarExpedicionId(idDesconocido);
   if (accionDesconocida !== "atacar" && accionDesconocida !== "usar_habilidad" && accionDesconocida !== "usar_objeto" && accionDesconocida !== "escapar" && accionDesconocida !== "cambiar_posicion") {
@@ -808,9 +809,42 @@ export async function ejecutarAccionCombateParty(
 
     const personaje = await cargarPersonajeAccionParty(tx, usuarioId);
     let efectosJugador = convertirEfectos(participante.efectos);
-    let efectosEnemigo = convertirEfectos(combate.efectosEnemigo);
     const cooldowns = obtenerCooldowns(participante.cooldowns);
-    let enemigoHp = combate.enemigoHp;
+    const rosterGuardado = leerEnemigosEnCombate(combate.enemigos);
+    const enemigoLegacy = crearEnemigoLegacy({
+      enemigoId: combate.enemigoId,
+      enemigoNombre: combate.enemigoNombre,
+      enemigoHp: combate.enemigoHp,
+      enemigoHpMaximo: combate.enemigoHpMaximo,
+      enemigoAtaque: combate.enemigoAtaque,
+      enemigoAtaqueMagico: combate.enemigoAtaqueMagico,
+      enemigoDefensa: combate.enemigoDefensa,
+      enemigoDefensaMagica: combate.enemigoDefensaMagica,
+      enemigoVelocidad: combate.enemigoVelocidad,
+      enemigoProbCritico: combate.enemigoProbCritico,
+      enemigoDanoCritico: combate.enemigoDanoCritico,
+      enemigoPrecision: combate.enemigoPrecision,
+      enemigoEvasion: combate.enemigoEvasion,
+      enemigoNivel: combate.enemigoNivel,
+      efectos: combate.efectosEnemigo,
+    });
+    let enemigosEnCombate: EnemigoEnCombate[] = rosterGuardado.length > 0
+      ? rosterGuardado
+      : enemigoLegacy ? [enemigoLegacy] : [];
+    if (enemigosEnCombate.length === 0) {
+      throw new PartyServiceError("El combate no contiene enemigos válidos.", 500, "ROSTER_ENEMIGO_INVALIDO");
+    }
+    const idEnemigoSolicitado = typeof payload?.enemigoObjetivoId === "string"
+      ? payload.enemigoObjetivoId
+      : typeof payload?.objetivoId === "string" && payload.objetivoId.startsWith("enemigo-")
+        ? payload.objetivoId
+        : null;
+    const enemigoSeleccionado = obtenerEnemigoVivoPorId(enemigosEnCombate, idEnemigoSolicitado);
+    if (!enemigoSeleccionado) {
+      throw new PartyServiceError("El enemigo seleccionado ya no está disponible.", 409, "ENEMIGO_OBJETIVO_NO_ACTIVO");
+    }
+    let efectosEnemigo = obtenerEfectos(enemigoSeleccionado.efectos);
+    let enemigoHp = enemigoSeleccionado.hp;
     const estadoInicioTurno = procesarEfectosTurno(
       efectosJugador,
       participante.jugadorHp,
@@ -821,7 +855,7 @@ export async function ejecutarAccionCombateParty(
     let jugadorHp = estadoInicioTurno.hp;
     let jugadorDefensa = estadoInicioTurno.defensa;
     efectosJugador = estadoInicioTurno.efectos;
-    let enemigoDefensa = combate.enemigoDefensa;
+    let enemigoDefensa = enemigoSeleccionado.defensa;
     if (estadoInicioTurno.mensajes.length > 0) {
       efectosJugador = estadoInicioTurno.efectos;
     }
@@ -845,9 +879,9 @@ export async function ejecutarAccionCombateParty(
         jugadorProbCritico: participante.jugadorProbCritico,
         jugadorDanoCritico: participante.jugadorDanoCritico,
         jugadorPrecision: calcularPrecisionModificada(participante.jugadorPrecision, efectosJugador),
-        enemigoEvasion: calcularEvasionModificada(combate.enemigoEvasion, efectosEnemigo),
+        enemigoEvasion: calcularEvasionModificada(enemigoSeleccionado.evasion, efectosEnemigo),
         enemigoDefensa,
-        enemigoNombre: combate.enemigoNombre,
+        enemigoNombre: enemigoSeleccionado.nombre,
       });
       const armaEquipadaId = personaje.equipoEquipado?.arma?.objetoId;
       const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
