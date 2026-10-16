@@ -88,7 +88,7 @@ test("área de fila, columna y adyacentes se calcula sobre casillas ocupadas", (
   const adyacentes = resolverObjetivosHabilidad({
     ...base, habilidad: habilidad("enemigo", "adyacentes"), objetivoId: "center",
   });
-  assert.deepEqual(adyacentes.objetivos.map((o) => o.id), ["center-left", "center", "center-right", "melee-center"]);
+  assert.deepEqual(adyacentes.objetivos.map((o) => o.id), ["melee-center", "center-left", "center", "center-right"]);
 });
 
 test("área total excluye combatientes caídos y los estados retirado/huido", () => {
