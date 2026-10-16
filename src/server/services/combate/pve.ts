@@ -40,6 +40,7 @@ import {
   calcularAtaqueModificado,
   calcularPrecisionModificada,
   calcularEvasionModificada,
+  leerEfectosCombate,
 } from "../../../lib/expediciones/estados-combate";
 import {
   prepararAccionCombate,
@@ -392,7 +393,6 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             efectosDelEnemigo,
             enemigo.hp,
             enemigo.hpMaximo,
-            enemigo.defensa,
             enemigo.nombre,
           );
           log.push(...ticksEnemigo.mensajes.map((mensaje) => `${enemigo.nombre}: ${mensaje}`));
