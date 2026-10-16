@@ -537,6 +537,39 @@ test("una curación individual de party se aplica y persiste en el aliado selecc
   assert.deepEqual(result.accion.objetivosUsuarioIds, ["u2"]);
 });
 
+test("una mejora defensiva puede aplicarse a otro aliado y persistir su defensa y estado", async () => {
+  const combat = mkCombat({
+    participantes: [mkParticipant("u1", 0), mkParticipant("u2", 1)],
+  });
+  const { prisma, calls, options: opcionesServicio } = mockPrisma(combat, {
+    habilidades: [{ habilidadId: "baluarte", nivel: 1, slot: "activa_1" }],
+    habilidadesPorId: {
+      baluarte: {
+        id: "baluarte", claseId: "novato", nombre: "Baluarte",
+        descripcion: "Mejora la defensa de un aliado.", tipo: "activa", efecto: "bonus_defensa",
+        costeEnergia: 1, cooldownTurnos: 2,
+      },
+    },
+  });
+  const service = loadService(prisma, opcionesServicio);
+  const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad", {
+    habilidadId: "baluarte",
+    objetivoId: "u2",
+  });
+
+  assert.equal(combat.participantes[1].jugadorDefensa, 7);
+  assert.equal(combat.participantes[0].jugadorDefensa, 5);
+  assert.equal(
+    calls.participantWrites.some((write) =>
+      write.where.id === "cp-u2" &&
+      write.data.jugadorDefensa === 7 &&
+      write.data.efectos.some((efecto) => efecto.habilidadId === "baluarte")
+    ),
+    true,
+  );
+  assert.equal(result.accion.objetivoUsuarioId, "u2");
+});
+
 test("una habilidad de curación en área persiste a todos los aliados vivos y emite pulsos individuales", async () => {
   const combat = mkCombat({
     participantes: [
