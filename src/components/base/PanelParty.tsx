@@ -81,10 +81,14 @@ type ExpedicionPartyVista = {
       jugadorHp: number;
       jugadorHpMaximo: number;
       jugadorAtaque: number;
+      jugadorAtaqueMagico: number;
       jugadorDefensa: number;
+      jugadorDefensaMagica: number;
       jugadorVelocidad: number;
       jugadorProbCritico: number;
       jugadorDanoCritico: number;
+      jugadorPrecision: number;
+      jugadorEvasion: number;
       jugadorNivel: number;
       cooldowns?: unknown;
       efectos?: unknown;
@@ -1156,6 +1160,16 @@ export default function PanelParty() {
               jugadorPosicion: participante.jugadorPosicion,
               jugadorHp: participante.jugadorHp,
               jugadorHpMaximo: participante.jugadorHpMaximo,
+              jugadorAtaque: participante.jugadorAtaque,
+              jugadorAtaqueMagico: participante.jugadorAtaqueMagico,
+              jugadorDefensa: participante.jugadorDefensa,
+              jugadorDefensaMagica: participante.jugadorDefensaMagica,
+              jugadorVelocidad: participante.jugadorVelocidad,
+              jugadorProbCritico: participante.jugadorProbCritico,
+              jugadorDanoCritico: participante.jugadorDanoCritico,
+              jugadorPrecision: participante.jugadorPrecision,
+              jugadorEvasion: participante.jugadorEvasion,
+              jugadorNivel: participante.jugadorNivel,
             })),
             ultimaAccion: combatePartyDatos.ultimaAccion && typeof combatePartyDatos.ultimaAccion === "object"
               ? combatePartyDatos.ultimaAccion as AccionAnimadaCombate
