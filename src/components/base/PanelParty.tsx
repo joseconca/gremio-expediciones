@@ -536,6 +536,25 @@ export default function PanelParty() {
     if (!expedicion || !expedicion.combate || accion) return null;
     setAccion(tipo === "atacar" ? "ataque-party" : `accion-party:${id ?? tipo}`);
     setError(null);
+    let payloadHabilidad: { habilidadId: string; objetivoId?: string } | null = null;
+    if (tipo === "usar_habilidad" && id) {
+      try {
+        const parseado: unknown = JSON.parse(id);
+        if (parseado && typeof parseado === "object" && "habilidadId" in parseado &&
+            typeof parseado.habilidadId === "string") {
+          payloadHabilidad = {
+            habilidadId: parseado.habilidadId,
+            ...("objetivoId" in parseado && typeof parseado.objetivoId === "string"
+              ? { objetivoId: parseado.objetivoId }
+              : {}),
+          };
+        } else {
+          payloadHabilidad = { habilidadId: id };
+        }
+      } catch {
+        payloadHabilidad = { habilidadId: id };
+      }
+    }
     try {
       const respuesta = await fetch("/api/expediciones/party/combate/accion", {
         method: "POST",
@@ -543,7 +562,7 @@ export default function PanelParty() {
         body: JSON.stringify({
           expedicionPartyId: expedicion.id,
           accion: tipo,
-          ...(tipo === "usar_habilidad" && id ? { habilidadId: id } : {}),
+          ...(tipo === "usar_habilidad" && payloadHabilidad ? payloadHabilidad : {}),
           ...(tipo === "usar_objeto" && id ? { objetoInventarioId: id } : {}),
           ...(tipo === "cambiar_posicion" && id ? { posicion: id } : {}),
         }),
