@@ -174,13 +174,6 @@ export default function CombateModal({
   const [enemigoObjetivoId, setEnemigoObjetivoId] = useState<string | null>(null);
   const [mostrarResultado, setMostrarResultado] = useState(false);
 
-  useEffect(() => {
-    // No arrastrar objetivos de un combate anterior a una nueva expedición.
-    setEnemigoObjetivoId(null);
-    setObjetivoHabilidadId(null);
-    setHabilidadEsperandoObjetivoId(null);
-  }, [combate.id]);
-
   /*
    * ============================================================
    * BLOQUEAR SCROLL DEL FONDO
