@@ -983,14 +983,12 @@ export async function ejecutarAccionCombateParty(
         const primera = resultados[0];
         const curacionTotal = resultados.reduce((total, resultado) => total + resultado.curacion, 0);
         const danoTotal = resultados.reduce((total, resultado) => total + resultado.resultado.accion.dano, 0);
+        const accionBase = { ...primera.resultado.accion };
+        if (resultados.length > 1) delete accionBase.curacion;
         accion = {
-          ...primera.resultado.accion,
+          ...accionBase,
           dano: danoTotal,
-          ...(resultados.length > 1
-            ? { curacion: undefined }
-            : curacionTotal > 0
-              ? { curacion: curacionTotal }
-              : {}),
+          ...(resultados.length === 1 && curacionTotal > 0 ? { curacion: curacionTotal } : {}),
           objetivoUsuarioId: primera.objetivoUsuarioId,
           objetivosUsuarioIds: resultados.map((resultado) => resultado.objetivoUsuarioId),
           ...(resultados.length > 1
