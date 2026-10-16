@@ -360,6 +360,7 @@ export default function BasePage() {
             combate={expedicionActiva.combateActivo as CombatePve}
             personaje={personaje}
             comidaActiva={expedicionActiva.efectoComida ?? null}
+            recompensa={expedicionActiva.recompensa}
             procesando={false}
             onAccionCombate={ejecutarAccionCombatePve}
             onCerrar={() => {
