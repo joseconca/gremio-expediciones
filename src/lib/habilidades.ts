@@ -138,8 +138,9 @@ export const HABILIDADES: DefinicionHabilidad[] = [
   habilidad({
     id: "bola_fuego",
     presentacionVisual: {"modo":"proyectil","proyectil":"bola_fuego","elemento":"fuego","impacto":"explosion"},
+    objetivo: { equipo: "enemigo", patron: "adyacentes" },
     claseId: "mago", nivelJobRequerido: 10, tipoDano: "magico",
-    nombre: "Bola de fuego", descripcion: "Inflige daño mágico y aplica quemadura durante 2 turnos.",
+    nombre: "Bola de fuego", descripcion: "La explosión daña al objetivo y a los enemigos adyacentes y aplica quemadura durante 2 turnos.",
     tipo: "activa", efecto: "dano", animacion: "ofensiva_potenciada", multiplicadorDano: 1.2,
     danoProgresivoPorcentaje: 0.25, duracionTurnos: 2, costeMana: 10, cooldownTurnos: 3,
   }),
