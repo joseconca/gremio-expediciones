@@ -357,6 +357,7 @@ export default function BasePage() {
         expedicionActiva.tipo !== "asedio" &&
         personaje && (
           <CombateModal
+            key={expedicionActiva.combateActivo.id}
             combate={expedicionActiva.combateActivo as CombatePve}
             personaje={personaje}
             comidaActiva={expedicionActiva.efectoComida ?? null}
