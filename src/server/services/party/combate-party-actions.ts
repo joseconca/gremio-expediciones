@@ -854,7 +854,7 @@ export async function ejecutarAccionCombateParty(
       enemigoNivel: combate.enemigoNivel,
       efectos: combate.efectosEnemigo,
     });
-    const enemigosEnCombate: EnemigoEnCombate[] = rosterGuardado.length > 0
+    let enemigosEnCombate: EnemigoEnCombate[] = rosterGuardado.length > 0
       ? rosterGuardado
       : enemigoLegacy ? [enemigoLegacy] : [];
     if (enemigosEnCombate.length === 0) {
@@ -1382,7 +1382,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       enemigoNivel: combate.enemigoNivel,
       efectos: combate.efectosEnemigo,
     });
-    let enemigosEnCombate: EnemigoEnCombate[] = rosterGuardado.length > 0
+    const enemigosEnCombate: EnemigoEnCombate[] = rosterGuardado.length > 0
       ? rosterGuardado
       : enemigoLegacy ? [enemigoLegacy] : [];
     if (enemigosEnCombate.length === 0) {
