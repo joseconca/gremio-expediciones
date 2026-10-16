@@ -27,8 +27,8 @@ export type AccionAnimadaCombate = {
   actoresEnemigoIds?: string[];
   enemigoObjetivoId?: string | null;
   objetivosEnemigoIds?: string[];
-  /** Resultado individual por enemigo para impactos de área, sin agregar el daño visualmente en uno solo. */
-  impactosEnemigo?: { enemigoId: string; dano: number; critico: boolean }[];
+  /** Resultados individuales para áreas y turnos con varios atacantes; el destino puede ser enemigo o aliado. */
+  impactosMultiples?: { objetivoId: string; dano: number; critico: boolean }[];
 
   /** La presentación explícita tiene prioridad sobre el modo heredado de animacion. */
   presentacion?: PresentacionVisualCombate;
