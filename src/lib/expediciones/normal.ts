@@ -22,12 +22,15 @@ export function calcularPesoRarezaEnemigo(rareza: string): number {
   return PESOS_RAREZA_ENEMIGOS[rareza] ?? 10;
 }
 
-function seleccionarPonderado<T>(opciones: { valor: T; peso: number }[]): T {
+function seleccionarPonderado<T>(
+  opciones: { valor: T; peso: number }[],
+  rng: () => number = Math.random,
+): T {
   const pesoTotal = opciones.reduce((total, opcion) => total + Math.max(0, opcion.peso), 0);
   if (opciones.length === 0 || pesoTotal <= 0) {
     throw new Error("No hay candidatos con peso para seleccionar un enemigo.");
   }
-  let tirada = Math.random() * pesoTotal;
+  let tirada = Math.max(0, Math.min(0.999999999, rng())) * pesoTotal;
   for (const opcion of opciones) {
     if (tirada < opcion.peso) return opcion.valor;
     tirada -= opcion.peso;
