@@ -16,7 +16,7 @@ import {
 } from "@/lib/estadisticasPersonaje";
 
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
-import { calcularMultiplicadoresEnemigo, esModoDificultad } from "../../../lib/expediciones/dificultad";
+import { esModoDificultad } from "../../../lib/expediciones/dificultad";
 import { aplicarEfectoComida, comidaOtorgaIniciativa, obtenerComidaTaberna } from "@/lib/comidasTaberna";
 import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 
