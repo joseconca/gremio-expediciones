@@ -101,7 +101,10 @@ No inferir el elemento solo por `tipoDano: "magico"`; una habilidad debe configu
 - [x] Mantener diferenciados el daño al objetivo y la curación por robo de vida sobre el actor de origen.
 - [x] Añadir pruebas unitarias para PvE, atacante/objetivo de party, turno enemigo de party, destino de curación, robo de vida y perspectiva de defensor PvP.
 - [x] Integrar selección de habilidad y objetivo en el modal, regla lógica por equipo/patrón y validación real en el servidor de party. El servicio persiste curaciones/mejoras sobre un aliado o varios de manera transaccional; las curaciones de área emiten feedback por destinatario. Ver [docs/objetivos-combate.md](https://github.com/joseconca/gremio-expediciones/blob/mejora-animaciones/docs/objetivos-combate.md).
-- [x] Añadir pruebas para formación 3×3, objetivos inválidos, casillas/filas/columnas/adyacentes, selección propia por defecto, objetivos caídos/retirados y curación/mejora individual y de área en party. Las batallas reales con varios enemigos quedan pendientes de la colección persistida por enemigo.
+- [x] Añadir pruebas para formación 3×3, objetivos inválidos, casillas/filas/columnas/adyacentes, selección propia por defecto, objetivos caídos/retirados y curación/mejora individual y de área en party.
+- [x] Persistir rosters de hasta nueve enemigos en PvE y party, generar encuentros de 1–3 enemigos por amenaza/party, resolver el daño por enemigo y esperar a derrotarlos a todos para cerrar el combate.
+- [x] Renderizar cada enemigo con su casilla, HP y selección de objetivo; declarar Bola de fuego como ataque a adyacentes y devolver daño individual para feedback en áreas.
+- [ ] Inspección visual manual pendiente; los fallos económicos/forja pendientes son los acordados para una revisión posterior.
 
 ### Fase 7 — pruebas, accesibilidad y rendimiento
 
