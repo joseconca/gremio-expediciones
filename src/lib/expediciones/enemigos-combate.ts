@@ -70,6 +70,73 @@ export function crearEnemigosEnCombate(
   });
 }
 
+export interface CamposEnemigoLegacy {
+  enemigoId?: string | null;
+  enemigoNombre?: string | null;
+  enemigoHp?: number | null;
+  enemigoHpMaximo?: number | null;
+  enemigoAtaque?: number | null;
+  enemigoAtaqueMagico?: number | null;
+  enemigoDefensa?: number | null;
+  enemigoDefensaMagica?: number | null;
+  enemigoVelocidad?: number | null;
+  enemigoProbCritico?: number | null;
+  enemigoDanoCritico?: number | null;
+  enemigoPrecision?: number | null;
+  enemigoEvasion?: number | null;
+  enemigoNivel?: number | null;
+  enemigoPosicion?: string | null;
+  efectos?: unknown;
+}
+
+export function crearEnemigoLegacy(campos: CamposEnemigoLegacy): EnemigoEnCombate | null {
+  if (
+    !campos.enemigoId ||
+    !campos.enemigoNombre ||
+    typeof campos.enemigoHp !== "number" ||
+    typeof campos.enemigoHpMaximo !== "number" ||
+    typeof campos.enemigoAtaque !== "number" ||
+    typeof campos.enemigoDefensa !== "number" ||
+    typeof campos.enemigoVelocidad !== "number" ||
+    typeof campos.enemigoProbCritico !== "number" ||
+    typeof campos.enemigoDanoCritico !== "number" ||
+    typeof campos.enemigoNivel !== "number"
+  ) return null;
+
+  const posicion = campos.enemigoPosicion === "mele" ||
+    campos.enemigoPosicion === "retaguardia" ||
+    campos.enemigoPosicion === "centro"
+      ? campos.enemigoPosicion
+      : "centro";
+  const columna = 1;
+  const casilla = posicion === "mele" ? 1 : posicion === "centro" ? 4 : 7;
+  const efectos = Array.isArray(campos.efectos)
+    ? campos.efectos as EstadoEfectoHabilidad[]
+    : [];
+  return {
+    id: "enemigo-1",
+    enemigoId: campos.enemigoId,
+    nombre: campos.enemigoNombre,
+    difMin: Math.max(0, campos.enemigoNivel),
+    casilla,
+    posicion,
+    columna,
+    hp: campos.enemigoHp,
+    hpMaximo: campos.enemigoHpMaximo,
+    ataque: campos.enemigoAtaque,
+    ataqueMagico: campos.enemigoAtaqueMagico ?? campos.enemigoAtaque,
+    defensa: campos.enemigoDefensa,
+    defensaMagica: campos.enemigoDefensaMagica ?? campos.enemigoDefensa,
+    velocidad: campos.enemigoVelocidad,
+    probCritico: campos.enemigoProbCritico,
+    danoCritico: campos.enemigoDanoCritico,
+    precision: campos.enemigoPrecision ?? 75,
+    evasion: campos.enemigoEvasion ?? 0,
+    nivel: campos.enemigoNivel,
+    efectos,
+  };
+}
+
 export function leerEnemigosEnCombate(valor: unknown): EnemigoEnCombate[] {
   if (!Array.isArray(valor)) return [];
   return valor.filter((item): item is EnemigoEnCombate => {
