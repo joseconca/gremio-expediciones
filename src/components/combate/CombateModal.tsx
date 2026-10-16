@@ -845,8 +845,8 @@ export default function CombateModal({
               const seleccionado = enemigoObjetivoElegidoId === enemigo.id;
               const animando = actorAnimando === enemigo.id;
               const impactado = actorImpactado === enemigo.id;
-              const x = enemigo.posicion === "mele" ? 17 : enemigo.posicion === "retaguardia" ? 83 : 50;
-              const y = 20 + enemigo.columna * 30;
+              const x = 17 + enemigo.columna * 33;
+              const y = enemigo.posicion === "mele" ? 18 : enemigo.posicion === "retaguardia" ? 82 : 50;
               const sprite = obtenerRutaSpriteEnemigo(enemigo.enemigoId);
               return (
                 <button
