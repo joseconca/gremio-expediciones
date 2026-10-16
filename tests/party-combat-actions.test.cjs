@@ -29,13 +29,26 @@ function loadService(prisma, testOptions = {}) {
     "@/lib/expediciones/combate": {
       resolverAtaqueJugador: () => ({ actor: "jugador", tipo: "ataque", animacion: "ofensiva", dano: 12, critico: false, texto: "El aventurero inflige 12 de daño." }),
       resolverAtaqueEnemigo: () => ({ actor: "enemigo", tipo: "ataque", animacion: "ofensiva", dano: 10, critico: false, texto: "El enemigo inflige 10 de daño." }),
-      resolverHabilidadJugador: (_habilidad, combate) => ({
-        accion: { actor: "jugador", tipo: "habilidad", animacion: "ofensiva", dano: 20, critico: false, texto: "Habilidad de prueba." },
-        jugadorHp: combate.jugadorHp,
-        jugadorDefensa: combate.jugadorDefensa,
-        enemigoDefensa: combate.enemigoDefensa,
-        efectos: [{ habilidadId: "golpe_arcano", tipo: "bonus_defensa", valor: 2, duracionTurnos: 2, turnosRestantes: 2, objetivo: "jugador" }],
-      }),
+      resolverHabilidadJugador: (habilidad, combate) => {
+        const curacion = habilidad.efecto === "curacion"
+          ? Math.min(20, Math.max(0, combate.jugadorHpMaximo - combate.jugadorHp))
+          : 0;
+        return {
+          accion: {
+            actor: "jugador", tipo: "habilidad",
+            animacion: habilidad.efecto === "curacion" ? "curacion" : "ofensiva",
+            dano: habilidad.efecto === "dano" ? 20 : 0,
+            ...(curacion > 0 ? { curacion } : {}),
+            critico: false, texto: "Habilidad de prueba.",
+          },
+          jugadorHp: combate.jugadorHp + curacion,
+          jugadorDefensa: combate.jugadorDefensa + (habilidad.efecto === "bonus_defensa" ? 2 : 0),
+          enemigoDefensa: combate.enemigoDefensa,
+          efectos: habilidad.efecto === "bonus_defensa"
+            ? [{ habilidadId: habilidad.id, tipo: "bonus_defensa", valor: 2, duracionTurnos: 2, turnosRestantes: 2, objetivo: "jugador" }]
+            : [],
+        };
+      },
     },
     "@/lib/expediciones/estados-combate": {
       calcularAtaqueModificado: (value) => value,
@@ -81,11 +94,12 @@ function loadService(prisma, testOptions = {}) {
     },
     "@/lib/party/combate-reglas": reglas,
     "@/lib/habilidades": {
-      obtenerHabilidadPorId: (id) => id === "golpe_arcano" ? {
+      obtenerHabilidadPorId: (id) => testOptions.habilidadesPorId?.[id] ?? (id === "golpe_arcano" ? {
         id: "golpe_arcano", claseId: "novato", nombre: "Golpe arcano", descripcion: "Habilidad de test.",
         tipo: "activa", efecto: "dano", costeEnergia: 5, costeMana: 0, cooldownTurnos: 2, multiplicadorDano: 1.5,
-      } : undefined,
+      } : undefined),
     },
+    "@/lib/expediciones/objetivos-combate": require("../src/lib/expediciones/objetivos-combate.ts"),
     "@/lib/objetos": {
       obtenerObjetoPorId: (id) => id === "pocion" ? {
         id: "pocion", nombre: "Poción", tipo: "consumible", curacion: 30,
@@ -486,6 +500,73 @@ test("una habilidad activa equipada aplica daño, gasta recursos y guarda cooldo
   assert.equal(calls.participantWrites.some((c) => c.data.efectos), true);
   assert.equal(calls.resourceWrites.some((c) => c.data.energiaActual?.decrement === 5), true);
   assert.equal(calls.resourceWrites.some((c) => c.data.manaActual?.decrement === 0), true);
+});
+
+test("una curación individual de party se aplica y persiste en el aliado seleccionado", async () => {
+  const combat = mkCombat({
+    participantes: [mkParticipant("u1", 0, 60, 100), mkParticipant("u2", 1, 40, 100)],
+  });
+  const { prisma, calls } = mockPrisma(combat, {
+    habilidades: [{ habilidadId: "primeros_auxilios", nivel: 1, slot: "activa_1" }],
+    habilidadesPorId: {
+      primeros_auxilios: {
+        id: "primeros_auxilios", claseId: "novato", nombre: "Primeros auxilios",
+        descripcion: "Cura a un aliado.", tipo: "activa", efecto: "curacion",
+        costeEnergia: 1, cooldownTurnos: 2,
+        objetivo: { equipo: "aliado", patron: "individual", incluirPropio: true },
+      },
+    },
+  });
+  const service = loadService(prisma);
+  const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad", {
+    habilidadId: "primeros_auxilios",
+    objetivoId: "u2",
+  });
+
+  assert.equal(combat.participantes[1].jugadorHp, 60);
+  assert.equal(combat.participantes[0].jugadorHp, 60);
+  assert.equal(calls.participantWrites.some((write) =>
+    write.where.id === "cp-u2" && write.data.jugadorHp === 60
+  ), true);
+  assert.equal(calls.characterWrites.some((write) =>
+    write.where.id === "personaje-u2" && write.data.hpActual === 60
+  ), true);
+  assert.equal(result.accion.objetivoUsuarioId, "u2");
+  assert.deepEqual(result.accion.objetivosUsuarioIds, ["u2"]);
+});
+
+test("una habilidad de curación en área persiste a todos los aliados vivos y emite pulsos individuales", async () => {
+  const combat = mkCombat({
+    participantes: [
+      mkParticipant("u1", 0, 60, 100),
+      mkParticipant("u2", 1, 40, 100),
+      mkParticipant("u3", 2, 20, 100),
+    ],
+  });
+  const { prisma, calls } = mockPrisma(combat, {
+    habilidades: [{ habilidadId: "onda_curativa", nivel: 1, slot: "activa_1" }],
+    habilidadesPorId: {
+      onda_curativa: {
+        id: "onda_curativa", claseId: "novato", nombre: "Onda curativa",
+        descripcion: "Cura a todos los aliados.", tipo: "activa", efecto: "curacion",
+        costeEnergia: 1, cooldownTurnos: 3,
+        objetivo: { equipo: "aliado", patron: "todos", incluirPropio: true },
+      },
+    },
+  });
+  const service = loadService(prisma);
+  const result = await service.ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad", {
+    habilidadId: "onda_curativa",
+  });
+
+  assert.deepEqual(combat.participantes.map((p) => p.jugadorHp), [80, 60, 40]);
+  assert.deepEqual(result.accion.objetivosUsuarioIds, ["u1", "u2", "u3"]);
+  assert.deepEqual(
+    result.accion.pulsosEstado.map((pulso) => [pulso.objetivoUsuarioId, pulso.cantidad]),
+    [["u1", 20], ["u2", 20], ["u3", 20]],
+  );
+  assert.equal(calls.participantWrites.some((write) => write.where.id === "cp-u2" && write.data.jugadorHp === 60), true);
+  assert.equal(calls.participantWrites.some((write) => write.where.id === "cp-u3" && write.data.jugadorHp === 40), true);
 });
 
 test("una habilidad sin Energía suficiente se rechaza sin avanzar el turno", async () => {
