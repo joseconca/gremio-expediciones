@@ -682,7 +682,7 @@ export default function PanelParty() {
   };
   const combateModalParty = crearVistaCombate();
   const resultadoRecompensasParty = combatePartyDatos?.recompensasResultado
-    ?? (ultimoResultadoCombate?.expedicionPartyId === expedicionConCombate?.id
+    ?? (ultimoResultadoCombate && ultimoResultadoCombate.expedicionPartyId === expedicionConCombate?.id
       ? ultimoResultadoCombate.recompensas
       : null);
   const recompensaInformeParty = resultadoRecompensasParty?.recompensas.find(
