@@ -280,6 +280,8 @@ model CombateActivo {
   enemigoPrecision Float @default(75)
   enemigoEvasion Float @default(0)
   enemigoNivel Int?
+  /** Estado serializado de cada enemigo de un encuentro PvE múltiple. Vacío en PvP y en combates legacy. */
+  enemigos Json @default("[]")
 
   jugadorHp       Int
   jugadorHpMaximo Int
@@ -483,6 +485,8 @@ model CombateParty {
   enemigoPrecision      Float    @default(75)
   enemigoEvasion        Float    @default(0)
   enemigoNivel          Int
+  /** Formación persistida de hasta nueve enemigos del encuentro PvE. */
+  enemigos              Json     @default("[]")
   efectosEnemigo        Json     @default("[]")
   log                   Json     @default("[]")
   ultimaAccion          Json?
