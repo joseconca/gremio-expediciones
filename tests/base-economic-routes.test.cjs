@@ -239,7 +239,7 @@ function makeCombatConsumableRoute({
         dificil: { multiplicadorRecompensa: 1.25 },
       },
       esModoDificultad: (valor) => ["facil", "normal", "dificil"].includes(valor),
-      registrarVictoriaRangoNormal: (_rangos, _nivel) => ["I"],
+      registrarVictoriaRangoNormal: () => ["I"],
     },
   };
   commonDependencies["@/lib/expediciones/contrato-accion-combate"] = loadSource(
