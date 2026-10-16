@@ -592,6 +592,15 @@ export default function CombateModal({
     reglaObjetivoSeleccionada.equipo !== "propio" &&
     objetivosDisponibles.length > 1
   );
+  const objetivoElegido = objetivosDisponibles.find((objetivo) => objetivo.id === objetivoElegidoId);
+  const idObjetivoPropio = partyMode?.usuarioId ?? personaje.id ?? "jugador";
+  const propioEsObjetivoHabilidad = Boolean(
+    mostrarHabilidades &&
+    reglaObjetivoSeleccionada &&
+    (reglaObjetivoSeleccionada.equipo === "aliado" || reglaObjetivoSeleccionada.equipo === "propio") &&
+    objetivosDisponibles.some((objetivo) => objetivo.id === idObjetivoPropio) &&
+    (reglaObjetivoSeleccionada.patron === "todos" || objetivoElegidoId === idObjetivoPropio)
+  );
 
   return (
     <div
@@ -665,6 +674,20 @@ export default function CombateModal({
                 const animando = actorAnimando === participante.usuarioId || actoresAnimando.includes(participante.usuarioId);
                 const impactado = actorImpactado === participante.usuarioId || objetivosMultiplesImpactados.includes(participante.usuarioId);
                 const sprite = obtenerSpriteHeroe(participante.clase, participante.sexo);
+                const disponibleComoObjetivo = objetivosDisponibles.some((objetivo) => objetivo.id === participante.usuarioId);
+                const seleccionadoComoObjetivo = Boolean(
+                  mostrarHabilidades &&
+                  reglaObjetivoSeleccionada &&
+                  (reglaObjetivoSeleccionada.equipo === "aliado" || reglaObjetivoSeleccionada.equipo === "propio") &&
+                  disponibleComoObjetivo &&
+                  (reglaObjetivoSeleccionada.patron === "todos" || objetivoElegidoId === participante.usuarioId)
+                );
+                const puedeSeleccionarseComoObjetivo = Boolean(
+                  mostrarHabilidades &&
+                  reglaObjetivoSeleccionada &&
+                  reglaObjetivoSeleccionada.patron !== "todos" &&
+                  disponibleComoObjetivo
+                );
                 return (
                   <div
                     key={participante.id}
@@ -692,6 +715,17 @@ export default function CombateModal({
                       <div className="absolute inset-0 z-0 opacity-45 blur-[1px]" style={{ transform: "translateY(36%) perspective(110px) rotateX(65deg) scale(1.05,-0.65)" }}>
                         <Image src={sprite} alt="" fill sizes="78px" className="object-contain brightness-0" />
                       </div>
+                      {seleccionadoComoObjetivo && (
+                        <div aria-hidden="true" className="pointer-events-none absolute -inset-px z-[5]">
+                          <Image
+                            src={sprite}
+                            alt=""
+                            fill
+                            sizes="80px"
+                            className="combate-objetivo-silueta combate-objetivo-silueta-aliado object-contain [image-rendering:pixelated]"
+                          />
+                        </div>
+                      )}
                       <Image
                         src={sprite}
                         alt={participante.nombre}
@@ -699,6 +733,14 @@ export default function CombateModal({
                         sizes="(max-width: 640px) 54px, 78px"
                         className={`relative z-10 object-contain [image-rendering:pixelated] ${modoPresentacionActual === "curacion" && animando ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && animando ? "combate-defensa-resplandor" : ""}`}
                         priority
+                      />
+                      <button
+                        type="button"
+                        aria-label={`Elegir a ${participante.nombre} como objetivo`}
+                        aria-pressed={seleccionadoComoObjetivo}
+                        disabled={!puedeSeleccionarseComoObjetivo}
+                        onClick={() => setObjetivoHabilidadId(participante.usuarioId)}
+                        className={`absolute -inset-1 z-20 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-300 ${puedeSeleccionarseComoObjetivo ? "pointer-events-auto cursor-pointer" : "pointer-events-none"}`}
                       />
                       {pulsosEstadoVisibles.filter((pulso) => pulso.actor === participante.usuarioId).map((pulso, indice) => (
                         <span key={`party-${participante.id}-${indice}-${pulso.tipo}`} className={`combate-estado-pulso absolute bottom-0 z-40 -translate-x-1/2 rounded bg-stone-950/90 px-1 py-0.5 font-mono text-xs font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`} style={{ left: `calc(50% + ${(indice - 0.5) * 20}px)` }}>
@@ -827,6 +869,19 @@ export default function CombateModal({
                   />
                 </div>
 
+                {propioEsObjetivoHabilidad && (
+                  <div aria-hidden="true" className="pointer-events-none absolute -inset-px z-[5]">
+                    <Image
+                      src={spriteHeroe}
+                      alt=""
+                      fill
+                      sizes="182px"
+                      className="combate-objetivo-silueta combate-objetivo-silueta-aliado object-contain [image-rendering:pixelated]"
+                      priority
+                    />
+                  </div>
+                )}
+
                 {/* HÉROE */}
                 <Image
                   src={spriteHeroe}
@@ -852,7 +907,11 @@ export default function CombateModal({
             {enemigosVisibles.map((enemigo) => {
               const vida = Math.max(0, Math.min(100, enemigo.hp / Math.max(1, enemigo.hpMaximo) * 100));
               const vivo = enemigo.hp > 0;
-              const seleccionado = enemigoObjetivoElegidoId === enemigo.id;
+              const selectorHabilidadActivo = mostrarHabilidades && Boolean(reglaObjetivoSeleccionada);
+              const seleccionado = selectorHabilidadActivo
+                ? reglaObjetivoSeleccionada?.equipo === "enemigo" &&
+                  (reglaObjetivoSeleccionada.patron === "todos" || objetivoElegidoId === enemigo.id)
+                : enemigoObjetivoElegidoId === enemigo.id;
               const animando = actorAnimando === enemigo.id || actoresAnimando.includes(enemigo.id);
               const impactado = actorImpactado === enemigo.id || objetivosMultiplesImpactados.includes(enemigo.id);
               const x = 17 + enemigo.columna * 33;
@@ -865,18 +924,24 @@ export default function CombateModal({
                   aria-label={`Seleccionar ${enemigo.nombre}, ${enemigo.hp} de ${enemigo.hpMaximo} puntos de vida`}
                   aria-pressed={seleccionado}
                   disabled={!vivo}
-                  onClick={() => setEnemigoObjetivoId(enemigo.id)}
-                  className={`absolute z-10 flex w-[35%] max-w-[112px] -translate-x-1/2 -translate-y-1/2 flex-col items-center rounded-md p-1 transition-all ${seleccionado ? "bg-amber-950/25 ring-1 ring-amber-400/80" : "hover:bg-white/5"} ${!vivo ? "opacity-45 grayscale" : ""} ${animando && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque-enemigo_700ms_ease-in-out]") : ""}`}
-                  style={{ left: `${x}%`, top: `${y}%` }}
+                  onClick={() => {
+                    setEnemigoObjetivoId(enemigo.id);
+                    if (
+                      mostrarHabilidades &&
+                      reglaObjetivoSeleccionada?.equipo === "enemigo" &&
+                      reglaObjetivoSeleccionada.patron !== "todos"
+                    ) {
+                      setObjetivoHabilidadId(enemigo.id);
+                    }
+                  }}
+                  className={`absolute z-10 flex w-[35%] max-w-[112px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-0 rounded p-0 transition-[filter,opacity] focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 ${!vivo ? "opacity-45 grayscale" : "hover:brightness-110"} ${animando && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque-enemigo_700ms_ease-in-out]") : ""}`}
+                  style={{ left: `${x}%`, top: `${y}%`, touchAction: "manipulation" }}
+                  title={`${enemigo.nombre}: ${Math.max(0, enemigo.hp)}/${enemigo.hpMaximo} PV`}
                 >
-                  <div className="mb-1 w-full rounded border border-stone-800/80 bg-black/70 px-1.5 py-1 text-center shadow-sm backdrop-blur-sm">
+                  <div className="mb-0.5 w-full min-w-0 rounded-sm bg-black/65 px-1 py-0.5 text-center">
                     <span className="block truncate text-[9px] font-bold leading-tight text-stone-100 sm:text-[10px]">{enemigo.nombre}</span>
-                    <span className="block text-[8px] text-stone-500">{ETIQUETAS_POSICION_COMBATE[normalizarPosicionCombate(enemigo.posicion)]}</span>
-                    <div className="mt-1 flex items-center gap-1">
-                      <div role="progressbar" aria-label={`Vida de ${enemigo.nombre}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(vida)} className="h-1 min-w-0 flex-1 overflow-hidden rounded border border-stone-700 bg-stone-950">
-                        <div className={`h-full transition-all duration-300 ${vida >= 50 ? "bg-emerald-500" : vida >= 25 ? "bg-orange-400" : "bg-red-500"}`} style={{ width: `${vida}%` }} />
-                      </div>
-                      <span className="shrink-0 font-mono text-[8px] text-stone-200">{Math.max(0, enemigo.hp)}/{enemigo.hpMaximo}</span>
+                    <div role="progressbar" aria-label={`Vida de ${enemigo.nombre}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(vida)} className="mt-0.5 h-1 w-full overflow-hidden rounded-sm bg-stone-950/90">
+                      <div className={`h-full transition-all duration-300 ${vida >= 50 ? "bg-emerald-500" : vida >= 25 ? "bg-orange-400" : "bg-red-500"}`} style={{ width: `${vida}%` }} />
                     </div>
                   </div>
                   {danioVisible?.actor === enemigo.id && (
@@ -897,6 +962,18 @@ export default function CombateModal({
                     <div className="absolute inset-0 z-0 opacity-45 blur-[1px]" style={{ transform: "translateY(36%) perspective(110px) rotateX(65deg) scale(1.05,-0.65)" }}>
                       <Image src={sprite} alt="" fill sizes="96px" style={{ transform: "scaleX(-1)" }} className="object-contain brightness-0" />
                     </div>
+                    {seleccionado && vivo && (
+                      <div aria-hidden="true" className="pointer-events-none absolute -inset-px z-[5]">
+                        <Image
+                          src={sprite}
+                          alt=""
+                          fill
+                          sizes="98px"
+                          style={{ transform: "scaleX(-1)" }}
+                          className="combate-objetivo-silueta combate-objetivo-silueta-enemigo object-contain [image-rendering:pixelated]"
+                        />
+                      </div>
+                    )}
                     {pulsosEstadoVisibles.filter((pulso) => pulso.actor === enemigo.id).map((pulso, indice) => (
                       <span key={`pulso-${enemigo.id}-${indice}-${pulso.tipo}`} className={`combate-estado-pulso absolute bottom-0 z-40 -translate-x-1/2 rounded bg-stone-950/90 px-1 py-0.5 font-mono text-[10px] font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`} style={{ left: `calc(50% + ${(indice - 0.5) * 20}px)` }}>
                         {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}
@@ -912,9 +989,6 @@ export default function CombateModal({
                     />
                   </div>
                   <IndicadoresEfectosCombate efectos={enemigo.efectos ?? []} />
-                  <span className="mt-0.5 rounded bg-black/65 px-1 text-center text-[8px] font-bold text-stone-300">
-                    {seleccionado && vivo ? "Objetivo seleccionado" : vivo ? "Seleccionar" : "Derrotado"}
-                  </span>
                 </button>
               );
             })}
@@ -1321,41 +1395,30 @@ export default function CombateModal({
                   </div>
                 </div>
                 {habilidadSeleccionada && (
-                  <div className="mt-2 grid shrink-0 grid-cols-1 gap-2 rounded border border-indigo-900/50 bg-stone-950/90 p-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:px-3">
-                    <div className="min-w-0">
-                      <label htmlFor="objetivo-habilidad-combate" className="mb-1 block text-[9px] font-black uppercase tracking-[0.15em] text-stone-500">
+                  <div className="mt-2 flex shrink-0 items-center gap-2 rounded border border-indigo-900/50 bg-stone-950/90 p-2 sm:px-3">
+                    <div className="min-w-0 flex-1">
+                      <span className="block text-[8px] font-black uppercase tracking-[0.12em] text-stone-500">
                         {patronObjetivoEtiqueta}
-                      </label>
-                      {reglaObjetivoSeleccionada?.patron === "todos" ? (
-                        <p className="text-xs font-semibold text-indigo-200">Se afectará a todos los objetivos válidos.</p>
-                      ) : necesitaSeleccionObjetivo ? (
-                        <select
-                          id="objetivo-habilidad-combate"
-                          value={objetivoElegidoId ?? ""}
-                          onChange={(event) => setObjetivoHabilidadId(event.target.value)}
-                          className="min-h-9 w-full rounded border border-stone-700 bg-stone-900 px-2 text-xs font-semibold text-stone-100 outline-none focus:border-indigo-500"
-                          aria-label="Seleccionar objetivo de la habilidad"
-                        >
-                          {objetivosDisponibles.map((objetivo) => (
-                            <option key={objetivo.id} value={objetivo.id}>
-                              {objetivo.nombre} · {objetivo.detalle}
-                            </option>
-                          ))}
-                        </select>
-                      ) : (
-                        <p className="truncate text-xs font-semibold text-indigo-200">
-                          {objetivosDisponibles[0]?.nombre ?? "Sin objetivos válidos"}
-                          {objetivosDisponibles[0]?.detalle ? " · " + objetivosDisponibles[0].detalle : ""}
-                        </p>
-                      )}
+                      </span>
+                      <p className="truncate text-[10px] font-semibold text-indigo-200 sm:text-xs">
+                        {reglaObjetivoSeleccionada?.patron === "todos"
+                          ? reglaObjetivoSeleccionada.equipo === "enemigo"
+                            ? "Todos los enemigos vivos"
+                            : reglaObjetivoSeleccionada.equipo === "aliado"
+                              ? "Todos los aliados activos"
+                              : "Tu aventurero"
+                          : necesitaSeleccionObjetivo
+                            ? `${objetivoElegido?.nombre ?? "Elige objetivo"} · toca una figura para cambiar`
+                            : objetivoElegido?.nombre ?? "Sin objetivos válidos"}
+                      </p>
                     </div>
                     <button
                       type="button"
                       onClick={() => void ejecutarHabilidad(habilidadSeleccionada.habilidadId, objetivoElegidoId)}
                       disabled={!puedeActuarJugador || procesando || procesandoLocal || objetivosDisponibles.length === 0}
-                      className="min-h-10 rounded border border-indigo-700 bg-indigo-950 px-4 py-2 text-[10px] font-black tracking-widest text-indigo-200 transition hover:bg-indigo-900 disabled:cursor-not-allowed disabled:opacity-40 sm:min-w-36"
+                      className="min-h-9 shrink-0 rounded border border-indigo-700 bg-indigo-950 px-2.5 py-1.5 text-[9px] font-black tracking-wide text-indigo-200 transition hover:bg-indigo-900 disabled:cursor-not-allowed disabled:opacity-40 sm:min-h-10 sm:px-4 sm:text-[10px] sm:tracking-widest"
                     >
-                      LANZAR HABILIDAD
+                      LANZAR
                     </button>
                   </div>
                 )}
