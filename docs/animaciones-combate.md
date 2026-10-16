@@ -56,12 +56,12 @@ No inferir el elemento solo por `tipoDano: "magico"`; una habilidad debe configu
 - [x] Recoger en `AccionAnimadaCombate` los IDs de participantes que ya se transmitían ad hoc en party.
 - [x] Exponer metadatos visuales opcionales en `DefinicionHabilidad`.
 - [x] Documentar el diseño y las limitaciones confirmadas.
-- [ ] `test:base` falla en `las mejoras no heredan anomalías del precio de compra` (esperado 138, real 75), una prueba económica de archivos no modificados en esta rama. La workflow se ha ajustado en un commit de CI separado para ejecutar progresión, party, lint y build igualmente siempre que la instalación y Prisma hayan terminado correctamente; queda pendiente observar ese resultado.
+- [ ] En la última ejecución completada previa a la fase 7, `test:base` falla en `las mejoras no heredan anomalías del precio de compra` (esperado 138, real 75) y `test:progression` falla en dos expectativas de costes de forja/materiales (oro esperado 123, real 90, más una comparación de materiales). Son pruebas de economía fuera del alcance de las animaciones. `test:party`, lint y build sí terminaron correctamente. La ejecución de la revisión de destinos y de la fase 7 está pendiente.
 
 ### Fase 2 — controlador compartido
 
 - [x] Crear un hook/controlador común para ejecutar y cancelar secuencias, gestionar IDs de eventos y garantizar la limpieza de temporizadores.
-- [ ] Extraer la capa de efectos superpuestos a la escena para evitar que el proyectil quede recortado por contenedores de personajes.
+- [x] Extraer la capa de efectos superpuestos a la escena para evitar que el proyectil quede recortado por contenedores de personajes.
 - [x] Migrar primero el ataque cuerpo a cuerpo conservando tiempos, estados y estilos heredados.
 - [x] Sustituir el código duplicado de secuenciación en `CombateModal` y `AsedioModal` por el controlador común.
 - [x] Mantener la cancelación de temporizadores y evitar que una secuencia desactualizada limpie una acción posterior.
@@ -104,11 +104,13 @@ No inferir el elemento solo por `tipoDano: "magico"`; una habilidad debe configu
 
 ### Fase 7 — pruebas, accesibilidad y rendimiento
 
-- Añadir pruebas del contrato, mapeo de objetivos, secuencias y fallback de assets.
-- Ejecutar `npm run test:base`, `npm run test:progression`, `npm run test:party`, `npm run lint` y `npm run build`.
-- Verificar visualmente PC, móvil, varios participantes y el modo asedio/PvP.
-- Respetar `prefers-reduced-motion` en las animaciones nuevas y reducir flashes repetitivos.
-- Comprobar que la secuencia visual no modifica la resolución del turno ni deja acciones bloqueadas al desmontar componentes.
+- [x] Añadir pruebas del contrato y propagación de la presentación, mapeo de objetivos y señales compuestas daño/curación.
+- [x] Añadir comprobaciones de existencia de todos los assets de proyectil, fallback de carga, anclas de escena y capa superpuesta.
+- [x] Añadir comprobaciones de `prefers-reduced-motion`, cancelación de temporizadores y filtrado de proyectiles obsoletos.
+- [ ] Ejecutar y dejar verde `npm run test:base`, `npm run test:progression`, `npm run test:party`, `npm run lint` y `npm run build`; dos grupos de expectativas de economía/forja siguen fallando fuera de esta funcionalidad en la última ejecución completada.
+- [ ] Verificar visualmente PC, móvil, varios participantes y el modo asedio/PvP en un navegador conectado al juego. No se ha realizado aún una inspección visual manual.
+- [x] Mantener la resolución del turno separada de los metadatos de animación y cancelar temporizadores al desmontar o sustituir una secuencia.
+- [ ] Pulir la presentación de defensa/estados y probar visualmente enemigos caídos, acciones simultáneas y cambios de objetivo durante una animación.
 
 ## Criterios de aceptación globales
 
