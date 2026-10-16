@@ -392,8 +392,10 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           let enemigoActualizado: EnemigoEnCombate = {
             ...enemigo,
             hp: ticksEnemigo.hp,
-            defensa: ticksEnemigo.defensa,
-            efectos: ticksEnemigo.efectos,
+            // procesarTicksPeriodicos solo calcula HP; la duración de estados se
+            // actualiza por separado en avanzarEfectosCombate más abajo.
+            defensa: enemigo.defensa,
+            efectos: efectosDelEnemigo,
           };
           if (enemigoActualizado.hp > 0 && jugadorHp > 0) {
             const accionDelEnemigo = resolverAtaqueEnemigo({
