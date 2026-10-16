@@ -699,7 +699,7 @@ export default function CombateModal({
                             src={sprite}
                             alt=""
                             fill
-                            sizes="80px"
+                            sizes="88px"
                             className="combate-objetivo-silueta combate-objetivo-silueta-aliado object-contain [image-rendering:pixelated]"
                           />
                         </div>
@@ -934,7 +934,7 @@ export default function CombateModal({
                     data-combate-ancla={enemigo.id}
                   >
                     <div className="absolute inset-0 z-0 opacity-45 blur-[1px]" style={{ transform: "translateY(36%) perspective(110px) rotateX(65deg) scale(1.05,-0.65)" }}>
-                      <Image src={sprite} alt="" fill sizes="96px" style={{ transform: "scaleX(-1)" }} className="object-contain brightness-0" />
+                      <Image src={sprite} alt="" fill sizes="104px" style={{ transform: "scaleX(-1)" }} className="object-contain brightness-0" />
                     </div>
                     {seleccionado && vivo && (
                       <div aria-hidden="true" className="pointer-events-none absolute -inset-px z-[5]">
@@ -942,7 +942,7 @@ export default function CombateModal({
                           src={sprite}
                           alt=""
                           fill
-                          sizes="98px"
+                          sizes="104px"
                           style={{ transform: "scaleX(-1)" }}
                           className="combate-objetivo-silueta combate-objetivo-silueta-enemigo object-contain [image-rendering:pixelated]"
                         />
