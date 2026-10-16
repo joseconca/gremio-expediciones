@@ -158,11 +158,6 @@ export default function HojaPersonajeModal({
     }))
     .filter((habilidad) => habilidad.definicion);
 
-  const equipo = personaje.equipo;
-  const arma = equipo.arma;
-  const armadura = equipo.armadura;
-  const accesorio = equipo.accesorio;
-
   return (
     <div
       className={`fixed inset-0 z-50 overflow-y-auto bg-stone-900/70 backdrop-blur-sm transition-opacity duration-200 ${
