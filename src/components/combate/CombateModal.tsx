@@ -528,9 +528,13 @@ export default function CombateModal({
               nombre: personaje.nombre,
               detalle: "Tú · objetivo propio",
             }];
+  const objetivoPorDefectoId = reglaObjetivoSeleccionada?.equipo === "aliado"
+    ? objetivosDisponibles.find((o) => o.id === (partyMode?.usuarioId ?? personaje.id))?.id
+      ?? objetivosDisponibles[0]?.id
+    : objetivosDisponibles[0]?.id;
   const objetivoElegidoId = objetivosDisponibles.some((o) => o.id === objetivoHabilidadId)
     ? objetivoHabilidadId
-    : objetivosDisponibles[0]?.id ?? null;
+    : objetivoPorDefectoId ?? null;
   const patronObjetivoEtiqueta = reglaObjetivoSeleccionada?.patron === "adyacentes"
     ? "Casillas adyacentes"
     : reglaObjetivoSeleccionada?.patron === "fila"
