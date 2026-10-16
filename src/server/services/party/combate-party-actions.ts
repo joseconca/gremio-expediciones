@@ -561,7 +561,6 @@ async function liquidarRecompensasParty(
     throw new PartyServiceError("El estado de liquidación cambió; no se duplicarán las recompensas.", 409, "RECOMPENSA_PARTY_MODIFICADA");
   }
 
-  const logLiquidacion = obtenerLog(combate.log);
   const detalle: {
     usuarioId: string;
     oro: number;
