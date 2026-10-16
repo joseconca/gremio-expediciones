@@ -75,3 +75,24 @@ test("la defensa y cada pulso periódico tienen feedback visual y variante sin m
   assert.match(reduced, /\.combate-defensa-resplandor\s*\{\s*animation: none !important;/);
   assert.match(reduced, /\.combate-estado-pulso/);
 });
+
+
+test("el turno enemigo espera antes de atacar tanto en solitario como en party", () => {
+  const combate = read("src/components/combate/CombateModal.tsx");
+  const party = read("src/components/base/PanelParty.tsx");
+  const esperaMain = /Math\\.random\\(\\) \\* 1200 \\+ 300/;
+  assert.match(combate, esperaMain, "PvE debe conservar la pausa de main");
+  assert.match(party, esperaMain, "party también debe pausar antes de resolver el turno enemigo");
+  assert.match(party, /await new Promise<void>\\(\\(resolve\\) => window\\.setTimeout\\(resolve, tiempoEsperaEnemigo\\)\\)/);
+});
+
+test("el golpe terminal mantiene visible el impacto antes del resultado y el asedio no lo superpone inmediatamente", () => {
+  const hook = read("src/components/combate/animaciones/useAnimacionesCombate.ts");
+  const combate = read("src/components/combate/CombateModal.tsx");
+  const asedio = read("src/components/combate/AsedioModal.tsx");
+  assert.match(hook, /DURACION_IMPACTO_FINAL_EXTRA_MS = 550/);
+  assert.match(hook, /opciones\\.esResultadoTerminal\\?\\.\\(\\)/);
+  assert.match(combate, /esResultadoTerminal: \\(\\) => faseCombateRef\\.current !== "activo"/);
+  assert.match(asedio, /const \\[mostrarResultado, setMostrarResultado\\] = useState\\(false\\)/);
+  assert.match(asedio, /if \\(faseCombateRef\\.current !== "activo"\\) setMostrarResultado\\(true\\)/);
+});
