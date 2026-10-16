@@ -167,9 +167,12 @@ export function resolverObjetivosHabilidad(
     return { objetivos: candidatos, objetivoPrincipal: candidatos[0] };
   }
 
+  const objetivoPorDefecto = regla.equipo === "aliado"
+    ? candidatos.find((c) => c.id === actorId) ?? candidatos[0]
+    : candidatos[0];
   const elegido = solicitud.objetivoId
     ? candidatos.find((c) => c.id === solicitud.objetivoId)
-    : candidatos[0];
+    : objetivoPorDefecto;
   if (!elegido) {
     return { objetivos: [], objetivoPrincipal: null, error: "objetivo_no_valido" };
   }
