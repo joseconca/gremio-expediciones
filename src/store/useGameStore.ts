@@ -236,6 +236,8 @@ export interface CombateActivo {
   enemigoAtaque: number;
   enemigoDefensa: number;
   enemigoVelocidad: number;
+  enemigoPrecision?: number;
+  enemigoEvasion?: number;
   enemigoProbCritico: number;
   enemigoDanoCritico: number;
   enemigoPrecision?: number;
