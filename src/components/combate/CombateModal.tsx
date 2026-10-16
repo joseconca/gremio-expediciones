@@ -829,91 +829,78 @@ export default function CombateModal({
           </div>
           )}
 
-          {/* ENEMIGO */}
-          <div
-            className={`relative flex ${partyMode ? "w-[32%] justify-center px-0" : "w-[46%] justify-center sm:w-[40%]"} ${
-              actorAnimando === "enemigo" && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada")
-                ? animacionActual === "ofensiva_potenciada"
-                  ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]"
-                  : "animate-[combate-ataque-enemigo_700ms_ease-in-out]"
-                : ""
-            }`}
-          >
-            <div className="flex w-full flex-col items-center">
-              <div className="mb-4 w-full max-w-[250px]">
-                <div className="mb-1.5 flex items-center rounded border border-stone-800/80 bg-black/50 px-2.5 py-1 shadow-sm backdrop-blur-sm">
-                  <span className="truncate text-sm font-bold tracking-wide text-stone-100">{combate.enemigoNombre}</span>
-                </div>
-                <div className="flex items-center gap-1.5" title="Vida del enemigo">
-                  <div role="progressbar" aria-label="Vida del enemigo" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(vidaEnemigo)} className="h-2 min-w-0 flex-1 overflow-hidden rounded-full border border-stone-700 bg-stone-900 shadow-inner">
-                    <div className={`h-full rounded-full bg-gradient-to-r ${obtenerColorVida(vidaEnemigo)} transition-all duration-500`} style={{ width: `${vidaEnemigo}%` }} />
-                  </div>
-                  <span className="w-[54px] shrink-0 text-right font-mono text-[9px] font-bold text-stone-200">{Math.max(0, combate.enemigoHp)}/{combate.enemigoHpMaximo}</span>
-                </div>
-                <div className="relative mt-1 min-h-6 w-full overflow-visible">
-                  <IndicadoresEfectosCombate efectos={combate.efectosDefensor ?? []} />
-                </div>
-              </div>
-
-              {danioVisible?.actor === "enemigo" && (
-                <div
-                  className={`absolute top-0 left-1/2 -translate-x-1/2 font-black drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] z-50 ${
-                    danioVisible.critico
-                      ? "text-5xl text-amber-400 scale-125 animate-bounce"
-                      : "text-4xl text-stone-100"
-                  }`}
-                >
-                  -{danioVisible.dano}
-                </div>
-              )}
-
-              <div
-                className={`relative ${partyMode ? "h-[116px] w-[104px] sm:h-[166px] sm:w-[150px]" : "h-[180px] w-[180px]"} ${
-                  actorImpactado === "enemigo"
-                    ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]"
-                    : ""
-                }`}
-                data-combate-ancla="enemigo"
-              >
-                {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "enemigo").map((pulso, indice) => (
-                  <div
-                    key={`pulso-enemigo-${indice}-${pulso.tipo}`}
-                    className={`combate-estado-pulso absolute bottom-1 z-40 -translate-x-1/2 rounded bg-stone-950/85 px-1.5 py-0.5 font-mono text-lg font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`}
-                    style={{ left: `calc(50% + ${(indice - 0.5) * 28}px)` }}
-                  >
-                    {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}
-                  </div>
-                ))}
-                {/* SOMBRA INVERSA DEL ENEMIGO */}
-                <div
-                  className="absolute inset-0 z-0 opacity-60 blur-xs"
-                  style={{
-                    transform:
-                      "translateY(45%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)",
-                  }}
-                >
-                  <Image
-                    src={obtenerRutaSpriteEnemigo(combate.enemigoId)}
-                    alt="Sombra del enemigo"
-                    fill
-                    sizes="(max-width: 640px) 104px, 150px"
-                    style={{ transform: "scaleX(-1)" }}
-                    className="object-contain brightness-0"
-                  />
-                </div>
-
-                {/* ENEMIGO */}
-                <Image
-                  src={obtenerRutaSpriteEnemigo(combate.enemigoId)}
-                  alt={combate.enemigoNombre || "Enemigo"}
-                  fill
-                  sizes="(max-width: 640px) 104px, 150px"
-                  style={{ transform: "scaleX(-1)" }}
-                  className={`relative z-10 object-contain [image-rendering:pixelated] ${modoPresentacionActual === "curacion" && actorAnimando === "enemigo" ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && actorAnimando === "enemigo" ? "combate-defensa-resplandor" : ""}`}
-                  priority
-                />
-              </div>
+          {/* FORMACIÓN ENEMIGA: cada criatura mantiene su propia casilla, vida y ancla de animación. */}
+          <div className={`relative h-full ${partyMode ? "w-[32%]" : "w-[46%] sm:w-[40%]"} min-w-0`}>
+            <div aria-hidden="true" className="pointer-events-none absolute inset-2 rounded-lg border border-red-900/20 bg-black/5">
+              <div className="absolute inset-y-0 left-1/3 border-l border-dashed border-red-100/10" />
+              <div className="absolute inset-y-0 left-2/3 border-l border-dashed border-red-100/10" />
+              <div className="absolute inset-x-0 top-1/3 border-t border-dashed border-red-100/10" />
+              <div className="absolute inset-x-0 top-2/3 border-t border-dashed border-red-100/10" />
             </div>
+            {enemigosVisibles.map((enemigo) => {
+              const vida = Math.max(0, Math.min(100, enemigo.hp / Math.max(1, enemigo.hpMaximo) * 100));
+              const vivo = enemigo.hp > 0;
+              const seleccionado = enemigoObjetivoElegidoId === enemigo.id;
+              const animando = actorAnimando === enemigo.id;
+              const impactado = actorImpactado === enemigo.id;
+              const x = enemigo.posicion === "mele" ? 17 : enemigo.posicion === "retaguardia" ? 83 : 50;
+              const y = 20 + enemigo.columna * 30;
+              const sprite = obtenerRutaSpriteEnemigo(enemigo.enemigoId);
+              return (
+                <button
+                  key={enemigo.id}
+                  type="button"
+                  aria-label={`Seleccionar ${enemigo.nombre}, ${enemigo.hp} de ${enemigo.hpMaximo} puntos de vida`}
+                  aria-pressed={seleccionado}
+                  disabled={!vivo}
+                  onClick={() => setEnemigoObjetivoId(enemigo.id)}
+                  className={`absolute z-10 flex w-[35%] max-w-[112px] -translate-x-1/2 -translate-y-1/2 flex-col items-center rounded-md p-1 transition-all ${seleccionado ? "bg-amber-950/25 ring-1 ring-amber-400/80" : "hover:bg-white/5"} ${!vivo ? "opacity-45 grayscale" : ""} ${animando && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque-enemigo_700ms_ease-in-out]") : ""}`}
+                  style={{ left: `${x}%`, top: `${y}%` }}
+                >
+                  <div className="mb-1 w-full rounded border border-stone-800/80 bg-black/70 px-1.5 py-1 text-center shadow-sm backdrop-blur-sm">
+                    <span className="block truncate text-[9px] font-bold leading-tight text-stone-100 sm:text-[10px]">{enemigo.nombre}</span>
+                    <span className="block text-[8px] text-stone-500">{ETIQUETAS_POSICION_COMBATE[normalizarPosicionCombate(enemigo.posicion)]}</span>
+                    <div className="mt-1 flex items-center gap-1">
+                      <div role="progressbar" aria-label={`Vida de ${enemigo.nombre}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(vida)} className="h-1 min-w-0 flex-1 overflow-hidden rounded border border-stone-700 bg-stone-950">
+                        <div className={`h-full transition-all duration-300 ${vida >= 50 ? "bg-emerald-500" : vida >= 25 ? "bg-orange-400" : "bg-red-500"}`} style={{ width: `${vida}%` }} />
+                      </div>
+                      <span className="shrink-0 font-mono text-[8px] text-stone-200">{Math.max(0, enemigo.hp)}/{enemigo.hpMaximo}</span>
+                    </div>
+                  </div>
+                  {danioVisible?.actor === enemigo.id && (
+                    <span className={`absolute top-6 z-50 -translate-y-full whitespace-nowrap font-black drop-shadow-[0_3px_3px_rgba(0,0,0,0.9)] ${danioVisible.critico ? "animate-bounce text-2xl text-amber-300" : "text-xl text-red-300"}`}>-{danioVisible.dano}</span>
+                  )}
+                  {curacionVisible?.actor === enemigo.id && (
+                    <span className="absolute top-6 z-50 -translate-y-full whitespace-nowrap text-xl font-black text-emerald-300 drop-shadow-[0_3px_3px_rgba(0,0,0,0.9)]">+{curacionVisible.cantidad}</span>
+                  )}
+                  <div
+                    className={`relative ${partyMode ? "h-[62px] w-[58px] sm:h-[82px] sm:w-[74px]" : "h-[76px] w-[72px] sm:h-[104px] sm:w-[96px]"} transition-all duration-200 ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}
+                    data-combate-ancla={enemigo.id}
+                  >
+                    <div className="absolute inset-0 z-0 opacity-45 blur-[1px]" style={{ transform: "translateY(36%) perspective(110px) rotateX(65deg) scale(1.05,-0.65)" }}>
+                      <Image src={sprite} alt="" fill sizes="96px" style={{ transform: "scaleX(-1)" }} className="object-contain brightness-0" />
+                    </div>
+                    {pulsosEstadoVisibles.filter((pulso) => pulso.actor === enemigo.id).map((pulso, indice) => (
+                      <span key={`pulso-${enemigo.id}-${indice}-${pulso.tipo}`} className={`combate-estado-pulso absolute bottom-0 z-40 -translate-x-1/2 rounded bg-stone-950/90 px-1 py-0.5 font-mono text-[10px] font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`} style={{ left: `calc(50% + ${(indice - 0.5) * 20}px)` }}>
+                        {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}
+                      </span>
+                    ))}
+                    <Image
+                      src={sprite}
+                      alt={enemigo.nombre}
+                      fill
+                      sizes="(max-width: 640px) 58px, 96px"
+                      style={{ transform: "scaleX(-1)" }}
+                      className={`relative z-10 object-contain [image-rendering:pixelated] ${modoPresentacionActual === "curacion" && animando ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && animando ? "combate-defensa-resplandor" : ""}`}
+                    />
+                  </div>
+                  <IndicadoresEfectosCombate efectos={enemigo.efectos ?? []} />
+                  <span className="mt-0.5 rounded bg-black/65 px-1 text-center text-[8px] font-bold text-stone-300">
+                    {seleccionado && vivo ? "Objetivo seleccionado" : vivo ? "Seleccionar" : "Derrotado"}
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
           <CapaEfectosCombate proyectiles={proyectilesVisibles} />
