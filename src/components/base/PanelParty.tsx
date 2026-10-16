@@ -224,13 +224,22 @@ export default function PanelParty() {
       const expedicion = estadoNuevo.expedicionActiva;
       const combate = expedicion?.combate;
       if (expedicion && combate && (combate.fase === "victoria" || combate.fase === "derrota" || combate.fase === "huida")) {
-        setUltimoResultadoCombate((actual) => actual?.expedicionPartyId === expedicion.id
-          ? actual
-          : {
-              expedicionPartyId: expedicion.id,
-              fase: combate.fase as "victoria" | "derrota" | "huida",
-              recompensas: combate.fase === "victoria" || combate.fase === "derrota" ? (combate.recompensasResultado ?? null) : null,
-            });
+        setUltimoResultadoCombate((actual) => {
+          const resultadoNuevo = {
+            expedicionPartyId: expedicion.id,
+            fase: combate.fase as "victoria" | "derrota" | "huida",
+            recompensas: combate.fase === "victoria" || combate.fase === "derrota"
+              ? combate.recompensasResultado ?? null
+              : null,
+          };
+          if (actual?.expedicionPartyId !== expedicion.id) return resultadoNuevo;
+          return {
+            ...actual,
+            fase: resultadoNuevo.fase,
+            // El resultado persistido puede llegar por sondeo después de la acción terminal.
+            recompensas: actual.recompensas ?? resultadoNuevo.recompensas,
+          };
+        });
       } else if (expedicion) {
         setUltimoResultadoCombate((actual) => actual?.expedicionPartyId === expedicion.id ? actual : null);
       } else {
