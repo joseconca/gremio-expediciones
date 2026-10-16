@@ -821,8 +821,28 @@ export const useGameStore = create<GameState>((set, get) => ({
     modo: "pve" | "pvp" = "pve"
   ) => {
     try {
-      const definicionHabilidad = accion === "usar_habilidad" && payload
-        ? obtenerHabilidadPorId(payload)
+      let habilidadId = accion === "usar_habilidad" && payload ? payload : null;
+      let objetoInventarioId = accion === "usar_objeto" && payload ? payload : null;
+      let objetivoId: string | null = null;
+      let enemigoObjetivoId: string | null = null;
+      // El payload plano conserva compatibilidad; las acciones con selección
+      // de objetivo pueden enviar un objeto JSON serializado.
+      if (payload && payload.trim().startsWith("{")) {
+        try {
+          const parsed: unknown = JSON.parse(payload);
+          if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+            const objeto = parsed as Record<string, unknown>;
+            if (typeof objeto.habilidadId === "string") habilidadId = objeto.habilidadId;
+            if (typeof objeto.objetoInventarioId === "string") objetoInventarioId = objeto.objetoInventarioId;
+            if (typeof objeto.objetivoId === "string") objetivoId = objeto.objetivoId;
+            if (typeof objeto.enemigoObjetivoId === "string") enemigoObjetivoId = objeto.enemigoObjetivoId;
+          }
+        } catch {
+          // Un payload legado no JSON se trata como un ID plano.
+        }
+      }
+      const definicionHabilidad = habilidadId
+        ? obtenerHabilidadPorId(habilidadId)
         : null;
       const objetivo = accion === "usar_objeto" || accion === "escapar"
         ? "propio"
@@ -837,8 +857,10 @@ export const useGameStore = create<GameState>((set, get) => ({
         body: JSON.stringify({
           accion,
           objetivo,
-          ...(accion === "usar_habilidad" && payload ? { habilidadId: payload } : {}),
-          ...(accion === "usar_objeto" && payload ? { objetoInventarioId: payload } : {}),
+          ...(accion === "usar_habilidad" && habilidadId ? { habilidadId } : {}),
+          ...(accion === "usar_objeto" && objetoInventarioId ? { objetoInventarioId } : {}),
+          ...(objetivoId ? { objetivoId } : {}),
+          ...(enemigoObjetivoId ? { enemigoObjetivoId } : {}),
         }),
       });
 
