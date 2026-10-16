@@ -133,4 +133,15 @@ test("el servidor puede rechazar objetivos ajenos al equipo y formaciones mayore
     combatientes: [combatiente("hero", "aliado", "centro", 1), ...oversized],
   });
   assert.equal(over.error, "limite_formacion_excedido");
+
+  const conCaido = resolverObjetivosHabilidad({
+    actorId: "hero",
+    habilidad: habilidad("enemigo", "todos"),
+    combatientes: [
+      combatiente("hero", "aliado", "centro", 1),
+      ...oversized.slice(0, 9),
+      combatiente("e-caido", "enemigo", "retaguardia", 2, { hpActual: 0 }),
+    ],
+  });
+  assert.equal(conCaido.error, "limite_formacion_excedido");
 });
