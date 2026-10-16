@@ -514,7 +514,6 @@ export default function CombateModal({
     combate.log.length > 0
       ? combate.log[combate.log.length - 1]
       : "El combate comienza...";
-  const enemigosDerrotados = enemigosVisibles.filter((enemigo) => enemigo.hp <= 0);
   const botinObtenidoInforme = recompensaInforme
     ? recompensaInforme.botin
     : partyMode
@@ -584,6 +583,7 @@ export default function CombateModal({
     return legado ? [legado] : [];
   }, [combate]);
   const enemigosVivos = enemigosVisibles.filter((enemigo) => enemigo.hp > 0);
+  const enemigosDerrotados = enemigosVisibles.filter((enemigo) => enemigo.hp <= 0);
   const enemigoObjetivoElegidoId = enemigosVivos.some((enemigo) => enemigo.id === enemigoObjetivoId)
     ? enemigoObjetivoId
     : enemigosVivos[0]?.id ?? null;
