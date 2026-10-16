@@ -33,8 +33,8 @@ interface DanoVisibleCombate {
   critico: boolean;
 }
 
-interface DanoEnemigoVisibleCombate {
-  enemigoId: string;
+interface DanoObjetivoVisibleCombate {
+  objetivoId: string;
   dano: number;
   critico: boolean;
 }
@@ -67,8 +67,9 @@ function esperar(milisegundos: number, temporizadores: Map<number, () => void>):
  */
 export function useAnimacionesCombate() {
   const [danioVisible, setDanioVisible] = useState<DanoVisibleCombate | null>(null);
-  const [daniosEnemigosVisibles, setDaniosEnemigosVisibles] = useState<DanoEnemigoVisibleCombate[]>([]);
-  const [enemigosImpactados, setEnemigosImpactados] = useState<string[]>([]);
+  const [daniosMultiplesVisibles, setDaniosMultiplesVisibles] = useState<DanoObjetivoVisibleCombate[]>([]);
+  const [objetivosMultiplesImpactados, setObjetivosMultiplesImpactados] = useState<string[]>([]);
+  const [actoresAnimando, setActoresAnimando] = useState<string[]>([]);
   const [curacionVisible, setCuracionVisible] = useState<CuracionVisibleCombate | null>(null);
   const [pulsosEstadoVisibles, setPulsosEstadoVisibles] = useState<PulsoEstadoVisibleCombate[]>([]);
   const [actorAnimando, setActorAnimando] = useState<string | null>(null);
@@ -117,8 +118,8 @@ export function useAnimacionesCombate() {
     const esProyectil = modoPresentacion === "proyectil" && Boolean(accion.presentacion?.proyectil);
 
     setDanioVisible(null);
-    setDaniosEnemigosVisibles([]);
-    setEnemigosImpactados([]);
+    setDaniosMultiplesVisibles([]);
+    setObjetivosMultiplesImpactados([]);
     setCuracionVisible(null);
     setActorImpactado(null);
     setProyectilesVisibles([]);
@@ -128,6 +129,7 @@ export function useAnimacionesCombate() {
     setActorAnimando(
       accion.presentacion?.modo === "curacion" ? objetivoVisual : actorVisual,
     );
+    setActoresAnimando(accion.actor === "enemigo" ? (accion.actoresEnemigoIds ?? []) : []);
 
     if (animacionSoporte) {
       if (curacion > 0) {
@@ -164,14 +166,14 @@ export function useAnimacionesCombate() {
     }
 
     const fallo = accion.tipo === "fallo" || dano <= 0;
-    const impactosEnemigos = accion.impactosEnemigo ?? [];
-    const esImpactoDeArea = impactosEnemigos.length > 1;
+    const impactosMultiples = accion.impactosMultiples ?? [];
+    const esImpactoMultiple = impactosMultiples.length > 0;
     if (!fallo) {
-      if (esImpactoDeArea) setEnemigosImpactados(impactosEnemigos.map((impacto) => impacto.enemigoId));
+      if (esImpactoMultiple) setObjetivosMultiplesImpactados(impactosMultiples.map((impacto) => impacto.objetivoId));
       else setActorImpactado(objetivoVisual);
     }
-    if (esImpactoDeArea) {
-      setDaniosEnemigosVisibles(impactosEnemigos);
+    if (esImpactoMultiple) {
+      setDaniosMultiplesVisibles(impactosMultiples);
     } else if (dano > 0) {
       setDanioVisible({ actor: objetivoVisual, dano, critico: accion.critico });
     }
@@ -185,8 +187,8 @@ export function useAnimacionesCombate() {
     if (!sigueActiva()) return;
 
     setDanioVisible(null);
-    setDaniosEnemigosVisibles([]);
-    setEnemigosImpactados([]);
+    setDaniosMultiplesVisibles([]);
+    setObjetivosMultiplesImpactados([]);
     setActorImpactado(null);
 
     if (curacion > 0) {
@@ -198,8 +200,9 @@ export function useAnimacionesCombate() {
     await esperar(accion.animacion === "ofensiva_potenciada" ? 300 : 200, temporizadoresRef.current);
     if (!sigueActiva()) return;
 
-    setDaniosEnemigosVisibles([]);
-    setEnemigosImpactados([]);
+    setDaniosMultiplesVisibles([]);
+    setObjetivosMultiplesImpactados([]);
+    setActoresAnimando([]);
     setActorAnimando(null);
     setAnimacionActual(null);
     setModoPresentacionActual(null);
@@ -209,8 +212,9 @@ export function useAnimacionesCombate() {
 
   return {
     danioVisible,
-    daniosEnemigosVisibles,
-    enemigosImpactados,
+    daniosMultiplesVisibles,
+    objetivosMultiplesImpactados,
+    actoresAnimando,
     curacionVisible,
     pulsosEstadoVisibles,
     actorAnimando,
