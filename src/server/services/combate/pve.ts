@@ -757,6 +757,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             modoDificultad,
             0.1,
           );
+          let experienciaJobTotal = progresoJobMision?.experienciaJobGanada ?? 0;
           if (progresoJobMision && progresoJobMision.nivelesSubidos > 0) {
             log.push(`⬆️ Job de ${progresoJobMision.claseNombre}: nivel ${progresoJobMision.nivelJob}.`);
           }
@@ -768,9 +769,13 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
               personaje.nivel,
               modoDificultad,
             );
+            experienciaJobTotal += progresoJobEnemigo?.experienciaJobGanada ?? 0;
             if (progresoJobEnemigo && progresoJobEnemigo.nivelesSubidos > 0) {
               log.push(`⬆️ Job de ${progresoJobEnemigo.claseNombre}: nivel ${progresoJobEnemigo.nivelJob} tras abatir a ${snapshot.nombre}.`);
             }
+          }
+          if (experienciaJobTotal > 0) {
+            log.push(`⭐ Job XP: ${experienciaJobTotal}.`);
           }
 
           // Las criaturas soltadas se entregan ahora. Los recursos y el oro de
