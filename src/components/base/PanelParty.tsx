@@ -762,7 +762,7 @@ export default function PanelParty() {
                 : esLider ? "Disolver compañía" : "Abandonar compañía"}
             </button>
             {ocupado && (
-              <p className="mt-1.5 text-[10px] leading-snug text-amber-400/80">
+              <p className="mt-1.5 text-[10px] leading-snug text-[#80463d]">
                 {expedicionPartyActiva
                   ? puedeDisolverDuranteViaje
                     ? "Puedes cancelar el contrato durante el viaje de ida. Todos regresarán a sus respectivas bases y la compañía quedará disuelta."
@@ -775,7 +775,7 @@ export default function PanelParty() {
           </div>
         )}
 
-        {cargando && !estado && <p className="relative py-2 text-[11px] text-[#b9a681]">Consultando el registro...</p>}
+        {cargando && !estado && <p className="relative z-10 py-2 text-[11px] text-[#74413a]">Consultando el registro...</p>}
 
         <div className="relative mt-2 space-y-1.5">
       {trasladosPropios.map((traslado) => {
@@ -860,7 +860,7 @@ export default function PanelParty() {
 
       {visitasEntrantes.length > 0 && (
         <div className="mt-3">
-          <h3 className="mb-2 text-sm font-black uppercase tracking-wide text-amber-200">
+          <h3 className="mb-2 text-sm font-black uppercase tracking-wide text-[#7a3029]">
             Visitas entrantes
           </h3>
           <div className="grid gap-2 sm:grid-cols-2">
@@ -870,10 +870,10 @@ export default function PanelParty() {
               const haLlegado = traslado.haLlegadoEnServidor ?? restante === 0;
               const llegadaEsperandoConfirmacion = restante === 0 && !haLlegado;
               return (
-                <article key={traslado.id} className="rounded-lg border border-amber-900/60 bg-amber-950/20 p-3">
-                  <p className="font-bold text-white">{visitante?.personaje?.nombre ?? "Aventurero visitante"}</p>
-                  <p className="mt-1 text-sm text-slate-300">{visitante?.nombre ?? "Gremio desconocido"}</p>
-                  <p className="mt-1 text-xs text-slate-400">
+                <article key={traslado.id} className="rounded-sm border border-[#b96b60] bg-[#f7d9d2]/80 p-3 text-[#49231f] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.25)]">
+                  <p className="font-serif font-black text-[#49231f]">{visitante?.personaje?.nombre ?? "Aventurero visitante"}</p>
+                  <p className="mt-1 text-sm text-[#69413a]">{visitante?.nombre ?? "Gremio desconocido"}</p>
+                  <p className="mt-1 text-xs text-[#75483d]">
                     {haLlegado
                       ? "Ha llegado a tu base; decide si incorporarlo."
                       : llegadaEsperandoConfirmacion
@@ -902,7 +902,7 @@ export default function PanelParty() {
                       </button>
                     </div>
                   ) : (
-                    <p className="mt-2 text-xs text-amber-300/80">Las opciones aparecerán cuando llegue.</p>
+                    <p className="mt-2 text-xs font-semibold text-[#80463d]">Las opciones aparecerán cuando llegue.</p>
                   )}
                 </article>
               );
@@ -962,7 +962,7 @@ export default function PanelParty() {
                   La party ha llegado. Preparando el combate compartido...
                 </p>
               ) : estado.expedicionActiva.fase === "combatiendo" && estado.expedicionActiva.combate ? (
-                <div className="mt-2 rounded border border-red-900/60 bg-red-950/20 p-3">
+                <div className="mt-2 rounded border border-[#7b332c] bg-[#542521] p-3">
                   <p className="text-sm font-bold text-red-200">
                     ⚔️ {estado.expedicionActiva.combate.enemigoNombre} · Ronda {estado.expedicionActiva.combate.ronda}
                   </p>
