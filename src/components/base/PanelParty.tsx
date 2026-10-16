@@ -102,6 +102,8 @@ type PersonajeAccionesVista = {
 };
 type ResultadoRecompensasParty = {
   liquidacionYaResuelta: boolean;
+  resultadoFinal?: "victoria" | "derrota";
+  enemigosDerrotados?: { id: string; nombre: string }[];
   oroTotal?: number;
   /** Un resultado por aventurero: cada miembro tira su propio botín enemigo. */
   dropsEnemigo?: {
@@ -227,7 +229,7 @@ export default function PanelParty() {
           : {
               expedicionPartyId: expedicion.id,
               fase: combate.fase as "victoria" | "derrota" | "huida",
-              recompensas: combate.fase === "victoria" ? (combate.recompensasResultado ?? null) : null,
+              recompensas: combate.fase === "victoria" || combate.fase === "derrota" ? (combate.recompensasResultado ?? null) : null,
             });
       } else if (expedicion) {
         setUltimoResultadoCombate((actual) => actual?.expedicionPartyId === expedicion.id ? actual : null);
@@ -255,7 +257,7 @@ export default function PanelParty() {
     setUltimoResultadoCombate({
       expedicionPartyId,
       fase: datos.fase,
-      recompensas: datos.fase === "victoria" ? (datos.recompensas ?? null) : null,
+      recompensas: datos.fase === "victoria" || datos.fase === "derrota" ? (datos.recompensas ?? null) : null,
     });
   };
 
@@ -1001,12 +1003,14 @@ export default function PanelParty() {
       {ultimoResultadoCombate && (
         <article className={`overflow-hidden rounded-md border p-2.5 ${ultimoResultadoCombate.fase === "victoria" ? "border-emerald-800 bg-emerald-950/30" : "border-red-900 bg-red-950/20"}`}>
           <p className={`text-sm font-black ${ultimoResultadoCombate.fase === "victoria" ? "text-emerald-200" : "text-red-200"}`}>
-            {ultimoResultadoCombate.fase === "victoria" ? "🎁 Recompensas de la expedición" : "⚔️ Resultado del combate"}
+            {ultimoResultadoCombate.fase === "victoria" ? "🎁 Recompensas de la expedición" : ultimoResultadoCombate.fase === "derrota" ? "⚔️ Recompensas parciales por derrota" : "⚔️ Resultado del combate"}
           </p>
-          {ultimoResultadoCombate.fase === "victoria" && ultimoResultadoCombate.recompensas ? (
+          {(ultimoResultadoCombate.fase === "victoria" || ultimoResultadoCombate.fase === "derrota") && ultimoResultadoCombate.recompensas ? (
             <div className="mt-2 space-y-1.5">
               <p className="text-[11px] text-slate-300">
-                Oro total repartido: {ultimoResultadoCombate.recompensas.oroTotal ?? 0} 🪙. La experiencia Base y Job se aplica individualmente.
+                {ultimoResultadoCombate.fase === "victoria"
+                  ? `Oro total repartido: ${ultimoResultadoCombate.recompensas.oroTotal ?? 0} 🪙. La experiencia Base y Job se aplica individualmente.`
+                  : `Oro parcial repartido: ${ultimoResultadoCombate.recompensas.oroTotal ?? 0} 🪙. Solo cuentan enemigos abatidos; no se reciben objetos de misión ni desbloqueos.`}
               </p>
               {ultimoResultadoCombate.recompensas.recompensas.map((recompensa) => {
                 const miembro = estado?.expedicionActiva?.participantes.find((p) => p.usuarioId === recompensa.usuarioId)
@@ -1043,7 +1047,7 @@ export default function PanelParty() {
               })}
             </div>
           ) : ultimoResultadoCombate.fase === "derrota" ? (
-            <p className="mt-1 text-xs text-slate-300">El grupo ha sido derrotado; no se han otorgado recompensas de victoria.</p>
+            <p className="mt-1 text-xs text-slate-300">El grupo ha sido derrotado; no hay un desglose de recompensas disponible.</p>
           ) : (
             <p className="mt-1 text-xs text-slate-300">La victoria se ha registrado; no hay un resumen adicional disponible en esta respuesta.</p>
           )}
