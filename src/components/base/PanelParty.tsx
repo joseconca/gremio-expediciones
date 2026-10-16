@@ -482,6 +482,10 @@ export default function PanelParty() {
 
     void (async () => {
       try {
+        // En main el turno enemigo PvE deja entre 300 y 1500 ms de margen.
+        // Aplicamos el mismo ritmo al turno compartido de party antes de resolverlo.
+        const tiempoEsperaEnemigo = Math.random() * 1200 + 300;
+        await new Promise<void>((resolve) => window.setTimeout(resolve, tiempoEsperaEnemigo));
         const respuestaTurno = await fetch("/api/expediciones/party/combate/turno-enemigo", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
