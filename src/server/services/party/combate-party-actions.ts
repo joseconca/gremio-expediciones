@@ -1123,8 +1123,8 @@ export async function ejecutarAccionCombateParty(
           enemigoObjetivoId: primero.enemigo.id,
           objetivosEnemigoIds: resultados.map((entrada) => entrada.enemigo.id),
           ...(resultados.length > 1 ? {
-            impactosEnemigo: resultados.map((entrada) => ({
-              enemigoId: entrada.enemigo.id,
+            impactosMultiples: resultados.map((entrada) => ({
+              objetivoId: entrada.enemigo.id,
               dano: entrada.resultado.accion.dano,
               critico: entrada.resultado.accion.critico,
             })),
