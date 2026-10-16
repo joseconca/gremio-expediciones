@@ -193,6 +193,7 @@ export default function PanelParty() {
   } | null>(null);
   const [destinoTablon, setDestinoTablon] = useState<HTMLElement | null>(null);
   const [expedicionDetalleAbierto, setExpedicionDetalleAbierto] = useState(false);
+  const [partyDetalleAbierto, setPartyDetalleAbierto] = useState(false);
   const [combatePartyCerradoId, setCombatePartyCerradoId] = useState<string | null>(null);
   const [confirmarDisolucion, setConfirmarDisolucion] = useState(false);
   const procesandoAutomatico = useRef(new Set<string>());
@@ -689,25 +690,43 @@ export default function PanelParty() {
     <>
       {destinoTablon && createPortal(
         <>
-      <aside className="relative w-full overflow-hidden rounded-md border border-[#80602f] bg-[linear-gradient(145deg,#261c10_0%,#15100a_100%)] p-2.5 text-[#f8edcf] shadow-lg sm:p-3">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-1 rounded border border-[#604824]/70" />
-        <header className="relative flex items-center gap-2 border-b border-[#604824] pb-2">
-          <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded border border-[#8b6836] bg-[#302113] text-amber-200">♛</span>
-          <div className="min-w-0 flex-1">
-            <p className="text-[9px] font-black uppercase tracking-[0.18em] text-amber-500">
-              {party ? "Compañía" : "Mensajería del gremio"}
-            </p>
-            <h2 className="truncate font-serif text-sm font-black text-amber-100">
+      <aside
+        className="relative isolate w-full overflow-hidden border border-[#a45449] bg-[linear-gradient(155deg,#f1c9bd_0%,#e5aaa0_58%,#d48b81_100%)] p-2.5 text-[#49231f] shadow-[2px_4px_0_rgba(0,0,0,0.3),inset_0_0_0_2px_rgba(255,231,220,0.32)] sm:p-3"
+        style={{ clipPath: "polygon(0 0, 98.8% 0.6%, 100% 2.5%, 99.5% 98%, 97% 100%, 1% 99.2%, 0 97%)" }}
+      >
+        <div aria-hidden="true" className="pointer-events-none absolute inset-1 z-0 border border-[#a45449]/50" />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 opacity-35 bg-[repeating-linear-gradient(0deg,transparent_0,transparent_21px,rgba(124,42,35,0.15)_22px,transparent_23px)]" />
+        <span aria-hidden="true" className="absolute left-1/2 top-1.5 z-20 h-3 w-3 -translate-x-1/2 rounded-full border border-[#52221c] bg-[#782b22] shadow-[0_1px_2px_rgba(0,0,0,0.65),inset_0_1px_1px_rgba(255,220,180,0.5)]" />
+        <button
+          type="button"
+          onClick={() => setPartyDetalleAbierto((abierto) => !abierto)}
+          aria-expanded={partyDetalleAbierto}
+          className="relative z-10 flex w-full items-center gap-2.5 border-b border-dashed border-[#a45d52] px-1 pb-2 pt-4 text-left transition-colors hover:bg-[#f9ddd4]/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#702d22]"
+        >
+          <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center border border-[#ad756c] bg-[#f4d3ca]/80 text-lg text-[#7a3029]">♛</span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-[9px] font-black uppercase tracking-[0.18em] text-[#803b32]">
+              {party ? "Aviso de compañía" : "Mensajería del gremio"}
+            </span>
+            <span className="block truncate font-serif text-sm font-black text-[#49231f]">
               {party ? `Compañía de ${party.lider.nombre}` : visitasEntrantes.length > 0 ? "Visitas entrantes" : "Traslado entre bases"}
-            </h2>
-          </div>
-          {party && <span className="shrink-0 rounded border border-[#80602f] bg-[#1a140c] px-1.5 py-1 text-[10px] font-black text-amber-200">{party.miembros.length}/3</span>}
-        </header>
+            </span>
+            <span className="mt-1 block truncate text-[10px] font-semibold text-[#74413a]">
+              {party
+                ? `${party.miembros.length}/3 aventureros · ${estado?.expedicionActiva ? `Expedición: ${estado.expedicionActiva.nombre}` : "Sin expedición activa"}`
+                : `${visitasEntrantes.length} visitas · ${trasladosPropios.length} traslados`}
+            </span>
+          </span>
+          {party && <span className="shrink-0 border border-[#aa665b] bg-[#f7d9d2]/80 px-1.5 py-1 text-[10px] font-black text-[#74332c]">{party.miembros.length}/3</span>}
+          <span aria-hidden="true" className="shrink-0 text-sm text-[#8b3029]">{partyDetalleAbierto ? "⌃" : "⌄"}</span>
+        </button>
 
         {error && (
           <p role="alert" className="relative mt-2 rounded border border-red-900/80 bg-red-950/50 p-2 text-xs text-red-200">{error}</p>
         )}
 
+        {partyDetalleAbierto && (
+          <div className="relative z-10 mt-2 rounded border border-[#b96b60]/55 bg-[#f9e0d8]/40 p-2 sm:p-3">
         {party && (
           <div className="relative pt-2">
             <div className="flex flex-wrap gap-1.5">
@@ -892,19 +911,25 @@ export default function PanelParty() {
         </div>
       )}
         </div>
+          </div>
+        )}
       </aside>
       {estado?.expedicionActiva && (
-        <article className="overflow-hidden rounded-md border border-[#73552d] bg-[#1c150d]/95 shadow-sm">
+        <article className="relative isolate w-full overflow-hidden border border-[#a45449] bg-[linear-gradient(155deg,#f1c9bd_0%,#e5aaa0_58%,#d48b81_100%)] text-[#49231f] shadow-[2px_4px_0_rgba(0,0,0,0.3),inset_0_0_0_2px_rgba(255,231,220,0.32)]"
+          style={{ clipPath: "polygon(0 0, 98.8% 0.6%, 100% 2.5%, 99.5% 98%, 97% 100%, 1% 99.2%, 0 97%)" }}
+        >
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 opacity-35 bg-[repeating-linear-gradient(0deg,transparent_0,transparent_21px,rgba(124,42,35,0.15)_22px,transparent_23px)]" />
+          <span aria-hidden="true" className="absolute left-1/2 top-1.5 z-20 h-3 w-3 -translate-x-1/2 rounded-full border border-[#52221c] bg-[#782b22] shadow-[0_1px_2px_rgba(0,0,0,0.65),inset_0_1px_1px_rgba(255,220,180,0.5)]" />
           <button
             type="button"
             onClick={() => setExpedicionDetalleAbierto((abierto) => !abierto)}
             aria-expanded={expedicionDetalleAbierto}
-            className="flex min-h-14 w-full items-center gap-2.5 p-2.5 text-left transition hover:bg-amber-950/30"
+            className="relative z-10 flex min-h-14 w-full items-center gap-2.5 px-3 pb-3 pt-5 text-left transition-colors hover:bg-[#f9ddd4]/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#702d22]"
           >
-            <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-[#8b6836] bg-[#302113] text-lg text-amber-200">🧭</span>
+            <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center border border-[#ad756c] bg-[#f4d3ca]/80 text-lg text-[#7a3029]">🧭</span>
             <span className="min-w-0 flex-1">
-              <span className="block truncate text-sm font-black text-amber-100">{estado.expedicionActiva.nombre}</span>
-              <span className={`mt-0.5 block truncate text-[11px] font-semibold ${estado.expedicionActiva.fase === "combatiendo" ? "text-red-200" : estado.expedicionActiva.fase === "regresando" ? "text-sky-200" : "text-amber-200/80"}`}>
+              <span className="block truncate font-serif text-sm font-black text-[#49231f]">{estado.expedicionActiva.nombre}</span>
+              <span className={`mt-0.5 block truncate text-[11px] font-semibold ${estado.expedicionActiva.fase === "combatiendo" ? "text-[#842c26]" : estado.expedicionActiva.fase === "regresando" ? "text-[#36543a]" : "text-[#75483d]"}`}>
                 {estado.expedicionActiva.fase === "en_viaje"
                   ? `En ruta · ${formatoCuentaAtras(segundosRestantes(estado.expedicionActiva.fechaLlegada, ahora))}`
                   : estado.expedicionActiva.fase === "lista_para_combate"
@@ -919,21 +944,21 @@ export default function PanelParty() {
                             ? "Turno del enemigo"
                             : "Combate compartido"}
               </span>
-              <span className="mt-1 block truncate text-[10px] text-[#b9a681]">
+              <span className="mt-1 block truncate text-[10px] text-[#76524b]">
                 Amenaza {estado.expedicionActiva.dificultad} · {estado.expedicionActiva.modoDificultad} · {estado.expedicionActiva.participantes.length} aventureros
                 {estado.expedicionActiva.combate ? ` · Enemigo ${estado.expedicionActiva.combate.enemigoHp}/${estado.expedicionActiva.combate.enemigoHpMaximo} HP` : ""}
               </span>
             </span>
-            <span aria-hidden="true" className="shrink-0 text-sm text-amber-400">{expedicionDetalleAbierto ? "⌃" : "⌄"}</span>
+            <span aria-hidden="true" className="shrink-0 text-sm text-[#8f302b]">{expedicionDetalleAbierto ? "⌃" : "⌄"}</span>
           </button>
           {expedicionDetalleAbierto && (
-            <div className="border-t border-[#5d4526] p-2 sm:p-3">
+            <div className="relative z-10 border-t border-[#ad6257] p-2 sm:p-3">
               {estado.expedicionActiva.fase === "en_viaje" ? (
-                <p className="mt-2 text-sm text-sky-200">
+                <p className="mt-2 text-sm text-[#70372f]">
                   La party está de camino. Llegada estimada en {formatoCuentaAtras(segundosRestantes(estado.expedicionActiva.fechaLlegada, ahora))}.
                 </p>
               ) : estado.expedicionActiva.fase === "lista_para_combate" ? (
-                <p className="mt-2 text-sm text-emerald-200">
+                <p className="mt-2 text-sm text-[#38613b]">
                   La party ha llegado. Preparando el combate compartido...
                 </p>
               ) : estado.expedicionActiva.fase === "combatiendo" && estado.expedicionActiva.combate ? (
@@ -964,7 +989,7 @@ export default function PanelParty() {
               )}
               <div className="mt-2 flex flex-wrap gap-1.5">
                 {estado.expedicionActiva.participantes.map((participante) => (
-                  <span key={participante.id} className="rounded border border-slate-700 bg-slate-900 px-2 py-1 text-[11px] text-slate-300">
+                  <span key={participante.id} className="rounded border border-[#aa665b] bg-[#f7d9d2]/80 px-2 py-1 text-[11px] text-[#5a3029]">
                     {participante.usuario?.personaje?.nombre ?? participante.usuario?.nombre ?? "Aventurero"} · {participante.estado.replaceAll("_", " ")}
                   </span>
                 ))}
