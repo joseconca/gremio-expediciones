@@ -1170,6 +1170,7 @@ export default function PanelParty() {
               jugadorPrecision: participante.jugadorPrecision,
               jugadorEvasion: participante.jugadorEvasion,
               jugadorNivel: participante.jugadorNivel,
+              efectos: participante.efectos,
             })),
             ultimaAccion: combatePartyDatos.ultimaAccion && typeof combatePartyDatos.ultimaAccion === "object"
               ? combatePartyDatos.ultimaAccion as AccionAnimadaCombate
