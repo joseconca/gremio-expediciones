@@ -116,6 +116,11 @@ No inferir el elemento solo por `tipoDano: "magico"`; una habilidad debe configu
 - [x] Mantener la resolución del turno separada de los metadatos de animación y cancelar temporizadores al desmontar o sustituir una secuencia.
 - [ ] Probar visualmente en navegador enemigos caídos, acciones simultáneas y cambios de objetivo durante una animación; la mejora básica de defensa/estados ya está implementada.
 
+## Ritmo de turnos y golpes finales
+
+- El turno enemigo PvE conserva una espera aleatoria de 300–1500 ms antes de atacar; el turno automático de party usa el mismo intervalo.
+- Cuando una acción termina el combate, la presentación mantiene el impacto 550 ms adicionales para que se aprecien la bajada de vida y el daño antes del resultado. En asedio, el panel de resultado también espera a que termine esa presentación.
+
 ## Criterios de aceptación globales
 
 - Ambos modales comparten la secuenciación de efectos.
