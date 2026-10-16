@@ -59,6 +59,7 @@ type ExpedicionPartyVista = {
     turnoActualUsuarioId: string | null;
     enemigoId?: string | null;
     enemigoNombre: string;
+    enemigos?: unknown;
     enemigoHp: number;
     enemigoHpMaximo: number;
     enemigoAtaque: number;
@@ -624,6 +625,9 @@ export default function PanelParty() {
     return {
       id: combatePartyDatos.id,
       version: combatePartyDatos.version,
+      enemigos: Array.isArray(combatePartyDatos.enemigos)
+        ? combatePartyDatos.enemigos as NonNullable<CombatePve["enemigos"]>
+        : undefined,
       expedicionId: expedicionConCombate.id,
       fase: combatePartyDatos.fase as CombatePve["fase"],
       ronda: combatePartyDatos.ronda,
