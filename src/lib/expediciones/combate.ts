@@ -22,6 +22,12 @@ export type AccionAnimadaCombate = {
   objetivoUsuarioId?: string | null;
   objetivosUsuarioIds?: string[];
 
+  /** Identidad del enemigo concreto que ataca o recibe el efecto. */
+  actorEnemigoId?: string | null;
+  actoresEnemigoIds?: string[];
+  enemigoObjetivoId?: string | null;
+  objetivosEnemigoIds?: string[];
+
   /** La presentación explícita tiene prioridad sobre el modo heredado de animacion. */
   presentacion?: PresentacionVisualCombate;
 
