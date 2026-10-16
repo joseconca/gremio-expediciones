@@ -59,3 +59,18 @@ test("el controlador cancela temporizadores obsoletos y muestra daño y curació
   assert.match(hook, /if \(dano > 0\) \{\s*setDanioVisible/);
   assert.match(hook, /if \(curacion > 0\) \{\s*setCuracionVisible/);
 });
+
+test("la defensa y cada pulso periódico tienen feedback visual y variante sin movimiento reducido", () => {
+  const css = read("src/app/globals.css");
+  const pveParty = read("src/components/combate/CombateModal.tsx");
+  const asedio = read("src/components/combate/AsedioModal.tsx");
+  assert.match(css, /@keyframes combate-defensa-resplandor/);
+  assert.match(css, /@keyframes combate-estado-pulso/);
+  assert.match(pveParty, /combate-defensa-resplandor/);
+  assert.match(asedio, /combate-defensa-resplandor/);
+  assert.match(pveParty, /combate-estado-pulso/);
+  assert.match(asedio, /combate-estado-pulso/);
+  const reduced = css.slice(css.indexOf("@media (prefers-reduced-motion: reduce)"));
+  assert.match(reduced, /\.combate-defensa-resplandor\s*\{\s*animation: none !important;/);
+  assert.match(reduced, /\.combate-estado-pulso/);
+});

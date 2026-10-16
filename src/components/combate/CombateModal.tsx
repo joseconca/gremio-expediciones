@@ -590,11 +590,11 @@ export default function CombateModal({
                         alt={participante.nombre}
                         fill
                         sizes="(max-width: 640px) 54px, 78px"
-                        className={`relative z-10 object-contain [image-rendering:pixelated] ${animacionActual === "curacion" && animando ? "combate-curacion-resplandor" : ""}`}
+                        className={`relative z-10 object-contain [image-rendering:pixelated] ${modoPresentacionActual === "curacion" && animando ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && animando ? "combate-defensa-resplandor" : ""}`}
                         priority
                       />
                       {pulsosEstadoVisibles.filter((pulso) => pulso.actor === participante.usuarioId).map((pulso, indice) => (
-                        <span key={`party-${participante.id}-${indice}-${pulso.tipo}`} className={`absolute bottom-0 z-40 -translate-x-1/2 rounded bg-stone-950/90 px-1 py-0.5 font-mono text-xs font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`} style={{ left: `calc(50% + ${(indice - 0.5) * 20}px)` }}>
+                        <span key={`party-${participante.id}-${indice}-${pulso.tipo}`} className={`combate-estado-pulso absolute bottom-0 z-40 -translate-x-1/2 rounded bg-stone-950/90 px-1 py-0.5 font-mono text-xs font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`} style={{ left: `calc(50% + ${(indice - 0.5) * 20}px)` }}>
                           {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}
                         </span>
                       ))}
@@ -692,7 +692,7 @@ export default function CombateModal({
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "jugador").map((pulso, indice) => (
                   <div
                     key={`pulso-jugador-${indice}-${pulso.tipo}`}
-                    className={`absolute bottom-1 z-40 -translate-x-1/2 rounded bg-stone-950/85 px-1.5 py-0.5 font-mono text-lg font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`}
+                    className={`combate-estado-pulso absolute bottom-1 z-40 -translate-x-1/2 rounded bg-stone-950/85 px-1.5 py-0.5 font-mono text-lg font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`}
                     style={{ left: `calc(50% + ${(indice - 0.5) * 28}px)` }}
                   >
                     {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}
@@ -721,7 +721,7 @@ export default function CombateModal({
                   alt={personaje.nombre}
                   fill
                   sizes="180px"
-                  className={`relative z-10 object-contain [image-rendering:pixelated] ${animacionActual === "curacion" && actorAnimando === "jugador" ? "combate-curacion-resplandor" : ""}`}
+                  className={`relative z-10 object-contain [image-rendering:pixelated] ${modoPresentacionActual === "curacion" && actorAnimando === "jugador" ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && actorAnimando === "jugador" ? "combate-defensa-resplandor" : ""}`}
                   priority
                 />
               </div>
@@ -778,7 +778,7 @@ export default function CombateModal({
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "enemigo").map((pulso, indice) => (
                   <div
                     key={`pulso-enemigo-${indice}-${pulso.tipo}`}
-                    className={`absolute bottom-1 z-40 -translate-x-1/2 rounded bg-stone-950/85 px-1.5 py-0.5 font-mono text-lg font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`}
+                    className={`combate-estado-pulso absolute bottom-1 z-40 -translate-x-1/2 rounded bg-stone-950/85 px-1.5 py-0.5 font-mono text-lg font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`}
                     style={{ left: `calc(50% + ${(indice - 0.5) * 28}px)` }}
                   >
                     {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}
@@ -809,7 +809,7 @@ export default function CombateModal({
                   fill
                   sizes="(max-width: 640px) 104px, 150px"
                   style={{ transform: "scaleX(-1)" }}
-                  className={`relative z-10 object-contain [image-rendering:pixelated] ${animacionActual === "curacion" && actorAnimando === "enemigo" ? "combate-curacion-resplandor" : ""}`}
+                  className={`relative z-10 object-contain [image-rendering:pixelated] ${modoPresentacionActual === "curacion" && actorAnimando === "enemigo" ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && actorAnimando === "enemigo" ? "combate-defensa-resplandor" : ""}`}
                   priority
                 />
               </div>

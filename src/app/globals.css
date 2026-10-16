@@ -378,6 +378,58 @@ button {
 }
 
 
+
+/* Defensa: halo azul breve y pulsante sobre el sprite que recibe el beneficio. */
+.combate-defensa-resplandor {
+  filter:
+    drop-shadow(0 0 2px rgb(224 242 254 / 95%))
+    drop-shadow(0 0 8px rgb(56 189 248 / 80%));
+  animation: combate-defensa-resplandor 1050ms ease-out both;
+  will-change: filter;
+}
+
+@keyframes combate-defensa-resplandor {
+  0%, 20% {
+    filter:
+      drop-shadow(0 0 1px rgb(224 242 254 / 75%))
+      drop-shadow(0 0 5px rgb(56 189 248 / 60%));
+  }
+  45% {
+    filter:
+      drop-shadow(0 0 3px rgb(255 255 255 / 100%))
+      drop-shadow(0 0 13px rgb(56 189 248 / 100%));
+  }
+  100% {
+    filter:
+      drop-shadow(0 0 0 rgb(224 242 254 / 0%))
+      drop-shadow(0 0 0 rgb(56 189 248 / 0%));
+  }
+}
+
+/* Los pulsos periódicos suben y se desvanecen sin reemplazar otros efectos. */
+.combate-estado-pulso {
+  animation: combate-estado-pulso 720ms ease-out both;
+  will-change: opacity, translate, scale;
+}
+
+@keyframes combate-estado-pulso {
+  0% {
+    opacity: 0;
+    translate: 0 7px;
+    scale: 0.88;
+  }
+  20% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1.06;
+  }
+  100% {
+    opacity: 0;
+    translate: 0 -17px;
+    scale: 1;
+  }
+}
+
 /* Proyectiles lanzados: movimiento medido entre anclas de la escena. */
 .combate-proyectil-vuelo {
   position: absolute;
@@ -407,7 +459,8 @@ button {
   .combat-hero,
   .combat-enemy,
   .combat-impact,
-  .combate-numero-curacion {
+  .combate-numero-curacion,
+  .combate-estado-pulso {
     animation: none !important;
   }
 
@@ -420,6 +473,11 @@ button {
   .combate-curacion-resplandor {
     animation: none !important;
     filter: drop-shadow(0 0 2px rgb(255 255 255 / 100%)) drop-shadow(0 0 6px rgb(16 185 129 / 85%));
+  }
+
+  .combate-defensa-resplandor {
+    animation: none !important;
+    filter: drop-shadow(0 0 2px rgb(224 242 254 / 95%)) drop-shadow(0 0 6px rgb(56 189 248 / 85%));
   }
 
   .combate-proyectil-vuelo {

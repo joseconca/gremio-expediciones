@@ -603,7 +603,7 @@ export default function AsedioModal({
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "jugador").map((pulso, indice) => (
                   <div
                     key={`pulso-propio-${indice}-${pulso.tipo}`}
-                    className={`absolute bottom-1 z-40 -translate-x-1/2 rounded bg-stone-950/85 px-1.5 py-0.5 font-mono text-lg font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`}
+                    className={`combate-estado-pulso absolute bottom-1 z-40 -translate-x-1/2 rounded bg-stone-950/85 px-1.5 py-0.5 font-mono text-lg font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`}
                     style={{ left: `calc(50% + ${(indice - 0.5) * 28}px)` }}
                   >
                     {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}
@@ -630,7 +630,7 @@ export default function AsedioModal({
                   alt={personaje.nombre}
                   fill
                   sizes="180px"
-                  className={`relative z-10 object-contain [image-rendering:pixelated] ${animacionActual === "curacion" && actorAnimando === "jugador" ? "combate-curacion-resplandor" : ""}`}
+                  className={`relative z-10 object-contain [image-rendering:pixelated] ${modoPresentacionActual === "curacion" && actorAnimando === "jugador" ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && actorAnimando === "jugador" ? "combate-defensa-resplandor" : ""}`}
                   priority
                 />
               </div>
@@ -702,7 +702,7 @@ export default function AsedioModal({
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "enemigo").map((pulso, indice) => (
                   <div
                     key={`pulso-rival-${indice}-${pulso.tipo}`}
-                    className={`absolute bottom-1 z-40 -translate-x-1/2 rounded bg-stone-950/85 px-1.5 py-0.5 font-mono text-lg font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`}
+                    className={`combate-estado-pulso absolute bottom-1 z-40 -translate-x-1/2 rounded bg-stone-950/85 px-1.5 py-0.5 font-mono text-lg font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`}
                     style={{ left: `calc(50% + ${(indice - 0.5) * 28}px)` }}
                   >
                     {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}
@@ -735,7 +735,7 @@ export default function AsedioModal({
                   style={{
                     transform: "scaleX(-1)",
                   }}
-                  className={`relative z-10 object-contain [image-rendering:pixelated] ${animacionActual === "curacion" && actorAnimando === "enemigo" ? "combate-curacion-resplandor" : ""}`}
+                  className={`relative z-10 object-contain [image-rendering:pixelated] ${modoPresentacionActual === "curacion" && actorAnimando === "enemigo" ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && actorAnimando === "enemigo" ? "combate-defensa-resplandor" : ""}`}
                   priority
                 />
               </div>

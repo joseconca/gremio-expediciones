@@ -71,7 +71,8 @@ No inferir el elemento solo por `tipoDano: "magico"`; una habilidad debe configu
 - [x] Elevar y desvanecer los números de curación durante 1,55 s.
 - [x] Añadir contorno blanco brillante y halo verde al sprite que recibe curación, también si el objetivo es un enemigo o un miembro de party.
 - [x] Reutilizar el indicador en curaciones directas y en el robo de vida, manteniendo el daño y la recuperación como señales independientes.
-- [ ] Pulir los pulsos de curación progresiva, la presentación de defensa/escudo y el solapamiento de múltiples efectos de estado.
+- [x] Añadir una señal de defensa/escudo con halo azul cuando el actor recibe un beneficio defensivo, y animación flotante para cada pulso de daño/curación de los estados.
+- [x] Mantener cada pulso como elemento independiente y dar feedback a los estados periódicos sin sustituir el número de daño o curación de la acción principal.
 
 ### Fase 4 — proyectiles físicos
 
