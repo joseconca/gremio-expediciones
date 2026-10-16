@@ -30,6 +30,9 @@ const {
   calcularPesoDifMinEnemigo,
   calcularPesoRarezaEnemigo,
   PROBABILIDAD_ENCUENTRO_MIMICO,
+  generarComposicionDifMinEncuentro,
+  seleccionarEnemigosNormales,
+  PESOS_COMPOSICION_ENCUENTRO,
 } = require("../src/lib/expediciones/normal.ts");
 const { generarMisionesDisponibles, MISIONES_POR_DURACION } = require("../src/lib/generadorMisiones.ts");
 const {
@@ -37,6 +40,47 @@ const {
   calcularCosteMejoraObjeto,
   obtenerObjetoPorId,
 } = require("../src/lib/objetos.ts");
+
+test("la composición de encuentros respeta probabilidades de party y límites de dificultad", () => {
+  assert.deepEqual(generarComposicionDifMinEncuentro(6, true, 0.1), [6]);
+  assert.deepEqual(generarComposicionDifMinEncuentro(6, true, 0.5), [6, 6]);
+  assert.deepEqual(generarComposicionDifMinEncuentro(6, true, 0.7), [6, 5]);
+  assert.deepEqual(generarComposicionDifMinEncuentro(6, true, 0.8), [6, 5, 4]);
+  assert.deepEqual(generarComposicionDifMinEncuentro(6, true, 0.95), [5, 5]);
+
+  assert.deepEqual(generarComposicionDifMinEncuentro(1, true, 0.1), [1]);
+  assert.deepEqual(generarComposicionDifMinEncuentro(1, true, 0.7), [1, 0]);
+  assert.deepEqual(generarComposicionDifMinEncuentro(1, true, 0.95), [0, 0]);
+
+  assert.deepEqual(generarComposicionDifMinEncuentro(0, true, 0.1), [0]);
+  assert.deepEqual(generarComposicionDifMinEncuentro(0, true, 0.95), [0, 0]);
+  assert.deepEqual(generarComposicionDifMinEncuentro(0, false, 0.95), [0]);
+
+  const pesosParty = Object.values(PESOS_COMPOSICION_ENCUENTRO.party).reduce((s, n) => s + n, 0);
+  const pesosSolo = Object.values(PESOS_COMPOSICION_ENCUENTRO.solo).reduce((s, n) => s + n, 0);
+  assert.equal(pesosParty, 100);
+  assert.equal(pesosSolo, 100);
+  for (let nivel = 0; nivel <= 17; nivel++) {
+    for (const enParty of [false, true]) {
+      for (let i = 0; i < 100; i++) {
+        const grupo = generarComposicionDifMinEncuentro(nivel, enParty, i / 100);
+        assert.ok(grupo.length >= 1 && grupo.length <= 3);
+        assert.ok(grupo.every((difMin) => difMin >= 0 && difMin <= nivel));
+      }
+    }
+  }
+});
+
+test("las expediciones normales generan grupos con IDs distintos y conservan el encuentro singular de mímico", () => {
+  const grupo = seleccionarEnemigosNormales(6, true, () => 0.5);
+  assert.equal(grupo.length, 2);
+  assert.ok(grupo.every((enemigo) => enemigo.difMin === 6));
+  assert.equal(new Set(grupo.map((enemigo) => enemigo.id)).size, grupo.length);
+
+  const mimico = seleccionarEnemigosNormales(6, true, () => 0);
+  assert.deepEqual(mimico.map((enemigo) => enemigo.id), ["mimic"]);
+  assert.deepEqual(seleccionarEnemigosNormales(0, false, () => 0.99).map((enemigo) => enemigo.difMin), [0]);
+});
 
 test("el catálogo de clases tiene requisitos válidos y no contiene ciclos", () => {
   for (const clase of Object.values(CLASES)) {
