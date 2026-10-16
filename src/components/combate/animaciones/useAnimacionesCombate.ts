@@ -26,6 +26,7 @@ export interface DestinosVisualesAccionCombate {
 }
 
 const DURACION_CURACION_VISIBLE_MS = 1550;
+const DURACION_IMPACTO_FINAL_EXTRA_MS = 550;
 
 interface DanoVisibleCombate {
   actor: string;
@@ -96,6 +97,7 @@ export function useAnimacionesCombate() {
   const mostrarResultadoVisual = useCallback(async (
     accion: AccionAnimadaCombate,
     destinos: DestinosVisualesAccionCombate,
+    opciones: { esResultadoTerminal?: () => boolean } = {},
   ) => {
     const secuencia = ++secuenciaRef.current;
     const sigueActiva = () => montadoRef.current && secuenciaRef.current === secuencia;
@@ -138,7 +140,11 @@ export function useAnimacionesCombate() {
           cantidad: curacion,
         });
       }
-      await esperar(DURACION_CURACION_VISIBLE_MS, temporizadoresRef.current);
+      const resultadoTerminal = opciones.esResultadoTerminal?.() ?? false;
+      await esperar(
+        DURACION_CURACION_VISIBLE_MS + (resultadoTerminal ? DURACION_IMPACTO_FINAL_EXTRA_MS : 0),
+        temporizadoresRef.current,
+      );
       if (!sigueActiva()) return;
       setCuracionVisible(null);
       setActorAnimando(null);
@@ -165,6 +171,9 @@ export function useAnimacionesCombate() {
       if (!sigueActiva()) return;
     }
 
+    // La fase terminal se consulta tras la anticipación del golpe, cuando el
+    // estado final recibido del servidor ya se ha propagado a la escena.
+    const resultadoTerminal = opciones.esResultadoTerminal?.() ?? false;
     const fallo = accion.tipo === "fallo" || dano <= 0;
     const impactosMultiples = accion.impactosMultiples ?? [];
     const esImpactoMultiple = impactosMultiples.length > 0;
@@ -183,7 +192,13 @@ export function useAnimacionesCombate() {
       setCuracionVisible({ actor: actorVisual, cantidad: curacion });
     }
 
-    await esperar(accion.animacion === "ofensiva_potenciada" ? 450 : 300, temporizadoresRef.current);
+    // En el golpe definitivo prolongamos el impacto para que se aprecien la
+    // bajada de vida y el número de daño antes del panel de resultado.
+    await esperar(
+      (accion.animacion === "ofensiva_potenciada" ? 450 : 300) +
+        (resultadoTerminal ? DURACION_IMPACTO_FINAL_EXTRA_MS : 0),
+      temporizadoresRef.current,
+    );
     if (!sigueActiva()) return;
 
     setDanioVisible(null);
