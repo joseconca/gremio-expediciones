@@ -536,23 +536,26 @@ export default function PanelParty() {
     if (!expedicion || !expedicion.combate || accion) return null;
     setAccion(tipo === "atacar" ? "ataque-party" : `accion-party:${id ?? tipo}`);
     setError(null);
-    let payloadHabilidad: { habilidadId: string; objetivoId?: string } | null = null;
-    if (tipo === "usar_habilidad" && id) {
+    let payloadHabilidad: { habilidadId: string; objetivoId?: string; enemigoObjetivoId?: string } | null = null;
+    let objetivoEnemigoElegido: string | undefined;
+    if (id && (tipo === "usar_habilidad" || tipo === "atacar")) {
       try {
         const parseado: unknown = JSON.parse(id);
-        if (parseado && typeof parseado === "object" && "habilidadId" in parseado &&
-            typeof parseado.habilidadId === "string") {
-          payloadHabilidad = {
-            habilidadId: parseado.habilidadId,
-            ...("objetivoId" in parseado && typeof parseado.objetivoId === "string"
-              ? { objetivoId: parseado.objetivoId }
-              : {}),
-          };
-        } else {
+        if (parseado && typeof parseado === "object" && !Array.isArray(parseado)) {
+          const objeto = parseado as Record<string, unknown>;
+          if (tipo === "usar_habilidad" && typeof objeto.habilidadId === "string") {
+            payloadHabilidad = {
+              habilidadId: objeto.habilidadId,
+              ...(typeof objeto.objetivoId === "string" ? { objetivoId: objeto.objetivoId } : {}),
+              ...(typeof objeto.enemigoObjetivoId === "string" ? { enemigoObjetivoId: objeto.enemigoObjetivoId } : {}),
+            };
+          }
+          if (typeof objeto.enemigoObjetivoId === "string") objetivoEnemigoElegido = objeto.enemigoObjetivoId;
+        } else if (tipo === "usar_habilidad") {
           payloadHabilidad = { habilidadId: id };
         }
       } catch {
-        payloadHabilidad = { habilidadId: id };
+        if (tipo === "usar_habilidad") payloadHabilidad = { habilidadId: id };
       }
     }
     try {
@@ -563,6 +566,7 @@ export default function PanelParty() {
           expedicionPartyId: expedicion.id,
           accion: tipo,
           ...(tipo === "usar_habilidad" && payloadHabilidad ? payloadHabilidad : {}),
+          ...(tipo === "atacar" && objetivoEnemigoElegido ? { enemigoObjetivoId: objetivoEnemigoElegido } : {}),
           ...(tipo === "usar_objeto" && id ? { objetoInventarioId: id } : {}),
           ...(tipo === "cambiar_posicion" && id ? { posicion: id } : {}),
         }),
