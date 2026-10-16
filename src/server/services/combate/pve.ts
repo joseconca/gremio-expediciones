@@ -15,6 +15,8 @@ function adjuntarPulsosEstado(
 }
 import { actualizarCombateVersionado } from "@/lib/expediciones/actualizar-combate-versionado";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
+import { crearEnemigoLegacy, leerEnemigosEnCombate, type EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
+import { obtenerReglaObjetivoHabilidad, resolverObjetivosHabilidad } from "@/lib/expediciones/objetivos-combate";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { obtenerPresentacionAtaqueBasico } from "@/lib/expediciones/presentacion-combate";
 import { experienciaParaNivel } from "@/lib/configuracionJuego";
@@ -93,6 +95,8 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
     bonusCuracion,
     expedicion,
     combate,
+    enemigos: enemigosContexto,
+    enemigoObjetivoId,
     actor,
     habilidad,
   } = contexto;
@@ -107,6 +111,46 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
   } = contexto;
   const { log, consumible } = contexto;
   let accionAnimada: AccionAnimadaCombate;
+  const enemigosLegados = leerEnemigosEnCombate(enemigosContexto);
+  let enemigosEnCombate: EnemigoEnCombate[] = enemigosLegados.length > 0
+    ? enemigosLegados
+    : (crearEnemigoLegacy({
+        enemigoId: combate.enemigoId,
+        enemigoNombre: combate.enemigoNombre,
+        enemigoHp: combate.enemigoHp,
+        enemigoHpMaximo: combate.enemigoHpMaximo,
+        enemigoAtaque: combate.enemigoAtaque,
+        enemigoAtaqueMagico: combate.enemigoAtaqueMagico,
+        enemigoDefensa: combate.enemigoDefensa,
+        enemigoDefensaMagica: combate.enemigoDefensaMagica,
+        enemigoVelocidad: combate.enemigoVelocidad,
+        enemigoProbCritico: combate.enemigoProbCritico,
+        enemigoDanoCritico: combate.enemigoDanoCritico,
+        enemigoPrecision: combate.enemigoPrecision,
+        enemigoEvasion: combate.enemigoEvasion,
+        enemigoNivel: combate.enemigoNivel,
+        enemigoPosicion: combate.enemigoPosicion,
+        efectos: efectosDefensor,
+      }) ? [crearEnemigoLegacy({
+        enemigoId: combate.enemigoId,
+        enemigoNombre: combate.enemigoNombre,
+        enemigoHp: combate.enemigoHp,
+        enemigoHpMaximo: combate.enemigoHpMaximo,
+        enemigoAtaque: combate.enemigoAtaque,
+        enemigoAtaqueMagico: combate.enemigoAtaqueMagico,
+        enemigoDefensa: combate.enemigoDefensa,
+        enemigoDefensaMagica: combate.enemigoDefensaMagica,
+        enemigoVelocidad: combate.enemigoVelocidad,
+        enemigoProbCritico: combate.enemigoProbCritico,
+        enemigoDanoCritico: combate.enemigoDanoCritico,
+        enemigoPrecision: combate.enemigoPrecision,
+        enemigoEvasion: combate.enemigoEvasion,
+        enemigoNivel: combate.enemigoNivel,
+        enemigoPosicion: combate.enemigoPosicion,
+        efectos: efectosDefensor,
+      })!] : []);
+  const danoEnemigoPorId = new Map<string, number>();
+  const efectosEnemigoPorId = new Map<string, { defensa: number; efectos: ReturnType<typeof leerEfectosCombate> }>();
   try {
       if (accion === "escapar") {
         const accionHuida: AccionAnimadaCombate = {
