@@ -484,3 +484,43 @@ button {
     animation-duration: 1ms !important;
   }
 }
+
+
+/* Selección de objetivos RPG: silueta de un píxel ampliada, sin paneles adicionales. */
+.combate-objetivo-silueta {
+  z-index: 5;
+  overflow: visible;
+  pointer-events: none;
+  opacity: 0.9;
+  filter: brightness(0) saturate(100%);
+  transform: scale(1.045);
+  transform-origin: center;
+  animation: combate-objetivo-parpadeo 850ms steps(2, end) infinite;
+  will-change: opacity, filter;
+}
+
+.combate-objetivo-silueta-enemigo {
+  filter: brightness(0) saturate(100%) invert(18%) sepia(95%) saturate(5090%) hue-rotate(350deg) brightness(112%) contrast(112%)
+    drop-shadow(0 0 1px rgb(255 70 60 / 95%));
+}
+
+.combate-objetivo-silueta-aliado {
+  filter: brightness(0) saturate(100%) invert(57%) sepia(91%) saturate(430%) hue-rotate(91deg) brightness(105%) contrast(105%)
+    drop-shadow(0 0 1px rgb(74 222 128 / 95%));
+}
+
+@keyframes combate-objetivo-parpadeo {
+  0%, 100% {
+    opacity: 0.98;
+  }
+  50% {
+    opacity: 0.38;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .combate-objetivo-silueta {
+    animation: none;
+    opacity: 0.8;
+  }
+}
