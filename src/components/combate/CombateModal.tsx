@@ -278,6 +278,16 @@ export default function CombateModal({
       partyMode.turnoActualUsuarioId === partyMode.usuarioId &&
       partyMode.estadoJugador === "activo"
     : combate.turno === "jugador";
+  const puedeHuir = combate.fase === "activo" && (
+    partyMode
+      ? partyMode.estadoJugador === "activo" &&
+        partyMode.participantes.some((participante) =>
+          participante.usuarioId === partyMode.usuarioId &&
+          participante.estado === "activo" &&
+          participante.jugadorHp > 0
+        )
+      : true
+  );
 
   const solicitarAccion = useCallback(
     (
@@ -350,7 +360,12 @@ export default function CombateModal({
   }, [partyMode, mostrarResultadoVisual]);
 
   const ejecutarHuida = async () => {
-    if (accionEnCurso.current || procesando || combateTerminado || combate.turno !== "jugador") return;
+    if (
+      accionEnCurso.current ||
+      procesando ||
+      !puedeHuir ||
+      (procesandoLocal && !turnoEnemigoEnCurso.current)
+    ) return;
     accionEnCurso.current = true;
     setProcesandoLocal(true);
     setMostrarHabilidades(false);
@@ -1263,7 +1278,7 @@ export default function CombateModal({
 
               <button
                 onClick={() => void ejecutarHuida()}
-                disabled={procesando || procesandoLocal || combateTerminado || !puedeActuarJugador}
+                disabled={procesando || !puedeHuir || (procesandoLocal && !turnoEnemigoEnCurso.current)}
                 className="group flex w-full items-center justify-between rounded border border-red-900/70 bg-red-950/60 px-3 py-2 sm:px-4 sm:py-2.5 transition hover:bg-red-900/70 disabled:cursor-not-allowed disabled:opacity-40"
               >
                 <span className="text-xs sm:text-sm font-bold tracking-widest text-red-200">HUIR</span>
