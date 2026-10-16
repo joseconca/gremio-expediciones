@@ -364,7 +364,7 @@ export default function CombateModal({
       accionEnCurso.current ||
       procesando ||
       !puedeHuir ||
-      (procesandoLocal && !turnoEnemigoEnCurso.current)
+      (procesandoLocal && (Boolean(partyMode) || combate.turno !== "enemigo"))
     ) return;
     accionEnCurso.current = true;
     setProcesandoLocal(true);
@@ -1278,7 +1278,7 @@ export default function CombateModal({
 
               <button
                 onClick={() => void ejecutarHuida()}
-                disabled={procesando || !puedeHuir || (procesandoLocal && !turnoEnemigoEnCurso.current)}
+                disabled={procesando || !puedeHuir || (procesandoLocal && (Boolean(partyMode) || combate.turno !== "enemigo"))}
                 className="group flex w-full items-center justify-between rounded border border-red-900/70 bg-red-950/60 px-3 py-2 sm:px-4 sm:py-2.5 transition hover:bg-red-900/70 disabled:cursor-not-allowed disabled:opacity-40"
               >
                 <span className="text-xs sm:text-sm font-bold tracking-widest text-red-200">HUIR</span>
