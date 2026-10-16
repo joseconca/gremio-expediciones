@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import { obtenerRutaSpriteEnemigo } from "@/lib/enemigos";
@@ -13,6 +13,7 @@ import CapaEfectosCombate from "@/components/combate/animaciones/CapaEfectosComb
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import type { ObjetoInventario, ReglaObjetivoHabilidad } from "@/lib/tiposJuego";
 import { obtenerReglaObjetivoHabilidad } from "@/lib/expediciones/objetivos-combate";
+import { crearEnemigoLegacy, leerEnemigosEnCombate, type EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
 import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 
@@ -155,6 +156,7 @@ export default function CombateModal({
   const [logExpandido, setLogExpandido] = useState(false);
   const [habilidadSeleccionadaId, setHabilidadSeleccionadaId] = useState<string | null>(null);
   const [objetivoHabilidadId, setObjetivoHabilidadId] = useState<string | null>(null);
+  const [enemigoObjetivoId, setEnemigoObjetivoId] = useState<string | null>(null);
   const [mostrarResultado, setMostrarResultado] = useState(false);
 
   /*
@@ -351,7 +353,9 @@ export default function CombateModal({
     setProcesandoLocal(true);
     setMostrarHabilidades(false);
     try {
-      const accion = await solicitarAccion("atacar");
+      const accion = await solicitarAccion("atacar", JSON.stringify({
+        enemigoObjetivoId: enemigoObjetivoElegidoId,
+      }));
       if (!accion) return;
       await mostrarResultadoAccion(accion, partyMode?.usuarioId);
     } finally {
@@ -372,9 +376,17 @@ export default function CombateModal({
     setProcesandoLocal(true);
     setMostrarHabilidades(false);
     try {
-      const payloadHabilidad = partyMode
-        ? JSON.stringify({ habilidadId, ...(objetivoId ? { objetivoId } : {}) })
-        : habilidadId;
+      const regla = habilidadSeleccionada?.habilidad
+        ? obtenerReglaObjetivoHabilidad(habilidadSeleccionada.habilidad)
+        : { equipo: "enemigo" as const, patron: "individual" as const };
+      const payloadHabilidad = JSON.stringify({
+        habilidadId,
+        ...(regla.equipo === "enemigo"
+          ? { enemigoObjetivoId: objetivoId ?? enemigoObjetivoElegidoId }
+          : objetivoId
+            ? { objetivoId }
+            : {}),
+      });
       const accion = await solicitarAccion("usar_habilidad", payloadHabilidad);
       if (!accion) return;
       await mostrarResultadoAccion(accion, partyMode?.usuarioId);
@@ -494,6 +506,34 @@ export default function CombateModal({
     return () => window.cancelAnimationFrame(frame);
   }, [partyMode?.ultimaAccion, partyMode, mostrarResultadoAccion]);
 
+  const enemigosVisibles = useMemo(() => {
+    const persistidos = leerEnemigosEnCombate(combate.enemigos);
+    if (persistidos.length > 0) return persistidos;
+    const legado = crearEnemigoLegacy({
+      enemigoId: combate.enemigoId,
+      enemigoNombre: combate.enemigoNombre,
+      enemigoHp: combate.enemigoHp,
+      enemigoHpMaximo: combate.enemigoHpMaximo,
+      enemigoAtaque: combate.enemigoAtaque,
+      enemigoAtaqueMagico: "enemigoAtaqueMagico" in combate ? (combate as CombatePve & { enemigoAtaqueMagico?: number }).enemigoAtaqueMagico : undefined,
+      enemigoDefensa: combate.enemigoDefensa,
+      enemigoDefensaMagica: "enemigoDefensaMagica" in combate ? (combate as CombatePve & { enemigoDefensaMagica?: number }).enemigoDefensaMagica : undefined,
+      enemigoVelocidad: combate.enemigoVelocidad,
+      enemigoProbCritico: combate.enemigoProbCritico,
+      enemigoDanoCritico: combate.enemigoDanoCritico,
+      enemigoPrecision: combate.enemigoPrecision,
+      enemigoEvasion: combate.enemigoEvasion,
+      enemigoNivel: combate.enemigoNivel,
+      enemigoPosicion: combate.enemigoPosicion,
+      efectos: combate.efectosDefensor,
+    });
+    return legado ? [legado] : [];
+  }, [combate]);
+  const enemigosVivos = enemigosVisibles.filter((enemigo) => enemigo.hp > 0);
+  const enemigoObjetivoElegidoId = enemigosVivos.some((enemigo) => enemigo.id === enemigoObjetivoId)
+    ? enemigoObjetivoId
+    : enemigosVivos[0]?.id ?? null;
+
   const habilidadSeleccionada = habilidades.find(
     (h) => h.habilidadId === habilidadSeleccionadaId
   );
@@ -503,11 +543,11 @@ export default function CombateModal({
   const objetivosDisponibles = !reglaObjetivoSeleccionada
     ? []
     : reglaObjetivoSeleccionada.equipo === "enemigo"
-      ? [{
-          id: "enemigo",
-          nombre: combate.enemigoNombre || "Enemigo",
-          detalle: "Enemigo · " + ETIQUETAS_POSICION_COMBATE[normalizarPosicionCombate(combate.enemigoPosicion)],
-        }]
+      ? enemigosVivos.map((enemigo) => ({
+          id: enemigo.id,
+          nombre: enemigo.nombre,
+          detalle: "Enemigo · " + ETIQUETAS_POSICION_COMBATE[normalizarPosicionCombate(enemigo.posicion)],
+        }))
       : reglaObjetivoSeleccionada.equipo === "propio"
         ? [{
             id: partyMode?.usuarioId ?? personaje.id ?? "jugador",
@@ -531,7 +571,9 @@ export default function CombateModal({
   const objetivoPorDefectoId = reglaObjetivoSeleccionada?.equipo === "aliado"
     ? objetivosDisponibles.find((o) => o.id === (partyMode?.usuarioId ?? personaje.id))?.id
       ?? objetivosDisponibles[0]?.id
-    : objetivosDisponibles[0]?.id;
+    : reglaObjetivoSeleccionada?.equipo === "enemigo"
+      ? objetivosDisponibles.find((o) => o.id === enemigoObjetivoElegidoId)?.id ?? objetivosDisponibles[0]?.id
+      : objetivosDisponibles[0]?.id;
   const objetivoElegidoId = objetivosDisponibles.some((o) => o.id === objetivoHabilidadId)
     ? objetivoHabilidadId
     : objetivoPorDefectoId ?? null;
