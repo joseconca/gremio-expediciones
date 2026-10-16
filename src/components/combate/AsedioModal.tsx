@@ -66,6 +66,7 @@ export default function AsedioModal({
   onCerrar,
 }: AsedioModalProps) {
   const logRef = useRef<HTMLDivElement>(null);
+  const faseCombateRef = useRef(combate.fase);
   const accionEnCurso = useRef(false);
   const ultimaVersionAnimada = useRef<number | null>(null);
   const firmaAccionLocal = useRef<string | null>(null);
@@ -79,8 +80,12 @@ export default function AsedioModal({
   const [logExpandido, setLogExpandido] = useState(false);
   const [mostrarStatsRival, setMostrarStatsRival] = useState(false);
   const [panelStatsRival, setPanelStatsRival] = useState<"jugador" | "rival">("rival");
-  const mostrarResultado = combate.fase !== "activo";
+  const [mostrarResultado, setMostrarResultado] = useState(false);
   const [procesandoLocal, setProcesandoLocal] = useState(false);
+
+  useEffect(() => {
+    faseCombateRef.current = combate.fase;
+  }, [combate.fase]);
 
   const {
     danioVisible,
@@ -260,7 +265,10 @@ export default function AsedioModal({
       accion,
       contexto: { modo: "pvp", esAtacante },
     });
-    await mostrarResultadoVisual(accion, destinos);
+    await mostrarResultadoVisual(accion, destinos, {
+      esResultadoTerminal: () => faseCombateRef.current !== "activo",
+    });
+    if (faseCombateRef.current !== "activo") setMostrarResultado(true);
   }, [esAtacante, mostrarResultadoVisual]);
 
   useEffect(() => {
