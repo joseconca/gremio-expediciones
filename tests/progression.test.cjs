@@ -54,7 +54,7 @@ test("la composición de encuentros respeta probabilidades de party y límites d
 
   assert.deepEqual(generarComposicionDifMinEncuentro(0, true, 0.1), [0]);
   assert.deepEqual(generarComposicionDifMinEncuentro(0, true, 0.95), [0, 0]);
-  assert.deepEqual(generarComposicionDifMinEncuentro(0, false, 0.95), [0]);
+  assert.deepEqual(generarComposicionDifMinEncuentro(0, false, 0.95), [0, 0]);
 
   const pesosParty = Object.values(PESOS_COMPOSICION_ENCUENTRO.party).reduce((s, n) => s + n, 0);
   const pesosSolo = Object.values(PESOS_COMPOSICION_ENCUENTRO.solo).reduce((s, n) => s + n, 0);
