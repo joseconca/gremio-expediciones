@@ -168,6 +168,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             jugadorDefensa,
             enemigoHp,
             enemigoDefensa,
+            enemigos: enemigosEnCombate as unknown as Prisma.InputJsonValue,
             cooldowns,
             efectos: efectos as unknown as Prisma.InputJsonValue,
             efectosDefensor: efectosDefensor as unknown as Prisma.InputJsonValue,
@@ -481,44 +482,33 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           `🏆 ¡${combate.enemigoNombre ?? "El enemigo"} ha sido derrotado!`
         );
 
-        if (!combate.enemigoId) {
-          return NextResponse.json(
-            {
-              error: "El combate no tiene enemigo asociado.",
-            },
-            { status: 500 }
-          );
-        }
-
-        const enemigo = obtenerEnemigoPorId(combate.enemigoId);
-
-        if (!enemigo) {
-          return NextResponse.json(
-            {
-              error: "No se encontró el enemigo derrotado.",
-            },
-            { status: 500 }
-          );
+        const definicionesEnemigos = enemigosEnCombate.map((enemigo) => ({
+          combate: enemigo,
+          definicion: obtenerEnemigoPorId(enemigo.enemigoId),
+        }));
+        if (definicionesEnemigos.length === 0 || definicionesEnemigos.some((entrada) => !entrada.definicion)) {
+          return NextResponse.json({ error: "No se pudieron resolver todas las criaturas derrotadas." }, { status: 500 });
         }
 
         const recompensaMision = obtenerRecompensaMision(expedicion.recompensa);
-        const recompensaEnemigo = calcularOroEnemigo(
-          enemigo.botin,
-          expedicion.dificultad
+        const recompensaEnemigo = definicionesEnemigos.reduce(
+          (total, entrada) => total + calcularOroEnemigo(entrada.definicion!.botin, expedicion.dificultad),
+          0,
         );
         const oroSinMultiplicar = recompensaMision.oro + recompensaEnemigo;
         const oroGanado = aplicarMultiplicadorRecompensa(oroSinMultiplicar, modoDificultad);
-        const experienciaGanada = calcularExperienciaBaseGanada(
+        const experienciaPorEnemigo = calcularExperienciaBaseGanada(
           expedicion.dificultad,
           personaje.nivel,
           modoDificultad
         );
+        const experienciaGanada = experienciaPorEnemigo * definicionesEnemigos.length;
 
         log.push(
-          `💰 Recompensa base: ${recompensaMision.oro} 🪙 por la misión + ${recompensaEnemigo} 🪙 por el enemigo. Modo ${CONFIGURACION_DIFICULTAD[modoDificultad].nombre}: cobras ${oroGanado} 🪙 en total.`
+          `💰 Recompensa base: ${recompensaMision.oro} 🪙 por la misión + ${recompensaEnemigo} 🪙 por ${definicionesEnemigos.length} ${definicionesEnemigos.length === 1 ? "enemigo" : "enemigos"}. Modo ${CONFIGURACION_DIFICULTAD[modoDificultad].nombre}: cobras ${oroGanado} 🪙 en total.`
         );
 
-        log.push(`⭐ Obtienes ${experienciaGanada} XP.`);
+        log.push(`⭐ Obtienes ${experienciaGanada} XP (${experienciaPorEnemigo} por enemigo).`);
 
         const experienciaActual = personaje.experiencia || 0;
 
@@ -573,6 +563,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
 
           const combateActualizado = await actualizarCombateVersionado(tx, combate.id, combate.version, {
             enemigoHp: 0,
+            enemigos: enemigosEnCombate as unknown as Prisma.InputJsonValue,
             jugadorDefensa,
             cooldowns,
             efectos: efectos as unknown as Prisma.InputJsonValue,
@@ -737,6 +728,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           }
           const combateActualizado = await actualizarCombateVersionado(tx, combate.id, combate.version, {
             jugadorHp: 0,
+            enemigos: enemigosEnCombate as unknown as Prisma.InputJsonValue,
             jugadorDefensa,
             enemigoHp,
             cooldowns,
@@ -901,6 +893,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           jugadorDefensa,
           enemigoHp,
           enemigoDefensa,
+          enemigos: enemigosEnCombate as unknown as Prisma.InputJsonValue,
           ronda: siguienteRonda,
           turno: siguienteTurno,
           cooldowns,
