@@ -336,6 +336,16 @@ export interface Coordenadas {
   lng: number;
 }
 
+/** Reglas lógicas para seleccionar objetivos de habilidades; independientes de la animación. */
+export type EquipoObjetivoHabilidad = "enemigo" | "aliado" | "propio";
+export type PatronObjetivoHabilidad = "individual" | "adyacentes" | "fila" | "columna" | "todos";
+export interface ReglaObjetivoHabilidad {
+  equipo: EquipoObjetivoHabilidad;
+  patron: PatronObjetivoHabilidad;
+  /** En soporte, permite elegir al propio lanzador además de otros aliados. */
+  incluirPropio?: boolean;
+}
+
 /** HABILIDADES */
 export interface DefinicionHabilidad {
   id: string;
@@ -367,6 +377,13 @@ export interface DefinicionHabilidad {
    * Si no se define, el cliente conserva el comportamiento visual heredado.
    */
   presentacionVisual?: PresentacionVisualCombate;
+
+  /**
+   * Objetivo lógico de la habilidad. Si se omite, daño apunta a enemigo
+   * individual y soporte apunta a un aliado individual (incluido uno mismo).
+   * Los patrones de área usan la formación 3x3 y respetan casillas ocupadas.
+   */
+  objetivo?: ReglaObjetivoHabilidad;
 
   /** Tiempo de reutilización en turnos. */
   cooldownTurnos?: number;
