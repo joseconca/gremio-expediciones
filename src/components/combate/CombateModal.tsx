@@ -747,7 +747,19 @@ export default function CombateModal({
                         aria-label={`Elegir a ${participante.nombre} como objetivo`}
                         aria-pressed={seleccionadoComoObjetivo}
                         disabled={!puedeSeleccionarseComoObjetivo}
-                        onClick={() => setObjetivoHabilidadId(participante.usuarioId)}
+                        onClick={() => {
+                          setObjetivoHabilidadId(participante.usuarioId);
+                          if (
+                            habilidadEsperandoObjetivoId &&
+                            reglaObjetivoSeleccionada?.equipo === "aliado" &&
+                            reglaObjetivoSeleccionada.patron !== "todos"
+                          ) {
+                            const habilidadPendiente = habilidades.find((entrada) => entrada.habilidadId === habilidadEsperandoObjetivoId);
+                            if (habilidadPendiente) {
+                              void ejecutarHabilidad(habilidadPendiente.habilidadId, participante.usuarioId);
+                            }
+                          }
+                        }}
                         className={`absolute -inset-1 z-20 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-300 ${puedeSeleccionarseComoObjetivo ? "pointer-events-auto cursor-pointer" : "pointer-events-none"}`}
                       />
                       {pulsosEstadoVisibles.filter((pulso) => pulso.actor === participante.usuarioId).map((pulso, indice) => (
@@ -931,6 +943,15 @@ export default function CombateModal({
                   onClick={() => {
                     setEnemigoObjetivoId(enemigo.id);
                     if (
+                      habilidadEsperandoObjetivoId &&
+                      reglaObjetivoSeleccionada?.equipo === "enemigo" &&
+                      reglaObjetivoSeleccionada.patron !== "todos"
+                    ) {
+                      setObjetivoHabilidadId(enemigo.id);
+                      void ejecutarHabilidad(habilidadEsperandoObjetivoId, enemigo.id);
+                      return;
+                    }
+                    if (
                       mostrarHabilidades &&
                       reglaObjetivoSeleccionada?.equipo === "enemigo" &&
                       reglaObjetivoSeleccionada.patron !== "todos"
@@ -1075,6 +1096,7 @@ export default function CombateModal({
                   ) {
                     setHabilidadSeleccionadaId(habilidades[0].habilidadId);
                   }
+                  if (mostrarHabilidades) setHabilidadEsperandoObjetivoId(null);
                   setMostrarHabilidades((actual) => !actual);
                 }}
                 disabled={
@@ -1106,6 +1128,7 @@ export default function CombateModal({
               <button
                 onClick={() => {
                   setMostrarHabilidades(false);
+                  setHabilidadEsperandoObjetivoId(null);
                   setMostrarObjetos((actual) => !actual);
                   if (!objetoSeleccionadoId && objetosConsumibles.length > 0) {
                     setObjetoSeleccionadoId(objetosConsumibles[0].id);
@@ -1257,14 +1280,14 @@ export default function CombateModal({
                 <div className="mb-2 flex shrink-0 items-center justify-between border-b border-stone-700 pb-2">
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-stone-500">
-                      Habilidades equipadas
+                      {habilidadEsperandoObjetivoId ? "Toca un objetivo en la escena" : "Habilidades equipadas"}
                     </span>
                     <span className="text-[10px] font-mono text-stone-500">
                       {Math.min(habilidades.length, 3)}/3
                     </span>
                   </div>
                   <button
-                    onClick={() => setMostrarHabilidades(false)}
+                    onClick={() => { setMostrarHabilidades(false); setHabilidadEsperandoObjetivoId(null); }}
                     className="text-[10px] font-bold tracking-widest text-stone-500 transition-colors"
                   >
                     VOLVER ✕
@@ -1286,17 +1309,64 @@ export default function CombateModal({
                         recursoInsuficiente ||
                         procesando ||
                         procesandoLocal ||
-                        combate.turno !== "jugador";
+                        !puedeActuarJugador;
                       const seleccionada =
                         habilidadSeleccionadaId === h.habilidadId;
 
                       return (
                         <button
                           key={h.id}
-                          onClick={() => setHabilidadSeleccionadaId(h.habilidadId)}
-                          onMouseEnter={() =>
-                            setHabilidadSeleccionadaId(h.habilidadId)
-                          }
+                          onClick={() => {
+                            const regla = obtenerReglaObjetivoHabilidad(h.habilidad);
+                            const cantidadObjetivos = regla.equipo === "enemigo"
+                              ? enemigosVivos.length
+                              : regla.equipo === "aliado"
+                                ? partyMode
+                                  ? partyMode.participantes.filter((participante) =>
+                                      participante.estado === "activo" &&
+                                      participante.jugadorHp > 0 &&
+                                      (regla.incluirPropio !== false || participante.usuarioId !== partyMode.usuarioId)
+                                    ).length
+                                  : 1
+                                : 1;
+                            const requiereSeleccion = regla.patron !== "todos" &&
+                              regla.equipo !== "propio" &&
+                              cantidadObjetivos > 1;
+
+                            setHabilidadSeleccionadaId(h.habilidadId);
+                            setMostrarObjetos(false);
+                            setMostrarHabilidades(true);
+                            if (!requiereSeleccion) {
+                              setHabilidadEsperandoObjetivoId(null);
+                              void ejecutarHabilidad(h.habilidadId);
+                              return;
+                            }
+
+                            setHabilidadEsperandoObjetivoId(h.habilidadId);
+                            if (regla.equipo === "enemigo") {
+                              setObjetivoHabilidadId(enemigoObjetivoElegidoId ?? enemigosVivos[0]?.id ?? null);
+                            } else {
+                              const idsAliados = partyMode
+                                ? partyMode.participantes
+                                    .filter((participante) =>
+                                      participante.estado === "activo" &&
+                                      participante.jugadorHp > 0 &&
+                                      (regla.incluirPropio !== false || participante.usuarioId !== partyMode.usuarioId)
+                                    )
+                                    .map((participante) => participante.usuarioId)
+                                : [personaje.id ?? "jugador"];
+                              const propio = partyMode?.usuarioId ?? personaje.id ?? "jugador";
+                              setObjetivoHabilidadId(
+                                objetivoHabilidadId && idsAliados.includes(objetivoHabilidadId)
+                                  ? objetivoHabilidadId
+                                  : idsAliados.includes(propio)
+                                    ? propio
+                                    : idsAliados[0] ?? null,
+                              );
+                            }
+                          }}
+                          onMouseEnter={() => setHabilidadSeleccionadaId(h.habilidadId)}
+                          aria-label={`Usar habilidad ${h.habilidad.nombre}`}
                           disabled={bloqueada}
                           className={`group relative flex w-full items-center justify-between overflow-hidden rounded border px-3 py-2.5 sm:px-4 sm:py-3 text-left transition-all ${
                             seleccionada
@@ -1332,7 +1402,7 @@ export default function CombateModal({
                               </span>
                             ) : (
                               <span className="text-[9px] sm:text-[10px] font-black tracking-widest text-stone-500 group-hover:text-emerald-400 transition-colors">
-                                {seleccionada ? "SELECCIONADA" : "ELEGIR"}
+                                {habilidadEsperandoObjetivoId === h.habilidadId ? "ELIGE OBJETIVO" : "USAR"}
                               </span>
                             )}
                           </div>
