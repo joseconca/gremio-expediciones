@@ -1371,8 +1371,8 @@ export async function ejecutarAccionCombateParty(
       await tx.inventarioObjeto.deleteMany({ where: { id: objetoConsumible.inventarioObjetoId, cantidad: { lte: 0 } } });
     }
 
-    const recompensas = fase === "victoria"
-      ? await liquidarRecompensasParty(tx, expedicionPartyId, combate.id)
+    const recompensas = fase === "victoria" || fase === "derrota"
+      ? await liquidarRecompensasParty(tx, expedicionPartyId, combate.id, fase)
       : null;
     const regreso = fase === "victoria" || fase === "derrota" || fase === "huida"
       ? await iniciarRegresoParty(tx, expedicionPartyId, fase === "victoria" ? "exito" : fase === "huida" ? "huida" : "derrota")
@@ -1657,8 +1657,8 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       throw new PartyServiceError("El turno enemigo ya se procesó en otra petición.", 409, "COMBATE_PARTY_MODIFICADO");
     }
 
-    const recompensas = fase === "victoria"
-      ? await liquidarRecompensasParty(tx, expedicionPartyId, combate.id)
+    const recompensas = fase === "victoria" || fase === "derrota"
+      ? await liquidarRecompensasParty(tx, expedicionPartyId, combate.id, fase)
       : null;
     const regreso = fase === "victoria" || fase === "derrota" || fase === "huida"
       ? await iniciarRegresoParty(tx, expedicionPartyId, fase === "victoria" ? "exito" : fase === "huida" ? "huida" : "derrota")
