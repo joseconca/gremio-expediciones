@@ -82,11 +82,22 @@ interface CombatePartyModalUI {
   onAccionParty: (accion: AccionCombatePartyUI, payload?: string) => Promise<AccionAnimadaCombate | null>;
 }
 
+interface RecompensaInformeCombate {
+  oro: number;
+  madera: number;
+  piedra: number;
+  metal: number;
+  experiencia: number;
+  experienciaJob: number;
+  botin: string[];
+}
+
 interface CombateModalProps {
   combate: CombatePve;
   personaje: Personaje;
   comidaActiva?: string | null;
   recompensa?: RecompensaMision | null;
+  recompensaInforme?: RecompensaInformeCombate | null;
   procesando?: boolean;
   onAccionCombate?: (
     accion: "atacar" | "usar_habilidad" | "usar_objeto" | "escapar",
@@ -136,6 +147,7 @@ export default function CombateModal({
   personaje,
   comidaActiva,
   recompensa = null,
+  recompensaInforme = null,
   procesando = false,
   onAccionCombate,
   partyMode,
@@ -503,13 +515,24 @@ export default function CombateModal({
       ? combate.log[combate.log.length - 1]
       : "El combate comienza...";
   const enemigosDerrotados = enemigosVisibles.filter((enemigo) => enemigo.hp <= 0);
-  const botinObtenidoInforme = combate.log
-    .filter((linea) => linea.startsWith("🎁 Botín obtenido:"))
-    .map((linea) => linea.replace("🎁 Botín obtenido:", "").trim());
-  const botinPerdidoInforme = combate.log
-    .filter((linea) => linea.startsWith("🎒 Botín perdido:"))
-    .map((linea) => linea.replace("🎒 Botín perdido:", "").trim());
-  const experienciaJobInforme = Number(combate.log.find((linea) => linea.startsWith("⭐ Job XP:"))?.match(/\d+/)?.[0] ?? 0);
+  const botinObtenidoInforme = recompensaInforme
+    ? recompensaInforme.botin
+    : partyMode
+      ? combate.log
+          .filter((linea) => linea.startsWith("🎲 Botín de ") && linea.endsWith(` para ${partyMode.usuarioId}.`))
+          .map((linea) => linea.replace(/^🎲 Botín de [^:]+: /, "").replace(` para ${partyMode.usuarioId}.`, "").trim())
+      : combate.log
+          .filter((linea) => linea.startsWith("🎁 Botín obtenido:"))
+          .map((linea) => linea.replace("🎁 Botín obtenido:", "").trim());
+  const botinPerdidoInforme = partyMode
+    ? combate.log
+        .filter((linea) => linea.startsWith("🎒 El botín de ") && linea.includes(` para ${partyMode.usuarioId} `))
+        .map((linea) => linea.replace(/^🎒 /, "").trim())
+    : combate.log
+        .filter((linea) => linea.startsWith("🎒 Botín perdido:"))
+        .map((linea) => linea.replace("🎒 Botín perdido:", "").trim());
+  const experienciaJobInforme = recompensaInforme?.experienciaJob
+    ?? Number(combate.log.find((linea) => linea.startsWith("⭐ Job XP:"))?.match(/\d+/)?.[0] ?? 0);
 
   const ultimaAccionPartyClave = useRef<string | null | undefined>(undefined);
   useEffect(() => {
@@ -1055,7 +1078,7 @@ export default function CombateModal({
                         ? `${personaje.nombre} ha caído en combate.`
                         : "Has abandonado el combate."}
                 </p>
-                {!partyMode && combate.fase === "derrota" && (
+                {combate.fase === "derrota" && (
                   <div className="mt-3 rounded-md border border-stone-700 bg-black/30 p-3 text-left">
                     <h3 className="mb-2 text-[10px] font-black uppercase tracking-[0.18em] text-amber-300 sm:text-xs">
                       Informe de combate
@@ -1068,11 +1091,11 @@ export default function CombateModal({
                     <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                       <div className="rounded border border-amber-900/50 bg-amber-950/30 p-2">
                         <span className="block text-[9px] text-amber-200/75">Oro asegurado</span>
-                        <span className="block text-sm font-black text-amber-300">+{Math.max(0, combate.oroGanado)} 🪙</span>
+                        <span className="block text-sm font-black text-amber-300">+{Math.max(0, recompensaInforme?.oro ?? combate.oroGanado)} 🪙</span>
                       </div>
                       <div className="rounded border border-blue-900/50 bg-blue-950/30 p-2">
                         <span className="block text-[9px] text-blue-200/75">Experiencia Base</span>
-                        <span className="block text-sm font-black text-blue-300">+{Math.max(0, combate.experienciaGanada)} XP</span>
+                        <span className="block text-sm font-black text-blue-300">+{Math.max(0, recompensaInforme?.experiencia ?? combate.experienciaGanada)} XP</span>
                       </div>
                       <div className="rounded border border-violet-900/50 bg-violet-950/20 p-2">
                         <span className="block text-[9px] text-violet-200/75">Experiencia Job</span>
@@ -1080,15 +1103,15 @@ export default function CombateModal({
                       </div>
                       <div className="rounded border border-emerald-900/50 bg-emerald-950/20 p-2">
                         <span className="block text-[9px] text-emerald-200/75">Madera asegurada</span>
-                        <span className="block text-sm font-black text-emerald-300">+{Math.max(0, recompensa?.madera ?? 0)}</span>
+                        <span className="block text-sm font-black text-emerald-300">+{Math.max(0, recompensaInforme?.madera ?? recompensa?.madera ?? 0)}</span>
                       </div>
                       <div className="rounded border border-stone-700 bg-stone-800/50 p-2">
                         <span className="block text-[9px] text-stone-300/75">Piedra asegurada</span>
-                        <span className="block text-sm font-black text-stone-200">+{Math.max(0, recompensa?.piedra ?? 0)}</span>
+                        <span className="block text-sm font-black text-stone-200">+{Math.max(0, recompensaInforme?.piedra ?? recompensa?.piedra ?? 0)}</span>
                       </div>
                       <div className="rounded border border-stone-700 bg-stone-800/50 p-2">
                         <span className="block text-[9px] text-stone-300/75">Metal asegurado</span>
-                        <span className="block text-sm font-black text-stone-200">+{Math.max(0, recompensa?.metal ?? 0)}</span>
+                        <span className="block text-sm font-black text-stone-200">+{Math.max(0, recompensaInforme?.metal ?? recompensa?.metal ?? 0)}</span>
                       </div>
                     </div>
                     <div className="mt-3 border-t border-stone-700/80 pt-2">
@@ -1100,13 +1123,17 @@ export default function CombateModal({
                           ))}
                         </ul>
                       ) : (
-                        <p className="text-[10px] text-stone-500 sm:text-xs">No se ha obtenido ningún objeto.</p>
+                        <p className="text-[10px] text-stone-500 sm:text-xs">
+                          {botinPerdidoInforme.length > 0 ? "Los objetos obtenidos no han cabido en el inventario." : "No se ha obtenido ningún objeto."}
+                        </p>
                       )}
                       {botinPerdidoInforme.map((botin, indice) => (
                         <p key={`botin-perdido-${indice}`} className="mt-1 text-[10px] text-red-300">Inventario lleno: {botin}</p>
                       ))}
                       <p className="mt-2 text-[9px] leading-relaxed text-stone-500">
-                        El oro y los recursos asegurados se ingresarán al volver a la base.
+                        {partyMode
+                          ? "El oro y los recursos parciales ya se han repartido entre los miembros de la party."
+                          : "El oro y los recursos asegurados se ingresarán al volver a la base."}
                       </p>
                     </div>
                   </div>
