@@ -79,7 +79,7 @@ test("las expediciones normales generan grupos con IDs distintos y conservan el 
 
   const mimico = seleccionarEnemigosNormales(6, true, () => 0);
   assert.deepEqual(mimico.map((enemigo) => enemigo.id), ["mimic"]);
-  assert.deepEqual(seleccionarEnemigosNormales(0, false, () => 0.99).map((enemigo) => enemigo.difMin), [0]);
+  assert.deepEqual(seleccionarEnemigosNormales(0, false, () => 0.2).map((enemigo) => enemigo.difMin), [0]);
 });
 
 test("el catálogo de clases tiene requisitos válidos y no contiene ciclos", () => {
