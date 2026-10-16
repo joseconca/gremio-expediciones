@@ -13,7 +13,7 @@ import CapaEfectosCombate from "@/components/combate/animaciones/CapaEfectosComb
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import type { ObjetoInventario, ReglaObjetivoHabilidad } from "@/lib/tiposJuego";
 import { obtenerReglaObjetivoHabilidad } from "@/lib/expediciones/objetivos-combate";
-import { crearEnemigoLegacy, leerEnemigosEnCombate, type EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
+import { crearEnemigoLegacy, leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 
@@ -235,11 +235,6 @@ export default function CombateModal({
     0,
     Math.min(100, (combate.jugadorHp / combate.jugadorHpMaximo) * 100)
   );
-  const vidaEnemigo = Math.max(
-    0,
-    Math.min(100, (combate.enemigoHp / combate.enemigoHpMaximo) * 100)
-  );
-
   const obtenerColorVida = (porcentaje: number) => {
     if (porcentaje >= 75) return "from-emerald-500 to-emerald-400";
     if (porcentaje >= 50) return "from-lime-500 to-lime-400";
