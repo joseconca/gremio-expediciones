@@ -6,6 +6,7 @@ export async function POST(request: Request) {
     (usuarioId, body) => ejecutarAccionCombateParty(usuarioId, body?.expedicionPartyId, body?.accion, {
       habilidadId: body?.habilidadId,
       objetivoId: body?.objetivoId,
+      enemigoObjetivoId: body?.enemigoObjetivoId,
       objetoInventarioId: body?.objetoInventarioId,
       posicion: body?.posicion,
     }),
