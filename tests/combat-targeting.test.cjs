@@ -54,6 +54,13 @@ test("las curaciones y mejoras por defecto permiten seleccionar cualquier aliado
     combatiente("b", "aliado", "centro", 1),
     combatiente("c", "aliado", "retaguardia", 2),
   ];
+  const porDefecto = resolverObjetivosHabilidad({
+    habilidad: { efecto: "curacion" },
+    actorId: "b",
+    combatientes: aliados,
+  });
+  assert.equal(porDefecto.objetivoPrincipal.id, "b");
+
   const r = resolverObjetivosHabilidad({
     habilidad: { efecto: "curacion" },
     actorId: "b",
