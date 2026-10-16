@@ -1029,7 +1029,7 @@ export default function PanelParty() {
               <p className="text-[11px] text-slate-300">
                 {ultimoResultadoCombate.fase === "victoria"
                   ? `Oro total repartido: ${ultimoResultadoCombate.recompensas.oroTotal ?? 0} 🪙. La experiencia Base y Job se aplica individualmente.`
-                  : `Oro parcial repartido: ${ultimoResultadoCombate.recompensas.oroTotal ?? 0} 🪙. Solo cuentan enemigos abatidos; no se reciben objetos de misión ni desbloqueos.`}
+                  : `Oro parcial repartido: ${ultimoResultadoCombate.recompensas.oroTotal ?? 0} 🪙. Incluye la consolación por derrota y el oro de los enemigos abatidos; no se reciben objetos de misión ni desbloqueos.`}
               </p>
               {ultimoResultadoCombate.recompensas.recompensas.map((recompensa) => {
                 const miembro = estado?.expedicionActiva?.participantes.find((p) => p.usuarioId === recompensa.usuarioId)
