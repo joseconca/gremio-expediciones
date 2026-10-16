@@ -275,8 +275,9 @@ export default function CombateModal({
 
   const {
     danioVisible,
-    daniosEnemigosVisibles,
-    enemigosImpactados,
+    daniosMultiplesVisibles,
+    objetivosMultiplesImpactados,
+    actoresAnimando,
     curacionVisible,
     pulsosEstadoVisibles,
     actorAnimando,
@@ -659,8 +660,8 @@ export default function CombateModal({
                 const vida = Math.max(0, Math.min(100, participante.jugadorHp / Math.max(1, participante.jugadorHpMaximo) * 100));
                 const retirado = participante.estado === "huyo";
                 const caido = participante.estado === "caido";
-                const animando = actorAnimando === participante.usuarioId;
-                const impactado = actorImpactado === participante.usuarioId;
+                const animando = actorAnimando === participante.usuarioId || actoresAnimando.includes(participante.usuarioId);
+                const impactado = actorImpactado === participante.usuarioId || objetivosMultiplesImpactados.includes(participante.usuarioId);
                 const sprite = obtenerSpriteHeroe(participante.clase, participante.sexo);
                 return (
                   <div
@@ -674,6 +675,11 @@ export default function CombateModal({
                         -{danioVisible.dano}
                       </div>
                     )}
+                    {daniosMultiplesVisibles.filter((impacto) => impacto.objetivoId === participante.usuarioId).map((impacto, indice) => (
+                      <div key={`dano-multiple-${participante.id}-${indice}`} className={`absolute top-1 z-50 -translate-y-full whitespace-nowrap font-black drop-shadow-[0_3px_3px_rgba(0,0,0,0.9)] ${impacto.critico ? "animate-bounce text-2xl text-amber-300" : "text-xl text-red-300"}`}>
+                        -{impacto.dano}
+                      </div>
+                    ))}
                     {curacionVisible?.actor === participante.usuarioId && (
                       <div className="absolute top-1 z-50 -translate-y-full whitespace-nowrap text-xl font-black text-emerald-300 drop-shadow-[0_3px_3px_rgba(0,0,0,0.9)]">
                         <span className="combate-numero-curacion">+{curacionVisible.cantidad}</span>
@@ -774,6 +780,11 @@ export default function CombateModal({
                   -{danioVisible.dano}
                 </div>
               )}
+              {daniosMultiplesVisibles.filter((impacto) => impacto.objetivoId === "jugador").map((impacto, indice) => (
+                <div key={`dano-multiple-jugador-${indice}`} className={`absolute top-0 left-1/2 -translate-x-1/2 font-black drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] z-50 ${impacto.critico ? "text-5xl text-amber-400 scale-125 animate-bounce" : "text-4xl text-red-400"}`}>
+                  -{impacto.dano}
+                </div>
+              ))}
               {curacionVisible?.actor === "jugador" && (
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 text-4xl font-black text-emerald-400 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] z-50">
                   <span className="combate-numero-curacion">+{curacionVisible.cantidad}</span>
@@ -840,8 +851,8 @@ export default function CombateModal({
               const vida = Math.max(0, Math.min(100, enemigo.hp / Math.max(1, enemigo.hpMaximo) * 100));
               const vivo = enemigo.hp > 0;
               const seleccionado = enemigoObjetivoElegidoId === enemigo.id;
-              const animando = actorAnimando === enemigo.id;
-              const impactado = actorImpactado === enemigo.id || enemigosImpactados.includes(enemigo.id);
+              const animando = actorAnimando === enemigo.id || actoresAnimando.includes(enemigo.id);
+              const impactado = actorImpactado === enemigo.id || objetivosMultiplesImpactados.includes(enemigo.id);
               const x = 17 + enemigo.columna * 33;
               const y = enemigo.posicion === "mele" ? 18 : enemigo.posicion === "retaguardia" ? 82 : 50;
               const sprite = obtenerRutaSpriteEnemigo(enemigo.enemigoId);
@@ -869,7 +880,7 @@ export default function CombateModal({
                   {danioVisible?.actor === enemigo.id && (
                     <span className={`absolute top-6 z-50 -translate-y-full whitespace-nowrap font-black drop-shadow-[0_3px_3px_rgba(0,0,0,0.9)] ${danioVisible.critico ? "animate-bounce text-2xl text-amber-300" : "text-xl text-red-300"}`}>-{danioVisible.dano}</span>
                   )}
-                  {daniosEnemigosVisibles.filter((impacto) => impacto.enemigoId === enemigo.id).map((impacto, indice) => (
+                  {daniosMultiplesVisibles.filter((impacto) => impacto.objetivoId === enemigo.id).map((impacto, indice) => (
                     <span key={`impacto-${enemigo.id}-${indice}`} className={`absolute top-6 z-50 -translate-y-full whitespace-nowrap font-black drop-shadow-[0_3px_3px_rgba(0,0,0,0.9)] ${impacto.critico ? "animate-bounce text-2xl text-amber-300" : "text-xl text-red-300"}`}>
                       -{impacto.dano}
                     </span>
