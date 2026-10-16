@@ -388,7 +388,9 @@ export default function CombateModal({
     const regla = habilidadUsada
       ? obtenerReglaObjetivoHabilidad(habilidadUsada)
       : { equipo: "enemigo" as const, patron: "individual" as const };
-    const objetivoSolicitado = objetivoId ?? objetivoHabilidadId;
+    const objetivoSolicitado = objetivoId ?? (
+      regla.equipo === "enemigo" ? enemigoObjetivoElegidoId : objetivoHabilidadId
+    );
     let objetivoResuelto: string | null = null;
 
     if (regla.equipo === "enemigo") {
@@ -584,9 +586,11 @@ export default function CombateModal({
   }, [combate]);
   const enemigosVivos = enemigosVisibles.filter((enemigo) => enemigo.hp > 0);
   const enemigosDerrotados = enemigosVisibles.filter((enemigo) => enemigo.hp <= 0);
+  // El combate empieza sin objetivo seleccionado. Solo hay objetivo cuando
+  // el jugador pulsa expresamente una criatura de la escena.
   const enemigoObjetivoElegidoId = enemigosVivos.some((enemigo) => enemigo.id === enemigoObjetivoId)
     ? enemigoObjetivoId
-    : enemigosVivos[0]?.id ?? null;
+    : null;
 
   const habilidadSeleccionada = habilidades.find(
     (h) => h.habilidadId === habilidadSeleccionadaId
@@ -622,15 +626,15 @@ export default function CombateModal({
               nombre: personaje.nombre,
               detalle: "Tú · objetivo propio",
             }];
-  const objetivoPorDefectoId = reglaObjetivoSeleccionada?.equipo === "aliado"
-    ? objetivosDisponibles.find((o) => o.id === (partyMode?.usuarioId ?? personaje.id))?.id
-      ?? objetivosDisponibles[0]?.id
-    : reglaObjetivoSeleccionada?.equipo === "enemigo"
-      ? objetivosDisponibles.find((o) => o.id === enemigoObjetivoElegidoId)?.id ?? objetivosDisponibles[0]?.id
-      : objetivosDisponibles[0]?.id;
   const objetivoElegidoId = objetivosDisponibles.some((o) => o.id === objetivoHabilidadId)
     ? objetivoHabilidadId
-    : objetivoPorDefectoId ?? null;
+    : reglaObjetivoSeleccionada?.equipo === "enemigo"
+      ? objetivosDisponibles.some((o) => o.id === enemigoObjetivoElegidoId)
+        ? enemigoObjetivoElegidoId
+        : null
+      : reglaObjetivoSeleccionada?.equipo === "propio"
+        ? objetivosDisponibles[0]?.id ?? null
+        : null;
   const idObjetivoPropio = partyMode?.usuarioId ?? personaje.id ?? "jugador";
   const propioEsObjetivoHabilidad = Boolean(
     mostrarHabilidades &&
@@ -958,35 +962,38 @@ export default function CombateModal({
               const y = enemigo.posicion === "mele" ? 18 : enemigo.posicion === "retaguardia" ? 82 : 50;
               const sprite = obtenerRutaSpriteEnemigo(enemigo.enemigoId);
               return (
-                <button
+                <div
                   key={enemigo.id}
-                  type="button"
-                  aria-label={`Seleccionar ${enemigo.nombre}, ${enemigo.hp} de ${enemigo.hpMaximo} puntos de vida`}
-                  aria-pressed={seleccionado}
-                  disabled={!vivo}
-                  onClick={() => {
-                    setEnemigoObjetivoId(enemigo.id);
-                    if (
-                      habilidadEsperandoObjetivoId &&
-                      reglaObjetivoSeleccionada?.equipo === "enemigo" &&
-                      reglaObjetivoSeleccionada.patron !== "todos"
-                    ) {
-                      setObjetivoHabilidadId(enemigo.id);
-                      void ejecutarHabilidad(habilidadEsperandoObjetivoId, enemigo.id);
-                      return;
-                    }
-                    if (
-                      mostrarHabilidades &&
-                      reglaObjetivoSeleccionada?.equipo === "enemigo" &&
-                      reglaObjetivoSeleccionada.patron !== "todos"
-                    ) {
-                      setObjetivoHabilidadId(enemigo.id);
-                    }
-                  }}
-                  className={`absolute z-10 flex w-[35%] max-w-[116px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-0 rounded p-0 transition-[filter,opacity] focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 ${!vivo ? "opacity-45 grayscale" : "hover:brightness-110"} ${animando && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque-enemigo_700ms_ease-in-out]") : ""}`}
+                  className={`absolute z-10 flex w-[35%] max-w-[116px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-0 ${!vivo ? "opacity-45 grayscale" : ""} ${animando && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque-enemigo_700ms_ease-in-out]") : ""}`}
                   style={{ left: `${x}%`, top: `${y}%`, touchAction: "manipulation" }}
-                  title={`${enemigo.nombre}: ${Math.max(0, enemigo.hp)}/${enemigo.hpMaximo} PV`}
                 >
+                  <button
+                    type="button"
+                    aria-label={`Seleccionar ${enemigo.nombre}, ${enemigo.hp} de ${enemigo.hpMaximo} puntos de vida`}
+                    aria-pressed={seleccionado}
+                    disabled={!vivo}
+                    onClick={() => {
+                      setEnemigoObjetivoId(enemigo.id);
+                      if (
+                        habilidadEsperandoObjetivoId &&
+                        reglaObjetivoSeleccionada?.equipo === "enemigo" &&
+                        reglaObjetivoSeleccionada.patron !== "todos"
+                      ) {
+                        setObjetivoHabilidadId(enemigo.id);
+                        void ejecutarHabilidad(habilidadEsperandoObjetivoId, enemigo.id);
+                        return;
+                      }
+                      if (
+                        mostrarHabilidades &&
+                        reglaObjetivoSeleccionada?.equipo === "enemigo" &&
+                        reglaObjetivoSeleccionada.patron !== "todos"
+                      ) {
+                        setObjetivoHabilidadId(enemigo.id);
+                      }
+                    }}
+                    className={`group relative flex w-full flex-col items-center gap-0 rounded p-0 transition-[filter,opacity] focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 ${vivo ? "hover:brightness-110" : "cursor-not-allowed"}`}
+                    title={`${enemigo.nombre}: ${Math.max(0, enemigo.hp)}/${enemigo.hpMaximo} PV`}
+                  >
                   <div className="mb-0.5 w-full min-w-0 rounded-sm bg-black/65 px-1 py-0.5 text-center">
                     <span className="block truncate text-[9px] font-bold leading-tight text-stone-100 sm:text-[10px]">{enemigo.nombre}</span>
                     <div role="progressbar" aria-label={`Vida de ${enemigo.nombre}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(vida)} className="mt-0.5 h-1 w-full overflow-hidden rounded-sm bg-stone-950/90">
@@ -1037,8 +1044,9 @@ export default function CombateModal({
                       className={`relative z-10 object-contain [image-rendering:pixelated] ${modoPresentacionActual === "curacion" && animando ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && animando ? "combate-defensa-resplandor" : ""}`}
                     />
                   </div>
+                  </button>
                   <IndicadoresEfectosCombate efectos={enemigo.efectos ?? []} />
-                </button>
+                </div>
               );
             })}
           </div>
@@ -1402,52 +1410,54 @@ export default function CombateModal({
                           key={h.id}
                           onClick={() => {
                             const regla = obtenerReglaObjetivoHabilidad(h.habilidad);
-                            const cantidadObjetivos = regla.equipo === "enemigo"
-                              ? enemigosVivos.length
-                              : regla.equipo === "aliado"
-                                ? partyMode
-                                  ? partyMode.participantes.filter((participante) =>
-                                      participante.estado === "activo" &&
-                                      participante.jugadorHp > 0 &&
-                                      (regla.incluirPropio !== false || participante.usuarioId !== partyMode.usuarioId)
-                                    ).length
-                                  : 1
-                                : 1;
-                            const requiereSeleccion = regla.patron !== "todos" &&
-                              regla.equipo !== "propio" &&
-                              cantidadObjetivos > 1;
+                            const propio = partyMode?.usuarioId ?? personaje.id ?? "jugador";
+                            const idsAliados = partyMode
+                              ? partyMode.participantes
+                                  .filter((participante) =>
+                                    participante.estado === "activo" &&
+                                    participante.jugadorHp > 0 &&
+                                    (regla.incluirPropio !== false || participante.usuarioId !== partyMode.usuarioId)
+                                  )
+                                  .map((participante) => participante.usuarioId)
+                              : [personaje.id ?? "jugador"];
 
                             setHabilidadSeleccionadaId(h.habilidadId);
                             setMostrarObjetos(false);
                             setMostrarHabilidades(true);
-                            if (!requiereSeleccion) {
-                              setHabilidadEsperandoObjetivoId(null);
-                              void ejecutarHabilidad(h.habilidadId);
+
+                            // Las habilidades de objetivo único reutilizan el enemigo
+                            // que ya se haya marcado en la escena. Si no hay uno,
+                            // se pide seleccionar objetivo en vez de elegir el primero.
+                            if (regla.patron !== "todos" && regla.equipo === "enemigo") {
+                              if (enemigoObjetivoElegidoId) {
+                                setObjetivoHabilidadId(enemigoObjetivoElegidoId);
+                                setHabilidadEsperandoObjetivoId(null);
+                                void ejecutarHabilidad(h.habilidadId, enemigoObjetivoElegidoId);
+                              } else {
+                                setObjetivoHabilidadId(null);
+                                setHabilidadEsperandoObjetivoId(h.habilidadId);
+                              }
                               return;
                             }
 
-                            setHabilidadEsperandoObjetivoId(h.habilidadId);
-                            if (regla.equipo === "enemigo") {
-                              setObjetivoHabilidadId(enemigoObjetivoElegidoId ?? enemigosVivos[0]?.id ?? null);
-                            } else {
-                              const idsAliados = partyMode
-                                ? partyMode.participantes
-                                    .filter((participante) =>
-                                      participante.estado === "activo" &&
-                                      participante.jugadorHp > 0 &&
-                                      (regla.incluirPropio !== false || participante.usuarioId !== partyMode.usuarioId)
-                                    )
-                                    .map((participante) => participante.usuarioId)
-                                : [personaje.id ?? "jugador"];
-                              const propio = partyMode?.usuarioId ?? personaje.id ?? "jugador";
-                              setObjetivoHabilidadId(
-                                objetivoHabilidadId && idsAliados.includes(objetivoHabilidadId)
-                                  ? objetivoHabilidadId
-                                  : idsAliados.includes(propio)
-                                    ? propio
-                                    : idsAliados[0] ?? null,
-                              );
+                            // Las curas y mejoras a aliados siempre piden selección
+                            // cuando hay varios compañeros válidos, sin heredar el
+                            // objetivo enemigo que pudiera estar marcado.
+                            if (regla.patron !== "todos" && regla.equipo === "aliado" && idsAliados.length > 1) {
+                              setObjetivoHabilidadId(null);
+                              setHabilidadEsperandoObjetivoId(h.habilidadId);
+                              return;
                             }
+
+                            const objetivoAutomatico = regla.equipo === "enemigo"
+                              ? enemigoObjetivoElegidoId
+                              : regla.equipo === "propio"
+                                ? propio
+                                : idsAliados[0] ?? null;
+                            setObjetivoHabilidadId(objetivoAutomatico);
+                            setHabilidadEsperandoObjetivoId(null);
+                            if (regla.equipo === "aliado" && !objetivoAutomatico) return;
+                            void ejecutarHabilidad(h.habilidadId, objetivoAutomatico);
                           }}
                           onMouseEnter={() => setHabilidadSeleccionadaId(h.habilidadId)}
                           aria-label={`Usar habilidad ${h.habilidad.nombre}`}
