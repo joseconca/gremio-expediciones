@@ -672,6 +672,16 @@ export default function PanelParty() {
     };
   };
   const combateModalParty = crearVistaCombate();
+  const resultadoRecompensasParty = combatePartyDatos?.recompensasResultado
+    ?? (ultimoResultadoCombate?.expedicionPartyId === expedicionConCombate?.id
+      ? ultimoResultadoCombate.recompensas
+      : null);
+  const recompensaInformeParty = resultadoRecompensasParty?.recompensas.find(
+    (resultado) => resultado.usuarioId === estado?.usuarioId,
+  );
+  const botinInformeParty = (resultadoRecompensasParty?.dropsEnemigo ?? [])
+    .filter((drop) => drop.usuarioId === estado?.usuarioId)
+    .map((drop) => `${drop.nombre}${drop.sufijoId ? ` ${drop.sufijoId}` : ""} ×${drop.cantidad}`);
   const mostrarCombateParty = Boolean(
     combateModalParty &&
     combatePartyDatos &&
@@ -1109,6 +1119,15 @@ export default function PanelParty() {
           combate={combateModalParty}
           personaje={personaje}
           comidaActiva={personaje.comidaPreparada}
+          recompensaInforme={recompensaInformeParty ? {
+            oro: recompensaInformeParty.oro,
+            madera: recompensaInformeParty.madera,
+            piedra: recompensaInformeParty.piedra,
+            metal: recompensaInformeParty.metal,
+            experiencia: recompensaInformeParty.experiencia,
+            experienciaJob: recompensaInformeParty.experienciaJob ?? 0,
+            botin: botinInformeParty,
+          } : null}
           procesando={Boolean(accion)}
           partyMode={{
             usuarioId: estado.usuarioId,
