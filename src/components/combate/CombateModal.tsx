@@ -317,7 +317,9 @@ export default function CombateModal({
       actorUsuarioId,
       objetivoUsuarioId,
     });
-    await mostrarResultadoVisual(accion, destinos);
+    await mostrarResultadoVisual(accion, destinos, {
+      esResultadoTerminal: () => faseCombateRef.current !== "activo",
+    });
     comprobarResultadoCombate();
   }, [partyMode, mostrarResultadoVisual]);
 
