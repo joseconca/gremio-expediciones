@@ -18,6 +18,10 @@ import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { crearEnemigoLegacy, leerEnemigosEnCombate, type EnemigoEnCombate } from "@/lib/expediciones/enemigos-combate";
 import { obtenerReglaObjetivoHabilidad, resolverObjetivosHabilidad } from "@/lib/expediciones/objetivos-combate";
 import { obtenerObjetoPorId } from "@/lib/objetos";
+import { tirarBotinEnemigo } from "@/lib/lootObjetos";
+import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
+import { obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
+import { calcularRecompensasParcialesDerrota } from "@/lib/expediciones/recompensas-derrota";
 import { obtenerPresentacionAtaqueBasico } from "@/lib/expediciones/presentacion-combate";
 import { experienciaParaNivel } from "@/lib/configuracionJuego";
 import {
@@ -674,40 +678,53 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
 
         if (!combate.enemigoId) {
           return NextResponse.json(
-            {
-              error: "El combate no tiene enemigo asociado.",
-            },
-            { status: 500 }
+            { error: "El combate no tiene enemigo asociado." },
+            { status: 500 },
           );
         }
 
         const enemigo = obtenerEnemigoPorId(combate.enemigoId);
-
         if (!enemigo) {
           return NextResponse.json(
-            {
-              error: "No se encontró el enemigo del combate.",
-            },
-            { status: 500 }
+            { error: "No se encontró el enemigo del combate." },
+            { status: 500 },
           );
         }
 
         const recompensaMision = obtenerRecompensaMision(expedicion.recompensa);
-        const oroAsegurado = Math.floor(
-          recompensaMision.oro *
-            CONFIGURACION_DIFICULTAD[modoDificultad].multiplicadorRecompensa *
-            0.2
-        );
-        const experienciaVictoria = calcularExperienciaBaseGanada(
-          expedicion.dificultad,
-          personaje.nivel,
-          modoDificultad
-        );
-        const experienciaGanada = Math.floor(experienciaVictoria * 0.1);
+        const liquidacion = calcularRecompensasParcialesDerrota({
+          enemigos: enemigosEnCombate,
+          recompensaMision,
+          dificultadMision: expedicion.dificultad,
+          nivelBase: personaje.nivel,
+          modoDificultad,
+        });
+        const oroAsegurado = liquidacion.oro;
+        const experienciaGanada = liquidacion.experiencia;
+        const botinesTirados = liquidacion.enemigosDerrotados
+          .map(({ snapshot, definicion }) => ({
+            snapshot,
+            botin: tirarBotinEnemigo(definicion),
+          }))
+          .filter((entrada): entrada is typeof entrada & { botin: NonNullable<typeof entrada.botin> } => Boolean(entrada.botin));
 
-        log.push(`💰 Antes de caer, consigues asegurar ${oroAsegurado} 🪙.`);
-
-        log.push(`⭐ Obtienes ${experienciaGanada} XP.`);
+        log.push(
+          `💰 Aseguras ${liquidacion.oroConsolacion} 🪙 de la misión y ${liquidacion.oroPorEnemigos} 🪙 por las criaturas abatidas.`,
+        );
+        log.push(
+          `⭐ Obtienes ${liquidacion.experienciaConsolacion} XP de la misión y ${liquidacion.experienciaPorEnemigos} XP por las criaturas abatidas (total: ${experienciaGanada} XP).`,
+        );
+        if (liquidacion.enemigosDerrotados.length > 0) {
+          log.push(`⚔️ Criaturas abatidas: ${liquidacion.enemigosDerrotados.map(({ snapshot }) => snapshot.nombre).join(", ")}.`);
+        } else {
+          log.push("⚔️ No has logrado abatir a ninguna criatura.");
+        }
+        if (liquidacion.recompensa.madera > 0) log.push(`🪵 Aseguras ${liquidacion.recompensa.madera} de madera para el regreso.`);
+        if (liquidacion.recompensa.piedra > 0) log.push(`🪨 Aseguras ${liquidacion.recompensa.piedra} de piedra para el regreso.`);
+        if (liquidacion.recompensa.metal > 0) log.push(`⚙️ Aseguras ${liquidacion.recompensa.metal} de metal para el regreso.`);
+        if (liquidacion.enemigosDerrotados.length > 0 && botinesTirados.length === 0) {
+          log.push("🎒 Las criaturas abatidas no han soltado ningún objeto.");
+        }
 
         const resultado = await prisma.$transaction(async (tx) => {
           await gastarRecursosHabilidad(tx, personaje.id, habilidad);
@@ -726,17 +743,75 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
               where: { id: consumible.inventarioObjetoId, cantidad: { lte: 0 } },
             });
           }
-          const progresoJob = await otorgarExperienciaJob(
+
+          // La XP Job conserva la pequeña recompensa de consolación y además
+          // reconoce cada criatura abatida, sin conceder XP por enemigos vivos.
+          const progresoJobMision = await otorgarExperienciaJob(
             tx,
             personaje,
             expedicion.dificultad,
             personaje.nivel,
             modoDificultad,
-            0.1
+            0.1,
           );
-          if (progresoJob && progresoJob.nivelesSubidos > 0) {
-            log.push(`⬆️ Job de ${progresoJob.claseNombre}: nivel ${progresoJob.nivelJob}.`);
+          if (progresoJobMision && progresoJobMision.nivelesSubidos > 0) {
+            log.push(`⬆️ Job de ${progresoJobMision.claseNombre}: nivel ${progresoJobMision.nivelJob}.`);
           }
+          for (const { snapshot } of liquidacion.enemigosDerrotados) {
+            const progresoJobEnemigo = await otorgarExperienciaJob(
+              tx,
+              personaje,
+              snapshot.difMin,
+              personaje.nivel,
+              modoDificultad,
+            );
+            if (progresoJobEnemigo && progresoJobEnemigo.nivelesSubidos > 0) {
+              log.push(`⬆️ Job de ${progresoJobEnemigo.claseNombre}: nivel ${progresoJobEnemigo.nivelJob} tras abatir a ${snapshot.nombre}.`);
+            }
+          }
+
+          // Las criaturas soltadas se entregan ahora. Los recursos y el oro de
+          // expedición quedan asegurados en el informe y se ingresan al regresar.
+          for (const { snapshot, botin } of botinesTirados) {
+            const inventario = await tx.inventario.upsert({
+              where: { personajeId: personaje.id },
+              update: {},
+              create: { personajeId: personaje.id },
+            });
+            const espaciosOcupados = await tx.inventarioObjeto.count({
+              where: { inventarioId: inventario.id },
+            });
+            const nombreBotin = obtenerNombreObjetoConSufijo(botin.objeto.nombre, botin.sufijoId);
+            if (espaciosOcupados >= LIMITE_INVENTARIO_OBJETOS) {
+              log.push(`🎒 Botín perdido: ${nombreBotin} de ${snapshot.nombre}; el inventario está lleno.`);
+              continue;
+            }
+            await tx.inventarioObjeto.create({
+              data: {
+                inventarioId: inventario.id,
+                objetoId: botin.objeto.id,
+                cantidad: 1,
+                nivelMejora: 0,
+                sufijoId: botin.sufijoId,
+                bonificaciones: botin.bonificaciones as Prisma.InputJsonValue,
+              },
+            });
+            log.push(`🎁 Botín obtenido: ${nombreBotin} (de ${snapshot.nombre}).`);
+          }
+
+          const experienciaActual = personaje.experiencia || 0;
+          let nivelNuevo = personaje.nivel || 1;
+          let experienciaNueva = experienciaActual + experienciaGanada;
+          let nivelesSubidos = 0;
+          while (experienciaNueva >= experienciaParaNivel(nivelNuevo)) {
+            experienciaNueva -= experienciaParaNivel(nivelNuevo);
+            nivelNuevo += 1;
+            nivelesSubidos += 1;
+          }
+          if (nivelesSubidos > 0) {
+            log.push(`⬆️ ¡Subes al nivel ${nivelNuevo}!`);
+          }
+
           const combateActualizado = await actualizarCombateVersionado(tx, combate.id, combate.version, {
             jugadorHp: 0,
             enemigos: enemigosEnCombate as unknown as Prisma.InputJsonValue,
@@ -748,56 +823,27 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             turno: "jugador",
             oroGanado: oroAsegurado,
             experienciaGanada,
+            botinResuelto: true,
             log,
             ultimaAccion: accionAnimada,
           });
 
-          const experienciaActual = personaje.experiencia || 0;
-
-          const nivelActual = personaje.nivel || 1;
-
-          let nivelNuevo = nivelActual;
-          let experienciaNueva = experienciaActual + experienciaGanada;
-
-          let nivelesSubidos = 0;
-
-          while (experienciaNueva >= experienciaParaNivel(nivelNuevo)) {
-            experienciaNueva -= experienciaParaNivel(nivelNuevo);
-
-            nivelNuevo += 1;
-            nivelesSubidos += 1;
-          }
-
-          if (nivelesSubidos > 0) {
-            log.push(`⬆️ ¡Subes al nivel ${nivelNuevo}!`);
-          }
-
           await tx.personaje.update({
-            where: {
-              id: personaje.id,
-            },
+            where: { id: personaje.id },
             data: {
               hpActual: 1,
               estado: "de_viaje",
               nivel: nivelNuevo,
               experiencia: experienciaNueva,
-
             },
           });
 
           await tx.expedicionActiva.update({
-            where: {
-              id: expedicion.id,
-            },
+            where: { id: expedicion.id },
             data: {
               fase: "regresando",
               ...calcularFechasRegresoProgramadas(expedicion.fechaSalida, expedicion.fechaLlegada),
-              recompensa: {
-                oro: oroAsegurado,
-                madera: 0,
-                piedra: 0,
-                metal: 0,
-              },
+              recompensa: liquidacion.recompensa,
               experienciaGanada,
               resultadoFinal: "derrota",
               hpPerdido: Math.max(0, combate.jugadorHpMaximo - jugadorHp),
@@ -805,9 +851,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           });
 
           const usuarioActualizado = await tx.usuario.findUnique({
-            where: {
-              id: usuario.id,
-            },
+            where: { id: usuario.id },
             include: incluirUsuarioTrasCombate,
           });
 
@@ -819,9 +863,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
 
         const datosUsuario = resultado.usuario
           ? Object.fromEntries(
-              Object.entries(resultado.usuario).filter(
-                ([clave]) => clave !== "password"
-              )
+              Object.entries(resultado.usuario).filter(([clave]) => clave !== "password"),
             )
           : null;
 
