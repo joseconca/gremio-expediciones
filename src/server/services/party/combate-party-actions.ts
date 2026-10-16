@@ -1129,6 +1129,50 @@ export async function ejecutarAccionCombateParty(
       throw new PartyServiceError("El estado individual del aventurero cambió durante la acción.", 409, "PARTICIPANTE_PARTY_MODIFICADO");
     }
 
+    // Las habilidades de soporte de área se aplican a todos los aliados elegidos
+    // dentro de la misma transacción. El propio actor ya se ha guardado arriba.
+    for (const objetivoAliado of objetivosAliadosModificados.values()) {
+      if (objetivoAliado.usuarioId === usuarioId) continue;
+
+      const aliadoActualizado = await tx.combatePartyParticipante.updateMany({
+        where: {
+          id: objetivoAliado.participanteId,
+          jugadorHp: objetivoAliado.hpOriginal,
+          estado: "activo",
+        },
+        data: {
+          jugadorHp: objetivoAliado.hp,
+          jugadorDefensa: objetivoAliado.defensa,
+          estado: objetivoAliado.hp > 0 ? "activo" : "caido",
+          efectos: objetivoAliado.efectos as unknown as Prisma.InputJsonValue,
+        },
+      });
+      if (aliadoActualizado.count !== 1) {
+        throw new PartyServiceError(
+          "El estado de un aliado cambió mientras se aplicaba la habilidad.",
+          409,
+          "OBJETIVO_ALIADO_MODIFICADO",
+        );
+      }
+
+      if (objetivoAliado.hp !== objetivoAliado.hpOriginal) {
+        const personajeAliadoActualizado = await tx.personaje.updateMany({
+          where: {
+            id: objetivoAliado.personajeId,
+            estado: "combatiendo",
+          },
+          data: { hpActual: objetivoAliado.hp },
+        });
+        if (personajeAliadoActualizado.count !== 1) {
+          throw new PartyServiceError(
+            "No se pudo sincronizar la salud del aliado afectado.",
+            409,
+            "SALUD_OBJETIVO_ALIADO_NO_SINCRONIZADA",
+          );
+        }
+      }
+    }
+
     const personajeActualizado = await tx.personaje.updateMany({
       where: { id: personaje.id, usuarioId, estado: "combatiendo" },
       data: { hpActual: jugadorHp },
