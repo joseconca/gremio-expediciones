@@ -13,6 +13,7 @@ import {
 import { ESTADOS_EXPEDICION_PARTY_ACTIVOS } from "@/lib/party/expedicion-reglas";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { obtenerObjetoPorId } from "@/lib/objetos";
+import { leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 
 const AISLAMIENTO = {
   isolationLevel: Prisma.TransactionIsolationLevel.Serializable,
@@ -950,7 +951,13 @@ export async function obtenerEstadoParty(usuarioId: string) {
         orderBy: { creado: "desc" },
         select: {
           id: true,
-          combate: { select: { fase: true, recompensasResultado: true } },
+          tipo: true,
+          nombre: true,
+          dificultad: true,
+          modoDificultad: true,
+          fechaSalida: true,
+          fechaLlegada: true,
+          combate: { select: { fase: true, recompensasResultado: true, log: true, enemigos: true, enemigoNombre: true } },
           participantes: {
             orderBy: { creado: "asc" },
             include: {
@@ -974,6 +981,23 @@ export async function obtenerEstadoParty(usuarioId: string) {
       ? {
           expedicionPartyId: ultimaExpedicionConResultadoRaw.id,
           fase: ultimaExpedicionConResultadoRaw.combate.fase,
+          tipo: ultimaExpedicionConResultadoRaw.tipo,
+          nombre: ultimaExpedicionConResultadoRaw.nombre,
+          dificultad: ultimaExpedicionConResultadoRaw.dificultad,
+          modoDificultad: ultimaExpedicionConResultadoRaw.modoDificultad,
+          duracionSegundos: Math.max(0, Math.round((ultimaExpedicionConResultadoRaw.fechaLlegada.getTime() - ultimaExpedicionConResultadoRaw.fechaSalida.getTime()) * 2 / 1000)),
+          enemigosDerrotados: [
+            ...leerEnemigosEnCombate(ultimaExpedicionConResultadoRaw.combate.enemigos)
+              .filter((enemigo) => enemigo.hp <= 0)
+              .map((enemigo) => enemigo.nombre),
+            ...(ultimaExpedicionConResultadoRaw.combate.fase === "victoria" &&
+              leerEnemigosEnCombate(ultimaExpedicionConResultadoRaw.combate.enemigos).filter((enemigo) => enemigo.hp <= 0).length === 0
+              ? [ultimaExpedicionConResultadoRaw.combate.enemigoNombre]
+              : []),
+          ],
+          logCombate: Array.isArray(ultimaExpedicionConResultadoRaw.combate.log)
+            ? ultimaExpedicionConResultadoRaw.combate.log.filter((linea): linea is string => typeof linea === "string")
+            : [],
           recompensas: ultimaExpedicionConResultadoRaw.combate.recompensasResultado,
           participantes: ultimaExpedicionConResultadoRaw.participantes.map((participante) => ({
             usuarioId: participante.usuarioId,
