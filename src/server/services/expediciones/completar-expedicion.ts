@@ -213,6 +213,7 @@ export async function completarExpedicion() {
         madera: maderaRecibida,
         piedra: piedraRecibida,
         metal: metalRecibido,
+        ...(recompensa.objetos?.length ? { objetos: recompensa.objetos } : {}),
       };
 
       let logRegreso: string[];
