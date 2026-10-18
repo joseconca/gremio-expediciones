@@ -526,6 +526,7 @@ export default function CombateModal({
   }, [
     combate.fase,
     combate.turno,
+    combate.version,
     procesando,
     procesandoLocal,
     onAccionCombate,
