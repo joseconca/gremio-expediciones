@@ -7,6 +7,7 @@ const {
   crearSecuenciaTurnosVelocidad,
   avanzarSecuenciaTurnosVelocidad,
 } = require("../src/lib/expediciones/iniciativa-combate.ts");
+const { resolverAtaqueEnemigo } = require("../src/lib/expediciones/combate.ts");
 
 test("la velocidad reparte acciones 10/15/30 en proporción 1/2/3 y por orden descendente", () => {
   const actores = [
@@ -117,4 +118,26 @@ test("PvE registra cada ataque enemigo una sola vez y resuelve la victoria antes
   const bloqueVictoria = pve.slice(indiceVictoria, indiceAvanceCola);
   assert.match(bloqueVictoria, /fase: "victoria"/);
   assert.match(bloqueVictoria, /terminado: true/);
+});
+
+test("un ataque enemigo fallido se registra como fallo de ataque, no como esquiva del enemigo", () => {
+  const randomOriginal = Math.random;
+  const valores = [0.5, 0.99];
+  Math.random = () => valores.shift() ?? 0.99;
+
+  try {
+    const accion = resolverAtaqueEnemigo({
+      enemigoAtaque: 20,
+      enemigoPrecision: 1,
+      jugadorEvasion: 0.6,
+      jugadorDefensa: 0,
+      enemigoNombre: "Bandido Arbalestero",
+    });
+
+    assert.equal(accion.tipo, "fallo");
+    assert.match(accion.texto, /Bandido Arbalestero falla su ataque/);
+    assert.doesNotMatch(accion.texto, /Bandido Arbalestero esquiva el ataque/);
+  } finally {
+    Math.random = randomOriginal;
+  }
 });
