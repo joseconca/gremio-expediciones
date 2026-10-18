@@ -60,7 +60,7 @@ export default function HojaReporteExpedicion({ reporte, onCerrar }: HojaReporte
       ? "border-[#92744a] bg-[linear-gradient(155deg,#f3e5bd_0%,#e7d4a7_54%,#d7bd87_100%)] text-[#3e2b1b]"
       : "border-[#b8b7ab] bg-[linear-gradient(155deg,#fffef8_0%,#f0efe8_54%,#deddd3_100%)] text-[#343b3a]";
 
-  const oro = Math.max(0, Math.trunc(reporte.oroGanado || reporte.recompensa?.oro || 0));
+  const oro = Math.max(0, Math.trunc(reporte.oroGanado ?? 0));
   const filasRecompensa = [
     { clave: "oro", etiqueta: "Oro", icono: "🪙", cantidad: oro, color: "text-[#79551f]" },
     { clave: "madera", etiqueta: "Madera", icono: "🪵", cantidad: Math.max(0, Math.trunc(reporte.recompensa?.madera ?? 0)), color: "text-[#426b3f]" },
