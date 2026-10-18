@@ -387,7 +387,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           }
         }
       } else {
-        const impactos: { enemigo: EnemigoEnCombate; dano: number; critico: boolean; objetivoId: string }[] = [];
+        const impactos: { enemigo: EnemigoEnCombate; dano: number; critico: boolean; objetivoId: string; hpAntes: number; hpDespues: number }[] = [];
         const textos: string[] = [];
         for (const enemigoInicial of [...enemigosEnCombate].sort((a, b) => a.casilla - b.casilla)) {
           const enemigo = enemigosEnCombate.find((entrada) => entrada.id === enemigoInicial.id);
@@ -418,8 +418,16 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
               jugadorDefensa,
               enemigoNombre: enemigoActualizado.nombre,
             });
+            const hpAntes = jugadorHp;
             jugadorHp = Math.max(0, jugadorHp - accionDelEnemigo.dano);
-            impactos.push({ enemigo: enemigoActualizado, dano: accionDelEnemigo.dano, critico: accionDelEnemigo.critico, objetivoId: "jugador" });
+            impactos.push({
+              enemigo: enemigoActualizado,
+              dano: accionDelEnemigo.dano,
+              critico: accionDelEnemigo.critico,
+              objetivoId: "jugador",
+              hpAntes,
+              hpDespues: jugadorHp,
+            });
             textos.push(accionDelEnemigo.texto);
             log.push(accionDelEnemigo.texto);
           } else if (enemigoActualizado.hp <= 0) {
@@ -447,6 +455,8 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             objetivoId: impacto.objetivoId,
             dano: impacto.dano,
             critico: impacto.critico,
+            hpAntes: impacto.hpAntes,
+            hpDespues: impacto.hpDespues,
           })),
           dano: danoTotal,
           critico: impactos.some((impacto) => impacto.critico),
