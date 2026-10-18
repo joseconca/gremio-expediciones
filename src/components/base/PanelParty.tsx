@@ -780,19 +780,19 @@ export default function PanelParty() {
       {destinoTablon && createPortal(
         <>
       <aside
-        className="relative isolate w-full overflow-hidden border border-[#a45449] bg-[linear-gradient(155deg,#f1c9bd_0%,#e5aaa0_58%,#d48b81_100%)] p-2.5 text-[#49231f] shadow-[2px_4px_0_rgba(0,0,0,0.3),inset_0_0_0_2px_rgba(255,231,220,0.32)] sm:p-3"
+        className="relative isolate w-full overflow-hidden border border-[#995f56] bg-[linear-gradient(155deg,#dfb1a7_0%,#d09a90_58%,#c38980_100%)] p-2.5 text-[#49231f] shadow-[2px_4px_0_rgba(0,0,0,0.26),inset_0_0_0_2px_rgba(255,231,220,0.34)] sm:p-3"
         style={{ clipPath: "polygon(0 0, 98.8% 0.6%, 100% 2.5%, 99.5% 98%, 97% 100%, 1% 99.2%, 0 97%)" }}
       >
-        <div aria-hidden="true" className="pointer-events-none absolute inset-1 z-0 border border-[#a45449]/50" />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-1 z-0 border border-[#96584f]/65" />
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 opacity-35 bg-[repeating-linear-gradient(0deg,transparent_0,transparent_21px,rgba(124,42,35,0.15)_22px,transparent_23px)]" />
-        <span aria-hidden="true" className="absolute left-1/2 top-1.5 z-20 h-3 w-3 -translate-x-1/2 rounded-full border border-[#52221c] bg-[#782b22] shadow-[0_1px_2px_rgba(0,0,0,0.65),inset_0_1px_1px_rgba(255,220,180,0.5)]" />
+        <span aria-hidden="true" className="absolute left-1/2 top-1.5 z-20 h-3 w-3 -translate-x-1/2 rounded-full border border-[#754039] bg-[#a65e54] shadow-[0_1px_2px_rgba(0,0,0,0.42),inset_0_1px_1px_rgba(255,220,180,0.5)]" />
         <button
           type="button"
           onClick={() => setPartyDetalleAbierto((abierto) => !abierto)}
           aria-expanded={partyDetalleAbierto}
-          className="relative z-10 -mx-2.5 -mt-2.5 mb-2 flex w-[calc(100%+1.25rem)] items-center gap-2.5 border-b-2 border-[#3e1915] bg-[linear-gradient(135deg,#7a3027_0%,#64251f_58%,#4c1d19_100%)] px-3 pb-3 pt-5 text-left text-[#fff0dd] shadow-[inset_0_1px_rgba(255,226,188,0.16),0_3px_0_rgba(48,17,13,0.25)] transition-colors hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#f0c77f]"
+          className="relative z-10 -mx-2.5 -mt-2.5 mb-2 flex w-[calc(100%+1.25rem)] items-center gap-2.5 border-b border-[#87463e] bg-[linear-gradient(135deg,#bd776d_0%,#aa6158_58%,#98534b_100%)] px-3 pb-3 pt-5 text-left text-[#fff5e8] shadow-[inset_0_1px_rgba(255,226,188,0.16),0_2px_0_rgba(80,38,32,0.14)] transition-colors hover:brightness-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#f0c77f]"
         >
-          <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center border border-[#d9a56a]/80 bg-[#3d1814] text-lg text-[#f8dca3] shadow-[inset_0_0_0_1px_rgba(255,235,190,0.12)]">♛</span>
+          <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center border border-[#e0b783]/75 bg-[#86473f] text-lg text-[#ffe6b3] shadow-[inset_0_0_0_1px_rgba(255,235,190,0.12)]">♛</span>
           <span className="min-w-0 flex-1">
             <span className="block text-[9px] font-black uppercase tracking-[0.18em] text-[#f0c77f]">
               {party ? "Aviso de compañía" : "Mensajería del gremio"}
@@ -806,7 +806,7 @@ export default function PanelParty() {
                 : `${visitasEntrantes.length} visitas · ${trasladosPropios.length} traslados`}
             </span>
           </span>
-          {party && <span className="shrink-0 border border-[#e0b778] bg-[#3d1814] px-1.5 py-1 text-[10px] font-black text-[#ffe6b3] shadow-inner">{party.miembros.length}/3</span>}
+          {party && <span className="shrink-0 border border-[#e0b783]/80 bg-[#86473f] px-1.5 py-1 text-[10px] font-black text-[#fff0ce] shadow-inner">{party.miembros.length}/3</span>}
           <span aria-hidden="true" className="shrink-0 text-sm font-black text-[#ffe6b3]">{partyDetalleAbierto ? "⌃" : "⌄"}</span>
         </button>
 
@@ -815,7 +815,7 @@ export default function PanelParty() {
         )}
 
         {partyDetalleAbierto && (
-          <div className="relative z-10 mt-2 rounded border border-[#b96b60]/55 bg-[#f9e0d8]/40 p-2 sm:p-3">
+          <div className="relative z-10 mt-2 rounded border border-[#a5655c]/75 bg-[#edc5bc] p-2 sm:p-3">
         {party && (
           <div className="relative pt-2">
             <div className="flex flex-wrap gap-1.5">
