@@ -105,3 +105,16 @@ test("PvE y party consumen la cola persistida y procesan un enemigo por acción"
   assert.match(migracion, /ALTER TABLE "CombateActivo"[\s\S]*?"turnosPendientes"/);
   assert.match(migracion, /ALTER TABLE "CombateParty"[\s\S]*?"turnosPendientes"/);
 });
+
+test("PvE registra cada ataque enemigo una sola vez y resuelve la victoria antes de avanzar la cola", () => {
+  const pve = fs.readFileSync(path.resolve(__dirname, "../src/server/services/combate/pve.ts"), "utf8");
+  assert.doesNotMatch(pve, /log\\.push\\(accionDelEnemigo\\.texto\\)/);
+
+  const indiceVictoria = pve.indexOf("if (enemigoHp <= 0)");
+  const indiceAvanceCola = pve.indexOf("const avanceTurnos = avanzarSecuenciaTurnosVelocidad");
+  assert.ok(indiceVictoria >= 0, "debe comprobar la derrota de todos los enemigos");
+  assert.ok(indiceAvanceCola > indiceVictoria, "la victoria se resuelve antes de consumir otra acción");
+  const bloqueVictoria = pve.slice(indiceVictoria, indiceAvanceCola);
+  assert.match(bloqueVictoria, /fase: "victoria"/);
+  assert.match(bloqueVictoria, /terminado: true/);
+});
