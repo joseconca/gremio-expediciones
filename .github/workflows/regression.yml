@@ -3,6 +3,7 @@ name: Regression
 on:
   push:
     branches:
+      - main
       - refactor-en-server-y-limpieza
       - estabilizacion-clases-objetos
       - feature/party-fase-1-core
