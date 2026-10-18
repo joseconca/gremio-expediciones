@@ -68,3 +68,14 @@ test("el informe compartido conserva el diseño de pergamino y se anexa bajo el 
   assert.match(panel, /recompensa\.experienciaJob/);
   assert.match(panel, /obtenerSpriteObjeto/);
 });
+
+test("la crónica histórica de party empieza contraída y se expande al pulsar su cabecera", () => {
+  const panel = read("src/components/base/PanelParty.tsx");
+
+  assert.match(panel, /informeHistoricoPartyAbierto, setInformeHistoricoPartyAbierto\] = useState\(false\)/);
+  assert.match(panel, /aria-expanded=\{informeHistoricoPartyAbierto\}/);
+  assert.match(panel, /aria-controls="detalle-informe-historico-party"/);
+  assert.match(panel, /\{informeHistoricoPartyAbierto && \(/);
+  assert.match(panel, /setInformeHistoricoPartyAbierto\(false\)/);
+  assert.match(panel, /ultimoResultadoCombate\?\.expedicionPartyId, estado\?\.party\?\.id/);
+});
