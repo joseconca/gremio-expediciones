@@ -56,3 +56,15 @@ test("el cartel expandido anexa el informe provisional bajo el mapa durante el r
   assert.match(hoja, /presentacion\?: "modal" \| "anexo"/);
   assert.match(hoja, /Informe provisional: el botín adicional/);
 });
+
+test("el informe compartido conserva el diseño de pergamino y se anexa bajo el mapa al regresar", () => {
+  const panel = read("src/components/base/PanelParty.tsx");
+
+  assert.match(panel, /origenCoords\?: \{ lat: number; lng: number \} \| null/);
+  assert.match(panel, /<MissionMap[\s\S]*?destinoExpedicion=\{estado\.expedicionActiva\.destinoCoords\}/);
+  assert.match(panel, /regresando=\{estado\.expedicionActiva\.fase === "regresando"\}/);
+  assert.match(panel, /estado\.expedicionActiva\.fase === "regresando" && ultimoResultadoCombate\.expedicionPartyId === estado\.expedicionActiva\.id/);
+  assert.match(panel, /Gremio · crónica compartida/);
+  assert.match(panel, /recompensa\.experienciaJob/);
+  assert.match(panel, /obtenerSpriteObjeto/);
+});
