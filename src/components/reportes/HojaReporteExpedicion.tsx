@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { useGameStore } from "@/store/useGameStore";
-import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import { obtenerRutaSpriteEnemigo } from "@/lib/enemigos";
 import { obtenerObjetoPorId, obtenerSpriteObjeto } from "@/lib/objetos";
 import type { ObjetoReporteExpedicion, ReporteExpedicion } from "@/lib/tiposJuego";
@@ -37,7 +35,6 @@ function colorLog(linea: string): string {
 }
 
 export default function HojaReporteExpedicion({ reporte, onCerrar }: HojaReporteExpedicionProps) {
-  const personaje = useGameStore((state) => state.personaje);
   const [cronicaAbierta, setCronicaAbierta] = useState(false);
 
   const esComercio = reporte.tipo === "comercio";
@@ -221,11 +218,6 @@ export default function HojaReporteExpedicion({ reporte, onCerrar }: HojaReporte
           </section>
         )}
 
-        {personaje && (
-          <div className="sr-only" aria-label={`Informe de ${personaje.nombre}`}>
-            <Image src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)} alt="" width={1} height={1} />
-          </div>
-        )}
 
         <footer className="relative z-[1] mt-4 border-t border-dashed border-current/30 pt-3">
           <button
