@@ -170,14 +170,31 @@ export type ResultadoExpedicion = "exito" | "derrota" | "cancelada" | "huida";
 /** EXPEDICIONES */
 export type TipoReporteExpedicion = "combate" | "comercio";
 
+export interface ObjetoReporteExpedicion {
+  objetoId: string;
+  cantidad: number;
+  nombre?: string;
+  sufijoId?: string | null;
+}
+
 export interface ReporteExpedicionBase {
   exito: boolean;
   resultadoFinal: ResultadoExpedicion;
+  /** Compatibilidad con informes guardados; no se muestra en el resumen de la hoja. */
   hpPerdido: number;
   oroGanado: number;
   experienciaGanada: number;
+  experienciaJobGanada?: number;
   logCombate: string[];
   recompensa: RecompensaMision;
+  /** Duración total del viaje, en segundos. */
+  duracionSegundos?: number;
+  tipoMision?: "normal" | "elite" | "comercio" | "boss" | "asedio";
+  amenaza?: number;
+  enemigosDerrotados?: string[];
+  objetosObtenidos?: ObjetoReporteExpedicion[];
+  /** Nombre del gremio/personaje de destino en una ruta comercial. */
+  objetivoNombre?: string;
 }
 
 export type ReporteCombate = ReporteExpedicionBase & {
