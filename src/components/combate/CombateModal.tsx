@@ -749,7 +749,7 @@ export default function CombateModal({
                 const manaPorcentaje = manaMaximo > 0 ? Math.min(100, manaActual / manaMaximo * 100) : 0;
                 const recursoClaseParticipante = CLASES[participante.profesionActivaId]?.recursoCombate ?? "energia";
                 const retirado = participante.estado === "huyo";
-                const caido = participante.estado === "caido";
+                const caido = participante.estado === "caido" && hpParticipanteVisual <= 0;
                 const animando = actorAnimando === participante.usuarioId || actoresAnimando.includes(participante.usuarioId);
                 const impactado = actorImpactado === participante.usuarioId || objetivosMultiplesImpactados.includes(participante.usuarioId);
                 const sprite = obtenerSpriteHeroe(participante.clase, participante.sexo);
@@ -1161,7 +1161,7 @@ export default function CombateModal({
           <CapaEfectosCombate proyectiles={proyectilesVisibles} />
 
           {/* RESULTADO */}
-          {combateTerminado && (mostrarResultado || Boolean(partyMode)) && (
+          {combateTerminado && (mostrarResultado || (Boolean(partyMode) && !modoPresentacionActual)) && (
             <div className="absolute inset-0 z-[100] flex items-center justify-center bg-stone-950/85 p-2 backdrop-blur-md sm:p-4">
               <div className="max-h-full w-full max-w-md overflow-y-auto rounded-lg border-2 border-stone-700 bg-stone-900 p-3 text-center shadow-2xl sm:p-6">
                 <p
