@@ -224,8 +224,8 @@ export async function iniciarCombateParty(usuarioId: string, idDesconocido: unkn
         .filter((participante) => participante.nombreComida)
         .map((participante) => `🍲 ${participante.personajeNombre}: ${participante.nombreComida?.nombre} — ${participante.nombreComida?.descripcion}`),
       primerTurnoJugador
-        ? `🟢 La party tiene la iniciativa. Empieza ${participantesCalculados[0].personajeNombre}.`
-        : `🔴 ${enemigoBase.nombre} tiene la iniciativa y actuará primero.`,
+        ? `🟢 La party tiene la iniciativa. Empieza ${participantesCalculados.find((participante) => participante.usuarioId === turnoInicial?.actorId)?.personajeNombre ?? participantesCalculados[0].personajeNombre}.`
+        : `🔴 ${enemigosEnCombate.find((enemigo) => enemigo.id === turnoInicial?.actorId)?.nombre ?? enemigoBase.nombre} tiene la iniciativa y actuará primero.`,
     ];
 
     const combate = await tx.combateParty.create({
