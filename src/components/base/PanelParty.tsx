@@ -284,7 +284,8 @@ export default function PanelParty() {
         });
       } else if (expedicion) {
         setUltimoResultadoCombate((actual) => actual?.expedicionPartyId === expedicion.id ? actual : null);
-      } else if (estadoNuevo.ultimoResultadoExpedicion) {
+      } else if (estadoNuevo.ultimoResultadoExpedicion && estadoNuevo.party) {
+        // El informe compartido solo se muestra mientras el usuario pertenece a una compañía.
         const resultadoPersistido = estadoNuevo.ultimoResultadoExpedicion;
         setUltimoResultadoCombate((actual) => {
           const mismoResultado = actual?.expedicionPartyId === resultadoPersistido.expedicionPartyId;
