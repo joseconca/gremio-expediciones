@@ -31,6 +31,8 @@ export type AccionAnimadaCombate = {
     objetivoId: string;
     dano: number;
     critico: boolean;
+    hpAntes: number;
+    hpDespues: number;
   }[];
   enemigoObjetivoId?: string | null;
   objetivosEnemigoIds?: string[];
