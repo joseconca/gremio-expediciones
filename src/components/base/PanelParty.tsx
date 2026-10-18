@@ -250,6 +250,14 @@ export default function PanelParty() {
       const expedicion = estadoNuevo.expedicionActiva;
       const combate = expedicion?.combate;
       if (expedicion && combate && (combate.fase === "victoria" || combate.fase === "derrota" || combate.fase === "huida")) {
+        const logCombate = Array.isArray(combate.log)
+          ? combate.log.filter((linea): linea is string => typeof linea === "string")
+          : [];
+        const enemigosDerrotados = leerEnemigosEnCombate(combate.enemigos)
+          .filter((enemigo) => enemigo.hp <= 0)
+          .map((enemigo) => enemigo.nombre);
+        if (enemigosDerrotados.length === 0 && combate.fase === "victoria") enemigosDerrotados.push(combate.enemigoNombre);
+        const duracionSegundos = Math.max(0, Math.round((new Date(expedicion.fechaLlegada).getTime() - new Date(expedicion.fechaSalida).getTime()) * 2 / 1000));
         setUltimoResultadoCombate((actual) => {
           const resultadoNuevo = {
             expedicionPartyId: expedicion.id,
@@ -257,20 +265,45 @@ export default function PanelParty() {
             recompensas: combate.fase === "victoria" || combate.fase === "derrota"
               ? combate.recompensasResultado ?? null
               : null,
+            tipo: expedicion.tipo,
+            nombre: expedicion.nombre,
+            dificultad: expedicion.dificultad,
+            modoDificultad: expedicion.modoDificultad,
+            duracionSegundos,
+            enemigosDerrotados,
+            logCombate,
           };
           if (actual?.expedicionPartyId !== expedicion.id) return resultadoNuevo;
           return {
             ...actual,
-            fase: resultadoNuevo.fase,
+            ...resultadoNuevo,
             // El resultado persistido puede llegar por sondeo después de la acción terminal.
             recompensas: actual.recompensas ?? resultadoNuevo.recompensas,
+            logCombate: actual.logCombate?.length ? actual.logCombate : logCombate,
           };
         });
       } else if (expedicion) {
         setUltimoResultadoCombate((actual) => actual?.expedicionPartyId === expedicion.id ? actual : null);
+      } else if (estadoNuevo.ultimoResultadoExpedicion) {
+        const resultadoPersistido = estadoNuevo.ultimoResultadoExpedicion;
+        setUltimoResultadoCombate((actual) => {
+          const mismoResultado = actual?.expedicionPartyId === resultadoPersistido.expedicionPartyId;
+          return {
+            expedicionPartyId: resultadoPersistido.expedicionPartyId,
+            fase: resultadoPersistido.fase,
+            recompensas: (mismoResultado ? actual.recompensas : null) ?? resultadoPersistido.recompensas,
+            tipo: resultadoPersistido.tipo,
+            nombre: resultadoPersistido.nombre,
+            dificultad: resultadoPersistido.dificultad,
+            modoDificultad: resultadoPersistido.modoDificultad,
+            duracionSegundos: resultadoPersistido.duracionSegundos,
+            enemigosDerrotados: resultadoPersistido.enemigosDerrotados ?? (mismoResultado ? actual.enemigosDerrotados : []),
+            logCombate: (mismoResultado ? actual.logCombate : null)?.length
+              ? actual!.logCombate
+              : resultadoPersistido.logCombate ?? [],
+          };
+        });
       } else {
-        // El resumen solo se muestra mientras la expedición está activa (incluido
-        // el regreso). Al completar el regreso, el informe anterior desaparece.
         setUltimoResultadoCombate(null);
       }
       setError(null);
