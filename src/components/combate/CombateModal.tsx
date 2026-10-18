@@ -41,6 +41,11 @@ interface ParticipanteCombatePartyUI {
   jugadorPrecision: number;
   jugadorEvasion: number;
   jugadorNivel: number;
+  profesionActivaId: string;
+  jugadorEnergiaActual: number;
+  jugadorEnergiaMaxima: number;
+  jugadorManaActual: number;
+  jugadorManaMaximo: number;
   efectos?: unknown;
 }
 
@@ -49,7 +54,7 @@ type AccionAnimadaPartyUI = AccionAnimadaCombate;
 function distribuirFormacionParty(
   participantes: ParticipanteCombatePartyUI[],
 ): { participante: ParticipanteCombatePartyUI; x: number; y: number }[] {
-  const columnas = { retaguardia: 18, centro: 50, mele: 82 } as const;
+  const columnas = { retaguardia: 14, centro: 50, mele: 86 } as const;
   const grupos: Record<keyof typeof columnas, ParticipanteCombatePartyUI[]> = {
     retaguardia: [],
     centro: [],
@@ -612,6 +617,7 @@ export default function CombateModal({
   }, [combate]);
   const enemigosVivos = enemigosVisibles.filter((enemigo) => enemigo.hp > 0);
   const enemigosDerrotados = enemigosVisibles.filter((enemigo) => enemigo.hp <= 0);
+  const cantidadEnemigosVisibles = enemigosVisibles.length;
   // El combate empieza sin objetivo seleccionado. Solo hay objetivo cuando
   // el jugador pulsa expresamente una criatura de la escena.
   const enemigoObjetivoElegidoId = enemigosVivos.some((enemigo) => enemigo.id === enemigoObjetivoId)
@@ -731,6 +737,13 @@ export default function CombateModal({
             <div className="relative flex h-full w-1/2 min-w-0 items-center overflow-visible">
               {distribuirFormacionParty(partyMode.participantes).map(({ participante, x, y }) => {
                 const vida = Math.max(0, Math.min(100, participante.jugadorHp / Math.max(1, participante.jugadorHpMaximo) * 100));
+                const energiaActual = Math.max(0, participante.jugadorEnergiaActual);
+                const energiaMaxima = Math.max(0, participante.jugadorEnergiaMaxima);
+                const energiaPorcentaje = energiaMaxima > 0 ? Math.min(100, energiaActual / energiaMaxima * 100) : 0;
+                const manaActual = Math.max(0, participante.jugadorManaActual);
+                const manaMaximo = Math.max(0, participante.jugadorManaMaximo);
+                const manaPorcentaje = manaMaximo > 0 ? Math.min(100, manaActual / manaMaximo * 100) : 0;
+                const recursoClaseParticipante = CLASES[participante.profesionActivaId]?.recursoCombate ?? "energia";
                 const retirado = participante.estado === "huyo";
                 const caido = participante.estado === "caido";
                 const animando = actorAnimando === participante.usuarioId || actoresAnimando.includes(participante.usuarioId);
@@ -753,7 +766,7 @@ export default function CombateModal({
                 return (
                   <div
                     key={participante.id}
-                    className={`absolute z-10 flex w-[31%] max-w-[112px] -translate-x-1/2 -translate-y-1/2 flex-col items-center transition-[left,top] duration-300 ${animando && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque_700ms_ease-in-out]") : ""} ${retirado ? "opacity-50 grayscale-[35%]" : caido ? "opacity-55 grayscale" : ""}`}
+                    className={`absolute z-10 flex w-[34%] max-w-[130px] -translate-x-1/2 -translate-y-1/2 flex-col items-center transition-[left,top] duration-300 ${animando && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque_700ms_ease-in-out]") : ""} ${retirado ? "opacity-50 grayscale-[35%]" : caido ? "opacity-55 grayscale" : ""}`}
                     style={{ left: `${x}%`, top: `${y}%` }}
                     aria-label={`${participante.nombre}, ${participante.jugadorHp} de ${participante.jugadorHpMaximo} puntos de vida`}
                   >
@@ -772,10 +785,10 @@ export default function CombateModal({
                         <span className="combate-numero-curacion">+{curacionVisible.cantidad}</span>
                       </div>
                     )}
-                    <div className={`relative h-[78px] w-[68px] transition-all duration-200 sm:h-[104px] sm:w-[88px] ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}
+                    <div className={`relative h-[90px] w-[80px] transition-all duration-200 sm:h-[126px] sm:w-[110px] ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}
                       data-combate-ancla={participante.usuarioId}>
                       <div className="absolute inset-0 z-0 opacity-45 blur-[1px]" style={{ transform: "translateY(36%) perspective(110px) rotateX(65deg) scale(1.05,-0.65)" }}>
-                        <Image src={sprite} alt="" fill sizes="88px" className="object-contain brightness-0" />
+                        <Image src={sprite} alt="" fill sizes="110px" className="object-contain brightness-0" />
                       </div>
                       {seleccionadoComoObjetivo && (
                         <div aria-hidden="true" className="pointer-events-none absolute -inset-px z-[5]">
@@ -783,7 +796,7 @@ export default function CombateModal({
                             src={sprite}
                             alt=""
                             fill
-                            sizes="88px"
+                            sizes="110px"
                             className="combate-objetivo-silueta combate-objetivo-silueta-aliado object-contain [image-rendering:pixelated]"
                           />
                         </div>
@@ -792,7 +805,7 @@ export default function CombateModal({
                         src={sprite}
                         alt={participante.nombre}
                         fill
-                        sizes="(max-width: 640px) 68px, 88px"
+                        sizes="(max-width: 640px) 80px, 110px"
                         className={`relative z-10 object-contain [image-rendering:pixelated] ${modoPresentacionActual === "curacion" && animando ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && animando ? "combate-defensa-resplandor" : ""}`}
                         priority
                       />
@@ -828,9 +841,29 @@ export default function CombateModal({
                     <div className="mt-0.5 h-1.5 w-[80%] max-w-[82px] overflow-hidden rounded-sm border border-stone-700 bg-stone-950/90">
                       <div className={`h-full transition-all duration-300 ${retirado ? "bg-amber-600" : caido ? "bg-stone-500" : vida >= 50 ? "bg-emerald-500" : vida >= 25 ? "bg-orange-400" : "bg-red-500"}`} style={{ width: `${vida}%` }} />
                     </div>
-                    <span className="max-w-full truncate text-[8px] leading-none text-stone-300/90 sm:text-[9px]">
-                      {retirado ? "Retirado" : caido ? "Caído" : ETIQUETAS_POSICION_COMBATE[normalizarPosicionCombate(participante.jugadorPosicion)]}
-                    </span>
+                    <div className="mt-0.5 w-[88%] max-w-[100px] space-y-0.5">
+                      {recursoClaseParticipante !== "mana" && (
+                        <div className="flex items-center gap-0.5" title="Energía">
+                          <div role="progressbar" aria-label={`Energía de ${participante.nombre}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(energiaPorcentaje)} className="h-1 min-w-0 flex-1 overflow-hidden rounded-full bg-blue-950/90">
+                            <div className="h-full bg-sky-400 transition-all duration-300" style={{ width: `${energiaPorcentaje}%` }} />
+                          </div>
+                          <span className="shrink-0 font-mono text-[7px] leading-none text-blue-200">{energiaActual}/{energiaMaxima}</span>
+                        </div>
+                      )}
+                      {recursoClaseParticipante !== "energia" && (
+                        <div className="flex items-center gap-0.5" title="Maná">
+                          <div role="progressbar" aria-label={`Maná de ${participante.nombre}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(manaPorcentaje)} className="h-1 min-w-0 flex-1 overflow-hidden rounded-full bg-violet-950/90">
+                            <div className="h-full bg-violet-400 transition-all duration-300" style={{ width: `${manaPorcentaje}%` }} />
+                          </div>
+                          <span className="shrink-0 font-mono text-[7px] leading-none text-violet-200">{manaActual}/{manaMaximo}</span>
+                        </div>
+                      )}
+                    </div>
+                    {(retirado || caido) && (
+                      <span className="max-w-full truncate text-[8px] leading-none text-stone-300/90 sm:text-[9px]">
+                        {retirado ? "Retirado" : "Caído"}
+                      </span>
+                    )}
                   </div>
                 );
               })}
@@ -972,7 +1005,7 @@ export default function CombateModal({
 
           {/* FORMACIÓN ENEMIGA: cada criatura mantiene su propia casilla, vida y ancla de animación. */}
           <div className={`relative h-full ${partyMode ? "w-1/2" : "w-[46%] sm:w-[40%]"} min-w-0`}>
-            {enemigosVisibles.map((enemigo) => {
+            {enemigosVisibles.map((enemigo, indiceEnemigo) => {
               const vida = Math.max(0, Math.min(100, enemigo.hp / Math.max(1, enemigo.hpMaximo) * 100));
               const vivo = enemigo.hp > 0;
               const selectorHabilidadActivo = mostrarHabilidades && Boolean(reglaObjetivoSeleccionada);
@@ -982,15 +1015,46 @@ export default function CombateModal({
                 : enemigoObjetivoElegidoId === enemigo.id;
               const animando = actorAnimando === enemigo.id || actoresAnimando.includes(enemigo.id);
               const impactado = actorImpactado === enemigo.id || objetivosMultiplesImpactados.includes(enemigo.id);
-              // Desplaza ligeramente cada fila para que las criaturas grandes no formen una cuadrícula rígida.
+              const cantidadEnemigos = cantidadEnemigosVisibles;
+              const escalaContenedor = cantidadEnemigos <= 1
+                ? "w-[68%] max-w-[220px]"
+                : cantidadEnemigos === 2
+                  ? "w-[48%] max-w-[164px]"
+                  : cantidadEnemigos === 3
+                    ? "w-[36%] max-w-[120px]"
+                    : "w-[30%] max-w-[98px]";
+              const escalaSprite = cantidadEnemigos <= 1
+                ? "h-[154px] w-[138px] sm:h-[205px] sm:w-[180px]"
+                : cantidadEnemigos === 2
+                  ? "h-[112px] w-[96px] sm:h-[154px] sm:w-[136px]"
+                  : cantidadEnemigos === 3
+                    ? "h-[86px] w-[78px] sm:h-[116px] sm:w-[104px]"
+                    : "h-[70px] w-[64px] sm:h-[96px] sm:w-[86px]";
+              const spriteSizes = cantidadEnemigos <= 1
+                ? "(max-width: 640px) 138px, 180px"
+                : cantidadEnemigos === 2
+                  ? "(max-width: 640px) 96px, 136px"
+                  : cantidadEnemigos === 3
+                    ? "(max-width: 640px) 78px, 104px"
+                    : "(max-width: 640px) 64px, 86px";
               const desplazamientoFila = enemigo.posicion === "centro" ? 4 : enemigo.posicion === "retaguardia" ? 8 : 0;
-              const x = 15 + enemigo.columna * 29 + desplazamientoFila;
-              const y = enemigo.posicion === "mele" ? 18 : enemigo.posicion === "retaguardia" ? 82 : 50;
+              const x = cantidadEnemigos <= 1
+                ? 50
+                : cantidadEnemigos === 2
+                  ? (indiceEnemigo === 0 ? 28 : 72)
+                  : 17 + enemigo.columna * 33 + desplazamientoFila;
+              const y = cantidadEnemigos <= 1
+                ? 50
+                : enemigo.posicion === "mele"
+                  ? 18
+                  : enemigo.posicion === "retaguardia"
+                    ? 82
+                    : 50;
               const sprite = obtenerRutaSpriteEnemigo(enemigo.enemigoId);
               return (
                 <div
                   key={enemigo.id}
-                  className={`absolute z-10 flex w-[35%] max-w-[116px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-0 ${!vivo ? "opacity-45 grayscale" : ""} ${animando && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque-enemigo_700ms_ease-in-out]") : ""}`}
+                  className={`absolute z-10 flex ${escalaContenedor} -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-0 ${!vivo ? "opacity-45 grayscale" : ""} ${animando && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque-enemigo_700ms_ease-in-out]") : ""}`}
                   style={{ left: `${x}%`, top: `${y}%`, touchAction: "manipulation" }}
                 >
                   <button
@@ -1048,11 +1112,11 @@ export default function CombateModal({
                     <span className="absolute top-6 z-50 -translate-y-full whitespace-nowrap text-xl font-black text-emerald-300 drop-shadow-[0_3px_3px_rgba(0,0,0,0.9)]">+{curacionVisible.cantidad}</span>
                   )}
                   <div
-                    className={`relative h-[86px] w-[78px] sm:h-[116px] sm:w-[104px] transition-all duration-200 ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}
+                    className={`relative ${escalaSprite} transition-all duration-200 ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}
                     data-combate-ancla={enemigo.id}
                   >
                     <div className="absolute inset-0 z-0 opacity-45 blur-[1px]" style={{ transform: "translateY(36%) perspective(110px) rotateX(65deg) scale(1.05,-0.65)" }}>
-                      <Image src={sprite} alt="" fill sizes="104px" style={{ transform: "scaleX(-1)" }} className="object-contain brightness-0" />
+                      <Image src={sprite} alt="" fill sizes={spriteSizes} style={{ transform: "scaleX(-1)" }} className="object-contain brightness-0" />
                     </div>
                     {seleccionado && vivo && (
                       <div aria-hidden="true" className="pointer-events-none absolute -inset-px z-[5]">
@@ -1060,7 +1124,7 @@ export default function CombateModal({
                           src={sprite}
                           alt=""
                           fill
-                          sizes="104px"
+                          sizes={spriteSizes}
                           style={{ transform: "scaleX(-1)" }}
                           className="combate-objetivo-silueta combate-objetivo-silueta-enemigo object-contain [image-rendering:pixelated]"
                         />
@@ -1075,7 +1139,7 @@ export default function CombateModal({
                       src={sprite}
                       alt={enemigo.nombre}
                       fill
-                      sizes="(max-width: 640px) 78px, 104px"
+                      sizes={spriteSizes}
                       style={{ transform: "scaleX(-1)" }}
                       className={`relative z-10 object-contain [image-rendering:pixelated] ${modoPresentacionActual === "curacion" && animando ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && animando ? "combate-defensa-resplandor" : ""}`}
                     />
@@ -1283,33 +1347,6 @@ export default function CombateModal({
               >
                 <span className="text-xs sm:text-sm font-bold tracking-widest text-red-200">HUIR</span>
               </button>
-              {partyMode && (
-                <div className="mt-1 grid grid-cols-3 gap-1">
-                  {([
-                    { id: "mele", label: "Melé", icon: "⚔️" },
-                    { id: "centro", label: "Centro", icon: "🛡️" },
-                    { id: "retaguardia", label: "Atrás", icon: "🏹" },
-                  ] as const).map((posicion) => {
-                    const seleccionada = normalizarPosicionCombate(combate.jugadorPosicion) === posicion.id;
-                    return (
-                      <button key={posicion.id} type="button"
-                        disabled={!puedeActuarJugador || procesando || procesandoLocal || seleccionada}
-                        onClick={() => {
-                          if (!partyMode || !puedeActuarJugador || accionEnCurso.current) return;
-                          accionEnCurso.current = true;
-                          setProcesandoLocal(true);
-                          void partyMode.onAccionParty("cambiar_posicion", posicion.id).finally(() => {
-                            accionEnCurso.current = false;
-                            setProcesandoLocal(false);
-                          });
-                        }}
-                        className={`rounded border px-1 py-1 text-[9px] font-black transition disabled:cursor-not-allowed disabled:opacity-40 ${seleccionada ? "border-amber-600 bg-amber-950 text-amber-100" : "border-stone-700 bg-stone-900 text-stone-300 hover:border-amber-800"}`}>
-                        {posicion.icon} {posicion.label}
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
             </div>
           </div>
 
@@ -1321,7 +1358,7 @@ export default function CombateModal({
                   : partyMode.estadoJugador === "caido"
                     ? "Has caído en combate. El grupo sigue luchando."
                     : puedeActuarJugador
-                      ? "Es tu turno: elige una acción o cambia tu posición."
+                      ? "Es tu turno: elige una acción."
                       : partyMode.faseTurno === "enemigo"
                         ? "El enemigo está actuando..."
                         : `Esperando el turno de ${partyMode.participantes.find((p) => p.usuarioId === partyMode.turnoActualUsuarioId)?.nombre ?? "otro aventurero"}.`}
