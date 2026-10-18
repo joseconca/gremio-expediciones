@@ -191,9 +191,9 @@ export async function iniciarCombateParty(usuarioId: string, idDesconocido: unkn
       expedicion.participantes.findIndex((p) => p.usuarioId === a.usuarioId) -
       expedicion.participantes.findIndex((p) => p.usuarioId === b.usuarioId));
 
-    const actorPreferido = participantesCalculados.find((participante) =>
+    const actorPreferido = participantesCalculados.some((participante) =>
       comidaOtorgaIniciativa(participante.comida)
-    )?.usuarioId ?? null;
+    ) ? participantesCalculados[0]?.usuarioId ?? null : null;
     const turnosPendientes = crearSecuenciaTurnosVelocidad([
       ...participantesCalculados.map((participante) => ({
         actorId: participante.usuarioId,
