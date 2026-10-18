@@ -546,9 +546,9 @@ export default function AsedioModal({
                   </span>
                 </div>
 
-                <div className="space-y-1.5">
+                <div className="space-y-0.5">
                   <div className="flex items-center gap-1.5" title="Vida">
-                    <div role="progressbar" aria-label="Vida" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(porcentajeVidaPropia)} className="h-2 min-w-0 flex-1 overflow-hidden rounded-full border border-stone-700 bg-stone-900 shadow-inner">
+                    <div role="progressbar" aria-label="Vida" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(porcentajeVidaPropia)} className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full border border-stone-700 bg-stone-900 shadow-inner">
                       <div className={`h-full rounded-full bg-gradient-to-r ${obtenerColorVida(porcentajeVidaPropia)} transition-all duration-500`} style={{ width: `${porcentajeVidaPropia}%` }} />
                     </div>
                     <span className="w-[54px] shrink-0 text-right font-mono text-[9px] font-bold text-stone-200">{Math.max(0, hpPropio)}/{hpMaximoPropio}</span>
@@ -670,7 +670,7 @@ export default function AsedioModal({
                 </div>
 
                 <div className="flex items-center gap-1.5" title="Vida del rival">
-                  <div role="progressbar" aria-label="Vida del rival" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(porcentajeVidaRival)} className="h-2 min-w-0 flex-1 overflow-hidden rounded-full border border-stone-700 bg-stone-900 shadow-inner">
+                  <div role="progressbar" aria-label="Vida del rival" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(porcentajeVidaRival)} className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full border border-stone-700 bg-stone-900 shadow-inner">
                     <div className={`h-full rounded-full bg-gradient-to-r ${obtenerColorVida(porcentajeVidaRival)} transition-all duration-500`} style={{ width: `${porcentajeVidaRival}%` }} />
                   </div>
                   <span className="w-[54px] shrink-0 text-right font-mono text-[9px] font-bold text-stone-200">{Math.max(0, hpRival)}/{hpMaximoRival}</span>
