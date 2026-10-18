@@ -493,7 +493,6 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
               hpDespues: jugadorHp,
             });
             textos.push(accionDelEnemigo.texto);
-            log.push(accionDelEnemigo.texto);
           } else if (enemigoActualizado.hp <= 0) {
             textos.push(`${enemigoActualizado.nombre} cae por los efectos acumulados.`);
             log.push(`☠️ ${enemigoActualizado.nombre} cae por los efectos acumulados.`);
