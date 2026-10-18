@@ -1454,7 +1454,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
     // Cada enemigo vivo procesa sus estados y, si sobrevive, ataca una vez.
     let participantesActualizados = obtenerEstadoParticipantes(combate.participantes);
     const danoPorUsuario = new Map<string, number>();
-    const impactos: { actorEnemigoId: string; objetivoUsuarioId: string; dano: number; critico: boolean }[] = [];
+    const impactos: { actorEnemigoId: string; objetivoUsuarioId: string; dano: number; critico: boolean; hpAntes: number; hpDespues: number }[] = [];
     const actoresEnemigoIds: string[] = [];
     for (const enemigoInicial of [...enemigosEnCombate].sort((a, b) => a.casilla - b.casilla)) {
       const indiceEnemigo = enemigosEnCombate.findIndex((enemigo) => enemigo.id === enemigoInicial.id);
@@ -1503,6 +1503,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
         jugadorDefensa: objetivo.jugadorDefensa,
         enemigoNombre: enemigo.nombre,
       });
+      const hpFinalPrevisto = Math.max(0, participanteHpActual - accionEnemiga.dano);
       danoPorUsuario.set(objetivo.usuarioId, (danoPorUsuario.get(objetivo.usuarioId) ?? 0) + accionEnemiga.dano);
       actoresEnemigoIds.push(enemigo.id);
       impactos.push({
@@ -1510,9 +1511,10 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
         objetivoUsuarioId: objetivo.usuarioId,
         dano: accionEnemiga.dano,
         critico: accionEnemiga.critico,
+        hpAntes: participanteHpActual,
+        hpDespues: hpFinalPrevisto,
       });
       log.push(accionEnemiga.texto);
-      const hpFinalPrevisto = Math.max(0, participanteHpActual - accionEnemiga.dano);
       if (hpFinalPrevisto <= 0) {
         log.push(`💀 ${objetivo.usuarioId} cae ante ${enemigo.nombre}.`);
         // Los enemigos posteriores pueden dirigir sus ataques contra otros aliados vivos.
@@ -1543,6 +1545,8 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
         objetivoId: impacto.objetivoUsuarioId,
         dano: impacto.dano,
         critico: impacto.critico,
+        hpAntes: impacto.hpAntes,
+        hpDespues: impacto.hpDespues,
       })),
       objetivoUsuarioId: primerImpacto.objetivoUsuarioId,
       dano: totalDanoEnemigos,
