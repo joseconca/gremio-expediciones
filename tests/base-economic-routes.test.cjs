@@ -1006,7 +1006,7 @@ test("regresión: la entrega de botín en expedición respeta el límite de inve
   assert.match(source, /espaciosOcupados < LIMITE_INVENTARIO_OBJETOS/);
   assert.match(source, /botinPerdidoPorInventarioLleno = true/);
   assert.match(source, /El inventario está lleno y el objeto encontrado se ha perdido\./);
-  assert.match(source, /objetosObtenidos: actualizado\.botinEntregado \? \[actualizado\.botinEntregado\] : \[\]/);
+  assert.match(source, /objetosObtenidos:\\s*actualizado\\.botinEntregado\\s*\\?\\s*\\[\\{\\s*\\.\\.\\.actualizado\\.botinEntregado,\\s*cantidad:\\s*1\\s*\\}\\]\\s*:\\s*\\[\\]/);
 });
 
 test("combate: rechaza acciones PvP en el servicio PvE antes de consumir objetos", async () => {
