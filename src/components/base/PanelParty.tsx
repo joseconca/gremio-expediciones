@@ -221,6 +221,7 @@ export default function PanelParty() {
     logCombate?: string[];
   } | null>(null);
   const [cronicaPartyAbierta, setCronicaPartyAbierta] = useState(false);
+  const [informeHistoricoPartyAbierto, setInformeHistoricoPartyAbierto] = useState(false);
   const [destinoTablon, setDestinoTablon] = useState<HTMLElement | null>(null);
   const [expedicionDetalleAbierto, setExpedicionDetalleAbierto] = useState(false);
   const [partyDetalleAbierto, setPartyDetalleAbierto] = useState(false);
@@ -230,6 +231,11 @@ export default function PanelParty() {
   const siguienteIntentoTraslado = useRef(new Map<string, number>());
   const solicitudEstado = useRef<Promise<void> | null>(null);
   const revisionEstado = useRef(0);
+
+  // Cada nueva expedición histórica empieza contraída, aunque la anterior estuviera abierta.
+  useEffect(() => {
+    setInformeHistoricoPartyAbierto(false);
+  }, [ultimoResultadoCombate?.expedicionPartyId]);
 
   // Comparte una consulta ya en curso para que el sondeo, los eventos de foco
   // y los efectos de la UI no disparen GET duplicados. Una actualización forzada
@@ -1260,7 +1266,7 @@ export default function PanelParty() {
         <article className={`relative isolate overflow-hidden border p-3 text-[#3e2b1b] shadow-[2px_4px_0_rgba(0,0,0,0.25),inset_0_0_0_2px_rgba(255,247,215,0.3)] ${ultimoResultadoCombate.tipo === "comercio" ? "border-[#92744a] bg-[linear-gradient(155deg,#eadbb8_0%,#dec99e_54%,#cdb486_100%)]" : ultimoResultadoCombate.tipo === "elite" ? "border-[#92744a] bg-[linear-gradient(155deg,#f3e5bd_0%,#e7d4a7_54%,#d7bd87_100%)]" : "border-[#b8b7ab] bg-[linear-gradient(155deg,#fffef8_0%,#f0efe8_54%,#deddd3_100%)]"}`}>
           <div aria-hidden="true" className="pointer-events-none absolute inset-1 border border-current/20" />
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-20 bg-[repeating-linear-gradient(0deg,transparent_0,transparent_23px,rgba(95,67,36,0.14)_24px,transparent_25px)]" />
-          <header className="relative flex items-start justify-between gap-3 border-b border-dashed border-current/25 pb-2.5">
+          <button type="button" onClick={() => setInformeHistoricoPartyAbierto((abierto) => !abierto)} aria-expanded={informeHistoricoPartyAbierto} aria-controls="detalle-informe-historico-party" className="relative flex min-h-12 w-full items-start justify-between gap-3 border-b border-dashed border-current/25 pb-2.5 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#68472c]">
             <div className="min-w-0">
               <p className="text-[9px] font-black uppercase tracking-[0.2em] text-[#806341]">Gremio · crónica compartida</p>
               <h3 className="mt-0.5 font-serif text-lg font-black leading-tight">
@@ -1275,7 +1281,11 @@ export default function PanelParty() {
             <span className={`shrink-0 border px-2 py-1 text-[9px] font-black uppercase tracking-wider ${ultimoResultadoCombate.fase === "victoria" ? "border-[#496d43] bg-[#d5e2c6] text-[#36543a]" : ultimoResultadoCombate.fase === "derrota" ? "border-[#a45449] bg-[#f1c9bd] text-[#8b3228]" : "border-[#98743c] bg-[#f2dfac] text-[#79551f]"}`}>
               {ultimoResultadoCombate.fase === "victoria" ? "Éxito" : ultimoResultadoCombate.fase === "derrota" ? "Fracaso" : "Retirada"}
             </span>
-          </header>
+            <span aria-hidden="true" className="shrink-0 pt-1 text-sm">{informeHistoricoPartyAbierto ? "⌃" : "⌄"}</span>
+          </button>
+          {informeHistoricoPartyAbierto && (
+            <div id="detalle-informe-historico-party" className="relative z-[1] pt-2">
+
 
           {typeof ultimoResultadoCombate.duracionSegundos === "number" && (
             <p className="relative mt-2 text-[11px] font-bold text-[#664a2d]">⌛ Tiempo empleado: {formatoCuentaAtras(ultimoResultadoCombate.duracionSegundos)}</p>
@@ -1409,6 +1419,8 @@ export default function PanelParty() {
             </div>
           ) : (
             <p className="relative mt-2 text-xs italic text-[#765938]">No hay recompensas de combate disponibles para mostrar.</p>
+          )}
+            </div>
           )}
         </article>
       )}
