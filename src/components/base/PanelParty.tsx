@@ -90,6 +90,11 @@ type ExpedicionPartyVista = {
       jugadorPrecision: number;
       jugadorEvasion: number;
       jugadorNivel: number;
+      profesionActivaId: string;
+      jugadorEnergiaActual: number;
+      jugadorEnergiaMaxima: number;
+      jugadorManaActual: number;
+      jugadorManaMaximo: number;
       cooldowns?: unknown;
       efectos?: unknown;
       usuario?: PersonaVista;
@@ -1170,6 +1175,11 @@ export default function PanelParty() {
               jugadorPrecision: participante.jugadorPrecision,
               jugadorEvasion: participante.jugadorEvasion,
               jugadorNivel: participante.jugadorNivel,
+              profesionActivaId: participante.profesionActivaId,
+              jugadorEnergiaActual: participante.jugadorEnergiaActual,
+              jugadorEnergiaMaxima: participante.jugadorEnergiaMaxima,
+              jugadorManaActual: participante.jugadorManaActual,
+              jugadorManaMaximo: participante.jugadorManaMaximo,
               efectos: participante.efectos,
             })),
             ultimaAccion: combatePartyDatos.ultimaAccion && typeof combatePartyDatos.ultimaAccion === "object"
