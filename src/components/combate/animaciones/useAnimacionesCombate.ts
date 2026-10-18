@@ -69,6 +69,7 @@ function esperar(milisegundos: number, temporizadores: Map<number, () => void>):
  */
 export function useAnimacionesCombate() {
   const [danioVisible, setDanioVisible] = useState<DanoVisibleCombate | null>(null);
+  const [vidasTemporalesCombate, setVidasTemporalesCombate] = useState<Record<string, number> | null>(null);
   const [daniosMultiplesVisibles, setDaniosMultiplesVisibles] = useState<DanoObjetivoVisibleCombate[]>([]);
   const [objetivosMultiplesImpactados, setObjetivosMultiplesImpactados] = useState<string[]>([]);
   const [actoresAnimando, setActoresAnimando] = useState<string[]>([]);
@@ -121,6 +122,7 @@ export function useAnimacionesCombate() {
     const esProyectil = modoPresentacion === "proyectil" && Boolean(accion.presentacion?.proyectil);
 
     setDanioVisible(null);
+    setVidasTemporalesCombate(null);
     setDaniosMultiplesVisibles([]);
     setObjetivosMultiplesImpactados([]);
     setCuracionVisible(null);
@@ -145,6 +147,11 @@ export function useAnimacionesCombate() {
     if (impactosEnemigos.length > 1) {
       setActorAnimando(null);
       setActoresAnimando([]);
+      const vidasIniciales = impactosEnemigos.reduce<Record<string, number>>((vidas, impacto) => {
+        if (!(impacto.objetivoId in vidas)) vidas[impacto.objetivoId] = impacto.hpAntes;
+        return vidas;
+      }, {});
+      setVidasTemporalesCombate(vidasIniciales);
 
       for (let indice = 0; indice < impactosEnemigos.length; indice += 1) {
         if (indice > 0) {
@@ -167,6 +174,10 @@ export function useAnimacionesCombate() {
         if (!sigueActiva()) return;
 
         const resultadoTerminal = opciones.esResultadoTerminal?.() ?? false;
+        setVidasTemporalesCombate((actuales) => ({
+          ...(actuales ?? {}),
+          [impacto.objetivoId]: impacto.hpDespues,
+        }));
         if (impacto.dano > 0) {
           setActorImpactado(impacto.objetivoId);
           setDanioVisible({
@@ -195,6 +206,7 @@ export function useAnimacionesCombate() {
       if (!sigueActiva()) return;
       setActorAnimando(null);
       setActorImpactado(null);
+      setVidasTemporalesCombate(null);
       setAnimacionActual(null);
       setModoPresentacionActual(null);
       setProyectilesVisibles([]);
@@ -296,6 +308,7 @@ export function useAnimacionesCombate() {
 
   return {
     danioVisible,
+    vidasTemporalesCombate,
     daniosMultiplesVisibles,
     objetivosMultiplesImpactados,
     actoresAnimando,
