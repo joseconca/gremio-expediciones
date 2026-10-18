@@ -119,7 +119,7 @@ No inferir el elemento solo por `tipoDano: "magico"`; una habilidad debe configu
 ## Ritmo de turnos y golpes finales
 
 - El turno enemigo PvE conserva una espera aleatoria de 300–1500 ms antes de atacar; el turno automático de party usa el mismo intervalo.
-- Si atacan varios enemigos en una misma fase, el servidor devuelve el daño individual de cada atacante y la escena anima cada golpe por separado, con una pausa de 1 segundo entre enemigos. Esto modifica solo la presentación: resolución, daño total y avance del turno siguen siendo atómicos.
+- Si atacan varios enemigos en una misma fase, el servidor devuelve el daño individual y los PV anteriores/posteriores de cada golpe. La escena anima cada atacante por separado, muestra el daño y actualiza visualmente la vida golpe a golpe, con una pausa de 1 segundo entre enemigos. Esto modifica solo la presentación: resolución, daño total y avance del turno siguen siendo atómicos.
 - Cuando una acción termina el combate, la presentación mantiene el impacto 550 ms adicionales para que se aprecien la bajada de vida y el daño antes del resultado. En asedio, el panel de resultado también espera a que termine esa presentación.
 
 ## Criterios de aceptación globales
