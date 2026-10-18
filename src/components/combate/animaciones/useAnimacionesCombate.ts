@@ -27,6 +27,7 @@ export interface DestinosVisualesAccionCombate {
 
 const DURACION_CURACION_VISIBLE_MS = 1550;
 const DURACION_IMPACTO_FINAL_EXTRA_MS = 550;
+const PAUSA_ENTRE_ATAQUES_ENEMIGOS_MS = 1000;
 
 interface DanoVisibleCombate {
   actor: string;
@@ -131,7 +132,75 @@ export function useAnimacionesCombate() {
     setActorAnimando(
       accion.presentacion?.modo === "curacion" ? objetivoVisual : actorVisual,
     );
-    setActoresAnimando(accion.actor === "enemigo" ? (accion.actoresEnemigoIds ?? []) : []);
+    const impactosEnemigos = accion.actor === "enemigo" ? (accion.impactosEnemigos ?? []) : [];
+    setActoresAnimando(
+      accion.actor === "enemigo" && impactosEnemigos.length <= 1
+        ? (accion.actoresEnemigoIds ?? [])
+        : [],
+    );
+
+    // Un turno enemigo puede incluir varios atacantes. Aunque el servidor
+    // resuelva sus resultados en una sola transacción, la escena los representa
+    // uno a uno y muestra el daño de cada golpe antes de pasar al siguiente.
+    if (impactosEnemigos.length > 1) {
+      setActorAnimando(null);
+      setActoresAnimando([]);
+
+      for (let indice = 0; indice < impactosEnemigos.length; indice += 1) {
+        if (indice > 0) {
+          await esperar(PAUSA_ENTRE_ATAQUES_ENEMIGOS_MS, temporizadoresRef.current);
+          if (!sigueActiva()) return;
+        }
+
+        const impacto = impactosEnemigos[indice];
+        const esUltimoImpacto = indice === impactosEnemigos.length - 1;
+        setDanioVisible(null);
+        setDaniosMultiplesVisibles([]);
+        setObjetivosMultiplesImpactados([]);
+        setActorImpactado(null);
+        setCuracionVisible(null);
+        setActorAnimando(impacto.actorEnemigoId);
+        setActoresAnimando([impacto.actorEnemigoId]);
+        setAnimacionActual(impacto.critico ? "ofensiva_potenciada" : "ofensiva");
+
+        await esperar(250, temporizadoresRef.current);
+        if (!sigueActiva()) return;
+
+        const resultadoTerminal = opciones.esResultadoTerminal?.() ?? false;
+        if (impacto.dano > 0) {
+          setActorImpactado(impacto.objetivoId);
+          setDanioVisible({
+            actor: impacto.objetivoId,
+            dano: impacto.dano,
+            critico: impacto.critico,
+          });
+        }
+
+        await esperar(
+          (impacto.critico ? 450 : 300) +
+            (esUltimoImpacto && resultadoTerminal ? DURACION_IMPACTO_FINAL_EXTRA_MS : 0),
+          temporizadoresRef.current,
+        );
+        if (!sigueActiva()) return;
+
+        setDanioVisible(null);
+        setDaniosMultiplesVisibles([]);
+        setObjetivosMultiplesImpactados([]);
+        setActorImpactado(null);
+        setActorAnimando(null);
+        setActoresAnimando([]);
+      }
+
+      await esperar(200, temporizadoresRef.current);
+      if (!sigueActiva()) return;
+      setActorAnimando(null);
+      setActorImpactado(null);
+      setAnimacionActual(null);
+      setModoPresentacionActual(null);
+      setProyectilesVisibles([]);
+      setPulsosEstadoVisibles([]);
+      return;
+    }
 
     if (animacionSoporte) {
       if (curacion > 0) {
