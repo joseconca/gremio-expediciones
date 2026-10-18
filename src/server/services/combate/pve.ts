@@ -1015,7 +1015,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             },
           });
         }
-        if (siguienteTurno === "jugador") {
+        if (actor === "enemigo" && siguienteTurno === "jugador") {
           await regenerarRecursosPorTurno(tx, usuario.id);
         }
 
