@@ -1210,7 +1210,6 @@ export default function PanelParty() {
               <p className="relative mt-2 text-xs italic text-[#765938]">No hay recompensas de combate disponibles para mostrar.</p>
             )}
           </article>
-        )}
               )}
               {estado.expedicionActiva.fase === "en_viaje" ? (
                 <p className="mt-2 text-sm text-[#70372f]">
