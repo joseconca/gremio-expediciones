@@ -1,5 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/estadisticasPersonaje";
+import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 import { calcularDistanciaKm } from "@/lib/utils";
 import {
   calcularFechaLlegadaTraslado,
@@ -15,6 +17,60 @@ import { obtenerObjetoPorId } from "@/lib/objetos";
 const AISLAMIENTO = {
   isolationLevel: Prisma.TransactionIsolationLevel.Serializable,
 } as const;
+
+const incluirEquipoRecursosParty = {
+  arma: true,
+  armadura: true,
+  accesorio: true,
+  manoSecundaria: true,
+  casco: true,
+  pantalones: true,
+  botas: true,
+  guantes: true,
+  anillo1: true,
+  anillo2: true,
+} satisfies Prisma.EquipoEquipadoInclude;
+
+const incluirPersonajeRecursosParty = {
+  habilidades: true,
+  progresosClase: true,
+  inventario: { include: { objetos: true } },
+  equipoEquipado: { include: incluirEquipoRecursosParty },
+} satisfies Prisma.PersonajeInclude;
+
+type PersonajeRecursosParty = Prisma.PersonajeGetPayload<{
+  include: typeof incluirPersonajeRecursosParty;
+}>;
+
+function obtenerRecursosCombatePersona(personaje: PersonajeRecursosParty | null | undefined) {
+  if (!personaje) {
+    return {
+      profesionActivaId: "novato",
+      jugadorEnergiaActual: 0,
+      jugadorEnergiaMaxima: 20,
+      jugadorManaActual: 0,
+      jugadorManaMaximo: 10,
+    };
+  }
+
+  const equipo = obtenerEquipoDesdePersonaje(personaje);
+  const modificadoresEquipo = calcularModificadoresEquipo(equipo, personaje.profesionActivaId);
+  const estadisticas = calcularEstadisticasPersonaje(
+    personaje,
+    personaje.habilidades
+      .filter((habilidad) => habilidad.slot !== null)
+      .map((habilidad) => ({ habilidadId: habilidad.habilidadId, nivel: habilidad.nivel })),
+    modificadoresEquipo,
+  );
+
+  return {
+    profesionActivaId: personaje.profesionActivaId || "novato",
+    jugadorEnergiaActual: personaje.energiaActual,
+    jugadorEnergiaMaxima: Math.max(0, Math.floor(estadisticas.total.energiaMaxima ?? 20)),
+    jugadorManaActual: personaje.manaActual,
+    jugadorManaMaximo: Math.max(0, Math.floor(estadisticas.total.manaMaximo ?? 10)),
+  };
+}
 
 const ESTADOS_ACTIVOS = ["en_viaje", "pendiente", "regresando"];
 
@@ -822,6 +878,7 @@ export async function obtenerEstadoParty(usuarioId: string) {
                       personaje: { select: { nombre: true, nivel: true, estado: true, clase: true, sexo: true } },
                     },
                   },
+                  personaje: { include: incluirPersonajeRecursosParty },
                 },
               },
             },
@@ -874,6 +931,7 @@ export async function obtenerEstadoParty(usuarioId: string) {
                 jugadorPrecision: p.jugadorPrecision,
                 jugadorEvasion: p.jugadorEvasion,
                 jugadorNivel: p.jugadorNivel,
+                ...obtenerRecursosCombatePersona(p.personaje),
                 cooldowns: p.cooldowns,
                 efectos: p.efectos,
                 usuario: p.usuario,
