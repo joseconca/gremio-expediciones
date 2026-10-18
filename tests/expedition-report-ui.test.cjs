@@ -36,7 +36,7 @@ test("el reporte de party mantiene su pergamino, oculta recompensas cero y plieg
   const service = read("src/server/services/party/party-service.ts");
 
   assert.match(panel, /cronicaPartyAbierta/);
-  assert.match(panel, /Consultar crónica del combate/);
+  assert.match(panel, /aria-controls="cronica-expedicion-party"/);
   assert.match(panel, /fila\.valor > 0/);
   assert.match(panel, /obtenerSpriteObjeto/);
   assert.match(panel, /Has derrotado a/);
