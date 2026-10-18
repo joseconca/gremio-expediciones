@@ -119,7 +119,7 @@ function construirActoresVivosParty(
   enemigos: EnemigoEnCombate[],
   estadosActualizados: ParticipanteTurnoParty[] = [],
 ): ActorTurnoVelocidad[] {
-  const cambios = new Map(estadosActualizados.map((participante) => [participante.usuarioId, participante]));
+  const cambios = new Map(estadosActualizados.map((participante) => [participante.usuarioId, participante] as const));
   return [
     ...participantes.flatMap((participante) => {
       const actual = cambios.get(participante.usuarioId) ?? participante;
