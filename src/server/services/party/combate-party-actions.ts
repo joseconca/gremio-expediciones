@@ -1394,6 +1394,7 @@ export async function ejecutarAccionCombateParty(
     let faseTurno: "jugador" | "enemigo" = "enemigo";
     let turnoActualUsuarioId: string | null = null;
     let ronda = combate.ronda;
+    let turnosPendientes: PasoTurnoVelocidad[] = [];
     let fase = "activo";
     if (resultadoTerminal === "victoria") {
       fase = "victoria";
@@ -1405,10 +1406,16 @@ export async function ejecutarAccionCombateParty(
       fase = "huida";
       log.push("🏃 Todos los aventureros han abandonado el combate.");
     } else {
-      const siguiente = prepararSiguienteTurno(combate, estadoParticipantes);
+      const siguiente = prepararSiguienteTurnoVelocidad(
+        combate,
+        combate.participantes,
+        enemigosEnCombate,
+        estadoParticipantes,
+      );
       faseTurno = siguiente.faseTurno;
       turnoActualUsuarioId = siguiente.turnoActualUsuarioId;
       ronda = siguiente.ronda;
+      turnosPendientes = siguiente.turnosPendientes;
     }
 
     // Todos los cambios de recursos/inventario y el avance del turno son atómicos.
@@ -1427,6 +1434,7 @@ export async function ejecutarAccionCombateParty(
         turnoActualUsuarioId,
         ronda,
         turnoInicialEnemigo: false,
+        turnosPendientes: turnosPendientes as unknown as Prisma.InputJsonValue,
         enemigoHp,
         enemigoDefensa,
         enemigos: enemigosEnCombate as unknown as Prisma.InputJsonValue,
