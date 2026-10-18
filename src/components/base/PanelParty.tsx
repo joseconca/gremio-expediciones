@@ -1142,7 +1142,7 @@ export default function PanelParty() {
                 ))}
               </div>
             )}
-/div>
+          </div>
 
           {(ultimoResultadoCombate.fase === "victoria" || ultimoResultadoCombate.fase === "derrota") && ultimoResultadoCombate.recompensas ? (
             <div className="relative mt-3 space-y-2">
