@@ -985,7 +985,10 @@ export async function obtenerEstadoParty(usuarioId: string) {
           nombre: ultimaExpedicionConResultadoRaw.nombre,
           dificultad: ultimaExpedicionConResultadoRaw.dificultad,
           modoDificultad: ultimaExpedicionConResultadoRaw.modoDificultad,
-          duracionSegundos: Math.max(0, Math.round((ultimaExpedicionConResultadoRaw.fechaLlegada.getTime() - ultimaExpedicionConResultadoRaw.fechaSalida.getTime()) * 2 / 1000)),
+          duracionSegundos: ultimaExpedicionConResultadoRaw.fechaSalida instanceof Date &&
+            ultimaExpedicionConResultadoRaw.fechaLlegada instanceof Date
+            ? Math.max(0, Math.round((ultimaExpedicionConResultadoRaw.fechaLlegada.getTime() - ultimaExpedicionConResultadoRaw.fechaSalida.getTime()) * 2 / 1000))
+            : undefined,
           enemigosDerrotados: [
             ...leerEnemigosEnCombate(ultimaExpedicionConResultadoRaw.combate.enemigos)
               .filter((enemigo) => enemigo.hp <= 0)
