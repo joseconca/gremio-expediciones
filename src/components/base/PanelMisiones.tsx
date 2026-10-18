@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import type { ExpedicionActiva, Personaje } from "@/store/useGameStore";
+import type { ReporteExpedicion } from "@/lib/tiposJuego";
+import HojaReporteExpedicion from "@/components/reportes/HojaReporteExpedicion";
 
 const MissionMap = dynamic(() => import("@/components/MissionMap"), {
   ssr: false,
@@ -40,6 +42,80 @@ function formatearCuentaAtras(fechaLlegada: string, ahora: number): string {
   const segundos = Math.max(0, Math.floor((new Date(fechaLlegada).getTime() - ahora) / 1000));
   const minutos = Math.floor(segundos / 60);
   return `${minutos.toString().padStart(2, "0")}:${(segundos % 60).toString().padStart(2, "0")}`;
+}
+
+function crearReporteAnexoRegreso(expedicion: ExpedicionActiva): ReporteExpedicion | null {
+  const resultadoFinal = expedicion.resultadoFinal;
+  if (expedicion.fase !== "regresando" || !resultadoFinal || expedicion.tipo === "comercio") return null;
+
+  const combate = expedicion.combateActivo ?? null;
+  const logCombate = combate && Array.isArray(combate.log)
+    ? combate.log.filter((linea): linea is string => typeof linea === "string" && linea.trim().length > 0)
+    : [];
+  const experienciaJobGanada = logCombate.reduce((total, linea) => {
+    const coincidencia = linea.match(/Job XP:\\s*(\\d+)/i);
+    return total + (coincidencia ? Number(coincidencia[1]) : 0);
+  }, 0);
+
+  // Al cambiar a "regresando", fechaSalida y fechaLlegada describen el tramo de
+  // vuelta. La duración total prevista es el doble de ese tramo.
+  const salidaRegreso = new Date(expedicion.fechaSalida).getTime();
+  const llegadaRegreso = new Date(expedicion.fechaLlegada).getTime();
+  const duracionTramoMs = llegadaRegreso - salidaRegreso;
+  const duracionSegundos = Number.isFinite(duracionTramoMs) && duracionTramoMs >= 0
+    ? Math.round(duracionTramoMs * 2 / 1000)
+    : undefined;
+
+  const enemigosDerrotados = combate && "enemigos" in combate && Array.isArray(combate.enemigos)
+    ? combate.enemigos
+        .filter((enemigo) => typeof enemigo.hp === "number" && enemigo.hp <= 0)
+        .map((enemigo) => enemigo.nombre)
+        .filter((nombre): nombre is string => typeof nombre === "string" && nombre.length > 0)
+    : [];
+
+  const base = {
+    exito: resultadoFinal === "exito",
+    resultadoFinal,
+    hpPerdido: expedicion.hpPerdido,
+    oroGanado: Math.max(0, Math.trunc(expedicion.recompensa.oro ?? 0)),
+    experienciaGanada: Math.max(0, Math.trunc(expedicion.experienciaGanada ?? combate?.experienciaGanada ?? 0)),
+    experienciaJobGanada,
+    logCombate,
+    recompensa: expedicion.recompensa,
+    duracionSegundos,
+    tipoMision: expedicion.tipo,
+    amenaza: expedicion.dificultad,
+    enemigosDerrotados,
+  };
+
+  if (resultadoFinal === "exito" || resultadoFinal === "derrota") {
+    const enemigoNombre = combate && "enemigoNombre" in combate && typeof combate.enemigoNombre === "string"
+      ? combate.enemigoNombre
+      : expedicion.nombre;
+    const enemigoId = expedicion.enemigoId
+      ?? (combate && "enemigoId" in combate && typeof combate.enemigoId === "string" ? combate.enemigoId : "")
+      ?? "";
+    const rondas = combate && "ronda" in combate && typeof combate.ronda === "number" ? combate.ronda : 0;
+    const poderHeroe = combate && "jugadorAtaque" in combate && typeof combate.jugadorAtaque === "number"
+      ? combate.jugadorAtaque
+      : 0;
+
+    return {
+      ...base,
+      tipo: "combate",
+      resultadoFinal,
+      enemigo: enemigoNombre,
+      enemigoId,
+      rondas,
+      poderHeroe,
+    };
+  }
+
+  return {
+    ...base,
+    tipo: "combate",
+    resultadoFinal,
+  };
 }
 
 function PanelMovimientosReino({
@@ -389,6 +465,8 @@ export default function PanelMisiones({
     return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
   };
 
+  const reporteAnexo = expedicionActiva ? crearReporteAnexoRegreso(expedicionActiva) : null;
+
   const vetasMadera = [
     {
       id: 1,
@@ -650,6 +728,16 @@ export default function PanelMisiones({
                       onSelectMission={() => undefined}
                     />
                   </div>
+
+                  {expedicionActiva.fase === "regresando" && reporteAnexo && (
+                    <div className="border-t border-[#92744a]/70 bg-[#2c2115]/95 p-2.5 sm:p-3">
+                      <HojaReporteExpedicion
+                        reporte={reporteAnexo}
+                        presentacion="anexo"
+                        onCerrar={() => undefined}
+                      />
+                    </div>
+                  )}
 
                   {expedicionActiva.fase === "en_viaje" && (
                     <div className="border-t border-slate-700 bg-slate-950/50 p-3">
