@@ -905,6 +905,35 @@ test("huir en party saca al jugador del turno sin expulsarlo de la party", async
   assert.match(combat.log.join(" "), /huye del combate/);
 });
 
+test("un miembro puede huir fuera de su turno sin interrumpir al aliado activo", async () => {
+  const combat = mkCombat({ faseTurno: "jugador", turnoActualUsuarioId: "u1" });
+  const { prisma, calls } = mockPrisma(combat);
+  const service = loadService(prisma);
+
+  const result = await service.ejecutarAccionCombateParty("u2", "expedition-1", "escapar");
+
+  assert.equal(result.fase, "activo");
+  assert.equal(result.faseTurno, "jugador");
+  assert.equal(result.turnoActualUsuarioId, "u1");
+  assert.equal(combat.participantes.find((p) => p.usuarioId === "u2").estado, "huyo");
+  assert.equal("faseTurno" in calls.combatWrites[0].where, false);
+  assert.equal("turnoActualUsuarioId" in calls.combatWrites[0].where, false);
+});
+
+test("un miembro puede huir durante el turno enemigo sin saltárselo", async () => {
+  const combat = mkCombat({ faseTurno: "enemigo", turnoActualUsuarioId: null });
+  const { prisma } = mockPrisma(combat);
+  const service = loadService(prisma);
+
+  const result = await service.ejecutarAccionCombateParty("u2", "expedition-1", "escapar");
+
+  assert.equal(result.fase, "activo");
+  assert.equal(result.faseTurno, "enemigo");
+  assert.equal(result.turnoActualUsuarioId, null);
+  assert.equal(combat.participantes.find((p) => p.usuarioId === "u2").estado, "huyo");
+});
+
+
 test("cambiar la posición es visual, se persiste y no consume el turno", async () => {
   const combat = mkCombat();
   const { prisma, calls } = mockPrisma(combat);
