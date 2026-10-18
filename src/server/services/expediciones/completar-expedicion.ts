@@ -37,7 +37,7 @@ function leerDuracionGuardada(valor: unknown): number | undefined {
 
 function obtenerExperienciaJobDelLog(log: string[]): number {
   return log.reduce((total, linea) => {
-    const coincidencia = linea.match(/Job XP:\\s*(\\d+)/i);
+    const coincidencia = linea.match(/Job XP:\s*(\d+)/i);
     return total + (coincidencia ? Number(coincidencia[1]) : 0);
   }, 0);
 }
