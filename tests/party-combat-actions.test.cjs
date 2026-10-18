@@ -476,7 +476,7 @@ test("el turno del enemigo apunta al aventurero con menor porcentaje de vida", a
   assert.equal(result.objetivoUsuarioId, "u2");
   assert.equal(combat.participantes[1].jugadorHp, 10);
   assert.equal(combat.turnoActualUsuarioId, "u1");
-  assert.equal(combat.ronda, 2);
+  assert.equal(combat.ronda, 1, "el ciclo no avanza de ronda hasta consumir toda la cola");
   assert.equal(calls.characterWrites.length, 1);
   assert.equal(calls.characterWrites[0].data.hpActual, 10);
 });
