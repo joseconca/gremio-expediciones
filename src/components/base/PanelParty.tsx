@@ -2,12 +2,14 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import Image from "next/image";
 import { useGameStore } from "@/store/useGameStore";
 import type { CombatePve } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import CombateModal from "@/components/combate/CombateModal";
 import { puedeGestionarVisitas } from "@/lib/party/reglas";
-import { obtenerObjetoPorId } from "@/lib/objetos";
+import { obtenerObjetoPorId, obtenerSpriteObjeto } from "@/lib/objetos";
+import { leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 import MissionMap from "@/components/MissionMap";
 
 type PersonaVista = {
@@ -148,6 +150,13 @@ type EstadoParty = {
   ultimoResultadoExpedicion?: {
     expedicionPartyId: string;
     fase: "victoria" | "derrota" | "huida";
+    tipo?: string;
+    nombre?: string;
+    dificultad?: number;
+    modoDificultad?: string;
+    duracionSegundos?: number;
+    enemigosDerrotados?: string[];
+    logCombate?: string[];
     recompensas: ResultadoRecompensasParty | null;
     participantes: { usuarioId: string; usuario?: PersonaVista }[];
   } | null;
@@ -201,7 +210,15 @@ export default function PanelParty() {
     expedicionPartyId: string;
     fase: "victoria" | "derrota" | "huida";
     recompensas: ResultadoRecompensasParty | null;
+    tipo?: string;
+    nombre?: string;
+    dificultad?: number;
+    modoDificultad?: string;
+    duracionSegundos?: number;
+    enemigosDerrotados?: string[];
+    logCombate?: string[];
   } | null>(null);
+  const [cronicaPartyAbierta, setCronicaPartyAbierta] = useState(false);
   const [destinoTablon, setDestinoTablon] = useState<HTMLElement | null>(null);
   const [expedicionDetalleAbierto, setExpedicionDetalleAbierto] = useState(false);
   const [partyDetalleAbierto, setPartyDetalleAbierto] = useState(false);
