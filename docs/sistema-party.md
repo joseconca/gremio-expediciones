@@ -73,7 +73,7 @@ El combate mantiene un enemigo común, turnos ordenados, versión y liquidación
 
 ### Turnos y efectos
 
-- Los turnos PvE de solitario y party comparten una cola de iniciativa persistida. Cada ciclo asigna entre una y tres acciones por combatiente según la velocidad relativa al más lento: velocidades 10/15/30 producen 1/2/3 acciones. La cola intercala las acciones en orden temporal (por ejemplo, C, B, C, A, C, B) y prioriza la velocidad más alta al comenzar.
+- Los turnos PvE de solitario y party comparten una cola de iniciativa persistida. Cada ciclo distribuye acciones en proporción a la velocidad relativa al más lento: velocidades 10/15/30 producen 1/2/3 acciones y 10/100 produce 1/10; no se impone un tope fijo de tres acciones. La cola intercala las acciones en orden temporal (por ejemplo, C, B, C, A, C, B) y prioriza la velocidad más alta al comenzar.
 - Los empates de velocidad se resuelven mediante un hash determinista de la semilla del combate, el actor y la ronda: una misma semilla reproduce el mismo orden, y otra semilla puede cambiarlo. No se utiliza aleatoriedad nueva en cada petición.
 - Cada acción enemiga se resuelve de forma individual. Los actores caídos, los enemigos derrotados y los miembros que han huido se eliminan de las acciones pendientes, sin conservar turnos extra.
 - La cola se guarda en `CombateActivo.turnosPendientes` y `CombateParty.turnosPendientes`; el cambio de esquema está en `20261018170000_iniciativa_por_velocidad`.
