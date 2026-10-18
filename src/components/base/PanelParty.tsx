@@ -763,7 +763,7 @@ export default function PanelParty() {
 
   // En la base no mostramos un panel vacío. Se mantiene visible únicamente
   // cuando hay un grupo, una expedición o un traslado que requiere atención.
-  if (!party && !estado?.expedicionActiva && !ultimoResultadoCombate && trasladosPropios.length === 0 && visitasEntrantes.length === 0 && !error) {
+  if (!party && !estado?.expedicionActiva && trasladosPropios.length === 0 && visitasEntrantes.length === 0 && !error) {
     return null;
   }
 
@@ -1079,7 +1079,7 @@ export default function PanelParty() {
           )}
         </article>
       )}
-      {ultimoResultadoCombate && (
+      {ultimoResultadoCombate && estado?.party && (
         <article className={`relative isolate overflow-hidden border p-3 text-[#3e2b1b] shadow-[2px_4px_0_rgba(0,0,0,0.25),inset_0_0_0_2px_rgba(255,247,215,0.3)] ${ultimoResultadoCombate.tipo === "comercio" ? "border-[#92744a] bg-[linear-gradient(155deg,#eadbb8_0%,#dec99e_54%,#cdb486_100%)]" : ultimoResultadoCombate.tipo === "elite" ? "border-[#92744a] bg-[linear-gradient(155deg,#f3e5bd_0%,#e7d4a7_54%,#d7bd87_100%)]" : "border-[#b8b7ab] bg-[linear-gradient(155deg,#fffef8_0%,#f0efe8_54%,#deddd3_100%)]"}`}>
           <div aria-hidden="true" className="pointer-events-none absolute inset-1 border border-current/20" />
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-20 bg-[repeating-linear-gradient(0deg,transparent_0,transparent_23px,rgba(95,67,36,0.14)_24px,transparent_25px)]" />
