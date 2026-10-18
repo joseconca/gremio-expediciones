@@ -91,15 +91,23 @@ export function crearSecuenciaTurnosVelocidad(
     a.actorId.localeCompare(b.actorId),
   );
 
-  const maxAcciones = Math.max(...conAcciones.map((actor) => actor.acciones));
-  const secuencia: PasoTurnoVelocidad[] = [];
-  for (let pasada = 0; pasada < maxAcciones; pasada += 1) {
-    for (const actor of conAcciones) {
-      if (actor.acciones > pasada) {
-        secuencia.push({ actorId: actor.actorId, equipo: actor.equipo });
-      }
-    }
-  }
+  // Repartimos las acciones a lo largo del ciclo, en vez de agruparlas
+  // por pasadas. Así 3/2/1 queda C, B, C, A, C, B y no provoca que el actor
+  // más rápido actúe dos veces seguidas al cruzar el límite entre rondas.
+  const eventos = conAcciones.flatMap((actor, rango) => {
+    const desfase = rango / (conAcciones.length + 1);
+    return Array.from({ length: actor.acciones }, (_, indice) => ({
+      paso: { actorId: actor.actorId, equipo: actor.equipo },
+      instante: (indice / actor.acciones + desfase) % 1,
+      rango,
+      indice,
+    }));
+  }).sort((a, b) =>
+    a.instante - b.instante ||
+    a.rango - b.rango ||
+    a.indice - b.indice,
+  );
+  const secuencia: PasoTurnoVelocidad[] = eventos.map((evento) => evento.paso);
 
   // La comida de iniciativa conserva su comportamiento de abrir el combate
   // con un aventurero, pero no altera la cantidad total de acciones del ciclo.
