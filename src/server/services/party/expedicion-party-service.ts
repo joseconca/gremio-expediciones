@@ -13,7 +13,7 @@ import {
 } from "@/lib/party/expedicion-reglas";
 import { PartyServiceError } from "@/server/services/party/party-service";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
-import { crearEstadoInicialTurnoParty } from "@/lib/party/combate-reglas";
+import { crearSecuenciaTurnosVelocidad } from "@/lib/expediciones/iniciativa-combate";
 import type { DefinicionEnemigo } from "@/lib/tiposJuego";
 import { esModoDificultad, type ModoDificultad } from "../../../lib/expediciones/dificultad";
 import type { DefinicionMision } from "@/lib/tiposJuego";
@@ -473,23 +473,30 @@ export async function crearCombatePartySiProcede(expedicionPartyId: string) {
         ...stats,
       };
     });
-    const turnoInicial = crearEstadoInicialTurnoParty(
-      datosParticipantes.map((p) => ({
-        usuarioId: p.usuarioId,
-        ordenTurno: p.ordenTurno,
-        jugadorHp: p.hpActual,
-        estado: p.estado,
-      })),
-    );
     const enemigoSnapshot = construirSnapshotEnemigo(enemigo, expedicion.dificultad);
+    const turnosPendientes = crearSecuenciaTurnosVelocidad([
+      ...datosParticipantes.map((participante) => ({
+        actorId: participante.usuarioId,
+        equipo: "jugador" as const,
+        velocidad: participante.jugadorVelocidad,
+      })),
+      {
+        actorId: "enemigo-1",
+        equipo: "enemigo" as const,
+        velocidad: enemigoSnapshot.enemigoVelocidad,
+      },
+    ], `party:${expedicionPartyId}:ronda:1`);
+    const turnoInicial = turnosPendientes[0] ?? null;
     const combate = await tx.combateParty.create({
       data: {
         expedicionPartyId,
         ...enemigoSnapshot,
         fase: "activo",
-        ronda: turnoInicial.ronda,
-        faseTurno: turnoInicial.faseTurno,
-        turnoActualUsuarioId: turnoInicial.turnoActualUsuarioId,
+        ronda: 1,
+        faseTurno: turnoInicial?.equipo === "enemigo" ? "enemigo" : "jugador",
+        turnoInicialEnemigo: turnoInicial?.equipo === "enemigo",
+        turnoActualUsuarioId: turnoInicial?.equipo === "jugador" ? turnoInicial.actorId : null,
+        turnosPendientes: turnosPendientes as unknown as Prisma.InputJsonValue,
         efectosEnemigo: [],
         log: [`⚔️ La party se enfrenta a ${enemigoSnapshot.enemigoNombre}.`],
         participantes: {
