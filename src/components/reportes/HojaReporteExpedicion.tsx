@@ -9,6 +9,7 @@ import type { ObjetoReporteExpedicion, ReporteExpedicion } from "@/lib/tiposJueg
 interface HojaReporteExpedicionProps {
   reporte: ReporteExpedicion;
   onCerrar: () => void;
+  presentacion?: "modal" | "anexo";
 }
 
 function formatearDuracion(segundosEntrada: number): string {
@@ -34,8 +35,9 @@ function colorLog(linea: string): string {
   return "text-[#594632]";
 }
 
-export default function HojaReporteExpedicion({ reporte, onCerrar }: HojaReporteExpedicionProps) {
+export default function HojaReporteExpedicion({ reporte, onCerrar, presentacion = "modal" }: HojaReporteExpedicionProps) {
   const [cronicaAbierta, setCronicaAbierta] = useState(false);
+  const esAnexo = presentacion === "anexo";
 
   const esComercio = reporte.tipo === "comercio";
   const esExito = reporte.resultadoFinal === "exito";
@@ -79,12 +81,12 @@ export default function HojaReporteExpedicion({ reporte, onCerrar }: HojaReporte
     : esRetirada ? "Consultar crónica de la retirada" : "Consultar crónica de la expedición";
 
   return (
-    <div className="fixed inset-0 z-[80] flex items-center justify-center bg-[#100c08]/85 p-2 backdrop-blur-sm sm:p-4">
+    <div className={esAnexo ? "relative mt-3 w-full" : "fixed inset-0 z-[80] flex items-center justify-center bg-[#100c08]/85 p-2 backdrop-blur-sm sm:p-4"}>
       <section
-        role="dialog"
-        aria-modal="true"
+        role={esAnexo ? undefined : "dialog"}
+        aria-modal={esAnexo ? undefined : true}
         aria-labelledby="titulo-reporte-expedicion"
-        className={`relative isolate flex max-h-[94dvh] w-full max-w-xl flex-col overflow-y-auto border-2 p-3 shadow-[0_24px_80px_rgba(0,0,0,0.6),inset_0_0_0_2px_rgba(255,247,215,0.36)] custom-scrollbar sm:p-5 ${piel}`}
+        className={`relative isolate border-2 p-3 shadow-[0_24px_80px_rgba(0,0,0,0.6),inset_0_0_0_2px_rgba(255,247,215,0.36)] ${esAnexo ? "w-full" : "flex max-h-[94dvh] w-full max-w-xl flex-col overflow-y-auto custom-scrollbar"} sm:p-5 ${piel}`}
       >
         <div aria-hidden="true" className="pointer-events-none absolute inset-1 border border-current/25" />
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-25 bg-[repeating-linear-gradient(0deg,transparent_0,transparent_23px,rgba(95,67,36,0.14)_24px,transparent_25px)]" />
@@ -106,7 +108,7 @@ export default function HojaReporteExpedicion({ reporte, onCerrar }: HojaReporte
               )}
             </div>
             <div className="min-w-0">
-              <p className="text-[9px] font-black uppercase tracking-[0.2em] text-[#765938]">Gremio · informe de misión</p>
+              <p className="text-[9px] font-black uppercase tracking-[0.2em] text-[#765938]">{esAnexo ? "Gremio · anexo del regreso" : "Gremio · informe de misión"}</p>
               <h2 id="titulo-reporte-expedicion" className="mt-0.5 font-serif text-xl font-black leading-tight sm:text-2xl">{titulo}</h2>
               <p className="mt-1 text-[11px] font-semibold text-[#664a2d]">
                 {esComercio ? `Ruta comercial · ${reporte.objetivoNombre ?? "Gremio aliado"}` : esElite ? "Contrato de élite" : "Expedición de combate"}
@@ -167,7 +169,7 @@ export default function HojaReporteExpedicion({ reporte, onCerrar }: HojaReporte
 
         <section className="relative z-[1] mt-4">
           <div className="flex items-center justify-between gap-3 border-b border-current/25 pb-2">
-            <h3 className="font-serif text-lg font-black">Recompensas obtenidas</h3>
+            <h3 className="font-serif text-lg font-black">{esAnexo ? "Recompensas del encuentro" : "Recompensas obtenidas"}</h3>
             {filasRecompensa.length > 0 && <span className="text-[9px] font-black uppercase tracking-wider text-[#806341]">{filasRecompensa.length} {filasRecompensa.length === 1 ? "recompensa" : "recompensas"}</span>}
           </div>
 
@@ -201,7 +203,7 @@ export default function HojaReporteExpedicion({ reporte, onCerrar }: HojaReporte
             </div>
           ) : (
             <p className="mt-3 border border-dashed border-[#a28a5e]/60 px-3 py-2.5 text-xs italic text-[#765938]">
-              {esExito ? "No has obtenido recompensas adicionales en esta actividad." : "No se han obtenido recompensas."}
+              {esAnexo ? "Todavía no hay recompensas confirmadas para mostrar." : esExito ? "No has obtenido recompensas adicionales en esta actividad." : "No se han obtenido recompensas."}
             </p>
           )}
         </section>
@@ -232,14 +234,22 @@ export default function HojaReporteExpedicion({ reporte, onCerrar }: HojaReporte
           </section>
         )}
         <footer className="relative z-[1] mt-4 border-t border-dashed border-current/30 pt-3">
-          <button
-            type="button"
-            onClick={onCerrar}
-            className="min-h-12 w-full border border-[#5b3b21] bg-[linear-gradient(#6e4a2a,#3f2919)] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-[#fff0d5] shadow-[inset_0_1px_rgba(255,220,170,0.2),0_2px_0_rgba(0,0,0,0.25)] transition hover:brightness-110 active:translate-y-px"
-          >
-            Cerrar informe · Volver al gremio
-          </button>
-          <p className="mt-2 text-center font-serif text-[9px] italic text-[#806341]">Registrado en los anales del gremio</p>
+          {esAnexo ? (
+            <p className="text-center font-serif text-[10px] italic leading-relaxed text-[#806341]">
+              Informe provisional: el botín adicional y la entrega final se confirmarán al recibir al aventurero.
+            </p>
+          ) : (
+            <>
+              <button
+                type="button"
+                onClick={onCerrar}
+                className="min-h-12 w-full border border-[#5b3b21] bg-[linear-gradient(#6e4a2a,#3f2919)] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-[#fff0d5] shadow-[inset_0_1px_rgba(255,220,170,0.2),0_2px_0_rgba(0,0,0,0.25)] transition hover:brightness-110 active:translate-y-px"
+              >
+                Cerrar informe · Volver al gremio
+              </button>
+              <p className="mt-2 text-center font-serif text-[9px] italic text-[#806341]">Registrado en los anales del gremio</p>
+            </>
+          )}
         </footer>
       </section>
     </div>
