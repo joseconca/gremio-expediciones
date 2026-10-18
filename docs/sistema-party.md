@@ -73,8 +73,11 @@ El combate mantiene un enemigo común, turnos ordenados, versión y liquidación
 
 ### Turnos y efectos
 
-- Los turnos del jugador siguen el orden persistido en los participantes; los aventureros caídos se saltan.
-- La victoria tiene prioridad cuando el HP del enemigo llega a cero. La derrota se determina cuando ya no quedan aventureros vivos.
+- Los turnos PvE de solitario y party comparten una cola de iniciativa persistida. Cada ciclo asigna entre una y tres acciones por combatiente según la velocidad relativa al más lento: velocidades 10/15/30 producen 1/2/3 acciones. La cola intercala las acciones en orden temporal (por ejemplo, C, B, C, A, C, B) y prioriza la velocidad más alta al comenzar.
+- Los empates de velocidad se resuelven mediante un hash determinista de la semilla del combate, el actor y la ronda: una misma semilla reproduce el mismo orden, y otra semilla puede cambiarlo. No se utiliza aleatoriedad nueva en cada petición.
+- Cada acción enemiga se resuelve de forma individual. Los actores caídos, los enemigos derrotados y los miembros que han huido se eliminan de las acciones pendientes, sin conservar turnos extra.
+- La cola se guarda en `CombateActivo.turnosPendientes` y `CombateParty.turnosPendientes`; el cambio de esquema está en `20261018170000_iniciativa_por_velocidad`.
+- La victoria tiene prioridad cuando el HP de todos los enemigos llega a cero. La derrota se determina cuando ya no quedan aventureros vivos.
 - HP y estados se sincronizan individualmente con `Personaje`.
 - Cooldowns y efectos del personaje no se comparten con los demás participantes.
 - La versión de combate y actualizaciones condicionales impiden confirmar dos veces la misma acción. El turno enemigo posterior a una victoria no debe volver a liquidar recompensas ni iniciar otro regreso.
