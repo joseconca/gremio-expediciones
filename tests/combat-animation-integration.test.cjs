@@ -92,13 +92,20 @@ test("los ataques de varios enemigos se animan por separado con una pausa de un 
   const party = read("src/server/services/party/combate-party-actions.ts");
   const hook = read("src/components/combate/animaciones/useAnimacionesCombate.ts");
 
+  const modal = read("src/components/combate/CombateModal.tsx");
+
   assert.match(contrato, /impactosEnemigos\?:\s*\{/);
+  assert.match(contrato, /hpAntes: number;\s*hpDespues: number;/);
   assert.match(pve, /impactosEnemigos:\s*impactos\.map\(\(impacto\) => \(\{/);
   assert.match(party, /impactosEnemigos:\s*impactos\.map\(\(impacto\) => \(\{/);
   assert.match(hook, /if \(impactosEnemigos\.length > 1\)/);
   assert.match(hook, /PAUSA_ENTRE_ATAQUES_ENEMIGOS_MS = 1000/);
   assert.match(hook, /await esperar\(PAUSA_ENTRE_ATAQUES_ENEMIGOS_MS, temporizadoresRef\.current\)/);
   assert.match(hook, /setActoresAnimando\(\[impacto\.actorEnemigoId\]\)/);
+  assert.match(hook, /setVidasTemporalesCombate\(vidasIniciales\)/);
+  assert.match(hook, /\[impacto\.objetivoId\]: impacto\.hpDespues/);
+  assert.match(modal, /vidasTemporalesCombate\?\.\[participante\.usuarioId\]/);
+  assert.match(modal, /combateTerminado && \(mostrarResultado \|\| \(Boolean\(partyMode\) && !modoPresentacionActual\)\)/);
 });
 
 test("el golpe terminal mantiene visible el impacto antes del resultado y el asedio no lo superpone inmediatamente", () => {
