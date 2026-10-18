@@ -72,12 +72,14 @@ test("el informe compartido conserva el diseño de pergamino y se anexa bajo el 
 test("la crónica histórica de party empieza contraída y se expande al pulsar su cabecera", () => {
   const panel = read("src/components/base/PanelParty.tsx");
 
-  assert.match(panel, /informeHistoricoPartyAbierto, setInformeHistoricoPartyAbierto\] = useState\(false\)/);
+  assert.match(panel, /setEstadoInformeHistoricoParty/);
+  assert.match(panel, /claveInformeHistoricoParty/);
+  assert.match(panel, /estadoInformeHistoricoParty\.clave === claveInformeHistoricoParty && estadoInformeHistoricoParty\.abierto/);
+  assert.match(panel, /onClick=\{alternarInformeHistoricoParty\}/);
   assert.match(panel, /aria-expanded=\{informeHistoricoPartyAbierto\}/);
   assert.match(panel, /aria-controls="detalle-informe-historico-party"/);
   assert.match(panel, /\{informeHistoricoPartyAbierto && \(/);
-  assert.match(panel, /setInformeHistoricoPartyAbierto\(false\)/);
-  assert.match(panel, /ultimoResultadoCombate\?\.expedicionPartyId, estado\?\.party\?\.id/);
+  assert.doesNotMatch(panel, /setInformeHistoricoPartyAbierto\(false\)/);
 });
 
 test("toda la hoja de compañía tiene un tono más sólido y suave que el papel de misión", () => {
