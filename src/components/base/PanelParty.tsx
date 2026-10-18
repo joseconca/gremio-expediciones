@@ -235,7 +235,7 @@ export default function PanelParty() {
   // Cada nueva expedición histórica empieza contraída, aunque la anterior estuviera abierta.
   useEffect(() => {
     setInformeHistoricoPartyAbierto(false);
-  }, [ultimoResultadoCombate?.expedicionPartyId]);
+  }, [ultimoResultadoCombate?.expedicionPartyId, estado?.party?.id]);
 
   // Comparte una consulta ya en curso para que el sondeo, los eventos de foco
   // y los efectos de la UI no disparen GET duplicados. Una actualización forzada
