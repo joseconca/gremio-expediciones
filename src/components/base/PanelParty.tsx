@@ -1079,7 +1079,7 @@ export default function PanelParty() {
         </article>
       )}
       {ultimoResultadoCombate && (
-        <article className={`relative isolate overflow-hidden border p-3 text-[#3e2b1b] shadow-[2px_4px_0_rgba(0,0,0,0.25),inset_0_0_0_2px_rgba(255,247,215,0.3)] ${ultimoResultadoCombate.tipo === "comercio" ? "border-[#92744a] bg-[linear-gradient(155deg,#eadbb8_0%,#dec99e_54%,#cdb486_100%)]" : ultimoResultadoCombate.modoDificultad === "elite" ? "border-[#92744a] bg-[linear-gradient(155deg,#f3e5bd_0%,#e7d4a7_54%,#d7bd87_100%)]" : "border-[#b8b7ab] bg-[linear-gradient(155deg,#fffef8_0%,#f0efe8_54%,#deddd3_100%)]"}`}>
+        <article className={`relative isolate overflow-hidden border p-3 text-[#3e2b1b] shadow-[2px_4px_0_rgba(0,0,0,0.25),inset_0_0_0_2px_rgba(255,247,215,0.3)] ${ultimoResultadoCombate.tipo === "comercio" ? "border-[#92744a] bg-[linear-gradient(155deg,#eadbb8_0%,#dec99e_54%,#cdb486_100%)]" : ultimoResultadoCombate.tipo === "elite" ? "border-[#92744a] bg-[linear-gradient(155deg,#f3e5bd_0%,#e7d4a7_54%,#d7bd87_100%)]" : "border-[#b8b7ab] bg-[linear-gradient(155deg,#fffef8_0%,#f0efe8_54%,#deddd3_100%)]"}`}>
           <div aria-hidden="true" className="pointer-events-none absolute inset-1 border border-current/20" />
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-20 bg-[repeating-linear-gradient(0deg,transparent_0,transparent_23px,rgba(95,67,36,0.14)_24px,transparent_25px)]" />
           <header className="relative flex items-start justify-between gap-3 border-b border-dashed border-current/25 pb-2.5">
@@ -1091,7 +1091,7 @@ export default function PanelParty() {
               <p className="mt-1 text-[11px] font-semibold text-[#664a2d]">
                 {ultimoResultadoCombate.nombre ?? "Contrato compartido"}
                 {typeof ultimoResultadoCombate.dificultad === "number" ? ` · Amenaza ${ultimoResultadoCombate.dificultad}` : ""}
-                {ultimoResultadoCombate.modoDificultad === "elite" ? " · Élite" : ""}
+                {ultimoResultadoCombate.tipo === "elite" ? " · Élite" : ""}
               </p>
             </div>
             <span className={`shrink-0 border px-2 py-1 text-[9px] font-black uppercase tracking-wider ${ultimoResultadoCombate.fase === "victoria" ? "border-[#496d43] bg-[#d5e2c6] text-[#36543a]" : ultimoResultadoCombate.fase === "derrota" ? "border-[#a45449] bg-[#f1c9bd] text-[#8b3228]" : "border-[#98743c] bg-[#f2dfac] text-[#79551f]"}`}>
