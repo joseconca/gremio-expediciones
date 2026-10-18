@@ -27,7 +27,8 @@ test("los reportes individuales conservan duración, Job XP, objetos y crónica 
   assert.match(completion, /enemigosDerrotados/);
   assert.match(completion, /objetivoNombre/);
   assert.match(completion, /logComercio: resultado\.logCombate/);
-  assert.match(completion, /objetos: recompensa\.objetos/);
+  assert.match(completion, /objetosObtenidos: actualizado\\.botinEntregado/);
+  assert.doesNotMatch(read("src/components/reportes/HojaReporteExpedicion.tsx"), /recompensa\\?\\.objetos/);
   assert.match(completion, /objetosObtenidos: actualizado\.botinEntregado/);
 });
 
