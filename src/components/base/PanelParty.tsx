@@ -790,24 +790,24 @@ export default function PanelParty() {
           type="button"
           onClick={() => setPartyDetalleAbierto((abierto) => !abierto)}
           aria-expanded={partyDetalleAbierto}
-          className="relative z-10 flex w-full items-center gap-2.5 border-b border-dashed border-[#a45d52] px-1 pb-2 pt-4 text-left transition-colors hover:bg-[#f9ddd4]/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#702d22]"
+          className="relative z-10 -mx-2.5 -mt-2.5 mb-2 flex w-[calc(100%+1.25rem)] items-center gap-2.5 border-b-2 border-[#3e1915] bg-[linear-gradient(135deg,#7a3027_0%,#64251f_58%,#4c1d19_100%)] px-3 pb-3 pt-5 text-left text-[#fff0dd] shadow-[inset_0_1px_rgba(255,226,188,0.16),0_3px_0_rgba(48,17,13,0.25)] transition-colors hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#f0c77f]"
         >
-          <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center border border-[#ad756c] bg-[#f4d3ca]/80 text-lg text-[#7a3029]">♛</span>
+          <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center border border-[#d9a56a]/80 bg-[#3d1814] text-lg text-[#f8dca3] shadow-[inset_0_0_0_1px_rgba(255,235,190,0.12)]">♛</span>
           <span className="min-w-0 flex-1">
-            <span className="block text-[9px] font-black uppercase tracking-[0.18em] text-[#803b32]">
+            <span className="block text-[9px] font-black uppercase tracking-[0.18em] text-[#f0c77f]">
               {party ? "Aviso de compañía" : "Mensajería del gremio"}
             </span>
-            <span className="block truncate font-serif text-sm font-black text-[#49231f]">
+            <span className="block truncate font-serif text-sm font-black text-[#fff0dd]">
               {party ? `Compañía de ${party.lider.nombre}` : visitasEntrantes.length > 0 ? "Visitas entrantes" : "Traslado entre bases"}
             </span>
-            <span className="mt-1 block truncate text-[10px] font-semibold text-[#74413a]">
+            <span className="mt-1 block truncate text-[10px] font-semibold text-[#f0d0bd]">
               {party
                 ? `${party.miembros.length}/3 aventureros · ${estado?.expedicionActiva ? `Expedición: ${estado.expedicionActiva.nombre}` : "Sin expedición activa"}`
                 : `${visitasEntrantes.length} visitas · ${trasladosPropios.length} traslados`}
             </span>
           </span>
-          {party && <span className="shrink-0 border border-[#aa665b] bg-[#f7d9d2]/80 px-1.5 py-1 text-[10px] font-black text-[#74332c]">{party.miembros.length}/3</span>}
-          <span aria-hidden="true" className="shrink-0 text-sm text-[#8b3029]">{partyDetalleAbierto ? "⌃" : "⌄"}</span>
+          {party && <span className="shrink-0 border border-[#e0b778] bg-[#3d1814] px-1.5 py-1 text-[10px] font-black text-[#ffe6b3] shadow-inner">{party.miembros.length}/3</span>}
+          <span aria-hidden="true" className="shrink-0 text-sm font-black text-[#ffe6b3]">{partyDetalleAbierto ? "⌃" : "⌄"}</span>
         </button>
 
         {error && (
