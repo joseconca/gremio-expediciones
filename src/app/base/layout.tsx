@@ -122,7 +122,7 @@ export default function BaseLayout({
           >
             <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-amber-700/80 bg-stone-800 shadow-[inset_0_0_8px_rgba(0,0,0,0.6)] sm:h-12 sm:w-12">
               <Image
-                src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)}
+                src={obtenerSpriteHeroe(personaje.clase, personaje.sexo, personaje.profesionActivaId)}
                 alt={`Avatar de ${personaje.nombre}`}
                 fill
                 sizes="48px"

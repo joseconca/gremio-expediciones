@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
+import { obtenerNombreClaseHeroe, obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 
 interface HeroeRanking {
   nombreBase: string;
   nombreHeroe: string;
   clase: string;
   sexo: string;
+  profesionActivaId?: string | null;
   nivel: number;
   experiencia: number;
 }
@@ -92,7 +93,7 @@ export default function RankingHeroes() {
 
               <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border border-amber-500/50 bg-slate-950">
                 <Image
-                  src={obtenerSpriteHeroe(heroe.clase, heroe.sexo)}
+                  src={obtenerSpriteHeroe(heroe.clase, heroe.sexo, heroe.profesionActivaId)}
                   alt={heroe.nombreHeroe}
                   fill
                   sizes="48px"
@@ -106,7 +107,7 @@ export default function RankingHeroes() {
                 </p>
 
                 <p className="truncate text-xs text-slate-400">
-                  {heroe.clase} · {heroe.nombreBase}
+                  {obtenerNombreClaseHeroe(heroe.clase, heroe.profesionActivaId)} · {heroe.nombreBase}
                 </p>
               </div>
 

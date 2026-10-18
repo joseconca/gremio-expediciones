@@ -9,13 +9,14 @@ import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import CombateModal from "@/components/combate/CombateModal";
 import { puedeGestionarVisitas } from "@/lib/party/reglas";
 import { obtenerObjetoPorId, obtenerSpriteObjeto } from "@/lib/objetos";
+import { obtenerLogoClaseHeroe, obtenerNombreClaseHeroe } from "@/lib/configuracionJuego";
 import { leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 import MissionMap from "@/components/MissionMap";
 
 type PersonaVista = {
   id: string;
   nombre: string;
-  personaje: { nombre: string; nivel: number; estado: string; clase?: string; sexo?: string } | null;
+  personaje: { nombre: string; nivel: number; estado: string; clase?: string; sexo?: string; profesionActivaId?: string | null } | null;
 };
 type MiembroVista = {
   usuarioId: string;
@@ -819,13 +820,29 @@ export default function PanelParty() {
         {party && (
           <div className="relative pt-2">
             <div className="flex flex-wrap gap-1.5">
-              {party.miembros.map((miembro) => (
-                <span key={miembro.usuarioId} className={`inline-flex max-w-full items-center gap-1 rounded-sm border px-2 py-1 text-[11px] ${miembro.esLider ? "border-amber-600/70 bg-amber-950/70 font-black text-amber-100" : "border-[#594326] bg-[#1a140c] text-[#e0d0ac]"}`}>
-                  {miembro.esLider ? "♛" : "⚔"}
-                  <span className="truncate">{miembro.usuario.personaje?.nombre ?? "Aventurero"}</span>
-                  {miembro.esLider && <span className="text-[9px] text-amber-400">líder</span>}
-                </span>
-              ))}
+              {party.miembros.map((miembro) => {
+                const personajeMiembro = miembro.usuario.personaje;
+                const claseId = personajeMiembro?.profesionActivaId;
+                return (
+                  <span
+                    key={miembro.usuarioId}
+                    className={`inline-flex max-w-full items-center gap-1.5 rounded-sm border px-2 py-1.5 text-[11px] shadow-sm ${miembro.esLider ? "border-[#b28b47] bg-[#f5e5b5] text-[#593e17]" : "border-[#b78b75] bg-[#f5ddd0] text-[#5d372b]"}`}
+                  >
+                    {miembro.esLider && (
+                      <span title="Líder de la compañía" aria-label="Líder de la compañía" className="flex h-6 w-5 shrink-0 items-center justify-center text-base text-[#9a6724]">♛</span>
+                    )}
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center border border-[#b9966a]/70 bg-[#f8ecd4]">
+                      <Image src={obtenerLogoClaseHeroe(personajeMiembro?.clase, claseId)} alt="" width={25} height={25} className="h-6 w-6 object-contain" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block max-w-[150px] truncate font-black leading-tight">{personajeMiembro?.nombre ?? "Aventurero"}</span>
+                      <span className="mt-0.5 block text-[9px] font-bold uppercase tracking-wide text-[#7a5941]">
+                        {obtenerNombreClaseHeroe(personajeMiembro?.clase, claseId)}{miembro.esLider ? " · Líder" : ""}
+                      </span>
+                    </span>
+                  </span>
+                );
+              })}
             </div>
             <button
               type="button"
@@ -902,8 +919,10 @@ export default function PanelParty() {
                     fechaSalida={traslado.fechaSalida}
                     fechaLlegada={traslado.fechaLlegada}
                     nombreHeroe={personaje?.nombre ?? "Tu aventurero"}
-                    claseHeroe={personaje?.clase}
-                    sexoHeroe={personaje?.sexo}
+                    claseHeroe={estado.party?.lider.personaje?.clase ?? personaje?.clase}
+                    sexoHeroe={estado.party?.lider.personaje?.sexo ?? personaje?.sexo}
+                    profesionActivaIdHeroe={estado.party?.lider.personaje?.profesionActivaId ?? personaje?.profesionActivaId}
+                    profesionActivaIdHeroe={personaje?.profesionActivaId}
                     regresando={regresando}
                     ajustarVistaRuta
                     etiquetaBase="Tu base"
@@ -1252,11 +1271,19 @@ export default function PanelParty() {
                 </p>
               )}
               <div className="mt-2 flex flex-wrap gap-1.5">
-                {estado.expedicionActiva.participantes.map((participante) => (
-                  <span key={participante.id} className="rounded border border-[#aa665b] bg-[#f7d9d2]/80 px-2 py-1 text-[11px] text-[#5a3029]">
-                    {participante.usuario?.personaje?.nombre ?? participante.usuario?.nombre ?? "Aventurero"} · {participante.estado.replaceAll("_", " ")}
-                  </span>
-                ))}
+                {estado.expedicionActiva.participantes.map((participante) => {
+                  const personajeParticipante = participante.usuario?.personaje;
+                  return (
+                    <span key={participante.id} className="inline-flex items-center gap-1.5 rounded border border-[#aa665b] bg-[#f7d9d2]/80 px-2 py-1 text-[11px] text-[#5a3029]">
+                      {personajeParticipante && (
+                        <Image src={obtenerLogoClaseHeroe(personajeParticipante.clase, personajeParticipante.profesionActivaId)} alt="" width={18} height={18} className="h-[18px] w-[18px] shrink-0 object-contain" />
+                      )}
+                      <span>{personajeParticipante?.nombre ?? participante.usuario?.nombre ?? "Aventurero"}</span>
+                      {personajeParticipante && <span className="text-[9px] font-bold text-[#80463d]">{obtenerNombreClaseHeroe(personajeParticipante.clase, personajeParticipante.profesionActivaId)}</span>}
+                      <span className="text-[10px] opacity-70">· {participante.estado.replaceAll("_", " ")}</span>
+                    </span>
+                  );
+                })}
               </div>
             </div>
           )}

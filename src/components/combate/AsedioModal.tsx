@@ -426,7 +426,7 @@ export default function AsedioModal({
     nivel: esAtacante ? combate.enemigoNivel : combate.jugadorNivel,
   };
 
-  const spritePropio = obtenerSpriteHeroe(personaje.clase, personaje.sexo);
+  const spritePropio = obtenerSpriteHeroe(personaje.clase, personaje.sexo, personaje.profesionActivaId);
   const claseActiva = CLASES[personaje.profesionActivaId];
   const recursoClase = claseActiva?.recursoCombate ?? "energia";
   const porcentajeEnergia = personaje.energiaMaxima > 0

@@ -300,7 +300,7 @@ export default function CombateModal({
     [onAccionCombate, partyMode],
   );
 
-  const spriteHeroe = obtenerSpriteHeroe(personaje.clase, personaje.sexo);
+  const spriteHeroe = obtenerSpriteHeroe(personaje.clase, personaje.sexo, personaje.profesionActivaId);
   const claseActiva = CLASES[personaje.profesionActivaId];
   const recursoClase = claseActiva?.recursoCombate ?? "energia";
   const porcentajeEnergia = personaje.energiaMaxima > 0
@@ -753,7 +753,7 @@ export default function CombateModal({
                 const caido = participante.estado === "caido" && hpParticipanteVisual <= 0;
                 const animando = actorAnimando === participante.usuarioId || actoresAnimando.includes(participante.usuarioId);
                 const impactado = actorImpactado === participante.usuarioId || objetivosMultiplesImpactados.includes(participante.usuarioId);
-                const sprite = obtenerSpriteHeroe(participante.clase, participante.sexo);
+                const sprite = obtenerSpriteHeroe(participante.clase, participante.sexo, participante.profesionActivaId);
                 const disponibleComoObjetivo = objetivosDisponibles.some((objetivo) => objetivo.id === participante.usuarioId);
                 const seleccionadoComoObjetivo = Boolean(
                   mostrarHabilidades &&

@@ -713,6 +713,7 @@ export default function PanelMisiones({
                       fechaLlegada={expedicionActiva.fechaLlegada}
                       claseHeroe={personaje.clase}
                       sexoHeroe={personaje.sexo}
+                      profesionActivaIdHeroe={personaje.profesionActivaId}
                       regresando={expedicionActiva.fase === "regresando"}
                       rutasEntrantes={caravanasEntrantes
                         .filter((caravana) => caravana.origenCoords)

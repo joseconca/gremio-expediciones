@@ -777,7 +777,7 @@ export default function HerreriaPage() {
               <div className="flex min-w-0 flex-col items-center justify-center">
                 <div className="flex w-full flex-1 items-center justify-center overflow-hidden rounded-lg border border-[#755534] bg-[radial-gradient(ellipse_at_45%_30%,#493521,#261b12_68%)] p-1.5 shadow-[inset_0_0_24px_rgba(0,0,0,0.5)]">
                   <Image
-                    src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)}
+                    src={obtenerSpriteHeroe(personaje.clase, personaje.sexo, personaje.profesionActivaId)}
                     alt={`Personaje equipado: ${personaje.clase}`}
                     width={180}
                     height={240}
@@ -807,7 +807,7 @@ export default function HerreriaPage() {
             <div className="min-[520px]:hidden">
               <div className="mx-auto mb-2 flex max-w-[116px] flex-col items-center rounded-lg border border-[#755534] bg-[radial-gradient(ellipse_at_45%_30%,#493521,#261b12_68%)] p-2">
                 <Image
-                  src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)}
+                  src={obtenerSpriteHeroe(personaje.clase, personaje.sexo, personaje.profesionActivaId)}
                   alt={`Personaje equipado: ${personaje.clase}`}
                   width={112}
                   height={144}

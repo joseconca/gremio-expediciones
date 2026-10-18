@@ -633,6 +633,7 @@ export default function ExpedicionesPage() {
             fechaLlegada={estadoParty?.expedicionActiva?.fechaLlegada ?? expedicionActiva?.fechaLlegada}
             claseHeroe={personaje?.clase}
             sexoHeroe={personaje?.sexo}
+            profesionActivaIdHeroe={personaje?.profesionActivaId}
             rutasEntrantes={[]}
             regresando={estadoParty?.expedicionActiva?.fase === "regresando" || expedicionActiva?.fase === "regresando"}
             onSelectMission={(mision) => {

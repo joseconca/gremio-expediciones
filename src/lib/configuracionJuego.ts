@@ -1,5 +1,6 @@
 import type { Rareza, ClasePersonaje, IdEdificio } from "./tiposJuego";
 import { CONFIGURACION_EDIFICIOS } from "./tiposJuego";
+import { CLASES } from "./progresion/clases";
 
 export const REQUISITOS_EDIFICIOS: Partial<
   Record<IdEdificio, { edificio: IdEdificio; nivel: number }>
@@ -128,23 +129,61 @@ export function calcularCosteAtributo(
 // ============================================================
 // HEROES
 // ============================================================
-const SPRITE_POR_CLASE: Record<string, string> = {
-  Novato: "warrior",
-  Guerrero: "warrior",
-  Explorador: "explorer",
-  Comerciante: "merchant",
+const CLASES_LEGACY_POR_NOMBRE: Record<string, string> = {
+  Novato: "novato",
+  Guerrero: "guerrero",
+  Explorador: "explorador",
+  Comerciante: "comerciante",
 };
 
 export type SexoPersonaje = "chico" | "chica";
 
-// Devuelve la ruta del sprite del héroe según su clase y sexo, p.ej. "/sprites/heroes/warrior-f.png".
+/**
+ * Resuelve el directorio visual sin modificar la clase almacenada en el personaje.
+ * La profesión activa prevalece; las etiquetas antiguas siguen teniendo fallback.
+ */
+export function obtenerIdClaseParaSprite(
+  clase?: string | null,
+  profesionActivaId?: string | null,
+): string {
+  if (profesionActivaId && Object.prototype.hasOwnProperty.call(CLASES, profesionActivaId)) {
+    return profesionActivaId;
+  }
+  if (clase && Object.prototype.hasOwnProperty.call(CLASES, clase)) {
+    return clase;
+  }
+  if (clase && CLASES_LEGACY_POR_NOMBRE[clase]) {
+    return CLASES_LEGACY_POR_NOMBRE[clase];
+  }
+  return "novato";
+}
+
+export function obtenerNombreClaseHeroe(
+  clase?: string | null,
+  profesionActivaId?: string | null,
+): string {
+  const idClase = obtenerIdClaseParaSprite(clase, profesionActivaId);
+  return CLASES[idClase]?.nombre ?? (idClase === "guerrero" ? "Guerrero" : "Comerciante");
+}
+
+/** Devuelve el sprite masculino/femenino de la profesión activa del personaje. */
 export function obtenerSpriteHeroe(
   clase?: string | null,
-  sexo?: string | null
+  sexo?: string | null,
+  profesionActivaId?: string | null,
 ): string {
-  const base = SPRITE_POR_CLASE[clase ?? ""] ?? "warrior";
+  const idClase = obtenerIdClaseParaSprite(clase, profesionActivaId);
   const sufijoSexo = sexo === "chica" ? "f" : "m";
-  return `/sprites/heroes/${base}-${sufijoSexo}.png`;
+  return `/sprites/heroes/${idClase}/${idClase}-${sufijoSexo}.png`;
+}
+
+/** Logo reutilizable de clase para miniaturas, nombres de grupo y listados. */
+export function obtenerLogoClaseHeroe(
+  clase?: string | null,
+  profesionActivaId?: string | null,
+): string {
+  const idClase = obtenerIdClaseParaSprite(clase, profesionActivaId);
+  return `/sprites/heroes/${idClase}/${idClase}-logo.svg`;
 }
 
 // ============================================================

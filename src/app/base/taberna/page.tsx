@@ -130,7 +130,7 @@ export default function TabernaPage() {
           <div className="w-full max-w-md rounded-xl border-2 border-amber-500/50 bg-slate-800 p-8 text-center shadow-2xl">
             <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border-2 border-amber-500 bg-slate-950">
               <Image
-                src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)}
+                src={obtenerSpriteHeroe(personaje.clase, personaje.sexo, personaje.profesionActivaId)}
                 alt="Nuevo aventurero"
                 width={96}
                 height={96}

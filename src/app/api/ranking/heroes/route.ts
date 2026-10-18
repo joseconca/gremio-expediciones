@@ -25,7 +25,7 @@ export async function GET() {
       select: {
         nombre: true,
         edificios: true,
-        personaje: { select: { nombre: true, clase: true, sexo: true, nivel: true, experiencia: true } },
+        personaje: { select: { nombre: true, clase: true, sexo: true, profesionActivaId: true, nivel: true, experiencia: true } },
       },
     });
 
@@ -39,6 +39,7 @@ export async function GET() {
         nombreHeroe: u.personaje!.nombre,
         clase: u.personaje!.clase,
         sexo: u.personaje!.sexo,
+        profesionActivaId: u.personaje!.profesionActivaId,
         nivel: u.personaje!.nivel,
         experiencia: u.personaje!.experiencia,
       }))

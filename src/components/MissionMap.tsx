@@ -36,13 +36,10 @@ const destinationIcon = L.divIcon({
   iconAnchor: [15, 15],
 });
 
-function crearHeroIcon(clase?: string | null, sexo?: string | null) {
+function crearHeroIcon(clase?: string | null, sexo?: string | null, profesionActivaId?: string | null) {
   return L.divIcon({
     className: "hero-route-marker",
-    html: `<img src="${obtenerSpriteHeroe(
-      clase,
-      sexo
-    )}" alt="" aria-hidden="true" />`,
+    html: `<img src="${obtenerSpriteHeroe(clase, sexo, profesionActivaId)}" alt="" aria-hidden="true" />`,
     iconSize: [64, 64],
     iconAnchor: [32, 32],
   });
@@ -56,6 +53,7 @@ function RutaExpedicion({
   nombreHeroe = "Aventurero",
   claseHeroe,
   sexoHeroe,
+  profesionActivaIdHeroe,
   regresando = false,
   etiquetaDestino,
 }: {
@@ -66,6 +64,7 @@ function RutaExpedicion({
   nombreHeroe?: string;
   claseHeroe?: string | null;
   sexoHeroe?: string | null;
+  profesionActivaIdHeroe?: string | null;
   regresando?: boolean;
   etiquetaDestino?: string;
 }) {
@@ -133,7 +132,7 @@ function RutaExpedicion({
       </Marker>
       <Marker
         position={posicionHeroe}
-        icon={crearHeroIcon(claseHeroe, sexoHeroe)}
+        icon={crearHeroIcon(claseHeroe, sexoHeroe, profesionActivaIdHeroe)}
       />
       <Tooltip
         direction="top"
@@ -156,6 +155,7 @@ interface RutaEntrante {
   nombreHeroe: string;
   claseHeroe?: string | null;
   sexoHeroe?: string | null;
+  profesionActivaIdHeroe?: string | null;
 }
 
 function AjustarVistaRuta({
@@ -194,6 +194,7 @@ interface MissionMapProps {
   fechaLlegada?: string;
   claseHeroe?: string | null;
   sexoHeroe?: string | null;
+  profesionActivaIdHeroe?: string | null;
   nombreHeroe?: string;
   rutasEntrantes?: RutaEntrante[];
   regresando?: boolean;
@@ -212,6 +213,7 @@ export default function MissionMap({
   fechaLlegada,
   claseHeroe,
   sexoHeroe,
+  profesionActivaIdHeroe,
   nombreHeroe = "Aventurero",
   rutasEntrantes = [],
   regresando = false,
@@ -257,6 +259,7 @@ export default function MissionMap({
           nombreHeroe={nombreHeroe}
           claseHeroe={claseHeroe}
           sexoHeroe={sexoHeroe}
+          profesionActivaIdHeroe={profesionActivaIdHeroe}
           regresando={regresando}
           etiquetaDestino={etiquetaDestino}
         />
@@ -271,6 +274,7 @@ export default function MissionMap({
             nombreHeroe={ruta.nombreHeroe}
             claseHeroe={ruta.claseHeroe}
             sexoHeroe={ruta.sexoHeroe}
+            profesionActivaIdHeroe={ruta.profesionActivaIdHeroe}
           />
         ))}
 

@@ -221,7 +221,7 @@ export default function HojaPersonajeModal({
           <div className="mb-6 flex items-center gap-4 rounded-sm border border-stone-300 bg-white/40 p-3 shadow-sm">
             <div className="relative h-18 w-18 shrink-0 overflow-hidden rounded-full border-2 border-stone-400 bg-stone-200 shadow-inner sm:h-20 sm:w-20">
               <Image
-                src={obtenerSpriteHeroe(personaje.clase, personaje.sexo)}
+                src={obtenerSpriteHeroe(personaje.clase, personaje.sexo, personaje.profesionActivaId)}
                 alt={`Avatar de ${personaje.nombre}`}
                 fill
                 sizes="80px"

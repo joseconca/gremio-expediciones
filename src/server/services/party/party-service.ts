@@ -786,7 +786,7 @@ export async function obtenerEstadoParty(usuarioId: string) {
                 id: true,
                 nombre: true,
                 baseCoords: true,
-                personaje: { select: { nombre: true, nivel: true, estado: true } },
+                personaje: { select: { nombre: true, nivel: true, estado: true, clase: true, sexo: true, profesionActivaId: true } },
               },
             },
             miembros: {
@@ -797,7 +797,7 @@ export async function obtenerEstadoParty(usuarioId: string) {
                     id: true,
                     nombre: true,
                     baseCoords: true,
-                    personaje: { select: { nombre: true, nivel: true, estado: true } },
+                    personaje: { select: { nombre: true, nivel: true, estado: true, clase: true, sexo: true, profesionActivaId: true } },
                   },
                 },
               },
@@ -819,14 +819,14 @@ export async function obtenerEstadoParty(usuarioId: string) {
           select: {
             id: true,
             nombre: true,
-            personaje: { select: { nombre: true, nivel: true, estado: true } },
+            personaje: { select: { nombre: true, nivel: true, estado: true, clase: true, sexo: true, profesionActivaId: true } },
           },
         },
         anfitrion: {
           select: {
             id: true,
             nombre: true,
-            personaje: { select: { nombre: true, nivel: true, estado: true } },
+            personaje: { select: { nombre: true, nivel: true, estado: true, clase: true, sexo: true, profesionActivaId: true } },
           },
         },
       },
@@ -862,7 +862,7 @@ export async function obtenerEstadoParty(usuarioId: string) {
                 select: {
                   id: true,
                   nombre: true,
-                  personaje: { select: { nombre: true, nivel: true, estado: true } },
+                  personaje: { select: { nombre: true, nivel: true, estado: true, clase: true, sexo: true, profesionActivaId: true } },
                 },
               },
             },
@@ -876,7 +876,7 @@ export async function obtenerEstadoParty(usuarioId: string) {
                     select: {
                       id: true,
                       nombre: true,
-                      personaje: { select: { nombre: true, nivel: true, estado: true, clase: true, sexo: true } },
+                      personaje: { select: { nombre: true, nivel: true, estado: true, clase: true, sexo: true, profesionActivaId: true } },
                     },
                   },
                   personaje: { include: incluirPersonajeRecursosParty },
@@ -965,7 +965,7 @@ export async function obtenerEstadoParty(usuarioId: string) {
                 select: {
                   id: true,
                   nombre: true,
-                  personaje: { select: { nombre: true, nivel: true, estado: true } },
+                  personaje: { select: { nombre: true, nivel: true, estado: true, clase: true, sexo: true, profesionActivaId: true } },
                 },
               },
             },
