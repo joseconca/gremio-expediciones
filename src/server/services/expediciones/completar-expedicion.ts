@@ -480,7 +480,7 @@ export async function completarExpedicion() {
           objetivoNombre: objetivoReporte?.nombre,
           experienciaJobGanada,
           afinidad: actualizado.afinidad,
-          objetosObtenidos: actualizado.botinEntregado ? [actualizado.botinEntregado] : [],
+          objetosObtenidos: actualizado.botinEntregado ? [{ ...actualizado.botinEntregado, cantidad: 1 }] : [],
           logCombate: [...logCombate, ...logRegreso],
         };
       } else if (resultadoFinal === "cancelada" || resultadoFinal === "huida") {
@@ -518,7 +518,7 @@ export async function completarExpedicion() {
           poderHeroe: combate
             ? combate.jugadorAtaque + combate.jugadorDefensa
             : 0,
-          objetosObtenidos: actualizado.botinEntregado ? [actualizado.botinEntregado] : [],
+          objetosObtenidos: actualizado.botinEntregado ? [{ ...actualizado.botinEntregado, cantidad: 1 }] : [],
           logCombate: [...logCombate, ...logRegreso],
         };
       }
