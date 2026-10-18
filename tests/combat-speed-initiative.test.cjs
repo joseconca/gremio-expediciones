@@ -14,7 +14,7 @@ test("la velocidad reparte acciones 10/15/30 en proporción 1/2/3 y por orden de
   ];
   const secuencia = crearSecuenciaTurnosVelocidad(actores, "combate-test");
 
-  assert.deepEqual(secuencia.map((paso) => paso.actorId), ["C", "B", "A", "C", "B", "C"]);
+  assert.deepEqual(secuencia.map((paso) => paso.actorId), ["C", "B", "C", "A", "C", "B"]);
   assert.equal(secuencia.filter((paso) => paso.actorId === "A").length, 1);
   assert.equal(secuencia.filter((paso) => paso.actorId === "B").length, 2);
   assert.equal(secuencia.filter((paso) => paso.actorId === "C").length, 3);
