@@ -969,6 +969,22 @@ export async function ejecutarAccionCombateParty(
         turnoActualUsuarioId = siguiente.turnoActualUsuarioId;
         ronda = siguiente.ronda;
         turnosPendientes = siguiente.turnosPendientes;
+        if (siguiente.nuevaRonda) {
+          // Huir consume el turno actual; si con ello termina el ciclo,
+          // los cooldowns avanzan igual que con cualquier otra acción.
+          for (const miembro of combate.participantes) {
+            const bruto = miembro.cooldowns && typeof miembro.cooldowns === "object" && !Array.isArray(miembro.cooldowns)
+              ? Object.fromEntries(Object.entries(miembro.cooldowns).filter(([, valor]) => typeof valor === "number" && Number.isFinite(valor) && valor > 0))
+              : {};
+            const guardado = await tx.combatePartyParticipante.updateMany({
+              where: { id: miembro.id, combatePartyId: combate.id },
+              data: { cooldowns: reducirCooldowns(bruto as Record<string, number>) as unknown as Prisma.InputJsonValue },
+            });
+            if (guardado.count !== 1) {
+              throw new PartyServiceError("No se pudieron actualizar los cooldowns al cerrar el ciclo de iniciativa.", 409, "PARTICIPANTE_PARTY_MODIFICADO");
+            }
+          }
+        }
       } else if (!terminal) {
         // La huida fuera de turno no consume la acción que ya correspondía a otro actor.
         turnosPendientes = colaAntesDeHuida.filter((paso) => paso.actorId !== usuarioId);
