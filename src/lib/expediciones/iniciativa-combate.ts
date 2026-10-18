@@ -1,0 +1,148 @@
+/**
+ * Secuencia reproducible de iniciativa para combates PvE en solitario y party.
+ *
+ * Cada combatiente obtiene entre 1 y 3 acciones por ciclo, en proporción a su
+ * velocidad relativa a la más baja: 10/15/30 produce 1/2/3. Se intercala una
+ * acción de cada combatiente elegible por pasada, empezando por el más rápido.
+ * Los empates se resuelven con un hash de semilla, actor y ronda, nunca con
+ * aleatoriedad de servidor no reproducible.
+ */
+export type EquipoTurnoVelocidad = "jugador" | "enemigo";
+
+export interface ActorTurnoVelocidad {
+  actorId: string;
+  equipo: EquipoTurnoVelocidad;
+  velocidad: number;
+}
+
+export interface PasoTurnoVelocidad {
+  actorId: string;
+  equipo: EquipoTurnoVelocidad;
+}
+
+export interface AvanceTurnosVelocidad {
+  turnoActual: PasoTurnoVelocidad | null;
+  turnosPendientes: PasoTurnoVelocidad[];
+  ronda: number;
+  nuevaRonda: boolean;
+}
+
+const MAX_ACCIONES_POR_CICLO = 3;
+
+function hashDeterminista(valor: string): number {
+  let hash = 2166136261;
+  for (let indice = 0; indice < valor.length; indice += 1) {
+    hash ^= valor.charCodeAt(indice);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function normalizarActores(actores: ActorTurnoVelocidad[]): ActorTurnoVelocidad[] {
+  const vistos = new Set<string>();
+  return actores.filter((actor) => {
+    if (
+      !actor ||
+      typeof actor.actorId !== "string" ||
+      actor.actorId.trim() === "" ||
+      (actor.equipo !== "jugador" && actor.equipo !== "enemigo") ||
+      !Number.isFinite(actor.velocidad) ||
+      actor.velocidad <= 0 ||
+      vistos.has(actor.actorId)
+    ) return false;
+    vistos.add(actor.actorId);
+    return true;
+  }).map((actor) => ({ ...actor, actorId: actor.actorId.trim() }));
+}
+
+export function normalizarSecuenciaTurnosVelocidad(valor: unknown): PasoTurnoVelocidad[] {
+  if (!Array.isArray(valor)) return [];
+  return valor.flatMap((entrada): PasoTurnoVelocidad[] => {
+    if (!entrada || typeof entrada !== "object" || Array.isArray(entrada)) return [];
+    const paso = entrada as Record<string, unknown>;
+    if (
+      typeof paso.actorId !== "string" ||
+      !paso.actorId.trim() ||
+      (paso.equipo !== "jugador" && paso.equipo !== "enemigo")
+    ) return [];
+    return [{ actorId: paso.actorId, equipo: paso.equipo }];
+  });
+}
+
+export function crearSecuenciaTurnosVelocidad(
+  actoresEntrada: ActorTurnoVelocidad[],
+  semilla: string,
+  actorPreferidoId?: string | null,
+): PasoTurnoVelocidad[] {
+  const actores = normalizarActores(actoresEntrada);
+  if (actores.length === 0) return [];
+
+  const velocidadBase = Math.min(...actores.map((actor) => actor.velocidad));
+  const conAcciones = actores.map((actor) => ({
+    ...actor,
+    acciones: Math.max(
+      1,
+      Math.min(MAX_ACCIONES_POR_CICLO, Math.round(actor.velocidad / velocidadBase)),
+    ),
+    desempate: hashDeterminista(`${semilla}:${actor.actorId}`),
+  })).sort((a, b) =>
+    b.velocidad - a.velocidad ||
+    a.desempate - b.desempate ||
+    a.actorId.localeCompare(b.actorId),
+  );
+
+  const maxAcciones = Math.max(...conAcciones.map((actor) => actor.acciones));
+  const secuencia: PasoTurnoVelocidad[] = [];
+  for (let pasada = 0; pasada < maxAcciones; pasada += 1) {
+    for (const actor of conAcciones) {
+      if (actor.acciones > pasada) {
+        secuencia.push({ actorId: actor.actorId, equipo: actor.equipo });
+      }
+    }
+  }
+
+  // La comida de iniciativa conserva su comportamiento de abrir el combate
+  // con un aventurero, pero no altera la cantidad total de acciones del ciclo.
+  if (actorPreferidoId) {
+    const indicePreferido = secuencia.findIndex((paso) => paso.actorId === actorPreferidoId);
+    if (indicePreferido > 0) {
+      secuencia.unshift(secuencia.splice(indicePreferido, 1)[0]);
+    }
+  }
+  return secuencia;
+}
+
+/**
+ * Consume el actor actual, descarta los turnos restantes de combatientes caídos
+ * y prepara el siguiente ciclo solo cuando ya no queda ninguna acción elegible.
+ */
+export function avanzarSecuenciaTurnosVelocidad(entrada: {
+  turnosPendientes: unknown;
+  actoresVivos: ActorTurnoVelocidad[];
+  ronda: number;
+  semilla: string;
+}): AvanceTurnosVelocidad {
+  const vivos = normalizarActores(entrada.actoresVivos);
+  const idsVivos = new Set(vivos.map((actor) => actor.actorId));
+  const restantes = normalizarSecuenciaTurnosVelocidad(entrada.turnosPendientes)
+    .slice(1)
+    .filter((paso) => idsVivos.has(paso.actorId));
+
+  if (restantes.length > 0) {
+    return {
+      turnoActual: restantes[0],
+      turnosPendientes: restantes,
+      ronda: entrada.ronda,
+      nuevaRonda: false,
+    };
+  }
+
+  const ronda = entrada.ronda + 1;
+  const secuenciaNueva = crearSecuenciaTurnosVelocidad(vivos, `${entrada.semilla}:${ronda}`);
+  return {
+    turnoActual: secuenciaNueva[0] ?? null,
+    turnosPendientes: secuenciaNueva,
+    ronda,
+    nuevaRonda: true,
+  };
+}
