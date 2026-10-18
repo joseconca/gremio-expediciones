@@ -1030,7 +1030,7 @@ export async function ejecutarAccionCombateParty(
 
     const personaje = await cargarPersonajeAccionParty(tx, usuarioId);
     let efectosJugador = convertirEfectos(participante.efectos);
-    const cooldowns = obtenerCooldowns(participante.cooldowns);
+    let cooldowns = obtenerCooldowns(participante.cooldowns);
     const rosterGuardado = leerEnemigosEnCombate(combate.enemigos);
     const enemigoLegacy = crearEnemigoLegacy({
       enemigoId: combate.enemigoId,
@@ -1395,6 +1395,7 @@ export async function ejecutarAccionCombateParty(
     let turnoActualUsuarioId: string | null = null;
     let ronda = combate.ronda;
     let turnosPendientes: PasoTurnoVelocidad[] = [];
+    let nuevaRonda = false;
     let fase = "activo";
     if (resultadoTerminal === "victoria") {
       fase = "victoria";
@@ -1416,6 +1417,27 @@ export async function ejecutarAccionCombateParty(
       turnoActualUsuarioId = siguiente.turnoActualUsuarioId;
       ronda = siguiente.ronda;
       turnosPendientes = siguiente.turnosPendientes;
+      nuevaRonda = siguiente.nuevaRonda;
+    }
+
+    if (nuevaRonda) {
+      // Un cooldown avanza al completarse todo el ciclo, con independencia
+      // de qué equipo haya ejecutado la última acción.
+      cooldowns = reducirCooldowns(cooldowns);
+      for (const miembro of combate.participantes) {
+        if (miembro.usuarioId === usuarioId) continue;
+        const valor = miembro.cooldowns;
+        const bruto = valor && typeof valor === "object" && !Array.isArray(valor)
+          ? Object.fromEntries(Object.entries(valor).filter(([, n]) => typeof n === "number" && Number.isFinite(n) && n > 0))
+          : {};
+        const guardado = await tx.combatePartyParticipante.updateMany({
+          where: { id: miembro.id, combatePartyId: combate.id },
+          data: { cooldowns: reducirCooldowns(bruto as Record<string, number>) as unknown as Prisma.InputJsonValue },
+        });
+        if (guardado.count !== 1) {
+          throw new PartyServiceError("No se pudieron actualizar los cooldowns de la party.", 409, "PARTICIPANTE_PARTY_MODIFICADO");
+        }
+      }
     }
 
     // Todos los cambios de recursos/inventario y el avance del turno son atómicos.
