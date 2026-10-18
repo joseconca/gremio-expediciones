@@ -79,3 +79,13 @@ test("la crónica histórica de party empieza contraída y se expande al pulsar 
   assert.match(panel, /setInformeHistoricoPartyAbierto\(false\)/);
   assert.match(panel, /ultimoResultadoCombate\?\.expedicionPartyId, estado\?\.party\?\.id/);
 });
+
+test("el aviso de compañía tiene una cabecera más sólida y contrastada que el papel de la misión", () => {
+  const panel = read("src/components/base/PanelParty.tsx");
+
+  assert.match(panel, /Aviso de compañía/);
+  assert.match(panel, /bg-\[linear-gradient\(135deg,#7a3027_0%,#64251f_58%,#4c1d19_100%\)\]/);
+  assert.match(panel, /text-\[#fff0dd\]/);
+  assert.match(panel, /text-\[#f0c77f\]/);
+  assert.match(panel, /focus-visible:ring-\[#f0c77f\]/);
+});
