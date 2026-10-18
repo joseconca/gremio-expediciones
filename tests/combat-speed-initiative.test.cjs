@@ -1,6 +1,8 @@
 require("./load-typescript.cjs");
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
 const {
   crearSecuenciaTurnosVelocidad,
   avanzarSecuenciaTurnosVelocidad,
@@ -28,8 +30,10 @@ test("los empates son reproducibles con la misma semilla y pueden cambiar con ot
   ];
   const primera = crearSecuenciaTurnosVelocidad(actores, "misma-semilla");
   const repetida = crearSecuenciaTurnosVelocidad(actores, "misma-semilla");
+  const otraSemilla = crearSecuenciaTurnosVelocidad(actores, "otra-semilla");
 
   assert.deepEqual(repetida, primera);
+  assert.notDeepEqual(otraSemilla, primera);
   assert.deepEqual(primera.map((paso) => paso.actorId).sort(), ["dos", "tres", "uno"]);
 });
 
@@ -68,4 +72,25 @@ test("si se agota el ciclo se genera el siguiente con la ronda incrementada", ()
   assert.equal(siguiente.nuevaRonda, true);
   assert.equal(siguiente.turnoActual.actorId, "jugador");
   assert.deepEqual(siguiente.turnosPendientes.map((paso) => paso.actorId), ["jugador"]);
+});
+
+test("PvE y party consumen la cola persistida y procesan un enemigo por acción", () => {
+  const leer = (archivo) => fs.readFileSync(path.resolve(__dirname, archivo), "utf8");
+  const pve = leer("../src/server/services/combate/pve.ts");
+  const party = leer("../src/server/services/party/combate-party-actions.ts");
+  const iniciarPve = leer("../src/server/services/expediciones/llegar-expedicion.ts");
+  const iniciarParty = leer("../src/server/services/party/combate-party-service.ts");
+  const esquema = leer("../prisma/schema.prisma");
+  const migracion = leer("../prisma/migrations/20261018170000_iniciativa_por_velocidad/migration.sql");
+
+  assert.match(pve, /turnoEnemigoActual\.actorId/);
+  assert.match(pve, /turnosPendientes: avanceTurnos\.turnosPendientes/);
+  assert.match(party, /turnoEnemigoActual\.actorId/);
+  assert.match(party, /turnosPendientes: turnosPendientes/);
+  assert.match(iniciarPve, /turnosPendientes: turnosPendientes/);
+  assert.match(iniciarParty, /turnosPendientes: turnosPendientes/);
+  assert.match(esquema, /model CombateActivo[\s\S]*?turnosPendientes\s+Json/);
+  assert.match(esquema, /model CombateParty[\s\S]*?turnosPendientes\s+Json/);
+  assert.match(migracion, /ALTER TABLE "CombateActivo"[\s\S]*?"turnosPendientes"/);
+  assert.match(migracion, /ALTER TABLE "CombateParty"[\s\S]*?"turnosPendientes"/);
 });
