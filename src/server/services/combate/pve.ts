@@ -2,6 +2,13 @@ import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { calcularFechasRegresoProgramadas } from "@/lib/expediciones/tiempos";
+import {
+  avanzarSecuenciaTurnosVelocidad,
+  crearSecuenciaTurnosVelocidad,
+  normalizarSecuenciaTurnosVelocidad,
+  type ActorTurnoVelocidad,
+  type PasoTurnoVelocidad,
+} from "@/lib/expediciones/iniciativa-combate";
 
 function adjuntarPulsosEstado(
   accion: AccionAnimadaCombate,
@@ -86,6 +93,58 @@ const incluirUsuarioTrasCombate = {
   expedicionActiva: { include: { combateActivo: true } },
 } satisfies Prisma.UsuarioInclude;
 
+type CombateConIniciativaPve = {
+  id: string;
+  turno: string;
+  ronda: number;
+  turnosPendientes: unknown;
+  jugadorVelocidad: number;
+  jugadorHp: number;
+};
+
+function actoresVivosPve(
+  combate: CombateConIniciativaPve,
+  enemigos: EnemigoEnCombate[],
+  jugadorHp = combate.jugadorHp,
+): ActorTurnoVelocidad[] {
+  return [
+    ...(jugadorHp > 0
+      ? [{ actorId: "jugador", equipo: "jugador" as const, velocidad: Math.max(1, combate.jugadorVelocidad) }]
+      : []),
+    ...enemigos
+      .filter((enemigo) => enemigo.hp > 0)
+      .map((enemigo) => ({ actorId: enemigo.id, equipo: "enemigo" as const, velocidad: enemigo.velocidad })),
+  ];
+}
+
+function obtenerColaActualPve(
+  combate: CombateConIniciativaPve,
+  enemigos: EnemigoEnCombate[],
+): PasoTurnoVelocidad[] {
+  const actores = actoresVivosPve(combate, enemigos);
+  const idsVivos = new Set(actores.map((actor) => actor.actorId));
+  const guardada = normalizarSecuenciaTurnosVelocidad(combate.turnosPendientes);
+  const primera = guardada[0];
+  if (
+    primera &&
+    idsVivos.has(primera.actorId) &&
+    (combate.turno === "jugador"
+      ? primera.equipo === "jugador" && primera.actorId === "jugador"
+      : primera.equipo === "enemigo")
+  ) return guardada;
+
+  // Compatibilidad con combates activos anteriores a la persistencia de la cola.
+  const enemigoPreferido = actores
+    .filter((actor) => actor.equipo === "enemigo")
+    .sort((a, b) => b.velocidad - a.velocidad || a.actorId.localeCompare(b.actorId))[0];
+  const preferido = combate.turno === "jugador" ? "jugador" : enemigoPreferido?.actorId;
+  return crearSecuenciaTurnosVelocidad(
+    actores,
+    `pve:${combate.id}:ronda:${combate.ronda}`,
+    preferido,
+  );
+}
+
 export async function ejecutarAccionPve(request: Request) {
   const preparado = await prepararAccionCombate(request, "pve");
   if (!("contexto" in preparado)) return preparado;
@@ -154,6 +213,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
         enemigoPosicion: combate.enemigoPosicion,
         efectos: efectosDefensor,
       })!] : []);
+  const colaTurnosActuales = obtenerColaActualPve(combate, enemigosEnCombate);
   const danoEnemigoPorId = new Map<string, number>();
   const efectosEnemigoPorId = new Map<string, { defensa: number; efectos: ReturnType<typeof leerEfectosCombate> }>();
   try {
