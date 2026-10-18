@@ -53,7 +53,7 @@ function crearReporteAnexoRegreso(expedicion: ExpedicionActiva): ReporteExpedici
     ? combate.log.filter((linea): linea is string => typeof linea === "string" && linea.trim().length > 0)
     : [];
   const experienciaJobGanada = logCombate.reduce((total, linea) => {
-    const coincidencia = linea.match(/Job XP:\\s*(\\d+)/i);
+    const coincidencia = linea.match(/Job XP:\s*(\d+)/i);
     return total + (coincidencia ? Number(coincidencia[1]) : 0);
   }, 0);
 
