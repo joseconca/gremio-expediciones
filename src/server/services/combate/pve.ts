@@ -447,9 +447,13 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           }
         }
       } else {
+        const turnoEnemigoActual = colaTurnosActuales[0];
+        if (!turnoEnemigoActual || turnoEnemigoActual.equipo !== "enemigo") {
+          return NextResponse.json({ error: "La cola de iniciativa no apunta a un enemigo activo." }, { status: 409 });
+        }
         const impactos: { enemigo: EnemigoEnCombate; dano: number; critico: boolean; objetivoId: string; hpAntes: number; hpDespues: number }[] = [];
         const textos: string[] = [];
-        for (const enemigoInicial of [...enemigosEnCombate].sort((a, b) => a.casilla - b.casilla)) {
+        for (const enemigoInicial of [...enemigosEnCombate].filter((enemigo) => enemigo.id === turnoEnemigoActual.actorId)) {
           const enemigo = enemigosEnCombate.find((entrada) => entrada.id === enemigoInicial.id);
           if (!enemigo || enemigo.hp <= 0) continue;
           const efectosDelEnemigo = leerEfectosCombate(enemigo.efectos);
