@@ -262,10 +262,6 @@ export default function CombateModal({
     }
   }, [combate.log, logExpandido]);
 
-  const vidaJugador = Math.max(
-    0,
-    Math.min(100, (combate.jugadorHp / combate.jugadorHpMaximo) * 100)
-  );
   const obtenerColorVida = (porcentaje: number) => {
     if (porcentaje >= 75) return "from-emerald-500 to-emerald-400";
     if (porcentaje >= 50) return "from-lime-500 to-lime-400";
@@ -316,6 +312,7 @@ export default function CombateModal({
 
   const {
     danioVisible,
+    vidasTemporalesCombate,
     daniosMultiplesVisibles,
     objetivosMultiplesImpactados,
     actoresAnimando,
@@ -328,6 +325,12 @@ export default function CombateModal({
     proyectilesVisibles,
     mostrarResultadoVisual,
   } = useAnimacionesCombate();
+
+  const hpJugadorVisual = vidasTemporalesCombate?.jugador ?? combate.jugadorHp;
+  const vidaJugador = Math.max(
+    0,
+    Math.min(100, (hpJugadorVisual / Math.max(1, combate.jugadorHpMaximo)) * 100),
+  );
 
   const [procesandoLocal, setProcesandoLocal] = useState(false);
 
@@ -736,7 +739,8 @@ export default function CombateModal({
           {partyMode ? (
             <div className="relative flex h-full w-1/2 min-w-0 items-center overflow-visible">
               {distribuirFormacionParty(partyMode.participantes).map(({ participante, x, y }) => {
-                const vida = Math.max(0, Math.min(100, participante.jugadorHp / Math.max(1, participante.jugadorHpMaximo) * 100));
+                const hpParticipanteVisual = vidasTemporalesCombate?.[participante.usuarioId] ?? participante.jugadorHp;
+                const vida = Math.max(0, Math.min(100, hpParticipanteVisual / Math.max(1, participante.jugadorHpMaximo) * 100));
                 const energiaActual = Math.max(0, participante.jugadorEnergiaActual);
                 const energiaMaxima = Math.max(0, participante.jugadorEnergiaMaxima);
                 const energiaPorcentaje = energiaMaxima > 0 ? Math.min(100, energiaActual / energiaMaxima * 100) : 0;
@@ -768,7 +772,7 @@ export default function CombateModal({
                     key={participante.id}
                     className={`absolute z-10 flex w-[34%] max-w-[130px] -translate-x-1/2 -translate-y-1/2 flex-col items-center transition-[left,top] duration-300 ${animando && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque_700ms_ease-in-out]") : ""} ${retirado ? "opacity-50 grayscale-[35%]" : caido ? "opacity-55 grayscale" : ""}`}
                     style={{ left: `${x}%`, top: `${y}%` }}
-                    aria-label={`${participante.nombre}, ${participante.jugadorHp} de ${participante.jugadorHpMaximo} puntos de vida`}
+                    aria-label={`${participante.nombre}, ${hpParticipanteVisual} de ${participante.jugadorHpMaximo} puntos de vida`}
                   >
                     {danioVisible?.actor === participante.usuarioId && (
                       <div className={`absolute top-1 z-50 -translate-y-full whitespace-nowrap font-black drop-shadow-[0_3px_3px_rgba(0,0,0,0.9)] ${danioVisible.critico ? "animate-bounce text-2xl text-amber-300" : "text-xl text-red-300"}`}>
@@ -842,7 +846,7 @@ export default function CombateModal({
                       <div role="progressbar" aria-label={`Vida de ${participante.nombre}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(vida)} className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-sm border border-stone-700 bg-stone-950/90">
                         <div className={`h-full transition-all duration-300 ${retirado ? "bg-amber-600" : caido ? "bg-stone-500" : vida >= 50 ? "bg-emerald-500" : vida >= 25 ? "bg-orange-400" : "bg-red-500"}`} style={{ width: `${vida}%` }} />
                       </div>
-                      <span className="shrink-0 font-mono text-[7px] leading-none text-emerald-200">{Math.max(0, participante.jugadorHp)}/{participante.jugadorHpMaximo}</span>
+                      <span className="shrink-0 font-mono text-[7px] leading-none text-emerald-200">{Math.max(0, hpParticipanteVisual)}/{participante.jugadorHpMaximo}</span>
                     </div>
                     <div className="mt-0.5 w-[88%] max-w-[100px] space-y-0.5">
                       {recursoClaseParticipante !== "mana" && (
@@ -892,7 +896,7 @@ export default function CombateModal({
                     <div role="progressbar" aria-label="Vida" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(vidaJugador)} className="h-2 min-w-0 flex-1 overflow-hidden rounded-full border border-stone-700 bg-stone-900 shadow-inner">
                       <div className={`h-full rounded-full bg-gradient-to-r ${obtenerColorVida(vidaJugador)} transition-all duration-500`} style={{ width: `${vidaJugador}%` }} />
                     </div>
-                    <span className="w-[54px] shrink-0 text-right font-mono text-[9px] font-bold text-stone-200">{Math.max(0, combate.jugadorHp)}/{combate.jugadorHpMaximo}</span>
+                    <span className="w-[54px] shrink-0 text-right font-mono text-[9px] font-bold text-stone-200">{Math.max(0, hpJugadorVisual)}/{combate.jugadorHpMaximo}</span>
                   </div>
 
                   {recursoClase !== "mana" && (
