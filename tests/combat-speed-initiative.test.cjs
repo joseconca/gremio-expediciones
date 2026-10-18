@@ -22,6 +22,17 @@ test("la velocidad reparte acciones 10/15/30 en proporción 1/2/3 y por orden de
   assert.equal(secuencia.filter((paso) => paso.actorId === "C").length, 3);
 });
 
+test("la proporción no se limita a tres acciones cuando la diferencia de velocidad es mayor", () => {
+  const secuencia = crearSecuenciaTurnosVelocidad([
+    { actorId: "lento", equipo: "jugador", velocidad: 10 },
+    { actorId: "rapido", equipo: "enemigo", velocidad: 100 },
+  ], "diferencia-grande");
+  assert.equal(secuencia.filter((paso) => paso.actorId === "lento").length, 1);
+  assert.equal(secuencia.filter((paso) => paso.actorId === "rapido").length, 10);
+  assert.equal(secuencia[0].actorId, "rapido");
+  assert.equal(secuencia.indexOf(secuencia.find((paso) => paso.actorId === "lento")), 5);
+});
+
 test("los empates son reproducibles con la misma semilla y pueden cambiar con otra", () => {
   const actores = [
     { actorId: "uno", equipo: "jugador", velocidad: 10 },
