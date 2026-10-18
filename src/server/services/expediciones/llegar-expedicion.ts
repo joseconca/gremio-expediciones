@@ -20,6 +20,7 @@ import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 import { esModoDificultad } from "../../../lib/expediciones/dificultad";
 import { aplicarEfectoComida, comidaOtorgaIniciativa, obtenerComidaTaberna } from "@/lib/comidasTaberna";
 import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
+import { crearSecuenciaTurnosVelocidad } from "@/lib/expediciones/iniciativa-combate";
 
 export async function llegarExpedicion() {
   try {
@@ -335,12 +336,18 @@ export async function llegarExpedicion() {
 
     const jugadorDanoCritico = estadisticasJugador.total.danoCritico;
 
-    const velocidadEnemigoMasRapido = Math.max(...enemigosEnCombate.map((enemigo) => enemigo.velocidad));
-    const primerTurno =
-      comidaOtorgaIniciativa(expedicion.efectoComida) ||
-      jugadorVelocidad >= velocidadEnemigoMasRapido
-        ? "jugador"
-        : "enemigo";
+    // La iniciativa incluye al jugador y a cada enemigo individual.
+    // La cola completa se persiste para que cada acción consuma solo un turno.
+    const turnosPendientes = crearSecuenciaTurnosVelocidad([
+      { actorId: "jugador", equipo: "jugador", velocidad: jugadorVelocidad },
+      ...enemigosEnCombate.map((enemigo) => ({
+        actorId: enemigo.id,
+        equipo: "enemigo" as const,
+        velocidad: enemigo.velocidad,
+      })),
+    ], `pve:${expedicion.id}:ronda:1`,
+    comidaOtorgaIniciativa(expedicion.efectoComida) ? "jugador" : null);
+    const primerTurno = turnosPendientes[0]?.equipo ?? "jugador";
 
     const comidaActiva = obtenerComidaTaberna(expedicion.efectoComida);
     const nombresEnemigos = enemigosEnCombate.map((enemigo) => enemigo.nombre);
@@ -373,6 +380,7 @@ export async function llegarExpedicion() {
           fase: "activo",
           ronda: 1,
           turno: primerTurno,
+          turnosPendientes: turnosPendientes as unknown as Prisma.InputJsonValue,
           jugadorPosicion: posicionJugador,
           enemigoPosicion: "centro",
 
