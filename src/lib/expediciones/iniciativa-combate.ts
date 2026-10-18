@@ -1,8 +1,8 @@
 /**
  * Secuencia reproducible de iniciativa para combates PvE en solitario y party.
  *
- * Cada combatiente obtiene entre 1 y 3 acciones por ciclo, en proporción a su
- * velocidad relativa a la más baja: 10/15/30 produce 1/2/3. Se intercala una
+ * Cada combatiente obtiene acciones en proporción a su velocidad respecto
+ * a la más baja: 10/15/30 produce 1/2/3, y 10/100 produce 1/10. Se intercala una
  * acción de cada combatiente elegible por pasada, empezando por el más rápido.
  * Los empates se resuelven con un hash de semilla, actor y ronda, nunca con
  * aleatoriedad de servidor no reproducible.
@@ -26,8 +26,6 @@ export interface AvanceTurnosVelocidad {
   ronda: number;
   nuevaRonda: boolean;
 }
-
-const MAX_ACCIONES_POR_CICLO = 3;
 
 function hashDeterminista(valor: string): number {
   let hash = 2166136261;
@@ -80,10 +78,7 @@ export function crearSecuenciaTurnosVelocidad(
   const velocidadBase = Math.min(...actores.map((actor) => actor.velocidad));
   const conAcciones = actores.map((actor) => ({
     ...actor,
-    acciones: Math.max(
-      1,
-      Math.min(MAX_ACCIONES_POR_CICLO, Math.round(actor.velocidad / velocidadBase)),
-    ),
+    acciones: Math.max(1, Math.round(actor.velocidad / velocidadBase)),
     desempate: hashDeterminista(`${semilla}:${actor.actorId}`),
   })).sort((a, b) =>
     b.velocidad - a.velocidad ||
