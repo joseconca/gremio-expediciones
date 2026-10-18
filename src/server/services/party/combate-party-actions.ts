@@ -181,8 +181,9 @@ function prepararSiguienteTurnoVelocidad(
   participantes: ParticipanteConVelocidadParty[],
   enemigos: EnemigoEnCombate[],
   estadosActualizados: ParticipanteTurnoParty[] = [],
+  colaActualOverride?: PasoTurnoVelocidad[],
 ) {
-  const cola = obtenerColaActualParty(combate, participantes, enemigos);
+  const cola = colaActualOverride ?? obtenerColaActualParty(combate, participantes, enemigos);
   const avance = avanzarSecuenciaTurnosVelocidad({
     turnosPendientes: cola,
     actoresVivos: construirActoresVivosParty(participantes, enemigos, estadosActualizados),
@@ -962,6 +963,7 @@ export async function ejecutarAccionCombateParty(
           combate.participantes,
           enemigosParaHuida,
           estadoParticipantes,
+          colaAntesDeHuida,
         );
         faseTurno = siguiente.faseTurno;
         turnoActualUsuarioId = siguiente.turnoActualUsuarioId;
@@ -1055,6 +1057,7 @@ export async function ejecutarAccionCombateParty(
     if (enemigosEnCombate.length === 0) {
       throw new PartyServiceError("El combate no contiene enemigos válidos.", 500, "ROSTER_ENEMIGO_INVALIDO");
     }
+    const colaTurnosActuales = obtenerColaActualParty(combate, combate.participantes, enemigosEnCombate);
     const idEnemigoSolicitado = typeof payload?.enemigoObjetivoId === "string"
       ? payload.enemigoObjetivoId
       : typeof payload?.objetivoId === "string" && payload.objetivoId.startsWith("enemigo-")
@@ -1412,6 +1415,7 @@ export async function ejecutarAccionCombateParty(
         combate.participantes,
         enemigosEnCombate,
         estadoParticipantes,
+        colaTurnosActuales,
       );
       faseTurno = siguiente.faseTurno;
       turnoActualUsuarioId = siguiente.turnoActualUsuarioId;
@@ -1809,6 +1813,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
         combate.participantes,
         enemigosEnCombate,
         participantesActualizados,
+        colaTurnosActuales,
       );
       faseTurno = siguiente.faseTurno;
       turnoActualUsuarioId = siguiente.turnoActualUsuarioId;
