@@ -230,6 +230,7 @@ model CombateActivo {
 
   ronda Int @default(1)
   turno String @default("jugador")
+  turnosPendientes Json @default("[]")
 
   tipo String @default("pve")
 
@@ -470,6 +471,7 @@ model CombateParty {
   ronda                 Int      @default(1)
   faseTurno             String   @default("jugador")
   turnoInicialEnemigo   Boolean  @default(false)
+  turnosPendientes       Json     @default("[]")
   turnoActualUsuarioId  String?
   enemigoId             String
   enemigoNombre         String
