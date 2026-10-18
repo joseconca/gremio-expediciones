@@ -838,8 +838,11 @@ export default function CombateModal({
                     <span className="mt-0.5 flex max-w-full items-center gap-0.5 rounded bg-black/65 px-1 text-center text-[9px] font-black leading-tight text-stone-100 shadow sm:text-[10px]">
                       <span className="max-w-full truncate">{participante.nombre}</span>{participante.esLider ? <span className="text-amber-300" title="Líder">♛</span> : null}
                     </span>
-                    <div className="mt-0.5 h-1.5 w-[80%] max-w-[82px] overflow-hidden rounded-sm border border-stone-700 bg-stone-950/90">
-                      <div className={`h-full transition-all duration-300 ${retirado ? "bg-amber-600" : caido ? "bg-stone-500" : vida >= 50 ? "bg-emerald-500" : vida >= 25 ? "bg-orange-400" : "bg-red-500"}`} style={{ width: `${vida}%` }} />
+                    <div className="mt-0.5 flex w-[88%] max-w-[100px] items-center gap-0.5">
+                      <div role="progressbar" aria-label={`Vida de ${participante.nombre}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(vida)} className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-sm border border-stone-700 bg-stone-950/90">
+                        <div className={`h-full transition-all duration-300 ${retirado ? "bg-amber-600" : caido ? "bg-stone-500" : vida >= 50 ? "bg-emerald-500" : vida >= 25 ? "bg-orange-400" : "bg-red-500"}`} style={{ width: `${vida}%` }} />
+                      </div>
+                      <span className="shrink-0 font-mono text-[7px] leading-none text-emerald-200">{Math.max(0, participante.jugadorHp)}/{participante.jugadorHpMaximo}</span>
                     </div>
                     <div className="mt-0.5 w-[88%] max-w-[100px] space-y-0.5">
                       {recursoClaseParticipante !== "mana" && (
