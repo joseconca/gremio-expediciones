@@ -844,12 +844,12 @@ export default function CombateModal({
                       <span className="max-w-full truncate">{participante.nombre}</span>{participante.esLider ? <span className="text-amber-300" title="Líder">♛</span> : null}
                     </span>
                     <div className="mt-0.5 flex w-[88%] max-w-[100px] items-center gap-0.5">
-                      <div role="progressbar" aria-label={`Vida de ${participante.nombre}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(vida)} className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-sm border border-stone-700 bg-stone-950/90">
-                        <div className={`h-full transition-all duration-300 ${retirado ? "bg-amber-600" : caido ? "bg-stone-500" : vida >= 50 ? "bg-emerald-500" : vida >= 25 ? "bg-orange-400" : "bg-red-500"}`} style={{ width: `${vida}%` }} />
+                      <div role="progressbar" aria-label={`Vida de ${participante.nombre}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(vida)} className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full border border-stone-700 bg-stone-900 shadow-inner">
+                        <div className={`h-full rounded-full bg-gradient-to-r ${retirado ? "from-amber-600 to-amber-500" : caido ? "from-stone-600 to-stone-500" : obtenerColorVida(vida)} transition-all duration-300`} style={{ width: `${vida}%` }} />
                       </div>
-                      <span className="shrink-0 font-mono text-[7px] leading-none text-emerald-200">{Math.max(0, hpParticipanteVisual)}/{participante.jugadorHpMaximo}</span>
+                      <span className="shrink-0 text-right font-mono text-[7px] leading-none text-stone-200 sm:text-[8px]">{Math.max(0, hpParticipanteVisual)}/{participante.jugadorHpMaximo}</span>
                     </div>
-                    <div className="mt-0.5 w-[88%] max-w-[100px] space-y-0.5">
+                    <div className="mt-0 w-[88%] max-w-[100px] space-y-0.5">
                       {recursoClaseParticipante !== "mana" && (
                         <div className="flex items-center gap-0.5" title="Energía">
                           <div role="progressbar" aria-label={`Energía de ${participante.nombre}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(energiaPorcentaje)} className="h-1 min-w-0 flex-1 overflow-hidden rounded-full bg-blue-950/90">
@@ -892,9 +892,9 @@ export default function CombateModal({
                   <span className="truncate text-sm font-bold tracking-wide text-stone-100">{personaje.nombre}</span>
                 </div>
 
-                <div className="space-y-1.5">
+                <div className="space-y-0.5">
                   <div className="flex items-center gap-1.5" title="Vida">
-                    <div role="progressbar" aria-label="Vida" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(vidaJugador)} className="h-2 min-w-0 flex-1 overflow-hidden rounded-full border border-stone-700 bg-stone-900 shadow-inner">
+                    <div role="progressbar" aria-label="Vida" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(vidaJugador)} className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full border border-stone-700 bg-stone-900 shadow-inner">
                       <div className={`h-full rounded-full bg-gradient-to-r ${obtenerColorVida(vidaJugador)} transition-all duration-500`} style={{ width: `${vidaJugador}%` }} />
                     </div>
                     <span className="w-[54px] shrink-0 text-right font-mono text-[9px] font-bold text-stone-200">{Math.max(0, hpJugadorVisual)}/{combate.jugadorHpMaximo}</span>
@@ -1104,8 +1104,11 @@ export default function CombateModal({
                   >
                   <div className="mb-0.5 w-full min-w-0 rounded-sm bg-black/65 px-1 py-0.5 text-center">
                     <span className="block truncate text-[9px] font-bold leading-tight text-stone-100 sm:text-[10px]">{enemigo.nombre}</span>
-                    <div role="progressbar" aria-label={`Vida de ${enemigo.nombre}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(vida)} className="mt-0.5 h-1 w-full overflow-hidden rounded-sm bg-stone-950/90">
-                      <div className={`h-full transition-all duration-300 ${vida >= 50 ? "bg-emerald-500" : vida >= 25 ? "bg-orange-400" : "bg-red-500"}`} style={{ width: `${vida}%` }} />
+                    <div className="mt-0.5 flex w-full min-w-0 items-center gap-0.5">
+                      <div role="progressbar" aria-label={`Vida de ${enemigo.nombre}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(vida)} className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full border border-stone-700 bg-stone-900 shadow-inner">
+                        <div className={`h-full rounded-full bg-gradient-to-r ${obtenerColorVida(vida)} transition-all duration-300`} style={{ width: `${vida}%` }} />
+                      </div>
+                      <span className={`shrink-0 text-right font-mono leading-none text-stone-200 ${partyMode ? "text-[7px] sm:text-[8px]" : "text-[8px] sm:text-[9px]"}`}>{Math.max(0, enemigo.hp)}/{enemigo.hpMaximo}</span>
                     </div>
                   </div>
                   {danioVisible?.actor === enemigo.id && (
