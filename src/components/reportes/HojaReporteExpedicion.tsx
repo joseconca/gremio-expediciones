@@ -70,10 +70,9 @@ export default function HojaReporteExpedicion({ reporte, onCerrar }: HojaReporte
     { clave: "xp-job", etiqueta: "Experiencia Job", icono: "📜", cantidad: Math.max(0, Math.trunc(reporte.experienciaJobGanada ?? 0)), color: "text-[#6e4f76]" },
   ].filter((fila) => fila.cantidad > 0);
 
-  const objetos: ObjetoReporteExpedicion[] = [
-    ...(reporte.recompensa?.objetos ?? []).map((objeto) => ({ ...objeto })),
-    ...(reporte.objetosObtenidos ?? []).map((objeto) => ({ ...objeto })),
-  ];
+  // Solo mostramos objetos confirmados como entregados; las recompensas previstas
+  // pueden no haberse obtenido si la expedición terminó en derrota.
+  const objetos: ObjetoReporteExpedicion[] = (reporte.objetosObtenidos ?? []).map((objeto) => ({ ...objeto }));
   const log = Array.isArray(reporte.logCombate) ? reporte.logCombate.filter((linea) => typeof linea === "string" && linea.trim().length > 0) : [];
   const textoCronica = esComercio ? "Consultar crónica de la ruta" : derrotados.length > 0
     ? `Has derrotado a ${derrotados.join(", ")}`
@@ -142,13 +141,26 @@ export default function HojaReporteExpedicion({ reporte, onCerrar }: HojaReporte
           </section>
         )}
 
-        {reporte.tipo === "combate" && (derrotados.length > 0 || enemigoPrincipal) && (
+        {reporte.tipo === "combate" && (
           <section className="relative z-[1] mt-3 border border-current/25 bg-[#f8efd9]/70 p-3">
             <p className="text-[9px] font-black uppercase tracking-[0.18em] text-[#806341]">Resultado del encuentro</p>
-            {derrotados.length > 0 ? (
-              <p className="mt-1 font-serif text-base font-black text-[#36543a]">🏆 {derrotados.length === 1 ? "Has derrotado a" : "Enemigos derrotados:"} {derrotados.join(", ")}</p>
+            {log.length > 0 ? (
+              <button
+                type="button"
+                onClick={() => setCronicaAbierta((abierta) => !abierta)}
+                aria-expanded={cronicaAbierta}
+                aria-controls="cronica-reporte-expedicion"
+                className="mt-1 flex min-h-10 w-full items-center justify-between gap-2 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#68472c]"
+              >
+                <span className={`font-serif text-base font-black ${derrotados.length > 0 || esExito ? "text-[#36543a]" : "text-[#8b3228]"}`}>
+                  {derrotados.length > 0 ? (derrotados.length === 1 ? "🏆 Has derrotado a " : "🏆 Enemigos derrotados: ") + derrotados.join(", ") : esRetirada ? "🏃 Te has retirado del combate" : esDerrota ? "💀 El aventurero ha caído en combate" : esExito ? "🏆 Encuentro completado" : "📜 Expedición cancelada"}
+                </span>
+                <span aria-hidden="true" className="shrink-0 text-sm">{cronicaAbierta ? "⌃" : "⌄"}</span>
+              </button>
             ) : (
-              <p className="mt-1 font-serif text-base font-black text-[#8b3228]">{esRetirada ? "🏃 Te has retirado del combate" : esDerrota ? "💀 El grupo ha sido derrotado" : "⚔️ Encuentro concluido"}</p>
+              <p className="mt-1 font-serif text-base font-black text-[#594632]">
+                {derrotados.length > 0 ? "Has derrotado a " + derrotados.join(", ") : esDerrota ? "El aventurero ha caído en combate" : esRetirada ? "Te has retirado del combate" : "Encuentro concluido"}
+              </p>
             )}
           </section>
         )}
@@ -196,20 +208,22 @@ export default function HojaReporteExpedicion({ reporte, onCerrar }: HojaReporte
 
         {log.length > 0 && (
           <section className="relative z-[1] mt-4 border-t border-dashed border-current/30 pt-3">
-            <button
-              type="button"
-              onClick={() => setCronicaAbierta((abierta) => !abierta)}
-              aria-expanded={cronicaAbierta}
-              aria-controls="cronica-reporte-expedicion"
-              className="flex min-h-11 w-full items-center justify-between gap-3 border border-[#92744a]/70 bg-[#d4bf91]/55 px-3 py-2 text-left text-xs font-black text-[#4b321f] transition hover:bg-[#f0e2c0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#68472c]"
-            >
-              <span className="min-w-0 truncate">{textoCronica}</span>
-              <span aria-hidden="true" className="shrink-0 text-sm">{cronicaAbierta ? "⌃" : "⌄"}</span>
-            </button>
+            {esComercio && (
+              <button
+                type="button"
+                onClick={() => setCronicaAbierta((abierta) => !abierta)}
+                aria-expanded={cronicaAbierta}
+                aria-controls="cronica-reporte-expedicion"
+                className="flex min-h-11 w-full items-center justify-between gap-3 border border-[#92744a]/70 bg-[#d4bf91]/55 px-3 py-2 text-left text-xs font-black text-[#4b321f] transition hover:bg-[#f0e2c0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#68472c]"
+              >
+                <span className="min-w-0 truncate">{textoCronica}</span>
+                <span aria-hidden="true" className="shrink-0 text-sm">{cronicaAbierta ? "⌃" : "⌄"}</span>
+              </button>
+            )}
             {cronicaAbierta && (
               <div id="cronica-reporte-expedicion" className="mt-2 max-h-64 space-y-1.5 overflow-y-auto border border-[#a28a5e]/60 bg-[#f8efd9]/75 p-3">
                 {log.map((linea, indice) => (
-                  <p key={`${indice}-${linea}`} className={`text-[11px] leading-relaxed sm:text-xs ${colorLog(linea)}`}>
+                  <p key={String(indice) + "-" + linea} className={`text-[11px] leading-relaxed sm:text-xs ${colorLog(linea)}`}>
                     <span className="mr-1 font-mono text-[9px] opacity-55">{String(indice + 1).padStart(2, "0")}.</span>{linea}
                   </p>
                 ))}
@@ -217,8 +231,6 @@ export default function HojaReporteExpedicion({ reporte, onCerrar }: HojaReporte
             )}
           </section>
         )}
-
-
         <footer className="relative z-[1] mt-4 border-t border-dashed border-current/30 pt-3">
           <button
             type="button"
