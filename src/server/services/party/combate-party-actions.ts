@@ -1592,12 +1592,23 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       throw new PartyServiceError("El combate no contiene enemigos válidos.", 500, "ROSTER_ENEMIGO_INVALIDO");
     }
 
-    // Cada enemigo vivo procesa sus estados y, si sobrevive, ataca una vez.
+    // Solo actúa el enemigo que encabeza la cola; los siguientes enemigos
+    // esperan su propio turno según la velocidad relativa.
     let participantesActualizados = obtenerEstadoParticipantes(combate.participantes);
+    const colaTurnosActuales = obtenerColaActualParty(
+      combate,
+      combate.participantes,
+      enemigosEnCombate,
+      participantesActualizados,
+    );
+    const turnoEnemigoActual = colaTurnosActuales[0];
+    if (!turnoEnemigoActual || turnoEnemigoActual.equipo !== "enemigo") {
+      throw new PartyServiceError("La cola de iniciativa no apunta a un enemigo activo.", 409, "TURNO_ENEMIGO_INICIATIVA_INVALIDA");
+    }
     const danoPorUsuario = new Map<string, number>();
     const impactos: { actorEnemigoId: string; objetivoUsuarioId: string; dano: number; critico: boolean; hpAntes: number; hpDespues: number }[] = [];
     const actoresEnemigoIds: string[] = [];
-    for (const enemigoInicial of [...enemigosEnCombate].sort((a, b) => a.casilla - b.casilla)) {
+    for (const enemigoInicial of [...enemigosEnCombate].filter((enemigo) => enemigo.id === turnoEnemigoActual.actorId)) {
       const indiceEnemigo = enemigosEnCombate.findIndex((enemigo) => enemigo.id === enemigoInicial.id);
       let enemigo = enemigosEnCombate[indiceEnemigo];
       if (enemigo.hp <= 0) continue;
