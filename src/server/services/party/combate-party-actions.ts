@@ -182,7 +182,7 @@ function prepararSiguienteTurnoVelocidad(
   enemigos: EnemigoEnCombate[],
   estadosActualizados: ParticipanteTurnoParty[] = [],
 ) {
-  const cola = obtenerColaActualParty(combate, participantes, enemigos, estadosActualizados);
+  const cola = obtenerColaActualParty(combate, participantes, enemigos);
   const avance = avanzarSecuenciaTurnosVelocidad({
     turnosPendientes: cola,
     actoresVivos: construirActoresVivosParty(participantes, enemigos, estadosActualizados),
@@ -938,6 +938,8 @@ export async function ejecutarAccionCombateParty(
     }
 
     if (accionDesconocida === "escapar") {
+      const enemigosParaHuida = leerRosterEnemigosParty(combate);
+      const colaAntesDeHuida = obtenerColaActualParty(combate, combate.participantes, enemigosParaHuida);
       const estadoParticipantes = obtenerEstadoParticipantes(combate.participantes).map((p) =>
         p.usuarioId === usuarioId ? { ...p, estado: "huyo" } : p,
       );
@@ -951,13 +953,23 @@ export async function ejecutarAccionCombateParty(
         : combate.faseTurno as "jugador" | "enemigo";
       let turnoActualUsuarioId: string | null = terminal ? null : combate.turnoActualUsuarioId;
       let ronda = combate.ronda;
+      let turnosPendientes: PasoTurnoVelocidad[] = terminal ? [] : colaAntesDeHuida;
 
       if (!terminal && huyeEnSuTurno) {
-        // Si era su turno, la huida consume ese turno y avanza la secuencia.
-        const siguiente = prepararSiguienteTurno(combate, estadoParticipantes);
+        // Si era su turno, consume esa acción y omite las demás acciones que tuviera pendientes.
+        const siguiente = prepararSiguienteTurnoVelocidad(
+          combate,
+          combate.participantes,
+          enemigosParaHuida,
+          estadoParticipantes,
+        );
         faseTurno = siguiente.faseTurno;
         turnoActualUsuarioId = siguiente.turnoActualUsuarioId;
         ronda = siguiente.ronda;
+        turnosPendientes = siguiente.turnosPendientes;
+      } else if (!terminal) {
+        // La huida fuera de turno no consume la acción que ya correspondía a otro actor.
+        turnosPendientes = colaAntesDeHuida.filter((paso) => paso.actorId !== usuarioId);
       } else if (terminal) {
         log.push(
           resultadoTerminal === "victoria"
@@ -977,6 +989,7 @@ export async function ejecutarAccionCombateParty(
           faseTurno,
           turnoActualUsuarioId,
           ronda,
+          turnosPendientes: turnosPendientes as unknown as Prisma.InputJsonValue,
           log: log as unknown as Prisma.InputJsonValue,
           ultimaAccion: { actor: "jugador", actorUsuarioId: usuarioId, tipo: "fallo", animacion: "defensiva", dano: 0, critico: false, texto: "Huyes del combate." } as unknown as Prisma.InputJsonValue,
         },
