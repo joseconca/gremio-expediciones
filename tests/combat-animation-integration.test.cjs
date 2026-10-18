@@ -86,6 +86,21 @@ test("el turno enemigo espera antes de atacar tanto en solitario como en party",
   assert.match(party, /await new Promise<void>\(\(resolve\) => window\.setTimeout\(resolve, tiempoEsperaEnemigo\)\)/);
 });
 
+test("los ataques de varios enemigos se animan por separado con una pausa de un segundo", () => {
+  const contrato = read("src/lib/expediciones/combate.ts");
+  const pve = read("src/server/services/combate/pve.ts");
+  const party = read("src/server/services/party/combate-party-actions.ts");
+  const hook = read("src/components/combate/animaciones/useAnimacionesCombate.ts");
+
+  assert.match(contrato, /impactosEnemigos\?:\s*\{/);
+  assert.match(pve, /impactosEnemigos:\s*impactos\.map\(\(impacto\) => \(\{/);
+  assert.match(party, /impactosEnemigos:\s*impactos\.map\(\(impacto\) => \(\{/);
+  assert.match(hook, /if \(impactosEnemigos\.length > 1\)/);
+  assert.match(hook, /PAUSA_ENTRE_ATAQUES_ENEMIGOS_MS = 1000/);
+  assert.match(hook, /await esperar\(PAUSA_ENTRE_ATAQUES_ENEMIGOS_MS, temporizadoresRef\.current\)/);
+  assert.match(hook, /setActoresAnimando\(\[impacto\.actorEnemigoId\]\)/);
+});
+
 test("el golpe terminal mantiene visible el impacto antes del resultado y el asedio no lo superpone inmediatamente", () => {
   const hook = read("src/components/combate/animaciones/useAnimacionesCombate.ts");
   const combate = read("src/components/combate/CombateModal.tsx");
