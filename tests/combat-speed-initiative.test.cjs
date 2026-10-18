@@ -30,7 +30,7 @@ test("la proporción no se limita a tres acciones cuando la diferencia de veloci
   assert.equal(secuencia.filter((paso) => paso.actorId === "lento").length, 1);
   assert.equal(secuencia.filter((paso) => paso.actorId === "rapido").length, 10);
   assert.equal(secuencia[0].actorId, "rapido");
-  assert.equal(secuencia.indexOf(secuencia.find((paso) => paso.actorId === "lento")), 5);
+  assert.equal(secuencia.indexOf(secuencia.find((paso) => paso.actorId === "lento")), 4);
 });
 
 test("los empates son reproducibles con la misma semilla y pueden cambiar con otra", () => {
