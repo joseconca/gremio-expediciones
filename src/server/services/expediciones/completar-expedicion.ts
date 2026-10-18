@@ -13,7 +13,7 @@ import { leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 import { tirarBotinEnemigo } from "@/lib/lootObjetos";
 import { obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
 import { calcularCapacidadAlmacen } from "@/lib/expediciones/asedio";
-import type { RecompensaMision, RecompensaObjeto, TipoMision } from "@/lib/tiposJuego";
+import type { RecompensaMision, TipoMision } from "@/lib/tiposJuego";
 
 function leerArrayStrings(valor: unknown): string[] {
   return Array.isArray(valor) ? valor.filter((entrada): entrada is string => typeof entrada === "string") : [];
@@ -61,20 +61,11 @@ function obtenerRecompensaMision(valor: unknown): RecompensaMision {
     typeof valor.piedra === "number" &&
     typeof valor.metal === "number"
   ) {
-    const objetos = "objetos" in valor && Array.isArray(valor.objetos)
-      ? valor.objetos.flatMap((objeto): RecompensaObjeto[] => {
-          if (!objeto || typeof objeto !== "object" || Array.isArray(objeto)) return [];
-          const entrada = objeto as Record<string, unknown>;
-          if (typeof entrada.objetoId !== "string" || typeof entrada.cantidad !== "number" || !Number.isFinite(entrada.cantidad) || entrada.cantidad <= 0) return [];
-          return [{ objetoId: entrada.objetoId, cantidad: Math.trunc(entrada.cantidad) }];
-        })
-      : [];
     return {
       oro: Math.max(0, Math.trunc(valor.oro)),
       madera: Math.max(0, Math.trunc(valor.madera)),
       piedra: Math.max(0, Math.trunc(valor.piedra)),
       metal: Math.max(0, Math.trunc(valor.metal)),
-      ...(objetos.length > 0 ? { objetos } : {}),
     };
   }
 
@@ -213,7 +204,6 @@ export async function completarExpedicion() {
         madera: maderaRecibida,
         piedra: piedraRecibida,
         metal: metalRecibido,
-        ...(recompensa.objetos?.length ? { objetos: recompensa.objetos } : {}),
       };
 
       let logRegreso: string[];
