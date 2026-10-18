@@ -1104,39 +1104,45 @@ export default function PanelParty() {
           )}
 
           <div className="relative mt-2 border border-[#a28a5e]/65 bg-[#f8efd9]/70 p-2.5">
-            {ultimoResultadoCombate.fase === "victoria" ? (
-              <p className="font-serif text-sm font-black text-[#36543a]">
-                🏆 {ultimoResultadoCombate.enemigosDerrotados && ultimoResultadoCombate.enemigosDerrotados.length > 0
-                  ? `Has derrotado a ${ultimoResultadoCombate.enemigosDerrotados.join(", ")}`
-                  : "Habéis completado el encuentro"}
-              </p>
-            ) : (
-              <p className="font-serif text-sm font-black text-[#8b3228]">
-                {ultimoResultadoCombate.fase === "derrota" ? "💀 El grupo ha sido derrotado" : "🏃 El grupo se ha retirado"}
-              </p>
-            )}
-            {(ultimoResultadoCombate.logCombate?.length ?? 0) > 0 && (
+            {(ultimoResultadoCombate.logCombate?.length ?? 0) > 0 ? (
               <button
                 type="button"
                 onClick={() => setCronicaPartyAbierta((abierta) => !abierta)}
                 aria-expanded={cronicaPartyAbierta}
                 aria-controls="cronica-expedicion-party"
-                className="mt-2 flex min-h-10 w-full items-center justify-between gap-2 border border-[#92744a]/70 bg-[#d4bf91]/55 px-2.5 py-2 text-left text-[11px] font-black text-[#4b321f] transition hover:bg-[#f0e2c0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#68472c]"
+                className="flex min-h-10 w-full items-center justify-between gap-2 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#68472c]"
               >
-                <span>{cronicaPartyAbierta ? "Ocultar crónica del combate" : "Consultar crónica del combate"}</span>
-                <span aria-hidden="true">{cronicaPartyAbierta ? "⌃" : "⌄"}</span>
+                <span className={"font-serif text-sm font-black " + (ultimoResultadoCombate.fase === "victoria" ? "text-[#36543a]" : "text-[#8b3228]")}>
+                  {ultimoResultadoCombate.fase === "victoria"
+                    ? (ultimoResultadoCombate.enemigosDerrotados && ultimoResultadoCombate.enemigosDerrotados.length > 0
+                      ? "🏆 " + (ultimoResultadoCombate.enemigosDerrotados.length === 1 ? "Has derrotado a " : "Enemigos derrotados: ") + ultimoResultadoCombate.enemigosDerrotados.join(", ")
+                      : "🏆 Habéis completado el encuentro")
+                    : ultimoResultadoCombate.fase === "derrota" ? "💀 El grupo ha sido derrotado" : "🏃 El grupo se ha retirado"}
+                </span>
+                <span aria-hidden="true" className="shrink-0 text-sm">{cronicaPartyAbierta ? "⌃" : "⌄"}</span>
               </button>
+            ) : (
+              <p className={"font-serif text-sm font-black " + (ultimoResultadoCombate.fase === "victoria" ? "text-[#36543a]" : "text-[#8b3228]")}>
+                {ultimoResultadoCombate.fase === "victoria"
+                  ? "🏆 " + (ultimoResultadoCombate.enemigosDerrotados && ultimoResultadoCombate.enemigosDerrotados.length > 0
+                    ? "Has derrotado a " + ultimoResultadoCombate.enemigosDerrotados.join(", ")
+                    : "Habéis completado el encuentro")
+                  : ultimoResultadoCombate.fase === "derrota" ? "💀 El grupo ha sido derrotado" : "🏃 El grupo se ha retirado"}
+              </p>
             )}
             {cronicaPartyAbierta && (ultimoResultadoCombate.logCombate?.length ?? 0) > 0 && (
               <div id="cronica-expedicion-party" className="mt-2 max-h-52 space-y-1 overflow-y-auto border border-[#a28a5e]/60 bg-[#f8efd9]/80 p-2">
                 {ultimoResultadoCombate.logCombate!.map((linea, indice) => (
-                  <p key={`${indice}-${linea}`} className={`text-[10px] leading-relaxed ${linea.startsWith("💀") || linea.startsWith("🩸") ? "text-[#8b3228]" : linea.startsWith("🏆") || linea.startsWith("🎁") ? "text-[#36543a]" : "text-[#594632]"}`}>
+                  <p
+                    key={indice + "-" + linea}
+                    className={"text-[10px] leading-relaxed " + (linea.startsWith("💀") || linea.startsWith("🩸") ? "text-[#8b3228]" : linea.startsWith("🏆") || linea.startsWith("🎁") ? "text-[#36543a]" : "text-[#594632]")}
+                  >
                     <span className="mr-1 font-mono text-[8px] opacity-55">{String(indice + 1).padStart(2, "0")}.</span>{linea}
                   </p>
                 ))}
               </div>
             )}
-          </div>
+/div>
 
           {(ultimoResultadoCombate.fase === "victoria" || ultimoResultadoCombate.fase === "derrota") && ultimoResultadoCombate.recompensas ? (
             <div className="relative mt-3 space-y-2">
