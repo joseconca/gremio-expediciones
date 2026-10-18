@@ -21,10 +21,16 @@ import {
   procesarEfectosTurno,
 } from "@/lib/expediciones/estados-combate";
 import {
-  calcularSiguienteTurnoParty,
   resolverResultadoCombateParty,
   type ParticipanteTurnoParty,
 } from "@/lib/party/combate-reglas";
+import {
+  avanzarSecuenciaTurnosVelocidad,
+  crearSecuenciaTurnosVelocidad,
+  normalizarSecuenciaTurnosVelocidad,
+  type ActorTurnoVelocidad,
+  type PasoTurnoVelocidad,
+} from "@/lib/expediciones/iniciativa-combate";
 import { PartyServiceError } from "@/server/services/party/party-service";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import { tirarBotinEnemigo } from "@/lib/lootObjetos";
@@ -100,23 +106,137 @@ function registrarResultadoTerminal(
   return resolverResultadoCombateParty(enemigoHp, participantes);
 }
 
-function prepararSiguienteTurno(
+type ParticipanteConVelocidadParty = {
+  usuarioId: string;
+  ordenTurno: number;
+  estado: string;
+  jugadorHp: number;
+  jugadorVelocidad: number;
+};
+
+function construirActoresVivosParty(
+  participantes: ParticipanteConVelocidadParty[],
+  enemigos: EnemigoEnCombate[],
+  estadosActualizados: ParticipanteTurnoParty[] = [],
+): ActorTurnoVelocidad[] {
+  const cambios = new Map(estadosActualizados.map((participante) => [participante.usuarioId, participante]));
+  return [
+    ...participantes.flatMap((participante) => {
+      const actual = cambios.get(participante.usuarioId) ?? participante;
+      return actual.estado === "activo" && actual.jugadorHp > 0
+        ? [{ actorId: participante.usuarioId, equipo: "jugador" as const, velocidad: participante.jugadorVelocidad }]
+        : [];
+    }),
+    ...enemigos
+      .filter((enemigo) => enemigo.hp > 0)
+      .map((enemigo) => ({ actorId: enemigo.id, equipo: "enemigo" as const, velocidad: enemigo.velocidad })),
+  ];
+}
+
+function obtenerColaActualParty(
   combate: {
-    fase: string;
+    id: string;
     faseTurno: string;
     turnoActualUsuarioId: string | null;
     ronda: number;
-    turnoInicialEnemigo: boolean;
+    turnosPendientes: unknown;
   },
-  participantes: ParticipanteTurnoParty[],
+  participantes: ParticipanteConVelocidadParty[],
+  enemigos: EnemigoEnCombate[],
+  estadosActualizados: ParticipanteTurnoParty[] = [],
+): PasoTurnoVelocidad[] {
+  const actores = construirActoresVivosParty(participantes, enemigos, estadosActualizados);
+  const idsVivos = new Set(actores.map((actor) => actor.actorId));
+  const guardada = normalizarSecuenciaTurnosVelocidad(combate.turnosPendientes);
+  const primera = guardada[0];
+  const turnoGuardadoValido = primera &&
+    idsVivos.has(primera.actorId) &&
+    (combate.faseTurno === "jugador"
+      ? primera.equipo === "jugador" && primera.actorId === combate.turnoActualUsuarioId
+      : primera.equipo === "enemigo");
+  if (turnoGuardadoValido) return guardada;
+
+  // Compatibilidad para combates iniciados antes de añadir la cola persistida.
+  const enemigosVivos = actores
+    .filter((actor) => actor.equipo === "enemigo")
+    .sort((a, b) => b.velocidad - a.velocidad || a.actorId.localeCompare(b.actorId));
+  const preferido = combate.faseTurno === "jugador"
+    ? combate.turnoActualUsuarioId
+    : enemigosVivos[0]?.actorId;
+  return crearSecuenciaTurnosVelocidad(
+    actores,
+    `party:${combate.id}:ronda:${combate.ronda}`,
+    preferido,
+  );
+}
+
+function prepararSiguienteTurnoVelocidad(
+  combate: {
+    id: string;
+    faseTurno: string;
+    turnoActualUsuarioId: string | null;
+    ronda: number;
+    turnosPendientes: unknown;
+  },
+  participantes: ParticipanteConVelocidadParty[],
+  enemigos: EnemigoEnCombate[],
+  estadosActualizados: ParticipanteTurnoParty[] = [],
 ) {
-  return calcularSiguienteTurnoParty({
-    faseCombate: "activo",
-    faseTurno: combate.faseTurno as "jugador" | "enemigo",
-    turnoActualUsuarioId: combate.turnoActualUsuarioId,
+  const cola = obtenerColaActualParty(combate, participantes, enemigos, estadosActualizados);
+  const avance = avanzarSecuenciaTurnosVelocidad({
+    turnosPendientes: cola,
+    actoresVivos: construirActoresVivosParty(participantes, enemigos, estadosActualizados),
     ronda: combate.ronda,
-    turnoInicialEnemigo: combate.turnoInicialEnemigo,
-  }, participantes);
+    semilla: `party:${combate.id}:ronda`,
+  });
+  const turno = avance.turnoActual;
+  return {
+    faseTurno: turno?.equipo === "enemigo" ? "enemigo" as const : "jugador" as const,
+    turnoActualUsuarioId: turno?.equipo === "jugador" ? turno.actorId : null,
+    ronda: avance.ronda,
+    turnosPendientes: avance.turnosPendientes,
+    nuevaRonda: avance.nuevaRonda,
+  };
+}
+
+function leerRosterEnemigosParty(combate: {
+  enemigos: unknown;
+  enemigoId: string;
+  enemigoNombre: string;
+  enemigoHp: number;
+  enemigoHpMaximo: number;
+  enemigoAtaque: number;
+  enemigoAtaqueMagico: number;
+  enemigoDefensa: number;
+  enemigoDefensaMagica: number;
+  enemigoVelocidad: number;
+  enemigoProbCritico: number;
+  enemigoDanoCritico: number;
+  enemigoPrecision: number;
+  enemigoEvasion: number;
+  enemigoNivel: number;
+  efectosEnemigo: unknown;
+}): EnemigoEnCombate[] {
+  const guardados = leerEnemigosEnCombate(combate.enemigos);
+  if (guardados.length > 0) return guardados;
+  const legado = crearEnemigoLegacy({
+    enemigoId: combate.enemigoId,
+    enemigoNombre: combate.enemigoNombre,
+    enemigoHp: combate.enemigoHp,
+    enemigoHpMaximo: combate.enemigoHpMaximo,
+    enemigoAtaque: combate.enemigoAtaque,
+    enemigoAtaqueMagico: combate.enemigoAtaqueMagico,
+    enemigoDefensa: combate.enemigoDefensa,
+    enemigoDefensaMagica: combate.enemigoDefensaMagica,
+    enemigoVelocidad: combate.enemigoVelocidad,
+    enemigoProbCritico: combate.enemigoProbCritico,
+    enemigoDanoCritico: combate.enemigoDanoCritico,
+    enemigoPrecision: combate.enemigoPrecision,
+    enemigoEvasion: combate.enemigoEvasion,
+    enemigoNivel: combate.enemigoNivel,
+    efectos: combate.efectosEnemigo,
+  });
+  return legado ? [legado] : [];
 }
 
 async function iniciarRegresoParty(
