@@ -977,9 +977,13 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
       const siguienteTurno = avanceTurnos.turnoActual?.equipo ?? "jugador";
       const siguienteRonda = avanceTurnos.ronda;
 
-      if (actor === "enemigo" && siguienteTurno === "jugador") {
+      // El cooldown avanza al completar el ciclo de iniciativa entero.
+      // Los efectos del jugador siguen procesándose al entrar en su turno.
+      if (avanceTurnos.nuevaRonda) {
         cooldowns = reducirCooldowns(cooldowns);
+      }
 
+      if (actor === "enemigo" && siguienteTurno === "jugador") {
         const efectosActualizados = actualizarEfectosAlInicioTurnoJugador(
           efectos, jugadorHp, combate.jugadorHpMaximo, jugadorDefensa, personaje.nombre
         );
