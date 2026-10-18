@@ -146,14 +146,19 @@ export function obtenerIdClaseParaSprite(
   clase?: string | null,
   profesionActivaId?: string | null,
 ): string {
+  const claseLegacy = clase ? CLASES_LEGACY_POR_NOMBRE[clase] : undefined;
+  // Los personajes antiguos conservan su avatar original mientras sigan en Novato.
+  if (claseLegacy && (!profesionActivaId || profesionActivaId === "novato")) {
+    return claseLegacy;
+  }
   if (profesionActivaId && Object.prototype.hasOwnProperty.call(CLASES, profesionActivaId)) {
     return profesionActivaId;
   }
   if (clase && Object.prototype.hasOwnProperty.call(CLASES, clase)) {
     return clase;
   }
-  if (clase && CLASES_LEGACY_POR_NOMBRE[clase]) {
-    return CLASES_LEGACY_POR_NOMBRE[clase];
+  if (claseLegacy) {
+    return claseLegacy;
   }
   return "novato";
 }

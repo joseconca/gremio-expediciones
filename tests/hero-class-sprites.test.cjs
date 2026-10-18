@@ -23,6 +23,7 @@ test("los sprites priorizan la profesión activa y mantienen el fallback de las 
   const config = read("src/lib/configuracionJuego.ts");
   assert.match(config, /profesionActivaId && Object\.prototype\.hasOwnProperty\.call\(CLASES, profesionActivaId\)/);
   assert.match(config, /Novato: "novato"/);
+  assert.match(config, /claseLegacy && \(!profesionActivaId \|\| profesionActivaId === "novato"\)/);
   assert.match(config, /Guerrero: "guerrero"/);
   assert.match(config, /Comerciante: "comerciante"/);
   assert.match(config, /\/sprites\/heroes\/\$\{idClase\}\/\$\{idClase\}-\$\{sufijoSexo\}\.png/);
