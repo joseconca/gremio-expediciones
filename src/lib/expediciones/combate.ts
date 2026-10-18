@@ -83,7 +83,7 @@ function falloPorPrecision(actor: "jugador" | "enemigo", nombre: string): Accion
     critico: false,
     texto: actor === "jugador"
       ? "🎯 Fallas el ataque contra " + nombre + "; el objetivo esquiva o evita el golpe."
-      : "🌀 " + nombre + " esquiva el ataque.",
+      : "🌀 " + nombre + " falla su ataque por falta de precisión.",
   };
 }
 
