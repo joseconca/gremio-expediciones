@@ -1538,6 +1538,12 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       actor: "enemigo",
       actorEnemigoId: primerImpacto.actorEnemigoId,
       actoresEnemigoIds,
+      impactosEnemigos: impactos.map((impacto) => ({
+        actorEnemigoId: impacto.actorEnemigoId,
+        objetivoId: impacto.objetivoUsuarioId,
+        dano: impacto.dano,
+        critico: impacto.critico,
+      })),
       objetivoUsuarioId: primerImpacto.objetivoUsuarioId,
       dano: totalDanoEnemigos,
       critico: impactos.some((impacto) => impacto.critico),
