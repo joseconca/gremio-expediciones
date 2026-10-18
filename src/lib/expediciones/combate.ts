@@ -25,6 +25,13 @@ export type AccionAnimadaCombate = {
   /** Identidad del enemigo concreto que ataca o recibe el efecto. */
   actorEnemigoId?: string | null;
   actoresEnemigoIds?: string[];
+  /** Impacto individual de cada enemigo dentro de una fase enemiga con varios atacantes. */
+  impactosEnemigos?: {
+    actorEnemigoId: string;
+    objetivoId: string;
+    dano: number;
+    critico: boolean;
+  }[];
   enemigoObjetivoId?: string | null;
   objetivosEnemigoIds?: string[];
   /** Resultados individuales para áreas y turnos con varios atacantes; el destino puede ser enemigo o aliado. */
