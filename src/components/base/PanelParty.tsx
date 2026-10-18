@@ -222,7 +222,10 @@ export default function PanelParty() {
     logCombate?: string[];
   } | null>(null);
   const [cronicaPartyAbierta, setCronicaPartyAbierta] = useState(false);
-  const [informeHistoricoPartyAbierto, setInformeHistoricoPartyAbierto] = useState(false);
+  const [estadoInformeHistoricoParty, setEstadoInformeHistoricoParty] = useState<{ clave: string; abierto: boolean }>({ clave: "", abierto: false });
+  const claveInformeHistoricoParty = `${ultimoResultadoCombate?.expedicionPartyId ?? "sin-expedicion"}:${estado?.party?.id ?? "sin-party"}`;
+  const informeHistoricoPartyAbierto = estadoInformeHistoricoParty.clave === claveInformeHistoricoParty && estadoInformeHistoricoParty.abierto;
+  const alternarInformeHistoricoParty = () => setEstadoInformeHistoricoParty({ clave: claveInformeHistoricoParty, abierto: !informeHistoricoPartyAbierto });
   const [destinoTablon, setDestinoTablon] = useState<HTMLElement | null>(null);
   const [expedicionDetalleAbierto, setExpedicionDetalleAbierto] = useState(false);
   const [partyDetalleAbierto, setPartyDetalleAbierto] = useState(false);
@@ -232,11 +235,6 @@ export default function PanelParty() {
   const siguienteIntentoTraslado = useRef(new Map<string, number>());
   const solicitudEstado = useRef<Promise<void> | null>(null);
   const revisionEstado = useRef(0);
-
-  // Cada nueva expedición histórica empieza contraída, aunque la anterior estuviera abierta.
-  useEffect(() => {
-    setInformeHistoricoPartyAbierto(false);
-  }, [ultimoResultadoCombate?.expedicionPartyId, estado?.party?.id]);
 
   // Comparte una consulta ya en curso para que el sondeo, los eventos de foco
   // y los efectos de la UI no disparen GET duplicados. Una actualización forzada
@@ -919,9 +917,8 @@ export default function PanelParty() {
                     fechaSalida={traslado.fechaSalida}
                     fechaLlegada={traslado.fechaLlegada}
                     nombreHeroe={personaje?.nombre ?? "Tu aventurero"}
-                    claseHeroe={estado.party?.lider.personaje?.clase ?? personaje?.clase}
-                    sexoHeroe={estado.party?.lider.personaje?.sexo ?? personaje?.sexo}
-                    profesionActivaIdHeroe={estado.party?.lider.personaje?.profesionActivaId ?? personaje?.profesionActivaId}
+                    claseHeroe={personaje?.clase}
+                    sexoHeroe={personaje?.sexo}
                     profesionActivaIdHeroe={personaje?.profesionActivaId}
                     regresando={regresando}
                     ajustarVistaRuta
@@ -1071,6 +1068,7 @@ export default function PanelParty() {
                     nombreHeroe={`Compañía de ${estado.party?.lider.personaje?.nombre ?? estado.party?.lider.nombre ?? "aventureros"}`}
                     claseHeroe={estado.expedicionActiva.participantes.find((p) => p.usuarioId === estado.party?.liderUsuarioId)?.usuario?.personaje?.clase}
                     sexoHeroe={estado.expedicionActiva.participantes.find((p) => p.usuarioId === estado.party?.liderUsuarioId)?.usuario?.personaje?.sexo}
+                    profesionActivaIdHeroe={estado.expedicionActiva.participantes.find((p) => p.usuarioId === estado.party?.liderUsuarioId)?.usuario?.personaje?.profesionActivaId}
                     regresando={estado.expedicionActiva.fase === "regresando"}
                     ajustarVistaRuta
                     etiquetaBase={`Base de ${estado.party?.lider.personaje?.nombre ?? estado.party?.lider.nombre ?? "la compañía"}`}
@@ -1293,7 +1291,7 @@ export default function PanelParty() {
         <article className={`relative isolate overflow-hidden border p-3 text-[#3e2b1b] shadow-[2px_4px_0_rgba(0,0,0,0.25),inset_0_0_0_2px_rgba(255,247,215,0.3)] ${ultimoResultadoCombate.tipo === "comercio" ? "border-[#92744a] bg-[linear-gradient(155deg,#eadbb8_0%,#dec99e_54%,#cdb486_100%)]" : ultimoResultadoCombate.tipo === "elite" ? "border-[#92744a] bg-[linear-gradient(155deg,#f3e5bd_0%,#e7d4a7_54%,#d7bd87_100%)]" : "border-[#b8b7ab] bg-[linear-gradient(155deg,#fffef8_0%,#f0efe8_54%,#deddd3_100%)]"}`}>
           <div aria-hidden="true" className="pointer-events-none absolute inset-1 border border-current/20" />
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-20 bg-[repeating-linear-gradient(0deg,transparent_0,transparent_23px,rgba(95,67,36,0.14)_24px,transparent_25px)]" />
-          <button type="button" onClick={() => setInformeHistoricoPartyAbierto((abierto) => !abierto)} aria-expanded={informeHistoricoPartyAbierto} aria-controls="detalle-informe-historico-party" className="relative flex min-h-12 w-full items-start justify-between gap-3 border-b border-dashed border-current/25 pb-2.5 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#68472c]">
+          <button type="button" onClick={alternarInformeHistoricoParty} aria-expanded={informeHistoricoPartyAbierto} aria-controls="detalle-informe-historico-party" className="relative flex min-h-12 w-full items-start justify-between gap-3 border-b border-dashed border-current/25 pb-2.5 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#68472c]">
             <div className="min-w-0">
               <p className="text-[9px] font-black uppercase tracking-[0.2em] text-[#806341]">Gremio · crónica compartida</p>
               <h3 className="mt-0.5 font-serif text-lg font-black leading-tight">
