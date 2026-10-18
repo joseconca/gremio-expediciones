@@ -463,6 +463,11 @@ test("el turno del enemigo apunta al aventurero con menor porcentaje de vida", a
   const combat = mkCombat({
     faseTurno: "enemigo",
     turnoActualUsuarioId: null,
+    turnosPendientes: [
+      { actorId: "enemigo-1", equipo: "enemigo" },
+      { actorId: "u1", equipo: "jugador" },
+      { actorId: "u2", equipo: "jugador" },
+    ],
     participantes: [mkParticipant("u1", 0, 80, 100), mkParticipant("u2", 1, 20, 50)],
   });
   const { prisma, calls } = mockPrisma(combat);
@@ -953,6 +958,12 @@ test("quien huye recibe oro y objetos de misión, pero no XP ni botín enemigo",
   const combat = mkCombat({
     enemigoHp: 10,
     id: "combat-flee-rewards",
+    turnosPendientes: [
+      { actorId: "u1", equipo: "jugador" },
+      { actorId: "u2", equipo: "jugador" },
+      { actorId: "u3", equipo: "jugador" },
+      { actorId: "enemigo-1", equipo: "enemigo" },
+    ],
     participantes: [mkParticipant("u1", 0), mkParticipant("u2", 1), mkParticipant("u3", 2)],
   });
   const { prisma } = mockPrisma(combat);
