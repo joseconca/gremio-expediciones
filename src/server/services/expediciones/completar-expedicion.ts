@@ -9,10 +9,44 @@ import {
 } from "@/lib/estadisticasPersonaje";
 import { obtenerEquipoDesdePersonaje, LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
+import { leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 import { tirarBotinEnemigo } from "@/lib/lootObjetos";
 import { obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
 import { calcularCapacidadAlmacen } from "@/lib/expediciones/asedio";
-import type { RecompensaMision } from "@/lib/tiposJuego";
+import type { RecompensaMision, RecompensaObjeto, TipoMision } from "@/lib/tiposJuego";
+
+function leerArrayStrings(valor: unknown): string[] {
+  return Array.isArray(valor) ? valor.filter((entrada): entrada is string => typeof entrada === "string") : [];
+}
+
+function leerCampoObjeto(valor: unknown, campo: string): unknown {
+  if (!valor || typeof valor !== "object" || Array.isArray(valor)) return undefined;
+  return (valor as Record<string, unknown>)[campo];
+}
+
+function leerLogGuardadoComercio(valor: unknown): string[] {
+  return leerArrayStrings(leerCampoObjeto(valor, "logComercio"));
+}
+
+function leerDuracionGuardada(valor: unknown): number | undefined {
+  const duracion = leerCampoObjeto(valor, "duracionSegundos");
+  return typeof duracion === "number" && Number.isFinite(duracion) && duracion >= 0
+    ? Math.floor(duracion)
+    : undefined;
+}
+
+function obtenerExperienciaJobDelLog(log: string[]): number {
+  return log.reduce((total, linea) => {
+    const coincidencia = linea.match(/Job XP:\\s*(\\d+)/i);
+    return total + (coincidencia ? Number(coincidencia[1]) : 0);
+  }, 0);
+}
+
+function obtenerTipoMisionReporte(valor: string): TipoMision | undefined {
+  return ["normal", "elite", "comercio", "boss", "asedio"].includes(valor)
+    ? valor as TipoMision
+    : undefined;
+}
 
 function obtenerRecompensaMision(valor: unknown): RecompensaMision {
   if (
@@ -27,11 +61,20 @@ function obtenerRecompensaMision(valor: unknown): RecompensaMision {
     typeof valor.piedra === "number" &&
     typeof valor.metal === "number"
   ) {
+    const objetos = "objetos" in valor && Array.isArray(valor.objetos)
+      ? valor.objetos.flatMap((objeto): RecompensaObjeto[] => {
+          if (!objeto || typeof objeto !== "object" || Array.isArray(objeto)) return [];
+          const entrada = objeto as Record<string, unknown>;
+          if (typeof entrada.objetoId !== "string" || typeof entrada.cantidad !== "number" || !Number.isFinite(entrada.cantidad) || entrada.cantidad <= 0) return [];
+          return [{ objetoId: entrada.objetoId, cantidad: Math.trunc(entrada.cantidad) }];
+        })
+      : [];
     return {
       oro: Math.max(0, Math.trunc(valor.oro)),
       madera: Math.max(0, Math.trunc(valor.madera)),
       piedra: Math.max(0, Math.trunc(valor.piedra)),
       metal: Math.max(0, Math.trunc(valor.metal)),
+      ...(objetos.length > 0 ? { objetos } : {}),
     };
   }
 
@@ -402,18 +445,23 @@ export async function completarExpedicion() {
         )
       );
 
-      let logCombate =
-        combate && Array.isArray(combate.log) ? (combate.log as string[]) : [];
-
-      logCombate = logCombate.filter(
-        (linea) =>
-          linea.includes("🏆") ||
-          linea.includes("💀") ||
-          linea.includes("💰 Consigues") ||
-          linea.includes("⭐ Obtienes") ||
-          linea.includes("🏠") ||
-          linea.includes("Recibes")
-      );
+      const logCombateOriginal = combate && Array.isArray(combate.log)
+        ? (combate.log as string[]).filter((linea): linea is string => typeof linea === "string")
+        : [];
+      const logComercioGuardado = leerLogGuardadoComercio(expedicion.recompensa);
+      const logCombate = expedicion.tipo === "comercio" ? logComercioGuardado : logCombateOriginal;
+      const enemigosDerrotados = leerEnemigosEnCombate(combate?.enemigos)
+        .filter((enemigo) => enemigo.hp <= 0)
+        .map((enemigo) => enemigo.nombre);
+      if (enemigosDerrotados.length === 0 && resultadoFinal === "exito" && combate?.enemigoNombre) {
+        enemigosDerrotados.push(combate.enemigoNombre);
+      }
+      const objetivoReporte = expedicion.tipo === "comercio" && expedicion.objetivoId
+        ? await prisma.usuario.findUnique({ where: { id: expedicion.objetivoId }, select: { nombre: true } })
+        : null;
+      const duracionSegundos = leerDuracionGuardada(expedicion.recompensa)
+        ?? Math.max(0, Math.round((expedicion.fechaLlegada.getTime() - expedicion.fechaSalida.getTime()) * 2 / 1000));
+      const experienciaJobGanada = obtenerExperienciaJobDelLog(logCombate);
 
       let reporte;
 
@@ -426,6 +474,11 @@ export async function completarExpedicion() {
           recompensa: recompensaRecibida,
           experienciaGanada: expedicion.experienciaGanada,
           tipo: "comercio" as const,
+          tipoMision: "comercio" as const,
+          amenaza: expedicion.dificultad,
+          duracionSegundos,
+          objetivoNombre: objetivoReporte?.nombre,
+          experienciaJobGanada,
           afinidad: actualizado.afinidad,
           objetosObtenidos: actualizado.botinEntregado ? [actualizado.botinEntregado] : [],
           logCombate: [...logCombate, ...logRegreso],
@@ -439,7 +492,11 @@ export async function completarExpedicion() {
           recompensa: recompensaRecibida,
           experienciaGanada: expedicion.experienciaGanada,
           tipo: "combate" as const,
-          logCombate: logRegreso,
+          tipoMision: obtenerTipoMisionReporte(expedicion.tipo),
+          amenaza: expedicion.dificultad,
+          duracionSegundos,
+          experienciaJobGanada,
+          logCombate: [...logCombate, ...logRegreso],
         };
       } else {
         reporte = {
@@ -450,6 +507,11 @@ export async function completarExpedicion() {
           recompensa: recompensaRecibida,
           experienciaGanada: expedicion.experienciaGanada,
           tipo: "combate" as const,
+          tipoMision: obtenerTipoMisionReporte(expedicion.tipo),
+          amenaza: expedicion.dificultad,
+          duracionSegundos,
+          experienciaJobGanada,
+          enemigosDerrotados,
           enemigo: combate?.enemigoNombre ?? "Enemigo",
           enemigoId: combate?.enemigoId ?? "goblin",
           rondas: combate?.ronda ?? 0,
@@ -658,6 +720,8 @@ export async function completarExpedicion() {
             madera: 0,
             piedra: 0,
             metal: 0,
+            logComercio: resultado.logCombate,
+            duracionSegundos: Math.max(0, Math.round(duracionIda * 2 / 1000)),
           },
           resultadoFinal: resultado.exito ? "exito" : "derrota",
           hpPerdido: resultado.hpPerdido,
