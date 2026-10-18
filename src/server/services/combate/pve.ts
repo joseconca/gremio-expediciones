@@ -968,28 +968,14 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
       // SIGUIENTE TURNO PVE
       // ==========================================================
 
-      const jugadorEsPrimero =
-        combate.jugadorVelocidad >= combate.enemigoVelocidad;
-
-      let siguienteTurno: "jugador" | "enemigo";
-
-      let siguienteRonda = combate.ronda;
-
-      if (actor === "jugador") {
-        if (jugadorEsPrimero) {
-          siguienteTurno = "enemigo";
-        } else {
-          siguienteRonda += 1;
-          siguienteTurno = "enemigo";
-        }
-      } else {
-        if (jugadorEsPrimero) {
-          siguienteRonda += 1;
-          siguienteTurno = "jugador";
-        } else {
-          siguienteTurno = "jugador";
-        }
-      }
+      const avanceTurnos = avanzarSecuenciaTurnosVelocidad({
+        turnosPendientes: colaTurnosActuales,
+        actoresVivos: actoresVivosPve(combate, enemigosEnCombate, jugadorHp),
+        ronda: combate.ronda,
+        semilla: `pve:${combate.id}:ronda`,
+      });
+      const siguienteTurno = avanceTurnos.turnoActual?.equipo ?? "jugador";
+      const siguienteRonda = avanceTurnos.ronda;
 
       if (actor === "enemigo" && siguienteTurno === "jugador") {
         cooldowns = reducirCooldowns(cooldowns);
@@ -1037,6 +1023,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
           enemigos: enemigosEnCombate as unknown as Prisma.InputJsonValue,
           ronda: siguienteRonda,
           turno: siguienteTurno,
+          turnosPendientes: avanceTurnos.turnosPendientes as unknown as Prisma.InputJsonValue,
           cooldowns,
           efectos: efectos as unknown as Prisma.InputJsonValue,
           efectosDefensor: efectosDefensor as unknown as Prisma.InputJsonValue,
