@@ -9,7 +9,7 @@ import { seleccionarJefeElite } from "@/lib/expediciones/elite";
 import { aplicarEfectoComida, comidaOtorgaIniciativa, obtenerComidaTaberna } from "@/lib/comidasTaberna";
 import { aplicarModificadoresPosicion, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import { esModoDificultad } from "@/lib/expediciones/dificultad";
-import { crearEstadoInicialTurnoParty } from "@/lib/party/combate-reglas";
+import { crearSecuenciaTurnosVelocidad } from "@/lib/expediciones/iniciativa-combate";
 import { PartyServiceError } from "@/server/services/party/party-service";
 
 const AISLAMIENTO = { isolationLevel: Prisma.TransactionIsolationLevel.Serializable } as const;
@@ -191,19 +191,23 @@ export async function iniciarCombateParty(usuarioId: string, idDesconocido: unkn
       expedicion.participantes.findIndex((p) => p.usuarioId === a.usuarioId) -
       expedicion.participantes.findIndex((p) => p.usuarioId === b.usuarioId));
 
-    const primerTurnoJugador =
-      participantesCalculados.some((participante) => comidaOtorgaIniciativa(participante.comida)) ||
-      participantesCalculados[0].velocidad >= Math.max(...enemigosEnCombate.map((enemigo) => enemigo.velocidad));
-
-    const estadoTurno = crearEstadoInicialTurnoParty(
-      participantesCalculados.map((participante, ordenTurno) => ({
-        usuarioId: participante.usuarioId,
-        ordenTurno,
-        jugadorHp: participante.hpMaximo,
-        estado: "activo",
+    const actorPreferido = participantesCalculados.find((participante) =>
+      comidaOtorgaIniciativa(participante.comida)
+    )?.usuarioId ?? null;
+    const turnosPendientes = crearSecuenciaTurnosVelocidad([
+      ...participantesCalculados.map((participante) => ({
+        actorId: participante.usuarioId,
+        equipo: "jugador" as const,
+        velocidad: participante.velocidad,
       })),
-      primerTurnoJugador,
-    );
+      ...enemigosEnCombate.map((enemigo) => ({
+        actorId: enemigo.id,
+        equipo: "enemigo" as const,
+        velocidad: enemigo.velocidad,
+      })),
+    ], `party:${expedicionPartyId}:ronda:1`, actorPreferido);
+    const turnoInicial = turnosPendientes[0] ?? null;
+    const primerTurnoJugador = turnoInicial?.equipo !== "enemigo";
 
     const nombresEnemigos = enemigosEnCombate.map((enemigo) => enemigo.nombre);
     const resumenEnemigos = nombresEnemigos.length === 1
@@ -229,10 +233,11 @@ export async function iniciarCombateParty(usuarioId: string, idDesconocido: unkn
         expedicionPartyId,
         fase: "activo",
         version: 0,
-        ronda: estadoTurno.ronda,
-        faseTurno: estadoTurno.faseTurno,
-        turnoInicialEnemigo: estadoTurno.turnoInicialEnemigo ?? false,
-        turnoActualUsuarioId: estadoTurno.turnoActualUsuarioId,
+        ronda: 1,
+        faseTurno: turnoInicial?.equipo === "enemigo" ? "enemigo" : "jugador",
+        turnoInicialEnemigo: turnoInicial?.equipo === "enemigo",
+        turnoActualUsuarioId: turnoInicial?.equipo === "jugador" ? turnoInicial.actorId : null,
+        turnosPendientes: turnosPendientes as unknown as Prisma.InputJsonValue,
         enemigoId: enemigoBase.id,
         enemigoNombre: enemigoBase.nombre,
         enemigoHp,
