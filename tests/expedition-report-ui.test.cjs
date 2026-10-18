@@ -44,3 +44,15 @@ test("el reporte de party mantiene su pergamino, oculta recompensas cero y plieg
   assert.match(service, /enemigosDerrotados:/);
   assert.match(service, /logCombate:/);
 });
+
+test("el cartel expandido anexa el informe provisional bajo el mapa durante el regreso", () => {
+  const panel = read("src/components/base/PanelMisiones.tsx");
+  const hoja = read("src/components/reportes/HojaReporteExpedicion.tsx");
+
+  assert.match(panel, /crearReporteAnexoRegreso/);
+  assert.match(panel, /expedicionActiva\.fase === "regresando" && reporteAnexo/);
+  assert.match(panel, /<HojaReporteExpedicion[\s\S]*presentacion="anexo"/);
+  assert.match(panel, /duracionTramoMs \* 2/);
+  assert.match(hoja, /presentacion\?: "modal" \| "anexo"/);
+  assert.match(hoja, /Informe provisional: el botín adicional/);
+});
