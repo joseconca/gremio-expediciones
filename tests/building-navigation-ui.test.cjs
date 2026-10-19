@@ -88,7 +88,6 @@ test("la pantalla de Personaje centraliza equipo, mochila por categorías y gest
   assert.match(pagina, /label: "Habilidades"/);
   assert.match(pagina, /Atributos principales/);
   assert.match(pagina, /Estadísticas de combate/);
-  assert.match(pagina, /Recursos actuales/);
   assert.match(pagina, /aria-label="Vista de equipamiento"/);
   assert.match(pagina, /grid-cols-\[minmax\(0,1fr\)_92px_minmax\(0,1fr\)\]/);
   assert.match(pagina, /sm:grid-cols-\[minmax\(0,1fr\)_148px_minmax\(0,1fr\)\]/);

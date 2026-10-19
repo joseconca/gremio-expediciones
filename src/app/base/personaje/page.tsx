@@ -586,7 +586,7 @@ export default function PersonajePage() {
               <section className="mb-5">
                 <div className="mb-2 flex flex-wrap items-baseline justify-between gap-2 border-b border-[#59432b] pb-1">
                   <h3 className="font-serif text-sm font-black uppercase tracking-wider text-[#d9bd91]">Atributos principales</h3>
-                  <span className="text-[10px] text-[#a99069]">Crecimiento automático · {arquetipo.nombre}</span>
+                  <span className="text-[10px] text-[#a99069]">{arquetipo.nombre}</span>
                 </div>
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
                   {atributosConDesglose.map((atributo) => (
@@ -608,7 +608,6 @@ export default function PersonajePage() {
                     </article>
                   ))}
                 </div>
-                <p className="mt-2 text-[10px] text-[#88745a]">Los atributos principales crecen con el nivel Base y la clase activa. El equipo aporta bonificaciones a las estadísticas derivadas, no a estos seis atributos.</p>
               </section>
 
               <section className="mb-5">
@@ -697,24 +696,6 @@ export default function PersonajePage() {
                   ))}
                 </div>
               </section>
-
-              <section>
-                <h3 className="mb-2 border-b border-[#59432b] pb-1 font-serif text-sm font-black uppercase tracking-wider text-[#d9bd91]">Recursos actuales</h3>
-                <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
-                  <article className="rounded-lg border border-sky-800/60 bg-[#17232a] p-3">
-                    <p className="text-xs font-bold text-sky-200">❤️ Vida actual</p>
-                    <p className="mt-1 text-lg font-black text-sky-100">{personaje.hpActual} / {personaje.hpMaximo}</p>
-                  </article>
-                  <article className="rounded-lg border border-amber-800/60 bg-[#2b2115] p-3">
-                    <p className="text-xs font-bold text-amber-200">⚡ Energía actual</p>
-                    <p className="mt-1 text-lg font-black text-amber-100">{personaje.energiaActual} / {personaje.energiaMaxima}</p>
-                  </article>
-                  <article className="rounded-lg border border-violet-800/60 bg-[#211a2e] p-3">
-                    <p className="text-xs font-bold text-violet-200">🔮 Maná actual</p>
-                    <p className="mt-1 text-lg font-black text-violet-100">{personaje.manaActual} / {personaje.manaMaximo}</p>
-                  </article>
-                </div>
-              </section>
             </div>
           </section>
         )}
@@ -723,18 +704,8 @@ export default function PersonajePage() {
           <section className="overflow-hidden rounded-xl border border-[#6d4b2c] bg-[#21180f] shadow-[0_10px_25px_rgba(0,0,0,0.3)]">
             <header className="border-b border-[#62452d] bg-gradient-to-r from-[#392719] to-[#241810] px-3 py-3 sm:px-4">
               <h2 className="font-serif text-lg font-black uppercase tracking-wider text-[#efd8ad]">Equipo</h2>
-              <p className="mt-1 text-xs text-[#ab9270]">Selecciona una pieza para retirarla o cambia de pieza desde la mochila.</p>
             </header>
             <div className="p-2 sm:p-3">
-              <div className="mb-2 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-[#5d452e] bg-[#19140f] px-3 py-2">
-                <div>
-                  <p className="text-[10px] font-black uppercase tracking-wider text-[#b99a6c]">Equipo de combate</p>
-                  <p className="mt-0.5 text-xs text-[#a58e6c]">Pulsa «Quitar» para liberar una ranura</p>
-                </div>
-                <span className="rounded border border-[#6d4b2c] bg-black/20 px-2 py-1 text-[10px] font-bold text-[#c8ac7d]">
-                  {RANURAS_EQUIPO.filter((ranura) => Boolean(datosObjetos?.equipo[ranura.clave])).length}/{RANURAS_EQUIPO.length}
-                </span>
-              </div>
               {cargandoObjetos ? <p className="p-8 text-center text-sm text-[#bba581]">Consultando equipo...</p> : (
                 <>
                   {/* Pantallas medianas y grandes: silueta del aventurero con ranuras alrededor. */}

@@ -273,8 +273,7 @@ export default function HojaPersonajeModal({
           <section className="mb-6">
             <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2 border-b border-stone-400/40 pb-1">
               <h3 className="font-serif text-sm font-black uppercase tracking-widest text-stone-800">Atributos</h3>
-              <span className="text-xs font-semibold text-stone-500">Crecimiento automático · {arquetipo.nombre}</span>
-              <p className="w-full text-[11px] text-stone-500">Los atributos principales crecen con el nivel BASE y la clase activa. El equipo aporta bonificaciones a las estadísticas derivadas, no a estos seis atributos.</p>
+              <span className="text-xs font-semibold text-stone-500">{arquetipo.nombre}</span>
             </div>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
               {atributosConDesglose.map((atributo) => (
