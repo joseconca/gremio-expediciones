@@ -525,8 +525,8 @@ export default function PersonajePage() {
                 <p className="mt-1 text-sm text-[#c2ad8a]">{CLASES[personaje.profesionActivaId]?.nombre ?? personaje.clase} · Base {personaje.nivel} · Job {personaje.nivelJob}</p>
               </div>
             </div>
-            <Link href="/base" className="inline-flex min-h-10 items-center justify-center rounded-lg border border-[#6a4d2d] bg-[#1c160f] px-4 text-sm font-bold text-[#d9bd8f] hover:border-amber-500">
-              ← Volver a la base
+            <Link href="/base" className="shrink-0 rounded-lg bg-slate-800 px-3 py-2 text-sm font-bold text-slate-300 transition-colors hover:bg-slate-700 sm:px-4">
+              ← Volver
             </Link>
           </div>
         </header>
