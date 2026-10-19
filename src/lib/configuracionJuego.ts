@@ -182,6 +182,40 @@ export function obtenerSpriteHeroe(
   return `/sprites/heroes/${idClase}/${idClase}-${sufijoSexo}.png`;
 }
 
+/**
+ * Contrato de filas de los spritesheets de combate.
+ * Cada fila contiene cuatro fotogramas horizontales de 64 × 128 px.
+ * El renderizado/temporización se integra en una iteración posterior.
+ */
+export const FILAS_ANIMACION_SPRITESHEET_HEROE = [
+  { id: "idle", nombre: "Idle", fila: 0 },
+  { id: "walk", nombre: "Caminar", fila: 1 },
+  { id: "hurt", nombre: "Recibir daño", fila: 2 },
+  { id: "use_consumable", nombre: "Usar consumible", fila: 3 },
+  { id: "dodge", nombre: "Esquivar", fila: 4 },
+  { id: "block_shield", nombre: "Bloquear con escudo", fila: 5 },
+  { id: "attack_sword", nombre: "Ataque con espada", fila: 6 },
+  { id: "attack_axe", nombre: "Ataque con hacha", fila: 7 },
+  { id: "attack_spear", nombre: "Ataque con lanza", fila: 8 },
+  { id: "attack_dagger", nombre: "Ataque con daga", fila: 9 },
+  { id: "attack_bow", nombre: "Ataque con arco", fila: 10 },
+  { id: "attack_staff", nombre: "Ataque con bastón", fila: 11 },
+  { id: "attack_mace", nombre: "Ataque con maza", fila: 12 },
+  { id: "attack_book", nombre: "Ataque con libro", fila: 13 },
+  { id: "attack_gloves", nombre: "Ataque con guantes", fila: 14 },
+] as const;
+
+/** Ruta a la hoja animada; los retratos estáticos siguen usando obtenerSpriteHeroe. */
+export function obtenerRutaSpritesheetHeroe(
+  clase?: string | null,
+  sexo?: string | null,
+  profesionActivaId?: string | null,
+): string {
+  const idClase = obtenerIdClaseParaSprite(clase, profesionActivaId);
+  const sufijoSexo = sexo === "chica" ? "f" : "m";
+  return `/sprites/heroes/${idClase}/${idClase}-${sufijoSexo}-sheet.png`;
+}
+
 /** Logo reutilizable de clase para miniaturas, nombres de grupo y listados. */
 export function obtenerLogoClaseHeroe(
   clase?: string | null,
