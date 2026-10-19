@@ -20,8 +20,8 @@ export default function ComplejoArmeria({
   return (
     <article className="group relative isolate flex min-w-0 flex-col overflow-hidden rounded-lg border border-[#5b4026] bg-[#24190f] shadow-[0_5px_0_rgba(12,17,10,0.55),0_8px_16px_rgba(0,0,0,0.22)] transition-colors hover:border-amber-700/80 sm:rounded-xl">
       {/* Cada nombre abre su edificio; la descripción aparece como ayuda al pasar o enfocar. */}
-      <div className="relative z-20 mx-1.5 -mb-2 mt-1.5 flex h-[92px] items-center justify-center sm:mx-3 sm:-mb-5 sm:mt-3 sm:h-[116px]">
-        <div className="relative flex h-full w-full flex-col justify-center rounded-sm border-2 border-[#362214] bg-gradient-to-b from-[#825329] to-[#56361e] px-2 py-1.5 shadow-[inset_0_1px_0_rgba(255,220,160,0.15),0_3px_5px_rgba(0,0,0,0.35)] sm:border-[3px] sm:px-3 sm:py-2">
+      <div className="relative z-20 mx-1 -mb-3 mt-1 flex h-11 items-center justify-center sm:mx-2 sm:-mb-4 sm:mt-2 sm:h-[52px]">
+        <div className="relative flex h-full w-full flex-col justify-center rounded-sm border-2 border-[#362214] bg-gradient-to-b from-[#825329] to-[#56361e] px-1 py-0.5 shadow-[inset_0_1px_0_rgba(255,220,160,0.15),0_3px_5px_rgba(0,0,0,0.35)] sm:border-[3px] sm:px-2 sm:py-1">
           <span aria-hidden="true" className="absolute left-1 top-1 h-1 w-1 rounded-full bg-[#24170d] sm:left-1.5 sm:top-1.5 sm:h-1.5 sm:w-1.5" />
           <span aria-hidden="true" className="absolute right-1 top-1 h-1 w-1 rounded-full bg-[#24170d] sm:right-1.5 sm:top-1.5 sm:h-1.5 sm:w-1.5" />
           <div className={herreriaConstruida ? "grid grid-cols-2 gap-1.5 sm:gap-3" : "grid grid-cols-1"}>
@@ -30,7 +30,7 @@ export default function ComplejoArmeria({
                 href={CONFIGURACION_EDIFICIOS.armeria.ruta}
                 aria-label={"Entrar en " + armeria.nombre}
                 aria-describedby="descripcion-armeria"
-                className="group/cartel relative inline-flex min-h-8 max-w-full items-center justify-center rounded px-1.5 text-xs font-black leading-tight tracking-wide text-amber-200 drop-shadow transition-colors hover:bg-amber-300/10 hover:text-amber-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 sm:min-h-10 sm:text-lg"
+                className="group/cartel relative inline-flex h-8 max-w-full items-center justify-center whitespace-nowrap rounded px-0.5 text-[10px] font-black leading-none tracking-tight text-amber-200 drop-shadow transition-colors hover:bg-amber-300/10 hover:text-amber-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 sm:h-10 sm:text-base sm:tracking-wide"
               >
                 <h3 className="break-words">{armeria.nombre}</h3>
                 <span id="descripcion-armeria" role="tooltip" className="pointer-events-none absolute left-1/2 top-full z-[60] mt-1 w-[min(15rem,85vw)] -translate-x-1/2 rounded-md border border-amber-700/80 bg-[#1d170f]/95 px-3 py-2 text-center text-xs font-medium leading-5 text-amber-100 opacity-0 shadow-xl transition-opacity group-hover/cartel:opacity-100 group-focus-visible/cartel:opacity-100">
@@ -44,7 +44,7 @@ export default function ComplejoArmeria({
                   href={CONFIGURACION_EDIFICIOS.herreria.ruta}
                   aria-label={"Entrar en " + herreria.nombre}
                   aria-describedby="descripcion-herreria"
-                  className="group/cartel relative inline-flex min-h-8 max-w-full items-center justify-center rounded px-1.5 text-xs font-black leading-tight tracking-wide text-amber-200 drop-shadow transition-colors hover:bg-amber-300/10 hover:text-amber-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 sm:min-h-10 sm:text-lg"
+                  className="group/cartel relative inline-flex h-8 max-w-full items-center justify-center whitespace-nowrap rounded px-0.5 text-[10px] font-black leading-none tracking-tight text-amber-200 drop-shadow transition-colors hover:bg-amber-300/10 hover:text-amber-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 sm:h-10 sm:text-base sm:tracking-wide"
                 >
                   <h3 className="break-words">{herreria.nombre}</h3>
                   <span id="descripcion-herreria" role="tooltip" className="pointer-events-none absolute left-1/2 top-full z-[60] mt-1 w-[min(15rem,85vw)] -translate-x-1/2 rounded-md border border-amber-700/80 bg-[#1d170f]/95 px-3 py-2 text-center text-xs font-medium leading-5 text-amber-100 opacity-0 shadow-xl transition-opacity group-hover/cartel:opacity-100 group-focus-visible/cartel:opacity-100">

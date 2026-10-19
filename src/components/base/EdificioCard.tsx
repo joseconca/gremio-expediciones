@@ -15,16 +15,16 @@ export default function EdificioCard({ edificio }: EdificioCardProps) {
   return (
     <article className="group relative isolate flex min-w-0 flex-col overflow-hidden rounded-lg border border-[#5b4026] bg-[#24190f] shadow-[0_5px_0_rgba(12,17,10,0.55),0_8px_16px_rgba(0,0,0,0.22)] transition-colors hover:border-amber-700/80 sm:rounded-xl">
       {/* Rótulo y sprite navegables; la descripción aparece como ayuda al pasar el cursor o enfocar. */}
-      <div className="relative z-20 mx-1.5 -mb-2 mt-1.5 flex h-[92px] items-center justify-center sm:mx-3 sm:-mb-5 sm:mt-3 sm:h-[116px]">
+      <div className="relative z-20 mx-1 -mb-3 mt-1 flex h-11 items-center justify-center sm:mx-2 sm:-mb-4 sm:mt-2 sm:h-[52px]">
         <Link
           href={configuracion.ruta}
           aria-label={"Entrar en " + edificio.nombre}
           aria-describedby={"descripcion-edificio-" + edificio.id}
-          className="group/cartel relative flex h-full w-full flex-col justify-center rounded-sm border-2 border-[#362214] bg-gradient-to-b from-[#825329] to-[#56361e] px-2 py-1.5 text-center shadow-[inset_0_1px_0_rgba(255,220,160,0.15),0_3px_5px_rgba(0,0,0,0.35)] transition-colors hover:from-[#956336] hover:to-[#694325] focus-visible:z-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 sm:border-[3px] sm:px-3 sm:py-2"
+          className="group/cartel relative flex h-full w-full flex-col justify-center rounded-sm border-2 border-[#362214] bg-gradient-to-b from-[#825329] to-[#56361e] px-1 py-0.5 text-center shadow-[inset_0_1px_0_rgba(255,220,160,0.15),0_3px_5px_rgba(0,0,0,0.35)] transition-colors hover:from-[#956336] hover:to-[#694325] focus-visible:z-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 sm:border-[3px] sm:px-2 sm:py-1"
         >
           <span aria-hidden="true" className="absolute left-1 top-1 h-1 w-1 rounded-full bg-[#24170d] sm:left-1.5 sm:top-1.5 sm:h-1.5 sm:w-1.5" />
           <span aria-hidden="true" className="absolute right-1 top-1 h-1 w-1 rounded-full bg-[#24170d] sm:right-1.5 sm:top-1.5 sm:h-1.5 sm:w-1.5" />
-          <h3 className="break-words text-xs font-black leading-tight tracking-wide text-amber-200 drop-shadow sm:text-lg">
+          <h3 className="whitespace-nowrap text-[11px] font-black leading-none tracking-wide text-amber-200 drop-shadow sm:text-base">
             {edificio.nombre}
           </h3>
           <span
