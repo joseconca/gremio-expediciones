@@ -617,6 +617,18 @@ export const CONFIGURACION_EDIFICIOS = {
     ruta: "/base/mercado",
   },
 
+  botica: {
+    nombre: "Botica",
+    costeConstruccion: 900,
+    costeMadera: 6,
+    costePiedra: 5,
+    costeMetal: 1,
+    nivelMax: 3,
+    descripcion: "Prepara remedios, pociones y elixires para mantener a tus aventureros en pie.",
+    color: "bg-violet-700",
+    ruta: "/base/botica",
+  },
+
   embajada: {
     nombre: "Embajada",
     costeConstruccion: 360,
