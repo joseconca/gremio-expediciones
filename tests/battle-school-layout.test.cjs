@@ -6,17 +6,19 @@ const path = require("node:path");
 const root = path.resolve(__dirname, "..");
 const page = fs.readFileSync(path.join(root, "src/app/base/escuela-batalla/page.tsx"), "utf8");
 
-test("la redistribución se integra en la tarjeta de puntos Job y elimina el panel separado", () => {
+test("la redistribución de puntos se gestiona desde la Escuela de Batalla", () => {
   const claseActual = page.indexOf('aria-label="Profesión activa"');
   const puntosJob = page.indexOf("Puntos Job ·");
-  const redistribuir = page.indexOf('"Redistribuir puntos de habilidad (" + costeReseteo');
+  const redistribuir = page.indexOf("Redistribuir puntos de habilidad");
   const navegacion = page.indexOf("{navegacion}");
 
   assert.ok(claseActual >= 0 && puntosJob >= 0 && redistribuir >= 0 && navegacion >= 0);
   assert.ok(claseActual < puntosJob && puntosJob < redistribuir && redistribuir < navegacion);
-  assert.ok(!page.includes("Redistribuir habilidades de"));
-  assert.ok(page.includes('"Redistribuir puntos de habilidad (" + costeReseteo + " oro)"'));
+  assert.ok(page.includes("costeReinicioHabilidades(nivelJob)"));
+  assert.ok(page.includes('fetch("/api/habilidades/reiniciar"'));
+  assert.ok(page.includes("const reiniciarHabilidades = async"));
   assert.ok(page.includes("procesando !== null || habilidadesPropias.length === 0"));
+  assert.ok(page.includes("costeReseteo} oro)"));
 });
 
 test("el catálogo ofrece buscador, selector de clase y filtro de rama en ambas vistas", () => {
