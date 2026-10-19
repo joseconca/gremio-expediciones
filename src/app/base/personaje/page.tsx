@@ -324,6 +324,7 @@ export default function PersonajePage() {
   const renderObjetoInventario = (item: ObjetoInventario) => {
     const objeto = item.objeto;
     const equipado = objetosEquipados.has(item.id);
+    const ranuraEquipada = RANURAS_EQUIPO.find((slot) => datosObjetos?.equipo[slot.clave]?.id === item.id)?.clave;
     const ranura = obtenerRanuraObjeto(objeto);
     const equipando = procesando === "equipar:" + item.id;
     const precioVenta = calcularPrecioVentaObjeto(objeto.precio, item.cantidad);
@@ -350,7 +351,12 @@ export default function PersonajePage() {
           </div>
         </div>
         <div className="mt-2 flex flex-wrap justify-end gap-1.5 border-t border-white/5 pt-2">
-          {!equipado && ranura && (objeto.tipo === "arma" || objeto.tipo === "armadura" || objeto.tipo === "accesorio") ? (
+          {equipado && ranuraEquipada ? (
+            <button type="button" onClick={() => void enviarAccionObjeto("desequipar", undefined, ranuraEquipada)} disabled={procesando !== null || bloqueado}
+              className="min-h-8 rounded-md border border-[#755a39] bg-[#392a1c] px-3 text-xs font-bold text-[#e5c99c] hover:border-red-700 hover:text-red-200 disabled:opacity-40">
+              {procesando === "desequipar:" + ranuraEquipada ? "Retirando..." : "Desequipar"}
+            </button>
+          ) : !equipado && ranura && (objeto.tipo === "arma" || objeto.tipo === "armadura" || objeto.tipo === "accesorio") ? (
             ranura === "anillo" ? (
               <>
                 <button type="button" onClick={() => void enviarAccionObjeto("equipar", item.id, "anillo1")} disabled={procesando !== null || bloqueado} className="min-h-8 rounded-md border border-[#755a39] bg-[#392a1c] px-2.5 text-xs font-bold text-[#e5c99c] disabled:opacity-40">Equipar anillo I</button>
