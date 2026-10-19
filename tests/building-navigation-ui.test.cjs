@@ -44,6 +44,21 @@ test("la Botica forma parte del poblado y reutiliza el sprite del Mercado", () =
   assert.deepEqual(fs.readFileSync(boticaSprite), fs.readFileSync(mercadoSprite), "La Botica reutiliza el sprite temporal del Mercado.");
 });
 
+test("Personaje y Botica usan la navegación común y Botica incluye solo la mochila de consumibles", () => {
+  const personaje = read("src/app/base/personaje/page.tsx");
+  const botica = read("src/app/base/botica/page.tsx");
+
+  assert.match(personaje, /href="\/base" className="shrink-0 rounded-lg bg-slate-800[\s\S]*?← Volver/);
+  assert.doesNotMatch(personaje, /← Volver a la base/);
+  assert.match(botica, /<CabeceraEdificio/);
+  assert.doesNotMatch(botica, /href="\/base\/personaje"/);
+  assert.doesNotMatch(botica, /href="\/base"[^>]*>← Volver a la base/);
+  assert.match(botica, /Mochila · Consumibles/);
+  assert.match(botica, /datos\.inventario\.filter\(\(item\) => item\.objeto\.tipo === "consumible"\)/);
+  assert.match(botica, /consumibles\.map\(\(item\) =>/);
+  assert.match(botica, /await Promise\.all\(\[cargarJugador\(\), cargarMochila\(\)\]\)/);
+});
+
 test("la Armería permite vender armas y armaduras y recomprar la última venta", () => {
   const pagina = read("src/app/base/armeria/page.tsx");
   assert.match(pagina, /calcularPrecioVentaObjeto/);
