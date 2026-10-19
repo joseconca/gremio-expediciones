@@ -42,7 +42,7 @@ function estiloRareza(rareza: DefinicionObjeto["rareza"]): string {
 
 export default function BoticaPage() {
   const router = useRouter();
-  const { oro, edificios, personaje, isLoading, cargarJugador } = useGameStore();
+  const { oro, edificios, isLoading, cargarJugador } = useGameStore();
   const nivelBotica = edificios.botica?.nivel ?? 0;
   const [procesando, setProcesando] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -127,7 +127,7 @@ export default function BoticaPage() {
               </header>
               <div className="grid grid-cols-1 gap-2 p-2 sm:grid-cols-2 sm:p-3 lg:grid-cols-3">
                 {objetosNivel.map((objeto) => {
-                  const puedeComprar = desbloqueado && oro >= objeto.precio && personaje?.estado !== "de_viaje" && personaje?.estado !== "combatiendo";
+                  const puedeComprar = desbloqueado && oro >= objeto.precio;
                   return (
                     <article key={objeto.id} className={desbloqueado ? "flex min-w-0 flex-col rounded-lg border border-[#59432b] bg-[#1c150f] p-3" : "flex min-w-0 flex-col rounded-lg border border-[#403224] bg-[#19140f] p-3 opacity-75"}>
                       <div className="flex items-start gap-3">
@@ -158,10 +158,6 @@ export default function BoticaPage() {
             </section>
           );
         })}
-
-        {personaje?.estado === "de_viaje" || personaje?.estado === "combatiendo" ? (
-          <p className="mb-4 rounded-lg border border-amber-700/50 bg-[#332516] p-3 text-xs text-amber-100">No puedes hacer compras mientras el aventurero está de viaje o combatiendo.</p>
-        ) : null}
 
         <div className="flex flex-wrap justify-between gap-2">
           <Link href="/base/personaje" className="inline-flex min-h-10 items-center rounded-lg border border-[#6a4d2d] bg-[#1c160f] px-4 text-sm font-bold text-[#d9bd8f] hover:border-amber-500">Abrir mochila →</Link>
