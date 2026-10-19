@@ -246,6 +246,7 @@ export default function PersonajePage() {
   };
 
   const reiniciarHabilidades = async () => {
+    if (!personaje) return;
     const profesionNombre = datosHabilidades?.profesionNombre ?? CLASES[personaje.profesionActivaId]?.nombre ?? personaje.clase;
     const nivelJobActual = datosHabilidades?.progresoJob?.nivelJob ?? personaje.nivelJob;
     const coste = costeReinicioHabilidades(nivelJobActual);
@@ -306,11 +307,12 @@ export default function PersonajePage() {
   ], []);
 
   const habilidadesAprendidas = useMemo(() => datosHabilidades?.aprendidas ?? [], [datosHabilidades?.aprendidas]);
+  const profesionActivaId = datosHabilidades?.profesionActivaId ?? personaje?.profesionActivaId ?? "novato";
   const habilidadesPropias = useMemo(
-    () => habilidadesAprendidas.filter((item) => (item.habilidad.claseId ?? "novato") === (datosHabilidades?.profesionActivaId ?? personaje.profesionActivaId ?? "novato")),
-    [habilidadesAprendidas, datosHabilidades?.profesionActivaId, personaje.profesionActivaId],
+    () => habilidadesAprendidas.filter((item) => (item.habilidad.claseId ?? "novato") === profesionActivaId),
+    [habilidadesAprendidas, profesionActivaId],
   );
-  const costeReinicio = costeReinicioHabilidades(datosHabilidades?.progresoJob?.nivelJob ?? personaje.nivelJob);
+  const costeReinicio = costeReinicioHabilidades(datosHabilidades?.progresoJob?.nivelJob ?? personaje?.nivelJob ?? 1);
   const habilidadesEquipadas = useMemo(() => habilidadesAprendidas.filter((item) => esSlotHabilidad(item.slot)), [habilidadesAprendidas]);
   const habilidadesSinEquipar = useMemo(() => habilidadesAprendidas.filter((item) => !esSlotHabilidad(item.slot)), [habilidadesAprendidas]);
   const habilidadesFiltradas = useMemo(() => {
