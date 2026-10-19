@@ -367,9 +367,69 @@ export default function PersonajePage() {
     );
   };
 
-  const renderSlotEquipo = (ranura: (typeof RANURAS_EQUIPO)[number]) => {
+  const obtenerObjetosCompatiblesRanura = (ranura: (typeof RANURAS_EQUIPO)[number]) => {
+    const slotEsperado = ranura.clave === "manoSecundaria" ? "mano_secundaria"
+      : ranura.clave === "accesorio" ? "collar"
+      : ranura.clave.startsWith("anillo") ? "anillo" : ranura.clave;
+    return inventario.filter((obj) =>
+      obtenerRanuraObjeto(obj.objeto) === slotEsperado && !objetosEquipados.has(obj.id)
+    );
+  };
+
+  const renderSeleccionRanura = (ranura: (typeof RANURAS_EQUIPO)[number]) => {
+    const compatibles = obtenerObjetosCompatiblesRanura(ranura);
+    if (compatibles.length === 0) {
+      return <p className="text-[10px] italic text-[#8f7a5a]">No hay objetos compatibles en la mochila.</p>;
+    }
+    return compatibles.map((obj) => (
+      <button key={obj.id} type="button" onClick={() => {
+        void enviarAccionObjeto("equipar", obj.id, ranura.clave);
+        setRanuraSeleccionada(null);
+      }} disabled={procesando !== null || bloqueado}
+        className="flex min-h-9 w-full items-center gap-2 rounded-md border border-[#59432b] bg-[#19140f] px-2 py-1.5 text-left text-[10px] font-bold text-[#e8d4ae] hover:border-amber-500 disabled:opacity-40">
+        {obtenerSpriteObjeto(obj.objeto) ? <Image src={obtenerSpriteObjeto(obj.objeto) as string} alt="" aria-hidden="true" width={28} height={28} className="h-7 w-7 shrink-0 object-contain [image-rendering:pixelated]" /> : null}
+        <span className="min-w-0 flex-1">{obj.objeto.nombre}</span>
+        <span className="shrink-0 text-emerald-300">Equipar</span>
+      </button>
+    ));
+  };
+
+  const renderSlotEquipo = (ranura: (typeof RANURAS_EQUIPO)[number], compacto = false) => {
     const item = datosObjetos?.equipo[ranura.clave] ?? null;
     const estadisticas = item ? obtenerEstadisticasNoCero(item.objeto, item.nivelMejora, item.bonificaciones) : [];
+    if (compacto) {
+      return (
+        <article key={ranura.clave} className={"min-w-0 rounded-md border p-1.5 shadow-inner " + (
+          item ? "border-[#89643b] bg-gradient-to-br from-[#38291b] to-[#20170f]" : "border-dashed border-[#51412d] bg-[#191510]/80"
+        )}>
+          <p className="truncate text-[9px] font-black uppercase tracking-wide text-[#a99069]">{ranura.nombre}</p>
+          <div className="mt-1 flex min-w-0 items-center gap-1.5">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded border border-[#725638] bg-[#17130e] p-0.5">
+              {item && obtenerSpriteObjeto(item.objeto) ? (
+                <Image src={obtenerSpriteObjeto(item.objeto) as string} alt="" aria-hidden="true" width={64} height={64} className="h-full w-full object-contain [image-rendering:pixelated]" />
+              ) : <span className="text-sm" aria-hidden="true">{ranura.icono}</span>}
+            </div>
+            <p className="min-w-0 break-words text-[10px] font-bold leading-tight text-[#f0dfbd]">{item ? item.objeto.nombre : "Vacía"}</p>
+          </div>
+          {item ? (
+            <button type="button" onClick={() => void enviarAccionObjeto("desequipar", undefined, ranura.clave)}
+              disabled={procesando !== null || bloqueado}
+              className="mt-1.5 min-h-7 w-full rounded border border-[#614b33] bg-[#302317] px-1 text-[10px] font-bold text-[#d7c09a] disabled:opacity-40">
+              {procesando === "desequipar:" + ranura.clave ? "Retirando..." : "Desequipar"}
+            </button>
+          ) : (
+            <button type="button" onClick={() => setRanuraSeleccionada((actual) => actual === ranura.clave ? null : ranura.clave)}
+              disabled={procesando !== null || bloqueado} aria-expanded={ranuraSeleccionada === ranura.clave}
+              className="mt-1.5 min-h-7 w-full rounded border border-dashed border-[#755a39] bg-[#21180f] px-1 text-[10px] font-bold text-[#d7c09a] disabled:opacity-40">
+              {ranuraSeleccionada === ranura.clave ? "Cerrar" : "Equipar"}
+            </button>
+          )}
+          {!item && ranuraSeleccionada === ranura.clave && (
+            <div className="mt-1.5 space-y-1 border-t border-[#59432b] pt-1.5">{renderSeleccionRanura(ranura)}</div>
+          )}
+        </article>
+      );
+    }
     return (
       <article key={ranura.clave} className={"min-w-0 rounded-lg border p-2.5 shadow-inner " + (
         item ? "border-[#89643b] bg-gradient-to-br from-[#38291b] to-[#20170f]" : "border-dashed border-[#51412d] bg-[#191510]/80"
@@ -404,27 +464,7 @@ export default function PersonajePage() {
           </button>
         )}
         {!item && ranuraSeleccionada === ranura.clave && (
-          <div className="mt-2 space-y-1.5 border-t border-[#59432b] pt-2">
-            {inventario.filter((obj) => obtenerRanuraObjeto(obj.objeto) === (
-              ranura.clave === "manoSecundaria" ? "mano_secundaria" :
-              ranura.clave === "accesorio" ? "accesorio" :
-              ranura.clave.startsWith("anillo") ? "anillo" : ranura.clave
-            ) && !objetosEquipados.has(obj.id)).length === 0 ? (
-              <p className="text-[10px] italic text-[#8f7a5a]">No hay objetos compatibles en la mochila.</p>
-            ) : inventario.filter((obj) => obtenerRanuraObjeto(obj.objeto) === (
-              ranura.clave === "manoSecundaria" ? "mano_secundaria" :
-              ranura.clave === "accesorio" ? "accesorio" :
-              ranura.clave.startsWith("anillo") ? "anillo" : ranura.clave
-            ) && !objetosEquipados.has(obj.id)).map((obj) => (
-              <button key={obj.id} type="button" onClick={() => { void enviarAccionObjeto("equipar", obj.id, ranura.clave); setRanuraSeleccionada(null); }}
-                disabled={procesando !== null || bloqueado}
-                className="flex min-h-9 w-full items-center gap-2 rounded-md border border-[#59432b] bg-[#19140f] px-2 py-1.5 text-left text-[10px] font-bold text-[#e8d4ae] hover:border-amber-500 disabled:opacity-40">
-                {obtenerSpriteObjeto(obj.objeto) ? <Image src={obtenerSpriteObjeto(obj.objeto) as string} alt="" aria-hidden="true" width={28} height={28} className="h-7 w-7 shrink-0 object-contain [image-rendering:pixelated]" /> : null}
-                <span className="min-w-0 flex-1">{obj.objeto.nombre}</span>
-                <span className="shrink-0 text-emerald-300">Equipar</span>
-              </button>
-            ))}
-          </div>
+          <div className="mt-2 space-y-1.5 border-t border-[#59432b] pt-2">{renderSeleccionRanura(ranura)}</div>
         )}
       </article>
     );
@@ -634,28 +674,31 @@ export default function PersonajePage() {
                     </div>
                   </div>
 
-                  {/* En móvil estrecho, retrato arriba y ranuras en dos columnas legibles. */}
-                  <div role="group" aria-label="Vista de equipamiento" className="min-[390px]:hidden">
-                    <div className="mx-auto mb-2 flex max-w-[116px] flex-col items-center rounded-lg border border-[#755534] bg-[radial-gradient(ellipse_at_45%_30%,#493521,#261b12_68%)] p-2">
+                  {/* En móvil, mantenemos al personaje en el centro y los slots en ambos lados. */}
+                  <div role="group" aria-label="Vista de equipamiento" className="grid grid-cols-[minmax(0,1fr)_92px_minmax(0,1fr)] gap-1.5 min-[390px]:grid-cols-[minmax(0,1fr)_104px_minmax(0,1fr)] sm:hidden">
+                    <div className="grid content-start grid-rows-4 gap-1.5">
+                      {(["casco", "armadura", "pantalones", "botas"] as TipoEquipamiento[]).map((clave) => renderSlotEquipo(RANURAS_EQUIPO.find((ranura) => ranura.clave === clave)!, true))}
+                    </div>
+                    <div className="flex min-w-0 flex-col items-center justify-start rounded-lg border border-[#755534] bg-[radial-gradient(ellipse_at_45%_30%,#493521,#261b12_68%)] p-1">
                       <Image
                         src={obtenerSpriteHeroe(personaje.clase, personaje.sexo, personaje.profesionActivaId)}
                         alt={`Personaje equipado: ${personaje.clase}`}
                         width={112}
-                        height={144}
-                        className="h-28 w-full object-contain [image-rendering:pixelated]"
+                        height={160}
+                        className="mt-2 h-auto max-h-48 w-full object-contain [image-rendering:pixelated]"
                         priority
                       />
-                      <p className="text-center text-[9px] font-black uppercase tracking-wide text-[#b99a6c]">{personaje.clase}</p>
+                      <p className="mt-1 text-center text-[9px] font-black uppercase tracking-wide text-[#b99a6c]">{personaje.clase}</p>
                     </div>
-                    <div className="grid grid-cols-2 gap-1.5">
-                      {(["casco", "armadura", "pantalones", "botas", "accesorio", "anillo1", "guantes", "anillo2"] as TipoEquipamiento[]).map((clave) => renderSlotEquipo(RANURAS_EQUIPO.find((ranura) => ranura.clave === clave)!))}
-                      <div className="col-span-2 mt-1 grid grid-cols-2 gap-1.5 border-t border-[#59432b] pt-2">
-                        {armaDosManosEquipada ? (
-                          <div className="col-span-2">{renderSlotEquipo(RANURAS_EQUIPO.find((ranura) => ranura.clave === "arma")!)}</div>
-                        ) : (
-                          (["arma", "manoSecundaria"] as TipoEquipamiento[]).map((clave) => renderSlotEquipo(RANURAS_EQUIPO.find((ranura) => ranura.clave === clave)!))
-                        )}
-                      </div>
+                    <div className="grid content-start grid-rows-4 gap-1.5">
+                      {(["accesorio", "anillo1", "guantes", "anillo2"] as TipoEquipamiento[]).map((clave) => renderSlotEquipo(RANURAS_EQUIPO.find((ranura) => ranura.clave === clave)!, true))}
+                    </div>
+                    <div className="col-span-3 mt-1 grid grid-cols-2 gap-1.5 border-t border-[#59432b] pt-2">
+                      {armaDosManosEquipada ? (
+                        <div className="col-span-2">{renderSlotEquipo(RANURAS_EQUIPO.find((ranura) => ranura.clave === "arma")!, true)}</div>
+                      ) : (
+                        (["arma", "manoSecundaria"] as TipoEquipamiento[]).map((clave) => renderSlotEquipo(RANURAS_EQUIPO.find((ranura) => ranura.clave === clave)!, true))
+                      )}
                     </div>
                   </div>
                 </>
