@@ -464,14 +464,9 @@ export default function BasePage() {
         {/* Edificios */}
         <div className="mb-3 flex items-center justify-between gap-3 sm:mb-5">
           <div className="min-w-0">
-            <h2 className="text-lg font-black uppercase tracking-[0.1em] text-amber-100 sm:text-2xl sm:tracking-[0.15em]">
-              {modoConstruccion ? "Construcción" : "Mi campamento"}
+            <h2 className="text-lg font-black tracking-[0.1em] text-amber-100 sm:text-2xl sm:tracking-[0.15em]">
+              {modoConstruccion ? "Construcción" : "Campamento"}
             </h2>
-            {!modoConstruccion && (
-              <p className="mt-1 hidden text-sm text-amber-100/55 sm:block">
-                Un poblado en crecimiento, con sus instalaciones y caminos.
-              </p>
-            )}
           </div>
 
           <button
