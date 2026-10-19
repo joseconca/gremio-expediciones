@@ -21,6 +21,7 @@ const ICONOS_EDIFICIO: Record<IdEdificio, string> = {
   armeria: "🛡️",
   herreria: "⚒️",
   mercado: "🪙",
+  botica: "⚗️",
   embajada: "🏰",
   escuelaCombate: "⚔️",
   muralla: "🧱",
