@@ -28,11 +28,24 @@ test("el botón global del aventurero y la navegación móvil abren Personaje", 
 test("la pantalla de Personaje centraliza equipo, mochila por categorías y gestión de habilidades", () => {
   const pagina = read("src/app/base/personaje/page.tsx");
   assert.match(pagina, /Secciones del personaje/);
+  assert.match(pagina, /useState<SeccionPersonaje>\("personaje"\)/);
+  assert.match(pagina, /id: "personaje" as const, label: "Personaje"/);
   assert.match(pagina, /label: "Equipo"/);
   assert.match(pagina, /label: "Mochila"/);
   assert.match(pagina, /label: "Habilidades"/);
+  assert.match(pagina, /Atributos principales/);
+  assert.match(pagina, /Estadísticas de combate/);
+  assert.match(pagina, /Recursos actuales/);
   assert.match(pagina, /aria-label="Vista de equipamiento"/);
-  assert.match(pagina, /min-\[520px\]:grid-cols-\[minmax\(0,1fr\)_148px_minmax\(0,1fr\)\]/);
+  assert.match(pagina, /grid-cols-\[minmax\(0,1fr\)_92px_minmax\(0,1fr\)\]/);
+  assert.match(pagina, /sm:grid-cols-\[minmax\(0,1fr\)_148px_minmax\(0,1fr\)\]/);
+  assert.match(pagina, /obtenerObjetosCompatiblesRanura/);
+  assert.match(pagina, /No hay objetos compatibles en la mochila/);
+  assert.match(pagina, /aria-expanded=\{ranuraSeleccionada === ranura\.clave\}/);
+  assert.doesNotMatch(pagina, /Ver en equipo/);
+  assert.doesNotMatch(pagina, /Abrir mochila →/);
+  assert.doesNotMatch(pagina, /Redistribuir ·/);
+  assert.match(pagina, /Gestionar en Escuela de Batalla/);
   assert.match(pagina, /armaDosManosEquipada/);
   for (const categoria of ["Armas", "Armaduras", "Accesorios", "Consumibles", "Varios"]) {
     assert.ok(pagina.includes(categoria), `Falta la categoría de mochila ${categoria}`);
