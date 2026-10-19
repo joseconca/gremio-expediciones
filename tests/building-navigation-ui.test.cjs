@@ -5,6 +5,22 @@ const path = require("node:path");
 
 const read = (relative) => fs.readFileSync(path.join(__dirname, "..", relative), "utf8");
 
+test("la pantalla de Personaje centraliza equipo, mochila por categorías y gestión de habilidades", () => {
+  const pagina = read("src/app/base/personaje/page.tsx");
+  assert.match(pagina, /Secciones del personaje/);
+  assert.match(pagina, /label: "Equipo"/);
+  assert.match(pagina, /label: "Mochila"/);
+  assert.match(pagina, /label: "Habilidades"/);
+  for (const categoria of ["Armas", "Armaduras", "Accesorios", "Consumibles", "Varios"]) {
+    assert.ok(pagina.includes(categoria), `Falta la categoría de mochila ${categoria}`);
+  }
+  assert.match(pagina, /\/api\/objetos\/equipar/);
+  assert.match(pagina, /\/api\/objetos\/desequipar/);
+  assert.match(pagina, /\/api\/habilidades\/equipar/);
+  assert.match(pagina, /\/api\/habilidades\/desequipar/);
+  assert.match(pagina, /\/api\/habilidades\/mejorar/);
+});
+
 test("los edificios individuales se abren desde el rótulo y el sprite, sin botón Entrar ni descripción fija", () => {
   const card = read("src/components/base/EdificioCard.tsx");
   assert.match(card, /<Link\s+href=\{configuracion\.ruta\}[\s\S]*?aria-describedby=\{"descripcion-edificio-" \+ edificio\.id\}/);
