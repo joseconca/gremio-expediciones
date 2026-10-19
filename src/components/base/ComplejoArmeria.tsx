@@ -19,28 +19,32 @@ export default function ComplejoArmeria({
 
   return (
     <article className="group relative isolate flex min-w-0 flex-col overflow-hidden rounded-lg border border-[#5b4026] bg-[#24190f] shadow-[0_5px_0_rgba(12,17,10,0.55),0_8px_16px_rgba(0,0,0,0.22)] transition-colors hover:border-amber-700/80 sm:rounded-xl">
-      {/* Cartel compartido para la armería y la herrería. */}
+      {/* Cada nombre abre su edificio; la descripción aparece como ayuda al pasar o enfocar. */}
       <div className="relative z-20 mx-1.5 -mb-2 mt-1.5 flex h-[92px] items-center justify-center sm:mx-3 sm:-mb-5 sm:mt-3 sm:h-[116px]">
         <div className="relative flex h-full w-full flex-col justify-center rounded-sm border-2 border-[#362214] bg-gradient-to-b from-[#825329] to-[#56361e] px-2 py-1.5 shadow-[inset_0_1px_0_rgba(255,220,160,0.15),0_3px_5px_rgba(0,0,0,0.35)] sm:border-[3px] sm:px-3 sm:py-2">
           <span aria-hidden="true" className="absolute left-1 top-1 h-1 w-1 rounded-full bg-[#24170d] sm:left-1.5 sm:top-1.5 sm:h-1.5 sm:w-1.5" />
           <span aria-hidden="true" className="absolute right-1 top-1 h-1 w-1 rounded-full bg-[#24170d] sm:right-1.5 sm:top-1.5 sm:h-1.5 sm:w-1.5" />
           <div className={herreriaConstruida ? "grid grid-cols-2 gap-1.5 sm:gap-3" : "grid grid-cols-1"}>
             <div className="min-w-0 text-center">
-              <h3 className="break-words text-xs font-black leading-tight tracking-wide text-amber-200 drop-shadow sm:text-lg">
-                {armeria.nombre}
-              </h3>
-              <p className="mt-1 line-clamp-2 text-center text-[9px] font-semibold leading-tight text-amber-100/70 sm:text-xs">
-                {armeria.descripcion}
-              </p>
+              <Link
+                href={CONFIGURACION_EDIFICIOS.armeria.ruta}
+                aria-label={"Entrar en " + armeria.nombre}
+                title={armeria.descripcion}
+                className="inline-flex min-h-8 max-w-full items-center justify-center rounded px-1.5 text-xs font-black leading-tight tracking-wide text-amber-200 drop-shadow transition-colors hover:bg-amber-300/10 hover:text-amber-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 sm:min-h-10 sm:text-lg"
+              >
+                <h3 className="break-words">{armeria.nombre}</h3>
+              </Link>
             </div>
             {herreriaConstruida && (
               <div className="min-w-0 text-center">
-                <h3 className="break-words text-xs font-black leading-tight tracking-wide text-amber-200 drop-shadow sm:text-lg">
-                  {herreria.nombre}
-                </h3>
-                <p className="mt-1 line-clamp-2 text-center text-[9px] font-semibold leading-tight text-amber-100/70 sm:text-xs">
-                  {herreria.descripcion}
-                </p>
+                <Link
+                  href={CONFIGURACION_EDIFICIOS.herreria.ruta}
+                  aria-label={"Entrar en " + herreria.nombre}
+                  title={herreria.descripcion}
+                  className="inline-flex min-h-8 max-w-full items-center justify-center rounded px-1.5 text-xs font-black leading-tight tracking-wide text-amber-200 drop-shadow transition-colors hover:bg-amber-300/10 hover:text-amber-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 sm:min-h-10 sm:text-lg"
+                >
+                  <h3 className="break-words">{herreria.nombre}</h3>
+                </Link>
               </div>
             )}
           </div>
@@ -61,7 +65,7 @@ export default function ComplejoArmeria({
         <div data-world-layer="building" className="relative z-10 mb-4 h-[6.5rem] w-full max-w-56 sm:mb-5 sm:h-36 sm:max-w-72">
           <div
             aria-hidden="true"
-            className="absolute inset-0 z-0 opacity-65"
+            className="pointer-events-none absolute inset-0 z-0 opacity-65"
             style={{
               transform:
                 "translateY(25%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)",
@@ -77,13 +81,36 @@ export default function ComplejoArmeria({
           </div>
           <Image
             src={`/sprites/buildings/${spriteComplejo}.png`}
-            alt={herreriaConstruida ? "Armería y Herrería" : "Armería"}
+            alt=""
             fill
             sizes="(max-width: 639px) 48vw, (max-width: 1023px) 30vw, 288px"
             unoptimized
             priority
-            className="relative z-10 object-contain [image-rendering:pixelated] drop-shadow-[0_3px_2px_rgba(0,0,0,0.35)]"
+            className="pointer-events-none relative z-10 object-contain [image-rendering:pixelated] drop-shadow-[0_3px_2px_rgba(0,0,0,0.35)]"
           />
+          {herreriaConstruida ? (
+            <>
+              <Link
+                href={CONFIGURACION_EDIFICIOS.armeria.ruta}
+                aria-label={"Entrar en " + armeria.nombre}
+                title={armeria.descripcion}
+                className="absolute inset-y-0 left-0 z-20 w-1/2 rounded-l-md outline-none transition-colors hover:bg-amber-300/10 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-amber-300"
+              />
+              <Link
+                href={CONFIGURACION_EDIFICIOS.herreria.ruta}
+                aria-label={"Entrar en " + herreria.nombre}
+                title={herreria.descripcion}
+                className="absolute inset-y-0 right-0 z-20 w-1/2 rounded-r-md outline-none transition-colors hover:bg-amber-300/10 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-amber-300"
+              />
+            </>
+          ) : (
+            <Link
+              href={CONFIGURACION_EDIFICIOS.armeria.ruta}
+              aria-label={"Entrar en " + armeria.nombre}
+              title={armeria.descripcion}
+              className="absolute inset-0 z-20 rounded-md outline-none transition-colors hover:bg-amber-300/10 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-amber-300"
+            />
+          )}
         </div>
 
         {/* Carril frontal preparado para entidades animadas del poblado. */}
@@ -99,28 +126,7 @@ export default function ComplejoArmeria({
         </div>
       </div>
 
-      <div className="relative z-30 grid min-h-[49px] grid-cols-2 gap-1.5 border-t border-[#674728]/70 bg-gradient-to-b from-[#342315] to-[#20160e] p-1.5 sm:min-h-[57px] sm:gap-2 sm:p-2">
-        <Link
-          href={CONFIGURACION_EDIFICIOS.armeria.ruta}
-          aria-label={`Entrar en ${armeria.nombre}`}
-          className="flex min-h-9 items-center justify-center gap-1 rounded-sm border border-stone-800 bg-gradient-to-b from-stone-500 to-stone-700 px-1 py-1 text-center text-[9px] font-black tracking-wide text-stone-100 shadow-[inset_0_1px_1px_rgba(255,255,255,0.25),0_2px_0_#17120d] transition-colors hover:from-amber-700 hover:to-amber-900 active:translate-y-px active:shadow-none sm:min-h-10 sm:text-xs sm:tracking-widest"
-        >
-          Armería <span aria-hidden="true" className="text-amber-200">›</span>
-        </Link>
-        {herreriaConstruida ? (
-          <Link
-            href={CONFIGURACION_EDIFICIOS.herreria.ruta}
-            aria-label={`Entrar en ${herreria.nombre}`}
-            className="flex min-h-9 items-center justify-center gap-1 rounded-sm border border-stone-800 bg-gradient-to-b from-stone-500 to-stone-700 px-1 py-1 text-center text-[9px] font-black tracking-wide text-stone-100 shadow-[inset_0_1px_1px_rgba(255,255,255,0.25),0_2px_0_#17120d] transition-colors hover:from-amber-700 hover:to-amber-900 active:translate-y-px active:shadow-none sm:min-h-10 sm:text-xs sm:tracking-widest"
-          >
-            Herrería <span aria-hidden="true" className="text-amber-200">›</span>
-          </Link>
-        ) : (
-          <div className="flex min-h-9 items-center justify-center rounded-sm border border-amber-900/50 bg-[#24190f]/70 px-1 py-1 text-center text-[9px] font-semibold text-amber-100/50 sm:min-h-10 sm:text-[10px]">
-            Sin herrería
-          </div>
-        )}
-      </div>
+
     </article>
   );
 }
