@@ -12,7 +12,7 @@ import {
 } from "@/lib/objetos";
 import { calcularPrecioVentaObjeto } from "@/lib/economia";
 import { CLASES } from "@/lib/progresion/clases";
-import { ajustarHabilidadPorNivel, costeReinicioHabilidades } from "@/lib/progresion/niveles-habilidad";
+import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
 import {
   descripcionSimpleHabilidad,
   detalleNumericoHabilidad,
@@ -30,7 +30,7 @@ import DescripcionTactil from "@/components/ui/DescripcionTactil";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 import { IndicadorNivelHabilidad } from "@/components/habilidades/PanelMejoraHabilidad";
 
-type SeccionPersonaje = "equipo" | "mochila" | "habilidades";
+type SeccionPersonaje = "personaje" | "equipo" | "mochila" | "habilidades";
 type CategoriaInventario = "todo" | "armas" | "armaduras" | "accesorios" | "consumibles" | "varios";
 type TipoEquipamiento = keyof EquipoPersonaje;
 
@@ -160,9 +160,10 @@ function etiquetaSlotHabilidad(slot: SlotHabilidad): string {
 
 export default function PersonajePage() {
   const { personaje, edificios, cargarJugador } = useGameStore();
-  const [seccion, setSeccion] = useState<SeccionPersonaje>("equipo");
+  const [seccion, setSeccion] = useState<SeccionPersonaje>("personaje");
   const [categoria, setCategoria] = useState<CategoriaInventario>("todo");
   const [busquedaHabilidad, setBusquedaHabilidad] = useState("");
+  const [ranuraSeleccionada, setRanuraSeleccionada] = useState<TipoEquipamiento | null>(null);
   const [datosObjetos, setDatosObjetos] = useState<DatosObjetos | null>(null);
   const [datosHabilidades, setDatosHabilidades] = useState<DatosHabilidades | null>(null);
   const [cargandoObjetos, setCargandoObjetos] = useState(true);
@@ -245,30 +246,6 @@ export default function PersonajePage() {
     }
   };
 
-  const reiniciarHabilidades = async () => {
-    if (!personaje) return;
-    const profesionNombre = datosHabilidades?.profesionNombre ?? CLASES[personaje.profesionActivaId]?.nombre ?? personaje.clase;
-    const nivelJobActual = datosHabilidades?.progresoJob?.nivelJob ?? personaje.nivelJob;
-    const coste = costeReinicioHabilidades(nivelJobActual);
-    if (!window.confirm(`¿Reiniciar las habilidades propias de ${profesionNombre} por ${coste} de oro? Recuperarás los puntos invertidos y conservarás tu nivel Job.`)) return;
-
-    setProcesando("reiniciar");
-    setError(null);
-    setAviso(null);
-    try {
-      const respuesta = await fetch("/api/habilidades/reiniciar", { method: "POST" });
-      const resultado = await respuesta.json();
-      if (!respuesta.ok) throw new Error(resultado.error || "No se pudieron reiniciar las habilidades.");
-      setAviso(resultado.mensaje || "Habilidades redistribuidas.");
-      await recargarHabilidades();
-      await cargarJugador();
-    } catch (fallo) {
-      setError(fallo instanceof Error ? fallo.message : "Error al reiniciar las habilidades.");
-    } finally {
-      setProcesando(null);
-    }
-  };
-
   const enviarAccionHabilidad = async (tipo: "equipar" | "desequipar" | "mejorar", habilidadId: string, slot?: SlotHabilidad) => {
     const clave = tipo === "equipar" ? "habilidad:" + habilidadId + ":" + slot : tipo + ":" + habilidadId;
     setProcesando(clave);
@@ -309,11 +286,6 @@ export default function PersonajePage() {
 
   const habilidadesAprendidas = useMemo(() => datosHabilidades?.aprendidas ?? [], [datosHabilidades?.aprendidas]);
   const profesionActivaId = datosHabilidades?.profesionActivaId ?? personaje?.profesionActivaId ?? "novato";
-  const habilidadesPropias = useMemo(
-    () => habilidadesAprendidas.filter((item) => (item.habilidad.claseId ?? "novato") === profesionActivaId),
-    [habilidadesAprendidas, profesionActivaId],
-  );
-  const costeReinicio = costeReinicioHabilidades(datosHabilidades?.progresoJob?.nivelJob ?? personaje?.nivelJob ?? 1);
   const habilidadesEquipadas = useMemo(() => habilidadesAprendidas.filter((item) => esSlotHabilidad(item.slot)), [habilidadesAprendidas]);
   const habilidadesSinEquipar = useMemo(() => habilidadesAprendidas.filter((item) => !esSlotHabilidad(item.slot)), [habilidadesAprendidas]);
   const habilidadesFiltradas = useMemo(() => {
@@ -371,11 +343,7 @@ export default function PersonajePage() {
           </div>
         </div>
         <div className="mt-2 flex flex-wrap justify-end gap-1.5 border-t border-white/5 pt-2">
-          {equipado ? (
-            <button type="button" onClick={() => setSeccion("equipo")} className="min-h-8 rounded-md border border-[#755a39] bg-[#392a1c] px-3 text-xs font-bold text-[#e5c99c] hover:border-amber-400">
-              Ver en equipo
-            </button>
-          ) : ranura && (objeto.tipo === "arma" || objeto.tipo === "armadura" || objeto.tipo === "accesorio") ? (
+          {!equipado && ranura && (objeto.tipo === "arma" || objeto.tipo === "armadura" || objeto.tipo === "accesorio") ? (
             ranura === "anillo" ? (
               <>
                 <button type="button" onClick={() => void enviarAccionObjeto("equipar", item.id, "anillo1")} disabled={procesando !== null || bloqueado} className="min-h-8 rounded-md border border-[#755a39] bg-[#392a1c] px-2.5 text-xs font-bold text-[#e5c99c] disabled:opacity-40">Equipar anillo I</button>
@@ -426,9 +394,38 @@ export default function PersonajePage() {
             ) : <p className="mt-1 text-xs italic text-[#76654e]">Ranura vacía</p>}
           </div>
         </div>
-        {item && <button type="button" onClick={() => void enviarAccionObjeto("desequipar", undefined, ranura.clave)} disabled={procesando !== null || bloqueado} className="mt-2 min-h-8 w-full rounded-md border border-[#614b33] bg-[#302317] px-2 text-xs font-bold text-[#d7c09a] hover:border-red-700 hover:text-red-200 disabled:opacity-40">
+        {item ? <button type="button" onClick={() => void enviarAccionObjeto("desequipar", undefined, ranura.clave)} disabled={procesando !== null || bloqueado} className="mt-2 min-h-8 w-full rounded-md border border-[#614b33] bg-[#302317] px-2 text-xs font-bold text-[#d7c09a] hover:border-red-700 hover:text-red-200 disabled:opacity-40">
           {procesando === "desequipar:" + ranura.clave ? "Retirando..." : "Desequipar"}
-        </button>}
+        </button> : (
+          <button type="button" onClick={() => setRanuraSeleccionada((actual) => actual === ranura.clave ? null : ranura.clave)} disabled={bloqueado || procesando !== null}
+            aria-expanded={ranuraSeleccionada === ranura.clave}
+            className="mt-2 min-h-8 w-full rounded-md border border-dashed border-[#755a39] bg-[#21180f] px-2 text-xs font-bold text-[#d7c09a] hover:border-amber-400 disabled:opacity-40">
+            {ranuraSeleccionada === ranura.clave ? "Cerrar selección" : "Equipar pieza"}
+          </button>
+        )}
+        {!item && ranuraSeleccionada === ranura.clave && (
+          <div className="mt-2 space-y-1.5 border-t border-[#59432b] pt-2">
+            {inventario.filter((obj) => obtenerRanuraObjeto(obj.objeto) === (
+              ranura.clave === "manoSecundaria" ? "mano_secundaria" :
+              ranura.clave === "accesorio" ? "accesorio" :
+              ranura.clave.startsWith("anillo") ? "anillo" : ranura.clave
+            ) && !objetosEquipados.has(obj.id)).length === 0 ? (
+              <p className="text-[10px] italic text-[#8f7a5a]">No hay objetos compatibles en la mochila.</p>
+            ) : inventario.filter((obj) => obtenerRanuraObjeto(obj.objeto) === (
+              ranura.clave === "manoSecundaria" ? "mano_secundaria" :
+              ranura.clave === "accesorio" ? "accesorio" :
+              ranura.clave.startsWith("anillo") ? "anillo" : ranura.clave
+            ) && !objetosEquipados.has(obj.id)).map((obj) => (
+              <button key={obj.id} type="button" onClick={() => { void enviarAccionObjeto("equipar", obj.id, ranura.clave); setRanuraSeleccionada(null); }}
+                disabled={procesando !== null || bloqueado}
+                className="flex min-h-9 w-full items-center gap-2 rounded-md border border-[#59432b] bg-[#19140f] px-2 py-1.5 text-left text-[10px] font-bold text-[#e8d4ae] hover:border-amber-500 disabled:opacity-40">
+                {obtenerSpriteObjeto(obj.objeto) ? <Image src={obtenerSpriteObjeto(obj.objeto) as string} alt="" aria-hidden="true" width={28} height={28} className="h-7 w-7 shrink-0 object-contain [image-rendering:pixelated]" /> : null}
+                <span className="min-w-0 flex-1">{obj.objeto.nombre}</span>
+                <span className="shrink-0 text-emerald-300">Equipar</span>
+              </button>
+            ))}
+          </div>
+        )}
       </article>
     );
   };
@@ -471,8 +468,9 @@ export default function PersonajePage() {
           </div>
         </header>
 
-        <nav aria-label="Secciones del personaje" className="mb-4 grid grid-cols-3 gap-1.5 rounded-xl border border-[#5d452c] bg-[#201910] p-1.5 sm:gap-2 sm:p-2">
+        <nav aria-label="Secciones del personaje" className="mb-4 grid grid-cols-4 gap-1 rounded-xl border border-[#5d452c] bg-[#201910] p-1 sm:gap-2 sm:p-2">
           {[
+            { id: "personaje" as const, label: "Personaje", icono: "🧙", sub: "Atributos y estadísticas" },
             { id: "equipo" as const, label: "Equipo", icono: "🛡️", sub: "Ranuras y estadísticas" },
             { id: "mochila" as const, label: "Mochila", icono: "🎒", sub: "Objetos y consumibles" },
             { id: "habilidades" as const, label: "Habilidades", icono: "✨", sub: "Técnicas aprendidas" },
@@ -489,6 +487,101 @@ export default function PersonajePage() {
         {bloqueado && <div className="mb-4 rounded-lg border border-amber-700/60 bg-[#332516] p-3 text-sm text-amber-100">El personaje está de viaje o combatiendo. Puedes consultar tu equipo y tus habilidades, pero los cambios quedan bloqueados hasta regresar.</div>}
         {error && <div role="alert" className="mb-3 rounded-lg border border-red-800/70 bg-[#351a18] p-3 text-sm font-bold text-red-200">⚠️ {error}</div>}
         {aviso && <div role="status" className="mb-3 rounded-lg border border-emerald-800/60 bg-[#172b20] p-3 text-sm text-emerald-200">{aviso}</div>}
+
+        {seccion === "personaje" && (
+          <section className="overflow-hidden rounded-xl border border-[#6d4b2c] bg-[#21180f] shadow-[0_10px_25px_rgba(0,0,0,0.3)]">
+            <header className="border-b border-[#62452d] bg-gradient-to-r from-[#392719] to-[#241810] px-3 py-3 sm:px-4">
+              <h2 className="font-serif text-lg font-black uppercase tracking-wider text-[#efd8ad]">Atributos y estadísticas</h2>
+              <p className="mt-1 text-xs text-[#ab9270]">Resumen completo del aventurero. Los atributos crecen automáticamente con el nivel Base y la profesión activa.</p>
+            </header>
+            <div className="p-3 sm:p-4">
+              <section className="mb-5">
+                <h3 className="mb-2 border-b border-[#59432b] pb-1 font-serif text-sm font-black uppercase tracking-wider text-[#d9bd91]">Progreso</h3>
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                  {[
+                    { nombre: "Nivel Base", valor: personaje.nivel },
+                    { nombre: "Nivel Job", valor: personaje.nivelJob },
+                    { nombre: "Experiencia Base", valor: personaje.experiencia },
+                    { nombre: "Puntos de habilidad", valor: personaje.puntosHabilidadDisponibles },
+                  ].map((stat) => (
+                    <article key={stat.nombre} className="rounded-lg border border-[#59432b] bg-[#19140f] p-3">
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-[#a99069]">{stat.nombre}</p>
+                      <p className="mt-1 font-serif text-xl font-black text-[#f0d9ad]">{stat.valor}</p>
+                    </article>
+                  ))}
+                </div>
+              </section>
+              <section className="mb-5">
+                <h3 className="mb-2 border-b border-[#59432b] pb-1 font-serif text-sm font-black uppercase tracking-wider text-[#d9bd91]">Atributos principales</h3>
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
+                  {([
+                    { nombre: "Fuerza", clave: "fuerza" as const, icono: "💪" },
+                    { nombre: "Agilidad", clave: "agilidad" as const, icono: "💨" },
+                    { nombre: "Vitalidad", clave: "vitalidad" as const, icono: "❤️" },
+                    { nombre: "Inteligencia", clave: "inteligencia" as const, icono: "✨" },
+                    { nombre: "Destreza", clave: "destreza" as const, icono: "🎯" },
+                    { nombre: "Suerte", clave: "suerte" as const, icono: "🍀" },
+                  ]).map((stat) => (
+                    <article key={stat.clave} className="rounded-lg border border-[#59432b] bg-[#efe5cf] p-3 text-center text-stone-900 shadow-inner">
+                      <span aria-hidden="true">{stat.icono}</span>
+                      <p className="mt-1 text-[10px] font-black uppercase tracking-wider text-stone-500">{stat.nombre}</p>
+                      <p className="mt-1 font-serif text-2xl font-black">{personaje[stat.clave]}</p>
+                    </article>
+                  ))}
+                </div>
+              </section>
+              <section className="mb-5">
+                <h3 className="mb-2 border-b border-[#59432b] pb-1 font-serif text-sm font-black uppercase tracking-wider text-[#d9bd91]">Estadísticas de combate</h3>
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
+                  {([
+                    { nombre: "Vida máxima", valor: personaje.hpMaximo, icono: "❤️" },
+                    { nombre: "Ataque físico", valor: personaje.ataque, icono: "⚔️" },
+                    { nombre: "Defensa física", valor: personaje.defensa, icono: "🛡️" },
+                    { nombre: "Ataque mágico", valor: personaje.ataqueMagico, icono: "✨" },
+                    { nombre: "Defensa mágica", valor: personaje.defensaMagica, icono: "🔮" },
+                    { nombre: "Velocidad", valor: personaje.velocidad, icono: "💨" },
+                    { nombre: "Capacidad de carga", valor: personaje.capacidadCarruaje, icono: "📦" },
+                    { nombre: "Precisión", valor: personaje.precision.toLocaleString("es-ES", { maximumFractionDigits: 2 }) + "%", icono: "🎯" },
+                    { nombre: "Evasión", valor: (personaje.evasion * 100).toLocaleString("es-ES", { maximumFractionDigits: 2 }) + "%", icono: "🌀" },
+                    { nombre: "Prob. crítico", valor: (personaje.probCritico * 100).toLocaleString("es-ES", { maximumFractionDigits: 2 }) + "%", icono: "💥" },
+                    { nombre: "Daño crítico", valor: personaje.danoCritico.toLocaleString("es-ES", { maximumFractionDigits: 2 }) + "×", icono: "💢" },
+                    { nombre: "Energía máxima", valor: personaje.energiaMaxima, icono: "⚡" },
+                    { nombre: "Maná máximo", valor: personaje.manaMaximo, icono: "🔮" },
+                    { nombre: "Regeneración de vida", valor: personaje.regeneracionVidaPorTurno.toLocaleString("es-ES", { maximumFractionDigits: 2 }), icono: "💚" },
+                    { nombre: "Regeneración de energía", valor: personaje.regeneracionEnergiaPorTurno.toLocaleString("es-ES", { maximumFractionDigits: 2 }), icono: "⚡" },
+                    { nombre: "Regeneración de maná", valor: personaje.regeneracionManaPorTurno.toLocaleString("es-ES", { maximumFractionDigits: 2 }), icono: "🔷" },
+                  ]).map((stat) => (
+                    <article key={stat.nombre} className="rounded-lg border border-[#59432b] bg-[#efe5cf] p-2.5 text-stone-900 shadow-inner">
+                      <p className="text-[10px] font-bold text-stone-600">{stat.icono} {stat.nombre}</p>
+                      <p className="mt-1 font-serif text-lg font-black">{stat.valor}</p>
+                    </article>
+                  ))}
+                </div>
+              </section>
+              <section>
+                <h3 className="mb-2 border-b border-[#59432b] pb-1 font-serif text-sm font-black uppercase tracking-wider text-[#d9bd91]">Recursos actuales</h3>
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                  <article className="rounded-lg border border-sky-800/60 bg-[#17232a] p-3">
+                    <p className="text-xs font-bold text-sky-200">❤️ Vida actual</p>
+                    <p className="mt-1 text-lg font-black text-sky-100">{personaje.hpActual} / {personaje.hpMaximo}</p>
+                  </article>
+                  <article className="rounded-lg border border-amber-800/60 bg-[#2b2115] p-3">
+                    <p className="text-xs font-bold text-amber-200">⚡ Energía actual</p>
+                    <p className="mt-1 text-lg font-black text-amber-100">{personaje.energiaActual} / {personaje.energiaMaxima}</p>
+                  </article>
+                  <article className="rounded-lg border border-violet-800/60 bg-[#211a2e] p-3">
+                    <p className="text-xs font-bold text-violet-200">🔮 Maná actual</p>
+                    <p className="mt-1 text-lg font-black text-violet-100">{personaje.manaActual} / {personaje.manaMaximo}</p>
+                  </article>
+                  <article className="rounded-lg border border-[#59432b] bg-[#19140f] p-3">
+                    <p className="text-xs font-bold text-[#a99069]">Profesión activa</p>
+                    <p className="mt-1 text-sm font-black text-[#f0d9ad]">{CLASES[personaje.profesionActivaId]?.nombre ?? personaje.clase}</p>
+                  </article>
+                </div>
+              </section>
+            </div>
+          </section>
+        )}
 
         {seccion === "equipo" && (
           <section className="overflow-hidden rounded-xl border border-[#6d4b2c] bg-[#21180f] shadow-[0_10px_25px_rgba(0,0,0,0.3)]">
@@ -509,7 +602,7 @@ export default function PersonajePage() {
               {cargandoObjetos ? <p className="p-8 text-center text-sm text-[#bba581]">Consultando equipo...</p> : (
                 <>
                   {/* Pantallas medianas y grandes: silueta del aventurero con ranuras alrededor. */}
-                  <div role="group" aria-label="Vista de equipamiento" className="hidden min-[520px]:grid min-[520px]:grid-cols-[minmax(0,1fr)_148px_minmax(0,1fr)] min-[520px]:gap-2">
+                  <div role="group" aria-label="Vista de equipamiento" className="hidden min-[390px]:grid min-[390px]:grid-cols-[minmax(0,1fr)_112px_minmax(0,1fr)] min-[390px]:gap-1.5 min-[520px]:grid-cols-[minmax(0,1fr)_148px_minmax(0,1fr)] min-[520px]:gap-2">
                     <div className="grid grid-rows-4 gap-2">
                       {(["casco", "armadura", "pantalones", "botas"] as TipoEquipamiento[]).map((clave) => renderSlotEquipo(RANURAS_EQUIPO.find((ranura) => ranura.clave === clave)!))}
                     </div>
@@ -542,7 +635,7 @@ export default function PersonajePage() {
                   </div>
 
                   {/* En móvil estrecho, retrato arriba y ranuras en dos columnas legibles. */}
-                  <div role="group" aria-label="Vista de equipamiento" className="min-[520px]:hidden">
+                  <div role="group" aria-label="Vista de equipamiento" className="min-[390px]:hidden">
                     <div className="mx-auto mb-2 flex max-w-[116px] flex-col items-center rounded-lg border border-[#755534] bg-[radial-gradient(ellipse_at_45%_30%,#493521,#261b12_68%)] p-2">
                       <Image
                         src={obtenerSpriteHeroe(personaje.clase, personaje.sexo, personaje.profesionActivaId)}
@@ -564,9 +657,6 @@ export default function PersonajePage() {
                         )}
                       </div>
                     </div>
-                  </div>
-                  <div className="mt-3 flex justify-end">
-                    <button type="button" onClick={() => setSeccion("mochila")} className="min-h-10 rounded-lg border border-[#7b5a34] bg-[#43301d] px-4 text-sm font-bold text-[#eed4a9] hover:border-amber-400">Abrir mochila →</button>
                   </div>
                 </>
               )}
@@ -689,21 +779,9 @@ export default function PersonajePage() {
                   <h2 className="font-serif text-lg font-black uppercase tracking-wider text-[#efd8ad]">Habilidades</h2>
                   <p className="mt-1 text-xs text-[#bba17b]">{datosHabilidades?.profesionNombre ?? CLASES[personaje.profesionActivaId]?.nombre ?? personaje.clase} · Las técnicas de tu profesión y sus antecesoras</p>
                 </div>
-                <div className="rounded-lg border border-amber-700/50 bg-[#2d2115] px-3 py-2">
-                  <p className="text-[10px] uppercase tracking-wider text-[#a99169]">Puntos Job disponibles</p>
-                  <p className="mt-0.5 text-xl font-black text-amber-200">{datosHabilidades?.progresoJob?.puntosHabilidadDisponibles ?? personaje.puntosHabilidadDisponibles}</p>
-                </div>
-                {edificios.escuelaCombate.nivel > 0 && (
-                  <button
-                    type="button"
-                    onClick={() => void reiniciarHabilidades()}
-                    disabled={procesando !== null || bloqueado || habilidadesPropias.length === 0 || (datosHabilidades?.oro ?? 0) < costeReinicio}
-                    title={habilidadesPropias.length === 0 ? "No tienes habilidades propias de esta profesión para reiniciar" : (datosHabilidades?.oro ?? 0) < costeReinicio ? `Necesitas ${costeReinicio} de oro` : "Reinicia las habilidades de tu profesión activa y recupera los puntos invertidos"}
-                    className="min-h-11 rounded-lg border border-amber-700/70 bg-[#382519] px-3 py-2 text-xs font-bold text-amber-100 hover:border-amber-400 disabled:cursor-not-allowed disabled:opacity-40"
-                  >
-                    {procesando === "reiniciar" ? "Redistribuyendo..." : `Redistribuir · ${costeReinicio} 🪙`}
-                  </button>
-                )}
+                <Link href="/base/escuela-batalla" className="inline-flex min-h-9 items-center justify-center rounded-lg border border-[#765635] bg-[#392a1c] px-3 py-2 text-xs font-bold text-[#e5c99c] hover:border-amber-400">
+                  Gestionar en Escuela de Batalla →
+                </Link>
               </div>
               {edificios.escuelaCombate.nivel === 0 && <p className="mt-2 text-xs text-amber-200/80">Construye la Escuela de Batalla para mejorar las habilidades. Puedes consultar tus habilidades aprendidas aquí.</p>}
             </header>
