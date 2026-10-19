@@ -25,6 +25,12 @@ Cada arma declara `subtipo` con su familia (espada, arco, daga, etc.). Las armad
 
 Las armas a dos manos bloquean la mano secundaria. El servidor valida la compatibilidad; un objeto equipado no puede venderse. Al mover un objeto de ranura, se limpia su ubicación anterior y no queda duplicado en dos slots. El equipo no se puede equipar, desequipar ni mejorar mientras el personaje está de viaje o combatiendo; el servidor vuelve a comprobar ese estado dentro de la transacción para evitar cambios concurrentes con el inicio de una expedición.
 
+## Variedad del botín
+
+La Armería agrupa la tienda en secciones separadas de armas, armaduras y escudos, y accesorios. El catálogo también reserva para los enemigos equipo que no se puede comprar: nuevas familias de armas físicas y mágicas, mejoras para cada ranura defensiva, anillos, collares, amuletos y una poción de recuperación superior.
+
+Las tablas de los enemigos normales se amplían por rareza; los encuentros raros y épicos pueden conceder piezas superiores a las de tienda, y los enemigos legendarios y jefes incluyen el equipo de mayor nivel. La probabilidad de botín permanece vinculada a la rareza del enemigo, sin aumentar artificialmente por añadir opciones a las tablas.
+
 ## Sufijos y rareza
 
 Los objetos básicos y comunes no llevan sufijo. Los objetos de mayor rareza que se obtienen como botín reciben un sufijo persistido en la instancia, junto con sus bonificaciones numéricas. El nombre visible tiene la forma «Espada de madera veloz».

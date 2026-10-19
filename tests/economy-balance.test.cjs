@@ -209,8 +209,8 @@ test("la recompensa secundaria de botín de jefe tiene en cuenta probabilidad y 
     const objeto = obtenerObjetoPorId(entrada.objetoId);
     return total + calcularPrecioVentaObjeto(objeto.precio, 1) * entrada.peso;
   }, 0) / pesoTotal;
-  assert.equal(reventaMedia, 1705);
-  assert.equal(reventaMedia * jefe.probabilidadBotin, 1193.5);
+  assert.equal(reventaMedia, 1941.9);
+  assert.equal(reventaMedia * jefe.probabilidadBotin, 1359.33);
 });
 
 test("el comercio ajusta el ingreso por hora a ida y vuelta y la probabilidad de éxito", () => {

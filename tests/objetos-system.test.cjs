@@ -94,6 +94,27 @@ test("todas las tablas loot apuntan a objetos existentes y los jefes tienen mejo
   assert.ok(ENEMIGOS.every((enemigo) => enemigo.esJefe === false));
 });
 
+
+test("el nuevo equipo exclusivo aparece en las tablas de botín de enemigos y jefes", () => {
+  const idsNuevos = [
+    "espada_vigia", "espada_draconica", "lanza_escama", "daga_sombria",
+    "arco_cazador", "baston_runico", "maza_enana", "hacha_berserker",
+    "grimorio_eclipse", "punos_lobo", "escudo_guardian", "yelmo_veterano",
+    "coraza_runica", "perneras_orcas", "botas_viento", "guantes_guardia",
+    "collar_fenix", "anillo_duelista", "anillo_arcanista", "amuleto_ancestral",
+    "pocion_suprema",
+  ];
+  const enemigos = [...ENEMIGOS, ...JEFES_ELITE];
+  const idsEnBotin = new Set(enemigos.flatMap((enemigo) => enemigo.tablaLoot.map((entrada) => entrada.objetoId)));
+  assert.deepEqual(idsNuevos.filter((id) => !idsEnBotin.has(id)), []);
+  assert.deepEqual(
+    [...new Set(idsNuevos.map((id) => obtenerObjetoPorId(id).tipo))].sort(),
+    ["accesorio", "arma", "armadura", "consumible"].sort(),
+  );
+  const jefe = JEFES_ELITE.find((enemigo) => enemigo.id === "dragon_anciano");
+  assert.ok(jefe.tablaLoot.some((entrada) => entrada.objetoId === "espada_draconica"));
+  assert.ok(jefe.tablaLoot.some((entrada) => entrada.objetoId === "coraza_runica"));
+});
 test("el catálogo cubre las diez ranuras y el inventario limita a 30 instancias", () => {
   const ranuras = new Set(OBJETOS.map(obtenerRanuraObjeto).filter(Boolean));
   for (const ranura of [
