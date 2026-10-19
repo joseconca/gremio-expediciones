@@ -318,9 +318,7 @@ export default function EscuelaCombatePage() {
           <section aria-label="Profesión activa" className="mb-3 rounded-lg border border-[#6b5235] bg-[#241d15] p-2 sm:mb-4 sm:p-3">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#a99169]">Tu clase actual</p>
                 <h2 className="mt-1 text-xl font-black text-[#f0dfbd] sm:text-2xl">{datos?.profesionNombre ?? CLASES[profesionId]?.nombre ?? profesionId}</h2>
-                <p className="mt-1 hidden max-w-xl text-sm text-[#b5a68c] sm:block">Puedes aprender habilidades de esta profesión y de sus antecesoras. Cada habilidad usa el nivel Job y los puntos de su clase de origen.</p>
               </div>
               <div className="grid grid-cols-2 gap-2 sm:min-w-[300px] sm:gap-3">
                 <div className="min-w-0 rounded-lg border border-[#4c3b27] bg-[#191612] p-2 sm:p-3">
@@ -353,8 +351,7 @@ export default function EscuelaCombatePage() {
         {vista === "tacticas" ? <SelectorPosicionCombate /> : vista === "profesiones" ? <PanelProfesiones integrado onProfessionChanged={recargarHabilidades} /> : vista === "aprender" ? (
           <section>
             <div className="mb-3 sm:mb-4">
-              <h2 className="text-lg font-bold text-[#f0dfbd] sm:text-xl">Catálogo de habilidades</h2>
-              <p className="mt-1 hidden text-sm text-[#9f927b] sm:block">Elige técnicas para desbloquear con tus puntos Job. Las habilidades heredadas están identificadas.</p>
+              <h2 className="text-lg font-bold text-[#f0dfbd] sm:text-xl">Lista de habilidades</h2>
             </div>
             {filtrosCatalogo}
             <div className="mb-4 flex gap-2 overflow-x-auto pb-1" aria-label="Filtrar habilidades">
@@ -387,7 +384,7 @@ export default function EscuelaCombatePage() {
                   const clave = `aprender:${habilidad.id}`;
                   const bloqueo = !progresoClaseDesbloqueada ? `Primero debes desbloquear ${clasePropietaria}`
                     : nivelJobClase < requerida ? `Aún no cumples el requisito de ${clasePropietaria} ${requerida}`
-                    : puntosInsuficientes ? "Te falta al menos un punto de habilidad"
+                    : puntosInsuficientes ? "Faltan puntos de habilidad"
                     : "No disponible para esta profesión";
                   return (
                     <article key={habilidad.id} className={`flex flex-col rounded-xl border bg-[#211b14] p-2.5 sm:p-4 ${aprendida ? "border-emerald-800/70" : puede ? "border-[#695233]" : "border-[#403427]"}`}>
@@ -426,7 +423,7 @@ export default function EscuelaCombatePage() {
                         </div>
                         <span className={`shrink-0 rounded-md px-2 py-1 text-[10px] font-semibold ${heredada ? "bg-sky-950/70 text-sky-200" : "bg-amber-950/70 text-amber-200"}`}>
                             <span className="sm:hidden">{heredada ? "Heredada" : "Propia"}</span>
-                            <span className="hidden sm:inline">{heredada ? `Heredada: ${clasePropietaria}` : "Propia de tu clase"}</span>
+                            <span className="hidden sm:inline">{heredada ? `Heredada: ${clasePropietaria}` : `${clasePropietaria}`}</span>
                           </span>
                       </div>
                       <p className="mt-1 line-clamp-2 text-[11px] leading-4 text-[#b2a58e]">{descripcionSimpleHabilidad(habilidadVista)}</p>
@@ -474,7 +471,6 @@ export default function EscuelaCombatePage() {
           <section>
             <div className="mb-4">
               <h2 className="text-xl font-bold text-[#f0dfbd]">Configura tus habilidades</h2>
-              <p className="mt-1 hidden text-sm text-[#9f927b] sm:block">Puedes equipar hasta 3 habilidades activas y 2 pasivas. Las habilidades de otra rama quedan deshabilitadas.</p>
             </div>
             <div className="mb-4 rounded-xl border border-[#594630] bg-[#211b14] p-3 sm:mb-6 sm:p-4">
               <h3 className="mb-3 font-bold text-[#e8d7b8]">Ranuras equipadas</h3>
@@ -522,7 +518,6 @@ export default function EscuelaCombatePage() {
             <div className="space-y-3">
               <div>
                 <h3 className="font-bold text-[#e8d7b8]">Habilidades aprendidas sin equipar</h3>
-                <p className="mt-1 text-xs text-[#9f927b]">Busca una técnica o filtra por la clase de la que procede.</p>
               </div>
               {filtrosCatalogo}
               {habilidadesNoEquipadas.length === 0 ? <div className="rounded-xl border border-dashed border-[#51412d] p-8 text-center text-sm text-[#9f927b]">No tienes habilidades sin equipar.</div>
