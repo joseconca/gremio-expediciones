@@ -642,7 +642,7 @@ export default function PersonajePage() {
               {cargandoObjetos ? <p className="p-8 text-center text-sm text-[#bba581]">Consultando equipo...</p> : (
                 <>
                   {/* Pantallas medianas y grandes: silueta del aventurero con ranuras alrededor. */}
-                  <div role="group" aria-label="Vista de equipamiento" className="hidden min-[390px]:grid min-[390px]:grid-cols-[minmax(0,1fr)_112px_minmax(0,1fr)] min-[390px]:gap-1.5 min-[520px]:grid-cols-[minmax(0,1fr)_148px_minmax(0,1fr)] min-[520px]:gap-2">
+                  <div role="group" aria-label="Vista de equipamiento" className="hidden sm:grid sm:grid-cols-[minmax(0,1fr)_148px_minmax(0,1fr)] sm:gap-2">
                     <div className="grid grid-rows-4 gap-2">
                       {(["casco", "armadura", "pantalones", "botas"] as TipoEquipamiento[]).map((clave) => renderSlotEquipo(RANURAS_EQUIPO.find((ranura) => ranura.clave === clave)!))}
                     </div>
