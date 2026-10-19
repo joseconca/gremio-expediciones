@@ -47,10 +47,6 @@ type DatosHabilidades = {
 type Vista = "aprender" | "profesiones" | "tacticas";
 type Filtro = "todas" | "activa" | "pasiva" | "disponibles";
 
-const SLOTS_ACTIVAS: SlotHabilidad[] = ["activa_1", "activa_2", "activa_3"];
-const SLOTS_PASIVAS: SlotHabilidad[] = ["pasiva_1", "pasiva_2"];
-const SLOTS = [...SLOTS_ACTIVAS, ...SLOTS_PASIVAS];
-
 function nombreRareza(rareza: Rareza) {
   const valores: Record<Rareza, string> = {
     basico: "Básica", comun: "Común", poco_comun: "Poco común",
