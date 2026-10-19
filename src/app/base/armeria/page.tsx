@@ -649,8 +649,38 @@ export default function HerreriaPage() {
                 No hay mercancía disponible en este momento.
               </p>
             ) : (
-              <div className="space-y-1.5">
-                {(datos?.enVenta ?? []).map((objeto) => {
+              <div className="space-y-4">
+                {[
+                  {
+                    id: "armas",
+                    titulo: "Armas",
+                    icono: "⚔️",
+                    objetos: (datos?.enVenta ?? []).filter((objeto) => objeto.tipo === "arma"),
+                  },
+                  {
+                    id: "armaduras",
+                    titulo: "Armaduras y escudos",
+                    icono: "🛡️",
+                    objetos: (datos?.enVenta ?? []).filter((objeto) => objeto.tipo === "armadura"),
+                  },
+                  {
+                    id: "accesorios",
+                    titulo: "Accesorios",
+                    icono: "📿",
+                    objetos: (datos?.enVenta ?? []).filter((objeto) => objeto.tipo === "accesorio"),
+                  },
+                ].map((grupo) => grupo.objetos.length > 0 ? (
+                  <section key={grupo.id} className="space-y-1.5">
+                    <div className="flex items-center justify-between gap-2 border-b border-[#443c32] pb-1">
+                      <h3 className="text-[11px] font-black uppercase tracking-[0.12em] text-[#d6bd92] sm:text-xs">
+                        <span className="mr-1.5" aria-hidden="true">{grupo.icono}</span>{grupo.titulo}
+                      </h3>
+                      <span className="text-[9px] font-bold text-[#82725b]">
+                        {grupo.objetos.length} {grupo.objetos.length === 1 ? "objeto" : "objetos"}
+                      </span>
+                    </div>
+                    <div className="space-y-1.5">
+                {grupo.objetos.map((objeto) => {
                   const comprando = procesando === `comprar:${objeto.id}`;
                   const inventarioLleno =
                     (datos?.espaciosInventario.ocupados ?? datos?.inventario.length ?? 0) >=
@@ -740,6 +770,9 @@ export default function HerreriaPage() {
                     </article>
                   );
                 })}
+                    </div>
+                  </section>
+                ) : null)}
               </div>
             )}
           </div>
