@@ -1863,9 +1863,6 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       if (actualizadoParticipante.count !== 1) {
         throw new PartyServiceError("El estado del aventurero cambió durante el turno enemigo.", 409, "PARTICIPANTE_PARTY_MODIFICADO");
       }
-      if (faseTurno === "jugador" && turnoActualUsuarioId === miembro.usuarioId && !caido) {
-        await regenerarRecursosTurnoParty(tx, miembro.personajeId, miembro.usuarioId);
-      }
       const personajeActualizado = await tx.personaje.updateMany({
         where: {
           id: miembro.personajeId,
@@ -1922,6 +1919,22 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       ronda = siguiente.ronda;
       turnosPendientes = siguiente.turnosPendientes;
       nuevaRonda = siguiente.nuevaRonda;
+    }
+
+    if (
+      fase === "activo" &&
+      faseTurno === "jugador" &&
+      turnoActualUsuarioId !== null
+    ) {
+      const siguienteMiembro = participantesActualizados.find(
+        (miembro) => miembro.usuarioId === turnoActualUsuarioId && miembro.estado === "activo" && miembro.jugadorHp > 0,
+      );
+      if (siguienteMiembro) {
+        const miembroOriginal = combate.participantes.find((miembro) => miembro.usuarioId === siguienteMiembro.usuarioId);
+        if (miembroOriginal) {
+          await regenerarRecursosTurnoParty(tx, miembroOriginal.personajeId, miembroOriginal.usuarioId);
+        }
+      }
     }
 
     // Los cooldowns avanzan una vez por ciclo completo, no por cada enemigo.
