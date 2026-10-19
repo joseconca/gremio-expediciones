@@ -50,3 +50,16 @@ test("el poblado usa todo el ancho, elimina el panel verde común y añade una c
   assert.ok(!panel.includes("bg-[#1d2a1b]"));
   assert.doesNotMatch(panel, /radial-gradient/);
 });
+
+test("los sprites y carteles de los edificios no crecen ni se iluminan al pasar el cursor", () => {
+  const card = read("src/components/base/EdificioCard.tsx");
+  const complejo = read("src/components/base/ComplejoArmeria.tsx");
+
+  assert.doesNotMatch(card, /hover:scale-/);
+  assert.doesNotMatch(card, /hover:border-amber/);
+  assert.doesNotMatch(card, /hover:from-\[#956336\]|hover:to-\[#694325\]/);
+  assert.doesNotMatch(complejo, /hover:scale-|hover:border-amber/);
+  assert.doesNotMatch(complejo, /hover:bg-amber-300\/10|hover:text-amber-100/);
+  assert.match(card, /focus-visible:ring-2/);
+  assert.match(complejo, /focus-visible:ring-2/);
+});
