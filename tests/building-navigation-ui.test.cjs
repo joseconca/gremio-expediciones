@@ -43,6 +43,8 @@ test("la pantalla de Personaje centraliza equipo, mochila por categorías y gest
   assert.match(pagina, /No hay objetos compatibles en la mochila/);
   assert.match(pagina, /aria-expanded=\{ranuraSeleccionada === ranura\.clave\}/);
   assert.doesNotMatch(pagina, /Ver en equipo/);
+  assert.match(pagina, /ranuraEquipada/);
+  assert.match(pagina, /enviarAccionObjeto\("desequipar", undefined, ranuraEquipada\)/);
   assert.doesNotMatch(pagina, /Abrir mochila →/);
   assert.doesNotMatch(pagina, /Redistribuir ·/);
   assert.match(pagina, /Gestionar en Escuela de Batalla/);
