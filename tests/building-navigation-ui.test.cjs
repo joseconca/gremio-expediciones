@@ -25,6 +25,34 @@ test("el botón global del aventurero y la navegación móvil abren Personaje", 
   assert.match(layout, /grid-cols-5/);
 });
 
+test("la Botica forma parte del poblado y reutiliza el sprite del Mercado", () => {
+  const configuracion = read("src/lib/tiposJuego.ts");
+  const tienda = read("src/app/base/botica/page.tsx");
+  const estado = read("src/store/useGameStore.ts");
+  const panel = read("src/components/base/PanelEdificios.tsx");
+  const compra = read("src/app/api/objetos/comprar/route.ts");
+  const boticaSprite = path.join(__dirname, "..", "public/sprites/buildings/botica.png");
+  const mercadoSprite = path.join(__dirname, "..", "public/sprites/buildings/mercado.png");
+
+  assert.match(configuracion, /botica:\s*\{[\s\S]*?costeConstruccion: 900,[\s\S]*?costeMadera: 6,[\s\S]*?costePiedra: 5,[\s\S]*?costeMetal: 1,[\s\S]*?nivelMax: 3,[\s\S]*?ruta: "\/base\/botica"/);
+  assert.match(estado, /EDIFICIOS_BASE\.botica/);
+  assert.match(panel, /"botica"/);
+  assert.match(tienda, /Mostrador del boticario/);
+  assert.match(tienda, /OBJETOS[\s\S]*?vendibleEnBotica/);
+  assert.match(compra, /nivelBotica/);
+  assert.ok(fs.existsSync(boticaSprite), "Debe existir el sprite de la Botica.");
+  assert.deepEqual(fs.readFileSync(boticaSprite), fs.readFileSync(mercadoSprite), "La Botica reutiliza el sprite temporal del Mercado.");
+});
+
+test("la cabecera de Personaje ya no repite las cuatro estadísticas resumidas", () => {
+  const pagina = read("src/app/base/personaje/page.tsx");
+  const cabecera = pagina.split('<nav aria-label="Secciones del personaje"')[0];
+
+  for (const etiqueta of ["Vida máxima", "Ataque físico", "Defensa física", "Ataque mágico"]) {
+    assert.ok(!cabecera.includes(etiqueta), `La cabecera no debe repetir ${etiqueta}.`);
+  }
+});
+
 test("la pantalla de Personaje centraliza equipo, mochila por categorías y gestión de habilidades", () => {
   const pagina = read("src/app/base/personaje/page.tsx");
   assert.match(pagina, /Secciones del personaje/);
