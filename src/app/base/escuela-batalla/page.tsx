@@ -276,8 +276,7 @@ export default function EscuelaCombatePage() {
   };
 
   const reiniciarHabilidades = async () => {
-    const nombreClase = datos?.profesionNombre ?? CLASES[profesionId]?.nombre ?? profesionId;
-    if (!window.confirm(`¿Reiniciar las habilidades propias de ${nombreClase}? Costará ${costeReseteo} de oro y devolverá los puntos invertidos. El nivel Job, los desbloqueos y las habilidades de otras profesiones se conservarán.`)) return;
+    if (!window.confirm(`¿Redistribuir puntos de habilidad por ${costeReseteo} oro? Recuperarás los puntos invertidos.`)) return;
     setProcesando("reiniciar");
     setError(null);
     try {
@@ -331,30 +330,21 @@ export default function EscuelaCombatePage() {
                 <div className="min-w-0 rounded-lg border border-[#4c3b27] bg-[#191612] p-2 sm:p-3">
                   <p className="text-[11px] uppercase tracking-wider text-[#91816a]">Puntos Job · {CLASES[profesionId]?.nombre ?? profesionId}</p>
                   <p className="mt-1 text-xl font-bold text-amber-200 sm:text-2xl">{puntosDisponibles}</p>
+                  <button
+                    type="button"
+                    onClick={() => void reiniciarHabilidades()}
+                    disabled={procesando !== null || habilidadesPropias.length === 0 || (datos?.oro ?? 0) < costeReseteo}
+                    title={habilidadesPropias.length === 0 ? "No tienes puntos invertidos que redistribuir" : (datos?.oro ?? 0) < costeReseteo ? `Necesitas ${costeReseteo} de oro` : "Redistribuir puntos de habilidad"}
+                    className="mt-2 min-h-8 w-full rounded-md border border-amber-700/70 bg-amber-950/25 px-2 py-1.5 text-left text-[10px] font-bold leading-snug text-amber-200 transition hover:border-amber-400 hover:bg-amber-900/30 disabled:cursor-not-allowed disabled:opacity-40 sm:text-[11px]"
+                  >
+                    {procesando === "reiniciar" ? "Redistribuyendo..." : "Redistribuir puntos de habilidad (" + costeReseteo + " oro)"}
+                  </button>
                 </div>
               </div>
             </div>
           </section>
         )}
 
-        {(vista === "aprender" || vista === "gestion") && (
-          <section className="mb-4 flex flex-col gap-3 rounded-lg border border-[#594630] bg-[#211b14] p-3 sm:flex-row sm:items-center sm:justify-between">
-            <div className="min-w-0">
-              <p className="text-sm font-bold text-[#e8d7b8]">Redistribuir habilidades de {datos?.profesionNombre ?? CLASES[profesionId]?.nombre ?? profesionId}</p>
-              <p className="mt-1 text-xs leading-5 text-[#a99d84]">
-                Reinicia solo las habilidades propias de esta profesión y devuelve los puntos invertidos. El Job y las habilidades de otras profesiones se conservan. Coste: 100 de oro por nivel Job ({costeReseteo} de oro).
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={() => void reiniciarHabilidades()}
-              disabled={procesando !== null || habilidadesPropias.length === 0 || (datos?.oro ?? 0) < costeReseteo}
-              className="min-h-10 shrink-0 rounded-lg border border-red-700/70 bg-red-950/35 px-3 py-2 text-xs font-bold text-red-200 hover:border-red-500 disabled:cursor-not-allowed disabled:opacity-40 sm:text-sm"
-            >
-              {procesando === "reiniciar" ? "Reiniciando..." : (datos?.oro ?? 0) < costeReseteo ? "Oro insuficiente" : habilidadesPropias.length === 0 ? "Sin habilidades propias" : `Reiniciar · ${costeReseteo} oro`}
-            </button>
-          </section>
-        )}
 
         {navegacion}
 

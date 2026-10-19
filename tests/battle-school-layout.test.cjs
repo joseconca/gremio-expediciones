@@ -6,13 +6,17 @@ const path = require("node:path");
 const root = path.resolve(__dirname, "..");
 const page = fs.readFileSync(path.join(root, "src/app/base/escuela-batalla/page.tsx"), "utf8");
 
-test("la navegación de la Escuela de Batalla aparece después de la clase actual y del reinicio", () => {
-  const navegacion = page.indexOf("{navegacion}");
+test("la redistribución se integra en la tarjeta de puntos Job y elimina el panel separado", () => {
   const claseActual = page.indexOf('aria-label="Profesión activa"');
-  const redistribuir = page.indexOf("Redistribuir habilidades de");
+  const puntosJob = page.indexOf("Puntos Job ·");
+  const redistribuir = page.indexOf("Redistribuir puntos de habilidad");
+  const navegacion = page.indexOf("{navegacion}");
 
-  assert.ok(claseActual >= 0 && redistribuir >= 0 && navegacion >= 0);
-  assert.ok(claseActual < redistribuir && redistribuir < navegacion);
+  assert.ok(claseActual >= 0 && puntosJob >= 0 && redistribuir >= 0 && navegacion >= 0);
+  assert.ok(claseActual < puntosJob && puntosJob < redistribuir && redistribuir < navegacion);
+  assert.ok(!page.includes("Redistribuir habilidades de"));
+  assert.ok(page.includes('"Redistribuir puntos de habilidad (" + costeReseteo + " oro)"'));
+  assert.ok(page.includes("procesando !== null || habilidadesPropias.length === 0"));
 });
 
 test("el catálogo ofrece buscador, selector de clase y filtro de rama en ambas vistas", () => {
