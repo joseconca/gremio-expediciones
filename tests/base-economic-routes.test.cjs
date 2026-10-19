@@ -697,6 +697,7 @@ function makeActionsRoute({ authenticated = true, initialUser = {} } = {}) {
   };
   const configEdificios = {
     mercado: { nombre: "Mercado", nivelMax: 3 },
+    botica: { nombre: "Botica", nivelMax: 3 },
     escuelaCombate: { nombre: "Escuela de combate", nivelMax: 3 },
   };
   const route = loadSource("src/app/api/jugador/acciones/route.ts", {
@@ -1314,6 +1315,29 @@ test("mejoras de edificio: metal insuficiente no actualiza nivel ni gasta recurs
   assert.equal(route.getState().user.madera, 100);
   assert.equal(route.getState().user.piedra, 100);
   assert.equal(route.getState().user.metal, 0);
+});
+
+test("mejoras de edificio: Botica se construye y su nivel se guarda en el JSON de edificios", async () => {
+  const route = makeActionsRoute({
+    initialUser: {
+      oro: 500,
+      madera: 100,
+      piedra: 100,
+      metal: 100,
+      edificios: { taberna: 1, botica: 0 },
+    },
+  });
+  const response = await route.POST(request({
+    accion: "mejorarEdificio",
+    idEdificio: "botica",
+  }));
+
+  assert.equal(response.status, 200);
+  assert.equal(route.getState().user.edificios.botica, 1);
+  assert.equal(route.getState().user.oro, 400);
+  assert.equal(route.getState().user.madera, 90);
+  assert.equal(route.getState().user.piedra, 90);
+  assert.equal(route.getState().user.metal, 95);
 });
 
 test("mejoras de atributo: peticiones simultáneas no duplican el mismo incremento", async () => {
