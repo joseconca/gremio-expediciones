@@ -42,9 +42,9 @@ export default function PanelAtributosRpg({ personaje }: { personaje: Personaje;
           { label: "Defensa física", value: personaje.defensa },
           { label: "Ataque mágico", value: personaje.ataqueMagico },
           { label: "Defensa mágica", value: personaje.defensaMagica },
-          { label: "Precisión", value: Math.round(personaje.precision) + "%" },
-          { label: "Evasión", value: Math.round(personaje.evasion * 100) + "%" },
-          { label: "Crítico", value: Math.round(personaje.probCritico * 100) + "%" },
+          { label: "Precisión", value: personaje.precision.toFixed(2) + "%" },
+          { label: "Evasión", value: (personaje.evasion * 100).toFixed(2) + "%" },
+          { label: "Crítico", value: (personaje.probCritico * 100).toFixed(2) + "%" },
         ].map((estadistica) => (
           <div key={estadistica.label} className="bg-[#241c15] px-4 py-3">
             <p className="text-[10px] font-bold uppercase tracking-widest text-[#8e7b60]">{estadistica.label}</p>
