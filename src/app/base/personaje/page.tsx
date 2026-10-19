@@ -12,9 +12,7 @@ import {
 } from "@/lib/objetos";
 import { calcularPrecioVentaObjeto } from "@/lib/economia";
 import { CLASES } from "@/lib/progresion/clases";
-import {
-  ajustarHabilidadPorNivel,
-} from "@/lib/progresion/niveles-habilidad";
+import { ajustarHabilidadPorNivel, costeReinicioHabilidades } from "@/lib/progresion/niveles-habilidad";
 import {
   descripcionSimpleHabilidad,
   detalleNumericoHabilidad,
@@ -60,6 +58,7 @@ interface HabilidadAprendida {
 }
 
 interface DatosHabilidades {
+  oro: number;
   profesionActivaId: string;
   profesionNombre: string;
   escuelaNivel: number;
@@ -246,6 +245,29 @@ export default function PersonajePage() {
     }
   };
 
+  const reiniciarHabilidades = async () => {
+    const profesionNombre = datosHabilidades?.profesionNombre ?? CLASES[personaje.profesionActivaId]?.nombre ?? personaje.clase;
+    const nivelJobActual = datosHabilidades?.progresoJob?.nivelJob ?? personaje.nivelJob;
+    const coste = costeReinicioHabilidades(nivelJobActual);
+    if (!window.confirm(`¿Reiniciar las habilidades propias de ${profesionNombre} por ${coste} de oro? Recuperarás los puntos invertidos y conservarás tu nivel Job.`)) return;
+
+    setProcesando("reiniciar");
+    setError(null);
+    setAviso(null);
+    try {
+      const respuesta = await fetch("/api/habilidades/reiniciar", { method: "POST" });
+      const resultado = await respuesta.json();
+      if (!respuesta.ok) throw new Error(resultado.error || "No se pudieron reiniciar las habilidades.");
+      setAviso(resultado.mensaje || "Habilidades redistribuidas.");
+      await recargarHabilidades();
+      await cargarJugador();
+    } catch (fallo) {
+      setError(fallo instanceof Error ? fallo.message : "Error al reiniciar las habilidades.");
+    } finally {
+      setProcesando(null);
+    }
+  };
+
   const enviarAccionHabilidad = async (tipo: "equipar" | "desequipar" | "mejorar", habilidadId: string, slot?: SlotHabilidad) => {
     const clave = tipo === "equipar" ? "habilidad:" + habilidadId + ":" + slot : tipo + ":" + habilidadId;
     setProcesando(clave);
@@ -284,6 +306,11 @@ export default function PersonajePage() {
   ], []);
 
   const habilidadesAprendidas = useMemo(() => datosHabilidades?.aprendidas ?? [], [datosHabilidades?.aprendidas]);
+  const habilidadesPropias = useMemo(
+    () => habilidadesAprendidas.filter((item) => (item.habilidad.claseId ?? "novato") === (datosHabilidades?.profesionActivaId ?? personaje.profesionActivaId ?? "novato")),
+    [habilidadesAprendidas, datosHabilidades?.profesionActivaId, personaje.profesionActivaId],
+  );
+  const costeReinicio = costeReinicioHabilidades(datosHabilidades?.progresoJob?.nivelJob ?? personaje.nivelJob);
   const habilidadesEquipadas = useMemo(() => habilidadesAprendidas.filter((item) => esSlotHabilidad(item.slot)), [habilidadesAprendidas]);
   const habilidadesSinEquipar = useMemo(() => habilidadesAprendidas.filter((item) => !esSlotHabilidad(item.slot)), [habilidadesAprendidas]);
   const habilidadesFiltradas = useMemo(() => {
@@ -611,6 +638,17 @@ export default function PersonajePage() {
                   <p className="text-[10px] uppercase tracking-wider text-[#a99169]">Puntos Job disponibles</p>
                   <p className="mt-0.5 text-xl font-black text-amber-200">{datosHabilidades?.progresoJob?.puntosHabilidadDisponibles ?? personaje.puntosHabilidadDisponibles}</p>
                 </div>
+                {edificios.escuelaCombate.nivel > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => void reiniciarHabilidades()}
+                    disabled={procesando !== null || bloqueado || habilidadesPropias.length === 0 || (datosHabilidades?.oro ?? 0) < costeReinicio}
+                    title={habilidadesPropias.length === 0 ? "No tienes habilidades propias de esta profesión para reiniciar" : (datosHabilidades?.oro ?? 0) < costeReinicio ? `Necesitas ${costeReinicio} de oro` : "Reinicia las habilidades de tu profesión activa y recupera los puntos invertidos"}
+                    className="min-h-11 rounded-lg border border-amber-700/70 bg-[#382519] px-3 py-2 text-xs font-bold text-amber-100 hover:border-amber-400 disabled:cursor-not-allowed disabled:opacity-40"
+                  >
+                    {procesando === "reiniciar" ? "Redistribuyendo..." : `Redistribuir · ${costeReinicio} 🪙`}
+                  </button>
+                )}
               </div>
               {edificios.escuelaCombate.nivel === 0 && <p className="mt-2 text-xs text-amber-200/80">Construye la Escuela de Batalla para mejorar las habilidades. Puedes consultar tus habilidades aprendidas aquí.</p>}
             </header>
