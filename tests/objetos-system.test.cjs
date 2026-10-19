@@ -115,6 +115,32 @@ test("el nuevo equipo exclusivo aparece en las tablas de botín de enemigos y je
   assert.ok(jefe.tablaLoot.some((entrada) => entrada.objetoId === "espada_draconica"));
   assert.ok(jefe.tablaLoot.some((entrada) => entrada.objetoId === "coraza_runica"));
 });
+test("todas las armas y armaduras tienen miniatura PNG transparente en su carpeta correspondiente", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  const { obtenerSpriteObjeto } = require("../src/lib/objetos.ts");
+  const equipoFisico = OBJETOS.filter((objeto) => objeto.tipo === "arma" || objeto.tipo === "armadura");
+
+  for (const objeto of equipoFisico) {
+    const sprite = obtenerSpriteObjeto(objeto);
+    assert.ok(sprite, `${objeto.id} necesita una miniatura`);
+    assert.match(sprite, /^\/sprites\/items\/(weapons|armors)\/.+\.png$/);
+    assert.ok(
+      fs.existsSync(path.join(__dirname, "..", "public", sprite.replace(/^\//, ""))),
+      `No existe el PNG de ${objeto.id}: ${sprite}`,
+    );
+  }
+
+  assert.equal(
+    obtenerSpriteObjeto(obtenerObjetoPorId("escudo_madera")),
+    "/sprites/items/armors/escudos/escudo_madera.png",
+  );
+  assert.equal(
+    obtenerSpriteObjeto(obtenerObjetoPorId("escudo_guardian")),
+    "/sprites/items/armors/escudos/escudo_guardian.png",
+  );
+});
+
 test("el catálogo cubre las diez ranuras y el inventario limita a 30 instancias", () => {
   const ranuras = new Set(OBJETOS.map(obtenerRanuraObjeto).filter(Boolean));
   for (const ranura of [

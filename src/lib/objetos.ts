@@ -895,23 +895,8 @@ export function obtenerRanuraObjeto(objeto: DefinicionObjeto) {
 export function obtenerSpriteObjeto(
   objeto: Pick<DefinicionObjeto, "id" | "tipo" | "slot">
 ): string | null {
-  // Estas piezas se han añadido antes de crear su pixel art; usa el icono
-  // genérico de la ranura en vez de mostrar una imagen 404.
+  // Estos accesorios todavía no tienen miniatura propia; el equipo físico sí.
   const objetosSinSprite = new Set([
-    "hacha_piedra",
-    "lanza_madera",
-    "daga_hierro",
-    "arco_madera",
-    "baston_madera",
-    "maza_madera",
-    "libro_aprendiz",
-    "guantes_lucha",
-    "cota_malla",
-    "escudo_madera",
-    "casco_cuero",
-    "pantalones_cuero",
-    "botas_cuero",
-    "guantes_cuero",
     "collar_cobre",
     "anillo_resistencia",
   ]);
@@ -934,6 +919,7 @@ export function obtenerSpriteObjeto(
   if (objeto.tipo === "armadura") {
     // Las armaduras se organizan primero por ranura de equipo.
     const carpetaPorRanura: Record<string, string> = {
+      mano_secundaria: "escudos",
       casco: "casco",
       armadura: "armadura",
       pantalones: "pantalones",
