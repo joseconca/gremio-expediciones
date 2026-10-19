@@ -9,7 +9,7 @@ const page = fs.readFileSync(path.join(root, "src/app/base/escuela-batalla/page.
 test("la redistribución se integra en la tarjeta de puntos Job y elimina el panel separado", () => {
   const claseActual = page.indexOf('aria-label="Profesión activa"');
   const puntosJob = page.indexOf("Puntos Job ·");
-  const redistribuir = page.indexOf("Redistribuir puntos de habilidad");
+  const redistribuir = page.indexOf('"Redistribuir puntos de habilidad (" + costeReseteo');
   const navegacion = page.indexOf("{navegacion}");
 
   assert.ok(claseActual >= 0 && puntosJob >= 0 && redistribuir >= 0 && navegacion >= 0);
