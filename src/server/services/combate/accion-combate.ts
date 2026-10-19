@@ -190,6 +190,22 @@ export async function gastarRecursosHabilidad(
   await recuperarEnergiaLimitada(tx, personajeId, recuperacionEnergia);
 }
 
+export function calcularRegeneracionRecursosTurno(
+  energiaActual: number,
+  manaActual: number,
+  energiaMaxima: number,
+  manaMaximo: number,
+) {
+  const energiaMax = Math.max(0, Math.floor(Number.isFinite(energiaMaxima) ? energiaMaxima : 0));
+  const manaMax = Math.max(0, Math.floor(Number.isFinite(manaMaximo) ? manaMaximo : 0));
+  const energia = Math.max(0, Math.floor(Number.isFinite(energiaActual) ? energiaActual : 0));
+  const mana = Math.max(0, Math.floor(Number.isFinite(manaActual) ? manaActual : 0));
+  return {
+    energiaActual: Math.min(energiaMax, energia + 2),
+    manaActual: Math.min(manaMax, mana + Math.max(1, Math.ceil(manaMax * 0.1))),
+  };
+}
+
 export async function regenerarRecursosPorTurno(
   tx: Prisma.TransactionClient,
   usuarioId: string
@@ -262,16 +278,14 @@ export async function regenerarRecursosPorTurno(
 
   const energiaMaxima = estadisticas.energiaMaxima ?? 20;
   const manaMaximo = estadisticas.manaMaximo ?? 10;
-  const regeneracionEnergia = Math.max(1, Math.ceil(estadisticas.regeneracionEnergiaPorTurno ?? 0));
-  const regeneracionMana = Math.max(1, Math.ceil(estadisticas.regeneracionManaPorTurno ?? 0));
-  const energiaNueva = Math.min(
+  const recursosNuevos = calcularRegeneracionRecursosTurno(
+    personaje.energiaActual,
+    personaje.manaActual,
     energiaMaxima,
-    personaje.energiaActual + regeneracionEnergia,
-  );
-  const manaNuevo = Math.min(
     manaMaximo,
-    personaje.manaActual + regeneracionMana,
   );
+  const energiaNueva = recursosNuevos.energiaActual;
+  const manaNuevo = recursosNuevos.manaActual;
 
   if (energiaNueva === personaje.energiaActual && manaNuevo === personaje.manaActual) return;
 
