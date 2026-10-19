@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { PRECIOS_RECURSOS, calcularPrecioRecurso, calcularPrecioVentaRecurso } from "@/lib/economia";
+import { PRECIOS_RECURSOS, calcularPrecioVentaRecurso } from "@/lib/economia";
 
 type Recurso = keyof typeof PRECIOS_RECURSOS;
 
@@ -87,8 +87,9 @@ export async function POST(request: Request) {
       );
     }
 
-    const precioCompraUnitario = calcularPrecioRecurso(recurso, nivelMercado);
-    const ingresoTotal = calcularPrecioVentaRecurso(precioCompraUnitario, cantidad);
+    // La venta usa el precio base de catálogo, sin los descuentos del Mercado.
+    const precioBaseUnitario = PRECIOS_RECURSOS[recurso];
+    const ingresoTotal = calcularPrecioVentaRecurso(recurso, cantidad);
 
     if (!Number.isSafeInteger(ingresoTotal) || ingresoTotal <= 0 || ingresoTotal > MAX_INT_POSTGRES) {
       return NextResponse.json(
@@ -164,7 +165,7 @@ export async function POST(request: Request) {
       usuario: usuarioActualizado,
       recurso,
       cantidad,
-      precioCompraUnitario,
+      precioBaseUnitario,
       ingresoTotal,
     });
   } catch (error) {

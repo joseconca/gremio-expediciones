@@ -271,6 +271,12 @@ export default function MercadoPage() {
               </button>
             </div>
 
+            {modo === "vender" && (
+              <p className="mx-auto mb-3 max-w-2xl text-center text-[11px] leading-4 text-stone-400">
+                La venta paga el 25 % del precio base del catálogo, sin aplicar los descuentos del Mercado. El importe final se redondea hacia abajo al oro entero.
+              </p>
+            )}
+
             {/* El deslizador permite ajustar cantidades rápidamente; el campo numérico mantiene la precisión. */}
             <div className="space-y-2">
               {ofertas.map((oferta) => {
@@ -278,12 +284,12 @@ export default function MercadoPage() {
                 const sinRecursos = cantidadMaxima < 1;
                 const cantidad = sinRecursos ? 0 : Math.max(1, Math.min(cantidades[oferta.id] || 1, cantidadMaxima));
                 const costeTotal = cantidad * oferta.precioUnitario;
-                const ingresoTotal = calcularPrecioVentaRecurso(oferta.precioUnitario, cantidad);
+                const ingresoTotal = calcularPrecioVentaRecurso(oferta.id, cantidad);
                 const total = modo === "comprar" ? costeTotal : ingresoTotal;
                 const totalLabel = modo === "comprar" ? "Coste total" : "Recibes";
                 const precioVisible = modo === "comprar"
                   ? oferta.precioUnitario.toLocaleString("es-ES")
-                  : (oferta.precioUnitario / 4).toLocaleString("es-ES", { maximumFractionDigits: 2 });
+                  : (oferta.precioBase / 4).toLocaleString("es-ES", { maximumFractionDigits: 2 });
 
                 return (
                   <article key={oferta.id} className="rounded-lg border border-amber-950/90 bg-stone-900/95 p-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] sm:p-3">

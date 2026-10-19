@@ -612,7 +612,7 @@ export const CONFIGURACION_EDIFICIOS = {
     costePiedra: 4,
     costeMetal: 0,
     nivelMax: 3,
-    descripcion: "Compra recursos con descuentos según el nivel del mercado y vende excedentes por una cuarta parte de su precio de compra.",
+    descripcion: "Compra recursos con descuentos según el nivel del mercado y vende excedentes por el 25 % de su precio base, sin aplicar esos descuentos.",
     color: "bg-emerald-700",
     ruta: "/base/mercado",
   },
