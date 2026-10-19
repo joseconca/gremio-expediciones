@@ -18,6 +18,45 @@ test("los objetos básicos y comunes no generan sufijo", () => {
   });
 });
 
+test("la Botica ofrece consumibles por nivel y conserva sus efectos definidos", () => {
+  const botica = OBJETOS.filter((objeto) => objeto.vendibleEnBotica);
+  const porId = (id) => obtenerObjetoPorId(id);
+
+  assert.equal(botica.length, 10);
+  assert.deepEqual(
+    botica.filter((objeto) => objeto.nivelBoticaRequerido === 1).map((objeto) => objeto.id),
+    ["pocion_vida_menor"],
+  );
+
+  const vidaMenor = porId("pocion_vida_menor");
+  assert.equal(vidaMenor.precio, 150);
+  assert.equal(vidaMenor.curacion, 15);
+  assert.equal(vidaMenor.curacionPorcentaje, 0.15);
+
+  const vidaMediana = porId("pocion_vida_mediana");
+  assert.equal(vidaMediana.nivelBoticaRequerido, 2);
+  assert.equal(vidaMediana.curacion, 20);
+  assert.equal(vidaMediana.curacionPorcentaje, 0.20);
+  assert.equal(porId("pocion_mana_basica").restauracionManaPorcentaje, 0.40);
+  assert.equal(porId("pocion_energia").restauracionEnergiaPorcentaje, 0.60);
+  assert.equal(porId("ceniza_fenix").revivirPorcentajeVida, 0.50);
+
+  const guerrero = porId("elixir_guerrero");
+  const mago = porId("elixir_mago");
+  assert.equal(guerrero.nivelBoticaRequerido, 3);
+  assert.deepEqual(guerrero.efectosTemporalesPorcentaje, { ataque: 0.20, precision: 0.10, probCritico: 0.15 });
+  assert.deepEqual(mago.efectosTemporalesPorcentaje, { ataqueMagico: 0.20, precision: 0.10, probCritico: 0.15 });
+  assert.equal(guerrero.duracionTurnos, 10);
+  assert.equal(mago.duracionTurnos, 10);
+
+  const vidaMayor = porId("pocion_vida_mayor");
+  assert.equal(vidaMayor.nivelBoticaRequerido, 3);
+  assert.equal(vidaMayor.curacion, 45);
+  assert.equal(vidaMayor.curacionPorcentaje, 0.45);
+  assert.equal(porId("elixir_heroe").duracionTurnos, 10);
+  assert.equal(porId("elixir_velocidad").duracionTurnos, 10);
+});
+
 test("los objetos poco comunes, raros y épicos generan sufijos del tier correcto", () => {
   const pocoComun = generarSufijoObjeto({ rareza: "poco_comun" }, false, () => 0);
   assert.equal(pocoComun.sufijoId, "veloz");
