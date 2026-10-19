@@ -127,7 +127,7 @@ export default function BoticaPage() {
               </header>
               <div className="grid grid-cols-1 gap-2 p-2 sm:grid-cols-2 sm:p-3 lg:grid-cols-3">
                 {objetosNivel.map((objeto) => {
-                  const puedeComprar = desbloqueado && oro >= objeto.precio && !personaje?.estado.includes("de_viaje") && personaje?.estado !== "combatiendo";
+                  const puedeComprar = desbloqueado && oro >= objeto.precio && personaje?.estado !== "de_viaje" && personaje?.estado !== "combatiendo";
                   return (
                     <article key={objeto.id} className={desbloqueado ? "flex min-w-0 flex-col rounded-lg border border-[#59432b] bg-[#1c150f] p-3" : "flex min-w-0 flex-col rounded-lg border border-[#403224] bg-[#19140f] p-3 opacity-75"}>
                       <div className="flex items-start gap-3">
