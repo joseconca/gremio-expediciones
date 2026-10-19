@@ -459,6 +459,24 @@ test("un ataque que vacía el HP del enemigo marca victoria en vez de ceder otro
   assert.equal(calls.expeditionWrites[0].data.fechaLlegada.toISOString(), "2026-10-15T10:30:00.000Z");
 });
 
+test("al comenzar el siguiente turno de un miembro en party, solo él regenera sus recursos", async () => {
+  const combat = mkCombat({
+    faseTurno: "enemigo",
+    turnoActualUsuarioId: null,
+    turnosPendientes: [
+      { actorId: "enemigo-1", equipo: "enemigo" },
+      { actorId: "u1", equipo: "jugador" },
+      { actorId: "u2", equipo: "jugador" },
+    ],
+    participantes: [mkParticipant("u1", 0, 80, 100), mkParticipant("u2", 1, 20, 50)],
+  });
+  const { prisma, calls } = mockPrisma(combat, { energiaActual: 5, manaActual: 1 });
+  const service = loadService(prisma);
+  await service.ejecutarTurnoEnemigoParty("u1", "expedition-1");
+  assert.equal(calls.characterWrites.some((write) => write.data.energiaActual === 7), true);
+  assert.equal(calls.characterWrites.some((write) => write.data.manaActual === 2), true);
+});
+
 test("el turno del enemigo apunta al aventurero con menor porcentaje de vida", async () => {
   const combat = mkCombat({
     faseTurno: "enemigo",
