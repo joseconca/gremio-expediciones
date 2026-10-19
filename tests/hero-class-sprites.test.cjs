@@ -30,6 +30,23 @@ test("los sprites priorizan la profesión activa y mantienen el fallback de las 
   assert.match(config, /obtenerLogoClaseHeroe/);
 });
 
+test("el contrato de spritesheets define las 15 filas y resuelve rutas por clase y sexo", () => {
+  const config = read("src/lib/configuracionJuego.ts");
+  const docs = read("docs/spritesheets-personajes.md");
+
+  assert.match(config, /FILAS_ANIMACION_SPRITESHEET_HEROE = \[/);
+  const filas = config.match(/\{ id: "attack_[a-z]+", nombre:/g) ?? [];
+  assert.equal(filas.length, 9, "Deben existir nueve filas de ataque, una por cada arma definida.");
+  assert.match(config, /id: "use_consumable", nombre: "Usar consumible", fila: 3/);
+  assert.match(config, /id: "block_shield", nombre: "Bloquear con escudo", fila: 5/);
+  assert.match(config, /width: 64|64 × 128/);
+  assert.match(config, /\$\{idClase\}-\$\{sufijoSexo\}-sheet\.png/);
+  assert.match(config, /const sufijoSexo = sexo === "chica" \? "f" : "m"/);
+  assert.match(docs, /256 × 1920 px/);
+  assert.match(docs, /Quince filas de animación/);
+  assert.match(docs, /attack_gloves/);
+});
+
 test("el cartel de compañía y los participantes de expedición identifican la clase de cada aventurero", () => {
   const panel = read("src/components/base/PanelParty.tsx");
   const servicio = read("src/server/services/party/party-service.ts");
