@@ -477,6 +477,24 @@ test("al comenzar el siguiente turno de un miembro en party, solo él regenera s
   assert.equal(calls.characterWrites.some((write) => write.data.manaActual === 2), true);
 });
 
+test("la regeneración por turno en party solo incrementa al actor del siguiente turno", async () => {
+  const combat = mkCombat({
+    faseTurno: "enemigo",
+    turnoActualUsuarioId: null,
+    turnosPendientes: [
+      { actorId: "enemigo-1", equipo: "enemigo" },
+      { actorId: "u1", equipo: "jugador" },
+      { actorId: "u2", equipo: "jugador" },
+    ],
+    participantes: [mkParticipant("u1", 0, 80, 100), mkParticipant("u2", 1, 20, 50)],
+  });
+  const { prisma, calls } = mockPrisma(combat, { energiaActual: 5, manaActual: 1 });
+  const service = loadService(prisma);
+  await service.ejecutarTurnoEnemigoParty("u1", "expedition-1");
+  assert.equal(calls.characterWrites.some((write) => write.data.energiaActual === 7), true);
+  assert.equal(calls.characterWrites.some((write) => write.data.manaActual === 2), true);
+});
+
 test("el turno del enemigo apunta al aventurero con menor porcentaje de vida", async () => {
   const combat = mkCombat({
     faseTurno: "enemigo",
