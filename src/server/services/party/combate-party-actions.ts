@@ -1560,6 +1560,18 @@ export async function ejecutarAccionCombateParty(
       throw new PartyServiceError("El combate ha cambiado mientras se resolvía tu acción. Actualiza e inténtalo de nuevo.", 409, "COMBATE_PARTY_MODIFICADO");
     }
 
+    if (
+      fase === "activo" &&
+      faseTurno === "jugador" &&
+      turnoActualUsuarioId !== null &&
+      turnoActualUsuarioId !== usuarioId
+    ) {
+      const siguienteMiembro = combate.participantes.find((miembro) => miembro.usuarioId === turnoActualUsuarioId);
+      if (siguienteMiembro && siguienteMiembro.estado === "activo" && siguienteMiembro.jugadorHp > 0) {
+        await regenerarRecursosTurnoParty(tx, siguienteMiembro.personajeId, siguienteMiembro.usuarioId);
+      }
+    }
+
     const participanteActualizado = await tx.combatePartyParticipante.updateMany({
       where: { id: participante.id, jugadorHp: participante.jugadorHp },
       data: {
