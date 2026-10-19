@@ -258,6 +258,10 @@ export interface DefinicionObjeto {
   rareza: Rareza;
   /** Si aparece en la tienda normal de la Armería; false implica botín o futura fabricación. */
   vendibleEnArmeria: boolean;
+  /** Si se vende en la Botica. */
+  vendibleEnBotica?: boolean;
+  /** Nivel mínimo de Botica para vender este consumible. */
+  nivelBoticaRequerido?: number;
 
   /** Precio base del catálogo, usado en compras y reventa. */
   precio: number;
@@ -298,8 +302,19 @@ export interface DefinicionObjeto {
   regeneracionEnergiaPorTurnoPorMejora?: number;
   regeneracionManaPorTurnoPorMejora?: number;
 
-  /** Efecto de un consumible de curación. */
+  /** Recuperación fija de vida, maná o energía al usar el consumible. */
   curacion?: number;
+  restauracionMana?: number;
+  restauracionEnergia?: number;
+  /** Fracción de la reserva máxima que se recuperará adicionalmente. Ej.: 0.15 = 15 %. */
+  curacionPorcentaje?: number;
+  restauracionManaPorcentaje?: number;
+  restauracionEnergiaPorcentaje?: number;
+  /** Fracción de vida máxima con la que puede resucitar a un aliado caído. */
+  revivirPorcentajeVida?: number;
+  /** Bonificaciones porcentuales temporales; el combate las aplicará por turnos en una fase posterior. */
+  efectosTemporalesPorcentaje?: Partial<Record<"ataque" | "ataqueMagico" | "precision" | "probCritico" | "velocidad" | "evasion", number>>;
+  duracionTurnos?: number;
 
   /** Cantidad máxima que puede llevar el personaje. */
   limiteCantidad?: number;
