@@ -30,8 +30,7 @@ export default function EmbajadaPage() {
   return (
     <main className="min-h-screen bg-slate-900 p-4 text-slate-100 md:p-8">
       <div className="mx-auto max-w-4xl">
-        <CabeceraEdificio icono="🏛️" nombre="Embajada" nivel={nivelEmbajada} />
-        <p className="text-slate-400">{descripcionEdificio}</p>
+        <CabeceraEdificio icono="🏛️" nombre="Embajada" nivel={nivelEmbajada} descripcion={descripcionEdificio} />
 
         {nivelEmbajada >= 2 && (
           <section className="rounded-xl border border-slate-700 bg-slate-800 shadow-xl">

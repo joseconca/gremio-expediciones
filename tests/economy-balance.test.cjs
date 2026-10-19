@@ -11,6 +11,7 @@ const { JEFES_ELITE, obtenerEnemigoPorId } = require("../src/lib/enemigos.ts");
 const {
   PRECIOS_RECURSOS,
   calcularPrecioRecurso,
+  calcularPrecioVentaRecurso,
   calcularPrecioVentaObjeto,
   calcularPrecioRecompraObjeto,
 } = require("../src/lib/economia.ts");
@@ -109,6 +110,15 @@ test("el precio de materiales usa el mismo cálculo y el descuento está limitad
   assert.equal(calcularPrecioRecurso("piedra", 3), 80);
   assert.equal(calcularPrecioRecurso("metal", 1), 250);
   assert.equal(calcularPrecioRecurso("metal", 99), 200);
+});
+
+test("la venta de recursos paga una cuarta parte del precio de compra y redondea el total hacia abajo", () => {
+  assert.equal(calcularPrecioVentaRecurso(calcularPrecioRecurso("madera", 1), 1), 12);
+  assert.equal(calcularPrecioVentaRecurso(calcularPrecioRecurso("madera", 1), 2), 25);
+  assert.equal(calcularPrecioVentaRecurso(calcularPrecioRecurso("piedra", 1), 1), 25);
+  assert.equal(calcularPrecioVentaRecurso(calcularPrecioRecurso("metal", 1), 1), 62);
+  assert.equal(calcularPrecioVentaRecurso(calcularPrecioRecurso("metal", 3), 1), 50);
+  assert.equal(calcularPrecioVentaRecurso(250, 0), 0);
 });
 
 test("la comparación de dificultades incluye escenarios explícitos de victoria y derrota", () => {

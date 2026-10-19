@@ -4,7 +4,7 @@ import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import { useGameStore } from "@/store/useGameStore";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import { PRECIOS_RECURSOS, calcularPrecioRecurso } from "@/lib/economia";
+import { PRECIOS_RECURSOS, calcularPrecioRecurso, calcularPrecioVentaRecurso } from "@/lib/economia";
 
 type Recurso = "madera" | "piedra" | "metal";
 
@@ -39,7 +39,7 @@ const RECURSOS: {
 ];
 
 export default function MercadoPage() {
-  const { oro, edificios, comprarRecurso } = useGameStore();
+  const { oro, madera, piedra, metal, edificios, comprarRecurso, venderRecurso } = useGameStore();
 
   const router = useRouter();
 
@@ -49,7 +49,8 @@ export default function MercadoPage() {
     metal: 1,
   });
 
-  const [comprando, setComprando] = useState<Recurso | null>(null);
+  const [modo, setModo] = useState<"comprar" | "vender">("comprar");
+  const [operacionEnCurso, setOperacionEnCurso] = useState<Recurso | null>(null);
 
   const [error, setError] = useState<string | null>(null);
   const [mensajeMercader, setMensajeMercader] = useState<string | null>(null);
@@ -80,68 +81,72 @@ export default function MercadoPage() {
   }, [mensajeMercader]);
 
   const ofertas = useMemo(() => {
+    const existencias: Record<Recurso, number> = { madera, piedra, metal };
     return RECURSOS.map((recurso) => {
       const precioUnitario = calcularPrecioRecurso(recurso.id, nivelMercado);
-
-      const cantidadMaxima = Math.floor(oro / precioUnitario);
-
       return {
         ...recurso,
         precioUnitario,
-        cantidadMaxima,
+        cantidadMaximaCompra: Math.min(Math.floor(oro / precioUnitario), 1_000_000),
+        cantidadMaximaVenta: Math.min(existencias[recurso.id], 1_000_000),
       };
     });
-  }, [oro, nivelMercado]);
+  }, [oro, nivelMercado, madera, piedra, metal]);
 
   const cambiarCantidad = (recurso: Recurso, cantidad: number) => {
     const oferta = ofertas.find((item) => item.id === recurso);
-
     if (!oferta) return;
 
-    const maximo = oferta.cantidadMaxima;
-
+    const maximo = modo === "comprar" ? oferta.cantidadMaximaCompra : oferta.cantidadMaximaVenta;
+    const cantidadSegura = Number.isFinite(cantidad) ? Math.floor(cantidad) : 0;
     setCantidades((actuales) => ({
       ...actuales,
-      [recurso]: maximo > 0 ? Math.max(1, Math.min(cantidad, maximo)) : 0,
+      [recurso]: maximo > 0 ? Math.max(1, Math.min(cantidadSegura, maximo)) : 0,
     }));
-
     setError(null);
   };
 
-  const comprar = async (recurso: Recurso) => {
-    const cantidad = cantidades[recurso];
+  const comerciar = async (recurso: Recurso) => {
+    const oferta = ofertas.find((item) => item.id === recurso);
+    if (!oferta || operacionEnCurso !== null) return;
 
+    const maximo = modo === "comprar" ? oferta.cantidadMaximaCompra : oferta.cantidadMaximaVenta;
+    const cantidad = Math.min(Math.max(0, Math.floor(cantidades[recurso])), maximo);
     if (cantidad <= 0) return;
 
-    setComprando(recurso);
+    setOperacionEnCurso(recurso);
     setError(null);
-
-    const resultado = await comprarRecurso(recurso, cantidad);
+    const esCompra = modo === "comprar";
+    const resultado = esCompra
+      ? await comprarRecurso(recurso, cantidad)
+      : await venderRecurso(recurso, cantidad);
 
     if (!resultado) {
-      setError("No se pudo realizar la compra.");
+      setError(esCompra ? "No se pudo realizar la compra." : "No se pudo realizar la venta.");
       setMensajeMercader("No hemos podido cerrar el trato, amigo.");
     } else {
       setMensajeMercader(
-        "¡Trato hecho! Tus mercancías han sido enviadas al almacén."
+        esCompra
+          ? "¡Trato hecho! Tus mercancías han sido enviadas al almacén."
+          : "¡Trato hecho! Te he pagado por los recursos vendidos."
       );
-      // Después de comprar, dejamos el slider en 1.
       setCantidades((actuales) => ({
         ...actuales,
         [recurso]: 1,
       }));
     }
-
-    setComprando(null);
+    setOperacionEnCurso(null);
   };
 
   // Diálogo dinámico del mercader
   const dialogoMercader = () => {
     if (mensajeMercader) return mensajeMercader;
-    if (comprando) return "Pesan bastante estos sacos, dame un segundo...";
-    if (oro === 0)
+    if (operacionEnCurso) return modo === "comprar"
+      ? "Pesan bastante estos sacos, dame un segundo..."
+      : "Estoy contando las mercancías y preparando tu pago...";
+    if (modo === "comprar" && oro === 0)
       return "Tus bolsillos están vacíos, forastero. ¡Vuelve cuando tengas oro!";
-    if (randomMensaje < 0.3 && nivelMercado > 1) {
+    if (modo === "comprar" && randomMensaje < 0.3 && nivelMercado > 1) {
       return `¡Bienvenido de nuevo! Por ser nivel ${nivelMercado}, te hago un ${
         (nivelMercado - 1) * 10
       }% de descuento.`;
@@ -164,12 +169,7 @@ export default function MercadoPage() {
   return (
     <main className="min-h-screen bg-slate-950 p-2 font-sans text-slate-100 sm:p-4 md:p-8">
       <div className="max-w-5xl mx-auto">
-        <CabeceraEdificio icono="⚖️" nombre="Mercado" nivel={nivelMercado} />
-
-        <details className="group mb-3 -mt-3 text-sm text-slate-400 sm:mb-4">
-          <summary className="w-fit cursor-pointer list-none rounded border border-slate-800 px-3 py-1.5 text-xs font-semibold text-slate-300 hover:border-amber-800">ⓘ Sobre el mercado</summary>
-          <p className="mt-1 max-w-xl leading-5">{edificios.mercado.descripcion}</p>
-        </details>
+        <CabeceraEdificio icono="⚖️" nombre="Mercado" nivel={nivelMercado} descripcion={edificios.mercado.descripcion} />
 
         {/* --- EL ESCENARIO DEL MERCADO --- */}
         <div className="relative w-full overflow-hidden rounded-xl border-2 border-amber-950 bg-stone-900 shadow-[0_0_32px_rgba(0,0,0,0.5)] sm:rounded-2xl sm:border-4">
@@ -249,42 +249,101 @@ export default function MercadoPage() {
               </p>
             )}
 
-            {/* PARRILLA DE MERCANCÍAS (OFERTAS) */}
+            {/* Operaciones: comprar o vender recursos */}
+            <div className="mx-auto mb-3 flex max-w-2xl gap-2 rounded-lg border border-amber-900/80 bg-stone-900 p-1.5">
+              <button
+                type="button"
+                aria-pressed={modo === "comprar"}
+                disabled={operacionEnCurso !== null}
+                onClick={() => setModo("comprar")}
+                className={`min-h-10 flex-1 rounded-md border px-3 py-2 text-xs font-black sm:text-sm ${modo === "comprar" ? "border-amber-400 bg-amber-800 text-amber-50" : "border-transparent text-stone-400"} disabled:opacity-50`}
+              >
+                🪙 Comprar recursos
+              </button>
+              <button
+                type="button"
+                aria-pressed={modo === "vender"}
+                disabled={operacionEnCurso !== null}
+                onClick={() => setModo("vender")}
+                className={`min-h-10 flex-1 rounded-md border px-3 py-2 text-xs font-black sm:text-sm ${modo === "vender" ? "border-amber-400 bg-amber-800 text-amber-50" : "border-transparent text-stone-400"} disabled:opacity-50`}
+              >
+                📦 Vender excedentes
+              </button>
+            </div>
+            {modo === "vender" && (
+              <p className="mx-auto mb-3 max-w-2xl text-center text-[11px] leading-4 text-stone-400">
+                Recibes una cuarta parte del precio de compra. El pago final se redondea hacia abajo al oro entero.
+              </p>
+            )}
+
+            {/* El deslizador permite ajustar cantidades rápidamente; el campo numérico mantiene la precisión. */}
             <div className="space-y-2">
               {ofertas.map((oferta) => {
-                const sinOro = oferta.cantidadMaxima < 1;
-                const cantidad = sinOro ? 0 : cantidades[oferta.id];
+                const cantidadMaxima = modo === "comprar" ? oferta.cantidadMaximaCompra : oferta.cantidadMaximaVenta;
+                const sinRecursos = cantidadMaxima < 1;
+                const cantidad = sinRecursos ? 0 : Math.max(1, Math.min(cantidades[oferta.id] || 1, cantidadMaxima));
                 const costeTotal = cantidad * oferta.precioUnitario;
+                const ingresoTotal = calcularPrecioVentaRecurso(oferta.precioUnitario, cantidad);
+                const total = modo === "comprar" ? costeTotal : ingresoTotal;
+                const totalLabel = modo === "comprar" ? "Coste total" : "Recibes";
+                const precioVisible = modo === "comprar"
+                  ? oferta.precioUnitario.toLocaleString("es-ES")
+                  : (oferta.precioUnitario / 4).toLocaleString("es-ES", { maximumFractionDigits: 2 });
+
                 return (
                   <article key={oferta.id} className="rounded-lg border border-amber-950/90 bg-stone-900/95 p-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] sm:p-3">
                     <div className="flex min-w-0 items-center gap-2">
                       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-amber-900/70 bg-stone-950 text-2xl" aria-hidden="true">{oferta.icono}</span>
                       <div className="min-w-0 flex-1">
                         <h3 className="truncate text-sm font-black text-amber-200 sm:text-base">{oferta.nombre}</h3>
-                        <p className="text-[11px] text-stone-400">{oferta.precioUnitario} 🪙 / unidad</p>
+                        <p className="text-[11px] text-stone-400">{precioVisible} 🪙 / unidad{modo === "vender" ? " · 25 %" : ""}</p>
                       </div>
-                      <span className="shrink-0 text-xs font-bold text-stone-300">Máx. {oferta.cantidadMaxima}</span>
+                      <span className="shrink-0 text-right text-[10px] font-bold text-stone-300 sm:text-xs">
+                        {modo === "comprar" ? "Compra máx." : "En almacén"}<br />{cantidadMaxima.toLocaleString("es-ES")}
+                      </span>
                     </div>
-                    <div className="mt-2 flex items-center gap-2 border-t border-stone-800 pt-2">
-                      <label htmlFor={`cantidad-${oferta.id}`} className="text-[11px] font-bold text-stone-400">Cant.</label>
-                      <input id={`cantidad-${oferta.id}`} type="number" inputMode="numeric" min={sinOro ? 0 : 1}
-                        max={Math.max(1, oferta.cantidadMaxima)} value={cantidad}
+
+                    <div className="mt-2 border-t border-stone-800 pt-2">
+                      <label htmlFor={`deslizador-${oferta.id}`} className="mb-1 flex items-center justify-between gap-2 text-[11px] font-bold text-stone-400">
+                        <span>{modo === "comprar" ? "Cantidad a comprar" : "Cantidad a vender"}</span>
+                        <span className="text-sm font-black text-amber-200 tabular-nums">{cantidad.toLocaleString("es-ES")}</span>
+                      </label>
+                      <input
+                        id={`deslizador-${oferta.id}`}
+                        type="range"
+                        min={sinRecursos ? 0 : 1}
+                        max={Math.max(1, cantidadMaxima)}
+                        step={1}
+                        value={cantidad}
                         onChange={(event) => cambiarCantidad(oferta.id, Number(event.target.value))}
-                        disabled={sinOro}
-                        className="h-10 w-16 rounded border border-stone-700 bg-stone-950 px-2 text-center text-sm font-bold text-white outline-none focus:border-amber-500 disabled:opacity-50"
+                        disabled={sinRecursos || operacionEnCurso !== null}
+                        className="h-5 w-full cursor-pointer accent-amber-500 disabled:cursor-not-allowed disabled:opacity-40"
+                        aria-label={`Cantidad de ${oferta.nombre} a ${modo === "comprar" ? "comprar" : "vender"}`}
                       />
+                    </div>
+
+                    <div className="mt-2 flex items-end gap-2 border-t border-stone-800 pt-2">
+                      <label htmlFor={`cantidad-${oferta.id}`} className="shrink-0 text-[11px] font-bold text-stone-400">
+                        Cant.
+                        <input id={`cantidad-${oferta.id}`} type="number" inputMode="numeric" min={sinRecursos ? 0 : 1}
+                          max={Math.max(1, cantidadMaxima)} value={cantidad}
+                          onChange={(event) => cambiarCantidad(oferta.id, Number(event.target.value))}
+                          disabled={sinRecursos || operacionEnCurso !== null}
+                          className="mt-1 block h-9 w-[4.5rem] rounded border border-stone-700 bg-stone-950 px-2 text-center text-sm font-bold text-white outline-none focus:border-amber-500 disabled:opacity-50"
+                        />
+                      </label>
                       <div className="min-w-0 flex-1 text-right">
-                        <p className="text-[9px] font-bold uppercase tracking-wide text-stone-500">Total</p>
-                        <p className="whitespace-nowrap text-sm font-black text-amber-300">{costeTotal} 🪙</p>
+                        <p className="text-[9px] font-bold uppercase tracking-wide text-stone-500">{totalLabel}</p>
+                        <p className={`whitespace-nowrap text-base font-black ${modo === "comprar" ? "text-amber-300" : "text-emerald-300"}`}>{total.toLocaleString("es-ES")} 🪙</p>
                       </div>
-                      <button type="button" onClick={() => comprar(oferta.id)}
-                        disabled={sinOro || cantidad <= 0 || comprando !== null}
-                        className={`min-h-10 shrink-0 rounded border px-3 py-2 text-xs font-black transition-colors ${
-                          !sinOro && cantidad > 0 && comprando === null
-                            ? "border-amber-500 bg-amber-800 text-amber-50 hover:bg-amber-700 active:bg-amber-600"
+                      <button type="button" onClick={() => comerciar(oferta.id)}
+                        disabled={sinRecursos || cantidad <= 0 || operacionEnCurso !== null}
+                        className={`min-h-10 shrink-0 rounded border px-3 py-2 text-xs font-black ${
+                          !sinRecursos && cantidad > 0 && operacionEnCurso === null
+                            ? modo === "comprar" ? "border-amber-500 bg-amber-800 text-amber-50 hover:bg-amber-700 active:bg-amber-600" : "border-emerald-600 bg-emerald-900 text-emerald-50 hover:bg-emerald-800 active:bg-emerald-700"
                             : "cursor-not-allowed border-stone-700 bg-stone-800 text-stone-500"
                         }`}
-                      >{comprando === oferta.id ? "…" : sinOro ? "Sin oro" : "Comprar"}</button>
+                      >{operacionEnCurso === oferta.id ? "…" : sinRecursos ? modo === "comprar" ? "Sin oro" : "Sin recursos" : modo === "comprar" ? "Comprar" : "Vender"}</button>
                     </div>
                   </article>
                 );

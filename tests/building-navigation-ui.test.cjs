@@ -51,6 +51,37 @@ test("el poblado usa todo el ancho, elimina el panel verde común y añade una c
   assert.doesNotMatch(panel, /radial-gradient/);
 });
 
+test("las ocho páginas de edificios muestran la descripción en la cabecera común", () => {
+  const cabecera = read("src/components/base/CabeceraEdificio.tsx");
+  assert.match(cabecera, /descripcion: string/);
+  assert.match(cabecera, /\{descripcion\}/);
+  const paginas = [
+    "src/app/base/mercado/page.tsx",
+    "src/app/base/taberna/page.tsx",
+    "src/app/base/almacen/page.tsx",
+    "src/app/base/muralla/page.tsx",
+    "src/app/base/embajada/page.tsx",
+    "src/app/base/escuela-batalla/page.tsx",
+    "src/app/base/armeria/page.tsx",
+    "src/app/base/herreria/page.tsx",
+  ];
+  for (const pagina of paginas) {
+    const fuente = read(pagina);
+    assert.match(fuente, /<CabeceraEdificio[\s\S]*?descripcion=/, pagina);
+    assert.doesNotMatch(fuente, /ⓘ Sobre (el|la) (mercado|taberna)/, pagina);
+  }
+});
+
+test("el Mercado tiene deslizador y control numérico para comprar y vender recursos", () => {
+  const mercado = read("src/app/base/mercado/page.tsx");
+  assert.match(mercado, /type="range"/);
+  assert.match(mercado, /type="number"/);
+  assert.match(mercado, /Comprar recursos/);
+  assert.match(mercado, /Vender excedentes/);
+  assert.match(mercado, /venderRecurso/);
+  assert.match(mercado, /calcularPrecioVentaRecurso/);
+});
+
 test("los sprites y carteles de los edificios no crecen ni se iluminan al pasar el cursor", () => {
   const card = read("src/components/base/EdificioCard.tsx");
   const complejo = read("src/components/base/ComplejoArmeria.tsx");

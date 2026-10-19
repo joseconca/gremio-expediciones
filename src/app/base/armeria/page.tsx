@@ -610,10 +610,10 @@ export default function HerreriaPage() {
           icono="🔨"
           nombre={armeria.nombre}
           nivel={nivelArmeria}
+          descripcion={descripcionArmeria}
         />
 
-        <div className="-mt-4 mb-3 flex flex-col gap-2 sm:-mt-6 sm:mb-5 sm:flex-row sm:items-end sm:justify-between">
-          <p className="sr-only">{descripcionArmeria}</p>
+        <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           {nivelHerreria > 0 && (
             <Link
               href="/base/herreria"

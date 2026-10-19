@@ -100,11 +100,7 @@ export default function MurallaPage() {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-8 font-sans">
       <div className="max-w-5xl mx-auto">
-        <CabeceraEdificio icono="🏰" nombre="Muralla" nivel={nivelMuralla} />
-
-        <p className="mb-6 -mt-6 text-slate-400 text-center">
-          {edificios.muralla.descripcion || "Una robusta barrera defensiva que protege tu base de los ataques enemigos."}
-        </p>
+        <CabeceraEdificio icono="🏰" nombre="Muralla" nivel={nivelMuralla} descripcion={edificios.muralla.descripcion || "Una robusta barrera defensiva que protege tu base de los ataques enemigos."} />
 
         {/* --- EL ESCENARIO DE LA MURALLA --- */}
         <div className="relative w-full rounded-2xl overflow-hidden border-4 border-stone-800 bg-slate-900 shadow-[0_0_50px_rgba(0,0,0,0.8)] transition-colors duration-1000">

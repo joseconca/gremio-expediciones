@@ -382,10 +382,10 @@ export default function HerreriaPage() {
           icono="🔨"
           nombre={herreria.nombre}
           nivel={nivelHerreria}
+          descripcion={descripcionHerreria}
         />
 
-        <div className="-mt-4 mb-3 flex flex-col gap-2 sm:-mt-6 sm:mb-5 sm:flex-row sm:items-end sm:justify-between">
-          <p className="sr-only">{descripcionHerreria}</p>
+        <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <Link
             href="/base/armeria"
             className="shrink-0 rounded-lg bg-slate-800 px-4 py-2 font-bold text-slate-300 transition-colors hover:bg-slate-700"

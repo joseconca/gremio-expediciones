@@ -312,8 +312,7 @@ export default function EscuelaCombatePage() {
   return (
     <main className="min-h-screen bg-[#171512] p-3 pb-8 text-[#e8dfc8] sm:p-4 sm:pb-8 md:p-8">
       <div className="mx-auto max-w-6xl">
-        <CabeceraEdificio icono="⚔️" nombre="Escuela de Batalla" nivel={nivelEscuela} />
-        <p className="mb-2 -mt-1 line-clamp-1 text-[11px] text-[#7d705c]">{descripcionEdificio}</p>
+        <CabeceraEdificio icono="⚔️" nombre="Escuela de Batalla" nivel={nivelEscuela} descripcion={descripcionEdificio} />
         {(vista === "aprender" || vista === "gestion") && (
           <section aria-label="Profesión activa" className="mb-3 rounded-lg border border-[#6b5235] bg-[#241d15] p-2 sm:mb-4 sm:p-3">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

@@ -391,6 +391,11 @@ export interface GameState {
     recurso: "madera" | "piedra" | "metal",
     cantidad: number
   ) => Promise<boolean>;
+
+  venderRecurso: (
+    recurso: "madera" | "piedra" | "metal",
+    cantidad: number
+  ) => Promise<boolean>;
 }
 
 async function ejecutarAccion(
@@ -1023,6 +1028,34 @@ export const useGameStore = create<GameState>((set, get) => ({
       return true;
     } catch (error) {
       console.error("Error al comprar en el mercado:", error);
+      return false;
+    }
+  },
+
+  venderRecurso: async (recurso, cantidad) => {
+    try {
+      const respuesta = await fetch("/api/mercado/vender", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          recurso,
+          cantidad,
+        }),
+      });
+
+      const datos = await respuesta.json();
+
+      if (!respuesta.ok) {
+        throw new Error(datos.error || "No se pudo realizar la venta.");
+      }
+
+      aplicarDatosJugador(set, datos.usuario);
+
+      return true;
+    } catch (error) {
+      console.error("Error al vender en el mercado:", error);
       return false;
     }
   },

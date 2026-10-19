@@ -165,11 +165,8 @@ export default function TabernaPage() {
           icono="🍺"
           nombre="Taberna"
           nivel={edificios.taberna.nivel}
+          descripcion={descripcionEdificio}
         />
-        <details className="mb-3 -mt-3 text-sm text-slate-400">
-          <summary className="w-fit cursor-pointer list-none rounded border border-slate-800 px-3 py-1.5 text-xs font-semibold text-slate-300 hover:border-amber-800">ⓘ Sobre la taberna</summary>
-          <p className="mt-2 leading-5">{descripcionEdificio}</p>
-        </details>
         {mensaje && (
           <p role="status" className="mb-2 rounded-md border border-amber-800 bg-amber-950/50 px-3 py-2 text-[11px] text-amber-100 sm:hidden">
             {mensaje}
