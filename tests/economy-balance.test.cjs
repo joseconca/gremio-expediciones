@@ -31,6 +31,12 @@ test("el catálogo completo contiene precios positivos y progresión coherente e
       anillo_viajero: 1100, amuleto_vitalidad: 2800, anillo_maldito: 3200,
       escudo_madera: 150, casco_cuero: 300, pantalones_cuero: 320,
       botas_cuero: 280, guantes_cuero: 220, collar_cobre: 350, anillo_resistencia: 500,
+      espada_vigia: 3600, espada_draconica: 12500, lanza_escama: 1850, daga_sombria: 1750,
+      arco_cazador: 3200, baston_runico: 3900, maza_enana: 2850, hacha_berserker: 6800,
+      grimorio_eclipse: 7200, punos_lobo: 2450, escudo_guardian: 1750, yelmo_veterano: 1250,
+      coraza_runica: 7900, perneras_orcas: 1450, botas_viento: 2100, guantes_guardia: 1650,
+      collar_fenix: 2600, anillo_duelista: 2800, anillo_arcanista: 3900,
+      amuleto_ancestral: 5100, pocion_suprema: 140,
     },
   );
   assert.deepEqual(["espada_madera","espada_piedra","espada_hierro","espada_acero","espada_runa"].map((id) => obtenerObjetoPorId(id).precio), [100,350,800,1800,6500]);
@@ -252,4 +258,25 @@ test("el oro y los materiales de edificios escalan juntos por el mismo factor", 
   for (const [id, coste] of Object.entries(costesConstruccion)) {
     assert.equal(calcularCosteEdificio(id, 0).oro, coste, `coste inicial de ${id}`);
   }
+});
+
+test("el catálogo añade botín exclusivo en todas las familias de equipo y una poción superior", () => {
+  const idsBotinNuevo = [
+    "espada_vigia", "espada_draconica", "lanza_escama", "daga_sombria",
+    "arco_cazador", "baston_runico", "maza_enana", "hacha_berserker",
+    "grimorio_eclipse", "punos_lobo", "escudo_guardian", "yelmo_veterano",
+    "coraza_runica", "perneras_orcas", "botas_viento", "guantes_guardia",
+    "collar_fenix", "anillo_duelista", "anillo_arcanista", "amuleto_ancestral",
+    "pocion_suprema",
+  ];
+  for (const id of idsBotinNuevo) {
+    const objeto = obtenerObjetoPorId(id);
+    assert.ok(objeto, `Falta el nuevo objeto de botín: ${id}`);
+    assert.equal(objeto.vendibleEnArmeria, false, `${id} no debe poder comprarse en la Armería`);
+    assert.ok(objeto.precio > 0);
+  }
+  assert.ok(obtenerObjetoPorId("espada_vigia").ataqueBase > obtenerObjetoPorId("espada_acero").ataqueBase);
+  assert.ok(obtenerObjetoPorId("arco_cazador").ataqueBase > obtenerObjetoPorId("arco_madera").ataqueBase);
+  assert.ok(obtenerObjetoPorId("coraza_runica").defensaBase > obtenerObjetoPorId("armadura_acero").defensaBase);
+  assert.ok(obtenerObjetoPorId("pocion_suprema").curacion > obtenerObjetoPorId("pocion_grande").curacion);
 });
