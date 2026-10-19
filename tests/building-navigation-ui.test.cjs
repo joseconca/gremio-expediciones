@@ -44,6 +44,28 @@ test("la Botica forma parte del poblado y reutiliza el sprite del Mercado", () =
   assert.deepEqual(fs.readFileSync(boticaSprite), fs.readFileSync(mercadoSprite), "La Botica reutiliza el sprite temporal del Mercado.");
 });
 
+test("la Armería permite vender armas y armaduras y recomprar la última venta", () => {
+  const pagina = read("src/app/base/armeria/page.tsx");
+  assert.match(pagina, /calcularPrecioVentaObjeto/);
+  assert.match(pagina, /item\.objeto\.tipo === "arma" \|\| item\.objeto\.tipo === "armadura"/);
+  assert.match(pagina, /\/api\/objetos\/vender/);
+  assert.match(pagina, /\/api\/objetos\/recomprar/);
+  assert.match(pagina, /Recomprar " \+ ventaAnterior\.nombreObjeto/);
+  assert.match(pagina, /idsEquipados\.has\(item\.id\)/);
+  assert.match(pagina, /bloqueadoPorEstado/);
+});
+
+test("la Botica muestra solo el nivel desbloqueado y agrupa el catálogo en Pociones y Elixires", () => {
+  const pagina = read("src/app/base/botica/page.tsx");
+  assert.match(pagina, /objeto\.vendibleEnBotica && \(objeto\.nivelBoticaRequerido \?\? 1\) <= nivelBotica/);
+  assert.match(pagina, /titulo: "Pociones"/);
+  assert.match(pagina, /titulo: "Elixires"/);
+  assert.match(pagina, /!objeto\.id\.startsWith\("elixir_"\)/);
+  assert.match(pagina, /objeto\.id\.startsWith\("elixir_"\)/);
+  assert.doesNotMatch(pagina, /Fórmulas de nivel/);
+  assert.doesNotMatch(pagina, /Requiere Botica/);
+});
+
 test("la cabecera de Personaje ya no repite las cuatro estadísticas resumidas", () => {
   const pagina = read("src/app/base/personaje/page.tsx");
   const inicio = pagina.indexOf('<header className="mb-4');
