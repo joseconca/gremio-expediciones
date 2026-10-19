@@ -10,7 +10,7 @@ import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 import PanelMejoraHabilidad, { IndicadorNivelHabilidad } from "@/components/habilidades/PanelMejoraHabilidad";
 import { descripcionSimpleHabilidad, detalleNumericoHabilidad } from "@/lib/descripcionesHabilidades";
 import { CLASES, obtenerClasesHabilidadDisponibles } from "@/lib/progresion/clases";
-import { ajustarHabilidadPorNivel, nivelMaximoHabilidad } from "@/lib/progresion/niveles-habilidad";
+import { ajustarHabilidadPorNivel, costeReinicioHabilidades, nivelMaximoHabilidad } from "@/lib/progresion/niveles-habilidad";
 import type { DefinicionHabilidad, Rareza } from "@/lib/tiposJuego";
 import { useGameStore } from "@/store/useGameStore";
 
@@ -118,6 +118,8 @@ export default function EscuelaCombatePage() {
   const aprendidasPorId = useMemo(() => new Map(aprendidas.map((item) => [item.habilidadId, item])), [aprendidas]);
   const nivelJob = datos?.progresoJob?.nivelJob ?? 1;
   const puntosDisponibles = datos?.progresoJob?.puntosHabilidadDisponibles ?? 0;
+  const costeReseteo = costeReinicioHabilidades(nivelJob);
+  const habilidadesPropias = aprendidas.filter((item) => (item.habilidad.claseId ?? "novato") === profesionId);
   const profesionId = datos?.profesionActivaId ?? "novato";
   const clasesDeRama = useMemo(
     () => obtenerClasesHabilidadDisponibles(profesionId),
@@ -225,6 +227,29 @@ export default function EscuelaCombatePage() {
     }
   };
 
+  const reiniciarHabilidades = async () => {
+    if (!datos) return;
+    const profesion = datos.profesionNombre ?? CLASES[profesionId]?.nombre ?? profesionId;
+    if (!window.confirm(`¿Redistribuir las habilidades propias de ${profesion} por ${costeReseteo} de oro? Recuperarás los puntos invertidos y conservarás tu nivel Job.`)) return;
+
+    setProcesando("reiniciar");
+    setError(null);
+    try {
+      const respuesta = await fetch("/api/habilidades/reiniciar", { method: "POST" });
+      const resultado = await respuesta.json();
+      if (!respuesta.ok) {
+        setError(resultado.error || "No se pudieron redistribuir las habilidades.");
+        return;
+      }
+      await recargarHabilidades();
+      await cargarJugador();
+    } catch {
+      setError("Error de conexión al redistribuir las habilidades.");
+    } finally {
+      setProcesando(null);
+    }
+  };
+
   const navegacion = (
     <nav aria-label="Secciones de la Escuela de Batalla" className="mb-4 grid grid-cols-2 gap-1.5 sm:mb-6 sm:flex sm:flex-wrap sm:gap-2">
       {([["aprender", "Aprender habilidades"], ["profesiones", "Profesiones"], ["tacticas", "Tácticas"]] as const).map(([key, label]) => (
@@ -257,9 +282,20 @@ export default function EscuelaCombatePage() {
                 <div className="min-w-0 rounded-lg border border-[#4c3b27] bg-[#191612] p-2 sm:p-3">
                   <p className="text-[11px] uppercase tracking-wider text-[#91816a]">Puntos Job · {CLASES[profesionId]?.nombre ?? profesionId}</p>
                   <p className="mt-1 text-xl font-bold text-amber-200 sm:text-2xl">{puntosDisponibles}</p>
-
                 </div>
               </div>
+            </div>
+            <div className="mt-3 flex flex-col gap-2 border-t border-[#493a28] pt-3 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-xs leading-5 text-[#ad9877]">Reasigna los puntos invertidos en las habilidades de tu profesión activa. El nivel Job y las habilidades aprendidas de otras profesiones se conservan.</p>
+              <button
+                type="button"
+                onClick={() => void reiniciarHabilidades()}
+                disabled={procesando !== null || habilidadesPropias.length === 0 || (datos?.oro ?? 0) < costeReseteo}
+                title={habilidadesPropias.length === 0 ? "No tienes habilidades propias de esta profesión para reiniciar" : (datos?.oro ?? 0) < costeReseteo ? `Necesitas ${costeReseteo} de oro` : "Redistribuye las habilidades de tu profesión y recupera los puntos invertidos"}
+                className="min-h-10 shrink-0 rounded-lg border border-amber-700/70 bg-[#382519] px-3 py-2 text-xs font-bold text-amber-100 hover:border-amber-400 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                {procesando === "reiniciar" ? "Redistribuyendo..." : `Redistribuir puntos de habilidad (${costeReseteo} oro)`}
+              </button>
             </div>
           </section>
         )}
