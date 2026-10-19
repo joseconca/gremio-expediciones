@@ -270,11 +270,6 @@ export default function MercadoPage() {
                 📦 Vender excedentes
               </button>
             </div>
-            {modo === "vender" && (
-              <p className="mx-auto mb-3 max-w-2xl text-center text-[11px] leading-4 text-stone-400">
-                Recibes una cuarta parte del precio de compra. El pago final se redondea hacia abajo al oro entero.
-              </p>
-            )}
 
             {/* El deslizador permite ajustar cantidades rápidamente; el campo numérico mantiene la precisión. */}
             <div className="space-y-2">
