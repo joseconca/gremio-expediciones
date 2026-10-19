@@ -54,7 +54,9 @@ test("la pantalla de Personaje centraliza equipo, mochila por categorías y gest
   assert.match(pagina, /\/api\/objetos\/desequipar/);
   assert.match(pagina, /\/api\/habilidades\/equipar/);
   assert.match(pagina, /\/api\/habilidades\/desequipar/);
-  assert.match(pagina, /\/api\/habilidades\/mejorar/);
+  assert.doesNotMatch(pagina, /\/api\/habilidades\/mejorar/);
+  const escuela = read("src/app/base/escuela-batalla/page.tsx");
+  assert.match(escuela, /\/api\/habilidades\/mejorar/);
 });
 
 test("los edificios individuales se abren desde el rótulo y el sprite, sin botón Entrar ni descripción fija", () => {
