@@ -279,4 +279,13 @@ test("el catálogo añade botín exclusivo en todas las familias de equipo y una
   assert.ok(obtenerObjetoPorId("arco_cazador").ataqueBase > obtenerObjetoPorId("arco_madera").ataqueBase);
   assert.ok(obtenerObjetoPorId("coraza_runica").defensaBase > obtenerObjetoPorId("armadura_acero").defensaBase);
   assert.ok(obtenerObjetoPorId("pocion_suprema").curacion > obtenerObjetoPorId("pocion_grande").curacion);
+  for (const id of idsBotinNuevo) {
+    const objeto = obtenerObjetoPorId(id);
+    if (objeto.tipo === "arma" || objeto.tipo === "armadura") {
+      assert.ok(
+        Object.keys(objeto).some((clave) => clave.endsWith("PorMejora")),
+        `${id} debe definir incremento por mejora`,
+      );
+    }
+  }
 });

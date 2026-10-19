@@ -540,6 +540,8 @@ export const OBJETOS: DefinicionObjeto[] = [
     ataqueBase: 10,
     defensaBase: 1,
     precisionBase: 2,
+    ataquePorMejora: 2.25,
+    defensaPorMejora: 0.25,
   },
   {
     id: "espada_draconica",
@@ -555,6 +557,9 @@ export const OBJETOS: DefinicionObjeto[] = [
     ataqueBase: 16,
     velocidadBase: 2,
     probCriticoBase: 0.08,
+    ataquePorMejora: 3.5,
+    velocidadPorMejora: 0.25,
+    probCriticoPorMejora: 0.01,
   },
   {
     id: "lanza_escama",
@@ -570,6 +575,9 @@ export const OBJETOS: DefinicionObjeto[] = [
     ataqueBase: 7,
     velocidadBase: 1,
     precisionBase: 2,
+    ataquePorMejora: 1.5,
+    velocidadPorMejora: 0.2,
+    precisionPorMejora: 0.5,
   },
   {
     id: "daga_sombria",
@@ -585,6 +593,9 @@ export const OBJETOS: DefinicionObjeto[] = [
     ataqueBase: 5,
     velocidadBase: 2,
     probCriticoBase: 0.04,
+    ataquePorMejora: 1,
+    velocidadPorMejora: 0.5,
+    probCriticoPorMejora: 0.005,
   },
   {
     id: "arco_cazador",
@@ -600,6 +611,8 @@ export const OBJETOS: DefinicionObjeto[] = [
     ataqueBase: 8,
     precisionBase: 5,
     velocidadBase: 1,
+    ataquePorMejora: 1.75,
+    precisionPorMejora: 0.5,
   },
   {
     id: "baston_runico",
@@ -616,6 +629,9 @@ export const OBJETOS: DefinicionObjeto[] = [
     ataqueMagicoBase: 8,
     manaMaximoBase: 12,
     regeneracionManaPorTurnoBase: 1,
+    ataquePorMejora: 0.5,
+    ataqueMagicoPorMejora: 1.5,
+    manaMaximoPorMejora: 2,
   },
   {
     id: "maza_enana",
@@ -630,6 +646,8 @@ export const OBJETOS: DefinicionObjeto[] = [
     precio: 2850,
     ataqueBase: 9,
     defensaBase: 2,
+    ataquePorMejora: 1.75,
+    defensaPorMejora: 0.5,
   },
   {
     id: "hacha_berserker",
@@ -645,6 +663,8 @@ export const OBJETOS: DefinicionObjeto[] = [
     ataqueBase: 12,
     probCriticoBase: 0.08,
     velocidadBase: -1,
+    ataquePorMejora: 2.75,
+    probCriticoPorMejora: 0.015,
   },
   {
     id: "grimorio_eclipse",
@@ -661,6 +681,9 @@ export const OBJETOS: DefinicionObjeto[] = [
     ataqueMagicoBase: 12,
     manaMaximoBase: 18,
     regeneracionManaPorTurnoBase: 1,
+    ataquePorMejora: 0.5,
+    ataqueMagicoPorMejora: 2,
+    manaMaximoPorMejora: 2,
   },
   {
     id: "punos_lobo",
@@ -676,6 +699,9 @@ export const OBJETOS: DefinicionObjeto[] = [
     ataqueBase: 6,
     velocidadBase: 2,
     probCriticoBase: 0.04,
+    ataquePorMejora: 1,
+    velocidadPorMejora: 0.5,
+    probCriticoPorMejora: 0.008,
   },
 
   // Armaduras de botín para cada ranura defensiva
@@ -692,6 +718,9 @@ export const OBJETOS: DefinicionObjeto[] = [
     defensaBase: 5,
     defensaMagicaBase: 2,
     hpMaximoBase: 5,
+    defensaPorMejora: 1.5,
+    defensaMagicaPorMejora: 0.5,
+    hpMaximoPorMejora: 1,
   },
   {
     id: "yelmo_veterano",
@@ -706,6 +735,8 @@ export const OBJETOS: DefinicionObjeto[] = [
     precio: 1250,
     defensaBase: 4,
     hpMaximoBase: 8,
+    defensaPorMejora: 0.75,
+    hpMaximoPorMejora: 1,
   },
   {
     id: "coraza_runica",
@@ -722,6 +753,9 @@ export const OBJETOS: DefinicionObjeto[] = [
     defensaMagicaBase: 5,
     hpMaximoBase: 15,
     velocidadBase: -2,
+    defensaPorMejora: 3.5,
+    defensaMagicaPorMejora: 1.25,
+    hpMaximoPorMejora: 2,
   },
   {
     id: "perneras_orcas",
@@ -737,6 +771,8 @@ export const OBJETOS: DefinicionObjeto[] = [
     defensaBase: 4,
     hpMaximoBase: 8,
     velocidadBase: 1,
+    defensaPorMejora: 0.75,
+    hpMaximoPorMejora: 1,
   },
   {
     id: "botas_viento",
@@ -752,6 +788,9 @@ export const OBJETOS: DefinicionObjeto[] = [
     defensaBase: 3,
     velocidadBase: 3,
     evasionBase: 1,
+    defensaPorMejora: 0.5,
+    velocidadPorMejora: 0.5,
+    evasionPorMejora: 0.15,
   },
   {
     id: "guantes_guardia",
@@ -767,6 +806,9 @@ export const OBJETOS: DefinicionObjeto[] = [
     defensaBase: 3,
     ataqueBase: 1,
     precisionBase: 1,
+    defensaPorMejora: 0.5,
+    ataquePorMejora: 0.25,
+    precisionPorMejora: 0.25,
   },
 
   // Accesorios especiales de monstruos y jefes
