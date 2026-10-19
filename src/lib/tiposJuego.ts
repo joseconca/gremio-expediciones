@@ -312,6 +312,8 @@ export interface DefinicionObjeto {
   restauracionEnergiaPorcentaje?: number;
   /** Fracción de vida máxima con la que puede resucitar a un aliado caído. */
   revivirPorcentajeVida?: number;
+  /** Destino permitido en combate. Si se omite, el consumible se usará sobre el propio aventurero. */
+  objetivoUso?: "propio" | "propio_o_aliado" | "aliado_caido";
   /** Bonificaciones porcentuales temporales; el combate las aplicará por turnos en una fase posterior. */
   efectosTemporalesPorcentaje?: Partial<Record<"ataque" | "ataqueMagico" | "precision" | "probCritico" | "velocidad" | "evasion", number>>;
   duracionTurnos?: number;
