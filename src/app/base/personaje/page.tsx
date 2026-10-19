@@ -587,7 +587,6 @@ export default function PersonajePage() {
                     { nombre: "Daño crítico", valor: personaje.danoCritico.toLocaleString("es-ES", { maximumFractionDigits: 2 }) + "×", icono: "💢" },
                     { nombre: "Energía máxima", valor: personaje.energiaMaxima, icono: "⚡" },
                     { nombre: "Maná máximo", valor: personaje.manaMaximo, icono: "🔮" },
-                    { nombre: "Regeneración de vida", valor: personaje.regeneracionVidaPorTurno.toLocaleString("es-ES", { maximumFractionDigits: 2 }), icono: "💚" },
                     { nombre: "Regeneración de energía", valor: personaje.regeneracionEnergiaPorTurno.toLocaleString("es-ES", { maximumFractionDigits: 2 }), icono: "⚡" },
                     { nombre: "Regeneración de maná", valor: personaje.regeneracionManaPorTurno.toLocaleString("es-ES", { maximumFractionDigits: 2 }), icono: "🔷" },
                   ]).map((stat) => (
