@@ -123,10 +123,6 @@ export default function EscuelaCombatePage() {
   const nivelJob = datos?.progresoJob?.nivelJob ?? 1;
   const puntosDisponibles = datos?.progresoJob?.puntosHabilidadDisponibles ?? 0;
   const profesionId = datos?.profesionActivaId ?? "novato";
-  const habilidadesPropias = useMemo(
-    () => aprendidas.filter((item) => (item.habilidad.claseId ?? "novato") === profesionId),
-    [aprendidas, profesionId],
-  );
   const clasesDeRama = useMemo(
     () => obtenerClasesHabilidadDisponibles(profesionId),
     [profesionId],
@@ -265,15 +261,7 @@ export default function EscuelaCombatePage() {
                 <div className="min-w-0 rounded-lg border border-[#4c3b27] bg-[#191612] p-2 sm:p-3">
                   <p className="text-[11px] uppercase tracking-wider text-[#91816a]">Puntos Job · {CLASES[profesionId]?.nombre ?? profesionId}</p>
                   <p className="mt-1 text-xl font-bold text-amber-200 sm:text-2xl">{puntosDisponibles}</p>
-                  <button
-                    type="button"
-                    onClick={() => void reiniciarHabilidades()}
-                    disabled={procesando !== null || habilidadesPropias.length === 0 || (datos?.oro ?? 0) < costeReseteo}
-                    title={habilidadesPropias.length === 0 ? "No tienes puntos invertidos que redistribuir" : (datos?.oro ?? 0) < costeReseteo ? `Necesitas ${costeReseteo} de oro` : "Redistribuir puntos de habilidad"}
-                    className="mt-2 min-h-8 w-full rounded-md border border-amber-700/70 bg-amber-950/25 px-2 py-1.5 text-left text-[10px] font-bold leading-snug text-amber-200 transition hover:border-amber-400 hover:bg-amber-900/30 disabled:cursor-not-allowed disabled:opacity-40 sm:text-[11px]"
-                  >
-                    {procesando === "reiniciar" ? "Redistribuyendo..." : "Redistribuir puntos de habilidad (" + costeReseteo + " oro)"}
-                  </button>
+
                 </div>
               </div>
             </div>

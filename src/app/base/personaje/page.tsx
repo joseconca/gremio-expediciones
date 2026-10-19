@@ -151,22 +151,6 @@ function obtenerCategoria(objeto: DefinicionObjeto): CategoriaInventario {
   return "varios";
 }
 
-function nombreRanura(objeto: DefinicionObjeto): string {
-  const ranura = obtenerRanuraObjeto(objeto);
-  const etiquetas: Record<string, string> = {
-    arma: "Arma principal",
-    mano_secundaria: "Escudos y mano secundaria",
-    casco: "Cascos",
-    armadura: "Armaduras",
-    pantalones: "Pantalones",
-    botas: "Botas",
-    guantes: "Guantes",
-    collar: "Collares",
-    anillo: "Anillos",
-  };
-  return ranura ? etiquetas[ranura] ?? "Armaduras" : "Varios";
-}
-
 function esSlotHabilidad(valor: string | null): valor is SlotHabilidad {
   return valor !== null && SLOTS_HABILIDADES.includes(valor as SlotHabilidad);
 }
@@ -221,8 +205,10 @@ export default function PersonajePage() {
   }, []);
 
   useEffect(() => {
-    void recargarObjetos();
-    void recargarHabilidades();
+    Promise.resolve().then(() => {
+      void recargarObjetos();
+      void recargarHabilidades();
+    });
   }, [recargarObjetos, recargarHabilidades]);
 
   const enviarAccionObjeto = async (
