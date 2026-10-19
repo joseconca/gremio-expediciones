@@ -12,6 +12,7 @@ const ORDEN_POBLADO: IdEdificio[] = [
   "taberna",
   "armeria",
   "mercado",
+  "botica",
   "escuelaCombate",
   "embajada",
   "almacen",
