@@ -420,7 +420,7 @@ function makeMarketRoute({ authenticated = true, initialUser = {} } = {}) {
   return { POST: route.POST, getState };
 }
 
-function makeObjectRoute({ authenticated = true, initialUser = {}, initialItems = [] } = {}) {
+function makeObjectRoute({ authenticated = true, initialUser = {}, initialItems = [], objetoOverride = null } = {}) {
   let state = {
     user: {
       id: "u1",
@@ -472,7 +472,7 @@ function makeObjectRoute({ authenticated = true, initialUser = {}, initialItems 
     },
     $transaction: transaction,
   };
-  const objeto = {
+  const objeto = objetoOverride ?? {
     id: "espada_prueba",
     nombre: "Espada de prueba",
     tipo: "arma",
@@ -1160,6 +1160,63 @@ test("mercado: dos compras simultáneas no gastan dos veces el mismo oro", async
   assert.equal(results.filter((result) => result.status === 200).length, 1);
   assert.equal(route.getState().user.oro, 0);
   assert.equal(route.getState().user.madera, 1);
+});
+
+test("Botica: compra consumibles con el nivel requerido y registra una instancia en la mochila", async () => {
+  const pocion = {
+    id: "pocion_vida_menor",
+    nombre: "Poción de vida menor",
+    tipo: "consumible",
+    rareza: "comun",
+    vendibleEnArmeria: false,
+    vendibleEnBotica: true,
+    nivelBoticaRequerido: 1,
+    precio: 150,
+    curacion: 15,
+    curacionPorcentaje: 0.15,
+  };
+  const route = makeObjectRoute({
+    initialUser: {
+      oro: 500,
+      edificios: { botica: 1 },
+      personaje: { id: "p1", nivel: 1, inventario: { id: "inv1" } },
+    },
+    objetoOverride: pocion,
+  });
+  const response = await route.POST(request({ objetoId: pocion.id }));
+
+  assert.equal(response.status, 200);
+  assert.equal(route.getState().user.oro, 350);
+  assert.equal(route.getState().items.length, 1);
+  assert.equal(route.getState().items[0].objetoId, pocion.id);
+  assert.equal(route.getState().items[0].cantidad, 1);
+});
+
+test("Botica: no permite comprar fórmulas bloqueadas ni cobra oro", async () => {
+  const pocion = {
+    id: "pocion_vida_mediana",
+    nombre: "Poción de vida mediana",
+    tipo: "consumible",
+    rareza: "poco_comun",
+    vendibleEnArmeria: false,
+    vendibleEnBotica: true,
+    nivelBoticaRequerido: 2,
+    precio: 380,
+  };
+  const route = makeObjectRoute({
+    initialUser: {
+      oro: 1000,
+      edificios: { botica: 1 },
+      personaje: { id: "p1", nivel: 1, inventario: { id: "inv1" } },
+    },
+    objetoOverride: pocion,
+  });
+  const response = await route.POST(request({ objetoId: pocion.id }));
+
+  assert.equal(response.status, 400);
+  assert.match(response.body.error, /Botica de nivel 2/);
+  assert.equal(route.getState().user.oro, 1000);
+  assert.equal(route.getState().items.length, 0);
 });
 
 test("herrería: permite comprar varias instancias de la misma definición", async () => {
