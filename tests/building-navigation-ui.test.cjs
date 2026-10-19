@@ -5,6 +5,18 @@ const path = require("node:path");
 
 const read = (relative) => fs.readFileSync(path.join(__dirname, "..", relative), "utf8");
 
+test("Armería deja la gestión de equipo y mochila en Personaje, y Escuela conserva las secciones de aprendizaje", () => {
+  const armeria = read("src/app/base/armeria/page.tsx");
+  const escuela = read("src/app/base/escuela-batalla/page.tsx");
+  assert.match(armeria, /Abrir Personaje/);
+  assert.doesNotMatch(armeria, /EQUIPO · DISTRIBUCIÓN MMORPG/);
+  assert.doesNotMatch(armeria, /Inventario de objetos/);
+  assert.doesNotMatch(escuela, /Habilidades aprendidas/);
+  assert.match(escuela, /Aprender habilidades/);
+  assert.match(escuela, /Profesiones/);
+  assert.match(escuela, /Tácticas/);
+});
+
 test("el botón global del aventurero y la navegación móvil abren Personaje", () => {
   const layout = read("src/app/base/layout.tsx");
   assert.match(layout, /onClick=\{\(\) => router\.push\("\/base\/personaje"\)\}/);

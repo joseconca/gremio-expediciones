@@ -20,6 +20,7 @@ import {
   detalleNumericoHabilidad,
 } from "@/lib/descripcionesHabilidades";
 import type {
+  DefinicionHabilidad,
   DefinicionObjeto,
   EquipoPersonaje,
   ObjetoInventario,
@@ -54,14 +55,7 @@ interface HabilidadAprendida {
   nivelMaximo: number;
   slot: string | null;
   puntosHabilidadDisponiblesClase?: number;
-  habilidad: {
-    id: string;
-    nombre: string;
-    descripcion: string;
-    tipo: "activa" | "pasiva";
-    claseId?: string;
-    [campo: string]: unknown;
-  };
+  habilidad: DefinicionHabilidad;
   disponibleParaProfesion?: boolean;
 }
 
@@ -132,7 +126,7 @@ function estiloRareza(rareza: Rareza): string {
   return clases[rareza];
 }
 
-function obtenerEstadisticasNoCero(objeto: DefinicionObjeto, nivelMejora: number, bonificaciones: Record<string, number> = []) {
+function obtenerEstadisticasNoCero(objeto: DefinicionObjeto, nivelMejora: number, bonificaciones: Record<string, number> = {}) {
   const estadisticas = calcularEstadisticasObjeto(objeto, nivelMejora, bonificaciones);
   return ESTADISTICAS.filter(({ clave }) => (estadisticas[clave] ?? 0) !== 0).map(({ clave, nombre }) => ({
     clave,
@@ -389,7 +383,7 @@ export default function PersonajePage() {
     );
   };
 
-  const renderSlotEquipo = (ranura: typeof RANURAS_EQUIPO[number]) => {
+  const renderSlotEquipo = (ranura: (typeof RANURAS_EQUIPO)[number]) => {
     const item = datosObjetos?.equipo[ranura.clave] ?? null;
     const estadisticas = item ? obtenerEstadisticasNoCero(item.objeto, item.nivelMejora, item.bonificaciones) : [];
     return (

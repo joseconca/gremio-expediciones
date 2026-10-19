@@ -10,8 +10,8 @@ import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 import PanelMejoraHabilidad, { IndicadorNivelHabilidad } from "@/components/habilidades/PanelMejoraHabilidad";
 import { descripcionSimpleHabilidad, detalleNumericoHabilidad } from "@/lib/descripcionesHabilidades";
 import { CLASES, obtenerClasesHabilidadDisponibles } from "@/lib/progresion/clases";
-import { ajustarHabilidadPorNivel, costeReinicioHabilidades, nivelMaximoHabilidad } from "@/lib/progresion/niveles-habilidad";
-import type { DefinicionHabilidad, Rareza, SlotHabilidad } from "@/lib/tiposJuego";
+import { ajustarHabilidadPorNivel, nivelMaximoHabilidad } from "@/lib/progresion/niveles-habilidad";
+import type { DefinicionHabilidad, Rareza } from "@/lib/tiposJuego";
 import { useGameStore } from "@/store/useGameStore";
 
 type HabilidadEnVenta = DefinicionHabilidad & {
@@ -44,7 +44,7 @@ type DatosHabilidades = {
   enVenta: HabilidadEnVenta[];
   aprendidas: HabilidadAprendida[];
 };
-type Vista = "aprender" | "gestion" | "profesiones" | "tacticas";
+type Vista = "aprender" | "profesiones" | "tacticas";
 type Filtro = "todas" | "activa" | "pasiva" | "disponibles";
 
 const SLOTS_ACTIVAS: SlotHabilidad[] = ["activa_1", "activa_2", "activa_3"];
@@ -57,12 +57,6 @@ function nombreRareza(rareza: Rareza) {
     raro: "Rara", epico: "Épica", legendario: "Legendaria",
   };
   return valores[rareza];
-}
-function etiquetaSlot(slot: SlotHabilidad) {
-  return slot.startsWith("activa_") ? `Activa ${slot.slice(-1)}` : `Pasiva ${slot.slice(-1)}`;
-}
-function esSlot(valor: string | null): valor is SlotHabilidad {
-  return valor !== null && SLOTS.includes(valor as SlotHabilidad);
 }
 function etiquetaEfecto(habilidad: DefinicionHabilidad) {
   if (habilidad.curacionProgresivaPorcentaje) return "Curación progresiva";
@@ -126,12 +120,9 @@ export default function EscuelaCombatePage() {
   const aprendidas = useMemo(() => datos?.aprendidas ?? [], [datos?.aprendidas]);
   const idsAprendidas = useMemo(() => new Set(aprendidas.map((item) => item.habilidadId)), [aprendidas]);
   const aprendidasPorId = useMemo(() => new Map(aprendidas.map((item) => [item.habilidadId, item])), [aprendidas]);
-  const habilidadesEquipadas = useMemo(() => aprendidas.filter((item) => esSlot(item.slot)), [aprendidas]);
-  const habilidadesNoEquipadas = useMemo(() => aprendidas.filter((item) => !esSlot(item.slot)), [aprendidas]);
   const nivelJob = datos?.progresoJob?.nivelJob ?? 1;
   const puntosDisponibles = datos?.progresoJob?.puntosHabilidadDisponibles ?? 0;
   const profesionId = datos?.profesionActivaId ?? "novato";
-  const costeReseteo = costeReinicioHabilidades(nivelJob);
   const habilidadesPropias = useMemo(
     () => aprendidas.filter((item) => (item.habilidad.claseId ?? "novato") === profesionId),
     [aprendidas, profesionId],
@@ -140,21 +131,7 @@ export default function EscuelaCombatePage() {
     () => obtenerClasesHabilidadDisponibles(profesionId),
     [profesionId],
   );
-  const clasesConHabilidadesAprendidas = useMemo(() => {
-    const clasesUnicas = [...new Set([
-      ...clasesDeRama,
-      ...aprendidas.map((item) => item.habilidad.claseId ?? "novato"),
-    ])].filter((claseId) => Boolean(CLASES[claseId]));
-    return clasesUnicas.sort((a, b) => {
-      const indiceA = clasesDeRama.indexOf(a);
-      const indiceB = clasesDeRama.indexOf(b);
-      if (indiceA >= 0 && indiceB >= 0) return indiceA - indiceB;
-      if (indiceA >= 0) return -1;
-      if (indiceB >= 0) return 1;
-      return (CLASES[a]?.nombre ?? a).localeCompare(CLASES[b]?.nombre ?? b, "es");
-    });
-  }, [clasesDeRama, aprendidas]);
-  const opcionesClaseCatalogo = vista === "gestion" ? clasesConHabilidadesAprendidas : clasesDeRama;
+  const opcionesClaseCatalogo = clasesDeRama;
   const claseCatalogoSeleccionada = opcionesClaseCatalogo.includes(claseCatalogoId) ? claseCatalogoId : "todas";
 
   const cambiarClaseCatalogo = (claseId: string) => {
@@ -230,35 +207,16 @@ export default function EscuelaCombatePage() {
     });
   }, [datos?.enVenta, filtro, busqueda, idsAprendidas, claseCatalogoSeleccionada, profesionId]);
 
-  const habilidadesNoEquipadasVisibles = useMemo(() => {
-    const query = busqueda.trim().toLocaleLowerCase("es");
-    return habilidadesNoEquipadas.filter((item) => {
-      const clasePropietariaId = item.habilidad.claseId ?? "novato";
-      if (claseCatalogoSeleccionada !== "todas") {
-        if (clasePropietariaId !== claseCatalogoSeleccionada) return false;
-      } else if (incluirOtrasClasesRama) {
-        if (!clasesDeRama.includes(clasePropietariaId)) return false;
-      } else if (clasePropietariaId !== profesionId) {
-        return false;
-      }
-      const nombreClase = CLASES[clasePropietariaId]?.nombre ?? clasePropietariaId;
-      const texto = [item.habilidad.nombre, item.habilidad.descripcion, nombreClase, clasePropietariaId].join(" ").toLocaleLowerCase("es");
-      return !query || texto.includes(query);
-    });
-  }, [habilidadesNoEquipadas, busqueda, claseCatalogoSeleccionada, incluirOtrasClasesRama, clasesDeRama, profesionId]);
-
-  const enviarAccion = async (tipo: "aprender" | "mejorar" | "equipar" | "desequipar", habilidadId: string, slot?: SlotHabilidad) => {
-    const clave = tipo === "equipar" ? `${tipo}:${habilidadId}:${slot}` : `${tipo}:${habilidadId}`;
+  const enviarAccion = async (tipo: "aprender" | "mejorar", habilidadId: string) => {
+    const clave = `${tipo}:${habilidadId}`;
     setProcesando(clave);
     setError(null);
     try {
-      const endpoint = tipo === "aprender" ? "/api/habilidades/aprender"
-        : tipo === "mejorar" ? "/api/habilidades/mejorar"
-        : tipo === "equipar" ? "/api/habilidades/equipar" : "/api/habilidades/desequipar";
+      const endpoint = tipo === "aprender" ? "/api/habilidades/aprender" : "/api/habilidades/mejorar";
       const respuesta = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(tipo === "equipar" ? { habilidadId, slot } : { habilidadId }),
+        body: JSON.stringify({ habilidadId }),
       });
       const resultado = await respuesta.json();
       if (!respuesta.ok) {
@@ -275,32 +233,12 @@ export default function EscuelaCombatePage() {
     }
   };
 
-  const reiniciarHabilidades = async () => {
-    if (!window.confirm(`¿Redistribuir puntos de habilidad por ${costeReseteo} oro? Recuperarás los puntos invertidos.`)) return;
-    setProcesando("reiniciar");
-    setError(null);
-    try {
-      const respuesta = await fetch("/api/habilidades/reiniciar", { method: "POST" });
-      const resultado = await respuesta.json();
-      if (!respuesta.ok) {
-        setError(resultado.error || "No se pudieron reiniciar las habilidades.");
-        return;
-      }
-      await recargarHabilidades();
-      await cargarJugador();
-    } catch {
-      setError("Error de conexión al reiniciar las habilidades.");
-    } finally {
-      setProcesando(null);
-    }
-  };
-
   const navegacion = (
     <nav aria-label="Secciones de la Escuela de Batalla" className="mb-4 grid grid-cols-2 gap-1.5 sm:mb-6 sm:flex sm:flex-wrap sm:gap-2">
-      {([["aprender", "Aprender habilidades"], ["gestion", "Habilidades aprendidas"], ["profesiones", "Profesiones"], ["tacticas", "Tácticas"]] as const).map(([key, label]) => (
+      {([["aprender", "Aprender habilidades"], ["profesiones", "Profesiones"], ["tacticas", "Tácticas"]] as const).map(([key, label]) => (
         <button key={key} type="button" onClick={() => setVista(key)} aria-pressed={vista === key}
           className={vista === key ? "flex min-w-0 flex-1 items-center justify-center rounded-lg border border-amber-400 bg-amber-900/30 px-2 py-2 text-xs font-semibold text-amber-100 sm:flex-none sm:px-4 sm:text-sm" : "flex min-w-0 flex-1 items-center justify-center rounded-lg border border-[#574631] bg-[#241d15] px-2 py-2 text-xs text-[#c1b49b] hover:border-amber-500/60 sm:flex-none sm:px-4 sm:text-sm"}>
-          <span className="sm:hidden">{key === "aprender" ? "Aprender" : key === "gestion" ? "Equipadas" : key === "profesiones" ? "Profesiones" : "Tácticas"}</span>
+          <span className="sm:hidden">{key === "aprender" ? "Aprender" : key === "profesiones" ? "Profesiones" : "Tácticas"}</span>
           <span className="hidden sm:inline">{label}</span>
         </button>
       ))}
@@ -313,7 +251,7 @@ export default function EscuelaCombatePage() {
     <main className="min-h-screen bg-[#171512] p-3 pb-8 text-[#e8dfc8] sm:p-4 sm:pb-8 md:p-8">
       <div className="mx-auto max-w-6xl">
         <CabeceraEdificio icono="⚔️" nombre="Escuela de Batalla" nivel={nivelEscuela} descripcion={descripcionEdificio} />
-        {(vista === "aprender" || vista === "gestion") && (
+        {vista === "aprender" && (
           <section aria-label="Profesión activa" className="mb-3 rounded-lg border border-[#6b5235] bg-[#241d15] p-2 sm:mb-4 sm:p-3">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
@@ -466,112 +404,7 @@ export default function EscuelaCombatePage() {
                 })}
               </div>}
           </section>
-        ) : (
-          <section>
-            <div className="mb-4">
-              <h2 className="text-xl font-bold text-[#f0dfbd]">Configura tus habilidades</h2>
-            </div>
-            <div className="mb-4 rounded-xl border border-[#594630] bg-[#211b14] p-3 sm:mb-6 sm:p-4">
-              <h3 className="mb-3 font-bold text-[#e8d7b8]">Ranuras equipadas</h3>
-              <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-5">
-                {SLOTS.map((slot) => {
-                  const actual = habilidadesEquipadas.find((item) => item.slot === slot);
-                  return <div key={slot} className="min-w-0 rounded-lg border border-[#4c3b27] bg-[#191612] p-2 sm:p-3">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[#a99169]">{etiquetaSlot(slot)}</p>
-                    {actual ? <>
-                      <div className="mt-2 flex items-center gap-2">
-                        <DescripcionTactil
-                          titulo={actual.habilidad.nombre}
-                          resumen={descripcionSimpleHabilidad(ajustarHabilidadPorNivel(actual.habilidad, actual.nivel))}
-                          detalles={detalleNumericoHabilidad(ajustarHabilidadPorNivel(actual.habilidad, actual.nivel))}
-                          etiquetaDetalles={`Efectos actuales · Nivel ${actual.nivel}`}
-                          contenidoAdicional={
-                            <PanelMejoraHabilidad
-                              habilidad={actual.habilidad}
-                              nivelActual={actual.nivel}
-                              nivelMaximo={actual.nivelMaximo}
-                              aprendida
-                              puntosDisponibles={actual.puntosHabilidadDisponiblesClase}
-                              clasePropietaria={CLASES[actual.habilidad.claseId ?? "novato"]?.nombre ?? actual.habilidad.claseId ?? "Novato"}
-                              requisitoJob={actual.habilidad.nivelJobRequerido ?? 1}
-                            />
-                          }
-                          variante="madera"
-                          etiquetaAccesible={`Ver detalles de ${actual.habilidad.nombre}`}
-                          claseBoton="flex h-11 w-11 shrink-0 touch-manipulation items-center justify-center rounded-lg border border-amber-800/80 bg-gradient-to-br from-[#44331d] to-[#191612] p-1 shadow-[inset_0_1px_0_rgba(255,230,170,0.12)] transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
-                        >
-                          <IconoHabilidad habilidadId={actual.habilidad.id} className="h-8 w-8" />
-                        </DescripcionTactil>
-                        <p className="min-w-0 flex-1 break-words text-sm font-semibold text-[#f0e5d0]">{actual.habilidad.nombre} <span className="text-xs text-amber-300">Nv. {actual.nivel}/{actual.nivelMaximo}</span></p>
-                      </div>
-                      {actual.disponibleParaProfesion === false && <p className="mt-1 text-xs text-red-300">No disponible para tu clase activa</p>}
-                      <button type="button" onClick={() => void enviarAccion("desequipar", actual.habilidadId)} disabled={procesando !== null}
-                        className="mt-2 min-h-9 rounded-md border border-[#594630] px-2 py-1.5 text-xs text-[#c1b49b] hover:border-amber-500/60 disabled:opacity-50 sm:mt-3 sm:px-3">
-                        {procesando === `desequipar:${actual.habilidadId}` ? "Quitando..." : "Desequipar"}
-                      </button>
-                    </> : <p className="mt-2 text-sm text-[#796c58]">Ranura vacía</p>}
-                  </div>;
-                })}
-              </div>
-            </div>
-            <div className="space-y-3">
-              <div>
-                <h3 className="font-bold text-[#e8d7b8]">Habilidades aprendidas sin equipar</h3>
-              </div>
-              {filtrosCatalogo}
-              {habilidadesNoEquipadas.length === 0 ? <div className="rounded-xl border border-dashed border-[#51412d] p-8 text-center text-sm text-[#9f927b]">No tienes habilidades sin equipar.</div>
-                : habilidadesNoEquipadasVisibles.length === 0 ? <div className="rounded-xl border border-dashed border-[#51412d] p-8 text-center text-sm text-[#9f927b]">No hay habilidades que coincidan con estos filtros.</div>
-                : habilidadesNoEquipadasVisibles.map((item) => {
-                  const habilidad = item.habilidad;
-                  const habilidadVista = ajustarHabilidadPorNivel(habilidad, item.nivel);
-                  const slotsCompatibles = habilidad.tipo === "activa" ? SLOTS_ACTIVAS : SLOTS_PASIVAS;
-                  const compatible = item.disponibleParaProfesion !== false;
-                  return <article key={item.id} className="flex flex-col gap-2 rounded-xl border border-[#4d3d2a] bg-[#211b14] p-3 sm:gap-3 sm:p-4 md:flex-row md:items-center md:justify-between">
-                    <div className="min-w-0">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <DescripcionTactil
-                          titulo={habilidad.nombre}
-                          resumen={descripcionSimpleHabilidad(habilidadVista)}
-                          detalles={detalleNumericoHabilidad(habilidadVista)}
-                          etiquetaDetalles={`Efectos actuales · Nivel ${item.nivel}`}
-                          contenidoAdicional={
-                            <PanelMejoraHabilidad
-                              habilidad={habilidad}
-                              nivelActual={item.nivel}
-                              nivelMaximo={item.nivelMaximo}
-                              aprendida
-                              puntosDisponibles={item.puntosHabilidadDisponiblesClase}
-                              clasePropietaria={CLASES[habilidad.claseId ?? "novato"]?.nombre ?? habilidad.claseId ?? "Novato"}
-                              requisitoJob={habilidad.nivelJobRequerido ?? 1}
-                            />
-                          }
-                          variante="madera"
-                          etiquetaAccesible={`Ver detalles de ${habilidad.nombre}`}
-                          claseBoton="flex h-11 w-11 shrink-0 touch-manipulation items-center justify-center rounded-lg border border-amber-800/80 bg-gradient-to-br from-[#44331d] to-[#191612] p-1 shadow-[inset_0_1px_0_rgba(255,230,170,0.12)] transition hover:border-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
-                        >
-                          <IconoHabilidad habilidadId={habilidad.id} className="h-9 w-9" />
-                        </DescripcionTactil>
-                        <h4 className="font-bold text-[#f0e5d0]">{habilidad.nombre} <span className="text-xs text-amber-300">Nv. {item.nivel}/{item.nivelMaximo}</span></h4>
-                        <span className="rounded-full bg-[#302619] px-2 py-0.5 text-[10px] uppercase text-[#b9a582]">{habilidad.tipo}</span>
-                      </div>
-                      <p className="mt-1 text-xs leading-5 text-[#a99d84] sm:text-sm">{descripcionSimpleHabilidad(habilidadVista)}</p>
-                      <div className="mt-2 max-w-xs rounded-lg border border-[#4c3b27] bg-[#191612]/80 px-2.5 py-2">
-                        <IndicadorNivelHabilidad nivel={item.nivel} maximo={item.nivelMaximo} />
-                      </div>
-                      {!compatible && <p className="mt-1 text-xs text-red-300">Esta habilidad pertenece a otra rama y no está disponible con tu clase actual.</p>}
-                    </div>
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                      {slotsCompatibles.map((slot) => <button key={slot} type="button" onClick={() => void enviarAccion("equipar", habilidad.id, slot)}
-                        disabled={!compatible || procesando !== null}
-                        className="min-h-9 rounded-lg border border-[#594630] bg-[#2d2418] px-2.5 py-2 text-xs font-semibold text-[#d5c4a4] hover:border-amber-500/70 disabled:cursor-not-allowed disabled:opacity-40 sm:px-3">
-                        {procesando === `equipar:${habilidad.id}:${slot}` ? "Equipando..." : etiquetaSlot(slot)}
-                      </button>)}
-                    </div>
-                  </article>;
-                })}
-            </div>
-          </section>
-        )}
+        ) : null}
       </div>
     </main>
   );
