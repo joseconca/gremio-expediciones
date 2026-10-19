@@ -46,8 +46,11 @@ test("la Botica forma parte del poblado y reutiliza el sprite del Mercado", () =
 
 test("la cabecera de Personaje ya no repite las cuatro estadísticas resumidas", () => {
   const pagina = read("src/app/base/personaje/page.tsx");
-  const cabecera = pagina.split('<nav aria-label="Secciones del personaje"')[0];
+  const inicio = pagina.indexOf('<header className="mb-4');
+  const fin = pagina.indexOf("</header>", inicio);
+  const cabecera = pagina.slice(inicio, fin);
 
+  assert.ok(inicio >= 0 && fin > inicio, "Debe existir la cabecera principal de Personaje.");
   for (const etiqueta of ["Vida máxima", "Ataque físico", "Defensa física", "Ataque mágico"]) {
     assert.ok(!cabecera.includes(etiqueta), `La cabecera no debe repetir ${etiqueta}.`);
   }
