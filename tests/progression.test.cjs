@@ -186,7 +186,13 @@ test("el catálogo cubre todos los tipos actuales de arma y todas las categoría
     assert.ok(categoriasArmadura.has(categoria), `Falta armadura de categoría ${categoria}`);
   }
   for (const id of ["hacha_piedra", "lanza_madera", "daga_hierro", "arco_madera", "baston_madera", "maza_madera", "libro_aprendiz", "guantes_lucha", "cota_malla"]) {
-    assert.equal(obtenerSpriteObjeto(obtenerObjetoPorId(id)), null, `${id} debe usar un icono alternativo mientras no tenga sprite propio`);
+    const objeto = obtenerObjetoPorId(id);
+    const sprite = obtenerSpriteObjeto(objeto);
+    assert.ok(sprite, `${id} debe usar su miniatura propia`);
+    assert.ok(
+      fs.existsSync(path.join(__dirname, "..", "public", sprite.slice(1))),
+      `Falta la miniatura de ${id}: ${sprite}`,
+    );
   }
 });
 
@@ -958,8 +964,13 @@ test("objetos: los sprites de armadura se organizan por ranura", () => {
     );
   }
 
-  const cascoSinSprite = obtenerObjetoPorId("casco_cuero");
-  assert.equal(obtenerSpriteObjeto(cascoSinSprite), null, "El casco sin arte aún debe usar el icono alternativo");
+  const casco = obtenerObjetoPorId("casco_cuero");
+  const rutaCasco = obtenerSpriteObjeto(casco);
+  assert.equal(rutaCasco, "/sprites/items/armors/casco/casco_cuero.png");
+  assert.ok(
+    fs.existsSync(path.join(__dirname, "..", "public", rutaCasco.slice(1))),
+    `Falta el sprite organizado de casco_cuero: ${rutaCasco}`,
+  );
 });
 
 test("las pasivas equipadas de recurso se reflejan en máximos y regeneración", () => {
