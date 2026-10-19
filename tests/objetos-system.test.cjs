@@ -40,6 +40,10 @@ test("la Botica ofrece consumibles por nivel y conserva sus efectos definidos", 
   assert.equal(porId("pocion_mana_basica").restauracionManaPorcentaje, 0.40);
   assert.equal(porId("pocion_energia").restauracionEnergiaPorcentaje, 0.60);
   assert.equal(porId("ceniza_fenix").revivirPorcentajeVida, 0.50);
+  assert.equal(vidaMenor.objetivoUso, "propio_o_aliado");
+  assert.equal(vidaMediana.objetivoUso, "propio_o_aliado");
+  assert.equal(porId("pocion_vida_mayor").objetivoUso, "propio_o_aliado");
+  assert.equal(porId("ceniza_fenix").objetivoUso, "aliado_caido");
 
   const guerrero = porId("elixir_guerrero");
   const mago = porId("elixir_mago");
@@ -48,6 +52,10 @@ test("la Botica ofrece consumibles por nivel y conserva sus efectos definidos", 
   assert.deepEqual(mago.efectosTemporalesPorcentaje, { ataqueMagico: 0.20, precision: 0.10, probCritico: 0.15 });
   assert.equal(guerrero.duracionTurnos, 10);
   assert.equal(mago.duracionTurnos, 10);
+  assert.equal(guerrero.objetivoUso, "propio");
+  assert.equal(mago.objetivoUso, "propio");
+  assert.equal(porId("elixir_heroe").objetivoUso, "propio");
+  assert.equal(porId("elixir_velocidad").objetivoUso, "propio");
 
   const vidaMayor = porId("pocion_vida_mayor");
   assert.equal(vidaMayor.nivelBoticaRequerido, 3);
