@@ -51,6 +51,12 @@ const EDIFICIOS_BASE: Record<IdEdificio, Omit<Edificio, "nivel">> = {
     descripcion: CONFIGURACION_EDIFICIOS.mercado.descripcion,
     nivelMax: CONFIGURACION_EDIFICIOS.mercado.nivelMax,
   },
+  botica: {
+    id: "botica",
+    nombre: CONFIGURACION_EDIFICIOS.botica.nombre,
+    descripcion: CONFIGURACION_EDIFICIOS.botica.descripcion,
+    nivelMax: CONFIGURACION_EDIFICIOS.botica.nivelMax,
+  },
   embajada: {
     id: "embajada",
     nombre: CONFIGURACION_EDIFICIOS.embajada.nombre,
@@ -104,6 +110,10 @@ function construirEdificios(
     mercado: {
       ...EDIFICIOS_BASE.mercado,
       nivel: nivelEdificio("mercado", 0),
+    },
+    botica: {
+      ...EDIFICIOS_BASE.botica,
+      nivel: nivelEdificio("botica", 0),
     },
     embajada: {
       ...EDIFICIOS_BASE.embajada,
@@ -734,6 +744,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     armeria: { ...EDIFICIOS_BASE.armeria, nivel: 0 },
     herreria: { ...EDIFICIOS_BASE.herreria, nivel: 0 },
     mercado: { ...EDIFICIOS_BASE.mercado, nivel: 0 },
+    botica: { ...EDIFICIOS_BASE.botica, nivel: 0 },
     embajada: { ...EDIFICIOS_BASE.embajada, nivel: 0 },
     escuelaCombate: { ...EDIFICIOS_BASE.escuelaCombate, nivel: 0 },
   },
