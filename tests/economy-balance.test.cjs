@@ -23,6 +23,9 @@ test("el catálogo completo contiene precios positivos y progresión coherente e
     Object.fromEntries(OBJETOS.map((item) => [item.id, item.precio])),
     {
       pocion: 20, pocion_grande: 55,
+      pocion_vida_menor: 150, pocion_vida_mediana: 380, pocion_mana_basica: 320,
+      pocion_energia: 300, ceniza_fenix: 1800, pocion_vida_mayor: 750,
+      elixir_guerrero: 780, elixir_mago: 780, elixir_heroe: 1300, elixir_velocidad: 850,
       espada_madera: 100, espada_piedra: 350, espada_hierro: 800, espada_acero: 1800,
       espada_runa: 6500, hacha_orca: 4200,
       hacha_piedra: 300, lanza_madera: 650, daga_hierro: 300, arco_madera: 450,
