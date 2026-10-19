@@ -5,6 +5,14 @@ const path = require("node:path");
 
 const read = (relative) => fs.readFileSync(path.join(__dirname, "..", relative), "utf8");
 
+test("el botón global del aventurero y la navegación móvil abren Personaje", () => {
+  const layout = read("src/app/base/layout.tsx");
+  assert.match(layout, /onClick=\{\(\) => router\.push\("\/base\/personaje"\)\}/);
+  assert.match(layout, /href="\/base\/personaje"/);
+  assert.match(layout, /<span>Personaje<\/span>/);
+  assert.match(layout, /grid-cols-5/);
+});
+
 test("la pantalla de Personaje centraliza equipo, mochila por categorías y gestión de habilidades", () => {
   const pagina = read("src/app/base/personaje/page.tsx");
   assert.match(pagina, /Secciones del personaje/);

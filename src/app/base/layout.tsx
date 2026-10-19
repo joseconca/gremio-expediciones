@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import ChatGlobal from "@/components/ChatGlobal";
 import Sugerencias from "@/components/Sugerencias";
-import HojaPersonajeModal from "@/components/HojaPersonajeModal";
 import Image from "next/image";
 import {
   obtenerSpriteHeroe,
@@ -65,7 +64,6 @@ export default function BaseLayout({
     cargarJugador,
   } = useGameStore();
 
-  const [mostrarHoja, setMostrarHoja] = useState<boolean>(false);
   const [mostrarEdificios, setMostrarEdificios] = useState(false);
 
   useEffect(() => {
@@ -116,9 +114,9 @@ export default function BaseLayout({
         {personaje && (
           <button
             type="button"
-            onClick={() => setMostrarHoja(true)}
+            onClick={() => router.push("/base/personaje")}
             className="pointer-events-auto group flex w-full flex-nowrap items-center justify-start gap-2 rounded-b-lg border-x border-b border-stone-700 bg-stone-900 px-2 py-1.5 text-left text-xs transition-all duration-200 hover:border-amber-700/50 hover:bg-stone-800 hover:shadow-[0_0_15px_rgba(180,83,9,0.2)] focus:outline-none focus:ring-2 focus:ring-amber-700/60 sm:gap-3 sm:px-3 sm:py-2 sm:text-sm md:w-auto md:px-4"
-            aria-label={`Abrir hoja del aventurero ${personaje.nombre}`}
+            aria-label={`Abrir el personaje ${personaje.nombre}`}
           >
             <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-amber-700/80 bg-stone-800 shadow-[inset_0_0_8px_rgba(0,0,0,0.6)] sm:h-12 sm:w-12">
               <Image
@@ -274,7 +272,7 @@ export default function BaseLayout({
 
       <nav
         aria-label="Navegación principal"
-        className={`mobile-game-nav fixed inset-x-0 bottom-0 z-40 grid gap-1 border-t border-amber-900/70 bg-stone-950/95 px-2 pt-1.5 shadow-[0_-8px_24px_rgba(0,0,0,0.35)] backdrop-blur-xl md:hidden ${edificios.escuelaCombate.nivel > 0 ? "grid-cols-4" : "grid-cols-3"}`}
+        className={`mobile-game-nav fixed inset-x-0 bottom-0 z-40 grid gap-1 border-t border-amber-900/70 bg-stone-950/95 px-2 pt-1.5 shadow-[0_-8px_24px_rgba(0,0,0,0.35)] backdrop-blur-xl md:hidden ${edificios.escuelaCombate.nivel > 0 ? "grid-cols-5" : "grid-cols-4"}`}
       >
         <Link
           href="/base"
@@ -292,6 +290,14 @@ export default function BaseLayout({
           <span className="text-lg leading-5" aria-hidden="true">🗺️</span>
           <span>Expediciones</span>
         </Link>
+        <Link
+          href="/base/personaje"
+          aria-current={pathname === "/base/personaje" ? "page" : undefined}
+          className={`flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg px-1 py-1 text-[10px] font-semibold leading-tight transition-colors ${pathname === "/base/personaje" ? "bg-amber-900/40 text-amber-200" : "text-stone-400 hover:bg-stone-900 hover:text-amber-100"}`}
+        >
+          <span className="text-lg leading-5" aria-hidden="true">🧙</span>
+          <span>Personaje</span>
+        </Link>
         {edificios.escuelaCombate.nivel > 0 && (
           <Link
             href="/base/escuela-batalla"
@@ -307,7 +313,7 @@ export default function BaseLayout({
           onClick={() => setMostrarEdificios((abierto) => !abierto)}
           aria-expanded={mostrarEdificios}
           aria-controls="menu-edificios-panel"
-          className={`flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg px-1 py-1 text-[10px] font-semibold leading-tight transition-colors ${mostrarEdificios || (pathname.startsWith("/base/") && pathname !== "/base/escuela-batalla") ? "bg-amber-900/40 text-amber-200" : "text-stone-400 hover:bg-stone-900 hover:text-amber-100"}`}
+          className={`flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg px-1 py-1 text-[10px] font-semibold leading-tight transition-colors ${mostrarEdificios || (pathname.startsWith("/base/") && pathname !== "/base/escuela-batalla" && pathname !== "/base/personaje") ? "bg-amber-900/40 text-amber-200" : "text-stone-400 hover:bg-stone-900 hover:text-amber-100"}`}
         >
           <span className="text-lg leading-5" aria-hidden="true">🏘️</span>
           <span>Edificios</span>
@@ -315,11 +321,6 @@ export default function BaseLayout({
       </nav>
 
       <div className="flex-grow pb-24 md:pb-0">{children}</div>
-
-      <HojaPersonajeModal
-        abierto={mostrarHoja}
-        onCerrar={() => setMostrarHoja(false)}
-      />
 
       {!mostrarEdificios && <ChatGlobal habilitado={edificios.embajada.nivel > 0} />}
     </div>
