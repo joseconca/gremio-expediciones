@@ -21,7 +21,6 @@ export default function EdificioCard({ edificio }: EdificioCardProps) {
           aria-label={"Entrar en " + edificio.nombre}
           aria-describedby={"descripcion-edificio-" + edificio.id}
           className="group/cartel relative flex h-full w-full flex-col justify-center rounded-sm border-2 border-[#362214] bg-gradient-to-b from-[#825329] to-[#56361e] px-2 py-1.5 text-center shadow-[inset_0_1px_0_rgba(255,220,160,0.15),0_3px_5px_rgba(0,0,0,0.35)] transition-colors hover:from-[#956336] hover:to-[#694325] focus-visible:z-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 sm:border-[3px] sm:px-3 sm:py-2"
-          title={edificio.descripcion}
         >
           <span aria-hidden="true" className="absolute left-1 top-1 h-1 w-1 rounded-full bg-[#24170d] sm:left-1.5 sm:top-1.5 sm:h-1.5 sm:w-1.5" />
           <span aria-hidden="true" className="absolute right-1 top-1 h-1 w-1 rounded-full bg-[#24170d] sm:right-1.5 sm:top-1.5 sm:h-1.5 sm:w-1.5" />

@@ -10,7 +10,8 @@ test("los edificios individuales se abren desde el rótulo y el sprite, sin bot�
   assert.match(card, /<Link\s+href=\{configuracion\.ruta\}[\s\S]*?aria-describedby=\{"descripcion-edificio-" \+ edificio\.id\}/);
   assert.match(card, /role="tooltip"/);
   assert.match(card, /title=\{edificio\.descripcion\}/);
-  assert.match(card, /data-world-layer="building"[\s\S]*?href=\{configuracion\.ruta\}/);
+  assert.match(card, /data-world-layer="building"/);
+  assert.match(card, /href=\{configuracion\.ruta\}/);
   assert.doesNotMatch(card, /Entrar\s*<span aria-hidden/);
   assert.doesNotMatch(card, /<p[^>]*>\s*\{edificio\.descripcion\}\s*<\/p>/);
 });
@@ -19,6 +20,10 @@ test("el complejo Armería y Herrería permite entrar desde cada nombre y desde 
   const complejo = read("src/components/base/ComplejoArmeria.tsx");
   assert.match(complejo, /href=\{CONFIGURACION_EDIFICIOS\.armeria\.ruta\}/);
   assert.match(complejo, /href=\{CONFIGURACION_EDIFICIOS\.herreria\.ruta\}/);
+  assert.match(complejo, /aria-describedby="descripcion-armeria"/);
+  assert.match(complejo, /aria-describedby="descripcion-herreria"/);
+  assert.match(complejo, /id="descripcion-armeria" role="tooltip"/);
+  assert.match(complejo, /id="descripcion-herreria" role="tooltip"/);
   assert.match(complejo, /title=\{armeria\.descripcion\}/);
   assert.match(complejo, /title=\{herreria\.descripcion\}/);
   assert.match(complejo, /w-1\/2[\s\S]*?CONFIGURACION_EDIFICIOS\.herreria\.ruta/);

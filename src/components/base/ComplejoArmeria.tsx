@@ -29,10 +29,13 @@ export default function ComplejoArmeria({
               <Link
                 href={CONFIGURACION_EDIFICIOS.armeria.ruta}
                 aria-label={"Entrar en " + armeria.nombre}
-                title={armeria.descripcion}
-                className="inline-flex min-h-8 max-w-full items-center justify-center rounded px-1.5 text-xs font-black leading-tight tracking-wide text-amber-200 drop-shadow transition-colors hover:bg-amber-300/10 hover:text-amber-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 sm:min-h-10 sm:text-lg"
+                aria-describedby="descripcion-armeria"
+                className="group/cartel relative inline-flex min-h-8 max-w-full items-center justify-center rounded px-1.5 text-xs font-black leading-tight tracking-wide text-amber-200 drop-shadow transition-colors hover:bg-amber-300/10 hover:text-amber-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 sm:min-h-10 sm:text-lg"
               >
                 <h3 className="break-words">{armeria.nombre}</h3>
+                <span id="descripcion-armeria" role="tooltip" className="pointer-events-none absolute left-1/2 top-full z-[60] mt-1 w-[min(15rem,85vw)] -translate-x-1/2 rounded-md border border-amber-700/80 bg-[#1d170f]/95 px-3 py-2 text-center text-xs font-medium leading-5 text-amber-100 opacity-0 shadow-xl transition-opacity group-hover/cartel:opacity-100 group-focus-visible/cartel:opacity-100">
+                  {armeria.descripcion}
+                </span>
               </Link>
             </div>
             {herreriaConstruida && (
@@ -40,10 +43,13 @@ export default function ComplejoArmeria({
                 <Link
                   href={CONFIGURACION_EDIFICIOS.herreria.ruta}
                   aria-label={"Entrar en " + herreria.nombre}
-                  title={herreria.descripcion}
-                  className="inline-flex min-h-8 max-w-full items-center justify-center rounded px-1.5 text-xs font-black leading-tight tracking-wide text-amber-200 drop-shadow transition-colors hover:bg-amber-300/10 hover:text-amber-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 sm:min-h-10 sm:text-lg"
+                  aria-describedby="descripcion-herreria"
+                  className="group/cartel relative inline-flex min-h-8 max-w-full items-center justify-center rounded px-1.5 text-xs font-black leading-tight tracking-wide text-amber-200 drop-shadow transition-colors hover:bg-amber-300/10 hover:text-amber-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 sm:min-h-10 sm:text-lg"
                 >
                   <h3 className="break-words">{herreria.nombre}</h3>
+                  <span id="descripcion-herreria" role="tooltip" className="pointer-events-none absolute left-1/2 top-full z-[60] mt-1 w-[min(15rem,85vw)] -translate-x-1/2 rounded-md border border-amber-700/80 bg-[#1d170f]/95 px-3 py-2 text-center text-xs font-medium leading-5 text-amber-100 opacity-0 shadow-xl transition-opacity group-hover/cartel:opacity-100 group-focus-visible/cartel:opacity-100">
+                    {herreria.descripcion}
+                  </span>
                 </Link>
               </div>
             )}
