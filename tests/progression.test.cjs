@@ -336,7 +336,20 @@ test("las habilidades heredadas usan el nivel y los puntos de su clase propietar
   assert.equal(novatoSinPuntos.puedeAprender, false, "El coste se descuenta de los puntos de la clase propietaria");
 });
 
-test("el desglose de estadísticas separa base fija, atributos y redondeos", () => {
+test("las estadísticas derivadas permiten conservar fracciones durante la suma final", () => {
+  const atributos = { fuerza: 1, agilidad: 1, vitalidad: 1, inteligencia: 1, destreza: 1, suerte: 1 };
+  const entero = calcularEstadisticasDerivadasRpg(atributos);
+  const exacto = calcularEstadisticasDerivadasRpg(atributos, 1, {}, false);
+
+  assert.equal(entero.ataqueFisico, 5);
+  assert.equal(exacto.ataqueFisico, 5.5);
+  assert.equal(entero.defensaFisica, 1);
+  assert.equal(exacto.defensaFisica, 1.75);
+  assert.equal(entero.precision, 77);
+  assert.equal(exacto.precision, 77.5);
+});
+
+test("el desglose de estadísticas conserva decimales y redondea una sola vez al total", () => {
   const desglose = calcularEstadisticasPersonaje({
     clase: "Novato",
     profesionActivaId: "novato",
@@ -359,14 +372,15 @@ test("el desglose de estadísticas separa base fija, atributos y redondeos", () 
   assert.equal(desglose.baseSinAtributos.ataque, 3);
   assert.equal(desglose.atributos.fuerza.ataque, 2);
   assert.equal(desglose.atributos.destreza.ataque, 0.5);
-  assert.equal(desglose.base.ataque, 5);
+  assert.equal(desglose.base.ataque, 5.5);
+  assert.equal(desglose.total.ataque, 5);
   assert.equal(
     desglose.base.ataque -
       desglose.baseSinAtributos.ataque -
       desglose.atributos.fuerza.ataque -
       desglose.atributos.destreza.ataque,
-    -0.5,
-    "El desglose conserva el ajuste del redondeo aplicado por la fórmula original",
+    0,
+    "La base conserva la fracción de destreza sin introducir un redondeo previo",
   );
 });
 

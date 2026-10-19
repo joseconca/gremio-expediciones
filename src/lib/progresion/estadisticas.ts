@@ -48,7 +48,8 @@ function limitar(valor: number, minimo: number, maximo: number): number {
 export function calcularEstadisticasDerivadasRpg(
   atributos: AtributosPrincipales,
   nivelBase = 1,
-  bonificaciones: BonificacionesDerivadasRpg = {}
+  bonificaciones: BonificacionesDerivadasRpg = {},
+  redondearEstadisticas = true
 ): EstadisticasDerivadasRpg {
   const c = COEFICIENTES_ATRIBUTOS_RPG;
   const fuerza = atributo(atributos.fuerza);
@@ -60,20 +61,22 @@ export function calcularEstadisticasDerivadasRpg(
   const nivel = Number.isFinite(nivelBase) ? Math.max(1, Math.floor(nivelBase)) : 1;
   const suma = (clave: keyof EstadisticasDerivadasRpg, base: number) =>
     base + (Number.isFinite(bonificaciones[clave]) ? (bonificaciones[clave] ?? 0) : 0);
+  const ajustarEntero = (valor: number, minimo: number) =>
+    Math.max(minimo, redondearEstadisticas ? Math.floor(valor) : valor);
 
   return {
-    hpMaximo: Math.max(1, Math.floor(suma("hpMaximo", c.vidaBase + (nivel - 1) * c.vidaPorNivelBase + vitalidad * c.vidaPorVitalidad))),
-    energiaMaxima: Math.max(1, Math.floor(suma("energiaMaxima", c.energiaBase + fuerza * c.energiaPorFuerza + vitalidad * c.energiaPorVitalidad))),
-    manaMaximo: Math.max(1, Math.floor(suma("manaMaximo", c.manaBase + inteligencia * c.manaPorInteligencia))),
-    ataqueFisico: Math.max(1, Math.floor(suma("ataqueFisico", c.ataqueFisicoBase + fuerza * c.ataqueFisicoPorFuerza + destreza * c.ataqueFisicoPorDestreza))),
-    ataqueMagico: Math.max(1, Math.floor(suma("ataqueMagico", c.ataqueMagicoBase + inteligencia * c.ataqueMagicoPorInteligencia + destreza * c.ataqueMagicoPorDestreza))),
-    defensaFisica: Math.max(0, Math.floor(suma("defensaFisica", vitalidad * c.defensaFisicaPorVitalidad + fuerza * c.defensaFisicaPorFuerza))),
-    defensaMagica: Math.max(0, Math.floor(suma("defensaMagica", inteligencia * c.defensaMagicaPorInteligencia + vitalidad * c.defensaMagicaPorVitalidad))),
-    precision: limitar(Math.floor(suma("precision", c.precisionBase + destreza * c.precisionPorDestreza + suerte * c.precisionPorSuerte)), 1, 100),
+    hpMaximo: ajustarEntero(suma("hpMaximo", c.vidaBase + (nivel - 1) * c.vidaPorNivelBase + vitalidad * c.vidaPorVitalidad), 1),
+    energiaMaxima: ajustarEntero(suma("energiaMaxima", c.energiaBase + fuerza * c.energiaPorFuerza + vitalidad * c.energiaPorVitalidad), 1),
+    manaMaximo: ajustarEntero(suma("manaMaximo", c.manaBase + inteligencia * c.manaPorInteligencia), 1),
+    ataqueFisico: ajustarEntero(suma("ataqueFisico", c.ataqueFisicoBase + fuerza * c.ataqueFisicoPorFuerza + destreza * c.ataqueFisicoPorDestreza), 1),
+    ataqueMagico: ajustarEntero(suma("ataqueMagico", c.ataqueMagicoBase + inteligencia * c.ataqueMagicoPorInteligencia + destreza * c.ataqueMagicoPorDestreza), 1),
+    defensaFisica: ajustarEntero(suma("defensaFisica", vitalidad * c.defensaFisicaPorVitalidad + fuerza * c.defensaFisicaPorFuerza), 0),
+    defensaMagica: ajustarEntero(suma("defensaMagica", inteligencia * c.defensaMagicaPorInteligencia + vitalidad * c.defensaMagicaPorVitalidad), 0),
+    precision: limitar(redondearEstadisticas ? Math.floor(suma("precision", c.precisionBase + destreza * c.precisionPorDestreza + suerte * c.precisionPorSuerte)) : suma("precision", c.precisionBase + destreza * c.precisionPorDestreza + suerte * c.precisionPorSuerte), 1, 100),
     probCritico: limitar(suma("probCritico", c.criticoBase + suerte * c.criticoPorSuerte + destreza * c.criticoPorDestreza), 0, c.criticoMaximo),
     danoCritico: Math.max(1, suma("danoCritico", c.multiplicadorCriticoBase + suerte * c.multiplicadorCriticoPorSuerte)),
     evasion: limitar(suma("evasion", agilidad * c.evasionPorAgilidad + suerte * c.evasionPorSuerte), 0, c.evasionMaxima),
-    velocidad: Math.max(1, Math.floor(suma("velocidad", c.velocidadBase + agilidad * c.velocidadPorAgilidad + destreza * c.velocidadPorDestreza))),
+    velocidad: ajustarEntero(suma("velocidad", c.velocidadBase + agilidad * c.velocidadPorAgilidad + destreza * c.velocidadPorDestreza), 1),
     regeneracionVidaPorTurno: Math.max(0, suma("regeneracionVidaPorTurno", vitalidad * c.regeneracionVidaPorVitalidad)),
     regeneracionEnergiaPorTurno: Math.max(0, suma("regeneracionEnergiaPorTurno", (fuerza + vitalidad) * c.regeneracionEnergiaPorFuerzaVitalidad)),
     regeneracionManaPorTurno: Math.max(0, suma("regeneracionManaPorTurno", inteligencia * c.regeneracionManaPorInteligencia)),

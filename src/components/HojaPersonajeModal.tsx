@@ -18,10 +18,10 @@ function formatearValorDesglose(
   valor: number
 ): string {
   if (clave === "probCritico" || clave === "evasion") {
-    return `${(valor * 100).toFixed(1)} %`;
+    return `${(valor * 100).toFixed(2)} %`;
   }
   if (clave === "precision") {
-    return `${valor.toFixed(1)} %`;
+    return `${valor.toFixed(2)} %`;
   }
   const redondeado = Math.round((valor + Number.EPSILON) * 10) / 10;
   return Number.isInteger(redondeado) ? String(redondeado) : redondeado.toFixed(1);
@@ -316,9 +316,9 @@ export default function HojaPersonajeModal({
                 { nombre: "Defensa mágica", clave: "defensaMagica", valor: personaje.defensaMagica, emoji: "🔮" },
                 { nombre: "Velocidad", clave: "velocidad", valor: personaje.velocidad, emoji: "💨" },
                 { nombre: "Capacidad", clave: "capacidadCarruaje", valor: personaje.capacidadCarruaje, emoji: "📦" },
-                { nombre: "Precisión", clave: "precision", valor: Math.round(personaje.precision) + "%", emoji: "🎯" },
-                { nombre: "Evasión", clave: "evasion", valor: (personaje.evasion * 100).toFixed(1) + "%", emoji: "🌀" },
-                { nombre: "Probabilidad crítica", clave: "probCritico", valor: (personaje.probCritico * 100).toFixed(1) + "%", emoji: "💥" },
+                { nombre: "Precisión", clave: "precision", valor: personaje.precision.toFixed(2) + "%", emoji: "🎯" },
+                { nombre: "Evasión", clave: "evasion", valor: (personaje.evasion * 100).toFixed(2) + "%", emoji: "🌀" },
+                { nombre: "Probabilidad crítica", clave: "probCritico", valor: (personaje.probCritico * 100).toFixed(2) + "%", emoji: "💥" },
               ] as const).map((stat) => {
                 const desglose = personaje.desgloseEstadisticas;
                 const aportesAtributos = desglose

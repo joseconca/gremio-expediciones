@@ -263,7 +263,9 @@ function obtenerEstadisticasBase(
 ): ModificadoresEstadisticas {
   const derivadasRpg = calcularEstadisticasDerivadasRpg(
     obtenerAtributosPrincipales(personaje),
-    personaje.nivel
+    personaje.nivel,
+    {},
+    false
   );
   // Las cuentas antiguas conservan sus estadísticas físicas hasta que cambien de profesión.
   if (usaEstadisticasLegadas(personaje, claseActualId)) {
