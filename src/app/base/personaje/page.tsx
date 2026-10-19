@@ -529,19 +529,6 @@ export default function PersonajePage() {
               ← Volver a la base
             </Link>
           </div>
-          <div className="grid grid-cols-2 border-t border-[#5c432a] bg-black/15 sm:grid-cols-4">
-            {[
-              { nombre: "Vida máxima", valor: personaje.hpMaximo, icono: "❤️" },
-              { nombre: "Ataque físico", valor: personaje.ataque, icono: "⚔️" },
-              { nombre: "Defensa física", valor: personaje.defensa, icono: "🛡️" },
-              { nombre: "Ataque mágico", valor: personaje.ataqueMagico, icono: "✨" },
-            ].map((stat) => (
-              <div key={stat.nombre} className="border-b border-r border-[#493520] px-3 py-2 last:border-r-0 sm:border-b-0 sm:px-4 sm:py-3">
-                <p className="text-[10px] uppercase tracking-wider text-[#9f8966]">{stat.icono} {stat.nombre}</p>
-                <p className="mt-1 font-serif text-xl font-black text-[#f0d9ad]">{stat.valor}</p>
-              </div>
-            ))}
-          </div>
         </header>
 
         <nav aria-label="Secciones del personaje" className="mb-4 grid grid-cols-4 gap-1 rounded-xl border border-[#5d452c] bg-[#201910] p-1 sm:gap-2 sm:p-2">
