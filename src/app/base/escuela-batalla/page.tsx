@@ -9,7 +9,7 @@ import DescripcionTactil from "@/components/ui/DescripcionTactil";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 import PanelMejoraHabilidad, { IndicadorNivelHabilidad } from "@/components/habilidades/PanelMejoraHabilidad";
 import { descripcionSimpleHabilidad, detalleNumericoHabilidad } from "@/lib/descripcionesHabilidades";
-import { CLASES } from "@/lib/progresion/clases";
+import { CLASES, obtenerClasesHabilidadDisponibles } from "@/lib/progresion/clases";
 import { ajustarHabilidadPorNivel, costeReinicioHabilidades, nivelMaximoHabilidad } from "@/lib/progresion/niveles-habilidad";
 import type { DefinicionHabilidad, Rareza, SlotHabilidad } from "@/lib/tiposJuego";
 import { useGameStore } from "@/store/useGameStore";
@@ -94,6 +94,7 @@ export default function EscuelaCombatePage() {
   const [filtro, setFiltro] = useState<Filtro>("todas");
   const [busqueda, setBusqueda] = useState("");
   const [incluirOtrasClasesRama, setIncluirOtrasClasesRama] = useState(false);
+  const [claseCatalogoId, setClaseCatalogoId] = useState("todas");
 
   const recargarHabilidades = useCallback(async () => {
     try {
@@ -135,6 +136,86 @@ export default function EscuelaCombatePage() {
     () => aprendidas.filter((item) => (item.habilidad.claseId ?? "novato") === profesionId),
     [aprendidas, profesionId],
   );
+  const clasesDeRama = useMemo(
+    () => obtenerClasesHabilidadDisponibles(profesionId),
+    [profesionId],
+  );
+  const clasesConHabilidadesAprendidas = useMemo(() => {
+    const clasesUnicas = [...new Set([
+      ...clasesDeRama,
+      ...aprendidas.map((item) => item.habilidad.claseId ?? "novato"),
+    ])].filter((claseId) => Boolean(CLASES[claseId]));
+    return clasesUnicas.sort((a, b) => {
+      const indiceA = clasesDeRama.indexOf(a);
+      const indiceB = clasesDeRama.indexOf(b);
+      if (indiceA >= 0 && indiceB >= 0) return indiceA - indiceB;
+      if (indiceA >= 0) return -1;
+      if (indiceB >= 0) return 1;
+      return (CLASES[a]?.nombre ?? a).localeCompare(CLASES[b]?.nombre ?? b, "es");
+    });
+  }, [clasesDeRama, aprendidas]);
+  const opcionesClaseCatalogo = vista === "gestion" ? clasesConHabilidadesAprendidas : clasesDeRama;
+  const claseCatalogoSeleccionada = opcionesClaseCatalogo.includes(claseCatalogoId) ? claseCatalogoId : "todas";
+
+  const cambiarClaseCatalogo = (claseId: string) => {
+    setClaseCatalogoId(claseId);
+    if (claseId === "todas") return;
+    if (clasesDeRama.includes(claseId)) {
+      // Elegir una clase antecesora amplía el catálogo a su rama automáticamente.
+      setIncluirOtrasClasesRama(claseId !== profesionId);
+    } else {
+      setIncluirOtrasClasesRama(false);
+    }
+  };
+
+  const cambiarInclusionRama = (incluir: boolean) => {
+    setIncluirOtrasClasesRama(incluir);
+    setClaseCatalogoId("todas");
+  };
+
+  const filtrosCatalogo = (
+    <div className="mb-3 rounded-lg border border-[#5b4932] bg-[#1d1913] p-2 sm:mb-4 sm:p-2.5">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-[minmax(0,1fr)_minmax(12rem,0.65fr)] lg:grid-cols-[minmax(0,1fr)_minmax(12rem,0.55fr)_minmax(18rem,1fr)]">
+        <label className="min-w-0">
+          <span className="sr-only">Buscar habilidades</span>
+          <input
+            value={busqueda}
+            onChange={(event) => setBusqueda(event.target.value)}
+            placeholder="Buscar habilidad..."
+            className="min-h-10 w-full rounded-lg border border-[#594630] bg-[#211b14] px-3 py-2 text-sm text-[#f0e5d0] outline-none transition focus:border-amber-500 focus:ring-1 focus:ring-amber-500/30"
+          />
+        </label>
+        <label className="min-w-0">
+          <span className="mb-1 block text-[10px] font-bold uppercase tracking-wider text-[#a99169]">Clase</span>
+          <select
+            value={claseCatalogoSeleccionada}
+            onChange={(event) => cambiarClaseCatalogo(event.target.value)}
+            aria-label="Clase de las habilidades"
+            className="min-h-10 w-full rounded-lg border border-[#594630] bg-[#211b14] px-3 py-2 text-sm text-[#f0e5d0] outline-none transition focus:border-amber-500 focus:ring-1 focus:ring-amber-500/30"
+          >
+            <option value="todas">{incluirOtrasClasesRama ? "Toda la rama" : "Clase actual"}</option>
+            {opcionesClaseCatalogo.map((claseId) => (
+              <option key={claseId} value={claseId}>{CLASES[claseId]?.nombre ?? claseId}</option>
+            ))}
+          </select>
+        </label>
+        <label className="flex cursor-pointer items-center gap-2 border-t border-[#493a28] pt-2 md:col-span-2 lg:col-span-1 lg:border-l lg:border-t-0 lg:pl-3 lg:pt-0">
+          <input
+            type="checkbox"
+            checked={incluirOtrasClasesRama}
+            onChange={(event) => cambiarInclusionRama(event.target.checked)}
+            className="h-4 w-4 shrink-0 accent-amber-500"
+          />
+          <span className="min-w-0 flex-1 text-xs font-semibold leading-snug text-[#e8d7b8]">
+            Incluir habilidades de otras clases de mi rama
+          </span>
+          <span className={incluirOtrasClasesRama ? "shrink-0 rounded-full border border-sky-700/70 bg-sky-950/50 px-2 py-1 text-[10px] font-bold text-sky-200" : "shrink-0 rounded-full border border-[#51412d] bg-[#292117] px-2 py-1 text-[10px] font-bold text-[#a99d84]"}>
+            {incluirOtrasClasesRama ? "Rama" : "Solo clase"}
+          </span>
+        </label>
+      </div>
+    </div>
+  );
 
   const habilidadesVisibles = useMemo(() => {
     const query = busqueda.trim().toLocaleLowerCase("es");
@@ -142,10 +223,29 @@ export default function EscuelaCombatePage() {
       if (filtro === "activa" && habilidad.tipo !== "activa") return false;
       if (filtro === "pasiva" && habilidad.tipo !== "pasiva") return false;
       if (filtro === "disponibles" && (idsAprendidas.has(habilidad.id) || !habilidad.puedeAprender)) return false;
-      const texto = `${habilidad.nombre} ${habilidad.descripcion} ${habilidad.claseId ?? ""}`.toLocaleLowerCase("es");
+      const clasePropietariaId = habilidad.clasePropietariaId ?? habilidad.claseId ?? profesionId;
+      if (claseCatalogoSeleccionada !== "todas" && clasePropietariaId !== claseCatalogoSeleccionada) return false;
+      const texto = [habilidad.nombre, habilidad.descripcion, clasePropietariaId].join(" ").toLocaleLowerCase("es");
       return !query || texto.includes(query);
     });
-  }, [datos?.enVenta, filtro, busqueda, idsAprendidas]);
+  }, [datos?.enVenta, filtro, busqueda, idsAprendidas, claseCatalogoSeleccionada, profesionId]);
+
+  const habilidadesNoEquipadasVisibles = useMemo(() => {
+    const query = busqueda.trim().toLocaleLowerCase("es");
+    return habilidadesNoEquipadas.filter((item) => {
+      const clasePropietariaId = item.habilidad.claseId ?? "novato";
+      if (claseCatalogoSeleccionada !== "todas") {
+        if (clasePropietariaId !== claseCatalogoSeleccionada) return false;
+      } else if (incluirOtrasClasesRama) {
+        if (!clasesDeRama.includes(clasePropietariaId)) return false;
+      } else if (clasePropietariaId !== profesionId) {
+        return false;
+      }
+      const nombreClase = CLASES[clasePropietariaId]?.nombre ?? clasePropietariaId;
+      const texto = [item.habilidad.nombre, item.habilidad.descripcion, nombreClase, clasePropietariaId].join(" ").toLocaleLowerCase("es");
+      return !query || texto.includes(query);
+    });
+  }, [habilidadesNoEquipadas, busqueda, claseCatalogoSeleccionada, incluirOtrasClasesRama, clasesDeRama, profesionId]);
 
   const enviarAccion = async (tipo: "aprender" | "mejorar" | "equipar" | "desequipar", habilidadId: string, slot?: SlotHabilidad) => {
     const clave = tipo === "equipar" ? `${tipo}:${habilidadId}:${slot}` : `${tipo}:${habilidadId}`;
@@ -215,8 +315,6 @@ export default function EscuelaCombatePage() {
       <div className="mx-auto max-w-6xl">
         <CabeceraEdificio icono="⚔️" nombre="Escuela de Batalla" nivel={nivelEscuela} />
         <p className="mb-2 -mt-1 line-clamp-1 text-[11px] text-[#7d705c]">{descripcionEdificio}</p>
-        {navegacion}
-
         {(vista === "aprender" || vista === "gestion") && (
           <section aria-label="Profesión activa" className="mb-3 rounded-lg border border-[#6b5235] bg-[#241d15] p-2 sm:mb-4 sm:p-3">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -258,29 +356,17 @@ export default function EscuelaCombatePage() {
           </section>
         )}
 
+        {navegacion}
+
         {vista !== "tacticas" && error && <div role="alert" className="mb-5 rounded-lg border border-red-800 bg-red-950/40 p-4 text-sm text-red-200">{error}</div>}
 
         {vista === "tacticas" ? <SelectorPosicionCombate /> : vista === "profesiones" ? <PanelProfesiones integrado onProfessionChanged={recargarHabilidades} /> : vista === "aprender" ? (
           <section>
-            <div className="mb-2 flex flex-col gap-2 sm:mb-3 sm:gap-3 md:flex-row md:items-center md:justify-between">
-              <div>
-                <h2 className="text-lg font-bold text-[#f0dfbd] sm:text-xl">Catálogo de habilidades</h2>
-                <p className="mt-1 hidden text-sm text-[#9f927b] sm:block">Elige técnicas para desbloquear con tus puntos Job. Las habilidades heredadas están identificadas.</p>
-              </div>
-              <label className="flex items-center gap-2 text-sm text-[#c1b49b]">
-                <span className="sr-only">Buscar habilidades</span>
-                <input value={busqueda} onChange={(event) => setBusqueda(event.target.value)} placeholder="Buscar habilidad..."
-                  className="w-full rounded-lg border border-[#594630] bg-[#211b14] px-3 py-2 text-sm text-[#f0e5d0] outline-none focus:border-amber-500 md:w-64" />
-              </label>
+            <div className="mb-3 sm:mb-4">
+              <h2 className="text-lg font-bold text-[#f0dfbd] sm:text-xl">Catálogo de habilidades</h2>
+              <p className="mt-1 hidden text-sm text-[#9f927b] sm:block">Elige técnicas para desbloquear con tus puntos Job. Las habilidades heredadas están identificadas.</p>
             </div>
-            <label className="mb-3 flex cursor-pointer items-start gap-3 rounded-lg border border-[#5b4932] bg-[#1d1913] px-3 py-3 transition-colors hover:border-amber-700/70 sm:mb-4 sm:items-center">
-              <input type="checkbox" checked={incluirOtrasClasesRama} onChange={(event) => setIncluirOtrasClasesRama(event.target.checked)} className="mt-0.5 h-4 w-4 shrink-0 accent-amber-500 sm:mt-0" />
-              <span className="min-w-0 flex-1">
-                <span className="block text-sm font-semibold text-[#e8d7b8]">Incluir habilidades de otras clases de mi rama</span>
-                <span className="mt-0.5 block text-xs leading-5 text-[#a99d84]">{incluirOtrasClasesRama ? "Se muestran también las habilidades heredadas de las clases anteriores de tu rama." : "Solo se muestran las habilidades propias de tu clase actual."}</span>
-              </span>
-              <span className={`shrink-0 rounded-full border px-2 py-1 text-[10px] font-bold ${incluirOtrasClasesRama ? "border-sky-700/70 bg-sky-950/50 text-sky-200" : "border-[#51412d] bg-[#292117] text-[#a99d84]"}`}>{incluirOtrasClasesRama ? "Rama completa" : "Solo mi clase"}</span>
-            </label>
+            {filtrosCatalogo}
             <div className="mb-4 flex gap-2 overflow-x-auto pb-1" aria-label="Filtrar habilidades">
               {([["todas", "Todas"], ["activa", "Activas"], ["pasiva", "Pasivas"], ["disponibles", "Puedo aprender"]] as const).map(([key, label]) => (
                 <button key={key} type="button" onClick={() => setFiltro(key)} aria-pressed={filtro === key}
@@ -444,9 +530,14 @@ export default function EscuelaCombatePage() {
               </div>
             </div>
             <div className="space-y-3">
-              <h3 className="font-bold text-[#e8d7b8]">Habilidades aprendidas sin equipar</h3>
+              <div>
+                <h3 className="font-bold text-[#e8d7b8]">Habilidades aprendidas sin equipar</h3>
+                <p className="mt-1 text-xs text-[#9f927b]">Busca una técnica o filtra por la clase de la que procede.</p>
+              </div>
+              {filtrosCatalogo}
               {habilidadesNoEquipadas.length === 0 ? <div className="rounded-xl border border-dashed border-[#51412d] p-8 text-center text-sm text-[#9f927b]">No tienes habilidades sin equipar.</div>
-                : habilidadesNoEquipadas.map((item) => {
+                : habilidadesNoEquipadasVisibles.length === 0 ? <div className="rounded-xl border border-dashed border-[#51412d] p-8 text-center text-sm text-[#9f927b]">No hay habilidades que coincidan con estos filtros.</div>
+                : habilidadesNoEquipadasVisibles.map((item) => {
                   const habilidad = item.habilidad;
                   const habilidadVista = ajustarHabilidadPorNivel(habilidad, item.nivel);
                   const slotsCompatibles = habilidad.tipo === "activa" ? SLOTS_ACTIVAS : SLOTS_PASIVAS;
