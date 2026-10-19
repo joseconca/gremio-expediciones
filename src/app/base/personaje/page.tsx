@@ -246,14 +246,13 @@ export default function PersonajePage() {
     }
   };
 
-  const enviarAccionHabilidad = async (tipo: "equipar" | "desequipar" | "mejorar", habilidadId: string, slot?: SlotHabilidad) => {
+  const enviarAccionHabilidad = async (tipo: "equipar" | "desequipar", habilidadId: string, slot?: SlotHabilidad) => {
     const clave = tipo === "equipar" ? "habilidad:" + habilidadId + ":" + slot : tipo + ":" + habilidadId;
     setProcesando(clave);
     setError(null);
     setAviso(null);
     try {
-      const endpoint = tipo === "equipar" ? "/api/habilidades/equipar"
-        : tipo === "desequipar" ? "/api/habilidades/desequipar" : "/api/habilidades/mejorar";
+      const endpoint = tipo === "equipar" ? "/api/habilidades/equipar" : "/api/habilidades/desequipar";
       const body = tipo === "equipar" ? { habilidadId, slot } : { habilidadId };
       const respuesta = await fetch(endpoint, {
         method: "POST",
@@ -907,12 +906,7 @@ export default function PersonajePage() {
                               className="min-h-8 rounded-md border border-[#765635] bg-[#392a1c] px-2.5 text-[10px] font-bold text-[#e5c99c] hover:border-amber-400 disabled:opacity-40">
                               {procesando === "habilidad:" + item.habilidadId + ":" + slot ? "Equipando..." : etiquetaSlotHabilidad(slot)}
                             </button>)}
-                            {item.nivel < item.nivelMaximo && <button type="button" onClick={() => void enviarAccionHabilidad("mejorar", item.habilidadId)}
-                              disabled={!compatible || edificios.escuelaCombate.nivel === 0 || (item.puntosHabilidadDisponiblesClase ?? 0) < 1 || procesando !== null || bloqueado}
-                              title={(item.puntosHabilidadDisponiblesClase ?? 0) < 1 ? "Necesitas un punto Job de la profesión propietaria" : "Mejorar esta habilidad consume un punto Job"}
-                              className="min-h-8 rounded-md border border-emerald-800/70 bg-[#1b3024] px-2.5 text-[10px] font-bold text-emerald-200 hover:border-emerald-500 disabled:opacity-40">
-                              {procesando === "mejorar:" + item.habilidadId ? "Mejorando..." : "Mejorar · 1 punto"}
-                            </button>}
+
                           </div>
                         </article>;
                       })}
