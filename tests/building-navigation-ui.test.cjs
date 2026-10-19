@@ -31,6 +31,9 @@ test("la pantalla de Personaje centraliza equipo, mochila por categorías y gest
   assert.match(pagina, /label: "Equipo"/);
   assert.match(pagina, /label: "Mochila"/);
   assert.match(pagina, /label: "Habilidades"/);
+  assert.match(pagina, /aria-label="Vista de equipamiento"/);
+  assert.match(pagina, /min-\[520px\]:grid-cols-\[minmax\(0,1fr\)_148px_minmax\(0,1fr\)\]/);
+  assert.match(pagina, /armaDosManosEquipada/);
   for (const categoria of ["Armas", "Armaduras", "Accesorios", "Consumibles", "Varios"]) {
     assert.ok(pagina.includes(categoria), `Falta la categoría de mochila ${categoria}`);
   }

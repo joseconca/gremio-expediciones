@@ -297,6 +297,7 @@ export default function PersonajePage() {
 
   const inventario = useMemo(() => datosObjetos?.inventario ?? [], [datosObjetos?.inventario]);
   const objetosEquipados = useMemo(() => new Set(RANURAS_EQUIPO.map((ranura) => datosObjetos?.equipo[ranura.clave]?.id).filter(Boolean)), [datosObjetos?.equipo]);
+  const armaDosManosEquipada = datosObjetos?.equipo.arma?.objeto.manos === 2;
   const ranurasArmadura = useMemo(() => [
     { id: "mano_secundaria", nombre: "Escudos y mano secundaria" },
     { id: "casco", nombre: "Cascos" },
@@ -495,22 +496,74 @@ export default function PersonajePage() {
               <h2 className="font-serif text-lg font-black uppercase tracking-wider text-[#efd8ad]">Equipo</h2>
               <p className="mt-1 text-xs text-[#ab9270]">Selecciona una pieza para retirarla o cambia de pieza desde la mochila.</p>
             </header>
-            <div className="p-2 sm:p-4">
+            <div className="p-2 sm:p-3">
+              <div className="mb-2 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-[#5d452e] bg-[#19140f] px-3 py-2">
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-wider text-[#b99a6c]">Equipo de combate</p>
+                  <p className="mt-0.5 text-xs text-[#a58e6c]">Pulsa «Quitar» para liberar una ranura</p>
+                </div>
+                <span className="rounded border border-[#6d4b2c] bg-black/20 px-2 py-1 text-[10px] font-bold text-[#c8ac7d]">
+                  {RANURAS_EQUIPO.filter((ranura) => Boolean(datosObjetos?.equipo[ranura.clave])).length}/{RANURAS_EQUIPO.length}
+                </span>
+              </div>
               {cargandoObjetos ? <p className="p-8 text-center text-sm text-[#bba581]">Consultando equipo...</p> : (
                 <>
-                  <div className="mb-3 rounded-lg border border-[#5d452e] bg-[#19140f] p-3">
-                    <div className="flex flex-col items-center gap-2 text-center sm:flex-row sm:text-left">
-                      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-[#8b6338] bg-[#282016]">
-                        <Image src={obtenerSpriteHeroe(personaje.clase, personaje.sexo, personaje.profesionActivaId)} alt="" fill sizes="64px" className="avatar-face-image [image-rendering:pixelated]" />
+                  {/* Pantallas medianas y grandes: silueta del aventurero con ranuras alrededor. */}
+                  <div role="group" aria-label="Vista de equipamiento" className="hidden min-[520px]:grid min-[520px]:grid-cols-[minmax(0,1fr)_148px_minmax(0,1fr)] min-[520px]:gap-2">
+                    <div className="grid grid-rows-4 gap-2">
+                      {(["casco", "armadura", "pantalones", "botas"] as TipoEquipamiento[]).map((clave) => renderSlotEquipo(RANURAS_EQUIPO.find((ranura) => ranura.clave === clave)!))}
+                    </div>
+
+                    <div className="flex min-w-0 flex-col items-center justify-center">
+                      <div className="flex w-full flex-1 items-center justify-center overflow-hidden rounded-lg border border-[#755534] bg-[radial-gradient(ellipse_at_45%_30%,#493521,#261b12_68%)] p-1.5 shadow-[inset_0_0_24px_rgba(0,0,0,0.5)]">
+                        <Image
+                          src={obtenerSpriteHeroe(personaje.clase, personaje.sexo, personaje.profesionActivaId)}
+                          alt={`Personaje equipado: ${personaje.clase}`}
+                          width={180}
+                          height={240}
+                          className="max-h-[300px] w-full object-contain [image-rendering:pixelated]"
+                          priority
+                        />
                       </div>
-                      <div className="min-w-0">
-                        <h3 className="font-serif text-lg font-black text-[#f0dfbd]">{personaje.nombre}</h3>
-                        <p className="text-xs text-[#b39a75]">{CLASES[personaje.profesionActivaId]?.nombre ?? personaje.clase} · Equipo {objetosEquipados.size}/{RANURAS_EQUIPO.length} ranuras ocupadas</p>
-                      </div>
+                      <p className="mt-1 text-center text-[9px] font-black uppercase tracking-[0.14em] text-[#b99a6c]">{personaje.clase}</p>
+                    </div>
+
+                    <div className="grid grid-rows-4 gap-2">
+                      {(["accesorio", "anillo1", "guantes", "anillo2"] as TipoEquipamiento[]).map((clave) => renderSlotEquipo(RANURAS_EQUIPO.find((ranura) => ranura.clave === clave)!))}
+                    </div>
+
+                    <div className="col-span-3 mx-auto grid w-full max-w-lg grid-cols-2 gap-2 border-t border-[#59432b] pt-2">
+                      {armaDosManosEquipada ? (
+                        <div className="col-span-2">{renderSlotEquipo(RANURAS_EQUIPO.find((ranura) => ranura.clave === "arma")!)}</div>
+                      ) : (
+                        (["arma", "manoSecundaria"] as TipoEquipamiento[]).map((clave) => renderSlotEquipo(RANURAS_EQUIPO.find((ranura) => ranura.clave === clave)!))
+                      )}
                     </div>
                   </div>
-                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
-                    {RANURAS_EQUIPO.map(renderSlotEquipo)}
+
+                  {/* En móvil estrecho, retrato arriba y ranuras en dos columnas legibles. */}
+                  <div role="group" aria-label="Vista de equipamiento" className="min-[520px]:hidden">
+                    <div className="mx-auto mb-2 flex max-w-[116px] flex-col items-center rounded-lg border border-[#755534] bg-[radial-gradient(ellipse_at_45%_30%,#493521,#261b12_68%)] p-2">
+                      <Image
+                        src={obtenerSpriteHeroe(personaje.clase, personaje.sexo, personaje.profesionActivaId)}
+                        alt={`Personaje equipado: ${personaje.clase}`}
+                        width={112}
+                        height={144}
+                        className="h-28 w-full object-contain [image-rendering:pixelated]"
+                        priority
+                      />
+                      <p className="text-center text-[9px] font-black uppercase tracking-wide text-[#b99a6c]">{personaje.clase}</p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {(["casco", "armadura", "pantalones", "botas", "accesorio", "anillo1", "guantes", "anillo2"] as TipoEquipamiento[]).map((clave) => renderSlotEquipo(RANURAS_EQUIPO.find((ranura) => ranura.clave === clave)!))}
+                      <div className="col-span-2 mt-1 grid grid-cols-2 gap-1.5 border-t border-[#59432b] pt-2">
+                        {armaDosManosEquipada ? (
+                          <div className="col-span-2">{renderSlotEquipo(RANURAS_EQUIPO.find((ranura) => ranura.clave === "arma")!)}</div>
+                        ) : (
+                          (["arma", "manoSecundaria"] as TipoEquipamiento[]).map((clave) => renderSlotEquipo(RANURAS_EQUIPO.find((ranura) => ranura.clave === clave)!))
+                        )}
+                      </div>
+                    </div>
                   </div>
                   <div className="mt-3 flex justify-end">
                     <button type="button" onClick={() => setSeccion("mochila")} className="min-h-10 rounded-lg border border-[#7b5a34] bg-[#43301d] px-4 text-sm font-bold text-[#eed4a9] hover:border-amber-400">Abrir mochila →</button>
