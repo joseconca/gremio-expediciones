@@ -54,9 +54,29 @@ export default function BoticaPage() {
 
   const ofertas = useMemo(
     () => OBJETOS
-      .filter((objeto) => objeto.vendibleEnBotica)
-      .sort((a, b) => (a.nivelBoticaRequerido ?? 1) - (b.nivelBoticaRequerido ?? 1) || a.precio - b.precio),
-    [],
+      .filter((objeto) => objeto.vendibleEnBotica && (objeto.nivelBoticaRequerido ?? 1) <= nivelBotica)
+      .sort((a, b) => a.precio - b.precio),
+    [nivelBotica],
+  );
+
+  const secciones = useMemo(
+    () => [
+      {
+        id: "pociones",
+        titulo: "Pociones",
+        icono: "🧪",
+        descripcion: "Remedios, restauración y cenizas de fénix.",
+        objetos: ofertas.filter((objeto) => !objeto.id.startsWith("elixir_")),
+      },
+      {
+        id: "elixires",
+        titulo: "Elixires",
+        icono: "✨",
+        descripcion: "Preparados con efectos temporales para tus expediciones.",
+        objetos: ofertas.filter((objeto) => objeto.id.startsWith("elixir_")),
+      },
+    ],
+    [ofertas],
   );
 
   const comprar = async (objeto: DefinicionObjeto) => {
@@ -98,7 +118,7 @@ export default function BoticaPage() {
           <div className="flex flex-wrap items-center justify-between gap-3 p-3 sm:p-4">
             <div>
               <h2 className="font-serif text-lg font-black uppercase tracking-wider text-[#efd8ad]">Mostrador del boticario</h2>
-              <p className="mt-1 max-w-2xl text-xs leading-5 text-[#bba17b]">Prepara la mochila antes de salir. Las fórmulas avanzadas se desbloquean al mejorar la Botica.</p>
+              <p className="mt-1 max-w-2xl text-xs leading-5 text-[#bba17b]">Prepara la mochila antes de salir. Cada mejora amplía el catálogo sin ocultar las pociones y elixires que ya puedes adquirir.</p>
             </div>
             <div className="rounded-lg border border-amber-700/50 bg-black/20 px-4 py-2 text-right">
               <p className="text-[10px] font-bold uppercase tracking-wider text-[#a99169]">Oro disponible</p>
@@ -110,54 +130,46 @@ export default function BoticaPage() {
         {error && <div role="alert" className="mb-3 rounded-lg border border-red-800/70 bg-[#351a18] p-3 text-sm font-bold text-red-200">{error}</div>}
         {mensaje && <div role="status" className="mb-3 rounded-lg border border-emerald-800/60 bg-[#172b20] p-3 text-sm text-emerald-200">{mensaje}</div>}
 
-        {[1, 2, 3].map((nivel) => {
-          const objetosNivel = ofertas.filter((objeto) => (objeto.nivelBoticaRequerido ?? 1) === nivel);
-          if (objetosNivel.length === 0) return null;
-          const desbloqueado = nivelBotica >= nivel;
-          return (
-            <section key={nivel} className="mb-5 overflow-hidden rounded-xl border border-[#62452d] bg-[#261a12] shadow-[0_10px_25px_rgba(0,0,0,0.25)]">
-              <header className="flex flex-wrap items-center justify-between gap-2 border-b border-[#62452d] bg-gradient-to-r from-[#392719] to-[#241810] px-3 py-3 sm:px-4">
-                <div>
-                  <h3 className="font-serif text-base font-black uppercase tracking-wider text-[#efd8ad]">Fórmulas de nivel {nivel}</h3>
-                  <p className="mt-0.5 text-[11px] text-[#a99169]">{nivel === 1 ? "Remedios básicos" : nivel === 2 ? "Pociones avanzadas y resurrección" : "Elixires de combate y remedios superiores"}</p>
-                </div>
-                <span className={desbloqueado ? "rounded-full border border-emerald-700/60 bg-emerald-950/50 px-3 py-1 text-[10px] font-black uppercase text-emerald-300" : "rounded-full border border-[#6d5234] bg-black/20 px-3 py-1 text-[10px] font-black uppercase text-[#b7a181]"}>
-                  {desbloqueado ? "Disponible" : `Requiere Botica ${nivel}`}
-                </span>
-              </header>
-              <div className="grid grid-cols-1 gap-2 p-2 sm:grid-cols-2 sm:p-3 lg:grid-cols-3">
-                {objetosNivel.map((objeto) => {
-                  const puedeComprar = desbloqueado && oro >= objeto.precio;
-                  return (
-                    <article key={objeto.id} className={desbloqueado ? "flex min-w-0 flex-col rounded-lg border border-[#59432b] bg-[#1c150f] p-3" : "flex min-w-0 flex-col rounded-lg border border-[#403224] bg-[#19140f] p-3 opacity-75"}>
-                      <div className="flex items-start gap-3">
-                        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg border border-[#745332] bg-gradient-to-br from-[#44311e] to-[#21180f] text-3xl shadow-inner" aria-hidden="true">
-                          {iconoConsumible(objeto)}
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <div className="flex flex-wrap items-center gap-1.5">
-                            <h4 className="break-words text-sm font-black leading-tight text-[#f2dfbf]">{objeto.nombre}</h4>
-                            <span className={`rounded border px-1.5 py-0.5 text-[9px] font-black uppercase ${estiloRareza(objeto.rareza)}`}>{nombreRareza(objeto.rareza)}</span>
-                          </div>
-                          <p className="mt-1 text-xs leading-5 text-[#b3a187]">{objeto.descripcion}</p>
-                          {objeto.duracionTurnos && <p className="mt-1 text-[10px] font-bold text-amber-300">Duración prevista: {objeto.duracionTurnos} turnos</p>}
-                        </div>
+        {secciones.map((seccion) => seccion.objetos.length > 0 ? (
+          <section key={seccion.id} className="mb-5 overflow-hidden rounded-xl border border-[#62452d] bg-[#261a12] shadow-[0_10px_25px_rgba(0,0,0,0.25)]">
+            <header className="border-b border-[#62452d] bg-gradient-to-r from-[#392719] to-[#241810] px-3 py-3 sm:px-4">
+              <h3 className="font-serif text-base font-black uppercase tracking-wider text-[#efd8ad]">
+                <span className="mr-2" aria-hidden="true">{seccion.icono}</span>{seccion.titulo}
+              </h3>
+              <p className="mt-0.5 text-[11px] text-[#a99169]">{seccion.descripcion}</p>
+            </header>
+            <div className="grid grid-cols-1 gap-2 p-2 sm:grid-cols-2 sm:p-3 lg:grid-cols-3">
+              {seccion.objetos.map((objeto) => {
+                const puedeComprar = oro >= objeto.precio;
+                return (
+                  <article key={objeto.id} className="flex min-w-0 flex-col rounded-lg border border-[#59432b] bg-[#1c150f] p-3">
+                    <div className="flex items-start gap-3">
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg border border-[#745332] bg-gradient-to-br from-[#44311e] to-[#21180f] text-3xl shadow-inner" aria-hidden="true">
+                        {iconoConsumible(objeto)}
                       </div>
-                      <div className="mt-3 flex items-center justify-between gap-2 border-t border-white/5 pt-2">
-                        <span className="text-sm font-black text-amber-200">{objeto.precio.toLocaleString("es-ES")} 🪙</span>
-                        <button type="button" onClick={() => void comprar(objeto)} disabled={!puedeComprar || procesando !== null}
-                          title={!desbloqueado ? `Mejora la Botica al nivel ${nivel}` : oro < objeto.precio ? "No tienes oro suficiente" : undefined}
-                          className="min-h-9 rounded-lg border border-[#765635] bg-[#392a1c] px-3 text-xs font-bold text-[#e5c99c] hover:border-amber-400 disabled:cursor-not-allowed disabled:opacity-40">
-                          {procesando === objeto.id ? "Comprando..." : !desbloqueado ? "Bloqueado" : oro < objeto.precio ? "Oro insuficiente" : "Comprar"}
-                        </button>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center gap-1.5">
+                          <h4 className="break-words text-sm font-black leading-tight text-[#f2dfbf]">{objeto.nombre}</h4>
+                          <span className={`rounded border px-1.5 py-0.5 text-[9px] font-black uppercase ${estiloRareza(objeto.rareza)}`}>{nombreRareza(objeto.rareza)}</span>
+                        </div>
+                        <p className="mt-1 text-xs leading-5 text-[#b3a187]">{objeto.descripcion}</p>
+                        {objeto.duracionTurnos && <p className="mt-1 text-[10px] font-bold text-amber-300">Duración prevista: {objeto.duracionTurnos} turnos</p>}
                       </div>
-                    </article>
-                  );
-                })}
-              </div>
-            </section>
-          );
-        })}
+                    </div>
+                    <div className="mt-3 flex items-center justify-between gap-2 border-t border-white/5 pt-2">
+                      <span className="text-sm font-black text-amber-200">{objeto.precio.toLocaleString("es-ES")} 🪙</span>
+                      <button type="button" onClick={() => void comprar(objeto)} disabled={!puedeComprar || procesando !== null}
+                        title={oro < objeto.precio ? "No tienes oro suficiente" : undefined}
+                        className="min-h-9 rounded-lg border border-[#765635] bg-[#392a1c] px-3 text-xs font-bold text-[#e5c99c] hover:border-amber-400 disabled:cursor-not-allowed disabled:opacity-40">
+                        {procesando === objeto.id ? "Comprando..." : oro < objeto.precio ? "Oro insuficiente" : "Comprar"}
+                      </button>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+        ) : null)}
 
         <div className="flex flex-wrap justify-between gap-2">
           <Link href="/base/personaje" className="inline-flex min-h-10 items-center rounded-lg border border-[#6a4d2d] bg-[#1c160f] px-4 text-sm font-bold text-[#d9bd8f] hover:border-amber-500">Abrir mochila →</Link>
