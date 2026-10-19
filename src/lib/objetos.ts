@@ -90,6 +90,7 @@ export const OBJETOS: DefinicionObjeto[] = [
 
   {
     id: "pocion_vida_menor",
+    objetivoUso: "propio_o_aliado",
     vendibleEnArmeria: false,
     vendibleEnBotica: true,
     nivelBoticaRequerido: 1,
@@ -104,6 +105,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
   {
     id: "pocion_vida_mediana",
+    objetivoUso: "propio_o_aliado",
     vendibleEnArmeria: false,
     vendibleEnBotica: true,
     nivelBoticaRequerido: 2,
@@ -118,6 +120,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
   {
     id: "pocion_mana_basica",
+    objetivoUso: "propio",
     vendibleEnArmeria: false,
     vendibleEnBotica: true,
     nivelBoticaRequerido: 2,
@@ -132,6 +135,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
   {
     id: "pocion_energia",
+    objetivoUso: "propio",
     vendibleEnArmeria: false,
     vendibleEnBotica: true,
     nivelBoticaRequerido: 2,
@@ -145,6 +149,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
   {
     id: "ceniza_fenix",
+    objetivoUso: "aliado_caido",
     vendibleEnArmeria: false,
     vendibleEnBotica: true,
     nivelBoticaRequerido: 2,
@@ -158,6 +163,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
   {
     id: "pocion_vida_mayor",
+    objetivoUso: "propio_o_aliado",
     vendibleEnArmeria: false,
     vendibleEnBotica: true,
     nivelBoticaRequerido: 3,
@@ -172,6 +178,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
   {
     id: "elixir_guerrero",
+    objetivoUso: "propio",
     vendibleEnArmeria: false,
     vendibleEnBotica: true,
     nivelBoticaRequerido: 3,
@@ -186,6 +193,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
   {
     id: "elixir_mago",
+    objetivoUso: "propio",
     vendibleEnArmeria: false,
     vendibleEnBotica: true,
     nivelBoticaRequerido: 3,
@@ -200,6 +208,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
   {
     id: "elixir_heroe",
+    objetivoUso: "propio",
     vendibleEnArmeria: false,
     vendibleEnBotica: true,
     nivelBoticaRequerido: 3,
@@ -214,6 +223,7 @@ export const OBJETOS: DefinicionObjeto[] = [
   },
   {
     id: "elixir_velocidad",
+    objetivoUso: "propio",
     vendibleEnArmeria: false,
     vendibleEnBotica: true,
     nivelBoticaRequerido: 3,
