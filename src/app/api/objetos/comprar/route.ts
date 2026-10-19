@@ -36,14 +36,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Objeto no encontrado." }, { status: 404 });
     }
 
-    if (!objeto.vendibleEnArmeria) {
+    const esConsumibleBotica = objeto.tipo === "consumible" && objeto.vendibleEnBotica === true;
+
+    if (!objeto.vendibleEnArmeria && !esConsumibleBotica) {
       return NextResponse.json(
-        { error: "Este objeto solo se obtiene como botín o mediante fabricación; no está disponible en la Armería." },
+        { error: "Este objeto no está disponible en ninguna tienda actual." },
         { status: 400 }
       );
     }
 
-    if (objeto.tipo !== "arma" && objeto.tipo !== "armadura" && objeto.tipo !== "accesorio") {
+    if (!esConsumibleBotica && objeto.tipo !== "arma" && objeto.tipo !== "armadura" && objeto.tipo !== "accesorio") {
       return NextResponse.json(
         { error: "Este objeto no se vende en la Armería." },
         { status: 400 }
@@ -74,35 +76,53 @@ export async function POST(request: Request) {
 
     const nivelArmeria =
       typeof edificios.armeria === "number" ? edificios.armeria : 0;
+    const nivelBotica =
+      typeof edificios.botica === "number" ? edificios.botica : 0;
     const nivelHeroe = usuario.personaje.nivel;
 
-    if (nivelArmeria <= 0) {
-      return NextResponse.json(
-        { error: "No tienes una Armería construida." },
-        { status: 403 }
-      );
-    }
+    if (esConsumibleBotica) {
+      const nivelMinimoBotica = objeto.nivelBoticaRequerido ?? 1;
+      if (nivelBotica <= 0) {
+        return NextResponse.json(
+          { error: "No tienes una Botica construida." },
+          { status: 403 }
+        );
+      }
+      if (nivelBotica < nivelMinimoBotica) {
+        return NextResponse.json(
+          { error: `Necesitas una Botica de nivel ${nivelMinimoBotica} para comprar este consumible.` },
+          { status: 400 }
+        );
+      }
+    } else {
+      if (nivelArmeria <= 0) {
+        return NextResponse.json(
+          { error: "No tienes una Armería construida." },
+          { status: 403 }
+        );
+      }
 
-    const requisitos = obtenerRequisitosRareza(objeto.rareza);
-    if (nivelArmeria < requisitos.nivelArmeria) {
-      return NextResponse.json(
-        { error: "Tu Armería todavía no puede vender este objeto." },
-        { status: 400 }
-      );
-    }
+      const requisitos = obtenerRequisitosRareza(objeto.rareza);
+      if (nivelArmeria < requisitos.nivelArmeria) {
+        return NextResponse.json(
+          { error: "Tu Armería todavía no puede vender este objeto." },
+          { status: 400 }
+        );
+      }
 
-    if (nivelHeroe < requisitos.nivelHeroe) {
-      return NextResponse.json(
-        { error: `Necesitas nivel ${requisitos.nivelHeroe} de héroe para comprar este objeto.` },
-        { status: 400 }
-      );
-    }
+      if (nivelHeroe < requisitos.nivelHeroe) {
+        return NextResponse.json(
+          { error: `Necesitas nivel ${requisitos.nivelHeroe} de héroe para comprar este objeto.` },
+          { status: 400 }
+        );
+      }
 
-    if (!puedeComprarObjeto(objeto, nivelArmeria, nivelHeroe)) {
-      return NextResponse.json(
-        { error: "No cumples los requisitos para comprar este objeto." },
-        { status: 400 }
-      );
+      if (!puedeComprarObjeto(objeto, nivelArmeria, nivelHeroe)) {
+        return NextResponse.json(
+          { error: "No cumples los requisitos para comprar este objeto." },
+          { status: 400 }
+        );
+      }
     }
 
     const inventarioId = usuario.personaje.inventario?.id;
