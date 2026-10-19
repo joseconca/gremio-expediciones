@@ -20,7 +20,7 @@ test("los edificios individuales se abren desde el rótulo y el sprite, sin bot�
 
 test("los rótulos de Armería/Herrería comparten altura y mantienen nombres en una línea", () => {
   const complejo = read("src/components/base/ComplejoArmeria.tsx");
-  assert.match(complejo, /h-11 items-center[\\s\\S]*?sm:h-\\[52px\\]/);
+  assert.ok(complejo.includes("h-11 items-center") && complejo.includes("sm:h-[52px]"));
   assert.match(complejo, /whitespace-nowrap/);
 });
 
@@ -46,7 +46,7 @@ test("el complejo Armería y Herrería permite entrar desde cada nombre y desde 
 test("el poblado usa todo el ancho, elimina el panel verde común y añade una cuarta columna en escritorio", () => {
   const panel = read("src/components/base/PanelEdificios.tsx");
   assert.match(panel, /className="w-full"/);
-  assert.match(panel, /grid-cols-2[\\s\\S]*?md:grid-cols-3 lg:grid-cols-4/);
-  assert.doesNotMatch(panel, /bg-\\[#1d2a1b\\]/);
+  assert.ok(panel.includes("grid-cols-2") && panel.includes("md:grid-cols-3 lg:grid-cols-4"));
+  assert.ok(!panel.includes("bg-[#1d2a1b]"));
   assert.doesNotMatch(panel, /radial-gradient/);
 });
