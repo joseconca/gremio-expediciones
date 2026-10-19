@@ -1,12 +1,16 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import CabeceraEdificio from "@/components/base/CabeceraEdificio";
 import { useGameStore } from "@/store/useGameStore";
 import { OBJETOS } from "@/lib/objetos";
-import type { DefinicionObjeto } from "@/lib/tiposJuego";
+import type { DefinicionObjeto, ObjetoInventario } from "@/lib/tiposJuego";
+
+interface DatosMochila {
+  inventario: ObjetoInventario[];
+  espaciosInventario: { ocupados: number; maximo: number };
+}
 
 function iconoConsumible(objeto: DefinicionObjeto): string {
   if (objeto.id.includes("fenix")) return "🔥";
@@ -47,10 +51,30 @@ export default function BoticaPage() {
   const [procesando, setProcesando] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [mensaje, setMensaje] = useState<string | null>(null);
+  const [consumibles, setConsumibles] = useState<ObjetoInventario[]>([]);
+  const [cargandoMochila, setCargandoMochila] = useState(true);
+
+  const cargarMochila = useCallback(async () => {
+    try {
+      const respuesta = await fetch("/api/objetos", { cache: "no-store" });
+      const resultado = await respuesta.json();
+      if (!respuesta.ok) throw new Error(resultado.error || "No se pudo cargar la mochila.");
+      const datos = resultado as DatosMochila;
+      setConsumibles(datos.inventario.filter((item) => item.objeto.tipo === "consumible"));
+    } catch (fallo) {
+      setError(fallo instanceof Error ? fallo.message : "No se pudo cargar la mochila.");
+    } finally {
+      setCargandoMochila(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (!isLoading && nivelBotica <= 0) router.push("/base");
   }, [isLoading, nivelBotica, router]);
+
+  useEffect(() => {
+    if (!isLoading && nivelBotica > 0) void cargarMochila();
+  }, [cargarMochila, isLoading, nivelBotica]);
 
   const ofertas = useMemo(
     () => OBJETOS
@@ -94,7 +118,7 @@ export default function BoticaPage() {
       const resultado = await respuesta.json();
       if (!respuesta.ok) throw new Error(resultado.error || "No se pudo comprar el consumible.");
       setMensaje(resultado.mensaje || `Has comprado ${objeto.nombre}.`);
-      await cargarJugador();
+      await Promise.all([cargarJugador(), cargarMochila()]);
     } catch (fallo) {
       setError(fallo instanceof Error ? fallo.message : "Error de conexión con la Botica.");
     } finally {
@@ -171,10 +195,39 @@ export default function BoticaPage() {
           </section>
         ) : null)}
 
-        <div className="flex flex-wrap justify-between gap-2">
-          <Link href="/base/personaje" className="inline-flex min-h-10 items-center rounded-lg border border-[#6a4d2d] bg-[#1c160f] px-4 text-sm font-bold text-[#d9bd8f] hover:border-amber-500">Abrir mochila →</Link>
-          <Link href="/base" className="inline-flex min-h-10 items-center rounded-lg border border-[#6a4d2d] bg-[#1c160f] px-4 text-sm font-bold text-[#d9bd8f] hover:border-amber-500">← Volver a la base</Link>
-        </div>
+        <section className="mb-5 overflow-hidden rounded-xl border border-[#705333] bg-[#211910] shadow-lg">
+          <header className="flex flex-wrap items-center justify-between gap-2 border-b border-[#62452d] bg-gradient-to-r from-[#392719] to-[#241810] px-3 py-3 sm:px-4">
+            <div>
+              <h2 className="font-serif text-base font-black uppercase tracking-wider text-[#efd8ad]">Mochila · Consumibles</h2>
+              <p className="mt-0.5 text-[11px] text-[#a99169]">Solo se muestran las pociones, cenizas y elixires que llevas contigo.</p>
+            </div>
+            <span className="rounded-full border border-[#705333] bg-black/20 px-3 py-1 text-[10px] font-bold text-[#d9bd8f]">
+              {consumibles.reduce((total, item) => total + item.cantidad, 0)} unidades
+            </span>
+          </header>
+          <div className="p-2 sm:p-3">
+            {cargandoMochila ? (
+              <p className="rounded-lg border border-dashed border-[#594632] p-4 text-center text-xs text-[#a18a68]">Cargando consumibles...</p>
+            ) : consumibles.length === 0 ? (
+              <p className="rounded-lg border border-dashed border-[#594632] p-4 text-center text-xs leading-5 text-[#a18a68]">No llevas consumibles en la mochila. Puedes comprarlos en el mostrador de arriba.</p>
+            ) : (
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                {consumibles.map((item) => (
+                  <article key={item.id} className="flex min-w-0 items-center gap-3 rounded-lg border border-[#59432b] bg-[#1c150f] p-2.5">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-[#745332] bg-gradient-to-br from-[#44311e] to-[#21180f] text-2xl" aria-hidden="true">
+                      {iconoConsumible(item.objeto)}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="break-words text-xs font-black leading-4 text-[#f2dfbf]">{item.objeto.nombre}</h3>
+                      <p className="mt-0.5 line-clamp-2 text-[10px] leading-4 text-[#a99169]">{item.objeto.descripcion}</p>
+                    </div>
+                    <span className="shrink-0 rounded-md border border-[#6b4b2d] bg-black/20 px-2 py-1 text-xs font-black text-amber-200">×{item.cantidad}</span>
+                  </article>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
       </div>
     </main>
   );
