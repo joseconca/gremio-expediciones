@@ -358,10 +358,9 @@ export default function HojaPersonajeModal({
                         nombre: `Pasiva: ${fuente.nombre}`,
                         valor: fuente.modificadores[stat.clave],
                       })),
-                      ...(desglose.equipoPorObjeto ?? []).map((fuente) => ({
-                        nombre: `${fuente.ranura}: ${fuente.nombre}`,
-                        valor: fuente.modificadores[stat.clave],
-                      })),
+                      ...(typeof desglose.equipo[stat.clave] === "number" && Math.abs(desglose.equipo[stat.clave] ?? 0) > 0.0001
+                        ? [{ nombre: "Equipo", valor: desglose.equipo[stat.clave] }]
+                        : []),
                       { nombre: "Combate", valor: desglose.combate[stat.clave] },
                     ].filter((fuente) => typeof fuente.valor === "number" && Math.abs(fuente.valor) > 0.0001)
                   : [];

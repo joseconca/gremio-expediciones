@@ -82,6 +82,12 @@ test("el Mercado tiene deslizador y control numérico para comprar y vender recu
   assert.match(mercado, /calcularPrecioVentaRecurso/);
 });
 
+test("la hoja de personaje agrupa las bonificaciones de todos los objetos en una sola fila Equipo", () => {
+  const hoja = read("src/components/HojaPersonajeModal.tsx");
+  assert.match(hoja, /nombre: "Equipo", valor: desglose\.equipo\[stat\.clave\]/);
+  assert.doesNotMatch(hoja, /equipoPorObjeto \?\? \[\]\)\.map/);
+});
+
 test("los sprites y carteles de los edificios no crecen ni se iluminan al pasar el cursor", () => {
   const card = read("src/components/base/EdificioCard.tsx");
   const complejo = read("src/components/base/ComplejoArmeria.tsx");
