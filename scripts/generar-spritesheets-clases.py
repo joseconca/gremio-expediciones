@@ -1201,10 +1201,9 @@ def construir_acciones_tier1(cid, sex):
     def rotate_point(x, y, angle):
         radians = math.radians(angle)
         dx, dy = x - 32, y - 82
-        return (
-            max(0, min(63, int(round(32 + dx * math.cos(radians) + dy * math.sin(radians)))),
-            max(0, min(127, int(round(82 - dx * math.sin(radians) + dy * math.cos(radians)))),
-        )
+        rotated_x = int(round(32 + dx * math.cos(radians) + dy * math.sin(radians)))
+        rotated_y = int(round(82 - dx * math.sin(radians) + dy * math.cos(radians)))
+        return max(0, min(63, rotated_x)), max(0, min(127, rotated_y))
 
     generated = {}
     anchor_actions = {}
