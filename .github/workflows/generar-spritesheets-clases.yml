@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "scripts/generar-spritesheets-clases.py"
+      - ".github/workflows/generar-spritesheets-clases.yml"
 
 permissions:
   contents: write
@@ -52,6 +53,16 @@ jobs:
                   assert image.getchannel("A").getextrema()[0] == 0, f"{path}: falta transparencia"
           print(f"OK: {len(files)} hojas de Novato/Tier 1, 256×1920, alfa real")
           PY
+
+      - name: Publicar artefacto de revisión visual de Novato y Espadachín
+        uses: actions/upload-artifact@v4
+        with:
+          name: sprites-revision-tier0-tier1-\${{ github.run_number }}
+          path: |
+            public/sprites/heroes/novato/*-sheet.png
+            public/sprites/heroes/espadachin/*-sheet.png
+          if-no-files-found: error
+          retention-days: 7
 
       - name: Guardar las hojas refinadas de Novato y Tier 1
         run: |
