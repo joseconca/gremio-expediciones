@@ -1,0 +1,134 @@
+{
+  "canvas": {
+    "width": 256,
+    "height": 1920,
+    "format": "PNG",
+    "alpha": "transparencia real"
+  },
+  "cell": {
+    "width": 64,
+    "height": 128
+  },
+  "columns": 4,
+  "rows": 15,
+  "layout": "Cada fila representa una animación y contiene cuatro fotogramas de izquierda a derecha.",
+  "weaponArmorLayering": "Las hojas contienen las poses. La superposición modular de armas y armaduras y el movimiento de combate quedan para una iteración posterior.",
+  "animations": [
+    {
+      "row": 1,
+      "id": "idle",
+      "name": "Idle"
+    },
+    {
+      "row": 2,
+      "id": "walk",
+      "name": "Caminar"
+    },
+    {
+      "row": 3,
+      "id": "hurt",
+      "name": "Recibir daño"
+    },
+    {
+      "row": 4,
+      "id": "use_consumable",
+      "name": "Usar consumible"
+    },
+    {
+      "row": 5,
+      "id": "dodge",
+      "name": "Esquivar"
+    },
+    {
+      "row": 6,
+      "id": "block_shield",
+      "name": "Bloquear con escudo"
+    },
+    {
+      "row": 7,
+      "id": "attack_sword",
+      "name": "Ataque con espada"
+    },
+    {
+      "row": 8,
+      "id": "attack_axe",
+      "name": "Ataque con hacha"
+    },
+    {
+      "row": 9,
+      "id": "attack_spear",
+      "name": "Ataque con lanza"
+    },
+    {
+      "row": 10,
+      "id": "attack_dagger",
+      "name": "Ataque con daga"
+    },
+    {
+      "row": 11,
+      "id": "attack_bow",
+      "name": "Ataque con arco"
+    },
+    {
+      "row": 12,
+      "id": "attack_staff",
+      "name": "Ataque con bastón"
+    },
+    {
+      "row": 13,
+      "id": "attack_mace",
+      "name": "Ataque con maza"
+    },
+    {
+      "row": 14,
+      "id": "attack_book",
+      "name": "Ataque con libro"
+    },
+    {
+      "row": 15,
+      "id": "attack_gloves",
+      "name": "Ataque con guantes"
+    }
+  ],
+  "classes": [
+    "novato",
+    "espadachin",
+    "acolito",
+    "arquero",
+    "mago",
+    "caballero",
+    "duelista",
+    "sacerdote",
+    "monje",
+    "cazador",
+    "explorador",
+    "elementalista",
+    "brujo",
+    "cruzado",
+    "pirata",
+    "druida",
+    "espadachin_runico",
+    "paladin",
+    "guardian_real",
+    "asesino",
+    "maestro_espadas",
+    "oraculo",
+    "hierofante",
+    "asceta",
+    "gran_maestro",
+    "francotirador",
+    "domabestias",
+    "guardian_bosque",
+    "rastreador",
+    "archimago",
+    "invocador",
+    "nigromante",
+    "demonologo",
+    "guerrero",
+    "comerciante"
+  ],
+  "sexes": {
+    "m": "masculino",
+    "f": "femenino"
+  }
+}
