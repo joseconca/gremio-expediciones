@@ -96,11 +96,24 @@ Los archivos de trabajo deben conservar las cuatro celdas a tamaño nativo; los 
 
 ## Estado actual
 
-**Completado en esta fase:** Idle masculino y femenino del Espadachín están versionados en commits independientes bajo `assets/spritesheets/originales/espadachin/idle/`. Cada recurso tiene 256 × 128 px (4 × 64 × 128), transparencia real y cuatro fotogramas distintos; no se han dibujado armas dentro del cuerpo. Estos recursos todavía no sustituyen las hojas activas. La siguiente entrega es **Caminar masculino y femenino**, seguida de las acciones restantes en el orden de la tabla.
+**Estado de Idle: requiere reparación y nueva validación.** La ruta `assets/spritesheets/originales/espadachin/idle/espadachin-m-idle.png` no se pudo abrir con Pillow en GitHub Actions (PNG no identificable). Por tanto, aunque hay commits anteriores para Idle, no se debe considerar validada ni usar esa copia como fuente fiable hasta restaurarla desde un PNG original íntegro y comparar el hash. Los recursos de Idle siguen separados del atlas de runtime.
 
 
 ## Registro de progreso — Caminar del Espadachín (2026-10-20)
 
 Se prepararon tiras masculinas y femeninas de cuatro fotogramas cada una en un paquete de revisión local. Ambas tienen dimensiones 256 × 128, celdas 64 × 128, alfa binario transparente y frames distintos. Las armas permanecen fuera del cuerpo para el futuro sistema de capas.
 
-**Estado de publicación: completado para arte fuente.** Las tiras finales masculina y femenina (256 × 128, cuatro celdas de 64 × 128) y sus cuatro fotogramas RGBA por sexo están versionados en `assets/spritesheets/originales/espadachin/walk/`, en commits independientes por sexo: [masculino](https://github.com/joseconca/gremio-expediciones/commit/1deeee4b3fbe7b2742b4a27a5b0f06efed284e6a) y [femenino](https://github.com/joseconca/gremio-expediciones/commit/ca8cadf977689de63e0b1f4cc2b7467b67f3c822). Los blobs se reutilizaron directamente desde el paquete guardado en `docs/espadachin-caminar-entrega/`, evitando la transferencia binaria truncada. Se registran los SHA-256 originales y la verificación técnica en `assets/spritesheets/originales/espadachin/walk/README.md`. Los recursos siguen separados de las hojas activas del juego. Siguiente entrega: **Recibir daño masculino**, un commit independiente con su tira de 4 fotogramas y fuentes; después, revisar antes de continuar con la femenina.
+**Estado de publicación: completado para arte fuente.** Las tiras finales masculina y femenina (256 × 128, cuatro celdas de 64 × 128) y sus cuatro fotogramas RGBA por sexo están versionados en `assets/spritesheets/originales/espadachin/walk/`, en commits independientes por sexo: [masculino](https://github.com/joseconca/gremio-expediciones/commit/1deeee4b3fbe7b2742b4a27a5b0f06efed284e6a) y [femenino](https://github.com/joseconca/gremio-expediciones/commit/ca8cadf977689de63e0b1f4cc2b7467b67f3c822). Los blobs se reutilizaron directamente desde el paquete guardado en `docs/espadachin-caminar-entrega/`, evitando la transferencia binaria truncada. Se registran los SHA-256 originales y la verificación técnica en `assets/spritesheets/originales/espadachin/walk/README.md`. Los recursos siguen separados de las hojas activas del juego. Caminar queda cerrado técnicamente; la siguiente entrega de esta acción sería solo si la revisión visual encuentra defectos.
+
+## Registro de progreso — Recibir daño masculino (2026-10-20)
+
+**Versionado en main:** [commit de arte generado](https://github.com/joseconca/gremio-expediciones/commit/0b1b36d92c553df42ef905a60a38c7d816127c16). El workflow específico [Generar Recibir daño del Espadachín masculino](https://github.com/joseconca/gremio-expediciones/actions/runs/39487597540) terminó correctamente y validó el recurso generado.
+
+- Ruta: `assets/spritesheets/originales/espadachin/hurt/espadachin-m-hurt.png`.
+- Tira 256 × 128; cuatro celdas RGBA de 64 × 128, transparencia real, cuatro fotogramas distintos y línea de pies alineada.
+- Incluye las cuatro fuentes separadas, preview y `qa-report.json`.
+- Las armas siguen fuera del cuerpo; no se toca el atlas de producción.
+
+**Nota de procedencia:** el PNG de Idle en la ruta original no fue válido al abrirlo en CI, así que esta primera animación de daño se ha generado de forma reproducible desde el primer fotograma de Caminar masculino, cuya tira sí está verificada. Es una primera pasada funcional de la reacción; no se considera una integración definitiva ni sustituye las hojas activas.
+
+Siguiente entrega: **Recibir daño femenino**, usando su recurso de Caminar validado y manteniendo un commit independiente. Después habrá que reparar/verificar ambos PNG maestros de Idle antes de ensamblar el atlas final.
