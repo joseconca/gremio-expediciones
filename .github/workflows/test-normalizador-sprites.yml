@@ -1,0 +1,30 @@
+name: Test normalizador de sprites
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/normalizar-tira-sprites.py"
+      - "scripts/test-normalizar-tira-sprites.py"
+      - ".github/workflows/test-normalizador-sprites.yml"
+  pull_request:
+    paths:
+      - "scripts/normalizar-tira-sprites.py"
+      - "scripts/test-normalizar-tira-sprites.py"
+      - ".github/workflows/test-normalizador-sprites.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar Pillow
+        run: python -m pip install --disable-pip-version-check pillow
+      - name: Ejecutar smoke test
+        run: python scripts/test-normalizar-tira-sprites.py
