@@ -6,10 +6,14 @@ on:
       - main
     paths:
       - "scripts/generar-spritesheets-clases.py"
-      - ".github/workflows/generar-spritesheets-clases.yml"
 
 permissions:
   contents: write
+
+# El generador escribe los PNG en main: impedir dos ejecuciones simultáneas.
+concurrency:
+  group: spritesheets-personajes-main
+  cancel-in-progress: false
 
 jobs:
   generar:
@@ -49,7 +53,7 @@ jobs:
           print(f"OK: {len(files)} hojas de Novato/Tier 1, 256×1920, alfa real")
           PY
 
-      - name: Guardar las hojas de Tier 1
+      - name: Guardar las hojas de Novato y Tier 1
         run: |
           if [ -z "$(git status --porcelain -- public/sprites/heroes/novato/ public/sprites/heroes/espadachin/ public/sprites/heroes/acolito/ public/sprites/heroes/arquero/ public/sprites/heroes/mago/)" ]; then
             echo "Los spritesheets de Novato y Tier 1 ya están actualizados."
