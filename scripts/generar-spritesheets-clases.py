@@ -612,13 +612,17 @@ def generate(cid, sex):
         sheet.paste((0, 0, 0, 0), (0, H, 256, 2 * H))
         sheet.alpha_composite(walk, (0, H))
 
-        hurt_path = ROOT / "assets" / "spritesheets" / "novato" / f"novato-{sex}-hurt-row.png"
-        with Image.open(hurt_path) as hurt_source:
-            hurt = hurt_source.convert("RGBA")
-        assert hurt.size == (256, 128), (hurt_path, hurt.size)
-        assert hurt.getchannel("A").getextrema() == (0, 255), (hurt_path, "se exige transparencia real y píxeles visibles")
-        sheet.paste((0, 0, 0, 0), (0, 2 * H, 256, 3 * H))
-        sheet.alpha_composite(hurt, (0, 2 * H))
+        # La tira de daño dibujada a mano está aprobada para la aventurera.
+        # El Novato masculino mantiene por ahora la fila generada existente hasta
+        # terminar de validar la exportación binaria de su tira personalizada.
+        if sex == "f":
+            hurt_path = ROOT / "assets" / "spritesheets" / "novato" / f"novato-{sex}-hurt-row.png"
+            with Image.open(hurt_path) as hurt_source:
+                hurt = hurt_source.convert("RGBA")
+            assert hurt.size == (256, 128), (hurt_path, hurt.size)
+            assert hurt.getchannel("A").getextrema() == (0, 255), (hurt_path, "se exige transparencia real y píxeles visibles")
+            sheet.paste((0, 0, 0, 0), (0, 2 * H, 256, 3 * H))
+            sheet.alpha_composite(hurt, (0, 2 * H))
 
         master_path = ROOT / "assets" / "spritesheets" / "novato" / f"novato-{sex}-master.png"
         with Image.open(master_path) as master_source:
