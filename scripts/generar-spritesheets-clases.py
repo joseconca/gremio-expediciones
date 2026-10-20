@@ -963,6 +963,59 @@ def pintar_equipo_arquero(source, shift_x=0, shift_y=0):
         rect(d, (x+sx,y+sy,x+sx+1,y+sy+1), "#d5a260")
     return im
 
+def pintar_equipo_mago(source, shift_x=0, shift_y=0):
+    """Túnica y sombrero de arcanista; báculo, libro y hechizos siguen en capas independientes."""
+    im = source.convert("RGBA").copy()
+    px = im.load()
+    # Manto índigo profundo con luces azul hielo, dejando separado el pañuelo carmesí.
+    for y in range(50, 88):
+        for x in range(2, 31):
+            r, g, b, a = px[x, y]
+            if a and r > 65 and r > g * 1.22 and r > b * 1.12:
+                lum = (r + g + b) / 3
+                px[x, y] = (
+                    (21, 28, 60, a) if lum < 80 else
+                    (34, 46, 96, a) if lum < 120 else
+                    (52, 74, 133, a) if lum < 160 else
+                    (130, 157, 214, a)
+                )
+    d = ImageDraw.Draw(im)
+    sx, sy = shift_x, shift_y
+    # Sombrero puntiagudo de tela azul, ribete plateado y gema frontal.
+    poly(d, [(20+sx,25+sy),(25+sx,19+sy),(29+sx,10+sy),(33+sx,4+sy),(37+sx,11+sy),(42+sx,18+sy),(47+sx,25+sy),(20+sx,27+sy)], "#171f43", INK, 1)
+    poly(d, [(26+sx,21+sy),(30+sx,12+sy),(33+sx,6+sy),(36+sx,13+sy),(41+sx,20+sy),(44+sx,24+sy)], "#344a85", INK, 1)
+    line(d, [(30+sx,13+sy),(33+sx,7+sy),(36+sx,14+sy)], "#91aeea", 1)
+    line(d, [(21+sx,25+sy),(46+sx,25+sy)], "#b9c9ef", 2)
+    line(d, [(24+sx,23+sy),(30+sx,22+sy),(36+sx,23+sy),(43+sx,23+sy)], "#dce8ff", 1)
+    poly(d, [(36+sx,22+sy),(38+sx,20+sy),(40+sx,22+sy),(38+sx,25+sy)], "#68c9f0", INK, 1)
+    rect(d, (38+sx,21+sy,38+sx,22+sy), "#ffffff")
+    # Cuello alto y hombreras de manto acolchado.
+    poly(d, [(27+sx,42+sy),(32+sx,40+sy),(37+sx,42+sy),(39+sx,47+sy),(35+sx,50+sy),(28+sx,48+sy),(25+sx,45+sy)], "#242d58", INK, 1)
+    line(d, [(28+sx,43+sy),(32+sx,42+sy),(36+sx,44+sy)], "#b9c9ef", 1)
+    poly(d, [(19+sx,45+sy),(23+sx,42+sy),(28+sx,44+sy),(29+sx,49+sy),(25+sx,52+sy),(20+sx,49+sy)], "#344a85", INK, 1)
+    poly(d, [(37+sx,44+sy),(42+sx,44+sy),(45+sx,48+sy),(42+sx,52+sy),(38+sx,50+sy)], "#28365f", INK, 1)
+    line(d, [(21+sx,46+sy),(24+sx,44+sy),(27+sx,46+sy)], "#b9c9ef", 1)
+    line(d, [(39+sx,46+sy),(42+sx,46+sy),(43+sx,48+sy)], "#b9c9ef", 1)
+    # Túnica larga, panel central índigo y ribetes plateados que siguen el tejido.
+    poly(d, [(23+sx,48+sy),(29+sx,45+sy),(37+sx,47+sy),(41+sx,56+sy),(40+sx,78+sy),(43+sx,91+sy),(38+sx,98+sy),(27+sx,98+sy),(22+sx,91+sy),(25+sx,77+sy),(22+sx,60+sy)], "#1b2349", INK, 1)
+    poly(d, [(26+sx,49+sy),(30+sx,47+sy),(36+sx,49+sy),(38+sx,58+sy),(36+sx,86+sy),(33+sx,94+sy),(29+sx,93+sy),(27+sx,78+sy)], "#344a85", INK, 1)
+    line(d, [(25+sx,53+sy),(27+sx,70+sy),(26+sx,85+sy),(29+sx,94+sy)], "#91aeea", 2)
+    line(d, [(37+sx,52+sy),(39+sx,69+sy),(38+sx,85+sy),(41+sx,92+sy)], "#d6e8ff", 1)
+    line(d, [(28+sx,96+sy),(38+sx,96+sy)], "#b9c9ef", 2)
+    # Cierre diagonal arcano y cristal de pecho; no se incorpora ningún foco sostenido en la mano.
+    line(d, [(25+sx,47+sy),(30+sx,53+sy),(28+sx,63+sy)], "#5e72ae", 4)
+    line(d, [(25+sx,47+sy),(30+sx,53+sy),(28+sx,63+sy)], "#d6e8ff", 1)
+    poly(d, [(31+sx,51+sy),(34+sx,48+sy),(37+sx,51+sy),(35+sx,56+sy),(32+sx,56+sy)], "#4bd4f5", INK, 1)
+    poly(d, [(33+sx,50+sy),(35+sx,52+sy),(33+sx,54+sy),(32+sx,52+sy)], "#f1fcff", INK, 1)
+    # Cinturón de tela y pequeños glifos bordados en el dobladillo.
+    line(d, [(24+sx,68+sy),(40+sx,68+sy)], "#2a2141", 4)
+    line(d, [(25+sx,67+sy),(40+sx,67+sy)], "#9aaedb", 1)
+    rect(d, (32+sx,65+sy,36+sx,70+sy), "#475b91", INK, 1)
+    poly(d, [(33+sx,66+sy),(35+sx,65+sy),(36+sx,67+sy),(34+sx,69+sy)], "#75d5f5", INK, 1)
+    for x, y in ((26,78),(37,80),(28,85),(36,88),(31,91),(39,93)):
+        poly(d, [(x+sx,y+sy),(x+sx+1,y+sy-2),(x+sx+2,y+sy),(x+sx+1,y+sy+1)], "#bcdfff", INK, 1)
+    return im
+
 def construir_filas_modulares_tier1(cid, sex, painter, impact_color):
     """Deriva maestro, Idle, Caminar y Recibir daño; las armas siguen siendo capas separadas."""
     base_dir = ROOT / "assets" / "spritesheets" / "novato"
@@ -1096,6 +1149,11 @@ def generate(cid, sex):
             sheet.alpha_composite(row_source, (0, row * H))
     elif cid == "arquero":
         idle, walk, hurt = construir_filas_modulares_tier1(cid, sex, pintar_equipo_arquero, "#c8e68b")
+        for row, row_source in ((0, idle), (1, walk), (2, hurt)):
+            sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
+            sheet.alpha_composite(row_source, (0, row * H))
+    elif cid == "mago":
+        idle, walk, hurt = construir_filas_modulares_tier1(cid, sex, pintar_equipo_mago, "#67dff8")
         for row, row_source in ((0, idle), (1, walk), (2, hurt)):
             sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
             sheet.alpha_composite(row_source, (0, row * H))
