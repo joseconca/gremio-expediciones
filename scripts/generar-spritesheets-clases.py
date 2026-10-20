@@ -839,6 +839,112 @@ def construir_fuentes_espadachin(sex):
     hurt.save(out_dir / f"espadachin-{sex}-hurt-row.png", optimize=True)
     return idle, walk, hurt
 
+def pintar_equipo_acolito(source, shift_x=0, shift_y=0):
+    """Vestiduras litúrgicas modulares sobre el maestro, sin báculo ni arma incorporados."""
+    im = source.convert("RGBA").copy()
+    px = im.load()
+    # La capa se convierte en un manto de lino y ocre; se conserva el pañuelo rojo de la familia.
+    for y in range(50, 88):
+        for x in range(2, 31):
+            r, g, b, a = px[x, y]
+            if a and r > 65 and r > g * 1.22 and r > b * 1.12:
+                lum = (r + g + b) / 3
+                px[x, y] = (
+                    (73, 54, 38, a) if lum < 80 else
+                    (130, 96, 57, a) if lum < 120 else
+                    (176, 139, 79, a) if lum < 160 else
+                    (225, 198, 139, a)
+                )
+    d = ImageDraw.Draw(im)
+    sx, sy = shift_x, shift_y
+    # Ribete del manto visible a la espalda y bordado en el borde irregular.
+    line(d, [(13+sx,57+sy),(12+sx,69+sy),(15+sx,82+sy),(20+sx,87+sy)], "#9e763e", 3)
+    line(d, [(14+sx,58+sy),(13+sx,70+sy),(16+sx,81+sy)], "#f4dfa3", 1)
+    for x, y in ((14,67),(15,73),(17,79),(19,84)):
+        poly(d, [(x+sx,y+sy),(x+sx+2,y+sy-2),(x+sx+3,y+sy),(x+sx+1,y+sy+2)], "#e6cd8d", INK, 1)
+    # Hombros en capas de lino; los remates de oro siguen el contorno de la prenda.
+    poly(d, [(18+sx,45+sy),(22+sx,42+sy),(27+sx,43+sy),(29+sx,47+sy),(26+sx,51+sy),(21+sx,51+sy),(18+sx,48+sy)], "#b99a5c", INK, 1)
+    poly(d, [(19+sx,45+sy),(23+sx,43+sy),(26+sx,44+sy),(27+sx,47+sy),(23+sx,49+sy),(20+sx,48+sy)], "#f1dfac", INK, 1)
+    line(d, [(20+sx,45+sy),(23+sx,44+sy),(26+sx,45+sy)], "#fff5d8", 1)
+    poly(d, [(36+sx,44+sy),(41+sx,44+sy),(44+sx,48+sy),(42+sx,52+sy),(38+sx,52+sy),(35+sx,49+sy)], "#b99a5c", INK, 1)
+    poly(d, [(37+sx,45+sy),(41+sx,45+sy),(42+sx,48+sy),(40+sx,50+sy),(37+sx,49+sy)], "#f1dfac", INK, 1)
+    line(d, [(37+sx,45+sy),(40+sx,46+sy),(41+sx,48+sy)], "#fff5d8", 1)
+    # Capucha dibujada alrededor de la cabeza, dejando la cara y los rasgos legibles.
+    line(d, [(25+sx,29+sy),(24+sx,23+sy),(28+sx,16+sy),(34+sx,13+sy),(40+sx,15+sy),(44+sx,22+sy),(44+sx,29+sy)], "#62472f", 5)
+    line(d, [(25+sx,26+sy),(27+sx,20+sy),(32+sx,16+sy),(38+sx,16+sy),(42+sx,21+sy)], "#e4c780", 2)
+    line(d, [(26+sx,28+sy),(28+sx,32+sy)], "#fff1c4", 1)
+    line(d, [(42+sx,27+sy),(41+sx,32+sy)], "#fff1c4", 1)
+    # Túnica larga, panel frontal de marfil y bordes de hilo dorado.
+    poly(d, [(25+sx,49+sy),(31+sx,47+sy),(37+sx,49+sy),(40+sx,61+sy),(39+sx,79+sy),(36+sx,91+sy),(30+sx,93+sy),(26+sx,86+sy),(24+sx,68+sy)], "#a98a50", INK, 1)
+    poly(d, [(26+sx,49+sy),(31+sx,48+sy),(36+sx,50+sy),(38+sx,62+sy),(36+sx,83+sy),(33+sx,89+sy),(29+sx,86+sy),(27+sx,69+sy)], "#f1e4bf", INK, 1)
+    line(d, [(27+sx,52+sy),(28+sx,68+sy),(30+sx,83+sy)], "#c0a064", 1)
+    line(d, [(36+sx,53+sy),(37+sx,67+sy),(35+sx,84+sy)], "#fff7de", 1)
+    line(d, [(27+sx,87+sy),(33+sx,90+sy),(37+sx,87+sy)], "#dfc17c", 2)
+    # Estola bordada y cruz cosida al pecho; son ornamentos de tela, no objetos en mano.
+    line(d, [(27+sx,46+sy),(30+sx,51+sy),(29+sx,64+sy)], "#9e763e", 3)
+    line(d, [(27+sx,46+sy),(30+sx,51+sy),(29+sx,64+sy)], "#f9e6a8", 1)
+    rect(d, (31+sx,52+sy,33+sx,59+sy), "#9b7136", INK, 1)
+    rect(d, (28+sx,54+sy,36+sx,56+sy), "#c39d55", INK, 1)
+    rect(d, (32+sx,53+sy,32+sx,58+sy), "#fff5d8", None, 1)
+    # Cinturón de cordón claro y broche sencillo.
+    line(d, [(23+sx,67+sy),(41+sx,67+sy)], "#65432c", 4)
+    line(d, [(24+sx,66+sy),(41+sx,66+sy)], "#dfc17c", 1)
+    rect(d, (32+sx,64+sy,36+sx,69+sy), "#94703b", INK, 1)
+    rect(d, (33+sx,65+sy,35+sx,68+sy), "#fff0bf", INK, 1)
+    # Detalles pequeños de puntada en la tela y en el dobladillo.
+    for x, y in ((28,72),(35,75),(29,80),(34,84),(31,87)):
+        rect(d, (x+sx,y+sy,x+sx+1,y+sy+1), "#c0a064")
+    return im
+
+def construir_filas_modulares_tier1(cid, sex, painter, impact_color):
+    """Deriva maestro, Idle, Caminar y Recibir daño; las armas siguen siendo capas separadas."""
+    base_dir = ROOT / "assets" / "spritesheets" / "novato"
+    out_dir = ROOT / "assets" / "spritesheets" / "tier1"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    master_path = base_dir / f"novato-{sex}-master.png"
+    with Image.open(master_path) as source:
+        master = source.convert("RGBA")
+    assert master.size == (W, H), (master_path, master.size)
+    class_master = painter(master)
+    class_master.save(out_dir / f"{cid}-{sex}-master.png", optimize=True)
+    idle = Image.new("RGBA", (W * COLS, H), (0, 0, 0, 0))
+    for i, (dx, dy) in enumerate(((0, 0), (0, -1), (1, -1), (-1, 0))):
+        pose = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        pose.alpha_composite(class_master, (dx, dy))
+        idle.alpha_composite(pose, (i * W, 0))
+    idle.save(out_dir / f"{cid}-{sex}-idle-row.png", optimize=True)
+    walk_path = base_dir / f"novato-{sex}-walk-row.png"
+    with Image.open(walk_path) as source:
+        walk_source = source.convert("RGBA")
+    assert walk_source.size == (W * COLS, H), (walk_path, walk_source.size)
+    walk = Image.new("RGBA", (W * COLS, H), (0, 0, 0, 0))
+    for i, (dx, dy) in enumerate(((0, 0), (-1, 1), (1, 0), (0, -1))):
+        frame = walk_source.crop((i * W, 0, (i + 1) * W, H))
+        frame = limpiar_fragmentos_borde(frame)
+        walk.alpha_composite(painter(frame, dx, dy), (i * W, 0))
+    walk.save(out_dir / f"{cid}-{sex}-walk-row.png", optimize=True)
+    hurt = Image.new("RGBA", (W * COLS, H), (0, 0, 0, 0))
+    for i in range(COLS):
+        frame = class_master.copy()
+        if i == 1:
+            frame = frame.rotate(7.0, resample=Image.Resampling.NEAREST,
+                                 center=(32, 112), expand=False)
+            d = ImageDraw.Draw(frame)
+            d.line([(35, 51), (39, 53), (37, 56)], fill=impact_color, width=2)
+            d.line([(40, 49), (40, 52)], fill=impact_color, width=2)
+            d.line([(43, 51), (40, 53)], fill=impact_color, width=1)
+        elif i == 2:
+            compressed = frame.resize((W, H - 12), Image.Resampling.NEAREST)
+            frame = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            frame.alpha_composite(compressed, (0, 12))
+            ImageDraw.Draw(frame).point((39, 55), fill=impact_color)
+        elif i == 3:
+            frame = frame.rotate(-3.5, resample=Image.Resampling.NEAREST,
+                                 center=(32, 112), expand=False)
+        hurt.alpha_composite(frame, (i * W, 0))
+    hurt.save(out_dir / f"{cid}-{sex}-hurt-row.png", optimize=True)
+    return idle, walk, hurt
+
 def generate(cid, sex):
     sheet=Image.new("RGBA",(256,1920),(0,0,0,0))
     for row in range(ROWS):
@@ -913,6 +1019,11 @@ def generate(cid, sex):
     # Las armas quedan fuera de estos PNG; se añaden en la capa de equipo/acción correspondiente.
     if cid == "espadachin":
         idle, walk, hurt = construir_fuentes_espadachin(sex)
+        for row, row_source in ((0, idle), (1, walk), (2, hurt)):
+            sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
+            sheet.alpha_composite(row_source, (0, row * H))
+    elif cid == "acolito":
+        idle, walk, hurt = construir_filas_modulares_tier1(cid, sex, pintar_equipo_acolito, "#fff0bf")
         for row, row_source in ((0, idle), (1, walk), (2, hurt)):
             sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
             sheet.alpha_composite(row_source, (0, row * H))
