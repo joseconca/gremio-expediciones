@@ -76,6 +76,28 @@ jobs:
                   assert all(frame.getchannel("A").getbbox() for frame in frames), f"{path}: celda vacía"
                   if path.stem.endswith("-hurt-row"):
                       assert len({frame.tobytes() for frame in frames}) == 4, f"{path}: fotogramas de daño repetidos"
+                  if path.stem.endswith("-walk-row"):
+                      for index, frame in enumerate(frames):
+                          alpha = frame.getchannel("A")
+                          seen = set()
+                          for y in range(frame.height):
+                              for x in range(frame.width):
+                                  if alpha.getpixel((x, y)) == 0 or (x, y) in seen:
+                                      continue
+                                  stack = [(x, y)]
+                                  seen.add((x, y))
+                                  component = []
+                                  while stack:
+                                      cx, cy = stack.pop()
+                                      component.append((cx, cy))
+                                      for ny in range(max(0, cy - 1), min(frame.height, cy + 2)):
+                                          for nx in range(max(0, cx - 1), min(frame.width, cx + 2)):
+                                              if alpha.getpixel((nx, ny)) and (nx, ny) not in seen:
+                                                  seen.add((nx, ny))
+                                                  stack.append((nx, ny))
+                                  assert not (len(component) <= 48 and max(cx for cx, _ in component) >= frame.width - 4), (
+                                      f"{path}: fragmento vecino aislado en fotograma {index}"
+                                  )
           print(f"OK: {len(files)} hojas completas; Espadachín modular con fuentes 64×128 y tiras 4×64×128")
           PY
 
