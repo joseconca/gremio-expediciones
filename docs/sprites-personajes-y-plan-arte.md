@@ -96,7 +96,7 @@ Los archivos de trabajo deben conservar las cuatro celdas a tamaño nativo; los 
 
 ## Estado actual
 
-**Estado de Idle: requiere reparación y nueva validación.** La ruta `assets/spritesheets/originales/espadachin/idle/espadachin-m-idle.png` no se pudo abrir con Pillow en GitHub Actions (PNG no identificable). Por tanto, aunque hay commits anteriores para Idle, no se debe considerar validada ni usar esa copia como fuente fiable hasta restaurarla desde un PNG original íntegro y comparar el hash. Los recursos de Idle siguen separados del atlas de runtime.
+**Incidencia de Idle corregida.** El commit [80afc16](https://github.com/joseconca/gremio-expediciones/commit/80afc16ac5db88d7953e43ddc64743b0be6ffb91) había copiado filas legacy de Tier 1 a la carpeta de arte original. Las rutas se reemplazaron desde el concepto original de clase, y el workflow de regeneración y QA [terminó en verde](https://github.com/joseconca/gremio-expediciones/actions/runs/39499541020). Las filas legacy de `assets/spritesheets/tier1/` no son fuente aprobada.
 
 
 ## Registro de progreso — Caminar del Espadachín (2026-10-20)
@@ -166,7 +166,47 @@ Cada tira es 256 × 128, con celdas 64 × 128, alfa real, cuatro fuentes individ
 
 ## Auditoría visual de los seis estados
 
-- **Novato:** las seis tiras separadas existen y pasan QA técnico. La revisión visual de las previews detectó un píxel suelto en Caminar femenino y confirma que Idle tiene tres poses, con el cuarto fotograma como retorno al primero. Se limpiará el píxel suelto antes de integrar el conjunto.
+- **Novato:** las seis tiras separadas existen como archivo de referencia y pasan comprobaciones técnicas básicas, pero **no están aprobadas artísticamente para la integración final**. La revisión detectó diferencias de escala/estilo entre Idle, Caminar y Recibir daño, justo el problema indicado por el usuario. No se debe tratar un QA de dimensiones como aprobación de arte.
 - **Espadachín:** Idle masculino/femenino se reemplazaron desde el concepto original; Caminar proviene del mismo concepto de clase; Recibir daño existe para ambos sexos pero sigue siendo un prototipo por deformación de fotogramas y requiere dibujar poses de impacto más naturales.
 - Las filas antiguas de `assets/spritesheets/tier1/` son **legacy/no aprobadas como fuente de arte**. Permanecen por ahora para no alterar runtime a medias.
-- **Siguiente tarea:** refinar Recibir daño del Espadachín y limpiar el píxel suelto de Caminar femenino de Novato; volver a ejecutar QA visual y técnico. Después se podrá considerar cerrado este bloque y pasar a Mago.
+- **Siguiente tarea:** sustituir las tres acciones de Novato por una fuente de animación limpia, empezando por Novata femenina Idle para fijar el tamaño maestro. Después generar Caminar y Recibir daño con la misma escala, repetir para Novato masculino y usar el método en las acciones pendientes de Espadachín. Mago queda para después de aprobar los seis estados de Novato y los seis de Espadachín.
+
+
+## Nuevo método de producción: tira PNG de alta resolución → frames → 64×128
+
+Tras revisar `novato-f-sheet.png`, se confirma que las filas de Idle, Caminar y Recibir daño no deben aprobarse solo porque tengan las dimensiones correctas: el personaje cambia de escala/lectura entre acciones. Los seis archivos previos de Novato quedan etiquetados como **referencia temporal** hasta sustituirlos por este flujo. La hoja activa del juego permanece sin cambios.
+
+### Decisión de formato
+
+La fuente maestra será **PNG, no GIF**. El GIF limita el color a una paleta de 256 entradas y su transparencia no ofrece alfa completo por píxel; para pixel art con bordes y telas detalladas conviene conservar el alfa y los colores en PNG.
+
+### Contrato de la fuente de animación
+
+- Una tira por clase, sexo y acción; 4, 6 u 8 poses distribuidas horizontalmente en celdas de igual anchura.
+- Resolución alta, cámara y escala del personaje coherentes en todos los frames, línea de suelo predecible.
+- Fondo con transparencia real. Rechazar damero pintado, fondos opacos, rótulos, paneles, divisores o números; no recortar una infografía como si fuera arte fuente.
+- Silueta, ropa, pelo y accesorios forman parte del personaje original; las armas siguen fuera del cuerpo y se equipan por capas.
+
+### Normalización automatizada
+
+El script `scripts/normalizar-tira-sprites.py` separa la tira, mide todas las siluetas y aplica **una única escala uniforme a todos los frames de esa acción**, centra las figuras, alinea su línea de suelo, reduce la paleta de forma conjunta para evitar deriva cromática entre fotogramas y exporta:
+
+- tira final de 256 × 128 px para cuatro frames;
+- PNG individuales de 64 × 128 por frame;
+- preview ampliada nearest-neighbor;
+- informe `qa-report.json` con el SHA-256 de la fuente, escala, alfa, bboxes y hashes por frame.
+
+Para conservar la talla entre acciones, primero se fija la escala con el Idle del personaje. Se reutiliza exactamente esa escala en Caminar y Recibir daño mediante `--scale`, en lugar de permitir que cada acción se autoescale por separado. El script exige transparencia real y no acepta automáticamente hojas con fondos que puedan contaminar el personaje.
+
+La validación automatizada pasó en [Test normalizador de sprites](https://github.com/joseconca/gremio-expediciones/actions/runs/39506317417). Los scripts quedan versionados: [normalizador](https://github.com/joseconca/gremio-expediciones/blob/main/scripts/normalizar-tira-sprites.py), [smoke test](https://github.com/joseconca/gremio-expediciones/blob/main/scripts/test-normalizar-tira-sprites.py).
+
+### Nueva secuencia de trabajo
+
+1. **Piloto: Novata femenina — Idle.** Crear una tira de cuatro poses coherentes, normalizarla y revisar a tamaño nativo antes de aprobar la escala maestra.
+2. Novata femenina — Caminar y Recibir daño, con la misma escala de Idle.
+3. Novato masculino — Idle, Caminar y Recibir daño, usando un Idle maestro propio del diseño masculino.
+4. Espadachín — mantener Idle y Caminar originales ya versionados; redibujar Recibir daño con poses propias (no transformaciones automáticas de Caminar) y revisión visual.
+5. Validar el conjunto de 12 tiras por acción y sexo; solo después ensamblar hojas finales o conectar nuevos recursos a runtime.
+6. Continuar con Mago una vez aprobados Novato y Espadachín.
+
+Los commits existentes de las filas de Novato no se borran: sirven como checkpoint y comparación, pero no como arte final aprobado. Cada nueva entrega incluirá fuente PNG, frames normalizados, preview, QA, documentación y commit separado.
