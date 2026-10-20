@@ -118,7 +118,22 @@ jobs:
                                               assert not (len(component) <= 48 and max(cx for cx, _ in component) >= frame.width - 4), (
                                                   f"{path}: fragmento vecino aislado en fotograma {index}"
                                               )
-          print(f"OK: {len(files)} hojas completas; Espadachín modular con fuentes 64×128 y tiras 4×64×128")
+          anchors_path = source_dir / "weapon-anchors.json"
+          assert anchors_path.exists(), "Falta weapon-anchors.json para superponer armas como capas"
+          anchors = __import__("json").loads(anchors_path.read_text(encoding="utf-8"))
+          assert anchors.get("schemaVersion") == 1, "Versión de esquema de anclajes inesperada"
+          assert anchors.get("cellSize") == {"width": 64, "height": 128}, "Tamaño de celda inválido en anclajes"
+          for sex in ("m", "f"):
+              actions = anchors.get("classes", {}).get("espadachin", {}).get(sex, {}).get("actions", {})
+              for action_name in ("sword", "axe", "spear", "dagger", "bow", "staff", "mace", "book", "gloves"):
+                  assert action_name in actions, f"Faltan anclajes para Espadachín/{sex}/{action_name}"
+                  action = actions[action_name]
+                  assert len(action.get("frames", [])) == 4, f"{action_name}: se esperan 4 anclajes"
+                  for frame in action["frames"]:
+                      assert 0 <= frame["x"] < 64 and 0 <= frame["y"] < 128, (
+                          f"Anclaje fuera de celda: Espadachín/{sex}/{action_name}/{frame}"
+                      )
+          print(f"OK: {len(files)} hojas completas; filas modulares y weapon-anchors.json verificados")
           PY
 
       - name: Publicar artefacto de revisión visual de Novato y Espadachín
@@ -132,6 +147,7 @@ jobs:
             public/sprites/heroes/arquero/*-sheet.png
             public/sprites/heroes/mago/*-sheet.png
             assets/spritesheets/tier1/*.png
+            assets/spritesheets/tier1/*.json
           if-no-files-found: error
           retention-days: 7
 
@@ -143,6 +159,6 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/spritesheets/tier1/*.png public/sprites/heroes/novato/*-sheet.png public/sprites/heroes/espadachin/*-sheet.png public/sprites/heroes/acolito/*-sheet.png public/sprites/heroes/arquero/*-sheet.png public/sprites/heroes/mago/*-sheet.png
+          git add assets/spritesheets/tier1/*.png assets/spritesheets/tier1/*.json public/sprites/heroes/novato/*-sheet.png public/sprites/heroes/espadachin/*-sheet.png public/sprites/heroes/acolito/*-sheet.png public/sprites/heroes/arquero/*-sheet.png public/sprites/heroes/mago/*-sheet.png
           git commit -m "Unificar expresiones y acabado de las cinco clases iniciales"
           git push origin HEAD:main
