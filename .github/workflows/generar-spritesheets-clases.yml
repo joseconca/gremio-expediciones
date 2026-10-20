@@ -139,6 +139,12 @@ jobs:
                           assert 0 <= frame["x"] < 64 and 0 <= frame["y"] < 128, (
                               f"Anclaje fuera de celda: {cid}/{sex}/{action_name}/{frame}"
                           )
+                          if action_name == "bow":
+                              secondary = frame.get("secondaryGrip")
+                              assert secondary is not None, f"Falta segundo agarre del arco: {cid}/{sex}/{frame}"
+                              assert 0 <= secondary["x"] < 64 and 0 <= secondary["y"] < 128, (
+                                  f"Segundo anclaje del arco fuera de celda: {cid}/{sex}/{frame}"
+                              )
           print(f"OK: {len(files)} hojas completas; filas modulares y weapon-anchors.json verificados")
           PY
 
