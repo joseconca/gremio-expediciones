@@ -2,6 +2,7 @@
 """Genera spritesheets integrados de Tier 0 y Tier 1. No dibuja armas sueltas."""
 from pathlib import Path
 import argparse
+import json
 from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -1136,7 +1137,22 @@ def construir_acciones_espadachin(sex):
         rect(d, (hx-1,hy+1,hx,hy+2), palettes["skin"])
 
     generated = {}
+    anchor_actions = {}
     for row, (anim, hands, offsets) in actions.items():
+        frame_anchors = []
+        for frame_index in range(COLS):
+            dx, dy = offsets[frame_index]
+            hx, hy = hands[frame_index]
+            frame_anchors.append({
+                "x": int(hx + dx),
+                "y": int(hy + dy),
+                "anchor": "front_hand_grip",
+            })
+        anchor_actions[anim] = {
+            "row": row,
+            "layer": "weapon" if anim in ("sword", "axe", "spear", "dagger", "bow", "staff", "mace", "book", "gloves") else None,
+            "frames": frame_anchors,
+        }
         strip = Image.new("RGBA", (W * COLS, H), (0, 0, 0, 0))
         for frame_index in range(COLS):
             dx, dy = offsets[frame_index]
@@ -1147,6 +1163,24 @@ def construir_acciones_espadachin(sex):
         filename = out_dir / f"espadachin-{sex}-{anim}-row.png"
         strip.save(filename, optimize=True)
         generated[row] = strip
+
+    # Metadatos de anclaje para superponer armas como capas independientes en tiempo de render.
+    metadata_path = out_dir / "weapon-anchors.json"
+    if metadata_path.exists():
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    else:
+        metadata = {
+            "schemaVersion": 1,
+            "coordinateSpace": "cell-local-top-left-origin",
+            "cellSize": {"width": W, "height": H},
+            "classes": {},
+        }
+    class_data = metadata.setdefault("classes", {}).setdefault("espadachin", {})
+    class_data[sex] = {
+        "facing": "right",
+        "actions": anchor_actions,
+    }
+    metadata_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
     return generated
 
 def generate(cid, sex):
