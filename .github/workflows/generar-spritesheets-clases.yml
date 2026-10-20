@@ -33,10 +33,10 @@ jobs:
       - name: Instalar Pillow
         run: python -m pip install --disable-pip-version-check pillow
 
-      - name: Regenerar Novato y las cuatro clases de Tier 1
+      - name: Regenerar las cuatro clases de Tier 1
         run: python scripts/generar-spritesheets-clases.py --phase tier1
 
-      - name: Validar las hojas de Novato
+      - name: Validar las hojas de Tier 1
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -53,7 +53,7 @@ jobs:
           print(f"OK: {len(files)} hojas de Tier 1, 256×1920, alfa real")
           PY
 
-      - name: Guardar los spritesheets de Novato
+      - name: Guardar los spritesheets de Tier 1
         run: |
           if [ -z "$(git status --porcelain -- public/sprites/heroes/espadachin/ public/sprites/heroes/acolito/ public/sprites/heroes/arquero/ public/sprites/heroes/mago/)" ]; then
             echo "Los spritesheets de Tier 1 ya están actualizados."
