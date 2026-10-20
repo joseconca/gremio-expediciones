@@ -763,7 +763,7 @@ def construir_fuentes_espadachin(sex):
     armored_master.save(out_dir / f"espadachin-{sex}-master.png", optimize=True)
 
     # Idle: cuatro variaciones discretas de respiración; el equipo permanece unido al cuerpo.
-    idle_offsets = ((0, 0), (0, -1), (1, -1), (0, 0))
+    idle_offsets = ((0, 0), (0, -1), (1, -1), (-1, 0))
     idle = Image.new("RGBA", (W * COLS, H), (0, 0, 0, 0))
     for i, (dx, dy) in enumerate(idle_offsets):
         pose = armored_master.copy()
