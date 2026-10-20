@@ -129,3 +129,27 @@ Siguiente entrega: **Usar consumible masculino**, y luego la variante femenina. 
 - Las armas permanecen fuera del cuerpo y ninguna de las dos variantes se ha integrado en runtime.
 
 La generación masculina y femenina es reproducible mediante workflows y commits separados. Se completó esta acción como prototipo técnico; el pulido manual de las poses queda pendiente y se revisará antes de crear el atlas definitivo.
+
+
+## Auditoría y corrección de commits de Idle (2026-10-20)
+
+Se verificó que el commit [80afc16](https://github.com/joseconca/gremio-expediciones/commit/80afc16ac5db88d7953e43ddc64743b0be6ffb91) había copiado las filas heredadas `assets/spritesheets/tier1/espadachin-*-idle-row.png` a `assets/spritesheets/originales/espadachin/idle/`. Esas imágenes no eran el arte maestro aprobado y no debían haberse presentado como originales. Las rutas se reemplazaron desde el concepto de clase versionado en `docs/espadachin-caminar-entrega/source/concept_walk.png`.
+
+**Idle corregido y versionado:**
+- Masculino: [commit d8da741](https://github.com/joseconca/gremio-expediciones/commit/d8da74176e219f8312c42f29d64f3565d2f8df21).
+- Femenino: [commit e46a83b](https://github.com/joseconca/gremio-expediciones/commit/e46a83bfdc507b18615264999743c4024da73499).
+- Workflow de generación y QA: [ejecución 39499541020](https://github.com/joseconca/gremio-expediciones/actions/runs/39499541020).
+- Cada tira es 256 × 128 con celdas 64 × 128, alfa real, cuatro frames distintos y pies alineados. La versión femenina se corrigió además para excluir el borde del panel de la fuente.
+
+Las filas heredadas en `assets/spritesheets/tier1/` se mantienen temporalmente por compatibilidad con runtime, pero quedan marcadas como **legacy/no aprobadas**: no usarlas como fuente del arte nuevo. Ninguna de estas correcciones ha cambiado los atlas activos del juego.
+
+## Plan de trabajo actualizado: Novato y Espadachín
+
+Objetivo inmediato: disponer de Idle, Caminar y Recibir daño para ambos sexos de Novato y Espadachín, con una fuente separada por clase/acción, QA reproducible y sin armas dibujadas en el cuerpo.
+
+1. **Novato:** auditar y documentar las filas 0–2 de las hojas actuales (Idle, Caminar y Recibir daño), masculino y femenino; extraer recursos fuente independientes y validar celdas, alfa y frames.
+2. **Espadachín:** Idle se acaba de corregir desde el concepto original. Caminar está extraído del mismo concepto; Recibir daño está versionado, pero se considera un prototipo por transformaciones y necesita refinamiento visual en las poses.
+3. Corregir y guardar cualquier recurso que no supere la revisión; commits pequeños por acción/sexo. Mantener intactas las hojas activas hasta cerrar los seis estados de Novato y los seis de Espadachín.
+4. Solo cuando ambos conjuntos estén aprobados, pasar a **Mago** y repetir el mismo flujo.
+
+No avanzar a Usar consumible ni a las demás filas del atlas antes de cerrar este objetivo prioritario.
