@@ -20,8 +20,8 @@
     0,
     255
   ],
-  "file_size": 10726,
-  "file_sha256": "d9c27626f61a409e7adf26b8eac138f96fc78382624a4226c3728b6586e3d9a9",
+  "file_size": 11285,
+  "file_sha256": "2cfee5d89531c4f6848d43b9f2500ae2fe7f29ee4fa128ea4a11e87bfdddec23",
   "all_frames_distinct": true,
   "feet_baseline_aligned": true,
   "weapons_in_body": false,
@@ -30,46 +30,46 @@
     {
       "index": 1,
       "bbox": [
-        2,
+        3,
         4,
-        62,
+        57,
         124
       ],
-      "rgba_sha256": "59e107167fc73d33e66b569329f4588e5cfd1eb7fac6816af9dace07579ac838",
-      "visible_pixels": 4094
+      "rgba_sha256": "ae2bf9247061487b92e8ec4f2c9a24dd0fc84796bce63bff19b5bada51a8a2f8",
+      "visible_pixels": 3911
     },
     {
       "index": 2,
       "bbox": [
-        2,
+        3,
         4,
-        62,
+        56,
         124
       ],
-      "rgba_sha256": "fb72d4f22b7ef3009ddd9e27f10f78f8ca8c9f24dadf3067302db4024c43e4db",
-      "visible_pixels": 3993
+      "rgba_sha256": "006a5624d53e4e641e60b3893e8e99a3f139c1324e94e1d4b21b895e0b4c23a9",
+      "visible_pixels": 3791
     },
     {
       "index": 3,
       "bbox": [
-        2,
         4,
-        62,
+        4,
+        57,
         124
       ],
-      "rgba_sha256": "aec58ab217115f6d4b11a60b18f9fc0eb6f23eaff502609aa078f637accc82d7",
-      "visible_pixels": 3962
+      "rgba_sha256": "c7743e68b5fd7258915931c85db75ff1abe45b862590dce25b9372a26d430015",
+      "visible_pixels": 3769
     },
     {
       "index": 4,
       "bbox": [
-        2,
+        5,
         4,
-        62,
+        57,
         124
       ],
-      "rgba_sha256": "15925ae9157280813e82d54c1f2302f3e576b29210ce6c5a82c10e0a3fb04e9b",
-      "visible_pixels": 4009
+      "rgba_sha256": "54f58bc850a91b2a7026b229e7c74f80aadb6e44511449e598a7be79e8559158",
+      "visible_pixels": 3810
     }
   ],
   "status": "original class-specific art source; isolated from active runtime atlas"
