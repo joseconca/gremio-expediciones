@@ -97,3 +97,10 @@ Los archivos de trabajo deben conservar las cuatro celdas a tamaño nativo; los 
 ## Estado actual
 
 **Completado en esta fase:** Idle masculino y femenino del Espadachín están versionados en commits independientes bajo `assets/spritesheets/originales/espadachin/idle/`. Cada recurso tiene 256 × 128 px (4 × 64 × 128), transparencia real y cuatro fotogramas distintos; no se han dibujado armas dentro del cuerpo. Estos recursos todavía no sustituyen las hojas activas. La siguiente entrega es **Caminar masculino y femenino**, seguida de las acciones restantes en el orden de la tabla.
+
+
+## Registro de progreso — Caminar del Espadachín (2026-10-20)
+
+Se prepararon tiras masculinas y femeninas de cuatro fotogramas cada una en un paquete de revisión local. Ambas tienen dimensiones 256 × 128, celdas 64 × 128, alfa binario transparente y frames distintos. Las armas permanecen fuera del cuerpo para el futuro sistema de capas.
+
+**Estado de publicación: pendiente.** Durante el intento de transferencia, el SHA del blob de GitHub no coincidió con el SHA del PNG local. Se ha guardado un checkpoint de documentación en `assets/spritesheets/originales/espadachin/walk/README.md` con los SHA-256 locales; no se deben considerar los PNG versionados ni integrados en runtime hasta que se publique y verifique el binario exacto. El siguiente paso es cerrar esa transferencia antes de pasar a Recibir daño.
