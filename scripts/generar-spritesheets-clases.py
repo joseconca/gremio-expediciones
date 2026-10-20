@@ -197,6 +197,11 @@ def pose(row,f,cid=None):
             dx=[0,-3,-4,2][f]
             dy=[0,4,8,1][f]
             crouch=[0,2,8,1][f]
+        # Tier 1 — Mago: retroceso desestabilizado y recuperación de concentración.
+        if cid=="mago":
+            dx=[0,-3,-5,2][f]
+            dy=[0,5,9,1][f]
+            crouch=[0,2,8,1][f]
     if row==3: dy=[0,-1,-2,0][f]
     if row==4: dx=[-3,-4,2,1][f];dy=[2,5,3,0][f];crouch=[2,5,3,0][f]
     if row==5: dx=[0,1,1,0][f];dy=0
@@ -637,12 +642,29 @@ def draw_frame(cid, sex, row, f):
         rect(d,(39+tx,54+dy,40+tx,55+dy),"#f4d17a")
     elif cid=="acolito" and row==2 and f==2:
         rect(d,(32+tx,54+dy,33+tx,55+dy),"#fff0bf")
+    elif cid=="mago" and row==2 and f==1:
+        # Descarga arcana: estrella azul clara con núcleo blanco en el impacto.
+        ix,iy=36+tx,51+dy
+        star=[(ix,iy-6),(ix+2,iy-2),(ix+6,iy),(ix+2,iy+2),
+              (ix,iy+6),(ix-2,iy+2),(ix-6,iy),(ix-2,iy-2)]
+        poly(d,star,"#9cf0ff","#355b91",1)
+        line(d,[(ix-8,iy-4),(ix-5,iy-2)],"#67dff8",2)
+        line(d,[(ix+5,iy+3),(ix+8,iy+5)],"#d5fbff",2)
+        rect(d,(ix-1,iy-1,ix,iy),"#ffffff")
+    elif cid=="mago" and row==2 and f==2:
+        rect(d,(36+tx,53+dy,37+tx,54+dy),"#67dff8")
 
     # Una inclinación de pocos grados transmite el golpe; el pivote queda en los pies.
     # Se aplica a la celda aislada para no mover el punto de apoyo en la batalla.
-    if row==2 and cid in ("novato","espadachin","acolito","arquero"):
-        angle={0:0.0,1:(7.0 if cid=="arquero" else 8.0),
-               2:(2.5 if cid=="arquero" else 3.0),3:(-3.5 if cid=="arquero" else -4.0)}[f]
+    if row==2 and cid in ("novato","espadachin","acolito","arquero","mago"):
+        angles = {
+            "novato": (0.0, 8.0, 3.0, -4.0),
+            "espadachin": (0.0, 8.0, 3.0, -4.0),
+            "acolito": (0.0, 8.0, 3.0, -4.0),
+            "arquero": (0.0, 7.0, 2.5, -3.5),
+            "mago": (0.0, 6.5, 3.0, -3.0),
+        }
+        angle=angles[cid][f]
         if angle:
             im=im.rotate(angle,resample=Image.Resampling.NEAREST,center=(32,112),expand=False)
     return im
