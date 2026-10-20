@@ -10,13 +10,19 @@
 - El cuerpo se mantiene como capa base; equipo y armas se superpondrán mediante capas independientes en iteraciones posteriores.
 - Los avatares/retratos estáticos existentes mantienen la ruta de `obtenerSpriteHeroe`; para animación se usa `obtenerRutaSpritesheetHeroe`.
 
-## Fase actual: Novato y Tier 1
+## Fase actual: refinamiento de Novato y Tier 1
 
-Las primeras cinco clases se redibujan de forma integrada —sin escudos, armas ni objetos mágicos incrustados en las manos— para que las capas de equipo puedan añadirse en otra iteración. Novato lleva ropa sencilla de viaje; Espadachín usa un atuendo de combate con capa azul; Acólito, túnica clara y capucha; Arquero, prendas verdes con carcaj; y Mago, túnica azul y sombrero puntiagudo.
+La primera tanda de cinco clases se ha refinado con una dirección de RPG fantástico medieval: siluetas de perfil mirando a la derecha, contornos oscuros nítidos, luces cálidas, sombras en bloques de píxel y detalles de vestuario integrados en el cuerpo. Se busca evocar la lectura visual de RPG clásicos de fantasía —sin copiar personajes concretos— mediante materiales diferenciados y motivos de clase reconocibles.
 
-El generador reproducible es `scripts/generar-spritesheets-clases.py`. Se ejecuta por fases: `--phase novato` para Novato, `--phase tier1` para Espadachín, Acólito, Arquero y Mago, o `--phase all` para regenerar las cinco clases. El workflow valida los diez PNG de 256×1920 con transparencia alfa real y guarda los cambios gráficos en un commit independiente.
+- **Novato:** túnica corta de viaje, pantalón reforzado, botas con correas, pañuelo granate, bandolera con hebilla y bolsa lateral cosida al cinturón.
+- **Espadachín:** coraza con biseles, placas de hombro, remaches, emblema esmaltado y capa azul ribeteada.
+- **Acólito:** vestiduras claras, estola y cruces bordadas, dobladillo dorado y capucha con ribete.
+- **Arquero:** ropa verde de explorador, jerkin de cuero, arnés cruzado, brazales y carcaj unido a la espalda.
+- **Mago:** túnica índigo, sombrero puntiagudo con gema engastada, brocado, filigrana arcana y runas bordadas en el tejido.
 
-Esta primera entrega define los atuendos y prepara las poses de las nueve filas de ataque para alinear futuros sprites de armas. El movimiento de combate, las capas modulares de arma/armadura y el refinamiento artístico individual de las siguientes clases aún no están integrados.
+Los detalles se dibujan como parte de cada prenda o silueta, en lugar de pegar piezas genéricas encima. Las armas no aparecen sujetas en las manos: las nueve filas de ataque preparan la pose corporal para que las futuras hojas de armas se acoplen como capas independientes. La reproducción temporal en combate y el equipo modular de arma/armadura quedan fuera de esta fase.
+
+El generador reproducible es `scripts/generar-spritesheets-clases.py`: `--phase novato` genera Novato, `--phase tier1` genera Espadachín, Acólito, Arquero y Mago, y `--phase all` genera las cinco clases. El workflow serializa la escritura de PNG, valida dimensiones y transparencia y crea commits de recursos separados por fase.
 
 ## Índice de filas
 
