@@ -1,20 +1,16 @@
 # Espadachín — arte original por acción
 
-Esta carpeta contiene las tiras de trabajo que se van completando antes de montar la hoja final consumida por el juego.
+Carpeta de trabajo para los recursos originales validados por acción y sexo, antes de montar la hoja final que usa el juego.
 
-## Idle masculino
-- Recurso: `espadachin-m-idle.png`
-- Dimensiones: 256 × 128 px.
-- Distribución: 4 fotogramas horizontales de 64 × 128 px.
-- Dirección: tres cuartos hacia la derecha.
-- Armas: ninguna dibujada en el cuerpo; se incorporarán mediante capas equipables en otra fase.
-- Validaciones: dimensiones, transparencia, margen dentro de celda y diferencias entre fotogramas comprobadas con script; revisión visual de la tira ampliada.
-- Estado: primer corte versionado; pendiente de integrar en la hoja final junto al resto de acciones.
+## Idle
+- `espadachin-m-idle.png`: cuatro frames masculinos.
+- `espadachin-f-idle.png`: cuatro frames femeninos.
+- Ambos recursos: 256 × 128 px, cuatro celdas horizontales de 64 × 128 px.
+- Orientación única: tres cuartos hacia la derecha.
+- Diseño original de cuerpo completo. No deriva del Novato ni usa el Novato como plantilla.
+- Armas: no están dibujadas en el cuerpo; se añadirán por capas y anclajes según arma, acción y fotograma.
+- Validación: dimensiones, transparencia real, márgenes de cada celda, pies alineados y diferencias entre fotogramas comprobados con script; las tiras ampliadas se revisaron visualmente.
+- Codificación: PNG indexado con índice transparente (tRNS) para reducir el peso; se carga con alfa real y los píxeles visibles conservan su color.
 
-## Orden de ejecución
-1. Idle masculino (este commit).
-2. Idle femenino (commit independiente).
-3. Caminar masculino y femenino.
-4. Resto de las acciones según `docs/sprites-personajes-y-plan-arte.md`.
-
-No sustituir los spritesheet activos del juego hasta que las 15 filas estén completadas y validadas.
+## Estado y siguientes entregas
+Idle masculino y femenino quedan versionados en commits separados. Son tiras de trabajo, no sustituyen aún los recursos activos del juego. La siguiente entrega es Caminar masculino y femenino, también en commits separados; después se avanza acción por acción según `docs/sprites-personajes-y-plan-arte.md`.

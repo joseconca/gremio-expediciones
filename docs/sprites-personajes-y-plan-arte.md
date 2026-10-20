@@ -10,7 +10,7 @@ Las armas no se dibujan dentro de los sprites del cuerpo. Se representan en capa
 
 ## Contrato técnico de la spritesheet final
 
-- Formato: PNG RGBA con transparencia real; no usar un fondo negro, blanco ni un damero pintado.
+- Formato: PNG con transparencia real; se acepta RGBA o PNG indexado con índice transparente (tRNS). No usar un fondo negro, blanco ni un damero pintado.
 - Lienzo final por personaje/sexo: **256 × 1920 px**.
 - Celda de cada fotograma: **64 × 128 px**.
 - Columnas: **4**, fotogramas de izquierda a derecha.
@@ -96,4 +96,4 @@ Los archivos de trabajo deben conservar las cuatro celdas a tamaño nativo; los 
 
 ## Estado actual
 
-Se ha iniciado el rediseño original del Espadachín. La siguiente entrega es exclusivamente **Idle masculino**, seguida de **Idle femenino**. Los recursos deben permanecer en la carpeta de originales durante esta fase; no se consideran integrados en el juego hasta completar las comprobaciones y el montaje final.
+**Completado en esta fase:** Idle masculino y femenino del Espadachín están versionados en commits independientes bajo `assets/spritesheets/originales/espadachin/idle/`. Cada recurso tiene 256 × 128 px (4 × 64 × 128), transparencia real y cuatro fotogramas distintos; no se han dibujado armas dentro del cuerpo. Estos recursos todavía no sustituyen las hojas activas. La siguiente entrega es **Caminar masculino y femenino**, seguida de las acciones restantes en el orden de la tabla.
