@@ -135,8 +135,7 @@ def recolor_clothing(image, base, accent, shadow, robe):
 def add_class_gear(sheet, profile, cls):
     style, head, mark, base, accent = profile
     robe = style in {"priest","mage","darkmage","seer","archmage","summoner","necromancer","demon","druid"}
-    main, shadow, light = rgba(base), rgba(shade(base,.48)[:3].__str__()) if False else rgba(accent), rgba(accent)
-    # Recompute clean shades from the selected garment color.
+    # Shades are RGBA tuples so their alpha stays consistent with the original pixel art.
     main = rgba(base); dark = shade(base,.48); medium = shade(base,.8)
     accent_rgba = rgba(accent); steel = rgba("#788994"); steel_hi = rgba("#c7d0d5")
     overlay = Image.new("RGBA",sheet.size,(0,0,0,0)); d=ImageDraw.Draw(overlay)
@@ -199,7 +198,7 @@ def add_class_gear(sheet, profile, cls):
                 P([(16,50),(22,47),(27,53),(24,60),(18,61)],steel,OSCURO,2); P([(39,51),(45,49),(50,55),(47,61),(41,61)],steel,OSCURO,2)
                 L([(18,53),(22,51),(24,56)],steel_hi,1); L([(42,54),(46,52),(47,57)],steel_hi,1)
             elif style in ("ranger","scout","sniper","beast","forestguard"):
-                P([(9,47),(15,44),(19,53),(16,65),(11,62)],rgba(shade(base,.65)),OSCURO,1); L([(11,49),(16,60)],accent_rgba,1)
+                P([(9,47),(15,44),(19,53),(16,65),(11,62)],shade(base,.65),OSCURO,1); L([(11,49),(16,60)],accent_rgba,1)
                 for i in range(3): L([(10+i*2,45),(9+i*2,36)],steel_hi,1)
             elif style in ("martial","martialmaster"):
                 for x,y in [(15,65),(17,68),(45,65),(43,68)]: L([(x,y),(x+4,y-3)],light,2)
@@ -220,7 +219,7 @@ def add_class_gear(sheet, profile, cls):
             elif style=="merchant": S("coin",42,79)
             else: S(mark,32,63)
             L([(22,78),(43,78)],dark,3); L([(23,77),(42,77)],accent_rgba,1)
-            d.rectangle((31+ox+dx,76+oy+dy,34+ox+dx,79+oy+dy),fill=rgba(shade(base,.65)),outline=OSCURO,width=1)
+            d.rectangle((31+ox+dx,76+oy+dy,34+ox+dx,79+oy+dy),fill=shade(base,.65),outline=OSCURO,width=1)
             if style=="royalheavy": S("crown",32,59)
             if style in ("druid","forestguard"): S("leaf",21,53); S("leaf",44,55)
             if style=="assassin": L([(25,58),(20,66)],accent_rgba,2); L([(38,58),(44,67)],accent_rgba,2)
