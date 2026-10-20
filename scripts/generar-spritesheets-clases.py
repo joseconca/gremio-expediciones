@@ -540,6 +540,54 @@ def draw_frame(cid, sex, row, f):
             poly(d,[(x+tx,y+dy),(x+tx+2,y+dy-2),(x+tx+3,y+dy),(x+tx+1,y+dy+2)],"#a8d9ff",INK,1)
             rect(d,(x+tx+1,y+dy-1,x+tx+2,y+dy), "#f4eeff")
 
+    # Acabado pictórico final: pliegues, material y reflejos contenidos dentro de la silueta.
+    # Novato: tela gastada, costuras visibles y pequeños reflejos en cuero usado.
+    if fam=="novice":
+        line(d,[(25+tx,52+dy),(27+tx,57+dy),(26+tx,62+crouch)],shirt[1],1)
+        line(d,[(36+tx,54+dy),(35+tx,59+dy)],shirt[2],1)
+        line(d,[(27+tx,72+crouch),(27+tx,76+crouch)],shirt[2],1)
+        line(d,[(34+tx,71+crouch),(35+tx,75+crouch)],shirt[1],1)
+        for x,y in ((21,73),(24,75),(37,73)):
+            rect(d,(x+tx,y+crouch,x+tx+1,y+crouch+1),leather[2])
+        line(d,[(23+tx,86+crouch),(27+tx,87+crouch)],leather[2],1)
+    elif fam=="fighter":
+        # Acero biselado: luz fría en las placas y sombras profundas bajo cada solape.
+        line(d,[(23+tx,46+dy),(27+tx,44+dy),(30+tx,45+dy)],metal[2],1)
+        line(d,[(37+tx,46+dy),(41+tx,48+dy),(42+tx,51+dy)],metal[2],1)
+        line(d,[(23+tx,59+crouch),(27+tx,61+crouch),(31+tx,60+crouch)],metal[1],1)
+        line(d,[(36+tx,61+crouch),(39+tx,59+crouch)],metal[0],1)
+        for x,y in ((24,48),(39,51),(27,62),(37,62)):
+            rect(d,(x+tx,y+dy,x+tx+1,y+dy+1),metal[2])
+        line(d,[(24+tx,73+crouch),(27+tx,75+crouch),(31+tx,75+crouch)],leather[2],1)
+    elif fam=="cleric":
+        # Pliegues verticales de seda y bordado de hilo dorado en las vestiduras.
+        line(d,[(22+tx,71+crouch),(23+tx,84+crouch),(21+tx,94+crouch)],shirt[0],1)
+        line(d,[(35+tx,72+crouch),(34+tx,85+crouch),(37+tx,96+crouch)],shirt[2],1)
+        line(d,[(26+tx,77+crouch),(27+tx,90+crouch)],"#9f7a40",1)
+        line(d,[(30+tx,79+crouch),(29+tx,91+crouch)],"#fff0bf",1)
+        for x,y in ((22,85),(25,92),(37,87),(33,96)):
+            rect(d,(x+tx,y+crouch,x+tx+1,y+crouch+1),"#f5df9b")
+    elif fam=="ranger":
+        # Grano del cuero, doble costura del jerkin y marcas de hojas del manto.
+        line(d,[(23+tx,55+dy),(24+tx,61+crouch)],leather[2],1)
+        line(d,[(38+tx,53+dy),(37+tx,61+crouch)],leather[0],1)
+        for x,y in ((25,57),(29,60),(33,62),(36,57)):
+            rect(d,(x+tx,y+dy,x+tx+1,y+dy+1),shirt[2])
+        line(d,[(24+tx,74+crouch),(27+tx,77+crouch),(27+tx,82+crouch)],leather[2],1)
+        line(d,[(34+tx,75+crouch),(32+tx,81+crouch)],shirt[2],1)
+        for x,y in ((16,73),(17,78),(15,82)):
+            poly(d,[(x+tx,y+crouch),(x+tx+2,y+crouch-2),(x+tx+3,y+crouch),(x+tx+1,y+crouch+2)],cape[2],INK,1)
+    elif fam=="mage":
+        # Pliegues en índigo, ribetes de plata y glifos cosidos al dobladillo.
+        line(d,[(23+tx,55+dy),(25+tx,61+crouch),(24+tx,67+crouch)],shirt[1],1)
+        line(d,[(37+tx,54+dy),(39+tx,61+crouch),(37+tx,67+crouch)],shirt[2],1)
+        line(d,[(27+tx,72+crouch),(28+tx,85+crouch)],"#a8c9f3",1)
+        line(d,[(34+tx,73+crouch),(33+tx,86+crouch)],"#bda2e2",1)
+        for x,y in ((24,77),(27,83),(35,79),(38,86)):
+            poly(d,[(x+tx,y+crouch),(x+tx+1,y+crouch-2),(x+tx+2,y+crouch),(x+tx+1,y+crouch+1)],"#bcdfff",INK,1)
+        for x in (24,30,36):
+            rect(d,(x+tx,96+crouch,x+tx+1,97+crouch),"#f0d5ff")
+
     # Final highlights stay within the outline, no free-floating badges or accessories.
     rect(d,(28+tx,44+dy,29+tx,46+dy),shirt[2])
     rect(d,(25+tx,66+crouch,27+tx,67+crouch),leather[2])
