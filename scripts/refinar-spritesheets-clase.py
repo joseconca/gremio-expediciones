@@ -210,37 +210,131 @@ def add_class_gear(sheet, profile, cls):
                 P([(20,18),(22,12),(28,10),(37,11),(43,14),(47,19),(22,20)],dark,OSCURO,2); L([(22,19),(45,19)],accent_rgba,2)
             if head=="none" and style=="novice":
                 L([(24,16),(42,16)],accent_rgba,1)
-            # Small plate pauldrons for knightly classes; the original detailed body stays visible.
+            # The torso is redesigned by archetype so identity is not limited to a hat or hue.
             if style in ("heavy","holyheavy","royalheavy"):
-                P([(16,50),(22,47),(27,53),(24,60),(18,61)],steel,OSCURO,2); P([(39,51),(45,49),(50,55),(47,61),(41,61)],steel,OSCURO,2)
-                L([(18,53),(22,51),(24,56)],steel_hi,1); L([(42,54),(46,52),(47,57)],steel_hi,1)
+                # Fitted breastplate with layered pauldrons and a raised collar.
+                P([(15,47),(21,43),(26,48),(24,58),(19,62),(14,57)],steel,OSCURO,2)
+                P([(39,48),(45,44),(50,49),(50,57),(44,62),(40,58)],steel,OSCURO,2)
+                P([(24,43),(29,40),(36,41),(41,47),(39,66),(26,67),(23,55)],steel,OSCURO,2)
+                P([(27,45),(31,43),(35,44),(38,49),(37,62),(28,63),(26,53)],steel_hi,OSCURO,1)
+                L([(28,47),(36,47)],accent_rgba,2); L([(32,49),(32,61)],accent_rgba,1)
+                L([(17,51),(21,48),(23,54)],steel_hi,1); L([(42,51),(46,49),(47,55)],steel_hi,1)
+                if style=="royalheavy":
+                    P([(26,42),(29,38),(32,41),(35,38),(38,42)],accent_rgba,OSCURO,1)
+                    S("crown",32,55)
+                elif style=="holyheavy":
+                    S("cross",32,55)
+                else:
+                    S(mark,32,55)
+                # Layered fauld beneath the cuirass.
+                P([(25,65),(39,65),(42,78),(23,78)],dark,OSCURO,2)
+                L([(27,68),(26,75)],steel_hi,1); L([(32,68),(32,76)],accent_rgba,1); L([(37,68),(38,75)],steel_hi,1)
+            elif style in ("priest","mage","darkmage","seer","archmage","summoner","necromancer","demon","druid"):
+                # Full over-tunic and robe front with folds; legs and arms remain unobscured.
+                robe_main=main
+                robe_dark=dark
+                P([(25,42),(29,39),(36,41),(40,47),(39,72),(44,91),(21,91),(26,72)],robe_main,OSCURO,2)
+                P([(28,44),(32,42),(36,44),(37,71),(40,86),(25,86),(28,70)],medium,OSCURO,1)
+                L([(27,49),(29,66),(27,82)],robe_dark,2)
+                L([(33,48),(33,68),(32,87)],light,1)
+                L([(37,49),(36,68),(39,83)],robe_dark,2)
+                L([(23,89),(42,89)],accent_rgba,2)
+                if style in ("mage","archmage","darkmage","seer","summoner","necromancer","demon"):
+                    P([(27,41),(31,39),(35,41),(34,47),(28,47)],dark,OSCURO,1)
+                    L([(30,46),(33,52),(30,57)],accent_rgba,2)
+                    S(mark,32,60)
+                    if style in ("archmage","summoner","demon"):
+                        P([(24,44),(27,42),(28,47),(25,50)],accent_rgba,OSCURO,1)
+                        P([(37,42),(40,44),(39,50),(36,47)],accent_rgba,OSCURO,1)
+                elif style=="druid":
+                    for xx, yy in [(24,46),(27,48),(39,46),(36,49)]:
+                        S("leaf",xx,yy)
+                    L([(25,64),(39,63)],light,2)
+                else:
+                    S("cross",32,59)
             elif style in ("ranger","scout","sniper","beast","forestguard"):
-                P([(9,47),(15,44),(19,53),(16,65),(11,62)],shade(base,.65),OSCURO,1); L([(11,49),(16,60)],accent_rgba,1)
-                for i in range(3): L([(10+i*2,45),(9+i*2,36)],steel_hi,1)
+                # Leather jerkin, a diagonal harness, and practical belt gear.
+                P([(25,43),(30,41),(37,43),(40,49),(38,70),(26,70),(23,53)],main,OSCURO,2)
+                P([(28,45),(32,43),(35,45),(36,65),(28,66),(26,54)],medium,OSCURO,1)
+                L([(25,46),(37,64)],dark,3); L([(38,47),(26,63)],accent_rgba,2)
+                L([(25,69),(40,68)],dark,3); L([(26,68),(39,67)],accent_rgba,1)
+                P([(13,45),(19,43),(22,51),(20,68),(15,65)],dark,OSCURO,1)
+                L([(15,47),(19,63)],accent_rgba,1)
+                for i in range(3):
+                    L([(16+i*2,45),(15+i*2,38)],steel_hi,1)
+                    P([(15+i*2,38),(16+i*2,34),(17+i*2,38)],light,OSCURO,1)
+                if style in ("sniper","beast"):
+                    P([(38,45),(44,44),(47,54),(43,57),(39,52)],dark,OSCURO,1)
+                    L([(40,47),(44,53)],light,1)
+                if style=="forestguard":
+                    P([(20,44),(24,41),(28,48),(25,52)],main,OSCURO,1); S("leaf",24,48)
+                    P([(37,43),(41,41),(45,47),(41,52)],main,OSCURO,1); S("leaf",41,48)
             elif style in ("martial","martialmaster"):
-                for x,y in [(15,65),(17,68),(45,65),(43,68)]: L([(x,y),(x+4,y-3)],light,2)
-                L([(24,79),(44,78)],accent_rgba,2)
-            # Robed professions recolor the existing lower garment and add fold lines only.
-            if robe:
-                L([(23,86),(21,93)],dark,1); L([(31,83),(31,94)],light,1); L([(39,86),(42,93)],dark,1)
-                L([(22,96),(43,96)],accent_rgba,1)
-            elif style=="merchant":
-                P([(28,77),(38,77),(39,88),(27,88)],light,OSCURO,1); L([(27,80),(39,80)],accent_rgba,2); L([(32,81),(32,86)],dark,1)
+                # Wrapped training jacket, tied waist sash and forearm bindings.
+                P([(25,43),(30,41),(36,43),(40,50),(38,68),(26,68),(23,53)],main,OSCURO,2)
+                P([(28,45),(32,43),(36,46),(33,54),(29,64),(26,61)],medium,OSCURO,1)
+                L([(27,45),(34,54),(29,64)],light,2)
+                L([(24,58),(40,58)],accent_rgba,2); L([(24,62),(40,62)],light,2)
+                P([(27,66),(41,65),(43,72),(25,74)],dark,OSCURO,1)
+                L([(28,69),(40,68)],accent_rgba,2); L([(31,70),(28,77)],light,2)
+                for x,y in [(15,63),(17,66),(44,63),(42,66)]:
+                    L([(x,y),(x+3,y-3)],light,2); L([(x,y+3),(x+3,y)],accent_rgba,1)
+                S("knot",33,61)
             elif style=="pirate":
-                L([(23,77),(43,80)],accent_rgba,3); L([(26,80),(39,83)],steel_hi,1)
-            elif style in ("fighter","duelist","assassin"):
-                L([(22,77),(43,76)],accent_rgba,2); L([(24,64),(39,78)],light,1)
-            if style in ("priest","holyheavy"): S("cross",32,63)
-            elif style in ("mage","archmage","darkmage","seer","summoner","necromancer","demon"): S(mark,32,63)
-            elif style in ("druid","forestguard"): S("leaf",32,63)
-            elif style=="merchant": S("coin",42,79)
-            else: S(mark,32,63)
-            L([(22,78),(43,78)],dark,3); L([(23,77),(42,77)],accent_rgba,1)
-            d.rectangle((31+ox+dx,76+oy+dy,34+ox+dx,79+oy+dy),fill=shade(base,.65),outline=OSCURO,width=1)
-            if style=="royalheavy": S("crown",32,59)
-            if style in ("druid","forestguard"): S("leaf",21,53); S("leaf",44,55)
-            if style=="assassin": L([(25,58),(20,66)],accent_rgba,2); L([(38,58),(44,67)],accent_rgba,2)
-            if style=="pirate": d.ellipse((44+ox+dx,36+oy+dy,47+ox+dx,39+oy+dy),fill=accent_rgba,outline=OSCURO,width=1)
+                # Open longcoat, diagonal sash and brass buttons.
+                P([(23,42),(29,40),(32,48),(29,72),(22,81),(24,62)],dark,OSCURO,2)
+                P([(37,42),(41,44),(42,63),(47,79),(39,73),(35,52)],dark,OSCURO,2)
+                P([(25,44),(30,44),(32,52),(28,62)],main,OSCURO,1)
+                P([(35,44),(39,44),(38,62),(34,53)],main,OSCURO,1)
+                L([(25,47),(38,65)],accent_rgba,3); L([(28,68),(41,71)],steel_hi,2)
+                for yy in (51,57,63):
+                    d.ellipse((34+ox+dx,yy+oy+dy,36+ox+dx,yy+2+oy+dy),fill=light,outline=OSCURO,width=1)
+            elif style=="merchant":
+                # Traveller's vest, broad pack straps and several pouches.
+                P([(25,43),(30,41),(36,43),(40,49),(39,69),(26,70),(23,53)],main,OSCURO,2)
+                P([(28,45),(31,44),(32,65),(28,68)],medium,OSCURO,1)
+                P([(34,44),(37,45),(38,66),(34,65)],medium,OSCURO,1)
+                L([(26,45),(37,63)],dark,3); L([(37,45),(27,63)],accent_rgba,2)
+                P([(14,44),(21,43),(23,55),(19,66),(14,61)],dark,OSCURO,2)
+                L([(16,46),(20,58)],light,1)
+                P([(27,70),(38,69),(39,80),(27,81)],light,OSCURO,1)
+                L([(27,73),(39,73)],accent_rgba,2); S("coin",33,76)
+                P([(39,66),(44,65),(47,72),(43,76),(39,72)],dark,OSCURO,1)
+            elif style in ("fighter","duelist","assassin","novice"):
+                # Lightweight gambeson/jerkin with class-specific leather harness.
+                P([(25,43),(30,41),(36,43),(40,49),(38,68),(26,69),(23,53)],main,OSCURO,2)
+                P([(28,45),(32,43),(36,46),(35,64),(28,66),(26,53)],medium,OSCURO,1)
+                L([(25,46),(37,63)],dark,3); L([(36,46),(26,62)],accent_rgba,1)
+                if style=="assassin":
+                    P([(24,43),(28,42),(30,51),(27,68),(22,72),(24,57)],dark,OSCURO,1)
+                    P([(37,43),(40,45),(39,60),(42,68),(37,65)],dark,OSCURO,1)
+                    L([(26,57),(22,66)],accent_rgba,2); L([(38,56),(43,65)],accent_rgba,2)
+                elif style=="duelist":
+                    P([(24,44),(28,43),(32,50),(28,53)],accent_rgba,OSCURO,1)
+                    L([(26,47),(38,60)],light,1)
+                elif style=="fighter":
+                    L([(26,68),(40,68)],dark,3); L([(27,68),(39,67)],accent_rgba,1)
+                    P([(39,65),(44,66),(45,73),(39,73)],dark,OSCURO,1)
+                else:
+                    P([(27,69),(38,69),(39,79),(27,79)],medium,OSCURO,1)
+                    P([(13,68),(19,66),(21,73),(16,77)],dark,OSCURO,1)
+            # Class insignia and belts sit on top of each tailored outfit.
+            if style in ("priest","holyheavy"):
+                S("cross",32,58)
+            elif style in ("mage","archmage","darkmage","seer","summoner","necromancer","demon"):
+                S(mark,32,60)
+            elif style in ("druid","forestguard"):
+                S("leaf",32,61)
+            elif style=="royalheavy":
+                S("crown",32,57)
+            else:
+                S(mark,32,59)
+            if style not in ("heavy","holyheavy","royalheavy","priest","mage","darkmage","seer","archmage","summoner","necromancer","demon","druid","forestguard"):
+                L([(23,77),(42,77)],dark,3); L([(24,76),(41,76)],accent_rgba,1)
+                d.rectangle((31+ox+dx,75+oy+dy,34+ox+dx,79+oy+dy),fill=shade(base,.65),outline=OSCURO,width=1)
+            if style=="royalheavy": S("crown",32,54)
+            if style in ("druid","forestguard"): S("leaf",22,53); S("leaf",43,54)
+            if style=="pirate": d.ellipse((44+ox+dx,35+oy+dy,47+ox+dx,38+oy+dy),fill=accent_rgba,outline=OSCURO,width=1)
     return Image.alpha_composite(sheet, overlay)
 
 def save_indexed(image,path):
