@@ -1,0 +1,77 @@
+{
+  "class": "novato",
+  "sex": "f",
+  "action": "idle",
+  "source_sheet": "public/sprites/heroes/novato/novato-f-sheet.png",
+  "source_sheet_sha256": "3e9de5113467964b918b652c7ebfa9d5f9a1deb48375faa90514cf6d9dd6ab0d",
+  "source_row_index": 0,
+  "dimensions": {
+    "strip": [
+      256,
+      128
+    ],
+    "cell": [
+      64,
+      128
+    ],
+    "frames": 4,
+    "rows": 1
+  },
+  "disk_mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "file_size": 9749,
+  "file_sha256": "37d08a3e639dc676594fe1f35e8cd03717a202e3158a3ea066e58757d37e8e68",
+  "distinct_frame_count": 3,
+  "weapons_in_body": false,
+  "legacy_tier1_layered_armour_used": false,
+  "status": "standalone archive of approved Novato art; runtime atlas unchanged",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        6,
+        18,
+        58,
+        110
+      ],
+      "rgba_sha256": "0fc157c4b52e60b0807a4dce80730bfd62373369b9a78362b0a412c39496a8bc",
+      "visible_pixels": 2297
+    },
+    {
+      "index": 2,
+      "bbox": [
+        6,
+        17,
+        58,
+        109
+      ],
+      "rgba_sha256": "3a8a6a7cc24ae91cdf97e2bdd732bfa89adfd3488842fea02f2dce736a6addbb",
+      "visible_pixels": 2297
+    },
+    {
+      "index": 3,
+      "bbox": [
+        7,
+        17,
+        59,
+        109
+      ],
+      "rgba_sha256": "ceee692cb8946281c762b50befd182ddf1e1b178df5253d0e188c4a84483b2c1",
+      "visible_pixels": 2297
+    },
+    {
+      "index": 4,
+      "bbox": [
+        6,
+        18,
+        58,
+        110
+      ],
+      "rgba_sha256": "0fc157c4b52e60b0807a4dce80730bfd62373369b9a78362b0a412c39496a8bc",
+      "visible_pixels": 2297
+    }
+  ]
+}
