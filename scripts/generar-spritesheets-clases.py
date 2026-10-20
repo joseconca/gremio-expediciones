@@ -1066,9 +1066,9 @@ def construir_filas_modulares_tier1(cid, sex, painter, impact_color):
     hurt.save(out_dir / f"{cid}-{sex}-hurt-row.png", optimize=True)
     return idle, walk, hurt
 
-def construir_acciones_espadachin(sex):
+def construir_acciones_tier1(cid, sex):
     """Filas 3–14 del Espadachín: cuerpo y brazos animados; las armas nunca se dibujan aquí."""
-    source_path = ROOT / "assets" / "spritesheets" / "tier1" / f"espadachin-{sex}-master.png"
+    source_path = ROOT / "assets" / "spritesheets" / "tier1" / f"{cid}-{sex}-master.png"
     with Image.open(source_path) as source:
         master = source.convert("RGBA")
     out_dir = ROOT / "assets" / "spritesheets" / "tier1"
@@ -1087,16 +1087,48 @@ def construir_acciones_espadachin(sex):
         13: ("book",      [(44,61),(40,53),(42,49),(41,54)], [(0,0),(0,0),(0,-1),(0,0)]),
         14: ("gloves",    [(44,61),(39,49),(49,47),(42,53)], [(0,0),(-1,0),(-2,1),(0,0)]),
     }
-    palettes = {
-        "outline": INK,
-        "sleeve": "#d8c6a2",
-        "sleeve_light": "#f9e8c7",
-        "metal": "#384958",
-        "metal_mid": "#71899d",
-        "metal_light": "#d0dbe4",
-        "leather": "#39251f",
-        "skin": "#d28c65",
+    # Las animaciones mantienen las manos separadas del objeto equipado.
+    # Cada clase refuerza las acciones que le son más naturales sin dibujar armas dentro del cuerpo.
+    profiles = {
+        "acolito": {
+            "block": ([(44,61),(38,52),(35,48),(41,54)], [(0,0),(0,0),(-1,1),(0,0)]),
+            "staff": ([(44,61),(42,44),(47,41),(43,52)], [(0,0),(0,-1),(-1,-2),(0,0)]),
+            "mace": ([(44,61),(40,48),(47,45),(42,54)], [(0,0),(-1,0),(-2,1),(0,0)]),
+            "book": ([(44,61),(39,54),(40,48),(43,54)], [(0,0),(0,0),(0,-1),(0,0)]),
+        },
+        "arquero": {
+            "bow": ([(44,61),(35,53),(31,50),(42,57)], [(0,0),(-2,0),(-3,0),(1,0)]),
+            "dagger": ([(44,61),(39,48),(47,45),(42,54)], [(0,0),(-1,0),(-1,0),(0,0)]),
+            "spear": ([(44,61),(43,49),(51,47),(42,54)], [(0,0),(0,0),(-2,1),(0,0)]),
+        },
+        "mago": {
+            "block": ([(44,61),(40,51),(37,47),(42,53)], [(0,0),(0,0),(-1,1),(0,0)]),
+            "staff": ([(44,61),(42,43),(46,39),(42,52)], [(0,0),(0,-1),(-1,-2),(0,0)]),
+            "book": ([(44,61),(40,53),(39,48),(43,54)], [(0,0),(0,0),(0,-1),(0,0)]),
+        },
     }
+    for action_name, (hands, offsets) in profiles.get(cid, {}).items():
+        for row, (name, _, _) in actions.items():
+            if name == action_name:
+                actions[row] = (name, hands, offsets)
+                break
+
+    palette_by_class = {
+        "espadachin": dict(sleeve="#d8c6a2", sleeve_light="#f9e8c7", metal="#384958",
+                           metal_mid="#71899d", metal_light="#d0dbe4", leather="#39251f",
+                           skin="#d28c65", skin_f="#e4a17f"),
+        "acolito": dict(sleeve="#e5d4ad", sleeve_light="#fff5d8", metal="#8e6037",
+                        metal_mid="#b99a5c", metal_light="#fff0c7", leather="#422b22",
+                        skin="#d28c65", skin_f="#e4a17f"),
+        "arquero": dict(sleeve="#537c42", sleeve_light="#b4c87b", metal="#35251e",
+                        metal_mid="#8b5735", metal_light="#d5a260", leather="#35251e",
+                        skin="#d28c65", skin_f="#e4a17f"),
+        "mago": dict(sleeve="#344a85", sleeve_light="#91aeea", metal="#30213f",
+                     metal_mid="#6f85b1", metal_light="#d6e8ff", leather="#30213f",
+                     skin="#d28c65", skin_f="#e4a17f"),
+    }
+    palettes = {"outline": INK, **palette_by_class[cid]}
+    palettes["skin"] = palettes["skin_f"] if sex == "f" else palettes["skin"]
 
     def translate(image, dx, dy):
         if not dx and not dy:
@@ -1175,7 +1207,7 @@ def construir_acciones_espadachin(sex):
             "cellSize": {"width": W, "height": H},
             "classes": {},
         }
-    class_data = metadata.setdefault("classes", {}).setdefault("espadachin", {})
+    class_data = metadata.setdefault("classes", {}).setdefault(cid, {})
     class_data[sex] = {
         "facing": "right",
         "actions": anchor_actions,
@@ -1260,7 +1292,7 @@ def generate(cid, sex):
         for row, row_source in ((0, idle), (1, walk), (2, hurt)):
             sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
             sheet.alpha_composite(row_source, (0, row * H))
-        for row, row_source in construir_acciones_espadachin(sex).items():
+        for row, row_source in construir_acciones_tier1(cid, sex).items():
             sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
             sheet.alpha_composite(row_source, (0, row * H))
     elif cid == "acolito":
@@ -1268,14 +1300,23 @@ def generate(cid, sex):
         for row, row_source in ((0, idle), (1, walk), (2, hurt)):
             sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
             sheet.alpha_composite(row_source, (0, row * H))
+        for row, row_source in construir_acciones_tier1(cid, sex).items():
+            sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
+            sheet.alpha_composite(row_source, (0, row * H))
     elif cid == "arquero":
         idle, walk, hurt = construir_filas_modulares_tier1(cid, sex, pintar_equipo_arquero, "#c8e68b")
         for row, row_source in ((0, idle), (1, walk), (2, hurt)):
             sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
             sheet.alpha_composite(row_source, (0, row * H))
+        for row, row_source in construir_acciones_tier1(cid, sex).items():
+            sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
+            sheet.alpha_composite(row_source, (0, row * H))
     elif cid == "mago":
         idle, walk, hurt = construir_filas_modulares_tier1(cid, sex, pintar_equipo_mago, "#67dff8")
         for row, row_source in ((0, idle), (1, walk), (2, hurt)):
+            sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
+            sheet.alpha_composite(row_source, (0, row * H))
+        for row, row_source in construir_acciones_tier1(cid, sex).items():
             sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
             sheet.alpha_composite(row_source, (0, row * H))
 
