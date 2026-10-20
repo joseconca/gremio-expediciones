@@ -41,7 +41,7 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          from PIL import Image
+          from PIL import Image, ImageChops
           classes = ("novato", "espadachin", "acolito", "arquero", "mago")
           files = [Path("public/sprites/heroes") / cls / f"{cls}-{sex}-sheet.png"
                    for cls in classes for sex in ("m", "f")]
@@ -51,7 +51,14 @@ jobs:
                   assert image.size == (256, 1920), (path, image.size)
                   assert image.mode == "RGBA", (path, image.mode)
                   assert image.getchannel("A").getextrema()[0] == 0, f"{path}: falta transparencia"
-          print(f"OK: {len(files)} hojas de Novato/Tier 1, 256×1920, alfa real")
+                  if path.parent.name in ("novato", "espadachin"):
+                      hurt = image.crop((0, 2 * 128, 256, 3 * 128))
+                      frames = [hurt.crop((i * 64, 0, (i + 1) * 64, 128)) for i in range(4)]
+                      assert all(frame.getchannel("A").getbbox() for frame in frames), f"{path}: fotograma vacío"
+                      assert len({frame.tobytes() for frame in frames}) == 4, f"{path}: Recibir daño contiene fotogramas repetidos"
+                      assert all(ImageChops.difference(frames[i], frames[i + 1]).getbbox()
+                                 for i in range(3)), f"{path}: transición de Recibir daño estática"
+          print(f"OK: {len(files)} hojas de Novato/Tier 1, 256×1920, alfa real; daño animado validado")
           PY
 
       - name: Publicar artefacto de revisión visual de Novato y Espadachín
