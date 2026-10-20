@@ -10,11 +10,13 @@
 - El cuerpo se mantiene como capa base; equipo y armas se superpondrán mediante capas independientes en iteraciones posteriores.
 - Los avatares/retratos estáticos existentes mantienen la ruta de `obtenerSpriteHeroe`; para animación se usa `obtenerRutaSpritesheetHeroe`.
 
-## Identidad visual por clase
+## Fase actual: Novato y Tier 1
 
-Cada profesión tiene un perfil visual propio: paleta de vestuario, tocado o capucha y emblema; los arquetipos también añaden detalles específicos como placas de hombro, carcaj, vendas, astas o faldones. Se conserva el arte base detallado para no cambiar las proporciones de las animaciones, y los detalles se añaden sin incluir armas sujetas al personaje.
+Las primeras cinco clases se redibujan de forma integrada —sin escudos, armas ni objetos mágicos incrustados en las manos— para que las capas de equipo puedan añadirse en otra iteración. Novato lleva ropa sencilla de viaje; Espadachín usa un atuendo de combate con capa azul; Acólito, túnica clara y capucha; Arquero, prendas verdes con carcaj; y Mago, túnica azul y sombrero puntiagudo.
 
-La regeneración única de este primer tratamiento se encuentra en `scripts/refinar-spritesheets-clase.py`. El workflow de GitHub aplica el tratamiento una vez, valida que existan las 70 hojas y crea un commit con los PNG actualizados; el marcador `.spritesheets-clase-refinados-v1` evita que se superpongan los adornos en una segunda ejecución.
+El generador reproducible es `scripts/generar-spritesheets-clases.py`. Se ejecuta por fases: `--phase novato` para Novato, `--phase tier1` para Espadachín, Acólito, Arquero y Mago, o `--phase all` para regenerar las cinco clases. El workflow valida los diez PNG de 256×1920 con transparencia alfa real y guarda los cambios gráficos en un commit independiente.
+
+Esta primera entrega define los atuendos y prepara las poses de las nueve filas de ataque para alinear futuros sprites de armas. El movimiento de combate, las capas modulares de arma/armadura y el refinamiento artístico individual de las siguientes clases aún no están integrados.
 
 ## Índice de filas
 
