@@ -1065,6 +1065,90 @@ def construir_filas_modulares_tier1(cid, sex, painter, impact_color):
     hurt.save(out_dir / f"{cid}-{sex}-hurt-row.png", optimize=True)
     return idle, walk, hurt
 
+def construir_acciones_espadachin(sex):
+    """Filas 3–14 del Espadachín: cuerpo y brazos animados; las armas nunca se dibujan aquí."""
+    source_path = ROOT / "assets" / "spritesheets" / "tier1" / f"espadachin-{sex}-master.png"
+    with Image.open(source_path) as source:
+        master = source.convert("RGBA")
+    out_dir = ROOT / "assets" / "spritesheets" / "tier1"
+    # Coordenadas del puño por fotograma, dentro de la celda. La capa de arma se ancla a esta mano.
+    actions = {
+        3: ("consumable", [(44,61),(40,45),(40,36),(43,52)], [(0,0),(0,0),(0,0),(0,0)]),
+        4: ("dodge",      [(44,61),(42,56),(39,58),(43,61)], [(0,0),(-2,3),(2,5),(0,0)]),
+        5: ("block",      [(44,61),(39,52),(37,48),(41,54)], [(0,0),(-1,1),(-2,2),(0,0)]),
+        6: ("sword",      [(44,61),(39,48),(49,44),(41,53)], [(0,0),(-1,0),(-2,1),(0,0)]),
+        7: ("axe",        [(44,61),(39,43),(48,42),(41,53)], [(0,0),(-1,-1),(-2,2),(0,0)]),
+        8: ("spear",      [(44,61),(44,50),(51,48),(42,53)], [(0,0),(0,0),(-2,1),(0,0)]),
+        9: ("dagger",     [(44,61),(39,49),(47,45),(41,53)], [(0,0),(-1,0),(-1,0),(0,0)]),
+        10: ("bow",       [(44,61),(46,51),(47,46),(43,53)], [(0,0),(-1,0),(-1,0),(0,0)]),
+        11: ("staff",     [(44,61),(43,45),(45,39),(42,52)], [(0,0),(0,-1),(-1,-2),(0,0)]),
+        12: ("mace",      [(44,61),(39,43),(48,43),(42,53)], [(0,0),(-1,0),(-2,2),(0,0)]),
+        13: ("book",      [(44,61),(40,53),(42,49),(41,54)], [(0,0),(0,0),(0,-1),(0,0)]),
+        14: ("gloves",    [(44,61),(39,49),(49,47),(42,53)], [(0,0),(-1,0),(-2,1),(0,0)]),
+    }
+    palettes = {
+        "outline": INK,
+        "sleeve": "#d8c6a2",
+        "sleeve_light": "#f9e8c7",
+        "metal": "#384958",
+        "metal_mid": "#71899d",
+        "metal_light": "#d0dbe4",
+        "leather": "#39251f",
+        "skin": "#d28c65",
+    }
+
+    def translate(image, dx, dy):
+        if not dx and not dy:
+            return image.copy()
+        moved = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        moved.alpha_composite(image, (dx, dy))
+        return moved
+
+    def pose_front_arm(image, hand, dx, dy):
+        # Retirar solamente el antebrazo y la mano en reposo, sin recortar torso ni coraza.
+        mask = Image.new("L", (W, H), 0)
+        md = ImageDraw.Draw(mask)
+        md.polygon([(43+dx,55+dy),(48+dx,55+dy),(49+dx,64+dy),
+                    (46+dx,69+dy),(42+dx,65+dy),(42+dx,59+dy)], fill=255)
+        px = image.load()
+        mp = mask.load()
+        for yy in range(H):
+            for xx in range(W):
+                if mp[xx, yy]:
+                    px[xx, yy] = (0, 0, 0, 0)
+        d = ImageDraw.Draw(image)
+        hx, hy = hand[0] + dx, hand[1] + dy
+        shoulder = (40+dx, 49+dy)
+        elbow = (42+dx, 53+dy)
+        wrist = (hx-1, hy)
+        # Manga hasta el codo; trazos gruesos oscuros mantienen el contorno del pixel-art maestro.
+        line(d, [shoulder, elbow], palettes["outline"], 8)
+        line(d, [shoulder, elbow], palettes["sleeve"], 5)
+        line(d, [(shoulder[0], shoulder[1]-1),(elbow[0], elbow[1]-1)], palettes["sleeve_light"], 1)
+        # Guantelete segmentado entre codo y muñeca; no incorpora espada, arco, libro ni báculo.
+        line(d, [elbow, wrist], palettes["outline"], 8)
+        line(d, [elbow, wrist], palettes["metal"], 6)
+        line(d, [(elbow[0], elbow[1]-1),(wrist[0], wrist[1]-1)], palettes["metal_mid"], 3)
+        line(d, [(elbow[0]+1, elbow[1]-2),(wrist[0]+1, wrist[1]-2)], palettes["metal_light"], 1)
+        # Fist/glove ends at the recorded grip point; weapon sprites can be layered here later.
+        ellipse(d, (hx-3,hy-3,hx+3,hy+3), palettes["leather"], palettes["outline"], 1)
+        line(d, [(hx-1,hy-1),(hx+1,hy-1)], palettes["metal_light"], 1)
+        rect(d, (hx-1,hy+1,hx,hy+2), palettes["skin"])
+
+    generated = {}
+    for row, (anim, hands, offsets) in actions.items():
+        strip = Image.new("RGBA", (W * COLS, H), (0, 0, 0, 0))
+        for frame_index in range(COLS):
+            dx, dy = offsets[frame_index]
+            frame = translate(master, dx, dy)
+            if frame_index != 0:
+                pose_front_arm(frame, hands[frame_index], dx, dy)
+            strip.alpha_composite(frame, (frame_index * W, 0))
+        filename = out_dir / f"espadachin-{sex}-{anim}-row.png"
+        strip.save(filename, optimize=True)
+        generated[row] = strip
+    return generated
+
 def generate(cid, sex):
     sheet=Image.new("RGBA",(256,1920),(0,0,0,0))
     for row in range(ROWS):
@@ -1140,6 +1224,9 @@ def generate(cid, sex):
     if cid == "espadachin":
         idle, walk, hurt = construir_fuentes_espadachin(sex)
         for row, row_source in ((0, idle), (1, walk), (2, hurt)):
+            sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
+            sheet.alpha_composite(row_source, (0, row * H))
+        for row, row_source in construir_acciones_espadachin(sex).items():
             sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
             sheet.alpha_composite(row_source, (0, row * H))
     elif cid == "acolito":
