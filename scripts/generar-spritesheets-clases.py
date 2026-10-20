@@ -601,7 +601,8 @@ def generate(cid, sex):
             # Widen the integrated silhouette with nearest-neighbour scaling; keep pixel edges crisp.
             sprite=sprite.resize((77,H),Image.Resampling.NEAREST).crop((6,0,70,H))
             sheet.alpha_composite(sprite,(frame*W,row*H))
-    # Novato usa arte maestro aprobado para Idle; las demás filas se refinan en iteraciones separadas.
+    # Iteración artística 1: Novato usa arte maestro aprobado en Idle para establecer el nuevo estilo visual.
+    # Las poses de caminar, daño, consumible, esquiva, bloqueo y ataques se mantienen para refinarlas después.
     if cid == "novato":
         master_path = ROOT / "assets" / "spritesheets" / "novato" / f"novato-{sex}-master.png"
         with Image.open(master_path) as master_source:
