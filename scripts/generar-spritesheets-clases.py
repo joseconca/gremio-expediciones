@@ -1180,7 +1180,7 @@ def construir_acciones_espadachin(sex):
         "facing": "right",
         "actions": anchor_actions,
     }
-    metadata_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    metadata_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return generated
 
 def generate(cid, sex):
