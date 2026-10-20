@@ -1,7 +1,8 @@
 {
   "task": "Tier 1 Swordsman — Walk only",
   "source_concept": {
-    "name": "a_wide_clean_sprite_sheet_style_concept_image_on.png",
+    "path": "docs/espadachin-caminar-entrega/source/concept_walk.png",
+    "git_blob_sha1": "3ea93ce299c08e9429d2e776eafcbbda94b7a7d0",
     "size_px": [
       1774,
       887
@@ -24,7 +25,7 @@
     "view": "three-quarter, facing right"
   },
   "palette_note": "Indexed PNG, 16 opaque palette colors plus dedicated transparent index; reduced for compact runtime asset at native scale.",
-  "status": "publicado en main como fuentes originales; no integrado en las hojas activas de runtime",
+  "status": "published_in_main_source_assets_not_integrated_into_runtime",
   "characters": {
     "m": {
       "path": "assets/spritesheets/originales/espadachin/walk/espadachin-m-walk.png",
