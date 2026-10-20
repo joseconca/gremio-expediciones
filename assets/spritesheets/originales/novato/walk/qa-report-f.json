@@ -28,7 +28,7 @@
   "isolated_red_edge_pixels_removed": 0,
   "weapons_in_body": false,
   "legacy_tier1_layered_armour_used": false,
-  "status": "standalone archive of approved Novato art; runtime atlas unchanged",
+  "status": "interim reference extraction from canonical runtime sheet; not artistically approved for final integration",
   "frames": [
     {
       "index": 1,
@@ -74,5 +74,9 @@
       "rgba_sha256": "554c4b48e6210ea5d5b60b4fb0b74b0a98fb559550607b7318dbe67c6a2f9d93",
       "visible_pixels": 3279
     }
-  ]
+  ],
+  "artistic_status": "pending regeneration from a clean high-resolution PNG strip using the shared-scale normalizer",
+  "runtime_integrated": false,
+  "final_art_approved": false,
+  "next_pipeline": "scripts/normalizar-tira-sprites.py"
 }
