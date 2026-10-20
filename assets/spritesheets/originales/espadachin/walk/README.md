@@ -1,28 +1,24 @@
 # Espadachín Tier 1 — Caminar
 
-Checkpoint de la entrega de arte, todavía separado de las hojas activas del juego.
+## Estado
 
-## Archivos de revisión preparados localmente
+**Tiras y fotogramas fuente versionados en `main`** en commits separados por sexo. Los recursos permanecen aislados de las hojas activas de runtime hasta que se complete el conjunto de acciones.
 
-- `espadachin-m-walk.png`: tira masculina, 256 × 128 px.
-- `espadachin-f-walk.png`: tira femenina, 256 × 128 px.
-- Cuatro celdas horizontales de 64 × 128 px por personaje.
-- Fondo transparente real; un único ángulo tres cuartos hacia la derecha.
-- Sin armas dibujadas dentro del cuerpo: se incorporarán como capas equipables.
-- Cuatro fotogramas distintos por sexo, con pies y márgenes normalizados.
+## Tiras finales
 
-## Integridad del recurso
+- `espadachin-m-walk.png`: masculino, 256 × 128 px, cuatro celdas de 64 × 128.
+- `espadachin-f-walk.png`: femenino, 256 × 128 px, cuatro celdas de 64 × 128.
+- Fotogramas fuente RGBA: `frames/m/` y `frames/f/`, cuatro PNG por sexo.
 
-Los PNG y sus previsualizaciones están incluidos en el paquete local de revisión de esta conversación. No se han publicado aquí como blobs de imagen porque el SHA del blob devuelto por la API no coincidió con el hash del archivo local durante la transferencia. No usar archivos binarios hasta que la comparación de hashes confirme que son idénticos.
+## Verificación técnica
 
-SHA-256 del PNG local:
+Los binarios se han colocado en esta carpeta reutilizando exactamente los blobs ya subidos dentro del paquete `docs/espadachin-caminar-entrega/`, evitando re-codificar PNG a Base64. El paquete de origen registra estos SHA-256:
 
-- Masculino: `9aace7bba61966a9b4102541a3b14725f40779863160e5a3c827d06e7f597650`
-- Femenino: `0e22fb6372152c486f69ef454f6adeaeae1b04d7aaf1f634f5191dd5f275a0ce`
+- Masculino: `9aace7bba61966a9b4102541a3b14725f40779863160e5a3c827d06e7f597650` (8.469 bytes).
+- Femenino: `0e22fb6372152c486f69ef454f6adeaeae1b04d7aaf1f634f5191dd5f275a0ce` (9.376 bytes).
 
-## Próximos pasos
+El informe QA confirma transparencia real, límites visibles dentro de las celdas, y cuatro fotogramas distintos por tira. Las armas no están dibujadas dentro del cuerpo y se incorporarán como capas equipables.
 
-1. Publicar los dos PNG binarios y comprobar sus hashes.
-2. Revisar el resultado final a tamaño nativo (64 × 128) y en ampliación nearest-neighbor.
-3. Solo después de cerrar Caminar, seguir con Recibir daño.
-4. No sustituir las hojas activas hasta completar y validar las 15 acciones por sexo.
+## Siguiente paso
+
+Revisar la animación a tamaño nativo y continuar con **Recibir daño masculino**. No sustituir las hojas de runtime hasta completar y comprobar las 15 acciones por sexo.
