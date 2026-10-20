@@ -10,6 +10,12 @@
 - El cuerpo se mantiene como capa base; equipo y armas se superpondrán mediante capas independientes en iteraciones posteriores.
 - Los avatares/retratos estáticos existentes mantienen la ruta de `obtenerSpriteHeroe`; para animación se usa `obtenerRutaSpritesheetHeroe`.
 
+## Identidad visual por clase
+
+Cada profesión tiene un perfil visual propio: paleta de vestuario, tocado o capucha y emblema; los arquetipos también añaden detalles específicos como placas de hombro, carcaj, vendas, astas o faldones. Se conserva el arte base detallado para no cambiar las proporciones de las animaciones, y los detalles se añaden sin incluir armas sujetas al personaje.
+
+La regeneración única de este primer tratamiento se encuentra en `scripts/refinar-spritesheets-clase.py`. El workflow de GitHub aplica el tratamiento una vez, valida que existan las 70 hojas y crea un commit con los PNG actualizados; el marcador `.spritesheets-clase-refinados-v1` evita que se superpongan los adornos en una segunda ejecución.
+
 ## Índice de filas
 
 | Fila (base 0) | Identificador | Acción |
