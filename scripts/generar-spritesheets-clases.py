@@ -12,10 +12,10 @@ INK = "#261d22"
 
 P = {
  "novato": dict(family="novice",shirt=("#d8c6a2","#9e805a","#f9e8c7"),leather=("#39251f","#805037","#d09a5d"),metal=("#3b4149","#737e89","#d0d3ca"),hair=("#2a1b18","#8c5530"),skin=("#92553f","#d28c65","#f4bd91"),cape=None,hat="none"),
- "espadachin": dict(family="fighter",shirt=("#263b54","#3f5d7b","#9ab9cc"),leather=("#4d2b26","#8e5438","#c28a51"),metal=("#343e4c","#778995","#d5dcda"),hair=("#39261d","#74432b"),skin=("#a9684e","#d89570","#f0bd96"),cape=("#203657","#3e6085","#8aaac7"),hat="none"),
- "acolito": dict(family="cleric",shirt=("#d8c7a1","#b5a071","#fbefd4"),leather=("#54392a","#90613a","#d2ac69"),metal=("#656b6d","#a8aeaa","#e6e0c9"),hair=("#54372b","#956244"),skin=("#a9684e","#d89570","#f0bd96"),cape=("#604939","#94714d","#dac9a3"),hat="hood"),
- "arquero": dict(family="ranger",shirt=("#30452e","#526e3c","#9cac70"),leather=("#473025","#8b5c38","#c0935b"),metal=("#454d43","#818b75","#c5c7a8"),hair=("#483024","#89613d"),skin=("#a9684e","#d89570","#f0bd96"),cape=("#293f2b","#49633a","#91a05f"),hat="hood"),
- "mago": dict(family="mage",shirt=("#222b52","#394c83","#829fd0"),leather=("#3d2940","#78537c","#c39dcc"),metal=("#3a405d","#717da1","#c9d5e8"),hair=("#30243b","#69547a"),skin=("#a9684e","#d89570","#f0bd96"),cape=("#1d274a","#354576","#788fc1"),hat="point"),
+ "espadachin": dict(family="fighter",shirt=("#492a34","#8f4654","#e4a36f"),leather=("#32211e","#815038","#d5a05e"),metal=("#283541","#71899d","#e1e9ed"),hair=("#24191b","#8b4a30"),skin=("#92553f","#d28c65","#f4bd91"),cape=("#142b4b","#315987","#b5d5e8"),hat="none"),
+ "acolito": dict(family="cleric",shirt=("#e5d4ad","#b99a5c","#fff5d8"),leather=("#422b22","#8e6037","#e2bd70"),metal=("#6f6a5c","#c9bd98","#fff0c7"),hair=("#49302a","#b07b45"),skin=("#92553f","#d28c65","#f4bd91"),cape=("#4c3832","#80604a","#e5c887"),hat="hood"),
+ "arquero": dict(family="ranger",shirt=("#243d2b","#537c42","#b4c87b"),leather=("#35251e","#8b5735","#d5a260"),metal=("#39463a","#7b8c6c","#d2d9ad"),hair=("#39241c","#a56a3e"),skin=("#92553f","#d28c65","#f4bd91"),cape=("#1d3527","#49683a","#a8bd72"),hat="hood"),
+ "mago": dict(family="mage",shirt=("#191f42","#344a85","#91aeea"),leather=("#30213f","#75508a","#d2a0d5"),metal=("#303650","#6f85b1","#d6e8ff"),hair=("#241b32","#82639a"),skin=("#92553f","#d28c65","#f4bd91"),cape=("#151d3e","#2c427c","#94b8ee"),hat="point"),
 }
 ANIMS=("idle","walk","hurt","consumable","dodge","block","sword","axe","spear","dagger","bow","staff","mace","book","gloves")
 
@@ -89,6 +89,15 @@ def draw_frame(cid, sex, row, f):
             poly(d,[(22+tx,43+dy),(30+tx,42+dy),(39+tx,54+dy),(36+tx,77+crouch),(29+tx,86+crouch),(18+tx,81+crouch),(18+tx,60+dy)],c0)
             poly(d,[(23+tx,48+dy),(29+tx,51+dy),(33+tx,70+crouch),(29+tx,80+crouch),(23+tx,76+crouch)],c1,INK,1)
             line(d,[(24+tx,54+dy),(30+tx,71+crouch)],c2,2)
+    # El carcaj va cosido al arnés, por detrás del hombro, no como objeto flotante.
+    if fam=="ranger":
+        poly(d,[(12+tx,41+dy),(18+tx,39+dy),(22+tx,61+crouch),(17+tx,65+crouch),(12+tx,61+crouch)],leather[0],INK,2)
+        poly(d,[(13+tx,43+dy),(17+tx,42+dy),(20+tx,59+crouch),(17+tx,61+crouch)],leather[1],INK,1)
+        for i in range(4):
+            line(d,[(13+tx+i,42+dy),(14+tx+i,38+dy)],("#d8cf9a", "#c5b16e", "#ebdfb2", "#b6c9a3")[i],2)
+        line(d,[(13+tx,51+dy),(19+tx,50+dy)],leather[2],2)
+        line(d,[(14+tx,56+crouch),(19+tx,55+crouch)],leather[2],1)
+
     # Legs and boots: frame shifts are integrated into the body pose.
     step=([-4,2,5,-2][f] if row==1 else [3,-3,-4,2][f] if row==4 else [0,1,3,0][f] if row>=6 else 0)
     bh=(26+tx,hip);fh=(37+tx,hip)
@@ -191,6 +200,70 @@ def draw_frame(cid, sex, row, f):
         line(d,[(20+tx,74+crouch),(23+tx,75+crouch)],leather[2],1)
         rect(d,(22+tx,70+crouch,23+tx,72+crouch),metal[2])
 
+    # Refinamiento por arquetipo: los bordes, grabados y costuras forman parte del tejido o la armadura.
+    if fam=="fighter":
+        # Coraza de acero con biseles, placas de hombro y remaches forjados.
+        poly(d,[(18+tx,43+dy),(24+tx,40+dy),(29+tx,43+dy),(27+tx,50+dy),(22+tx,53+dy),(17+tx,49+dy)],metal[1],INK,2)
+        poly(d,[(36+tx,42+dy),(42+tx,43+dy),(46+tx,49+dy),(42+tx,54+dy),(36+tx,51+dy)],metal[1],INK,2)
+        poly(d,[(21+tx,44+dy),(25+tx,43+dy),(27+tx,47+dy),(23+tx,50+dy)],metal[2],INK,1)
+        poly(d,[(37+tx,44+dy),(41+tx,45+dy),(43+tx,49+dy),(40+tx,50+dy)],metal[2],INK,1)
+        line(d,[(25+tx,47+dy),(30+tx,45+dy),(36+tx,47+dy)],metal[2],2)
+        line(d,[(24+tx,53+dy),(30+tx,56+dy),(36+tx,53+dy)],metal[0],2)
+        line(d,[(25+tx,58+dy),(30+tx,60+crouch),(35+tx,58+dy)],metal[1],1)
+        # Sello heráldico en esmalte carmesí, unido a la coraza.
+        poly(d,[(29+tx,49+dy),(33+tx,48+dy),(36+tx,51+dy),(35+tx,57+dy),(31+tx,60+dy),(28+tx,56+dy)],"#702d3d",INK,1)
+        line(d,[(32+tx,50+dy),(32+tx,57+dy)],"#f1d08a",1)
+        line(d,[(30+tx,53+dy),(34+tx,53+dy)],"#f1d08a",1)
+        for x,y in ((20,52),(25,54),(38,53),(41,49),(28,63),(36,63)):
+            ellipse(d,(x+tx,y+dy,x+tx+2,y+dy+2),metal[2],INK,1)
+        # Reborde del faldón y pequeñas placas de greba.
+        line(d,[(23+tx,81+crouch),(39+tx,82+crouch)],metal[2],2)
+        for x in (25,30,35):
+            line(d,[(x+tx,84+crouch),(x+tx+1,87+crouch)],metal[1],2)
+    elif fam=="cleric":
+        # Estola litúrgica con ribete dorado y bordado de cruces en el pecho.
+        line(d,[(24+tx,45+dy),(29+tx,50+dy),(27+tx,63+crouch)],"#8f642b",4)
+        line(d,[(24+tx,45+dy),(29+tx,50+dy),(27+tx,63+crouch)],"#f7df93",1)
+        line(d,[(37+tx,47+dy),(40+tx,53+dy),(37+tx,63+crouch)],"#8f642b",3)
+        line(d,[(37+tx,47+dy),(40+tx,53+dy),(37+tx,63+crouch)],"#fff0bf",1)
+        # Una cruz bordada en hilo dorado, no un objeto añadido al pecho.
+        rect(d,(31+tx,49+dy,33+tx,57+dy),"#946b33",INK,1)
+        rect(d,(28+tx,51+dy,36+tx,53+dy),"#f7dc89",INK,1)
+        rect(d,(32+tx,50+dy,32+tx,56+dy),"#fff4c9")
+        for y in (72,78,84,90,96):
+            poly(d,[(18+tx,y+crouch),(20+tx,y-2+crouch),(22+tx,y+crouch)],"#9f7838",INK,1)
+            poly(d,[(39+tx,y+crouch),(41+tx,y-2+crouch),(43+tx,y+crouch)],"#9f7838",INK,1)
+        line(d,[(17+tx,101+crouch),(42+tx,101+crouch)],"#e3c67e",2)
+        line(d,[(20+tx,103+crouch),(39+tx,103+crouch)],"#fff0bf",1)
+    elif fam=="ranger":
+        # Jerkin articulado, correas cruzadas y placas de cuero remachadas.
+        line(d,[(21+tx,45+dy),(28+tx,52+dy),(36+tx,63+crouch)],INK,6)
+        line(d,[(21+tx,45+dy),(28+tx,52+dy),(36+tx,63+crouch)],leather[1],3)
+        line(d,[(21+tx,45+dy),(28+tx,52+dy),(36+tx,63+crouch)],leather[2],1)
+        poly(d,[(18+tx,46+dy),(24+tx,43+dy),(28+tx,48+dy),(25+tx,54+dy),(20+tx,52+dy)],shirt[1],INK,2)
+        poly(d,[(19+tx,47+dy),(23+tx,45+dy),(26+tx,48+dy),(23+tx,51+dy)],shirt[2],INK,1)
+        for x,y in ((20,49),(24,51),(28,55),(31,59),(34,62)):
+            rect(d,(x+tx,y+dy,x+tx+1,y+dy+1),metal[2])
+        line(d,[(24+tx,57+dy),(28+tx,60+crouch)],shirt[2],1)
+        # Bordado de hojas discreto en la tela verde y dobladillo del manto.
+        poly(d,[(32+tx,48+dy),(35+tx,45+dy),(36+tx,49+dy)],"#c8d98a",INK,1)
+        poly(d,[(34+tx,52+dy),(38+tx,49+dy),(38+tx,53+dy)],"#c8d98a",INK,1)
+        line(d,[(16+tx,80+crouch),(19+tx,83+crouch),(20+tx,86+crouch)],cape[2],2)
+    elif fam=="mage":
+        # Manto de arcanista: filigrana azul hielo, brocado de estrellas y cierre facetado.
+        line(d,[(22+tx,45+dy),(27+tx,48+dy),(25+tx,64+crouch)],"#c59aeb",3)
+        line(d,[(22+tx,45+dy),(27+tx,48+dy),(25+tx,64+crouch)],"#fff0c4",1)
+        line(d,[(38+tx,47+dy),(41+tx,54+dy),(38+tx,64+crouch)],"#c59aeb",2)
+        line(d,[(38+tx,47+dy),(41+tx,54+dy),(38+tx,64+crouch)],"#e7f4ff",1)
+        poly(d,[(30+tx,49+dy),(33+tx,46+dy),(36+tx,49+dy),(34+tx,54+dy),(31+tx,54+dy)],"#68c9f0",INK,1)
+        poly(d,[(32+tx,48+dy),(34+tx,50+dy),(32+tx,52+dy),(31+tx,50+dy)],"#effbff",INK,1)
+        for x,y in ((26,55),(37,57),(28,61),(35,63)):
+            # Destellos bordados sobre el tejido, contenidos en la silueta.
+            rect(d,(x+tx,y+dy,x+tx+1,y+dy+1),"#e6d1ff")
+        for x in (19,23,27,31,35,39,43):
+            poly(d,[(x+tx,99+crouch),(x+tx+2,96+crouch),(x+tx+3,99+crouch)],"#9abff4",INK,1)
+        line(d,[(22+tx,102+crouch),(41+tx,102+crouch)],"#e4d6ff",2)
+
     # Belt, buckle and small pouch are stitched into this outfit.
     line(d,[(22+tx,67+crouch),(41+tx,67+crouch)],leather[0],5)
     line(d,[(22+tx,66+crouch),(41+tx,66+crouch)],leather[2],1)
@@ -228,6 +301,17 @@ def draw_frame(cid, sex, row, f):
         poly(d,[(22+tx,hy+1),(26+tx,hy-7),(29+tx,hy-18),(34+tx,hy-13),(39+tx,hy-5),(46+tx,hy+1),(22+tx,hy+3)],shirt[0],INK,2)
         poly(d,[(28+tx,hy-9),(31+tx,hy-15),(37+tx,hy-4),(41+tx,hy),(34+tx,hy-1)],shirt[1],INK,1)
         line(d,[(23+tx,hy+1),(45+tx,hy+1)],shirt[2],2)
+        # Bordado de la punta y una gema engastada en la banda del sombrero.
+        line(d,[(29+tx,hy-14),(33+tx,hy-7),(38+tx,hy-3)],"#e1c477",1)
+        poly(d,[(32+tx,hy-1),(34+tx,hy-3),(36+tx,hy-1),(34+tx,hy+2)],"#75d5f5",INK,1)
+        rect(d,(34+tx,hy-1,34+tx,hy),"#f6ffff")
+    if fam=="cleric" and p["hat"]=="hood":
+        # Ribete del capuchón en oro apagado, alineado con el pliegue de la tela.
+        line(d,[(25+tx,hy+3),(28+tx,hy-5),(32+tx,hy-8)],"#dcb96c",1)
+        line(d,[(39+tx,hy-6),(42+tx,hy+2)],"#f0dba1",1)
+    if fam=="ranger" and p["hat"]=="hood":
+        line(d,[(25+tx,hy-2),(30+tx,hy-8),(37+tx,hy-8)],"#9ebd6b",2)
+        rect(d,(34+tx,hy-8,36+tx,hy-7),"#d9de91")
     # Arms use the pose of each animation row; hands are empty for future weapon layers.
     shoulder_back=(23+tx,48+dy); shoulder_front=(39+tx,48+dy)
     if row==3:
