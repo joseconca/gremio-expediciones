@@ -57,7 +57,7 @@ jobs:
       - name: Publicar artefacto de revisión visual de Novato y Espadachín
         uses: actions/upload-artifact@v4
         with:
-          name: sprites-revision-tier0-tier1-\${{ github.run_number }}
+          name: sprites-revision-tier0-tier1
           path: |
             public/sprites/heroes/novato/*-sheet.png
             public/sprites/heroes/espadachin/*-sheet.png
