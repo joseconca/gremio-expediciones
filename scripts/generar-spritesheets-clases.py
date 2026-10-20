@@ -101,6 +101,16 @@ def draw_frame(cid, sex, row, f):
     elif fam=="ranger":
         poly(d,[(23+tx,66+dy),(41+tx,66+dy),(40+tx,89+crouch),(34+tx,94+crouch),(25+tx,92+crouch),(21+tx,84+crouch)],shirt[1],width=2)
         poly(d,[(25+tx,69+dy),(30+tx,70+dy),(29+tx,87+crouch),(24+tx,84+crouch)],shirt[2],INK,1)
+    elif fam=="novice":
+        # Novato lleva túnica corta de viaje y pantalón visible, no una túnica larga de mago.
+        poly(d,[(22+tx,65+dy),(42+tx,65+dy),(40+tx,77+crouch),(35+tx,81+crouch),(25+tx,81+crouch),(21+tx,76+crouch)],shirt[0],width=2)
+        poly(d,[(24+tx,68+dy),(31+tx,70+dy),(30+tx,77+crouch),(24+tx,77+crouch)],shirt[1],INK,1)
+        line(d,[(34+tx,69+dy),(35+tx,77+crouch)],shirt[2],2)
+        # Reforzar ambas perneras por delante para que la ropa y las piernas se lean como un conjunto.
+        poly(d,[(23+tx,79+crouch),(30+tx,79+crouch),(29+tx,96+crouch),(25+tx,102+crouch),(21+tx,100+crouch)],leather[0],width=1)
+        poly(d,[(32+tx,79+crouch),(39+tx,79+crouch),(41+tx,96+crouch),(43+tx,101+crouch),(37+tx,102+crouch),(33+tx,96+crouch)],leather[0],width=1)
+        line(d,[(26+tx,83+crouch),(25+tx,95+crouch)],leather[2],1)
+        line(d,[(36+tx,83+crouch),(38+tx,95+crouch)],leather[2],1)
     elif fam=="fighter":
         poly(d,[(22+tx,65+dy),(42+tx,65+dy),(41+tx,82+crouch),(36+tx,88+crouch),(25+tx,87+crouch),(21+tx,80+crouch)],leather[0],width=2)
         poly(d,[(24+tx,68+dy),(30+tx,69+dy),(29+tx,82+crouch),(25+tx,81+crouch)],shirt[0],INK,1)
@@ -178,7 +188,20 @@ def draw_frame(cid, sex, row, f):
     elif row==4:
         be,bh,fe,fh=(17+tx,56+dy),(13+tx,60+dy),(38+tx,59+dy),(43+tx,63+dy)
     elif row>=6:
-        attack_pose={6:((19,47),(15,40),(42,48),(50,42)),7:((20,47),(19,38),(40,47),(42,36)),8:((19,49),(13,49),(42,49),(52,49)),9:((21,49),(19,53),(40,48),(47,43)),10:((19,49),(15,49),(43,47),(50,45)),11:((21,47),(22,39),(40,47),(47,41)),12:((20,47),(19,37),(42,48),(49,38)),13:((20,48),(18,42),(42,48),(50,43)),14:((22,49),(22,53),(42,48),(48,52))}[row]
+        # Cuatro posturas legibles por arma; el objeto se dibujará como capa independiente.
+        # Cada frame expresa preparación, ejecución, extensión y recuperación sin incluir el arma.
+        attack_poses={
+            6:[((27,51),(31,48),(39,49),(42,46)),((27,47),(31,42),(39,46),(42,41)),((31,47),(37,43),(44,46),(52,42)),((29,50),(33,46),(41,49),(44,46))],
+            7:[((28,51),(31,48),(39,50),(37,47)),((27,45),(31,37),(37,43),(34,35)),((34,45),(40,41),(43,48),(48,43)),((29,50),(33,45),(40,49),(39,45))],
+            8:[((27,52),(27,51),(39,49),(43,49)),((26,50),(28,48),(40,48),(46,47)),((28,51),(31,50),(43,49),(53,48)),((27,52),(28,51),(39,50),(44,50))],
+            9:[((28,50),(30,48),(39,50),(43,46)),((27,47),(29,44),(39,47),(44,43)),((32,49),(36,46),(43,46),(50,41)),((29,51),(31,48),(40,49),(44,45))],
+            10:[((27,51),(31,48),(41,48),(47,48)),((27,49),(32,46),(41,47),(49,44)),((27,47),(32,44),(42,46),(50,43)),((27,50),(32,48),(41,48),(47,48))],
+            11:[((28,52),(30,57),(38,48),(42,41)),((28,50),(31,54),(39,45),(43,36)),((31,49),(35,52),(41,46),(44,41)),((29,52),(31,56),(39,48),(42,42))],
+            12:[((28,51),(31,48),(39,50),(37,47)),((27,45),(31,37),(38,44),(36,35)),((33,46),(38,42),(43,47),(48,42)),((29,50),(33,45),(40,49),(39,45))],
+            13:[((29,52),(32,50),(41,48),(45,45)),((30,50),(34,47),(42,46),(47,42)),((30,48),(34,44),(44,43),(49,39)),((29,52),(32,50),(41,48),(45,45))],
+            14:[((29,52),(31,49),(41,49),(43,47)),((29,49),(32,46),(42,47),(46,44)),((32,48),(37,45),(44,45),(51,42)),((29,52),(31,49),(41,49),(43,47))],
+        }
+        attack_pose=attack_poses[row][f]
         be,bh,fe,fh=tuple((x+tx,y+dy) for x,y in attack_pose)
     elif row==1:
         be,bh=(17+tx,53+dy+[-2,1,2,-1][f]),(18+tx,59+dy)
@@ -187,25 +210,12 @@ def draw_frame(cid, sex, row, f):
         be,bh,fe,fh=(18+tx,54+dy),(19+tx,61+dy),(42+tx,55+dy),(44+tx,61+dy)
     arm_palette=shirt if fam in ("cleric","mage") else leather
     draw_arm(d,shoulder_back,be,bh,arm_palette,bracer=(fam in ("ranger","novice")))
-    if fam=="fighter":
-        ellipse(d,(34+tx,42+dy,47+tx,54+dy),metal[1],INK,2)
-        ellipse(d,(36+tx,43+dy,44+tx,49+dy),metal[2],INK,1)
-        line(d,[(37+tx,47+dy),(43+tx,46+dy)],metal[0],2)
     draw_arm(d,shoulder_front,fe,fh,arm_palette,bracer=(fam in ("fighter","ranger")))
-    if fam=="mage":
-        line(d,[(28+tx,55+dy),(35+tx,62+crouch)],leather[2],3)
-        rect(d,(31+tx,58+crouch,35+tx,62+crouch),metal[0],INK,1)
-        ellipse(d,(32+tx,59+crouch,34+tx,61+crouch),"#83c9ed",INK,1)
-    elif fam=="cleric":
-        line(d,[(31+tx,49+dy),(35+tx,53+dy),(31+tx,58+dy)],leather[2],2)
-        ellipse(d,(30+tx,53+dy,34+tx,57+dy),"#e7c766",INK,1)
-    elif fam=="ranger":
+    # El arquero conserva la correa y el carcaj cosidos al atuendo; el arco no está dibujado.
+    if fam=="ranger":
         line(d,[(22+tx,47+dy),(37+tx,65+crouch)],leather[2],3)
         line(d,[(23+tx,47+dy),(38+tx,65+crouch)],leather[1],1)
         poly(d,[(17+tx,52+dy),(20+tx,51+dy),(23+tx,62+crouch),(20+tx,65+crouch)],leather[0],INK,1)
-    elif fam=="fighter":
-        line(d,[(28+tx,48+dy),(35+tx,63+crouch)],metal[2],2)
-        line(d,[(31+tx,55+dy),(35+tx,60+crouch)],metal[0],2)
     # Final highlights stay within the outline, no free-floating badges or accessories.
     rect(d,(28+tx,44+dy,29+tx,46+dy),shirt[2])
     rect(d,(25+tx,66+crouch,27+tx,67+crouch),leather[2])
