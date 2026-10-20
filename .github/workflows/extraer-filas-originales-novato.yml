@@ -1,0 +1,84 @@
+name: Extraer filas originales de Novato
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/extraer-filas-originales-novato.py"
+      - ".github/workflows/extraer-filas-originales-novato.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: novato-base-actions-sources
+  cancel-in-progress: false
+
+jobs:
+  extraer-y-versionar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar Pillow
+        run: python -m pip install --disable-pip-version-check pillow
+
+      - name: Extraer y validar cada sexo/acción en commits separados
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for sex in m f; do
+            for action in idle walk hurt; do
+              echo "=== Novato $sex / $action ==="
+              python scripts/extraer-filas-originales-novato.py --sex "$sex" --action "$action"
+
+              python - "$sex" "$action" <<'PY'
+          import json, sys
+          from pathlib import Path
+          from PIL import Image
+          sex, action = sys.argv[1:]
+          p = Path("assets/spritesheets/originales/novato") / action / f"novato-{sex}-{action}.png"
+          report_p = p.parent / f"qa-report-{sex}.json"
+          with Image.open(p) as image:
+              assert image.size == (256, 128), (p, image.size)
+              im = image.convert("RGBA")
+              assert im.getchannel("A").getextrema()[0] == 0, f"No transparency: {p}"
+          report = json.loads(report_p.read_text(encoding="utf-8"))
+          assert report["dimensions"]["cell"] == [64, 128]
+          assert report["distinct_frame_count"] >= (3 if action == "idle" else 4)
+          print(f"QA OK: {p} | {report['file_sha256']}")
+          PY
+
+              git add \
+                "assets/spritesheets/originales/novato/$action/novato-$sex-$action.png" \
+                "assets/spritesheets/originales/novato/$action/frames/$sex" \
+                "assets/spritesheets/originales/novato/$action/previews/novato-$sex-$action-preview.png" \
+                "assets/spritesheets/originales/novato/$action/qa-report-$sex.json" \
+                "assets/spritesheets/originales/novato/$action/README.md"
+              if ! git diff --cached --quiet; then
+                git commit -m "art: versionar Novato $sex $action como recurso independiente"
+                git push origin HEAD:main
+              fi
+            done
+          done
+
+      - name: Publicar paquete de revisión
+        uses: actions/upload-artifact@v4
+        with:
+          name: novato-idle-walk-hurt-review
+          path: assets/spritesheets/originales/novato/
+          if-no-files-found: error
+          retention-days: 14
