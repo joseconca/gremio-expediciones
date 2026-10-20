@@ -137,7 +137,7 @@ def add_class_gear(sheet, profile, cls):
     robe = style in {"priest","mage","darkmage","seer","archmage","summoner","necromancer","demon","druid"}
     # Shades are RGBA tuples so their alpha stays consistent with the original pixel art.
     main = rgba(base); dark = shade(base,.48); medium = shade(base,.8)
-    accent_rgba = rgba(accent); steel = rgba("#788994"); steel_hi = rgba("#c7d0d5")
+    accent_rgba = rgba(accent); light = rgba(accent); steel = rgba("#788994"); steel_hi = rgba("#c7d0d5")
     overlay = Image.new("RGBA",sheet.size,(0,0,0,0)); d=ImageDraw.Draw(overlay)
     for row in range(15):
         for col in range(4):
