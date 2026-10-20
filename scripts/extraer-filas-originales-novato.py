@@ -27,6 +27,45 @@ def cell_hash(cell: Image.Image) -> str:
     return hashlib.sha256(cell.convert("RGBA").tobytes()).hexdigest()
 
 
+def remove_isolated_red_edge_specks(cell: Image.Image) -> tuple[Image.Image, int]:
+    """Remove tiny, disconnected red pixels outside the sprite silhouette at the cell edge."""
+    from collections import deque
+
+    im = cell.convert("RGBA")
+    pixels = im.load()
+    seen: set[tuple[int, int]] = set()
+    removed = 0
+    for y in range(H):
+        for x in range(W):
+            if (x, y) in seen or pixels[x, y][3] == 0:
+                continue
+            queue = deque([(x, y)])
+            seen.add((x, y))
+            component = []
+            while queue:
+                cx, cy = queue.popleft()
+                component.append((cx, cy))
+                for ny in range(max(0, cy - 1), min(H, cy + 2)):
+                    for nx in range(max(0, cx - 1), min(W, cx + 2)):
+                        if (nx, ny) in seen or pixels[nx, ny][3] == 0:
+                            continue
+                        seen.add((nx, ny))
+                        queue.append((nx, ny))
+            if len(component) > 4:
+                continue
+            if not any(px <= 2 or px >= W - 3 for px, _ in component):
+                continue
+            if not any(py >= H - 32 for _, py in component):
+                continue
+            colours = [pixels[px, py][:3] for px, py in component]
+            if all(red > green * 1.25 and red > blue * 1.2 and red > 70 for red, green, blue in colours):
+                for px, py in component:
+                    red, green, blue, _ = pixels[px, py]
+                    pixels[px, py] = (red, green, blue, 0)
+                removed += len(component)
+    return im, removed
+
+
 def generate(sex: str, action: str) -> None:
     source_path = ROOT / f"public/sprites/heroes/novato/novato-{sex}-sheet.png"
     if not source_path.is_file():
@@ -47,8 +86,12 @@ def generate(sex: str, action: str) -> None:
     preview_dir.mkdir(parents=True, exist_ok=True)
 
     report_frames = []
+    isolated_edge_pixels_removed = 0
     for index in range(4):
         cell = strip.crop((index * W, 0, (index + 1) * W, H))
+        if sex == "f" and action == "walk":
+            cell, removed = remove_isolated_red_edge_specks(cell)
+            isolated_edge_pixels_removed += removed
         bbox = cell.getchannel("A").getbbox()
         if bbox is None:
             raise ValueError(f"{action} frame {index + 1} is empty")
@@ -95,6 +138,7 @@ def generate(sex: str, action: str) -> None:
         "file_size": strip_path.stat().st_size,
         "file_sha256": sha256(strip_path),
         "distinct_frame_count": distinct_count,
+        "isolated_red_edge_pixels_removed": isolated_edge_pixels_removed,
         "weapons_in_body": False,
         "legacy_tier1_layered_armour_used": False,
         "status": "standalone archive of approved Novato art; runtime atlas unchanged",
