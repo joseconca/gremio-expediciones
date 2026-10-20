@@ -215,7 +215,10 @@ def generate(cid, sex):
     sheet=Image.new("RGBA",(256,1920),(0,0,0,0))
     for row in range(ROWS):
         for frame in range(COLS):
-            sheet.alpha_composite(draw_frame(cid,sex,row,frame),(frame*W,row*H))
+            sprite=draw_frame(cid,sex,row,frame)
+            # Widen the integrated silhouette with nearest-neighbour scaling; keep pixel edges crisp.
+            sprite=sprite.resize((77,H),Image.Resampling.NEAREST).crop((6,0,70,H))
+            sheet.alpha_composite(sprite,(frame*W,row*H))
     dest=OUT/cid/f"{cid}-{sex}-sheet.png";dest.parent.mkdir(parents=True,exist_ok=True)
     sheet.save(dest,optimize=True,compress_level=9)
     with Image.open(dest) as verify:
