@@ -1,0 +1,76 @@
+{
+  "class": "espadachin",
+  "sex": "m",
+  "action": "idle",
+  "source": "docs/espadachin-caminar-entrega/source/concept_walk.png",
+  "dimensions": {
+    "strip": [
+      256,
+      128
+    ],
+    "cell": [
+      64,
+      128
+    ],
+    "frames": 4,
+    "rows": 1
+  },
+  "disk_mode": "P",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "file_size": 10734,
+  "file_sha256": "0aa746e72246f8246e678e6063925816f8de6638421e26eeeb8bab9c541ae7b1",
+  "all_frames_distinct": true,
+  "feet_baseline_aligned": true,
+  "weapons_in_body": false,
+  "source_is_legacy_tier1_overlay": false,
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        2,
+        4,
+        62,
+        124
+      ],
+      "rgba_sha256": "2a74d6b7195afbfaaae17689547b10043357c6cbdd41a06e8441e193d14d7ec0",
+      "visible_pixels": 3557
+    },
+    {
+      "index": 2,
+      "bbox": [
+        2,
+        4,
+        62,
+        124
+      ],
+      "rgba_sha256": "40f2d07a7374dddf1cdde93879a1d792a304a75d84e15f44f14b9fe4a119f289",
+      "visible_pixels": 3494
+    },
+    {
+      "index": 3,
+      "bbox": [
+        2,
+        4,
+        62,
+        124
+      ],
+      "rgba_sha256": "9ba74ddf9188c1d5832d5cacf6a4dacc223d5930a22b89de51551226d87abba8",
+      "visible_pixels": 3553
+    },
+    {
+      "index": 4,
+      "bbox": [
+        2,
+        4,
+        62,
+        124
+      ],
+      "rgba_sha256": "0869a80e7f1347b1bd8d290218404896b97aaee4a6bc0ddee1336933948b9e8a",
+      "visible_pixels": 3567
+    }
+  ],
+  "status": "original class-specific art source; isolated from active runtime atlas"
+}
