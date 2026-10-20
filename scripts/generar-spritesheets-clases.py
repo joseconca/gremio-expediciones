@@ -60,28 +60,35 @@ def band(d, start, end, fill, width=5, highlight=None):
         line(d,[pts[0],pts[1]],highlight,1)
 
 def draw_expression(d, fam, sex, row, frame, tx, hy, skin, hair):
-    """Ojos, cejas y boca animados en cada fotograma; rasgos pequeños para pixel art 64x128."""
+    """Expresión de perfil con cejas, párpados, iris, pómulo y boca animados por acción."""
     eye_x, eye_y = 39 + tx, hy + 4
     eye_color = {
-        "novice": "#4a2c20",
-        "fighter": "#293946",
-        "cleric": "#87612c",
-        "ranger": "#3d5128",
-        "mage": "#56cbed",
+        "novice": "#5b3825",
+        "fighter": "#263d50",
+        "cleric": "#a77a34",
+        "ranger": "#526c32",
+        "mage": "#4bd4f5",
     }[fam]
-    # Idle: serenidad; caminar: concentración; hurt: ojos apretados; dodge: alerta;
-    # block/attack: ceja baja y mandíbula firme; consumible: parpadeo al beber.
-    blink = (row == 0 and frame == 2) or (row == 1 and frame == 3) or (row == 3 and frame in (1, 2))
+    blink = (row == 0 and frame == 2) or (row == 1 and frame == 3) or (row == 3 and frame == 1)
     hurt = row == 2
+    drinking = row == 3
     dodge = row == 4
     guarded = row == 5
     striking = row >= 6
+    shouting = striking and frame == 2
+
+    # Cejas con inclinación deliberada: cambia la emoción, no solo el color del ojo.
     if hurt:
-        line(d, [(eye_x-3, eye_y-1), (eye_x-1, eye_y-2), (eye_x+1, eye_y)], hair[0], 2)
+        brow = [(eye_x-3, eye_y-2), (eye_x-1, eye_y), (eye_x+2, eye_y-1)]
+        line(d, brow, hair[0], 2)
+        rect(d, (eye_x-1, eye_y-1, eye_x, eye_y-1), skin[2])
     elif dodge:
-        line(d, [(eye_x-3, eye_y-3), (eye_x-1, eye_y-4), (eye_x+2, eye_y-2)], hair[1], 1)
+        line(d, [(eye_x-3, eye_y-4), (eye_x-1, eye_y-5), (eye_x+2, eye_y-3)], hair[1], 2)
+        rect(d, (eye_x+1, eye_y-4, eye_x+2, eye_y-3), skin[2])
     elif guarded or striking:
         line(d, [(eye_x-3, eye_y-2), (eye_x-1, eye_y-1), (eye_x+2, eye_y-3)], hair[0], 2)
+        if striking and frame == 1:
+            rect(d, (eye_x-1, eye_y-2, eye_x+1, eye_y-2), skin[2])
     elif fam == "cleric":
         line(d, [(eye_x-3, eye_y-2), (eye_x-1, eye_y-3), (eye_x+2, eye_y-2)], "#936b3d", 1)
     elif fam == "ranger":
@@ -89,57 +96,79 @@ def draw_expression(d, fam, sex, row, frame, tx, hy, skin, hair):
     else:
         line(d, [(eye_x-3, eye_y-2), (eye_x-1, eye_y-3), (eye_x+2, eye_y-2)], hair[0], 1)
 
-    # Eye socket and eyelid. The iris is class-tinted, with a single light-catching pixel.
+    # Sombra de la cuenca y el párpado superior. El brillo queda dentro del iris.
     if blink or hurt:
-        line(d, [(eye_x-1, eye_y+1), (eye_x+2, eye_y+1)], "#342127", 2)
+        line(d, [(eye_x-2, eye_y+1), (eye_x, eye_y+2), (eye_x+2, eye_y+1)], "#2a1b20", 2)
         if hurt:
-            line(d, [(eye_x, eye_y+2), (eye_x+2, eye_y+2)], skin[0], 1)
+            line(d, [(eye_x-1, eye_y+3), (eye_x+1, eye_y+3)], skin[0], 1)
     else:
-        line(d, [(eye_x-2, eye_y), (eye_x+2, eye_y)], "#2a1a20", 2)
-        rect(d, (eye_x-1, eye_y+1, eye_x+2, eye_y+2), "#f6e7ca")
-        rect(d, (eye_x+1, eye_y+1, eye_x+2, eye_y+2), eye_color)
-        rect(d, (eye_x+2, eye_y+1, eye_x+2, eye_y+1), "#fff8df")
+        if dodge:
+            rect(d, (eye_x-2, eye_y, eye_x+2, eye_y+3), "#21181f")
+            rect(d, (eye_x-1, eye_y+1, eye_x+1, eye_y+2), "#fff0d4")
+            rect(d, (eye_x+1, eye_y+1, eye_x+2, eye_y+2), eye_color)
+            rect(d, (eye_x+2, eye_y+1, eye_x+2, eye_y+1), "#ffffff")
+        else:
+            rect(d, (eye_x-2, eye_y+1, eye_x+2, eye_y+2), "#221920")
+            rect(d, (eye_x-1, eye_y+1, eye_x+1, eye_y+2), "#f7e8cb")
+            rect(d, (eye_x+1, eye_y+1, eye_x+2, eye_y+2), eye_color)
+            rect(d, (eye_x+2, eye_y+1, eye_x+2, eye_y+1), "#fffef0")
         if sex == "f":
             line(d, [(eye_x-2, eye_y), (eye_x-1, eye_y-1), (eye_x+1, eye_y)], hair[0], 1)
+            rect(d, (eye_x+2, eye_y, eye_x+2, eye_y+1), hair[0])
 
-    # Class-specific facial signature: scar, peaceful cheek, ranger paint or arcane iris.
+    # Luz frontal sobre la nariz y sombra bajo el pómulo para dar volumen al perfil.
+    line(d, [(eye_x+3, eye_y+2), (eye_x+4, eye_y+4)], skin[2], 1)
+    line(d, [(eye_x-2, eye_y+5), (eye_x, eye_y+6), (eye_x+2, eye_y+5)], skin[0], 1)
+    rect(d, (eye_x, eye_y+4, eye_x+1, eye_y+4), skin[1])
+
+    # Firma facial propia de cada arquetipo, pequeña pero visible al tamaño nativo.
     if fam == "fighter":
-        line(d, [(eye_x-2, eye_y+4), (eye_x-1, eye_y+5)], "#93483c", 1)
+        # Cicatriz fina y antigua bajo el ojo.
+        line(d, [(eye_x-2, eye_y+4), (eye_x-1, eye_y+5), (eye_x, eye_y+6)], "#8d4037", 1)
         rect(d, (eye_x-1, eye_y+4, eye_x-1, eye_y+4), "#e5a06e")
     elif fam == "cleric":
-        rect(d, (eye_x+1, eye_y+5, eye_x+2, eye_y+5), "#e8c979")
+        rect(d, (eye_x+1, eye_y+5, eye_x+2, eye_y+5), "#f2d28a")
+        rect(d, (eye_x+2, eye_y+4, eye_x+2, eye_y+4), "#fff0c0")
     elif fam == "ranger":
-        line(d, [(eye_x-3, eye_y+3), (eye_x-2, eye_y+5)], "#718346", 1)
+        line(d, [(eye_x-3, eye_y+3), (eye_x-2, eye_y+5), (eye_x-1, eye_y+6)], "#718b3f", 1)
+        rect(d, (eye_x-3, eye_y+4, eye_x-3, eye_y+4), "#d4d49a")
     elif fam == "mage":
-        rect(d, (eye_x+1, eye_y+3, eye_x+2, eye_y+3), "#d8f8ff")
+        rect(d, (eye_x+1, eye_y+3, eye_x+2, eye_y+3), "#e6fcff")
         rect(d, (eye_x+2, eye_y+4, eye_x+2, eye_y+5), "#7fc8f5")
+        rect(d, (eye_x+3, eye_y-1, eye_x+3, eye_y), "#8feaff")
     else:
-        rect(d, (eye_x-2, eye_y+4, eye_x-2, eye_y+4), "#b97859")
+        # Expresión abierta y joven; dos pecas diminutas iluminan la mejilla.
+        rect(d, (eye_x-2, eye_y+5, eye_x-2, eye_y+5), "#c98564")
+        rect(d, (eye_x-1, eye_y+6, eye_x-1, eye_y+6), "#e8a27b")
 
-    # Mouth changes the expression without stretching or changing the base head silhouette.
+    # La boca se anima: dolor, esfuerzo al beber, alerta o grito de ataque.
     mx, my = 41 + tx, hy + 10
     if hurt:
-        ellipse(d, (mx, my-1, mx+2, my+2), "#341d22", None, 1)
-        rect(d, (mx+1, my-1, mx+1, my-1), "#f6dfc2")
-        line(d, [(mx-1, my+3), (mx+2, my+3)], skin[0], 1)
-    elif row == 3 and frame in (1, 2):
-        ellipse(d, (mx, my-1, mx+2, my+2), "#3a2024", None, 1)
-        rect(d, (mx+1, my-1, mx+1, my), "#fff0cf")
+        ellipse(d, (mx, my-1, mx+3, my+3), "#321920", None, 1)
+        rect(d, (mx+1, my-1, mx+2, my), "#fff0d5")
+        rect(d, (mx, my+2, mx+2, my+2), "#8d4d48")
+    elif drinking and frame == 1:
+        ellipse(d, (mx, my-1, mx+2, my+2), "#382026", None, 1)
+        rect(d, (mx+1, my-1, mx+1, my-1), "#fff2d2")
+    elif drinking and frame == 2:
+        line(d, [(mx-1, my), (mx+1, my+1), (mx+3, my)], "#572d2c", 1)
     elif dodge:
         line(d, [(mx-1, my), (mx+1, my-1), (mx+3, my)], "#542b2a", 1)
-    elif striking and frame == 2:
-        ellipse(d, (mx, my-1, mx+3, my+2), "#3a2024", None, 1)
-        rect(d, (mx+1, my-1, mx+2, my-1), "#fff0cf")
+        rect(d, (mx+1, my, mx+1, my), "#f0d4b5")
+    elif shouting:
+        ellipse(d, (mx, my-1, mx+3, my+3), "#321920", None, 1)
+        rect(d, (mx+1, my-1, mx+2, my), "#fff0cf")
+        rect(d, (mx+1, my+2, mx+2, my+2), "#9c5d55")
     elif guarded or (striking and frame == 1):
-        line(d, [(mx-1, my), (mx+2, my-1)], "#3c2224", 2)
+        line(d, [(mx-1, my), (mx+1, my-1), (mx+3, my)], "#3c2224", 2)
     else:
         line(d, [(mx, my), (mx+2, my)], "#6b3a35", 1)
         rect(d, (mx+1, my-1, mx+1, my-1), skin[2])
 
-    # A tiny lower-face shadow adds volume and keeps the face readable in motion.
+    # Jaw shadow and lip highlight close the face without enlarging its silhouette.
     line(d, [(40+tx, hy+13), (42+tx, hy+13)], skin[0], 1)
-    if fam == "mage" and not blink:
-        rect(d, (eye_x+3, eye_y-1, eye_x+3, eye_y), "#6fb9ef")
+    rect(d, (42+tx, hy+11, 42+tx, hy+11), skin[2])
+
 
 
 def pose(row,f):
@@ -167,7 +196,8 @@ def pose(row,f):
     return dx,dy,crouch
 
 def draw_frame(cid, sex, row, f):
-    p=P[cid]; fam=p["family"]; shirt=p["shirt"]; leather=p["leather"]; metal=p["metal"]; skin=p["skin"]; hair=p["hair"]; cape=p["cape"]
+    p=P[cid]; fam=p["family"]; shirt=p["shirt"]; leather=p["leather"]; metal=p["metal"]; hair=p["hair"]; cape=p["cape"]
+    skin = p["skin"] if sex == "m" else ("#a4604b", "#e4a17f", "#f8c8a1")
     im=Image.new("RGBA",(W,H),(0,0,0,0));d=ImageDraw.Draw(im)
     dx,dy,crouch=pose(row,f); tx=dx; hy=24+dy//2; hip=82+crouch
     # Cloak silhouette is drawn behind the body, not pasted over it.
