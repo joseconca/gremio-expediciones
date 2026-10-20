@@ -896,6 +896,73 @@ def pintar_equipo_acolito(source, shift_x=0, shift_y=0):
         rect(d, (x+sx,y+sy,x+sx+1,y+sy+1), "#c0a064")
     return im
 
+def pintar_equipo_arquero(source, shift_x=0, shift_y=0):
+    """Equipo de explorador ligero; carcaj y correas sí, arco y armas no."""
+    im = source.convert("RGBA").copy()
+    px = im.load()
+    # Manto de bosque verde; mantener separado el pañuelo rojo bajo la barbilla.
+    for y in range(50, 88):
+        for x in range(2, 31):
+            r, g, b, a = px[x, y]
+            if a and r > 65 and r > g * 1.22 and r > b * 1.12:
+                lum = (r + g + b) / 3
+                px[x, y] = (
+                    (20, 39, 29, a) if lum < 80 else
+                    (35, 62, 39, a) if lum < 120 else
+                    (67, 103, 56, a) if lum < 160 else
+                    (145, 174, 94, a)
+                )
+    d = ImageDraw.Draw(im)
+    sx, sy = shift_x, shift_y
+    # Capucha flexible abierta sobre la cara con ribete oliva.
+    line(d, [(25+sx,29+sy),(24+sx,23+sy),(28+sx,16+sy),(34+sx,13+sy),(40+sx,15+sy),(44+sx,22+sy),(44+sx,29+sy)], "#1d3527", 5)
+    line(d, [(25+sx,25+sy),(28+sx,19+sy),(33+sx,16+sy),(38+sx,16+sy),(42+sx,21+sy)], "#a8bd72", 2)
+    line(d, [(26+sx,28+sy),(28+sx,31+sy)], "#d1d99b", 1)
+    line(d, [(42+sx,27+sy),(41+sx,31+sy)], "#d1d99b", 1)
+    # Carcaj ceñido detrás del hombro, con flechas como equipo; no se dibuja el arco.
+    poly(d, [(12+sx,40+sy),(17+sx,38+sy),(21+sx,43+sy),(21+sx,61+sy),(17+sx,65+sy),(13+sx,61+sy)], "#30251f", INK, 1)
+    poly(d, [(13+sx,42+sy),(17+sx,40+sy),(19+sx,44+sy),(19+sx,59+sy),(16+sx,62+sy),(14+sx,59+sy)], "#805037", INK, 1)
+    line(d, [(14+sx,44+sy),(17+sx,43+sy),(18+sx,47+sy)], "#d5a260", 1)
+    for i, color in enumerate(("#d7cf9a","#ebdfb2","#b6c9a3")):
+        line(d, [(14+sx+i*2,43+sy),(13+sx+i*2,37+sy)], color, 2)
+    line(d, [(13+sx,52+sy),(19+sx,50+sy)], "#d5a260", 2)
+    # Jerkin verde oscuro con placas de cuero solapadas y costuras visibles.
+    poly(d, [(21+sx,44+sy),(29+sx,40+sy),(38+sx,42+sy),(43+sx,51+sy),(40+sx,68+sy),(23+sx,69+sy),(18+sx,54+sy)], "#243a2b", INK, 1)
+    poly(d, [(24+sx,46+sy),(30+sx,43+sy),(36+sx,47+sy),(35+sx,62+sy),(28+sx,65+sy),(24+sx,57+sy)], "#49683a", INK, 1)
+    poly(d, [(25+sx,47+sy),(30+sx,45+sy),(34+sx,48+sy),(32+sx,54+sy),(27+sx,56+sy)], "#789653", INK, 1)
+    line(d, [(24+sx,46+sy),(30+sx,53+sy),(36+sx,64+sy)], "#30251f", 4)
+    line(d, [(24+sx,46+sy),(30+sx,53+sy),(36+sx,64+sy)], "#d5a260", 1)
+    line(d, [(22+sx,55+sy),(28+sx,58+sy),(33+sx,64+sy)], "#1d2b21", 2)
+    # Placa de hombro de cuero verde y remaches mates.
+    poly(d, [(18+sx,44+sy),(23+sx,41+sy),(28+sx,44+sy),(27+sx,50+sy),(22+sx,53+sy),(18+sx,49+sy)], "#355335", INK, 1)
+    poly(d, [(19+sx,45+sy),(23+sx,43+sy),(26+sx,45+sy),(24+sx,49+sy),(21+sx,50+sy)], "#7f9e55", INK, 1)
+    line(d, [(20+sx,45+sy),(23+sx,44+sy),(25+sx,46+sy)], "#d4df9b", 1)
+    ellipse(d, (23+sx,46+sy,25+sx,48+sy), "#d5a260", INK, 1)
+    # Brazales de cuero y cierre de pecho, sin puños que oculten las manos para la capa de armas.
+    poly(d, [(14+sx,58+sy),(18+sx,56+sy),(21+sx,59+sy),(20+sx,64+sy),(17+sx,67+sy),(14+sx,64+sy)], "#35251e", INK, 1)
+    line(d, [(15+sx,61+sy),(19+sx,59+sy)], "#d5a260", 2)
+    line(d, [(16+sx,64+sy),(19+sx,62+sy)], "#8b5735", 2)
+    poly(d, [(41+sx,57+sy),(45+sx,56+sy),(48+sx,60+sy),(47+sx,65+sy),(44+sx,67+sy),(42+sx,63+sy)], "#35251e", INK, 1)
+    line(d, [(42+sx,60+sy),(46+sx,59+sy)], "#d5a260", 2)
+    line(d, [(43+sx,64+sy),(46+sx,62+sy)], "#8b5735", 2)
+    # Cinturón de viaje, bolsa de herramientas y faldón verde corto.
+    line(d, [(22+sx,67+sy),(41+sx,67+sy)], "#30251f", 5)
+    line(d, [(23+sx,66+sy),(41+sx,66+sy)], "#d5a260", 1)
+    rect(d, (32+sx,64+sy,36+sx,69+sy), "#596e42", INK, 1)
+    rect(d, (33+sx,65+sy,35+sx,68+sy), "#d4c27d", INK, 1)
+    poly(d, [(29+sx,69+sy),(36+sx,69+sy),(38+sx,79+sy),(34+sx,84+sy),(30+sx,80+sy)], "#345136", INK, 1)
+    line(d, [(30+sx,72+sy),(35+sx,72+sy)], "#9cbd6e", 1)
+    poly(d, [(31+sx,73+sy),(34+sx,71+sy),(35+sx,74+sy),(33+sx,77+sy)], "#a8bd72", INK, 1)
+    line(d, [(31+sx,80+sy),(34+sx,81+sy)], "#d5a260", 1)
+    # Correas de muslo y polainas flexibles de cuero, más ligeras que las del Espadachín.
+    line(d, [(22+sx,83+sy),(30+sx,85+sy)], "#30251f", 3)
+    line(d, [(23+sx,82+sy),(30+sx,84+sy)], "#d5a260", 1)
+    line(d, [(34+sx,85+sy),(41+sx,82+sy)], "#30251f", 3)
+    line(d, [(34+sx,84+sy),(40+sx,81+sy)], "#d5a260", 1)
+    for x, y in ((23,91),(40,92),(20,102),(42,102)):
+        rect(d, (x+sx,y+sy,x+sx+1,y+sy+1), "#d5a260")
+    return im
+
 def construir_filas_modulares_tier1(cid, sex, painter, impact_color):
     """Deriva maestro, Idle, Caminar y Recibir daño; las armas siguen siendo capas separadas."""
     base_dir = ROOT / "assets" / "spritesheets" / "novato"
@@ -1024,6 +1091,11 @@ def generate(cid, sex):
             sheet.alpha_composite(row_source, (0, row * H))
     elif cid == "acolito":
         idle, walk, hurt = construir_filas_modulares_tier1(cid, sex, pintar_equipo_acolito, "#fff0bf")
+        for row, row_source in ((0, idle), (1, walk), (2, hurt)):
+            sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
+            sheet.alpha_composite(row_source, (0, row * H))
+    elif cid == "arquero":
+        idle, walk, hurt = construir_filas_modulares_tier1(cid, sex, pintar_equipo_arquero, "#c8e68b")
         for row, row_source in ((0, idle), (1, walk), (2, hurt)):
             sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
             sheet.alpha_composite(row_source, (0, row * H))
