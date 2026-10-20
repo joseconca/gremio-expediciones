@@ -64,46 +64,60 @@ jobs:
           modular_classes = [cid for cid in classes if (source_dir / f"{cid}-m-master.png").exists()]
           assert "espadachin" in modular_classes, "Faltan fuentes modulares de Espadachín"
           for cid in modular_classes:
-              masters = [source_dir / f"{cid}-{sex}-master.png" for sex in ("m", "f")]
-              rows = [source_dir / f"{cid}-{sex}-{anim}-row.png"
-                      for sex in ("m", "f") for anim in ("idle", "walk", "hurt")]
-              assert all(path.exists() for path in masters + rows), f"Faltan fuentes modulares de {cid}"
-              for path in masters:
-                  with Image.open(path) as image:
-                      assert image.size == (64, 128) and image.mode == "RGBA", (path, image.size, image.mode)
-                      assert image.getchannel("A").getextrema()[0] == 0, f"{path}: falta transparencia"
-              for path in rows:
-                  with Image.open(path) as image:
-                      assert image.size == (256, 128) and image.mode == "RGBA", (path, image.size, image.mode)
-                      assert image.getchannel("A").getextrema()[0] == 0, f"{path}: falta transparencia"
-                      frames = [image.crop((i * 64, 0, (i + 1) * 64, 128)) for i in range(4)]
-                      assert all(frame.getchannel("A").getbbox() for frame in frames), f"{path}: celda vacía"
-                      if path.stem.endswith("-hurt-row"):
-                          assert len({frame.tobytes() for frame in frames}) == 4, f"{path}: fotogramas de daño repetidos"
-                      if path.stem.endswith("-idle-row"):
-                          assert len({frame.tobytes() for frame in frames}) == 4, f"{path}: Idle contiene fotogramas repetidos"
-                      if path.stem.endswith("-walk-row"):
-                          for index, frame in enumerate(frames):
-                              alpha = frame.getchannel("A")
-                              seen = set()
-                              for y in range(frame.height):
-                                  for x in range(frame.width):
-                                      if alpha.getpixel((x, y)) == 0 or (x, y) in seen:
-                                          continue
-                                      stack = [(x, y)]
-                                      seen.add((x, y))
-                                      component = []
-                                      while stack:
-                                          cx, cy = stack.pop()
-                                          component.append((cx, cy))
-                                          for ny in range(max(0, cy - 1), min(frame.height, cy + 2)):
-                                              for nx in range(max(0, cx - 1), min(frame.width, cx + 2)):
-                                                  if alpha.getpixel((nx, ny)) and (nx, ny) not in seen:
-                                                      seen.add((nx, ny))
-                                                      stack.append((nx, ny))
-                                      assert not (len(component) <= 48 and max(cx for cx, _ in component) >= frame.width - 4), (
-                                          f"{path}: fragmento vecino aislado en fotograma {index}"
-                                      )
+              for sex in ("m", "f"):
+                  master_path = source_dir / f"{cid}-{sex}-master.png"
+                  assert master_path.exists(), f"Falta {master_path}"
+                  with Image.open(master_path) as image:
+                      assert image.size == (64, 128) and image.mode == "RGBA", (master_path, image.size, image.mode)
+                      assert image.getchannel("A").getextrema()[0] == 0, f"{master_path}: falta transparencia"
+                  row_paths = sorted(source_dir.glob(f"{cid}-{sex}-*-row.png"))
+                  required = [source_dir / f"{cid}-{sex}-{anim}-row.png" for anim in ("idle", "walk", "hurt")]
+                  assert all(path.exists() for path in required), f"Faltan filas principales de {cid}/{sex}"
+                  assert all(path in row_paths for path in required), f"No se detectaron las filas principales de {cid}/{sex}"
+                  sheet_path = Path("public/sprites/heroes") / cid / f"{cid}-{sex}-sheet.png"
+                  with Image.open(sheet_path) as sheet:
+                      assert sheet.size == (256, 1920) and sheet.mode == "RGBA", (sheet_path, sheet.size, sheet.mode)
+                      for path in row_paths:
+                          with Image.open(path) as image:
+                              assert image.size == (256, 128) and image.mode == "RGBA", (path, image.size, image.mode)
+                              assert image.getchannel("A").getextrema()[0] == 0, f"{path}: falta transparencia"
+                              frames = [image.crop((i * 64, 0, (i + 1) * 64, 128)) for i in range(4)]
+                              assert all(frame.getchannel("A").getbbox() for frame in frames), f"{path}: celda vacía"
+                              assert len({frame.tobytes() for frame in frames}) == 4, f"{path}: contiene fotogramas repetidos"
+                              # Todas las filas fuente deben quedar idénticas en su ubicación del atlas final.
+                              row_num = {
+                                  "idle": 0, "walk": 1, "hurt": 2, "consumable": 3,
+                                  "dodge": 4, "block": 5, "sword": 6, "axe": 7,
+                                  "spear": 8, "dagger": 9, "bow": 10, "staff": 11,
+                                  "mace": 12, "book": 13, "gloves": 14,
+                              }.get(path.stem.removeprefix(f"{cid}-{sex}-").removesuffix("-row"))
+                              assert row_num is not None, f"{path}: fila no reconocida"
+                              final_row = sheet.crop((0, row_num * 128, 256, (row_num + 1) * 128))
+                              assert ImageChops.difference(image.convert("RGBA"), final_row).getbbox() is None, (
+                                  f"{path}: la fila del atlas no coincide con la fuente modular"
+                              )
+                              if path.stem.endswith("-walk-row"):
+                                  for index, frame in enumerate(frames):
+                                      alpha = frame.getchannel("A")
+                                      seen = set()
+                                      for y in range(frame.height):
+                                          for x in range(frame.width):
+                                              if alpha.getpixel((x, y)) == 0 or (x, y) in seen:
+                                                  continue
+                                              stack = [(x, y)]
+                                              seen.add((x, y))
+                                              component = []
+                                              while stack:
+                                                  cx, cy = stack.pop()
+                                                  component.append((cx, cy))
+                                                  for ny in range(max(0, cy - 1), min(frame.height, cy + 2)):
+                                                      for nx in range(max(0, cx - 1), min(frame.width, cx + 2)):
+                                                          if alpha.getpixel((nx, ny)) and (nx, ny) not in seen:
+                                                              seen.add((nx, ny))
+                                                              stack.append((nx, ny))
+                                              assert not (len(component) <= 48 and max(cx for cx, _ in component) >= frame.width - 4), (
+                                                  f"{path}: fragmento vecino aislado en fotograma {index}"
+                                              )
           print(f"OK: {len(files)} hojas completas; Espadachín modular con fuentes 64×128 y tiras 4×64×128")
           PY
 
