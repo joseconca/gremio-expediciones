@@ -601,8 +601,8 @@ def generate(cid, sex):
             # Widen the integrated silhouette with nearest-neighbour scaling; keep pixel edges crisp.
             sprite=sprite.resize((77,H),Image.Resampling.NEAREST).crop((6,0,70,H))
             sheet.alpha_composite(sprite,(frame*W,row*H))
-    # Novato utiliza tiras de alta calidad aprobadas para Idle y Caminar.
-    # El resto de las acciones conserva sus filas actuales hasta cada iteración de arte posterior.
+    # Novato utiliza arte aprobado para Idle, Caminar y Recibir daño.
+    # El resto de las acciones conserva sus filas actuales hasta cada iteración posterior.
     if cid == "novato":
         walk_path = ROOT / "assets" / "spritesheets" / "novato" / f"novato-{sex}-walk-row.png"
         with Image.open(walk_path) as walk_source:
@@ -611,6 +611,14 @@ def generate(cid, sex):
         assert walk.getchannel("A").getextrema()[0] == 0, (walk_path, "la fila debe conservar transparencia")
         sheet.paste((0, 0, 0, 0), (0, H, 256, 2 * H))
         sheet.alpha_composite(walk, (0, H))
+
+        hurt_path = ROOT / "assets" / "spritesheets" / "novato" / f"novato-{sex}-hurt-row.png"
+        with Image.open(hurt_path) as hurt_source:
+            hurt = hurt_source.convert("RGBA")
+        assert hurt.size == (256, 128), (hurt_path, hurt.size)
+        assert hurt.getchannel("A").getextrema() == (0, 255), (hurt_path, "se exige transparencia real y píxeles visibles")
+        sheet.paste((0, 0, 0, 0), (0, 2 * H, 256, 3 * H))
+        sheet.alpha_composite(hurt, (0, 2 * H))
 
         master_path = ROOT / "assets" / "spritesheets" / "novato" / f"novato-{sex}-master.png"
         with Image.open(master_path) as master_source:
