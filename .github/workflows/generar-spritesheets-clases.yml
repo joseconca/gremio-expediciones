@@ -32,7 +32,7 @@ jobs:
       - name: Regenerar Novato y las cuatro clases de Tier 1
         run: python scripts/generar-spritesheets-clases.py --phase all
 
-      - name: Validar las cuatro clases de Tier 1
+      - name: Validar las hojas de Novato y Tier 1
         run: |
           python - <<'PY'
           from pathlib import Path
