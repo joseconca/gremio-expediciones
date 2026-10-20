@@ -54,7 +54,7 @@ test("el refinador mantiene un perfil visual por clase y procesa las 70 hojas un
 
   assert.equal(perfiles.length, 35, "Cada profesión y clase heredada debe tener perfil visual propio.");
   for (const id of ["novato", "mago", "arquero", "paladin", "archimago", "demonologo", "comerciante"]) {
-    assert.ok(script.includes(\`"\${id}": (\`), \`Falta el perfil visual de \${id}.\`);
+    assert.ok(script.includes('"' + id + '": ('), "Falta el perfil visual de " + id + ".");
   }
   assert.match(script, /MARKER = ROOT \/ "\\.spritesheets-clase-refinados-v1"/);
   assert.match(script, /if MARKER\.exists\(\)/);
