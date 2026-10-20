@@ -641,6 +641,1914 @@
           }
         }
       }
+    },
+    "acolito": {
+      "m": {
+        "facing": "right",
+        "actions": {
+          "consumable": {
+            "row": 3,
+            "layer": null,
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 36,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 52,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "dodge": {
+            "row": 4,
+            "layer": null,
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 59,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 63,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "block": {
+            "row": 5,
+            "layer": null,
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 52,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 34,
+                "y": 49,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 54,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "sword": {
+            "row": 6,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 47,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "axe": {
+            "row": 7,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 42,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 44,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "spear": {
+            "row": 8,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 44,
+                "y": 50,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 49,
+                "y": 49,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "dagger": {
+            "row": 9,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 49,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "bow": {
+            "row": 10,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 45,
+                "y": 51,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 46,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "staff": {
+            "row": 11,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 43,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 39,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 52,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "mace": {
+            "row": 12,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 39,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 45,
+                "y": 46,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 54,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "book": {
+            "row": 13,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 39,
+                "y": 54,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 47,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 54,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "gloves": {
+            "row": 14,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 49,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 47,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          }
+        }
+      },
+      "f": {
+        "facing": "right",
+        "actions": {
+          "consumable": {
+            "row": 3,
+            "layer": null,
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 36,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 52,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "dodge": {
+            "row": 4,
+            "layer": null,
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 59,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 63,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "block": {
+            "row": 5,
+            "layer": null,
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 52,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 34,
+                "y": 49,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 54,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "sword": {
+            "row": 6,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 47,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "axe": {
+            "row": 7,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 42,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 44,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "spear": {
+            "row": 8,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 44,
+                "y": 50,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 49,
+                "y": 49,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "dagger": {
+            "row": 9,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 49,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "bow": {
+            "row": 10,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 45,
+                "y": 51,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 46,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "staff": {
+            "row": 11,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 43,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 39,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 52,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "mace": {
+            "row": 12,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 39,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 45,
+                "y": 46,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 54,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "book": {
+            "row": 13,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 39,
+                "y": 54,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 47,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 54,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "gloves": {
+            "row": 14,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 49,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 47,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "arquero": {
+      "m": {
+        "facing": "right",
+        "actions": {
+          "consumable": {
+            "row": 3,
+            "layer": null,
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 36,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 52,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "dodge": {
+            "row": 4,
+            "layer": null,
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 59,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 63,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "block": {
+            "row": 5,
+            "layer": null,
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 35,
+                "y": 50,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 54,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "sword": {
+            "row": 6,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 47,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "axe": {
+            "row": 7,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 42,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 44,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "spear": {
+            "row": 8,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 49,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 49,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 54,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "dagger": {
+            "row": 9,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 54,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "bow": {
+            "row": 10,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 33,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 28,
+                "y": 50,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 57,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "staff": {
+            "row": 11,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 44,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 44,
+                "y": 37,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 52,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "mace": {
+            "row": 12,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 43,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "book": {
+            "row": 13,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 54,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "gloves": {
+            "row": 14,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 49,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 47,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          }
+        }
+      },
+      "f": {
+        "facing": "right",
+        "actions": {
+          "consumable": {
+            "row": 3,
+            "layer": null,
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 36,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 52,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "dodge": {
+            "row": 4,
+            "layer": null,
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 59,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 63,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "block": {
+            "row": 5,
+            "layer": null,
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 35,
+                "y": 50,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 54,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "sword": {
+            "row": 6,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 47,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "axe": {
+            "row": 7,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 42,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 44,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "spear": {
+            "row": 8,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 49,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 49,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 54,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "dagger": {
+            "row": 9,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 54,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "bow": {
+            "row": 10,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 33,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 28,
+                "y": 50,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 57,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "staff": {
+            "row": 11,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 44,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 44,
+                "y": 37,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 52,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "mace": {
+            "row": 12,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 43,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "book": {
+            "row": 13,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 54,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "gloves": {
+            "row": 14,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 49,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 47,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "mago": {
+      "m": {
+        "facing": "right",
+        "actions": {
+          "consumable": {
+            "row": 3,
+            "layer": null,
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 36,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 52,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "dodge": {
+            "row": 4,
+            "layer": null,
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 59,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 63,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "block": {
+            "row": 5,
+            "layer": null,
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 51,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 36,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "sword": {
+            "row": 6,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 47,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "axe": {
+            "row": 7,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 42,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 44,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "spear": {
+            "row": 8,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 44,
+                "y": 50,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 49,
+                "y": 49,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "dagger": {
+            "row": 9,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 49,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "bow": {
+            "row": 10,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 45,
+                "y": 51,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 46,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "staff": {
+            "row": 11,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 42,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 45,
+                "y": 37,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 52,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "mace": {
+            "row": 12,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 43,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "book": {
+            "row": 13,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 39,
+                "y": 47,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 54,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "gloves": {
+            "row": 14,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 49,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 47,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          }
+        }
+      },
+      "f": {
+        "facing": "right",
+        "actions": {
+          "consumable": {
+            "row": 3,
+            "layer": null,
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 36,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 52,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "dodge": {
+            "row": 4,
+            "layer": null,
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 59,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 63,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "block": {
+            "row": 5,
+            "layer": null,
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 51,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 36,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "sword": {
+            "row": 6,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 47,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "axe": {
+            "row": 7,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 42,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 44,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "spear": {
+            "row": 8,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 44,
+                "y": 50,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 49,
+                "y": 49,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "dagger": {
+            "row": 9,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 49,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 41,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "bow": {
+            "row": 10,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 45,
+                "y": 51,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 46,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "staff": {
+            "row": 11,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 42,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 45,
+                "y": 37,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 52,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "mace": {
+            "row": 12,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 43,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 46,
+                "y": 45,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "book": {
+            "row": 13,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 40,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 39,
+                "y": 47,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 43,
+                "y": 54,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          },
+          "gloves": {
+            "row": 14,
+            "layer": "weapon",
+            "frames": [
+              {
+                "x": 44,
+                "y": 61,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 38,
+                "y": 49,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 47,
+                "y": 48,
+                "anchor": "front_hand_grip"
+              },
+              {
+                "x": 42,
+                "y": 53,
+                "anchor": "front_hand_grip"
+              }
+            ]
+          }
+        }
+      }
     }
   }
 }
