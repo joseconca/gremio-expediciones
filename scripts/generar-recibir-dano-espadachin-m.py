@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Genera la fila original Recibir daño del Espadachín masculino desde su Idle aprobado."""
+"""Genera la fila original Recibir daño del Espadachín masculino desde un fotograma de Caminar masculino validado."""
 from __future__ import annotations
 
 import hashlib
@@ -8,7 +8,7 @@ from pathlib import Path
 from PIL import Image, ImageChops, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "assets/spritesheets/originales/espadachin/idle/espadachin-m-idle.png"
+SOURCE = ROOT / "assets/spritesheets/originales/espadachin/walk/espadachin-m-walk.png"
 OUT = ROOT / "assets/spritesheets/originales/espadachin/hurt"
 W, H, FRAMES = 64, 128, 4
 
@@ -39,11 +39,11 @@ def transform_frame(frame: Image.Image, motion: tuple[float, int, int]) -> Image
 
 def main() -> None:
     if not SOURCE.exists():
-        raise FileNotFoundError(f"No se encuentra la tira Idle masculina: {SOURCE}")
+        raise FileNotFoundError(f"No se encuentra la tira Caminar masculina: {SOURCE}")
     with Image.open(SOURCE) as source_file:
         source = source_file.convert("RGBA")
     if source.size != (W * FRAMES, H):
-        raise ValueError(f"Idle debe medir 256×128; recibido {source.size}")
+        raise ValueError(f"Caminar debe medir 256×128; recibido {source.size}")
     if source.getchannel("A").getextrema()[0] != 0:
         raise ValueError("El Idle de origen no tiene transparencia real")
 
@@ -54,7 +54,7 @@ def main() -> None:
 
     frames: list[Image.Image] = []
     for index, motion in enumerate(MOTION):
-        original = source.crop((index * W, 0, (index + 1) * W, H))
+        # Use one grounded walk frame for every hurt beat; the pose change comes from the hit/recovery transform, not a continuing walk cycle.\n        original = source.crop((0, 0, W, H))
         result = transform_frame(original, motion)
         result.save(frame_dir / f"espadachin-m-hurt-{index + 1:02d}.png", optimize=True)
         frames.append(result)
@@ -116,7 +116,7 @@ def main() -> None:
         "# Espadachín Tier 1 — Recibir daño (masculino)\n\n"
         "- PNG final: espadachin-m-hurt.png (256 × 128 px).\n"
         "- Cuatro fotogramas horizontales de 64 × 128 px, PNG RGBA con transparencia real.\n"
-        "- Diseño, armadura, capa y paleta proceden del Idle masculino original ya versionado.\n"
+        "- Diseño, armadura, capa y paleta proceden del primer fotograma de Caminar masculino ya versionado.\n"
         "- Cuatro poses: inicio del impacto, retroceso, contracción máxima y recuperación; pies anclados.\n"
         "- No se incorporan armas al cuerpo: seguirán componiéndose como capas equipables.\n"
         "- qa-report.json registra dimensiones, alfa, hashes y cajas por fotograma.\n"
