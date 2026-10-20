@@ -1,0 +1,124 @@
+{
+  "task": "Tier 1 Swordsman — Walk only",
+  "source_concept": {
+    "name": "a_wide_clean_sprite_sheet_style_concept_image_on.png",
+    "size_px": [
+      1774,
+      887
+    ]
+  },
+  "spec": {
+    "strip_size": [
+      256,
+      128
+    ],
+    "cell_size": [
+      64,
+      128
+    ],
+    "frames": 4,
+    "columns": 4,
+    "rows": 1,
+    "transparent_background": true,
+    "weapon_in_body": false,
+    "view": "three-quarter, facing right"
+  },
+  "palette_note": "Indexed PNG, 16 opaque palette colors plus dedicated transparent index; reduced for compact runtime asset at native scale.",
+  "status": "validación local completada; PNGs todavía no publicados en GitHub ni integrados en runtime",
+  "characters": {
+    "m": {
+      "path": "espadachin-m-walk.png",
+      "size_px": [
+        256,
+        128
+      ],
+      "mode_on_disk": "P",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 19458,
+      "visible_bbox_per_frame": [
+        [
+          2,
+          8,
+          62,
+          124
+        ],
+        [
+          2,
+          8,
+          62,
+          124
+        ],
+        [
+          2,
+          5,
+          62,
+          124
+        ],
+        [
+          2,
+          9,
+          62,
+          124
+        ]
+      ],
+      "adjacent_rgba_pixel_differences": [
+        698157,
+        729957,
+        777306
+      ],
+      "all_four_frames_different": true,
+      "file_bytes": 8469,
+      "sha256": "9aace7bba61966a9b4102541a3b14725f40779863160e5a3c827d06e7f597650"
+    },
+    "f": {
+      "path": "espadachin-f-walk.png",
+      "size_px": [
+        256,
+        128
+      ],
+      "mode_on_disk": "P",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 16737,
+      "visible_bbox_per_frame": [
+        [
+          2,
+          4,
+          62,
+          124
+        ],
+        [
+          2,
+          5,
+          62,
+          124
+        ],
+        [
+          2,
+          4,
+          62,
+          124
+        ],
+        [
+          2,
+          4,
+          62,
+          124
+        ]
+      ],
+      "adjacent_rgba_pixel_differences": [
+        825155,
+        864981,
+        701624
+      ],
+      "all_four_frames_different": true,
+      "file_bytes": 9376,
+      "sha256": "0e22fb6372152c486f69ef454f6adeaeae1b04d7aaf1f634f5191dd5f275a0ce"
+    }
+  }
+}

@@ -119,8 +119,8 @@ export default function EscuelaCombatePage() {
   const nivelJob = datos?.progresoJob?.nivelJob ?? 1;
   const puntosDisponibles = datos?.progresoJob?.puntosHabilidadDisponibles ?? 0;
   const costeReseteo = costeReinicioHabilidades(nivelJob);
-  const habilidadesPropias = aprendidas.filter((item) => (item.habilidad.claseId ?? "novato") === profesionId);
   const profesionId = datos?.profesionActivaId ?? "novato";
+  const habilidadesPropias = aprendidas.filter((item) => (item.habilidad.claseId ?? "novato") === profesionId);
   const clasesDeRama = useMemo(
     () => obtenerClasesHabilidadDisponibles(profesionId),
     [profesionId],
