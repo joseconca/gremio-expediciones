@@ -171,10 +171,17 @@ def draw_expression(d, fam, sex, row, frame, tx, hy, skin, hair):
 
 
 
-def pose(row,f):
+def pose(row,f,cid=None):
     dx=[0,-1,0,1][f]; dy=[0,-1,0,1][f]; crouch=0
     if row==1: dx=[-3,1,3,-1][f];dy=[0,-2,0,1][f]
-    if row==2: dx=[0,-2,-3,0][f];dy=[2,4,3,1][f];crouch=[1,3,3,1][f]
+    if row==2:
+        dx=[0,-2,-3,0][f];dy=[2,4,3,1][f];crouch=[1,3,3,1][f]
+        # Tier 1 — Espadachín: anticipación, retroceso, compresión y recuperación.
+        # La animación ocupa las mismas celdas y mantiene el anclaje de los pies.
+        if cid=="espadachin":
+            dx=[0,-1,-4,1][f]
+            dy=[0,3,5,2][f]
+            crouch=[0,1,5,2][f]
     if row==3: dy=[0,-1,-2,0][f]
     if row==4: dx=[-3,-4,2,1][f];dy=[2,5,3,0][f];crouch=[2,5,3,0][f]
     if row==5: dx=[0,1,1,0][f];dy=0
@@ -199,7 +206,7 @@ def draw_frame(cid, sex, row, f):
     p=P[cid]; fam=p["family"]; shirt=p["shirt"]; leather=p["leather"]; metal=p["metal"]; hair=p["hair"]; cape=p["cape"]
     skin = p["skin"] if sex == "m" else ("#a4604b", "#e4a17f", "#f8c8a1")
     im=Image.new("RGBA",(W,H),(0,0,0,0));d=ImageDraw.Draw(im)
-    dx,dy,crouch=pose(row,f); tx=dx; hy=24+dy//2; hip=82+crouch
+    dx,dy,crouch=pose(row,f,cid); tx=dx; hy=24+dy//2; hip=82+crouch
     # Cloak silhouette is drawn behind the body, not pasted over it.
     if cape:
         c0,c1,c2=cape
@@ -591,6 +598,18 @@ def draw_frame(cid, sex, row, f):
     # Final highlights stay within the outline, no free-floating badges or accessories.
     rect(d,(28+tx,44+dy,29+tx,46+dy),shirt[2])
     rect(d,(25+tx,66+crouch,27+tx,67+crouch),leather[2])
+
+    # Tier 1 — Espadachín: golpe recibido legible al tamaño nativo.
+    # El flash aparece en el fotograma de impacto y permanece dentro de la silueta.
+    if cid=="espadachin" and row==2 and f==1:
+        ix,iy=39+tx,53+dy
+        line(d,[(ix-4,iy-2),(ix-1,iy),(ix-3,iy+2)],"#fff2bd",2)
+        line(d,[(ix,iy-4),(ix+1,iy-1)],"#f4d17a",1)
+        line(d,[(ix+3,iy-2),(ix+1,iy)],"#fff2bd",1)
+        rect(d,(ix-1,iy-1,ix,iy),"#fff9de")
+    elif cid=="espadachin" and row==2 and f==2:
+        # Destello residual más corto durante la postura encogida de dolor.
+        rect(d,(39+tx,54+dy,40+tx,55+dy),"#f4d17a")
     return im
 
 def generate(cid, sex):
