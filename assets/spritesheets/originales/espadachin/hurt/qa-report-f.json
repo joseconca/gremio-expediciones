@@ -1,0 +1,70 @@
+{
+  "action": "hurt",
+  "class": "espadachin",
+  "sex": "f",
+  "source": "assets/spritesheets/originales/espadachin/walk/espadachin-f-walk.png",
+  "dimensions": {
+    "strip": [
+      256,
+      128
+    ],
+    "cell": [
+      64,
+      128
+    ],
+    "frames": 4,
+    "rows": 1
+  },
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "strip_sha256": "f49e670f4ea207af3e5e193f0e0c810e003985fdeaebe595dd359966e27db2b8",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        2,
+        6,
+        63,
+        124
+      ],
+      "sha256_rgba": "364e9e05885b176fdd546c163e1f5b9d7e02f20f4c0746368f9788a0a5bc873c"
+    },
+    {
+      "index": 2,
+      "bbox": [
+        2,
+        12,
+        64,
+        124
+      ],
+      "sha256_rgba": "37b92ef8310c5a490bb00bb43f199cb4b040d3e8d0d6540c43ee66cb1042b3af"
+    },
+    {
+      "index": 3,
+      "bbox": [
+        1,
+        17,
+        61,
+        124
+      ],
+      "sha256_rgba": "ce07d1a4c5315f5eeb0aea9184cc80f5d303e513c707749054890a7d9f63a5af"
+    },
+    {
+      "index": 4,
+      "bbox": [
+        2,
+        7,
+        63,
+        124
+      ],
+      "sha256_rgba": "f9e1c839d8ae8a3ef1d2c1ccc5970ff4e6e527389499fc17c197246f1ef11c64"
+    }
+  ],
+  "all_frames_distinct": true,
+  "feet_baseline_aligned": true,
+  "weapons_in_body": false,
+  "status": "source row only; not integrated into runtime atlas"
+}
