@@ -750,6 +750,35 @@ def pintar_equipo_espadachin(source, shift_x=0, shift_y=0):
         ellipse(d, (x+sx,y+sy,x+sx+1,y+sy+1), "#efcf80", INK, 1)
     return im
 
+def limpiar_fragmentos_borde(frame, max_component=48, right_margin=4):
+    """Elimina componentes alfa pequeños pegados al borde derecho de una celda recortada."""
+    image = frame.convert("RGBA").copy()
+    alpha = image.getchannel("A")
+    width, height = image.size
+    seen = set()
+    pixels = image.load()
+    alpha_px = alpha.load()
+    for y in range(height):
+        for x in range(width):
+            if alpha_px[x, y] == 0 or (x, y) in seen:
+                continue
+            stack = [(x, y)]
+            seen.add((x, y))
+            component = []
+            while stack:
+                cx, cy = stack.pop()
+                component.append((cx, cy))
+                for ny in range(max(0, cy - 1), min(height, cy + 2)):
+                    for nx in range(max(0, cx - 1), min(width, cx + 2)):
+                        if alpha_px[nx, ny] and (nx, ny) not in seen:
+                            seen.add((nx, ny))
+                            stack.append((nx, ny))
+            # Mantener siluetas principales y pies sueltos; solo quitar motas pequeñas en el borde de corte.
+            if len(component) <= max_component and max(cx for cx, _ in component) >= width - right_margin:
+                for cx, cy in component:
+                    pixels[cx, cy] = (0, 0, 0, 0)
+    return image
+
 def construir_fuentes_espadachin(sex):
     """Crea maestros modulares de Espadachín a partir del maestro de Novato, sin armas."""
     base_dir = ROOT / "assets" / "spritesheets" / "novato"
@@ -782,6 +811,7 @@ def construir_fuentes_espadachin(sex):
     shifts = ((0, 0), (-1, 1), (1, 0), (0, -1))
     for i, (dx, dy) in enumerate(shifts):
         frame = walk_sheet.crop((i * W, 0, (i + 1) * W, H))
+        frame = limpiar_fragmentos_borde(frame)
         frame = pintar_equipo_espadachin(frame, dx, dy)
         walk.alpha_composite(frame, (i * W, 0))
     walk.save(out_dir / f"espadachin-{sex}-walk-row.png", optimize=True)
