@@ -1,0 +1,89 @@
+name: Generar Recibir daño del Espadachín masculino
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/generar-recibir-dano-espadachin-m.py"
+      - ".github/workflows/generar-recibir-dano-espadachin-m.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: espadachin-hurt-m-original
+  cancel-in-progress: false
+
+jobs:
+  generar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener el repositorio
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar Pillow
+        run: python -m pip install --disable-pip-version-check pillow
+
+      - name: Generar la fila masculina desde el Idle versionado
+        run: python scripts/generar-recibir-dano-espadachin-m.py
+
+      - name: Validar tamaño, alfa, fotogramas y anclaje de pies
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageChops
+          import json
+
+          out = Path("assets/spritesheets/originales/espadachin/hurt")
+          strip_path = out / "espadachin-m-hurt.png"
+          with Image.open(strip_path) as im:
+              assert im.size == (256, 128), im.size
+              assert im.mode == "RGBA", im.mode
+              assert im.getchannel("A").getextrema()[0] == 0, "Falta transparencia real"
+              strip = im.copy()
+
+          cells = [strip.crop((i * 64, 0, (i + 1) * 64, 128)) for i in range(4)]
+          assert all(c.getchannel("A").getbbox() for c in cells), "Fotograma vacío"
+          assert len({c.tobytes() for c in cells}) == 4, "Hay fotogramas repetidos"
+          bboxes = [c.getchannel("A").getbbox() for c in cells]
+          bottoms = [b[3] for b in bboxes]
+          assert max(bottoms) - min(bottoms) <= 3, f"Pies desalineados: {bottoms}"
+          report = json.loads((out / "qa-report.json").read_text(encoding="utf-8"))
+          assert report["all_frames_distinct"] is True
+          assert report["weapons_in_body"] is False
+          print(f"OK: {strip_path}, 256×128, 4 celdas 64×128, alfa y pies validados")
+          PY
+
+      - name: Publicar artefacto de revisión visual
+        uses: actions/upload-artifact@v4
+        with:
+          name: espadachin-hurt-m-review
+          path: |
+            assets/spritesheets/originales/espadachin/hurt/espadachin-m-hurt.png
+            assets/spritesheets/originales/espadachin/hurt/frames/m/*.png
+            assets/spritesheets/originales/espadachin/hurt/previews/*.png
+            assets/spritesheets/originales/espadachin/hurt/qa-report.json
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Guardar el recurso original como commit independiente
+        run: |
+          if [ -z "$(git status --porcelain -- assets/spritesheets/originales/espadachin/hurt/)" ]; then
+            echo "La fila de Recibir daño ya está generada y versionada."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/spritesheets/originales/espadachin/hurt/
+          git commit -m "art: publicar recibir daño original del espadachín masculino"
+          git push origin HEAD:main
