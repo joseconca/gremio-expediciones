@@ -116,4 +116,16 @@ Se prepararon tiras masculinas y femeninas de cuatro fotogramas cada una en un p
 
 **Nota de procedencia:** el PNG de Idle en la ruta original no fue válido al abrirlo en CI, así que esta primera animación de daño se ha generado de forma reproducible desde el primer fotograma de Caminar masculino, cuya tira sí está verificada. Es una primera pasada funcional de la reacción; no se considera una integración definitiva ni sustituye las hojas activas.
 
-Siguiente entrega: **Recibir daño femenino**, usando su recurso de Caminar validado y manteniendo un commit independiente. Después habrá que reparar/verificar ambos PNG maestros de Idle antes de ensamblar el atlas final.
+Siguiente entrega: **Usar consumible masculino**, y luego la variante femenina. Las dos tiras de Recibir daño están versionadas, pero son una primera pasada de animación fuente generada desde Caminar y requieren pulido visual posterior. Antes de ensamblar el atlas final hay que reparar/verificar ambos PNG maestros de Idle.
+
+
+## Registro de progreso — Recibir daño femenino (2026-10-20)
+
+**Versionado en main:** [commit de arte generado](https://github.com/joseconca/gremio-expediciones/commit/59eeb8d3548ee82f6df2d64f26797f668711e2cc). El workflow específico [Generar Recibir daño del Espadachín femenino](https://github.com/joseconca/gremio-expediciones/actions/runs/39488107817) terminó correctamente.
+
+- Ruta: `assets/spritesheets/originales/espadachin/hurt/espadachin-f-hurt.png`.
+- Tira 256 × 128, cuatro celdas RGBA de 64 × 128, transparencia real, cuatro fotogramas distintos y pies alineados.
+- Incluye los frames fuente, preview e informe `qa-report-f.json`.
+- Las armas permanecen fuera del cuerpo y ninguna de las dos variantes se ha integrado en runtime.
+
+La generación masculina y femenina es reproducible mediante workflows y commits separados. Se completó esta acción como prototipo técnico; el pulido manual de las poses queda pendiente y se revisará antes de crear el atlas definitivo.
