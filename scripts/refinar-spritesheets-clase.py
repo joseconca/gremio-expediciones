@@ -240,7 +240,8 @@ def save_indexed(image,path):
 
 def main():
     if MARKER.exists():
-        raise SystemExit("Los spritesheets ya se refinaron; elimina el marcador solo si vas a volver a aplicar el tratamiento.")
+        print("Los spritesheets ya están refinados; no se vuelve a aplicar el tratamiento.")
+        raise SystemExit(0)
     paths=sorted((ROOT/"public/sprites/heroes").glob("*/*-sheet.png"))
     if len(paths)!=70:
         raise SystemExit(f"Se esperaban 70 hojas, encontradas {len(paths)}.")
