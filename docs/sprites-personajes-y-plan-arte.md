@@ -114,9 +114,9 @@ Se prepararon tiras masculinas y femeninas de cuatro fotogramas cada una en un p
 - Incluye las cuatro fuentes separadas, preview y `qa-report.json`.
 - Las armas siguen fuera del cuerpo; no se toca el atlas de producción.
 
-**Nota de procedencia:** el PNG de Idle en la ruta original no fue válido al abrirlo en CI, así que esta primera animación de daño se ha generado de forma reproducible desde el primer fotograma de Caminar masculino, cuya tira sí está verificada. Es una primera pasada funcional de la reacción; no se considera una integración definitiva ni sustituye las hojas activas.
+**Nota histórica corregida:** se había copiado por error una fila heredada de Tier 1 al directorio de Idle. Ya se sustituyó por la fuente del concepto original y está validada. Las animaciones de Recibir daño continúan siendo prototipos generados desde Caminar; esta procedencia está documentada y no se deben considerar todavía arte definitivo.
 
-Siguiente entrega: **Usar consumible masculino**, y luego la variante femenina. Las dos tiras de Recibir daño están versionadas, pero son una primera pasada de animación fuente generada desde Caminar y requieren pulido visual posterior. Antes de ensamblar el atlas final hay que reparar/verificar ambos PNG maestros de Idle.
+Estado posterior actualizado: las fuentes independientes de Idle, Caminar y Recibir daño de Novato y Espadachín ya están en el repositorio. La prioridad pendiente no es Usar consumible: es pulir visualmente Recibir daño del Espadachín y revisar pequeños artefactos de los recursos heredados de Novato antes de aprobar el conjunto para runtime.
 
 
 ## Registro de progreso — Recibir daño femenino (2026-10-20)
@@ -153,3 +153,20 @@ Objetivo inmediato: disponer de Idle, Caminar y Recibir daño para ambos sexos d
 4. Solo cuando ambos conjuntos estén aprobados, pasar a **Mago** y repetir el mismo flujo.
 
 No avanzar a Usar consumible ni a las demás filas del atlas antes de cerrar este objetivo prioritario.
+
+
+## Registro de extracción de las filas base de Novato (2026-10-20)
+
+El workflow [Extraer filas originales de Novato](https://github.com/joseconca/gremio-expediciones/actions/runs/39500008700) terminó en verde y creó seis entregas independientes desde las hojas canónicas de Novato, manteniendo intactos los atlas activos:
+
+- Masculino: [Idle](https://github.com/joseconca/gremio-expediciones/commit/bc255a954bdf8114ba1746cad86bc1727b1ea66d), [Caminar](https://github.com/joseconca/gremio-expediciones/commit/f71d6d9f478f95609505c0bfe98c0a058dbcd520), [Recibir daño](https://github.com/joseconca/gremio-expediciones/commit/51a2e6140524705d3d6e8d985d3b226f792894b1).
+- Femenino: [Idle](https://github.com/joseconca/gremio-expediciones/commit/cc957679bdf9b473224dc5becdcafb298e2ece9c), [Caminar](https://github.com/joseconca/gremio-expediciones/commit/4517dbed7ef8fece5e84c961b905e394f726b40a), [Recibir daño](https://github.com/joseconca/gremio-expediciones/commit/aa41c44d9edf0b90c2c0405c732502b802045b23).
+
+Cada tira es 256 × 128, con celdas 64 × 128, alfa real, cuatro fuentes individuales, preview e informe QA. Idle tiene tres poses visuales y cierra el loop volviendo al primer frame; Caminar y Recibir daño tienen cuatro fotogramas distintos. La extracción copia el arte canónico de Novato, sin usar las filas de Tier 1 heredadas de armaduras superpuestas.
+
+## Auditoría visual de los seis estados
+
+- **Novato:** las seis tiras separadas existen y pasan QA técnico. La revisión visual de las previews detectó un píxel suelto en Caminar femenino y confirma que Idle tiene tres poses, con el cuarto fotograma como retorno al primero. Se limpiará el píxel suelto antes de integrar el conjunto.
+- **Espadachín:** Idle masculino/femenino se reemplazaron desde el concepto original; Caminar proviene del mismo concepto de clase; Recibir daño existe para ambos sexos pero sigue siendo un prototipo por deformación de fotogramas y requiere dibujar poses de impacto más naturales.
+- Las filas antiguas de `assets/spritesheets/tier1/` son **legacy/no aprobadas como fuente de arte**. Permanecen por ahora para no alterar runtime a medias.
+- **Siguiente tarea:** refinar Recibir daño del Espadachín y limpiar el píxel suelto de Caminar femenino de Novato; volver a ejecutar QA visual y técnico. Después se podrá considerar cerrado este bloque y pasar a Mago.
