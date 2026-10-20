@@ -59,6 +59,89 @@ def band(d, start, end, fill, width=5, highlight=None):
     if highlight:
         line(d,[pts[0],pts[1]],highlight,1)
 
+def draw_expression(d, fam, sex, row, frame, tx, hy, skin, hair):
+    """Ojos, cejas y boca animados en cada fotograma; rasgos pequeños para pixel art 64x128."""
+    eye_x, eye_y = 39 + tx, hy + 4
+    eye_color = {
+        "novice": "#4a2c20",
+        "fighter": "#293946",
+        "cleric": "#87612c",
+        "ranger": "#3d5128",
+        "mage": "#56cbed",
+    }[fam]
+    # Idle: serenidad; caminar: concentración; hurt: ojos apretados; dodge: alerta;
+    # block/attack: ceja baja y mandíbula firme; consumible: parpadeo al beber.
+    blink = (row == 0 and frame == 2) or (row == 1 and frame == 3) or (row == 3 and frame in (1, 2))
+    hurt = row == 2
+    dodge = row == 4
+    guarded = row == 5
+    striking = row >= 6
+    if hurt:
+        line(d, [(eye_x-3, eye_y-1), (eye_x-1, eye_y-2), (eye_x+1, eye_y)], hair[0], 2)
+    elif dodge:
+        line(d, [(eye_x-3, eye_y-3), (eye_x-1, eye_y-4), (eye_x+2, eye_y-2)], hair[1], 1)
+    elif guarded or striking:
+        line(d, [(eye_x-3, eye_y-2), (eye_x-1, eye_y-1), (eye_x+2, eye_y-3)], hair[0], 2)
+    elif fam == "cleric":
+        line(d, [(eye_x-3, eye_y-2), (eye_x-1, eye_y-3), (eye_x+2, eye_y-2)], "#936b3d", 1)
+    elif fam == "ranger":
+        line(d, [(eye_x-3, eye_y-2), (eye_x-1, eye_y-1), (eye_x+2, eye_y-2)], hair[0], 2)
+    else:
+        line(d, [(eye_x-3, eye_y-2), (eye_x-1, eye_y-3), (eye_x+2, eye_y-2)], hair[0], 1)
+
+    # Eye socket and eyelid. The iris is class-tinted, with a single light-catching pixel.
+    if blink or hurt:
+        line(d, [(eye_x-1, eye_y+1), (eye_x+2, eye_y+1)], "#342127", 2)
+        if hurt:
+            line(d, [(eye_x, eye_y+2), (eye_x+2, eye_y+2)], skin[0], 1)
+    else:
+        line(d, [(eye_x-2, eye_y), (eye_x+2, eye_y)], "#2a1a20", 2)
+        rect(d, (eye_x-1, eye_y+1, eye_x+2, eye_y+2), "#f6e7ca")
+        rect(d, (eye_x+1, eye_y+1, eye_x+2, eye_y+2), eye_color)
+        rect(d, (eye_x+2, eye_y+1, eye_x+2, eye_y+1), "#fff8df")
+        if sex == "f":
+            line(d, [(eye_x-2, eye_y), (eye_x-1, eye_y-1), (eye_x+1, eye_y)], hair[0], 1)
+
+    # Class-specific facial signature: scar, peaceful cheek, ranger paint or arcane iris.
+    if fam == "fighter":
+        line(d, [(eye_x-2, eye_y+4), (eye_x-1, eye_y+5)], "#93483c", 1)
+        rect(d, (eye_x-1, eye_y+4, eye_x-1, eye_y+4), "#e5a06e")
+    elif fam == "cleric":
+        rect(d, (eye_x+1, eye_y+5, eye_x+2, eye_y+5), "#e8c979")
+    elif fam == "ranger":
+        line(d, [(eye_x-3, eye_y+3), (eye_x-2, eye_y+5)], "#718346", 1)
+    elif fam == "mage":
+        rect(d, (eye_x+1, eye_y+3, eye_x+2, eye_y+3), "#d8f8ff")
+        rect(d, (eye_x+2, eye_y+4, eye_x+2, eye_y+5), "#7fc8f5")
+    else:
+        rect(d, (eye_x-2, eye_y+4, eye_x-2, eye_y+4), "#b97859")
+
+    # Mouth changes the expression without stretching or changing the base head silhouette.
+    mx, my = 41 + tx, hy + 10
+    if hurt:
+        ellipse(d, (mx, my-1, mx+2, my+2), "#341d22", None, 1)
+        rect(d, (mx+1, my-1, mx+1, my-1), "#f6dfc2")
+        line(d, [(mx-1, my+3), (mx+2, my+3)], skin[0], 1)
+    elif row == 3 and frame in (1, 2):
+        ellipse(d, (mx, my-1, mx+2, my+2), "#3a2024", None, 1)
+        rect(d, (mx+1, my-1, mx+1, my), "#fff0cf")
+    elif dodge:
+        line(d, [(mx-1, my), (mx+1, my-1), (mx+3, my)], "#542b2a", 1)
+    elif striking and frame == 2:
+        ellipse(d, (mx, my-1, mx+3, my+2), "#3a2024", None, 1)
+        rect(d, (mx+1, my-1, mx+2, my-1), "#fff0cf")
+    elif guarded or (striking and frame == 1):
+        line(d, [(mx-1, my), (mx+2, my-1)], "#3c2224", 2)
+    else:
+        line(d, [(mx, my), (mx+2, my)], "#6b3a35", 1)
+        rect(d, (mx+1, my-1, mx+1, my-1), skin[2])
+
+    # A tiny lower-face shadow adds volume and keeps the face readable in motion.
+    line(d, [(40+tx, hy+13), (42+tx, hy+13)], skin[0], 1)
+    if fam == "mage" and not blink:
+        rect(d, (eye_x+3, eye_y-1, eye_x+3, eye_y), "#6fb9ef")
+
+
 def pose(row,f):
     dx=[0,-1,0,1][f]; dy=[0,-1,0,1][f]; crouch=0
     if row==1: dx=[-3,1,3,-1][f];dy=[0,-2,0,1][f]
@@ -343,6 +426,15 @@ def draw_frame(cid, sex, row, f):
     if fam=="ranger" and p["hat"]=="hood":
         line(d,[(25+tx,hy-2),(30+tx,hy-8),(37+tx,hy-8)],"#9ebd6b",2)
         rect(d,(34+tx,hy-8,36+tx,hy-7),"#d9de91")
+    # Draw expressions after hair/headgear so the brows, eyes and mouth remain readable.
+    draw_expression(d, fam, sex, row, f, tx, hy, skin, hair)
+    # Small hair glints follow the locks instead of becoming flat monochrome shapes.
+    if sex == "f":
+        line(d, [(27+tx,hy-2),(31+tx,hy-6),(35+tx,hy-6)], hair[1], 1)
+        rect(d, (25+tx,hy+10,25+tx,hy+11), hair[1])
+    else:
+        line(d, [(28+tx,hy-3),(31+tx,hy-6),(35+tx,hy-7)], hair[1], 1)
+        rect(d, (27+tx,hy+1,27+tx,hy+2), hair[1])
     # Arms use the pose of each animation row; hands are empty for future weapon layers.
     shoulder_back=(23+tx,48+dy); shoulder_front=(39+tx,48+dy)
     if row==3:
