@@ -608,6 +608,7 @@ def generate(cid, sex):
         with Image.open(walk_path) as walk_source:
             walk = walk_source.convert("RGBA")
         assert walk.size == (256, 128), (walk_path, walk.size)
+        assert walk.getchannel("A").getextrema()[0] == 0, (walk_path, "la fila debe conservar transparencia")
         sheet.paste((0, 0, 0, 0), (0, H, 256, 2 * H))
         sheet.alpha_composite(walk, (0, H))
 
