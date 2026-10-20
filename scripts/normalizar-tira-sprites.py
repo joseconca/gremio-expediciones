@@ -144,7 +144,6 @@ def normalize(
         x = (TARGET_W - new_w) // 2
         y = TARGET_H - 4 - new_h
         cell.paste(resized, (x, y), alpha)
-        cell.putalpha(alpha.resize((TARGET_W, TARGET_H), Image.Resampling.NEAREST) if False else cell.getchannel("A"))
         final_cells.append(cell)
         final_boxes.append(list(cell.getchannel("A").getbbox() or (0, 0, 0, 0)))
 
