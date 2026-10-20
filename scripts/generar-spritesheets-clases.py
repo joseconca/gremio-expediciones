@@ -46,6 +46,19 @@ def draw_arm(d, shoulder, elbow, hand, palette, bracer=False):
     ellipse(d,(hand[0]-4,hand[1]-4,hand[0]+4,hand[1]+4),"#5a392b",INK,1)
     ellipse(d,(hand[0]-3,hand[1]-3,hand[0]+2,hand[1]+2),"#d79570",None,1)
 
+def band(d, start, end, fill, width=5, highlight=None):
+    """Banda corta ceñida al brazo/pierna; forma parte de la prenda, no queda flotando."""
+    dx=end[0]-start[0]; dy=end[1]-start[1]
+    length=max(1,(dx*dx+dy*dy)**0.5)
+    nx=-dy/length*width/2; ny=dx/length*width/2
+    pts=[(round(start[0]+nx),round(start[1]+ny)),
+         (round(end[0]+nx),round(end[1]+ny)),
+         (round(end[0]-nx),round(end[1]-ny)),
+         (round(start[0]-nx),round(start[1]-ny))]
+    poly(d,pts,fill,INK,1)
+    if highlight:
+        line(d,[pts[0],pts[1]],highlight,1)
+
 def pose(row,f):
     dx=[0,-1,0,1][f]; dy=[0,-1,0,1][f]; crouch=0
     if row==1: dx=[-3,1,3,-1][f];dy=[0,-2,0,1][f]
@@ -148,6 +161,24 @@ def draw_frame(cid, sex, row, f):
             line(d,[(x-4,107),(x+4,107)],leather[1],2)
             rect(d,(x-1,106,x+2,109),metal[1],INK,1)
             rect(d,(x,107,x+1,108),metal[2])
+    elif fam=="fighter":
+        # Grebas con refuerzo central y remaches que conectan con la coraza.
+        for ankle in (ba,fa):
+            poly(d,[(ankle[0]-4,101),(ankle[0]+3,101),(ankle[0]+4,108),(ankle[0]-3,108)],metal[0],INK,1)
+            line(d,[(ankle[0]-2,102),(ankle[0]+1,106)],metal[2],1)
+            rect(d,(ankle[0],104,ankle[0]+1,105),metal[1])
+    elif fam=="cleric":
+        for ankle in (ba,fa):
+            line(d,[(ankle[0]-4,107),(ankle[0]+5,107)],"#d9b96c",2)
+            rect(d,(ankle[0],105,ankle[0]+2,108),"#fff0bf",INK,1)
+    elif fam=="ranger":
+        for ankle in (ba,fa):
+            band(d,(ankle[0]-3,105),(ankle[0]+4,106),leather[1],4,leather[2])
+            rect(d,(ankle[0]+1,104,ankle[0]+3,106),metal[2],INK,1)
+    elif fam=="mage":
+        for ankle in (ba,fa):
+            line(d,[(ankle[0]-4,107),(ankle[0]+5,107)],"#6f93d3",2)
+            rect(d,(ankle[0]+1,105,ankle[0]+3,107),"#d8dcff",INK,1)
 
     # Main torso is wholly redrawn for each class.
     if fam=="fighter":
@@ -346,11 +377,47 @@ def draw_frame(cid, sex, row, f):
     arm_palette=shirt if fam in ("cleric","mage") else leather
     draw_arm(d,shoulder_back,be,bh,arm_palette,bracer=(fam in ("ranger","novice")))
     draw_arm(d,shoulder_front,fe,fh,arm_palette,bracer=(fam in ("fighter","ranger")))
+    # Mangas, brazales y guantes coordinados con el vestuario y modelados alrededor de los antebrazos.
+    for elbow,hand in ((be,bh),(fe,fh)):
+        start=(elbow[0]+(hand[0]-elbow[0])*0.34,elbow[1]+(hand[1]-elbow[1])*0.34)
+        end=(elbow[0]+(hand[0]-elbow[0])*0.68,elbow[1]+(hand[1]-elbow[1])*0.68)
+        if fam=="fighter":
+            band(d,start,end,metal[0],7,metal[2])
+            mx,my=round((start[0]+end[0])/2),round((start[1]+end[1])/2)
+            rect(d,(mx-1,my-1,mx+1,my+1),metal[2],INK,1)
+            ellipse(d,(hand[0]-4,hand[1]-3,hand[0]+3,hand[1]+3),leather[0],INK,1)
+            rect(d,(hand[0]-1,hand[1]-2,hand[0]+1,hand[1]),metal[2])
+        elif fam=="cleric":
+            band(d,start,end,shirt[0],6,"#f8e4a0")
+            line(d,[(hand[0]-3,hand[1]-2),(hand[0]+2,hand[1]-2)],"#e0bf6d",2)
+        elif fam=="ranger":
+            band(d,start,end,leather[0],6,leather[2])
+            rect(d,(round(end[0])-1,round(end[1])-1,round(end[0])+1,round(end[1])+1),metal[2],INK,1)
+            ellipse(d,(hand[0]-4,hand[1]-3,hand[0]+3,hand[1]+3),leather[0],INK,1)
+            rect(d,(hand[0]-1,hand[1]-2,hand[0]+1,hand[1]-1),leather[2])
+        elif fam=="mage":
+            band(d,start,end,shirt[1],6,"#c0dcff")
+            for off in (-2,1):
+                rect(d,(round(end[0])+off,round(end[1])-1,round(end[0])+off+1,round(end[1])), "#d5cbff")
     # El arquero conserva la correa y el carcaj cosidos al atuendo; el arco no está dibujado.
     if fam=="ranger":
         line(d,[(22+tx,47+dy),(37+tx,65+crouch)],leather[2],3)
         line(d,[(23+tx,47+dy),(38+tx,65+crouch)],leather[1],1)
         poly(d,[(17+tx,52+dy),(20+tx,51+dy),(23+tx,62+crouch),(20+tx,65+crouch)],leather[0],INK,1)
+    # Bordes del manto visibles junto al cuerpo: ribete bordado, no una pieza superpuesta.
+    if fam=="fighter":
+        line(d,[(18+tx,62+crouch),(17+tx,73+crouch),(20+tx,81+crouch)],"#d9b66c",2)
+        line(d,[(19+tx,64+crouch),(18+tx,73+crouch)],"#fff0bf",1)
+    elif fam=="ranger":
+        line(d,[(16+tx,67+crouch),(14+tx,79+crouch),(12+tx,84+crouch)],cape[2],2)
+        for y in (72,77,82):
+            rect(d,(15+tx,y+crouch,16+tx,y+1+crouch),"#d0dc91")
+    elif fam=="mage":
+        # Sigilos pequeños bordados a ambos lados del cierre de la túnica.
+        for x,y in ((23,57),(39,60),(25,73),(38,79)):
+            poly(d,[(x+tx,y+dy),(x+tx+2,y+dy-2),(x+tx+3,y+dy),(x+tx+1,y+dy+2)],"#a8d9ff",INK,1)
+            rect(d,(x+tx+1,y+dy-1,x+tx+2,y+dy), "#f4eeff")
+
     # Final highlights stay within the outline, no free-floating badges or accessories.
     rect(d,(28+tx,44+dy,29+tx,46+dy),shirt[2])
     rect(d,(25+tx,66+crouch,27+tx,67+crouch),leather[2])
