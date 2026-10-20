@@ -660,6 +660,35 @@ def generate(cid, sex):
         with Image.open(master_path) as master_source:
             master = master_source.convert("RGBA")
         assert master.size == (64, 128), (master_path, master.size)
+
+        # Novato masculino: conservar el acabado del sprite maestro y animar el golpe.
+        # Se transforman fotogramas completos; no se recompone un cuerpo de otra calidad.
+        if sex == "m":
+            sheet.paste((0, 0, 0, 0), (0, 2 * H, 256, 3 * H))
+            for frame in range(COLS):
+                hurt_pose = master.copy()
+                if frame == 1:
+                    # Retroceso breve alrededor de los pies, con destello sobre el torso.
+                    hurt_pose = hurt_pose.rotate(5.0, resample=Image.Resampling.NEAREST,
+                                                  center=(32, 114), expand=False)
+                    impact = ImageDraw.Draw(hurt_pose)
+                    impact.line([(35, 51), (39, 53), (37, 56)], fill="#fff2bd", width=2)
+                    impact.line([(40, 49), (40, 52)], fill="#f4d17a", width=2)
+                    impact.line([(43, 51), (40, 53)], fill="#fff2bd", width=1)
+                    impact.point((39, 52), fill="#fff9de")
+                elif frame == 2:
+                    # Compresión vertical con la base apoyada en el suelo de la celda.
+                    compressed = master.resize((64, 116), Image.Resampling.NEAREST)
+                    hurt_pose = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+                    hurt_pose.alpha_composite(compressed, (0, 12))
+                    impact = ImageDraw.Draw(hurt_pose)
+                    impact.point((39, 55), fill="#f4d17a")
+                elif frame == 3:
+                    # Recuperación inclinándose ligeramente hacia la posición inicial.
+                    hurt_pose = hurt_pose.rotate(-2.5, resample=Image.Resampling.NEAREST,
+                                                  center=(32, 114), expand=False)
+                sheet.alpha_composite(hurt_pose, (frame * W, 2 * H))
+
         # Idle queda anclado al diseño maestro; variaciones de uno píxel simulan respiración.
         sheet.paste((0, 0, 0, 0), (0, 0, 256, H))
         idle_offsets = ((0, 0), (0, -1), (1, -1), (0, 0))
