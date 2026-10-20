@@ -176,12 +176,17 @@ def pose(row,f,cid=None):
     if row==1: dx=[-3,1,3,-1][f];dy=[0,-2,0,1][f]
     if row==2:
         dx=[0,-2,-3,0][f];dy=[2,4,3,1][f];crouch=[1,3,3,1][f]
+        # Novato: hacer legible el retroceso y la recuperación sin cambiar la celda.
+        if cid=="novato":
+            dx=[0,-2,-4,1][f]
+            dy=[0,5,8,2][f]
+            crouch=[0,2,8,2][f]
         # Tier 1 — Espadachín: anticipación, retroceso, compresión y recuperación.
         # La animación ocupa las mismas celdas y mantiene el anclaje de los pies.
         if cid=="espadachin":
-            dx=[0,-1,-4,1][f]
-            dy=[0,3,5,2][f]
-            crouch=[0,1,5,2][f]
+            dx=[0,-2,-5,1][f]
+            dy=[0,4,8,2][f]
+            crouch=[0,2,8,2][f]
     if row==3: dy=[0,-1,-2,0][f]
     if row==4: dx=[-3,-4,2,1][f];dy=[2,5,3,0][f];crouch=[2,5,3,0][f]
     if row==5: dx=[0,1,1,0][f];dy=0
@@ -601,15 +606,23 @@ def draw_frame(cid, sex, row, f):
 
     # Tier 1 — Espadachín: golpe recibido legible al tamaño nativo.
     # El flash aparece en el fotograma de impacto y permanece dentro de la silueta.
-    if cid=="espadachin" and row==2 and f==1:
+    if cid in ("novato","espadachin") and row==2 and f==1:
         ix,iy=39+tx,53+dy
-        line(d,[(ix-4,iy-2),(ix-1,iy),(ix-3,iy+2)],"#fff2bd",2)
-        line(d,[(ix,iy-4),(ix+1,iy-1)],"#f4d17a",1)
-        line(d,[(ix+3,iy-2),(ix+1,iy)],"#fff2bd",1)
+        line(d,[(ix-5,iy-2),(ix-2,iy),(ix-4,iy+3)],"#fff2bd",2)
+        line(d,[(ix,iy-5),(ix+1,iy-1)],"#f4d17a",2)
+        line(d,[(ix+4,iy-3),(ix+1,iy)],"#fff2bd",2)
+        line(d,[(ix+4,iy+2),(ix+1,iy+1)],"#e5b55d",1)
         rect(d,(ix-1,iy-1,ix,iy),"#fff9de")
-    elif cid=="espadachin" and row==2 and f==2:
-        # Destello residual más corto durante la postura encogida de dolor.
+    elif cid in ("novato","espadachin") and row==2 and f==2:
+        # Destello residual corto durante la postura encogida de dolor.
         rect(d,(39+tx,54+dy,40+tx,55+dy),"#f4d17a")
+
+    # Una inclinación de pocos grados transmite el golpe; el pivote queda en los pies.
+    # Se aplica a la celda aislada para no mover el punto de apoyo en la batalla.
+    if row==2 and cid in ("novato","espadachin"):
+        angle={0:0.0,1:4.5,2:1.5,3:-2.5}[f]
+        if angle:
+            im=im.rotate(angle,resample=Image.Resampling.NEAREST,center=(32,112),expand=False)
     return im
 
 def generate(cid, sex):
