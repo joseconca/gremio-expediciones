@@ -150,49 +150,66 @@ def add_class_gear(sheet, profile, cls):
                 draw_line(d,[(x+ox+dx,y+oy+dy) for x,y in points],fill,width)
             def S(kind,x,y):
                 draw_symbol(d,kind,x+ox+dx,y+oy+dy,accent)
-            # Each profession has a different head silhouette, not just a palette swap.
+            # Each profession's headpiece stays above the brow; eyes and face remain readable.
             if head in ("point","bigpoint"):
-                P([(15,23),(25,8),(32,3 if head=="bigpoint" else 6),(40,15),(50,23),(20,25)],dark,OSCURO,2)
-                P([(22,21),(29,9),(33,8),(40,20),(46,22),(22,22)],main,None,1)
-                L([(19,23),(49,23)],accent_rgba,3); L([(28,13),(32,8)],light,1)
-                if head=="bigpoint": S("star",33,17)
+                P([(21,19),(23,13),(28,7),(32,2 if head=="bigpoint" else 5),(36,8),(43,15),(47,19)],dark,OSCURO,2)
+                P([(25,17),(29,9),(32,6),(37,15),(42,18)],main,None,1)
+                L([(21,19),(47,19)],accent_rgba,2); L([(29,10),(32,6)],light,1)
+                if head=="bigpoint": S("star",33,14)
             elif head in ("helmet","cresthelm","winghelm","crownhelm"):
-                P([(18,26),(19,19),(23,13),(30,10),(38,11),(44,16),(47,25),(41,28),(40,21),(24,21),(22,28)],steel,OSCURO,2)
-                L([(21,25),(44,25)],steel_hi,2); L([(24,19),(41,19)],accent_rgba,1)
-                if head in ("cresthelm","crownhelm"): P([(27,13),(31,5),(34,13)],accent_rgba,OSCURO,1)
+                P([(19,19),(20,13),(24,9),(30,7),(38,8),(43,12),(46,19),(40,18),(39,15),(25,15),(24,19)],steel,OSCURO,2)
+                L([(21,18),(44,18)],steel_hi,2); L([(25,15),(40,15)],accent_rgba,1)
+                if head in ("cresthelm","crownhelm"): P([(27,10),(31,4),(35,11)],accent_rgba,OSCURO,1)
                 if head=="winghelm":
-                    P([(21,18),(14,14),(17,24)],steel_hi,OSCURO,1); P([(42,18),(49,14),(46,24)],steel_hi,OSCURO,1)
-                if head=="crownhelm": S("crown",32,15)
+                    P([(21,12),(15,8),(19,16)],steel_hi,OSCURO,1); P([(42,12),(49,8),(46,16)],steel_hi,OSCURO,1)
+                if head=="crownhelm": S("crown",32,11)
             elif head in ("mitre","tallmitre"):
-                pts=[(20,25),(24,9),(32,4),(41,10),(45,25)] if head=="tallmitre" else [(20,25),(25,11),(39,11),(45,25)]
-                P(pts,steel_hi,OSCURO,2); L([(22,24),(43,24)],accent_rgba,3); L([(32,11),(32,21)],accent_rgba,2)
+                pts=[(21,19),(24,8),(32,3),(40,9),(44,19)] if head=="tallmitre" else [(21,19),(25,10),(39,10),(44,19)]
+                P(pts,steel_hi,OSCURO,2); L([(22,18),(43,18)],accent_rgba,2); L([(32,10),(32,16)],accent_rgba,1)
             elif head in ("tricorn","feather"):
-                P([(15,22),(19,17),(27,18),(34,17),(43,19),(50,24),(17,26)],dark,OSCURO,2); L([(17,24),(47,24)],accent_rgba,2)
-                if head=="tricorn": P([(21,20),(17,12),(28,19)],dark,OSCURO,1); P([(39,19),(46,12),(44,22)],dark,OSCURO,1); S("coin",33,20)
-                else: P([(34,19),(39,8),(45,9),(41,22)],accent_rgba,OSCURO,1); L([(37,13),(42,10)],light,1)
+                P([(17,18),(20,12),(27,13),(34,12),(42,14),(49,19),(18,20)],dark,OSCURO,2); L([(18,19),(47,19)],accent_rgba,2)
+                if head=="tricorn":
+                    P([(21,14),(17,8),(28,14)],dark,OSCURO,1); P([(39,14),(46,8),(44,17)],dark,OSCURO,1); S("coin",33,16)
+                else:
+                    P([(34,14),(39,5),(45,6),(41,18)],accent_rgba,OSCURO,1); L([(37,9),(42,7)],light,1)
             elif head in ("hood","furhood","hoodmask","goggleshood","hornhood","skullhood"):
-                P([(17,28),(17,20),(22,12),(29,8),(37,10),(44,16),(47,25),(42,27),(40,19),(34,15),(26,17),(22,26)],dark,OSCURO,2)
-                L([(22,17),(31,11),(39,14)],accent_rgba,1)
-                P([(18,23),(22,20),(23,36),(19,40)],main,OSCURO,1); P([(42,20),(47,23),(46,38),(42,35)],main,OSCURO,1)
+                # Contour, not a filled plate: the original hairline and face pixels stay visible.
+                L([(18,20),(18,14),(22,8),(29,5),(37,7),(44,12),(47,19)],dark,3)
+                L([(19,18),(23,12),(29,9)],accent_rgba,1); L([(37,9),(43,13),(45,19)],light,1)
+                P([(17,19),(21,17),(22,31),(19,36),(17,30)],main,OSCURO,1)
+                P([(43,17),(47,19),(47,30),(44,36),(42,31)],main,OSCURO,1)
                 if head=="furhood":
-                    for x,y in [(20,34),(23,36),(43,34),(45,36)]: d.ellipse((x+ox+dx-2,y+oy+dy-2,x+ox+dx+2,y+oy+dy+2),fill=light,outline=OSCURO,width=1)
-                if head=="hoodmask": d.rectangle((24+ox+dx,38+oy+dy,43+ox+dx,42+oy+dy),fill=dark,outline=OSCURO,width=1); L([(27,39),(40,39)],accent_rgba,1)
-                if head=="goggleshood": d.ellipse((34+ox+dx,29+oy+dy,43+ox+dx,34+oy+dy),fill=steel,outline=OSCURO,width=1); d.point((38+ox+dx,31+oy+dy),fill=accent_rgba)
-                if head=="skullhood": S("skull",33,17)
-                if head=="hornhood": L([(24,15),(20,7)],accent_rgba,2); L([(40,15),(45,7)],accent_rgba,2)
+                    for x,y in [(18,19),(21,18),(44,19),(46,21)]:
+                        d.ellipse((x+ox+dx-2,y+oy+dy-2,x+ox+dx+2,y+oy+dy+2),fill=light,outline=OSCURO,width=1)
+                if head=="hoodmask":
+                    d.rectangle((27+ox+dx,31+oy+dy,41+ox+dx,35+oy+dy),fill=dark,outline=OSCURO,width=1)
+                    L([(29,32),(39,32)],accent_rgba,1)
+                if head=="goggleshood":
+                    d.rounded_rectangle((28+ox+dx,19+oy+dy,35+ox+dx,23+oy+dy),radius=1,fill=steel,outline=OSCURO,width=1)
+                    d.rounded_rectangle((36+ox+dx,19+oy+dy,43+ox+dx,23+oy+dy),radius=1,fill=steel,outline=OSCURO,width=1)
+                    L([(32,20),(33,20)],light,1); L([(39,20),(40,20)],light,1)
+                if head=="skullhood": S("skull",32,12)
+                if head=="hornhood":
+                    L([(24,11),(20,4)],accent_rgba,2); L([(40,11),(45,4)],accent_rgba,2)
             elif head in ("band","headband","longband","silverhair","circlet"):
-                L([(21,20),(43,20)],accent_rgba,3); L([(22,22),(42,22)],dark,1)
-                if head=="circlet": S("star",32,18)
-                if head=="longband": L([(22,21),(16,29)],accent_rgba,2)
-                if head=="silverhair": P([(21,20),(23,12),(30,9),(40,13),(44,22),(38,19),(32,14),(25,21)],steel_hi,OSCURO,1)
+                L([(22,17),(43,17)],accent_rgba,2); L([(23,19),(42,19)],dark,1)
+                if head=="circlet": S("star",32,15)
+                if head=="longband": L([(23,18),(17,25)],accent_rgba,2)
+                if head=="silverhair":
+                    P([(21,17),(23,10),(30,7),(39,10),(44,18),(38,16),(32,12),(25,18)],steel_hi,OSCURO,1)
             elif head=="veil":
-                L([(21,20),(43,20)],accent_rgba,3); P([(22,23),(42,23),(41,40),(36,44),(29,40)],dark,OSCURO,1); L([(25,26),(36,40)],light,1); S("star",32,18)
+                L([(22,17),(43,17)],accent_rgba,2)
+                # Veil falls behind one cheek, without obscuring the face.
+                P([(43,18),(47,20),(47,34),(44,40),(42,32)],dark,OSCURO,1)
+                L([(45,22),(45,34)],light,1); S("star",32,14)
             elif head in ("antlers","horns"):
                 col=accent_rgba if head=="horns" else light
-                L([(26,18),(22,9)],col,3); L([(23,11),(17,6)],col,2); L([(24,13),(27,7)],col,2)
-                L([(39,18),(43,9)],col,3); L([(42,11),(48,6)],col,2); L([(41,13),(38,7)],col,2)
+                L([(26,17),(23,10)],col,2); L([(23,11),(18,7)],col,2); L([(24,13),(27,8)],col,2)
+                L([(39,17),(42,10)],col,2); L([(42,11),(47,7)],col,2); L([(41,13),(38,8)],col,2)
             elif head=="cap":
-                P([(20,21),(23,14),(32,13),(41,17),(47,23),(22,25)],dark,OSCURO,2); L([(22,23),(45,23)],accent_rgba,2)
+                P([(20,18),(22,12),(28,10),(37,11),(43,14),(47,19),(22,20)],dark,OSCURO,2); L([(22,19),(45,19)],accent_rgba,2)
+            if head=="none" and style=="novice":
+                L([(24,16),(42,16)],accent_rgba,1)
             # Small plate pauldrons for knightly classes; the original detailed body stays visible.
             if style in ("heavy","holyheavy","royalheavy"):
                 P([(16,50),(22,47),(27,53),(24,60),(18,61)],steel,OSCURO,2); P([(39,51),(45,49),(50,55),(47,61),(41,61)],steel,OSCURO,2)
