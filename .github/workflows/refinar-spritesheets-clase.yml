@@ -19,6 +19,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Preparar Python
@@ -28,6 +29,13 @@ jobs:
 
       - name: Instalar herramientas de imágenes
         run: python -m pip install --disable-pip-version-check pillow numpy
+
+      - name: Restaurar las hojas originales antes de volver a generarlas
+        run: |
+          BASE_SPRITES_COMMIT=f8d824b36e7ae6e59bd8f2b9474841b835125d72
+          git fetch --no-tags --depth=1 origin "$BASE_SPRITES_COMMIT"
+          git checkout "$BASE_SPRITES_COMMIT" -- 'public/sprites/heroes/*/*-sheet.png'
+          rm -f .spritesheets-clase-refinados-v1
 
       - name: Crear identidad visual por clase
         run: python scripts/refinar-spritesheets-clase.py
