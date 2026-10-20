@@ -11,7 +11,7 @@ ROWS, COLS = 15, 4
 INK = "#261d22"
 
 P = {
- "novato": dict(family="novice",shirt=("#eee0c4","#b8a27d","#fff1d8"),leather=("#563326","#8b5635","#c28a55"),metal=("#414750","#727b83","#c2c8c7"),hair=("#3a251d","#78462b"),skin=("#a9684e","#d89570","#f0bd96"),cape=None,hat="none"),
+ "novato": dict(family="novice",shirt=("#d8c6a2","#9e805a","#f9e8c7"),leather=("#39251f","#805037","#d09a5d"),metal=("#3b4149","#737e89","#d0d3ca"),hair=("#2a1b18","#8c5530"),skin=("#92553f","#d28c65","#f4bd91"),cape=None,hat="none"),
  "espadachin": dict(family="fighter",shirt=("#263b54","#3f5d7b","#9ab9cc"),leather=("#4d2b26","#8e5438","#c28a51"),metal=("#343e4c","#778995","#d5dcda"),hair=("#39261d","#74432b"),skin=("#a9684e","#d89570","#f0bd96"),cape=("#203657","#3e6085","#8aaac7"),hat="none"),
  "acolito": dict(family="cleric",shirt=("#d8c7a1","#b5a071","#fbefd4"),leather=("#54392a","#90613a","#d2ac69"),metal=("#656b6d","#a8aeaa","#e6e0c9"),hair=("#54372b","#956244"),skin=("#a9684e","#d89570","#f0bd96"),cape=("#604939","#94714d","#dac9a3"),hat="hood"),
  "arquero": dict(family="ranger",shirt=("#30452e","#526e3c","#9cac70"),leather=("#473025","#8b5c38","#c0935b"),metal=("#454d43","#818b75","#c5c7a8"),hair=("#483024","#89613d"),skin=("#a9684e","#d89570","#f0bd96"),cape=("#293f2b","#49633a","#91a05f"),hat="hood"),
@@ -54,9 +54,20 @@ def pose(row,f):
     if row==4: dx=[-3,-4,2,1][f];dy=[2,5,3,0][f];crouch=[2,5,3,0][f]
     if row==5: dx=[0,1,1,0][f];dy=0
     if row>=6:
-        if row in (6,7,12):dx=[-1,1,3,0][f];dy=[0,-3,-1,1][f]
-        elif row in (8,9,10):dx=[0,1,2,0][f];dy=[0,0,-1,0][f]
-        else:dx=[0,1,0,-1][f];dy=[0,-2,-1,0][f]
+        # Preparación, aceleración, impacto y recuperación con siluetas distintas por arma.
+        attack_motion={
+            6:([0,1,4,0],[0,-5,-2,1],[0,1,0,0]),
+            7:([0,1,3,0],[0,-6,-2,0],[0,2,1,0]),
+            8:([0,1,5,0],[0,0,-1,0],[0,0,0,0]),
+            9:([0,2,3,0],[0,-2,-2,0],[0,0,0,0]),
+            10:([0,0,1,0],[0,0,0,0],[0,0,0,0]),
+            11:([0,1,2,0],[0,-5,-3,0],[0,0,0,0]),
+            12:([0,1,3,0],[0,-6,-3,0],[0,2,1,0]),
+            13:([0,1,0,0],[0,-3,-2,0],[0,0,0,0]),
+            14:([0,2,3,0],[0,-2,-1,0],[0,1,0,0]),
+        }
+        ax,ay,ac=attack_motion[row]
+        dx,dy,crouch=ax[f],ay[f],ac[f]
     return dx,dy,crouch
 
 def draw_frame(cid, sex, row, f):
@@ -119,6 +130,16 @@ def draw_frame(cid, sex, row, f):
         poly(d,[(22+tx,65+dy),(42+tx,65+dy),(40+tx,85+crouch),(35+tx,90+crouch),(25+tx,89+crouch),(21+tx,82+crouch)],shirt[0],width=2)
         poly(d,[(24+tx,68+dy),(31+tx,70+dy),(30+tx,83+crouch),(24+tx,81+crouch)],shirt[1],INK,1)
         line(d,[(34+tx,68+dy),(36+tx,82+crouch)],shirt[2],2)
+    # Rodilleras y correas de bota cosidas al cuero, un acabado humilde propio del Novato.
+    if fam=="novice":
+        for x in (24+tx,37+tx):
+            poly(d,[(x-3,91+crouch),(x+3,91+crouch),(x+4,97+crouch),(x,100+crouch),(x-4,97+crouch)],leather[1],width=1)
+            line(d,[(x-2,93+crouch),(x+2,93+crouch)],leather[2],1)
+        for x in (ba[0],fa[0]):
+            line(d,[(x-4,107),(x+4,107)],leather[1],2)
+            rect(d,(x-1,106,x+2,109),metal[1],INK,1)
+            rect(d,(x,107,x+1,108),metal[2])
+
     # Main torso is wholly redrawn for each class.
     if fam=="fighter":
         poly(d,[(21+tx,43+dy),(29+tx,39+dy),(38+tx,42+dy),(44+tx,51+dy),(40+tx,70+crouch),(23+tx,70+crouch),(18+tx,54+dy)],metal[0],width=2)
@@ -145,6 +166,31 @@ def draw_frame(cid, sex, row, f):
         poly(d,[(24+tx,45+dy),(30+tx,43+dy),(36+tx,47+dy),(34+tx,64+crouch),(24+tx,64+crouch)],shirt[1],INK,1)
         line(d,[(23+tx,46+dy),(36+tx,65+crouch)],leather[1],4)
         line(d,[(24+tx,46+dy),(36+tx,65+crouch)],leather[2],1)
+    # El Novato combina ropa de viaje con un cuello granate y una bandolera de cuero cosida.
+    if fam=="novice":
+        poly(d,[(27+tx,40+dy),(35+tx,40+dy),(40+tx,44+dy),(36+tx,49+dy),(29+tx,47+dy),(25+tx,44+dy)],"#65302d",INK,2)
+        poly(d,[(29+tx,42+dy),(35+tx,42+dy),(37+tx,44+dy),(33+tx,46+dy),(28+tx,44+dy)],"#a64f3b",INK,1)
+        line(d,[(28+tx,44+dy),(33+tx,46+dy)],"#e2a06b",1)
+        line(d,[(23+tx,47+dy),(39+tx,65+crouch)],INK,7)
+        line(d,[(23+tx,47+dy),(39+tx,65+crouch)],leather[1],4)
+        line(d,[(23+tx,47+dy),(39+tx,65+crouch)],leather[2],1)
+        for i in range(4):
+            x,y=26+tx+i*3,51+dy+i*3
+            rect(d,(x,y,x+1,y+1),shirt[2])
+        poly(d,[(31+tx,56+dy),(36+tx,57+dy),(36+tx,62+dy),(31+tx,61+dy)],metal[0],INK,1)
+        rect(d,(33+tx,58+dy,35+tx,60+dy),metal[2])
+        poly(d,[(20+tx,46+dy),(25+tx,44+dy),(28+tx,49+dy),(25+tx,53+dy),(20+tx,52+dy)],leather[1],INK,1)
+        line(d,[(21+tx,48+dy),(25+tx,47+dy)],leather[2],1)
+        line(d,[(23+tx,72+crouch),(28+tx,73+crouch),(28+tx,76+crouch)],shirt[2],1)
+        line(d,[(34+tx,73+crouch),(38+tx,72+crouch)],shirt[2],1)
+        for i in range(3):
+            rect(d,(25+tx+i*3,75+crouch,26+tx+i*3,76+crouch),leather[2])
+        # Bolsa lateral de viaje con solapa y pespuntes.
+        poly(d,[(19+tx,67+crouch),(25+tx,68+crouch),(25+tx,77+crouch),(19+tx,76+crouch)],leather[0],INK,1)
+        poly(d,[(19+tx,68+crouch),(24+tx,69+crouch),(24+tx,72+crouch),(19+tx,71+crouch)],leather[1],INK,1)
+        line(d,[(20+tx,74+crouch),(23+tx,75+crouch)],leather[2],1)
+        rect(d,(22+tx,70+crouch,23+tx,72+crouch),metal[2])
+
     # Belt, buckle and small pouch are stitched into this outfit.
     line(d,[(22+tx,67+crouch),(41+tx,67+crouch)],leather[0],5)
     line(d,[(22+tx,66+crouch),(41+tx,66+crouch)],leather[2],1)
@@ -168,6 +214,11 @@ def draw_frame(cid, sex, row, f):
         poly(d,[(25+tx,hy+5),(25+tx,hy-2),(30+tx,hy-8),(35+tx,hy-9),(40+tx,hy-5),(43+tx,hy+1),(40+tx,hy+4),(35+tx,hy+1),(32+tx,hy+4),(29+tx,hy+2)],hair[0],INK,2)
         poly(d,[(27+tx,hy-1),(30+tx,hy-7),(35+tx,hy-8),(39+tx,hy-5),(34+tx,hy-4)],hair[1],INK,1)
         line(d,[(27+tx,hy+3),(30+tx,hy)],hair[1],1)
+    # Ojo, ceja y reflejo de mejilla visibles a tamaño nativo.
+    rect(d,(38+tx,hy+4,40+tx,hy+5),"#211a1d")
+    rect(d,(39+tx,hy+4,39+tx,hy+4),"#fff1cf")
+    line(d,[(37+tx,hy+2),(40+tx,hy+2)],hair[1],1)
+    rect(d,(41+tx,hy+9,42+tx,hy+9),skin[2])
     if p["hat"]=="hood":
         h0=cape[0]; h1=cape[2]
         poly(d,[(25+tx,hy+8),(24+tx,hy-2),(29+tx,hy-10),(37+tx,hy-10),(43+tx,hy-3),(44+tx,hy+8),(39+tx,hy+6),(37+tx,hy-2),(31+tx,hy+1),(29+tx,hy+8)],h0,INK,2)
