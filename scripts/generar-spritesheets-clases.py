@@ -187,6 +187,11 @@ def pose(row,f,cid=None):
             dx=[0,-2,-5,1][f]
             dy=[0,4,8,2][f]
             crouch=[0,2,8,2][f]
+        # Tier 1 — Acólito: retroceso más contenido, con caída de hombros y recuperación.
+        if cid=="acolito":
+            dx=[0,-1,-3,1][f]
+            dy=[0,3,6,1][f]
+            crouch=[0,1,5,1][f]
     if row==3: dy=[0,-1,-2,0][f]
     if row==4: dx=[-3,-4,2,1][f];dy=[2,5,3,0][f];crouch=[2,5,3,0][f]
     if row==5: dx=[0,1,1,0][f];dy=0
@@ -613,14 +618,25 @@ def draw_frame(cid, sex, row, f):
         line(d,[(ix+4,iy-3),(ix+1,iy)],"#fff2bd",2)
         line(d,[(ix+4,iy+2),(ix+1,iy+1)],"#e5b55d",1)
         rect(d,(ix-1,iy-1,ix,iy),"#fff9de")
+    elif cid=="acolito" and row==2 and f==1:
+        # Destello de impacto dorado: un pequeño signo de luz, no un arma añadida.
+        ix,iy=32+tx,53+dy
+        line(d,[(ix,iy-5),(ix,iy+5)],"#fff0bf",2)
+        line(d,[(ix-4,iy),(ix+4,iy)],"#fff0bf",2)
+        line(d,[(ix-5,iy-3),(ix-3,iy-1)],"#dfb85f",1)
+        line(d,[(ix+4,iy+2),(ix+6,iy+3)],"#dfb85f",1)
+        rect(d,(ix-1,iy-1,ix,iy),"#fff9de")
     elif cid in ("novato","espadachin") and row==2 and f==2:
         # Destello residual corto durante la postura encogida de dolor.
         rect(d,(39+tx,54+dy,40+tx,55+dy),"#f4d17a")
+    elif cid=="acolito" and row==2 and f==2:
+        rect(d,(32+tx,54+dy,33+tx,55+dy),"#fff0bf")
 
     # Una inclinación de pocos grados transmite el golpe; el pivote queda en los pies.
     # Se aplica a la celda aislada para no mover el punto de apoyo en la batalla.
-    if row==2 and cid in ("novato","espadachin"):
-        angle={0:0.0,1:4.5,2:1.5,3:-2.5}[f]
+    if row==2 and cid in ("novato","espadachin","acolito"):
+        angle={0:0.0,1:(3.5 if cid=="acolito" else 4.5),
+               2:(1.0 if cid=="acolito" else 1.5),3:(-2.0 if cid=="acolito" else -2.5)}[f]
         if angle:
             im=im.rotate(angle,resample=Image.Resampling.NEAREST,center=(32,112),expand=False)
     return im
