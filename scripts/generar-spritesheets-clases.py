@@ -669,6 +669,146 @@ def draw_frame(cid, sex, row, f):
             im=im.rotate(angle,resample=Image.Resampling.NEAREST,center=(32,112),expand=False)
     return im
 
+
+def pintar_equipo_espadachin(source, shift_x=0, shift_y=0):
+    """Convierte la base de Novato en Espadachín sin dibujar armas: solo equipo corporal."""
+    im = source.convert("RGBA").copy()
+    px = im.load()
+    # Recolorear exclusivamente la cola del manto; el pañuelo carmesí sigue siendo un rasgo de familia.
+    for y in range(50, 88):
+        for x in range(2, 31):
+            r, g, b, a = px[x, y]
+            if a and r > 65 and r > g * 1.22 and r > b * 1.12:
+                lum = (r + g + b) / 3
+                if lum < 80:
+                    px[x, y] = (18, 32, 55, a)
+                elif lum < 120:
+                    px[x, y] = (28, 54, 88, a)
+                elif lum < 160:
+                    px[x, y] = (43, 78, 119, a)
+                else:
+                    px[x, y] = (98, 137, 177, a)
+    d = ImageDraw.Draw(im)
+    sx, sy = shift_x, shift_y
+    # Hombreras de acero con biseles fríos y remaches de latón integrados.
+    poly(d, [(18+sx,45+sy),(22+sx,42+sy),(27+sx,43+sy),(30+sx,47+sy),(28+sx,51+sy),(23+sx,52+sy),(19+sx,49+sy)], "#3f4c5b", INK, 1)
+    poly(d, [(19+sx,45+sy),(23+sx,43+sy),(26+sx,44+sy),(28+sx,47+sy),(24+sx,49+sy),(21+sx,48+sy)], "#8396a8", INK, 1)
+    line(d, [(20+sx,45+sy),(23+sx,44+sy),(26+sx,45+sy)], "#d6e2eb", 1)
+    ellipse(d, (23+sx,46+sy,25+sx,48+sy), "#d7b46a", INK, 1)
+    poly(d, [(36+sx,43+sy),(41+sx,44+sy),(44+sx,48+sy),(43+sx,52+sy),(38+sx,53+sy),(35+sx,49+sy)], "#344353", INK, 1)
+    poly(d, [(37+sx,44+sy),(41+sx,45+sy),(43+sx,48+sy),(41+sx,50+sy),(38+sx,49+sy)], "#8da1b2", INK, 1)
+    line(d, [(37+sx,45+sy),(40+sx,46+sy),(42+sx,48+sy)], "#e0e8ed", 1)
+    ellipse(d, (39+sx,46+sy,41+sx,48+sy), "#e2c279", INK, 1)
+    # Coraza ajustada al torso y paneles con sombreado; no añade arma ni escudo.
+    poly(d, [(26+sx,47+sy),(30+sx,45+sy),(36+sx,47+sy),(39+sx,51+sy),(37+sx,61+sy),(33+sx,65+sy),(27+sx,62+sy),(25+sx,55+sy)], "#293744", INK, 1)
+    poly(d, [(27+sx,48+sy),(31+sx,46+sy),(35+sx,48+sy),(37+sx,52+sy),(35+sx,60+sy),(32+sx,62+sy),(28+sx,60+sy),(27+sx,54+sy)], "#65798b", INK, 1)
+    poly(d, [(28+sx,49+sy),(31+sx,47+sy),(34+sx,49+sy),(35+sx,52+sy),(33+sx,55+sy),(29+sx,54+sy)], "#aebfcb", None)
+    line(d, [(28+sx,55+sy),(29+sx,60+sy),(32+sx,61+sy)], "#d9e3e9", 1)
+    line(d, [(36+sx,51+sy),(35+sx,57+sy),(34+sx,60+sy)], "#374858", 1)
+    # Pequeño sello heráldico cosido a la coraza.
+    poly(d, [(31+sx,52+sy),(34+sx,52+sy),(35+sx,55+sy),(33+sx,58+sy),(30+sx,56+sy)], "#782f3f", INK, 1)
+    line(d, [(32+sx,53+sy),(32+sx,56+sy)], "#f1d18a", 1)
+    line(d, [(31+sx,54+sy),(34+sx,54+sy)], "#f1d18a", 1)
+    # Cuello de placas y broche en el manto, manteniendo visible el pañuelo.
+    poly(d, [(27+sx,43+sy),(31+sx,42+sy),(36+sx,44+sy),(35+sx,47+sy),(31+sx,48+sy),(28+sx,46+sy)], "#273543", INK, 1)
+    line(d, [(28+sx,44+sy),(31+sx,43+sy),(34+sx,45+sy)], "#c2d1dc", 1)
+    ellipse(d, (35+sx,45+sy,38+sx,48+sy), "#d7b56a", INK, 1)
+    ellipse(d, (36+sx,46+sy,37+sx,47+sy), "#fff0bc", None, 1)
+    # Brazales de placas ceñidos a los antebrazos.
+    poly(d, [(14+sx,58+sy),(18+sx,56+sy),(21+sx,59+sy),(20+sx,64+sy),(17+sx,67+sy),(14+sx,64+sy)], "#374657", INK, 1)
+    poly(d, [(15+sx,59+sy),(18+sx,58+sy),(20+sx,60+sy),(18+sx,63+sy),(16+sx,64+sy)], "#8092a4", INK, 1)
+    line(d, [(15+sx,62+sy),(19+sx,60+sy)], "#d7e1e9", 1)
+    ellipse(d, (16+sx,60+sy,17+sx,61+sy), "#d5b571", INK, 1)
+    poly(d, [(41+sx,57+sy),(45+sx,56+sy),(48+sx,60+sy),(47+sx,65+sy),(44+sx,67+sy),(42+sx,63+sy)], "#303e4f", INK, 1)
+    poly(d, [(42+sx,58+sy),(45+sx,57+sy),(47+sx,60+sy),(45+sx,63+sy),(43+sx,63+sy)], "#8095a7", INK, 1)
+    line(d, [(42+sx,61+sy),(46+sx,59+sy)], "#d7e1e9", 1)
+    ellipse(d, (44+sx,59+sy,45+sx,60+sy), "#d5b571", INK, 1)
+    # Cinturón reforzado, hebilla, faldón heráldico corto, rodilleras y grebas.
+    line(d, [(22+sx,67+sy),(42+sx,68+sy)], "#2b211f", 5)
+    line(d, [(23+sx,66+sy),(42+sx,67+sy)], "#9c6c42", 2)
+    rect(d, (33+sx,64+sy,38+sx,70+sy), "#6c7883", INK, 1)
+    rect(d, (34+sx,65+sy,37+sx,69+sy), "#d9c27b", INK, 1)
+    rect(d, (35+sx,66+sy,36+sx,68+sy), "#f9e9af", None, 1)
+    poly(d, [(30+sx,69+sy),(36+sx,69+sy),(38+sx,80+sy),(35+sx,84+sy),(31+sx,81+sy)], "#6b293c", INK, 1)
+    line(d, [(31+sx,71+sy),(36+sx,71+sy)], "#e2be79", 1)
+    line(d, [(32+sx,73+sy),(34+sx,78+sy),(33+sx,80+sy)], "#f1d38d", 1)
+    poly(d, [(32+sx,73+sy),(34+sx,73+sy),(35+sx,75+sy),(33+sx,77+sy),(31+sx,76+sy)], "#9e4650", INK, 1)
+    line(d, [(31+sx,81+sy),(35+sx,82+sy)], "#dcb96d", 1)
+    poly(d, [(21+sx,88+sy),(27+sx,87+sy),(30+sx,91+sy),(28+sx,95+sy),(23+sx,95+sy),(20+sx,92+sy)], "#354454", INK, 1)
+    poly(d, [(22+sx,89+sy),(27+sx,88+sy),(28+sx,91+sy),(26+sx,93+sy),(22+sx,92+sy)], "#8294a5", INK, 1)
+    line(d, [(22+sx,90+sy),(26+sx,89+sy)], "#dce5eb", 1)
+    poly(d, [(36+sx,88+sy),(42+sx,89+sy),(44+sx,92+sy),(41+sx,95+sy),(37+sx,94+sy),(35+sx,91+sy)], "#354454", INK, 1)
+    poly(d, [(37+sx,89+sy),(41+sx,90+sy),(42+sx,92+sy),(40+sx,93+sy),(37+sx,92+sy)], "#8294a5", INK, 1)
+    line(d, [(37+sx,90+sy),(40+sx,91+sy)], "#dce5eb", 1)
+    poly(d, [(17+sx,97+sy),(23+sx,96+sy),(26+sx,100+sy),(24+sx,106+sy),(20+sx,107+sy),(17+sx,103+sy)], "#303d4b", INK, 1)
+    poly(d, [(18+sx,98+sy),(22+sx,98+sy),(24+sx,101+sy),(22+sx,104+sy),(19+sx,103+sy)], "#8094a7", INK, 1)
+    line(d, [(18+sx,99+sy),(22+sx,99+sy)], "#dce5eb", 1)
+    poly(d, [(38+sx,97+sy),(44+sx,97+sy),(46+sx,101+sy),(44+sx,106+sy),(40+sx,107+sy),(37+sx,103+sy)], "#303d4b", INK, 1)
+    poly(d, [(39+sx,98+sy),(43+sx,98+sy),(44+sx,101+sy),(42+sx,104+sy),(39+sx,103+sy)], "#8094a7", INK, 1)
+    line(d, [(39+sx,99+sy),(43+sx,99+sy)], "#dce5eb", 1)
+    for x, y in ((22,49),(40,49),(25,91),(40,91),(20,101),(42,101)):
+        ellipse(d, (x+sx,y+sy,x+sx+1,y+sy+1), "#efcf80", INK, 1)
+    return im
+
+def construir_fuentes_espadachin(sex):
+    """Crea maestros modulares de Espadachín a partir del maestro de Novato, sin armas."""
+    base_dir = ROOT / "assets" / "spritesheets" / "novato"
+    out_dir = ROOT / "assets" / "spritesheets" / "tier1"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    master_path = base_dir / f"novato-{sex}-master.png"
+    with Image.open(master_path) as source:
+        master = source.convert("RGBA")
+    assert master.size == (W, H), (master_path, master.size)
+    armored_master = pintar_equipo_espadachin(master)
+    armored_master.save(out_dir / f"espadachin-{sex}-master.png", optimize=True)
+
+    # Idle: cuatro variaciones discretas de respiración; el equipo permanece unido al cuerpo.
+    idle_offsets = ((0, 0), (0, -1), (1, -1), (0, 0))
+    idle = Image.new("RGBA", (W * COLS, H), (0, 0, 0, 0))
+    for i, (dx, dy) in enumerate(idle_offsets):
+        pose = armored_master.copy()
+        if dx or dy:
+            pose = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            pose.alpha_composite(armored_master, (dx, dy))
+        idle.alpha_composite(pose, (i * W, 0))
+    idle.save(out_dir / f"espadachin-{sex}-idle-row.png", optimize=True)
+
+    # Caminar conserva el ciclo del maestro de Novato; las placas acompañan cada celda.
+    walk_path = base_dir / f"novato-{sex}-walk-row.png"
+    with Image.open(walk_path) as walk_source:
+        walk_sheet = walk_source.convert("RGBA")
+    assert walk_sheet.size == (W * COLS, H), (walk_path, walk_sheet.size)
+    walk = Image.new("RGBA", (W * COLS, H), (0, 0, 0, 0))
+    shifts = ((0, 0), (-1, 1), (1, 0), (0, -1))
+    for i, (dx, dy) in enumerate(shifts):
+        frame = walk_sheet.crop((i * W, 0, (i + 1) * W, H))
+        frame = pintar_equipo_espadachin(frame, dx, dy)
+        walk.alpha_composite(frame, (i * W, 0))
+    walk.save(out_dir / f"espadachin-{sex}-walk-row.png", optimize=True)
+
+    # Recibir daño: reacción física expresiva, sin arma dibujada en el personaje.
+    hurt = Image.new("RGBA", (W * COLS, H), (0, 0, 0, 0))
+    for i in range(COLS):
+        frame = armored_master.copy()
+        if i == 1:
+            frame = frame.rotate(7.0, resample=Image.Resampling.NEAREST,
+                                 center=(32, 112), expand=False)
+            d = ImageDraw.Draw(frame)
+            d.line([(35, 51), (39, 53), (37, 56)], fill="#fff2bd", width=2)
+            d.line([(40, 49), (40, 52)], fill="#f4d17a", width=2)
+            d.line([(43, 51), (40, 53)], fill="#fff2bd", width=1)
+        elif i == 2:
+            compressed = frame.resize((W, H - 12), Image.Resampling.NEAREST)
+            frame = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            frame.alpha_composite(compressed, (0, 12))
+            ImageDraw.Draw(frame).point((39, 55), fill="#f4d17a")
+        elif i == 3:
+            frame = frame.rotate(-3.5, resample=Image.Resampling.NEAREST,
+                                 center=(32, 112), expand=False)
+        hurt.alpha_composite(frame, (i * W, 0))
+    hurt.save(out_dir / f"espadachin-{sex}-hurt-row.png", optimize=True)
+    return idle, walk, hurt
+
 def generate(cid, sex):
     sheet=Image.new("RGBA",(256,1920),(0,0,0,0))
     for row in range(ROWS):
@@ -738,6 +878,14 @@ def generate(cid, sex):
         idle_offsets = ((0, 0), (0, -1), (1, -1), (0, 0))
         for frame, (dx, dy) in enumerate(idle_offsets):
             sheet.alpha_composite(master, (frame * W + dx, dy))
+
+    # Tier 1 — Espadachín comparte calidad, proporciones y orientación del maestro de Novato.
+    # Las armas quedan fuera de estos PNG; se añaden en la capa de equipo/acción correspondiente.
+    if cid == "espadachin":
+        idle, walk, hurt = construir_fuentes_espadachin(sex)
+        for row, row_source in ((0, idle), (1, walk), (2, hurt)):
+            sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
+            sheet.alpha_composite(row_source, (0, row * H))
 
     dest=OUT/cid/f"{cid}-{sex}-sheet.png";dest.parent.mkdir(parents=True,exist_ok=True)
     sheet.save(dest,optimize=True,compress_level=9)
