@@ -3,6 +3,7 @@
 from pathlib import Path
 import argparse
 import json
+import math
 from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -1168,18 +1169,58 @@ def construir_acciones_tier1(cid, sex):
         line(d, [(hx-1,hy-1),(hx+1,hy-1)], palettes["metal_light"], 1)
         rect(d, (hx-1,hy+1,hx,hy+2), palettes["skin"])
 
+    # La inclinación corporal aporta anticipación/impacto/recuperación sin mover el punto de apoyo.
+    # Los anclajes se transforman con el mismo ángulo para que las armas por capas encajen exactamente.
+    attack_angles = {
+        "espadachin": {
+            "consumable": (0, -1, 0, 0), "dodge": (0, -7, 5, -2), "block": (0, -3, 3, 0),
+            "sword": (0, -4, 8, 2), "axe": (0, -5, 8, 2), "spear": (0, -3, 7, 1),
+            "dagger": (0, -4, 6, 1), "bow": (0, -3, 5, 0), "staff": (0, -4, 6, 1),
+            "mace": (0, -5, 8, 2), "book": (0, -2, 3, 0), "gloves": (0, -4, 8, 1),
+        },
+        "acolito": {
+            "consumable": (0, -2, -1, 0), "dodge": (0, -4, 3, -1), "block": (0, -1, 2, 0),
+            "staff": (0, -3, 5, 1), "mace": (0, -3, 5, 1), "book": (0, -2, 3, 0),
+        },
+        "arquero": {
+            "consumable": (0, -1, 0, 0), "dodge": (0, -7, 5, -2), "block": (0, -3, 3, 0),
+            "bow": (0, -5, 7, -1), "dagger": (0, -4, 6, 1), "spear": (0, -3, 6, 0),
+        },
+        "mago": {
+            "consumable": (0, -1, 0, 0), "dodge": (0, -4, 3, -1), "block": (0, -2, 2, 0),
+            "staff": (0, -4, 6, 0), "book": (0, -3, 4, 0),
+        },
+    }
+    default_angles = {
+        "espadachin": (0, -4, 7, 1),
+        "acolito": (0, -2, 4, 1),
+        "arquero": (0, -3, 5, 0),
+        "mago": (0, -3, 5, 0),
+    }[cid]
+
+    def rotate_point(x, y, angle):
+        radians = math.radians(angle)
+        dx, dy = x - 32, y - 82
+        return (
+            max(0, min(63, int(round(32 + dx * math.cos(radians) + dy * math.sin(radians)))),
+            max(0, min(127, int(round(82 - dx * math.sin(radians) + dy * math.cos(radians)))),
+        )
+
     generated = {}
     anchor_actions = {}
     for row, (anim, hands, offsets) in actions.items():
+        angles = attack_angles.get(cid, {}).get(anim, default_angles)
         frame_anchors = []
         for frame_index in range(COLS):
             dx, dy = offsets[frame_index]
             hx, hy = hands[frame_index]
-            frame_anchors.append({
-                "x": int(hx + dx),
-                "y": int(hy + dy),
-                "anchor": "front_hand_grip",
-            })
+            angle = angles[frame_index]
+            ax, ay = rotate_point(hx + dx, hy + dy, angle)
+            anchor = {"x": ax, "y": ay, "anchor": "front_hand_grip"}
+            if anim == "bow":
+                bx, by = rotate_point(19 + dx, 61 + dy, angle)
+                anchor["secondaryGrip"] = {"x": bx, "y": by, "anchor": "rear_hand_grip"}
+            frame_anchors.append(anchor)
         anchor_actions[anim] = {
             "row": row,
             "layer": "weapon" if anim in ("sword", "axe", "spear", "dagger", "bow", "staff", "mace", "book", "gloves") else None,
@@ -1188,11 +1229,15 @@ def construir_acciones_tier1(cid, sex):
         strip = Image.new("RGBA", (W * COLS, H), (0, 0, 0, 0))
         for frame_index in range(COLS):
             dx, dy = offsets[frame_index]
+            angle = angles[frame_index]
             frame = translate(master, dx, dy)
             if frame_index != 0:
                 pose_front_arm(frame, hands[frame_index], dx, dy)
+            if angle:
+                frame = frame.rotate(angle, resample=Image.Resampling.NEAREST,
+                                     center=(32, 82), expand=False)
             strip.alpha_composite(frame, (frame_index * W, 0))
-        filename = out_dir / f"espadachin-{sex}-{anim}-row.png"
+        filename = out_dir / f"{cid}-{sex}-{anim}-row.png"
         strip.save(filename, optimize=True)
         generated[row] = strip
 
