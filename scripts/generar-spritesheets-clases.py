@@ -603,7 +603,7 @@ def generate(cid, sex):
             sheet.alpha_composite(sprite,(frame*W,row*H))
     # Novato usa arte maestro aprobado para Idle; las demás filas se refinan en iteraciones separadas.
     if cid == "novato":
-        master_path = ROOT / "assets" / "spritesheets" / "novato" / f"novato-{sex}-master-32.png"
+        master_path = ROOT / "assets" / "spritesheets" / "novato" / f"novato-{sex}-master.png"
         with Image.open(master_path) as master_source:
             master = master_source.convert("RGBA")
         # Limpiar únicamente la primera fila y componer cuatro respiraciones sutiles de la misma pose.
