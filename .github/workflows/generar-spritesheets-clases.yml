@@ -93,8 +93,13 @@ jobs:
                               }.get(path.stem.removeprefix(f"{cid}-{sex}-").removesuffix("-row"))
                               assert row_num is not None, f"{path}: fila no reconocida"
                               final_row = sheet.crop((0, row_num * 128, 256, (row_num + 1) * 128))
-                              assert ImageChops.difference(image.convert("RGBA"), final_row).getbbox() is None, (
-                                  f"{path}: la fila del atlas no coincide con la fuente modular"
+                              # Comparar solo lo visible: los valores RGB bajo alfa 0 no afectan al render.
+                              source_visible = Image.new("RGBA", image.size, (30, 28, 34, 255))
+                              final_visible = Image.new("RGBA", image.size, (30, 28, 34, 255))
+                              source_visible.alpha_composite(image.convert("RGBA"))
+                              final_visible.alpha_composite(final_row.convert("RGBA"))
+                              assert ImageChops.difference(source_visible, final_visible).getbbox() is None, (
+                                  f"{path}: la fila visible del atlas no coincide con su fuente modular"
                               )
                               if path.stem.endswith("-walk-row"):
                                   for index, frame in enumerate(frames):
@@ -123,16 +128,17 @@ jobs:
           anchors = __import__("json").loads(anchors_path.read_text(encoding="utf-8"))
           assert anchors.get("schemaVersion") == 1, "Versión de esquema de anclajes inesperada"
           assert anchors.get("cellSize") == {"width": 64, "height": 128}, "Tamaño de celda inválido en anclajes"
-          for sex in ("m", "f"):
-              actions = anchors.get("classes", {}).get("espadachin", {}).get(sex, {}).get("actions", {})
-              for action_name in ("sword", "axe", "spear", "dagger", "bow", "staff", "mace", "book", "gloves"):
-                  assert action_name in actions, f"Faltan anclajes para Espadachín/{sex}/{action_name}"
-                  action = actions[action_name]
-                  assert len(action.get("frames", [])) == 4, f"{action_name}: se esperan 4 anclajes"
-                  for frame in action["frames"]:
-                      assert 0 <= frame["x"] < 64 and 0 <= frame["y"] < 128, (
-                          f"Anclaje fuera de celda: Espadachín/{sex}/{action_name}/{frame}"
-                      )
+          for cid in modular_classes:
+              for sex in ("m", "f"):
+                  actions = anchors.get("classes", {}).get(cid, {}).get(sex, {}).get("actions", {})
+                  for action_name in ("sword", "axe", "spear", "dagger", "bow", "staff", "mace", "book", "gloves"):
+                      assert action_name in actions, f"Faltan anclajes para {cid}/{sex}/{action_name}"
+                      action = actions[action_name]
+                      assert len(action.get("frames", [])) == 4, f"{cid}/{sex}/{action_name}: se esperan 4 anclajes"
+                      for frame in action["frames"]:
+                          assert 0 <= frame["x"] < 64 and 0 <= frame["y"] < 128, (
+                              f"Anclaje fuera de celda: {cid}/{sex}/{action_name}/{frame}"
+                          )
           print(f"OK: {len(files)} hojas completas; filas modulares y weapon-anchors.json verificados")
           PY
 
