@@ -39,7 +39,7 @@ def alpha_bbox(frame: Image.Image) -> tuple[int, int, int, int]:
     return bbox
 
 
-def quantize_strip(strip: Image.Image, alpha: Image.Image) -> Image.Image:
+def quantize_strip(strip: Image.Image, alpha: Image.Image, palette_colors: int) -> Image.Image:
     """Use one palette across the action, rather than letting each frame drift in colour."""
     rgba = strip.convert("RGBA")
     rgb = rgba.convert("RGB")
@@ -51,7 +51,7 @@ def quantize_strip(strip: Image.Image, alpha: Image.Image) -> Image.Image:
         for x in range(rgb.width):
             if alpha_px[x, y] == 0:
                 pixels[x, y] = (255, 0, 255)
-    indexed = rgb.quantize(colors=32, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE)
+    indexed = rgb.quantize(colors=palette_colors, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE)
     result = indexed.convert("RGB").convert("RGBA")
     result.putalpha(alpha.point(lambda a: 255 if a >= 128 else 0))
     return result
@@ -83,6 +83,7 @@ def normalize(
     name: str,
     frame_count: int,
     palette_colors: int,
+    locked_scale: float | None = None,
 ) -> dict:
     if frame_count not in ALLOWED_FRAMES:
         raise ValueError(f"--frames must be one of {ALLOWED_FRAMES}")
@@ -121,7 +122,12 @@ def normalize(
     # One global scale for all poses in this action (never an independent scale per frame).
     max_source_w = max(frame.width for frame in source_cells)
     max_source_h = max(frame.height for frame in source_cells)
-    scale = min((TARGET_W - 4) / max_source_w, (TARGET_H - 8) / max_source_h)
+    computed_scale = min((TARGET_W - 4) / max_source_w, (TARGET_H - 8) / max_source_h)
+    scale = locked_scale if locked_scale is not None else computed_scale
+    if scale <= 0 or scale * max_source_w > TARGET_W - 2 or scale * max_source_h > TARGET_H - 2:
+        raise ValueError(
+            f"Uniform scale {scale} would clip a source frame; maximum safe scale is {computed_scale:.6f}"
+        )
     final_cells: list[Image.Image] = []
     final_boxes = []
     frame_hashes = []
@@ -153,7 +159,7 @@ def normalize(
     old_count = palette_colors
     if not (16 <= old_count <= 64):
         raise ValueError("--palette-colors must be between 16 and 64")
-    quantized = quantize_strip(rgba_strip, alpha_strip)
+    quantized = quantize_strip(rgba_strip, alpha_strip, palette_colors)
     strip_path = output_dir / f"{name}.png"
     quantized.save(strip_path, optimize=True)
 
@@ -194,6 +200,7 @@ def normalize(
         "final_cell_dimensions": [TARGET_W, TARGET_H],
         "frame_count": frame_count,
         "uniform_scale": scale,
+        "scale_mode": "locked" if locked_scale is not None else "computed_from_this_action",
         "shared_palette_colors": palette_colors,
         "alpha_extrema": list(final_strip.getchannel("A").getextrema()),
         "all_frames_aligned_to_baseline_y": TARGET_H - 4,
@@ -217,9 +224,10 @@ def main() -> None:
     parser.add_argument("--name", required=True, help="Filename stem, e.g. novato-f-idle")
     parser.add_argument("--frames", type=int, choices=ALLOWED_FRAMES, default=4)
     parser.add_argument("--palette-colors", type=int, default=32)
+    parser.add_argument("--scale", type=float, default=None, help="Reuse the exact scale calculated from Idle for other actions")
     args = parser.parse_args()
     args.out_dir.mkdir(parents=True, exist_ok=True)
-    normalize(args.source, args.out_dir, args.name, args.frames, args.palette_colors)
+    normalize(args.source, args.out_dir, args.name, args.frames, args.palette_colors, args.scale)
 
 
 if __name__ == "__main__":
