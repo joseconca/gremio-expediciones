@@ -192,6 +192,11 @@ def pose(row,f,cid=None):
             dx=[0,-2,-4,2][f]
             dy=[0,5,9,1][f]
             crouch=[0,2,9,1][f]
+        # Tier 1 — Arquero: pierde el equilibrio, se encoge y recupera guardia.
+        if cid=="arquero":
+            dx=[0,-3,-4,2][f]
+            dy=[0,4,8,1][f]
+            crouch=[0,2,8,1][f]
     if row==3: dy=[0,-1,-2,0][f]
     if row==4: dx=[-3,-4,2,1][f];dy=[2,5,3,0][f];crouch=[2,5,3,0][f]
     if row==5: dx=[0,1,1,0][f];dy=0
@@ -611,7 +616,7 @@ def draw_frame(cid, sex, row, f):
 
     # Tier 1 — Espadachín: golpe recibido legible al tamaño nativo.
     # El flash aparece en el fotograma de impacto y permanece dentro de la silueta.
-    if cid in ("novato","espadachin") and row==2 and f==1:
+    if cid in ("novato","espadachin","arquero") and row==2 and f==1:
         ix,iy=39+tx,53+dy
         line(d,[(ix-5,iy-2),(ix-2,iy),(ix-4,iy+3)],"#fff2bd",2)
         line(d,[(ix,iy-5),(ix+1,iy-1)],"#f4d17a",2)
@@ -627,7 +632,7 @@ def draw_frame(cid, sex, row, f):
         line(d,[(ix-8,iy-3),(ix-5,iy-1)],"#e5b55d",2)
         line(d,[(ix+5,iy+3),(ix+8,iy+5)],"#e5b55d",2)
         rect(d,(ix-1,iy-1,ix,iy),"#ffffff")
-    elif cid in ("novato","espadachin") and row==2 and f==2:
+    elif cid in ("novato","espadachin","arquero") and row==2 and f==2:
         # Destello residual corto durante la postura encogida de dolor.
         rect(d,(39+tx,54+dy,40+tx,55+dy),"#f4d17a")
     elif cid=="acolito" and row==2 and f==2:
@@ -635,8 +640,9 @@ def draw_frame(cid, sex, row, f):
 
     # Una inclinación de pocos grados transmite el golpe; el pivote queda en los pies.
     # Se aplica a la celda aislada para no mover el punto de apoyo en la batalla.
-    if row==2 and cid in ("novato","espadachin","acolito"):
-        angle={0:0.0,1:8.0,2:3.0,3:-4.0}[f]
+    if row==2 and cid in ("novato","espadachin","acolito","arquero"):
+        angle={0:0.0,1:(7.0 if cid=="arquero" else 8.0),
+               2:(2.5 if cid=="arquero" else 3.0),3:(-3.5 if cid=="arquero" else -4.0)}[f]
         if angle:
             im=im.rotate(angle,resample=Image.Resampling.NEAREST,center=(32,112),expand=False)
     return im
