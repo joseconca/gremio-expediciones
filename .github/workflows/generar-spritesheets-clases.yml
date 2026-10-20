@@ -51,7 +51,7 @@ jobs:
                   assert image.size == (256, 1920), (path, image.size)
                   assert image.mode == "RGBA", (path, image.mode)
                   assert image.getchannel("A").getextrema()[0] == 0, f"{path}: falta transparencia"
-                  if path.parent.name in ("novato", "espadachin", "acolito", "arquero"):
+                  if path.parent.name in ("novato", "espadachin", "acolito", "arquero", "mago"):
                       hurt = image.crop((0, 2 * 128, 256, 3 * 128))
                       frames = [hurt.crop((i * 64, 0, (i + 1) * 64, 128)) for i in range(4)]
                       assert all(frame.getchannel("A").getbbox() for frame in frames), f"{path}: fotograma vacío"
@@ -70,6 +70,7 @@ jobs:
             public/sprites/heroes/espadachin/*-sheet.png
             public/sprites/heroes/acolito/*-sheet.png
             public/sprites/heroes/arquero/*-sheet.png
+            public/sprites/heroes/mago/*-sheet.png
           if-no-files-found: error
           retention-days: 7
 
