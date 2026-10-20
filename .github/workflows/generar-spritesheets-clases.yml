@@ -58,7 +58,25 @@ jobs:
                       assert len({frame.tobytes() for frame in frames}) == 4, f"{path}: Recibir daño contiene fotogramas repetidos"
                       assert all(ImageChops.difference(frames[i], frames[i + 1]).getbbox()
                                  for i in range(3)), f"{path}: transición de Recibir daño estática"
-          print(f"OK: {len(files)} hojas de Novato/Tier 1, 256×1920, alfa real; daño animado validado")
+          # Las fuentes modulares de Espadachín se versionan junto con el atlas final.
+          source_dir = Path("assets/spritesheets/tier1")
+          masters = [source_dir / f"espadachin-{sex}-master.png" for sex in ("m", "f")]
+          rows = [source_dir / f"espadachin-{sex}-{anim}-row.png"
+                  for sex in ("m", "f") for anim in ("idle", "walk", "hurt")]
+          assert all(path.exists() for path in masters + rows), "Faltan fuentes modulares de Espadachín"
+          for path in masters:
+              with Image.open(path) as image:
+                  assert image.size == (64, 128) and image.mode == "RGBA", (path, image.size, image.mode)
+                  assert image.getchannel("A").getextrema()[0] == 0, f"{path}: falta transparencia"
+          for path in rows:
+              with Image.open(path) as image:
+                  assert image.size == (256, 128) and image.mode == "RGBA", (path, image.size, image.mode)
+                  assert image.getchannel("A").getextrema()[0] == 0, f"{path}: falta transparencia"
+                  frames = [image.crop((i * 64, 0, (i + 1) * 64, 128)) for i in range(4)]
+                  assert all(frame.getchannel("A").getbbox() for frame in frames), f"{path}: celda vacía"
+                  if path.stem.endswith("-hurt-row"):
+                      assert len({frame.tobytes() for frame in frames}) == 4, f"{path}: fotogramas de daño repetidos"
+          print(f"OK: {len(files)} hojas completas; Espadachín modular con fuentes 64×128 y tiras 4×64×128")
           PY
 
       - name: Publicar artefacto de revisión visual de Novato y Espadachín
@@ -71,17 +89,18 @@ jobs:
             public/sprites/heroes/acolito/*-sheet.png
             public/sprites/heroes/arquero/*-sheet.png
             public/sprites/heroes/mago/*-sheet.png
+            assets/spritesheets/tier1/espadachin-*.png
           if-no-files-found: error
           retention-days: 7
 
-      - name: Guardar las hojas refinadas de Novato y Tier 1
+      - name: Guardar hojas finales y fuentes modulares de Tier 1
         run: |
-          if [ -z "$(git status --porcelain -- public/sprites/heroes/novato/ public/sprites/heroes/espadachin/ public/sprites/heroes/acolito/ public/sprites/heroes/arquero/ public/sprites/heroes/mago/)" ]; then
-            echo "Los spritesheets de Novato y Tier 1 ya están actualizados."
+          if [ -z "$(git status --porcelain -- assets/spritesheets/tier1/ public/sprites/heroes/novato/ public/sprites/heroes/espadachin/ public/sprites/heroes/acolito/ public/sprites/heroes/arquero/ public/sprites/heroes/mago/)" ]; then
+            echo "Los spritesheets y fuentes modulares de Novato/Tier 1 ya están actualizados."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/sprites/heroes/novato/*-sheet.png public/sprites/heroes/espadachin/*-sheet.png public/sprites/heroes/acolito/*-sheet.png public/sprites/heroes/arquero/*-sheet.png public/sprites/heroes/mago/*-sheet.png
+          git add assets/spritesheets/tier1/*.png public/sprites/heroes/novato/*-sheet.png public/sprites/heroes/espadachin/*-sheet.png public/sprites/heroes/acolito/*-sheet.png public/sprites/heroes/arquero/*-sheet.png public/sprites/heroes/mago/*-sheet.png
           git commit -m "Unificar expresiones y acabado de las cinco clases iniciales"
           git push origin HEAD:main
