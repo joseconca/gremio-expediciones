@@ -47,6 +47,22 @@ test("el contrato de spritesheets define las 15 filas y resuelve rutas por clase
   assert.match(docs, /attack_gloves/);
 });
 
+test("el refinador mantiene un perfil visual por clase y procesa las 70 hojas una sola vez", () => {
+  const script = read("scripts/refinar-spritesheets-clase.py");
+  const docs = read("docs/spritesheets-personajes.md");
+  const perfiles = script.match(/^    "[a-z_]+": \(/gm) ?? [];
+
+  assert.equal(perfiles.length, 35, "Cada profesión y clase heredada debe tener perfil visual propio.");
+  for (const id of ["novato", "mago", "arquero", "paladin", "archimago", "demonologo", "comerciante"]) {
+    assert.ok(script.includes(\`"\${id}": (\`), \`Falta el perfil visual de \${id}.\`);
+  }
+  assert.match(script, /MARKER = ROOT \/ "\\.spritesheets-clase-refinados-v1"/);
+  assert.match(script, /if MARKER\.exists\(\)/);
+  assert.match(script, /len\(paths\)!=70/);
+  assert.match(script, /Image\.Quantize\.FASTOCTREE/);
+  assert.match(docs, /Identidad visual por clase/);
+});
+
 test("el cartel de compañía y los participantes de expedición identifican la clase de cada aventurero", () => {
   const panel = read("src/components/base/PanelParty.tsx");
   const servicio = read("src/server/services/party/party-service.ts");
