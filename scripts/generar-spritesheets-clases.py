@@ -601,13 +601,21 @@ def generate(cid, sex):
             # Widen the integrated silhouette with nearest-neighbour scaling; keep pixel edges crisp.
             sprite=sprite.resize((77,H),Image.Resampling.NEAREST).crop((6,0,70,H))
             sheet.alpha_composite(sprite,(frame*W,row*H))
-    # Iteración artística 1: Novato usa arte maestro aprobado en Idle para establecer el nuevo estilo visual.
-    # Las poses de caminar, daño, consumible, esquiva, bloqueo y ataques se mantienen para refinarlas después.
+    # Novato utiliza tiras de alta calidad aprobadas para Idle y Caminar.
+    # El resto de las acciones conserva sus filas actuales hasta cada iteración de arte posterior.
     if cid == "novato":
+        walk_path = ROOT / "assets" / "spritesheets" / "novato" / f"novato-{sex}-walk-row.png"
+        with Image.open(walk_path) as walk_source:
+            walk = walk_source.convert("RGBA")
+        assert walk.size == (256, 128), (walk_path, walk.size)
+        sheet.paste((0, 0, 0, 0), (0, H, 256, 2 * H))
+        sheet.alpha_composite(walk, (0, H))
+
         master_path = ROOT / "assets" / "spritesheets" / "novato" / f"novato-{sex}-master.png"
         with Image.open(master_path) as master_source:
             master = master_source.convert("RGBA")
-        # Limpiar únicamente la primera fila y componer cuatro respiraciones sutiles de la misma pose.
+        assert master.size == (64, 128), (master_path, master.size)
+        # Idle queda anclado al diseño maestro; variaciones de uno píxel simulan respiración.
         sheet.paste((0, 0, 0, 0), (0, 0, 256, H))
         idle_offsets = ((0, 0), (0, -1), (1, -1), (0, 0))
         for frame, (dx, dy) in enumerate(idle_offsets):
