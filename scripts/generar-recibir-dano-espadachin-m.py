@@ -54,7 +54,8 @@ def main() -> None:
 
     frames: list[Image.Image] = []
     for index, motion in enumerate(MOTION):
-        # Use one grounded walk frame for every hurt beat; the pose change comes from the hit/recovery transform, not a continuing walk cycle.\n        original = source.crop((0, 0, W, H))
+        # Use one grounded walk frame for each hurt beat; vary only the hit/recovery body pose.
+        original = source.crop((0, 0, W, H))
         result = transform_frame(original, motion)
         result.save(frame_dir / f"espadachin-m-hurt-{index + 1:02d}.png", optimize=True)
         frames.append(result)
@@ -98,7 +99,7 @@ def main() -> None:
         "action": "hurt",
         "class": "espadachin",
         "sex": "m",
-        "source": "assets/spritesheets/originales/espadachin/idle/espadachin-m-idle.png",
+        "source": "assets/spritesheets/originales/espadachin/walk/espadachin-m-walk.png",
         "dimensions": {"strip": [256, 128], "cell": [64, 128], "frames": FRAMES, "rows": 1},
         "mode": "RGBA",
         "alpha_extrema": list(strip.getchannel("A").getextrema()),
