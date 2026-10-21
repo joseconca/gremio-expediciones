@@ -16,6 +16,8 @@ test("hero shadows share the sprite-sheet row and frame timing with the actor", 
   assert.match(component, /animation: `hero-sprite-four-frames ${duracion}ms linear ${repeticion}`/);
   assert.match(component, /scaleX\(-1\) scale\(1\.1,-0\.9\)/);
   assert.match(component, /scaleX\(-1\) scale\(1\.05,-0\.65\)/);
+  assert.match(component, /bg-no-repeat brightness-0/);
+  assert.match(component, /contextoSombra === "party" \? "opacity-45 blur-\[1px\]" : "opacity-60 blur-xs"/);
   assert.match(combat, /SOMBRA REFLEJADA: comparte acción y fotograma con el héroe/);
   assert.match(combat, /sombra\s*contextoSombra="party"/);
   assert.match(combat, /sombra\s*contextoSombra="hero"/);

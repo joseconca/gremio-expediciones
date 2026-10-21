@@ -59,11 +59,11 @@ export default function SpriteHeroeAnimado({
     return (
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0 overflow-visible opacity-60 blur-xs"
+        className={`pointer-events-none absolute inset-0 z-0 overflow-visible ${contextoSombra === "party" ? "opacity-45 blur-[1px]" : "opacity-60 blur-xs"}`}
         style={{ transform: transformSombra }}
       >
         <div
-          className="hero-sprite-animated pointer-events-none absolute inset-y-0 left-1/2 h-full aspect-[1/2] -translate-x-1/2 bg-no-repeat"
+          className="hero-sprite-animated pointer-events-none absolute inset-y-0 left-1/2 h-full aspect-[1/2] -translate-x-1/2 bg-no-repeat brightness-0"
           style={frameStyle}
         />
       </div>
