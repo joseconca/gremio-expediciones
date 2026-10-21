@@ -137,6 +137,18 @@
   font-size: 19px;
 }
 
+@keyframes hero-sprite-four-frames {
+  from { background-position-x: 0%; }
+  to { background-position-x: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-sprite-animated {
+    animation: none !important;
+    background-position-x: 0 !important;
+  }
+}
+
 @keyframes hero-route-bob {
   from {
     transform: translateY(2px) rotate(-8deg);

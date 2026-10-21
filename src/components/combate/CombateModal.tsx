@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
+import SpriteHeroeAnimado from "@/components/combate/SpriteHeroeAnimado";
 import { obtenerRutaSpriteEnemigo } from "@/lib/enemigos";
 import { CLASES } from "@/lib/progresion/clases";
 import type { CombatePve, Personaje } from "@/store/useGameStore";
@@ -806,13 +807,13 @@ export default function CombateModal({
                           />
                         </div>
                       )}
-                      <Image
-                        src={sprite}
-                        alt={participante.nombre}
-                        fill
-                        sizes="(max-width: 640px) 80px, 110px"
-                        className={`relative z-10 object-contain [image-rendering:pixelated] ${modoPresentacionActual === "curacion" && animando ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && animando ? "combate-defensa-resplandor" : ""}`}
-                        priority
+                      <SpriteHeroeAnimado
+                        clase={participante.clase}
+                        sexo={participante.sexo}
+                        profesionActivaId={participante.profesionActivaId}
+                        nombre={participante.nombre}
+                        accion={impactado ? "hurt" : animando && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? "walk" : "idle"}
+                        className={`z-10 ${modoPresentacionActual === "curacion" && animando ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && animando ? "combate-defensa-resplandor" : ""}`}
                       />
                       <button
                         type="button"
@@ -998,13 +999,13 @@ export default function CombateModal({
                 )}
 
                 {/* HÉROE */}
-                <Image
-                  src={spriteHeroe}
-                  alt={personaje.nombre}
-                  fill
-                  sizes="180px"
-                  className={`relative z-10 object-contain [image-rendering:pixelated] ${modoPresentacionActual === "curacion" && actorAnimando === "jugador" ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && actorAnimando === "jugador" ? "combate-defensa-resplandor" : ""}`}
-                  priority
+                <SpriteHeroeAnimado
+                  clase={personaje.clase}
+                  sexo={personaje.sexo}
+                  profesionActivaId={personaje.profesionActivaId}
+                  nombre={personaje.nombre}
+                  accion={actorImpactado === "jugador" ? "hurt" : actorAnimando === "jugador" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? "walk" : "idle"}
+                  className={`z-10 ${modoPresentacionActual === "curacion" && actorAnimando === "jugador" ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && actorAnimando === "jugador" ? "combate-defensa-resplandor" : ""}`}
                 />
               </div>
             </div>

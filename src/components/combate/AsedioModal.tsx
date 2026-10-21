@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
+import SpriteHeroeAnimado from "@/components/combate/SpriteHeroeAnimado";
 import type { CombateActivo, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { useAnimacionesCombate } from "@/components/combate/animaciones/useAnimacionesCombate";
@@ -633,13 +634,13 @@ export default function AsedioModal({
                   />
                 </div>
 
-                <Image
-                  src={spritePropio}
-                  alt={personaje.nombre}
-                  fill
-                  sizes="180px"
-                  className={`relative z-10 object-contain [image-rendering:pixelated] ${modoPresentacionActual === "curacion" && actorAnimando === "jugador" ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && actorAnimando === "jugador" ? "combate-defensa-resplandor" : ""}`}
-                  priority
+                <SpriteHeroeAnimado
+                  clase={personaje.clase}
+                  sexo={personaje.sexo}
+                  profesionActivaId={personaje.profesionActivaId}
+                  nombre={personaje.nombre}
+                  accion={actorImpactado === "jugador" ? "hurt" : actorAnimando === "jugador" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? "walk" : "idle"}
+                  className={`z-10 ${modoPresentacionActual === "curacion" && actorAnimando === "jugador" ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && actorAnimando === "jugador" ? "combate-defensa-resplandor" : ""}`}
                 />
               </div>
             </div>
