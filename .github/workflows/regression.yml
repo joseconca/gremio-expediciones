@@ -48,6 +48,10 @@ jobs:
         if: ${{ always() && !cancelled() && steps.install_deps.outcome == 'success' && steps.prisma_generate.outcome == 'success' }}
         run: npm run test:party
 
+      - name: Test four-frame sprite alignment
+        if: ${{ always() && !cancelled() && steps.install_deps.outcome == 'success' }}
+        run: npm run test:sprite-animation
+
       - name: Lint
         if: ${{ always() && !cancelled() && steps.install_deps.outcome == 'success' && steps.prisma_generate.outcome == 'success' }}
         run: npm run lint
