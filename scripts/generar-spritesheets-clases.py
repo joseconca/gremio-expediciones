@@ -1259,6 +1259,43 @@ def construir_acciones_tier1(cid, sex):
     metadata_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return generated
 
+
+def integrar_filas_sprites_v2(cid, sex, sheet):
+    """Promote canonical v2 Idle/Walk/Hurt strips into the production atlas."""
+    base = ROOT / "assets" / "spritesheets" / "originales" / cid / "v2"
+    acciones = ("idle", "walk", "hurt")
+    idle_first_frame = None
+
+    for fila, accion in enumerate(acciones):
+        ruta = base / accion / f"{cid}-{sex}-{accion}.png"
+        if not ruta.is_file():
+            raise FileNotFoundError(f"Falta la tira canónica v2 para producción: {ruta}")
+        with Image.open(ruta) as opened:
+            strip = opened.convert("RGBA")
+        if strip.size != (W * COLS, H):
+            raise ValueError(f"{ruta}: se esperaba {(W * COLS, H)}, recibido {strip.size}")
+        if strip.getchannel("A").getextrema() != (0, 255):
+            raise ValueError(f"{ruta}: se exige transparencia alfa real y píxeles visibles")
+
+        frames = [strip.crop((idx * W, 0, (idx + 1) * W, H)) for idx in range(COLS)]
+        if any(frame.getchannel("A").getbbox() is None for frame in frames):
+            raise ValueError(f"{ruta}: hay fotogramas vacíos")
+        if len({frame.tobytes() for frame in frames}) != COLS:
+            raise ValueError(f"{ruta}: los cuatro fotogramas deben ser distintos")
+
+        caja_fila = (0, fila * H, W * COLS, (fila + 1) * H)
+        sheet.paste((0, 0, 0, 0), caja_fila)
+        sheet.alpha_composite(strip, (0, fila * H))
+        if accion == "idle":
+            idle_first_frame = frames[0]
+
+    if idle_first_frame is None:
+        raise RuntimeError(f"No se ha obtenido el fotograma Idle para {cid}/{sex}")
+    avatar = OUT / cid / f"{cid}-{sex}.png"
+    avatar.parent.mkdir(parents=True, exist_ok=True)
+    idle_first_frame.save(avatar, optimize=True, compress_level=9)
+
+
 def generate(cid, sex):
     sheet=Image.new("RGBA",(256,1920),(0,0,0,0))
     for row in range(ROWS):
@@ -1363,6 +1400,8 @@ def generate(cid, sex):
         for row, row_source in construir_acciones_tier1(cid, sex).items():
             sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
             sheet.alpha_composite(row_source, (0, row * H))
+
+    integrar_filas_sprites_v2(cid, sex, sheet)
 
     dest=OUT/cid/f"{cid}-{sex}-sheet.png";dest.parent.mkdir(parents=True,exist_ok=True)
     sheet.save(dest,optimize=True,compress_level=9)

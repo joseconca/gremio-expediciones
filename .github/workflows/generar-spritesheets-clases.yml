@@ -37,6 +37,9 @@ jobs:
       - name: Unificar expresiones y acabado de las cinco clases
         run: python scripts/generar-spritesheets-clases.py --phase all
 
+      - name: Validar integración de los sprites v2 en runtime
+        run: python scripts/validar-integracion-sprites-v2.py
+
       - name: Validar las hojas de Novato y Tier 1
         run: |
           python - <<'PY'
@@ -84,6 +87,11 @@ jobs:
                               frames = [image.crop((i * 64, 0, (i + 1) * 64, 128)) for i in range(4)]
                               assert all(frame.getchannel("A").getbbox() for frame in frames), f"{path}: celda vacía"
                               assert len({frame.tobytes() for frame in frames}) == 4, f"{path}: contiene fotogramas repetidos"
+                              # Idle/Caminar/Recibir daño provienen del paquete v2 canónico.
+                              # Las filas modulares antiguas siguen siendo referencia para las demás acciones.
+                              if path.stem.endswith(("-idle-row", "-walk-row", "-hurt-row")):
+                                  continue
+
                               # Todas las filas fuente deben quedar idénticas en su ubicación del atlas final.
                               row_num = {
                                   "idle": 0, "walk": 1, "hurt": 2, "consumable": 3,
