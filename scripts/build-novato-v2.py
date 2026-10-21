@@ -162,9 +162,7 @@ def build(sex: str, action: str) -> dict:
         raise FileNotFoundError(f"Missing master/action source for {sex}/{action}: {source_path}")
 
     out_dir = BASE / action
-    frames_dir = out_dir / "frames" / sex
     preview_dir = out_dir / "previews"
-    frames_dir.mkdir(parents=True, exist_ok=True)
     preview_dir.mkdir(parents=True, exist_ok=True)
     strip_path = out_dir / f"novato-{sex}-{action}.png"
 
@@ -281,8 +279,6 @@ def build(sex: str, action: str) -> dict:
         bbox = cell.getchannel("A").getbbox()
         if bbox is None:
             raise ValueError(f"Normalized frame {idx + 1} is empty")
-        cell_path = frames_dir / f"novato-{sex}-{action}-{idx + 1:02d}.png"
-        cell.save(cell_path, optimize=True)
         digest = sha256_bytes(cell.tobytes())
         frame_hashes.append(digest)
         frame_records.append(

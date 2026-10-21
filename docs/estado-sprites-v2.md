@@ -22,6 +22,10 @@ Los másteres [Espadachina](../assets/spritesheets/originales/espadachin/v2/sour
 | Espadachina | [PNG](../assets/spritesheets/originales/espadachin/v2/idle/espadachin-f-idle.png) · [preview](../assets/spritesheets/originales/espadachin/v2/idle/previews/espadachin-f-idle-preview.png) | [PNG](../assets/spritesheets/originales/espadachin/v2/walk/espadachin-f-walk.png) · [preview](../assets/spritesheets/originales/espadachin/v2/walk/previews/espadachin-f-walk-preview.png) | [PNG](../assets/spritesheets/originales/espadachin/v2/hurt/espadachin-f-hurt.png) · [preview](../assets/spritesheets/originales/espadachin/v2/hurt/previews/espadachin-f-hurt-preview.png) |
 | Espadachín | [PNG](../assets/spritesheets/originales/espadachin/v2/idle/espadachin-m-idle.png) · [preview](../assets/spritesheets/originales/espadachin/v2/idle/previews/espadachin-m-idle-preview.png) | [PNG](../assets/spritesheets/originales/espadachin/v2/walk/espadachin-m-walk.png) · [preview](../assets/spritesheets/originales/espadachin/v2/walk/previews/espadachin-m-walk-preview.png) | [PNG](../assets/spritesheets/originales/espadachin/v2/hurt/espadachin-m-hurt.png) · [preview](../assets/spritesheets/originales/espadachin/v2/hurt/previews/espadachin-m-hurt-preview.png) |
 
+## Organización canónica y limpieza
+
+Se retiraron las salidas v1 duplicadas de `assets/spritesheets/originales/novato/{idle,walk,hurt}/` y `assets/spritesheets/originales/espadachin/{idle,walk,hurt}/`: los paquetes de revisión vigentes son los ubicados en `v2/`. También se eliminan las fuentes por acción que duplicaban los másteres v2, los PNG de respaldo y las copias de fotogramas ampliados de 64×128; se conservan los fotogramas individuales nativos de 32×64, las tiras de 256×128, los másteres WebP, las previews y los informes QA. Se retiraron los scripts/workflows que regeneraban paquetes v1. `assets/spritesheets/tier1/` y `public/sprites/heroes/` se mantienen porque son entradas y recursos de producción usados por el generador de hojas completas.
+
 ## QA y límites
 
 - Las 12 tiras tienen cuatro fotogramas distintos por acción, transparencia alfa real (0–255), un único máster por sexo y línea de pies alineada.
@@ -30,7 +34,7 @@ Los másteres [Espadachina](../assets/spritesheets/originales/espadachin/v2/sour
 - `artistic_approval: pending visual review`: el QA técnico no sustituye la revisión visual. En la animación Idle de algunas fuentes hay cambios sutiles; se deben revisar junto al juego antes de promoverlas.
 - Las armas siguen separadas del cuerpo para poder equiparlas en capas independientes.
 
-La generación de los paquetes Novato y Espadachín terminó correctamente; el commit de arte más reciente es [`84c1713`](https://github.com/joseconca/gremio-expediciones/commit/84c17137dc5b4faad69bf5f86915b34abf86db15).
+La generación de los paquetes Novato y Espadachín terminó correctamente; ver las [ejecuciones de Novato](https://github.com/joseconca/gremio-expediciones/actions/runs/39619092000) y [Espadachín](https://github.com/joseconca/gremio-expediciones/actions/runs/39622303006). La limpieza no integra los recursos en runtime.
 
 ## Próximo bloque
 

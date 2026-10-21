@@ -6,7 +6,7 @@ on:
     paths:
       - "assets/spritesheets/originales/espadachin/v2/source/**"
       - "scripts/build-espadachin-v2.py"
-      - ".github/workflows/build-espadachin-v2-idle.yml"
+      - ".github/workflows/build-espadachin-v2.yml"
 
 permissions:
   contents: write
