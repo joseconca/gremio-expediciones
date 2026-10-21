@@ -3,7 +3,7 @@
   "sex": "m",
   "action": "walk",
   "source": "assets/spritesheets/originales/espadachin/v2/source/espadachin-m-core-3rows.webp",
-  "source_sha256": "280d02ea38256b7439e8b37553c04579f2b70de893af805baee697927203d155",
+  "source_sha256": "9e57e980832d10829b8e1ab5f851a62b8bd2305c029704f5bffb10facccf0665",
   "source_master_three_rows": true,
   "source_row_index": 1,
   "shared_master_palette": true,
@@ -26,7 +26,7 @@
     255
   ],
   "shared_palette": true,
-  "palette_reference_idle_sha256": "280d02ea38256b7439e8b37553c04579f2b70de893af805baee697927203d155",
+  "palette_reference_idle_sha256": "9e57e980832d10829b8e1ab5f851a62b8bd2305c029704f5bffb10facccf0665",
   "per_frame_rescaling": false,
   "feet_baseline_drift_px": 0,
   "distinct_frame_count": 4,
@@ -34,51 +34,51 @@
   "weapon_drawn_in_body": false,
   "runtime_integrated": false,
   "artistic_approval": "pending visual review",
-  "output_sha256": "9df179a5cc30fdafb4c873279c3abdcace03054cff7d8ded06455d414ca13a65",
+  "output_sha256": "3509aeb078d40913a0c9bce6bee36d23a468a96379d8ce35125c441c2ac33200",
   "frames": [
     {
       "index": 1,
       "bbox": [
-        2,
-        12,
-        62,
+        4,
+        46,
+        58,
         124
       ],
-      "rgba_sha256": "3f4b9cedbac3ccd1d298eed0534aab56542815117fa18a1fcd87bbd4e50f30c9",
-      "visible_pixels": 3023
+      "rgba_sha256": "ce7aede51c1cbfb6ec17edfcbdd4a883fe305d4e0be890f26d7730cf88765082",
+      "visible_pixels": 1960
     },
     {
       "index": 2,
       "bbox": [
         2,
-        12,
+        46,
         62,
         124
       ],
-      "rgba_sha256": "356baa1eec265b27dc5c6593885d8e6263b3d28d3fbcdbbc99bdb3ebe3d83298",
-      "visible_pixels": 3007
+      "rgba_sha256": "65add8d6d4a3980bf72c223fb11efb804831ab00868e8e6e50727a2d1c90bfa0",
+      "visible_pixels": 1976
     },
     {
       "index": 3,
       "bbox": [
-        2,
-        12,
-        62,
+        4,
+        48,
+        58,
         124
       ],
-      "rgba_sha256": "24dafacb02a818355b32dd3172477de9dc46910b65ea95656072f0d59597c6ae",
-      "visible_pixels": 3034
+      "rgba_sha256": "dd94436cfe9ece4ea8794f66c6e56e8c3f7197660abc207ce9b78465f9e718ed",
+      "visible_pixels": 1920
     },
     {
       "index": 4,
       "bbox": [
         2,
-        12,
-        62,
+        48,
+        60,
         124
       ],
-      "rgba_sha256": "15f41413877248e7701ed0a1dc3d02db58a07961ce61bcb84eabab0ed6c46730",
-      "visible_pixels": 2950
+      "rgba_sha256": "8009c43ed46406dadb9c107e6e3438743913a33460ee3d93878b9d8cc1c9e0be",
+      "visible_pixels": 1948
     }
   ],
   "native_frames": [
@@ -89,7 +89,7 @@
         32,
         64
       ],
-      "rgba_sha256": "9e35b4f7bc5e9360c324b6fa49909ff9d416a6d4d18d0e887c8341eca63cde40"
+      "rgba_sha256": "f57af1f0f80dd55e3ed965ad0e4bfb6d59ee3f7d6143f49ea5964447977f0182"
     },
     {
       "index": 2,
@@ -98,7 +98,7 @@
         32,
         64
       ],
-      "rgba_sha256": "470156a786aaa2ea0fa2121c3c33c51805237694f8182fd2d6980efa8d369411"
+      "rgba_sha256": "0889b36602ec73f72980cf6a9988b9a016de708e05c2c982f6010524951daca0"
     },
     {
       "index": 3,
@@ -107,7 +107,7 @@
         32,
         64
       ],
-      "rgba_sha256": "4cc9f55d3664c26e51d16c5d0322ad4beef7f33258b9cf0255a68624f5125337"
+      "rgba_sha256": "0563fe27123ee9e5b22950b5db0fb6d50c096b6020ed71a733cce7189798668c"
     },
     {
       "index": 4,
@@ -116,7 +116,7 @@
         32,
         64
       ],
-      "rgba_sha256": "f3e2a1840c38bcf2b5645ec7796019a9220eb76e2f4494a8103b863d4a522647"
+      "rgba_sha256": "bdb671185240776effe0bc90401c82fd50a6dbf3d20c62de5f27e434fece9f51"
     }
   ]
 }
