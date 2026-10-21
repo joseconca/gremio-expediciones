@@ -40,23 +40,35 @@ def shared_palette_quantize(
 
     if reference_idle is not None:
         with Image.open(reference_idle) as palette_source:
-            palette_image = palette_source.convert("P")
-            raw_palette = palette_image.getpalette()
+            raw_palette = palette_source.convert("P").getpalette()
         if not raw_palette or len(raw_palette) < 48:
             raise ValueError(f"Idle palette is incomplete: {reference_idle}")
         visible_palette = raw_palette[:45]
-        last_colour = visible_palette[-3:]
-        shared_palette = visible_palette + last_colour
-        shared_palette += last_colour * (256 - 16)
-        shared_palette = shared_palette[:768]
-        palette_carrier = Image.new("P", (1, 1))
-        palette_carrier.putpalette(shared_palette)
-        # Palette entries 0-14 contain Idle's visible colours; entry 15 is reserved
-        # for transparency, and remaining entries duplicate the last visible colour.
-        indexed = rgb.quantize(
-            palette=palette_carrier, dither=Image.Dither.NONE
-        )
         palette_reference_sha256 = sha256_file(reference_idle)
+        # Explicit nearest-colour mapping guarantees opaque pixels only use palette
+        # indices 0-14. Index 15 is reserved exclusively for full transparency.
+        colours = [
+            (visible_palette[i], visible_palette[i + 1], visible_palette[i + 2])
+            for i in range(0, 45, 3)
+        ]
+        indexed = Image.new("P", rgb.size)
+        shared_palette = visible_palette + [255, 0, 255]
+        shared_palette += shared_palette[-3:] * (256 - 16)
+        indexed.putpalette(shared_palette[:768])
+        src_px = rgb.load()
+        dst_px = indexed.load()
+        for y in range(H):
+            for x in range(W * COUNT):
+                if alpha_px[x, y] == 0:
+                    dst_px[x, y] = 15
+                    continue
+                red, green, blue = src_px[x, y]
+                best = min(
+                    range(15),
+                    key=lambda i: (red-colours[i][0])**2
+                    + (green-colours[i][1])**2 + (blue-colours[i][2])**2,
+                )
+                dst_px[x, y] = best
     else:
         # Idle establishes the sex-specific palette for later actions.
         for y in range(H):
@@ -67,19 +79,19 @@ def shared_palette_quantize(
             colors=15, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE
         )
         palette_reference_sha256 = None
+        palette = indexed.getpalette()[:45]
+        if len(palette) < 45:
+            palette += [0] * (45 - len(palette))
+        # Reserve entry 15 for transparency and pad other entries with a visible colour.
+        palette += [255, 0, 255]
+        palette += palette[-3:] * (256 - 16)
+        indexed.putpalette(palette[:768])
+        px = indexed.load()
+        for y in range(H):
+            for x in range(W * COUNT):
+                if alpha_px[x, y] == 0:
+                    px[x, y] = 15
 
-    palette = indexed.getpalette()[:45]
-    if len(palette) < 45:
-        palette += [0] * (45 - len(palette))
-    palette += palette[-3:]
-    palette += palette[-3:] * (256 - 16)
-    palette = palette[:768]
-    indexed.putpalette(palette)
-    px = indexed.load()
-    for y in range(H):
-        for x in range(W * COUNT):
-            if alpha_px[x, y] == 0:
-                px[x, y] = 15
     indexed.save(output, optimize=True, transparency=15)
     with Image.open(output) as result:
         rgba_result = result.convert("RGBA")
