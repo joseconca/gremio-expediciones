@@ -40,9 +40,9 @@ Másteres recortados: [femenino](../assets/spritesheets/originales/mago/v2/sourc
 | Maga | [PNG](../assets/spritesheets/originales/mago/v2/idle/mago-f-idle.png) · [preview](../assets/spritesheets/originales/mago/v2/idle/previews/mago-f-idle-preview.png) | [PNG](../assets/spritesheets/originales/mago/v2/walk/mago-f-walk.png) · [preview](../assets/spritesheets/originales/mago/v2/walk/previews/mago-f-walk-preview.png) | [PNG](../assets/spritesheets/originales/mago/v2/hurt/mago-f-hurt.png) · [preview](../assets/spritesheets/originales/mago/v2/hurt/previews/mago-f-hurt-preview.png) |
 | Mago | [PNG](../assets/spritesheets/originales/mago/v2/idle/mago-m-idle.png) · [preview](../assets/spritesheets/originales/mago/v2/idle/previews/mago-m-idle-preview.png) | [PNG](../assets/spritesheets/originales/mago/v2/walk/mago-m-walk.png) · [preview](../assets/spritesheets/originales/mago/v2/walk/previews/mago-m-walk-preview.png) | [PNG](../assets/spritesheets/originales/mago/v2/hurt/mago-m-hurt.png) · [preview](../assets/spritesheets/originales/mago/v2/hurt/previews/mago-m-hurt-preview.png) |
 
-## Acólito (Tier 1) — pendiente de reparar fuente
+## Acólito (Tier 1) — fuente de recuperación
 
-El intento de paquete [falló al abrir los másteres fuente](https://github.com/joseconca/gremio-expediciones/actions/runs/39657579163): los dos PNG que se habían subido no eran imágenes válidas. Esos archivos dañados se retiran para que no generen falsos positivos ni bloqueen las otras clases. Todavía no hay un paquete v2 de Acólito en `main`; se deben incorporar de nuevo los másteres válidos femenino y masculino antes de generarlo. No se reutilizará silenciosamente el arte legado ni se conectará al runtime.
+Los PNG que se habían subido como másteres v2 estaban dañados y se retiraron. Para recuperar la generación sin volver a subir binarios a mano, el workflow crea másteres WebP sin pérdida recortando las tres primeras filas (Idle, Caminar, Recibir daño) de las hojas de Acólito ya versionadas en `public/sprites/heroes/acolito/`. El recorte mantiene las celdas originales de 64×128, verifica transparencia y cuatro fotogramas distintos por fila, y no modifica las hojas de producción. Este origen de recuperación no se considera aprobación artística: revisar las seis tiras antes de integrar nada en runtime.
 
 ## Organización canónica y limpieza
 

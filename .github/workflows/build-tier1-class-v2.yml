@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "scripts/build-tier1-class-v2.py"
+      - "scripts/recover-acolito-v2-masters.py"
       - ".github/workflows/build-tier1-class-v2.yml"
       - "assets/spritesheets/originales/arquero/v2/source/**"
       - "assets/spritesheets/originales/mago/v2/source/**"
@@ -45,6 +46,13 @@ jobs:
 
           for class_id in arquero mago acolito; do
             source_dir="assets/spritesheets/originales/$class_id/v2/source"
+
+            # If Acolito v2 masters were not uploaded or are absent, recover a
+            # lossless crop from the checked-in full sheet. The runtime stays untouched.
+            if [[ "$class_id" == "acolito" ]] && [[ ! -f "$source_dir/acolito-f-core-3rows.webp" || ! -f "$source_dir/acolito-m-core-3rows.webp" ]]; then
+              python scripts/recover-acolito-v2-masters.py
+            fi
+
             has_f=0
             has_m=0
             [[ -f "$source_dir/$class_id-f-core-3rows.webp" || -f "$source_dir/$class_id-f-core-3rows.png" ]] && has_f=1
