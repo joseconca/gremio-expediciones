@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "tier": 2,
+  "actions": [
+    "idle",
+    "walk",
+    "hurt"
+  ],
+  "sexes": [
+    "m",
+    "f"
+  ],
+  "sourceRoot": "assets/spritesheets/originales",
+  "outputContract": {
+    "master": "<class>/v2/source/<class>-<sex>-core-3rows.webp",
+    "strip": "<class>/v2/<action>/<class>-<sex>-<action>.png",
+    "nativeFrames": "<class>/v2/<action>/frames-native-32x64/<sex>/",
+    "preview": "<class>/v2/<action>/previews/",
+    "qa": "<class>/v2/<action>/qa-report-<sex>-<action>.json"
+  },
+  "classes": [
+    {
+      "id": "caballero",
+      "name": "Caballero",
+      "branch": "espadachin",
+      "archetype": "vanguardia",
+      "resource": "energia",
+      "visualBrief": "armadura completa, hombreras y protección de piernas; capa heráldica; silueta defensiva"
+    },
+    {
+      "id": "duelista",
+      "name": "Duelista",
+      "branch": "espadachin",
+      "archetype": "agil",
+      "resource": "energia",
+      "visualBrief": "armadura ligera/media, líneas estilizadas y postura de esgrima"
+    },
+    {
+      "id": "sacerdote",
+      "name": "Sacerdote",
+      "branch": "acolito",
+      "archetype": "apoyo",
+      "resource": "mana",
+      "visualBrief": "vestiduras ceremoniales, estola y símbolos sagrados ornamentados"
+    },
+    {
+      "id": "monje",
+      "name": "Monje",
+      "branch": "acolito",
+      "archetype": "marcial",
+      "resource": "energia",
+      "visualBrief": "ropajes marciales, vendas y brazales; postura disciplinada"
+    },
+    {
+      "id": "cazador",
+      "name": "Cazador",
+      "branch": "arquero",
+      "archetype": "agil",
+      "resource": "energia",
+      "visualBrief": "cuero reforzado, rastreo y equipo de caza"
+    },
+    {
+      "id": "explorador",
+      "name": "Explorador",
+      "branch": "arquero",
+      "archetype": "agil",
+      "resource": "energia",
+      "visualBrief": "equipo ligero de viaje y supervivencia, preparado para trampas"
+    },
+    {
+      "id": "elementalista",
+      "name": "Elementalista",
+      "branch": "mago",
+      "archetype": "arcano",
+      "resource": "mana",
+      "visualBrief": "túnica con motivos elementales y silueta de canalización"
+    },
+    {
+      "id": "brujo",
+      "name": "Brujo",
+      "branch": "mago",
+      "archetype": "maldito",
+      "resource": "mana",
+      "visualBrief": "vestiduras oscuras, amuletos y lenguaje visual de maldiciones"
+    }
+  ],
+  "status": "pending-master-art",
+  "policy": "No derivar másteres desde retratos ni hojas de producción genéricas. Promover cada clase a runtime solo después de revisar las seis tiras."
+}

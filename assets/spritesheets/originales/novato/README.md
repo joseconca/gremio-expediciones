@@ -1,25 +1,7 @@
-# Novato — inventario de fuentes por acción
+# Novato — fuentes v2 canónicas
 
-Esta carpeta separa las tiras de Novato por sexo y acción para compararlas y rehacerlas sin tocar el runtime:
+El paquete activo de arte se encuentra en `assets/spritesheets/originales/novato/v2/`. Contiene los másteres masculino y femenino de tres filas, las tiras canónicas de Idle, Caminar y Recibir daño, los frames nativos, las previews y los informes QA.
 
-- `idle/`
-- `walk/`
-- `hurt/`
+Las tiras v2 de esas tres acciones están integradas en las primeras filas de `public/sprites/heroes/novato/novato-{m,f}-sheet.png`. Los retratos `novato-{m,f}.png` se derivan del primer fotograma de Idle. El componente `SpriteHeroeAnimado` consume el atlas en combate y asedios; las demás pantallas siguen utilizando el retrato estático.
 
-## Estado actual
-
-Las tiras que ya están en estas carpetas son **extracciones técnicas de las hojas canónicas existentes**. Se conservaron para no perder checkpoints y para poder comparar los cambios, pero una revisión visual posterior detectó variaciones de escala y lectura entre acciones. Por tanto, no están aprobadas como entrega artística definitiva y no deben integrarse en una nueva spritesheet de producción todavía.
-
-## Nuevo flujo de arte
-
-La siguiente versión se producirá desde una tira PNG de alta resolución, generada como una animación coherente para un solo sexo y una sola acción:
-
-1. Fuente PNG horizontal con 4, 6 u 8 poses, celdas de igual anchura y alfa real.
-2. Sin títulos, paneles, líneas de separación, damero pintado ni armas.
-3. Idle fija la escala maestra del personaje. Caminar y Recibir daño reutilizan ese valor para mantener la talla entre acciones.
-4. `scripts/normalizar-tira-sprites.py` genera tira final, frames 64 × 128, preview y QA.
-5. Revisión visual a tamaño nativo y ampliación nearest-neighbor antes de un commit de aprobación.
-
-Se usa PNG como fuente, no GIF, para conservar el alfa completo y los colores. El normalizador rechaza imágenes de presentación con fondos opacos para que no entren accidentalmente en el juego.
-
-El runtime permanece sin cambios hasta que Idle, Caminar y Recibir daño de masculino y femenino se aprueben visualmente.
+Las filas 3-14 se conservan desde la capa modular existente mientras se renuevan las acciones por arma. No regenerar las tiras base con las fuentes antiguas: el generador lee directamente el paquete v2.
