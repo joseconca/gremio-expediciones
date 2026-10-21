@@ -54,6 +54,47 @@ jobs:
               continue
             fi
 
+            valid_masters=1
+            for sex in f m; do
+              if ! python - "$class_id" "$sex" "$source_dir" <<'PY'
+          import hashlib, sys
+          from pathlib import Path
+          from PIL import Image
+          cls, sex, source_dir = sys.argv[1:]
+          base = Path(source_dir)
+          candidates = (base / f"{cls}-{sex}-core-3rows.webp",
+                        base / f"{cls}-{sex}-core-3rows.png")
+          source = next((p for p in candidates if p.is_file()), None)
+          if source is None:
+              raise SystemExit(f"missing {cls}/{sex} source master")
+          try:
+              with Image.open(source) as opened:
+                  image = opened.convert("RGBA")
+                  if image.size not in ((128, 192), (256, 384)):
+                      raise ValueError(f"invalid dimensions: {image.size}")
+                  if image.getchannel("A").getextrema() != (0, 255):
+                      raise ValueError("master needs real alpha transparency")
+                  cw, ch = image.width // 4, image.height // 3
+                  for row in range(3):
+                      hashes = []
+                      for col in range(4):
+                          cell = image.crop((col * cw, row * ch, (col + 1) * cw, (row + 1) * ch))
+                          hashes.append(hashlib.sha256(cell.tobytes()).hexdigest())
+                      if len(set(hashes)) != 4:
+                          raise ValueError(f"row {row} does not contain four distinct frames")
+          except Exception as error:
+              raise SystemExit(f"invalid master {source}: {error}")
+          print(f"Master OK: {source} {image.size}")
+          PY
+              then
+                valid_masters=0
+              fi
+            done
+            if [[ "$valid_masters" != 1 ]]; then
+              echo "Skipping $class_id: invalid source master; no output is generated from damaged files."
+              continue
+            fi
+
             echo "=== Building complete $class_id v2 package ==="
             for sex in f m; do
               for action in idle walk hurt; do
