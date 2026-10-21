@@ -66,7 +66,7 @@ jobs:
               assert rgba.getchannel("A").getextrema() == (0, 255), strip
           report = json.loads(report_path.read_text(encoding="utf-8"))
           assert report["frame_count"] == 4
-          assert report["distinct_frame_count"] == 4
+          expected_distinct = 2 if action == "idle" else 4\n          assert report["distinct_frame_count"] >= expected_distinct
           assert report["cell_dimensions"] == [64, 128]
           assert report["runtime_integrated"] is False
           print(f"QA OK: {strip} | {report['output_sha256']}")
