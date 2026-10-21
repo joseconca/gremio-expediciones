@@ -2,11 +2,11 @@
   "class": "novato",
   "sex": "f",
   "action": "idle",
-  "source": "assets/spritesheets/originales/novato/v2/source/novato-f-idle.webp",
-  "source_sha256": "2a2726c122dc49a2f7fe589a095593d5de2303a57276c390e8da5aa16d23449d",
-  "source_master_three_rows": false,
-  "source_row_index": null,
-  "shared_master_palette": false,
+  "source": "assets/spritesheets/originales/novato/v2/source/novato-f-core-3rows.png",
+  "source_sha256": "53ce94b51d9464a4e196b89223b7e249e8c83547b2a3056a65f1c7fea9c4e6e2",
+  "source_master_three_rows": true,
+  "source_row_index": 0,
+  "shared_master_palette": true,
   "strip_dimensions": [
     256,
     128
@@ -21,59 +21,59 @@
     255
   ],
   "shared_palette": true,
-  "palette_reference_idle_sha256": null,
+  "palette_reference_idle_sha256": "53ce94b51d9464a4e196b89223b7e249e8c83547b2a3056a65f1c7fea9c4e6e2",
   "per_frame_rescaling": false,
-  "feet_baseline_drift_px": 0,
-  "distinct_frame_count": 4,
+  "feet_baseline_drift_px": 1,
+  "distinct_frame_count": 3,
   "idle_micro_motion_synthesized": false,
   "weapon_drawn_in_body": false,
   "runtime_integrated": false,
   "artistic_approval": "pending visual review",
-  "output_sha256": "85441d4946c4cd9385d2be1d3b055c7b4c06ff809784f2668cbf89cc753d5985",
+  "output_sha256": "37d08a3e639dc676594fe1f35e8cd03717a202e3158a3ea066e58757d37e8e68",
   "frames": [
     {
       "index": 1,
       "bbox": [
-        3,
-        7,
-        61,
-        124
+        6,
+        18,
+        58,
+        110
       ],
-      "rgba_sha256": "4d349d127333e29e99ec82683f9544dd850412dbeca360193edb87bcb6a6b0c5",
-      "visible_pixels": 4298
+      "rgba_sha256": "0fc157c4b52e60b0807a4dce80730bfd62373369b9a78362b0a412c39496a8bc",
+      "visible_pixels": 2297
     },
     {
       "index": 2,
       "bbox": [
-        2,
-        7,
-        61,
-        124
+        6,
+        17,
+        58,
+        109
       ],
-      "rgba_sha256": "f153be98d52000cde008b93756a9667060b6750bec9c95aa6a48457ecb2bb3c6",
-      "visible_pixels": 4338
+      "rgba_sha256": "3a8a6a7cc24ae91cdf97e2bdd732bfa89adfd3488842fea02f2dce736a6addbb",
+      "visible_pixels": 2297
     },
     {
       "index": 3,
       "bbox": [
-        3,
         7,
-        61,
-        124
+        17,
+        59,
+        109
       ],
-      "rgba_sha256": "ecde262d7e6ef9b7c29da7b8949dea31db881f3e81154edb461f0730081ff1d9",
-      "visible_pixels": 4313
+      "rgba_sha256": "ceee692cb8946281c762b50befd182ddf1e1b178df5253d0e188c4a84483b2c1",
+      "visible_pixels": 2297
     },
     {
       "index": 4,
       "bbox": [
-        3,
-        7,
-        60,
-        124
+        6,
+        18,
+        58,
+        110
       ],
-      "rgba_sha256": "f746359c20ec1a51cbc0adda8e3c88777df0f21a0723dc4dc170043d763bc72c",
-      "visible_pixels": 4236
+      "rgba_sha256": "0fc157c4b52e60b0807a4dce80730bfd62373369b9a78362b0a412c39496a8bc",
+      "visible_pixels": 2297
     }
   ]
 }

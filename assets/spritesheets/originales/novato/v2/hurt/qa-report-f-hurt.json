@@ -2,11 +2,11 @@
   "class": "novato",
   "sex": "f",
   "action": "hurt",
-  "source": "assets/spritesheets/originales/novato/v2/source/novato-f-hurt.webp",
-  "source_sha256": "123d84695adea0bede3d1400ef70f915625c915904868de60a170231cbd7eb25",
-  "source_master_three_rows": false,
-  "source_row_index": null,
-  "shared_master_palette": false,
+  "source": "assets/spritesheets/originales/novato/v2/source/novato-f-core-3rows.png",
+  "source_sha256": "53ce94b51d9464a4e196b89223b7e249e8c83547b2a3056a65f1c7fea9c4e6e2",
+  "source_master_three_rows": true,
+  "source_row_index": 2,
+  "shared_master_palette": true,
   "strip_dimensions": [
     256,
     128
@@ -21,7 +21,7 @@
     255
   ],
   "shared_palette": true,
-  "palette_reference_idle_sha256": "85441d4946c4cd9385d2be1d3b055c7b4c06ff809784f2668cbf89cc753d5985",
+  "palette_reference_idle_sha256": "53ce94b51d9464a4e196b89223b7e249e8c83547b2a3056a65f1c7fea9c4e6e2",
   "per_frame_rescaling": false,
   "feet_baseline_drift_px": 0,
   "distinct_frame_count": 4,
@@ -29,7 +29,7 @@
   "weapon_drawn_in_body": false,
   "runtime_integrated": false,
   "artistic_approval": "pending visual review",
-  "output_sha256": "39f2550f8b922c69583e13ac87190c8257630c51ca4f852177911812f04e648b",
+  "output_sha256": "0574144100cd6613c08c755640aab77cfe24f95cbd6f291f6577f2c63a5cacdc",
   "frames": [
     {
       "index": 1,
@@ -39,7 +39,7 @@
         61,
         123
       ],
-      "rgba_sha256": "e1d05c5102ed2e472580f905010dbdf20b03361689db04c04a445f458f5cf139",
+      "rgba_sha256": "e9668a69050dcb215c8323dec347ce201e05967ed0782f8ede83e0112ba0250c",
       "visible_pixels": 3296
     },
     {
@@ -50,7 +50,7 @@
         64,
         123
       ],
-      "rgba_sha256": "005e4f2b258db2eb18ef1ded4b535fb5fe9254e5d9cadc951e5982376d052956",
+      "rgba_sha256": "69c903f72f5971f36eb07047c0bcda3fb417cefbbe6e1e952ddff93001be1cf3",
       "visible_pixels": 3583
     },
     {
@@ -61,7 +61,7 @@
         61,
         123
       ],
-      "rgba_sha256": "0e1dd88f1efa0ebb65beb689cb6b395de09dafd76a0dbf3390450d2e79fce11c",
+      "rgba_sha256": "46bfc7e8bb12f813e79d1eb479c8002686ef855811c5f1b1008cdacce2c4f08b",
       "visible_pixels": 2894
     },
     {
@@ -72,7 +72,7 @@
         60,
         123
       ],
-      "rgba_sha256": "4aba71bc65d6b74fa7d1f6ae055413bfc56714963cac003bfe7b3487c37a3fb1",
+      "rgba_sha256": "bf672aaef9a7c5b730630b78a9e511ddbb18daa7035fd799a8a88f5b3cfb85d6",
       "visible_pixels": 3137
     }
   ]
