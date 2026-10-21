@@ -1,0 +1,29 @@
+{
+  "class": "espadachin",
+  "sex": "m",
+  "source_board": "assets/spritesheets/originales/novato/v2/source/novato-f-core-3rows.webp",
+  "source_board_local": "a_clean_flat_atlas_style_pixel_art_sprite_sheet.png",
+  "source_board_sha256": "3450c37ecf85e3c0208b86ff917b69e6adaf911ab45391ced8412d35c9195a2c",
+  "actions": [
+    "idle",
+    "walk",
+    "hurt"
+  ],
+  "frames_per_action": 4,
+  "frame_dimensions_native": [
+    32,
+    64
+  ],
+  "master_dimensions": [
+    128,
+    192
+  ],
+  "palette_colors_max": 63,
+  "alpha": [
+    0,
+    255
+  ],
+  "background_removal": "flood-fill around sprites on the poster, remove panel-edge artifacts, common scale across all 12 frames",
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review"
+}
