@@ -2,8 +2,8 @@
   "class": "novato",
   "sex": "f",
   "action": "idle",
-  "source": "assets/spritesheets/originales/novato/v2/source/novato-f-core-3rows.png",
-  "source_sha256": "53ce94b51d9464a4e196b89223b7e249e8c83547b2a3056a65f1c7fea9c4e6e2",
+  "source": "assets/spritesheets/originales/novato/v2/source/novato-f-core-3rows.webp",
+  "source_sha256": "30df4f420d769c39dd5b550bc8185aff0b4f52e5ee9186f67094ea11d2aeaedf",
   "source_master_three_rows": true,
   "source_row_index": 0,
   "shared_master_palette": true,
@@ -26,59 +26,59 @@
     255
   ],
   "shared_palette": true,
-  "palette_reference_idle_sha256": "53ce94b51d9464a4e196b89223b7e249e8c83547b2a3056a65f1c7fea9c4e6e2",
+  "palette_reference_idle_sha256": "30df4f420d769c39dd5b550bc8185aff0b4f52e5ee9186f67094ea11d2aeaedf",
   "per_frame_rescaling": false,
-  "feet_baseline_drift_px": 1,
-  "distinct_frame_count": 3,
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
   "idle_micro_motion_synthesized": false,
   "weapon_drawn_in_body": false,
   "runtime_integrated": false,
   "artistic_approval": "pending visual review",
-  "output_sha256": "37d08a3e639dc676594fe1f35e8cd03717a202e3158a3ea066e58757d37e8e68",
+  "output_sha256": "fe2933800f003d34b9e541e4925321b0fd26dea856969da9f0002b11e221e996",
   "frames": [
     {
       "index": 1,
       "bbox": [
         6,
-        18,
-        58,
-        110
+        34,
+        56,
+        124
       ],
-      "rgba_sha256": "0fc157c4b52e60b0807a4dce80730bfd62373369b9a78362b0a412c39496a8bc",
-      "visible_pixels": 2297
+      "rgba_sha256": "3caa5e7732c3c2180a7b71ac947b75b26121d6dbb81bec4b6a58b2e4dc4711ee",
+      "visible_pixels": 2444
     },
     {
       "index": 2,
       "bbox": [
         6,
-        17,
-        58,
-        109
+        36,
+        56,
+        124
       ],
-      "rgba_sha256": "3a8a6a7cc24ae91cdf97e2bdd732bfa89adfd3488842fea02f2dce736a6addbb",
-      "visible_pixels": 2297
+      "rgba_sha256": "d0890b13d43f90ac9ed301bde7f456bdb95a1d934bde353105f1255a810677ea",
+      "visible_pixels": 2356
     },
     {
       "index": 3,
       "bbox": [
-        7,
-        17,
-        59,
-        109
+        6,
+        36,
+        56,
+        124
       ],
-      "rgba_sha256": "ceee692cb8946281c762b50befd182ddf1e1b178df5253d0e188c4a84483b2c1",
-      "visible_pixels": 2297
+      "rgba_sha256": "52734436cbe78651cdd5c930578a92f14ba414e190e01349f31f9042882c8e2f",
+      "visible_pixels": 2648
     },
     {
       "index": 4,
       "bbox": [
         6,
-        18,
+        36,
         58,
-        110
+        124
       ],
-      "rgba_sha256": "0fc157c4b52e60b0807a4dce80730bfd62373369b9a78362b0a412c39496a8bc",
-      "visible_pixels": 2297
+      "rgba_sha256": "744e0c9a4a7a68b755189332675e71b421b6b4c0df52d42c2ce05b663ca43ea7",
+      "visible_pixels": 2460
     }
   ],
   "native_frames": [
@@ -89,7 +89,7 @@
         32,
         64
       ],
-      "rgba_sha256": "6a77843ff2b070538e134ce168a186bd582d16646f2b7b418c34f6c340066c25"
+      "rgba_sha256": "a2cf5373a4c306e76453a8ac22a50de3a0f6d9926975bcb5615cea6b001b7f98"
     },
     {
       "index": 2,
@@ -98,7 +98,7 @@
         32,
         64
       ],
-      "rgba_sha256": "af63996c00750d776b874142733191230101188ed1d6a69b6c14279f0586306d"
+      "rgba_sha256": "1b17a0105367142c5c04feff0d855b89c505d5fd14884ecd086a6a740914accd"
     },
     {
       "index": 3,
@@ -107,7 +107,7 @@
         32,
         64
       ],
-      "rgba_sha256": "81c2227c19c1942088b450bb1b8d20ebc1a81b1ee6e1f3ace75ac79604b4f159"
+      "rgba_sha256": "d19fbe8af2b33ed4bc86a16347b6255181d8f39b22c9f838f3daa964d56b63b8"
     },
     {
       "index": 4,
@@ -116,7 +116,7 @@
         32,
         64
       ],
-      "rgba_sha256": "6a77843ff2b070538e134ce168a186bd582d16646f2b7b418c34f6c340066c25"
+      "rgba_sha256": "20fe079c672efa14f32c6287637d2a51beea8f9d4ba978aa90c845189a98f3b6"
     }
   ]
 }
