@@ -1,0 +1,120 @@
+{
+  "class": "arquero",
+  "sex": "f",
+  "action": "walk",
+  "source": "assets/spritesheets/originales/arquero/v2/source/arquero-f-core-3rows.webp",
+  "source_sha256": "b7cb369205598dbed4a51a496b5ceb6c296f4566d34cf52fc8e79b781acb8f07",
+  "source_master_three_rows": true,
+  "source_row_index": 1,
+  "master_dimensions": [
+    128,
+    192
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 4,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "8f5a54b8874591ebdceff5603d0490594823d1ca893ab2297d5b2e616324fa6d",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        6,
+        44,
+        58,
+        124
+      ],
+      "rgba_sha256": "6c869ec1fbd63d47623f24d2412297293c865dd9c29953333984188e3f31ef45",
+      "visible_pixels": 1568
+    },
+    {
+      "index": 2,
+      "bbox": [
+        2,
+        40,
+        62,
+        120
+      ],
+      "rgba_sha256": "b1b37920959014c3a243f010fe9f3ca86f914d80d86e6c82c96a138713784cb5",
+      "visible_pixels": 1584
+    },
+    {
+      "index": 3,
+      "bbox": [
+        2,
+        40,
+        62,
+        120
+      ],
+      "rgba_sha256": "ddae05ec4442ffa1151880aa28b9d1e5ae86c971261744e2c1374e592168c364",
+      "visible_pixels": 1604
+    },
+    {
+      "index": 4,
+      "bbox": [
+        10,
+        40,
+        62,
+        120
+      ],
+      "rgba_sha256": "e9cea27aef817ae31126773c6ba606fcad71550492efb4dd1b80e9b35c772a05",
+      "visible_pixels": 1652
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/arquero/v2/walk/frames-native-32x64/f/arquero-f-walk-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "a6163f97539fd358718ced8d33a5ee4d7026db23d8885e833498d2d6a048bbdd"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/arquero/v2/walk/frames-native-32x64/f/arquero-f-walk-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "ab4d3ae7f0f4a95273dcb07d70364a0d4425e0109e8f5befcacd414cb5ef5082"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/arquero/v2/walk/frames-native-32x64/f/arquero-f-walk-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "1d145314ccf2caea0d7d55732db68fbd9a826929e190fa61f23a977609765b8c"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/arquero/v2/walk/frames-native-32x64/f/arquero-f-walk-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "e59c5e2f3052e52ea0357de59cb437d165dfc1e903e7fe093228432e8b2cbcbd"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/arquero/v2/walk/previews/arquero-f-walk-preview.png"
+}

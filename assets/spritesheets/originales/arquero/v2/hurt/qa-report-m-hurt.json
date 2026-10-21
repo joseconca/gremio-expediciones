@@ -1,0 +1,120 @@
+{
+  "class": "arquero",
+  "sex": "m",
+  "action": "hurt",
+  "source": "assets/spritesheets/originales/arquero/v2/source/arquero-m-core-3rows.webp",
+  "source_sha256": "9756bce88d1ce97a8c1e435993987a22502ce6de92bab57f96d96ae234dd3a17",
+  "source_master_three_rows": true,
+  "source_row_index": 2,
+  "master_dimensions": [
+    128,
+    192
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "14207caf452f0feeded8c11be8ac43c87ddcb8fb215b34701221c0264444d5fb",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        4,
+        56,
+        60,
+        124
+      ],
+      "rgba_sha256": "e49ed7e3080769f46ed51fb34b7366498458484df0bd3f2e2c00258edfec21fe",
+      "visible_pixels": 1264
+    },
+    {
+      "index": 2,
+      "bbox": [
+        8,
+        56,
+        56,
+        124
+      ],
+      "rgba_sha256": "ea8c6c4b88a95d8c33eeaec79cf2fd18a8b0e9e5bd7c3b6da5c22ac48df0e91d",
+      "visible_pixels": 1236
+    },
+    {
+      "index": 3,
+      "bbox": [
+        10,
+        56,
+        54,
+        124
+      ],
+      "rgba_sha256": "215895c6402157b80bff30b1549da874385d36a0cee36d2133311a47f2483a49",
+      "visible_pixels": 1136
+    },
+    {
+      "index": 4,
+      "bbox": [
+        4,
+        54,
+        60,
+        124
+      ],
+      "rgba_sha256": "5018338fbb13d1e39dd27c326213beb56966f237a88b2f36b0239f76f239a625",
+      "visible_pixels": 1196
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/arquero/v2/hurt/frames-native-32x64/m/arquero-m-hurt-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "72f7d812ed653d987b124a7230436a263af37d3096f9133c89696d84e3bd424f"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/arquero/v2/hurt/frames-native-32x64/m/arquero-m-hurt-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "bc262ae904f8956ddc04f91d72dafa7c72422679ce71c5731f8da9265820ebf4"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/arquero/v2/hurt/frames-native-32x64/m/arquero-m-hurt-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "915d23c7ecae6d1a61b069a1c3eaabd983085e980326e6802b223e0df05589ee"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/arquero/v2/hurt/frames-native-32x64/m/arquero-m-hurt-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "e36d09a561117a4a9fae3f039fc6e6682663fa7b7c8fcc4b1a09b242831c8615"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/arquero/v2/hurt/previews/arquero-m-hurt-preview.png"
+}

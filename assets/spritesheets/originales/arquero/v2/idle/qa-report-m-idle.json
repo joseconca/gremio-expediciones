@@ -1,0 +1,120 @@
+{
+  "class": "arquero",
+  "sex": "m",
+  "action": "idle",
+  "source": "assets/spritesheets/originales/arquero/v2/source/arquero-m-core-3rows.webp",
+  "source_sha256": "9756bce88d1ce97a8c1e435993987a22502ce6de92bab57f96d96ae234dd3a17",
+  "source_master_three_rows": true,
+  "source_row_index": 0,
+  "master_dimensions": [
+    128,
+    192
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "624954c5d72989ad54854fbdceb9bcf475be0b57475d7afaa14e9b32c6863dec",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        8,
+        46,
+        56,
+        124
+      ],
+      "rgba_sha256": "4a9c22cc8eba8addf4705ad237faeb33d5a75564e77b7c9aaa0ecdb5e2302779",
+      "visible_pixels": 1320
+    },
+    {
+      "index": 2,
+      "bbox": [
+        6,
+        48,
+        56,
+        124
+      ],
+      "rgba_sha256": "cf3371be1203271db69af1d585abe72a6604bc30ecef59ec8ee4d423f23d32e9",
+      "visible_pixels": 1280
+    },
+    {
+      "index": 3,
+      "bbox": [
+        12,
+        46,
+        52,
+        124
+      ],
+      "rgba_sha256": "be3c8a40aba2ee7bd6c03a49ed5567e1d34624cb0c00021e57b50ec4e03c9560",
+      "visible_pixels": 1288
+    },
+    {
+      "index": 4,
+      "bbox": [
+        6,
+        44,
+        58,
+        124
+      ],
+      "rgba_sha256": "fd71bd2932817a9363f523dd78d0ee192224fd619bf4149d920bb589a3315174",
+      "visible_pixels": 1284
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/arquero/v2/idle/frames-native-32x64/m/arquero-m-idle-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "79298d2dc5064187fa9ccb279cf10e99e561c7dae91f5b3ae6f527f779fba9ac"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/arquero/v2/idle/frames-native-32x64/m/arquero-m-idle-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "f59af4d0deeee54b8ce7e4106cfce5ae9338185657654e52e8e7b888752db3fa"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/arquero/v2/idle/frames-native-32x64/m/arquero-m-idle-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "f93db51c6548fcdb48192e60fe442506ca8182bd1db3aa5b62c247126d6e0bae"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/arquero/v2/idle/frames-native-32x64/m/arquero-m-idle-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "df9b823c8c0219e47b9d6989d72a4f9d9b4af7ee3bccc9b2726314f3e5eb8590"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/arquero/v2/idle/previews/arquero-m-idle-preview.png"
+}
