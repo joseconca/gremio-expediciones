@@ -12,7 +12,7 @@ test("hero shadows share the sprite-sheet row and frame timing with the actor", 
   const siege = read("src/components/combate/AsedioModal.tsx");
 
   assert.match(component, /sombra\?: boolean/);
-  assert.match(component, /backgroundImage: `url\("${ruta}"\)`/);
+  assert.ok(component.includes('backgroundImage: `url("${ruta}")`'));
   assert.match(component, /animation: `hero-sprite-four-frames ${duracion}ms linear ${repeticion}`/);
   assert.match(component, /scaleX\(-1\) scale\(1\.1,-0\.9\)/);
   assert.match(component, /scaleX\(-1\) scale\(1\.05,-0\.65\)/);
