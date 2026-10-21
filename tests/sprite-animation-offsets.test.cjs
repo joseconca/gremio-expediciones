@@ -13,7 +13,7 @@ test("hero shadows share the sprite-sheet row and frame timing with the actor", 
 
   assert.match(component, /sombra\?: boolean/);
   assert.ok(component.includes('backgroundImage: `url("${ruta}")`'));
-  assert.match(component, /animation: `hero-sprite-four-frames ${duracion}ms linear ${repeticion}`/);
+  assert.ok(component.includes("animation: `hero-sprite-four-frames ${duracion}ms linear ${repeticion}`"));
   assert.match(component, /scaleX\(-1\) scale\(1\.1,-0\.9\)/);
   assert.match(component, /scaleX\(-1\) scale\(1\.05,-0\.65\)/);
   assert.match(component, /bg-no-repeat brightness-0/);
@@ -29,9 +29,9 @@ test("the animated sprite viewport advances through exactly four aligned columns
   const css = read("src/app/globals.css");
 
   assert.match(component, /backgroundSize: "400% 1500%"/);
-  assert.match(component, /backgroundPosition: `0 ${desplazamientoVertical}`/);
+  assert.ok(component.includes("backgroundPosition: `0 ${desplazamientoVertical}`"));
   assert.match(component, /fila \/ \(FILAS_ANIMACION_SPRITESHEET_HEROE\.length - 1\)/);
-  assert.match(component, /hero-sprite-four-frames ${duracion}ms linear ${repeticion}/);
+  assert.ok(component.includes("hero-sprite-four-frames ${duracion}ms linear ${repeticion}"));
   assert.doesNotMatch(component, /steps\(4,\s*end\)/);
 
   // With a 4-column background, the horizontal positioning range is only 3 viewport widths.
