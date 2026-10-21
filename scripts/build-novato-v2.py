@@ -168,18 +168,37 @@ def build(sex: str, action: str) -> dict:
 
     with Image.open(source_path) as opened:
         loaded = opened.convert("RGBA")
+
+    # Keep a native 32x64-per-frame version for the game's pixel-art scale.
+    # The v2 strip format remains 64x128 per frame for current preview tooling.
     if use_master:
-        if loaded.size != (W * COUNT, H * len(ACTIONS)):
-            raise ValueError(
-                f"Expected 256x384 three-row master (Idle/Walk/Hurt), got {loaded.size}"
-            )
         if loaded.getchannel("A").getextrema()[0] != 0:
             raise ValueError(f"Master has no real transparency: {source_path}")
+        if loaded.size == (W * COUNT // 2, H * len(ACTIONS) // 2):
+            native_master = loaded.copy()
+            loaded = loaded.resize(
+                (W * COUNT, H * len(ACTIONS)), Image.Resampling.NEAREST
+            )
+        elif loaded.size == (W * COUNT, H * len(ACTIONS)):
+            native_master = loaded.resize(
+                (W * COUNT // 2, H * len(ACTIONS) // 2), Image.Resampling.NEAREST
+            )
+        else:
+            raise ValueError(
+                "Expected a three-row master at 128x192 (native 32x64 frames) "
+                f"or 256x384 (64x128 frames), got {loaded.size}"
+            )
         source = loaded.crop(
             (0, ROWS[action] * H, W * COUNT, (ROWS[action] + 1) * H)
         )
+        native_source = native_master.crop(
+            (0, ROWS[action] * (H // 2), W * COUNT // 2, (ROWS[action] + 1) * (H // 2))
+        )
     else:
         source = loaded
+        native_source = loaded.resize(
+            (W * COUNT // 2, H // 2), Image.Resampling.NEAREST
+        )
 
     if source.size != (W * COUNT, H):
         raise ValueError(f"Expected 256x128 strip (4×64x128), got {source.size}")
@@ -240,7 +259,22 @@ def build(sex: str, action: str) -> dict:
         )
     frame_records = []
     frame_hashes = []
+    native_frames_dir = out_dir / "frames-native-32x64" / sex
+    native_frames_dir.mkdir(parents=True, exist_ok=True)
+    native_frame_records = []
     for idx in range(COUNT):
+        native_cell = native_source.crop(
+            (idx * (W // 2), 0, (idx + 1) * (W // 2), H // 2)
+        )
+        native_path = native_frames_dir / f"novato-{sex}-{action}-{idx + 1:02d}.png"
+        native_cell.save(native_path, optimize=True)
+        native_frame_records.append({
+            "index": idx + 1,
+            "path": str(native_path.relative_to(ROOT)),
+            "dimensions": [W // 2, H // 2],
+            "rgba_sha256": sha256_bytes(native_cell.tobytes()),
+        })
+
         cell = strip.crop((idx * W, 0, (idx + 1) * W, H))
         bbox = cell.getchannel("A").getbbox()
         if bbox is None:
@@ -280,6 +314,8 @@ def build(sex: str, action: str) -> dict:
         "shared_master_palette": use_master,
         "strip_dimensions": [W * COUNT, H],
         "cell_dimensions": [W, H],
+        "native_frame_dimensions": [W // 2, H // 2],
+        "native_frames_directory": str(native_frames_dir.relative_to(ROOT)),
         "frame_count": COUNT,
         "alpha_extrema": list(strip.getchannel("A").getextrema()),
         "shared_palette": True,
@@ -294,6 +330,7 @@ def build(sex: str, action: str) -> dict:
         "artistic_approval": "pending visual review",
         "output_sha256": sha256_file(strip_path),
         "frames": frame_records,
+        "native_frames": native_frame_records,
     }
     (out_dir / f"qa-report-{sex}-{action}.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
