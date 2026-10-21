@@ -81,7 +81,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/spritesheets/originales/novato/v2/idle assets/spritesheets/originales/novato/v2/walk assets/spritesheets/originales/novato/v2/hurt
+          git add -A assets/spritesheets/originales/novato/v2/
           if ! git diff --cached --quiet; then
             git commit -m "art: generar estados base v2 de Novato con paleta compartida"
             git push origin HEAD:main
