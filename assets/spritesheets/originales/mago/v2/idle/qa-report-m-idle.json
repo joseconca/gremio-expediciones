@@ -1,0 +1,120 @@
+{
+  "class": "mago",
+  "sex": "m",
+  "action": "idle",
+  "source": "assets/spritesheets/originales/mago/v2/source/mago-m-core-3rows.webp",
+  "source_sha256": "02569e9702a1d55797d171c7c467d0b5070661f8538375a0fdef4855fa63e7d4",
+  "source_master_three_rows": true,
+  "source_row_index": 0,
+  "master_dimensions": [
+    128,
+    192
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "73905ea3bba41e3c1a5866b2380689c9f91370380b6187e9e72242fd411553cd",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        4,
+        50,
+        58,
+        124
+      ],
+      "rgba_sha256": "8746c9d898538f1a8e7f484fc735a951c94476a82c90f257f214843c9fdd4a71",
+      "visible_pixels": 1340
+    },
+    {
+      "index": 2,
+      "bbox": [
+        2,
+        52,
+        62,
+        124
+      ],
+      "rgba_sha256": "e587b0dc13ad3680c755d26b018feeee24d203fff5732a36c8ed55a4577b2fc8",
+      "visible_pixels": 1448
+    },
+    {
+      "index": 3,
+      "bbox": [
+        4,
+        52,
+        60,
+        124
+      ],
+      "rgba_sha256": "dc039d26912ff3cc8ae2a806a7c103410315920585768de1667677ad7a50474f",
+      "visible_pixels": 1204
+    },
+    {
+      "index": 4,
+      "bbox": [
+        8,
+        52,
+        56,
+        124
+      ],
+      "rgba_sha256": "81fc32b0bc5522b654d174f99a55a7c9fe26334039846969e551a98661cb3b25",
+      "visible_pixels": 1128
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/mago/v2/idle/frames-native-32x64/m/mago-m-idle-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "cb12fc3a49cbd227c30821ca3ce11738e5ca1e4884f3812eaf813f6fb0146323"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/mago/v2/idle/frames-native-32x64/m/mago-m-idle-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "8991afe7fce22a8b7a63a0a605653af1830b6a50068ff2ff154181b40ffc12f8"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/mago/v2/idle/frames-native-32x64/m/mago-m-idle-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "8199443a8d372bf795825ab953edff54a7b43cdadd7a2d4569458678eedc5cd8"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/mago/v2/idle/frames-native-32x64/m/mago-m-idle-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "18f8f9dc9660db55f0ee760ebb79675f667aac2c972b7933dad8c2d6921d03fe"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/mago/v2/idle/previews/mago-m-idle-preview.png"
+}

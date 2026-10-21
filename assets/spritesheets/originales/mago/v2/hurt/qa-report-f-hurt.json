@@ -1,0 +1,120 @@
+{
+  "class": "mago",
+  "sex": "f",
+  "action": "hurt",
+  "source": "assets/spritesheets/originales/mago/v2/source/mago-f-core-3rows.webp",
+  "source_sha256": "f243526ad65d75162e2df095f882e5b653a537a220f4e5ace51658b8541a070f",
+  "source_master_three_rows": true,
+  "source_row_index": 2,
+  "master_dimensions": [
+    128,
+    192
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "29e12790241557bf689b6384c1fc552cb059974220ff080eee812b9b9fc02f09",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        6,
+        52,
+        56,
+        124
+      ],
+      "rgba_sha256": "a5962e231b23be468939c398edb7a9fae0a207fa6b6eee5d1c9691fd8298924f",
+      "visible_pixels": 1772
+    },
+    {
+      "index": 2,
+      "bbox": [
+        10,
+        52,
+        52,
+        124
+      ],
+      "rgba_sha256": "3daf549e0be69ab2c5705a678777e04e21ec0d4e230a22f2feef33d77ac80969",
+      "visible_pixels": 1524
+    },
+    {
+      "index": 3,
+      "bbox": [
+        4,
+        54,
+        58,
+        124
+      ],
+      "rgba_sha256": "46412fd7e0532c9da06990490d87f9b2f17452990e87cbbfc0a1f3f1107bda9b",
+      "visible_pixels": 1280
+    },
+    {
+      "index": 4,
+      "bbox": [
+        12,
+        54,
+        50,
+        124
+      ],
+      "rgba_sha256": "0ae11e0179bbe1e0123c5681167df8e3445c250e402c191b6f6d14d34ba54b2d",
+      "visible_pixels": 1452
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/mago/v2/hurt/frames-native-32x64/f/mago-f-hurt-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "c5960003c6671b81da4ad0a8b8e0a053b4275808c43946006ff814d015ab8005"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/mago/v2/hurt/frames-native-32x64/f/mago-f-hurt-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "04749da469b72956e4498659339e49dca562e2d4fe4e5c73536f3eb36e0cf688"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/mago/v2/hurt/frames-native-32x64/f/mago-f-hurt-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "796178883106611de48c2f92ac6ba20d82699da4ad51e6c1c6d9f883a450e3f6"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/mago/v2/hurt/frames-native-32x64/f/mago-f-hurt-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "ed07250236c1a161ec26010b43a029e5e49b8e3807591ab3a22a34202611593e"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/mago/v2/hurt/previews/mago-f-hurt-preview.png"
+}

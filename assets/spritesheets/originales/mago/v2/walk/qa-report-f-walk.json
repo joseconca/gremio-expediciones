@@ -1,0 +1,120 @@
+{
+  "class": "mago",
+  "sex": "f",
+  "action": "walk",
+  "source": "assets/spritesheets/originales/mago/v2/source/mago-f-core-3rows.webp",
+  "source_sha256": "f243526ad65d75162e2df095f882e5b653a537a220f4e5ace51658b8541a070f",
+  "source_master_three_rows": true,
+  "source_row_index": 1,
+  "master_dimensions": [
+    128,
+    192
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "6cb100d95cab91ed343e863a86e32c7c89e84af87d1f606f7388cacb1e2aa444",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        6,
+        46,
+        56,
+        124
+      ],
+      "rgba_sha256": "7c2cf48b0e055355c5afa4fa1c8071ec373fdc193f55cf4cffb569c8f636e54c",
+      "visible_pixels": 1716
+    },
+    {
+      "index": 2,
+      "bbox": [
+        2,
+        48,
+        52,
+        124
+      ],
+      "rgba_sha256": "70516a6d2869864cf68f9c212d5ee3b34e692f4d79c5022d3af44d5b60cf3d60",
+      "visible_pixels": 1656
+    },
+    {
+      "index": 3,
+      "bbox": [
+        4,
+        48,
+        60,
+        124
+      ],
+      "rgba_sha256": "b7d6190d56847db39d03a4138cb1e24c2b6f4bbbd774c6107d9a71f450987f6c",
+      "visible_pixels": 1620
+    },
+    {
+      "index": 4,
+      "bbox": [
+        8,
+        48,
+        56,
+        124
+      ],
+      "rgba_sha256": "542e01bbd6985c8ce6f0ee7944d5fb506066b3f996dec45b9bdfe5fc99b758af",
+      "visible_pixels": 1708
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/mago/v2/walk/frames-native-32x64/f/mago-f-walk-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "c577e96eba7d27d7adcd7c314ce9d171bc16faf7ad2d920bf384f24e086adcc1"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/mago/v2/walk/frames-native-32x64/f/mago-f-walk-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "edeccd37bc4ecf007f187155c6296ce16d5dfcf1605855d8eb967b9048e42089"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/mago/v2/walk/frames-native-32x64/f/mago-f-walk-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "ee12c8d906ae11312471aaff9db7d603710bb7f90ddcdca911f01562b19c750c"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/mago/v2/walk/frames-native-32x64/f/mago-f-walk-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "67e9b142018a528d770484baecb1c9c28bf0d0de6f16238b09476c555bbe8e93"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/mago/v2/walk/previews/mago-f-walk-preview.png"
+}
