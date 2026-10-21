@@ -1,0 +1,83 @@
+name: Construir Idle v2 de Novata
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "assets/spritesheets/originales/novato/v2/source/novato-f-idle.webp"
+      - "scripts/build-novato-v2-idle.py"
+      - ".github/workflows/build-novato-v2-idle.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: novato-v2-female-idle
+  cancel-in-progress: false
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar Pillow
+        run: python -m pip install --disable-pip-version-check pillow
+
+      - name: Generar PNG, frames, preview y QA
+        run: python scripts/build-novato-v2-idle.py --sex f
+
+      - name: Validar el resultado final
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          out = Path("assets/spritesheets/originales/novato/v2/idle")
+          png = out / "novato-f-idle.png"
+          with Image.open(png) as image:
+              assert image.size == (256, 128), image.size
+              rgba = image.convert("RGBA")
+              assert rgba.getchannel("A").getextrema() == (0, 255)
+          report = json.loads((out / "qa-report.json").read_text(encoding="utf-8"))
+          assert report["distinct_frame_count"] == 4
+          assert report["cell_dimensions"] == [64, 128]
+          assert report["runtime_integrated"] is False
+          print("Validación Idle Novata v2 OK:", report["output_sha256"])
+          PY
+
+      - name: Guardar resultado dentro del repositorio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            assets/spritesheets/originales/novato/v2/idle/novato-f-idle.png \
+            assets/spritesheets/originales/novato/v2/idle/frames/f/ \
+            assets/spritesheets/originales/novato/v2/idle/previews/novato-f-idle-preview.png \
+            assets/spritesheets/originales/novato/v2/idle/qa-report.json
+          if ! git diff --cached --quiet; then
+            git commit -m "art: generar Idle v2 de Novata con QA reproducible"
+            git push origin HEAD:main
+          fi
+
+      - name: Publicar preview y QA como artefacto de revisión
+        uses: actions/upload-artifact@v4
+        with:
+          name: novato-v2-f-idle
+          path: |
+            assets/spritesheets/originales/novato/v2/idle/novato-f-idle.png
+            assets/spritesheets/originales/novato/v2/idle/frames/f/**
+            assets/spritesheets/originales/novato/v2/idle/previews/novato-f-idle-preview.png
+            assets/spritesheets/originales/novato/v2/idle/qa-report.json
+          if-no-files-found: error
+          retention-days: 14
