@@ -1,0 +1,99 @@
+name: Construir sprites v2 de Tier 1 (restantes)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/build-tier1-class-v2.py"
+      - ".github/workflows/build-tier1-class-v2.yml"
+      - "assets/spritesheets/originales/arquero/v2/source/**"
+      - "assets/spritesheets/originales/mago/v2/source/**"
+      - "assets/spritesheets/originales/acolito/v2/source/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tier1-remaining-sprites-v2
+  cancel-in-progress: false
+
+jobs:
+  build-reviewed-masters:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Pillow
+        run: python -m pip install --disable-pip-version-check pillow
+
+      - name: Build and commit each complete class package
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for class_id in arquero mago acolito; do
+            source_dir="assets/spritesheets/originales/$class_id/v2/source"
+            has_f=0
+            has_m=0
+            [[ -f "$source_dir/$class_id-f-core-3rows.webp" || -f "$source_dir/$class_id-f-core-3rows.png" ]] && has_f=1
+            [[ -f "$source_dir/$class_id-m-core-3rows.webp" || -f "$source_dir/$class_id-m-core-3rows.png" ]] && has_m=1
+            if [[ "$has_f" != 1 || "$has_m" != 1 ]]; then
+              echo "Skipping $class_id: both male and female masters are required before generating a complete package."
+              continue
+            fi
+
+            echo "=== Building complete $class_id v2 package ==="
+            for sex in f m; do
+              for action in idle walk hurt; do
+                python scripts/build-tier1-class-v2.py --class-id "$class_id" --sex "$sex" --action "$action"
+                python - "$class_id" "$sex" "$action" <<'PY'
+          import json, sys
+          from pathlib import Path
+          from PIL import Image
+          cls, sex, action = sys.argv[1:]
+          base = Path("assets/spritesheets/originales") / cls / "v2" / action
+          strip = base / f"{cls}-{sex}-{action}.png"
+          report = json.loads((base / f"qa-report-{sex}-{action}.json").read_text(encoding="utf-8"))
+          with Image.open(strip) as opened:
+              assert opened.size == (256, 128), (strip, opened.size)
+              assert opened.convert("RGBA").getchannel("A").getextrema() == (0, 255), strip
+          assert report["frame_count"] == 4
+          assert report["distinct_frame_count"] == 4
+          assert report["cell_dimensions"] == [64, 128]
+          assert report["native_frame_dimensions"] == [32, 64]
+          assert report["feet_baseline_drift_px"] <= 2
+          assert report["runtime_integrated"] is False
+          print(f"QA OK: {strip}; SHA-256={report['output_sha256']}")
+          PY
+              done
+            done
+
+            git add "$source_dir" "assets/spritesheets/originales/$class_id/v2/idle" "assets/spritesheets/originales/$class_id/v2/walk" "assets/spritesheets/originales/$class_id/v2/hurt"
+            if ! git diff --cached --quiet; then
+              git commit -m "art: versionar paquete v2 de $class_id"
+              git push origin HEAD:main
+            fi
+          done
+
+      - name: Upload review package
+        uses: actions/upload-artifact@v4
+        with:
+          name: tier1-remaining-sprites-v2-review
+          path: |
+            assets/spritesheets/originales/arquero/v2/
+            assets/spritesheets/originales/mago/v2/
+            assets/spritesheets/originales/acolito/v2/
+          if-no-files-found: error
+          retention-days: 14

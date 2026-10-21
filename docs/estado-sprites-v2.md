@@ -36,6 +36,6 @@ Se retiraron las salidas v1 duplicadas de `assets/spritesheets/originales/novato
 
 La generación de los paquetes Novato y Espadachín terminó correctamente; ver las [ejecuciones de Novato](https://github.com/joseconca/gremio-expediciones/actions/runs/39619092000) y [Espadachín](https://github.com/joseconca/gremio-expediciones/actions/runs/39622303006). La limpieza no integra los recursos en runtime.
 
-## Próximo bloque
+## Tier 1 restante — flujo preparado
 
-Continuar con las demás clases de Tier 1 (Arquero, Mago y Acólito), priorizando másteres comunes y recortes individuales. El material legado de `assets/spritesheets/tier1/` no debe confundirse con estas nuevas entregas. Mantener el runtime intacto hasta que cada paquete se revise visualmente.
+Se ha añadido `scripts/build-tier1-class-v2.py` y su workflow. El workflow solo genera una clase cuando ambos másteres masculinos y femeninos están versionados; publica seis tiras por clase (Idle, Caminar y Recibir daño para ambos sexos), frames nativos 32×64, previews y QA, con un commit de arte por clase. Los recursos de `assets/spritesheets/tier1/` permanecen intactos porque los usa el generador de atlas y equipo. Los nuevos paquetes seguirán marcados como pendientes de aprobación visual y no se conectarán al runtime.
