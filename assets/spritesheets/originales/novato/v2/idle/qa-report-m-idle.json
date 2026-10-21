@@ -1,0 +1,79 @@
+{
+  "class": "novato",
+  "sex": "m",
+  "action": "idle",
+  "source": "assets/spritesheets/originales/novato/v2/source/novato-m-idle.webp",
+  "source_sha256": "2f02e9cfc40358e84dc117cd387ad70dc46214894d8f655b9928f4a93369547c",
+  "source_master_three_rows": false,
+  "source_row_index": null,
+  "shared_master_palette": false,
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "shared_palette": true,
+  "palette_reference_idle_sha256": null,
+  "per_frame_rescaling": false,
+  "feet_baseline_drift_px": 1,
+  "distinct_frame_count": 3,
+  "idle_micro_motion_synthesized": false,
+  "weapon_drawn_in_body": false,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "1a049884b1045f36017e08228c253148c749dc17c67810a722a9a8e10f1ad382",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        6,
+        18,
+        58,
+        110
+      ],
+      "rgba_sha256": "2bedb53088e5ffcc48f10811c61fca7b9cebaf8572057176a973a89aa6551e1c",
+      "visible_pixels": 2644
+    },
+    {
+      "index": 2,
+      "bbox": [
+        6,
+        17,
+        58,
+        109
+      ],
+      "rgba_sha256": "54f07452cfce350b35b0519829ebcc73db61d0fb2830033bd38ec49c5a5031cd",
+      "visible_pixels": 2644
+    },
+    {
+      "index": 3,
+      "bbox": [
+        7,
+        17,
+        59,
+        109
+      ],
+      "rgba_sha256": "be457d4718f8ac122f570ec600588967591252549fa8b675abe4c23ddcdfbdad",
+      "visible_pixels": 2644
+    },
+    {
+      "index": 4,
+      "bbox": [
+        6,
+        18,
+        58,
+        110
+      ],
+      "rgba_sha256": "2bedb53088e5ffcc48f10811c61fca7b9cebaf8572057176a973a89aa6551e1c",
+      "visible_pixels": 2644
+    }
+  ]
+}

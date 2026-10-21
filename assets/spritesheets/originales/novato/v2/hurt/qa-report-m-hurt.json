@@ -1,0 +1,79 @@
+{
+  "class": "novato",
+  "sex": "m",
+  "action": "hurt",
+  "source": "assets/spritesheets/originales/novato/v2/source/novato-m-hurt.webp",
+  "source_sha256": "9936c69c44772fd21269eabe9a309eff7188475303648be51a4e17326c2b9ac1",
+  "source_master_three_rows": false,
+  "source_row_index": null,
+  "shared_master_palette": false,
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "shared_palette": true,
+  "palette_reference_idle_sha256": "1a049884b1045f36017e08228c253148c749dc17c67810a722a9a8e10f1ad382",
+  "per_frame_rescaling": false,
+  "feet_baseline_drift_px": 2,
+  "distinct_frame_count": 4,
+  "idle_micro_motion_synthesized": false,
+  "weapon_drawn_in_body": false,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "4ab8e898de7ae2e43685fe0a32975e41d55af06a4bfb2baf83e517e06696f32c",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        6,
+        18,
+        58,
+        110
+      ],
+      "rgba_sha256": "2bedb53088e5ffcc48f10811c61fca7b9cebaf8572057176a973a89aa6551e1c",
+      "visible_pixels": 2644
+    },
+    {
+      "index": 2,
+      "bbox": [
+        1,
+        18,
+        57,
+        112
+      ],
+      "rgba_sha256": "87a595bf7e40e7744c208700caab07a87564ea439da3e2cbc65a1f905df95a2d",
+      "visible_pixels": 2646
+    },
+    {
+      "index": 3,
+      "bbox": [
+        6,
+        28,
+        58,
+        112
+      ],
+      "rgba_sha256": "15abe6d75aee2cb3d6c3b1b45d334a959f7a8551321460cf2eb2c8f2a466b587",
+      "visible_pixels": 2412
+    },
+    {
+      "index": 4,
+      "bbox": [
+        8,
+        18,
+        59,
+        110
+      ],
+      "rgba_sha256": "302b88c525196cfbbf97edfc3984e10d5457c4bbdb90f52742c55865fcef0f44",
+      "visible_pixels": 2642
+    }
+  ]
+}

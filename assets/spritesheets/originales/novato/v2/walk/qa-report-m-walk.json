@@ -1,0 +1,79 @@
+{
+  "class": "novato",
+  "sex": "m",
+  "action": "walk",
+  "source": "assets/spritesheets/originales/novato/v2/source/novato-m-walk.webp",
+  "source_sha256": "22ee886fa895327cb9aeaa6d0b11d885e9635136b2558bbfa700f72d332619fa",
+  "source_master_three_rows": false,
+  "source_row_index": null,
+  "shared_master_palette": false,
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "shared_palette": true,
+  "palette_reference_idle_sha256": "1a049884b1045f36017e08228c253148c749dc17c67810a722a9a8e10f1ad382",
+  "per_frame_rescaling": false,
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "idle_micro_motion_synthesized": false,
+  "weapon_drawn_in_body": false,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "021160507566ed3a0cb6cf18ff3342f2458d24e1efde97b1dec25a7d73eb8d7f",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        2,
+        12,
+        62,
+        124
+      ],
+      "rgba_sha256": "85230b65956a55a2c5ef071c17a20517784f924698a8f7c1920ab24dc352c821",
+      "visible_pixels": 2904
+    },
+    {
+      "index": 2,
+      "bbox": [
+        2,
+        12,
+        62,
+        124
+      ],
+      "rgba_sha256": "7aa094561a521c47bbde2aed49b0ff2e0400d13ee20d5250f3e80c83f8e3b30d",
+      "visible_pixels": 2890
+    },
+    {
+      "index": 3,
+      "bbox": [
+        2,
+        12,
+        62,
+        124
+      ],
+      "rgba_sha256": "d7e0a7d0b63c4f93df63e767a13f8a53e617404690ae9620200af327c8c4cc4d",
+      "visible_pixels": 2898
+    },
+    {
+      "index": 4,
+      "bbox": [
+        2,
+        12,
+        62,
+        124
+      ],
+      "rgba_sha256": "4d87161005ab896204075e4b36523e2f9b9eced8df1ef25960735a234bf28ddf",
+      "visible_pixels": 2808
+    }
+  ]
+}
