@@ -131,28 +131,28 @@ def build(sex: str, action: str) -> dict:
     master_path = next((candidate for candidate in master_candidates if candidate.is_file()), master_candidates[0])
     action_source_path = BASE / "source" / f"novato-{sex}-{action}.webp"
 
-    # If neither a v2 master nor an action-specific source exists, extract just
-    # this action from the pre-existing runtime atlas as a reviewable fallback.
-    # This is a migration aid, not newly generated or artist-approved source art.
-    if not any(candidate.is_file() for candidate in master_candidates) and not action_source_path.is_file():
+    # When a common v2 master is missing, seed it from the three corresponding
+    # action rows in the existing runtime atlas. That keeps the v2 strips coherent
+    # while the genuinely new art is still pending; runtime files themselves are untouched.
+    if not any(candidate.is_file() for candidate in master_candidates):
         runtime_atlas = ROOT / "public" / "sprites" / "heroes" / "novato" / f"novato-{sex}-sheet.png"
         if runtime_atlas.is_file():
             with Image.open(runtime_atlas) as atlas_image:
                 atlas = atlas_image.convert("RGBA")
-            if atlas.width < 256 or atlas.height < (ROWS[action] + 1) * H:
-                raise ValueError(f"Runtime atlas is too small for {sex}/{action}: {runtime_atlas} {atlas.size}")
-            action_source_path.parent.mkdir(parents=True, exist_ok=True)
-            action_source = atlas.crop((0, ROWS[action] * H, 256, (ROWS[action] + 1) * H))
-            # Handle legacy magenta-key transparency without altering the runtime sheet.
-            pix = action_source.load()
-            for y in range(action_source.height):
-                for x in range(action_source.width):
+            if atlas.width < 256 or atlas.height < 3 * H:
+                raise ValueError(f"Runtime atlas is too small to seed the v2 master: {runtime_atlas} {atlas.size}")
+            master = atlas.crop((0, 0, 256, 3 * H))
+            # Some older indexed atlases encode transparency as pure magenta.
+            pix = master.load()
+            for y in range(master.height):
+                for x in range(master.width):
                     r, g, b, a = pix[x, y]
                     if r >= 250 and g <= 8 and b >= 250:
                         pix[x, y] = (r, g, b, 0)
-            if action_source.getchannel("A").getextrema() == (255, 255):
+            if master.getchannel("A").getextrema() == (255, 255):
                 raise ValueError(f"Could not recover transparency from runtime atlas: {runtime_atlas}")
-            action_source.save(action_source_path, "WEBP", lossless=True, method=0)
+            master_path.parent.mkdir(parents=True, exist_ok=True)
+            master.save(master_path, optimize=True)
 
     use_master = any(candidate.is_file() for candidate in master_candidates)
     source_path = master_path if use_master else action_source_path
