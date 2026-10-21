@@ -34,18 +34,21 @@ jobs:
       - name: Instalar Pillow
         run: python -m pip install --disable-pip-version-check pillow
 
-      - name: Generar, validar y versionar cada acción por separado
+      - name: Generar y validar todas las acciones en un solo commit
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          generated=0
 
           for sex in f m; do
-            master="assets/spritesheets/originales/novato/v2/source/novato-$sex-core-3rows.webp"
+            master_png="assets/spritesheets/originales/novato/v2/source/novato-$sex-core-3rows.png"
+            master_webp="assets/spritesheets/originales/novato/v2/source/novato-$sex-core-3rows.webp"
+            runtime_atlas="public/sprites/heroes/novato/novato-$sex-sheet.png"
             for action in idle walk hurt; do
               source="assets/spritesheets/originales/novato/v2/source/novato-$sex-$action.webp"
-              if [[ -f "$master" || -f "$source" ]]; then
+              if [[ -f "$master_png" || -f "$master_webp" || -f "$source" || -f "$runtime_atlas" ]]; then
                 echo "=== Novato $sex / $action ==="
                 python scripts/build-novato-v2.py --sex "$sex" --action "$action"
 
@@ -68,17 +71,22 @@ jobs:
           assert report["runtime_integrated"] is False
           print(f"QA OK: {strip} | {report['output_sha256']}")
           PY
-
-                git add -A "assets/spritesheets/originales/novato/v2/$action/"
-                if ! git diff --cached --quiet; then
-                  git commit -m "art: versionar Novato $sex $action v2 con escala común"
-                  git push origin HEAD:main
-                fi
+                generated=1
               else
-                echo "Sin fuente todavía: $source (ni máster: $master)"
+                echo "Sin fuente para $sex / $action; se omite."
               fi
             done
           done
+
+          if [[ "$generated" == "1" ]]; then
+            git add -A assets/spritesheets/originales/novato/v2/source/ assets/spritesheets/originales/novato/v2/idle/ assets/spritesheets/originales/novato/v2/walk/ assets/spritesheets/originales/novato/v2/hurt/
+            if ! git diff --cached --quiet; then
+              git commit -m "art: versionar paquete completo Novato v2"
+              git push origin HEAD:main
+            else
+              echo "Las salidas no han cambiado; no se crea un commit vacío."
+            fi
+          fi
 
       - name: Publicar paquete de revisión
         uses: actions/upload-artifact@v4

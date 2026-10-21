@@ -8,8 +8,8 @@
 
 | Personaje | Acción | Archivo de juego | Estado |
 |---|---|---|---|
-| Novata | Idle | [PNG 256×128](../assets/spritesheets/originales/novato/v2/idle/novato-f-idle.png) · [preview ampliada](../assets/spritesheets/originales/novato/v2/idle/previews/novato-f-idle-preview.png) | Generada; QA técnico correcto; pendiente de aprobación artística |
-| Novata | Caminar | [PNG 256×128](../assets/spritesheets/originales/novato/v2/walk/novato-f-walk.png) · [preview ampliada](../assets/spritesheets/originales/novato/v2/walk/previews/novato-f-walk-preview.png) | Generada; QA técnico correcto; pendiente de aprobación artística |
+| Novata | Idle | [PNG 256×128](../assets/spritesheets/originales/novato/v2/idle/novato-f-idle.png) · [preview ampliada](../assets/spritesheets/originales/novato/v2/idle/previews/novato-f-idle-preview.png) | Hay una tira v2 previa; el paquete común se regenerará para revisión |
+| Novata | Caminar | [PNG 256×128](../assets/spritesheets/originales/novato/v2/walk/novato-f-walk.png) · [preview ampliada](../assets/spritesheets/originales/novato/v2/walk/previews/novato-f-walk-preview.png) | Hay una tira v2 previa; el paquete común se regenerará para revisión |
 | Novata | Recibir daño | — | Falta en v2 |
 | Novato | Idle | — | Falta en v2 |
 | Novato | Caminar | — | Falta en v2 |
@@ -39,4 +39,4 @@ Los commits de código y workflow preparan automatización; los commits de arte 
 
 ## Próxima entrega
 
-No añadir más infraestructura antes de completar recursos visibles. El siguiente bloque debe ser **un paquete de personaje**, con las tres tiras Idle/Caminar/Recibir daño de masculino y femenino, cada una con preview, QA e imágenes fuente conservadas. Primero se completa y revisa Novato; después se hace lo mismo con Espadachín y se inicia Mago. Para conservar un único modelo por sexo, priorizar una fuente maestra de tres filas por personaje (256×384) en vez de generar cada acción desde una imagen distinta. Mantener las hojas de runtime sin cambios hasta que el bloque esté revisado.
+El workflow acepta PNG o WebP como máster de tres filas. Si falta, crea un máster de revisión extraído de las tres filas superiores del atlas de Novato existente y genera las tiras Idle/Caminar/Recibir daño de ambos sexos. **Esta extracción no es arte nuevo ni aprobación artística**: permite consolidar la fuente y revisar las seis salidas en un paquete. Los PNG, frames, previews y QA se versionan en un solo commit automático; las hojas de runtime no se modifican. Tras revisar Novato visualmente, continuar con Tier 1.

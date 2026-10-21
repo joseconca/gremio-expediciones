@@ -124,9 +124,37 @@ def create_preview(strip: Image.Image, output: Path) -> None:
 def build(sex: str, action: str) -> dict:
     # Preferred source: a single coherent three-row master strip per sex.
     # This guarantees the exact same character design and palette across Idle/Walk/Hurt.
-    master_path = BASE / "source" / f"novato-{sex}-core-3rows.webp"
+    master_candidates = (
+        BASE / "source" / f"novato-{sex}-core-3rows.png",
+        BASE / "source" / f"novato-{sex}-core-3rows.webp",
+    )
+    master_path = next((candidate for candidate in master_candidates if candidate.is_file()), master_candidates[0])
     action_source_path = BASE / "source" / f"novato-{sex}-{action}.webp"
-    use_master = master_path.is_file()
+
+    # If no v2 master is checked in yet, bootstrap it from the first three action
+    # rows in the existing runtime atlas. This creates a reproducible common source;
+    # it is not a claim that the underlying art has been newly generated or approved.
+    if not any(candidate.is_file() for candidate in master_candidates):
+        runtime_atlas = ROOT / "public" / "sprites" / "heroes" / "novato" / f"novato-{sex}-sheet.png"
+        if runtime_atlas.is_file():
+            with Image.open(runtime_atlas) as atlas_image:
+                atlas = atlas_image.convert("RGBA")
+            if atlas.width < 256 or atlas.height < 384:
+                raise ValueError(f"Runtime atlas is too small to seed the v2 master: {runtime_atlas} {atlas.size}")
+            master = atlas.crop((0, 0, 256, 384))
+            # Some older indexed atlases encode transparency as pure magenta.
+            pix = master.load()
+            for y in range(master.height):
+                for x in range(master.width):
+                    r, g, b, a = pix[x, y]
+                    if r >= 250 and g <= 8 and b >= 250:
+                        pix[x, y] = (r, g, b, 0)
+            if master.getchannel("A").getextrema() == (255, 255):
+                raise ValueError(f"Could not recover transparency from runtime atlas: {runtime_atlas}")
+            master_path.parent.mkdir(parents=True, exist_ok=True)
+            master.save(master_path, optimize=True)
+
+    use_master = any(candidate.is_file() for candidate in master_candidates)
     source_path = master_path if use_master else action_source_path
     if not source_path.is_file():
         raise FileNotFoundError(f"Missing master/action source for {sex}/{action}: {source_path}")
