@@ -17,6 +17,8 @@ from PIL import Image, ImageDraw
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / "assets/spritesheets/originales/novato/v2"
 W, H, COUNT = 64, 128, 4
+PALETTE_COLORS = 63
+TRANSPARENT_INDEX = PALETTE_COLORS
 ACTIONS = ("idle", "walk", "hurt")
 ROWS = {"idle": 0, "walk": 1, "hurt": 2}
 SEXES = ("f", "m")
@@ -42,30 +44,30 @@ def shared_palette_quantize(
     if reference_idle is not None:
         with Image.open(reference_idle) as palette_source:
             raw_palette = palette_source.convert("P").getpalette()
-        if not raw_palette or len(raw_palette) < 48:
+        if not raw_palette or len(raw_palette) < (PALETTE_COLORS + 1) * 3:
             raise ValueError(f"Idle palette is incomplete: {reference_idle}")
-        visible_palette = raw_palette[:45]
+        visible_palette = raw_palette[: PALETTE_COLORS * 3]
         palette_reference_sha256 = sha256_file(reference_idle)
         # Explicit nearest-colour mapping guarantees opaque pixels only use palette
         # indices 0-14. Index 15 is reserved exclusively for full transparency.
         colours = [
             (visible_palette[i], visible_palette[i + 1], visible_palette[i + 2])
-            for i in range(0, 45, 3)
+            for i in range(0, PALETTE_COLORS * 3, 3)
         ]
         indexed = Image.new("P", rgb.size)
         shared_palette = visible_palette + [255, 0, 255]
-        shared_palette += shared_palette[-3:] * (256 - 16)
+        shared_palette += shared_palette[-3:] * (256 - (PALETTE_COLORS + 1))
         indexed.putpalette(shared_palette[:768])
         src_px = rgb.load()
         dst_px = indexed.load()
         for y in range(H):
             for x in range(W * COUNT):
                 if alpha_px[x, y] == 0:
-                    dst_px[x, y] = 15
+                    dst_px[x, y] = TRANSPARENT_INDEX
                     continue
                 red, green, blue = src_px[x, y]
                 best = min(
-                    range(15),
+                    range(PALETTE_COLORS),
                     key=lambda i: (red-colours[i][0])**2
                     + (green-colours[i][1])**2 + (blue-colours[i][2])**2,
                 )
@@ -77,23 +79,23 @@ def shared_palette_quantize(
                 if alpha_px[x, y] == 0:
                     rgb_px[x, y] = (255, 0, 255)
         indexed = rgb.quantize(
-            colors=15, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE
+            colors=PALETTE_COLORS, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE
         )
         palette_reference_sha256 = None
-        palette = indexed.getpalette()[:45]
-        if len(palette) < 45:
-            palette += [0] * (45 - len(palette))
+        palette = indexed.getpalette()[: PALETTE_COLORS * 3]
+        if len(palette) < PALETTE_COLORS * 3:
+            palette += [0] * (PALETTE_COLORS * 3 - len(palette))
         # Reserve entry 15 for transparency and pad other entries with a visible colour.
         palette += [255, 0, 255]
-        palette += palette[-3:] * (256 - 16)
+        palette += palette[-3:] * (256 - (PALETTE_COLORS + 1))
         indexed.putpalette(palette[:768])
         px = indexed.load()
         for y in range(H):
             for x in range(W * COUNT):
                 if alpha_px[x, y] == 0:
-                    px[x, y] = 15
+                    px[x, y] = TRANSPARENT_INDEX
 
-    indexed.save(output, optimize=True, transparency=15)
+    indexed.save(output, optimize=True, transparency=TRANSPARENT_INDEX)
     with Image.open(output) as result:
         rgba_result = result.convert("RGBA")
     return rgba_result, palette_reference_sha256
