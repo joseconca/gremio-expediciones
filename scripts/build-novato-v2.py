@@ -124,9 +124,11 @@ def create_preview(strip: Image.Image, output: Path) -> None:
 def build(sex: str, action: str) -> dict:
     # Preferred source: a single coherent three-row master strip per sex.
     # This guarantees the exact same character design and palette across Idle/Walk/Hurt.
+    # Prefer the freshly cropped lossless WebP masters; the PNG masters are
+    # historical runtime-atlas fallbacks and must not override the new art.
     master_candidates = (
-        BASE / "source" / f"novato-{sex}-core-3rows.png",
         BASE / "source" / f"novato-{sex}-core-3rows.webp",
+        BASE / "source" / f"novato-{sex}-core-3rows.png",
     )
     master_path = next((candidate for candidate in master_candidates if candidate.is_file()), master_candidates[0])
     action_source_path = BASE / "source" / f"novato-{sex}-{action}.webp"
