@@ -81,6 +81,19 @@ test("los paquetes v2 son fuente canónica de las filas Idle, Caminar y Recibir 
   assert.ok(siege.includes("SpriteHeroeAnimado"));
 });
 
+test("la animación horizontal encuadra cuatro fotogramas completos sin deriva", () => {
+  const component = read("src/components/combate/SpriteHeroeAnimado.tsx");
+  const css = read("src/app/globals.css");
+  assert.ok(component.includes('backgroundSize: "400% 1500%"'), "El atlas debe seguir mostrando 4 columnas y 15 filas.");
+  assert.ok(component.includes('hero-sprite-four-frames ${duracion}ms linear ${repeticion}'), "Las posiciones del CSS controlan el paso por frame.");
+  assert.match(css, /0%\s*\{\s*background-position-x: 0%;/);
+  assert.match(css, /25%\s*\{\s*background-position-x: 33\.333333%;/);
+  assert.match(css, /50%\s*\{\s*background-position-x: 66\.666667%;/);
+  assert.match(css, /75%\s*\{\s*background-position-x: 100%;/);
+  assert.match(css, /animation-timing-function: steps\(1, end\)/);
+  assert.match(component, /fila \/ \(FILAS_ANIMACION_SPRITESHEET_HEROE\.length - 1\)/);
+});
+
 test("el cartel de compañía y los participantes de expedición identifican la clase de cada aventurero", () => {
   const panel = read("src/components/base/PanelParty.tsx");
   const servicio = read("src/server/services/party/party-service.ts");

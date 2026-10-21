@@ -22,7 +22,7 @@ const FILA_ACCION: Record<AccionSpriteHeroe, number> = {
   hurt: FILAS_ANIMACION_SPRITESHEET_HEROE.find((fila) => fila.id === "hurt")?.fila ?? 2,
 };
 
-/** Reproduce las cuatro celdas de una fila del atlas sin interpolar píxeles. */
+/** Reproduce exactamente las cuatro celdas de una fila del atlas sin interpolar píxeles. */
 export default function SpriteHeroeAnimado({
   clase,
   sexo,
@@ -33,7 +33,8 @@ export default function SpriteHeroeAnimado({
 }: SpriteHeroeAnimadoProps) {
   const ruta = obtenerRutaSpritesheetHeroe(clase, sexo, profesionActivaId);
   const fila = FILA_ACCION[accion];
-  // Con 15 filas, los porcentajes se calculan sobre los 14 intervalos entre filas.
+  // El atlas tiene 15 filas: el fondo deja 14 alturas de recorrido vertical.
+  // En horizontal hay 4 fotogramas pero solo 3 intervalos de recorrido; el CSS usa 0%, 33.33%, 66.67%, 100%.
   const desplazamientoVertical = `${(fila / (FILAS_ANIMACION_SPRITESHEET_HEROE.length - 1)) * 100}%`;
   const duracion = accion === "walk" ? 480 : accion === "hurt" ? 360 : 1200;
   const repeticion = accion === "hurt" ? "1 both" : "infinite";
@@ -47,7 +48,7 @@ export default function SpriteHeroeAnimado({
         backgroundImage: `url("${ruta}")`,
         backgroundSize: "400% 1500%",
         backgroundPosition: `0 ${desplazamientoVertical}`,
-        animation: `hero-sprite-four-frames ${duracion}ms steps(4, end) ${repeticion}`,
+        animation: `hero-sprite-four-frames ${duracion}ms linear ${repeticion}`,
         imageRendering: "pixelated",
       }}
     />

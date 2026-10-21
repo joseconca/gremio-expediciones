@@ -137,9 +137,34 @@
   font-size: 19px;
 }
 
+/*
+ * El atlas tiene 4 columnas. background-position en porcentaje se calcula sobre
+ * (ancho del fondo - ancho del viewport), es decir, 3 celdas y no 4.
+ * Por eso los cuatro encuadres válidos son 0%, 33.333%, 66.667% y 100%.
+ * Cada tramo usa steps(1,end): conserva la celda completa y salta al siguiente
+ * solo en el límite del frame. Así nunca muestra medias celdas ni deriva hacia
+ * la fila de al lado.
+ */
 @keyframes hero-sprite-four-frames {
-  from { background-position-x: 0%; }
-  to { background-position-x: 100%; }
+  0% {
+    background-position-x: 0%;
+    animation-timing-function: steps(1, end);
+  }
+  25% {
+    background-position-x: 33.333333%;
+    animation-timing-function: steps(1, end);
+  }
+  50% {
+    background-position-x: 66.666667%;
+    animation-timing-function: steps(1, end);
+  }
+  75% {
+    background-position-x: 100%;
+    animation-timing-function: steps(1, end);
+  }
+  100% {
+    background-position-x: 100%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
