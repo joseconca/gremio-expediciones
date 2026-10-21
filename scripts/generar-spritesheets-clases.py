@@ -1285,7 +1285,7 @@ def integrar_filas_sprites_v2(cid, sex, sheet):
 
         caja_fila = (0, fila * H, W * COLS, (fila + 1) * H)
         sheet.paste((0, 0, 0, 0), caja_fila)
-        sheet.alpha_composite(strip, (0, fila * H))
+        sheet.paste(strip, (0, fila * H))
         if accion == "idle":
             idle_first_frame = frames[0]
 
