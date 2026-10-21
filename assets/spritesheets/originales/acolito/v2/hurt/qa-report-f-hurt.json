@@ -3,12 +3,12 @@
   "sex": "f",
   "action": "hurt",
   "source": "assets/spritesheets/originales/acolito/v2/source/acolito-f-core-3rows.webp",
-  "source_sha256": "8bb735287e817671e294d2a6a9f69f339a85b2d119f9adf09ea98f415a5848b2",
+  "source_sha256": "3d0c995171567f1e01cae87c83ad3cee03121bb536596cd4a063e789184c34fa",
   "source_master_three_rows": true,
   "source_row_index": 2,
   "master_dimensions": [
-    256,
-    384
+    128,
+    192
   ],
   "strip_dimensions": [
     256,
@@ -27,55 +27,55 @@
     0,
     255
   ],
-  "feet_baseline_drift_px": 2,
+  "feet_baseline_drift_px": 0,
   "distinct_frame_count": 4,
   "runtime_integrated": false,
   "artistic_approval": "pending visual review",
-  "output_sha256": "6ee7f998f65363ae4a3f15e75388c9c54392976f9be48d81286322639463a164",
+  "output_sha256": "0c1bdab045f3fa3ed74ebd07e553dfdd62ab75de561efaec5936442207b42324",
   "frames": [
     {
       "index": 1,
       "bbox": [
-        6,
-        11,
-        58,
-        110
+        2,
+        36,
+        54,
+        124
       ],
-      "rgba_sha256": "184b69e6133ec07f2196d34f216420be510f704d3b57cf87c13451e876a66189",
-      "visible_pixels": 2637
+      "rgba_sha256": "76e9c2c66f5765726bf3d508ef43f7c649b3adc45a5da833061d57fca46e10ad",
+      "visible_pixels": 3284
     },
     {
       "index": 2,
       "bbox": [
-        0,
-        11,
-        57,
-        111
+        6,
+        38,
+        60,
+        124
       ],
-      "rgba_sha256": "9386d4e4953e2f47db9183f09e0ee4e4ada9846c73de99cc3d7d73ed2c70da9e",
-      "visible_pixels": 2641
+      "rgba_sha256": "8d5f5182f8ab1a33c963c56f8b71d1b96621b6f667f41b20b7cc921cc94c7526",
+      "visible_pixels": 3316
     },
     {
       "index": 3,
       "bbox": [
-        6,
-        22,
-        58,
-        112
+        8,
+        36,
+        60,
+        124
       ],
-      "rgba_sha256": "6bfd171c1fba2a4c499696fdcf06b50f172b24b108097b35e8ca6b9e8f17e3cb",
-      "visible_pixels": 2396
+      "rgba_sha256": "e8b1a925a559abad7ec73376ee7fa274cf2a9b2f5d022bfdf3ca6cd47721639f",
+      "visible_pixels": 2972
     },
     {
       "index": 4,
       "bbox": [
-        9,
-        11,
-        58,
-        111
+        10,
+        40,
+        62,
+        124
       ],
-      "rgba_sha256": "48027935b0bd4e5127b73a1bc244e6fda8ef82158c24a2d28305c1a8d6a799dc",
-      "visible_pixels": 2641
+      "rgba_sha256": "93ba5a3836066942df719c46b8c5be6be2f51db6ad14aec79dec1a180dbe74a7",
+      "visible_pixels": 3016
     }
   ],
   "native_frames": [
@@ -86,7 +86,7 @@
         32,
         64
       ],
-      "rgba_sha256": "2911b740741fec925537de3222e7015c49313fb63257f6970149e54e27e77e22"
+      "rgba_sha256": "70a09789326e672bbc13316339cc36d06b6c2804ce2f96906451472f868f29cb"
     },
     {
       "index": 2,
@@ -95,7 +95,7 @@
         32,
         64
       ],
-      "rgba_sha256": "9325e1c4f4d51744e5f6764ccbb35987c0a3f5dac70a56b7f645ea39f14cf7db"
+      "rgba_sha256": "bc3d3b8b9a15ebad1a7c69769c7821c3cd68527698649f9fc64adbda19ca07e4"
     },
     {
       "index": 3,
@@ -104,7 +104,7 @@
         32,
         64
       ],
-      "rgba_sha256": "4338199144b83e70398366deb2399a457df6f982dd8b48990e6ed6625d43812b"
+      "rgba_sha256": "ce2c677a6a9790fd883418e9bbe7261a78e8273e9c44b53a0e3d750170d1b110"
     },
     {
       "index": 4,
@@ -113,7 +113,7 @@
         32,
         64
       ],
-      "rgba_sha256": "b0a1ad3441815c3c00493c2cd8d87d422e72f31dcf523dac27de74c40bbbeafb"
+      "rgba_sha256": "613a98ce10c383208aa4966debaf55c59632dcb5912b47abf62e08d90c2cc3c1"
     }
   ],
   "preview": "assets/spritesheets/originales/acolito/v2/hurt/previews/acolito-f-hurt-preview.png"

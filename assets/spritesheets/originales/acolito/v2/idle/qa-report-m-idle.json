@@ -3,12 +3,12 @@
   "sex": "m",
   "action": "idle",
   "source": "assets/spritesheets/originales/acolito/v2/source/acolito-m-core-3rows.webp",
-  "source_sha256": "83ea31c77c6677ec9b5bbb198b382983d8ed53c459ef61dc0d29da469d0a2f1f",
+  "source_sha256": "294bc0c4e21987297a840bbba47520ae57e3a803e14467aa46df77441027142b",
   "source_master_three_rows": true,
   "source_row_index": 0,
   "master_dimensions": [
-    256,
-    384
+    128,
+    192
   ],
   "strip_dimensions": [
     256,
@@ -27,55 +27,55 @@
     0,
     255
   ],
-  "feet_baseline_drift_px": 1,
+  "feet_baseline_drift_px": 0,
   "distinct_frame_count": 4,
   "runtime_integrated": false,
   "artistic_approval": "pending visual review",
-  "output_sha256": "d4553c74e3bf3130e5185858fcb64eded27f227a7792b42c63278ba1fb3ddbdd",
+  "output_sha256": "ee1357c35dc5575ab4eab85f9e619f0b3bcdf8c87eec7cb28551f5d80a017c86",
   "frames": [
     {
       "index": 1,
       "bbox": [
-        6,
-        11,
-        58,
-        110
+        2,
+        36,
+        60,
+        124
       ],
-      "rgba_sha256": "19fea74b4665648da6f6b5ea8f652c05f186bca6e9165996f529fb26ab11cd8c",
-      "visible_pixels": 2950
+      "rgba_sha256": "19456373bf7df17d310ff8c98108ecdae194aebaf42b76a46a47925476969b79",
+      "visible_pixels": 3120
     },
     {
       "index": 2,
       "bbox": [
         6,
-        10,
-        58,
-        109
+        36,
+        62,
+        124
       ],
-      "rgba_sha256": "828b39b23427b1b000ef63111679c6a0cdf818491ced9462944c605e9660910f",
-      "visible_pixels": 2950
+      "rgba_sha256": "f0136d7b0b7011f565dd1fb7cf9475a70205cb452092556d2f720b481c207c11",
+      "visible_pixels": 3044
     },
     {
       "index": 3,
       "bbox": [
-        7,
-        10,
-        59,
-        109
+        8,
+        36,
+        62,
+        124
       ],
-      "rgba_sha256": "768e3ec86f599ca60009da7a67832cdfd1d8c55a259415318d1d3d505ebff531",
-      "visible_pixels": 2950
+      "rgba_sha256": "14180495826e7bbcd969938d4cc5a15102fd0bff0ced111b9103c66898f73dbb",
+      "visible_pixels": 3112
     },
     {
       "index": 4,
       "bbox": [
-        5,
-        11,
-        57,
-        110
+        2,
+        34,
+        62,
+        124
       ],
-      "rgba_sha256": "7ec076e4f4b4eb3d340945e832321a7e35db81bb6b4bbbf7478f03c3bd630e54",
-      "visible_pixels": 2950
+      "rgba_sha256": "c56febb10b223495663011175b8dd8fd165c843f8cbb6fd809892e3e43918dd9",
+      "visible_pixels": 3084
     }
   ],
   "native_frames": [
@@ -86,7 +86,7 @@
         32,
         64
       ],
-      "rgba_sha256": "b11eab8a3caeaaf4401c1da0b5ed1a676d6b1f46bacd89cb089efd9da1bc7668"
+      "rgba_sha256": "e7efcd5096772bdfd81b33a63cad3bbae2faf11063ef7afad0e5d811e3fff68f"
     },
     {
       "index": 2,
@@ -95,7 +95,7 @@
         32,
         64
       ],
-      "rgba_sha256": "54f79548afb1250d1e595929077bc217a9cdea7cfd0b117c50dcb00654b39e4f"
+      "rgba_sha256": "86159a26df670abae676fdda4737bf6c96a20f47cef5991d6df93102fc5ca3bf"
     },
     {
       "index": 3,
@@ -104,7 +104,7 @@
         32,
         64
       ],
-      "rgba_sha256": "2821862f22a8dfc49d4b17c6144f5bca780ac92804d47944989a892f09a80348"
+      "rgba_sha256": "7e8240b3035db3eaad44af79b2b81265d9b979400a567896923ea11073712012"
     },
     {
       "index": 4,
@@ -113,7 +113,7 @@
         32,
         64
       ],
-      "rgba_sha256": "a0cca7de1dc190218b5c8fec3f48598e5eb1e64ca91e54f7b695ad28551be9a9"
+      "rgba_sha256": "67abb35738cea5203bfdd1dbe176a0ed80b0eebc5c3e9fd46236f4f67677dddf"
     }
   ],
   "preview": "assets/spritesheets/originales/acolito/v2/idle/previews/acolito-m-idle-preview.png"
