@@ -1,0 +1,122 @@
+{
+  "class": "espadachin",
+  "sex": "m",
+  "action": "hurt",
+  "source": "assets/spritesheets/originales/espadachin/v2/source/espadachin-m-core-3rows.webp",
+  "source_sha256": "280d02ea38256b7439e8b37553c04579f2b70de893af805baee697927203d155",
+  "source_master_three_rows": true,
+  "source_row_index": 2,
+  "shared_master_palette": true,
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "native_frames_directory": "assets/spritesheets/originales/espadachin/v2/hurt/frames-native-32x64/m",
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "shared_palette": true,
+  "palette_reference_idle_sha256": "280d02ea38256b7439e8b37553c04579f2b70de893af805baee697927203d155",
+  "per_frame_rescaling": false,
+  "feet_baseline_drift_px": 2,
+  "distinct_frame_count": 4,
+  "idle_micro_motion_synthesized": false,
+  "weapon_drawn_in_body": false,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "a48bebb6e5f4fa965e80f676cd4a0717da7148e165eba30d364b3d6127958c29",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        6,
+        18,
+        58,
+        110
+      ],
+      "rgba_sha256": "f92522b22d9edbefa43273d7a4b7a0b7850049d4afbb27845d56b4c0eb549ed1",
+      "visible_pixels": 2751
+    },
+    {
+      "index": 2,
+      "bbox": [
+        0,
+        18,
+        57,
+        112
+      ],
+      "rgba_sha256": "5cb3685b29c719db5c790614b77e64a24922366255ba79f296f88613cf0ff425",
+      "visible_pixels": 2756
+    },
+    {
+      "index": 3,
+      "bbox": [
+        6,
+        28,
+        58,
+        112
+      ],
+      "rgba_sha256": "fd95c066342f34a5c98f6b9294322bf2107cf45387855f6c730f8ed4e69509c4",
+      "visible_pixels": 2503
+    },
+    {
+      "index": 4,
+      "bbox": [
+        9,
+        18,
+        59,
+        110
+      ],
+      "rgba_sha256": "d062d68a51e5ebcb802c71b8f548a8d319e893a81f5bcfda13b94ddb96e15416",
+      "visible_pixels": 2750
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/espadachin/v2/hurt/frames-native-32x64/m/espadachin-m-hurt-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "df544a41e02b0af2ac754d0c376859e9b8d699e98da6ca7b140b05d62b7d62a8"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/espadachin/v2/hurt/frames-native-32x64/m/espadachin-m-hurt-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "75ae3f741e03c1398d07f12f715608ef23fbb82af8749bc05436ff7f4189ec87"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/espadachin/v2/hurt/frames-native-32x64/m/espadachin-m-hurt-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "28ed7d2ea8667e333b81d225015c2edc5d753dae84d10d24090411e42e0acbf1"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/espadachin/v2/hurt/frames-native-32x64/m/espadachin-m-hurt-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "770561ec0ab248bd7e982bc1e4b142b09fa40d83ba620767e788ae7d828f96f2"
+    }
+  ]
+}

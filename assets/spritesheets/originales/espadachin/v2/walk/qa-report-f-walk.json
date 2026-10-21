@@ -1,0 +1,122 @@
+{
+  "class": "espadachin",
+  "sex": "f",
+  "action": "walk",
+  "source": "assets/spritesheets/originales/espadachin/v2/source/espadachin-f-core-3rows.webp",
+  "source_sha256": "08107899c4c57bb8dfc5921d4fa4bff8657dcbed0446bb623c01c8ebfe33eff3",
+  "source_master_three_rows": true,
+  "source_row_index": 1,
+  "shared_master_palette": true,
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "native_frames_directory": "assets/spritesheets/originales/espadachin/v2/walk/frames-native-32x64/f",
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "shared_palette": true,
+  "palette_reference_idle_sha256": "08107899c4c57bb8dfc5921d4fa4bff8657dcbed0446bb623c01c8ebfe33eff3",
+  "per_frame_rescaling": false,
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "idle_micro_motion_synthesized": false,
+  "weapon_drawn_in_body": false,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "61bac225ae8579948913b5122b222c0247e30d46cf6dd41db1f654969240b3e8",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        2,
+        12,
+        62,
+        124
+      ],
+      "rgba_sha256": "f91eea0761acb1fe4441356df1161d8bcea0dfb11f7ceb60bf9125689bdedc20",
+      "visible_pixels": 3169
+    },
+    {
+      "index": 2,
+      "bbox": [
+        2,
+        12,
+        62,
+        124
+      ],
+      "rgba_sha256": "506fbaed2511008cb38b1fc0c120cba85c952cc3dc41cceced14cbad4d9fe45d",
+      "visible_pixels": 3628
+    },
+    {
+      "index": 3,
+      "bbox": [
+        2,
+        12,
+        62,
+        124
+      ],
+      "rgba_sha256": "436078bcd09dd31ae656a768f5a6ead1618be9878500fe369c4925bfe745f33e",
+      "visible_pixels": 3213
+    },
+    {
+      "index": 4,
+      "bbox": [
+        2,
+        12,
+        62,
+        124
+      ],
+      "rgba_sha256": "3a8a0e617bb0c4f8d5a709f0072ad799a513fe06776c241d6423d99ea2b5b395",
+      "visible_pixels": 3531
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/espadachin/v2/walk/frames-native-32x64/f/espadachin-f-walk-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "317a312ba877a098c7f3ed9be254bea1db0ec85fb14ef8a2854c69707400cc83"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/espadachin/v2/walk/frames-native-32x64/f/espadachin-f-walk-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "ad62c0562d5046391d726494abea0938653e795f6870a11227dc1972f2db237c"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/espadachin/v2/walk/frames-native-32x64/f/espadachin-f-walk-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "1baa23d14e74ffa286f49878011f0fcaa5d077b70cf536cf8c892c999512623e"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/espadachin/v2/walk/frames-native-32x64/f/espadachin-f-walk-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "64ec58789d5bf1fac0448d17bda0bbaf280db13441322fe8774800219a2d6fb1"
+    }
+  ]
+}
