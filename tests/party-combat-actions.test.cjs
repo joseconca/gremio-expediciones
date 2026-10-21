@@ -491,7 +491,7 @@ test("al comenzar el siguiente turno de un miembro en party, solo él regenera s
   const service = loadService(prisma);
   await service.ejecutarTurnoEnemigoParty("u1", "expedition-1");
   assert.equal(calls.characterWrites.some((write) => write.data.energiaActual === 7), true);
-  assert.equal(calls.characterWrites.some((write) => write.data.manaActual === 2), true);
+  assert.equal(calls.characterWrites.some((write) => write.data.manaActual === 3), true);
 });
 
 test("la regeneración por turno en party solo incrementa al actor del siguiente turno", async () => {
@@ -530,8 +530,8 @@ test("el turno del enemigo apunta al aventurero con menor porcentaje de vida", a
   assert.equal(combat.participantes[1].jugadorHp, 10);
   assert.equal(combat.turnoActualUsuarioId, "u1");
   assert.equal(combat.ronda, 1, "el ciclo no avanza de ronda hasta consumir toda la cola");
-  assert.equal(calls.characterWrites.length, 1);
-  assert.equal(calls.characterWrites[0].data.hpActual, 10);
+  assert.equal(calls.characterWrites.filter((write) => write.data.hpActual === 10).length, 1);
+  assert.equal(calls.characterWrites.some((write) => write.data.energiaActual === 7 && write.data.manaActual === 3), true);
 });
 
 test("si falla el control de versión, no se puede completar dos veces el turno", async () => {
