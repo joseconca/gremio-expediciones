@@ -39,4 +39,10 @@ Los commits de código y workflow preparan automatización; los commits de arte 
 
 ## Próxima entrega
 
-El workflow acepta PNG o WebP como máster de tres filas. Mientras no haya un máster v2 creado a partir de arte nuevo, extrae conjuntamente Idle/Caminar/Recibir daño de las tres primeras filas del atlas de Novato ya versionado, para no mezclar vestuarios entre acciones. **Esta extracción no es arte nuevo ni aprobación artística**; es una base de revisión coherente y reproducible, y no modifica el atlas de runtime. Si la fila Idle repite exactamente la misma imagen, el generador añade variaciones de balanceo de un píxel y lo marca explícitamente en QA; no sustituye una animación final dibujada a mano. Las seis tiras, frames, previews y QA se versionan en un único commit automático. Tras revisar el paquete Novato, continuar con Tier 1.
+## Paquete Novato v2: completado técnicamente
+
+Los másteres `novato-f-core-3rows.webp` y `novato-m-core-3rows.webp` proceden de recortes de la lámina generada, con tres filas (Idle/Caminar/Recibir daño) y cuatro fotogramas por fila. El workflow publica seis tiras 256×128, las celdas ampliadas y nativas de 32×64, previews y QA. La última generación que usa esos másteres terminó en verde: [ejecución de Novato v2](https://github.com/joseconca/gremio-expediciones/actions/runs/39619092000). `runtime_integrated` se mantiene en `false` y `artistic_approval` en `pending visual review`; falta la revisión visual final antes de reemplazar sprites de producción.
+
+## Siguiente bloque: Tier 1 — Espadachín
+
+Se está preparando el mismo flujo para `espadachin-f-core-3rows.webp` y `espadachin-m-core-3rows.webp`: recortes individuales de la lámina generada, un máster común por sexo, tiras Idle/Caminar/Recibir daño, frames nativos 32×64, previews y QA. Los recursos existentes bajo `assets/spritesheets/tier1/` son material legado y no se confundirán con esta nueva entrega. El runtime seguirá intacto hasta revisar los nuevos recortes.
