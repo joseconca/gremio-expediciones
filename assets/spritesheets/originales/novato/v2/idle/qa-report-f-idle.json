@@ -15,6 +15,11 @@
     64,
     128
   ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "native_frames_directory": "assets/spritesheets/originales/novato/v2/idle/frames-native-32x64/f",
   "frame_count": 4,
   "alpha_extrema": [
     0,
@@ -74,6 +79,44 @@
       ],
       "rgba_sha256": "0fc157c4b52e60b0807a4dce80730bfd62373369b9a78362b0a412c39496a8bc",
       "visible_pixels": 2297
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/novato/v2/idle/frames-native-32x64/f/novato-f-idle-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "6a77843ff2b070538e134ce168a186bd582d16646f2b7b418c34f6c340066c25"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/novato/v2/idle/frames-native-32x64/f/novato-f-idle-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "af63996c00750d776b874142733191230101188ed1d6a69b6c14279f0586306d"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/novato/v2/idle/frames-native-32x64/f/novato-f-idle-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "81c2227c19c1942088b450bb1b8d20ebc1a81b1ee6e1f3ace75ac79604b4f159"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/novato/v2/idle/frames-native-32x64/f/novato-f-idle-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "6a77843ff2b070538e134ce168a186bd582d16646f2b7b418c34f6c340066c25"
     }
   ]
 }

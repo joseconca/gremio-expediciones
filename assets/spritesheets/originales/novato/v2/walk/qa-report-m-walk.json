@@ -15,6 +15,11 @@
     64,
     128
   ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "native_frames_directory": "assets/spritesheets/originales/novato/v2/walk/frames-native-32x64/m",
   "frame_count": 4,
   "alpha_extrema": [
     0,
@@ -74,6 +79,44 @@
       ],
       "rgba_sha256": "c61fd4f2eb2d14e7ebbcb49d329e093cefd56432ab4eb3343003dd124e679b1a",
       "visible_pixels": 2808
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/novato/v2/walk/frames-native-32x64/m/novato-m-walk-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "e60a69c01262bf102e2f7595d6ab7479cdc4070db53afdfefd28ec8e65998ba2"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/novato/v2/walk/frames-native-32x64/m/novato-m-walk-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "b818c08ec5c37880d4b27b10c5a8ee11655532aa4f0b12d0d833bf1417599243"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/novato/v2/walk/frames-native-32x64/m/novato-m-walk-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "46b3bbf7f3907723d863db356d62d2faa00232c20603608e14a08318337c4223"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/novato/v2/walk/frames-native-32x64/m/novato-m-walk-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "920334afc2639702f4047e2a3dfb959fb6dab4abb2b1c4a44e8a9aaf437c0d12"
     }
   ]
 }

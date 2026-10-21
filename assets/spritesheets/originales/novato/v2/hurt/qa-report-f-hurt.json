@@ -15,6 +15,11 @@
     64,
     128
   ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "native_frames_directory": "assets/spritesheets/originales/novato/v2/hurt/frames-native-32x64/f",
   "frame_count": 4,
   "alpha_extrema": [
     0,
@@ -74,6 +79,44 @@
       ],
       "rgba_sha256": "bf672aaef9a7c5b730630b78a9e511ddbb18daa7035fd799a8a88f5b3cfb85d6",
       "visible_pixels": 3137
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/novato/v2/hurt/frames-native-32x64/f/novato-f-hurt-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "3a481ce7325f8786844064ecccf7991ed518e56c02f78e64d2b2a1c027174470"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/novato/v2/hurt/frames-native-32x64/f/novato-f-hurt-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "b710a1f7b6d25e6c501b255fe7c96eaf5b78010531c07930c5de47069701da4a"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/novato/v2/hurt/frames-native-32x64/f/novato-f-hurt-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "a538f713092c4cf347c73890e7e035ba7a17ce6d9e39a4db5ac4c312132f67d7"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/novato/v2/hurt/frames-native-32x64/f/novato-f-hurt-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "26cdaee457314cdc508e5b5024f3511cd42894e022f5d8f29abad07cc2d79251"
     }
   ]
 }
