@@ -1,0 +1,120 @@
+{
+  "class": "acolito",
+  "sex": "f",
+  "action": "idle",
+  "source": "assets/spritesheets/originales/acolito/v2/source/acolito-f-core-3rows.webp",
+  "source_sha256": "8bb735287e817671e294d2a6a9f69f339a85b2d119f9adf09ea98f415a5848b2",
+  "source_master_three_rows": true,
+  "source_row_index": 0,
+  "master_dimensions": [
+    256,
+    384
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 1,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "2a8fec59f388fc4fd52fea02ee9f39b0d70920dd9ec7e8542d049b231a172175",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        6,
+        11,
+        58,
+        110
+      ],
+      "rgba_sha256": "184b69e6133ec07f2196d34f216420be510f704d3b57cf87c13451e876a66189",
+      "visible_pixels": 2637
+    },
+    {
+      "index": 2,
+      "bbox": [
+        6,
+        10,
+        58,
+        109
+      ],
+      "rgba_sha256": "f8307b4d34b0109cc369bdee1231d44f5b80669a43c6d3459a348b68920d6a65",
+      "visible_pixels": 2637
+    },
+    {
+      "index": 3,
+      "bbox": [
+        7,
+        10,
+        59,
+        109
+      ],
+      "rgba_sha256": "e7057cdfa10aa9eb7e6dfd0380ef5f757a612bb4e5d67626e1d20e2d89816eab",
+      "visible_pixels": 2637
+    },
+    {
+      "index": 4,
+      "bbox": [
+        5,
+        11,
+        57,
+        110
+      ],
+      "rgba_sha256": "7e6e223e6bce32df7f036fc772b08122bea354fa2768d12d1c7e3c2a44047153",
+      "visible_pixels": 2637
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/acolito/v2/idle/frames-native-32x64/f/acolito-f-idle-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "2911b740741fec925537de3222e7015c49313fb63257f6970149e54e27e77e22"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/acolito/v2/idle/frames-native-32x64/f/acolito-f-idle-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "38a1638f33d949d27cfbffb7385f4e1ccad84756121a047c0abc50fe3e7a65f8"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/acolito/v2/idle/frames-native-32x64/f/acolito-f-idle-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "c48cb2d36ef37b31e38a2b35bf1d266674be234225b9667eb7d52747b32d68bc"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/acolito/v2/idle/frames-native-32x64/f/acolito-f-idle-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "c585352ad8f3401b193391779f334e6cc581e8782c6f61df27bdc236ef3d797a"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/acolito/v2/idle/previews/acolito-f-idle-preview.png"
+}

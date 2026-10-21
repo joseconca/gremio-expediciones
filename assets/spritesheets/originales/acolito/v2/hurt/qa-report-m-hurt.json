@@ -1,0 +1,120 @@
+{
+  "class": "acolito",
+  "sex": "m",
+  "action": "hurt",
+  "source": "assets/spritesheets/originales/acolito/v2/source/acolito-m-core-3rows.webp",
+  "source_sha256": "83ea31c77c6677ec9b5bbb198b382983d8ed53c459ef61dc0d29da469d0a2f1f",
+  "source_master_three_rows": true,
+  "source_row_index": 2,
+  "master_dimensions": [
+    256,
+    384
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 2,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "f609d963806582f6843e6a5462a911331b2f28764d2711650177dd28cc8c020e",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        6,
+        11,
+        58,
+        110
+      ],
+      "rgba_sha256": "19fea74b4665648da6f6b5ea8f652c05f186bca6e9165996f529fb26ab11cd8c",
+      "visible_pixels": 2950
+    },
+    {
+      "index": 2,
+      "bbox": [
+        0,
+        11,
+        57,
+        112
+      ],
+      "rgba_sha256": "1695956e192bb473d7681b69a3f374e0bf59d00358191a4154f82f4896cadb39",
+      "visible_pixels": 2957
+    },
+    {
+      "index": 3,
+      "bbox": [
+        6,
+        22,
+        58,
+        112
+      ],
+      "rgba_sha256": "151662f49529b0dd17e919ea8f0b5ea8798a552a043acbf225dc12cee63a27ad",
+      "visible_pixels": 2678
+    },
+    {
+      "index": 4,
+      "bbox": [
+        9,
+        11,
+        59,
+        110
+      ],
+      "rgba_sha256": "552869c4d82a4495f37a62e70843f9c64468cb1298ae7f3064424e83f232e6ca",
+      "visible_pixels": 2953
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/acolito/v2/hurt/frames-native-32x64/m/acolito-m-hurt-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "b11eab8a3caeaaf4401c1da0b5ed1a676d6b1f46bacd89cb089efd9da1bc7668"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/acolito/v2/hurt/frames-native-32x64/m/acolito-m-hurt-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "bb4b3f6d55143ac28054685355e664250cc4716fe0e86727ef3ff3c49d856f99"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/acolito/v2/hurt/frames-native-32x64/m/acolito-m-hurt-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "be6d833616c177920fc54dc1d3eccf8ac9565db5ac489397627f8c1292cef8c8"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/acolito/v2/hurt/frames-native-32x64/m/acolito-m-hurt-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "10f5f96ba30edc6db7a9543210221ecd315f1c6857c8f479bf6477cbec0e6da5"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/acolito/v2/hurt/previews/acolito-m-hurt-preview.png"
+}
