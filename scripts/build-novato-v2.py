@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / "assets/spritesheets/originales/novato/v2"
 W, H, COUNT = 64, 128, 4
 ACTIONS = ("idle", "walk", "hurt")
+ROWS = {"idle": 0, "walk": 1, "hurt": 2}
 SEXES = ("f", "m")
 
 
@@ -119,9 +120,15 @@ def create_preview(strip: Image.Image, output: Path) -> None:
 
 
 def build(sex: str, action: str) -> dict:
-    source_path = BASE / "source" / f"novato-{sex}-{action}.webp"
+    # Preferred source: a single coherent three-row master strip per sex.
+    # This guarantees the exact same character design and palette across Idle/Walk/Hurt.
+    master_path = BASE / "source" / f"novato-{sex}-core-3rows.webp"
+    action_source_path = BASE / "source" / f"novato-{sex}-{action}.webp"
+    use_master = master_path.is_file()
+    source_path = master_path if use_master else action_source_path
     if not source_path.is_file():
-        raise FileNotFoundError(f"Missing source for {sex}/{action}: {source_path}")
+        raise FileNotFoundError(f"Missing master/action source for {sex}/{action}: {source_path}")
+
     out_dir = BASE / action
     frames_dir = out_dir / "frames" / sex
     preview_dir = out_dir / "previews"
@@ -130,7 +137,20 @@ def build(sex: str, action: str) -> dict:
     strip_path = out_dir / f"novato-{sex}-{action}.png"
 
     with Image.open(source_path) as opened:
-        source = opened.convert("RGBA")
+        loaded = opened.convert("RGBA")
+    if use_master:
+        if loaded.size != (W * COUNT, H * len(ACTIONS)):
+            raise ValueError(
+                f"Expected 256x384 three-row master (Idle/Walk/Hurt), got {loaded.size}"
+            )
+        if loaded.getchannel("A").getextrema()[0] != 0:
+            raise ValueError(f"Master has no real transparency: {source_path}")
+        source = loaded.crop(
+            (0, ROWS[action] * H, W * COUNT, (ROWS[action] + 1) * H)
+        )
+    else:
+        source = loaded
+
     if source.size != (W * COUNT, H):
         raise ValueError(f"Expected 256x128 strip (4×64x128), got {source.size}")
     if source.getchannel("A").getextrema()[0] != 0:
@@ -150,16 +170,23 @@ def build(sex: str, action: str) -> dict:
             raise ValueError(f"Idle figure scale varies between frames: {source_boxes}")
 
     palette_reference = None
-    if action != "idle":
+    if action != "idle" and not use_master:
         palette_reference = BASE / "idle" / f"novato-{sex}-idle.png"
         if not palette_reference.is_file():
             raise FileNotFoundError(
                 f"Build Idle before {action} so all actions reuse one palette: {palette_reference}"
             )
 
-    strip, palette_reference_sha = shared_palette_quantize(
-        source, palette_reference, strip_path
-    )
+    if use_master:
+        # The master was drawn/normalized as a single three-row sheet and already shares
+        # scale, pose framing, and palette across actions. Preserve its pixels as-is.
+        strip = source.copy()
+        strip.save(strip_path, optimize=True)
+        palette_reference_sha = sha256_file(master_path)
+    else:
+        strip, palette_reference_sha = shared_palette_quantize(
+            source, palette_reference, strip_path
+        )
     frame_records = []
     frame_hashes = []
     for idx in range(COUNT):
@@ -193,6 +220,9 @@ def build(sex: str, action: str) -> dict:
         "action": action,
         "source": str(source_path.relative_to(ROOT)),
         "source_sha256": sha256_file(source_path),
+        "source_master_three_rows": use_master,
+        "source_row_index": ROWS[action] if use_master else None,
+        "shared_master_palette": use_master,
         "strip_dimensions": [W * COUNT, H],
         "cell_dimensions": [W, H],
         "frame_count": COUNT,
