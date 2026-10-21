@@ -2,47 +2,36 @@
 
 **Actualizado:** 2026-10-21  
 **Rama:** `main`  
-**Regla de seguridad:** los recursos v2 son arte en revisión. No sustituyen las hojas de runtime hasta superar revisión visual.
+**Política de integración:** estas salidas son arte en revisión. Las hojas de producción no se sustituyen hasta aprobar visualmente cada paquete.
 
-## Qué se ha generado realmente
+## Novato (Tier 0) — paquete generado
 
-| Personaje | Acción | Archivo de juego | Estado |
+Los másteres [Novata](../assets/spritesheets/originales/novato/v2/source/novato-f-core-3rows.webp) y [Novato](../assets/spritesheets/originales/novato/v2/source/novato-m-core-3rows.webp) son recortes comunes de tres filas: Idle, Caminar y Recibir daño. Las seis tiras derivadas están en PNG de 256×128, con cuatro fotogramas de 64×128; también se exportan los fotogramas nativos de 32×64.
+
+| Personaje | Idle | Caminar | Recibir daño |
 |---|---|---|---|
-| Novata | Idle | [PNG 256×128](../assets/spritesheets/originales/novato/v2/idle/novato-f-idle.png) · [preview ampliada](../assets/spritesheets/originales/novato/v2/idle/previews/novato-f-idle-preview.png) | Hay una tira v2 previa; el paquete común se regenerará para revisión |
-| Novata | Caminar | [PNG 256×128](../assets/spritesheets/originales/novato/v2/walk/novato-f-walk.png) · [preview ampliada](../assets/spritesheets/originales/novato/v2/walk/previews/novato-f-walk-preview.png) | Hay una tira v2 previa; el paquete común se regenerará para revisión |
-| Novata | Recibir daño | — | Falta en v2 |
-| Novato | Idle | — | Falta en v2 |
-| Novato | Caminar | — | Falta en v2 |
-| Novato | Recibir daño | — | Falta en v2 |
-| Espadachín | Idle, Caminar, Recibir daño | Hay entregas previas en las carpetas de arte original, pero aún deben revisarse juntas con la referencia final de Novato | No marcar el conjunto como cerrado |
+| Novata | [PNG](../assets/spritesheets/originales/novato/v2/idle/novato-f-idle.png) · [preview](../assets/spritesheets/originales/novato/v2/idle/previews/novato-f-idle-preview.png) | [PNG](../assets/spritesheets/originales/novato/v2/walk/novato-f-walk.png) · [preview](../assets/spritesheets/originales/novato/v2/walk/previews/novato-f-walk-preview.png) | [PNG](../assets/spritesheets/originales/novato/v2/hurt/novato-f-hurt.png) · [preview](../assets/spritesheets/originales/novato/v2/hurt/previews/novato-f-hurt-preview.png) |
+| Novato | [PNG](../assets/spritesheets/originales/novato/v2/idle/novato-m-idle.png) · [preview](../assets/spritesheets/originales/novato/v2/idle/previews/novato-m-idle-preview.png) | [PNG](../assets/spritesheets/originales/novato/v2/walk/novato-m-walk.png) · [preview](../assets/spritesheets/originales/novato/v2/walk/previews/novato-m-walk-preview.png) | [PNG](../assets/spritesheets/originales/novato/v2/hurt/novato-m-hurt.png) · [preview](../assets/spritesheets/originales/novato/v2/hurt/previews/novato-m-hurt-preview.png) |
 
-Las carpetas antiguas `assets/spritesheets/originales/novato/idle`, `walk` y `hurt` contienen recursos de versiones anteriores; no deben confundirse con el bloque nuevo `v2`. Los PNG de producción en `public/sprites/heroes/novato/` siguen intactos.
+## Espadachín (Tier 1) — paquete generado
 
-## Qué validan las pruebas automáticas
+Los másteres [Espadachina](../assets/spritesheets/originales/espadachin/v2/source/espadachin-f-core-3rows.webp) y [Espadachín](../assets/spritesheets/originales/espadachin/v2/source/espadachin-m-core-3rows.webp) también proceden de recortes de la lámina generada, conservando las tres acciones y cuatro fotogramas en cada fila.
 
-- Tira de 256×128 píxeles, cuatro celdas de 64×128.
-- Transparencia real (alfa 0–255), cuatro fotogramas distintos y línea de pies alineada.
-- La paleta de salida se aumentó de 15 a 63 colores para evitar el aspecto excesivamente reducido en color.
-- QA genera previews ampliadas y JSON de hashes, geometría y transparencia.
-- El QA técnico **no** confirma la calidad artística; los informes conservan `artistic_approval: pending visual review`.
-- Las armas no van pintadas en el cuerpo: se reservarán para capas equipables independientes.
+| Personaje | Idle | Caminar | Recibir daño |
+|---|---|---|---|
+| Espadachina | [PNG](../assets/spritesheets/originales/espadachin/v2/idle/espadachin-f-idle.png) · [preview](../assets/spritesheets/originales/espadachin/v2/idle/previews/espadachin-f-idle-preview.png) | [PNG](../assets/spritesheets/originales/espadachin/v2/walk/espadachin-f-walk.png) · [preview](../assets/spritesheets/originales/espadachin/v2/walk/previews/espadachin-f-walk-preview.png) | [PNG](../assets/spritesheets/originales/espadachin/v2/hurt/espadachin-f-hurt.png) · [preview](../assets/spritesheets/originales/espadachin/v2/hurt/previews/espadachin-f-hurt-preview.png) |
+| Espadachín | [PNG](../assets/spritesheets/originales/espadachin/v2/idle/espadachin-m-idle.png) · [preview](../assets/spritesheets/originales/espadachin/v2/idle/previews/espadachin-m-idle-preview.png) | [PNG](../assets/spritesheets/originales/espadachin/v2/walk/espadachin-m-walk.png) · [preview](../assets/spritesheets/originales/espadachin/v2/walk/previews/espadachin-m-walk-preview.png) | [PNG](../assets/spritesheets/originales/espadachin/v2/hurt/espadachin-m-hurt.png) · [preview](../assets/spritesheets/originales/espadachin/v2/hurt/previews/espadachin-m-hurt-preview.png) |
 
-## Commits y ejecuciones que merece la pena revisar
+## QA y límites
 
-1. [Aumentar la paleta a 63 colores](https://github.com/joseconca/gremio-expediciones/commit/500060f28fdd0f235f6b8af4d1187a34bb3bc0de): corrección visual del generador.
-2. [Generar Novata Idle v2](https://github.com/joseconca/gremio-expediciones/commit/c76b26916014e115ae3e30fc9d4512323a9081fc): PNG, frames, preview y QA de esa acción.
-3. [Generar Novata Caminar v2](https://github.com/joseconca/gremio-expediciones/commit/27d1278e03c7c5710bbee483e3b273cf40ddaa4e): PNG, frames, preview y QA de esa acción.
-4. [Workflow de sprites v2 — ejecución verde](https://github.com/joseconca/gremio-expediciones/actions/runs/39595518630): confirma la generación y el versionado de las salidas anteriores.
-5. [Regression general — ejecución fallida](https://github.com/joseconca/gremio-expediciones/actions/runs/39595518566): es un workflow distinto. No se debe describir el CI global como verde.
+- Las 12 tiras tienen cuatro fotogramas distintos por acción, transparencia alfa real (0–255), un único máster por sexo y línea de pies alineada.
+- Los informes JSON incluyen hashes por fotograma, dimensiones de tira/celda y rutas a los PNG nativos de 32×64.
+- `runtime_integrated: false`: no se han sustituido las hojas de producción de `public/sprites/heroes/`.
+- `artistic_approval: pending visual review`: el QA técnico no sustituye la revisión visual. En la animación Idle de algunas fuentes hay cambios sutiles; se deben revisar junto al juego antes de promoverlas.
+- Las armas siguen separadas del cuerpo para poder equiparlas en capas independientes.
 
-Los commits de código y workflow preparan automatización; los commits de arte deben contener PNG/preview/QA visibles. Para revisar el arte, empieza por los enlaces de preview de la primera tabla, no por los commits de infraestructura.
+La generación de los paquetes Novato y Espadachín terminó correctamente; el commit de arte más reciente es [`84c1713`](https://github.com/joseconca/gremio-expediciones/commit/84c17137dc5b4faad69bf5f86915b34abf86db15).
 
-## Próxima entrega
+## Próximo bloque
 
-## Paquete Novato v2: completado técnicamente
-
-Los másteres `novato-f-core-3rows.webp` y `novato-m-core-3rows.webp` proceden de recortes de la lámina generada, con tres filas (Idle/Caminar/Recibir daño) y cuatro fotogramas por fila. El workflow publica seis tiras 256×128, las celdas ampliadas y nativas de 32×64, previews y QA. La última generación que usa esos másteres terminó en verde: [ejecución de Novato v2](https://github.com/joseconca/gremio-expediciones/actions/runs/39619092000). `runtime_integrated` se mantiene en `false` y `artistic_approval` en `pending visual review`; falta la revisión visual final antes de reemplazar sprites de producción.
-
-## Siguiente bloque: Tier 1 — Espadachín
-
-Se está preparando el mismo flujo para `espadachin-f-core-3rows.webp` y `espadachin-m-core-3rows.webp`: recortes individuales de la lámina generada, un máster común por sexo, tiras Idle/Caminar/Recibir daño, frames nativos 32×64, previews y QA. Los recursos existentes bajo `assets/spritesheets/tier1/` son material legado y no se confundirán con esta nueva entrega. El runtime seguirá intacto hasta revisar los nuevos recortes.
+Continuar con las demás clases de Tier 1 (Arquero, Mago y Acólito), priorizando másteres comunes y recortes individuales. El material legado de `assets/spritesheets/tier1/` no debe confundirse con estas nuevas entregas. Mantener el runtime intacto hasta que cada paquete se revise visualmente.
