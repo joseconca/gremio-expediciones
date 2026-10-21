@@ -16,7 +16,7 @@ from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_ROOT = ROOT / "assets" / "spritesheets" / "originales"
-CLASSES = ("arquero", "mago", "acolito")
+CLASSES = ("arquero", "mago", "acolito", "caballero", "duelista", "sacerdote", "monje", "cazador", "explorador", "elementalista", "brujo")
 SEXES = ("f", "m")
 ACTIONS = ("idle", "walk", "hurt")
 ROWS = {name: index for index, name in enumerate(ACTIONS)}
