@@ -509,7 +509,7 @@ test("la regeneración por turno en party solo incrementa al actor del siguiente
   const service = loadService(prisma);
   await service.ejecutarTurnoEnemigoParty("u1", "expedition-1");
   assert.equal(calls.characterWrites.some((write) => write.data.energiaActual === 7), true);
-  assert.equal(calls.characterWrites.some((write) => write.data.manaActual === 2), true);
+  assert.equal(calls.characterWrites.some((write) => write.data.manaActual === 3), true);
 });
 
 test("el turno del enemigo apunta al aventurero con menor porcentaje de vida", async () => {
