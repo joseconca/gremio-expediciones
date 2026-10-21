@@ -8,7 +8,7 @@
 - Cuatro fotogramas por fila, en secuencia de izquierda a derecha.
 - Quince filas de animación, siempre mirando hacia la derecha.
 - El cuerpo se mantiene como capa base; equipo y armas se superpondrán mediante capas independientes en iteraciones posteriores.
-- Los avatares/retratos estáticos existentes mantienen la ruta de `obtenerSpriteHeroe`; para animación se usa `obtenerRutaSpritesheetHeroe`.
+- Los avatares estáticos se exportan desde el primer frame de Idle; el combate y los asedios usan `obtenerRutaSpritesheetHeroe` y reproducen Idle, Caminar y Recibir daño desde las tres primeras filas del atlas.
 
 ## Fase actual: refinamiento de Novato y Tier 1
 
@@ -20,7 +20,7 @@ La primera tanda de cinco clases se ha refinado con una dirección de RPG fantá
 - **Arquero:** ropa verde de explorador, jerkin de cuero, arnés cruzado, brazales y carcaj unido a la espalda.
 - **Mago:** túnica índigo, sombrero puntiagudo con gema engastada, brocado, filigrana arcana y runas bordadas en el tejido.
 
-Los detalles se dibujan como parte de cada prenda o silueta, en lugar de pegar piezas genéricas encima: cuero con costuras y desgaste para Novato, biseles y reflejos fríos para Espadachín, pliegues y bordados dorados para Acólito, grano de cuero y motivos vegetales para Arquero, y filigrana/ribetes arcanos para Mago. Las armas no aparecen sujetas en las manos: las nueve filas de ataque preparan la pose corporal para que las futuras hojas de armas se acoplen como capas independientes. La reproducción temporal en combate y el equipo modular de arma/armadura quedan fuera de esta fase.
+Los detalles se dibujan como parte de cada prenda o silueta, en lugar de pegar piezas genéricas encima: cuero con costuras y desgaste para Novato, biseles y reflejos fríos para Espadachín, pliegues y bordados dorados para Acólito, grano de cuero y motivos vegetales para Arquero, y filigrana/ribetes arcanos para Mago. Las hojas de producción ya usan los másteres v2 para Idle, Caminar y Recibir daño; los retratos son el primer frame de Idle. En combate y asedios, Idle se reproduce en bucle, Caminar acompaña la anticipación ofensiva y Recibir daño se usa durante los impactos. Las filas 3-14 mantienen el pipeline actual mientras se preparan las siguientes acciones y el equipo modular.
 
 El generador reproducible es `scripts/generar-spritesheets-clases.py`: `--phase novato` genera Novato, `--phase tier1` genera Espadachín, Acólito, Arquero y Mago, y `--phase all` genera las cinco clases. El workflow serializa la escritura de PNG, valida dimensiones y transparencia y crea commits de recursos separados por fase.
 
@@ -44,8 +44,8 @@ El generador reproducible es `scripts/generar-spritesheets-clases.py`: `--phase 
 | 13 | `attack_book` | Ataque con libro |
 | 14 | `attack_gloves` | Ataque con guantes |
 
-## Integración prevista
+## Integración completada
 
-La elección de fila y la reproducción temporal se implementarán en el sistema de animaciones de combate en una iteración posterior. Las hojas de armas independientes se alinearán sobre las poses de ataque; la armadura equipada también se compondrá como capa para conservar una silueta coherente.
+Las hojas de las 10 combinaciones clase/sexo integran las tiras v2 en las filas 0-2 y los retratos estáticos se derivan del primer frame de Idle. `SpriteHeroeAnimado` selecciona la fila adecuada con cuatro frames horizontales y respeta `prefers-reduced-motion`. Las filas 3-14 mantienen los recursos de ataque, esquiva, bloqueo y consumible existentes; la siguiente iteración de arte debe sustituirlas gradualmente por poses coherentes con los nuevos másteres.
 
 El catálogo actual de clases se obtiene de `src/lib/progresion/clases.ts`, conservando además los identificadores antiguos `guerrero` y `comerciante` por compatibilidad.

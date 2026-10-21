@@ -63,6 +63,24 @@ test("el refinador mantiene un perfil visual por clase y procesa las 70 hojas un
   assert.match(docs, /Identidad visual por clase/);
 });
 
+test("los paquetes v2 son fuente canónica de las filas Idle, Caminar y Recibir daño", () => {
+  const generator = read("scripts/generar-spritesheets-clases.py");
+  const workflow = read(".github/workflows/generar-spritesheets-clases.yml");
+  const component = read("src/components/combate/SpriteHeroeAnimado.tsx");
+  const validator = read("scripts/validar-integracion-sprites-v2.py");
+  const combat = read("src/components/combate/CombateModal.tsx");
+  const siege = read("src/components/combate/AsedioModal.tsx");
+  assert.ok(generator.includes("integrar_filas_sprites_v2(cid, sex, sheet)"));
+  assert.ok(generator.includes("idle_first_frame.save(avatar"));
+  assert.ok(workflow.includes("scripts/validar-integracion-sprites-v2.py"));
+  assert.ok(validator.includes("production row {action} differs from canonical v2"));
+  assert.ok(component.includes('backgroundSize: "400% 1500%"'));
+  assert.ok(component.includes("hero-sprite-four-frames"));
+  assert.ok(component.includes("hero-sprite-animated"));
+  assert.ok(combat.includes("SpriteHeroeAnimado"));
+  assert.ok(siege.includes("SpriteHeroeAnimado"));
+});
+
 test("el cartel de compañía y los participantes de expedición identifican la clase de cada aventurero", () => {
   const panel = read("src/components/base/PanelParty.tsx");
   const servicio = read("src/server/services/party/party-service.ts");

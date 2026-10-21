@@ -2,7 +2,7 @@
 
 **Actualizado:** 2026-10-21  
 **Rama:** `main`  
-**Política de integración:** estas salidas son arte en revisión. Las hojas de producción no se sustituyen hasta aprobar visualmente cada paquete.
+**Política de integración:** los paquetes v2 de Novato y Tier 1 están aprobados para las tres acciones principales. Las hojas de producción integran Idle, Caminar y Recibir daño; los retratos estáticos proceden de Idle.
 
 ## Novato (Tier 0) — paquete generado
 
@@ -24,7 +24,7 @@ Los másteres [Espadachina](../assets/spritesheets/originales/espadachin/v2/sour
 
 ## Arquero (Tier 1) — paquete generado
 
-Másteres recortados: [femenino](../assets/spritesheets/originales/arquero/v2/source/arquero-f-core-3rows.webp) · [masculino](../assets/spritesheets/originales/arquero/v2/source/arquero-m-core-3rows.webp). Las 6 tiras pasaron QA técnica con cuatro fotogramas distintos y alfa real. La caminata de la arquera femenina admite 4 px de deriva en la base de la silueta; el resto está en 0 px. Revisión visual final pendiente.
+Másteres recortados: [femenino](../assets/spritesheets/originales/arquero/v2/source/arquero-f-core-3rows.webp) · [masculino](../assets/spritesheets/originales/arquero/v2/source/arquero-m-core-3rows.webp). Las seis tiras se integran en las hojas de producción y pasan la validación técnica.
 
 | Personaje | Idle | Caminar | Recibir daño |
 |---|---|---|---|
@@ -33,16 +33,16 @@ Másteres recortados: [femenino](../assets/spritesheets/originales/arquero/v2/so
 
 ## Mago (Tier 1) — paquete generado
 
-Másteres recortados: [femenino](../assets/spritesheets/originales/mago/v2/source/mago-f-core-3rows.webp) · [masculino](../assets/spritesheets/originales/mago/v2/source/mago-m-core-3rows.webp). Las 6 tiras pasaron QA técnica; revisión visual final pendiente.
+Másteres recortados: [femenino](../assets/spritesheets/originales/mago/v2/source/mago-f-core-3rows.webp) · [masculino](../assets/spritesheets/originales/mago/v2/source/mago-m-core-3rows.webp). Las seis tiras se integran en las hojas de producción y pasan la validación técnica.
 
 | Personaje | Idle | Caminar | Recibir daño |
 |---|---|---|---|
 | Maga | [PNG](../assets/spritesheets/originales/mago/v2/idle/mago-f-idle.png) · [preview](../assets/spritesheets/originales/mago/v2/idle/previews/mago-f-idle-preview.png) | [PNG](../assets/spritesheets/originales/mago/v2/walk/mago-f-walk.png) · [preview](../assets/spritesheets/originales/mago/v2/walk/previews/mago-f-walk-preview.png) | [PNG](../assets/spritesheets/originales/mago/v2/hurt/mago-f-hurt.png) · [preview](../assets/spritesheets/originales/mago/v2/hurt/previews/mago-f-hurt-preview.png) |
 | Mago | [PNG](../assets/spritesheets/originales/mago/v2/idle/mago-m-idle.png) · [preview](../assets/spritesheets/originales/mago/v2/idle/previews/mago-m-idle-preview.png) | [PNG](../assets/spritesheets/originales/mago/v2/walk/mago-m-walk.png) · [preview](../assets/spritesheets/originales/mago/v2/walk/previews/mago-m-walk-preview.png) | [PNG](../assets/spritesheets/originales/mago/v2/hurt/mago-m-hurt.png) · [preview](../assets/spritesheets/originales/mago/v2/hurt/previews/mago-m-hurt-preview.png) |
 
-## Acólito (Tier 1) — másteres v2 recuperados, revisión visual pendiente
+## Acólito (Tier 1) — integrado en producción
 
-Se han restaurado los másteres v2 preparados para esta iteración: cuatro fotogramas nativos de 32×64 por fila, tres filas (Idle, Caminar y Recibir daño), transparencia alfa real y una paleta pixel-art conservada en WebP sin pérdida. El pipeline genera las tiras ampliadas de 64×128, los PNG nativos, previews y QA a partir de esos másteres. Las hojas de producción en `public/sprites/heroes/acolito/` permanecen intactas. La validación automática no equivale a aprobación artística: revisar las seis tiras antes de integrar nada en runtime.
+Se han restaurado los másteres v2 preparados para esta iteración: cuatro fotogramas nativos de 32×64 por fila, tres filas (Idle, Caminar y Recibir daño), transparencia alfa real y una paleta pixel-art conservada en WebP sin pérdida. El pipeline genera las tiras ampliadas de 64×128, los PNG nativos, previews y QA a partir de esos másteres. Las hojas de producción `public/sprites/heroes/acolito/` usan ya las seis tiras. Se sustituyó el máster masculino corrupto antes de la regeneración final y ambos workflows terminaron en verde.
 
 | Personaje | Idle | Caminar | Recibir daño |
 |---|---|---|---|
