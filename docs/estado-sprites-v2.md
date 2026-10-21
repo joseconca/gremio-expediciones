@@ -36,6 +36,10 @@ Se retiraron las salidas v1 duplicadas de `assets/spritesheets/originales/novato
 
 La generación de los paquetes Novato y Espadachín terminó correctamente; ver las [ejecuciones de Novato](https://github.com/joseconca/gremio-expediciones/actions/runs/39619092000) y [Espadachín](https://github.com/joseconca/gremio-expediciones/actions/runs/39622303006). La limpieza no integra los recursos en runtime.
 
+## Arquero (Tier 1) — en generación
+
+Se han incorporado los dos másteres transparentes de 128×192 (cuatro fotogramas nativos de 32×64 por fila) en `assets/spritesheets/originales/arquero/v2/source/`. El workflow generará Idle, Caminar y Recibir daño para ambos sexos, con tira ampliada, frames nativos, preview y QA. Se admite hasta 4 px de variación en la línea inferior de Caminar (2 px en la fuente nativa), y hasta 2 px en Idle/Recibir daño.
+
 ## Tier 1 restante — flujo preparado
 
 Se ha añadido `scripts/build-tier1-class-v2.py` y su workflow. El workflow solo genera una clase cuando ambos másteres masculinos y femeninos están versionados; publica seis tiras por clase (Idle, Caminar y Recibir daño para ambos sexos), frames nativos 32×64, previews y QA, con un commit de arte por clase. Los recursos de `assets/spritesheets/tier1/` permanecen intactos porque los usa el generador de atlas y equipo. Los nuevos paquetes seguirán marcados como pendientes de aprobación visual y no se conectarán al runtime.

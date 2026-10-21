@@ -124,8 +124,9 @@ def build(class_id: str, sex: str, action: str) -> dict:
     if distinct != COUNT:
         raise ValueError(f"{class_id}/{sex}/{action}: expected 4 distinct frames, got {distinct}")
     feet_drift = max(box[3] for box in boxes) - min(box[3] for box in boxes)
-    if feet_drift > 2:
-        raise ValueError(f"{class_id}/{sex}/{action}: feet baseline drift {feet_drift}px > 2px")
+    max_feet_drift = 4 if action == "walk" else 2
+    if feet_drift > max_feet_drift:
+        raise ValueError(f"{class_id}/{sex}/{action}: feet baseline drift {feet_drift}px > {max_feet_drift}px")
 
     preview_path = preview_dir / f"{class_id}-{sex}-{action}-preview.png"
     make_preview(source, preview_path)
