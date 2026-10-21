@@ -134,7 +134,13 @@ function loadService(prisma, testOptions = {}) {
         return objeto ? { objeto, sufijoId: "del test", bonificaciones: { vitalidad: 1 } } : null;
       },
     },
-    "@/lib/inventario": { LIMITE_INVENTARIO_OBJETOS: 30 },
+    "@/lib/inventario": {
+      LIMITE_INVENTARIO_OBJETOS: 30,
+      obtenerEquipoDesdePersonaje: () => ({
+        arma: null, manoSecundaria: null, casco: null, armadura: null, pantalones: null,
+        botas: null, guantes: null, accesorio: null, anillo1: null, anillo2: null,
+      }),
+    },
     "@/lib/configuracionJuego": { experienciaParaNivel: () => 500 },
     "@/lib/expediciones/dificultad": {
       esModoDificultad: (value) => ["facil", "normal", "dificil"].includes(value),

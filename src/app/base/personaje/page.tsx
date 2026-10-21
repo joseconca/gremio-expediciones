@@ -292,7 +292,6 @@ export default function PersonajePage() {
   ], []);
 
   const habilidadesAprendidas = useMemo(() => datosHabilidades?.aprendidas ?? [], [datosHabilidades?.aprendidas]);
-  const profesionActivaId = datosHabilidades?.profesionActivaId ?? personaje?.profesionActivaId ?? "novato";
   const habilidadesEquipadas = useMemo(() => habilidadesAprendidas.filter((item) => esSlotHabilidad(item.slot)), [habilidadesAprendidas]);
   const habilidadesSinEquipar = useMemo(() => habilidadesAprendidas.filter((item) => !esSlotHabilidad(item.slot)), [habilidadesAprendidas]);
   const habilidadesFiltradas = useMemo(() => {

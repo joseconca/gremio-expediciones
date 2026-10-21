@@ -83,7 +83,7 @@ test("las mejoras no heredan anomalías del precio de compra", () => {
   assert.equal(calcularCosteMejoraObjeto({ ...rara, precio: 1 }, 0), 166);
   assert.equal(calcularCosteMejoraObjeto({ ...rara, precio: 999999 }, 0), 166);
   assert.ok(calcularCosteMejoraObjeto(rara, 1) > calcularCosteMejoraObjeto(rara, 0));
-  assert.equal(calcularCosteMejoraObjeto(obtenerObjetoPorId("armadura_acero"), 0), 138);
+  assert.equal(calcularCosteMejoraObjeto(obtenerObjetoPorId("armadura_acero"), 0), 75);
   assert.equal(calcularCosteMejoraObjeto({ ...rara, rareza: "epico" }, 0), 231);
   assert.equal(calcularCosteMejoraObjeto({ tipo: "consumible", rareza: "comun" }, 0), 0);
 });

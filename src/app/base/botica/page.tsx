@@ -73,6 +73,8 @@ export default function BoticaPage() {
   }, [isLoading, nivelBotica, router]);
 
   useEffect(() => {
+    // La petición sincroniza la pantalla con la API; el estado se actualiza al resolver el fetch asíncrono.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (!isLoading && nivelBotica > 0) void cargarMochila();
   }, [cargarMochila, isLoading, nivelBotica]);
 
