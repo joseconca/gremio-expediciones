@@ -531,7 +531,7 @@ test("el turno del enemigo apunta al aventurero con menor porcentaje de vida", a
   assert.equal(combat.turnoActualUsuarioId, "u1");
   assert.equal(combat.ronda, 1, "el ciclo no avanza de ronda hasta consumir toda la cola");
   assert.equal(calls.characterWrites.filter((write) => write.data.hpActual === 10).length, 1);
-  assert.equal(calls.characterWrites.some((write) => write.data.energiaActual === 7 && write.data.manaActual === 3), true);
+  assert.equal(calls.characterWrites.some((write) => write.data.energiaActual === 22 && write.data.manaActual === 12), true);
 });
 
 test("si falla el control de versión, no se puede completar dos veces el turno", async () => {
