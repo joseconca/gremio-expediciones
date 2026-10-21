@@ -40,9 +40,14 @@ Másteres recortados: [femenino](../assets/spritesheets/originales/mago/v2/sourc
 | Maga | [PNG](../assets/spritesheets/originales/mago/v2/idle/mago-f-idle.png) · [preview](../assets/spritesheets/originales/mago/v2/idle/previews/mago-f-idle-preview.png) | [PNG](../assets/spritesheets/originales/mago/v2/walk/mago-f-walk.png) · [preview](../assets/spritesheets/originales/mago/v2/walk/previews/mago-f-walk-preview.png) | [PNG](../assets/spritesheets/originales/mago/v2/hurt/mago-f-hurt.png) · [preview](../assets/spritesheets/originales/mago/v2/hurt/previews/mago-f-hurt-preview.png) |
 | Mago | [PNG](../assets/spritesheets/originales/mago/v2/idle/mago-m-idle.png) · [preview](../assets/spritesheets/originales/mago/v2/idle/previews/mago-m-idle-preview.png) | [PNG](../assets/spritesheets/originales/mago/v2/walk/mago-m-walk.png) · [preview](../assets/spritesheets/originales/mago/v2/walk/previews/mago-m-walk-preview.png) | [PNG](../assets/spritesheets/originales/mago/v2/hurt/mago-m-hurt.png) · [preview](../assets/spritesheets/originales/mago/v2/hurt/previews/mago-m-hurt-preview.png) |
 
-## Acólito (Tier 1) — fuente de recuperación
+## Acólito (Tier 1) — paquete generado, revisión visual pendiente
 
-Los PNG que se habían subido como másteres v2 estaban dañados y se retiraron. Para recuperar la generación sin volver a subir binarios a mano, el workflow crea másteres WebP sin pérdida recortando las tres primeras filas (Idle, Caminar, Recibir daño) de las hojas de Acólito ya versionadas en `public/sprites/heroes/acolito/`. El recorte mantiene las celdas originales de 64×128, verifica transparencia y cuatro fotogramas distintos por fila, y no modifica las hojas de producción. Este origen de recuperación no se considera aprobación artística: revisar las seis tiras antes de integrar nada en runtime.
+Los PNG que se subieron inicialmente como másteres v2 estaban dañados y se retiraron. El workflow recuperó los másteres WebP sin pérdida recortando las tres primeras filas (Idle, Caminar, Recibir daño) de las hojas de Acólito ya versionadas en `public/sprites/heroes/acolito/`. El recorte mantiene las celdas originales de 64×128, verifica transparencia y cuatro fotogramas distintos por fila, y no modifica las hojas de producción. Estas salidas heredan el diseño de las hojas existentes; **no son una aprobación artística de una nueva iteración**. Revisar las seis tiras antes de integrar nada en runtime.
+
+| Personaje | Idle | Caminar | Recibir daño |
+|---|---|---|---|
+| Acólita | [PNG](../assets/spritesheets/originales/acolito/v2/idle/acolito-f-idle.png) · [preview](../assets/spritesheets/originales/acolito/v2/idle/previews/acolito-f-idle-preview.png) | [PNG](../assets/spritesheets/originales/acolito/v2/walk/acolito-f-walk.png) · [preview](../assets/spritesheets/originales/acolito/v2/walk/previews/acolito-f-walk-preview.png) | [PNG](../assets/spritesheets/originales/acolito/v2/hurt/acolito-f-hurt.png) · [preview](../assets/spritesheets/originales/acolito/v2/hurt/previews/acolito-f-hurt-preview.png) |
+| Acólito | [PNG](../assets/spritesheets/originales/acolito/v2/idle/acolito-m-idle.png) · [preview](../assets/spritesheets/originales/acolito/v2/idle/previews/acolito-m-idle-preview.png) | [PNG](../assets/spritesheets/originales/acolito/v2/walk/acolito-m-walk.png) · [preview](../assets/spritesheets/originales/acolito/v2/walk/previews/acolito-m-walk-preview.png) | [PNG](../assets/spritesheets/originales/acolito/v2/hurt/acolito-m-hurt.png) · [preview](../assets/spritesheets/originales/acolito/v2/hurt/previews/acolito-m-hurt-preview.png) |
 
 ## Organización canónica y limpieza
 
@@ -52,10 +57,10 @@ Se retiraron las salidas v1 duplicadas de `assets/spritesheets/originales/novato
 
 Los workflows de Novato y Espadachín terminaron en verde tras la limpieza; la generación de Arquero y Mago también se completó, con QA por acción. El pipeline compartido valida ahora que cada máster se pueda abrir, tenga dimensiones admitidas, alfa real y cuatro poses distintas por fila; si una fuente está corrupta, omite esa clase y conserva las demás entregas.
 
-- Novato, Espadachín, Arquero y Mago tienen 24 tiras v2 en total. Cada una contiene cuatro fotogramas distintos y alfa real (0–255); los informes QA registran la línea de pies. Acólito sigue pendiente y no se incluye en ese recuento.
+- Novato, Espadachín, Arquero, Mago y Acólito tienen 30 tiras v2 en total. Cada una contiene cuatro fotogramas distintos y alfa real (0–255); los informes QA registran la línea de pies. Acólito sigue pendiente y no se incluye en ese recuento.
 - Los informes JSON incluyen hashes por fotograma, dimensiones de tira/celda y rutas a los PNG nativos de 32×64.
 - `runtime_integrated: false`: no se han sustituido las hojas de producción de `public/sprites/heroes/`.
 - `artistic_approval: pending visual review`: el QA técnico no sustituye la revisión visual. En la animación Idle de algunas fuentes hay cambios sutiles; se deben revisar junto al juego antes de promoverlas.
 - Las armas siguen separadas del cuerpo para poder equiparlas en capas independientes.
 
-La generación de los paquetes Novato y Espadachín terminó correctamente; ver las [ejecuciones de Novato](https://github.com/joseconca/gremio-expediciones/actions/runs/39619092000) y [Espadachín](https://github.com/joseconca/gremio-expediciones/actions/runs/39622303006). La limpieza no integra los recursos en runtime.
+La generación v2 de Tier 1 (Arquero, Mago y Acólito) terminó correctamente en [GitHub Actions](https://github.com/joseconca/gremio-expediciones/actions/runs/39663357602). La limpieza y la generación no integran los recursos nuevos en runtime.
