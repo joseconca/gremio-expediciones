@@ -1,0 +1,75 @@
+{
+  "class": "novato",
+  "sex": "f",
+  "action": "walk",
+  "source": "assets/spritesheets/originales/novato/v2/source/novato-f-walk.webp",
+  "source_sha256": "0e30d52085e501ee77ff0663bf41e54946b787114552a556fe4fe36a044d16ca",
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "shared_palette": true,
+  "palette_reference_idle_sha256": "d9410e6093db2a8d36352c93e5a8fce01a6a1cfa7af01a2d0208d3f33505d349",
+  "per_frame_rescaling": false,
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "weapon_drawn_in_body": false,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "3860e8c2e3e9b939fec0bea5868c6c1bae8f3852bcbb9622bbfefbd07a8170a5",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        3,
+        9,
+        61,
+        124
+      ],
+      "rgba_sha256": "099cc385a7620b891b280d60f27f34ee400acb0dfec3ccda71f3f3ab0b506891",
+      "visible_pixels": 3993
+    },
+    {
+      "index": 2,
+      "bbox": [
+        3,
+        8,
+        60,
+        124
+      ],
+      "rgba_sha256": "a678117bcd106a67f6b733d8050a201144550b15c70763c94fb5273a2c218a8c",
+      "visible_pixels": 3996
+    },
+    {
+      "index": 3,
+      "bbox": [
+        3,
+        10,
+        61,
+        124
+      ],
+      "rgba_sha256": "a872d5df61b1f076eefdb652394329d9bc5e7c8ce11399f6bc34427db8087ca7",
+      "visible_pixels": 3926
+    },
+    {
+      "index": 4,
+      "bbox": [
+        2,
+        11,
+        61,
+        124
+      ],
+      "rgba_sha256": "b85fe8c91a35440d49c80a00bb26a9b0ffcd449cd155974ffb8e012a5f31e462",
+      "visible_pixels": 3907
+    }
+  ]
+}
