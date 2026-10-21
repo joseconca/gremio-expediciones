@@ -1304,99 +1304,12 @@ def generate(cid, sex):
             # Widen the integrated silhouette with nearest-neighbour scaling; keep pixel edges crisp.
             sprite=sprite.resize((77,H),Image.Resampling.NEAREST).crop((6,0,70,H))
             sheet.alpha_composite(sprite,(frame*W,row*H))
-    # Novato utiliza arte aprobado para Idle, Caminar y Recibir daño.
-    # El resto de las acciones conserva sus filas actuales hasta cada iteración posterior.
-    if cid == "novato":
-        walk_path = ROOT / "assets" / "spritesheets" / "novato" / f"novato-{sex}-walk-row.png"
-        with Image.open(walk_path) as walk_source:
-            walk = walk_source.convert("RGBA")
-        assert walk.size == (256, 128), (walk_path, walk.size)
-        assert walk.getchannel("A").getextrema()[0] == 0, (walk_path, "la fila debe conservar transparencia")
-        sheet.paste((0, 0, 0, 0), (0, H, 256, 2 * H))
-        sheet.alpha_composite(walk, (0, H))
+    # Las tres primeras filas se sustituyen desde los paquetes v2 canónicos al final.
+    # No volver a depender de la carpeta histórica assets/spritesheets/novato/.
 
-        # La tira de daño dibujada a mano está aprobada para la aventurera.
-        # El Novato masculino mantiene por ahora la fila generada existente hasta
-        # terminar de validar la exportación binaria de su tira personalizada.
-        if sex == "f":
-            hurt_path = ROOT / "assets" / "spritesheets" / "novato" / f"novato-{sex}-hurt-row.png"
-            with Image.open(hurt_path) as hurt_source:
-                hurt = hurt_source.convert("RGBA")
-            assert hurt.size == (256, 128), (hurt_path, hurt.size)
-            assert hurt.getchannel("A").getextrema() == (0, 255), (hurt_path, "se exige transparencia real y píxeles visibles")
-            sheet.paste((0, 0, 0, 0), (0, 2 * H, 256, 3 * H))
-            sheet.alpha_composite(hurt, (0, 2 * H))
-
-        master_path = ROOT / "assets" / "spritesheets" / "novato" / f"novato-{sex}-master.png"
-        with Image.open(master_path) as master_source:
-            master = master_source.convert("RGBA")
-        assert master.size == (64, 128), (master_path, master.size)
-
-        # Novato masculino: conservar el acabado del sprite maestro y animar el golpe.
-        # Se transforman fotogramas completos; no se recompone un cuerpo de otra calidad.
-        if sex == "m":
-            sheet.paste((0, 0, 0, 0), (0, 2 * H, 256, 3 * H))
-            for frame in range(COLS):
-                hurt_pose = master.copy()
-                if frame == 1:
-                    # Retroceso breve alrededor de los pies, con destello sobre el torso.
-                    hurt_pose = hurt_pose.rotate(5.0, resample=Image.Resampling.NEAREST,
-                                                  center=(32, 114), expand=False)
-                    impact = ImageDraw.Draw(hurt_pose)
-                    impact.line([(35, 51), (39, 53), (37, 56)], fill="#fff2bd", width=2)
-                    impact.line([(40, 49), (40, 52)], fill="#f4d17a", width=2)
-                    impact.line([(43, 51), (40, 53)], fill="#fff2bd", width=1)
-                    impact.point((39, 52), fill="#fff9de")
-                elif frame == 2:
-                    # Compresión vertical con la base apoyada en el suelo de la celda.
-                    compressed = master.resize((64, 116), Image.Resampling.NEAREST)
-                    hurt_pose = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-                    hurt_pose.alpha_composite(compressed, (0, 12))
-                    impact = ImageDraw.Draw(hurt_pose)
-                    impact.point((39, 55), fill="#f4d17a")
-                elif frame == 3:
-                    # Recuperación inclinándose ligeramente hacia la posición inicial.
-                    hurt_pose = hurt_pose.rotate(-2.5, resample=Image.Resampling.NEAREST,
-                                                  center=(32, 114), expand=False)
-                sheet.alpha_composite(hurt_pose, (frame * W, 2 * H))
-
-        # Idle queda anclado al diseño maestro; variaciones de uno píxel simulan respiración.
-        sheet.paste((0, 0, 0, 0), (0, 0, 256, H))
-        idle_offsets = ((0, 0), (0, -1), (1, -1), (0, 0))
-        for frame, (dx, dy) in enumerate(idle_offsets):
-            sheet.alpha_composite(master, (frame * W + dx, dy))
-
-    # Tier 1 — Espadachín comparte calidad, proporciones y orientación del maestro de Novato.
-    # Las armas quedan fuera de estos PNG; se añaden en la capa de equipo/acción correspondiente.
-    if cid == "espadachin":
-        idle, walk, hurt = construir_fuentes_espadachin(sex)
-        for row, row_source in ((0, idle), (1, walk), (2, hurt)):
-            sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
-            sheet.alpha_composite(row_source, (0, row * H))
-        for row, row_source in construir_acciones_tier1(cid, sex).items():
-            sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
-            sheet.alpha_composite(row_source, (0, row * H))
-    elif cid == "acolito":
-        idle, walk, hurt = construir_filas_modulares_tier1(cid, sex, pintar_equipo_acolito, "#fff0bf")
-        for row, row_source in ((0, idle), (1, walk), (2, hurt)):
-            sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
-            sheet.alpha_composite(row_source, (0, row * H))
-        for row, row_source in construir_acciones_tier1(cid, sex).items():
-            sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
-            sheet.alpha_composite(row_source, (0, row * H))
-    elif cid == "arquero":
-        idle, walk, hurt = construir_filas_modulares_tier1(cid, sex, pintar_equipo_arquero, "#c8e68b")
-        for row, row_source in ((0, idle), (1, walk), (2, hurt)):
-            sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
-            sheet.alpha_composite(row_source, (0, row * H))
-        for row, row_source in construir_acciones_tier1(cid, sex).items():
-            sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
-            sheet.alpha_composite(row_source, (0, row * H))
-    elif cid == "mago":
-        idle, walk, hurt = construir_filas_modulares_tier1(cid, sex, pintar_equipo_mago, "#67dff8")
-        for row, row_source in ((0, idle), (1, walk), (2, hurt)):
-            sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
-            sheet.alpha_composite(row_source, (0, row * H))
+    # Tier 1 conserva las filas 3-14 del banco modular versionado. Las acciones
+    # Idle/Caminar/Recibir daño se sustituyen abajo por las tiras originales v2.
+    if cid in ("espadachin", "acolito", "arquero", "mago"):
         for row, row_source in construir_acciones_tier1(cid, sex).items():
             sheet.paste((0, 0, 0, 0), (0, row * H, W * COLS, (row + 1) * H))
             sheet.alpha_composite(row_source, (0, row * H))
