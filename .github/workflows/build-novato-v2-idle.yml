@@ -34,58 +34,51 @@ jobs:
       - name: Instalar Pillow
         run: python -m pip install --disable-pip-version-check pillow
 
-      - name: Generar las acciones presentes, con Idle primero
+      - name: Generar, validar y versionar cada acción por separado
         shell: bash
         run: |
           set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           for sex in f m; do
+            master="assets/spritesheets/originales/novato/v2/source/novato-$sex-core-3rows.webp"
             for action in idle walk hurt; do
               source="assets/spritesheets/originales/novato/v2/source/novato-$sex-$action.webp"
-              if [[ -f "$source" ]]; then
+              if [[ -f "$master" || -f "$source" ]]; then
                 echo "=== Novato $sex / $action ==="
                 python scripts/build-novato-v2.py --sex "$sex" --action "$action"
+
+                python - "$sex" "$action" <<'PY'
+          import json, sys
+          from pathlib import Path
+          from PIL import Image
+          sex, action = sys.argv[1:]
+          base = Path("assets/spritesheets/originales/novato/v2")
+          strip = base / action / f"novato-{sex}-{action}.png"
+          report_path = base / action / f"qa-report-{sex}-{action}.json"
+          with Image.open(strip) as image:
+              assert image.size == (256, 128), (strip, image.size)
+              rgba = image.convert("RGBA")
+              assert rgba.getchannel("A").getextrema() == (0, 255), strip
+          report = json.loads(report_path.read_text(encoding="utf-8"))
+          assert report["frame_count"] == 4
+          assert report["distinct_frame_count"] == 4
+          assert report["cell_dimensions"] == [64, 128]
+          assert report["runtime_integrated"] is False
+          print(f"QA OK: {strip} | {report['output_sha256']}")
+          PY
+
+                git add -A "assets/spritesheets/originales/novato/v2/$action/"
+                if ! git diff --cached --quiet; then
+                  git commit -m "art: versionar Novato $sex $action v2 con escala común"
+                  git push origin HEAD:main
+                fi
               else
-                echo "Sin fuente todavía: $source"
+                echo "Sin fuente todavía: $source (ni máster: $master)"
               fi
             done
           done
-
-      - name: Validar tiras, frames y QA
-        run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          from PIL import Image
-          base = Path("assets/spritesheets/originales/novato/v2")
-          for sex in ("f", "m"):
-              for action in ("idle", "walk", "hurt"):
-                  source = base / "source" / f"novato-{sex}-{action}.webp"
-                  if not source.exists():
-                      continue
-                  out = base / action
-                  strip = out / f"novato-{sex}-{action}.png"
-                  report_path = out / f"qa-report-{sex}-{action}.json"
-                  with Image.open(strip) as image:
-                      assert image.size == (256, 128), (strip, image.size)
-                      rgba = image.convert("RGBA")
-                      assert rgba.getchannel("A").getextrema() == (0, 255)
-                  report = json.loads(report_path.read_text(encoding="utf-8"))
-                  assert report["frame_count"] == 4
-                  assert report["distinct_frame_count"] == 4
-                  assert report["cell_dimensions"] == [64, 128]
-                  assert report["runtime_integrated"] is False
-                  print(f"QA OK: {strip} | {report['output_sha256']}")
-          PY
-
-      - name: Guardar resultados en commits reproducibles
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A assets/spritesheets/originales/novato/v2/
-          if ! git diff --cached --quiet; then
-            git commit -m "art: generar estados base v2 de Novato con paleta compartida"
-            git push origin HEAD:main
-          fi
 
       - name: Publicar paquete de revisión
         uses: actions/upload-artifact@v4
