@@ -618,21 +618,16 @@ export default function AsedioModal({
                     {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}
                   </div>
                 ))}
-                <div
-                  className="absolute inset-0 z-0 opacity-60 blur-xs"
-                  style={{
-                    transform:
-                      "translateY(42%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)",
-                  }}
-                >
-                  <Image
-                    src={spritePropio}
-                    alt="Sombra del héroe"
-                    fill
-                    sizes="180px"
-                    className="object-contain brightness-0"
-                  />
-                </div>
+                {/* SOMBRA REFLEJADA: comparte acción y fotograma con el héroe. */}
+                <SpriteHeroeAnimado
+                  clase={personaje.clase}
+                  sexo={personaje.sexo}
+                  profesionActivaId={personaje.profesionActivaId}
+                  nombre=""
+                  accion={actorImpactado === "jugador" ? "hurt" : actorAnimando === "jugador" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? "walk" : "idle"}
+                  sombra
+                  contextoSombra="hero"
+                />
 
                 <SpriteHeroeAnimado
                   clase={personaje.clase}

@@ -793,9 +793,15 @@ export default function CombateModal({
                     )}
                     <div className={`relative h-[90px] w-[80px] transition-all duration-200 sm:h-[126px] sm:w-[110px] ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}
                       data-combate-ancla={participante.usuarioId}>
-                      <div className="absolute inset-0 z-0 opacity-45 blur-[1px]" style={{ transform: "translateY(36%) perspective(110px) rotateX(65deg) scale(1.05,-0.65)" }}>
-                        <Image src={sprite} alt="" fill sizes="110px" className="object-contain brightness-0" />
-                      </div>
+                      <SpriteHeroeAnimado
+                        clase={participante.clase}
+                        sexo={participante.sexo}
+                        profesionActivaId={participante.profesionActivaId}
+                        nombre=""
+                        accion={impactado ? "hurt" : animando && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? "walk" : "idle"}
+                        sombra
+                        contextoSombra="party"
+                      />
                       {seleccionadoComoObjetivo && (
                         <div aria-hidden="true" className="pointer-events-none absolute -inset-px z-[5]">
                           <Image
@@ -968,22 +974,16 @@ export default function CombateModal({
                     {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}
                   </div>
                 ))}
-                {/* SOMBRA INVERSA DEL HÉROE */}
-                <div
-                  className="absolute inset-0 z-0 opacity-60 blur-xs"
-                  style={{
-                    transform:
-                      "translateY(42%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)",
-                  }}
-                >
-                  <Image
-                    src={spriteHeroe}
-                    alt="Sombra del héroe"
-                    fill
-                    sizes="180px"
-                    className="object-contain brightness-0"
-                  />
-                </div>
+                {/* SOMBRA REFLEJADA: comparte acción y fotograma con el héroe. */}
+                <SpriteHeroeAnimado
+                  clase={personaje.clase}
+                  sexo={personaje.sexo}
+                  profesionActivaId={personaje.profesionActivaId}
+                  nombre=""
+                  accion={actorImpactado === "jugador" ? "hurt" : actorAnimando === "jugador" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? "walk" : "idle"}
+                  sombra
+                  contextoSombra="hero"
+                />
 
                 {propioEsObjetivoHabilidad && (
                   <div aria-hidden="true" className="pointer-events-none absolute -inset-px z-[5]">

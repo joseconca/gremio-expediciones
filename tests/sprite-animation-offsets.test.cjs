@@ -6,6 +6,22 @@ const path = require("node:path");
 const root = path.resolve(__dirname, "..");
 const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), "utf8");
 
+test("hero shadows share the sprite-sheet row and frame timing with the actor", () => {
+  const component = read("src/components/combate/SpriteHeroeAnimado.tsx");
+  const combat = read("src/components/combate/CombateModal.tsx");
+  const siege = read("src/components/combate/AsedioModal.tsx");
+
+  assert.match(component, /sombra\?: boolean/);
+  assert.match(component, /backgroundImage: `url\("${ruta}"\)`/);
+  assert.match(component, /animation: `hero-sprite-four-frames ${duracion}ms linear ${repeticion}`/);
+  assert.match(component, /scaleX\(-1\) scale\(1\.1,-0\.9\)/);
+  assert.match(component, /scaleX\(-1\) scale\(1\.05,-0\.65\)/);
+  assert.match(combat, /SOMBRA REFLEJADA: comparte acción y fotograma con el héroe/);
+  assert.match(combat, /sombra\s*contextoSombra="party"/);
+  assert.match(combat, /sombra\s*contextoSombra="hero"/);
+  assert.match(siege, /sombra\s*contextoSombra="hero"/);
+});
+
 test("the animated sprite viewport advances through exactly four aligned columns", () => {
   const component = read("src/components/combate/SpriteHeroeAnimado.tsx");
   const css = read("src/app/globals.css");
