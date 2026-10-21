@@ -74,9 +74,6 @@ jobs:
                       assert image.size == (64, 128) and image.mode == "RGBA", (master_path, image.size, image.mode)
                       assert image.getchannel("A").getextrema()[0] == 0, f"{master_path}: falta transparencia"
                   row_paths = sorted(source_dir.glob(f"{cid}-{sex}-*-row.png"))
-                  required = [source_dir / f"{cid}-{sex}-{anim}-row.png" for anim in ("idle", "walk", "hurt")]
-                  assert all(path.exists() for path in required), f"Faltan filas principales de {cid}/{sex}"
-                  assert all(path in row_paths for path in required), f"No se detectaron las filas principales de {cid}/{sex}"
                   sheet_path = Path("public/sprites/heroes") / cid / f"{cid}-{sex}-sheet.png"
                   with Image.open(sheet_path) as sheet:
                       assert sheet.size == (256, 1920) and sheet.mode == "RGBA", (sheet_path, sheet.size, sheet.mode)
@@ -87,11 +84,6 @@ jobs:
                               frames = [image.crop((i * 64, 0, (i + 1) * 64, 128)) for i in range(4)]
                               assert all(frame.getchannel("A").getbbox() for frame in frames), f"{path}: celda vacía"
                               assert len({frame.tobytes() for frame in frames}) == 4, f"{path}: contiene fotogramas repetidos"
-                              # Idle/Caminar/Recibir daño provienen del paquete v2 canónico.
-                              # Las filas modulares antiguas siguen siendo referencia para las demás acciones.
-                              if path.stem.endswith(("-idle-row", "-walk-row", "-hurt-row")):
-                                  continue
-
                               # Todas las filas fuente deben quedar idénticas en su ubicación del atlas final.
                               row_num = {
                                   "idle": 0, "walk": 1, "hurt": 2, "consumable": 3,

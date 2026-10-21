@@ -51,16 +51,16 @@ Se han restaurado los másteres v2 preparados para esta iteración: cuatro fotog
 
 ## Organización canónica y limpieza
 
-Se retiraron las salidas v1 duplicadas de `assets/spritesheets/originales/novato/{idle,walk,hurt}/` y `assets/spritesheets/originales/espadachin/{idle,walk,hurt}/`: los paquetes de revisión vigentes son los ubicados en `v2/`. También se eliminan las fuentes por acción que duplicaban los másteres v2, los PNG de respaldo y las copias de fotogramas ampliados de 64×128; se conservan los fotogramas individuales nativos de 32×64, las tiras de 256×128, los másteres WebP, las previews y los informes QA. Se retiraron los scripts/workflows que regeneraban paquetes v1. `assets/spritesheets/tier1/` y `public/sprites/heroes/` se mantienen porque son entradas y recursos de producción usados por el generador de hojas completas.
+Los paquetes canónicos por acción se mantienen en `assets/spritesheets/originales/<clase>/v2/`: másteres WebP, tiras PNG, frames nativos 32×64, previews e informes QA. Se han retirado de `assets/spritesheets/tier1/` las 24 tiras base antiguas de Idle/Caminar/Recibir daño que duplicaban la fuente v2. Se conservan los másteres de cuerpo, las acciones 3-14 y los anclajes de arma usados para componer las acciones de combate restantes. `public/sprites/heroes/` contiene los atlas y retratos activos.
 
 ## QA y límites
 
-Los workflows de Novato y Espadachín terminaron en verde tras la limpieza; la generación de Arquero y Mago también se completó, con QA por acción. El pipeline compartido valida ahora que cada máster se pueda abrir, tenga dimensiones admitidas, alfa real y cuatro poses distintas por fila; si una fuente está corrupta, omite esa clase y conserva las demás entregas.
+El pipeline valida la generación del atlas completo, alfa real, cuatro fotogramas distintos por tira y la coincidencia exacta de las filas runtime 0-2 con las fuentes v2. Si una fuente está corrupta, el job falla y no publica una promoción parcial.
 
-- Novato, Espadachín, Arquero, Mago y Acólito tienen 30 tiras v2 en total. Cada una contiene cuatro fotogramas distintos y alfa real (0–255); los informes QA registran la línea de pies. Acólito sigue pendiente y no se incluye en ese recuento.
+- Novato, Espadachín, Arquero, Mago y Acólito tienen 30 tiras v2 integradas. Cada tira contiene cuatro fotogramas distintos y alfa real (0–255); los informes QA registran dimensiones y línea de pies.
 - Los informes JSON incluyen hashes por fotograma, dimensiones de tira/celda y rutas a los PNG nativos de 32×64.
-- `runtime_integrated: false`: no se han sustituido las hojas de producción de `public/sprites/heroes/`.
-- `artistic_approval: pending visual review`: el QA técnico no sustituye la revisión visual. En la animación Idle de algunas fuentes hay cambios sutiles; se deben revisar junto al juego antes de promoverlas.
+- `runtime_integrated: true` para Idle, Caminar y Recibir daño: el generador coloca las 30 tiras en las primeras tres filas de los diez atlas de producción y deriva los retratos de Idle.
+- Las filas 3-14 (consumible, esquiva, bloqueo y ataques por arma) mantienen el sistema de producción modular previo; se renovarán al crear las animaciones correspondientes.
 - Las armas siguen separadas del cuerpo para poder equiparlas en capas independientes.
 
-La generación v2 de Tier 1 (Arquero, Mago y Acólito) terminó correctamente en [GitHub Actions](https://github.com/joseconca/gremio-expediciones/actions/runs/39663357602). La limpieza y la generación no integran los recursos nuevos en runtime.
+La integración de los atlas y la validación de las tiras canónicas terminó correctamente en [GitHub Actions](https://github.com/joseconca/gremio-expediciones/actions/runs/39669763738). La regresión también pasó en [GitHub Actions](https://github.com/joseconca/gremio-expediciones/actions/runs/39669763789).
