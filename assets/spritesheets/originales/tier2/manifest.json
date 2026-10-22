@@ -66,8 +66,8 @@
       "archetype": "agil",
       "resource": "energia",
       "visualBrief": "cuero reforzado, rastreo y equipo de caza",
-      "status": "raster-master-generator-committed",
-      "note": "A new raster-only PNG master generator is being added. Design uses forest cloth/leather, empty hands, no bow, quiver, arrows or embedded weapons; generated package will remain outside runtime until visual review."
+      "status": "raster-package-generated-review-pending",
+      "note": "Both custom raster PNG masters and the complete package are generated: six action strips, 24 native 32x64 frames, six previews and six QA reports. Four distinct frames per action, real alpha (0-255), footline drift 0 px. No bow, quiver, arrows, blade or embedded weapon. Not integrated into runtime; visual approval pending."
     },
     {
       "id": "explorador",

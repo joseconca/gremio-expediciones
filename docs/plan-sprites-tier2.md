@@ -38,15 +38,13 @@ Duelista ya dispone de dos másteres raster WebP basados en láminas de imagen 4
 2. Duelista — paquete raster generado; sin armas incrustadas.
 3. Sacerdote — paquete PNG generado desde las láminas compartidas; sin armas incrustadas.
 4. Monje — primera versión raster generada desde el panel de referencia; sin armas incrustadas.
-5. Cazador y Explorador — diferenciar ofensiva de rastreo y movilidad/supervivencia; quitar arcos/armas del cuerpo.
+5. Cazador y Explorador — diferenciar ofensiva de rastreo y movilidad/supervivencia; quitar arcos/armas del cuerpo. **Cazador ya tiene su paquete raster PNG completo**, pendiente de revisión visual. La siguiente clase activa es Explorador.
 6. Elementalista y Brujo — distinguir magia elemental de maldición y mantener los bastones/efectos en capas separadas.
-4. Cazador y Explorador — distinguir ofensiva de rastreo y movilidad/supervivencia.
-5. Elementalista y Brujo — separar magia elemental legible de magia de maldición/oscura.
 
 ## Estado de trabajo — 22 de octubre de 2026
 
 - **Caballero:** paquete v2 masculino y femenino ya generado en `assets/spritesheets/originales/caballero/v2/`; requiere limpieza visual posterior del fondo residual. No está integrado al runtime.
 - **Duelista:** másteres SVG editables para ambos sexos, rasterización PNG 128×192, seis tiras de 256×128, 24 frames nativos 32×64, seis previews y seis informes QA. Las seis tiras tienen cuatro frames distintos, alfa real y deriva de pies de 2 px en QA. No está integrado al runtime.
-- **Estado actual:** Caballero, Duelista, Sacerdote y Monje tienen sus paquetes v2 generados. Cazador es la siguiente clase en curso; su generador raster PNG se está versionando antes de activar el workflow. Después seguirán Explorador, Elementalista y Brujo.
+- **Estado actual:** Caballero, Duelista, Sacerdote y Monje tienen sus paquetes v2 generados. **Cazador tiene ya las dos fuentes raster PNG, seis tiras, 24 frames nativos, previews y QA en `assets/spritesheets/originales/cazador/v2/`.** Está pendiente de aprobación visual y no se ha integrado al runtime. La siguiente clase es Explorador; después Elementalista y Brujo.
 
-La generación del paquete de Duelista terminó en verde en [GitHub Actions](https://github.com/joseconca/gremio-expediciones/actions/runs/39766151708); la regresión también terminó en verde en [GitHub Actions](https://github.com/joseconca/gremio-expediciones/actions/runs/39766151730).
+La generación del paquete de Cazador terminó en verde en [GitHub Actions](https://github.com/joseconca/gremio-expediciones/actions/runs/39840572903); la regresión también terminó en verde en [GitHub Actions](https://github.com/joseconca/gremio-expediciones/actions/runs/39840572707).
