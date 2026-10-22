@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "classId": "elementalista",
+  "sex": "m",
+  "action": "idle",
+  "direction": "right",
+  "status": "staging-review-required",
+  "frameCount": 4,
+  "canvas": {
+    "width": 256,
+    "height": 128,
+    "mode": "P",
+    "transparencyIndex": 0
+  },
+  "cell": {
+    "width": 64,
+    "height": 128
+  },
+  "checks": {
+    "canvasDimensions": true,
+    "fourCells": true,
+    "eachCellHasVisiblePixels": true,
+    "fourUniqueFrames": true,
+    "paletteTransparencyPresent": true,
+    "rgbaMode": false,
+    "runtimeApproved": false
+  },
+  "notes": [
+    "First visual extraction from the generated concept/reference sheet; the frame design still needs visual review.",
+    "The PNG uses palette transparency (tRNS index 0), not RGBA mode; convert and validate before production integration.",
+    "Stored only under rework-staging; existing game-facing assets remain untouched.",
+    "Character has no separate weapon or staff layer."
+  ]
+}
