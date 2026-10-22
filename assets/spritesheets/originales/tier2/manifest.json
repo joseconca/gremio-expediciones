@@ -86,7 +86,8 @@
       "archetype": "arcano",
       "resource": "mana",
       "visualBrief": "túnica con motivos elementales y silueta de canalización",
-      "status": "pending-master-art"
+      "status": "raster-master-generator-committed",
+      "note": "Custom raster PNG generator added: blue/violet layered robe, cyan panel and restrained elemental embroidery; hands empty, no staff, weapon or spell-effect layer embedded. Package generation follows in GitHub Actions and will stay outside runtime pending visual review."
     },
     {
       "id": "brujo",
