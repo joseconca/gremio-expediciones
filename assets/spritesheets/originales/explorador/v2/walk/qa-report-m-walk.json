@@ -1,0 +1,120 @@
+{
+  "class": "explorador",
+  "sex": "m",
+  "action": "walk",
+  "source": "assets/spritesheets/originales/explorador/v2/source/explorador-m-core-3rows.png",
+  "source_sha256": "8ab4dca4571dcbd6bd2d7b617ddd4eb5532db03b5b573a0c5a794f5644ddc565",
+  "source_master_three_rows": true,
+  "source_row_index": 1,
+  "master_dimensions": [
+    256,
+    384
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "bcd8d7ef4744a501917bf9bfdcfc5112c5a7462eb83d27431987c6bd3fe63218",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        12,
+        2,
+        54,
+        116
+      ],
+      "rgba_sha256": "236b278e76ad45bd791c80a66e2347aa8374060135d91aef02cc0bde4b34c43b",
+      "visible_pixels": 2880
+    },
+    {
+      "index": 2,
+      "bbox": [
+        10,
+        1,
+        56,
+        116
+      ],
+      "rgba_sha256": "c7de4ca4a576cdbe88285c6567deb0c5f58d2a9259b18a9560c775458fd44438",
+      "visible_pixels": 2906
+    },
+    {
+      "index": 3,
+      "bbox": [
+        6,
+        2,
+        60,
+        116
+      ],
+      "rgba_sha256": "29abb4d7f228595bbc083af0cef263430847dfc300c97a516ddea6ec4068f35f",
+      "visible_pixels": 2758
+    },
+    {
+      "index": 4,
+      "bbox": [
+        8,
+        3,
+        58,
+        116
+      ],
+      "rgba_sha256": "715009fdeaf5b686723fac64e27663f4c32fd41703a8df0da53201cd4a2dabd4",
+      "visible_pixels": 2781
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/explorador/v2/walk/frames-native-32x64/m/explorador-m-walk-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "c198ee791e3f533a7ba13f62068a90983a7cb65e6b6cf3194cdd40acafa2991e"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/explorador/v2/walk/frames-native-32x64/m/explorador-m-walk-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "f3fad4c4d2098d0a9fdb90eaa1e26f1773feb75735ee0eccfce0baf6dc34ef87"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/explorador/v2/walk/frames-native-32x64/m/explorador-m-walk-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "7315eb20c49c127c72f539da6283c41b62590e21109da9262bc54c502f4d582a"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/explorador/v2/walk/frames-native-32x64/m/explorador-m-walk-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "798651902c3ad59451b17755c6ad4fe6c20fbf252a002b5dea98802b24ad24b9"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/explorador/v2/walk/previews/explorador-m-walk-preview.png"
+}

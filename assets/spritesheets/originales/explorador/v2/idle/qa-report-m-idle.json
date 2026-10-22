@@ -1,0 +1,120 @@
+{
+  "class": "explorador",
+  "sex": "m",
+  "action": "idle",
+  "source": "assets/spritesheets/originales/explorador/v2/source/explorador-m-core-3rows.png",
+  "source_sha256": "8ab4dca4571dcbd6bd2d7b617ddd4eb5532db03b5b573a0c5a794f5644ddc565",
+  "source_master_three_rows": true,
+  "source_row_index": 0,
+  "master_dimensions": [
+    256,
+    384
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 1,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "8c1b4d8db28e9102a1ce92ead1d72b430f54ad45364f637394f6720d48b639e0",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        9,
+        2,
+        57,
+        115
+      ],
+      "rgba_sha256": "04cfd2abb92478e445f8753cb4f694cf165fc35f523c8959c8290a57c0a1dd92",
+      "visible_pixels": 2863
+    },
+    {
+      "index": 2,
+      "bbox": [
+        9,
+        1,
+        58,
+        116
+      ],
+      "rgba_sha256": "6f65910cc3929aa7648bccca6f7cca687a98a0f9915caae51f996f7100ce405e",
+      "visible_pixels": 2897
+    },
+    {
+      "index": 3,
+      "bbox": [
+        10,
+        2,
+        57,
+        115
+      ],
+      "rgba_sha256": "8161308ed302611b20f4cc918479556096a83cb653af8624ef9005db2cf7d665",
+      "visible_pixels": 2828
+    },
+    {
+      "index": 4,
+      "bbox": [
+        9,
+        3,
+        56,
+        116
+      ],
+      "rgba_sha256": "a1151baaecefccc8dbf9d448112e8bec271e309cd5986974128a1eadde122cb9",
+      "visible_pixels": 2827
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/explorador/v2/idle/frames-native-32x64/m/explorador-m-idle-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "d2f61e1a80b9f28c14753d1344f0c2e827ed65a181fe95e6b32c7364e29b46ac"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/explorador/v2/idle/frames-native-32x64/m/explorador-m-idle-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "6e2ab008f14de9ed9101de2fdab66cd68888cdcaf9c45e323c9426b074b4c6de"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/explorador/v2/idle/frames-native-32x64/m/explorador-m-idle-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "fc961f42def8202abf228ce00ac7c241ea90e876e9a816e76008d3abd9044d5d"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/explorador/v2/idle/frames-native-32x64/m/explorador-m-idle-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "ca53de6ee86e1bcc574352b8f9d4cf047c58f3d88be4b1f1b5f742f5e7ef7cdc"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/explorador/v2/idle/previews/explorador-m-idle-preview.png"
+}

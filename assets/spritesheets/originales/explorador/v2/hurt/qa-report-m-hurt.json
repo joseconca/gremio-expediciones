@@ -1,0 +1,120 @@
+{
+  "class": "explorador",
+  "sex": "m",
+  "action": "hurt",
+  "source": "assets/spritesheets/originales/explorador/v2/source/explorador-m-core-3rows.png",
+  "source_sha256": "8ab4dca4571dcbd6bd2d7b617ddd4eb5532db03b5b573a0c5a794f5644ddc565",
+  "source_master_three_rows": true,
+  "source_row_index": 2,
+  "master_dimensions": [
+    256,
+    384
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 1,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "4f1d7697e0564ea4db421d2766099f9b2b5af1ef265907ae95233767faf1fd06",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        12,
+        3,
+        53,
+        115
+      ],
+      "rgba_sha256": "5763015917d0dba38b8187ece99ae444e6f59cb51f2f67787022e37b5029b518",
+      "visible_pixels": 2720
+    },
+    {
+      "index": 2,
+      "bbox": [
+        12,
+        4,
+        51,
+        116
+      ],
+      "rgba_sha256": "4815e5e572b9046f86d8e5703b26c12c4de9ac5876ee0680d61d5c04fe449e83",
+      "visible_pixels": 2633
+    },
+    {
+      "index": 3,
+      "bbox": [
+        12,
+        5,
+        51,
+        116
+      ],
+      "rgba_sha256": "61c82dd2582fa1494a0047a47baa47a8d622fdd3a0a913d1f75a0f8d47508299",
+      "visible_pixels": 2573
+    },
+    {
+      "index": 4,
+      "bbox": [
+        10,
+        3,
+        54,
+        115
+      ],
+      "rgba_sha256": "3f6839d34532e9fa86274c2d057d3f5250358b97649ed82409fb0c5c920223b6",
+      "visible_pixels": 2771
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/explorador/v2/hurt/frames-native-32x64/m/explorador-m-hurt-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "cb564d5698177bec925878e5898a9cc90046090b1e48163372495b4c785948b0"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/explorador/v2/hurt/frames-native-32x64/m/explorador-m-hurt-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "2e3dc625e62e057fcbfd6d97303b3fcede0a33b9724ede9667ce7c8b208f449e"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/explorador/v2/hurt/frames-native-32x64/m/explorador-m-hurt-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "2021e15a96425eaa62946cc26e72c2904f8e236abfae8f19915207b260f1bf4e"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/explorador/v2/hurt/frames-native-32x64/m/explorador-m-hurt-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "06720e841fd0a2fd6000a4b08dec17229ff5bdf2b68387bedd72ff3af82b28f6"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/explorador/v2/hurt/previews/explorador-m-hurt-preview.png"
+}
