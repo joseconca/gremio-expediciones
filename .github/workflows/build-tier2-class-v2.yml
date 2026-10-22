@@ -65,6 +65,19 @@ jobs:
               fi
             fi
 
+            # Generar masters de Explorador desde arte propio raster; no recortar su placeholder runtime.
+            if [[ "$class_id" == "explorador" ]]; then
+              regenerate_master=0
+              if [[ ! -f "$source_dir/explorador-m-core-3rows.png" || ! -f "$source_dir/explorador-f-core-3rows.png" ]]; then
+                regenerate_master=1
+              fi
+              if git diff --name-only "$GITHUB_EVENT_BEFORE" "$GITHUB_SHA" -- scripts/generate-explorador-master.py | grep -q .; then
+                regenerate_master=1
+              fi
+              if [[ "$regenerate_master" == "1" ]]; then
+                python scripts/generate-explorador-master.py
+              fi
+            fi
             has_f=0
             has_m=0
             [[ -f "$source_dir/$class_id-f-core-3rows.webp" || -f "$source_dir/$class_id-f-core-3rows.png" ]] && has_f=1
