@@ -34,9 +34,12 @@ Duelista ya dispone de dos másteres raster WebP basados en láminas de imagen 4
 
 ## Orden de trabajo
 
-1. Caballero — establecer el nivel de detalle y la escala de las clases avanzadas.
-2. Duelista — aprovechar la misma familia visual de Espadachín sin copiar la misma silueta.
-3. Sacerdote y Monje — trabajar desde la rama visual de Acólito con objetivos distintos: apoyo ceremonial y combate corporal.
+1. Caballero — paquete generado; revisar halos/fondo.
+2. Duelista — paquete raster generado; sin armas incrustadas.
+3. Sacerdote — paquete PNG generado desde las láminas compartidas; sin armas incrustadas.
+4. Monje — primera versión raster generada desde el panel de referencia; sin armas incrustadas.
+5. Cazador y Explorador — diferenciar ofensiva de rastreo y movilidad/supervivencia; quitar arcos/armas del cuerpo.
+6. Elementalista y Brujo — distinguir magia elemental de maldición y mantener los bastones/efectos en capas separadas.
 4. Cazador y Explorador — distinguir ofensiva de rastreo y movilidad/supervivencia.
 5. Elementalista y Brujo — separar magia elemental legible de magia de maldición/oscura.
 
