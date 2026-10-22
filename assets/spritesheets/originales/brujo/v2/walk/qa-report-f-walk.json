@@ -1,0 +1,120 @@
+{
+  "class": "brujo",
+  "sex": "f",
+  "action": "walk",
+  "source": "assets/spritesheets/originales/brujo/v2/source/brujo-f-core-3rows.png",
+  "source_sha256": "3f2123a4e4654e9ab83040454333b0b3f186f4c15dcee749f6f0153ddec703c1",
+  "source_master_three_rows": true,
+  "source_row_index": 1,
+  "master_dimensions": [
+    256,
+    384
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "c22719e379e742faa1a6aeb9c81507e335446d2da38e0ca22acb8306ac99b48f",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        13,
+        1,
+        53,
+        117
+      ],
+      "rgba_sha256": "2205ce424639d72f248f908d7bc32ff4b41d3574f0833bd337b18bed74aa365f",
+      "visible_pixels": 3214
+    },
+    {
+      "index": 2,
+      "bbox": [
+        13,
+        0,
+        55,
+        117
+      ],
+      "rgba_sha256": "788b0a97ad42b19ff4ed055a5a04cf11945676bd669cbe235869a9bc550e5ff0",
+      "visible_pixels": 3232
+    },
+    {
+      "index": 3,
+      "bbox": [
+        9,
+        1,
+        59,
+        117
+      ],
+      "rgba_sha256": "b05594df853f4c11d170245a557992cb9cfc034a3e609fad20ebb75d27c10724",
+      "visible_pixels": 3142
+    },
+    {
+      "index": 4,
+      "bbox": [
+        11,
+        2,
+        57,
+        117
+      ],
+      "rgba_sha256": "0649f119e4f69720109d4f2291e0fd2d0adfe52d355efd896e6481b945f71946",
+      "visible_pixels": 3138
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/brujo/v2/walk/frames-native-32x64/f/brujo-f-walk-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "ce69836ccafc65365b1bf4d1d7036eeac2b47d59d965f42866f23161fcf32012"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/brujo/v2/walk/frames-native-32x64/f/brujo-f-walk-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "95d582f4b34f5034840bafc0b0330f559fdd2efc699bda8f6c3b1adaf832bae6"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/brujo/v2/walk/frames-native-32x64/f/brujo-f-walk-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "8b4cb804ba7f0d795d49dce9f6418f73f111d4fcc5302432fe9a896245a5148f"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/brujo/v2/walk/frames-native-32x64/f/brujo-f-walk-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "35d28acd1b077dcb082e73ded9c29760d1edab8d39e52c708c0afa169378c2c3"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/brujo/v2/walk/previews/brujo-f-walk-preview.png"
+}

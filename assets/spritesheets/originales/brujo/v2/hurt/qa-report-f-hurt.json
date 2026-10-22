@@ -1,0 +1,120 @@
+{
+  "class": "brujo",
+  "sex": "f",
+  "action": "hurt",
+  "source": "assets/spritesheets/originales/brujo/v2/source/brujo-f-core-3rows.png",
+  "source_sha256": "3f2123a4e4654e9ab83040454333b0b3f186f4c15dcee749f6f0153ddec703c1",
+  "source_master_three_rows": true,
+  "source_row_index": 2,
+  "master_dimensions": [
+    256,
+    384
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 1,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "52c38d8da73f3dffcc72e681bf9a2337e94dca5ba077d20f429cb6ab45da040a",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        13,
+        3,
+        51,
+        116
+      ],
+      "rgba_sha256": "b10acf49b7892a3e3817997c71c397ca8ba8230e1e9192f530ad14ddfb728b3a",
+      "visible_pixels": 3101
+    },
+    {
+      "index": 2,
+      "bbox": [
+        13,
+        4,
+        50,
+        117
+      ],
+      "rgba_sha256": "292507809d4e5a460f88c5baf10ff0e41218d22fdd6122d1fcfdb33b0987f702",
+      "visible_pixels": 3044
+    },
+    {
+      "index": 3,
+      "bbox": [
+        13,
+        5,
+        50,
+        117
+      ],
+      "rgba_sha256": "6d40c45933687aa08dc5417ebbe19a9aa4d1963f325d8ff22d0275edbad2e2e6",
+      "visible_pixels": 3009
+    },
+    {
+      "index": 4,
+      "bbox": [
+        13,
+        3,
+        53,
+        116
+      ],
+      "rgba_sha256": "4827fe65caf373d43319675451ff062910339c644e644241a69856c5947b7a02",
+      "visible_pixels": 3125
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/brujo/v2/hurt/frames-native-32x64/f/brujo-f-hurt-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "048adddabc2121449c911867f175251048f64ee7affcc6fb5be51f518e026739"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/brujo/v2/hurt/frames-native-32x64/f/brujo-f-hurt-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "cf31cf66c05077fea752f550bbbf92081cb93f86678a6d60c53e5325de83d0e9"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/brujo/v2/hurt/frames-native-32x64/f/brujo-f-hurt-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "16839eaad1bd5f780b62750e160f6af525b243cb45dc34aaa878aa566028f6d5"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/brujo/v2/hurt/frames-native-32x64/f/brujo-f-hurt-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "bed6e56fb73501c79f7ce7bb27b52ee80c547c2fd269ae3133e6ee1c95d5a1b7"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/brujo/v2/hurt/previews/brujo-f-hurt-preview.png"
+}

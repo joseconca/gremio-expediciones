@@ -1,0 +1,120 @@
+{
+  "class": "brujo",
+  "sex": "m",
+  "action": "idle",
+  "source": "assets/spritesheets/originales/brujo/v2/source/brujo-m-core-3rows.png",
+  "source_sha256": "167fde8a4cd0ed2e624c78400f46399a872c62135b38180b7421c312e8f0dc86",
+  "source_master_three_rows": true,
+  "source_row_index": 0,
+  "master_dimensions": [
+    256,
+    384
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 1,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "ccef0d8b0ebe9aabbe97221507158e1cdb3b12203161b83b429bb53c6701acee",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        12,
+        1,
+        56,
+        116
+      ],
+      "rgba_sha256": "16a1b49fef93b512869f4bc33f27902862ace765cfd22aaa0d2c013a9fb207c2",
+      "visible_pixels": 3205
+    },
+    {
+      "index": 2,
+      "bbox": [
+        12,
+        0,
+        55,
+        117
+      ],
+      "rgba_sha256": "aad33a7d212f7e95f25e1edf4fdbef03b80d495496d48bf1391a00135783b9ac",
+      "visible_pixels": 3213
+    },
+    {
+      "index": 3,
+      "bbox": [
+        13,
+        1,
+        56,
+        116
+      ],
+      "rgba_sha256": "6cdcf868d78537ca7182857955d6b7a250a3305da5c37d38b0ab4d697ed0dd24",
+      "visible_pixels": 3183
+    },
+    {
+      "index": 4,
+      "bbox": [
+        12,
+        2,
+        57,
+        117
+      ],
+      "rgba_sha256": "9c150a9ce410033fa277f693ee5da434574d046de4bf6aa00ec382aaf8a09082",
+      "visible_pixels": 3192
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/brujo/v2/idle/frames-native-32x64/m/brujo-m-idle-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "7c26f9fc5a96f86ffc3a07ddfc3a88e9e5c158c08e4c7131d400264d68d573c7"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/brujo/v2/idle/frames-native-32x64/m/brujo-m-idle-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "f73e9f8fd86f9766836fd679bdf4409294da5c7a397253b329f4e76f6a61fb69"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/brujo/v2/idle/frames-native-32x64/m/brujo-m-idle-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "77cc0a685b7c366ccb694cdf6c91222247a383b8f234452f09a13142a286c67c"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/brujo/v2/idle/frames-native-32x64/m/brujo-m-idle-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "006dec8e76f75dd23ccd772b76584023fb4da693dae4b0222dcba2911c0420f1"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/brujo/v2/idle/previews/brujo-m-idle-preview.png"
+}
