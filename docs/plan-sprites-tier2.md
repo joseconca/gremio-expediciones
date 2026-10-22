@@ -36,4 +36,10 @@ Brief inicial: distinguirlo del Espadachín por mayor masa de armadura, hombrera
 4. Cazador y Explorador — distinguir ofensiva de rastreo y movilidad/supervivencia.
 5. Elementalista y Brujo — separar magia elemental legible de magia de maldición/oscura.
 
-Este documento define el inicio del trabajo Tier 2; no afirma que sus másteres estén ya producidos.
+## Estado de trabajo — 22 de octubre de 2026
+
+- **Caballero:** paquete v2 masculino y femenino ya generado en `assets/spritesheets/originales/caballero/v2/`; requiere limpieza visual posterior del fondo residual. No está integrado al runtime.
+- **Duelista:** másteres SVG editables para ambos sexos, rasterización PNG 128×192, seis tiras de 256×128, 24 frames nativos 32×64, seis previews y seis informes QA. Las seis tiras tienen cuatro frames distintos, alfa real y deriva de pies de 2 px en QA. No está integrado al runtime.
+- **Siguiente clase:** Sacerdote, desde la rama Acólito. Después Monje, Cazador, Explorador, Elementalista y Brujo.
+
+La generación del paquete de Duelista terminó en verde en [GitHub Actions](https://github.com/joseconca/gremio-expediciones/actions/runs/39766151708); la regresión también terminó en verde en [GitHub Actions](https://github.com/joseconca/gremio-expediciones/actions/runs/39766151730).

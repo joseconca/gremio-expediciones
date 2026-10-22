@@ -25,7 +25,9 @@
       "branch": "espadachin",
       "archetype": "vanguardia",
       "resource": "energia",
-      "visualBrief": "armadura completa, hombreras y protección de piernas; capa heráldica; silueta defensiva"
+      "visualBrief": "armadura completa, hombreras y protección de piernas; capa heráldica; silueta defensiva",
+      "status": "package-generated-review-needed",
+      "note": "Six strips and QA committed; background residue can be cleaned in a later visual pass."
     },
     {
       "id": "duelista",
@@ -33,7 +35,9 @@
       "branch": "espadachin",
       "archetype": "agil",
       "resource": "energia",
-      "visualBrief": "armadura ligera/media, líneas estilizadas y postura de esgrima"
+      "visualBrief": "armadura ligera/media, líneas estilizadas y postura de esgrima",
+      "status": "package-generated-review-needed",
+      "note": "Editable SVG masters and rasterized PNG masters committed; six strips, 24 native frames, six previews and six QA reports generated. Not integrated into runtime."
     },
     {
       "id": "sacerdote",
@@ -41,7 +45,8 @@
       "branch": "acolito",
       "archetype": "apoyo",
       "resource": "mana",
-      "visualBrief": "vestiduras ceremoniales, estola y símbolos sagrados ornamentados"
+      "visualBrief": "vestiduras ceremoniales, estola y símbolos sagrados ornamentados",
+      "status": "pending-master-art"
     },
     {
       "id": "monje",
@@ -49,7 +54,8 @@
       "branch": "acolito",
       "archetype": "marcial",
       "resource": "energia",
-      "visualBrief": "ropajes marciales, vendas y brazales; postura disciplinada"
+      "visualBrief": "ropajes marciales, vendas y brazales; postura disciplinada",
+      "status": "pending-master-art"
     },
     {
       "id": "cazador",
@@ -57,7 +63,8 @@
       "branch": "arquero",
       "archetype": "agil",
       "resource": "energia",
-      "visualBrief": "cuero reforzado, rastreo y equipo de caza"
+      "visualBrief": "cuero reforzado, rastreo y equipo de caza",
+      "status": "pending-master-art"
     },
     {
       "id": "explorador",
@@ -65,7 +72,8 @@
       "branch": "arquero",
       "archetype": "agil",
       "resource": "energia",
-      "visualBrief": "equipo ligero de viaje y supervivencia, preparado para trampas"
+      "visualBrief": "equipo ligero de viaje y supervivencia, preparado para trampas",
+      "status": "pending-master-art"
     },
     {
       "id": "elementalista",
@@ -73,7 +81,8 @@
       "branch": "mago",
       "archetype": "arcano",
       "resource": "mana",
-      "visualBrief": "túnica con motivos elementales y silueta de canalización"
+      "visualBrief": "túnica con motivos elementales y silueta de canalización",
+      "status": "pending-master-art"
     },
     {
       "id": "brujo",
@@ -81,9 +90,10 @@
       "branch": "mago",
       "archetype": "maldito",
       "resource": "mana",
-      "visualBrief": "vestiduras oscuras, amuletos y lenguaje visual de maldiciones"
+      "visualBrief": "vestiduras oscuras, amuletos y lenguaje visual de maldiciones",
+      "status": "pending-master-art"
     }
   ],
-  "status": "pending-master-art",
+  "status": "in-progress",
   "policy": "No derivar másteres desde retratos ni hojas de producción genéricas. Promover cada clase a runtime solo después de revisar las seis tiras."
 }
