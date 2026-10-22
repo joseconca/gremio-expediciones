@@ -51,9 +51,18 @@ jobs:
             source_dir="assets/spritesheets/originales/$class_id/v2/source"
 
             # Cazador tiene un generador raster propio, versionado por separado.
-            # Generar ambos sexos solo si falta algún máster, sin SVG ni armas incrustadas.
-            if [[ "$class_id" == "cazador" ]] && { [[ ! -f "$source_dir/cazador-m-core-3rows.png" ]] || [[ ! -f "$source_dir/cazador-f-core-3rows.png" ]]; }; then
-              python scripts/generate-cazador-master.py
+            # Recalcular ambos sexos si falta un máster o cambia el generador; PNG sin armas.
+            if [[ "$class_id" == "cazador" ]]; then
+              regenerate_master=0
+              if [[ ! -f "$source_dir/cazador-m-core-3rows.png" || ! -f "$source_dir/cazador-f-core-3rows.png" ]]; then
+                regenerate_master=1
+              fi
+              if git diff --name-only "$GITHUB_EVENT_BEFORE" "$GITHUB_SHA" -- scripts/generate-cazador-master.py | grep -q .; then
+                regenerate_master=1
+              fi
+              if [[ "$regenerate_master" == "1" ]]; then
+                python scripts/generate-cazador-master.py
+              fi
             fi
 
             has_f=0

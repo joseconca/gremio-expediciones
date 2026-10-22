@@ -34,12 +34,16 @@ def draw_frame(sex, action, n):
   hy,ty=idle[n][1],0; nlx,nly,flx,fly=0,0,0,0
   alx,aly=[(0,0),(0,-1),(1,0),(0,1)][n]; arx,ary=[(0,0),(0,1),(-1,0),(0,-1)][n]
  elif action=="walk":
-  hy,ty=[0,-1,0,1][n],0; nlx,nly=stride[n][0],0; flx,fly=stride[n][1],0
-  alx,aly=-stride[n][0]//2,stride[n][1]//2; arx,ary=stride[n][0]//2,-stride[n][1]//2
+  stride_pose=[(-4,2,4,-1),(-2,-1,-3,2),(4,-2,-4,1),(2,1,3,-2)][n]
+  hy,ty=[0,-1,0,1][n],0
+  nlx,nly=stride_pose[0],stride_pose[1]; flx,fly=stride_pose[2],stride_pose[3]
+  arm_pose=[(3,-5),(0,2),(-3,5),(0,-2)][n]
+  alx,aly=arm_pose; arx,ary=-arm_pose[0],-arm_pose[1]
  else:
-  hy,ty=impact[n][1],2 if n>=2 else 1
-  nlx,nly=0,0 if n<2 else 1; flx,fly=1 if n in (1,2) else 0,0
-  alx,aly=[(1,-1),(2,-2),(0,-3),(-1,-1)][n]; arx,ary=[(-1,-1),(0,-2),(-1,-2),(1,0)][n]
+  hy,ty=[2,3,4,2][n],0
+  nlx,nly=[(0,0),(1,0),(2,1),(1,0)][n]; flx,fly=[(1,0),(0,1),(-1,0),(0,1)][n]
+  alx,aly=[(6,-8),(8,-11),(5,-13),(2,-7)][n]
+  arx,ary=[(-6,-7),(-8,-10),(-8,-12),(-4,-8)][n]
 
  # Short forest cape/mantle.
  poly(d,[(17,37+ty),(26,33+ty),(39,35+ty),(48,43+ty),(51,62),(47,76),(42,86),(31,91),(17,83),(12,68),(13,48)],"capeD")
