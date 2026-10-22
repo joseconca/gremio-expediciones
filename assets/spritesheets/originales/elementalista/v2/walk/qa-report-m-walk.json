@@ -1,0 +1,120 @@
+{
+  "class": "elementalista",
+  "sex": "m",
+  "action": "walk",
+  "source": "assets/spritesheets/originales/elementalista/v2/source/elementalista-m-core-3rows.png",
+  "source_sha256": "463ad8d55e044c942638458b0c4cb9f66baccded8f7917c3c640f397921931f0",
+  "source_master_three_rows": true,
+  "source_row_index": 1,
+  "master_dimensions": [
+    256,
+    384
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "40bccbfd8adf0d498fecf082d6f78c6273724a066247dc843a22c8655554b756",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        12,
+        2,
+        53,
+        117
+      ],
+      "rgba_sha256": "ba5a457cc8da9df8685d2b1ba5c76b5bc6f4cdf1fd9a978ff43037f547271074",
+      "visible_pixels": 3072
+    },
+    {
+      "index": 2,
+      "bbox": [
+        12,
+        1,
+        55,
+        117
+      ],
+      "rgba_sha256": "2c03b1797a9d27b6242b150d9358ecec1b3f4a91f6efeec3f83f0c2e72a129c2",
+      "visible_pixels": 3082
+    },
+    {
+      "index": 3,
+      "bbox": [
+        9,
+        2,
+        59,
+        117
+      ],
+      "rgba_sha256": "9af9babdf0a46c6abb559706d60a737512b59d138844b2232369789e04f4859e",
+      "visible_pixels": 2990
+    },
+    {
+      "index": 4,
+      "bbox": [
+        11,
+        3,
+        57,
+        117
+      ],
+      "rgba_sha256": "6b787ef87de979f9227c19c08cd553183178372e7ef8f9209c442ba886f16b4a",
+      "visible_pixels": 2994
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/elementalista/v2/walk/frames-native-32x64/m/elementalista-m-walk-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "e9a633c8a5d4eaefe70e3a6c9430afd8ab2b08545b68344334f640ceb4573641"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/elementalista/v2/walk/frames-native-32x64/m/elementalista-m-walk-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "026113d715950b29c0a7013904bb487dbf2011d8de2c1cc635812151caae7c5e"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/elementalista/v2/walk/frames-native-32x64/m/elementalista-m-walk-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "545317b5e717b2d044cfd3efc215c8d612127eb077d0612b4c7ef42399f7042d"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/elementalista/v2/walk/frames-native-32x64/m/elementalista-m-walk-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "91102ec516ce13b11e15cf4426f47a078816aebc0dc0c8f5f36fab842f9bf6be"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/elementalista/v2/walk/previews/elementalista-m-walk-preview.png"
+}

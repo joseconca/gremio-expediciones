@@ -1,0 +1,120 @@
+{
+  "class": "elementalista",
+  "sex": "m",
+  "action": "hurt",
+  "source": "assets/spritesheets/originales/elementalista/v2/source/elementalista-m-core-3rows.png",
+  "source_sha256": "463ad8d55e044c942638458b0c4cb9f66baccded8f7917c3c640f397921931f0",
+  "source_master_three_rows": true,
+  "source_row_index": 2,
+  "master_dimensions": [
+    256,
+    384
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 1,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "dda2953884c866e9b9cf7e970d2c9837e67c9d78786948d824491a731b7cebe7",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        12,
+        4,
+        51,
+        116
+      ],
+      "rgba_sha256": "0b241bc5face9938318a3f015801896ab16891983b2fc21b1c8617df538a4031",
+      "visible_pixels": 2962
+    },
+    {
+      "index": 2,
+      "bbox": [
+        12,
+        5,
+        50,
+        117
+      ],
+      "rgba_sha256": "f727e38b2ff249ba4cb8b5845796cba3fea8ff24508d7676820d995002818c1b",
+      "visible_pixels": 2907
+    },
+    {
+      "index": 3,
+      "bbox": [
+        12,
+        6,
+        50,
+        117
+      ],
+      "rgba_sha256": "630aac2e33c1bb3ee703810454446a3001ebd7c8a538f8a5c41bb62afec04ae2",
+      "visible_pixels": 2874
+    },
+    {
+      "index": 4,
+      "bbox": [
+        12,
+        4,
+        53,
+        116
+      ],
+      "rgba_sha256": "462168551a1ae15f23f4fc51daf1d306e0724787dca7ae7675b24a37a2a44815",
+      "visible_pixels": 2987
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/elementalista/v2/hurt/frames-native-32x64/m/elementalista-m-hurt-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "5bd721d6227d734a64d9ee9296f1422132d74ef83abb1d588e8ce0937f345d39"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/elementalista/v2/hurt/frames-native-32x64/m/elementalista-m-hurt-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "b822e640150036708cf5663ade184364ef55e6eea80b7b84d1ae6475e4ed671d"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/elementalista/v2/hurt/frames-native-32x64/m/elementalista-m-hurt-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "1da573a69bf92fa6b6401fded0403dffa15118e2138b3931d19a44623ad68c63"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/elementalista/v2/hurt/frames-native-32x64/m/elementalista-m-hurt-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "8d01fef66dff822492af680d25e60fc4ba7d545268fa0deb1bfba1f7248c33af"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/elementalista/v2/hurt/previews/elementalista-m-hurt-preview.png"
+}

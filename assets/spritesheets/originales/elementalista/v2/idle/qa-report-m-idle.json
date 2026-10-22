@@ -1,0 +1,120 @@
+{
+  "class": "elementalista",
+  "sex": "m",
+  "action": "idle",
+  "source": "assets/spritesheets/originales/elementalista/v2/source/elementalista-m-core-3rows.png",
+  "source_sha256": "463ad8d55e044c942638458b0c4cb9f66baccded8f7917c3c640f397921931f0",
+  "source_master_three_rows": true,
+  "source_row_index": 0,
+  "master_dimensions": [
+    256,
+    384
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 1,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "42fb27213bf46321f0b634f8efe3789641171b599440dcd76ca1682eea3bca21",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        12,
+        2,
+        56,
+        116
+      ],
+      "rgba_sha256": "33f8cab18c4ad26e14ee5ce374255e14e8381382075364d79c4fac303fd1a442",
+      "visible_pixels": 3060
+    },
+    {
+      "index": 2,
+      "bbox": [
+        12,
+        1,
+        55,
+        117
+      ],
+      "rgba_sha256": "b52088de13b232a8b55b51f75a67774d294ee12fa671a5544df4c5639d682c20",
+      "visible_pixels": 3060
+    },
+    {
+      "index": 3,
+      "bbox": [
+        12,
+        2,
+        57,
+        116
+      ],
+      "rgba_sha256": "577fc541e9c2b88a92523eabf57e3110e3510f861a679f465d2f63cad84b5d73",
+      "visible_pixels": 3054
+    },
+    {
+      "index": 4,
+      "bbox": [
+        11,
+        3,
+        56,
+        117
+      ],
+      "rgba_sha256": "2f84e9849e57bec15c22013da44520e6cbf86576e7ecd00c1f62bbdc8ed3712e",
+      "visible_pixels": 3041
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/elementalista/v2/idle/frames-native-32x64/m/elementalista-m-idle-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "5d81d858395a80a25634da7644cab702ac306105a5fdff42c69ce728f2492592"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/elementalista/v2/idle/frames-native-32x64/m/elementalista-m-idle-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "ff56ea644d8a9a80fce49c1c5aa62415a1cf79033599b5ea9f1a759250163e11"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/elementalista/v2/idle/frames-native-32x64/m/elementalista-m-idle-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "2d0d558a2153ee4ce16b71f7f1d5cbcce85796e584b20aa38d7e4dd4d3ee43da"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/elementalista/v2/idle/frames-native-32x64/m/elementalista-m-idle-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "51f757867eca14d49c2845aa02f93ab027bab4d8232ffdcdca6390c1175a3c57"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/elementalista/v2/idle/previews/elementalista-m-idle-preview.png"
+}
