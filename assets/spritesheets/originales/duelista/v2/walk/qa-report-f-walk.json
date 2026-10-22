@@ -2,8 +2,8 @@
   "class": "duelista",
   "sex": "f",
   "action": "walk",
-  "source": "assets/spritesheets/originales/duelista/v2/source/duelista-f-core-3rows.png",
-  "source_sha256": "13aa82d0e8bf8d5c8114f736790a5e9078d3ab1ce2f2330cce4303f1f9462ab4",
+  "source": "assets/spritesheets/originales/duelista/v2/source/duelista-f-core-3rows.webp",
+  "source_sha256": "7d7cd50c9fb9a09b2a988c411b18a276c2ba048604acad73e65a3177bf142e94",
   "source_master_three_rows": true,
   "source_row_index": 1,
   "master_dimensions": [
@@ -27,55 +27,55 @@
     0,
     255
   ],
-  "feet_baseline_drift_px": 2,
+  "feet_baseline_drift_px": 0,
   "distinct_frame_count": 4,
   "runtime_integrated": false,
   "artistic_approval": "pending visual review",
-  "output_sha256": "3bf4cd33e4652c077ab4990e662f12265ea73f0ada91c2982dde4e4c8efc9d1b",
+  "output_sha256": "dd7068dfe72e6871e431628cf2ffeff1015c142889b59959c6c6ae5d921024d3",
   "frames": [
     {
       "index": 1,
       "bbox": [
-        8,
-        12,
-        56,
-        120
+        4,
+        6,
+        60,
+        126
       ],
-      "rgba_sha256": "4fecd2b1da626f2b39ca718a7eaa0f63dde144e33a923d497fd11ce88d23c5de",
-      "visible_pixels": 3180
+      "rgba_sha256": "b03b80d4ce14a942e3fdd04b0c907c608e8847e0142992fff7085dc0b1d59ca4",
+      "visible_pixels": 4184
     },
     {
       "index": 2,
       "bbox": [
-        10,
-        12,
-        56,
-        118
+        4,
+        6,
+        60,
+        126
       ],
-      "rgba_sha256": "313bfba15b58f34879a1693c23575ab7584f8796672c16b653855a054a480331",
-      "visible_pixels": 3240
+      "rgba_sha256": "4d978a1038c84dc3a815b8605c7e50a0f613238331e07d5607b1d8a9a17c405f",
+      "visible_pixels": 3808
     },
     {
       "index": 3,
       "bbox": [
-        12,
-        12,
-        58,
-        120
+        4,
+        6,
+        60,
+        126
       ],
-      "rgba_sha256": "e87aabe59f5a14a13f31fbe6329074138b2853b7ce88c46cab5aca8eab9b5be8",
-      "visible_pixels": 3248
+      "rgba_sha256": "471079f1badf47c608552db0f3443133a965153aedae8bec57dce350e4160b14",
+      "visible_pixels": 4060
     },
     {
       "index": 4,
       "bbox": [
-        10,
-        12,
-        56,
-        120
+        4,
+        6,
+        60,
+        126
       ],
-      "rgba_sha256": "56f417549156ddbba849ea64d0017d22daaf64d3b2e8027fdc2321b4a2ddceb4",
-      "visible_pixels": 3184
+      "rgba_sha256": "f4e986570f65a316d6b424b5a1bee1efb2dc80efec79967e9f62a3342d5fba5d",
+      "visible_pixels": 4204
     }
   ],
   "native_frames": [
@@ -86,7 +86,7 @@
         32,
         64
       ],
-      "rgba_sha256": "2dd665b86c0b994e0c3865fb2cb6b6efecfdf61047960cf33ba41bef411a0709"
+      "rgba_sha256": "5a29c5de0c4994fa518a34f6225f7c139fd12c25d1a03688956cd86d91c8eda3"
     },
     {
       "index": 2,
@@ -95,7 +95,7 @@
         32,
         64
       ],
-      "rgba_sha256": "ea2eec63ceea961f92bfc6075f0828e00485909f11165bbab94eff58d0efc7d9"
+      "rgba_sha256": "3e7c88edb69d650243d6b3e0767514d47bc8b5f4df91dc74eae6fe65edc6ad59"
     },
     {
       "index": 3,
@@ -104,7 +104,7 @@
         32,
         64
       ],
-      "rgba_sha256": "a02193db598b04156b73bd9ee0d468ec8c3c207fa3c68224561c4151d123e5dc"
+      "rgba_sha256": "d0e638c776dc425e4bbe7e3c21a6526dc955226320a7e7a173b3121143d5260c"
     },
     {
       "index": 4,
@@ -113,7 +113,7 @@
         32,
         64
       ],
-      "rgba_sha256": "5b9f0d27cbd45f654ca8033060597260665056891000d4847a1a99a6a6c9341d"
+      "rgba_sha256": "230110fe3abde5007e9b66f758d2b3b7277de5814e8a242cc07aff5ecc4b20f8"
     }
   ],
   "preview": "assets/spritesheets/originales/duelista/v2/walk/previews/duelista-f-walk-preview.png"
