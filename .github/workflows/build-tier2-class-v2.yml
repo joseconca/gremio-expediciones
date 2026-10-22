@@ -37,8 +37,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install Pillow
-        run: python -m pip install --disable-pip-version-check pillow
+      - name: Install image tools
+        run: python -m pip install --disable-pip-version-check pillow cairosvg
+
+      - name: Rasterize editable Tier 2 SVG masters
+        run: python scripts/rasterize-tier2-svg-masters.py
 
       - name: Build and commit complete class packages
         shell: bash
