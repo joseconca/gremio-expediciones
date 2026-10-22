@@ -49,6 +49,13 @@ jobs:
 
           for class_id in caballero duelista sacerdote monje cazador explorador elementalista brujo; do
             source_dir="assets/spritesheets/originales/$class_id/v2/source"
+
+            # Cazador tiene un generador raster propio, versionado por separado.
+            # Generar ambos sexos solo si falta algún máster, sin SVG ni armas incrustadas.
+            if [[ "$class_id" == "cazador" ]] && { [[ ! -f "$source_dir/cazador-m-core-3rows.png" ]] || [[ ! -f "$source_dir/cazador-f-core-3rows.png" ]]; }; then
+              python scripts/generate-cazador-master.py
+            fi
+
             has_f=0
             has_m=0
             [[ -f "$source_dir/$class_id-f-core-3rows.webp" || -f "$source_dir/$class_id-f-core-3rows.png" ]] && has_f=1
