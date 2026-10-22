@@ -1,0 +1,120 @@
+{
+  "class": "sacerdote",
+  "sex": "m",
+  "action": "walk",
+  "source": "assets/spritesheets/originales/sacerdote/v2/source/sacerdote-m-core-3rows.webp",
+  "source_sha256": "35c1d0c90b3be66013456f0fb90d54af7f08c904e08c855046dca5e6bcbee878",
+  "source_master_three_rows": true,
+  "source_row_index": 1,
+  "master_dimensions": [
+    128,
+    192
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 2,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "7dcb5d1e547fffebda0a4af12930bd255a528d29cdb15a2ae60ac1626962a369",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        4,
+        10,
+        64,
+        124
+      ],
+      "rgba_sha256": "24efd0461a1d3d76dfa1455c8c92a9cfd8642ee17b73f732780771d9f416534e",
+      "visible_pixels": 4688
+    },
+    {
+      "index": 2,
+      "bbox": [
+        0,
+        10,
+        62,
+        124
+      ],
+      "rgba_sha256": "9711cb6cd7000dcbf384ec2b64b5e2ea7dd5380531ece07ccaff0ac2b618ccb2",
+      "visible_pixels": 4588
+    },
+    {
+      "index": 3,
+      "bbox": [
+        0,
+        10,
+        64,
+        126
+      ],
+      "rgba_sha256": "f4b2d1bc2da76e61b91235f812c879df18d7f3716abc5c273e92d7889401b311",
+      "visible_pixels": 4528
+    },
+    {
+      "index": 4,
+      "bbox": [
+        0,
+        10,
+        60,
+        124
+      ],
+      "rgba_sha256": "90f3de9e8831845a22160c3ff9a8d2f9e22c0c42785c353db9e6a5b890d4554d",
+      "visible_pixels": 4616
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/sacerdote/v2/walk/frames-native-32x64/m/sacerdote-m-walk-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "fc8aadcc8e8ea76c058493fd1864b1825198eb5c5313321bc93db7ace49ce9aa"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/sacerdote/v2/walk/frames-native-32x64/m/sacerdote-m-walk-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "c019b15bafe8f3660645ff034a0540398038a46324d5058e695e5e685f1d68f4"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/sacerdote/v2/walk/frames-native-32x64/m/sacerdote-m-walk-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "61f2609d2a950fb0ad024f9d377d46c083cb3b108603319cb7f615ec3c505f8e"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/sacerdote/v2/walk/frames-native-32x64/m/sacerdote-m-walk-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "52d420542a8084816d362599a2178ded586ef642f53b060f9403648623dead60"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/sacerdote/v2/walk/previews/sacerdote-m-walk-preview.png"
+}

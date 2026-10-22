@@ -1,0 +1,120 @@
+{
+  "class": "sacerdote",
+  "sex": "m",
+  "action": "hurt",
+  "source": "assets/spritesheets/originales/sacerdote/v2/source/sacerdote-m-core-3rows.webp",
+  "source_sha256": "35c1d0c90b3be66013456f0fb90d54af7f08c904e08c855046dca5e6bcbee878",
+  "source_master_three_rows": true,
+  "source_row_index": 2,
+  "master_dimensions": [
+    128,
+    192
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 2,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "70e47d44a146cb0a846d94b1c0b152795795945b6d1652f08c322b3d04b63427",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        2,
+        10,
+        64,
+        114
+      ],
+      "rgba_sha256": "945f4eaf1333bcff683eafa8fcc9abf70ff499e733901b1413bdcf3e783419e4",
+      "visible_pixels": 4412
+    },
+    {
+      "index": 2,
+      "bbox": [
+        0,
+        10,
+        64,
+        112
+      ],
+      "rgba_sha256": "a101e21b01a571fb9dc15d8aa2092bd516f2ed05471e27dabfe979877add6dae",
+      "visible_pixels": 4324
+    },
+    {
+      "index": 3,
+      "bbox": [
+        0,
+        12,
+        64,
+        114
+      ],
+      "rgba_sha256": "0f60970ea44aa636c960b94232ed95a8c52c27a1e1a52fb905fabd0471620dc3",
+      "visible_pixels": 4612
+    },
+    {
+      "index": 4,
+      "bbox": [
+        0,
+        12,
+        64,
+        114
+      ],
+      "rgba_sha256": "77fbb85a939958532f161b83278725ea8eb3a9209736d76413f6377e8fde7457",
+      "visible_pixels": 4292
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/sacerdote/v2/hurt/frames-native-32x64/m/sacerdote-m-hurt-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "7c81d0873c9ed2598faa25dabcffa0f1b17c74c729b8abfe6c6e8cf54247e467"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/sacerdote/v2/hurt/frames-native-32x64/m/sacerdote-m-hurt-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "ab96a48a41a6967f09ef4b90760085e4731bd3b3fa8452527f162612921838a9"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/sacerdote/v2/hurt/frames-native-32x64/m/sacerdote-m-hurt-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "6d86fe97d3afe06b2fecce4082ffa35f0bfe4e7486603bf7356ec4a38ad2dd2b"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/sacerdote/v2/hurt/frames-native-32x64/m/sacerdote-m-hurt-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "4261539b044973974154fdea8799603d1c78fd72f3f4b405af4c2328900c973b"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/sacerdote/v2/hurt/previews/sacerdote-m-hurt-preview.png"
+}

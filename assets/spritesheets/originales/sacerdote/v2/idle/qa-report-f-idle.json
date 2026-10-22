@@ -1,0 +1,120 @@
+{
+  "class": "sacerdote",
+  "sex": "f",
+  "action": "idle",
+  "source": "assets/spritesheets/originales/sacerdote/v2/source/sacerdote-f-core-3rows.webp",
+  "source_sha256": "d667ac12219110f60f8b9debc8cdf4ed226857a33ef870bfa1b9ccef0a1979db",
+  "source_master_three_rows": true,
+  "source_row_index": 0,
+  "master_dimensions": [
+    128,
+    192
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "c4a90fe0c37cd78e4f71e779fb7c800da54892f8f5a79bebac2b5627a55be8e0",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        6,
+        18,
+        64,
+        128
+      ],
+      "rgba_sha256": "1e0ec637d18903e6265db8c075417489f16ff3ea3d6189ad4ee184817cf9e9f7",
+      "visible_pixels": 4456
+    },
+    {
+      "index": 2,
+      "bbox": [
+        4,
+        18,
+        62,
+        128
+      ],
+      "rgba_sha256": "bfd75deb3e58992b5e231f8c066dfe9125d0aace8e762ce67ac690d01416ed1a",
+      "visible_pixels": 4616
+    },
+    {
+      "index": 3,
+      "bbox": [
+        2,
+        18,
+        60,
+        128
+      ],
+      "rgba_sha256": "ffb52ef314bf3debd13799df492370bb12cd07d864afc6ab3db858a2c6584431",
+      "visible_pixels": 4400
+    },
+    {
+      "index": 4,
+      "bbox": [
+        0,
+        18,
+        58,
+        128
+      ],
+      "rgba_sha256": "aacc7eae34f2d2353cb2c7a03ac459214dbaf4891e7f6f707c0e446a51d44090",
+      "visible_pixels": 4288
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/sacerdote/v2/idle/frames-native-32x64/f/sacerdote-f-idle-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "809e8bf3eac631410007e914dc64cd1bb9c2d31affb66a6894691a50041af7da"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/sacerdote/v2/idle/frames-native-32x64/f/sacerdote-f-idle-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "59ae9e9e388d3a22f392f8dd9422e1441230fb011b70d6f8eb6eb8afca38ea43"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/sacerdote/v2/idle/frames-native-32x64/f/sacerdote-f-idle-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "4ce6c9c83ab84fd4eb0840b2e65464c0d2f3ccc401e351edc08d6d1b03d56bde"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/sacerdote/v2/idle/frames-native-32x64/f/sacerdote-f-idle-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "106c8293ed7495bc901f77d793625624516b02e7f262b70bb7a60eba0d38bc25"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/sacerdote/v2/idle/previews/sacerdote-f-idle-preview.png"
+}
