@@ -1,0 +1,120 @@
+{
+  "class": "duelista",
+  "sex": "m",
+  "action": "hurt",
+  "source": "assets/spritesheets/originales/duelista/v2/source/duelista-m-core-3rows.png",
+  "source_sha256": "67d4b101a8e95186422b8d68016ac250754fd00f7083cb7d8e90c10e7000e815",
+  "source_master_three_rows": true,
+  "source_row_index": 2,
+  "master_dimensions": [
+    128,
+    192
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 2,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "71dd7fd930c5b269497c53cbc0adeed97371aafc3dbdea70459d23a6833d99b3",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        10,
+        8,
+        56,
+        120
+      ],
+      "rgba_sha256": "6c25ae29870a2a18d9490dc28a8ef695849d8fc1fa7ebddf58b82b30924627d3",
+      "visible_pixels": 3348
+    },
+    {
+      "index": 2,
+      "bbox": [
+        8,
+        8,
+        56,
+        120
+      ],
+      "rgba_sha256": "f0367aa1e891e0254ebcb07de9635a62422ca1c7f5d4b454c5cd370dd7632aaf",
+      "visible_pixels": 3256
+    },
+    {
+      "index": 3,
+      "bbox": [
+        8,
+        8,
+        56,
+        122
+      ],
+      "rgba_sha256": "a51c0a2fc17bff955a1e228a005247c2a8229201f238bd3402ec1811bd0f88c9",
+      "visible_pixels": 3524
+    },
+    {
+      "index": 4,
+      "bbox": [
+        12,
+        8,
+        56,
+        120
+      ],
+      "rgba_sha256": "b1823b0625bafc3b796a7ca4554d46b5f9502207fedf891737f84368d3d420eb",
+      "visible_pixels": 3308
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/duelista/v2/hurt/frames-native-32x64/m/duelista-m-hurt-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "89609744c6e9463ae46624db312af622366dab3449dbb6fa9f3ef3565a50acea"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/duelista/v2/hurt/frames-native-32x64/m/duelista-m-hurt-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "7d627fa8938de9071a4e016b7bbbfe1b7439a1dbec9380292f84cdf467881955"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/duelista/v2/hurt/frames-native-32x64/m/duelista-m-hurt-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "e40703b430a53af23de3fb0e886b32c4abefaf0e76222872c70a4e2d014c8587"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/duelista/v2/hurt/frames-native-32x64/m/duelista-m-hurt-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "bbe111d016daba36097c45c602dd1d650e60b221e9dbf5894d83d6f11dbb3133"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/duelista/v2/hurt/previews/duelista-m-hurt-preview.png"
+}

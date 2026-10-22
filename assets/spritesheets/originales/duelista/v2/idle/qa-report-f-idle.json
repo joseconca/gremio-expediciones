@@ -1,0 +1,120 @@
+{
+  "class": "duelista",
+  "sex": "f",
+  "action": "idle",
+  "source": "assets/spritesheets/originales/duelista/v2/source/duelista-f-core-3rows.png",
+  "source_sha256": "13aa82d0e8bf8d5c8114f736790a5e9078d3ab1ce2f2330cce4303f1f9462ab4",
+  "source_master_three_rows": true,
+  "source_row_index": 0,
+  "master_dimensions": [
+    128,
+    192
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 2,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "d4d1bf0b544d111089d09dbe8d640edfbac180646699160e4ab511a8f9758aa8",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        10,
+        12,
+        56,
+        120
+      ],
+      "rgba_sha256": "def8bedfd97ad2303e0798c8eb38ec89989538e12a66129d7c4cbba7f8d3464a",
+      "visible_pixels": 3180
+    },
+    {
+      "index": 2,
+      "bbox": [
+        12,
+        12,
+        56,
+        120
+      ],
+      "rgba_sha256": "3d7f1185dccda1210c5d6bc9eb09f16a4dfe110740be2cf57d1470af7c77d89e",
+      "visible_pixels": 3204
+    },
+    {
+      "index": 3,
+      "bbox": [
+        10,
+        12,
+        56,
+        122
+      ],
+      "rgba_sha256": "f28cacc91250f4fe3e3b1ce728af17af22b77e275a4ef5f972b5da657e8affb0",
+      "visible_pixels": 3296
+    },
+    {
+      "index": 4,
+      "bbox": [
+        8,
+        12,
+        56,
+        120
+      ],
+      "rgba_sha256": "080229092e0d60dc136e03b68eef29fe35189925a07c6ef60b86565b1f1b157a",
+      "visible_pixels": 3152
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/duelista/v2/idle/frames-native-32x64/f/duelista-f-idle-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "779a6512789702ada5e2e78e82385e99d8527959bdd24264d043825c2c61db16"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/duelista/v2/idle/frames-native-32x64/f/duelista-f-idle-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "3515e7a85bf2992bb456bb2b99dfe89ac8358a57c8f1e72a7f7fe5e48bc4018a"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/duelista/v2/idle/frames-native-32x64/f/duelista-f-idle-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "a5177d750603e17a7c37e0d17111d58dba7c250fc7e9c1089e1b9e3d2a38906d"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/duelista/v2/idle/frames-native-32x64/f/duelista-f-idle-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "0fadae1e3527a2b6a372b3d580acb6a6687e8059bdd242edbc8bcd62fc8ab173"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/duelista/v2/idle/previews/duelista-f-idle-preview.png"
+}
