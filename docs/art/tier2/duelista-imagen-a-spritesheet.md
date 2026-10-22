@@ -1,0 +1,23 @@
+# Duelista Tier 2 — extracción desde lámina ilustrada
+
+## Fuente y alcance
+
+La fuente es la lámina ilustrada aportada en la conversación el 22-10-2026, de 1536×1024 px. Contiene las variantes masculina y femenina en dos bloques, con cuatro poses para cada acción en el orden **Idle → Caminar → Recibir daño**.
+
+No se usarán los másteres SVG vectoriales anteriores: se sustituirán por másteres raster PNG recortados de esta referencia. El diseño mantiene las manos vacías y no dibuja armas ni escudos; el equipo se añadirá como capas independientes.
+
+## Contrato de salida
+
+- Máster masculino y femenino de 256×384 px, en una cuadrícula de cuatro columnas por tres filas.
+- Cada celda mide 64×128 px para que el generador Tier 2 derive las tiras ampliadas, los fotogramas nativos de 32×64, las previews y los informes QA.
+- Línea de pies normalizada entre fotogramas para reducir saltos de altura.
+- Fondo del panel eliminado por segmentación basada en el contorno y una máscara de color. Puede quedar algún píxel suelto/halo en ciertos bordes porque la lámina original tiene fondo opaco y las ilustraciones se solapan con la zona del rótulo; se puede hacer una pasada manual de limpieza posterior.
+- No integrar en `public/sprites/heroes` ni en el runtime en esta fase.
+
+## Decisiones de recorte
+
+La primera pose femenina de cada acción tiene una coleta que invade el margen izquierdo de la celda y se superpone con la zona del rótulo. El recorte limita ese margen para evitar que entren letras en el frame; conserva la coleta cercana a la cabeza para mantener la identidad visual. No se añaden armas.
+
+## Validación
+
+El pipeline del repositorio debe generar seis tiras (tres acciones × dos sexos), 24 frames nativos, seis previews y seis informes QA. El control técnico de dimensiones/alfa y frames distintos no sustituye la inspección visual: se revisarán los recortes y, si hace falta, se limpiará el halo de fondo en una iteración dedicada.
