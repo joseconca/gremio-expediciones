@@ -5,28 +5,36 @@
   "action": "idle",
   "direction": "right",
   "status": "draft-needs-art-review",
-  "nativeFrameCount": 4,
-  "nativeFrameSize": {"width": 32, "height": 64},
-  "expandedSheet": {"path": "idle-right-4f.png", "width": 256, "height": 128, "mode": "P", "transparencyIndex": 0},
-  "nativeFrames": [
-    "idle/frames-native-32x64/elementalista-m-idle-01.png",
-    "idle/frames-native-32x64/elementalista-m-idle-02.png",
-    "idle/frames-native-32x64/elementalista-m-idle-03.png",
-    "idle/frames-native-32x64/elementalista-m-idle-04.png"
-  ],
+  "frameCount": 4,
+  "expandedSheet": {
+    "path": "idle-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "mode": "RGBA",
+    "cellWidth": 64,
+    "cellHeight": 128
+  },
+  "nativeFrames": {
+    "path": "idle/frames-native-32x64/",
+    "width": 32,
+    "height": 64,
+    "mode": "RGBA",
+    "count": 4
+  },
   "checks": {
-    "nativeDimensions": true,
-    "nativeModeRGBA": true,
-    "nativePerPixelAlpha": true,
-    "allFramesNonEmpty": true,
-    "fourUniqueNativeFrames": true,
-    "expandedSheetModeRGBA": false,
-    "productionApproved": false
+    "expandedDimensions": true,
+    "fourCells": true,
+    "everyCellHasVisiblePixels": true,
+    "fourUniqueFrames": true,
+    "expandedModeRGBA": true,
+    "perPixelAlphaPresent": true,
+    "allNativeFramesRGBA": true,
+    "runtimeApproved": false
   },
   "notes": [
-    "Each native frame is a separate 32x64 RGBA PNG with transparent pixels.",
-    "The expanded 256x128 review strip still uses palette transparency and is not approved for runtime.",
-    "The current art was extracted from a composite concept reference; the idle poses are subtle and require visual/art-direction review before moving on.",
-    "No weapons, staff, book or UI are intended to be part of the character layer."
+    "Expanded sheet was assembled by nearest-neighbour scaling of the four separated 32x64 native RGBA frames.",
+    "All four frames are non-empty, have transparent pixels, and differ at the pixel level.",
+    "The art remains a draft extracted from a composite reference; motion is subtle and still requires visual art-direction review.",
+    "Stored in rework-staging and not connected to runtime; original source files remain untouched."
   ]
 }
