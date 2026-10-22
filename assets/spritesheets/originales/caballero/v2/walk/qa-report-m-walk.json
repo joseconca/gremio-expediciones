@@ -1,0 +1,120 @@
+{
+  "class": "caballero",
+  "sex": "m",
+  "action": "walk",
+  "source": "assets/spritesheets/originales/caballero/v2/source/caballero-m-core-3rows.webp",
+  "source_sha256": "111e274c8f82a236aea624d3d00a8ed7df1b57d70e7c4e1c642e488906a8d47d",
+  "source_master_three_rows": true,
+  "source_row_index": 1,
+  "master_dimensions": [
+    128,
+    192
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "b3c7b5e979e2f963b9c2b3d281b72436eda25e2d03b97d175d308afac3d0d816",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        2,
+        28,
+        62,
+        126
+      ],
+      "rgba_sha256": "0705b987148f4ebac2ccc43ac06359e060e6f5852d80e62face37e019e2e24a7",
+      "visible_pixels": 4900
+    },
+    {
+      "index": 2,
+      "bbox": [
+        2,
+        28,
+        62,
+        126
+      ],
+      "rgba_sha256": "044275c8fb0937fe3fbac9627eaaa979fcf3762ccefaf626b9eb6dc8a3462048",
+      "visible_pixels": 4736
+    },
+    {
+      "index": 3,
+      "bbox": [
+        2,
+        28,
+        62,
+        126
+      ],
+      "rgba_sha256": "6c46282a79ad90aa84c410ebbf6fe1e718a2155d19f9885ccbc1a1a81d8747fc",
+      "visible_pixels": 4800
+    },
+    {
+      "index": 4,
+      "bbox": [
+        2,
+        32,
+        62,
+        126
+      ],
+      "rgba_sha256": "e81439c15980c723076d7c3e73266dfd0e86fb82da03bea71458f1550e5277e0",
+      "visible_pixels": 4168
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/caballero/v2/walk/frames-native-32x64/m/caballero-m-walk-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "17c12aeea6c1747d12a56d02cc1515ef90302ee074a2110be9dffd21c1e9296d"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/caballero/v2/walk/frames-native-32x64/m/caballero-m-walk-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "dadce3079ec439395f940e7e3b7db10b54e08b58e0358248d41ff74b1c4e8517"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/caballero/v2/walk/frames-native-32x64/m/caballero-m-walk-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "1e2595492214c4a4f0b577dba00d35bef7c43a490ad406b6c614d87ae41279fa"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/caballero/v2/walk/frames-native-32x64/m/caballero-m-walk-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "a5a475481aa4c18cdff9b1b2541619093089503c8c18c39e43d805ce85acd5af"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/caballero/v2/walk/previews/caballero-m-walk-preview.png"
+}
