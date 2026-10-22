@@ -1,0 +1,120 @@
+{
+  "class": "caballero",
+  "sex": "m",
+  "action": "hurt",
+  "source": "assets/spritesheets/originales/caballero/v2/source/caballero-m-core-3rows.webp",
+  "source_sha256": "111e274c8f82a236aea624d3d00a8ed7df1b57d70e7c4e1c642e488906a8d47d",
+  "source_master_three_rows": true,
+  "source_row_index": 2,
+  "master_dimensions": [
+    128,
+    192
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "d35f66971060413e425732560b045b81ece6fb9af1d881ca91fec534f1c94688",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        2,
+        28,
+        62,
+        126
+      ],
+      "rgba_sha256": "0480c789a3e6991d3bc0c0d475a085abfd942afe9ea56e83a0c0dd95aeae0a2b",
+      "visible_pixels": 4732
+    },
+    {
+      "index": 2,
+      "bbox": [
+        2,
+        30,
+        62,
+        126
+      ],
+      "rgba_sha256": "ac80bd2c2d6f67b72fa5e191cc6c0f372a77f6d1a32dc0de38d5bb381fb4b1eb",
+      "visible_pixels": 4844
+    },
+    {
+      "index": 3,
+      "bbox": [
+        2,
+        30,
+        62,
+        126
+      ],
+      "rgba_sha256": "94a88b2ebed3667e7e106db6b9e4548e91e38c0195533fb8d644c9ceef9e7097",
+      "visible_pixels": 4812
+    },
+    {
+      "index": 4,
+      "bbox": [
+        2,
+        34,
+        62,
+        126
+      ],
+      "rgba_sha256": "86d4eb5c2e82b8df4d296c72da510d4518c531e2c0a936e5aba8a3709676775e",
+      "visible_pixels": 4524
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/caballero/v2/hurt/frames-native-32x64/m/caballero-m-hurt-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "8efd779ad64064497168a3db734b68c0af51692ddd4b174d065f25b714d8e6b1"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/caballero/v2/hurt/frames-native-32x64/m/caballero-m-hurt-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "a2715a1bb64c346e9f6b6df946a4f30eb30b4fa66056c5a7712eee1edb7f4c33"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/caballero/v2/hurt/frames-native-32x64/m/caballero-m-hurt-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "37aa070c999fd2a47a4f5bbca077acc7c0ce4737c3814e9d956978affc51406f"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/caballero/v2/hurt/frames-native-32x64/m/caballero-m-hurt-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "c5e061e488a612dccd991a04f6dffd1dbcaa734cd9692b29ce95b7180b7428b7"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/caballero/v2/hurt/previews/caballero-m-hurt-preview.png"
+}

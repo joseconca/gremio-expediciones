@@ -1,10 +1,9 @@
-# Caballero — Tier 2 (fuente preliminar)
+# Caballero — Tier 2 (paquete v2 generado)
 
-Estado: máster masculino guardado; máster femenino en preparación. Esta primera versión se ha extraído de la lámina conceptual generada para Tier 2, separando cuatro frames por cada fila (Idle, Caminar y Recibir daño) y aplicando una máscara inicial para el fondo.
+El paquete v2 de Caballero ya se había generado y versionado en los commits anteriores de Tier 2. Se conservan los dos másteres de origen y las salidas de Idle, Caminar y Recibir daño para los dos sexos.
 
-- Máster masculino: `caballero-m-core-3rows.webp`, 128×192; 4 frames nativos de 32×64 por fila.
-- Fondo: pueden quedar residuos alrededor de la silueta; queda pendiente el retoque manual del artista.
-- Las seis tiras, previews y QA se generarán cuando estén versionados ambos sexos.
-- No está integrado en runtime ni cuenta aún con aprobación visual final.
+- Fuentes: `source/caballero-f-core-3rows.webp` y `source/caballero-m-core-3rows.webp`.
+- Másteres de 128×192: cuatro frames nativos de 32×64 por fila y tres acciones.
+- Paquete: seis tiras PNG de 256×128, frames nativos, previews e informes QA.
 
-Mantener los archivos de origen sin sobrescribirlos con versiones retocadas: si se limpia el fondo, conservar el original en el historial de Git y guardar el retoque como una nueva versión.
+El arte procede de la lámina conceptual v2; puede quedar fondo residual y necesita retoque visual manual. Las tiras no están integradas en runtime: no promocionarlas hasta aprobar la limpieza y la silueta.
