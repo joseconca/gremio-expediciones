@@ -42,4 +42,6 @@ Trabajar **un solo personaje cada vez**, sin pedir a la generación que resuelva
 - Revisión del repositorio terminada; trabajo en la rama `main`, conforme a la petición del usuario.
 - Las fuentes actuales de Brujo, Cazador, Explorador y Elementalista muestran poca variación entre fotogramas y necesitan revisión artística.
 - Las imágenes exploratorias de esta sesión mezclan concept art y ejemplos de animación en tableros compuestos. **No se consideran sprites de producción y no deben integrarse en runtime.**
+- Se ha aislado una ilustración principal para revisar el diseño de Elementalista masculino: pelo plateado, manto azul profundo, túnica marfil, bordado dorado y manos vacías. La copia de revisión se mantiene fuera de los assets del juego y no sustituye al máster fuente.
+- Próximo checkpoint: generar solo los cuatro fotogramas de `idle` mirando a la derecha, con alpha real, después validarlos antes de iniciar `walk`.
 - El flujo se ha reducido a un solo personaje y una sola etapa por iteración para evitar acumular arte incompleto o sobrescribir recursos válidos.
