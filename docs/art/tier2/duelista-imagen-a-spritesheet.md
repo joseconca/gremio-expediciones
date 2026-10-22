@@ -4,7 +4,7 @@
 
 La fuente es la lámina ilustrada aportada en la conversación el 22-10-2026, de 1536×1024 px. Contiene las variantes masculina y femenina en dos bloques, con cuatro poses para cada acción en el orden **Idle → Caminar → Recibir daño**.
 
-No se usarán los másteres SVG vectoriales anteriores: se sustituirán por másteres raster PNG recortados de esta referencia. El diseño mantiene las manos vacías y no dibuja armas ni escudos; el equipo se añadirá como capas independientes.
+No se usarán los másteres raster por imagen vectoriales anteriores: se sustituirán por másteres raster PNG recortados de esta referencia. El diseño mantiene las manos vacías y no dibuja armas ni escudos; el equipo se añadirá como capas independientes.
 
 ## Contrato de salida
 

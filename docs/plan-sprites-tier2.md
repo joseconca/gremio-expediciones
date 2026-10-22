@@ -30,7 +30,7 @@ Brief inicial: distinguirlo del Espadachín por mayor masa de armadura, hombrera
 
 ## Estado de preparación
 
-Duelista ya dispone de dos másteres raster WebP basados en láminas de imagen 4×3; se eliminó la fuente vectorial SVG y el rasterizador correspondiente. El siguiente paso automático reconstruye sus seis tiras, frames nativos, previews e informes QA. El cuerpo se mantiene desarmado; armas y escudos son capas independientes.
+Duelista ya dispone de dos másteres raster WebP basados en láminas de imagen 4×3; se eliminó la fuente vectorial SVG y el rasterizador correspondiente. El pipeline raster genera sus seis tiras, frames nativos, previews e informes QA. El cuerpo se mantiene desarmado; armas y escudos son capas independientes.
 
 ## Orden de trabajo
 
@@ -44,7 +44,7 @@ Duelista ya dispone de dos másteres raster WebP basados en láminas de imagen 4
 ## Estado de trabajo — 22 de octubre de 2026
 
 - **Caballero:** paquete v2 masculino y femenino ya generado en `assets/spritesheets/originales/caballero/v2/`; requiere limpieza visual posterior del fondo residual. No está integrado al runtime.
-- **Duelista:** másteres SVG editables para ambos sexos, rasterización PNG 128×192, seis tiras de 256×128, 24 frames nativos 32×64, seis previews y seis informes QA. Las seis tiras tienen cuatro frames distintos, alfa real y deriva de pies de 2 px en QA. No está integrado al runtime.
-- **Estado actual:** Caballero, Duelista, Sacerdote y Monje tienen sus paquetes v2 generados. **Cazador tiene ya las dos fuentes raster PNG, seis tiras, 24 frames nativos, previews y QA en `assets/spritesheets/originales/cazador/v2/`.** Está pendiente de aprobación visual y no se ha integrado al runtime. Explorador está en curso; después seguirán Elementalista y Brujo.
+- **Duelista:** másteres raster por imagen para ambos sexos (sin SVG en el pipeline activo), seis tiras PNG de 256×128, 24 frames nativos 32×64, seis previews y seis informes QA. Las seis tiras tienen cuatro frames distintos y alfa real. No está integrado al runtime.
+- **Estado actual:** Caballero, Duelista, Sacerdote y Monje tienen sus paquetes v2 generados. **Cazador tiene ya las dos fuentes raster PNG, seis tiras, 24 frames nativos, previews y QA en `assets/spritesheets/originales/cazador/v2/`.** Está pendiente de aprobación visual y no se ha integrado al runtime. **Explorador también tiene ya el paquete raster PNG completo** en `assets/spritesheets/originales/explorador/v2/`; está pendiente de aprobación visual y no está integrado al runtime. La siguiente clase activa es Elementalista, seguida de Brujo.
 
-La generación del paquete de Cazador terminó en verde en [GitHub Actions](https://github.com/joseconca/gremio-expediciones/actions/runs/39840572903); la regresión también terminó en verde en [GitHub Actions](https://github.com/joseconca/gremio-expediciones/actions/runs/39840572707).
+La generación de Cazador terminó en verde en [GitHub Actions](https://github.com/joseconca/gremio-expediciones/actions/runs/39840572903) y su regresión también pasó ([CI](https://github.com/joseconca/gremio-expediciones/actions/runs/39840572707)). Explorador terminó en verde en [el workflow de sprites](https://github.com/joseconca/gremio-expediciones/actions/runs/39841247216) y [la regresión completa](https://github.com/joseconca/gremio-expediciones/actions/runs/39841247276).

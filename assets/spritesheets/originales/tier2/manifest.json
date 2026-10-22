@@ -76,8 +76,8 @@
       "archetype": "agil",
       "resource": "energia",
       "visualBrief": "equipo ligero de viaje y supervivencia, preparado para trampas",
-      "status": "raster-master-generator-committed",
-      "note": "Custom raster PNG generator is being added: light travel clothes in sand/teal tones, packs and pouches only, empty hands, no bow, quiver, arrows, blade or embedded weapons. Output will remain outside runtime until visual review."
+      "status": "raster-package-generated-review-pending",
+      "note": "Both custom raster PNG masters and the complete package are generated: six action strips, 24 native 32x64 frames, six previews and six QA reports. Four distinct frames per action, real alpha (0-255); footline drift <=1 px for Idle/Hurt and 0 px for Walk. Empty hands, no bow, quiver, arrows or embedded weapons. Not integrated into runtime; visual approval pending."
     },
     {
       "id": "elementalista",
