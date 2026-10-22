@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "classId": "elementalista",
+  "sex": "m",
+  "action": "walk",
+  "direction": "right",
+  "status": "draft-needs-art-review",
+  "frameCount": 4,
+  "expandedSheet": {
+    "path": "walk-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "mode": "RGBA",
+    "cellWidth": 64,
+    "cellHeight": 128
+  },
+  "nativeFrames": {
+    "path": "walk/frames-native-32x64/",
+    "width": 32,
+    "height": 64,
+    "mode": "RGBA",
+    "count": 4
+  },
+  "checks": {
+    "expandedDimensions": true,
+    "fourCells": true,
+    "everyCellHasVisiblePixels": true,
+    "fourUniqueFrames": true,
+    "expandedModeRGBA": true,
+    "perPixelAlphaPresent": true,
+    "allNativeFramesRGBA": true,
+    "runtimeApproved": false
+  },
+  "notes": [
+    "Expanded sheet assembled by nearest-neighbour scaling of the four separate native RGBA frames.",
+    "All frames are non-empty and distinct at the pixel level; alpha ranges from fully transparent to fully opaque.",
+    "The source is a composite concept sheet extraction. Leg/cloth motion remains subtle and requires an artistic redraw/refinement before production.",
+    "Stored in rework-staging only; no original or runtime sprite is replaced."
+  ]
+}
