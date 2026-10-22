@@ -4,31 +4,29 @@
   "sex": "m",
   "action": "idle",
   "direction": "right",
-  "status": "staging-review-required",
-  "frameCount": 4,
-  "canvas": {
-    "width": 256,
-    "height": 128,
-    "mode": "P",
-    "transparencyIndex": 0
-  },
-  "cell": {
-    "width": 64,
-    "height": 128
-  },
+  "status": "draft-needs-art-review",
+  "nativeFrameCount": 4,
+  "nativeFrameSize": {"width": 32, "height": 64},
+  "expandedSheet": {"path": "idle-right-4f.png", "width": 256, "height": 128, "mode": "P", "transparencyIndex": 0},
+  "nativeFrames": [
+    "idle/frames-native-32x64/elementalista-m-idle-01.png",
+    "idle/frames-native-32x64/elementalista-m-idle-02.png",
+    "idle/frames-native-32x64/elementalista-m-idle-03.png",
+    "idle/frames-native-32x64/elementalista-m-idle-04.png"
+  ],
   "checks": {
-    "canvasDimensions": true,
-    "fourCells": true,
-    "eachCellHasVisiblePixels": true,
-    "fourUniqueFrames": true,
-    "paletteTransparencyPresent": true,
-    "rgbaMode": false,
-    "runtimeApproved": false
+    "nativeDimensions": true,
+    "nativeModeRGBA": true,
+    "nativePerPixelAlpha": true,
+    "allFramesNonEmpty": true,
+    "fourUniqueNativeFrames": true,
+    "expandedSheetModeRGBA": false,
+    "productionApproved": false
   },
   "notes": [
-    "First visual extraction from the generated concept/reference sheet; the frame design still needs visual review.",
-    "The PNG uses palette transparency (tRNS index 0), not RGBA mode; convert and validate before production integration.",
-    "Stored only under rework-staging; existing game-facing assets remain untouched.",
-    "Character has no separate weapon or staff layer."
+    "Each native frame is a separate 32x64 RGBA PNG with transparent pixels.",
+    "The expanded 256x128 review strip still uses palette transparency and is not approved for runtime.",
+    "The current art was extracted from a composite concept reference; the idle poses are subtle and require visual/art-direction review before moving on.",
+    "No weapons, staff, book or UI are intended to be part of the character layer."
   ]
 }
