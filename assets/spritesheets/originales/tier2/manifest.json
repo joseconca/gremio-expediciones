@@ -12,7 +12,7 @@
   ],
   "sourceRoot": "assets/spritesheets/originales",
   "outputContract": {
-    "master": "<class>/v2/source/<class>-<sex>-core-3rows.webp",
+    "master": "<class>/v2/source/<class>-<sex>-core-3rows.webp (raster, 128x192)",
     "strip": "<class>/v2/<action>/<class>-<sex>-<action>.png",
     "nativeFrames": "<class>/v2/<action>/frames-native-32x64/<sex>/",
     "preview": "<class>/v2/<action>/previews/",
@@ -36,8 +36,8 @@
       "archetype": "agil",
       "resource": "energia",
       "visualBrief": "armadura ligera/media, líneas estilizadas y postura de esgrima",
-      "status": "package-generated-review-needed",
-      "note": "Editable SVG masters and rasterized PNG masters committed; six strips, 24 native frames, six previews and six QA reports generated. Not integrated into runtime."
+      "status": "source-masters-raster-ready",
+      "note": "Two image-based WebP masters (male/female) replace the SVG masters; the standard raster pipeline will regenerate six strips and QA. Unarmed body; weapons remain separate layers. Not integrated into runtime."
     },
     {
       "id": "sacerdote",

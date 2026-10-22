@@ -28,6 +28,10 @@ Brief inicial: distinguirlo del Espadachín por mayor masa de armadura, hombrera
 - Validar visualmente los frames, además de dimensiones y hashes. No promover una clase al runtime hasta revisar ambos sexos.
 - Solo tras aprobar las seis tiras, añadir el ID a la lista explícita del workflow de Tier 2; no incluir aún las clases híbridas de Tier 2.5.
 
+## Estado de preparación
+
+Duelista ya dispone de dos másteres raster WebP basados en láminas de imagen 4×3; se eliminó la fuente vectorial SVG y el rasterizador correspondiente. El siguiente paso automático reconstruye sus seis tiras, frames nativos, previews e informes QA. El cuerpo se mantiene desarmado; armas y escudos son capas independientes.
+
 ## Orden de trabajo
 
 1. Caballero — establecer el nivel de detalle y la escala de las clases avanzadas.
