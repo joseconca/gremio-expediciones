@@ -1,0 +1,120 @@
+{
+  "class": "cazador",
+  "sex": "m",
+  "action": "idle",
+  "source": "assets/spritesheets/originales/cazador/v2/source/cazador-m-core-3rows.png",
+  "source_sha256": "da27a1d39303ff0a9707c72f70d8da5504cc4816e03285abce3dcf69d19fc830",
+  "source_master_three_rows": true,
+  "source_row_index": 0,
+  "master_dimensions": [
+    256,
+    384
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "5d8349ab2529958fdcd62aed18552bbd28928f7ff735d4b7252d4703caa042c4",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        9,
+        2,
+        57,
+        117
+      ],
+      "rgba_sha256": "67137a79cef08d525c5dae9c4ed1f084626c389316521da648a1730e9ed02bda",
+      "visible_pixels": 3179
+    },
+    {
+      "index": 2,
+      "bbox": [
+        9,
+        1,
+        57,
+        117
+      ],
+      "rgba_sha256": "f76a8beaee5b844c88b6a9dccdd76d780fd63b3fdd5379077dcc0932854eb631",
+      "visible_pixels": 3191
+    },
+    {
+      "index": 3,
+      "bbox": [
+        10,
+        2,
+        56,
+        117
+      ],
+      "rgba_sha256": "4f5f8e8ef318fac13e541010240e91273ccaebdbac485c0f5795603b84907c88",
+      "visible_pixels": 3149
+    },
+    {
+      "index": 4,
+      "bbox": [
+        9,
+        3,
+        57,
+        117
+      ],
+      "rgba_sha256": "5f7e7575db5526e800e0f717aa037a3ffef116e71afc3e2dda92986026a1cd07",
+      "visible_pixels": 3166
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/cazador/v2/idle/frames-native-32x64/m/cazador-m-idle-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "91c09406c3f6ca699da9f4a2d31e9f42b78e658b67b96209b66e80d86ca4719e"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/cazador/v2/idle/frames-native-32x64/m/cazador-m-idle-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "8d6ff30ca0f21bccc869deea181237f35be95c074b590b9681eb89a37928f9aa"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/cazador/v2/idle/frames-native-32x64/m/cazador-m-idle-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "2c5a200a54f7fcaa4b925010f2225c84fd7107bd22e30775eec1c118b1ef7b33"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/cazador/v2/idle/frames-native-32x64/m/cazador-m-idle-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "c19c33e5ff313bc4c6e7106745d8e09244819beafcbdedfdc86f152ef845aa9a"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/cazador/v2/idle/previews/cazador-m-idle-preview.png"
+}

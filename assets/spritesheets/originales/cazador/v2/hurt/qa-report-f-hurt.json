@@ -1,0 +1,120 @@
+{
+  "class": "cazador",
+  "sex": "f",
+  "action": "hurt",
+  "source": "assets/spritesheets/originales/cazador/v2/source/cazador-f-core-3rows.png",
+  "source_sha256": "bd0d01a221e327683db2fbc62706bbc9ba08d44bf306b989a80656f616777dcf",
+  "source_master_three_rows": true,
+  "source_row_index": 2,
+  "master_dimensions": [
+    256,
+    384
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "0f873d513c4ea8663ae32714675efe8c75776861f1d9e7b40e876aeba594e308",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        10,
+        2,
+        56,
+        117
+      ],
+      "rgba_sha256": "02b101057aca0671614e35b08916d5d1e1e703c793e60b0781a37056b38e1717",
+      "visible_pixels": 3143
+    },
+    {
+      "index": 2,
+      "bbox": [
+        11,
+        1,
+        57,
+        117
+      ],
+      "rgba_sha256": "69bab61f2b1f0c6d4467a43e4c877158bf326c49d46f16ba99d1748b7a059186",
+      "visible_pixels": 3171
+    },
+    {
+      "index": 3,
+      "bbox": [
+        9,
+        3,
+        56,
+        117
+      ],
+      "rgba_sha256": "5f80e1b92a48d3f618fb32f50a48ff8f3ca7040163ff53220a7b4a3a52871b45",
+      "visible_pixels": 3146
+    },
+    {
+      "index": 4,
+      "bbox": [
+        8,
+        4,
+        58,
+        117
+      ],
+      "rgba_sha256": "760733864f8f4829b660bc5cb8fbdb27a620e508b4d38b794cd40f3585807906",
+      "visible_pixels": 3162
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/cazador/v2/hurt/frames-native-32x64/f/cazador-f-hurt-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "d826870b0d3f4069ed32ffd6a1b0c9773408debe27ad94cf55ca8eef4f36831f"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/cazador/v2/hurt/frames-native-32x64/f/cazador-f-hurt-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "0b23769c247dac42875fa3beb7689a09f210f1741fd2fc338cf1b72edc0fa598"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/cazador/v2/hurt/frames-native-32x64/f/cazador-f-hurt-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "94359d007d04e169f36751d7d6ebb583bd902fa467a0cbfd159c8cd7600e2f45"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/cazador/v2/hurt/frames-native-32x64/f/cazador-f-hurt-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "471f2c819856aeed91776475de30abe2a5c0e188a44d23b871c04e21b712d9d1"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/cazador/v2/hurt/previews/cazador-f-hurt-preview.png"
+}

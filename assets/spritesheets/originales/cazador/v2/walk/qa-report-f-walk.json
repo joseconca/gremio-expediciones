@@ -1,0 +1,120 @@
+{
+  "class": "cazador",
+  "sex": "f",
+  "action": "walk",
+  "source": "assets/spritesheets/originales/cazador/v2/source/cazador-f-core-3rows.png",
+  "source_sha256": "bd0d01a221e327683db2fbc62706bbc9ba08d44bf306b989a80656f616777dcf",
+  "source_master_three_rows": true,
+  "source_row_index": 1,
+  "master_dimensions": [
+    256,
+    384
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "fedaf4316e806dee7eb6f2ed05ac5d2558639c2f9bfdd6ea356e894d56891390",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        11,
+        2,
+        55,
+        117
+      ],
+      "rgba_sha256": "4048eceb0de2d9a576af01dbb0cac25b219688b0751a2c8cfbe7460cd942e865",
+      "visible_pixels": 3231
+    },
+    {
+      "index": 2,
+      "bbox": [
+        9,
+        1,
+        56,
+        117
+      ],
+      "rgba_sha256": "bb42d55f8b8300ce73e4dd5c25931b549bc86d5cff11176ec9288bbf4fbde0b0",
+      "visible_pixels": 3171
+    },
+    {
+      "index": 3,
+      "bbox": [
+        7,
+        2,
+        59,
+        117
+      ],
+      "rgba_sha256": "ed1fc2832c3f064194ab54689694c428d2aeb48a113cb2788f09ae3ee2e45573",
+      "visible_pixels": 3053
+    },
+    {
+      "index": 4,
+      "bbox": [
+        8,
+        3,
+        57,
+        117
+      ],
+      "rgba_sha256": "77fe2b47baab20cd0762fa3d70ab7d5bed8b75c86cc9f381be8269948d8773de",
+      "visible_pixels": 3213
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/cazador/v2/walk/frames-native-32x64/f/cazador-f-walk-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "db409cf2c7025851b0708a2192f32779b0f4a97e39175f991a963aae205c70fc"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/cazador/v2/walk/frames-native-32x64/f/cazador-f-walk-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "ee677a843fcc3ad3a7bf957b678572f79970a19f10f749b80a00286b08965ab9"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/cazador/v2/walk/frames-native-32x64/f/cazador-f-walk-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "da5f36f60615306f891d82ec991ee2f14e44d66513eedf6e13f7b368589c0a5a"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/cazador/v2/walk/frames-native-32x64/f/cazador-f-walk-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "affb5813fa3569f91cea4242c7046917bca248e521f6fbed136ab91d12cf8922"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/cazador/v2/walk/previews/cazador-f-walk-preview.png"
+}
