@@ -1,0 +1,120 @@
+{
+  "class": "monje",
+  "sex": "f",
+  "action": "hurt",
+  "source": "assets/spritesheets/originales/monje/v2/source/monje-f-core-3rows.webp",
+  "source_sha256": "b98643c744c69b111035c149652d09bca4b29b63fee382f4fd594b6306bd629a",
+  "source_master_three_rows": true,
+  "source_row_index": 2,
+  "master_dimensions": [
+    128,
+    192
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "5af92beb44e2f2538251fd008e12354978bd97a07c68e090a99513a439daa194",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        2,
+        20,
+        62,
+        122
+      ],
+      "rgba_sha256": "e7bd4a7f7f455e8b232a0f35728071f1f9fce2c691fe5f8e8ed7ef333121482b",
+      "visible_pixels": 3992
+    },
+    {
+      "index": 2,
+      "bbox": [
+        2,
+        26,
+        62,
+        122
+      ],
+      "rgba_sha256": "eacb16bf8236f9d11ac308cc22a20a8aabdbdfb60799e0e290846f0dfecad835",
+      "visible_pixels": 3496
+    },
+    {
+      "index": 3,
+      "bbox": [
+        2,
+        32,
+        62,
+        122
+      ],
+      "rgba_sha256": "27953196afc47f01691cf7908ccbf82de387206d38d7e8da4de7121037b206ef",
+      "visible_pixels": 3048
+    },
+    {
+      "index": 4,
+      "bbox": [
+        2,
+        18,
+        62,
+        122
+      ],
+      "rgba_sha256": "34d434f925566a2d0a2bf546423539d9ed2c2dd62baf953016c508c91f86b6ad",
+      "visible_pixels": 3920
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/monje/v2/hurt/frames-native-32x64/f/monje-f-hurt-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "a7e38274bec7ee29f04a24ea6beb41e8f3db59854bc1c68e934514125bbf6d53"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/monje/v2/hurt/frames-native-32x64/f/monje-f-hurt-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "d093de91f33dfa74a9b4e3121a4cd8653ebb088eb3e8efd2216b802d6410e562"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/monje/v2/hurt/frames-native-32x64/f/monje-f-hurt-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "e990e70873482c5cfb20bbcb78c0771657488ac73426accbdb31b322f30cf694"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/monje/v2/hurt/frames-native-32x64/f/monje-f-hurt-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "e46c5e13caafa11234ee3c169180809edf541602237e7bea3ec6f6fc3ba90039"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/monje/v2/hurt/previews/monje-f-hurt-preview.png"
+}

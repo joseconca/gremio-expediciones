@@ -1,0 +1,120 @@
+{
+  "class": "monje",
+  "sex": "f",
+  "action": "idle",
+  "source": "assets/spritesheets/originales/monje/v2/source/monje-f-core-3rows.webp",
+  "source_sha256": "b98643c744c69b111035c149652d09bca4b29b63fee382f4fd594b6306bd629a",
+  "source_master_three_rows": true,
+  "source_row_index": 0,
+  "master_dimensions": [
+    128,
+    192
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "387c7f38039e9e1a53de09628b93f96e59294a84aef0701278cdfc1fad102212",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        2,
+        18,
+        62,
+        122
+      ],
+      "rgba_sha256": "39c8ef8583072bfbfd2111012cc28f99d63714778f123c5316d94cd1abff7603",
+      "visible_pixels": 3704
+    },
+    {
+      "index": 2,
+      "bbox": [
+        2,
+        26,
+        62,
+        122
+      ],
+      "rgba_sha256": "b0e36794e1b007e5afd1e1daefc03d62cb1078d48b6039a289f0123e8d8e4241",
+      "visible_pixels": 3420
+    },
+    {
+      "index": 3,
+      "bbox": [
+        2,
+        24,
+        62,
+        122
+      ],
+      "rgba_sha256": "3bda41749ccedd7f1f678114febca68e8434270d361888f86fac903cc3577c73",
+      "visible_pixels": 3484
+    },
+    {
+      "index": 4,
+      "bbox": [
+        2,
+        16,
+        62,
+        122
+      ],
+      "rgba_sha256": "8f979295294cd3d026bb65c78bfa97bbfc30ea0758d5875059f5abb43438e208",
+      "visible_pixels": 3860
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/monje/v2/idle/frames-native-32x64/f/monje-f-idle-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "8b2d821c8a266d02158fc5d6c2acf1196973cf753a70cd44c8756403640a4823"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/monje/v2/idle/frames-native-32x64/f/monje-f-idle-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "018379e006da46a1bfbfcf95ccc574609de6827b8f627cca3b8db69eeaebbef1"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/monje/v2/idle/frames-native-32x64/f/monje-f-idle-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "ef6dd2d8981dd52f3176b5f14afcc4f55aefa886218936803d13dfda706b7dcd"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/monje/v2/idle/frames-native-32x64/f/monje-f-idle-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "ee429fec24d98aeeff0b51be3c1874f7389146740bbdeb97f34fe41decda3aaf"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/monje/v2/idle/previews/monje-f-idle-preview.png"
+}

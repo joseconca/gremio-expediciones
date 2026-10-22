@@ -1,0 +1,120 @@
+{
+  "class": "monje",
+  "sex": "m",
+  "action": "walk",
+  "source": "assets/spritesheets/originales/monje/v2/source/monje-m-core-3rows.webp",
+  "source_sha256": "94c818ae7d532e75c2f5bc6311e240a6f6e748b14109e1bb46dcf5b99c4670c5",
+  "source_master_three_rows": true,
+  "source_row_index": 1,
+  "master_dimensions": [
+    128,
+    192
+  ],
+  "strip_dimensions": [
+    256,
+    128
+  ],
+  "cell_dimensions": [
+    64,
+    128
+  ],
+  "native_frame_dimensions": [
+    32,
+    64
+  ],
+  "frame_count": 4,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "feet_baseline_drift_px": 0,
+  "distinct_frame_count": 4,
+  "runtime_integrated": false,
+  "artistic_approval": "pending visual review",
+  "output_sha256": "3e4586d9f5a5323a71a829d8c51ec48c95868dc789009409784a3b5b27a32768",
+  "frames": [
+    {
+      "index": 1,
+      "bbox": [
+        2,
+        24,
+        62,
+        122
+      ],
+      "rgba_sha256": "40fb60f22ab81d0f6dfadfcaa811dad5241f9378b868979f20a083ff912fbfd0",
+      "visible_pixels": 3160
+    },
+    {
+      "index": 2,
+      "bbox": [
+        2,
+        24,
+        62,
+        122
+      ],
+      "rgba_sha256": "00738edf1ee16203508f877a4ba4b3d707649cae94ab6ff69b08c7e143d9bc87",
+      "visible_pixels": 2808
+    },
+    {
+      "index": 3,
+      "bbox": [
+        2,
+        16,
+        62,
+        122
+      ],
+      "rgba_sha256": "d7fcf7b028cf587847dc6cc8e8660a3bad24a06e756aa8e0d3e0f2624d4b2a77",
+      "visible_pixels": 3380
+    },
+    {
+      "index": 4,
+      "bbox": [
+        2,
+        16,
+        62,
+        122
+      ],
+      "rgba_sha256": "51a9a7b737f7f281953775268dd5df6b9a6a6ff3a81982c3c173628056952649",
+      "visible_pixels": 3484
+    }
+  ],
+  "native_frames": [
+    {
+      "index": 1,
+      "path": "assets/spritesheets/originales/monje/v2/walk/frames-native-32x64/m/monje-m-walk-01.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "a574d64f31cec73f36324655c7e7bc970ed548098888ce71151d4b52d193a650"
+    },
+    {
+      "index": 2,
+      "path": "assets/spritesheets/originales/monje/v2/walk/frames-native-32x64/m/monje-m-walk-02.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "e5ea77c10da112cd8bb52eb6c4c5c2dd5a208f18972ef1310020f3e01eec57ed"
+    },
+    {
+      "index": 3,
+      "path": "assets/spritesheets/originales/monje/v2/walk/frames-native-32x64/m/monje-m-walk-03.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "e30068cdd2be2bd8fd2fb2ce5faca12326b1cab0ae02883da64d9f1490f4718e"
+    },
+    {
+      "index": 4,
+      "path": "assets/spritesheets/originales/monje/v2/walk/frames-native-32x64/m/monje-m-walk-04.png",
+      "dimensions": [
+        32,
+        64
+      ],
+      "rgba_sha256": "8a6b1527e4c9cb97cd3f1c048b9d7724281462e889aac72fdae3743afdbb39a4"
+    }
+  ],
+  "preview": "assets/spritesheets/originales/monje/v2/walk/previews/monje-m-walk-preview.png"
+}
