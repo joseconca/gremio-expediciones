@@ -52,11 +52,32 @@
       "sha256": "22e6ace7a10a0278822e683f3ce78b080777b699b6b02c2563e8c0ca8f17f12c",
       "transparentBackground": true,
       "derivedFrom": "explorador-m-idle-hires-checkerboard.png"
+    },
+    {
+      "name": "explorador-m-walk-hires-checkerboard.png",
+      "libraryPath": "/GameAssets/Tier2/Explorador/explorador-m-walk-hires-checkerboard.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGB",
+      "sha256": "a8287fc284e49703c6c22f9be8737393f2fb18c3d26b4764562e5be324d72ff5",
+      "transparentBackground": false,
+      "notes": "Original source retained exactly; the checkerboard is baked into pixels."
+    },
+    {
+      "name": "explorador-m-walk-hires-transparent-derived.png",
+      "libraryPath": "/GameAssets/Tier2/Explorador/explorador-m-walk-hires-transparent-derived.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "ae918d1471a7e0b994ac15212f54b52a037b6aaeed5111101bdb27fc1de9888c",
+      "transparentBackground": true,
+      "derivedFrom": "explorador-m-walk-hires-checkerboard.png"
     }
   ],
   "notes": [
     "Original full-resolution source retained with checkerboard intact, plus a separately derived transparent version.",
     "The compact preview is only for staging/review; it is not connected to runtime.",
-    "Male explorer idle source and transparent-derived master are retained at full resolution; only derived frame strips are used in staging."
+    "Male explorer idle source and transparent-derived master are retained at full resolution; only derived frame strips are used in staging.",
+    "Male explorer walk source master is archived in original RGB form with checkerboard intact, alongside a separately derived transparent RGBA master."
   ]
 }

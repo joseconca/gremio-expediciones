@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "classId": "explorador",
+  "sex": "m",
+  "action": "walk",
+  "direction": "right",
+  "status": "staging-indexed-transparent-art-review-pending",
+  "sourceMaster": {
+    "rawLibraryPath": "/GameAssets/Tier2/Explorador/explorador-m-walk-hires-checkerboard.png",
+    "rawSha256": "a8287fc284e49703c6c22f9be8737393f2fb18c3d26b4764562e5be324d72ff5",
+    "rawMode": "RGB",
+    "transparentDerivedLibraryPath": "/GameAssets/Tier2/Explorador/explorador-m-walk-hires-transparent-derived.png",
+    "transparentDerivedSha256": "ae918d1471a7e0b994ac15212f54b52a037b6aaeed5111101bdb27fc1de9888c",
+    "width": 1983,
+    "height": 793,
+    "mode": "RGBA",
+    "originalHasOpaqueCheckerboard": true
+  },
+  "nativeFrames": {
+    "path": "walk-native-4f.png",
+    "width": 128,
+    "height": 64,
+    "cellWidth": 32,
+    "cellHeight": 64,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "count": 4,
+    "sha256": "b675b5e90d5480e19a7ade6af247e767b8f646683550c0b64a439e8d744caf8a"
+  },
+  "expandedSheet": {
+    "path": "walk-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "sha256": "4f3dccf72e20f97adb4282de5463b86307425bde3a1f064bf74c4c155ec51170",
+    "construction": "nearest-neighbour upscale of native frames"
+  },
+  "checks": {
+    "nativeDimensions": true,
+    "expandedDimensions": true,
+    "transparentIndexPresent": true,
+    "allFrameCellsNonEmpty": true,
+    "fourUniqueFrames": true,
+    "expandedMatchesNativeFrames": true,
+    "runtimeApproved": false,
+    "requiresArtReview": true
+  },
+  "notes": [
+    "Four unique walk frames face right, with changes in stride and cloak movement.",
+    "The expanded 4x strip is pixel-identical to a nearest-neighbour enlargement of the native strip.",
+    "The source master with checkerboard was retained unchanged; a separate transparent-derived master is also archived.",
+    "Staging only; not integrated into runtime pending cross-class art review."
+  ]
+}
