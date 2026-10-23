@@ -4,7 +4,7 @@
   "sex": "f",
   "action": "idle",
   "direction": "right",
-  "status": "staging-rgba-export-art-review-pending",
+  "status": "staging-indexed-transparent-art-review-pending",
   "nativeFrames": {
     "path": "idle/frames-native-32x64/",
     "width": 32,
@@ -17,7 +17,8 @@
     "path": "idle-right-4f.png",
     "width": 256,
     "height": 128,
-    "mode": "RGBA",
+    "mode": "P",
+    "transparency": "indexed transparent key",
     "cellWidth": 64,
     "cellHeight": 128,
     "construction": "nearest-neighbour upscale from native indexed frames"
@@ -26,17 +27,17 @@
     "nativeDimensions": true,
     "expandedDimensions": true,
     "expandedMatchesNativeFrames": true,
-    "nativeTransparencyPresent": true,
-    "expandedPerPixelAlphaPresent": true,
+    "transparentIndexPresent": true,
     "allFramesNonEmpty": true,
     "fourUniqueFrames": true,
     "runtimeApproved": false,
-    "requiresArtReview": true
+    "requiresArtReview": true,
+    "rgbaExportPending": true
   },
   "notes": [
-    "Expanded review sheet is now true RGBA; previous indexed sheet remains available for reference.",
-    "Each expanded cell matches the preserved native indexed source after nearest-neighbour scaling.",
-    "The attached user-approved style reference is the master direction for all unfinished Tier 2 sprites: rich blue, ivory and gold, readable silhouette, layered cloth and detailed shading, no weapons.",
-    "Do not revisit already-finished classes yet; global consistency polish is deferred until first passes for all missing Tier 2 classes are complete."
+    "The standard idle-right-4f.png path is restored to the known-valid indexed sheet; the incomplete RGBA draft has not been retained as an asset.",
+    "Palette-indexed transparency is present and the expanded cells match the four native frames.",
+    "Style follows the user-approved reference: detailed silver hair, navy/ivory/gold garments, strong silhouette, layered folds and no weapons.",
+    "Art review and optional RGBA export remain pending; this file stays in staging and is not connected to production."
   ]
 }
