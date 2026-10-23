@@ -4,13 +4,18 @@
   "sex": "f",
   "action": "idle",
   "direction": "right",
-  "status": "staging-indexed-transparent-art-review-pending",
+  "status": "staging-native-recovered-from-archived-hires-art-expanded-strip-pending",
   "sourceMaster": {
     "libraryPath": "/GameAssets/Tier2/Brujo/brujo-f-idle-hires.png",
     "width": 1983,
     "height": 793,
     "mode": "RGBA",
-    "sha256": "3b895f0f5e1846e78c07dcab7254bca4acc3e2c33a185844830c2f3da927fc03"
+    "sha256": "3b895f0f5e1846e78c07dcab7254bca4acc3e2c33a185844830c2f3da927fc03",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentBackground": true
   },
   "nativeFrames": {
     "path": "idle-native-4f.png",
@@ -19,8 +24,15 @@
     "cellWidth": 32,
     "cellHeight": 64,
     "mode": "P",
+    "transparency": "indexed transparent key",
     "transparencyIndex": 0,
-    "count": 4
+    "count": 4,
+    "frameHashesRgba": [
+      "dde312fbfb23f1835398021c2a3e9ebf8cb95612c2a3ddf71312ed198c4a263d",
+      "ae075b53cb4474291862884d2645b62bc06743570aefd8be76543208a658853b",
+      "55c0732b0cb2991d68c4f126bad00762faa349a129fa3744ff9684b9935018a2",
+      "2047ab22accbc08e88eccbef376c438527d7f35dbe721e16a23cff2544200563"
+    ]
   },
   "expandedSheet": {
     "path": "idle-right-4f.png",
@@ -34,17 +46,18 @@
   },
   "checks": {
     "nativeDimensions": true,
+    "nativeIndexedTransparencyValid": true,
     "expandedDimensions": true,
-    "expandedMatchesNativeFrames": true,
-    "transparentIndexPresent": true,
-    "allFramesNonEmpty": true,
+    "expandedMatchesNativeFrames": false,
     "fourUniqueFrames": true,
     "runtimeApproved": false,
-    "requiresArtReview": true
+    "requiresArtReview": true,
+    "expandedStripNeedsRegeneration": true
   },
   "notes": [
-    "All expanded cells match the native 32x64 frames enlarged with nearest-neighbour.",
-    "The master source is preserved unchanged in the Library; output uses shared palette and transparent index 0.",
-    "Subtle idle changes remain a draft until final cross-class art polish."
+    "Recovery checkpoint 2026-10-23: the four native idle frames were recovered from the preserved high-resolution female Brujo source registered in source-hires/female-manifest.json.",
+    "The 1983x793 source has per-pixel alpha. Four connected character components were extracted in left-to-right order, scaled to 32x64 and aligned to a shared foot baseline.",
+    "The native strip is 128x64, indexed with a shared 31-colour palette and transparent index 0. The RGBA frame hashes are recorded in nativeFrames.frameHashesRgba.",
+    "The expanded 256x128 strip was unreadable and must be rebuilt from the recovered native strip by scripts/reparar-staging-tier2.py. Artistic review remains pending; runtimeApproved is false."
   ]
 }
