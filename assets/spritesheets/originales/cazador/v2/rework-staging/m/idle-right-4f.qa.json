@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "classId": "cazador",
+  "sex": "m",
+  "action": "idle",
+  "direction": "right",
+  "status": "staging-indexed-transparent-art-review-pending",
+  "sourceMaster": {
+    "libraryPath": "/GameAssets/Tier2/Cazador/cazador-m-idle-hires-variant-02.png",
+    "width": 1984,
+    "height": 793,
+    "mode": "RGBA",
+    "sha256": "e0e5e0ffdce33e1453fd8820679408dbf689a409c50daa3b563b6d4f56b145bb",
+    "transparentBackground": true
+  },
+  "nativeFrames": {
+    "path": "idle-native-4f.png",
+    "width": 128,
+    "height": 64,
+    "cellWidth": 32,
+    "cellHeight": 64,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "count": 4
+  },
+  "expandedSheet": {
+    "path": "idle-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "construction": "nearest-neighbour upscale from native frames"
+  },
+  "checks": {
+    "nativeDimensions": true,
+    "expandedDimensions": true,
+    "transparentIndexPresent": true,
+    "allFrameCellsNonEmpty": true,
+    "fourUniqueFrames": true,
+    "expandedMatchesNativeFrames": true,
+    "runtimeApproved": false,
+    "requiresArtReview": true
+  },
+  "notes": [
+    "All four frames share a palette and baseline; each expanded cell was checked against its native frame enlarged with nearest-neighbour.",
+    "This is the first animation draft, not production-approved; pose variation is subtle, and the final art-polish pass remains deferred.",
+    "The original 1984x793 source sheet is archived intact in the Library. An earlier high-resolution idle version is retained separately as well."
+  ]
+}

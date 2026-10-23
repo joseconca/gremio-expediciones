@@ -23,6 +23,26 @@
       "sha256": "f6ab37ec8fa8599e966d8dbdf7f13d0bd0c544a8af6c776c48f2d19ba994c2ff",
       "transparentBackground": true,
       "selectedForCurrentConcept": false
+    },
+    {
+      "name": "cazador-m-idle-hires.png",
+      "libraryPath": "/GameAssets/Tier2/Cazador/cazador-m-idle-hires.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "e265d40ac5c9d0e5ef1919c8697cdcf14c7e10ea5ed869043cf8cebe3de723bd",
+      "transparentBackground": true,
+      "selectedForCurrentIdle": false
+    },
+    {
+      "name": "cazador-m-idle-hires-variant-02.png",
+      "libraryPath": "/GameAssets/Tier2/Cazador/cazador-m-idle-hires-variant-02.png",
+      "width": 1984,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "e0e5e0ffdce33e1453fd8820679408dbf689a409c50daa3b563b6d4f56b145bb",
+      "transparentBackground": true,
+      "selectedForCurrentIdle": true
     }
   ],
   "preview": {
@@ -35,6 +55,7 @@
   },
   "notes": [
     "Preserve both masters; neither is overwritten by the compact review preview.",
-    "No weapons or held props appear in the character concept."
+    "No weapons or held props appear in the character concept.",
+    "The full-resolution idle sources are preserved separately; variant 02 is the source for the current staged native frames."
   ]
 }

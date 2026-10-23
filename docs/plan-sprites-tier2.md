@@ -23,4 +23,5 @@ Adoptar el estilo de pixel art detallado mostrado por el usuario: volúmenes y c
 - Concept seleccionado: cazador forestal con capa verde, cuero práctico, ocre y marfil; manos vacías y sin arma.
 - Máster original RGBA de 1114×1412 preservado en la biblioteca en `/GameAssets/Tier2/Cazador/cazador-m-concept-hires.png`, junto con una variante alternativa de alta resolución. Ambos tienen hash en `assets/spritesheets/originales/cazador/v2/source-hires/manifest.json`.
 - Vista compacta de revisión guardada en `assets/spritesheets/originales/cazador/v2/rework-staging/m/concept/cazador-m-concept-128x192.png`. No es sprite de producción.
-- Siguiente ciclo: idle masculino hacia la derecha, cuatro frames; luego walk y hurt, guardando cada checkpoint. Mantener alta resolución por separado y no rehacer clases acabadas.
+- **Idle** masculino ya guardado en staging: cuatro frames orientados a la derecha; tira 256×128 y fuente nativa 128×64. QA comprueba celdas y transparencia. El strip maestro RGBA de 1984×793 está archivado como variante 02, y también se conserva una versión hires anterior; ambas figuran en el manifiesto.
+- Siguiente ciclo: walk masculino hacia la derecha, cuatro frames; después hurt. Guardar cada checkpoint, conservar la alta resolución por separado y no rehacer clases terminadas.
