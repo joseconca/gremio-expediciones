@@ -6,6 +6,7 @@ on:
     paths:
       - ".github/workflows/reparar-staging-tier2.yml"
       - "scripts/reparar-staging-tier2.py"
+      - "scripts/generar-propuesta-paleta-tier2.py"
       - "assets/spritesheets/originales/brujo/v2/rework-staging/m/idle-native-4f.png"
       - "assets/spritesheets/originales/brujo/v2/rework-staging/m/idle-right-4f.qa.json"
       - "assets/spritesheets/originales/brujo/v2/rework-staging/m/hurt-native-4f.png"
@@ -45,6 +46,17 @@ jobs:
 
       - name: Audit canonical packages and repaired staging
         run: python scripts/auditar-paquetes-tier2.py
+
+      - name: Generate non-destructive palette harmonization candidates
+        run: python scripts/generar-propuesta-paleta-tier2.py --output-dir artifacts/tier2-palette-review
+
+      - name: Upload palette harmonization candidates
+        uses: actions/upload-artifact@v4
+        with:
+          name: tier2-palette-harmonization-candidates
+          path: artifacts/tier2-palette-review/
+          if-no-files-found: error
+          retention-days: 7
 
       - name: Upload review package for cross-class art direction
         uses: actions/upload-artifact@v4
