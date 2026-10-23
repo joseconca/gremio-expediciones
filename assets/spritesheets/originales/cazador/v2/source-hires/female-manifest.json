@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "classId": "cazador",
+  "sex": "f",
+  "purpose": "Preserved female Hunter high-resolution masters, independent of compact staging sheets.",
+  "sources": [
+    {
+      "name": "cazador-f-concept-hires.png",
+      "libraryPath": "/GameAssets/Tier2/Cazador/cazador-f-concept-hires.png",
+      "width": 1114,
+      "height": 1412,
+      "mode": "RGBA",
+      "sha256": "94eefa5dfe988f85ee659388c86cf90dd97ed57dac9a4d244b38dc2d0cef8a67",
+      "transparentBackground": true,
+      "selectedForCurrentConcept": true
+    },
+    {
+      "name": "cazador-f-idle-hires.png",
+      "libraryPath": "/GameAssets/Tier2/Cazador/cazador-f-idle-hires.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "ba617ebaf4d8f24ba059e2b031402d40f35de70edffcd78406fb26c991d0094d",
+      "transparentBackground": true,
+      "selectedForCurrentIdle": true
+    },
+    {
+      "name": "cazador-f-walk-hires.png",
+      "libraryPath": "/GameAssets/Tier2/Cazador/cazador-f-walk-hires.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "27a68456e79867da288a847d5353ce32f594820ab0130322c8a58047932a5192",
+      "transparentBackground": true
+    },
+    {
+      "name": "cazador-f-hurt-hires.png",
+      "libraryPath": "/GameAssets/Tier2/Cazador/cazador-f-hurt-hires.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "27585d16c023bdc8fb513ab8b8173a03d92a2fa14294cb6ef63cd3ac60c6580b",
+      "transparentBackground": true
+    }
+  ],
+  "preview": {
+    "path": "rework-staging/f/concept/cazador-f-concept-128x192.png",
+    "width": 128,
+    "height": 192,
+    "mode": "P",
+    "transparentPaletteIndex": 0,
+    "sha256": "d20d5315aabda194bbb0cd409b7000ececb933c859f2651529d8f8ed3052d1c1"
+  },
+  "notes": [
+    "Female Hunter concept, idle, walk and hurt master sources are preserved separately in the Library with SHA-256 values.",
+    "The compact indexed concept preview remains in rework-staging, not runtime.",
+    "All four female action/concept sources are separate from the corresponding 32x64/64x128 staging frames."
+  ]
+}

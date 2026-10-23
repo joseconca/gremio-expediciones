@@ -131,3 +131,10 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 
 - Se preservaron dos hojas hires exactas en `/GameAssets/Tier2/Elementalista/`. Ambas contienen concepto y filas de acciones con paneles/texto; son referencias compuestas, no masters aislados de cada animación.
 - Los tres ciclos masculinos continúan en staging, con cuatro frames. La procedencia se añadió a cada QA y el manifiesto `male-manifest.json` distingue los references hires de los frames extraídos.
+
+
+## Auditoría de manifiestos — 23-10-2026
+
+- Se separó el manifiesto del Cazador por sexo: `source-hires/manifest.json` contiene ahora solo fuentes masculinas; `female-manifest.json` registra concept, idle, walk y hurt femeninos. Se eliminaron las entradas duplicadas de idle en el manifiesto masculino, conservando la variante seleccionada y las alternativas.
+- Se eliminaron los registros duplicados de hurt original/derivado en el manifiesto del Explorador masculino. No se borró ningún archivo de la biblioteca.
+- Los dos manifiestos del Elementalista también quedaron separados por sexo. Los QA distinguen fuentes hires originales, referencias compuestas y tiras reducidas de staging.
