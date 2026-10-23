@@ -146,15 +146,15 @@ export const HABILIDADES: DefinicionHabilidad[] = [
   }),
   habilidad({
     id: "concentracion_arcana", claseId: "mago", nivelJobRequerido: 20,
-    nombre: "Concentración arcana", descripcion: "Aumenta el ataque mágico un 15 % durante 2 turnos.",
+    nombre: "Concentración arcana", descripcion: "Aumenta el ataque mágico un 25 % durante 5 turnos.",
     tipo: "activa", efecto: "bonus_ataque_magico", animacion: "defensiva",
-    estadosSecundarios: [{ tipo: "bonus_ataque_magico", valor: 0.15, duracionTurnos: 2, objetivo: "jugador" }],
+    estadosSecundarios: [{ tipo: "bonus_ataque_magico", valor: 0.25, duracionTurnos: 5, objetivo: "jugador" }],
     costeMana: 7, cooldownTurnos: 4,
   }),
   habilidad({
     id: "reserva_arcana", claseId: "mago", nivelJobRequerido: 20,
-    nombre: "Reserva arcana", descripcion: "Aumenta el Maná máximo en 10 puntos.",
-    tipo: "pasiva", bonusManaMaximo: 10,
+    nombre: "Reserva arcana", descripcion: "Aumenta el Maná máximo en 100 puntos.",
+    tipo: "pasiva", bonusManaMaximo: 100,
   }),
 
   // CABALLERO
