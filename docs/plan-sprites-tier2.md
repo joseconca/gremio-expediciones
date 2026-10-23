@@ -43,5 +43,9 @@ Adoptar el estilo de pixel art detallado mostrado por el usuario: volúmenes y c
 - `walk` masculino está ahora en staging: cuatro frames distintos hacia la derecha, fuente nativa de 128×64 y tira ampliada de 256×128. QA confirma transparencia indexada, cuatro frames únicos y equivalencia exacta del escalado. Original hires RGB 1983×793 con damero y derivación RGBA transparente preservados por separado y registrados en el manifiesto.
 - `hurt` masculino ya está en staging: cuatro poses de 32×64, tira 256×128 y QA que confirma transparencia indexada, cuatro celdas distintas y escalado exacto. Original RGB 1983×793 con damero y derivación RGBA se conservan en la biblioteca con hashes.
 - Concept del Explorador femenino ya preservado: master RGBA 1024×1536 y derivación transparente archivados por separado, preview indexado 128×192 y QA en staging.
-- `idle` femenino está validado con native + expansión. En `walk`, la auditoría descubrió que la nativa publicada duplicaba `idle` y que la expansión no era un PNG válido. La nativa correcta de cuatro poses ya está restaurada; se eliminó la expansión defectuosa y el QA ahora la marca como pendiente. Los masters hires original RGB con damero y derivación transparente se preservan por separado.
-- Siguiente: regenerar/verificar la expansión 256×128 de `walk`; después crear `hurt` femenino. Mantener las fuentes hires y no tocar los sprites de producción.
+- `idle` y `walk` femeninos están validados en staging con hojas nativas y ampliadas. La auditoría de `walk` detectó y reparó una nativa duplicada y una expansión corrupta; el último commit contiene la expansión regenerada y QA exacto. Los masters se preservan por separado.
+- `hurt` femenino ya está generado en staging: cuatro poses distintas, nativa 128×64 y expansión 256×128 validada. El master RGBA original 1984×793, derivación y cuatro recortes hires están archivados.
+- Siguiente: revisión visual global de las clases completadas. Mantener las hojas fuera del runtime hasta esa revisión.
+
+
+Checkpoint 23-10-2026 — Explorador femenino `hurt`: completado primer pase y QA técnico; el máster grande y los recortes de cada pose están preservados en la biblioteca. Pendiente revisión artística transversal; sin integración al runtime.

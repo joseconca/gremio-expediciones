@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "classId": "explorador",
+  "sex": "f",
+  "action": "hurt",
+  "direction": "right",
+  "status": "staging-indexed-transparent-art-review-pending",
+  "sourceMaster": {
+    "originalLibraryPath": "/GameAssets/Tier2/Explorador/explorador-f-hurt-hires-original.png",
+    "originalSha256": "2fdb14da8334abaa6d6c8e28d58a043f1543aee071dded139e0551ca9219ba7c",
+    "originalMode": "RGBA",
+    "originalHasTransparentBackground": true,
+    "transparentDerivedLibraryPath": "/GameAssets/Tier2/Explorador/explorador-f-hurt-hires-transparent-derived.png",
+    "transparentDerivedSha256": "7158f77addd3c6c7c396383f68b99b3135dd3bed93ac709955c844cdeb1ccc49",
+    "width": 1984,
+    "height": 793,
+    "mode": "RGBA",
+    "frameMasters": [
+      {
+        "name": "explorador-f-hurt-frame-01-hires.png",
+        "libraryPath": "/GameAssets/Tier2/Explorador/explorador-f-hurt-frame-01-hires.png",
+        "sha256": "c0508652f2146360b906e12f247a31cb630bc5d8bbffc4e7ecb57564b1a4b667"
+      },
+      {
+        "name": "explorador-f-hurt-frame-02-hires.png",
+        "libraryPath": "/GameAssets/Tier2/Explorador/explorador-f-hurt-frame-02-hires.png",
+        "sha256": "3632eca7a41329882ce501ef33a2825c69d7568568033c3498cb95f61e237e06"
+      },
+      {
+        "name": "explorador-f-hurt-frame-03-hires.png",
+        "libraryPath": "/GameAssets/Tier2/Explorador/explorador-f-hurt-frame-03-hires.png",
+        "sha256": "c980b50f383b1a82df5ec90877ee048de40fe0c3c00fdfc069711d9814a214ba"
+      },
+      {
+        "name": "explorador-f-hurt-frame-04-hires.png",
+        "libraryPath": "/GameAssets/Tier2/Explorador/explorador-f-hurt-frame-04-hires.png",
+        "sha256": "8d93b05d36aa429ed1e53884e69aa65981cf10bcffd67adf295addcfb555e465"
+      }
+    ]
+  },
+  "nativeFrames": {
+    "path": "hurt-native-4f.png",
+    "width": 128,
+    "height": 64,
+    "cellWidth": 32,
+    "cellHeight": 64,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "count": 4,
+    "sha256": "1c9049c3e2333f31a06064b1e50b8c035a2a4672825121266e2fb8d08a0741fc",
+    "uniqueFrameHashes": [
+      "74aa9a8481da7b51516002ffa98a1181e2f41da164b6c7299fc5cd284689140b",
+      "cca658c67bf7a8e4804e4ce2a7b27782697334ca819ec336f17432fcffc7d359",
+      "4748f681728ddefc2f2be23c357d9734960cd3693a44a1eac21bd01658a83313",
+      "ef02d8ace575df9d6b6cea906938b9836fbcd9c793ec2e66fc9cf22a9d4b9e65"
+    ]
+  },
+  "expandedSheet": {
+    "path": "hurt-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "sha256": "40a80731e9d520c651674f1583751195852d63bd0f8b1f298dd41d3d2c5b074b",
+    "construction": "nearest-neighbour upscale of native frames"
+  },
+  "checks": {
+    "sourceMasterPreserved": true,
+    "fourCharacterComponents": true,
+    "nativeDimensions": true,
+    "expandedDimensions": true,
+    "transparentIndexPresent": true,
+    "allFrameCellsNonEmpty": true,
+    "fourUniqueFrames": true,
+    "expandedMatchesNativeFrames": true,
+    "runtimeApproved": false,
+    "requiresArtReview": true
+  },
+  "notes": [
+    "Four damage-reaction poses extracted by connected-component masks to avoid mixing overlapping cloak pixels from adjacent figures.",
+    "The native sprites use a 126-colour indexed palette with transparency index 0; high-resolution frame cutouts and the original 1984x793 RGBA master are preserved separately.",
+    "The 256x128 strip was verified pixel-for-pixel as a nearest-neighbour enlargement of the native strip.",
+    "Staging only; not connected to runtime pending cross-class art review."
+  ]
+}

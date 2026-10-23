@@ -81,8 +81,8 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 ## Reparación de integridad — Explorador femenino `walk` (23-10-2026)
 
 - Auditado el checkpoint `927af1d`: la nativa publicada duplicaba la tira de `idle` y la ampliada no superaba la validación de PNG. Se restaura la nativa correcta (`d943786d…`) y se elimina la ampliada defectuosa en vez de conservarla como válida.
-- El QA marca explícitamente la expansión como pendiente (`expandedSheet: null`, checks de expansión en falso) para evitar una falsa señal de completitud. El máster original RGB con damero y su derivación transparente RGBA continúan archivados en la biblioteca.
-- Siguiente: regenerar la ampliación 256×128, verificarla píxel a píxel y hacer commit; después generar `hurt` femenino.
+- El primer commit de reparación marcó la expansión como pendiente; el checkpoint inmediatamente posterior la regeneró, verificó píxel a píxel y cerró la acción `walk`. El master original y su derivación transparente siguen archivados en la biblioteca.
+- Siguiente: `hurt` femenino.
 
 
 ## Checkpoint — reparación completada de `walk` femenino (23-10-2026)
@@ -90,3 +90,10 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 - `f2a0314` restauró la nativa correcta y retiró la expansión corrupta.
 - Este checkpoint repone `walk-right-4f.png` (256×128, indexado con transparencia); la optimización de paleta se verificó sin ninguna diferencia de píxeles frente a la ampliación por vecino más cercano de la nativa.
 - QA actualizado y manifiesto/documentación sincronizados. `walk` se considera completo en staging; no está conectado al runtime. Siguiente: `hurt` femenino.
+
+
+## Checkpoint — Explorador femenino `hurt` (23-10-2026)
+
+- `hurt` en staging: cuatro frames de 32×64, tira nativa 128×64 indexada con índice transparente 0 y tira 256×128 ampliada por vecino más cercano. QA confirma cuatro poses únicas, celdas no vacías y coincidencia exacta de la expansión.
+- El máster RGBA original de 1984×793 se preserva sin modificar en la biblioteca; la derivación transparente y los cuatro recortes individuales hires también están archivados, cada uno con hash SHA-256.
+- Sigue pendiente la aprobación artística entre clases. Ninguna hoja de `rework-staging` se conecta al runtime todavía.
