@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "classId": "explorador",
+  "sex": "m",
+  "action": "hurt",
+  "direction": "right",
+  "status": "staging-indexed-transparent-art-review-pending",
+  "sourceMaster": {
+    "originalLibraryPath": "/GameAssets/Tier2/Explorador/explorador-m-hurt-hires-checkerboard.png",
+    "originalSha256": "e6a1a400b7217f71dd8205202be82aab60c24d4e24b464b0c637cdd3b0f3c2ea",
+    "originalMode": "RGB",
+    "originalHasOpaqueCheckerboard": true,
+    "transparentDerivedLibraryPath": "/GameAssets/Tier2/Explorador/explorador-m-hurt-hires-transparent-derived.png",
+    "transparentDerivedSha256": "c70b2967ac9efe02c7cdfcd17d70b4aef598208c0647e7bea7a8b172088342f3",
+    "width": 1983,
+    "height": 793,
+    "mode": "RGBA"
+  },
+  "nativeFrames": {
+    "path": "hurt-native-4f.png",
+    "width": 128,
+    "height": 64,
+    "cellWidth": 32,
+    "cellHeight": 64,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "count": 4,
+    "sha256": "b83af22c910c9cfb144a731842f5a256ef01e7f3b84a4be0ccd6703af5f7acf8"
+  },
+  "expandedSheet": {
+    "path": "hurt-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "sha256": "67f0b794498273152e88f8c49fd100b79a8e19904c1502c61b0a66c243f2e908",
+    "construction": "nearest-neighbour upscale of native frames"
+  },
+  "checks": {
+    "nativeDimensions": true,
+    "expandedDimensions": true,
+    "transparentIndexPresent": true,
+    "allFrameCellsNonEmpty": true,
+    "fourUniqueFrames": true,
+    "expandedMatchesNativeFrames": true,
+    "runtimeApproved": false,
+    "requiresArtReview": true
+  },
+  "notes": [
+    "Four right-facing frames show brace, recoil, hunched pain and recovery.",
+    "The opaque checkerboard RGB source is retained separately from an alpha-derived full-resolution master.",
+    "Each expanded frame matches its native cell exactly after nearest-neighbour enlargement.",
+    "Staging draft only; it is not connected to runtime pending cross-class visual review."
+  ]
+}

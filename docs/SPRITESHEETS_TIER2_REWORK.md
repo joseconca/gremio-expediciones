@@ -41,4 +41,11 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 - `9623aa4` — primer pase completo de Cazador femenino, masters hires y QA.
 - `6611e9b` — concept masculino del Explorador con original y derivación transparente.
 - `97202c2` — idle masculino del Explorador, master hires y QA.
-- `WALK-MALE-EXPLORER` — walk masculino del Explorador, cuatro frames, master hires y QA técnico.
+- `e34fb02` — walk masculino del Explorador con master hires original/derivado y QA.
+
+
+## Checkpoint actualizado — Explorador masculino (23-10-2026)
+
+- Concept, `idle`, `walk` y `hurt` están versionados en staging. Las tres animaciones contienen cuatro frames nativos de 32×64 y tiras ampliadas de 256×128; los QA comprueban dimensiones, transparencia, cuatro poses únicas y correspondencia exacta al escalar.
+- Se conservan los masters de alta resolución en la biblioteca, incluyendo los originales con damero y sus derivaciones transparentes separadas. El manifiesto registra sus SHA-256.
+- Ninguna de estas hojas está conectada al runtime ni aprobada como arte final. Siguiente: concept del Explorador femenino y sus acciones `idle`, `walk` y `hurt`.
