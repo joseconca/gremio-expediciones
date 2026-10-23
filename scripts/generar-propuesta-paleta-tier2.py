@@ -135,7 +135,7 @@ def luminance_stats(frames):
         "median_saturation": round(statistics.median(saturation), 3),
     }
 
-def tonal_candidate(frame, source_stats, target_stats):
+def tonal_candidate(frame, source_stats, target_stats, strength=0.7):
     """Match broad luminance quantiles while preserving alpha and RGB chromaticity."""
     source_points = [
         (float(source_stats["p10"]), float(target_stats["p10"])),
@@ -167,7 +167,8 @@ def tonal_candidate(frame, source_stats, target_stats):
             mapped.append((r, g, b, a))
             continue
         luma = 0.2126 * r + 0.7152 * g + 0.0722 * b
-        new_luma = lut[max(0, min(255, round(luma)))]
+        mapped_luma = lut[max(0, min(255, round(luma)))]
+        new_luma = round(luma + strength * (mapped_luma - luma))
         if luma <= 0:
             mapped.append((r, g, b, a))
         else:
@@ -244,7 +245,8 @@ def main():
                 candidate_strip = expand(candidate_frames)
                 original_luminance = luminance_stats(frames)
                 candidate_luminance = luminance_stats(candidate_frames)
-                tonal_frames = [tonal_candidate(frame, original_luminance, idle_luminance) for frame in frames]
+                tone_strength = 0.70 if action == "walk" else 0.35
+                tonal_frames = [tonal_candidate(frame, original_luminance, idle_luminance, strength=tone_strength) for frame in frames]
                 tonal_strip = expand(tonal_frames)
                 tonal_luminance = luminance_stats(tonal_frames)
                 tonal_alpha_mask_identical = all(
@@ -295,7 +297,8 @@ def main():
                     "tonal_candidate_median_luminance_delta_from_idle": round(tonal_luminance["median"] - idle_luminance["median"], 2),
                     "tonal_candidate_alpha_mask_identical": tonal_alpha_mask_identical,
                     "tonal_candidate_silhouette_bounds_preserved": tonal_bounds_preserved,
-                    "tonal_candidate_method": "piecewise luminance quantile match to idle, near-black anchor at luminance 12, RGB chromaticity scaled proportionally, alpha unchanged",
+                    "tonal_candidate_method": "blended piecewise luminance quantile match to idle; preserve near-black anchor at luminance 12, scale RGB channels proportionally, alpha unchanged",
+                    "tonal_candidate_blend_strength": tone_strength,
                     "runtime_approved": False,
                     "promoted_to_staging": False,
                     "note": "Candidate only. Review skin tones, fabric highlights, material separation, silhouette and class identity before any promotion.",
@@ -310,6 +313,7 @@ def main():
                     "candidate_luminance": tonal_luminance,
                     "original_median_luminance_delta_from_idle": round(original_luminance["median"] - idle_luminance["median"], 2),
                     "candidate_median_luminance_delta_from_idle": round(tonal_luminance["median"] - idle_luminance["median"], 2),
+                    "blend_strength": tone_strength,
                     "alpha_mask_identical": tonal_alpha_mask_identical,
                     "silhouette_bounds_preserved": tonal_bounds_preserved,
                     "candidate": str(tonal_path.relative_to(ROOT)),
