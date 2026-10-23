@@ -10,13 +10,15 @@ Adoptar el estilo de pixel art detallado mostrado por el usuario: volúmenes y c
 - Conservar los másteres grandes por separado para el futuro; nunca sustituirlos por los sprites reducidos.
 - No incorporar al runtime hasta completar QA y aprobación en la pasada final.
 
-## Estado de rediseño — 2026-10-23 (auditado)
-- **Elementalista femenino:** concept, idle, walk y hurt completos en staging; los cuatro masters hires originales están archivados y registrados en female-manifest.json.
-- **Elementalista masculino:** idle, walk y hurt en staging; dos hojas compuestas hires preservadas como referencias, no como masters aislados de cada acción.
-- **Brujo masculino y femenino:** concept, idle, walk y hurt completos como primer pase en staging; los masters grandes están preservados con manifiestos por sexo.
-- **Cazador masculino y femenino:** concept, idle, walk y hurt completos en staging; los manifiestos ahora están separados por sexo.
-- **Explorador masculino y femenino:** concept, idle, walk y hurt completos en staging; sus fuentes hires originales y las derivaciones transparentes están archivadas por separado.
-- **Siguiente:** corregir notas QA de conceptos que aún dicen que faltan animaciones y terminar auditoría de consistencia. La revisión artística global continúa pendiente; no integrar staging al runtime.
+## Estado de rediseño — 2026-10-23 (snapshot canónico de main)
+- **Cobertura:** los ocho perfiles (Elementalista, Brujo, Cazador y Explorador; masculino y femenino) tienen concept y los tres ciclos de primera pasada (idle, walk, hurt) en rework-staging. Cada acción tiene cuatro fotogramas hacia la derecha.
+- **Brujo, Cazador y Explorador:** los 18 informes de acción revisados indican las dimensiones esperadas (fuente nativa 128×64 con cuatro celdas de 32×64; tira ampliada 256×128 con celdas de 64×128), transparencia, celdas visibles, cuatro fotogramas distintos y equivalencia de la ampliación por vecino más cercano.
+- **Elementalista femenino:** los tres ciclos están en staging con QA técnico; el concept también está presente. Los masters hires recuperados constan en su manifiesto; no atribuirle masters aislados que no estén documentados.
+- **Elementalista masculino:** los tres ciclos están en staging. Idle y walk tienen QA RGBA por píxel; hurt cuenta ahora con el informe canónico hurt-right-4f.qa.json, coherente con el nombre de la tira. Las fuentes hires preservadas son referencias compuestas, no masters independientes de cada animación.
+- **Resultado:** 24/24 combinaciones clase-sexo-acción tienen tira de staging y QA canónico. runtimeApproved se mantiene en false deliberadamente hasta cerrar la revisión artística. Staging no está conectado al runtime.
+- **Próximo paso:** revisión visual global comparando estilo, silueta y lectura de las tres animaciones, más auditoría final de manifiestos y procedencia hires. No regenerar ni rehacer recursos que ya estén completos; la armonización de clases ya terminadas queda para el final.
+
+**Nota sobre checkpoints:** las secciones de checkpoint que siguen son el registro histórico de cada paso; sus líneas «Siguiente» reflejan el estado de aquel commit, no el estado global actual.
 
 
 ## Checkpoint actual — Cazador masculino
