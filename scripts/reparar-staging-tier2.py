@@ -91,7 +91,11 @@ def make_strip(frames: list[Image.Image]) -> Image.Image:
         if frame.size != NATIVE_SIZE:
             fail(f"frame inesperado de tamaño {frame.size}")
         expanded = frame.resize(CELL_SIZE, Image.Resampling.NEAREST)
-        sheet.alpha_composite(expanded, (index * CELL_SIZE[0], 0))
+        # Direct paste preserves the source RGBA bytes even beneath alpha=0.
+        # alpha_composite normalizes hidden RGB values and breaks strict
+        # pixel-for-pixel nearest-neighbour verification although the result
+        # looks identical when rendered.
+        sheet.paste(expanded, (index * CELL_SIZE[0], 0))
     return sheet
 
 
