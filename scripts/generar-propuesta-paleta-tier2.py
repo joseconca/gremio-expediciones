@@ -208,6 +208,7 @@ def main():
                     "mean_rgb_distance": report["mean_rgb_distance"],
                     "p95_rgb_distance": report["p95_rgb_distance"],
                     "alpha_mask_identical": report["alpha_mask_identical"],
+                    "silhouette_bounds_preserved": report["silhouette_bounds_preserved"],
                     "candidate": str(candidate_path.relative_to(ROOT)),
                 })
             comparison_board(cls, sex, anchor, results, output / "boards" / f"{cls}-{sex}-palette-comparison.png")
