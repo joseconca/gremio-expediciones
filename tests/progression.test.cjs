@@ -91,20 +91,25 @@ test("el catálogo de clases tiene requisitos válidos y no contiene ciclos", ()
     assert.doesNotThrow(() => obtenerAncestrosClase(clase.id));
   }
 });
-test("el grafo contiene 33 clases y respeta los máximos por tier", () => {
+test("el grafo contiene las clases actuales y respeta los máximos por tier", () => {
   const clases = Object.values(CLASES);
-  assert.equal(clases.length, 33);
+  assert.equal(clases.length, 34);
   assert.deepEqual(
-    [0, 1, 2, 2.5, 3].map((tier) => clases.filter((clase) => clase.tier === tier).length),
-    [1, 4, 8, 4, 16],
+    [0, 1, 1.5, 2, 2.5, 3].map((tier) => clases.filter((clase) => clase.tier === tier).length),
+    [1, 4, 1, 8, 4, 16],
   );
   for (const clase of clases) {
-    const maximoEsperado = clase.tier === 0 ? 10 : clase.tier === 1 ? 20 : clase.tier === 2 ? 40 : clase.tier === 2.5 ? 50 : 60;
+    const maximoEsperado = clase.tier === 0 ? 20
+      : clase.tier === 1 ? 40
+      : clase.tier === 1.5 ? 80
+      : clase.tier === 2 ? 60
+      : clase.tier === 2.5 ? 70
+      : 80;
     assert.equal(clase.nivelJobMaximo, maximoEsperado, `Máximo Job incorrecto para ${clase.nombre}`);
   }
   assert.deepEqual(CLASES.pirata.requisitos.map((requisito) => requisito.claseId), ["duelista", "cazador"]);
   assert.equal(CLASES.pirata.tier, 2.5);
-  assert.equal(CLASES.pirata.nivelJobMaximo, 50);
+  assert.equal(CLASES.pirata.nivelJobMaximo, 70);
   for (const padreId of ["caballero", "duelista", "sacerdote", "monje", "cazador", "explorador", "elementalista", "brujo"]) {
     assert.equal(clases.filter((clase) => clase.tier === 3 && clase.requisitos.some((requisito) => requisito.claseId === padreId)).length, 2, `${padreId} debe tener exactamente dos clases de Tier 3`);
   }
@@ -274,11 +279,16 @@ test("Escuela: muestra siempre las habilidades de la profesión y hereda las ram
     assert.ok(cruzado.includes(habilidadId), `El Cruzado debe ver ${habilidadId}`);
   }
 
-  const catalogo = require("../src/lib/habilidades.ts").HABILIDADES;
+  const habilidades = require("../src/lib/habilidades.ts");
+  const catalogo = habilidades.HABILIDADES;
   assert.equal(catalogo.length, 166);
   assert.ok(catalogo.every((habilidad) => Boolean(habilidad.claseId)), "Todas las habilidades pertenecen a una profesión");
   for (const clase of Object.values(CLASES)) {
-    const propias = catalogo.filter((habilidad) => habilidad.claseId === clase.id);
+    // Super Novato es generalista: su catálogo se compone de habilidades heredadas
+    // de Novato y de las cuatro clases de Tier 1, no de definiciones duplicadas.
+    const propias = clase.id === "superNovato"
+      ? habilidades.obtenerHabilidadesDisponiblesParaClase(clase.id)
+      : catalogo.filter((habilidad) => habilidad.claseId === clase.id);
     assert.ok(propias.filter((habilidad) => habilidad.tipo === "activa").length >= 3, `${clase.id} necesita al menos 3 habilidades activas`);
     assert.ok(propias.filter((habilidad) => habilidad.tipo === "pasiva").length >= 2, `${clase.id} necesita al menos 2 habilidades pasivas`);
     assert.ok(propias.every((habilidad) => (habilidad.nivelJobRequerido ?? 1) <= clase.nivelJobMaximo), `Todas las habilidades de ${clase.id} deben estar disponibles antes de su máximo Job`);
