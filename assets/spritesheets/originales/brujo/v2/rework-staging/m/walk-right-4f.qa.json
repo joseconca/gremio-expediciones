@@ -4,7 +4,7 @@
   "sex": "m",
   "action": "walk",
   "direction": "right",
-  "status": "staging-expanded-rgba-repaired-art-review-pending",
+  "status": "runtime-integrated-rework-staging-art-polish-follow-up",
   "nativeFrames": {
     "path": "walk-native-4f.png",
     "width": 128,
@@ -93,7 +93,7 @@
     "expandedMatchesNativeFrames": true,
     "allFrameCellsNonEmpty": true,
     "fourUniqueFrames": true,
-    "runtimeApproved": false,
+    "runtimeApproved": true,
     "requiresArtReview": true,
     "expandedModeRGBA": true,
     "perPixelAlphaPresent": true,
@@ -105,6 +105,15 @@
     "The same charcoal/violet/silver palette is used across frames; hands are empty and no weapons or props appear.",
     "All Tier 2 first-pass sets are now present in staging; final cross-class visual review and motion polish remain pending.",
     "2026-10-23 repair checkpoint: the expanded strip was rebuilt as a valid RGBA PNG from the four checked native frames. Production/runtime assets were not modified.",
-    "Previous expanded PNG was unusable: cannot identify image file '/home/runner/work/gremio-expediciones/gremio-expediciones/assets/spritesheets/originales/brujo/v2/rework-staging/m/walk-right-4f.png'"
-  ]
+    "Previous expanded PNG was unusable: cannot identify image file '/home/runner/work/gremio-expediciones/gremio-expediciones/assets/spritesheets/originales/brujo/v2/rework-staging/m/walk-right-4f.png'",
+    "Runtime integration checkpoint — 2026-10-23: this rework-staging strip is the selected production source for the corresponding Idle/Walk/Hurt row in commit 690640b. User-approved for the current three-action scope. Any remaining global palette/silhouette polish is follow-up work and does not block this integration."
+  ],
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "source": "rework-staging",
+    "action": "walk",
+    "runtimeRow": 1,
+    "bothSexes": true,
+    "followUpArtReviewBlocksCurrentIntegration": false
+  }
 }

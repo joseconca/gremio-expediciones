@@ -4,7 +4,7 @@
   "sex": "f",
   "action": "hurt",
   "direction": "right",
-  "status": "staging-indexed-transparent-art-review-pending",
+  "status": "runtime-integrated-rework-staging-art-polish-follow-up",
   "sourceMaster": {
     "libraryPath": "/GameAssets/Tier2/Brujo/brujo-f-hurt-hires.png",
     "width": 2172,
@@ -39,13 +39,22 @@
     "transparentIndexPresent": true,
     "allFramesNonEmpty": true,
     "fourUniqueFrames": true,
-    "runtimeApproved": false,
+    "runtimeApproved": true,
     "requiresArtReview": true
   },
   "notes": [
     "Four right-facing frames show flinch, recoil, stagger and guarded recovery.",
     "High-resolution RGBA source preserved unchanged in the Library.",
     "Staging uses a shared indexed palette and transparency index 0.",
-    "All Tier 2 first-pass sets are now present in staging; the remaining milestone is the cross-class art review and polish."
-  ]
+    "All Tier 2 first-pass sets are now present in staging; the remaining milestone is the cross-class art review and polish.",
+    "Runtime integration checkpoint — 2026-10-23: this rework-staging strip is the selected production source for the corresponding Idle/Walk/Hurt row in commit 690640b. User-approved for the current three-action scope. Any remaining global palette/silhouette polish is follow-up work and does not block this integration."
+  ],
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "source": "rework-staging",
+    "action": "hurt",
+    "runtimeRow": 2,
+    "bothSexes": true,
+    "followUpArtReviewBlocksCurrentIntegration": false
+  }
 }

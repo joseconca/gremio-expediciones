@@ -13,3 +13,8 @@ Los másteres se prepararon a partir de las láminas de personaje compartidas el
 - Sin armas integradas en el cuerpo: bastón, símbolos y equipo se componen como capas independientes en el juego.
 
 **Estado:** paquete generado; revisión visual pendiente. No integrado en runtime.
+
+
+## Runtime integration — 2026-10-23
+
+Runtime integration (commit 690640b): rows 0-2 use the canonical v2 Idle/Walk/Hurt strips for both sexes. Rows 3-14 are unchanged; remaining action work is non-blocking for these three cycles.

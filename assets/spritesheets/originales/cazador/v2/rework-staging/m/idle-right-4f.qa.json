@@ -4,7 +4,7 @@
   "sex": "m",
   "action": "idle",
   "direction": "right",
-  "status": "staging-expanded-rgba-repaired-art-review-pending",
+  "status": "runtime-integrated-rework-staging-art-polish-follow-up",
   "sourceMaster": {
     "libraryPath": "/GameAssets/Tier2/Cazador/cazador-m-idle-hires-variant-02.png",
     "width": 1984,
@@ -101,7 +101,7 @@
     "allFrameCellsNonEmpty": true,
     "fourUniqueFrames": true,
     "expandedMatchesNativeFrames": true,
-    "runtimeApproved": false,
+    "runtimeApproved": true,
     "requiresArtReview": true,
     "expandedModeRGBA": true,
     "perPixelAlphaPresent": true,
@@ -112,6 +112,15 @@
     "This is the first animation draft, not production-approved; pose variation is subtle, and the final art-polish pass remains deferred.",
     "The original 1984x793 source sheet is archived intact in the Library. An earlier high-resolution idle version is retained separately as well.",
     "2026-10-23 repair checkpoint: the expanded strip was rebuilt as a valid RGBA PNG from the four checked native frames. Production/runtime assets were not modified.",
-    "Previous expanded PNG was unusable: broken data stream when reading image file"
-  ]
+    "Previous expanded PNG was unusable: broken data stream when reading image file",
+    "Runtime integration checkpoint — 2026-10-23: this rework-staging strip is the selected production source for the corresponding Idle/Walk/Hurt row in commit 690640b. User-approved for the current three-action scope. Any remaining global palette/silhouette polish is follow-up work and does not block this integration."
+  ],
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "source": "rework-staging",
+    "action": "idle",
+    "runtimeRow": 0,
+    "bothSexes": true,
+    "followUpArtReviewBlocksCurrentIntegration": false
+  }
 }

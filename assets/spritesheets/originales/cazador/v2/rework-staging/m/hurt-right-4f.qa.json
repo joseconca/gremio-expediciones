@@ -4,7 +4,7 @@
   "sex": "m",
   "action": "hurt",
   "direction": "right",
-  "status": "staging-native-recovered-from-verified-expanded-strip-art-review-pending",
+  "status": "runtime-integrated-rework-staging-art-polish-follow-up",
   "sourceMaster": {
     "libraryPath": "/GameAssets/Tier2/Cazador/cazador-m-hurt-hires.png",
     "width": 1983,
@@ -106,7 +106,7 @@
     "allFrameCellsNonEmpty": true,
     "fourUniqueFrames": true,
     "expandedMatchesNativeFrames": true,
-    "runtimeApproved": false,
+    "runtimeApproved": true,
     "requiresArtReview": true,
     "allNativeFramesRGBA": true,
     "rgbaExportPending": false
@@ -115,6 +115,15 @@
     "The four right-facing frames show brace, recoil, bend and recovery.",
     "Each expanded cell matches its native frame enlarged by nearest-neighbour.",
     "High-resolution master preserved unchanged in the Library; runtime integration and final art approval are deferred.",
-    "2026-10-23 recovery checkpoint: unreadable native output was reconstructed by nearest-neighbour downscaling from a readable, dimension-checked expanded strip. The source character poses were not redrawn and production sprites were not changed."
-  ]
+    "2026-10-23 recovery checkpoint: unreadable native output was reconstructed by nearest-neighbour downscaling from a readable, dimension-checked expanded strip. The source character poses were not redrawn and production sprites were not changed.",
+    "Runtime integration checkpoint — 2026-10-23: this rework-staging strip is the selected production source for the corresponding Idle/Walk/Hurt row in commit 690640b. User-approved for the current three-action scope. Any remaining global palette/silhouette polish is follow-up work and does not block this integration."
+  ],
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "source": "rework-staging",
+    "action": "hurt",
+    "runtimeRow": 2,
+    "bothSexes": true,
+    "followUpArtReviewBlocksCurrentIntegration": false
+  }
 }

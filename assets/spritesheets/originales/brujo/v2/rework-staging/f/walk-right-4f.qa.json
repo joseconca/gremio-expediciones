@@ -4,7 +4,7 @@
   "sex": "f",
   "action": "walk",
   "direction": "right",
-  "status": "staging-indexed-transparent-art-review-pending",
+  "status": "runtime-integrated-rework-staging-art-polish-follow-up",
   "sourceMaster": {
     "originalLibraryPath": "/GameAssets/Tier2/Brujo/brujo-f-walk-hires-checkerboard.png",
     "transparentDerivedLibraryPath": "/GameAssets/Tier2/Brujo/brujo-f-walk-hires-transparent-derived.png",
@@ -40,13 +40,22 @@
     "transparentIndexPresent": true,
     "allFramesNonEmpty": true,
     "fourUniqueFrames": true,
-    "runtimeApproved": false,
+    "runtimeApproved": true,
     "requiresArtReview": true
   },
   "notes": [
     "The raw high-resolution source sheet was archived unchanged, with its checkerboard still baked in.",
     "A transparent high-resolution derivative and the raw source are both preserved in the library.",
     "Each expanded cell matches the native frame exactly after nearest-neighbour scaling.",
-    "The action remains in staging pending final cross-class art review."
-  ]
+    "The action remains in staging pending final cross-class art review.",
+    "Runtime integration checkpoint — 2026-10-23: this rework-staging strip is the selected production source for the corresponding Idle/Walk/Hurt row in commit 690640b. User-approved for the current three-action scope. Any remaining global palette/silhouette polish is follow-up work and does not block this integration."
+  ],
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "source": "rework-staging",
+    "action": "walk",
+    "runtimeRow": 1,
+    "bothSexes": true,
+    "followUpArtReviewBlocksCurrentIntegration": false
+  }
 }

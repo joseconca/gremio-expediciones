@@ -898,7 +898,8 @@ def integrar_filas_sprites_v2(cid, sex, sheet):
         raise RuntimeError(f"No se ha obtenido el fotograma Idle para {cid}/{sex}")
     avatar = OUT / cid / f"{cid}-{sex}.png"
     avatar.parent.mkdir(parents=True, exist_ok=True)
-    idle_first_frame.save(avatar, optimize=True, compress_level=9)
+    retrato_idle = idle_first_frame.resize((128, 256), Image.Resampling.NEAREST)
+    retrato_idle.save(avatar, optimize=True, compress_level=9)
 
 
 def generate(cid, sex):

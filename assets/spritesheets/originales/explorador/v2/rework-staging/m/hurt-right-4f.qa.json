@@ -4,7 +4,7 @@
   "sex": "m",
   "action": "hurt",
   "direction": "right",
-  "status": "staging-indexed-transparent-art-review-pending",
+  "status": "runtime-integrated-rework-staging-art-polish-follow-up",
   "sourceMaster": {
     "originalLibraryPath": "/GameAssets/Tier2/Explorador/explorador-m-hurt-hires-checkerboard.png",
     "originalSha256": "e6a1a400b7217f71dd8205202be82aab60c24d4e24b464b0c637cdd3b0f3c2ea",
@@ -45,13 +45,22 @@
     "allFrameCellsNonEmpty": true,
     "fourUniqueFrames": true,
     "expandedMatchesNativeFrames": true,
-    "runtimeApproved": false,
+    "runtimeApproved": true,
     "requiresArtReview": true
   },
   "notes": [
     "Four right-facing frames show brace, recoil, hunched pain and recovery.",
     "The opaque checkerboard RGB source is retained separately from an alpha-derived full-resolution master.",
     "Each expanded frame matches its native cell exactly after nearest-neighbour enlargement.",
-    "Staging draft only; it is not connected to runtime pending cross-class visual review."
-  ]
+    "Staging draft only; it is not connected to runtime pending cross-class visual review.",
+    "Runtime integration checkpoint — 2026-10-23: this rework-staging strip is the selected production source for the corresponding Idle/Walk/Hurt row in commit 690640b. User-approved for the current three-action scope. Any remaining global palette/silhouette polish is follow-up work and does not block this integration."
+  ],
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "source": "rework-staging",
+    "action": "hurt",
+    "runtimeRow": 2,
+    "bothSexes": true,
+    "followUpArtReviewBlocksCurrentIntegration": false
+  }
 }

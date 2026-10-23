@@ -10,17 +10,24 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 - Atlas runtime: 256×1920 px, celdas de 64×128.
 - Tira expandida: 256×128 con cuatro celdas 64×128; fuente nativa: 128×64 con cuatro celdas 32×64.
 - Staging indexado con transparencia explícita; QA valida dimensiones, transparencia, diferencia entre frames y correspondencia entre tira/fuente.
-- No reemplazar sprites de producción hasta la revisión final.
+- La integración solicitada de Idle/Walk/Hurt ya se realizó en producción (commit 690640b). La revisión final queda para armonización no bloqueante y para las acciones aún no rediseñadas.
 
 ## Estado actual — snapshot global auditado, 2026-10-23
 
 - **Tier 2 completo como primer pase:** el manifiesto contiene ocho clases (Caballero, Duelista, Sacerdote, Monje, Cazador, Explorador, Elementalista y Brujo). Cada clase/sexo tiene `idle`, `walk` y `hurt`: 48 tiras, 192 frames nativos y seis informes QA por clase. Los másteres y paquetes están versionados en `assets/spritesheets/originales/<clase>/v2/`.
-- **Rediseño prioritario:** Elementalista, Brujo, Cazador y Explorador tienen además 24 tiras de staging, cubriendo las tres acciones por ambos sexos. Ninguna de esas tiras reemplaza los assets de producción.
+- **Rediseño prioritario:** Elementalista, Brujo, Cazador y Explorador tienen 24 tiras de staging. Esas tiras son ahora la fuente de producción para Idle/Walk/Hurt en ambos sexos; el paquete canónico anterior se conserva como referencia.
 - **QA y formatos:** las tiras canónicas miden 256×128 (cuatro celdas de 64×128) y los frames nativos 32×64. Brujo, Cazador y Explorador del staging también conservan tiras nativas 128×64; Elementalista conserva cuatro PNG nativos separados por acción y sexo. El script `scripts/auditar-paquetes-tier2.py` queda incorporado al flujo de regresión para revisar dimensiones, transparencia real, hashes, poses únicas y equivalencia entre tira y frames.
 - **Reparación verificada:** [GitHub Actions](https://github.com/joseconca/gremio-expediciones/actions/runs/40023186175) reconstruyó 11 tiras de staging corruptas y pasó la auditoría de las 24 acciones. Los artefactos se guardaron en `main` en el commit `72ee175`. Se mantuvieron fuentes/másteres originales y runtime sin cambios.
 - **Aprobación artística:** sigue pendiente para las ocho clases. Caballero, Duelista, Sacerdote y Monje pueden requerir limpieza de borde/fondo; las cuatro clases prioritarias necesitan revisión final de silueta y lectura del movimiento. No se regeneran desde cero: la limpieza se limitará a defectos confirmados.
-- **Runtime:** los QA de los paquetes canónicos siguen con `runtime_integrated: false`; los recursos del staging también se mantienen fuera del runtime. Superar QA técnico no equivale a aprobación artística ni a integración.
-- **Siguiente:** confirmar la regresión de `main` tras el commit de reparación y, después, realizar la pasada artística transversal de las seis tiras por clase. Armonizar las clases ya terminadas solo en la pasada final.
+- **Runtime:** filas 0-2 integradas en producción. Los QA canónicos quedan `runtime_integrated: true` para las clases que consumen canonical v2 y `false` para Cazador/Explorador/Elementalista/Brujo, cuyo runtime usa rework-staging. Los 24 QA de staging marcan `runtimeApproved: true` para esta promoción; el pulido artístico de otras acciones sigue siendo seguimiento no bloqueante.
+- **Siguiente:** comprobar la regresión del commit con los recursos de runtime ya generados y revisar en el juego las miniaturas/ciclos a escala nativa. La próxima fase será el trabajo específico sobre acciones de las filas 3-14; no se deben revertir los tres ciclos ya integrados.
+
+
+## Promoción a runtime — 2026-10-23
+
+- La [integración automática](https://github.com/joseconca/gremio-expediciones/actions/runs/40035425339) terminó en verde y guardó los PNG de producción en [690640b](https://github.com/joseconca/gremio-expediciones/commit/690640b2533241d185fc342ce1d42d7842455de6): 26 atlas, 78 filas y 26 retratos.
+- Fuente seleccionada: canonical v2 para Caballero/Duelista/Sacerdote/Monje; rework-staging para Cazador/Explorador/Elementalista/Brujo. Los `*-logo.svg` se conservan como logotipos de clase; no se emplean SVG como retratos de personaje.
+- Las otras doce filas de cada atlas se preservaron literalmente. La futura revisión artística se limitará a mejorar de forma específica lo que aún no está rediseñado o los detalles que se acuerden, sin rehacer estos tres ciclos por defecto.
 
 ## Revisión visual inicial — 2026-10-23
 

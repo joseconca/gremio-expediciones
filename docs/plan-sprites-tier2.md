@@ -10,17 +10,25 @@ Adoptar el estilo de pixel art detallado mostrado por el usuario: volúmenes y c
 - En el staging aislado del rediseño Elementalista, los frames nativos se conservan como PNG RGBA individuales en lugar de una tira nativa compuesta.
 - Validar dimensiones, transparencia, que los cuatro frames no estén vacíos ni sean clones, y que cada celda ampliada corresponda a su frame nativo.
 - Conservar los másteres grandes por separado para el futuro; nunca sustituirlos por los sprites reducidos.
-- No incorporar al runtime hasta completar QA y aprobación en la pasada final.
+- La integración de Idle/Walk/Hurt de Tier 0-2 está autorizada y versionada en main (commit 690640b). Las filas 3-14 y sus acciones futuras se conservan; la armonización global sigue siendo trabajo posterior y no revierte la integración de estos tres ciclos.
 
 ## Estado global de Tier 2 — snapshot canónico de main, 2026-10-23
 
 - **Cobertura global:** las ocho clases del manifiesto (Caballero, Duelista, Sacerdote, Monje, Cazador, Explorador, Elementalista y Brujo), ambos sexos y las tres acciones `idle`, `walk`, `hurt` tienen paquete v2 generado. Son 48 tiras de acción, 192 frames nativos y 16 másteres de fuente. El inventario se sincronizó en `assets/spritesheets/originales/tier2/manifest.json`.
 - **Cobertura del rediseño:** las cuatro clases prioritarias —Elementalista, Brujo, Cazador y Explorador— tienen además 24 tiras separadas en `rework-staging`, cuatro poses por acción y sexo. En Elementalista, los frames nativos de este staging son PNG individuales; en las otras tres clases hay también una tira nativa compuesta.
-- **Estado técnico:** los paquetes canónicos incluyen seis informes QA, previews y fuentes nativas. Se ha añadido `scripts/auditar-paquetes-tier2.py` a la regresión para comprobar másteres, dimensiones, alfa, hashes, cuatro poses únicas, correspondencia entre tira y frames nativos y estado fuera del runtime.
+- **Estado técnico:** los paquetes canónicos incluyen seis informes QA, previews y fuentes nativas. `scripts/auditar-paquetes-tier2.py` verifica másteres, dimensiones, alfa, hashes, cuatro poses únicas, correspondencia entre tira y frames nativos y qué familia de fuentes está seleccionada para producción.
 - **Integridad del rework-staging:** el [workflow de reparación y auditoría](https://github.com/joseconca/gremio-expediciones/actions/runs/40023186175) terminó en verde y validó las 24 combinaciones. Reparó 11 tiras derivadas dañadas: Elementalista femenina (`idle`, `walk`, `hurt`), Brujo masculino (`idle`, `walk`, `hurt`) y femenino (`idle`), Cazador masculino (`idle`, `walk`, `hurt`) y Explorador femenino (`walk`). Commit automático de los artefactos reparados: `72ee175`. La reparación conservó los frames/másteres fuente y no modificó el runtime.
 - **Pendiente:** aprobación artística transversal. Caballero, Duelista, Sacerdote y Monje tienen notas de posibles residuos/halos; las cuatro clases prioritarias necesitan revisión de silueta, continuidad y detalle. No rehacer recursos completos ni sustituir assets de producción durante esta fase.
-- **Runtime:** todos los paquetes canónicos siguen marcados `runtime_integrated: false`; el staging de rediseño también permanece desconectado. QA técnico correcto no equivale a aprobación visual.
-- **Siguiente paso:** comprobar la regresión sobre el commit que contiene las reparaciones y realizar la pasada artística global clase por clase. Limpiar solo defectos visuales confirmados; la armonización de clases ya terminadas queda para el final.
+- **Runtime:** filas 0-2 integradas en los 26 atlas de las 13 clases y ambos sexos. Para Caballero/Duelista/Sacerdote/Monje se selecciona canonical v2; para Cazador/Explorador/Elementalista/Brujo se selecciona rework-staging. Los retratos PNG se regeneraron a 128×256 desde Idle. Las banderas QA se han sincronizado; no se ha afirmado que las filas 3-14 estén rediseñadas.
+- **Siguiente paso:** mantener la integración actual cubierta por auditoría y regresión; revisar visualmente en el juego los retratos y ciclos integrados. Las acciones de filas 3-14 quedan fuera de este alcance y se abordarán después, clase por clase, sin aplicar filtros de paleta en lote.
+
+
+## Integración runtime — 2026-10-23
+
+- Commit de recursos: [690640b](https://github.com/joseconca/gremio-expediciones/commit/690640b2533241d185fc342ce1d42d7842455de6). El workflow [de integración](https://github.com/joseconca/gremio-expediciones/actions/runs/40035425339) terminó en verde: 26 atlas, 78 filas, 26 retratos y conservación exacta de las filas 3-14.
+- Tier 0: Novato; Tier 1: Mago, Espadachín, Acólito y Arquero. Tier 2: ocho clases. Se usa rework-staging, ambos sexos, para Cazador, Explorador, Elementalista y Brujo.
+- Los retratos PNG se exportan a 128×256 desde el primer frame de Idle, con vecino más cercano; las pantallas que llaman a obtenerSpriteHeroe se actualizan sin rutas duplicadas. Los `*-logo.svg` se conservan porque son emblemas de clase, no retratos.
+- El pulido artístico de futuras animaciones continúa como seguimiento no bloqueante. Esta promoción cubre únicamente Idle/Walk/Hurt.
 
 ## Revisión visual inicial del rework-staging — 2026-10-23
 

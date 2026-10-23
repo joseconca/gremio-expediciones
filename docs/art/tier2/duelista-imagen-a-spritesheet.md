@@ -12,7 +12,7 @@ No se usarán los másteres raster por imagen vectoriales anteriores: se sustitu
 - Cada celda mide 64×128 px para que el generador Tier 2 derive las tiras ampliadas, los fotogramas nativos de 32×64, las previews y los informes QA.
 - Línea de pies normalizada entre fotogramas para reducir saltos de altura.
 - Fondo del panel eliminado por segmentación basada en el contorno y una máscara de color. Puede quedar algún píxel suelto/halo en ciertos bordes porque la lámina original tiene fondo opaco y las ilustraciones se solapan con la zona del rótulo; se puede hacer una pasada manual de limpieza posterior.
-- No integrar en `public/sprites/heroes` ni en el runtime en esta fase.
+- Checkpoint 2026-10-23: las filas Idle/Walk/Hurt del paquete de Duelista se integraron al runtime en commit 690640b; la revisión de posibles halos en bordes queda como pulido no bloqueante.
 
 ## Decisiones de recorte
 

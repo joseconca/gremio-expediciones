@@ -17,3 +17,8 @@ Los másteres tienen 128×192 píxeles: cuatro fotogramas nativos de 32×64 por 
 La preview de revisión no forma parte de las tiras fuente. La regeneración desde los másteres raster es reproducible mediante `build-tier2-class-v2.yml`.
 
 **Estado:** requiere revisión visual; aún no se integra en `public/sprites/heroes` ni en el runtime.
+
+
+## Runtime integration — 2026-10-23
+
+Runtime integration (commit 690640b): rows 0-2 use the canonical v2 Idle/Walk/Hurt strips for both sexes. Rows 3-14 are unchanged; remaining action work is non-blocking for these three cycles.

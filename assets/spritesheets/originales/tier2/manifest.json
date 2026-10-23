@@ -26,8 +26,8 @@
       "archetype": "vanguardia",
       "resource": "energia",
       "visualBrief": "armadura completa, hombreras y protección de piernas; capa heráldica; silueta defensiva",
-      "status": "package-generated-review-pending",
-      "note": "Complete first-pass package is versioned: two source masters, six action strips, 24 native 32x64 frames, six previews and six QA reports. Technical generation is complete; residual background/edge pixels and artistic approval remain for the global review. Not integrated into runtime."
+      "status": "runtime-integrated-canonical-v2-idle-walk-hurt",
+      "note": "Complete first-pass package is versioned: two source masters, six action strips, 24 native 32x64 frames, six previews and six QA reports. Technical generation is complete; residual background/edge pixels and artistic approval remain for the global review.  Runtime integration (commit 690640b): production rows 0-2 use canonical v2 Idle/Walk/Hurt strips for both sexes. Rows 3-14 are preserved; future-action visual clean-up remains follow-up work."
     },
     {
       "id": "duelista",
@@ -36,8 +36,8 @@
       "archetype": "agil",
       "resource": "energia",
       "visualBrief": "armadura ligera/media, líneas estilizadas y postura de esgrima",
-      "status": "package-generated-review-pending",
-      "note": "The two image-based WebP masters have replaced the old SVG masters and the package is already generated: six action strips, 24 native frames, six previews and six QA reports. Technical generation is complete; review the cut-out edges/possible halo in the global visual pass. Hands remain empty; weapons are separate layers. Not integrated into runtime."
+      "status": "runtime-integrated-canonical-v2-idle-walk-hurt",
+      "note": "The two image-based WebP masters have replaced the old SVG masters and the package is already generated: six action strips, 24 native frames, six previews and six QA reports. Technical generation is complete; review the cut-out edges/possible halo in the global visual pass. Hands remain empty; weapons are separate layers.  Runtime integration (commit 690640b): production rows 0-2 use canonical v2 Idle/Walk/Hurt strips for both sexes. Rows 3-14 are preserved; future-action visual clean-up remains follow-up work."
     },
     {
       "id": "sacerdote",
@@ -46,8 +46,8 @@
       "archetype": "apoyo",
       "resource": "mana",
       "visualBrief": "vestiduras ceremoniales, estola y símbolos sagrados ornamentados",
-      "status": "package-generated-review-pending",
-      "note": "Both raster masters and complete package are versioned: six PNG strips, 24 native frames, six previews and six QA reports. Technical QA is present; background edge cleanup and artistic approval remain for the global review. Empty hands/no embedded weapons. Not integrated into runtime."
+      "status": "runtime-integrated-canonical-v2-idle-walk-hurt",
+      "note": "Both raster masters and complete package are versioned: six PNG strips, 24 native frames, six previews and six QA reports. Technical QA is present; background edge cleanup and artistic approval remain for the global review. Empty hands/no embedded weapons.  Runtime integration (commit 690640b): production rows 0-2 use canonical v2 Idle/Walk/Hurt strips for both sexes. Rows 3-14 are preserved; future-action visual clean-up remains follow-up work."
     },
     {
       "id": "monje",
@@ -56,8 +56,8 @@
       "archetype": "marcial",
       "resource": "energia",
       "visualBrief": "ropajes marciales, vendas y brazales; postura disciplinada",
-      "status": "package-generated-review-pending",
-      "note": "Both raster masters and complete package are versioned: six PNG strips, 24 native frames, six previews and six QA reports. Technical QA is present; possible poster/background edge residue and artistic approval remain for the global review. Empty hands/no embedded weapons. Not integrated into runtime."
+      "status": "runtime-integrated-canonical-v2-idle-walk-hurt",
+      "note": "Both raster masters and complete package are versioned: six PNG strips, 24 native frames, six previews and six QA reports. Technical QA is present; possible poster/background edge residue and artistic approval remain for the global review. Empty hands/no embedded weapons.  Runtime integration (commit 690640b): production rows 0-2 use canonical v2 Idle/Walk/Hurt strips for both sexes. Rows 3-14 are preserved; future-action visual clean-up remains follow-up work."
     },
     {
       "id": "cazador",
@@ -66,8 +66,8 @@
       "archetype": "agil",
       "resource": "energia",
       "visualBrief": "cuero reforzado, rastreo y equipo de caza",
-      "status": "package-generated-review-pending",
-      "note": "Complete first-pass package is versioned: two custom raster PNG masters, six action strips, 24 native frames, six previews and six QA reports. QA records four unique frames, real alpha and stable footline. No embedded weapons. Artistic approval remains pending; not integrated into runtime."
+      "status": "runtime-integrated-rework-staging-idle-walk-hurt",
+      "note": "Complete first-pass package is versioned: two custom raster PNG masters, six action strips, 24 native frames, six previews and six QA reports. QA records four unique frames, real alpha and stable footline. No embedded weapons.  Runtime integration (commit 690640b): production rows 0-2 use rework-staging Idle/Walk/Hurt for both sexes. The canonical v2 package remains preserved for reference; rows 3-14 are unchanged. Further global palette/silhouette polish is non-blocking for these three cycles."
     },
     {
       "id": "explorador",
@@ -76,8 +76,8 @@
       "archetype": "agil",
       "resource": "energia",
       "visualBrief": "equipo ligero de viaje y supervivencia, preparado para trampas",
-      "status": "package-generated-review-pending",
-      "note": "Complete first-pass package is versioned: two custom raster PNG masters, six action strips, 24 native frames, six previews and six QA reports. QA records four unique frames, real alpha and stable footline. Hands empty; weapons remain independent layers. Artistic approval remains pending; not integrated into runtime."
+      "status": "runtime-integrated-rework-staging-idle-walk-hurt",
+      "note": "Complete first-pass package is versioned: two custom raster PNG masters, six action strips, 24 native frames, six previews and six QA reports. QA records four unique frames, real alpha and stable footline. Hands empty; weapons remain independent layers.  Runtime integration (commit 690640b): production rows 0-2 use rework-staging Idle/Walk/Hurt for both sexes. The canonical v2 package remains preserved for reference; rows 3-14 are unchanged. Further global palette/silhouette polish is non-blocking for these three cycles."
     },
     {
       "id": "elementalista",
@@ -86,8 +86,8 @@
       "archetype": "arcano",
       "resource": "mana",
       "visualBrief": "túnica con motivos elementales y silueta de canalización",
-      "status": "package-generated-review-pending",
-      "note": "Complete first-pass package is versioned: two custom raster PNG masters, six action strips, 24 native frames, six previews and six QA reports. QA records four unique frames, real alpha and stable footline. Empty hands; no staff, weapon or external spell-effect layer. Artistic approval remains pending; not integrated into runtime."
+      "status": "runtime-integrated-rework-staging-idle-walk-hurt",
+      "note": "Complete first-pass package is versioned: two custom raster PNG masters, six action strips, 24 native frames, six previews and six QA reports. QA records four unique frames, real alpha and stable footline. Empty hands; no staff, weapon or external spell-effect layer.  Runtime integration (commit 690640b): production rows 0-2 use rework-staging Idle/Walk/Hurt for both sexes. The canonical v2 package remains preserved for reference; rows 3-14 are unchanged. Further global palette/silhouette polish is non-blocking for these three cycles."
     },
     {
       "id": "brujo",
@@ -96,10 +96,68 @@
       "archetype": "maldito",
       "resource": "mana",
       "visualBrief": "vestiduras oscuras, amuletos y lenguaje visual de maldiciones",
-      "status": "package-generated-review-pending",
-      "note": "The raster master generator and the complete package are both versioned: two PNG masters, six action strips, 24 native frames, six previews and six QA reports. Technical generation has finished; review silhouette and cut-out edges during the global art pass. Hands empty, no staff, weapons, skull props or external spell effects. Not integrated into runtime."
+      "status": "runtime-integrated-rework-staging-idle-walk-hurt",
+      "note": "The raster master generator and the complete package are both versioned: two PNG masters, six action strips, 24 native frames, six previews and six QA reports. Technical generation has finished; review silhouette and cut-out edges during the global art pass. Hands empty, no staff, weapons, skull props or external spell effects.  Runtime integration (commit 690640b): production rows 0-2 use rework-staging Idle/Walk/Hurt for both sexes. The canonical v2 package remains preserved for reference; rows 3-14 are unchanged. Further global palette/silhouette polish is non-blocking for these three cycles."
     }
   ],
-  "status": "first-pass-generated-visual-review-pending",
-  "policy": "Keep all source masters and generated packages isolated from public runtime assets until six strips per class pass technical QA and global visual approval. Do not rebuild finished classes during the current rework; harmonize them only in the final pass."
+  "status": "idle-walk-hurt-integrated-runtime-art-polish-follow-up",
+  "policy": "The first three rows (Idle, Walk, Hurt) are promoted to production by explicit user decision on 2026-10-23. Canonical v2 sources remain versioned; for Cazador, Explorador, Elementalista and Brujo the runtime selects rework-staging. Rows 3-14 retain their previous artwork and are not declared redrawn. Global visual polish for future actions is follow-up work.",
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "date": "2026-10-23",
+    "atlasSize": [
+      256,
+      1920
+    ],
+    "cellSize": [
+      64,
+      128
+    ],
+    "portraitSize": [
+      128,
+      256
+    ],
+    "rows": [
+      {
+        "row": 0,
+        "action": "idle"
+      },
+      {
+        "row": 1,
+        "action": "walk"
+      },
+      {
+        "row": 2,
+        "action": "hurt"
+      }
+    ],
+    "canonicalV2Classes": [
+      "caballero",
+      "duelista",
+      "sacerdote",
+      "monje"
+    ],
+    "reworkStagingClasses": [
+      "cazador",
+      "explorador",
+      "elementalista",
+      "brujo"
+    ],
+    "preservedRows": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "portraitSource": "first frame of selected Idle strip, nearest-neighbour 2x export",
+    "classLogoSvgsPreserved": true
+  }
 }

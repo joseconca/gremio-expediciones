@@ -4,7 +4,7 @@
   "sex": "m",
   "action": "walk",
   "direction": "right",
-  "status": "draft-needs-art-review",
+  "status": "runtime-integrated-rework-staging-art-polish-follow-up",
   "frameCount": 4,
   "expandedSheet": {
     "path": "walk-right-4f.png",
@@ -29,7 +29,7 @@
     "expandedModeRGBA": true,
     "perPixelAlphaPresent": true,
     "allNativeFramesRGBA": true,
-    "runtimeApproved": false
+    "runtimeApproved": true
   },
   "notes": [
     "Expanded sheet assembled by nearest-neighbour scaling of the four separate native RGBA frames.",
@@ -37,7 +37,8 @@
     "The source is a composite concept sheet extraction. Leg/cloth motion remains subtle and requires an artistic redraw/refinement before production.",
     "Stored in rework-staging only; no original or runtime sprite is replaced.",
     "High-resolution composite source plates are archived in /GameAssets/Tier2/Elementalista/ and recorded in male-manifest.json. These are references with labels/panels, not separate hires action masters.",
-    "Only extracted staging frames are available as isolated frames for this action; do not claim a standalone hires master exists."
+    "Only extracted staging frames are available as isolated frames for this action; do not claim a standalone hires master exists.",
+    "Runtime integration checkpoint — 2026-10-23: this rework-staging strip is the selected production source for the corresponding Idle/Walk/Hurt row in commit 690640b. User-approved for the current three-action scope. Any remaining global palette/silhouette polish is follow-up work and does not block this integration."
   ],
   "sourceReferenceComposite": [
     {
@@ -55,5 +56,13 @@
       "sourceType": "composite-reference"
     }
   ],
-  "masterArchiveStatus": "composite-reference-preserved; no standalone hires action master found"
+  "masterArchiveStatus": "composite-reference-preserved; no standalone hires action master found",
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "source": "rework-staging",
+    "action": "walk",
+    "runtimeRow": 1,
+    "bothSexes": true,
+    "followUpArtReviewBlocksCurrentIntegration": false
+  }
 }

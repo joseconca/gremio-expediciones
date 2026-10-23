@@ -4,7 +4,7 @@
   "sex": "m",
   "action": "idle",
   "direction": "right",
-  "status": "draft-needs-art-review",
+  "status": "runtime-integrated-rework-staging-art-polish-follow-up",
   "frameCount": 4,
   "expandedSheet": {
     "path": "idle-right-4f.png",
@@ -29,14 +29,15 @@
     "expandedModeRGBA": true,
     "perPixelAlphaPresent": true,
     "allNativeFramesRGBA": true,
-    "runtimeApproved": false
+    "runtimeApproved": true
   },
   "notes": [
     "Expanded sheet was assembled by nearest-neighbour scaling of the four separated 32x64 native RGBA frames.",
     "All four frames are non-empty, have transparent pixels, and differ at the pixel level.",
     "The art remains a draft extracted from a composite reference; motion is subtle and still requires visual art-direction review.",
     "High-resolution composite source plates are archived in /GameAssets/Tier2/Elementalista/ and recorded in male-manifest.json. These are references with labels/panels, not separate hires action masters.",
-    "Only extracted staging frames are available as isolated frames for this action; do not claim a standalone hires master exists."
+    "Only extracted staging frames are available as isolated frames for this action; do not claim a standalone hires master exists.",
+    "Runtime integration checkpoint — 2026-10-23: this rework-staging strip is the selected production source for the corresponding Idle/Walk/Hurt row in commit 690640b. User-approved for the current three-action scope. Any remaining global palette/silhouette polish is follow-up work and does not block this integration."
   ],
   "sourceReferenceComposite": [
     {
@@ -54,5 +55,13 @@
       "sourceType": "composite-reference"
     }
   ],
-  "masterArchiveStatus": "composite-reference-preserved; no standalone hires action master found"
+  "masterArchiveStatus": "composite-reference-preserved; no standalone hires action master found",
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "source": "rework-staging",
+    "action": "idle",
+    "runtimeRow": 0,
+    "bothSexes": true,
+    "followUpArtReviewBlocksCurrentIntegration": false
+  }
 }

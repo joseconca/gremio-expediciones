@@ -4,7 +4,7 @@
   "sex": "f",
   "action": "walk",
   "direction": "right",
-  "status": "staging-indexed-transparent-art-review-pending",
+  "status": "runtime-integrated-rework-staging-art-polish-follow-up",
   "nativeFrames": {
     "path": "walk/frames-native-32x64/",
     "width": 32,
@@ -30,7 +30,7 @@
     "transparentIndexPresent": true,
     "allFramesNonEmpty": true,
     "fourUniqueFrames": true,
-    "runtimeApproved": false,
+    "runtimeApproved": true,
     "requiresArtReview": true,
     "highResolutionMasterArchived": true
   },
@@ -39,7 +39,8 @@
     "Transparent palette index verified; the expanded cells exactly match native frame upscales.",
     "Hands are empty and no weapons, UI or scenery are included.",
     "This is a staging draft. The walk motion is present but subtle and remains queued for final cross-class art polish.",
-    "The original 1983x793 RGBA walk source was recovered by its Library title, copied byte-for-byte to /GameAssets/Tier2/Elementalista/, and registered in female-manifest.json."
+    "The original 1983x793 RGBA walk source was recovered by its Library title, copied byte-for-byte to /GameAssets/Tier2/Elementalista/, and registered in female-manifest.json.",
+    "Runtime integration checkpoint — 2026-10-23: this rework-staging strip is the selected production source for the corresponding Idle/Walk/Hurt row in commit 690640b. User-approved for the current three-action scope. Any remaining global palette/silhouette polish is follow-up work and does not block this integration."
   ],
   "sourceMaster": {
     "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-f-walk-hires-original.png",
@@ -53,5 +54,13 @@
       255
     ],
     "transparentBackground": true
+  },
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "source": "rework-staging",
+    "action": "walk",
+    "runtimeRow": 1,
+    "bothSexes": true,
+    "followUpArtReviewBlocksCurrentIntegration": false
   }
 }

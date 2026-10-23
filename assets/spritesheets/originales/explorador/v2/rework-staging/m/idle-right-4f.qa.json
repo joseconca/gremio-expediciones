@@ -4,7 +4,7 @@
   "sex": "m",
   "action": "idle",
   "direction": "right",
-  "status": "staging-indexed-transparent-art-review-pending",
+  "status": "runtime-integrated-rework-staging-art-polish-follow-up",
   "sourceMaster": {
     "rawLibraryPath": "/GameAssets/Tier2/Explorador/explorador-m-idle-hires-checkerboard.png",
     "rawSha256": "85e48dffe8f305685fa77cccb8c95de53bfb00555027b79b8c56b808fa4c1651",
@@ -44,12 +44,21 @@
     "allFrameCellsNonEmpty": true,
     "fourUniqueFrames": true,
     "expandedMatchesNativeFrames": true,
-    "runtimeApproved": false,
+    "runtimeApproved": true,
     "requiresArtReview": true
   },
   "notes": [
     "The original high-resolution source had an opaque checkerboard; it is retained unchanged and a separate transparent-derived master is archived.",
     "Each expanded frame matches its native frame enlarged with nearest-neighbour.",
-    "This is the first idle draft. All first-pass class sets are now present in staging; final art review should assess whether the motion reads clearly at gameplay scale."
-  ]
+    "This is the first idle draft. All first-pass class sets are now present in staging; final art review should assess whether the motion reads clearly at gameplay scale.",
+    "Runtime integration checkpoint — 2026-10-23: this rework-staging strip is the selected production source for the corresponding Idle/Walk/Hurt row in commit 690640b. User-approved for the current three-action scope. Any remaining global palette/silhouette polish is follow-up work and does not block this integration."
+  ],
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "source": "rework-staging",
+    "action": "idle",
+    "runtimeRow": 0,
+    "bothSexes": true,
+    "followUpArtReviewBlocksCurrentIntegration": false
+  }
 }

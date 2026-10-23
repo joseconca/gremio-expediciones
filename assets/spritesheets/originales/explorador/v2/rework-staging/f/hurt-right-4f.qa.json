@@ -4,7 +4,7 @@
   "sex": "f",
   "action": "hurt",
   "direction": "right",
-  "status": "staging-indexed-transparent-art-review-pending",
+  "status": "runtime-integrated-rework-staging-art-polish-follow-up",
   "sourceMaster": {
     "originalLibraryPath": "/GameAssets/Tier2/Explorador/explorador-f-hurt-hires-original.png",
     "originalSha256": "2fdb14da8334abaa6d6c8e28d58a043f1543aee071dded139e0551ca9219ba7c",
@@ -121,13 +121,22 @@
     "allFrameCellsNonEmpty": true,
     "fourUniqueFrames": true,
     "expandedMatchesNativeFrames": true,
-    "runtimeApproved": false,
+    "runtimeApproved": true,
     "requiresArtReview": true
   },
   "notes": [
     "Four damage-reaction poses extracted by connected-component masks to avoid mixing overlapping cloak pixels from adjacent figures.",
     "The native sprites use a 63-colour indexed palette plus transparency index 0; high-resolution frame cutouts and the original 1984x793 RGBA master are preserved separately.",
     "The 256x128 strip was verified pixel-for-pixel as a nearest-neighbour enlargement of the native strip. Git object SHA-1 values are verified against exact local PNG bytes.",
-    "Staging only; not connected to runtime pending cross-class art review."
-  ]
+    "Staging only; not connected to runtime pending cross-class art review.",
+    "Runtime integration checkpoint — 2026-10-23: this rework-staging strip is the selected production source for the corresponding Idle/Walk/Hurt row in commit 690640b. User-approved for the current three-action scope. Any remaining global palette/silhouette polish is follow-up work and does not block this integration."
+  ],
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "source": "rework-staging",
+    "action": "hurt",
+    "runtimeRow": 2,
+    "bothSexes": true,
+    "followUpArtReviewBlocksCurrentIntegration": false
+  }
 }

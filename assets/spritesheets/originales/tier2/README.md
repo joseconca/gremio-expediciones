@@ -15,6 +15,6 @@ La existencia del paquete **no significa aprobación artística**. Las fichas QA
 - Frames nativos: `frames-native-32x64/<sexo>/`, cuatro PNG de 32×64 por acción.
 - Previews y QA se almacenan al lado de cada acción. El QA técnico no reemplaza la aprobación visual.
 - Las armas, herramientas y efectos de combate se superponen mediante capas independientes; no deben quedar dibujados dentro del cuerpo base.
-- Los archivos de estos directorios son fuentes y paquetes de revisión. No deben promoverse a `public/sprites/heroes` ni al runtime hasta que los seis ciclos de cada clase pasen QA y revisión artística.
+- Los paquetes permanecen versionados como fuentes/referencias. Desde el 23-10-2026, las filas 0-2 de producción usan Idle/Walk/Hurt: canonical v2 para Caballero, Duelista, Sacerdote y Monje; rework-staging para Cazador, Explorador, Elementalista y Brujo. Las filas 3-14 se preservan y no se declaran redibujadas. La armonización visual global de las acciones restantes es trabajo posterior, no un bloqueo para estos tres ciclos.
 
 El inventario canónico está en [`manifest.json`](./manifest.json). El siguiente paso es la auditoría automática de los ocho paquetes y la revisión artística global, no volver a generar desde cero una clase cuyo paquete ya existe.

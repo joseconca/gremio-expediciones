@@ -146,7 +146,7 @@ def build(class_id: str, sex: str, action: str) -> dict:
         "alpha_extrema": list(source.getchannel("A").getextrema()),
         "feet_baseline_drift_px": feet_drift,
         "distinct_frame_count": distinct,
-        "runtime_integrated": False,
+        "runtime_integrated": class_id not in {"cazador", "explorador", "elementalista", "brujo"},
         "artistic_approval": "pending visual review",
         "output_sha256": file_digest(strip_path),
         "frames": frame_records,

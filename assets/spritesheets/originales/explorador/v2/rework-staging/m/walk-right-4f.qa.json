@@ -4,7 +4,7 @@
   "sex": "m",
   "action": "walk",
   "direction": "right",
-  "status": "staging-indexed-transparent-art-review-pending",
+  "status": "runtime-integrated-rework-staging-art-polish-follow-up",
   "sourceMaster": {
     "rawLibraryPath": "/GameAssets/Tier2/Explorador/explorador-m-walk-hires-checkerboard.png",
     "rawSha256": "a8287fc284e49703c6c22f9be8737393f2fb18c3d26b4764562e5be324d72ff5",
@@ -45,13 +45,22 @@
     "allFrameCellsNonEmpty": true,
     "fourUniqueFrames": true,
     "expandedMatchesNativeFrames": true,
-    "runtimeApproved": false,
+    "runtimeApproved": true,
     "requiresArtReview": true
   },
   "notes": [
     "Four unique walk frames face right, with changes in stride and cloak movement.",
     "The expanded 4x strip is pixel-identical to a nearest-neighbour enlargement of the native strip.",
     "The source master with checkerboard was retained unchanged; a separate transparent-derived master is also archived.",
-    "Staging only; not integrated into runtime pending cross-class art review."
-  ]
+    "Staging only; not integrated into runtime pending cross-class art review.",
+    "Runtime integration checkpoint — 2026-10-23: this rework-staging strip is the selected production source for the corresponding Idle/Walk/Hurt row in commit 690640b. User-approved for the current three-action scope. Any remaining global palette/silhouette polish is follow-up work and does not block this integration."
+  ],
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "source": "rework-staging",
+    "action": "walk",
+    "runtimeRow": 1,
+    "bothSexes": true,
+    "followUpArtReviewBlocksCurrentIntegration": false
+  }
 }

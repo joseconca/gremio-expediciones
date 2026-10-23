@@ -1,8 +1,18 @@
 # Estado verificable de sprites v2
 
-**Actualizado:** 2026-10-21  
+**Actualizado:** 2026-10-23  
 **Rama:** `main`  
 **Política de integración:** los paquetes v2 de Novato y Tier 1 están aprobados para las tres acciones principales. Las hojas de producción integran Idle, Caminar y Recibir daño; los retratos estáticos proceden de Idle.
+
+## Integración de Tier 0, Tier 1 y Tier 2 — 2026-10-23
+
+El commit [690640b](https://github.com/joseconca/gremio-expediciones/commit/690640b2533241d185fc342ce1d42d7842455de6) integra las tres acciones preparadas en los 26 atlas de producción y genera 26 retratos PNG a 128×256. El workflow [Integrar sprites runtime Tier 0-2](https://github.com/joseconca/gremio-expediciones/actions/runs/40035425339) validó 78 filas, transparencia y cuatro frames únicos y confirmó que las filas 3-14 permanecen intactas.
+
+- Tier 0: Novato. Tier 1: Mago, Espadachín, Acólito y Arquero.
+- Tier 2: Caballero, Duelista, Sacerdote, Monje, Cazador, Explorador, Elementalista y Brujo.
+- Tier 2 usa canonical v2 para Caballero/Duelista/Sacerdote/Monje y rework-staging para Cazador/Explorador/Elementalista/Brujo.
+- Los retratos se exportan desde el primer frame de Idle, 2× por vecino más cercano; las pantallas que usan obtenerSpriteHeroe ya los consumen. Los SVG de logotipo se preservan como emblemas de clase, no se usan como caras.
+- Las acciones aún no rediseñadas siguen en las filas 3-14 y no se declaran aprobadas por esta integración.
 
 ## Novato (Tier 0) — paquete generado
 

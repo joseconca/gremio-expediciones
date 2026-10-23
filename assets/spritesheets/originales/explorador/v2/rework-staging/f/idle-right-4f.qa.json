@@ -4,7 +4,7 @@
   "sex": "f",
   "action": "idle",
   "direction": "right",
-  "status": "staging-indexed-transparent-art-review-pending",
+  "status": "runtime-integrated-rework-staging-art-polish-follow-up",
   "sourceMaster": {
     "originalLibraryPath": "/GameAssets/Tier2/Explorador/explorador-f-idle-hires-original.png",
     "originalSha256": "1ea7dba22fbeed7b28ca6571f5cc65992f2601baa4c7dcbb637cbaa4d563be33",
@@ -48,13 +48,22 @@
     "allFrameCellsNonEmpty": true,
     "fourUniqueFrames": true,
     "expandedMatchesNativeFrames": true,
-    "runtimeApproved": false,
+    "runtimeApproved": true,
     "requiresArtReview": true
   },
   "notes": [
     "Four right-facing idle frames use a consistent baseline and common indexed palette.",
     "The original hires RGBA master is preserved unchanged; a separately cleaned transparent derivative is also archived.",
     "Each expanded frame exactly matches the native frame scaled by nearest-neighbour.",
-    "Staging only; no runtime integration until the cross-class art review."
-  ]
+    "Staging only; no runtime integration until the cross-class art review.",
+    "Runtime integration checkpoint — 2026-10-23: this rework-staging strip is the selected production source for the corresponding Idle/Walk/Hurt row in commit 690640b. User-approved for the current three-action scope. Any remaining global palette/silhouette polish is follow-up work and does not block this integration."
+  ],
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "source": "rework-staging",
+    "action": "idle",
+    "runtimeRow": 0,
+    "bothSexes": true,
+    "followUpArtReviewBlocksCurrentIntegration": false
+  }
 }

@@ -4,7 +4,7 @@
   "sex": "f",
   "action": "walk",
   "direction": "right",
-  "status": "staging-indexed-transparent-art-review-pending",
+  "status": "runtime-integrated-rework-staging-art-polish-follow-up",
   "sourceMaster": {
     "libraryPath": "/GameAssets/Tier2/Cazador/cazador-f-walk-hires.png",
     "width": 1983,
@@ -42,12 +42,21 @@
     "allFrameCellsNonEmpty": true,
     "fourUniqueFrames": true,
     "expandedMatchesNativeFrames": true,
-    "runtimeApproved": false,
+    "runtimeApproved": true,
     "requiresArtReview": true
   },
   "notes": [
     "Four frames show distinct steps with cloak and braid movement, facing right.",
     "Each expanded cell matches its native frame after nearest-neighbour enlargement.",
-    "High-resolution master preserved separately in the Library; final art approval deferred."
-  ]
+    "High-resolution master preserved separately in the Library; final art approval deferred.",
+    "Runtime integration checkpoint — 2026-10-23: this rework-staging strip is the selected production source for the corresponding Idle/Walk/Hurt row in commit 690640b. User-approved for the current three-action scope. Any remaining global palette/silhouette polish is follow-up work and does not block this integration."
+  ],
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "source": "rework-staging",
+    "action": "walk",
+    "runtimeRow": 1,
+    "bothSexes": true,
+    "followUpArtReviewBlocksCurrentIntegration": false
+  }
 }

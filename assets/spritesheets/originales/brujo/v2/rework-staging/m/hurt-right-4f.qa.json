@@ -4,7 +4,7 @@
   "sex": "m",
   "action": "hurt",
   "direction": "right",
-  "status": "staging-expanded-rgba-repaired-art-review-pending",
+  "status": "runtime-integrated-rework-staging-art-polish-follow-up",
   "nativeFrames": {
     "path": "hurt-native-4f.png",
     "width": 128,
@@ -98,7 +98,7 @@
     "expandedDimensions": true,
     "expandedMatchesNativeFrames": true,
     "fourUniqueFrames": true,
-    "runtimeApproved": false,
+    "runtimeApproved": true,
     "requiresArtReview": true,
     "expandedStripNeedsRegeneration": true,
     "expandedModeRGBA": true,
@@ -111,7 +111,8 @@
     "The resulting native strip is 128x64 with a shared 31-colour indexed palette and transparent index 0. Per-frame RGBA hashes are recorded in nativeFrames.frameHashesRgba.",
     "The checked-in 256x128 expanded strip was unreadable and must be rebuilt from this native strip by scripts/reparar-staging-tier2.py. Artistic review remains pending and runtimeApproved is false.",
     "2026-10-23 repair checkpoint: the expanded strip was rebuilt as a valid RGBA PNG from the four checked native frames. Production/runtime assets were not modified.",
-    "Previous expanded PNG was unusable: cannot identify image file '/home/runner/work/gremio-expediciones/gremio-expediciones/assets/spritesheets/originales/brujo/v2/rework-staging/m/hurt-right-4f.png'"
+    "Previous expanded PNG was unusable: cannot identify image file '/home/runner/work/gremio-expediciones/gremio-expediciones/assets/spritesheets/originales/brujo/v2/rework-staging/m/hurt-right-4f.png'",
+    "Runtime integration checkpoint — 2026-10-23: this rework-staging strip is the selected production source for the corresponding Idle/Walk/Hurt row in commit 690640b. User-approved for the current three-action scope. Any remaining global palette/silhouette polish is follow-up work and does not block this integration."
   ],
   "sourceMaster": {
     "libraryPath": "/GameAssets/Tier2/Brujo/brujo-m-originales-alta-resolucion.zip",
@@ -126,5 +127,13 @@
       255
     ],
     "checkerboardBakedIntoOpaquePixels": false
+  },
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "source": "rework-staging",
+    "action": "hurt",
+    "runtimeRow": 2,
+    "bothSexes": true,
+    "followUpArtReviewBlocksCurrentIntegration": false
   }
 }

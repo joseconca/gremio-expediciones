@@ -4,7 +4,7 @@
   "sex": "f",
   "action": "idle",
   "direction": "right",
-  "status": "staging-expanded-rgba-repaired-art-review-pending",
+  "status": "runtime-integrated-rework-staging-art-polish-follow-up",
   "nativeFrames": {
     "path": "idle/frames-native-32x64/",
     "width": 32,
@@ -67,7 +67,7 @@
     "expandedMatchesNativeFrames": true,
     "allFramesNonEmpty": true,
     "fourUniqueFrames": true,
-    "runtimeApproved": false,
+    "runtimeApproved": true,
     "requiresArtReview": true,
     "rgbaExportPending": true,
     "highResolutionIdleMasterArchived": true,
@@ -83,7 +83,8 @@
     "The exact 1983x793 RGBA idle master is now archived canonically in the Library and recorded in female-manifest.json.",
     "Recovery checkpoint 2026-10-23: four native 32x64 frames were regenerated from the preserved original Library master after the checked-in native PNGs were found unreadable. The crop keeps only the connected character component for each pose, shares a 127-colour palette and indexed transparency, and aligns the feet to a common baseline. The derived expanded strip will be rebuilt and re-audited by CI.",
     "2026-10-23 repair checkpoint: the expanded strip was rebuilt as a valid RGBA PNG from the four checked native frames. Production/runtime assets were not modified.",
-    "Previous expanded PNG was unusable: cannot identify image file '/home/runner/work/gremio-expediciones/gremio-expediciones/assets/spritesheets/originales/elementalista/v2/rework-staging/f/idle-right-4f.png'"
+    "Previous expanded PNG was unusable: cannot identify image file '/home/runner/work/gremio-expediciones/gremio-expediciones/assets/spritesheets/originales/elementalista/v2/rework-staging/f/idle-right-4f.png'",
+    "Runtime integration checkpoint — 2026-10-23: this rework-staging strip is the selected production source for the corresponding Idle/Walk/Hurt row in commit 690640b. User-approved for the current three-action scope. Any remaining global palette/silhouette polish is follow-up work and does not block this integration."
   ],
   "sourceMaster": {
     "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-f-idle-hires-original.png",
@@ -97,5 +98,13 @@
       255
     ],
     "transparentBackground": true
+  },
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "source": "rework-staging",
+    "action": "idle",
+    "runtimeRow": 0,
+    "bothSexes": true,
+    "followUpArtReviewBlocksCurrentIntegration": false
   }
 }

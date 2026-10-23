@@ -69,7 +69,7 @@ jobs:
           expected_distinct = 2 if action == "idle" else 4
           assert report["distinct_frame_count"] >= expected_distinct
           assert report["cell_dimensions"] == [64, 128]
-          assert report["runtime_integrated"] is False
+          assert report["runtime_integrated"] is True
           print(f"QA OK: {strip} | {report['output_sha256']}")
           PY
                 generated=1

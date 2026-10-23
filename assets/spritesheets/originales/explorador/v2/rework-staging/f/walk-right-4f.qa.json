@@ -4,7 +4,7 @@
   "sex": "f",
   "action": "walk",
   "direction": "right",
-  "status": "staging-expanded-rgba-repaired-art-review-pending",
+  "status": "runtime-integrated-rework-staging-art-polish-follow-up",
   "sourceMaster": {
     "originalLibraryPath": "/GameAssets/Tier2/Explorador/explorador-f-walk-hires-original.png",
     "originalSha256": "bc125f9f3372722aebdc23a787a70472322cf483458be6920e8d9132cab814e1",
@@ -106,7 +106,7 @@
     "allFrameCellsNonEmpty": true,
     "fourUniqueFrames": true,
     "expandedMatchesNativeFrames": true,
-    "runtimeApproved": false,
+    "runtimeApproved": true,
     "requiresArtReview": true,
     "expandedModeRGBA": true,
     "perPixelAlphaPresent": true,
@@ -118,6 +118,15 @@
     "The expanded PNG palette was optimized, but exact RGBA comparison to the original expansion reports no pixel differences.",
     "The original RGB hires source with opaque checkerboard and its separately derived transparent RGBA master remain archived in the library.",
     "Staging only; no runtime integration until cross-class visual review.",
-    "2026-10-23 repair checkpoint: the expanded strip was rebuilt as a valid RGBA PNG from the four checked native frames. Production/runtime assets were not modified."
-  ]
+    "2026-10-23 repair checkpoint: the expanded strip was rebuilt as a valid RGBA PNG from the four checked native frames. Production/runtime assets were not modified.",
+    "Runtime integration checkpoint — 2026-10-23: this rework-staging strip is the selected production source for the corresponding Idle/Walk/Hurt row in commit 690640b. User-approved for the current three-action scope. Any remaining global palette/silhouette polish is follow-up work and does not block this integration."
+  ],
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "source": "rework-staging",
+    "action": "walk",
+    "runtimeRow": 1,
+    "bothSexes": true,
+    "followUpArtReviewBlocksCurrentIntegration": false
+  }
 }

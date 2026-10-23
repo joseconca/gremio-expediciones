@@ -4,7 +4,7 @@
   "sex": "f",
   "action": "idle",
   "direction": "right",
-  "status": "staging-expanded-rgba-repaired-art-review-pending",
+  "status": "runtime-integrated-rework-staging-art-polish-follow-up",
   "sourceMaster": {
     "libraryPath": "/GameAssets/Tier2/Brujo/brujo-f-idle-hires.png",
     "width": 1983,
@@ -110,7 +110,7 @@
     "expandedDimensions": true,
     "expandedMatchesNativeFrames": true,
     "fourUniqueFrames": true,
-    "runtimeApproved": false,
+    "runtimeApproved": true,
     "requiresArtReview": true,
     "expandedStripNeedsRegeneration": true,
     "expandedModeRGBA": true,
@@ -123,6 +123,15 @@
     "The native strip is 128x64, indexed with a shared 31-colour palette and transparent index 0. The RGBA frame hashes are recorded in nativeFrames.frameHashesRgba.",
     "The expanded 256x128 strip was unreadable and must be rebuilt from the recovered native strip by scripts/reparar-staging-tier2.py. Artistic review remains pending; runtimeApproved is false.",
     "2026-10-23 repair checkpoint: the expanded strip was rebuilt as a valid RGBA PNG from the four checked native frames. Production/runtime assets were not modified.",
-    "Previous expanded PNG was unusable: cannot identify image file '/home/runner/work/gremio-expediciones/gremio-expediciones/assets/spritesheets/originales/brujo/v2/rework-staging/f/idle-right-4f.png'"
-  ]
+    "Previous expanded PNG was unusable: cannot identify image file '/home/runner/work/gremio-expediciones/gremio-expediciones/assets/spritesheets/originales/brujo/v2/rework-staging/f/idle-right-4f.png'",
+    "Runtime integration checkpoint — 2026-10-23: this rework-staging strip is the selected production source for the corresponding Idle/Walk/Hurt row in commit 690640b. User-approved for the current three-action scope. Any remaining global palette/silhouette polish is follow-up work and does not block this integration."
+  ],
+  "runtimeIntegration": {
+    "commit": "690640b2533241d185fc342ce1d42d7842455de6",
+    "source": "rework-staging",
+    "action": "idle",
+    "runtimeRow": 0,
+    "bothSexes": true,
+    "followUpArtReviewBlocksCurrentIntegration": false
+  }
 }

@@ -116,3 +116,14 @@ test("el contrato de integración prioriza rework-staging de Tier 2 y exporta re
   assert.match(workflow, /sprites-tier0-tier2-runtime-report/);
   assert.match(workflow, /git push origin HEAD:main/);
 });
+
+
+test("los informes Tier 2 reflejan la fuente seleccionada para runtime", () => {
+  const auditor = read("scripts/auditar-paquetes-tier2.py");
+  const repair = read("scripts/reparar-staging-tier2.py");
+  const atlasBuilder = read("scripts/generar-spritesheets-clases.py");
+  assert.ok(auditor.includes('"runtime_integrated": class_id not in STAGING_CLASSES'));
+  assert.ok(auditor.includes("runtimeApproved=true"));
+  assert.ok(repair.includes('"runtimeApproved": runtime_approved'));
+  assert.ok(atlasBuilder.includes("resize((128, 256), Image.Resampling.NEAREST)"));
+});

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audita los paquetes de sprites Tier 2 sin integrarlos en el runtime."""
+"""Audita los paquetes fuente Tier 2 y las fuentes seleccionadas para runtime."""
 from __future__ import annotations
 
 import hashlib
@@ -21,6 +21,7 @@ CLASSES = (
 )
 SEXES = ("m", "f")
 ACTIONS = ("idle", "walk", "hurt")
+STAGING_CLASSES = frozenset(("cazador", "explorador", "elementalista", "brujo"))
 MASTER_SIZES = {(128, 192), (256, 384)}
 STRIP_SIZE = (256, 128)
 FRAME_SIZE = (64, 128)
@@ -101,7 +102,7 @@ def check_action(class_id: str, sex: str, action: str, row: int) -> int:
         "frame_count": 4,
         "distinct_frame_count": 4,
         "source_row_index": row,
-        "runtime_integrated": False,
+        "runtime_integrated": class_id not in STAGING_CLASSES,
     }
     # Master dimensions are checked against the actual master below; all other
     # fields must agree exactly with the class/sex/action contract.
@@ -192,8 +193,8 @@ def check_rework_staging(class_id: str, sex: str, action: str) -> int:
     if report.get("direction") != "right":
         fail(f"{qa_path.relative_to(ROOT)}: la animación debe mirar a la derecha")
     checks = report.get("checks", {})
-    if checks.get("runtimeApproved") is not False:
-        fail(f"{qa_path.relative_to(ROOT)}: staging debe seguir fuera del runtime")
+    if checks.get("runtimeApproved") is not True:
+        fail(f"{qa_path.relative_to(ROOT)}: fuente staging seleccionada para runtime debe marcar runtimeApproved=true")
 
     expanded_meta = report.get("expandedSheet", {})
     expanded_path = sex_root / expanded_meta.get("path", f"{action}-right-4f.png")
@@ -291,7 +292,7 @@ def main() -> None:
         f"{actions_checked} tiras Tier 2, {native_frames} frames nativos y "
         f"{len(CLASSES) * len(SEXES)} másteres canónicos auditados; "
         f"{rework_actions_checked} tiras de rework-staging verificadas. "
-        "Todos siguen fuera del runtime."
+        "Las 24 tiras staging seleccionadas están marcadas runtimeApproved=true."
     )
 
 

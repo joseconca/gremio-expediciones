@@ -324,7 +324,7 @@ def build(sex: str, action: str) -> dict:
         "distinct_frame_count": len(set(frame_hashes)),
         "idle_micro_motion_synthesized": idle_micro_motion_synthesized,
         "weapon_drawn_in_body": False,
-        "runtime_integrated": False,
+        "runtime_integrated": True,
         "artistic_approval": "pending visual review",
         "output_sha256": sha256_file(strip_path),
         "frames": frame_records,

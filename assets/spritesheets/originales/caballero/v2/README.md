@@ -7,3 +7,8 @@ El paquete v2 de Caballero ya se había generado y versionado en los commits ant
 - Paquete: seis tiras PNG de 256×128, frames nativos, previews e informes QA.
 
 El arte procede de la lámina conceptual v2; puede quedar fondo residual y necesita retoque visual manual. Las tiras no están integradas en runtime: no promocionarlas hasta aprobar la limpieza y la silueta.
+
+
+## Runtime integration — 2026-10-23
+
+Runtime integration (commit 690640b): rows 0-2 use the canonical v2 Idle/Walk/Hurt strips for both sexes. Rows 3-14 are unchanged; the remaining action work is non-blocking for these three cycles.

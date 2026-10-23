@@ -114,8 +114,8 @@ def repair_one(class_id: str, sex: str, action: str) -> bool:
 
     if (report.get("classId"), report.get("sex"), report.get("action"), report.get("direction")) != (class_id, sex, action, "right"):
         fail(f"identidad de QA no coincide con {qa_path.relative_to(ROOT)}")
-    if report.get("checks", {}).get("runtimeApproved") is not False:
-        fail(f"no se toca un asset aprobado para runtime: {qa_path.relative_to(ROOT)}")
+    if report.get("checks", {}).get("runtimeApproved") is not True:
+        fail(f"la fuente staging seleccionada para runtime debe mantener runtimeApproved=true: {qa_path.relative_to(ROOT)}")
 
     native_meta = report.setdefault("nativeFrames", {})
     expanded_meta = report.get("expandedSheet", {})
@@ -217,12 +217,13 @@ def repair_one(class_id: str, sex: str, action: str) -> bool:
         expanded_meta.pop("transparency", None)
 
     checks = report.setdefault("checks", {})
+    runtime_approved = checks.get("runtimeApproved") is True
     checks.update({
         "nativeDimensions": True,
         "expandedDimensions": True,
         "expandedMatchesNativeFrames": True,
         "fourUniqueFrames": len({frame.tobytes() for frame in native}) == 4,
-        "runtimeApproved": False,
+        "runtimeApproved": runtime_approved,
         "requiresArtReview": True,
     })
     if all(mode == "RGBA" for mode in modes):
@@ -240,9 +241,9 @@ def repair_one(class_id: str, sex: str, action: str) -> bool:
     checks["fourUniqueFrames"] = True
 
     if native_recovered:
-        report["status"] = "staging-native-recovered-from-verified-expanded-strip-art-review-pending"
+        report["status"] = "runtime-integrated-rework-staging-native-recovered"
     elif needs_repair:
-        report["status"] = "staging-expanded-rgba-repaired-art-review-pending"
+        report["status"] = "runtime-integrated-rework-staging-expanded-rgba-repaired"
     notes = report.setdefault("notes", [])
     if native_recovery_note:
         notes.append(native_recovery_note)
