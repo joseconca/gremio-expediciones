@@ -22,6 +22,16 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 - **Runtime:** los QA de los paquetes canónicos siguen con `runtime_integrated: false`; los recursos del staging también se mantienen fuera del runtime. Superar QA técnico no equivale a aprobación artística ni a integración.
 - **Siguiente:** confirmar la regresión de `main` tras el commit de reparación y, después, realizar la pasada artística transversal de las seis tiras por clase. Armonizar las clases ya terminadas solo en la pasada final.
 
+## Revisión visual inicial — 2026-10-23
+
+- Revisadas las seis tiras por clase de los cuatro grupos de staging prioritarios. Los 24 ciclos pasan auditoría técnica y continúan fuera del runtime; los candidatos de paleta no se consideran aprobados.
+- **Cazador:** el `walk` masculino conserva un contraste muy superior a `idle`; el ajuste automático más cercano al palette de `idle` no resuelve la diferencia perceptiva y queda descartado.
+- **Brujo:** la capa violeta se lee mejor en `idle` que en `walk`, que tiende a carbón/malva oscuro. El mapeo de paleta cambia muchos RGB exactos, pero no corrige suficientemente la lectura del manto; necesita retoque artístico del material.
+- **Explorador:** revisar si la pérdida de contraste en `hurt` es parte de la reacción al daño o un desajuste de la fuente.
+- **Elementalista:** la variación de `idle` se percibe demasiado tenue, especialmente en femenino; aumentar sutilmente movimiento de cabeza/túnica/cabello en las futuras poses redibujadas.
+- **Decisión de esta pasada:** se conservan todos los masters, frames y tiras originales; no se promueve ninguno de los candidatos generados por `scripts/generar-propuesta-paleta-tier2.py`. El porcentaje de RGB cambiado no sustituye la evaluación visual; los informes registran además distancia RGB y preservación de silueta.
+- **Siguiente:** hacer correcciones específicas en el arte fuente de Cazador/Brujo, revisar Elementalista `idle`, y después continuar el pase visual del paquete canónico de Caballero, Duelista, Sacerdote y Monje.
+
 **Nota:** las secciones de checkpoint e historial que siguen son registros de fases anteriores; las líneas «Siguiente» dentro de esos registros son históricas.
 
 **Nota:** la sección «Historial reciente» y los checkpoints posteriores conservan el estado documentado en sus fechas; las instrucciones «Siguiente» de esos apuntes son históricas, no la lista actual de tareas.

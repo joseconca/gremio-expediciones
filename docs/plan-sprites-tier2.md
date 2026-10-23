@@ -22,6 +22,16 @@ Adoptar el estilo de pixel art detallado mostrado por el usuario: volúmenes y c
 - **Runtime:** todos los paquetes canónicos siguen marcados `runtime_integrated: false`; el staging de rediseño también permanece desconectado. QA técnico correcto no equivale a aprobación visual.
 - **Siguiente paso:** comprobar la regresión sobre el commit que contiene las reparaciones y realizar la pasada artística global clase por clase. Limpiar solo defectos visuales confirmados; la armonización de clases ya terminadas queda para el final.
 
+## Revisión visual inicial del rework-staging — 2026-10-23
+
+- **Artefactos revisados:** las 24 tiras de Elementalista, Brujo, Cazador y Explorador (ambos sexos, tres acciones). [Paquete de comparación de paletas y QA visual](https://github.com/joseconca/gremio-expediciones/actions/runs/40024442073). Los candidatos son solo de revisión; ninguna tira original fue sustituida.
+- **Cazador:** el `walk` masculino presenta brillos crema/blancos mucho más dominantes que `idle`; la variante femenina también merece una comparación de contraste. El mapeo automático al conjunto de colores de `idle` cambió el 86,57 % de los píxeles RGB visibles en el `walk` masculino, pero la distancia RGB media fue 7,972 y la revisión visual no mostró una mejora suficiente. No promover ese candidato: el origen necesita una armonización artística controlada por materiales.
+- **Brujo:** el `walk` pierde presencia violeta frente al manto de `idle`, sobre todo en el masculino. El candidato de paleta cambió el 99,88 % de píxeles RGB visibles en el `walk` masculino, pero la distancia RGB media fue solo 6,454; muchos cambios son pequeños y no recuperan por sí solos la lectura del violeta. No promoverlo automáticamente.
+- **Explorador:** el `hurt` queda más apagado que `idle`/`walk`. Parte puede deberse a la pose de retroceso; confirmar que la bajada de contraste sea intencional y que el equipo siga legible antes de retocar.
+- **Elementalista:** los cuatro fotogramas `idle`, especialmente los femeninos, muestran variación visual muy sutil aunque pasan el requisito técnico de fotogramas diferentes. Mejorar el bob de cuerpo/cabeza y el movimiento secundario de túnica/cabello en el redibujo; no duplicar ni sustituir assets canónicos durante esta revisión.
+- **Criterio técnico de los candidatos:** los informes nuevos miden cambio exacto de RGB, distancia media/P95/máxima y preservación de alfa/límites de silueta. El porcentaje de píxeles que cambia no se interpreta como una medida de mejora perceptiva. Todos siguen con aprobación de runtime en falso.
+- **Siguiente trabajo:** corregir el arte fuente de Cazador y Brujo con una paleta material coherente a través de las acciones, y mejorar la variación de `idle` de Elementalista. Después revisar los halos anotados de Caballero, Duelista, Sacerdote y Monje. No aplicar filtros globales ni integrar candidatos de paleta por lotes.
+
 **Nota sobre checkpoints:** las secciones siguientes son registros históricos; las líneas «Siguiente» reflejan el estado de aquel commit, no la lista global actual.
 
 ## Checkpoint histórico — Cazador masculino
