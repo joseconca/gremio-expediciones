@@ -4,7 +4,7 @@
   "sex": "f",
   "action": "walk",
   "direction": "right",
-  "status": "staging-indexed-transparent-art-review-pending",
+  "status": "staging-expanded-rgba-repaired-art-review-pending",
   "sourceMaster": {
     "originalLibraryPath": "/GameAssets/Tier2/Explorador/explorador-f-walk-hires-original.png",
     "originalSha256": "bc125f9f3372722aebdc23a787a70472322cf483458be6920e8d9132cab814e1",
@@ -25,7 +25,70 @@
     "mode": "P",
     "transparencyIndex": 0,
     "count": 4,
-    "sha256": "d943786d42d6f674bdde27d8a7436147fceaf72d0c0aeb0247bac1634d813cc4"
+    "sha256": "d943786d42d6f674bdde27d8a7436147fceaf72d0c0aeb0247bac1634d813cc4",
+    "transparency": "indexed transparent key",
+    "frames": [
+      {
+        "index": 1,
+        "path": "assets/spritesheets/originales/explorador/v2/rework-staging/f/walk-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "d355ff114d36d912c125ba63c18d8cbeccd8067552ea42f2e68fe968229f9d98",
+        "crop": [
+          0,
+          0,
+          32,
+          64
+        ]
+      },
+      {
+        "index": 2,
+        "path": "assets/spritesheets/originales/explorador/v2/rework-staging/f/walk-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "94add3c3483c53d5db6139a49bc5545cff7d009e995d2379d0de2f9c80baeb0a",
+        "crop": [
+          32,
+          0,
+          64,
+          64
+        ]
+      },
+      {
+        "index": 3,
+        "path": "assets/spritesheets/originales/explorador/v2/rework-staging/f/walk-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "65023454209a899f349cc2acf871b2875d4a55f4366a67106a906c20a71076be",
+        "crop": [
+          64,
+          0,
+          96,
+          64
+        ]
+      },
+      {
+        "index": 4,
+        "path": "assets/spritesheets/originales/explorador/v2/rework-staging/f/walk-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "48fa70b55f6b2c84e2e0fbc0b2c56032cd997869c2f5ec92840531de19913626",
+        "crop": [
+          96,
+          0,
+          128,
+          64
+        ]
+      }
+    ]
   },
   "expandedSheet": {
     "path": "walk-right-4f.png",
@@ -33,26 +96,28 @@
     "height": 128,
     "cellWidth": 64,
     "cellHeight": 128,
-    "mode": "P",
-    "transparencyIndex": 0,
+    "mode": "RGBA",
     "sha256": "65fe38b254bafd373142f89ddcac3609e4f8d840fccb6cadba01b021cb334bec",
-    "construction": "nearest-neighbour upscale of native frames; palette optimized without changing pixel colors"
+    "construction": "reconstructed from the four native 32x64 frames using nearest-neighbour"
   },
   "checks": {
     "nativeDimensions": true,
     "expandedDimensions": true,
-    "transparentIndexPresent": true,
     "allFrameCellsNonEmpty": true,
     "fourUniqueFrames": true,
     "expandedMatchesNativeFrames": true,
     "runtimeApproved": false,
-    "requiresArtReview": true
+    "requiresArtReview": true,
+    "expandedModeRGBA": true,
+    "perPixelAlphaPresent": true,
+    "allFramesNonEmpty": true
   },
   "notes": [
     "Four distinct walk frames face right, with stride, braid and cloak movement; each native cell is 32x64.",
     "Native strip and expanded strip are now correct; pixel comparison confirms the 256x128 sheet exactly equals a nearest-neighbour enlargement of native frames.",
     "The expanded PNG palette was optimized, but exact RGBA comparison to the original expansion reports no pixel differences.",
     "The original RGB hires source with opaque checkerboard and its separately derived transparent RGBA master remain archived in the library.",
-    "Staging only; no runtime integration until cross-class visual review."
+    "Staging only; no runtime integration until cross-class visual review.",
+    "2026-10-23 repair checkpoint: the expanded strip was rebuilt as a valid RGBA PNG from the four checked native frames. Production/runtime assets were not modified."
   ]
 }

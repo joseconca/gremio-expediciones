@@ -4,7 +4,7 @@
   "sex": "m",
   "action": "idle",
   "direction": "right",
-  "status": "staging-indexed-transparent-art-review-pending",
+  "status": "staging-expanded-rgba-repaired-art-review-pending",
   "sourceMaster": {
     "libraryPath": "/GameAssets/Tier2/Cazador/cazador-m-idle-hires-variant-02.png",
     "width": 1984,
@@ -21,7 +21,70 @@
     "cellHeight": 64,
     "mode": "P",
     "transparencyIndex": 0,
-    "count": 4
+    "count": 4,
+    "transparency": "indexed transparent key",
+    "frames": [
+      {
+        "index": 1,
+        "path": "assets/spritesheets/originales/cazador/v2/rework-staging/m/idle-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "f7d7a0528e94bbc5af06e99e6e4885644ba9f021ed29fc6f246cb7a156d51b4c",
+        "crop": [
+          0,
+          0,
+          32,
+          64
+        ]
+      },
+      {
+        "index": 2,
+        "path": "assets/spritesheets/originales/cazador/v2/rework-staging/m/idle-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "0bca76e83bd9cfb33da17648062a04ce57f3a102377c60bda42d0c338d46bfdc",
+        "crop": [
+          32,
+          0,
+          64,
+          64
+        ]
+      },
+      {
+        "index": 3,
+        "path": "assets/spritesheets/originales/cazador/v2/rework-staging/m/idle-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "a0ed533ab8d66cb8b56d2864ba207d74c674e77002e72a299db747e67d69c79c",
+        "crop": [
+          64,
+          0,
+          96,
+          64
+        ]
+      },
+      {
+        "index": 4,
+        "path": "assets/spritesheets/originales/cazador/v2/rework-staging/m/idle-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "d4b000c710e1439f7679ad1adfdea6e62dbb8dec5fc74751d9ac0c062a08f53a",
+        "crop": [
+          96,
+          0,
+          128,
+          64
+        ]
+      }
+    ]
   },
   "expandedSheet": {
     "path": "idle-right-4f.png",
@@ -29,23 +92,26 @@
     "height": 128,
     "cellWidth": 64,
     "cellHeight": 128,
-    "mode": "P",
-    "transparencyIndex": 0,
-    "construction": "nearest-neighbour upscale from native frames"
+    "mode": "RGBA",
+    "construction": "reconstructed from the four native 32x64 frames using nearest-neighbour"
   },
   "checks": {
     "nativeDimensions": true,
     "expandedDimensions": true,
-    "transparentIndexPresent": true,
     "allFrameCellsNonEmpty": true,
     "fourUniqueFrames": true,
     "expandedMatchesNativeFrames": true,
     "runtimeApproved": false,
-    "requiresArtReview": true
+    "requiresArtReview": true,
+    "expandedModeRGBA": true,
+    "perPixelAlphaPresent": true,
+    "allFramesNonEmpty": true
   },
   "notes": [
     "All four frames share a palette and baseline; each expanded cell was checked against its native frame enlarged with nearest-neighbour.",
     "This is the first animation draft, not production-approved; pose variation is subtle, and the final art-polish pass remains deferred.",
-    "The original 1984x793 source sheet is archived intact in the Library. An earlier high-resolution idle version is retained separately as well."
+    "The original 1984x793 source sheet is archived intact in the Library. An earlier high-resolution idle version is retained separately as well.",
+    "2026-10-23 repair checkpoint: the expanded strip was rebuilt as a valid RGBA PNG from the four checked native frames. Production/runtime assets were not modified.",
+    "Previous expanded PNG was unusable: broken data stream when reading image file"
   ]
 }

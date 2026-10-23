@@ -4,7 +4,7 @@
   "sex": "m",
   "action": "walk",
   "direction": "right",
-  "status": "staging-indexed-transparent-art-review-pending",
+  "status": "staging-expanded-rgba-repaired-art-review-pending",
   "nativeFrames": {
     "path": "walk-native-4f.png",
     "width": 128,
@@ -13,7 +13,70 @@
     "cellHeight": 64,
     "mode": "P",
     "transparencyIndex": 45,
-    "count": 4
+    "count": 4,
+    "transparency": "indexed transparent key",
+    "frames": [
+      {
+        "index": 1,
+        "path": "assets/spritesheets/originales/brujo/v2/rework-staging/m/walk-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "f9253e9703193ec255bd437bae4666ad849b4a4d5eb93a7be6841da14fcf45d0",
+        "crop": [
+          0,
+          0,
+          32,
+          64
+        ]
+      },
+      {
+        "index": 2,
+        "path": "assets/spritesheets/originales/brujo/v2/rework-staging/m/walk-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "f232ffa4a34fdce8aaa8a77d99be49bb73cd2b126fad80e92a3db7f71bcdd903",
+        "crop": [
+          32,
+          0,
+          64,
+          64
+        ]
+      },
+      {
+        "index": 3,
+        "path": "assets/spritesheets/originales/brujo/v2/rework-staging/m/walk-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "290930e0ceff68150ceef4805b1c25005b2ce44c6ad62fee6976087142660ae8",
+        "crop": [
+          64,
+          0,
+          96,
+          64
+        ]
+      },
+      {
+        "index": 4,
+        "path": "assets/spritesheets/originales/brujo/v2/rework-staging/m/walk-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "4eaa92e1f3a1ad40b235f3312e4017b85c0e6258d19cd41cee6a301586fb31fc",
+        "crop": [
+          96,
+          0,
+          128,
+          64
+        ]
+      }
+    ]
   },
   "expandedSheet": {
     "path": "walk-right-4f.png",
@@ -21,24 +84,27 @@
     "height": 128,
     "cellWidth": 64,
     "cellHeight": 128,
-    "mode": "P",
-    "transparencyIndex": 45,
-    "construction": "nearest-neighbour upscale of four native frames"
+    "mode": "RGBA",
+    "construction": "reconstructed from the four native 32x64 frames using nearest-neighbour"
   },
   "checks": {
     "nativeDimensions": true,
     "expandedDimensions": true,
     "expandedMatchesNativeFrames": true,
-    "transparentIndexPresent": true,
     "allFrameCellsNonEmpty": true,
     "fourUniqueFrames": true,
     "runtimeApproved": false,
-    "requiresArtReview": true
+    "requiresArtReview": true,
+    "expandedModeRGBA": true,
+    "perPixelAlphaPresent": true,
+    "allFramesNonEmpty": true
   },
   "notes": [
     "The four poses show alternating steps with cloak movement and consistent scale facing right.",
     "Every expanded cell exactly matches its corresponding 32x64 native frame scaled by nearest-neighbour.",
     "The same charcoal/violet/silver palette is used across frames; hands are empty and no weapons or props appear.",
-    "All Tier 2 first-pass sets are now present in staging; final cross-class visual review and motion polish remain pending."
+    "All Tier 2 first-pass sets are now present in staging; final cross-class visual review and motion polish remain pending.",
+    "2026-10-23 repair checkpoint: the expanded strip was rebuilt as a valid RGBA PNG from the four checked native frames. Production/runtime assets were not modified.",
+    "Previous expanded PNG was unusable: cannot identify image file '/home/runner/work/gremio-expediciones/gremio-expediciones/assets/spritesheets/originales/brujo/v2/rework-staging/m/walk-right-4f.png'"
   ]
 }

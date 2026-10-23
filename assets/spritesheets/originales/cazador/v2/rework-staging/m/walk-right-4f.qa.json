@@ -4,7 +4,7 @@
   "sex": "m",
   "action": "walk",
   "direction": "right",
-  "status": "staging-indexed-transparent-art-review-pending",
+  "status": "staging-native-recovered-from-verified-expanded-strip-art-review-pending",
   "sourceMaster": {
     "originalLibraryPath": "/GameAssets/Tier2/Cazador/cazador-m-walk-hires-original.png",
     "transparentDerivedLibraryPath": "/GameAssets/Tier2/Cazador/cazador-m-walk-hires-transparent-derived.png",
@@ -21,10 +21,71 @@
     "height": 64,
     "cellWidth": 32,
     "cellHeight": 64,
-    "mode": "P",
-    "transparencyIndex": 0,
+    "mode": "RGBA",
     "count": 4,
-    "sha256": "ce612208ea5242816820c747ab1c78c32de58e3f7606f19f8547b27ed2f3cec2"
+    "sha256": "ce612208ea5242816820c747ab1c78c32de58e3f7606f19f8547b27ed2f3cec2",
+    "frames": [
+      {
+        "index": 1,
+        "path": "assets/spritesheets/originales/cazador/v2/rework-staging/m/walk-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "f1e1481eaf637e8c1277ae9d0999f6d89f0b7f32a475d322eabce76187fe44c1",
+        "crop": [
+          0,
+          0,
+          32,
+          64
+        ]
+      },
+      {
+        "index": 2,
+        "path": "assets/spritesheets/originales/cazador/v2/rework-staging/m/walk-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "1e7fcbc61601aaf6cfcd7b86acfa10930055df4dd125bd60a2deb6230c29cfaf",
+        "crop": [
+          32,
+          0,
+          64,
+          64
+        ]
+      },
+      {
+        "index": 3,
+        "path": "assets/spritesheets/originales/cazador/v2/rework-staging/m/walk-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "ad2852ef199309e1a5602935d2eb70101373abeaf1703d406f5e91d2f5e308a9",
+        "crop": [
+          64,
+          0,
+          96,
+          64
+        ]
+      },
+      {
+        "index": 4,
+        "path": "assets/spritesheets/originales/cazador/v2/rework-staging/m/walk-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "ccdc674a328c7260bf2b49daa04ca790dae1a24d9ddea761391b8497175ee0c4",
+        "crop": [
+          96,
+          0,
+          128,
+          64
+        ]
+      }
+    ]
   },
   "expandedSheet": {
     "path": "walk-right-4f.png",
@@ -45,11 +106,14 @@
     "fourUniqueFrames": true,
     "expandedMatchesNativeFrames": true,
     "runtimeApproved": false,
-    "requiresArtReview": true
+    "requiresArtReview": true,
+    "allNativeFramesRGBA": true,
+    "rgbaExportPending": false
   },
   "notes": [
     "Original high-resolution sheet retained with checkerboard intact; separate alpha-derived high-resolution source retained at transparentDerivedLibraryPath.",
     "Each expanded frame matches its native cell enlarged with nearest-neighbour. Four unique frames verified.",
-    "The animation is a staging draft, not yet runtime-approved; final cross-class art review remains deferred."
+    "The animation is a staging draft, not yet runtime-approved; final cross-class art review remains deferred.",
+    "2026-10-23 recovery checkpoint: unreadable native output was reconstructed by nearest-neighbour downscaling from a readable, dimension-checked expanded strip. The source character poses were not redrawn and production sprites were not changed."
   ]
 }

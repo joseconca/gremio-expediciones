@@ -4,7 +4,7 @@
   "sex": "m",
   "action": "hurt",
   "direction": "right",
-  "status": "staging-native-recovered-from-archived-reference-expanded-strip-pending",
+  "status": "staging-expanded-rgba-repaired-art-review-pending",
   "nativeFrames": {
     "path": "hurt-native-4f.png",
     "width": 128,
@@ -20,6 +20,68 @@
       "9b3f0cc4284ee25fa5ae8c75eef01317b3dc5e260f0ce0fea884a14fddde262d",
       "cfeae83813130d315ee727e1c10992ce09c2669bd2880bb4a3526908c6b6a663",
       "692275c71a4754e69debeac762efb70fd30f900824312fbbda06a602ab8c2dd6"
+    ],
+    "frames": [
+      {
+        "index": 1,
+        "path": "assets/spritesheets/originales/brujo/v2/rework-staging/m/hurt-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "6e24bf988879843e2050e4af86808c927ea002931746f372734e002a41b4eb92",
+        "crop": [
+          0,
+          0,
+          32,
+          64
+        ]
+      },
+      {
+        "index": 2,
+        "path": "assets/spritesheets/originales/brujo/v2/rework-staging/m/hurt-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "9b3f0cc4284ee25fa5ae8c75eef01317b3dc5e260f0ce0fea884a14fddde262d",
+        "crop": [
+          32,
+          0,
+          64,
+          64
+        ]
+      },
+      {
+        "index": 3,
+        "path": "assets/spritesheets/originales/brujo/v2/rework-staging/m/hurt-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "cfeae83813130d315ee727e1c10992ce09c2669bd2880bb4a3526908c6b6a663",
+        "crop": [
+          64,
+          0,
+          96,
+          64
+        ]
+      },
+      {
+        "index": 4,
+        "path": "assets/spritesheets/originales/brujo/v2/rework-staging/m/hurt-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "692275c71a4754e69debeac762efb70fd30f900824312fbbda06a602ab8c2dd6",
+        "crop": [
+          96,
+          0,
+          128,
+          64
+        ]
+      }
     ]
   },
   "expandedSheet": {
@@ -28,25 +90,28 @@
     "height": 128,
     "cellWidth": 64,
     "cellHeight": 128,
-    "mode": "P",
-    "transparencyIndex": 44,
-    "construction": "nearest-neighbour upscale of four native frames"
+    "mode": "RGBA",
+    "construction": "reconstructed from the four native 32x64 frames using nearest-neighbour"
   },
   "checks": {
     "nativeDimensions": true,
-    "nativeIndexedTransparencyValid": true,
     "expandedDimensions": true,
-    "expandedMatchesNativeFrames": false,
+    "expandedMatchesNativeFrames": true,
     "fourUniqueFrames": true,
     "runtimeApproved": false,
     "requiresArtReview": true,
-    "expandedStripNeedsRegeneration": true
+    "expandedStripNeedsRegeneration": true,
+    "expandedModeRGBA": true,
+    "perPixelAlphaPresent": true,
+    "allFramesNonEmpty": true
   },
   "notes": [
     "Recovery checkpoint 2026-10-23: four native hurt/recovery frames were recovered from the preserved high-resolution male Brujo RGBA source in the Library archive.",
     "The original 1983x793 source has per-pixel alpha. Each character pose was isolated by connected-component segmentation of the alpha mask; the figure silhouette was resized to 32x64 and aligned to a common foot baseline.",
     "The resulting native strip is 128x64 with a shared 31-colour indexed palette and transparent index 0. Per-frame RGBA hashes are recorded in nativeFrames.frameHashesRgba.",
-    "The checked-in 256x128 expanded strip was unreadable and must be rebuilt from this native strip by scripts/reparar-staging-tier2.py. Artistic review remains pending and runtimeApproved is false."
+    "The checked-in 256x128 expanded strip was unreadable and must be rebuilt from this native strip by scripts/reparar-staging-tier2.py. Artistic review remains pending and runtimeApproved is false.",
+    "2026-10-23 repair checkpoint: the expanded strip was rebuilt as a valid RGBA PNG from the four checked native frames. Production/runtime assets were not modified.",
+    "Previous expanded PNG was unusable: cannot identify image file '/home/runner/work/gremio-expediciones/gremio-expediciones/assets/spritesheets/originales/brujo/v2/rework-staging/m/hurt-right-4f.png'"
   ],
   "sourceMaster": {
     "libraryPath": "/GameAssets/Tier2/Brujo/brujo-m-originales-alta-resolucion.zip",

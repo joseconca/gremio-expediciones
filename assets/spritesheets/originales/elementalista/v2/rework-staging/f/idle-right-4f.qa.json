@@ -4,7 +4,7 @@
   "sex": "f",
   "action": "idle",
   "direction": "right",
-  "status": "staging-native-recovered-from-high-resolution-master-expanded-strip-pending",
+  "status": "staging-expanded-rgba-repaired-art-review-pending",
   "nativeFrames": {
     "path": "idle/frames-native-32x64/",
     "width": 32,
@@ -21,7 +21,7 @@
           32,
           64
         ],
-        "rgba_sha256": "d0591606d16bd88eb57fce474dfa179cf8179b6ceef7c37ddd73b776892825c9"
+        "rgba_sha256": "d0a45818e74f1c901e3dd04fe67926a0a7c4cb7404225671bbaa62c3f2e9474d"
       },
       {
         "index": 2,
@@ -30,7 +30,7 @@
           32,
           64
         ],
-        "rgba_sha256": "850800c7216103a1c4a4dd3d8fa6691131bc5f7a6f83ec3bab06ca41ed2d4c33"
+        "rgba_sha256": "2c9e8b62cf28276c7099b4bea9676bdc01477ab2ae64d3092c4e5ab674488059"
       },
       {
         "index": 3,
@@ -39,7 +39,7 @@
           32,
           64
         ],
-        "rgba_sha256": "44c965845256dd54e0109d1073e8aea5c64ba588812c0c2d7c6659fef4e8c7de"
+        "rgba_sha256": "210131afc449683054e6d2946050ef162974b0158c405164dfb7e691d073741f"
       },
       {
         "index": 4,
@@ -48,7 +48,7 @@
           32,
           64
         ],
-        "rgba_sha256": "ef1d0952fbc2918603b106a1ff1c50755f3b1e23183d9eed33e9e1da9c76aa41"
+        "rgba_sha256": "fc5d180ec9b1da0c5876919bd5d5f16a1281a0fbc2abc84fbd78f4b9cf398da6"
       }
     ]
   },
@@ -56,24 +56,24 @@
     "path": "idle-right-4f.png",
     "width": 256,
     "height": 128,
-    "mode": "P",
-    "transparency": "indexed transparent key",
+    "mode": "RGBA",
     "cellWidth": 64,
     "cellHeight": 128,
-    "construction": "nearest-neighbour upscale from native indexed frames"
+    "construction": "reconstructed from the four native 32x64 frames using nearest-neighbour"
   },
   "checks": {
     "nativeDimensions": true,
     "expandedDimensions": true,
     "expandedMatchesNativeFrames": true,
-    "transparentIndexPresent": true,
     "allFramesNonEmpty": true,
     "fourUniqueFrames": true,
     "runtimeApproved": false,
     "requiresArtReview": true,
     "rgbaExportPending": true,
     "highResolutionIdleMasterArchived": true,
-    "highResolutionMasterArchived": true
+    "highResolutionMasterArchived": true,
+    "expandedModeRGBA": true,
+    "perPixelAlphaPresent": true
   },
   "notes": [
     "Palette-indexed transparency is present and the expanded cells match the four native frames.",
@@ -81,7 +81,9 @@
     "Art review and optional RGBA export remain pending; this file stays in staging and is not connected to production.",
     "The 1983x793 RGBA idle source is now recorded in the Elementalist female hires manifest and preserved separately at /GameAssets/Tier2/Elementalista/. No separate hires source sheets for concept, walk or hurt were located during the Library audit; do not claim the reduced sheets are original hires masters.",
     "The exact 1983x793 RGBA idle master is now archived canonically in the Library and recorded in female-manifest.json.",
-    "Recovery checkpoint 2026-10-23: four native 32x64 frames were regenerated from the preserved original Library master after the checked-in native PNGs were found unreadable. The crop keeps only the connected character component for each pose, shares a 127-colour palette and indexed transparency, and aligns the feet to a common baseline. The derived expanded strip will be rebuilt and re-audited by CI."
+    "Recovery checkpoint 2026-10-23: four native 32x64 frames were regenerated from the preserved original Library master after the checked-in native PNGs were found unreadable. The crop keeps only the connected character component for each pose, shares a 127-colour palette and indexed transparency, and aligns the feet to a common baseline. The derived expanded strip will be rebuilt and re-audited by CI.",
+    "2026-10-23 repair checkpoint: the expanded strip was rebuilt as a valid RGBA PNG from the four checked native frames. Production/runtime assets were not modified.",
+    "Previous expanded PNG was unusable: cannot identify image file '/home/runner/work/gremio-expediciones/gremio-expediciones/assets/spritesheets/originales/elementalista/v2/rework-staging/f/idle-right-4f.png'"
   ],
   "sourceMaster": {
     "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-f-idle-hires-original.png",

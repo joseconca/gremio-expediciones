@@ -4,7 +4,7 @@
   "sex": "m",
   "action": "hurt",
   "direction": "right",
-  "status": "staging-indexed-transparent-art-review-pending",
+  "status": "staging-native-recovered-from-verified-expanded-strip-art-review-pending",
   "sourceMaster": {
     "libraryPath": "/GameAssets/Tier2/Cazador/cazador-m-hurt-hires.png",
     "width": 1983,
@@ -22,10 +22,71 @@
     "height": 64,
     "cellWidth": 32,
     "cellHeight": 64,
-    "mode": "P",
-    "transparencyIndex": 0,
+    "mode": "RGBA",
     "count": 4,
-    "sha256": "2e68b9d2848decb82b0f876d9e10dbce87b5ab33ac0c9e9c8d657634acfcb45b"
+    "sha256": "2e68b9d2848decb82b0f876d9e10dbce87b5ab33ac0c9e9c8d657634acfcb45b",
+    "frames": [
+      {
+        "index": 1,
+        "path": "assets/spritesheets/originales/cazador/v2/rework-staging/m/hurt-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "b48833ea5f3805619d96aa5d13067a7b0c90308f1505ce66752c7393ad142d8a",
+        "crop": [
+          0,
+          0,
+          32,
+          64
+        ]
+      },
+      {
+        "index": 2,
+        "path": "assets/spritesheets/originales/cazador/v2/rework-staging/m/hurt-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "583d75f1f113a42ead94ebdfe64e0c969790aa583b5b9b31129415c6b6bf50bc",
+        "crop": [
+          32,
+          0,
+          64,
+          64
+        ]
+      },
+      {
+        "index": 3,
+        "path": "assets/spritesheets/originales/cazador/v2/rework-staging/m/hurt-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "4fa857f080b5d347474d2fdd86519d0891d44212be277e423c9159c1486ac23e",
+        "crop": [
+          64,
+          0,
+          96,
+          64
+        ]
+      },
+      {
+        "index": 4,
+        "path": "assets/spritesheets/originales/cazador/v2/rework-staging/m/hurt-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "e87230815f25e3b08b23c76cd8c3c4080164595ff5fbed8f5aa933a068bed138",
+        "crop": [
+          96,
+          0,
+          128,
+          64
+        ]
+      }
+    ]
   },
   "expandedSheet": {
     "path": "hurt-right-4f.png",
@@ -46,11 +107,14 @@
     "fourUniqueFrames": true,
     "expandedMatchesNativeFrames": true,
     "runtimeApproved": false,
-    "requiresArtReview": true
+    "requiresArtReview": true,
+    "allNativeFramesRGBA": true,
+    "rgbaExportPending": false
   },
   "notes": [
     "The four right-facing frames show brace, recoil, bend and recovery.",
     "Each expanded cell matches its native frame enlarged by nearest-neighbour.",
-    "High-resolution master preserved unchanged in the Library; runtime integration and final art approval are deferred."
+    "High-resolution master preserved unchanged in the Library; runtime integration and final art approval are deferred.",
+    "2026-10-23 recovery checkpoint: unreadable native output was reconstructed by nearest-neighbour downscaling from a readable, dimension-checked expanded strip. The source character poses were not redrawn and production sprites were not changed."
   ]
 }

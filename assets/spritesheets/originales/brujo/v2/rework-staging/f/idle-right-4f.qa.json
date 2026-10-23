@@ -4,7 +4,7 @@
   "sex": "f",
   "action": "idle",
   "direction": "right",
-  "status": "staging-native-recovered-from-archived-hires-art-expanded-strip-pending",
+  "status": "staging-expanded-rgba-repaired-art-review-pending",
   "sourceMaster": {
     "libraryPath": "/GameAssets/Tier2/Brujo/brujo-f-idle-hires.png",
     "width": 1983,
@@ -32,6 +32,68 @@
       "ae075b53cb4474291862884d2645b62bc06743570aefd8be76543208a658853b",
       "55c0732b0cb2991d68c4f126bad00762faa349a129fa3744ff9684b9935018a2",
       "2047ab22accbc08e88eccbef376c438527d7f35dbe721e16a23cff2544200563"
+    ],
+    "frames": [
+      {
+        "index": 1,
+        "path": "assets/spritesheets/originales/brujo/v2/rework-staging/f/idle-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "dde312fbfb23f1835398021c2a3e9ebf8cb95612c2a3ddf71312ed198c4a263d",
+        "crop": [
+          0,
+          0,
+          32,
+          64
+        ]
+      },
+      {
+        "index": 2,
+        "path": "assets/spritesheets/originales/brujo/v2/rework-staging/f/idle-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "ae075b53cb4474291862884d2645b62bc06743570aefd8be76543208a658853b",
+        "crop": [
+          32,
+          0,
+          64,
+          64
+        ]
+      },
+      {
+        "index": 3,
+        "path": "assets/spritesheets/originales/brujo/v2/rework-staging/f/idle-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "55c0732b0cb2991d68c4f126bad00762faa349a129fa3744ff9684b9935018a2",
+        "crop": [
+          64,
+          0,
+          96,
+          64
+        ]
+      },
+      {
+        "index": 4,
+        "path": "assets/spritesheets/originales/brujo/v2/rework-staging/f/idle-native-4f.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "2047ab22accbc08e88eccbef376c438527d7f35dbe721e16a23cff2544200563",
+        "crop": [
+          96,
+          0,
+          128,
+          64
+        ]
+      }
     ]
   },
   "expandedSheet": {
@@ -40,24 +102,27 @@
     "height": 128,
     "cellWidth": 64,
     "cellHeight": 128,
-    "mode": "P",
-    "transparencyIndex": 0,
-    "construction": "nearest-neighbour upscale of the four native frames"
+    "mode": "RGBA",
+    "construction": "reconstructed from the four native 32x64 frames using nearest-neighbour"
   },
   "checks": {
     "nativeDimensions": true,
-    "nativeIndexedTransparencyValid": true,
     "expandedDimensions": true,
-    "expandedMatchesNativeFrames": false,
+    "expandedMatchesNativeFrames": true,
     "fourUniqueFrames": true,
     "runtimeApproved": false,
     "requiresArtReview": true,
-    "expandedStripNeedsRegeneration": true
+    "expandedStripNeedsRegeneration": true,
+    "expandedModeRGBA": true,
+    "perPixelAlphaPresent": true,
+    "allFramesNonEmpty": true
   },
   "notes": [
     "Recovery checkpoint 2026-10-23: the four native idle frames were recovered from the preserved high-resolution female Brujo source registered in source-hires/female-manifest.json.",
     "The 1983x793 source has per-pixel alpha. Four connected character components were extracted in left-to-right order, scaled to 32x64 and aligned to a shared foot baseline.",
     "The native strip is 128x64, indexed with a shared 31-colour palette and transparent index 0. The RGBA frame hashes are recorded in nativeFrames.frameHashesRgba.",
-    "The expanded 256x128 strip was unreadable and must be rebuilt from the recovered native strip by scripts/reparar-staging-tier2.py. Artistic review remains pending; runtimeApproved is false."
+    "The expanded 256x128 strip was unreadable and must be rebuilt from the recovered native strip by scripts/reparar-staging-tier2.py. Artistic review remains pending; runtimeApproved is false.",
+    "2026-10-23 repair checkpoint: the expanded strip was rebuilt as a valid RGBA PNG from the four checked native frames. Production/runtime assets were not modified.",
+    "Previous expanded PNG was unusable: cannot identify image file '/home/runner/work/gremio-expediciones/gremio-expediciones/assets/spritesheets/originales/brujo/v2/rework-staging/f/idle-right-4f.png'"
   ]
 }
