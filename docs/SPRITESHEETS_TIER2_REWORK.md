@@ -69,4 +69,5 @@ Por clase, completar un sexo cada vez: concept art → idle derecha (4 frames) �
 - `848b32e` — tira hurt RGBA ampliada y QA técnico.
 - `1c3724d` — registrar hurt y mantener la revisión artística pendiente.
 - `44b0c84` — concept art femenino en staging.
-- Siguiente checkpoint: idle femenino para revisión; ninguna clase nueva se integra en producción hasta aprobar el acabado artístico.
+- `6e2ef82` — checkpoint de `idle` femenino con cuatro frames nativos, tira indexada y QA; exportación RGBA y revisión artística pendientes.
+- Próximo checkpoint: refinar/aprobar el `idle` femenino y exportarlo a RGBA; después crear `walk` y `hurt`.
