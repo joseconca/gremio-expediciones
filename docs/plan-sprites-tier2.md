@@ -5,23 +5,25 @@ Adoptar el estilo de pixel art detallado mostrado por el usuario: volúmenes y c
 
 ## Contrato técnico de cada primer pase
 - Por clase y sexo: concept art grande → idle derecha (4 frames) → walk derecha (4 frames) → hurt derecha (4 frames) → QA.
-- Tira de staging ampliada: 256×128, cuatro celdas de 64×128. Fuente nativa: 128×64, cuatro celdas de 32×64.
+- Máster de tres filas: 128×192 o 256×384; cuatro poses por acción y sexo.
+- Tira de acción ampliada: 256×128, cuatro celdas de 64×128. Los frames nativos canónicos son cuatro PNG de 32×64 en `frames-native-32x64/<sexo>/`.
+- En el staging aislado del rediseño Elementalista, los frames nativos se conservan como PNG RGBA individuales en lugar de una tira nativa compuesta.
 - Validar dimensiones, transparencia, que los cuatro frames no estén vacíos ni sean clones, y que cada celda ampliada corresponda a su frame nativo.
 - Conservar los másteres grandes por separado para el futuro; nunca sustituirlos por los sprites reducidos.
 - No incorporar al runtime hasta completar QA y aprobación en la pasada final.
 
-## Estado de rediseño — 2026-10-23 (snapshot canónico de main)
-- **Cobertura:** los ocho perfiles (Elementalista, Brujo, Cazador y Explorador; masculino y femenino) tienen concept y los tres ciclos de primera pasada (idle, walk, hurt) en rework-staging. Cada acción tiene cuatro fotogramas hacia la derecha.
-- **Brujo, Cazador y Explorador:** los 18 informes de acción revisados indican las dimensiones esperadas (fuente nativa 128×64 con cuatro celdas de 32×64; tira ampliada 256×128 con celdas de 64×128), transparencia, celdas visibles, cuatro fotogramas distintos y equivalencia de la ampliación por vecino más cercano.
-- **Elementalista femenino:** los tres ciclos están en staging con QA técnico; el concept también está presente. Los masters hires recuperados constan en su manifiesto; no atribuirle masters aislados que no estén documentados.
-- **Elementalista masculino:** los tres ciclos están en staging. Idle, walk y hurt conservan cuatro PNG nativos RGBA individuales de 32×64 por acción, y la tira ampliada tiene QA contra esos frames; hurt cuenta con el informe canónico hurt-right-4f.qa.json. El Elementalista femenino usa el mismo empaquetado de frames individuales. En Brujo, Cazador y Explorador se guardan además tiras nativas de 128×64. Las fuentes hires masculinas preservadas son referencias compuestas, no masters independientes de cada animación.
-- **Resultado:** 24/24 combinaciones clase-sexo-acción tienen tira de staging y QA canónico. runtimeApproved se mantiene en false deliberadamente hasta cerrar la revisión artística. Staging no está conectado al runtime.
-- **Próximo paso:** revisión visual global comparando estilo, silueta y lectura de las tres animaciones, más auditoría final de manifiestos y procedencia hires. No regenerar ni rehacer recursos que ya estén completos; la armonización de clases ya terminadas queda para el final.
+## Estado global de Tier 2 — snapshot canónico de main, 2026-10-23
 
-**Nota sobre checkpoints:** las secciones de checkpoint que siguen son el registro histórico de cada paso; sus líneas «Siguiente» reflejan el estado de aquel commit, no el estado global actual.
+- **Cobertura global:** las ocho clases del manifiesto (Caballero, Duelista, Sacerdote, Monje, Cazador, Explorador, Elementalista y Brujo), ambos sexos y las tres acciones `idle`, `walk`, `hurt` tienen paquete v2 generado. Son 48 tiras de acción, 192 frames nativos y 16 másteres de fuente. El inventario se sincronizó en `assets/spritesheets/originales/tier2/manifest.json`.
+- **Cobertura del rediseño:** las cuatro clases prioritarias —Elementalista, Brujo, Cazador y Explorador— tienen además 24 tiras separadas en `rework-staging`, cuatro poses por acción y sexo. En Elementalista, los frames nativos de este staging son PNG individuales; en las otras tres clases hay también una tira nativa compuesta.
+- **Estado técnico:** los paquetes canónicos incluyen seis informes QA, previews y fuentes nativas. Se ha añadido `scripts/auditar-paquetes-tier2.py` a la regresión para comprobar másteres, dimensiones, alfa, hashes, cuatro poses únicas, correspondencia entre tira y frames nativos y estado fuera del runtime.
+- **Pendiente:** aprobación artística transversal. Caballero, Duelista, Sacerdote y Monje tienen notas de posibles residuos/halos; las cuatro clases prioritarias necesitan revisión de silueta, continuidad y detalle. No rehacer recursos completos ni sustituir assets de producción durante esta fase.
+- **Runtime:** todos los paquetes canónicos siguen marcados `runtime_integrated: false`; el staging de rediseño también permanece desconectado. QA técnico correcto no equivale a aprobación visual.
+- **Siguiente paso:** comprobar los resultados de auditoría CI, realizar la pasada artística global clase por clase y limpiar solo defectos confirmados. La armonización de clases ya terminadas queda para el final.
 
+**Nota sobre checkpoints:** las secciones siguientes son registros históricos; las líneas «Siguiente» reflejan el estado de aquel commit, no la lista global actual.
 
-## Checkpoint actual — Cazador masculino
+## Checkpoint histórico — Cazador masculino
 
 - Concept seleccionado: cazador forestal con capa verde, cuero práctico, ocre y marfil; manos vacías y sin arma.
 - Máster original RGBA de 1114×1412 preservado en la biblioteca en `/GameAssets/Tier2/Cazador/cazador-m-concept-hires.png`, junto con una variante alternativa de alta resolución. Ambos tienen hash en `assets/spritesheets/originales/cazador/v2/source-hires/manifest.json`.
