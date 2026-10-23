@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "classId": "brujo",
   "sex": "f",
-  "archivePath": "/GameAssets/Tier2/Brujo/brujo-f-concept-hires.png",
+  "archivePath": "/GameAssets/Tier2/Brujo/",
   "sources": [
     {
       "name": "brujo-f-concept-hires.png",
@@ -11,10 +11,18 @@
       "mode": "RGBA",
       "sha256": "0c1fd35f5892635e21f1601bcf1209608f6d81e4e3dd915fde30a71c2b86c33e",
       "transparentBackground": true
+    },
+    {
+      "name": "brujo-f-idle-hires.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "3b895f0f5e1846e78c07dcab7254bca4acc3e2c33a185844830c2f3da927fc03",
+      "transparentBackground": true
     }
   ],
   "notes": [
-    "Exact full-resolution PNG is preserved in the persistent file library.",
-    "The staged compact concept is an additional review proxy."
+    "Exact high-resolution sources preserved in the persistent Library folder /GameAssets/Tier2/Brujo/.",
+    "The staged sprite strips are separate from high-resolution masters."
   ]
 }

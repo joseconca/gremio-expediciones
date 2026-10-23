@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "classId": "brujo",
+  "sex": "f",
+  "action": "idle",
+  "direction": "right",
+  "status": "staging-indexed-transparent-art-review-pending",
+  "sourceMaster": {
+    "libraryPath": "/GameAssets/Tier2/Brujo/brujo-f-idle-hires.png",
+    "width": 1983,
+    "height": 793,
+    "mode": "RGBA",
+    "sha256": "3b895f0f5e1846e78c07dcab7254bca4acc3e2c33a185844830c2f3da927fc03"
+  },
+  "nativeFrames": {
+    "path": "idle-native-4f.png",
+    "width": 128,
+    "height": 64,
+    "cellWidth": 32,
+    "cellHeight": 64,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "count": 4
+  },
+  "expandedSheet": {
+    "path": "idle-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "construction": "nearest-neighbour upscale of the four native frames"
+  },
+  "checks": {
+    "nativeDimensions": true,
+    "expandedDimensions": true,
+    "expandedMatchesNativeFrames": true,
+    "transparentIndexPresent": true,
+    "allFramesNonEmpty": true,
+    "fourUniqueFrames": true,
+    "runtimeApproved": false,
+    "requiresArtReview": true
+  },
+  "notes": [
+    "All expanded cells match the native 32x64 frames enlarged with nearest-neighbour.",
+    "The master source is preserved unchanged in the Library; output uses shared palette and transparent index 0.",
+    "Subtle idle changes remain a draft until final cross-class art polish."
+  ]
+}
