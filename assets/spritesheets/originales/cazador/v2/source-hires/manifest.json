@@ -63,6 +63,15 @@
       "sha256": "a7ce766fd8d676adab189578fc5e04ac5aac5e591aabefd495417572970f5b3a",
       "transparentBackground": true,
       "derivedFrom": "cazador-m-walk-hires-original.png"
+    },
+    {
+      "name": "cazador-m-hurt-hires.png",
+      "libraryPath": "/GameAssets/Tier2/Cazador/cazador-m-hurt-hires.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "adcfd40079f818ea955279fb7eab6febf878aa02dcc14302d6b07987284c6cf9",
+      "transparentBackground": true
     }
   ],
   "preview": {
@@ -77,6 +86,7 @@
     "Preserve both masters; neither is overwritten by the compact review preview.",
     "No weapons or held props appear in the character concept.",
     "The full-resolution idle sources are preserved separately; variant 02 is the source for the current staged native frames.",
-    "The original and transparent-derived masters for walk are both preserved separately; reduced sprites are kept only in staging."
+    "The original and transparent-derived masters for walk are both preserved separately; reduced sprites are kept only in staging.",
+    "Hurt animation master preserved intact as RGBA 1983×793; source sheet is archived separately from the reduced sprite strips."
   ]
 }

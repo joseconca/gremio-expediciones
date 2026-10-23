@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "classId": "cazador",
+  "sex": "m",
+  "action": "hurt",
+  "direction": "right",
+  "status": "staging-indexed-transparent-art-review-pending",
+  "sourceMaster": {
+    "libraryPath": "/GameAssets/Tier2/Cazador/cazador-m-hurt-hires.png",
+    "width": 1983,
+    "height": 793,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "sha256": "adcfd40079f818ea955279fb7eab6febf878aa02dcc14302d6b07987284c6cf9"
+  },
+  "nativeFrames": {
+    "path": "hurt-native-4f.png",
+    "width": 128,
+    "height": 64,
+    "cellWidth": 32,
+    "cellHeight": 64,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "count": 4,
+    "sha256": "2e68b9d2848decb82b0f876d9e10dbce87b5ab33ac0c9e9c8d657634acfcb45b"
+  },
+  "expandedSheet": {
+    "path": "hurt-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "sha256": "0cf6637437c39969dc99329e35dfc3bf479faadcd3968c327da763cbf58ced69",
+    "construction": "nearest-neighbour upscale of native frames"
+  },
+  "checks": {
+    "nativeDimensions": true,
+    "expandedDimensions": true,
+    "transparentIndexPresent": true,
+    "allFrameCellsNonEmpty": true,
+    "fourUniqueFrames": true,
+    "expandedMatchesNativeFrames": true,
+    "runtimeApproved": false,
+    "requiresArtReview": true
+  },
+  "notes": [
+    "The four right-facing frames show brace, recoil, bend and recovery.",
+    "Each expanded cell matches its native frame enlarged by nearest-neighbour.",
+    "High-resolution master preserved unchanged in the Library; runtime integration and final art approval are deferred."
+  ]
+}
