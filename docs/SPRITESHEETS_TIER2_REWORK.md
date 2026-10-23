@@ -3,28 +3,22 @@
 Última actualización: 2026-10-23. Rama activa: `main`.
 
 ## Referencia maestra de estilo
-Se usa la imagen aprobada por el usuario como estándar para todos los sprites pendientes: pixel art RPG detallado, sombras con volumen, siluetas legibles, prendas con capas y pliegues, adornos bien integrados, transparencia y cero armas/herramientas. El Elementalista usa azul/marfil/oro; otras clases conservan paletas y siluetas propias. No rehacer clases ya terminadas hasta la pasada global al final.
+La imagen aprobada por el usuario es el estándar de todos los sprites pendientes: pixel art RPG detallado, volumen por luces/sombras, contornos nítidos, siluetas legibles, ropa con pliegues y adornos integrados. Las clases conservan paletas propias y todos los personajes base van sin armas ni herramientas. Las clases ya terminadas no se rehacen ahora; la armonización global se hará al final.
 
 ## Contrato técnico
 - Acciones: `idle`, `walk`, `hurt`, cuatro frames por acción hacia la derecha.
-- Atlas runtime: 256×1920 px, celdas 64×128, cuatro columnas y quince filas.
-- Staging: tira 256×128 por acción, cuatro celdas; frames fuente 32×64.
-- Los borradores pueden ser PNG indexados con índice transparente explícito. Se validan dimensiones, transparencia, frames distintos y correspondencia tira/fuentes antes de aprobarlos.
-- Mantener staging aislado; no reemplazar sprites de producción.
+- Atlas runtime: 256×1920 px; celdas 64×128.
+- Tira expandida: 256×128 con cuatro celdas 64×128. Fuente nativa de cada acción: tira 128×64 con cuatro celdas 32×64.
+- PNG indexado con transparencia explícita; QA valida dimensiones, transparencias, distinción de frames y que cada celda expandida coincida con su fuente nativa.
+- Todo se queda en staging hasta revisión y QA final.
 
-## Dirección por clase
-- **Elementalista:** azul profundo, marfil y oro; sin armas.
-- **Brujo:** carbón/berenjena, capas asimétricas, violeta/amethyst y detalles plateados; sin libro ni armas.
-- **Cazador:** cuero, verde bosque y ocre; sin arco/carcaj/cuchillas.
-- **Explorador:** ropa ligera, capa corta y equipo mínimo; distinto del Cazador, sin armas.
-
-## Progreso
-- **Elementalista femenino:** concept, idle, walk y hurt en staging. Los tres ciclos tienen cuatro frames; QA técnico básico completado. La armonización artística se deja para el final.
-- **Brujo masculino:** concept creado y guardado en `rework-staging/m/concept/brujo-m-concept-128x192.png`; cabello negro con mecha violeta, ojos púrpura, túnicas carbón/berenjena, bordados plateados y gemas amatista, manos vacías. QA de dimensiones/transparencia sin aprobación de runtime.
-- Siguiente: Brujo masculino — idle → walk → hurt, cuatro frames cada una, después comenzar Brujo femenino.
+## Estado de trabajo
+- **Elementalista femenino:** concept, idle, walk y hurt listos como primeros pases en staging. Revisión artística final aplazada.
+- **Brujo masculino:** concept guardado en `rework-staging/m/concept/brujo-m-concept-128x192.png`; idle derecho guardado como tira 256×128 más fuente nativa 128×64. Paleta carbón/violeta/plata, filigrana, amatistas y manos vacías. QA técnico inicial completado.
+- Siguiente: walk y hurt del Brujo masculino, después Brujo femenino; luego Cazador y Explorador, cada uno masculino y femenino.
+- No se rehacen ahora los sprites ya terminados: la armonización global se hará cuando todos los primeros pases pendientes estén listos.
 
 ## Historial reciente
-- `fcf857c` — restaurar idle femenino válido y registrar la guía de estilo.
-- `49e20bc` — walk femenino y QA.
-- `b2b21b6` — hurt femenino y QA.
-- Próximo checkpoint: concept de Brujo masculino.
+- `b2b21b6` — cerrar primer pase del Elementalista femenino.
+- `b82e093` — concept del Brujo masculino.
+- Próximo checkpoint: walk del Brujo masculino.

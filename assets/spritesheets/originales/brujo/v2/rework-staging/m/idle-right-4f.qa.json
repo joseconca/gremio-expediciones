@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "classId": "brujo",
+  "sex": "m",
+  "action": "idle",
+  "direction": "right",
+  "status": "staging-indexed-transparent-art-review-pending",
+  "nativeFrames": {
+    "path": "idle-native-4f.png",
+    "width": 128,
+    "height": 64,
+    "cellWidth": 32,
+    "cellHeight": 64,
+    "mode": "P",
+    "transparencyIndex": 34,
+    "count": 4
+  },
+  "expandedSheet": {
+    "path": "idle-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "mode": "P",
+    "transparencyIndex": 34,
+    "construction": "nearest-neighbour upscale of four native frames"
+  },
+  "checks": {
+    "nativeDimensions": true,
+    "expandedDimensions": true,
+    "expandedMatchesNativeFrames": true,
+    "transparentIndexPresent": true,
+    "allFrameCellsNonEmpty": true,
+    "fourUniqueFrames": true,
+    "runtimeApproved": false,
+    "requiresArtReview": true
+  },
+  "notes": [
+    "The native strip is 128x64 and contains four 32x64 cells. The expanded strip is 256x128 with four 64x128 cells.",
+    "QA checks the pixel indices in each expanded cell against the corresponding native frame scaled by nearest-neighbour.",
+    "Shared palette and transparent index 34 are used across all frames.",
+    "Art is a staging draft; idle variations are subtle and will be checked during the final cross-class polish."
+  ]
+}
