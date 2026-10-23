@@ -32,12 +32,27 @@
     "fourUniqueFrames": true,
     "runtimeApproved": false,
     "requiresArtReview": true,
-    "rgbaExportPending": true
+    "rgbaExportPending": true,
+    "highResolutionIdleMasterArchived": true
   },
   "notes": [
     "The standard idle-right-4f.png path is restored to the known-valid indexed sheet; the incomplete RGBA draft has not been retained as an asset.",
     "Palette-indexed transparency is present and the expanded cells match the four native frames.",
     "Style follows the user-approved reference: detailed silver hair, navy/ivory/gold garments, strong silhouette, layered folds and no weapons.",
-    "Art review and optional RGBA export remain pending; this file stays in staging and is not connected to production."
-  ]
+    "Art review and optional RGBA export remain pending; this file stays in staging and is not connected to production.",
+    "The 1983x793 RGBA idle source is now recorded in the Elementalist female hires manifest and preserved separately at /GameAssets/Tier2/Elementalista/. No separate hires source sheets for concept, walk or hurt were located during the Library audit; do not claim the reduced sheets are original hires masters."
+  ],
+  "sourceMaster": {
+    "originalLibraryPath": "/GameAssets/Tier2/Elementalista/elementalista-f-idle-hires-original.png",
+    "originalLibraryName": "Sprite de maga clerical en cuatro poses.png",
+    "sha256": "08a974032c3c901b06d9003e20ddb9ae6ae3114404a94ef8b645799629711004",
+    "width": 1983,
+    "height": 793,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "notes": "Byte-for-byte copy of the large four-pose idle sheet preserved from its existing Library item. This master is separate from the reduced staging strip."
+  }
 }

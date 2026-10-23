@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "classId": "elementalista",
+  "sex": "f",
+  "purpose": "Preserve exact original high-resolution sources separately from compact staging/runtime-sized sprite strips.",
+  "sources": [
+    {
+      "name": "elementalista-f-idle-hires-original.png",
+      "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-f-idle-hires-original.png",
+      "originalLibraryName": "Sprite de maga clerical en cuatro poses.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "08a974032c3c901b06d9003e20ddb9ae6ae3114404a94ef8b645799629711004",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "transparentBackground": true,
+      "notes": "Exact original high-resolution four-pose idle sheet preserved unchanged. Art: silver-haired female caster with navy, ivory and gold garments. Independent from the 128x64 native and 256x128 staging sheets."
+    },
+    {
+      "name": "elementalista-f-idle-right-4f.png",
+      "repositoryPath": "assets/spritesheets/originales/elementalista/v2/rework-staging/f/idle-right-4f.png",
+      "width": 256,
+      "height": 128,
+      "mode": "P",
+      "sourceType": "reduced-staging-derived",
+      "notes": "Compact indexed staging sheet; not an original high-resolution master."
+    },
+    {
+      "name": "elementalista-f-walk-right-4f.png",
+      "repositoryPath": "assets/spritesheets/originales/elementalista/v2/rework-staging/f/walk-right-4f.png",
+      "width": 256,
+      "height": 128,
+      "mode": "P",
+      "sourceType": "reduced-staging",
+      "notes": "Hires original not found in Library as of 2026-10-23 audit. Preserve current staging files; do not relabel them as hires originals."
+    },
+    {
+      "name": "elementalista-f-hurt-right-4f.png",
+      "repositoryPath": "assets/spritesheets/originales/elementalista/v2/rework-staging/f/hurt-right-4f.png",
+      "width": 256,
+      "height": 128,
+      "mode": "P",
+      "sourceType": "reduced-staging",
+      "notes": "Hires original not found in Library as of 2026-10-23 audit. Preserve current staging files; do not relabel them as hires originals."
+    }
+  ],
+  "notes": [
+    "First-pass concept, idle, walk and hurt for the female Elementalist are in rework-staging with technical QA. Runtime approval remains false pending the global cross-class art review.",
+    "Only the idle high-resolution original could be identified by exact source and archived canonically in this audit. Separate original hires sheets for the concept, walk and hurt were not found in the Library; those gaps are explicitly recorded rather than filled with artificial upscales.",
+    "Visual cross-class review: the purple Brujo, forest-green Cazador and lighter travel-green Explorer retain distinct palettes and silhouettes. The navy/ivory/gold Elementalist is visually distinct. Idle motion reads subtly in previews, so motion readability remains a candidate for the final polish pass; no completed class is being redone now."
+  ]
+}

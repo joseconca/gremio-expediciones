@@ -14,7 +14,7 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 
 ## Estado actual
 
-- **Elementalista femenino:** concept, idle, walk y hurt guardados como primeros pases en staging. QA técnico inicial completado; la armonización artística queda para el final.
+- **Elementalista femenino:** concept, idle, walk y hurt guardados como primeros pases en staging. QA técnico inicial completado. Se encontró y archivó su máster original de `idle` (1983×793 RGBA) bajo `/GameAssets/Tier2/Elementalista/` y se creó el manifiesto `assets/spritesheets/originales/elementalista/v2/source-hires/female-manifest.json`. No se localizaron fuentes hires independientes para concept, walk ni hurt en la biblioteca; el manifiesto señala el hueco y no los presenta como preservados.
 - **Brujo masculino:** concept, idle, walk y hurt en staging, cuatro frames por acción y QA técnico inicial. Los originales grandes exactos están preservados en `/GameAssets/Tier2/Brujo/brujo-m-originales-alta-resolucion.zip`.
 - **Brujo femenino:** concept, idle, walk y hurt completos como primer pase en staging. Cada acción tiene cuatro frames, fuente nativa de 32×64 y tira ampliada de 256×128; QA técnico verifica dimensiones, transparencia y correspondencia de las celdas. Sus másteres grandes están en la biblioteca con SHA-256 en `assets/spritesheets/originales/brujo/v2/source-hires/female-manifest.json`. El source original de walk tenía el damero incrustado; el original está preservado intacto y hay una derivación con transparencia real.
 - **Cazador masculino:** concept de 128×192 en staging; máster RGBA 1114×1412 y variante adicional archivados en la biblioteca con SHA-256. El ciclo `idle` ya está en staging con cuatro frames hacia la derecha, tira 256×128, fuente nativa 128×64 y QA que verifica dimensiones/transparencia y correspondencia de escalado. También se conserva el strip original de alta resolución 1984×793, separado del runtime. No se han añadido armas.
@@ -110,3 +110,11 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 
 - Conceptos masculino y femenino, más `idle`, `walk` y `hurt` de ambos, ya están presentes en `rework-staging`; el QA de los conceptos se actualizó para no marcar esas animaciones como tareas pendientes.
 - La revisión automática preliminar de los QA consultados solo deja `runtimeApproved: false`, que es deliberado mientras no se complete la revisión artística global. El runtime de producción sigue intacto.
+
+
+## Revisión visual transversal preliminar — 23-10-2026
+
+- Comparadas las hojas hires disponibles y las hojas de staging de Brujo, Cazador, Explorador y Elementalista femenino. La identidad de clase se lee en la paleta y silueta: violeta y ornamentación arcana para Brujo; verde forestal/cuero para Cazador; verde de viaje más ligero y equipo de ruta para Explorador; azul marino, marfil y oro para Elementalista.
+- El acabado base sigue la referencia aprobada (pliegues, contornos, sombras y ornamento integrados); no se encontraron motivos para rehacer ahora las clases terminadas. La lectura de movimiento de algunos `idle` es sutil en las vistas reducidas, así que se deja como punto de revisión para la pasada final.
+- La revisión de QA consultada confirma que los únicos checks falsos generalizados son `runtimeApproved: false`/`requiresArtReview: true`, que son intencionales hasta la aprobación artística final; las excepciones de origen de alta resolución se documentan en el manifiesto de Elementalista femenino.
+- No se ha integrado ningún asset de `rework-staging` al runtime. Siguiente paso: cerrar la auditoría de manifests/QA pendientes, resolver la procedencia hires faltante si se recuperan las fuentes, y solo entonces decidir la armonización final.

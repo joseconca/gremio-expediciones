@@ -10,12 +10,13 @@ Adoptar el estilo de pixel art detallado mostrado por el usuario: volúmenes y c
 - Conservar los másteres grandes por separado para el futuro; nunca sustituirlos por los sprites reducidos.
 - No incorporar al runtime hasta completar QA y aprobación en la pasada final.
 
-## Estado de rediseño — 2026-10-23
-- **Elementalista femenino:** concept, idle, walk y hurt están en staging con QA técnico inicial.
-- **Brujo masculino:** concept y tres acciones terminadas en staging; cuatro frames por acción. Másteres grandes exactos en `/GameAssets/Tier2/Brujo/brujo-m-originales-alta-resolucion.zip`.
-- **Brujo femenino:** concept e idle/walk/hurt terminados como primer pase en staging; cuatro frames por acción y QA inicial. Másteres grandes en `/GameAssets/Tier2/Brujo/`; el walk original tenía checkerboard incrustado, preservado intacto junto a una derivación transparente.
-- **Siguiente:** Cazador masculino, después Cazador femenino, Explorador masculino y Explorador femenino.
-- Cuando estén listos los primeros pases de las cuatro clases, realizar una revisión de coherencia y después estudiar la armonización de los sprites ya terminados. No rehacerlos antes.
+## Estado de rediseño — 2026-10-23 (actualizado)
+- **Elementalista femenino:** concept, idle, walk y hurt están en staging con QA técnico. Se ha archivado el máster hires de idle (1983×793 RGBA) en `/GameAssets/Tier2/Elementalista/` y se ha creado `assets/spritesheets/originales/elementalista/v2/source-hires/female-manifest.json`. En la auditoría no se encontraron fuentes hires independientes de concept, walk ni hurt; el manifiesto deja constancia del hueco, sin etiquetar las hojas reducidas como originales.
+- **Brujo masculino y femenino:** primeros pases completos (concept, idle, walk, hurt) en staging; sus masters grandes están preservados en Library y registrados en manifiestos/archivo.
+- **Cazador masculino y femenino:** primeros pases completos en staging; concept y tres acciones por sexo, con fuentes hires preservadas y manifiestos.
+- **Explorador masculino y femenino:** primeros pases completos en staging; concept y tres acciones por sexo. Se corrigieron y verificaron las hojas femeninas de walk y hurt y se archivaron sus masters grandes por separado.
+- **Revisión visual transversal preliminar:** las paletas/siluetas conservan una identidad de clase diferenciada; algunos ciclos idle resultan sutiles en vistas reducidas y quedan candidatos a pulido final. No rehacer las clases ya terminadas todavía.
+- **Siguiente:** cerrar auditoría de QA/manifiestos, resolver la procedencia de originales hires que faltan si se recuperan las fuentes y completar la aprobación artística global. No integrar al runtime antes de esa aprobación.
 
 
 ## Checkpoint actual — Cazador masculino
@@ -55,3 +56,6 @@ Integridad 23-10-2026: SHA de objeto Git verificado contra los bytes binarios lo
 
 
 Checkpoint de documentación (23-10-2026): se limpiaron las notas obsoletas de los QA de concepto de ambos Exploradores. Su primer pase completo está en staging; falta la revisión artística transversal, no la generación de sus ciclos base.
+
+
+Checkpoint 23-10-2026 — Auditoría visual y archivo de másteres: se preserva la fuente hires de idle del Elementalista femenino y se registra la ausencia de fuentes hires separadas para concept/walk/hurt. La revisión preliminar confirma identidades de clase diferenciadas; la revisión final y cualquier armonización siguen pendientes.
