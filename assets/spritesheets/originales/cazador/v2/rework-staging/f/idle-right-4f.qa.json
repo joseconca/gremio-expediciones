@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "classId": "cazador",
+  "sex": "f",
+  "action": "idle",
+  "direction": "right",
+  "status": "staging-indexed-transparent-art-review-pending",
+  "sourceMaster": {
+    "libraryPath": "/GameAssets/Tier2/Cazador/cazador-f-idle-hires.png",
+    "width": 1983,
+    "height": 793,
+    "mode": "RGBA",
+    "sha256": "ba617ebaf4d8f24ba059e2b031402d40f35de70edffcd78406fb26c991d0094d",
+    "transparentBackground": true
+  },
+  "nativeFrames": {
+    "path": "idle-native-4f.png",
+    "width": 128,
+    "height": 64,
+    "cellWidth": 32,
+    "cellHeight": 64,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "count": 4,
+    "sha256": "830cf5d0e6e804bc141d6535749e04a6cd2475af6e822870bb77d5094cbd75f6"
+  },
+  "expandedSheet": {
+    "path": "idle-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "sha256": "ad6879812563c8a00510c0865b7d32052ad91ce4f51230193fc734640952058c",
+    "construction": "nearest-neighbour upscale of native frames"
+  },
+  "checks": {
+    "nativeDimensions": true,
+    "expandedDimensions": true,
+    "transparentIndexPresent": true,
+    "allFrameCellsNonEmpty": true,
+    "fourUniqueFrames": true,
+    "expandedMatchesNativeFrames": true,
+    "runtimeApproved": false,
+    "requiresArtReview": true
+  },
+  "notes": [
+    "Four idle poses face right; scale is consistent and feet use a common baseline.",
+    "Each expanded cell matches its native frame after nearest-neighbour enlargement.",
+    "High-resolution master remains preserved separately in the Library; final art polish is deferred."
+  ]
+}

@@ -29,6 +29,7 @@ Adoptar el estilo de pixel art detallado mostrado por el usuario: volúmenes y c
 
 ## Checkpoint — Cazador femenino
 
-- Concept original con trenza castaña rojiza, capa verde y cuero práctico; sin armas.
-- Máster RGBA 1114×1412 preservado en `/GameAssets/Tier2/Cazador/cazador-f-concept-hires.png`, SHA-256 `94eefa5dfe988f85ee659388c86cf90dd97ed57dac9a4d244b38dc2d0cef8a67`.
-- Preview 128×192 en `assets/spritesheets/originales/cazador/v2/rework-staging/f/concept/cazador-f-concept-128x192.png`; QA guardado junto a él. Idle, walk y hurt pendientes; cuatro frames por acción hacia la derecha.
+- Concept original con trenza castaña rojiza, capa verde y cuero práctico; sin armas. Máster RGBA 1114×1412 preservado en `/GameAssets/Tier2/Cazador/cazador-f-concept-hires.png`, SHA-256 `94eefa5dfe988f85ee659388c86cf90dd97ed57dac9a4d244b38dc2d0cef8a67`.
+- Preview de concept 128×192 guardado en staging con QA.
+- `idle` femenino ya está en staging: cuatro frames hacia la derecha, fuente nativa 128×64, tira 256×128 y QA que verifica transparencia y escalado exacto. Máster RGBA 1983×793 preservado en `/GameAssets/Tier2/Cazador/cazador-f-idle-hires.png` con SHA-256 `ba617ebaf4d8f24ba059e2b031402d40f35de70edffcd78406fb26c991d0094d`.
+- Siguiente: `walk` y `hurt` femeninos, cuatro frames por acción; después continuar con Explorador masculino y femenino.
