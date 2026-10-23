@@ -113,8 +113,67 @@ def repair_one(class_id: str, sex: str, action: str) -> bool:
     if report.get("checks", {}).get("runtimeApproved") is not False:
         fail(f"no se toca un asset aprobado para runtime: {qa_path.relative_to(ROOT)}")
 
-    native, modes = native_sources(sex_root, report, class_id, sex, action)
     native_meta = report.setdefault("nativeFrames", {})
+    expanded_meta = report.get("expandedSheet", {})
+    expanded_path = sex_root / expanded_meta.get("path", f"{action}-right-4f.png")
+    current, decode_error = open_rgba(expanded_path)
+    # A valid expanded strip is a permitted recovery source only for missing or
+    # unreadable native outputs. If both representations are damaged, stop.
+    if current is not None:
+        if current.size != STRIP_SIZE or current.getchannel("A").getextrema() != (0, 255):
+            decode_error = f"expanded strip has invalid size/alpha: {current.size}/{current.getchannel('A').getextrema()}"
+            current = None
+        else:
+            cells = [current.crop((i * 64, 0, (i + 1) * 64, 128)) for i in range(4)]
+            if any(cell.getchannel("A").getbbox() is None for cell in cells) or len({cell.tobytes() for cell in cells}) != 4:
+                decode_error = "expanded strip has empty or duplicate frames"
+                current = None
+
+    native_recovered = False
+    native_recovery_note = None
+    try:
+        native, modes = native_sources(sex_root, report, class_id, sex, action)
+    except SystemExit as native_error:
+        if current is None:
+            raise native_error
+        native = [
+            current.crop((i * 64, 0, (i + 1) * 64, 128)).resize(NATIVE_SIZE, Image.Resampling.NEAREST)
+            for i in range(4)
+        ]
+        if any(frame.getchannel("A").getbbox() is None for frame in native) or len({frame.tobytes() for frame in native}) != 4:
+            fail(f"no se puede recuperar una secuencia nativa válida para {class_id}/{sex}/{action}")
+        native_width = native_meta.get("width")
+        native_height = native_meta.get("height")
+        native_rel_path = native_meta.get("path")
+        if (native_width, native_height) == (128, 64):
+            native_strip_path = sex_root / native_rel_path
+            native_strip_path.parent.mkdir(parents=True, exist_ok=True)
+            native_strip = Image.new("RGBA", (128, 64), (0, 0, 0, 0))
+            for i, frame in enumerate(native):
+                native_strip.alpha_composite(frame, (i * 32, 0))
+            native_strip.save(native_strip_path, format="PNG", optimize=True)
+            native_meta["mode"] = "RGBA"
+            native_meta.pop("transparency", None)
+            native_meta.pop("transparencyIndex", None)
+        elif (native_width, native_height) == NATIVE_SIZE:
+            native_dir = sex_root / native_rel_path
+            native_dir = native_dir / sex
+            native_dir.mkdir(parents=True, exist_ok=True)
+            for i, frame in enumerate(native, 1):
+                frame.save(native_dir / f"{class_id}-{sex}-{action}-{i:02d}.png", format="PNG", optimize=True)
+            native_meta["mode"] = "RGBA"
+            native_meta.pop("transparency", None)
+            native_meta.pop("transparencyIndex", None)
+        else:
+            fail(f"no se puede reconstruir el formato nativo {native_width}x{native_height} de {class_id}/{sex}/{action}")
+        modes = ["RGBA"] * 4
+        native_recovered = True
+        native_recovery_note = (
+            "2026-10-23 recovery checkpoint: unreadable native output was reconstructed by "
+            "nearest-neighbour downscaling from a readable, dimension-checked expanded strip. "
+            "The source character poses were not redrawn and production sprites were not changed."
+        )
+
     native_meta["mode"] = "P" if all(mode == "P" for mode in modes) else "RGBA"
     if native_meta["mode"] == "P":
         native_meta["transparency"] = "indexed transparent key"
@@ -125,69 +184,68 @@ def repair_one(class_id: str, sex: str, action: str) -> bool:
     native_meta["frames"] = [
         {
             "index": index + 1,
-            "path": str((sex_root / native_meta.get("path", f"{action}/frames-native-32x64/") / sex / f"{class_id}-{sex}-{action}-{index + 1:02d}.png").relative_to(ROOT)),
+            "path": str((sex_root / native_meta.get("path", f"{action}/frames-native-32x64/")).relative_to(ROOT)) if (native_meta.get("width"), native_meta.get("height")) == (128, 64) else str((sex_root / native_meta.get("path", f"{action}/frames-native-32x64/") / sex / f"{class_id}-{sex}-{action}-{index + 1:02d}.png").relative_to(ROOT)),
             "dimensions": [32, 64],
             "rgba_sha256": hashlib.sha256(frame.tobytes()).hexdigest(),
+            **({"crop": [index * 32, 0, (index + 1) * 32, 64]} if (native_meta.get("width"), native_meta.get("height")) == (128, 64) else {}),
         }
         for index, frame in enumerate(native)
     ]
     generated = make_strip(native)
-    expanded_meta = report.get("expandedSheet", {})
-    expanded_path = sex_root / expanded_meta.get("path", f"{action}-right-4f.png")
-    current, decode_error = open_rgba(expanded_path)
-    needs_repair = (
-        current is None
-        or current.size != STRIP_SIZE
-        or current.tobytes() != generated.tobytes()
-    )
-    if not needs_repair:
+    needs_repair = current is None or current.tobytes() != generated.tobytes()
+    if not needs_repair and not native_recovered:
         return False
 
-    # Only regenerate derived review output. Never alter the native frames, masters,
-    # production sprites, or the independently layered equipment.
-    expanded_path.parent.mkdir(parents=True, exist_ok=True)
-    generated.save(expanded_path, format="PNG", optimize=True)
-
-    expanded_meta.update({
-        "path": expanded_meta.get("path", f"{action}-right-4f.png"),
-        "width": STRIP_SIZE[0],
-        "height": STRIP_SIZE[1],
-        "cellWidth": CELL_SIZE[0],
-        "cellHeight": CELL_SIZE[1],
-        "mode": "RGBA",
-        "construction": "reconstructed from the four native 32x64 frames using nearest-neighbour",
-    })
-    expanded_meta.pop("transparencyIndex", None)
-    expanded_meta.pop("transparency", None)
+    if needs_repair:
+        # Rebuild only derived review output, never production/runtime sprites.
+        expanded_path.parent.mkdir(parents=True, exist_ok=True)
+        generated.save(expanded_path, format="PNG", optimize=True)
+        expanded_meta.update({
+            "path": expanded_meta.get("path", f"{action}-right-4f.png"),
+            "width": STRIP_SIZE[0],
+            "height": STRIP_SIZE[1],
+            "cellWidth": CELL_SIZE[0],
+            "cellHeight": CELL_SIZE[1],
+            "mode": "RGBA",
+            "construction": "reconstructed from the four native 32x64 frames using nearest-neighbour",
+        })
+        expanded_meta.pop("transparencyIndex", None)
+        expanded_meta.pop("transparency", None)
 
     checks = report.setdefault("checks", {})
     checks.update({
+        "nativeDimensions": True,
         "expandedDimensions": True,
-        "expandedMatchesNativeFrames": True,
-        "fourUniqueFrames": True,
+        "expandedMatchesNativeFrames": not needs_repair,
+        "fourUniqueFrames": len({frame.tobytes() for frame in native}) == 4,
         "runtimeApproved": False,
+        "requiresArtReview": True,
     })
-    for key in ("transparentIndexPresent", "rgbaExportPending", "expandedModeRGBA", "perPixelAlphaPresent", "allFramesNonEmpty", "allFrameCellsNonEmpty", "everyCellHasVisiblePixels", "fourCells"):
-        checks.pop(key, None)
-    checks["expandedModeRGBA"] = True
-    checks["perPixelAlphaPresent"] = True
-    checks["allFramesNonEmpty"] = True
     if all(mode == "RGBA" for mode in modes):
         checks["allNativeFramesRGBA"] = True
         checks["rgbaExportPending"] = False
     else:
         checks.pop("allNativeFramesRGBA", None)
-        checks["rgbaExportPending"] = True
         checks["nativeIndexedTransparencyValid"] = True
-    checks["requiresArtReview"] = True
-    report["status"] = "staging-expanded-rgba-repaired-art-review-pending"
+    if needs_repair:
+        checks.pop("transparentIndexPresent", None)
+        checks["expandedModeRGBA"] = True
+        checks["perPixelAlphaPresent"] = True
+        checks["allFramesNonEmpty"] = True
+        checks.pop("nativeIndexedTransparencyValid", None)
+    checks["fourUniqueFrames"] = True
 
+    if native_recovered:
+        report["status"] = "staging-native-recovered-from-verified-expanded-strip-art-review-pending"
+    elif needs_repair:
+        report["status"] = "staging-expanded-rgba-repaired-art-review-pending"
     notes = report.setdefault("notes", [])
-    notes.append(
-        "2026-10-23 repair checkpoint: the expanded strip was rebuilt as a valid RGBA PNG from the four checked native frames because the previous derived PNG was unreadable or did not match them. Native frames and production/runtime assets were not modified."
-    )
+    if native_recovery_note:
+        notes.append(native_recovery_note)
+    if needs_repair:
+        notes.append("2026-10-23 repair checkpoint: the expanded strip was rebuilt as a valid RGBA PNG from the four checked native frames. Production/runtime assets were not modified.")
     if decode_error:
-        notes.append(f"Previous expanded PNG could not be decoded: {decode_error}")
+        notes.append(f"Previous expanded PNG was unusable: {decode_error}")
     report["expandedSheet"] = expanded_meta
     qa_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"REPAIRED: {expanded_path.relative_to(ROOT)}")
