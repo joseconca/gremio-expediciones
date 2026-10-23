@@ -62,3 +62,6 @@ Checkpoint 23-10-2026 — Auditoría de másteres Elementalista: se recuperaron 
 
 
 Checkpoint de recuperación de fuentes — 23-10-2026: el Elementalista femenino ya tiene cuatro originales hires separados y archivados (concept 1114×1412, idle/walk 1983×793, hurt 2172×724 RGBA) más una alternativa opaca de hurt. Se reparó la preview de concept y se añadió QA. La pasada final global de sprites sigue pendiente.
+
+
+Checkpoint 23-10-2026 — Elementalista masculino: idle/walk/hurt siguen en staging; se archivaron dos referencias compuestas hires y se documentó que no hay un master hires aislado para cada acción. Elementalista femenina: concept/idle/walk/hurt originales encontrados, archivados y registrados en female-manifest.json.

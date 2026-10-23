@@ -125,3 +125,9 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 - Se localizaron por nombre genérico cuatro fuentes hires separadas: concept (1114×1412), idle y walk (1983×793), hurt (2172×724). Las copias canónicas en `/GameAssets/Tier2/Elementalista/` preservan los bytes originales y sus SHA-256 están registrados en el manifiesto femenino.
 - Se preservó además una variante de hurt con damero incrustado; no se usa para la extracción porque existe otra fuente de hurt con alfa real.
 - La miniatura `elementalista-f-concept-96x144.png` fue reconstruida desde el concept hires con índice transparente 0, y se agregó `elementalista-f-concept.qa.json`. Los ciclos siguen separados en staging y no están integrados al runtime.
+
+
+## Originales compuestos del Elementalista masculino — 23-10-2026
+
+- Se preservaron dos hojas hires exactas en `/GameAssets/Tier2/Elementalista/`. Ambas contienen concepto y filas de acciones con paneles/texto; son referencias compuestas, no masters aislados de cada animación.
+- Los tres ciclos masculinos continúan en staging, con cuatro frames. La procedencia se añadió a cada QA y el manifiesto `male-manifest.json` distingue los references hires de los frames extraídos.

@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "classId": "elementalista",
+  "sex": "m",
+  "purpose": "Preserve existing male Elementalist source plates separately from extracted staging strips; identify clearly that the hires plates are composites, not isolated action masters.",
+  "sources": [
+    {
+      "name": "elementalista-m-concept-and-actions-reference-hires-original.png",
+      "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-m-concept-and-actions-reference-hires-original.png",
+      "originalLibraryName": "Hoja de concepto del Elementalista Masculino.png",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "sha256": "2c72cc5f20180e13bd488a7aa167e178f9ad6d2e5987cece0144d55455cf422f",
+      "alphaExtrema": [
+        223,
+        251
+      ],
+      "sourceType": "composite-reference",
+      "standaloneCharacterAlpha": false,
+      "containsTextAndPanels": true,
+      "notes": "Reference plate showing a full-body male concept plus labeled idle, walk and hurt rows. Not a clean individual action master."
+    },
+    {
+      "name": "elementalista-m-sprite-actions-composite-reference-hires-original.png",
+      "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-m-sprite-actions-composite-reference-hires-original.png",
+      "originalLibraryName": "Hoja de sprites del Elementalista de fantasía.png",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "sha256": "0a339a26362a34478afca104e8a9c04c34aebc2c5238529b1f5255f831064890",
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "sourceType": "composite-reference",
+      "containsTextAndPanels": true,
+      "notes": "A second exact composite source plate with the male concept and first action rows; archived as reference, not treated as a per-action master."
+    }
+  ],
+  "stagingArtifacts": [
+    {
+      "name": "elementalista-m-idle-right-4f.png",
+      "repositoryPath": "assets/spritesheets/originales/elementalista/v2/rework-staging/m/idle-right-4f.png",
+      "width": 256,
+      "height": 128,
+      "mode": "RGBA",
+      "sourceType": "reduced-staging-extraction"
+    },
+    {
+      "name": "elementalista-m-walk-right-4f.png",
+      "repositoryPath": "assets/spritesheets/originales/elementalista/v2/rework-staging/m/walk-right-4f.png",
+      "width": 256,
+      "height": 128,
+      "mode": "RGBA",
+      "sourceType": "reduced-staging-extraction"
+    },
+    {
+      "name": "elementalista-m-hurt-right-4f.png",
+      "repositoryPath": "assets/spritesheets/originales/elementalista/v2/rework-staging/m/hurt-right-4f.png",
+      "width": 256,
+      "height": 128,
+      "mode": "RGBA",
+      "sourceType": "reduced-staging-extraction"
+    }
+  ],
+  "notes": [
+    "Male idle, walk and hurt first-pass strips remain under rework-staging with four frames each and no runtime integration.",
+    "Two exact full-resolution composite reference plates are now preserved under /GameAssets/Tier2/Elementalista/.",
+    "No standalone full-resolution master strip for male idle, walk or hurt was located during this audit. Do not call either composite plate an isolated action master; individual frames are currently staging-sized extractions.",
+    "Visual polish and runtime approval remain pending until the global cross-class art review."
+  ]
+}

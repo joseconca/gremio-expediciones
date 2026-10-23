@@ -35,6 +35,24 @@
     "Expanded sheet was assembled by nearest-neighbour scaling of the four separated 32x64 native RGBA frames.",
     "All four frames are non-empty, have transparent pixels, and differ at the pixel level.",
     "The art remains a draft extracted from a composite reference; motion is subtle and still requires visual art-direction review.",
-    "Stored in rework-staging and not connected to runtime; original source files remain untouched."
-  ]
+    "High-resolution composite source plates are archived in /GameAssets/Tier2/Elementalista/ and recorded in male-manifest.json. These are references with labels/panels, not separate hires action masters.",
+    "Only extracted staging frames are available as isolated frames for this action; do not claim a standalone hires master exists."
+  ],
+  "sourceReferenceComposite": [
+    {
+      "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-m-concept-and-actions-reference-hires-original.png",
+      "sha256": "2c72cc5f20180e13bd488a7aa167e178f9ad6d2e5987cece0144d55455cf422f",
+      "width": 1536,
+      "height": 1024,
+      "sourceType": "composite-reference"
+    },
+    {
+      "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-m-sprite-actions-composite-reference-hires-original.png",
+      "sha256": "0a339a26362a34478afca104e8a9c04c34aebc2c5238529b1f5255f831064890",
+      "width": 1536,
+      "height": 1024,
+      "sourceType": "composite-reference"
+    }
+  ],
+  "masterArchiveStatus": "composite-reference-preserved; no standalone hires action master found"
 }

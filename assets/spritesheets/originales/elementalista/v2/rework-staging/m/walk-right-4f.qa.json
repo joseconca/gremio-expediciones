@@ -35,6 +35,25 @@
     "Expanded sheet assembled by nearest-neighbour scaling of the four separate native RGBA frames.",
     "All frames are non-empty and distinct at the pixel level; alpha ranges from fully transparent to fully opaque.",
     "The source is a composite concept sheet extraction. Leg/cloth motion remains subtle and requires an artistic redraw/refinement before production.",
-    "Stored in rework-staging only; no original or runtime sprite is replaced."
-  ]
+    "Stored in rework-staging only; no original or runtime sprite is replaced.",
+    "High-resolution composite source plates are archived in /GameAssets/Tier2/Elementalista/ and recorded in male-manifest.json. These are references with labels/panels, not separate hires action masters.",
+    "Only extracted staging frames are available as isolated frames for this action; do not claim a standalone hires master exists."
+  ],
+  "sourceReferenceComposite": [
+    {
+      "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-m-concept-and-actions-reference-hires-original.png",
+      "sha256": "2c72cc5f20180e13bd488a7aa167e178f9ad6d2e5987cece0144d55455cf422f",
+      "width": 1536,
+      "height": 1024,
+      "sourceType": "composite-reference"
+    },
+    {
+      "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-m-sprite-actions-composite-reference-hires-original.png",
+      "sha256": "0a339a26362a34478afca104e8a9c04c34aebc2c5238529b1f5255f831064890",
+      "width": 1536,
+      "height": 1024,
+      "sourceType": "composite-reference"
+    }
+  ],
+  "masterArchiveStatus": "composite-reference-preserved; no standalone hires action master found"
 }
