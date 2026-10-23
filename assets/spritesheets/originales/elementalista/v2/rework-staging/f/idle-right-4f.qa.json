@@ -4,40 +4,39 @@
   "sex": "f",
   "action": "idle",
   "direction": "right",
-  "status": "staging-indexed-preview-art-review-pending",
+  "status": "staging-rgba-export-art-review-pending",
   "nativeFrames": {
-    "path": "idle/frames-native-32x64/f/",
+    "path": "idle/frames-native-32x64/",
     "width": 32,
     "height": 64,
     "mode": "P",
-    "transparencyIndex": 0,
+    "transparency": "indexed transparent key",
     "count": 4
   },
   "expandedSheet": {
-    "path": "elementalista-f-idle-right-4f-indexed.png",
+    "path": "idle-right-4f.png",
     "width": 256,
     "height": 128,
-    "mode": "P",
+    "mode": "RGBA",
     "cellWidth": 64,
     "cellHeight": 128,
-    "transparencyIndex": 0,
-    "construction": "native indexed frames upscaled 2x with nearest-neighbour"
+    "construction": "nearest-neighbour upscale from native indexed frames"
   },
   "checks": {
     "nativeDimensions": true,
     "expandedDimensions": true,
     "expandedMatchesNativeFrames": true,
-    "transparentIndexPresent": true,
+    "nativeTransparencyPresent": true,
+    "expandedPerPixelAlphaPresent": true,
     "allFramesNonEmpty": true,
     "fourUniqueFrames": true,
     "runtimeApproved": false,
-    "requiresRgbaExportForProduction": true
+    "requiresArtReview": true
   },
   "notes": [
-    "Four right-facing idle poses were cropped from a generated sprite strip and aligned to a shared baseline.",
-    "This compact staging checkpoint uses palette-indexed PNG transparency (transparent index 0) to keep review assets small; it is not the required final RGBA export.",
-    "Each expanded cell matches its native indexed frame upscaled with nearest-neighbour.",
-    "Pose deltas are subtle. Artist review and an RGBA production export are required before approval.",
-    "No weapons, UI, or background elements are included. Production sprites remain untouched."
+    "Expanded review sheet is now true RGBA; previous indexed sheet remains available for reference.",
+    "Each expanded cell matches the preserved native indexed source after nearest-neighbour scaling.",
+    "The attached user-approved style reference is the master direction for all unfinished Tier 2 sprites: rich blue, ivory and gold, readable silhouette, layered cloth and detailed shading, no weapons.",
+    "Do not revisit already-finished classes yet; global consistency polish is deferred until first passes for all missing Tier 2 classes are complete."
   ]
 }
