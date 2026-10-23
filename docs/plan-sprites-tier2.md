@@ -52,3 +52,6 @@ Checkpoint 23-10-2026 — Explorador femenino `hurt`: completado primer pase y Q
 
 
 Integridad 23-10-2026: SHA de objeto Git verificado contra los bytes binarios locales para ambas hojas de `hurt` femenino; QA registra 63 colores más transparencia, cuatro poses distintas y escalado exacto. Runtime no integrado.
+
+
+Checkpoint de documentación (23-10-2026): se limpiaron las notas obsoletas de los QA de concepto de ambos Exploradores. Su primer pase completo está en staging; falta la revisión artística transversal, no la generación de sus ciclos base.

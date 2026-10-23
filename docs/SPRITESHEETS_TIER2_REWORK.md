@@ -104,3 +104,9 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 - Se revalidaron los Git blob SHA-1 frente a los bytes locales exactos de ambas PNG, además del SHA-256 en QA. La hoja nativa mide 128×64 (4.748 bytes) y la ampliada 256×128 (6.650 bytes).
 - Las cuatro celdas del PNG nativo son distintas; la tira ampliada coincide píxel a píxel con el escalado nearest-neighbour. Paleta indexada de 63 colores útiles más índice transparente 0.
 - Los másteres hires y los recortes por pose permanecen en la biblioteca; el runtime sigue sin cambios. La aprobación artística transversal continúa pendiente.
+
+
+## Auditoría de estado — Explorador (23-10-2026)
+
+- Conceptos masculino y femenino, más `idle`, `walk` y `hurt` de ambos, ya están presentes en `rework-staging`; el QA de los conceptos se actualizó para no marcar esas animaciones como tareas pendientes.
+- La revisión automática preliminar de los QA consultados solo deja `runtimeApproved: false`, que es deliberado mientras no se complete la revisión artística global. El runtime de producción sigue intacto.
