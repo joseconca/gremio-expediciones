@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "classId": "explorador",
+  "sex": "m",
+  "action": "idle",
+  "direction": "right",
+  "status": "staging-indexed-transparent-art-review-pending",
+  "sourceMaster": {
+    "rawLibraryPath": "/GameAssets/Tier2/Explorador/explorador-m-idle-hires-checkerboard.png",
+    "rawSha256": "85e48dffe8f305685fa77cccb8c95de53bfb00555027b79b8c56b808fa4c1651",
+    "transparentDerivedLibraryPath": "/GameAssets/Tier2/Explorador/explorador-m-idle-hires-transparent-derived.png",
+    "transparentDerivedSha256": "22e6ace7a10a0278822e683f3ce78b080777b699b6b02c2563e8c0ca8f17f12c",
+    "width": 1983,
+    "height": 793,
+    "mode": "RGBA",
+    "rawHasOpaqueCheckerboard": true
+  },
+  "nativeFrames": {
+    "path": "idle-native-4f.png",
+    "width": 128,
+    "height": 64,
+    "cellWidth": 32,
+    "cellHeight": 64,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "count": 4,
+    "sha256": "a7080a97bac97541d5c83aac8da04fcf3346c9c8e9ced4efbe31813775aac146"
+  },
+  "expandedSheet": {
+    "path": "idle-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "sha256": "eefb8bd633216b84be6def815bb5be67c9754e367a81816217aad5744fc6c240",
+    "construction": "nearest-neighbour upscale of native frames"
+  },
+  "checks": {
+    "nativeDimensions": true,
+    "expandedDimensions": true,
+    "transparentIndexPresent": true,
+    "allFrameCellsNonEmpty": true,
+    "fourUniqueFrames": true,
+    "expandedMatchesNativeFrames": true,
+    "runtimeApproved": false,
+    "requiresArtReview": true
+  },
+  "notes": [
+    "The original high-resolution source had an opaque checkerboard; it is retained unchanged and a separate transparent-derived master is archived.",
+    "Each expanded frame matches its native frame enlarged with nearest-neighbour.",
+    "First idle draft only; final art review is deferred until all remaining classes are complete."
+  ]
+}

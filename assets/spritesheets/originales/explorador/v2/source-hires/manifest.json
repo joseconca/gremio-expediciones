@@ -32,10 +32,31 @@
       "mode": "P",
       "transparencyIndex": 0,
       "sha256": "9a0dddffe416b3e0f1945b32773d5d61e72b2feff2aac151587085c46d945896"
+    },
+    {
+      "name": "explorador-m-idle-hires-checkerboard.png",
+      "libraryPath": "/GameAssets/Tier2/Explorador/explorador-m-idle-hires-checkerboard.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "85e48dffe8f305685fa77cccb8c95de53bfb00555027b79b8c56b808fa4c1651",
+      "transparentBackground": false,
+      "notes": "Original generated source kept exactly; checkerboard is opaque."
+    },
+    {
+      "name": "explorador-m-idle-hires-transparent-derived.png",
+      "libraryPath": "/GameAssets/Tier2/Explorador/explorador-m-idle-hires-transparent-derived.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "22e6ace7a10a0278822e683f3ce78b080777b699b6b02c2563e8c0ca8f17f12c",
+      "transparentBackground": true,
+      "derivedFrom": "explorador-m-idle-hires-checkerboard.png"
     }
   ],
   "notes": [
     "Original full-resolution source retained with checkerboard intact, plus a separately derived transparent version.",
-    "The compact preview is only for staging/review; it is not connected to runtime."
+    "The compact preview is only for staging/review; it is not connected to runtime.",
+    "Male explorer idle source and transparent-derived master are retained at full resolution; only derived frame strips are used in staging."
   ]
 }

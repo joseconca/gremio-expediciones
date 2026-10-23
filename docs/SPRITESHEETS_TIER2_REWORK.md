@@ -39,4 +39,5 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 - `fba3f66` — idle femenino del Cazador con master hires y QA.
 - `e2bbd28` — walk femenino del Cazador y máster hires.
 - `9623aa4` — primer pase completo de Cazador femenino, masters hires y QA.
-- Próximo checkpoint: idle del Explorador masculino.
+- `6611e9b` — concept masculino del Explorador con original y derivación transparente.
+- Próximo checkpoint: walk del Explorador masculino.
