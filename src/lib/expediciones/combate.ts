@@ -267,13 +267,18 @@ export interface ResultadoHabilidad {
 function obtenerPresentacionProyectilHabilidad(
   habilidad: DefinicionHabilidad,
 ): PresentacionVisualCombate | undefined {
-  if (habilidad.efecto !== "dano" || habilidad.tipoDano !== "magico") return undefined;
+  if (habilidad.efecto !== "dano") return undefined;
 
-  const referencia = `${habilidad.id} ${habilidad.claseId ?? ""}`
+  const referencia = `${habilidad.id} ${habilidad.nombre} ${habilidad.claseId ?? ""}`
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
 
+  // Los ataques físicos de alcance sin sprite explícito deben disparar flecha.
+  if (habilidad.tipoDano !== "magico" && /(flecha|disparo|tiro|saeta|ballesta)/.test(referencia)) {
+    return { modo: "proyectil", proyectil: "flecha", elemento: "fisico", impacto: "golpe" };
+  }
+  if (habilidad.tipoDano !== "magico") return undefined;
   if (/(bola_fuego|fuego|llama|quemadura)/.test(referencia)) {
     return { modo: "proyectil", proyectil: "bola_fuego", elemento: "fuego", impacto: "explosion" };
   }

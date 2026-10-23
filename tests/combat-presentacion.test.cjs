@@ -93,6 +93,26 @@ const contextoPrueba = {
   enemigoEvasion: 0,
 };
 
+test("un ataque físico de alcance sin presentación explícita también lanza flecha", () => {
+  const habilidad = obtenerHabilidadPorId("tiro_evasivo");
+  assert.ok(habilidad);
+  assert.equal(habilidad.presentacionVisual, undefined);
+  const randomOriginal = Math.random;
+  try {
+    const valores = [0.5, 0, 0.5, 0.99];
+    Math.random = () => valores.shift() ?? 0.99;
+    const resultado = resolverHabilidadJugador(habilidad, contextoPrueba);
+    assert.deepEqual(resultado.accion.presentacion, {
+      modo: "proyectil",
+      proyectil: "flecha",
+      elemento: "fisico",
+      impacto: "golpe",
+    });
+  } finally {
+    Math.random = randomOriginal;
+  }
+});
+
 test("una habilidad mágica sin presentación explícita recibe un proyectil de forma predeterminada", () => {
   const habilidad = obtenerHabilidadPorId("lanza_arcana");
   assert.ok(habilidad);
