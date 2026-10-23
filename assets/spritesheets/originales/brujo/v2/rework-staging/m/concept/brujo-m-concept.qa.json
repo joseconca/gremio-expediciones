@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "classId": "brujo",
+  "sex": "m",
+  "stage": "concept",
+  "direction": "right",
+  "status": "staging-concept-review-pending",
+  "asset": {
+    "path": "concept/brujo-m-concept-128x192.png",
+    "width": 128,
+    "height": 192,
+    "mode": "P",
+    "transparency": "indexed key"
+  },
+  "checks": {
+    "dimensions": true,
+    "transparentIndexPresent": true,
+    "fullBody": true,
+    "noWeapon": true,
+    "uiAbsent": true,
+    "runtimeApproved": false
+  },
+  "artDirection": {
+    "palette": [
+      "charcoal",
+      "black-violet",
+      "amethyst",
+      "silver"
+    ],
+    "silhouette": "layered asymmetric robes and trailing cape",
+    "hands": "empty"
+  },
+  "notes": [
+    "Original concept adapted to the user's approved pixel-art style reference.",
+    "No book, staff, weapons, UI or background are included.",
+    "This is a concept checkpoint; idle, walk and hurt are next."
+  ]
+}

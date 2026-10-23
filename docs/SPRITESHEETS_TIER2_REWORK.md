@@ -2,33 +2,29 @@
 
 Última actualización: 2026-10-23. Rama activa: `main`.
 
-## Referencia maestra de estilo (aprobada por el usuario)
-La imagen adjunta es la dirección visual de los sprites pendientes: pixel art RPG detallado, volumen y contornos limpios, silueta legible, telas con pliegues y detalles ornamentales a escala de juego. Paleta azul/marfil/oro para Elementalista; cada clase mantiene su identidad. Todos los personajes base van sin armas ni herramientas. Los sprites ya terminados no se rehacen ahora; la armonización global se hace al final, cuando estén los primeros pases de las cuatro clases pendientes.
+## Referencia maestra de estilo
+Se usa la imagen aprobada por el usuario como estándar para todos los sprites pendientes: pixel art RPG detallado, sombras con volumen, siluetas legibles, prendas con capas y pliegues, adornos bien integrados, transparencia y cero armas/herramientas. El Elementalista usa azul/marfil/oro; otras clases conservan paletas y siluetas propias. No rehacer clases ya terminadas hasta la pasada global al final.
 
 ## Contrato técnico
-- Acciones iniciales: `idle`, `walk`, `hurt`, cuatro fotogramas por acción hacia la derecha.
-- Atlas runtime en `SPRITESHEETS_PERSONAJES.json`: 256×1920 px, celdas 64×128, cuatro columnas y quince filas.
-- Staging: tira 256×128 con cuatro celdas de 64×128; fuentes nativas de 32×64.
-- PNG indexado con índice transparente explícito es el formato actual de estos borradores; QA confirma la transparencia y la correspondencia entre tira y frames. No integrar al runtime sin validación final.
-- No modificar recursos de producción durante los primeros pases.
+- Acciones: `idle`, `walk`, `hurt`, cuatro frames por acción hacia la derecha.
+- Atlas runtime: 256×1920 px, celdas 64×128, cuatro columnas y quince filas.
+- Staging: tira 256×128 por acción, cuatro celdas; frames fuente 32×64.
+- Los borradores pueden ser PNG indexados con índice transparente explícito. Se validan dimensiones, transparencia, frames distintos y correspondencia tira/fuentes antes de aprobarlos.
+- Mantener staging aislado; no reemplazar sprites de producción.
 
-## Dirección de arte
+## Dirección por clase
 - **Elementalista:** azul profundo, marfil y oro; sin armas.
-- **Brujo:** carbón/berenjena y violeta; sin libro ni armas.
+- **Brujo:** carbón/berenjena, capas asimétricas, violeta/amethyst y detalles plateados; sin libro ni armas.
 - **Cazador:** cuero, verde bosque y ocre; sin arco/carcaj/cuchillas.
-- **Explorador:** ágil, capa corta, equipo mínimo, distinto del Cazador; sin armas.
+- **Explorador:** ropa ligera, capa corta y equipo mínimo; distinto del Cazador, sin armas.
 
-## Estado — Elementalista femenino
-- Concept art guardado en `rework-staging/f/concept/elementalista-f-concept-96x144.png`.
-- `idle-right-4f.png`: primer pase con cuatro frames y transparencia indexada validada.
-- `walk-right-4f.png`: primer pase, cuatro frames nativos; QA de dimensiones, transparencia, distinción y recorte aprobado técnicamente.
-- `hurt-right-4f.png`: primer pase, cuatro frames de reacción; QA técnico aprobado.
-- **Los tres ciclos siguen en staging y no están conectados al runtime.** El movimiento walk es sutil y los tres ciclos se revisarán globalmente al terminar el primer pase de todas las clases.
-- Siguiente: Brujo masculino — concept art y luego idle, walk, hurt.
+## Progreso
+- **Elementalista femenino:** concept, idle, walk y hurt en staging. Los tres ciclos tienen cuatro frames; QA técnico básico completado. La armonización artística se deja para el final.
+- **Brujo masculino:** concept creado y guardado en `rework-staging/m/concept/brujo-m-concept-128x192.png`; cabello negro con mecha violeta, ojos púrpura, túnicas carbón/berenjena, bordados plateados y gemas amatista, manos vacías. QA de dimensiones/transparencia sin aprobación de runtime.
+- Siguiente: Brujo masculino — idle → walk → hurt, cuatro frames cada una, después comenzar Brujo femenino.
 
 ## Historial reciente
-- `44b0c84` — concept femenino.
-- `6e2ef82` — idle femenino inicial.
-- `fcf857c` — restaurar idle validado y añadir la guía de estilo maestra.
-- `49e20bc` — walk femenino con cuatro frames y QA.
-- Próximo checkpoint: hurt femenino y actualización del plan.
+- `fcf857c` — restaurar idle femenino válido y registrar la guía de estilo.
+- `49e20bc` — walk femenino y QA.
+- `b2b21b6` — hurt femenino y QA.
+- Próximo checkpoint: concept de Brujo masculino.
