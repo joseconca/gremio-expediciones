@@ -33,10 +33,31 @@
       "mode": "P",
       "transparencyIndex": 0,
       "sha256": "fb99756fa9e6112ce400f6671d72c0644ffe87ab1e4fcd0e618425d59c699920"
+    },
+    {
+      "name": "explorador-f-idle-hires-original.png",
+      "libraryPath": "/GameAssets/Tier2/Explorador/explorador-f-idle-hires-original.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "1ea7dba22fbeed7b28ca6571f5cc65992f2601baa4c7dcbb637cbaa4d563be33",
+      "transparentBackground": true,
+      "notes": "Original ImageGen source preserved unchanged."
+    },
+    {
+      "name": "explorador-f-idle-hires-transparent-derived.png",
+      "libraryPath": "/GameAssets/Tier2/Explorador/explorador-f-idle-hires-transparent-derived.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "7a9bfc55baf6f98460fad7ed5d2982e8e7565454271d1e38e8c868e58b5b3e60",
+      "transparentBackground": true,
+      "derivedFrom": "explorador-f-idle-hires-original.png"
     }
   ],
   "notes": [
     "Female explorer first-pass concept is distinct from the Hunter: travel scout silhouette, compass ornaments, map case and empty hands.",
-    "The hires concept is retained separately from the compact staging preview."
+    "The hires concept is retained separately from the compact staging preview.",
+    "Female explorer idle source preserved as a high-resolution RGBA master and separate transparent-derived version."
   ]
 }

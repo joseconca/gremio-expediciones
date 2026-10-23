@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "classId": "explorador",
+  "sex": "f",
+  "action": "idle",
+  "direction": "right",
+  "status": "staging-indexed-transparent-art-review-pending",
+  "sourceMaster": {
+    "originalLibraryPath": "/GameAssets/Tier2/Explorador/explorador-f-idle-hires-original.png",
+    "originalSha256": "1ea7dba22fbeed7b28ca6571f5cc65992f2601baa4c7dcbb637cbaa4d563be33",
+    "originalMode": "RGBA",
+    "originalAlphaExtrema": [
+      0,
+      255
+    ],
+    "transparentDerivedLibraryPath": "/GameAssets/Tier2/Explorador/explorador-f-idle-hires-transparent-derived.png",
+    "transparentDerivedSha256": "7a9bfc55baf6f98460fad7ed5d2982e8e7565454271d1e38e8c868e58b5b3e60",
+    "width": 1983,
+    "height": 793,
+    "mode": "RGBA"
+  },
+  "nativeFrames": {
+    "path": "idle-native-4f.png",
+    "width": 128,
+    "height": 64,
+    "cellWidth": 32,
+    "cellHeight": 64,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "count": 4,
+    "sha256": "fcb459b8bdf088516be56b7295cb0d2c38dd6bd033d94e5e6ce14f9a415c89ed"
+  },
+  "expandedSheet": {
+    "path": "idle-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "sha256": "54495c35646e7c737fe2a260c521980bd665805ad1a93ea228656c7c4a2dc200",
+    "construction": "nearest-neighbour upscale of native frames"
+  },
+  "checks": {
+    "nativeDimensions": true,
+    "expandedDimensions": true,
+    "transparentIndexPresent": true,
+    "allFrameCellsNonEmpty": true,
+    "fourUniqueFrames": true,
+    "expandedMatchesNativeFrames": true,
+    "runtimeApproved": false,
+    "requiresArtReview": true
+  },
+  "notes": [
+    "Four right-facing idle frames use a consistent baseline and common indexed palette.",
+    "The original hires RGBA master is preserved unchanged; a separately cleaned transparent derivative is also archived.",
+    "Each expanded frame exactly matches the native frame scaled by nearest-neighbour.",
+    "Staging only; no runtime integration until the cross-class art review."
+  ]
+}

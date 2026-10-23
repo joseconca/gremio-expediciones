@@ -63,3 +63,10 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 - Concept preservado como preview indexado 128×192 en staging. El original RGBA 1024×1536 se conserva sin modificar en la biblioteca, y hay una derivación transparente separada; ambos hashes constan en `assets/spritesheets/originales/explorador/v2/source-hires/female-manifest.json`.
 - Diseño: pelo castaño corto y a capas, capa verde/teal, equipo ligero de viaje y emblemas de brújula; manos vacías, sin armas.
 - Siguiente: `idle`, `walk` y `hurt`, cuatro frames por acción. No conectar al runtime hasta la revisión artística global.
+
+
+## Checkpoint — Explorador femenino `idle` (23-10-2026)
+
+- `idle` tiene cuatro frames nativos de 32×64 y tira ampliada de 256×128; el QA confirma cuatro poses únicas, transparencia indexada y escalado exacto.
+- El master original RGBA 1983×793 y su derivación transparente se preservan por separado y constan en `assets/spritesheets/originales/explorador/v2/source-hires/female-manifest.json`.
+- Siguiente: `walk` y `hurt` femeninos. Sin runtime integration hasta la revisión global.
