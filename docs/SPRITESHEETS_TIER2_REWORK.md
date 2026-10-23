@@ -68,5 +68,11 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 ## Checkpoint — Explorador femenino `idle` (23-10-2026)
 
 - `idle` tiene cuatro frames nativos de 32×64 y tira ampliada de 256×128; el QA confirma cuatro poses únicas, transparencia indexada y escalado exacto.
-- El master original RGBA 1983×793 y su derivación transparente se preservan por separado y constan en `assets/spritesheets/originales/explorador/v2/source-hires/female-manifest.json`.
-- Siguiente: `walk` y `hurt` femeninos. Sin runtime integration hasta la revisión global.
+- Los masters originales RGBA y las derivaciones transparentes de `idle` y `walk` se conservan por separado y constan en `assets/spritesheets/originales/explorador/v2/source-hires/female-manifest.json`.
+- Siguiente: `hurt` femenino. Sin runtime integration hasta la revisión global.
+
+
+## Checkpoint — Explorador femenino `walk` (23-10-2026)
+
+- `walk` femenino guardado en staging: cuatro frames nativos 32×64, tira 256×128, transparencia y QA que verifica cuatro poses únicas y escalado exacto. La fuente original con damero permanece intacta en la biblioteca, además de su derivación transparente.
+- Siguiente: `hurt` femenino; después revisar coherencia artística de los cuatro primeros pases antes de cualquier integración al runtime.

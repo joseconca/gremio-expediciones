@@ -43,5 +43,5 @@ Adoptar el estilo de pixel art detallado mostrado por el usuario: volúmenes y c
 - `walk` masculino está ahora en staging: cuatro frames distintos hacia la derecha, fuente nativa de 128×64 y tira ampliada de 256×128. QA confirma transparencia indexada, cuatro frames únicos y equivalencia exacta del escalado. Original hires RGB 1983×793 con damero y derivación RGBA transparente preservados por separado y registrados en el manifiesto.
 - `hurt` masculino ya está en staging: cuatro poses de 32×64, tira 256×128 y QA que confirma transparencia indexada, cuatro celdas distintas y escalado exacto. Original RGB 1983×793 con damero y derivación RGBA se conservan en la biblioteca con hashes.
 - Concept del Explorador femenino ya preservado: master RGBA 1024×1536 y derivación transparente archivados por separado, preview indexado 128×192 y QA en staging.
-- `idle` femenino ya está en staging: cuatro frames nativos 32×64, tira 256×128 y QA que confirma transparencia, unicidad y escalado exacto. Masters hires RGBA original y derivado transparente preservados por separado.
-- Siguiente: `walk` y `hurt` femeninos; mantener las fuentes hires y no tocar los sprites de producción.
+- `idle` y `walk` femeninos ya están en staging: cuatro frames nativos 32×64 por acción y tiras 256×128; QA confirma transparencia, unicidad y escalado exacto. Masters hires originales y derivaciones transparentes preservados por separado.
+- Siguiente: `hurt` femenino; mantener las fuentes hires y no tocar los sprites de producción.
