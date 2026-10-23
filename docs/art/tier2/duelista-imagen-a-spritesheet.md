@@ -20,4 +20,8 @@ La primera pose femenina de cada acción tiene una coleta que invade el margen i
 
 ## Validación
 
-El pipeline del repositorio debe generar seis tiras (tres acciones × dos sexos), 24 frames nativos, seis previews y seis informes QA. El control técnico de dimensiones/alfa y frames distintos no sustituye la inspección visual: se revisarán los recortes y, si hace falta, se limpiará el halo de fondo en una iteración dedicada.
+El pipeline del repositorio ya ha generado y versionado las seis tiras (tres acciones × dos sexos), 24 frames nativos, seis previews y seis informes QA. El QA técnico de dimensiones/alfa y frames distintos no sustituye la inspección visual. La pasada global debe revisar los recortes y limpiar solo si confirma halo/fondo residual.
+
+## Estado — 2026-10-23
+La extracción de Duelista está completa como primer pase y fuera del runtime. Sus másteres raster WebP, tiras y QA están presentes en `assets/spritesheets/originales/duelista/v2/`; el manifiesto Tier 2 ya refleja el paquete generado. No se deben volver a generar los ciclos desde cero.
+
