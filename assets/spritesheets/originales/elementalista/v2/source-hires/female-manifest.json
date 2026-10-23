@@ -2,8 +2,23 @@
   "schemaVersion": 1,
   "classId": "elementalista",
   "sex": "f",
-  "purpose": "Preserve exact original high-resolution sources separately from compact staging/runtime-sized sprite strips.",
+  "purpose": "Preserve exact high-resolution original sources separately from indexed staging strips. Each Library path refers to a byte-preserved source/alternative, not an enlarged runtime sprite.",
   "sources": [
+    {
+      "name": "elementalista-f-concept-hires-original.png",
+      "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-f-concept-hires-original.png",
+      "originalLibraryName": "Maga de plata con capa azul.png",
+      "width": 1114,
+      "height": 1412,
+      "mode": "RGBA",
+      "sha256": "a970a846f7ce84f3230f57f4078c1f0cf5d7b9973613c7af3f16bc4efcdd608f",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "transparentBackground": true,
+      "sourceType": "standalone-character-concept"
+    },
     {
       "name": "elementalista-f-idle-hires-original.png",
       "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-f-idle-hires-original.png",
@@ -17,7 +32,65 @@
         255
       ],
       "transparentBackground": true,
-      "notes": "Exact original high-resolution four-pose idle sheet preserved unchanged. Art: silver-haired female caster with navy, ivory and gold garments. Independent from the 128x64 native and 256x128 staging sheets."
+      "sourceType": "four-pose-idle-source"
+    },
+    {
+      "name": "elementalista-f-walk-hires-original.png",
+      "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-f-walk-hires-original.png",
+      "originalLibraryName": "Hechicera plateada caminando en píxeles.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "2c5d2ab79bcc9aa72c60b97abe5de02dbc999b311d0c2f48cec5854bc53a3f85",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "transparentBackground": true,
+      "sourceType": "four-pose-walk-source"
+    },
+    {
+      "name": "elementalista-f-hurt-hires-original.png",
+      "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-f-hurt-hires-original.png",
+      "originalLibraryName": "Secuencia de impacto de maga pixel art.png",
+      "width": 2172,
+      "height": 724,
+      "mode": "RGBA",
+      "sha256": "fbc9d6113f315a8718b56f90042722f64026ae78acccaa3e4dbc4e37e17601d4",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "transparentBackground": true,
+      "sourceType": "four-pose-hurt-source"
+    },
+    {
+      "name": "elementalista-f-hurt-hires-checkerboard-alternative.png",
+      "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-f-hurt-hires-checkerboard-alternative.png",
+      "originalLibraryName": "Secuencia de dolor de maga pixel art.png",
+      "width": 2172,
+      "height": 724,
+      "mode": "RGBA",
+      "sha256": "7618b2fff9a7bf00fd6e046ecb36047564c1fa0520e5ef489e0b11e75b26dee8",
+      "alphaExtrema": [
+        255,
+        255
+      ],
+      "transparentBackground": false,
+      "sourceType": "opaque-checkerboard-alternative",
+      "notes": "Preserved unchanged as an alternate source; checkerboard baked into pixels. Use the separate transparent original above for extraction."
+    }
+  ],
+  "stagingPreviews": [
+    {
+      "name": "elementalista-f-concept-96x144.png",
+      "repositoryPath": "assets/spritesheets/originales/elementalista/v2/rework-staging/f/concept/elementalista-f-concept-96x144.png",
+      "width": 96,
+      "height": 144,
+      "mode": "P",
+      "transparencyIndex": 0,
+      "sha256": "192f89b406286c59d0c6f42b953899886012c12a0c1fddbbb32df22687e277fb",
+      "derivedFrom": "elementalista-f-concept-hires-original.png"
     },
     {
       "name": "elementalista-f-idle-right-4f.png",
@@ -25,8 +98,7 @@
       "width": 256,
       "height": 128,
       "mode": "P",
-      "sourceType": "reduced-staging-derived",
-      "notes": "Compact indexed staging sheet; not an original high-resolution master."
+      "sourceType": "reduced-staging"
     },
     {
       "name": "elementalista-f-walk-right-4f.png",
@@ -34,8 +106,7 @@
       "width": 256,
       "height": 128,
       "mode": "P",
-      "sourceType": "reduced-staging",
-      "notes": "Hires original not found in Library as of 2026-10-23 audit. Preserve current staging files; do not relabel them as hires originals."
+      "sourceType": "reduced-staging"
     },
     {
       "name": "elementalista-f-hurt-right-4f.png",
@@ -43,13 +114,13 @@
       "width": 256,
       "height": 128,
       "mode": "P",
-      "sourceType": "reduced-staging",
-      "notes": "Hires original not found in Library as of 2026-10-23 audit. Preserve current staging files; do not relabel them as hires originals."
+      "sourceType": "reduced-staging"
     }
   ],
   "notes": [
-    "First-pass concept, idle, walk and hurt for the female Elementalist are in rework-staging with technical QA. Runtime approval remains false pending the global cross-class art review.",
-    "Only the idle high-resolution original could be identified by exact source and archived canonically in this audit. Separate original hires sheets for the concept, walk and hurt were not found in the Library; those gaps are explicitly recorded rather than filled with artificial upscales.",
-    "Visual cross-class review: the purple Brujo, forest-green Cazador and lighter travel-green Explorer retain distinct palettes and silhouettes. The navy/ivory/gold Elementalist is visually distinct. Idle motion reads subtly in previews, so motion readability remains a candidate for the final polish pass; no completed class is being redone now."
+    "All four separate female Elementalist hires sources were found in the Library under generic generated image names, then archived to canonical /GameAssets/Tier2/Elementalista paths without modification.",
+    "The concept thumbnail was repaired because the earlier compact PNG had no verifiable indexed transparency. The new 96x144 preview derives only from the dedicated full-size concept, not from an animation frame.",
+    "The opaque-checkerboard hurt alternative is preserved separately and is not used as the extraction master.",
+    "High-resolution sources remain separate from native 128x64 and expanded 256x128 staging strips. No staging asset is runtime-approved."
   ]
 }

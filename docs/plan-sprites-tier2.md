@@ -58,4 +58,7 @@ Integridad 23-10-2026: SHA de objeto Git verificado contra los bytes binarios lo
 Checkpoint de documentación (23-10-2026): se limpiaron las notas obsoletas de los QA de concepto de ambos Exploradores. Su primer pase completo está en staging; falta la revisión artística transversal, no la generación de sus ciclos base.
 
 
-Checkpoint 23-10-2026 — Auditoría visual y archivo de másteres: se preserva la fuente hires de idle del Elementalista femenino y se registra la ausencia de fuentes hires separadas para concept/walk/hurt. La revisión preliminar confirma identidades de clase diferenciadas; la revisión final y cualquier armonización siguen pendientes.
+Checkpoint 23-10-2026 — Auditoría de másteres Elementalista: se recuperaron y archivaron los originales hires femeninos de concept, idle, walk y hurt; el manifiesto registra sus hashes y una variante de hurt con damero. La revisión visual preliminar confirma identidades de clase diferenciadas; la aprobación final y cualquier armonización siguen pendientes.
+
+
+Checkpoint de recuperación de fuentes — 23-10-2026: el Elementalista femenino ya tiene cuatro originales hires separados y archivados (concept 1114×1412, idle/walk 1983×793, hurt 2172×724 RGBA) más una alternativa opaca de hurt. Se reparó la preview de concept y se añadió QA. La pasada final global de sprites sigue pendiente.

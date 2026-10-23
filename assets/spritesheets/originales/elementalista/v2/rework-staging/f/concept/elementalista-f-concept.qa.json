@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "classId": "elementalista",
+  "sex": "f",
+  "stage": "concept",
+  "direction": "right",
+  "status": "staging-concept-review-pending",
+  "preview": {
+    "path": "concept/elementalista-f-concept-96x144.png",
+    "width": 96,
+    "height": 144,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "sha256": "192f89b406286c59d0c6f42b953899886012c12a0c1fddbbb32df22687e277fb"
+  },
+  "sourceMaster": {
+    "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-f-concept-hires-original.png",
+    "width": 1114,
+    "height": 1412,
+    "mode": "RGBA",
+    "sha256": "a970a846f7ce84f3230f57f4078c1f0cf5d7b9973613c7af3f16bc4efcdd608f",
+    "transparentBackground": true
+  },
+  "checks": {
+    "previewDimensions": true,
+    "transparentIndexPresent": true,
+    "fullBodyVisible": true,
+    "weaponAbsent": true,
+    "uiAbsent": true,
+    "highResolutionMasterArchived": true,
+    "runtimeApproved": false
+  },
+  "artDirection": {
+    "palette": [
+      "navy blue",
+      "ivory",
+      "gold",
+      "silver hair"
+    ],
+    "silhouette": "full-body female elemental caster with layered mantle, jeweled clasp and ornate hem",
+    "hands": "empty"
+  },
+  "notes": [
+    "Original standalone 1114x1412 RGBA concept master was recovered from the Library and preserved unchanged.",
+    "The compact preview is rebuilt from this concept master with explicit index-0 transparency; the previous staging PNG lacked a verifiable transparent palette entry.",
+    "Preview only; concept master and all animation sheets remain separate. No weapon, UI or scene background is part of the character asset."
+  ]
+}

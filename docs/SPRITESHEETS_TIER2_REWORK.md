@@ -118,3 +118,10 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 - El acabado base sigue la referencia aprobada (pliegues, contornos, sombras y ornamento integrados); no se encontraron motivos para rehacer ahora las clases terminadas. La lectura de movimiento de algunos `idle` es sutil en las vistas reducidas, así que se deja como punto de revisión para la pasada final.
 - La revisión de QA consultada confirma que los únicos checks falsos generalizados son `runtimeApproved: false`/`requiresArtReview: true`, que son intencionales hasta la aprobación artística final; las excepciones de origen de alta resolución se documentan en el manifiesto de Elementalista femenino.
 - No se ha integrado ningún asset de `rework-staging` al runtime. Siguiente paso: cerrar la auditoría de manifests/QA pendientes, resolver la procedencia hires faltante si se recuperan las fuentes, y solo entonces decidir la armonización final.
+
+
+## Recuperación de originales Elementalista femenino — 23-10-2026
+
+- Se localizaron por nombre genérico cuatro fuentes hires separadas: concept (1114×1412), idle y walk (1983×793), hurt (2172×724). Las copias canónicas en `/GameAssets/Tier2/Elementalista/` preservan los bytes originales y sus SHA-256 están registrados en el manifiesto femenino.
+- Se preservó además una variante de hurt con damero incrustado; no se usa para la extracción porque existe otra fuente de hurt con alfa real.
+- La miniatura `elementalista-f-concept-96x144.png` fue reconstruida desde el concept hires con índice transparente 0, y se agregó `elementalista-f-concept.qa.json`. Los ciclos siguen separados en staging y no están integrados al runtime.

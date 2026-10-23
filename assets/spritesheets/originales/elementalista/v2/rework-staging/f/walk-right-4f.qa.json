@@ -31,12 +31,27 @@
     "allFramesNonEmpty": true,
     "fourUniqueFrames": true,
     "runtimeApproved": false,
-    "requiresArtReview": true
+    "requiresArtReview": true,
+    "highResolutionMasterArchived": true
   },
   "notes": [
     "Four right-facing walk frames have a shared baseline and use the same palette across the action.",
     "Transparent palette index verified; the expanded cells exactly match native frame upscales.",
     "Hands are empty and no weapons, UI or scenery are included.",
-    "This is a staging draft. The walk motion is present but subtle and remains queued for final cross-class art polish."
-  ]
+    "This is a staging draft. The walk motion is present but subtle and remains queued for final cross-class art polish.",
+    "The original 1983x793 RGBA walk source was recovered by its Library title, copied byte-for-byte to /GameAssets/Tier2/Elementalista/, and registered in female-manifest.json."
+  ],
+  "sourceMaster": {
+    "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-f-walk-hires-original.png",
+    "originalLibraryName": "Hechicera plateada caminando en píxeles.png",
+    "width": 1983,
+    "height": 793,
+    "mode": "RGBA",
+    "sha256": "2c5d2ab79bcc9aa72c60b97abe5de02dbc999b311d0c2f48cec5854bc53a3f85",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentBackground": true
+  }
 }

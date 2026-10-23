@@ -31,12 +31,27 @@
     "allFramesNonEmpty": true,
     "fourUniqueFrames": true,
     "runtimeApproved": false,
-    "requiresArtReview": true
+    "requiresArtReview": true,
+    "highResolutionMasterArchived": true
   },
   "notes": [
     "Four right-facing damage-reaction poses: flinch, recoil, deep stagger and guarded recovery.",
     "Transparent palette index verified; all enlarged cells match the native indexed frames.",
     "Hands remain free: no weapons, UI or scenery.",
-    "Staging draft only; final whole-roster polish remains deferred until all missing Tier 2 first passes are finished."
-  ]
+    "Staging draft only; final whole-roster polish remains deferred until all missing Tier 2 first passes are finished.",
+    "The original 2172x724 RGBA hurt sheet was recovered and archived unchanged; an opaque-checkerboard alternate is also preserved separately and documented."
+  ],
+  "sourceMaster": {
+    "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-f-hurt-hires-original.png",
+    "originalLibraryName": "Secuencia de impacto de maga pixel art.png",
+    "width": 2172,
+    "height": 724,
+    "mode": "RGBA",
+    "sha256": "fbc9d6113f315a8718b56f90042722f64026ae78acccaa3e4dbc4e37e17601d4",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentBackground": true
+  }
 }
