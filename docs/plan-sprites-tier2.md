@@ -25,3 +25,10 @@ Adoptar el estilo de pixel art detallado mostrado por el usuario: volúmenes y c
 - Vista compacta de revisión guardada en `assets/spritesheets/originales/cazador/v2/rework-staging/m/concept/cazador-m-concept-128x192.png`. No es sprite de producción.
 - **Idle**, **walk** y **hurt** masculinos del Cazador están guardados en staging, cuatro frames mirando a la derecha por acción; fuente nativa 128×64 y tira 256×128. QA verifica transparencia, cuatro frames únicos y equivalencia al ampliar. Los masters de alta resolución permanecen por separado en la biblioteca; walk conserva además original con damero y derivación transparente.
 - Siguiente: concept del Cazador femenino, luego idle, walk y hurt de cuatro frames cada uno. Mantener masters hires y no rehacer clases terminadas.
+
+
+## Checkpoint — Cazador femenino
+
+- Concept original con trenza castaña rojiza, capa verde y cuero práctico; sin armas.
+- Máster RGBA 1114×1412 preservado en `/GameAssets/Tier2/Cazador/cazador-f-concept-hires.png`, SHA-256 `94eefa5dfe988f85ee659388c86cf90dd97ed57dac9a4d244b38dc2d0cef8a67`.
+- Preview 128×192 en `assets/spritesheets/originales/cazador/v2/rework-staging/f/concept/cazador-f-concept-128x192.png`; QA guardado junto a él. Idle, walk y hurt pendientes; cuatro frames por acción hacia la derecha.

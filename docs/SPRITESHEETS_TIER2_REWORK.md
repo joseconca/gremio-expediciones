@@ -34,4 +34,5 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 - `cc90f8b` — concept masculino del Cazador, preview, QA y manifiesto de masters.
 - `f0c892c` — idle masculino del Cazador con QA y masters hires catalogados.
 - `2461926` — walk masculino del Cazador con cuatro frames y masters de alta resolución archivados.
-- Próximo checkpoint: concept del Cazador femenino.
+- `c17a332` — primer pase completo del Cazador masculino (idle, walk, hurt), masters hires y QA.
+- Próximo checkpoint: idle del Cazador femenino.

@@ -72,6 +72,16 @@
       "mode": "RGBA",
       "sha256": "adcfd40079f818ea955279fb7eab6febf878aa02dcc14302d6b07987284c6cf9",
       "transparentBackground": true
+    },
+    {
+      "name": "cazador-f-concept-hires.png",
+      "libraryPath": "/GameAssets/Tier2/Cazador/cazador-f-concept-hires.png",
+      "width": 1114,
+      "height": 1412,
+      "mode": "RGBA",
+      "sha256": "94eefa5dfe988f85ee659388c86cf90dd97ed57dac9a4d244b38dc2d0cef8a67",
+      "transparentBackground": true,
+      "selectedForCurrentConcept": true
     }
   ],
   "preview": {
@@ -87,6 +97,7 @@
     "No weapons or held props appear in the character concept.",
     "The full-resolution idle sources are preserved separately; variant 02 is the source for the current staged native frames.",
     "The original and transparent-derived masters for walk are both preserved separately; reduced sprites are kept only in staging.",
-    "Hurt animation master preserved intact as RGBA 1983×793; source sheet is archived separately from the reduced sprite strips."
+    "Hurt animation master preserved intact as RGBA 1983×793; source sheet is archived separately from the reduced sprite strips.",
+    "Female concept source preserved as a high-resolution RGBA master in the Library, separate from its compact indexed staging preview."
   ]
 }

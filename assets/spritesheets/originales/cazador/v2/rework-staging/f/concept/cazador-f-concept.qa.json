@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "classId": "cazador",
+  "sex": "f",
+  "stage": "concept",
+  "status": "staging-concept-review-pending",
+  "preview": {
+    "path": "rework-staging/f/concept/cazador-f-concept-128x192.png",
+    "width": 128,
+    "height": 192,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "sha256": "d20d5315aabda194bbb0cd409b7000ececb933c859f2651529d8f8ed3052d1c1"
+  },
+  "sourceMaster": {
+    "libraryPath": "/GameAssets/Tier2/Cazador/cazador-f-concept-hires.png",
+    "width": 1114,
+    "height": 1412,
+    "mode": "RGBA",
+    "sha256": "94eefa5dfe988f85ee659388c86cf90dd97ed57dac9a4d244b38dc2d0cef8a67",
+    "transparentBackground": true
+  },
+  "checks": {
+    "dimensions": true,
+    "transparencyIndex": true,
+    "fullBodyVisible": true,
+    "weaponAbsent": true,
+    "uiAbsent": true,
+    "runtimeApproved": false
+  },
+  "artDirection": {
+    "palette": [
+      "forest green",
+      "brown leather",
+      "ochre",
+      "cream",
+      "charcoal"
+    ],
+    "silhouette": "braided auburn hair, layered ranger cloak and practical leather armor",
+    "hands": "empty"
+  },
+  "notes": [
+    "Concept is stored as a high-resolution master and an indexed review preview.",
+    "Not a production sprite; next stages are idle, walk and hurt, four frames each, facing right."
+  ]
+}
