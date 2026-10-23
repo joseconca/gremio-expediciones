@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "classId": "explorador",
+  "sex": "m",
+  "stage": "concept",
+  "status": "staging-concept-review-pending",
+  "preview": {
+    "path": "rework-staging/m/concept/explorador-m-concept-128x192.png",
+    "width": 128,
+    "height": 192,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "sha256": "9a0dddffe416b3e0f1945b32773d5d61e72b2feff2aac151587085c46d945896"
+  },
+  "sourceMaster": {
+    "rawLibraryPath": "/GameAssets/Tier2/Explorador/explorador-m-concept-hires-checkerboard.png",
+    "rawSha256": "6e7c470483822ba96b5b3fc31cb22d6a7e7e86c9b6078da19e007740251eaf4a",
+    "derivedLibraryPath": "/GameAssets/Tier2/Explorador/explorador-m-concept-hires-transparent-derived.png",
+    "derivedSha256": "ea7ebed8e917de136a21e2352bc3852064f9b0416740f09555c14b4e1e373801",
+    "width": 1114,
+    "height": 1412,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ]
+  },
+  "checks": {
+    "dimensions": true,
+    "previewTransparency": true,
+    "fullBodyVisible": true,
+    "weaponAbsent": true,
+    "uiAbsent": true,
+    "runtimeApproved": false
+  },
+  "artDirection": {
+    "palette": [
+      "olive green",
+      "cream",
+      "bronze",
+      "teal",
+      "brown leather"
+    ],
+    "silhouette": "light travel mantle with compass ornaments, scarf and travel pouches",
+    "hands": "empty"
+  },
+  "notes": [
+    "Raw source contained opaque checkerboard; it is preserved unmodified, while a separate alpha-derived master and compact preview are also preserved.",
+    "Next stages: idle, walk and hurt, four frames each, facing right."
+  ]
+}

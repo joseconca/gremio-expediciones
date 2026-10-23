@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "classId": "explorador",
+  "sex": "m",
+  "purpose": "Preserved source masters, independent from runtime sprite strips.",
+  "sources": [
+    {
+      "name": "explorador-m-concept-hires-checkerboard.png",
+      "libraryPath": "/GameAssets/Tier2/Explorador/explorador-m-concept-hires-checkerboard.png",
+      "width": 1114,
+      "height": 1412,
+      "mode": "RGBA",
+      "sha256": "6e7c470483822ba96b5b3fc31cb22d6a7e7e86c9b6078da19e007740251eaf4a",
+      "transparentBackground": false,
+      "notes": "Original generated PNG preserved exactly; the checkerboard is baked into fully opaque pixels."
+    },
+    {
+      "name": "explorador-m-concept-hires-transparent-derived.png",
+      "libraryPath": "/GameAssets/Tier2/Explorador/explorador-m-concept-hires-transparent-derived.png",
+      "width": 1114,
+      "height": 1412,
+      "mode": "RGBA",
+      "sha256": "ea7ebed8e917de136a21e2352bc3852064f9b0416740f09555c14b4e1e373801",
+      "transparentBackground": true,
+      "derivedFrom": "explorador-m-concept-hires-checkerboard.png"
+    },
+    {
+      "name": "explorador-m-concept-128x192.png",
+      "libraryPath": "/GameAssets/Tier2/Explorador/explorador-m-concept-128x192.png",
+      "width": 128,
+      "height": 192,
+      "mode": "P",
+      "transparencyIndex": 0,
+      "sha256": "9a0dddffe416b3e0f1945b32773d5d61e72b2feff2aac151587085c46d945896"
+    }
+  ],
+  "notes": [
+    "Original full-resolution source retained with checkerboard intact, plus a separately derived transparent version.",
+    "The compact preview is only for staging/review; it is not connected to runtime."
+  ]
+}

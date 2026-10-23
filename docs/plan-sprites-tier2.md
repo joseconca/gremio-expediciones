@@ -33,3 +33,10 @@ Adoptar el estilo de pixel art detallado mostrado por el usuario: volúmenes y c
 - Preview de concept 128×192 guardado en staging con QA.
 - `idle`, `walk` y `hurt` femeninos ya están en staging: cuatro frames hacia la derecha por acción, fuente nativa 128×64 y tira 256×128. QA confirma transparencia, cuatro poses distintas y escalado exacto. Masters RGBA preservados en la biblioteca con hashes.
 - Siguiente: concept del Explorador masculino; después sus tres animaciones y finalmente Explorador femenino.
+
+
+## Checkpoint — Explorador masculino
+
+- Concept orientado a viajero: capa ligera verde oliva, bufanda marfil, detalles de brújula y equipo de ruta; manos vacías, sin armas.
+- Original RGBA 1114×1412 conservado exactamente en `/GameAssets/Tier2/Explorador/explorador-m-concept-hires-checkerboard.png` (SHA-256 `6e7c470483822ba96b5b3fc31cb22d6a7e7e86c9b6078da19e007740251eaf4a`); el damero estaba incrustado como píxeles opacos.
+- Derivación transparente archivada en `/GameAssets/Tier2/Explorador/explorador-m-concept-hires-transparent-derived.png` (SHA-256 `ea7ebed8e917de136a21e2352bc3852064f9b0416740f09555c14b4e1e373801`). Preview indexado 128×192 y QA en staging. Idle, walk y hurt pendientes.
