@@ -138,3 +138,9 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 - Se separó el manifiesto del Cazador por sexo: `source-hires/manifest.json` contiene ahora solo fuentes masculinas; `female-manifest.json` registra concept, idle, walk y hurt femeninos. Se eliminaron las entradas duplicadas de idle en el manifiesto masculino, conservando la variante seleccionada y las alternativas.
 - Se eliminaron los registros duplicados de hurt original/derivado en el manifiesto del Explorador masculino. No se borró ningún archivo de la biblioteca.
 - Los dos manifiestos del Elementalista también quedaron separados por sexo. Los QA distinguen fuentes hires originales, referencias compuestas y tiras reducidas de staging.
+
+
+## Limpieza de notas QA obsoletas — 23-10-2026
+
+- Se actualizaron los QA de concepto del Brujo masculino y del Cazador masculino/femenino: ya no indican que `idle`, `walk` o `hurt` están pendientes cuando los tres ciclos están versionados en staging.
+- Los estados siguen siendo de revisión; se mantiene `runtimeApproved: false` hasta la aprobación artística global.

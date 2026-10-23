@@ -68,3 +68,6 @@ Checkpoint 23-10-2026 — Elementalista masculino: idle/walk/hurt siguen en stag
 
 
 Checkpoint de auditoría 23-10-2026: manifiestos de Cazador separados por sexo y deduplicados; manifest del Explorador masculino limpiado. El siguiente commit corrige las notas QA antiguas de conceptos para alinearlas con los ciclos ya presentes.
+
+
+Checkpoint QA 23-10-2026: corregidas tres notas de concept obsoletas (Brujo masculino, Cazador masculino y Cazadora) que aún marcaban idle/walk/hurt como tareas futuras. El estado real queda alineado con los archivos versionados; aprobación de runtime sigue pendiente.
