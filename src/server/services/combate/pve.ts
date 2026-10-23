@@ -29,7 +29,7 @@ import { tirarBotinEnemigo } from "@/lib/lootObjetos";
 import { LIMITE_INVENTARIO_OBJETOS } from "@/lib/inventario";
 import { obtenerNombreObjetoConSufijo } from "@/lib/sufijosObjetos";
 import { calcularRecompensasParcialesDerrota } from "@/lib/expediciones/recompensas-derrota";
-import { obtenerPresentacionAtaqueBasico } from "@/lib/expediciones/presentacion-combate";
+import { obtenerPresentacionAtaqueBasico, usaAtaqueMagicoBasico } from "@/lib/expediciones/presentacion-combate";
 import { experienciaParaNivel } from "@/lib/configuracionJuego";
 import {
   aplicarMultiplicadorRecompensa,
@@ -287,20 +287,24 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             ?? enemigosEnCombate.find((enemigo) => enemigo.hp > 0);
           if (!objetivo) return NextResponse.json({ error: "No quedan enemigos vivos a los que atacar." }, { status: 409 });
           const efectosObjetivo = leerEfectosCombate(objetivo.efectos);
+          const armaEquipadaId = personaje.equipoEquipado?.arma?.objetoId;
+          const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
+          const usarAtaqueMagico = usaAtaqueMagicoBasico(subtipoArma);
           accionAnimada = resolverAtaqueJugador({
             jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
+            jugadorAtaqueMagico: calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true),
+            usarMejorAtaqueMagico: usarAtaqueMagico,
             jugadorNivel: combate.jugadorNivel,
             jugadorProbCritico: combate.jugadorProbCritico,
             jugadorDanoCritico: combate.jugadorDanoCritico,
             jugadorPrecision: calcularPrecisionModificada(combate.jugadorPrecision ?? 75, efectos),
             enemigoEvasion: calcularEvasionModificada(objetivo.evasion, efectosObjetivo),
             enemigoDefensa: objetivo.defensa,
+            enemigoDefensaMagica: objetivo.defensaMagica,
             enemigoNombre: objetivo.nombre,
           });
           accionAnimada = { ...accionAnimada, enemigoObjetivoId: objetivo.id };
           danoEnemigoPorId.set(objetivo.id, accionAnimada.dano);
-          const armaEquipadaId = personaje.equipoEquipado?.arma?.objetoId;
-          const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
           const presentacionArma = obtenerPresentacionAtaqueBasico(subtipoArma);
           if (presentacionArma) accionAnimada = { ...accionAnimada, presentacion: presentacionArma };
         } else if (accion === "usar_objeto") {

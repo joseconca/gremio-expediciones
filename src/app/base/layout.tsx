@@ -125,7 +125,7 @@ export default function BaseLayout({
                 alt={`Avatar de ${personaje.nombre}`}
                 fill
                 sizes="48px"
-                className="avatar-face-image [image-rendering:pixelated]"
+                className="avatar-face-image-layout [image-rendering:pixelated]"
               />
             </div>
 

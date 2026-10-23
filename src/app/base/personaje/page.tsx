@@ -9,6 +9,7 @@ import {
   calcularEstadisticasObjeto,
   obtenerRanuraObjeto,
   obtenerSpriteObjeto,
+  obtenerIconoObjeto,
 } from "@/lib/objetos";
 import { calcularPrecioVentaObjeto } from "@/lib/economia";
 import { ARQUETIPOS_CLASE, CLASES } from "@/lib/progresion/clases";
@@ -327,15 +328,16 @@ export default function PersonajePage() {
     const ranura = obtenerRanuraObjeto(objeto);
     const equipando = procesando === "equipar:" + item.id;
     const precioVenta = calcularPrecioVentaObjeto(objeto.precio, item.cantidad);
+    const spriteObjeto = obtenerSpriteObjeto(objeto);
     return (
       <article key={item.id} className={"min-w-0 rounded-lg border p-2 transition-colors " + (
         equipado ? "border-amber-500/70 bg-[#38291b]" : "border-[#59432b] bg-[#241b13] hover:border-[#927148]"
       )}>
         <div className="flex items-start gap-2.5">
           <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-md border border-[#725638] bg-[#17130e] p-1">
-            {obtenerSpriteObjeto(objeto) ? (
-              <Image src={obtenerSpriteObjeto(objeto) as string} alt="" aria-hidden="true" width={64} height={64} className="h-full w-full object-contain [image-rendering:pixelated]" />
-            ) : <span className="text-2xl" aria-hidden="true">🎒</span>}
+            {spriteObjeto ? (
+              <Image src={spriteObjeto} alt="" aria-hidden="true" width={64} height={64} className="h-full w-full object-contain [image-rendering:pixelated]" />
+            ) : <span className="text-2xl" aria-hidden="true">{obtenerIconoObjeto(objeto)}</span>}
           </div>
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-1.5">

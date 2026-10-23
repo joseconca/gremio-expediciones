@@ -120,6 +120,8 @@ export default function EscuelaCombatePage() {
   const puntosDisponibles = datos?.progresoJob?.puntosHabilidadDisponibles ?? 0;
   const costeReseteo = costeReinicioHabilidades(nivelJob);
   const profesionId = datos?.profesionActivaId ?? "novato";
+  const esSuperNovato = profesionId === "superNovato";
+  const incluirCatalogoDeRama = esSuperNovato || incluirOtrasClasesRama;
   const habilidadesPropias = aprendidas.filter((item) => (item.habilidad.claseId ?? "novato") === profesionId);
   const clasesDeRama = useMemo(
     () => obtenerClasesHabilidadDisponibles(profesionId),
@@ -164,7 +166,7 @@ export default function EscuelaCombatePage() {
             aria-label="Clase de las habilidades"
             className="min-h-10 w-full rounded-lg border border-[#594630] bg-[#211b14] px-3 py-2 text-sm text-[#f0e5d0] outline-none transition focus:border-amber-500 focus:ring-1 focus:ring-amber-500/30"
           >
-            <option value="todas">{incluirOtrasClasesRama ? "Toda la rama" : "Clase actual"}</option>
+            <option value="todas">{esSuperNovato ? "Todas las ramas de Tier 1" : incluirOtrasClasesRama ? "Toda la rama" : "Clase actual"}</option>
             {opcionesClaseCatalogo.map((claseId) => (
               <option key={claseId} value={claseId}>{CLASES[claseId]?.nombre ?? claseId}</option>
             ))}
@@ -173,15 +175,16 @@ export default function EscuelaCombatePage() {
         <label className="flex cursor-pointer items-center gap-2 border-t border-[#493a28] pt-2 md:col-span-2 lg:col-span-1 lg:border-l lg:border-t-0 lg:pl-3 lg:pt-0">
           <input
             type="checkbox"
-            checked={incluirOtrasClasesRama}
+            checked={incluirCatalogoDeRama}
+            disabled={esSuperNovato}
             onChange={(event) => cambiarInclusionRama(event.target.checked)}
-            className="h-4 w-4 shrink-0 accent-amber-500"
+            className="h-4 w-4 shrink-0 accent-amber-500 disabled:cursor-not-allowed"
           />
           <span className="min-w-0 flex-1 text-xs font-semibold leading-snug text-[#e8d7b8]">
-            Incluir habilidades de otras clases de mi rama
+            {esSuperNovato ? "Super Novato: habilidades de todas las clases de Tier 1 y Novato" : "Incluir habilidades de otras clases de mi rama"}
           </span>
-          <span className={incluirOtrasClasesRama ? "shrink-0 rounded-full border border-sky-700/70 bg-sky-950/50 px-2 py-1 text-[10px] font-bold text-sky-200" : "shrink-0 rounded-full border border-[#51412d] bg-[#292117] px-2 py-1 text-[10px] font-bold text-[#a99d84]"}>
-            {incluirOtrasClasesRama ? "Rama" : "Solo clase"}
+          <span className={incluirCatalogoDeRama ? "shrink-0 rounded-full border border-sky-700/70 bg-sky-950/50 px-2 py-1 text-[10px] font-bold text-sky-200" : "shrink-0 rounded-full border border-[#51412d] bg-[#292117] px-2 py-1 text-[10px] font-bold text-[#a99d84]"}>
+            {esSuperNovato ? "Tier 1" : incluirOtrasClasesRama ? "Rama" : "Solo clase"}
           </span>
         </label>
       </div>

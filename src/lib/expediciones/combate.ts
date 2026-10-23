@@ -113,10 +113,13 @@ export function calcularBonusDefensaMuralla(
 
 export function resolverAtaqueJugador(combate: {
   jugadorAtaque: number;
+  jugadorAtaqueMagico?: number;
+  usarMejorAtaqueMagico?: boolean;
   jugadorNivel: number;
   jugadorProbCritico: number;
   jugadorDanoCritico: number;
   enemigoDefensa: number;
+  enemigoDefensaMagica?: number;
   enemigoNombre: string;
   jugadorPrecision?: number;
   enemigoEvasion?: number;
@@ -140,15 +143,19 @@ export function resolverAtaqueJugador(combate: {
 
   const variacion = 0.8 + Math.random() * 0.4;
 
+  const ataqueMagico = combate.jugadorAtaqueMagico ?? 0;
+  const usarAtaqueMagico =
+    combate.usarMejorAtaqueMagico === true && ataqueMagico > combate.jugadorAtaque;
+  const ataqueEfectivo = usarAtaqueMagico ? ataqueMagico : combate.jugadorAtaque;
+  const defensaEfectiva = usarAtaqueMagico
+    ? (combate.enemigoDefensaMagica ?? combate.enemigoDefensa)
+    : combate.enemigoDefensa;
   const danoBase =
-    Math.floor(combate.jugadorAtaque * variacion) + combate.jugadorNivel;
+    Math.floor(ataqueEfectivo * variacion) + combate.jugadorNivel;
 
   const esCritico = Math.random() < combate.jugadorProbCritico || dado === 20;
 
-  const danoAntesCritico = calcularDanoMitigado(
-    danoBase,
-    combate.enemigoDefensa
-  );
+  const danoAntesCritico = calcularDanoMitigado(danoBase, defensaEfectiva);
 
   const dano = esCritico
     ? Math.max(1, Math.floor(danoAntesCritico * combate.jugadorDanoCritico))
@@ -168,9 +175,12 @@ export function resolverAtaqueJugador(combate: {
 
 export function resolverAtaqueEnemigo(combate: {
   enemigoAtaque: number;
+  enemigoAtaqueMagico?: number;
+  usarMejorAtaqueMagico?: boolean;
   enemigoProbCritico?: number;
   enemigoDanoCritico?: number;
   jugadorDefensa: number;
+  jugadorDefensaMagica?: number;
   enemigoNombre: string;
   enemigoPrecision?: number;
   jugadorEvasion?: number;
@@ -194,17 +204,21 @@ export function resolverAtaqueEnemigo(combate: {
 
   const variacion = 0.8 + Math.random() * 0.4;
 
-  const danoBase = Math.floor(combate.enemigoAtaque * variacion) + 1;
+  const ataqueMagico = combate.enemigoAtaqueMagico ?? 0;
+  const usarAtaqueMagico =
+    combate.usarMejorAtaqueMagico === true && ataqueMagico > combate.enemigoAtaque;
+  const ataqueEfectivo = usarAtaqueMagico ? ataqueMagico : combate.enemigoAtaque;
+  const defensaEfectiva = usarAtaqueMagico
+    ? (combate.jugadorDefensaMagica ?? combate.jugadorDefensa)
+    : combate.jugadorDefensa;
+  const danoBase = Math.floor(ataqueEfectivo * variacion) + 1;
 
   const probCritico = combate.enemigoProbCritico ?? 0.1;
   const danoCritico = combate.enemigoDanoCritico ?? 1.5;
 
   const esCritico = Math.random() < probCritico || dado === 20;
 
-  const danoAntesCritico = calcularDanoMitigado(
-    danoBase,
-    combate.jugadorDefensa
-  );
+  const danoAntesCritico = calcularDanoMitigado(danoBase, defensaEfectiva);
 
   const dano = esCritico
     ? Math.max(1, Math.floor(danoAntesCritico * danoCritico))
@@ -248,6 +262,38 @@ export interface ResultadoHabilidad {
   enemigoDefensa: number;
   efectos: import("@/lib/tiposJuego").EstadoEfectoHabilidad[];
   efectosJugadorActualizados?: import("@/lib/tiposJuego").EstadoEfectoHabilidad[];
+}
+
+function obtenerPresentacionProyectilHabilidad(
+  habilidad: DefinicionHabilidad,
+): PresentacionVisualCombate | undefined {
+  if (habilidad.efecto !== "dano" || habilidad.tipoDano !== "magico") return undefined;
+
+  const referencia = `${habilidad.id} ${habilidad.claseId ?? ""}`
+    .normalize("NFD")
+    .replace(/[\\u0300-\\u036f]/g, "")
+    .toLowerCase();
+
+  if (/(bola_fuego|fuego|llama|quemadura)/.test(referencia)) {
+    return { modo: "proyectil", proyectil: "bola_fuego", elemento: "fuego", impacto: "explosion" };
+  }
+  if (/(hielo|escarcha|frio)/.test(referencia)) {
+    return { modo: "proyectil", proyectil: "esquirla_hielo", elemento: "hielo", impacto: "escarcha" };
+  }
+  if (/(rayo|electri|tormenta)/.test(referencia)) {
+    return { modo: "proyectil", proyectil: "rayo", elemento: "rayo", impacto: "destello" };
+  }
+  if (/(natur|raices|semilla|zarzas|druida)/.test(referencia)) {
+    return { modo: "proyectil", proyectil: "semilla_natural", elemento: "naturaleza", impacto: "onda" };
+  }
+  if (/(sagrad|acolito|sacerdote|oraculo|hierofante|paladin|cruzado)/.test(referencia)) {
+    return { modo: "proyectil", proyectil: "energia_sagrada", elemento: "sagrado", impacto: "sagrado" };
+  }
+  if (/(sombra|funebre|maldit|drenaje|necrom|nigrom|demon|brujo|abismo|pacto|infernal)/.test(referencia)) {
+    return { modo: "proyectil", proyectil: "orbe_sombra", elemento: "sombras", impacto: "destello" };
+  }
+
+  return { modo: "proyectil", proyectil: "esfera_arcana", elemento: "arcano", impacto: "destello" };
 }
 
 export function resolverHabilidadJugador(
@@ -333,10 +379,10 @@ export function resolverHabilidadJugador(
     efectos: [] as import("@/lib/tiposJuego").EstadoEfectoHabilidad[],
   });
 
-  const presentarAccion = (accion: AccionAnimadaCombate): AccionAnimadaCombate =>
-    habilidad.presentacionVisual
-      ? { ...accion, presentacion: habilidad.presentacionVisual }
-      : accion;
+  const presentarAccion = (accion: AccionAnimadaCombate): AccionAnimadaCombate => {
+    const presentacion = habilidad.presentacionVisual ?? obtenerPresentacionProyectilHabilidad(habilidad);
+    return presentacion ? { ...accion, presentacion } : accion;
+  };
 
   switch (habilidad.efecto) {
     case "dano": {

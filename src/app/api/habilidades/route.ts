@@ -79,8 +79,12 @@ export async function GET(request: Request) {
     const personaje = usuario.personaje;
     const progresosClase = personaje.progresosClase;
     const profesionActivaId = personaje.profesionActivaId || "novato";
+    // Super Novato es una profesión generalista: siempre muestra las habilidades
+    // de sus ramas de Tier 1, aunque el selector opcional esté desmarcado.
+    const incluirOtrasClasesEfectivo =
+      incluirOtrasClasesRama || profesionActivaId === "superNovato";
     const habilidadesEnVenta = obtenerHabilidadesEnVenta(profesionActivaId).filter((habilidad) =>
-      incluirOtrasClasesRama || (habilidad.claseId ?? profesionActivaId) === profesionActivaId
+      incluirOtrasClasesEfectivo || (habilidad.claseId ?? profesionActivaId) === profesionActivaId
     );
     const progresoJob = progresosClase.find(
       (progreso) => progreso.claseId === profesionActivaId && progreso.desbloqueada
@@ -131,7 +135,7 @@ export async function GET(request: Request) {
       escuelaNivel: nivelEscuela,
       profesionActivaId,
       profesionNombre: CLASES[profesionActivaId]?.nombre ?? profesionActivaId,
-      incluirOtrasClasesRama,
+      incluirOtrasClasesRama: incluirOtrasClasesEfectivo,
       progresoJob: progresoJob ?? null,
       enVenta,
       aprendidas: habilidadesAprendidas.map((aprendida) => ({

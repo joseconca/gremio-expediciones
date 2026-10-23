@@ -10,7 +10,7 @@ import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { obtenerObjetoPorId } from "@/lib/objetos";
 import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/lib/estadisticasPersonaje";
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
-import { obtenerPresentacionAtaqueBasico } from "@/lib/expediciones/presentacion-combate";
+import { obtenerPresentacionAtaqueBasico, usaAtaqueMagicoBasico } from "@/lib/expediciones/presentacion-combate";
 import { ajustarHabilidadPorNivel } from "@/lib/progresion/niveles-habilidad";
 import { puedeUsarHabilidadDeClase } from "@/lib/progresion/clases";
 import type { DefinicionHabilidad, EstadoEfectoHabilidad } from "@/lib/tiposJuego";
@@ -1186,20 +1186,24 @@ export async function ejecutarAccionCombateParty(
     }>();
 
     if (accionDesconocida === "atacar") {
+      const armaEquipadaId = personaje.equipoEquipado?.arma?.objetoId;
+      const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
+      const usarAtaqueMagico = usaAtaqueMagicoBasico(subtipoArma);
       accion = resolverAtaqueJugador({
         jugadorAtaque: calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador),
+        jugadorAtaqueMagico: calcularAtaqueModificado(participante.jugadorAtaqueMagico, efectosJugador, true),
+        usarMejorAtaqueMagico: usarAtaqueMagico,
         jugadorNivel: participante.jugadorNivel,
         jugadorProbCritico: participante.jugadorProbCritico,
         jugadorDanoCritico: participante.jugadorDanoCritico,
         jugadorPrecision: calcularPrecisionModificada(participante.jugadorPrecision, efectosJugador),
         enemigoEvasion: calcularEvasionModificada(enemigoSeleccionado.evasion, efectosEnemigo),
         enemigoDefensa,
+        enemigoDefensaMagica: enemigoSeleccionado.defensaMagica,
         enemigoNombre: enemigoSeleccionado.nombre,
       });
       accion = { ...accion, enemigoObjetivoId: enemigoSeleccionado.id };
       danoEnemigoPorId.set(enemigoSeleccionado.id, accion.dano);
-      const armaEquipadaId = personaje.equipoEquipado?.arma?.objetoId;
-      const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
       const presentacionArma = obtenerPresentacionAtaqueBasico(subtipoArma);
       if (presentacionArma) accion = { ...accion, presentacion: presentacionArma };
     } else if (accionDesconocida === "usar_habilidad") {

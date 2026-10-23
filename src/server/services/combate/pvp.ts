@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { obtenerObjetoPorId } from "@/lib/objetos";
-import { obtenerPresentacionAtaqueBasico } from "@/lib/expediciones/presentacion-combate";
+import { obtenerPresentacionAtaqueBasico, usaAtaqueMagicoBasico } from "@/lib/expediciones/presentacion-combate";
 
 function adjuntarPulsosEstado(
   accion: AccionAnimadaCombate,
@@ -72,6 +72,9 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
     enemigoDefensa,
   } = contexto;
   const { log } = contexto;
+  const armaEquipadaId = personaje.equipoEquipado?.arma?.objetoId;
+  const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
+  const usarAtaqueMagico = usaAtaqueMagicoBasico(subtipoArma);
   let accionAnimada: AccionAnimadaCombate;
   try {
     // PVP
@@ -127,6 +130,8 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
       if (accion === "atacar") {
         accionAnimada = resolverAtaqueJugador({
           jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
+          jugadorAtaqueMagico: calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true),
+          usarMejorAtaqueMagico: usarAtaqueMagico,
           jugadorNivel: combate.jugadorNivel,
           jugadorProbCritico: combate.jugadorProbCritico,
           jugadorDanoCritico: combate.jugadorDanoCritico,
@@ -134,6 +139,9 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
           enemigoEvasion: calcularEvasionModificada(combate.enemigoEvasion ?? 0, efectosDefensor),
           enemigoDefensa:
             combate.enemigoDefensa +
+            calcularBonusDefensaMuralla(combate.murallaNivel ?? 0),
+          enemigoDefensaMagica:
+            (combate.enemigoDefensaMagica ?? combate.enemigoDefensa) +
             calcularBonusDefensaMuralla(combate.murallaNivel ?? 0),
           enemigoNombre: combate.enemigoNombre ?? "Defensor",
         });
@@ -201,9 +209,12 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
       if (accion === "atacar") {
         accionAnimada = resolverAtaqueEnemigo({
           enemigoAtaque: calcularAtaqueModificado(combate.enemigoAtaque, efectosDefensor),
+          enemigoAtaqueMagico: calcularAtaqueModificado(combate.enemigoAtaqueMagico ?? combate.enemigoAtaque, efectosDefensor, true),
+          usarMejorAtaqueMagico: usarAtaqueMagico,
           enemigoPrecision: calcularPrecisionModificada(combate.enemigoPrecision ?? 75, efectosDefensor),
           jugadorEvasion: calcularEvasionModificada(combate.jugadorEvasion ?? 0, efectos),
           jugadorDefensa,
+          jugadorDefensaMagica: combate.jugadorDefensaMagica ?? jugadorDefensa,
           enemigoNombre: personaje.nombre,
         });
 
@@ -269,8 +280,6 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
     }
 
     if (accion === "atacar") {
-      const armaEquipadaId = personaje.equipoEquipado?.arma?.objetoId;
-      const subtipoArma = armaEquipadaId ? obtenerObjetoPorId(armaEquipadaId)?.subtipo : undefined;
       const presentacionArma = obtenerPresentacionAtaqueBasico(subtipoArma);
       if (presentacionArma) accionAnimada = { ...accionAnimada, presentacion: presentacionArma };
     }

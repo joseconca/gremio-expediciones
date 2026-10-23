@@ -1051,6 +1051,11 @@ export function obtenerSpriteObjeto(
   ]);
   if (objetosSinSprite.has(objeto.id)) return null;
 
+  // Las variantes de poción reutilizan el asset real disponible en el catálogo.
+  if (objeto.tipo === "consumible") {
+    return objeto.id.startsWith("pocion") ? "/sprites/items/consumables/pocion.png" : null;
+  }
+
   const carpetaPorTipo: Record<
     "arma" | "armadura" | "accesorio" | "consumible",
     string
@@ -1081,6 +1086,20 @@ export function obtenerSpriteObjeto(
   }
 
   return `/sprites/items/${carpetaPorTipo[objeto.tipo]}/${objeto.id}.png`;
+}
+
+/** Icono alternativo cuando el objeto todavía no tiene un sprite dedicado. */
+export function obtenerIconoObjeto(
+  objeto: Pick<DefinicionObjeto, "id" | "tipo">
+): string {
+  if (objeto.tipo === "consumible") {
+    if (objeto.id === "ceniza_fenix") return "🔥";
+    if (objeto.id === "elixir_guerrero") return "⚗️";
+    if (objeto.id.includes("mana")) return "💧";
+    if (objeto.id.includes("energia")) return "⚡";
+    return "🧪";
+  }
+  return "🎒";
 }
 
 export function obtenerObjetosPorTipo(
