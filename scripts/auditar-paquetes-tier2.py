@@ -173,6 +173,98 @@ def check_action(class_id: str, sex: str, action: str, row: int) -> int:
     return 1
 
 
+def check_rework_staging(class_id: str, sex: str, action: str) -> int:
+    """Validate the isolated AI-art rework strip against its native PNG source."""
+    sex_root = (
+        ROOT / "assets" / "spritesheets" / "originales" / class_id / "v2"
+        / "rework-staging" / sex
+    )
+    qa_path = sex_root / f"{action}-right-4f.qa.json"
+    if not qa_path.is_file():
+        fail(f"falta QA de staging {qa_path.relative_to(ROOT)}")
+    try:
+        report = json.loads(qa_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        fail(f"QA de staging ilegible {qa_path.relative_to(ROOT)}: {error}")
+
+    if (report.get("classId"), report.get("sex"), report.get("action")) != (class_id, sex, action):
+        fail(f"{qa_path.relative_to(ROOT)}: classId/sex/action no coincide con la ruta")
+    if report.get("direction") != "right":
+        fail(f"{qa_path.relative_to(ROOT)}: la animación debe mirar a la derecha")
+    checks = report.get("checks", {})
+    if checks.get("runtimeApproved") is not False:
+        fail(f"{qa_path.relative_to(ROOT)}: staging debe seguir fuera del runtime")
+
+    expanded_meta = report.get("expandedSheet", {})
+    expanded_path = sex_root / expanded_meta.get("path", f"{action}-right-4f.png")
+    expanded = rgba(expanded_path)
+    if expanded.size != STRIP_SIZE:
+        fail(f"{expanded_path.relative_to(ROOT)}: tamaño {expanded.size}, esperado {STRIP_SIZE}")
+    if expanded.getchannel("A").getextrema() != (0, 255):
+        fail(f"{expanded_path.relative_to(ROOT)}: falta transparencia alfa efectiva")
+    if expanded_meta.get("width") != STRIP_SIZE[0] or expanded_meta.get("height") != STRIP_SIZE[1]:
+        fail(f"{qa_path.relative_to(ROOT)}: los metadatos de la tira ampliada no coinciden")
+
+    native_meta = report.get("nativeFrames", {})
+    native_width = native_meta.get("width")
+    native_height = native_meta.get("height")
+    native_rel = native_meta.get("path")
+    if not native_rel or native_meta.get("count") != 4:
+        fail(f"{qa_path.relative_to(ROOT)}: no hay referencia a cuatro frames nativos")
+
+    native_images = []
+    if (native_width, native_height) == (128, 64):
+        native_path = sex_root / native_rel
+        native_strip = rgba(native_path)
+        if native_strip.size != (128, 64):
+            fail(f"{native_path.relative_to(ROOT)}: la tira nativa debe medir 128x64")
+        if native_strip.getchannel("A").getextrema() != (0, 255):
+            fail(f"{native_path.relative_to(ROOT)}: falta transparencia en la tira nativa")
+        native_images = [
+            native_strip.crop((i * 32, 0, (i + 1) * 32, 64))
+            for i in range(4)
+        ]
+    elif (native_width, native_height) == NATIVE_SIZE:
+        native_dir = sex_root / native_rel
+        for index in range(1, 5):
+            filename = f"{class_id}-{sex}-{action}-{index:02d}.png"
+            candidates = (native_dir / filename, native_dir / sex / filename)
+            native_path = next((candidate for candidate in candidates if candidate.is_file()), None)
+            if native_path is None:
+                fail(f"{qa_path.relative_to(ROOT)}: falta frame nativo {filename}")
+            native_images.append(rgba(native_path))
+    else:
+        fail(f"{qa_path.relative_to(ROOT)}: formato de fuente nativa no soportado: {native_width}x{native_height}")
+
+    frame_hashes = set()
+    for index, native in enumerate(native_images):
+        if native.size != NATIVE_SIZE:
+            fail(f"{qa_path.relative_to(ROOT)}: frame nativo {index + 1} no mide 32x64")
+        if native.getchannel("A").getbbox() is None:
+            fail(f"{qa_path.relative_to(ROOT)}: frame nativo {index + 1} está vacío")
+        frame_hashes.add(hashlib.sha256(native.tobytes()).hexdigest())
+        expected = native.resize(FRAME_SIZE, Image.Resampling.NEAREST)
+        expanded_cell = expanded.crop((
+            index * FRAME_SIZE[0], 0,
+            (index + 1) * FRAME_SIZE[0], FRAME_SIZE[1],
+        ))
+        if expected.tobytes() != expanded_cell.tobytes():
+            fail(f"{qa_path.relative_to(ROOT)}: la celda ampliada {index + 1} no coincide con su frame nativo")
+    if len(frame_hashes) != 4:
+        fail(f"{qa_path.relative_to(ROOT)}: los cuatro frames nativos deben ser distintos")
+
+    for key in (
+        "expandedDimensions", "nativeDimensions", "expandedMatchesNativeFrames",
+        "transparentIndexPresent", "allFramesNonEmpty", "allFrameCellsNonEmpty",
+        "everyCellHasVisiblePixels", "fourCells", "fourUniqueFrames",
+        "expandedModeRGBA", "perPixelAlphaPresent",
+    ):
+        if key in checks and checks[key] is not True:
+            fail(f"{qa_path.relative_to(ROOT)}: check técnico {key} no está aprobado")
+
+    return 1
+
+
 def main() -> None:
     actions_checked = 0
     for class_id in CLASSES:
@@ -185,11 +277,21 @@ def main() -> None:
     native_frames = expected_actions * 4
     if actions_checked != expected_actions:
         fail(f"se validaron {actions_checked} acciones, se esperaban {expected_actions}")
+
+    rework_actions_checked = 0
+    for class_id in ("elementalista", "brujo", "cazador", "explorador"):
+        for sex in SEXES:
+            for action in ACTIONS:
+                rework_actions_checked += check_rework_staging(class_id, sex, action)
+    if rework_actions_checked != 24:
+        fail(f"se validaron {rework_actions_checked} acciones en rework-staging, se esperaban 24")
+
     print(
         "OK: "
         f"{actions_checked} tiras Tier 2, {native_frames} frames nativos y "
-        f"{len(CLASSES) * len(SEXES)} másteres auditados; "
-        "todos siguen marcados fuera del runtime."
+        f"{len(CLASSES) * len(SEXES)} másteres canónicos auditados; "
+        f"{rework_actions_checked} tiras de rework-staging verificadas. "
+        "Todos siguen fuera del runtime."
     )
 
 
