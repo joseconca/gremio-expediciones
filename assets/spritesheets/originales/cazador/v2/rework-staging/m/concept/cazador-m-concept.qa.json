@@ -5,11 +5,12 @@
   "stage": "concept",
   "status": "staging-concept-review-pending",
   "preview": {
-    "path": "concept/cazador-m-concept-128x192.png",
+    "path": "rework-staging/m/concept/cazador-m-concept-128x192.png",
     "width": 128,
     "height": 192,
     "mode": "P",
-    "transparencyIndex": 0
+    "transparencyIndex": 0,
+    "sha256": "a058faa399d6afa649f461172910298804363f74bd82fc8e8aa0d8352422925a"
   },
   "sourceMaster": {
     "libraryPath": "/GameAssets/Tier2/Cazador/cazador-m-concept-hires.png",
@@ -21,15 +22,26 @@
   },
   "checks": {
     "dimensions": true,
-    "transparentIndexPresent": true,
-    "fullBody": true,
-    "weaponsAbsent": true,
+    "transparencyIndex": true,
+    "fullBodyVisible": true,
+    "weaponAbsent": true,
     "uiAbsent": true,
     "runtimeApproved": false
   },
+  "artDirection": {
+    "palette": [
+      "forest green",
+      "brown leather",
+      "ochre",
+      "cream",
+      "charcoal"
+    ],
+    "silhouette": "layered ranger cloak and practical leather armor",
+    "hands": "empty"
+  },
   "notes": [
-    "Original high-resolution concept is stored separately in the persistent library.",
-    "Compact concept is a review proxy, not a runtime sprite.",
-    "Forest-green and umber leather ranger silhouette; no bow, quiver, blades or tools."
+    "Concept-only preview derived from the original high-resolution master preserved in Library.",
+    "A second independent high-resolution concept variant is also archived at /GameAssets/Tier2/Cazador/cazador-m-concept-hires-variant-02.png.",
+    "This preview is not a production sprite; idle, walk and hurt will be built as distinct four-frame animations later."
   ]
 }

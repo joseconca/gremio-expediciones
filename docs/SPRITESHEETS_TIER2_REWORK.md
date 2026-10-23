@@ -17,7 +17,8 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 - **Elementalista femenino:** concept, idle, walk y hurt guardados como primeros pases en staging. QA técnico inicial completado; la armonización artística queda para el final.
 - **Brujo masculino:** concept, idle, walk y hurt en staging, cuatro frames por acción y QA técnico inicial. Los originales grandes exactos están preservados en `/GameAssets/Tier2/Brujo/brujo-m-originales-alta-resolucion.zip`.
 - **Brujo femenino:** concept, idle, walk y hurt completos como primer pase en staging. Cada acción tiene cuatro frames, fuente nativa de 32×64 y tira ampliada de 256×128; QA técnico verifica dimensiones, transparencia y correspondencia de las celdas. Sus másteres grandes están en la biblioteca con SHA-256 en `assets/spritesheets/originales/brujo/v2/source-hires/female-manifest.json`. El source original de walk tenía el damero incrustado; el original está preservado intacto y hay una derivación con transparencia real.
-- **Siguiente:** Cazador masculino (concept → idle → walk → hurt), luego Cazador femenino, Explorador masculino y Explorador femenino. No rehacer las clases que ya estaban terminadas.
+- **Cazador masculino:** concept creado como preview 128×192 en staging; el máster RGBA 1114×1412 queda archivado en la biblioteca con SHA-256. Se conserva además una segunda variante de alta resolución. No tiene armas ni herramientas. Idle, walk y hurt pendientes.
+- **Siguiente:** Cazador masculino: idle → walk → hurt, cuatro frames mirando a la derecha; después Cazador femenino, Explorador masculino y Explorador femenino. No rehacer clases ya terminadas.
 - La pasada global de coherencia visual se hará al final, con los primeros pases de todas las clases pendientes listos.
 
 ## Historial reciente
@@ -29,4 +30,5 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 - `c662701` — idle femenino del Brujo y máster hires catalogado.
 - `21310ba` — walk femenino del Brujo, original y derivación transparente preservados.
 - `ff880fd` — hurt femenino del Brujo.
+- Próximo checkpoint: idle del Cazador masculino.
 - Próximo checkpoint: concept del Cazador masculino.

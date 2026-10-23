@@ -2,6 +2,7 @@
   "schemaVersion": 1,
   "classId": "cazador",
   "sex": "m",
+  "purpose": "Preserved high-resolution concept art masters; separate from runtime sprites.",
   "sources": [
     {
       "name": "cazador-m-concept-hires.png",
@@ -10,11 +11,30 @@
       "height": 1412,
       "mode": "RGBA",
       "sha256": "59e1b1554653134b13a40f049d4003fd63606e8c46eafeb7bf570d3822451ce3",
-      "transparentBackground": true
+      "transparentBackground": true,
+      "selectedForCurrentConcept": true
+    },
+    {
+      "name": "cazador-m-concept-hires-variant-02.png",
+      "libraryPath": "/GameAssets/Tier2/Cazador/cazador-m-concept-hires-variant-02.png",
+      "width": 1114,
+      "height": 1412,
+      "mode": "RGBA",
+      "sha256": "f6ab37ec8fa8599e966d8dbdf7f13d0bd0c544a8af6c776c48f2d19ba994c2ff",
+      "transparentBackground": true,
+      "selectedForCurrentConcept": false
     }
   ],
+  "preview": {
+    "path": "rework-staging/m/concept/cazador-m-concept-128x192.png",
+    "width": 128,
+    "height": 192,
+    "mode": "P",
+    "transparentPaletteIndex": 0,
+    "sha256": "a058faa399d6afa649f461172910298804363f74bd82fc8e8aa0d8352422925a"
+  },
   "notes": [
-    "Large original preserved in the persistent library.",
-    "Staging sprites remain separate."
+    "Preserve both masters; neither is overwritten by the compact review preview.",
+    "No weapons or held props appear in the character concept."
   ]
 }
