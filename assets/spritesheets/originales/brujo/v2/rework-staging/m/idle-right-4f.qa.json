@@ -37,7 +37,7 @@
   },
   "notes": [
     "The native strip is 128x64 and contains four 32x64 cells. The expanded strip is 256x128 with four 64x128 cells.",
-    "QA checks the pixel indices in each expanded cell against the corresponding native frame scaled by nearest-neighbour.",
+    "QA checks each expanded cell against the corresponding native frame scaled by nearest-neighbour.",
     "Shared palette and transparent index 34 are used across all frames.",
     "Art is a staging draft; idle variations are subtle and will be checked during the final cross-class polish."
   ]
