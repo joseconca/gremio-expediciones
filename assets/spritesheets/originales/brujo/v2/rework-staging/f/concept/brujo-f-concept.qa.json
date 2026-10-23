@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "classId": "brujo",
+  "sex": "f",
+  "stage": "concept",
+  "status": "staging-concept-review-pending",
+  "preview": {
+    "path": "concept/brujo-f-concept-128x192.png",
+    "width": 128,
+    "height": 192,
+    "mode": "P",
+    "transparencyIndex": 0
+  },
+  "sourceMaster": {
+    "libraryPath": "/GameAssets/Tier2/Brujo/brujo-f-concept-hires.png",
+    "width": 1111,
+    "height": 1416,
+    "mode": "RGBA",
+    "transparentBackground": true,
+    "sha256": "0c1fd35f5892635e21f1601bcf1209608f6d81e4e3dd915fde30a71c2b86c33e"
+  },
+  "artDirection": {
+    "palette": [
+      "charcoal",
+      "black-violet",
+      "amethyst",
+      "silver"
+    ],
+    "silhouette": "long layered robes and broad asymmetric cape",
+    "hands": "empty"
+  },
+  "checks": {
+    "dimensions": true,
+    "transparentIndexPresent": true,
+    "fullBody": true,
+    "weaponsAbsent": true,
+    "uiAbsent": true,
+    "runtimeApproved": false
+  },
+  "notes": [
+    "High-resolution source master was preserved separately in the persistent library.",
+    "The 128x192 preview is a compact visual reference, not a runtime sprite.",
+    "Female Warlock has a distinct silhouette and accessories from the male version while retaining the approved style."
+  ]
+}
