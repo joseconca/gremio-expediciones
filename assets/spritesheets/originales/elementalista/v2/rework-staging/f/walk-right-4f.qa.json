@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "classId": "elementalista",
+  "sex": "f",
+  "action": "walk",
+  "direction": "right",
+  "status": "staging-indexed-transparent-art-review-pending",
+  "nativeFrames": {
+    "path": "walk/frames-native-32x64/",
+    "width": 32,
+    "height": 64,
+    "mode": "P",
+    "transparency": "indexed transparent key",
+    "count": 4
+  },
+  "expandedSheet": {
+    "path": "walk-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "mode": "P",
+    "transparency": "indexed transparent key",
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "construction": "nearest-neighbour upscale from the four native indexed PNGs"
+  },
+  "checks": {
+    "nativeDimensions": true,
+    "expandedDimensions": true,
+    "expandedMatchesNativeFrames": true,
+    "transparentIndexPresent": true,
+    "allFramesNonEmpty": true,
+    "fourUniqueFrames": true,
+    "runtimeApproved": false,
+    "requiresArtReview": true
+  },
+  "notes": [
+    "Four right-facing walk frames have a shared baseline and use the same palette across the action.",
+    "Transparent palette index verified; the expanded cells exactly match native frame upscales.",
+    "Hands are empty and no weapons, UI or scenery are included.",
+    "This is a staging draft. The walk motion is present but subtle and remains queued for final cross-class art polish."
+  ]
+}
