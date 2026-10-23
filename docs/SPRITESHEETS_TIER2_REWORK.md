@@ -41,6 +41,13 @@ Por clase, completar un sexo cada vez: concept art → idle derecha (4 frames) �
 - Imagen recortada a 96×144 con transparencia indexada y paleta de 24 colores; es concept art compacto y no está destinado a runtime.
 - Próximo paso: construir `idle` mirando a la derecha con cuatro frames, después `walk` y `hurt`; cada fase llevará QA de transparencia, dimensiones y continuidad, sin usar armas.
 
+## Estado actual — Elementalista femenino
+- Concept art guardado en `rework-staging/f/concept/elementalista-f-concept-96x144.png` (96×144, PNG indexado con transparencia, referencia compacta; no runtime).
+- Primer borrador de `idle` derecha guardado como tira de 256×128 y cuatro frames nativos de 32×64 en `rework-staging/f/idle/`.
+- QA: cuatro celdas no vacías y distintas, transparencia por índice verificada y correspondencia exacta entre tiras ampliadas y frames nativos.
+- **Checkpoint de revisión, no exportación final**: el archivo usa transparencia indexada para mantener pequeño el staging; sigue pendiente la exportación RGBA de producción y revisión artística. Las poses de idle son sutiles.
+- Próximo paso: revisar/refinar el idle, exportarlo a RGBA tras aprobación, y después crear `walk` y `hurt` hacia la derecha, cuatro frames cada una, siempre sin armas.
+
 ## Estado actual — Elementalista masculino
 - Referencia: pelo plateado, manto azul profundo, túnica marfil, ribetes dorados y manos vacías.
 - `idle-right-4f.png`, `walk-right-4f.png` y `hurt-right-4f.png`: tiras RGBA de 256×128 px, cuatro celdas de 64×128 con transparencia por píxel.
@@ -59,5 +66,7 @@ Por clase, completar un sexo cada vez: concept art → idle derecha (4 frames) �
 - `e2f1dad` — tira RGBA idle.
 - `7cf8539` — borrador walk y frames nativos RGBA.
 - `29aa148` — frames nativos hurt y QA inicial.
-- `848b32e` — tira hurt RGBA ampliada, QA técnico comprobado y plan actualizado.
-- Próximo checkpoint: arte refinado del Elementalista masculino; los borradores actuales siguen sin aprobarse para producción.
+- `848b32e` — tira hurt RGBA ampliada y QA técnico.
+- `1c3724d` — registrar hurt y mantener la revisión artística pendiente.
+- `44b0c84` — concept art femenino en staging.
+- Siguiente checkpoint: idle femenino para revisión; ninguna clase nueva se integra en producción hasta aprobar el acabado artístico.

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "classId": "elementalista",
+  "sex": "f",
+  "action": "idle",
+  "direction": "right",
+  "status": "staging-indexed-preview-art-review-pending",
+  "nativeFrames": {
+    "path": "idle/frames-native-32x64/f/",
+    "width": 32,
+    "height": 64,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "count": 4
+  },
+  "expandedSheet": {
+    "path": "elementalista-f-idle-right-4f-indexed.png",
+    "width": 256,
+    "height": 128,
+    "mode": "P",
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "transparencyIndex": 0,
+    "construction": "native indexed frames upscaled 2x with nearest-neighbour"
+  },
+  "checks": {
+    "nativeDimensions": true,
+    "expandedDimensions": true,
+    "expandedMatchesNativeFrames": true,
+    "transparentIndexPresent": true,
+    "allFramesNonEmpty": true,
+    "fourUniqueFrames": true,
+    "runtimeApproved": false,
+    "requiresRgbaExportForProduction": true
+  },
+  "notes": [
+    "Four right-facing idle poses were cropped from a generated sprite strip and aligned to a shared baseline.",
+    "This compact staging checkpoint uses palette-indexed PNG transparency (transparent index 0) to keep review assets small; it is not the required final RGBA export.",
+    "Each expanded cell matches its native indexed frame upscaled with nearest-neighbour.",
+    "Pose deltas are subtle. Artist review and an RGBA production export are required before approval.",
+    "No weapons, UI, or background elements are included. Production sprites remain untouched."
+  ]
+}
