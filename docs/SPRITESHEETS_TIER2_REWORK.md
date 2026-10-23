@@ -74,5 +74,12 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 
 ## Checkpoint — Explorador femenino `walk` (23-10-2026)
 
-- `walk` femenino guardado en staging: cuatro frames nativos 32×64, tira 256×128, transparencia y QA que verifica cuatro poses únicas y escalado exacto. La fuente original con damero permanece intacta en la biblioteca, además de su derivación transparente.
-- Siguiente: `hurt` femenino; después revisar coherencia artística de los cuatro primeros pases antes de cualquier integración al runtime.
+- `walk` femenino: los cuatro frames nativos 32×64 se han restaurado con QA de transparencia y poses únicas. La auditoría detectó que la tira ampliada publicada no era un PNG válido y que la nativa anterior duplicaba `idle`; se retiró el archivo ampliado defectuoso. El master original RGB con damero y la derivación transparente permanecen archivados.
+- Próximo paso inmediato: regenerar y verificar la tira ampliada 256×128 desde la nativa correcta; solo entonces cerrar `walk` y pasar a `hurt` femenino. No integrar al runtime.
+
+
+## Reparación de integridad — Explorador femenino `walk` (23-10-2026)
+
+- Auditado el checkpoint `927af1d`: la nativa publicada duplicaba la tira de `idle` y la ampliada no superaba la validación de PNG. Se restaura la nativa correcta (`d943786d…`) y se elimina la ampliada defectuosa en vez de conservarla como válida.
+- El QA marca explícitamente la expansión como pendiente (`expandedSheet: null`, checks de expansión en falso) para evitar una falsa señal de completitud. El máster original RGB con damero y su derivación transparente RGBA continúan archivados en la biblioteca.
+- Siguiente: regenerar la ampliación 256×128, verificarla píxel a píxel y hacer commit; después generar `hurt` femenino.

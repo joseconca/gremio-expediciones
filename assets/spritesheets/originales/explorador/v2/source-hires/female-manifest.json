@@ -59,10 +59,10 @@
       "libraryPath": "/GameAssets/Tier2/Explorador/explorador-f-walk-hires-original.png",
       "width": 1983,
       "height": 793,
-      "mode": "RGBA",
+      "mode": "RGB",
       "sha256": "bc125f9f3372722aebdc23a787a70472322cf483458be6920e8d9132cab814e1",
       "transparentBackground": false,
-      "notes": "Original generated hires sheet preserved unchanged; checkerboard is baked into the RGB pixels and alpha is opaque."
+      "notes": "Original generated hires sheet preserved unchanged; source is RGB with opaque checkerboard pixels."
     },
     {
       "name": "explorador-f-walk-hires-transparent-derived.png",
@@ -72,13 +72,14 @@
       "mode": "RGBA",
       "sha256": "ea575837c0ce1d93fa41e81cb19477867d24a46aecc05b75686173475eea3381",
       "transparentBackground": true,
-      "derivedFrom": "explorador-f-walk-hires-original.png"
+      "derivedFrom": "explorador-f-walk-hires-original.png",
+      "notes": "Separately derived transparent version used to extract the walk frames."
     }
   ],
   "notes": [
     "Female explorer first-pass concept is distinct from the Hunter: travel scout silhouette, compass ornaments, map case and empty hands.",
     "The hires concept is retained separately from the compact staging preview.",
     "Female explorer idle source preserved as a high-resolution RGBA master and separate transparent-derived version.",
-    "Female explorer walk source is archived as opaque original plus separately derived transparent master."
+    "Female explorer walk masters preserved: opaque RGB original and separately derived transparent RGBA version. Native walk strip is verified; expanded strip remains pending regeneration after an integrity audit."
   ]
 }

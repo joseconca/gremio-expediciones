@@ -4,11 +4,11 @@
   "sex": "f",
   "action": "walk",
   "direction": "right",
-  "status": "staging-indexed-transparent-art-review-pending",
+  "status": "staging-native-corrected-expanded-pending",
   "sourceMaster": {
     "originalLibraryPath": "/GameAssets/Tier2/Explorador/explorador-f-walk-hires-original.png",
     "originalSha256": "bc125f9f3372722aebdc23a787a70472322cf483458be6920e8d9132cab814e1",
-    "originalMode": "RGBA",
+    "originalMode": "RGB",
     "originalHasOpaqueCheckerboard": true,
     "transparentDerivedLibraryPath": "/GameAssets/Tier2/Explorador/explorador-f-walk-hires-transparent-derived.png",
     "transparentDerivedSha256": "ea575837c0ce1d93fa41e81cb19477867d24a46aecc05b75686173475eea3381",
@@ -27,31 +27,22 @@
     "count": 4,
     "sha256": "d943786d42d6f674bdde27d8a7436147fceaf72d0c0aeb0247bac1634d813cc4"
   },
-  "expandedSheet": {
-    "path": "walk-right-4f.png",
-    "width": 256,
-    "height": 128,
-    "cellWidth": 64,
-    "cellHeight": 128,
-    "mode": "P",
-    "transparencyIndex": 0,
-    "sha256": "a4d84f4cade17d521f0fb91dc541be9c73d399a50f833f5f1fa8773201177c6f",
-    "construction": "nearest-neighbour upscale of native frames"
-  },
+  "expandedSheet": null,
   "checks": {
     "nativeDimensions": true,
-    "expandedDimensions": true,
+    "expandedDimensions": false,
     "transparentIndexPresent": true,
     "allFrameCellsNonEmpty": true,
     "fourUniqueFrames": true,
-    "expandedMatchesNativeFrames": true,
+    "expandedMatchesNativeFrames": false,
     "runtimeApproved": false,
     "requiresArtReview": true
   },
   "notes": [
-    "Four distinct walk frames face right, with stride, braid and cloak movement.",
-    "The original high-resolution source is preserved unchanged with the opaque checkerboard; a transparent-derived master is archived separately.",
-    "Each expanded frame exactly matches its native frame after nearest-neighbour enlargement.",
-    "Staging only; no runtime integration until cross-class review."
+    "Four right-facing walk frames extracted from the archived transparent-derived master; each frame is 32x64 and each pose is distinct.",
+    "Native strip restored after integrity audit; the prior expanded PNG was corrupt and has been removed rather than kept as a misleading artifact.",
+    "High-resolution RGB source with opaque checkerboard and its separate transparent-derived RGBA master remain preserved in the library.",
+    "A verified 256x128 nearest-neighbour expansion must be regenerated from this native strip before walk is considered complete.",
+    "Staging only; no runtime integration until cross-class art review."
   ]
 }
