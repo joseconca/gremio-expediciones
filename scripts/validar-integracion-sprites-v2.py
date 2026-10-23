@@ -10,6 +10,7 @@ ACTIONS = ("idle", "walk", "hurt")
 CELL = (64, 128)
 STRIP = (256, 128)
 ATLAS = (256, 1920)
+PORTRAIT = (128, 256)
 
 
 def load_rgba(path: Path) -> Image.Image:
@@ -31,6 +32,10 @@ def main() -> None:
                 raise ValueError(f"{runtime_dir}: expected atlas {ATLAS}, got {sheet.size}")
             if sheet.getchannel("A").getextrema()[0] != 0:
                 raise ValueError(f"{runtime_dir}: atlas must retain transparent background")
+            if avatar.size != PORTRAIT:
+                raise ValueError(f"{runtime_dir}: expected high-resolution portrait {PORTRAIT}, got {avatar.size}")
+            if avatar.getchannel("A").getextrema()[0] != 0 or avatar.getchannel("A").getbbox() is None:
+                raise ValueError(f"{runtime_dir}: portrait must contain a visible figure and transparent background")
 
             for row, action in enumerate(ACTIONS):
                 strip_path = base / action / f"{class_id}-{sex}-{action}.png"
@@ -51,8 +56,10 @@ def main() -> None:
                 final_row = sheet.crop((0, row * CELL[1], STRIP[0], (row + 1) * CELL[1]))
                 if final_row.tobytes() != strip.tobytes():
                     raise ValueError(f"{runtime_dir}: production row {action} differs from canonical v2")
-                if action == "idle" and avatar.tobytes() != frames[0].tobytes():
-                    raise ValueError(f"{runtime_dir}: static avatar must match first v2 Idle frame")
+                if action == "idle":
+                    expected_avatar = frames[0].resize(PORTRAIT, Image.Resampling.NEAREST)
+                    if avatar.tobytes() != expected_avatar.tobytes():
+                        raise ValueError(f"{runtime_dir}: static avatar must be the 2x nearest-neighbour export of first v2 Idle frame")
                 checked += 1
 
     print(f"OK: {checked} canonical v2 strips integrated into 10 production atlases and static portraits.")

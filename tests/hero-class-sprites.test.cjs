@@ -127,3 +127,10 @@ test("los informes Tier 2 reflejan la fuente seleccionada para runtime", () => {
   assert.ok(repair.includes('"runtimeApproved": runtime_approved'));
   assert.ok(atlasBuilder.includes("resize((128, 256), Image.Resampling.NEAREST)"));
 });
+
+
+test("el validador de Tier 0/1 acepta retratos 2x derivados de Idle", () => {
+  const validator = read("scripts/validar-integracion-sprites-v2.py");
+  assert.ok(validator.includes("PORTRAIT = (128, 256)"));
+  assert.ok(validator.includes("frames[0].resize(PORTRAIT, Image.Resampling.NEAREST)"));
+});

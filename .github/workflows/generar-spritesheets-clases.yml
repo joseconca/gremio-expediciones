@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "scripts/generar-spritesheets-clases.py"
+      - "scripts/validar-integracion-sprites-v2.py"
       - ".github/workflows/generar-spritesheets-clases.yml"
 
 permissions:
