@@ -48,11 +48,18 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 
 - Concept, `idle`, `walk` y `hurt` están versionados en staging. Las tres animaciones contienen cuatro frames nativos de 32×64 y tiras ampliadas de 256×128; los QA comprueban dimensiones, transparencia, cuatro poses únicas y correspondencia exacta al escalar.
 - Se conservan los masters de alta resolución en la biblioteca, incluyendo los originales con damero y sus derivaciones transparentes separadas. El manifiesto registra sus SHA-256.
-- Ninguna de estas hojas está conectada al runtime ni aprobada como arte final. Siguiente: concept del Explorador femenino y sus acciones `idle`, `walk` y `hurt`.
+- Ninguna de estas hojas está conectada al runtime ni aprobada como arte final. El concept femenino del Explorador ya está guardado; siguiente: `idle`, `walk` y `hurt` femeninos.
 
 
 ## Checkpoint actualizado — Explorador masculino (23-10-2026)
 
 - Concept, `idle`, `walk` y `hurt` están versionados en staging. Las tres animaciones contienen cuatro frames nativos de 32×64 y tiras ampliadas de 256×128; los QA comprueban dimensiones, transparencia, cuatro poses únicas y correspondencia exacta al escalar.
 - Se conservan los masters de alta resolución en la biblioteca, incluyendo los originales con damero y sus derivaciones transparentes separadas. El manifiesto registra sus SHA-256.
-- Ninguna de estas hojas está conectada al runtime ni aprobada como arte final. Siguiente: concept del Explorador femenino y sus acciones `idle`, `walk` y `hurt`.
+- Ninguna de estas hojas está conectada al runtime ni aprobada como arte final. El concept femenino del Explorador ya está guardado; siguiente: `idle`, `walk` y `hurt` femeninos.
+
+
+## Checkpoint actualizado — Explorador femenino (23-10-2026)
+
+- Concept preservado como preview indexado 128×192 en staging. El original RGBA 1024×1536 se conserva sin modificar en la biblioteca, y hay una derivación transparente separada; ambos hashes constan en `assets/spritesheets/originales/explorador/v2/source-hires/female-manifest.json`.
+- Diseño: pelo castaño corto y a capas, capa verde/teal, equipo ligero de viaje y emblemas de brújula; manos vacías, sin armas.
+- Siguiente: `idle`, `walk` y `hurt`, cuatro frames por acción. No conectar al runtime hasta la revisión artística global.

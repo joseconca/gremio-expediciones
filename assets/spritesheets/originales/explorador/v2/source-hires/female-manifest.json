@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "classId": "explorador",
+  "sex": "f",
+  "purpose": "Preserved high-resolution masters, independent from runtime sprite strips.",
+  "sources": [
+    {
+      "name": "explorador-f-concept-hires-background-original.png",
+      "libraryPath": "/GameAssets/Tier2/Explorador/explorador-f-concept-hires-background-original.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "sha256": "5e443764a7273e6afa280ef61dabdf693162c637d8dec637e7ae4dd6fc9c054c",
+      "transparentBackground": true,
+      "notes": "Original ImageGen master preserved unchanged."
+    },
+    {
+      "name": "explorador-f-concept-hires-transparent-derived.png",
+      "libraryPath": "/GameAssets/Tier2/Explorador/explorador-f-concept-hires-transparent-derived.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "sha256": "9724fa95d52233cf57267bb6270d11ad240dd325acfe72a37c3148ec11a78641",
+      "transparentBackground": true,
+      "derivedFrom": "explorador-f-concept-hires-background-original.png",
+      "notes": "Derived master only sets almost-transparent fringe pixels to fully transparent."
+    },
+    {
+      "name": "explorador-f-concept-128x192.png",
+      "libraryPath": "/GameAssets/Tier2/Explorador/explorador-f-concept-128x192.png",
+      "width": 128,
+      "height": 192,
+      "mode": "P",
+      "transparencyIndex": 0,
+      "sha256": "fb99756fa9e6112ce400f6671d72c0644ffe87ab1e4fcd0e618425d59c699920"
+    }
+  ],
+  "notes": [
+    "Female explorer first-pass concept is distinct from the Hunter: travel scout silhouette, compass ornaments, map case and empty hands.",
+    "The hires concept is retained separately from the compact staging preview."
+  ]
+}

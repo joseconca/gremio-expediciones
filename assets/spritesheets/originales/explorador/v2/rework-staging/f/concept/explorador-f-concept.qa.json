@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "classId": "explorador",
+  "sex": "f",
+  "stage": "concept",
+  "status": "staging-concept-review-pending",
+  "preview": {
+    "path": "rework-staging/f/concept/explorador-f-concept-128x192.png",
+    "width": 128,
+    "height": 192,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "sha256": "fb99756fa9e6112ce400f6671d72c0644ffe87ab1e4fcd0e618425d59c699920"
+  },
+  "sourceMaster": {
+    "originalLibraryPath": "/GameAssets/Tier2/Explorador/explorador-f-concept-hires-background-original.png",
+    "originalSha256": "5e443764a7273e6afa280ef61dabdf693162c637d8dec637e7ae4dd6fc9c054c",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "originalAlphaExtrema": [
+      0,
+      254
+    ],
+    "transparentDerivedLibraryPath": "/GameAssets/Tier2/Explorador/explorador-f-concept-hires-transparent-derived.png",
+    "transparentDerivedSha256": "9724fa95d52233cf57267bb6270d11ad240dd325acfe72a37c3148ec11a78641"
+  },
+  "checks": {
+    "previewDimensions": true,
+    "transparentIndexPresent": true,
+    "fullBodyVisible": true,
+    "weaponAbsent": true,
+    "uiAbsent": true,
+    "runtimeApproved": false
+  },
+  "artDirection": {
+    "palette": [
+      "olive green",
+      "teal",
+      "cream",
+      "brown leather",
+      "bronze"
+    ],
+    "silhouette": "short layered chestnut hair, light travel mantle, compass ornaments and route pouches",
+    "hands": "empty"
+  },
+  "notes": [
+    "The original hires already contains alpha and is preserved unchanged; a separate derivative cleans only near-transparent fringe pixels.",
+    "The compact indexed concept is staging/review-only, not a production sprite.",
+    "Next: idle, walk and hurt, four frames each, facing right."
+  ]
+}
