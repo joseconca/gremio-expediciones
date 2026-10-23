@@ -14,12 +14,14 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 
 ## Estado actual — snapshot global auditado, 2026-10-23
 
-- **Cobertura:** Elementalista, Brujo, Cazador y Explorador, en masculino y femenino, tienen concept + idle + walk + hurt en staging. Las acciones tienen cuatro poses orientadas a la derecha. El primer pase ya no tiene clases enteras pendientes de generación.
-- **QA:** hay 24 combinaciones clase-sexo-acción. Brujo, Cazador y Explorador cuentan con QA canónico para sus 18 tiras. Los tres ciclos del Elementalista femenino también están registrados; el Elementalista masculino tiene QA RGBA para idle/walk y se ha normalizado el informe de hurt al nombre `hurt-right-4f.qa.json`.
-- **Contrato de dimensiones:** todas las tiras ampliadas de staging miden 256×128, con cuatro celdas 64×128. En Brujo, Cazador y Explorador, el staging incluye también una tira nativa de 128×64 (cuatro celdas 32×64). En Elementalista, los seis ciclos (ambos sexos × tres acciones) conservan los cuatro frames nativos como PNG RGBA individuales de 32×64; el QA valida la tira ampliada contra esos cuatro archivos. Es una diferencia de empaquetado de la fuente, no una acción que falte.
-- **Fuentes hires:** se preservan masters y derivaciones cuando se han encontrado, con manifiestos por clase/sexo. Para el Elementalista masculino se conservan referencias compuestas, no masters hires independientes de cada acción. Mantener explícitas estas excepciones.
-- **Aprobación:** todas las hojas siguen en `rework-staging`, con `runtimeApproved: false`. Esto es intencional: falta la aprobación artística final. No se han reemplazado los sprites de producción.
-- **Siguiente paso:** completar revisión artística global y consistencia de manifiestos, procedencia hires y metadata QA; refinar solo defectos demostrados. No rehacer ahora clases ya terminadas; su armonización se deja para la pasada final.
+- **Tier 2 completo como primer pase:** el manifiesto contiene ocho clases (Caballero, Duelista, Sacerdote, Monje, Cazador, Explorador, Elementalista y Brujo). Cada clase/sexo tiene `idle`, `walk` y `hurt`: 48 tiras, 192 frames nativos y seis informes QA por clase. Los másteres y paquetes están versionados en `assets/spritesheets/originales/<clase>/v2/`.
+- **Rediseño prioritario:** Elementalista, Brujo, Cazador y Explorador tienen además 24 tiras de staging, cubriendo las tres acciones por ambos sexos. Ninguna de esas tiras reemplaza los assets de producción.
+- **QA y formatos:** las tiras canónicas miden 256×128 (cuatro celdas de 64×128) y los frames nativos 32×64. Brujo, Cazador y Explorador del staging también conservan tiras nativas 128×64; Elementalista conserva cuatro PNG nativos separados por acción y sexo. El script `scripts/auditar-paquetes-tier2.py` queda incorporado al flujo de regresión para revisar dimensiones, transparencia real, hashes, poses únicas y equivalencia entre tira y frames.
+- **Aprobación artística:** sigue pendiente para las ocho clases. Caballero, Duelista, Sacerdote y Monje pueden requerir limpieza de borde/fondo; las cuatro clases prioritarias necesitan revisión final de silueta y lectura del movimiento. No se regeneran desde cero: la limpieza se limitará a defectos confirmados.
+- **Runtime:** los QA de los paquetes canónicos siguen con `runtime_integrated: false`; los recursos del staging también se mantienen fuera del runtime. Superar QA técnico no equivale a aprobación artística ni a integración.
+- **Siguiente:** revisar el resultado de CI, ejecutar la pasada artística transversal de las seis tiras por clase y luego decidir qué correcciones concretas hacen falta. Armonizar las clases ya terminadas solo en la pasada final.
+
+**Nota:** las secciones de checkpoint e historial que siguen son registros de fases anteriores; las líneas «Siguiente» dentro de esos registros son históricas.
 
 **Nota:** la sección «Historial reciente» y los checkpoints posteriores conservan el estado documentado en sus fechas; las instrucciones «Siguiente» de esos apuntes son históricas, no la lista actual de tareas.
 
