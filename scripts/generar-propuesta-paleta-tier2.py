@@ -112,6 +112,29 @@ def median_rgb(image):
         return None
     return [int(statistics.median(ch)) for ch in zip(*pixels)]
 
+def luminance_stats(frames):
+    luminance = []
+    saturation = []
+    for frame in frames:
+        for r, g, b, a in frame.convert("RGBA").getdata():
+            if a <= 0:
+                continue
+            luminance.append(0.2126 * r + 0.7152 * g + 0.0722 * b)
+            maximum = max(r, g, b)
+            saturation.append((maximum - min(r, g, b)) / maximum if maximum else 0)
+    if not luminance:
+        return {"median": 0, "p10": 0, "p90": 0, "stddev": 0, "median_saturation": 0}
+    ordered = sorted(luminance)
+    p10 = max(0, math.ceil(0.10 * len(ordered)) - 1)
+    p90 = max(0, math.ceil(0.90 * len(ordered)) - 1)
+    return {
+        "median": round(statistics.median(ordered), 2),
+        "p10": round(ordered[p10], 2),
+        "p90": round(ordered[p90], 2),
+        "stddev": round(statistics.pstdev(ordered), 2),
+        "median_saturation": round(statistics.median(saturation), 3),
+    }
+
 def comparison_board(cls, sex, idle, action_outputs, output):
     scale = 2
     labels = ("IDLE · PALETA BASE", "ORIGINAL", "CANDIDATO")
@@ -148,6 +171,7 @@ def main():
             idle_frames, _ = load_frames(cls, sex, "idle")
             anchor = expand(idle_frames)
             palette = palette_from(idle_frames)
+            idle_luminance = luminance_stats(idle_frames)
             results = {}
             for action in ACTIONS:
                 frames, source = load_frames(cls, sex, action)
@@ -168,6 +192,8 @@ def main():
                     silhouette_bounds_preserved = silhouette_bounds_preserved and frame.getchannel("A").getbbox() == candidate.getchannel("A").getbbox()
                 original_strip = expand(frames)
                 candidate_strip = expand(candidate_frames)
+                original_luminance = luminance_stats(frames)
+                candidate_luminance = luminance_stats(candidate_frames)
                 folder = output / cls / sex
                 folder.mkdir(parents=True, exist_ok=True)
                 original_path = folder / f"{action}-original.png"
@@ -195,6 +221,11 @@ def main():
                     "remapped_pixel_pct_semantics": "percentage of visible pixels whose exact RGB triplet changed; not a perceptual-change metric",
                     "original_median_rgb": median_rgb(original_strip),
                     "candidate_median_rgb": median_rgb(candidate_strip),
+                    "idle_luminance": idle_luminance,
+                    "original_luminance": original_luminance,
+                    "candidate_luminance": candidate_luminance,
+                    "original_median_luminance_delta_from_idle": round(original_luminance["median"] - idle_luminance["median"], 2),
+                    "candidate_median_luminance_delta_from_idle": round(candidate_luminance["median"] - idle_luminance["median"], 2),
                     "runtime_approved": False,
                     "promoted_to_staging": False,
                     "note": "Candidate only. Review skin tones, fabric highlights, material separation, silhouette and class identity before any promotion.",
@@ -209,6 +240,11 @@ def main():
                     "p95_rgb_distance": report["p95_rgb_distance"],
                     "alpha_mask_identical": report["alpha_mask_identical"],
                     "silhouette_bounds_preserved": report["silhouette_bounds_preserved"],
+                    "idle_luminance_median": report["idle_luminance"]["median"],
+                    "original_luminance": report["original_luminance"],
+                    "candidate_luminance": report["candidate_luminance"],
+                    "original_median_luminance_delta_from_idle": report["original_median_luminance_delta_from_idle"],
+                    "candidate_median_luminance_delta_from_idle": report["candidate_median_luminance_delta_from_idle"],
                     "candidate": str(candidate_path.relative_to(ROOT)),
                 })
             comparison_board(cls, sex, anchor, results, output / "boards" / f"{cls}-{sex}-palette-comparison.png")
