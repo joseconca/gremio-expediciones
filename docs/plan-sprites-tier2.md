@@ -49,3 +49,6 @@ Adoptar el estilo de pixel art detallado mostrado por el usuario: volúmenes y c
 
 
 Checkpoint 23-10-2026 — Explorador femenino `hurt`: completado primer pase y QA técnico; el máster grande y los recortes de cada pose están preservados en la biblioteca. Pendiente revisión artística transversal; sin integración al runtime.
+
+
+Integridad 23-10-2026: SHA de objeto Git verificado contra los bytes binarios locales para ambas hojas de `hurt` femenino; QA registra 63 colores más transparencia, cuatro poses distintas y escalado exacto. Runtime no integrado.

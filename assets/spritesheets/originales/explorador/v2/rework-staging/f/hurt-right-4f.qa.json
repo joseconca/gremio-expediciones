@@ -47,12 +47,58 @@
     "mode": "P",
     "transparencyIndex": 0,
     "count": 4,
-    "sha256": "1c9049c3e2333f31a06064b1e50b8c035a2a4672825121266e2fb8d08a0741fc",
+    "sha256": "7b7b90a5ebc2da09a69f8a47c02a96589f9184bcabefcea62e0384cfc4f62aff",
     "uniqueFrameHashes": [
-      "74aa9a8481da7b51516002ffa98a1181e2f41da164b6c7299fc5cd284689140b",
-      "cca658c67bf7a8e4804e4ce2a7b27782697334ca819ec336f17432fcffc7d359",
-      "4748f681728ddefc2f2be23c357d9734960cd3693a44a1eac21bd01658a83313",
-      "ef02d8ace575df9d6b6cea906938b9836fbcd9c793ec2e66fc9cf22a9d4b9e65"
+      "2b786a13ea2f0a0005aff6bb31f9902d132003670758ae940eec528df12f6821",
+      "65bec32d5c5698af751f907ac94ac0478ef29a5721b2084266a37ac46a2b1d17",
+      "78c031fa657a5cd3193a27786e710c71f2d64c74d1ffb767f33c719574c143b6",
+      "e5192d3070edf3583a3cd8beced07d078384c832cb5e4ff94b37731538c15c7b"
+    ],
+    "frames": [
+      {
+        "frame": 1,
+        "sha256": "2b786a13ea2f0a0005aff6bb31f9902d132003670758ae940eec528df12f6821",
+        "bbox": [
+          0,
+          13,
+          32,
+          62
+        ],
+        "colors": 63
+      },
+      {
+        "frame": 2,
+        "sha256": "65bec32d5c5698af751f907ac94ac0478ef29a5721b2084266a37ac46a2b1d17",
+        "bbox": [
+          0,
+          13,
+          32,
+          62
+        ],
+        "colors": 63
+      },
+      {
+        "frame": 3,
+        "sha256": "78c031fa657a5cd3193a27786e710c71f2d64c74d1ffb767f33c719574c143b6",
+        "bbox": [
+          0,
+          13,
+          32,
+          62
+        ],
+        "colors": 63
+      },
+      {
+        "frame": 4,
+        "sha256": "e5192d3070edf3583a3cd8beced07d078384c832cb5e4ff94b37731538c15c7b",
+        "bbox": [
+          0,
+          13,
+          32,
+          62
+        ],
+        "colors": 62
+      }
     ]
   },
   "expandedSheet": {
@@ -63,7 +109,7 @@
     "cellHeight": 128,
     "mode": "P",
     "transparencyIndex": 0,
-    "sha256": "40a80731e9d520c651674f1583751195852d63bd0f8b1f298dd41d3d2c5b074b",
+    "sha256": "7ea716aaf0d0cccb8c4dcbf5700d55336d9dd0638abf4eb6a792552f1ce09b9f",
     "construction": "nearest-neighbour upscale of native frames"
   },
   "checks": {
@@ -80,8 +126,8 @@
   },
   "notes": [
     "Four damage-reaction poses extracted by connected-component masks to avoid mixing overlapping cloak pixels from adjacent figures.",
-    "The native sprites use a 126-colour indexed palette with transparency index 0; high-resolution frame cutouts and the original 1984x793 RGBA master are preserved separately.",
-    "The 256x128 strip was verified pixel-for-pixel as a nearest-neighbour enlargement of the native strip.",
+    "The native sprites use a 63-colour indexed palette plus transparency index 0; high-resolution frame cutouts and the original 1984x793 RGBA master are preserved separately.",
+    "The 256x128 strip was verified pixel-for-pixel as a nearest-neighbour enlargement of the native strip. Git object SHA-1 values are verified against exact local PNG bytes.",
     "Staging only; not connected to runtime pending cross-class art review."
   ]
 }

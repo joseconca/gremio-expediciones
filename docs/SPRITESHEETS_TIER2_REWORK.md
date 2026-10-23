@@ -97,3 +97,10 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 - `hurt` en staging: cuatro frames de 32×64, tira nativa 128×64 indexada con índice transparente 0 y tira 256×128 ampliada por vecino más cercano. QA confirma cuatro poses únicas, celdas no vacías y coincidencia exacta de la expansión.
 - El máster RGBA original de 1984×793 se preserva sin modificar en la biblioteca; la derivación transparente y los cuatro recortes individuales hires también están archivados, cada uno con hash SHA-256.
 - Sigue pendiente la aprobación artística entre clases. Ninguna hoja de `rework-staging` se conecta al runtime todavía.
+
+
+## Verificación de integridad binaria — Explorador femenino `hurt` (23-10-2026)
+
+- Se revalidaron los Git blob SHA-1 frente a los bytes locales exactos de ambas PNG, además del SHA-256 en QA. La hoja nativa mide 128×64 (4.748 bytes) y la ampliada 256×128 (6.650 bytes).
+- Las cuatro celdas del PNG nativo son distintas; la tira ampliada coincide píxel a píxel con el escalado nearest-neighbour. Paleta indexada de 63 colores útiles más índice transparente 0.
+- Los másteres hires y los recortes por pose permanecen en la biblioteca; el runtime sigue sin cambios. La aprobación artística transversal continúa pendiente.
