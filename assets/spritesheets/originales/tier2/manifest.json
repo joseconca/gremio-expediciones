@@ -12,10 +12,10 @@
   ],
   "sourceRoot": "assets/spritesheets/originales",
   "outputContract": {
-    "master": "<class>/v2/source/<class>-<sex>-core-3rows.webp (raster, 128x192)",
+    "master": "<class>/v2/source/<class>-<sex>-core-3rows.(webp|png), raster; dimensions 128x192 or 256x384",
     "strip": "<class>/v2/<action>/<class>-<sex>-<action>.png",
-    "nativeFrames": "<class>/v2/<action>/frames-native-32x64/<sex>/",
-    "preview": "<class>/v2/<action>/previews/",
+    "nativeFrames": "<class>/v2/<action>/frames-native-32x64/<sex>/<class>-<sex>-<action>-NN.png (four 32x64 PNGs)",
+    "preview": "<class>/v2/<action>/previews/<class>-<sex>-<action>-preview.png",
     "qa": "<class>/v2/<action>/qa-report-<sex>-<action>.json"
   },
   "classes": [
@@ -26,8 +26,8 @@
       "archetype": "vanguardia",
       "resource": "energia",
       "visualBrief": "armadura completa, hombreras y protección de piernas; capa heráldica; silueta defensiva",
-      "status": "package-generated-review-needed",
-      "note": "Six strips and QA committed; background residue can be cleaned in a later visual pass."
+      "status": "package-generated-review-pending",
+      "note": "Complete first-pass package is versioned: two source masters, six action strips, 24 native 32x64 frames, six previews and six QA reports. Technical generation is complete; residual background/edge pixels and artistic approval remain for the global review. Not integrated into runtime."
     },
     {
       "id": "duelista",
@@ -36,8 +36,8 @@
       "archetype": "agil",
       "resource": "energia",
       "visualBrief": "armadura ligera/media, líneas estilizadas y postura de esgrima",
-      "status": "source-masters-raster-ready",
-      "note": "Two image-based WebP masters (male/female) replace the SVG masters; the standard raster pipeline will regenerate six strips and QA. Unarmed body; weapons remain separate layers. Not integrated into runtime."
+      "status": "package-generated-review-pending",
+      "note": "The two image-based WebP masters have replaced the old SVG masters and the package is already generated: six action strips, 24 native frames, six previews and six QA reports. Technical generation is complete; review the cut-out edges/possible halo in the global visual pass. Hands remain empty; weapons are separate layers. Not integrated into runtime."
     },
     {
       "id": "sacerdote",
@@ -46,8 +46,8 @@
       "archetype": "apoyo",
       "resource": "mana",
       "visualBrief": "vestiduras ceremoniales, estola y símbolos sagrados ornamentados",
-      "status": "package-generated-review-needed",
-      "note": "Both raster masters committed; six PNG strips, 24 native frames, previews and QA reports generated. Empty hands/no embedded weapons. Background edge cleanup may be done in a later art pass."
+      "status": "package-generated-review-pending",
+      "note": "Both raster masters and complete package are versioned: six PNG strips, 24 native frames, six previews and six QA reports. Technical QA is present; background edge cleanup and artistic approval remain for the global review. Empty hands/no embedded weapons. Not integrated into runtime."
     },
     {
       "id": "monje",
@@ -56,8 +56,8 @@
       "archetype": "marcial",
       "resource": "energia",
       "visualBrief": "ropajes marciales, vendas y brazales; postura disciplinada",
-      "status": "package-generated-review-needed",
-      "note": "Both raster masters and six PNG strips generated from the Tier 2 reference poster. Empty hands (no weapon layer embedded), 24 native frames and QA reports committed. This is a usable first pass; residual background/edge pixels are expected and visual polish can follow."
+      "status": "package-generated-review-pending",
+      "note": "Both raster masters and complete package are versioned: six PNG strips, 24 native frames, six previews and six QA reports. Technical QA is present; possible poster/background edge residue and artistic approval remain for the global review. Empty hands/no embedded weapons. Not integrated into runtime."
     },
     {
       "id": "cazador",
@@ -66,8 +66,8 @@
       "archetype": "agil",
       "resource": "energia",
       "visualBrief": "cuero reforzado, rastreo y equipo de caza",
-      "status": "raster-package-generated-review-pending",
-      "note": "Both custom raster PNG masters and the complete package are generated: six action strips, 24 native 32x64 frames, six previews and six QA reports. Four distinct frames per action, real alpha (0-255), footline drift 0 px. No bow, quiver, arrows, blade or embedded weapon. Not integrated into runtime; visual approval pending."
+      "status": "package-generated-review-pending",
+      "note": "Complete first-pass package is versioned: two custom raster PNG masters, six action strips, 24 native frames, six previews and six QA reports. QA records four unique frames, real alpha and stable footline. No embedded weapons. Artistic approval remains pending; not integrated into runtime."
     },
     {
       "id": "explorador",
@@ -76,8 +76,8 @@
       "archetype": "agil",
       "resource": "energia",
       "visualBrief": "equipo ligero de viaje y supervivencia, preparado para trampas",
-      "status": "raster-package-generated-review-pending",
-      "note": "Both custom raster PNG masters and the complete package are generated: six action strips, 24 native 32x64 frames, six previews and six QA reports. Four distinct frames per action, real alpha (0-255); footline drift <=1 px for Idle/Hurt and 0 px for Walk. Empty hands, no bow, quiver, arrows or embedded weapons. Not integrated into runtime; visual approval pending."
+      "status": "package-generated-review-pending",
+      "note": "Complete first-pass package is versioned: two custom raster PNG masters, six action strips, 24 native frames, six previews and six QA reports. QA records four unique frames, real alpha and stable footline. Hands empty; weapons remain independent layers. Artistic approval remains pending; not integrated into runtime."
     },
     {
       "id": "elementalista",
@@ -86,8 +86,8 @@
       "archetype": "arcano",
       "resource": "mana",
       "visualBrief": "túnica con motivos elementales y silueta de canalización",
-      "status": "raster-package-generated-review-pending",
-      "note": "Both custom raster PNG masters and complete package generated: six action strips, 24 native 32x64 frames, six previews and six QA reports. Four distinct frames per action, real alpha, footline drift <=1 px for Idle/Hurt and 0 px for Walk. Empty hands, no staff, weapon or spell-effect layer. Not integrated into runtime; visual approval pending."
+      "status": "package-generated-review-pending",
+      "note": "Complete first-pass package is versioned: two custom raster PNG masters, six action strips, 24 native frames, six previews and six QA reports. QA records four unique frames, real alpha and stable footline. Empty hands; no staff, weapon or external spell-effect layer. Artistic approval remains pending; not integrated into runtime."
     },
     {
       "id": "brujo",
@@ -96,10 +96,10 @@
       "archetype": "maldito",
       "resource": "mana",
       "visualBrief": "vestiduras oscuras, amuletos y lenguaje visual de maldiciones",
-      "status": "raster-master-generator-committed",
-      "note": "Custom raster PNG generator added: dark hooded silhouette, plum/charcoal robes and restrained silver-violet stitching; hands empty, no staff, weapon, skull prop or spell-effect layer. Package generation follows in Actions, outside runtime until visual review."
+      "status": "package-generated-review-pending",
+      "note": "The raster master generator and the complete package are both versioned: two PNG masters, six action strips, 24 native frames, six previews and six QA reports. Technical generation has finished; review silhouette and cut-out edges during the global art pass. Hands empty, no staff, weapons, skull props or external spell effects. Not integrated into runtime."
     }
   ],
-  "status": "in-progress",
-  "policy": "No derivar másteres desde retratos ni hojas de producción genéricas. Promover cada clase a runtime solo después de revisar las seis tiras."
+  "status": "first-pass-generated-visual-review-pending",
+  "policy": "Keep all source masters and generated packages isolated from public runtime assets until six strips per class pass technical QA and global visual approval. Do not rebuild finished classes during the current rework; harmonize them only in the final pass."
 }
