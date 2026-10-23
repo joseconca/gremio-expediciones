@@ -43,6 +43,26 @@
       "sha256": "e0e5e0ffdce33e1453fd8820679408dbf689a409c50daa3b563b6d4f56b145bb",
       "transparentBackground": true,
       "selectedForCurrentIdle": true
+    },
+    {
+      "name": "cazador-m-walk-hires-original.png",
+      "libraryPath": "/GameAssets/Tier2/Cazador/cazador-m-walk-hires-original.png",
+      "width": 1984,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "353e6fdf80a652ef8cfac110c26e32f3506fbb31d65f71b54a859b03af269cc3",
+      "transparentBackground": false,
+      "notes": "High-resolution raw sheet preserved unchanged; checkerboard was baked into opaque pixels."
+    },
+    {
+      "name": "cazador-m-walk-hires-transparent-derived.png",
+      "libraryPath": "/GameAssets/Tier2/Cazador/cazador-m-walk-hires-transparent-derived.png",
+      "width": 1984,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "a7ce766fd8d676adab189578fc5e04ac5aac5e591aabefd495417572970f5b3a",
+      "transparentBackground": true,
+      "derivedFrom": "cazador-m-walk-hires-original.png"
     }
   ],
   "preview": {
@@ -56,6 +76,7 @@
   "notes": [
     "Preserve both masters; neither is overwritten by the compact review preview.",
     "No weapons or held props appear in the character concept.",
-    "The full-resolution idle sources are preserved separately; variant 02 is the source for the current staged native frames."
+    "The full-resolution idle sources are preserved separately; variant 02 is the source for the current staged native frames.",
+    "The original and transparent-derived masters for walk are both preserved separately; reduced sprites are kept only in staging."
   ]
 }

@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "classId": "cazador",
+  "sex": "m",
+  "action": "walk",
+  "direction": "right",
+  "status": "staging-indexed-transparent-art-review-pending",
+  "sourceMaster": {
+    "originalLibraryPath": "/GameAssets/Tier2/Cazador/cazador-m-walk-hires-original.png",
+    "transparentDerivedLibraryPath": "/GameAssets/Tier2/Cazador/cazador-m-walk-hires-transparent-derived.png",
+    "width": 1984,
+    "height": 793,
+    "mode": "RGBA",
+    "originalBackground": "checkerboard baked into opaque pixels",
+    "originalMasterSha256": "353e6fdf80a652ef8cfac110c26e32f3506fbb31d65f71b54a859b03af269cc3",
+    "transparentDerivedSha256": "a7ce766fd8d676adab189578fc5e04ac5aac5e591aabefd495417572970f5b3a"
+  },
+  "nativeFrames": {
+    "path": "walk-native-4f.png",
+    "width": 128,
+    "height": 64,
+    "cellWidth": 32,
+    "cellHeight": 64,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "count": 4,
+    "sha256": "ce612208ea5242816820c747ab1c78c32de58e3f7606f19f8547b27ed2f3cec2"
+  },
+  "expandedSheet": {
+    "path": "walk-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "sha256": "c0fae96639ef0b66398d90e9fd6e29d8310b0464811778b579767d83072d3b5a",
+    "construction": "nearest-neighbour upscale of native frames"
+  },
+  "checks": {
+    "nativeDimensions": true,
+    "expandedDimensions": true,
+    "transparentIndexPresent": true,
+    "allFrameCellsNonEmpty": true,
+    "fourUniqueFrames": true,
+    "expandedMatchesNativeFrames": true,
+    "runtimeApproved": false,
+    "requiresArtReview": true
+  },
+  "notes": [
+    "Original high-resolution sheet retained with checkerboard intact; separate alpha-derived high-resolution source retained at transparentDerivedLibraryPath.",
+    "Each expanded frame matches its native cell enlarged with nearest-neighbour. Four unique frames verified.",
+    "The animation is a staging draft, not yet runtime-approved; final cross-class art review remains deferred."
+  ]
+}

@@ -32,4 +32,5 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 - `ff880fd` — hurt femenino del Brujo.
 - `cc90f8b` — concept masculino del Cazador, preview, QA y manifiesto de masters.
 - `cc90f8b` — concept masculino del Cazador, preview, QA y manifiesto de masters.
-- Próximo checkpoint: walk del Cazador masculino.
+- `f0c892c` — idle masculino del Cazador con QA y masters hires catalogados.
+- Próximo checkpoint: hurt del Cazador masculino.
