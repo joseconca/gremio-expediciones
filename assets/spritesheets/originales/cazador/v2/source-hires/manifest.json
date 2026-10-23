@@ -121,6 +121,15 @@
       "mode": "RGBA",
       "sha256": "27a68456e79867da288a847d5353ce32f594820ab0130322c8a58047932a5192",
       "transparentBackground": true
+    },
+    {
+      "name": "cazador-f-hurt-hires.png",
+      "libraryPath": "/GameAssets/Tier2/Cazador/cazador-f-hurt-hires.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "27585d16c023bdc8fb513ab8b8173a03d92a2fa14294cb6ef63cd3ac60c6580b",
+      "transparentBackground": true
     }
   ],
   "preview": {
@@ -139,6 +148,7 @@
     "Hurt animation master preserved intact as RGBA 1983×793; source sheet is archived separately from the reduced sprite strips.",
     "Female concept source preserved as a high-resolution RGBA master in the Library, separate from its compact indexed staging preview.",
     "Female idle source stored as a transparent RGBA master separately from native frames and expanded strip.",
-    "Female walk strip master preserved intact as RGBA 1983×793 alongside the reduced staging animation."
+    "Female walk strip master preserved intact as RGBA 1983×793 alongside the reduced staging animation.",
+    "Female hurt source preserved intact as transparent RGBA 1983×793, separate from the reduced animation."
   ]
 }
