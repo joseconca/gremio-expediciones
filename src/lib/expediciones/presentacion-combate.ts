@@ -8,7 +8,7 @@ function normalizarSubtipoArma(subtipoArma: string | null | undefined): string {
   return (subtipoArma ?? "")
     .trim()
     .normalize("NFD")
-    .replace(/[\\u0300-\\u036f]/g, "")
+    .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
 }
 

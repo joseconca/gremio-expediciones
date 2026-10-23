@@ -271,7 +271,7 @@ function obtenerPresentacionProyectilHabilidad(
 
   const referencia = `${habilidad.id} ${habilidad.claseId ?? ""}`
     .normalize("NFD")
-    .replace(/[\\u0300-\\u036f]/g, "")
+    .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
 
   if (/(bola_fuego|fuego|llama|quemadura)/.test(referencia)) {
