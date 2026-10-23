@@ -48,3 +48,15 @@ Duelista ya dispone de dos másteres raster WebP basados en láminas de imagen 4
 - **Estado actual:** Caballero, Duelista, Sacerdote y Monje tienen sus paquetes v2 generados. **Cazador tiene ya las dos fuentes raster PNG, seis tiras, 24 frames nativos, previews y QA en `assets/spritesheets/originales/cazador/v2/`.** Está pendiente de aprobación visual y no se ha integrado al runtime. **Explorador también tiene ya el paquete raster PNG completo** en `assets/spritesheets/originales/explorador/v2/`; está pendiente de aprobación visual y no está integrado al runtime. La siguiente clase activa es Elementalista, seguida de Brujo.
 
 La generación de Cazador terminó en verde en [GitHub Actions](https://github.com/joseconca/gremio-expediciones/actions/runs/39840572903) y su regresión también pasó ([CI](https://github.com/joseconca/gremio-expediciones/actions/runs/39840572707)). Explorador terminó en verde en [el workflow de sprites](https://github.com/joseconca/gremio-expediciones/actions/runs/39841247216) y [la regresión completa](https://github.com/joseconca/gremio-expediciones/actions/runs/39841247276). Elementalista terminó en verde en [el workflow de sprites](https://github.com/joseconca/gremio-expediciones/actions/runs/39841775315); su regresión se comprueba en [GitHub Actions](https://github.com/joseconca/gremio-expediciones/actions/runs/39841775232).
+
+
+## Checkpoint de rediseño visual — 2026-10-23
+
+La referencia maestra aprobada por el usuario es el sprite de Elementalista/Brujo con pixel art detallado, sombreado de volumen, siluetas limpias y ornamentación legible. Todos los sprites base van sin armas ni herramientas. No se rehacen clases ya terminadas en esta fase; la armonización general se reserva para el final.
+
+Estado de las clases activas:
+- **Elementalista femenino:** concept, idle, walk y hurt guardados como primeros pases en staging.
+- **Brujo masculino:** concept, idle, walk y hurt guardados en staging. Cada acción tiene cuatro frames. Se verificaron tiras de 256×128, fuentes nativas de 128×64, transparencia por índice y coincidencia exacta entre cada celda y su fuente.
+- **Fuentes grandes del Brujo masculino:** los cuatro PNG originales de alta resolución se preservan sin cambios en la biblioteca `/GameAssets/Tier2/Brujo/brujo-m-originales-alta-resolucion.zip`. El manifiesto versionado `assets/spritesheets/originales/brujo/v2/source-hires/manifest.json` registra tamaños y hashes SHA-256. La lámina grande de idle tiene el damero horneado en opaco; es solo una referencia de origen.
+
+Siguiente orden: Brujo femenino (concept → idle → walk → hurt), Brujo masculino/femenino ya no necesitan reiniciarse; después Cazador y Explorador, primero masculino y luego femenino. Las clases ya terminadas quedan intactas hasta la pasada final de coherencia visual.
