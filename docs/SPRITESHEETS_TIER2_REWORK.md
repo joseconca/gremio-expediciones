@@ -3,23 +3,23 @@
 Última actualización: 2026-10-23. Rama activa: `main`.
 
 ## Referencia maestra de estilo
-Pixel art RPG detallado, volumen por luces/sombras, contornos nítidos, siluetas legibles y ropa con pliegues. Cada clase mantiene su paleta; personajes base sin armas ni herramientas. No rehacer las clases ya terminadas: la armonización global se hará cuando todas las pendientes tengan primeros pases.
+La imagen aprobada por el usuario es el estándar de todos los sprites pendientes: pixel art RPG detallado, volumen mediante luces y sombras, contornos nítidos, siluetas legibles y prendas con pliegues/adornos. Cada clase conserva su paleta. Todos los personajes base van sin armas ni herramientas. No rehacer clases ya terminadas: la armonización global se realizará al final.
 
 ## Contrato técnico
-- Acciones: `idle`, `walk`, `hurt`, cuatro frames mirando a la derecha.
-- Atlas runtime: 256×1920 px; celdas 64×128.
-- Tira expandida: 256×128 y fuente nativa: 128×64, cuatro celdas cada una.
-- PNG indexado con transparencia explícita; QA valida dimensiones, transparencia y correspondencia exacta entre tiras y fuentes.
-- Todo en staging, sin sustituir assets de producción.
+- Acciones: `idle`, `walk`, `hurt`; cuatro frames mirando a la derecha.
+- Atlas runtime: 256×1920 px, celdas de 64×128.
+- Tira expandida: 256×128 con cuatro celdas 64×128; fuente nativa: 128×64 con cuatro celdas 32×64.
+- Staging indexado con transparencia explícita; QA valida dimensiones, transparencia, diferencia entre frames y correspondencia entre tira/fuente.
+- No reemplazar sprites de producción hasta la revisión final.
 
-## Estado
-- **Elementalista femenino:** concept, idle, walk y hurt guardados como primeros pases.
-- **Brujo masculino:** concept, idle y walk guardados. Paleta carbón/berenjena, violeta y plata; sin libro ni armas. Cuatro frames por animación y QA técnico inicial completado.
-- Pendiente: hurt masculino del Brujo; luego Brujo femenino, Cazador masculino/femenino y Explorador masculino/femenino.
-- La armonización final se aplaza hasta terminar los primeros pases.
+## Estado actual
+- **Elementalista femenino:** concept, idle, walk y hurt guardados como primeros pases en staging. QA técnico inicial completado; revisión artística conjunta aplazada.
+- **Brujo masculino:** concept, idle y walk en staging. Paleta carbón/berenjena, violeta y plata; sin libro ni armas. La tira walk tiene su fuente nativa restaurada y enlazada al QA.
+- Pendiente: hurt masculino del Brujo; después Brujo femenino, Cazador masculino/femenino y Explorador masculino/femenino.
+- No rehacer sprites ya terminados; la pasada de coherencia se hará tras completar los primeros pases de las cuatro clases.
 
 ## Historial reciente
 - `b2b21b6` — primer pase del Elementalista femenino.
 - `b82e093` — concept del Brujo masculino.
-- `93bdf3b` — idle masculino del Brujo.
-- Próximo checkpoint: hurt masculino del Brujo.
+- `bd2eada` — idle masculino del Brujo.
+- Próximo checkpoint: hurt del Brujo masculino.
