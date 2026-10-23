@@ -6,6 +6,8 @@ on:
     paths:
       - ".github/workflows/reparar-staging-tier2.yml"
       - "scripts/reparar-staging-tier2.py"
+      - "assets/spritesheets/originales/brujo/v2/rework-staging/m/idle-native-4f.png"
+      - "assets/spritesheets/originales/brujo/v2/rework-staging/m/idle-right-4f.qa.json"
 
 permissions:
   contents: write
