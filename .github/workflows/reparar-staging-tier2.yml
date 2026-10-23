@@ -46,6 +46,18 @@ jobs:
       - name: Audit canonical packages and repaired staging
         run: python scripts/auditar-paquetes-tier2.py
 
+      - name: Upload review package for cross-class art direction
+        uses: actions/upload-artifact@v4
+        with:
+          name: tier2-rework-staging-visual-review
+          path: |
+            assets/spritesheets/originales/elementalista/v2/rework-staging/
+            assets/spritesheets/originales/brujo/v2/rework-staging/
+            assets/spritesheets/originales/cazador/v2/rework-staging/
+            assets/spritesheets/originales/explorador/v2/rework-staging/
+          if-no-files-found: error
+          retention-days: 7
+
       - name: Commit only verified staging repairs
         shell: bash
         run: |
