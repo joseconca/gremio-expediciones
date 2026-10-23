@@ -53,4 +53,5 @@ Por clase, completar un sexo cada vez: concept art → idle derecha (4 frames) �
 - `e2f1dad` — tira RGBA idle.
 - `7cf8539` — borrador walk y frames nativos RGBA.
 - `29aa148` — frames nativos hurt y QA inicial.
-- Próximo checkpoint: arte refinado del Elementalista masculino.
+- `848b32e` — tira hurt RGBA ampliada, QA técnico comprobado y plan actualizado.
+- Próximo checkpoint: arte refinado del Elementalista masculino; los borradores actuales siguen sin aprobarse para producción.
