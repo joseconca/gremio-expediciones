@@ -80,6 +80,6 @@
     "Female explorer first-pass concept is distinct from the Hunter: travel scout silhouette, compass ornaments, map case and empty hands.",
     "The hires concept is retained separately from the compact staging preview.",
     "Female explorer idle source preserved as a high-resolution RGBA master and separate transparent-derived version.",
-    "Female explorer walk masters preserved: opaque RGB original and separately derived transparent RGBA version. Native walk strip is verified; expanded strip remains pending regeneration after an integrity audit."
+    "Female explorer walk now has a corrected native strip and an expanded 256x128 strip, exactly matching a nearest-neighbour enlargement. RGB source master and transparent RGBA derivative are preserved separately."
   ]
 }

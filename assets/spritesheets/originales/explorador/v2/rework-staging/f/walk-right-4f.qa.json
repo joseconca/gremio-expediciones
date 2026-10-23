@@ -4,7 +4,7 @@
   "sex": "f",
   "action": "walk",
   "direction": "right",
-  "status": "staging-native-corrected-expanded-pending",
+  "status": "staging-indexed-transparent-art-review-pending",
   "sourceMaster": {
     "originalLibraryPath": "/GameAssets/Tier2/Explorador/explorador-f-walk-hires-original.png",
     "originalSha256": "bc125f9f3372722aebdc23a787a70472322cf483458be6920e8d9132cab814e1",
@@ -27,22 +27,32 @@
     "count": 4,
     "sha256": "d943786d42d6f674bdde27d8a7436147fceaf72d0c0aeb0247bac1634d813cc4"
   },
-  "expandedSheet": null,
+  "expandedSheet": {
+    "path": "walk-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "sha256": "65fe38b254bafd373142f89ddcac3609e4f8d840fccb6cadba01b021cb334bec",
+    "construction": "nearest-neighbour upscale of native frames; palette optimized without changing pixel colors"
+  },
   "checks": {
     "nativeDimensions": true,
-    "expandedDimensions": false,
+    "expandedDimensions": true,
     "transparentIndexPresent": true,
     "allFrameCellsNonEmpty": true,
     "fourUniqueFrames": true,
-    "expandedMatchesNativeFrames": false,
+    "expandedMatchesNativeFrames": true,
     "runtimeApproved": false,
     "requiresArtReview": true
   },
   "notes": [
-    "Four right-facing walk frames extracted from the archived transparent-derived master; each frame is 32x64 and each pose is distinct.",
-    "Native strip restored after integrity audit; the prior expanded PNG was corrupt and has been removed rather than kept as a misleading artifact.",
-    "High-resolution RGB source with opaque checkerboard and its separate transparent-derived RGBA master remain preserved in the library.",
-    "A verified 256x128 nearest-neighbour expansion must be regenerated from this native strip before walk is considered complete.",
-    "Staging only; no runtime integration until cross-class art review."
+    "Four distinct walk frames face right, with stride, braid and cloak movement; each native cell is 32x64.",
+    "Native strip and expanded strip are now correct; pixel comparison confirms the 256x128 sheet exactly equals a nearest-neighbour enlargement of native frames.",
+    "The expanded PNG palette was optimized, but exact RGBA comparison to the original expansion reports no pixel differences.",
+    "The original RGB hires source with opaque checkerboard and its separately derived transparent RGBA master remain archived in the library.",
+    "Staging only; no runtime integration until cross-class visual review."
   ]
 }
