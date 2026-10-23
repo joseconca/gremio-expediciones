@@ -71,3 +71,6 @@ Checkpoint de auditoría 23-10-2026: manifiestos de Cazador separados por sexo y
 
 
 Checkpoint QA 23-10-2026: corregidas tres notas de concept obsoletas (Brujo masculino, Cazador masculino y Cazadora) que aún marcaban idle/walk/hurt como tareas futuras. El estado real queda alineado con los archivos versionados; aprobación de runtime sigue pendiente.
+
+
+Checkpoint de integridad 23-10-2026: el blob de la preview de concept del Elementalista femenino coincide con los bytes locales (SHA de Git e1e608b2…, SHA-256 bda85579…). La miniatura tiene 96×144 px y transparencia indexada 0.

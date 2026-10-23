@@ -144,3 +144,8 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 
 - Se actualizaron los QA de concepto del Brujo masculino y del Cazador masculino/femenino: ya no indican que `idle`, `walk` o `hurt` están pendientes cuando los tres ciclos están versionados en staging.
 - Los estados siguen siendo de revisión; se mantiene `runtimeApproved: false` hasta la aprobación artística global.
+
+
+## Verificación binaria de preview — 23-10-2026
+
+- La miniatura de concept de Elementalista femenino se volvió a publicar con un blob binario comprobado. El SHA de objeto Git remoto coincide exactamente con `git hash-object` local (`e1e608b2…`); los 1.914 bytes representan una PNG indexada de 96×144 con transparencia en el índice 0.

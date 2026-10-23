@@ -89,8 +89,9 @@
       "height": 144,
       "mode": "P",
       "transparencyIndex": 0,
-      "sha256": "192f89b406286c59d0c6f42b953899886012c12a0c1fddbbb32df22687e277fb",
-      "derivedFrom": "elementalista-f-concept-hires-original.png"
+      "sha256": "bda85579b431c1fc669ce41551e5eb53fb51bc0e3b99a3de3d72f7302e39fd62",
+      "derivedFrom": "elementalista-f-concept-hires-original.png",
+      "gitBlobSha": "e1e608b22271942e025414234294650ea8dabaaf"
     },
     {
       "name": "elementalista-f-idle-right-4f.png",
@@ -121,6 +122,7 @@
     "All four separate female Elementalist hires sources were found in the Library under generic generated image names, then archived to canonical /GameAssets/Tier2/Elementalista paths without modification.",
     "The concept thumbnail was repaired because the earlier compact PNG had no verifiable indexed transparency. The new 96x144 preview derives only from the dedicated full-size concept, not from an animation frame.",
     "The opaque-checkerboard hurt alternative is preserved separately and is not used as the extraction master.",
-    "High-resolution sources remain separate from native 128x64 and expanded 256x128 staging strips. No staging asset is runtime-approved."
+    "High-resolution sources remain separate from native 128x64 and expanded 256x128 staging strips. No staging asset is runtime-approved.",
+    "The concept preview's published Git blob SHA was checked against the exact local PNG byte stream; dimensions 96x144, 32 used palette entries plus index-0 transparency."
   ]
 }

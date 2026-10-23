@@ -11,7 +11,8 @@
     "height": 144,
     "mode": "P",
     "transparencyIndex": 0,
-    "sha256": "192f89b406286c59d0c6f42b953899886012c12a0c1fddbbb32df22687e277fb"
+    "sha256": "bda85579b431c1fc669ce41551e5eb53fb51bc0e3b99a3de3d72f7302e39fd62",
+    "gitBlobSha": "e1e608b22271942e025414234294650ea8dabaaf"
   },
   "sourceMaster": {
     "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-f-concept-hires-original.png",
@@ -43,6 +44,7 @@
   "notes": [
     "Original standalone 1114x1412 RGBA concept master was recovered from the Library and preserved unchanged.",
     "The compact preview is rebuilt from this concept master with explicit index-0 transparency; the previous staging PNG lacked a verifiable transparent palette entry.",
-    "Preview only; concept master and all animation sheets remain separate. No weapon, UI or scene background is part of the character asset."
+    "Preview only; concept master and all animation sheets remain separate. No weapon, UI or scene background is part of the character asset.",
+    "Binary integrity rechecked after publication: remote Git blob SHA matches the exact local PNG bytes; file size 1914 bytes, dimensions 96x144, indexed transparency index 0."
   ]
 }
