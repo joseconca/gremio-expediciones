@@ -4,14 +4,53 @@
   "sex": "f",
   "action": "idle",
   "direction": "right",
-  "status": "staging-indexed-transparent-art-review-pending",
+  "status": "staging-native-recovered-from-high-resolution-master-expanded-strip-pending",
   "nativeFrames": {
     "path": "idle/frames-native-32x64/",
     "width": 32,
     "height": 64,
     "mode": "P",
     "transparency": "indexed transparent key",
-    "count": 4
+    "count": 4,
+    "transparencyIndex": 0,
+    "frames": [
+      {
+        "index": 1,
+        "path": "assets/spritesheets/originales/elementalista/v2/rework-staging/f/idle/frames-native-32x64/f/elementalista-f-idle-01.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "d0591606d16bd88eb57fce474dfa179cf8179b6ceef7c37ddd73b776892825c9"
+      },
+      {
+        "index": 2,
+        "path": "assets/spritesheets/originales/elementalista/v2/rework-staging/f/idle/frames-native-32x64/f/elementalista-f-idle-02.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "850800c7216103a1c4a4dd3d8fa6691131bc5f7a6f83ec3bab06ca41ed2d4c33"
+      },
+      {
+        "index": 3,
+        "path": "assets/spritesheets/originales/elementalista/v2/rework-staging/f/idle/frames-native-32x64/f/elementalista-f-idle-03.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "44c965845256dd54e0109d1073e8aea5c64ba588812c0c2d7c6659fef4e8c7de"
+      },
+      {
+        "index": 4,
+        "path": "assets/spritesheets/originales/elementalista/v2/rework-staging/f/idle/frames-native-32x64/f/elementalista-f-idle-04.png",
+        "dimensions": [
+          32,
+          64
+        ],
+        "rgba_sha256": "ef1d0952fbc2918603b106a1ff1c50755f3b1e23183d9eed33e9e1da9c76aa41"
+      }
+    ]
   },
   "expandedSheet": {
     "path": "idle-right-4f.png",
@@ -37,12 +76,12 @@
     "highResolutionMasterArchived": true
   },
   "notes": [
-    "The standard idle-right-4f.png path is restored to the known-valid indexed sheet; the incomplete RGBA draft has not been retained as an asset.",
     "Palette-indexed transparency is present and the expanded cells match the four native frames.",
     "Style follows the user-approved reference: detailed silver hair, navy/ivory/gold garments, strong silhouette, layered folds and no weapons.",
     "Art review and optional RGBA export remain pending; this file stays in staging and is not connected to production.",
     "The 1983x793 RGBA idle source is now recorded in the Elementalist female hires manifest and preserved separately at /GameAssets/Tier2/Elementalista/. No separate hires source sheets for concept, walk or hurt were located during the Library audit; do not claim the reduced sheets are original hires masters.",
-    "The exact 1983x793 RGBA idle master is now archived canonically in the Library and recorded in female-manifest.json."
+    "The exact 1983x793 RGBA idle master is now archived canonically in the Library and recorded in female-manifest.json.",
+    "Recovery checkpoint 2026-10-23: four native 32x64 frames were regenerated from the preserved original Library master after the checked-in native PNGs were found unreadable. The crop keeps only the connected character component for each pose, shares a 127-colour palette and indexed transparency, and aligns the feet to a common baseline. The derived expanded strip will be rebuilt and re-audited by CI."
   ],
   "sourceMaster": {
     "libraryPath": "/GameAssets/Tier2/Elementalista/elementalista-f-idle-hires-original.png",

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 from pathlib import Path
 
 from PIL import Image
@@ -113,6 +114,23 @@ def repair_one(class_id: str, sex: str, action: str) -> bool:
         fail(f"no se toca un asset aprobado para runtime: {qa_path.relative_to(ROOT)}")
 
     native, modes = native_sources(sex_root, report, class_id, sex, action)
+    native_meta = report.setdefault("nativeFrames", {})
+    native_meta["mode"] = "P" if all(mode == "P" for mode in modes) else "RGBA"
+    if native_meta["mode"] == "P":
+        native_meta["transparency"] = "indexed transparent key"
+        native_meta.setdefault("transparencyIndex", 0)
+    else:
+        native_meta.pop("transparency", None)
+        native_meta.pop("transparencyIndex", None)
+    native_meta["frames"] = [
+        {
+            "index": index + 1,
+            "path": str((sex_root / native_meta.get("path", f"{action}/frames-native-32x64/") / sex / f"{class_id}-{sex}-{action}-{index + 1:02d}.png").relative_to(ROOT)),
+            "dimensions": [32, 64],
+            "rgba_sha256": hashlib.sha256(frame.tobytes()).hexdigest(),
+        }
+        for index, frame in enumerate(native)
+    ]
     generated = make_strip(native)
     expanded_meta = report.get("expandedSheet", {})
     expanded_path = sex_root / expanded_meta.get("path", f"{action}-right-4f.png")
