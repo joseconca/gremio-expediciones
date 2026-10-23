@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import statistics
 from collections import Counter
 from pathlib import Path
@@ -75,6 +76,8 @@ def map_frame(frame, palette):
         lut[rgb] = min(palette, key=lambda c: sum((rgb[k] - c[k]) ** 2 for k in range(3)))
     changed = visible = 0
     mapped = []
+    rgb_distances = []
+    candidate_colours = set()
     for r, g, b, a in pixels:
         if a == 0:
             mapped.append((r, g, b, a))
@@ -82,10 +85,20 @@ def map_frame(frame, palette):
             visible += 1
             colour = lut[(r, g, b)]
             changed += int(colour != (r, g, b))
+            candidate_colours.add(colour)
+            rgb_distances.append(math.sqrt(sum((channel - colour[index]) ** 2 for index, channel in enumerate((r, g, b)))))
             mapped.append((*colour, a))
     result = Image.new("RGBA", frame.size)
     result.putdata(mapped)
-    return result, changed, visible, len(unique)
+    ordered_distances = sorted(rgb_distances)
+    p95_index = max(0, math.ceil(0.95 * len(ordered_distances)) - 1) if ordered_distances else 0
+    metrics = {
+        "mean_rgb_distance": round(statistics.mean(rgb_distances), 3) if rgb_distances else 0,
+        "p95_rgb_distance": round(ordered_distances[p95_index], 3) if ordered_distances else 0,
+        "max_rgb_distance": round(max(rgb_distances), 3) if rgb_distances else 0,
+        "candidate_unique_visible_colours": len(candidate_colours),
+    }
+    return result, changed, visible, len(unique), metrics
 
 def native_strip(frames):
     result = Image.new("RGBA", (128, 64), (0, 0, 0, 0))
@@ -141,12 +154,18 @@ def main():
                 candidate_frames = []
                 changed = total = 0
                 source_colour_count = 0
+                frame_distance_metrics = []
+                alpha_mask_identical = True
+                silhouette_bounds_preserved = True
                 for frame in frames:
-                    candidate, n_changed, n_visible, n_colours = map_frame(frame, palette)
+                    candidate, n_changed, n_visible, n_colours, distance_metrics = map_frame(frame, palette)
                     candidate_frames.append(candidate)
                     changed += n_changed
                     total += n_visible
                     source_colour_count += n_colours
+                    frame_distance_metrics.append(distance_metrics)
+                    alpha_mask_identical = alpha_mask_identical and frame.getchannel("A").tobytes() == candidate.getchannel("A").tobytes()
+                    silhouette_bounds_preserved = silhouette_bounds_preserved and frame.getchannel("A").getbbox() == candidate.getchannel("A").getbbox()
                 original_strip = expand(frames)
                 candidate_strip = expand(candidate_frames)
                 folder = output / cls / sex
@@ -166,6 +185,14 @@ def main():
                     "visible_pixels_remapped": changed,
                     "visible_pixels_total": total,
                     "remapped_pixel_pct": round(100 * changed / total, 2) if total else 0,
+                    "mean_rgb_distance": round(statistics.mean(m["mean_rgb_distance"] for m in frame_distance_metrics), 3),
+                    "p95_rgb_distance": max(m["p95_rgb_distance"] for m in frame_distance_metrics),
+                    "max_rgb_distance": max(m["max_rgb_distance"] for m in frame_distance_metrics),
+                    "candidate_unique_visible_colours": max(m["candidate_unique_visible_colours"] for m in frame_distance_metrics),
+                    "source_frame_unique_visible_colours_sum": source_colour_count,
+                    "alpha_mask_identical": alpha_mask_identical,
+                    "silhouette_bounds_preserved": silhouette_bounds_preserved,
+                    "remapped_pixel_pct_semantics": "percentage of visible pixels whose exact RGB triplet changed; not a perceptual-change metric",
                     "original_median_rgb": median_rgb(original_strip),
                     "candidate_median_rgb": median_rgb(candidate_strip),
                     "runtime_approved": False,
@@ -178,6 +205,9 @@ def main():
                     "class": cls, "sex": sex, "action": action,
                     "idle_palette_size": len(palette),
                     "remapped_pixel_pct": report["remapped_pixel_pct"],
+                    "mean_rgb_distance": report["mean_rgb_distance"],
+                    "p95_rgb_distance": report["p95_rgb_distance"],
+                    "alpha_mask_identical": report["alpha_mask_identical"],
                     "candidate": str(candidate_path.relative_to(ROOT)),
                 })
             comparison_board(cls, sex, anchor, results, output / "boards" / f"{cls}-{sex}-palette-comparison.png")
