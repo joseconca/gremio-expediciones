@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "classId": "brujo",
+  "sex": "f",
+  "action": "walk",
+  "direction": "right",
+  "status": "staging-indexed-transparent-art-review-pending",
+  "sourceMaster": {
+    "originalLibraryPath": "/GameAssets/Tier2/Brujo/brujo-f-walk-hires-checkerboard.png",
+    "transparentDerivedLibraryPath": "/GameAssets/Tier2/Brujo/brujo-f-walk-hires-transparent-derived.png",
+    "width": 1983,
+    "height": 793,
+    "mode": "RGBA",
+    "sha256Derived": "7bac78945c1d866313d085069940006fb1d8ee9748d19580ba101f17fdcb723c"
+  },
+  "nativeFrames": {
+    "path": "walk-native-4f.png",
+    "width": 128,
+    "height": 64,
+    "cellWidth": 32,
+    "cellHeight": 64,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "count": 4
+  },
+  "expandedSheet": {
+    "path": "walk-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "construction": "nearest-neighbour upscale of four native frames"
+  },
+  "checks": {
+    "nativeDimensions": true,
+    "expandedDimensions": true,
+    "expandedMatchesNativeFrames": true,
+    "transparentIndexPresent": true,
+    "allFramesNonEmpty": true,
+    "fourUniqueFrames": true,
+    "runtimeApproved": false,
+    "requiresArtReview": true
+  },
+  "notes": [
+    "The raw high-resolution source sheet was archived unchanged, with its checkerboard still baked in.",
+    "A transparent high-resolution derivative and the raw source are both preserved in the library.",
+    "Each expanded cell matches the native frame exactly after nearest-neighbour scaling.",
+    "The action remains in staging pending final cross-class art review."
+  ]
+}
