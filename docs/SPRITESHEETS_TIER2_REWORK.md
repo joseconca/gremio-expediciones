@@ -35,6 +35,12 @@ Por clase, completar un sexo cada vez: concept art → idle derecha (4 frames) �
 10. [ ] Repetir secuencialmente para Brujo, Cazador y Explorador, cada uno masculino y después femenino.
 11. [ ] Integrar solo recursos aprobados en producción y ejecutar validadores.
 
+## Estado actual — Elementalista femenino
+- Concept art original creado siguiendo la referencia visual aprobada: cabello plateado con adornos azul/oro, manto azul real, túnica marfil, detalles dorados, botas oscuras y manos vacías.
+- Archivo conceptual de staging: `assets/spritesheets/originales/elementalista/v2/rework-staging/f/concept/elementalista-f-concept-96x144.png`.
+- Imagen recortada a 96×144 con transparencia indexada y paleta de 24 colores; es concept art compacto y no está destinado a runtime.
+- Próximo paso: construir `idle` mirando a la derecha con cuatro frames, después `walk` y `hurt`; cada fase llevará QA de transparencia, dimensiones y continuidad, sin usar armas.
+
 ## Estado actual — Elementalista masculino
 - Referencia: pelo plateado, manto azul profundo, túnica marfil, ribetes dorados y manos vacías.
 - `idle-right-4f.png`, `walk-right-4f.png` y `hurt-right-4f.png`: tiras RGBA de 256×128 px, cuatro celdas de 64×128 con transparencia por píxel.
