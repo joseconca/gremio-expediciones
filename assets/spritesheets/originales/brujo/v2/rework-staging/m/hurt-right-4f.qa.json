@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "classId": "brujo",
+  "sex": "m",
+  "action": "hurt",
+  "direction": "right",
+  "status": "staging-indexed-transparent-art-review-pending",
+  "nativeFrames": {
+    "path": "hurt-native-4f.png",
+    "width": 128,
+    "height": 64,
+    "cellWidth": 32,
+    "cellHeight": 64,
+    "mode": "P",
+    "transparencyIndex": 44,
+    "count": 4
+  },
+  "expandedSheet": {
+    "path": "hurt-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "mode": "P",
+    "transparencyIndex": 44,
+    "construction": "nearest-neighbour upscale of four native frames"
+  },
+  "checks": {
+    "nativeDimensions": true,
+    "expandedDimensions": true,
+    "expandedMatchesNativeFrames": true,
+    "transparentIndexPresent": true,
+    "allFrameCellsNonEmpty": true,
+    "fourUniqueFrames": true,
+    "runtimeApproved": false,
+    "requiresArtReview": true
+  },
+  "notes": [
+    "Four frames show flinch, recoil, stagger and recovery, right-facing.",
+    "All expanded cells match the respective native frame enlarged with nearest-neighbour; transparent index 44 is shared by both sheets.",
+    "Character has no weapon or held prop; no UI/background included.",
+    "Staging only. Whole-roster visual polish remains deferred until all missing Tier 2 first passes are made."
+  ]
+}
