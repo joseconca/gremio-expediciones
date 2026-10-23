@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "classId": "cazador",
+  "sex": "m",
+  "stage": "concept",
+  "status": "staging-concept-review-pending",
+  "preview": {
+    "path": "concept/cazador-m-concept-128x192.png",
+    "width": 128,
+    "height": 192,
+    "mode": "P",
+    "transparencyIndex": 0
+  },
+  "sourceMaster": {
+    "libraryPath": "/GameAssets/Tier2/Cazador/cazador-m-concept-hires.png",
+    "width": 1114,
+    "height": 1412,
+    "mode": "RGBA",
+    "sha256": "59e1b1554653134b13a40f049d4003fd63606e8c46eafeb7bf570d3822451ce3",
+    "transparentBackground": true
+  },
+  "checks": {
+    "dimensions": true,
+    "transparentIndexPresent": true,
+    "fullBody": true,
+    "weaponsAbsent": true,
+    "uiAbsent": true,
+    "runtimeApproved": false
+  },
+  "notes": [
+    "Original high-resolution concept is stored separately in the persistent library.",
+    "Compact concept is a review proxy, not a runtime sprite.",
+    "Forest-green and umber leather ranger silhouette; no bow, quiver, blades or tools."
+  ]
+}
