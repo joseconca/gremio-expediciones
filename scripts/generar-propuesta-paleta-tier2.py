@@ -135,9 +135,57 @@ def luminance_stats(frames):
         "median_saturation": round(statistics.median(saturation), 3),
     }
 
-def comparison_board(cls, sex, idle, action_outputs, output):
+def tonal_candidate(frame, source_stats, target_stats):
+    """Match broad luminance quantiles while preserving alpha and RGB chromaticity."""
+    source_points = [
+        (float(source_stats["p10"]), float(target_stats["p10"])),
+        (float(source_stats["median"]), float(target_stats["median"])),
+        (float(source_stats["p90"]), float(target_stats["p90"])),
+    ]
+    # Keep near-black contour pixels anchored, then build a monotone piecewise LUT.
+    points = [(0.0, 0.0), (12.0, 12.0)]
+    for x, y in source_points:
+        if x <= points[-1][0]:
+            continue
+        points.append((x, max(points[-1][1], y)))
+    if points[-1][0] < 255:
+        points.append((255.0, 255.0))
+    else:
+        points[-1] = (255.0, 255.0)
+    lut = []
+    segment = 0
+    for value in range(256):
+        while segment < len(points) - 2 and value > points[segment + 1][0]:
+            segment += 1
+        x0, y0 = points[segment]
+        x1, y1 = points[segment + 1]
+        ratio = 0.0 if x1 == x0 else (value - x0) / (x1 - x0)
+        lut.append(max(0, min(255, round(y0 + ratio * (y1 - y0)))))
+    mapped = []
+    for r, g, b, a in frame.convert("RGBA").getdata():
+        if a == 0:
+            mapped.append((r, g, b, a))
+            continue
+        luma = 0.2126 * r + 0.7152 * g + 0.0722 * b
+        new_luma = lut[max(0, min(255, round(luma)))]
+        if luma <= 0:
+            mapped.append((r, g, b, a))
+        else:
+            factor = new_luma / luma
+            mapped.append((
+                max(0, min(255, round(r * factor))),
+                max(0, min(255, round(g * factor))),
+                max(0, min(255, round(b * factor))),
+                a,
+            ))
+    result = Image.new("RGBA", frame.size)
+    result.putdata(mapped)
+    return result
+
+
+def comparison_board(cls, sex, idle, action_outputs, output, candidate_label="CANDIDATO"):
     scale = 2
-    labels = ("IDLE · PALETA BASE", "ORIGINAL", "CANDIDATO")
+    labels = ("IDLE · PALETA BASE", "ORIGINAL", candidate_label)
     cell_w, cell_h = 512, 256
     margin, label_h = 12, 24
     canvas = Image.new("RGBA", (3 * cell_w + 4 * margin, 2 * (cell_h + label_h + margin) + 42), (35, 37, 43, 255))
@@ -165,6 +213,7 @@ def main():
         "original_staging_modified": False,
         "method": "Map visible RGB pixels in Walk/Hurt to the nearest colour in the same class/sex Idle native palette. Preserve alpha; never overwrite existing assets.",
         "candidates": [],
+        "tonal_candidates": [],
     }
     for cls in CLASSES:
         for sex in SEXES:
@@ -173,6 +222,7 @@ def main():
             palette = palette_from(idle_frames)
             idle_luminance = luminance_stats(idle_frames)
             results = {}
+            tonal_results = {}
             for action in ACTIONS:
                 frames, source = load_frames(cls, sex, action)
                 candidate_frames = []
@@ -194,14 +244,29 @@ def main():
                 candidate_strip = expand(candidate_frames)
                 original_luminance = luminance_stats(frames)
                 candidate_luminance = luminance_stats(candidate_frames)
+                tonal_frames = [tonal_candidate(frame, original_luminance, idle_luminance) for frame in frames]
+                tonal_strip = expand(tonal_frames)
+                tonal_luminance = luminance_stats(tonal_frames)
+                tonal_alpha_mask_identical = all(
+                    source_frame.getchannel("A").tobytes() == candidate_frame.getchannel("A").tobytes()
+                    for source_frame, candidate_frame in zip(frames, tonal_frames)
+                )
+                tonal_bounds_preserved = all(
+                    source_frame.getchannel("A").getbbox() == candidate_frame.getchannel("A").getbbox()
+                    for source_frame, candidate_frame in zip(frames, tonal_frames)
+                )
                 folder = output / cls / sex
                 folder.mkdir(parents=True, exist_ok=True)
                 original_path = folder / f"{action}-original.png"
                 candidate_path = folder / f"{action}-palette-candidate.png"
                 native_path = folder / f"{action}-native-palette-candidate.png"
+                tonal_path = folder / f"{action}-tone-candidate.png"
+                native_tonal_path = folder / f"{action}-native-tone-candidate.png"
                 original_strip.save(original_path, optimize=True)
                 candidate_strip.save(candidate_path, optimize=True)
                 native_strip(candidate_frames).save(native_path, optimize=True)
+                tonal_strip.save(tonal_path, optimize=True)
+                native_strip(tonal_frames).save(native_tonal_path, optimize=True)
                 report = {
                     "class": cls, "sex": sex, "action": action,
                     "source": str(source.relative_to(ROOT)),
@@ -226,12 +291,29 @@ def main():
                     "candidate_luminance": candidate_luminance,
                     "original_median_luminance_delta_from_idle": round(original_luminance["median"] - idle_luminance["median"], 2),
                     "candidate_median_luminance_delta_from_idle": round(candidate_luminance["median"] - idle_luminance["median"], 2),
+                    "tonal_candidate_luminance": tonal_luminance,
+                    "tonal_candidate_median_luminance_delta_from_idle": round(tonal_luminance["median"] - idle_luminance["median"], 2),
+                    "tonal_candidate_alpha_mask_identical": tonal_alpha_mask_identical,
+                    "tonal_candidate_silhouette_bounds_preserved": tonal_bounds_preserved,
+                    "tonal_candidate_method": "piecewise luminance quantile match to idle, near-black anchor at luminance 12, RGB chromaticity scaled proportionally, alpha unchanged",
                     "runtime_approved": False,
                     "promoted_to_staging": False,
                     "note": "Candidate only. Review skin tones, fabric highlights, material separation, silhouette and class identity before any promotion.",
                 }
                 (folder / f"{action}-palette-review.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
                 results[action] = (original_strip, candidate_strip)
+                tonal_results[action] = (original_strip, tonal_strip)
+                summary["tonal_candidates"].append({
+                    "class": cls, "sex": sex, "action": action,
+                    "idle_luminance_median": idle_luminance["median"],
+                    "original_luminance": original_luminance,
+                    "candidate_luminance": tonal_luminance,
+                    "original_median_luminance_delta_from_idle": round(original_luminance["median"] - idle_luminance["median"], 2),
+                    "candidate_median_luminance_delta_from_idle": round(tonal_luminance["median"] - idle_luminance["median"], 2),
+                    "alpha_mask_identical": tonal_alpha_mask_identical,
+                    "silhouette_bounds_preserved": tonal_bounds_preserved,
+                    "candidate": str(tonal_path.relative_to(ROOT)),
+                })
                 summary["candidates"].append({
                     "class": cls, "sex": sex, "action": action,
                     "idle_palette_size": len(palette),
@@ -247,7 +329,8 @@ def main():
                     "candidate_median_luminance_delta_from_idle": report["candidate_median_luminance_delta_from_idle"],
                     "candidate": str(candidate_path.relative_to(ROOT)),
                 })
-            comparison_board(cls, sex, anchor, results, output / "boards" / f"{cls}-{sex}-palette-comparison.png")
+            comparison_board(cls, sex, anchor, results, output / "boards" / f"{cls}-{sex}-palette-comparison.png", "CANDIDATO PALETA")
+            comparison_board(cls, sex, anchor, tonal_results, output / "boards" / f"{cls}-{sex}-tone-comparison.png", "CANDIDATO TONAL")
     output.mkdir(parents=True, exist_ok=True)
     (output / "README.md").write_text(
         "# Tier 2 palette comparison candidates\n\n"
@@ -256,7 +339,7 @@ def main():
         encoding="utf-8",
     )
     (output / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Generated {len(summary['candidates'])} non-destructive palette candidates in {output.relative_to(ROOT)}")
+    print(f"Generated {len(summary['candidates'])} palette candidates and {len(summary['tonal_candidates'])} tonal candidates in {output.relative_to(ROOT)}")
 
 if __name__ == "__main__":
     main()
