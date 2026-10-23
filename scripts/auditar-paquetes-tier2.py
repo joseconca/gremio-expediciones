@@ -95,7 +95,6 @@ def check_action(class_id: str, sex: str, action: str, row: int) -> int:
         "class": class_id,
         "sex": sex,
         "action": action,
-        "master_dimensions": list(MASTER_SIZES.__iter__().__next__()) if False else None,
         "strip_dimensions": list(STRIP_SIZE),
         "cell_dimensions": list(FRAME_SIZE),
         "native_frame_dimensions": list(NATIVE_SIZE),
@@ -107,8 +106,6 @@ def check_action(class_id: str, sex: str, action: str, row: int) -> int:
     # Master dimensions are checked against the actual master below; all other
     # fields must agree exactly with the class/sex/action contract.
     for key, value in expected.items():
-        if key == "master_dimensions" and value is None:
-            continue
         if report.get(key) != value:
             fail(f"{qa_path.relative_to(ROOT)}: {key}={report.get(key)!r}, esperado {value!r}")
 
