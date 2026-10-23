@@ -12,14 +12,16 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 - Staging indexado con transparencia explícita; QA valida dimensiones, transparencia, diferencia entre frames y correspondencia entre tira/fuente.
 - No reemplazar sprites de producción hasta la revisión final.
 
-## Estado actual
+## Estado actual — snapshot global auditado, 2026-10-23
 
-- **Elementalista femenino:** concept, idle, walk y hurt guardados como primeros pases en staging. QA técnico inicial completado. Se encontró y archivó su máster original de `idle` (1983×793 RGBA) bajo `/GameAssets/Tier2/Elementalista/` y se creó el manifiesto `assets/spritesheets/originales/elementalista/v2/source-hires/female-manifest.json`. No se localizaron fuentes hires independientes para concept, walk ni hurt en la biblioteca; el manifiesto señala el hueco y no los presenta como preservados.
-- **Brujo masculino:** concept, idle, walk y hurt en staging, cuatro frames por acción y QA técnico inicial. Los originales grandes exactos están preservados en `/GameAssets/Tier2/Brujo/brujo-m-originales-alta-resolucion.zip`.
-- **Brujo femenino:** concept, idle, walk y hurt completos como primer pase en staging. Cada acción tiene cuatro frames, fuente nativa de 32×64 y tira ampliada de 256×128; QA técnico verifica dimensiones, transparencia y correspondencia de las celdas. Sus másteres grandes están en la biblioteca con SHA-256 en `assets/spritesheets/originales/brujo/v2/source-hires/female-manifest.json`. El source original de walk tenía el damero incrustado; el original está preservado intacto y hay una derivación con transparencia real.
-- **Cazador masculino:** concept de 128×192 en staging; máster RGBA 1114×1412 y variante adicional archivados en la biblioteca con SHA-256. El ciclo `idle` ya está en staging con cuatro frames hacia la derecha, tira 256×128, fuente nativa 128×64 y QA que verifica dimensiones/transparencia y correspondencia de escalado. También se conserva el strip original de alta resolución 1984×793, separado del runtime. No se han añadido armas.
-- **Siguiente:** Cazador masculino `walk` y `hurt` (cuatro frames por acción); después Cazador femenino y Explorador masculino/femenino. No rehacer clases ya terminadas.
-- La pasada global de coherencia visual se hará al final, con los primeros pases de todas las clases pendientes listos.
+- **Cobertura:** Elementalista, Brujo, Cazador y Explorador, en masculino y femenino, tienen concept + idle + walk + hurt en staging. Las acciones tienen cuatro poses orientadas a la derecha. El primer pase ya no tiene clases enteras pendientes de generación.
+- **QA:** hay 24 combinaciones clase-sexo-acción. Brujo, Cazador y Explorador cuentan con QA canónico para sus 18 tiras. Los tres ciclos del Elementalista femenino también están registrados; el Elementalista masculino tiene QA RGBA para idle/walk y se ha normalizado el informe de hurt al nombre `hurt-right-4f.qa.json`.
+- **Contrato de dimensiones:** la tira ampliada de staging mide 256×128, con cuatro celdas 64×128; la fuente nativa mide 128×64, con cuatro celdas 32×64. Algunos informes del Elementalista masculino describen los frames individuales como 32×64 y no la tira nativa como 128×64; sus rutas dejan claro que se trata de cuatro PNG individuales.
+- **Fuentes hires:** se preservan masters y derivaciones cuando se han encontrado, con manifiestos por clase/sexo. Para el Elementalista masculino se conservan referencias compuestas, no masters hires independientes de cada acción. Mantener explícitas estas excepciones.
+- **Aprobación:** todas las hojas siguen en `rework-staging`, con `runtimeApproved: false`. Esto es intencional: falta la aprobación artística final. No se han reemplazado los sprites de producción.
+- **Siguiente paso:** completar revisión artística global y consistencia de manifiestos, procedencia hires y metadata QA; refinar solo defectos demostrados. No rehacer ahora clases ya terminadas; su armonización se deja para la pasada final.
+
+**Nota:** la sección «Historial reciente» y los checkpoints posteriores conservan el estado documentado en sus fechas; las instrucciones «Siguiente» de esos apuntes son históricas, no la lista actual de tareas.
 
 ## Historial reciente
 - `b2b21b6` — primer pase del Elementalista femenino.
