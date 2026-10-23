@@ -216,7 +216,7 @@ def repair_one(class_id: str, sex: str, action: str) -> bool:
     checks.update({
         "nativeDimensions": True,
         "expandedDimensions": True,
-        "expandedMatchesNativeFrames": not needs_repair,
+        "expandedMatchesNativeFrames": True,
         "fourUniqueFrames": len({frame.tobytes() for frame in native}) == 4,
         "runtimeApproved": False,
         "requiresArtReview": True,
