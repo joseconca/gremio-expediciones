@@ -4,23 +4,38 @@
   "sex": "m",
   "action": "hurt",
   "direction": "right",
-  "status": "native-draft-awaiting-expanded-sheet",
+  "status": "staging-technical-checks-passed-art-review-pending",
   "nativeFrameCount": 4,
-  "nativeFrames": {"path":"hurt/frames-native-32x64/","width":32,"height":64,"mode":"RGBA","count":4},
-  "expandedSheet": null,
+  "nativeFrames": {
+    "path": "hurt/frames-native-32x64/",
+    "width": 32,
+    "height": 64,
+    "mode": "RGBA",
+    "count": 4
+  },
+  "expandedSheet": {
+    "path": "hurt-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "mode": "RGBA",
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "construction": "nearest-neighbour upscale from native frame PNGs"
+  },
   "checks": {
+    "expandedDimensions": true,
     "nativeDimensions": true,
+    "expandedMatchesNativeFrames": true,
     "allNativeFramesRGBA": true,
     "perPixelAlphaPresent": true,
     "allFramesNonEmpty": true,
     "fourUniqueFrames": true,
-    "expandedSheetReady": false,
     "runtimeApproved": false
   },
   "notes": [
-    "Four right-facing hurt poses are staged as individual native RGBA frames.",
-    "The expanded 256x128 sheet still needs to be generated and compared against these frames.",
-    "Art is a draft extracted from a composite reference and needs individual pose refinement before production.",
-    "Original and runtime assets are untouched."
+    "Each 64x128 cell in the expanded sheet matches its 32x64 native frame scaled with nearest-neighbour.",
+    "The expanded sheet is RGBA with per-pixel transparency.",
+    "The art remains a draft extracted from a composite reference; recoil poses require artistic refinement before production.",
+    "All files remain under rework-staging; production sprites are untouched."
   ]
 }
