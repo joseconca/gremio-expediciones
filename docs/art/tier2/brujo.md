@@ -9,5 +9,6 @@ Manos vacías. No incluir báculo, varita, armas, calaveras como props ni efecto
 ## Contrato de salida
 Másteres PNG masculino y femenino de 256×384, cuatro columnas × tres filas (Idle, Caminar, Recibir daño). El workflow genera seis tiras PNG, 24 frames nativos 32×64, seis previews y seis informes QA. El paquete queda fuera del runtime hasta revisión visual.
 
-## Estado
-Generador raster en curso. Se comprobarán transparencia, variedad de frames y línea de pies en GitHub Actions.
+## Estado — 2026-10-23
+Los dos másteres raster y el paquete completo están versionados: seis tiras PNG, 24 frames nativos 32×64, seis previews y seis informes QA. La generación y QA técnica se consideran completadas en el primer pase; la aprobación artística sigue pendiente para la revisión global de las ocho clases. No integrar al runtime antes de esa aprobación.
+
