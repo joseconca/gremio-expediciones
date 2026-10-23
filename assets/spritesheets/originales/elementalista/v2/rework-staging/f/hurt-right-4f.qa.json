@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "classId": "elementalista",
+  "sex": "f",
+  "action": "hurt",
+  "direction": "right",
+  "status": "staging-indexed-transparent-art-review-pending",
+  "nativeFrames": {
+    "path": "hurt/frames-native-32x64/",
+    "width": 32,
+    "height": 64,
+    "mode": "P",
+    "transparency": "indexed transparent key",
+    "count": 4
+  },
+  "expandedSheet": {
+    "path": "hurt-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "mode": "P",
+    "transparency": "indexed transparent key",
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "construction": "nearest-neighbour upscale from the four native indexed PNGs"
+  },
+  "checks": {
+    "nativeDimensions": true,
+    "expandedDimensions": true,
+    "expandedMatchesNativeFrames": true,
+    "transparentIndexPresent": true,
+    "allFramesNonEmpty": true,
+    "fourUniqueFrames": true,
+    "runtimeApproved": false,
+    "requiresArtReview": true
+  },
+  "notes": [
+    "Four right-facing damage-reaction poses: flinch, recoil, deep stagger and guarded recovery.",
+    "Transparent palette index verified; all enlarged cells match the native indexed frames.",
+    "Hands remain free: no weapons, UI or scenery.",
+    "Staging draft only; final whole-roster polish remains deferred until all missing Tier 2 first passes are finished."
+  ]
+}
