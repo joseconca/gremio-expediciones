@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "classId": "brujo",
+  "sex": "m",
+  "purpose": "Preservation catalog for the four large PNG originals uploaded on 2026-10-23. Exact originals are stored in the user's persistent file library, separate from runtime sprites.",
+  "libraryArchivePath": "/GameAssets/Tier2/Brujo/brujo-m-originales-alta-resolucion.zip",
+  "sources": [
+    {
+      "name": "brujo-m-concept.png",
+      "width": 1114,
+      "height": 1412,
+      "mode": "RGBA",
+      "sha256": "8e2a760a056e589c61a1c12322bd872201900ee6dc0ee42de14d2f6003a9af82",
+      "transparentBackground": true
+    },
+    {
+      "name": "brujo-m-idle.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "08afead41554cd1239ecb791fc7b26b23b3c2c5cde6d78b1b3445ca8920e1fa7",
+      "transparentBackground": false,
+      "notes": "Checkerboard transparency pattern is baked into opaque pixels; retained exactly as uploaded, source/reference only."
+    },
+    {
+      "name": "brujo-m-walk.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "cd9d0ff775944dc6a4f36bffd68d6ee6c8fbae33299e8fc301cfdcc264521a35",
+      "transparentBackground": true
+    },
+    {
+      "name": "brujo-m-hurt.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "a0056b14f60319ef1269110a289145864480f51e4354bc3569734eeb5290fe48",
+      "transparentBackground": true
+    }
+  ],
+  "notes": [
+    "The original PNGs remain unchanged in the library ZIP.",
+    "Large sources are artistic masters/reference material, not runtime sprite sheets.",
+    "Reduced staging sprites remain under rework-staging/m and are separate from these masters."
+  ]
+}
