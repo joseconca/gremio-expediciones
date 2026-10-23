@@ -1,8 +1,20 @@
 # Fuentes de sprites — Tier 2
 
-Los directorios por clase se crean bajo `assets/spritesheets/originales/<id>/v2/` cuando se aprueba el máster visual correspondiente. No se generan por copia del placeholder de `public/sprites/heroes`.
+Clases incluidas en esta fase: `caballero`, `duelista`, `sacerdote`, `monje`, `cazador`, `explorador`, `elementalista` y `brujo`. Los híbridos de Tier 2.5 quedan fuera del alcance.
 
-Clases incluidas en esta fase:
-`caballero`, `duelista`, `sacerdote`, `monje`, `cazador`, `explorador`, `elementalista`, `brujo`.
+## Estado global — 2026-10-23
 
-Cada clase debe aportar un máster masculino y uno femenino, tres acciones coherentes por máster, paleta consistente, alfa real, frames nativos y QA. La primera clase a desarrollar es **Caballero**. Los híbridos de Tier 2.5 quedan fuera del alcance.
+Los ocho paquetes de primer pase están generados y versionados en sus directorios `<clase>/v2/`. Cada paquete contiene los másteres masculino y femenino, tres acciones (`idle`, `walk`, `hurt`) para ambos sexos, seis tiras de 256×128, 24 fotogramas nativos de 32×64, seis previews y seis informes QA.
+
+La existencia del paquete **no significa aprobación artística**. Las fichas QA deben registrar cuatro fotogramas distintos, alfa real, dimensiones correctas y estabilidad de la línea de pies; la inspección visual transversal sigue pendiente. Los primeros paquetes de Caballero, Duelista, Sacerdote y Monje pueden conservar halos o residuos de fondo anotados en sus fichas. No borrar ni reconstruir estos recursos ahora: se abordarán durante la pasada global de armonización.
+
+## Convenciones
+
+- Máster raster: `<clase>-<sexo>-core-3rows.webp` o `.png`; los másteres existentes pueden ser de 128×192 o 256×384.
+- Tiras por acción: `<clase>-<sexo>-<acción>.png`, 256×128, cuatro celdas de 64×128.
+- Frames nativos: `frames-native-32x64/<sexo>/`, cuatro PNG de 32×64 por acción.
+- Previews y QA se almacenan al lado de cada acción. El QA técnico no reemplaza la aprobación visual.
+- Las armas, herramientas y efectos de combate se superponen mediante capas independientes; no deben quedar dibujados dentro del cuerpo base.
+- Los archivos de estos directorios son fuentes y paquetes de revisión. No deben promoverse a `public/sprites/heroes` ni al runtime hasta que los seis ciclos de cada clase pasen QA y revisión artística.
+
+El inventario canónico está en [`manifest.json`](./manifest.json). El siguiente paso es la auditoría automática de los ocho paquetes y la revisión artística global, no volver a generar desde cero una clase cuyo paquete ya existe.
