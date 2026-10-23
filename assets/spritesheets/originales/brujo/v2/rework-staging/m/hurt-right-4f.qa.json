@@ -4,7 +4,7 @@
   "sex": "m",
   "action": "hurt",
   "direction": "right",
-  "status": "staging-indexed-transparent-art-review-pending",
+  "status": "staging-native-recovered-from-archived-reference-expanded-strip-pending",
   "nativeFrames": {
     "path": "hurt-native-4f.png",
     "width": 128,
@@ -12,8 +12,15 @@
     "cellWidth": 32,
     "cellHeight": 64,
     "mode": "P",
-    "transparencyIndex": 44,
-    "count": 4
+    "transparency": "indexed transparent key",
+    "transparencyIndex": 0,
+    "count": 4,
+    "frameHashesRgba": [
+      "6e24bf988879843e2050e4af86808c927ea002931746f372734e002a41b4eb92",
+      "9b3f0cc4284ee25fa5ae8c75eef01317b3dc5e260f0ce0fea884a14fddde262d",
+      "cfeae83813130d315ee727e1c10992ce09c2669bd2880bb4a3526908c6b6a663",
+      "692275c71a4754e69debeac762efb70fd30f900824312fbbda06a602ab8c2dd6"
+    ]
   },
   "expandedSheet": {
     "path": "hurt-right-4f.png",
@@ -27,18 +34,32 @@
   },
   "checks": {
     "nativeDimensions": true,
+    "nativeIndexedTransparencyValid": true,
     "expandedDimensions": true,
-    "expandedMatchesNativeFrames": true,
-    "transparentIndexPresent": true,
-    "allFrameCellsNonEmpty": true,
+    "expandedMatchesNativeFrames": false,
     "fourUniqueFrames": true,
     "runtimeApproved": false,
-    "requiresArtReview": true
+    "requiresArtReview": true,
+    "expandedStripNeedsRegeneration": true
   },
   "notes": [
-    "Four frames show flinch, recoil, stagger and recovery, right-facing.",
-    "All expanded cells match the respective native frame enlarged with nearest-neighbour; transparent index 44 is shared by both sheets.",
-    "Character has no weapon or held prop; no UI/background included.",
-    "All Tier 2 first-pass sets are now present in staging; final cross-class visual review remains pending."
-  ]
+    "Recovery checkpoint 2026-10-23: four native hurt/recovery frames were recovered from the preserved high-resolution male Brujo RGBA source in the Library archive.",
+    "The original 1983x793 source has per-pixel alpha. Each character pose was isolated by connected-component segmentation of the alpha mask; the figure silhouette was resized to 32x64 and aligned to a common foot baseline.",
+    "The resulting native strip is 128x64 with a shared 31-colour indexed palette and transparent index 0. Per-frame RGBA hashes are recorded in nativeFrames.frameHashesRgba.",
+    "The checked-in 256x128 expanded strip was unreadable and must be rebuilt from this native strip by scripts/reparar-staging-tier2.py. Artistic review remains pending and runtimeApproved is false."
+  ],
+  "sourceMaster": {
+    "libraryPath": "/GameAssets/Tier2/Brujo/brujo-m-originales-alta-resolucion.zip",
+    "archiveEntry": "brujo-m-originales-png/brujo-m-hurt.png",
+    "originalSourceName": "imagen(20261023-082053).png",
+    "width": 1983,
+    "height": 793,
+    "mode": "RGBA",
+    "sha256Original": "a0056b14f60319ef1269110a289145864480f51e4354bc3569734eeb5290fe48",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "checkerboardBakedIntoOpaquePixels": false
+  }
 }
