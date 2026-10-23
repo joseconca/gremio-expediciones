@@ -49,3 +49,10 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 - Concept, `idle`, `walk` y `hurt` están versionados en staging. Las tres animaciones contienen cuatro frames nativos de 32×64 y tiras ampliadas de 256×128; los QA comprueban dimensiones, transparencia, cuatro poses únicas y correspondencia exacta al escalar.
 - Se conservan los masters de alta resolución en la biblioteca, incluyendo los originales con damero y sus derivaciones transparentes separadas. El manifiesto registra sus SHA-256.
 - Ninguna de estas hojas está conectada al runtime ni aprobada como arte final. Siguiente: concept del Explorador femenino y sus acciones `idle`, `walk` y `hurt`.
+
+
+## Checkpoint actualizado — Explorador masculino (23-10-2026)
+
+- Concept, `idle`, `walk` y `hurt` están versionados en staging. Las tres animaciones contienen cuatro frames nativos de 32×64 y tiras ampliadas de 256×128; los QA comprueban dimensiones, transparencia, cuatro poses únicas y correspondencia exacta al escalar.
+- Se conservan los masters de alta resolución en la biblioteca, incluyendo los originales con damero y sus derivaciones transparentes separadas. El manifiesto registra sus SHA-256.
+- Ninguna de estas hojas está conectada al runtime ni aprobada como arte final. Siguiente: concept del Explorador femenino y sus acciones `idle`, `walk` y `hurt`.
