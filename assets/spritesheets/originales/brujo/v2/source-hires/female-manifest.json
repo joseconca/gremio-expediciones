@@ -6,6 +6,7 @@
   "sources": [
     {
       "name": "brujo-f-concept-hires.png",
+      "libraryPath": "/GameAssets/Tier2/Brujo/brujo-f-concept-hires.png",
       "width": 1111,
       "height": 1416,
       "mode": "RGBA",
@@ -14,15 +15,46 @@
     },
     {
       "name": "brujo-f-idle-hires.png",
+      "libraryPath": "/GameAssets/Tier2/Brujo/brujo-f-idle-hires.png",
       "width": 1983,
       "height": 793,
       "mode": "RGBA",
       "sha256": "3b895f0f5e1846e78c07dcab7254bca4acc3e2c33a185844830c2f3da927fc03",
       "transparentBackground": true
+    },
+    {
+      "name": "brujo-f-walk-hires-checkerboard.png",
+      "libraryPath": "/GameAssets/Tier2/Brujo/brujo-f-walk-hires-checkerboard.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGB",
+      "sha256": "a232cd98e93b9cc3093b18116af40fb3d705ca3c4f0dad6210eba2c77f8e6053",
+      "transparentBackground": false,
+      "notes": "Original preserved unchanged; checkerboard is baked into opaque pixels."
+    },
+    {
+      "name": "brujo-f-walk-hires-transparent-derived.png",
+      "libraryPath": "/GameAssets/Tier2/Brujo/brujo-f-walk-hires-transparent-derived.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "7bac78945c1d866313d085069940006fb1d8ee9748d19580ba101f17fdcb723c",
+      "transparentBackground": true,
+      "notes": "Separate derivative with checkerboard background removed."
+    },
+    {
+      "name": "brujo-f-hurt-hires.png",
+      "libraryPath": "/GameAssets/Tier2/Brujo/brujo-f-hurt-hires.png",
+      "width": 2172,
+      "height": 724,
+      "mode": "RGBA",
+      "sha256": "1ef694000641f0facc9d8aa151370b7c087161a6473186936ba7fc49a18a9a94",
+      "transparentBackground": true
     }
   ],
   "notes": [
-    "Exact high-resolution sources preserved in the persistent Library folder /GameAssets/Tier2/Brujo/.",
-    "The staged sprite strips are separate from high-resolution masters."
+    "High-resolution original files are preserved separately in the Library; native/runtime sheets are separate staging files.",
+    "The female Brujo first pass has idle, walk and hurt, four frames each, all in rework-staging.",
+    "The checkerboard was retained only in the original walk source; a transparent derivative is available for extraction."
   ]
 }
