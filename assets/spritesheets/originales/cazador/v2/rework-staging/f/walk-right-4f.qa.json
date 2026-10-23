@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "classId": "cazador",
+  "sex": "f",
+  "action": "walk",
+  "direction": "right",
+  "status": "staging-indexed-transparent-art-review-pending",
+  "sourceMaster": {
+    "libraryPath": "/GameAssets/Tier2/Cazador/cazador-f-walk-hires.png",
+    "width": 1983,
+    "height": 793,
+    "mode": "RGBA",
+    "sha256": "27a68456e79867da288a847d5353ce32f594820ab0130322c8a58047932a5192",
+    "transparentBackground": true
+  },
+  "nativeFrames": {
+    "path": "walk-native-4f.png",
+    "width": 128,
+    "height": 64,
+    "cellWidth": 32,
+    "cellHeight": 64,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "count": 4,
+    "sha256": "0ae8719193332a88f7a80de9aef5f3916d2ea7d92dccf10d17101bb628429268"
+  },
+  "expandedSheet": {
+    "path": "walk-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "sha256": "766f6d95b7726911b56ed4caa92d9f3789416738533c8ec115fe03c4514eb81d",
+    "construction": "nearest-neighbour upscale of native frames"
+  },
+  "checks": {
+    "nativeDimensions": true,
+    "expandedDimensions": true,
+    "transparentIndexPresent": true,
+    "allFrameCellsNonEmpty": true,
+    "fourUniqueFrames": true,
+    "expandedMatchesNativeFrames": true,
+    "runtimeApproved": false,
+    "requiresArtReview": true
+  },
+  "notes": [
+    "Four frames show distinct steps with cloak and braid movement, facing right.",
+    "Each expanded cell matches its native frame after nearest-neighbour enlargement.",
+    "High-resolution master preserved separately in the Library; final art approval deferred."
+  ]
+}

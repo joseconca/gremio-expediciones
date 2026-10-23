@@ -112,6 +112,15 @@
       "sha256": "ba617ebaf4d8f24ba059e2b031402d40f35de70edffcd78406fb26c991d0094d",
       "transparentBackground": true,
       "selectedForCurrentIdle": true
+    },
+    {
+      "name": "cazador-f-walk-hires.png",
+      "libraryPath": "/GameAssets/Tier2/Cazador/cazador-f-walk-hires.png",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "27a68456e79867da288a847d5353ce32f594820ab0130322c8a58047932a5192",
+      "transparentBackground": true
     }
   ],
   "preview": {
@@ -129,6 +138,7 @@
     "The original and transparent-derived masters for walk are both preserved separately; reduced sprites are kept only in staging.",
     "Hurt animation master preserved intact as RGBA 1983×793; source sheet is archived separately from the reduced sprite strips.",
     "Female concept source preserved as a high-resolution RGBA master in the Library, separate from its compact indexed staging preview.",
-    "Female idle source stored as a transparent RGBA master separately from native frames and expanded strip."
+    "Female idle source stored as a transparent RGBA master separately from native frames and expanded strip.",
+    "Female walk strip master preserved intact as RGBA 1983×793 alongside the reduced staging animation."
   ]
 }
