@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "classId": "brujo",
+  "sex": "f",
+  "action": "hurt",
+  "direction": "right",
+  "status": "staging-indexed-transparent-art-review-pending",
+  "sourceMaster": {
+    "libraryPath": "/GameAssets/Tier2/Brujo/brujo-f-hurt-hires.png",
+    "width": 2172,
+    "height": 724,
+    "mode": "RGBA",
+    "sha256": "1ef694000641f0facc9d8aa151370b7c087161a6473186936ba7fc49a18a9a94"
+  },
+  "nativeFrames": {
+    "path": "hurt-native-4f.png",
+    "width": 128,
+    "height": 64,
+    "cellWidth": 32,
+    "cellHeight": 64,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "count": 4
+  },
+  "expandedSheet": {
+    "path": "hurt-right-4f.png",
+    "width": 256,
+    "height": 128,
+    "cellWidth": 64,
+    "cellHeight": 128,
+    "mode": "P",
+    "transparencyIndex": 0,
+    "construction": "nearest-neighbour upscale of four native frames"
+  },
+  "checks": {
+    "nativeDimensions": true,
+    "expandedDimensions": true,
+    "expandedMatchesNativeFrames": true,
+    "transparentIndexPresent": true,
+    "allFramesNonEmpty": true,
+    "fourUniqueFrames": true,
+    "runtimeApproved": false,
+    "requiresArtReview": true
+  },
+  "notes": [
+    "Four right-facing frames show flinch, recoil, stagger and guarded recovery.",
+    "High-resolution RGBA source preserved unchanged in the Library.",
+    "Staging uses a shared indexed palette and transparency index 0.",
+    "Whole-roster visual polish is deferred until the first passes of all missing classes are complete."
+  ]
+}
