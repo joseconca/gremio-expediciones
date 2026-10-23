@@ -103,3 +103,16 @@ test("el cartel de compañía y los participantes de expedición identifican la 
   assert.match(panel, /profesionActivaId\?: string \| null/);
   assert.match(servicio, /profesionActivaId: true/);
 });
+
+
+test("el contrato de integración prioriza rework-staging de Tier 2 y exporta retratos desde Idle", () => {
+  const integration = read("scripts/integrar-sprites-tier0-tier2.py");
+  const workflow = read(".github/workflows/integrar-sprites-tier0-tier2.yml");
+  assert.match(integration, /STAGING_CLASSES = frozenset\(\("elementalista", "brujo", "cazador", "explorador"\)\)/);
+  assert.match(integration, /rework-staging/);
+  assert.match(integration, /ACTIONS = \("idle", "walk", "hurt"\)/);
+  assert.match(integration, /PORTRAIT_SIZE = \(128, 256\)/);
+  assert.match(integration, /filas 3-14/i);
+  assert.match(workflow, /sprites-tier0-tier2-runtime-report/);
+  assert.match(workflow, /git push origin HEAD:main/);
+});
