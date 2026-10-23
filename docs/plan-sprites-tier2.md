@@ -74,3 +74,6 @@ Checkpoint QA 23-10-2026: corregidas tres notas de concept obsoletas (Brujo masc
 
 
 Checkpoint de integridad 23-10-2026: el blob de la preview de concept del Elementalista femenino coincide con los bytes locales (SHA de Git e1e608b2…, SHA-256 bda85579…). La miniatura tiene 96×144 px y transparencia indexada 0.
+
+
+Checkpoint de QA 23-10-2026: auditoría de las 31 fichas de staging finalizada. Corregidas cinco notas desfasadas sobre clases pendientes; la miniatura femenina de concept coincide exactamente con los bytes locales. Las 31 fichas mantienen aprobación de runtime en falso hasta la revisión artística global.

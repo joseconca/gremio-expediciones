@@ -149,3 +149,10 @@ La imagen aprobada por el usuario es el estándar de todos los sprites pendiente
 ## Verificación binaria de preview — 23-10-2026
 
 - La miniatura de concept de Elementalista femenino se volvió a publicar con un blob binario comprobado. El SHA de objeto Git remoto coincide exactamente con `git hash-object` local (`e1e608b2…`); los 1.914 bytes representan una PNG indexada de 96×144 con transparencia en el índice 0.
+
+
+## Cierre de auditoría QA — 23-10-2026
+
+- Se corrigieron cinco notas históricas que aplazaban la revisión hasta completar clases que ya tenían concept + idle/walk/hurt en staging: hurt del Brujo femenino, hurt/walk del Brujo masculino, hurt de la Elementalista femenina e idle del Explorador masculino.
+- Todos los QA de staging revisados mantienen `runtimeApproved: false`; las hojas permanecen fuera del runtime, como exige el plan. No se detectaron checks técnicos explícitos falsos en las 31 fichas QA consultadas; los valores false de runtime/art-review son intencionales.
+- Se verificó que la miniatura compacta del concept de la Elementalista femenina (96×144) publica el blob binario exacto; tamaño remoto 1.914 bytes, Git blob `e1e608b2…`, SHA-256 `bda85579…`.
