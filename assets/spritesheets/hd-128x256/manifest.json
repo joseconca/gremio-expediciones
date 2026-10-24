@@ -163,13 +163,14 @@
         "idle/01",
         "idle/02",
         "idle/03",
-        "idle/04"
+        "idle/04",
+        "walk/01"
       ],
       "sheetPath": "assets/spritesheets/hd-128x256/novato/m/novato-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "technical-passed-visual-review-pending",
-      "lastCommit": "b6e23434df4801b58a1d9577435d9b5be12c484e",
-      "notes": "Los cuatro PNG individuales de Idle ya están guardados. Incluyen variación capilar, parpadeo y un pequeño movimiento del pliegue de la bufanda. Pendiente revisar el ciclo completo; después comienza Walk 01.",
+      "lastCommit": null,
+      "notes": "Idle cuenta con cuatro frames individuales. Walk frame 01 guardado como PNG de paso en perfil derecho, con transparencia real y sin armas; coherencia de cámara/proporciones con Idle pendiente de revisión visual.",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/m/frames"
     },
     {
@@ -806,8 +807,8 @@
     ],
     "note": "CI validates technical tooling using synthetic sprites; it does not approve artwork visually."
   },
-  "nextFrame": "novato-m-walk-01",
-  "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-04.png",
-  "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-04.qa.json",
+  "nextFrame": "novato-m-walk-02",
+  "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/walk/novato-m-walk-01.png",
+  "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/walk/novato-m-walk-01.qa.json",
   "lastFrameCommit": "b6e23434df4801b58a1d9577435d9b5be12c484e"
 }
