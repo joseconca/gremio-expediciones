@@ -104,7 +104,24 @@ Las rutas y nombres definitivos se comprobarán al crear el primer paquete; no d
 - Los workflows antiguos de sprites tienen disparadores y pasos que apuntan expresamente a `main` y varios generadores están fijados a 64×128. No deben ejecutarse para producir estos recursos. El nuevo pipeline deberá ser específico de HD y escribir exclusivamente en `creacion-sprite-sheets`.
 - El marcador raíz `.spritesheets-clase-refinados-v1` evita volver a ejecutar un refinado anterior. Se conserva salvo que una inspección posterior pruebe que es obsoleto y que ningún workflow lo necesita.
 
-## 7. Limpieza de archivos
+## 7. Herramientas HD separadas
+
+Se ha creado un pipeline independiente del contrato legado:
+
+- `scripts/ensamblar-spritesheet-hd.py`: exige las 15 tiras de acción en `<clase>/<sexo>/actions/<accion>.png`, cada una de 512×256 RGBA, valida los cuatro frames y compone la hoja de 512×3840. Genera además un informe QA con hashes; con `--preview` produce una vista de revisión con damero, nunca un recurso runtime.
+- `scripts/validar-spritesheet-hd.py`: valida la hoja completa y puede guardar un informe JSON independiente.
+- `scripts/test-spritesheets-hd.py`: prueba el ensamblado con tiras sintéticas y verifica que la ausencia de una acción haga fallar el proceso antes de crear una hoja.
+- `.github/workflows/validar-spritesheets-hd.yml`: ejecuta comprobación de sintaxis y pruebas sintéticas solo para cambios del pipeline HD en la rama de trabajo o en una futura PR a `main`. No necesita imágenes artísticas ni modifica atlas.
+
+Ejemplo de uso cuando se hayan creado las 15 tiras de Novato masculino:
+
+```bash
+python scripts/ensamblar-spritesheet-hd.py --class-id novato --sex m --preview
+```
+
+El comando fallará deliberadamente mientras falte cualquier acción. Este pipeline no reduce ni amplía los sprites antiguos, no accede a rutas runtime y no aprueba por sí solo la calidad artística.
+
+## 8. Limpieza de archivos
 
 No borrar fuentes ni artefactos durante esta primera fase. Tras completar la auditoría de uso:
 
@@ -113,7 +130,7 @@ No borrar fuentes ni artefactos durante esta primera fase. Tras completar la aud
 - eliminar solo derivados redundantes o artefactos temporales que no sean fuente canónica, no formen parte de la trazabilidad y no estén referenciados;
 - registrar cualquier eliminación en el manifiesto y en un commit separado.
 
-## 8. Criterios de aceptación de una hoja
+## 9. Criterios de aceptación de una hoja
 
 Una variante no se marca como terminada hasta cumplir todos estos puntos:
 
@@ -128,7 +145,7 @@ Una variante no se marca como terminada hasta cumplir todos estos puntos:
 - [ ] revisión visual a resolución nativa y a escala de combate superada;
 - [ ] estado actualizado y commit de checkpoint publicado.
 
-## 9. Estrategia de commits y recuperación
+## 10. Estrategia de commits y recuperación
 
 Crear commits pequeños y verificables; no acumular muchas clases en un único commit. Como mínimo, un checkpoint por concepto validado, por paquete de acciones cuando la interrupción pueda dejar trabajo difícil de recuperar y por cada hoja final de clase/sexo. El manifiesto se actualiza en cada cambio de estado y registra el último commit conocido.
 
