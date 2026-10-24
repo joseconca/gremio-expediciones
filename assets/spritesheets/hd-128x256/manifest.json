@@ -167,7 +167,7 @@
       "sheetPath": "assets/spritesheets/hd-128x256/novato/m/novato-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "technical-passed-visual-review-pending",
-      "lastCommit": null,
+      "lastCommit": "23feab68e47b509fb09f6c9261ed2e7fa4851812",
       "notes": "Idle 01 y 02 se preservan; Idle 03 añade una microvariación de parpadeo con paleta consistente. Revisión visual de los tres fotogramas pendiente.",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/m/frames"
     },
@@ -698,6 +698,11 @@
       "sha": "2182019be9567d0a3c6b3d363359ea56d84595c8",
       "message": "art(sprites): crear Novato masculino Idle frame 02",
       "scope": "second independent idle PNG + QA JSON + manifest checkpoint"
+    },
+    {
+      "sha": "23feab68e47b509fb09f6c9261ed2e7fa4851812",
+      "message": "art(sprites): crear Novato masculino Idle frame 03",
+      "scope": "individual blink frame PNG + QA + manifest progress"
     }
   ],
   "sourceAudit": {
@@ -791,5 +796,5 @@
   "nextFrame": "novato-m-idle-04",
   "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-03.png",
   "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-03.qa.json",
-  "lastFrameCommit": "2182019be9567d0a3c6b3d363359ea56d84595c8"
+  "lastFrameCommit": "23feab68e47b509fb09f6c9261ed2e7fa4851812"
 }
