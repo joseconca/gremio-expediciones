@@ -1,0 +1,580 @@
+{
+  "schemaVersion": 1,
+  "project": "Spritesheets HD 128x256 por fotograma",
+  "branch": "creacion-sprite-sheets",
+  "startedAt": "2026-10-24",
+  "baseBranch": "main",
+  "baseCommit": "c2c63889b4f31f8a0c34b8b3f3b9b13aee2ae90c",
+  "planningCommit": "43059d84dd6a38a2d317adee531e5dd0069914f1",
+  "status": "planning-complete-art-production-not-started",
+  "technicalContract": {
+    "frame": [
+      128,
+      256
+    ],
+    "columns": 4,
+    "rows": 15,
+    "sheet": [
+      512,
+      3840
+    ],
+    "framesPerSheet": 60,
+    "totalSheets": 26,
+    "totalFrames": 1560,
+    "format": "PNG RGBA",
+    "transparentBackground": true,
+    "actions": [
+      "idle",
+      "walk",
+      "hurt",
+      "use_consumable",
+      "dodge",
+      "block_shield",
+      "attack_sword",
+      "attack_axe",
+      "attack_spear",
+      "attack_dagger",
+      "attack_bow",
+      "attack_staff",
+      "attack_mace",
+      "attack_book",
+      "attack_gloves"
+    ],
+    "runtimePromotion": "deferred-until-full-sheet-qa-and-approval"
+  },
+  "productionPolicy": {
+    "oneClassSexAtATime": true,
+    "finishAll15RowsBeforeSwitchingSex": true,
+    "order": "Tier 0 -> Tier 1 -> Tier 2; within a class masculine then feminine",
+    "doNotUpscaleOldFramesAsFinalArt": true,
+    "preserveLegacySources": true,
+    "isolatedStaging": true,
+    "checkpointCommits": true,
+    "updateManifestEachCheckpoint": true
+  },
+  "nextVariant": "novato-m",
+  "classes": [
+    {
+      "id": "novato",
+      "name": "Novato",
+      "tier": 0,
+      "order": 1,
+      "sourceStatus": "concept-and-v2-masters"
+    },
+    {
+      "id": "espadachin",
+      "name": "Espadachín",
+      "tier": 1,
+      "order": 2,
+      "sourceStatus": "concept-and-v2-masters"
+    },
+    {
+      "id": "acolito",
+      "name": "Acólito",
+      "tier": 1,
+      "order": 3,
+      "sourceStatus": "concept-and-v2-masters"
+    },
+    {
+      "id": "arquero",
+      "name": "Arquero",
+      "tier": 1,
+      "order": 4,
+      "sourceStatus": "concept-and-v2-masters"
+    },
+    {
+      "id": "mago",
+      "name": "Mago",
+      "tier": 1,
+      "order": 5,
+      "sourceStatus": "concept-and-v2-masters"
+    },
+    {
+      "id": "caballero",
+      "name": "Caballero",
+      "tier": 2,
+      "order": 6,
+      "sourceStatus": "concept-and-v2-masters"
+    },
+    {
+      "id": "duelista",
+      "name": "Duelista",
+      "tier": 2,
+      "order": 7,
+      "sourceStatus": "concept-and-v2-masters"
+    },
+    {
+      "id": "sacerdote",
+      "name": "Sacerdote",
+      "tier": 2,
+      "order": 8,
+      "sourceStatus": "concept-and-v2-masters"
+    },
+    {
+      "id": "monje",
+      "name": "Monje",
+      "tier": 2,
+      "order": 9,
+      "sourceStatus": "concept-and-v2-masters"
+    },
+    {
+      "id": "cazador",
+      "name": "Cazador",
+      "tier": 2,
+      "order": 10,
+      "sourceStatus": "hires-candidate"
+    },
+    {
+      "id": "explorador",
+      "name": "Explorador",
+      "tier": 2,
+      "order": 11,
+      "sourceStatus": "hires-candidate"
+    },
+    {
+      "id": "elementalista",
+      "name": "Elementalista",
+      "tier": 2,
+      "order": 12,
+      "sourceStatus": "hires-candidate"
+    },
+    {
+      "id": "brujo",
+      "name": "Brujo",
+      "tier": 2,
+      "order": 13,
+      "sourceStatus": "hires-candidate"
+    }
+  ],
+  "variants": [
+    {
+      "classId": "novato",
+      "className": "Novato",
+      "tier": 0,
+      "sex": "m",
+      "order": 1,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/novato/m/novato-m-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "novato",
+      "className": "Novato",
+      "tier": 0,
+      "sex": "f",
+      "order": 2,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/novato/f/novato-f-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "espadachin",
+      "className": "Espadachín",
+      "tier": 1,
+      "sex": "m",
+      "order": 3,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/espadachin/m/espadachin-m-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "espadachin",
+      "className": "Espadachín",
+      "tier": 1,
+      "sex": "f",
+      "order": 4,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/espadachin/f/espadachin-f-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "acolito",
+      "className": "Acólito",
+      "tier": 1,
+      "sex": "m",
+      "order": 5,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/acolito/m/acolito-m-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "acolito",
+      "className": "Acólito",
+      "tier": 1,
+      "sex": "f",
+      "order": 6,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/acolito/f/acolito-f-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "arquero",
+      "className": "Arquero",
+      "tier": 1,
+      "sex": "m",
+      "order": 7,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/arquero/m/arquero-m-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "arquero",
+      "className": "Arquero",
+      "tier": 1,
+      "sex": "f",
+      "order": 8,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/arquero/f/arquero-f-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "mago",
+      "className": "Mago",
+      "tier": 1,
+      "sex": "m",
+      "order": 9,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/mago/m/mago-m-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "mago",
+      "className": "Mago",
+      "tier": 1,
+      "sex": "f",
+      "order": 10,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/mago/f/mago-f-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "caballero",
+      "className": "Caballero",
+      "tier": 2,
+      "sex": "m",
+      "order": 11,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/caballero/m/caballero-m-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "caballero",
+      "className": "Caballero",
+      "tier": 2,
+      "sex": "f",
+      "order": 12,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/caballero/f/caballero-f-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "duelista",
+      "className": "Duelista",
+      "tier": 2,
+      "sex": "m",
+      "order": 13,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/duelista/m/duelista-m-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "duelista",
+      "className": "Duelista",
+      "tier": 2,
+      "sex": "f",
+      "order": 14,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/duelista/f/duelista-f-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "sacerdote",
+      "className": "Sacerdote",
+      "tier": 2,
+      "sex": "m",
+      "order": 15,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/sacerdote/m/sacerdote-m-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "sacerdote",
+      "className": "Sacerdote",
+      "tier": 2,
+      "sex": "f",
+      "order": 16,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/sacerdote/f/sacerdote-f-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "monje",
+      "className": "Monje",
+      "tier": 2,
+      "sex": "m",
+      "order": 17,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/monje/m/monje-m-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "monje",
+      "className": "Monje",
+      "tier": 2,
+      "sex": "f",
+      "order": 18,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/monje/f/monje-f-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "cazador",
+      "className": "Cazador",
+      "tier": 2,
+      "sex": "m",
+      "order": 19,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/cazador/m/cazador-m-sheet.png",
+      "sourceStatus": "hires-candidate",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "cazador",
+      "className": "Cazador",
+      "tier": 2,
+      "sex": "f",
+      "order": 20,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/cazador/f/cazador-f-sheet.png",
+      "sourceStatus": "hires-candidate",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "explorador",
+      "className": "Explorador",
+      "tier": 2,
+      "sex": "m",
+      "order": 21,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/explorador/m/explorador-m-sheet.png",
+      "sourceStatus": "hires-candidate",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "explorador",
+      "className": "Explorador",
+      "tier": 2,
+      "sex": "f",
+      "order": 22,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/explorador/f/explorador-f-sheet.png",
+      "sourceStatus": "hires-candidate",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "elementalista",
+      "className": "Elementalista",
+      "tier": 2,
+      "sex": "m",
+      "order": 23,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/elementalista/m/elementalista-m-sheet.png",
+      "sourceStatus": "hires-candidate",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "elementalista",
+      "className": "Elementalista",
+      "tier": 2,
+      "sex": "f",
+      "order": 24,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/elementalista/f/elementalista-f-sheet.png",
+      "sourceStatus": "hires-candidate",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "brujo",
+      "className": "Brujo",
+      "tier": 2,
+      "sex": "m",
+      "order": 25,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/brujo/m/brujo-m-sheet.png",
+      "sourceStatus": "hires-candidate",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "brujo",
+      "className": "Brujo",
+      "tier": 2,
+      "sex": "f",
+      "order": 26,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/brujo/f/brujo-f-sheet.png",
+      "sourceStatus": "hires-candidate",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    }
+  ],
+  "highResolutionSourceCandidates": [
+    {
+      "classId": "brujo",
+      "paths": [
+        "assets/spritesheets/originales/brujo/v2/source-hires/README.md",
+        "assets/spritesheets/originales/brujo/v2/source-hires/manifest.json",
+        "assets/spritesheets/originales/brujo/v2/source-hires/female-manifest.json"
+      ],
+      "status": "inspect-before-redrawing"
+    },
+    {
+      "classId": "cazador",
+      "paths": [
+        "assets/spritesheets/originales/cazador/v2/source-hires/manifest.json",
+        "assets/spritesheets/originales/cazador/v2/source-hires/female-manifest.json"
+      ],
+      "status": "inspect-before-redrawing"
+    },
+    {
+      "classId": "elementalista",
+      "paths": [
+        "assets/spritesheets/originales/elementalista/v2/source-hires/manifest.json",
+        "assets/spritesheets/originales/elementalista/v2/source-hires/male-manifest.json",
+        "assets/spritesheets/originales/elementalista/v2/source-hires/female-manifest.json"
+      ],
+      "status": "inspect-before-redrawing"
+    },
+    {
+      "classId": "explorador",
+      "paths": [
+        "assets/spritesheets/originales/explorador/v2/source-hires/manifest.json",
+        "assets/spritesheets/originales/explorador/v2/source-hires/female-manifest.json"
+      ],
+      "status": "inspect-before-redrawing"
+    }
+  ],
+  "qa": {
+    "automated": [
+      "exact 512x3840 dimensions",
+      "60 exact 128x256 cells",
+      "15 rows in canonical order",
+      "real alpha transparency",
+      "no empty cells",
+      "four distinct visible frames per row",
+      "cell-boundary clipping checks",
+      "source/output SHA-256",
+      "baseline/foot position consistency"
+    ],
+    "visual": [
+      "complete 15-row sheet",
+      "individual animation strips",
+      "readability at in-game size",
+      "consistent proportions/materials/palette",
+      "no residual background/halo",
+      "weapon-ready hand poses",
+      "identity preserved across actions"
+    ]
+  },
+  "commits": [
+    {
+      "sha": "43059d84dd6a38a2d317adee531e5dd0069914f1",
+      "message": "docs(sprites): planificar spritesheets HD de 128x256",
+      "scope": "planning document"
+    }
+  ]
+}
