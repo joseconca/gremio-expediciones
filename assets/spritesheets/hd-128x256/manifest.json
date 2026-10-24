@@ -160,13 +160,14 @@
       "order": 1,
       "status": "in-progress",
       "actionsCompleted": [
-        "idle/01"
+        "idle/01",
+        "idle/02"
       ],
       "sheetPath": "assets/spritesheets/hd-128x256/novato/m/novato-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "technical-passed-visual-review-pending",
-      "lastCommit": "bea6709b14ae695636a72256991f86a284e0f4f3",
-      "notes": "Primer fotograma aislado de Idle. Perfil derecho, cuerpo base sin armas, detalles de cuero/tela y acento granate. Pendiente revisión visual antes de usarlo como patrón canónico.",
+      "lastCommit": null,
+      "notes": "Idle 01 y 02 guardados como PNG independientes; el segundo añade una variación mínima del mechón superior. Revisión visual del diseño completa pendiente.",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/m/frames"
     },
     {
@@ -781,8 +782,8 @@
     ],
     "note": "Valida el pipeline técnico con imágenes sintéticas; no es una validación artística y no genera sprites finales."
   },
-  "nextFrame": "novato-m-idle-02",
-  "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-01.png",
-  "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-01.qa.json",
+  "nextFrame": "novato-m-idle-03",
+  "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-02.png",
+  "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-02.qa.json",
   "lastFrameCommit": "bea6709b14ae695636a72256991f86a284e0f4f3"
 }

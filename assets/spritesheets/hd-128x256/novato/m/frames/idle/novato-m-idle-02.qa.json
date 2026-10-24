@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "status": "technical-passed-visual-review-pending",
+  "classId": "novato",
+  "sex": "m",
+  "action": "idle",
+  "frameNumber": 2,
+  "path": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-02.png",
+  "image": {
+    "format": "PNG",
+    "mode": "P",
+    "dimensions": [
+      128,
+      256
+    ],
+    "transparencyIndex": 0,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "alphaBoundingBox": [
+      23,
+      20,
+      105,
+      248
+    ],
+    "sha256": "39154fd377a03ae6625148fa98cf29b3ef5ea50b38199d7a7ca57f366f218432",
+    "bytes": 7052
+  },
+  "sourceFrame": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-01.png",
+  "artChange": "Idle micro-variation: one top hair-strand pixel shifts one pixel right; stance, outfit, and foot baseline remain unchanged.",
+  "checks": {
+    "exactDimensions": true,
+    "realTransparency": true,
+    "characterVisible": true,
+    "bodyNotClipped": true,
+    "facesRight": true,
+    "weaponAbsent": true,
+    "individualFrameOnly": true,
+    "distinctFromFrame01": true,
+    "artisticApproval": false
+  },
+  "review": {
+    "status": "pending",
+    "note": "Second individual idle frame. Compare at native size and 4x nearest-neighbour before building the remaining idle cels."
+  }
+}
