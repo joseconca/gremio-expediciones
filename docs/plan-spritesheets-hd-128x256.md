@@ -106,6 +106,8 @@ Las rutas y nombres definitivos se comprobarán al crear el primer paquete; no d
 
 ## 7. Herramientas HD separadas
 
+El workflow quedó probado en GitHub Actions el 24-10-2026 y terminó en verde: [run 40079854725](https://github.com/joseconca/gremio-expediciones/actions/runs/40079854725), commit probado `303cff2`. La prueba cubre la estructura y el QA técnico con imágenes sintéticas; no reemplaza la revisión visual de sprites reales.
+
 Se ha creado un pipeline independiente del contrato legado:
 
 - `scripts/ensamblar-spritesheet-hd.py`: exige las 15 tiras de acción en `<clase>/<sexo>/actions/<accion>.png`, cada una de 512×256 RGBA, valida los cuatro frames y compone la hoja de 512×3840. Genera además un informe QA con hashes; con `--preview` produce una vista de revisión con damero, nunca un recurso runtime.
