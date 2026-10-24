@@ -1,0 +1,46 @@
+name: Validar pipeline de spritesheets HD
+
+on:
+  push:
+    branches:
+      - creacion-sprite-sheets
+    paths:
+      - "scripts/ensamblar-spritesheet-hd.py"
+      - "scripts/validar-spritesheet-hd.py"
+      - "scripts/test-spritesheets-hd.py"
+      - ".github/workflows/validar-spritesheets-hd.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "scripts/ensamblar-spritesheet-hd.py"
+      - "scripts/validar-spritesheet-hd.py"
+      - "scripts/test-spritesheets-hd.py"
+      - ".github/workflows/validar-spritesheets-hd.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  pipeline-hd:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar Pillow
+        run: python -m pip install --disable-pip-version-check pillow
+
+      - name: Validar sintaxis de las herramientas HD
+        run: |
+          python -m py_compile scripts/ensamblar-spritesheet-hd.py
+          python -m py_compile scripts/validar-spritesheet-hd.py
+          python -m py_compile scripts/test-spritesheets-hd.py
+
+      - name: Probar ensamblado y QA con hojas sintéticas
+        run: python scripts/test-spritesheets-hd.py
