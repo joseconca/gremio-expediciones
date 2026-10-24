@@ -45,7 +45,24 @@ def create_synthetic_frames(root: Path, class_id: str, sex: str, omit_last: bool
                  min(top + 16 + row, bottom - 2)),
                 fill=(255 - color[0], 255 - color[1], 255 - color[2], 255),
             )
-            frame.save(action_dir / f"{class_id}-{sex}-{action}-{col + 1:02d}.png", format="PNG")
+            output_path = action_dir / f"{class_id}-{sex}-{action}-{col + 1:02d}.png"
+            if row == 0 and col == 0:
+                # Verify that indexed PNG + tRNS input is accepted as true transparency.
+                alpha = list(frame.getchannel("A").getdata())
+                quantized = frame.convert("RGB").quantize(
+                    colors=255, method=Image.Quantize.FASTOCTREE,
+                    dither=Image.Dither.NONE,
+                )
+                indices = [0 if a == 0 else int(pixel) + 1
+                           for pixel, a in zip(quantized.getdata(), alpha)]
+                indexed = Image.new("P", (CELL_W, CELL_H))
+                indexed.putdata(indices)
+                palette = [0, 0, 0] + (quantized.getpalette() or [0] * 768)[:765]
+                palette += [0] * (768 - len(palette))
+                indexed.putpalette(palette[:768])
+                indexed.save(output_path, format="PNG", optimize=True, transparency=0)
+            else:
+                frame.save(output_path, format="PNG")
     return variant
 
 
