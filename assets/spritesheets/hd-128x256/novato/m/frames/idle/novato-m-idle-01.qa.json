@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "status": "technical-passed-visual-review-pending",
+  "classId": "novato",
+  "sex": "m",
+  "action": "idle",
+  "frameNumber": 1,
+  "path": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-01.png",
+  "image": {
+    "format": "PNG",
+    "mode": "P",
+    "dimensions": [
+      128,
+      256
+    ],
+    "transparencyIndex": 0,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "alphaBoundingBox": [
+      23,
+      20,
+      105,
+      248
+    ],
+    "visible": true,
+    "embeddedCheckerboard": false,
+    "sha256": "e11fb4247e6ad1e8caf75e8cc27f71eac0b83298c2a10c882d38debe17e02abb",
+    "bytes": 7050
+  },
+  "design": {
+    "silhouette": "cuerpo completo en perfil mirando a la derecha",
+    "materials": [
+      "tela de viaje color crema",
+      "correas y cinturón de cuero",
+      "pantalón oscuro",
+      "botas altas",
+      "bolsa lateral"
+    ],
+    "signature": "pañuelo granate corto en el cuello",
+    "weapons": "no lleva armas en el cuerpo base",
+    "palette": "marrones cálidos, crema, carbón y acento granate",
+    "style": "RPG medieval fantástico, pixel art HD de alta densidad"
+  },
+  "provenance": {
+    "kind": "original generated project artwork; isolated-frame derivation",
+    "sourceGenerationId": "363545c7-8cf9-4628-97c1-7ae20f254cfa",
+    "sourceCanvas": [
+      1536,
+      1024
+    ],
+    "sourceCropBox": [
+      604,
+      110,
+      752,
+      572
+    ],
+    "process": [
+      "seleccionar una única vista lateral de cuerpo completo de la referencia generada",
+      "eliminar el damero gris incrustado mediante máscara de fondo conectada al borde",
+      "voltear horizontalmente para orientar el rostro a la derecha",
+      "normalizar a 128x256 conservando la pose y alineando los pies",
+      "añadir un pequeño pañuelo granate al cuello",
+      "guardar como PNG indexado con índice transparente para conservar la transparencia real y reducir tamaño"
+    ],
+    "note": "No se incorpora la lámina compuesta generada: contenía una falsa presentación de spritesheet y acciones que no deben considerarse recursos de producción."
+  },
+  "checks": {
+    "exactDimensions": true,
+    "realTransparency": true,
+    "characterVisible": true,
+    "bodyNotClipped": true,
+    "facesRight": true,
+    "weaponAbsent": true,
+    "individualFrameOnly": true,
+    "autoArtisticApproval": false
+  },
+  "review": {
+    "status": "pending",
+    "inspectAtNativeResolution": true,
+    "inspectAt4xNearestNeighbor": true,
+    "note": "Primer borrador de identidad visual. No generar ni aprobar los siguientes frames de la variante hasta que la coherencia visual del diseño se haya revisado."
+  }
+}

@@ -6,7 +6,7 @@
   "baseBranch": "main",
   "baseCommit": "c2c63889b4f31f8a0c34b8b3f3b9b13aee2ae90c",
   "planningCommit": "43059d84dd6a38a2d317adee531e5dd0069914f1",
-  "status": "planning-complete-art-production-not-started",
+  "status": "art-production-in-progress",
   "technicalContract": {
     "frame": [
       128,
@@ -158,13 +158,15 @@
       "tier": 0,
       "sex": "m",
       "order": 1,
-      "status": "pending",
-      "actionsCompleted": [],
+      "status": "in-progress",
+      "actionsCompleted": [
+        "idle/01"
+      ],
       "sheetPath": "assets/spritesheets/hd-128x256/novato/m/novato-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
+      "qaStatus": "technical-passed-visual-review-pending",
       "lastCommit": null,
-      "notes": "",
+      "notes": "Primer fotograma aislado de Idle. Perfil derecho, cuerpo base sin armas, detalles de cuero/tela y acento granate. Pendiente revisión visual antes de usarlo como patrón canónico.",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/m/frames"
     },
     {
@@ -679,6 +681,11 @@
       "sha": "8613b2bd1feb4e314d45013407148af30286ed9b",
       "message": "test(sprites): cubrir flujo desde 60 PNG individuales",
       "scope": "frame-by-frame pipeline tests"
+    },
+    {
+      "sha": "9f251b07affa6ec1fb344838302f2201ec2009b9",
+      "message": "docs(sprites): documentar PNG indexado con alfa",
+      "scope": "frame-by-frame contract supports indexed PNG with transparency"
     }
   ],
   "sourceAudit": {
@@ -769,5 +776,7 @@
     ],
     "note": "Valida el pipeline técnico con imágenes sintéticas; no es una validación artística y no genera sprites finales."
   },
-  "nextFrame": "novato-m-idle-01"
+  "nextFrame": "novato-m-idle-02",
+  "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-01.png",
+  "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-01.qa.json"
 }
