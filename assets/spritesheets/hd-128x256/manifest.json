@@ -174,13 +174,17 @@
         "hurt/01",
         "hurt/02",
         "hurt/03",
-        "hurt/04"
+        "hurt/04",
+        "use_consumable/01",
+        "use_consumable/02",
+        "use_consumable/03",
+        "use_consumable/04"
       ],
       "sheetPath": "assets/spritesheets/hd-128x256/novato/m/novato-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "technical-passed-visual-review-pending",
-      "lastCommit": "7171feff1cbf182c892ea8878ec05695befc7d56",
-      "notes": "Idle 01–04, Walk 01–04 y Hurt 01–04 están guardados como PNG individuales con QA. Hurt se produjo en una tanda de cuatro poses y se separó en cuatro celdas de 128×256; queda pendiente la revisión visual conjunta antes de ensamblar el atlas.",
+      "lastCommit": "c364688fa78956f89a33153473ec867d4c96425c",
+      "notes": "Idle, Walk, Hurt y Use Consumable tienen cuatro PNG individuales por acción con QA por frame. El nuevo flujo produce cada acción en una tanda de cuatro poses y guarda los frames por separado. Pendiente revisión visual conjunta de ciclos antes de ensamblar el atlas.",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/m/frames"
     },
     {
@@ -755,6 +759,11 @@
       "sha": "7171feff1cbf182c892ea8878ec05695befc7d56",
       "message": "art(sprites): completar acción Hurt de Novato masculino (4 frames)",
       "scope": "four independent 128x256 Hurt PNG frames + four per-frame QA JSON reports + updated manifest and recovery checkpoint"
+    },
+    {
+      "sha": "c364688fa78956f89a33153473ec867d4c96425c",
+      "message": "art(sprites): completar acción Consumir objeto de Novato masculino (4 frames)",
+      "scope": "four independent 128x256 PNG frames plus four per-frame QA JSON reports"
     }
   ],
   "sourceAudit": {
@@ -847,10 +856,10 @@
     ],
     "note": "CI validates technical tooling using synthetic sprites; it does not approve artwork visually."
   },
-  "nextFrame": "novato-m-use_consumable-01",
-  "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/hurt/novato-m-hurt-04.png",
-  "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/hurt/novato-m-hurt-04.qa.json",
-  "lastFrameCommit": "7171feff1cbf182c892ea8878ec05695befc7d56",
+  "nextFrame": "novato-m-dodge-01",
+  "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/use_consumable/novato-m-use_consumable-04.png",
+  "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/use_consumable/novato-m-use_consumable-04.qa.json",
+  "lastFrameCommit": "c364688fa78956f89a33153473ec867d4c96425c",
   "artworkAssets": [
     {
       "classId": "novato",
@@ -885,8 +894,8 @@
   "checkpoint": {
     "updatedAt": "2026-10-24",
     "branch": "creacion-sprite-sheets",
-    "nextFrame": "novato-m-use_consumable-01",
+    "nextFrame": "novato-m-dodge-01",
     "worklogPath": "docs/sprites/checkpoint-sprites-hd-2026-10-24.md",
-    "note": "Novato masculino tiene Idle, Walk y Hurt completos (4 PNG por acción con QA). El flujo es por acción: generar cuatro poses, separarlas en archivos individuales y validar cada una. Siguiente acción: use_consumable-01. La ilustración maestra está importada y verificada por SHA-256; falta integración en UI."
+    "note": "Novato masculino tiene Idle, Walk, Hurt y Use Consumable completos (4 PNG por acción, cada uno con QA). Flujo acelerado: generar una acción de cuatro poses, aislar cuatro PNG y validar individualmente. Siguiente recurso: novato-m-dodge-01. La ilustración maestra está importada y verificada por SHA-256; falta revisión/integración en UI."
   }
 }

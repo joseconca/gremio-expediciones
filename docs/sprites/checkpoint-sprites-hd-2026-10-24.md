@@ -14,7 +14,8 @@
 - `Idle`: frames 01–04 completos como PNG individuales y con QA.
 - `Walk`: frames 01–04 completos como PNG individuales y con QA.
 - `Hurt`: frames 01–04 completos como PNG individuales, con QA por frame. La acción se generó en una tanda de cuatro poses y después se separó en celdas individuales.
-- Siguiente recurso exacto: `novato-m-use_consumable-01` (Consumir objeto, frame 01). No se ha empezado Novato femenino ni otra clase.
+- `Use Consumable`: frames 01–04 completos como PNG individuales, con QA por frame. Acción producida en una tanda de cuatro poses y separada en celdas de 128×256.
+- Siguiente recurso exacto: `novato-m-dodge-01` (Esquivar, frame 01). No se ha empezado Novato femenino ni otra clase.
 - El ciclo Walk está completo técnicamente; todavía requiere revisión visual conjunta de cadencia y línea de suelo.
 
 **Ilustración maestra para menús**
@@ -45,4 +46,4 @@
 
 ## Próxima sesión
 
-Crear **Novato masculino · Consumir objeto (use_consumable)** como una tanda de cuatro poses. Separarlas a PNG individuales, verificar dimensiones/transparencia/alfa y QA, revisar visualmente la acción y guardar un commit para el lote. Después continuar con Esquivar (dodge).
+Crear **Novato masculino · Esquivar (dodge)** como una tanda de cuatro poses. Separarlas a PNG individuales, verificar dimensiones/transparencia/alfa y QA, revisar visualmente la acción y guardar un commit para el lote. Después continuar con Bloquear (block_shield).
