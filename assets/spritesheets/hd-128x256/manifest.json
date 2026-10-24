@@ -572,7 +572,10 @@
     "validatorScript": "scripts/validar-spritesheet-hd.py",
     "validatorUsage": "python scripts/validar-spritesheet-hd.py --sheet <hoja.png> --class-id novato --sex m --report <qa-report.json>",
     "assemblerScript": "scripts/ensamblar-spritesheet-hd.py",
-    "assemblerUsage": "python scripts/ensamblar-spritesheet-hd.py --class-id novato --sex m --preview"
+    "assemblerUsage": "python scripts/ensamblar-spritesheet-hd.py --class-id novato --sex m --preview",
+    "testScript": "scripts/test-spritesheets-hd.py",
+    "ciWorkflow": ".github/workflows/validar-spritesheets-hd.yml",
+    "ciWorkflowUrl": "https://github.com/joseconca/gremio-expediciones/actions/workflows/validar-spritesheets-hd.yml"
   },
   "commits": [
     {
@@ -604,6 +607,26 @@
       "sha": "e5a474c9b253e25fcd187ffffe6f72aa2b815d5a",
       "message": "feat(sprites): ensamblar hojas HD completas de 15 filas",
       "scope": "staging atlas assembler"
+    },
+    {
+      "sha": "b283f5482978230630d3b2fed0d6d9824a0fc367",
+      "message": "docs(sprites): registrar ensamblador HD y commits recientes",
+      "scope": "manifest source audit and assembler"
+    },
+    {
+      "sha": "2cda30719a55201d63422e30c9907dba6ac946c4",
+      "message": "test(sprites): probar ensamblado HD con hojas sintéticas",
+      "scope": "synthetic smoke tests"
+    },
+    {
+      "sha": "303cff2cee59caaffdc4a5778dc809c653a37b5d",
+      "message": "ci(sprites): validar pipeline HD aislado",
+      "scope": "branch-specific validation workflow"
+    },
+    {
+      "sha": "5ed21ade6595c034bcf5be2ba2831218ec8875d4",
+      "message": "docs(sprites): documentar ensamblador y pruebas HD",
+      "scope": "workflow and pipeline documentation"
     }
   ],
   "sourceAudit": {
@@ -679,5 +702,10 @@
       }
     ],
     "preservationPolicy": "No borrar ni sobreescribir originales de la Library/Git. Antes de incorporarlos al repositorio HD, materializar/copiarlos en un área de fuente con trazabilidad de ruta original, tamaño, alfa y SHA-256. No copiar las imágenes de trabajo de alta resolución a runtime."
+  },
+  "pipelineValidation": {
+    "status": "ci-running",
+    "runUrl": "https://github.com/joseconca/gremio-expediciones/actions/runs/40079854725",
+    "note": "La suite usa assets sintéticos; confirma el ensamblado técnico, no valida el arte final ni genera sprites reales."
   }
 }
