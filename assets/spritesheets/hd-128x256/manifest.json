@@ -169,7 +169,7 @@
       "sheetPath": "assets/spritesheets/hd-128x256/novato/m/novato-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "technical-passed-visual-review-pending",
-      "lastCommit": null,
+      "lastCommit": "ff11d0d7e520cc04cf352aca026e0c2b84d30fc3",
       "notes": "Idle cuenta con cuatro frames individuales. Walk frame 01 guardado como PNG de paso en perfil derecho, con transparencia real y sin armas; coherencia de cámara/proporciones con Idle pendiente de revisión visual.",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/m/frames"
     },
@@ -715,6 +715,11 @@
       "sha": "6631238bfc24f97b8c330cb59171bd445ceeb0e1",
       "message": "fix(sprites): permitir reutilizar poses entre acciones",
       "scope": "remove overstrict cross-action hash check; keep per-action duplicate guard and add regression test"
+    },
+    {
+      "sha": "ff11d0d7e520cc04cf352aca026e0c2b84d30fc3",
+      "message": "art(sprites): crear Novato masculino Walk frame 01",
+      "scope": "individual walking frame PNG + QA + manifest progress"
     }
   ],
   "sourceAudit": {
@@ -810,5 +815,5 @@
   "nextFrame": "novato-m-walk-02",
   "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/walk/novato-m-walk-01.png",
   "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/walk/novato-m-walk-01.qa.json",
-  "lastFrameCommit": "b6e23434df4801b58a1d9577435d9b5be12c484e"
+  "lastFrameCommit": "ff11d0d7e520cc04cf352aca026e0c2b84d30fc3"
 }
