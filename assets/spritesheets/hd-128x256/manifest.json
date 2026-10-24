@@ -40,7 +40,10 @@
       "attack_book",
       "attack_gloves"
     ],
-    "runtimePromotion": "deferred-until-full-sheet-qa-and-approval"
+    "runtimePromotion": "deferred-until-full-sheet-qa-and-approval",
+    "frameFilesPerVariant": 60,
+    "framePathPattern": "assets/spritesheets/hd-128x256/<clase>/<m|f>/frames/<accion>/<clase>-<sexo>-<accion>-<01..04>.png",
+    "assemblyPolicy": "Assemble final 512x3840 sheet only after all 60 independent frame PNGs for that class/sex pass QA"
   },
   "productionPolicy": {
     "oneClassSexAtATime": true,
@@ -50,7 +53,9 @@
     "preserveLegacySources": true,
     "isolatedStaging": true,
     "checkpointCommits": true,
-    "updateManifestEachCheckpoint": true
+    "updateManifestEachCheckpoint": true,
+    "oneSpritePerCommit": true,
+    "storeFramesAsIndividualFiles": true
   },
   "nextVariant": "novato-m",
   "classes": [
@@ -159,7 +164,8 @@
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/novato/m/frames"
     },
     {
       "classId": "novato",
@@ -173,7 +179,8 @@
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/novato/f/frames"
     },
     {
       "classId": "mago",
@@ -187,7 +194,8 @@
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/mago/m/frames"
     },
     {
       "classId": "mago",
@@ -201,7 +209,8 @@
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/mago/f/frames"
     },
     {
       "classId": "espadachin",
@@ -215,7 +224,8 @@
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/espadachin/m/frames"
     },
     {
       "classId": "espadachin",
@@ -229,7 +239,8 @@
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/espadachin/f/frames"
     },
     {
       "classId": "acolito",
@@ -243,7 +254,8 @@
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/acolito/m/frames"
     },
     {
       "classId": "acolito",
@@ -257,7 +269,8 @@
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/acolito/f/frames"
     },
     {
       "classId": "arquero",
@@ -271,7 +284,8 @@
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/arquero/m/frames"
     },
     {
       "classId": "arquero",
@@ -285,7 +299,8 @@
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/arquero/f/frames"
     },
     {
       "classId": "caballero",
@@ -299,7 +314,8 @@
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/caballero/m/frames"
     },
     {
       "classId": "caballero",
@@ -313,7 +329,8 @@
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/caballero/f/frames"
     },
     {
       "classId": "duelista",
@@ -327,7 +344,8 @@
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/duelista/m/frames"
     },
     {
       "classId": "duelista",
@@ -341,7 +359,8 @@
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/duelista/f/frames"
     },
     {
       "classId": "sacerdote",
@@ -355,7 +374,8 @@
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/sacerdote/m/frames"
     },
     {
       "classId": "sacerdote",
@@ -369,7 +389,8 @@
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/sacerdote/f/frames"
     },
     {
       "classId": "monje",
@@ -383,7 +404,8 @@
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/monje/m/frames"
     },
     {
       "classId": "monje",
@@ -397,7 +419,8 @@
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/monje/f/frames"
     },
     {
       "classId": "cazador",
@@ -411,7 +434,8 @@
       "sourceStatus": "hires-library-verified",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/cazador/m/frames"
     },
     {
       "classId": "cazador",
@@ -425,7 +449,8 @@
       "sourceStatus": "hires-library-verified",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/cazador/f/frames"
     },
     {
       "classId": "explorador",
@@ -439,7 +464,8 @@
       "sourceStatus": "hires-library-verified",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/explorador/m/frames"
     },
     {
       "classId": "explorador",
@@ -453,7 +479,8 @@
       "sourceStatus": "hires-library-verified",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/explorador/f/frames"
     },
     {
       "classId": "elementalista",
@@ -467,7 +494,8 @@
       "sourceStatus": "hires-library-mixed",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/elementalista/m/frames"
     },
     {
       "classId": "elementalista",
@@ -481,7 +509,8 @@
       "sourceStatus": "hires-library-mixed",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/elementalista/f/frames"
     },
     {
       "classId": "brujo",
@@ -495,7 +524,8 @@
       "sourceStatus": "hires-library-verified",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/brujo/m/frames"
     },
     {
       "classId": "brujo",
@@ -509,7 +539,8 @@
       "sourceStatus": "hires-library-verified",
       "qaStatus": "not-run",
       "lastCommit": null,
-      "notes": ""
+      "notes": "",
+      "frameRoot": "assets/spritesheets/hd-128x256/brujo/f/frames"
     }
   ],
   "highResolutionSourceCandidates": [
@@ -575,7 +606,8 @@
     "assemblerUsage": "python scripts/ensamblar-spritesheet-hd.py --class-id novato --sex m --preview",
     "testScript": "scripts/test-spritesheets-hd.py",
     "ciWorkflow": ".github/workflows/validar-spritesheets-hd.yml",
-    "ciWorkflowUrl": "https://github.com/joseconca/gremio-expediciones/actions/workflows/validar-spritesheets-hd.yml"
+    "ciWorkflowUrl": "https://github.com/joseconca/gremio-expediciones/actions/workflows/validar-spritesheets-hd.yml",
+    "inputLayout": "frames/<action>/<class>-<sex>-<action>-NN.png; individual PNG RGBA 128x256"
   },
   "commits": [
     {
@@ -637,6 +669,16 @@
       "sha": "f9231f742fa277c6509fa82467582ef836c0653c",
       "message": "docs(sprites): anotar CI verde del pipeline HD",
       "scope": "plan now records successful synthetic smoke test"
+    },
+    {
+      "sha": "682faf96d09800eefb2319da13ae4fe6fde2a495",
+      "message": "refactor(sprites): ensamblar atlas desde frames individuales",
+      "scope": "assembler changed to independent frame files"
+    },
+    {
+      "sha": "8613b2bd1feb4e314d45013407148af30286ed9b",
+      "message": "test(sprites): cubrir flujo desde 60 PNG individuales",
+      "scope": "frame-by-frame pipeline tests"
     }
   ],
   "sourceAudit": {
@@ -726,5 +768,6 @@
       "missing action rejects the build before output"
     ],
     "note": "Valida el pipeline técnico con imágenes sintéticas; no es una validación artística y no genera sprites finales."
-  }
+  },
+  "nextFrame": "novato-m-idle-01"
 }
