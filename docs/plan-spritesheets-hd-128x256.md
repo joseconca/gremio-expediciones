@@ -106,6 +106,8 @@ Las rutas y nombres definitivos se comprobarán al crear el primer paquete; no d
 
 ## 7. Herramientas HD separadas
 
+El ensamblador solo exige cuatro poses distintas **dentro de cada acción**. Si una pose se reutiliza intencionadamente entre acciones distintas, no se rechaza por ese único motivo; se sigue exigiendo que cada PNG pase QA técnico.
+
 El workflow quedó probado en GitHub Actions el 24-10-2026 y terminó en verde: [run 40079854725](https://github.com/joseconca/gremio-expediciones/actions/runs/40079854725), commit probado `303cff2`. La prueba cubre la estructura y el QA técnico con imágenes sintéticas; no reemplaza la revisión visual de sprites reales.
 
 Se ha creado un pipeline independiente del contrato legado:

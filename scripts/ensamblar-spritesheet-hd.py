@@ -113,7 +113,6 @@ def main() -> int:
     try:
         sheet = Image.new("RGBA", SHEET_SIZE, (0, 0, 0, 0))
         rows_report = []
-        all_hashes = set()
 
         # Validate all 60 independent PNG files before writing the atlas.
         for row_index, action in enumerate(ACTIONS):
@@ -126,11 +125,6 @@ def main() -> int:
                     / f"{args.class_id}-{args.sex}-{action}-{frame_number:02d}.png"
                 )
                 frame, frame_report = validate_frame(frame_path, action, frame_number)
-                if frame_report["sha256"] in all_hashes:
-                    # Cross-action exact clones are a quality warning that commonly
-                    # indicates a copied frame; reject accidental duplicated source.
-                    raise ValueError(f"Frame duplicado detectado: {frame_path}")
-                all_hashes.add(frame_report["sha256"])
                 frame_hashes.append(frame_report["sha256"])
                 frame_reports.append(frame_report)
                 sheet.alpha_composite(frame, (col_index * CELL_W, row_index * CELL_H))

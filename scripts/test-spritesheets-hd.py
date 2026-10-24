@@ -71,6 +71,11 @@ class HdSpriteSheetTests(unittest.TestCase):
         with tempfile.TemporaryDirectory(prefix="sprite-hd-ok-") as temp:
             root = Path(temp)
             variant = create_synthetic_frames(root, "test-hero", "m")
+            # Reusing the exact same pose across two different actions is valid;
+            # only duplicate frames within a single action row should fail QA.
+            idle_frame = variant / "frames" / "idle" / "test-hero-m-idle-01.png"
+            walk_frame = variant / "frames" / "walk" / "test-hero-m-walk-01.png"
+            walk_frame.write_bytes(idle_frame.read_bytes())
             completed = subprocess.run(
                 [
                     sys.executable, str(ASSEMBLER),
