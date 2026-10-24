@@ -738,6 +738,11 @@
       "sha": "ce604921bfe22afc92a70ef75f68c5f9df765702",
       "message": "art(sprites): crear Novato masculino Walk frame 04",
       "scope": "individual walking PNG + QA report + manifest progress"
+    },
+    {
+      "sha": "39fbcbec3f653a2938538eecc7d4a333ec824111",
+      "message": "art(sprites): conservar ilustración grande de Novato masculino",
+      "scope": "menu/profile illustration stored separately from animation frames; original SHA-256 validated by import workflow"
     }
   ],
   "sourceAudit": {
@@ -833,5 +838,30 @@
   "nextFrame": "novato-m-hurt-01",
   "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/walk/novato-m-walk-04.png",
   "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/walk/novato-m-walk-04.qa.json",
-  "lastFrameCommit": "ce604921bfe22afc92a70ef75f68c5f9df765702"
+  "lastFrameCommit": "ce604921bfe22afc92a70ef75f68c5f9df765702",
+  "artworkAssets": [
+    {
+      "classId": "novato",
+      "sex": "m",
+      "purpose": "menu-character-illustration",
+      "path": "assets/spritesheets/hd-128x256/novato/m/artwork/novato-m-character-illustration.png",
+      "qaPath": "assets/spritesheets/hd-128x256/novato/m/artwork/novato-m-character-illustration.qa.json",
+      "readmePath": "assets/spritesheets/hd-128x256/novato/m/artwork/README.md",
+      "dimensions": [
+        448,
+        1075
+      ],
+      "format": "PNG indexed with tRNS alpha",
+      "bytes": 41535,
+      "sha256": "8f3532f025c1e32f9d0df2fae7ad25a61b5dc43fd86a587c7e7daa8c99896081",
+      "status": "imported-sha256-verified-ui-review-pending",
+      "intendedUse": [
+        "character profile/menu",
+        "inventory and equipment screens",
+        "large character info panels"
+      ],
+      "excludedUse": "Not an animation cell and not part of the 512x3840 combat atlas",
+      "sourceCommit": "39fbcbec3f653a2938538eecc7d4a333ec824111"
+    }
+  ]
 }

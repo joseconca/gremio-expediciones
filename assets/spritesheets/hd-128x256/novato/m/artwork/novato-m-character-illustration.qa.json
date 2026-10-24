@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "status": "validated-locally-awaiting-github-import",
+  "status": "imported-sha256-verified",
   "classId": "novato",
   "sex": "m",
   "purpose": "large character illustration for menus, profile, character sheet, and inventory UI",
@@ -52,10 +52,15 @@
     "fullBodyNotIntentionallyCropped": true,
     "individualCharacterOnly": true,
     "suitableForMenuDisplay": true,
-    "runtimeIntegration": false
+    "runtimeIntegration": false,
+    "repositoryFilePresent": true,
+    "sha256VerifiedByGithubActions": true,
+    "sha256MatchesOriginal": true
   },
   "review": {
-    "status": "pending",
-    "note": "Check in repository and preview in real UI before wiring menu components. This standalone art must not be confused with the 128x256 animation frames."
-  }
+    "status": "pending-ui-integration",
+    "note": "La ilustración está guardada en el repositorio y su checksum está verificado. Falta probar su composición en el menú/ficha del personaje antes de cablear los componentes de UI."
+  },
+  "importedAt": "2026-10-24",
+  "importCommit": "39fbcbec3f653a2938538eecc7d4a333ec824111"
 }
