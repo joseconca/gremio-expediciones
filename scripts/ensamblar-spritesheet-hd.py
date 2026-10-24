@@ -4,7 +4,7 @@
 Input contract:
   assets/spritesheets/hd-128x256/<class>/<sex>/frames/<action>/
     <class>-<sex>-<action>-01.png ... -04.png
-Each individual frame is transparent RGBA, 128x256 px. Only the HD staging
+Each individual frame is transparent RGBA or indexed PNG with tRNS, 128x256 px. Only the HD staging
 directory is written; runtime atlases are never touched.
 """
 from __future__ import annotations
@@ -48,11 +48,13 @@ def validate_frame(path: Path, action: str, frame_number: int) -> tuple[Image.Im
         with Image.open(path) as opened:
             if opened.format != "PNG":
                 raise ValueError(f"{path} debe ser PNG, no {opened.format!r}")
-            if opened.mode != "RGBA":
-                raise ValueError(f"{path} debe ser RGBA, no {opened.mode}")
+            if opened.mode not in ("RGBA", "P"):
+                raise ValueError(f"{path} debe ser RGBA o PNG indexado con alfa, no {opened.mode}")
+            if opened.mode == "P" and "transparency" not in opened.info:
+                raise ValueError(f"{path}: PNG indexado sin índice de transparencia tRNS")
             if opened.size != (CELL_W, CELL_H):
                 raise ValueError(f"{path}: tamaño {opened.size}; esperado {(CELL_W, CELL_H)}")
-            frame = opened.copy()
+            frame = opened.convert("RGBA")
     except OSError as error:
         raise ValueError(f"No se pudo leer {path}: {error}") from error
 
