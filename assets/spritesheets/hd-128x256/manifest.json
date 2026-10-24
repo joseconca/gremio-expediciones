@@ -62,29 +62,29 @@
       "sourceStatus": "concept-and-v2-masters"
     },
     {
+      "id": "mago",
+      "name": "Mago",
+      "tier": 1,
+      "order": 2,
+      "sourceStatus": "concept-and-v2-masters"
+    },
+    {
       "id": "espadachin",
       "name": "Espadachín",
       "tier": 1,
-      "order": 2,
+      "order": 3,
       "sourceStatus": "concept-and-v2-masters"
     },
     {
       "id": "acolito",
       "name": "Acólito",
       "tier": 1,
-      "order": 3,
+      "order": 4,
       "sourceStatus": "concept-and-v2-masters"
     },
     {
       "id": "arquero",
       "name": "Arquero",
-      "tier": 1,
-      "order": 4,
-      "sourceStatus": "concept-and-v2-masters"
-    },
-    {
-      "id": "mago",
-      "name": "Mago",
       "tier": 1,
       "order": 5,
       "sourceStatus": "concept-and-v2-masters"
@@ -122,28 +122,28 @@
       "name": "Cazador",
       "tier": 2,
       "order": 10,
-      "sourceStatus": "hires-candidate"
+      "sourceStatus": "hires-library-verified"
     },
     {
       "id": "explorador",
       "name": "Explorador",
       "tier": 2,
       "order": 11,
-      "sourceStatus": "hires-candidate"
+      "sourceStatus": "hires-library-verified"
     },
     {
       "id": "elementalista",
       "name": "Elementalista",
       "tier": 2,
       "order": 12,
-      "sourceStatus": "hires-candidate"
+      "sourceStatus": "hires-library-mixed"
     },
     {
       "id": "brujo",
       "name": "Brujo",
       "tier": 2,
       "order": 13,
-      "sourceStatus": "hires-candidate"
+      "sourceStatus": "hires-library-verified"
     }
   ],
   "variants": [
@@ -176,95 +176,11 @@
       "notes": ""
     },
     {
-      "classId": "espadachin",
-      "className": "Espadachín",
-      "tier": 1,
-      "sex": "m",
-      "order": 3,
-      "status": "pending",
-      "actionsCompleted": [],
-      "sheetPath": "assets/spritesheets/hd-128x256/espadachin/m/espadachin-m-sheet.png",
-      "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": ""
-    },
-    {
-      "classId": "espadachin",
-      "className": "Espadachín",
-      "tier": 1,
-      "sex": "f",
-      "order": 4,
-      "status": "pending",
-      "actionsCompleted": [],
-      "sheetPath": "assets/spritesheets/hd-128x256/espadachin/f/espadachin-f-sheet.png",
-      "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": ""
-    },
-    {
-      "classId": "acolito",
-      "className": "Acólito",
-      "tier": 1,
-      "sex": "m",
-      "order": 5,
-      "status": "pending",
-      "actionsCompleted": [],
-      "sheetPath": "assets/spritesheets/hd-128x256/acolito/m/acolito-m-sheet.png",
-      "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": ""
-    },
-    {
-      "classId": "acolito",
-      "className": "Acólito",
-      "tier": 1,
-      "sex": "f",
-      "order": 6,
-      "status": "pending",
-      "actionsCompleted": [],
-      "sheetPath": "assets/spritesheets/hd-128x256/acolito/f/acolito-f-sheet.png",
-      "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": ""
-    },
-    {
-      "classId": "arquero",
-      "className": "Arquero",
-      "tier": 1,
-      "sex": "m",
-      "order": 7,
-      "status": "pending",
-      "actionsCompleted": [],
-      "sheetPath": "assets/spritesheets/hd-128x256/arquero/m/arquero-m-sheet.png",
-      "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": ""
-    },
-    {
-      "classId": "arquero",
-      "className": "Arquero",
-      "tier": 1,
-      "sex": "f",
-      "order": 8,
-      "status": "pending",
-      "actionsCompleted": [],
-      "sheetPath": "assets/spritesheets/hd-128x256/arquero/f/arquero-f-sheet.png",
-      "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": ""
-    },
-    {
       "classId": "mago",
       "className": "Mago",
       "tier": 1,
       "sex": "m",
-      "order": 9,
+      "order": 3,
       "status": "pending",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/mago/m/mago-m-sheet.png",
@@ -278,10 +194,94 @@
       "className": "Mago",
       "tier": 1,
       "sex": "f",
-      "order": 10,
+      "order": 4,
       "status": "pending",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/mago/f/mago-f-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "espadachin",
+      "className": "Espadachín",
+      "tier": 1,
+      "sex": "m",
+      "order": 5,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/espadachin/m/espadachin-m-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "espadachin",
+      "className": "Espadachín",
+      "tier": 1,
+      "sex": "f",
+      "order": 6,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/espadachin/f/espadachin-f-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "acolito",
+      "className": "Acólito",
+      "tier": 1,
+      "sex": "m",
+      "order": 7,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/acolito/m/acolito-m-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "acolito",
+      "className": "Acólito",
+      "tier": 1,
+      "sex": "f",
+      "order": 8,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/acolito/f/acolito-f-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "arquero",
+      "className": "Arquero",
+      "tier": 1,
+      "sex": "m",
+      "order": 9,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/arquero/m/arquero-m-sheet.png",
+      "sourceStatus": "concept-and-v2-masters",
+      "qaStatus": "not-run",
+      "lastCommit": null,
+      "notes": ""
+    },
+    {
+      "classId": "arquero",
+      "className": "Arquero",
+      "tier": 1,
+      "sex": "f",
+      "order": 10,
+      "status": "pending",
+      "actionsCompleted": [],
+      "sheetPath": "assets/spritesheets/hd-128x256/arquero/f/arquero-f-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "not-run",
       "lastCommit": null,
@@ -408,7 +408,7 @@
       "status": "pending",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/cazador/m/cazador-m-sheet.png",
-      "sourceStatus": "hires-candidate",
+      "sourceStatus": "hires-library-verified",
       "qaStatus": "not-run",
       "lastCommit": null,
       "notes": ""
@@ -422,7 +422,7 @@
       "status": "pending",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/cazador/f/cazador-f-sheet.png",
-      "sourceStatus": "hires-candidate",
+      "sourceStatus": "hires-library-verified",
       "qaStatus": "not-run",
       "lastCommit": null,
       "notes": ""
@@ -436,7 +436,7 @@
       "status": "pending",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/explorador/m/explorador-m-sheet.png",
-      "sourceStatus": "hires-candidate",
+      "sourceStatus": "hires-library-verified",
       "qaStatus": "not-run",
       "lastCommit": null,
       "notes": ""
@@ -450,7 +450,7 @@
       "status": "pending",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/explorador/f/explorador-f-sheet.png",
-      "sourceStatus": "hires-candidate",
+      "sourceStatus": "hires-library-verified",
       "qaStatus": "not-run",
       "lastCommit": null,
       "notes": ""
@@ -464,7 +464,7 @@
       "status": "pending",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/elementalista/m/elementalista-m-sheet.png",
-      "sourceStatus": "hires-candidate",
+      "sourceStatus": "hires-library-mixed",
       "qaStatus": "not-run",
       "lastCommit": null,
       "notes": ""
@@ -478,7 +478,7 @@
       "status": "pending",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/elementalista/f/elementalista-f-sheet.png",
-      "sourceStatus": "hires-candidate",
+      "sourceStatus": "hires-library-mixed",
       "qaStatus": "not-run",
       "lastCommit": null,
       "notes": ""
@@ -492,7 +492,7 @@
       "status": "pending",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/brujo/m/brujo-m-sheet.png",
-      "sourceStatus": "hires-candidate",
+      "sourceStatus": "hires-library-verified",
       "qaStatus": "not-run",
       "lastCommit": null,
       "notes": ""
@@ -506,7 +506,7 @@
       "status": "pending",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/brujo/f/brujo-f-sheet.png",
-      "sourceStatus": "hires-candidate",
+      "sourceStatus": "hires-library-verified",
       "qaStatus": "not-run",
       "lastCommit": null,
       "notes": ""
@@ -582,6 +582,85 @@
       "sha": "145a046075bdcfba246a2c505535008436c37cd4",
       "message": "feat(sprites): validar atlas completos HD 128x256",
       "scope": "standalone technical validator; no runtime resources changed"
+    },
+    {
+      "sha": "e7efd6305d30b3eb389d660e23185e5e90953b6f",
+      "message": "docs(sprites): registrar validador HD en manifiesto",
+      "scope": "manifest validator reference"
     }
-  ]
+  ],
+  "sourceAudit": {
+    "status": "initial-audit-complete",
+    "auditedAt": "2026-10-24",
+    "repositoryNote": "La búsqueda recursiva en Git localizó los paquetes v2 existentes y cuatro carpetas source-hires en Tier 2; los originales de alta resolución auditados debajo están guardados en la Library y no todos están versionados en Git.",
+    "tier0Tier1": {
+      "classes": [
+        "novato",
+        "mago",
+        "espadachin",
+        "acolito",
+        "arquero"
+      ],
+      "status": "no-source-hires-package-identified-in-repository",
+      "action": "Inspeccionar los masters y conceptos que ya existen; no tomar las tiras de 64x128 como arte maestro final. Recuperar arte de mayor resolución solo si existe y se verifica."
+    },
+    "tier2Library": [
+      {
+        "classId": "brujo",
+        "files": [
+          "/GameAssets/Tier2/Brujo/brujo-f-concept-hires.png",
+          "/GameAssets/Tier2/Brujo/brujo-f-idle-hires.png",
+          "/GameAssets/Tier2/Brujo/brujo-f-hurt-hires.png",
+          "/GameAssets/Tier2/Brujo/brujo-f-walk-hires-transparent-derived.png",
+          "/GameAssets/Tier2/Brujo/brujo-m-originales-alta-resolucion.zip"
+        ],
+        "status": "confirmed",
+        "notes": "Hay concepto femenino aislado y fuentes de acción de alta resolución. Las fuentes masculinas están archivadas dentro de un ZIP. Algunas imágenes Idle contienen damero opaco incrustado; comprobar original y alfa, no usar como si tuviera transparencia real."
+      },
+      {
+        "classId": "cazador",
+        "files": [
+          "/GameAssets/Tier2/Cazador/cazador-f-concept-hires.png",
+          "/GameAssets/Tier2/Cazador/cazador-f-idle-hires.png",
+          "/GameAssets/Tier2/Cazador/cazador-f-walk-hires.png",
+          "/GameAssets/Tier2/Cazador/cazador-f-hurt-hires.png",
+          "/GameAssets/Tier2/Cazador/cazador-m-concept-hires.png",
+          "/GameAssets/Tier2/Cazador/cazador-m-idle-hires.png",
+          "/GameAssets/Tier2/Cazador/cazador-m-walk-hires-transparent-derived.png",
+          "/GameAssets/Tier2/Cazador/cazador-m-hurt-hires.png"
+        ],
+        "status": "confirmed",
+        "notes": "Existen conceptos aislados para ambos sexos y fuentes de acción de alta resolución. Hay variantes/derivados; la selección canónica debe decidirse por inspección visual y metadatos de alfa."
+      },
+      {
+        "classId": "elementalista",
+        "files": [
+          "/GameAssets/Tier2/Elementalista/elementalista-f-concept-hires-original.png",
+          "/GameAssets/Tier2/Elementalista/elementalista-f-idle-hires-original.png",
+          "/GameAssets/Tier2/Elementalista/elementalista-f-walk-hires-original.png",
+          "/GameAssets/Tier2/Elementalista/elementalista-f-hurt-hires-original.png",
+          "/GameAssets/Tier2/Elementalista/elementalista-m-concept-and-actions-reference-hires-original.png",
+          "/GameAssets/Tier2/Elementalista/elementalista-m-sprite-actions-composite-reference-hires-original.png"
+        ],
+        "status": "confirmed-with-male-reconstruction-needed",
+        "notes": "La variante femenina tiene concepto individual y fuentes de acciones. Las fuentes masculinas localizadas son láminas compuestas con paneles/texto, no personajes aislados limpios; utilizarlas como referencias, no como tiras runtime ni másteres transparentes sin reconstrucción."
+      },
+      {
+        "classId": "explorador",
+        "files": [
+          "/GameAssets/Tier2/Explorador/explorador-f-concept-hires-transparent-derived.png",
+          "/GameAssets/Tier2/Explorador/explorador-f-idle-hires-transparent-derived.png",
+          "/GameAssets/Tier2/Explorador/explorador-f-walk-hires-transparent-derived.png",
+          "/GameAssets/Tier2/Explorador/explorador-f-hurt-hires-transparent-derived.png",
+          "/GameAssets/Tier2/Explorador/explorador-m-concept-hires-transparent-derived.png",
+          "/GameAssets/Tier2/Explorador/explorador-m-idle-hires-transparent-derived.png",
+          "/GameAssets/Tier2/Explorador/explorador-m-walk-hires-transparent-derived.png",
+          "/GameAssets/Tier2/Explorador/explorador-m-hurt-hires-transparent-derived.png"
+        ],
+        "status": "confirmed",
+        "notes": "Hay conceptos y fuentes de acciones de alta resolución. Algunas originales tienen damero opaco incrustado y existen derivados separados con transparencia; preservar ambos tipos y elegir el derivado solo después de QA visual."
+      }
+    ],
+    "preservationPolicy": "No borrar ni sobreescribir originales de la Library/Git. Antes de incorporarlos al repositorio HD, materializar/copiarlos en un área de fuente con trazabilidad de ruta original, tamaño, alfa y SHA-256. No copiar las imágenes de trabajo de alta resolución a runtime."
+  }
 }
