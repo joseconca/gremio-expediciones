@@ -179,7 +179,7 @@
       "sheetPath": "assets/spritesheets/hd-128x256/novato/m/novato-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "technical-passed-visual-review-pending",
-      "lastCommit": "ce604921bfe22afc92a70ef75f68c5f9df765702",
+      "lastCommit": "7171feff1cbf182c892ea8878ec05695befc7d56",
       "notes": "Idle 01–04, Walk 01–04 y Hurt 01–04 están guardados como PNG individuales con QA. Hurt se produjo en una tanda de cuatro poses y se separó en cuatro celdas de 128×256; queda pendiente la revisión visual conjunta antes de ensamblar el atlas.",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/m/frames"
     },
@@ -750,6 +750,11 @@
       "sha": "39fbcbec3f653a2938538eecc7d4a333ec824111",
       "message": "art(sprites): conservar ilustración grande de Novato masculino",
       "scope": "menu/profile illustration stored separately from animation frames; original SHA-256 validated by import workflow"
+    },
+    {
+      "sha": "7171feff1cbf182c892ea8878ec05695befc7d56",
+      "message": "art(sprites): completar acción Hurt de Novato masculino (4 frames)",
+      "scope": "four independent 128x256 Hurt PNG frames + four per-frame QA JSON reports + updated manifest and recovery checkpoint"
     }
   ],
   "sourceAudit": {
@@ -845,7 +850,7 @@
   "nextFrame": "novato-m-use_consumable-01",
   "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/hurt/novato-m-hurt-04.png",
   "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/hurt/novato-m-hurt-04.qa.json",
-  "lastFrameCommit": "ce604921bfe22afc92a70ef75f68c5f9df765702",
+  "lastFrameCommit": "7171feff1cbf182c892ea8878ec05695befc7d56",
   "artworkAssets": [
     {
       "classId": "novato",
@@ -882,6 +887,6 @@
     "branch": "creacion-sprite-sheets",
     "nextFrame": "novato-m-use_consumable-01",
     "worklogPath": "docs/sprites/checkpoint-sprites-hd-2026-10-24.md",
-    "note": "Novato masculino tiene Idle, Walk y Hurt completos (4 PNG por acción con QA). La producción pasó de una generación por fotograma a una generación por acción; cada fotograma se sigue guardando como archivo individual. La ilustración maestra está importada y verificada por SHA-256; falta integración en UI."
+    "note": "Novato masculino tiene Idle, Walk y Hurt completos (4 PNG por acción con QA). El flujo es por acción: generar cuatro poses, separarlas en archivos individuales y validar cada una. Siguiente acción: use_consumable-01. La ilustración maestra está importada y verificada por SHA-256; falta integración en UI."
   }
 }
