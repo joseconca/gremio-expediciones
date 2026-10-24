@@ -46,7 +46,7 @@ No se trata de ampliar por vecino más cercano las celdas existentes de 64×128.
 
 ## 3. Orden de producción
 
-Trabajar una combinación de **clase + sexo** de principio a fin, incluyendo sus 15 acciones, antes de pasar al siguiente sexo. Así no se mezclan diseños ni quedan hojas parciales dispersas.
+Trabajar una combinación de **clase + sexo** de principio a fin, incluyendo sus 15 acciones, antes de pasar al siguiente sexo. Cada fotograma será un PNG independiente y tendrá su propio checkpoint/commit; no generar de una vez una fila ni una hoja completa como recurso artístico. Así no se mezclan diseños ni se pierde progreso si se interrumpe la sesión.
 
 1. **Tier 0:** Novato masculino → Novato femenino.
 2. **Tier 1:** Mago masculino/femenino → Espadachín masculino/femenino → Acólito masculino/femenino → Arquero masculino/femenino.
@@ -59,8 +59,8 @@ No se iniciará el segundo sexo de una clase hasta que la hoja del primero tenga
 1. **Inspección de fuentes:** revisar la hoja activa, los másteres v2, los conceptos, los informes QA, los commits y los documentos existentes de esa clase.
 2. **Brief visual:** fijar silueta, anatomía, vestuario, paleta, pelo, materiales y rasgos distintivos antes de generar acciones.
 3. **Concepto de alta definición:** reutilizar y reconstruir el concepto si existe una fuente útil. Si solo hay una fuente pequeña, usarla como referencia y crear arte nuevo; no usar el escalado de la hoja antigua como arte final.
-4. **Producción por acción:** generar/normalizar una tira de cuatro poses por cada una de las 15 acciones. Mantener constante el personaje, la cámara, la escala, la iluminación y la línea de suelo.
-5. **Ensamblado:** componer las 15 tiras de 512×256 en una hoja exacta de 512×3840. El proceso debe comprobar los límites de celda y no permitir que se mezclen filas o fotogramas.
+4. **Producción por fotograma:** generar un PNG por pose en `frames/<acción>/<clase>-<sexo>-<acción>-NN.png` (128×256 RGBA). Aprobar, guardar y hacer commit de cada sprite individualmente. Mantener constante el personaje, la cámara, la escala, la iluminación y la línea de suelo.
+5. **Ensamblado:** cuando existan los 60 PNG individuales y hayan pasado sus comprobaciones, componer la hoja exacta de 512×3840. El atlas y las previews son derivados regenerables; los 60 PNG individuales son los recursos fuente de trabajo.
 6. **QA automatizado:** verificar dimensiones, RGBA/alfa real, 15 filas, cuatro fotogramas visibles y distintos por fila, ausencia de celdas vacías, integridad de recorte, hashes y línea de suelo razonablemente estable.
 7. **QA visual:** revisar la hoja completa, cada fila ampliada y la versión a tamaño real de juego. Comprobar especialmente manos, rostro, contornos, transparencias/halos, continuidad de movimiento y que los ataques tengan poses útiles para el anclaje de armas.
 8. **Commit de checkpoint:** guardar arte fuente, hoja ensamblada, preview e informe QA juntos. Actualizar el manifiesto de estado en el mismo checkpoint o inmediatamente después.
@@ -121,7 +121,7 @@ Ejemplo de uso cuando se hayan creado las 15 tiras de Novato masculino:
 python scripts/ensamblar-spritesheet-hd.py --class-id novato --sex m --preview
 ```
 
-El comando fallará deliberadamente mientras falte cualquier acción. Este pipeline no reduce ni amplía los sprites antiguos, no accede a rutas runtime y no aprueba por sí solo la calidad artística.
+El comando fallará deliberadamente mientras falte cualquiera de los 60 PNG individuales. Este pipeline no reduce ni amplía los sprites antiguos, no accede a rutas runtime y no aprueba por sí solo la calidad artística.
 
 ## 8. Limpieza de archivos
 
@@ -149,6 +149,6 @@ Una variante no se marca como terminada hasta cumplir todos estos puntos:
 
 ## 10. Estrategia de commits y recuperación
 
-Crear commits pequeños y verificables; no acumular muchas clases en un único commit. Como mínimo, un checkpoint por concepto validado, por paquete de acciones cuando la interrupción pueda dejar trabajo difícil de recuperar y por cada hoja final de clase/sexo. El manifiesto se actualiza en cada cambio de estado y registra el último commit conocido.
+Crear commits pequeños y verificables; no acumular muchas clases en un único commit. Como mínimo, un checkpoint por sprite individual (PNG + QA + manifiesto) y por cada hoja ensamblada final de clase/sexo. El manifiesto se actualiza en cada cambio de estado y registra el último commit conocido.
 
 La rama de trabajo no se fusionará a `main` sin aprobación explícita del conjunto. Al reanudar el trabajo, leer primero este plan y `assets/spritesheets/hd-128x256/manifest.json`; usar el siguiente elemento pendiente, no repetir clases ya marcadas como completadas.
