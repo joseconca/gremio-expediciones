@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "status": "technical-passed-visual-review-pending",
+  "classId": "novato",
+  "sex": "m",
+  "action": "walk",
+  "frameNumber": 4,
+  "path": "assets/spritesheets/hd-128x256/novato/m/frames/walk/novato-m-walk-04.png",
+  "image": {
+    "format": "PNG",
+    "mode": "P",
+    "dimensions": [
+      128,
+      256
+    ],
+    "transparencyIndex": 0,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "alphaBoundingBox": [
+      4,
+      20,
+      124,
+      248
+    ],
+    "sha256": "ea3b2495725bc06f93152b5c06fdbe9aacc8647fd5b2f7b0e26bab6d18ac612c",
+    "bytes": 11226
+  },
+  "design": {
+    "silhouette": "pose lateral en tres cuartos mirando a la derecha, zancada amplia",
+    "motion": "fase de paso con ambos pies separados; torso y brazos acompañan el movimiento",
+    "materials": [
+      "tela crema",
+      "bufanda granate",
+      "correas y cinturón de cuero",
+      "pantalón azul grisáceo",
+      "botas altas",
+      "bolsa lateral"
+    ],
+    "weapons": "manos vacías; sin armas integradas",
+    "style": "RPG medieval fantástico, pixel art HD"
+  },
+  "provenance": {
+    "kind": "arte original del proyecto, aislado como PNG individual de referencia generado",
+    "sourceGenerationId": "6a4ba4c6-c26c-49f9-9572-65be4c695a1b",
+    "sourceCanvas": [
+      1932,
+      814
+    ],
+    "selectedRegion": [
+      1665,
+      18,
+      1932,
+      405
+    ],
+    "sourceAlphaBoundingBox": [
+      33,
+      12,
+      228,
+      383
+    ],
+    "normalization": {
+      "lockedWalkingScale": 0.6153846153846154,
+      "fittedDimensions": [
+        120,
+        228
+      ],
+      "baselineY": 248,
+      "offset": [
+        4,
+        20
+      ]
+    },
+    "process": [
+      "aislar una única pose",
+      "limpiar píxeles de baja opacidad",
+      "normalizar con la escala de Walk 01–03",
+      "alinear pies con la línea de suelo",
+      "indexar sin dithering y preservar transparencia real"
+    ],
+    "note": "Solo se versiona el PNG individual y su QA; no se incorpora la composición de referencia al juego."
+  },
+  "checks": {
+    "dimensions": true,
+    "realTransparency": true,
+    "visibleCharacter": true,
+    "bodyNotClipped": true,
+    "facingRight": true,
+    "weaponAbsent": true,
+    "individualFrameOnly": true,
+    "distinctFromWalk01": true,
+    "distinctFromWalk02": true,
+    "distinctFromWalk03": true,
+    "visualReviewRequired": true
+  },
+  "review": {
+    "status": "pending",
+    "notes": "Cierra el grupo de cuatro frames Walk. Revisar las cuatro poses como ciclo antes de dar por aprobada la animación."
+  }
+}

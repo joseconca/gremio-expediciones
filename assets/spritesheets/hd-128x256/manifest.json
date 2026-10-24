@@ -166,13 +166,14 @@
         "idle/04",
         "walk/01",
         "walk/02",
-        "walk/03"
+        "walk/03",
+        "walk/04"
       ],
       "sheetPath": "assets/spritesheets/hd-128x256/novato/m/novato-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "technical-passed-visual-review-pending",
-      "lastCommit": "525600918a26ace34eb5b189ed56b4e310fdda5c",
-      "notes": "Idle 01–04 y Walk 01–03 están versionados como PNG individuales con QA. Las tres poses de caminar usan escala bloqueada y línea de suelo común. Pendiente QA visual conjunto.",
+      "lastCommit": null,
+      "notes": "Idle 01–04 y Walk 01–04 están guardados como PNG individuales con QA. Walk está completo técnicamente a nivel de cuatro frames; pendiente revisión visual del ciclo antes de avanzar o corregir.",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/m/frames"
     },
     {
@@ -824,8 +825,8 @@
     ],
     "note": "CI validates technical tooling using synthetic sprites; it does not approve artwork visually."
   },
-  "nextFrame": "novato-m-walk-04",
-  "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/walk/novato-m-walk-03.png",
-  "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/walk/novato-m-walk-03.qa.json",
+  "nextFrame": "novato-m-hurt-01",
+  "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/walk/novato-m-walk-04.png",
+  "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/walk/novato-m-walk-04.qa.json",
   "lastFrameCommit": "525600918a26ace34eb5b189ed56b4e310fdda5c"
 }
