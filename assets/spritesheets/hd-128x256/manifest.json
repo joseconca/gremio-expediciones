@@ -168,7 +168,7 @@
       "sheetPath": "assets/spritesheets/hd-128x256/novato/m/novato-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "technical-passed-visual-review-pending",
-      "lastCommit": null,
+      "lastCommit": "b6e23434df4801b58a1d9577435d9b5be12c484e",
       "notes": "Los cuatro PNG individuales de Idle ya están guardados. Incluyen variación capilar, parpadeo y un pequeño movimiento del pliegue de la bufanda. Pendiente revisar el ciclo completo; después comienza Walk 01.",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/m/frames"
     },
@@ -704,6 +704,11 @@
       "sha": "23feab68e47b509fb09f6c9261ed2e7fa4851812",
       "message": "art(sprites): crear Novato masculino Idle frame 03",
       "scope": "individual blink frame PNG + QA + manifest progress"
+    },
+    {
+      "sha": "b6e23434df4801b58a1d9577435d9b5be12c484e",
+      "message": "art(sprites): crear Novato masculino Idle frame 04",
+      "scope": "individual scarf-sway frame PNG + QA + manifest progress"
     }
   ],
   "sourceAudit": {
@@ -782,20 +787,20 @@
   },
   "pipelineValidation": {
     "status": "passed",
-    "runId": 40079854725,
-    "runUrl": "https://github.com/joseconca/gremio-expediciones/actions/runs/40079854725",
-    "testedCommit": "303cff2cee59caaffdc4a5778dc809c653a37b5d",
-    "completedAt": "2026-10-24T08:54:37Z",
+    "runId": 40081715327,
+    "runUrl": "https://github.com/joseconca/gremio-expediciones/actions/runs/40081715327",
+    "testedCommit": "7334df2f267a19dc79a2fa983a522dfad373265c",
+    "completedAt": "2026-10-24T09:22:57Z",
     "checks": [
       "Python syntax compilation",
-      "synthetic complete-atlas assembly",
-      "QA report and 60 cells",
-      "missing action rejects the build before output"
+      "assembler tests from 60 individual frame files",
+      "missing individual frame fails without creating a sheet",
+      "indexed PNG input with tRNS transparency"
     ],
-    "note": "Valida el pipeline técnico con imágenes sintéticas; no es una validación artística y no genera sprites finales."
+    "note": "CI validates the isolated frame-based tooling with synthetic assets; it does not approve artwork visually."
   },
   "nextFrame": "novato-m-walk-01",
   "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-04.png",
   "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-04.qa.json",
-  "lastFrameCommit": "23feab68e47b509fb09f6c9261ed2e7fa4851812"
+  "lastFrameCommit": "b6e23434df4801b58a1d9577435d9b5be12c484e"
 }
