@@ -568,13 +568,20 @@
       "no residual background/halo",
       "weapon-ready hand poses",
       "identity preserved across actions"
-    ]
+    ],
+    "validatorScript": "scripts/validar-spritesheet-hd.py",
+    "validatorUsage": "python scripts/validar-spritesheet-hd.py --sheet <hoja.png> --class-id novato --sex m --report <qa-report.json>"
   },
   "commits": [
     {
       "sha": "43059d84dd6a38a2d317adee531e5dd0069914f1",
       "message": "docs(sprites): planificar spritesheets HD de 128x256",
       "scope": "planning document"
+    },
+    {
+      "sha": "145a046075bdcfba246a2c505535008436c37cd4",
+      "message": "feat(sprites): validar atlas completos HD 128x256",
+      "scope": "standalone technical validator; no runtime resources changed"
     }
   ]
 }
