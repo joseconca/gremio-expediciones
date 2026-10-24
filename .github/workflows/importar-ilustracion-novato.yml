@@ -1,0 +1,66 @@
+name: Importar ilustración grande de Novato masculino
+
+on:
+  push:
+    branches:
+      - creacion-sprite-sheets
+    paths:
+      - "assets/spritesheets/hd-128x256/_staging/novato-m-illustration/READY.txt"
+
+permissions:
+  contents: write
+
+jobs:
+  import-illustration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout de la rama
+        uses: actions/checkout@v4
+        with:
+          ref: creacion-sprite-sheets
+          persist-credentials: true
+
+      - name: Decodificar y validar el PNG
+        shell: bash
+        run: |
+          set -euo pipefail
+          staging="assets/spritesheets/hd-128x256/_staging/novato-m-illustration"
+          target="assets/spritesheets/hd-128x256/novato/m/artwork/novato-m-character-illustration.png"
+          cat "$staging"/part-*.b64 | tr -d '\n\r ' | base64 --decode > "$target"
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, struct
+          path = Path("assets/spritesheets/hd-128x256/novato/m/artwork/novato-m-character-illustration.png")
+          data = path.read_bytes()
+          if data[:8] != b"\x89PNG\r\n\x1a\n":
+              raise SystemExit("Invalid PNG signature")
+          width, height = struct.unpack(">II", data[16:24])
+          color_type = data[25]
+          if (width, height) != (448, 1075):
+              raise SystemExit(f"Unexpected dimensions: {width}x{height}")
+          if color_type != 3:
+              raise SystemExit(f"Expected indexed PNG color type 3, received {color_type}")
+          pos, has_trns = 8, False
+          while pos + 12 <= len(data):
+              size = struct.unpack(">I", data[pos:pos+4])[0]
+              kind = data[pos+4:pos+8]
+              if kind == b"tRNS":
+                  has_trns = True
+              pos += 12 + size
+              if kind == b"IEND":
+                  break
+          if not has_trns:
+              raise SystemExit("Missing PNG tRNS transparency table")
+          print(f"Validated {width}x{height} indexed PNG; {len(data)} bytes; sha256={hashlib.sha256(data).hexdigest()}")
+          PY
+
+      - name: Limpiar fragmentos temporales y publicar el recurso
+        run: |
+          set -euo pipefail
+          rm -rf assets/spritesheets/hd-128x256/_staging/novato-m-illustration
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/spritesheets/hd-128x256/novato/m/artwork/novato-m-character-illustration.png
+          git add -u assets/spritesheets/hd-128x256/_staging
+          git commit -m "art(sprites): conservar ilustración grande de Novato masculino"
+          git push origin HEAD:creacion-sprite-sheets
