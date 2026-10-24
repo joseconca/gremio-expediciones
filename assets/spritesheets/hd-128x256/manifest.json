@@ -570,7 +570,9 @@
       "identity preserved across actions"
     ],
     "validatorScript": "scripts/validar-spritesheet-hd.py",
-    "validatorUsage": "python scripts/validar-spritesheet-hd.py --sheet <hoja.png> --class-id novato --sex m --report <qa-report.json>"
+    "validatorUsage": "python scripts/validar-spritesheet-hd.py --sheet <hoja.png> --class-id novato --sex m --report <qa-report.json>",
+    "assemblerScript": "scripts/ensamblar-spritesheet-hd.py",
+    "assemblerUsage": "python scripts/ensamblar-spritesheet-hd.py --class-id novato --sex m --preview"
   },
   "commits": [
     {
@@ -587,6 +589,21 @@
       "sha": "e7efd6305d30b3eb389d660e23185e5e90953b6f",
       "message": "docs(sprites): registrar validador HD en manifiesto",
       "scope": "manifest validator reference"
+    },
+    {
+      "sha": "c1ab32c9df5a118616b24e5f30d2a54c20a6949b",
+      "message": "docs(sprites): auditar fuentes HD y fijar el orden de producción",
+      "scope": "class order and source-library audit"
+    },
+    {
+      "sha": "bd571d8a997c791e1517c61ac77a428f02ffb1c0",
+      "message": "docs(sprites): documentar auditoría de fuentes conceptuales",
+      "scope": "plan source audit updates"
+    },
+    {
+      "sha": "e5a474c9b253e25fcd187ffffe6f72aa2b815d5a",
+      "message": "feat(sprites): ensamblar hojas HD completas de 15 filas",
+      "scope": "staging atlas assembler"
     }
   ],
   "sourceAudit": {
