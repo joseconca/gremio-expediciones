@@ -13,7 +13,7 @@ permissions:
 jobs:
   import-illustration:
     # Evita reejecutar el import cuando el propio workflow elimina READY.txt.
-    if: contains(github.event.head_commit.added, 'assets/spritesheets/hd-128x256/_staging/novato-m-illustration/READY.txt')
+    if: github.event.head_commit.message != 'art(sprites): conservar ilustración grande de Novato masculino'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout de la rama
