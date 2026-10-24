@@ -170,7 +170,7 @@
       "sheetPath": "assets/spritesheets/hd-128x256/novato/m/novato-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "technical-passed-visual-review-pending",
-      "lastCommit": null,
+      "lastCommit": "51e0d82b54ea9c12038413472b9e19c707ab1db8",
       "notes": "Idle 01–04 y Walk 01–02 están guardados como PNG individuales con QA. Walk 01/02 comparten escala de producción y línea de suelo. Pendiente revisión visual de coherencia del personaje entre acciones.",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/m/frames"
     },
@@ -721,6 +721,11 @@
       "sha": "ff11d0d7e520cc04cf352aca026e0c2b84d30fc3",
       "message": "art(sprites): crear Novato masculino Walk frame 01",
       "scope": "individual walking frame PNG + QA + manifest progress"
+    },
+    {
+      "sha": "51e0d82b54ea9c12038413472b9e19c707ab1db8",
+      "message": "art(sprites): crear Novato masculino Walk frame 02",
+      "scope": "individual walking frame PNG + QA + manifest progress"
     }
   ],
   "sourceAudit": {
@@ -816,5 +821,5 @@
   "nextFrame": "novato-m-walk-03",
   "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/walk/novato-m-walk-02.png",
   "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/walk/novato-m-walk-02.qa.json",
-  "lastFrameCommit": "ff11d0d7e520cc04cf352aca026e0c2b84d30fc3"
+  "lastFrameCommit": "51e0d82b54ea9c12038413472b9e19c707ab1db8"
 }
