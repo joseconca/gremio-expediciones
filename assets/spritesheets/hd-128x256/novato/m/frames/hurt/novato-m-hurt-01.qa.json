@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "status": "technical-passed-visual-review-pending",
+  "classId": "novato",
+  "sex": "m",
+  "action": "hurt",
+  "frameNumber": 1,
+  "path": "assets/spritesheets/hd-128x256/novato/m/frames/hurt/novato-m-hurt-01.png",
+  "image": {
+    "format": "PNG",
+    "mode": "P",
+    "dimensions": [
+      128,
+      256
+    ],
+    "transparencyIndex": 0,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "alphaBoundingBox": [
+      6,
+      19,
+      121,
+      249
+    ],
+    "sha256": "34614dc4d72e9a83488be5a57a2e6453453a76ca7d28dbb38d0b103b753514e4",
+    "bytes": 12562
+  },
+  "design": {
+    "silhouette": "brace for impact, knees bent and fists drawn inward",
+    "motion": "secuencia de impacto: preparación, absorción, retroceso y recuperación; una pose distinta por fotograma",
+    "materials": [
+      "cream shirt",
+      "burgundy scarf",
+      "brown leather harness and belt",
+      "blue-gray trousers",
+      "brown gloves and boots",
+      "hip satchel"
+    ],
+    "weapons": "none; base character is unarmed",
+    "style": "high-density HD pixel art, medieval fantasy RPG, warm outlines and textured materials"
+  },
+  "provenance": {
+    "kind": "original project art; pose isolated from a generated four-pose Hurt action reference",
+    "sourceCanvas": [
+      1536,
+      1024
+    ],
+    "selectedRegion": [
+      44,
+      287,
+      268,
+      730
+    ],
+    "process": [
+      "generate four poses for the same action in one batch",
+      "isolate the relevant pose and remove the presentation background",
+      "fit uniformly to a 128×256 cell without cropping the body",
+      "align the boot baseline consistently",
+      "quantize visible artwork without dithering and reserve PNG palette index 0 for true transparency"
+    ],
+    "note": "Only the four individual PNG frames and their QA reports are stored for production; the reference board is not a runtime asset."
+  },
+  "checks": {
+    "exactDimensions": true,
+    "realTransparency": true,
+    "characterVisible": true,
+    "bodyNotClipped": true,
+    "facingRight": true,
+    "weaponAbsent": true,
+    "individualFrameOnly": true,
+    "alphaBoundingBoxInsideCell": true,
+    "visualReviewRequired": true
+  },
+  "review": {
+    "status": "pending",
+    "notes": "Review four-frame Hurt cadence and silhouette consistency together before final 4×15 atlas assembly. Technical checks do not constitute artistic approval."
+  }
+}

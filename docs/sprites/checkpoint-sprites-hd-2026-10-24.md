@@ -13,8 +13,8 @@
 
 - `Idle`: frames 01–04 completos como PNG individuales y con QA.
 - `Walk`: frames 01–04 completos como PNG individuales y con QA.
-- Próximo recurso exacto: `novato-m-hurt-01` (Recibir daño, frame 01).
-- No se ha empezado Novato femenino ni otra clase.
+- `Hurt`: frames 01–04 completos como PNG individuales, con QA por frame. La acción se generó en una tanda de cuatro poses y después se separó en celdas individuales.
+- Siguiente recurso exacto: `novato-m-use_consumable-01` (Consumir objeto, frame 01). No se ha empezado Novato femenino ni otra clase.
 - El ciclo Walk está completo técnicamente; todavía requiere revisión visual conjunta de cadencia y línea de suelo.
 
 **Ilustración maestra para menús**
@@ -36,13 +36,13 @@
 
 ## Criterios de aceptación que no deben relajarse
 
-1. Generar y guardar un fotograma por archivo; no generar ni integrar una hoja completa como sustituto de los PNG individuales.
+1. Generar una acción completa con cuatro poses en una tanda cuando sea más eficiente; después separar y guardar cada pose como PNG individual. No integrar la composición de referencia como recurso de juego.
 2. Si la generación devuelve varias poses, etiquetas, cuadrículas o una presentación, descartarla como arte de producción.
 3. PNG final de 128 × 256 px, canal alfa/transparencia reales, cuerpo sin recortes accidentales, escala y línea de suelo coherentes con el resto del ciclo.
 4. Cada PNG debe tener su propio JSON de QA. Validar dimensiones, transparencia, hash y unicidad dentro de la acción.
-5. Hacer commit con frecuencia y actualizar el manifiesto después de cada fotograma terminado.
+5. Hacer commit al completar cada acción de cuatro fotogramas; actualizar el manifiesto, conservar cuatro QA individuales y registrar el siguiente punto exacto.
 6. No modificar hojas de producción ni rutas consumidas por el juego hasta completar ensamblado y revisión visual.
 
 ## Próxima sesión
 
-Crear **Novato masculino · Hurt · frame 01** como una sola pose individual de retroceso por impacto. Revisar el PNG aislado y su silueta; guardarlo con QA y commit. Después continuar Hurt 02–04, sin pasar a Item hasta completar y revisar Hurt.
+Crear **Novato masculino · Consumir objeto (use_consumable)** como una tanda de cuatro poses. Separarlas a PNG individuales, verificar dimensiones/transparencia/alfa y QA, revisar visualmente la acción y guardar un commit para el lote. Después continuar con Esquivar (dodge).

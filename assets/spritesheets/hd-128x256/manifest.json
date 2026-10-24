@@ -54,8 +54,11 @@
     "isolatedStaging": true,
     "checkpointCommits": true,
     "updateManifestEachCheckpoint": true,
-    "oneSpritePerCommit": true,
-    "storeFramesAsIndividualFiles": true
+    "oneSpritePerCommit": false,
+    "storeFramesAsIndividualFiles": true,
+    "oneActionPerCommit": true,
+    "generationBatch": "one-action-four-poses; split, validate and version four independent PNGs per action",
+    "notes": "Speed improvement approved 2026-10-24: generate one action as a four-pose batch, then separate and QA each frame. Never integrate the presentation board as runtime artwork."
   },
   "nextVariant": "novato-m",
   "classes": [
@@ -167,13 +170,17 @@
         "walk/01",
         "walk/02",
         "walk/03",
-        "walk/04"
+        "walk/04",
+        "hurt/01",
+        "hurt/02",
+        "hurt/03",
+        "hurt/04"
       ],
       "sheetPath": "assets/spritesheets/hd-128x256/novato/m/novato-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "technical-passed-visual-review-pending",
       "lastCommit": "ce604921bfe22afc92a70ef75f68c5f9df765702",
-      "notes": "Idle 01–04 y Walk 01–04 están guardados como PNG individuales con QA. Walk está completo técnicamente a nivel de cuatro frames; pendiente revisión visual del ciclo antes de avanzar o corregir.",
+      "notes": "Idle 01–04, Walk 01–04 y Hurt 01–04 están guardados como PNG individuales con QA. Hurt se produjo en una tanda de cuatro poses y se separó en cuatro celdas de 128×256; queda pendiente la revisión visual conjunta antes de ensamblar el atlas.",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/m/frames"
     },
     {
@@ -835,9 +842,9 @@
     ],
     "note": "CI validates technical tooling using synthetic sprites; it does not approve artwork visually."
   },
-  "nextFrame": "novato-m-hurt-01",
-  "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/walk/novato-m-walk-04.png",
-  "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/walk/novato-m-walk-04.qa.json",
+  "nextFrame": "novato-m-use_consumable-01",
+  "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/hurt/novato-m-hurt-04.png",
+  "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/hurt/novato-m-hurt-04.qa.json",
   "lastFrameCommit": "ce604921bfe22afc92a70ef75f68c5f9df765702",
   "artworkAssets": [
     {
@@ -873,8 +880,8 @@
   "checkpoint": {
     "updatedAt": "2026-10-24",
     "branch": "creacion-sprite-sheets",
-    "nextFrame": "novato-m-hurt-01",
+    "nextFrame": "novato-m-use_consumable-01",
     "worklogPath": "docs/sprites/checkpoint-sprites-hd-2026-10-24.md",
-    "note": "La ilustración maestra está importada y verificada por SHA-256; falta integración en UI. Idle y Walk de Novato masculino tienen cuatro frames cada uno. Las láminas multipose generadas durante intentos de continuación se descartan; no son recursos de producción."
+    "note": "Novato masculino tiene Idle, Walk y Hurt completos (4 PNG por acción con QA). La producción pasó de una generación por fotograma a una generación por acción; cada fotograma se sigue guardando como archivo individual. La ilustración maestra está importada y verificada por SHA-256; falta integración en UI."
   }
 }
