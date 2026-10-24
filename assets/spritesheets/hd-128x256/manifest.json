@@ -709,6 +709,11 @@
       "sha": "b6e23434df4801b58a1d9577435d9b5be12c484e",
       "message": "art(sprites): crear Novato masculino Idle frame 04",
       "scope": "individual scarf-sway frame PNG + QA + manifest progress"
+    },
+    {
+      "sha": "6631238bfc24f97b8c330cb59171bd445ceeb0e1",
+      "message": "fix(sprites): permitir reutilizar poses entre acciones",
+      "scope": "remove overstrict cross-action hash check; keep per-action duplicate guard and add regression test"
     }
   ],
   "sourceAudit": {
@@ -786,18 +791,11 @@
     "preservationPolicy": "No borrar ni sobreescribir originales de la Library/Git. Antes de incorporarlos al repositorio HD, materializar/copiarlos en un área de fuente con trazabilidad de ruta original, tamaño, alfa y SHA-256. No copiar las imágenes de trabajo de alta resolución a runtime."
   },
   "pipelineValidation": {
-    "status": "passed",
-    "runId": 40081715327,
-    "runUrl": "https://github.com/joseconca/gremio-expediciones/actions/runs/40081715327",
-    "testedCommit": "7334df2f267a19dc79a2fa983a522dfad373265c",
-    "completedAt": "2026-10-24T09:22:57Z",
-    "checks": [
-      "Python syntax compilation",
-      "assembler tests from 60 individual frame files",
-      "missing individual frame fails without creating a sheet",
-      "indexed PNG input with tRNS transparency"
-    ],
-    "note": "CI validates the isolated frame-based tooling with synthetic assets; it does not approve artwork visually."
+    "status": "running",
+    "runId": 40085136592,
+    "runUrl": "https://github.com/joseconca/gremio-expediciones/actions/runs/40085136592",
+    "testedCommit": "6631238bfc24f97b8c330cb59171bd445ceeb0e1",
+    "note": "CI is checking frame-by-frame assembly and explicitly allows exact reuse across different action rows while still requiring four distinct frames within each row."
   },
   "nextFrame": "novato-m-walk-01",
   "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-04.png",
