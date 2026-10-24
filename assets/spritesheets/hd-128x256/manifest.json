@@ -166,7 +166,7 @@
       "sheetPath": "assets/spritesheets/hd-128x256/novato/m/novato-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "technical-passed-visual-review-pending",
-      "lastCommit": null,
+      "lastCommit": "2182019be9567d0a3c6b3d363359ea56d84595c8",
       "notes": "Idle 01 y 02 guardados como PNG independientes; el segundo añade una variación mínima del mechón superior. Revisión visual del diseño completa pendiente.",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/m/frames"
     },
@@ -692,6 +692,11 @@
       "sha": "bea6709b14ae695636a72256991f86a284e0f4f3",
       "message": "art(sprites): crear Novato masculino Idle frame 01",
       "scope": "one individual 128x256 sprite + QA JSON + manifest checkpoint"
+    },
+    {
+      "sha": "2182019be9567d0a3c6b3d363359ea56d84595c8",
+      "message": "art(sprites): crear Novato masculino Idle frame 02",
+      "scope": "second independent idle PNG + QA JSON + manifest checkpoint"
     }
   ],
   "sourceAudit": {
@@ -785,5 +790,5 @@
   "nextFrame": "novato-m-idle-03",
   "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-02.png",
   "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-02.qa.json",
-  "lastFrameCommit": "bea6709b14ae695636a72256991f86a284e0f4f3"
+  "lastFrameCommit": "2182019be9567d0a3c6b3d363359ea56d84595c8"
 }
