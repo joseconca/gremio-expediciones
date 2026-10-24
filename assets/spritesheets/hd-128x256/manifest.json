@@ -161,13 +161,14 @@
       "status": "in-progress",
       "actionsCompleted": [
         "idle/01",
-        "idle/02"
+        "idle/02",
+        "idle/03"
       ],
       "sheetPath": "assets/spritesheets/hd-128x256/novato/m/novato-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "technical-passed-visual-review-pending",
-      "lastCommit": "2182019be9567d0a3c6b3d363359ea56d84595c8",
-      "notes": "Idle 01 y 02 guardados como PNG independientes; el segundo añade una variación mínima del mechón superior. Revisión visual del diseño completa pendiente.",
+      "lastCommit": null,
+      "notes": "Idle 01 y 02 se preservan; Idle 03 añade una microvariación de parpadeo con paleta consistente. Revisión visual de los tres fotogramas pendiente.",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/m/frames"
     },
     {
@@ -697,11 +698,6 @@
       "sha": "2182019be9567d0a3c6b3d363359ea56d84595c8",
       "message": "art(sprites): crear Novato masculino Idle frame 02",
       "scope": "second independent idle PNG + QA JSON + manifest checkpoint"
-    },
-    {
-      "sha": "2182019be9567d0a3c6b3d363359ea56d84595c8",
-      "message": "art(sprites): crear Novato masculino Idle frame 02",
-      "scope": "second independent idle PNG + QA JSON + manifest checkpoint"
     }
   ],
   "sourceAudit": {
@@ -792,8 +788,8 @@
     ],
     "note": "Valida el pipeline técnico con imágenes sintéticas; no es una validación artística y no genera sprites finales."
   },
-  "nextFrame": "novato-m-idle-03",
-  "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-02.png",
-  "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-02.qa.json",
+  "nextFrame": "novato-m-idle-04",
+  "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-03.png",
+  "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-03.qa.json",
   "lastFrameCommit": "2182019be9567d0a3c6b3d363359ea56d84595c8"
 }

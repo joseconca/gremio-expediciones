@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "status": "technical-passed-visual-review-pending",
+  "classId": "novato",
+  "sex": "m",
+  "action": "idle",
+  "frameNumber": 3,
+  "path": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-03.png",
+  "image": {
+    "format": "PNG",
+    "mode": "P",
+    "dimensions": [
+      128,
+      256
+    ],
+    "transparencyIndex": 0,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "alphaBoundingBox": [
+      23,
+      20,
+      105,
+      248
+    ],
+    "sha256": "6a3410be5b324c846ccc786ae9222d3872813ac33b49f310bd86331574211e32",
+    "bytes": 7052
+  },
+  "design": {
+    "silhouette": "cuerpo completo en perfil mirando hacia la derecha",
+    "materials": [
+      "tela crema",
+      "correas y cinturón de cuero",
+      "pantalón oscuro",
+      "botas altas",
+      "bolsa lateral"
+    ],
+    "signature": "pañuelo granate corto",
+    "weapons": "sin armas integradas",
+    "style": "RPG medieval fantástico, pixel art HD"
+  },
+  "provenance": {
+    "kind": "arte original del proyecto; variación de animación derivada del fotograma base conservando su paleta indexada",
+    "sourceFrame": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-01.png",
+    "change": "microanimación de parpadeo; 12 píxeles modificados alrededor del ojo, con colores tomados de la paleta existente",
+    "background": "transparencia real; el damero solo se usa en la preview de QA"
+  },
+  "checks": {
+    "dimensions": true,
+    "realTransparency": true,
+    "visibleCharacter": true,
+    "bodyNotClipped": true,
+    "facingRight": true,
+    "noWeapons": true,
+    "individualFrame": true,
+    "distinctFromIdle01": true,
+    "visualReviewRequired": true
+  },
+  "review": {
+    "status": "pending",
+    "notes": "Verificar el parpadeo a tamaño nativo y a 4x. No significa aprobación de la variante completa."
+  }
+}
