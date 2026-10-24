@@ -861,7 +861,20 @@
         "large character info panels"
       ],
       "excludedUse": "Not an animation cell and not part of the 512x3840 combat atlas",
-      "sourceCommit": "39fbcbec3f653a2938538eecc7d4a333ec824111"
+      "sourceCommit": "39fbcbec3f653a2938538eecc7d4a333ec824111",
+      "importWorkflowRun": {
+        "id": 40088680223,
+        "url": "https://github.com/joseconca/gremio-expediciones/actions/runs/40088680223",
+        "status": "passed",
+        "commit": "39fbcbec3f653a2938538eecc7d4a333ec824111"
+      }
     }
-  ]
+  ],
+  "checkpoint": {
+    "updatedAt": "2026-10-24",
+    "branch": "creacion-sprite-sheets",
+    "nextFrame": "novato-m-hurt-01",
+    "worklogPath": "docs/sprites/checkpoint-sprites-hd-2026-10-24.md",
+    "note": "La ilustración maestra está importada y verificada por SHA-256; falta integración en UI. Idle y Walk de Novato masculino tienen cuatro frames cada uno. Las láminas multipose generadas durante intentos de continuación se descartan; no son recursos de producción."
+  }
 }
