@@ -791,11 +791,20 @@
     "preservationPolicy": "No borrar ni sobreescribir originales de la Library/Git. Antes de incorporarlos al repositorio HD, materializar/copiarlos en un área de fuente con trazabilidad de ruta original, tamaño, alfa y SHA-256. No copiar las imágenes de trabajo de alta resolución a runtime."
   },
   "pipelineValidation": {
-    "status": "running",
+    "status": "passed",
     "runId": 40085136592,
     "runUrl": "https://github.com/joseconca/gremio-expediciones/actions/runs/40085136592",
     "testedCommit": "6631238bfc24f97b8c330cb59171bd445ceeb0e1",
-    "note": "CI is checking frame-by-frame assembly and explicitly allows exact reuse across different action rows while still requiring four distinct frames within each row."
+    "completedAt": "2026-10-24T10:14:57Z",
+    "checks": [
+      "Python syntax compilation",
+      "frame-by-frame complete atlas assembly",
+      "missing individual frame fails before sheet creation",
+      "indexed PNG with tRNS transparency",
+      "same pose reused across different action rows is allowed",
+      "distinct frames remain required within each action row"
+    ],
+    "note": "CI validates technical tooling using synthetic sprites; it does not approve artwork visually."
   },
   "nextFrame": "novato-m-walk-01",
   "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-04.png",
