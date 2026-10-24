@@ -13,7 +13,7 @@ permissions:
 jobs:
   import-illustration:
     # Evita reejecutar el import cuando el propio workflow elimina READY.txt.
-    if: ${{ github.event.head_commit.message != 'art(sprites): conservar ilustración grande de Novato masculino' }}
+    if: "${{ github.event.head_commit.message != 'art(sprites): conservar ilustración grande de Novato masculino' }}"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout de la rama
