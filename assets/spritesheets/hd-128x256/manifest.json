@@ -15518,7 +15518,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/arquero/m/frames",
       "audit": {
-        "validFrames": 32,
+        "validFrames": 36,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -15528,7 +15528,8 @@
           "dodge",
           "block_shield",
           "attack_sword",
-          "attack_axe"
+          "attack_axe",
+          "attack_spear"
         ],
         "actions": {
           "idle": {
@@ -16092,7 +16093,74 @@
             "distinctFrames": 4
           },
           "attack_spear": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "595ce7572234be6f09c5504cc19841f9de9b2b4c62fd62dc563e764bcc9dd1fa",
+                "bytes": 24100,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  92,
+                  107,
+                  248
+                ],
+                "pixelSha256": "b093bd7b3cb2f1d314689f195aec130bda193ff474b7c5f2968cd85008b146b6"
+              },
+              "02": {
+                "sha256": "4e6f0e4e5213d0c1583f82c784e6bea64c46c41e5c67109769f8b1b0cf971760",
+                "bytes": 23592,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  91,
+                  101,
+                  248
+                ],
+                "pixelSha256": "bea2d76970a53094d69862adedeaa2970f70a201521857095ea4eb27f6e57a6c"
+              },
+              "03": {
+                "sha256": "1285a41c5b2e0f2d75a86212079ff0c743e62206b7a3f679626e31fb30ba4c9f",
+                "bytes": 24746,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  91,
+                  118,
+                  248
+                ],
+                "pixelSha256": "01c019029feb2ca49f1da75e4909287ab1f73113ff5aed99a77e24c553fce34c"
+              },
+              "04": {
+                "sha256": "1e2b437a4cb0c98022f6bf3bdbf516271789d520459c7802c251461b81c07e10",
+                "bytes": 24061,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  91,
+                  111,
+                  248
+                ],
+                "pixelSha256": "07aafe1bc587312930bbbb9ad02a90c183c3321fa6b606ec7005e790036b1ead"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_dagger": {
             "status": "missing"
@@ -16431,6 +16499,44 @@
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_spear": {
+          "sourceSha256": "50e1e1352dfeedefe6ef0563e6085811b9c8a12e28c6bfb6d984701bd592baa6",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            604,
+            18,
+            1064,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/arquero/m/source/attack_spear-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET / EXACT canonical pose registration. IMAGE 2 defines ONLY ARQUERO MALE identity, outfit and face. Redraw the four figures of IMAGE 1 in the costume/identity of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip and wrist orientation, elbows and limb poses of IMAGE 1. Action attack_spear. Do not retain Novato-specific face, hair, patched clothing or scarf unless explicitly specified in the class identity below. Young adult male archer: short sandy blond tousled hair, alert face, fitted forest green ranger jerkin with muted olive panels, short green shoulder cape, brown leather cross straps belt bracers and fingerless gloves, dark olive trousers and brown travel boots, small brass fastenings. No hood, bow, arrows, quiver, dagger or equipment. Same newly hand-painted crisp pixel-inspired RPG finish as reference, same identity across all four figures. Empty hands in every pose; any weapon, shield, book, bottle, bow, arrow or magical effect must be entirely omitted because it will be rendered with a shared equipment sprite layer. Keep cuffs away from visible hands. Garments may follow the pose but must not move hands or enlarge skeleton. No props, shadows, labels, grid or extra views. Preserve all headroom and margins of IMAGE 1, do NOT automatically fill or recenter the canvas. Full heads hair hems hands and boots must remain inside each quarter.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
+          "canonicalPoseHashes": [
+            "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
+            "0fd9a42095cd1675a9044ac97a3373f187b949983c002d31bc6e8418789b3ac0",
+            "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
+            "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -16560,6 +16666,22 @@
         },
         "attack_axe/04": {
           "source": "sources.attack_axe",
+          "frame": 4
+        },
+        "attack_spear/01": {
+          "source": "sources.attack_spear",
+          "frame": 1
+        },
+        "attack_spear/02": {
+          "source": "sources.attack_spear",
+          "frame": 2
+        },
+        "attack_spear/03": {
+          "source": "sources.attack_spear",
+          "frame": 3
+        },
+        "attack_spear/04": {
+          "source": "sources.attack_spear",
           "frame": 4
         }
       },
