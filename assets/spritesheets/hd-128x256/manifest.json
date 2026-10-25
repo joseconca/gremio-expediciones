@@ -19398,7 +19398,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/caballero/m/frames",
       "audit": {
-        "validFrames": 52,
+        "validFrames": 56,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -19413,7 +19413,8 @@
           "attack_dagger",
           "attack_bow",
           "attack_staff",
-          "attack_mace"
+          "attack_mace",
+          "attack_book"
         ],
         "actions": {
           "idle": {
@@ -20327,7 +20328,74 @@
             "distinctFrames": 4
           },
           "attack_book": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "d7c0b4fde78ccaf4ab04ba736985147a0ba177fdd0dc401f046c9caf149f7065",
+                "bytes": 23600,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  92,
+                  100,
+                  247
+                ],
+                "pixelSha256": "cf23225504faee7222c9edc3700fb9366239a32120043700796a4a4a173f0a14"
+              },
+              "02": {
+                "sha256": "d3cf0c777255a24728ae9e062edaf1bfef48d1f83b6ac50a0f149d3a27f14b02",
+                "bytes": 23277,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  91,
+                  102,
+                  247
+                ],
+                "pixelSha256": "9366e9fe7239f52a5e0211114b7df0168ab99bd8da31a4e7f58079bafde208b3"
+              },
+              "03": {
+                "sha256": "9f7ea96921614995545161cafd10e9e95e52ba70703f88962ff89529a6935855",
+                "bytes": 24057,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  92,
+                  106,
+                  247
+                ],
+                "pixelSha256": "bde1f4104dbd99d30c3b9f6035891091fbb839d79713c3e1c168b6c06bc1fd38"
+              },
+              "04": {
+                "sha256": "ccde2e7237ebc7066a18bf896704f9e8e6cdbfb422d33ea0d9eaed6570ead4fc",
+                "bytes": 23192,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  91,
+                  103,
+                  247
+                ],
+                "pixelSha256": "2c680461605e3c5f90fd82690cfa3d69cf0ee7454a24182c638ec3cc91b0e8d5"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_gloves": {
             "status": "missing"
@@ -20881,6 +20949,44 @@
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_book": {
+          "sourceSha256": "5fd70a1a941326b3241587878b93e60b536267ed7a3f40215d3cd4722ecaac37",
+          "sourceDimensions": [
+            2171,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            665,
+            21,
+            1019,
+            698
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/caballero/m/source/attack_book-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY CABALLERO MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_book. Young adult male knight: short tousled ash-brown hair and an open-faced steel brow helm leaving the whole face readable, determined expression. Heavy articulated silver and gunmetal plate armor with restrained warm bronze-gold edging, rounded layered pauldrons, steel breastplate over dark brown padded underlayers, leather belt, modest dark slate-blue split waist cloth, armored greaves and sturdy steel-toed brown boots. Discreet articulated brown/steel fingerless gauntlets end before the exact visible fingers. Athletic but EXACT same body skeleton, height and head size as the canonical reference. No weapon, shield, sword, sheath or cloak. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (409,308), other hand (392,243); figure 2: primary contact (952,291), other hand (904,243); figure 3: primary contact (1451,299); figure 4: primary contact (2042,291), other hand (1990,243). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. For use_consumable, pose ONE has a bent near elbow and a fist AT THE BELT, never both arms idle. Four figures must keep the exact Novato limb arrangement.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_book-reference.png",
+          "canonicalPoseHashes": [
+            "db64a1ea4ec27c23b57356995f06beb240d11450d6f96f0c9bd3c20dae9f79ca",
+            "d87721aa7ae120db1b22041eb42147a4c471295e0f0e0f39407719e3b92f53a0",
+            "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
+            "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -21090,6 +21196,22 @@
         },
         "attack_mace/04": {
           "source": "sources.attack_mace",
+          "frame": 4
+        },
+        "attack_book/01": {
+          "source": "sources.attack_book",
+          "frame": 1
+        },
+        "attack_book/02": {
+          "source": "sources.attack_book",
+          "frame": 2
+        },
+        "attack_book/03": {
+          "source": "sources.attack_book",
+          "frame": 3
+        },
+        "attack_book/04": {
+          "source": "sources.attack_book",
           "frame": 4
         }
       },
