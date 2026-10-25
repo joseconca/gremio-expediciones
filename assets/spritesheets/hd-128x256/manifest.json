@@ -419,10 +419,26 @@
         "attack_axe/04": {
           "source": "sources.attack_axe",
           "frame": 4
+        },
+        "attack_spear/01": {
+          "source": "sources.attack_spear",
+          "frame": 1
+        },
+        "attack_spear/02": {
+          "source": "sources.attack_spear",
+          "frame": 2
+        },
+        "attack_spear/03": {
+          "source": "sources.attack_spear",
+          "frame": 3
+        },
+        "attack_spear/04": {
+          "source": "sources.attack_spear",
+          "frame": 4
         }
       },
       "audit": {
-        "validFrames": 32,
+        "validFrames": 36,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -432,7 +448,8 @@
           "dodge",
           "block_shield",
           "attack_sword",
-          "attack_axe"
+          "attack_axe",
+          "attack_spear"
         ],
         "actions": {
           "idle": {
@@ -996,7 +1013,74 @@
             "distinctFrames": 4
           },
           "attack_spear": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "aae84626d62a2d512e55ed76b3c81f842b0bfe2f2721b0eb84186875b55a3068",
+                "bytes": 40295,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  16,
+                  112,
+                  245
+                ],
+                "pixelSha256": "5c9240b68b0e0cbde265ef0c3010c0f6d940312457c69552155814ea1d3aba65"
+              },
+              "02": {
+                "sha256": "01abd671e2060c45d10b47e21fa8357d88693c4e2fa9b79a501312e65eaff1d5",
+                "bytes": 40663,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  17,
+                  116,
+                  245
+                ],
+                "pixelSha256": "4466ccdfd2c2da3da39d782fa605b15aa4c95b9379d47551307b3893afbc84f4"
+              },
+              "03": {
+                "sha256": "12b9487a6e1b48141e21c260b1f4c3556bd0a57fa9a2ff69f6a5c431636e39c5",
+                "bytes": 38730,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  24,
+                  117,
+                  248
+                ],
+                "pixelSha256": "2b81c89ff5d95ae95ba608315eafbaa3f4d44fd6c0a83d0042677ffa4ce93317"
+              },
+              "04": {
+                "sha256": "e5406cb5cba2087c86e32861a4254c9ed5570103795fe026e6647016381fecbd",
+                "bytes": 38664,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  16,
+                  98,
+                  245
+                ],
+                "pixelSha256": "f012dfa914b64223494f097ac29f8080ecca716f7c149712e6abd14986236d44"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_dagger": {
             "status": "missing"
@@ -1168,6 +1252,32 @@
           "visualStatus": "review-pending",
           "equipmentStatus": "layer-test-pending",
           "promptFile": "source/production-prompts.json"
+        },
+        "attack_spear": {
+          "sourceSha256": "6ff0133bb6fe34f86c2f0e88f1c55479272bc1ad3266896a69d20c26f2cac4f3",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "commonCrop": [
+            648,
+            20,
+            963,
+            706
+          ],
+          "scale": 0.33819241982507287,
+          "origin": [
+            10,
+            16
+          ],
+          "alphaThreshold": 128,
+          "method": "shared crop and scale, no per-frame centering or resizing",
+          "sourcePath": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
+          "generator": "built-in imagegen",
+          "referencePath": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "prompt": "Create exactly FOUR game sprite poses horizontally in four equal cells on a wide transparent strip, reference style and character unchanged. Novato male with brown hair red scarf ivory shirt brown leather harness gloves boots blue patched trousers. Action spear thrust with EMPTY hands for later equipment overlay: ready two hand grip, draw back, compact thrust in right-facing three quarter perspective with FORESHORTENED bent arms directed diagonally into depth/right, return guard. IMPORTANT each character must have tall narrow silhouette, width at most HALF its height, feet close, elbows close to torso, short scarf close to back. Do NOT use a wide lunge or horizontally outstretched arms. Head-to-boot height identical in four poses, centered on quarter centers, large transparent margins, fully visible fingers boots hair scarf. No weapon, props, effects, shadows, labels, grid. Same crisp painted pixel-inspired RPG finish and costume as reference. Four anatomically coherent distinct poses.\n",
+          "visualStatus": "review-pending",
+          "equipmentStatus": "layer-test-pending"
         }
       },
       "visualReference": {
@@ -2988,7 +3098,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Novato m; review complete atlas and equipment anchors after body artwork",
+  "nextTask": "Continue Novato male then female; visual consistency and equipment layer review remain required",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
