@@ -9704,7 +9704,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/espadachin/f/frames",
       "audit": {
-        "validFrames": 36,
+        "validFrames": 40,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -9715,7 +9715,8 @@
           "block_shield",
           "attack_sword",
           "attack_axe",
-          "attack_spear"
+          "attack_spear",
+          "attack_dagger"
         ],
         "actions": {
           "idle": {
@@ -10349,7 +10350,74 @@
             "distinctFrames": 4
           },
           "attack_dagger": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "fd7fbdd9e7c6eb210b7c80c1bee403ea8a30d4b38dcd3e13500a88197f208d57",
+                "bytes": 26856,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  89,
+                  104,
+                  249
+                ],
+                "pixelSha256": "1f4b86fad62429687e566450e593cee8b2211efce5c59b1a4e2f4935385c3e42"
+              },
+              "02": {
+                "sha256": "f6b35c4a511e49d7e08cc384674ee1228a3f68c9e1af3f4a8eb118212b4f9ffc",
+                "bytes": 26846,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  89,
+                  112,
+                  249
+                ],
+                "pixelSha256": "e2fa16b4043c8c8d90ad79273c769549d9ae9e3976f53157191a62c3b7516876"
+              },
+              "03": {
+                "sha256": "29edc485a31bd2cf610f6b78d6f049ff97f00df1afbbb284a4606af97699c198",
+                "bytes": 26376,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  90,
+                  112,
+                  249
+                ],
+                "pixelSha256": "bfd88449f52e58f916738544e28145331345b301b931d190a1120e594a46c0cd"
+              },
+              "04": {
+                "sha256": "7f3108ba71174378f5b85932974f73b3a134488a89af5f6e9f4a36df50df0823",
+                "bytes": 26461,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  89,
+                  111,
+                  249
+                ],
+                "pixelSha256": "ea887c774b0f5aa02abee143f84d7b12e99bdc413f60c16055e27daada2c6e11"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_bow": {
             "status": "missing"
@@ -10711,6 +10779,44 @@
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_dagger": {
+          "sourceSha256": "a179601fc35484963b820afb3d2802e7e08f77cbfdcc0b9a2d6a3063448884bf",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            635,
+            14,
+            1036,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            18,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/espadachin/f/source/attack_dagger-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET / EXACT canonical pose registration. IMAGE 2 defines ONLY ESPADACHIN FEMALE identity, outfit and face. Redraw the four figures of IMAGE 1 in the costume/identity of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip and wrist orientation, elbows and limb poses of IMAGE 1. Action attack_dagger. Do not retain Novato-specific face, hair, patched clothing or scarf unless explicitly specified in the class identity below. Young adult female swordswoman: long copper/ginger high ponytail and swept bangs, burgundy neck scarf, practical brown leather armor with modest silver steel shoulder plates and bracers, light undershirt, brown waist belts, dark leggings and sturdy brown boots, discreet brown fingerless gloves. Fully covered practical armor, exact canonical female skeleton. No weapon, scabbard or shield. Same newly hand-painted crisp pixel-inspired RPG finish as reference, same identity across all four figures. Empty hands in every pose; any weapon, shield, book, bottle, bow, arrow or magical effect must be entirely omitted because it will be rendered with a shared equipment sprite layer. Keep cuffs away from visible hands. Garments may follow the pose but must not move hands or enlarge skeleton. No props, shadows, labels, grid or extra views. Preserve all headroom and margins of IMAGE 1, do NOT automatically fill or recenter the canvas. Full heads hair hems hands and boots must remain inside each quarter.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_dagger-reference.png",
+          "canonicalPoseHashes": [
+            "b099831c99647577fb107c59a2b854539e72f15343b11ac556963365d5c38e4a",
+            "1194001a1568733743072382e4df28905a78b397e3b28af933b29c7d0fbff071",
+            "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
+            "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -10856,6 +10962,22 @@
         },
         "attack_spear/04": {
           "source": "sources.attack_spear",
+          "frame": 4
+        },
+        "attack_dagger/01": {
+          "source": "sources.attack_dagger",
+          "frame": 1
+        },
+        "attack_dagger/02": {
+          "source": "sources.attack_dagger",
+          "frame": 2
+        },
+        "attack_dagger/03": {
+          "source": "sources.attack_dagger",
+          "frame": 3
+        },
+        "attack_dagger/04": {
+          "source": "sources.attack_dagger",
           "frame": 4
         }
       },
