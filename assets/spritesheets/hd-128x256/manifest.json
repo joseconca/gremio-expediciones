@@ -467,10 +467,26 @@
         "attack_bow/04": {
           "source": "sources.attack_bow",
           "frame": 4
+        },
+        "attack_staff/01": {
+          "source": "sources.attack_staff",
+          "frame": 1
+        },
+        "attack_staff/02": {
+          "source": "sources.attack_staff",
+          "frame": 2
+        },
+        "attack_staff/03": {
+          "source": "sources.attack_staff",
+          "frame": 3
+        },
+        "attack_staff/04": {
+          "source": "sources.attack_staff",
+          "frame": 4
         }
       },
       "audit": {
-        "validFrames": 44,
+        "validFrames": 48,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -483,7 +499,8 @@
           "attack_axe",
           "attack_spear",
           "attack_dagger",
-          "attack_bow"
+          "attack_bow",
+          "attack_staff"
         ],
         "actions": {
           "idle": {
@@ -1257,7 +1274,74 @@
             "distinctFrames": 4
           },
           "attack_staff": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "5c968e2520ff1df45fda994c79d93e36b8024b01c5adbd77845c2cb03781bcb7",
+                "bytes": 33688,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  56,
+                  116,
+                  248
+                ],
+                "pixelSha256": "aad1533fd56b6fca17381096c21a9ca1c9ebf4c6570ffcec09aa7a0d40dbb5aa"
+              },
+              "02": {
+                "sha256": "684f78838e578a1d4fae86f8fec171dbf5c62681359420cd124e63aaed5687b6",
+                "bytes": 34974,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  56,
+                  116,
+                  248
+                ],
+                "pixelSha256": "c9aed0bf3949b8db98319ea959ae2de73f6f0cc8ebb902dfe76275a7a2999158"
+              },
+              "03": {
+                "sha256": "bca4c6a75afe31082ad1521b44b2b07cda820537581d0de5c1feca7c10ef0b01",
+                "bytes": 33894,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  57,
+                  122,
+                  248
+                ],
+                "pixelSha256": "05db7a229484370256eaacaa3dd3d629df6cf4aa3af61a2f9e6968e3e731ec96"
+              },
+              "04": {
+                "sha256": "246bbf95e61d7d4b3272b40dc5a641ae9f3ce07d98e69c1186df73420d03651c",
+                "bytes": 33663,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  56,
+                  104,
+                  248
+                ],
+                "pixelSha256": "3dfc851ce70c46b30388fa36937fd00503abd39cc6f5a0063758fe5ff8b61fa0"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_mace": {
             "status": "missing"
@@ -1496,6 +1580,32 @@
           "generator": "built-in imagegen",
           "referencePath": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
           "prompt": "Game sprite strip exactly FOUR full-body male Novato poses in one row, transparent background. Use reference identity/style exactly, chestnut hair red scarf ivory rolled shirt brown leather harness gloves pouch boots blue patched pants. attack_bow animation with EMPTY hands for independent bow layer: 1 left empty gripping hand forward at chest height, right hand near chest; 2 draw right hand towards cheek, left elbow slightly bent; 3 full draw with right fingers beside cheek and left empty gripping hand in front of chest; 4 release, right fingers open beside jaw and left arm stable. Facing RIGHT three-quarter. Compact tall narrow silhouettes, width <= 0.55 height, FORESHORTENED bow arm angled diagonally into right/depth, feet close together, scarf close to back. Keep same head size scale and camera, don't spread arms horizontally or shrink a pose. Four distinct coherent phases, generous margins all around whole body. No bow, arrow, string, quiver, props, effects, shadows, labels or grid. Match crisp hand painted pixel inspired RPG finish.\n",
+          "visualStatus": "review-pending",
+          "equipmentStatus": "layer-test-pending"
+        },
+        "attack_staff": {
+          "sourceSha256": "fc312b6cdc7081f009b001ff38cb0348eb840b11479e6dd95610522a8a80cb59",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "commonCrop": [
+            615,
+            21,
+            1023,
+            695
+          ],
+          "scale": 0.28431372549019607,
+          "origin": [
+            6,
+            56
+          ],
+          "alphaThreshold": 128,
+          "method": "shared crop and scale, no per-frame centering or resizing",
+          "sourcePath": "assets/spritesheets/hd-128x256/novato/m/source/attack_staff-reference.png",
+          "generator": "built-in imagegen",
+          "referencePath": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "prompt": "Exactly FOUR complete separated full-body Novato male animation poses, in four evenly spaced cells on one horizontal transparent strip. Reference image defines exact identity, proportions, camera and crisp painted pixel-inspired RPG style: chestnut spiky hair, burgundy scarf, ivory rolled shirt, brown leather cross harness belt pouch fingerless gloves boots, patched blue trousers. Facing right in three-quarter view in every pose. Keep same head size and costume, common ground line, generous transparent margins all around, empty hands for future equipment overlay. Compact tall narrow silhouette with width <= half body height, feet close and elbows close to ribcage, foreshorten limbs into depth; no wide lunges or horizontally stretched arms. No weapon, shield, props, effects, shadows, text or grid. Action staff casting: 1 empty staff-gripping left hand near chest, right palm at waist; 2 raise right empty palm beside head, fingers splayed; 3 right palm faces forward near chest, slight forward inclination, left gripping hand stable near chest; 4 relax right palm towards waist. Staff remains imaginary, no magic effect.\n",
           "visualStatus": "review-pending",
           "equipmentStatus": "layer-test-pending"
         }
