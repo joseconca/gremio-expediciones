@@ -48,9 +48,21 @@ def normalize(source, output, class_id, sex, action, threshold=128, fixed_scale=
             if mapped[0]<1 or mapped[1]<1 or mapped[2]>127 or mapped[3]>255:raise ValueError('Costume exceeds canonical body canvas; revise source, never move class equipment')
             frame=cell.transform((128,256),Image.Transform.AFFINE,(1/scale,0,x0,0,1/scale,y0),Image.Resampling.BICUBIC)
             frame.putalpha(frame.getchannel('A').point(lambda v:0 if v<32 else v));rendered.append(frame)
+        calibration=None
+        if reference_transform.get('calibrateFirstPose'):
+            actual=rendered[0].getchannel('A').getbbox();expected=reference_transform['referenceFirstFrameBounds']
+            factor=(expected[3]-expected[1])/(actual[3]-actual[1]);baseline=expected[3];source_baseline=actual[3]
+            corrected=[]
+            for frame in rendered:
+                box=frame.getchannel('A').getbbox()
+                mapped=(64+(box[0]-64)*factor,baseline+(box[1]-source_baseline)*factor,64+(box[2]-64)*factor,baseline+(box[3]-source_baseline)*factor)
+                if mapped[0]<1 or mapped[1]<1 or mapped[2]>127 or mapped[3]>255:raise ValueError('Calibrated costume exceeds body canvas')
+                corrected.append(frame.transform((128,256),Image.Transform.AFFINE,(1/factor,0,64-64/factor,0,1/factor,source_baseline-baseline/factor),Image.Resampling.BICUBIC))
+            rendered=corrected
+            calibration={'uniformScale':factor,'pivotX':64,'sourceBaseline':source_baseline,'referenceBaseline':baseline,'method':'one body-root transform shared by all four poses; equipment unchanged'}
         output.mkdir(parents=True,exist_ok=True)
         for n,frame in enumerate(rendered,1):frame.save(output/f'{class_id}-{sex}-{action}-{n:02d}.png')
-        return {'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'sourceDimensions':original_size,'registeredSourceDimensions':list(im.size),'sourceCellStep':w,'commonCrop':crop,'scale':scale,'origin':origin,'alphaThreshold':threshold,'scalePolicy':'canonical-pose-registration','method':'fixed canonical transform; no class-dependent crop, centering or equipment offset'}
+        return {'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'sourceDimensions':original_size,'registeredSourceDimensions':list(im.size),'sourceCellStep':w,'commonCrop':crop,'scale':scale,'origin':origin,'alphaThreshold':threshold,'bodyRootCalibration':calibration,'scalePolicy':'canonical-pose-registration','method':'fixed canonical transform; no class-dependent crop, centering or equipment offset'}
     common=(min(b[0] for b in boxes),min(b[1] for b in boxes),max(b[2] for b in boxes),max(b[3] for b in boxes))
     cw,ch=common[2]-common[0],common[3]-common[1]
     scale=fixed_scale if fixed_scale is not None else min(116/cw,232/ch)

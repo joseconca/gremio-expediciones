@@ -2,14 +2,15 @@
 import argparse,copy,hashlib,json,runpy,shutil,subprocess,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];HD=ROOT/'assets/spritesheets/hd-128x256'
-def register(class_id,sex,action,source,prompt_file):
+def register(class_id,sex,action,source,prompt_file,revision=None):
     path=HD/'manifest.json';m=json.loads(path.read_text(encoding='utf-8'))
     v=next(v for v in m['variants'] if v['classId']==class_id and v['sex']==sex)
     ref=next(v for v in m['variants'] if v['classId']=='novato' and v['sex']==sex)
-    base=HD/class_id/sex;dest=base/'source'/f'{action}-reference.png';dest.parent.mkdir(parents=True,exist_ok=True)
+    base=HD/class_id/sex;dest=base/'source'/(f'{action}-reference-v{revision}.png' if revision else f'{action}-reference.png');dest.parent.mkdir(parents=True,exist_ok=True)
     if dest.exists():raise ValueError('Source already exists; use an explicit revision instead of overwriting')
     shutil.copyfile(source,dest)
     reference=ref.get('sources',{}).get(action)
+    if reference is None:reference=m['equipmentRigs'][v['equipmentRigId']]['actions'].get(action,{}).get('poseExport')
     if reference is None:
         from PIL import Image
         row=Image.new('RGBA',(512,256))
@@ -32,4 +33,4 @@ def register(class_id,sex,action,source,prompt_file):
     for script,args in [('auditar-sprites-hd.py',['--write']),('ensamblar-progreso-spritesheet-hd.py',['--class-id',class_id,'--sex',sex])]:subprocess.run([sys.executable,str(ROOT/'scripts'/script),*args],cwd=ROOT,check=True)
     print(json.dumps({'class':class_id,'sex':sex,'action':action,'registration':metadata['scalePolicy']}))
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--class-id',required=True);p.add_argument('--sex',choices=('m','f'),required=True);p.add_argument('--action',required=True);p.add_argument('--source',type=Path,required=True);p.add_argument('--prompt',type=Path,required=True);a=p.parse_args();register(a.class_id,a.sex,a.action,a.source,a.prompt)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--class-id',required=True);p.add_argument('--sex',choices=('m','f'),required=True);p.add_argument('--action',required=True);p.add_argument('--source',type=Path,required=True);p.add_argument('--prompt',type=Path,required=True);p.add_argument('--revision',type=int);a=p.parse_args();register(a.class_id,a.sex,a.action,a.source,a.prompt,a.revision)
