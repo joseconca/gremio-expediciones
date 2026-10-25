@@ -27392,7 +27392,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/sacerdote/m/frames",
       "audit": {
-        "validFrames": 56,
+        "validFrames": 60,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -27408,7 +27408,8 @@
           "attack_bow",
           "attack_staff",
           "attack_mace",
-          "attack_book"
+          "attack_book",
+          "attack_gloves"
         ],
         "actions": {
           "idle": {
@@ -28392,7 +28393,74 @@
             "distinctFrames": 4
           },
           "attack_gloves": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "a2cac265df7c8b7ffcfe1064621de98fe0e3d4f799d03bcdff823e9779ff339a",
+                "bytes": 25865,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  93,
+                  106,
+                  248
+                ],
+                "pixelSha256": "82652efeec7a40d7f0a8ecdaaf194d06227880b4723f08380f3b815d5318f24d"
+              },
+              "02": {
+                "sha256": "37a4fb96dd8df86d3187b5991d3f2219c79952dd7e8abdf7683f0a4ac6102676",
+                "bytes": 26421,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  93,
+                  108,
+                  248
+                ],
+                "pixelSha256": "4483ffa76e1544243b124cc229f2e5caeaf1d29ce12900812ff073f405930aea"
+              },
+              "03": {
+                "sha256": "e8c73e2c731ef4639d963df67dd344378389504c132b886f36fe637e393c06c0",
+                "bytes": 25831,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  93,
+                  108,
+                  248
+                ],
+                "pixelSha256": "1bc5642c0392cc90f299758ec0b87246a65dd84bec8d909ea03ed22419c567a9"
+              },
+              "04": {
+                "sha256": "1683c11052b03076a85436fe27fe287969c07f851b3e996795098599a399e4a4",
+                "bytes": 25841,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  93,
+                  106,
+                  248
+                ],
+                "pixelSha256": "0233bad50f7d442496fc891156829e5d074d3c1aae80456228ced9c864b27be4"
+              }
+            },
+            "distinctFrames": 4
           }
         }
       },
@@ -29255,6 +29323,44 @@
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_gloves": {
+          "sourceSha256": "3af4df8e82f9863369b26d36e5b2ce758b0ca707bdb7cb688524250065146a3f",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            643,
+            21,
+            1018,
+            698
+          ],
+          "scale": 0.23,
+          "origin": [
+            21,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/sacerdote/m/source/attack_gloves-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY SACERDOTE MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_gloves. Young adult male priest: short chestnut brown hair, calm benevolent face, substantial ivory clerical robe and split tabard with warm gold edging, long muted rust-red stole, cream high collar, layered cream sleeves ending before visible hands, leather waist belt with modest brass clasp, brown boots and discreet brown fingerless gloves. Richer Tier 2 fabric layers than Acolito but exact canonical body scale. No staff, book, chalice, halo or magical effect. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (270,269), other hand (374,225); figure 2: primary contact (769,308), other hand (917,221); figure 3: primary contact (1543,234), other hand (1443,238); figure 4: primary contact (1899,269), other hand (2003,225). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_gloves-reference.png",
+          "canonicalPoseHashes": [
+            "fd3bdbdb7204be611733c4e8b780ac94a9d94cad2e8b18fe044e3d89d7885eb0",
+            "d04a757fc88ca7f0dfa4705d69a34d7c68f645f6c78e8a608f990a1870c2e25e",
+            "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
+            "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -29480,6 +29586,22 @@
         },
         "attack_book/04": {
           "source": "sources.attack_book",
+          "frame": 4
+        },
+        "attack_gloves/01": {
+          "source": "sources.attack_gloves",
+          "frame": 1
+        },
+        "attack_gloves/02": {
+          "source": "sources.attack_gloves",
+          "frame": 2
+        },
+        "attack_gloves/03": {
+          "source": "sources.attack_gloves",
+          "frame": 3
+        },
+        "attack_gloves/04": {
+          "source": "sources.attack_gloves",
           "frame": 4
         }
       },
