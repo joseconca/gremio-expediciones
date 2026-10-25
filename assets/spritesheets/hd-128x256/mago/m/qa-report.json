@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "status": "passed",
-  "assembledAtUtc": "2026-10-25T15:18:43.897316+00:00",
+  "assembledAtUtc": "2026-10-25T15:26:38.372485+00:00",
   "classId": "mago",
   "sex": "m",
   "sheetPath": "assets\\spritesheets\\hd-128x256\\mago\\m\\mago-m-sheet.png",
-  "sheetSha256": "e031149fda4068c0bd241bc21cf9fd1495319f7740c3290a57f6f8f1837d4dd6",
+  "sheetSha256": "7400f03133b6f659b202ae7d3ba47a6355755a22bcd8082329da04d3361d98e1",
   "sheetDimensions": [
     512,
     3840
@@ -233,45 +233,45 @@
         {
           "frame": 1,
           "path": "assets\\spritesheets\\hd-128x256\\mago\\m\\frames\\dodge\\mago-m-dodge-01.png",
-          "sha256": "1ddb888a12be8b1a7d6f8c3febf767f23097b151946a290bbbb34982c9440ee2",
+          "sha256": "86dd28dc9a625d5b0849a92412e627ce75af767f77248988c61321f32e6eeccd",
           "alpha_bbox": [
-            14,
-            97,
-            108,
-            251
+            15,
+            98,
+            107,
+            250
           ]
         },
         {
           "frame": 2,
           "path": "assets\\spritesheets\\hd-128x256\\mago\\m\\frames\\dodge\\mago-m-dodge-02.png",
-          "sha256": "08cf3c1efe9fddc96a6dafbbdfe10110a8cc063a24a5c8e0c36f3e3230bd5c8f",
+          "sha256": "27391a4728dd24dc7348442bc1c239e8d9369e5d65c4f3c12fde885d5e9f3d1d",
           "alpha_bbox": [
-            14,
-            98,
-            116,
-            251
+            15,
+            99,
+            115,
+            250
           ]
         },
         {
           "frame": 3,
           "path": "assets\\spritesheets\\hd-128x256\\mago\\m\\frames\\dodge\\mago-m-dodge-03.png",
-          "sha256": "c8136df5bca1a8cec314e9d3fa5b372c787e31380df4b3468cde9d9ff7fc4c9a",
+          "sha256": "db76726f075b8c7963423aa8f0c2fb51db422ffaeca362080eb65e88771842b1",
           "alpha_bbox": [
-            9,
-            106,
-            108,
-            251
+            10,
+            107,
+            107,
+            250
           ]
         },
         {
           "frame": 4,
           "path": "assets\\spritesheets\\hd-128x256\\mago\\m\\frames\\dodge\\mago-m-dodge-04.png",
-          "sha256": "0dd408a9b2dde6cf81c36f098f1257a1c189e36c8563775302e3386636747314",
+          "sha256": "c1245842f9cfdcf2c474ff1ebf0e3e5ec11bced42ceabea1923cf0b14c920706",
           "alpha_bbox": [
             14,
-            97,
-            109,
-            251
+            98,
+            108,
+            250
           ]
         }
       ]
@@ -285,45 +285,45 @@
         {
           "frame": 1,
           "path": "assets\\spritesheets\\hd-128x256\\mago\\m\\frames\\block_shield\\mago-m-block_shield-01.png",
-          "sha256": "f926bb8467c41aae9bcf3b038c2e78c5e9368071c0bc0512586bd6950c19b11a",
+          "sha256": "a0a2a76f16cf16538648a9df4e1231d9639fd5b03f9bedf012dd75acec6f6c4b",
           "alpha_bbox": [
-            19,
-            97,
+            20,
+            98,
             108,
-            251
+            250
           ]
         },
         {
           "frame": 2,
           "path": "assets\\spritesheets\\hd-128x256\\mago\\m\\frames\\block_shield\\mago-m-block_shield-02.png",
-          "sha256": "08e2cd7d9b52ac40bdf4c1ca9d4fdabbaf02221a2efb2263c104f867bbb6649b",
+          "sha256": "2567c213dff56d46633c66cbaf05abe5180a5ce0de158e40824f5b840a05f5c3",
           "alpha_bbox": [
-            15,
-            97,
+            16,
+            98,
             108,
-            251
+            250
           ]
         },
         {
           "frame": 3,
           "path": "assets\\spritesheets\\hd-128x256\\mago\\m\\frames\\block_shield\\mago-m-block_shield-03.png",
-          "sha256": "346cb813a25ef160cf5e7499d7919f230da0d754ce6c5240cb828bc9388864a9",
+          "sha256": "e3043f72c494d440f04115b4ba8fffd8c6dfcb33d8bb1a0b5d08bd987850852d",
           "alpha_bbox": [
-            11,
-            111,
-            114,
-            251
+            12,
+            112,
+            113,
+            250
           ]
         },
         {
           "frame": 4,
           "path": "assets\\spritesheets\\hd-128x256\\mago\\m\\frames\\block_shield\\mago-m-block_shield-04.png",
-          "sha256": "55890d2915549ce050e58c31235b1efb902e11734b175c272bcb994c7fc8c216",
+          "sha256": "9feb9f16fe60c505b4a47c1b01d92b59b5325053d51b7477b23d733526ea8509",
           "alpha_bbox": [
-            19,
-            97,
-            109,
-            251
+            20,
+            98,
+            108,
+            250
           ]
         }
       ]

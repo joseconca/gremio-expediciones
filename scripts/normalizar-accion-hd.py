@@ -57,7 +57,8 @@ def normalize(source, output, class_id, sex, action, threshold=128, fixed_scale=
                 box=frame.getchannel('A').getbbox()
                 mapped=(64+(box[0]-64)*factor,baseline+(box[1]-source_baseline)*factor,64+(box[2]-64)*factor,baseline+(box[3]-source_baseline)*factor)
                 if mapped[0]<1 or mapped[1]<1 or mapped[2]>127 or mapped[3]>255:raise ValueError('Calibrated costume exceeds body canvas')
-                corrected.append(frame.transform((128,256),Image.Transform.AFFINE,(1/factor,0,64-64/factor,0,1/factor,source_baseline-baseline/factor),Image.Resampling.BICUBIC))
+                adjusted=frame.transform((128,256),Image.Transform.AFFINE,(1/factor,0,64-64/factor,0,1/factor,source_baseline-baseline/factor),Image.Resampling.BICUBIC)
+                adjusted.putalpha(adjusted.getchannel('A').point(lambda v:0 if v<32 else v));corrected.append(adjusted)
             rendered=corrected
             calibration={'uniformScale':factor,'pivotX':64,'sourceBaseline':source_baseline,'referenceBaseline':baseline,'method':'one body-root transform shared by all four poses; equipment unchanged'}
         output.mkdir(parents=True,exist_ok=True)

@@ -7,8 +7,9 @@ def register(class_id,sex,action,source,prompt_file,revision=None):
     v=next(v for v in m['variants'] if v['classId']==class_id and v['sex']==sex)
     ref=next(v for v in m['variants'] if v['classId']=='novato' and v['sex']==sex)
     base=HD/class_id/sex;dest=base/'source'/(f'{action}-reference-v{revision}.png' if revision else f'{action}-reference.png');dest.parent.mkdir(parents=True,exist_ok=True)
-    if dest.exists():raise ValueError('Source already exists; use an explicit revision instead of overwriting')
-    shutil.copyfile(source,dest)
+    if dest.exists():
+        if hashlib.sha256(dest.read_bytes()).digest()!=hashlib.sha256(source.read_bytes()).digest():raise ValueError('Different source already exists; use --revision')
+    else:shutil.copyfile(source,dest)
     reference=ref.get('sources',{}).get(action)
     if reference is None:reference=m['equipmentRigs'][v['equipmentRigId']]['actions'].get(action,{}).get('poseExport')
     if reference is None:

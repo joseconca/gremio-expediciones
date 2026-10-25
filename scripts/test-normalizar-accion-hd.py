@@ -41,6 +41,23 @@ class ScaleTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'canonical body canvas'):
                 normalize(source,root/'frames','mago','m','idle',reference_transform=reference)
             self.assertFalse((root/'frames').exists())
+    def test_root_calibration_preserves_crouch_instead_of_filling_each_pose(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp);source=root/'source.png'
+            im=Image.new('RGBA',(1200,300));draw=ImageDraw.Draw(im)
+            for i,cx in enumerate((150,450,750,1050)):
+                top=120 if i==2 else 70
+                draw.rectangle((cx-16,top,cx+15,229),fill='blue')
+                draw.rectangle((cx-16,top,cx+15,top+31),fill='red')
+            im.save(source)
+            reference={'sourceDimensions':[1200,300],'commonCrop':[430,30,470,230],'scale':.5,'origin':[54,148],'calibrateFirstPose':True,'referenceFirstFrameBounds':[54,148,74,248]}
+            normalize(source,root/'frames','mago','m','dodge',reference_transform=reference)
+            boxes=[]
+            for n in (1,3):
+                with Image.open(root/'frames'/f'mago-m-dodge-{n:02d}.png') as frame:boxes.append(frame.getchannel('A').getbbox())
+            self.assertAlmostEqual(boxes[0][3],248,delta=1)
+            self.assertAlmostEqual(boxes[0][3]-boxes[0][1],100,delta=2)
+            self.assertLess(boxes[1][3]-boxes[1][1],boxes[0][3]-boxes[0][1]-20)
     def test_original_width_need_not_be_divisible_by_four(self):
         with tempfile.TemporaryDirectory() as temp:
             root=Path(temp);source=root/'source.png';self.source(source,True)
