@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "classId": "sacerdote",
+  "sex": "m",
+  "actions": [
+    "idle",
+    "walk",
+    "hurt",
+    "use_consumable"
+  ],
+  "bodyHashes": {
+    "idle": [
+      "60c78f40d6c85daac9954ec08509a21b6fbd57e9436888d4a71bc6961680e0c1",
+      "1b886243983d1eca4af92363bf26bc643a1903269de6bde05933e29f2b5c752c",
+      "4ff2f76718149615dca3b7f01bde843f413ba32a188ac8d609d068856a01b341",
+      "c2071278d4b6e9ee8f737c04626da4537a0539740e2ba78cfdc83700f85c0743"
+    ],
+    "walk": [
+      "4ea92e211de0f0d3c1de08777d5f2b187ec7634d665e6f39893e9914f2802b44",
+      "884758079dbfe45bbe34dc71539db29191fc6b5398172707829a24e4e123b215",
+      "c54f439ae0a22c57cb7f86914a4ea849d3c6805080e79b8f73d652b16400c7ab",
+      "7162f7ad31ab279fc81ba5500afa08a4e27d15d9c8f1817ad5f8fdae297aeae5"
+    ],
+    "hurt": [
+      "5024a6e9092479c03d7b688b34e113adf32462f456bd087a5345b3dd947ef716",
+      "7f036ba646a2a7f8c81acad7eb9071658c4f93c853cba82416c0c5472a7f01ee",
+      "9a1f1758338ff41b2527631b678815007dfe16567ab9ecbacce26395b56ce4bd",
+      "b4c5a8f7e125c43c69c214d0f290223f1e77e3b76d363863143767475af4ad2b"
+    ],
+    "use_consumable": [
+      "885ea97d82315525768d11346ab31732595395349715c3bf601efe86372b8093",
+      "ce5559d9d2859d11c4a8f73a1e7151895db3c34bf0a4659509159332c349cfdf",
+      "a64bc2e8ada187fb69518991085803fd4ca4ff091187a45f8c3b4110315bf08d",
+      "cad5feabf87d55854dfb1f2441e83d1fa5c5e5f77ba2c3dcb551a4732926c082"
+    ]
+  },
+  "contactChecks": 388,
+  "warnings": [],
+  "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
+  "artisticApproval": "not-automatic"
+}
