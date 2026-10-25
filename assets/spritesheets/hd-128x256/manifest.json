@@ -403,10 +403,26 @@
         "attack_sword/04": {
           "source": "sources.attack_sword",
           "frame": 4
+        },
+        "attack_axe/01": {
+          "source": "sources.attack_axe",
+          "frame": 1
+        },
+        "attack_axe/02": {
+          "source": "sources.attack_axe",
+          "frame": 2
+        },
+        "attack_axe/03": {
+          "source": "sources.attack_axe",
+          "frame": 3
+        },
+        "attack_axe/04": {
+          "source": "sources.attack_axe",
+          "frame": 4
         }
       },
       "audit": {
-        "validFrames": 28,
+        "validFrames": 32,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -415,7 +431,8 @@
           "use_consumable",
           "dodge",
           "block_shield",
-          "attack_sword"
+          "attack_sword",
+          "attack_axe"
         ],
         "actions": {
           "idle": {
@@ -909,7 +926,74 @@
             "distinctFrames": 4
           },
           "attack_axe": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "e9fe486ee9b5970fa9efafa47915d9f063aa5f1aa40ea854702acacaf6506e63",
+                "bytes": 27717,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  88,
+                  113,
+                  248
+                ],
+                "pixelSha256": "070e3150b876c0b79d52cc8da7718b55d2a0deb60db413ec55d9a58e5c88ed54"
+              },
+              "02": {
+                "sha256": "1ef53a24aa0575f02c849c99e6ee575e6a6439634c310031463d4d9ad1f9c64f",
+                "bytes": 24557,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  101,
+                  119,
+                  247
+                ],
+                "pixelSha256": "85d85ae4aefe0ec900dc30a710d64fe656f4e0744bc08d7d60438ae82317d853"
+              },
+              "03": {
+                "sha256": "27c55b945f7b07fc3acf0387deed05c984ea92769751142588cd93edcc84d447",
+                "bytes": 24532,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  110,
+                  119,
+                  246
+                ],
+                "pixelSha256": "149c610e2d46785f46e15675e1c0064b2bbeb520e4b5c7988d1f3ad5b6b8cc7d"
+              },
+              "04": {
+                "sha256": "88a17b72851417cdb284f3de1a9914dfe2017c4af6316b481a939c0b54d1629e",
+                "bytes": 25595,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  92,
+                  122,
+                  247
+                ],
+                "pixelSha256": "cb02cf83a0da3a5ca0199e5155e62ea5e6ced6269259d161fe224f6112c05cfa"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_spear": {
             "status": "missing"
@@ -1055,6 +1139,31 @@
           "alphaThreshold": 128,
           "method": "shared crop and scale, no per-frame centering or resizing",
           "sourcePath": "assets/spritesheets/hd-128x256/novato/m/source/attack_sword-reference.png",
+          "generator": "built-in imagegen",
+          "visualStatus": "review-pending",
+          "equipmentStatus": "layer-test-pending",
+          "promptFile": "source/production-prompts.json"
+        },
+        "attack_axe": {
+          "sourceSha256": "77d8b1fdec57421d79b3b79387b60fd9a539a165a818db372e5c836ccd0b4ec5",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "commonCrop": [
+            579,
+            42,
+            1045,
+            683
+          ],
+          "scale": 0.24892703862660945,
+          "origin": [
+            6,
+            88
+          ],
+          "alphaThreshold": 128,
+          "method": "shared crop and scale, no per-frame centering or resizing",
+          "sourcePath": "assets/spritesheets/hd-128x256/novato/m/source/attack_axe-reference.png",
           "generator": "built-in imagegen",
           "visualStatus": "review-pending",
           "equipmentStatus": "layer-test-pending",
