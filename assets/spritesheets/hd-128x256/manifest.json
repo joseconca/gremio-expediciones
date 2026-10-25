@@ -5,8 +5,7 @@
   "startedAt": "2026-10-24",
   "baseBranch": "main",
   "baseCommit": "c2c63889b4f31f8a0c34b8b3f3b9b13aee2ae90c",
-  "planningCommit": "43059d84dd6a38a2d317adee531e5dd0069914f1",
-  "status": "art-production-in-progress",
+  "status": "recovery-in-progress",
   "technicalContract": {
     "frame": [
       128,
@@ -44,21 +43,6 @@
     "frameFilesPerVariant": 60,
     "framePathPattern": "assets/spritesheets/hd-128x256/<clase>/<m|f>/frames/<accion>/<clase>-<sexo>-<accion>-<01..04>.png",
     "assemblyPolicy": "Assemble final 512x3840 sheet only after all 60 independent frame PNGs for that class/sex pass QA"
-  },
-  "productionPolicy": {
-    "oneClassSexAtATime": true,
-    "finishAll15RowsBeforeSwitchingSex": true,
-    "order": "Tier 0 -> Tier 1 -> Tier 2; within a class masculine then feminine",
-    "doNotUpscaleOldFramesAsFinalArt": true,
-    "preserveLegacySources": true,
-    "isolatedStaging": true,
-    "checkpointCommits": true,
-    "updateManifestEachCheckpoint": true,
-    "oneSpritePerCommit": false,
-    "storeFramesAsIndividualFiles": true,
-    "oneActionPerCommit": true,
-    "generationBatch": "one-action-four-poses; split, validate and version four independent PNGs per action",
-    "notes": "Speed improvement approved 2026-10-24: generate one action as a four-pose batch, then separate and QA each frame. Never integrate the presentation board as runtime artwork."
   },
   "nextVariant": "novato-m",
   "classes": [
@@ -163,36 +147,14 @@
       "order": 1,
       "status": "in-progress",
       "actionsCompleted": [
-        "idle/01",
-        "idle/02",
-        "idle/03",
-        "idle/04",
-        "walk/01",
-        "walk/02",
-        "walk/03",
-        "walk/04",
-        "hurt/01",
-        "hurt/02",
-        "hurt/03",
-        "hurt/04",
-        "use_consumable/01",
-        "use_consumable/02",
-        "use_consumable/03",
-        "use_consumable/04",
-        "dodge/01",
-        "dodge/02",
-        "dodge/03",
-        "dodge/04",
-        "block_shield/01",
-        "block_shield/02",
-        "block_shield/03",
-        "block_shield/04"
+        "dodge",
+        "block_shield"
       ],
       "sheetPath": "assets/spritesheets/hd-128x256/novato/m/novato-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "technical-passed-visual-review-pending",
+      "qaStatus": "recovery-required",
       "lastCommit": "8d90a4e23b623185e944795101c344f4b59f2309",
-      "notes": "Idle, Walk, Hurt y Use Consumable tienen cuatro PNG individuales por acción con QA por frame. El nuevo flujo produce cada acción en una tanda de cuatro poses y guarda los frames por separado. Pendiente revisión visual conjunta de ciclos antes de ensamblar el atlas. Esquivar: frames 01–04 copiados desde blobs originales del paquete de recuperación, QA/hash verificados; commit de arte 50e15fa1ebafdf372ee257ec024d504ea607c37f. Bloquear con escudo: frames 01–04 publicados como blobs originales y QA/hash verificados; commit de arte 8d90a4e23b623185e944795101c344f4b59f2309. Revisión visual conjunta pendiente; no promover a runtime hasta completar la hoja.",
+      "notes": "15 of 24 published PNGs fail full decode/CRC. Only Dodge and Block Shield have four readable frames. Idle frame 01 is readable. No artistic approval implied.",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/m/frames"
     },
     {
@@ -637,153 +599,6 @@
     "ciWorkflowUrl": "https://github.com/joseconca/gremio-expediciones/actions/workflows/validar-spritesheets-hd.yml",
     "inputLayout": "frames/<action>/<class>-<sex>-<action>-NN.png; individual PNG RGBA 128x256"
   },
-  "commits": [
-    {
-      "sha": "43059d84dd6a38a2d317adee531e5dd0069914f1",
-      "message": "docs(sprites): planificar spritesheets HD de 128x256",
-      "scope": "planning document"
-    },
-    {
-      "sha": "145a046075bdcfba246a2c505535008436c37cd4",
-      "message": "feat(sprites): validar atlas completos HD 128x256",
-      "scope": "standalone technical validator; no runtime resources changed"
-    },
-    {
-      "sha": "e7efd6305d30b3eb389d660e23185e5e90953b6f",
-      "message": "docs(sprites): registrar validador HD en manifiesto",
-      "scope": "manifest validator reference"
-    },
-    {
-      "sha": "c1ab32c9df5a118616b24e5f30d2a54c20a6949b",
-      "message": "docs(sprites): auditar fuentes HD y fijar el orden de producción",
-      "scope": "class order and source-library audit"
-    },
-    {
-      "sha": "bd571d8a997c791e1517c61ac77a428f02ffb1c0",
-      "message": "docs(sprites): documentar auditoría de fuentes conceptuales",
-      "scope": "plan source audit updates"
-    },
-    {
-      "sha": "e5a474c9b253e25fcd187ffffe6f72aa2b815d5a",
-      "message": "feat(sprites): ensamblar hojas HD completas de 15 filas",
-      "scope": "staging atlas assembler"
-    },
-    {
-      "sha": "b283f5482978230630d3b2fed0d6d9824a0fc367",
-      "message": "docs(sprites): registrar ensamblador HD y commits recientes",
-      "scope": "manifest source audit and assembler"
-    },
-    {
-      "sha": "2cda30719a55201d63422e30c9907dba6ac946c4",
-      "message": "test(sprites): probar ensamblado HD con hojas sintéticas",
-      "scope": "synthetic smoke tests"
-    },
-    {
-      "sha": "303cff2cee59caaffdc4a5778dc809c653a37b5d",
-      "message": "ci(sprites): validar pipeline HD aislado",
-      "scope": "branch-specific validation workflow"
-    },
-    {
-      "sha": "5ed21ade6595c034bcf5be2ba2831218ec8875d4",
-      "message": "docs(sprites): documentar ensamblador y pruebas HD",
-      "scope": "workflow and pipeline documentation"
-    },
-    {
-      "sha": "9134d58bdd556c86c833c992ad357c12f41d3360",
-      "message": "docs(sprites): registrar pruebas sintéticas y CI HD",
-      "scope": "manifest CI test inventory"
-    },
-    {
-      "sha": "f9231f742fa277c6509fa82467582ef836c0653c",
-      "message": "docs(sprites): anotar CI verde del pipeline HD",
-      "scope": "plan now records successful synthetic smoke test"
-    },
-    {
-      "sha": "682faf96d09800eefb2319da13ae4fe6fde2a495",
-      "message": "refactor(sprites): ensamblar atlas desde frames individuales",
-      "scope": "assembler changed to independent frame files"
-    },
-    {
-      "sha": "8613b2bd1feb4e314d45013407148af30286ed9b",
-      "message": "test(sprites): cubrir flujo desde 60 PNG individuales",
-      "scope": "frame-by-frame pipeline tests"
-    },
-    {
-      "sha": "9f251b07affa6ec1fb344838302f2201ec2009b9",
-      "message": "docs(sprites): documentar PNG indexado con alfa",
-      "scope": "frame-by-frame contract supports indexed PNG with transparency"
-    },
-    {
-      "sha": "bea6709b14ae695636a72256991f86a284e0f4f3",
-      "message": "art(sprites): crear Novato masculino Idle frame 01",
-      "scope": "one individual 128x256 sprite + QA JSON + manifest checkpoint"
-    },
-    {
-      "sha": "2182019be9567d0a3c6b3d363359ea56d84595c8",
-      "message": "art(sprites): crear Novato masculino Idle frame 02",
-      "scope": "second independent idle PNG + QA JSON + manifest checkpoint"
-    },
-    {
-      "sha": "23feab68e47b509fb09f6c9261ed2e7fa4851812",
-      "message": "art(sprites): crear Novato masculino Idle frame 03",
-      "scope": "individual blink frame PNG + QA + manifest progress"
-    },
-    {
-      "sha": "b6e23434df4801b58a1d9577435d9b5be12c484e",
-      "message": "art(sprites): crear Novato masculino Idle frame 04",
-      "scope": "individual scarf-sway frame PNG + QA + manifest progress"
-    },
-    {
-      "sha": "6631238bfc24f97b8c330cb59171bd445ceeb0e1",
-      "message": "fix(sprites): permitir reutilizar poses entre acciones",
-      "scope": "remove overstrict cross-action hash check; keep per-action duplicate guard and add regression test"
-    },
-    {
-      "sha": "ff11d0d7e520cc04cf352aca026e0c2b84d30fc3",
-      "message": "art(sprites): crear Novato masculino Walk frame 01",
-      "scope": "individual walking frame PNG + QA + manifest progress"
-    },
-    {
-      "sha": "51e0d82b54ea9c12038413472b9e19c707ab1db8",
-      "message": "art(sprites): crear Novato masculino Walk frame 02",
-      "scope": "individual walking frame PNG + QA + manifest progress"
-    },
-    {
-      "sha": "525600918a26ace34eb5b189ed56b4e310fdda5c",
-      "message": "art(sprites): crear Novato masculino Walk frame 03",
-      "scope": "individual walking pose PNG + QA + manifest progress"
-    },
-    {
-      "sha": "ce604921bfe22afc92a70ef75f68c5f9df765702",
-      "message": "art(sprites): crear Novato masculino Walk frame 04",
-      "scope": "individual walking PNG + QA report + manifest progress"
-    },
-    {
-      "sha": "39fbcbec3f653a2938538eecc7d4a333ec824111",
-      "message": "art(sprites): conservar ilustración grande de Novato masculino",
-      "scope": "menu/profile illustration stored separately from animation frames; original SHA-256 validated by import workflow"
-    },
-    {
-      "sha": "7171feff1cbf182c892ea8878ec05695befc7d56",
-      "message": "art(sprites): completar acción Hurt de Novato masculino (4 frames)",
-      "scope": "four independent 128x256 Hurt PNG frames + four per-frame QA JSON reports + updated manifest and recovery checkpoint"
-    },
-    {
-      "sha": "c364688fa78956f89a33153473ec867d4c96425c",
-      "message": "art(sprites): completar acción Consumir objeto de Novato masculino (4 frames)",
-      "scope": "four independent 128x256 PNG frames plus four per-frame QA JSON reports"
-    },
-    {
-      "sha": "50e15fa1ebafdf372ee257ec024d504ea607c37f",
-      "message": "art(sprites): publicar Novato masculino esquivar 4 frames HD",
-      "scope": "four original 128x256 PNG blobs copied from recovery package plus per-frame QA"
-    },
-    {
-      "sha": "8d90a4e23b623185e944795101c344f4b59f2309",
-      "message": "art(sprites): publicar Novato masculino bloquear con escudo HD",
-      "scope": "four original 128x256 PNG blobs copied from recovery package plus per-frame QA"
-    }
-  ],
   "sourceAudit": {
     "status": "initial-audit-complete",
     "auditedAt": "2026-10-24",
@@ -858,26 +673,6 @@
     ],
     "preservationPolicy": "No borrar ni sobreescribir originales de la Library/Git. Antes de incorporarlos al repositorio HD, materializar/copiarlos en un área de fuente con trazabilidad de ruta original, tamaño, alfa y SHA-256. No copiar las imágenes de trabajo de alta resolución a runtime."
   },
-  "pipelineValidation": {
-    "status": "passed",
-    "runId": 40085136592,
-    "runUrl": "https://github.com/joseconca/gremio-expediciones/actions/runs/40085136592",
-    "testedCommit": "6631238bfc24f97b8c330cb59171bd445ceeb0e1",
-    "completedAt": "2026-10-24T10:14:57Z",
-    "checks": [
-      "Python syntax compilation",
-      "frame-by-frame complete atlas assembly",
-      "missing individual frame fails before sheet creation",
-      "indexed PNG with tRNS transparency",
-      "same pose reused across different action rows is allowed",
-      "distinct frames remain required within each action row"
-    ],
-    "note": "CI validates technical tooling using synthetic sprites; it does not approve artwork visually."
-  },
-  "nextFrame": "novato-m-attack_sword-01",
-  "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/block_shield/novato-m-block_shield-04.png",
-  "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/block_shield/novato-m-block_shield-04.qa.json",
-  "lastFrameCommit": "8d90a4e23b623185e944795101c344f4b59f2309",
   "artworkAssets": [
     {
       "classId": "novato",
@@ -909,11 +704,142 @@
       }
     }
   ],
-  "checkpoint": {
-    "updatedAt": "2026-10-25",
-    "branch": "creacion-sprite-sheets",
-    "nextFrame": "novato-m-attack_sword-01",
-    "worklogPath": "docs/sprites/checkpoint-sprites-hd-2026-10-24.md",
-    "note": "Novato masculino tiene Idle, Walk, Hurt, Use Consumable, Esquivar y Bloquear con escudo completos (4 PNG individuales de 128×256 y QA por fotograma). Las dos últimas acciones se publicaron desde los blobs originales del paquete en docs. QA técnico aprobado; revisión visual conjunta pendiente. Siguiente recurso: novato-m-attack_sword-01. No ensamblar ni promover a runtime hasta revisar las 15 acciones."
-  }
+  "referenceBriefs": {
+    "cazador": "# Tier 2 Cazador — brief y contrato raster\n\n## Identidad\nPrimera versión de la evolución de Arquero orientada al rastreo: capucha de bosque, capa corta verde, cuero reforzado, cinturón con bolsas pequeñas, botas de viaje y herrajes de bronce. Se mantiene una paleta verde bosque/marrón para separar visualmente la clase de otras ramas.\n\n## Restricción de capas\nEl cuerpo se dibuja con las dos manos vacías. No incorporar arco, flechas, carcaj, daga ni otra arma al cuerpo ni a la capa. Las armas se renderizarán mediante el sistema de capas independiente.\n\n## Entrega generada\n- Másteres raster PNG masculino y femenino de 256×384, con 4 columnas × 3 filas.\n- Seis tiras PNG de 256×128: Idle, Caminar y Recibir daño para ambos sexos.\n- 24 fotogramas nativos de 32×64.\n- Seis previews y seis informes QA en JSON.\n- Los seis informes confirman cuatro frames distintos, alfa real (0–255) y deriva de pies de 0 px.\n\n## Estado\nLa generación y la regresión de GitHub Actions han terminado en verde. Este paquete es una primera pasada visual; el usuario puede ajustar residuos de fondo/borde y el detalle artístico durante la revisión. No promover al runtime sin revisión visual de las seis tiras.\n",
+    "elementalista": "# Tier 2 Elementalista — brief y contrato raster\n\n## Identidad\nRama del Mago centrada en dominio elemental. Túnica larga azul/violeta, panel central cian, bordados geométricos dorados, manto violeta y diadema discreta. El cabello azul plateado diferencia esta clase del Mago base. Los motivos son bordados en la tela: sin orbes, proyectiles ni efectos mágicos en los sprites del cuerpo.\n\n## Restricción de capas\nLas manos quedan vacías en las tres acciones. No se incluye bastón, varita, arma ni efecto externo; estos elementos se integrarán mediante capas independientes.\n\n## Entrega generada\n- Dos másteres PNG (masculino y femenino), 256×384, cuatro columnas por tres filas.\n- Seis tiras PNG de 256×128 (Idle, Caminar y Recibir daño para ambos sexos).\n- 24 frames nativos de 32×64, seis previews y seis informes QA.\n- QA confirma cuatro frames distintos, alfa real (0–255) y deriva de pies de 0 px al caminar y como máximo 1 px en Idle/Recibir daño.\n\n## Estado\nGitHub Actions de sprites completado en verde. La regresión completa se ha lanzado sobre el mismo commit. Paquete pendiente de revisión visual y no integrado al runtime.\n",
+    "explorador": "# Tier 2 Explorador — brief y contrato raster\n\n## Identidad\nEvolución de Arquero centrada en viaje, exploración y supervivencia. Diferenciar de Cazador con ropa de viaje algo más clara, chaleco arena, bufanda verde azulado, capa corta, botas de caminante y bolsas de suministros/mapas. La trenza lateral distingue la silueta femenina; el masculino tiene pelo corto y prenda de viaje abierta, sin capucha cerrada.\n\n## Restricción de capas\nLas dos manos vacías. Sin arco, carcaj, flechas, dagas, espadas ni otras armas dentro del cuerpo. Solo prendas, bolsos, correas y hebillas; el equipo ofensivo se añadirá mediante capas independientes.\n\n## Entrega generada\n- Másteres raster PNG masculino y femenino de 256×384 con 4 columnas × 3 filas.\n- Seis tiras PNG de 256×128: Idle, Caminar y Recibir daño para ambos sexos.\n- 24 frames nativos de 32×64, seis previews y seis informes QA.\n- QA confirma cuatro frames distintos, transparencia alfa real y deriva de pies de 0 px al caminar y como máximo 1 px en Idle/Recibir daño.\n\n## Estado\nGitHub Actions y la regresión completa han terminado en verde. Primera pasada visual pendiente de aprobación; se aceptan residuos de fondo para una pasada manual posterior. No integrado al runtime.\n",
+    "duelista-imagen-a-spritesheet": "# Duelista Tier 2 — extracción desde lámina ilustrada\n\n## Fuente y alcance\n\nLa fuente es la lámina ilustrada aportada en la conversación el 22-10-2026, de 1536×1024 px. Contiene las variantes masculina y femenina en dos bloques, con cuatro poses para cada acción en el orden **Idle → Caminar → Recibir daño**.\n\nNo se usarán los másteres raster por imagen vectoriales anteriores: se sustituirán por másteres raster PNG recortados de esta referencia. El diseño mantiene las manos vacías y no dibuja armas ni escudos; el equipo se añadirá como capas independientes.\n\n## Contrato de salida\n\n- Máster masculino y femenino de 256×384 px, en una cuadrícula de cuatro columnas por tres filas.\n- Cada celda mide 64×128 px para que el generador Tier 2 derive las tiras ampliadas, los fotogramas nativos de 32×64, las previews y los informes QA.\n- Línea de pies normalizada entre fotogramas para reducir saltos de altura.\n- Fondo del panel eliminado por segmentación basada en el contorno y una máscara de color. Puede quedar algún píxel suelto/halo en ciertos bordes porque la lámina original tiene fondo opaco y las ilustraciones se solapan con la zona del rótulo; se puede hacer una pasada manual de limpieza posterior.\n- Checkpoint 2026-10-23: las filas Idle/Walk/Hurt del paquete de Duelista se integraron al runtime en commit 690640b; la revisión de posibles halos en bordes queda como pulido no bloqueante.\n\n## Decisiones de recorte\n\nLa primera pose femenina de cada acción tiene una coleta que invade el margen izquierdo de la celda y se superpone con la zona del rótulo. El recorte limita ese margen para evitar que entren letras en el frame; conserva la coleta cercana a la cabeza para mantener la identidad visual. No se añaden armas.\n\n## Validación\n\nEl pipeline del repositorio ya ha generado y versionado las seis tiras (tres acciones × dos sexos), 24 frames nativos, seis previews y seis informes QA. El QA técnico de dimensiones/alfa y frames distintos no sustituye la inspección visual. La pasada global debe revisar los recortes y limpiar solo si confirma halo/fondo residual.\n\n## Estado — 2026-10-23\nLa extracción de Duelista está completa como primer pase y fuera del runtime. Sus másteres raster WebP, tiras y QA están presentes en `assets/spritesheets/originales/duelista/v2/`; el manifiesto Tier 2 ya refleja el paquete generado. No se deben volver a generar los ciclos desde cero.\n\n",
+    "brujo": "# Tier 2 Brujo — brief y contrato raster\n\n## Identidad\nRama del Mago centrada en maldiciones y magia oscura. Silueta con capucha profunda, cuello alto, manto largo asimétrico y túnica carbón/malva con ribetes plateados y vino. Es deliberadamente más sombrío y encapuchado que Elementalista; los detalles son costuras en la ropa y no efectos luminosos.\n\n## Restricción de capas\nManos vacías. No incluir báculo, varita, armas, calaveras como props ni efectos de hechizo dentro del sprite. Las armas y los efectos de combate se añaden como capas separadas.\n\n## Contrato de salida\nMásteres PNG masculino y femenino de 256×384, cuatro columnas × tres filas (Idle, Caminar, Recibir daño). El workflow genera seis tiras PNG, 24 frames nativos 32×64, seis previews y seis informes QA. El paquete queda fuera del runtime hasta revisión visual.\n\n## Estado — 2026-10-23\nLos dos másteres raster y el paquete completo están versionados: seis tiras PNG, 24 frames nativos 32×64, seis previews y seis informes QA. La generación y QA técnica se consideran completadas en el primer pase; la aprobación artística sigue pendiente para la revisión global de las ocho clases. No integrar al runtime antes de esa aprobación.\n\n"
+  },
+  "documentation": "docs/plan-spritesheets-hd-128x256.md",
+  "productionPolicy": {
+    "unit": "one action, four independent PNG frames",
+    "commit": "art, source metadata and validated progress together",
+    "weapons": "separate layers; no weapons or shields baked into body",
+    "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
+    "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
+  },
+  "nextTask": "Recover corrupted Novato male frames; verify common visual identity before new attacks",
+  "recoveryAudit": {
+    "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
+    "date": "2026-10-25",
+    "publishedFrames": 24,
+    "decodableFrames": 9,
+    "corruptFrames": 15,
+    "completeDecodableActions": [
+      "dodge",
+      "block_shield"
+    ],
+    "visualReview": "pending"
+  },
+  "preservedDeliverySources": [
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-caminar-entrega/previews/espadachin-f-walk-preview.png",
+      "sha256": "fddf9d68b681e5fc7afbbf3220e180730aeddedd3af1c890d41799cc863a83d2"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-caminar-entrega/previews/espadachin-m-walk-preview.png",
+      "sha256": "711af6a63e1a0daf325a649884c168c9d6ad36d8eecd3a98bca082dfdf78687a"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-caminar-entrega/source/concept_walk.png",
+      "sha256": "01d113372e9868e12b9db3b7d02c826980056eee161110ad551e41245eeacb05"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-caminar-entrega/sprites/espadachin-m-walk-02.png",
+      "sha256": "44c2796641e6aa76a4d9e05cd0643443e4f9732c5770debb29ab8cd2ed098477"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-caminar-entrega/sprites/espadachin-f-walk.png",
+      "sha256": "0e22fb6372152c486f69ef454f6adeaeae1b04d7aaf1f634f5191dd5f275a0ce"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-caminar-entrega/sprites/espadachin-m-walk-03.png",
+      "sha256": "139a904a9ed421068bb821490514b91d4a556035542dbe36c823e52b3708bd6c"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-caminar-entrega/sprites/espadachin-f-walk-03.png",
+      "sha256": "163d9a46c73420db37350a99d2bb2875671714f77781a5604082de78c99a4196"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-caminar-entrega/sprites/espadachin-m-walk-04.png",
+      "sha256": "d32adabfd18f465c0dcc1ffa688974f80dcb9c6f0dfe9c842692f2bad14ea533"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-caminar-entrega/sprites/espadachin-f-walk-02.png",
+      "sha256": "ea25d56a03e25469981f4eadcbb11e92e058cb78f0817de9f9af327c41b46343"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-caminar-entrega/sprites/espadachin-f-walk-04.png",
+      "sha256": "c5b464e1aeb877d5b6a7e575ea55ee0dcaacd2745786788e8e960f90a631801c"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-caminar-entrega/sprites/espadachin-f-walk-01.png",
+      "sha256": "449476b3327dd690cc787849ff357f71e3c98a16aee966e166c3b1d646520141"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-caminar-entrega/sprites/espadachin-m-walk.png",
+      "sha256": "9aace7bba61966a9b4102541a3b14725f40779863160e5a3c827d06e7f597650"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-caminar-entrega/sprites/espadachin-m-walk-01.png",
+      "sha256": "b4268ef091f90df69b8f34f2b239113e1c14aaa7b824e3f5c251ad17113c2fc8"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-recibir-dano-revision/femenino/espadachin-f-hurt.png",
+      "sha256": "f49e670f4ea207af3e5e193f0e0c810e003985fdeaebe595dd359966e27db2b8"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-recibir-dano-revision/masculino/espadachin-m-hurt.png",
+      "sha256": "916cba1d39f0daf11661ccc77c6713aa4113aead43575ddbae95c89cc7ff00a3"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-recibir-dano-revision/femenino/previews/espadachin-f-hurt-preview.png",
+      "sha256": "d598ab06b37289ac2d0b4d8b880cf25f1fd3c46facda8b34d6dedf661529e3aa"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-recibir-dano-revision/femenino/frames/f/espadachin-f-hurt-01.png",
+      "sha256": "cf71a0c1175111ced7164e0bf0e355322136632b7fb864bca35c7efee8835778"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-recibir-dano-revision/femenino/frames/f/espadachin-f-hurt-04.png",
+      "sha256": "abd26ec59d2893045b9521c221675de32def5892a0ea5e6f7984e81b0fee78f9"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-recibir-dano-revision/femenino/frames/f/espadachin-f-hurt-03.png",
+      "sha256": "323bbdec709ec6e98f9d01f267b296c798567014be61eb4141c489dd6218dacc"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-recibir-dano-revision/femenino/frames/f/espadachin-f-hurt-02.png",
+      "sha256": "3aad3e35acefdc61307a1aef9dc20452d2cb44fd637b9742c137b836b3aa899f"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-recibir-dano-revision/masculino/previews/espadachin-m-hurt-preview.png",
+      "sha256": "eeda09921d6bd9748cb09b92a62ca6bcae88979319f979d2cb24016ce1e1c3de"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-recibir-dano-revision/masculino/frames/m/espadachin-m-hurt-02.png",
+      "sha256": "b1c8ba352b8d82e9ecee4c0ae6b23f85bd9bfddff20e6547be3a0642418eaf7e"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-recibir-dano-revision/masculino/frames/m/espadachin-m-hurt-03.png",
+      "sha256": "e4402a479ec61739f5c02bceb6c38683b6288c74360c5cb678d7ddd427825477"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-recibir-dano-revision/masculino/frames/m/espadachin-m-hurt-01.png",
+      "sha256": "9411c22120d038d2d34484b0016090d486d4153703c396319166efe1bf02f386"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/espadachin-recibir-dano-revision/masculino/frames/m/espadachin-m-hurt-04.png",
+      "sha256": "d59e701ab08476acab159d3aa174695552e67fbd90b34c70bca2c5ad0a9b145d"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/novato-sprite-recovery-2026-10-24/reference/contact-sheet.png",
+      "sha256": "b314ddbd2e134e1139951b48838767471e1718972e88ed513cf0441d4c63245a"
+    },
+    {
+      "path": "assets/spritesheets/originales/delivery-sources/novato-sprite-recovery-2026-10-24/reference/block-shield-source.png",
+      "sha256": "38ad095c69c7d8b346f4f7d8cb39eb08cb03c8ea911ea6343d5f612df850a03e"
+    }
+  ]
 }
