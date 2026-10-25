@@ -27615,68 +27615,68 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "a280f2f98c032c4fdb3fc13dc90850434ef3a93496fe888a1ee2cea4dbffaac8",
-                "bytes": 26337,
+                "sha256": "eef3b0bf8cd7bfb974197d519551e757a12f59a38fef8af3d02b2a239b48fa78",
+                "bytes": 25934,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  21,
-                  92,
-                  109,
-                  249
+                  22,
+                  95,
+                  108,
+                  248
                 ],
-                "pixelSha256": "f6d232a4b71980d37d62c352d1327a4478105fc446435296e5f249b97d226ab5"
+                "pixelSha256": "e7b3e4ff0bdf2140db63f72e2bee6d9eed5b2c4a08365003190066488acaf202"
               },
               "02": {
-                "sha256": "dcfb4d53e70622c7fcb5148917fffcf420976bbb1447930794ae8dad573ddb22",
-                "bytes": 25208,
+                "sha256": "c427b699589fa69b5c32500ab6d8f384548e96b6fd5e7f550c1a8079e461d466",
+                "bytes": 24861,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  21,
-                  92,
-                  106,
-                  249
+                  26,
+                  94,
+                  109,
+                  248
                 ],
-                "pixelSha256": "51de2f021f74c7c6aa1f066696ddf71614ae57571ec263614d5ca7dacabccc5d"
+                "pixelSha256": "eac7a1edca2158cea7759504283eb086cfbdc8871336275621a3e10571873b20"
               },
               "03": {
-                "sha256": "c1c72a8e3785de7406366262ce01918c3559ab5e9e0ec4cd35bf6c5df144673d",
-                "bytes": 27406,
+                "sha256": "9ece645e1ac37bc7774e0d9ff3675e765fbbfb6ab27334abda587c3479161cbd",
+                "bytes": 27115,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  15,
-                  92,
-                  102,
-                  249
+                  19,
+                  95,
+                  104,
+                  248
                 ],
-                "pixelSha256": "d9cc2ff8420ac14cde064cdcf7dee4702f123814a168a3cb00407e1f480a5653"
+                "pixelSha256": "453ba4e588202e3e317852f5770d64d5f3818f7d732e390a8c7d5370f9605c73"
               },
               "04": {
-                "sha256": "7798246e1b624b01a8d5cde4535c2159e2317748b5f07483d403e8f2c86e71b1",
-                "bytes": 25998,
+                "sha256": "e0dce785a10598a867905b3b4b510ae627c50f6db5ed04d834ef7c8979be00ad",
+                "bytes": 25940,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  9,
-                  92,
-                  99,
-                  249
+                  12,
+                  95,
+                  98,
+                  248
                 ],
-                "pixelSha256": "b6c219aaa6654904393c0478f154dc18f26a89d46e6ca87ebad5246552d7e7aa"
+                "pixelSha256": "8ba365c868d5494c634dec66a8e2948100ba6fa448f30ca26f6e2bbef81c2c1f"
               }
             },
             "distinctFrames": 4
@@ -27953,7 +27953,7 @@
           ]
         },
         "use_consumable": {
-          "sourceSha256": "f2b11cad815a3ed155bdd466780f8345a87549b634c83e85201d5aa2a5951442",
+          "sourceSha256": "cf9609cbcb101c053319924375d46fa54fb15b9aa65dd0604af07aad30d6e882",
           "sourceDimensions": [
             2172,
             724
@@ -27978,9 +27978,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/sacerdote/m/source/use_consumable-reference-v3.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/sacerdote/m/source/use_consumable-reference-v5.png",
           "generator": "built-in imagegen",
-          "prompt": "Fix anatomy in this four-frame transparent male priest sprite strip, keeping clothes, heads, bodies, boots, positions and size unchanged. FIGURE ONE currently has THREE HANDS. DELETE the extra near hanging hand at about (180,400) and its stray forearm, replacing that region with the correct clean ivory robe and rust-red inner sleeve. Keep the bent near elbow and fist at the belt, center(236,325), as the ONLY near hand. Keep the far hanging hand on the right. Every figure has exactly TWO arms and TWO hands. FIGURE FOUR: bend the near elbow slightly and place the near closed fist at (1848,381) on2172x724 canvas, same shared bottle grip; do not leave the fist lower at idle. Figures TWO and THREE already correct, unchanged. NO bottles, props, weapons or effects. Same chestnut short side-part hair and gentle face in all four figures, high-quality illustrated RPG sprite finish, genuine transparent background.",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY SACERDOTE MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action use_consumable. Young adult male priest: short chestnut brown hair, calm benevolent face, substantial ivory clerical robe and split tabard with warm gold edging, long muted rust-red stole, cream high collar, layered cream sleeves ending before visible hands, leather waist belt with modest brass clasp, brown boots and discreet brown fingerless gloves. Richer Tier 2 fabric layers than Acolito but exact canonical body scale. No staff, book, chalice, halo or magical effect. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (236,325); figure 2: primary contact (888,199); figure 3: primary contact (1466,138); figure 4: primary contact (1848,381). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/use_consumable-reference.png",
           "canonicalPoseHashes": [
             "3552da6dbec2996d43f7df4e603badd73c0c750b1e67f12e938abeaf6d2ab8e0",
@@ -28057,6 +28057,44 @@
               "sourcePath": "assets/spritesheets/hd-128x256/sacerdote/m/source/use_consumable-reference-v2.png",
               "generator": "built-in imagegen",
               "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY SACERDOTE MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action use_consumable. Young adult male priest: short chestnut brown hair, calm benevolent face, substantial ivory clerical robe and split tabard with warm gold edging, long muted rust-red stole, cream high collar, layered cream sleeves ending before visible hands, leather waist belt with modest brass clasp, brown boots and discreet brown fingerless gloves. Richer Tier 2 fabric layers than Acolito but exact canonical body scale. No staff, book, chalice, halo or magical effect. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (236,325); figure 2: primary contact (888,199); figure 3: primary contact (1466,138); figure 4: primary contact (1848,381). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/use_consumable-reference.png",
+              "canonicalPoseHashes": [
+                "3552da6dbec2996d43f7df4e603badd73c0c750b1e67f12e938abeaf6d2ab8e0",
+                "f2f24093e0fde6f7519f844675db9b749b5ec233a189c153dc35b65bb556ef51",
+                "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
+                "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "f2b11cad815a3ed155bdd466780f8345a87549b634c83e85201d5aa2a5951442",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                627,
+                16,
+                1015,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                19,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/sacerdote/m/source/use_consumable-reference-v3.png",
+              "generator": "built-in imagegen",
+              "prompt": "Fix anatomy in this four-frame transparent male priest sprite strip, keeping clothes, heads, bodies, boots, positions and size unchanged. FIGURE ONE currently has THREE HANDS. DELETE the extra near hanging hand at about (180,400) and its stray forearm, replacing that region with the correct clean ivory robe and rust-red inner sleeve. Keep the bent near elbow and fist at the belt, center(236,325), as the ONLY near hand. Keep the far hanging hand on the right. Every figure has exactly TWO arms and TWO hands. FIGURE FOUR: bend the near elbow slightly and place the near closed fist at (1848,381) on2172x724 canvas, same shared bottle grip; do not leave the fist lower at idle. Figures TWO and THREE already correct, unchanged. NO bottles, props, weapons or effects. Same chestnut short side-part hair and gentle face in all four figures, high-quality illustrated RPG sprite finish, genuine transparent background.",
               "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/use_consumable-reference.png",
               "canonicalPoseHashes": [
                 "3552da6dbec2996d43f7df4e603badd73c0c750b1e67f12e938abeaf6d2ab8e0",
