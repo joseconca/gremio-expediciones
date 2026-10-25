@@ -23419,8 +23419,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "834d6e3a0f3c7f35b7d0cd1e76ba39aac71c95a7f7f0a8ea683400786260de38",
-                "bytes": 25423,
+                "sha256": "cdae04d9edcc8e79a2dc048a15b6a26f3ae4544f3c22135f3438eb7738581200",
+                "bytes": 26015,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -23428,59 +23428,59 @@
                 ],
                 "bbox": [
                   11,
-                  91,
-                  114,
+                  92,
+                  113,
                   248
                 ],
-                "pixelSha256": "ff4bf81d8842458f2359d5e7a97a2e1cdb040efd92559513e98fe0eb5d01b9f4"
+                "pixelSha256": "fbc7dc94aff2176e342cc60f269256325415494a8737f0c1309c0e703ded1aa7"
               },
               "02": {
-                "sha256": "01c1dc95b2a355cedff5efdd7646ab6307cf2fa761df5d8832f419d81dd2f3c9",
-                "bytes": 25866,
+                "sha256": "8127de91eddf23a5ce35538eeb33ba557c0c92f5c456886e6672b7a4405a7fa2",
+                "bytes": 22746,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  11,
+                  14,
                   91,
-                  111,
-                  247
-                ],
-                "pixelSha256": "36c84591782c71be086cc281f1f6e65f4fb37fdd7ea96f094be4488fe65cadaa"
-              },
-              "03": {
-                "sha256": "301e166ddbc82ec4bb94a50aa5dd5180a4b2a59d24e7af3e6cf948eebd9a208f",
-                "bytes": 26554,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  10,
-                  91,
-                  115,
+                  109,
                   248
                 ],
-                "pixelSha256": "3f2e63d19bc6195e7c9bc29e6cacc7c5263888b14a4e124e1a246a31f9e209fa"
+                "pixelSha256": "b577d481958130f8e94c485650e4bf549c35a1f6987f8184fb5211898f1d4e70"
               },
-              "04": {
-                "sha256": "c2d30988616ffeb638fc50187d37639f20133bd760ba7de66fb0f7b39fff3728",
-                "bytes": 25232,
+              "03": {
+                "sha256": "7d900fea7bee7e0364c4758a6fcdbd9fccb4c487c1b9752b69549b6f22b68c61",
+                "bytes": 23833,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  10,
+                  13,
                   91,
-                  108,
-                  247
+                  117,
+                  248
                 ],
-                "pixelSha256": "d0c828ea2b241a254578a2afe1219703b411d2ef78943a47daaafdc511237bbd"
+                "pixelSha256": "00607357e24fc7d4defc0201eab029463fc0537b8bd5f435b94c78d3ec98392e"
+              },
+              "04": {
+                "sha256": "f5960f6d2bd93948b39b66c92af050d030a6360744045ab8c86d11269964cf4c",
+                "bytes": 24857,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  92,
+                  110,
+                  248
+                ],
+                "pixelSha256": "c7f56dd384795715114e8833fcb9371059baed40f3e773ba136349f8c6454b15"
               }
             },
             "distinctFrames": 4
@@ -23701,7 +23701,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "walk": {
-          "sourceSha256": "fbc60b72d6dbbcf00cd65c5fc7c00a4bd2e1099cc57d983a1751ffa4d2286d72",
+          "sourceSha256": "0337eb1a0e1e66f55a1f3878b121c57a55d5324c21a03a3a4354fe2a8151cf52",
           "sourceDimensions": [
             2172,
             724
@@ -23726,9 +23726,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/duelista/m/source/walk-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/duelista/m/source/walk-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": "Correct ONLY the arm poses of this four-frame transparent Duelista walking sprite strip (IMAGE 1). IMAGE 2 gives the EXACT required walking limb skeleton. Preserve IMAGE 1 character, costume, face, head scale, coat, boots, four centers, canvas and baseline. Crucial: frame ONE near arm must hang DOWN and slightly LEFT, with fist center at (140,414) on the full 2172x724 canvas, not bent at the belt. Frame TWO near fist is behind the hip at (692,418), other arm forward with fist (909,375). Frame THREE near fist (1239,414) and other fist (1470,370). Frame FOUR near fist (1795,440) and other fist (2078,414). Empty hands, no weapons or props. Change the near arm of frame one decisively to match image2; do not change the four walking leg poses. Actual transparent background, exactly four full-body figures, same polished RPG style and all costume details.",
+          "prompt": "Restyle IMAGE 1, the canonical four-pose male walking strip, with the red Duelista outfit and face from IMAGE 2. Image ONE is the exact pose edit target: trace the original silhouette of EVERY hand and forearm in the SAME PLACE, keep original elbow bends and original walking legs, same head locations, same figure roots. Replace ONLY his clothes with crimson split fencing coat bronze trim, black leather sleeves, white high collar shirt, dark trousers, brown boots and fingerless gloves, red-auburn spiky hair. Keep the original walking arms absolutely unchanged in pose and placement: first near hand down left; second near hand behind hip and far hand forward overlapping right abdomen; third near hand behind hip and far hand forward above right thigh; fourth near hand down left and far hand extended down right. Same canvas proportions as image1, four separate full-body figures, transparent background, no weapons, no props. Match high-resolution crisp illustrated RPG detail from image2.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
           "canonicalPoseHashes": [
             "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
@@ -23767,6 +23767,44 @@
               "sourcePath": "assets/spritesheets/hd-128x256/duelista/m/source/walk-reference.png",
               "generator": "built-in imagegen",
               "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY DUELISTA MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action walk. Young adult male duelist: short swept spiky red-auburn hair, confident sharp face, fitted crimson long split fencing coat with black leather panels and restrained warm bronze trim, light high-collar inner shirt, dark fitted trousers, red-brown leather belt and boots, small brown fingerless gloves. Slim athletic canonical skeleton; no cape, rapier, sword, dagger or scabbard. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (140,414), other hand (418,409); figure 2: primary contact (692,418), other hand (909,375); figure 3: primary contact (1239,414), other hand (1470,370); figure 4: primary contact (1795,440), other hand (2078,414). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. For use_consumable, pose ONE has a bent near elbow and a fist AT THE BELT, never both arms idle. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "fbc60b72d6dbbcf00cd65c5fc7c00a4bd2e1099cc57d983a1751ffa4d2286d72",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/duelista/m/source/walk-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Correct ONLY the arm poses of this four-frame transparent Duelista walking sprite strip (IMAGE 1). IMAGE 2 gives the EXACT required walking limb skeleton. Preserve IMAGE 1 character, costume, face, head scale, coat, boots, four centers, canvas and baseline. Crucial: frame ONE near arm must hang DOWN and slightly LEFT, with fist center at (140,414) on the full 2172x724 canvas, not bent at the belt. Frame TWO near fist is behind the hip at (692,418), other arm forward with fist (909,375). Frame THREE near fist (1239,414) and other fist (1470,370). Frame FOUR near fist (1795,440) and other fist (2078,414). Empty hands, no weapons or props. Change the near arm of frame one decisively to match image2; do not change the four walking leg poses. Actual transparent background, exactly four full-body figures, same polished RPG style and all costume details.",
               "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
               "canonicalPoseHashes": [
                 "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
