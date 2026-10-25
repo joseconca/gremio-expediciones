@@ -1,12 +1,13 @@
 # Novato masculino — paquete de recuperación de sprites
 
-Fecha: 2026-10-24  
+Fecha de origen del paquete: 2026-10-24  
+Publicación confirmada: 2026-10-25  
 Rama de destino: `creacion-sprite-sheets`  
 Repositorio: https://github.com/joseconca/gremio-expediciones/tree/creacion-sprite-sheets
 
 ## Estado remoto verificado
 
-El último commit remoto verificado es `91bed37139bde910c679c7ffdcefbe45b56d8c55` (`docs(sprites): actualizar checkpoint y avanzar a Esquivar`). En el árbol de esa rama aparecen los cuatro PNG y QA de `use_consumable`; **no aparecen** todavía los archivos de `dodge`. Por tanto, este paquete local no debe confundirse con una entrega ya publicada en GitHub.
+Actualización 2026-10-25: las acciones `dodge` y `block_shield` ya están publicadas en las rutas de producción de la rama `creacion-sprite-sheets`, reutilizando directamente los blobs binarios originales almacenados en esta carpeta. Commit de arte Esquivar: `50e15fa1ebafdf372ee257ec024d504ea607c37f`. Commit de arte Bloquear con escudo: `8d90a4e23b623185e944795101c344f4b59f2309`. Manifiesto y checkpoint actualizados después de publicar. Siguiente recurso: `novato-m-attack_sword-01`.
 
 ## Contenido
 
@@ -16,7 +17,11 @@ El último commit remoto verificado es `91bed37139bde910c679c7ffdcefbe45b56d8c55
 - `apply_recovery.py`: script de incorporación reproducible para aplicar desde el checkout del repositorio.
 - `manifest-local.json`: inventario del estado de recuperación; no reemplaza el manifiesto remoto.
 
-## Incorporar y publicar desde un checkout local
+## Publicación completada
+
+Los PNG y QA de `dodge/` y `block_shield/` ya están publicados bajo `assets/spritesheets/hd-128x256/novato/m/frames/<action>/`. No ejecutes el script de recuperación contra esta rama: está pensado para cuando aún faltaban los destinos y, correctamente, rechazará los archivos que ya existen. Se conserva como herramienta de recuperación reproducible y evidencia de QA.
+
+## Procedimiento original de incorporación desde un checkout local (histórico)
 
 1. Descarga y extrae este ZIP fuera del repositorio, por ejemplo en `C:\Temp\novato-sprite-recovery-2026-10-24`.
 2. Abre una terminal en la raíz del checkout `gremio-expediciones` que ya tenga configurado `origin` y credenciales de GitHub.
@@ -33,7 +38,7 @@ El script exige la rama `creacion-sprite-sheets`, checkout limpio y `HEAD` sincr
 - Validación de QA: 8/8 PNG aprobados; 4 hashes SHA-256 únicos por acción.
 - Prueba en repositorio Git desechable: 4 commits creados (arte + documentación para cada acción), rutas correctas, manifiesto y checkpoint sincronizados, siguiente recurso `novato-m-attack_sword-01`.
 - En modo `--no-push`, el checkpoint indica explícitamente que el commit es local y no está publicado.
-- La prueba anterior no equivale a una publicación en GitHub. El SHA remoto debe verificarse al ejecutar en el checkout real con acceso a `origin`.
+- La prueba anterior era previa a la publicación. La publicación real se ha verificado mediante los árboles de GitHub: los ocho PNG y los ocho QA existen en las rutas de producción; el manifiesto refleja los dos commits.
 
 ## No integrar todavía en runtime
 
