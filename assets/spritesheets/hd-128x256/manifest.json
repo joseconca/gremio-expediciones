@@ -3891,13 +3891,14 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/mago/m/frames",
       "audit": {
-        "validFrames": 20,
+        "validFrames": 24,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
           "hurt",
           "use_consumable",
+          "dodge",
           "attack_sword"
         ],
         "actions": {
@@ -4182,7 +4183,74 @@
             "distinctFrames": 4
           },
           "dodge": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "631828f117a7419614dec8f0eea5c039f09e1a2c1d4236c493d44135190b5025",
+                "bytes": 21491,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  94,
+                  106,
+                  234
+                ],
+                "pixelSha256": "04d2ee8fdff42b759704efa69d3af34894e59560c10996892e4269a45769783f"
+              },
+              "02": {
+                "sha256": "30546873e77fbfb18c9a0a07d5242d46006d4491f9da76e7a724c8ca92cf1d5c",
+                "bytes": 21860,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  97,
+                  116,
+                  234
+                ],
+                "pixelSha256": "c68015d7f1af84dc43bdff614a395932318fa551b71695133701c291d29f51c0"
+              },
+              "03": {
+                "sha256": "62412b5512a1022f1b1deac4d0832fd552274ad5bc3577fcc6545045604106e8",
+                "bytes": 21699,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  99,
+                  112,
+                  234
+                ],
+                "pixelSha256": "f7d2ecaa2d117673c5024d1758aa31ccf1079a579dc60b1243c258f806da7a32"
+              },
+              "04": {
+                "sha256": "9d1204f7b3be402f14929a9de9711b87fe59c7ca6aaef31e3863278855a09668",
+                "bytes": 21074,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  94,
+                  109,
+                  234
+                ],
+                "pixelSha256": "07c724e5d9078ac5bec73788d6dc964bae94426c80d9d2ca084793ad7a7617d9"
+              }
+            },
+            "distinctFrames": 4
           },
           "block_shield": {
             "status": "missing"
@@ -4469,6 +4537,43 @@
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "dodge": {
+          "sourceSha256": "7a613f14c77044b6fbf4611cd640188df17885a52dfc792dc4d1d54a1eb34766",
+          "sourceDimensions": [
+            1774,
+            887
+          ],
+          "registeredSourceDimensions": [
+            512,
+            256
+          ],
+          "sourceCellStep": 128,
+          "commonCrop": [
+            128,
+            0,
+            256,
+            256
+          ],
+          "scale": 1,
+          "origin": [
+            0,
+            0
+          ],
+          "alphaThreshold": 128,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/mago/m/source/dodge-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET / EXACT canonical pose registration. IMAGE 2 defines ONLY MAGO MALE identity, outfit and face. Redraw the four figures of IMAGE 1 in the costume/identity of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip and wrist orientation, elbows and limb poses of IMAGE 1. Action dodge. Do not retain Novato-specific face, hair, patched clothing or scarf unless explicitly specified in the class identity below. Young adult male mage: short tousled dark indigo-black hair, calm focused face, royal blue/indigo long split coat with muted gold/tan trim and lapels, light inner tunic, brown leather waist belt, discreet brown fingerless gloves and brown boots, dark unpatched trousers. No scarf, no wizard hat. Same newly hand-painted crisp pixel-inspired RPG finish as reference, same identity across all four figures. Empty hands in every pose; any weapon, shield, book, bottle, bow, arrow or magical effect must be entirely omitted because it will be rendered with a shared equipment sprite layer. Keep cuffs away from visible hands. Garments may follow the pose but must not move hands or enlarge skeleton. No props, shadows, labels, grid or extra views. Preserve all headroom and margins of IMAGE 1, do NOT automatically fill or recenter the canvas. Full heads hair hems hands and boots must remain inside each quarter.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-dodge.png",
+          "canonicalPoseHashes": [
+            "c39c0179fb10e14a4b5d60a72facc2c743d68780da3324d44eaa5b3306438a4e",
+            "9e58033fb31ca5eb09c3859aee33c578e8100cf1ad82ad52ba7c71996fdc40fd",
+            "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
+            "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -4550,6 +4655,22 @@
         },
         "use_consumable/04": {
           "source": "sources.use_consumable",
+          "frame": 4
+        },
+        "dodge/01": {
+          "source": "sources.dodge",
+          "frame": 1
+        },
+        "dodge/02": {
+          "source": "sources.dodge",
+          "frame": 2
+        },
+        "dodge/03": {
+          "source": "sources.dodge",
+          "frame": 3
+        },
+        "dodge/04": {
+          "source": "sources.dodge",
           "frame": 4
         }
       },
