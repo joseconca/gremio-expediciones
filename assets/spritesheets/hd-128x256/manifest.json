@@ -19623,40 +19623,40 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "062cc88b779acfed6e2b81c68982eb2550eb6aa2a97b598c58bef70d91c6d717",
-                "bytes": 24917,
+                "sha256": "c41e55a586a30000be964f2dbf8f3cf8b365053b6983cfaee327ab5939bdf39a",
+                "bytes": 24800,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  28,
+                  26,
                   93,
                   108,
                   248
                 ],
-                "pixelSha256": "c64553d3ea195e498927e9c13862543ec0088b2140272b3a8a6785d4e1b6d9a3"
+                "pixelSha256": "5cad7e2bb1dcce72a2a2aa22bf24226522062d24723c19ebcfe2ee8c30f07da7"
               },
               "02": {
-                "sha256": "8b91b0c7d43544fe155ee8b3e45ccf8fcb68b39775333978c6bccf2d6fee6205",
-                "bytes": 24302,
+                "sha256": "7e209d3839768d1ab2f7010897229b69fd710625407ef97c3973d89cbe5e3072",
+                "bytes": 24444,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  25,
+                  24,
                   92,
                   108,
                   248
                 ],
-                "pixelSha256": "5cba52c532c43aa12554a08504138b3d05cab82f4278702f445c813b26daf13e"
+                "pixelSha256": "bfbe8e84c700220aafd6c3b082d366b48830feb53a4f5de21cac3c123c761316"
               },
               "03": {
-                "sha256": "96935c79800f1a4e32b1cf1720bd3fb926df4a65b2a0a7968e9c9eea9b040402",
-                "bytes": 25633,
+                "sha256": "c70e4e60cfd796435464404bbab40e88a7420d755218cf6d2403dd425145da99",
+                "bytes": 25774,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -19665,26 +19665,26 @@
                 "bbox": [
                   24,
                   93,
-                  108,
+                  107,
                   248
                 ],
-                "pixelSha256": "958639658660076900464fe0507f50078374d9f72723177e42777f2be1e79eda"
+                "pixelSha256": "8e14e01b774c82a8ae9cd679e22048876020a62280e363ed51661bcc02dd1b34"
               },
               "04": {
-                "sha256": "afc359bf5e17ed3e08e8e37cdfbc78e610b0453b05c2776d6acc67ce34b0faa5",
-                "bytes": 25206,
+                "sha256": "2501a5d222247e0ea748b787f9dedccc1fe17b78e2bfb0f178fed741f3c77358",
+                "bytes": 24800,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  26,
-                  92,
-                  107,
+                  17,
+                  93,
+                  99,
                   248
                 ],
-                "pixelSha256": "6ed9810446c04632bb21d0d7aaa49c908d9c8af16242128e51c07c326c9345f2"
+                "pixelSha256": "96cc86a41a28ba80f19ce6e7ebd1850c3a7909118ff07347b6c68e6469155a1a"
               }
             },
             "distinctFrames": 4
@@ -19975,9 +19975,9 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "use_consumable": {
-          "sourceSha256": "780ad4ba258712b16b1482a33f38f451f0e98747a92d248480c0119965b12e1d",
+          "sourceSha256": "980c5587126c18e44b114a1d74130f6f33fd8f6ddf94438aae9d902596e9d6f9",
           "sourceDimensions": [
-            2172,
+            2171,
             724
           ],
           "registeredSourceDimensions": [
@@ -20000,9 +20000,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/caballero/m/source/use_consumable-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/caballero/m/source/use_consumable-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY CABALLERO MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action use_consumable. Young adult male knight: short tousled ash-brown hair and an open-faced steel brow helm leaving the whole face readable, determined expression. Heavy articulated silver and gunmetal plate armor with restrained warm bronze-gold edging, rounded layered pauldrons, steel breastplate over dark brown padded underlayers, leather belt, modest dark slate-blue split waist cloth, armored greaves and sturdy steel-toed brown boots. Discreet articulated brown/steel fingerless gauntlets end before the exact visible fingers. Athletic but EXACT same body skeleton, height and head size as the canonical reference. No weapon, shield, sword, sheath or cloak. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters.",
+          "prompt": "Precise sprite pose correction. IMAGE 1 is the edit target: four HD armored male knight poses on a 2172 by 724 transparent strip. IMAGE 2 is the exact canonical POSE and hand-position reference. Preserve IMAGE 1 knight identity, head positions, armor, colors, lighting, scale, canvas and all four figure locations. Correct ONLY the near/front arm and empty gripping hand in figures ONE and FOUR to match the corresponding hands of IMAGE 2. Figure 1 must NOT have both arms hanging idle: bend the near elbow and raise the near fist in front of the waist belt so its gripping CENTER is at approximately pixel (236,325) on the whole 2172x724 canvas. Figure 4 near gripping hand CENTER is (1848,381). Keep the other far hand unchanged. Leave figures 2 and 3 absolutely unchanged, with hand centers (888,199) and (1466,138). The four phases are take bottle at waist, bring it to mouth, tilt to drink, lower hand. ALL HANDS EMPTY because an existing bottle sprite will be layered at those fixed points. No bottle, weapon, magic, marker, dot, label, shadow or background. Maintain the exact transparent canvas and four quarters; no recentering, cropping, scale changes or extra figures.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/use_consumable-reference.png",
           "canonicalPoseHashes": [
             "3552da6dbec2996d43f7df4e603badd73c0c750b1e67f12e938abeaf6d2ab8e0",
@@ -20010,7 +20010,47 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "780ad4ba258712b16b1482a33f38f451f0e98747a92d248480c0119965b12e1d",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                627,
+                16,
+                1015,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                19,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/caballero/m/source/use_consumable-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY CABALLERO MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action use_consumable. Young adult male knight: short tousled ash-brown hair and an open-faced steel brow helm leaving the whole face readable, determined expression. Heavy articulated silver and gunmetal plate armor with restrained warm bronze-gold edging, rounded layered pauldrons, steel breastplate over dark brown padded underlayers, leather belt, modest dark slate-blue split waist cloth, armored greaves and sturdy steel-toed brown boots. Discreet articulated brown/steel fingerless gauntlets end before the exact visible fingers. Athletic but EXACT same body skeleton, height and head size as the canonical reference. No weapon, shield, sword, sheath or cloak. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/use_consumable-reference.png",
+              "canonicalPoseHashes": [
+                "3552da6dbec2996d43f7df4e603badd73c0c750b1e67f12e938abeaf6d2ab8e0",
+                "f2f24093e0fde6f7519f844675db9b749b5ec233a189c153dc35b65bb556ef51",
+                "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
+                "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "dodge": {
           "sourceSha256": "74486d83b4c1fa991d4d193c535feafbf966a93ff7ce40c770dc718ff27230ce",

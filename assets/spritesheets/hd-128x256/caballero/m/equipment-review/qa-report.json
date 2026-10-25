@@ -4,7 +4,11 @@
   "sex": "m",
   "actions": [
     "idle",
-    "walk"
+    "walk",
+    "hurt",
+    "use_consumable",
+    "dodge",
+    "block_shield"
   ],
   "bodyHashes": {
     "idle": [
@@ -18,9 +22,33 @@
       "2e1895b580a97e4c14453471720aba2dbecc168d491c1910e495be8b91af829c",
       "3dc932003f5712ea011805ebef2b33a3ed5370c526955691e2a07c6ba1dc9353",
       "51b071f5fdad6f560233b9a76f048e4c20418a9dc540597b2578d9dae872fe65"
+    ],
+    "hurt": [
+      "2656974ea1a7a3f7493940cc12618c34e84705a1afccbc126c9ad78bcf34c213",
+      "4bdd6ea4cabf94e02d085307e5158d4e8d721a80bc27264b9eccca54665be242",
+      "d8be4756b9ba6a4c3523287f4f2b401ce56bc1af6a158b3e325b8c5045cb5a1d",
+      "42e3aa489b60e50e2945ed257f07e836a9759066e1fb827a9ce476c824435378"
+    ],
+    "use_consumable": [
+      "062cc88b779acfed6e2b81c68982eb2550eb6aa2a97b598c58bef70d91c6d717",
+      "8b91b0c7d43544fe155ee8b3e45ccf8fcb68b39775333978c6bccf2d6fee6205",
+      "96935c79800f1a4e32b1cf1720bd3fb926df4a65b2a0a7968e9c9eea9b040402",
+      "afc359bf5e17ed3e08e8e37cdfbc78e610b0453b05c2776d6acc67ce34b0faa5"
+    ],
+    "dodge": [
+      "139a19281a8738ed6a7c743f6593b64ead12c2bcd62d58f50ae95bde248a6f3a",
+      "7d890ae2e1cfe968157d5cae3d1dcf12ee10c84bc23b8d71c59c4a9dc86a66cd",
+      "d879b1f99150a1e9d7b623393da9f89f6fd0b5e98281826afdb56ff2a2028503",
+      "3fedc33aa4f9590aff744ad74fa04f64e7583fab1574915bcbe2e436b6257f75"
+    ],
+    "block_shield": [
+      "e9ed7e18f3bbda028fcb54573a87a9b14c0d91c4643dfea04ab86ed56160a727",
+      "aaf6ebf839e95489c66d3be5366aec119ee270260c75e1acb60c6f95cec19bf0",
+      "7ab9e9d91a395aff96f3cc8fedd854001e21e3c9f7ec1912e76ae50a4d57314e",
+      "09c741e4c8222d89dedcbb067a7dec4027d76a031e46a31a1221945559e00078"
     ]
   },
-  "contactChecks": 256,
+  "contactChecks": 524,
   "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
