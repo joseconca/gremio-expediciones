@@ -6,7 +6,10 @@
     "idle",
     "walk",
     "hurt",
-    "use_consumable"
+    "use_consumable",
+    "dodge",
+    "block_shield",
+    "attack_sword"
   ],
   "bodyHashes": {
     "idle": [
@@ -32,9 +35,27 @@
       "47c9d13e3553e713037cf0bb154a5fd384e6cc82123451f319e5ad260cfc07ab",
       "be3b258b530c0e7b2f64f6e98a7386ff63686fca632936fbed690cad15bb8621",
       "1721b3bd80995b27d1a131ae663848aef8766c019f62bf742d315a84868d848a"
+    ],
+    "dodge": [
+      "66c19da7f4ca1b76d6bf05e28d688783e10e757021698d2efe15a388b5fb3583",
+      "e123b9d20ecb18d0b65a3cd620d8d71cc033759689fd7ef412cbe56e3d1089b3",
+      "48b50f324c5c926f5e1b0922da0bb93793de5e77ee253232a8f6cf01f6d7da55",
+      "b3ee1fba7ad80955861a75bb1851cbcd15b2c00b18ef3b2081a5ea119baaecc2"
+    ],
+    "block_shield": [
+      "bd4973e7456184d70324f9cbc7121105b471bb29f4d0cfcf41bed6d8b4fbfbed",
+      "745b4a384db8da135785c6a77bda07e867c40487fbd94d35dcbb04f1e6d43ada",
+      "83cc30422c6a773089c40aabe89d3cfc6b669ac660e7693198c7d34b192e8cfd",
+      "4852da36e1a413741ed4bb8618339282b9959df55b156cc82336d68863eca978"
+    ],
+    "attack_sword": [
+      "41cef5f44c29c642816123e87361f45d71f8c0568f6bc4d8d88991403397fe2b",
+      "7283a8ea82985629fa43a2f62739057ed3cf14fe0c355f5b5b46fbe687b8c6cb",
+      "d8d44d6d475152a21e2ce8fd7698fa92c4714d13fd73a243f43583b6af2c8d44",
+      "432f0d6082e75980a93dff4ab6951fb1d3962eb915f0a1fae53217850828fd26"
     ]
   },
-  "contactChecks": 388,
+  "contactChecks": 560,
   "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
