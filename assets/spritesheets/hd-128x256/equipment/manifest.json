@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "status": "candidate-contact-reviewed-integration-pending",
+  "status": "integrated-awaiting-user-visual-verification",
   "generator": "built-in imagegen",
   "canvas": [
     384,
@@ -40050,7 +40050,7 @@
       "Shield compatible rows and shared primary/secondary grip positions"
     ],
     "artApproval": "pending-user-review-of-equipment",
-    "runtimePromotion": "pending-user-instruction",
+    "runtimePromotion": "authorized-by-user-and-integrated",
     "horizontalFlip": "Mirror the whole composed character including body, equipment and masks around the same canvas; never mirror equipment around its own bounds. All 1104 frames pass a lossless mirror round trip. Combat-facing runtime validation follows during integration.",
     "inactiveActions": "The 15-row layout is synchronized with bodies. Only actions compatible with the item contain equipment frames; unsupported attack or consumable rows remain transparent."
   },
@@ -40074,5 +40074,11 @@
       "conclusion": "success",
       "url": "https://github.com/joseconca/gremio-expediciones/actions/runs/40221780885"
     }
+  },
+  "runtimeIntegration": {
+    "publicRoot": "public/sprites/hd-v1/equipment",
+    "compositionMetadata": "src/lib/generated/sprites-hd.json",
+    "previewRoute": "/revision-sprites",
+    "nextStep": "User gameplay verification before further class production."
   }
 }

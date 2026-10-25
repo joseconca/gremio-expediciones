@@ -3,9 +3,12 @@
 import {
   obtenerRutaSpritesheetHeroe,
   FILAS_ANIMACION_SPRITESHEET_HEROE,
+  obtenerIdClaseParaSprite,
 } from "@/lib/configuracionJuego";
+import { esClaseHeroeHd, type AccionHeroeHd } from "@/lib/sprites-heroes-hd";
+import SpriteHeroeHd from "./SpriteHeroeHd";
 
-export type AccionSpriteHeroe = "idle" | "walk" | "hurt";
+export type AccionSpriteHeroe = AccionHeroeHd;
 
 interface SpriteHeroeAnimadoProps {
   clase?: string | null;
@@ -18,16 +21,20 @@ interface SpriteHeroeAnimadoProps {
   sombra?: boolean;
   /** Conserva la perspectiva y escala de los antiguos contenedores de combate. */
   contextoSombra?: "party" | "hero";
+  armaId?: string | null;
+  escudoId?: string | null;
+  inicioAnimacion?: number;
+  reflejado?: boolean;
 }
 
-const FILA_ACCION: Record<AccionSpriteHeroe, number> = {
+const FILA_ACCION: Record<"idle" | "walk" | "hurt", number> = {
   idle: FILAS_ANIMACION_SPRITESHEET_HEROE.find((fila) => fila.id === "idle")?.fila ?? 0,
   walk: FILAS_ANIMACION_SPRITESHEET_HEROE.find((fila) => fila.id === "walk")?.fila ?? 1,
   hurt: FILAS_ANIMACION_SPRITESHEET_HEROE.find((fila) => fila.id === "hurt")?.fila ?? 2,
 };
 
 /** Reproduce las cuatro celdas de una fila sin interpolar ni desplazar píxeles. */
-export default function SpriteHeroeAnimado({
+function SpriteHeroeLegacy({
   clase,
   sexo,
   profesionActivaId,
@@ -36,8 +43,12 @@ export default function SpriteHeroeAnimado({
   className = "",
   sombra = false,
   contextoSombra = "hero",
-}: SpriteHeroeAnimadoProps) {
-  const ruta = obtenerRutaSpritesheetHeroe(clase, sexo, profesionActivaId);
+  reflejado = false,
+}: Omit<SpriteHeroeAnimadoProps, "accion"> & { accion?: "idle" | "walk" | "hurt" }) {
+  const id = obtenerIdClaseParaSprite(clase, profesionActivaId);
+  const ruta = esClaseHeroeHd(id)
+    ? `/sprites/heroes/${id}/${id}-${sexo === "chica" ? "f" : "m"}-sheet.png`
+    : obtenerRutaSpritesheetHeroe(clase, sexo, profesionActivaId);
   const fila = FILA_ACCION[accion];
   // Para 15 filas, CSS tiene 14 intervalos verticales. Horizontalmente son 3 intervalos para 4 frames.
   const desplazamientoVertical = `${(fila / (FILAS_ANIMACION_SPRITESHEET_HEROE.length - 1)) * 100}%`;
@@ -49,6 +60,7 @@ export default function SpriteHeroeAnimado({
     backgroundPosition: `0 ${desplazamientoVertical}`,
     animation: `hero-sprite-four-frames ${duracion}ms linear ${repeticion}`,
     imageRendering: "pixelated" as const,
+    transform: reflejado ? "scaleX(-1)" : undefined,
   };
 
   if (sombra) {
@@ -78,4 +90,13 @@ export default function SpriteHeroeAnimado({
       style={frameStyle}
     />
   );
+}
+
+/** Only produced classes use HD; the remaining classes retain their current art. */
+export default function SpriteHeroeAnimado(props: SpriteHeroeAnimadoProps) {
+  const id = obtenerIdClaseParaSprite(props.clase, props.profesionActivaId);
+  const accion = props.accion ?? "idle";
+  const fallback = <SpriteHeroeLegacy {...props} accion={accion === "hurt" || accion === "dodge" ? "hurt" : accion === "idle" ? "idle" : "walk"} />;
+  if (!esClaseHeroeHd(id)) return fallback;
+  return <SpriteHeroeHd key={`${id}/${props.sexo}`} {...props} claseId={id} sexo={props.sexo === "chica" ? "f" : "m"} accion={accion} fallback={fallback} />;
 }

@@ -47,6 +47,8 @@ function obtenerRecursosCombatePersona(personaje: PersonajeRecursosParty | null 
   if (!personaje) {
     return {
       profesionActivaId: "novato",
+      armaSpriteId: null,
+      escudoSpriteId: null,
       jugadorEnergiaActual: 0,
       jugadorEnergiaMaxima: 20,
       jugadorManaActual: 0,
@@ -66,6 +68,8 @@ function obtenerRecursosCombatePersona(personaje: PersonajeRecursosParty | null 
 
   return {
     profesionActivaId: personaje.profesionActivaId || "novato",
+    armaSpriteId: equipo.arma?.objetoId ?? null,
+    escudoSpriteId: equipo.manoSecundaria?.objetoId ?? null,
     jugadorEnergiaActual: personaje.energiaActual,
     jugadorEnergiaMaxima: Math.max(0, Math.floor(estadisticas.total.energiaMaxima ?? 20)),
     jugadorManaActual: personaje.manaActual,

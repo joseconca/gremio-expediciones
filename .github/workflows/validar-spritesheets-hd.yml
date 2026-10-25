@@ -1,7 +1,7 @@
 name: Validar sprites HD
 on:
   push:
-    branches: [creacion-sprite-sheets]
+    branches: [creacion-sprite-sheets, main]
     paths: ['scripts/*sprites*', 'scripts/*-hd.py', 'assets/spritesheets/hd-128x256/**', '.github/workflows/validar-spritesheets-hd.yml']
   pull_request:
     branches: [main]
@@ -32,6 +32,8 @@ jobs:
         run: python scripts/test-equipo-hd.py
       - name: Verify the entire shared HD equipment library
         run: python scripts/validar-equipo-hd.py
+      - name: Verify lossless runtime equipment packing and body promotion
+        run: python scripts/validar-runtime-sprites-hd.py
       - name: Verify Novato sword grips against current body hashes
         run: |
           python scripts/previsualizar-equipo-hd.py --all

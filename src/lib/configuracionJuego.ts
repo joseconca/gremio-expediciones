@@ -1,6 +1,7 @@
 import type { Rareza, ClasePersonaje, IdEdificio } from "./tiposJuego";
 import { CONFIGURACION_EDIFICIOS } from "./tiposJuego";
 import { CLASES } from "./progresion/clases";
+import { esClaseHeroeHd } from "./sprites-heroes-hd";
 
 export const REQUISITOS_EDIFICIOS: Partial<
   Record<IdEdificio, { edificio: IdEdificio; nivel: number }>
@@ -179,13 +180,13 @@ export function obtenerSpriteHeroe(
 ): string {
   const idClase = obtenerIdClaseParaSprite(clase, profesionActivaId);
   const sufijoSexo = sexo === "chica" ? "f" : "m";
+  if (esClaseHeroeHd(idClase)) return `/sprites/hd-v1/heroes/${idClase}/${sufijoSexo}-portrait.png`;
   return `/sprites/heroes/${idClase}/${idClase}-${sufijoSexo}.png`;
 }
 
 /**
  * Contrato de filas de los spritesheets de combate.
- * Cada fila contiene cuatro fotogramas horizontales de 64 × 128 px.
- * El renderizado/temporización se integra en una iteración posterior.
+ * Cada fila contiene cuatro fotogramas: HD 128 × 256; fallback 64 × 128 px.
  */
 export const FILAS_ANIMACION_SPRITESHEET_HEROE = [
   { id: "idle", nombre: "Idle", fila: 0 },
@@ -213,6 +214,7 @@ export function obtenerRutaSpritesheetHeroe(
 ): string {
   const idClase = obtenerIdClaseParaSprite(clase, profesionActivaId);
   const sufijoSexo = sexo === "chica" ? "f" : "m";
+  if (esClaseHeroeHd(idClase)) return `/sprites/hd-v1/heroes/${idClase}/${sufijoSexo}-sheet.png`;
   return `/sprites/heroes/${idClase}/${idClase}-${sufijoSexo}-sheet.png`;
 }
 

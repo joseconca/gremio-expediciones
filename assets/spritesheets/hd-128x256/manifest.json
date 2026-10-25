@@ -39,7 +39,7 @@
       "attack_book",
       "attack_gloves"
     ],
-    "runtimePromotion": "deferred-until-full-sheet-qa-and-approval",
+    "runtimePromotion": "Novato and Tier 1 integrated by user instruction; further classes deferred until user visual verification.",
     "frameFilesPerVariant": 60,
     "framePathPattern": "assets/spritesheets/hd-128x256/<clase>/<m|f>/frames/<accion>/<clase>-<sexo>-<accion>-<01..04>.png",
     "assemblyPolicy": "Assemble final 512x3840 sheet only after all 60 independent frame PNGs for that class/sex pass QA",
@@ -20603,7 +20603,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Review the completed HD equipment gallery with the user, then integrate approved Novato and Tier 1 bodies and shared equipment into the game only when instructed. Tier 2 body production remains later in the plan.",
+  "nextTask": "Wait for the user to verify the integrated Novato/Tier 1 sprites and equipment in the game. Address visual feedback before producing more classes.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
@@ -20967,7 +20967,7 @@
     }
   },
   "tier1Production": {
-    "status": "body-candidates-complete-shared-equipment-reviewed-integration-pending",
+    "status": "integrated-awaiting-user-visual-verification",
     "classesInOrder": [
       "mago",
       "espadachin",
@@ -20980,7 +20980,7 @@
     "actionsPerVariant": 15,
     "equipmentTest": "28 HD items, one identical sheet per item and sex across Novato and four Tier 1 classes",
     "localTestsPassed": 23,
-    "runtimeModified": false,
+    "runtimeModified": true,
     "previews": {
       "tier1-overview.png": {
         "path": "assets/spritesheets/hd-128x256/previews/tier1-overview.png",
@@ -20994,7 +20994,7 @@
   },
   "equipmentLibrary": {
     "path": "assets/spritesheets/hd-128x256/equipment/manifest.json",
-    "status": "candidate-contact-reviewed-integration-pending",
+    "status": "integrated-awaiting-user-visual-verification",
     "items": 28,
     "weapons": 24,
     "sharedSheets": 56,
@@ -21017,6 +21017,72 @@
     ],
     "classSpecificTransforms": false,
     "legacySwordProof": "Earlier 256x256 icon-based tests remain as provenance; use the new library canvas, contacts, scale and masks for future HD equipment integration.",
-    "runtimePromotion": "pending-user-instruction"
+    "runtimePromotion": "authorized-by-user-and-integrated"
+  },
+  "runtimeIntegration": {
+    "status": "integrated-awaiting-user-visual-verification",
+    "authorization": "User explicitly requested incorporation into the game after equipment/body compatibility review.",
+    "publicRoot": "public/sprites/hd-v1",
+    "classes": [
+      "novato",
+      "mago",
+      "espadachin",
+      "acolito",
+      "arquero"
+    ],
+    "bodyAtlases": 10,
+    "equipmentAtlases": 56,
+    "bodyOrigin": [
+      128,
+      64
+    ],
+    "canvas": [
+      384,
+      384
+    ],
+    "portraitCalibration": {
+      "output": [
+        128,
+        256
+      ],
+      "uniformResize": [
+        179,
+        358
+      ],
+      "offset": [
+        -26,
+        -99
+      ],
+      "scope": "static portraits only; original body frames and combat geometry unchanged"
+    },
+    "metadata": "src/lib/generated/sprites-hd.json",
+    "previewRoute": "/revision-sprites",
+    "tests": {
+      "spriteAndCombatPresentation": 43,
+      "party": 75,
+      "progression": {
+        "passed": 132,
+        "failed": 2,
+        "baselineReproduced": "Both failures reproduced on origin/main c2c63889: Job cap 40 vs expected 20; passive-resource maximum 113 vs expected 23."
+      },
+      "lint": "passed",
+      "productionBuild": "passed"
+    },
+    "visualReview": [
+      "Actual runtime renderer in browser on desktop",
+      "Female spear with all five classes",
+      "Mirrored body/equipment/masks and shadow at party size",
+      "390px mobile viewport: bow; document fits viewport"
+    ],
+    "limitations": [
+      "No live authenticated PvE/party/PvP battle was executed; user gameplay verification is next.",
+      "Higher-tier classes retain legacy sprites."
+    ],
+    "equipmentPacking": {
+      "method": "Lossless per-frame alpha bounds, shared by all classes; no rescaling.",
+      "validationReport": "assets/spritesheets/hd-128x256/runtime-integration-report.json",
+      "decodedMemoryReductionPercent": 98.27,
+      "retainedImageCacheLimit": 16
+    }
   }
 }

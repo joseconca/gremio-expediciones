@@ -77,6 +77,11 @@ export function useAnimacionesCombate() {
   const [pulsosEstadoVisibles, setPulsosEstadoVisibles] = useState<PulsoEstadoVisibleCombate[]>([]);
   const [actorAnimando, setActorAnimando] = useState<string | null>(null);
   const [actorImpactado, setActorImpactado] = useState<string | null>(null);
+  const [actorEsquivando, setActorEsquivando] = useState<string | null>(null);
+  const [actorSpriteAnimando, setActorSpriteAnimando] = useState<string | null>(null);
+  const [accionSpriteActual, setAccionSpriteActual] = useState<"use_consumable" | null>(null);
+  const [inicioAccionSprite, setInicioAccionSprite] = useState(0);
+  const [inicioImpactoSprite, setInicioImpactoSprite] = useState(0);
   const [animacionActual, setAnimacionActual] = useState<AccionAnimadaCombate["animacion"] | null>(null);
   const [modoPresentacionActual, setModoPresentacionActual] = useState<ModoPresentacionCombate | null>(null);
   const [proyectilesVisibles, setProyectilesVisibles] = useState<ProyectilVisibleCombate[]>([]);
@@ -104,6 +109,10 @@ export function useAnimacionesCombate() {
     const secuencia = ++secuenciaRef.current;
     const sigueActiva = () => montadoRef.current && secuenciaRef.current === secuencia;
     const { actorVisual, objetivoVisual } = destinos;
+    setActorSpriteAnimando(actorVisual);
+    setActorEsquivando(null);
+    setAccionSpriteActual(accion.accionSprite ?? null);
+    setInicioAccionSprite(performance.now());
     const curacion = accion.curacion ?? 0;
     const dano = accion.dano;
     const modoPresentacion = accion.presentacion?.modo ?? (
@@ -179,6 +188,7 @@ export function useAnimacionesCombate() {
           [impacto.objetivoId]: impacto.hpDespues,
         }));
         if (impacto.dano > 0) {
+          setInicioImpactoSprite(performance.now());
           setActorImpactado(impacto.objetivoId);
           setDanioVisible({
             actor: impacto.objetivoId,
@@ -206,6 +216,7 @@ export function useAnimacionesCombate() {
       if (!sigueActiva()) return;
       setActorAnimando(null);
       setActorImpactado(null);
+      setActorSpriteAnimando(null);
       setVidasTemporalesCombate(null);
       setAnimacionActual(null);
       setModoPresentacionActual(null);
@@ -229,6 +240,7 @@ export function useAnimacionesCombate() {
       if (!sigueActiva()) return;
       setCuracionVisible(null);
       setActorAnimando(null);
+      setActorSpriteAnimando(null);
       setAnimacionActual(null);
       setModoPresentacionActual(null);
       setPulsosEstadoVisibles([]);
@@ -236,15 +248,17 @@ export function useAnimacionesCombate() {
     }
 
     if (esProyectil && accion.presentacion?.proyectil) {
+      const anticipacion = accion.presentacion.proyectil === "flecha" ? 280 : 0;
+      if (anticipacion) { await esperar(anticipacion, temporizadoresRef.current); if (!sigueActiva()) return; }
       setProyectilesVisibles([{
         id: secuencia,
         tipo: accion.presentacion.proyectil,
         origen: actorVisual,
         destino: objetivoVisual,
-        duracionMs: 440,
+        duracionMs: 440 - anticipacion,
         fallido: accion.tipo === "fallo" || dano <= 0,
       }]);
-      await esperar(440, temporizadoresRef.current);
+      await esperar(440 - anticipacion, temporizadoresRef.current);
       if (!sigueActiva()) return;
       setProyectilesVisibles([]);
     } else {
@@ -258,6 +272,8 @@ export function useAnimacionesCombate() {
     const fallo = accion.tipo === "fallo" || dano <= 0;
     const impactosMultiples = accion.impactosMultiples ?? [];
     const esImpactoMultiple = impactosMultiples.length > 0;
+    setInicioImpactoSprite(performance.now());
+    if (accion.tipo === "fallo") setActorEsquivando(objetivoVisual);
     if (!fallo) {
       if (esImpactoMultiple) setObjetivosMultiplesImpactados(impactosMultiples.map((impacto) => impacto.objetivoId));
       else setActorImpactado(objetivoVisual);
@@ -286,6 +302,7 @@ export function useAnimacionesCombate() {
     setDaniosMultiplesVisibles([]);
     setObjetivosMultiplesImpactados([]);
     setActorImpactado(null);
+    setActorEsquivando(null);
 
     if (curacion > 0) {
       await esperar(DURACION_CURACION_VISIBLE_MS, temporizadoresRef.current);
@@ -300,6 +317,7 @@ export function useAnimacionesCombate() {
     setObjetivosMultiplesImpactados([]);
     setActoresAnimando([]);
     setActorAnimando(null);
+    setActorSpriteAnimando(null);
     setAnimacionActual(null);
     setModoPresentacionActual(null);
     setProyectilesVisibles([]);
@@ -316,6 +334,13 @@ export function useAnimacionesCombate() {
     pulsosEstadoVisibles,
     actorAnimando,
     actorImpactado,
+    actorEsquivando,
+    actorSpriteAnimando,
+    accionSpriteActual,
+    inicioAccionSprite,
+    inicioImpactoSprite,
+    estadoSprite: { actorImpactado, actorEsquivando, actorSpriteAnimando, objetivosMultiplesImpactados,
+      animacionActual, accionSpriteActual, inicioAccionSprite, inicioImpactoSprite },
     animacionActual,
     modoPresentacionActual,
     proyectilesVisibles,

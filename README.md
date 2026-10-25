@@ -1,5 +1,11 @@
 # Spritesheets de personajes
 
+Novato, Mago, Espadachín, Acólito y Arquero usan los nuevos cuerpos HD de 128×256 y equipo compartido entre clases, con una hoja por sexo. El montaje, las sombras y las acciones están conectados al combate individual, grupo y asedio. Las demás clases mantienen su arte actual.
+
+La pantalla `/revision-sprites` permite revisar las cinco clases con el montaje real del juego: sexo, arma, escudo, acción, orientación y tamaño de grupo. El plan y las validaciones se conservan en [el documento de sprites HD](docs/plan-spritesheets-hd-128x256.md).
+
+## Recursos anteriores y clases pendientes
+
 Paquete listo para extraer en la raíz del repositorio. Contiene 35 identificadores de clase/personaje heredados, con una hoja masculina y otra femenina por cada uno.
 
 - Formato: PNG con canal alfa y fondo transparente.

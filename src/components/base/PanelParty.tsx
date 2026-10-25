@@ -96,6 +96,8 @@ type ExpedicionPartyVista = {
       jugadorEvasion: number;
       jugadorNivel: number;
       profesionActivaId: string;
+      armaSpriteId?: string | null;
+      escudoSpriteId?: string | null;
       jugadorEnergiaActual: number;
       jugadorEnergiaMaxima: number;
       jugadorManaActual: number;
@@ -1545,6 +1547,8 @@ export default function PanelParty() {
               jugadorEvasion: participante.jugadorEvasion,
               jugadorNivel: participante.jugadorNivel,
               profesionActivaId: participante.profesionActivaId,
+              armaSpriteId: participante.armaSpriteId,
+              escudoSpriteId: participante.escudoSpriteId,
               jugadorEnergiaActual: participante.jugadorEnergiaActual,
               jugadorEnergiaMaxima: participante.jugadorEnergiaMaxima,
               jugadorManaActual: participante.jugadorManaActual,

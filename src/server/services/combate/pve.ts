@@ -324,6 +324,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
             curacion,
             critico: false,
             texto: `Usas ${consumible.nombre} y recuperas ${curacion} puntos de vida.`,
+            accionSprite: "use_consumable",
           };
         } else {
           if (!habilidad) {

@@ -1,9 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import SpriteHeroeAnimado from "@/components/combate/SpriteHeroeAnimado";
+import { propsSpriteHeroeHd } from "@/lib/sprites-heroes-hd";
 import type { CombateActivo, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
 import { useAnimacionesCombate } from "@/components/combate/animaciones/useAnimacionesCombate";
@@ -26,6 +25,11 @@ interface AsedioModalProps {
     habilidadId?: string
   ) => Promise<AccionAnimadaCombate | null>;
   onCerrar?: () => void;
+}
+
+interface AparienciaAsedio {
+  clase: string; sexo: string; profesionActivaId: string;
+  armaSpriteId: string | null; escudoSpriteId: string | null;
 }
 
 interface HabilidadCombate {
@@ -82,6 +86,15 @@ export default function AsedioModal({
   const [mostrarStatsRival, setMostrarStatsRival] = useState(false);
   const [panelStatsRival, setPanelStatsRival] = useState<"jugador" | "rival">("rival");
   const [mostrarResultado, setMostrarResultado] = useState(false);
+  const [apariencias, setApariencias] = useState<Record<string, AparienciaAsedio>>({});
+  useEffect(() => {
+    const controller = new AbortController();
+    void fetch(`/api/combate/apariencia?id=${encodeURIComponent(combate.id)}`, { signal: controller.signal, cache: "no-store" })
+      .then(response => response.ok ? response.json() : null)
+      .then(data => { if (!controller.signal.aborted && data?.apariencias) setApariencias(data.apariencias); })
+      .catch(() => { /* Preserve the recorded class while appearance data is unavailable. */ });
+    return () => controller.abort();
+  }, [combate.id]);
   const [procesandoLocal, setProcesandoLocal] = useState(false);
 
   useEffect(() => {
@@ -98,6 +111,7 @@ export default function AsedioModal({
     modoPresentacionActual,
     proyectilesVisibles,
     mostrarResultadoVisual,
+    estadoSprite,
   } = useAnimacionesCombate();
 
   /*
@@ -427,7 +441,6 @@ export default function AsedioModal({
     nivel: esAtacante ? combate.enemigoNivel : combate.jugadorNivel,
   };
 
-  const spritePropio = obtenerSpriteHeroe(personaje.clase, personaje.sexo, personaje.profesionActivaId);
   const claseActiva = CLASES[personaje.profesionActivaId];
   const recursoClase = claseActiva?.recursoCombate ?? "energia";
   const porcentajeEnergia = personaje.energiaMaxima > 0
@@ -451,14 +464,12 @@ export default function AsedioModal({
    * personaje rival al modelo de combate.
    */
 
-  const claseRival = esAtacante ? combate.defensorClase : combate.atacanteClase;
+  const rivalUsuarioId = esAtacante ? combate.defensorUsuarioId : combate.atacanteUsuarioId;
+  const aparienciaRival = rivalUsuarioId ? apariencias[rivalUsuarioId] : undefined;
+  const claseRival = aparienciaRival?.clase ?? (esAtacante ? combate.defensorClase : combate.atacanteClase);
 
-  const sexoRival = esAtacante ? combate.defensorSexo : combate.atacanteSexo;
+  const sexoRival = aparienciaRival?.sexo ?? (esAtacante ? combate.defensorSexo : combate.atacanteSexo);
 
-  const spriteRival = obtenerSpriteHeroe(
-    claseRival ?? "Guerrero",
-    sexoRival ?? "chico"
-  );
 
   const ultimaLineaLog =
     combate.log.length > 0
@@ -624,7 +635,7 @@ export default function AsedioModal({
                   sexo={personaje.sexo}
                   profesionActivaId={personaje.profesionActivaId}
                   nombre=""
-                  accion={actorImpactado === "jugador" ? "hurt" : actorAnimando === "jugador" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? "walk" : "idle"}
+                  {...propsSpriteHeroeHd(estadoSprite, "jugador", personaje.equipo.arma?.objetoId, personaje.equipo.manoSecundaria?.objetoId)}
                   sombra
                   contextoSombra="hero"
                 />
@@ -634,7 +645,7 @@ export default function AsedioModal({
                   sexo={personaje.sexo}
                   profesionActivaId={personaje.profesionActivaId}
                   nombre={personaje.nombre}
-                  accion={actorImpactado === "jugador" ? "hurt" : actorAnimando === "jugador" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? "walk" : "idle"}
+                  {...propsSpriteHeroeHd(estadoSprite, "jugador", personaje.equipo.arma?.objetoId, personaje.equipo.manoSecundaria?.objetoId)}
                   className={`z-10 ${modoPresentacionActual === "curacion" && actorAnimando === "jugador" ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && actorAnimando === "jugador" ? "combate-defensa-resplandor" : ""}`}
                 />
               </div>
@@ -712,35 +723,24 @@ export default function AsedioModal({
                     {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}
                   </div>
                 ))}
-                <div
-                  className="absolute inset-0 z-0 opacity-60 blur-xs"
-                  style={{
-                    transform:
-                      "translateY(45%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)",
-                  }}
-                >
-                  <Image
-                    src={spriteRival}
-                    alt="Sombra del rival"
-                    fill
-                    sizes="180px"
-                    style={{
-                      transform: "scaleX(-1)",
-                    }}
-                    className="object-contain brightness-0"
-                  />
-                </div>
-
-                <Image
-                  src={spriteRival}
-                  alt={nombreRival}
-                  fill
-                  sizes="180px"
-                  style={{
-                    transform: "scaleX(-1)",
-                  }}
-                  className={`relative z-10 object-contain [image-rendering:pixelated] ${modoPresentacionActual === "curacion" && actorAnimando === "enemigo" ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && actorAnimando === "enemigo" ? "combate-defensa-resplandor" : ""}`}
-                  priority
+                <SpriteHeroeAnimado
+                  clase={claseRival ?? "Guerrero"}
+                  sexo={sexoRival ?? "chico"}
+                  profesionActivaId={aparienciaRival?.profesionActivaId}
+                  {...propsSpriteHeroeHd(estadoSprite, "enemigo", aparienciaRival?.armaSpriteId, aparienciaRival?.escudoSpriteId)}
+                  reflejado
+                  nombre=""
+                  sombra
+                  contextoSombra="hero"
+                />
+                <SpriteHeroeAnimado
+                  clase={claseRival ?? "Guerrero"}
+                  sexo={sexoRival ?? "chico"}
+                  profesionActivaId={aparienciaRival?.profesionActivaId}
+                  {...propsSpriteHeroeHd(estadoSprite, "enemigo", aparienciaRival?.armaSpriteId, aparienciaRival?.escudoSpriteId)}
+                  reflejado
+                  nombre={nombreRival}
+                  className={`z-10 ${modoPresentacionActual === "curacion" && actorAnimando === "enemigo" ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && actorAnimando === "enemigo" ? "combate-defensa-resplandor" : ""}`}
                 />
               </div>
             </div>

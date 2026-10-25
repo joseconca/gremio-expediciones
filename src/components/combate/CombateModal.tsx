@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import { obtenerSpriteHeroe } from "@/lib/configuracionJuego";
 import SpriteHeroeAnimado from "@/components/combate/SpriteHeroeAnimado";
+import { propsSpriteHeroeHd } from "@/lib/sprites-heroes-hd";
 import { obtenerRutaSpriteEnemigo } from "@/lib/enemigos";
 import { CLASES } from "@/lib/progresion/clases";
 import type { CombatePve, Personaje } from "@/store/useGameStore";
@@ -43,6 +43,8 @@ interface ParticipanteCombatePartyUI {
   jugadorEvasion: number;
   jugadorNivel: number;
   profesionActivaId: string;
+  armaSpriteId?: string | null;
+  escudoSpriteId?: string | null;
   jugadorEnergiaActual: number;
   jugadorEnergiaMaxima: number;
   jugadorManaActual: number;
@@ -301,7 +303,6 @@ export default function CombateModal({
     [onAccionCombate, partyMode],
   );
 
-  const spriteHeroe = obtenerSpriteHeroe(personaje.clase, personaje.sexo, personaje.profesionActivaId);
   const claseActiva = CLASES[personaje.profesionActivaId];
   const recursoClase = claseActiva?.recursoCombate ?? "energia";
   const porcentajeEnergia = personaje.energiaMaxima > 0
@@ -325,6 +326,7 @@ export default function CombateModal({
     modoPresentacionActual,
     proyectilesVisibles,
     mostrarResultadoVisual,
+    estadoSprite,
   } = useAnimacionesCombate();
 
   const hpJugadorVisual = vidasTemporalesCombate?.jugador ?? combate.jugadorHp;
@@ -754,7 +756,6 @@ export default function CombateModal({
                 const caido = participante.estado === "caido" && hpParticipanteVisual <= 0;
                 const animando = actorAnimando === participante.usuarioId || actoresAnimando.includes(participante.usuarioId);
                 const impactado = actorImpactado === participante.usuarioId || objetivosMultiplesImpactados.includes(participante.usuarioId);
-                const sprite = obtenerSpriteHeroe(participante.clase, participante.sexo, participante.profesionActivaId);
                 const disponibleComoObjetivo = objetivosDisponibles.some((objetivo) => objetivo.id === participante.usuarioId);
                 const seleccionadoComoObjetivo = Boolean(
                   mostrarHabilidades &&
@@ -798,18 +799,16 @@ export default function CombateModal({
                         sexo={participante.sexo}
                         profesionActivaId={participante.profesionActivaId}
                         nombre=""
-                        accion={impactado ? "hurt" : animando && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? "walk" : "idle"}
+                        {...propsSpriteHeroeHd(estadoSprite, participante.usuarioId, participante.armaSpriteId, participante.escudoSpriteId)}
                         sombra
                         contextoSombra="party"
                       />
                       {seleccionadoComoObjetivo && (
                         <div aria-hidden="true" className="pointer-events-none absolute -inset-px z-[5]">
-                          <Image
-                            src={sprite}
-                            alt=""
-                            fill
-                            sizes="110px"
-                            className="combate-objetivo-silueta combate-objetivo-silueta-aliado object-contain [image-rendering:pixelated]"
+                          <SpriteHeroeAnimado
+                            clase={participante.clase} sexo={participante.sexo} profesionActivaId={participante.profesionActivaId}
+                            nombre="" {...propsSpriteHeroeHd(estadoSprite, participante.usuarioId, participante.armaSpriteId, participante.escudoSpriteId)}
+                            className="combate-objetivo-silueta combate-objetivo-silueta-aliado"
                           />
                         </div>
                       )}
@@ -818,7 +817,7 @@ export default function CombateModal({
                         sexo={participante.sexo}
                         profesionActivaId={participante.profesionActivaId}
                         nombre={participante.nombre}
-                        accion={impactado ? "hurt" : animando && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? "walk" : "idle"}
+                        {...propsSpriteHeroeHd(estadoSprite, participante.usuarioId, participante.armaSpriteId, participante.escudoSpriteId)}
                         className={`z-10 ${modoPresentacionActual === "curacion" && animando ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && animando ? "combate-defensa-resplandor" : ""}`}
                       />
                       <button
@@ -980,20 +979,17 @@ export default function CombateModal({
                   sexo={personaje.sexo}
                   profesionActivaId={personaje.profesionActivaId}
                   nombre=""
-                  accion={actorImpactado === "jugador" ? "hurt" : actorAnimando === "jugador" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? "walk" : "idle"}
+                  {...propsSpriteHeroeHd(estadoSprite, "jugador", personaje.equipo.arma?.objetoId, personaje.equipo.manoSecundaria?.objetoId)}
                   sombra
                   contextoSombra="hero"
                 />
 
                 {propioEsObjetivoHabilidad && (
                   <div aria-hidden="true" className="pointer-events-none absolute -inset-px z-[5]">
-                    <Image
-                      src={spriteHeroe}
-                      alt=""
-                      fill
-                      sizes="182px"
-                      className="combate-objetivo-silueta combate-objetivo-silueta-aliado object-contain [image-rendering:pixelated]"
-                      priority
+                    <SpriteHeroeAnimado
+                      clase={personaje.clase} sexo={personaje.sexo} profesionActivaId={personaje.profesionActivaId}
+                      nombre="" {...propsSpriteHeroeHd(estadoSprite, "jugador", personaje.equipo.arma?.objetoId, personaje.equipo.manoSecundaria?.objetoId)}
+                      className="combate-objetivo-silueta combate-objetivo-silueta-aliado"
                     />
                   </div>
                 )}
@@ -1004,7 +1000,7 @@ export default function CombateModal({
                   sexo={personaje.sexo}
                   profesionActivaId={personaje.profesionActivaId}
                   nombre={personaje.nombre}
-                  accion={actorImpactado === "jugador" ? "hurt" : actorAnimando === "jugador" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? "walk" : "idle"}
+                  {...propsSpriteHeroeHd(estadoSprite, "jugador", personaje.equipo.arma?.objetoId, personaje.equipo.manoSecundaria?.objetoId)}
                   className={`z-10 ${modoPresentacionActual === "curacion" && actorAnimando === "jugador" ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && actorAnimando === "jugador" ? "combate-defensa-resplandor" : ""}`}
                 />
               </div>
