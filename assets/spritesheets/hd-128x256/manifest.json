@@ -2107,7 +2107,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/f/frames",
       "audit": {
-        "validFrames": 28,
+        "validFrames": 32,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -2116,7 +2116,8 @@
           "use_consumable",
           "dodge",
           "block_shield",
-          "attack_sword"
+          "attack_sword",
+          "attack_axe"
         ],
         "actions": {
           "idle": {
@@ -2610,7 +2611,74 @@
             "distinctFrames": 4
           },
           "attack_axe": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "253649ca75f8b49a0803caabae050f185a7205660b4160cefba2ee8ea8245e44",
+                "bytes": 25145,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  30,
+                  94,
+                  117,
+                  248
+                ],
+                "pixelSha256": "4ee1ad6ff6a4db39c7e8a494c153341cb5c3c53df8eb2d5a440b813754ff3062"
+              },
+              "02": {
+                "sha256": "b73f19f98cedeb571a00af260cce19c5282b4fca6d255a3918ac73eaf2f31e0c",
+                "bytes": 25108,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  90,
+                  111,
+                  248
+                ],
+                "pixelSha256": "dfde68a49bde1f39c414e56b8d7b528bb01a22b5e997106542983ae8577016f1"
+              },
+              "03": {
+                "sha256": "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
+                "bytes": 23715,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  103,
+                  105,
+                  248
+                ],
+                "pixelSha256": "1d7c21825ebb9f0532c831360ac283220e21f2367c577556ad309ae28c5fed8d"
+              },
+              "04": {
+                "sha256": "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c",
+                "bytes": 24389,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  95,
+                  94,
+                  248
+                ],
+                "pixelSha256": "f47d737a23b59d1ce87969d8dacb78f382695da71f116aa51ab0b7a87c530886"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_spear": {
             "status": "missing"
@@ -2824,6 +2892,33 @@
           "prompt": "Exactly FOUR complete separated full-body animation poses of the SAME FEMALE Novato from reference, four evenly spaced equal cells in ONE horizontal transparent strip. Preserve exact female face, brown eyes, chestnut high ponytail and bangs, burgundy scarf, ivory rolled sleeve shirt fully covering torso, brown leather cross harness belt pouch fingerless gloves and boots, patched blue trousers. Identical crisp painted pixel-inspired RPG rendering, proportions, head size, costume, camera, lighting. Facing RIGHT in three-quarter view always, common ground line, upright height about same as reference across all poses, ponytail stays near shoulders. Empty hands for equipment overlay. Compact tall narrow silhouettes, feet and elbows close, no wide lunges or horizontal arm stretches; foreshorten limbs into right/depth. Generous transparent margin around hair scarf fingers boots and between figures. No weapon, shield, equipment, props, effects, shadows, labels or grid. SWORD slash with imaginary one-hand sword: 1 right empty grip beside shoulder, left hand guards chest; 2 lift bent right arm so grip near forehead, small torso windup; 3 compact diagonal downward slash, empty right gripping fist in front of waist, small torso turn; 4 return right fist near shoulder. No weapon visible.\n",
           "visualStatus": "review-pending",
           "equipmentStatus": "layer-test-pending"
+        },
+        "attack_axe": {
+          "sourceSha256": "a59d7fe67e197be042c8449df7068d87f63244d4bee15339b8803defc39409bf",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "commonCrop": [
+            612,
+            8,
+            1074,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "method": "shared crop and scale, no per-frame centering or resizing",
+          "scalePolicy": "fixed-across-actions",
+          "sourcePath": "assets/spritesheets/hd-128x256/novato/f/source/attack_axe-reference.png",
+          "generator": "built-in imagegen",
+          "referencePath": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "prompt": "Exactly FOUR complete separated full-body animation poses of the SAME FEMALE Novato from reference, four evenly spaced equal cells in ONE horizontal transparent strip. Preserve exact female face, brown eyes, chestnut high ponytail and bangs, burgundy scarf, ivory rolled sleeve shirt fully covering torso, brown leather cross harness belt pouch fingerless gloves and boots, patched blue trousers. Identical crisp painted pixel-inspired RPG rendering, proportions, head size, costume, camera, lighting. Facing RIGHT in three-quarter view always, common ground line, upright height about same as reference across all poses, ponytail stays near shoulders. Empty hands for equipment overlay. Compact tall narrow silhouettes, feet and elbows close, no wide lunges or horizontal arm stretches; foreshorten limbs into right/depth. Generous transparent margin around hair scarf fingers boots and between figures. No weapon, shield, equipment, props, effects, shadows, labels or grid. AXE chop with imaginary one-hand axe: 1 empty right gripping fist beside shoulder; 2 raise bent right arm just over head, left hand guards chest; 3 compact downward chop right fist ends just before belt, knees flex; 4 recover grip toward shoulder. No axe or equipment drawn.\n",
+          "visualStatus": "review-pending",
+          "equipmentStatus": "layer-test-pending"
         }
       },
       "frameProvenance": {
@@ -2938,7 +3033,101 @@
         "attack_sword/04": {
           "source": "sources.attack_sword",
           "frame": 4
+        },
+        "attack_axe/01": {
+          "source": "sources.attack_axe",
+          "frame": 1
+        },
+        "attack_axe/02": {
+          "source": "sources.attack_axe",
+          "frame": 2
+        },
+        "attack_axe/03": {
+          "source": "sources.attack_axe",
+          "frame": 3
+        },
+        "attack_axe/04": {
+          "source": "sources.attack_axe",
+          "frame": 4
         }
+      },
+      "equipmentTests": {
+        "attack_sword": {
+          "status": "engineering-preview-pending-visual-review",
+          "weaponPath": "public/sprites/items/weapons/espada_hierro.png",
+          "weaponSha256": "8b21d32318b5d8778325ea8899f2e74524c9c98bce540656844faf02758f7589",
+          "weaponGrip": [
+            32,
+            55
+          ],
+          "weaponScale": 1,
+          "equipmentCanvas": [
+            256,
+            256
+          ],
+          "bodyOrigin": [
+            64,
+            0
+          ],
+          "frameIndex": "shared-body-and-equipment",
+          "frames": [
+            {
+              "grip": [
+                48,
+                132
+              ],
+              "angleDegrees": 30,
+              "depth": "behind",
+              "handMaskRadius": 5,
+              "bodySha256": "2cdc01930823f3356c34672d3037877c10a3b25337d5ff78350f147e0f5fba9a"
+            },
+            {
+              "grip": [
+                61,
+                114
+              ],
+              "angleDegrees": -20,
+              "depth": "behind",
+              "handMaskRadius": 5,
+              "bodySha256": "db31283eb15589cf13fb33aac39b277606ed938f4afe84955356f0253579e4e0"
+            },
+            {
+              "grip": [
+                96,
+                184
+              ],
+              "angleDegrees": -135,
+              "depth": "front",
+              "handMaskRadius": 5,
+              "bodySha256": "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9"
+            },
+            {
+              "grip": [
+                45,
+                132
+              ],
+              "angleDegrees": 30,
+              "depth": "behind",
+              "handMaskRadius": 5,
+              "bodySha256": "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
+            }
+          ],
+          "limitations": [
+            "Uses current item icon at native size to prove compositing; not a new HD equipment asset.",
+            "Hand masks and anchors are explicit candidates tied to current body hashes.",
+            "No runtime promotion; test does not validate other weapons or actions."
+          ]
+        }
+      },
+      "bodyScale": {
+        "generatedSourceScale": 0.23,
+        "sourceCanvas": [
+          2172,
+          724
+        ],
+        "feetBaseline": 248,
+        "nominalStandingHeight": 156,
+        "note": "Same scale as male reference. Ponytail/arm height does not change body scale."
       }
     },
     {
