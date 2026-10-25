@@ -109,7 +109,7 @@ Novato masculino: 60 PNG corporales presentes; atlas candidato completo. La esca
 
 `normalizar-accion-hd.py --fixed-scale 0.23` conserva esta escala y rechaza poses que no caben, en vez de encoger automáticamente el personaje.
 
-Los commits de esta continuación están conservados localmente. Publicación pendiente: el conector rechazó el PNG fuente por exceder el presupuesto de revisión automática, y este equipo no tiene credenciales Git disponibles. No confundir validación local con publicación remota.
+El bloqueo inicial del conector se resolvió el 25-10-2026 mediante Git con permiso. La continuación se publicó en `creacion-sprite-sheets`; una descarga independiente desde GitHub verificó los PNG completos y sus hashes. El recibo de publicación está en el manifiesto.
 
 ## Entrega corporal de Novato — 2026-10-25
 
@@ -121,7 +121,7 @@ Los commits de esta continuación están conservados localmente. Publicación pe
 
 Pendiente: revisión artística de los bucles a tamaño de combate, compatibilidad de escudo/dos manos/arco/consumible e integración de las 15 acciones en el renderer, incluidos reflejo horizontal y movimiento reducido. Mantener el runtime anterior hasta esa revisión y no fusionar con main sin aprobación.
 
-La copia local conserva un commit por acción y checkpoints de herramientas. La entrega incluye una copia transportable de esos commits; su existencia no equivale a publicación remota. La sincronización depende de completar el acceso de Git a GitHub.
+Se conservan los commits por acción y los checkpoints de herramientas. Los 29 commits de arte y el contrato compartido se publicaron en `creacion-sprite-sheets`. La verificación remota del commit `fd6b653d` confirmó 120 fotogramas, 28 fuentes, dos atlas y ocho capas de espada; las 14 pruebas locales pasan. La revisión artística y la promoción al runtime siguen pendientes.
 
 ## Agarres compartidos entre clases — 2026-10-25
 

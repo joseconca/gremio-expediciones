@@ -5748,9 +5748,19 @@
     }
   ],
   "publication": {
+    "state": "published-binary-verified",
+    "branch": "creacion-sprite-sheets",
     "remoteBaseCommit": "21468d54284c82530352e2d9ca9acc8869ebc46b",
-    "state": "prepared-for-authorized-git-push",
-    "note": "Git permission granted in this session; publish with fast-forward push and verify remote binary objects before declaring publication."
+    "lastVerifiedArtworkCommit": "fd6b653d64881ced8199cbfde4da3a4dcb49c8d7",
+    "verifiedDate": "2026-10-25",
+    "verifiedObjects": {
+      "bodyFrames": 120,
+      "originalSources": 28,
+      "atlases": 2,
+      "weaponLayers": 8
+    },
+    "verification": "Independent shallow clone downloaded from GitHub; original/source SHA256, PNG CRC and full pixel decode checked. Metadata receipt is a later commit.",
+    "localTestsPassed": 14
   },
   "equipmentRigs": {
     "humanoid-m-v1": {
