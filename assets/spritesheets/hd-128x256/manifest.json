@@ -451,10 +451,26 @@
         "attack_dagger/04": {
           "source": "sources.attack_dagger",
           "frame": 4
+        },
+        "attack_bow/01": {
+          "source": "sources.attack_bow",
+          "frame": 1
+        },
+        "attack_bow/02": {
+          "source": "sources.attack_bow",
+          "frame": 2
+        },
+        "attack_bow/03": {
+          "source": "sources.attack_bow",
+          "frame": 3
+        },
+        "attack_bow/04": {
+          "source": "sources.attack_bow",
+          "frame": 4
         }
       },
       "audit": {
-        "validFrames": 40,
+        "validFrames": 44,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -466,7 +482,8 @@
           "attack_sword",
           "attack_axe",
           "attack_spear",
-          "attack_dagger"
+          "attack_dagger",
+          "attack_bow"
         ],
         "actions": {
           "idle": {
@@ -1170,7 +1187,74 @@
             "distinctFrames": 4
           },
           "attack_bow": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "9cd2ed2449b02bf2f38ec60adafbab807a75a4fed04fee7f128dd9a85618e77c",
+                "bytes": 25412,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  89,
+                  122,
+                  248
+                ],
+                "pixelSha256": "1b3e2c85e7961bc18046101d74a02d82bf35c6db41cd7dedee7d701962392e9e"
+              },
+              "02": {
+                "sha256": "eeafecfa883d9239ed640de18534a2529a17982cf89bc83ce47d9bb99aa62b7e",
+                "bytes": 24973,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  89,
+                  120,
+                  248
+                ],
+                "pixelSha256": "95c12212fd6a03e5aa49203a2b49aa93a5ffc3fd4cf0aa7f2a251c13120c027e"
+              },
+              "03": {
+                "sha256": "0d83fbe687965daf20c517e30cd5f2a754e3c623742494afa2258cc336cd7fc7",
+                "bytes": 24961,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  89,
+                  115,
+                  248
+                ],
+                "pixelSha256": "83f493b9d48595d730226b1aefd5cbd5af8c9268fc3227e04ff7574e618a778c"
+              },
+              "04": {
+                "sha256": "b95810ccdb4d2018f4cc59b0726cdb2b878a0fb5f31cc46978c14a1ed9c01d70",
+                "bytes": 25479,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  89,
+                  111,
+                  248
+                ],
+                "pixelSha256": "6485698ebada089677aabaeeb4bd5149054d4d8183c2544e9bb9cf8bc9a43231"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_staff": {
             "status": "missing"
@@ -1386,6 +1470,32 @@
           "generator": "built-in imagegen",
           "referencePath": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
           "prompt": "Exactly FOUR full body Novato male dagger attack poses, in four equally spaced cells in one horizontal strip, transparent background. Identity reference exact face brown hair red scarf ivory rolled shirt brown harness gloves pouch boots blue patched pants. Compact tall NARROW silhouettes, width <= half head-to-boot height, close stance, elbows stay close to ribcage, foreshorten attacking arm into right-facing three-quarter depth. Poses: 1 empty right dagger grip beside belt, left palm guards chest; 2 right fist pulled to near ribs, slight coil; 3 compact short thrust right fist reaches just in front of waist, left hand guards chest, weight advances with feet still close; 4 retract hand to belt. Right hand holds IMAGINARY dagger only, no dagger visible. Same anatomy scale and head size in four poses, identical camera finish palette, boots fully visible on common baseline, generous clear margins. No long stretched arms, wide lunges, weapons, props, shadows, effects, text or grid. Crisp hand painted pixel inspired RPG art.\n",
+          "visualStatus": "review-pending",
+          "equipmentStatus": "layer-test-pending"
+        },
+        "attack_bow": {
+          "sourceSha256": "4a7e6d0e4699f3fbf4be992dd4d5e8bb0fd302f638bf9fd503cfbfd78dadd25e",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "commonCrop": [
+            577,
+            24,
+            1060,
+            686
+          ],
+          "scale": 0.2401656314699793,
+          "origin": [
+            6,
+            89
+          ],
+          "alphaThreshold": 128,
+          "method": "shared crop and scale, no per-frame centering or resizing",
+          "sourcePath": "assets/spritesheets/hd-128x256/novato/m/source/attack_bow-reference.png",
+          "generator": "built-in imagegen",
+          "referencePath": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "prompt": "Game sprite strip exactly FOUR full-body male Novato poses in one row, transparent background. Use reference identity/style exactly, chestnut hair red scarf ivory rolled shirt brown leather harness gloves pouch boots blue patched pants. attack_bow animation with EMPTY hands for independent bow layer: 1 left empty gripping hand forward at chest height, right hand near chest; 2 draw right hand towards cheek, left elbow slightly bent; 3 full draw with right fingers beside cheek and left empty gripping hand in front of chest; 4 release, right fingers open beside jaw and left arm stable. Facing RIGHT three-quarter. Compact tall narrow silhouettes, width <= 0.55 height, FORESHORTENED bow arm angled diagonally into right/depth, feet close together, scarf close to back. Keep same head size scale and camera, don't spread arms horizontally or shrink a pose. Four distinct coherent phases, generous margins all around whole body. No bow, arrow, string, quiver, props, effects, shadows, labels or grid. Match crisp hand painted pixel inspired RPG finish.\n",
           "visualStatus": "review-pending",
           "equipmentStatus": "layer-test-pending"
         }
