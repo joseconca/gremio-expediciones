@@ -44,7 +44,7 @@
     "framePathPattern": "assets/spritesheets/hd-128x256/<clase>/<m|f>/frames/<accion>/<clase>-<sexo>-<accion>-<01..04>.png",
     "assemblyPolicy": "Assemble final 512x3840 sheet only after all 60 independent frame PNGs for that class/sex pass QA"
   },
-  "nextVariant": "novato-f",
+  "nextVariant": "novato-m",
   "classes": [
     {
       "id": "novato",
@@ -1118,68 +1118,68 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "69bb909a8243451d7346c720ec7d0756e4afedb617ff2091dec397eb3a6204f4",
-                "bytes": 20566,
+                "sha256": "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
+                "bytes": 25313,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  36,
-                  90,
-                  97,
-                  246
+                  11,
+                  92,
+                  109,
+                  248
                 ],
-                "pixelSha256": "1aea3f2a3773789dde43cc834fabc8dce3b48d774392a84c403d24e9ade3d2eb"
+                "pixelSha256": "c5fe849eb7200a9b2be6b5bbfdec538d1076b263773c1acaaf79f152f8da1a1a"
               },
               "02": {
-                "sha256": "d25863f4fa397ceb504fa7584d771aa4b89be225ea3fab07bfb182c213617284",
-                "bytes": 20670,
+                "sha256": "0fd9a42095cd1675a9044ac97a3373f187b949983c002d31bc6e8418789b3ac0",
+                "bytes": 24981,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  32,
-                  91,
-                  100,
-                  246
-                ],
-                "pixelSha256": "8ebda0db2905f5d4a8b17ebe437979fafa994d8c58439c8fef81570b5e3d7e5e"
-              },
-              "03": {
-                "sha256": "698c71576457f8db398ea8d1c8d18a82779f37bb0348495351d427edaaf31dc2",
-                "bytes": 19750,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  33,
-                  96,
+                  14,
+                  92,
                   100,
                   248
                 ],
-                "pixelSha256": "983d077e35a5ec09c2795047a92dc4007a55ac952dbed62ad8b83b5ed9c49cd7"
+                "pixelSha256": "5028d76def6e12a84a614f1b94e108069ad12acc75c3ed9c75a8ef59bcb40e58"
               },
-              "04": {
-                "sha256": "18109a3735486c100d6c67b268e72e3c4059b6bc814ba5d3c8a43828c272f259",
-                "bytes": 19707,
+              "03": {
+                "sha256": "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
+                "bytes": 25743,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  28,
-                  90,
-                  88,
-                  246
+                  11,
+                  92,
+                  117,
+                  248
                 ],
-                "pixelSha256": "54d770e65677546f6a6ec3ac9286aee73a4f8bb082038b3b3df4442fcc0adf1b"
+                "pixelSha256": "7a5ac4e38aff8bf6a1a19e38dcdef34d23dbe5883a4ac157ac0b60d17ba842a6"
+              },
+              "04": {
+                "sha256": "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3",
+                "bytes": 25181,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  92,
+                  111,
+                  248
+                ],
+                "pixelSha256": "74ebd560e288d88b87f6dbacf52edcd563333890a98117a56e10dd895f9ce12e"
               }
             },
             "distinctFrames": 4
@@ -1764,31 +1764,31 @@
           "scalePolicy": "fixed-across-actions"
         },
         "attack_spear": {
-          "sourceSha256": "6ff0133bb6fe34f86c2f0e88f1c55479272bc1ad3266896a69d20c26f2cac4f3",
+          "sourceSha256": "b767b8420712918e30e8b35c5000c5df890b76792e86a09b74ea886621e04d08",
           "sourceDimensions": [
             2172,
             724
           ],
           "commonCrop": [
-            648,
-            20,
-            963,
-            706
+            604,
+            18,
+            1064,
+            695
           ],
           "scale": 0.23,
           "origin": [
-            28,
-            90
+            11,
+            92
           ],
           "alphaThreshold": 128,
           "method": "shared crop and scale, no per-frame centering or resizing",
+          "scalePolicy": "fixed-across-actions",
           "sourcePath": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
           "generator": "built-in imagegen",
           "referencePath": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
-          "prompt": "Create exactly FOUR game sprite poses horizontally in four equal cells on a wide transparent strip, reference style and character unchanged. Novato male with brown hair red scarf ivory shirt brown leather harness gloves boots blue patched trousers. Action spear thrust with EMPTY hands for later equipment overlay: ready two hand grip, draw back, compact thrust in right-facing three quarter perspective with FORESHORTENED bent arms directed diagonally into depth/right, return guard. IMPORTANT each character must have tall narrow silhouette, width at most HALF its height, feet close, elbows close to torso, short scarf close to back. Do NOT use a wide lunge or horizontally outstretched arms. Head-to-boot height identical in four poses, centered on quarter centers, large transparent margins, fully visible fingers boots hair scarf. No weapon, props, effects, shadows, labels, grid. Same crisp painted pixel-inspired RPG finish and costume as reference. Four anatomically coherent distinct poses.\n",
+          "prompt": "Exactly FOUR complete separated full-body Novato male animation poses, in four evenly spaced cells on one horizontal transparent strip. Reference image defines exact identity, proportions, camera and crisp painted pixel-inspired RPG style: chestnut spiky hair, burgundy scarf, ivory rolled shirt, brown leather cross harness belt pouch fingerless gloves boots, patched blue trousers. Facing right in three-quarter view in every pose. Keep same head size and costume, common ground line, generous transparent margins all around, empty hands for future equipment overlay. Compact tall narrow silhouette with width <= half body height, feet close and elbows close to ribcage, foreshorten limbs into depth; no wide lunges or horizontally stretched arms. No weapon, shield, props, effects, shadows, text or grid. Use image1 ONLY for exact MALE identity and clothing/style. Image2 is pose reference ONLY; do not copy female face or ponytail. Recreate the FOUR spear animation poses of image2 with the MALE Novato. Two empty gripping hands clearly SEPARATED along an imaginary diagonal spear shaft: right hand near lower ribs, left hand a short forearm length ahead at chest; draw back; compact forward thrust keeping both fists separated; retract. Do NOT clasp hands or form a prayer pose. Keep same upright body proportions and size as male image1, right-facing camera and compact narrow silhouette; no spear or other props drawn.\n",
           "visualStatus": "review-pending",
-          "equipmentStatus": "layer-test-pending",
-          "scalePolicy": "fixed-across-actions"
+          "equipmentStatus": "layer-test-pending"
         },
         "attack_dagger": {
           "sourceSha256": "e7f4b930d4cb41b583006c6fd0ec5bd3d62fce50f35200b263b6f651528c0dd8",
