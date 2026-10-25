@@ -1,0 +1,114 @@
+{
+  "status": "contact-review-required",
+  "classId": "sacerdote",
+  "sex": "f",
+  "actions": [
+    "idle",
+    "walk",
+    "hurt",
+    "use_consumable"
+  ],
+  "bodyHashes": {
+    "idle": [
+      "31d8b40948ea01c640aa028cc6a28434ec4eebb26a7240e34a437847aeb16559",
+      "852825533e01cdfe9741e332bd2a9f3b028407818f1fb15bd1422e634341a613",
+      "9c25a64247d697340231bd33cfea0521d56ef7c4fe5c889056b7dee13816875e",
+      "06fa3242f7c4deb916d7bbdc60e5b565ec033c4831208370dc3439e439c8ac39"
+    ],
+    "walk": [
+      "bcfa107a02e9fb54f118ac076afaf38e6ce1a675c66fb14ca6725f618d52ae11",
+      "6451deb377beecd9e1371ef2aff58296c5bcaf415d66b50ed0df0330ef1ea026",
+      "245034dfc9da2b01e5515eb485bcaa736eb0922ef244965db452058567c9a011",
+      "39b957cbe27e5ad1f3ed59a19bfefd2b4aa516b64ead3606c60760e9294fbd8d"
+    ],
+    "hurt": [
+      "29924d6964e113124fd099688ad07d0f1cd5086b461052ca2a3c2de9033362d3",
+      "e40a6d3a70f76865abb8ae04ec6e6ae41d448d97c580f5c441e589ca8e64eabe",
+      "5550706fed1105c6d7fbb26663c670b377d24445acf10504f0950cf32db2ab98",
+      "3cb06f16481e8c2b1f366e487d854d247196689318e0c1cb4600da976d420192"
+    ],
+    "use_consumable": [
+      "6d988971e65ff141755b8a1f74c32e460932b0cdf9b624f1ca9074aa15d1dd7d",
+      "7dceb01774d29a21c9b537c1b9563fbc4024ccf57d7333fc5f4cb0dd783ee469",
+      "f0b9bb581d22939933f8087b57226ac06bd460998b4a7e95ff8cde91e55aee10",
+      "f687df6703e5ce70b239a0dfbfba0a11e9df6fa3d9d6655016fc333f49221b2c"
+    ]
+  },
+  "contactChecks": 388,
+  "warnings": [
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "arco_cazador",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "arco_madera",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "grimorio_eclipse",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "guantes_lucha",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "libro_aprendiz",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "punos_lobo",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "escudo_guardian",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "escudo_madera",
+      "point": [
+        97,
+        184
+      ]
+    }
+  ],
+  "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
+  "artisticApproval": "not-automatic"
+}
