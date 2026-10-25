@@ -2039,11 +2039,12 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/f/frames",
       "audit": {
-        "validFrames": 8,
+        "validFrames": 12,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
-          "walk"
+          "walk",
+          "hurt"
         ],
         "actions": {
           "idle": {
@@ -2187,7 +2188,74 @@
             "distinctFrames": 4
           },
           "hurt": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+                "bytes": 25148,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  96,
+                  113,
+                  248
+                ],
+                "pixelSha256": "f13ad536acf2be2c11674bd7ef3866e714b768f459554ad24fb33fec37b4d231"
+              },
+              "02": {
+                "sha256": "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+                "bytes": 23546,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  95,
+                  105,
+                  248
+                ],
+                "pixelSha256": "607a822b1693462ed67e199863ef73c279cda14535345310f7ab8ab0c4f678b5"
+              },
+              "03": {
+                "sha256": "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+                "bytes": 21058,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  114,
+                  94,
+                  248
+                ],
+                "pixelSha256": "d618374fbf63f790a6db852709e065dec8c9feb904444242e4270d580a03ec7a"
+              },
+              "04": {
+                "sha256": "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81",
+                "bytes": 25306,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  92,
+                  95,
+                  248
+                ],
+                "pixelSha256": "97a92f68d5ad7b1010738c914299b1eaa3028a0ef4636d31dba2a47cdcd994f7"
+              }
+            },
+            "distinctFrames": 4
           },
           "use_consumable": {
             "status": "missing"
@@ -2281,6 +2349,33 @@
           "prompt": "Exactly FOUR complete separated full-body animation poses of the SAME FEMALE Novato from reference, four evenly spaced equal cells in ONE horizontal transparent strip. Preserve exact female face, brown eyes, chestnut high ponytail and bangs, burgundy scarf, ivory rolled sleeve shirt fully covering torso, brown leather cross harness belt pouch fingerless gloves and boots, patched blue trousers. Identical crisp painted pixel-inspired RPG rendering, proportions, head size, costume, camera, lighting. Facing RIGHT in three-quarter view always, common ground line, upright height about same as reference across all poses, ponytail stays near shoulders. Empty hands for equipment overlay. Compact tall narrow silhouettes, feet and elbows close, no wide lunges or horizontal arm stretches; foreshorten limbs into right/depth. Generous transparent margin around hair scarf fingers boots and between figures. No weapon, shield, equipment, props, effects, shadows, labels or grid. Four-phase WALK CYCLE: 1 right foot forward left foot back and opposite arm swing; 2 passing pose weight on right foot, left knee passes under hip, arms near sides; 3 left foot forward right back, opposite arm swing; 4 opposite passing pose weight on left foot and right knee forward. Actual alternating feet, same limb lengths, subtle vertical bob only, arms swing naturally close to torso.\n",
           "visualStatus": "review-pending",
           "equipmentStatus": "layer-test-pending"
+        },
+        "hurt": {
+          "sourceSha256": "3f368c7a5b59655753bc4f49df49074540005292258abf90a24e4c919e809ffd",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "commonCrop": [
+            642,
+            22,
+            1069,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            92
+          ],
+          "alphaThreshold": 128,
+          "method": "shared crop and scale, no per-frame centering or resizing",
+          "scalePolicy": "fixed-across-actions",
+          "sourcePath": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+          "generator": "built-in imagegen",
+          "referencePath": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "prompt": "Exactly FOUR complete separated full-body animation poses of the SAME FEMALE Novato from reference, four evenly spaced equal cells in ONE horizontal transparent strip. Preserve exact female face, brown eyes, chestnut high ponytail and bangs, burgundy scarf, ivory rolled sleeve shirt fully covering torso, brown leather cross harness belt pouch fingerless gloves and boots, patched blue trousers. Identical crisp painted pixel-inspired RPG rendering, proportions, head size, costume, camera, lighting. Facing RIGHT in three-quarter view always, common ground line, upright height about same as reference across all poses, ponytail stays near shoulders. Empty hands for equipment overlay. Compact tall narrow silhouettes, feet and elbows close, no wide lunges or horizontal arm stretches; foreshorten limbs into right/depth. Generous transparent margin around hair scarf fingers boots and between figures. No weapon, shield, equipment, props, effects, shadows, labels or grid. Receive DAMAGE and recover: 1 small backward recoil, brows tense; 2 right hand lifts protectively towards chest, shoulders recoil; 3 knees bend slightly and torso folds a little forward, left hand guards abdomen; 4 recover upright ready stance. No blood or wounds. Keep anatomy proportions and head size fixed when crouching.\n",
+          "visualStatus": "review-pending",
+          "equipmentStatus": "layer-test-pending"
         }
       },
       "frameProvenance": {
@@ -2314,6 +2409,22 @@
         },
         "walk/04": {
           "source": "sources.walk",
+          "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt",
           "frame": 4
         }
       }
