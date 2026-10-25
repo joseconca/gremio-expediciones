@@ -21,6 +21,16 @@ class ScaleTests(unittest.TestCase):
                     mask=Image.new('L',im.size);mask.putdata([255 if r>200 and g<40 and b<40 and a>128 else 0 for r,g,b,a in im.convert('RGBA').getdata()]);box=mask.getbbox()
                     sizes.append((box[2]-box[0],box[3]-box[1]))
             self.assertEqual(sizes[0],sizes[1])
+    def test_original_width_need_not_be_divisible_by_four(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp);source=root/'source.png';self.source(source,True)
+            with Image.open(source) as im: original=im.crop((0,0,1198,300))
+            original.save(source)
+            metadata=normalize(source,root/'frames','novato','m','walk',fixed_scale=.5)
+            self.assertEqual(metadata['sourceDimensions'],[1198,300])
+            self.assertEqual(len(list((root/'frames').glob('*.png'))),4)
+            with Image.open(root/'frames/novato-m-walk-04.png') as last:
+                self.assertEqual(last.size,(128,256));self.assertIsNotNone(last.getchannel('A').getbbox())
     def test_clipping_rejected_before_writing_frames(self):
         with tempfile.TemporaryDirectory() as temp:
             root=Path(temp);source=root/'source.png';self.source(source,True)

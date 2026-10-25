@@ -34,6 +34,21 @@ def main():
     contact.save(out/'contact.png')
     # No second state file: all technical progress is in the sole manifest.
     (out/f'{args.class_id}-{args.sex}-sheet-progress.json').unlink(missing_ok=True)
+    # Compact synchronized comparison; canonical cells and per-action GIFs stay intact.
+    overview=[]
+    for phase in range(4):
+        board=Image.new('RGB',(512,32+208*((len(actions)+3)//4)),'#242630')
+        pen=ImageDraw.Draw(board)
+        pen.text((10,10),f'{args.class_id} {args.sex.upper()} | {len(actions)} acciones | revision pendiente',fill='white')
+        for slot,action in enumerate(actions):
+            x=(slot%4)*128;y=32+(slot//4)*208;row=API['ACTIONS'].index(action)
+            pen.text((x+4,y+5),action,fill='#c6cbd6')
+            cell=sheet.crop((phase*128,row*256,phase*128+128,row*256+256)).crop((0,72,128,256))
+            board.paste(cell,(x,y+24),cell)
+        overview.append(board)
+    if actions:
+        overview[0].save(out/'overview.gif',save_all=True,append_images=overview[1:],duration=180,loop=0)
+        overview[0].save(out/'overview.png')
     print('Preview rows: '+', '.join(actions))
 
 if __name__=='__main__':main()

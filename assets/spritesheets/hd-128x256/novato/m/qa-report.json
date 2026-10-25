@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "status": "passed",
-  "assembledAtUtc": "2026-10-25T13:57:41.868617+00:00",
+  "assembledAtUtc": "2026-10-25T14:23:07.909143+00:00",
   "classId": "novato",
   "sex": "m",
   "sheetPath": "assets\\spritesheets\\hd-128x256\\novato\\m\\novato-m-sheet.png",
-  "sheetSha256": "4bbd495e7157415c1b5512203aad5d1e1b52545dea76d9ec69cec6e3150f67e3",
+  "sheetSha256": "458b1e0654a4c199d6d0ff550b8ff0ba69fbe203f34208871335518cee8d14e2",
   "sheetDimensions": [
     512,
     3840
@@ -441,45 +441,45 @@
         {
           "frame": 1,
           "path": "assets\\spritesheets\\hd-128x256\\novato\\m\\frames\\attack_spear\\novato-m-attack_spear-01.png",
-          "sha256": "69bb909a8243451d7346c720ec7d0756e4afedb617ff2091dec397eb3a6204f4",
+          "sha256": "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
           "alpha_bbox": [
-            36,
-            90,
-            97,
-            246
+            11,
+            92,
+            109,
+            248
           ]
         },
         {
           "frame": 2,
           "path": "assets\\spritesheets\\hd-128x256\\novato\\m\\frames\\attack_spear\\novato-m-attack_spear-02.png",
-          "sha256": "d25863f4fa397ceb504fa7584d771aa4b89be225ea3fab07bfb182c213617284",
+          "sha256": "0fd9a42095cd1675a9044ac97a3373f187b949983c002d31bc6e8418789b3ac0",
           "alpha_bbox": [
-            32,
-            91,
+            14,
+            92,
             100,
-            246
+            248
           ]
         },
         {
           "frame": 3,
           "path": "assets\\spritesheets\\hd-128x256\\novato\\m\\frames\\attack_spear\\novato-m-attack_spear-03.png",
-          "sha256": "698c71576457f8db398ea8d1c8d18a82779f37bb0348495351d427edaaf31dc2",
+          "sha256": "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
           "alpha_bbox": [
-            33,
-            96,
-            100,
+            11,
+            92,
+            117,
             248
           ]
         },
         {
           "frame": 4,
           "path": "assets\\spritesheets\\hd-128x256\\novato\\m\\frames\\attack_spear\\novato-m-attack_spear-04.png",
-          "sha256": "18109a3735486c100d6c67b268e72e3c4059b6bc814ba5d3c8a43828c272f259",
+          "sha256": "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3",
           "alpha_bbox": [
-            28,
-            90,
-            88,
-            246
+            18,
+            92,
+            111,
+            248
           ]
         }
       ]

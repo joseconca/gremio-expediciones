@@ -110,3 +110,15 @@ Novato masculino: 60 PNG corporales presentes; atlas candidato completo. La esca
 `normalizar-accion-hd.py --fixed-scale 0.23` conserva esta escala y rechaza poses que no caben, en vez de encoger automáticamente el personaje.
 
 Los commits de esta continuación están conservados localmente. Publicación pendiente: el conector rechazó el PNG fuente por exceder el presupuesto de revisión automática, y este equipo no tiene credenciales Git disponibles. No confundir validación local con publicación remota.
+
+## Entrega corporal de Novato — 2026-10-25
+
+- Masculino y femenino: 15 acciones y 60 PNG individuales por variante; sin equipo incrustado. Ambas hojas de 512×3840 son candidatas de revisión, no recursos promovidos al juego.
+- Escala común, originales grandes conservados y prompts de las tandas nuevas registrados en el manifiesto. Los prompts ausentes del checkpoint heredado se identifican como ausentes, sin inventarlos.
+- Corregidos el agarre de lanza masculino (dos manos separadas) y la alternancia de piernas de Caminar femenino. El normalizador admite el pequeño cambio de tamaño de la fuente editada sin deformarla ni perder un personaje.
+- Previews individuales y comparativa animada de las 15 acciones. La comparativa sincroniza las cuatro fases para revisión; no define tiempos de combate.
+- Prueba de espada en ambos sexos: agarres, ángulos, profundidad y máscaras de mano ligados a los hashes del cuerpo. Lienzo de equipo 256×256 con origen corporal (64,0), sin reducir el cuerpo para encajar el arma. Se usa el icono actual de espada a tamaño nativo como ensayo técnico; no se declara equipo HD nuevo ni validación del resto del catálogo.
+
+Pendiente: revisión artística de los bucles a tamaño de combate, compatibilidad de escudo/dos manos/arco/consumible e integración de las 15 acciones en el renderer, incluidos reflejo horizontal y movimiento reducido. Mantener el runtime anterior hasta esa revisión y no fusionar con main sin aprobación.
+
+La copia local conserva un commit por acción y checkpoints de herramientas. La entrega incluye una copia transportable de esos commits; su existencia no equivale a publicación remota. La sincronización depende de completar el acceso de Git a GitHub.

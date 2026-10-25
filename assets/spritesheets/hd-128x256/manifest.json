@@ -5,7 +5,7 @@
   "startedAt": "2026-10-24",
   "baseBranch": "main",
   "baseCommit": "c2c63889b4f31f8a0c34b8b3f3b9b13aee2ae90c",
-  "status": "recovery-in-progress",
+  "status": "production-in-progress",
   "technicalContract": {
     "frame": [
       128,
@@ -44,7 +44,7 @@
     "framePathPattern": "assets/spritesheets/hd-128x256/<clase>/<m|f>/frames/<accion>/<clase>-<sexo>-<accion>-<01..04>.png",
     "assemblyPolicy": "Assemble final 512x3840 sheet only after all 60 independent frame PNGs for that class/sex pass QA"
   },
-  "nextVariant": "novato-f",
+  "nextVariant": "novato-m",
   "classes": [
     {
       "id": "novato",
@@ -1656,8 +1656,9 @@
           "generator": "built-in imagegen",
           "visualStatus": "review-pending",
           "equipmentStatus": "layer-test-pending",
-          "promptFile": "source/production-prompts.json",
-          "scalePolicy": "fixed-across-actions"
+          "scalePolicy": "fixed-across-actions",
+          "inheritedMissingPromptFile": "source/production-prompts.json",
+          "promptAvailability": "not-preserved-in-inherited-checkpoint"
         },
         "hurt": {
           "sourceSha256": "966cc0374715c5d00396d71c31526dd037df57908d8e0b8328b3044ea888aa30",
@@ -1682,8 +1683,9 @@
           "generator": "built-in imagegen",
           "visualStatus": "review-pending",
           "equipmentStatus": "layer-test-pending",
-          "promptFile": "source/production-prompts.json",
-          "scalePolicy": "fixed-across-actions"
+          "scalePolicy": "fixed-across-actions",
+          "inheritedMissingPromptFile": "source/production-prompts.json",
+          "promptAvailability": "not-preserved-in-inherited-checkpoint"
         },
         "use_consumable": {
           "sourceSha256": "ee3cc3875a9826d12fa232b84acd3c4f22b4dcfc4ae137b894636f6dcee6a8fb",
@@ -1708,8 +1710,9 @@
           "generator": "built-in imagegen",
           "visualStatus": "review-pending",
           "equipmentStatus": "layer-test-pending",
-          "promptFile": "source/production-prompts.json",
-          "scalePolicy": "fixed-across-actions"
+          "scalePolicy": "fixed-across-actions",
+          "inheritedMissingPromptFile": "source/production-prompts.json",
+          "promptAvailability": "not-preserved-in-inherited-checkpoint"
         },
         "attack_sword": {
           "sourceSha256": "4ab4a72c457bc63774c08ee5ba99581bc8fe5442f783e4dbd80cf82762087413",
@@ -1733,9 +1736,10 @@
           "sourcePath": "assets/spritesheets/hd-128x256/novato/m/source/attack_sword-reference.png",
           "generator": "built-in imagegen",
           "visualStatus": "review-pending",
-          "equipmentStatus": "layer-test-pending",
-          "promptFile": "source/production-prompts.json",
-          "scalePolicy": "fixed-across-actions"
+          "equipmentStatus": "sword-layer-preview-verified-art-review-pending",
+          "scalePolicy": "fixed-across-actions",
+          "inheritedMissingPromptFile": "source/production-prompts.json",
+          "promptAvailability": "not-preserved-in-inherited-checkpoint"
         },
         "attack_axe": {
           "sourceSha256": "77d8b1fdec57421d79b3b79387b60fd9a539a165a818db372e5c836ccd0b4ec5",
@@ -1760,8 +1764,9 @@
           "generator": "built-in imagegen",
           "visualStatus": "review-pending",
           "equipmentStatus": "layer-test-pending",
-          "promptFile": "source/production-prompts.json",
-          "scalePolicy": "fixed-across-actions"
+          "scalePolicy": "fixed-across-actions",
+          "inheritedMissingPromptFile": "source/production-prompts.json",
+          "promptAvailability": "not-preserved-in-inherited-checkpoint"
         },
         "attack_spear": {
           "sourceSha256": "b767b8420712918e30e8b35c5000c5df890b76792e86a09b74ea886621e04d08",
@@ -1788,7 +1793,11 @@
           "referencePath": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
           "prompt": "Exactly FOUR complete separated full-body Novato male animation poses, in four evenly spaced cells on one horizontal transparent strip. Reference image defines exact identity, proportions, camera and crisp painted pixel-inspired RPG style: chestnut spiky hair, burgundy scarf, ivory rolled shirt, brown leather cross harness belt pouch fingerless gloves boots, patched blue trousers. Facing right in three-quarter view in every pose. Keep same head size and costume, common ground line, generous transparent margins all around, empty hands for future equipment overlay. Compact tall narrow silhouette with width <= half body height, feet close and elbows close to ribcage, foreshorten limbs into depth; no wide lunges or horizontally stretched arms. No weapon, shield, props, effects, shadows, text or grid. Use image1 ONLY for exact MALE identity and clothing/style. Image2 is pose reference ONLY; do not copy female face or ponytail. Recreate the FOUR spear animation poses of image2 with the MALE Novato. Two empty gripping hands clearly SEPARATED along an imaginary diagonal spear shaft: right hand near lower ribs, left hand a short forearm length ahead at chest; draw back; compact forward thrust keeping both fists separated; retract. Do NOT clasp hands or form a prayer pose. Keep same upright body proportions and size as male image1, right-facing camera and compact narrow silhouette; no spear or other props drawn.\n",
           "visualStatus": "review-pending",
-          "equipmentStatus": "layer-test-pending"
+          "equipmentStatus": "layer-test-pending",
+          "referencePaths": [
+            "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+            "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png"
+          ]
         },
         "attack_dagger": {
           "sourceSha256": "e7f4b930d4cb41b583006c6fd0ec5bd3d62fce50f35200b263b6f651528c0dd8",
@@ -2017,17 +2026,17 @@
       },
       "bodyScale": {
         "generatedSourceScale": 0.23,
-        "sourceCanvas": [
-          2172,
-          724
-        ],
         "feetBaseline": 248,
         "nominalStandingHeight": 156,
-        "note": "Common body scale across generated actions; cell overhead reserved for separate equipment. Legacy block/dodge uniformly reduced, never enlarged."
+        "note": "Common body scale across generated actions; cell overhead reserved for separate equipment. Legacy block/dodge uniformly reduced, never enlarged.",
+        "referenceCanvas": [
+          2172,
+          724
+        ]
       },
       "equipmentTests": {
         "attack_sword": {
-          "status": "engineering-preview-pending-visual-review",
+          "status": "technical-preview-verified-art-review-pending",
           "weaponPath": "public/sprites/items/weapons/espada_hierro.png",
           "weaponSha256": "8b21d32318b5d8778325ea8899f2e74524c9c98bce540656844faf02758f7589",
           "weaponGrip": [
@@ -2092,7 +2101,13 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
-      }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "reviewRemaining": [
+        "Review complete animation loops at combat display size, with horizontal mirroring and reduced motion.",
+        "Validate shield occlusion, separate consumable, bow and two-handed equipment before artistic approval.",
+        "Runtime renderer still supports idle/walk/hurt; no HD promotion or main merge performed."
+      ]
     },
     {
       "classId": "novato",
@@ -3205,7 +3220,11 @@
           "referencePath": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
           "prompt": "Create high-quality RPG production sprite strip: exactly FOUR full-body IDLE poses of the FEMALE Novato adventurer, one horizontal row of four equal spaced cells, real transparent background. Image1 is style, costume palette and rendering reference from male Novato; image2 is existing female design reference with brown ponytail. Female identity: young adult woman, chestnut brown high ponytail and swept bangs, warm brown eyes, determined friendly face. Same practical costume as male reference adapted naturally: burgundy scarf, ivory rolled-sleeve linen shirt fully covering torso, brown leather crossed harness and belt pouch, brown fingerless gloves, patched blue trousers, sturdy brown boots. No armor or extra decorations. Preserve female ponytail identity throughout. Four subtle idle phases: neutral relaxed empty hands, soft inhalation, blink/soft exhalation, return neutral. Facing right three-quarter in all four, same scale head size camera lighting, full head scarf hands boots inside each quarter with clear transparent margins and common ground line. Crisp hand painted pixel-inspired RPG style exactly as male reference. Compact narrow silhouette, width under half height, scarf and ponytail near torso. No equipment weapons shields props effects shadows labels or grid. NOT a scale-up of reference pixels, draw newly at high resolution.\n",
           "visualStatus": "review-pending",
-          "equipmentStatus": "layer-test-pending"
+          "equipmentStatus": "layer-test-pending",
+          "referencePaths": [
+            "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+            "assets/spritesheets/originales/novato/v2/source/novato-f-core-3rows.webp"
+          ]
         },
         "walk": {
           "sourceSha256": "98bd42f622b7215070075da594344ab2d8a4f09dd67a74ffbc73b35ca00f82f7",
@@ -3230,10 +3249,13 @@
           "scalePolicy": "fixed-across-actions",
           "sourcePath": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
           "generator": "built-in imagegen",
-          "referencePath": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "referencePath": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
           "prompt": "Edit this FOUR-pose female Novato walk sprite strip. Preserve canvas dimensions, true transparent background, four cell centers, EXACT female identity, ponytail, face, clothing, palette, lighting, camera and character scale. Keep first and second poses unchanged. Correct ONLY the leg cycle and corresponding arm swing in poses THREE and FOUR so they are the opposite-foot half of poses one and two. The NEAR LEG is the trouser leg carrying the tan stitched patch. In pose THREE, this PATCHED near leg must trail BACK toward image LEFT, its boot behind the hips; the FAR unpatched leg extends FORWARD toward image RIGHT with heel landing. The near arm swings forward while far arm goes back. In pose FOUR, the PATCHED near leg is lifted with knee passing beneath hips and boot clearly off the ground behind; the FAR unpatched leg supports the body upright on the ground. Counter-swing arms naturally. No duplicated same-foot gait. Do not mirror the torso or move the patch onto the other physical leg. Four anatomically coherent walk phases facing RIGHT. Keep full hair scarf hands boots within each quarter, generous transparent margins. Empty hands, no weapons props effects shadow labels or grid.\n",
           "visualStatus": "review-pending",
-          "equipmentStatus": "layer-test-pending"
+          "equipmentStatus": "layer-test-pending",
+          "identityReferencePath": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "editTargetSourceCommit": "36586c86",
+          "editTargetSourceSha256": "57bee8d5d691f97e19537fe767c6e0a1505a2bcc964d87d4d7d35ddc47e17dfc"
         },
         "hurt": {
           "sourceSha256": "3f368c7a5b59655753bc4f49df49074540005292258abf90a24e4c919e809ffd",
@@ -3368,7 +3390,7 @@
           "referencePath": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
           "prompt": "Exactly FOUR complete separated full-body animation poses of the SAME FEMALE Novato from reference, four evenly spaced equal cells in ONE horizontal transparent strip. Preserve exact female face, brown eyes, chestnut high ponytail and bangs, burgundy scarf, ivory rolled sleeve shirt fully covering torso, brown leather cross harness belt pouch fingerless gloves and boots, patched blue trousers. Identical crisp painted pixel-inspired RPG rendering, proportions, head size, costume, camera, lighting. Facing RIGHT in three-quarter view always, common ground line, upright height about same as reference across all poses, ponytail stays near shoulders. Empty hands for equipment overlay. Compact tall narrow silhouettes, feet and elbows close, no wide lunges or horizontal arm stretches; foreshorten limbs into right/depth. Generous transparent margin around hair scarf fingers boots and between figures. No weapon, shield, equipment, props, effects, shadows, labels or grid. SWORD slash with imaginary one-hand sword: 1 right empty grip beside shoulder, left hand guards chest; 2 lift bent right arm so grip near forehead, small torso windup; 3 compact diagonal downward slash, empty right gripping fist in front of waist, small torso turn; 4 return right fist near shoulder. No weapon visible.\n",
           "visualStatus": "review-pending",
-          "equipmentStatus": "layer-test-pending"
+          "equipmentStatus": "sword-layer-preview-verified-art-review-pending"
         },
         "attack_axe": {
           "sourceSha256": "a59d7fe67e197be042c8449df7068d87f63244d4bee15339b8803defc39409bf",
@@ -3831,7 +3853,7 @@
       },
       "equipmentTests": {
         "attack_sword": {
-          "status": "engineering-preview-pending-visual-review",
+          "status": "technical-preview-verified-art-review-pending",
           "weaponPath": "public/sprites/items/weapons/espada_hierro.png",
           "weaponSha256": "8b21d32318b5d8778325ea8899f2e74524c9c98bce540656844faf02758f7589",
           "weaponGrip": [
@@ -3899,14 +3921,20 @@
       },
       "bodyScale": {
         "generatedSourceScale": 0.23,
-        "sourceCanvas": [
-          2172,
-          724
-        ],
         "feetBaseline": 248,
         "nominalStandingHeight": 156,
-        "note": "Same scale as male reference. Ponytail/arm height does not change body scale."
-      }
+        "note": "Same scale as male reference. Ponytail/arm height does not change body scale.",
+        "referenceCanvas": [
+          2172,
+          724
+        ]
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "reviewRemaining": [
+        "Review complete animation loops at combat display size, with horizontal mirroring and reduced motion.",
+        "Validate shield occlusion, separate consumable, bow and two-handed equipment before artistic approval.",
+        "Runtime renderer still supports idle/walk/hurt; no HD promotion or main merge performed."
+      ]
     },
     {
       "classId": "mago",
@@ -5630,7 +5658,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Novato male then female; visual consistency and equipment layer review remain required",
+  "nextTask": "Review complete Novato m/f body candidates at combat size; validate shield, two-handed weapons, bow and consumable layers before runtime promotion; then Tier 1.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
@@ -5752,5 +5780,10 @@
       "path": "assets/spritesheets/originales/delivery-sources/novato-sprite-recovery-2026-10-24/reference/block-shield-source.png",
       "sha256": "38ad095c69c7d8b346f4f7d8cb39eb08cb03c8ea911ea6343d5f612df850a03e"
     }
-  ]
+  ],
+  "publication": {
+    "remoteBaseCommit": "21468d54284c82530352e2d9ca9acc8869ebc46b",
+    "state": "local-checkpoint-awaiting-git-publication",
+    "note": "Binary connector publication exceeded automatic-review budget; local Git authentication must be available for normal push. Remote readback is required before declaring publication."
+  }
 }

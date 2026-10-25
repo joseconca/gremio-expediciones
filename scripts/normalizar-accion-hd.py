@@ -7,7 +7,7 @@ from PIL import Image
 def normalize(source, output, class_id, sex, action, threshold=128, fixed_scale=None):
     with Image.open(source) as opened:
         opened.load();im=opened.convert('RGBA')
-    if im.width%4:raise ValueError('Source must have four equal-width cells')
+    # Original canvases may differ by a pixel; segment complete subjects first.
     if im.getchannel('A').getextrema()[0]!=0:raise ValueError('Source needs real alpha')
     # Segment complete subjects before slicing: generated artwork may cross an
     # artificial quarter boundary while remaining fully intact in the source.
@@ -25,7 +25,7 @@ def normalize(source, output, class_id, sex, action, threshold=128, fixed_scale=
     components=sorted(components,key=len,reverse=True)[:4]
     if len(components)!=4:raise ValueError('Expected four separate complete subjects')
     components.sort(key=lambda ids:sum(n%width for n in ids)/len(ids))
-    w=im.width//4;cells=[];boxes=[];padding=w
+    w=(im.width+3)//4;cells=[];boxes=[];padding=w
     for i,ids in enumerate(components):
         mask=bytearray(width*height)
         for n in ids:mask[n]=255
@@ -46,7 +46,7 @@ def normalize(source, output, class_id, sex, action, threshold=128, fixed_scale=
         sprite.putalpha(sprite.getchannel('A').point(lambda v:0 if v<32 else v))
         frame=Image.new('RGBA',(128,256));frame.alpha_composite(sprite,origin)
         frame.save(output/f'{class_id}-{sex}-{action}-{n:02d}.png')
-    return {'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'sourceDimensions':list(im.size),'commonCrop':list(common),'scale':scale,'origin':list(origin),'alphaThreshold':threshold,'method':'shared crop and scale, no per-frame centering or resizing','scalePolicy':'fixed-across-actions' if fixed_scale is not None else 'fit-action'}
+    return {'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'sourceDimensions':list(im.size),'sourceCellStep':w,'commonCrop':list(common),'scale':scale,'origin':list(origin),'alphaThreshold':threshold,'method':'shared crop and scale, no per-frame centering or resizing','scalePolicy':'fixed-across-actions' if fixed_scale is not None else 'fit-action'}
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
