@@ -1,5 +1,5 @@
 """Preserve one generated action and export it against the canonical Novato pose."""
-import argparse,hashlib,json,runpy,shutil,subprocess,sys
+import argparse,copy,hashlib,json,runpy,shutil,subprocess,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];HD=ROOT/'assets/spritesheets/hd-128x256'
 def register(class_id,sex,action,source,prompt_file):
@@ -22,6 +22,10 @@ def register(class_id,sex,action,source,prompt_file):
     metadata.update(sourcePath=dest.relative_to(ROOT).as_posix(),generator='built-in imagegen',prompt=prompt_file.read_text(encoding='utf-8-sig'),canonicalPoseSource=reference['sourcePath'],canonicalPoseHashes=[ref['audit']['actions'][action]['frames'][f'{n:02d}']['sha256'] for n in range(1,5)],visualStatus='candidate-reviewed-equipment-contact-pending')
     v.setdefault('sources',{})[action]=metadata
     for n in range(1,5):v.setdefault('frameProvenance',{})[f'{action}/{n:02d}']={'source':f'sources.{action}','frame':n}
+    if action=='attack_sword':
+        config=copy.deepcopy(ref['equipmentTests'][action])
+        config['frames']=[{'bodySha256':hashlib.sha256((base/'frames'/action/f'{class_id}-{sex}-{action}-{n:02d}.png').read_bytes()).hexdigest()} for n in range(1,5)]
+        v.setdefault('equipmentTests',{})[action]=config
     v['bodyRegistration']='Novato canonical transforms; equipment rig shared by sex'
     m['nextVariant']=class_id+'-'+sex;m['nextTask']='Continue Tier 1 in class order: Mago, Espadachin, Acolito, Arquero; male then female, 15 registered actions each.'
     path.write_text(json.dumps(m,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

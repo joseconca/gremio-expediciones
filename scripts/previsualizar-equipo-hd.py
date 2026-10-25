@@ -17,21 +17,21 @@ def resolve_rig(manifest,variant,action):
         raise ValueError('Class-specific hand trajectory is not allowed')
     return rig,frames
 
-def render(sex):
+def render(sex,class_id="novato"):
     manifest_path=ROOT/'assets/spritesheets/hd-128x256/manifest.json'
     manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
-    variant=next(v for v in manifest['variants'] if v['classId']=='novato' and v['sex']==sex)
+    variant=next(v for v in manifest['variants'] if v['classId']==class_id and v['sex']==sex)
     config=variant['equipmentTests']['attack_sword']
     rig,rig_frames=resolve_rig(manifest,variant,'attack_sword')
     if rig['equipmentCanvas']!=[256,256] or rig['bodyOrigin']!=[64,0] or rig['weaponScale']!=1:raise ValueError('Unsupported preview transform')
     source=ROOT/config['weaponPath']
     if sha(source)!=config['weaponSha256']:raise ValueError('Weapon changed: review grip before rebuilding')
     with Image.open(source) as im:weapon=im.convert('RGBA')
-    base=ROOT/'assets/spritesheets/hd-128x256/novato'/sex
+    base=ROOT/'assets/spritesheets/hd-128x256'/class_id/sex
     out=base/'previews/equipment-sword';out.mkdir(parents=True,exist_ok=True)
     cycle=[];contact=Image.new('RGB',(1024,256),'#242630')
     for i,frame in enumerate(rig_frames):
-        path=base/'frames/attack_sword'/f'novato-{sex}-attack_sword-{i+1:02d}.png'
+        path=base/'frames/attack_sword'/f'{class_id}-{sex}-attack_sword-{i+1:02d}.png'
         if sha(path)!=config['frames'][i]['bodySha256']:raise ValueError('Body changed: anchors require review')
         with Image.open(path) as im:body=im.convert('RGBA')
         x,y=frame['grip'];gx,gy=config['weaponGrip']
@@ -60,4 +60,15 @@ def render(sex):
     contact.save(out/'contact.png');cycle[0].save(out/'preview.gif',save_all=True,append_images=cycle[1:],duration=[170,110,180,210],loop=0)
     print(json.dumps({'sex':sex,'frames':4,'bodyUnmodified':True,'canvas':[256,256],'bodyOrigin':[64,0],'output':out.relative_to(ROOT).as_posix()}))
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--sex',choices=('m','f'),default='m');render(parser.parse_args().sex)
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--sex',choices=('m','f'),default='m');parser.add_argument('--class-id',default='novato');parser.add_argument('--all',action='store_true');args=parser.parse_args()
+    if args.all:
+        manifest=json.loads((ROOT/'assets/spritesheets/hd-128x256/manifest.json').read_text(encoding='utf-8'))
+        for variant in manifest['variants']:
+            if 'attack_sword' not in variant.get('equipmentTests',{}):continue
+            render(variant['sex'],variant['classId'])
+            for n in range(1,5):
+                base=ROOT/'assets/spritesheets/hd-128x256'
+                actual=base/variant['classId']/variant['sex']/f'previews/equipment-sword/weapon-{n:02d}.png'
+                canonical=base/'novato'/variant['sex']/f'previews/equipment-sword/weapon-{n:02d}.png'
+                if sha(actual)!=sha(canonical):raise ValueError('Weapon layer differs between classes; class-specific transform detected')
+    else:render(args.sex,args.class_id)

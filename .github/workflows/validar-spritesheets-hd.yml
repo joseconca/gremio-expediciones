@@ -30,5 +30,4 @@ jobs:
         run: python scripts/test-equipment-rigs-hd.py
       - name: Verify Novato sword grips against current body hashes
         run: |
-          python scripts/previsualizar-equipo-hd.py --sex m
-          python scripts/previsualizar-equipo-hd.py --sex f
+          python scripts/previsualizar-equipo-hd.py --all
