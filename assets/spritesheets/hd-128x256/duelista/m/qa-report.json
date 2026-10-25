@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-25T22:57:49.661217+00:00",
+  "classId": "duelista",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\duelista\\m\\duelista-m-sheet.png",
+  "sheetSha256": "feca7727bbe3b09745d7d1f48d12746693e7cf79f4399bc1764a2eadf0642089",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\idle\\duelista-m-idle-01.png",
+          "sha256": "767cef5e7f58baa7f7f4839da2cad17f3c160d324f207ec53f9ba57ac9ce59c2",
+          "alpha_bbox": [
+            18,
+            93,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\idle\\duelista-m-idle-02.png",
+          "sha256": "bedec9bb8dcc9df71b8be8ae0010c31f655f5244e1f35c8ba00dea2e670b50c9",
+          "alpha_bbox": [
+            18,
+            93,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\idle\\duelista-m-idle-03.png",
+          "sha256": "c75bb697cab6d63bbc2b24453ca5fc9ded4d3bbbcca5c1e9f288b4dd8aeeb94e",
+          "alpha_bbox": [
+            18,
+            93,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\idle\\duelista-m-idle-04.png",
+          "sha256": "91e1240a5bce71e126a5cefca5064240ca19d827a1e446cc25be4fa780ae30f8",
+          "alpha_bbox": [
+            18,
+            93,
+            105,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\walk\\duelista-m-walk-01.png",
+          "sha256": "cdae04d9edcc8e79a2dc048a15b6a26f3ae4544f3c22135f3438eb7738581200",
+          "alpha_bbox": [
+            11,
+            92,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\walk\\duelista-m-walk-02.png",
+          "sha256": "8127de91eddf23a5ce35538eeb33ba557c0c92f5c456886e6672b7a4405a7fa2",
+          "alpha_bbox": [
+            14,
+            91,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\walk\\duelista-m-walk-03.png",
+          "sha256": "7d900fea7bee7e0364c4758a6fcdbd9fccb4c487c1b9752b69549b6f22b68c61",
+          "alpha_bbox": [
+            13,
+            91,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\walk\\duelista-m-walk-04.png",
+          "sha256": "f5960f6d2bd93948b39b66c92af050d030a6360744045ab8c86d11269964cf4c",
+          "alpha_bbox": [
+            18,
+            92,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\hurt\\duelista-m-hurt-01.png",
+          "sha256": "d558e3ce25b57ddfc55f582d7ddbee1c58b6597f98ed91d928a41f0e18c8ff6d",
+          "alpha_bbox": [
+            18,
+            91,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\hurt\\duelista-m-hurt-02.png",
+          "sha256": "ff992a8bc8c2fac11664294c819f8e940c34256911c9af7885bcc31dd24603cf",
+          "alpha_bbox": [
+            25,
+            101,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\hurt\\duelista-m-hurt-03.png",
+          "sha256": "8386f40a22957a8f58a336d12fe39a400990faae9c08da2d48ce083956edd26a",
+          "alpha_bbox": [
+            14,
+            119,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\hurt\\duelista-m-hurt-04.png",
+          "sha256": "6201a0c87025ee71f0ed8e8fb4cbaf6fa247070c11fcddc17f8378af9459ef5d",
+          "alpha_bbox": [
+            13,
+            92,
+            100,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\use_consumable\\duelista-m-use_consumable-01.png",
+          "sha256": "b8b198608541b1a3e88b0cf3a5e6f1b373374a031a23d222bf910526139ea3aa",
+          "alpha_bbox": [
+            18,
+            93,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\use_consumable\\duelista-m-use_consumable-02.png",
+          "sha256": "47c9d13e3553e713037cf0bb154a5fd384e6cc82123451f319e5ad260cfc07ab",
+          "alpha_bbox": [
+            19,
+            92,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\use_consumable\\duelista-m-use_consumable-03.png",
+          "sha256": "be3b258b530c0e7b2f64f6e98a7386ff63686fca632936fbed690cad15bb8621",
+          "alpha_bbox": [
+            19,
+            93,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\use_consumable\\duelista-m-use_consumable-04.png",
+          "sha256": "1721b3bd80995b27d1a131ae663848aef8766c019f62bf742d315a84868d848a",
+          "alpha_bbox": [
+            17,
+            93,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\dodge\\duelista-m-dodge-01.png",
+          "sha256": "66c19da7f4ca1b76d6bf05e28d688783e10e757021698d2efe15a388b5fb3583",
+          "alpha_bbox": [
+            12,
+            98,
+            105,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\dodge\\duelista-m-dodge-02.png",
+          "sha256": "e123b9d20ecb18d0b65a3cd620d8d71cc033759689fd7ef412cbe56e3d1089b3",
+          "alpha_bbox": [
+            19,
+            99,
+            114,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\dodge\\duelista-m-dodge-03.png",
+          "sha256": "48b50f324c5c926f5e1b0922da0bb93793de5e77ee253232a8f6cf01f6d7da55",
+          "alpha_bbox": [
+            16,
+            101,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\dodge\\duelista-m-dodge-04.png",
+          "sha256": "b3ee1fba7ad80955861a75bb1851cbcd15b2c00b18ef3b2081a5ea119baaecc2",
+          "alpha_bbox": [
+            13,
+            98,
+            111,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\block_shield\\duelista-m-block_shield-01.png",
+          "sha256": "bd4973e7456184d70324f9cbc7121105b471bb29f4d0cfcf41bed6d8b4fbfbed",
+          "alpha_bbox": [
+            16,
+            98,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\block_shield\\duelista-m-block_shield-02.png",
+          "sha256": "745b4a384db8da135785c6a77bda07e867c40487fbd94d35dcbb04f1e6d43ada",
+          "alpha_bbox": [
+            15,
+            98,
+            110,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\block_shield\\duelista-m-block_shield-03.png",
+          "sha256": "83cc30422c6a773089c40aabe89d3cfc6b669ac660e7693198c7d34b192e8cfd",
+          "alpha_bbox": [
+            13,
+            112,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\block_shield\\duelista-m-block_shield-04.png",
+          "sha256": "4852da36e1a413741ed4bb8618339282b9959df55b156cc82336d68863eca978",
+          "alpha_bbox": [
+            15,
+            99,
+            109,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_sword\\duelista-m-attack_sword-01.png",
+          "sha256": "41cef5f44c29c642816123e87361f45d71f8c0568f6bc4d8d88991403397fe2b",
+          "alpha_bbox": [
+            6,
+            98,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_sword\\duelista-m-attack_sword-02.png",
+          "sha256": "7283a8ea82985629fa43a2f62739057ed3cf14fe0c355f5b5b46fbe687b8c6cb",
+          "alpha_bbox": [
+            6,
+            98,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_sword\\duelista-m-attack_sword-03.png",
+          "sha256": "d8d44d6d475152a21e2ce8fd7698fa92c4714d13fd73a243f43583b6af2c8d44",
+          "alpha_bbox": [
+            2,
+            101,
+            121,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_sword\\duelista-m-attack_sword-04.png",
+          "sha256": "432f0d6082e75980a93dff4ab6951fb1d3962eb915f0a1fae53217850828fd26",
+          "alpha_bbox": [
+            13,
+            98,
+            114,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_axe\\duelista-m-attack_axe-01.png",
+          "sha256": "368d6d05278db23e0fc50759f359f6aa448ec4339693b795dd11f4d25fc1c8b6",
+          "alpha_bbox": [
+            9,
+            101,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_axe\\duelista-m-attack_axe-02.png",
+          "sha256": "f7a625c52174462e90009738001a1ea0c1934c4d188d7583df0edfa1ca2770d7",
+          "alpha_bbox": [
+            16,
+            112,
+            114,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_axe\\duelista-m-attack_axe-03.png",
+          "sha256": "357e0b8c57a8cd1e19de63415385a887848305d95f04c759d2fb7a3f86844b4b",
+          "alpha_bbox": [
+            10,
+            121,
+            116,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_axe\\duelista-m-attack_axe-04.png",
+          "sha256": "26881624d9c4158d4e582acd0e84a7e24c91e04ce658cad968c4d5deadcabac4",
+          "alpha_bbox": [
+            23,
+            104,
+            117,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_spear\\duelista-m-attack_spear-01.png",
+          "sha256": "7c10a5ea4e71ad49b4e5187d2cff13a1fa105592eb39532d4bce7f3b38031c72",
+          "alpha_bbox": [
+            8,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_spear\\duelista-m-attack_spear-02.png",
+          "sha256": "1eaa641777f3358b06595f8c1be98c638b145482bde21f1fce3caf9767fc4777",
+          "alpha_bbox": [
+            12,
+            91,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_spear\\duelista-m-attack_spear-03.png",
+          "sha256": "581ece44336def6cd9f5c0961dc1585076730c9073459c512c1d2249de763c18",
+          "alpha_bbox": [
+            9,
+            91,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_spear\\duelista-m-attack_spear-04.png",
+          "sha256": "1ca692042b0aa08b23dad9c39f6b996f2294163d1694ece29c7935d23e59d97a",
+          "alpha_bbox": [
+            14,
+            91,
+            108,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_dagger\\duelista-m-attack_dagger-01.png",
+          "sha256": "56279d8012995592a6b470822ddfc65b69f0ca466c284fd4406d9538b6de3859",
+          "alpha_bbox": [
+            16,
+            92,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_dagger\\duelista-m-attack_dagger-02.png",
+          "sha256": "c9ae3fb6438d4691d5c84eecac4e9a1f30130af99d66d5a3273fec4c86035955",
+          "alpha_bbox": [
+            20,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_dagger\\duelista-m-attack_dagger-03.png",
+          "sha256": "5292b2f406283ea03a223c4788f0919bd134be6dc063c0ec5a60d82d30002cba",
+          "alpha_bbox": [
+            25,
+            94,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_dagger\\duelista-m-attack_dagger-04.png",
+          "sha256": "2fdf1ebfb13417168292a0eb8729652aa68466c167210592a9a207bc60cf0367",
+          "alpha_bbox": [
+            20,
+            92,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_bow\\duelista-m-attack_bow-01.png",
+          "sha256": "ee88a84e429deabb20ddd2dc261d37c25388e94291f38dad2efa7295f9863b24",
+          "alpha_bbox": [
+            16,
+            96,
+            122,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_bow\\duelista-m-attack_bow-02.png",
+          "sha256": "8f1e4b513e9bb3df7ea08318d02e24db7426eac2e25dd7d6175fec8302ae954a",
+          "alpha_bbox": [
+            13,
+            96,
+            121,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_bow\\duelista-m-attack_bow-03.png",
+          "sha256": "45f4b00f71a05d1b7fea0d7c2d1bd91701dba00bc6774241cfdaf61217983041",
+          "alpha_bbox": [
+            11,
+            96,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_bow\\duelista-m-attack_bow-04.png",
+          "sha256": "56be970ea0ec522e5d4abe70201e3d7ea1427ae6f6ffb3a277696ab0b072737c",
+          "alpha_bbox": [
+            10,
+            96,
+            116,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_staff\\duelista-m-attack_staff-01.png",
+          "sha256": "bf73d98155779d24867e4d0e745a9d832db3c48bcc1a9dae073666c05b3238e8",
+          "alpha_bbox": [
+            20,
+            93,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_staff\\duelista-m-attack_staff-02.png",
+          "sha256": "e861d2dfb11551c0e69d61703d3137ae2d5d2b5de2e9c7c9feae220950beedfa",
+          "alpha_bbox": [
+            21,
+            93,
+            108,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_staff\\duelista-m-attack_staff-03.png",
+          "sha256": "881361c8fa61351be4391487a4826c84d6e77edc7f2672475e34a60f4a4401a3",
+          "alpha_bbox": [
+            19,
+            93,
+            111,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_staff\\duelista-m-attack_staff-04.png",
+          "sha256": "b4982b2998af2dd81b29d1f3fb506f7b0afb162ffad0b06c7bd2e3533c70df3f",
+          "alpha_bbox": [
+            11,
+            93,
+            99,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_mace\\duelista-m-attack_mace-01.png",
+          "sha256": "90c57e79b627e97f514dd867544c1a81dfbc98f3c04bfec21545c4f8c81a2450",
+          "alpha_bbox": [
+            13,
+            92,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_mace\\duelista-m-attack_mace-02.png",
+          "sha256": "9cf9162e88cc6f0ff1592cd6cbadbf7258047802c017a6ec8b22ee3d2b0c18db",
+          "alpha_bbox": [
+            20,
+            92,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_mace\\duelista-m-attack_mace-03.png",
+          "sha256": "2d7cdf924c4556ac1bbfc1aecf947cff27d88cb2d04445cdaf56e27b32c684a5",
+          "alpha_bbox": [
+            12,
+            103,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_mace\\duelista-m-attack_mace-04.png",
+          "sha256": "63856e652547a0df9c91fda45058bda0825e30fb61c7a013d4bbe69594b1b31a",
+          "alpha_bbox": [
+            12,
+            92,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_book\\duelista-m-attack_book-01.png",
+          "sha256": "93ddeb5053f7f64cccd1124ca06d9d6573e0db115d37171a20b19d7d2f519398",
+          "alpha_bbox": [
+            14,
+            91,
+            100,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_book\\duelista-m-attack_book-02.png",
+          "sha256": "d8963f6b1f7bd389a323da7fa5288c5a834bf7f0157c89cdc9699832d5006d43",
+          "alpha_bbox": [
+            15,
+            91,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_book\\duelista-m-attack_book-03.png",
+          "sha256": "1a8f68c6b006beaa4e1a64a5e8893345ab88b4d37d1c59b02f35a4d8922c4fd5",
+          "alpha_bbox": [
+            15,
+            91,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_book\\duelista-m-attack_book-04.png",
+          "sha256": "449520ee4398cc4619e9b997b1800cdc6b880b662c85412984dfbce2e670fc51",
+          "alpha_bbox": [
+            15,
+            91,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_gloves\\duelista-m-attack_gloves-01.png",
+          "sha256": "40d686489a4506f14698cbd0555864e3f290c3733965910a4af567a65fa84d68",
+          "alpha_bbox": [
+            17,
+            91,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_gloves\\duelista-m-attack_gloves-02.png",
+          "sha256": "fa83d3736d9cbc166c85bdb8629199d0d5562399d07c3818380a31ced0551515",
+          "alpha_bbox": [
+            18,
+            91,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_gloves\\duelista-m-attack_gloves-03.png",
+          "sha256": "e5828db9ea3954a75b2c419e072d1412f051b99d51cb21abb93af19a36998fb9",
+          "alpha_bbox": [
+            19,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\duelista\\m\\frames\\attack_gloves\\duelista-m-attack_gloves-04.png",
+          "sha256": "e1ccac9e826d9368ebb17a15c76ac5a5d008c0b6728a5ca290453310bc4cba3c",
+          "alpha_bbox": [
+            18,
+            91,
+            107,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

@@ -15,7 +15,9 @@
     "attack_dagger",
     "attack_bow",
     "attack_staff",
-    "attack_mace"
+    "attack_mace",
+    "attack_book",
+    "attack_gloves"
   ],
   "bodyHashes": {
     "idle": [
@@ -95,9 +97,21 @@
       "9cf9162e88cc6f0ff1592cd6cbadbf7258047802c017a6ec8b22ee3d2b0c18db",
       "2d7cdf924c4556ac1bbfc1aecf947cff27d88cb2d04445cdaf56e27b32c684a5",
       "63856e652547a0df9c91fda45058bda0825e30fb61c7a013d4bbe69594b1b31a"
+    ],
+    "attack_book": [
+      "93ddeb5053f7f64cccd1124ca06d9d6573e0db115d37171a20b19d7d2f519398",
+      "d8963f6b1f7bd389a323da7fa5288c5a834bf7f0157c89cdc9699832d5006d43",
+      "1a8f68c6b006beaa4e1a64a5e8893345ab88b4d37d1c59b02f35a4d8922c4fd5",
+      "449520ee4398cc4619e9b997b1800cdc6b880b662c85412984dfbce2e670fc51"
+    ],
+    "attack_gloves": [
+      "40d686489a4506f14698cbd0555864e3f290c3733965910a4af567a65fa84d68",
+      "fa83d3736d9cbc166c85bdb8629199d0d5562399d07c3818380a31ced0551515",
+      "e5828db9ea3954a75b2c419e072d1412f051b99d51cb21abb93af19a36998fb9",
+      "e1ccac9e826d9368ebb17a15c76ac5a5d008c0b6728a5ca290453310bc4cba3c"
     ]
   },
-  "contactChecks": 652,
+  "contactChecks": 682,
   "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
