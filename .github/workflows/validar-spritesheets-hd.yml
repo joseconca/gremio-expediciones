@@ -2,10 +2,10 @@ name: Validar sprites HD
 on:
   push:
     branches: [creacion-sprite-sheets]
-    paths: ['scripts/*sprites*', 'assets/spritesheets/hd-128x256/**', '.github/workflows/validar-spritesheets-hd.yml']
+    paths: ['scripts/*sprites*', 'scripts/*-hd.py', 'assets/spritesheets/hd-128x256/**', '.github/workflows/validar-spritesheets-hd.yml']
   pull_request:
     branches: [main]
-    paths: ['scripts/*sprites*', 'assets/spritesheets/hd-128x256/**', '.github/workflows/validar-spritesheets-hd.yml']
+    paths: ['scripts/*sprites*', 'scripts/*-hd.py', 'assets/spritesheets/hd-128x256/**', '.github/workflows/validar-spritesheets-hd.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -24,3 +24,9 @@ jobs:
         run: python scripts/test-spritesheets-hd.py
       - name: Verify actual assets match recorded progress (not artistic approval)
         run: python scripts/auditar-sprites-hd.py
+      - name: Preserve body scale across narrow and wide actions
+        run: python scripts/test-normalizar-accion-hd.py
+      - name: Verify Novato sword grips against current body hashes
+        run: |
+          python scripts/previsualizar-equipo-hd.py --sex m
+          python scripts/previsualizar-equipo-hd.py --sex f
