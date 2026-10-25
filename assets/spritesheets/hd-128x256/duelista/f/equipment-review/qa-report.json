@@ -12,7 +12,10 @@
     "attack_sword",
     "attack_axe",
     "attack_spear",
-    "attack_dagger"
+    "attack_dagger",
+    "attack_bow",
+    "attack_staff",
+    "attack_mace"
   ],
   "bodyHashes": {
     "idle": [
@@ -74,9 +77,27 @@
       "7a209b2309c6771773d1420f35bca22183098337fd2d5b2f21608179efef22e2",
       "de13c47818d8608cfa8baaaaeee141bf0b3fd53eaec7391f63d89b8e3867c989",
       "1384dcd0bea5f812dd0fe5984024dafd39358643a3cb3029fc0e54fb082c4709"
+    ],
+    "attack_bow": [
+      "c00109bcd0940988e3feef24ba797a74d638d7e0fe1b0e4448b36ae9ab1af8a7",
+      "06bff1eea5a59d249475ac7e528fb4401914dd01db145045d69b7be385e47bca",
+      "738d2ccd994d42fe27c6dc88c93d8e86512103feaff5130332ac77b71a1c7e98",
+      "705410aeab3f2057146d02c6c39c6137a3efbaf8a62628584bae36f645e5498f"
+    ],
+    "attack_staff": [
+      "f1f232aed8e5aedb3e3625d4f3f654d8af0e946b026463a82386dce2d6f110c0",
+      "ca0ac50568354783056af426a76207dec62a3b1cda7038b339da04307043c11f",
+      "75d6ce24822f2a8aade2878a6d12d7a5ec4d2dae3101c66aa1d7bc4bc920286f",
+      "9c5f20697556f213dcc25535e17ba75bdf41d2b64c2bbbb33fc2b35c762b8b85"
+    ],
+    "attack_mace": [
+      "23965d4e1ad49fb54a931e4a1a4c9d1df5ca9c4d6f9888e30920847b09449f07",
+      "dc11bc64f3f9ce46e44fa3790508771e45c80b33e631be94ed753bfd10770052",
+      "e736e41e385d4e7b861dfe60d873729287d216d3fca1867959f506c6f6c62adb",
+      "45bab490e9fee3ac3f0800b3d41c02c0131da66cf3e19964f7b211bc6eb529e7"
     ]
   },
-  "contactChecks": 612,
+  "contactChecks": 652,
   "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
