@@ -29654,19 +29654,88 @@
       "tier": 2,
       "sex": "f",
       "order": 16,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/sacerdote/f/sacerdote-f-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-started",
+      "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/sacerdote/f/frames",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "31d8b40948ea01c640aa028cc6a28434ec4eebb26a7240e34a437847aeb16559",
+                "bytes": 27406,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  91,
+                  109,
+                  248
+                ],
+                "pixelSha256": "99a838c027774113cb73a7e6c69a0ccbd0b266fec285fda36c014f2c27d891c0"
+              },
+              "02": {
+                "sha256": "852825533e01cdfe9741e332bd2a9f3b028407818f1fb15bd1422e634341a613",
+                "bytes": 27541,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  91,
+                  108,
+                  248
+                ],
+                "pixelSha256": "e85a9088f4885b6dca7c374bab252dedbdd832afafa7d0eefae9e6a4d17b62ca"
+              },
+              "03": {
+                "sha256": "9c25a64247d697340231bd33cfea0521d56ef7c4fe5c889056b7dee13816875e",
+                "bytes": 27322,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  91,
+                  101,
+                  248
+                ],
+                "pixelSha256": "7b3603fc81b59f8f9d2414882c96613c8c581903dab771e0e574bc97b6a26a9d"
+              },
+              "04": {
+                "sha256": "06fa3242f7c4deb916d7bbdc60e5b565ec033c4831208370dc3439e439c8ac39",
+                "bytes": 27264,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  91,
+                  98,
+                  248
+                ],
+                "pixelSha256": "3a064edd1156deadfad1b1b0eaa21b290de51d38605653730aa208debe141e3e"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -29712,7 +29781,66 @@
           }
         }
       },
-      "equipmentRigId": "humanoid-f-v1"
+      "equipmentRigId": "humanoid-f-v1",
+      "sources": {
+        "idle": {
+          "sourceSha256": "d56fe8798a5b36534b3c0e03d35caee12b67f8a3ae477f11a57e824b9630293e",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/sacerdote/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY SACERDOTE FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action idle. Young adult female priest: long warm auburn ponytail and soft bangs, calm compassionate face. Substantial ivory clerical robe and split tabard with warm gold edging, long muted rust-red stole, cream high collar and layered sleeves ending before visible hands, modest gold neck clasp and leather waist belt, brown boots and discreet fingerless gloves. Fully covered practical robes, exact canonical female skeleton. No staff, book, chalice, halo or magical effect. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (193,431), other hand (432,423); figure 2: primary contact (736,431), other hand (975,423); figure 3: primary contact (1283,427), other hand (1518,423); figure 4: primary contact (1822,431), other hand (2026,423). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
+        }
+      },
+      "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex"
     },
     {
       "classId": "monje",
@@ -30536,7 +30664,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue all Tier 2 classes in the documented order, male then female, preserving canonical grips and quality.",
+  "nextTask": "Continue Tier 2 in class order: Caballero, Duelista, Sacerdote, Monje, Cazador, Explorador, Elementalista, Brujo; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
