@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "sacerdote",
   "sex": "m",
   "actions": [
@@ -15,7 +15,9 @@
     "attack_dagger",
     "attack_bow",
     "attack_staff",
-    "attack_mace"
+    "attack_mace",
+    "attack_book",
+    "attack_gloves"
   ],
   "bodyHashes": {
     "idle": [
@@ -67,10 +69,10 @@
       "afe7146d19cf4580d7025c76c7d1d69cfdf4c2cd133ab6bc0bcca374e4d61c9d"
     ],
     "attack_spear": [
-      "fe420bc523d66b769b8f47b109cdb9a8fcd36e25a2c05fdaf418f409523b9515",
-      "1cb88f4384269daad6f5e1abf51aa622d057c0506db73074055290badbc2b0a1",
-      "8afd19483637efe00fd3ca7cede879122f83bb6e805d170cd1b1c05c668e9dfb",
-      "d870c9992d2e028c70a177761f16030270bdd72924a7386e4d70259517a65b77"
+      "6f039730398db845f95ca49cf9a7839699d4176d02501b4a1fed3de6ca0586bd",
+      "d7722179143907d212a70554f43f84dddb6e2edcbc1bc502a9b886a025754ffe",
+      "7807e52262845057ee0831c9acb2fb6111d34e5ba3dd8a118fe9982a2f7876e1",
+      "f78e8dd62164ac6e8a6f96a252fb26770ae5a0f75d95e316b13865424441baf1"
     ],
     "attack_dagger": [
       "91996c01480b76df64141f3cb2d2d0ae15099cff0b37e5a87f3a1bc999ee395f",
@@ -95,29 +97,22 @@
       "d87b87a59d1de5c708c667bb60228424f5d3d77204917a614039e79e0dd36b97",
       "3732366800eab7b872ae9288e809ad2030e713188428f9c8586dfd1f7ffef644",
       "8787b4b8635c13363d1992d653d5382436df412c3be54cb1169c35cd19fb817e"
+    ],
+    "attack_book": [
+      "acb8e572091d354e22de12869dae9be8b2ce9a30309d55204f6d54954267a85a",
+      "72c151747d9845d3f5a8c128d4d3e6c6f4ef013def5b6f1f38c01c00508658df",
+      "1f02d3697f9ed81348c37b73a2e87dff0f65dad36ac1be1503b0f83c8853370f",
+      "95f095ffce0df3fd3915765e9df3d062685672dff23b30481f0d756d41c1cde5"
+    ],
+    "attack_gloves": [
+      "a2cac265df7c8b7ffcfe1064621de98fe0e3d4f799d03bcdff823e9779ff339a",
+      "37a4fb96dd8df86d3187b5991d3f2219c79952dd7e8abdf7683f0a4ac6102676",
+      "e8c73e2c731ef4639d963df67dd344378389504c132b886f36fe637e393c06c0",
+      "1683c11052b03076a85436fe27fe287969c07f851b3e996795098599a399e4a4"
     ]
   },
-  "contactChecks": 652,
-  "warnings": [
-    {
-      "action": "attack_spear",
-      "frame": 3,
-      "item": "lanza_escama",
-      "point": [
-        112,
-        142
-      ]
-    },
-    {
-      "action": "attack_spear",
-      "frame": 3,
-      "item": "lanza_madera",
-      "point": [
-        112,
-        142
-      ]
-    }
-  ],
+  "contactChecks": 682,
+  "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
 }
