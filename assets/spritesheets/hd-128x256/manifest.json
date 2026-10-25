@@ -7758,14 +7758,15 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/espadachin/m/frames",
       "audit": {
-        "validFrames": 20,
+        "validFrames": 24,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
           "hurt",
           "use_consumable",
-          "dodge"
+          "dodge",
+          "block_shield"
         ],
         "actions": {
           "idle": {
@@ -8119,7 +8120,74 @@
             "distinctFrames": 4
           },
           "block_shield": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "2079ea989933aeda2f342e5bbb39bd9f0d850de4cfebc107fe4be9670c177b59",
+                "bytes": 25028,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  98,
+                  106,
+                  250
+                ],
+                "pixelSha256": "9bc2deb1a0754574b91b892d6c617b0d03d3abcb4581cd8f80eb012b4e4eaf2a"
+              },
+              "02": {
+                "sha256": "ad2fd45fa685386a909f9b7b453e3331643f281ef650d2fe56c4d6a413dc4f8d",
+                "bytes": 23870,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  99,
+                  107,
+                  250
+                ],
+                "pixelSha256": "dc745dd75184d24e2446620ec210b67cc185cfa8ae132a6dcd58bdd4bb198a1b"
+              },
+              "03": {
+                "sha256": "d33498c54610769985a82d88599b429ed7ec91d080c2cbe4ff6ed80d21c9e815",
+                "bytes": 22038,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  114,
+                  106,
+                  250
+                ],
+                "pixelSha256": "8c8adfb7d96b02c85c083cb25096bec141227d00c8c87b9cc521ae106e204984"
+              },
+              "04": {
+                "sha256": "cb43f9d3e81b941ffb24be1fdc0f5b45920c25b850b3027df568a8279a28b25d",
+                "bytes": 24482,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  98,
+                  106,
+                  250
+                ],
+                "pixelSha256": "4ddb23c7b2c170f3b89f48006b63534c742f5719322d1a375e29f1511aa4b665"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_sword": {
             "status": "missing"
@@ -8347,6 +8415,50 @@
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "block_shield": {
+          "sourceSha256": "35fe5c59e23bc0a4507a2dfdbcc92fdbe2f0ee39d08184ce222d3ca45b788cf9",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            543,
+            0,
+            1086,
+            724
+          ],
+          "scale": 0.23,
+          "origin": [
+            1.5549999999999997,
+            84
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": {
+            "uniformScale": 1.027027027027027,
+            "pivotX": 64,
+            "sourceBaseline": 247,
+            "referenceBaseline": 250,
+            "method": "one body-root transform shared by all four poses; equipment unchanged"
+          },
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/espadachin/m/source/block_shield-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET / EXACT canonical pose registration. IMAGE 2 defines ONLY ESPADACHIN MALE identity, outfit and face. Redraw the four figures of IMAGE 1 in the costume/identity of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip and wrist orientation, elbows and limb poses of IMAGE 1. Action block_shield. Do not retain Novato-specific face, hair, patched clothing or scarf unless explicitly specified in the class identity below. Young adult male swordsman: short tousled chestnut hair, burgundy neck scarf, practical dark brown leather armor reinforced with modest silver steel shoulder plates and bracers, light undershirt, brown waist belts, dark trousers, brown fingerless gloves and sturdy leather boots. Athletic but exactly canonical skeleton size. No weapon, scabbard or shield. Same newly hand-painted crisp pixel-inspired RPG finish as reference, same identity across all four figures. Empty hands in every pose; any weapon, shield, book, bottle, bow, arrow or magical effect must be entirely omitted because it will be rendered with a shared equipment sprite layer. Keep cuffs away from visible hands. Garments may follow the pose but must not move hands or enlarge skeleton. No props, shadows, labels, grid or extra views. Preserve all headroom and margins of IMAGE 1, do NOT automatically fill or recenter the canvas. Full heads hair hems hands and boots must remain inside each quarter.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-block_shield.png",
+          "canonicalPoseHashes": [
+            "553ecfc5273ac38fba3b6319328b957dbc18cb4427ed28288702c0aa017a1076",
+            "a644ae5f26fc34242d8462a6b730fe1a509acbca2cf838021f77811df9598dde",
+            "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
+            "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -8428,6 +8540,22 @@
         },
         "dodge/04": {
           "source": "sources.dodge",
+          "frame": 4
+        },
+        "block_shield/01": {
+          "source": "sources.block_shield",
+          "frame": 1
+        },
+        "block_shield/02": {
+          "source": "sources.block_shield",
+          "frame": 2
+        },
+        "block_shield/03": {
+          "source": "sources.block_shield",
+          "frame": 3
+        },
+        "block_shield/04": {
+          "source": "sources.block_shield",
           "frame": 4
         }
       },
