@@ -5824,13 +5824,14 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/mago/f/frames",
       "audit": {
-        "validFrames": 16,
+        "validFrames": 20,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
           "hurt",
-          "use_consumable"
+          "use_consumable",
+          "dodge"
         ],
         "actions": {
           "idle": {
@@ -6114,7 +6115,74 @@
             "distinctFrames": 4
           },
           "dodge": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "30ad7160ab2491eb7c3a2d176d572792487dcd05fff7e61be36c6dada140bca3",
+                "bytes": 26129,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  30,
+                  94,
+                  115,
+                  248
+                ],
+                "pixelSha256": "f88a713d7295ac79d18f65ae92af990fe106a1fa33782705fe8f980ca4f390aa"
+              },
+              "02": {
+                "sha256": "faf301e7a04144bb9746329cd4cc96fe5e85e77527069fb258691ecd876765dd",
+                "bytes": 25681,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  29,
+                  97,
+                  116,
+                  248
+                ],
+                "pixelSha256": "759b7a9790f9b23c0de09684b22c9ce0d223bc4bd1adfa3c777ae12e7936a274"
+              },
+              "03": {
+                "sha256": "e943e47ce8975c2b0d85f35f347ae2d039273936705ae22ad52449a1b8982845",
+                "bytes": 22665,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  124,
+                  106,
+                  248
+                ],
+                "pixelSha256": "da299924e6416be254300393d2027277bc32e64499fe5508a00ef67f30c0b269"
+              },
+              "04": {
+                "sha256": "f1ff79ed307595ef6573f7df9b8ce6280ee0cacd1be8a2aa1d50a8a3878d335c",
+                "bytes": 25821,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  96,
+                  101,
+                  248
+                ],
+                "pixelSha256": "dc144fce771504b45d86b9ee5f19ef9f6ae30815c003efa29f0bb7910a3b69a4"
+              }
+            },
+            "distinctFrames": 4
           },
           "block_shield": {
             "status": "missing"
@@ -6301,6 +6369,44 @@
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "dodge": {
+          "sourceSha256": "b2725ed0802dbb6e977adc804f3c16ba617b6eb0ae12f3d53b0ee2c5270a195a",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            591,
+            23,
+            1035,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            13,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/mago/f/source/dodge-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET / EXACT canonical pose registration. IMAGE 2 defines ONLY MAGO FEMALE identity, outfit and face. Redraw the four figures of IMAGE 1 in the costume/identity of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip and wrist orientation, elbows and limb poses of IMAGE 1. Action dodge. Do not retain Novato-specific face, hair, patched clothing or scarf unless explicitly specified in the class identity below. Young adult female mage: long flowing violet hair and bangs with a small copper/gold headband, focused face, royal blue/indigo split robe with muted gold edging, light inner panel, brown leather belt, discreet fingerless brown gloves, dark leggings and sturdy brown boots. No Novato scarf and no wizard hat. Same newly hand-painted crisp pixel-inspired RPG finish as reference, same identity across all four figures. Empty hands in every pose; any weapon, shield, book, bottle, bow, arrow or magical effect must be entirely omitted because it will be rendered with a shared equipment sprite layer. Keep cuffs away from visible hands. Garments may follow the pose but must not move hands or enlarge skeleton. No props, shadows, labels, grid or extra views. Preserve all headroom and margins of IMAGE 1, do NOT automatically fill or recenter the canvas. Full heads hair hems hands and boots must remain inside each quarter.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
+          "canonicalPoseHashes": [
+            "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
+            "3ce012d5051019c445bf1b124fa4b54aca454ab2d64fe2e3961287b0274c4e35",
+            "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
+            "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -6366,6 +6472,22 @@
         },
         "use_consumable/04": {
           "source": "sources.use_consumable",
+          "frame": 4
+        },
+        "dodge/01": {
+          "source": "sources.dodge",
+          "frame": 1
+        },
+        "dodge/02": {
+          "source": "sources.dodge",
+          "frame": 2
+        },
+        "dodge/03": {
+          "source": "sources.dodge",
+          "frame": 3
+        },
+        "dodge/04": {
+          "source": "sources.dodge",
           "frame": 4
         }
       },
