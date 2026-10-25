@@ -15,7 +15,9 @@
 - `Walk`: frames 01–04 completos como PNG individuales y con QA.
 - `Hurt`: frames 01–04 completos como PNG individuales, con QA por frame. La acción se generó en una tanda de cuatro poses y después se separó en celdas individuales.
 - `Use Consumable`: frames 01–04 completos como PNG individuales, con QA por frame. Acción producida en una tanda de cuatro poses y separada en celdas de 128×256.
-- Siguiente recurso exacto: `novato-m-dodge-01` (Esquivar, frame 01). No se ha empezado Novato femenino ni otra clase.
+- `Esquivar`: frames 01–04 publicados como PNG individuales de 128×256 con QA por fotograma. Commit de arte: `50e15fa1ebafdf372ee257ec024d504ea607c37f`. QA técnico aprobado; revisión visual conjunta pendiente.
+- `Bloquear con escudo`: frames 01–04 publicados como PNG individuales de 128×256 con QA por fotograma. Commit de arte: `8d90a4e23b623185e944795101c344f4b59f2309`. QA técnico aprobado; revisión visual conjunta pendiente.
+- Siguiente recurso exacto: `novato-m-attack_sword-01` (Ataque con espada de una mano, frame 01). No se ha empezado Novato femenino ni otra clase.
 - El ciclo Walk está completo técnicamente; todavía requiere revisión visual conjunta de cadencia y línea de suelo.
 
 **Ilustración maestra para menús**
@@ -33,6 +35,8 @@
 - Importación de ilustración: [workflow run #40088680223](https://github.com/joseconca/gremio-expediciones/actions/runs/40088680223) — concluido correctamente.
 - Pipeline de ensamblado por PNG individuales: [workflow run #40085136592](https://github.com/joseconca/gremio-expediciones/actions/runs/40085136592) — concluido correctamente.
 - Commit de importación de la ilustración: `39fbcbec3f653a2938538eecc7d4a333ec824111`.
+- Commit de arte Esquivar: `50e15fa1ebafdf372ee257ec024d504ea607c37f`.
+- Commit de arte Bloquear con escudo: `8d90a4e23b623185e944795101c344f4b59f2309`.
 - El manifiesto de `assets/spritesheets/hd-128x256/manifest.json` es la fuente de verdad para el siguiente frame y el avance por variante.
 
 ## Criterios de aceptación que no deben relajarse
@@ -46,4 +50,4 @@
 
 ## Próxima sesión
 
-Crear **Novato masculino · Esquivar (dodge)** como una tanda de cuatro poses. Separarlas a PNG individuales, verificar dimensiones/transparencia/alfa y QA, revisar visualmente la acción y guardar un commit para el lote. Después continuar con Bloquear (block_shield).
+Crear **Novato masculino · Ataque con espada de una mano (attack_sword)** como una tanda de cuatro poses. Separar las cuatro poses a PNG individuales, verificar dimensiones/transparencia/alfa y QA, comprobar que la espada está completa y que manos/cuerpo no se recortan, y guardar un commit de arte. Mantener el atlas y las rutas de runtime intactos hasta completar las 15 acciones.
