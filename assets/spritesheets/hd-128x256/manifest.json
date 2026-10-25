@@ -483,10 +483,26 @@
         "attack_staff/04": {
           "source": "sources.attack_staff",
           "frame": 4
+        },
+        "attack_mace/01": {
+          "source": "sources.attack_mace",
+          "frame": 1
+        },
+        "attack_mace/02": {
+          "source": "sources.attack_mace",
+          "frame": 2
+        },
+        "attack_mace/03": {
+          "source": "sources.attack_mace",
+          "frame": 3
+        },
+        "attack_mace/04": {
+          "source": "sources.attack_mace",
+          "frame": 4
         }
       },
       "audit": {
-        "validFrames": 48,
+        "validFrames": 52,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -500,7 +516,8 @@
           "attack_spear",
           "attack_dagger",
           "attack_bow",
-          "attack_staff"
+          "attack_staff",
+          "attack_mace"
         ],
         "actions": {
           "idle": {
@@ -1344,7 +1361,74 @@
             "distinctFrames": 4
           },
           "attack_mace": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "87cbc8b196c661395468acffac55aac4bd9c1bd1904022658ec6ebadd541d230",
+                "bytes": 36175,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  48,
+                  113,
+                  248
+                ],
+                "pixelSha256": "6ad4be41139263fba6a395599f8086ce8e6e1688875e29c5894fa8575d4cd370"
+              },
+              "02": {
+                "sha256": "7c422f9d08ed24e8f154876444d9b7d679b4837b05bd85e3f48bf50754455462",
+                "bytes": 38177,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  48,
+                  122,
+                  248
+                ],
+                "pixelSha256": "a971fff302fb44bfe5fa3ac271d3a6181605f0c0312915d79fffbd72b2a22a6a"
+              },
+              "03": {
+                "sha256": "e9c64d8be07abb1e378524875eff15af3b4b8b72b509416013e0947b33b42a5c",
+                "bytes": 35229,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  63,
+                  118,
+                  248
+                ],
+                "pixelSha256": "ae307a80ae0a80daff348249da6bb5ec6ad2f64742ded96a75348c83f0c1a398"
+              },
+              "04": {
+                "sha256": "96d5b8d6b1116462bfbe48998ceae233ff2bfc4b22f81f5506613d3947dbfce5",
+                "bytes": 36148,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  48,
+                  121,
+                  248
+                ],
+                "pixelSha256": "8018d4d1696e3e79db826042adeac0f5d636f281a89208d1bf4e4070e6dc2ce8"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_book": {
             "status": "missing"
@@ -1606,6 +1690,32 @@
           "generator": "built-in imagegen",
           "referencePath": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
           "prompt": "Exactly FOUR complete separated full-body Novato male animation poses, in four evenly spaced cells on one horizontal transparent strip. Reference image defines exact identity, proportions, camera and crisp painted pixel-inspired RPG style: chestnut spiky hair, burgundy scarf, ivory rolled shirt, brown leather cross harness belt pouch fingerless gloves boots, patched blue trousers. Facing right in three-quarter view in every pose. Keep same head size and costume, common ground line, generous transparent margins all around, empty hands for future equipment overlay. Compact tall narrow silhouette with width <= half body height, feet close and elbows close to ribcage, foreshorten limbs into depth; no wide lunges or horizontally stretched arms. No weapon, shield, props, effects, shadows, text or grid. Action staff casting: 1 empty staff-gripping left hand near chest, right palm at waist; 2 raise right empty palm beside head, fingers splayed; 3 right palm faces forward near chest, slight forward inclination, left gripping hand stable near chest; 4 relax right palm towards waist. Staff remains imaginary, no magic effect.\n",
+          "visualStatus": "review-pending",
+          "equipmentStatus": "layer-test-pending"
+        },
+        "attack_mace": {
+          "sourceSha256": "1a83ca076f3902249c2fdd87282a60ca794a77d35874d1184f79fc28d8477c2c",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "commonCrop": [
+            622,
+            21,
+            1014,
+            698
+          ],
+          "scale": 0.29591836734693877,
+          "origin": [
+            6,
+            48
+          ],
+          "alphaThreshold": 128,
+          "method": "shared crop and scale, no per-frame centering or resizing",
+          "sourcePath": "assets/spritesheets/hd-128x256/novato/m/source/attack_mace-reference.png",
+          "generator": "built-in imagegen",
+          "referencePath": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "prompt": "Exactly FOUR complete separated full-body Novato male animation poses, in four evenly spaced cells on one horizontal transparent strip. Reference image defines exact identity, proportions, camera and crisp painted pixel-inspired RPG style: chestnut spiky hair, burgundy scarf, ivory rolled shirt, brown leather cross harness belt pouch fingerless gloves boots, patched blue trousers. Facing right in three-quarter view in every pose. Keep same head size and costume, common ground line, generous transparent margins all around, empty hands for future equipment overlay. Compact tall narrow silhouette with width <= half body height, feet close and elbows close to ribcage, foreshorten limbs into depth; no wide lunges or horizontally stretched arms. No weapon, shield, props, effects, shadows, text or grid. Action one-handed mace swing: 1 right empty fist beside shoulder, left guards chest; 2 lift bent right arm above shoulder, wrist at head height; 3 downward compact striking arc, right fist stops in front of waist, torso leans slightly forward; 4 recover right fist to shoulder. Mace imaginary, plausible gripping fist in all poses.\n",
           "visualStatus": "review-pending",
           "equipmentStatus": "layer-test-pending"
         }
