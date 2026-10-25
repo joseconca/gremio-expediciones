@@ -405,40 +405,24 @@
           "note": "Only the four individual PNG frames and their QA reports are stored for production; the reference board is not a runtime asset."
         },
         "idle/01": {
-          "kind": "original generated project artwork; isolated-frame derivation",
-          "sourceGenerationId": "363545c7-8cf9-4628-97c1-7ae20f254cfa",
-          "sourceCanvas": [
-            1536,
-            1024
-          ],
-          "sourceCropBox": [
-            604,
-            110,
-            752,
-            572
-          ],
-          "process": [
-            "seleccionar una única vista lateral de cuerpo completo de la referencia generada",
-            "eliminar el damero gris incrustado mediante máscara de fondo conectada al borde",
-            "voltear horizontalmente para orientar el rostro a la derecha",
-            "normalizar a 128x256 conservando la pose y alineando los pies",
-            "añadir un pequeño pañuelo granate al cuello",
-            "guardar como PNG indexado con índice transparente para conservar la transparencia real y reducir tamaño"
-          ],
-          "note": "No se incorpora la lámina compuesta generada: contenía una falsa presentación de spritesheet y acciones que no deben considerarse recursos de producción."
+          "source": "sources.idle",
+          "frame": 1,
+          "supersedesCorruptedOrInconsistentLegacyIdle": true
         },
-        "idle/02": {},
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2,
+          "supersedesCorruptedOrInconsistentLegacyIdle": true
+        },
         "idle/03": {
-          "kind": "arte original del proyecto; variación de animación derivada del fotograma base conservando su paleta indexada",
-          "sourceFrame": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-01.png",
-          "change": "microanimación de parpadeo; 12 píxeles modificados alrededor del ojo, con colores tomados de la paleta existente",
-          "background": "transparencia real; el damero solo se usa en la preview de QA"
+          "source": "sources.idle",
+          "frame": 3,
+          "supersedesCorruptedOrInconsistentLegacyIdle": true
         },
         "idle/04": {
-          "kind": "arte original del proyecto; variación de animación editada sobre la paleta indexada canónica",
-          "sourceFrame": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-02.png",
-          "change": "ligera oscilación de un píxel en un pliegue iluminado de la bufanda, conservando silueta, paleta y línea de suelo",
-          "background": "transparencia real; el damero solo se utiliza en previews de revisión"
+          "source": "sources.idle",
+          "frame": 4,
+          "supersedesCorruptedOrInconsistentLegacyIdle": true
         },
         "use_consumable/01": {
           "kind": "arte original del proyecto; pose aislada de una tanda generada para la acción completa",
@@ -668,52 +652,83 @@
         }
       },
       "audit": {
-        "validFrames": 9,
-        "invalidFrames": 15,
+        "validFrames": 12,
+        "invalidFrames": 12,
         "technicalActions": [
+          "idle",
           "dodge",
           "block_shield"
         ],
         "actions": {
           "idle": {
-            "status": "invalid",
+            "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "e11fb4247e6ad1e8caf75e8cc27f71eac0b83298c2a10c882d38debe17e02abb",
-                "bytes": 7050,
+                "sha256": "b085240f0550749ba1abfa7130e5073c3b329a35381c9a70a5b430d416e2475e",
+                "bytes": 44370,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  23,
-                  20,
-                  105,
+                  8,
+                  28,
+                  122,
                   248
                 ],
-                "pixelSha256": "9439105ee4ef6e949e2b7466f98763773f707970b009445e4bdf5bff102d1f49"
+                "pixelSha256": "74a7b2d079c54b68b1fd5c861e94a7a6d17fc7a7639a74f39fa126f325444251"
               },
               "02": {
-                "sha256": "8ef7e18105ce614d9e7e0e0d98b30ee6ce714f9d6d0534c9739514f4f82c7a86",
-                "bytes": 7051,
-                "status": "invalid",
-                "error": "SyntaxError"
+                "sha256": "47c897639c2085ffe1d4412a8245136865ef6590bc9b5e6fcef615b021ac8c19",
+                "bytes": 44893,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  28,
+                  122,
+                  248
+                ],
+                "pixelSha256": "44ef43c929ee63ab3d8077f116af1b2093580b6770c3927a278a9576885b9fd0"
               },
               "03": {
-                "sha256": "15fded5236985e539b551f399bbe78eb3d2e3e2daeeb6ca2ec4e89d1da1470c1",
-                "bytes": 7053,
-                "status": "invalid",
-                "error": "SyntaxError"
+                "sha256": "23ef3e94b0d862048ffe30965ad2546e3a608ded01e99fc7d0370a135290e043",
+                "bytes": 44263,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  7,
+                  28,
+                  121,
+                  248
+                ],
+                "pixelSha256": "181dc5d6b39b9f7270578b1479c6b6c6841be252c4ad50ae25e54621e3541abc"
               },
               "04": {
-                "sha256": "299305986d2bfd0c74ac45d4c5784a1c37e7a5622e2efb1e276061d0b82c9134",
-                "bytes": 7054,
-                "status": "invalid",
-                "error": "SyntaxError"
+                "sha256": "094973e836853eb128c91c9ba596d52313734cfe07cb52126e95407e15d9527a",
+                "bytes": 44327,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  8,
+                  28,
+                  121,
+                  248
+                ],
+                "pixelSha256": "4b011d99b892e5e00cc935dd7c18f767c19554daf63d26a169bceec023f59c56"
               }
             },
-            "distinctFrames": 1
+            "distinctFrames": 4
           },
           "walk": {
             "status": "invalid",
@@ -972,6 +987,63 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "ee9831d33b96c93e03cfe2fe8acd4b665c3e0eb65f12e7b247a30a075215db0a",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "commonCrop": [
+            111,
+            21,
+            467,
+            696
+          ],
+          "scale": 0.3258426966292135,
+          "origin": [
+            6,
+            28
+          ],
+          "alphaThreshold": 128,
+          "method": "shared crop and scale, no per-frame centering or resizing",
+          "sourcePath": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "generator": "built-in imagegen",
+          "referencePath": "assets/spritesheets/hd-128x256/novato/m/frames/block_shield/novato-m-block_shield-04.png",
+          "prompt": "Exactly four full-body idle poses facing right, same Novato reference identity, brown hair, red scarf, cream shirt, leather harness/gloves/boots, blue patched trousers. Empty lowered hands, planted feet, subtle breathing and blink, consistent scale and camera, true transparency, no weapons, shadows, labels or grid.",
+          "visualStatus": "candidate-review-pending"
+        }
+      },
+      "visualReference": {
+        "path": "assets/spritesheets/hd-128x256/novato/m/frames/block_shield/novato-m-block_shield-04.png",
+        "status": "working-reference",
+        "identity": "brown spiky hair, red scarf, cream sleeves, brown harness/gloves/boots, blue trousers with tan patches"
+      },
+      "candidates": {
+        "attack_sword": {
+          "status": "needs-pose-rework",
+          "files": [
+            {
+              "path": "assets/spritesheets/hd-128x256/novato/m/candidates/attack_sword/novato-m-attack_sword-01.png",
+              "sha256": "12298de65cb21677b6d4b7181cc58a19732f972ea0824eb686ab5069f143f081"
+            },
+            {
+              "path": "assets/spritesheets/hd-128x256/novato/m/candidates/attack_sword/novato-m-attack_sword-02.png",
+              "sha256": "2e52c9e3882a18daf85672251157cdd8cb5c065899b003b2ed23c7fa5940ca8d"
+            },
+            {
+              "path": "assets/spritesheets/hd-128x256/novato/m/candidates/attack_sword/novato-m-attack_sword-03.png",
+              "sha256": "52fd629e013e78ebfd942cea8a752c5035cc5bd5dd682a349d50c7ef7a3b3692"
+            },
+            {
+              "path": "assets/spritesheets/hd-128x256/novato/m/candidates/attack_sword/novato-m-attack_sword-04.png",
+              "sha256": "50622201b52616b2124fbf464f0660665e58c82761aa947e1dadda4789bcda57"
+            }
+          ],
+          "librarySource": "libfile_d5b293dfdb58819192c3b18bf7d8e6ad",
+          "reason": "Sequence reads as a punch; needs sword grip/cut poses and equipment-layer proof. Not counted as completed action."
         }
       }
     },
@@ -2762,7 +2834,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Recover corrupted Novato male frames; verify common visual identity before new attacks",
+  "nextTask": "Review new Idle with Dodge/Block Shield; rebuild Walk, Hurt and Use Consumable from the same working reference; rework sword candidate and test equipment layers.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
