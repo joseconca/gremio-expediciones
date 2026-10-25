@@ -21066,7 +21066,12 @@
         "baselineReproduced": "Both failures reproduced on origin/main c2c63889: Job cap 40 vs expected 20; passive-resource maximum 113 vs expected 23."
       },
       "lint": "passed",
-      "productionBuild": "passed"
+      "productionBuild": "passed",
+      "base": {
+        "passed": 85,
+        "failed": 1,
+        "baselineVerified": "Botica/Mercado PNG equality expectation fails; both PNG bytes and the test are identical to origin/main c2c63889."
+      }
     },
     "visualReview": [
       "Actual runtime renderer in browser on desktop",
@@ -21083,6 +21088,14 @@
       "validationReport": "assets/spritesheets/hd-128x256/runtime-integration-report.json",
       "decodedMemoryReductionPercent": 98.27,
       "retainedImageCacheLimit": 16
+    },
+    "mainPromotion": {
+      "status": "awaiting-specific-user-approval",
+      "pullRequest": "https://github.com/joseconca/gremio-expediciones/pull/3",
+      "reason": "Automatic approval review rejected direct publication to main and requires explicit permission for the principal branch.",
+      "validatedCommit": "b4715b37770cd672acd75272b1a8f2fc1bde2c16",
+      "githubSpriteValidation": "https://github.com/joseconca/gremio-expediciones/actions/runs/40234474400",
+      "remoteRuntimePngsVerified": 86
     }
   }
 }
