@@ -13584,7 +13584,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/acolito/f/frames",
       "audit": {
-        "validFrames": 28,
+        "validFrames": 32,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -13593,7 +13593,8 @@
           "use_consumable",
           "dodge",
           "block_shield",
-          "attack_sword"
+          "attack_sword",
+          "attack_axe"
         ],
         "actions": {
           "idle": {
@@ -14087,7 +14088,74 @@
             "distinctFrames": 4
           },
           "attack_axe": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "0d2470ff93407fbdad8d58a5319bf40d609abd87577922881582eb83b4b4b22a",
+                "bytes": 27191,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  93,
+                  118,
+                  249
+                ],
+                "pixelSha256": "c78ed23ee34a960be682b57c5f16d82830c60439c4a61e188203bde149b30287"
+              },
+              "02": {
+                "sha256": "dde2551f18eee3ab73de59dc98ab016deada865bed573298589cf6c7b523881f",
+                "bytes": 26874,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  89,
+                  111,
+                  249
+                ],
+                "pixelSha256": "ac922b7515e1dfdfe543ddbabe724a0db6f448fec1e0992a31b65e2ee39284f0"
+              },
+              "03": {
+                "sha256": "1fd8e9e5f897b9f87eeca13c07bfb286d61c91e5c5012fc87c89583dd1e1a184",
+                "bytes": 25127,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  103,
+                  107,
+                  249
+                ],
+                "pixelSha256": "2fd3ecb9bdb243624a3ce04b3199c6a9772b9306e9d7450f2c06602b1a7877cf"
+              },
+              "04": {
+                "sha256": "01b12fe92bf9a558057c3a2dd79b99895b2e3de865dfaef469ae1768a6c24bf2",
+                "bytes": 26196,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  93,
+                  97,
+                  249
+                ],
+                "pixelSha256": "603453415797051201b2aaab9cfda294fe00564fba5fca74f9903f11de2176fa"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_spear": {
             "status": "missing"
@@ -14379,6 +14447,44 @@
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_axe": {
+          "sourceSha256": "4a8debd15a4baa6ecf1cc5bbb7680f36b19cc05ab4f05cc690b2a24b1728f7f4",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            612,
+            8,
+            1074,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/acolito/f/source/attack_axe-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET / EXACT canonical pose registration. IMAGE 2 defines ONLY ACOLITO FEMALE identity, outfit and face. Redraw the four figures of IMAGE 1 in the costume/identity of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip and wrist orientation, elbows and limb poses of IMAGE 1. Action attack_axe. Do not retain Novato-specific face, hair, patched clothing or scarf unless explicitly specified in the class identity below. Young adult female acolyte: warm rose/chestnut hair in a high ponytail and side bangs, gentle determined face, ivory cleric robe and split tabard with red stole and muted gold edging, modest gold neck clasp, red waist sash and leather belt, broad ivory sleeves ending before visible hands, discreet brown fingerless gloves and brown boots. Fully covered practical costume. No staff, holy symbol prop, book or effects. Same newly hand-painted crisp pixel-inspired RPG finish as reference, same identity across all four figures. Empty hands in every pose; any weapon, shield, book, bottle, bow, arrow or magical effect must be entirely omitted because it will be rendered with a shared equipment sprite layer. Keep cuffs away from visible hands. Garments may follow the pose but must not move hands or enlarge skeleton. No props, shadows, labels, grid or extra views. Preserve all headroom and margins of IMAGE 1, do NOT automatically fill or recenter the canvas. Full heads hair hems hands and boots must remain inside each quarter.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_axe-reference.png",
+          "canonicalPoseHashes": [
+            "253649ca75f8b49a0803caabae050f185a7205660b4160cefba2ee8ea8245e44",
+            "b73f19f98cedeb571a00af260cce19c5282b4fca6d255a3918ac73eaf2f31e0c",
+            "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
+            "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -14492,6 +14598,22 @@
         },
         "attack_sword/04": {
           "source": "sources.attack_sword",
+          "frame": 4
+        },
+        "attack_axe/01": {
+          "source": "sources.attack_axe",
+          "frame": 1
+        },
+        "attack_axe/02": {
+          "source": "sources.attack_axe",
+          "frame": 2
+        },
+        "attack_axe/03": {
+          "source": "sources.attack_axe",
+          "frame": 3
+        },
+        "attack_axe/04": {
+          "source": "sources.attack_axe",
           "frame": 4
         }
       },
