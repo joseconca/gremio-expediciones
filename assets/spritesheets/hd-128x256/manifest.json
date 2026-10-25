@@ -13584,13 +13584,14 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/acolito/f/frames",
       "audit": {
-        "validFrames": 16,
+        "validFrames": 20,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
           "hurt",
-          "use_consumable"
+          "use_consumable",
+          "dodge"
         ],
         "actions": {
           "idle": {
@@ -13874,7 +13875,74 @@
             "distinctFrames": 4
           },
           "dodge": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "5971d7d90176136ce5d9f850613419a54daa1d3c5ed52832dba3c1f95eafdcb6",
+                "bytes": 25822,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  93,
+                  114,
+                  247
+                ],
+                "pixelSha256": "18d91243807d30ce924d620b78c19c868b3588cc373e76ff0082639673132a44"
+              },
+              "02": {
+                "sha256": "c29ce34dd8d00a98cbe7b4ced44473e78c7cc70d822423c514a9149218c64f46",
+                "bytes": 24859,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  32,
+                  98,
+                  115,
+                  247
+                ],
+                "pixelSha256": "5af9825b8f11bb21d98e39291255fc77a2a7415bc6d800d39f13844369022d43"
+              },
+              "03": {
+                "sha256": "cf063877b407471bed9f8e6fd76efc67d34014d93b3030ad36f709e7d06f2c09",
+                "bytes": 21110,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  125,
+                  105,
+                  247
+                ],
+                "pixelSha256": "d8b5f193f079d3a7c63bebf19fd682b9c25a6a255c5263c6adfe64a1d29aaa46"
+              },
+              "04": {
+                "sha256": "cd00240bd7e684a992e8e517115fdcb71745327b6dff5a7eecb537f79fa8ecb6",
+                "bytes": 25271,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  96,
+                  103,
+                  247
+                ],
+                "pixelSha256": "98f624cf16687a7ab7bfc8f33b8dfb4641aff79912826efe104dd437ed87b4b0"
+              }
+            },
+            "distinctFrames": 4
           },
           "block_shield": {
             "status": "missing"
@@ -14061,6 +14129,44 @@
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "dodge": {
+          "sourceSha256": "9537e216c0b879aec084f1f32bf568adacad88b72c26bd02f5c2d0f1ae419207",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            591,
+            23,
+            1035,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            13,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/acolito/f/source/dodge-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET / EXACT canonical pose registration. IMAGE 2 defines ONLY ACOLITO FEMALE identity, outfit and face. Redraw the four figures of IMAGE 1 in the costume/identity of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip and wrist orientation, elbows and limb poses of IMAGE 1. Action dodge. Do not retain Novato-specific face, hair, patched clothing or scarf unless explicitly specified in the class identity below. Young adult female acolyte: warm rose/chestnut hair in a high ponytail and side bangs, gentle determined face, ivory cleric robe and split tabard with red stole and muted gold edging, modest gold neck clasp, red waist sash and leather belt, broad ivory sleeves ending before visible hands, discreet brown fingerless gloves and brown boots. Fully covered practical costume. No staff, holy symbol prop, book or effects. Same newly hand-painted crisp pixel-inspired RPG finish as reference, same identity across all four figures. Empty hands in every pose; any weapon, shield, book, bottle, bow, arrow or magical effect must be entirely omitted because it will be rendered with a shared equipment sprite layer. Keep cuffs away from visible hands. Garments may follow the pose but must not move hands or enlarge skeleton. No props, shadows, labels, grid or extra views. Preserve all headroom and margins of IMAGE 1, do NOT automatically fill or recenter the canvas. Full heads hair hems hands and boots must remain inside each quarter.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
+          "canonicalPoseHashes": [
+            "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
+            "3ce012d5051019c445bf1b124fa4b54aca454ab2d64fe2e3961287b0274c4e35",
+            "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
+            "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -14126,6 +14232,22 @@
         },
         "use_consumable/04": {
           "source": "sources.use_consumable",
+          "frame": 4
+        },
+        "dodge/01": {
+          "source": "sources.dodge",
+          "frame": 1
+        },
+        "dodge/02": {
+          "source": "sources.dodge",
+          "frame": 2
+        },
+        "dodge/03": {
+          "source": "sources.dodge",
+          "frame": 3
+        },
+        "dodge/04": {
+          "source": "sources.dodge",
           "frame": 4
         }
       },
