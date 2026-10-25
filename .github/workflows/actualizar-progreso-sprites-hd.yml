@@ -1,0 +1,61 @@
+name: Actualizar preview de progreso de sprites HD
+
+on:
+  push:
+    branches:
+      - creacion-sprite-sheets
+    paths:
+      - "assets/spritesheets/hd-128x256/novato/m/frames/**"
+      - "assets/spritesheets/hd-128x256/manifest.json"
+      - "scripts/ensamblar-progreso-spritesheet-hd.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: novato-m-progress-sheet
+  cancel-in-progress: false
+
+jobs:
+  build-progress-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout rama de arte
+        uses: actions/checkout@v4
+        with:
+          ref: creacion-sprite-sheets
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Preparar Python y Pillow
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --disable-pip-version-check Pillow
+
+      - name: Construir hoja de progreso (no runtime)
+        run: python scripts/ensamblar-progreso-spritesheet-hd.py
+
+      - name: Publicar preview y reporte
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/spritesheets/hd-128x256/novato/m/previews/novato-m-sheet-progress.png
+          git add assets/spritesheets/hd-128x256/novato/m/previews/novato-m-sheet-progress.json
+          if git diff --cached --quiet; then
+            echo "La hoja de progreso no ha cambiado."
+            exit 0
+          fi
+          git commit -m "chore(sprites): regenerar preview de progreso Novato masculino [skip ci]"
+          git push origin HEAD:creacion-sprite-sheets
+
+      - name: Guardar preview como artefacto descargable
+        uses: actions/upload-artifact@v4
+        with:
+          name: novato-m-sheet-progress
+          path: |
+            assets/spritesheets/hd-128x256/novato/m/previews/novato-m-sheet-progress.png
+            assets/spritesheets/hd-128x256/novato/m/previews/novato-m-sheet-progress.json
+          if-no-files-found: error
+          retention-days: 30
