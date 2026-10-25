@@ -2107,7 +2107,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/f/frames",
       "audit": {
-        "validFrames": 44,
+        "validFrames": 48,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -2120,7 +2120,8 @@
           "attack_axe",
           "attack_spear",
           "attack_dagger",
-          "attack_bow"
+          "attack_bow",
+          "attack_staff"
         ],
         "actions": {
           "idle": {
@@ -2894,7 +2895,74 @@
             "distinctFrames": 4
           },
           "attack_staff": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "442cc437e40b766ae74ed6549516dc0fc46f33e1a3c010e32f03a0b8f7a72e46",
+                "bytes": 25251,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  90,
+                  107,
+                  248
+                ],
+                "pixelSha256": "50e30ff7db73af60132fa7073879fe9b08895720809e751ee6389b66b21682e6"
+              },
+              "02": {
+                "sha256": "d8606da96c9ceb3adfe9152ec3559f0b01465b55fc73b64b8ae6adeb6b4fdf9d",
+                "bytes": 26642,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  90,
+                  107,
+                  248
+                ],
+                "pixelSha256": "69fb7283a94ee7fb37efb46a69f4722102cbf7db46f0f438cdb3a2e91f57fa13"
+              },
+              "03": {
+                "sha256": "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
+                "bytes": 24946,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  90,
+                  102,
+                  248
+                ],
+                "pixelSha256": "ca6a4c7d80364012e560152e9e35f5338439dc66bbb2937703af5750dd010778"
+              },
+              "04": {
+                "sha256": "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f",
+                "bytes": 24859,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  90,
+                  101,
+                  248
+                ],
+                "pixelSha256": "22f94d83605ea7e943e88d8b7eefc9dc362acc25e484ad06b84397837ad58e59"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_mace": {
             "status": "missing"
@@ -3204,6 +3272,33 @@
           "prompt": "Exactly FOUR complete separated full-body animation poses of the SAME FEMALE Novato from reference, four evenly spaced equal cells in ONE horizontal transparent strip. Preserve exact female face, brown eyes, chestnut high ponytail and bangs, burgundy scarf, ivory rolled sleeve shirt fully covering torso, brown leather cross harness belt pouch fingerless gloves and boots, patched blue trousers. Identical crisp painted pixel-inspired RPG rendering, proportions, head size, costume, camera, lighting. Facing RIGHT in three-quarter view always, common ground line, upright height about same as reference across all poses, ponytail stays near shoulders. Empty hands for equipment overlay. Compact tall narrow silhouettes, feet and elbows close, no wide lunges or horizontal arm stretches; foreshorten limbs into right/depth. Generous transparent margin around hair scarf fingers boots and between figures. No weapon, shield, equipment, props, effects, shadows, labels or grid. BOW draw and release with empty hands: 1 left empty bow grip in front of chest, right hand near sternum; 2 right fingers draw to cheek, left arm slightly bent and foreshortened into right/depth; 3 hold full draw right fingers beside jaw, left empty grip stable; 4 release with right fingers opening beside cheek. No bow arrow string quiver drawn. Keep silhouette narrow without wide horizontal arms.\n",
           "visualStatus": "review-pending",
           "equipmentStatus": "layer-test-pending"
+        },
+        "attack_staff": {
+          "sourceSha256": "79ff07bedbd2dba0aa8e95cfb6ab2c4b368f5c01faff86c72f2c6ae86d483332",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "commonCrop": [
+            648,
+            14,
+            1028,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            20,
+            90
+          ],
+          "alphaThreshold": 128,
+          "method": "shared crop and scale, no per-frame centering or resizing",
+          "scalePolicy": "fixed-across-actions",
+          "sourcePath": "assets/spritesheets/hd-128x256/novato/f/source/attack_staff-reference.png",
+          "generator": "built-in imagegen",
+          "referencePath": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "prompt": "Exactly FOUR complete separated full-body animation poses of the SAME FEMALE Novato from reference, four evenly spaced equal cells in ONE horizontal transparent strip. Preserve exact female face, brown eyes, chestnut high ponytail and bangs, burgundy scarf, ivory rolled sleeve shirt fully covering torso, brown leather cross harness belt pouch fingerless gloves and boots, patched blue trousers. Identical crisp painted pixel-inspired RPG rendering, proportions, head size, costume, camera, lighting. Facing RIGHT in three-quarter view always, common ground line, upright height about same as reference across all poses, ponytail stays near shoulders. Empty hands for equipment overlay. Compact tall narrow silhouettes, feet and elbows close, no wide lunges or horizontal arm stretches; foreshorten limbs into right/depth. Generous transparent margin around hair scarf fingers boots and between figures. No weapon, shield, equipment, props, effects, shadows, labels or grid. Action staff casting: 1 empty staff-gripping left hand near chest, right palm at waist; 2 raise right empty palm beside head, fingers splayed; 3 right palm faces forward near chest, slight forward inclination, left gripping hand stable near chest; 4 relax right palm towards waist. Staff remains imaginary, no magic effect.\n",
+          "visualStatus": "review-pending",
+          "equipmentStatus": "layer-test-pending"
         }
       },
       "frameProvenance": {
@@ -3381,6 +3476,22 @@
         },
         "attack_bow/04": {
           "source": "sources.attack_bow",
+          "frame": 4
+        },
+        "attack_staff/01": {
+          "source": "sources.attack_staff",
+          "frame": 1
+        },
+        "attack_staff/02": {
+          "source": "sources.attack_staff",
+          "frame": 2
+        },
+        "attack_staff/03": {
+          "source": "sources.attack_staff",
+          "frame": 3
+        },
+        "attack_staff/04": {
+          "source": "sources.attack_staff",
           "frame": 4
         }
       },
