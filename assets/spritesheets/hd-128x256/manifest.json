@@ -11638,10 +11638,11 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/acolito/m/frames",
       "audit": {
-        "validFrames": 4,
+        "validFrames": 8,
         "invalidFrames": 0,
         "technicalActions": [
-          "idle"
+          "idle",
+          "walk"
         ],
         "actions": {
           "idle": {
@@ -11715,7 +11716,74 @@
             "distinctFrames": 4
           },
           "walk": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "97e2040aa867332d11199bccdb53e19e5773b4217daf72e5b5ce306302c0052d",
+                "bytes": 27486,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  92,
+                  113,
+                  248
+                ],
+                "pixelSha256": "d229fb8987d527257247b0f4b87ef0f8d5e217fef9e08e98ce6d44f6186f959e"
+              },
+              "02": {
+                "sha256": "ceee8a885387c4146fc669e9b480b221c47e1429e9993f904d253aee97f93d10",
+                "bytes": 24324,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  92,
+                  109,
+                  248
+                ],
+                "pixelSha256": "8ab83a37cef13ea5f56d27d755287ce66cefef953aee722b853ad818afaf6cf5"
+              },
+              "03": {
+                "sha256": "585359e8df99d2a3cea04709f76b9e29c15bdb44cbd7e18e63509d17557e184d",
+                "bytes": 25174,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  92,
+                  116,
+                  248
+                ],
+                "pixelSha256": "132b0507a0cb5e9a7bae4f1533ff0fa9b4fdf6d50f07fb978fb9b173272e8bd1"
+              },
+              "04": {
+                "sha256": "7a434b953e22590a08a70810c2fa2694b1c7bfb3ad446de015388ca7a9f7426f",
+                "bytes": 25463,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  92,
+                  109,
+                  248
+                ],
+                "pixelSha256": "21bd85aaa4d9e8af1d20bebdf03bcb65f72cd1d5d2ec10d1d36b915bd4c56585"
+              }
+            },
+            "distinctFrames": 4
           },
           "hurt": {
             "status": "missing"
@@ -11797,6 +11865,44 @@
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "walk": {
+          "sourceSha256": "e0f1e99a23ac5dad6d9d2716e4c17d8ed4e74cac78372efcec774401aaa411c3",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            618,
+            18,
+            1069,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            12,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/acolito/m/source/walk-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET / EXACT canonical pose registration. IMAGE 2 defines ONLY ACOLITO MALE identity, outfit and face. Redraw the four figures of IMAGE 1 in the costume/identity of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip and wrist orientation, elbows and limb poses of IMAGE 1. Action walk. Do not retain Novato-specific face, hair, patched clothing or scarf unless explicitly specified in the class identity below. Young adult male acolyte: short tousled ash-silver hair, gentle determined face, ivory cleric robe and split tabard with red stole and muted gold edging, modest gold neck clasp, red waist sash and leather belt, broad ivory sleeves ending before visible hands, discreet brown fingerless gloves and brown boots. No staff, holy symbol prop, book or effects. Same newly hand-painted crisp pixel-inspired RPG finish as reference, same identity across all four figures. Empty hands in every pose; any weapon, shield, book, bottle, bow, arrow or magical effect must be entirely omitted because it will be rendered with a shared equipment sprite layer. Keep cuffs away from visible hands. Garments may follow the pose but must not move hands or enlarge skeleton. No props, shadows, labels, grid or extra views. Preserve all headroom and margins of IMAGE 1, do NOT automatically fill or recenter the canvas. Full heads hair hems hands and boots must remain inside each quarter.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+          "canonicalPoseHashes": [
+            "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+            "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+            "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+            "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -11814,6 +11920,22 @@
         },
         "idle/04": {
           "source": "sources.idle",
+          "frame": 4
+        },
+        "walk/01": {
+          "source": "sources.walk",
+          "frame": 1
+        },
+        "walk/02": {
+          "source": "sources.walk",
+          "frame": 2
+        },
+        "walk/03": {
+          "source": "sources.walk",
+          "frame": 3
+        },
+        "walk/04": {
+          "source": "sources.walk",
           "frame": 4
         }
       },
