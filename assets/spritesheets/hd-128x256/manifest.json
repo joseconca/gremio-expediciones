@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "mago-f",
+  "nextVariant": "espadachin-m",
   "classes": [
     {
       "id": "novato",
@@ -7714,7 +7714,7 @@
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "equipmentTests": {
         "attack_sword": {
-          "status": "technical-preview-verified-art-review-pending",
+          "status": "same-weapon-layer-as-novato-verified-art-review-pending",
           "weaponPath": "public/sprites/items/weapons/espada_hierro.png",
           "weaponSha256": "8b21d32318b5d8778325ea8899f2e74524c9c98bce540656844faf02758f7589",
           "weaponGrip": [
@@ -7742,7 +7742,8 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
-      }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending"
     },
     {
       "classId": "espadachin",
@@ -9358,7 +9359,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 1 in class order: Mago, Espadachin, Acolito, Arquero; male then female, 15 registered actions each.",
+  "nextTask": "Continue Tier 1 in class order; complete all male then female actions with canonical poses and shared equipment.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",

@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-25T15:39:49.268579+00:00",
+  "classId": "mago",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\mago\\f\\mago-f-sheet.png",
+  "sheetSha256": "50be9adea754f79b82277fa4e861b8320ac6da22890be987521ffd21f986a4d7",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\idle\\mago-f-idle-01.png",
+          "sha256": "9cbaa52739ec8b5d6abf76e27e0442fd0a373a187664b43132c4ffc917472119",
+          "alpha_bbox": [
+            22,
+            92,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\idle\\mago-f-idle-02.png",
+          "sha256": "5ea8377b9dbf35fc18e989eeef30e78773ad42497fda84830c487aed7247ed4e",
+          "alpha_bbox": [
+            22,
+            91,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\idle\\mago-f-idle-03.png",
+          "sha256": "10ee79fa44eec7bd344a9fb6d50d74d655040001d83e85be00e66f8de517bc32",
+          "alpha_bbox": [
+            16,
+            92,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\idle\\mago-f-idle-04.png",
+          "sha256": "bb6172ec6d454ec91ca6c4fd20298d62d3f785c27eb177ccf0fc1ad22b474882",
+          "alpha_bbox": [
+            13,
+            92,
+            100,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\walk\\mago-f-walk-01.png",
+          "sha256": "aeb7d8ddf4ecd84e6fce661676e2a9663e14de639afab92e153110e47d437d49",
+          "alpha_bbox": [
+            15,
+            91,
+            108,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\walk\\mago-f-walk-02.png",
+          "sha256": "ac70c7eaa796a95079438d2a1ac60dd39a3274c754f8c6197a539df60cbc9a70",
+          "alpha_bbox": [
+            19,
+            91,
+            95,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\walk\\mago-f-walk-03.png",
+          "sha256": "ee08beb6bcd87e68bbdca33d8a321daffeacbe591f02ccd79fa82be481010410",
+          "alpha_bbox": [
+            10,
+            91,
+            118,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\walk\\mago-f-walk-04.png",
+          "sha256": "eb04d8da17a9524fd8cfa83e84ba0b3e3ff54fbcd28ece8244eed13457df0aba",
+          "alpha_bbox": [
+            24,
+            91,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\hurt\\mago-f-hurt-01.png",
+          "sha256": "6432651f408b39487595386ff81517e295f644c6b2b987348649fe4f472e2013",
+          "alpha_bbox": [
+            19,
+            93,
+            115,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\hurt\\mago-f-hurt-02.png",
+          "sha256": "78c5af9e30bc2e3b77ed0e8d3cd32d145fff921a55e633b1ca8ecd964aaa70f8",
+          "alpha_bbox": [
+            24,
+            92,
+            108,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\hurt\\mago-f-hurt-03.png",
+          "sha256": "8ba1aa3890ecc9713b5b633c8580633bef7400ca010d459ca8c46b22ca401e45",
+          "alpha_bbox": [
+            17,
+            113,
+            98,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\hurt\\mago-f-hurt-04.png",
+          "sha256": "8e9b86b3fb784d851bb8915f82de4d941b91a637a067cc912000d0bcc6a16169",
+          "alpha_bbox": [
+            11,
+            91,
+            97,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\use_consumable\\mago-f-use_consumable-01.png",
+          "sha256": "2c47bdde3489b00c5b969e30f7d53ddd2865adc6159dd6786b7b496bb3079420",
+          "alpha_bbox": [
+            25,
+            91,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\use_consumable\\mago-f-use_consumable-02.png",
+          "sha256": "5fcf7a936aff1539d9992ac9be58a16fde78434cb4a1d79fe0ed1f1c2699cd77",
+          "alpha_bbox": [
+            25,
+            91,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\use_consumable\\mago-f-use_consumable-03.png",
+          "sha256": "84644d9df3ab3a819ff148fc7bd441e92e2b97aa4477147c074f468d937f355f",
+          "alpha_bbox": [
+            20,
+            91,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\use_consumable\\mago-f-use_consumable-04.png",
+          "sha256": "e818971d6b6ab3f0cb04a09be64496586231b5daacd05e328ee7c15e5bfbbb6d",
+          "alpha_bbox": [
+            20,
+            91,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\dodge\\mago-f-dodge-01.png",
+          "sha256": "30ad7160ab2491eb7c3a2d176d572792487dcd05fff7e61be36c6dada140bca3",
+          "alpha_bbox": [
+            30,
+            94,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\dodge\\mago-f-dodge-02.png",
+          "sha256": "faf301e7a04144bb9746329cd4cc96fe5e85e77527069fb258691ecd876765dd",
+          "alpha_bbox": [
+            29,
+            97,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\dodge\\mago-f-dodge-03.png",
+          "sha256": "e943e47ce8975c2b0d85f35f347ae2d039273936705ae22ad52449a1b8982845",
+          "alpha_bbox": [
+            20,
+            124,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\dodge\\mago-f-dodge-04.png",
+          "sha256": "f1ff79ed307595ef6573f7df9b8ce6280ee0cacd1be8a2aa1d50a8a3878d335c",
+          "alpha_bbox": [
+            13,
+            96,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\block_shield\\mago-f-block_shield-01.png",
+          "sha256": "78a731684edec4a9d23efaf357b2379666d04ebd8ef2c6ea466f701c6dbdc09e",
+          "alpha_bbox": [
+            25,
+            92,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\block_shield\\mago-f-block_shield-02.png",
+          "sha256": "35d2fa9760836243ca80a7a4ac74466777d4eebec28d60e3d3cb8df1f9213920",
+          "alpha_bbox": [
+            22,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\block_shield\\mago-f-block_shield-03.png",
+          "sha256": "7d7151c1f05ec999fc46f7f59f720be35b04e72a63e74e0530d5169b59bc68b4",
+          "alpha_bbox": [
+            20,
+            105,
+            99,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\block_shield\\mago-f-block_shield-04.png",
+          "sha256": "9a7d6b3d66100186f20907956ce2c0bf69bb38ed6867cf1da5b1d9f7edc33ead",
+          "alpha_bbox": [
+            10,
+            92,
+            95,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_sword\\mago-f-attack_sword-01.png",
+          "sha256": "877c8c25578f7bf8e1a54e0da2892da75427cb64c736ebbf01613b77a261182b",
+          "alpha_bbox": [
+            19,
+            91,
+            110,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_sword\\mago-f-attack_sword-02.png",
+          "sha256": "282223cde64a0de299792983a085773d40c8ad220b38f1b9cd0fb5cbcd74fc45",
+          "alpha_bbox": [
+            23,
+            91,
+            112,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_sword\\mago-f-attack_sword-03.png",
+          "sha256": "b86bff99003cf5babe5b293fffe92667085c6c48736062b4c0e76ab8bf4a6db5",
+          "alpha_bbox": [
+            19,
+            95,
+            109,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_sword\\mago-f-attack_sword-04.png",
+          "sha256": "0d6299d0e15eb813b136b3b9754992dcb8ff99dd35bd00ce690f4d239ab15c1d",
+          "alpha_bbox": [
+            20,
+            91,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_axe\\mago-f-attack_axe-01.png",
+          "sha256": "bb295c093a87080210cf64579fa0185ba175024092f9fe65c36d06b5449301ac",
+          "alpha_bbox": [
+            27,
+            93,
+            113,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_axe\\mago-f-attack_axe-02.png",
+          "sha256": "95f2b0d8d13aadd2d1797c48c5514a86a792eca0dbeda8d6a1021ccaa600f90c",
+          "alpha_bbox": [
+            19,
+            89,
+            111,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_axe\\mago-f-attack_axe-03.png",
+          "sha256": "20a972c8673a649f75ad2fcacf808684740e402c3cf12e8f27e8cf981db0d47f",
+          "alpha_bbox": [
+            18,
+            103,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_axe\\mago-f-attack_axe-04.png",
+          "sha256": "fbe9b6f9b7ddf8047d58d6a051dc36a2575a94f8c718b84a0d533e2479b670a1",
+          "alpha_bbox": [
+            11,
+            93,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_spear\\mago-f-attack_spear-01.png",
+          "sha256": "8d8b6ca3b199c08fbb50de9421c73e03683cbe760f80efbb3e3358337120bfb4",
+          "alpha_bbox": [
+            6,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_spear\\mago-f-attack_spear-02.png",
+          "sha256": "739829152c5ce069996fb78b50569fffe9c626c72e61fa58b17924af3bed3926",
+          "alpha_bbox": [
+            12,
+            92,
+            100,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_spear\\mago-f-attack_spear-03.png",
+          "sha256": "d5b281219f445389779fc4afba75aaff43c18adda2f03c76c0629c1dc128d35e",
+          "alpha_bbox": [
+            12,
+            92,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_spear\\mago-f-attack_spear-04.png",
+          "sha256": "b99fd9e7148a34e36ee798043238f98d31e18cb95e23d21845f2924e079b7192",
+          "alpha_bbox": [
+            16,
+            92,
+            114,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_dagger\\mago-f-attack_dagger-01.png",
+          "sha256": "dec1351ef8cbe097fe665a2a6130cf7490f477c91aaafbe7ccd9d3b529c4ebab",
+          "alpha_bbox": [
+            11,
+            90,
+            103,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_dagger\\mago-f-attack_dagger-02.png",
+          "sha256": "c7e75f36b3d465a9532506969afa4bd5a48345ca87b1c2e9dae6153bfeae5431",
+          "alpha_bbox": [
+            17,
+            90,
+            110,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_dagger\\mago-f-attack_dagger-03.png",
+          "sha256": "18c46d537278efebabe8437a5367df692a7374009a4fe429d00c21528da49825",
+          "alpha_bbox": [
+            16,
+            90,
+            109,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_dagger\\mago-f-attack_dagger-04.png",
+          "sha256": "8c09c62cc39e8c92a6a1b6a8a46bc587628de18cc04ecb607bfafadfd1de0130",
+          "alpha_bbox": [
+            14,
+            90,
+            110,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_bow\\mago-f-attack_bow-01.png",
+          "sha256": "60ea7f3c22ca6e06844bd45455578a2b23d5d7986c7ca2118daaea58ee5a710b",
+          "alpha_bbox": [
+            17,
+            91,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_bow\\mago-f-attack_bow-02.png",
+          "sha256": "964e2ed4e79ca446ebc9bfde43bcb6382d2c8c4c2146ee55edef40417497f991",
+          "alpha_bbox": [
+            16,
+            91,
+            118,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_bow\\mago-f-attack_bow-03.png",
+          "sha256": "388ee556c7f14813a0a3cdd71763f070cb5c3e0802825f49f95a4e1c7563da80",
+          "alpha_bbox": [
+            15,
+            91,
+            118,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_bow\\mago-f-attack_bow-04.png",
+          "sha256": "5b9c32e46ad128ffe06809b23e2f151db18a3f665ff2c9df0143bb5bb055cfdf",
+          "alpha_bbox": [
+            16,
+            91,
+            117,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_staff\\mago-f-attack_staff-01.png",
+          "sha256": "6f043508b26d0ef6b2bd1837f721af0bb9f051cfd7520ca387841b71b17ead00",
+          "alpha_bbox": [
+            17,
+            91,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_staff\\mago-f-attack_staff-02.png",
+          "sha256": "6be003adc050f103e54d83c19c2533fd975e1622efcb5c2ab939c938dbe48978",
+          "alpha_bbox": [
+            17,
+            91,
+            111,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_staff\\mago-f-attack_staff-03.png",
+          "sha256": "c444f737aafcab39abeffb2400563cbf04b9baa9d76e0f1c870289820d294aca",
+          "alpha_bbox": [
+            19,
+            91,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_staff\\mago-f-attack_staff-04.png",
+          "sha256": "3006767d3feccf4216e46c6da398ae278991009e36103e09d60a082f10f8703b",
+          "alpha_bbox": [
+            19,
+            91,
+            107,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_mace\\mago-f-attack_mace-01.png",
+          "sha256": "6569a79b4c3d1c6834ff8fedc29d2c38f9320e810c3b20c51f22ed98cec81d96",
+          "alpha_bbox": [
+            22,
+            91,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_mace\\mago-f-attack_mace-02.png",
+          "sha256": "ec1039a2203993f4a0feb28b6ce9933e0fbfb6df6bb5919c50078c14b07bff10",
+          "alpha_bbox": [
+            25,
+            89,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_mace\\mago-f-attack_mace-03.png",
+          "sha256": "a78226dfae4cea95a8675e1de4d467e3342f72111f79a8dbb4cda787de515f45",
+          "alpha_bbox": [
+            22,
+            95,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_mace\\mago-f-attack_mace-04.png",
+          "sha256": "fd93f0d8952cc630ae149d89ecf52cf42b26781c7e8990ecd6dab0417e74cf1b",
+          "alpha_bbox": [
+            18,
+            90,
+            109,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_book\\mago-f-attack_book-01.png",
+          "sha256": "7487a2576f2f0fd19accb87f4fcdb8e1c08cbd96558114cc60e168bdc1c112c6",
+          "alpha_bbox": [
+            22,
+            90,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_book\\mago-f-attack_book-02.png",
+          "sha256": "7ef609b4d2a0ff867c7adaefed1f03c27a572df53c5755d6edcc9ce5f2c47583",
+          "alpha_bbox": [
+            18,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_book\\mago-f-attack_book-03.png",
+          "sha256": "d473e415a6cc4da8d5df1902f89d7dab0ce55d77bec0d4e21e053ba2ee56a33d",
+          "alpha_bbox": [
+            15,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_book\\mago-f-attack_book-04.png",
+          "sha256": "3607c93e7c9d1c3a28b61c75b29aa102498b3792b35710fb70e8b7e827bf65d5",
+          "alpha_bbox": [
+            18,
+            90,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_gloves\\mago-f-attack_gloves-01.png",
+          "sha256": "bdf9e76c626f2a863515965a5974090a27df61f6f3caf0e3db1046ff301b5e9e",
+          "alpha_bbox": [
+            19,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_gloves\\mago-f-attack_gloves-02.png",
+          "sha256": "c3c2faa83902d06cd950bcb243ae95cebf30e42998dbf3716ffb36848a244a4b",
+          "alpha_bbox": [
+            17,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_gloves\\mago-f-attack_gloves-03.png",
+          "sha256": "6ac15dba96246571abae59b81a78379fbad1e4c65e41a453fe42936f1b66eae6",
+          "alpha_bbox": [
+            11,
+            90,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\mago\\f\\frames\\attack_gloves\\mago-f-attack_gloves-04.png",
+          "sha256": "8c5e6b285bb5904c1316ddec200bca0425c367e2b3007fcdc289c18a027f96f5",
+          "alpha_bbox": [
+            15,
+            90,
+            101,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
