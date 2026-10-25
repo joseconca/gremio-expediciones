@@ -21386,19 +21386,88 @@
       "tier": 2,
       "sex": "f",
       "order": 12,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/caballero/f/caballero-f-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-started",
+      "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/caballero/f/frames",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "a4eb2895647b6a9b881653887d2ff84d5b9dc80a2f511b8b1858518752e11ae4",
+                "bytes": 25585,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  32,
+                  90,
+                  109,
+                  248
+                ],
+                "pixelSha256": "aa074b527734c0bad9332bf1e644d797fb36b31e4470dde5519fd071ca771872"
+              },
+              "02": {
+                "sha256": "38eb455897f5e77eded2568379882fcb3f9e864f5cbbef283ef0dc5284d68eb3",
+                "bytes": 25471,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  30,
+                  90,
+                  108,
+                  248
+                ],
+                "pixelSha256": "f01f3a52cff9fc4875ff0d8ddf1962f557f9e2766512cacb26a0a27e5bab71a1"
+              },
+              "03": {
+                "sha256": "bc3e8e8c239c680a677c524980ec42e2505d502289838f051b38f9d62b95da13",
+                "bytes": 25540,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  90,
+                  102,
+                  248
+                ],
+                "pixelSha256": "e1dc53299d24731bbead0589e09109d88acfd31d6a7a64532acc83d87f1192b4"
+              },
+              "04": {
+                "sha256": "1c728f36d7778297a0b4f5b4e2417cd6cfbb51b45638698307e95e38ba43f74e",
+                "bytes": 25601,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  90,
+                  98,
+                  248
+                ],
+                "pixelSha256": "dc7c5fadaec04166de81368d424eedc92337c8306c22516abdb774893c1420d6"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -21444,7 +21513,66 @@
           }
         }
       },
-      "equipmentRigId": "humanoid-f-v1"
+      "equipmentRigId": "humanoid-f-v1",
+      "sources": {
+        "idle": {
+          "sourceSha256": "ad6f535cb85796d75ec4b16503be0a42b73d9b1a8b9c2196c01bd26c8d3c5484",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/caballero/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY CABALLERO FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action idle. Young adult female knight: long golden blond high ponytail and soft bangs, open-faced steel browband, determined readable face. Heavy articulated silver and gunmetal plate armor with restrained bronze-gold edging, rounded layered pauldrons, fitted breastplate over dark brown padded underlayers, leather belt and modest dark slate-blue split waist cloth, armored greaves and steel-toed brown boots. Practical fully covered armor, small fingerless articulated gauntlets ending before the exact visible fingers. No weapon, scabbard, shield or cloak. Exact canonical female skeleton, height and head size. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (193,431), other hand (432,423); figure 2: primary contact (736,431), other hand (975,423); figure 3: primary contact (1283,427), other hand (1518,423); figure 4: primary contact (1822,431), other hand (2026,423). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. For use_consumable, pose ONE has a bent near elbow and a fist AT THE BELT, never both arms idle. Four figures must keep the exact Novato limb arrangement.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
+        }
+      },
+      "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex"
     },
     {
       "classId": "duelista",
@@ -22532,7 +22660,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue all Tier 2 classes in the documented order, male then female, preserving canonical grips and quality.",
+  "nextTask": "Continue Tier 2 in class order: Caballero, Duelista, Sacerdote, Monje, Cazador, Explorador, Elementalista, Brujo; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
