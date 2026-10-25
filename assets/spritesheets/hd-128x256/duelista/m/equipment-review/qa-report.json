@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "duelista",
   "sex": "m",
   "actions": [
@@ -16,10 +16,10 @@
       "91e1240a5bce71e126a5cefca5064240ca19d827a1e446cc25be4fa780ae30f8"
     ],
     "walk": [
-      "834d6e3a0f3c7f35b7d0cd1e76ba39aac71c95a7f7f0a8ea683400786260de38",
-      "01c1dc95b2a355cedff5efdd7646ab6307cf2fa761df5d8832f419d81dd2f3c9",
-      "301e166ddbc82ec4bb94a50aa5dd5180a4b2a59d24e7af3e6cf948eebd9a208f",
-      "c2d30988616ffeb638fc50187d37639f20133bd760ba7de66fb0f7b39fff3728"
+      "cdae04d9edcc8e79a2dc048a15b6a26f3ae4544f3c22135f3438eb7738581200",
+      "8127de91eddf23a5ce35538eeb33ba557c0c92f5c456886e6672b7a4405a7fa2",
+      "7d900fea7bee7e0364c4758a6fcdbd9fccb4c487c1b9752b69549b6f22b68c61",
+      "f5960f6d2bd93948b39b66c92af050d030a6360744045ab8c86d11269964cf4c"
     ],
     "hurt": [
       "d558e3ce25b57ddfc55f582d7ddbee1c58b6597f98ed91d928a41f0e18c8ff6d",
@@ -35,80 +35,7 @@
     ]
   },
   "contactChecks": 388,
-  "warnings": [
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "arco_cazador",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "arco_madera",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "grimorio_eclipse",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "guantes_lucha",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "libro_aprendiz",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "punos_lobo",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "escudo_guardian",
-      "point": [
-        83,
-        173
-      ]
-    },
-    {
-      "action": "walk",
-      "frame": 3,
-      "item": "escudo_madera",
-      "point": [
-        83,
-        173
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
 }
