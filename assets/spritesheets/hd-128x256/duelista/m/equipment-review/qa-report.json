@@ -1,0 +1,258 @@
+{
+  "status": "contact-review-required",
+  "classId": "duelista",
+  "sex": "m",
+  "actions": [
+    "idle",
+    "walk",
+    "hurt",
+    "use_consumable"
+  ],
+  "bodyHashes": {
+    "idle": [
+      "767cef5e7f58baa7f7f4839da2cad17f3c160d324f207ec53f9ba57ac9ce59c2",
+      "bedec9bb8dcc9df71b8be8ae0010c31f655f5244e1f35c8ba00dea2e670b50c9",
+      "c75bb697cab6d63bbc2b24453ca5fc9ded4d3bbbcca5c1e9f288b4dd8aeeb94e",
+      "91e1240a5bce71e126a5cefca5064240ca19d827a1e446cc25be4fa780ae30f8"
+    ],
+    "walk": [
+      "d3106c95a3799e93e6718b8fe7a930e31ee15432d341ac19d7226b9f8117f436",
+      "9cf32c773f0ca8eec8348ab8f1c14a06dcbe3b900af72f76a10d8ae896aafdf5",
+      "0eedff6de8da560e3c470cc9870f4e8838c9a5bfd2cb69349b8c767389d61d92",
+      "b40629c11479a12802fa460265353cf40234bfe86632f2578c1b6fbb3707a088"
+    ],
+    "hurt": [
+      "d558e3ce25b57ddfc55f582d7ddbee1c58b6597f98ed91d928a41f0e18c8ff6d",
+      "ff992a8bc8c2fac11664294c819f8e940c34256911c9af7885bcc31dd24603cf",
+      "8386f40a22957a8f58a336d12fe39a400990faae9c08da2d48ce083956edd26a",
+      "6201a0c87025ee71f0ed8e8fb4cbaf6fa247070c11fcddc17f8378af9459ef5d"
+    ],
+    "use_consumable": [
+      "b8b198608541b1a3e88b0cf3a5e6f1b373374a031a23d222bf910526139ea3aa",
+      "47c9d13e3553e713037cf0bb154a5fd384e6cc82123451f319e5ad260cfc07ab",
+      "be3b258b530c0e7b2f64f6e98a7386ff63686fca632936fbed690cad15bb8621",
+      "1721b3bd80995b27d1a131ae663848aef8766c019f62bf742d315a84868d848a"
+    ]
+  },
+  "contactChecks": 388,
+  "warnings": [
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "espada_hierro",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "arco_cazador",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "arco_madera",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "baston_madera",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "baston_runico",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "daga_hierro",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "daga_sombria",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "espada_acero",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "espada_draconica",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "espada_madera",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "espada_piedra",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "espada_runa",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "espada_vigia",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "grimorio_eclipse",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "guantes_lucha",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "hacha_berserker",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "hacha_orca",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "hacha_piedra",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "lanza_escama",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "lanza_madera",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "libro_aprendiz",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "maza_enana",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "maza_madera",
+      "point": [
+        27,
+        183
+      ]
+    },
+    {
+      "action": "walk",
+      "frame": 1,
+      "item": "punos_lobo",
+      "point": [
+        27,
+        183
+      ]
+    }
+  ],
+  "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
+  "artisticApproval": "not-automatic"
+}
