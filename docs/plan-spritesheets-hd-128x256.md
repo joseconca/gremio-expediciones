@@ -128,3 +128,9 @@ Se conservan los commits por acción y los checkpoints de herramientas. Los 29 c
 `manifest.json/equipmentRigs` contiene un esquema masculino y otro femenino. Las 26 variantes apuntan al esquema de su sexo. Espada ya tiene sus cuatro agarres y trayectorias trasladados a esta referencia común; las pruebas de Novato conservan únicamente los hashes específicos del cuerpo. El compositor rechaza agarres y transformaciones particulares por clase.
 
 Las otras catorce acciones todavía requieren medir y revisar sus cuatro poses canónicas por sexo antes de extenderlas a otras clases. Asignar un esquema a una variante no significa que sus sprites actuales ya sean compatibles: los recursos antiguos y las clases HD aún pendientes no se han redibujado. Para cada cuerpo nuevo, comprobar el contacto real de ambas manos y la oclusión usando exactamente la misma capa de equipo.
+
+## Producción Tier 1 — en curso
+
+Orden: Mago, Espadachín, Acólito, Arquero; masculino y femenino de cada clase. Se reutilizan las quince secuencias de Novato como referencias geométricas del sexo correspondiente. El exportador registrado conserva su transformación de coordenadas completa, sin recalcular el centro según la anchura de túnicas, capas o armaduras. Si el vestuario rebasa la celda, se corrige el arte; no se desplaza el equipo.
+
+`registrar-accion-hd.py` conserva cada fuente, prompt, hashes de las poses canónicas y cuatro PNG exportados en el manifiesto. Las referencias geométricas no sustituyen la revisión del contacto de manos: las acciones siguen como candidatas hasta verificar la misma capa de equipo por sexo. Un commit por acción y publicación por checkpoints.

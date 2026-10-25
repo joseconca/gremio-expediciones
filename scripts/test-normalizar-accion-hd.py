@@ -21,6 +21,26 @@ class ScaleTests(unittest.TestCase):
                     mask=Image.new('L',im.size);mask.putdata([255 if r>200 and g<40 and b<40 and a>128 else 0 for r,g,b,a in im.convert('RGBA').getdata()]);box=mask.getbbox()
                     sizes.append((box[2]-box[0],box[3]-box[1]))
             self.assertEqual(sizes[0],sizes[1])
+    def test_wider_costume_preserves_absolute_canonical_hand_position(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp);narrow=root/'narrow.png';wide=root/'wide.png'
+            self.source(narrow);self.source(wide,True)
+            reference=normalize(narrow,root/'reference','novato','m','idle',fixed_scale=.5)
+            normalize(wide,root/'mage','mago','m','idle',reference_transform=reference)
+            centers=[]
+            for path in (root/'reference/novato-m-idle-01.png',root/'mage/mago-m-idle-01.png'):
+                with Image.open(path) as im:
+                    points=[(x,y) for y in range(256) for x in range(128) if (lambda c:c[0]>200 and c[1]<40 and c[2]<40 and c[3]>128)(im.getpixel((x,y)))]
+                centers.append((sum(x for x,y in points)/len(points),sum(y for x,y in points)/len(points)))
+            self.assertAlmostEqual(centers[0][0],centers[1][0],delta=1)
+            self.assertAlmostEqual(centers[0][1],centers[1][1],delta=1)
+    def test_registered_export_refuses_costume_outside_body_canvas(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp);source=root/'source.png';self.source(source,True)
+            reference={'sourceDimensions':[1200,300],'commonCrop':[0,0,100,100],'scale':1,'origin':[0,0]}
+            with self.assertRaisesRegex(ValueError,'canonical body canvas'):
+                normalize(source,root/'frames','mago','m','idle',reference_transform=reference)
+            self.assertFalse((root/'frames').exists())
     def test_original_width_need_not_be_divisible_by_four(self):
         with tempfile.TemporaryDirectory() as temp:
             root=Path(temp);source=root/'source.png';self.source(source,True)

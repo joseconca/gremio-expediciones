@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "novato-m",
+  "nextVariant": "mago-m",
   "classes": [
     {
       "id": "novato",
@@ -3884,19 +3884,88 @@
       "tier": 1,
       "sex": "m",
       "order": 3,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/mago/m/mago-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-started",
+      "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/mago/m/frames",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "ff9ca49a3a31e91d73b42ef47373f3ed26e6d716d0b3e0715378b259c146506c",
+                "bytes": 24177,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  93,
+                  105,
+                  249
+                ],
+                "pixelSha256": "0ea4046c770a5ee69b89fa881fa52729c96bf365bc1b5daef8fd036dd2ec07d9"
+              },
+              "02": {
+                "sha256": "23daff66ab7d7c606310e507e65b58da90ef031ad6cb0c524cd733bb33b85d2e",
+                "bytes": 24166,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  93,
+                  105,
+                  249
+                ],
+                "pixelSha256": "5f992d2d029c99f8e77d45c7168811a08bbdfd84d6d4c94f1d6a9fa1fb9b2688"
+              },
+              "03": {
+                "sha256": "5f22f3670ac8be505a7e99c3d7c98b137110edc2f93878b5fdfc40904e87d40e",
+                "bytes": 24126,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  93,
+                  105,
+                  249
+                ],
+                "pixelSha256": "022445be0898548d918f8a3d80d9813bcb6f902ef63676fa2bc3f75091a5f722"
+              },
+              "04": {
+                "sha256": "22fa9d8b4bb4cae95702f09c61fe7d6dff242720d17c4fc5760d1a2573ec4254",
+                "bytes": 24173,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  93,
+                  105,
+                  249
+                ],
+                "pixelSha256": "5972ddd45a66cb69035d2e3c2eb1ddb249cf2d2790453e26b77f15b65bc0ba2d"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -3942,7 +4011,65 @@
           }
         }
       },
-      "equipmentRigId": "humanoid-m-v1"
+      "equipmentRigId": "humanoid-m-v1",
+      "sources": {
+        "idle": {
+          "sourceSha256": "3e30c096c5344a8304ee06e80c7d839a7ba4d40d02d664556bd7a841d189510b",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            654,
+            21,
+            1010,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            93
+          ],
+          "alphaThreshold": 128,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/mago/m/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use case identity-preserve / game sprite production. Image1 is the EXACT CANONICAL FOUR-POSE SKELETON, camera, lighting and painted pixel-inspired RPG rendering reference, image2 is the existing MALE MAGE costume/identity reference only. Redraw image1 as the MALE MAGO class, four full-body IDLE poses in one horizontal strip with true transparent background. Keep image1 canvas aspect, figure centers, head-to-boot size, feet, EMPTY hand centers and fingers, wrist orientations and limb poses registered EXACTLY; replace costume/head identity only. Mage identity from image2: young adult male, short tousled dark indigo-black hair, calm focused face, long royal blue/indigo split mage coat with broad muted gold/tan edging and lapels, lighter inner tunic, brown leather waist belt and practical brown boots; unarmored hands with discreet brown fingerless gloves, narrow sleeves ending before hands. No Novato red scarf or patched blue pants. Coat split exposes legs/boots and does not enlarge body. Four subtle idle phases: neutral, inhale, blink, exhale, as reference. NO staff, wand, weapons, crystals, spell effects or props even though old identity reference has a staff. No hat, labels, grid, ground shadow or backdrop. Maintain high quality newly drawn detail, do not upscale pixel reference. Hands must remain visible and in same locations as image1 for universal equipment overlay. Whole heads hems hands boots inside canvas with same clear margins. Exactly four characters, no extra view.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "canonicalPoseHashes": [
+            "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+            "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+            "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+            "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
+        }
+      },
+      "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex"
     },
     {
       "classId": "mago",
@@ -5624,7 +5751,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Complete canonical hand trajectories for remaining Novato actions per sex, then require all Tier 1/2 bodies to fit these shared rigs. Review equipment layers before runtime promotion.",
+  "nextTask": "Continue Tier 1 in class order: Mago, Espadachin, Acolito, Arquero; male then female, 15 registered actions each.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",

@@ -4,9 +4,12 @@ import argparse,json,hashlib
 from pathlib import Path
 from PIL import Image
 
-def normalize(source, output, class_id, sex, action, threshold=128, fixed_scale=None):
+def normalize(source, output, class_id, sex, action, threshold=128, fixed_scale=None, reference_transform=None):
     with Image.open(source) as opened:
         opened.load();im=opened.convert('RGBA')
+    original_size=list(im.size)
+    if reference_transform is not None and tuple(im.size)!=tuple(reference_transform['sourceDimensions']):
+        im=im.resize(tuple(reference_transform['sourceDimensions']),Image.Resampling.LANCZOS)
     # Original canvases may differ by a pixel; segment complete subjects first.
     if im.getchannel('A').getextrema()[0]!=0:raise ValueError('Source needs real alpha')
     # Segment complete subjects before slicing: generated artwork may cross an
@@ -35,6 +38,19 @@ def normalize(source, output, class_id, sex, action, threshold=128, fixed_scale=
         cell=layer.crop((i*w-padding,0,(i+1)*w+padding,height))
         box=cell.getchannel('A').getbbox()
         boxes.append(box);cells.append(cell)
+    if reference_transform is not None:
+        scale=reference_transform['scale'];origin=reference_transform['origin'];crop=reference_transform['commonCrop']
+        if scale<=0:raise ValueError('Invalid canonical scale')
+        x0=crop[0]-origin[0]/scale;y0=crop[1]-origin[1]/scale
+        rendered=[]
+        for cell,box in zip(cells,boxes):
+            mapped=((box[0]-x0)*scale,(box[1]-y0)*scale,(box[2]-x0)*scale,(box[3]-y0)*scale)
+            if mapped[0]<1 or mapped[1]<1 or mapped[2]>127 or mapped[3]>255:raise ValueError('Costume exceeds canonical body canvas; revise source, never move class equipment')
+            frame=cell.transform((128,256),Image.Transform.AFFINE,(1/scale,0,x0,0,1/scale,y0),Image.Resampling.BICUBIC)
+            frame.putalpha(frame.getchannel('A').point(lambda v:0 if v<32 else v));rendered.append(frame)
+        output.mkdir(parents=True,exist_ok=True)
+        for n,frame in enumerate(rendered,1):frame.save(output/f'{class_id}-{sex}-{action}-{n:02d}.png')
+        return {'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'sourceDimensions':original_size,'registeredSourceDimensions':list(im.size),'sourceCellStep':w,'commonCrop':crop,'scale':scale,'origin':origin,'alphaThreshold':threshold,'scalePolicy':'canonical-pose-registration','method':'fixed canonical transform; no class-dependent crop, centering or equipment offset'}
     common=(min(b[0] for b in boxes),min(b[1] for b in boxes),max(b[2] for b in boxes),max(b[3] for b in boxes))
     cw,ch=common[2]-common[0],common[3]-common[1]
     scale=fixed_scale if fixed_scale is not None else min(116/cw,232/ch)
