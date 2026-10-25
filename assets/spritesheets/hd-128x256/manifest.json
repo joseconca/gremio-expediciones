@@ -2024,6 +2024,74 @@
         "feetBaseline": 248,
         "nominalStandingHeight": 156,
         "note": "Common body scale across generated actions; cell overhead reserved for separate equipment. Legacy block/dodge uniformly reduced, never enlarged."
+      },
+      "equipmentTests": {
+        "attack_sword": {
+          "status": "engineering-preview-pending-visual-review",
+          "weaponPath": "public/sprites/items/weapons/espada_hierro.png",
+          "weaponSha256": "8b21d32318b5d8778325ea8899f2e74524c9c98bce540656844faf02758f7589",
+          "weaponGrip": [
+            32,
+            55
+          ],
+          "weaponScale": 1,
+          "equipmentCanvas": [
+            256,
+            256
+          ],
+          "bodyOrigin": [
+            64,
+            0
+          ],
+          "frameIndex": "shared-body-and-equipment",
+          "frames": [
+            {
+              "grip": [
+                39,
+                130
+              ],
+              "angleDegrees": 30,
+              "depth": "behind",
+              "handMaskRadius": 5,
+              "bodySha256": "94a4871c11e468f126047a7a472588393f74f1d9030e300baa1a8d02eb68d602"
+            },
+            {
+              "grip": [
+                100,
+                180
+              ],
+              "angleDegrees": -85,
+              "depth": "front",
+              "handMaskRadius": 5,
+              "bodySha256": "d1b8dd9b5ff7a4aa6b896810a5ccbf6ac50fc6fb36e029b6e0d55031f1d814a4"
+            },
+            {
+              "grip": [
+                114,
+                191
+              ],
+              "angleDegrees": -135,
+              "depth": "front",
+              "handMaskRadius": 5,
+              "bodySha256": "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f"
+            },
+            {
+              "grip": [
+                46,
+                155
+              ],
+              "angleDegrees": 20,
+              "depth": "behind",
+              "handMaskRadius": 5,
+              "bodySha256": "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
+            }
+          ],
+          "limitations": [
+            "Uses current item icon at native size to prove compositing; not a new HD equipment asset.",
+            "Hand masks and anchors are explicit candidates tied to current body hashes.",
+            "No runtime promotion; test does not validate other weapons or actions."
+          ]
+        }
       }
     },
     {
