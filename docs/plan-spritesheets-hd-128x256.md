@@ -127,10 +127,27 @@ Se conservan los commits por acción y los checkpoints de herramientas. Los 29 c
 
 `manifest.json/equipmentRigs` contiene un esquema masculino y otro femenino. Las 26 variantes apuntan al esquema de su sexo. Espada ya tiene sus cuatro agarres y trayectorias trasladados a esta referencia común; las pruebas de Novato conservan únicamente los hashes específicos del cuerpo. El compositor rechaza agarres y transformaciones particulares por clase.
 
-Las otras catorce acciones todavía requieren medir y revisar sus cuatro poses canónicas por sexo antes de extenderlas a otras clases. Asignar un esquema a una variante no significa que sus sprites actuales ya sean compatibles: los recursos antiguos y las clases HD aún pendientes no se han redibujado. Para cada cuerpo nuevo, comprobar el contacto real de ambas manos y la oclusión usando exactamente la misma capa de equipo.
+Las otras catorce acciones conservan las referencias corporales de Novato por sexo. Sus contactos numéricos con equipo, agarres secundarios y oclusiones todavía requieren revisión con las capas correspondientes. Asignar un esquema a una variante no valida por sí solo esos contactos ni convierte los recursos antiguos de Tier 2 en compatibles. Comprobar el contacto real de ambas manos usando exactamente la misma capa de equipo.
 
-## Producción Tier 1 — en curso
+## Entrega corporal de Tier 1 — 2026-10-25
 
 Orden: Mago, Espadachín, Acólito, Arquero; masculino y femenino de cada clase. Se reutilizan las quince secuencias de Novato como referencias geométricas del sexo correspondiente. El exportador registrado conserva su transformación de coordenadas completa, sin recalcular el centro según la anchura de túnicas, capas o armaduras. Si el vestuario rebasa la celda, se corrige el arte; no se desplaza el equipo.
 
 `registrar-accion-hd.py` conserva cada fuente, prompt, hashes de las poses canónicas y cuatro PNG exportados en el manifiesto. Las referencias geométricas no sustituyen la revisión del contacto de manos: las acciones siguen como candidatas hasta verificar la misma capa de equipo por sexo. Un commit por acción y publicación por checkpoints.
+
+| Clase | Masculino | Femenino |
+|---|---:|---:|
+| Mago | 60 fotogramas / 15 acciones | 60 fotogramas / 15 acciones |
+| Espadachín | 60 fotogramas / 15 acciones | 60 fotogramas / 15 acciones |
+| Acólito | 60 fotogramas / 15 acciones | 60 fotogramas / 15 acciones |
+| Arquero | 60 fotogramas / 15 acciones | 60 fotogramas / 15 acciones |
+
+Total nuevo: 480 PNG corporales y ocho atlas candidatos de 512×3840, con sus originales, prompts y previews. [Vista conjunta](../assets/spritesheets/hd-128x256/previews/tier1-overview.png) y [comparativa animada](../assets/spritesheets/hd-128x256/previews/tier1-overview.gif). Esta comparativa muestra cuatro fases sincronizadas para revisión; no define tiempos de combate.
+
+Esquivar y Bloquear masculinos usan referencias ampliadas únicamente como plantillas geométricas, derivadas de Novato. El arte final de cada clase se genera de nuevo en alta resolución. Una calibración corporal común a las cuatro poses conserva la altura relativa al agacharse; no se ajusta cada silueta para llenar su celda. Las transformaciones y originales sustituidos quedan registrados.
+
+Las 17 pruebas locales pasan. La auditoría estricta confirma 600 fotogramas válidos acumulados con Novato y ninguno inválido. Las diez variantes con prueba de espada producen exactamente los mismos cuatro PNG de arma para cada sexo, sin offsets particulares por clase. Se revisaron sus composiciones de contacto. El ensayo usa el icono existente; no representa un catálogo HD de equipo terminado.
+
+Una descarga independiente de GitHub del commit de arte `9823b3a6` verificó 899 PNG completos: 600 cuerpos, 150 fuentes originales, diez atlas, cuarenta capas de espada y 99 previews/referencias. Se compararon los hashes con los archivos locales y con los registros del manifiesto. El recibo se conserva en `manifest.json/publication`.
+
+Próximo paso: revisión artística de las ocho hojas a tamaño de combate y pruebas de escudo, dos manos, arco y consumible con equipo compartido. La promoción al juego y el merge a main siguen pendientes de esa revisión. Tier 2 conserva su lugar posterior en el plan.

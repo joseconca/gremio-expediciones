@@ -20603,7 +20603,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 1 in class order; complete all male then female actions with canonical poses and shared equipment.",
+  "nextTask": "Review the eight complete Tier 1 candidate body sheets at combat scale; verify shared shield, two-hand, bow and consumable layers and occlusion before runtime promotion. Tier 2 follows after review.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
@@ -20730,16 +20730,19 @@
     "state": "published-binary-verified",
     "branch": "creacion-sprite-sheets",
     "remoteBaseCommit": "21468d54284c82530352e2d9ca9acc8869ebc46b",
-    "lastVerifiedArtworkCommit": "fd6b653d64881ced8199cbfde4da3a4dcb49c8d7",
+    "lastVerifiedArtworkCommit": "9823b3a64e1289d997dcdc75ff3b7784fbc665d3",
     "verifiedDate": "2026-10-25",
     "verifiedObjects": {
-      "bodyFrames": 120,
-      "originalSources": 28,
-      "atlases": 2,
-      "weaponLayers": 8
+      "bodyFrames": 600,
+      "originalSources": 150,
+      "atlases": 10,
+      "weaponLayers": 40,
+      "otherPngs": 99
     },
-    "verification": "Independent shallow clone downloaded from GitHub; original/source SHA256, PNG CRC and full pixel decode checked. Metadata receipt is a later commit.",
-    "localTestsPassed": 14
+    "verification": "Independent fetch from GitHub; all 899 class PNG SHA256 values compared with local bytes, PNG CRC and full pixel decode checked; body/source/atlas hashes also checked against remote manifest and QA reports.",
+    "localTestsPassed": 17,
+    "scope": "Novato and all Tier 1 body candidates; final receipt/gallery metadata in a later commit",
+    "verifiedPngCount": 899
   },
   "equipmentRigs": {
     "humanoid-m-v1": {
@@ -20961,6 +20964,32 @@
         "attack_book",
         "attack_gloves"
       ]
+    }
+  },
+  "tier1Production": {
+    "status": "body-candidates-complete-art-and-equipment-review-pending",
+    "classesInOrder": [
+      "mago",
+      "espadachin",
+      "acolito",
+      "arquero"
+    ],
+    "variants": 8,
+    "bodyFrames": 480,
+    "atlases": 8,
+    "actionsPerVariant": 15,
+    "equipmentTest": "identical-sword-layer-per-sex-verified",
+    "localTestsPassed": 17,
+    "runtimeModified": false,
+    "previews": {
+      "tier1-overview.png": {
+        "path": "assets/spritesheets/hd-128x256/previews/tier1-overview.png",
+        "sha256": "52a45a83a23f4a1c108522cecf071d151cae57bd905662fbeab4ad950b8d39a2"
+      },
+      "tier1-overview.gif": {
+        "path": "assets/spritesheets/hd-128x256/previews/tier1-overview.gif",
+        "sha256": "6dede04225e296f66dc61087e38ce341888dba3405f2c6b623f9b47c6a429de1"
+      }
     }
   }
 }
