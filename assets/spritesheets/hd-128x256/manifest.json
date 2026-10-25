@@ -7758,12 +7758,13 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/espadachin/m/frames",
       "audit": {
-        "validFrames": 12,
+        "validFrames": 16,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
-          "hurt"
+          "hurt",
+          "use_consumable"
         ],
         "actions": {
           "idle": {
@@ -7977,7 +7978,74 @@
             "distinctFrames": 4
           },
           "use_consumable": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "c1b99f13b382c278edf645791a6ff4fe6a645a439e97c6db5003089aeb3d5e4e",
+                "bytes": 23995,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  93,
+                  109,
+                  248
+                ],
+                "pixelSha256": "0ad6a0ca7ebb1d5809a0672dcba4132a8bcaa48b10dfbc407711cc640c1d54d6"
+              },
+              "02": {
+                "sha256": "8055b25f7d915feb5989a81bf76e57bf3c99b7f2e30a3b77759179e4a599c097",
+                "bytes": 23960,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  92,
+                  109,
+                  248
+                ],
+                "pixelSha256": "22569366eefe6d099a4ec2f34f5f65827462c6f9c13902181af5c7bc399ba089"
+              },
+              "03": {
+                "sha256": "c23c6d63c27774865e616c65a624d23dda532c9ba647206a36a046829d4c7d44",
+                "bytes": 24655,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  93,
+                  109,
+                  248
+                ],
+                "pixelSha256": "36fb1af171743a55005bd8ff1900ae090efd01f8793d410cb641249f6c15cdfd"
+              },
+              "04": {
+                "sha256": "44df49ab54e05ff420ba69db4b1e3e944ce5ce8503b3e64333dfe7352e647bdf",
+                "bytes": 24430,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  93,
+                  99,
+                  248
+                ],
+                "pixelSha256": "1b8779ab97c52098123ad9c253a6c2136fbdcfb5c9c2bf1bbd42e74ede7d694f"
+              }
+            },
+            "distinctFrames": 4
           },
           "dodge": {
             "status": "missing"
@@ -8129,6 +8197,44 @@
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "use_consumable": {
+          "sourceSha256": "6a760d7f39e0c13e49c43510b927520f821e87faab19f05de343697e2e0d6c5c",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            627,
+            16,
+            1015,
+            695
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/espadachin/m/source/use_consumable-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET / EXACT canonical pose registration. IMAGE 2 defines ONLY ESPADACHIN MALE identity, outfit and face. Redraw the four figures of IMAGE 1 in the costume/identity of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip and wrist orientation, elbows and limb poses of IMAGE 1. Action use_consumable. Do not retain Novato-specific face, hair, patched clothing or scarf unless explicitly specified in the class identity below. Young adult male swordsman: short tousled chestnut hair, burgundy neck scarf, practical dark brown leather armor reinforced with modest silver steel shoulder plates and bracers, light undershirt, brown waist belts, dark trousers, brown fingerless gloves and sturdy leather boots. Athletic but exactly canonical skeleton size. No weapon, scabbard or shield. Same newly hand-painted crisp pixel-inspired RPG finish as reference, same identity across all four figures. Empty hands in every pose; any weapon, shield, book, bottle, bow, arrow or magical effect must be entirely omitted because it will be rendered with a shared equipment sprite layer. Keep cuffs away from visible hands. Garments may follow the pose but must not move hands or enlarge skeleton. No props, shadows, labels, grid or extra views. Preserve all headroom and margins of IMAGE 1, do NOT automatically fill or recenter the canvas. Full heads hair hems hands and boots must remain inside each quarter.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/use_consumable-reference.png",
+          "canonicalPoseHashes": [
+            "3552da6dbec2996d43f7df4e603badd73c0c750b1e67f12e938abeaf6d2ab8e0",
+            "f2f24093e0fde6f7519f844675db9b749b5ec233a189c153dc35b65bb556ef51",
+            "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
+            "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -8178,6 +8284,22 @@
         },
         "hurt/04": {
           "source": "sources.hurt",
+          "frame": 4
+        },
+        "use_consumable/01": {
+          "source": "sources.use_consumable",
+          "frame": 1
+        },
+        "use_consumable/02": {
+          "source": "sources.use_consumable",
+          "frame": 2
+        },
+        "use_consumable/03": {
+          "source": "sources.use_consumable",
+          "frame": 3
+        },
+        "use_consumable/04": {
+          "source": "sources.use_consumable",
           "frame": 4
         }
       },
