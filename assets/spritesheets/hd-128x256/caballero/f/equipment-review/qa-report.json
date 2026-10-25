@@ -3,7 +3,10 @@
   "classId": "caballero",
   "sex": "f",
   "actions": [
-    "idle"
+    "idle",
+    "walk",
+    "hurt",
+    "use_consumable"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +14,27 @@
       "38eb455897f5e77eded2568379882fcb3f9e864f5cbbef283ef0dc5284d68eb3",
       "bc3e8e8c239c680a677c524980ec42e2505d502289838f051b38f9d62b95da13",
       "1c728f36d7778297a0b4f5b4e2417cd6cfbb51b45638698307e95e38ba43f74e"
+    ],
+    "walk": [
+      "fd9594c30627637911900e07c5ad906b982a0d9a4ef969b36a408f04c90f5caf",
+      "49399079f2f0a0976cc54c36137c55f22713c5326cceab5db4e53db5abc765fd",
+      "2d0b49eed39dc949340090f2b50ac186b1581edb3c0d75e3d587aa8a1e1b350a",
+      "a84be3e66e709cd50b95e5581c45fac0b9f59dc9e445cddc0b0898256e637f63"
+    ],
+    "hurt": [
+      "74c29b806ea06ab93f918e0459ab37f07753ce0539d32d872613a9d389f2b03f",
+      "3597897a1d6da0c9d218a22acb52bea90120e12e20d325a08844c23b405585f0",
+      "1f2f510c76d81862ad15bf6b01e46c7d8b7e3306b7f7ac928ecaf15e9469176e",
+      "e401db04441cc2b42133da8bb56dcd07ed66c5c53df4ad33c38f7a17b6fff2e1"
+    ],
+    "use_consumable": [
+      "5c87472542c37bba01a966e229b07dc112d6a25ff1491f59ee6a5539a1003d1b",
+      "8477144c31d3741caab7519fe3d51c014b46d1273b7015e5b1c0380cc8d5d9be",
+      "82c8d1725f64d507b73aed5428205513813acadd502ad169acf54419af55528d",
+      "8fa666407409b4c08aa10cb67e96cb21123df9bc6631ffc47adfcbee42318129"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 388,
   "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
