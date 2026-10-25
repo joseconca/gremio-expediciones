@@ -2039,10 +2039,11 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/f/frames",
       "audit": {
-        "validFrames": 4,
+        "validFrames": 8,
         "invalidFrames": 0,
         "technicalActions": [
-          "idle"
+          "idle",
+          "walk"
         ],
         "actions": {
           "idle": {
@@ -2116,7 +2117,74 @@
             "distinctFrames": 4
           },
           "walk": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "f57f6d50e8c842bb43cececaa0b12d21059bc5c970d81908596adbcbec28bd2d",
+                "bytes": 25984,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  91,
+                  107,
+                  247
+                ],
+                "pixelSha256": "e1682e820417ee6974d9d4a5ae74d8881dcb0686af96e98d99d6ef073a840ca7"
+              },
+              "02": {
+                "sha256": "cba2e2b16e0943f58409937284bc4d8aa784d75eb1ba89336aee0f8d4008fd95",
+                "bytes": 22215,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  91,
+                  94,
+                  248
+                ],
+                "pixelSha256": "be1169f4d8d77ec0dbc43d71f3935c8284fc2ea501f69bb69ece0bffcfb03d59"
+              },
+              "03": {
+                "sha256": "69c74ff90d84628d178770593bddc4512a04b742dcc39bad51788c52a65fbfa2",
+                "bytes": 26111,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  91,
+                  111,
+                  248
+                ],
+                "pixelSha256": "b08773b98dec897e4794c2e346cfc59524f444c73cf06990023513bdf967f151"
+              },
+              "04": {
+                "sha256": "6c69eb8cea58f099e643fbf5860a8e682445a9e23bb1081012dda339c239418f",
+                "bytes": 22395,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  91,
+                  97,
+                  248
+                ],
+                "pixelSha256": "37222128f127ac4bafa0ec6b9aa3c5a441ae1f257a0162fd91397386a2b523cf"
+              }
+            },
+            "distinctFrames": 4
           },
           "hurt": {
             "status": "missing"
@@ -2186,6 +2254,33 @@
           "prompt": "Create high-quality RPG production sprite strip: exactly FOUR full-body IDLE poses of the FEMALE Novato adventurer, one horizontal row of four equal spaced cells, real transparent background. Image1 is style, costume palette and rendering reference from male Novato; image2 is existing female design reference with brown ponytail. Female identity: young adult woman, chestnut brown high ponytail and swept bangs, warm brown eyes, determined friendly face. Same practical costume as male reference adapted naturally: burgundy scarf, ivory rolled-sleeve linen shirt fully covering torso, brown leather crossed harness and belt pouch, brown fingerless gloves, patched blue trousers, sturdy brown boots. No armor or extra decorations. Preserve female ponytail identity throughout. Four subtle idle phases: neutral relaxed empty hands, soft inhalation, blink/soft exhalation, return neutral. Facing right three-quarter in all four, same scale head size camera lighting, full head scarf hands boots inside each quarter with clear transparent margins and common ground line. Crisp hand painted pixel-inspired RPG style exactly as male reference. Compact narrow silhouette, width under half height, scarf and ponytail near torso. No equipment weapons shields props effects shadows labels or grid. NOT a scale-up of reference pixels, draw newly at high resolution.\n",
           "visualStatus": "review-pending",
           "equipmentStatus": "layer-test-pending"
+        },
+        "walk": {
+          "sourceSha256": "57bee8d5d691f97e19537fe767c6e0a1505a2bcc964d87d4d7d35ddc47e17dfc",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "commonCrop": [
+            650,
+            17,
+            1061,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            16,
+            91
+          ],
+          "alphaThreshold": 128,
+          "method": "shared crop and scale, no per-frame centering or resizing",
+          "scalePolicy": "fixed-across-actions",
+          "sourcePath": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+          "generator": "built-in imagegen",
+          "referencePath": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "prompt": "Exactly FOUR complete separated full-body animation poses of the SAME FEMALE Novato from reference, four evenly spaced equal cells in ONE horizontal transparent strip. Preserve exact female face, brown eyes, chestnut high ponytail and bangs, burgundy scarf, ivory rolled sleeve shirt fully covering torso, brown leather cross harness belt pouch fingerless gloves and boots, patched blue trousers. Identical crisp painted pixel-inspired RPG rendering, proportions, head size, costume, camera, lighting. Facing RIGHT in three-quarter view always, common ground line, upright height about same as reference across all poses, ponytail stays near shoulders. Empty hands for equipment overlay. Compact tall narrow silhouettes, feet and elbows close, no wide lunges or horizontal arm stretches; foreshorten limbs into right/depth. Generous transparent margin around hair scarf fingers boots and between figures. No weapon, shield, equipment, props, effects, shadows, labels or grid. Four-phase WALK CYCLE: 1 right foot forward left foot back and opposite arm swing; 2 passing pose weight on right foot, left knee passes under hip, arms near sides; 3 left foot forward right back, opposite arm swing; 4 opposite passing pose weight on left foot and right knee forward. Actual alternating feet, same limb lengths, subtle vertical bob only, arms swing naturally close to torso.\n",
+          "visualStatus": "review-pending",
+          "equipmentStatus": "layer-test-pending"
         }
       },
       "frameProvenance": {
@@ -2203,6 +2298,22 @@
         },
         "idle/04": {
           "source": "sources.idle",
+          "frame": 4
+        },
+        "walk/01": {
+          "source": "sources.walk",
+          "frame": 1
+        },
+        "walk/02": {
+          "source": "sources.walk",
+          "frame": 2
+        },
+        "walk/03": {
+          "source": "sources.walk",
+          "frame": 3
+        },
+        "walk/04": {
+          "source": "sources.walk",
           "frame": 4
         }
       }
