@@ -17457,19 +17457,88 @@
       "tier": 1,
       "sex": "f",
       "order": 10,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/arquero/f/arquero-f-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-started",
+      "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/arquero/f/frames",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "ae5c41dd9b5163e25e48c5e18293b4cd1bbadc17027e86999e9a9d7bce7298cc",
+                "bytes": 23957,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  31,
+                  90,
+                  109,
+                  248
+                ],
+                "pixelSha256": "0f6de8e749b31d15e8e4f86bd208689ed4186ac1a7ceb95b594a6bf0f792e157"
+              },
+              "02": {
+                "sha256": "59225897010c774ed1a31eee4f7b9349b9360b0da63fc091dc10536b8683038a",
+                "bytes": 23876,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  29,
+                  90,
+                  108,
+                  248
+                ],
+                "pixelSha256": "2d60fdb606929b61abdffa0d05fdb1b148b4a893cb7f62186f45acdd936a683c"
+              },
+              "03": {
+                "sha256": "a7d75e5188c8d56aec9fa0b26d44bf0c75cc2e5c08db617eaa50d006c89de4b6",
+                "bytes": 23881,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  90,
+                  102,
+                  248
+                ],
+                "pixelSha256": "9a6c67ce67a69c2e3ed1cd6ddd7f7e00329a39d819f1a129719cdf302eb29124"
+              },
+              "04": {
+                "sha256": "5a01ace828e2bbd0b461c86db2fa53e7c1972b9b84873f91eceabbbc3b0e3973",
+                "bytes": 23681,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  90,
+                  99,
+                  248
+                ],
+                "pixelSha256": "1cb072bd5407e9cfee93315758c99744c675ef779d78718fbfebc224969036d1"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -17515,7 +17584,66 @@
           }
         }
       },
-      "equipmentRigId": "humanoid-f-v1"
+      "equipmentRigId": "humanoid-f-v1",
+      "sources": {
+        "idle": {
+          "sourceSha256": "4bda9e5636e9bbdfa653334cd70800165ceebd159825501783b5137a7cee28b5",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/arquero/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET / EXACT canonical pose registration. IMAGE 2 defines ONLY ARQUERO FEMALE identity, outfit and face. Redraw the four figures of IMAGE 1 in the costume/identity of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip and wrist orientation, elbows and limb poses of IMAGE 1. Action idle. Do not retain Novato-specific face, hair, patched clothing or scarf unless explicitly specified in the class identity below. Young adult female archer: honey blond high ponytail and bangs, alert face, fitted forest green ranger tunic with muted olive panels, short green shoulder cape, brown leather cross straps belt bracers and fingerless gloves, dark olive leggings and brown travel boots, small brass fastenings. Fully covered practical costume. No hood, bow, arrows, quiver, dagger or equipment. Same newly hand-painted crisp pixel-inspired RPG finish as reference, same identity across all four figures. Empty hands in every pose; any weapon, shield, book, bottle, bow, arrow or magical effect must be entirely omitted because it will be rendered with a shared equipment sprite layer. Keep cuffs away from visible hands. Garments may follow the pose but must not move hands or enlarge skeleton. No props, shadows, labels, grid or extra views. Preserve all headroom and margins of IMAGE 1, do NOT automatically fill or recenter the canvas. Full heads hair hems hands and boots must remain inside each quarter.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
+        }
+      },
+      "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex"
     },
     {
       "classId": "caballero",
@@ -18735,7 +18863,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 1 in class order; complete all male then female actions with canonical poses and shared equipment.",
+  "nextTask": "Continue Tier 1 in class order: Mago, Espadachin, Acolito, Arquero; male then female, 15 registered actions each.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
