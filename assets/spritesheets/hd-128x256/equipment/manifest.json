@@ -40053,5 +40053,26 @@
     "runtimePromotion": "pending-user-instruction",
     "horizontalFlip": "Mirror the whole composed character including body, equipment and masks around the same canvas; never mirror equipment around its own bounds. All 1104 frames pass a lossless mirror round trip. Combat-facing runtime validation follows during integration.",
     "inactiveActions": "The 15-row layout is synchronized with bodies. Only actions compatible with the item contain equipment frames; unsupported attack or consumable rows remain transparent."
+  },
+  "publication": {
+    "commit": "5da0a0687b627bb51043629be410b5b8b2519218",
+    "status": "passed",
+    "objects": 1776,
+    "verifiedMedia": {
+      "png": 1495,
+      "gif": 276,
+      "other": 5
+    },
+    "items": 28,
+    "sharedSheets": 56,
+    "equipmentFrames": 1104,
+    "originals": 30,
+    "localTestsPassed": 23,
+    "method": "Independent GitHub fetch; compare every PNG/GIF to local SHA256; full PNG decode and every GIF frame; compare source, master, sheet and frame hashes to remote manifest; compare JSON data and text after Git line-ending normalization.",
+    "githubValidation": {
+      "runId": 40221780885,
+      "conclusion": "success",
+      "url": "https://github.com/joseconca/gremio-expediciones/actions/runs/40221780885"
+    }
   }
 }
