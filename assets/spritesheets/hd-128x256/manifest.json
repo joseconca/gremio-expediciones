@@ -7758,11 +7758,12 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/espadachin/m/frames",
       "audit": {
-        "validFrames": 8,
+        "validFrames": 12,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
-          "walk"
+          "walk",
+          "hurt"
         ],
         "actions": {
           "idle": {
@@ -7906,7 +7907,74 @@
             "distinctFrames": 4
           },
           "hurt": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "09b8a29f53a549dd3062825ff5b352d1970efa7f45489011782660bf89a5c1f8",
+                "bytes": 24204,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  92,
+                  106,
+                  248
+                ],
+                "pixelSha256": "2f2381c563a48a5dd630155700a7e66e8be911af3d94b5d2fd1f4981a7ee663c"
+              },
+              "02": {
+                "sha256": "4f0461017200f084ba6b41968bc28c33c9fb3ce3fe897fa736851b721ece9469",
+                "bytes": 24665,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  100,
+                  115,
+                  248
+                ],
+                "pixelSha256": "a85bfafd4c7b016943e47ff1f192647a9caaf2417d64edf6a08c53c9a9ba284f"
+              },
+              "03": {
+                "sha256": "affbe23c5e5db0d167a1a8b31677fa6d594dda86df5968083a729339f1d3a1e4",
+                "bytes": 21875,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  119,
+                  104,
+                  248
+                ],
+                "pixelSha256": "6370fe5dc23ffd9c3e7fc613ca12ad2b50c192a3874b61b11d2f27e3520b0429"
+              },
+              "04": {
+                "sha256": "578082cd6bbb82db9f642c2c2f09a3fdfd859df3893429bba4cb99221f83abde",
+                "bytes": 24319,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  92,
+                  103,
+                  248
+                ],
+                "pixelSha256": "4691ac1b719f9ccc296b59864e8d685d715966fc5554130604e9bccac62f39eb"
+              }
+            },
+            "distinctFrames": 4
           },
           "use_consumable": {
             "status": "missing"
@@ -8023,6 +8091,44 @@
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "hurt": {
+          "sourceSha256": "9b54e4480a6d0ae17106ec3e1a8371454a9aac6765e07b4b61bb19384d0d8a7a",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            617,
+            19,
+            1047,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            14,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/espadachin/m/source/hurt-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET / EXACT canonical pose registration. IMAGE 2 defines ONLY ESPADACHIN MALE identity, outfit and face. Redraw the four figures of IMAGE 1 in the costume/identity of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip and wrist orientation, elbows and limb poses of IMAGE 1. Action hurt. Do not retain Novato-specific face, hair, patched clothing or scarf unless explicitly specified in the class identity below. Young adult male swordsman: short tousled chestnut hair, burgundy neck scarf, practical dark brown leather armor reinforced with modest silver steel shoulder plates and bracers, light undershirt, brown waist belts, dark trousers, brown fingerless gloves and sturdy leather boots. Athletic but exactly canonical skeleton size. No weapon, scabbard or shield. Same newly hand-painted crisp pixel-inspired RPG finish as reference, same identity across all four figures. Empty hands in every pose; any weapon, shield, book, bottle, bow, arrow or magical effect must be entirely omitted because it will be rendered with a shared equipment sprite layer. Keep cuffs away from visible hands. Garments may follow the pose but must not move hands or enlarge skeleton. No props, shadows, labels, grid or extra views. Preserve all headroom and margins of IMAGE 1, do NOT automatically fill or recenter the canvas. Full heads hair hems hands and boots must remain inside each quarter.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
+          "canonicalPoseHashes": [
+            "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
+            "bd77167140c15b93b69566bb90c4d9b42293de7cbb2fffd05fdc4e429c80edd7",
+            "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
+            "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -8056,6 +8162,22 @@
         },
         "walk/04": {
           "source": "sources.walk",
+          "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt",
           "frame": 4
         }
       },
