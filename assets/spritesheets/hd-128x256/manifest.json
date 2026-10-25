@@ -2107,7 +2107,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/f/frames",
       "audit": {
-        "validFrames": 56,
+        "validFrames": 60,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -2123,7 +2123,8 @@
           "attack_bow",
           "attack_staff",
           "attack_mace",
-          "attack_book"
+          "attack_book",
+          "attack_gloves"
         ],
         "actions": {
           "idle": {
@@ -3107,7 +3108,74 @@
             "distinctFrames": 4
           },
           "attack_gloves": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
+                "bytes": 25417,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  90,
+                  105,
+                  248
+                ],
+                "pixelSha256": "d46e78ee03c14b1e6596b373fd4caba3143364e8cabac941f9727eec2eab2ee4"
+              },
+              "02": {
+                "sha256": "bc21f0517b9ace7b72e967c7e10c7c545df05e99f658515b97ca568f5ac474ff",
+                "bytes": 26115,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  91,
+                  104,
+                  248
+                ],
+                "pixelSha256": "eeaefb22b216112a216052761b44fa0d13f186cc1392a98a6e509c14a3baf807"
+              },
+              "03": {
+                "sha256": "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
+                "bytes": 26028,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  91,
+                  116,
+                  248
+                ],
+                "pixelSha256": "8ff34e8ed00fcb32c8ffc5e60559229f082646048d40d1e4139a371e649ccfea"
+              },
+              "04": {
+                "sha256": "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3",
+                "bytes": 25020,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  91,
+                  95,
+                  248
+                ],
+                "pixelSha256": "8830d128659c688cc33e22f8c51f9349a8ac6a9e6bb59f520df4446b00b6a77d"
+              }
+            },
+            "distinctFrames": 4
           }
         }
       },
@@ -3489,6 +3557,33 @@
           "prompt": "Exactly FOUR complete separated full-body animation poses of the SAME FEMALE Novato from reference, four evenly spaced equal cells in ONE horizontal transparent strip. Preserve exact female face, brown eyes, chestnut high ponytail and bangs, burgundy scarf, ivory rolled sleeve shirt fully covering torso, brown leather cross harness belt pouch fingerless gloves and boots, patched blue trousers. Identical crisp painted pixel-inspired RPG rendering, proportions, head size, costume, camera, lighting. Facing RIGHT in three-quarter view always, common ground line, upright height about same as reference across all poses, ponytail stays near shoulders. Empty hands for equipment overlay. Compact tall narrow silhouettes, feet and elbows close, no wide lunges or horizontal arm stretches; foreshorten limbs into right/depth. Generous transparent margin around hair scarf fingers boots and between figures. No weapon, shield, equipment, props, effects, shadows, labels or grid. Action reading/casting with a book as later overlay: 1 left open supporting palm at waist, right hand above it; 2 lift left supporting palm to chest, gaze downward to imaginary open book; 3 left palm stays supporting, right hand gestures palm outward close to shoulder and eyes look right; 4 right hand returns to imaginary page. No physical book in body art.\n",
           "visualStatus": "review-pending",
           "equipmentStatus": "layer-test-pending"
+        },
+        "attack_gloves": {
+          "sourceSha256": "84de9e1b918f8cc09fb87ca3fa75579fae2cfc55692193a08d2aa90f073778b4",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "commonCrop": [
+            625,
+            17,
+            1080,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "method": "shared crop and scale, no per-frame centering or resizing",
+          "scalePolicy": "fixed-across-actions",
+          "sourcePath": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
+          "generator": "built-in imagegen",
+          "referencePath": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "prompt": "Exactly FOUR complete separated full-body animation poses of the SAME FEMALE Novato from reference, four evenly spaced equal cells in ONE horizontal transparent strip. Preserve exact female face, brown eyes, chestnut high ponytail and bangs, burgundy scarf, ivory rolled sleeve shirt fully covering torso, brown leather cross harness belt pouch fingerless gloves and boots, patched blue trousers. Identical crisp painted pixel-inspired RPG rendering, proportions, head size, costume, camera, lighting. Facing RIGHT in three-quarter view always, common ground line, upright height about same as reference across all poses, ponytail stays near shoulders. Empty hands for equipment overlay. Compact tall narrow silhouettes, feet and elbows close, no wide lunges or horizontal arm stretches; foreshorten limbs into right/depth. Generous transparent margin around hair scarf fingers boots and between figures. No weapon, shield, equipment, props, effects, shadows, labels or grid. Unarmed fist combo: 1 compact boxing guard, both closed fists at chest; 2 coil shoulder and pull right fist close to ribs; 3 short foreshortened right punch towards right/depth with left fist guarding cheek, elbow still slightly bent, feet close; 4 retract to guard. Hands must remain anatomically readable.\n",
+          "visualStatus": "review-pending",
+          "equipmentStatus": "layer-test-pending"
         }
       },
       "frameProvenance": {
@@ -3714,6 +3809,22 @@
         },
         "attack_book/04": {
           "source": "sources.attack_book",
+          "frame": 4
+        },
+        "attack_gloves/01": {
+          "source": "sources.attack_gloves",
+          "frame": 1
+        },
+        "attack_gloves/02": {
+          "source": "sources.attack_gloves",
+          "frame": 2
+        },
+        "attack_gloves/03": {
+          "source": "sources.attack_gloves",
+          "frame": 3
+        },
+        "attack_gloves/04": {
+          "source": "sources.attack_gloves",
           "frame": 4
         }
       },
