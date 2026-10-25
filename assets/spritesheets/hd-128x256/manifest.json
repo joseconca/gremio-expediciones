@@ -321,88 +321,20 @@
           "note": "Solo se guardan los cuatro PNG individuales y sus QA; la composición de referencia no se integra en runtime."
         },
         "hurt/01": {
-          "kind": "original project art; pose isolated from a generated four-pose Hurt action reference",
-          "sourceCanvas": [
-            1536,
-            1024
-          ],
-          "selectedRegion": [
-            44,
-            287,
-            268,
-            730
-          ],
-          "process": [
-            "generate four poses for the same action in one batch",
-            "isolate the relevant pose and remove the presentation background",
-            "fit uniformly to a 128×256 cell without cropping the body",
-            "align the boot baseline consistently",
-            "quantize visible artwork without dithering and reserve PNG palette index 0 for true transparency"
-          ],
-          "note": "Only the four individual PNG frames and their QA reports are stored for production; the reference board is not a runtime asset."
+          "source": "sources.hurt",
+          "frame": 1
         },
         "hurt/02": {
-          "kind": "original project art; pose isolated from a generated four-pose Hurt action reference",
-          "sourceCanvas": [
-            1536,
-            1024
-          ],
-          "selectedRegion": [
-            286,
-            324,
-            512,
-            736
-          ],
-          "process": [
-            "generate four poses for the same action in one batch",
-            "isolate the relevant pose and remove the presentation background",
-            "fit uniformly to a 128×256 cell without cropping the body",
-            "align the boot baseline consistently",
-            "quantize visible artwork without dithering and reserve PNG palette index 0 for true transparency"
-          ],
-          "note": "Only the four individual PNG frames and their QA reports are stored for production; the reference board is not a runtime asset."
+          "source": "sources.hurt",
+          "frame": 2
         },
         "hurt/03": {
-          "kind": "original project art; pose isolated from a generated four-pose Hurt action reference",
-          "sourceCanvas": [
-            1536,
-            1024
-          ],
-          "selectedRegion": [
-            545,
-            271,
-            784,
-            727
-          ],
-          "process": [
-            "generate four poses for the same action in one batch",
-            "isolate the relevant pose and remove the presentation background",
-            "fit uniformly to a 128×256 cell without cropping the body",
-            "align the boot baseline consistently",
-            "quantize visible artwork without dithering and reserve PNG palette index 0 for true transparency"
-          ],
-          "note": "Only the four individual PNG frames and their QA reports are stored for production; the reference board is not a runtime asset."
+          "source": "sources.hurt",
+          "frame": 3
         },
         "hurt/04": {
-          "kind": "original project art; pose isolated from a generated four-pose Hurt action reference",
-          "sourceCanvas": [
-            1536,
-            1024
-          ],
-          "selectedRegion": [
-            804,
-            291,
-            1035,
-            728
-          ],
-          "process": [
-            "generate four poses for the same action in one batch",
-            "isolate the relevant pose and remove the presentation background",
-            "fit uniformly to a 128×256 cell without cropping the body",
-            "align the boot baseline consistently",
-            "quantize visible artwork without dithering and reserve PNG palette index 0 for true transparency"
-          ],
-          "note": "Only the four individual PNG frames and their QA reports are stored for production; the reference board is not a runtime asset."
+          "source": "sources.hurt",
+          "frame": 4
         },
         "idle/01": {
           "source": "sources.idle",
@@ -526,11 +458,12 @@
         }
       },
       "audit": {
-        "validFrames": 16,
-        "invalidFrames": 8,
+        "validFrames": 20,
+        "invalidFrames": 4,
         "technicalActions": [
           "idle",
           "walk",
+          "hurt",
           "dodge",
           "block_shield"
         ],
@@ -676,34 +609,74 @@
             "distinctFrames": 4
           },
           "hurt": {
-            "status": "invalid",
+            "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "2ae6503e8a54d10163661c61ab7c460b7079333c897078988ecbe04391a74622",
-                "bytes": 12478,
-                "status": "invalid",
-                "error": "UnidentifiedImageError"
+                "sha256": "06c3e5d6d75c0020db707c5e8250e0cd619b25348dd86b8eb57a2ab159a97bf4",
+                "bytes": 32314,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  65,
+                  113,
+                  248
+                ],
+                "pixelSha256": "75e10c2cc12a30abfeaed9fac9ca45c8215fe37737d84583ee30bde06a39aac2"
               },
               "02": {
-                "sha256": "cafe6f59632538ffea141120f83aed8191e1b65ba62203346dcae7f2b63b27c1",
-                "bytes": 13176,
-                "status": "invalid",
-                "error": "UnidentifiedImageError"
+                "sha256": "2562bba729fbf15a67c9d61154c0281fc8a51905e4b3fa3ca4c901047566eed0",
+                "bytes": 32538,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  75,
+                  122,
+                  248
+                ],
+                "pixelSha256": "9cacf4953ebefb9907808b988601d989167a7befe3677f422aaf62946d484ca9"
               },
               "03": {
-                "sha256": "f60d0932670632ceb77081458fd68873b3b2048882014fa9e51cd4948b4816cf",
-                "bytes": 10552,
-                "status": "invalid",
-                "error": "UnidentifiedImageError"
+                "sha256": "62b05f8253b53e5167e5cc007a5c599ec39d84318e2fe39fbd51269a274ac020",
+                "bytes": 29126,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  9,
+                  97,
+                  113,
+                  248
+                ],
+                "pixelSha256": "7b047c8b174c62c9912e17d801837f02dca773759dccf2045ab71e9ea6fa2bc7"
               },
               "04": {
-                "sha256": "a9a3b81494fbcd1f7b220c117040f88c8fa831e5bb2b01e23cbc1b143c2c41d8",
-                "bytes": 13124,
-                "status": "invalid",
-                "error": "UnidentifiedImageError"
+                "sha256": "77abd739fd39641d74b9cbb9a4a428b0e3d5a3d69c01a4955b252ef55a46a7e5",
+                "bytes": 32362,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  65,
+                  111,
+                  248
+                ],
+                "pixelSha256": "86666bd60c786586a0ba1aba2237e519c07e8848d1fc0bf6b95950a870458ee5"
               }
             },
-            "distinctFrames": 0
+            "distinctFrames": 4
           },
           "use_consumable": {
             "status": "invalid",
@@ -950,6 +923,31 @@
           "alphaThreshold": 128,
           "method": "shared crop and scale, no per-frame centering or resizing",
           "sourcePath": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+          "generator": "built-in imagegen",
+          "visualStatus": "review-pending",
+          "equipmentStatus": "layer-test-pending",
+          "promptFile": "source/production-prompts.json"
+        },
+        "hurt": {
+          "sourceSha256": "966cc0374715c5d00396d71c31526dd037df57908d8e0b8328b3044ea888aa30",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "commonCrop": [
+            74,
+            19,
+            504,
+            697
+          ],
+          "scale": 0.26976744186046514,
+          "origin": [
+            6,
+            65
+          ],
+          "alphaThreshold": 128,
+          "method": "shared crop and scale, no per-frame centering or resizing",
+          "sourcePath": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
           "generator": "built-in imagegen",
           "visualStatus": "review-pending",
           "equipmentStatus": "layer-test-pending",
