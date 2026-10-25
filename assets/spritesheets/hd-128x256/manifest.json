@@ -5824,7 +5824,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/mago/f/frames",
       "audit": {
-        "validFrames": 48,
+        "validFrames": 52,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -5838,7 +5838,8 @@
           "attack_spear",
           "attack_dagger",
           "attack_bow",
-          "attack_staff"
+          "attack_staff",
+          "attack_mace"
         ],
         "actions": {
           "idle": {
@@ -6682,7 +6683,74 @@
             "distinctFrames": 4
           },
           "attack_mace": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "6569a79b4c3d1c6834ff8fedc29d2c38f9320e810c3b20c51f22ed98cec81d96",
+                "bytes": 27205,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  91,
+                  113,
+                  248
+                ],
+                "pixelSha256": "bd4b93be03fda65c44806152b32e44846f1e49c9232654796b810a0b4c664ace"
+              },
+              "02": {
+                "sha256": "ec1039a2203993f4a0feb28b6ce9933e0fbfb6df6bb5919c50078c14b07bff10",
+                "bytes": 27399,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  89,
+                  114,
+                  248
+                ],
+                "pixelSha256": "fcd847a7e68f78faea6bd0008ceaa317d95f7182834ba7e7bc9bdcafc1a966b1"
+              },
+              "03": {
+                "sha256": "a78226dfae4cea95a8675e1de4d467e3342f72111f79a8dbb4cda787de515f45",
+                "bytes": 26744,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  95,
+                  110,
+                  248
+                ],
+                "pixelSha256": "a73fd642c92a963d5128ad929eae66444d60e66b342a2b3f2a41ce08b76f3769"
+              },
+              "04": {
+                "sha256": "fd93f0d8952cc630ae149d89ecf52cf42b26781c7e8990ecd6dab0417e74cf1b",
+                "bytes": 27122,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  90,
+                  109,
+                  248
+                ],
+                "pixelSha256": "6ca201bff54a99ee3e6ddfa8abc7f9b152d2e748e1ff6ac172cdbac26632bc5c"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_book": {
             "status": "missing"
@@ -7149,6 +7217,44 @@
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_mace": {
+          "sourceSha256": "61ad4ee8044c886a53fbbc8e4fce53bb94e65899fa764a415b59e4d944617f13",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            612,
+            14,
+            1034,
+            699
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/mago/f/source/attack_mace-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET / EXACT canonical pose registration. IMAGE 2 defines ONLY MAGO FEMALE identity, outfit and face. Redraw the four figures of IMAGE 1 in the costume/identity of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip and wrist orientation, elbows and limb poses of IMAGE 1. Action attack_mace. Do not retain Novato-specific face, hair, patched clothing or scarf unless explicitly specified in the class identity below. Young adult female mage: long flowing violet hair and bangs with a small copper/gold headband, focused face, royal blue/indigo split robe with muted gold edging, light inner panel, brown leather belt, discreet fingerless brown gloves, dark leggings and sturdy brown boots. No Novato scarf and no wizard hat. Same newly hand-painted crisp pixel-inspired RPG finish as reference, same identity across all four figures. Empty hands in every pose; any weapon, shield, book, bottle, bow, arrow or magical effect must be entirely omitted because it will be rendered with a shared equipment sprite layer. Keep cuffs away from visible hands. Garments may follow the pose but must not move hands or enlarge skeleton. No props, shadows, labels, grid or extra views. Preserve all headroom and margins of IMAGE 1, do NOT automatically fill or recenter the canvas. Full heads hair hems hands and boots must remain inside each quarter.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_mace-reference.png",
+          "canonicalPoseHashes": [
+            "04cf87b50672f5f834bbe6287758ddf4f63ae24c37f0eaa528f01a4f5c1941ae",
+            "bea5d88c56e0602be76db93f071cd040cbc22e84b71f9cb6a354b1a0ce8573aa",
+            "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
+            "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -7342,6 +7448,22 @@
         },
         "attack_staff/04": {
           "source": "sources.attack_staff",
+          "frame": 4
+        },
+        "attack_mace/01": {
+          "source": "sources.attack_mace",
+          "frame": 1
+        },
+        "attack_mace/02": {
+          "source": "sources.attack_mace",
+          "frame": 2
+        },
+        "attack_mace/03": {
+          "source": "sources.attack_mace",
+          "frame": 3
+        },
+        "attack_mace/04": {
+          "source": "sources.attack_mace",
           "frame": 4
         }
       },
