@@ -9,12 +9,31 @@ def normalize(source, output, class_id, sex, action, threshold=128):
         opened.load();im=opened.convert('RGBA')
     if im.width%4:raise ValueError('Source must have four equal-width cells')
     if im.getchannel('A').getextrema()[0]!=0:raise ValueError('Source needs real alpha')
-    w=im.width//4;cells=[];boxes=[]
-    for i in range(4):
-        cell=im.crop((i*w,0,(i+1)*w,im.height))
-        cell.putalpha(cell.getchannel('A').point(lambda v:0 if v<threshold else v))
+    # Segment complete subjects before slicing: generated artwork may cross an
+    # artificial quarter boundary while remaining fully intact in the source.
+    from collections import deque
+    alpha=im.getchannel('A').point(lambda v:255 if v>=threshold else 0)
+    pixels=bytearray(alpha.tobytes());width,height=im.size;components=[]
+    for seed in range(len(pixels)):
+        if not pixels[seed]:continue
+        pixels[seed]=0;todo=deque([seed]);indices=[]
+        while todo:
+            idx=todo.popleft();indices.append(idx);x=idx%width;y=idx//width
+            for nxt in ((idx-1 if x else -1),(idx+1 if x+1<width else -1),(idx-width if y else -1),(idx+width if y+1<height else -1)):
+                if nxt>=0 and pixels[nxt]:pixels[nxt]=0;todo.append(nxt)
+        if len(indices)>1000:components.append(indices)
+    components=sorted(components,key=len,reverse=True)[:4]
+    if len(components)!=4:raise ValueError('Expected four separate complete subjects')
+    components.sort(key=lambda ids:sum(n%width for n in ids)/len(ids))
+    w=im.width//4;cells=[];boxes=[];padding=w
+    for i,ids in enumerate(components):
+        mask=bytearray(width*height)
+        for n in ids:mask[n]=255
+        layer=im.copy();layer.putalpha(Image.frombytes('L',im.size,bytes(mask)))
+        fullbox=layer.getchannel('A').getbbox()
+        if fullbox[0]==0 or fullbox[1]==0 or fullbox[2]==width or fullbox[3]==height:raise ValueError('Subject clipped at source edge')
+        cell=layer.crop((i*w-padding,0,(i+1)*w+padding,height))
         box=cell.getchannel('A').getbbox()
-        if not box or box[0]==0 or box[2]==w:raise ValueError('Empty/clipped source cell')
         boxes.append(box);cells.append(cell)
     common=(min(b[0] for b in boxes),min(b[1] for b in boxes),max(b[2] for b in boxes),max(b[3] for b in boxes))
     cw,ch=common[2]-common[0],common[3]-common[1]
