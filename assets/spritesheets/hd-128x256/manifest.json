@@ -11638,14 +11638,15 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/acolito/m/frames",
       "audit": {
-        "validFrames": 20,
+        "validFrames": 24,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
           "hurt",
           "use_consumable",
-          "dodge"
+          "dodge",
+          "block_shield"
         ],
         "actions": {
           "idle": {
@@ -11999,7 +12000,74 @@
             "distinctFrames": 4
           },
           "block_shield": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "2cf3a0e9da1afafe2b83880c8db923781e76572b5d3f4339a95cf56be510c299",
+                "bytes": 28492,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  98,
+                  106,
+                  250
+                ],
+                "pixelSha256": "efe9a85e1a24315292e63079c338c350810b33d68c2125060f5f79563f45018d"
+              },
+              "02": {
+                "sha256": "ae297f6b7bb38ee8119c1e3ceb739e94be48e36169e2b3afa4bbca761c6f6c3d",
+                "bytes": 27342,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  97,
+                  107,
+                  250
+                ],
+                "pixelSha256": "660dd8ae7e2ab730d6d521bdfc8cdf78f45dc7bfab035b84a2e25c96c09e891f"
+              },
+              "03": {
+                "sha256": "1b41f7bfc7b8df592cc98456e29fd2d89172b8d14b36031d4b0fe78c2109e352",
+                "bytes": 25218,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  113,
+                  107,
+                  250
+                ],
+                "pixelSha256": "06b1bd72df9afaaa7f7d61154f385c3414504686472bc4093bd71ede1536a80f"
+              },
+              "04": {
+                "sha256": "ae2bd4328de2ff9b932a138fe651d5bdf19a225f4c05603a926652cf039137fa",
+                "bytes": 28302,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  97,
+                  108,
+                  250
+                ],
+                "pixelSha256": "c47c465662801de061419c15bfc2547ba76b9f9c347238647365d576f290b8f6"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_sword": {
             "status": "missing"
@@ -12227,6 +12295,50 @@
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "block_shield": {
+          "sourceSha256": "d8adc2e58b214ce6495ef1f01df244d79f7fad11e2c746021f97981766c70214",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            543,
+            0,
+            1086,
+            724
+          ],
+          "scale": 0.23,
+          "origin": [
+            1.5549999999999997,
+            84
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": {
+            "uniformScale": 1.034013605442177,
+            "pivotX": 64,
+            "sourceBaseline": 247,
+            "referenceBaseline": 250,
+            "method": "one body-root transform shared by all four poses; equipment unchanged"
+          },
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/acolito/m/source/block_shield-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET / EXACT canonical pose registration. IMAGE 2 defines ONLY ACOLITO MALE identity, outfit and face. Redraw the four figures of IMAGE 1 in the costume/identity of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip and wrist orientation, elbows and limb poses of IMAGE 1. Action block_shield. Do not retain Novato-specific face, hair, patched clothing or scarf unless explicitly specified in the class identity below. Young adult male acolyte: short tousled ash-silver hair, gentle determined face, ivory cleric robe and split tabard with red stole and muted gold edging, modest gold neck clasp, red waist sash and leather belt, broad ivory sleeves ending before visible hands, discreet brown fingerless gloves and brown boots. No staff, holy symbol prop, book or effects. Same newly hand-painted crisp pixel-inspired RPG finish as reference, same identity across all four figures. Empty hands in every pose; any weapon, shield, book, bottle, bow, arrow or magical effect must be entirely omitted because it will be rendered with a shared equipment sprite layer. Keep cuffs away from visible hands. Garments may follow the pose but must not move hands or enlarge skeleton. No props, shadows, labels, grid or extra views. Preserve all headroom and margins of IMAGE 1, do NOT automatically fill or recenter the canvas. Full heads hair hems hands and boots must remain inside each quarter.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-block_shield.png",
+          "canonicalPoseHashes": [
+            "553ecfc5273ac38fba3b6319328b957dbc18cb4427ed28288702c0aa017a1076",
+            "a644ae5f26fc34242d8462a6b730fe1a509acbca2cf838021f77811df9598dde",
+            "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
+            "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -12308,6 +12420,22 @@
         },
         "dodge/04": {
           "source": "sources.dodge",
+          "frame": 4
+        },
+        "block_shield/01": {
+          "source": "sources.block_shield",
+          "frame": 1
+        },
+        "block_shield/02": {
+          "source": "sources.block_shield",
+          "frame": 2
+        },
+        "block_shield/03": {
+          "source": "sources.block_shield",
+          "frame": 3
+        },
+        "block_shield/04": {
+          "source": "sources.block_shield",
           "frame": 4
         }
       },
