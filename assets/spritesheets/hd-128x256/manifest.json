@@ -15518,7 +15518,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/arquero/m/frames",
       "audit": {
-        "validFrames": 56,
+        "validFrames": 60,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -15534,7 +15534,8 @@
           "attack_bow",
           "attack_staff",
           "attack_mace",
-          "attack_book"
+          "attack_book",
+          "attack_gloves"
         ],
         "actions": {
           "idle": {
@@ -16518,7 +16519,74 @@
             "distinctFrames": 4
           },
           "attack_gloves": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "e760aded98dad7ebebb6a29fe59aad002f2aabbc28ffc4a06b945ceaee9221e4",
+                "bytes": 22584,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  106,
+                  248
+                ],
+                "pixelSha256": "250ce2dc43da6bdc3cf5d996ba76f63b8f4a03544988e1281d8a30c668c585c7"
+              },
+              "02": {
+                "sha256": "b5035e2b9ce438d13f199620c05c7faa25e8bf2bef0d97d72891a60a3bb96821",
+                "bytes": 23107,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  107,
+                  248
+                ],
+                "pixelSha256": "26400095e0ea22616cc3f57c02ca74644c3ff19a7320db67d43deb6c1230e9bd"
+              },
+              "03": {
+                "sha256": "500bbb309a660b5290996c7ef86cb2fd6aeba05a793dd5176d346f9a5b3b2a35",
+                "bytes": 22844,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  108,
+                  248
+                ],
+                "pixelSha256": "585d4b141beec598a681f3fa029e38967e80583101b7a4d3246bc8f080450169"
+              },
+              "04": {
+                "sha256": "e0be192b6f7bc8071ac30a5ca99cfaebeffa9c8e7fd058c6e07c5593a7602d5b",
+                "bytes": 22673,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  107,
+                  248
+                ],
+                "pixelSha256": "058631e48cad33b78314fd5e08e15c53e7ff6faefa73782f5d7ae628192e972b"
+              }
+            },
+            "distinctFrames": 4
           }
         }
       },
@@ -17067,6 +17135,44 @@
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_gloves": {
+          "sourceSha256": "c28589fc102ccfe526d8d7f1214337980343b69d7ae031783a1e6081d785e120",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            643,
+            21,
+            1018,
+            698
+          ],
+          "scale": 0.23,
+          "origin": [
+            21,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/arquero/m/source/attack_gloves-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET / EXACT canonical pose registration. IMAGE 2 defines ONLY ARQUERO MALE identity, outfit and face. Redraw the four figures of IMAGE 1 in the costume/identity of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip and wrist orientation, elbows and limb poses of IMAGE 1. Action attack_gloves. Do not retain Novato-specific face, hair, patched clothing or scarf unless explicitly specified in the class identity below. Young adult male archer: short sandy blond tousled hair, alert face, fitted forest green ranger jerkin with muted olive panels, short green shoulder cape, brown leather cross straps belt bracers and fingerless gloves, dark olive trousers and brown travel boots, small brass fastenings. No hood, bow, arrows, quiver, dagger or equipment. Same newly hand-painted crisp pixel-inspired RPG finish as reference, same identity across all four figures. Empty hands in every pose; any weapon, shield, book, bottle, bow, arrow or magical effect must be entirely omitted because it will be rendered with a shared equipment sprite layer. Keep cuffs away from visible hands. Garments may follow the pose but must not move hands or enlarge skeleton. No props, shadows, labels, grid or extra views. Preserve all headroom and margins of IMAGE 1, do NOT automatically fill or recenter the canvas. Full heads hair hems hands and boots must remain inside each quarter.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_gloves-reference.png",
+          "canonicalPoseHashes": [
+            "fd3bdbdb7204be611733c4e8b780ac94a9d94cad2e8b18fe044e3d89d7885eb0",
+            "d04a757fc88ca7f0dfa4705d69a34d7c68f645f6c78e8a608f990a1870c2e25e",
+            "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
+            "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -17292,6 +17398,22 @@
         },
         "attack_book/04": {
           "source": "sources.attack_book",
+          "frame": 4
+        },
+        "attack_gloves/01": {
+          "source": "sources.attack_gloves",
+          "frame": 1
+        },
+        "attack_gloves/02": {
+          "source": "sources.attack_gloves",
+          "frame": 2
+        },
+        "attack_gloves/03": {
+          "source": "sources.attack_gloves",
+          "frame": 3
+        },
+        "attack_gloves/04": {
+          "source": "sources.attack_gloves",
           "frame": 4
         }
       },
