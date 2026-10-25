@@ -44,7 +44,7 @@
     "framePathPattern": "assets/spritesheets/hd-128x256/<clase>/<m|f>/frames/<accion>/<clase>-<sexo>-<accion>-<01..04>.png",
     "assemblyPolicy": "Assemble final 512x3840 sheet only after all 60 independent frame PNGs for that class/sex pass QA"
   },
-  "nextVariant": "novato-m",
+  "nextVariant": "novato-f",
   "classes": [
     {
       "id": "novato",
@@ -2032,19 +2032,88 @@
       "tier": 0,
       "sex": "f",
       "order": 2,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/novato/f/novato-f-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-started",
+      "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/f/frames",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+                "bytes": 25451,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  29,
+                  91,
+                  109,
+                  248
+                ],
+                "pixelSha256": "19673107bacc5d772684366beb161f6fc6f6eb81120864ba213cac64e6f79b28"
+              },
+              "02": {
+                "sha256": "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+                "bytes": 25704,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  90,
+                  108,
+                  248
+                ],
+                "pixelSha256": "4a5b4f4e2080512133ca462e3e4b3bce5e2edd2f7e5536e86d1d5a82921ec7c3"
+              },
+              "03": {
+                "sha256": "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+                "bytes": 25379,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  90,
+                  102,
+                  248
+                ],
+                "pixelSha256": "3c494fe35a8b12016664f062c9c156383b029ed39605b05f64bec960fe20c9e2"
+              },
+              "04": {
+                "sha256": "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee",
+                "bytes": 25182,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  91,
+                  100,
+                  248
+                ],
+                "pixelSha256": "d5b62d5ff433a56b8ba298849b6c0b6131dde242ad13d86de4c72660ea4d4fe2"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -2088,6 +2157,53 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "ce82f0bdd5f5f67ccfffd8a8c85d381e8fa44c070bcb3f7c2da07b11f470c0a6",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "method": "shared crop and scale, no per-frame centering or resizing",
+          "scalePolicy": "fixed-across-actions",
+          "sourcePath": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "referencePath": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "prompt": "Create high-quality RPG production sprite strip: exactly FOUR full-body IDLE poses of the FEMALE Novato adventurer, one horizontal row of four equal spaced cells, real transparent background. Image1 is style, costume palette and rendering reference from male Novato; image2 is existing female design reference with brown ponytail. Female identity: young adult woman, chestnut brown high ponytail and swept bangs, warm brown eyes, determined friendly face. Same practical costume as male reference adapted naturally: burgundy scarf, ivory rolled-sleeve linen shirt fully covering torso, brown leather crossed harness and belt pouch, brown fingerless gloves, patched blue trousers, sturdy brown boots. No armor or extra decorations. Preserve female ponytail identity throughout. Four subtle idle phases: neutral relaxed empty hands, soft inhalation, blink/soft exhalation, return neutral. Facing right three-quarter in all four, same scale head size camera lighting, full head scarf hands boots inside each quarter with clear transparent margins and common ground line. Crisp hand painted pixel-inspired RPG style exactly as male reference. Compact narrow silhouette, width under half height, scarf and ponytail near torso. No equipment weapons shields props effects shadows labels or grid. NOT a scale-up of reference pixels, draw newly at high resolution.\n",
+          "visualStatus": "review-pending",
+          "equipmentStatus": "layer-test-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
