@@ -25409,7 +25409,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/duelista/f/frames",
       "audit": {
-        "validFrames": 56,
+        "validFrames": 60,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -25425,7 +25425,8 @@
           "attack_bow",
           "attack_staff",
           "attack_mace",
-          "attack_book"
+          "attack_book",
+          "attack_gloves"
         ],
         "actions": {
           "idle": {
@@ -26409,7 +26410,74 @@
             "distinctFrames": 4
           },
           "attack_gloves": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "7f698b33d26dc74ed95196a5cb380d0706762419d2c124f489133f728e5596ba",
+                "bytes": 27046,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  90,
+                  104,
+                  247
+                ],
+                "pixelSha256": "e40b8fe26d1d2e299dd4eee352a7360195e44d721a70a3f70720fa3afeb1f07f"
+              },
+              "02": {
+                "sha256": "81171585a4d9ebc3a3ad828b2661accab0d14b621435f8afd7ad9d37fa4ee792",
+                "bytes": 27385,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  91,
+                  105,
+                  247
+                ],
+                "pixelSha256": "2d65367cb963d52f301469541abd3953a1e7b95c6cac5ff128c75762a30a74e4"
+              },
+              "03": {
+                "sha256": "7fae42276e669bd293ffc4391451584691f0a6c8c3f587e2679ef4a8db3f175a",
+                "bytes": 27520,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  92,
+                  120,
+                  247
+                ],
+                "pixelSha256": "23f215fc28d2ce8bc17476e4a73ccdad6bc8e565c1e31ac999ebe519d25a9896"
+              },
+              "04": {
+                "sha256": "bfb8311bf3243903424df91614410c4b3a879f0ea20d3b8cd58f13840fa74ac4",
+                "bytes": 26384,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  91,
+                  102,
+                  247
+                ],
+                "pixelSha256": "a3b47b69802bb64a7fac2c1c6e1597491faef465e510f509697be4f0ce97f4dc"
+              }
+            },
+            "distinctFrames": 4
           }
         }
       },
@@ -26986,6 +27054,44 @@
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_gloves": {
+          "sourceSha256": "10dd8475bf4a741e50c9b8faebb8eef9cb702e73b943bdbc7c6e5f5ef9d2fca0",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            625,
+            17,
+            1080,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/duelista/f/source/attack_gloves-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY DUELISTA FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_gloves. Young adult female duelist: long vivid red-auburn high ponytail, swept bangs, confident focused face. Tailored crimson split fencing coat with black leather panels and restrained bronze trim over a fully covered dark fitted blouse, dark leggings, slim red-brown waist belt and tall leather boots, small brown fingerless gloves. Practical fully covered outfit and exact canonical female skeleton. No rapier, dagger, sword, scabbard or cloak. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (295,274), other hand (395,252); figure 2: primary contact (821,321), other hand (951,252); figure 3: primary contact (1577,230), other hand (1459,247); figure 4: primary contact (1924,269), other hand (2002,256). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
+          "canonicalPoseHashes": [
+            "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
+            "bc21f0517b9ace7b72e967c7e10c7c545df05e99f658515b97ca568f5ac474ff",
+            "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
+            "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -27211,6 +27317,22 @@
         },
         "attack_book/04": {
           "source": "sources.attack_book",
+          "frame": 4
+        },
+        "attack_gloves/01": {
+          "source": "sources.attack_gloves",
+          "frame": 1
+        },
+        "attack_gloves/02": {
+          "source": "sources.attack_gloves",
+          "frame": 2
+        },
+        "attack_gloves/03": {
+          "source": "sources.attack_gloves",
+          "frame": 3
+        },
+        "attack_gloves/04": {
+          "source": "sources.attack_gloves",
           "frame": 4
         }
       },
