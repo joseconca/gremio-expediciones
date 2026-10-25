@@ -4195,68 +4195,68 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "631828f117a7419614dec8f0eea5c039f09e1a2c1d4236c493d44135190b5025",
-                "bytes": 21491,
+                "sha256": "1ddb888a12be8b1a7d6f8c3febf767f23097b151946a290bbbb34982c9440ee2",
+                "bytes": 27991,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  18,
-                  94,
-                  106,
-                  234
+                  14,
+                  97,
+                  108,
+                  251
                 ],
-                "pixelSha256": "04d2ee8fdff42b759704efa69d3af34894e59560c10996892e4269a45769783f"
+                "pixelSha256": "116b297f08e4988c015b81236d8a3bc70f825d4c55a172596f4a52c6f8bc82c6"
               },
               "02": {
-                "sha256": "30546873e77fbfb18c9a0a07d5242d46006d4491f9da76e7a724c8ca92cf1d5c",
-                "bytes": 21860,
+                "sha256": "08cf3c1efe9fddc96a6dafbbdfe10110a8cc063a24a5c8e0c36f3e3230bd5c8f",
+                "bytes": 28044,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  24,
-                  97,
+                  14,
+                  98,
                   116,
-                  234
+                  251
                 ],
-                "pixelSha256": "c68015d7f1af84dc43bdff614a395932318fa551b71695133701c291d29f51c0"
+                "pixelSha256": "0c3123c3e4be01bff8e96a3146033b2e073e9db6b8541911a723cc142a93df72"
               },
               "03": {
-                "sha256": "62412b5512a1022f1b1deac4d0832fd552274ad5bc3577fcc6545045604106e8",
-                "bytes": 21699,
+                "sha256": "c8136df5bca1a8cec314e9d3fa5b372c787e31380df4b3468cde9d9ff7fc4c9a",
+                "bytes": 27465,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  22,
-                  99,
-                  112,
-                  234
+                  9,
+                  106,
+                  108,
+                  251
                 ],
-                "pixelSha256": "f7d2ecaa2d117673c5024d1758aa31ccf1079a579dc60b1243c258f806da7a32"
+                "pixelSha256": "2d7f88bf23d869c9b8b5daab42fc2b138d7ce33b7514608d2169df29df07a5ed"
               },
               "04": {
-                "sha256": "9d1204f7b3be402f14929a9de9711b87fe59c7ca6aaef31e3863278855a09668",
-                "bytes": 21074,
+                "sha256": "0dd408a9b2dde6cf81c36f098f1257a1c189e36c8563775302e3386636747314",
+                "bytes": 27933,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  26,
-                  94,
+                  14,
+                  97,
                   109,
-                  234
+                  251
                 ],
-                "pixelSha256": "07c724e5d9078ac5bec73788d6dc964bae94426c80d9d2ca084793ad7a7617d9"
+                "pixelSha256": "f419af9d3def79aa4aa3ac5309882ab69056e3196dfc5834eac737d40196da39"
               }
             },
             "distinctFrames": 4
@@ -5151,34 +5151,41 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "dodge": {
-          "sourceSha256": "7a613f14c77044b6fbf4611cd640188df17885a52dfc792dc4d1d54a1eb34766",
+          "sourceSha256": "4c6b150bc93476e06990c1b341614e6729b54c6721ebc60f34d68724d33b982d",
           "sourceDimensions": [
-            1774,
-            887
+            2172,
+            724
           ],
           "registeredSourceDimensions": [
-            512,
-            256
+            2172,
+            724
           ],
-          "sourceCellStep": 128,
+          "sourceCellStep": 543,
           "commonCrop": [
-            128,
+            543,
             0,
-            256,
-            256
+            1086,
+            724
           ],
-          "scale": 1,
+          "scale": 0.23,
           "origin": [
-            0,
-            0
+            1.5549999999999997,
+            84
           ],
           "alphaThreshold": 128,
+          "bodyRootCalibration": {
+            "uniformScale": 1.0857142857142856,
+            "pivotX": 64,
+            "sourceBaseline": 241,
+            "referenceBaseline": 250,
+            "method": "one body-root transform shared by all four poses; equipment unchanged"
+          },
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/mago/m/source/dodge-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/mago/m/source/dodge-reference-v2.png",
           "generator": "built-in imagegen",
           "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET / EXACT canonical pose registration. IMAGE 2 defines ONLY MAGO MALE identity, outfit and face. Redraw the four figures of IMAGE 1 in the costume/identity of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip and wrist orientation, elbows and limb poses of IMAGE 1. Action dodge. Do not retain Novato-specific face, hair, patched clothing or scarf unless explicitly specified in the class identity below. Young adult male mage: short tousled dark indigo-black hair, calm focused face, royal blue/indigo long split coat with muted gold/tan trim and lapels, light inner tunic, brown leather waist belt, discreet brown fingerless gloves and brown boots, dark unpatched trousers. No scarf, no wizard hat. Same newly hand-painted crisp pixel-inspired RPG finish as reference, same identity across all four figures. Empty hands in every pose; any weapon, shield, book, bottle, bow, arrow or magical effect must be entirely omitted because it will be rendered with a shared equipment sprite layer. Keep cuffs away from visible hands. Garments may follow the pose but must not move hands or enlarge skeleton. No props, shadows, labels, grid or extra views. Preserve all headroom and margins of IMAGE 1, do NOT automatically fill or recenter the canvas. Full heads hair hems hands and boots must remain inside each quarter.\n",
-          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-dodge.png",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-dodge.png",
           "canonicalPoseHashes": [
             "c39c0179fb10e14a4b5d60a72facc2c743d68780da3324d44eaa5b3306438a4e",
             "9e58033fb31ca5eb09c3859aee33c578e8100cf1ad82ad52ba7c71996fdc40fd",
@@ -7671,6 +7678,74 @@
               "depth": "behind",
               "handMaskRadius": 5
             }
+          ]
+        },
+        "dodge": {
+          "status": "canonical-body-template-equipment-anchors-pending",
+          "poseExport": {
+            "sourceDimensions": [
+              2172,
+              724
+            ],
+            "sourcePath": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-dodge.png",
+            "commonCrop": [
+              543,
+              0,
+              1086,
+              724
+            ],
+            "scale": 0.23,
+            "origin": [
+              1.5549999999999997,
+              84
+            ],
+            "calibrateFirstPose": true,
+            "referenceFirstFrameBounds": [
+              21,
+              98,
+              107,
+              250
+            ]
+          },
+          "canonicalFrameHashes": [
+            "c39c0179fb10e14a4b5d60a72facc2c743d68780da3324d44eaa5b3306438a4e",
+            "9e58033fb31ca5eb09c3859aee33c578e8100cf1ad82ad52ba7c71996fdc40fd",
+            "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
+            "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
+          ]
+        },
+        "block_shield": {
+          "status": "canonical-body-template-equipment-anchors-pending",
+          "poseExport": {
+            "sourceDimensions": [
+              2172,
+              724
+            ],
+            "sourcePath": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-block_shield.png",
+            "commonCrop": [
+              543,
+              0,
+              1086,
+              724
+            ],
+            "scale": 0.23,
+            "origin": [
+              1.5549999999999997,
+              84
+            ],
+            "calibrateFirstPose": true,
+            "referenceFirstFrameBounds": [
+              21,
+              98,
+              107,
+              250
+            ]
+          },
+          "canonicalFrameHashes": [
+            "553ecfc5273ac38fba3b6319328b957dbc18cb4427ed28288702c0aa017a1076",
+            "a644ae5f26fc34242d8462a6b730fe1a509acbca2cf838021f77811df9598dde",
+            "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
+            "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ]
         }
       },
