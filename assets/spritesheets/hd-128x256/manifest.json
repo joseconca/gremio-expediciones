@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "mago-f",
+  "nextVariant": "mago-m",
   "classes": [
     {
       "id": "novato",
@@ -4195,24 +4195,56 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "1ddb888a12be8b1a7d6f8c3febf767f23097b151946a290bbbb34982c9440ee2",
-                "bytes": 27991,
+                "sha256": "86dd28dc9a625d5b0849a92412e627ce75af767f77248988c61321f32e6eeccd",
+                "bytes": 27443,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  14,
-                  97,
-                  108,
-                  251
+                  15,
+                  98,
+                  107,
+                  250
                 ],
-                "pixelSha256": "116b297f08e4988c015b81236d8a3bc70f825d4c55a172596f4a52c6f8bc82c6"
+                "pixelSha256": "8bcc4b519da13c2b819b6c0bf3f3b86b89512b2fef0436ccef7559da8fa451e9"
               },
               "02": {
-                "sha256": "08cf3c1efe9fddc96a6dafbbdfe10110a8cc063a24a5c8e0c36f3e3230bd5c8f",
-                "bytes": 28044,
+                "sha256": "27391a4728dd24dc7348442bc1c239e8d9369e5d65c4f3c12fde885d5e9f3d1d",
+                "bytes": 27504,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  99,
+                  115,
+                  250
+                ],
+                "pixelSha256": "0c13a8af333ae681ba505f94f657bb2f606a9aed4b11048595c08d437b0a1c2a"
+              },
+              "03": {
+                "sha256": "db76726f075b8c7963423aa8f0c2fb51db422ffaeca362080eb65e88771842b1",
+                "bytes": 26952,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  107,
+                  107,
+                  250
+                ],
+                "pixelSha256": "cad99b8ee0b6ed916d4f43587ab199cfc48ac11646dbab49acfb1805ccab637a"
+              },
+              "04": {
+                "sha256": "c1245842f9cfdcf2c474ff1ebf0e3e5ec11bced42ceabea1923cf0b14c920706",
+                "bytes": 27377,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -4221,42 +4253,10 @@
                 "bbox": [
                   14,
                   98,
-                  116,
-                  251
-                ],
-                "pixelSha256": "0c3123c3e4be01bff8e96a3146033b2e073e9db6b8541911a723cc142a93df72"
-              },
-              "03": {
-                "sha256": "c8136df5bca1a8cec314e9d3fa5b372c787e31380df4b3468cde9d9ff7fc4c9a",
-                "bytes": 27465,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  9,
-                  106,
                   108,
-                  251
+                  250
                 ],
-                "pixelSha256": "2d7f88bf23d869c9b8b5daab42fc2b138d7ce33b7514608d2169df29df07a5ed"
-              },
-              "04": {
-                "sha256": "0dd408a9b2dde6cf81c36f098f1257a1c189e36c8563775302e3386636747314",
-                "bytes": 27933,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  14,
-                  97,
-                  109,
-                  251
-                ],
-                "pixelSha256": "f419af9d3def79aa4aa3ac5309882ab69056e3196dfc5834eac737d40196da39"
+                "pixelSha256": "eb87d30cf81e21b53c55af838d962169df60e815791cf80f42e1e28876a7fdab"
               }
             },
             "distinctFrames": 4
