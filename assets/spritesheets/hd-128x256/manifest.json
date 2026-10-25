@@ -20603,7 +20603,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Review the eight complete Tier 1 candidate body sheets at combat scale; verify shared shield, two-hand, bow and consumable layers and occlusion before runtime promotion. Tier 2 follows after review.",
+  "nextTask": "Review the completed HD equipment gallery with the user, then integrate approved Novato and Tier 1 bodies and shared equipment into the game only when instructed. Tier 2 body production remains later in the plan.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
@@ -20967,7 +20967,7 @@
     }
   },
   "tier1Production": {
-    "status": "body-candidates-complete-art-and-equipment-review-pending",
+    "status": "body-candidates-complete-shared-equipment-reviewed-integration-pending",
     "classesInOrder": [
       "mago",
       "espadachin",
@@ -20978,8 +20978,8 @@
     "bodyFrames": 480,
     "atlases": 8,
     "actionsPerVariant": 15,
-    "equipmentTest": "identical-sword-layer-per-sex-verified",
-    "localTestsPassed": 17,
+    "equipmentTest": "28 HD items, one identical sheet per item and sex across Novato and four Tier 1 classes",
+    "localTestsPassed": 23,
     "runtimeModified": false,
     "previews": {
       "tier1-overview.png": {
@@ -20991,5 +20991,32 @@
         "sha256": "6dede04225e296f66dc61087e38ce341888dba3405f2c6b623f9b47c6a429de1"
       }
     }
+  },
+  "equipmentLibrary": {
+    "path": "assets/spritesheets/hd-128x256/equipment/manifest.json",
+    "status": "candidate-contact-reviewed-integration-pending",
+    "items": 28,
+    "weapons": 24,
+    "sharedSheets": 56,
+    "equipmentFrames": 1104,
+    "coveredClasses": [
+      "novato",
+      "mago",
+      "espadachin",
+      "acolito",
+      "arquero"
+    ],
+    "sexSpecific": true,
+    "canvas": [
+      384,
+      384
+    ],
+    "bodyOrigin": [
+      128,
+      64
+    ],
+    "classSpecificTransforms": false,
+    "legacySwordProof": "Earlier 256x256 icon-based tests remain as provenance; use the new library canvas, contacts, scale and masks for future HD equipment integration.",
+    "runtimePromotion": "pending-user-instruction"
   }
 }

@@ -1,0 +1,289 @@
+{
+  "status": "passed",
+  "itemCount": 28,
+  "sharedSheets": 56,
+  "equipmentFrames": 1104,
+  "bodyComposites": 5520,
+  "contactWarnings": [],
+  "classSpecificTransforms": false,
+  "items": {
+    "espada_hierro": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_sword"
+      ]
+    },
+    "arco_cazador": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_bow"
+      ]
+    },
+    "arco_madera": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_bow"
+      ]
+    },
+    "baston_madera": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_staff"
+      ]
+    },
+    "baston_runico": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_staff"
+      ]
+    },
+    "daga_hierro": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_dagger"
+      ]
+    },
+    "daga_sombria": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_dagger"
+      ]
+    },
+    "espada_acero": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_sword"
+      ]
+    },
+    "espada_draconica": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_sword"
+      ]
+    },
+    "espada_madera": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_sword"
+      ]
+    },
+    "espada_piedra": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_sword"
+      ]
+    },
+    "espada_runa": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_sword"
+      ]
+    },
+    "espada_vigia": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_sword"
+      ]
+    },
+    "grimorio_eclipse": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_book"
+      ]
+    },
+    "guantes_lucha": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_gloves"
+      ]
+    },
+    "hacha_berserker": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_axe"
+      ]
+    },
+    "hacha_orca": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_axe"
+      ]
+    },
+    "hacha_piedra": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_axe"
+      ]
+    },
+    "lanza_escama": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_spear"
+      ]
+    },
+    "lanza_madera": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_spear"
+      ]
+    },
+    "libro_aprendiz": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_book"
+      ]
+    },
+    "maza_enana": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_mace"
+      ]
+    },
+    "maza_madera": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_mace"
+      ]
+    },
+    "punos_lobo": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "attack_gloves"
+      ]
+    },
+    "escudo_guardian": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "block_shield",
+        "attack_sword",
+        "attack_dagger",
+        "attack_mace"
+      ]
+    },
+    "escudo_madera": {
+      "sexes": 2,
+      "actions": [
+        "idle",
+        "walk",
+        "hurt",
+        "dodge",
+        "block_shield",
+        "attack_sword",
+        "attack_dagger",
+        "attack_mace"
+      ]
+    },
+    "pocion": {
+      "sexes": 2,
+      "actions": [
+        "use_consumable"
+      ]
+    },
+    "flecha_comun": {
+      "sexes": 2,
+      "actions": [
+        "attack_bow"
+      ]
+    }
+  }
+}
