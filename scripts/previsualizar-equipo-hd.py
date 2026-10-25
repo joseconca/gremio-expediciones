@@ -4,20 +4,35 @@ from pathlib import Path
 from PIL import Image,ImageDraw
 ROOT=Path(__file__).resolve().parents[1]
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def resolve_rig(manifest,variant,action):
+    """Bodies of all classes fit one equipment trajectory per sex/action."""
+    rig=manifest['equipmentRigs'][variant['equipmentRigId']]
+    if rig['sex']!=variant['sex']:raise ValueError('Equipment rig sex mismatch')
+    config=variant['equipmentTests'][action]
+    if any(key in config for key in ('equipmentCanvas','bodyOrigin','weaponScale')):
+        raise ValueError('Class-specific equipment transform is not allowed')
+    frames=rig['actions'][action]['frames']
+    if len(frames)!=4 or len(config['frames'])!=4:raise ValueError('Expected four synchronized frames')
+    if any(set(frame)!={'bodySha256'} for frame in config['frames']):
+        raise ValueError('Class-specific hand trajectory is not allowed')
+    return rig,frames
+
 def render(sex):
     manifest_path=ROOT/'assets/spritesheets/hd-128x256/manifest.json'
     manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
     variant=next(v for v in manifest['variants'] if v['classId']=='novato' and v['sex']==sex)
     config=variant['equipmentTests']['attack_sword']
+    rig,rig_frames=resolve_rig(manifest,variant,'attack_sword')
+    if rig['equipmentCanvas']!=[256,256] or rig['bodyOrigin']!=[64,0] or rig['weaponScale']!=1:raise ValueError('Unsupported preview transform')
     source=ROOT/config['weaponPath']
     if sha(source)!=config['weaponSha256']:raise ValueError('Weapon changed: review grip before rebuilding')
     with Image.open(source) as im:weapon=im.convert('RGBA')
     base=ROOT/'assets/spritesheets/hd-128x256/novato'/sex
     out=base/'previews/equipment-sword';out.mkdir(parents=True,exist_ok=True)
     cycle=[];contact=Image.new('RGB',(1024,256),'#242630')
-    for i,frame in enumerate(config['frames']):
+    for i,frame in enumerate(rig_frames):
         path=base/'frames/attack_sword'/f'novato-{sex}-attack_sword-{i+1:02d}.png'
-        if sha(path)!=frame['bodySha256']:raise ValueError('Body changed: anchors require review')
+        if sha(path)!=config['frames'][i]['bodySha256']:raise ValueError('Body changed: anchors require review')
         with Image.open(path) as im:body=im.convert('RGBA')
         x,y=frame['grip'];gx,gy=config['weaponGrip']
         if body.getpixel((x,y))[3]<128:raise ValueError('Grip is outside visible body')

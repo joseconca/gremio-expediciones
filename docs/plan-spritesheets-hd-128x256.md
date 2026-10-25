@@ -57,12 +57,12 @@ No crear un documento ni instalador por acción. No regenerar previews con bots 
 
 ## Capas de equipo
 
-El cuerpo es canónico; el arma se alinea a las manos, no al centro de la silueta.
+El esquema de agarres es canónico y común a todas las clases del mismo sexo. El cuerpo adapta sus manos al esquema; el arma no se desplaza para corregir cada clase. Masculino y femenino tienen esquemas independientes.
 Registrar agarre principal/secundario, orientación y profundidad por frame.
 Compartir un único índice de frame entre cuerpo, equipo y sombra.
 Probar partes detrás y delante del cuerpo; una máscara de manos/antebrazo puede preservar el agarre.
 Las armas largas pueden necesitar un lienzo mayor con origen común y desbordamiento controlado; no reducir el cuerpo para encajarlas.
-Reutilizar trayectorias entre clases solo si sus agarres son compatibles.
+Reutilizar el mismo spritesheet de cada arma en todas las clases del mismo sexo: mismos agarres por acción/fotograma, orientación, escala, origen, profundidad y temporización. Para dos manos también se fija el agarre secundario. Las máscaras de oclusión deben conservar el contacto con el mango. La ropa y la silueta pueden variar, pero no los puntos de contacto ni la orientación de las manos. No se permiten offsets o escalas de equipo por clase.
 La primera prueba de espada no valida todo el catálogo: comprobar después bloqueo, dos manos y arco.
 
 ## Integración
@@ -122,3 +122,9 @@ Los commits de esta continuación están conservados localmente. Publicación pe
 Pendiente: revisión artística de los bucles a tamaño de combate, compatibilidad de escudo/dos manos/arco/consumible e integración de las 15 acciones en el renderer, incluidos reflejo horizontal y movimiento reducido. Mantener el runtime anterior hasta esa revisión y no fusionar con main sin aprobación.
 
 La copia local conserva un commit por acción y checkpoints de herramientas. La entrega incluye una copia transportable de esos commits; su existencia no equivale a publicación remota. La sincronización depende de completar el acceso de Git a GitHub.
+
+## Agarres compartidos entre clases — 2026-10-25
+
+`manifest.json/equipmentRigs` contiene un esquema masculino y otro femenino. Las 26 variantes apuntan al esquema de su sexo. Espada ya tiene sus cuatro agarres y trayectorias trasladados a esta referencia común; las pruebas de Novato conservan únicamente los hashes específicos del cuerpo. El compositor rechaza agarres y transformaciones particulares por clase.
+
+Las otras catorce acciones todavía requieren medir y revisar sus cuatro poses canónicas por sexo antes de extenderlas a otras clases. Asignar un esquema a una variante no significa que sus sprites actuales ya sean compatibles: los recursos antiguos y las clases HD aún pendientes no se han redibujado. Para cada cuerpo nuevo, comprobar el contacto real de ambas manos y la oclusión usando exactamente la misma capa de equipo.

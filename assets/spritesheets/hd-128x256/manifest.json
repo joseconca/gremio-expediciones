@@ -42,7 +42,21 @@
     "runtimePromotion": "deferred-until-full-sheet-qa-and-approval",
     "frameFilesPerVariant": 60,
     "framePathPattern": "assets/spritesheets/hd-128x256/<clase>/<m|f>/frames/<accion>/<clase>-<sexo>-<accion>-<01..04>.png",
-    "assemblyPolicy": "Assemble final 512x3840 sheet only after all 60 independent frame PNGs for that class/sex pass QA"
+    "assemblyPolicy": "Assemble final 512x3840 sheet only after all 60 independent frame PNGs for that class/sex pass QA",
+    "equipmentCompatibility": {
+      "scope": "all classes of the same sex share one action/frame rig",
+      "independentSexRigs": true,
+      "sharedProperties": [
+        "primary and secondary grip positions",
+        "weapon angles and scale",
+        "body/equipment origin",
+        "front/back depth and shared frame timing"
+      ],
+      "bodyPolicy": "Fit body hands to the canonical rig; do not move or resize equipment per class. Different weapon models may have their own grip within the shared equipment layer.",
+      "posePolicy": "Keep camera, skeleton scale and hand orientation compatible. Clothing and class silhouette may vary.",
+      "newActionPolicy": "Define and review its four canonical frames per sex before producing that action for further classes.",
+      "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
+    }
   },
   "nextVariant": "novato-m",
   "classes": [
@@ -2043,55 +2057,18 @@
             32,
             55
           ],
-          "weaponScale": 1,
-          "equipmentCanvas": [
-            256,
-            256
-          ],
-          "bodyOrigin": [
-            64,
-            0
-          ],
           "frameIndex": "shared-body-and-equipment",
           "frames": [
             {
-              "grip": [
-                39,
-                130
-              ],
-              "angleDegrees": 30,
-              "depth": "behind",
-              "handMaskRadius": 5,
               "bodySha256": "94a4871c11e468f126047a7a472588393f74f1d9030e300baa1a8d02eb68d602"
             },
             {
-              "grip": [
-                100,
-                180
-              ],
-              "angleDegrees": -85,
-              "depth": "front",
-              "handMaskRadius": 5,
               "bodySha256": "d1b8dd9b5ff7a4aa6b896810a5ccbf6ac50fc6fb36e029b6e0d55031f1d814a4"
             },
             {
-              "grip": [
-                114,
-                191
-              ],
-              "angleDegrees": -135,
-              "depth": "front",
-              "handMaskRadius": 5,
               "bodySha256": "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f"
             },
             {
-              "grip": [
-                46,
-                155
-              ],
-              "angleDegrees": 20,
-              "depth": "behind",
-              "handMaskRadius": 5,
               "bodySha256": "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
             }
           ],
@@ -2107,7 +2084,8 @@
         "Review complete animation loops at combat display size, with horizontal mirroring and reduced motion.",
         "Validate shield occlusion, separate consumable, bow and two-handed equipment before artistic approval.",
         "Runtime renderer still supports idle/walk/hurt; no HD promotion or main merge performed."
-      ]
+      ],
+      "equipmentRigId": "humanoid-m-v1"
     },
     {
       "classId": "novato",
@@ -3860,55 +3838,18 @@
             32,
             55
           ],
-          "weaponScale": 1,
-          "equipmentCanvas": [
-            256,
-            256
-          ],
-          "bodyOrigin": [
-            64,
-            0
-          ],
           "frameIndex": "shared-body-and-equipment",
           "frames": [
             {
-              "grip": [
-                48,
-                132
-              ],
-              "angleDegrees": 30,
-              "depth": "behind",
-              "handMaskRadius": 5,
               "bodySha256": "2cdc01930823f3356c34672d3037877c10a3b25337d5ff78350f147e0f5fba9a"
             },
             {
-              "grip": [
-                61,
-                114
-              ],
-              "angleDegrees": -20,
-              "depth": "behind",
-              "handMaskRadius": 5,
               "bodySha256": "db31283eb15589cf13fb33aac39b277606ed938f4afe84955356f0253579e4e0"
             },
             {
-              "grip": [
-                96,
-                184
-              ],
-              "angleDegrees": -135,
-              "depth": "front",
-              "handMaskRadius": 5,
               "bodySha256": "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9"
             },
             {
-              "grip": [
-                45,
-                132
-              ],
-              "angleDegrees": 30,
-              "depth": "behind",
-              "handMaskRadius": 5,
               "bodySha256": "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
             }
           ],
@@ -3934,7 +3875,8 @@
         "Review complete animation loops at combat display size, with horizontal mirroring and reduced motion.",
         "Validate shield occlusion, separate consumable, bow and two-handed equipment before artistic approval.",
         "Runtime renderer still supports idle/walk/hurt; no HD promotion or main merge performed."
-      ]
+      ],
+      "equipmentRigId": "humanoid-f-v1"
     },
     {
       "classId": "mago",
@@ -3999,7 +3941,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-m-v1"
     },
     {
       "classId": "mago",
@@ -4064,7 +4007,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-f-v1"
     },
     {
       "classId": "espadachin",
@@ -4129,7 +4073,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-m-v1"
     },
     {
       "classId": "espadachin",
@@ -4194,7 +4139,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-f-v1"
     },
     {
       "classId": "acolito",
@@ -4259,7 +4205,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-m-v1"
     },
     {
       "classId": "acolito",
@@ -4324,7 +4271,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-f-v1"
     },
     {
       "classId": "arquero",
@@ -4389,7 +4337,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-m-v1"
     },
     {
       "classId": "arquero",
@@ -4454,7 +4403,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-f-v1"
     },
     {
       "classId": "caballero",
@@ -4519,7 +4469,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-m-v1"
     },
     {
       "classId": "caballero",
@@ -4584,7 +4535,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-f-v1"
     },
     {
       "classId": "duelista",
@@ -4649,7 +4601,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-m-v1"
     },
     {
       "classId": "duelista",
@@ -4714,7 +4667,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-f-v1"
     },
     {
       "classId": "sacerdote",
@@ -4779,7 +4733,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-m-v1"
     },
     {
       "classId": "sacerdote",
@@ -4844,7 +4799,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-f-v1"
     },
     {
       "classId": "monje",
@@ -4909,7 +4865,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-m-v1"
     },
     {
       "classId": "monje",
@@ -4974,7 +4931,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-f-v1"
     },
     {
       "classId": "cazador",
@@ -5039,7 +4997,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-m-v1"
     },
     {
       "classId": "cazador",
@@ -5104,7 +5063,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-f-v1"
     },
     {
       "classId": "explorador",
@@ -5169,7 +5129,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-m-v1"
     },
     {
       "classId": "explorador",
@@ -5234,7 +5195,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-f-v1"
     },
     {
       "classId": "elementalista",
@@ -5299,7 +5261,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-m-v1"
     },
     {
       "classId": "elementalista",
@@ -5364,7 +5327,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-f-v1"
     },
     {
       "classId": "brujo",
@@ -5429,7 +5393,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-m-v1"
     },
     {
       "classId": "brujo",
@@ -5494,7 +5459,8 @@
             "status": "missing"
           }
         }
-      }
+      },
+      "equipmentRigId": "humanoid-f-v1"
     }
   ],
   "highResolutionSourceCandidates": [
@@ -5658,7 +5624,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Review complete Novato m/f body candidates at combat size; validate shield, two-handed weapons, bow and consumable layers before runtime promotion; then Tier 1.",
+  "nextTask": "Complete canonical hand trajectories for remaining Novato actions per sex, then require all Tier 1/2 bodies to fit these shared rigs. Review equipment layers before runtime promotion.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
@@ -5783,7 +5749,161 @@
   ],
   "publication": {
     "remoteBaseCommit": "21468d54284c82530352e2d9ca9acc8869ebc46b",
-    "state": "local-checkpoint-awaiting-git-publication",
-    "note": "Binary connector publication exceeded automatic-review budget; local Git authentication must be available for normal push. Remote readback is required before declaring publication."
+    "state": "prepared-for-authorized-git-push",
+    "note": "Git permission granted in this session; publish with fast-forward push and verify remote binary objects before declaring publication."
+  },
+  "equipmentRigs": {
+    "humanoid-m-v1": {
+      "sex": "m",
+      "status": "sword-reference-ready-other-actions-pending",
+      "bodyCell": [
+        128,
+        256
+      ],
+      "equipmentCanvas": [
+        256,
+        256
+      ],
+      "bodyOrigin": [
+        64,
+        0
+      ],
+      "weaponScale": 1,
+      "actions": {
+        "attack_sword": {
+          "status": "technical-reference-art-review-pending",
+          "frames": [
+            {
+              "grip": [
+                39,
+                130
+              ],
+              "angleDegrees": 30,
+              "depth": "behind",
+              "handMaskRadius": 5
+            },
+            {
+              "grip": [
+                100,
+                180
+              ],
+              "angleDegrees": -85,
+              "depth": "front",
+              "handMaskRadius": 5
+            },
+            {
+              "grip": [
+                114,
+                191
+              ],
+              "angleDegrees": -135,
+              "depth": "front",
+              "handMaskRadius": 5
+            },
+            {
+              "grip": [
+                46,
+                155
+              ],
+              "angleDegrees": 20,
+              "depth": "behind",
+              "handMaskRadius": 5
+            }
+          ]
+        }
+      },
+      "pendingActions": [
+        "idle",
+        "walk",
+        "hurt",
+        "use_consumable",
+        "dodge",
+        "block_shield",
+        "attack_axe",
+        "attack_spear",
+        "attack_dagger",
+        "attack_bow",
+        "attack_staff",
+        "attack_mace",
+        "attack_book",
+        "attack_gloves"
+      ]
+    },
+    "humanoid-f-v1": {
+      "sex": "f",
+      "status": "sword-reference-ready-other-actions-pending",
+      "bodyCell": [
+        128,
+        256
+      ],
+      "equipmentCanvas": [
+        256,
+        256
+      ],
+      "bodyOrigin": [
+        64,
+        0
+      ],
+      "weaponScale": 1,
+      "actions": {
+        "attack_sword": {
+          "status": "technical-reference-art-review-pending",
+          "frames": [
+            {
+              "grip": [
+                48,
+                132
+              ],
+              "angleDegrees": 30,
+              "depth": "behind",
+              "handMaskRadius": 5
+            },
+            {
+              "grip": [
+                61,
+                114
+              ],
+              "angleDegrees": -20,
+              "depth": "behind",
+              "handMaskRadius": 5
+            },
+            {
+              "grip": [
+                96,
+                184
+              ],
+              "angleDegrees": -135,
+              "depth": "front",
+              "handMaskRadius": 5
+            },
+            {
+              "grip": [
+                45,
+                132
+              ],
+              "angleDegrees": 30,
+              "depth": "behind",
+              "handMaskRadius": 5
+            }
+          ]
+        }
+      },
+      "pendingActions": [
+        "idle",
+        "walk",
+        "hurt",
+        "use_consumable",
+        "dodge",
+        "block_shield",
+        "attack_axe",
+        "attack_spear",
+        "attack_dagger",
+        "attack_bow",
+        "attack_staff",
+        "attack_mace",
+        "attack_book",
+        "attack_gloves"
+      ]
+    }
   }
 }
