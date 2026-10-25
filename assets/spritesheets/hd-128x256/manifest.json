@@ -27545,68 +27545,68 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "5138499d758aeb3a23f6cf9279427ccb64ea71e0ad8b4e6bbc93ce879f41f278",
-                "bytes": 25960,
+                "sha256": "5024a6e9092479c03d7b688b34e113adf32462f456bd087a5345b3dd947ef716",
+                "bytes": 26018,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  19,
-                  92,
+                  18,
+                  93,
                   105,
                   248
                 ],
-                "pixelSha256": "9ea2244370e5ffef625731030b18522accf8f7f45fed5268fa0d07bf44c8db62"
+                "pixelSha256": "c21978594475f9e455eb16498bb471c2c715924e17d4bf515bbd570793f37749"
               },
               "02": {
-                "sha256": "fb257215d19a84550c3fdba02ba9d3dd1dfcdf88252ac1935646c9642de87823",
-                "bytes": 26581,
+                "sha256": "7f036ba646a2a7f8c81acad7eb9071658c4f93c853cba82416c0c5472a7f01ee",
+                "bytes": 25200,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  26,
-                  101,
+                  28,
+                  100,
                   113,
                   248
                 ],
-                "pixelSha256": "7e3d8878f249ec435be98a61fa409665693820760719c8a953de2f0ab0e870ba"
+                "pixelSha256": "101b5baa0ef5ab0c2252c791ba9a9af4ba9aad773269e8fc5ac0223b7b2c1c0d"
               },
               "03": {
-                "sha256": "dba706b5bde8e9da0c3b280209699b62156b01b1315097bf4142e95c7ec59bb3",
-                "bytes": 23477,
+                "sha256": "9a1f1758338ff41b2527631b678815007dfe16567ab9ecbacce26395b56ce4bd",
+                "bytes": 22736,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  13,
-                  119,
-                  105,
+                  15,
+                  120,
+                  102,
                   248
                 ],
-                "pixelSha256": "730b3bf008b79303e5e52283f3e4283a36f58e0c807fce46eddec8c9491ebc6a"
+                "pixelSha256": "3509ecf136b8528d4b630a015b42dd3288d07c7d82dc9c8f9dab20798e8fbf23"
               },
               "04": {
-                "sha256": "f2bd4053b5c79700ee2d07ecd3170d8cd9aa235b47512cd15343f8ca77b335d8",
-                "bytes": 26027,
+                "sha256": "b4c5a8f7e125c43c69c214d0f290223f1e77e3b76d363863143767475af4ad2b",
+                "bytes": 26115,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  12,
-                  92,
-                  97,
+                  15,
+                  93,
+                  101,
                   248
                 ],
-                "pixelSha256": "5c27b04d98b6f6029856f9ff1a98df9bccecd5efa3145bf2d966c464e470c9d6"
+                "pixelSha256": "8f294626169d1b790e420f6b51d0d2f43f956a4dc959ef224442f88d52fbbc75"
               }
             },
             "distinctFrames": 4
@@ -27875,7 +27875,7 @@
           ]
         },
         "hurt": {
-          "sourceSha256": "3070585f9c1e750e14e798ceba4d54cdc3157a9fe77e5253b44cd13dd5a4da85",
+          "sourceSha256": "60ed96759b3e79f737712df4e61dbf45d34230d9a1080c576c21b4b08152114f",
           "sourceDimensions": [
             2172,
             724
@@ -27900,7 +27900,7 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/sacerdote/m/source/hurt-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/sacerdote/m/source/hurt-reference-v2.png",
           "generator": "built-in imagegen",
           "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY SACERDOTE MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action hurt. Young adult male priest: short chestnut brown hair, calm benevolent face, substantial ivory clerical robe and split tabard with warm gold edging, long muted rust-red stole, cream high collar, layered cream sleeves ending before visible hands, leather waist belt with modest brass clasp, brown boots and discreet brown fingerless gloves. Richer Tier 2 fabric layers than Acolito but exact canonical body scale. No staff, book, chalice, halo or magical effect. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (178,436), other hand (409,428); figure 2: primary contact (860,297), other hand (952,241); figure 3: primary contact (1390,380), other hand (1482,397); figure 4: primary contact (1803,436), other hand (2038,428). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
@@ -27910,7 +27910,47 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "3070585f9c1e750e14e798ceba4d54cdc3157a9fe77e5253b44cd13dd5a4da85",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                617,
+                19,
+                1047,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/sacerdote/m/source/hurt-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY SACERDOTE MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action hurt. Young adult male priest: short chestnut brown hair, calm benevolent face, substantial ivory clerical robe and split tabard with warm gold edging, long muted rust-red stole, cream high collar, layered cream sleeves ending before visible hands, leather waist belt with modest brass clasp, brown boots and discreet brown fingerless gloves. Richer Tier 2 fabric layers than Acolito but exact canonical body scale. No staff, book, chalice, halo or magical effect. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (178,436), other hand (409,428); figure 2: primary contact (860,297), other hand (952,241); figure 3: primary contact (1390,380), other hand (1482,397); figure 4: primary contact (1803,436), other hand (2038,428). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
+                "bd77167140c15b93b69566bb90c4d9b42293de7cbb2fffd05fdc4e429c80edd7",
+                "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
+                "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "use_consumable": {
           "sourceSha256": "c06c06864a8a73f01e3a441deedaa8741eeeed1cab0aae262d52ee122f0c0f4a",
