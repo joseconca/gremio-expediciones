@@ -9704,7 +9704,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/espadachin/f/frames",
       "audit": {
-        "validFrames": 24,
+        "validFrames": 28,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -9712,7 +9712,8 @@
           "hurt",
           "use_consumable",
           "dodge",
-          "block_shield"
+          "block_shield",
+          "attack_sword"
         ],
         "actions": {
           "idle": {
@@ -10136,7 +10137,74 @@
             "distinctFrames": 4
           },
           "attack_sword": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "d391154847b437364a72fb283f1f75b799dcac7bc01ae24a0bad64a65965a8c5",
+                "bytes": 25896,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  90,
+                  111,
+                  249
+                ],
+                "pixelSha256": "bfdb19ea66501668bda611539fc8bcc88168502d22be295cf6419d7a46c834bb"
+              },
+              "02": {
+                "sha256": "2792cdbe8a5818801eca5c824697dabb1349ceb8faa92969b6f6f7ea72f17b1b",
+                "bytes": 25913,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  90,
+                  112,
+                  249
+                ],
+                "pixelSha256": "e1be13c3d3ca77619bf8e7d68b8b340ca07b325b6e0f20ed61b1041b0d9db403"
+              },
+              "03": {
+                "sha256": "526d90dbd3be9fc83e905fec7d29eee27a12a79bf5ae39153c6b0f7f6baaee3b",
+                "bytes": 26046,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  91,
+                  112,
+                  249
+                ],
+                "pixelSha256": "8fa089fa5874198c6edd21cc4186c59ceb692d59715a0a962e0a9e00debbc3fa"
+              },
+              "04": {
+                "sha256": "a3b164cce234f11f563cd41925f3a780e89067425fa4e8c7799707f50cb7cff8",
+                "bytes": 25875,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  90,
+                  111,
+                  249
+                ],
+                "pixelSha256": "522147e06f641f19fa51de927afa58d94b816ea7747883327df26ac7a33f11d0"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_axe": {
             "status": "missing"
@@ -10393,6 +10461,44 @@
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_sword": {
+          "sourceSha256": "256fc600f0f3ae367a0e512e5cd4c236affb0e312aaad159f1d4133ca219411d",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            620,
+            15,
+            1030,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            17,
+            91
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/espadachin/f/source/attack_sword-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET / EXACT canonical pose registration. IMAGE 2 defines ONLY ESPADACHIN FEMALE identity, outfit and face. Redraw the four figures of IMAGE 1 in the costume/identity of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip and wrist orientation, elbows and limb poses of IMAGE 1. Action attack_sword. Do not retain Novato-specific face, hair, patched clothing or scarf unless explicitly specified in the class identity below. Young adult female swordswoman: long copper/ginger high ponytail and swept bangs, burgundy neck scarf, practical brown leather armor with modest silver steel shoulder plates and bracers, light undershirt, brown waist belts, dark leggings and sturdy brown boots, discreet brown fingerless gloves. Fully covered practical armor, exact canonical female skeleton. No weapon, scabbard or shield. Same newly hand-painted crisp pixel-inspired RPG finish as reference, same identity across all four figures. Empty hands in every pose; any weapon, shield, book, bottle, bow, arrow or magical effect must be entirely omitted because it will be rendered with a shared equipment sprite layer. Keep cuffs away from visible hands. Garments may follow the pose but must not move hands or enlarge skeleton. No props, shadows, labels, grid or extra views. Preserve all headroom and margins of IMAGE 1, do NOT automatically fill or recenter the canvas. Full heads hair hems hands and boots must remain inside each quarter.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_sword-reference.png",
+          "canonicalPoseHashes": [
+            "2cdc01930823f3356c34672d3037877c10a3b25337d5ff78350f147e0f5fba9a",
+            "db31283eb15589cf13fb33aac39b277606ed938f4afe84955356f0253579e4e0",
+            "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
+            "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -10491,9 +10597,56 @@
         "block_shield/04": {
           "source": "sources.block_shield",
           "frame": 4
+        },
+        "attack_sword/01": {
+          "source": "sources.attack_sword",
+          "frame": 1
+        },
+        "attack_sword/02": {
+          "source": "sources.attack_sword",
+          "frame": 2
+        },
+        "attack_sword/03": {
+          "source": "sources.attack_sword",
+          "frame": 3
+        },
+        "attack_sword/04": {
+          "source": "sources.attack_sword",
+          "frame": 4
         }
       },
-      "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex"
+      "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
+      "equipmentTests": {
+        "attack_sword": {
+          "status": "technical-preview-verified-art-review-pending",
+          "weaponPath": "public/sprites/items/weapons/espada_hierro.png",
+          "weaponSha256": "8b21d32318b5d8778325ea8899f2e74524c9c98bce540656844faf02758f7589",
+          "weaponGrip": [
+            32,
+            55
+          ],
+          "frameIndex": "shared-body-and-equipment",
+          "frames": [
+            {
+              "bodySha256": "d391154847b437364a72fb283f1f75b799dcac7bc01ae24a0bad64a65965a8c5"
+            },
+            {
+              "bodySha256": "2792cdbe8a5818801eca5c824697dabb1349ceb8faa92969b6f6f7ea72f17b1b"
+            },
+            {
+              "bodySha256": "526d90dbd3be9fc83e905fec7d29eee27a12a79bf5ae39153c6b0f7f6baaee3b"
+            },
+            {
+              "bodySha256": "a3b164cce234f11f563cd41925f3a780e89067425fa4e8c7799707f50cb7cff8"
+            }
+          ],
+          "limitations": [
+            "Uses current item icon at native size to prove compositing; not a new HD equipment asset.",
+            "Hand masks and anchors are explicit candidates tied to current body hashes.",
+            "No runtime promotion; test does not validate other weapons or actions."
+          ]
+        }
+      }
     },
     {
       "classId": "acolito",
