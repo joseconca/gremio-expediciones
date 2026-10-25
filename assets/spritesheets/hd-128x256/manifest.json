@@ -4265,68 +4265,68 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "fbeeb51abc4f513f897097cb1f986519d7678f9d52f88010a6d8dd8fd3a9d139",
-                "bytes": 23574,
+                "sha256": "f926bb8467c41aae9bcf3b038c2e78c5e9368071c0bc0512586bd6950c19b11a",
+                "bytes": 26324,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  16,
-                  80,
-                  105,
-                  232
+                  19,
+                  97,
+                  108,
+                  251
                 ],
-                "pixelSha256": "f1038dbda55dc49fdb7984cf2ed0cd58be164076fa099e4c3e1c197cfc9c7806"
+                "pixelSha256": "bcc188040cf741fb27407b120524c1befebb15bc2016d01521c099a65a115747"
               },
               "02": {
-                "sha256": "822e1e3ac22d0a2829474fe077e9879861cee81685cef5097cfaf2f77b93a91f",
-                "bytes": 22413,
+                "sha256": "08e2cd7d9b52ac40bdf4c1ca9d4fdabbaf02221a2efb2263c104f867bbb6649b",
+                "bytes": 25498,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  16,
-                  80,
-                  106,
-                  232
+                  15,
+                  97,
+                  108,
+                  251
                 ],
-                "pixelSha256": "f531f6a53c5ef94c97c2a5d1b077f94d487833ac4844f6ae975fb8a0bc474e98"
+                "pixelSha256": "98b908adca0cea9bdc2fb776dc1460f31fbfb5d6ce98cb3cef6a9356cf3801bf"
               },
               "03": {
-                "sha256": "0a6277eed9db991f1dadf401a3fbcf0e29b9330f6c0ad0109a1ffd8a8f1a018e",
-                "bytes": 20607,
+                "sha256": "346cb813a25ef160cf5e7499d7919f230da0d754ce6c5240cb828bc9388864a9",
+                "bytes": 24449,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  16,
-                  96,
-                  108,
-                  232
+                  11,
+                  111,
+                  114,
+                  251
                 ],
-                "pixelSha256": "a86892e1c9f48b6b00b8c55f88965fd1453a46590d8d6973b52f1b10d3fbd4f1"
+                "pixelSha256": "87044a87005ea010a681533c2be572ed25bbc758afaa3689024cffb67102b5f9"
               },
               "04": {
-                "sha256": "7e6426a73efbbf9d6d27a79fc178985e1cd022a45c3f68deb45b9139a1bdd509",
-                "bytes": 23457,
+                "sha256": "55890d2915549ce050e58c31235b1efb902e11734b175c272bcb994c7fc8c216",
+                "bytes": 26197,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  16,
-                  80,
-                  106,
-                  233
+                  19,
+                  97,
+                  109,
+                  251
                 ],
-                "pixelSha256": "9b16d749f8ad26b3458072c71ab9f31120c788318abc84e8c392f0e927f97750"
+                "pixelSha256": "ad030f28732303877ecb994affa6e97de29e431b6b1364ed091ff633b33a84d5"
               }
             },
             "distinctFrames": 4
@@ -5195,34 +5195,41 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "block_shield": {
-          "sourceSha256": "9bb4a4a487474db8de9c250ba0748917981ccc9f451a6d464a0d69071ed1ce60",
+          "sourceSha256": "03dbf51caab07f8feba968e42a4a709b94752e22423f59cccdc21954e3384495",
           "sourceDimensions": [
-            1774,
-            887
+            2172,
+            724
           ],
           "registeredSourceDimensions": [
-            512,
-            256
+            2172,
+            724
           ],
-          "sourceCellStep": 128,
+          "sourceCellStep": 543,
           "commonCrop": [
-            128,
+            543,
             0,
-            256,
-            256
+            1086,
+            724
           ],
-          "scale": 1,
+          "scale": 0.23,
           "origin": [
-            0,
-            0
+            1.5549999999999997,
+            84
           ],
           "alphaThreshold": 128,
+          "bodyRootCalibration": {
+            "uniformScale": 1.034013605442177,
+            "pivotX": 64,
+            "sourceBaseline": 246,
+            "referenceBaseline": 250,
+            "method": "one body-root transform shared by all four poses; equipment unchanged"
+          },
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/mago/m/source/block_shield-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/mago/m/source/block_shield-reference-v2.png",
           "generator": "built-in imagegen",
           "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET / EXACT canonical pose registration. IMAGE 2 defines ONLY MAGO MALE identity, outfit and face. Redraw the four figures of IMAGE 1 in the costume/identity of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip and wrist orientation, elbows and limb poses of IMAGE 1. Action block_shield. Do not retain Novato-specific face, hair, patched clothing or scarf unless explicitly specified in the class identity below. Young adult male mage: short tousled dark indigo-black hair, calm focused face, royal blue/indigo long split coat with muted gold/tan trim and lapels, light inner tunic, brown leather waist belt, discreet brown fingerless gloves and brown boots, dark unpatched trousers. No scarf, no wizard hat. Same newly hand-painted crisp pixel-inspired RPG finish as reference, same identity across all four figures. Empty hands in every pose; any weapon, shield, book, bottle, bow, arrow or magical effect must be entirely omitted because it will be rendered with a shared equipment sprite layer. Keep cuffs away from visible hands. Garments may follow the pose but must not move hands or enlarge skeleton. No props, shadows, labels, grid or extra views. Preserve all headroom and margins of IMAGE 1, do NOT automatically fill or recenter the canvas. Full heads hair hems hands and boots must remain inside each quarter.\n",
-          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-block_shield.png",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-block_shield.png",
           "canonicalPoseHashes": [
             "553ecfc5273ac38fba3b6319328b957dbc18cb4427ed28288702c0aa017a1076",
             "a644ae5f26fc34242d8462a6b730fe1a509acbca2cf838021f77811df9598dde",
