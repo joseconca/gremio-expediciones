@@ -6,22 +6,24 @@
     256
   ],
   "remoteBranch": "creacion-sprite-sheets",
-  "remoteHeadVerified": "91bed37139bde910c679c7ffdcefbe45b56d8c55",
+  "remoteHeadVerified": "8d90a4e23b623185e944795101c344f4b59f2309",
   "dodge": {
     "localFrames": 4,
     "qaPerFrame": true,
     "technicalStatus": "passed",
     "visualReview": "pending",
-    "remoteCommitted": false
+    "remoteCommitted": true,
+    "artCommit": "50e15fa1ebafdf372ee257ec024d504ea607c37f"
   },
   "block_shield": {
     "localFrames": 4,
     "qaPerFrame": true,
     "technicalStatus": "passed",
     "visualReview": "pending",
-    "remoteCommitted": false
+    "remoteCommitted": true,
+    "artCommit": "8d90a4e23b623185e944795101c344f4b59f2309"
   },
-  "nextRemoteAction": "novato-m-dodge-01",
+  "nextRemoteAction": "novato-m-attack_sword-01",
   "publicationScript": {
     "path": "apply_recovery.py",
     "validatedAgainstTestRepository": true,
@@ -32,7 +34,7 @@
     "duplicateFramesRejected": true,
     "mockRepositorySelfTest": "passed-2026-10-24"
   },
-  "postBatchNextAction": "novato-m-attack_sword-01 (after Dodge and Block are published)",
+  "postBatchNextAction": "novato-m-attack_sword-01",
   "lastLocalQa": {
     "dodge": {
       "framesPassed": 4,
@@ -47,5 +49,6 @@
       "realTransparency": true
     }
   },
-  "publicationStatus": "not-yet-published; remote branch still at 91bed37139bde910c679c7ffdcefbe45b56d8c55"
+  "publicationStatus": "published-and-verified; Dodge and Block Shield 4-frame PNGs and QA copied from the original docs blobs into production frame paths",
+  "lastRemoteSyncCommit": "74180d38e5221e3f7898a6da7fa3900dfded7f2d"
 }
