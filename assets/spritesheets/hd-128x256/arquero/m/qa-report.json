@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-25T16:53:39.112332+00:00",
+  "classId": "arquero",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\arquero\\m\\arquero-m-sheet.png",
+  "sheetSha256": "9b1363e0347abde8f0cb29f91619fb9e41a79511a7eee0bb1f858b729b497989",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\idle\\arquero-m-idle-01.png",
+          "sha256": "6b1222bb0d97fc7075eff9a7a0b7c604d760c69a45fccb482a20cf73a7186254",
+          "alpha_bbox": [
+            26,
+            92,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\idle\\arquero-m-idle-02.png",
+          "sha256": "2229e458ae3005bf5db6835f7de545fd95cbf1326911227d75103127827a73f7",
+          "alpha_bbox": [
+            26,
+            92,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\idle\\arquero-m-idle-03.png",
+          "sha256": "70626430d78dde4f0dfffa1d49d613f4d55acc6f3763cfbaac9b6c459f4601c4",
+          "alpha_bbox": [
+            26,
+            92,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\idle\\arquero-m-idle-04.png",
+          "sha256": "d5780c00742319c3bae86ad53f22bab155ad081fe59c19d49bf33042309a6900",
+          "alpha_bbox": [
+            26,
+            92,
+            105,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\walk\\arquero-m-walk-01.png",
+          "sha256": "11a26d98e5e2e6ab974f8c7d056b2e892c66d55feaa443312f8065e644ec1184",
+          "alpha_bbox": [
+            11,
+            93,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\walk\\arquero-m-walk-02.png",
+          "sha256": "71298615f996ba25bfb8559bf9c218cc0675d4da47b09453bbb04d9eeaed3009",
+          "alpha_bbox": [
+            13,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\walk\\arquero-m-walk-03.png",
+          "sha256": "ab7170465ee8f978fcf7dcee72bd469c9b9d60b0d6b1bcd9400498758021c0af",
+          "alpha_bbox": [
+            11,
+            92,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\walk\\arquero-m-walk-04.png",
+          "sha256": "1a405fbafa94adf49369c51f70709ce18f94e85277ebd06ba2fadfab6a34e3a0",
+          "alpha_bbox": [
+            14,
+            93,
+            105,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\hurt\\arquero-m-hurt-01.png",
+          "sha256": "d95aca4173b19491c4917b3d14c897179407199b67409efd32e23da6099411b5",
+          "alpha_bbox": [
+            25,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\hurt\\arquero-m-hurt-02.png",
+          "sha256": "0421e9ae1b0344a1a35ecc8bbb314f12b6bfa7ea375b3c6f2a578834c0585a8d",
+          "alpha_bbox": [
+            23,
+            100,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\hurt\\arquero-m-hurt-03.png",
+          "sha256": "9078550fb2a0bac363dc3e3bb49bcce75e44d2e17bec7caca3a6aa50441a4758",
+          "alpha_bbox": [
+            16,
+            119,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\hurt\\arquero-m-hurt-04.png",
+          "sha256": "9c79d38488acc232ba9b8af076f3e0f29030d119bb2e2f1cbdecf7de1083401b",
+          "alpha_bbox": [
+            25,
+            92,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\use_consumable\\arquero-m-use_consumable-01.png",
+          "sha256": "c9ae95a89da8d3a2f87e5e75b6d746662cc897cf0510c095ca74c51208b240fe",
+          "alpha_bbox": [
+            28,
+            93,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\use_consumable\\arquero-m-use_consumable-02.png",
+          "sha256": "c2c7164c882e7a28b7dd1e121175f3bdbf8351adeb313cee718c7ba81c4abdc7",
+          "alpha_bbox": [
+            27,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\use_consumable\\arquero-m-use_consumable-03.png",
+          "sha256": "b0c127ca69eb97d953df688618909060c56d0f5e572f0d2941ab57e07c858dee",
+          "alpha_bbox": [
+            24,
+            93,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\use_consumable\\arquero-m-use_consumable-04.png",
+          "sha256": "84a572e202bfdbb8e470fe6a8dd3c88a9e1f00a508fb523d2abf2eccbf0f7635",
+          "alpha_bbox": [
+            18,
+            93,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\dodge\\arquero-m-dodge-01.png",
+          "sha256": "6a768adc4b151c2f017c2badc54d6dee2cee3f44cac62bae478f99f3951ca3cc",
+          "alpha_bbox": [
+            17,
+            98,
+            106,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\dodge\\arquero-m-dodge-02.png",
+          "sha256": "df414aa8418bddcb2da86489091914d2b7de787de3164accf6915bd74f339a5b",
+          "alpha_bbox": [
+            16,
+            99,
+            114,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\dodge\\arquero-m-dodge-03.png",
+          "sha256": "f6986dbbcb838f848031b7eab5ad9cac6749905c6d4becc4b8007e4617335d9a",
+          "alpha_bbox": [
+            27,
+            101,
+            114,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\dodge\\arquero-m-dodge-04.png",
+          "sha256": "f6391981dc5ccdd59ebd9df08ef3c9fdfe63290053329e22cb1c36d247e6b85d",
+          "alpha_bbox": [
+            21,
+            98,
+            112,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\block_shield\\arquero-m-block_shield-01.png",
+          "sha256": "c3c152e2d4a1b52a2c883805cd02e7f6421156263939473d8b9851d7d5dfb65b",
+          "alpha_bbox": [
+            20,
+            99,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\block_shield\\arquero-m-block_shield-02.png",
+          "sha256": "0a63f192aaa6ba26a62e2256e0f432f0b77263688fdc4a53513543b81762508a",
+          "alpha_bbox": [
+            20,
+            99,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\block_shield\\arquero-m-block_shield-03.png",
+          "sha256": "95dcd75dc7a056382867dcd6880cb93b8b49bc80331595cb821f96c1de201dcf",
+          "alpha_bbox": [
+            23,
+            114,
+            110,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\block_shield\\arquero-m-block_shield-04.png",
+          "sha256": "18f11a07a39b7d2dcedf1aa71bbde1cb397a4518521451ed295f175399010696",
+          "alpha_bbox": [
+            21,
+            99,
+            110,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_sword\\arquero-m-attack_sword-01.png",
+          "sha256": "821008eb7f4e12436bab03b3948148722831fbcb6cd2265992853a6956363c00",
+          "alpha_bbox": [
+            14,
+            98,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_sword\\arquero-m-attack_sword-02.png",
+          "sha256": "94d853d8447d2310ff97e51786afcf810d718a2fe7609fb45b3c3b65947288f9",
+          "alpha_bbox": [
+            6,
+            99,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_sword\\arquero-m-attack_sword-03.png",
+          "sha256": "fc0f895deca74a22b816cf1d7e80833569b9291de9ec90e110db5313a4f7dd9b",
+          "alpha_bbox": [
+            5,
+            102,
+            121,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_sword\\arquero-m-attack_sword-04.png",
+          "sha256": "7eef0d346c39a925105301bc99381d6f70c9538ae6727b14963d2efe0d9643c0",
+          "alpha_bbox": [
+            17,
+            98,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_axe\\arquero-m-attack_axe-01.png",
+          "sha256": "db0592f545810fe36a64cf579c5b07e05a357c61a7161f9b935d8a350734926e",
+          "alpha_bbox": [
+            10,
+            101,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_axe\\arquero-m-attack_axe-02.png",
+          "sha256": "e099b76072d020760e95d3a5791e5314003e5b71617486b5c847c90c23f770b4",
+          "alpha_bbox": [
+            16,
+            112,
+            115,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_axe\\arquero-m-attack_axe-03.png",
+          "sha256": "1890e334759bbb45b7c941e107bba6219e1ce70e04b4e874cada7aa33528dea6",
+          "alpha_bbox": [
+            10,
+            121,
+            116,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_axe\\arquero-m-attack_axe-04.png",
+          "sha256": "e3e38077b1e1fb8b2532f290685de9347120c595a97237ce454e3b51d3ef6d2c",
+          "alpha_bbox": [
+            24,
+            104,
+            118,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_spear\\arquero-m-attack_spear-01.png",
+          "sha256": "595ce7572234be6f09c5504cc19841f9de9b2b4c62fd62dc563e764bcc9dd1fa",
+          "alpha_bbox": [
+            11,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_spear\\arquero-m-attack_spear-02.png",
+          "sha256": "4e6f0e4e5213d0c1583f82c784e6bea64c46c41e5c67109769f8b1b0cf971760",
+          "alpha_bbox": [
+            14,
+            91,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_spear\\arquero-m-attack_spear-03.png",
+          "sha256": "1285a41c5b2e0f2d75a86212079ff0c743e62206b7a3f679626e31fb30ba4c9f",
+          "alpha_bbox": [
+            11,
+            91,
+            118,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_spear\\arquero-m-attack_spear-04.png",
+          "sha256": "1e2b437a4cb0c98022f6bf3bdbf516271789d520459c7802c251461b81c07e10",
+          "alpha_bbox": [
+            19,
+            91,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_dagger\\arquero-m-attack_dagger-01.png",
+          "sha256": "e3b3cbd5b4a88b3d02a9da14b61057b739a9891d125f82ecc786bb93a2e65591",
+          "alpha_bbox": [
+            25,
+            93,
+            102,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_dagger\\arquero-m-attack_dagger-02.png",
+          "sha256": "1fc85b0fa079b7cd866d460125596a01cb53693e10134d1a4ddfcdb9bd155078",
+          "alpha_bbox": [
+            24,
+            93,
+            101,
+            246
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_dagger\\arquero-m-attack_dagger-03.png",
+          "sha256": "5ba44b2310c5628327a9cf5536b0cb2ca49741350f86c6b35cf09bdef55adc98",
+          "alpha_bbox": [
+            21,
+            96,
+            100,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_dagger\\arquero-m-attack_dagger-04.png",
+          "sha256": "348912efd50f7b853e149a2e02b9afdc8a7622f76503cd0d358532ad97d47189",
+          "alpha_bbox": [
+            24,
+            93,
+            101,
+            246
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_bow\\arquero-m-attack_bow-01.png",
+          "sha256": "6ade220165605acb36fded738877b7f42b0a38734e2a86271bf1c8c2f3c6a209",
+          "alpha_bbox": [
+            25,
+            94,
+            121,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_bow\\arquero-m-attack_bow-02.png",
+          "sha256": "760e1f619a2448d72681134ec022160eb9abb29b978ffb4fb0cd96583ccf46dd",
+          "alpha_bbox": [
+            23,
+            94,
+            119,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_bow\\arquero-m-attack_bow-03.png",
+          "sha256": "4a5e5b031f3733a69a5c103141347ec286c474a4d0a36e312f5b90c824243ec8",
+          "alpha_bbox": [
+            21,
+            94,
+            118,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_bow\\arquero-m-attack_bow-04.png",
+          "sha256": "df2e41223f30cbdc27e8cb5f5b5e418397a754c34b2a20454d5e0655a9dcda59",
+          "alpha_bbox": [
+            16,
+            94,
+            117,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_staff\\arquero-m-attack_staff-01.png",
+          "sha256": "42c852e07e3ac560f9475ee71624d4195bca56d6548f1597808f12313d5259b6",
+          "alpha_bbox": [
+            30,
+            93,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_staff\\arquero-m-attack_staff-02.png",
+          "sha256": "6708d1268a4c5544b2210d5f86b07db17042a536a4363311d10d09c48bd7606d",
+          "alpha_bbox": [
+            25,
+            93,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_staff\\arquero-m-attack_staff-03.png",
+          "sha256": "6e3f8260a72a92e0678faf165a0d926ff2f8ea7eee92e69b12207ebaa283c8df",
+          "alpha_bbox": [
+            28,
+            93,
+            111,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_staff\\arquero-m-attack_staff-04.png",
+          "sha256": "0393d1af81894f3997cbb1503169d7fd81f7404792d02049fd4aa86779b82055",
+          "alpha_bbox": [
+            19,
+            93,
+            96,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_mace\\arquero-m-attack_mace-01.png",
+          "sha256": "ab4fcae15274beed2ffa02535afd0b9e0e9c26fff128330e04a607a3b17a738b",
+          "alpha_bbox": [
+            24,
+            91,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_mace\\arquero-m-attack_mace-02.png",
+          "sha256": "9bb82727dbb2a07ab54fb2292846756e4027a72758e48db8143aba4047a949a1",
+          "alpha_bbox": [
+            33,
+            91,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_mace\\arquero-m-attack_mace-03.png",
+          "sha256": "4f8940357a31a17a6ad13aece43dabe4a2fc6f14d1568cfc6a7e09f52a9fbd37",
+          "alpha_bbox": [
+            27,
+            103,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_mace\\arquero-m-attack_mace-04.png",
+          "sha256": "b638e3867183afc81c61ed3eae204c3ccb0dc9ed78a9fc1f0f29021c2595e627",
+          "alpha_bbox": [
+            34,
+            91,
+            114,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_book\\arquero-m-attack_book-01.png",
+          "sha256": "402b787ce6b8ad0fff154dbc6e35b9385f84dd6126d1a5c3b80e210f9c6508e0",
+          "alpha_bbox": [
+            23,
+            92,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_book\\arquero-m-attack_book-02.png",
+          "sha256": "6e15f777c501d62f1a0139be2de4141eeb2610455803cbaa3df41968a5611de5",
+          "alpha_bbox": [
+            24,
+            92,
+            98,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_book\\arquero-m-attack_book-03.png",
+          "sha256": "266796eb5a1e8a36f22bc2d954e26c09cf6b09b5a89133c0e2e84adacc57cbd8",
+          "alpha_bbox": [
+            22,
+            92,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_book\\arquero-m-attack_book-04.png",
+          "sha256": "30fa5d9d22b671054f207dd73af356761a34f43e6ec40c1325ff74e3ea3e1f83",
+          "alpha_bbox": [
+            19,
+            92,
+            93,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_gloves\\arquero-m-attack_gloves-01.png",
+          "sha256": "e760aded98dad7ebebb6a29fe59aad002f2aabbc28ffc4a06b945ceaee9221e4",
+          "alpha_bbox": [
+            25,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_gloves\\arquero-m-attack_gloves-02.png",
+          "sha256": "b5035e2b9ce438d13f199620c05c7faa25e8bf2bef0d97d72891a60a3bb96821",
+          "alpha_bbox": [
+            25,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_gloves\\arquero-m-attack_gloves-03.png",
+          "sha256": "500bbb309a660b5290996c7ef86cb2fd6aeba05a793dd5176d346f9a5b3b2a35",
+          "alpha_bbox": [
+            25,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\arquero\\m\\frames\\attack_gloves\\arquero-m-attack_gloves-04.png",
+          "sha256": "e0be192b6f7bc8071ac30a5ca99cfaebeffa9c8e7fd058c6e07c5593a7602d5b",
+          "alpha_bbox": [
+            25,
+            92,
+            107,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

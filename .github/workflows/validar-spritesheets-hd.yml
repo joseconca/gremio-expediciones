@@ -1,0 +1,39 @@
+name: Validar sprites HD
+on:
+  push:
+    branches: [creacion-sprite-sheets, main]
+    paths: ['scripts/*sprites*', 'scripts/*-hd.py', 'assets/spritesheets/hd-128x256/**', '.github/workflows/validar-spritesheets-hd.yml']
+  pull_request:
+    branches: [main]
+    paths: ['scripts/*sprites*', 'scripts/*-hd.py', 'assets/spritesheets/hd-128x256/**', '.github/workflows/validar-spritesheets-hd.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install Pillow
+      - name: Regression tests for CRC, decoded pixels and approvals
+        run: python scripts/test-auditar-sprites-hd.py
+      - name: Complete atlas assembly regression tests
+        run: python scripts/test-spritesheets-hd.py
+      - name: Verify actual assets match recorded progress (not artistic approval)
+        run: python scripts/auditar-sprites-hd.py
+      - name: Preserve body scale across narrow and wide actions
+        run: python scripts/test-normalizar-accion-hd.py
+      - name: Enforce shared equipment trajectories across classes
+        run: python scripts/test-equipment-rigs-hd.py
+      - name: Check HD equipment pivots, occlusion and clipping
+        run: python scripts/test-equipo-hd.py
+      - name: Verify the entire shared HD equipment library
+        run: python scripts/validar-equipo-hd.py
+      - name: Verify lossless runtime equipment packing and body promotion
+        run: python scripts/validar-runtime-sprites-hd.py
+      - name: Verify Novato sword grips against current body hashes
+        run: |
+          python scripts/previsualizar-equipo-hd.py --all

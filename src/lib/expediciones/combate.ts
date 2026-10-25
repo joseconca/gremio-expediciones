@@ -12,6 +12,8 @@ export type AccionAnimadaCombate = {
   dano: number;
   critico: boolean;
   curacion?: number;
+  /** Visual hint only; it never participates in combat resolution. */
+  accionSprite?: "use_consumable";
 
   /**
    * Identidades visuales opcionales. En party, actorUsuarioId y objetivoUsuarioId

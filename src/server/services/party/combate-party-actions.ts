@@ -1459,6 +1459,7 @@ export async function ejecutarAccionCombateParty(
         curacion,
         critico: false,
         texto: `Usas ${definicion.nombre} y recuperas ${curacion} puntos de vida.`,
+        accionSprite: "use_consumable",
       };
     }
 

@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-25T16:27:51.681577+00:00",
+  "classId": "acolito",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\acolito\\m\\acolito-m-sheet.png",
+  "sheetSha256": "234756fc23143feea37ee0fe6e25036e5aa1fbd8bb8fd04f75836f0aa35b9a60",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\idle\\acolito-m-idle-01.png",
+          "sha256": "3add97b3387cae81397832a2979d0c9019a0194570b9ed4c9c30a70f52c2a186",
+          "alpha_bbox": [
+            19,
+            93,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\idle\\acolito-m-idle-02.png",
+          "sha256": "b25166c1129512a04975e344812f93fd7fa493ca23aeefa303754ede91eff301",
+          "alpha_bbox": [
+            19,
+            93,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\idle\\acolito-m-idle-03.png",
+          "sha256": "9402d7f900a17e08d2a5d1c5e53adf69411be9744c3c93b1387eb1b1c0f1cc89",
+          "alpha_bbox": [
+            19,
+            93,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\idle\\acolito-m-idle-04.png",
+          "sha256": "b0a5f9f60d8a0b4e89a1d8bb15cbff5944ffee4939b9ff1bd62cdf1f4d191870",
+          "alpha_bbox": [
+            20,
+            93,
+            104,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\walk\\acolito-m-walk-01.png",
+          "sha256": "97e2040aa867332d11199bccdb53e19e5773b4217daf72e5b5ce306302c0052d",
+          "alpha_bbox": [
+            11,
+            92,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\walk\\acolito-m-walk-02.png",
+          "sha256": "ceee8a885387c4146fc669e9b480b221c47e1429e9993f904d253aee97f93d10",
+          "alpha_bbox": [
+            13,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\walk\\acolito-m-walk-03.png",
+          "sha256": "585359e8df99d2a3cea04709f76b9e29c15bdb44cbd7e18e63509d17557e184d",
+          "alpha_bbox": [
+            12,
+            92,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\walk\\acolito-m-walk-04.png",
+          "sha256": "7a434b953e22590a08a70810c2fa2694b1c7bfb3ad446de015388ca7a9f7426f",
+          "alpha_bbox": [
+            16,
+            92,
+            109,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\hurt\\acolito-m-hurt-01.png",
+          "sha256": "85602e40d9637560901d527dc651463f38a0c706328c727ddaa95baaf5b19e80",
+          "alpha_bbox": [
+            18,
+            92,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\hurt\\acolito-m-hurt-02.png",
+          "sha256": "32ed4f5728fab6008aaf6d77ce8f043e5db8fcb016878841ec72fdbad2effaf9",
+          "alpha_bbox": [
+            26,
+            100,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\hurt\\acolito-m-hurt-03.png",
+          "sha256": "00265760a774195709fd4dc7ab295bb23d6fb4e2a5efbfefeb35d9eb91d9447f",
+          "alpha_bbox": [
+            16,
+            119,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\hurt\\acolito-m-hurt-04.png",
+          "sha256": "ee724893999bbf416aae0b88e2ad3e33c674b68ea09ccd72d646d81061afbb97",
+          "alpha_bbox": [
+            18,
+            92,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\use_consumable\\acolito-m-use_consumable-01.png",
+          "sha256": "b57396060919026bf56ce5677c90ab04e25f7d7fe50078d7ac27807b127ae109",
+          "alpha_bbox": [
+            22,
+            93,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\use_consumable\\acolito-m-use_consumable-02.png",
+          "sha256": "947f7b6f9d1991967b8cc06359a353198b8ebcc231b7de7f514c7285b5e36b64",
+          "alpha_bbox": [
+            21,
+            92,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\use_consumable\\acolito-m-use_consumable-03.png",
+          "sha256": "23ad921f4269128cd18168aa44d832c1987aecec5d697184cbaaad0c8c791281",
+          "alpha_bbox": [
+            18,
+            93,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\use_consumable\\acolito-m-use_consumable-04.png",
+          "sha256": "13a3d7c2b561c2b8ef1d537640999e14bd433366cfd40747ecca149dd4c707c2",
+          "alpha_bbox": [
+            15,
+            93,
+            98,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\dodge\\acolito-m-dodge-01.png",
+          "sha256": "47a2cef9ee5068f8b172eadb07d6b9c29bbc320ed6d80471b8c41783fea23c66",
+          "alpha_bbox": [
+            23,
+            98,
+            105,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\dodge\\acolito-m-dodge-02.png",
+          "sha256": "8b66b057e94d3a9087889fca0de0a3d6aec7d6f012602b950e663b1c7f4181cd",
+          "alpha_bbox": [
+            20,
+            98,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\dodge\\acolito-m-dodge-03.png",
+          "sha256": "f7cc178a7dde9ff484f5113e395292c33f3244c28b35f03897d34084eab22a3a",
+          "alpha_bbox": [
+            21,
+            98,
+            110,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\dodge\\acolito-m-dodge-04.png",
+          "sha256": "be2992b26a9a5d234c8ca8052bd9379a40d21bbd2b2e669e1053b69ebd537f83",
+          "alpha_bbox": [
+            23,
+            98,
+            110,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\block_shield\\acolito-m-block_shield-01.png",
+          "sha256": "2cf3a0e9da1afafe2b83880c8db923781e76572b5d3f4339a95cf56be510c299",
+          "alpha_bbox": [
+            16,
+            98,
+            106,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\block_shield\\acolito-m-block_shield-02.png",
+          "sha256": "ae297f6b7bb38ee8119c1e3ceb739e94be48e36169e2b3afa4bbca761c6f6c3d",
+          "alpha_bbox": [
+            20,
+            97,
+            107,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\block_shield\\acolito-m-block_shield-03.png",
+          "sha256": "1b41f7bfc7b8df592cc98456e29fd2d89172b8d14b36031d4b0fe78c2109e352",
+          "alpha_bbox": [
+            13,
+            113,
+            107,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\block_shield\\acolito-m-block_shield-04.png",
+          "sha256": "ae2bd4328de2ff9b932a138fe651d5bdf19a225f4c05603a926652cf039137fa",
+          "alpha_bbox": [
+            17,
+            97,
+            108,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_sword\\acolito-m-attack_sword-01.png",
+          "sha256": "55a1ece49ec1bf01310a56ff2ea690725940f9e8d69cc398c29ceb6b899f4cc2",
+          "alpha_bbox": [
+            8,
+            98,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_sword\\acolito-m-attack_sword-02.png",
+          "sha256": "483298dae7332514b3165f8a8755b2e2575fd021c43c03c0dc2246d17b6028e1",
+          "alpha_bbox": [
+            6,
+            99,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_sword\\acolito-m-attack_sword-03.png",
+          "sha256": "30c76c5a34256c5ef62f4d8e364fb318626f07bb9981e4d23528ac64556ac895",
+          "alpha_bbox": [
+            4,
+            101,
+            121,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_sword\\acolito-m-attack_sword-04.png",
+          "sha256": "4cb8b74d9af6ce7bfbbb18817b3a3c18c5b4ba0dd7826f5ae43296774fe57725",
+          "alpha_bbox": [
+            17,
+            98,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_axe\\acolito-m-attack_axe-01.png",
+          "sha256": "12b5b0575da763cf7ebb18a1563b99800f736ca5718c77cc33698b2f462ae645",
+          "alpha_bbox": [
+            10,
+            101,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_axe\\acolito-m-attack_axe-02.png",
+          "sha256": "f5adf16116b36f1ef2a75eb5e1f4ae56e10ebfcbba41db6f70e95626609ba0aa",
+          "alpha_bbox": [
+            16,
+            112,
+            114,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_axe\\acolito-m-attack_axe-03.png",
+          "sha256": "16fbef9c8129a187cbadb059c54cb3b103a8f810ea884f9fdd9a927434aa1dcf",
+          "alpha_bbox": [
+            10,
+            122,
+            115,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_axe\\acolito-m-attack_axe-04.png",
+          "sha256": "9b8bbcbd1079e65ad450b3e06b03f8c1aefc55a44cce22cffadef9d0985de5a0",
+          "alpha_bbox": [
+            24,
+            105,
+            119,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_spear\\acolito-m-attack_spear-01.png",
+          "sha256": "31d0edee4263c9905db011dd88ae107c92c86b78bc6e34ceaa766f65194fd5eb",
+          "alpha_bbox": [
+            10,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_spear\\acolito-m-attack_spear-02.png",
+          "sha256": "dadfcf2da12cb46b6953f4d453052cab1fd5b7761b7a20c600df4464e3c69b9d",
+          "alpha_bbox": [
+            15,
+            92,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_spear\\acolito-m-attack_spear-03.png",
+          "sha256": "765703662774dca8f03ae94b26e3b1af072afaf5be555eab8d47cebbf81d6c79",
+          "alpha_bbox": [
+            13,
+            92,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_spear\\acolito-m-attack_spear-04.png",
+          "sha256": "e40215d44d8120c20ca50c3be6b5b2c5dfcd5f7bd85a348a065c80c84848030b",
+          "alpha_bbox": [
+            16,
+            92,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_dagger\\acolito-m-attack_dagger-01.png",
+          "sha256": "d0d4588bee709bd2e07e51f00d451ba20660eddb7dea3a90f03f25ce5daa852c",
+          "alpha_bbox": [
+            21,
+            92,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_dagger\\acolito-m-attack_dagger-02.png",
+          "sha256": "dfa5d3170e3e8000f151ff5f987c0c898d6dd2a12542b4f3497a8828f43eb297",
+          "alpha_bbox": [
+            21,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_dagger\\acolito-m-attack_dagger-03.png",
+          "sha256": "104e05f333bea969956caa0ad58f4740f401e273ec3274d542e123d61c42ec50",
+          "alpha_bbox": [
+            20,
+            95,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_dagger\\acolito-m-attack_dagger-04.png",
+          "sha256": "e72151f89d5722dbaff723e74b0cc729e6d558da636f4aee77104aa871eb7b4e",
+          "alpha_bbox": [
+            23,
+            92,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_bow\\acolito-m-attack_bow-01.png",
+          "sha256": "9553fd3ad648efe2c168f5723772d9346f978de0ed7372977684ff48d6440c3a",
+          "alpha_bbox": [
+            18,
+            95,
+            120,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_bow\\acolito-m-attack_bow-02.png",
+          "sha256": "85523db8a27f2959c2d5e532112f0797d66df439aa9e50932e7f7e7722e346ba",
+          "alpha_bbox": [
+            17,
+            95,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_bow\\acolito-m-attack_bow-03.png",
+          "sha256": "ffa0fc2382e4725f4fa2662dfa14bf2e790946d45e00788f1baf2bf11d492ca5",
+          "alpha_bbox": [
+            15,
+            95,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_bow\\acolito-m-attack_bow-04.png",
+          "sha256": "655c02e209719f20faaced3f548ba836afd2e9a8aeff97cd7a131b771d65af6b",
+          "alpha_bbox": [
+            14,
+            95,
+            114,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_staff\\acolito-m-attack_staff-01.png",
+          "sha256": "212c4c044119397bf916b649b14be26355ad4ce05b9c685186dafb4a8e6e0f07",
+          "alpha_bbox": [
+            25,
+            93,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_staff\\acolito-m-attack_staff-02.png",
+          "sha256": "b40b9543979f2689e09bd7da960fb0818894f106b485fd59cd4399ea87beb9b4",
+          "alpha_bbox": [
+            24,
+            93,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_staff\\acolito-m-attack_staff-03.png",
+          "sha256": "fc760b91efca4ccdfb36d886eab57c1f181795f0c8ddc3584e10e4ba5f7bc8e8",
+          "alpha_bbox": [
+            22,
+            93,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_staff\\acolito-m-attack_staff-04.png",
+          "sha256": "11fa40f23129ae4559df6c32d95e9ddb606c61dc4723dc978021bcbbc2cb9e4b",
+          "alpha_bbox": [
+            15,
+            93,
+            98,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_mace\\acolito-m-attack_mace-01.png",
+          "sha256": "5302f150d83ea53cfffc3570efef923e49967e58fc16aca194526f048aacaa74",
+          "alpha_bbox": [
+            17,
+            92,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_mace\\acolito-m-attack_mace-02.png",
+          "sha256": "499b072ce5d838b84b0952169ff141cba077fe853e0d1784da13e1dff5b208a9",
+          "alpha_bbox": [
+            26,
+            92,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_mace\\acolito-m-attack_mace-03.png",
+          "sha256": "83e28a30fc537930b47c468e1b36a3371b0940ca3ef30917af13792fc3696860",
+          "alpha_bbox": [
+            18,
+            103,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_mace\\acolito-m-attack_mace-04.png",
+          "sha256": "6cc42fb5f6a99a75261b301420b59da24af06f43e0285e2feb884c3cb52e7b36",
+          "alpha_bbox": [
+            24,
+            92,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_book\\acolito-m-attack_book-01.png",
+          "sha256": "89c447adc9b6dfc6e0d834a8405d43c2a0b4122952ec1fcc0199309e37b20a69",
+          "alpha_bbox": [
+            16,
+            92,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_book\\acolito-m-attack_book-02.png",
+          "sha256": "e8107d244972865df18ec69fe6f20afcf495824f336687ab68094986fe124d7c",
+          "alpha_bbox": [
+            16,
+            92,
+            98,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_book\\acolito-m-attack_book-03.png",
+          "sha256": "ab6156c33cd1cc88e7cd60f7f5ce94b51f4e62e4ef5ca0d75a311e3ce2bb0faa",
+          "alpha_bbox": [
+            16,
+            92,
+            105,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_book\\acolito-m-attack_book-04.png",
+          "sha256": "41f28cd9015aff0455a45d6c4a2bb1739595ae4e1649ef3acfc393e9d680f8a2",
+          "alpha_bbox": [
+            16,
+            92,
+            98,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_gloves\\acolito-m-attack_gloves-01.png",
+          "sha256": "40ff8d8d512a8398d929a86804795f6261138309285949e889dae248ad847b55",
+          "alpha_bbox": [
+            18,
+            92,
+            105,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_gloves\\acolito-m-attack_gloves-02.png",
+          "sha256": "a62e881076950349bef3c610f886211b685666f247450f53d0064b5ea0f888f9",
+          "alpha_bbox": [
+            18,
+            92,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_gloves\\acolito-m-attack_gloves-03.png",
+          "sha256": "30be2f680129bd5bfb800163325200ac99fa37ba6125f8a387a083ccf7ffb937",
+          "alpha_bbox": [
+            19,
+            92,
+            108,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\acolito\\m\\frames\\attack_gloves\\acolito-m-attack_gloves-04.png",
+          "sha256": "c9a7f24a7c86dedb7530bfbecef846f59c17a1ddbda743f27c4dd62bfffc31ed",
+          "alpha_bbox": [
+            19,
+            92,
+            107,
+            247
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

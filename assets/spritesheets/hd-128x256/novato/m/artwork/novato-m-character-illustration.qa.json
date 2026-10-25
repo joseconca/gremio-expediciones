@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "status": "imported-sha256-verified",
+  "classId": "novato",
+  "sex": "m",
+  "purpose": "large character illustration for menus, profile, character sheet, and inventory UI",
+  "path": "assets/spritesheets/hd-128x256/novato/m/artwork/novato-m-character-illustration.png",
+  "image": {
+    "format": "PNG",
+    "mode": "P",
+    "dimensions": [
+      448,
+      1075
+    ],
+    "paletteColors": 64,
+    "hasTransparencyTable": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 41535,
+    "sha256": "8f3532f025c1e32f9d0df2fae7ad25a61b5dc43fd86a587c7e7daa8c99896081"
+  },
+  "cleanup": {
+    "sourceImageDimensions": [
+      1024,
+      1536
+    ],
+    "method": "retain main character component, preserve the original antialiased alpha inside a tightly dilated silhouette, crop with transparent margin, downscale for menu delivery, reduce palette to 64 colors while preserving the PNG transparency table",
+    "removed": "detached generated speckles/dust outside the character silhouette",
+    "sourceIsUntouched": true
+  },
+  "visual": {
+    "fullBody": true,
+    "facing": "three-quarter right",
+    "weapons": "none",
+    "palette": [
+      "brown hair",
+      "cream shirt",
+      "burgundy scarf",
+      "brown leather",
+      "blue-gray trousers",
+      "brown boots"
+    ],
+    "transparency": "real, not checkerboard composited"
+  },
+  "checks": {
+    "dimensions": true,
+    "indexedPng": true,
+    "transparencyTable": true,
+    "transparentBackground": true,
+    "fullBodyNotIntentionallyCropped": true,
+    "individualCharacterOnly": true,
+    "suitableForMenuDisplay": true,
+    "runtimeIntegration": false,
+    "repositoryFilePresent": true,
+    "sha256VerifiedByGithubActions": true,
+    "sha256MatchesOriginal": true
+  },
+  "review": {
+    "status": "pending-ui-integration",
+    "note": "La ilustración está guardada en el repositorio y su checksum está verificado. Falta probar su composición en el menú/ficha del personaje antes de cablear los componentes de UI."
+  },
+  "importedAt": "2026-10-24",
+  "importCommit": "39fbcbec3f653a2938538eecc7d4a333ec824111"
+}
