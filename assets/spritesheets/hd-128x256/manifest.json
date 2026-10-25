@@ -2039,12 +2039,13 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/f/frames",
       "audit": {
-        "validFrames": 12,
+        "validFrames": 16,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
-          "hurt"
+          "hurt",
+          "use_consumable"
         ],
         "actions": {
           "idle": {
@@ -2258,7 +2259,74 @@
             "distinctFrames": 4
           },
           "use_consumable": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "9d423a87f0b50fc02a53ff021d8946c2f0f5b232bc3b645c13717d1514302738",
+                "bytes": 25401,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  90,
+                  105,
+                  248
+                ],
+                "pixelSha256": "56e31bf0767ebee6595eda862bb2ab39162c70661f8e3ef4c85b80b601dfb146"
+              },
+              "02": {
+                "sha256": "75fcd4517c428942562d86e8bb3e34e2817ebc57b601b9c57ded827d48b65d73",
+                "bytes": 25303,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  90,
+                  105,
+                  248
+                ],
+                "pixelSha256": "1e7c546cf2753a5b4a22bb8b5fb7e4461daa5acc74950c785ade08d81eddff0c"
+              },
+              "03": {
+                "sha256": "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
+                "bytes": 24943,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  90,
+                  105,
+                  248
+                ],
+                "pixelSha256": "4a0c87cf7191ed7453c02c483d3ab3a66dbb7dd4fdb181334ad60728aca3c5c6"
+              },
+              "04": {
+                "sha256": "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93",
+                "bytes": 25369,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  90,
+                  105,
+                  248
+                ],
+                "pixelSha256": "e70896b39984c3e34b5efc4ccc186c02bb967e72c7293285c4b0faa478eed70c"
+              }
+            },
+            "distinctFrames": 4
           },
           "dodge": {
             "status": "missing"
@@ -2376,6 +2444,33 @@
           "prompt": "Exactly FOUR complete separated full-body animation poses of the SAME FEMALE Novato from reference, four evenly spaced equal cells in ONE horizontal transparent strip. Preserve exact female face, brown eyes, chestnut high ponytail and bangs, burgundy scarf, ivory rolled sleeve shirt fully covering torso, brown leather cross harness belt pouch fingerless gloves and boots, patched blue trousers. Identical crisp painted pixel-inspired RPG rendering, proportions, head size, costume, camera, lighting. Facing RIGHT in three-quarter view always, common ground line, upright height about same as reference across all poses, ponytail stays near shoulders. Empty hands for equipment overlay. Compact tall narrow silhouettes, feet and elbows close, no wide lunges or horizontal arm stretches; foreshorten limbs into right/depth. Generous transparent margin around hair scarf fingers boots and between figures. No weapon, shield, equipment, props, effects, shadows, labels or grid. Receive DAMAGE and recover: 1 small backward recoil, brows tense; 2 right hand lifts protectively towards chest, shoulders recoil; 3 knees bend slightly and torso folds a little forward, left hand guards abdomen; 4 recover upright ready stance. No blood or wounds. Keep anatomy proportions and head size fixed when crouching.\n",
           "visualStatus": "review-pending",
           "equipmentStatus": "layer-test-pending"
+        },
+        "use_consumable": {
+          "sourceSha256": "f2cadaaa4c822449181cb47abb96d7f1e6833ebaa2b7415a4e808a4f9e90746f",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "commonCrop": [
+            659,
+            15,
+            1015,
+            704
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            90
+          ],
+          "alphaThreshold": 128,
+          "method": "shared crop and scale, no per-frame centering or resizing",
+          "scalePolicy": "fixed-across-actions",
+          "sourcePath": "assets/spritesheets/hd-128x256/novato/f/source/use_consumable-reference.png",
+          "generator": "built-in imagegen",
+          "referencePath": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "prompt": "Exactly FOUR complete separated full-body animation poses of the SAME FEMALE Novato from reference, four evenly spaced equal cells in ONE horizontal transparent strip. Preserve exact female face, brown eyes, chestnut high ponytail and bangs, burgundy scarf, ivory rolled sleeve shirt fully covering torso, brown leather cross harness belt pouch fingerless gloves and boots, patched blue trousers. Identical crisp painted pixel-inspired RPG rendering, proportions, head size, costume, camera, lighting. Facing RIGHT in three-quarter view always, common ground line, upright height about same as reference across all poses, ponytail stays near shoulders. Empty hands for equipment overlay. Compact tall narrow silhouettes, feet and elbows close, no wide lunges or horizontal arm stretches; foreshorten limbs into right/depth. Generous transparent margin around hair scarf fingers boots and between figures. No weapon, shield, equipment, props, effects, shadows, labels or grid. Use CONSUMABLE with imaginary vial: 1 right empty cupped grip beside belt pouch; 2 raise right empty gripping hand to chest; 3 right empty gripping hand near lips, wrist tipped slightly inward, head tips slightly back; 4 lower right hand towards belt. Left hand relaxed near waist. No bottle or object drawn.\n",
+          "visualStatus": "review-pending",
+          "equipmentStatus": "layer-test-pending"
         }
       },
       "frameProvenance": {
@@ -2425,6 +2520,22 @@
         },
         "hurt/04": {
           "source": "sources.hurt",
+          "frame": 4
+        },
+        "use_consumable/01": {
+          "source": "sources.use_consumable",
+          "frame": 1
+        },
+        "use_consumable/02": {
+          "source": "sources.use_consumable",
+          "frame": 2
+        },
+        "use_consumable/03": {
+          "source": "sources.use_consumable",
+          "frame": 3
+        },
+        "use_consumable/04": {
+          "source": "sources.use_consumable",
           "frame": 4
         }
       }
