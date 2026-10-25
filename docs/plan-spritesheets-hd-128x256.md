@@ -102,3 +102,11 @@ El auditor comprueba todos los frames presentes y conserva el detalle en el mani
 Las previews incluyen contacto y GIF por acción técnicamente completa. Las fuentes recuperadas pueden guardarse como candidatas aunque aún requieran corrección de poses o equipo; nunca se convierten automáticamente en una acción aprobada.
 
 `normalizar-accion-hd.py` extrae cuatro celdas con un recorte y escala compartidos. Conserva el PNG fuente, respeta el desplazamiento relativo entre poses y genera RGBA sin reducir la paleta. Su limpieza de alfa y transformación exacta se registran en `variants[].sources`. No sustituye la revisión artística ni calcula anclajes de armas.
+
+## Checkpoint local — 2026-10-25
+
+Novato masculino: 60 PNG corporales presentes; atlas candidato completo. La escala automática por anchura hacía que Idle y los ataques tuvieran cabezas de tamaños diferentes. Las fuentes nuevas de 2172×724 usan ahora una escala común de 0,23 y pies en y=248 (altura de pie aproximada: 156 px); el espacio superior queda disponible para equipo. No ajustar cada acción para llenar la celda. Bloquear y Esquivar heredados se reducen juntos, sin ampliar ni regenerar sus poses; la transformación y hashes anteriores quedan en el manifiesto. La revisión de continuidad y agarres sigue pendiente.
+
+`normalizar-accion-hd.py --fixed-scale 0.23` conserva esta escala y rechaza poses que no caben, en vez de encoger automáticamente el personaje.
+
+Los commits de esta continuación están conservados localmente. Publicación pendiente: el conector rechazó el PNG fuente por exceder el presupuesto de revisión automática, y este equipo no tiene credenciales Git disponibles. No confundir validación local con publicación remota.
