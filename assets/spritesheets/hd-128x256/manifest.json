@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "project": "Spritesheets HD 128x256 por fotograma",
   "branch": "creacion-sprite-sheets",
   "startedAt": "2026-10-24",
@@ -146,16 +146,834 @@
       "sex": "m",
       "order": 1,
       "status": "in-progress",
-      "actionsCompleted": [
-        "dodge",
-        "block_shield"
-      ],
+      "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/novato/m/novato-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "recovery-required",
-      "lastCommit": "8d90a4e23b623185e944795101c344f4b59f2309",
-      "notes": "15 of 24 published PNGs fail full decode/CRC. Only Dodge and Block Shield have four readable frames. Idle frame 01 is readable. No artistic approval implied.",
-      "frameRoot": "assets/spritesheets/hd-128x256/novato/m/frames"
+      "qaStatus": "invalid-files",
+      "frameRoot": "assets/spritesheets/hd-128x256/novato/m/frames",
+      "frameProvenance": {
+        "block_shield/01": {
+          "kind": "arte original del proyecto; pose aislada de una tanda generada para la acción completa",
+          "sourceCanvas": [
+            2172,
+            724
+          ],
+          "selectedRegion": [
+            66,
+            73,
+            470,
+            692
+          ],
+          "process": [
+            "generar cuatro poses diferenciadas para bloquear",
+            "retirar el fondo verde y reducir el derrame cromático en los bordes",
+            "separar cada pose y encajarla en una celda final de 128×256",
+            "alinear la base de las botas en y=248",
+            "cuantizar a PNG indexado y reservar el índice 0 para transparencia real"
+          ],
+          "note": "La composición de referencia no se integra en runtime; la acción requiere revisión visual antes de promoción."
+        },
+        "block_shield/02": {
+          "kind": "arte original del proyecto; pose aislada de una tanda generada para la acción completa",
+          "sourceCanvas": [
+            2172,
+            724
+          ],
+          "selectedRegion": [
+            600,
+            78,
+            1010,
+            692
+          ],
+          "process": [
+            "generar cuatro poses diferenciadas para bloquear",
+            "retirar el fondo verde y reducir el derrame cromático en los bordes",
+            "separar cada pose y encajarla en una celda final de 128×256",
+            "alinear la base de las botas en y=248",
+            "cuantizar a PNG indexado y reservar el índice 0 para transparencia real"
+          ],
+          "note": "La composición de referencia no se integra en runtime; la acción requiere revisión visual antes de promoción."
+        },
+        "block_shield/03": {
+          "kind": "arte original del proyecto; pose aislada de una tanda generada para la acción completa",
+          "sourceCanvas": [
+            2172,
+            724
+          ],
+          "selectedRegion": [
+            1145,
+            170,
+            1581,
+            688
+          ],
+          "process": [
+            "generar cuatro poses diferenciadas para bloquear",
+            "retirar el fondo verde y reducir el derrame cromático en los bordes",
+            "separar cada pose y encajarla en una celda final de 128×256",
+            "alinear la base de las botas en y=248",
+            "cuantizar a PNG indexado y reservar el índice 0 para transparencia real"
+          ],
+          "note": "La composición de referencia no se integra en runtime; la acción requiere revisión visual antes de promoción."
+        },
+        "block_shield/04": {
+          "kind": "arte original del proyecto; pose aislada de una tanda generada para la acción completa",
+          "sourceCanvas": [
+            2172,
+            724
+          ],
+          "selectedRegion": [
+            1654,
+            74,
+            2069,
+            692
+          ],
+          "process": [
+            "generar cuatro poses diferenciadas para bloquear",
+            "retirar el fondo verde y reducir el derrame cromático en los bordes",
+            "separar cada pose y encajarla en una celda final de 128×256",
+            "alinear la base de las botas en y=248",
+            "cuantizar a PNG indexado y reservar el índice 0 para transparencia real"
+          ],
+          "note": "La composición de referencia no se integra en runtime; la acción requiere revisión visual antes de promoción."
+        },
+        "dodge/01": {
+          "kind": "arte original del proyecto; pose aislada de una tanda generada para la acción completa",
+          "sourceCanvas": [
+            1774,
+            887
+          ],
+          "selectedRegion": [
+            36,
+            157,
+            375,
+            756
+          ],
+          "process": [
+            "aislar una de cuatro poses del mismo personaje",
+            "retirar el fondo verde mediante segmentación cromática",
+            "encajar uniformemente en una celda de 128×256 sin cortar el cuerpo",
+            "alinear la base de las botas en y=248",
+            "cuantizar a PNG indexado sin dithering y reservar el índice 0 para transparencia real"
+          ],
+          "note": "Solo se guardan los cuatro PNG individuales y sus QA; la composición de referencia no se integra en runtime."
+        },
+        "dodge/02": {
+          "kind": "arte original del proyecto; pose aislada de una tanda generada para la acción completa",
+          "sourceCanvas": [
+            1774,
+            887
+          ],
+          "selectedRegion": [
+            416,
+            157,
+            850,
+            756
+          ],
+          "process": [
+            "aislar una de cuatro poses del mismo personaje",
+            "retirar el fondo verde mediante segmentación cromática",
+            "encajar uniformemente en una celda de 128×256 sin cortar el cuerpo",
+            "alinear la base de las botas en y=248",
+            "cuantizar a PNG indexado sin dithering y reservar el índice 0 para transparencia real"
+          ],
+          "note": "Solo se guardan los cuatro PNG individuales y sus QA; la composición de referencia no se integra en runtime."
+        },
+        "dodge/03": {
+          "kind": "arte original del proyecto; pose aislada de una tanda generada para la acción completa",
+          "sourceCanvas": [
+            1774,
+            887
+          ],
+          "selectedRegion": [
+            920,
+            287,
+            1275,
+            761
+          ],
+          "process": [
+            "aislar una de cuatro poses del mismo personaje",
+            "retirar el fondo verde mediante segmentación cromática",
+            "encajar uniformemente en una celda de 128×256 sin cortar el cuerpo",
+            "alinear la base de las botas en y=248",
+            "cuantizar a PNG indexado sin dithering y reservar el índice 0 para transparencia real"
+          ],
+          "note": "Solo se guardan los cuatro PNG individuales y sus QA; la composición de referencia no se integra en runtime."
+        },
+        "dodge/04": {
+          "kind": "arte original del proyecto; pose aislada de una tanda generada para la acción completa",
+          "sourceCanvas": [
+            1774,
+            887
+          ],
+          "selectedRegion": [
+            1368,
+            156,
+            1675,
+            756
+          ],
+          "process": [
+            "aislar una de cuatro poses del mismo personaje",
+            "retirar el fondo verde mediante segmentación cromática",
+            "encajar uniformemente en una celda de 128×256 sin cortar el cuerpo",
+            "alinear la base de las botas en y=248",
+            "cuantizar a PNG indexado sin dithering y reservar el índice 0 para transparencia real"
+          ],
+          "note": "Solo se guardan los cuatro PNG individuales y sus QA; la composición de referencia no se integra en runtime."
+        },
+        "hurt/01": {
+          "kind": "original project art; pose isolated from a generated four-pose Hurt action reference",
+          "sourceCanvas": [
+            1536,
+            1024
+          ],
+          "selectedRegion": [
+            44,
+            287,
+            268,
+            730
+          ],
+          "process": [
+            "generate four poses for the same action in one batch",
+            "isolate the relevant pose and remove the presentation background",
+            "fit uniformly to a 128×256 cell without cropping the body",
+            "align the boot baseline consistently",
+            "quantize visible artwork without dithering and reserve PNG palette index 0 for true transparency"
+          ],
+          "note": "Only the four individual PNG frames and their QA reports are stored for production; the reference board is not a runtime asset."
+        },
+        "hurt/02": {
+          "kind": "original project art; pose isolated from a generated four-pose Hurt action reference",
+          "sourceCanvas": [
+            1536,
+            1024
+          ],
+          "selectedRegion": [
+            286,
+            324,
+            512,
+            736
+          ],
+          "process": [
+            "generate four poses for the same action in one batch",
+            "isolate the relevant pose and remove the presentation background",
+            "fit uniformly to a 128×256 cell without cropping the body",
+            "align the boot baseline consistently",
+            "quantize visible artwork without dithering and reserve PNG palette index 0 for true transparency"
+          ],
+          "note": "Only the four individual PNG frames and their QA reports are stored for production; the reference board is not a runtime asset."
+        },
+        "hurt/03": {
+          "kind": "original project art; pose isolated from a generated four-pose Hurt action reference",
+          "sourceCanvas": [
+            1536,
+            1024
+          ],
+          "selectedRegion": [
+            545,
+            271,
+            784,
+            727
+          ],
+          "process": [
+            "generate four poses for the same action in one batch",
+            "isolate the relevant pose and remove the presentation background",
+            "fit uniformly to a 128×256 cell without cropping the body",
+            "align the boot baseline consistently",
+            "quantize visible artwork without dithering and reserve PNG palette index 0 for true transparency"
+          ],
+          "note": "Only the four individual PNG frames and their QA reports are stored for production; the reference board is not a runtime asset."
+        },
+        "hurt/04": {
+          "kind": "original project art; pose isolated from a generated four-pose Hurt action reference",
+          "sourceCanvas": [
+            1536,
+            1024
+          ],
+          "selectedRegion": [
+            804,
+            291,
+            1035,
+            728
+          ],
+          "process": [
+            "generate four poses for the same action in one batch",
+            "isolate the relevant pose and remove the presentation background",
+            "fit uniformly to a 128×256 cell without cropping the body",
+            "align the boot baseline consistently",
+            "quantize visible artwork without dithering and reserve PNG palette index 0 for true transparency"
+          ],
+          "note": "Only the four individual PNG frames and their QA reports are stored for production; the reference board is not a runtime asset."
+        },
+        "idle/01": {
+          "kind": "original generated project artwork; isolated-frame derivation",
+          "sourceGenerationId": "363545c7-8cf9-4628-97c1-7ae20f254cfa",
+          "sourceCanvas": [
+            1536,
+            1024
+          ],
+          "sourceCropBox": [
+            604,
+            110,
+            752,
+            572
+          ],
+          "process": [
+            "seleccionar una única vista lateral de cuerpo completo de la referencia generada",
+            "eliminar el damero gris incrustado mediante máscara de fondo conectada al borde",
+            "voltear horizontalmente para orientar el rostro a la derecha",
+            "normalizar a 128x256 conservando la pose y alineando los pies",
+            "añadir un pequeño pañuelo granate al cuello",
+            "guardar como PNG indexado con índice transparente para conservar la transparencia real y reducir tamaño"
+          ],
+          "note": "No se incorpora la lámina compuesta generada: contenía una falsa presentación de spritesheet y acciones que no deben considerarse recursos de producción."
+        },
+        "idle/02": {},
+        "idle/03": {
+          "kind": "arte original del proyecto; variación de animación derivada del fotograma base conservando su paleta indexada",
+          "sourceFrame": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-01.png",
+          "change": "microanimación de parpadeo; 12 píxeles modificados alrededor del ojo, con colores tomados de la paleta existente",
+          "background": "transparencia real; el damero solo se usa en la preview de QA"
+        },
+        "idle/04": {
+          "kind": "arte original del proyecto; variación de animación editada sobre la paleta indexada canónica",
+          "sourceFrame": "assets/spritesheets/hd-128x256/novato/m/frames/idle/novato-m-idle-02.png",
+          "change": "ligera oscilación de un píxel en un pliegue iluminado de la bufanda, conservando silueta, paleta y línea de suelo",
+          "background": "transparencia real; el damero solo se utiliza en previews de revisión"
+        },
+        "use_consumable/01": {
+          "kind": "arte original del proyecto; pose aislada de una tanda generada para la acción completa",
+          "sourceCanvas": [
+            2172,
+            724
+          ],
+          "selectedRegion": [
+            140,
+            61,
+            465,
+            684
+          ],
+          "process": [
+            "generar la acción en una tanda de cuatro poses del mismo personaje",
+            "aislar la figura y retirar el fondo púrpura mediante segmentación cromática",
+            "reducir y encajar uniformemente en una celda 128×256 sin cortar el cuerpo",
+            "alinear la base de las botas en y=248",
+            "cuantizar a PNG indexado sin dithering y reservar el índice 0 para transparencia real"
+          ],
+          "note": "Se guardan únicamente los cuatro PNG independientes y sus QA; la lámina de referencia no se integra en runtime."
+        },
+        "use_consumable/02": {
+          "kind": "arte original del proyecto; pose aislada de una tanda generada para la acción completa",
+          "sourceCanvas": [
+            2172,
+            724
+          ],
+          "selectedRegion": [
+            660,
+            58,
+            975,
+            684
+          ],
+          "process": [
+            "generar la acción en una tanda de cuatro poses del mismo personaje",
+            "aislar la figura y retirar el fondo púrpura mediante segmentación cromática",
+            "reducir y encajar uniformemente en una celda 128×256 sin cortar el cuerpo",
+            "alinear la base de las botas en y=248",
+            "cuantizar a PNG indexado sin dithering y reservar el índice 0 para transparencia real"
+          ],
+          "note": "Se guardan únicamente los cuatro PNG independientes y sus QA; la lámina de referencia no se integra en runtime."
+        },
+        "use_consumable/03": {
+          "kind": "arte original del proyecto; pose aislada de una tanda generada para la acción completa",
+          "sourceCanvas": [
+            2172,
+            724
+          ],
+          "selectedRegion": [
+            1178,
+            50,
+            1507,
+            684
+          ],
+          "process": [
+            "generar la acción en una tanda de cuatro poses del mismo personaje",
+            "aislar la figura y retirar el fondo púrpura mediante segmentación cromática",
+            "reducir y encajar uniformemente en una celda 128×256 sin cortar el cuerpo",
+            "alinear la base de las botas en y=248",
+            "cuantizar a PNG indexado sin dithering y reservar el índice 0 para transparencia real"
+          ],
+          "note": "Se guardan únicamente los cuatro PNG independientes y sus QA; la lámina de referencia no se integra en runtime."
+        },
+        "use_consumable/04": {
+          "kind": "arte original del proyecto; pose aislada de una tanda generada para la acción completa",
+          "sourceCanvas": [
+            2172,
+            724
+          ],
+          "selectedRegion": [
+            1690,
+            56,
+            2004,
+            684
+          ],
+          "process": [
+            "generar la acción en una tanda de cuatro poses del mismo personaje",
+            "aislar la figura y retirar el fondo púrpura mediante segmentación cromática",
+            "reducir y encajar uniformemente en una celda 128×256 sin cortar el cuerpo",
+            "alinear la base de las botas en y=248",
+            "cuantizar a PNG indexado sin dithering y reservar el índice 0 para transparencia real"
+          ],
+          "note": "Se guardan únicamente los cuatro PNG independientes y sus QA; la lámina de referencia no se integra en runtime."
+        },
+        "walk/01": {
+          "kind": "recurso original del proyecto, aislado como PNG individual a partir de arte de referencia generado",
+          "sourceGenerationId": "6a4ba4c6-c26c-49f9-9572-65be4c695a1b",
+          "sourceCanvas": [
+            1932,
+            814
+          ],
+          "selectedRegion": [
+            945,
+            18,
+            1205,
+            405
+          ],
+          "process": [
+            "aislar una única pose de caminar hacia la derecha",
+            "eliminar píxeles residuales de baja opacidad del contorno",
+            "redimensionar con filtro de alta calidad para encajar en 128x256",
+            "alinear los pies con la línea de suelo común y conservar la transparencia",
+            "indexar colores sin dithering y reservar el índice 0 para transparencia"
+          ],
+          "note": "Solo se versiona el PNG individual y su QA; no se integra ni se guarda la composición de referencia en runtime."
+        },
+        "walk/02": {
+          "kind": "recurso original del proyecto, aislado como PNG individual de arte de referencia generado",
+          "sourceGenerationId": "6a4ba4c6-c26c-49f9-9572-65be4c695a1b",
+          "sourceCanvas": [
+            1932,
+            814
+          ],
+          "selectedRegion": [
+            1185,
+            18,
+            1425,
+            405
+          ],
+          "sourceAlphaBoundingBox": [
+            35,
+            13,
+            207,
+            383
+          ],
+          "normalization": {
+            "lockedWalkingScale": 0.6153846153846154,
+            "fittedDimensions": [
+              106,
+              228
+            ],
+            "baselineY": 248,
+            "offset": [
+              11,
+              20
+            ]
+          },
+          "process": [
+            "aislar una única pose",
+            "limpiar píxeles de baja opacidad",
+            "normalizar manteniendo la escala de Walk 01",
+            "alinear pies con línea de suelo",
+            "indexar sin dithering y preservar transparencia real"
+          ],
+          "note": "Solo se versiona el PNG individual y su QA; no se incorpora la composición de referencia al juego."
+        },
+        "walk/03": {
+          "kind": "arte original del proyecto, aislado como PNG individual de referencia generado",
+          "sourceGenerationId": "6a4ba4c6-c26c-49f9-9572-65be4c695a1b",
+          "sourceCanvas": [
+            1932,
+            814
+          ],
+          "selectedRegion": [
+            1425,
+            18,
+            1665,
+            405
+          ],
+          "sourceAlphaBoundingBox": [
+            19,
+            10,
+            205,
+            380
+          ],
+          "normalization": {
+            "lockedWalkingScale": 0.6153846153846154,
+            "fittedDimensions": [
+              114,
+              228
+            ],
+            "baselineY": 248,
+            "offset": [
+              7,
+              20
+            ]
+          },
+          "process": [
+            "aislar una única pose",
+            "limpiar píxeles de baja opacidad",
+            "normalizar con la escala de Walk 01/02",
+            "alinear pies a la línea de suelo",
+            "indexar sin dithering y conservar transparencia"
+          ],
+          "note": "Se versiona únicamente este PNG y su QA, no el mosaico de referencia."
+        },
+        "walk/04": {
+          "kind": "arte original del proyecto, aislado como PNG individual de referencia generado",
+          "sourceGenerationId": "6a4ba4c6-c26c-49f9-9572-65be4c695a1b",
+          "sourceCanvas": [
+            1932,
+            814
+          ],
+          "selectedRegion": [
+            1665,
+            18,
+            1932,
+            405
+          ],
+          "sourceAlphaBoundingBox": [
+            33,
+            12,
+            228,
+            383
+          ],
+          "normalization": {
+            "lockedWalkingScale": 0.6153846153846154,
+            "fittedDimensions": [
+              120,
+              228
+            ],
+            "baselineY": 248,
+            "offset": [
+              4,
+              20
+            ]
+          },
+          "process": [
+            "aislar una única pose",
+            "limpiar píxeles de baja opacidad",
+            "normalizar con la escala de Walk 01–03",
+            "alinear pies con la línea de suelo",
+            "indexar sin dithering y preservar transparencia real"
+          ],
+          "note": "Solo se versiona el PNG individual y su QA; no se incorpora la composición de referencia al juego."
+        }
+      },
+      "audit": {
+        "validFrames": 9,
+        "invalidFrames": 15,
+        "technicalActions": [
+          "dodge",
+          "block_shield"
+        ],
+        "actions": {
+          "idle": {
+            "status": "invalid",
+            "frames": {
+              "01": {
+                "sha256": "e11fb4247e6ad1e8caf75e8cc27f71eac0b83298c2a10c882d38debe17e02abb",
+                "bytes": 7050,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  20,
+                  105,
+                  248
+                ],
+                "pixelSha256": "9439105ee4ef6e949e2b7466f98763773f707970b009445e4bdf5bff102d1f49"
+              },
+              "02": {
+                "sha256": "8ef7e18105ce614d9e7e0e0d98b30ee6ce714f9d6d0534c9739514f4f82c7a86",
+                "bytes": 7051,
+                "status": "invalid",
+                "error": "SyntaxError"
+              },
+              "03": {
+                "sha256": "15fded5236985e539b551f399bbe78eb3d2e3e2daeeb6ca2ec4e89d1da1470c1",
+                "bytes": 7053,
+                "status": "invalid",
+                "error": "SyntaxError"
+              },
+              "04": {
+                "sha256": "299305986d2bfd0c74ac45d4c5784a1c37e7a5622e2efb1e276061d0b82c9134",
+                "bytes": 7054,
+                "status": "invalid",
+                "error": "SyntaxError"
+              }
+            },
+            "distinctFrames": 1
+          },
+          "walk": {
+            "status": "invalid",
+            "frames": {
+              "01": {
+                "sha256": "fc21029a7ee5dbe78b1e19c1e39f2194e0094af5110546ab1b2da212288a4b5b",
+                "bytes": 11105,
+                "status": "invalid",
+                "error": "SyntaxError"
+              },
+              "02": {
+                "sha256": "b05b1798cdfaf0fdc5b92b212b8dd0a6d77787a2f6dd8f9186894b0f8c729531",
+                "bytes": 11001,
+                "status": "invalid",
+                "error": "UnidentifiedImageError"
+              },
+              "03": {
+                "sha256": "2a8dd5981e0ba9584bf4529f90115203ce1d2fc1e05fd5393d3a019ae89a327b",
+                "bytes": 11105,
+                "status": "invalid",
+                "error": "UnidentifiedImageError"
+              },
+              "04": {
+                "sha256": "1211a9ccf2588e1d18095743ba3474032a38cc75151c8af1f10f370cc4a0642e",
+                "bytes": 11223,
+                "status": "invalid",
+                "error": "UnidentifiedImageError"
+              }
+            },
+            "distinctFrames": 0
+          },
+          "hurt": {
+            "status": "invalid",
+            "frames": {
+              "01": {
+                "sha256": "2ae6503e8a54d10163661c61ab7c460b7079333c897078988ecbe04391a74622",
+                "bytes": 12478,
+                "status": "invalid",
+                "error": "UnidentifiedImageError"
+              },
+              "02": {
+                "sha256": "cafe6f59632538ffea141120f83aed8191e1b65ba62203346dcae7f2b63b27c1",
+                "bytes": 13176,
+                "status": "invalid",
+                "error": "UnidentifiedImageError"
+              },
+              "03": {
+                "sha256": "f60d0932670632ceb77081458fd68873b3b2048882014fa9e51cd4948b4816cf",
+                "bytes": 10552,
+                "status": "invalid",
+                "error": "UnidentifiedImageError"
+              },
+              "04": {
+                "sha256": "a9a3b81494fbcd1f7b220c117040f88c8fa831e5bb2b01e23cbc1b143c2c41d8",
+                "bytes": 13124,
+                "status": "invalid",
+                "error": "UnidentifiedImageError"
+              }
+            },
+            "distinctFrames": 0
+          },
+          "use_consumable": {
+            "status": "invalid",
+            "frames": {
+              "01": {
+                "sha256": "4dcd474b9756a98ab1cdb8202fe831c402e7f6a6bb9672ea7f832ca457843c01",
+                "bytes": 10420,
+                "status": "invalid",
+                "error": "UnidentifiedImageError"
+              },
+              "02": {
+                "sha256": "31dd308524c880eb16687144cd824638f210851f34d0f884660391d646207bb4",
+                "bytes": 11198,
+                "status": "invalid",
+                "error": "UnidentifiedImageError"
+              },
+              "03": {
+                "sha256": "4c213a8527abb6c78126bf0c429f17232582a2dce366503b3b7f1fa0d827591e",
+                "bytes": 10971,
+                "status": "invalid",
+                "error": "UnidentifiedImageError"
+              },
+              "04": {
+                "sha256": "f13c94dc547677511c8902f96705045351af5d4cc916023ee3af00729638511c",
+                "bytes": 10941,
+                "status": "invalid",
+                "error": "UnidentifiedImageError"
+              }
+            },
+            "distinctFrames": 0
+          },
+          "dodge": {
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "76dbf1e0057d3685f02d9def62a5c3153ba27a473137c8313348366056dadfd6",
+                "bytes": 9148,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  38,
+                  122,
+                  248
+                ],
+                "pixelSha256": "0ee130828624535662b4232b8e6f57fc647d147c48f93d95381f05effa12bb56"
+              },
+              "02": {
+                "sha256": "3af0954fdce4f0b75f283c3fc80fdee2fd79f905e0c962c7605dc34403fd6f0d",
+                "bytes": 8438,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  38,
+                  122,
+                  248
+                ],
+                "pixelSha256": "bd913f84413ca877c44224c78af5fe5b6bfacdc099307789042b499a6858d1e6"
+              },
+              "03": {
+                "sha256": "8c9b1fc0424a65c762524584670025cbfe6a651af8c30c57d5b838c30f5ea3c0",
+                "bytes": 9724,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  38,
+                  122,
+                  248
+                ],
+                "pixelSha256": "767078945ed4e0408912fe8c5805bbd097e6a4ee0a50a6df61c337db6ccbb254"
+              },
+              "04": {
+                "sha256": "2484bd23f92d0dedeb5444b43469a90ea9283812e920521969d595689a3a2027",
+                "bytes": 8938,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  38,
+                  122,
+                  248
+                ],
+                "pixelSha256": "e2e59c1ce48afe67d5d00a53920fd8256febf5bce445a49cb73e9577974811a3"
+              }
+            },
+            "distinctFrames": 4
+          },
+          "block_shield": {
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "57ddffdfaca5dcb205fcc1fc355076efb60274b1079a8351dfd77bd2187e3bba",
+                "bytes": 14450,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  38,
+                  122,
+                  248
+                ],
+                "pixelSha256": "bd5d6befdbca269a085c36f1e8b6be1ec38b79275f0310df07a74a6a758138f3"
+              },
+              "02": {
+                "sha256": "bc5c105020584a9e58178924a251ca499fc274780a7550a2cd5644d93ce49236",
+                "bytes": 13964,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  38,
+                  122,
+                  248
+                ],
+                "pixelSha256": "b627096cd11af4497f2ca2205de6adbded7c9c065f4429ca4aee96a0e4d9885e"
+              },
+              "03": {
+                "sha256": "2d640cb90d6a348c08a3740f51ff393ab4211b155cf5657c2c1660b33d687450",
+                "bytes": 13009,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  58,
+                  122,
+                  248
+                ],
+                "pixelSha256": "ba30842556a0bd8cb63aa526988611e85c0a2b860e2cf121290e57e7fe096394"
+              },
+              "04": {
+                "sha256": "90f82a839f1697e3946a896b686ca71d9f2aff0a51726097fc99681f5471b889",
+                "bytes": 14086,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  38,
+                  122,
+                  248
+                ],
+                "pixelSha256": "15254a1234c0ac5e7855cc872e6f6df22da50c8328902664fa82a3192b125e2d"
+              }
+            },
+            "distinctFrames": 4
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "novato",
@@ -167,10 +985,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/novato/f/novato-f-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/novato/f/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/novato/f/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "mago",
@@ -182,10 +1050,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/mago/m/mago-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/mago/m/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/mago/m/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "mago",
@@ -197,10 +1115,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/mago/f/mago-f-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/mago/f/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/mago/f/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "espadachin",
@@ -212,10 +1180,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/espadachin/m/espadachin-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/espadachin/m/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/espadachin/m/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "espadachin",
@@ -227,10 +1245,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/espadachin/f/espadachin-f-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/espadachin/f/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/espadachin/f/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "acolito",
@@ -242,10 +1310,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/acolito/m/acolito-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/acolito/m/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/acolito/m/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "acolito",
@@ -257,10 +1375,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/acolito/f/acolito-f-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/acolito/f/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/acolito/f/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "arquero",
@@ -272,10 +1440,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/arquero/m/arquero-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/arquero/m/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/arquero/m/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "arquero",
@@ -287,10 +1505,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/arquero/f/arquero-f-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/arquero/f/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/arquero/f/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "caballero",
@@ -302,10 +1570,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/caballero/m/caballero-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/caballero/m/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/caballero/m/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "caballero",
@@ -317,10 +1635,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/caballero/f/caballero-f-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/caballero/f/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/caballero/f/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "duelista",
@@ -332,10 +1700,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/duelista/m/duelista-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/duelista/m/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/duelista/m/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "duelista",
@@ -347,10 +1765,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/duelista/f/duelista-f-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/duelista/f/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/duelista/f/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "sacerdote",
@@ -362,10 +1830,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/sacerdote/m/sacerdote-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/sacerdote/m/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/sacerdote/m/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "sacerdote",
@@ -377,10 +1895,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/sacerdote/f/sacerdote-f-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/sacerdote/f/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/sacerdote/f/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "monje",
@@ -392,10 +1960,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/monje/m/monje-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/monje/m/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/monje/m/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "monje",
@@ -407,10 +2025,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/monje/f/monje-f-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/monje/f/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/monje/f/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "cazador",
@@ -422,10 +2090,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/cazador/m/cazador-m-sheet.png",
       "sourceStatus": "hires-library-verified",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/cazador/m/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/cazador/m/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "cazador",
@@ -437,10 +2155,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/cazador/f/cazador-f-sheet.png",
       "sourceStatus": "hires-library-verified",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/cazador/f/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/cazador/f/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "explorador",
@@ -452,10 +2220,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/explorador/m/explorador-m-sheet.png",
       "sourceStatus": "hires-library-verified",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/explorador/m/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/explorador/m/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "explorador",
@@ -467,10 +2285,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/explorador/f/explorador-f-sheet.png",
       "sourceStatus": "hires-library-verified",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/explorador/f/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/explorador/f/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "elementalista",
@@ -482,10 +2350,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/elementalista/m/elementalista-m-sheet.png",
       "sourceStatus": "hires-library-mixed",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/elementalista/m/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/elementalista/m/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "elementalista",
@@ -497,10 +2415,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/elementalista/f/elementalista-f-sheet.png",
       "sourceStatus": "hires-library-mixed",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/elementalista/f/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/elementalista/f/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "brujo",
@@ -512,10 +2480,60 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/brujo/m/brujo-m-sheet.png",
       "sourceStatus": "hires-library-verified",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/brujo/m/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/brujo/m/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     },
     {
       "classId": "brujo",
@@ -527,17 +2545,66 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/brujo/f/brujo-f-sheet.png",
       "sourceStatus": "hires-library-verified",
-      "qaStatus": "not-run",
-      "lastCommit": null,
-      "notes": "",
-      "frameRoot": "assets/spritesheets/hd-128x256/brujo/f/frames"
+      "qaStatus": "not-started",
+      "frameRoot": "assets/spritesheets/hd-128x256/brujo/f/frames",
+      "audit": {
+        "validFrames": 0,
+        "invalidFrames": 0,
+        "technicalActions": [],
+        "actions": {
+          "idle": {
+            "status": "missing"
+          },
+          "walk": {
+            "status": "missing"
+          },
+          "hurt": {
+            "status": "missing"
+          },
+          "use_consumable": {
+            "status": "missing"
+          },
+          "dodge": {
+            "status": "missing"
+          },
+          "block_shield": {
+            "status": "missing"
+          },
+          "attack_sword": {
+            "status": "missing"
+          },
+          "attack_axe": {
+            "status": "missing"
+          },
+          "attack_spear": {
+            "status": "missing"
+          },
+          "attack_dagger": {
+            "status": "missing"
+          },
+          "attack_bow": {
+            "status": "missing"
+          },
+          "attack_staff": {
+            "status": "missing"
+          },
+          "attack_mace": {
+            "status": "missing"
+          },
+          "attack_book": {
+            "status": "missing"
+          },
+          "attack_gloves": {
+            "status": "missing"
+          }
+        }
+      }
     }
   ],
   "highResolutionSourceCandidates": [
     {
       "classId": "brujo",
       "paths": [
-        "assets/spritesheets/originales/brujo/v2/source-hires/README.md",
         "assets/spritesheets/originales/brujo/v2/source-hires/manifest.json",
         "assets/spritesheets/originales/brujo/v2/source-hires/female-manifest.json"
       ],
@@ -570,34 +2637,11 @@
     }
   ],
   "qa": {
-    "automated": [
-      "exact 512x3840 dimensions",
-      "60 exact 128x256 cells",
-      "15 rows in canonical order",
-      "real alpha transparency",
-      "no empty cells",
-      "four distinct visible frames per row",
-      "cell-boundary clipping checks",
-      "source/output SHA-256",
-      "baseline/foot position consistency"
-    ],
-    "visual": [
-      "complete 15-row sheet",
-      "individual animation strips",
-      "readability at in-game size",
-      "consistent proportions/materials/palette",
-      "no residual background/halo",
-      "weapon-ready hand poses",
-      "identity preserved across actions"
-    ],
-    "validatorScript": "scripts/validar-spritesheet-hd.py",
-    "validatorUsage": "python scripts/validar-spritesheet-hd.py --sheet <hoja.png> --class-id novato --sex m --report <qa-report.json>",
-    "assemblerScript": "scripts/ensamblar-spritesheet-hd.py",
-    "assemblerUsage": "python scripts/ensamblar-spritesheet-hd.py --class-id novato --sex m --preview",
-    "testScript": "scripts/test-spritesheets-hd.py",
-    "ciWorkflow": ".github/workflows/validar-spritesheets-hd.yml",
-    "ciWorkflowUrl": "https://github.com/joseconca/gremio-expediciones/actions/workflows/validar-spritesheets-hd.yml",
-    "inputLayout": "frames/<action>/<class>-<sex>-<action>-NN.png; individual PNG RGBA 128x256"
+    "auditor": "scripts/auditar-sprites-hd.py",
+    "assembler": "scripts/ensamblar-spritesheet-hd.py",
+    "validator": "scripts/validar-spritesheet-hd.py",
+    "tests": "scripts/test-spritesheets-hd.py",
+    "visualReviewRequired": true
   },
   "sourceAudit": {
     "status": "initial-audit-complete",
@@ -680,7 +2724,6 @@
       "purpose": "menu-character-illustration",
       "path": "assets/spritesheets/hd-128x256/novato/m/artwork/novato-m-character-illustration.png",
       "qaPath": "assets/spritesheets/hd-128x256/novato/m/artwork/novato-m-character-illustration.qa.json",
-      "readmePath": "assets/spritesheets/hd-128x256/novato/m/artwork/README.md",
       "dimensions": [
         448,
         1075

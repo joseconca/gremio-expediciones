@@ -45,6 +45,8 @@ def validate_frame(path: Path, action: str, frame_number: int) -> tuple[Image.Im
     if not path.is_file():
         raise ValueError(f"Falta el frame {frame_number:02d} de {action}: {path}")
     try:
+        with Image.open(path) as check:
+            check.verify()
         with Image.open(path) as opened:
             if opened.format != "PNG":
                 raise ValueError(f"{path} debe ser PNG, no {opened.format!r}")
@@ -125,7 +127,7 @@ def main() -> int:
                     / f"{args.class_id}-{args.sex}-{action}-{frame_number:02d}.png"
                 )
                 frame, frame_report = validate_frame(frame_path, action, frame_number)
-                frame_hashes.append(frame_report["sha256"])
+                frame_hashes.append(hashlib.sha256(frame.tobytes()).hexdigest())
                 frame_reports.append(frame_report)
                 sheet.alpha_composite(frame, (col_index * CELL_W, row_index * CELL_H))
 

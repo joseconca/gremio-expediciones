@@ -87,3 +87,16 @@ Los briefs y procedencias útiles se conservan en el manifiesto. Los PNG corrupt
 Una acción exige cuatro PNG válidos, cuatro poses legibles, identidad consistente y revisión de capas. Una hoja exige las 15 acciones, atlas sin recortes/halos y prueba a tamaño de juego.
 Estado técnico, revisión visual y publicación son independientes. La existencia de un archivo o un QA antiguo no implica aprobación.
 Publicar bytes desde archivos mediante Git o blobs programáticos; nunca transcribir Base64 manualmente. Tras publicar, verificar el objeto Git y cargar el PNG completo desde el remoto.
+
+## Comandos de trabajo
+
+```bash
+python scripts/auditar-sprites-hd.py --write
+python scripts/auditar-sprites-hd.py
+python scripts/ensamblar-progreso-spritesheet-hd.py --class-id novato --sex m
+python scripts/test-auditar-sprites-hd.py
+python scripts/test-spritesheets-hd.py
+```
+
+El auditor comprueba todos los frames presentes y conserva el detalle en el manifiesto. `--strict` rechaza también los archivos inválidos ya conocidos; la comprobación normal de CI garantiza que no se oculte una regresión cambiando solo los PNG. Una corrupción conocida es deuda pendiente, no una aprobación. `actionsCompleted` solo acepta revisión visual asociada a los hashes actuales; `audit.technicalActions` indica filas técnicamente utilizables.
+Las previews incluyen contacto y GIF por acción técnicamente completa. Las fuentes recuperadas pueden guardarse como candidatas aunque aún requieran corrección de poses o equipo; nunca se convierten automáticamente en una acción aprobada.

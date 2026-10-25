@@ -1,46 +1,26 @@
-name: Validar pipeline de spritesheets HD
-
+name: Validar sprites HD
 on:
   push:
-    branches:
-      - creacion-sprite-sheets
-    paths:
-      - "scripts/ensamblar-spritesheet-hd.py"
-      - "scripts/validar-spritesheet-hd.py"
-      - "scripts/test-spritesheets-hd.py"
-      - ".github/workflows/validar-spritesheets-hd.yml"
+    branches: [creacion-sprite-sheets]
+    paths: ['scripts/*sprites*', 'assets/spritesheets/hd-128x256/**', '.github/workflows/validar-spritesheets-hd.yml']
   pull_request:
-    branches:
-      - main
-    paths:
-      - "scripts/ensamblar-spritesheet-hd.py"
-      - "scripts/validar-spritesheet-hd.py"
-      - "scripts/test-spritesheets-hd.py"
-      - ".github/workflows/validar-spritesheets-hd.yml"
-
+    branches: [main]
+    paths: ['scripts/*sprites*', 'assets/spritesheets/hd-128x256/**', '.github/workflows/validar-spritesheets-hd.yml']
+  workflow_dispatch:
 permissions:
   contents: read
-
 jobs:
-  pipeline-hd:
+  audit:
     runs-on: ubuntu-latest
     steps:
-      - name: Descargar el repositorio
-        uses: actions/checkout@v4
-
-      - name: Preparar Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-
-      - name: Instalar Pillow
-        run: python -m pip install --disable-pip-version-check pillow
-
-      - name: Validar sintaxis de las herramientas HD
-        run: |
-          python -m py_compile scripts/ensamblar-spritesheet-hd.py
-          python -m py_compile scripts/validar-spritesheet-hd.py
-          python -m py_compile scripts/test-spritesheets-hd.py
-
-      - name: Probar ensamblado y QA con hojas sintéticas
+          python-version: '3.12'
+      - run: python -m pip install Pillow
+      - name: Regression tests for CRC, decoded pixels and approvals
+        run: python scripts/test-auditar-sprites-hd.py
+      - name: Complete atlas assembly regression tests
         run: python scripts/test-spritesheets-hd.py
+      - name: Verify actual assets match recorded progress (not artistic approval)
+        run: python scripts/auditar-sprites-hd.py
