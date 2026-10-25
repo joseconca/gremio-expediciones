@@ -178,13 +178,21 @@
         "use_consumable/01",
         "use_consumable/02",
         "use_consumable/03",
-        "use_consumable/04"
+        "use_consumable/04",
+        "dodge/01",
+        "dodge/02",
+        "dodge/03",
+        "dodge/04",
+        "block_shield/01",
+        "block_shield/02",
+        "block_shield/03",
+        "block_shield/04"
       ],
       "sheetPath": "assets/spritesheets/hd-128x256/novato/m/novato-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
       "qaStatus": "technical-passed-visual-review-pending",
-      "lastCommit": "c364688fa78956f89a33153473ec867d4c96425c",
-      "notes": "Idle, Walk, Hurt y Use Consumable tienen cuatro PNG individuales por acción con QA por frame. El nuevo flujo produce cada acción en una tanda de cuatro poses y guarda los frames por separado. Pendiente revisión visual conjunta de ciclos antes de ensamblar el atlas.",
+      "lastCommit": "8d90a4e23b623185e944795101c344f4b59f2309",
+      "notes": "Idle, Walk, Hurt y Use Consumable tienen cuatro PNG individuales por acción con QA por frame. El nuevo flujo produce cada acción en una tanda de cuatro poses y guarda los frames por separado. Pendiente revisión visual conjunta de ciclos antes de ensamblar el atlas. Esquivar: frames 01–04 copiados desde blobs originales del paquete de recuperación, QA/hash verificados; commit de arte 50e15fa1ebafdf372ee257ec024d504ea607c37f. Bloquear con escudo: frames 01–04 publicados como blobs originales y QA/hash verificados; commit de arte 8d90a4e23b623185e944795101c344f4b59f2309. Revisión visual conjunta pendiente; no promover a runtime hasta completar la hoja.",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/m/frames"
     },
     {
@@ -764,6 +772,16 @@
       "sha": "c364688fa78956f89a33153473ec867d4c96425c",
       "message": "art(sprites): completar acción Consumir objeto de Novato masculino (4 frames)",
       "scope": "four independent 128x256 PNG frames plus four per-frame QA JSON reports"
+    },
+    {
+      "sha": "50e15fa1ebafdf372ee257ec024d504ea607c37f",
+      "message": "art(sprites): publicar Novato masculino esquivar 4 frames HD",
+      "scope": "four original 128x256 PNG blobs copied from recovery package plus per-frame QA"
+    },
+    {
+      "sha": "8d90a4e23b623185e944795101c344f4b59f2309",
+      "message": "art(sprites): publicar Novato masculino bloquear con escudo HD",
+      "scope": "four original 128x256 PNG blobs copied from recovery package plus per-frame QA"
     }
   ],
   "sourceAudit": {
@@ -856,10 +874,10 @@
     ],
     "note": "CI validates technical tooling using synthetic sprites; it does not approve artwork visually."
   },
-  "nextFrame": "novato-m-dodge-01",
-  "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/use_consumable/novato-m-use_consumable-04.png",
-  "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/use_consumable/novato-m-use_consumable-04.qa.json",
-  "lastFrameCommit": "c364688fa78956f89a33153473ec867d4c96425c",
+  "nextFrame": "novato-m-attack_sword-01",
+  "lastFrameCompleted": "assets/spritesheets/hd-128x256/novato/m/frames/block_shield/novato-m-block_shield-04.png",
+  "lastFrameQa": "assets/spritesheets/hd-128x256/novato/m/frames/block_shield/novato-m-block_shield-04.qa.json",
+  "lastFrameCommit": "8d90a4e23b623185e944795101c344f4b59f2309",
   "artworkAssets": [
     {
       "classId": "novato",
@@ -892,10 +910,10 @@
     }
   ],
   "checkpoint": {
-    "updatedAt": "2026-10-24",
+    "updatedAt": "2026-10-25",
     "branch": "creacion-sprite-sheets",
-    "nextFrame": "novato-m-dodge-01",
+    "nextFrame": "novato-m-attack_sword-01",
     "worklogPath": "docs/sprites/checkpoint-sprites-hd-2026-10-24.md",
-    "note": "Novato masculino tiene Idle, Walk, Hurt y Use Consumable completos (4 PNG por acción, cada uno con QA). Flujo acelerado: generar una acción de cuatro poses, aislar cuatro PNG y validar individualmente. Siguiente recurso: novato-m-dodge-01. La ilustración maestra está importada y verificada por SHA-256; falta revisión/integración en UI."
+    "note": "Novato masculino tiene Idle, Walk, Hurt, Use Consumable, Esquivar y Bloquear con escudo completos (4 PNG individuales de 128×256 y QA por fotograma). Las dos últimas acciones se publicaron desde los blobs originales del paquete en docs. QA técnico aprobado; revisión visual conjunta pendiente. Siguiente recurso: novato-m-attack_sword-01. No ensamblar ni promover a runtime hasta revisar las 15 acciones."
   }
 }
