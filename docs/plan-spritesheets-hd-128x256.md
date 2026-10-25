@@ -191,3 +191,23 @@ La validación de sprites de GitHub sobre la PR #3 pasa, incluidos los atlas com
 La integración está publicada en `creacion-sprite-sheets` y preparada en [PR #3](https://github.com/joseconca/gremio-expediciones/pull/3). La publicación directa en main fue rechazada por la revisión automática de permisos por requerir una autorización específica para cambiar la rama principal. Se ha solicitado ese permiso; hasta recibirlo, main conserva su versión anterior. La vista local de revisión usa la integración completa.
 
 El usuario ha autorizado expresamente fusionar la PR #3 y publicar en main. GitHub confirma la fusión en `0b1afefbb88fc7024c3d9959a13247f467ce4329`; el código y los recursos públicos de main coinciden con la integración validada. La solicitud anterior de permiso queda resuelta. Próximo paso: verificación del usuario jugando, antes de producir más clases. La publicación en GitHub no acredita por sí sola el despliegue de un servidor externo.
+
+
+<!-- TIER2_PROGRESS_START -->
+## Producción HD de Tier 2
+
+El usuario ha probado la integración anterior de Novato, Tier 1 y equipo, la considera correcta y solicita continuar con Tier 2 en orden. Se mantiene el mismo esquema de agarres por sexo y el mismo proceso de originales grandes, cuatro poses por acción y commits por acción.
+
+| Clase | Masculino | Femenino |
+|---|---|---|
+| Caballero | 60 / 15 acciones; contactos revisados | 0 / 60 fotogramas |
+| Duelista | 0 / 60 fotogramas | 0 / 60 fotogramas |
+| Sacerdote | 0 / 60 fotogramas | 0 / 60 fotogramas |
+| Monje | 0 / 60 fotogramas | 0 / 60 fotogramas |
+| Cazador | 0 / 60 fotogramas | 0 / 60 fotogramas |
+| Explorador | 0 / 60 fotogramas | 0 / 60 fotogramas |
+| Elementalista | 0 / 60 fotogramas | 0 / 60 fotogramas |
+| Brujo | 0 / 60 fotogramas | 0 / 60 fotogramas |
+
+Los atlas completos son candidatos para revisión del usuario. `revisar-contactos-clase-hd.py` reutiliza las capas de equipo ya existentes, registra los hashes corporales y genera comparativas de las quince acciones. El resultado técnico no sustituye la revisión artística. Las fuentes y revisiones sustituidas permanecen conservadas. Tier 2 no se activa automáticamente en el juego por generar un atlas.
+<!-- TIER2_PROGRESS_END -->
