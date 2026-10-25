@@ -27974,8 +27974,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "fe420bc523d66b769b8f47b109cdb9a8fcd36e25a2c05fdaf418f409523b9515",
-                "bytes": 27200,
+                "sha256": "6f039730398db845f95ca49cf9a7839699d4176d02501b4a1fed3de6ca0586bd",
+                "bytes": 27124,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -27983,15 +27983,15 @@
                 ],
                 "bbox": [
                   5,
-                  92,
+                  93,
                   109,
                   248
                 ],
-                "pixelSha256": "ac6319e7607d3bd474b9e417e523dc82e184c6a90ef61c5cdc56323ffeac93ff"
+                "pixelSha256": "c79e1f74b0e45749590da8c9de1fdd29a49f74e0ac55aee75d376450aaa35fb9"
               },
               "02": {
-                "sha256": "1cb88f4384269daad6f5e1abf51aa622d057c0506db73074055290badbc2b0a1",
-                "bytes": 26116,
+                "sha256": "d7722179143907d212a70554f43f84dddb6e2edcbc1bc502a9b886a025754ffe",
+                "bytes": 25980,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -28003,11 +28003,11 @@
                   103,
                   248
                 ],
-                "pixelSha256": "a845069cbc064aebf98f4d9ebefeff0458ee051dda72d11cf8e21f57cc57e07f"
+                "pixelSha256": "af9109b2aa5af74d14291be1b22aa5d031b6673e1015617f562027c2741233d5"
               },
               "03": {
-                "sha256": "8afd19483637efe00fd3ca7cede879122f83bb6e805d170cd1b1c05c668e9dfb",
-                "bytes": 26002,
+                "sha256": "7807e52262845057ee0831c9acb2fb6111d34e5ba3dd8a118fe9982a2f7876e1",
+                "bytes": 26590,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -28016,14 +28016,14 @@
                 "bbox": [
                   4,
                   92,
-                  109,
+                  123,
                   248
                 ],
-                "pixelSha256": "1c87adeb69a6e07366797a1fc5cd2a2dba657a461533ac0c926d4d43188ff7a2"
+                "pixelSha256": "6409a8216c3b23837cdad24cc74966054e3b3e78e65d5cb21d967d308376e414"
               },
               "04": {
-                "sha256": "d870c9992d2e028c70a177761f16030270bdd72924a7386e4d70259517a65b77",
-                "bytes": 26776,
+                "sha256": "f78e8dd62164ac6e8a6f96a252fb26770ae5a0f75d95e316b13865424441baf1",
+                "bytes": 26676,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -28035,7 +28035,7 @@
                   108,
                   248
                 ],
-                "pixelSha256": "14f1323335836824c9fe5dbd7832ce2af59fcbb01dd8cf7665ea04adfc4be855"
+                "pixelSha256": "67019fa43b1c20be8a9fa8df17708f448e4d717f82c2facd7b3b5916b4185708"
               }
             },
             "distinctFrames": 4
@@ -28883,7 +28883,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_spear": {
-          "sourceSha256": "aa78998e05550494b0902956181f15ba31241f725b250673d9e6260e76173328",
+          "sourceSha256": "c998300413b1667153ef5360d24000169ca1e93001c39c92fa2763bc12521474",
           "sourceDimensions": [
             2172,
             724
@@ -28908,9 +28908,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/sacerdote/m/source/attack_spear-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/sacerdote/m/source/attack_spear-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY SACERDOTE MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_spear. Young adult male priest: short chestnut brown hair, calm benevolent face, substantial ivory clerical robe and split tabard with warm gold edging, long muted rust-red stole, cream high collar, layered cream sleeves ending before visible hands, leather waist belt with modest brass clasp, brown boots and discreet brown fingerless gloves. Richer Tier 2 fabric layers than Acolito but exact canonical body scale. No staff, book, chalice, halo or magical effect. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (235,322), other hand (444,240); figure 2: primary contact (778,327), other hand (904,275); figure 3: primary contact (1417,279), other hand (1586,235); figure 4: primary contact (1855,335), other hand (2099,261). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "prompt": "Small pose edit to this FOUR-figure transparent priest strip. Change ONLY the FAR arm of FIGURE THREE, which points to the right. Extend that far arm and move its closed fist about40pixels RIGHT and15pixels DOWN, to center(1586,235) on2172x724 canvas. Keep the near bent fist at(1417,279) unchanged. Clearly lengthen the outstretched far forearm toward the right so the fist ends nearer the right edge of figure three's quarter. Keep every other hand and figure, head, robe, boots, four centers, scale and transparent canvas unchanged. Exactly two hands per figure, no spear or props, same polished RPG art.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
@@ -28947,6 +28947,44 @@
               "scalePolicy": "canonical-pose-registration",
               "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
               "sourcePath": "assets/spritesheets/hd-128x256/sacerdote/m/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY SACERDOTE MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_spear. Young adult male priest: short chestnut brown hair, calm benevolent face, substantial ivory clerical robe and split tabard with warm gold edging, long muted rust-red stole, cream high collar, layered cream sleeves ending before visible hands, leather waist belt with modest brass clasp, brown boots and discreet brown fingerless gloves. Richer Tier 2 fabric layers than Acolito but exact canonical body scale. No staff, book, chalice, halo or magical effect. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (235,322), other hand (444,240); figure 2: primary contact (778,327), other hand (904,275); figure 3: primary contact (1417,279), other hand (1586,235); figure 4: primary contact (1855,335), other hand (2099,261). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
+                "0fd9a42095cd1675a9044ac97a3373f187b949983c002d31bc6e8418789b3ac0",
+                "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
+                "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "aa78998e05550494b0902956181f15ba31241f725b250673d9e6260e76173328",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/sacerdote/m/source/attack_spear-reference-v2.png",
               "generator": "built-in imagegen",
               "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY SACERDOTE MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_spear. Young adult male priest: short chestnut brown hair, calm benevolent face, substantial ivory clerical robe and split tabard with warm gold edging, long muted rust-red stole, cream high collar, layered cream sleeves ending before visible hands, leather waist belt with modest brass clasp, brown boots and discreet brown fingerless gloves. Richer Tier 2 fabric layers than Acolito but exact canonical body scale. No staff, book, chalice, halo or magical effect. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (235,322), other hand (444,240); figure 2: primary contact (778,327), other hand (904,275); figure 3: primary contact (1417,279), other hand (1586,235); figure 4: primary contact (1855,335), other hand (2099,261). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
               "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
