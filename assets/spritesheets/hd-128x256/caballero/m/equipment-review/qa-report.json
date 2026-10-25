@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "classId": "caballero",
+  "sex": "m",
+  "actions": [
+    "idle",
+    "walk"
+  ],
+  "bodyHashes": {
+    "idle": [
+      "24737175bfe606cbd073446459e2d145a4c45535ad3d73244b60881b666525b9",
+      "35942aa63bf113ee1f452d4e2fb82095f7f7b2fb27c5af131efbc1e2204df889",
+      "3f4177fa6cd1f152add3a5b8b7d5c11e732885de6830d37383750b90681dcb36",
+      "4ccc47c9e8bba93c9e0ab98009c203695c9a390f53ed1ee80ab694d0d0d3b73f"
+    ],
+    "walk": [
+      "2e66b35a80146d60af88077158167e1088c55854f543db024c01453e22fa7a3a",
+      "2e1895b580a97e4c14453471720aba2dbecc168d491c1910e495be8b91af829c",
+      "3dc932003f5712ea011805ebef2b33a3ed5370c526955691e2a07c6ba1dc9353",
+      "51b071f5fdad6f560233b9a76f048e4c20418a9dc540597b2578d9dae872fe65"
+    ]
+  },
+  "contactChecks": 256,
+  "warnings": [],
+  "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
+  "artisticApproval": "not-automatic"
+}
