@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "mago-m",
+  "nextVariant": "caballero-m",
   "classes": [
     {
       "id": "novato",
@@ -19391,19 +19391,88 @@
       "tier": 2,
       "sex": "m",
       "order": 11,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/caballero/m/caballero-m-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-started",
+      "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/caballero/m/frames",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "24737175bfe606cbd073446459e2d145a4c45535ad3d73244b60881b666525b9",
+                "bytes": 24394,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  93,
+                  103,
+                  247
+                ],
+                "pixelSha256": "bb6396b7bb249649616055d00a10114d068e203973b1b490ae16480a09b32f73"
+              },
+              "02": {
+                "sha256": "35942aa63bf113ee1f452d4e2fb82095f7f7b2fb27c5af131efbc1e2204df889",
+                "bytes": 24478,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  93,
+                  102,
+                  247
+                ],
+                "pixelSha256": "cbe72d638213e4c850a66d03a95e0ebed498ee33b41506915a792292e5c9e0dc"
+              },
+              "03": {
+                "sha256": "3f4177fa6cd1f152add3a5b8b7d5c11e732885de6830d37383750b90681dcb36",
+                "bytes": 24443,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  93,
+                  101,
+                  247
+                ],
+                "pixelSha256": "ab8140b657115e22834b40f5fb1bfcdd1cce13863b01beb5f3f05fb1a41cc5cb"
+              },
+              "04": {
+                "sha256": "4ccc47c9e8bba93c9e0ab98009c203695c9a390f53ed1ee80ab694d0d0d3b73f",
+                "bytes": 24540,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  93,
+                  99,
+                  247
+                ],
+                "pixelSha256": "10366c375c176bfd9ec9bf6516135ccaab0a76a0bf6044f4c7d4ef2ab6db9255"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -19449,7 +19518,66 @@
           }
         }
       },
-      "equipmentRigId": "humanoid-m-v1"
+      "equipmentRigId": "humanoid-m-v1",
+      "sources": {
+        "idle": {
+          "sourceSha256": "da437149a5dcf71decdde767887a15fba0cff9e5779b442dd7d23387ba84653d",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            654,
+            21,
+            1010,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/caballero/m/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET / EXACT canonical pose registration. IMAGE 2 defines ONLY CABALLERO MALE identity, outfit and face. Redraw the four figures of IMAGE 1 as an advanced armored knight, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip and wrist orientation, elbows and limb poses of IMAGE 1. Action idle. Young adult male knight: short tousled ash-brown hair and an open-faced steel brow helm leaving the whole face readable, determined expression. Heavy articulated silver and gunmetal plate armor with restrained warm bronze-gold edging, rounded layered pauldrons, steel breastplate over dark brown padded underlayers, leather belt, modest dark slate-blue split waist cloth, armored greaves and sturdy steel-toed brown boots. Discreet articulated brown/steel fingerless gauntlets end before the exact visible fingers. Athletic but EXACT same body skeleton, height and head size as the canonical reference. No weapon, shield, sword, sheath or cloak. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, not the low resolution of IMAGE 2. Same identity and outfit across all four figures. Empty hands in every pose; equipment and effects will use existing shared sprite layers. Remove the sword and shield visible in the identity reference. No Novato scarf, patched trousers or Novato face. Keep cuffs clear of the hand centers. Garments may follow each pose but must not move hands or enlarge the skeleton. No props, shadows, labels, grid, extra views or background. Preserve all headroom and margins of IMAGE 1; do NOT fill or recenter the canvas. Every whole figure remains inside its respective quarter.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "canonicalPoseHashes": [
+            "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+            "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+            "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+            "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
+        }
+      },
+      "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex"
     },
     {
       "classId": "caballero",
@@ -20603,7 +20731,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Wait for the user to verify the integrated Novato/Tier 1 sprites and equipment in the game. Address visual feedback before producing more classes.",
+  "nextTask": "Continue Tier 2 in class order: Caballero, Duelista, Sacerdote, Monje, Cazador, Explorador, Elementalista, Brujo; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
