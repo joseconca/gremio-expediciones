@@ -1,0 +1,51 @@
+{
+  "classId": "novato",
+  "sex": "m",
+  "frameSize": [
+    128,
+    256
+  ],
+  "remoteBranch": "creacion-sprite-sheets",
+  "remoteHeadVerified": "91bed37139bde910c679c7ffdcefbe45b56d8c55",
+  "dodge": {
+    "localFrames": 4,
+    "qaPerFrame": true,
+    "technicalStatus": "passed",
+    "visualReview": "pending",
+    "remoteCommitted": false
+  },
+  "block_shield": {
+    "localFrames": 4,
+    "qaPerFrame": true,
+    "technicalStatus": "passed",
+    "visualReview": "pending",
+    "remoteCommitted": false
+  },
+  "nextRemoteAction": "novato-m-dodge-01",
+  "publicationScript": {
+    "path": "apply_recovery.py",
+    "validatedAgainstTestRepository": true,
+    "commitsPerAction": 2,
+    "pushAfterEveryCommit": true,
+    "remoteShaVerificationAfterEveryPush": true,
+    "checkpointSectionsPreserved": true,
+    "duplicateFramesRejected": true,
+    "mockRepositorySelfTest": "passed-2026-10-24"
+  },
+  "postBatchNextAction": "novato-m-attack_sword-01 (after Dodge and Block are published)",
+  "lastLocalQa": {
+    "dodge": {
+      "framesPassed": 4,
+      "uniqueSha256": 4,
+      "dimensions": "128x256",
+      "realTransparency": true
+    },
+    "block_shield": {
+      "framesPassed": 4,
+      "uniqueSha256": 4,
+      "dimensions": "128x256",
+      "realTransparency": true
+    }
+  },
+  "publicationStatus": "not-yet-published; remote branch still at 91bed37139bde910c679c7ffdcefbe45b56d8c55"
+}
