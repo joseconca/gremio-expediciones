@@ -2107,7 +2107,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/f/frames",
       "audit": {
-        "validFrames": 32,
+        "validFrames": 36,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -2117,7 +2117,8 @@
           "dodge",
           "block_shield",
           "attack_sword",
-          "attack_axe"
+          "attack_axe",
+          "attack_spear"
         ],
         "actions": {
           "idle": {
@@ -2681,7 +2682,74 @@
             "distinctFrames": 4
           },
           "attack_spear": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "bytes": 25889,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  93,
+                  113,
+                  248
+                ],
+                "pixelSha256": "5e4eb45ffbd9815ca3686959f6845af6ed7afc9a4c3997c7c158b1dd2c7ae224"
+              },
+              "02": {
+                "sha256": "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "bytes": 25133,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  93,
+                  100,
+                  248
+                ],
+                "pixelSha256": "d18b138a7605b3ec378622314f8b9cb21567300d6340d2264310f1b6d9e8c0e7"
+              },
+              "03": {
+                "sha256": "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "bytes": 24832,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  93,
+                  113,
+                  248
+                ],
+                "pixelSha256": "5d55ea0bc2f93fd763a7f4581bcb5341c5b7dd391d88e2cf0cf0f6c4c1b62563"
+              },
+              "04": {
+                "sha256": "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0",
+                "bytes": 25877,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  93,
+                  113,
+                  248
+                ],
+                "pixelSha256": "d81bb5ba9a125b1b2ca6709a27a3bf381c55c14a6f38801359c1df794072b8c8"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_dagger": {
             "status": "missing"
@@ -2919,6 +2987,33 @@
           "prompt": "Exactly FOUR complete separated full-body animation poses of the SAME FEMALE Novato from reference, four evenly spaced equal cells in ONE horizontal transparent strip. Preserve exact female face, brown eyes, chestnut high ponytail and bangs, burgundy scarf, ivory rolled sleeve shirt fully covering torso, brown leather cross harness belt pouch fingerless gloves and boots, patched blue trousers. Identical crisp painted pixel-inspired RPG rendering, proportions, head size, costume, camera, lighting. Facing RIGHT in three-quarter view always, common ground line, upright height about same as reference across all poses, ponytail stays near shoulders. Empty hands for equipment overlay. Compact tall narrow silhouettes, feet and elbows close, no wide lunges or horizontal arm stretches; foreshorten limbs into right/depth. Generous transparent margin around hair scarf fingers boots and between figures. No weapon, shield, equipment, props, effects, shadows, labels or grid. AXE chop with imaginary one-hand axe: 1 empty right gripping fist beside shoulder; 2 raise bent right arm just over head, left hand guards chest; 3 compact downward chop right fist ends just before belt, knees flex; 4 recover grip toward shoulder. No axe or equipment drawn.\n",
           "visualStatus": "review-pending",
           "equipmentStatus": "layer-test-pending"
+        },
+        "attack_spear": {
+          "sourceSha256": "a7663346935eff56f9c6e8e2cc5c3d708372b27e10a691952bf004ec8a9f1d91",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "commonCrop": [
+            644,
+            20,
+            1069,
+            693
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            93
+          ],
+          "alphaThreshold": 128,
+          "method": "shared crop and scale, no per-frame centering or resizing",
+          "scalePolicy": "fixed-across-actions",
+          "sourcePath": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+          "generator": "built-in imagegen",
+          "referencePath": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "prompt": "Exactly FOUR complete separated full-body animation poses of the SAME FEMALE Novato from reference, four evenly spaced equal cells in ONE horizontal transparent strip. Preserve exact female face, brown eyes, chestnut high ponytail and bangs, burgundy scarf, ivory rolled sleeve shirt fully covering torso, brown leather cross harness belt pouch fingerless gloves and boots, patched blue trousers. Identical crisp painted pixel-inspired RPG rendering, proportions, head size, costume, camera, lighting. Facing RIGHT in three-quarter view always, common ground line, upright height about same as reference across all poses, ponytail stays near shoulders. Empty hands for equipment overlay. Compact tall narrow silhouettes, feet and elbows close, no wide lunges or horizontal arm stretches; foreshorten limbs into right/depth. Generous transparent margin around hair scarf fingers boots and between figures. No weapon, shield, equipment, props, effects, shadows, labels or grid. SPEAR thrust with imaginary shaft: 1 empty right gripping fist at lower ribs and left gripping hand a short forearm length ahead near chest, hands separately visible; 2 right fist pulls back slightly, left hand near sternum; 3 both fists advance a short distance toward right/depth, still clearly separated along imaginary shaft, elbows bend and foreshorten, feet close; 4 retract to ready. No spear visible. Do not clasp hands together.\n",
+          "visualStatus": "review-pending",
+          "equipmentStatus": "layer-test-pending"
         }
       },
       "frameProvenance": {
@@ -3048,6 +3143,22 @@
         },
         "attack_axe/04": {
           "source": "sources.attack_axe",
+          "frame": 4
+        },
+        "attack_spear/01": {
+          "source": "sources.attack_spear",
+          "frame": 1
+        },
+        "attack_spear/02": {
+          "source": "sources.attack_spear",
+          "frame": 2
+        },
+        "attack_spear/03": {
+          "source": "sources.attack_spear",
+          "frame": 3
+        },
+        "attack_spear/04": {
+          "source": "sources.attack_spear",
           "frame": 4
         }
       },
