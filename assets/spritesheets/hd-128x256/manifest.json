@@ -21020,7 +21020,7 @@
     "runtimePromotion": "authorized-by-user-and-integrated"
   },
   "runtimeIntegration": {
-    "status": "integrated-awaiting-user-visual-verification",
+    "status": "published-to-main-awaiting-user-gameplay-verification",
     "authorization": "User explicitly requested incorporation into the game after equipment/body compatibility review.",
     "publicRoot": "public/sprites/hd-v1",
     "classes": [
@@ -21090,12 +21090,14 @@
       "retainedImageCacheLimit": 16
     },
     "mainPromotion": {
-      "status": "awaiting-specific-user-approval",
+      "status": "merged-and-published",
       "pullRequest": "https://github.com/joseconca/gremio-expediciones/pull/3",
-      "reason": "Automatic approval review rejected direct publication to main and requires explicit permission for the principal branch.",
       "validatedCommit": "b4715b37770cd672acd75272b1a8f2fc1bde2c16",
       "githubSpriteValidation": "https://github.com/joseconca/gremio-expediciones/actions/runs/40234474400",
-      "remoteRuntimePngsVerified": 86
+      "remoteRuntimePngsVerified": 86,
+      "authorization": "User explicitly authorized merging PR #3 and publishing to main.",
+      "mergeCommit": "0b1afefbb88fc7024c3d9959a13247f467ce4329",
+      "previousApprovalRequirement": "Automatic approval review rejected direct publication to main and requires explicit permission for the principal branch."
     }
   }
 }
