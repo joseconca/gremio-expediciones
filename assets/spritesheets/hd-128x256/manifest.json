@@ -2107,14 +2107,15 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/novato/f/frames",
       "audit": {
-        "validFrames": 20,
+        "validFrames": 24,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
           "hurt",
           "use_consumable",
-          "dodge"
+          "dodge",
+          "block_shield"
         ],
         "actions": {
           "idle": {
@@ -2468,7 +2469,74 @@
             "distinctFrames": 4
           },
           "block_shield": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "78f50adf1b9160267132cab30dcb3c6b9f52d478c45661a7538effd431036e51",
+                "bytes": 25480,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  93,
+                  111,
+                  248
+                ],
+                "pixelSha256": "56f23786d6dba6515461e0be639ad049425205bf094e358a757867e3a799643e"
+              },
+              "02": {
+                "sha256": "a411cde4a2c2d92380d227042031444c460b3b6036ce7abdd1646078ebbac89a",
+                "bytes": 25752,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  93,
+                  111,
+                  248
+                ],
+                "pixelSha256": "f45f1928354b6b3f8f632eb301e6359d67482b259f3f3e7484f2ae97bf223d38"
+              },
+              "03": {
+                "sha256": "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
+                "bytes": 23823,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  105,
+                  103,
+                  248
+                ],
+                "pixelSha256": "2d521bd7e68c4e01787a8ba47727f7fd3206defdb936084f23e856ed9b79f8a9"
+              },
+              "04": {
+                "sha256": "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3",
+                "bytes": 25258,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  93,
+                  99,
+                  248
+                ],
+                "pixelSha256": "eed6bf83c20eff218a5debdbd19b1063fc75ce12e0fb7ed7ac36e58c35e444a2"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_sword": {
             "status": "missing"
@@ -2634,6 +2702,33 @@
           "prompt": "Exactly FOUR complete separated full-body animation poses of the SAME FEMALE Novato from reference, four evenly spaced equal cells in ONE horizontal transparent strip. Preserve exact female face, brown eyes, chestnut high ponytail and bangs, burgundy scarf, ivory rolled sleeve shirt fully covering torso, brown leather cross harness belt pouch fingerless gloves and boots, patched blue trousers. Identical crisp painted pixel-inspired RPG rendering, proportions, head size, costume, camera, lighting. Facing RIGHT in three-quarter view always, common ground line, upright height about same as reference across all poses, ponytail stays near shoulders. Empty hands for equipment overlay. Compact tall narrow silhouettes, feet and elbows close, no wide lunges or horizontal arm stretches; foreshorten limbs into right/depth. Generous transparent margin around hair scarf fingers boots and between figures. No weapon, shield, equipment, props, effects, shadows, labels or grid. DODGE: 1 ready compact stance; 2 shift weight back with knees flexed, hands guarding face; 3 duck down and lean slightly back, head lower by about one head height while keeping anatomy same size, elbows tucked; 4 rise back to guard. No somersaults, no wide lunge, same scale during crouch.\n",
           "visualStatus": "review-pending",
           "equipmentStatus": "layer-test-pending"
+        },
+        "block_shield": {
+          "sourceSha256": "1a8ec324045a3429d657ee6e3397cf8cd6ee72a71b3b7a384613ce315c8b1bb5",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "commonCrop": [
+            621,
+            24,
+            1036,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            16,
+            93
+          ],
+          "alphaThreshold": 128,
+          "method": "shared crop and scale, no per-frame centering or resizing",
+          "scalePolicy": "fixed-across-actions",
+          "sourcePath": "assets/spritesheets/hd-128x256/novato/f/source/block_shield-reference.png",
+          "generator": "built-in imagegen",
+          "referencePath": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "prompt": "Exactly FOUR complete separated full-body animation poses of the SAME FEMALE Novato from reference, four evenly spaced equal cells in ONE horizontal transparent strip. Preserve exact female face, brown eyes, chestnut high ponytail and bangs, burgundy scarf, ivory rolled sleeve shirt fully covering torso, brown leather cross harness belt pouch fingerless gloves and boots, patched blue trousers. Identical crisp painted pixel-inspired RPG rendering, proportions, head size, costume, camera, lighting. Facing RIGHT in three-quarter view always, common ground line, upright height about same as reference across all poses, ponytail stays near shoulders. Empty hands for equipment overlay. Compact tall narrow silhouettes, feet and elbows close, no wide lunges or horizontal arm stretches; foreshorten limbs into right/depth. Generous transparent margin around hair scarf fingers boots and between figures. No weapon, shield, equipment, props, effects, shadows, labels or grid. BLOCK using later separate shield: 1 left forearm raised in front of chest, empty left grip, right hand close to waist; 2 brace left forearm higher, shoulder set; 3 absorb impact with knees bent slightly and torso recoiling, left empty grip steady at chest; 4 recover to upright guard. No shield drawn. Keep left hand visible for grip anchor.\n",
+          "visualStatus": "review-pending",
+          "equipmentStatus": "layer-test-pending"
         }
       },
       "frameProvenance": {
@@ -2715,6 +2810,22 @@
         },
         "dodge/04": {
           "source": "sources.dodge",
+          "frame": 4
+        },
+        "block_shield/01": {
+          "source": "sources.block_shield",
+          "frame": 1
+        },
+        "block_shield/02": {
+          "source": "sources.block_shield",
+          "frame": 2
+        },
+        "block_shield/03": {
+          "source": "sources.block_shield",
+          "frame": 3
+        },
+        "block_shield/04": {
+          "source": "sources.block_shield",
           "frame": 4
         }
       }
