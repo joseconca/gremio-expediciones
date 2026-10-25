@@ -23915,8 +23915,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "b1211e1fc3f3304c79b2cc53084bf982a7480b9ffa8f007d58de15489ecf8c1c",
-                "bytes": 25487,
+                "sha256": "7c10a5ea4e71ad49b4e5187d2cff13a1fa105592eb39532d4bce7f3b38031c72",
+                "bytes": 25777,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -23928,27 +23928,27 @@
                   109,
                   248
                 ],
-                "pixelSha256": "f06903e515aa4b7190412ed7f6a31e1f25b34b795fa7a324831e09cef16426ef"
+                "pixelSha256": "04161b4e15f0ba96aa07aa4d4dfd0b1b9ffd872f1a08e7f12ef7ab6ae9f55747"
               },
               "02": {
-                "sha256": "39b49e478f3998d26a843e96ebe494f3f4e346e5c52204fd20678bd7128e7c8a",
-                "bytes": 24484,
+                "sha256": "1eaa641777f3358b06595f8c1be98c638b145482bde21f1fce3caf9767fc4777",
+                "bytes": 24755,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  13,
-                  92,
+                  12,
+                  91,
                   104,
                   248
                 ],
-                "pixelSha256": "36763951f076e75afd1e9fa64869f5dc4a0591114944dfa264732bea7b12bc77"
+                "pixelSha256": "760fb37715d50ea868b7eb7e538fbfc242fef5fca4cde0aee3f53bdbea61e498"
               },
               "03": {
-                "sha256": "ef333069a6d64ccf22f9693974a1b91dd743b994bd2a5985ba12e7424bfc73b1",
-                "bytes": 25522,
+                "sha256": "581ece44336def6cd9f5c0961dc1585076730c9073459c512c1d2249de763c18",
+                "bytes": 24889,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -23956,27 +23956,27 @@
                 ],
                 "bbox": [
                   9,
-                  92,
-                  114,
+                  91,
+                  113,
                   248
                 ],
-                "pixelSha256": "b294559d22fc031ead381b706bb6940cd63043266b04bcce2ad9b2ecf3dfe026"
+                "pixelSha256": "7900ed732d7a9420c93452c9075033b7cae5bdd9ee0274155f3f4fa37007ccc8"
               },
               "04": {
-                "sha256": "8bf1686fb494869645d4ef29aea6436e52aaa48222f97fd96f67de55a8dbfafb",
-                "bytes": 25061,
+                "sha256": "1ca692042b0aa08b23dad9c39f6b996f2294163d1694ece29c7935d23e59d97a",
+                "bytes": 25361,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  15,
-                  92,
-                  109,
+                  14,
+                  91,
+                  108,
                   248
                 ],
-                "pixelSha256": "80f37caea3dae656f0ee8e7f0a6ebe5617639ff97cfd69cfb1fda20bf1cb2966"
+                "pixelSha256": "45a124e8a976394413313d46e4bd8a41d33e47a7c0816099bdd440e1a5ec5e97"
               }
             },
             "distinctFrames": 4
@@ -24465,7 +24465,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_spear": {
-          "sourceSha256": "531755705aea8ce1ae38e1949095d0eb4cc88cdbc8d7be42306164555f520c90",
+          "sourceSha256": "2a2e1ca09b295a76ab6e4445c6cf1dd3fa0becf1cef2b1062181d800af6d74e2",
           "sourceDimensions": [
             2172,
             724
@@ -24490,9 +24490,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/duelista/m/source/attack_spear-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/duelista/m/source/attack_spear-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY DUELISTA MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_spear. Young adult male duelist: short swept spiky red-auburn hair, confident sharp face, fitted crimson long split fencing coat with black leather panels and restrained warm bronze trim, light high-collar inner shirt, dark fitted trousers, red-brown leather belt and boots, small brown fingerless gloves. Slim athletic canonical skeleton; no cape, rapier, sword, dagger or scabbard. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (235,322), other hand (444,240); figure 2: primary contact (778,327), other hand (904,275); figure 3: primary contact (1417,279), other hand (1586,235); figure 4: primary contact (1855,335), other hand (2099,261). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. For use_consumable, pose ONE has a bent near elbow and a fist AT THE BELT, never both arms idle. Four figures must keep the exact Novato limb arrangement.",
+          "prompt": "Precise body pose correction to IMAGE 1, a transparent four-pose red-coated Duelista strip. Change ONLY FIGURE THREE's NEAR ARM, the one currently bent at the belt. Extend this near forearm FORWARD AND UP across the chest: move its closed fist center from about (1310,325) to (1417,279) on the full 2172x724 canvas. The fist must end visibly to the RIGHT of the breastbone, below and to the left of the already extended far fist at (1586,235), so both hands can grip one diagonal spear shaft. Near elbow remains at left edge of torso, forearm crosses chest horizontally upwards. Keep far arm at (1586,235) and every other pixel of the other three figures, heads, coat, feet and figure roots unchanged. EMPTY hands with no spear or any prop, actual transparent background, four full body figures, same exact art quality.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
@@ -24500,7 +24500,47 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "531755705aea8ce1ae38e1949095d0eb4cc88cdbc8d7be42306164555f520c90",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/duelista/m/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY DUELISTA MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_spear. Young adult male duelist: short swept spiky red-auburn hair, confident sharp face, fitted crimson long split fencing coat with black leather panels and restrained warm bronze trim, light high-collar inner shirt, dark fitted trousers, red-brown leather belt and boots, small brown fingerless gloves. Slim athletic canonical skeleton; no cape, rapier, sword, dagger or scabbard. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (235,322), other hand (444,240); figure 2: primary contact (778,327), other hand (904,275); figure 3: primary contact (1417,279), other hand (1586,235); figure 4: primary contact (1855,335), other hand (2099,261). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. For use_consumable, pose ONE has a bent near elbow and a fist AT THE BELT, never both arms idle. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
+                "0fd9a42095cd1675a9044ac97a3373f187b949983c002d31bc6e8418789b3ac0",
+                "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
+                "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_dagger": {
           "sourceSha256": "8cda48c62086c85adff43515033ae6b67439e7c15d0ac6208392161aa5f1638a",
