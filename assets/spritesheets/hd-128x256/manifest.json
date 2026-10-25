@@ -27475,8 +27475,40 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "ad7b9a6994fb95c1a217fe4050314af3f13dc6e49a4af9d4206b6c3d28c62213",
-                "bytes": 26942,
+                "sha256": "4ea92e211de0f0d3c1de08777d5f2b187ec7634d665e6f39893e9914f2802b44",
+                "bytes": 26911,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  93,
+                  110,
+                  248
+                ],
+                "pixelSha256": "d211fcb3ecf4aee6240d9f7e509efa974328197f769a8744bf62c43d8279c67f"
+              },
+              "02": {
+                "sha256": "884758079dbfe45bbe34dc71539db29191fc6b5398172707829a24e4e123b215",
+                "bytes": 24756,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  92,
+                  109,
+                  248
+                ],
+                "pixelSha256": "d896d78816f6a1d7bec19e4c8c036d5844d52a37df46c9e341d6726dccdb9dad"
+              },
+              "03": {
+                "sha256": "c54f439ae0a22c57cb7f86914a4ea849d3c6805080e79b8f73d652b16400c7ab",
+                "bytes": 25687,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -27485,58 +27517,26 @@
                 "bbox": [
                   11,
                   92,
+                  118,
+                  248
+                ],
+                "pixelSha256": "0c5cf59e9c5f2f5393227d9f9da46e43ad2640be96d3bced7783e4f6ca5b4b7d"
+              },
+              "04": {
+                "sha256": "7162f7ad31ab279fc81ba5500afa08a4e27d15d9c8f1817ad5f8fdae297aeae5",
+                "bytes": 25743,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  92,
                   112,
                   248
                 ],
-                "pixelSha256": "410c81818385d9dbbd394edba03bab5e7b24d34b166a52df39de6a1ad3a20802"
-              },
-              "02": {
-                "sha256": "f7ca81380ce7d60258fbf97f13f9e9fec6be505adfdfadc3486af22a28ff01cc",
-                "bytes": 25896,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  13,
-                  92,
-                  109,
-                  248
-                ],
-                "pixelSha256": "3c12e6090e3609f4196289c62652365b4d15a5a285c214ca140b33f52633d55c"
-              },
-              "03": {
-                "sha256": "d948b6e65ba47ad9389bf6e6ad685da1768709cee36e036f1618202e38eddfd3",
-                "bytes": 26777,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  13,
-                  92,
-                  116,
-                  248
-                ],
-                "pixelSha256": "13f6315c13260ea78a6dd332af9163991f94adcfc41a675f9961b32481f05e1b"
-              },
-              "04": {
-                "sha256": "ae42c87b09a25692a843e89c48259fe2230e8df82644e75291983bdceff7f38d",
-                "bytes": 26218,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  14,
-                  92,
-                  108,
-                  248
-                ],
-                "pixelSha256": "11ce821d522a5d2cb26fc5d380c2920f7ec912fea481b44236ab259ec3427356"
+                "pixelSha256": "e5faf378d0c4c27c7022510de89d4b3d346c5a4434a219e0b1c70e0ee8e175f3"
               }
             },
             "distinctFrames": 4
@@ -27797,7 +27797,7 @@
           ]
         },
         "walk": {
-          "sourceSha256": "28400e2dcda7b04f6ea440e0dd90cec2fe2d10c01c255b703f5aa190795a874a",
+          "sourceSha256": "961d738498107b2a5af5908ad6ef3dd5cb014aa66623441a63e17fc5465f0320",
           "sourceDimensions": [
             2172,
             724
@@ -27822,7 +27822,7 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/sacerdote/m/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/sacerdote/m/source/walk-reference-v2.png",
           "generator": "built-in imagegen",
           "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY SACERDOTE MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action walk. Young adult male priest: short chestnut brown hair, calm benevolent face, substantial ivory clerical robe and split tabard with warm gold edging, long muted rust-red stole, cream high collar, layered cream sleeves ending before visible hands, leather waist belt with modest brass clasp, brown boots and discreet brown fingerless gloves. Richer Tier 2 fabric layers than Acolito but exact canonical body scale. No staff, book, chalice, halo or magical effect. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (140,414), other hand (418,409); figure 2: primary contact (692,418), other hand (909,375); figure 3: primary contact (1239,414), other hand (1470,370); figure 4: primary contact (1795,440), other hand (2078,414). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
@@ -27832,7 +27832,47 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "28400e2dcda7b04f6ea440e0dd90cec2fe2d10c01c255b703f5aa190795a874a",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/sacerdote/m/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY SACERDOTE MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action walk. Young adult male priest: short chestnut brown hair, calm benevolent face, substantial ivory clerical robe and split tabard with warm gold edging, long muted rust-red stole, cream high collar, layered cream sleeves ending before visible hands, leather waist belt with modest brass clasp, brown boots and discreet brown fingerless gloves. Richer Tier 2 fabric layers than Acolito but exact canonical body scale. No staff, book, chalice, halo or magical effect. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (140,414), other hand (418,409); figure 2: primary contact (692,418), other hand (909,375); figure 3: primary contact (1239,414), other hand (1470,370); figure 4: primary contact (1795,440), other hand (2078,414). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "hurt": {
           "sourceSha256": "3070585f9c1e750e14e798ceba4d54cdc3157a9fe77e5253b44cd13dd5a4da85",
