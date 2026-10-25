@@ -21393,14 +21393,15 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/caballero/f/frames",
       "audit": {
-        "validFrames": 20,
+        "validFrames": 24,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
           "hurt",
           "use_consumable",
-          "dodge"
+          "dodge",
+          "block_shield"
         ],
         "actions": {
           "idle": {
@@ -21754,7 +21755,74 @@
             "distinctFrames": 4
           },
           "block_shield": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "ff50b115cd8f98739140f3226932c7d5336658b4106602dc8f6599d34d59bb7b",
+                "bytes": 26800,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  29,
+                  91,
+                  111,
+                  248
+                ],
+                "pixelSha256": "fcbdefe32af55187a0d3c12f8890f44745013d933495c3ff9fd8462c6ad20956"
+              },
+              "02": {
+                "sha256": "3ccacae224a53db093f7372b871d4f026b94e791c91698bf3dbe346713bfd345",
+                "bytes": 27134,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  91,
+                  111,
+                  248
+                ],
+                "pixelSha256": "872b6e91b4753a6219e811fce631ab39c7c2fafecd41f797edc2fc0dd0e08728"
+              },
+              "03": {
+                "sha256": "fd846abc823dfebebb85eb71161d7c35d287e91326bb0193c7fa7423f9405a79",
+                "bytes": 25113,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  104,
+                  103,
+                  248
+                ],
+                "pixelSha256": "a3fbde6d185eda7a1dc34d7eeaed63bfd54f9593e66472411d53c62845d0a2c8"
+              },
+              "04": {
+                "sha256": "8dae51fae1ee825accef4e5c8f118683971544cb3a16e17e537c11dde59eec8d",
+                "bytes": 26909,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  91,
+                  99,
+                  248
+                ],
+                "pixelSha256": "a97a52669046b1e601cb6e74fe701080b905f346eebb6fa59eae334ebe54014b"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_sword": {
             "status": "missing"
@@ -21976,6 +22044,44 @@
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "block_shield": {
+          "sourceSha256": "c03001226e8aac1cf93bb4758b188ae488640b2a8bf86548c2b4737a66408ce4",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            621,
+            24,
+            1036,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            16,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/caballero/f/source/block_shield-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY CABALLERO FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action block_shield. Young adult female knight: long golden blond high ponytail and soft bangs, open-faced steel browband, determined readable face. Heavy articulated silver and gunmetal plate armor with restrained bronze-gold edging, rounded layered pauldrons, fitted breastplate over dark brown padded underlayers, leather belt and modest dark slate-blue split waist cloth, armored greaves and steel-toed brown boots. Practical fully covered armor, small fingerless articulated gauntlets ending before the exact visible fingers. No weapon, scabbard, shield or cloak. Exact canonical female skeleton, height and head size. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (387,241); figure 2: primary contact (973,194); figure 3: primary contact (1499,302); figure 4: primary contact (2016,241). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. For use_consumable, pose ONE has a bent near elbow and a fist AT THE BELT, never both arms idle. Four figures must keep the exact Novato limb arrangement.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/block_shield-reference.png",
+          "canonicalPoseHashes": [
+            "78f50adf1b9160267132cab30dcb3c6b9f52d478c45661a7538effd431036e51",
+            "a411cde4a2c2d92380d227042031444c460b3b6036ce7abdd1646078ebbac89a",
+            "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
+            "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -22057,6 +22163,22 @@
         },
         "dodge/04": {
           "source": "sources.dodge",
+          "frame": 4
+        },
+        "block_shield/01": {
+          "source": "sources.block_shield",
+          "frame": 1
+        },
+        "block_shield/02": {
+          "source": "sources.block_shield",
+          "frame": 2
+        },
+        "block_shield/03": {
+          "source": "sources.block_shield",
+          "frame": 3
+        },
+        "block_shield/04": {
+          "source": "sources.block_shield",
           "frame": 4
         }
       },
