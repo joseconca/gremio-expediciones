@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "classId": "monje",
+  "sex": "m",
+  "actions": [
+    "idle",
+    "walk",
+    "hurt",
+    "use_consumable"
+  ],
+  "bodyHashes": {
+    "idle": [
+      "1fdc5cabf2e7846ccc01ba3acc246de667aaa8fab5d001910529d98872c3de4f",
+      "cdce6e54261ab2b4c23391646d688c04b69dc98bba460b593b11513a901cf268",
+      "661cc050a4c06b9460b143cf1de7b5bb501c6995d6cf315a4543a8d7ed0a9d80",
+      "f4d0a7704253a06cdd3d22fbb7d32226fed43083238326512702b4b74d02fef7"
+    ],
+    "walk": [
+      "deebbba111c93cb7bd4ff56225e655effd965417071fc7907bf903fc396a3091",
+      "4d4176b21a531e5ca2384e0556b5dee934c61b7417d1e9c9ca040716662da97c",
+      "1d42b245c4e136a14a974187842af45cb6598af6ced2f89a6e80383e16d41683",
+      "cada3a36b8a537995468ebe11550414e04271852fba235cdfebbb3086153bf8e"
+    ],
+    "hurt": [
+      "d8f6b2f81b61fa3dcf3bfa757f4dbcd9e88e2c2bbb528650f2aacbea4b7a72cb",
+      "a5a9e70936941b1941ee45d9aae38093716f1fb7ca35b6c03c8ad69413f03db3",
+      "8aebeed7c8389fd5e6e52c01ce65c7b152f5ac54d80fc13f364c0e760d5f3ed0",
+      "36411c49823b267e2af54325cc1cf594a8a6526b69c641463ad49dd2b3b93b31"
+    ],
+    "use_consumable": [
+      "4279eb4c77ffe2514e6db67d0d99e6c2f655e9a3d0510c7bdf6f76e0f568dfad",
+      "4ed29abe61d61dc6afcbceedf515963287e0306f1163c1a0b7435bc0b5a0a503",
+      "aab0b9e6ea8312ef92a32592408602ef5a38e480287279f4e2ad9f88cc6ab5e2",
+      "dabaf125ba2d81a2a3dbf4218a64b20593d404ec82a9221e8eb788388ef71609"
+    ]
+  },
+  "contactChecks": 388,
+  "warnings": [],
+  "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
+  "artisticApproval": "not-automatic"
+}
