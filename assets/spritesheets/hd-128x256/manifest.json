@@ -29661,7 +29661,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/sacerdote/f/frames",
       "audit": {
-        "validFrames": 56,
+        "validFrames": 60,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -29677,7 +29677,8 @@
           "attack_bow",
           "attack_staff",
           "attack_mace",
-          "attack_book"
+          "attack_book",
+          "attack_gloves"
         ],
         "actions": {
           "idle": {
@@ -30661,7 +30662,74 @@
             "distinctFrames": 4
           },
           "attack_gloves": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "e6945b75063259e383e02e629690ce13c431ce9f67085b7e2b28d1f078eaeefc",
+                "bytes": 27424,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  89,
+                  105,
+                  248
+                ],
+                "pixelSha256": "214e9a1b8bd8a596acb586adae49adcc6340e46e0c7e39cf2309bb6849292d2e"
+              },
+              "02": {
+                "sha256": "23a04e222c0fd032a76b2de2e5e0b9201f51ac7ab8b9fa56acbd059a1490117e",
+                "bytes": 28429,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  89,
+                  104,
+                  248
+                ],
+                "pixelSha256": "2f82926b19a2684d62dd7c3d5014ca7d8aa3383938daeb1af6d4231d0b6e4feb"
+              },
+              "03": {
+                "sha256": "63f3c528e2d5a22ba2eb50e025c6c372046ffdf81dd4ef9d2e53b11d0512bdad",
+                "bytes": 28245,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  89,
+                  116,
+                  248
+                ],
+                "pixelSha256": "119223ff420ac0a891940bfd215f99978976d477a1fd48a6b5f0563f04f6bb69"
+              },
+              "04": {
+                "sha256": "a82597e0c1c581da9da6f7370d4389b0852c581c5d2bd631ca133fc7bda21d0a",
+                "bytes": 27459,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  89,
+                  95,
+                  248
+                ],
+                "pixelSha256": "ea04469b698a122b802385e3a649fcd7de66b0ed25bab62e66c4d41fea62ab4a"
+              }
+            },
+            "distinctFrames": 4
           }
         }
       },
@@ -31318,6 +31386,44 @@
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_gloves": {
+          "sourceSha256": "15023cee889e18d20164c697830ba0e6d7d31cd09857926e18edb54b4e76ea8d",
+          "sourceDimensions": [
+            2170,
+            725
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            625,
+            17,
+            1080,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/sacerdote/f/source/attack_gloves-reference-v2.png",
+          "generator": "built-in imagegen",
+          "prompt": "Small costume-only edit of this four-figure female priest punching sprite strip. In ALL FOUR poses tuck the flaring LEFT edge of the robe and rust-red tail slightly closer to the legs, reducing its leftmost extent by30pixels on2172x724 canvas. Especially figureTHREE: the lower trailing left skirt must be narrower and stay20pixels farther RIGHT, with no change to the body roots, hair, fists, wrists, arms, feet, headscale or canvas. Preserve the exact punch poses and exact positions of all hands. Just trim the garment silhouette with naturally flowing folds. Keep complete boots and full hair visible. Same detailed ivory-gold robe and red stole, exactly four full figures, transparent background, no props.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
+          "canonicalPoseHashes": [
+            "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
+            "bc21f0517b9ace7b72e967c7e10c7c545df05e99f658515b97ca568f5ac474ff",
+            "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
+            "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -31543,6 +31649,22 @@
         },
         "attack_book/04": {
           "source": "sources.attack_book",
+          "frame": 4
+        },
+        "attack_gloves/01": {
+          "source": "sources.attack_gloves",
+          "frame": 1
+        },
+        "attack_gloves/02": {
+          "source": "sources.attack_gloves",
+          "frame": 2
+        },
+        "attack_gloves/03": {
+          "source": "sources.attack_gloves",
+          "frame": 3
+        },
+        "attack_gloves/04": {
+          "source": "sources.attack_gloves",
           "frame": 4
         }
       },
