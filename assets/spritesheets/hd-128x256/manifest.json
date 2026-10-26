@@ -35900,7 +35900,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/cazador/m/frames",
       "audit": {
-        "validFrames": 28,
+        "validFrames": 32,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -35909,7 +35909,8 @@
           "use_consumable",
           "dodge",
           "block_shield",
-          "attack_sword"
+          "attack_sword",
+          "attack_axe"
         ],
         "actions": {
           "idle": {
@@ -36403,7 +36404,74 @@
             "distinctFrames": 4
           },
           "attack_axe": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "9f101e56a80ba8438f72dbfaf84a69d5b69e0f48f5f06eb5d028b8e40423bf7e",
+                "bytes": 26311,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  101,
+                  109,
+                  249
+                ],
+                "pixelSha256": "e3f8f084f43cdc530fe469f0713d2be7d5adfac8168f95b666f40fa0544c1d3f"
+              },
+              "02": {
+                "sha256": "621ffff99773d20b0451d8370dfa925372a9e4dabdbf49e6219f06652da9a72e",
+                "bytes": 23632,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  112,
+                  116,
+                  248
+                ],
+                "pixelSha256": "c9f89bf5e4b867934fa1ff07f44131d10bebc36a785b8ae71f8fc6c2d5190d52"
+              },
+              "03": {
+                "sha256": "e11626f4e2b0542d9ceea434adacf22a0fe86a431fb663748a9218ea2961e23b",
+                "bytes": 22847,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  121,
+                  118,
+                  248
+                ],
+                "pixelSha256": "3238e0793ae05ba571896e61cc4882c9a165ee5a45c7f14af212ead21e9ca8fc"
+              },
+              "04": {
+                "sha256": "85a2b9044ebcdd39b009bfa16be14fa2391310f9b8014a0f825887b6688ca6a0",
+                "bytes": 24308,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  104,
+                  120,
+                  249
+                ],
+                "pixelSha256": "90974b6b7dc219de3f3bda52e8cbde4a26c005c82cec006958d7d2c602e74c69"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_spear": {
             "status": "missing"
@@ -36787,6 +36855,44 @@
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_axe": {
+          "sourceSha256": "60404ff887fa83ba67b8543cbec11bb8da5bcc5d49e9e08fb0d01bd7a098a809",
+          "sourceDimensions": [
+            2171,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            579,
+            42,
+            1045,
+            683
+          ],
+          "scale": 0.23,
+          "origin": [
+            10,
+            101
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/cazador/m/source/attack_axe-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY CAZADOR MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_axe. Young adult male hunter: shaggy chestnut-brown hair, keen focused face. Dark forest-green fitted hunter tunic and short split travelling cloak with hood DOWN behind the neck, muted olive panels and subtle tan-gold edging, brown leather chest straps and belt pouches, dark olive trousers, brown forearm bracers and small fingerless gloves, sturdy brown travel boots. No bow, quiver, arrows, traps, animal or dagger. Exact canonical skeleton and clear uncovered hands. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (210,72), other hand (371,285); figure 2: primary contact (966,433), other hand (918,307); figure 3: primary contact (1552,455), other hand (1452,338); figure 4: primary contact (2017,307), other hand (1848,246). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_axe-reference.png",
+          "canonicalPoseHashes": [
+            "682a330cdfbbd6bcfacc4d46ef31720e23129a82c4ecbc6d86067419022619e6",
+            "ebf63fb2782826250141ce2304dcb21499a70d4de29c8b97ebfca68db1287d08",
+            "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
+            "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -36900,6 +37006,22 @@
         },
         "attack_sword/04": {
           "source": "sources.attack_sword",
+          "frame": 4
+        },
+        "attack_axe/01": {
+          "source": "sources.attack_axe",
+          "frame": 1
+        },
+        "attack_axe/02": {
+          "source": "sources.attack_axe",
+          "frame": 2
+        },
+        "attack_axe/03": {
+          "source": "sources.attack_axe",
+          "frame": 3
+        },
+        "attack_axe/04": {
+          "source": "sources.attack_axe",
           "frame": 4
         }
       },
