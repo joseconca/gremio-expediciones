@@ -3,7 +3,12 @@
   "classId": "elementalista",
   "sex": "m",
   "actions": [
-    "idle"
+    "idle",
+    "walk",
+    "hurt",
+    "use_consumable",
+    "dodge",
+    "block_shield"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +16,39 @@
       "5871f026f19d22eb29ed0d185fac994358cd79ddd9b4b32349a68cb3213cc9a1",
       "d6af7d0bd6cd0a1e84d3d689805e985ee622066b145f25985da20837f8ecbc4e",
       "1fb875612b1049c294eb6b6e3379bf346ce96cbda5f0570b8d137c3a37fe1035"
+    ],
+    "walk": [
+      "1f536939073d03ed1e22c6fb6c1511695136a8066ae502629287ac295a27f8cb",
+      "01e9871d04564ffa5048e2909309959a880020e3e3c9091c14ade3a63b7b3d8a",
+      "52b1d0fbd25d74645932701aef6a6aa17d0e716f88b928b8741d1af4d9e50031",
+      "431df0ff21590f0ccb72740502231009c1354918fafde4eb768a2d0f4554e357"
+    ],
+    "hurt": [
+      "ba487f46b22dde873e115ae87789d93d400d76c1680fa2856938e8bddb74a207",
+      "8fa3118dd1723f2c6cd3a930f3dbaad96425337d0522d1fc5fc2c2f0802cca78",
+      "68acff5ef903f550d0a411cf0600c644dc89c9db88e8828dcc569ffc952f4c11",
+      "d0335ec1112fceadf4105b1b6a7ac117d34c3c1685f2d6c41dbd2325c746c64b"
+    ],
+    "use_consumable": [
+      "35090e9de2377be4d54f34283147b8050b8405b1465da64f1167b842e74c2432",
+      "42fd1a6b493f3c45a8febd6dacc9bcde9fabd992a2640894b30a08dfa0b104a4",
+      "f4b7a478cdb70154d7d90c45cda3340700fab0d52b91fe676f01291077175c91",
+      "a09488ad7b2e552453c5e3d9f738d3607ee8ffec9fe72b0772b5e0e495d8aa94"
+    ],
+    "dodge": [
+      "66e1f9ec241970e18bc77ad2022025902c1ce8262f302db925b1486ec43ff7d0",
+      "1f463b15d1016e2e7bfad67af199dec2b66bf33e6bb2754a1f0b6661b61306c0",
+      "48b062668227230788fa33e7e8a82db2aa7755c2023cefe19a65f04ad39144c1",
+      "b50a54802d5b2c24ce6d49047a170055df554697328cb27241043552c26e4882"
+    ],
+    "block_shield": [
+      "16124297e5b562a62a305bc92dbb9c8151f4a5b08c879b6711b76efecc58c86b",
+      "ad14797167a14bfdc8f4da08dd31b4d48790562a37007742f940c74e0c08567a",
+      "6e310c19782a5b100e99b5c948a22bcfea059bce3f3c5f7388109816c088b2cb",
+      "8b8cdc4addb4c5085fb57721843969ac0b2833ee3a83d3899ae99d0411059fd1"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 524,
   "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
