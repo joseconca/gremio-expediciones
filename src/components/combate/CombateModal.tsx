@@ -21,6 +21,7 @@ import HistorialCombate from "./HistorialCombate";
 import styles from "./combate-rpg.module.css";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 import { alturaCombatiente, limiteEscalaEnemigo, encajarEnemigo } from "@/lib/expediciones/escala-combate";
+import { compactarPareja } from "@/lib/expediciones/formacion-party";
 
 type AccionCombatePartyUI = "atacar" | "usar_habilidad" | "usar_objeto" | "escapar" | "cambiar_posicion";
 
@@ -92,7 +93,7 @@ function distribuirFormacionParty(
       resultado.push({ participante, x: columnas[posicion], y: nivelesY[indice] });
     });
   }
-  return resultado;
+  return compactarPareja(resultado, alto, ancho, alturaHeroe, minimoY, maximoY);
 }
 
 interface CombatePartyModalUI {

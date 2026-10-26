@@ -77,3 +77,8 @@ La party envía las comidas activas y los identificadores de pasivas equipadas p
 El aviso de espera/turno de party ocupa una franja de 24 px en el flujo entre escena y menú, sin superponerse al área de personajes. El menú se compacta a 180 px en móvil, 196 px en escritorio y 164 px en horizontal corto. Se verificó en móvil que los actores inferiores conservan 18 px de separación respecto a la franja.
 
 Héroes HD, héroes legacy y enemigos comparten `estiloSombraCombate`: proyección achatada hacia el fondo, origen en el centro inferior de los pies, sin inversión horizontal adicional. Se mantienen el frame, el equipo y la orientación del actor. Una prueba geométrica verifica que ambos pies permanecen fijos, la silueta se proyecta hacia arriba y conserva el orden izquierda/derecha.
+
+
+## Parejas centradas
+
+Las parties de dos se centran dentro del espacio útil y acortan su separación vertical. Si comparten carril o están próximos horizontalmente, se reserva la altura necesaria para el sprite y sus barras. Se conservan los carriles, el orden relativo, la escala y los datos tácticos; la formación de tres no se modifica. Verificado en móvil y escritorio y con pruebas para el mismo carril, carriles distintos y escenas pequeñas.
