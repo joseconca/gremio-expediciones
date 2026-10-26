@@ -61,3 +61,12 @@ Verificación: compilación de producción, TypeScript y lint; 35 pruebas de pan
 La formación vuelve a estar escalonada en profundidad. El menú de acciones gana 24 px útiles en móvil y 24 px respecto al menú de combate actual de escritorio; desaparece el bloque inferior de fichas. Siguen disponibles solo/party, móvil/escritorio, selección de enemigos, menús de habilidades y objetos, historial ampliable e Info. El botón de tamaño real facilita evaluar cada vista sin reducción.
 
 Es una propuesta con datos simulados: no modifica los componentes del combate real ni se ha publicado en main.
+
+
+## Integración aprobada de las barras superiores — 26 de octubre de 2026
+
+La revisión se aplica al combate real PvE solo/party y al asedio. `EstadoSobreActor` agrupa nombre, PV y los recursos de la clase sobre el sprite. Los iconos de efectos, comida y pasivas quedan fuera del recuadro en una fila transparente de altura fija, incluso sin efectos. Se ha comprobado en navegador que alternar un buff mantiene exactamente la posición y altura del recuadro y del actor.
+
+En móvil las tres posiciones usan coordenadas distintas de profundidad, manteniendo el valor táctico persistido. La distribución deja margen superior para las barras. Los enemigos normales se normalizan según la altura real de su atlas: estar junto a un borde ajusta su posición antes de reducirlos. Los bosses conservan su escala especial. El menú inferior queda dedicado a acciones e historial, con 202 px en móvil y 232 px en escritorio (174 px en horizontal corto).
+
+La party envía las comidas activas y los identificadores de pasivas equipadas para mostrar los indicadores de cada integrante. Se conservan acciones, restricciones por modo, turnos, recursos, cooldowns, objetivos, animaciones, estados, informes y recompensas. No requiere cambios de esquema ni migración de datos.

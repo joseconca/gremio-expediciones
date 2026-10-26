@@ -104,6 +104,8 @@ type ExpedicionPartyVista = {
       jugadorManaMaximo: number;
       cooldowns?: unknown;
       efectos?: unknown;
+      comidaActiva?: string | null;
+      pasivas?: { habilidadId: string; slot: string | null }[];
       usuario?: PersonaVista;
     }[];
   } | null;
@@ -1554,6 +1556,8 @@ export default function PanelParty() {
               jugadorManaActual: participante.jugadorManaActual,
               jugadorManaMaximo: participante.jugadorManaMaximo,
               efectos: participante.efectos,
+              comidaActiva: participante.comidaActiva,
+              pasivas: participante.pasivas,
             })),
             ultimaAccion: combatePartyDatos.ultimaAccion && typeof combatePartyDatos.ultimaAccion === "object"
               ? combatePartyDatos.ultimaAccion as AccionAnimadaCombate

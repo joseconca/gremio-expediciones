@@ -1,4 +1,4 @@
-.root{--dock-height:286px;--roster-height:124px;--roster-width:0px;color:#e6eaf1;font-family:Georgia,serif}
+.root{--dock-height:202px;--roster-height:0px;--roster-width:0px;color:#e6eaf1;font-family:Georgia,serif}
 .root header{background:#101e32eb;border-color:#a9946555}
 .info{font:12px Georgia,serif;color:#e5d2a7;padding:6px 10px;border:1px solid #758095;border-radius:3px;background:#17283e}
 .inlineStatus{display:none!important}
@@ -51,7 +51,14 @@
 .targetArrow{position:absolute;left:50%;top:-20px;color:#ffe0b7;font-size:17px;line-height:1;text-shadow:0 2px 4px #6e1717;z-index:30;pointer-events:none;animation:targetPulse 1.4s ease-in-out infinite}
 @keyframes targetPulse{0%,100%{transform:translateX(-50%) scale(.92)}50%{transform:translateX(-50%) scale(1.12)}}
 .siegeSprite{width:min(180px,34vw,38dvh)!important;height:min(180px,34vw,38dvh)!important}
-@media(min-width:768px){.root{--dock-height:208px;--roster-height:0px;--roster-width:36%}.roster{left:auto;width:var(--roster-width);height:100%;border-bottom:0;border-left:1px solid #b9aa7844}.commands{width:140px;flex-basis:140px;padding:6px}.commands button{font-size:14px}.content{padding:8px 12px}.name{font-size:11px;line-height:13px}.stat{font-size:8px;line-height:13px}.stat>b{font-size:9px}.card{min-height:36px;padding:4px 0}.history{font-size:13px}}
-@media(max-height:560px) and (min-width:640px){.root{--dock-height:174px;--roster-height:0px;--roster-width:36%}.roster{left:auto;width:var(--roster-width);height:100%}.commands{width:110px;flex-basis:110px}.siegeSprite{height:90px!important;width:90px!important}}
+@media(min-width:768px){.root{--dock-height:232px;--roster-height:0px;--roster-width:0px}.roster{left:auto;width:var(--roster-width);height:100%;border-bottom:0;border-left:1px solid #b9aa7844}.commands{width:140px;flex-basis:140px;padding:6px}.commands button{font-size:14px}.content{padding:8px 12px}.name{font-size:11px;line-height:13px}.stat{font-size:8px;line-height:13px}.stat>b{font-size:9px}.card{min-height:36px;padding:4px 0}.history{font-size:13px}}
+@media(max-height:560px) and (min-width:640px){.root{--dock-height:174px;--roster-height:0px;--roster-width:0px}.roster{left:auto;width:var(--roster-width);height:100%}.commands{width:110px;flex-basis:110px}.siegeSprite{height:90px!important;width:90px!important}}
 @media(prefers-reduced-motion:reduce){.targetArrow{animation:none;transform:translateX(-50%)}}
-@media(max-width:767px) and (min-height:561px){.root:not(:has(.team>.card:nth-child(2))){--roster-height:56px;--dock-height:218px}}
+
+
+.root [data-estado-actor] :global([role=progressbar]){min-width:12px}
+.root [data-combate-ancla]:has([role=tooltip]),.root div:has(>[data-estado-actor] [role=tooltip]){z-index:80!important}
+.root section:has(>[data-estado-actor]){overflow:visible}
+.root .targetArrow{top:-22px;left:calc(50% + 34px);z-index:70}
+.root [data-estado-actor] button{touch-action:manipulation}
+.root div:has(> [data-combate-ancla] > [data-estado-actor]){z-index:40}

@@ -11,8 +11,7 @@ import CapaEfectosCombate from "@/components/combate/animaciones/CapaEfectosComb
 import { calcularBonusDefensaMuralla } from "@/lib/expediciones/combate";
 import { CLASES } from "@/lib/progresion/clases";
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
-import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
-import PanelCombatientes from "./PanelCombatientes";
+import EstadoSobreActor from "./EstadoSobreActor";
 import HistorialCombate from "./HistorialCombate";
 import styles from "./combate-rpg.module.css";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
@@ -589,13 +588,7 @@ export default function AsedioModal({
                 </div>
 
               </div>
-                <div className="relative mt-1 min-h-6 w-full overflow-visible">
-                  <IndicadoresEfectosCombate
-                    efectos={esAtacante ? combate.efectos : combate.efectosDefensor}
-                    comidaPreparada={esAtacante ? (comidaActiva !== undefined ? comidaActiva : personaje.comidaPreparada) : null}
-                    habilidades={personaje.habilidades}
-                  />
-                </div>
+
 
               {danioVisible?.actor === "jugador" && (
                 <div
@@ -623,6 +616,12 @@ export default function AsedioModal({
                 }`}
                 data-combate-ancla="jugador"
               >
+                <EstadoSobreActor ficha={{ id: "jugador", nombre: personaje.nombre, claseId: personaje.profesionActivaId,
+                  hp: hpPropio, hpMaximo: hpMaximoPropio, energia: personaje.energiaActual, energiaMaxima: personaje.energiaMaxima,
+                  mana: personaje.manaActual, manaMaximo: personaje.manaMaximo, activo: miTurno }}
+                  efectos={esAtacante ? combate.efectos : combate.efectosDefensor}
+                  comida={esAtacante ? (comidaActiva !== undefined ? comidaActiva : personaje.comidaPreparada) : null} habilidades={personaje.habilidades}
+                  onInfo={() => { setPanelStatsRival("jugador"); setMostrarStatsRival(true); }} />
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "jugador").map((pulso, indice) => (
                   <div
                     key={`pulso-propio-${indice}-${pulso.tipo}`}
@@ -687,9 +686,7 @@ export default function AsedioModal({
                 </div>
 
               </div>
-                <div className="relative mt-1 min-h-6 w-full overflow-visible">
-                  <IndicadoresEfectosCombate efectos={esAtacante ? combate.efectosDefensor : combate.efectos} />
-                </div>
+
 
 {danioVisible?.actor === "enemigo" && (
                 <div
@@ -716,7 +713,10 @@ export default function AsedioModal({
                     : ""
                 }`}
                 data-combate-ancla="enemigo"
-              ><span className={styles.targetArrow} aria-hidden="true">▼</span><span className={styles.targetRing} aria-hidden="true" />
+              >
+                <EstadoSobreActor enemigo ficha={{ id: "enemigo", nombre: nombreRival, hp: hpRival, hpMaximo: hpMaximoRival, activo: !miTurno }}
+                  efectos={esAtacante ? combate.efectosDefensor : combate.efectos}
+                  onInfo={() => { setPanelStatsRival("rival"); setMostrarStatsRival(true); }} /><span className={styles.targetArrow} aria-hidden="true">▼</span><span className={styles.targetRing} aria-hidden="true" />
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "enemigo").map((pulso, indice) => (
                   <div
                     key={`pulso-rival-${indice}-${pulso.tipo}`}
@@ -806,11 +806,7 @@ export default function AsedioModal({
         {/* ====================================================== */}
 
         <section className={styles.dock}>
-          <PanelCombatientes onInfo={() => { setPanelStatsRival("jugador"); setMostrarStatsRival(true); }}
-            aliados={[{ id: "jugador", nombre: personaje.nombre, claseId: personaje.profesionActivaId,
-              hp: hpPropio, hpMaximo: hpMaximoPropio, energia: personaje.energiaActual, energiaMaxima: personaje.energiaMaxima,
-              mana: personaje.manaActual, manaMaximo: personaje.manaMaximo, activo: miTurno }]}
-            enemigos={[{ id: "enemigo", nombre: nombreRival, claseId: aparienciaRival?.profesionActivaId ?? claseRival, hp: hpRival, hpMaximo: hpMaximoRival, activo: !miTurno }]} />
+
           {/* ACCIONES */}
 
           <div className={styles.commands}>

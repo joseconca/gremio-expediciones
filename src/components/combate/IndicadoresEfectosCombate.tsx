@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import { obtenerHabilidadPorId } from "@/lib/habilidades";
 import { obtenerComidaTaberna } from "@/lib/comidasTaberna";
 import { leerEfectosCombate } from "@/lib/expediciones/estados-combate";
-import type { HabilidadPersonaje } from "@/store/useGameStore";
 import type { EstadoEfectoHabilidad, TipoEfectoTemporalHabilidad } from "@/lib/tiposJuego";
 
 type Indicador = {
@@ -82,7 +81,7 @@ export default function IndicadoresEfectosCombate({
 }: {
   efectos: unknown;
   comidaPreparada?: string | null;
-  habilidades?: HabilidadPersonaje[];
+  habilidades?: { habilidadId: string; slot?: string | null }[];
 }) {
   const indicadores: Indicador[] = leerEfectosCombate(efectos).map((efecto: EstadoEfectoHabilidad) => {
     const configuracion = CONFIGURACION_ESTADO[efecto.tipo];

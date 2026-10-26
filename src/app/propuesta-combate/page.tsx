@@ -29,10 +29,11 @@ function Placa({ nombre, hp, max, recurso, actual, aliado = false, boss = false,
   nombre: string; hp: number; max: number; recurso?: string; actual?: number; aliado?: boolean; boss?: boolean; efectos: unknown; comida?: string | null;
 }) {
   return <div className={`${styles.plate} ${aliado ? styles.allyPlate : styles.enemyPlate} ${boss ? styles.bossPlate : ""}`}>
-    <strong>{nombre}</strong>
+    <div className={styles.plateSurface}><strong>{nombre}</strong>
     <div className={styles.life} role="progressbar" aria-label={`Vida de ${nombre}`} aria-valuemin={0} aria-valuemax={max} aria-valuenow={hp}><i style={{ width: `${hp / max * 100}%` }} /></div>
     <div className={styles.values}>{hp}<small>/{max} PV</small></div>
     {recurso && <div className={styles.resource}><span>{recurso}</span><div className={recurso === "PM" ? styles.mana : styles.energy}><i style={{ width: "72%" }} /></div><b>{actual}</b></div>}
+    </div>
     <div className={styles.effects}><IndicadoresEfectosCombate efectos={efectos} comidaPreparada={comida} /></div>
   </div>;
 }
@@ -68,7 +69,7 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
       <div className={styles.turnNote}>◆ Turno de Aldric</div>
       {heroes.map((h, i) => {
         const size = movil ? 124 : 144;
-        const x = party ? (movil ? [130, 52, 130][i] : [400, 170, 300][i]) : ancho * 0.25;
+        const x = party ? (movil ? [155, 50, 102][i] : [400, 170, 300][i]) : ancho * 0.25;
         const foot = altoEscena * (party ? (movil ? [0.30, 0.55, 0.80][i] : [0.37, 0.59, 0.81][i]) : 0.56) + size / 2;
         return <div key={h.nombre} className={styles.actor} style={{ left: x, top: foot - size, width: size * 0.7, height: size, zIndex: 10 + i }}>
           <Placa nombre={h.nombre} hp={h.hp} max={h.max} recurso={h.clase === "mago" || h.clase === "acolito" ? "PM" : "EN"} actual={h.mp} aliado efectos={i === 0 ? EFECTOS_ALIADO : []} comida={i === 0 ? "carne-cazadora" : i === 1 ? "setas-arcanas" : null} />
@@ -80,8 +81,8 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
       {enemigos.map((id, i) => {
         const s = ENEMIGOS_HD[id];
         const radio = Math.max(s.anchor[0] - s.bounds[0], s.bounds[2] - s.anchor[0]);
-        const unit = Math.min((movil ? 124 : 144) / 170 * (s.boss ? 2 : 1), (movil ? (s.boss ? 110 : 60) : 235) / radio, (altoEscena * 0.58) / (s.anchor[1] - s.bounds[1]));
-        const x = enemigos.length > 1 ? (movil ? [255, 335, 255][i] : [780, 965, 690][i]) : ancho * 0.74;
+        const unit = Math.min((movil ? 124 : 144) / s.height * (s.boss ? 2 : 1), (movil ? (s.boss ? 110 : 95) : 235) / radio, (altoEscena * 0.58) / (s.anchor[1] - s.bounds[1]));
+        const x = enemigos.length > 1 ? (movil ? [235, 310, 272][i] : [780, 965, 690][i]) : ancho * 0.74;
         const foot = altoEscena * (enemigos.length > 1 ? (movil ? [0.30, 0.55, 0.80][i] : [0.42, 0.59, 0.81][i]) : 0.56) + s.height * unit / 2;
         return <div key={id} className={`${styles.actor} ${styles.enemy}`}
           style={{ left: x, top: foot - s.height * unit, width: Math.max(64, radio * unit * 1.2), height: s.height * unit, "--unidad-enemigo": `${unit}px`, zIndex: 10 + i } as CSSProperties}>
@@ -161,7 +162,7 @@ export default function PropuestaCombate() {
     const seleccion = VISTAS.find(v => v.id === vista) ?? VISTAS[3];
     return <div className={styles.fullscreen}><div style={{ width: seleccion.movil ? 390 : 1120, maxWidth: "100%" }}><Marco vista={seleccion} jefe={jefe} /></div><button className={styles.back} onClick={() => setPantallaCompleta(false)}>Volver a las vistas</button></div>;
   }
-  return <main className={styles.page}><div className={styles.intro}><Link href="/revision-sprites">← Revisión de sprites</Link><p className={styles.eyebrow}>PROPUESTA VISUAL · NO APLICADA AL JUEGO</p><h1>Vida y estados sobre cada combatiente.</h1><p>Propuesta sin publicar: vida y recursos encima de cada personaje, estados y comidas bajo las barras, y un menú de acciones más alto. Toca los iconos para consultar sus efectos. Los datos y las acciones son de demostración.</p></div>
+  return <main className={styles.page}><div className={styles.intro}><Link href="/revision-sprites">← Revisión de sprites</Link><p className={styles.eyebrow}>REVISIÓN VISUAL DEL COMBATE</p><h1>Vida y estados sobre cada combatiente.</h1><p>Vida y recursos encima de cada personaje, estados y comidas fuera del recuadro con espacio reservado, y un menú de acciones más alto. Toca los iconos para consultar sus efectos. Los datos y las acciones son de demostración.</p></div>
     <div className={styles.toolbar}><nav aria-label="Vistas de la propuesta">{[{ id: "todas", nombre: "Las cuatro vistas" }, ...VISTAS].map(v => <button key={v.id} aria-pressed={vista === v.id} onClick={() => setVista(v.id)}>{v.nombre}</button>)}</nav>
       <label>Encuentro <select aria-label="Encuentro" value={jefe} onChange={e => setJefe(e.target.value)}><option value="">Enemigos del sendero</option>{Object.entries(ENEMIGOS_HD).filter(([, s]) => s.boss).map(([id, s]) => <option key={id} value={id}>{s.name}</option>)}</select></label>
       <button onClick={() => setPantallaCompleta(true)}>Ver combate a tamaño real</button>

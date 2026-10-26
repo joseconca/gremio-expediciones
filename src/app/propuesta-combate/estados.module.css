@@ -23,3 +23,6 @@
 .mobile .plate,.mobile .allyPlate,.mobile .enemyPlate,.mobile .bossPlate{top:auto;bottom:calc(100% + 4px);left:50%;right:auto;transform:translateX(-50%);width:88px;padding:2px 4px}.mobile .plate>strong{font-size:9px;line-height:10px;margin-bottom:2px}.mobile .values{font-size:8px;line-height:10px}.mobile .resource{font-size:7px;line-height:9px}.mobile .effects button{width:18px;height:18px}.mobile .effects button img{width:12px;height:12px}.mobile .effects button>span:last-child{font-size:7px;height:10px;min-width:10px}.mobile .targetArrow{top:-75px}
 .effects :global([role=tooltip]){top:100%;bottom:auto;margin-top:6px}.mobile .effects :global([role=tooltip]){top:100%;bottom:auto}
 .fullscreen .previewHeading{display:none}.fullscreen .frame{border:0;border-radius:0}
+.plate,.mobile .plate,.bossPlate,.mobile .bossPlate{padding:0;background:none}
+.plateSurface{padding:3px 5px;background:#0b1c30b8;border-radius:2px}.plateSurface>strong{display:block;font-size:11px;line-height:12px;text-align:center;margin-bottom:2px}.mobile .plateSurface{padding:2px 4px}.mobile .plateSurface>strong{font-size:9px;line-height:10px}
+.effects,.mobile .effects{height:26px;min-height:26px;max-height:26px;padding-top:3px;background:none}.mobile .effects{height:24px;min-height:24px;max-height:24px;padding-top:2px}

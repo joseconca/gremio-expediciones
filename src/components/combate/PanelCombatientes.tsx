@@ -16,7 +16,7 @@ export function recursosVisibles(ficha: FichaCombatiente) {
   };
 }
 
-function Barra({ nombre, etiqueta, actual, maximo, tipo }: {
+export function Barra({ nombre, etiqueta, actual, maximo, tipo }: {
   nombre: string; etiqueta: string; actual: number; maximo: number; tipo: string;
 }) {
   const valor = Math.max(0, actual), max = Math.max(0, maximo);

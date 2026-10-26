@@ -16,11 +16,11 @@ import type { ObjetoInventario, ReglaObjetivoHabilidad, RecompensaMision } from 
 import { obtenerReglaObjetivoHabilidad } from "@/lib/expediciones/objetivos-combate";
 import { crearEnemigoLegacy, leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
-import PanelCombatientes from "./PanelCombatientes";
+import EstadoSobreActor from "./EstadoSobreActor";
 import HistorialCombate from "./HistorialCombate";
 import styles from "./combate-rpg.module.css";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
-import { alturaCombatiente, limiteEscalaEnemigo } from "@/lib/expediciones/escala-combate";
+import { alturaCombatiente, limiteEscalaEnemigo, encajarEnemigo } from "@/lib/expediciones/escala-combate";
 
 type AccionCombatePartyUI = "atacar" | "usar_habilidad" | "usar_objeto" | "escapar" | "cambiar_posicion";
 
@@ -54,14 +54,20 @@ interface ParticipanteCombatePartyUI {
   jugadorManaActual: number;
   jugadorManaMaximo: number;
   efectos?: unknown;
+  comidaActiva?: string | null;
+  pasivas?: { habilidadId: string; slot: string | null }[];
 }
 
 type AccionAnimadaPartyUI = AccionAnimadaCombate;
 
 function distribuirFormacionParty(
   participantes: ParticipanteCombatePartyUI[],
+  alto: number, alturaHeroe: number, ancho: number,
 ): { participante: ParticipanteCombatePartyUI; x: number; y: number }[] {
-  const columnas = { retaguardia: 22, centro: 50, mele: 78 } as const;
+  const columnas = { retaguardia: 30, centro: 56, mele: 76 } as const;
+  const minimoY = Math.min(48, (alturaHeroe / 2 + (ancho >= 768 ? 102 : 84)) / Math.max(1, alto) * 100);
+  const maximoY = Math.max(minimoY, 100 - (alturaHeroe / 2 + 18) / Math.max(1, alto) * 100);
+  const carrilesY = { mele: minimoY, retaguardia: (minimoY + maximoY) / 2, centro: maximoY };
   const grupos: Record<keyof typeof columnas, ParticipanteCombatePartyUI[]> = {
     retaguardia: [],
     centro: [],
@@ -80,13 +86,8 @@ function distribuirFormacionParty(
       Number(a.esLider) - Number(b.esLider) ||
       a.ordenTurno - b.ordenTurno,
     );
-    const nivelesY = grupo.length === 1
-      ? [50]
-      : grupo.length === 2
-        ? [31, 69]
-        : grupo.length === 3
-          ? [30, 50, 70]
-          : grupo.map((_, indice) => 30 + indice * (40 / Math.max(1, grupo.length - 1)));
+    const nivelesY = grupo.length === 1 ? [carrilesY[posicion]]
+      : grupo.map((_, indice) => minimoY + indice * (maximoY - minimoY) / Math.max(1, grupo.length - 1));
     grupo.forEach((participante, indice) => {
       resultado.push({ participante, x: columnas[posicion], y: nivelesY[indice] });
     });
@@ -196,7 +197,8 @@ export default function CombateModal({
     if (zonaEnemigosRef.current) observer.observe(zonaEnemigosRef.current);
     return () => observer.disconnect();
   }, []);
-  const tamanoHeroe = alturaCombatiente(escena.ancho, escena.alto, Boolean(partyMode));
+  const tamanoHeroe = alturaCombatiente(escena.ancho, escena.alto, Boolean(partyMode),
+    Math.min(3, Math.max(partyMode?.participantes.length ?? 1, Array.isArray(combate.enemigos) ? combate.enemigos.length : 1)));
 
   const faseCombateRef = useRef(combate.fase);
 
@@ -764,7 +766,7 @@ export default function CombateModal({
           {/* EQUIPO: todos los aventureros ocupan una casilla de la formación */}
           {partyMode ? (
             <div className="relative flex h-full w-1/2 min-w-0 items-center overflow-visible">
-              {distribuirFormacionParty(partyMode.participantes).map(({ participante, x, y }) => {
+              {distribuirFormacionParty(partyMode.participantes, escena.alto, tamanoHeroe, escena.ancho).map(({ participante, x, y }) => {
                 const hpParticipanteVisual = vidasTemporalesCombate?.[participante.usuarioId] ?? participante.jugadorHp;
                 const vida = Math.max(0, Math.min(100, hpParticipanteVisual / Math.max(1, participante.jugadorHpMaximo) * 100));
                 const energiaActual = Math.max(0, participante.jugadorEnergiaActual);
@@ -816,6 +818,13 @@ export default function CombateModal({
                     )}
                     <div className={`relative transition-all duration-200 ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}
                       style={{ height: tamanoHeroe, width: tamanoHeroe * 0.75 }} data-combate-ancla={participante.usuarioId}>
+                      <EstadoSobreActor ficha={{ id: participante.usuarioId, nombre: participante.nombre, claseId: participante.profesionActivaId,
+                        hp: hpParticipanteVisual, hpMaximo: participante.jugadorHpMaximo, energia: energiaActual, energiaMaxima,
+                        mana: manaActual, manaMaximo, estado: participante.estado, activo: partyMode.turnoActualUsuarioId === participante.usuarioId }}
+                        efectos={participante.efectos ?? []} posicion={normalizarPosicionCombate(participante.jugadorPosicion)}
+                        comida={participante.comidaActiva !== undefined ? participante.comidaActiva : participante.usuarioId === partyMode.usuarioId ? (comidaActiva !== undefined ? comidaActiva : personaje.comidaPreparada) : null}
+                        habilidades={participante.pasivas ?? (participante.usuarioId === partyMode.usuarioId ? personaje.habilidades : [])}
+                        onInfo={() => { setPanelStats("jugador"); setMostrarStatsEnemigo(true); }} />
                       <SpriteHeroeAnimado
                         clase={participante.clase}
                         sexo={participante.sexo}
@@ -949,13 +958,7 @@ export default function CombateModal({
                 </div>
 
               </div>
-                <div className="relative mt-1 min-h-6 w-full overflow-visible">
-                  <IndicadoresEfectosCombate
-                    efectos={combate.efectos}
-                    comidaPreparada={comidaActiva !== undefined ? comidaActiva : personaje.comidaPreparada}
-                    habilidades={personaje.habilidades}
-                  />
-                </div>
+
 
               {danioVisible?.actor === "jugador" && (
                 <div
@@ -988,6 +991,11 @@ export default function CombateModal({
                 }`}
                 data-combate-ancla="jugador"
               >
+                <EstadoSobreActor ficha={{ id: "jugador", nombre: personaje.nombre, claseId: personaje.profesionActivaId,
+                  hp: hpJugadorVisual, hpMaximo: combate.jugadorHpMaximo, energia: personaje.energiaActual, energiaMaxima: personaje.energiaMaxima,
+                  mana: personaje.manaActual, manaMaximo: personaje.manaMaximo, activo: combate.turno === "jugador" }}
+                  efectos={combate.efectos} comida={comidaActiva !== undefined ? comidaActiva : personaje.comidaPreparada} habilidades={personaje.habilidades}
+                  onInfo={() => { setPanelStats("jugador"); setMostrarStatsEnemigo(true); }} />
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "jugador").map((pulso, indice) => (
                   <div
                     key={`pulso-jugador-${indice}-${pulso.tipo}`}
@@ -1053,25 +1061,24 @@ export default function CombateModal({
                     ? "w-[36%] max-w-[120px]"
                     : "w-[30%] max-w-[98px]";
               const escalaSprite = "w-full";
-              const desplazamientoFila = enemigo.posicion === "centro" ? 4 : enemigo.posicion === "retaguardia" ? 8 : 0;
               const jefeUnico = cantidadEnemigos === 1 && ENEMIGOS_HD[enemigo.enemigoId ?? ""]?.boss;
               const x = Math.max(22, Math.min(78, cantidadEnemigos <= 1
-                ? jefeUnico ? 35 : 50
+                ? jefeUnico ? 65 : 50
                 : cantidadEnemigos === 2
                   ? (indiceEnemigo === 0 ? 28 : 72)
-                  : 17 + enemigo.columna * 33 + desplazamientoFila));
-              const y = cantidadEnemigos <= 1
-                ? 50
-                : enemigo.posicion === "mele"
-                  ? 32
-                  : enemigo.posicion === "retaguardia"
-                    ? 68
-                    : 50;
+                  : (enemigo.posicion === "mele" ? 24 : enemigo.posicion === "centro" ? 50 : 76) + (enemigo.columna - 1) * 12));
+              const minimoY = Math.min(48, (tamanoHeroe / 2 + 70) / Math.max(1, escena.alto) * 100);
+              const maximoY = Math.max(minimoY, 100 - (tamanoHeroe / 2 + 18) / Math.max(1, escena.alto) * 100);
+              const y = cantidadEnemigos <= 1 ? Math.max(55, minimoY)
+                : enemigo.posicion === "mele" ? minimoY : enemigo.posicion === "retaguardia" ? maximoY : (minimoY + maximoY) / 2;
               const spriteHd = ENEMIGOS_HD[enemigo.enemigoId ?? ""];
-              const anchoDisponible = jefeUnico ? escena.ancho : anchoEnemigos;
-              const centroX = jefeUnico ? (escena.ancho - anchoEnemigos + anchoEnemigos * x / 100) / Math.max(1, escena.ancho) * 100 : x;
-              const unidadEnemigo = escalaEnemigoEnEscena(spriteHd, anchoDisponible, escena.alto, centroX, y,
-                limiteEscalaEnemigo(tamanoHeroe, Boolean(spriteHd?.boss)));
+              const anchoDisponible = escena.ancho;
+              const centroX = (escena.ancho - anchoEnemigos + anchoEnemigos * x / 100) / Math.max(1, escena.ancho) * 100;
+              const posicionAjustada = encajarEnemigo(spriteHd, anchoDisponible, escena.alto, centroX, y,
+                limiteEscalaEnemigo(tamanoHeroe, Boolean(spriteHd?.boss), spriteHd?.height, escena.ancho < 768 ? 1.6 : 2.4), 16);
+              const xAjustada = (escena.ancho * posicionAjustada.x / 100 - (escena.ancho - anchoEnemigos)) / Math.max(1, anchoEnemigos) * 100;
+              const unidadEnemigo = escalaEnemigoEnEscena(spriteHd, anchoDisponible, escena.alto,
+                posicionAjustada.x, posicionAjustada.y, posicionAjustada.escala, 16);
               const estadoSpriteEnemigo = propsSpriteEnemigoHd(estadoSprite, enemigo.id);
               const spriteProps = { enemigoId: enemigo.enemigoId, ...estadoSpriteEnemigo,
                 pausado: !vivo && estadoSpriteEnemigo.accion === "idle" };
@@ -1079,8 +1086,10 @@ export default function CombateModal({
                 <div
                   key={enemigo.id}
                   className={`absolute z-10 flex ${escalaContenedor} -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-0 ${!vivo ? "opacity-45 grayscale" : ""} ${animando && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque-enemigo_700ms_ease-in-out]") : ""}`}
-                  style={{ left: `${x}%`, top: `${y}%`, touchAction: "manipulation" }}
+                  style={{ left: `${xAjustada}%`, top: `${posicionAjustada.y}%`, touchAction: "manipulation" }}
                 >
+                  <EstadoSobreActor enemigo ficha={{ id: enemigo.id, nombre: enemigo.nombre, hp: enemigo.hp, hpMaximo: enemigo.hpMaximo }}
+                    efectos={enemigo.efectos ?? []} onInfo={() => { setPanelStats("enemigo"); setMostrarStatsEnemigo(true); }} />
                   <button
                     type="button"
                     aria-label={`Seleccionar ${enemigo.nombre}, ${enemigo.hp} de ${enemigo.hpMaximo} puntos de vida`}
@@ -1154,7 +1163,6 @@ export default function CombateModal({
                       className={`z-10 ${modoPresentacionActual === "curacion" && animando ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && animando ? "combate-defensa-resplandor" : ""}`} />
                   </div>
                   </button>
-                  <IndicadoresEfectosCombate efectos={enemigo.efectos ?? []} />
                 </div>
               );
             })}
@@ -1270,14 +1278,7 @@ export default function CombateModal({
 
         {/* ZONA INFERIOR (Acciones Flexibles | Panel Dinámico) */}
         <section className={styles.dock}>
-          <PanelCombatientes onInfo={() => { setPanelStats("jugador"); setMostrarStatsEnemigo(true); }}
-            aliados={partyMode ? partyMode.participantes.map(p => ({ id: p.usuarioId, nombre: p.nombre, claseId: p.profesionActivaId,
-              hp: vidasTemporalesCombate?.[p.usuarioId] ?? p.jugadorHp, hpMaximo: p.jugadorHpMaximo,
-              energia: p.jugadorEnergiaActual, energiaMaxima: p.jugadorEnergiaMaxima, mana: p.jugadorManaActual, manaMaximo: p.jugadorManaMaximo,
-              estado: p.estado, activo: partyMode.faseTurno === "jugador" && partyMode.turnoActualUsuarioId === p.usuarioId })) : [{
-              id: "jugador", nombre: personaje.nombre, claseId: personaje.profesionActivaId, hp: hpJugadorVisual, hpMaximo: combate.jugadorHpMaximo,
-              energia: personaje.energiaActual, energiaMaxima: personaje.energiaMaxima, mana: personaje.manaActual, manaMaximo: personaje.manaMaximo, activo: combate.turno === "jugador" }]}
-            enemigos={enemigosVisibles.map(e => ({ id: e.id, nombre: e.nombre, hp: e.hp, hpMaximo: e.hpMaximo, seleccionado: enemigoObjetivoElegidoId === e.id }))} />
+
           {/* IZQUIERDA: PANEL DE ACCIONES (Fijo en PC, 1/3 en Móvil) */}
           <div className={styles.commands}>
             <div className="flex flex-col gap-2 w-full max-w-[200px]">

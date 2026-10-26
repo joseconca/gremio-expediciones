@@ -7,7 +7,7 @@ export interface SpriteEnemigoHd {
 }
 /** Fit the entire animation envelope, leaving room for labels and attack motion. */
 export function escalaEnemigoEnEscena(sprite: SpriteEnemigoHd | undefined, ancho: number, alto: number,
-  x: number, y: number, limite: number) {
+  x: number, y: number, limite: number, margenInferior = 40) {
   if (!sprite) return limite;
   const [izquierda, arriba, derecha, abajo] = sprite.bounds;
   const radio = Math.max(sprite.anchor[0] - izquierda, derecha - sprite.anchor[0], 1);
@@ -16,7 +16,7 @@ export function escalaEnemigoEnEscena(sprite: SpriteEnemigoHd | undefined, ancho
   return Math.max(0, Math.min(limite,
     (ancho * Math.min(x, 100 - x) / 100 - 16) / radio,
     (alto * y / 100 - 48) / superior,
-    (alto * (100 - y) / 100 - 40) / inferior));
+    (alto * (100 - y) / 100 - margenInferior) / inferior));
 }
 export const ENEMIGOS_HD = biblioteca.enemies as Record<string, SpriteEnemigoHd>;
 export const ACCIONES_ENEMIGO_HD: AccionEnemigoHd[] = ["idle", "hurt", "attack", "dodge"];

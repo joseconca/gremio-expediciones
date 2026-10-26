@@ -939,6 +939,8 @@ export async function obtenerEstadoParty(usuarioId: string) {
                 ...obtenerRecursosCombatePersona(p.personaje),
                 cooldowns: p.cooldowns,
                 efectos: p.efectos,
+                comidaActiva: expedicionActivaRaw.participantes.find((miembro) => miembro.usuarioId === p.usuarioId)?.efectoComida ?? null,
+                pasivas: p.personaje?.habilidades?.filter((h) => h.slot?.startsWith("pasiva_")).map((h) => ({ habilidadId: h.habilidadId, slot: h.slot })) ?? [],
                 usuario: p.usuario,
               })),
             }

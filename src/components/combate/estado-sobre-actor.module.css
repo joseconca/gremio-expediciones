@@ -1,0 +1,10 @@
+.root{position:absolute;bottom:calc(100% + 5px);left:50%;transform:translateX(-50%);width:108px;z-index:60;pointer-events:auto;font-family:Georgia,serif}
+.plate{display:block;width:100%;padding:4px 5px;background:#0b1c30c4;color:#eef0f5;border:0;border-radius:2px;text-shadow:0 1px 2px #0008;cursor:pointer;text-align:left}
+.plate>strong{display:block;font-size:10px;line-height:12px;min-height:12px;max-height:24px;overflow:hidden;text-align:center;margin-bottom:3px;overflow-wrap:anywhere}
+.plate>small{display:block;font-size:8px;text-align:center;color:#d3bd96}.plate:focus-visible{outline:2px solid #e6cb8b}
+.enemy>strong{white-space:nowrap;text-overflow:ellipsis;max-height:12px;overflow-wrap:normal}.enemy>div{line-height:9px}
+.effects{height:26px;min-height:26px;max-height:26px;padding-top:3px;background:none;overflow:visible}
+.effects button{width:21px;height:21px}.effects button img{width:14px;height:14px}.effects button>span:last-child{height:11px;min-width:11px;font-size:7px}
+.effects :global([role=tooltip]){top:100%;bottom:auto;left:0;max-width:min(230px,80vw);width:230px;text-shadow:none;z-index:100}.effects :global([role=tooltip]) button{width:auto;height:auto;min-height:28px}
+@media(max-width:767px){.root{width:94px}.plate{padding:3px 4px}.plate>strong{font-size:9px;line-height:10px;max-height:20px}.effects{height:24px;min-height:24px;max-height:24px;padding-top:2px}.effects button{width:20px;height:20px}.effects button img{width:13px;height:13px}}
+@media(max-width:767px){.root[data-posicion=centro]{margin-left:22px}.enemyRoot{width:88px}}
