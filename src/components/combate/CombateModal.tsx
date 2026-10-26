@@ -1072,7 +1072,7 @@ export default function CombateModal({
                 : cantidadEnemigos === 2
                   ? (indiceEnemigo === 0 ? 28 : 72)
                   : (enemigo.posicion === "mele" ? 24 : enemigo.posicion === "centro" ? 50 : 76) + (enemigo.columna - 1) * 12));
-              const minimoY = Math.min(48, (tamanoHeroe / 2 + 70) / Math.max(1, escena.alto) * 100);
+              const minimoY = Math.min(48, (tamanoHeroe / 2 + 86) / Math.max(1, escena.alto) * 100);
               const maximoY = Math.max(minimoY, 100 - (tamanoHeroe / 2 + 18) / Math.max(1, escena.alto) * 100);
               const y = cantidadEnemigos <= 1 ? Math.max(55, minimoY)
                 : enemigo.posicion === "mele" ? minimoY : enemigo.posicion === "retaguardia" ? maximoY : (minimoY + maximoY) / 2;
@@ -1093,7 +1093,7 @@ export default function CombateModal({
                   className={`absolute z-10 flex ${escalaContenedor} -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-0 ${!vivo ? "opacity-45 grayscale" : ""} ${animando && modoPresentacionActual !== "proyectil" && (animacionActual === "ofensiva" || animacionActual === "ofensiva_potenciada") ? (animacionActual === "ofensiva_potenciada" ? "animate-[combate-ataque-enemigo-fuerte_900ms_ease-in-out]" : "animate-[combate-ataque-enemigo_700ms_ease-in-out]") : ""}`}
                   style={{ left: `${xAjustada}%`, top: `${posicionAjustada.y}%`, touchAction: "manipulation" }}
                 >
-                  <EstadoSobreActor enemigo ficha={{ id: enemigo.id, nombre: enemigo.nombre, hp: enemigo.hp, hpMaximo: enemigo.hpMaximo }}
+                  <EstadoSobreActor enemigo ficha={{ id: enemigo.id, nombre: enemigo.nombre, hp: enemigo.hp, hpMaximo: enemigo.hpMaximo, seleccionado }}
                     efectos={enemigo.efectos ?? []} onInfo={() => { setPanelStats("enemigo"); setMostrarStatsEnemigo(true); }} />
                   <button
                     type="button"
@@ -1158,7 +1158,7 @@ export default function CombateModal({
                     data-combate-ancla={enemigo.id}
                   >
                     <SpriteEnemigoAnimado {...spriteProps} nombre="" sombra />
-                    {seleccionado && vivo && <><span className={styles.targetArrow} aria-hidden="true">▼</span><span className={styles.targetRing} aria-hidden="true" /></>}
+                    {seleccionado && vivo && <span className={styles.targetRing} aria-hidden="true" />}
                     {pulsosEstadoVisibles.filter((pulso) => pulso.actor === enemigo.id).map((pulso, indice) => (
                       <span key={`pulso-${enemigo.id}-${indice}-${pulso.tipo}`} className={`combate-estado-pulso absolute bottom-0 z-40 -translate-x-1/2 rounded bg-stone-950/90 px-1 py-0.5 font-mono text-[10px] font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`} style={{ left: `calc(50% + ${(indice - 0.5) * 20}px)` }}>
                         {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}

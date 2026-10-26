@@ -714,9 +714,9 @@ export default function AsedioModal({
                 }`}
                 data-combate-ancla="enemigo"
               >
-                <EstadoSobreActor enemigo ficha={{ id: "enemigo", nombre: nombreRival, hp: hpRival, hpMaximo: hpMaximoRival, activo: !miTurno }}
+                <EstadoSobreActor enemigo ficha={{ id: "enemigo", nombre: nombreRival, hp: hpRival, hpMaximo: hpMaximoRival, activo: !miTurno, seleccionado: true }}
                   efectos={esAtacante ? combate.efectosDefensor : combate.efectos}
-                  onInfo={() => { setPanelStatsRival("rival"); setMostrarStatsRival(true); }} /><span className={styles.targetArrow} aria-hidden="true">▼</span><span className={styles.targetRing} aria-hidden="true" />
+                  onInfo={() => { setPanelStatsRival("rival"); setMostrarStatsRival(true); }} /><span className={styles.targetRing} aria-hidden="true" />
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "enemigo").map((pulso, indice) => (
                   <div
                     key={`pulso-rival-${indice}-${pulso.tipo}`}

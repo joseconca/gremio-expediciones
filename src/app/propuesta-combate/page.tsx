@@ -8,6 +8,7 @@ import { ENEMIGOS_HD } from "@/lib/sprites-enemigos-hd";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import styles from "./estados.module.css";
 import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
+import MarcadorObjetivo from "@/components/combate/MarcadorObjetivo";
 
 const HEROES = [
   { nombre: "Aldric", clase: "espadachin", sexo: "chico", arma: "espada_hierro", hp: 840, max: 1080, mp: 64 },
@@ -25,10 +26,11 @@ const VISTAS = [
 const EFECTOS_ALIADO = [{ habilidadId: "guardia_caballero", tipo: "bonus_defensa", valor: 10, duracionTurnos: 3, turnosRestantes: 2, objetivo: "jugador" }];
 const EFECTOS_ENEMIGO = [{ habilidadId: "tajo_sangrante", tipo: "dano_progresivo", valor: 5, duracionTurnos: 3, turnosRestantes: 3, objetivo: "enemigo" }];
 
-function Placa({ nombre, hp, max, recurso, actual, aliado = false, boss = false, efectos, comida }: {
-  nombre: string; hp: number; max: number; recurso?: string; actual?: number; aliado?: boolean; boss?: boolean; efectos: unknown; comida?: string | null;
+function Placa({ nombre, hp, max, recurso, actual, aliado = false, boss = false, efectos, comida, seleccionado = false }: {
+  nombre: string; hp: number; max: number; recurso?: string; actual?: number; aliado?: boolean; boss?: boolean; efectos: unknown; comida?: string | null; seleccionado?: boolean;
 }) {
   return <div className={`${styles.plate} ${aliado ? styles.allyPlate : styles.enemyPlate} ${boss ? styles.bossPlate : ""}`}>
+    {seleccionado && <MarcadorObjetivo />}
     <div className={styles.plateSurface}><strong>{nombre}</strong>
     <div className={styles.life} role="progressbar" aria-label={`Vida de ${nombre}`} aria-valuemin={0} aria-valuemax={max} aria-valuenow={hp}><i style={{ width: `${hp / max * 100}%` }} /></div>
     <div className={styles.values}>{hp}<small>/{max} PV</small></div>
@@ -87,10 +89,9 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
         return <div key={id} className={`${styles.actor} ${styles.enemy}`}
           style={{ left: x, top: foot - s.height * unit, width: Math.max(64, radio * unit * 1.2), height: s.height * unit, "--unidad-enemigo": `${unit}px`, zIndex: 10 + i } as CSSProperties}>
           <button className={styles.enemySelect} aria-label={`Seleccionar ${s.name}`} aria-pressed={seleccionado === i} onClick={() => setObjetivo(i)} />
-          <Placa nombre={s.name} hp={obtenerEnemigoPorId(id)?.hp ?? 100} max={obtenerEnemigoPorId(id)?.hp ?? 100} boss={s.boss} efectos={i === 0 ? EFECTOS_ENEMIGO : []} />
+          <Placa nombre={s.name} hp={obtenerEnemigoPorId(id)?.hp ?? 100} max={obtenerEnemigoPorId(id)?.hp ?? 100} boss={s.boss} seleccionado={seleccionado === i} efectos={i === 0 ? EFECTOS_ENEMIGO : []} />
           <div className={`${styles.ground} ${seleccionado === i ? styles.enemyGround : ""}`} />
           <SpriteEnemigoAnimado enemigoId={id} nombre={s.name} accion={seleccionado === i && accion === "attack" ? "hurt" : seleccionado === i && accion === "hurt" ? "attack" : "idle"} inicioAnimacion={inicio} />
-          {seleccionado === i && <span className={styles.targetArrow}>▼</span>}
           {seleccionado === i && accion === "attack" && <span className={styles.damage}>128</span>}
         </div>;
       })}

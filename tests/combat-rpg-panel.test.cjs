@@ -30,3 +30,12 @@ test('mantiene ambos bandos y los estados de los participantes', () => {
   const html = renderToStaticMarkup(React.createElement(Panel, { aliados: [{ ...ficha, estado: 'huyo' }, { ...ficha, id: 'b', nombre: 'Caído', hp: 0 }], enemigos: [{ id: 'e', nombre: 'Jefe', hp: 900, hpMaximo: 1000 }], onInfo() {} }));
   assert.match(html, /Retirado/); assert.match(html, /Caído/); assert.match(html, /Información de Jefe/);
 });
+
+test('la flecha pertenece al recuadro del objetivo vivo seleccionado', () => {
+  for (const [seleccionado, hp, esperado] of [[true, 20, true], [false, 20, false], [true, 0, false]]) {
+    const html = renderToStaticMarkup(React.createElement(EstadoSobreActor, {
+      ficha: { ...ficha, seleccionado, hp }, enemigo: true,
+    }));
+    assert.equal(html.includes('data-marcador-objetivo'), esperado);
+  }
+});

@@ -2,6 +2,7 @@
 
 import { Barra, recursosVisibles, type FichaCombatiente } from "./PanelCombatientes";
 import IndicadoresEfectosCombate from "./IndicadoresEfectosCombate";
+import MarcadorObjetivo from "./MarcadorObjetivo";
 import styles from "./estado-sobre-actor.module.css";
 
 /** The effect row always reserves its height, including when no effect is active. */
@@ -11,6 +12,7 @@ export default function EstadoSobreActor({ ficha, enemigo = false, efectos = [],
 }) {
   const recursos = recursosVisibles(ficha);
   return <div className={`${styles.root} ${enemigo ? styles.enemyRoot : ""}`} data-estado-actor={ficha.id} data-posicion={posicion}>
+    {ficha.seleccionado && ficha.hp > 0 && <MarcadorObjetivo />}
     <button type="button" onClick={onInfo} className={`${styles.plate} ${enemigo ? styles.enemy : ""}`}
       title={ficha.nombre} aria-label={`Información de ${ficha.nombre}`}>
       <strong>{ficha.nombre}{ficha.activo ? " ◆" : ""}</strong>
