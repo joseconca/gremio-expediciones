@@ -25,7 +25,7 @@ test("el botón global del aventurero y la navegación móvil abren Personaje", 
   assert.match(layout, /grid-cols-5/);
 });
 
-test("la Botica forma parte del poblado y reutiliza el sprite del Mercado", () => {
+test("la Botica forma parte del poblado y conserva su sprite propio", () => {
   const configuracion = read("src/lib/tiposJuego.ts");
   const tienda = read("src/app/base/botica/page.tsx");
   const estado = read("src/store/useGameStore.ts");
@@ -41,7 +41,10 @@ test("la Botica forma parte del poblado y reutiliza el sprite del Mercado", () =
   assert.match(tienda, /OBJETOS[\s\S]*?vendibleEnBotica/);
   assert.match(compra, /nivelBotica/);
   assert.ok(fs.existsSync(boticaSprite), "Debe existir el sprite de la Botica.");
-  assert.deepEqual(fs.readFileSync(boticaSprite), fs.readFileSync(mercadoSprite), "La Botica reutiliza el sprite temporal del Mercado.");
+  const png = fs.readFileSync(boticaSprite);
+  assert.equal(png.subarray(0, 8).toString("hex"), "89504e470d0a1a0a", "El sprite de la Botica debe ser un PNG válido.");
+  assert.ok(png.readUInt32BE(16) > 0 && png.readUInt32BE(20) > 0);
+  assert.notDeepEqual(png, fs.readFileSync(mercadoSprite), "La Botica conserva su diseño propio en lugar del antiguo recurso temporal.");
 });
 
 test("Personaje y Botica usan la navegación común y Botica incluye solo la mochila de consumibles", () => {

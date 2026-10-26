@@ -4,6 +4,24 @@
 Estado verificable: [manifest.json](../assets/spritesheets/hd-128x256/manifest.json).
 Los informes automáticos son derivados técnicos, no planes alternativos.
 
+## Estado actual — 26 de octubre de 2026
+
+Tier 2 completo como biblioteca candidata: ocho clases en orden, masculino y femenino, dieciséis atlas y 960 fotogramas nuevos. Las 240 acciones conservan las fuentes grandes y sus instrucciones de generación. Las comparativas con equipo reutilizan las mismas capas por sexo y no añaden desplazamientos por clase: 10.912 comprobaciones de contacto sin avisos. La auditoría general cuenta 1.560 fotogramas válidos y ninguno inválido, incluyendo Novato y Tier 1.
+
+Revisar la [galería estática](../assets/spritesheets/hd-128x256/previews/tier2-overview.png), la [galería animada](../assets/spritesheets/hd-128x256/previews/tier2-overview.gif) y las comparativas `equipment-review` de cada variante. El [informe conjunto](../assets/spritesheets/hd-128x256/previews/tier2-verification.json) reúne los puntos de control verificados desde GitHub. Hay commits por acción y por cierre de variante en la rama indicada arriba.
+
+Próximo paso: revisión del usuario de Tier 2 y, después, su incorporación al juego con autorización de publicación. La integración ya aprobada de Novato y Tier 1 sigue siendo la activa. Las siguientes clases mantienen el orden del manifiesto, las mismas referencias corporales, la separación de equipo por sexo y el guardado por acción.
+
+### Corrección de deriva horizontal en reposo
+
+El usuario detectó que la maga se desplazaba lateralmente al cambiar de fotograma, mientras el espadachín masculino permanecía estable. Se midió el punto medio del apoyo de las botas en las 26 variantes HD completas: 13 necesitaban compensación. `alinear-reposo-hd.py` conserva los hashes y medidas en `idle-alignment-report.json` y genera `posiciones-idle-hd.json`; `--check` detecta datos obsoletos si cambian los originales. La deriva de la maga pasa de 9 píxeles a un máximo de medio píxel de variación del contorno; todas las variantes quedan en un píxel o menos. El espadachín masculino conserva sus cuatro posiciones.
+
+La compensación horizontal del cuerpo conserva las fuentes, atlas, movimientos verticales y demás acciones. La [comparativa inicial](../assets/spritesheets/hd-128x256/previews/idle-alignment.gif) muestra la maga y el espadachín antes y después de estabilizar el cuerpo.
+
+La revisión posterior del usuario detectó movimiento residual del equipo: se le estaba aplicando también la compensación corporal y el escudo femenino tenía un salto adicional de ocho píxeles en su cuarto fotograma. La solución actual mantiene para `idle` la capa de equipo y la máscara de dedos de la primera pose compartida; únicamente el cuerpo utiliza sus cuatro fotogramas y su compensación horizontal. Así se conservan parpadeo y respiración, y el equipo no deriva ni adquiere ajustes por clase. El reflejo se aplica al conjunto y las otras catorce acciones mantienen su sincronización completa por fase.
+
+Revisadas las trece variantes femeninas con cinco combinaciones de equipo en sus cuatro fases: [galería animada](../assets/spritesheets/hd-128x256/previews/idle-equipment-f.gif), [cuatro poses con espada y escudo](../assets/spritesheets/hd-128x256/previews/idle-equipment-f-poses.png) y [comparativa de la maga](../assets/spritesheets/hd-128x256/previews/idle-equipment-comparison.gif). Las capas proceden de los atlas compactos usados por el juego. El informe valida 3.328 contactos de reposo en las 26 variantes sin avisos; las 22 pruebas de sprites, el análisis de código y la comprobación de tipos pasan.
+
 ## Contrato
 
 - Cuerpo HD: PNG con alfa real, celda 128×256; atlas RGBA 512×3840.
@@ -191,3 +209,23 @@ La validación de sprites de GitHub sobre la PR #3 pasa, incluidos los atlas com
 La integración está publicada en `creacion-sprite-sheets` y preparada en [PR #3](https://github.com/joseconca/gremio-expediciones/pull/3). La publicación directa en main fue rechazada por la revisión automática de permisos por requerir una autorización específica para cambiar la rama principal. Se ha solicitado ese permiso; hasta recibirlo, main conserva su versión anterior. La vista local de revisión usa la integración completa.
 
 El usuario ha autorizado expresamente fusionar la PR #3 y publicar en main. GitHub confirma la fusión en `0b1afefbb88fc7024c3d9959a13247f467ce4329`; el código y los recursos públicos de main coinciden con la integración validada. La solicitud anterior de permiso queda resuelta. Próximo paso: verificación del usuario jugando, antes de producir más clases. La publicación en GitHub no acredita por sí sola el despliegue de un servidor externo.
+
+
+<!-- TIER2_PROGRESS_START -->
+## Producción HD de Tier 2
+
+El usuario ha probado la integración anterior de Novato, Tier 1 y equipo, la considera correcta y solicita continuar con Tier 2 en orden. Se mantiene el mismo esquema de agarres por sexo y el mismo proceso de originales grandes, cuatro poses por acción y commits por acción.
+
+| Clase | Masculino | Femenino |
+|---|---|---|
+| Caballero | 60 / 15 acciones; contactos revisados | 60 / 15 acciones; contactos revisados |
+| Duelista | 60 / 15 acciones; contactos revisados | 60 / 15 acciones; contactos revisados |
+| Sacerdote | 60 / 15 acciones; contactos revisados | 60 / 15 acciones; contactos revisados |
+| Monje | 60 / 15 acciones; contactos revisados | 60 / 15 acciones; contactos revisados |
+| Cazador | 60 / 15 acciones; contactos revisados | 60 / 15 acciones; contactos revisados |
+| Explorador | 60 / 15 acciones; contactos revisados | 60 / 15 acciones; contactos revisados |
+| Elementalista | 60 / 15 acciones; contactos revisados | 60 / 15 acciones; contactos revisados |
+| Brujo | 60 / 15 acciones; contactos revisados | 60 / 15 acciones; contactos revisados |
+
+Los atlas completos son candidatos para revisión del usuario. `revisar-contactos-clase-hd.py` reutiliza las capas de equipo ya existentes, registra los hashes corporales y genera comparativas de las quince acciones. El resultado técnico no sustituye la revisión artística. Las fuentes y revisiones sustituidas permanecen conservadas. Tier 2 no se activa automáticamente en el juego por generar un atlas.
+<!-- TIER2_PROGRESS_END -->

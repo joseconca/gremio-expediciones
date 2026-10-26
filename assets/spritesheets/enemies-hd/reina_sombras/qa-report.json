@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.6422338568935427,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
+  "requestedIdleHeight": 184,
+  "idleHeightMean": 184.0,
+  "actorAnchor": [
+    192,
+    371
+  ],
+  "baselineY": 371,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      162.0,
+      314.0
+    ],
+    [
+      182.5,
+      309.5
+    ],
+    [
+      189.0,
+      296.0
+    ],
+    [
+      176.5,
+      255.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/reina_sombras/reina_sombras-sheet.png",
+  "sheetSha256": "924f3a7e531888b04ebe15ca9d3f6721f91703c4fbc00fedd6fdf4c5afdb79b7",
+  "sourcePath": "assets/spritesheets/enemies-hd/reina_sombras/source/sheet-v5.png",
+  "sourceSha256": "31606016b20518f7cd430fa68ebbd09863520e27af17f37ba6cdb2e27461d397",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_sombras/frames/idle/reina_sombras-idle-01.png",
+        "sha256": "1e98c3fbaedf2508c1e773893d00672e90e70f123be6ff183d052f4a964c0823",
+        "bounds": [
+          100,
+          187,
+          261,
+          371
+        ],
+        "idleAnchorCorrectionX": -7
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_sombras/frames/idle/reina_sombras-idle-02.png",
+        "sha256": "2aa03a16fa36d267787f8f7ad8def4975bb3743f37d1006f1c1347f9418b70db",
+        "bounds": [
+          100,
+          187,
+          259,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_sombras/frames/idle/reina_sombras-idle-03.png",
+        "sha256": "8693ff784bd31c2ba6b9371e993a3c9e3ee3849ccbf73fd82be7170ed8eac9fd",
+        "bounds": [
+          99,
+          188,
+          260,
+          372
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_sombras/frames/idle/reina_sombras-idle-04.png",
+        "sha256": "adcca521c8ec28aa32f5966c35f88a82b526cf100ba44e5c2bc87fe7c0ca2058",
+        "bounds": [
+          98,
+          187,
+          259,
+          371
+        ],
+        "idleAnchorCorrectionX": -9
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_sombras/frames/hurt/reina_sombras-hurt-01.png",
+        "sha256": "26728446a1fad30d02375f7c23a13478fe0777b388b8998e8a9644744fdee228",
+        "bounds": [
+          97,
+          194,
+          265,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_sombras/frames/hurt/reina_sombras-hurt-02.png",
+        "sha256": "271eb5c4ea982bf0768daff89f8e7351330a296528c7615a57d8faf39ca46dd0",
+        "bounds": [
+          92,
+          208,
+          262,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_sombras/frames/hurt/reina_sombras-hurt-03.png",
+        "sha256": "b13d1424692430361899f1a7f004d20ede86b39abf5d49ebbe56511a5d60a0f1",
+        "bounds": [
+          81,
+          221,
+          256,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_sombras/frames/hurt/reina_sombras-hurt-04.png",
+        "sha256": "28467dad8635c4aa574a140214f25d129ba1ed1d66e249eb4205bc45c745ede5",
+        "bounds": [
+          91,
+          196,
+          252,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_sombras/frames/attack/reina_sombras-attack-01.png",
+        "sha256": "b5022140df54f8e279a313bf77dc982e97ccab57ddacd0a9c5ec0ef8ffffb3fe",
+        "bounds": [
+          92,
+          200,
+          271,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_sombras/frames/attack/reina_sombras-attack-02.png",
+        "sha256": "4492f591700ea58ec2f61d2b6010796ef996913bc640a118023e64951fbd85e5",
+        "bounds": [
+          84,
+          198,
+          263,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_sombras/frames/attack/reina_sombras-attack-03.png",
+        "sha256": "043de2db3b9a456fd0419c028e93471d407199d9fa1b1c7804c50d6ea6402ca0",
+        "bounds": [
+          73,
+          208,
+          268,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_sombras/frames/attack/reina_sombras-attack-04.png",
+        "sha256": "3fda2ae553efab171ccfab866da572cfe4c781ce33e9e957522cca94952ca213",
+        "bounds": [
+          86,
+          201,
+          255,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_sombras/frames/dodge/reina_sombras-dodge-01.png",
+        "sha256": "67915da34fe4ab1e002916c8726a9e15703a4eb2f1a4637aa02e5d6cbf2d0adf",
+        "bounds": [
+          103,
+          207,
+          267,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_sombras/frames/dodge/reina_sombras-dodge-02.png",
+        "sha256": "3f341fbefbcf77e9aad5bbff9b0bc9ace522543e393eb44bebd7aa77312db652",
+        "bounds": [
+          99,
+          233,
+          275,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_sombras/frames/dodge/reina_sombras-dodge-03.png",
+        "sha256": "0bf3850483ad81c8e5fb91c5abec3132943af85ba952454f1d12f0a8633ca387",
+        "bounds": [
+          94,
+          250,
+          276,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_sombras/frames/dodge/reina_sombras-dodge-04.png",
+        "sha256": "d9dacf30cfb13168fcbf1ccc84d30d04dcc53f35f701e5ec33094a0751cc666f",
+        "bounds": [
+          98,
+          202,
+          255,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

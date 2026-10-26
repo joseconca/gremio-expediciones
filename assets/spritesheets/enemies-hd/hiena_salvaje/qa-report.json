@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.6233766233766234,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 132,
+  "idleHeightMean": 132.0,
+  "actorAnchor": [
+    192,
+    370
+  ],
+  "baselineY": 370,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      150.0,
+      294.0
+    ],
+    [
+      152.5,
+      294.5
+    ],
+    [
+      152.0,
+      271.0
+    ],
+    [
+      154.5,
+      242.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/hiena_salvaje/hiena_salvaje-sheet.png",
+  "sheetSha256": "3e5f0d58851fdce8db6600b1f21a3f8661e30c73008c5c2f966c53990ccf2400",
+  "sourcePath": "assets/spritesheets/enemies-hd/hiena_salvaje/source/sheet-v1.png",
+  "sourceSha256": "b89e46ed824d0f0479c17e347d4048796d963478cf8e3fab3923004d94e1493a",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/hiena_salvaje/frames/idle/hiena_salvaje-idle-01.png",
+        "sha256": "70de36e771b12a501e189faa9d58425c9046f8b775b09081bcd13bc5efc133d6",
+        "bounds": [
+          114,
+          238,
+          274,
+          370
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hiena_salvaje/frames/idle/hiena_salvaje-idle-02.png",
+        "sha256": "e72e13a75a6e96eebd556240b76e46cfa8076c0afc5136788b62a1c209f62a72",
+        "bounds": [
+          114,
+          238,
+          272,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hiena_salvaje/frames/idle/hiena_salvaje-idle-03.png",
+        "sha256": "0c4f67546f009e997c30dc5dd1c4e225ad7d946024f85163c550f1f45e540cb4",
+        "bounds": [
+          114,
+          238,
+          273,
+          370
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hiena_salvaje/frames/idle/hiena_salvaje-idle-04.png",
+        "sha256": "6b4856f24f38b17a897f079be3f61c449747131423b6370d8eac6b557403cbf9",
+        "bounds": [
+          113,
+          238,
+          274,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/hiena_salvaje/frames/hurt/hiena_salvaje-hurt-01.png",
+        "sha256": "56b0af45528d3e8b244fc6d821280773c0f1f48f69ba02edecaecbd968e689db",
+        "bounds": [
+          113,
+          238,
+          270,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hiena_salvaje/frames/hurt/hiena_salvaje-hurt-02.png",
+        "sha256": "9a086fb05c97d92ec5de47d6e4d7892b556d583b6a36ff3b47f213ae8dae2a6c",
+        "bounds": [
+          111,
+          245,
+          274,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hiena_salvaje/frames/hurt/hiena_salvaje-hurt-03.png",
+        "sha256": "0a55f1ce3f98d5363c9c1efa63cee78751f0e50e42f6fdea5af88671ccd05a1e",
+        "bounds": [
+          117,
+          265,
+          273,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hiena_salvaje/frames/hurt/hiena_salvaje-hurt-04.png",
+        "sha256": "b6ed1ef95d1f76f6386194940a0d13d116616bb0a6f01c20a9fea2e92427673e",
+        "bounds": [
+          110,
+          240,
+          270,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/hiena_salvaje/frames/attack/hiena_salvaje-attack-01.png",
+        "sha256": "4cb70e6e6d7c0a9780cda0ff682779d830fafdf3d4caa96ead0c28fdea57a029",
+        "bounds": [
+          109,
+          256,
+          269,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hiena_salvaje/frames/attack/hiena_salvaje-attack-02.png",
+        "sha256": "ee2bbbc1064127dbbb2da90eabb800bdb6a6759adce12669a1bcc5e50027a8c5",
+        "bounds": [
+          108,
+          244,
+          283,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hiena_salvaje/frames/attack/hiena_salvaje-attack-03.png",
+        "sha256": "dddf7eeedc4a51d3880b00a292449534cd86c14ca0d8d9134aa49262d20d7d44",
+        "bounds": [
+          104,
+          253,
+          298,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hiena_salvaje/frames/attack/hiena_salvaje-attack-04.png",
+        "sha256": "031c927d1d9666cdf99bbbd97b733e228ca5e28232cabb98de964fd901d070f4",
+        "bounds": [
+          118,
+          255,
+          279,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/hiena_salvaje/frames/dodge/hiena_salvaje-dodge-01.png",
+        "sha256": "ede31a97af59765eaa9593143c724cb710024bc188177bfb32f716d0380985d7",
+        "bounds": [
+          111,
+          247,
+          264,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hiena_salvaje/frames/dodge/hiena_salvaje-dodge-02.png",
+        "sha256": "118e32d2159107ee6ce6d4a3443af0d1ef0fd82c845264434613dd8670cdedce",
+        "bounds": [
+          118,
+          269,
+          272,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hiena_salvaje/frames/dodge/hiena_salvaje-dodge-03.png",
+        "sha256": "c63e3ae3aec0d752213b5fa0e159de8d3a14807eaa1fb089f531ce3057abe54e",
+        "bounds": [
+          108,
+          283,
+          278,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hiena_salvaje/frames/dodge/hiena_salvaje-dodge-04.png",
+        "sha256": "aeb45831d2e3e777a9c19fd1ad300457be708717df2f260f165262f94ef3d8b5",
+        "bounds": [
+          111,
+          240,
+          271,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

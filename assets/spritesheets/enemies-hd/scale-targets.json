@@ -1,0 +1,227 @@
+{
+  "heroReference": {
+    "classId": "espadachin",
+    "sex": "m",
+    "visibleIdleHeight": 155,
+    "combatBaseline": 312
+  },
+  "policy": "Keep species size in pixels; grow transparent animation canvas instead of reducing body height.",
+  "targets": {
+    "mimic": {
+      "idleHeight": 128,
+      "anchorMode": "ground"
+    },
+    "slime_acido": {
+      "idleHeight": 96,
+      "anchorMode": "ground"
+    },
+    "rata_gigante": {
+      "idleHeight": 112,
+      "anchorMode": "ground"
+    },
+    "goblin_explorador": {
+      "idleHeight": 140,
+      "anchorMode": "ground"
+    },
+    "bandido_camino": {
+      "idleHeight": 168,
+      "anchorMode": "ground"
+    },
+    "orco_despiadado": {
+      "idleHeight": 192,
+      "anchorMode": "ground"
+    },
+    "esqueleto_guerrero": {
+      "idleHeight": 168,
+      "anchorMode": "ground"
+    },
+    "ogro": {
+      "idleHeight": 224,
+      "anchorMode": "ground"
+    },
+    "arana_sombras": {
+      "idleHeight": 128,
+      "anchorMode": "ground"
+    },
+    "troll_cavernas": {
+      "idleHeight": 208,
+      "anchorMode": "ground"
+    },
+    "minotauro": {
+      "idleHeight": 216,
+      "anchorMode": "ground"
+    },
+    "lobo_hambriento": {
+      "idleHeight": 132,
+      "anchorMode": "ground"
+    },
+    "murcielago_sanguinario": {
+      "idleHeight": 120,
+      "anchorMode": "air"
+    },
+    "avispa_gigante": {
+      "idleHeight": 120,
+      "anchorMode": "air"
+    },
+    "kobold_trampero": {
+      "idleHeight": 140,
+      "anchorMode": "ground"
+    },
+    "bandido_arbalestero": {
+      "idleHeight": 168,
+      "anchorMode": "ground"
+    },
+    "zombie_errante": {
+      "idleHeight": 168,
+      "anchorMode": "ground"
+    },
+    "hiena_salvaje": {
+      "idleHeight": 132,
+      "anchorMode": "ground"
+    },
+    "cultista_encapuchado": {
+      "idleHeight": 168,
+      "anchorMode": "ground"
+    },
+    "gnoll_merodeador": {
+      "idleHeight": 184,
+      "anchorMode": "ground"
+    },
+    "ghoul_cripta": {
+      "idleHeight": 176,
+      "anchorMode": "ground"
+    },
+    "hombre_lagarto": {
+      "idleHeight": 192,
+      "anchorMode": "ground"
+    },
+    "golem_barro": {
+      "idleHeight": 208,
+      "anchorMode": "ground"
+    },
+    "oso_cavernario": {
+      "idleHeight": 184,
+      "anchorMode": "ground"
+    },
+    "espectro_errante": {
+      "idleHeight": 176,
+      "anchorMode": "air"
+    },
+    "harpia_cazadora": {
+      "idleHeight": 176,
+      "anchorMode": "air"
+    },
+    "nigromante_aprendiz": {
+      "idleHeight": 168,
+      "anchorMode": "ground"
+    },
+    "guardian_cripta": {
+      "idleHeight": 208,
+      "anchorMode": "ground"
+    },
+    "basilisco_joven": {
+      "idleHeight": 152,
+      "anchorMode": "ground"
+    },
+    "centauro_saqueador": {
+      "idleHeight": 232,
+      "anchorMode": "ground"
+    },
+    "gargola_ancestral": {
+      "idleHeight": 208,
+      "anchorMode": "ground"
+    },
+    "elemental_roca": {
+      "idleHeight": 224,
+      "anchorMode": "ground"
+    },
+    "sacerdotisa_oscura": {
+      "idleHeight": 168,
+      "anchorMode": "ground"
+    },
+    "mantícora": {
+      "idleHeight": 208,
+      "anchorMode": "ground"
+    },
+    "ogro_chaman": {
+      "idleHeight": 224,
+      "anchorMode": "ground"
+    },
+    "caballero_maldito": {
+      "idleHeight": 184,
+      "anchorMode": "ground"
+    },
+    "wyvern_joven": {
+      "idleHeight": 208,
+      "anchorMode": "ground"
+    },
+    "elemental_fuego": {
+      "idleHeight": 208,
+      "anchorMode": "air"
+    },
+    "vampiro_noble": {
+      "idleHeight": 176,
+      "anchorMode": "ground"
+    },
+    "demonio_menor": {
+      "idleHeight": 208,
+      "anchorMode": "ground"
+    },
+    "dragon_negro_joven": {
+      "idleHeight": 240,
+      "anchorMode": "ground"
+    },
+    "gigante_escarcha": {
+      "idleHeight": 272,
+      "anchorMode": "ground"
+    },
+    "senor_frontera": {
+      "idleHeight": 192,
+      "anchorMode": "ground"
+    },
+    "reina_sombras": {
+      "idleHeight": 184,
+      "anchorMode": "ground"
+    },
+    "titan_hierro": {
+      "idleHeight": 288,
+      "anchorMode": "ground"
+    },
+    "dragon_bosque_verde": {
+      "idleHeight": 272,
+      "anchorMode": "ground"
+    },
+    "capitan_orcos": {
+      "idleHeight": 224,
+      "anchorMode": "ground"
+    },
+    "reina_arana": {
+      "idleHeight": 240,
+      "anchorMode": "ground"
+    },
+    "archimago_exiliado": {
+      "idleHeight": 184,
+      "anchorMode": "ground"
+    },
+    "dragon_pantano": {
+      "idleHeight": 272,
+      "anchorMode": "ground"
+    },
+    "rey_no_muerto": {
+      "idleHeight": 208,
+      "anchorMode": "ground"
+    },
+    "hidra_tres_cabezas": {
+      "idleHeight": 272,
+      "anchorMode": "ground"
+    },
+    "senor_abismo": {
+      "idleHeight": 296,
+      "anchorMode": "ground"
+    },
+    "dragon_anciano": {
+      "idleHeight": 304,
+      "anchorMode": "ground"
+    }
+  }
+}

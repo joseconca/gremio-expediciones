@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.6473175021987687,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
+  "requestedIdleHeight": 184,
+  "idleHeightMean": 184.0,
+  "actorAnchor": [
+    192,
+    371
+  ],
+  "baselineY": 371,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      170.5,
+      314.0
+    ],
+    [
+      169.0,
+      313.5
+    ],
+    [
+      175.5,
+      304.0
+    ],
+    [
+      169.0,
+      280.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/archimago_exiliado/archimago_exiliado-sheet.png",
+  "sheetSha256": "5c6184d2af67d7a2b7517b5b3de7b87b9575fa90c78a95080664c045f6bed3e3",
+  "sourcePath": "assets/spritesheets/enemies-hd/archimago_exiliado/source/sheet-v1.png",
+  "sourceSha256": "b998bb1fb5160f626165bdcca6a989634b2681418368a1af8d27a863fd890b80",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/archimago_exiliado/frames/idle/archimago_exiliado-idle-01.png",
+        "sha256": "c71c7c5ffc38dbcc2b44843958a529a67ba8689b29cbec62d17089149cbb55cb",
+        "bounds": [
+          111,
+          186,
+          263,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/archimago_exiliado/frames/idle/archimago_exiliado-idle-02.png",
+        "sha256": "628ee93f55f3a7eb468734be437345e2200a1a42af0b238477d46542129d6ad2",
+        "bounds": [
+          114,
+          188,
+          264,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/archimago_exiliado/frames/idle/archimago_exiliado-idle-03.png",
+        "sha256": "8225d3f60b8424f0858594105ce8e09446f764f9fca1d1f3d3111f3e661a8fc3",
+        "bounds": [
+          116,
+          187,
+          265,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/archimago_exiliado/frames/idle/archimago_exiliado-idle-04.png",
+        "sha256": "437ac7f3c124286c12e0cc14d7f30319227f8d5ad6c8251b55af5dbb45084f13",
+        "bounds": [
+          118,
+          187,
+          264,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/archimago_exiliado/frames/hurt/archimago_exiliado-hurt-01.png",
+        "sha256": "5d7042e8dfc477d238ad3351bd572f5f5faea28c992f78958a772f3e60f44756",
+        "bounds": [
+          110,
+          184,
+          258,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/archimago_exiliado/frames/hurt/archimago_exiliado-hurt-02.png",
+        "sha256": "cf8cf67cdeab570eb439faac19837b2f4098c3ef5c7f141310b5e6bb499fac78",
+        "bounds": [
+          108,
+          205,
+          274,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/archimago_exiliado/frames/hurt/archimago_exiliado-hurt-03.png",
+        "sha256": "13b23298a540ec69ad08de079601bc415d71f697d5d03a92fddc9f44bc109e91",
+        "bounds": [
+          106,
+          215,
+          266,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/archimago_exiliado/frames/hurt/archimago_exiliado-hurt-04.png",
+        "sha256": "dc7cc937edc12c2bb657c6ef31ffced67f3bde26d815b88651afbb147010051e",
+        "bounds": [
+          117,
+          187,
+          264,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/archimago_exiliado/frames/attack/archimago_exiliado-attack-01.png",
+        "sha256": "7f822fbdd7e828ff25d5a2d66351dc638d769a18206ec2a21b3b68942710a8f3",
+        "bounds": [
+          106,
+          192,
+          276,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/archimago_exiliado/frames/attack/archimago_exiliado-attack-02.png",
+        "sha256": "994b31e833135b23f8fa719c44ae830736c36152adac339312bacdabb827d8e1",
+        "bounds": [
+          104,
+          185,
+          274,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/archimago_exiliado/frames/attack/archimago_exiliado-attack-03.png",
+        "sha256": "de65cab49ceebdf5927eba8c0381125cf2e22067bf9910b3785a8d9a5e1d295b",
+        "bounds": [
+          84,
+          197,
+          298,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/archimago_exiliado/frames/attack/archimago_exiliado-attack-04.png",
+        "sha256": "5abbd90266e485798db50514cfddbd9b09bd62381f936f52648cf32afd3fc652",
+        "bounds": [
+          112,
+          192,
+          262,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/archimago_exiliado/frames/dodge/archimago_exiliado-dodge-01.png",
+        "sha256": "68446a4d062f02a9f5883e00f54d46b2c14255f471e0380cf22707ae211a31b4",
+        "bounds": [
+          114,
+          201,
+          265,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/archimago_exiliado/frames/dodge/archimago_exiliado-dodge-02.png",
+        "sha256": "911ca42b892e627da1e17a9d3960cab69afad72f3e200cc87d69d50108c5bb83",
+        "bounds": [
+          93,
+          229,
+          275,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/archimago_exiliado/frames/dodge/archimago_exiliado-dodge-03.png",
+        "sha256": "eab148fcf6d5ebcf8cbc65482a283f6df73df8675a13e6b3919d299df8fd6cf6",
+        "bounds": [
+          96,
+          238,
+          280,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/archimago_exiliado/frames/dodge/archimago_exiliado-dodge-04.png",
+        "sha256": "027a3eb3bd055728070fbc4faed35a7152fe208b4f4618ae205177dd3d3d9d46",
+        "bounds": [
+          109,
+          201,
+          262,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

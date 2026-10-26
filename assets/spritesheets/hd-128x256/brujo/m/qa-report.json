@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-26T09:37:10.188626+00:00",
+  "classId": "brujo",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\brujo\\m\\brujo-m-sheet.png",
+  "sheetSha256": "d623ed304ebe9b666f120cf5990e23dc8e0150a3fa3d5d0e356ac19c2a9efcf0",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\idle\\brujo-m-idle-01.png",
+          "sha256": "bdcc2530d140f3b5f5baad649ab3ffe4991e7439e647a65d457fd5e73cac8292",
+          "alpha_bbox": [
+            5,
+            93,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\idle\\brujo-m-idle-02.png",
+          "sha256": "1503f5770bf31eeb75b5b565c78bf1f4c2d558170f2e01e86fbbc0aa1f25c168",
+          "alpha_bbox": [
+            5,
+            93,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\idle\\brujo-m-idle-03.png",
+          "sha256": "3b544f023cd2d121ffa5ea7c40fe8142ca3c5f8abe1140954d108b519c86256e",
+          "alpha_bbox": [
+            5,
+            93,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\idle\\brujo-m-idle-04.png",
+          "sha256": "3e47bc34fad4e9534dacd7951e633a15ea7cba701892ac3fb67ac989e6aba014",
+          "alpha_bbox": [
+            5,
+            93,
+            104,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\walk\\brujo-m-walk-01.png",
+          "sha256": "f1fdfad484981497f8acb7ce046e2bf739e9beafb1f2cc5d89034b0ef5133d6a",
+          "alpha_bbox": [
+            3,
+            91,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\walk\\brujo-m-walk-02.png",
+          "sha256": "f3639c2e045f6d19b91b3bd4a5065d4e94ce7006edaf9e429311a6471cc2a961",
+          "alpha_bbox": [
+            6,
+            91,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\walk\\brujo-m-walk-03.png",
+          "sha256": "5ac3ee91805c31f061945fdac024e6e899232aed19a92baefb2fe634dad3954c",
+          "alpha_bbox": [
+            7,
+            91,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\walk\\brujo-m-walk-04.png",
+          "sha256": "9d6d0de2eb322923958f9f6e4c3cfc5a22f95c61e45f40966123d0a1cf872d62",
+          "alpha_bbox": [
+            4,
+            91,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\hurt\\brujo-m-hurt-01.png",
+          "sha256": "69c318b8dd0b6e58526a35fff8d713472d3d17d7502121d2dea707562a90ec27",
+          "alpha_bbox": [
+            7,
+            92,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\hurt\\brujo-m-hurt-02.png",
+          "sha256": "cbef72d9a3640cec1d81e18087c72db9824ed6e0c773a80cc2cf7cee2765067b",
+          "alpha_bbox": [
+            27,
+            92,
+            119,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\hurt\\brujo-m-hurt-03.png",
+          "sha256": "fecbea6c6f3675a5c59b0246949b8557f5ebc4583f22037348599e6cbad0c585",
+          "alpha_bbox": [
+            13,
+            120,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\hurt\\brujo-m-hurt-04.png",
+          "sha256": "a4d5a18c1e90d21a69ec7d263cc25428aeef8365e81875cd75a9bb6d032574c5",
+          "alpha_bbox": [
+            5,
+            92,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\use_consumable\\brujo-m-use_consumable-01.png",
+          "sha256": "3ecbbec6bc0c56841c4e15b1c6cc9ce74cde422173dd2a4e3303d8aebdd2c2da",
+          "alpha_bbox": [
+            17,
+            93,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\use_consumable\\brujo-m-use_consumable-02.png",
+          "sha256": "b0d2dab4795726a5c1fe4e8344fa22a7f64f184998d6f58e8c41b03f1a73af1e",
+          "alpha_bbox": [
+            18,
+            92,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\use_consumable\\brujo-m-use_consumable-03.png",
+          "sha256": "a47018458f243b6bca74ec42cc2ba210b1cf85f8933af8e83a18289340bef066",
+          "alpha_bbox": [
+            14,
+            93,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\use_consumable\\brujo-m-use_consumable-04.png",
+          "sha256": "c33a3aed2ebf0036ed5a2aeb1a4e4dcd85eed5a12cb12afc4df5de3e8d388b39",
+          "alpha_bbox": [
+            10,
+            93,
+            98,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\dodge\\brujo-m-dodge-01.png",
+          "sha256": "3f108582f890c445679bea5b54bdfce16a023e32d462057455e3888694772346",
+          "alpha_bbox": [
+            15,
+            98,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\dodge\\brujo-m-dodge-02.png",
+          "sha256": "a23df81c7ab413740cf905098c0b0bb5ff911397eede2d7f216e83875cff7ea7",
+          "alpha_bbox": [
+            20,
+            100,
+            114,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\dodge\\brujo-m-dodge-03.png",
+          "sha256": "706a002e8761fb585ef58389c5601bfa203e5fa3eb5bda7ae0fd9747ee01ae6a",
+          "alpha_bbox": [
+            11,
+            102,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\dodge\\brujo-m-dodge-04.png",
+          "sha256": "5d519b2f4f1f983e5d672becd591c114e27e8e09356dfa24df15f7e3f7727686",
+          "alpha_bbox": [
+            17,
+            98,
+            108,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\block_shield\\brujo-m-block_shield-01.png",
+          "sha256": "5fe7146e3c3891e19b9f7b7baee2d11a698d7cb991ee5347f1058e77fea884b2",
+          "alpha_bbox": [
+            9,
+            98,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\block_shield\\brujo-m-block_shield-02.png",
+          "sha256": "f13a2d1a6d9ce7b0ab1d2654439f58a9eb0cfd7bc2df7041c62e0910a391c053",
+          "alpha_bbox": [
+            13,
+            98,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\block_shield\\brujo-m-block_shield-03.png",
+          "sha256": "43c58d769edeac5e0cad5e0a12a99c0d569851d8760fd3ae55ce8e2900ca5d75",
+          "alpha_bbox": [
+            11,
+            114,
+            107,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\block_shield\\brujo-m-block_shield-04.png",
+          "sha256": "a59c5e646267b9865caa62dd52ce7dace37dab0157d146c77e6598e32f73c3f6",
+          "alpha_bbox": [
+            6,
+            98,
+            106,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_sword\\brujo-m-attack_sword-01.png",
+          "sha256": "e5b88fd46645f8a79f2295b50f7bfed916162692c52f924c21957f1460b42936",
+          "alpha_bbox": [
+            3,
+            98,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_sword\\brujo-m-attack_sword-02.png",
+          "sha256": "047e3a1927d87dbde4c46e9f03736b6f076191752027847e3cbed0af9064f8a2",
+          "alpha_bbox": [
+            7,
+            99,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_sword\\brujo-m-attack_sword-03.png",
+          "sha256": "d818856ffe8839f3556401ef896f726583da7fe4a3ed22a7eba1f2a0c5ddf710",
+          "alpha_bbox": [
+            5,
+            102,
+            120,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_sword\\brujo-m-attack_sword-04.png",
+          "sha256": "4ad900a67ccfd295eaaee46e9b3f21930d1449da5b3d25c0004c18a41146760d",
+          "alpha_bbox": [
+            18,
+            99,
+            113,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_axe\\brujo-m-attack_axe-01.png",
+          "sha256": "3d3d9c169b01e9dc8cb80d787495f49f7c23f52f9e886ba4fdd2b11dec201fc0",
+          "alpha_bbox": [
+            6,
+            101,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_axe\\brujo-m-attack_axe-02.png",
+          "sha256": "14635dbc8d970c4aba501d93a01f92e0ab56f98e2c7b1dc3b98c6ba09e03cc24",
+          "alpha_bbox": [
+            14,
+            112,
+            115,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_axe\\brujo-m-attack_axe-03.png",
+          "sha256": "814a07b90a674dcb985702edbae87f701c478f267658c8c0032d0db29454ff2c",
+          "alpha_bbox": [
+            10,
+            121,
+            115,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_axe\\brujo-m-attack_axe-04.png",
+          "sha256": "818feab94059c8955ff1c49e9583fd468f2742c8055c48edb0249d5da5a6388b",
+          "alpha_bbox": [
+            14,
+            104,
+            118,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_spear\\brujo-m-attack_spear-01.png",
+          "sha256": "80d4218f72c9cca0917e3337ca1273896651183c284470ca49b164220ea19e81",
+          "alpha_bbox": [
+            7,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_spear\\brujo-m-attack_spear-02.png",
+          "sha256": "032482ca2f1a01aef786609e44af0b9d59306a11f406690b7dc8127522e9c948",
+          "alpha_bbox": [
+            13,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_spear\\brujo-m-attack_spear-03.png",
+          "sha256": "3b35ac6e46068d611b36a29ce4f946be862968cdb2fe7ece3d36a953cb149729",
+          "alpha_bbox": [
+            8,
+            91,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_spear\\brujo-m-attack_spear-04.png",
+          "sha256": "ce394ddbadb4ee75aa609ea875c551a95aea0de09505aa0a392ce029d17b75a9",
+          "alpha_bbox": [
+            12,
+            91,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_dagger\\brujo-m-attack_dagger-01.png",
+          "sha256": "8dfb2fa2f6a564e9112f412cd2da763841a0d26884df97c09889027eadee7559",
+          "alpha_bbox": [
+            10,
+            93,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_dagger\\brujo-m-attack_dagger-02.png",
+          "sha256": "a61e2086e7a366cc793b525ff37a114acaba68881a444c8672e727bbf7a989a9",
+          "alpha_bbox": [
+            19,
+            93,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_dagger\\brujo-m-attack_dagger-03.png",
+          "sha256": "5e2ff658af038c12c54cf81b57cb709d2363d1a75cc6bc157b00871a3137c52a",
+          "alpha_bbox": [
+            18,
+            96,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_dagger\\brujo-m-attack_dagger-04.png",
+          "sha256": "2cdaf4953eb7b7166979f7ded05c3982c7b3cfcfe3e2ccaffc8dac0d47a867ff",
+          "alpha_bbox": [
+            14,
+            93,
+            98,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_bow\\brujo-m-attack_bow-01.png",
+          "sha256": "251b4b5c22ccfb2eb80535596458d6bb7761d19a00b4ed7f6787283cb32e0339",
+          "alpha_bbox": [
+            8,
+            96,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_bow\\brujo-m-attack_bow-02.png",
+          "sha256": "f2d777395a5530fd7041fcbea95c084ffff8d25bf6eb42c17cbc3b0b79e22199",
+          "alpha_bbox": [
+            19,
+            96,
+            119,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_bow\\brujo-m-attack_bow-03.png",
+          "sha256": "6fb157729ca2d6000d2d2df54892ed785cd0880298871213de9ee24b7235af44",
+          "alpha_bbox": [
+            20,
+            96,
+            117,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_bow\\brujo-m-attack_bow-04.png",
+          "sha256": "3e0902e1a5973e3134acc14ff27038212feae9defc27c8a1cceca1683ba107d8",
+          "alpha_bbox": [
+            17,
+            96,
+            119,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_staff\\brujo-m-attack_staff-01.png",
+          "sha256": "7da13421d29ebef6cb4a27a3baa03e8e855d7e246c9c65175d45943e0cf8d03e",
+          "alpha_bbox": [
+            11,
+            93,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_staff\\brujo-m-attack_staff-02.png",
+          "sha256": "3941ce45aef9069677cbba1401521114cf4b263e6bca0ff6ead6aaf5fe05691e",
+          "alpha_bbox": [
+            21,
+            93,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_staff\\brujo-m-attack_staff-03.png",
+          "sha256": "6ddee40fb00030dab906903e8f21e0248a7f314d3a01475125c37430e76d536a",
+          "alpha_bbox": [
+            21,
+            93,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_staff\\brujo-m-attack_staff-04.png",
+          "sha256": "c1d80b96c31f0be32bba35fa6cfa0f8d491b2b5506c51ea214b2cc205fd8a892",
+          "alpha_bbox": [
+            12,
+            93,
+            105,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_mace\\brujo-m-attack_mace-01.png",
+          "sha256": "5b0ea07a7973df1a49708f8564a98f50817eadae4b8ebab58813b18e5c3db955",
+          "alpha_bbox": [
+            8,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_mace\\brujo-m-attack_mace-02.png",
+          "sha256": "f1eb5ba71b833e13607fef0608a4cf6068b8527f9b6e4abaf21cdeaa5204e523",
+          "alpha_bbox": [
+            24,
+            92,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_mace\\brujo-m-attack_mace-03.png",
+          "sha256": "621ca5eae1ae025578ff70bdb0281faade79648e6e5398f748a8a935d910ec08",
+          "alpha_bbox": [
+            18,
+            104,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_mace\\brujo-m-attack_mace-04.png",
+          "sha256": "c7d73a8cfcdb7728dd0ebf3e57ee23f72e3d663c8339d9c922bd78bfbd6d54db",
+          "alpha_bbox": [
+            18,
+            92,
+            116,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_book\\brujo-m-attack_book-01.png",
+          "sha256": "ff2cbe45f1351a3f717189623cc3d7a87ddee2da9a3794f461a54f14c69f720c",
+          "alpha_bbox": [
+            11,
+            92,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_book\\brujo-m-attack_book-02.png",
+          "sha256": "d5cd91c2b93ce7b588573eab8ed031087afd50b8b1f191a1131342298c9f5ca4",
+          "alpha_bbox": [
+            11,
+            92,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_book\\brujo-m-attack_book-03.png",
+          "sha256": "885805d2b3277312731e8eeb7d084b4d4f489c42235d0b144308ccbf925c2301",
+          "alpha_bbox": [
+            11,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_book\\brujo-m-attack_book-04.png",
+          "sha256": "202002fed8670ae589c851c695626fc2183f72d60186ec801fd83d1bf1871039",
+          "alpha_bbox": [
+            12,
+            92,
+            103,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_gloves\\brujo-m-attack_gloves-01.png",
+          "sha256": "7f6aaca3d863552f092f1b6bbb94b02def63f63ce8968d41adc4f3d6bc9c3d2e",
+          "alpha_bbox": [
+            8,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_gloves\\brujo-m-attack_gloves-02.png",
+          "sha256": "6038401793425b60a1e6451766f55c31d56f1c137ca03ce93587c122cf420be9",
+          "alpha_bbox": [
+            11,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_gloves\\brujo-m-attack_gloves-03.png",
+          "sha256": "d30dad82bce71b0d61f696c868558129f8358e3f7377662d5f3b5c3e411c0c03",
+          "alpha_bbox": [
+            9,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\brujo\\m\\frames\\attack_gloves\\brujo-m-attack_gloves-04.png",
+          "sha256": "1a8621e83460423a671df2d3b63df727ad01855b13b55f3e9b033f7bf61704fe",
+          "alpha_bbox": [
+            11,
+            92,
+            107,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 1.0810810810810811,
+  "cellSize": [
+    448,
+    448
+  ],
+  "sheetSize": [
+    1792,
+    1792
+  ],
+  "artDirection": "earlier-candidate-style",
+  "requestedIdleHeight": 240,
+  "idleHeightMean": 240.0,
+  "actorAnchor": [
+    224,
+    434
+  ],
+  "baselineY": 434,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      196.0,
+      294.0
+    ],
+    [
+      199.5,
+      288.5
+    ],
+    [
+      193.0,
+      276.0
+    ],
+    [
+      195.5,
+      244.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/dragon_negro_joven/dragon_negro_joven-sheet.png",
+  "sheetSha256": "e4ebb790ad98450218cdd8f4dca99f47338df94e63164c1c9b160ab077c1f2d7",
+  "sourcePath": "assets/spritesheets/enemies-hd/dragon_negro_joven/source/sheet-v1.png",
+  "sourceSha256": "7c23958bd00a1558fde631a0d1ac9e822eb6ccd68a91ad94e3f4b8127d2bedd0",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_negro_joven/frames/idle/dragon_negro_joven-idle-01.png",
+        "sha256": "3957be6657e7c911d8ef0f7c0c2da0ff3c27596b7f86585049a3adc2c42da9fa",
+        "bounds": [
+          73,
+          195,
+          354,
+          434
+        ],
+        "idleAnchorCorrectionX": 24
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_negro_joven/frames/idle/dragon_negro_joven-idle-02.png",
+        "sha256": "cc02bffafec231a7c3d5b053787381883b612635a1f07848f1dd7ce9603abf80",
+        "bounds": [
+          78,
+          192,
+          354,
+          434
+        ],
+        "idleAnchorCorrectionX": 25
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_negro_joven/frames/idle/dragon_negro_joven-idle-03.png",
+        "sha256": "7c48b4c7f332bcd4134d2f4d507d8ee638da7c775e06af1cefad9fbe7a687b0b",
+        "bounds": [
+          79,
+          195,
+          351,
+          434
+        ],
+        "idleAnchorCorrectionX": 24
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_negro_joven/frames/idle/dragon_negro_joven-idle-04.png",
+        "sha256": "1b0d2cb896f5a3b50a6e415ae9dde7c7d92ef3d8985c10fc27aca61c5c724ecd",
+        "bounds": [
+          70,
+          194,
+          352,
+          434
+        ],
+        "idleAnchorCorrectionX": 24
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_negro_joven/frames/hurt/dragon_negro_joven-hurt-01.png",
+        "sha256": "eae6e1930dce9c71174f43fb5ecae3f7de39a2dda3ac3c79df42bde631cfcd9e",
+        "bounds": [
+          32,
+          190,
+          335,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_negro_joven/frames/hurt/dragon_negro_joven-hurt-02.png",
+        "sha256": "ac493cb1ca10f63634033268ed1eda0211e6541e6258d2983254ecdf54bea62c",
+        "bounds": [
+          37,
+          222,
+          333,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_negro_joven/frames/hurt/dragon_negro_joven-hurt-03.png",
+        "sha256": "5d992071caaff0c9fa1052bedcd31019ea9fada9cf64b299f534da62bc9622d6",
+        "bounds": [
+          30,
+          238,
+          331,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_negro_joven/frames/hurt/dragon_negro_joven-hurt-04.png",
+        "sha256": "68b3d1cf62eafa3b334b3b31ba376696866841c768bf65b2520a6f1870ab6513",
+        "bounds": [
+          41,
+          188,
+          322,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_negro_joven/frames/attack/dragon_negro_joven-attack-01.png",
+        "sha256": "057550cc68b3fcfa9caa67a73b88bb2e48ac1c105773e7f491bdf1543730cd78",
+        "bounds": [
+          43,
+          220,
+          335,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_negro_joven/frames/attack/dragon_negro_joven-attack-02.png",
+        "sha256": "5e32a73aafbd6f4939a944507257991a1dc07dc9007bdf29322506d6a58f0d84",
+        "bounds": [
+          38,
+          152,
+          349,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_negro_joven/frames/attack/dragon_negro_joven-attack-03.png",
+        "sha256": "6272d8e4f1ba790465c48d61cfcffc1103568af3aa7760a435346d2eef8ac2b1",
+        "bounds": [
+          24,
+          180,
+          395,
+          426
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_negro_joven/frames/attack/dragon_negro_joven-attack-04.png",
+        "sha256": "52e65b6f8bc1d80c18c6984bd5671645937c11d1f124140a51ed4acca50eee66",
+        "bounds": [
+          49,
+          216,
+          338,
+          433
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_negro_joven/frames/dodge/dragon_negro_joven-dodge-01.png",
+        "sha256": "1de319ca866ec0276f80572d36382e7b54ac8a8357c3f07d167861ab7ede8dec",
+        "bounds": [
+          43,
+          196,
+          331,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_negro_joven/frames/dodge/dragon_negro_joven-dodge-02.png",
+        "sha256": "a49d37e9957a20fa9aaff80f0085d9408d7a2a57c91aa34992be2d167d0ed7a0",
+        "bounds": [
+          33,
+          234,
+          348,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_negro_joven/frames/dodge/dragon_negro_joven-dodge-03.png",
+        "sha256": "5d8d5ac030b1d5bcf92b7b81451f0caf40e34c13b3e8e01fe0334592571655fb",
+        "bounds": [
+          32,
+          258,
+          360,
+          432
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_negro_joven/frames/dodge/dragon_negro_joven-dodge-04.png",
+        "sha256": "ebb37bf5c65487ee7c9442fa54bd603c30bc40335ffb9d357f3cd98ae0cc71e9",
+        "bounds": [
+          46,
+          195,
+          326,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-25T22:15:15.060175+00:00",
+  "classId": "caballero",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\caballero\\m\\caballero-m-sheet.png",
+  "sheetSha256": "0756ca7a04b43f1fc738400ef01aa47f5bc2ddc2fe945e8d33c93f931ac6bf5b",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\idle\\caballero-m-idle-01.png",
+          "sha256": "24737175bfe606cbd073446459e2d145a4c45535ad3d73244b60881b666525b9",
+          "alpha_bbox": [
+            25,
+            93,
+            103,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\idle\\caballero-m-idle-02.png",
+          "sha256": "35942aa63bf113ee1f452d4e2fb82095f7f7b2fb27c5af131efbc1e2204df889",
+          "alpha_bbox": [
+            25,
+            93,
+            102,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\idle\\caballero-m-idle-03.png",
+          "sha256": "3f4177fa6cd1f152add3a5b8b7d5c11e732885de6830d37383750b90681dcb36",
+          "alpha_bbox": [
+            23,
+            93,
+            101,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\idle\\caballero-m-idle-04.png",
+          "sha256": "4ccc47c9e8bba93c9e0ab98009c203695c9a390f53ed1ee80ab694d0d0d3b73f",
+          "alpha_bbox": [
+            21,
+            93,
+            99,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\walk\\caballero-m-walk-01.png",
+          "sha256": "2e66b35a80146d60af88077158167e1088c55854f543db024c01453e22fa7a3a",
+          "alpha_bbox": [
+            11,
+            92,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\walk\\caballero-m-walk-02.png",
+          "sha256": "2e1895b580a97e4c14453471720aba2dbecc168d491c1910e495be8b91af829c",
+          "alpha_bbox": [
+            14,
+            92,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\walk\\caballero-m-walk-03.png",
+          "sha256": "3dc932003f5712ea011805ebef2b33a3ed5370c526955691e2a07c6ba1dc9353",
+          "alpha_bbox": [
+            12,
+            92,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\walk\\caballero-m-walk-04.png",
+          "sha256": "51b071f5fdad6f560233b9a76f048e4c20418a9dc540597b2578d9dae872fe65",
+          "alpha_bbox": [
+            15,
+            92,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\hurt\\caballero-m-hurt-01.png",
+          "sha256": "2656974ea1a7a3f7493940cc12618c34e84705a1afccbc126c9ad78bcf34c213",
+          "alpha_bbox": [
+            26,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\hurt\\caballero-m-hurt-02.png",
+          "sha256": "4bdd6ea4cabf94e02d085307e5158d4e8d721a80bc27264b9eccca54665be242",
+          "alpha_bbox": [
+            27,
+            100,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\hurt\\caballero-m-hurt-03.png",
+          "sha256": "d8be4756b9ba6a4c3523287f4f2b401ce56bc1af6a158b3e325b8c5045cb5a1d",
+          "alpha_bbox": [
+            16,
+            118,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\hurt\\caballero-m-hurt-04.png",
+          "sha256": "42e3aa489b60e50e2945ed257f07e836a9759066e1fb827a9ce476c824435378",
+          "alpha_bbox": [
+            17,
+            92,
+            98,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\use_consumable\\caballero-m-use_consumable-01.png",
+          "sha256": "c41e55a586a30000be964f2dbf8f3cf8b365053b6983cfaee327ab5939bdf39a",
+          "alpha_bbox": [
+            26,
+            93,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\use_consumable\\caballero-m-use_consumable-02.png",
+          "sha256": "7e209d3839768d1ab2f7010897229b69fd710625407ef97c3973d89cbe5e3072",
+          "alpha_bbox": [
+            24,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\use_consumable\\caballero-m-use_consumable-03.png",
+          "sha256": "c70e4e60cfd796435464404bbab40e88a7420d755218cf6d2403dd425145da99",
+          "alpha_bbox": [
+            24,
+            93,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\use_consumable\\caballero-m-use_consumable-04.png",
+          "sha256": "2501a5d222247e0ea748b787f9dedccc1fe17b78e2bfb0f178fed741f3c77358",
+          "alpha_bbox": [
+            17,
+            93,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\dodge\\caballero-m-dodge-01.png",
+          "sha256": "139a19281a8738ed6a7c743f6593b64ead12c2bcd62d58f50ae95bde248a6f3a",
+          "alpha_bbox": [
+            17,
+            98,
+            106,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\dodge\\caballero-m-dodge-02.png",
+          "sha256": "7d890ae2e1cfe968157d5cae3d1dcf12ee10c84bc23b8d71c59c4a9dc86a66cd",
+          "alpha_bbox": [
+            20,
+            100,
+            122,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\dodge\\caballero-m-dodge-03.png",
+          "sha256": "d879b1f99150a1e9d7b623393da9f89f6fd0b5e98281826afdb56ff2a2028503",
+          "alpha_bbox": [
+            26,
+            104,
+            111,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\dodge\\caballero-m-dodge-04.png",
+          "sha256": "3fedc33aa4f9590aff744ad74fa04f64e7583fab1574915bcbe2e436b6257f75",
+          "alpha_bbox": [
+            22,
+            99,
+            114,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\block_shield\\caballero-m-block_shield-01.png",
+          "sha256": "e9ed7e18f3bbda028fcb54573a87a9b14c0d91c4643dfea04ab86ed56160a727",
+          "alpha_bbox": [
+            21,
+            98,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\block_shield\\caballero-m-block_shield-02.png",
+          "sha256": "aaf6ebf839e95489c66d3be5366aec119ee270260c75e1acb60c6f95cec19bf0",
+          "alpha_bbox": [
+            20,
+            98,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\block_shield\\caballero-m-block_shield-03.png",
+          "sha256": "7ab9e9d91a395aff96f3cc8fedd854001e21e3c9f7ec1912e76ae50a4d57314e",
+          "alpha_bbox": [
+            18,
+            113,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\block_shield\\caballero-m-block_shield-04.png",
+          "sha256": "09c741e4c8222d89dedcbb067a7dec4027d76a031e46a31a1221945559e00078",
+          "alpha_bbox": [
+            18,
+            98,
+            108,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_sword\\caballero-m-attack_sword-01.png",
+          "sha256": "25c326bb950c6286f24e1a63f053f0a2aca9668cb7333f67a06c8eae70a100b8",
+          "alpha_bbox": [
+            11,
+            99,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_sword\\caballero-m-attack_sword-02.png",
+          "sha256": "bf860217ba1dc0d2e5399a6f41fa59718d467d3483217f6c28aab1b7378ee93a",
+          "alpha_bbox": [
+            8,
+            99,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_sword\\caballero-m-attack_sword-03.png",
+          "sha256": "b8eda07833c996fee29016c9afd0c8db5710d6dbb23bb1271d67b24401091926",
+          "alpha_bbox": [
+            10,
+            102,
+            122,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_sword\\caballero-m-attack_sword-04.png",
+          "sha256": "74930aef98853773df97c389032d71cb746fcf1fef16c94155805c5641dab0d1",
+          "alpha_bbox": [
+            13,
+            99,
+            109,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_axe\\caballero-m-attack_axe-01.png",
+          "sha256": "7ff0d52bd91a380ea629e12351c36769e4d7f22d8afd4ad4261a2600a55b6854",
+          "alpha_bbox": [
+            10,
+            101,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_axe\\caballero-m-attack_axe-02.png",
+          "sha256": "a1270d3b968dc8fa105746fa24752018c6a7209d106a1e2d3182a4120bdff7ad",
+          "alpha_bbox": [
+            16,
+            112,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_axe\\caballero-m-attack_axe-03.png",
+          "sha256": "0971ec99c59bbae440451be81c2b89c44e34453a68bbc6cccdb674562ff444ab",
+          "alpha_bbox": [
+            10,
+            121,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_axe\\caballero-m-attack_axe-04.png",
+          "sha256": "0f10a7abcd30b441c28a503ba7bc18a4341c73c6c38d747e56e2c606ba35dbfd",
+          "alpha_bbox": [
+            19,
+            104,
+            116,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_spear\\caballero-m-attack_spear-01.png",
+          "sha256": "8635065039d466d5b1b7f39fe08e176ae38c1177d40f614494af3334a2e0a245",
+          "alpha_bbox": [
+            9,
+            92,
+            108,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_spear\\caballero-m-attack_spear-02.png",
+          "sha256": "73b242271b0d973cc3ab0c033d3f0c212a3c7e0fd2fcca53f0c9c29654e7873b",
+          "alpha_bbox": [
+            15,
+            92,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_spear\\caballero-m-attack_spear-03.png",
+          "sha256": "8876312532fcc6255dd5dde19bd41f41430c46b97df8b91866fb428d5a8924a6",
+          "alpha_bbox": [
+            10,
+            92,
+            116,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_spear\\caballero-m-attack_spear-04.png",
+          "sha256": "7dd384781eac610b66587c323918df12ce6929d453781b85aa5357efff40e1ce",
+          "alpha_bbox": [
+            19,
+            92,
+            113,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_dagger\\caballero-m-attack_dagger-01.png",
+          "sha256": "342be73380cf07ae0b819f351051a929d507b1a0b3880f194c5ea77f5dd521fe",
+          "alpha_bbox": [
+            27,
+            93,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_dagger\\caballero-m-attack_dagger-02.png",
+          "sha256": "10ff76752b8e38d934446089ae4207216c74ed71021dac19d0196ffffcee20d3",
+          "alpha_bbox": [
+            27,
+            93,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_dagger\\caballero-m-attack_dagger-03.png",
+          "sha256": "9effc61267732a0a158f14d5bbf36d4a0dba092d323add9fb162ee229378a8ec",
+          "alpha_bbox": [
+            25,
+            95,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_dagger\\caballero-m-attack_dagger-04.png",
+          "sha256": "48bfd7d78333e2b12b12b2d8f91f3b3df9d7e8f7120c95e070a1b6dd7db6dd2c",
+          "alpha_bbox": [
+            21,
+            93,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_bow\\caballero-m-attack_bow-01.png",
+          "sha256": "60e5acc463ffeb7ce2729225272ef4d5c5abcb6cfbff8adf8432765abb874979",
+          "alpha_bbox": [
+            24,
+            95,
+            119,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_bow\\caballero-m-attack_bow-02.png",
+          "sha256": "ee27e8ca93c051d7f15970586c13d2872353dffed8db69ce21f862a81e92742b",
+          "alpha_bbox": [
+            19,
+            95,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_bow\\caballero-m-attack_bow-03.png",
+          "sha256": "708f4ace15161da43f5c164e2fde2d6f4c15f0aea8d80be382b0d19465431ead",
+          "alpha_bbox": [
+            13,
+            95,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_bow\\caballero-m-attack_bow-04.png",
+          "sha256": "298429687009879324072dd31677805ac2d4bde253aebc669c5e3508800d283a",
+          "alpha_bbox": [
+            10,
+            95,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_staff\\caballero-m-attack_staff-01.png",
+          "sha256": "8ba2eacaa39e1eed74c0ff3e27a6463661b2b6e9037f8ba029b3eecc6ac3b351",
+          "alpha_bbox": [
+            27,
+            93,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_staff\\caballero-m-attack_staff-02.png",
+          "sha256": "6f7d8e27f3042a9f6cc72c6c1aaaef4c690a92b24591ff81ac0ab1a643d62e62",
+          "alpha_bbox": [
+            25,
+            93,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_staff\\caballero-m-attack_staff-03.png",
+          "sha256": "ac0b1a75e2ab4498db0714cf9b64b40ce26a7ab1199d4d7d15aa451972d8bafd",
+          "alpha_bbox": [
+            25,
+            94,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_staff\\caballero-m-attack_staff-04.png",
+          "sha256": "664db86102c923ded6f7472a5405c5f6fffeadd0ee9f35ed3ab12c549be02cbb",
+          "alpha_bbox": [
+            17,
+            93,
+            98,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_mace\\caballero-m-attack_mace-01.png",
+          "sha256": "46422a1c90d9b5205c8c28bb2740d0688d9064f77ed7f80be986c953a0bb6929",
+          "alpha_bbox": [
+            25,
+            92,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_mace\\caballero-m-attack_mace-02.png",
+          "sha256": "770874a23736aff39e4cdca2897f0e8817dd3796bf70e1d2e1aa5464f8a63876",
+          "alpha_bbox": [
+            30,
+            92,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_mace\\caballero-m-attack_mace-03.png",
+          "sha256": "f3834b8426967515311db9acfcb679954685b6221958863700cd3bd5b004b43d",
+          "alpha_bbox": [
+            27,
+            103,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_mace\\caballero-m-attack_mace-04.png",
+          "sha256": "80045faa45565d56e9f6be2194855710c79be289e3e75954e3bfef004b355779",
+          "alpha_bbox": [
+            32,
+            92,
+            113,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_book\\caballero-m-attack_book-01.png",
+          "sha256": "d7c0b4fde78ccaf4ab04ba736985147a0ba177fdd0dc401f046c9caf149f7065",
+          "alpha_bbox": [
+            23,
+            92,
+            100,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_book\\caballero-m-attack_book-02.png",
+          "sha256": "d3cf0c777255a24728ae9e062edaf1bfef48d1f83b6ac50a0f149d3a27f14b02",
+          "alpha_bbox": [
+            25,
+            91,
+            102,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_book\\caballero-m-attack_book-03.png",
+          "sha256": "9f7ea96921614995545161cafd10e9e95e52ba70703f88962ff89529a6935855",
+          "alpha_bbox": [
+            24,
+            92,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_book\\caballero-m-attack_book-04.png",
+          "sha256": "ccde2e7237ebc7066a18bf896704f9e8e6cdbfb422d33ea0d9eaed6570ead4fc",
+          "alpha_bbox": [
+            25,
+            91,
+            103,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_gloves\\caballero-m-attack_gloves-01.png",
+          "sha256": "7240c5709b3e6c2b17871933de7cb21c3ee8112939c0d921a93cc926d0fc42ea",
+          "alpha_bbox": [
+            24,
+            92,
+            108,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_gloves\\caballero-m-attack_gloves-02.png",
+          "sha256": "cb6b15645454d182514c1d9ad2be64e8973abd3f21c223ed2496d9fedaae9356",
+          "alpha_bbox": [
+            25,
+            92,
+            110,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_gloves\\caballero-m-attack_gloves-03.png",
+          "sha256": "f1020763506f32437f7525b6c9c67d3b824d6b57820038d212d5290f6646363e",
+          "alpha_bbox": [
+            26,
+            92,
+            111,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\caballero\\m\\frames\\attack_gloves\\caballero-m-attack_gloves-04.png",
+          "sha256": "fb06f43e53b189faaf1b785bd589ee960759785fc33cdb20fa12b7f8f8e1b9cc",
+          "alpha_bbox": [
+            28,
+            92,
+            112,
+            247
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

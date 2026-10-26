@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.8140900195694716,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 208,
+  "idleHeightMean": 208.25,
+  "actorAnchor": [
+    192,
+    371
+  ],
+  "baselineY": 371,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      196.5,
+      315.0
+    ],
+    [
+      198.5,
+      304.5
+    ],
+    [
+      194.0,
+      293.0
+    ],
+    [
+      197.0,
+      265.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/wyvern_joven/wyvern_joven-sheet.png",
+  "sheetSha256": "1ea2e4e18704149374ed2fd9d691129c18c63587cc6082bc3312d2d7d14092a3",
+  "sourcePath": "assets/spritesheets/enemies-hd/wyvern_joven/source/sheet-v1.png",
+  "sourceSha256": "8768e6f4d02610b3e504ca883acbc1eefa429d6a85dbefbc14e1589ff6cf2b6f",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/wyvern_joven/frames/idle/wyvern_joven-idle-01.png",
+        "sha256": "166e74f1335e9013ab4ba4c5ec9e7229a35c4cd9f42afc93edc4fee151c4cd62",
+        "bounds": [
+          47,
+          163,
+          276,
+          371
+        ],
+        "idleAnchorCorrectionX": -1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/wyvern_joven/frames/idle/wyvern_joven-idle-02.png",
+        "sha256": "483b1d4b9b32837f0a6e1cfa1a8b022fa30ad3dd4a48782f6b4cb5a52e67574e",
+        "bounds": [
+          47,
+          163,
+          275,
+          371
+        ],
+        "idleAnchorCorrectionX": -1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/wyvern_joven/frames/idle/wyvern_joven-idle-03.png",
+        "sha256": "2d31d4d4aa8cf9e775db0b5d9463abcb3b9c5637f8b603c0d1ace9f0842bbedd",
+        "bounds": [
+          47,
+          162,
+          276,
+          371
+        ],
+        "idleAnchorCorrectionX": -1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/wyvern_joven/frames/idle/wyvern_joven-idle-04.png",
+        "sha256": "6e7f11a0e3dc5a3110ddf9bacf37f11fec1b5cb5c285387c11fb675876b1ad51",
+        "bounds": [
+          46,
+          163,
+          275,
+          371
+        ],
+        "idleAnchorCorrectionX": -1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/wyvern_joven/frames/hurt/wyvern_joven-hurt-01.png",
+        "sha256": "c2ce5a6ae4b0506c12d97850a641fc08f8a0cb738aeec6001e21698ef346433d",
+        "bounds": [
+          47,
+          172,
+          280,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/wyvern_joven/frames/hurt/wyvern_joven-hurt-02.png",
+        "sha256": "2208c57433122ca7a8035d885a22a3aaef205e637273fe5b4e7b89243419a0ed",
+        "bounds": [
+          49,
+          197,
+          275,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/wyvern_joven/frames/hurt/wyvern_joven-hurt-03.png",
+        "sha256": "bc6ce2d6e7bd06809ca2661d99b74ea11612bab12ace20df1c31a37f31b5d9cd",
+        "bounds": [
+          45,
+          171,
+          267,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/wyvern_joven/frames/hurt/wyvern_joven-hurt-04.png",
+        "sha256": "29d8f461e0d9e106bdeb5e3dc8feadb998cb503e98e57e12bb9dd97489e5e070",
+        "bounds": [
+          45,
+          182,
+          272,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/wyvern_joven/frames/attack/wyvern_joven-attack-01.png",
+        "sha256": "1e61080d193e06b9401fbe047f1ac767971a64d56460bc2d80e24e3b5ba5c3d7",
+        "bounds": [
+          47,
+          194,
+          282,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/wyvern_joven/frames/attack/wyvern_joven-attack-02.png",
+        "sha256": "b38e267c78f691dc4340d9371f639404c959cef1e23b390d5a02d2cd920ede5a",
+        "bounds": [
+          34,
+          145,
+          277,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/wyvern_joven/frames/attack/wyvern_joven-attack-03.png",
+        "sha256": "ade33cd831436dd0499c7346d33ffb297579f978fcb5df1c258e50ffe06606bf",
+        "bounds": [
+          34,
+          195,
+          325,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/wyvern_joven/frames/attack/wyvern_joven-attack-04.png",
+        "sha256": "60b4d23d8344ac788f36b74d95ce9ccd5a8335df4ada3bc30c263899cc100a9c",
+        "bounds": [
+          61,
+          184,
+          278,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/wyvern_joven/frames/dodge/wyvern_joven-dodge-01.png",
+        "sha256": "c07ba7f63665aa1eccfea18d81a807077331806f4c2046bfe8427cd13fafa152",
+        "bounds": [
+          50,
+          185,
+          279,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/wyvern_joven/frames/dodge/wyvern_joven-dodge-02.png",
+        "sha256": "3ee08a1e1d1cdda29b111b78f6660f3f4768a5939adbd0986357948634097981",
+        "bounds": [
+          43,
+          227,
+          279,
+          365
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/wyvern_joven/frames/dodge/wyvern_joven-dodge-03.png",
+        "sha256": "fe8bca6e05a4649a1fe814b553492031e090357217df8e1005fada98223b78d5",
+        "bounds": [
+          45,
+          238,
+          283,
+          368
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/wyvern_joven/frames/dodge/wyvern_joven-dodge-04.png",
+        "sha256": "820cecc22d42c56e7b505138a65331e380eb7fe75306ab7e5fc2d88d57b9397f",
+        "bounds": [
+          50,
+          169,
+          274,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

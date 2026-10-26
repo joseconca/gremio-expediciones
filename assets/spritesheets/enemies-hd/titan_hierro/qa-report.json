@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 1.150849150849151,
+  "cellSize": [
+    512,
+    512
+  ],
+  "sheetSize": [
+    2048,
+    2048
+  ],
+  "artDirection": "earlier-candidate-style",
+  "requestedIdleHeight": 288,
+  "idleHeightMean": 288.25,
+  "actorAnchor": [
+    256,
+    499
+  ],
+  "baselineY": 499,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      173.5,
+      306.0
+    ],
+    [
+      161.0,
+      300.5
+    ],
+    [
+      157.0,
+      290.0
+    ],
+    [
+      163.0,
+      269.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/titan_hierro/titan_hierro-sheet.png",
+  "sheetSha256": "6e45f9c52cce788057790df0b5bca0625a51abff6d58e01ca297d1780d92165b",
+  "sourcePath": "assets/spritesheets/enemies-hd/titan_hierro/source/sheet-v1.png",
+  "sourceSha256": "27d2cf1588fd60dbccf30e220ec5a9e89cad483082ba7e0ce4730fdeb83577c7",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/titan_hierro/frames/idle/titan_hierro-idle-01.png",
+        "sha256": "3ef89dfbcd22e50c1a090855a61f0e28c2204545e8c85e0f03101d37d7459093",
+        "bounds": [
+          94,
+          211,
+          408,
+          499
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/titan_hierro/frames/idle/titan_hierro-idle-02.png",
+        "sha256": "a326124c96e9cd66c815c698c95543afae87d58a289feec098e62b1cdf46ff76",
+        "bounds": [
+          93,
+          211,
+          404,
+          499
+        ],
+        "idleAnchorCorrectionX": -1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/titan_hierro/frames/idle/titan_hierro-idle-03.png",
+        "sha256": "f629af8fcf3b57cfddef8d1d055d25a1b0c90ac15b8d7e5dc432236805f1ea53",
+        "bounds": [
+          94,
+          210,
+          410,
+          499
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/titan_hierro/frames/idle/titan_hierro-idle-04.png",
+        "sha256": "33af2c0abfcce57c411979228709d61e3522b91aeb004f70e8f04108f3bb1a75",
+        "bounds": [
+          94,
+          211,
+          402,
+          499
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/titan_hierro/frames/hurt/titan_hierro-hurt-01.png",
+        "sha256": "29c6dfa7716ff953b65437ea42e3b7c1ab1a1a356f55c0c179b8ec9dacf9bfd5",
+        "bounds": [
+          103,
+          209,
+          426,
+          499
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/titan_hierro/frames/hurt/titan_hierro-hurt-02.png",
+        "sha256": "fed67aa798e3b20e2621109ec3fbab4934071c3c31ab32e597d02dc7eda5409b",
+        "bounds": [
+          113,
+          230,
+          436,
+          499
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/titan_hierro/frames/hurt/titan_hierro-hurt-03.png",
+        "sha256": "1ffa699ca43a4d716d975257ddbcb3a6a575803563c0c9bc21d33fc5a85772fb",
+        "bounds": [
+          85,
+          233,
+          418,
+          499
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/titan_hierro/frames/hurt/titan_hierro-hurt-04.png",
+        "sha256": "b7157a81fb7acc3944d175cf7431a8ef6f91eac4670844b84ff4e7ec9a12510a",
+        "bounds": [
+          101,
+          218,
+          416,
+          499
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/titan_hierro/frames/attack/titan_hierro-attack-01.png",
+        "sha256": "4df08befb26354b01379a0917b670d54b64a4b1a6536eaae43ca740f9395dd84",
+        "bounds": [
+          105,
+          223,
+          434,
+          499
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/titan_hierro/frames/attack/titan_hierro-attack-02.png",
+        "sha256": "0f456fb720678e70d41a99b22258eba7923420f89c9e82ad6073cc390383f1e1",
+        "bounds": [
+          93,
+          167,
+          438,
+          500
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/titan_hierro/frames/attack/titan_hierro-attack-03.png",
+        "sha256": "0a94eb3cf58943d690eb7981cc75a2261b2b7c449cff8ee20fc4499e51e772ff",
+        "bounds": [
+          74,
+          246,
+          471,
+          499
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/titan_hierro/frames/attack/titan_hierro-attack-04.png",
+        "sha256": "2703b3eac3038bf0c4b8c91fda068cbcb78bf5e8a0bc85e5cbe779cff38db1bf",
+        "bounds": [
+          122,
+          218,
+          419,
+          500
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/titan_hierro/frames/dodge/titan_hierro-dodge-01.png",
+        "sha256": "ee2cacad7058641a6a0bf7c2779f54b3525ea41be3202c8db55ba83ae13b035d",
+        "bounds": [
+          105,
+          222,
+          415,
+          499
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/titan_hierro/frames/dodge/titan_hierro-dodge-02.png",
+        "sha256": "bb4116e5dd968dbacff7ef4df51264fe0fe622d51841c4c4b96d74bac2ed3e7d",
+        "bounds": [
+          87,
+          235,
+          422,
+          497
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/titan_hierro/frames/dodge/titan_hierro-dodge-03.png",
+        "sha256": "1a6d9c6282e0f0f40bd29bb8065d7b4d0cccf6e5c3ccdf22f30a775a80c7673a",
+        "bounds": [
+          88,
+          276,
+          423,
+          498
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/titan_hierro/frames/dodge/titan_hierro-dodge-04.png",
+        "sha256": "cac53055cf7362d92244c76b93dbe72ac405e02ae5b0211203f027d76f3ddb62",
+        "bounds": [
+          97,
+          224,
+          415,
+          499
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

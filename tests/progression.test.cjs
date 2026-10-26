@@ -552,71 +552,27 @@ test("Job: cada nivel concede un punto de habilidad y conserva el exceso de expe
   assert.equal(resultado.maestriaCompletada, false);
 });
 
-test("Job 20 de Tier 1 respeta su máximo y se alcanza antes que el antiguo Job 40", () => {
+test("Tier 1 mantiene Job 40: Job 20 es intermedio y la maestría llega al máximo", () => {
   const { experienciaParaNivel } = require("../src/lib/configuracionJuego.ts");
-  const totalJob20 = Array.from({ length: 19 }, (_, index) => experienciaJobParaNivel(index + 1))
-    .reduce((total, xp) => total + xp, 0);
-
-  assert.equal(experienciaParaNivel(1), 500);
-  assert.equal(experienciaParaNivel(2), 1778);
-  assert.equal(experienciaParaNivel(3), 3733);
-  assert.equal(experienciaParaNivel(4), 6320);
+  assert.deepEqual([1, 2, 3, 4].map(experienciaParaNivel), [500, 1778, 3733, 6320]);
   assert.equal(experienciaJobParaNivel(1), 101);
   assert.equal(experienciaJobParaNivel(10), 134);
-  assert.equal(CLASES.espadachin.nivelJobMaximo, 20);
-  assert.ok(totalJob20 > 2_000 && totalJob20 < 3_500, `XP acumulada Job 1→20 inesperada: ${totalJob20}`);
+  assert.equal(CLASES.espadachin.nivelJobMaximo, 40);
 
-  let nivelBase = 1;
-  let xpBase = 0;
-  let victorias = 0;
-  let profesion = "novato";
-  let progresoJob = {
-    nivelJob: 1,
-    experienciaJob: 0,
-    puntosHabilidadDisponibles: 0,
-    maestriaCompletada: false,
-  };
+  const intermedio = aplicarExperienciaJob({
+    nivelJob: 19, experienciaJob: 0, puntosHabilidadDisponibles: 0, maestriaCompletada: false,
+  }, experienciaJobParaNivel(19), CLASES.espadachin.nivelJobMaximo);
+  assert.equal(intermedio.nivelJob, 20);
+  assert.equal(intermedio.maestriaCompletada, false);
+  assert.equal(intermedio.experienciaNecesariaSiguienteNivel, experienciaJobParaNivel(20));
 
-  while (!(profesion === "tier1" && progresoJob.nivelJob >= CLASES.espadachin.nivelJobMaximo)) {
-    const amenaza = nivelBase;
-    const xpBaseGanada = calcularExperienciaBaseGanada(amenaza, nivelBase, "normal");
-    const xpJobGanada = calcularExperienciaJobGanada(
-      progresoJob.nivelJob,
-      amenaza,
-      nivelBase,
-      "normal"
-    );
-
-    xpBase += xpBaseGanada;
-    while (xpBase >= experienciaParaNivel(nivelBase)) {
-      xpBase -= experienciaParaNivel(nivelBase);
-      nivelBase += 1;
-    }
-
-    progresoJob = aplicarExperienciaJob(
-      progresoJob,
-      xpJobGanada,
-      profesion === "novato" ? CLASES.novato.nivelJobMaximo : CLASES.espadachin.nivelJobMaximo
-    );
-    victorias += 1;
-
-    if (profesion === "novato" && progresoJob.nivelJob >= 10) {
-      profesion = "tier1";
-      progresoJob = {
-        nivelJob: 1,
-        experienciaJob: 0,
-        puntosHabilidadDisponibles: 0,
-        maestriaCompletada: false,
-      };
-    }
-
-    assert.ok(victorias < 126, "El nuevo máximo Job 20 debe alcanzarse antes que el antiguo Job 40");
-  }
-
-  assert.ok(victorias < 126);
-  assert.ok(nivelBase <= 5, "La primera maestría Tier 1 debe llegar cerca de Base 5–6");
-  assert.ok(xpBase > 0, "La experiencia Base debe seguir progresando mientras se sube de Job");
-  assert.ok(nivelBase < 6, "El nuevo máximo Job 20 debe alcanzarse en la primera etapa de progresión");
+  const maestro = aplicarExperienciaJob(intermedio, 100_000, CLASES.espadachin.nivelJobMaximo);
+  assert.equal(maestro.nivelJob, 40);
+  assert.equal(maestro.maestriaCompletada, true);
+  assert.equal(maestro.nivelesSubidos, 20);
+  assert.equal(maestro.puntosHabilidadDisponibles, 21);
+  assert.equal(maestro.experienciaJob, 0);
+  assert.equal(maestro.experienciaNecesariaSiguienteNivel, null);
 });
 
 test("expediciones: cada duración ofrece todas las amenazas desbloqueadas desde 0", () => {
@@ -1008,7 +964,7 @@ test("las pasivas equipadas de recurso se reflejan en máximos y regeneración",
     personajeMago,
     ["reserva_arcana"],
   ).total;
-  assert.equal(magoEquipado.manaMaximo, baseMago.manaMaximo + 10);
+  assert.equal(magoEquipado.manaMaximo, baseMago.manaMaximo + 100);
 
   const personajeAcolito = {
     ...basePersonaje,

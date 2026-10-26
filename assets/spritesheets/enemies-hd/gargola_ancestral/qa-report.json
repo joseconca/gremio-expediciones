@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.8702928870292888,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 208,
+  "idleHeightMean": 208.0,
+  "actorAnchor": [
+    192,
+    371
+  ],
+  "baselineY": 371,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      171.5,
+      315.0
+    ],
+    [
+      173.0,
+      313.5
+    ],
+    [
+      169.0,
+      297.0
+    ],
+    [
+      169.0,
+      280.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/gargola_ancestral/gargola_ancestral-sheet.png",
+  "sheetSha256": "40cebe13ea68e908fa2dc96aad105228e790cf378c5d0ec9a1f64d53c4c01da6",
+  "sourcePath": "assets/spritesheets/enemies-hd/gargola_ancestral/source/sheet-v1.png",
+  "sourceSha256": "d20c52bcb80f1c58bb36572428d80e52008f158a36c27a5bed3afde4bf24d2e2",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/gargola_ancestral/frames/idle/gargola_ancestral-idle-01.png",
+        "sha256": "feb81e8c026857ac41a9fabcf92075dacac7ea8e14e7300c59d3349cfc8b09c1",
+        "bounds": [
+          77,
+          161,
+          292,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gargola_ancestral/frames/idle/gargola_ancestral-idle-02.png",
+        "sha256": "9e0bea1e2fcc9bbc1a8c0106e17a78c42844552714f560af8e893b6699b0e1d3",
+        "bounds": [
+          76,
+          163,
+          291,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gargola_ancestral/frames/idle/gargola_ancestral-idle-03.png",
+        "sha256": "80bc37db04f4101f9fbe0c446d7f28e3bae7674fa52951896268a8cc96c6e4cf",
+        "bounds": [
+          78,
+          164,
+          291,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gargola_ancestral/frames/idle/gargola_ancestral-idle-04.png",
+        "sha256": "1c667ffe7c891e07842356b7a37645dfb4781eca6f817f788a77e4a1204e9985",
+        "bounds": [
+          77,
+          164,
+          291,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/gargola_ancestral/frames/hurt/gargola_ancestral-hurt-01.png",
+        "sha256": "497780cc0ece4332bf1e40cced90896be88e72751c7c2a13155221495959096e",
+        "bounds": [
+          76,
+          157,
+          294,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gargola_ancestral/frames/hurt/gargola_ancestral-hurt-02.png",
+        "sha256": "1ecdbc5ec5dbc53ed503015187cd6c07eb4d3ba4dd25d810a8312db178ed0277",
+        "bounds": [
+          74,
+          158,
+          296,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gargola_ancestral/frames/hurt/gargola_ancestral-hurt-03.png",
+        "sha256": "3206ad110e90e3d9d7c8bae154750c49cfee5c576d9439d05201a7f5e0238a78",
+        "bounds": [
+          75,
+          171,
+          283,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gargola_ancestral/frames/hurt/gargola_ancestral-hurt-04.png",
+        "sha256": "1ddaef416644bae7616b38db5a792508b7cd9e6457dec888510fc0f8c8a0c704",
+        "bounds": [
+          75,
+          156,
+          292,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/gargola_ancestral/frames/attack/gargola_ancestral-attack-01.png",
+        "sha256": "c60ec1ce9a3b9832c64d59b9dfeeead5bf9d08245728bf78485678b893e6ff78",
+        "bounds": [
+          72,
+          172,
+          300,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gargola_ancestral/frames/attack/gargola_ancestral-attack-02.png",
+        "sha256": "00b6e7069149bda06622877fe99f43be5078b202e8363aa47d4f0946188b3060",
+        "bounds": [
+          73,
+          124,
+          318,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gargola_ancestral/frames/attack/gargola_ancestral-attack-03.png",
+        "sha256": "22ef8dce1889816c5fc3a1a4932dfd9d507f40ab8dbf8fdc47a17997d56a395f",
+        "bounds": [
+          67,
+          168,
+          355,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gargola_ancestral/frames/attack/gargola_ancestral-attack-04.png",
+        "sha256": "33a8022445d46c8a4b307967a08201865c2443f8152de69f68f50f7155bc4d57",
+        "bounds": [
+          83,
+          171,
+          296,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/gargola_ancestral/frames/dodge/gargola_ancestral-dodge-01.png",
+        "sha256": "d26e5e503067f3ab274f99181aa7d259a086dbea638677bfada10a0c4f4b4713",
+        "bounds": [
+          78,
+          165,
+          296,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gargola_ancestral/frames/dodge/gargola_ancestral-dodge-02.png",
+        "sha256": "1f24cd76910c52ef2fb192bab02759457cb3d1b9df7c28d6869cfde53b447366",
+        "bounds": [
+          76,
+          180,
+          299,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gargola_ancestral/frames/dodge/gargola_ancestral-dodge-03.png",
+        "sha256": "895e7b56758ae85292841a3969cd11e20ac5970f69c49e170b67a7364ef5ad5e",
+        "bounds": [
+          62,
+          196,
+          305,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gargola_ancestral/frames/dodge/gargola_ancestral-dodge-04.png",
+        "sha256": "a1f62f25fc0671ee8eb6002cb01531ea8376355620fadcd3dff098edb729662a",
+        "bounds": [
+          78,
+          164,
+          295,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

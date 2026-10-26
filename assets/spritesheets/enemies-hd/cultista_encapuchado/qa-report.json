@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.5266457680250783,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
+  "requestedIdleHeight": 168,
+  "idleHeightMean": 168.0,
+  "actorAnchor": [
+    192,
+    371
+  ],
+  "baselineY": 371,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      176.0,
+      332.0
+    ],
+    [
+      206.5,
+      345.5
+    ],
+    [
+      166.5,
+      347.0
+    ],
+    [
+      181.0,
+      290.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/cultista_encapuchado/cultista_encapuchado-sheet.png",
+  "sheetSha256": "01e717a6e4b4d555b11dd23ef0de3452d3a9cdf85d9d559f655569520795644e",
+  "sourcePath": "assets/spritesheets/enemies-hd/cultista_encapuchado/source/sheet-v2.png",
+  "sourceSha256": "268e59da8282e6d812e707ecb805ba1fba6ce3eee7c85c36aedb997f86b13a42",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/cultista_encapuchado/frames/idle/cultista_encapuchado-idle-01.png",
+        "sha256": "460bbf453c433789d67e472642ae1fdf3dc993d92d2b9f52d5ee899c1cbea9ba",
+        "bounds": [
+          119,
+          203,
+          261,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/cultista_encapuchado/frames/idle/cultista_encapuchado-idle-02.png",
+        "sha256": "ca4ed5e7d46eed6348f2ea1b95851f6ed4e0f8dfcc8a31d8b79f5ef1c2f2a5a1",
+        "bounds": [
+          120,
+          203,
+          262,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/cultista_encapuchado/frames/idle/cultista_encapuchado-idle-03.png",
+        "sha256": "c7408173bba9711b6023bd187b53d7354058c31cac5c85f447ef3333b7e169f4",
+        "bounds": [
+          121,
+          203,
+          263,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/cultista_encapuchado/frames/idle/cultista_encapuchado-idle-04.png",
+        "sha256": "81df71bc67ec1953d5b70a946ebd1ec295f74254ec5696bdafd9fd98f9846dc7",
+        "bounds": [
+          120,
+          203,
+          262,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/cultista_encapuchado/frames/hurt/cultista_encapuchado-hurt-01.png",
+        "sha256": "572143196b692ba919d9272a1cb38e8b81391745a33fe82352a3d7937fa56be2",
+        "bounds": [
+          106,
+          217,
+          252,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/cultista_encapuchado/frames/hurt/cultista_encapuchado-hurt-02.png",
+        "sha256": "478d1ab483269aa20e1a53c1733df1c9297a8475d2c58dd52c0655d0e0b53d68",
+        "bounds": [
+          115,
+          218,
+          256,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/cultista_encapuchado/frames/hurt/cultista_encapuchado-hurt-03.png",
+        "sha256": "632b2d398370ca4823e35b5eb5d97eabcebdd043bcbe8cda78b838bfff64740a",
+        "bounds": [
+          116,
+          216,
+          253,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/cultista_encapuchado/frames/hurt/cultista_encapuchado-hurt-04.png",
+        "sha256": "3e01041ab884e4468439d4bfd4d3237278ddc7ca97a1be7622402061245ae038",
+        "bounds": [
+          106,
+          217,
+          244,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/cultista_encapuchado/frames/attack/cultista_encapuchado-attack-01.png",
+        "sha256": "a0aaed4589c8e25c75479cbd4db0b822c820bf3ea8a8ef5fad944176c4652877",
+        "bounds": [
+          121,
+          232,
+          265,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/cultista_encapuchado/frames/attack/cultista_encapuchado-attack-02.png",
+        "sha256": "b26cc6a113f948e4e8d9c9c0d6b7676406279122bf3045c7effd7db1ec3da1d9",
+        "bounds": [
+          119,
+          216,
+          268,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/cultista_encapuchado/frames/attack/cultista_encapuchado-attack-03.png",
+        "sha256": "6408735c1ffde822c5bb82f14b6f2c6c7aad0921d055c6509438dde7bc10311e",
+        "bounds": [
+          109,
+          239,
+          306,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/cultista_encapuchado/frames/attack/cultista_encapuchado-attack-04.png",
+        "sha256": "a2676100994c0860b35fd6bf011c86563298bc980a4a5cc175b35bdfe0c9a712",
+        "bounds": [
+          122,
+          232,
+          264,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/cultista_encapuchado/frames/dodge/cultista_encapuchado-dodge-01.png",
+        "sha256": "7a671f75c4afbf2541689dd77742bae88c7c40c992ab77967ff2e7f605dbd136",
+        "bounds": [
+          115,
+          252,
+          258,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/cultista_encapuchado/frames/dodge/cultista_encapuchado-dodge-02.png",
+        "sha256": "c5dce97abd88fd6469898ad9a7142e0d166a15e17f1625c5878ec93643fe23b2",
+        "bounds": [
+          130,
+          251,
+          273,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/cultista_encapuchado/frames/dodge/cultista_encapuchado-dodge-03.png",
+        "sha256": "d1950f5fe55972d6f9948bf6083870ff07403aaa98c6c74071eb52510d152ace",
+        "bounds": [
+          120,
+          266,
+          260,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/cultista_encapuchado/frames/dodge/cultista_encapuchado-dodge-04.png",
+        "sha256": "39f340ea958ed386e162cf8724685e05c9f08b5442f6b215821283ca5fda8656",
+        "bounds": [
+          117,
+          249,
+          248,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.6588235294117647,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 168,
+  "idleHeightMean": 168.0,
+  "actorAnchor": [
+    192,
+    371
+  ],
+  "baselineY": 371,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      155.0,
+      309.0
+    ],
+    [
+      159.5,
+      311.5
+    ],
+    [
+      163.5,
+      311.0
+    ],
+    [
+      157.5,
+      284.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/zombie_errante/zombie_errante-sheet.png",
+  "sheetSha256": "bf40435eee0e557b769c19160f51f212eeb5f24e8a5fa33052b11adf3538eadc",
+  "sourcePath": "assets/spritesheets/enemies-hd/zombie_errante/source/sheet-v1.png",
+  "sourceSha256": "559b0336a8663ada1bace581eb9570849c08245cd7c5941bd3cc798cfc06e9a1",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/zombie_errante/frames/idle/zombie_errante-idle-01.png",
+        "sha256": "443b55bc79fafb4615b4c0d7f83446717b2ab525dbf266ae15a03eac02efb03f",
+        "bounds": [
+          136,
+          200,
+          257,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/zombie_errante/frames/idle/zombie_errante-idle-02.png",
+        "sha256": "2de070508a55f627cda764dc8b92775c5c00cf39faed95d25d4584ea2d89a1eb",
+        "bounds": [
+          137,
+          202,
+          254,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/zombie_errante/frames/idle/zombie_errante-idle-03.png",
+        "sha256": "38294892184de8961109bda5ace3e4ecf7532f8f2f8fbe32dc1b4e46f8065400",
+        "bounds": [
+          137,
+          205,
+          257,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/zombie_errante/frames/idle/zombie_errante-idle-04.png",
+        "sha256": "c6d2bff6f9af3fe6a8cd2a5f2a587b656e28a0904440ce241f5bf7ae81151706",
+        "bounds": [
+          137,
+          205,
+          253,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/zombie_errante/frames/hurt/zombie_errante-hurt-01.png",
+        "sha256": "380763064978c085723d1b90398869aded9f9ebc474482d66211b05b93208087",
+        "bounds": [
+          129,
+          205,
+          273,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/zombie_errante/frames/hurt/zombie_errante-hurt-02.png",
+        "sha256": "f4f43ec7471483663c126a039bf4c4b046af0dcb3bee97c3da7c3c7965d5b6e2",
+        "bounds": [
+          131,
+          206,
+          266,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/zombie_errante/frames/hurt/zombie_errante-hurt-03.png",
+        "sha256": "25197ba8f094e695b238a24502cf6c131eb61a911777f05f98754ae16c54ca54",
+        "bounds": [
+          125,
+          206,
+          267,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/zombie_errante/frames/hurt/zombie_errante-hurt-04.png",
+        "sha256": "d570722cb7ae0b5cb5d8814b104c4a246d4c680de9301a592323be432ba6b733",
+        "bounds": [
+          133,
+          206,
+          255,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/zombie_errante/frames/attack/zombie_errante-attack-01.png",
+        "sha256": "b6c787d426b6c7a1e8a0d24b4df4a1e2748bd9c837ca147ea5f1d2477c24ace1",
+        "bounds": [
+          122,
+          219,
+          271,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/zombie_errante/frames/attack/zombie_errante-attack-02.png",
+        "sha256": "e167cfb745b2c436cefc0ec0f85c7200a922f5153c2188637b635d495105ef28",
+        "bounds": [
+          125,
+          191,
+          272,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/zombie_errante/frames/attack/zombie_errante-attack-03.png",
+        "sha256": "7fc65587d2b55bdda966bae3dae9c942204de5455cce77daafc7e033737cc26d",
+        "bounds": [
+          103,
+          223,
+          303,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/zombie_errante/frames/attack/zombie_errante-attack-04.png",
+        "sha256": "4006aaa2145b39fd52fc1f75fb396c6d2b0a6fea7ed09e33f9a311323a85a3a7",
+        "bounds": [
+          125,
+          215,
+          269,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/zombie_errante/frames/dodge/zombie_errante-dodge-01.png",
+        "sha256": "ab6de90e40a67b217c506f28d8557c4a62a28ab66dfbfd9c73227df6ca4609d7",
+        "bounds": [
+          134,
+          209,
+          260,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/zombie_errante/frames/dodge/zombie_errante-dodge-02.png",
+        "sha256": "76de93d5ce19ba4cfea95118bf2d03822c2e2aa378f4d338d9f06777052804d1",
+        "bounds": [
+          130,
+          238,
+          277,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/zombie_errante/frames/dodge/zombie_errante-dodge-03.png",
+        "sha256": "f7cea8c9748907bbedd4f165df8e080adb65cb07ad73049701d9935d9944875b",
+        "bounds": [
+          119,
+          248,
+          278,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/zombie_errante/frames/dodge/zombie_errante-dodge-04.png",
+        "sha256": "72ecad453f0492bfca650113fd40f457afe43f72fc54739f15688d1ac62a0e5f",
+        "bounds": [
+          135,
+          206,
+          253,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

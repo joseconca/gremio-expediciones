@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 1.5105590062111802,
+  "cellSize": [
+    576,
+    576
+  ],
+  "sheetSize": [
+    2304,
+    2304
+  ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
+  "requestedIdleHeight": 304,
+  "idleHeightMean": 304.0,
+  "actorAnchor": [
+    288,
+    556
+  ],
+  "baselineY": 556,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      180.5,
+      296.0
+    ],
+    [
+      182.5,
+      287.5
+    ],
+    [
+      187.5,
+      280.0
+    ],
+    [
+      187.0,
+      241.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/dragon_anciano/dragon_anciano-sheet.png",
+  "sheetSha256": "be3130c46a4b671d133c75a6e7f1948ae4e50d535b17b60da6b6746512c45631",
+  "sourcePath": "assets/spritesheets/enemies-hd/dragon_anciano/source/sheet-v2.png",
+  "sourceSha256": "943685b76482ecf6d3413a575f6c9d346209bfe9c2487dafcbde85f2be71e91e",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_anciano/frames/idle/dragon_anciano-idle-01.png",
+        "sha256": "06662e12fa8d91eaf90b4f8faa0a7afac9b70b45bdfb5488b71196237e18e1d5",
+        "bounds": [
+          103,
+          251,
+          482,
+          556
+        ],
+        "idleAnchorCorrectionX": 44
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_anciano/frames/idle/dragon_anciano-idle-02.png",
+        "sha256": "1ce86bb7f7a986922bd5d8fb5af153aff8bfec0c274fb258b8ab351cd97ce20d",
+        "bounds": [
+          104,
+          252,
+          479,
+          556
+        ],
+        "idleAnchorCorrectionX": 42
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_anciano/frames/idle/dragon_anciano-idle-03.png",
+        "sha256": "74109a7b5dad5be78b9cc7ea3e0eb3e59015d5a541f4e7d1d9b3ad9b8b7d79f9",
+        "bounds": [
+          104,
+          254,
+          480,
+          556
+        ],
+        "idleAnchorCorrectionX": 43
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_anciano/frames/idle/dragon_anciano-idle-04.png",
+        "sha256": "b5628cb0d9a034cd2139526cf138e1fe07dee22620d70d10cf621e4d8fbc9795",
+        "bounds": [
+          102,
+          251,
+          483,
+          556
+        ],
+        "idleAnchorCorrectionX": 44
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_anciano/frames/hurt/dragon_anciano-hurt-01.png",
+        "sha256": "6cd34028582d6cb993aa4f12118db5743f947d44cd093a385b9bdd1082f342b8",
+        "bounds": [
+          55,
+          246,
+          442,
+          556
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_anciano/frames/hurt/dragon_anciano-hurt-02.png",
+        "sha256": "c80e2d0c37d70bb60da6999a624061351e8c653327917e1591e36c88a671a938",
+        "bounds": [
+          66,
+          238,
+          450,
+          558
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_anciano/frames/hurt/dragon_anciano-hurt-03.png",
+        "sha256": "b2bad4586c9cd9f1d02f64b01c1fbd570c6ab470537bb2dd1a5e118c876122d9",
+        "bounds": [
+          40,
+          248,
+          454,
+          559
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_anciano/frames/hurt/dragon_anciano-hurt-04.png",
+        "sha256": "5f10d014ee1627155a9da7cc5433e2843f4fb31987a525fb8dd45b838804cdbe",
+        "bounds": [
+          49,
+          248,
+          434,
+          558
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_anciano/frames/attack/dragon_anciano-attack-01.png",
+        "sha256": "6309e99735a2c73f19cfbf6cc86d4becc1626f78f995ad2f0632ff7959795d6a",
+        "bounds": [
+          52,
+          251,
+          454,
+          556
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_anciano/frames/attack/dragon_anciano-attack-02.png",
+        "sha256": "ac6536746eab91188e99b68147e3b3580be5229872227dc867a1d80e5379cc4b",
+        "bounds": [
+          33,
+          230,
+          450,
+          556
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_anciano/frames/attack/dragon_anciano-attack-03.png",
+        "sha256": "a358d1079a15cf751277bac15542bd53f6e33e3dee3fd960b6c5fd2c7e9ed472",
+        "bounds": [
+          38,
+          248,
+          488,
+          564
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_anciano/frames/attack/dragon_anciano-attack-04.png",
+        "sha256": "58c2931f3e5d7d4fe46f16d21600e164e3337b093cb3435ea48a4362e70c537d",
+        "bounds": [
+          42,
+          257,
+          426,
+          556
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_anciano/frames/dodge/dragon_anciano-dodge-01.png",
+        "sha256": "177f2f40cd882ea1fe52fea0bbb84a44e640993136d07cd40c42aa69308f7df5",
+        "bounds": [
+          49,
+          248,
+          466,
+          556
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_anciano/frames/dodge/dragon_anciano-dodge-02.png",
+        "sha256": "f470f9af31b4e7ec7bc16a3e287604cf3d3f50f730e8fc464c8220cb5e9a1ac5",
+        "bounds": [
+          55,
+          276,
+          467,
+          558
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_anciano/frames/dodge/dragon_anciano-dodge-03.png",
+        "sha256": "51267fa8e1521d00dd386485c49df42fb53bb444656448c3d53792f74777516d",
+        "bounds": [
+          70,
+          292,
+          443,
+          559
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_anciano/frames/dodge/dragon_anciano-dodge-04.png",
+        "sha256": "4cc7918cbf2b79e8fb2f3d5b4c178adcf1d6edc5c562d9d347853b08acd7d2ab",
+        "bounds": [
+          53,
+          245,
+          437,
+          558
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

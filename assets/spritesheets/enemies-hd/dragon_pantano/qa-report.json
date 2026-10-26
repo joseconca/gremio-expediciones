@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 1.059396299902629,
+  "cellSize": [
+    448,
+    448
+  ],
+  "sheetSize": [
+    1792,
+    1792
+  ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
+  "requestedIdleHeight": 272,
+  "idleHeightMean": 271.75,
+  "actorAnchor": [
+    224,
+    435
+  ],
+  "baselineY": 435,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      180.5,
+      301.0
+    ],
+    [
+      180.0,
+      300.5
+    ],
+    [
+      196.0,
+      285.0
+    ],
+    [
+      185.0,
+      267.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/dragon_pantano/dragon_pantano-sheet.png",
+  "sheetSha256": "9e7354061723288cf2cec659291581f6b56618bb8335451419e0f5471e775ae3",
+  "sourcePath": "assets/spritesheets/enemies-hd/dragon_pantano/source/sheet-v1.png",
+  "sourceSha256": "51ae023123472862cdd964d0a28ef195bca7f09d9fb51b270b8d9dc5dd412263",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_pantano/frames/idle/dragon_pantano-idle-01.png",
+        "sha256": "e4856715abc710b4e38e6a715958728d54b28eefc8e2e8f42cd33cedb6e2dd0e",
+        "bounds": [
+          55,
+          163,
+          370,
+          435
+        ],
+        "idleAnchorCorrectionX": 12
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_pantano/frames/idle/dragon_pantano-idle-02.png",
+        "sha256": "a5f3aca3e0cec874426e7c662fd5b922c8dbbbcfde1d4807006c6aff42dc3ecb",
+        "bounds": [
+          55,
+          164,
+          371,
+          435
+        ],
+        "idleAnchorCorrectionX": 11
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_pantano/frames/idle/dragon_pantano-idle-03.png",
+        "sha256": "d1ee3e4123f6bcb02707a29834dc3a8ec74ab5894b2e91b57615096bac5c3bcd",
+        "bounds": [
+          55,
+          163,
+          369,
+          435
+        ],
+        "idleAnchorCorrectionX": 12
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_pantano/frames/idle/dragon_pantano-idle-04.png",
+        "sha256": "49e4655014dd515e24e54ce12eee27a1d72bc419dc7d73a6f0a2a3683066c0a9",
+        "bounds": [
+          55,
+          163,
+          370,
+          435
+        ],
+        "idleAnchorCorrectionX": 11
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_pantano/frames/hurt/dragon_pantano-hurt-01.png",
+        "sha256": "aaea3ce7d78d9b494804664dcd508dbae010e4eaf6775bdc83378580c65066e3",
+        "bounds": [
+          44,
+          164,
+          360,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_pantano/frames/hurt/dragon_pantano-hurt-02.png",
+        "sha256": "d7b5fb55ff1f21d05fe84ac460370a8d46f129dacd3fd7e992e9e88ed6892104",
+        "bounds": [
+          40,
+          212,
+          362,
+          433
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_pantano/frames/hurt/dragon_pantano-hurt-03.png",
+        "sha256": "ed968f9454a8c13b36d3424c558458d9ab33b37217971dfbff7539009eb779f2",
+        "bounds": [
+          44,
+          166,
+          363,
+          432
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_pantano/frames/hurt/dragon_pantano-hurt-04.png",
+        "sha256": "a5593b15a9203ba2c99fbf53d20508d970547ee5347aedbaf1be7b2a83ceede9",
+        "bounds": [
+          43,
+          164,
+          358,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_pantano/frames/attack/dragon_pantano-attack-01.png",
+        "sha256": "e8968ffb95b2178fe6b2902fe9876ea572ed567cc5ebbd7bd9821aa7b63d5a89",
+        "bounds": [
+          25,
+          215,
+          359,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_pantano/frames/attack/dragon_pantano-attack-02.png",
+        "sha256": "7d596a940135230c22f88c86098c6788badaec437d3acb511890565c19bd273d",
+        "bounds": [
+          24,
+          177,
+          352,
+          432
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_pantano/frames/attack/dragon_pantano-attack-03.png",
+        "sha256": "0926c0617928e093732140ac6f2465baa9590909f9ba48a58875d6ae74a87f4f",
+        "bounds": [
+          22,
+          167,
+          378,
+          430
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_pantano/frames/attack/dragon_pantano-attack-04.png",
+        "sha256": "abd33f8f434ad534354078e19771721ef7fd8bed35dcf6f6614770d1b8257b2d",
+        "bounds": [
+          23,
+          217,
+          342,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_pantano/frames/dodge/dragon_pantano-dodge-01.png",
+        "sha256": "6ad272c63de5558b5b844d8f23312952cca6c0f315624b22a3079d830635f662",
+        "bounds": [
+          38,
+          175,
+          356,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_pantano/frames/dodge/dragon_pantano-dodge-02.png",
+        "sha256": "41fadc29ca92324510cf903967c0fe10a328efe2db3fd40fc08d460fba484acc",
+        "bounds": [
+          33,
+          238,
+          373,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_pantano/frames/dodge/dragon_pantano-dodge-03.png",
+        "sha256": "305ffd290de8db8de291593dff706ab38308643cf977f5ddff490b35a0dc49fd",
+        "bounds": [
+          44,
+          251,
+          371,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_pantano/frames/dodge/dragon_pantano-dodge-04.png",
+        "sha256": "855e19b178fe517017430b39b6fa4a5ba2d80644eef888955ec3febcf5365d7c",
+        "bounds": [
+          38,
+          175,
+          355,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

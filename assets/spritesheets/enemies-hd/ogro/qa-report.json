@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.7798085291557877,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 224,
+  "idleHeightMean": 224.25,
+  "actorAnchor": [
+    192,
+    372
+  ],
+  "baselineY": 372,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      164.0,
+      306.0
+    ],
+    [
+      163.5,
+      304.5
+    ],
+    [
+      167.0,
+      304.0
+    ],
+    [
+      165.5,
+      292.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/ogro/ogro-sheet.png",
+  "sheetSha256": "0385b4dd818f1a76a6de089cbb01c14d85d01ef48b803a7a66201b43f94349e2",
+  "sourcePath": "assets/spritesheets/enemies-hd/ogro/source/sheet-v1.png",
+  "sourceSha256": "c12d333626c7d466122d738e0d7bde0d53305eb7f174e10a71d6df311e37a004",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/idle/ogro-idle-01.png",
+        "sha256": "25dfad7133f302724dbb611d038000b2ee803736bfa065696f5720f0474e0ea9",
+        "bounds": [
+          81,
+          148,
+          296,
+          372
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/idle/ogro-idle-02.png",
+        "sha256": "c8cd482e38f2ec7288579b7ad3f9e17f2fa895e07a0d84204f43a15a6443ef20",
+        "bounds": [
+          81,
+          147,
+          297,
+          372
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/idle/ogro-idle-03.png",
+        "sha256": "22bab4929c322a9c9dd927a63353e4f378107409acf53c0c2d27d9ffb3eb02cc",
+        "bounds": [
+          80,
+          148,
+          297,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/idle/ogro-idle-04.png",
+        "sha256": "524a3f57f34c5591144a9105eba3288d3bf0d7058d6d16a9f7fcdb74ffd9426f",
+        "bounds": [
+          81,
+          148,
+          297,
+          372
+        ],
+        "idleAnchorCorrectionX": 1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/hurt/ogro-hurt-01.png",
+        "sha256": "1e013b3152105b852e2cc9b1564ac6f9f23625aace77ea42641ae3a38cea72d8",
+        "bounds": [
+          81,
+          149,
+          297,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/hurt/ogro-hurt-02.png",
+        "sha256": "f4558efa424a03aa4e8e32f20a38ac383b491b57a220b72bd5abb4625fdf80c1",
+        "bounds": [
+          87,
+          161,
+          293,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/hurt/ogro-hurt-03.png",
+        "sha256": "98cac7e4c2aaffcbcf92f3b7e6bb7a26440762e0c27485b8a67a28dc8bd14295",
+        "bounds": [
+          94,
+          146,
+          308,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/hurt/ogro-hurt-04.png",
+        "sha256": "6ded069b56a03129eb195d773f7f8ca19dbd46c7b5c184aa3e89dc3c2d1119d7",
+        "bounds": [
+          80,
+          151,
+          290,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/attack/ogro-attack-01.png",
+        "sha256": "e76d354f0a013597defab034ccfeeb50098357ba3a9cab968f44ba4d89cd97cb",
+        "bounds": [
+          67,
+          166,
+          309,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/attack/ogro-attack-02.png",
+        "sha256": "403e44a530894de700358c5265f8320123e42f7b9328aafb9b88c7caf4f51a0d",
+        "bounds": [
+          79,
+          121,
+          307,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/attack/ogro-attack-03.png",
+        "sha256": "0ed72fe175502257e2f81998a622941d53f041d635885962285e42cc3725d401",
+        "bounds": [
+          70,
+          179,
+          362,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/attack/ogro-attack-04.png",
+        "sha256": "3217b40381bc10e11505084353a4200f1c68b302bbb0d1fff9e24254a21186e5",
+        "bounds": [
+          84,
+          175,
+          294,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/dodge/ogro-dodge-01.png",
+        "sha256": "c5b6ab891b8c7f9e9314825a945cb4bad7a1622e9db13b0bb37eb5d982117479",
+        "bounds": [
+          79,
+          159,
+          300,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/dodge/ogro-dodge-02.png",
+        "sha256": "a9c2c42671a336bf029649c1acee2fe91acb49fc925048fd59f50dc7a6defaf4",
+        "bounds": [
+          81,
+          154,
+          302,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/dodge/ogro-dodge-03.png",
+        "sha256": "07300e800f6b61bda3df69d381c713a9fe858429271033f45af8bf695753e691",
+        "bounds": [
+          81,
+          202,
+          318,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/dodge/ogro-dodge-04.png",
+        "sha256": "383b00688a1df05d7da97e60879e63880a78fd6cb0acc96ef3fa840872e609e9",
+        "bounds": [
+          81,
+          154,
+          297,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-26T02:25:50.304853+00:00",
+  "classId": "explorador",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\explorador\\m\\explorador-m-sheet.png",
+  "sheetSha256": "2ba53083adde135443014950655b97c017833bfca58c607f48b82b047a1a6882",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\idle\\explorador-m-idle-01.png",
+          "sha256": "a71106428d7e1ef9934540f221b069c6f16385e0132e5c740393dd287946ffae",
+          "alpha_bbox": [
+            12,
+            93,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\idle\\explorador-m-idle-02.png",
+          "sha256": "0cc6c674a196b79f0491a5bad407e08be596a256bb9a88f9fdbf67cbc5b6d584",
+          "alpha_bbox": [
+            12,
+            93,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\idle\\explorador-m-idle-03.png",
+          "sha256": "7cab9d7853864824b6d7b52b65c8367270367b93f2561bfa0548fb04d39b9f57",
+          "alpha_bbox": [
+            12,
+            93,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\idle\\explorador-m-idle-04.png",
+          "sha256": "2c6161bf03d96fdd36c9647a17e1e117e13e70658d9187b98201bb0e7824efcc",
+          "alpha_bbox": [
+            12,
+            93,
+            105,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\walk\\explorador-m-walk-01.png",
+          "sha256": "08e2bc547a6648e89bc0903ad27bb5f76b0559109854303a55bf65ac4e432d3e",
+          "alpha_bbox": [
+            4,
+            91,
+            115,
+            244
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\walk\\explorador-m-walk-02.png",
+          "sha256": "743863a4abd103c6cc1579e14e2a0ba87f10dd37e52f4dd9aca3a2d5e067649a",
+          "alpha_bbox": [
+            7,
+            91,
+            109,
+            244
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\walk\\explorador-m-walk-03.png",
+          "sha256": "76873e90824d036b1a5dc470a09b7d218749d8dc6e5cf8bb3bd11bbcef5ab996",
+          "alpha_bbox": [
+            7,
+            91,
+            114,
+            244
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\walk\\explorador-m-walk-04.png",
+          "sha256": "9a9e2438263149e434c2e7af514136b17594369f33b47731170fe593be1b52fb",
+          "alpha_bbox": [
+            4,
+            91,
+            109,
+            244
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\hurt\\explorador-m-hurt-01.png",
+          "sha256": "158aea94d386cdba46a569f91606c90dbcfc4d04709b9dabd968a82b8df16472",
+          "alpha_bbox": [
+            14,
+            91,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\hurt\\explorador-m-hurt-02.png",
+          "sha256": "5d181aeac1d18ffb9a8fcf4872e0008a10af3a7ba3b889311219ce5c15bfa922",
+          "alpha_bbox": [
+            21,
+            100,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\hurt\\explorador-m-hurt-03.png",
+          "sha256": "63aeb521c570cfc0c32907053fb7435b9da5feff391ea558c9c2aedb1d160974",
+          "alpha_bbox": [
+            12,
+            118,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\hurt\\explorador-m-hurt-04.png",
+          "sha256": "192ae770779b3e5e2b09140604480f2ca1e3d6446356d6b88bd2978d3472399d",
+          "alpha_bbox": [
+            13,
+            91,
+            95,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\use_consumable\\explorador-m-use_consumable-01.png",
+          "sha256": "d5c31d38a916e835062641b6e3c9a697fe95c5af6883e57eed7b7f92befaf881",
+          "alpha_bbox": [
+            18,
+            92,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\use_consumable\\explorador-m-use_consumable-02.png",
+          "sha256": "20681ac42b13f80c1b25ddb1293f8187ac6972eadeb0cec5a296f50c828f8ddc",
+          "alpha_bbox": [
+            19,
+            92,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\use_consumable\\explorador-m-use_consumable-03.png",
+          "sha256": "ee1d1ba266f1c8d196f4ae91efb67fc57eeb2338d900cf6cd78b4c20270b88ff",
+          "alpha_bbox": [
+            17,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\use_consumable\\explorador-m-use_consumable-04.png",
+          "sha256": "3b13fbad524bfeb333e448316d8afc3a058b5ace3cf077c325dd89c4d4c6e483",
+          "alpha_bbox": [
+            5,
+            92,
+            98,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\dodge\\explorador-m-dodge-01.png",
+          "sha256": "a750cb08b2f945abf237ac6abf18a36012b8a37e18a302c8ae45ad7ee6d23af0",
+          "alpha_bbox": [
+            14,
+            98,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\dodge\\explorador-m-dodge-02.png",
+          "sha256": "6a51a52191d308871cd4a7e42ae65db03db076c941968a5e9c80fd34710915da",
+          "alpha_bbox": [
+            21,
+            100,
+            114,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\dodge\\explorador-m-dodge-03.png",
+          "sha256": "0e06af8bdb97738c413b71256a222e239c68972f610dfc963e25ca0bdf96b9d4",
+          "alpha_bbox": [
+            15,
+            101,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\dodge\\explorador-m-dodge-04.png",
+          "sha256": "f25e8820a94db88973618a27ef0f5d42435af99bd328d19b9788c5916d549dc0",
+          "alpha_bbox": [
+            16,
+            99,
+            110,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\block_shield\\explorador-m-block_shield-01.png",
+          "sha256": "1e0501ab6c40c879dd6344d1e8f3f926bfee9d6324e3e6846997a7838d4e9bac",
+          "alpha_bbox": [
+            12,
+            98,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\block_shield\\explorador-m-block_shield-02.png",
+          "sha256": "541ba4e20643f3e322d801d2609d93a66d0d8ed5008b5a33010658dadb11d0a0",
+          "alpha_bbox": [
+            14,
+            98,
+            108,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\block_shield\\explorador-m-block_shield-03.png",
+          "sha256": "134e16615e2000f3de8e42111c09a98d1c5cf7a8d1e4f5fc646f234594f2abda",
+          "alpha_bbox": [
+            7,
+            113,
+            109,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\block_shield\\explorador-m-block_shield-04.png",
+          "sha256": "441e3f65068ba3ab903a8994cd3050d13f559cb89c58e73e826ffd411b097333",
+          "alpha_bbox": [
+            13,
+            98,
+            108,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_sword\\explorador-m-attack_sword-01.png",
+          "sha256": "2d45e950e2dc35bd62f51a5cac18a5c760879fc237a60a8de0f178a80300c647",
+          "alpha_bbox": [
+            7,
+            98,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_sword\\explorador-m-attack_sword-02.png",
+          "sha256": "6bf4ea206d73d1139b42805112451c22b658a20663fa0fd8cb4aed035195932b",
+          "alpha_bbox": [
+            7,
+            98,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_sword\\explorador-m-attack_sword-03.png",
+          "sha256": "a32b0cf41e998897e2a72973649e65558d93f44c07c0f7e9c13c44ba0f17e5b3",
+          "alpha_bbox": [
+            6,
+            100,
+            122,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_sword\\explorador-m-attack_sword-04.png",
+          "sha256": "830ba4327829f1edba7a5cbb4dc1e2a8bdd7efa1797f48109068b044354fb97f",
+          "alpha_bbox": [
+            17,
+            98,
+            112,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_axe\\explorador-m-attack_axe-01.png",
+          "sha256": "e96fd94b98b5966ab18e46772a44a1f6f4234df8c8149c859d74b8ffc8f191ab",
+          "alpha_bbox": [
+            10,
+            101,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_axe\\explorador-m-attack_axe-02.png",
+          "sha256": "fe497a303afdbe80dda4315465663f920d5e72e441f3273006f6f964c1cfbf19",
+          "alpha_bbox": [
+            16,
+            112,
+            115,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_axe\\explorador-m-attack_axe-03.png",
+          "sha256": "302424fca58eff175b050354f267cf40e254abd3913eeca4f68d9819f74b4644",
+          "alpha_bbox": [
+            10,
+            121,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_axe\\explorador-m-attack_axe-04.png",
+          "sha256": "3ec01335a794b4e6f68757c8219c06514ee18b02b3a75400d53015d09c4eb5c4",
+          "alpha_bbox": [
+            20,
+            104,
+            117,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_spear\\explorador-m-attack_spear-01.png",
+          "sha256": "522be75ad527fb24880c4b89240b5b62e0d2fdceb69229f050ee01c9624d70ce",
+          "alpha_bbox": [
+            6,
+            91,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_spear\\explorador-m-attack_spear-02.png",
+          "sha256": "dff63cd4f32dbbb3831e2b45dc001a347755b935e0ca8e55f1eca643eb31cd31",
+          "alpha_bbox": [
+            8,
+            92,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_spear\\explorador-m-attack_spear-03.png",
+          "sha256": "e673baf8dc3a6d56d19a387f5717c331fad7976bed6ed101ff6d592c3f633469",
+          "alpha_bbox": [
+            6,
+            91,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_spear\\explorador-m-attack_spear-04.png",
+          "sha256": "aeb84f7c6245cfe083d823f86acff33b101f65f9fbea38bf7da2afea73fc7fee",
+          "alpha_bbox": [
+            11,
+            91,
+            108,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_dagger\\explorador-m-attack_dagger-01.png",
+          "sha256": "83a2820b79c802123b1c4fcfa9b999326063e11568d8975be3eccc9ce5564fff",
+          "alpha_bbox": [
+            14,
+            93,
+            105,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_dagger\\explorador-m-attack_dagger-02.png",
+          "sha256": "c61dd7d2e5cac0d061f23f28e5f9c2deead1a560c6ed1d184168523c0c05ea26",
+          "alpha_bbox": [
+            18,
+            93,
+            106,
+            246
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_dagger\\explorador-m-attack_dagger-03.png",
+          "sha256": "27b3c7e0b8032676cfb680c85b41f66fe03c87f99fef746a3511e946450a6a6c",
+          "alpha_bbox": [
+            17,
+            96,
+            105,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_dagger\\explorador-m-attack_dagger-04.png",
+          "sha256": "82c34ab33d44f273f66518e5d310f1d4b422a6919b392ab1510ad1d015dd9096",
+          "alpha_bbox": [
+            7,
+            93,
+            96,
+            246
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_bow\\explorador-m-attack_bow-01.png",
+          "sha256": "d93d0e1f821008f883cdcc2ac73b99ffa26c158c77d827587618500d5b7948c4",
+          "alpha_bbox": [
+            18,
+            95,
+            119,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_bow\\explorador-m-attack_bow-02.png",
+          "sha256": "a6222a8abdd61292e144136cc4c98df0c28af5462c7f7dcedf78a2cd690dac4f",
+          "alpha_bbox": [
+            18,
+            95,
+            119,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_bow\\explorador-m-attack_bow-03.png",
+          "sha256": "0a6e691e6fc19fea984f32a2a418b712a4e609b29e6d86e35dadb1c3058faa5d",
+          "alpha_bbox": [
+            18,
+            95,
+            120,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_bow\\explorador-m-attack_bow-04.png",
+          "sha256": "3d008cb29ffe6de011fd6b3ee3d56f3b5455f15db35b41940a9ad7c38dad5be6",
+          "alpha_bbox": [
+            8,
+            95,
+            111,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_staff\\explorador-m-attack_staff-01.png",
+          "sha256": "653aa7e1ce6d464345645f34bbc17afe62de30658cbd84ca9ac9cd2d39fa1493",
+          "alpha_bbox": [
+            19,
+            93,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_staff\\explorador-m-attack_staff-02.png",
+          "sha256": "0c40ce058215b040149da0b7d0cd556bc09d76e2f74d2c142fa0f993f03cf866",
+          "alpha_bbox": [
+            20,
+            93,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_staff\\explorador-m-attack_staff-03.png",
+          "sha256": "c737cfa216075a840f357bec0b88198d8bd096f14952348a9f28f837ee8debac",
+          "alpha_bbox": [
+            19,
+            94,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_staff\\explorador-m-attack_staff-04.png",
+          "sha256": "3ea6f711265958a659478c3a5054e58b51c4744fd03ebb6e81df05481d1ff530",
+          "alpha_bbox": [
+            10,
+            93,
+            97,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_mace\\explorador-m-attack_mace-01.png",
+          "sha256": "841a11c80cc080f40ef116bfc3d1daf10ad576af0e6350bcd4ab6d225b2b4f59",
+          "alpha_bbox": [
+            14,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_mace\\explorador-m-attack_mace-02.png",
+          "sha256": "cb278e7aefbe6f066bf6d2cf84dc727e7722bb5050f591a769fff62a7077355b",
+          "alpha_bbox": [
+            24,
+            92,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_mace\\explorador-m-attack_mace-03.png",
+          "sha256": "fdb2efd0687102475a3ccd6a023a83930991aa14f24ac4b1950a191cbfe2112e",
+          "alpha_bbox": [
+            18,
+            104,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_mace\\explorador-m-attack_mace-04.png",
+          "sha256": "80e457f4978cb9e03aac2f33b572bde66287df9af8458256ad29fe7e8d590a07",
+          "alpha_bbox": [
+            24,
+            92,
+            115,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_book\\explorador-m-attack_book-01.png",
+          "sha256": "0be73cc3533ed6d0dd8ad098883cfcd3ce108f5d4bb9ae545db39bb8919d5125",
+          "alpha_bbox": [
+            12,
+            92,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_book\\explorador-m-attack_book-02.png",
+          "sha256": "7beecc50265811d38943805d42ac2528e322da2a2033eda3586b168454c93b36",
+          "alpha_bbox": [
+            14,
+            92,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_book\\explorador-m-attack_book-03.png",
+          "sha256": "f2d6caa97b4be77a31d53aacaa42c044600dfc7152094002dffdb4cccda67c5a",
+          "alpha_bbox": [
+            12,
+            92,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_book\\explorador-m-attack_book-04.png",
+          "sha256": "6e80c76c5655fd2f4af3bdb8584f6827e5b90f414338682c6ccd8ea6cf5bc3aa",
+          "alpha_bbox": [
+            14,
+            92,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_gloves\\explorador-m-attack_gloves-01.png",
+          "sha256": "37c635babfecce4878bea4e20d0c26776db473458f37ef0979fbd72586141451",
+          "alpha_bbox": [
+            13,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_gloves\\explorador-m-attack_gloves-02.png",
+          "sha256": "48730620c183b0c7876585db8ce93d7e9a10fa1742ef468c94bfa19e49b58fec",
+          "alpha_bbox": [
+            14,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_gloves\\explorador-m-attack_gloves-03.png",
+          "sha256": "287550c047e29ea6ffe5721330121739c4b4c5d6de0f8afda16fe109716e0cfd",
+          "alpha_bbox": [
+            15,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\explorador\\m\\frames\\attack_gloves\\explorador-m-attack_gloves-04.png",
+          "sha256": "993d82f2ed5c0c7737fbb64852ce3c87aec3c07f873f1cba7fdb2a9c5363e9c3",
+          "alpha_bbox": [
+            12,
+            92,
+            105,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

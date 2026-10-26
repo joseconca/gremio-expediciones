@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.5448354143019296,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 120,
+  "idleHeightMean": 119.75,
+  "actorAnchor": [
+    192,
+    367
+  ],
+  "baselineY": 367,
+  "idleAnchorMode": "air",
+  "rowReferenceRoots": [
+    [
+      117.5,
+      285.0
+    ],
+    [
+      140.5,
+      278.5
+    ],
+    [
+      112.5,
+      268.0
+    ],
+    [
+      116.5,
+      254.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/avispa_gigante/avispa_gigante-sheet.png",
+  "sheetSha256": "c37c54b794549e3f4b77c1bbc7da3feb3c679c52906363afb0fa6931ebaf0020",
+  "sourcePath": "assets/spritesheets/enemies-hd/avispa_gigante/source/sheet-v2.png",
+  "sourceSha256": "70ba0a2fd74fafeb28e7aa1e19b8b8928aa1e789c3c94d190897aded9c82e46a",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/avispa_gigante/frames/idle/avispa_gigante-idle-01.png",
+        "sha256": "8bc6b58d1cc81beb027c26b05bc0fbac7261ddbc51150f1da355c1400f9b9b55",
+        "bounds": [
+          156,
+          248,
+          284,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/avispa_gigante/frames/idle/avispa_gigante-idle-02.png",
+        "sha256": "e5cd6043f547b8ddadd437ed5c24ea4df2c4131da87fe5e3a86d07744093d6db",
+        "bounds": [
+          148,
+          248,
+          285,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/avispa_gigante/frames/idle/avispa_gigante-idle-03.png",
+        "sha256": "760b36e88c8da7e666100c0883f34efccebbb189f2e6ee4651693fd47c7237a7",
+        "bounds": [
+          143,
+          248,
+          283,
+          368
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/avispa_gigante/frames/idle/avispa_gigante-idle-04.png",
+        "sha256": "67ede5619916508be378ce017ab6006a7065c3227a2af7b47f49fda40f9a2abf",
+        "bounds": [
+          151,
+          247,
+          284,
+          368
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/avispa_gigante/frames/hurt/avispa_gigante-hurt-01.png",
+        "sha256": "1d9321bd4409c2a322deef0a3096580f932f5442848c53c933b86da638885b5f",
+        "bounds": [
+          143,
+          243,
+          279,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/avispa_gigante/frames/hurt/avispa_gigante-hurt-02.png",
+        "sha256": "d093311c1cbcbebf25b3e5da59f7ebb59825c8f6dfc5d0c99c1d2e255e481cd1",
+        "bounds": [
+          129,
+          240,
+          267,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/avispa_gigante/frames/hurt/avispa_gigante-hurt-03.png",
+        "sha256": "bba42e970f25ffe5f017543a0efa91f23893ed1dde22f34f13b62f9c3e73c621",
+        "bounds": [
+          124,
+          239,
+          263,
+          362
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/avispa_gigante/frames/hurt/avispa_gigante-hurt-04.png",
+        "sha256": "dfc6775bd10765449c8e51a832dc9e74bcbc513be013bb958fc2fcd819caa398",
+        "bounds": [
+          135,
+          250,
+          272,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/avispa_gigante/frames/attack/avispa_gigante-attack-01.png",
+        "sha256": "fe905845da76a160f86a59287f64f82ac8091fc486842f4044322231699e8d34",
+        "bounds": [
+          150,
+          255,
+          298,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/avispa_gigante/frames/attack/avispa_gigante-attack-02.png",
+        "sha256": "d541964d0115153e5ed4a3424cee42aab9d6ecac89dc7d9298069f130cd8636a",
+        "bounds": [
+          150,
+          228,
+          286,
+          358
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/avispa_gigante/frames/attack/avispa_gigante-attack-03.png",
+        "sha256": "ecbe66085817a2c2936f56dfd09e82c4d42ce03071787aebfd155612a6ab70c5",
+        "bounds": [
+          144,
+          239,
+          291,
+          350
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/avispa_gigante/frames/attack/avispa_gigante-attack-04.png",
+        "sha256": "7562e45426845c5ad4b5db3f72d0e54c7614b198bd98523b3bcd8f70cb165e13",
+        "bounds": [
+          147,
+          244,
+          288,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/avispa_gigante/frames/dodge/avispa_gigante-dodge-01.png",
+        "sha256": "57d740f0951de6d28194d87bd2c3b4854a9efb3ce9716ebf02168c5161ce5cd2",
+        "bounds": [
+          154,
+          248,
+          292,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/avispa_gigante/frames/dodge/avispa_gigante-dodge-02.png",
+        "sha256": "dd3cb296899d8544db76fdaf40656d6e20f8305430b5e869cc13e4e7c800813f",
+        "bounds": [
+          163,
+          223,
+          265,
+          359
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/avispa_gigante/frames/dodge/avispa_gigante-dodge-03.png",
+        "sha256": "15b2fe4ea80d2f59139514f9be1d8b0de51e4788135b1c06df19fa2ed8f7cb68",
+        "bounds": [
+          144,
+          262,
+          293,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/avispa_gigante/frames/dodge/avispa_gigante-dodge-04.png",
+        "sha256": "cb68cfbb2bc519e148385ab6cc7312f49327c92373db634c2d84b2009c47331e",
+        "bounds": [
+          147,
+          248,
+          286,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

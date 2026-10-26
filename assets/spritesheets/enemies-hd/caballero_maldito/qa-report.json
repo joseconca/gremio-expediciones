@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.9052890528905289,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 184,
+  "idleHeightMean": 184.25,
+  "actorAnchor": [
+    192,
+    371
+  ],
+  "baselineY": 371,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      162.0,
+      295.0
+    ],
+    [
+      160.5,
+      273.5
+    ],
+    [
+      161.0,
+      270.0
+    ],
+    [
+      162.0,
+      252.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/caballero_maldito/caballero_maldito-sheet.png",
+  "sheetSha256": "6e5bfe0432a39f72ed0c8a370399e2649818cdb27f3af4409a9c9a6f0678fce4",
+  "sourcePath": "assets/spritesheets/enemies-hd/caballero_maldito/source/sheet-v2.png",
+  "sourceSha256": "5d605e661f5790d1c768624a9fc4f257f42ae1bf539045315cc103d6707a0d10",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/caballero_maldito/frames/idle/caballero_maldito-idle-01.png",
+        "sha256": "0e7a0359b79f3996104125f1dc0c64019f565e44c7076c98b67cfdd9df4bc7eb",
+        "bounds": [
+          92,
+          187,
+          292,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/caballero_maldito/frames/idle/caballero_maldito-idle-02.png",
+        "sha256": "b25241a6aaf56eea523960808b6c71f1e32d05fe9398ac24cc20b68d9e794e96",
+        "bounds": [
+          92,
+          185,
+          291,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/caballero_maldito/frames/idle/caballero_maldito-idle-03.png",
+        "sha256": "b7fccc585d59468ac86cd24941d4253210a10ac8eeefca1393407bb6dc864a53",
+        "bounds": [
+          86,
+          188,
+          294,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/caballero_maldito/frames/idle/caballero_maldito-idle-04.png",
+        "sha256": "22c8c8eee2642589664fe5f0e9dd682bd1b1514f72b1a6dbc18a90304bd2f9e8",
+        "bounds": [
+          92,
+          187,
+          292,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/caballero_maldito/frames/hurt/caballero_maldito-hurt-01.png",
+        "sha256": "3e132ba8f5021d712403d4a0f35628dda23fa2e1cc96b53686cfa846fba12814",
+        "bounds": [
+          87,
+          193,
+          303,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/caballero_maldito/frames/hurt/caballero_maldito-hurt-02.png",
+        "sha256": "719ad547ccc97b2502733d97981eecda4dcadbe27e7e33e2c5cd76db487ee5d7",
+        "bounds": [
+          87,
+          193,
+          302,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/caballero_maldito/frames/hurt/caballero_maldito-hurt-03.png",
+        "sha256": "c5287f9db957ca8b42650a1f4447c6dbf061cfba74a800ea26fcf47bf9286b64",
+        "bounds": [
+          84,
+          199,
+          299,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/caballero_maldito/frames/hurt/caballero_maldito-hurt-04.png",
+        "sha256": "4612a5ecbd9ed3d3c3681e9f4adddad74cf709f1136d574b9bdad57cd4c1f9c3",
+        "bounds": [
+          79,
+          189,
+          294,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/caballero_maldito/frames/attack/caballero_maldito-attack-01.png",
+        "sha256": "e8cdf0749cbde0791a480d16ef96e0659dcc2e13dd8eb17ba44bc61681a882be",
+        "bounds": [
+          89,
+          198,
+          298,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/caballero_maldito/frames/attack/caballero_maldito-attack-02.png",
+        "sha256": "baa3c4870f8ccff5b738c34a56d6ec30b4697f3c5fadce272a7752af493ec6b6",
+        "bounds": [
+          99,
+          166,
+          275,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/caballero_maldito/frames/attack/caballero_maldito-attack-03.png",
+        "sha256": "373143ac4bab9b7256b778b07da8d641d3645fec9c096fe19dbfb6a484142d99",
+        "bounds": [
+          85,
+          202,
+          353,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/caballero_maldito/frames/attack/caballero_maldito-attack-04.png",
+        "sha256": "6e32d2598af0f8abf481805f71b234f5bb179be325f667481a811447bca38f1f",
+        "bounds": [
+          87,
+          197,
+          296,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/caballero_maldito/frames/dodge/caballero_maldito-dodge-01.png",
+        "sha256": "d577463a950989269b7d4abcfafd4953333db26952e3a0d72ac86d3eedeeb6ce",
+        "bounds": [
+          84,
+          186,
+          294,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/caballero_maldito/frames/dodge/caballero_maldito-dodge-02.png",
+        "sha256": "9ed92099c2a2ec8cabda503c9baf73985992f307ccb1477dc33d262c16ab675d",
+        "bounds": [
+          94,
+          193,
+          295,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/caballero_maldito/frames/dodge/caballero_maldito-dodge-03.png",
+        "sha256": "6c70dc0143e3862807f6ef5f471f6a578a430e3eca036e0428472f3826602d7b",
+        "bounds": [
+          84,
+          224,
+          311,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/caballero_maldito/frames/dodge/caballero_maldito-dodge-04.png",
+        "sha256": "6b0af5f92bb37246b06c4022e8b19ed967464557ef04623cd6c883068d266f05",
+        "bounds": [
+          82,
+          187,
+          294,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

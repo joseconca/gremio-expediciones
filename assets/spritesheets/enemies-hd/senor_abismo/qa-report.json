@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.9907949790794979,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
+  "requestedIdleHeight": 296,
+  "idleHeightMean": 295.75,
+  "actorAnchor": [
+    192,
+    371
+  ],
+  "baselineY": 371,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      180.0,
+      313.0
+    ],
+    [
+      177.0,
+      310.5
+    ],
+    [
+      174.5,
+      307.0
+    ],
+    [
+      174.0,
+      297.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/senor_abismo/senor_abismo-sheet.png",
+  "sheetSha256": "32f9372c8d93134567f08cc78a8752a7cdaa068788a42cf480f2729f84ab6a30",
+  "sourcePath": "assets/spritesheets/enemies-hd/senor_abismo/source/sheet-v1.png",
+  "sourceSha256": "8879e15f039f84df934f0ebcb74bd8bbbbe102f8b551d8016bf970f796c9dbcd",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_abismo/frames/idle/senor_abismo-idle-01.png",
+        "sha256": "27462e7747e1ab89cdd1a9fef6f8e55b0b41393365643dfd4708405505edbe48",
+        "bounds": [
+          36,
+          76,
+          288,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_abismo/frames/idle/senor_abismo-idle-02.png",
+        "sha256": "5cc02d8f46a89ab8290f7b847fe84c8fe73f083596145dc5a197169ce37ce436",
+        "bounds": [
+          29,
+          75,
+          284,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_abismo/frames/idle/senor_abismo-idle-03.png",
+        "sha256": "c1d68f05209eb5226c75e95813d1fbeb729e2e6a7e5b12baa4a5fc939a40d20a",
+        "bounds": [
+          33,
+          75,
+          286,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_abismo/frames/idle/senor_abismo-idle-04.png",
+        "sha256": "c0346d4eafac99ed1f6483a911c06231cde8005e83d8f4bde843642fd4e4b6e1",
+        "bounds": [
+          36,
+          75,
+          286,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_abismo/frames/hurt/senor_abismo-hurt-01.png",
+        "sha256": "158fb2da0e76fb7b2b45d92e5f6355aa30ca8dde83e4f5539f44b684ff66540e",
+        "bounds": [
+          33,
+          76,
+          305,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_abismo/frames/hurt/senor_abismo-hurt-02.png",
+        "sha256": "d64d33370fca3b654d6ca699383296a26b4a689dd3e38ed832948b41ccf9a35a",
+        "bounds": [
+          28,
+          79,
+          321,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_abismo/frames/hurt/senor_abismo-hurt-03.png",
+        "sha256": "1143d86085a1c2e42e5eb114f2eda548962eaee833894e32b2e731cea8f45d0f",
+        "bounds": [
+          45,
+          85,
+          291,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_abismo/frames/hurt/senor_abismo-hurt-04.png",
+        "sha256": "2b6e8f8b9b8f43d8482c8ed2c18f526b650f75f5758bfdd96e9ce76e6e53b00c",
+        "bounds": [
+          37,
+          76,
+          311,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_abismo/frames/attack/senor_abismo-attack-01.png",
+        "sha256": "c5988b06ed8259b11adef3248a26a05fcb1b7ec6df822d27789fc062c4f046a8",
+        "bounds": [
+          34,
+          83,
+          323,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_abismo/frames/attack/senor_abismo-attack-02.png",
+        "sha256": "d6889a45f19a6bf6278e3709a06eb4ffce6dd30be954ce2ad8acc21838b96640",
+        "bounds": [
+          17,
+          83,
+          323,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_abismo/frames/attack/senor_abismo-attack-03.png",
+        "sha256": "97f896814ede7c8fe3dca30da11fc3b2a38879f380027a14526a09b1c7f72c17",
+        "bounds": [
+          31,
+          77,
+          366,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_abismo/frames/attack/senor_abismo-attack-04.png",
+        "sha256": "749f5472034f7a2a80f8463b7f53d57ad36d77ad78f2b826bcf793f22a1af641",
+        "bounds": [
+          58,
+          86,
+          311,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_abismo/frames/dodge/senor_abismo-dodge-01.png",
+        "sha256": "c8b677af9c4c628c9b006dd31c4382d9305d6efc0e99ac410ff329f2d2d0a0b9",
+        "bounds": [
+          47,
+          92,
+          317,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_abismo/frames/dodge/senor_abismo-dodge-02.png",
+        "sha256": "d82671f3495adb27977427c9d3337f1584fa09b8f46bdb911ab54639c356b097",
+        "bounds": [
+          52,
+          88,
+          323,
+          368
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_abismo/frames/dodge/senor_abismo-dodge-03.png",
+        "sha256": "425f328ceab6dad8d224447b11eecf8aeb87671f3ce0042827faba7f4f7f35ad",
+        "bounds": [
+          41,
+          142,
+          323,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_abismo/frames/dodge/senor_abismo-dodge-04.png",
+        "sha256": "650f84555a6bdf32b393f16b3a52e3d36e00f7d4b1ad521be3d780aa7952c15b",
+        "bounds": [
+          51,
+          90,
+          316,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

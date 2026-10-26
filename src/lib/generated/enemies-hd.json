@@ -1,0 +1,713 @@
+{
+  "version": "enemies-hd-v1",
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "enemies": {
+    "mimic": {
+      "name": "Mímico",
+      "boss": false,
+      "rank": "I",
+      "src": "/sprites/enemies-hd-v1/mimic-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        372
+      ],
+      "height": 128,
+      "sha256": "a92aaf1c8321baae2630180afa11adc2b0891b316368b2fcadd05423d2570b52"
+    },
+    "slime_acido": {
+      "name": "Slime Ácido",
+      "boss": false,
+      "rank": "I",
+      "src": "/sprites/enemies-hd-v1/slime_acido-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        369
+      ],
+      "height": 96,
+      "sha256": "c18c955aa4c5e03a99a6478d5d3e65c728c23900e51ba225e29807d6a1786fba"
+    },
+    "rata_gigante": {
+      "name": "Rata Gigante",
+      "boss": false,
+      "rank": "I",
+      "src": "/sprites/enemies-hd-v1/rata_gigante-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        370
+      ],
+      "height": 112,
+      "sha256": "9eeb6aa932e24090e0292451f17666caae9143c8520c50c1ffcd298e5e21ac65"
+    },
+    "goblin_explorador": {
+      "name": "Goblin Explorador",
+      "boss": false,
+      "rank": "I",
+      "src": "/sprites/enemies-hd-v1/goblin_explorador-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        372
+      ],
+      "height": 140,
+      "sha256": "1a103c6510103f9f3242225a3b124dfd687e2c5951fb4e8f74a985c3f7f697d6"
+    },
+    "bandido_camino": {
+      "name": "Bandido del Camino",
+      "boss": false,
+      "rank": "I",
+      "src": "/sprites/enemies-hd-v1/bandido_camino-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        372
+      ],
+      "height": 168,
+      "sha256": "4d963a389e2a8e476e2d3655644706d3ce3359c8ba03a2275df02d6d1a7a3e68"
+    },
+    "orco_despiadado": {
+      "name": "Orco Despiadado",
+      "boss": false,
+      "rank": "II",
+      "src": "/sprites/enemies-hd-v1/orco_despiadado-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        371
+      ],
+      "height": 192,
+      "sha256": "b8b31b46807f7dc209159e6ff97419cda219db73dd02bf79c818dcabef7f24ab"
+    },
+    "esqueleto_guerrero": {
+      "name": "Esqueleto Guerrero",
+      "boss": false,
+      "rank": "II",
+      "src": "/sprites/enemies-hd-v1/esqueleto_guerrero-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        370
+      ],
+      "height": 168,
+      "sha256": "e87e34b20eb98f32a835e39b257e8b9422bad978178dd2135d2cabb771c0fd4e"
+    },
+    "ogro": {
+      "name": "Ogro",
+      "boss": false,
+      "rank": "II",
+      "src": "/sprites/enemies-hd-v1/ogro-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        372
+      ],
+      "height": 224,
+      "sha256": "0385b4dd818f1a76a6de089cbb01c14d85d01ef48b803a7a66201b43f94349e2"
+    },
+    "arana_sombras": {
+      "name": "Araña de las Sombras",
+      "boss": false,
+      "rank": "II",
+      "src": "/sprites/enemies-hd-v1/arana_sombras-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        367
+      ],
+      "height": 128,
+      "sha256": "b16345fc74f54499404079b6482b7e319ef8bcf10a05191b6102d04d0a48f637"
+    },
+    "troll_cavernas": {
+      "name": "Troll de las Cavernas",
+      "boss": false,
+      "rank": "II",
+      "src": "/sprites/enemies-hd-v1/troll_cavernas-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        370
+      ],
+      "height": 208,
+      "sha256": "27d9f737df2baa6cb0ffaa41d0633221b2738e6fcff73121c06b3f2ef8b39b45"
+    },
+    "minotauro": {
+      "name": "Minotauro",
+      "boss": false,
+      "rank": "III",
+      "src": "/sprites/enemies-hd-v1/minotauro-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        371
+      ],
+      "height": 216,
+      "sha256": "20ea12007b7885c38c72e000999ad7e3420db208e94294b15c7c1d48eeb072f4"
+    },
+    "lobo_hambriento": {
+      "name": "Lobo Hambriento",
+      "boss": false,
+      "rank": "I",
+      "src": "/sprites/enemies-hd-v1/lobo_hambriento-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        371
+      ],
+      "height": 132,
+      "sha256": "81188c974d76aef9ba9431ea8a96a6c8c61289c8e4eb01b1ffb11b13bbcf47a1"
+    },
+    "murcielago_sanguinario": {
+      "name": "Murciélago Sanguinario",
+      "boss": false,
+      "rank": "I",
+      "src": "/sprites/enemies-hd-v1/murcielago_sanguinario-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        362
+      ],
+      "height": 120,
+      "sha256": "7dec31d810fc9c70edda25db8a1d0a71e4f39c306b9dcded5633097015a97c88"
+    },
+    "avispa_gigante": {
+      "name": "Avispa Gigante",
+      "boss": false,
+      "rank": "I",
+      "src": "/sprites/enemies-hd-v1/avispa_gigante-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        367
+      ],
+      "height": 120,
+      "sha256": "c37c54b794549e3f4b77c1bbc7da3feb3c679c52906363afb0fa6931ebaf0020"
+    },
+    "kobold_trampero": {
+      "name": "Kobold Trampero",
+      "boss": false,
+      "rank": "I",
+      "src": "/sprites/enemies-hd-v1/kobold_trampero-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        370
+      ],
+      "height": 140,
+      "sha256": "f6361aa683e37bc410eeba49b88ea920f48c495f6cc041e56f35acd20e11402d"
+    },
+    "bandido_arbalestero": {
+      "name": "Bandido Arbalestero",
+      "boss": false,
+      "rank": "I",
+      "src": "/sprites/enemies-hd-v1/bandido_arbalestero-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        371
+      ],
+      "height": 168,
+      "sha256": "59d25d739b3ab40eeccea33c0c09ef07e3d8bf851d4c0e303cb1285d2eb4918f"
+    },
+    "zombie_errante": {
+      "name": "Zombi Errante",
+      "boss": false,
+      "rank": "I",
+      "src": "/sprites/enemies-hd-v1/zombie_errante-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        371
+      ],
+      "height": 168,
+      "sha256": "bf40435eee0e557b769c19160f51f212eeb5f24e8a5fa33052b11adf3538eadc"
+    },
+    "hiena_salvaje": {
+      "name": "Hiena Salvaje",
+      "boss": false,
+      "rank": "I",
+      "src": "/sprites/enemies-hd-v1/hiena_salvaje-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        370
+      ],
+      "height": 132,
+      "sha256": "3e5f0d58851fdce8db6600b1f21a3f8661e30c73008c5c2f966c53990ccf2400"
+    },
+    "cultista_encapuchado": {
+      "name": "Cultista Encapuchado",
+      "boss": false,
+      "rank": "II",
+      "src": "/sprites/enemies-hd-v1/cultista_encapuchado-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        371
+      ],
+      "height": 168,
+      "sha256": "01e717a6e4b4d555b11dd23ef0de3452d3a9cdf85d9d559f655569520795644e"
+    },
+    "gnoll_merodeador": {
+      "name": "Gnoll Merodeador",
+      "boss": false,
+      "rank": "II",
+      "src": "/sprites/enemies-hd-v1/gnoll_merodeador-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        369
+      ],
+      "height": 184,
+      "sha256": "c79c2af05a16f85acb92e96d92e0d04bfd1541c97c481ce66514b7d7b5578ce4"
+    },
+    "ghoul_cripta": {
+      "name": "Ghoul de la Cripta",
+      "boss": false,
+      "rank": "II",
+      "src": "/sprites/enemies-hd-v1/ghoul_cripta-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        370
+      ],
+      "height": 176,
+      "sha256": "99ef8e7c3aa331c76b2c5bf9315cd9e1dc11c53d54ec104122c7662e2de5b813"
+    },
+    "hombre_lagarto": {
+      "name": "Hombre Lagarto",
+      "boss": false,
+      "rank": "II",
+      "src": "/sprites/enemies-hd-v1/hombre_lagarto-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        371
+      ],
+      "height": 192,
+      "sha256": "9851d31412b9c7439f58180ef199d7ed9617fbc2c0e9ad80a4ad24bb0b8eeaac"
+    },
+    "golem_barro": {
+      "name": "Gólem de Barro",
+      "boss": false,
+      "rank": "II",
+      "src": "/sprites/enemies-hd-v1/golem_barro-sheet.png",
+      "cellSize": 448,
+      "anchor": [
+        224,
+        435
+      ],
+      "height": 208,
+      "sha256": "1e06da114aecdb57c439603e8828c576e5b03a681f8adc30ea89521aac571f9c"
+    },
+    "oso_cavernario": {
+      "name": "Oso Cavernario",
+      "boss": false,
+      "rank": "II",
+      "src": "/sprites/enemies-hd-v1/oso_cavernario-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        372
+      ],
+      "height": 184,
+      "sha256": "c90d53b8dd73de7019ca4da626b36a65de6445c9d30ba21926880b8f3c30effe"
+    },
+    "espectro_errante": {
+      "name": "Espectro Errante",
+      "boss": false,
+      "rank": "II",
+      "src": "/sprites/enemies-hd-v1/espectro_errante-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        370
+      ],
+      "height": 176,
+      "sha256": "2915aff1b1babcaa972d15b3d45ce53c1ac2bb576d404854fbd9a8f49e21da39"
+    },
+    "harpia_cazadora": {
+      "name": "Arpía Cazadora",
+      "boss": false,
+      "rank": "II",
+      "src": "/sprites/enemies-hd-v1/harpia_cazadora-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        366
+      ],
+      "height": 176,
+      "sha256": "96b3ba50cede01c724ada336beeab260cccb07a96f4796525117a712f2bd8279"
+    },
+    "nigromante_aprendiz": {
+      "name": "Nigromante Aprendiz",
+      "boss": false,
+      "rank": "II",
+      "src": "/sprites/enemies-hd-v1/nigromante_aprendiz-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        370
+      ],
+      "height": 168,
+      "sha256": "6a132dbb13caf7b46997af2884533780576d374726c7fb2b1a8f14de7eb669e5"
+    },
+    "guardian_cripta": {
+      "name": "Guardián de la Cripta",
+      "boss": false,
+      "rank": "III",
+      "src": "/sprites/enemies-hd-v1/guardian_cripta-sheet.png",
+      "cellSize": 448,
+      "anchor": [
+        224,
+        435
+      ],
+      "height": 208,
+      "sha256": "2554d08584f8c046092381222efd875839d579a544cf9d40f84e0c0b84730d40"
+    },
+    "basilisco_joven": {
+      "name": "Basilisco Joven",
+      "boss": false,
+      "rank": "III",
+      "src": "/sprites/enemies-hd-v1/basilisco_joven-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        370
+      ],
+      "height": 152,
+      "sha256": "2841bfb56efa670cfa4aa3729562912743ce75bcbacbd77983ba8effa6194851"
+    },
+    "centauro_saqueador": {
+      "name": "Centauro Saqueador",
+      "boss": false,
+      "rank": "III",
+      "src": "/sprites/enemies-hd-v1/centauro_saqueador-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        370
+      ],
+      "height": 232,
+      "sha256": "0ff76cfa3a03742580c9d687432ca9aac8e833d9c65efc2279a67017c7568dc0"
+    },
+    "gargola_ancestral": {
+      "name": "Gárgola Ancestral",
+      "boss": false,
+      "rank": "III",
+      "src": "/sprites/enemies-hd-v1/gargola_ancestral-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        371
+      ],
+      "height": 208,
+      "sha256": "40cebe13ea68e908fa2dc96aad105228e790cf378c5d0ec9a1f64d53c4c01da6"
+    },
+    "elemental_roca": {
+      "name": "Elemental de Roca",
+      "boss": false,
+      "rank": "III",
+      "src": "/sprites/enemies-hd-v1/elemental_roca-sheet.png",
+      "cellSize": 448,
+      "anchor": [
+        224,
+        436
+      ],
+      "height": 224,
+      "sha256": "382145a03c4ca75160ecdf4a2690d77d1e3d2079492c392259910ccbcaff9d7c"
+    },
+    "sacerdotisa_oscura": {
+      "name": "Sacerdotisa Oscura",
+      "boss": false,
+      "rank": "III",
+      "src": "/sprites/enemies-hd-v1/sacerdotisa_oscura-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        371
+      ],
+      "height": 168,
+      "sha256": "5e74eaf1ed7384085fcacfca3f18100da09f5189ea6873891ce29939bf6f46bf"
+    },
+    "mantícora": {
+      "name": "Mantícora",
+      "boss": false,
+      "rank": "III",
+      "src": "/sprites/enemies-hd-v1/mantícora-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        371
+      ],
+      "height": 208,
+      "sha256": "6bdbb314dae578afb24fea51fcb861d8f7a4cd55f10d5518902da620ee6a8e40"
+    },
+    "ogro_chaman": {
+      "name": "Ogro Chamán",
+      "boss": false,
+      "rank": "III",
+      "src": "/sprites/enemies-hd-v1/ogro_chaman-sheet.png",
+      "cellSize": 448,
+      "anchor": [
+        224,
+        435
+      ],
+      "height": 224,
+      "sha256": "f12f28e69683f59013b52256d8f0176cd81438b24911e2d817cbd6487b3f1171"
+    },
+    "caballero_maldito": {
+      "name": "Caballero Maldito",
+      "boss": false,
+      "rank": "IV",
+      "src": "/sprites/enemies-hd-v1/caballero_maldito-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        371
+      ],
+      "height": 184,
+      "sha256": "6e5bfe0432a39f72ed0c8a370399e2649818cdb27f3af4409a9c9a6f0678fce4"
+    },
+    "wyvern_joven": {
+      "name": "Wyvern Joven",
+      "boss": false,
+      "rank": "IV",
+      "src": "/sprites/enemies-hd-v1/wyvern_joven-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        371
+      ],
+      "height": 208,
+      "sha256": "1ea2e4e18704149374ed2fd9d691129c18c63587cc6082bc3312d2d7d14092a3"
+    },
+    "elemental_fuego": {
+      "name": "Elemental de Fuego",
+      "boss": false,
+      "rank": "IV",
+      "src": "/sprites/enemies-hd-v1/elemental_fuego-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        369
+      ],
+      "height": 208,
+      "sha256": "31d9ff01a2ff0bb8eab3ea1c9d57984d6351452d8b40d7463c873a76683ecb9f"
+    },
+    "vampiro_noble": {
+      "name": "Vampiro Noble",
+      "boss": false,
+      "rank": "IV",
+      "src": "/sprites/enemies-hd-v1/vampiro_noble-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        370
+      ],
+      "height": 176,
+      "sha256": "433a3e6c350a434f9512249c3d846c1d4280e2f55399cd3b6ce7985900e44301"
+    },
+    "demonio_menor": {
+      "name": "Demonio Menor",
+      "boss": false,
+      "rank": "V",
+      "src": "/sprites/enemies-hd-v1/demonio_menor-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        372
+      ],
+      "height": 208,
+      "sha256": "d4b0a216020cd2d586b26fec05e634fe3cd5916a641b1e8298b8744b4cf2c303"
+    },
+    "dragon_negro_joven": {
+      "name": "Dragón Negro Joven",
+      "boss": false,
+      "rank": "V",
+      "src": "/sprites/enemies-hd-v1/dragon_negro_joven-sheet.png",
+      "cellSize": 448,
+      "anchor": [
+        224,
+        434
+      ],
+      "height": 240,
+      "sha256": "e4ebb790ad98450218cdd8f4dca99f47338df94e63164c1c9b160ab077c1f2d7"
+    },
+    "gigante_escarcha": {
+      "name": "Gigante de Escarcha",
+      "boss": false,
+      "rank": "V",
+      "src": "/sprites/enemies-hd-v1/gigante_escarcha-sheet.png",
+      "cellSize": 512,
+      "anchor": [
+        256,
+        498
+      ],
+      "height": 272,
+      "sha256": "7266fce47757217dfdf723f8be3cfa84fb2bd7cdc4425d6b672fdc4dd70beda0"
+    },
+    "senor_frontera": {
+      "name": "Señor de la Frontera",
+      "boss": true,
+      "rank": "I",
+      "src": "/sprites/enemies-hd-v1/senor_frontera-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        371
+      ],
+      "height": 192,
+      "sha256": "e99346e1f2e8486bfc08785585632b867463fde880715e552db225a7af57100f"
+    },
+    "reina_sombras": {
+      "name": "Reina de las Sombras",
+      "boss": true,
+      "rank": "I",
+      "src": "/sprites/enemies-hd-v1/reina_sombras-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        371
+      ],
+      "height": 184,
+      "sha256": "924f3a7e531888b04ebe15ca9d3f6721f91703c4fbc00fedd6fdf4c5afdb79b7"
+    },
+    "titan_hierro": {
+      "name": "Titán de Hierro",
+      "boss": true,
+      "rank": "I",
+      "src": "/sprites/enemies-hd-v1/titan_hierro-sheet.png",
+      "cellSize": 512,
+      "anchor": [
+        256,
+        499
+      ],
+      "height": 288,
+      "sha256": "6e45f9c52cce788057790df0b5bca0625a51abff6d58e01ca297d1780d92165b"
+    },
+    "dragon_bosque_verde": {
+      "name": "Dragón del Bosque Verde",
+      "boss": true,
+      "rank": "I",
+      "src": "/sprites/enemies-hd-v1/dragon_bosque_verde-sheet.png",
+      "cellSize": 448,
+      "anchor": [
+        224,
+        435
+      ],
+      "height": 272,
+      "sha256": "2893c2fa8edc9ab801dafbaabd407db5e0647e3e242ce211c8d6a012dbc6e4f6"
+    },
+    "capitan_orcos": {
+      "name": "Capitán de los Orcos",
+      "boss": true,
+      "rank": "II",
+      "src": "/sprites/enemies-hd-v1/capitan_orcos-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        371
+      ],
+      "height": 224,
+      "sha256": "095b126092343454dfef698631da5a5bd51af2b3f398259ce89944a2f69d5dfa"
+    },
+    "reina_arana": {
+      "name": "Reina Araña",
+      "boss": true,
+      "rank": "II",
+      "src": "/sprites/enemies-hd-v1/reina_arana-sheet.png",
+      "cellSize": 576,
+      "anchor": [
+        288,
+        560
+      ],
+      "height": 240,
+      "sha256": "159ed897e5c2cc48820b9a51dcc9b5cbcab2ffae0437c96ae879fd5833decd75"
+    },
+    "archimago_exiliado": {
+      "name": "Archimago Exiliado",
+      "boss": true,
+      "rank": "III",
+      "src": "/sprites/enemies-hd-v1/archimago_exiliado-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        371
+      ],
+      "height": 184,
+      "sha256": "5c6184d2af67d7a2b7517b5b3de7b87b9575fa90c78a95080664c045f6bed3e3"
+    },
+    "dragon_pantano": {
+      "name": "Dragón del Pantano",
+      "boss": true,
+      "rank": "III",
+      "src": "/sprites/enemies-hd-v1/dragon_pantano-sheet.png",
+      "cellSize": 448,
+      "anchor": [
+        224,
+        435
+      ],
+      "height": 272,
+      "sha256": "9e7354061723288cf2cec659291581f6b56618bb8335451419e0f5471e775ae3"
+    },
+    "rey_no_muerto": {
+      "name": "Rey No Muerto",
+      "boss": true,
+      "rank": "IV",
+      "src": "/sprites/enemies-hd-v1/rey_no_muerto-sheet.png",
+      "cellSize": 448,
+      "anchor": [
+        224,
+        435
+      ],
+      "height": 208,
+      "sha256": "fc8f9ee9d2b734b3538ef5ecdc655ce6eef9a9fabda7ed95ef45e7936e3bef4a"
+    },
+    "hidra_tres_cabezas": {
+      "name": "Hidra de Tres Cabezas",
+      "boss": true,
+      "rank": "IV",
+      "src": "/sprites/enemies-hd-v1/hidra_tres_cabezas-sheet.png",
+      "cellSize": 512,
+      "anchor": [
+        256,
+        498
+      ],
+      "height": 272,
+      "sha256": "f4bae426860366dffefb9a6a4cdb21b8943fafd5434c38b2185dd34ba4414d47"
+    },
+    "senor_abismo": {
+      "name": "Señor del Abismo",
+      "boss": true,
+      "rank": "V",
+      "src": "/sprites/enemies-hd-v1/senor_abismo-sheet.png",
+      "cellSize": 384,
+      "anchor": [
+        192,
+        371
+      ],
+      "height": 296,
+      "sha256": "32f9372c8d93134567f08cc78a8752a7cdaa068788a42cf480f2729f84ab6a30"
+    },
+    "dragon_anciano": {
+      "name": "Dragón Anciano",
+      "boss": true,
+      "rank": "V",
+      "src": "/sprites/enemies-hd-v1/dragon_anciano-sheet.png",
+      "cellSize": 576,
+      "anchor": [
+        288,
+        556
+      ],
+      "height": 304,
+      "sha256": "be3130c46a4b671d133c75a6e7f1948ae4e50d535b17b60da6b6746512c45631"
+    }
+  }
+}

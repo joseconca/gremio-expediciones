@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.5579078455790785,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 112,
+  "idleHeightMean": 112.0,
+  "actorAnchor": [
+    192,
+    370
+  ],
+  "baselineY": 370,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      163.0,
+      305.0
+    ],
+    [
+      162.5,
+      298.5
+    ],
+    [
+      159.5,
+      283.0
+    ],
+    [
+      164.5,
+      248.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/rata_gigante/rata_gigante-sheet.png",
+  "sheetSha256": "9eeb6aa932e24090e0292451f17666caae9143c8520c50c1ffcd298e5e21ac65",
+  "sourcePath": "assets/spritesheets/enemies-hd/rata_gigante/source/sheet-v3.png",
+  "sourceSha256": "cc3e1058ffacfe1f3b8d5e7653ab481ffe7d77d635549d832b9fb65909bb31ec",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/rata_gigante/frames/idle/rata_gigante-idle-01.png",
+        "sha256": "ac94607bb6ffdb2f79143d0520c8d5a53ba81e3789e6b00d7cbc2f01d98aa7ce",
+        "bounds": [
+          113,
+          259,
+          274,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rata_gigante/frames/idle/rata_gigante-idle-02.png",
+        "sha256": "8e0797720814480a00ff07c79f311bb97968b7cdb3142bddc77f319c927aba80",
+        "bounds": [
+          113,
+          258,
+          273,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rata_gigante/frames/idle/rata_gigante-idle-03.png",
+        "sha256": "1ce83d30a1d77001f35b9d60d5dc071f62dcf0204fe2ccc2c38015010945d7b1",
+        "bounds": [
+          113,
+          259,
+          273,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rata_gigante/frames/idle/rata_gigante-idle-04.png",
+        "sha256": "ff1d818a2d4c9b72a159fc7f8c0d93ef902534af6dd7e171aece76dd363885d2",
+        "bounds": [
+          116,
+          256,
+          268,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/rata_gigante/frames/hurt/rata_gigante-hurt-01.png",
+        "sha256": "7653ff10c18864326339ff7b1d8a55dfd715ba72525576787d67611fe91d9edb",
+        "bounds": [
+          115,
+          244,
+          272,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rata_gigante/frames/hurt/rata_gigante-hurt-02.png",
+        "sha256": "88e40b98adb1781cb39cb8acca4b227c5132d89d5cd83619fd2bf64974c71077",
+        "bounds": [
+          118,
+          254,
+          275,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rata_gigante/frames/hurt/rata_gigante-hurt-03.png",
+        "sha256": "784a644b0b1990bac64ca5965d3fb9fadf6b39636ca11c73db89cd66a84ae4a7",
+        "bounds": [
+          117,
+          247,
+          264,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rata_gigante/frames/hurt/rata_gigante-hurt-04.png",
+        "sha256": "09da095f02048d25d8ad325ae198164ecbdc43edcd9802af3a93e4ff47fe530e",
+        "bounds": [
+          113,
+          274,
+          273,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/rata_gigante/frames/attack/rata_gigante-attack-01.png",
+        "sha256": "47f4fdc927c4dc6ab56c731cb28376faab20d348c7336bfa46b4220b1bfab095",
+        "bounds": [
+          110,
+          249,
+          279,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rata_gigante/frames/attack/rata_gigante-attack-02.png",
+        "sha256": "4eaf9f61e7ffa60b668d74661887f32de7e6bf5f944e7ed1c2f0c5ed23cff138",
+        "bounds": [
+          114,
+          247,
+          280,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rata_gigante/frames/attack/rata_gigante-attack-03.png",
+        "sha256": "db623a5383afb3ce632b0e0431c09969dfe00aec49c70e0227abc2f91c68e653",
+        "bounds": [
+          102,
+          248,
+          310,
+          359
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rata_gigante/frames/attack/rata_gigante-attack-04.png",
+        "sha256": "52c3b09f2749198cb66a61749f9f438379bf4d39fd144bbfaed195b1cf7164ea",
+        "bounds": [
+          121,
+          259,
+          277,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/rata_gigante/frames/dodge/rata_gigante-dodge-01.png",
+        "sha256": "02f447f36a881eb3fbaa2208f2eefed2dc091b1020b8e4e4b7de114edad064af",
+        "bounds": [
+          114,
+          251,
+          271,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rata_gigante/frames/dodge/rata_gigante-dodge-02.png",
+        "sha256": "6840e53e54b250670801434d1d3cc35ec84398ed495076abf3d1b49561b6f2a4",
+        "bounds": [
+          114,
+          244,
+          269,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rata_gigante/frames/dodge/rata_gigante-dodge-03.png",
+        "sha256": "643b8c11c29f9c6709212ef20d793f050da303d9b75b6fb0a296a69ab007a355",
+        "bounds": [
+          97,
+          273,
+          275,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rata_gigante/frames/dodge/rata_gigante-dodge-04.png",
+        "sha256": "750f9f739c5e4515ff558f16da6f9a4fd2f3479d83f5327c7e0f53db23bb041b",
+        "bounds": [
+          118,
+          251,
+          271,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

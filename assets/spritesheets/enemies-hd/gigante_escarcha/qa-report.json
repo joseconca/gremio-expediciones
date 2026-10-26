@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.9645390070921985,
+  "cellSize": [
+    512,
+    512
+  ],
+  "sheetSize": [
+    2048,
+    2048
+  ],
+  "artDirection": "earlier-candidate-style",
+  "requestedIdleHeight": 272,
+  "idleHeightMean": 272.0,
+  "actorAnchor": [
+    256,
+    498
+  ],
+  "baselineY": 498,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      151.0,
+      307.0
+    ],
+    [
+      151.0,
+      307.5
+    ],
+    [
+      147.5,
+      309.0
+    ],
+    [
+      149.5,
+      290.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/gigante_escarcha/gigante_escarcha-sheet.png",
+  "sheetSha256": "7266fce47757217dfdf723f8be3cfa84fb2bd7cdc4425d6b672fdc4dd70beda0",
+  "sourcePath": "assets/spritesheets/enemies-hd/gigante_escarcha/source/sheet-v1.png",
+  "sourceSha256": "f9d97723cd59e2fc8c985cdac523ecfb5c36ddb99ee3e32f30cc4974346d37f9",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/gigante_escarcha/frames/idle/gigante_escarcha-idle-01.png",
+        "sha256": "be8eeca0e61550cbeca759a42301486c09623fb1a5166107c7c3ca09741a5f51",
+        "bounds": [
+          158,
+          226,
+          406,
+          498
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gigante_escarcha/frames/idle/gigante_escarcha-idle-02.png",
+        "sha256": "266241550112986f8dd557a2d1c3ab6a97bd49e9c8cb6c00d92ce2d14d94f399",
+        "bounds": [
+          158,
+          226,
+          406,
+          498
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gigante_escarcha/frames/idle/gigante_escarcha-idle-03.png",
+        "sha256": "f82554feec9e3bbb80447455e3af6bfebdde25204cfe5150dfd2a9c6bf42dc1c",
+        "bounds": [
+          157,
+          226,
+          406,
+          498
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gigante_escarcha/frames/idle/gigante_escarcha-idle-04.png",
+        "sha256": "e645aa2a443cba2393e89be9601a24d5651b6036dda6f43e404b08eb93da256b",
+        "bounds": [
+          157,
+          226,
+          405,
+          498
+        ],
+        "idleAnchorCorrectionX": -1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/gigante_escarcha/frames/hurt/gigante_escarcha-hurt-01.png",
+        "sha256": "5d882163e37b39e8cc4ca24fffa6aa3067a5a1d53c0fe40851fc08303ac098b4",
+        "bounds": [
+          158,
+          227,
+          406,
+          498
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gigante_escarcha/frames/hurt/gigante_escarcha-hurt-02.png",
+        "sha256": "9a68859300142a9abd190c021d522f001f33accc201539c92a741e7dd25a587c",
+        "bounds": [
+          158,
+          233,
+          402,
+          498
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gigante_escarcha/frames/hurt/gigante_escarcha-hurt-03.png",
+        "sha256": "782bce3e4bbe7bd154fe682a666d3808f08fd5289d0d7419c8605ddffae70610",
+        "bounds": [
+          146,
+          233,
+          410,
+          498
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gigante_escarcha/frames/hurt/gigante_escarcha-hurt-04.png",
+        "sha256": "073b6713504586fee033fd8935f7bd4ee5d52368303f5659e16ac76abaff9727",
+        "bounds": [
+          157,
+          227,
+          403,
+          498
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/gigante_escarcha/frames/attack/gigante_escarcha-attack-01.png",
+        "sha256": "e13ee265010b871dc510ab2fd7b40c4cc49c283fef1737616d666fc46aa2eb64",
+        "bounds": [
+          154,
+          234,
+          417,
+          498
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gigante_escarcha/frames/attack/gigante_escarcha-attack-02.png",
+        "sha256": "51e1cdfc1c36682bd97fb100b1f3f03c335b76aba87b0d1046e6fdbaa9c42e9f",
+        "bounds": [
+          154,
+          187,
+          386,
+          498
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gigante_escarcha/frames/attack/gigante_escarcha-attack-03.png",
+        "sha256": "7afdad2c984c0c2326d82aaa706080e8c6fff62fee23179b91a0192c5861bfad",
+        "bounds": [
+          115,
+          252,
+          476,
+          500
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gigante_escarcha/frames/attack/gigante_escarcha-attack-04.png",
+        "sha256": "4f33df518bf32108c831ec27b10ab9b367fb7ef00c17f939c18951a6e761e921",
+        "bounds": [
+          161,
+          234,
+          410,
+          497
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/gigante_escarcha/frames/dodge/gigante_escarcha-dodge-01.png",
+        "sha256": "00fa21a03c60645384c87cd8333363f826f1905a14ef4222e72963e14d195b68",
+        "bounds": [
+          160,
+          237,
+          401,
+          498
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gigante_escarcha/frames/dodge/gigante_escarcha-dodge-02.png",
+        "sha256": "01868e7571f32ac8d290734a570371ee62cc8d663c465f8e637da098b137375f",
+        "bounds": [
+          149,
+          257,
+          406,
+          496
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gigante_escarcha/frames/dodge/gigante_escarcha-dodge-03.png",
+        "sha256": "444bc0d90e483127b38da417f6f81cc6ff49b709233069c93cf7f69205a52b1d",
+        "bounds": [
+          124,
+          281,
+          410,
+          496
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gigante_escarcha/frames/dodge/gigante_escarcha-dodge-04.png",
+        "sha256": "7be711766ebe0ef5edfea1856a4f8a800c4fce6bc876ff384c8b1064528f4caf",
+        "bounds": [
+          157,
+          237,
+          398,
+          499
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

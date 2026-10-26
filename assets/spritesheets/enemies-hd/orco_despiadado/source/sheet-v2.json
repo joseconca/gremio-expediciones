@@ -1,0 +1,11 @@
+{
+  "id": "orco_despiadado",
+  "design": "A stocky broad-shouldered green orc warrior, stylized chibi fantasy brute with large square jaw, two small upward tusks, thick expressive brows, narrow amber eyes and a boastful hostile grin. Short dark mohawk, scar on brow, mismatched iron shoulder plate, brown leather harness, dark ragged cloth kilt and heavy boots. Holds a short broad single-bladed iron axe with wooden haft in both hands; exactly two arms/two legs. Bold graphic material highlights, caricatured and lively but intimidating rather than adorable. Idle grounded guard, hurt recoil and furious squint, attack raises axe then chops hard toward RIGHT, dodge drops shoulders and sidesteps backward. Same anatomy/equipment in all16frames, no blood or effects.",
+  "prompt": "Fix ONLY these THREE specific cells of this transparent 4x4 sheet. (1) ROW TWO COLUMN THREE: the orc must visibly hold the SAME short iron axe across his body in both hands during recoil; it is currently missing. Preserve head/body recoil. (2) ROW THREE COLUMN FOUR: replace this clipped outward swing with the recovery pose holding the SAME short axe lowered across his waist like row one. Entire axe and both hands safely inside the rightmost cell and canvas edge, no cropping. (3) ROW FOUR COLUMN TWO: keep the dodging lean but have BOTH hands visibly holding the SAME axe close across waist/chest, not missing. All other thirteen cells EXACTLY unchanged. Exactly two arms and one axe in every pose. Same green orc, armor, scale, 4x4 grid, canvas and transparency. No text or effects.",
+  "revision": 2,
+  "status": "generated-pending-review",
+  "source": "assets/spritesheets/enemies-hd/orco_despiadado/source/sheet-v2.png",
+  "originalGenerationPath": "C:\\Users\\Casa\\.codex\\generated_images\\01a17347-0d75-7921-a8f3-393fa129f972\\exec-d9f1c9d1-4188-44d2-9bf2-7e067ff64d1a.png",
+  "sourceSha256": "350ef82475ba441aceb9ba8ba195743235a7052570d0d9b920d7769517205fd6",
+  "generator": "built-in image_gen"
+}

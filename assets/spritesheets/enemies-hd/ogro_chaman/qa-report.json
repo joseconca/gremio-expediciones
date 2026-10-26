@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 1.0900243309002433,
+  "cellSize": [
+    448,
+    448
+  ],
+  "sheetSize": [
+    1792,
+    1792
+  ],
+  "requestedIdleHeight": 224,
+  "idleHeightMean": 224.0,
+  "actorAnchor": [
+    224,
+    435
+  ],
+  "baselineY": 435,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      171.5,
+      290.0
+    ],
+    [
+      171.0,
+      277.5
+    ],
+    [
+      171.0,
+      260.0
+    ],
+    [
+      170.0,
+      227.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/ogro_chaman/ogro_chaman-sheet.png",
+  "sheetSha256": "f12f28e69683f59013b52256d8f0176cd81438b24911e2d817cbd6487b3f1171",
+  "sourcePath": "assets/spritesheets/enemies-hd/ogro_chaman/source/sheet-v3.png",
+  "sourceSha256": "c1fc0040c6e0d1882a34b13b2a5bae0f4d9b7ebbbeedcc045cdbfeff2af66c0c",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro_chaman/frames/idle/ogro_chaman-idle-01.png",
+        "sha256": "56302557c4aad2fe4f129607b4bfda4cbb326cce26953df1c0d09d14417fa8c1",
+        "bounds": [
+          104,
+          213,
+          343,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro_chaman/frames/idle/ogro_chaman-idle-02.png",
+        "sha256": "ea142f51f2432585b476877f3d44f2947ac51b406667313cf6662f49d7a05067",
+        "bounds": [
+          111,
+          210,
+          345,
+          435
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro_chaman/frames/idle/ogro_chaman-idle-03.png",
+        "sha256": "8d77d95abe3a9fc1dabbc89518e16c522738b1c7814a7878d268532ca92231aa",
+        "bounds": [
+          120,
+          209,
+          345,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro_chaman/frames/idle/ogro_chaman-idle-04.png",
+        "sha256": "625bced4e7e70ae376ab3d671c5df430c4bb1cd0e7206f14c990df494564891c",
+        "bounds": [
+          121,
+          212,
+          346,
+          435
+        ],
+        "idleAnchorCorrectionX": 1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro_chaman/frames/hurt/ogro_chaman-hurt-01.png",
+        "sha256": "dbfe837ac1c5d82cb4cf476572da97b0e3458954035e3bb2c658fc735583baa4",
+        "bounds": [
+          110,
+          215,
+          353,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro_chaman/frames/hurt/ogro_chaman-hurt-02.png",
+        "sha256": "ef70e7be58d664876676ba5de7075ec35c46194fa9bdcd3af810ffa0b5ce9e8f",
+        "bounds": [
+          117,
+          212,
+          352,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro_chaman/frames/hurt/ogro_chaman-hurt-03.png",
+        "sha256": "85518c67de9c7158fa16f8976ec4259b87a406ec31b9e27dbc71f2c696d99ec0",
+        "bounds": [
+          82,
+          222,
+          361,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro_chaman/frames/hurt/ogro_chaman-hurt-04.png",
+        "sha256": "7d5384eb6f6a53cad3cf21ab9b6da7632bc1e71ec03746b812cd15d027455d91",
+        "bounds": [
+          114,
+          224,
+          339,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro_chaman/frames/attack/ogro_chaman-attack-01.png",
+        "sha256": "dd5b1157fa58d00746998f2ae4f5f8020d82a041c1c9b616387e25a9e4d35073",
+        "bounds": [
+          101,
+          218,
+          374,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro_chaman/frames/attack/ogro_chaman-attack-02.png",
+        "sha256": "c56a0e9f545f350c6b963e1bec7fb07f4baba1f352a934ae8c6f0e30c7495d57",
+        "bounds": [
+          119,
+          169,
+          363,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro_chaman/frames/attack/ogro_chaman-attack-03.png",
+        "sha256": "8c5909a80363cf93be2368cb619de9a53a5c4b6cd8aa8370d1276e01ca87b103",
+        "bounds": [
+          89,
+          235,
+          417,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro_chaman/frames/attack/ogro_chaman-attack-04.png",
+        "sha256": "2d2c3f4f2c46f971f803672e2226a436ef6ec3caf6dca6c7fe5b76e34ddbc6bd",
+        "bounds": [
+          122,
+          230,
+          356,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro_chaman/frames/dodge/ogro_chaman-dodge-01.png",
+        "sha256": "36d1b127e707d23ece56d18ac2216afffc506a677edf3e5ae3cc4cb43dfe1262",
+        "bounds": [
+          104,
+          229,
+          343,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro_chaman/frames/dodge/ogro_chaman-dodge-02.png",
+        "sha256": "84cb7a71bdd5b25eb390832ea22600de98246d91ab9af499913af263826bf72d",
+        "bounds": [
+          104,
+          229,
+          351,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro_chaman/frames/dodge/ogro_chaman-dodge-03.png",
+        "sha256": "804c289bd3785d78d65794a6d0ec373a5f7526c6d27fb9c0c49fba18f33ac40f",
+        "bounds": [
+          92,
+          256,
+          329,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro_chaman/frames/dodge/ogro_chaman-dodge-04.png",
+        "sha256": "bdc78c130cf7704d8e9112dbc13ce4dadf7f4941d0898a4a2994b7ae9f6ccfb8",
+        "bounds": [
+          122,
+          226,
+          340,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

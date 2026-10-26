@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.7521367521367521,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
+  "requestedIdleHeight": 176,
+  "idleHeightMean": 176.0,
+  "actorAnchor": [
+    192,
+    370
+  ],
+  "baselineY": 370,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      159.0,
+      296.0
+    ],
+    [
+      155.0,
+      292.5
+    ],
+    [
+      152.5,
+      289.0
+    ],
+    [
+      155.0,
+      245.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/vampiro_noble/vampiro_noble-sheet.png",
+  "sheetSha256": "433a3e6c350a434f9512249c3d846c1d4280e2f55399cd3b6ce7985900e44301",
+  "sourcePath": "assets/spritesheets/enemies-hd/vampiro_noble/source/sheet-v3.png",
+  "sourceSha256": "e6c79a9ad6ad5045774517ccaf6f171120c4ba715019a3b5bf4c8e2f16ac4ce4",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/vampiro_noble/frames/idle/vampiro_noble-idle-01.png",
+        "sha256": "25a9b7630b02649b831112ae5679c8173075e176b8533d3e3d0049926db65f88",
+        "bounds": [
+          112,
+          193,
+          265,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/vampiro_noble/frames/idle/vampiro_noble-idle-02.png",
+        "sha256": "2884f3acb81a68087d0fb66832e30e3e9fdcbcbe5b41d7994359227032cca075",
+        "bounds": [
+          112,
+          193,
+          265,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/vampiro_noble/frames/idle/vampiro_noble-idle-03.png",
+        "sha256": "6e45b5d5363204fbf063899bf74db9643fba1a580350f9ea87a851346873f599",
+        "bounds": [
+          110,
+          196,
+          263,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/vampiro_noble/frames/idle/vampiro_noble-idle-04.png",
+        "sha256": "ba36f195dd1e122f46556dbf5c34182e35877c088d9f60e68e2cf3e8d7c2342f",
+        "bounds": [
+          111,
+          194,
+          263,
+          370
+        ],
+        "idleAnchorCorrectionX": 1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/vampiro_noble/frames/hurt/vampiro_noble-hurt-01.png",
+        "sha256": "b5d89c5f6877539e039f8a7179f0da800c6fd15a119f5d7f298133419147f4f1",
+        "bounds": [
+          108,
+          202,
+          269,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/vampiro_noble/frames/hurt/vampiro_noble-hurt-02.png",
+        "sha256": "e0440ee26ce5f88706681f2242887e4ac2d29af6f634f6767915b04e13a03acc",
+        "bounds": [
+          114,
+          207,
+          291,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/vampiro_noble/frames/hurt/vampiro_noble-hurt-03.png",
+        "sha256": "66029b06d49725d38a3aea820fbd692aa6277fffa01ecd7721815e4d4e8d4f55",
+        "bounds": [
+          123,
+          205,
+          301,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/vampiro_noble/frames/hurt/vampiro_noble-hurt-04.png",
+        "sha256": "af054911012843e0804867dc8a426d1309da4d0eaaa7ad6a5f0b981691f311db",
+        "bounds": [
+          111,
+          207,
+          273,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/vampiro_noble/frames/attack/vampiro_noble-attack-01.png",
+        "sha256": "866a02f1ac29a8f5787ab239bffd17f76fe7be8cdfe5cd35a3b4beee0c140b8f",
+        "bounds": [
+          122,
+          205,
+          269,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/vampiro_noble/frames/attack/vampiro_noble-attack-02.png",
+        "sha256": "1d2648af595158b9104ffe5c7da7ad2af2f598578d6504d008d61a1715a6f0ee",
+        "bounds": [
+          106,
+          190,
+          291,
+          368
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/vampiro_noble/frames/attack/vampiro_noble-attack-03.png",
+        "sha256": "ef889c0d0ac8d78806d3cbcdf1236b70518fc508d81308ddbee43e6284ba2288",
+        "bounds": [
+          92,
+          207,
+          368,
+          368
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/vampiro_noble/frames/attack/vampiro_noble-attack-04.png",
+        "sha256": "47c983ecdb9ceacbb18edaa67c3d91c793495e8680dc2c1bb2ae6f9cec073158",
+        "bounds": [
+          119,
+          205,
+          273,
+          368
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/vampiro_noble/frames/dodge/vampiro_noble-dodge-01.png",
+        "sha256": "7cc916f63ce94e3ab9771810995d40cbc50e6430ac99fa561aed81f5f3463ab8",
+        "bounds": [
+          112,
+          222,
+          274,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/vampiro_noble/frames/dodge/vampiro_noble-dodge-02.png",
+        "sha256": "71adaa68eac5948e74f8df6ab09464e8a4c97b7a2f9fc7f73f2dc10beec4cfd9",
+        "bounds": [
+          131,
+          211,
+          285,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/vampiro_noble/frames/dodge/vampiro_noble-dodge-03.png",
+        "sha256": "369ff6c5d424a3e059247cdd33479b1fdfabb790d0e4096c1085a36e71be0aec",
+        "bounds": [
+          111,
+          237,
+          310,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/vampiro_noble/frames/dodge/vampiro_noble-dodge-04.png",
+        "sha256": "99cc1dfae4e5a6df1629bc5c2b12fa4b31cc965feb4fe67e4f92f09efe4c10b0",
+        "bounds": [
+          119,
+          217,
+          280,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

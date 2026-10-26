@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.4838012958963283,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
+  "requestedIdleHeight": 168,
+  "idleHeightMean": 167.75,
+  "actorAnchor": [
+    192,
+    371
+  ],
+  "baselineY": 371,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      165.5,
+      364.0
+    ],
+    [
+      166.0,
+      392.5
+    ],
+    [
+      163.5,
+      387.0
+    ],
+    [
+      161.0,
+      305.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/bandido_arbalestero/bandido_arbalestero-sheet.png",
+  "sheetSha256": "59d25d739b3ab40eeccea33c0c09ef07e3d8bf851d4c0e303cb1285d2eb4918f",
+  "sourcePath": "assets/spritesheets/enemies-hd/bandido_arbalestero/source/sheet-v2.png",
+  "sourceSha256": "ff94b51908e173e844003b1e560a60a66da8d6ca0a1e28211a2a9ebbdff76726",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_arbalestero/frames/idle/bandido_arbalestero-idle-01.png",
+        "sha256": "b3577375e03f8df25bc8baeb90e82b054ef476b499d2cba4b35e92eb40f06233",
+        "bounds": [
+          141,
+          204,
+          252,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_arbalestero/frames/idle/bandido_arbalestero-idle-02.png",
+        "sha256": "d06215bf44f3910485784f1703f36cd9c3ded0bdfc53a6a731a41f882f9f0c81",
+        "bounds": [
+          140,
+          202,
+          252,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_arbalestero/frames/idle/bandido_arbalestero-idle-03.png",
+        "sha256": "c28b1982e029d3682884d907faac6707b1fcf67513a3881d649b9f13eb57fcdc",
+        "bounds": [
+          141,
+          204,
+          251,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_arbalestero/frames/idle/bandido_arbalestero-idle-04.png",
+        "sha256": "0c228b28433696f5f82992cb6fa97f24354b9a718df88320615b7461bf6569b8",
+        "bounds": [
+          141,
+          203,
+          251,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_arbalestero/frames/hurt/bandido_arbalestero-hurt-01.png",
+        "sha256": "a53973dcecf35a2d6b058c98e7f674b5217390b4a2ffe14233381655634cecca",
+        "bounds": [
+          140,
+          216,
+          255,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_arbalestero/frames/hurt/bandido_arbalestero-hurt-02.png",
+        "sha256": "bbeaa015418a9b8a8f516272692afac388ba87ff7c8f9b102ece061b1ba7f9c0",
+        "bounds": [
+          140,
+          220,
+          259,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_arbalestero/frames/hurt/bandido_arbalestero-hurt-03.png",
+        "sha256": "65d08a9e6f2f44e8710149886e7d44b22f0de750e8023c0a9734e5dd932c1af4",
+        "bounds": [
+          143,
+          221,
+          266,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_arbalestero/frames/hurt/bandido_arbalestero-hurt-04.png",
+        "sha256": "a179fd03104955df4a76ec93aa4b528bc49fec6e7f7e4126ac1e171b9300ba2b",
+        "bounds": [
+          141,
+          215,
+          254,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_arbalestero/frames/attack/bandido_arbalestero-attack-01.png",
+        "sha256": "e5eab50c7361ea320d1379438cdfcc2909cfbdda4650244e891c3c25e323a260",
+        "bounds": [
+          136,
+          226,
+          257,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_arbalestero/frames/attack/bandido_arbalestero-attack-02.png",
+        "sha256": "d392e9c865f6076ef4c287c40e7c0c91aeedd77612b9c83755687e1b0c2c91dc",
+        "bounds": [
+          137,
+          222,
+          272,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_arbalestero/frames/attack/bandido_arbalestero-attack-03.png",
+        "sha256": "a65f66366419cede4313dc241e0df25ee680e9fb21f752d1300576d0bef81449",
+        "bounds": [
+          139,
+          229,
+          268,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_arbalestero/frames/attack/bandido_arbalestero-attack-04.png",
+        "sha256": "38a0d2648535ae0623df37fe1aae11907ea983fce5bdde823a746faf67627d3a",
+        "bounds": [
+          138,
+          226,
+          255,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_arbalestero/frames/dodge/bandido_arbalestero-dodge-01.png",
+        "sha256": "3113c8f965dd55251242e6e1e1147174a76e034efa695972791a44e310b5e617",
+        "bounds": [
+          139,
+          260,
+          254,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_arbalestero/frames/dodge/bandido_arbalestero-dodge-02.png",
+        "sha256": "8e4b1e5c55359eb1387cf977211f401a26bc07d0319832f60932d0ddb824d8b6",
+        "bounds": [
+          147,
+          264,
+          268,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_arbalestero/frames/dodge/bandido_arbalestero-dodge-03.png",
+        "sha256": "d38a20b9d340e64d363fc4a763d19a4fe06afcb9c85b84f51816ed2025f72397",
+        "bounds": [
+          141,
+          267,
+          268,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_arbalestero/frames/dodge/bandido_arbalestero-dodge-04.png",
+        "sha256": "4318cd08006c3f94fb70abc92f56e40a175f1d81d278bb28e6ba626c6a525980",
+        "bounds": [
+          146,
+          259,
+          259,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

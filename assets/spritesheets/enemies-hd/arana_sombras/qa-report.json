@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.7630402384500745,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 128,
+  "idleHeightMean": 127.75,
+  "actorAnchor": [
+    192,
+    367
+  ],
+  "baselineY": 367,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      180.5,
+      287.0
+    ],
+    [
+      176.5,
+      280.5
+    ],
+    [
+      180.5,
+      274.0
+    ],
+    [
+      175.0,
+      238.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/arana_sombras/arana_sombras-sheet.png",
+  "sheetSha256": "b16345fc74f54499404079b6482b7e319ef8bcf10a05191b6102d04d0a48f637",
+  "sourcePath": "assets/spritesheets/enemies-hd/arana_sombras/source/sheet-v3.png",
+  "sourceSha256": "5aec9b926ef7926fb4141842dac9e37f679eceb085083725a214b08a250adc21",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/arana_sombras/frames/idle/arana_sombras-idle-01.png",
+        "sha256": "4bc085f524d4e4059d78ad1f28c33ddb76b074bd8276cafbcc46ed250b37e86e",
+        "bounds": [
+          108,
+          239,
+          286,
+          367
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/arana_sombras/frames/idle/arana_sombras-idle-02.png",
+        "sha256": "b4c5368b0d29199994a39afa74d3d7c793213a7e33ed6394c185cad8435aef3b",
+        "bounds": [
+          107,
+          240,
+          285,
+          367
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/arana_sombras/frames/idle/arana_sombras-idle-03.png",
+        "sha256": "a388a4560c747f581ce033ba32f1ac4b7fe376b8f6d48ecaa77e793ec4fd073a",
+        "bounds": [
+          107,
+          238,
+          286,
+          367
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/arana_sombras/frames/idle/arana_sombras-idle-04.png",
+        "sha256": "fc224d0cc2df970aa31ef23f5856247e0e5511d102485caf9e6ac26e864bd4a5",
+        "bounds": [
+          107,
+          240,
+          286,
+          367
+        ],
+        "idleAnchorCorrectionX": 1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/arana_sombras/frames/hurt/arana_sombras-hurt-01.png",
+        "sha256": "74d04b159a0f610a480c655fb8e26a3abcb4c3f9fb854f49e505509bc7f214dd",
+        "bounds": [
+          105,
+          238,
+          288,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/arana_sombras/frames/hurt/arana_sombras-hurt-02.png",
+        "sha256": "dc9b5b142270c6752d104767d1a5bdb59c6ca7fe1badd656d3c3ddd9ff048e38",
+        "bounds": [
+          100,
+          239,
+          284,
+          368
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/arana_sombras/frames/hurt/arana_sombras-hurt-03.png",
+        "sha256": "419b9a098ab59db121febff9058f08496c8167b428fa4dac536df406f7c241ad",
+        "bounds": [
+          97,
+          257,
+          282,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/arana_sombras/frames/hurt/arana_sombras-hurt-04.png",
+        "sha256": "7000e45f009f671656bf50925778961b4a51fdb4ddd2e9e2075bc2dc484420d0",
+        "bounds": [
+          97,
+          238,
+          276,
+          368
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/arana_sombras/frames/attack/arana_sombras-attack-01.png",
+        "sha256": "36d50b91a019f09654462ba505547a8e5ad35d10131058cf31fe26bbfb164ae5",
+        "bounds": [
+          101,
+          242,
+          285,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/arana_sombras/frames/attack/arana_sombras-attack-02.png",
+        "sha256": "61abb971b94c8cc3d2cef436d824c3654d03a2a4a16e5ccd8d75ba1ad4e36476",
+        "bounds": [
+          97,
+          208,
+          283,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/arana_sombras/frames/attack/arana_sombras-attack-03.png",
+        "sha256": "138f0f817f89e70faef792e4f904d1c25cd0baedd29914a21819bf4c89a623ad",
+        "bounds": [
+          83,
+          249,
+          306,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/arana_sombras/frames/attack/arana_sombras-attack-04.png",
+        "sha256": "2a4a78a569d4dd0cfc14151273b046e6e07c0aa5a4e8fb8312ec290f1ddff41b",
+        "bounds": [
+          94,
+          242,
+          273,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/arana_sombras/frames/dodge/arana_sombras-dodge-01.png",
+        "sha256": "f77ff50eed8c03c2c95ab88efbaa70984c46606a5d7b54628a69dd848173581f",
+        "bounds": [
+          105,
+          247,
+          282,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/arana_sombras/frames/dodge/arana_sombras-dodge-02.png",
+        "sha256": "edfff7416576e70ec9ac61504a3d3d8836f4464f88815b68a534e649501570a4",
+        "bounds": [
+          106,
+          248,
+          277,
+          362
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/arana_sombras/frames/dodge/arana_sombras-dodge-03.png",
+        "sha256": "10276c16d8c7a9530118baf6a50c78d2bddcb1aec8ffbe9c065f5e84dbafa062",
+        "bounds": [
+          85,
+          274,
+          275,
+          366
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/arana_sombras/frames/dodge/arana_sombras-dodge-04.png",
+        "sha256": "4f4fef2870c293a59c4625de59025e7bf54714f3922144230d0f32a4d53e719c",
+        "bounds": [
+          95,
+          243,
+          274,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

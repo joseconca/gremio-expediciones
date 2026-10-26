@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.562019758507135,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 128,
+  "idleHeightMean": 128.25,
+  "actorAnchor": [
+    192,
+    372
+  ],
+  "baselineY": 372,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      148.0,
+      284.0
+    ],
+    [
+      148.0,
+      281.5
+    ],
+    [
+      161.0,
+      276.0
+    ],
+    [
+      149.0,
+      261.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/mimic/mimic-sheet.png",
+  "sheetSha256": "a92aaf1c8321baae2630180afa11adc2b0891b316368b2fcadd05423d2570b52",
+  "sourcePath": "assets/spritesheets/enemies-hd/mimic/source/sheet-v3.png",
+  "sourceSha256": "4a20195b4281f048f999250157a28d4a0b0ff7afdab97b6a1389a12b839bed7f",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/idle/mimic-idle-01.png",
+        "sha256": "8074d706481fbe88aaa79ea3718e6994045bebb5b2e42e467c32c31e3a1fe232",
+        "bounds": [
+          128,
+          240,
+          267,
+          372
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/idle/mimic-idle-02.png",
+        "sha256": "bd9bf0ec62b5bd0402f3a4e98b5ce9dca82f45d0db47f0b8a8dc4b431549c213",
+        "bounds": [
+          126,
+          242,
+          265,
+          372
+        ],
+        "idleAnchorCorrectionX": -1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/idle/mimic-idle-03.png",
+        "sha256": "bd060d2e34a422188b53b5fbf9980b82864d5a13703c7c432e9a5f2a40f99313",
+        "bounds": [
+          125,
+          247,
+          265,
+          372
+        ],
+        "idleAnchorCorrectionX": -1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/idle/mimic-idle-04.png",
+        "sha256": "68f5ab0d5ca67e0b4c63067de12f9f55f6557533e8cc2f2e55016111fa1593a0",
+        "bounds": [
+          130,
+          246,
+          268,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/hurt/mimic-hurt-01.png",
+        "sha256": "6fd525068c6cbe98671f58a9887cf89fb017238fad20c193818ff6c3bd6a8273",
+        "bounds": [
+          127,
+          244,
+          268,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/hurt/mimic-hurt-02.png",
+        "sha256": "103c2b6b6429bb7297a4f9d1435d6444ad4f6c74630390e555537e7fdd1bcdbf",
+        "bounds": [
+          127,
+          237,
+          275,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/hurt/mimic-hurt-03.png",
+        "sha256": "ef9ce676e7c7a4a24a7876a1663125425566994cf550cfad3ad64bd2d0a31e08",
+        "bounds": [
+          126,
+          213,
+          278,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/hurt/mimic-hurt-04.png",
+        "sha256": "f78a084653a376099a79b35363673f5e0209e7d3f64dadc733ae3007e9a39041",
+        "bounds": [
+          132,
+          237,
+          275,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/attack/mimic-attack-01.png",
+        "sha256": "fbf9bf5ef1b37a4c5e2d3a1f7c5e35cd83e1251049ac0598cc45df7b221cfa22",
+        "bounds": [
+          120,
+          238,
+          266,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/attack/mimic-attack-02.png",
+        "sha256": "775f173c687aebb587d47bad55670c7406e1b0883fbda2e5eb5fe3c3720aad20",
+        "bounds": [
+          125,
+          223,
+          264,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/attack/mimic-attack-03.png",
+        "sha256": "abe957f1dad8530ef3a2bfc4ce85d6d40f01880809b24289eed926f745e04c40",
+        "bounds": [
+          121,
+          233,
+          284,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/attack/mimic-attack-04.png",
+        "sha256": "2a6b85f59f0c27967ac65390454212280814c6c0fc8995ff07a0a13f4f10974f",
+        "bounds": [
+          127,
+          240,
+          266,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/dodge/mimic-dodge-01.png",
+        "sha256": "dc2868516a1a8f1aa7027d5c702655fbf46b6bca45649fe9f7bdf554ad987a9b",
+        "bounds": [
+          127,
+          242,
+          267,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/dodge/mimic-dodge-02.png",
+        "sha256": "ca659729bda2322112e0b797e7f8937ba41acab38265ccafdc6afdbfd95c50bd",
+        "bounds": [
+          128,
+          235,
+          276,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/dodge/mimic-dodge-03.png",
+        "sha256": "c38ef2f699174611b0c7f7394a2253e6190f32a830362a299dce2d65ced951df",
+        "bounds": [
+          122,
+          262,
+          271,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/dodge/mimic-dodge-04.png",
+        "sha256": "219a718206feb236124e87645282988bebc2c0209ddf161f84d8548727857aea",
+        "bounds": [
+          128,
+          239,
+          269,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

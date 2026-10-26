@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.6285714285714286,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 132,
+  "idleHeightMean": 132.25,
+  "actorAnchor": [
+    192,
+    371
+  ],
+  "baselineY": 371,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      160.0,
+      289.0
+    ],
+    [
+      160.5,
+      293.5
+    ],
+    [
+      150.5,
+      275.0
+    ],
+    [
+      161.5,
+      270.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/lobo_hambriento/lobo_hambriento-sheet.png",
+  "sheetSha256": "81188c974d76aef9ba9431ea8a96a6c8c61289c8e4eb01b1ffb11b13bbcf47a1",
+  "sourcePath": "assets/spritesheets/enemies-hd/lobo_hambriento/source/sheet-v1.png",
+  "sourceSha256": "52e549cee08fa038ba9bd732175de1179461fb4778beac2b6ec08ec5bcc02983",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/idle/lobo_hambriento-idle-01.png",
+        "sha256": "e020db72e08dd943cf99802d59162efe5433dc557afb49d0f528e4764b476f9f",
+        "bounds": [
+          100,
+          238,
+          282,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/idle/lobo_hambriento-idle-02.png",
+        "sha256": "d138ceb68f89a60a457911ba9eb2b8797f016b87f4c8714a592d03513b44df74",
+        "bounds": [
+          99,
+          239,
+          281,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/idle/lobo_hambriento-idle-03.png",
+        "sha256": "27f10f361fd8d4a0878e66180c1cd4133d17c7a8dac170df087151834c5e9953",
+        "bounds": [
+          99,
+          240,
+          279,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/idle/lobo_hambriento-idle-04.png",
+        "sha256": "f56b550795073599efc7fb7e4fe48ae7bac0fc4b39680a6d6aa5e30853d4125f",
+        "bounds": [
+          99,
+          239,
+          279,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/hurt/lobo_hambriento-hurt-01.png",
+        "sha256": "4cd4086a54a3486fbf1863828f7f4812d09b7a2f6427eaf45191552739769f6a",
+        "bounds": [
+          99,
+          241,
+          284,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/hurt/lobo_hambriento-hurt-02.png",
+        "sha256": "54d4810a8c367272b526c61279d0058e7d98501ec76020ce2d5b3e1fe567b388",
+        "bounds": [
+          100,
+          250,
+          279,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/hurt/lobo_hambriento-hurt-03.png",
+        "sha256": "a2692552b1b65d3032944e4619858571bf97f1f1b48d0441209238b09a4cc18e",
+        "bounds": [
+          98,
+          261,
+          282,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/hurt/lobo_hambriento-hurt-04.png",
+        "sha256": "4c730f7b39575866481407baa4061fbd46fbd52f3566d65eef6ac48ff0c90298",
+        "bounds": [
+          97,
+          251,
+          280,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/attack/lobo_hambriento-attack-01.png",
+        "sha256": "ee3b4c075e1afeb4beb47af9041332f654225dc033366a87fc0f9075bd8d94a6",
+        "bounds": [
+          106,
+          248,
+          279,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/attack/lobo_hambriento-attack-02.png",
+        "sha256": "3a88397578c543d149ef110b84b4d25a2ca7f36afe379022edec2dd7e11f07df",
+        "bounds": [
+          101,
+          258,
+          285,
+          368
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/attack/lobo_hambriento-attack-03.png",
+        "sha256": "720e57fa6e141de7dc8e570580d46009e6c52181da2df34a40532a9cda6e829e",
+        "bounds": [
+          104,
+          223,
+          313,
+          340
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/attack/lobo_hambriento-attack-04.png",
+        "sha256": "6e9363253b773683384a00227c006fde9cb75fe1f5f5e18580102cd25300c847",
+        "bounds": [
+          124,
+          261,
+          288,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/dodge/lobo_hambriento-dodge-01.png",
+        "sha256": "a257018bdd4cd369c6320afc04e80991df8088504fc3d5aebbc40baa524b2c6d",
+        "bounds": [
+          99,
+          238,
+          283,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/dodge/lobo_hambriento-dodge-02.png",
+        "sha256": "6cafccf8e3a75c59cde66908b852464f79eda83e8a46ff7c116621d3ff35bca0",
+        "bounds": [
+          102,
+          249,
+          282,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/dodge/lobo_hambriento-dodge-03.png",
+        "sha256": "a87f5e91ac9381d9862fa7baa9ab77d53020d099f0c749616631c56901a375f6",
+        "bounds": [
+          99,
+          274,
+          291,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/dodge/lobo_hambriento-dodge-04.png",
+        "sha256": "481d827508d379031df969a06a4c0ca0543fd55b4629294339b7d7120f0c6b79",
+        "bounds": [
+          100,
+          239,
+          279,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

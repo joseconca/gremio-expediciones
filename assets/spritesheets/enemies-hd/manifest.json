@@ -1,0 +1,1249 @@
+{
+  "schemaVersion": 2,
+  "status": "candidate-library-complete-user-review-pending",
+  "columns": 4,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "generator": "built-in image_gen",
+  "runtimePromotion": "integrated-on-branch-pending-main-publication",
+  "enemies": [
+    {
+      "id": "mimic",
+      "name": "Mímico",
+      "difficulty": 0,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/mimic.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 3,
+      "report": "assets/spritesheets/enemies-hd/mimic/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 128,
+      "anchorMode": "ground"
+    },
+    {
+      "id": "slime_acido",
+      "name": "Slime Ácido",
+      "difficulty": 0,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/slime_acido.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 3,
+      "report": "assets/spritesheets/enemies-hd/slime_acido/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 96,
+      "anchorMode": "ground"
+    },
+    {
+      "id": "rata_gigante",
+      "name": "Rata Gigante",
+      "difficulty": 1,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/rata_gigante.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 3,
+      "report": "assets/spritesheets/enemies-hd/rata_gigante/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 112,
+      "anchorMode": "ground"
+    },
+    {
+      "id": "goblin_explorador",
+      "name": "Goblin Explorador",
+      "difficulty": 2,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/goblin_explorador.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "report": "assets/spritesheets/enemies-hd/goblin_explorador/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 140,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
+    },
+    {
+      "id": "bandido_camino",
+      "name": "Bandido del Camino",
+      "difficulty": 3,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/bandido_camino.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 3,
+      "report": "assets/spritesheets/enemies-hd/bandido_camino/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 168,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
+    },
+    {
+      "id": "orco_despiadado",
+      "name": "Orco Despiadado",
+      "difficulty": 4,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/orco_despiadado.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 5,
+      "report": "assets/spritesheets/enemies-hd/orco_despiadado/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 192,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
+    },
+    {
+      "id": "esqueleto_guerrero",
+      "name": "Esqueleto Guerrero",
+      "difficulty": 4,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/esqueleto_guerrero.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 3,
+      "report": "assets/spritesheets/enemies-hd/esqueleto_guerrero/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 168,
+      "anchorMode": "ground"
+    },
+    {
+      "id": "ogro",
+      "name": "Ogro",
+      "difficulty": 5,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/ogro.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/ogro/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 224,
+      "anchorMode": "ground"
+    },
+    {
+      "id": "arana_sombras",
+      "name": "Araña de las Sombras",
+      "difficulty": 5,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/arana_sombras.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 3,
+      "report": "assets/spritesheets/enemies-hd/arana_sombras/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 128,
+      "anchorMode": "ground"
+    },
+    {
+      "id": "troll_cavernas",
+      "name": "Troll de las Cavernas",
+      "difficulty": 6,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/troll_cavernas.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 3,
+      "report": "assets/spritesheets/enemies-hd/troll_cavernas/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 208,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
+    },
+    {
+      "id": "minotauro",
+      "name": "Minotauro",
+      "difficulty": 7,
+      "boss": false,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/minotauro.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "report": "assets/spritesheets/enemies-hd/minotauro/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 216,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
+    },
+    {
+      "id": "lobo_hambriento",
+      "name": "Lobo Hambriento",
+      "difficulty": 1,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/lobo_hambriento.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/lobo_hambriento/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 132,
+      "anchorMode": "ground"
+    },
+    {
+      "id": "murcielago_sanguinario",
+      "name": "Murciélago Sanguinario",
+      "difficulty": 1,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/murcielago_sanguinario.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 3,
+      "report": "assets/spritesheets/enemies-hd/murcielago_sanguinario/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 120,
+      "anchorMode": "air",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
+    },
+    {
+      "id": "avispa_gigante",
+      "name": "Avispa Gigante",
+      "difficulty": 2,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/avispa_gigante.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "report": "assets/spritesheets/enemies-hd/avispa_gigante/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 120,
+      "anchorMode": "air"
+    },
+    {
+      "id": "kobold_trampero",
+      "name": "Kobold Trampero",
+      "difficulty": 2,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/kobold_trampero.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "report": "assets/spritesheets/enemies-hd/kobold_trampero/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 140,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
+    },
+    {
+      "id": "bandido_arbalestero",
+      "name": "Bandido Arbalestero",
+      "difficulty": 3,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/bandido_arbalestero.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "report": "assets/spritesheets/enemies-hd/bandido_arbalestero/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 168,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
+    },
+    {
+      "id": "zombie_errante",
+      "name": "Zombi Errante",
+      "difficulty": 3,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/zombie_errante.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/zombie_errante/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 168,
+      "anchorMode": "ground"
+    },
+    {
+      "id": "hiena_salvaje",
+      "name": "Hiena Salvaje",
+      "difficulty": 3,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/hiena_salvaje.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/hiena_salvaje/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 132,
+      "anchorMode": "ground"
+    },
+    {
+      "id": "cultista_encapuchado",
+      "name": "Cultista Encapuchado",
+      "difficulty": 4,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/cultista_encapuchado.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "report": "assets/spritesheets/enemies-hd/cultista_encapuchado/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 168,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
+    },
+    {
+      "id": "gnoll_merodeador",
+      "name": "Gnoll Merodeador",
+      "difficulty": 4,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/gnoll_merodeador.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "report": "assets/spritesheets/enemies-hd/gnoll_merodeador/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 184,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
+    },
+    {
+      "id": "ghoul_cripta",
+      "name": "Ghoul de la Cripta",
+      "difficulty": 4,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/ghoul_cripta.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/ghoul_cripta/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 176,
+      "anchorMode": "ground"
+    },
+    {
+      "id": "hombre_lagarto",
+      "name": "Hombre Lagarto",
+      "difficulty": 5,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/hombre_lagarto.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "report": "assets/spritesheets/enemies-hd/hombre_lagarto/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 192,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
+    },
+    {
+      "id": "golem_barro",
+      "name": "Gólem de Barro",
+      "difficulty": 5,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/golem_barro.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/golem_barro/qa-report.json",
+      "cellSize": [
+        448,
+        448
+      ],
+      "sheetSize": [
+        1792,
+        1792
+      ],
+      "idleHeight": 208,
+      "anchorMode": "ground"
+    },
+    {
+      "id": "oso_cavernario",
+      "name": "Oso Cavernario",
+      "difficulty": 5,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/oso_cavernario.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/oso_cavernario/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 184,
+      "anchorMode": "ground"
+    },
+    {
+      "id": "espectro_errante",
+      "name": "Espectro Errante",
+      "difficulty": 6,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/espectro_errante.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 176,
+      "anchorMode": "air",
+      "report": "assets/spritesheets/enemies-hd/espectro_errante/qa-report.json"
+    },
+    {
+      "id": "harpia_cazadora",
+      "name": "Arpía Cazadora",
+      "difficulty": 6,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/harpia_cazadora.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 4,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 176,
+      "anchorMode": "air",
+      "report": "assets/spritesheets/enemies-hd/harpia_cazadora/qa-report.json",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
+    },
+    {
+      "id": "nigromante_aprendiz",
+      "name": "Nigromante Aprendiz",
+      "difficulty": 6,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/nigromante_aprendiz.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 168,
+      "anchorMode": "ground",
+      "report": "assets/spritesheets/enemies-hd/nigromante_aprendiz/qa-report.json",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
+    },
+    {
+      "id": "guardian_cripta",
+      "name": "Guardián de la Cripta",
+      "difficulty": 7,
+      "boss": false,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/guardian_cripta.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        448,
+        448
+      ],
+      "sheetSize": [
+        1792,
+        1792
+      ],
+      "idleHeight": 208,
+      "anchorMode": "ground",
+      "report": "assets/spritesheets/enemies-hd/guardian_cripta/qa-report.json"
+    },
+    {
+      "id": "basilisco_joven",
+      "name": "Basilisco Joven",
+      "difficulty": 7,
+      "boss": false,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/basilisco_joven.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 152,
+      "anchorMode": "ground",
+      "report": "assets/spritesheets/enemies-hd/basilisco_joven/qa-report.json",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
+    },
+    {
+      "id": "centauro_saqueador",
+      "name": "Centauro Saqueador",
+      "difficulty": 7,
+      "boss": false,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/centauro_saqueador.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 4,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 232,
+      "anchorMode": "ground",
+      "report": "assets/spritesheets/enemies-hd/centauro_saqueador/qa-report.json",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
+    },
+    {
+      "id": "gargola_ancestral",
+      "name": "Gárgola Ancestral",
+      "difficulty": 8,
+      "boss": false,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/gargola_ancestral.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 208,
+      "anchorMode": "ground",
+      "report": "assets/spritesheets/enemies-hd/gargola_ancestral/qa-report.json"
+    },
+    {
+      "id": "elemental_roca",
+      "name": "Elemental de Roca",
+      "difficulty": 8,
+      "boss": false,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/elemental_roca.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        448,
+        448
+      ],
+      "sheetSize": [
+        1792,
+        1792
+      ],
+      "idleHeight": 224,
+      "anchorMode": "ground",
+      "report": "assets/spritesheets/enemies-hd/elemental_roca/qa-report.json"
+    },
+    {
+      "id": "sacerdotisa_oscura",
+      "name": "Sacerdotisa Oscura",
+      "difficulty": 8,
+      "boss": false,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/sacerdotisa_oscura.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 4,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 168,
+      "anchorMode": "ground",
+      "report": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/qa-report.json",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
+    },
+    {
+      "id": "mantícora",
+      "name": "Mantícora",
+      "difficulty": 9,
+      "boss": false,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/mantícora.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 208,
+      "anchorMode": "ground",
+      "report": "assets/spritesheets/enemies-hd/mantícora/qa-report.json"
+    },
+    {
+      "id": "ogro_chaman",
+      "name": "Ogro Chamán",
+      "difficulty": 9,
+      "boss": false,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/ogro_chaman.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 3,
+      "cellSize": [
+        448,
+        448
+      ],
+      "sheetSize": [
+        1792,
+        1792
+      ],
+      "idleHeight": 224,
+      "anchorMode": "ground",
+      "report": "assets/spritesheets/enemies-hd/ogro_chaman/qa-report.json"
+    },
+    {
+      "id": "caballero_maldito",
+      "name": "Caballero Maldito",
+      "difficulty": 10,
+      "boss": false,
+      "rank": "IV",
+      "legacyPath": "public/sprites/enemies/IV/caballero_maldito.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 184,
+      "anchorMode": "ground",
+      "report": "assets/spritesheets/enemies-hd/caballero_maldito/qa-report.json"
+    },
+    {
+      "id": "wyvern_joven",
+      "name": "Wyvern Joven",
+      "difficulty": 10,
+      "boss": false,
+      "rank": "IV",
+      "legacyPath": "public/sprites/enemies/IV/wyvern_joven.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 208,
+      "anchorMode": "ground",
+      "report": "assets/spritesheets/enemies-hd/wyvern_joven/qa-report.json"
+    },
+    {
+      "id": "elemental_fuego",
+      "name": "Elemental de Fuego",
+      "difficulty": 11,
+      "boss": false,
+      "rank": "IV",
+      "legacyPath": "public/sprites/enemies/IV/elemental_fuego.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 208,
+      "anchorMode": "air",
+      "report": "assets/spritesheets/enemies-hd/elemental_fuego/qa-report.json"
+    },
+    {
+      "id": "vampiro_noble",
+      "name": "Vampiro Noble",
+      "difficulty": 12,
+      "boss": false,
+      "rank": "IV",
+      "legacyPath": "public/sprites/enemies/IV/vampiro_noble.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 3,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 176,
+      "anchorMode": "ground",
+      "report": "assets/spritesheets/enemies-hd/vampiro_noble/qa-report.json",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
+    },
+    {
+      "id": "demonio_menor",
+      "name": "Demonio Menor",
+      "difficulty": 13,
+      "boss": false,
+      "rank": "V",
+      "legacyPath": "public/sprites/enemies/V/demonio_menor.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 3,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 208,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters",
+      "report": "assets/spritesheets/enemies-hd/demonio_menor/qa-report.json"
+    },
+    {
+      "id": "dragon_negro_joven",
+      "name": "Dragón Negro Joven",
+      "difficulty": 14,
+      "boss": false,
+      "rank": "V",
+      "legacyPath": "public/sprites/enemies/V/dragon_negro_joven.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        448,
+        448
+      ],
+      "sheetSize": [
+        1792,
+        1792
+      ],
+      "idleHeight": 240,
+      "anchorMode": "ground",
+      "artDirection": "earlier-candidate-style",
+      "report": "assets/spritesheets/enemies-hd/dragon_negro_joven/qa-report.json"
+    },
+    {
+      "id": "gigante_escarcha",
+      "name": "Gigante de Escarcha",
+      "difficulty": 15,
+      "boss": false,
+      "rank": "V",
+      "legacyPath": "public/sprites/enemies/V/gigante_escarcha.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        512,
+        512
+      ],
+      "sheetSize": [
+        2048,
+        2048
+      ],
+      "idleHeight": 272,
+      "anchorMode": "ground",
+      "artDirection": "earlier-candidate-style",
+      "report": "assets/spritesheets/enemies-hd/gigante_escarcha/qa-report.json"
+    },
+    {
+      "id": "senor_frontera",
+      "name": "Señor de la Frontera",
+      "difficulty": 3,
+      "boss": true,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/senor_frontera.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 192,
+      "anchorMode": "ground",
+      "artDirection": "earlier-candidate-style",
+      "report": "assets/spritesheets/enemies-hd/senor_frontera/qa-report.json"
+    },
+    {
+      "id": "reina_sombras",
+      "name": "Reina de las Sombras",
+      "difficulty": 3,
+      "boss": true,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/reina_sombras.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 5,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 184,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters",
+      "report": "assets/spritesheets/enemies-hd/reina_sombras/qa-report.json"
+    },
+    {
+      "id": "titan_hierro",
+      "name": "Titán de Hierro",
+      "difficulty": 3,
+      "boss": true,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/titan_hierro.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        512,
+        512
+      ],
+      "sheetSize": [
+        2048,
+        2048
+      ],
+      "idleHeight": 288,
+      "anchorMode": "ground",
+      "artDirection": "earlier-candidate-style",
+      "report": "assets/spritesheets/enemies-hd/titan_hierro/qa-report.json"
+    },
+    {
+      "id": "dragon_bosque_verde",
+      "name": "Dragón del Bosque Verde",
+      "difficulty": 3,
+      "boss": true,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/dragon_bosque_verde.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "cellSize": [
+        448,
+        448
+      ],
+      "sheetSize": [
+        1792,
+        1792
+      ],
+      "idleHeight": 272,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters",
+      "report": "assets/spritesheets/enemies-hd/dragon_bosque_verde/qa-report.json"
+    },
+    {
+      "id": "capitan_orcos",
+      "name": "Capitán de los Orcos",
+      "difficulty": 5,
+      "boss": true,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/capitan_orcos.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 224,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters",
+      "report": "assets/spritesheets/enemies-hd/capitan_orcos/qa-report.json"
+    },
+    {
+      "id": "reina_arana",
+      "name": "Reina Araña",
+      "difficulty": 6,
+      "boss": true,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/reina_arana.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "cellSize": [
+        576,
+        576
+      ],
+      "sheetSize": [
+        2304,
+        2304
+      ],
+      "idleHeight": 240,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters",
+      "report": "assets/spritesheets/enemies-hd/reina_arana/qa-report.json"
+    },
+    {
+      "id": "archimago_exiliado",
+      "name": "Archimago Exiliado",
+      "difficulty": 7,
+      "boss": true,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/archimago_exiliado.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 184,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters",
+      "report": "assets/spritesheets/enemies-hd/archimago_exiliado/qa-report.json"
+    },
+    {
+      "id": "dragon_pantano",
+      "name": "Dragón del Pantano",
+      "difficulty": 9,
+      "boss": true,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/dragon_pantano.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        448,
+        448
+      ],
+      "sheetSize": [
+        1792,
+        1792
+      ],
+      "idleHeight": 272,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters",
+      "report": "assets/spritesheets/enemies-hd/dragon_pantano/qa-report.json"
+    },
+    {
+      "id": "rey_no_muerto",
+      "name": "Rey No Muerto",
+      "difficulty": 11,
+      "boss": true,
+      "rank": "IV",
+      "legacyPath": "public/sprites/enemies/IV/rey_no_muerto.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "cellSize": [
+        448,
+        448
+      ],
+      "sheetSize": [
+        1792,
+        1792
+      ],
+      "idleHeight": 208,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters",
+      "report": "assets/spritesheets/enemies-hd/rey_no_muerto/qa-report.json"
+    },
+    {
+      "id": "hidra_tres_cabezas",
+      "name": "Hidra de Tres Cabezas",
+      "difficulty": 12,
+      "boss": true,
+      "rank": "IV",
+      "legacyPath": "public/sprites/enemies/IV/hidra_tres_cabezas.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 5,
+      "cellSize": [
+        512,
+        512
+      ],
+      "sheetSize": [
+        2048,
+        2048
+      ],
+      "idleHeight": 272,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters",
+      "report": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/qa-report.json"
+    },
+    {
+      "id": "senor_abismo",
+      "name": "Señor del Abismo",
+      "difficulty": 14,
+      "boss": true,
+      "rank": "V",
+      "legacyPath": "public/sprites/enemies/V/senor_abismo.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 296,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters",
+      "report": "assets/spritesheets/enemies-hd/senor_abismo/qa-report.json"
+    },
+    {
+      "id": "dragon_anciano",
+      "name": "Dragón Anciano",
+      "difficulty": 17,
+      "boss": true,
+      "rank": "V",
+      "legacyPath": "public/sprites/enemies/V/dragon_anciano.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "cellSize": [
+        576,
+        576
+      ],
+      "sheetSize": [
+        2304,
+        2304
+      ],
+      "idleHeight": 304,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters",
+      "report": "assets/spritesheets/enemies-hd/dragon_anciano/qa-report.json"
+    }
+  ],
+  "completedCandidates": 54,
+  "framesPresent": 864,
+  "framesExpected": 864,
+  "nextEnemy": null,
+  "minimumCellSize": [
+    384,
+    384
+  ],
+  "sizePolicy": "Fixed species height in pixels relative to heroes; canvas grows for wide attacks, body never shrinks to fit.",
+  "artApproval": {
+    "status": "approved",
+    "date": "2026-10-26",
+    "instruction": "Están genial. Integra los enemigos con sus spritesheets"
+  }
+}

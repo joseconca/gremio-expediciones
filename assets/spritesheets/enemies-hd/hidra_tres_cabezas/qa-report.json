@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 1.1549893842887473,
+  "cellSize": [
+    512,
+    512
+  ],
+  "sheetSize": [
+    2048,
+    2048
+  ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
+  "requestedIdleHeight": 272,
+  "idleHeightMean": 272.0,
+  "actorAnchor": [
+    256,
+    498
+  ],
+  "baselineY": 498,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      191.0,
+      295.0
+    ],
+    [
+      194.0,
+      279.5
+    ],
+    [
+      190.0,
+      275.0
+    ],
+    [
+      189.0,
+      259.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/hidra_tres_cabezas-sheet.png",
+  "sheetSha256": "f4bae426860366dffefb9a6a4cdb21b8943fafd5434c38b2185dd34ba4414d47",
+  "sourcePath": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/source/sheet-v5.png",
+  "sourceSha256": "35a6975e8d847185bdb7dbb7a8d2ad06e587f6a5069613bf6b556e5974acbf49",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/frames/idle/hidra_tres_cabezas-idle-01.png",
+        "sha256": "dee408bb5634e58f7d894819761e0c088bfc11b7ad63e6652a184dd29abe92f9",
+        "bounds": [
+          93,
+          227,
+          385,
+          498
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/frames/idle/hidra_tres_cabezas-idle-02.png",
+        "sha256": "6a029f0469cf81c4e4bd264567499a6d8fa4b22430b55f8a6c4c81aa9edaa7c5",
+        "bounds": [
+          99,
+          222,
+          376,
+          497
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/frames/idle/hidra_tres_cabezas-idle-03.png",
+        "sha256": "9bc6eeabe305f8002a47bececb69ba580d4362cd062e70d9c16048e08ea36048",
+        "bounds": [
+          96,
+          233,
+          381,
+          499
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/frames/idle/hidra_tres_cabezas-idle-04.png",
+        "sha256": "6fb5262d0eb5392e337e633a4fb1c820276568ee049a3eea01be07734e857278",
+        "bounds": [
+          94,
+          222,
+          379,
+          498
+        ],
+        "idleAnchorCorrectionX": 1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/frames/hurt/hidra_tres_cabezas-hurt-01.png",
+        "sha256": "7bb8711a91729a4a25e216f816376361219578e7ccf21cf87c1f7436359660de",
+        "bounds": [
+          85,
+          227,
+          384,
+          498
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/frames/hurt/hidra_tres_cabezas-hurt-02.png",
+        "sha256": "0fe654fdce76a65fb6bfd4c0280ec2b77e65e6058c3fe84f4653804a5d00e711",
+        "bounds": [
+          72,
+          239,
+          379,
+          497
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/frames/hurt/hidra_tres_cabezas-hurt-03.png",
+        "sha256": "0aebc86e23c7f87886587dad36781dc37f728427ecd613c1c82527d94f1db068",
+        "bounds": [
+          70,
+          230,
+          386,
+          497
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/frames/hurt/hidra_tres_cabezas-hurt-04.png",
+        "sha256": "ff8e8c3313e60bbc856bd90383554ddf455ea777f58339f038be5c167747ba43",
+        "bounds": [
+          75,
+          225,
+          364,
+          498
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/frames/attack/hidra_tres_cabezas-attack-01.png",
+        "sha256": "e53e4f2b27b148d158d777569392b466cc0a70169dcd927e8ab248102a5ea860",
+        "bounds": [
+          90,
+          237,
+          388,
+          498
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/frames/attack/hidra_tres_cabezas-attack-02.png",
+        "sha256": "992642e17a0a03dce8ea8802d7d832cda52e5bafa21d5aabd8c06d4cde793c9b",
+        "bounds": [
+          58,
+          213,
+          374,
+          497
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/frames/attack/hidra_tres_cabezas-attack-03.png",
+        "sha256": "14cc0a44b3c2c40fab232dab18f52e1001033173f407fedb2fb68498f53177c0",
+        "bounds": [
+          33,
+          254,
+          437,
+          500
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/frames/attack/hidra_tres_cabezas-attack-04.png",
+        "sha256": "7f40523b2f4c3d21e3866007f11a34bdbc11922c693eaae06778131e9f848974",
+        "bounds": [
+          81,
+          223,
+          376,
+          496
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/frames/dodge/hidra_tres_cabezas-dodge-01.png",
+        "sha256": "314a0419927199d2c067135696cecdb45de5b8256eb7352e9ccb3a097fcbf2d4",
+        "bounds": [
+          91,
+          227,
+          383,
+          498
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/frames/dodge/hidra_tres_cabezas-dodge-02.png",
+        "sha256": "1bd82c92e1f16771dadc8f16de2a201502f0b37e43d35f400a8e15f495fe88e3",
+        "bounds": [
+          74,
+          297,
+          381,
+          491
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/frames/dodge/hidra_tres_cabezas-dodge-03.png",
+        "sha256": "c8b587bc48820787c6c969b7a9efb597a7e2af74aa884b185c2c91ddddf56a59",
+        "bounds": [
+          71,
+          333,
+          419,
+          497
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/frames/dodge/hidra_tres_cabezas-dodge-04.png",
+        "sha256": "25dda4656868399e779423433fa8794ad13973bda17bf66b63b69d241f37548c",
+        "bounds": [
+          88,
+          226,
+          377,
+          500
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.6991062562065541,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 176,
+  "idleHeightMean": 176.0,
+  "actorAnchor": [
+    192,
+    370
+  ],
+  "baselineY": 370,
+  "idleAnchorMode": "air",
+  "rowReferenceRoots": [
+    [
+      132.5,
+      310.0
+    ],
+    [
+      132.0,
+      312.5
+    ],
+    [
+      151.0,
+      303.0
+    ],
+    [
+      132.0,
+      280.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/espectro_errante/espectro_errante-sheet.png",
+  "sheetSha256": "2915aff1b1babcaa972d15b3d45ce53c1ac2bb576d404854fbd9a8f49e21da39",
+  "sourcePath": "assets/spritesheets/enemies-hd/espectro_errante/source/sheet-v1.png",
+  "sourceSha256": "2dc3bf58f7f971e6fef4b54b1a9d7707bd29ae11249b0f8dc9193787baebc5d2",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/espectro_errante/frames/idle/espectro_errante-idle-01.png",
+        "sha256": "bff25caaaeb5224c1c416050f81591bcddd3c8832c328945cb38749690c87c0b",
+        "bounds": [
+          115,
+          192,
+          304,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/espectro_errante/frames/idle/espectro_errante-idle-02.png",
+        "sha256": "8077979f7df1a0ea1970876e6cdf197d98220c9a5acc601da22701f385ca2562",
+        "bounds": [
+          117,
+          192,
+          305,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/espectro_errante/frames/idle/espectro_errante-idle-03.png",
+        "sha256": "6aefb137b40d4640b7b38c3261d07984fc971ef79cfd370eba4a601e37ca4f9b",
+        "bounds": [
+          115,
+          198,
+          304,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/espectro_errante/frames/idle/espectro_errante-idle-04.png",
+        "sha256": "0ff7e17be5f3cd17a9f77346e4ba8ca01de76c205fda4fbba3f29b28419dce34",
+        "bounds": [
+          121,
+          192,
+          306,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/espectro_errante/frames/hurt/espectro_errante-hurt-01.png",
+        "sha256": "2a474bf5a718b11093a61c6e30fa823456b43afac5d5aa8b24c2f1dd2e3384a6",
+        "bounds": [
+          114,
+          190,
+          306,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/espectro_errante/frames/hurt/espectro_errante-hurt-02.png",
+        "sha256": "5ba830cf82eb9207972972ea993f5787c089858ff785c5912a93e7c74933e08a",
+        "bounds": [
+          126,
+          208,
+          304,
+          366
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/espectro_errante/frames/hurt/espectro_errante-hurt-03.png",
+        "sha256": "10d6b8fee13c159ee3818937bb76f6531c7208f38c91a4812756bf3e654b4174",
+        "bounds": [
+          153,
+          221,
+          277,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/espectro_errante/frames/hurt/espectro_errante-hurt-04.png",
+        "sha256": "2a850464a3eab5b2933681fad2a55aec1087c2cdb6d7f8306de0ca9441164dac",
+        "bounds": [
+          119,
+          191,
+          306,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/espectro_errante/frames/attack/espectro_errante-attack-01.png",
+        "sha256": "640b8388d657b1c32b2d7a458512ab7002b43c815a71f9d3c706148c30b824a1",
+        "bounds": [
+          108,
+          202,
+          300,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/espectro_errante/frames/attack/espectro_errante-attack-02.png",
+        "sha256": "e78bd6018f66f9a1727658168dc20028763db068efa24a2d0beb7a43b228438c",
+        "bounds": [
+          111,
+          182,
+          293,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/espectro_errante/frames/attack/espectro_errante-attack-03.png",
+        "sha256": "894c90d54805c27b07801e392454525baf7459b75ed49c3c4d5b6a53dfeb075f",
+        "bounds": [
+          96,
+          216,
+          338,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/espectro_errante/frames/attack/espectro_errante-attack-04.png",
+        "sha256": "fc08ab987bec9c50411dd2d4a2e7fc10e2df3b2891dd49e0f047fb20d4286294",
+        "bounds": [
+          109,
+          202,
+          294,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/espectro_errante/frames/dodge/espectro_errante-dodge-01.png",
+        "sha256": "9c0ef9943e941d4945bb92d2262a40389c4619fdde19baa635de70a1e5d8154b",
+        "bounds": [
+          117,
+          195,
+          306,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/espectro_errante/frames/dodge/espectro_errante-dodge-02.png",
+        "sha256": "144d8adf6276a76e3c6e830f71bf251dd3c1a11eedf7c48b2f7b7062cca084b7",
+        "bounds": [
+          136,
+          202,
+          304,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/espectro_errante/frames/dodge/espectro_errante-dodge-03.png",
+        "sha256": "69388437757270c95c02d4988422e0038ec5b33a36e66966236893e6fb624368",
+        "bounds": [
+          126,
+          237,
+          305,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/espectro_errante/frames/dodge/espectro_errante-dodge-04.png",
+        "sha256": "babfcc6d779e34bfb6eccf4d141d3824aba378c5e1bac2884f33f715d527a5b7",
+        "bounds": [
+          120,
+          196,
+          306,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

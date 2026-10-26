@@ -1,0 +1,688 @@
+{
+  "action": "idle",
+  "method": "Horizontal midpoint of the opaque boot support band (bottom 15 pixels), relative to frame 1; integer body translation with equipment and finger masks fixed to the shared first idle pose.",
+  "bodyAndEquipmentPixelsChanged": false,
+  "verticalOffset": 0,
+  "equipmentFrame": 0,
+  "fingerMaskFrame": 0,
+  "equipmentContactChecks": 3328,
+  "equipmentWarnings": 0,
+  "variants": {
+    "novato-m": {
+      "frameHashes": [
+        "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+        "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+        "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+        "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+      ],
+      "supportCentersX": [
+        66.0,
+        66.0,
+        65.0,
+        65.0
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        66.0,
+        66.0,
+        65.0,
+        65.0
+      ]
+    },
+    "novato-f": {
+      "frameHashes": [
+        "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+        "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+        "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+        "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+      ],
+      "supportCentersX": [
+        70.0,
+        68.5,
+        62.5,
+        60.0
+      ],
+      "offsetsX": [
+        0,
+        2,
+        8,
+        10
+      ],
+      "correctedCentersX": [
+        70.0,
+        70.5,
+        70.5,
+        70.0
+      ]
+    },
+    "mago-m": {
+      "frameHashes": [
+        "ff9ca49a3a31e91d73b42ef47373f3ed26e6d716d0b3e0715378b259c146506c",
+        "23daff66ab7d7c606310e507e65b58da90ef031ad6cb0c524cd733bb33b85d2e",
+        "5f22f3670ac8be505a7e99c3d7c98b137110edc2f93878b5fdfc40904e87d40e",
+        "22fa9d8b4bb4cae95702f09c61fe7d6dff242720d17c4fc5760d1a2573ec4254"
+      ],
+      "supportCentersX": [
+        65.5,
+        65.5,
+        65.5,
+        65.0
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        65.5,
+        65.5,
+        65.5,
+        65.0
+      ]
+    },
+    "mago-f": {
+      "frameHashes": [
+        "9cbaa52739ec8b5d6abf76e27e0442fd0a373a187664b43132c4ffc917472119",
+        "5ea8377b9dbf35fc18e989eeef30e78773ad42497fda84830c487aed7247ed4e",
+        "10ee79fa44eec7bd344a9fb6d50d74d655040001d83e85be00e66f8de517bc32",
+        "bb6172ec6d454ec91ca6c4fd20298d62d3f785c27eb177ccf0fc1ad22b474882"
+      ],
+      "supportCentersX": [
+        70.0,
+        69.5,
+        64.0,
+        61.0
+      ],
+      "offsetsX": [
+        0,
+        1,
+        6,
+        9
+      ],
+      "correctedCentersX": [
+        70.0,
+        70.5,
+        70.0,
+        70.0
+      ]
+    },
+    "espadachin-m": {
+      "frameHashes": [
+        "b2520ca65e0a8754c53af5999c4b23cdab89103fa4eab2ba7aa58a7faaddd3a9",
+        "722a02049638be876e998c123182c7d80bb829a2e372ecaedd529021fdd37920",
+        "d1eb508e765cc839c35c4464dd7d66bd37a62fa4cf56425c789e322b312dfeb1",
+        "93f520a9d036055d6b98076c25a64c6a0578cd671060cb3a5c3bc25e562f88c4"
+      ],
+      "supportCentersX": [
+        66.5,
+        66.0,
+        66.0,
+        66.0
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        66.5,
+        66.0,
+        66.0,
+        66.0
+      ]
+    },
+    "espadachin-f": {
+      "frameHashes": [
+        "bc434f63be68248f08762bae9c24aee5e865722156b88ddbce6c04939bda7dcc",
+        "d0eb9d4e69aa184831cbbc47d3496b0c56dec9f90d2a1f635ead3c0ec7bc542b",
+        "a85c4b0858042fc75af3b7420c5a7730139a22895db8cb6568454e04cb11aa11",
+        "8ab85c5344393beaf51735c0fcd19f6170e916377b34bd6ae866be8800494e03"
+      ],
+      "supportCentersX": [
+        70.0,
+        69.5,
+        69.5,
+        70.0
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        70.0,
+        69.5,
+        69.5,
+        70.0
+      ]
+    },
+    "acolito-m": {
+      "frameHashes": [
+        "3add97b3387cae81397832a2979d0c9019a0194570b9ed4c9c30a70f52c2a186",
+        "b25166c1129512a04975e344812f93fd7fa493ca23aeefa303754ede91eff301",
+        "9402d7f900a17e08d2a5d1c5e53adf69411be9744c3c93b1387eb1b1c0f1cc89",
+        "b0a5f9f60d8a0b4e89a1d8bb15cbff5944ffee4939b9ff1bd62cdf1f4d191870"
+      ],
+      "supportCentersX": [
+        64.0,
+        64.5,
+        64.5,
+        64.5
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        64.0,
+        64.5,
+        64.5,
+        64.5
+      ]
+    },
+    "acolito-f": {
+      "frameHashes": [
+        "42c192d9a3c542c9ad358229f660e552e71aa653bc0efa71478b2e8f69453b9a",
+        "77618d40f5ad7224ca55af14fd28ef0b01d0305fcd63f4277dad9e856f7920ed",
+        "d25ec8530f47c238bd505cc680bd6f57f488c7ad33a4c435dff486112d53017d",
+        "654d1e59c7645a408805c639e930a1e538c2c188897975af422e69323f09a511"
+      ],
+      "supportCentersX": [
+        69.0,
+        69.0,
+        65.5,
+        65.5
+      ],
+      "offsetsX": [
+        0,
+        0,
+        4,
+        4
+      ],
+      "correctedCentersX": [
+        69.0,
+        69.0,
+        69.5,
+        69.5
+      ]
+    },
+    "arquero-m": {
+      "frameHashes": [
+        "6b1222bb0d97fc7075eff9a7a0b7c604d760c69a45fccb482a20cf73a7186254",
+        "2229e458ae3005bf5db6835f7de545fd95cbf1326911227d75103127827a73f7",
+        "70626430d78dde4f0dfffa1d49d613f4d55acc6f3763cfbaac9b6c459f4601c4",
+        "d5780c00742319c3bae86ad53f22bab155ad081fe59c19d49bf33042309a6900"
+      ],
+      "supportCentersX": [
+        65.5,
+        65.5,
+        65.5,
+        65.5
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        65.5,
+        65.5,
+        65.5,
+        65.5
+      ]
+    },
+    "arquero-f": {
+      "frameHashes": [
+        "ae5c41dd9b5163e25e48c5e18293b4cd1bbadc17027e86999e9a9d7bce7298cc",
+        "59225897010c774ed1a31eee4f7b9349b9360b0da63fc091dc10536b8683038a",
+        "a7d75e5188c8d56aec9fa0b26d44bf0c75cc2e5c08db617eaa50d006c89de4b6",
+        "5a01ace828e2bbd0b461c86db2fa53e7c1972b9b84873f91eceabbbc3b0e3973"
+      ],
+      "supportCentersX": [
+        70.0,
+        68.5,
+        62.5,
+        60.0
+      ],
+      "offsetsX": [
+        0,
+        2,
+        8,
+        10
+      ],
+      "correctedCentersX": [
+        70.0,
+        70.5,
+        70.5,
+        70.0
+      ]
+    },
+    "caballero-m": {
+      "frameHashes": [
+        "24737175bfe606cbd073446459e2d145a4c45535ad3d73244b60881b666525b9",
+        "35942aa63bf113ee1f452d4e2fb82095f7f7b2fb27c5af131efbc1e2204df889",
+        "3f4177fa6cd1f152add3a5b8b7d5c11e732885de6830d37383750b90681dcb36",
+        "4ccc47c9e8bba93c9e0ab98009c203695c9a390f53ed1ee80ab694d0d0d3b73f"
+      ],
+      "supportCentersX": [
+        64.5,
+        63.5,
+        62.0,
+        60.5
+      ],
+      "offsetsX": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "correctedCentersX": [
+        64.5,
+        64.5,
+        65.0,
+        64.5
+      ]
+    },
+    "caballero-f": {
+      "frameHashes": [
+        "a4eb2895647b6a9b881653887d2ff84d5b9dc80a2f511b8b1858518752e11ae4",
+        "38eb455897f5e77eded2568379882fcb3f9e864f5cbbef283ef0dc5284d68eb3",
+        "bc3e8e8c239c680a677c524980ec42e2505d502289838f051b38f9d62b95da13",
+        "1c728f36d7778297a0b4f5b4e2417cd6cfbb51b45638698307e95e38ba43f74e"
+      ],
+      "supportCentersX": [
+        70.5,
+        69.0,
+        63.5,
+        59.0
+      ],
+      "offsetsX": [
+        0,
+        2,
+        7,
+        12
+      ],
+      "correctedCentersX": [
+        70.5,
+        71.0,
+        70.5,
+        71.0
+      ]
+    },
+    "duelista-m": {
+      "frameHashes": [
+        "767cef5e7f58baa7f7f4839da2cad17f3c160d324f207ec53f9ba57ac9ce59c2",
+        "bedec9bb8dcc9df71b8be8ae0010c31f655f5244e1f35c8ba00dea2e670b50c9",
+        "c75bb697cab6d63bbc2b24453ca5fc9ded4d3bbbcca5c1e9f288b4dd8aeeb94e",
+        "91e1240a5bce71e126a5cefca5064240ca19d827a1e446cc25be4fa780ae30f8"
+      ],
+      "supportCentersX": [
+        65.5,
+        65.5,
+        65.5,
+        65.5
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        65.5,
+        65.5,
+        65.5,
+        65.5
+      ]
+    },
+    "duelista-f": {
+      "frameHashes": [
+        "0c1ab11afd52868d346b728c8fef1f2b826322bfbcfd3e58d4efe8679fd1d3fb",
+        "7214477c8cab2090d827b3e6681956c401914325a9a6030bb2eb6f307854934a",
+        "1da4c9c58af55c9a7a874a2a1ce92a5d7ee95b3f026f42ed2992ae0b6740fb76",
+        "019d09640da4ae2a88d80b1281aba36d4f08f2d390ef92550324d9f72e493cf5"
+      ],
+      "supportCentersX": [
+        71.0,
+        71.0,
+        70.5,
+        71.0
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        71.0,
+        71.0,
+        70.5,
+        71.0
+      ]
+    },
+    "sacerdote-m": {
+      "frameHashes": [
+        "60c78f40d6c85daac9954ec08509a21b6fbd57e9436888d4a71bc6961680e0c1",
+        "1b886243983d1eca4af92363bf26bc643a1903269de6bde05933e29f2b5c752c",
+        "4ff2f76718149615dca3b7f01bde843f413ba32a188ac8d609d068856a01b341",
+        "c2071278d4b6e9ee8f737c04626da4537a0539740e2ba78cfdc83700f85c0743"
+      ],
+      "supportCentersX": [
+        65.5,
+        65.0,
+        65.0,
+        65.0
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        65.5,
+        65.0,
+        65.0,
+        65.0
+      ]
+    },
+    "sacerdote-f": {
+      "frameHashes": [
+        "ec9d92dd0678d3cbe3cc899a90ebaf88ad971c84e8ffe012bab939c7a23c5adc",
+        "c62a45b8f2d129b9f955f2fc2aeaa6e5fb0dd02776f9e980e6c5d55044464f36",
+        "1ca56e817c83b121f3ce0899f39df8bf8a2f1686dffd3682177dc4e33e5700d0",
+        "234f8dd45b2277ff70442469ed13b9d138e14254c71d86898eb1be870516edf9"
+      ],
+      "supportCentersX": [
+        69.5,
+        66.5,
+        59.5,
+        56.5
+      ],
+      "offsetsX": [
+        0,
+        3,
+        10,
+        13
+      ],
+      "correctedCentersX": [
+        69.5,
+        69.5,
+        69.5,
+        69.5
+      ]
+    },
+    "monje-m": {
+      "frameHashes": [
+        "1fdc5cabf2e7846ccc01ba3acc246de667aaa8fab5d001910529d98872c3de4f",
+        "cdce6e54261ab2b4c23391646d688c04b69dc98bba460b593b11513a901cf268",
+        "661cc050a4c06b9460b143cf1de7b5bb501c6995d6cf315a4543a8d7ed0a9d80",
+        "f4d0a7704253a06cdd3d22fbb7d32226fed43083238326512702b4b74d02fef7"
+      ],
+      "supportCentersX": [
+        59.5,
+        60.0,
+        59.5,
+        59.0
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        59.5,
+        60.0,
+        59.5,
+        59.0
+      ]
+    },
+    "monje-f": {
+      "frameHashes": [
+        "5ecf1876666277beb73e2760aa67fb684ad77f892e947a7e9f251a5c42c801af",
+        "f0382492364c452941be759edd3b98531ebde4e4e0ef39aafd57068fe9597c24",
+        "afa5a9c97d0eb59dbbfb68994ba0e9583f33cf7ab01286714a4ed13602c7872b",
+        "531d0d5441278d03d612de1981f9329e3df69c5e5e916aa2dfc274c7b41698ff"
+      ],
+      "supportCentersX": [
+        70.0,
+        67.5,
+        62.0,
+        59.0
+      ],
+      "offsetsX": [
+        0,
+        3,
+        8,
+        11
+      ],
+      "correctedCentersX": [
+        70.0,
+        70.5,
+        70.0,
+        70.0
+      ]
+    },
+    "cazador-m": {
+      "frameHashes": [
+        "7cfd91836c34fea6811126230c5af4be6a1ceac3d3279510374eeb983ea9aef7",
+        "00ed4070f5e06f2345ff9897a04bd8c01ff1baf7abdb695955df99436a6b0312",
+        "5baccbddc6f0701263fda4183f350ee2f5ed135aaec510606094cd5ee6d85e4e",
+        "daa4dcdbfc5335b42d2cc6b14fc0abb07a318d132aa16952c1df28a0d420f6a9"
+      ],
+      "supportCentersX": [
+        65.5,
+        65.5,
+        65.0,
+        65.5
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        65.5,
+        65.5,
+        65.0,
+        65.5
+      ]
+    },
+    "cazador-f": {
+      "frameHashes": [
+        "6140935ca0c5c5fde8d8aca07b7aab36ed316521b80cef07dd7b276feed8d695",
+        "fb0d3024217212b57f073d17e8d622a2bbd875cf1c1641813c00550165a88a9f",
+        "13605222c5ebad1ff96a9797f3d801985fa3b1aa5c84bd99740cb3d3a840c0d3",
+        "77c119c3d1e40885c5a912526c7ff5c4d10dd8eb5f4a335ca6e4d813f066340e"
+      ],
+      "supportCentersX": [
+        70.0,
+        67.5,
+        61.5,
+        58.5
+      ],
+      "offsetsX": [
+        0,
+        3,
+        9,
+        12
+      ],
+      "correctedCentersX": [
+        70.0,
+        70.5,
+        70.5,
+        70.5
+      ]
+    },
+    "explorador-m": {
+      "frameHashes": [
+        "a71106428d7e1ef9934540f221b069c6f16385e0132e5c740393dd287946ffae",
+        "0cc6c674a196b79f0491a5bad407e08be596a256bb9a88f9fdbf67cbc5b6d584",
+        "7cab9d7853864824b6d7b52b65c8367270367b93f2561bfa0548fb04d39b9f57",
+        "2c6161bf03d96fdd36c9647a17e1e117e13e70658d9187b98201bb0e7824efcc"
+      ],
+      "supportCentersX": [
+        66.0,
+        66.0,
+        66.0,
+        66.0
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        66.0,
+        66.0,
+        66.0,
+        66.0
+      ]
+    },
+    "explorador-f": {
+      "frameHashes": [
+        "d73b4d089f20c5e5652a3bcdbea57707b28ba23933143e332fb4929b63e34c6c",
+        "e1cec0d267bd07ea06387659d2937f96e82fd1bf3cc453af942de00b1d3912ba",
+        "7046d0ea30356042d5b2e5a4281d6c7a608fb29cb03a94ad64af8914432763c1",
+        "c00c8c2578ba9ad9526d2d31f5a7807f601d43ae2a2dd6ef45e5a39ca728f25f"
+      ],
+      "supportCentersX": [
+        70.0,
+        67.5,
+        61.5,
+        58.5
+      ],
+      "offsetsX": [
+        0,
+        3,
+        9,
+        12
+      ],
+      "correctedCentersX": [
+        70.0,
+        70.5,
+        70.5,
+        70.5
+      ]
+    },
+    "elementalista-m": {
+      "frameHashes": [
+        "cbd0cb3c0b3bdfcb997071ec461d15bc21402e91d75fd4868c997fe52ad4043e",
+        "5871f026f19d22eb29ed0d185fac994358cd79ddd9b4b32349a68cb3213cc9a1",
+        "d6af7d0bd6cd0a1e84d3d689805e985ee622066b145f25985da20837f8ecbc4e",
+        "1fb875612b1049c294eb6b6e3379bf346ce96cbda5f0570b8d137c3a37fe1035"
+      ],
+      "supportCentersX": [
+        65.0,
+        62.0,
+        61.5,
+        61.5
+      ],
+      "offsetsX": [
+        0,
+        3,
+        4,
+        4
+      ],
+      "correctedCentersX": [
+        65.0,
+        65.0,
+        65.5,
+        65.5
+      ]
+    },
+    "elementalista-f": {
+      "frameHashes": [
+        "080fae0714718e0d13caa380143aac82e6dc49287b9c1466064ba8fb5a088aff",
+        "70f80378b3c0eb89f4666a09c662db5367281f4ff18f732cb4e0b45f72d234de",
+        "e253cb208aa6ec62997dd04512dfea886ce8bc453ff978541a4f396e4ed3c68e",
+        "04138da28197057434790ef1193a88b13eaeffdc661b1e65c98b4603bd1ad1dc"
+      ],
+      "supportCentersX": [
+        69.5,
+        69.5,
+        69.5,
+        66.5
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        3
+      ],
+      "correctedCentersX": [
+        69.5,
+        69.5,
+        69.5,
+        69.5
+      ]
+    },
+    "brujo-m": {
+      "frameHashes": [
+        "bdcc2530d140f3b5f5baad649ab3ffe4991e7439e647a65d457fd5e73cac8292",
+        "1503f5770bf31eeb75b5b565c78bf1f4c2d558170f2e01e86fbbc0aa1f25c168",
+        "3b544f023cd2d121ffa5ea7c40fe8142ca3c5f8abe1140954d108b519c86256e",
+        "3e47bc34fad4e9534dacd7951e633a15ea7cba701892ac3fb67ac989e6aba014"
+      ],
+      "supportCentersX": [
+        64.0,
+        64.5,
+        64.0,
+        64.5
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        64.0,
+        64.5,
+        64.0,
+        64.5
+      ]
+    },
+    "brujo-f": {
+      "frameHashes": [
+        "bdb7b29e64f1143885d53dc30dbe6e75f0296990f93e6e7a4dc7b9dbbeaf20e8",
+        "cb3f5cea4cbd52258d35df25be9c0de2200834382a0791c2f9584da2e3bb8575",
+        "e4eaf5d5b98d11438c7abd6c5ef02340e1fb99cc9c03fa1ba919fd59338ee6b7",
+        "7d393fec1e450c96f799bfc2531865eca7f475c2b7f93c4701329a3b2379ead1"
+      ],
+      "supportCentersX": [
+        66.5,
+        61.5,
+        55.0,
+        50.5
+      ],
+      "offsetsX": [
+        0,
+        5,
+        12,
+        16
+      ],
+      "correctedCentersX": [
+        66.5,
+        66.5,
+        67.0,
+        66.5
+      ]
+    }
+  }
+}

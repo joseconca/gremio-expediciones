@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.8639667705088265,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 208,
+  "idleHeightMean": 207.75,
+  "actorAnchor": [
+    192,
+    371
+  ],
+  "baselineY": 371,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      168.0,
+      310.0
+    ],
+    [
+      168.0,
+      303.5
+    ],
+    [
+      163.5,
+      288.0
+    ],
+    [
+      170.5,
+      262.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/mantícora/mantícora-sheet.png",
+  "sheetSha256": "6bdbb314dae578afb24fea51fcb861d8f7a4cd55f10d5518902da620ee6a8e40",
+  "sourcePath": "assets/spritesheets/enemies-hd/mantícora/source/sheet-v1.png",
+  "sourceSha256": "ffe886554bfb9214e3de825c26771d67dc1aeaf1eb7d76b4e77d492a7d90e6f8",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/mantícora/frames/idle/mantícora-idle-01.png",
+        "sha256": "d704ffba349b69db7faa6bd71eaf49d4631a405ef2d71c9090d41efb459622d7",
+        "bounds": [
+          71,
+          164,
+          294,
+          371
+        ],
+        "idleAnchorCorrectionX": -1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mantícora/frames/idle/mantícora-idle-02.png",
+        "sha256": "0e349adedd3aeb493566d48da524649b9c1fe659bc95dada074c5935c8f413fd",
+        "bounds": [
+          73,
+          162,
+          294,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mantícora/frames/idle/mantícora-idle-03.png",
+        "sha256": "c61afd2ca23a1883f2670f862aa14cf53212c642cca38c7aca2d047c9305a3a3",
+        "bounds": [
+          70,
+          163,
+          294,
+          371
+        ],
+        "idleAnchorCorrectionX": -1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mantícora/frames/idle/mantícora-idle-04.png",
+        "sha256": "49bc7417c85228c1d2d6f53adf5a0fa4db1029eae2d8da3d99829556d7ee6451",
+        "bounds": [
+          73,
+          164,
+          294,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/mantícora/frames/hurt/mantícora-hurt-01.png",
+        "sha256": "66b83f505f5d47d5f9563996d87b4c2ad56113523cf2605dd3a60d0443e4ca57",
+        "bounds": [
+          70,
+          158,
+          295,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mantícora/frames/hurt/mantícora-hurt-02.png",
+        "sha256": "7a7428b2ff2677d4c83def61ca61c589ae978b18c38af2ea419ca74c27d7607f",
+        "bounds": [
+          80,
+          171,
+          305,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mantícora/frames/hurt/mantícora-hurt-03.png",
+        "sha256": "19e54543f629346ec0999fe46c0f3c10c67c5e0d4858874c948e34fb2af3996e",
+        "bounds": [
+          68,
+          188,
+          305,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mantícora/frames/hurt/mantícora-hurt-04.png",
+        "sha256": "69144545f284d9ea8e9db3f8a1a24e78c8ca01d94b10f10132481738796a875a",
+        "bounds": [
+          72,
+          159,
+          295,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/mantícora/frames/attack/mantícora-attack-01.png",
+        "sha256": "125d0c55f260e462b12ec75ff90f13190b6ea80984d7878aa40bfdb37bf62ee9",
+        "bounds": [
+          72,
+          172,
+          314,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mantícora/frames/attack/mantícora-attack-02.png",
+        "sha256": "d38a6639e94028fe8df6f8d4bf0bebc863df539d03a3c1876a53de89d3a57a50",
+        "bounds": [
+          67,
+          145,
+          307,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mantícora/frames/attack/mantícora-attack-03.png",
+        "sha256": "35953901883519a48ec05c0c58e852fe808e798c4d89cc19bc71f23d0e6d6202",
+        "bounds": [
+          63,
+          148,
+          338,
+          349
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mantícora/frames/attack/mantícora-attack-04.png",
+        "sha256": "cd88ec7d96e5b3ed1b97519d351971fe0731be1372b5ed3370b4d11977fe735c",
+        "bounds": [
+          76,
+          183,
+          310,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/mantícora/frames/dodge/mantícora-dodge-01.png",
+        "sha256": "d7832c2e256c8322ab062b6c0a93a4c0779736aaff0f3d19da9d0cf61a416db9",
+        "bounds": [
+          72,
+          170,
+          299,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mantícora/frames/dodge/mantícora-dodge-02.png",
+        "sha256": "ff6b222126db7fc4d30062bec73eecd41770ba1710414e21b398e012d19e56ea",
+        "bounds": [
+          82,
+          168,
+          298,
+          368
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mantícora/frames/dodge/mantícora-dodge-03.png",
+        "sha256": "761fbb2c6f14c78fd3f63fb75fa58c91d944efa3b16f5e0f532cb0447e20212c",
+        "bounds": [
+          70,
+          200,
+          308,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mantícora/frames/dodge/mantícora-dodge-04.png",
+        "sha256": "451fe44a2e5f94209a4fb84c8cd5a96c0a4e425fe662a11ba9a456b4dc6ee7ab",
+        "bounds": [
+          70,
+          171,
+          292,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

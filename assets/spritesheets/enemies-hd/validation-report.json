@@ -1,0 +1,657 @@
+{
+  "status": "passed",
+  "expectedEnemies": 54,
+  "candidateEnemies": 54,
+  "framesValidated": 864,
+  "runtimeModified": true,
+  "enemies": [
+    {
+      "id": "mimic",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.0,
+        192.5,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "slime_acido",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.0,
+        192.5,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "rata_gigante",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.0,
+        192.0,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "goblin_explorador",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.0,
+        192.5,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "bandido_camino",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.5,
+        192.0,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "orco_despiadado",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.5,
+        192.0,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "esqueleto_guerrero",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.5,
+        192.5,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "ogro",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.5,
+        192.0,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "arana_sombras",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.5,
+        192.0,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "troll_cavernas",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.0,
+        192.0,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "minotauro",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.0,
+        192.5,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "lobo_hambriento",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.0,
+        192.0,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "murcielago_sanguinario",
+      "frames": 16,
+      "idleAnchorMode": "air",
+      "idleSupportCentersX": [
+        190.5,
+        201.5,
+        223.0,
+        181.5
+      ],
+      "aerialReview": "fixed cell origin; torso visually reviewed, wing tips excluded from ground test"
+    },
+    {
+      "id": "avispa_gigante",
+      "frames": 16,
+      "idleAnchorMode": "air",
+      "idleSupportCentersX": [
+        192.0,
+        194.5,
+        195.0,
+        191.0
+      ],
+      "aerialReview": "fixed cell origin; torso visually reviewed, wing tips excluded from ground test"
+    },
+    {
+      "id": "kobold_trampero",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.5,
+        192.5,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "bandido_arbalestero",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.5,
+        192.5,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "zombie_errante",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.0,
+        192.5,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "hiena_salvaje",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.5,
+        192.5,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "cultista_encapuchado",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.0,
+        192.5,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "gnoll_merodeador",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.0,
+        192.0,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "ghoul_cripta",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.5,
+        192.5,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "hombre_lagarto",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.0,
+        192.5,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "golem_barro",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        224.0,
+        224.5,
+        224.0,
+        224.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "oso_cavernario",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.0,
+        192.5,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "espectro_errante",
+      "frames": 16,
+      "idleAnchorMode": "air",
+      "idleSupportCentersX": [
+        190.5,
+        188.0,
+        192.0,
+        194.0
+      ],
+      "aerialReview": "fixed cell origin; torso visually reviewed, wing tips excluded from ground test"
+    },
+    {
+      "id": "harpia_cazadora",
+      "frames": 16,
+      "idleAnchorMode": "air",
+      "idleSupportCentersX": [
+        191.0,
+        197.0,
+        180.5,
+        182.5
+      ],
+      "aerialReview": "fixed cell origin; torso visually reviewed, wing tips excluded from ground test"
+    },
+    {
+      "id": "nigromante_aprendiz",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.0,
+        192.0,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "guardian_cripta",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        224.5,
+        224.5,
+        224.0,
+        224.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "basilisco_joven",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.5,
+        192.5,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "centauro_saqueador",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.0,
+        192.0,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "gargola_ancestral",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.0,
+        192.0,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "elemental_roca",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        224.5,
+        224.5,
+        224.5,
+        224.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "sacerdotisa_oscura",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.5,
+        192.5,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "mantícora",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.5,
+        192.0,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "ogro_chaman",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        224.0,
+        224.5,
+        224.0,
+        224.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "caballero_maldito",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.5,
+        192.5,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "wyvern_joven",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.5,
+        192.5,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "elemental_fuego",
+      "frames": 16,
+      "idleAnchorMode": "air",
+      "idleSupportCentersX": [
+        195.0,
+        187.5,
+        193.5,
+        194.5
+      ],
+      "aerialReview": "fixed cell origin; torso visually reviewed, wing tips excluded from ground test"
+    },
+    {
+      "id": "vampiro_noble",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.5,
+        192.5,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "demonio_menor",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.0,
+        192.5,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "dragon_negro_joven",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        224.0,
+        224.0,
+        224.5,
+        224.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "gigante_escarcha",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        256.0,
+        256.5,
+        256.0,
+        256.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "senor_frontera",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.5,
+        192.0,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "reina_sombras",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.5,
+        192.5,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "titan_hierro",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        256.5,
+        256.0,
+        256.5,
+        256.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "dragon_bosque_verde",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        224.5,
+        224.5,
+        224.5,
+        224.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "capitan_orcos",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.5,
+        192.5,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "reina_arana",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        288.0,
+        288.5,
+        288.0,
+        288.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "archimago_exiliado",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.5,
+        192.5,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "dragon_pantano",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        224.5,
+        224.5,
+        224.5,
+        224.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "rey_no_muerto",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        224.0,
+        224.0,
+        224.5,
+        224.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "hidra_tres_cabezas",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        256.5,
+        256.5,
+        256.5,
+        256.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "senor_abismo",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.5,
+        192.0,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "dragon_anciano",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        288.0,
+        288.0,
+        288.0,
+        288.5
+      ],
+      "aerialReview": null
+    }
+  ]
+}

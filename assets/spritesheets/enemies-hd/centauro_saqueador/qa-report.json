@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 1.0175438596491229,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
+  "requestedIdleHeight": 232,
+  "idleHeightMean": 232.0,
+  "actorAnchor": [
+    192,
+    370
+  ],
+  "baselineY": 370,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      172.0,
+      294.0
+    ],
+    [
+      182.5,
+      298.5
+    ],
+    [
+      179.5,
+      285.0
+    ],
+    [
+      176.0,
+      242.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/centauro_saqueador/centauro_saqueador-sheet.png",
+  "sheetSha256": "0ff76cfa3a03742580c9d687432ca9aac8e833d9c65efc2279a67017c7568dc0",
+  "sourcePath": "assets/spritesheets/enemies-hd/centauro_saqueador/source/sheet-v4.png",
+  "sourceSha256": "1f31dd675b4bd67b7091596fea914331adcf899f93f325774fc78bcaea7efc72",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/centauro_saqueador/frames/idle/centauro_saqueador-idle-01.png",
+        "sha256": "a924252ed8740d62c6381d9d2344b86adbeb694bc873b81a7c99d6b439d1002c",
+        "bounds": [
+          84,
+          137,
+          308,
+          370
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/centauro_saqueador/frames/idle/centauro_saqueador-idle-02.png",
+        "sha256": "44fe0ed9701bc44dfa505be5e50587f06f42b9846270ce02a8e52d6df36829c0",
+        "bounds": [
+          73,
+          138,
+          297,
+          368
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/centauro_saqueador/frames/idle/centauro_saqueador-idle-03.png",
+        "sha256": "6c30499700c74f6db7abe66bb4393b1cfbe6e683d763211268ab0fe4d6c0e9ca",
+        "bounds": [
+          75,
+          137,
+          297,
+          368
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/centauro_saqueador/frames/idle/centauro_saqueador-idle-04.png",
+        "sha256": "f82ffa3e21719d188e0e6058a77261e413bc3c52fdfbbbfcc6b004068df5ef45",
+        "bounds": [
+          104,
+          138,
+          328,
+          372
+        ],
+        "idleAnchorCorrectionX": 26
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/centauro_saqueador/frames/hurt/centauro_saqueador-hurt-01.png",
+        "sha256": "0ce8092bdb8f02d21527e205e4c91d37c80d8c4113a8cb27d60ebeab59b3d3a6",
+        "bounds": [
+          65,
+          131,
+          305,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/centauro_saqueador/frames/hurt/centauro_saqueador-hurt-02.png",
+        "sha256": "2837a3a06b3ac662e864b01f063098e1624f577395a01d8a0fb03e9b10a303c8",
+        "bounds": [
+          73,
+          127,
+          306,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/centauro_saqueador/frames/hurt/centauro_saqueador-hurt-03.png",
+        "sha256": "bb8fbd8ef30653a4c84b1a77c42331708e144d9b09cc3d42f104fd8a645f420b",
+        "bounds": [
+          70,
+          129,
+          304,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/centauro_saqueador/frames/hurt/centauro_saqueador-hurt-04.png",
+        "sha256": "430f6698fac0ffc5456c5aba74447539664e958f56d071045bdd792f55cb5e6b",
+        "bounds": [
+          67,
+          131,
+          290,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/centauro_saqueador/frames/attack/centauro_saqueador-attack-01.png",
+        "sha256": "a3689a2f4506a243e45e0c38278e2206fc066d97aae75e2e5b373fb45ecd427c",
+        "bounds": [
+          67,
+          141,
+          309,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/centauro_saqueador/frames/attack/centauro_saqueador-attack-02.png",
+        "sha256": "7226b51dcc3bd0a1c4fddfafd430e23a19e32bfc7a4d3e7abdcdc8d906a912bf",
+        "bounds": [
+          76,
+          98,
+          295,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/centauro_saqueador/frames/attack/centauro_saqueador-attack-03.png",
+        "sha256": "c4f15d3bdc4bb6db3f9cb42517c6ee7d2e58771f30dd9b91b6b6d7fcbf474344",
+        "bounds": [
+          53,
+          162,
+          317,
+          364
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/centauro_saqueador/frames/attack/centauro_saqueador-attack-04.png",
+        "sha256": "4b60f348dc525d4125c1a6030b413a08771d429e4c9b0a93b24f41d7d2f663a9",
+        "bounds": [
+          70,
+          139,
+          299,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/centauro_saqueador/frames/dodge/centauro_saqueador-dodge-01.png",
+        "sha256": "ce6c22f8e8773959ee0b2469976521f2f67baa2f70ca288c7d72eea0a2df7421",
+        "bounds": [
+          69,
+          165,
+          315,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/centauro_saqueador/frames/dodge/centauro_saqueador-dodge-02.png",
+        "sha256": "b6d45456e547b808cc3eba4b3b289c598a0b867fe8124fad96980c107e252f85",
+        "bounds": [
+          93,
+          153,
+          297,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/centauro_saqueador/frames/dodge/centauro_saqueador-dodge-03.png",
+        "sha256": "e6b7dcfb74a53329eb5cc3fdef6d40b18d93446f9dcdd1dd68750105116f485a",
+        "bounds": [
+          67,
+          195,
+          321,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/centauro_saqueador/frames/dodge/centauro_saqueador-dodge-04.png",
+        "sha256": "ec669cfb89dc8a5c85eee317b133812cc0c8712551d521a3bd5e9a0cf9390a81",
+        "bounds": [
+          68,
+          160,
+          302,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "approved-2026-10-26"
+}

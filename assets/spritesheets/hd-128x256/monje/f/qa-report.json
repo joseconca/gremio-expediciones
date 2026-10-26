@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-26T01:17:14.429714+00:00",
+  "classId": "monje",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\monje\\f\\monje-f-sheet.png",
+  "sheetSha256": "78555a95b7f017a88023bb3767b1fd0fb3b654828c0a1b8fc505ff740cfac696",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\idle\\monje-f-idle-01.png",
+          "sha256": "5ecf1876666277beb73e2760aa67fb684ad77f892e947a7e9f251a5c42c801af",
+          "alpha_bbox": [
+            31,
+            91,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\idle\\monje-f-idle-02.png",
+          "sha256": "f0382492364c452941be759edd3b98531ebde4e4e0ef39aafd57068fe9597c24",
+          "alpha_bbox": [
+            28,
+            90,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\idle\\monje-f-idle-03.png",
+          "sha256": "afa5a9c97d0eb59dbbfb68994ba0e9583f33cf7ab01286714a4ed13602c7872b",
+          "alpha_bbox": [
+            23,
+            90,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\idle\\monje-f-idle-04.png",
+          "sha256": "531d0d5441278d03d612de1981f9329e3df69c5e5e916aa2dfc274c7b41698ff",
+          "alpha_bbox": [
+            20,
+            90,
+            98,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\walk\\monje-f-walk-01.png",
+          "sha256": "e30422b100840dddb16d3db225ddb43c3fb3b77c83e55b0434cad133178b7cdc",
+          "alpha_bbox": [
+            15,
+            89,
+            108,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\walk\\monje-f-walk-02.png",
+          "sha256": "f314d5a142558e5073c9ef301ff087448b131358e1a8ab712f773d1f4a9584d8",
+          "alpha_bbox": [
+            29,
+            89,
+            97,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\walk\\monje-f-walk-03.png",
+          "sha256": "85b252741ac44f5a34d3ff5ea4e39e806127c7d9d01f0bd4ea863591b812df85",
+          "alpha_bbox": [
+            11,
+            89,
+            118,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\walk\\monje-f-walk-04.png",
+          "sha256": "1459c4d74c7100301ee65f4dfe9de2b6fe6dc052d5799e69af0b95d682c32e86",
+          "alpha_bbox": [
+            23,
+            89,
+            98,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\hurt\\monje-f-hurt-01.png",
+          "sha256": "4fba4edd99a73817d4660071da46bd4c2b8d1276e347973a27649747c8315fd1",
+          "alpha_bbox": [
+            22,
+            93,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\hurt\\monje-f-hurt-02.png",
+          "sha256": "a14dd8eecf29b13195fb787a4e46d57d62fdb7a8c07dc1033b54b77b81788bb3",
+          "alpha_bbox": [
+            23,
+            92,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\hurt\\monje-f-hurt-03.png",
+          "sha256": "cf3b215e0d4eb6bb926e03ffbd0095a67c9054f3d80b3753c477f57cac1f6244",
+          "alpha_bbox": [
+            18,
+            114,
+            95,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\hurt\\monje-f-hurt-04.png",
+          "sha256": "d4ec69ae0902b05acac239498b9f07d6c1fc533b1da2dfe5a43a98d72c919961",
+          "alpha_bbox": [
+            18,
+            91,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\use_consumable\\monje-f-use_consumable-01.png",
+          "sha256": "359e253611ae00d56eca8f7272e4f4095be8a21fa3bb84f1a4c5167adb69f262",
+          "alpha_bbox": [
+            22,
+            88,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\use_consumable\\monje-f-use_consumable-02.png",
+          "sha256": "4a8513c0d1c5b50d567e3cc73c246e96132e6fdc6f497db4a5e19177e53ccaf5",
+          "alpha_bbox": [
+            23,
+            88,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\use_consumable\\monje-f-use_consumable-03.png",
+          "sha256": "0ef1bfb042a7c287eeaa136e4a0e55214d8364562a735e31c7e0567718efdb03",
+          "alpha_bbox": [
+            23,
+            88,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\use_consumable\\monje-f-use_consumable-04.png",
+          "sha256": "749c9099e72732451374580f713b650fce934658ae704dfb847ce5cf60f173cf",
+          "alpha_bbox": [
+            23,
+            88,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\dodge\\monje-f-dodge-01.png",
+          "sha256": "4ef6c7e407b0b9160aaaf33b261ed1427f6013a5df5785656fac13a50eabd7b8",
+          "alpha_bbox": [
+            35,
+            92,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\dodge\\monje-f-dodge-02.png",
+          "sha256": "6b3f8da6fe39574809cf80079a4cb5f8c99db5863bea0c7aa43f17414ce5d9d3",
+          "alpha_bbox": [
+            33,
+            99,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\dodge\\monje-f-dodge-03.png",
+          "sha256": "432b462b46ea19a2764345fc8e4e967da45a6f866efaa2e735e5836dcb38ae7d",
+          "alpha_bbox": [
+            23,
+            125,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\dodge\\monje-f-dodge-04.png",
+          "sha256": "3de0342a6d12e6609427c791edd543d145e5776b59d65dc214ecab36d8f47908",
+          "alpha_bbox": [
+            14,
+            96,
+            95,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\block_shield\\monje-f-block_shield-01.png",
+          "sha256": "bc8956b4f570188394b84dc5a8e12f954d2c1edd9232e4693caad288a80f0b02",
+          "alpha_bbox": [
+            30,
+            92,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\block_shield\\monje-f-block_shield-02.png",
+          "sha256": "c94c2ee5b0c7d8d590588d1b443392aaaf939717ad61124a993f6169f2ca83c6",
+          "alpha_bbox": [
+            28,
+            93,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\block_shield\\monje-f-block_shield-03.png",
+          "sha256": "7e5a60694e0cf99e78c4aa1fcabe09196d2f6b271fb8cd6113b1da237bb345a7",
+          "alpha_bbox": [
+            23,
+            104,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\block_shield\\monje-f-block_shield-04.png",
+          "sha256": "122d195f585b1192271ead85b7d27536107c7723c8418b050bfb6b22daaa5547",
+          "alpha_bbox": [
+            17,
+            92,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_sword\\monje-f-attack_sword-01.png",
+          "sha256": "38eb76b9cd99427045023b44a32f93271711135b9770547b46383060bc02dec0",
+          "alpha_bbox": [
+            25,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_sword\\monje-f-attack_sword-02.png",
+          "sha256": "fded42442275f3ccb4f6b0e67a0fb108a27f7041785555467600d8801d70642e",
+          "alpha_bbox": [
+            26,
+            90,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_sword\\monje-f-attack_sword-03.png",
+          "sha256": "03daf8c5c585567e3521d2d2e1a40794dcad92ea42f5a793a834e5f15ab1ae4e",
+          "alpha_bbox": [
+            18,
+            97,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_sword\\monje-f-attack_sword-04.png",
+          "sha256": "88056f7382424d9dc70d639987c375c7f06d909b50a45dd32e6bee4fb997e12f",
+          "alpha_bbox": [
+            19,
+            90,
+            103,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_axe\\monje-f-attack_axe-01.png",
+          "sha256": "8d5d253319bd31246cf5ab05c32c441935a6c96e6ffb75598dc085736dd4589d",
+          "alpha_bbox": [
+            28,
+            94,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_axe\\monje-f-attack_axe-02.png",
+          "sha256": "181e27a7724684d49582e165e58dfdae5b8c18ac5d59ae96d449d24d89b1cc23",
+          "alpha_bbox": [
+            23,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_axe\\monje-f-attack_axe-03.png",
+          "sha256": "1efb1aa9e5eccd813027df1503eae99f9952be37e47db7d12fdca3d26127b7be",
+          "alpha_bbox": [
+            18,
+            103,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_axe\\monje-f-attack_axe-04.png",
+          "sha256": "d1ef238d05501d57780a5aa8996312be37a98ba34055158b020174a511780751",
+          "alpha_bbox": [
+            9,
+            94,
+            98,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_spear\\monje-f-attack_spear-01.png",
+          "sha256": "9a5b649e3c4987c34f85cc01df5582d36a946df8757f2c3632a20b7267ac380b",
+          "alpha_bbox": [
+            15,
+            92,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_spear\\monje-f-attack_spear-02.png",
+          "sha256": "a6d3cd6325978672ef3ad32fc8e918ef8e58a589090275674047f17b67b42964",
+          "alpha_bbox": [
+            16,
+            92,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_spear\\monje-f-attack_spear-03.png",
+          "sha256": "7020303d917460d7f278c2ccc2f07989d14f09c6c1612b28535d073015c4550a",
+          "alpha_bbox": [
+            11,
+            92,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_spear\\monje-f-attack_spear-04.png",
+          "sha256": "24298f0de81583d8d1dfa675d91fd2807dacab7a6233df872b11ed87896c7501",
+          "alpha_bbox": [
+            11,
+            92,
+            109,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_dagger\\monje-f-attack_dagger-01.png",
+          "sha256": "fab3668ae7a8ef7a1d1f5f587b7379d5c5c6433da32a934907257612c758c877",
+          "alpha_bbox": [
+            20,
+            89,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_dagger\\monje-f-attack_dagger-02.png",
+          "sha256": "32aeae6acea340f07b947116a3c0624cf3cbc00ff9c496c3dc0608d1ff5ab3bc",
+          "alpha_bbox": [
+            20,
+            90,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_dagger\\monje-f-attack_dagger-03.png",
+          "sha256": "269b5d5407df4de1629bb84e0c177e482c5d20d8ed49626d23c51d092d20fafc",
+          "alpha_bbox": [
+            15,
+            90,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_dagger\\monje-f-attack_dagger-04.png",
+          "sha256": "27ac02134fe983e24e6e7f5fea43f07895d11a644ef8d7255de921ef9c282171",
+          "alpha_bbox": [
+            19,
+            89,
+            103,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_bow\\monje-f-attack_bow-01.png",
+          "sha256": "e6ccdea658c2651e2a10b59522b63ce67007efce81f2dd35ed11c1f127703c20",
+          "alpha_bbox": [
+            26,
+            90,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_bow\\monje-f-attack_bow-02.png",
+          "sha256": "7d0b69454e0306eda961e105871810d1afd72e89d8d2281bdfffae26ec2c62e7",
+          "alpha_bbox": [
+            16,
+            91,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_bow\\monje-f-attack_bow-03.png",
+          "sha256": "d559b64dacc08b91881e3f3ea32a3d38a649628956dd0bcd608d8619a6a0c39e",
+          "alpha_bbox": [
+            17,
+            90,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_bow\\monje-f-attack_bow-04.png",
+          "sha256": "858cab105c2d23897f57a1e7f20d64ac40d96213e1c8d72d842c9195b48d7f35",
+          "alpha_bbox": [
+            16,
+            90,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_staff\\monje-f-attack_staff-01.png",
+          "sha256": "04e2c0b3cbc08085335f07dfba91f30b81c35769aaa7c9113203d804c827e1e1",
+          "alpha_bbox": [
+            26,
+            90,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_staff\\monje-f-attack_staff-02.png",
+          "sha256": "d0485bd316bf280b62039248b37f19ff1f9e56b46316af71ff3f1f77bd0ae468",
+          "alpha_bbox": [
+            22,
+            90,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_staff\\monje-f-attack_staff-03.png",
+          "sha256": "294cf0e4189ad8660fdc64eeec1321f4adfa3af377340f0e6cb700e29cc52360",
+          "alpha_bbox": [
+            23,
+            90,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_staff\\monje-f-attack_staff-04.png",
+          "sha256": "515ce340777a4923eb49b32da29c60e5b51bc89b360fe22fb4fb3fcf5ff00467",
+          "alpha_bbox": [
+            17,
+            90,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_mace\\monje-f-attack_mace-01.png",
+          "sha256": "1fc0af653fc1421dc196323f0942a310b1ec476fb765949f094ea26bf9adb170",
+          "alpha_bbox": [
+            30,
+            89,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_mace\\monje-f-attack_mace-02.png",
+          "sha256": "d32fda5e99ee87205cb9ad9a1c85120e2df7949497eff4dac65e642d1b91523d",
+          "alpha_bbox": [
+            23,
+            89,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_mace\\monje-f-attack_mace-03.png",
+          "sha256": "3bea1b762fb7c7bc47cf2f2c9272cac7c3c48063d5cfc322772e44655276391e",
+          "alpha_bbox": [
+            19,
+            95,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_mace\\monje-f-attack_mace-04.png",
+          "sha256": "f8f71956db2af3fdb38dc1a753aa8dfcc77d65beb302ae2e54af5864a6d03f6d",
+          "alpha_bbox": [
+            17,
+            89,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_book\\monje-f-attack_book-01.png",
+          "sha256": "17ff5caeba01464cdc6008f2ea22f290b114dded6282977fecd487fd4cbbbbd1",
+          "alpha_bbox": [
+            34,
+            91,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_book\\monje-f-attack_book-02.png",
+          "sha256": "318696f57cb3a575fe90e0e1aad8167aaa4a33ca2b53b31c8d47cf6c7e7002ae",
+          "alpha_bbox": [
+            26,
+            91,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_book\\monje-f-attack_book-03.png",
+          "sha256": "6be95dfdab8c6f0e2e002af582df49e5c966670142cf25242f61727487053ae1",
+          "alpha_bbox": [
+            22,
+            91,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_book\\monje-f-attack_book-04.png",
+          "sha256": "aedfa9a2808c14364a4130b583252491a20ad16ff6128cf39d213b63df83132c",
+          "alpha_bbox": [
+            25,
+            91,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_gloves\\monje-f-attack_gloves-01.png",
+          "sha256": "0ba342c46c23e3b31389d821ad985369df53609a092c0565e0397976c13bee7c",
+          "alpha_bbox": [
+            25,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_gloves\\monje-f-attack_gloves-02.png",
+          "sha256": "51fcc28aa480e8312453875f321b16d12e46ead9302d84835a7502949a917c73",
+          "alpha_bbox": [
+            23,
+            91,
+            104,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_gloves\\monje-f-attack_gloves-03.png",
+          "sha256": "5f35ec2ca0e41321fb92d561393a745d36d2b54848d799645853c42e7e41fd78",
+          "alpha_bbox": [
+            11,
+            90,
+            113,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\monje\\f\\frames\\attack_gloves\\monje-f-attack_gloves-04.png",
+          "sha256": "2aeac45008cf0d392417b579609309dd445cce7f5b88430f1d6013b3ccf228d5",
+          "alpha_bbox": [
+            12,
+            90,
+            92,
+            247
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

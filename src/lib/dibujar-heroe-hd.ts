@@ -1,17 +1,22 @@
 import { BIBLIOTECA_SPRITES_HD, type AccionHeroeHd, type SexoSpriteHd } from "@/lib/sprites-heroes-hd";
+import posicionesReposo from "@/lib/generated/posiciones-idle-hd.json";
 
 export interface CapaHeroeHd { id: string; imagen: CanvasImageSource }
 /** Draw original body pixels back over the shaft through the shared finger mask. */
 export function dibujarHeroeHd(ctx: CanvasRenderingContext2D, cuerpo: CanvasImageSource, capas: CapaHeroeHd[],
-  accion: AccionHeroeHd, sexo: SexoSpriteHd, fase: number, reflejado = false) {
+  accion: AccionHeroeHd, sexo: SexoSpriteHd, fase: number, reflejado = false, claseId = "") {
   const fila = BIBLIOTECA_SPRITES_HD.actions.indexOf(accion);
   ctx.clearRect(0, 0, 384, 384); ctx.save();
   if (reflejado) { ctx.translate(384, 0); ctx.scale(-1, 1); }
-  const dibujarCuerpo = () => ctx.drawImage(cuerpo, fase * 128, fila * 256, 128, 256, 128, 64, 128, 256);
+  // Stabilize the body while idle equipment retains the first pose's shared grips.
+  const desplazamiento = accion === "idle"
+    ? (posicionesReposo as Record<string, Partial<Record<SexoSpriteHd, number[]>>>)[claseId]?.[sexo]?.[fase] ?? 0 : 0;
+  const faseEquipo = accion === "idle" ? 0 : fase;
+  const dibujarCuerpo = () => ctx.drawImage(cuerpo, fase * 128, fila * 256, 128, 256, 128 + desplazamiento, 64, 128, 256);
   const preparadas = capas.flatMap(capa => {
     const item = BIBLIOTECA_SPRITES_HD.items[capa.id];
-    const config = BIBLIOTECA_SPRITES_HD.compositions[item.composition][sexo][accion]?.[fase];
-    const rect = item.frames[sexo][accion]?.[fase];
+    const config = BIBLIOTECA_SPRITES_HD.compositions[item.composition][sexo][accion]?.[faseEquipo];
+    const rect = item.frames[sexo][accion]?.[faseEquipo];
     return config && rect ? [{ ...capa, config, rect }] : [];
   });
   const dibujarEquipo = (capa: (typeof preparadas)[number]) => {
