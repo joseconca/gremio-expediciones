@@ -35989,8 +35989,40 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "87cb715bdbfef95dac6d43ca22b2d3893db3ec3f11e71c779923be31198c5e3f",
-                "bytes": 27622,
+                "sha256": "79d7fbc7d178aa1b40cf1d58d34a36b2e91a9a7fd23491fdd21fcb084a9a59e0",
+                "bytes": 28229,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  7,
+                  92,
+                  113,
+                  249
+                ],
+                "pixelSha256": "5a6cc439d3553039f05ab865031d7eebc250c521b452429d4b26d8838ce8f1c3"
+              },
+              "02": {
+                "sha256": "bcad5ebf8af03a271aca4b26e5ca3402a619012ac82faa483aeaae8977e270a5",
+                "bytes": 25054,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  92,
+                  108,
+                  249
+                ],
+                "pixelSha256": "c387ef9d57ba9ad3dab9439a582171a6d50cf80fda40ba61d68bd66e0aad5c7e"
+              },
+              "03": {
+                "sha256": "1f116a4183127afb34d2d097713d2428e6deb365d641bbefa2c757a48c424385",
+                "bytes": 26579,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -35999,58 +36031,26 @@
                 "bbox": [
                   8,
                   92,
-                  112,
-                  248
+                  114,
+                  249
                 ],
-                "pixelSha256": "99d19f44bdb0ecb8bf86b653a926564847de13e39997b9202534a26a6382303d"
-              },
-              "02": {
-                "sha256": "7e3cb352137decdea67b153e3630fc321f4b54e71e3a4167cc1444ffd2e8b2e7",
-                "bytes": 24502,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  11,
-                  92,
-                  108,
-                  248
-                ],
-                "pixelSha256": "794bb8a18b00d85ffad87d404f0001b6ba1b8c13f3fa1ccd6ec2b40c4fa7c89a"
-              },
-              "03": {
-                "sha256": "553c1fccf50d2e320baac969153af01669ed77e6de6dd9e7f08bd51f08397a89",
-                "bytes": 25592,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  9,
-                  92,
-                  113,
-                  248
-                ],
-                "pixelSha256": "06eea67bf56ef5059b1f2a75420d61b58e9896f0bd882ddb55ea9443e49624cf"
+                "pixelSha256": "379ad2ed246ff76a9c47a4801ba4e76b161bd94b4b5bbbcb0429dab415b7bd09"
               },
               "04": {
-                "sha256": "472a81579070db097bc75a5224885f66289159d9fea65f69182a44a754c4b95a",
-                "bytes": 26485,
+                "sha256": "53d2283e2c18177d5812ddc0ebccb0d3963ecc6b279af7c7cbe06835ffc20b98",
+                "bytes": 26865,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  9,
+                  3,
                   92,
-                  107,
-                  248
+                  103,
+                  249
                 ],
-                "pixelSha256": "8888e2d03ccc7e1f438dfbe8e93bdf724d79827aa8b6ee2066ba6f14d5784993"
+                "pixelSha256": "128887cc49f585a5f472edc02f6a5a39cf68083a8a57eb9b9ef8b1ce5f1c3a99"
               }
             },
             "distinctFrames": 4
@@ -36673,7 +36673,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "walk": {
-          "sourceSha256": "101d67d8d7dc9f8601d223832ac866dd49216af3cc690cc306c285c0d4ad6597",
+          "sourceSha256": "ca88296b9dec13a3090388634ab16ddbfa7005925c89b4eb71a18e6fa40b3569",
           "sourceDimensions": [
             2172,
             724
@@ -36698,9 +36698,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/cazador/m/source/walk-reference-v3.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/cazador/m/source/walk-reference-v5.png",
           "generator": "built-in imagegen",
-          "prompt": "IMAGE1 exact canonical four-frame WALK skeleton: trace every shoulder, elbow, wrist and fist in its EXACT original location, including the forward fists above RIGHT THIGHS of figures2 and3. IMAGE2 hunter appearance only: chestnut shaggy hair, forest-green hood-down travelling cloak, brown leather straps/pouches/bracers/boots, cream rolled sleeves, dark olive pants. Render all four walking poses with the same polished detailed RPG style as IMAGE2. Keep TWO visible empty hands in each figure. Fold cloak BEHIND both forearms and fists; expose hanging back fists on figures2/3 without changing the OTHER forward arm. No weapons or props. Preserve original walking legs, root positions, canvas dimensions and head scale from IMAGE1. Transparent background. Do not replace the forward arms with hanging idle arms.",
+          "prompt": "Keep this exact four-frame hunter walk strip. Only adjust THIRD FIGURE: its foreground arm which crosses diagonally over the belly must extend a little farther to the right and slightly upward, ending with its gloved fist centered at(1470,370) in the2172x724 image. REPLACE that arm's old fist at(1430,402), removing the old fist entirely. Its other arm hangs behind the hip unchanged. Exactly TWO arms and TWO hands per person. Do not add a raised third arm. Preserve all other figures, boots, head, cloak and composition. Transparent background.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
           "canonicalPoseHashes": [
             "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
@@ -36739,6 +36739,44 @@
               "sourcePath": "assets/spritesheets/hd-128x256/cazador/m/source/walk-reference.png",
               "generator": "built-in imagegen",
               "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY CAZADOR MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action walk. Young adult male hunter: shaggy chestnut-brown hair, keen focused face. Dark forest-green fitted hunter tunic and short split travelling cloak with hood DOWN behind the neck, muted olive panels and subtle tan-gold edging, brown leather chest straps and belt pouches, dark olive trousers, brown forearm bracers and small fingerless gloves, sturdy brown travel boots. No bow, quiver, arrows, traps, animal or dagger. Exact canonical skeleton and clear uncovered hands. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (140,414), other hand (418,409); figure 2: primary contact (692,418), other hand (909,375); figure 3: primary contact (1239,414), other hand (1470,370); figure 4: primary contact (1795,440), other hand (2078,414). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "101d67d8d7dc9f8601d223832ac866dd49216af3cc690cc306c285c0d4ad6597",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador/m/source/walk-reference-v3.png",
+              "generator": "built-in imagegen",
+              "prompt": "IMAGE1 exact canonical four-frame WALK skeleton: trace every shoulder, elbow, wrist and fist in its EXACT original location, including the forward fists above RIGHT THIGHS of figures2 and3. IMAGE2 hunter appearance only: chestnut shaggy hair, forest-green hood-down travelling cloak, brown leather straps/pouches/bracers/boots, cream rolled sleeves, dark olive pants. Render all four walking poses with the same polished detailed RPG style as IMAGE2. Keep TWO visible empty hands in each figure. Fold cloak BEHIND both forearms and fists; expose hanging back fists on figures2/3 without changing the OTHER forward arm. No weapons or props. Preserve original walking legs, root positions, canvas dimensions and head scale from IMAGE1. Transparent background. Do not replace the forward arms with hanging idle arms.",
               "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
               "canonicalPoseHashes": [
                 "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
