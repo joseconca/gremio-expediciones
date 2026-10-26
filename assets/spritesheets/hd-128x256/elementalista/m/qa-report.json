@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-26T03:01:05.440476+00:00",
+  "classId": "elementalista",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\elementalista-m-sheet.png",
+  "sheetSha256": "53cfd61646d8077252f6d061a3fd5cc06aa4e3595db5e315cdb5a0624a883e42",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\idle\\elementalista-m-idle-01.png",
+          "sha256": "cbd0cb3c0b3bdfcb997071ec461d15bc21402e91d75fd4868c997fe52ad4043e",
+          "alpha_bbox": [
+            13,
+            92,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\idle\\elementalista-m-idle-02.png",
+          "sha256": "5871f026f19d22eb29ed0d185fac994358cd79ddd9b4b32349a68cb3213cc9a1",
+          "alpha_bbox": [
+            10,
+            92,
+            102,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\idle\\elementalista-m-idle-03.png",
+          "sha256": "d6af7d0bd6cd0a1e84d3d689805e985ee622066b145f25985da20837f8ecbc4e",
+          "alpha_bbox": [
+            10,
+            92,
+            102,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\idle\\elementalista-m-idle-04.png",
+          "sha256": "1fb875612b1049c294eb6b6e3379bf346ce96cbda5f0570b8d137c3a37fe1035",
+          "alpha_bbox": [
+            10,
+            92,
+            102,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\walk\\elementalista-m-walk-01.png",
+          "sha256": "1f536939073d03ed1e22c6fb6c1511695136a8066ae502629287ac295a27f8cb",
+          "alpha_bbox": [
+            6,
+            92,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\walk\\elementalista-m-walk-02.png",
+          "sha256": "01e9871d04564ffa5048e2909309959a880020e3e3c9091c14ade3a63b7b3d8a",
+          "alpha_bbox": [
+            9,
+            91,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\walk\\elementalista-m-walk-03.png",
+          "sha256": "52b1d0fbd25d74645932701aef6a6aa17d0e716f88b928b8741d1af4d9e50031",
+          "alpha_bbox": [
+            9,
+            91,
+            117,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\walk\\elementalista-m-walk-04.png",
+          "sha256": "431df0ff21590f0ccb72740502231009c1354918fafde4eb768a2d0f4554e357",
+          "alpha_bbox": [
+            6,
+            92,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\hurt\\elementalista-m-hurt-01.png",
+          "sha256": "ba487f46b22dde873e115ae87789d93d400d76c1680fa2856938e8bddb74a207",
+          "alpha_bbox": [
+            12,
+            92,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\hurt\\elementalista-m-hurt-02.png",
+          "sha256": "8fa3118dd1723f2c6cd3a930f3dbaad96425337d0522d1fc5fc2c2f0802cca78",
+          "alpha_bbox": [
+            22,
+            100,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\hurt\\elementalista-m-hurt-03.png",
+          "sha256": "68acff5ef903f550d0a411cf0600c644dc89c9db88e8828dcc569ffc952f4c11",
+          "alpha_bbox": [
+            13,
+            119,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\hurt\\elementalista-m-hurt-04.png",
+          "sha256": "d0335ec1112fceadf4105b1b6a7ac117d34c3c1685f2d6c41dbd2325c746c64b",
+          "alpha_bbox": [
+            6,
+            92,
+            100,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\use_consumable\\elementalista-m-use_consumable-01.png",
+          "sha256": "35090e9de2377be4d54f34283147b8050b8405b1465da64f1167b842e74c2432",
+          "alpha_bbox": [
+            21,
+            92,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\use_consumable\\elementalista-m-use_consumable-02.png",
+          "sha256": "42fd1a6b493f3c45a8febd6dacc9bcde9fabd992a2640894b30a08dfa0b104a4",
+          "alpha_bbox": [
+            25,
+            92,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\use_consumable\\elementalista-m-use_consumable-03.png",
+          "sha256": "f4b7a478cdb70154d7d90c45cda3340700fab0d52b91fe676f01291077175c91",
+          "alpha_bbox": [
+            17,
+            92,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\use_consumable\\elementalista-m-use_consumable-04.png",
+          "sha256": "a09488ad7b2e552453c5e3d9f738d3607ee8ffec9fe72b0772b5e0e495d8aa94",
+          "alpha_bbox": [
+            12,
+            92,
+            98,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\dodge\\elementalista-m-dodge-01.png",
+          "sha256": "66e1f9ec241970e18bc77ad2022025902c1ce8262f302db925b1486ec43ff7d0",
+          "alpha_bbox": [
+            14,
+            98,
+            106,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\dodge\\elementalista-m-dodge-02.png",
+          "sha256": "1f463b15d1016e2e7bfad67af199dec2b66bf33e6bb2754a1f0b6661b61306c0",
+          "alpha_bbox": [
+            20,
+            98,
+            113,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\dodge\\elementalista-m-dodge-03.png",
+          "sha256": "48b062668227230788fa33e7e8a82db2aa7755c2023cefe19a65f04ad39144c1",
+          "alpha_bbox": [
+            17,
+            100,
+            110,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\dodge\\elementalista-m-dodge-04.png",
+          "sha256": "b50a54802d5b2c24ce6d49047a170055df554697328cb27241043552c26e4882",
+          "alpha_bbox": [
+            20,
+            97,
+            110,
+            251
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\block_shield\\elementalista-m-block_shield-01.png",
+          "sha256": "16124297e5b562a62a305bc92dbb9c8151f4a5b08c879b6711b76efecc58c86b",
+          "alpha_bbox": [
+            14,
+            98,
+            106,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\block_shield\\elementalista-m-block_shield-02.png",
+          "sha256": "ad14797167a14bfdc8f4da08dd31b4d48790562a37007742f940c74e0c08567a",
+          "alpha_bbox": [
+            15,
+            98,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\block_shield\\elementalista-m-block_shield-03.png",
+          "sha256": "6e310c19782a5b100e99b5c948a22bcfea059bce3f3c5f7388109816c088b2cb",
+          "alpha_bbox": [
+            14,
+            114,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\block_shield\\elementalista-m-block_shield-04.png",
+          "sha256": "8b8cdc4addb4c5085fb57721843969ac0b2833ee3a83d3899ae99d0411059fd1",
+          "alpha_bbox": [
+            14,
+            98,
+            106,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_sword\\elementalista-m-attack_sword-01.png",
+          "sha256": "a3c64a6bd8f13f97e2e64200f3e294fdd72adedc2e870a88ef367b9e9f1c3afa",
+          "alpha_bbox": [
+            6,
+            99,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_sword\\elementalista-m-attack_sword-02.png",
+          "sha256": "ca4653c6a0c6fe0e1950837986c18290714c1cf681dcd7ad3d69a53e80b6aaba",
+          "alpha_bbox": [
+            7,
+            100,
+            113,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_sword\\elementalista-m-attack_sword-03.png",
+          "sha256": "379705c8d81169b892a0e8d2511626f4dc429e833c922c24d7a2e78858242525",
+          "alpha_bbox": [
+            3,
+            100,
+            118,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_sword\\elementalista-m-attack_sword-04.png",
+          "sha256": "0c19cb726786990e74cdc2193a3dcb3102ea364f50ec4a8de1cc036983e57c5b",
+          "alpha_bbox": [
+            13,
+            99,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_axe\\elementalista-m-attack_axe-01.png",
+          "sha256": "7f7cb9029e5c68bb24882fe69ff82b7f62e759430e43f9c95088a23731fc3dcc",
+          "alpha_bbox": [
+            8,
+            100,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_axe\\elementalista-m-attack_axe-02.png",
+          "sha256": "63d3309bc2f72d892f71f2549bbf8234f64531f57d7c1d84f927a9e2d1c21623",
+          "alpha_bbox": [
+            17,
+            112,
+            119,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_axe\\elementalista-m-attack_axe-03.png",
+          "sha256": "851c19bad57b53471a493271546080628f8aca530790b1642225cace59626694",
+          "alpha_bbox": [
+            13,
+            122,
+            119,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_axe\\elementalista-m-attack_axe-04.png",
+          "sha256": "01b6d9a0e3445b075036df502ff042e8108c19d04cbf05e95359e5fafa60283b",
+          "alpha_bbox": [
+            28,
+            104,
+            124,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_spear\\elementalista-m-attack_spear-01.png",
+          "sha256": "146ae725159cc63b7e3076b101078d25730ea73f040597c8d08bea436d8d1a61",
+          "alpha_bbox": [
+            8,
+            90,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_spear\\elementalista-m-attack_spear-02.png",
+          "sha256": "2d030c74538cc19d4bfc5854a9e437f105db87addb29f15cac314c1d200a0ea5",
+          "alpha_bbox": [
+            12,
+            91,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_spear\\elementalista-m-attack_spear-03.png",
+          "sha256": "7d0e82de65db82baa319e43ebf45478304f372df8b58ca14bac16ea6b2c32044",
+          "alpha_bbox": [
+            11,
+            90,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_spear\\elementalista-m-attack_spear-04.png",
+          "sha256": "1dfb4af54352141bc411a02c0b9c4446d741a18c6a16f8559af47a2c2283c214",
+          "alpha_bbox": [
+            15,
+            91,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_dagger\\elementalista-m-attack_dagger-01.png",
+          "sha256": "c49b5b44489e810ae266951aee6bf7d57c73935248246f9566e8b8018d60f2a7",
+          "alpha_bbox": [
+            23,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_dagger\\elementalista-m-attack_dagger-02.png",
+          "sha256": "5d68f80b525bef0f21d48f4efd261d5c2230a6fb273e155397edb0dbad68b62e",
+          "alpha_bbox": [
+            26,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_dagger\\elementalista-m-attack_dagger-03.png",
+          "sha256": "cb10a5e6537e731dcc8b39481253295b5948fb029d0fff2bd08fd64dc71854d7",
+          "alpha_bbox": [
+            21,
+            96,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_dagger\\elementalista-m-attack_dagger-04.png",
+          "sha256": "94955a136a063bc9254e1f99820dc0acf04a4497884a5260c8b149c14e60885f",
+          "alpha_bbox": [
+            19,
+            92,
+            101,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_bow\\elementalista-m-attack_bow-01.png",
+          "sha256": "48cfc39af2dbf46bb18ba5aa5cf2a268daf433caa68a45c953e93d973290de73",
+          "alpha_bbox": [
+            14,
+            94,
+            121,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_bow\\elementalista-m-attack_bow-02.png",
+          "sha256": "e0a069420dfbe7614c579524f0c297759e1195dfe2a5fcc7e4222c41a17949c9",
+          "alpha_bbox": [
+            15,
+            94,
+            121,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_bow\\elementalista-m-attack_bow-03.png",
+          "sha256": "63a12dbeb0a5ca662c41f5340315e969adb69df8977251f3a4b558d46b5fc665",
+          "alpha_bbox": [
+            14,
+            94,
+            121,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_bow\\elementalista-m-attack_bow-04.png",
+          "sha256": "d3f0d4cf2bfd6df9c7a12743f7f1eaedbcc81d0237659d39bcb02bbaf1ada225",
+          "alpha_bbox": [
+            14,
+            94,
+            120,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_staff\\elementalista-m-attack_staff-01.png",
+          "sha256": "6861047c558dd770a094346a5b3587c2bccfd23287528edebb4fcfba7ed79cdd",
+          "alpha_bbox": [
+            18,
+            92,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_staff\\elementalista-m-attack_staff-02.png",
+          "sha256": "3f9e2b47bc4bb792883a0c0ff2791ef48ff4f31ba00e8a7d5a4932f23218f222",
+          "alpha_bbox": [
+            21,
+            92,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_staff\\elementalista-m-attack_staff-03.png",
+          "sha256": "55e9b85429604e24387c5783327d21e1ca79ff7d6b670f4b6304ecb1b0ff35db",
+          "alpha_bbox": [
+            23,
+            93,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_staff\\elementalista-m-attack_staff-04.png",
+          "sha256": "11a570505166d4c6d9c761786792b151b99afb9d05afc04c682e4cba5e03ce44",
+          "alpha_bbox": [
+            12,
+            92,
+            101,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_mace\\elementalista-m-attack_mace-01.png",
+          "sha256": "1fcd25c912452477049479a6dc72f80fd6cfebd55942066c2e52059e1ec29cc3",
+          "alpha_bbox": [
+            15,
+            91,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_mace\\elementalista-m-attack_mace-02.png",
+          "sha256": "51b9a7bf55c59edf32ffe5b5f473c8546863e61386e13353ec94ce894e866104",
+          "alpha_bbox": [
+            27,
+            91,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_mace\\elementalista-m-attack_mace-03.png",
+          "sha256": "5d3778c549cced55c7f552cbd45baec43160e255349e557615fb390c12e1216a",
+          "alpha_bbox": [
+            21,
+            104,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_mace\\elementalista-m-attack_mace-04.png",
+          "sha256": "fc58127549191321a67a85ca6a42bfb2a3eaaf786321964228f2a8ceb1f9e74f",
+          "alpha_bbox": [
+            25,
+            91,
+            114,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_book\\elementalista-m-attack_book-01.png",
+          "sha256": "426fbc9287f8b0c629c1b69b0fe674b07bfa3ce326190e4f683050a28cda6676",
+          "alpha_bbox": [
+            14,
+            91,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_book\\elementalista-m-attack_book-02.png",
+          "sha256": "caa7c1389dc415f1ddc9f92823a2bd59698fd43df6cebb0092db2d8bf6c521bc",
+          "alpha_bbox": [
+            16,
+            91,
+            100,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_book\\elementalista-m-attack_book-03.png",
+          "sha256": "7e28983c719c549672809a22ff568904ad828211d24a62c8f578f57f462284e9",
+          "alpha_bbox": [
+            14,
+            91,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_book\\elementalista-m-attack_book-04.png",
+          "sha256": "36e94e836aef9d1a08ed761e9b92358d067f0ec85712b0974041d1e7104214ea",
+          "alpha_bbox": [
+            16,
+            91,
+            100,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_gloves\\elementalista-m-attack_gloves-01.png",
+          "sha256": "1f1b3fcac35dcb53b73831a385946ae7ed3062fd323669407fd5cb2ccd050062",
+          "alpha_bbox": [
+            15,
+            91,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_gloves\\elementalista-m-attack_gloves-02.png",
+          "sha256": "0ce2d76832724c00b509d9c1248266e97e9cd5094148aece02f0288aa15c1ca1",
+          "alpha_bbox": [
+            23,
+            91,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_gloves\\elementalista-m-attack_gloves-03.png",
+          "sha256": "791ea194c5a9dc9eb2d0e2bd08685527dab7ef7c510e902bc4137bb901af89f3",
+          "alpha_bbox": [
+            17,
+            91,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\elementalista\\m\\frames\\attack_gloves\\elementalista-m-attack_gloves-04.png",
+          "sha256": "e77de3e4cefab40ea1ff089af44ad5616cdcf66200594e72e8303be20fef3c53",
+          "alpha_bbox": [
+            24,
+            91,
+            114,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
