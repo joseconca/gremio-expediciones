@@ -8,7 +8,12 @@
     "hurt",
     "use_consumable",
     "dodge",
-    "block_shield"
+    "block_shield",
+    "attack_sword",
+    "attack_axe",
+    "attack_spear",
+    "attack_dagger",
+    "attack_bow"
   ],
   "bodyHashes": {
     "idle": [
@@ -46,9 +51,39 @@
       "ad14797167a14bfdc8f4da08dd31b4d48790562a37007742f940c74e0c08567a",
       "6e310c19782a5b100e99b5c948a22bcfea059bce3f3c5f7388109816c088b2cb",
       "8b8cdc4addb4c5085fb57721843969ac0b2833ee3a83d3899ae99d0411059fd1"
+    ],
+    "attack_sword": [
+      "a3c64a6bd8f13f97e2e64200f3e294fdd72adedc2e870a88ef367b9e9f1c3afa",
+      "ca4653c6a0c6fe0e1950837986c18290714c1cf681dcd7ad3d69a53e80b6aaba",
+      "379705c8d81169b892a0e8d2511626f4dc429e833c922c24d7a2e78858242525",
+      "0c19cb726786990e74cdc2193a3dcb3102ea364f50ec4a8de1cc036983e57c5b"
+    ],
+    "attack_axe": [
+      "7f7cb9029e5c68bb24882fe69ff82b7f62e759430e43f9c95088a23731fc3dcc",
+      "63d3309bc2f72d892f71f2549bbf8234f64531f57d7c1d84f927a9e2d1c21623",
+      "851c19bad57b53471a493271546080628f8aca530790b1642225cace59626694",
+      "01b6d9a0e3445b075036df502ff042e8108c19d04cbf05e95359e5fafa60283b"
+    ],
+    "attack_spear": [
+      "146ae725159cc63b7e3076b101078d25730ea73f040597c8d08bea436d8d1a61",
+      "2d030c74538cc19d4bfc5854a9e437f105db87addb29f15cac314c1d200a0ea5",
+      "7d0e82de65db82baa319e43ebf45478304f372df8b58ca14bac16ea6b2c32044",
+      "1dfb4af54352141bc411a02c0b9c4446d741a18c6a16f8559af47a2c2283c214"
+    ],
+    "attack_dagger": [
+      "c49b5b44489e810ae266951aee6bf7d57c73935248246f9566e8b8018d60f2a7",
+      "5d68f80b525bef0f21d48f4efd261d5c2230a6fb273e155397edb0dbad68b62e",
+      "cb10a5e6537e731dcc8b39481253295b5948fb029d0fff2bd08fd64dc71854d7",
+      "94955a136a063bc9254e1f99820dc0acf04a4497884a5260c8b149c14e60885f"
+    ],
+    "attack_bow": [
+      "48cfc39af2dbf46bb18ba5aa5cf2a268daf433caa68a45c953e93d973290de73",
+      "e0a069420dfbe7614c579524f0c297759e1195dfe2a5fcc7e4222c41a17949c9",
+      "63a12dbeb0a5ca662c41f5340315e969adb69df8977251f3a4b558d46b5fc665",
+      "d3f0d4cf2bfd6df9c7a12743f7f1eaedbcc81d0237659d39bcb02bbaf1ada225"
     ]
   },
-  "contactChecks": 524,
+  "contactChecks": 624,
   "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
