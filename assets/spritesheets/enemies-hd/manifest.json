@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "status": "in-progress",
+  "status": "candidate-library-complete-user-review-pending",
   "columns": 4,
   "actions": [
     "idle",
@@ -221,18 +221,19 @@
       "legacyPath": "public/sprites/enemies/II/troll_cavernas.png",
       "status": "candidate",
       "frames": 16,
-      "sourceRevision": 1,
+      "sourceRevision": 3,
       "report": "assets/spritesheets/enemies-hd/troll_cavernas/qa-report.json",
       "cellSize": [
-        448,
-        448
+        384,
+        384
       ],
       "sheetSize": [
-        1792,
-        1792
+        1536,
+        1536
       ],
       "idleHeight": 208,
-      "anchorMode": "ground"
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
     },
     {
       "id": "minotauro",
@@ -243,7 +244,7 @@
       "legacyPath": "public/sprites/enemies/III/minotauro.png",
       "status": "candidate",
       "frames": 16,
-      "sourceRevision": 1,
+      "sourceRevision": 2,
       "report": "assets/spritesheets/enemies-hd/minotauro/qa-report.json",
       "cellSize": [
         384,
@@ -254,7 +255,8 @@
         1536
       ],
       "idleHeight": 216,
-      "anchorMode": "ground"
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
     },
     {
       "id": "lobo_hambriento",
@@ -287,7 +289,7 @@
       "legacyPath": "public/sprites/enemies/I/murcielago_sanguinario.png",
       "status": "candidate",
       "frames": 16,
-      "sourceRevision": 1,
+      "sourceRevision": 3,
       "report": "assets/spritesheets/enemies-hd/murcielago_sanguinario/qa-report.json",
       "cellSize": [
         384,
@@ -298,7 +300,8 @@
         1536
       ],
       "idleHeight": 120,
-      "anchorMode": "air"
+      "anchorMode": "air",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
     },
     {
       "id": "avispa_gigante",
@@ -354,7 +357,7 @@
       "legacyPath": "public/sprites/enemies/I/bandido_arbalestero.png",
       "status": "candidate",
       "frames": 16,
-      "sourceRevision": 1,
+      "sourceRevision": 2,
       "report": "assets/spritesheets/enemies-hd/bandido_arbalestero/qa-report.json",
       "cellSize": [
         384,
@@ -365,7 +368,8 @@
         1536
       ],
       "idleHeight": 168,
-      "anchorMode": "ground"
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
     },
     {
       "id": "zombie_errante",
@@ -577,7 +581,7 @@
       "legacyPath": "public/sprites/enemies/II/harpia_cazadora.png",
       "status": "candidate",
       "frames": 16,
-      "sourceRevision": 2,
+      "sourceRevision": 4,
       "cellSize": [
         384,
         384
@@ -600,7 +604,7 @@
       "legacyPath": "public/sprites/enemies/II/nigromante_aprendiz.png",
       "status": "candidate",
       "frames": 16,
-      "sourceRevision": 1,
+      "sourceRevision": 2,
       "cellSize": [
         384,
         384
@@ -611,7 +615,8 @@
       ],
       "idleHeight": 168,
       "anchorMode": "ground",
-      "report": "assets/spritesheets/enemies-hd/nigromante_aprendiz/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/nigromante_aprendiz/qa-report.json",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
     },
     {
       "id": "guardian_cripta",
@@ -644,7 +649,7 @@
       "legacyPath": "public/sprites/enemies/III/basilisco_joven.png",
       "status": "candidate",
       "frames": 16,
-      "sourceRevision": 1,
+      "sourceRevision": 2,
       "cellSize": [
         384,
         384
@@ -655,7 +660,8 @@
       ],
       "idleHeight": 152,
       "anchorMode": "ground",
-      "report": "assets/spritesheets/enemies-hd/basilisco_joven/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/basilisco_joven/qa-report.json",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
     },
     {
       "id": "centauro_saqueador",
@@ -666,7 +672,7 @@
       "legacyPath": "public/sprites/enemies/III/centauro_saqueador.png",
       "status": "candidate",
       "frames": 16,
-      "sourceRevision": 1,
+      "sourceRevision": 4,
       "cellSize": [
         384,
         384
@@ -677,7 +683,8 @@
       ],
       "idleHeight": 232,
       "anchorMode": "ground",
-      "report": "assets/spritesheets/enemies-hd/centauro_saqueador/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/centauro_saqueador/qa-report.json",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
     },
     {
       "id": "gargola_ancestral",
@@ -732,7 +739,7 @@
       "legacyPath": "public/sprites/enemies/III/sacerdotisa_oscura.png",
       "status": "candidate",
       "frames": 16,
-      "sourceRevision": 2,
+      "sourceRevision": 4,
       "cellSize": [
         384,
         384
@@ -743,7 +750,8 @@
       ],
       "idleHeight": 168,
       "anchorMode": "ground",
-      "report": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/qa-report.json",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
     },
     {
       "id": "mantícora",
@@ -864,7 +872,7 @@
       "legacyPath": "public/sprites/enemies/IV/vampiro_noble.png",
       "status": "candidate",
       "frames": 16,
-      "sourceRevision": 1,
+      "sourceRevision": 3,
       "cellSize": [
         384,
         384
@@ -875,7 +883,8 @@
       ],
       "idleHeight": 176,
       "anchorMode": "ground",
-      "report": "assets/spritesheets/enemies-hd/vampiro_noble/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/vampiro_noble/qa-report.json",
+      "artDirection": "serious-proportions-matched-to-playable-characters"
     },
     {
       "id": "demonio_menor",
@@ -976,7 +985,21 @@
       "boss": true,
       "rank": "I",
       "legacyPath": "public/sprites/enemies/I/reina_sombras.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 5,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 184,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters",
+      "report": "assets/spritesheets/enemies-hd/reina_sombras/qa-report.json"
     },
     {
       "id": "titan_hierro",
@@ -1077,7 +1100,21 @@
       "boss": true,
       "rank": "III",
       "legacyPath": "public/sprites/enemies/III/archimago_exiliado.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 184,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters",
+      "report": "assets/spritesheets/enemies-hd/archimago_exiliado/qa-report.json"
     },
     {
       "id": "dragon_pantano",
@@ -1086,7 +1123,21 @@
       "boss": true,
       "rank": "III",
       "legacyPath": "public/sprites/enemies/III/dragon_pantano.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        448,
+        448
+      ],
+      "sheetSize": [
+        1792,
+        1792
+      ],
+      "idleHeight": 272,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters",
+      "report": "assets/spritesheets/enemies-hd/dragon_pantano/qa-report.json"
     },
     {
       "id": "rey_no_muerto",
@@ -1095,7 +1146,21 @@
       "boss": true,
       "rank": "IV",
       "legacyPath": "public/sprites/enemies/IV/rey_no_muerto.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "cellSize": [
+        448,
+        448
+      ],
+      "sheetSize": [
+        1792,
+        1792
+      ],
+      "idleHeight": 208,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters",
+      "report": "assets/spritesheets/enemies-hd/rey_no_muerto/qa-report.json"
     },
     {
       "id": "hidra_tres_cabezas",
@@ -1104,7 +1169,21 @@
       "boss": true,
       "rank": "IV",
       "legacyPath": "public/sprites/enemies/IV/hidra_tres_cabezas.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 5,
+      "cellSize": [
+        512,
+        512
+      ],
+      "sheetSize": [
+        2048,
+        2048
+      ],
+      "idleHeight": 272,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters",
+      "report": "assets/spritesheets/enemies-hd/hidra_tres_cabezas/qa-report.json"
     },
     {
       "id": "senor_abismo",
@@ -1113,7 +1192,21 @@
       "boss": true,
       "rank": "V",
       "legacyPath": "public/sprites/enemies/V/senor_abismo.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 296,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters",
+      "report": "assets/spritesheets/enemies-hd/senor_abismo/qa-report.json"
     },
     {
       "id": "dragon_anciano",
@@ -1122,13 +1215,27 @@
       "boss": true,
       "rank": "V",
       "legacyPath": "public/sprites/enemies/V/dragon_anciano.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "cellSize": [
+        576,
+        576
+      ],
+      "sheetSize": [
+        2304,
+        2304
+      ],
+      "idleHeight": 304,
+      "anchorMode": "ground",
+      "artDirection": "serious-proportions-matched-to-playable-characters",
+      "report": "assets/spritesheets/enemies-hd/dragon_anciano/qa-report.json"
     }
   ],
-  "completedCandidates": 47,
-  "framesPresent": 752,
+  "completedCandidates": 54,
+  "framesPresent": 864,
   "framesExpected": 864,
-  "nextEnemy": "reina_sombras",
+  "nextEnemy": null,
   "minimumCellSize": [
     384,
     384

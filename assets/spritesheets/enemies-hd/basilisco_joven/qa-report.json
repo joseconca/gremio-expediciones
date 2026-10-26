@@ -7,7 +7,7 @@
     "attack",
     "dodge"
   ],
-  "scale": 0.8150134048257373,
+  "scale": 0.6964490263459335,
   "cellSize": [
     384,
     384
@@ -16,125 +16,126 @@
     1536,
     1536
   ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
   "requestedIdleHeight": 152,
   "idleHeightMean": 152.0,
   "actorAnchor": [
     192,
-    369
+    370
   ],
-  "baselineY": 369,
+  "baselineY": 370,
   "idleAnchorMode": "ground",
   "rowReferenceRoots": [
     [
-      176.5,
-      300.0
+      211.0,
+      309.0
     ],
     [
-      176.0,
-      298.5
+      211.0,
+      289.5
     ],
     [
-      175.0,
-      290.0
+      189.0,
+      293.0
     ],
     [
-      175.5,
-      265.5
+      198.0,
+      247.5
     ]
   ],
   "sheetPath": "assets/spritesheets/enemies-hd/basilisco_joven/basilisco_joven-sheet.png",
-  "sheetSha256": "aa4605cf9291298d83a10124d17e538d082c0c5f459cc594f9dd984b623c2a95",
-  "sourcePath": "assets/spritesheets/enemies-hd/basilisco_joven/source/sheet-v1.png",
-  "sourceSha256": "fa8c8f814d117004c3e89320c91f545da5d29264394e9f7c881d7f76488fb3de",
+  "sheetSha256": "2841bfb56efa670cfa4aa3729562912743ce75bcbacbd77983ba8effa6194851",
+  "sourcePath": "assets/spritesheets/enemies-hd/basilisco_joven/source/sheet-v2.png",
+  "sourceSha256": "0b7fb71130133a0ed6aebc85c4511655b5e7b398d9523d6c36ce2cd464fa0ff3",
   "frameData": {
     "idle": [
       {
         "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/idle/basilisco_joven-idle-01.png",
-        "sha256": "e67f5e927ebd6089ad5f3553f9fc112fd804c3b91e01647634a02258564b686b",
+        "sha256": "3a0e6ab20c02398e6a0fb7a86e1b45f9eb0edcea7b46bb2ff623240e21a9c4ff",
         "bounds": [
-          47,
+          57,
           217,
-          266,
-          369
+          293,
+          370
         ],
-        "idleAnchorCorrectionX": -19
+        "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/idle/basilisco_joven-idle-02.png",
-        "sha256": "f1cf218543975fafa56a5a32e0d6f0ea52367001dd70c85e278388153d5e9e71",
+        "sha256": "f5fe37778af661ea2f9675910cba4d6e61c016cbcec33bf3f774d56b11ebecaa",
         "bounds": [
-          47,
+          59,
           217,
-          265,
-          369
-        ],
-        "idleAnchorCorrectionX": -19
-      },
-      {
-        "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/idle/basilisco_joven-idle-03.png",
-        "sha256": "c2b3293d0c85bc83dcdf5787c7d2d42bc3ff48f972de43c7c8a7fd4242658cad",
-        "bounds": [
-          46,
-          217,
-          264,
-          369
-        ],
-        "idleAnchorCorrectionX": -19
-      },
-      {
-        "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/idle/basilisco_joven-idle-04.png",
-        "sha256": "fb9f7798fe8723ff3cfe3970821e1cf39c922c73b2894820b4cef946f8cf632b",
-        "bounds": [
-          47,
-          217,
-          264,
-          369
-        ],
-        "idleAnchorCorrectionX": -19
-      }
-    ],
-    "hurt": [
-      {
-        "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/hurt/basilisco_joven-hurt-01.png",
-        "sha256": "e48d5e7872f0051cdf4d6fda9acdea55dd56238e8e2839cb5c25712bfaac402f",
-        "bounds": [
-          71,
-          217,
-          286,
+          290,
           369
         ],
         "idleAnchorCorrectionX": 0
       },
       {
-        "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/hurt/basilisco_joven-hurt-02.png",
-        "sha256": "31e1e9a6e40c05a98474fc3ac6de475624d5ea585ac77ea2830ca18d0a636cc4",
+        "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/idle/basilisco_joven-idle-03.png",
+        "sha256": "f9fdd090996e13a6111f0103a94027bd5a5e51bacd10d5664a45f28366a7bf7b",
         "bounds": [
-          66,
-          214,
-          280,
+          59,
+          219,
+          290,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/idle/basilisco_joven-idle-04.png",
+        "sha256": "4de724ac1a11c9e710848d60c6a578610022f4fca300f20c5fa110f33c20ab6f",
+        "bounds": [
+          57,
+          216,
+          287,
+          369
+        ],
+        "idleAnchorCorrectionX": 1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/hurt/basilisco_joven-hurt-01.png",
+        "sha256": "149a368ac9c69c98473ea9f9a0f4f1ec504f3e6abdf453d4f8938090f2415697",
+        "bounds": [
+          59,
+          226,
+          290,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/hurt/basilisco_joven-hurt-02.png",
+        "sha256": "ee23815f68efea8b4b98b9609c5fcec2ef542667b590f49e5029d83e10e0e300",
+        "bounds": [
+          57,
+          234,
+          282,
           369
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/hurt/basilisco_joven-hurt-03.png",
-        "sha256": "6eeaad363cdbac72867e114f77fc4cc52b2b6b7a59945fc5bff02fc17cdfb877",
+        "sha256": "551e7f9249dc9ff778a7b150b8a38b586e3944db0b89b564e89a7aed00d2869e",
         "bounds": [
-          62,
-          212,
-          297,
-          368
+          49,
+          226,
+          286,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/hurt/basilisco_joven-hurt-04.png",
-        "sha256": "4d61812edc61de4925b02f7c64e3eeacd4f339c3a166c9006e25cef0b538be6d",
+        "sha256": "024cfe355b6a4b1330e0a95ed96d89066129c433b7f50689433f85b4093bce17",
         "bounds": [
-          67,
-          219,
-          282,
-          369
+          52,
+          237,
+          273,
+          370
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -142,44 +143,44 @@
     "attack": [
       {
         "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/attack/basilisco_joven-attack-01.png",
-        "sha256": "259200598adee452b2b20cf75452c90cc557dd7e533482419f57fb5e91cf6c1f",
+        "sha256": "707be6dca3d15b12b8075bbc82a01ce2f5927df9d3b3f01bbb316b7d579452e4",
         "bounds": [
-          76,
-          242,
-          291,
-          369
+          78,
+          241,
+          303,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/attack/basilisco_joven-attack-02.png",
-        "sha256": "4c8c2362f2d58f85179d37a09893e7721fa058ca7d9eaf360f5a6a4143800ac2",
+        "sha256": "efd9959f4f555b4d9abf690170af1462eda3c192878410e778a546ceecba99d6",
         "bounds": [
-          61,
-          199,
-          291,
+          75,
+          208,
+          300,
           372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/attack/basilisco_joven-attack-03.png",
-        "sha256": "8e3f6f189726bc3d4f6d28584ba66aae4ee63eed133934a7ecf062c98bce6209",
+        "sha256": "a8c46587a91aecb11bd41d6f5b0c06002010061ee3110a1f610667c746eff44e",
         "bounds": [
-          56,
-          217,
-          306,
-          367
+          65,
+          222,
+          316,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/attack/basilisco_joven-attack-04.png",
-        "sha256": "0aaf140557d4b4fabf3ef03c6def67e3cc54008e143b9acc5968e985477ecf93",
+        "sha256": "96194826db15a5b21d48824f687bdfd145c6dd14fae6630fb55cb486679790ce",
         "bounds": [
-          66,
-          240,
-          284,
+          74,
+          246,
+          301,
           369
         ],
         "idleAnchorCorrectionX": 0
@@ -188,45 +189,45 @@
     "dodge": [
       {
         "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/dodge/basilisco_joven-dodge-01.png",
-        "sha256": "93a880460ae82dcf1146992fb2b0da7c5a95ef41b15d01813a0c586804d36cd1",
+        "sha256": "906f46c084291a8527462f50ebb8a54854bd1229c9fd495166ea748cfe4847b7",
         "bounds": [
-          69,
-          219,
+          70,
+          231,
           284,
-          369
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/dodge/basilisco_joven-dodge-02.png",
-        "sha256": "dcb6f2d050fa36d65f35cfb15a3ca39b3f05573e6c9b69b7fe1ebd038f4ac9d5",
+        "sha256": "970cd385aa469fc11f1805b95b3dc4d923f2cd7e3aaf1210e389ba3d6f03b63e",
         "bounds": [
           70,
-          229,
-          284,
-          367
+          244,
+          291,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/dodge/basilisco_joven-dodge-03.png",
-        "sha256": "d26d9bd6d46e00f8e2dd8d11b4ae5feb0078a266ef36157a1fe7fe9e993ea4bd",
+        "sha256": "97bff99020716eeffefbf1624d7b31096921892e4f6a4944cd116e093d37fceb",
         "bounds": [
-          80,
-          239,
-          296,
-          369
+          57,
+          261,
+          295,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/basilisco_joven/frames/dodge/basilisco_joven-dodge-04.png",
-        "sha256": "25670f55793e8aee8521a1e531eee7649d81283cd3262d9a8b3306049106896d",
+        "sha256": "029a7d170ff3c8f882dd99496a4a6bd906590cd102b26298df7b5b2b2a6f47c8",
         "bounds": [
           68,
-          220,
-          283,
-          369
+          232,
+          284,
+          372
         ],
         "idleAnchorCorrectionX": 0
       }

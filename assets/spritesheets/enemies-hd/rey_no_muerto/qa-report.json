@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.9685681024447031,
+  "cellSize": [
+    448,
+    448
+  ],
+  "sheetSize": [
+    1792,
+    1792
+  ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
+  "requestedIdleHeight": 208,
+  "idleHeightMean": 207.75,
+  "actorAnchor": [
+    224,
+    435
+  ],
+  "baselineY": 435,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      156.0,
+      295.0
+    ],
+    [
+      154.5,
+      276.5
+    ],
+    [
+      156.0,
+      272.0
+    ],
+    [
+      156.5,
+      246.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/rey_no_muerto/rey_no_muerto-sheet.png",
+  "sheetSha256": "fc8f9ee9d2b734b3538ef5ecdc655ce6eef9a9fabda7ed95ef45e7936e3bef4a",
+  "sourcePath": "assets/spritesheets/enemies-hd/rey_no_muerto/source/sheet-v2.png",
+  "sourceSha256": "bc2940617ac5147e8fa22410ec445b812262de7a986faf8acd19fe4edc2331c0",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/rey_no_muerto/frames/idle/rey_no_muerto-idle-01.png",
+        "sha256": "cb9ae5e72df74edd96caf56c2f7cd36252fa3507d1599cf41097b7a33ac1ac2b",
+        "bounds": [
+          126,
+          227,
+          346,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rey_no_muerto/frames/idle/rey_no_muerto-idle-02.png",
+        "sha256": "ce49bdc15eb22898ea2c1c5d83f524de0e8e0f73f7194661b978ac3339338f3f",
+        "bounds": [
+          124,
+          227,
+          346,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rey_no_muerto/frames/idle/rey_no_muerto-idle-03.png",
+        "sha256": "6f656b7dc721e3f25e0bebfef3f2942f5bc901484d772f055f2c95eb2fdcc5e3",
+        "bounds": [
+          124,
+          228,
+          347,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rey_no_muerto/frames/idle/rey_no_muerto-idle-04.png",
+        "sha256": "641010fb2d3b62bd704c461d7df6b218a51d5ae802187dca68c265c5039124b8",
+        "bounds": [
+          126,
+          227,
+          343,
+          435
+        ],
+        "idleAnchorCorrectionX": 1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/rey_no_muerto/frames/hurt/rey_no_muerto-hurt-01.png",
+        "sha256": "2ea4f9e746d34bd747ba767da8bcd3347b5f2500b4745bd7c9a8905d2be33868",
+        "bounds": [
+          121,
+          224,
+          350,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rey_no_muerto/frames/hurt/rey_no_muerto-hurt-02.png",
+        "sha256": "0045630b05cec5c46154d438aab2bcb7f1468445ffb4d232625e8673c4e66738",
+        "bounds": [
+          120,
+          238,
+          353,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rey_no_muerto/frames/hurt/rey_no_muerto-hurt-03.png",
+        "sha256": "ca18480f6dd3881e148fc5ff784bea1fe18fe0af257f00c639a5b35624d8a1cd",
+        "bounds": [
+          127,
+          221,
+          373,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rey_no_muerto/frames/hurt/rey_no_muerto-hurt-04.png",
+        "sha256": "43300af9c779e344a352a7e16fdcca5d900b58778889f330eba878547e04a726",
+        "bounds": [
+          124,
+          225,
+          349,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/rey_no_muerto/frames/attack/rey_no_muerto-attack-01.png",
+        "sha256": "3435a0a42e70cba5784a4e87cef91be6bea13f22c14d0af00796424259a619f6",
+        "bounds": [
+          119,
+          231,
+          312,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rey_no_muerto/frames/attack/rey_no_muerto-attack-02.png",
+        "sha256": "f8f8082820c4c374e16257db3059d5c9b1325f52bc81b71b273684069c11c260",
+        "bounds": [
+          129,
+          212,
+          333,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rey_no_muerto/frames/attack/rey_no_muerto-attack-03.png",
+        "sha256": "ac10e8f89228bcb4640efad7d56f611f0af644baac5177975486527ee457027f",
+        "bounds": [
+          107,
+          237,
+          431,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rey_no_muerto/frames/attack/rey_no_muerto-attack-04.png",
+        "sha256": "2875d5f58cb2ad8b8db468b795f41381598634aa74896934bf2a91d6403e0cf3",
+        "bounds": [
+          129,
+          231,
+          348,
+          433
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/rey_no_muerto/frames/dodge/rey_no_muerto-dodge-01.png",
+        "sha256": "89158f3ba485d1734dd8c57321ab7d6216be470526a5e36fad483213e15ba8c1",
+        "bounds": [
+          117,
+          236,
+          352,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rey_no_muerto/frames/dodge/rey_no_muerto-dodge-02.png",
+        "sha256": "558a80203e7d3e74d6757804722072eec53d625dae6772610bffe3f3639f3c9a",
+        "bounds": [
+          113,
+          258,
+          344,
+          432
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rey_no_muerto/frames/dodge/rey_no_muerto-dodge-03.png",
+        "sha256": "2b2034c8e11674e833f059dd013ca114863fe8865082dcdd0ea7d1c62ad7fc46",
+        "bounds": [
+          112,
+          267,
+          370,
+          429
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/rey_no_muerto/frames/dodge/rey_no_muerto-dodge-04.png",
+        "sha256": "609a14596653d9ca4454f2b1abe9b3fc6eea719916e1bbec2ec395f7709ccd71",
+        "bounds": [
+          125,
+          235,
+          346,
+          433
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

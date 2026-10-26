@@ -7,134 +7,135 @@
     "attack",
     "dodge"
   ],
-  "scale": 0.7696577243293247,
+  "scale": 0.8515864892528148,
   "cellSize": [
-    448,
-    448
+    384,
+    384
   ],
   "sheetSize": [
-    1792,
-    1792
+    1536,
+    1536
   ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
   "requestedIdleHeight": 208,
-  "idleHeightMean": 208.25,
+  "idleHeightMean": 208.0,
   "actorAnchor": [
-    224,
-    429
+    192,
+    370
   ],
-  "baselineY": 429,
+  "baselineY": 370,
   "idleAnchorMode": "ground",
   "rowReferenceRoots": [
     [
-      140.5,
-      303.0
+      151.5,
+      310.0
     ],
     [
-      141.0,
-      303.5
+      149.0,
+      290.5
     ],
     [
-      140.0,
-      300.0
+      158.0,
+      274.0
     ],
     [
-      140.5,
-      294.5
+      149.5,
+      245.5
     ]
   ],
   "sheetPath": "assets/spritesheets/enemies-hd/troll_cavernas/troll_cavernas-sheet.png",
-  "sheetSha256": "222733c07553600f447ddb939cf14aeb9a0bfb80e1a95abca139ad502922e217",
-  "sourcePath": "assets/spritesheets/enemies-hd/troll_cavernas/source/sheet-v1.png",
-  "sourceSha256": "4cd311bca331ef3228ab99d8e891fa4ff59e0e04776600ff041e387308a899c1",
+  "sheetSha256": "27d9f737df2baa6cb0ffaa41d0633221b2738e6fcff73121c06b3f2ef8b39b45",
+  "sourcePath": "assets/spritesheets/enemies-hd/troll_cavernas/source/sheet-v3.png",
+  "sourceSha256": "8847e46153ea1dd53930d65f3015441e495712f2bca72f0744b5c661592e15b1",
   "frameData": {
     "idle": [
       {
         "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/idle/troll_cavernas-idle-01.png",
-        "sha256": "94fa62fe7e7644ea36c2a80854eeb89d93dcd07a38381280d3b9743f4d159d16",
+        "sha256": "de082e4f589b523b74860174cac157943f960c11404ff71b7564a016efd51fee",
         "bounds": [
-          147,
-          214,
-          339,
-          429
+          119,
+          163,
+          312,
+          370
         ],
-        "idleAnchorCorrectionX": 3
+        "idleAnchorCorrectionX": 1
       },
       {
         "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/idle/troll_cavernas-idle-02.png",
-        "sha256": "78c902988fb0fde90006ee2dee1e221ba1e55c86f67e33764dacc30892d8b3ed",
+        "sha256": "dbc7105cf5a7018698c6564e17af86fafdeeb6810af1d7f281746b5ce6d40f5e",
         "bounds": [
-          147,
-          221,
-          332,
-          430
+          118,
+          162,
+          310,
+          370
         ],
-        "idleAnchorCorrectionX": 3
+        "idleAnchorCorrectionX": 1
       },
       {
         "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/idle/troll_cavernas-idle-03.png",
-        "sha256": "d68c66b249579fb6b15fcffc45a5dfa12e2805a667404d7666e1ab0a3b864fee",
+        "sha256": "ede225d3dfbda8eb4981617f6be59ddfbdaa8a494a675f8974f1c4a2b77a91e2",
         "bounds": [
-          147,
-          228,
-          332,
-          430
+          119,
+          161,
+          311,
+          370
         ],
-        "idleAnchorCorrectionX": 2
+        "idleAnchorCorrectionX": 1
       },
       {
         "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/idle/troll_cavernas-idle-04.png",
-        "sha256": "f787238dd1e4c2073c8e5a39bd4a01f5234d44b1c4e3168b31c424394bf2d253",
+        "sha256": "522c81f7b3fac964ad3a8e969be10934c36cf6cab623ef81fded439a16a2e419",
         "bounds": [
-          147,
-          222,
-          332,
-          429
+          119,
+          162,
+          309,
+          370
         ],
-        "idleAnchorCorrectionX": 2
+        "idleAnchorCorrectionX": 0
       }
     ],
     "hurt": [
       {
         "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/hurt/troll_cavernas-hurt-01.png",
-        "sha256": "77d7e41ddc2836671a0d4a49a990ca233a6470ff7d1eb5fee990da0f2bace7b9",
+        "sha256": "ed3381008f0e2149664ca8dee606a5b5f16f58fb1e4a23b1a2c53bfe3b686483",
         "bounds": [
-          145,
-          219,
-          336,
-          429
+          118,
+          174,
+          299,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/hurt/troll_cavernas-hurt-02.png",
-        "sha256": "b286749e71f0b526a9dc47422b20ffb19d1f49b161e90febce5dfef996b50b81",
+        "sha256": "4750e122e0bab79685cf6c0b2e930ae7f332e1d41d3aaf55750b162ce8463fdb",
         "bounds": [
-          149,
-          222,
-          343,
-          430
+          128,
+          173,
+          311,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/hurt/troll_cavernas-hurt-03.png",
-        "sha256": "8f276e8d39b0a0305f4dd2423aac1f2ade2e1c5bdc48a361ba4f971c28c135e2",
+        "sha256": "a44ea9241878cd588fced5e2a2ec8a2cda506a79a5c316518dcbbfbf18da5ef7",
         "bounds": [
-          156,
-          211,
-          355,
-          433
+          133,
+          171,
+          325,
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/hurt/troll_cavernas-hurt-04.png",
-        "sha256": "d7e7e1985e33ca0466362dceaa80e18cc64b04d7074a68860f97a61f43002db2",
+        "sha256": "f0dfb5962ccd03296a12749e3a847aa468c6789260cbccd2221367d3775f48b4",
         "bounds": [
-          145,
-          228,
-          337,
-          430
+          125,
+          174,
+          309,
+          371
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -142,45 +143,45 @@
     "attack": [
       {
         "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/attack/troll_cavernas-attack-01.png",
-        "sha256": "a93dd45a23d69a158da524e2a901c44febbc08663f164acfab50c89d138eee35",
+        "sha256": "fde67cc72b943a357cc2929eaddde129d6e5e027a30810bba9f86d52a7dbe90a",
         "bounds": [
-          139,
-          231,
-          328,
-          429
+          102,
+          185,
+          288,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/attack/troll_cavernas-attack-02.png",
-        "sha256": "fadb2211c7a505047d0989aaee3a6d01040b07ebc98e768fb16051083ae861a3",
+        "sha256": "9b1314a446c85a3673da05863ff7c8e59e57dfb2420e1f290836f33162c7249a",
         "bounds": [
-          147,
-          199,
-          323,
-          436
+          109,
+          140,
+          293,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/attack/troll_cavernas-attack-03.png",
-        "sha256": "c10d9b0ea74581b6d84730fd3348cb086540931c5cd995cb636c83a0b56ee0ee",
+        "sha256": "fdc332faa0b2885f786d7964a02c623b51d002c1aaf28d136679edcc907b04b0",
         "bounds": [
-          118,
-          238,
-          409,
-          431
+          87,
+          184,
+          348,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/attack/troll_cavernas-attack-04.png",
-        "sha256": "e978e0d373b2575ddec1b0bbfe43b0949b1e4ddad99b8899515bf76ca0b7ebe3",
+        "sha256": "69d379f48c47ad95dca95c8b9742b06895967b85b5bfb37df2aef04af3cae39b",
         "bounds": [
-          146,
-          246,
-          351,
-          431
+          109,
+          188,
+          307,
+          370
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -188,45 +189,45 @@
     "dodge": [
       {
         "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/dodge/troll_cavernas-dodge-01.png",
-        "sha256": "54f162faf63b3b6af91737972a394162f642e481e1850da402589475b392c875",
+        "sha256": "f456666262f628247006aa4a14ae6218ebd48210a745ddff785d2012757a6e28",
         "bounds": [
-          144,
-          218,
-          335,
-          429
+          116,
+          176,
+          310,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/dodge/troll_cavernas-dodge-02.png",
-        "sha256": "d6b1f50d8c3d07fa9f897e3ba8987352e7052a0e0005ae2637527c329838c499",
+        "sha256": "8ce2545d6c2a6e1148ac1c4b2b20997448047a8200920ff3b18f15e069e1b70c",
         "bounds": [
-          141,
-          236,
-          343,
-          427
+          125,
+          174,
+          311,
+          369
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/dodge/troll_cavernas-dodge-03.png",
-        "sha256": "71db0ed68e3c2c2d10aeb32e2dc80f3a9d6f3ee7519cfca0d9a6c8c7b2e13708",
+        "sha256": "e540dd67eba095077fdb1d4a705145b4d35ee89974fdd22a7517a14589d24834",
         "bounds": [
-          144,
-          264,
-          355,
-          424
+          114,
+          195,
+          328,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/dodge/troll_cavernas-dodge-04.png",
-        "sha256": "4a403f2458532d6401735e8584267c547ac1a686dfa4b09411776ea58b62f373",
+        "sha256": "0e214d449083c62f83c348350c561a3d27d2a194aaccef8be39035cccc24b259",
         "bounds": [
-          145,
-          218,
-          333,
-          427
+          119,
+          170,
+          311,
+          370
         ],
         "idleAnchorCorrectionX": 0
       }

@@ -92,10 +92,100 @@
     "group": "III",
     "page": 1,
     "enemies": [
-      "minotauro"
+      "minotauro",
+      "guardian_cripta",
+      "basilisco_joven",
+      "centauro_saqueador"
     ],
     "png": "enemies-III.png",
     "gif": "enemies-III.gif",
+    "pixelScale": 1
+  },
+  {
+    "group": "III",
+    "page": 2,
+    "enemies": [
+      "gargola_ancestral",
+      "elemental_roca",
+      "sacerdotisa_oscura",
+      "mantícora"
+    ],
+    "png": "enemies-III-02.png",
+    "gif": "enemies-III-02.gif",
+    "pixelScale": 1
+  },
+  {
+    "group": "III",
+    "page": 3,
+    "enemies": [
+      "ogro_chaman"
+    ],
+    "png": "enemies-III-03.png",
+    "gif": "enemies-III-03.gif",
+    "pixelScale": 1
+  },
+  {
+    "group": "IV",
+    "page": 1,
+    "enemies": [
+      "caballero_maldito",
+      "wyvern_joven",
+      "elemental_fuego",
+      "vampiro_noble"
+    ],
+    "png": "enemies-IV.png",
+    "gif": "enemies-IV.gif",
+    "pixelScale": 1
+  },
+  {
+    "group": "V",
+    "page": 1,
+    "enemies": [
+      "demonio_menor",
+      "dragon_negro_joven",
+      "gigante_escarcha"
+    ],
+    "png": "enemies-V.png",
+    "gif": "enemies-V.gif",
+    "pixelScale": 1
+  },
+  {
+    "group": "bosses",
+    "page": 1,
+    "enemies": [
+      "senor_frontera",
+      "reina_sombras",
+      "titan_hierro",
+      "dragon_bosque_verde"
+    ],
+    "png": "enemies-bosses.png",
+    "gif": "enemies-bosses.gif",
+    "pixelScale": 1
+  },
+  {
+    "group": "bosses",
+    "page": 2,
+    "enemies": [
+      "capitan_orcos",
+      "reina_arana",
+      "archimago_exiliado",
+      "dragon_pantano"
+    ],
+    "png": "enemies-bosses-02.png",
+    "gif": "enemies-bosses-02.gif",
+    "pixelScale": 1
+  },
+  {
+    "group": "bosses",
+    "page": 3,
+    "enemies": [
+      "rey_no_muerto",
+      "hidra_tres_cabezas",
+      "senor_abismo",
+      "dragon_anciano"
+    ],
+    "png": "enemies-bosses-03.png",
+    "gif": "enemies-bosses-03.gif",
     "pixelScale": 1
   }
 ]

@@ -10,14 +10,16 @@ Dirección artística vigente tras la última revisión: acabado pintado de fant
 
 Producción mediante la herramienta integrada de generación de imágenes, con los personajes HD como referencia de estilo. Se conservan originales, instrucciones, hashes, fotogramas y previsualizaciones animadas. El ensamblado solo separa, alinea y empaqueta el arte; no dibuja criaturas ni inventa poses.
 
-Se revisa cada hoja completa, transparencia, dieciséis poses, márgenes y coherencia del diseño. Cada enemigo terminado se guarda con un commit en `creacion-sprite-sheets`. El manifiesto de `assets/spritesheets/enemies-hd` indica el avance real. La integración en combate y la publicación en main se realizan después de revisar la biblioteca terminada.
+Se revisa cada hoja completa, transparencia, dieciséis poses, márgenes y coherencia del diseño. El progreso se guarda en commits de `creacion-sprite-sheets`. El manifiesto de `assets/spritesheets/enemies-hd` indica el avance real. La integración en combate y la publicación en main se realizan después de revisar la biblioteca terminada.
+
+La biblioteca completa está disponible en la [galería animada](../assets/spritesheets/enemies-hd/previews/revision.html), con navegación por rango/jefes y vista a tamaño real. La revisión de proporciones sustituyó 19 diseños: goblin, bandido, orco, murciélago, kobold, arbalestero, cultista, gnoll, hombre lagarto, arpía, nigromante, centauro, sacerdotisa, vampiro, demonio menor, reina de las sombras, minotauro, basilisco y troll. Los nueve jefes restantes de la última tanda se generaron directamente con la dirección más seria. Se comprobaron también las tres cabezas de la hidra y la continuidad del equipo en las poses; el cetro de la reina y el reposo de la sacerdotisa recibieron correcciones específicas. La aceptación artística final sigue pendiente del usuario.
 
 
 
 <!-- ENEMIES_HD_PROGRESS_START -->
 ## Avance verificable
 
-47 / 54 enemigos candidatos; 752 / 864 fotogramas. Revisión del usuario e integración pendientes.
+54 / 54 enemigos candidatos; 864 / 864 fotogramas. Revisión del usuario e integración pendientes.
 
 | Enemigo | Estado |
 |---|---|
@@ -64,17 +66,17 @@ Se revisa cada hoja completa, transparencia, dieciséis poses, márgenes y coher
 | Dragón Negro Joven | 16 fotogramas; candidato revisado |
 | Gigante de Escarcha | 16 fotogramas; candidato revisado |
 | Señor de la Frontera | 16 fotogramas; candidato revisado |
-| Reina de las Sombras | Pendiente |
+| Reina de las Sombras | 16 fotogramas; candidato revisado |
 | Titán de Hierro | 16 fotogramas; candidato revisado |
 | Dragón del Bosque Verde | 16 fotogramas; candidato revisado |
 | Capitán de los Orcos | 16 fotogramas; candidato revisado |
 | Reina Araña | 16 fotogramas; candidato revisado |
-| Archimago Exiliado | Pendiente |
-| Dragón del Pantano | Pendiente |
-| Rey No Muerto | Pendiente |
-| Hidra de Tres Cabezas | Pendiente |
-| Señor del Abismo | Pendiente |
-| Dragón Anciano | Pendiente |
+| Archimago Exiliado | 16 fotogramas; candidato revisado |
+| Dragón del Pantano | 16 fotogramas; candidato revisado |
+| Rey No Muerto | 16 fotogramas; candidato revisado |
+| Hidra de Tres Cabezas | 16 fotogramas; candidato revisado |
+| Señor del Abismo | 16 fotogramas; candidato revisado |
+| Dragón Anciano | 16 fotogramas; candidato revisado |
 
 Previsualizaciones por rango en `assets/spritesheets/enemies-hd/previews`. Se mantienen las fuentes y todas las revisiones anteriores.
 <!-- ENEMIES_HD_PROGRESS_END -->

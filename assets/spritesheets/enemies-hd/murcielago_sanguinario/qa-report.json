@@ -7,7 +7,7 @@
     "attack",
     "dodge"
   ],
-  "scale": 0.6290956749672346,
+  "scale": 0.7218045112781954,
   "cellSize": [
     384,
     384
@@ -16,79 +16,80 @@
     1536,
     1536
   ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
   "requestedIdleHeight": 120,
-  "idleHeightMean": 120.0,
+  "idleHeightMean": 119.75,
   "actorAnchor": [
     192,
-    352
+    362
   ],
-  "baselineY": 352,
+  "baselineY": 362,
   "idleAnchorMode": "air",
   "rowReferenceRoots": [
     [
-      172.0,
-      286.0
+      176.5,
+      272.0
+    ],
+    [
+      177.0,
+      265.5
     ],
     [
       169.0,
-      278.5
+      247.0
     ],
     [
-      155.5,
-      278.0
-    ],
-    [
-      168.5,
-      245.5
+      178.0,
+      212.5
     ]
   ],
   "sheetPath": "assets/spritesheets/enemies-hd/murcielago_sanguinario/murcielago_sanguinario-sheet.png",
-  "sheetSha256": "1809da7da0b1b600e0b617af56c43bf5923d4784f342d911c3b89c0d7370af4c",
-  "sourcePath": "assets/spritesheets/enemies-hd/murcielago_sanguinario/source/sheet-v1.png",
-  "sourceSha256": "097367963a16d65044661f3cffe6e316e8bbd07f42c4e5dd580c1e4a9c003c61",
+  "sheetSha256": "7dec31d810fc9c70edda25db8a1d0a71e4f39c306b9dcded5633097015a97c88",
+  "sourcePath": "assets/spritesheets/enemies-hd/murcielago_sanguinario/source/sheet-v3.png",
+  "sourceSha256": "4ebcf943dbc847237bd6b41a1157dec4e82a034ca79b6f03d2d41b9fbc8b552b",
   "frameData": {
     "idle": [
       {
         "path": "assets/spritesheets/enemies-hd/murcielago_sanguinario/frames/idle/murcielago_sanguinario-idle-01.png",
-        "sha256": "170b425e76e330949c233c5b9ac3c7f3de722134971d8f10806763ef6181e34c",
+        "sha256": "cf8c38d2ee285b5c15ecd4a7a9b105d628d85ee68f58e729f789d29df1d6f259",
         "bounds": [
-          96,
-          222,
-          270,
-          352
+          95,
+          231,
+          277,
+          362
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/murcielago_sanguinario/frames/idle/murcielago_sanguinario-idle-02.png",
-        "sha256": "072bef0f9c403891f3bb6ac35c3e8468b75f850c3890cd417a8c6e37676e8136",
+        "sha256": "3d0983b43db149123c6f0115b8b9d94beb0cd7729799fc924b5a450c9bf52ebb",
         "bounds": [
-          95,
+          105,
           246,
-          281,
-          355
+          280,
+          362
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/murcielago_sanguinario/frames/idle/murcielago_sanguinario-idle-03.png",
-        "sha256": "bbec1866eadfa655500bc690ec58f9443985da9a42215b5008091fbe7cfdb4e4",
+        "sha256": "5a6083d39a3526abdeb2cd1a16233a97d24040ff5e623cb274d2e3bf2b949633",
         "bounds": [
-          104,
-          245,
+          108,
           271,
-          356
+          279,
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/murcielago_sanguinario/frames/idle/murcielago_sanguinario-idle-04.png",
-        "sha256": "a68aed7f6545c96f4fdf0a81d6569274c30030f580bce544cd2166c6e0211233",
+        "sha256": "eb3ff9a1b3915f7ff9e07335ff1540939b07bdc07cd6fd23e0528c924264c11f",
         "bounds": [
-          94,
-          225,
-          270,
-          355
+          90,
+          230,
+          263,
+          361
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -96,45 +97,45 @@
     "hurt": [
       {
         "path": "assets/spritesheets/enemies-hd/murcielago_sanguinario/frames/hurt/murcielago_sanguinario-hurt-01.png",
-        "sha256": "95714184c1b66d9b2f294d976bb8d6393acdaf377857fd5ac6fe885c683bc126",
+        "sha256": "9f11ee52fc023ff2454dbfeddd37262665e21bb2c5df9954133e931e0c3f4bcb",
         "bounds": [
-          99,
-          224,
-          283,
-          352
+          101,
+          238,
+          281,
+          362
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/murcielago_sanguinario/frames/hurt/murcielago_sanguinario-hurt-02.png",
-        "sha256": "c6a679b8c4d7f37cbff34349c6f1432348bd2390c4762d31ad570e839f832fd7",
+        "sha256": "ca544cc52a5a4bb84b3e870ea79d6cde2de7cdd38653654a5f0539d4736e8108",
         "bounds": [
-          122,
-          235,
-          270,
-          359
+          117,
+          253,
+          281,
+          368
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/murcielago_sanguinario/frames/hurt/murcielago_sanguinario-hurt-03.png",
-        "sha256": "b17d35863524fd67ba75fe0903c104bbffa0ad06eb804eadc1a10d90a02e8daf",
+        "sha256": "895d8f451db980ee2e17d096f53ca399b68074cc1884a41587547f63389308fb",
         "bounds": [
-          126,
-          228,
-          253,
-          366
+          114,
+          237,
+          267,
+          365
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/murcielago_sanguinario/frames/hurt/murcielago_sanguinario-hurt-04.png",
-        "sha256": "f6a36fe3a9c7c8bd5447c23bb4cd7c7c0ea8083c5b388a3f09db127a0aca7414",
+        "sha256": "092baba4e56120d66cb336cd30cd8b94eb3455e325f86f4a0e6717f2234fe39a",
         "bounds": [
-          91,
-          221,
-          274,
-          351
+          96,
+          232,
+          263,
+          361
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -142,45 +143,45 @@
     "attack": [
       {
         "path": "assets/spritesheets/enemies-hd/murcielago_sanguinario/frames/attack/murcielago_sanguinario-attack-01.png",
-        "sha256": "2b72f0d93a4810dd9fe9d5a934c2161610f36d66349cb7ee8c8cb0b203c9d670",
+        "sha256": "2ec116d9f465ca5221e7867c9cb735b0b15e4e8a15cf5fa93982694980080fe3",
         "bounds": [
-          114,
-          197,
-          284,
-          352
+          121,
+          225,
+          281,
+          362
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/murcielago_sanguinario/frames/attack/murcielago_sanguinario-attack-02.png",
-        "sha256": "992d94ddc056b8735a918d53ec4a6cd5d7c1d0bc6a425bc58207102cd6b5b52f",
+        "sha256": "43545f992ddf94d015252f3fce4289542f252fa5a6a17b3a15b8cdd5e0f9cd29",
         "bounds": [
-          105,
-          219,
-          284,
-          352
+          107,
+          235,
+          281,
+          359
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/murcielago_sanguinario/frames/attack/murcielago_sanguinario-attack-03.png",
-        "sha256": "9120a7bbd0f9352ecd20838d2b012a7de210ec6db89d053e25eb0c105f3a273e",
+        "sha256": "e6fd507f224b671dbde9831746217366bcae87a8c89fb5363bd979a1400cc3af",
         "bounds": [
-          114,
-          260,
-          308,
-          358
+          101,
+          264,
+          293,
+          356
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/murcielago_sanguinario/frames/attack/murcielago_sanguinario-attack-04.png",
-        "sha256": "27b87668a1c67cb3c1df5ddb94b5bd1e1b63f8a7712181755c8431f1cecd8ed9",
+        "sha256": "3366dd49853cdf01802c3acb0a63a58a4aa8006ed2a4b48eb2bbbee773336885",
         "bounds": [
-          109,
-          217,
-          278,
-          343
+          110,
+          227,
+          274,
+          355
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -188,45 +189,45 @@
     "dodge": [
       {
         "path": "assets/spritesheets/enemies-hd/murcielago_sanguinario/frames/dodge/murcielago_sanguinario-dodge-01.png",
-        "sha256": "426f2ef7ef91a2e683f76e64574865d61d31f14caa92e37fcfe1a9ec0ee6e247",
+        "sha256": "2db6545790f6d6bb33562bffd0145d23616dbf8e14528bb919e604ba60d77dd7",
         "bounds": [
-          99,
-          224,
-          278,
-          352
+          100,
+          237,
+          286,
+          362
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/murcielago_sanguinario/frames/dodge/murcielago_sanguinario-dodge-02.png",
-        "sha256": "c5de0934d8b7d40b587783133d2d640a1a27ccf8476585b0612589c959b0fc48",
+        "sha256": "88a4bd208920a00ef6632342ab8c71a71642c2c0a3a2a5d2fdaab7d4438ddbf1",
         "bounds": [
           117,
-          220,
+          243,
           283,
-          358
+          366
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/murcielago_sanguinario/frames/dodge/murcielago_sanguinario-dodge-03.png",
-        "sha256": "779c656cccea7b95e79784ce9f387351605691c93c561a0361760a96b5c5f617",
+        "sha256": "7110cf13d30f822c77cf9ace6fbfd74e2576c95f367463cbdd5245c2fea068a1",
         "bounds": [
-          114,
-          264,
-          257,
-          372
+          121,
+          276,
+          265,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/murcielago_sanguinario/frames/dodge/murcielago_sanguinario-dodge-04.png",
-        "sha256": "12a0611ae72e91af2d200846f90dfbfdd17e5e580b439ccec5ed6ffe82f9cedf",
+        "sha256": "cbcf56f6f520fc60e426fd2e14deb1250659507712fc01aa2ff6ebb889823d7f",
         "bounds": [
-          95,
-          226,
-          273,
-          353
+          92,
+          236,
+          272,
+          361
         ],
         "idleAnchorCorrectionX": 0
       }
