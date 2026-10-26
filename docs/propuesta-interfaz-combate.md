@@ -18,8 +18,10 @@ Cambiar la presentación manteniendo los controladores y contratos actuales de `
 
 Los datos, costes y acciones de la propuesta son ejemplos visuales, no implementaciones alternativas de estas reglas. Antes de integrar, conectar cada control a su función existente y verificar solo y party en móvil y escritorio.
 
-## Revisión: información integrada
+## Revisión vigente: un solo bloque de acciones
 
-Historial y detalles comparten el panel central en escritorio. Habilidades y Objetos despliegan su lista a la derecha conservando las cuatro órdenes. En móvil el panel se adapta y las fichas de combatientes alternan entre aliados y enemigos para ahorrar espacio. Seleccionar un enemigo en la escena abre su pestaña; también puede seleccionarse desde su ficha.
+Habilidades y Objetos ensanchan el propio menú de acciones: órdenes, lista y explicación comparten marco. El historial es una sección independiente y nunca contiene habilidades u objetos.
 
-Se elimina el mensaje textual de selección y se añade un pulso discreto a la flecha, desactivado con movimiento reducido. Las fichas enemigas muestran nombres y PV del catálogo. El modelo actual `DefinicionEnemigo` no tiene reservas de maná/energía: se muestra un guion en lugar de inventar recursos. Los datos siguen siendo de demostración, sin llamadas a acciones reales.
+Aliados y enemigos se muestran simultáneamente, sin pestañas, también con el menú desplegado. En móvil las dos listas compactas se colocan encima del bloque de acciones; en escritorio permanecen a su derecha. Se mantiene la selección desde la escena y desde las fichas enemigas.
+
+La flecha tiene un pulso discreto, desactivado con movimiento reducido. Las fichas enemigas muestran nombres y PV del catálogo; el modelo actual no tiene reservas de maná/energía, por lo que se muestra un guion. La vista sigue siendo una demostración sin llamadas a acciones reales.

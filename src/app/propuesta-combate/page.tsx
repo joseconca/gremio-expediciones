@@ -26,9 +26,7 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
   const [accion, setAccion] = useState<"idle" | "attack" | "hurt">("idle");
   const [inicio, setInicio] = useState(0);
   const [menu, setMenu] = useState<"principal" | "habilidades" | "objetos">("principal");
-  const [panel, setPanel] = useState<"detalles" | "historial">("historial");
   const [expandido, setExpandido] = useState(false);
-  const [bando, setBando] = useState<"aliados" | "enemigos">("aliados");
   const [historial, setHistorial] = useState(["El grupo entra en el claro.", "Aldric está listo para actuar."]);
   const [descripcion, setDescripcion] = useState("Atacar usa el arma equipada contra el enemigo marcado. Huir intenta abandonar el combate.");
   const [huido, setHuido] = useState(false);
@@ -45,7 +43,7 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
     timer.current = setTimeout(() => setAccion("idle"), 1100);
   };
   const ancho = movil ? 390 : 1120;
-  const altoEscena = movil ? 470 : 400;
+  const altoEscena = movil ? (party ? 310 : 370) : 400;
   return <div className={`${styles.battle} ${movil ? styles.mobile : ""}`} style={{ width: ancho, height: movil ? 760 : 680 }}>
     <header className={styles.battleHeader}><div><span className={styles.eyebrow}>BOSQUE DE LAS CENIZAS</span><strong>{jefe ? "Una presencia ancestral" : "Emboscada en el sendero"}</strong></div><span className={styles.turn}>Turno 03</span></header>
     <div className={styles.stage}>
@@ -68,7 +66,7 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
         const x = ancho * (enemigos.length === 1 ? 0.74 : [0.71, 0.81, 0.69][i]);
         const foot = altoEscena * (enemigos.length === 1 ? 0.8 : [0.48, 0.68, 0.88][i]);
         return <button key={id} className={`${styles.actor} ${styles.enemy}`} aria-label={`Seleccionar ${s.name}`} aria-pressed={seleccionado === i}
-          onClick={() => { setObjetivo(i); setBando("enemigos"); }}
+          onClick={() => { setObjetivo(i); }}
           style={{ left: x, top: foot - s.height * unit, width: Math.max(64, radio * unit * 1.2), height: s.height * unit, "--unidad-enemigo": `${unit}px`, zIndex: 10 + i } as CSSProperties}>
           <div className={`${styles.ground} ${seleccionado === i ? styles.enemyGround : ""}`} />
           <SpriteEnemigoAnimado enemigoId={id} nombre={s.name} accion={seleccionado === i && accion === "attack" ? "hurt" : seleccionado === i && accion === "hurt" ? "attack" : "idle"} inicioAnimacion={inicio} />
@@ -79,13 +77,13 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
 
     </div>
     <footer className={styles.hud}>
-      <div className={`${styles.roster} ${styles.combatants}`}>
-        <div className={styles.rosterTabs}><button aria-pressed={bando === "aliados"} onClick={() => setBando("aliados")}>Aliados · {heroes.length}</button><button aria-pressed={bando === "enemigos"} onClick={() => setBando("enemigos")}>Enemigos · {enemigos.length}</button></div>
-        {bando === "aliados" ? heroes.map((h, i) => <div key={h.nombre} className={`${styles.heroCard} ${i === 0 ? styles.activeCard : ""}`}>
+      <div className={styles.allCombatants}>
+        <section className={styles.teamLedger} aria-label="Aliados"><h3>Aliados</h3>
+        {heroes.map((h, i) => <div key={h.nombre} className={`${styles.heroCard} ${i === 0 ? styles.activeCard : ""}`}>
           <div className={styles.cardTitle}><strong>{h.nombre}</strong><span>{i === 0 ? "◆ ACTÚA" : h.clase}</span></div>
           <div className={styles.stat}><span>PV</span><div className={styles.bar}><i style={{ width: `${h.hp / h.max * 100}%` }} /></div><b>{h.hp}<small>/{h.max}</small></b></div>
           <div className={styles.stat}><span>{i === 1 || i === 3 ? "PM" : "EN"}</span><div className={`${styles.bar} ${styles.mana}`}><i style={{ width: "72%" }} /></div><b>{h.mp}</b></div>
-        </div>) : enemigos.map((id, i) => {
+        </div>)}</section><section className={styles.teamLedger} aria-label="Enemigos"><h3>Enemigos</h3>{enemigos.map((id, i) => {
           const e = obtenerEnemigoPorId(id);
           const hp = e?.hp ?? 100;
           return <button key={id} className={`${styles.heroCard} ${styles.enemyCard} ${seleccionado === i ? styles.selectedEnemyCard : ""}`} aria-label={`Ver ${ENEMIGOS_HD[id].name}`} aria-pressed={seleccionado === i} onClick={() => setObjetivo(i)}>
@@ -93,17 +91,16 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
             <div className={styles.stat}><span>PV</span><div className={`${styles.bar} ${styles.enemyHealth}`}><i style={{width:"100%"}} /></div><b>{hp}<small>/{hp}</small></b></div>
             <div className={styles.stat}><span>PM/EN</span><span className={styles.noResource} title="El combate actual no asigna maná ni energía a los enemigos">—</span></div>
           </button>;
-        })}
+        })}</section>
       </div>
+      <div className={`${styles.actionBlock} ${menu !== "principal" ? styles.actionBlockExpanded : ""}`} aria-label="Menú de acciones">
       <div className={styles.orders}><div className={styles.orderTitle}><span>Aldric</span></div>
         <div className={styles.commandGrid}>{["Atacar", "Habilidades", "Objetos", "Huir"].map((label, i) => <button key={label} aria-expanded={i === 1 ? menu === "habilidades" : i === 2 ? menu === "objetos" : undefined} disabled={accion !== "idle" || huido} onClick={() => {
-          if (label === "Habilidades" || label === "Objetos") { const next = label === "Habilidades" ? "habilidades" : "objetos"; setMenu(menu === next ? "principal" : next); setPanel("detalles"); setDescripcion(next === "habilidades" ? "Selecciona una técnica. El coste se muestra a la derecha." : "Selecciona un consumible. La cantidad disponible se muestra a la derecha."); }
+          if (label === "Habilidades" || label === "Objetos") { const next = label === "Habilidades" ? "habilidades" : "objetos"; setMenu(menu === next ? "principal" : next); setDescripcion(next === "habilidades" ? "Selecciona una técnica. El coste se muestra a la derecha." : "Selecciona un consumible. La cantidad disponible se muestra a la derecha."); }
           else if (label === "Huir") { setHuido(true); setHistorial(h => [...h, "Aldric sale del combate (demostración)."]); }
           else ejecutar(label, performance.now());
         }}><span aria-hidden="true">{i === 0 ? "▸" : ""}</span>{label}{(i === 1 || i === 2) && <small>›</small>}</button>)}</div>
       </div>
-      <section className={`${styles.contextPanel} ${expandido ? styles.contextExpanded : ""} ${menu !== "principal" ? styles.withSubmenu : ""}`} aria-label="Información del combate">
-        <div className={styles.contextTabs}><button aria-pressed={panel === "historial"} onClick={() => { setPanel("historial"); setExpandido(panel === "historial" ? !expandido : true); }}>Historial</button><button aria-pressed={panel === "detalles"} onClick={() => { setPanel("detalles"); setExpandido(panel === "detalles" ? !expandido : true); }}>Detalles</button>{movil && expandido && <button aria-label="Contraer información" onClick={() => setExpandido(false)}>−</button>}</div>
         {menu !== "principal" && <div className={styles.submenu} aria-label={menu === "habilidades" ? "Lista de habilidades" : "Lista de objetos"}>
           <div className={styles.submenuTitle}><strong>{menu === "habilidades" ? "Habilidades" : "Objetos"}</strong><button aria-label="Cerrar lista" onClick={() => setMenu("principal")}>×</button></div>
           {(menu === "habilidades" ? ["Corte poderoso", "Golpe certero", "Bloquear"] : ["Poción", "Éter", "Antídoto"]).map((nombre, i) => {
@@ -113,8 +110,12 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
               else { const linea = `${nombre} utilizado · demostración`; setHistorial(h => [...h.slice(-19), linea]); setMenu("principal"); }
             }}><span>{nombre}</span><small>{menu === "habilidades" ? ["18 EN", "12 EN", "8 EN"][i] : ["×3", "×1", "×2"][i]}</small></button>;
           })}
+          <p className={styles.actionDescription} aria-live="polite">{descripcion}</p>
         </div>}
-        <div className={styles.contextBody} aria-live="polite">{panel === "historial" ? <ol>{historial.map((linea, i) => <li key={i}>{linea}</li>)}</ol> : <p>{descripcion}</p>}</div>
+      </div>
+      <section className={`${styles.historyOnly} ${expandido ? styles.historyOpen : ""} ${menu !== "principal" ? styles.historyDuringMenu : ""}`} aria-label="Historial del combate">
+        <button className={styles.historyToggle} aria-expanded={expandido} onClick={() => setExpandido(!expandido)}>Historial <span>{expandido ? "−" : "+"}</span></button>
+        <ol>{(expandido ? historial : historial.slice(-2)).map((linea, i) => <li key={i}>{linea}</li>)}</ol>
       </section>
       {huido && <div className={styles.exitPanel}><strong>Has salido del combate</strong><p>Demostración de la acción Huir.</p><button onClick={() => { setHuido(false); }}>Volver a la vista previa</button></div>}
 
