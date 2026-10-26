@@ -202,7 +202,7 @@ El usuario ha probado la integración anterior de Novato, Tier 1 y equipo, la co
 |---|---|---|
 | Caballero | 60 / 15 acciones; contactos revisados | 60 / 15 acciones; contactos revisados |
 | Duelista | 60 / 15 acciones; contactos revisados | 60 / 15 acciones; contactos revisados |
-| Sacerdote | 60 / 15 acciones; contactos revisados | 0 / 60 fotogramas |
+| Sacerdote | 60 / 15 acciones; contactos revisados | 60 / 15 acciones; contactos revisados |
 | Monje | 0 / 60 fotogramas | 0 / 60 fotogramas |
 | Cazador | 0 / 60 fotogramas | 0 / 60 fotogramas |
 | Explorador | 0 / 60 fotogramas | 0 / 60 fotogramas |

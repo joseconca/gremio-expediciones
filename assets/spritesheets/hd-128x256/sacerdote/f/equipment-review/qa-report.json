@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "sacerdote",
   "sex": "f",
   "actions": [
@@ -16,7 +16,8 @@
     "attack_bow",
     "attack_staff",
     "attack_mace",
-    "attack_book"
+    "attack_book",
+    "attack_gloves"
   ],
   "bodyHashes": {
     "idle": [
@@ -86,10 +87,10 @@
       "505747080ed14a34515cb627c03b5605d96fe356947bf1767210ec9541fb54ae"
     ],
     "attack_staff": [
-      "f0a9553db4ae46d28852f4e6250433e051c33356768ddb52755b80efb06c05db",
-      "84ca01fbf2aef0e0e5cf4e6159f2747f7a76195c0d181f3263f00f40127a0716",
-      "6bdf3751ef970145152053871a167218ec6e6788bd5ce9dbd846b9cd810573ba",
-      "9f955b648b39b8375d953cdd0eb6da04db71cc7562905a55b0169b5962faafe6"
+      "fc68e718a5a499cfedccb1072efc00473f2b5b7d018ff50ca2415b047ed8292c",
+      "fb4fa47ec6f700160210057009bf491a0671fde2ee7855ea6e3774831e25418d",
+      "c843635ecd89a87ac63e51e67ab80300ba508e3dd5ca492e44db030b948452db",
+      "6c96fb6609e06d204f14366982cc006913c2503ff738e0a174fdc8e6eb816995"
     ],
     "attack_mace": [
       "1f58373d1787014f6f0a3ceb562dfd54f634bc052278f8e67729e605325d3b44",
@@ -102,29 +103,16 @@
       "f3038f613b8d6355d79f8f04c8f94d1ace13860449c1eedef0e00b027ad94b43",
       "130a80e9a064b3758e0bfcd05b583c447b8a66b0746603c775a2cae62ddab296",
       "eaba06dc397229b1a65e77251d6f86564e955bcd9c2885013fef07f68d15c736"
+    ],
+    "attack_gloves": [
+      "e6945b75063259e383e02e629690ce13c431ce9f67085b7e2b28d1f078eaeefc",
+      "23a04e222c0fd032a76b2de2e5e0b9201f51ac7ab8b9fa56acbd059a1490117e",
+      "63f3c528e2d5a22ba2eb50e025c6c372046ffdf81dd4ef9d2e53b11d0512bdad",
+      "a82597e0c1c581da9da6f7370d4389b0852c581c5d2bd631ca133fc7bda21d0a"
     ]
   },
-  "contactChecks": 666,
-  "warnings": [
-    {
-      "action": "attack_staff",
-      "frame": 3,
-      "item": "baston_madera",
-      "point": [
-        83,
-        161
-      ]
-    },
-    {
-      "action": "attack_staff",
-      "frame": 3,
-      "item": "baston_runico",
-      "point": [
-        83,
-        161
-      ]
-    }
-  ],
+  "contactChecks": 682,
+  "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
 }
