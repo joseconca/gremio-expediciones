@@ -82,3 +82,10 @@ Héroes HD, héroes legacy y enemigos comparten `estiloSombraCombate`: proyecci�
 ## Parejas centradas
 
 Las parties de dos se centran dentro del espacio útil y acortan su separación vertical. Si comparten carril o están próximos horizontalmente, se reserva la altura necesaria para el sprite y sus barras. Se conservan los carriles, el orden relativo, la escala y los datos tácticos; la formación de tres no se modifica. Verificado en móvil y escritorio y con pruebas para el mismo carril, carriles distintos y escenas pequeñas.
+
+
+## Confirmación de huida
+
+Huir abre un diálogo con «Seguir luchando» (foco inicial) y «Sí, huir». Abrir, cancelar o pulsar Escape no envía ninguna acción. Confirmar cierra el diálogo y llama al controlador de retirada existente, que conserva sus restricciones. El texto diferencia solo y party. La confirmación se cierra si cambia el combate o la posibilidad de retirarse.
+
+Verificado en móvil/escritorio y party fuera del turno propio: abrir/cancelar/Escape no ejecutan la acción; confirmar la ejecuta una vez.

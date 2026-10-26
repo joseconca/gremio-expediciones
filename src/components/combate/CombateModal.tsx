@@ -181,6 +181,7 @@ export default function CombateModal({
   habilidadesIniciales = [],
 }: CombateModalProps) {
   const logRef = useRef<HTMLDivElement>(null);
+  const confirmacionHuidaRef = useRef<HTMLDialogElement>(null);
   const escenaRef = useRef<HTMLElement>(null);
   const zonaEnemigosRef = useRef<HTMLDivElement>(null);
   const [anchoEnemigos, setAnchoEnemigos] = useState(147);
@@ -319,6 +320,9 @@ export default function CombateModal({
         )
       : true
   );
+  useEffect(() => {
+    confirmacionHuidaRef.current?.close();
+  }, [puedeHuir, combate.id]);
 
   const solicitarAccion = useCallback(
     (
@@ -1380,7 +1384,7 @@ export default function CombateModal({
               </button>
 
               <button
-                onClick={() => void ejecutarHuida()}
+                onClick={() => confirmacionHuidaRef.current?.showModal()}
                 disabled={procesando || !puedeHuir || (procesandoLocal && (Boolean(partyMode) || combate.turno !== "enemigo"))}
                 className="group flex w-full items-center justify-between rounded border border-red-900/70 bg-red-950/60 px-3 py-2 sm:px-4 sm:py-2.5 transition hover:bg-red-900/70 disabled:cursor-not-allowed disabled:opacity-40"
               >
@@ -1702,6 +1706,20 @@ export default function CombateModal({
             </div>
           )}
         </section>
+
+        <dialog ref={confirmacionHuidaRef} className={styles.fleeDialog}
+          aria-labelledby="confirmar-huida-titulo" aria-describedby="confirmar-huida-descripcion">
+          <h3 id="confirmar-huida-titulo">¿Huir del combate?</h3>
+          <p id="confirmar-huida-descripcion">{partyMode
+            ? "Solo se retirará tu personaje. Seguirás en la party."
+            : "Volverás a la base sin completar la misión."}</p>
+          <div>
+            <button type="button" autoFocus onClick={() => confirmacionHuidaRef.current?.close()}>Seguir luchando</button>
+            <button type="button" className={styles.confirmFlee}
+              disabled={procesando || !puedeHuir || (procesandoLocal && (Boolean(partyMode) || combate.turno !== "enemigo"))}
+              onClick={() => { confirmacionHuidaRef.current?.close(); void ejecutarHuida(); }}>Sí, huir</button>
+          </div>
+        </dialog>
 
         {/* PANEL DE INFORMACIÓN DE LOS COMBATIENTES */}
         {mostrarStatsEnemigo && (
