@@ -44050,11 +44050,12 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/elementalista/m/frames",
       "audit": {
-        "validFrames": 8,
+        "validFrames": 12,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
-          "walk"
+          "walk",
+          "hurt"
         ],
         "actions": {
           "idle": {
@@ -44198,7 +44199,74 @@
             "distinctFrames": 4
           },
           "hurt": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "ba487f46b22dde873e115ae87789d93d400d76c1680fa2856938e8bddb74a207",
+                "bytes": 26762,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  92,
+                  104,
+                  248
+                ],
+                "pixelSha256": "674970b1754a3f46a2d2a0d325e4be2bfd8f1f18eeda000133d6966575547743"
+              },
+              "02": {
+                "sha256": "8fa3118dd1723f2c6cd3a930f3dbaad96425337d0522d1fc5fc2c2f0802cca78",
+                "bytes": 26272,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  100,
+                  113,
+                  248
+                ],
+                "pixelSha256": "0cac13bfee146e3f49f9e62e74e8109a4e804ce51bd84373c24c7b4f8eee8bfc"
+              },
+              "03": {
+                "sha256": "68acff5ef903f550d0a411cf0600c644dc89c9db88e8828dcc569ffc952f4c11",
+                "bytes": 23497,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  119,
+                  104,
+                  248
+                ],
+                "pixelSha256": "a58855ed3a7a1e6ce76eeeb38ae00347c84e2237c7d414653d48ef04db6d76fb"
+              },
+              "04": {
+                "sha256": "d0335ec1112fceadf4105b1b6a7ac117d34c3c1685f2d6c41dbd2325c746c64b",
+                "bytes": 26940,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  92,
+                  100,
+                  248
+                ],
+                "pixelSha256": "fe809c1eda02b3c704f78eb02cbea92e152b9187e4648d821b7b7d7f39c2a697"
+              }
+            },
+            "distinctFrames": 4
           },
           "use_consumable": {
             "status": "missing"
@@ -44315,6 +44383,44 @@
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "hurt": {
+          "sourceSha256": "2ecbbc0bf91736abe222c56dd4e4988a36fbaf0c0679cb6dd35ca7b570d3cfec",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            617,
+            19,
+            1047,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            14,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/elementalista/m/source/hurt-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY ELEMENTALISTA MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action hurt. Young adult male elementalist: short tousled silver-white hair, intelligent calm face. Elegant dark navy and deep blue split arcane robe with restrained gold edging, ivory center tunic and hanging front panel, blue shoulder mantle and structured cuffs ending before visible fingers, brown waist belt with a small blue cabochon clasp, dark trousers, brown leather boots and discreet fingerless gloves. Exact canonical skeleton and head scale. No staff, book, floating gems, elemental symbols in air, magic, light trails or glow. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (178,436), other hand (409,428); figure 2: primary contact (860,297), other hand (952,241); figure 3: primary contact (1390,380), other hand (1482,397); figure 4: primary contact (1803,436), other hand (2038,428). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
+          "canonicalPoseHashes": [
+            "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
+            "bd77167140c15b93b69566bb90c4d9b42293de7cbb2fffd05fdc4e429c80edd7",
+            "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
+            "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -44348,6 +44454,22 @@
         },
         "walk/04": {
           "source": "sources.walk",
+          "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt",
           "frame": 4
         }
       },
