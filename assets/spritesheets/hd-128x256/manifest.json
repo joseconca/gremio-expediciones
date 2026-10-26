@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "explorador-m",
+  "nextVariant": "explorador-f",
   "classes": [
     {
       "id": "novato",
@@ -41262,7 +41262,7 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "walk": {
           "sourceSha256": "291009087e7906e4a9deeda0bd77342225fc31a670eee6810b3dc343e5044ec3",
@@ -41300,7 +41300,7 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "hurt": {
           "sourceSha256": "c8a008752d29ffebaa1505be06fdcb43e8c328f4596128c54f5f0ef154e720ee",
@@ -41338,7 +41338,7 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "use_consumable": {
           "sourceSha256": "81ecbe51126c2d12651af448774deb54c027dedf1112ef04ad278bd856535b56",
@@ -41376,7 +41376,7 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "dodge": {
           "sourceSha256": "aca79e8ab701568b5b53e5dc8c60be16027e4667a49b24267806afa136e41ec2",
@@ -41420,7 +41420,7 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "block_shield": {
           "sourceSha256": "9601347cabd86db962897cebc57d7293a4f804ffaa760642054f73b3ada62e22",
@@ -41464,7 +41464,7 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_sword": {
           "sourceSha256": "210e9e783b9c0dd9b46222bbf2dfb26497c92088de25158fd735eedc58fe5e6f",
@@ -41502,7 +41502,7 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_axe": {
           "sourceSha256": "d77f2fe30290ed09bb82c8169e2ca8842930db48f2d4c002839856ddbc67e6c2",
@@ -41540,7 +41540,7 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_spear": {
           "sourceSha256": "87a07c41d3cb1c635a6a2c75d6e6a619e70a5f52cfc5d212ead64ff7bd8e4cde",
@@ -41578,7 +41578,7 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_dagger": {
           "sourceSha256": "297f5b90a996f3b9aa1704d3a52b5d3a14582d673c229bd61dd45090913f466d",
@@ -41616,7 +41616,7 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_bow": {
           "sourceSha256": "278762aa46f39ed8978d955c75af86f7adea1b7a98a72e19baa9165a22ca6e93",
@@ -41654,7 +41654,7 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_staff": {
           "sourceSha256": "198dba32344a256432a58099b1380ee1687ea7ee219eb2799dc6d8464b912f0c",
@@ -41692,7 +41692,7 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_mace": {
           "sourceSha256": "613242111fb3be259f25582d3395adf274276f0660b0547836b85099e89ff637",
@@ -41730,7 +41730,7 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_book": {
           "sourceSha256": "8bd4d70a2bf6c2e292f165bf7dc6cec4dc9081cd40998c77d715f553bae79f9d",
@@ -41768,7 +41768,7 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_gloves": {
           "sourceSha256": "ce1e53db4772dc1df2aba020725ae22d6cfae23c28c715bafb9d031d6999125a",
@@ -41806,7 +41806,7 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         }
       },
       "frameProvenance": {
@@ -42082,6 +42082,16 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-assistant-reviewed-candidate",
+      "equipmentCompatibility": {
+        "status": "shared-layers-reviewed-candidate",
+        "report": "assets/spritesheets/hd-128x256/explorador/m/equipment-review/qa-report.json",
+        "contactChecks": 682,
+        "warnings": 0,
+        "classSpecificOffsets": false,
+        "equipmentLayerPolicy": "Exactly the existing sheets for this sex; no equipment changes to fit the new body.",
+        "userApproval": "pending"
       }
     },
     {
@@ -42090,19 +42100,88 @@
       "tier": 2,
       "sex": "f",
       "order": 22,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/explorador/f/explorador-f-sheet.png",
       "sourceStatus": "hires-library-verified",
-      "qaStatus": "not-started",
+      "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/explorador/f/frames",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "d73b4d089f20c5e5652a3bcdbea57707b28ba23933143e332fb4929b63e34c6c",
+                "bytes": 26783,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  90,
+                  109,
+                  248
+                ],
+                "pixelSha256": "63fa527516eaf76a62f656a768b6a59c281ee03c633b5755c0a8bce4fad93670"
+              },
+              "02": {
+                "sha256": "e1cec0d267bd07ea06387659d2937f96e82fd1bf3cc453af942de00b1d3912ba",
+                "bytes": 26972,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  90,
+                  107,
+                  248
+                ],
+                "pixelSha256": "fbf0da1e0d98a1b64504fe331c0c0ed4aa8f8ff7da26ab535c1f1a1b879c11bf"
+              },
+              "03": {
+                "sha256": "7046d0ea30356042d5b2e5a4281d6c7a608fb29cb03a94ad64af8914432763c1",
+                "bytes": 26838,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  90,
+                  101,
+                  248
+                ],
+                "pixelSha256": "5eb38a80511274b2f6cc52fb69bbe441d1ad064be986597aab5b958e86526dc4"
+              },
+              "04": {
+                "sha256": "c00c8c2578ba9ad9526d2d31f5a7807f601d43ae2a2dd6ef45e5a39ca728f25f",
+                "bytes": 26580,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  91,
+                  98,
+                  248
+                ],
+                "pixelSha256": "cbf3dd221f701108b68ee692b879f97fc0d472e796ad660909645f3a8acd24fb"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -42148,7 +42227,66 @@
           }
         }
       },
-      "equipmentRigId": "humanoid-f-v1"
+      "equipmentRigId": "humanoid-f-v1",
+      "sources": {
+        "idle": {
+          "sourceSha256": "8795a3d7037003eb9d5bb2196f563ad8d1e06b9789329e67a793e227c1832313",
+          "sourceDimensions": [
+            2171,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/explorador/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY EXPLORADOR FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action idle. Young adult female explorer scout: long chestnut-brown high ponytail and swept bangs, alert adventurous face, olive-green split travel coat and short shoulder cape, muted khaki scarf and tan chest panel, warm brown leather waist belts and cross straps with small pouches, dark olive leggings, brown fitted bracers and small fingerless gloves, sturdy brown high boots. Fully covered practical costume, exact canonical female skeleton. No weapon, map, compass, quiver or equipment props. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (193,431), other hand (432,423); figure 2: primary contact (736,431), other hand (975,423); figure 3: primary contact (1283,427), other hand (1518,423); figure 4: primary contact (1822,431), other hand (2026,423). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
+        }
+      },
+      "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex"
     },
     {
       "classId": "elementalista",
@@ -43103,9 +43241,10 @@
       "monje-m",
       "monje-f",
       "cazador-m",
-      "cazador-f"
+      "cazador-f",
+      "explorador-m"
     ],
-    "bodyFramesPresent": 600,
+    "bodyFramesPresent": 660,
     "sharedEquipment": "Existing male/female rigs and equipment sheets unchanged",
     "runtimePromotion": "pending-complete-variant-review-and-user-approval"
   }
