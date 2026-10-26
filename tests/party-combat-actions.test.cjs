@@ -283,7 +283,7 @@ function mockPrisma(combat, options = {}) {
           return {
             id: "expedition-1",
             fase: "combatiendo",
-            tipo: "normal",
+            tipo: options.tipo ?? "normal",
             dificultad: 3,
             modoDificultad: "normal",
             recompensa: options.recompensa ?? { oro: 11, madera: 4, piedra: 2, metal: 1, objetos: [{ objetoId: "pocion", cantidad: 2 }] },
@@ -322,7 +322,7 @@ function mockPrisma(combat, options = {}) {
         return {
           id: "expedition-1",
           fase: faseExpedicion,
-          tipo: "normal",
+          tipo: options.tipo ?? "normal",
           dificultad: 3,
           modoDificultad: "normal",
           recompensa: options.recompensa ?? { oro: 11, madera: 4, piedra: 2, metal: 1, objetos: [{ objetoId: "pocion", cantidad: 2 }] },
@@ -1034,4 +1034,39 @@ test("quien huye recibe oro y objetos de misión, pero no XP ni botín enemigo",
   assert.ok(recompensa.objetos.length > 0, "conserva su reparto de objetos de misión");
   assert.equal(victoria.recompensas.dropsEnemigo.some((drop) => drop.usuarioId === "u1"), false);
   assert.equal(lootRolls.length, 2, "solo los dos participantes que permanecieron combatiendo tiran botín");
+});
+
+
+test("el boss diario ganado en party inicia la espera de los participantes que no huyeron", async () => {
+  const combat = mkCombat({ enemigoHp: 10, participantes: [mkParticipant("u1", 0), mkParticipant("u2", 1, 0, 100, "caido"), mkParticipant("u3", 2, 100, 100, "huyo")] });
+  const { prisma, calls } = mockPrisma(combat, { tipo: "elite" });
+  const inicio = Date.now();
+  const service = loadService(prisma);
+  const resultado = await service.ejecutarAccionCombateParty("u1", "expedition-1", "atacar");
+  assert.equal(resultado.fase, "victoria");
+  const victorias = calls.userWrites.filter(w => w.data.ultimaMisionElite);
+  assert.deepEqual(victorias.map(w => w.where.id), ["u1", "u2"]);
+  assert.ok(victorias.every(w => w.data.ultimaMisionElite.getTime() >= inicio));
+});
+
+test("un boss diario aún sin derrotar no consume el intento de la party", async () => {
+  const combat = mkCombat({ enemigoHp: 40 });
+  const { prisma, calls } = mockPrisma(combat, { tipo: "elite" });
+  const service = loadService(prisma);
+  await service.ejecutarAccionCombateParty("u1", "expedition-1", "atacar");
+  assert.equal(calls.userWrites.some(w => w.data.ultimaMisionElite), false);
+});
+
+test("perder o huir del boss diario permite reintentarlo sin iniciar la espera", async () => {
+  for (const huir of [false, true]) {
+    const combat = mkCombat({ enemigoHp: 40, faseTurno: huir ? "jugador" : "enemigo", turnoActualUsuarioId: huir ? "u1" : null,
+      participantes: [mkParticipant("u1", 0, 1), mkParticipant("u2", 1, 0, 100, "caido")] });
+    const { prisma, calls } = mockPrisma(combat, { tipo: "elite" });
+    const service = loadService(prisma);
+    const resultado = huir
+      ? await service.ejecutarAccionCombateParty("u1", "expedition-1", "escapar")
+      : await service.ejecutarTurnoEnemigoParty("u1", "expedition-1");
+    assert.equal(resultado.fase, huir ? "huida" : "derrota");
+    assert.equal(calls.userWrites.some(w => w.data.ultimaMisionElite), false);
+  }
 });

@@ -28,7 +28,7 @@ const mission = {
   descripcion: "Misión de prueba",
 };
 
-function loadService(prisma) {
+function loadService(prisma, misionPrueba = mission) {
   const filename = path.resolve(__dirname, "../src/server/services/party/expedicion-party-service.ts");
   const source = fs.readFileSync(filename, "utf8");
   const { outputText } = ts.transpileModule(source, {
@@ -52,7 +52,7 @@ function loadService(prisma) {
     },
     "@/lib/inventario": { obtenerEquipoDesdePersonaje: () => ({}) },
     "@/lib/utils": { calcularDistanciaKm: () => 12 },
-    "@/lib/generadorMisiones": { generarMisionesDisponibles: () => [mission] },
+    "@/lib/generadorMisiones": { generarMisionesDisponibles: () => [misionPrueba] },
     "@/lib/progresion/clases": { obtenerDefinicionClase: () => null },
     "@/lib/enemigos": {
       obtenerEnemigoPorId: (id) => id === "enemigo-test" ? {
@@ -435,3 +435,22 @@ function makeExpeditionReturnPrisma(fechaLlegada = new Date(Date.now() + 60_000)
     },
   };
 }
+
+
+test("cambiar de líder no permite que un miembro repita el boss antes de 23 horas", async () => {
+  const leader = makeUser("leader");
+  const guest = makeUser("guest");
+  guest.ultimaMisionElite = new Date(Date.now() - 60_000);
+  const members = [memberRecord(leader), memberRecord(guest)];
+  const tx = {
+    party: { findUnique: async () => ({ id: "party-1", liderUsuarioId: "leader", miembros: members }) },
+    expedicionParty: { findFirst: async () => null },
+  };
+  const prisma = transactionPrisma(tx, leader, members);
+  const originalFetch = global.fetch;
+  global.fetch = async () => ({ ok: true, json: async () => ({ current_weather: { weathercode: 0 } }) });
+  try {
+    const service = loadService(prisma, { ...mission, id: "elite-test", tipo: "elite", enemigoId: "enemigo-test" });
+    await assert.rejects(service.iniciarExpedicionParty("leader", "elite-test", "normal"), error => error.code === "BOSS_DIARIO_EN_ESPERA");
+  } finally { global.fetch = originalFetch; }
+});

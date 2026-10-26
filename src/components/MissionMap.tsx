@@ -29,6 +29,13 @@ const missionIcon = new L.Icon({
   iconAnchor: [12, 41],
 });
 
+const bossIcon = L.divIcon({
+  className: "boss-daily-map-icon",
+  html: '<span aria-hidden="true" style="display:grid;place-items:center;width:38px;height:38px;background:#33203e;border:2px solid #dfae62;border-radius:50%;font-size:23px;box-shadow:0 2px 8px #0009">♛</span>',
+  iconSize: [38, 38],
+  iconAnchor: [19, 38],
+});
+
 const destinationIcon = L.divIcon({
   className: "destination-map-icon",
   html: '<span aria-hidden="true">🏁</span>',
@@ -283,9 +290,12 @@ export default function MissionMap({
           <Marker
             key={m.id}
             position={[m.lat, m.lng]}
-            icon={missionIcon}
+            icon={m.tipo === "elite" ? bossIcon : missionIcon}
+            title={m.tipo === "elite" ? `Boss diario · ${m.nombre}` : m.nombre}
             eventHandlers={{ click: () => onSelectMission(m) }}
-          />
+          >
+            {m.tipo === "elite" && <Tooltip direction="top">Boss diario · {m.nombre}</Tooltip>}
+          </Marker>
         ))}
 
         {/* Marcadores de Bases Ajenas SIN Popup */}

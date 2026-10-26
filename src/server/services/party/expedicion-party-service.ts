@@ -4,6 +4,7 @@ import { calcularEstadisticasPersonaje, calcularModificadoresEquipo } from "@/li
 import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 import { calcularDistanciaKm } from "@/lib/utils";
 import { generarMisionesDisponibles } from "@/lib/generadorMisiones";
+import { bossDiarioDisponible } from "@/lib/expediciones/boss-diario";
 import { obtenerDefinicionClase } from "@/lib/progresion/clases";
 import { leerCoordenadasBase, ESTADOS_TRASLADO_ACTIVOS } from "@/lib/party/reglas";
 import {
@@ -277,6 +278,9 @@ export async function iniciarExpedicionParty(
       }
       if (usuario.trasladosComoVisitante.length > 0) {
         throw new PartyServiceError("Un integrante tiene un traslado entre bases activo.", 409, "TRASLADO_ACTIVO");
+      }
+      if (mision.tipo === "elite" && !bossDiarioDisponible(usuario.ultimaMisionElite, new Date())) {
+        throw new PartyServiceError("Todos los integrantes deben esperar 23 horas desde su última victoria contra el boss diario.", 409, "BOSS_DIARIO_EN_ESPERA");
       }
 
       const datosViaje = obtenerDatosViaje(personaje);

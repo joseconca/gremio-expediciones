@@ -11,6 +11,7 @@
     "test:base": "node --test tests/base-economic-routes.test.cjs tests/base-noticeboard-ui.test.cjs tests/building-navigation-ui.test.cjs tests/objetos-system.test.cjs tests/comidas-taberna.test.cjs tests/economy-balance.test.cjs",
     "test:progression": "node --test tests/super-novato-and-inventory-assets.test.cjs tests/combat-speed-initiative.test.cjs tests/progression.test.cjs tests/progression-api.test.cjs tests/combat-effects.test.cjs tests/combat-positions.test.cjs tests/combat-contract.test.cjs tests/combat-pvp.test.cjs tests/combat-presentacion.test.cjs tests/combat-animation-targets.test.cjs tests/combat-animation-integration.test.cjs tests/combat-targeting.test.cjs tests/enemigos-combate.test.cjs tests/combat-defeat-rewards.test.cjs tests/combat-defeat-report-ui.test.cjs tests/expedition-report-ui.test.cjs",
     "test:combat-ui": "node --test tests/combat-rpg-panel.test.cjs",
+    "test:boss-diario": "node --test tests/boss-diario.test.cjs",
     "test:party": "node --test tests/party-rules.test.cjs tests/party-service.test.cjs tests/party-expedition-rules.test.cjs tests/party-expedition.test.cjs tests/party-combat-rules.test.cjs tests/party-combat-service.test.cjs tests/party-combat-actions.test.cjs",
     "test:sprite-animation": "node --test tests/sprite-animation-offsets.test.cjs tests/hero-class-sprites.test.cjs tests/sprites-hd-runtime.test.cjs tests/sprites-hd-apariencia.test.cjs tests/enemy-sprites-hd-runtime.test.cjs"
   },

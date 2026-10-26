@@ -10,6 +10,7 @@ import { obtenerEquipoDesdePersonaje } from "@/lib/inventario";
 import { calcularDistanciaKm } from "@/lib/utils";
 import { calcularOroBaseComercio } from "@/lib/expediciones/comercio";
 import { generarMisionesDisponibles } from "@/lib/generadorMisiones";
+import { bossDiarioDisponible } from "@/lib/expediciones/boss-diario";
 import { obtenerDefinicionClase } from "@/lib/progresion/clases";
 import { esModoDificultad, type ModoDificultad } from "../../../lib/expediciones/dificultad";
 import type { DefinicionMision, RecompensaMision } from "@/lib/tiposJuego";
@@ -396,11 +397,7 @@ export async function iniciarExpedicion(request: Request) {
           where: { id: usuario.id },
           select: { ultimaMisionElite: true },
         });
-        const ultimaEliteActual = usuarioActual?.ultimaMisionElite
-          ?.toISOString()
-          .slice(0, 10);
-
-        if (ultimaEliteActual === ahora.toISOString().slice(0, 10)) {
+        if (!bossDiarioDisponible(usuarioActual?.ultimaMisionElite, new Date())) {
           throw new Error("ELITE_YA_COMPLETADA");
         }
       }
@@ -492,7 +489,7 @@ export async function iniciarExpedicion(request: Request) {
       ) {
         return respuestaError(
           error.message === "ELITE_YA_COMPLETADA"
-            ? "Ya has completado la misión de élite de hoy."
+            ? "El boss diario vuelve a estar disponible 23 horas después de tu última victoria."
             : "Ya tienes una expedición activa.",
           409
         );

@@ -1,7 +1,8 @@
 import { JEFES_ELITE } from "./enemigos";
 import type { DefinicionMision } from "./tiposJuego";
 import { randomSeeded } from "./utils";
-import { obtenerNivelMaximoAmenazaDesbloqueada, obtenerRangoMaximoDesbloqueado } from "./expediciones/dificultad";
+import { obtenerNivelMaximoAmenazaDesbloqueada } from "./expediciones/dificultad";
+import { bossDiarioDisponible } from "./expediciones/boss-diario";
 
 const PREFIJOS = [
   "El tesoro",
@@ -83,8 +84,7 @@ export function generarMisionElite(
   nivelAmenazaMaximo: number,
   nivelBase: number
 ): DefinicionMision {
-  const seed =
-    dia.split("-").reduce((total, parte) => total + Number(parte), 0) * 431;
+  const seed = Number(dia.replaceAll("-", "")) * 431;
 
   // Los jefes disponibles se limitan al progreso real del personaje. La amenaza
   // del encuentro refleja el nivel Base, sin sumar otra vez nivel + dificultad.
@@ -131,7 +131,7 @@ export function generarMisionElite(
       metal: 0,
     },
     duracionObjetivoHoras: 1,
-    descripcion: `Una amenaza de élite ha despertado. Derrota al ${jefe.nombre} para obtener una gran recompensa.`,
+    descripcion: `Boss diario: ${jefe.nombre}. Derrota a esta amenaza para obtener una gran recompensa. Volverá a estar disponible 23 horas después de tu victoria; perder o huir permite reintentarlo.`,
   };
 }
 
@@ -250,7 +250,6 @@ export function generarMisionesDisponibles({
   const offset = 0;
   const nuevasMisiones: DefinicionMision[] = [];
   const nivelBase = Math.max(1, Math.floor(nivelPersonaje));
-  const rangoMaximo = obtenerRangoMaximoDesbloqueado(nivelBase, rangosAmenazaCompletados);
   const maximoAmenaza = obtenerNivelMaximoAmenazaDesbloqueada(nivelBase, rangosAmenazaCompletados);
 
   MISIONES_POR_DURACION.forEach((configuracion, indiceDuracion) => {
@@ -282,21 +281,9 @@ export function generarMisionesDisponibles({
   });
 
 
-  const fechaUltimaElite =
-    ultimaMisionElite === null
-      ? null
-      : ultimaMisionElite instanceof Date
-        ? ultimaMisionElite
-        : new Date(ultimaMisionElite);
-  const eliteCompletadaHoy =
-    fechaUltimaElite !== null &&
-    Number.isFinite(fechaUltimaElite.getTime()) &&
-    fechaUltimaElite.toISOString().slice(0, 10) === diaActual;
-  const tieneRangoElite = rangoMaximo.id === "IV" || rangoMaximo.id === "V";
-
-  // El contrato diario de élite se desbloquea con el Rango IV y queda fuera
-  // de las victorias normales que abren el siguiente rango.
-  if (!eliteCompletadaHoy && tieneRangoElite) {
+  // El boss diario acompaña a las misiones normales desde el primer rango.
+  // Sus victorias no abren rangos y la espera depende de la última victoria.
+  if (bossDiarioDisponible(ultimaMisionElite, ahora)) {
     nuevasMisiones.push(
       generarMisionElite(baseLat, baseLng, diaActual, maximoAmenaza, nivelBase)
     );
