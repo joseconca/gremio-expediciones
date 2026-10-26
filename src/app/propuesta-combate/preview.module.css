@@ -93,3 +93,37 @@
 .mobile .historyOnly{left:142px;right:0;bottom:0;width:auto;height:224px;padding:8px}.mobile .historyOnly ol{font-size:11px;max-height:165px}.mobile .historyToggle{font-size:12px}.mobile .historyDuringMenu{position:fixed;top:72px;right:14px;left:auto;bottom:auto;width:155px;height:auto;background:#102034e8}.mobile .historyDuringMenu.historyOpen{width:260px;height:150px}.mobile .historyDuringMenu.historyOpen ol{max-height:95px}
 .historyDuringMenu{position:fixed;top:78px;right:26px;left:auto;bottom:auto;width:300px}
 .mobile .historyDuringMenu{top:72px;right:14px;width:155px}.mobile .historyDuringMenu.historyOpen{width:260px}
+
+/* Docked RPG panel: its height is reserved in the layout, never over the arena. */
+.battle .hud{position:relative;inset:auto;flex:0 0 214px;height:214px;min-height:214px;width:100%;display:block;padding:0;border:0;border-top:2px solid #ac9765;background:linear-gradient(110deg,#14263d,#0d1b2e);box-shadow:inset 0 3px #ffffff05;z-index:50;pointer-events:auto}
+.battle .stage{flex:1;min-height:0;overflow:clip}
+.battle .allCombatants{position:absolute;top:0;right:0;bottom:0;width:400px;display:grid;grid-template-columns:1fr 1fr;gap:0;border-left:1px solid #b9aa7844}
+.battle .teamLedger{border:0;border-radius:0;background:none;box-shadow:none;padding:8px 10px}.battle .teamLedger+ .teamLedger{border-left:1px solid #b9aa7828}
+.battle .actionBlock{position:absolute;left:0;top:0;bottom:24px;width:170px;min-height:0;border:0;border-radius:0;background:none;box-shadow:none;align-self:auto;display:flex}
+.battle .actionBlockExpanded{width:calc(100% - 400px)}
+.battle .actionBlock .orders{width:170px;flex:none;min-height:0;padding:6px 8px;border-right:1px solid #b9aa7844;background:none}
+.battle .actionBlock .orderTitle{font-size:14px;padding:2px 7px 6px;margin:0 0 2px}.battle .commandGrid button{height:37px;min-height:37px;font-size:15px}
+.battle .actionBlock .submenu{margin:0;padding:6px 12px;border:0;min-height:0}.battle .submenuTitle{min-height:24px;padding:0}.battle .actionBlock .submenu>button{min-height:32px}.battle .actionDescription{margin-top:4px;padding-top:5px;font-size:11px;max-height:42px}
+.battle .historyOnly{position:absolute;top:0;bottom:24px;left:170px;right:400px;width:auto;height:auto;padding:8px 12px;border:0;border-radius:0;background:none;box-shadow:none;z-index:56}
+.battle .historyDuringMenu{top:auto;left:0;right:400px;bottom:0;height:24px;padding:0 12px;background:#08152355;border-top:1px solid #b9aa7828}
+.battle .historyDuringMenu .historyToggle{font-size:11px;line-height:20px;padding:0;border:0}.battle .historyDuringMenu.historyOpen{top:0;bottom:0;height:auto;padding:8px 12px;background:#102138}.battle .historyDuringMenu.historyOpen ol{display:block;max-height:160px}
+.battle .historyOnly ol{max-height:142px}.battle .exitPanel{bottom:20px}
+.battle.mobile .hud{flex-basis:310px;height:310px;min-height:310px;padding:0;border-top:2px solid #ac9765}
+.battle.mobile .allCombatants{left:0;right:0;top:0;bottom:auto;height:104px;width:100%;border:0;border-bottom:1px solid #b9aa7844;gap:0}
+.battle.mobile .teamLedger{padding:4px 8px}.battle.mobile .teamLedger h3{font-size:9px;padding-bottom:2px;margin-bottom:1px}
+.battle.mobile .teamLedger .heroCard{display:grid;grid-template-columns:65px 1fr;grid-template-rows:10px 10px;padding:0;min-height:20px;gap:0 3px;border:0}
+.battle.mobile .teamLedger .cardTitle{grid-row:1/3;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:0;margin:0;padding:0}
+.battle.mobile .teamLedger .cardTitle strong{font-size:9px;line-height:10px}.battle.mobile .teamLedger .cardTitle>span{display:none}
+.battle.mobile .teamLedger .stat{line-height:10px;gap:2px}.battle.mobile .teamLedger .stat>b{font-size:8px;width:43px}.battle.mobile .teamLedger .stat>span{font-size:6px;width:15px}.battle.mobile .teamLedger .stat small{font-size:7px}.battle.mobile .bar{height:2px}
+.battle.mobile .actionBlock{top:104px;bottom:24px;width:132px;min-height:0}.battle.mobile .actionBlockExpanded{width:100%}
+.battle.mobile .actionBlock .orders{width:132px;padding:4px 6px}.battle.mobile .actionBlock .orderTitle{font-size:12px;padding:0 7px 3px;margin-bottom:0;line-height:16px}
+.battle.mobile .commandGrid button{height:40px;min-height:40px;font-size:13px;padding:0 4px}
+.battle.mobile .actionBlock .submenu{padding:4px 10px;margin:0}.battle.mobile .submenuTitle{font-size:12px;min-height:20px;line-height:20px;padding:0}.battle.mobile .actionBlock .submenu>button{min-height:38px;font-size:11px;padding:0}
+.battle.mobile .actionDescription{font-size:9px;line-height:12px;margin-top:3px;padding-top:3px;max-height:33px}
+.battle.mobile .historyOnly{position:absolute;top:104px;left:132px;right:0;bottom:24px;width:auto;height:auto;padding:6px 10px;background:none;border:0}
+.battle.mobile .historyOnly ol{font-size:11px;max-height:140px}.battle.mobile .historyToggle{font-size:11px}
+.battle.mobile .historyDuringMenu{top:auto;left:0;right:0;bottom:0;height:24px;padding:0 10px;background:#08152355;border-top:1px solid #b9aa7828}
+.battle.mobile .historyDuringMenu.historyOpen{top:104px;left:0;right:0;bottom:0;width:auto;height:auto;padding:7px 12px;background:#102138}.battle.mobile .historyDuringMenu.historyOpen ol{max-height:145px}
+.battle.mobile .teamLedger+ .teamLedger .heroCard{grid-template-columns:94px 1fr}.battle.mobile .teamLedger+ .teamLedger .stat>b{width:36px}
+.battle:not(.mobile) .teamLedger .heroCard{grid-template-columns:76px 1fr;grid-template-rows:16px 16px;gap:0 4px;padding:3px 0}
+.battle:not(.mobile) .teamLedger .cardTitle{grid-row:1/3;flex-direction:column;justify-content:center;align-items:flex-start;gap:2px;margin:0}.battle:not(.mobile) .teamLedger .cardTitle strong{font-size:10px;line-height:12px}.battle:not(.mobile) .teamLedger .stat>b{width:48px}

@@ -25,3 +25,9 @@ Habilidades y Objetos ensanchan el propio menú de acciones: órdenes, lista y e
 Aliados y enemigos se muestran simultáneamente, sin pestañas, también con el menú desplegado. En móvil las dos listas compactas se colocan encima del bloque de acciones; en escritorio permanecen a su derecha. Se mantiene la selección desde la escena y desde las fichas enemigas.
 
 La flecha tiene un pulso discreto, desactivado con movimiento reducido. Las fichas enemigas muestran nombres y PV del catálogo; el modelo actual no tiene reservas de maná/energía, por lo que se muestra un guion. La vista sigue siendo una demostración sin llamadas a acciones reales.
+
+## Revisión vigente: panel anclado al borde inferior
+
+El panel de combate ocupa una región propia en el flujo de la pantalla (214 px en escritorio y 310 px en la maqueta móvil de 390 × 760). La escena ocupa el espacio restante y no queda detrás del panel. Se eliminan las ventanas flotantes, márgenes exteriores, sombras y marcos dobles del menú; un borde superior y separadores interiores mantienen la estética RPG.
+
+Ambos equipos siguen visibles: franja superior compacta en el panel móvil y columnas a la derecha en escritorio. El bloque de acciones se ensancha dentro del panel, sin invadir la escena. El historial permanece separado y se expande dentro de esta región inferior. Esta revisión sustituye el posicionamiento flotante de las revisiones anteriores.

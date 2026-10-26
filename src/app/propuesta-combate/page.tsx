@@ -43,7 +43,7 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
     timer.current = setTimeout(() => setAccion("idle"), 1100);
   };
   const ancho = movil ? 390 : 1120;
-  const altoEscena = movil ? (party ? 310 : 370) : 400;
+  const altoEscena = 360;
   return <div className={`${styles.battle} ${movil ? styles.mobile : ""}`} style={{ width: ancho, height: movil ? 760 : 680 }}>
     <header className={styles.battleHeader}><div><span className={styles.eyebrow}>BOSQUE DE LAS CENIZAS</span><strong>{jefe ? "Una presencia ancestral" : "Emboscada en el sendero"}</strong></div><span className={styles.turn}>Turno 03</span></header>
     <div className={styles.stage}>
