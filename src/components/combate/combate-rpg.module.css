@@ -1,0 +1,57 @@
+.root{--dock-height:286px;--roster-height:124px;--roster-width:0px;color:#e6eaf1;font-family:Georgia,serif}
+.root header{background:#101e32eb;border-color:#a9946555}
+.info{font:12px Georgia,serif;color:#e5d2a7;padding:6px 10px;border:1px solid #758095;border-radius:3px;background:#17283e}
+.inlineStatus{display:none!important}
+.dock{position:relative;display:flex;flex-shrink:0;min-height:var(--dock-height);height:var(--dock-height);padding-top:var(--roster-height);padding-right:var(--roster-width);background:linear-gradient(110deg,#14263d,#0d1b2e);border-top:2px solid #ac9765;box-shadow:none;isolation:isolate}
+.commands{position:relative;z-index:20;flex:0 0 118px;width:118px;padding:5px 4px;border-right:1px solid #b9aa7844;display:flex;align-items:flex-start;justify-content:center}
+.commands>div{width:100%;display:flex;flex-direction:column;gap:0}
+.commands button{position:relative;width:100%;height:35px;min-height:35px;padding:4px 6px 4px 17px;text-align:left;justify-content:flex-start;border:0;border-radius:0;background:transparent!important;box-shadow:none;color:#eee8d6;font:13px Georgia,serif}
+.commands button>span{font:inherit;letter-spacing:0;color:inherit;text-transform:none}
+.commands button:disabled{opacity:.4}
+.commands button:hover:not(:disabled){background:#e5cf8d18!important}
+.commands button[data-active="true"]:before{position:absolute;left:5px;content:"▸";color:#f6dfa2}
+.commands button[data-active="true"]{background:#e5cf8d10!important}
+.content{position:relative;display:flex;min-width:0;min-height:0;flex:1;flex-direction:column;overflow:hidden;padding:6px 8px;background:transparent}
+.content>div{min-height:0}
+.content :global(.text-stone-500),.content :global(.text-stone-600){color:#aebbd0}
+.content button{touch-action:manipulation}
+.commands button>span+span{margin-left:auto;padding-left:4px}
+.content button[aria-label^="Usar habilidad"]{border:0;border-bottom:1px solid #a9946533;border-radius:0;background:transparent;padding:5px 2px;box-shadow:none}
+.content button[aria-label^="Usar habilidad"]>div:first-child{display:none}
+.content button[aria-label^="Usar habilidad"] img{width:24px;height:24px}
+.content button[aria-label^="Usar habilidad"] p{letter-spacing:0}
+.content button[aria-label^="Usar habilidad"]:hover:not(:disabled){background:#d8be7615}
+.content :global(.shadow-inner){background:transparent;border:0;border-left:1px solid #a9946533;border-radius:0;box-shadow:none}
+.content :global(.tracking-widest){letter-spacing:0}
+.content :global(.gap-3){flex-wrap:wrap;gap:4px 8px}
+.root header{min-height:48px;flex-shrink:0}
+.root header>div{min-width:0}
+.root header>div:first-child{flex:1;overflow:hidden;margin-right:8px}
+.info{flex-shrink:0}
+@media(max-width:639px){.root header>div:first-child>p,.root header>div:first-child>div{display:none}.root header{padding-inline:10px}}
+.content :global(.gap-4){gap:8px}
+.content :global(.mb-2){margin-bottom:4px}
+.content :global(.pb-2){padding-bottom:3px}
+.content :global(.py-2\.5),.content :global(.py-3){padding-block:5px}
+.content :global(.p-4){padding:8px}
+.content :global(.max-h-\[160px\]){max-height:100%}
+.content :global(.justify-center){justify-content:flex-start}
+.roster{position:absolute;top:0;left:0;right:0;height:var(--roster-height);display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #b9aa7844;z-index:21;background:#102137}
+.team{min-width:0;overflow:auto;scrollbar-width:thin;padding:3px 5px;display:flex;flex-direction:column}
+.team+.team{border-left:1px solid #b9aa7844}
+.card{display:flex;align-items:center;gap:4px;flex:0 0 auto;width:100%;min-height:22px;padding:2px 0;text-align:left;background:none;color:#e7eaf0;border:0;border-radius:0;font-family:Georgia,serif}
+.active{background:#d8be7620}.marked{background:#cc5b4520}
+.name{width:42%;font-size:9px;line-height:11px;overflow-wrap:anywhere}.name small{font-size:7px;color:#d9c28b;margin-left:3px}
+.resources{flex:1;min-width:0}.stat{display:flex;align-items:center;gap:3px;font:7px/10px Arial,sans-serif;color:#bac5d5}.stat>span{width:14px;flex:none}.bar{height:2px;flex:1;min-width:8px;background:#071222}.bar i{display:block;height:100%;background:#87bba8}.enemyHp i{background:#cf7a73}.energy i{background:#77a8d5}.mana i{background:#b795d6}.stat>b{font-size:8px;font-weight:normal;white-space:nowrap}.stat small{color:#9eaac0;font-size:7px}
+.history{position:relative;height:100%;min-height:0;padding:1px 24px 0 0;overflow:hidden;font:12px/1.5 Georgia,serif}
+.history>button{position:absolute;top:0;right:0;width:24px;height:24px;display:grid;place-items:center;border:0;background:none;padding:0;font-size:18px;color:#e2d1a9}
+.history>div{height:100%;overflow:auto;scrollbar-width:thin}.history p{margin:0 0 7px;color:#bfc7d2}.history p:last-child{color:#fff}
+.expandedHistory{background:#102138!important}.expandedHistory p:last-child{color:#fff}
+.targetRing{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:75%;height:12px;border:2px solid #ee4b4b;border-radius:50%;background:#d22b2b22;box-shadow:0 0 10px #ee303044;pointer-events:none;z-index:2}
+.targetArrow{position:absolute;left:50%;top:-20px;color:#ffe0b7;font-size:17px;line-height:1;text-shadow:0 2px 4px #6e1717;z-index:30;pointer-events:none;animation:targetPulse 1.4s ease-in-out infinite}
+@keyframes targetPulse{0%,100%{transform:translateX(-50%) scale(.92)}50%{transform:translateX(-50%) scale(1.12)}}
+.siegeSprite{width:clamp(70px,22vw,180px)!important;height:clamp(70px,22vw,180px)!important;max-height:38dvh}
+@media(min-width:768px){.root{--dock-height:208px;--roster-height:0px;--roster-width:36%}.roster{left:auto;width:var(--roster-width);height:100%;border-bottom:0;border-left:1px solid #b9aa7844}.commands{width:140px;flex-basis:140px;padding:6px}.commands button{font-size:14px}.content{padding:8px 12px}.name{font-size:11px;line-height:13px}.stat{font-size:8px;line-height:13px}.stat>b{font-size:9px}.card{min-height:36px;padding:4px 0}.history{font-size:13px}}
+@media(max-height:560px) and (min-width:640px){.root{--dock-height:174px;--roster-height:0px;--roster-width:36%}.roster{left:auto;width:var(--roster-width);height:100%}.commands{width:110px;flex-basis:110px}.siegeSprite{height:90px!important;width:90px!important}}
+@media(prefers-reduced-motion:reduce){.targetArrow{animation:none;transform:translateX(-50%)}}
+@media(max-width:767px) and (min-height:561px){.root:not(:has(.team>.card:nth-child(2))){--roster-height:56px;--dock-height:218px}}

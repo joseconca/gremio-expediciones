@@ -1,0 +1,152 @@
+.page{min-height:100vh;background:#0a101b;color:#e5eaf4;padding:32px clamp(16px,4vw,56px) 64px;font-family:Arial,sans-serif}
+.intro{max-width:800px}.intro>a{font-size:13px;color:#d9ba79}.eyebrow{font-size:10px;letter-spacing:2px;color:#cdb681}.intro>.eyebrow{margin-top:30px}.intro h1{font-family:Georgia,serif;font-size:clamp(30px,4vw,48px);margin:12px 0}.intro>p:last-child{color:#a5b4ca;line-height:1.7;font-size:15px}
+.toolbar{margin:26px 0 12px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}.toolbar nav{display:flex;gap:6px;flex-wrap:wrap}.toolbar button,.toolbar select{min-height:42px;border:1px solid #35435a;border-radius:6px;background:#142034;padding:8px 12px;color:#dfe8f7;font-size:13px}.toolbar button[aria-pressed=true]{background:#304360;border-color:#d8bb7b;color:#ffe4ac}.toolbar label{font-size:12px;color:#b7c6da;display:flex;align-items:center;gap:8px}.toolbar select{max-width:250px}.hint{font-size:12px;color:#8e9fb7;margin:12px 0 24px}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}.single{grid-template-columns:minmax(0,1fr);max-width:1160px;margin:auto}.preview{min-width:0}.previewHeading{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.previewHeading h2{font-size:15px}.previewHeading>span{font-size:11px;color:#8c9bb0}.frameSpace{width:100%;padding:0}.frame{margin:auto;overflow:hidden;border-radius:12px;box-shadow:0 14px 45px #0007;outline:1px solid #42526a}
+.battle{position:relative;overflow:hidden;background:#101c30;color:#f2eee5;display:flex;flex-direction:column;font-family:Arial,sans-serif}.battleHeader{height:62px;flex-shrink:0;display:flex;justify-content:space-between;align-items:center;padding:0 28px;background:linear-gradient(100deg,#14223b,#0c1527);border-bottom:1px solid #a68c5655}.battleHeader>div{display:flex;flex-direction:column;gap:4px}.battleHeader strong{font-family:Georgia,serif;font-size:18px;font-weight:normal}.turn{font-size:12px;color:#e7d4a9;border:1px solid #66718a;padding:7px 12px;border-radius:4px}
+.stage{position:relative;flex-shrink:0;overflow:hidden;background:#243b33 url('/sprites/battle/fondoBatalla.png') center 62%/cover}.stageVeil{position:absolute;inset:0;background:linear-gradient(#0b19295c,transparent 35%,#0c18261c 70%,#101c30b8)}.targetInfo{position:absolute;left:50%;top:18px;transform:translateX(-50%);width:240px;text-align:center;padding:9px 18px;background:#0d192bcf;border:1px solid #73809770;border-radius:5px;z-index:30}.targetInfo>span{font-size:8px;letter-spacing:2px;color:#afbdcf;display:block;margin-bottom:4px}.targetInfo strong{font-size:13px;font-weight:normal}.enemyBar{height:4px;margin-top:7px;background:#3a2932;border-radius:5px;overflow:hidden}.enemyBar i{display:block;width:76%;height:100%;background:#d58f79}.turnNote{position:absolute;top:22px;left:24px;font-size:12px;color:#f4d48d;text-shadow:0 2px 5px black;z-index:30}
+.actor{position:absolute;transform:translateX(-50%);overflow:visible;pointer-events:none}.ground{position:absolute;bottom:-3px;left:50%;transform:translateX(-50%);width:85%;height:14px;border-radius:50%;background:#0007;filter:blur(2px)}.activeGround{border:2px solid #c8ba7e;background:#c6b46622;box-shadow:0 0 16px #f4d78a55;filter:none}.enemy{pointer-events:auto;background:none;border:0;padding:0;cursor:pointer}.enemy:focus-visible{outline:2px solid #f7dc99;border-radius:10px}.enemyGround{border:2px solid #dc997c;filter:none;background:#a65b3522}.targetArrow{position:absolute;left:50%;top:-24px;transform:translateX(-50%);color:#ffe0a2;font-size:20px;text-shadow:0 2px 3px #000}.damage{position:absolute;top:12px;left:50%;font:bold 32px Georgia,serif;color:#fff0cb;text-shadow:2px 2px #2b1915;z-index:40}.caption{position:absolute;bottom:10px;left:20px;right:20px;text-align:center;color:#e4e9f0;font-size:12px;text-shadow:0 2px 5px #000;z-index:40}
+.hud{position:relative;flex:1;min-height:0;display:flex;border-top:2px solid #a68e5e;background:linear-gradient(120deg,#172a47,#111b2d);padding:17px 24px;gap:24px}.roster{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));flex:1;gap:8px 14px;align-content:center}.heroCard{border:1px solid #56678188;border-radius:5px;padding:8px 10px;background:#101d32bb;min-width:0}.activeCard{border-color:#ccb57a;background:#25334a}.cardTitle{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.cardTitle strong{font-size:14px}.cardTitle>span{font-size:9px;color:#cbbb93;text-transform:uppercase;letter-spacing:.5px}.stat{display:flex;gap:6px;align-items:center;font-size:10px;line-height:16px}.stat>span{width:18px;color:#95a8c4}.bar{height:4px;background:#0a1324;border-radius:4px;flex:1;overflow:hidden}.bar i{display:block;height:100%;background:#83bfac}.mana i{background:#7c9ed6}.stat>b{width:68px;text-align:right;font-size:11px;font-weight:normal;font-variant-numeric:tabular-nums}.stat small{color:#8b9ab3;font-size:10px}.orders{width:350px;display:flex;flex-direction:column;justify-content:center;gap:10px}.orderTitle{display:flex;justify-content:space-between;align-items:center;font-size:9px;letter-spacing:1.5px;color:#b9c7dc}.orderTitle button{font-size:11px;letter-spacing:0;color:#cbb786;background:none;border:0;padding:4px}.commandGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.commandGrid button{height:44px;border:1px solid #65748d;background:linear-gradient(#293e5d,#20304b);color:#eee8d9;border-radius:4px;text-align:left;padding:0 12px;font-size:13px;cursor:pointer;box-shadow:inset 0 1px #fff1}.commandGrid button:first-child{border-color:#cab37b}.commandGrid button:hover{background:#415775}.commandGrid button:disabled{opacity:.5}.commandGrid button>span{display:inline-block;width:26px;color:#d9c28e}.log{position:absolute;bottom:12px;right:12px;width:300px;background:#0b1629f5;border:1px solid #a99467;padding:18px;z-index:60;box-shadow:0 6px 25px #0008;font-size:12px;line-height:1.8}.log>button{float:right;background:none;border:0;font-size:20px;color:#fff}.log small{color:#a6b6ce}
+.mobile .battleHeader{height:56px;padding:0 16px}.mobile .battleHeader strong{font-size:15px}.mobile .eyebrow{font-size:8px;letter-spacing:1.2px}.mobile .turn{font-size:10px;padding:5px 8px}.mobile .targetInfo{width:186px;top:16px;padding:8px 12px;left:70%}.mobile .targetInfo strong{font-size:11px}.mobile .turnNote{top:25px;left:14px;width:80px;line-height:1.5;font-size:10px}.mobile .hud{padding:10px 14px 14px;gap:10px;flex-direction:column}.mobile .roster{gap:6px;flex:none}.mobile .heroCard{padding:7px 8px}.mobile .cardTitle{margin-bottom:4px}.mobile .cardTitle strong{font-size:12px}.mobile .cardTitle>span{font-size:8px}.mobile .stat{line-height:14px;font-size:9px}.mobile .stat>b{width:53px;font-size:10px}.mobile .stat small{font-size:8px}.mobile .orders{width:auto;gap:6px}.mobile .commandGrid{gap:6px}.mobile .commandGrid button{height:44px}.mobile .caption{font-size:10px}.mobile .ground{height:10px}
+@media(max-width:850px){.gallery{grid-template-columns:minmax(0,1fr)}.page{padding:24px 16px 48px}}
+
+/* Second proposal: floating command window and a compact party ledger. */
+.stage{flex:1;min-height:0;height:auto;background-position:center 60%}
+.stageVeil{background:linear-gradient(#0b19294a,transparent 32%,#0c18261c 62%,#091325c4)}
+.caption{bottom:215px;font-size:13px;color:#fff3d8}
+.hud{position:absolute;left:26px;right:26px;bottom:22px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding:0 0 25px;border:0;background:none;pointer-events:none;z-index:50}
+.hud>*{pointer-events:auto}
+.orders{order:0;width:200px;flex:none;gap:0;background:linear-gradient(135deg,#14273bee,#0a1729f5);border:3px double #a6a59a;border-radius:3px;box-shadow:0 4px 16px #0008,inset 0 0 0 2px #102137;padding:8px 5px}
+.orderTitle{font-family:Georgia,serif;font-size:15px;letter-spacing:0;color:#dfd3b8;padding:2px 15px 7px;border-bottom:1px solid #c2b58a33;margin:0 5px 3px}
+.commandGrid{display:flex;flex-direction:column;gap:0}
+.commandGrid button,.commandGrid button:first-child{position:relative;display:flex;align-items:center;height:34px;min-height:34px;box-shadow:none;border:0;border-radius:0;background:none;padding:0 10px;color:#f4eddf;font-family:Georgia,serif;font-size:16px;text-shadow:1px 2px #000}
+.commandGrid button:hover,.commandGrid button:focus-visible{background:linear-gradient(90deg,#cbb16c33,transparent);outline:1px solid #d6c58e66}
+.commandGrid button>span{width:22px;color:#f7e4ac;font-size:20px}.commandGrid button small{margin-left:auto;font:10px Arial,sans-serif;color:#a6bad0}
+.roster{order:1;flex:none;width:420px;display:flex!important;flex-direction:column;gap:0;padding:5px 12px;background:linear-gradient(90deg,#0d1c30dd,#0d1c30a8);border:1px solid #c2b58a55;border-radius:2px;box-shadow:0 5px 20px #0004}
+.heroCard,.activeCard{display:grid;grid-template-columns:100px 1fr;grid-template-rows:18px 18px;border:0;border-bottom:1px solid #b2bed022;border-radius:0;background:none;padding:5px 0;gap:0 8px}
+.heroCard:last-child{border-bottom:0}.activeCard{background:linear-gradient(90deg,#e4c98618,transparent)}
+.cardTitle{grid-row:1/3;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;margin:0;padding-left:5px}.cardTitle strong{font:16px Georgia,serif;font-weight:normal}.cardTitle>span{font-size:8px;letter-spacing:.5px}.stat{line-height:18px}.stat>b{width:78px;font-size:12px}.stat small{font-size:10px}.bar{height:3px}.stat>span{font-size:9px}
+.utilities{position:absolute;bottom:0;right:0;display:flex;align-items:center;gap:12px;color:#bcb49e}.utilities button{background:none;border:0;color:#e3d6b7;font:12px Georgia,serif;padding:3px 5px;cursor:pointer;text-shadow:0 1px 3px #000}
+.enemyGround{border:2px solid #f04747;background:#cc242426;box-shadow:0 0 12px #ee30304d}.targetArrow{color:#ffddba;text-shadow:0 2px 2px #4d0606,0 0 7px #b81717}
+.log{bottom:34px;right:0;font-family:Arial,sans-serif}.exitPanel{position:absolute;bottom:65px;left:50%;transform:translateX(-50%);width:300px;padding:24px;border:3px double #c8b995;background:#102036f5;text-align:center;box-shadow:0 12px 40px #000a;z-index:70;font-family:Georgia,serif}.exitPanel strong{font-size:20px}.exitPanel p{font:12px Arial,sans-serif;color:#bdc8d8;margin:12px 0 18px}.exitPanel button{background:#263b53;border:1px solid #b7aa87;border-radius:2px;color:#f2e4c5;padding:10px 14px;cursor:pointer}
+.mobile .hud{left:12px;right:12px;bottom:16px;flex-direction:row;align-items:flex-end;padding:0 0 28px;gap:10px}
+.mobile .orders{width:136px;padding:6px 3px;gap:0}.mobile .orderTitle{font-size:14px;padding:2px 9px 6px}.mobile .commandGrid{gap:0}.mobile .commandGrid button{height:44px;min-height:44px;font-size:14px;padding:0 3px}.mobile .commandGrid button>span{width:16px;font-size:18px}.mobile .commandGrid button small{font-size:8px}
+.mobile .roster{width:220px;padding:4px 7px;gap:0}.mobile .heroCard{grid-template-columns:62px 1fr;grid-template-rows:18px 18px;padding:5px 0;gap:0 4px}.mobile .cardTitle{margin:0;gap:3px;padding-left:2px}.mobile .cardTitle strong{font:13px Georgia,serif}.mobile .cardTitle>span{font-size:7px;letter-spacing:0}.mobile .stat{line-height:18px;gap:3px}.mobile .stat>b{width:53px;font-size:10px}.mobile .stat small{font-size:8px}.mobile .stat>span{width:15px;font-size:8px}.mobile .caption{bottom:257px;font-size:10px}.mobile .utilities{gap:7px}.mobile .utilities button{min-height:28px;font-size:12px}.mobile .log{width:310px;bottom:36px}.mobile .exitPanel{bottom:65px}
+.caption{top:25px;bottom:auto;left:390px;right:24px;text-align:right;font-size:12px}
+.mobile .caption{top:55px;bottom:auto;left:16px;right:16px;text-align:left;font-size:10px;color:#d3dfdf}
+
+/* Integrated information and cascading lists. */
+.hud{gap:14px;padding-bottom:0;align-items:stretch}
+.orders{width:170px;align-self:flex-end}
+.combatants{order:2;width:330px;align-self:flex-end;min-height:98px}
+.combatants .heroCard{grid-template-columns:112px 1fr;grid-template-rows:15px 15px;padding:4px 0}
+.combatants .cardTitle strong{font-size:13px;line-height:14px;white-space:normal;text-align:left}
+.combatants .stat{line-height:15px}.combatants .stat>b{font-size:10px;width:67px}
+.rosterTabs,.contextTabs{display:flex;gap:10px;border-bottom:1px solid #c0b68a40;min-height:32px;align-items:center}
+.rosterTabs button,.contextTabs button{border:0;background:none;color:#9aacc0;font:12px Georgia,serif;padding:7px 4px;cursor:pointer}
+.rosterTabs button[aria-pressed=true],.contextTabs button[aria-pressed=true]{color:#ffe3a7;box-shadow:inset 0 -1px #d8bd7d}
+.enemyCard{width:100%;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.selectedEnemyCard{background:linear-gradient(90deg,#c34f3b29,transparent)!important}
+.enemyHealth i{background:#d77a71}.noResource{flex:1;text-align:right;color:#8897ac;width:auto!important}
+.contextPanel{order:1;flex:1;min-width:0;height:198px;align-self:flex-end;background:linear-gradient(130deg,#101f32ed,#101d30ce);border:1px solid #b6aa825c;border-radius:3px;padding:0 12px 10px;box-shadow:0 5px 20px #0004;display:flex;flex-direction:column}
+.contextBody{min-height:0;overflow-y:auto;flex:1;padding:12px 3px;color:#c6d1df;font:13px/1.7 Georgia,serif;scrollbar-width:thin}
+.contextBody ol{margin:0;padding:0;list-style:none}.contextBody li{padding:3px 0;border-bottom:1px solid #ffffff08}.contextBody li:last-child{color:#f1e6c9}.contextBody p{margin:0}
+.submenu{flex:none;padding:0 3px;animation:unfold .16s ease-out}
+.submenuTitle{display:flex;justify-content:space-between;align-items:center;padding:6px 0;color:#e7d1a6;font:13px Georgia,serif}
+.submenuTitle button{background:none;border:0;color:#d6c6aa;font-size:20px;padding:0 6px;cursor:pointer}
+.submenu>button{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:30px;border:0;border-top:1px solid #b3bfcc18;background:none;color:#f3ecdc;font:14px Georgia,serif;text-align:left;padding:4px 8px;cursor:pointer}
+.submenu>button:hover,.submenu>button:focus-visible{background:#dfc07a20;outline:1px solid #c3b18055}.submenu small{font:10px Arial,sans-serif;color:#c3d3e6}.withSubmenu .contextBody{padding:5px 3px;font-size:11px;line-height:1.4}.withSubmenu .contextTabs{min-height:27px}.withSubmenu .contextTabs button{padding:4px}
+@keyframes unfold{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}
+@keyframes targetPulse{0%,100%{transform:translateX(-50%) scale(.92)}50%{transform:translateX(-50%) scale(1.12)}}
+.targetArrow{animation:targetPulse 1.4s ease-in-out infinite;transform-origin:center}
+.mobile .hud{bottom:16px;padding-bottom:0;gap:10px;align-items:flex-end}
+.mobile .orders{width:132px}.mobile .combatants{width:224px;min-height:98px;padding:0 6px 4px}
+.mobile .combatants .heroCard{grid-template-columns:90px 1fr;grid-template-rows:16px 16px;padding:4px 0;gap:0 3px}
+.mobile .combatants .cardTitle strong{font-size:11px;line-height:13px}.mobile .combatants .stat>b{width:48px;font-size:9px}.mobile .combatants .stat small{font-size:8px}.mobile .combatants .stat>span{font-size:7px;width:14px}.mobile .rosterTabs{gap:8px;min-height:30px}.mobile .rosterTabs button{font-size:11px;padding:8px 2px}
+.mobile .contextPanel{position:absolute;left:0;right:0;bottom:235px;height:34px;padding:0 8px;flex:none;z-index:65;background:#122238d9}
+.mobile .contextTabs{min-height:32px;gap:12px}.mobile .contextTabs button{font-size:12px}.mobile .contextBody{display:none}
+.mobile .contextExpanded{height:154px}.mobile .contextExpanded .contextBody{display:block;font-size:12px}
+.mobile .withSubmenu{left:142px;right:0;bottom:0;height:225px;background:#122238fa;padding:0 8px;z-index:70}
+.mobile .withSubmenu .contextTabs{min-height:28px;gap:8px}.mobile .withSubmenu .contextTabs button{font-size:11px;padding:5px 2px}
+.mobile .submenu>button{min-height:44px;font-size:12px;padding:3px}.mobile .submenuTitle{font-size:13px;padding:5px 0}.mobile .withSubmenu .contextBody{display:block;font-size:10px;padding:4px 0}.mobile .submenu small{font-size:9px}
+@media(prefers-reduced-motion:reduce){.targetArrow,.submenu{animation:none}}
+/* Preview scaling must not create an invisible scroll area when a control receives focus. */
+.frame,.battle{overflow:clip}
+
+/* Unified expanding action window; both teams remain visible independently. */
+.allCombatants{position:absolute;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr;gap:10px;width:440px;pointer-events:auto}
+.teamLedger{min-width:0;padding:6px 8px;background:#0c1c30d9;border:1px solid #b7ab7c50;border-radius:2px}
+.teamLedger h3{font:12px Georgia,serif;color:#ddc79a;margin:0 0 4px;border-bottom:1px solid #b7ab7c40;padding-bottom:5px}
+.teamLedger .heroCard{grid-template-columns:1fr;grid-template-rows:auto 13px 13px;padding:4px 0;gap:0}
+.teamLedger .cardTitle{grid-row:auto;flex-direction:row;justify-content:space-between;padding:0;gap:4px;margin:0 0 2px;min-width:0}
+.teamLedger .cardTitle strong{font-size:11px;line-height:13px}.teamLedger .cardTitle>span{font-size:6px;white-space:nowrap}.teamLedger .stat{font-size:8px;line-height:13px}.teamLedger .stat>b{font-size:9px;width:65px}.teamLedger .stat small{font-size:8px}.teamLedger .stat>span{font-size:7px}
+.actionBlock{position:relative;display:flex;align-items:stretch;align-self:flex-end;width:170px;flex:none;min-height:198px;z-index:55;background:linear-gradient(135deg,#14273bf7,#0a1729fa);border:3px double #aaa68e;border-radius:3px;box-shadow:0 5px 18px #0008;pointer-events:auto}
+.actionBlockExpanded{width:610px}.actionBlock .orders{width:164px;border:0;box-shadow:none;background:none;border-radius:0;align-self:stretch;padding:8px 4px;justify-content:flex-start}
+.actionBlock .submenu{flex:1;min-width:0;border-left:1px solid #b7ab7c60;margin:8px 0;padding:0 12px;display:flex;flex-direction:column}
+.actionBlock .submenuTitle{min-height:28px}.actionBlock .submenu>button{min-height:35px;flex:none}.actionDescription{margin:8px 0 0;padding-top:8px;border-top:1px solid #b7ab7c40;font:12px/1.4 Georgia,serif;color:#b9c9da;overflow:auto;max-height:60px}
+.historyOnly{position:absolute;left:184px;bottom:0;width:420px;height:198px;border:1px solid #a59b7544;background:#101f31c9;padding:8px 12px;pointer-events:auto;z-index:52}
+.historyToggle{display:flex;justify-content:space-between;width:100%;padding:3px 0 8px;background:none;border:0;border-bottom:1px solid #a59b7544;color:#d4c39f;font:13px Georgia,serif;cursor:pointer}.historyOnly ol{list-style:none;margin:9px 0 0;padding:0;max-height:140px;overflow:auto;font:12px/1.6 Georgia,serif;color:#bdccdc}.historyOnly li{padding:3px 0}.historyDuringMenu{left:auto;right:0;bottom:215px;width:440px;height:auto;background:#0c1c30dc}.historyDuringMenu:not(.historyOpen) ol{display:none}.historyOpen{height:198px}
+.mobile .allCombatants{left:0;right:0;bottom:238px;width:auto;gap:8px}
+.mobile .teamLedger{padding:4px 6px}.mobile .teamLedger h3{font-size:10px;padding-bottom:3px;margin-bottom:2px}
+.mobile .teamLedger .heroCard{grid-template-columns:1fr;grid-template-rows:auto 11px 11px;padding:2px 0;gap:0}
+.mobile .teamLedger .cardTitle{grid-row:auto;flex-direction:row;justify-content:space-between;margin:0;padding:0;gap:3px}.mobile .teamLedger .cardTitle strong{font-size:10px;line-height:12px}.mobile .teamLedger .cardTitle>span{font-size:6px}.mobile .teamLedger .stat{line-height:11px;gap:3px}.mobile .teamLedger .stat>b{font-size:8px;width:55px}.mobile .teamLedger .stat small{font-size:7px}.mobile .teamLedger .stat>span{width:20px;font-size:7px}
+.mobile .actionBlock{width:132px;min-height:224px}.mobile .actionBlockExpanded{width:100%}.mobile .actionBlock .orders{width:126px;padding:6px 3px}.mobile .actionBlock .submenu{margin:6px 0;padding:0 8px;min-width:0}.mobile .actionBlock .submenu>button{min-height:42px;font-size:11px;padding:2px 0}.mobile .actionBlock .submenuTitle{font-size:12px;padding:3px 0;min-height:26px}.mobile .actionDescription{font-size:10px;line-height:1.3;margin-top:5px;padding-top:5px;max-height:44px}
+.mobile .historyOnly{left:142px;right:0;bottom:0;width:auto;height:224px;padding:8px}.mobile .historyOnly ol{font-size:11px;max-height:165px}.mobile .historyToggle{font-size:12px}.mobile .historyDuringMenu{position:fixed;top:72px;right:14px;left:auto;bottom:auto;width:155px;height:auto;background:#102034e8}.mobile .historyDuringMenu.historyOpen{width:260px;height:150px}.mobile .historyDuringMenu.historyOpen ol{max-height:95px}
+.historyDuringMenu{position:fixed;top:78px;right:26px;left:auto;bottom:auto;width:300px}
+.mobile .historyDuringMenu{top:72px;right:14px;width:155px}.mobile .historyDuringMenu.historyOpen{width:260px}
+
+/* Docked RPG panel: its height is reserved in the layout, never over the arena. */
+.battle .hud{position:relative;inset:auto;flex:0 0 214px;height:214px;min-height:214px;width:100%;display:block;padding:0;border:0;border-top:2px solid #ac9765;background:linear-gradient(110deg,#14263d,#0d1b2e);box-shadow:inset 0 3px #ffffff05;z-index:50;pointer-events:auto}
+.battle .stage{flex:1;min-height:0;overflow:clip}
+.battle .allCombatants{position:absolute;top:0;right:0;bottom:0;width:400px;display:grid;grid-template-columns:1fr 1fr;gap:0;border-left:1px solid #b9aa7844}
+.battle .teamLedger{border:0;border-radius:0;background:none;box-shadow:none;padding:8px 10px}.battle .teamLedger+ .teamLedger{border-left:1px solid #b9aa7828}
+.battle .actionBlock{position:absolute;left:0;top:0;bottom:24px;width:170px;min-height:0;border:0;border-radius:0;background:none;box-shadow:none;align-self:auto;display:flex}
+.battle .actionBlockExpanded{width:calc(100% - 400px)}
+.battle .actionBlock .orders{width:170px;flex:none;min-height:0;padding:6px 8px;border-right:1px solid #b9aa7844;background:none}
+.battle .actionBlock .orderTitle{font-size:14px;padding:2px 7px 6px;margin:0 0 2px}.battle .commandGrid button{height:37px;min-height:37px;font-size:15px}
+.battle .actionBlock .submenu{margin:0;padding:6px 12px;border:0;min-height:0}.battle .submenuTitle{min-height:24px;padding:0}.battle .actionBlock .submenu>button{min-height:32px}.battle .actionDescription{margin-top:4px;padding-top:5px;font-size:11px;max-height:42px}
+.battle .historyOnly{position:absolute;top:0;bottom:24px;left:170px;right:400px;width:auto;height:auto;padding:8px 12px;border:0;border-radius:0;background:none;box-shadow:none;z-index:56}
+.battle .historyDuringMenu{top:auto;left:0;right:400px;bottom:0;height:24px;padding:0 12px;background:#08152355;border-top:1px solid #b9aa7828}
+.battle .historyDuringMenu .historyToggle{font-size:11px;line-height:20px;padding:0;border:0}.battle .historyDuringMenu.historyOpen{top:0;bottom:0;height:auto;padding:8px 12px;background:#102138}.battle .historyDuringMenu.historyOpen ol{display:block;max-height:160px}
+.battle .historyOnly ol{max-height:142px}.battle .exitPanel{bottom:20px}
+.battle.mobile .hud{flex-basis:310px;height:310px;min-height:310px;padding:0;border-top:2px solid #ac9765}
+.battle.mobile .allCombatants{left:0;right:0;top:0;bottom:auto;height:104px;width:100%;border:0;border-bottom:1px solid #b9aa7844;gap:0}
+.battle.mobile .teamLedger{padding:4px 8px}.battle.mobile .teamLedger h3{font-size:9px;padding-bottom:2px;margin-bottom:1px}
+.battle.mobile .teamLedger .heroCard{display:grid;grid-template-columns:65px 1fr;grid-template-rows:10px 10px;padding:0;min-height:20px;gap:0 3px;border:0}
+.battle.mobile .teamLedger .cardTitle{grid-row:1/3;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:0;margin:0;padding:0}
+.battle.mobile .teamLedger .cardTitle strong{font-size:9px;line-height:10px}.battle.mobile .teamLedger .cardTitle>span{display:none}
+.battle.mobile .teamLedger .stat{line-height:10px;gap:2px}.battle.mobile .teamLedger .stat>b{font-size:8px;width:43px}.battle.mobile .teamLedger .stat>span{font-size:6px;width:15px}.battle.mobile .teamLedger .stat small{font-size:7px}.battle.mobile .bar{height:2px}
+.battle.mobile .actionBlock{top:104px;bottom:24px;width:132px;min-height:0}.battle.mobile .actionBlockExpanded{width:100%}
+.battle.mobile .actionBlock .orders{width:132px;padding:4px 6px}.battle.mobile .actionBlock .orderTitle{font-size:12px;padding:0 7px 3px;margin-bottom:0;line-height:16px}
+.battle.mobile .commandGrid button{height:40px;min-height:40px;font-size:13px;padding:0 4px}
+.battle.mobile .actionBlock .submenu{padding:4px 10px;margin:0}.battle.mobile .submenuTitle{font-size:12px;min-height:20px;line-height:20px;padding:0}.battle.mobile .actionBlock .submenu>button{min-height:38px;font-size:11px;padding:0}
+.battle.mobile .actionDescription{font-size:9px;line-height:12px;margin-top:3px;padding-top:3px;max-height:33px}
+.battle.mobile .historyOnly{position:absolute;top:104px;left:132px;right:0;bottom:24px;width:auto;height:auto;padding:6px 10px;background:none;border:0}
+.battle.mobile .historyOnly ol{font-size:11px;max-height:140px}.battle.mobile .historyToggle{font-size:11px}
+.battle.mobile .historyDuringMenu{top:auto;left:0;right:0;bottom:0;height:24px;padding:0 10px;background:#08152355;border-top:1px solid #b9aa7828}
+.battle.mobile .historyDuringMenu.historyOpen{top:104px;left:0;right:0;bottom:0;width:auto;height:auto;padding:7px 12px;background:#102138}.battle.mobile .historyDuringMenu.historyOpen ol{max-height:145px}
+.battle.mobile .teamLedger+ .teamLedger .heroCard{grid-template-columns:94px 1fr}.battle.mobile .teamLedger+ .teamLedger .stat>b{width:36px}
+.battle:not(.mobile) .teamLedger .heroCard{grid-template-columns:76px 1fr;grid-template-rows:16px 16px;gap:0 4px;padding:3px 0}
+.battle:not(.mobile) .teamLedger .cardTitle{grid-row:1/3;flex-direction:column;justify-content:center;align-items:flex-start;gap:2px;margin:0}.battle:not(.mobile) .teamLedger .cardTitle strong{font-size:10px;line-height:12px}.battle:not(.mobile) .teamLedger .stat>b{width:48px}
+
+/* Compact dock: remove the actor heading and the unused bottom strip. */
+.battle .hud{flex-basis:180px;height:180px;min-height:180px}
+.battle .actionBlock,.battle .historyOnly{bottom:0}
+.battle .actionDescription{max-height:32px}
+.battle.mobile .hud{flex-basis:270px;height:270px;min-height:270px}
+.battle.mobile .allCombatants{height:92px}
+.battle.mobile .actionBlock,.battle.mobile .historyOnly{top:92px;bottom:0}
+.battle.mobile .actionBlock .submenu>button{min-height:36px}
+.battle.mobile .actionDescription{max-height:30px}
+
+/* Smaller commands, readable history and participant information. */
+.battle .commandGrid button{height:33px;min-height:33px;font-size:14px}
+.battle.mobile .commandGrid button{height:36px;min-height:36px;font-size:12px}
+.battle .historyOnly{padding-top:7px;padding-right:40px}
+.battle .historyToggle{position:absolute;right:6px;top:5px;width:28px;height:28px;display:grid;place-items:center;padding:0;border:1px solid #b4a57b44;border-radius:2px;font:18px Georgia,serif;color:#e3d4b0;background:#ffffff05}
+.battle .historyOnly ol{margin:0;color:#c6cbd3;max-height:155px}.battle .historyOnly li{color:#c6cbd3}.battle .historyOnly li:last-child{color:#fff}
+.battle .historyOnly.historyOpen{left:0;right:400px;top:0;bottom:0;height:auto;background:#102138;z-index:80;padding:10px 42px 10px 14px}
+.battle.mobile .historyOnly{padding:6px 34px 6px 8px}.battle.mobile .historyOnly.historyOpen{top:92px;left:0;right:0;bottom:0;height:auto;padding:8px 40px 8px 12px;background:#102138}.battle.mobile .historyOnly ol{max-height:158px}
+.headerTools{display:flex;align-items:center;gap:8px}.headerTools button{border:1px solid #66718a;border-radius:3px;padding:7px 10px;color:#e7d4a9;background:#17283e;font-size:12px;cursor:pointer}.mobile .headerTools{gap:5px}.mobile .headerTools button{font-size:10px;padding:5px 8px}
+.infoDialog{position:fixed;inset:0;margin:auto;width:min(680px,calc(100vw - 28px));max-height:85dvh;overflow:auto;border:2px solid #ad9665;border-radius:4px;background:#102138;color:#e7edf5;padding:20px;box-shadow:0 20px 80px #0009;font:13px Arial,sans-serif}.infoDialog::backdrop{background:#050d1bba}.infoDialog>header{display:flex;justify-content:space-between;gap:15px;border-bottom:1px solid #ad966566;padding-bottom:12px}.infoDialog h2{font:24px Georgia,serif;margin:0}.infoDialog header p{font-size:11px;color:#a9b8cc;margin:6px 0 0}.infoDialog header button{width:36px;height:36px;background:#263950;border:1px solid #8a8269;color:#eee;font-size:24px;cursor:pointer}.infoTeams{display:grid;grid-template-columns:1fr 1fr;gap:18px}.infoTeams h3{font:16px Georgia,serif;color:#e0c793;margin:18px 0 8px}.infoTeams article{border-top:1px solid #ffffff18;padding:10px 0}.infoTeams h4{font:15px Georgia,serif;margin:0 0 10px}.infoTeams h4 small{display:block;font:10px Arial,sans-serif;color:#a6b8cf;margin-top:4px}.infoTeams dl{display:grid;grid-template-columns:1fr auto;gap:6px;margin:0;font-size:11px}.infoTeams dt{color:#a9b8cc}.infoTeams dd{margin:0;text-align:right}
+@media(max-width:480px){.infoDialog{padding:14px}.infoTeams{grid-template-columns:1fr}}
+.historyToggle{border:0!important;background:none!important;padding:0!important;display:flex!important;align-items:center!important;justify-content:center!important;line-height:1!important}

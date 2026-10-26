@@ -11,6 +11,12 @@
       "name": "Mímico",
       "boss": false,
       "rank": "I",
+      "bounds": [
+        120,
+        213,
+        284,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/mimic-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -24,6 +30,12 @@
       "name": "Slime Ácido",
       "boss": false,
       "rank": "I",
+      "bounds": [
+        88,
+        240,
+        307,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/slime_acido-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -37,6 +49,12 @@
       "name": "Rata Gigante",
       "boss": false,
       "rank": "I",
+      "bounds": [
+        97,
+        244,
+        310,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/rata_gigante-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -50,6 +68,12 @@
       "name": "Goblin Explorador",
       "boss": false,
       "rank": "I",
+      "bounds": [
+        130,
+        232,
+        290,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/goblin_explorador-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -63,6 +87,12 @@
       "name": "Bandido del Camino",
       "boss": false,
       "rank": "I",
+      "bounds": [
+        104,
+        202,
+        306,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/bandido_camino-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -76,6 +106,12 @@
       "name": "Orco Despiadado",
       "boss": false,
       "rank": "II",
+      "bounds": [
+        91,
+        159,
+        311,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/orco_despiadado-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -89,6 +125,12 @@
       "name": "Esqueleto Guerrero",
       "boss": false,
       "rank": "II",
+      "bounds": [
+        81,
+        189,
+        294,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/esqueleto_guerrero-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -102,6 +144,12 @@
       "name": "Ogro",
       "boss": false,
       "rank": "II",
+      "bounds": [
+        67,
+        121,
+        362,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/ogro-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -115,6 +163,12 @@
       "name": "Araña de las Sombras",
       "boss": false,
       "rank": "II",
+      "bounds": [
+        83,
+        208,
+        306,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/arana_sombras-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -128,6 +182,12 @@
       "name": "Troll de las Cavernas",
       "boss": false,
       "rank": "II",
+      "bounds": [
+        87,
+        140,
+        348,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/troll_cavernas-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -141,6 +201,12 @@
       "name": "Minotauro",
       "boss": false,
       "rank": "III",
+      "bounds": [
+        102,
+        155,
+        345,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/minotauro-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -154,6 +220,12 @@
       "name": "Lobo Hambriento",
       "boss": false,
       "rank": "I",
+      "bounds": [
+        97,
+        223,
+        313,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/lobo_hambriento-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -167,6 +239,12 @@
       "name": "Murciélago Sanguinario",
       "boss": false,
       "rank": "I",
+      "bounds": [
+        90,
+        225,
+        293,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/murcielago_sanguinario-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -180,6 +258,12 @@
       "name": "Avispa Gigante",
       "boss": false,
       "rank": "I",
+      "bounds": [
+        124,
+        223,
+        298,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/avispa_gigante-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -193,6 +277,12 @@
       "name": "Kobold Trampero",
       "boss": false,
       "rank": "I",
+      "bounds": [
+        125,
+        229,
+        309,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/kobold_trampero-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -206,6 +296,12 @@
       "name": "Bandido Arbalestero",
       "boss": false,
       "rank": "I",
+      "bounds": [
+        136,
+        202,
+        272,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/bandido_arbalestero-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -219,6 +315,12 @@
       "name": "Zombi Errante",
       "boss": false,
       "rank": "I",
+      "bounds": [
+        103,
+        191,
+        303,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/zombie_errante-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -232,6 +334,12 @@
       "name": "Hiena Salvaje",
       "boss": false,
       "rank": "I",
+      "bounds": [
+        104,
+        238,
+        298,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/hiena_salvaje-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -245,6 +353,12 @@
       "name": "Cultista Encapuchado",
       "boss": false,
       "rank": "II",
+      "bounds": [
+        106,
+        203,
+        306,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/cultista_encapuchado-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -258,6 +372,12 @@
       "name": "Gnoll Merodeador",
       "boss": false,
       "rank": "II",
+      "bounds": [
+        97,
+        179,
+        318,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/gnoll_merodeador-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -271,6 +391,12 @@
       "name": "Ghoul de la Cripta",
       "boss": false,
       "rank": "II",
+      "bounds": [
+        85,
+        178,
+        343,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/ghoul_cripta-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -284,6 +410,12 @@
       "name": "Hombre Lagarto",
       "boss": false,
       "rank": "II",
+      "bounds": [
+        92,
+        178,
+        328,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/hombre_lagarto-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -297,6 +429,12 @@
       "name": "Gólem de Barro",
       "boss": false,
       "rank": "II",
+      "bounds": [
+        111,
+        195,
+        416,
+        436
+      ],
       "src": "/sprites/enemies-hd-v1/golem_barro-sheet.png",
       "cellSize": 448,
       "anchor": [
@@ -310,6 +448,12 @@
       "name": "Oso Cavernario",
       "boss": false,
       "rank": "II",
+      "bounds": [
+        62,
+        122,
+        343,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/oso_cavernario-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -323,6 +467,12 @@
       "name": "Espectro Errante",
       "boss": false,
       "rank": "II",
+      "bounds": [
+        96,
+        182,
+        338,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/espectro_errante-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -336,6 +486,12 @@
       "name": "Arpía Cazadora",
       "boss": false,
       "rank": "II",
+      "bounds": [
+        108,
+        188,
+        324,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/harpia_cazadora-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -349,6 +505,12 @@
       "name": "Nigromante Aprendiz",
       "boss": false,
       "rank": "II",
+      "bounds": [
+        108,
+        202,
+        325,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/nigromante_aprendiz-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -362,6 +524,12 @@
       "name": "Guardián de la Cripta",
       "boss": false,
       "rank": "III",
+      "bounds": [
+        91,
+        189,
+        405,
+        436
+      ],
       "src": "/sprites/enemies-hd-v1/guardian_cripta-sheet.png",
       "cellSize": 448,
       "anchor": [
@@ -375,6 +543,12 @@
       "name": "Basilisco Joven",
       "boss": false,
       "rank": "III",
+      "bounds": [
+        49,
+        208,
+        316,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/basilisco_joven-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -388,6 +562,12 @@
       "name": "Centauro Saqueador",
       "boss": false,
       "rank": "III",
+      "bounds": [
+        53,
+        98,
+        328,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/centauro_saqueador-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -401,6 +581,12 @@
       "name": "Gárgola Ancestral",
       "boss": false,
       "rank": "III",
+      "bounds": [
+        62,
+        124,
+        355,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/gargola_ancestral-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -414,6 +600,12 @@
       "name": "Elemental de Roca",
       "boss": false,
       "rank": "III",
+      "bounds": [
+        87,
+        197,
+        409,
+        436
+      ],
       "src": "/sprites/enemies-hd-v1/elemental_roca-sheet.png",
       "cellSize": 448,
       "anchor": [
@@ -427,6 +619,12 @@
       "name": "Sacerdotisa Oscura",
       "boss": false,
       "rank": "III",
+      "bounds": [
+        86,
+        201,
+        279,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/sacerdotisa_oscura-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -440,6 +638,12 @@
       "name": "Mantícora",
       "boss": false,
       "rank": "III",
+      "bounds": [
+        63,
+        145,
+        338,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/mantícora-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -453,6 +657,12 @@
       "name": "Ogro Chamán",
       "boss": false,
       "rank": "III",
+      "bounds": [
+        82,
+        169,
+        417,
+        436
+      ],
       "src": "/sprites/enemies-hd-v1/ogro_chaman-sheet.png",
       "cellSize": 448,
       "anchor": [
@@ -466,6 +676,12 @@
       "name": "Caballero Maldito",
       "boss": false,
       "rank": "IV",
+      "bounds": [
+        79,
+        166,
+        353,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/caballero_maldito-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -479,6 +695,12 @@
       "name": "Wyvern Joven",
       "boss": false,
       "rank": "IV",
+      "bounds": [
+        34,
+        145,
+        325,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/wyvern_joven-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -492,6 +714,12 @@
       "name": "Elemental de Fuego",
       "boss": false,
       "rank": "IV",
+      "bounds": [
+        73,
+        157,
+        333,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/elemental_fuego-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -505,6 +733,12 @@
       "name": "Vampiro Noble",
       "boss": false,
       "rank": "IV",
+      "bounds": [
+        92,
+        190,
+        368,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/vampiro_noble-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -518,6 +752,12 @@
       "name": "Demonio Menor",
       "boss": false,
       "rank": "V",
+      "bounds": [
+        84,
+        155,
+        322,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/demonio_menor-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -531,6 +771,12 @@
       "name": "Dragón Negro Joven",
       "boss": false,
       "rank": "V",
+      "bounds": [
+        24,
+        152,
+        395,
+        436
+      ],
       "src": "/sprites/enemies-hd-v1/dragon_negro_joven-sheet.png",
       "cellSize": 448,
       "anchor": [
@@ -544,6 +790,12 @@
       "name": "Gigante de Escarcha",
       "boss": false,
       "rank": "V",
+      "bounds": [
+        115,
+        187,
+        476,
+        500
+      ],
       "src": "/sprites/enemies-hd-v1/gigante_escarcha-sheet.png",
       "cellSize": 512,
       "anchor": [
@@ -557,6 +809,12 @@
       "name": "Señor de la Frontera",
       "boss": true,
       "rank": "I",
+      "bounds": [
+        31,
+        129,
+        348,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/senor_frontera-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -570,6 +828,12 @@
       "name": "Reina de las Sombras",
       "boss": true,
       "rank": "I",
+      "bounds": [
+        73,
+        187,
+        276,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/reina_sombras-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -583,6 +847,12 @@
       "name": "Titán de Hierro",
       "boss": true,
       "rank": "I",
+      "bounds": [
+        74,
+        167,
+        471,
+        500
+      ],
       "src": "/sprites/enemies-hd-v1/titan_hierro-sheet.png",
       "cellSize": 512,
       "anchor": [
@@ -596,6 +866,12 @@
       "name": "Dragón del Bosque Verde",
       "boss": true,
       "rank": "I",
+      "bounds": [
+        9,
+        127,
+        414,
+        436
+      ],
       "src": "/sprites/enemies-hd-v1/dragon_bosque_verde-sheet.png",
       "cellSize": 448,
       "anchor": [
@@ -609,6 +885,12 @@
       "name": "Capitán de los Orcos",
       "boss": true,
       "rank": "II",
+      "bounds": [
+        86,
+        136,
+        355,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/capitan_orcos-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -622,6 +904,12 @@
       "name": "Reina Araña",
       "boss": true,
       "rank": "II",
+      "bounds": [
+        97,
+        238,
+        555,
+        564
+      ],
       "src": "/sprites/enemies-hd-v1/reina_arana-sheet.png",
       "cellSize": 576,
       "anchor": [
@@ -635,6 +923,12 @@
       "name": "Archimago Exiliado",
       "boss": true,
       "rank": "III",
+      "bounds": [
+        84,
+        184,
+        298,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/archimago_exiliado-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -648,6 +942,12 @@
       "name": "Dragón del Pantano",
       "boss": true,
       "rank": "III",
+      "bounds": [
+        22,
+        163,
+        378,
+        436
+      ],
       "src": "/sprites/enemies-hd-v1/dragon_pantano-sheet.png",
       "cellSize": 448,
       "anchor": [
@@ -661,6 +961,12 @@
       "name": "Rey No Muerto",
       "boss": true,
       "rank": "IV",
+      "bounds": [
+        107,
+        212,
+        431,
+        436
+      ],
       "src": "/sprites/enemies-hd-v1/rey_no_muerto-sheet.png",
       "cellSize": 448,
       "anchor": [
@@ -674,6 +980,12 @@
       "name": "Hidra de Tres Cabezas",
       "boss": true,
       "rank": "IV",
+      "bounds": [
+        33,
+        213,
+        437,
+        500
+      ],
       "src": "/sprites/enemies-hd-v1/hidra_tres_cabezas-sheet.png",
       "cellSize": 512,
       "anchor": [
@@ -687,6 +999,12 @@
       "name": "Señor del Abismo",
       "boss": true,
       "rank": "V",
+      "bounds": [
+        17,
+        75,
+        366,
+        372
+      ],
       "src": "/sprites/enemies-hd-v1/senor_abismo-sheet.png",
       "cellSize": 384,
       "anchor": [
@@ -700,6 +1018,12 @@
       "name": "Dragón Anciano",
       "boss": true,
       "rank": "V",
+      "bounds": [
+        33,
+        230,
+        488,
+        564
+      ],
       "src": "/sprites/enemies-hd-v1/dragon_anciano-sheet.png",
       "cellSize": 576,
       "anchor": [
