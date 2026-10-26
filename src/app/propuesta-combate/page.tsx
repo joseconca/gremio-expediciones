@@ -30,6 +30,7 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
   const [historial, setHistorial] = useState(["El grupo entra en el claro.", "Aldric está listo para actuar."]);
   const [descripcion, setDescripcion] = useState("Atacar usa el arma equipada contra el enemigo marcado. Huir intenta abandonar el combate.");
   const [huido, setHuido] = useState(false);
+  const infoRef = useRef<HTMLDialogElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
   const heroes = party ? HEROES : HEROES.slice(0, 1);
@@ -45,7 +46,7 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
   const ancho = movil ? 390 : 1120;
   const altoEscena = 360;
   return <div className={`${styles.battle} ${movil ? styles.mobile : ""}`} style={{ width: ancho, height: movil ? 760 : 680 }}>
-    <header className={styles.battleHeader}><div><span className={styles.eyebrow}>BOSQUE DE LAS CENIZAS</span><strong>{jefe ? "Una presencia ancestral" : "Emboscada en el sendero"}</strong></div><span className={styles.turn}>Turno 03</span></header>
+    <header className={styles.battleHeader}><div><span className={styles.eyebrow}>BOSQUE DE LAS CENIZAS</span><strong>{jefe ? "Una presencia ancestral" : "Emboscada en el sendero"}</strong></div><nav className={styles.headerTools} aria-label="Información del combate"><button onClick={() => infoRef.current?.showModal()}>Info</button><span className={styles.turn}>Turno 03</span></nav></header>
     <div className={styles.stage}>
       <div className={styles.stageVeil} />
       <div className={styles.turnNote}>◆ Turno de Aldric</div>
@@ -114,12 +115,24 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
         </div>}
       </div>
       {menu === "principal" && <section className={`${styles.historyOnly} ${expandido ? styles.historyOpen : ""}`} aria-label="Historial del combate">
-        <button className={styles.historyToggle} aria-expanded={expandido} onClick={() => setExpandido(!expandido)}>Historial <span>{expandido ? "−" : "+"}</span></button>
-        <ol>{(expandido ? historial : historial.slice(-2)).map((linea, i) => <li key={i}>{linea}</li>)}</ol>
+        <button className={styles.historyToggle} aria-label={expandido ? "Reducir historial" : "Ampliar historial"} aria-expanded={expandido} onClick={() => setExpandido(!expandido)}>{expandido ? "−" : "+"}</button>
+        <ol>{(expandido ? historial : historial.slice(-4)).map((linea, i) => <li key={i}>{linea}</li>)}</ol>
       </section>}
       {huido && <div className={styles.exitPanel}><strong>Has salido del combate</strong><p>Demostración de la acción Huir.</p><button onClick={() => { setHuido(false); }}>Volver a la vista previa</button></div>}
 
     </footer>
+    <dialog ref={infoRef} className={styles.infoDialog} aria-labelledby={`info-${movil}-${party}`}>
+      <header><div><h2 id={`info-${movil}-${party}`}>Participantes</h2><p>Datos de demostración · turno 03</p></div><button autoFocus onClick={() => infoRef.current?.close()} aria-label="Cerrar información">×</button></header>
+      <div className={styles.infoTeams}>
+        <section><h3>Tu grupo</h3>{heroes.map((h, i) => <article key={h.nombre}><h4>{h.nombre} <small>{h.clase}</small></h4><dl>
+          <dt>Vida</dt><dd>{h.hp} / {h.max}</dd><dt>{i === 1 || i === 3 ? "Maná" : "Energía"}</dt><dd>{h.mp}</dd>
+          <dt>Ataque físico</dt><dd>{[86, 28, 72, 36][i]}</dd><dt>Ataque mágico</dt><dd>{[14, 96, 18, 74][i]}</dd><dt>Defensa física</dt><dd>{[62, 24, 38, 42][i]}</dd><dt>Defensa mágica</dt><dd>{[28, 68, 32, 64][i]}</dd><dt>Velocidad</dt><dd>{[30, 26, 48, 24][i]}</dd><dt>Posición</dt><dd>{i === 0 ? "Frente" : "Retaguardia"}</dd><dt>Estado</dt><dd>{i === 0 ? "Turno activo" : "En espera"}</dd><dt>Efectos</dt><dd>Ninguno</dd>
+        </dl></article>)}</section>
+        <section><h3>Rivales</h3>{enemigos.map((id, i) => { const e = obtenerEnemigoPorId(id); return <article key={id}><h4>{ENEMIGOS_HD[id].name}</h4><dl>
+          <dt>Vida</dt><dd>{e?.hp ?? 100} / {e?.hp ?? 100}</dd><dt>Ataque físico</dt><dd>{e?.ataque ?? "—"}</dd><dt>Ataque mágico</dt><dd>{e?.ataqueMagico ?? "—"}</dd><dt>Defensa física</dt><dd>{e?.defensa ?? "—"}</dd><dt>Defensa mágica</dt><dd>{e?.defensaMagica ?? "—"}</dd><dt>Velocidad</dt><dd>{e?.velocidad ?? "—"}</dd><dt>Posición</dt><dd>Frente</dd><dt>Estado</dt><dd>{i === seleccionado ? "Objetivo marcado" : "En espera"}</dd><dt>Efectos</dt><dd>Ninguno</dd>
+        </dl></article>; })}</section>
+      </div>
+    </dialog>
   </div>;
 }
 

@@ -33,3 +33,9 @@ El panel de combate ocupa una región propia en el flujo de la pantalla (180 px 
 Ambos equipos siguen visibles: franja superior compacta en el panel móvil y columnas a la derecha en escritorio. El bloque de acciones se ensancha dentro del panel, sin invadir la escena. El historial permanece separado y se expande dentro de esta región inferior. Esta revisión sustituye el posicionamiento flotante de las revisiones anteriores.
 
 Ajuste de compactación: se elimina el nombre del actor sobre las órdenes y la franja inferior vacía. El panel gana 34 px de escena en escritorio y 40 px en móvil.
+
+## Información de participantes e historial
+
+Las órdenes se compactan a 33 px en escritorio y 36 px en móvil. El historial muestra hasta cuatro entradas sin encabezado: anteriores en gris claro y última en blanco. El pequeño control +/− amplía el área y permite consultar todas las entradas; no oculta el texto.
+
+Info, junto al turno, abre un diálogo accesible con todos los participantes, vida, recurso disponible, ataques, defensas, velocidad, posición, estado y efectos. Los valores aliados son muestras de diseño y los enemigos usan el catálogo; al integrar deben sustituirse por el estado real de la batalla. Se conserva la lógica de combate existente.
