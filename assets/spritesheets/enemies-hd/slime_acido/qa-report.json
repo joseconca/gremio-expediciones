@@ -7,41 +7,59 @@
     "attack",
     "dodge"
   ],
-  "scale": 0.5267489711934157,
+  "scale": 0.5241379310344828,
+  "rowReferenceRoots": [
+    [
+      158.5,
+      295.0
+    ],
+    [
+      158.0,
+      285.5
+    ],
+    [
+      158.5,
+      283.0
+    ],
+    [
+      158.0,
+      257.5
+    ]
+  ],
   "sheetPath": "assets/spritesheets/enemies-hd/slime_acido/slime_acido-sheet.png",
-  "sheetSha256": "0d97be892be463ffc773fe283328b877263a6cf33c17a2cd6f6d92dfb0105bd8",
+  "sheetSha256": "47cfe873d081cdc3dfec508a4d645d9d909f70a4320d80f16f4f6e513d38227f",
   "sourcePath": "assets/spritesheets/enemies-hd/slime_acido/source/sheet-v3.png",
   "sourceSha256": "c232332d5b1a947474d87dd74f4a2eee356686aad986d6816609a9be5f4f7d29",
   "frameData": {
     "idle": [
       {
         "path": "assets/spritesheets/enemies-hd/slime_acido/frames/idle/slime_acido-idle-01.png",
-        "sha256": "f3fc943569c698be08804d695e712dfcf3f0bcbcfc16b234e0a5776cec8c7f97",
+        "sha256": "eeb71edcc10c9186245d67c8326a4cba9311968704f7b082fa01e5bf0a040c6a",
         "bounds": [
-          56,
+          57,
           148,
+          197,
+          244
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/slime_acido/frames/idle/slime_acido-idle-02.png",
+        "sha256": "f5109b21db8888f80b478816cbc26d375aa9712fdf6ca18eb57dc9b7b2d8a600",
+        "bounds": [
+          57,
+          149,
           197,
           244
         ],
         "idleAnchorCorrectionX": 0
       },
       {
-        "path": "assets/spritesheets/enemies-hd/slime_acido/frames/idle/slime_acido-idle-02.png",
-        "sha256": "17cadbeb83fde9cb1e36ec3cac89d92c8917fa80b5d1c591a574ac28ab063345",
-        "bounds": [
-          56,
-          148,
-          197,
-          244
-        ],
-        "idleAnchorCorrectionX": -1
-      },
-      {
         "path": "assets/spritesheets/enemies-hd/slime_acido/frames/idle/slime_acido-idle-03.png",
-        "sha256": "affed16a988758528941fae746dd5b6f2f1405da7383b4eeb07cbbba54c62cc7",
+        "sha256": "9991fa45959c8f5fb492378f0b6afef518e5eac4eaca13d9bc5d78252d9671e7",
         "bounds": [
           56,
-          148,
+          149,
           198,
           244
         ],
@@ -49,58 +67,58 @@
       },
       {
         "path": "assets/spritesheets/enemies-hd/slime_acido/frames/idle/slime_acido-idle-04.png",
-        "sha256": "31e19821aba15824747ac659d59aff041ec901696f87bc754241e379e6da5ab8",
+        "sha256": "70b047d704fdebbce0c45c78d26495775e4edfb3803977cd04c65b1422637273",
         "bounds": [
-          56,
-          148,
+          57,
+          149,
           197,
           244
         ],
-        "idleAnchorCorrectionX": 0
+        "idleAnchorCorrectionX": 1
       }
     ],
     "hurt": [
       {
         "path": "assets/spritesheets/enemies-hd/slime_acido/frames/hurt/slime_acido-hurt-01.png",
-        "sha256": "84c1d9c01127fe8f835a809accf53489b779676442304fe37c9f965a5bb2438b",
+        "sha256": "2a4ff16447325267edac1683591034de8a810f3d7ff05f633fbafe88d569880d",
         "bounds": [
           57,
-          139,
-          198,
-          239
+          144,
+          197,
+          244
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/slime_acido/frames/hurt/slime_acido-hurt-02.png",
-        "sha256": "349fcb0ea0ebac3079bc9739112301bc9835b3b6ea134c8a4dcdd44e1ed1b1c7",
+        "sha256": "3fdbc505a3ddbdde04ae2901938524369ec31a13e2263e54c85bed0d990597b4",
         "bounds": [
           57,
-          148,
+          153,
           202,
-          239
+          244
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/slime_acido/frames/hurt/slime_acido-hurt-03.png",
-        "sha256": "3c3c11ae7a6bd5487ad09c192ab23b782c8a82343dfb79f9be2dd10a71d0db1f",
+        "sha256": "095d6cd6a28f25b395d2a6d6c4587ae379bd70a7304a861aba42d9c35a719d37",
         "bounds": [
           54,
-          139,
-          200,
-          239
+          145,
+          199,
+          244
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/slime_acido/frames/hurt/slime_acido-hurt-04.png",
-        "sha256": "dc415926e58953731277e169b2aaee59e74452a97403602de2c1def718ea1544",
+        "sha256": "cceb78b8beec3a6a4f23ff7d1169b3df4cc363324a6d4ae033b62e5d1ff26078",
         "bounds": [
           58,
-          146,
-          198,
-          238
+          152,
+          197,
+          243
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -108,45 +126,45 @@
     "attack": [
       {
         "path": "assets/spritesheets/enemies-hd/slime_acido/frames/attack/slime_acido-attack-01.png",
-        "sha256": "a09ba67ab4171093b89ccccc994c7dedba06e29cfae371cef70f7fce0af2ecde",
+        "sha256": "efc5437d2289d5d47cd058042b73dc3416cac0c104314e034c33ffb321befc4a",
         "bounds": [
           55,
-          137,
-          198,
-          238
+          144,
+          197,
+          244
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/slime_acido/frames/attack/slime_acido-attack-02.png",
-        "sha256": "d9c2bbaa9e66f090f77bb53240e207fa36d208bebc834393087c414761050f71",
+        "sha256": "b49d849974d94649bf45b9af0da50355cb2eba66cb90b623a5a16fc028778bc2",
         "bounds": [
-          54,
-          108,
-          187,
-          240
+          53,
+          115,
+          185,
+          247
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/slime_acido/frames/attack/slime_acido-attack-03.png",
-        "sha256": "711274fd44f13b582ef23b9dda59377156a4480805c462d59b72f8dec3a9d677",
+        "sha256": "c1dbab69bb937b30345f9f37403a4becb3920998897cbf9b826292510ac1bd23",
         "bounds": [
-          25,
-          134,
-          244,
-          241
+          24,
+          141,
+          242,
+          247
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/slime_acido/frames/attack/slime_acido-attack-04.png",
-        "sha256": "d0ac893002b9afd63390ed6e055dba0e6444a95091290bc4ad11ad93284edca1",
+        "sha256": "010933bd88fadb7c5bcd50ae581537963d22154fd04887029b9631b075a9a973",
         "bounds": [
           55,
-          145,
+          152,
           200,
-          239
+          245
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -154,45 +172,45 @@
     "dodge": [
       {
         "path": "assets/spritesheets/enemies-hd/slime_acido/frames/dodge/slime_acido-dodge-01.png",
-        "sha256": "2d59d8f252446a0b5c136a214fbdf6f04ae3be868fd5f1552bcd381448ec94d2",
+        "sha256": "faad9119e792a49905311586ad44baf82695991b8fa79438d9148b2fe368da55",
         "bounds": [
           57,
-          127,
-          197,
-          224
+          147,
+          196,
+          244
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/slime_acido/frames/dodge/slime_acido-dodge-02.png",
-        "sha256": "8e4e79765c9ebdc022522cef5b581e155a1fd1a6d96097f1eb142585765495d8",
+        "sha256": "33448a3ae9f55d4749292e701b48e0317ecca5abb4508a9d853520286afd55c5",
         "bounds": [
-          57,
-          141,
-          208,
-          224
+          56,
+          162,
+          206,
+          244
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/slime_acido/frames/dodge/slime_acido-dodge-03.png",
-        "sha256": "d2faf6619a8197ca8b796ccc0e4d41d27c4af5f21f1e6922cac5012597a7cbdd",
+        "sha256": "a26355157055ddd1ad0214bbefb3d0e201644891ebe09e0a5a40007c2a1c3ddf",
         "bounds": [
           59,
-          166,
-          209,
-          226
+          187,
+          208,
+          246
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/slime_acido/frames/dodge/slime_acido-dodge-04.png",
-        "sha256": "2e0475dcd8041b8abda1e50e7d1fd0fb13bc2f15e653ac571021c907bded3900",
+        "sha256": "1e4c4d385d8c38449bb947c875026a5842a51a78649ed5df02325cc58374f663",
         "bounds": [
           58,
-          127,
-          199,
-          225
+          148,
+          198,
+          245
         ],
         "idleAnchorCorrectionX": 0
       }

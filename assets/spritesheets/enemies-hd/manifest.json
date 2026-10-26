@@ -62,7 +62,10 @@
       "boss": false,
       "rank": "I",
       "legacyPath": "public/sprites/enemies/I/goblin_explorador.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/goblin_explorador/qa-report.json"
     },
     {
       "id": "bandido_camino",
@@ -71,7 +74,10 @@
       "boss": false,
       "rank": "I",
       "legacyPath": "public/sprites/enemies/I/bandido_camino.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/bandido_camino/qa-report.json"
     },
     {
       "id": "orco_despiadado",
@@ -80,7 +86,10 @@
       "boss": false,
       "rank": "II",
       "legacyPath": "public/sprites/enemies/II/orco_despiadado.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 3,
+      "report": "assets/spritesheets/enemies-hd/orco_despiadado/qa-report.json"
     },
     {
       "id": "esqueleto_guerrero",
@@ -89,7 +98,10 @@
       "boss": false,
       "rank": "II",
       "legacyPath": "public/sprites/enemies/II/esqueleto_guerrero.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 3,
+      "report": "assets/spritesheets/enemies-hd/esqueleto_guerrero/qa-report.json"
     },
     {
       "id": "ogro",
@@ -98,7 +110,10 @@
       "boss": false,
       "rank": "II",
       "legacyPath": "public/sprites/enemies/II/ogro.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/ogro/qa-report.json"
     },
     {
       "id": "arana_sombras",
@@ -107,7 +122,10 @@
       "boss": false,
       "rank": "II",
       "legacyPath": "public/sprites/enemies/II/arana_sombras.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 3,
+      "report": "assets/spritesheets/enemies-hd/arana_sombras/qa-report.json"
     },
     {
       "id": "troll_cavernas",
@@ -116,7 +134,10 @@
       "boss": false,
       "rank": "II",
       "legacyPath": "public/sprites/enemies/II/troll_cavernas.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/troll_cavernas/qa-report.json"
     },
     {
       "id": "minotauro",
@@ -125,7 +146,10 @@
       "boss": false,
       "rank": "III",
       "legacyPath": "public/sprites/enemies/III/minotauro.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/minotauro/qa-report.json"
     },
     {
       "id": "lobo_hambriento",
@@ -134,7 +158,10 @@
       "boss": false,
       "rank": "I",
       "legacyPath": "public/sprites/enemies/I/lobo_hambriento.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/lobo_hambriento/qa-report.json"
     },
     {
       "id": "murcielago_sanguinario",
@@ -143,7 +170,10 @@
       "boss": false,
       "rank": "I",
       "legacyPath": "public/sprites/enemies/I/murcielago_sanguinario.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/murcielago_sanguinario/qa-report.json"
     },
     {
       "id": "avispa_gigante",
@@ -152,7 +182,10 @@
       "boss": false,
       "rank": "I",
       "legacyPath": "public/sprites/enemies/I/avispa_gigante.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 2,
+      "report": "assets/spritesheets/enemies-hd/avispa_gigante/qa-report.json"
     },
     {
       "id": "kobold_trampero",
@@ -161,7 +194,10 @@
       "boss": false,
       "rank": "I",
       "legacyPath": "public/sprites/enemies/I/kobold_trampero.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/kobold_trampero/qa-report.json"
     },
     {
       "id": "bandido_arbalestero",
@@ -515,6 +551,8 @@
       "status": "pending"
     }
   ],
-  "completedCandidates": 3,
-  "framesPresent": 48
+  "completedCandidates": 15,
+  "framesPresent": 240,
+  "framesExpected": 864,
+  "nextEnemy": "bandido_arbalestero"
 }

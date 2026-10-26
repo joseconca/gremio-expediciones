@@ -1,0 +1,221 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.475,
+  "rowReferenceRoots": [
+    [
+      140.5,
+      303.0
+    ],
+    [
+      141.0,
+      303.5
+    ],
+    [
+      140.0,
+      300.0
+    ],
+    [
+      140.5,
+      294.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/troll_cavernas/troll_cavernas-sheet.png",
+  "sheetSha256": "17dfdaa4c0e1fbd5f4df49a0bb5a9f14c674c81e2e1b0dbc8cd8efdbb21cb1fa",
+  "sourcePath": "assets/spritesheets/enemies-hd/troll_cavernas/source/sheet-v1.png",
+  "sourceSha256": "4cd311bca331ef3228ab99d8e891fa4ff59e0e04776600ff041e387308a899c1",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/idle/troll_cavernas-idle-01.png",
+        "sha256": "c984492a29003ddbb3750e50e6ddf9080f3c22c1e246a985437b48f6d2918e63",
+        "bounds": [
+          80,
+          111,
+          198,
+          244
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/idle/troll_cavernas-idle-02.png",
+        "sha256": "11c166bd7686115a4a34a3f72603ce632064435f6705e7008d50aa6091faed6c",
+        "bounds": [
+          80,
+          115,
+          194,
+          244
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/idle/troll_cavernas-idle-03.png",
+        "sha256": "3ef0b3d06af8ff8b49408ffce24230611a7451e931af758fe532909fdce027ac",
+        "bounds": [
+          80,
+          120,
+          194,
+          244
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/idle/troll_cavernas-idle-04.png",
+        "sha256": "fe0e9a9200133e7abe99b3071f664d290dbfa940f33d52fba4538a0d7385cddb",
+        "bounds": [
+          80,
+          116,
+          194,
+          244
+        ],
+        "idleAnchorCorrectionX": 1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/hurt/troll_cavernas-hurt-01.png",
+        "sha256": "a656c5364ff6b6aeee33efe8ddd11744e30520e342daad230c00f15baa23393a",
+        "bounds": [
+          79,
+          114,
+          197,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/hurt/troll_cavernas-hurt-02.png",
+        "sha256": "fdfee87f26d38d3a21d2d194363d687a4a55557d67f168f9827e5015f86de9d1",
+        "bounds": [
+          82,
+          116,
+          202,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/hurt/troll_cavernas-hurt-03.png",
+        "sha256": "1b546ea847fbe03c4da11e50885de26ff62fd019f5ac54e664022d94cb200019",
+        "bounds": [
+          86,
+          109,
+          209,
+          246
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/hurt/troll_cavernas-hurt-04.png",
+        "sha256": "3ab056743fce7dfd604d63d1c0e79bc4e7c0be0efdaa1a7ceb8a4cf8ff53cd32",
+        "bounds": [
+          79,
+          120,
+          198,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/attack/troll_cavernas-attack-01.png",
+        "sha256": "d1561dfae2c74f8abd7bcae7123f7cfbe6fd97103eb92ef0b71f910eb0efd3e3",
+        "bounds": [
+          76,
+          122,
+          193,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/attack/troll_cavernas-attack-02.png",
+        "sha256": "9f9ac3f25ab2b01b248b2c7a879cda4af055e2387a6ed9a2414dffa85b72809b",
+        "bounds": [
+          80,
+          102,
+          189,
+          248
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/attack/troll_cavernas-attack-03.png",
+        "sha256": "cbc2a97dead96534a0ffe737ba5fd59d15ae9fb06f9742130a57895a49342def",
+        "bounds": [
+          62,
+          126,
+          242,
+          245
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/attack/troll_cavernas-attack-04.png",
+        "sha256": "175d8a81fef378ab0aa14b6a480756fd5998c844a6daabbb692c03cef8f51738",
+        "bounds": [
+          80,
+          131,
+          206,
+          245
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/dodge/troll_cavernas-dodge-01.png",
+        "sha256": "4a94831763ff9e23f52c631687b297bba4e1d723f16b76ca4614656c11c14a83",
+        "bounds": [
+          79,
+          114,
+          197,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/dodge/troll_cavernas-dodge-02.png",
+        "sha256": "a5b78f82b88b1d851bf44d6f125ae1c0dec857ee365e4efadca252a11752d16b",
+        "bounds": [
+          77,
+          125,
+          202,
+          243
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/dodge/troll_cavernas-dodge-03.png",
+        "sha256": "21a2aa64f5550b1c6b7993455f215ded3b942cef220a02a83195ba02e0671d36",
+        "bounds": [
+          79,
+          142,
+          209,
+          241
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/troll_cavernas/frames/dodge/troll_cavernas-dodge-04.png",
+        "sha256": "e41472b061b6e01739d337e1d4277f07276270960216d1e1fb9d7463d4d80d20",
+        "bounds": [
+          80,
+          114,
+          196,
+          243
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

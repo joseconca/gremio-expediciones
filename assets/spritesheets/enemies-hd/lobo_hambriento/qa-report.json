@@ -1,0 +1,221 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.5922077922077922,
+  "rowReferenceRoots": [
+    [
+      160.0,
+      289.0
+    ],
+    [
+      160.5,
+      293.5
+    ],
+    [
+      150.5,
+      275.0
+    ],
+    [
+      161.5,
+      270.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/lobo_hambriento/lobo_hambriento-sheet.png",
+  "sheetSha256": "6d3528a986f0db8f6ebddb56ec1e6de2ffb563a59664e770da357783759668f8",
+  "sourcePath": "assets/spritesheets/enemies-hd/lobo_hambriento/source/sheet-v1.png",
+  "sourceSha256": "52e549cee08fa038ba9bd732175de1179461fb4778beac2b6ec08ec5bcc02983",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/idle/lobo_hambriento-idle-01.png",
+        "sha256": "4336f1d57040785ab4a454684352d39e679ecde1cd84720363656a112a49b8e6",
+        "bounds": [
+          42,
+          119,
+          213,
+          244
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/idle/lobo_hambriento-idle-02.png",
+        "sha256": "6a2c1dcc627237d8b0964576d8ab02d5ef7e30396f65d249a2eaa880d63f70f7",
+        "bounds": [
+          41,
+          120,
+          212,
+          245
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/idle/lobo_hambriento-idle-03.png",
+        "sha256": "c29a583b334c75caa1eb60cb9d7ad095c1f6ad6a4ad409c803347b955bb04777",
+        "bounds": [
+          41,
+          121,
+          211,
+          244
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/idle/lobo_hambriento-idle-04.png",
+        "sha256": "74bd7478b335532168ccd7bd20eb3ca2022b55c6178a251bd2ae0227821b4f55",
+        "bounds": [
+          40,
+          120,
+          210,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/hurt/lobo_hambriento-hurt-01.png",
+        "sha256": "ffbeefbfabdd5a5b5660d6ac8a7dfeb2a75b292d4dbaf10490f5c10843fc7f5b",
+        "bounds": [
+          41,
+          121,
+          215,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/hurt/lobo_hambriento-hurt-02.png",
+        "sha256": "864fef37a4f810aeaaf41ec8cad5861abd01f43208ef3df056c630fc12cc6407",
+        "bounds": [
+          42,
+          130,
+          211,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/hurt/lobo_hambriento-hurt-03.png",
+        "sha256": "df6e34d188d56605371ef5aa1cd9e12ae035854365eba80d1048cad6ded66973",
+        "bounds": [
+          39,
+          140,
+          213,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/hurt/lobo_hambriento-hurt-04.png",
+        "sha256": "8c1ed5b9f53cd2d8fb9c4c77a61dac16c7b1d0e2055ec04290336f19084180d4",
+        "bounds": [
+          39,
+          131,
+          211,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/attack/lobo_hambriento-attack-01.png",
+        "sha256": "770ea1219b2d13186e7b8012ed4f1be25012e61160857eb0ac13b050ff1b63cf",
+        "bounds": [
+          47,
+          128,
+          210,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/attack/lobo_hambriento-attack-02.png",
+        "sha256": "95e84219c5bfa406340f720e08af6168d87f7003bfb03fd4d6c14e6485c28b1c",
+        "bounds": [
+          43,
+          138,
+          216,
+          242
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/attack/lobo_hambriento-attack-03.png",
+        "sha256": "db4c3b070d7fabb1c2e9026c4b727f0eac7a287288414886054e231dac6f0695",
+        "bounds": [
+          45,
+          105,
+          242,
+          215
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/attack/lobo_hambriento-attack-04.png",
+        "sha256": "ceca039c0e793a87b20d6843225914019bdd5f23889d794e56ecdbb1297232f5",
+        "bounds": [
+          64,
+          140,
+          219,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/dodge/lobo_hambriento-dodge-01.png",
+        "sha256": "388944695a687a421a32d60415def85614fdd560bfe7469dab7b336f4b549838",
+        "bounds": [
+          40,
+          118,
+          213,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/dodge/lobo_hambriento-dodge-02.png",
+        "sha256": "e437f7c7f30c3e6662c417566bb7b44b0cb669434bfc96f5008e78ce851f2460",
+        "bounds": [
+          43,
+          129,
+          212,
+          240
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/dodge/lobo_hambriento-dodge-03.png",
+        "sha256": "157bd9f4c65c6102f9a5dae4abe0b30b9651642dd08079c143472fc7b719a8fa",
+        "bounds": [
+          41,
+          152,
+          222,
+          240
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/lobo_hambriento/frames/dodge/lobo_hambriento-dodge-04.png",
+        "sha256": "75144397cf510887e15923e6ade55c3bac3579e1ba16e1593d987735cac16455",
+        "bounds": [
+          42,
+          119,
+          210,
+          243
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

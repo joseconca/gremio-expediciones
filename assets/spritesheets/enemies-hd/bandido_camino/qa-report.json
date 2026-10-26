@@ -1,0 +1,221 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.4470588235294118,
+  "rowReferenceRoots": [
+    [
+      171.0,
+      311.0
+    ],
+    [
+      171.0,
+      310.5
+    ],
+    [
+      154.0,
+      308.0
+    ],
+    [
+      167.5,
+      303.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/bandido_camino/bandido_camino-sheet.png",
+  "sheetSha256": "84b9059fe828d57ab50c465a04c61f2f65accc82243b562ed5b808672ca4f1c6",
+  "sourcePath": "assets/spritesheets/enemies-hd/bandido_camino/source/sheet-v1.png",
+  "sourceSha256": "83474c58b9907595856a6f0c95dc6458da8dc08b9565323903d5ab5d031e26e0",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_camino/frames/idle/bandido_camino-idle-01.png",
+        "sha256": "a6b2aaa37027d524cd004149f1fba535a1590c13d92c8d5ea18592ab9587bb22",
+        "bounds": [
+          82,
+          111,
+          172,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_camino/frames/idle/bandido_camino-idle-02.png",
+        "sha256": "712238fc9a02a6cfee0f9bce4e140c1292f9ba03df0e2de39c0730b202fa0a71",
+        "bounds": [
+          82,
+          111,
+          172,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_camino/frames/idle/bandido_camino-idle-03.png",
+        "sha256": "3b0c4b8590c84838065d2c0821b49e81835a6d366d03459893ac6ea8e8c94e59",
+        "bounds": [
+          82,
+          111,
+          172,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_camino/frames/idle/bandido_camino-idle-04.png",
+        "sha256": "73c5b6820031b7455adfab64049d296a8e2c4ecba81288da70d965a3755a979f",
+        "bounds": [
+          82,
+          110,
+          172,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_camino/frames/hurt/bandido_camino-hurt-01.png",
+        "sha256": "c185bc84dd3e8495124f45369c6a5523535a8a7645e26c82ca9cf9509b462698",
+        "bounds": [
+          82,
+          111,
+          172,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_camino/frames/hurt/bandido_camino-hurt-02.png",
+        "sha256": "427811c2a6563218d2eb894059959a22ed9401d04b780f5fb7ff3a3a465b48ed",
+        "bounds": [
+          79,
+          113,
+          175,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_camino/frames/hurt/bandido_camino-hurt-03.png",
+        "sha256": "3e419e262d1381e456c11cf8d773fd45033870a773f71b692f3c9627d6ccf44d",
+        "bounds": [
+          72,
+          119,
+          177,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_camino/frames/hurt/bandido_camino-hurt-04.png",
+        "sha256": "e24c67cff7624c47dc3a07868bd50490dae7507ebc875a565f9a6f6be0b4f273",
+        "bounds": [
+          83,
+          113,
+          170,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_camino/frames/attack/bandido_camino-attack-01.png",
+        "sha256": "d9e215e2666ce920ad4be9db3ebab544a9eb960a03f7e3a2d9a770614e4df4a6",
+        "bounds": [
+          79,
+          121,
+          187,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_camino/frames/attack/bandido_camino-attack-02.png",
+        "sha256": "b9034f9deb5c51c5ae1c8a36db278dd54d779714c1b98905820db042985a425f",
+        "bounds": [
+          79,
+          109,
+          194,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_camino/frames/attack/bandido_camino-attack-03.png",
+        "sha256": "13e9266c71f94210982e1a02e245a89252425b31b9dd0ad72503e9ddd5b3eb95",
+        "bounds": [
+          71,
+          121,
+          242,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_camino/frames/attack/bandido_camino-attack-04.png",
+        "sha256": "94ca7855cc3418181a7fd08a9666cdce667550522ec1d41d9dbcf4c89e8e9f82",
+        "bounds": [
+          87,
+          121,
+          184,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_camino/frames/dodge/bandido_camino-dodge-01.png",
+        "sha256": "efe0a0a7843aa7785de841b7ae4de01c9b25a8479aad30458b1005b4a9ce95c8",
+        "bounds": [
+          80,
+          113,
+          173,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_camino/frames/dodge/bandido_camino-dodge-02.png",
+        "sha256": "c0922b0eddd413e2fb6de302ad5e3ed23a85773b180941da7ae49562b1d840e3",
+        "bounds": [
+          73,
+          131,
+          177,
+          243
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_camino/frames/dodge/bandido_camino-dodge-03.png",
+        "sha256": "2be28720a916538821defe93af0da7080e851dd504a45ac0c0db1225e9de93ee",
+        "bounds": [
+          69,
+          147,
+          187,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/bandido_camino/frames/dodge/bandido_camino-dodge-04.png",
+        "sha256": "d470a69a8acf995e583318a9a852579f9e60676fec9c7f1a354f296b8f1b72c3",
+        "bounds": [
+          84,
+          112,
+          175,
+          245
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

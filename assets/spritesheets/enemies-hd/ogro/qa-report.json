@@ -1,0 +1,221 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.5229357798165137,
+  "rowReferenceRoots": [
+    [
+      164.0,
+      306.0
+    ],
+    [
+      163.5,
+      304.5
+    ],
+    [
+      167.0,
+      304.0
+    ],
+    [
+      165.5,
+      292.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/ogro/ogro-sheet.png",
+  "sheetSha256": "3ad96c2b8828ebf6f79bb0ca1525108fa8985f534df3875a63767f154e656fc0",
+  "sourcePath": "assets/spritesheets/enemies-hd/ogro/source/sheet-v1.png",
+  "sourceSha256": "c12d333626c7d466122d738e0d7bde0d53305eb7f174e10a71d6df311e37a004",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/idle/ogro-idle-01.png",
+        "sha256": "75d21d32edfcbd9384bfd0903d0cd24832983435c6b22feb1c4c8dd9b05d5bbd",
+        "bounds": [
+          54,
+          94,
+          198,
+          244
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/idle/ogro-idle-02.png",
+        "sha256": "ce0ddca0bfa73aaf5498bf96954a148b5f463f0a6c7eed4f8ef11289caea96d2",
+        "bounds": [
+          53,
+          93,
+          198,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/idle/ogro-idle-03.png",
+        "sha256": "eb9f1530d77fd4264d2011a1ce0bf201023b20a02504d0a5bd2f3829f056fc1f",
+        "bounds": [
+          53,
+          94,
+          198,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/idle/ogro-idle-04.png",
+        "sha256": "5484369044c6d32c6e6f63bd8b45140bc159007567598dab3ef0249c5d3e9fa6",
+        "bounds": [
+          54,
+          94,
+          199,
+          244
+        ],
+        "idleAnchorCorrectionX": 1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/hurt/ogro-hurt-01.png",
+        "sha256": "b3da80f610a07b37d38b194598a1c505122d44e50dfb5651ae26522dddb12c44",
+        "bounds": [
+          53,
+          94,
+          198,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/hurt/ogro-hurt-02.png",
+        "sha256": "6ac65acc79f0b2fd050b727542ce7b20693376ee0e6820d6cd71b29eee8b3cfb",
+        "bounds": [
+          57,
+          102,
+          195,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/hurt/ogro-hurt-03.png",
+        "sha256": "0d847f960c3198b344765aabc83f816652c239a5dc4bfaefd19dd6d64107f2ae",
+        "bounds": [
+          62,
+          92,
+          205,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/hurt/ogro-hurt-04.png",
+        "sha256": "5dd6089fb67cb86435109891ca7ad2a2cff1b9627fb26cbd7ac18ca19752f02c",
+        "bounds": [
+          53,
+          96,
+          194,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/attack/ogro-attack-01.png",
+        "sha256": "ca71ba77ac52c527d4e2e26b99a1a4f25547ce56b7247b99f6ef1701614cbb17",
+        "bounds": [
+          44,
+          106,
+          206,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/attack/ogro-attack-02.png",
+        "sha256": "0c3cb7b91bffd8e598d514aebd1cffd90bcfd0ede24b6c777164050b42b7671d",
+        "bounds": [
+          52,
+          76,
+          205,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/attack/ogro-attack-03.png",
+        "sha256": "29be4b8270c97f5f11f7325f0dce81a651d2192c424cfa62ddb5bc306af0cb4e",
+        "bounds": [
+          46,
+          115,
+          242,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/attack/ogro-attack-04.png",
+        "sha256": "6d6803eee6e81431932e8460ad38a67e384439281189d013ea85ca0bf7574862",
+        "bounds": [
+          56,
+          112,
+          197,
+          243
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/dodge/ogro-dodge-01.png",
+        "sha256": "2b39a1f7484ad9facaf3f7f93888c306638278702a85a79ee8fee6b1c84e666d",
+        "bounds": [
+          52,
+          101,
+          201,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/dodge/ogro-dodge-02.png",
+        "sha256": "4dc8fc063b15d35046adc2bf194564d8e7cc4b40164c41b81f457aa269da2e8e",
+        "bounds": [
+          54,
+          98,
+          203,
+          243
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/dodge/ogro-dodge-03.png",
+        "sha256": "952c99c1b4d7ffceccf03323d98d7c6a8820517be0d94b597d51db4b630853bb",
+        "bounds": [
+          53,
+          130,
+          212,
+          243
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ogro/frames/dodge/ogro-dodge-04.png",
+        "sha256": "deed7a8947292a1f082e8bb9ffaab2242bdbfc2bc2a7ffc7cb8c3880c5c88294",
+        "bounds": [
+          54,
+          98,
+          199,
+          243
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

@@ -10,3 +10,69 @@ Producción mediante la herramienta integrada de generación de imágenes, con l
 
 Se revisa cada hoja completa, transparencia, dieciséis poses, márgenes y coherencia del diseño. Cada enemigo terminado se guarda con un commit en `creacion-sprite-sheets`. El manifiesto de `assets/spritesheets/enemies-hd` indica el avance real. La integración en combate y la publicación en main se realizan después de revisar la biblioteca terminada.
 
+
+
+<!-- ENEMIES_HD_PROGRESS_START -->
+## Avance verificable
+
+15 / 54 enemigos candidatos; 240 / 864 fotogramas. Revisión del usuario e integración pendientes.
+
+| Enemigo | Estado |
+|---|---|
+| Mímico | 16 fotogramas; candidato revisado |
+| Slime Ácido | 16 fotogramas; candidato revisado |
+| Rata Gigante | 16 fotogramas; candidato revisado |
+| Goblin Explorador | 16 fotogramas; candidato revisado |
+| Bandido del Camino | 16 fotogramas; candidato revisado |
+| Orco Despiadado | 16 fotogramas; candidato revisado |
+| Esqueleto Guerrero | 16 fotogramas; candidato revisado |
+| Ogro | 16 fotogramas; candidato revisado |
+| Araña de las Sombras | 16 fotogramas; candidato revisado |
+| Troll de las Cavernas | 16 fotogramas; candidato revisado |
+| Minotauro | 16 fotogramas; candidato revisado |
+| Lobo Hambriento | 16 fotogramas; candidato revisado |
+| Murciélago Sanguinario | 16 fotogramas; candidato revisado |
+| Avispa Gigante | 16 fotogramas; candidato revisado |
+| Kobold Trampero | 16 fotogramas; candidato revisado |
+| Bandido Arbalestero | Pendiente |
+| Zombi Errante | Pendiente |
+| Hiena Salvaje | Pendiente |
+| Cultista Encapuchado | Pendiente |
+| Gnoll Merodeador | Pendiente |
+| Ghoul de la Cripta | Pendiente |
+| Hombre Lagarto | Pendiente |
+| Gólem de Barro | Pendiente |
+| Oso Cavernario | Pendiente |
+| Espectro Errante | Pendiente |
+| Arpía Cazadora | Pendiente |
+| Nigromante Aprendiz | Pendiente |
+| Guardián de la Cripta | Pendiente |
+| Basilisco Joven | Pendiente |
+| Centauro Saqueador | Pendiente |
+| Gárgola Ancestral | Pendiente |
+| Elemental de Roca | Pendiente |
+| Sacerdotisa Oscura | Pendiente |
+| Mantícora | Pendiente |
+| Ogro Chamán | Pendiente |
+| Caballero Maldito | Pendiente |
+| Wyvern Joven | Pendiente |
+| Elemental de Fuego | Pendiente |
+| Vampiro Noble | Pendiente |
+| Demonio Menor | Pendiente |
+| Dragón Negro Joven | Pendiente |
+| Gigante de Escarcha | Pendiente |
+| Señor de la Frontera | Pendiente |
+| Reina de las Sombras | Pendiente |
+| Titán de Hierro | Pendiente |
+| Dragón del Bosque Verde | Pendiente |
+| Capitán de los Orcos | Pendiente |
+| Reina Araña | Pendiente |
+| Archimago Exiliado | Pendiente |
+| Dragón del Pantano | Pendiente |
+| Rey No Muerto | Pendiente |
+| Hidra de Tres Cabezas | Pendiente |
+| Señor del Abismo | Pendiente |
+| Dragón Anciano | Pendiente |
+
+Previsualizaciones por rango en `assets/spritesheets/enemies-hd/previews`. Se mantienen las fuentes y todas las revisiones anteriores.
+<!-- ENEMIES_HD_PROGRESS_END -->

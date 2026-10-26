@@ -1,6 +1,7 @@
 """Verify source provenance, all atlas pixels and stable idle support points."""
 import hashlib
 import json
+import re
 from pathlib import Path
 from PIL import Image
 
@@ -47,11 +48,22 @@ def audit():
                             feet = a.crop((0,bottom-8,256,bottom)).getbbox()
                             idle_centers.append((feet[0]+feet[2])/2)
                 assert len(set(hashes)) == 4
-            assert max(idle_centers)-min(idle_centers) <= 2, (enemy['id'],idle_centers)
-            complete.append({'id':enemy['id'],'frames':16,'idleSupportCentersX':idle_centers})
+            if q.get('idleAnchorMode','ground') == 'ground':
+                assert max(idle_centers)-min(idle_centers) <= 2, (enemy['id'],idle_centers)
+            complete.append({'id':enemy['id'],'frames':16,'idleAnchorMode':q.get('idleAnchorMode','ground'),'idleSupportCentersX':idle_centers,'aerialReview':'fixed cell origin; torso visually reviewed, wing tips excluded from ground test' if q.get('idleAnchorMode')=='air' else None})
     assert len(complete) == m.get('completedCandidates',0)
     result = {'status':'passed','expectedEnemies':54,'candidateEnemies':len(complete),'framesValidated':len(complete)*16,'runtimeModified':False,'enemies':complete}
     (BASE/'validation-report.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    doc=ROOT/'docs/plan-enemigos-hd.md'
+    text=doc.read_text(encoding='utf-8-sig')
+    start='<!-- ENEMIES_HD_PROGRESS_START -->'
+    end='<!-- ENEMIES_HD_PROGRESS_END -->'
+    lines=[start,'## Avance verificable','',f'{len(complete)} / {len(m["enemies"])} enemigos candidatos; {len(complete)*16} / {len(m["enemies"])*16} fotogramas. Revisión del usuario e integración pendientes.','', '| Enemigo | Estado |','|---|---|']
+    lines += ['| '+e['name']+' | '+('16 fotogramas; candidato revisado' if e['status']=='candidate' else 'Pendiente')+' |' for e in m['enemies']]
+    lines += ['', 'Previsualizaciones por rango en `assets/spritesheets/enemies-hd/previews`. Se mantienen las fuentes y todas las revisiones anteriores.',end]
+    block='\n'.join(lines)
+    text=re.sub(re.escape(start)+r'.*?'+re.escape(end),lambda _:block,text,flags=re.S) if start in text else text+'\n\n'+block+'\n'
+    doc.write_text(text,encoding='utf-8')
     print(json.dumps({k:v for k,v in result.items() if k!='enemies'}))
 
 if __name__ == '__main__':

@@ -1,0 +1,11 @@
+{
+  "id": "esqueleto_guerrero",
+  "design": "A stylized undead skeleton warrior with yellowed ivory bones, angular skull, deep empty eye sockets with two small amber pinlights and a permanently crooked toothy skeletal grin. Medieval battered iron half-helmet, one rusty shoulder plate, torn faded blue cloth tabard, brown belt, old boots. Carries a chipped short iron sword in foreground hand and a small battered wooden round buckler on far arm. Exactly one skull, two skeletal arms and two skeletal legs; coherent bones, no extra limbs. Expressive sneering dungeon villain, comic fantasy rather than horror or adorable mascot. Idle grounded rattle and small head tilt, hurt rattles backward with jaw askew, attack draws sword back then slashes to RIGHT, dodge ducks behind buckler and leans away. Keep weapons and skull inside padded cells.",
+  "prompt": "Re-layout this exact 4x4 transparent sprite sheet with MUCH MORE empty padding. Make every one of the sixteen complete creature poses uniformly 25% SMALLER, maintaining identical creature scale across all sixteen, centered independently in its own cell. Preserve exact creature identity, colors, costume, all anatomy and action poses; 4 columns and 4 rows, no text. All parts including each weapon blade, legs and tail must be COMPLETE and well separated from neighboring figures with wide transparent gaps, and wide transparent outer canvas margins. No weapon may touch another figure or the edge. Reconstruct any clipped edge as a complete natural shape within its cell.  Preserve real transparent background. The original figures are too tightly packed; this correction is specifically to create clear separation and prevent clipping.",
+  "revision": 3,
+  "status": "generated-pending-review",
+  "source": "assets/spritesheets/enemies-hd/esqueleto_guerrero/source/sheet-v3.png",
+  "originalGenerationPath": "C:\\Users\\Casa\\.codex\\generated_images\\01a17347-0d75-7921-a8f3-393fa129f972\\exec-beadb748-ee85-47f5-8d2b-539342c59aeb.png",
+  "sourceSha256": "a3bf719988a4227117631b57c71bd9f3fda63cd5cfe5947b8541f79d93cee0fe",
+  "generator": "built-in image_gen"
+}

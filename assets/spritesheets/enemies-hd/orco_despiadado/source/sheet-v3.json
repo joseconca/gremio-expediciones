@@ -1,0 +1,11 @@
+{
+  "id": "orco_despiadado",
+  "design": "A stocky broad-shouldered green orc warrior, stylized chibi fantasy brute with large square jaw, two small upward tusks, thick expressive brows, narrow amber eyes and a boastful hostile grin. Short dark mohawk, scar on brow, mismatched iron shoulder plate, brown leather harness, dark ragged cloth kilt and heavy boots. Holds a short broad single-bladed iron axe with wooden haft in both hands; exactly two arms/two legs. Bold graphic material highlights, caricatured and lively but intimidating rather than adorable. Idle grounded guard, hurt recoil and furious squint, attack raises axe then chops hard toward RIGHT, dodge drops shoulders and sidesteps backward. Same anatomy/equipment in all16frames, no blood or effects.",
+  "prompt": "Re-layout this exact 4x4 transparent sprite sheet with MUCH MORE empty padding. Make every one of the sixteen complete creature poses uniformly 25% SMALLER, maintaining identical creature scale across all sixteen, centered independently in its own cell. Preserve exact creature identity, colors, costume, all anatomy and action poses; 4 columns and 4 rows, no text. All parts including each weapon blade, legs and tail must be COMPLETE and well separated from neighboring figures with wide transparent gaps, and wide transparent outer canvas margins. No weapon may touch another figure or the edge. Reconstruct any clipped edge as a complete natural shape within its cell. Every pose must visibly hold the same axe, including hurt/dodge. Preserve real transparent background. The original figures are too tightly packed; this correction is specifically to create clear separation and prevent clipping.",
+  "revision": 3,
+  "status": "generated-pending-review",
+  "source": "assets/spritesheets/enemies-hd/orco_despiadado/source/sheet-v3.png",
+  "originalGenerationPath": "C:\\Users\\Casa\\.codex\\generated_images\\01a17347-0d75-7921-a8f3-393fa129f972\\exec-3614880f-4c82-4c5f-bcfc-032d541eb064.png",
+  "sourceSha256": "ad3c3d26f82084c4a54ce234f8795561cec959410156f9fd0d3dda85cc9418be",
+  "generator": "built-in image_gen"
+}

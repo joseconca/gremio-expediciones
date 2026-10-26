@@ -1,0 +1,221 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.7261146496815286,
+  "rowReferenceRoots": [
+    [
+      153.0,
+      299.0
+    ],
+    [
+      156.0,
+      307.5
+    ],
+    [
+      155.0,
+      297.0
+    ],
+    [
+      157.0,
+      261.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/orco_despiadado/orco_despiadado-sheet.png",
+  "sheetSha256": "63ba93cf34077cf33245b630186897364086b275c09bbd7b98701af5309efe3a",
+  "sourcePath": "assets/spritesheets/enemies-hd/orco_despiadado/source/sheet-v3.png",
+  "sourceSha256": "ad3c3d26f82084c4a54ce234f8795561cec959410156f9fd0d3dda85cc9418be",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/orco_despiadado/frames/idle/orco_despiadado-idle-01.png",
+        "sha256": "e47ffc6ebed5d42287f4e9ae4e80f84aaca172000176b02e260c7a8f280dde3a",
+        "bounds": [
+          70,
+          78,
+          215,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/orco_despiadado/frames/idle/orco_despiadado-idle-02.png",
+        "sha256": "48061b3b83472daf14f1932417225845c1c36562084f2783843774a3b0f4c75e",
+        "bounds": [
+          69,
+          79,
+          216,
+          245
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/orco_despiadado/frames/idle/orco_despiadado-idle-03.png",
+        "sha256": "397fd3a7b33abc234653fc63390b7d8b18909845a2b3d6d364e8778352b8d4a1",
+        "bounds": [
+          69,
+          77,
+          218,
+          245
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/orco_despiadado/frames/idle/orco_despiadado-idle-04.png",
+        "sha256": "dec966f007bedfaf7a2699a47ac0f1a954ee0150d1fd8a961f94171af1de152b",
+        "bounds": [
+          68,
+          79,
+          221,
+          245
+        ],
+        "idleAnchorCorrectionX": 1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/orco_despiadado/frames/hurt/orco_despiadado-hurt-01.png",
+        "sha256": "c461d9dac0d0596c2bd8962461671f3e5cd12b391cea4f8a1c64b331c9f8c68c",
+        "bounds": [
+          66,
+          78,
+          223,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/orco_despiadado/frames/hurt/orco_despiadado-hurt-02.png",
+        "sha256": "5496024218d72c684b45ce8200f8b64f6f367830ffee4b88c093b466d8ec8934",
+        "bounds": [
+          59,
+          81,
+          219,
+          243
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/orco_despiadado/frames/hurt/orco_despiadado-hurt-03.png",
+        "sha256": "1d9613495e1e64c12babde53df5427a0c816bc8cf1755981266275487895d360",
+        "bounds": [
+          56,
+          81,
+          213,
+          245
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/orco_despiadado/frames/hurt/orco_despiadado-hurt-04.png",
+        "sha256": "adcdf710e1b9c36eed8c4d5b9dc8a5b8f5f6354146d040d919971531c9af5c7b",
+        "bounds": [
+          51,
+          78,
+          211,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/orco_despiadado/frames/attack/orco_despiadado-attack-01.png",
+        "sha256": "79f83f4794c5115a5743119b6c83da636a1568ae1df6fb51f7a6badbcfd1a16d",
+        "bounds": [
+          62,
+          84,
+          222,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/orco_despiadado/frames/attack/orco_despiadado-attack-02.png",
+        "sha256": "310cbb08a1ed27a9cf0f087e1135b0db262d348f6c2ad9043d314062b07278c1",
+        "bounds": [
+          64,
+          49,
+          207,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/orco_despiadado/frames/attack/orco_despiadado-attack-03.png",
+        "sha256": "c2f63cbf9afc24ecfe5aaca627fd700b317a55744da243d5f38d3c39aa52e032",
+        "bounds": [
+          40,
+          93,
+          242,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/orco_despiadado/frames/attack/orco_despiadado-attack-04.png",
+        "sha256": "5c6ac824ff4b3804ec5e7858a21084f3154d87f4a91261b6cbb1c7988023b301",
+        "bounds": [
+          54,
+          78,
+          217,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/orco_despiadado/frames/dodge/orco_despiadado-dodge-01.png",
+        "sha256": "2e3b2cde9792d858ecb01cb4f0a858f412b6115e16bccbfbe62447c4033a0ff0",
+        "bounds": [
+          63,
+          84,
+          223,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/orco_despiadado/frames/dodge/orco_despiadado-dodge-02.png",
+        "sha256": "824e22c902a7833a1369bb47597ad6489eebe31baaacdbaf19bc9422829598a8",
+        "bounds": [
+          64,
+          85,
+          219,
+          245
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/orco_despiadado/frames/dodge/orco_despiadado-dodge-03.png",
+        "sha256": "a9f5b6f40ebd15c89c20d57a5d5a13dd13d54e6062e86121fc53ffb605101144",
+        "bounds": [
+          44,
+          104,
+          218,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/orco_despiadado/frames/dodge/orco_despiadado-dodge-04.png",
+        "sha256": "b3902cfecc2ec6a7ab2c6075dcc4678d64ba67b2889922ff150a46c2ea506859",
+        "bounds": [
+          56,
+          80,
+          219,
+          246
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}
