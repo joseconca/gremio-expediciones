@@ -31724,14 +31724,15 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/monje/m/frames",
       "audit": {
-        "validFrames": 20,
+        "validFrames": 24,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
           "hurt",
           "use_consumable",
-          "dodge"
+          "dodge",
+          "block_shield"
         ],
         "actions": {
           "idle": {
@@ -32085,7 +32086,74 @@
             "distinctFrames": 4
           },
           "block_shield": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "5972284299581ce2c71d9d9106cfe53126464a984f04f7f2bf01ad6a34963bcc",
+                "bytes": 24671,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  98,
+                  109,
+                  250
+                ],
+                "pixelSha256": "dc4f74329426d750aa98b183c7c080bbb86697c5f757f1fbf901dafe4bdcd263"
+              },
+              "02": {
+                "sha256": "a893366f25305682929fe855f17967e483680322cc380838607ea9d8eabec192",
+                "bytes": 23740,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  99,
+                  111,
+                  250
+                ],
+                "pixelSha256": "d8e6802387656f23456c0eff1a7741c34bb411109ea267125c7ee85f5a691c93"
+              },
+              "03": {
+                "sha256": "f053513d068ff881cbc2f0acdae69629700931a00b85052931a773de01be40cc",
+                "bytes": 21727,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  114,
+                  112,
+                  250
+                ],
+                "pixelSha256": "230f5f9a8cd50f09c65f347a74eb60b17053585ef77c0ea90cd8a0c6e7015f57"
+              },
+              "04": {
+                "sha256": "66c1c683d73efb6908abace8480be4e0dcfbfa019e7259850c33a333f05b40f0",
+                "bytes": 24659,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  98,
+                  111,
+                  250
+                ],
+                "pixelSha256": "e849e9ccdbae08423337688d239cf49eb67283c3bee91383b971a0f44ff0c19b"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_sword": {
             "status": "missing"
@@ -32353,6 +32421,50 @@
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "block_shield": {
+          "sourceSha256": "b6454462b9a1e7b84f92112775a4a7a332c239b74494805ca5e22bf98a727b17",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            543,
+            0,
+            1086,
+            724
+          ],
+          "scale": 0.23,
+          "origin": [
+            1.5549999999999997,
+            84
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": {
+            "uniformScale": 1.0482758620689656,
+            "pivotX": 64,
+            "sourceBaseline": 244,
+            "referenceBaseline": 250,
+            "method": "one body-root transform shared by all four poses; equipment unchanged"
+          },
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/monje/m/source/block_shield-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY MONJE MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action block_shield. Young adult male monk martial artist: short tousled dark brown-black hair, focused composed face. Sleeveless russet-red martial tunic with overlapping wrap front, dark red waist sash and simple leather belt, cream loose trousers tucked into sturdy brown ankle boots, fitted reddish-brown forearm wraps that end before the visible empty bare fingers and palms. Athletic canonical skeleton without exaggerated muscles; no weapon, prayer beads, particles or hand glow. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/previews/pose-hd-block_shield.png",
+          "canonicalPoseHashes": [
+            "553ecfc5273ac38fba3b6319328b957dbc18cb4427ed28288702c0aa017a1076",
+            "a644ae5f26fc34242d8462a6b730fe1a509acbca2cf838021f77811df9598dde",
+            "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
+            "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -32434,6 +32546,22 @@
         },
         "dodge/04": {
           "source": "sources.dodge",
+          "frame": 4
+        },
+        "block_shield/01": {
+          "source": "sources.block_shield",
+          "frame": 1
+        },
+        "block_shield/02": {
+          "source": "sources.block_shield",
+          "frame": 2
+        },
+        "block_shield/03": {
+          "source": "sources.block_shield",
+          "frame": 3
+        },
+        "block_shield/04": {
+          "source": "sources.block_shield",
           "frame": 4
         }
       },
