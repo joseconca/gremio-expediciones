@@ -46005,7 +46005,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/elementalista/f/frames",
       "audit": {
-        "validFrames": 32,
+        "validFrames": 36,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -46015,7 +46015,8 @@
           "dodge",
           "block_shield",
           "attack_sword",
-          "attack_axe"
+          "attack_axe",
+          "attack_spear"
         ],
         "actions": {
           "idle": {
@@ -46579,7 +46580,74 @@
             "distinctFrames": 4
           },
           "attack_spear": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "b34474cbf1bf4142539a5dee8f6c1245c9ddfd7dfdbc0be0f849e6dde8a6e573",
+                "bytes": 28907,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  92,
+                  113,
+                  247
+                ],
+                "pixelSha256": "20958c84cba8439035e7eae589559f409d345c4c9b89269d46702b9fb56b2ef9"
+              },
+              "02": {
+                "sha256": "934d8f6cc6569b2dcbbe54de966f4d04d2aee77b01d0a649c620364e749a9024",
+                "bytes": 27516,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  92,
+                  103,
+                  247
+                ],
+                "pixelSha256": "662d43c2a980bbf06b9a6f5be5c089606958f57351a72b5a114ba2e10cc6747c"
+              },
+              "03": {
+                "sha256": "8d524a23b2c64e3962394b121b318eedc6c729cf840b032cd198e1533b860544",
+                "bytes": 28080,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  92,
+                  112,
+                  247
+                ],
+                "pixelSha256": "8f78cd67e4d669f44eee4740d2c5f277a723a07b690ead84238afa3506eee009"
+              },
+              "04": {
+                "sha256": "605e259a23f23ef59b2a34cd6e1ad0f76791d9f60da6dd67ed3e6be7dba155fa",
+                "bytes": 28618,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  92,
+                  112,
+                  247
+                ],
+                "pixelSha256": "41a3d046c6c491314256a3b14f14f3f084fd45cddc7cbb5c51af9bd59c2664db"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_dagger": {
             "status": "missing"
@@ -46906,6 +46974,44 @@
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_spear": {
+          "sourceSha256": "a9d3a5d4f2f8ed87a04d7e005c9c5f749a0c939b575333c852b7cdcd436ee86c",
+          "sourceDimensions": [
+            2170,
+            725
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            644,
+            20,
+            1069,
+            693
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/elementalista/f/source/attack_spear-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY ELEMENTALISTA FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_spear. Young adult female elementalist: long silver-white high ponytail and swept bangs, intelligent composed face. Elegant royal blue and deep navy split arcane robe with restrained gold edging, ivory center tunic and hanging panel, blue shoulder mantle and structured cuffs ending before visible fingers, brown waist belt with small blue cabochon clasp, dark leggings and brown leather boots, discreet fingerless gloves. Fully covered costume, exact canonical female skeleton. No staff, book, elemental props, magical effects, floating gems or glow. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (253,320), other hand (488,242); figure 2: primary contact (796,311), other hand (922,277); figure 3: primary contact (1448,311), other hand (1591,259); figure 4: primary contact (1887,320), other hand (2130,246). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+          "canonicalPoseHashes": [
+            "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+            "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+            "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+            "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -47035,6 +47141,22 @@
         },
         "attack_axe/04": {
           "source": "sources.attack_axe",
+          "frame": 4
+        },
+        "attack_spear/01": {
+          "source": "sources.attack_spear",
+          "frame": 1
+        },
+        "attack_spear/02": {
+          "source": "sources.attack_spear",
+          "frame": 2
+        },
+        "attack_spear/03": {
+          "source": "sources.attack_spear",
+          "frame": 3
+        },
+        "attack_spear/04": {
+          "source": "sources.attack_spear",
           "frame": 4
         }
       },
