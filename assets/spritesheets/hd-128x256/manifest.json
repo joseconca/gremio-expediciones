@@ -33870,19 +33870,88 @@
       "tier": 2,
       "sex": "f",
       "order": 18,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/monje/f/monje-f-sheet.png",
       "sourceStatus": "concept-and-v2-masters",
-      "qaStatus": "not-started",
+      "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/monje/f/frames",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "5ecf1876666277beb73e2760aa67fb684ad77f892e947a7e9f251a5c42c801af",
+                "bytes": 23996,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  31,
+                  91,
+                  109,
+                  248
+                ],
+                "pixelSha256": "c531dd4d69b8546f58c40edd3f037db0912f43d66a8c0aec2f6eb21e6a1f9b8e"
+              },
+              "02": {
+                "sha256": "f0382492364c452941be759edd3b98531ebde4e4e0ef39aafd57068fe9597c24",
+                "bytes": 23997,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  90,
+                  107,
+                  248
+                ],
+                "pixelSha256": "d147b8f88373b3b0d6dfbebed3d100dd86b6e34d2085aee95ade47fd7201926e"
+              },
+              "03": {
+                "sha256": "afa5a9c97d0eb59dbbfb68994ba0e9583f33cf7ab01286714a4ed13602c7872b",
+                "bytes": 23901,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  90,
+                  101,
+                  248
+                ],
+                "pixelSha256": "cef4bcb746280e2f21b02e32f88a4db0f318b3bc03b1fe6e6048decc5bbad475"
+              },
+              "04": {
+                "sha256": "531d0d5441278d03d612de1981f9329e3df69c5e5e916aa2dfc274c7b41698ff",
+                "bytes": 23797,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  90,
+                  98,
+                  248
+                ],
+                "pixelSha256": "82af1422396b331a628742a9e6f62209b3cbd1cf2d8312c24ed0d94cc50b1429"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -33928,7 +33997,66 @@
           }
         }
       },
-      "equipmentRigId": "humanoid-f-v1"
+      "equipmentRigId": "humanoid-f-v1",
+      "sources": {
+        "idle": {
+          "sourceSha256": "88abb6c3aeafcdb6421b61b17bcc460a49c8eb86ebad6ddb456ab09501d6a485",
+          "sourceDimensions": [
+            2171,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/monje/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY MONJE FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action idle. Young adult female monk martial artist: high chestnut-brown ponytail and swept bangs, focused calm face. Fully covered russet-red sleeveless wrap tunic with high practical neckline, dark red waist sash and simple leather belt, cream loose trousers tucked into sturdy brown ankle boots, reddish-brown fitted forearm wraps ending before empty bare fingers and palms. Exact canonical female skeleton; no weapon, prayer beads, particles or hand glow. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (193,431), other hand (432,423); figure 2: primary contact (736,431), other hand (975,423); figure 3: primary contact (1283,427), other hand (1518,423); figure 4: primary contact (1822,431), other hand (2026,423). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
+        }
+      },
+      "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex"
     },
     {
       "classId": "cazador",
@@ -34620,7 +34748,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue all Tier 2 classes in the documented order, male then female, preserving canonical grips and quality.",
+  "nextTask": "Continue Tier 2 in class order: Caballero, Duelista, Sacerdote, Monje, Cazador, Explorador, Elementalista, Brujo; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
