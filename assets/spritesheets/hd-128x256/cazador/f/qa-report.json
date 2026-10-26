@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-26T02:01:40.772854+00:00",
+  "classId": "cazador",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\cazador\\f\\cazador-f-sheet.png",
+  "sheetSha256": "d3faa5822c41184fd2e11ec1c1c4392462c5aafeb00c92d729d66da66177fd1d",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\idle\\cazador-f-idle-01.png",
+          "sha256": "6140935ca0c5c5fde8d8aca07b7aab36ed316521b80cef07dd7b276feed8d695",
+          "alpha_bbox": [
+            23,
+            91,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\idle\\cazador-f-idle-02.png",
+          "sha256": "fb0d3024217212b57f073d17e8d622a2bbd875cf1c1641813c00550165a88a9f",
+          "alpha_bbox": [
+            20,
+            90,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\idle\\cazador-f-idle-03.png",
+          "sha256": "13605222c5ebad1ff96a9797f3d801985fa3b1aa5c84bd99740cb3d3a840c0d3",
+          "alpha_bbox": [
+            14,
+            90,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\idle\\cazador-f-idle-04.png",
+          "sha256": "77c119c3d1e40885c5a912526c7ff5c4d10dd8eb5f4a335ca6e4d813f066340e",
+          "alpha_bbox": [
+            11,
+            91,
+            98,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\walk\\cazador-f-walk-01.png",
+          "sha256": "778cdd61d4f0b539c211e238da74d3744b307f71472d1d13d686a6f0ce694b57",
+          "alpha_bbox": [
+            14,
+            90,
+            108,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\walk\\cazador-f-walk-02.png",
+          "sha256": "02e29736d83c20ce6ee95fa7e40b9a5bb3fc9b02f21ff3eff52092c158101a5d",
+          "alpha_bbox": [
+            24,
+            89,
+            97,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\walk\\cazador-f-walk-03.png",
+          "sha256": "fc89fd2982c9ef053bfedbc306a56d77f451a6572de9279b894a3cf99208a55f",
+          "alpha_bbox": [
+            11,
+            89,
+            118,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\walk\\cazador-f-walk-04.png",
+          "sha256": "104037fe8b3507f953430fae4999473adcf9d2d86136b3f50d600fc2f2e03cbd",
+          "alpha_bbox": [
+            21,
+            89,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\hurt\\cazador-f-hurt-01.png",
+          "sha256": "707987ecf892b93909883966190ccf321bf0d5ae033eccd28abfae989ec81830",
+          "alpha_bbox": [
+            21,
+            95,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\hurt\\cazador-f-hurt-02.png",
+          "sha256": "d6ebc5907552cae55e4202471a45ae823d6cbe9961e7b0f8406d683c13ca0e02",
+          "alpha_bbox": [
+            26,
+            95,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\hurt\\cazador-f-hurt-03.png",
+          "sha256": "ba1f8e0597dc26b9188cfd31400c6d15f852327290ced0e1fbfcbf73f0c67d18",
+          "alpha_bbox": [
+            19,
+            114,
+            92,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\hurt\\cazador-f-hurt-04.png",
+          "sha256": "4883505a87d635eaf28e8478ee032024a45199fa10ee0cb6f118230675fdae8a",
+          "alpha_bbox": [
+            14,
+            92,
+            94,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\use_consumable\\cazador-f-use_consumable-01.png",
+          "sha256": "01b0d8d64e35b170d162d2575f743fb45324df84248932bad3b449d26d22857a",
+          "alpha_bbox": [
+            16,
+            89,
+            100,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\use_consumable\\cazador-f-use_consumable-02.png",
+          "sha256": "50c6c0c96e91fe4f0e220746609244f168c2d81bab8300130ae072335b5fa017",
+          "alpha_bbox": [
+            22,
+            89,
+            100,
+            246
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\use_consumable\\cazador-f-use_consumable-03.png",
+          "sha256": "f631a7f1c2315bb0f297b63b0650de1b8cb9a7b2b2b60254b88ae75825d75056",
+          "alpha_bbox": [
+            22,
+            89,
+            102,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\use_consumable\\cazador-f-use_consumable-04.png",
+          "sha256": "7c04ebfada5ca05535ccf135e4a4a26e8fc54d457b2e524e6b8503fb9030c31b",
+          "alpha_bbox": [
+            16,
+            89,
+            101,
+            246
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\dodge\\cazador-f-dodge-01.png",
+          "sha256": "e1103ff90effdf8723ff70e811b248c75a19e69f29e4acc7466f617973a6dbd7",
+          "alpha_bbox": [
+            27,
+            92,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\dodge\\cazador-f-dodge-02.png",
+          "sha256": "377f8f8b2a4fdc0bb0c4b8ea0d3372464423ddce7b4ca1d479fa86f3ba0a855f",
+          "alpha_bbox": [
+            33,
+            100,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\dodge\\cazador-f-dodge-03.png",
+          "sha256": "49624720d8b549b33d3e9a91b222d1ff5ec4dcabae39aa2b6e397d9a3bb8d418",
+          "alpha_bbox": [
+            23,
+            126,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\dodge\\cazador-f-dodge-04.png",
+          "sha256": "e12f8b1a3980be463c91823c81ade0c39710bbaa5a91509c8c29feb361b9a007",
+          "alpha_bbox": [
+            14,
+            98,
+            97,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\block_shield\\cazador-f-block_shield-01.png",
+          "sha256": "9d62835438e8147713d4dd9d0e8bd2ed1a302f19b60ee9c94d55254c99aaf372",
+          "alpha_bbox": [
+            21,
+            93,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\block_shield\\cazador-f-block_shield-02.png",
+          "sha256": "d3f2a3d085f272a45fb9605c4115e8b2d36486840485db1b98c9dee1845e2dfc",
+          "alpha_bbox": [
+            20,
+            93,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\block_shield\\cazador-f-block_shield-03.png",
+          "sha256": "8cf9b39b347a51404f4fbda5502eff5c65fcb6904c8ed7e198c5bef42dd8e49e",
+          "alpha_bbox": [
+            21,
+            105,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\block_shield\\cazador-f-block_shield-04.png",
+          "sha256": "6c7aba288ffd7c049e1a0ab64d9f0822d71f4bc35502815809ea01f314f677a5",
+          "alpha_bbox": [
+            9,
+            92,
+            97,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_sword\\cazador-f-attack_sword-01.png",
+          "sha256": "1c4ff121f41b1c2416d15fc9c5c390e23df344141a54a65fae3c0928527c4b8c",
+          "alpha_bbox": [
+            22,
+            91,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_sword\\cazador-f-attack_sword-02.png",
+          "sha256": "5e81c8179157d49649a370c9bbc68d04b977004ef24e266bc3513546112de821",
+          "alpha_bbox": [
+            25,
+            91,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_sword\\cazador-f-attack_sword-03.png",
+          "sha256": "d82cbcd03338919d44287ee585a2ea3d8e2a1ca23fa6af2da9a6f64620d93ed0",
+          "alpha_bbox": [
+            18,
+            96,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_sword\\cazador-f-attack_sword-04.png",
+          "sha256": "1ae6f5b4d17d75a2330c3c9de90b7f7f25c6dc8952d08b7cf993a000696d5bd6",
+          "alpha_bbox": [
+            13,
+            91,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_axe\\cazador-f-attack_axe-01.png",
+          "sha256": "2861fea2af6dc3d695b9b140c2473b944062fb963fe0a2e613954155b60bc8c9",
+          "alpha_bbox": [
+            27,
+            94,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_axe\\cazador-f-attack_axe-02.png",
+          "sha256": "a60b3c6fce916cf9bc084dd4deecffe0f747f5bbd70ee43396fe1e4e3a1d2bac",
+          "alpha_bbox": [
+            21,
+            90,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_axe\\cazador-f-attack_axe-03.png",
+          "sha256": "3e88abe192fb8ad658ef37cb0e69c51c53bc7abf0825ac6956e6df492b06becc",
+          "alpha_bbox": [
+            16,
+            102,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_axe\\cazador-f-attack_axe-04.png",
+          "sha256": "1a65697a24a73e15a1d2559dc42553021a0f836f731106c4dcee41d04fa7e3e3",
+          "alpha_bbox": [
+            10,
+            94,
+            96,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_spear\\cazador-f-attack_spear-01.png",
+          "sha256": "30dc079cd4479dbbc2724462946e19e35f56491c7113b2b8e2a3c930e5563bf8",
+          "alpha_bbox": [
+            12,
+            92,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_spear\\cazador-f-attack_spear-02.png",
+          "sha256": "d29ae782835caca82186e3af7eccf6875e9599285ecc7e2688bc1ac48ff781f0",
+          "alpha_bbox": [
+            17,
+            92,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_spear\\cazador-f-attack_spear-03.png",
+          "sha256": "4539ae3c97bf0198f4f782f77cbab9886c771d8e9cd4ffffe6b7cce0ac90b0a4",
+          "alpha_bbox": [
+            13,
+            92,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_spear\\cazador-f-attack_spear-04.png",
+          "sha256": "5c0ad64ca9798806864c5bac5dbd146d20c51c40828b51bd5343bc590e355034",
+          "alpha_bbox": [
+            13,
+            92,
+            109,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_dagger\\cazador-f-attack_dagger-01.png",
+          "sha256": "f48ea7f9657b5a7a4bebfd7c339dd0f083235ece9cd62a63ef270e56bacc79c9",
+          "alpha_bbox": [
+            15,
+            90,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_dagger\\cazador-f-attack_dagger-02.png",
+          "sha256": "9a67420ecec141de17c41a4016e58072b8ece1c105db3de6f87325709c6a9289",
+          "alpha_bbox": [
+            20,
+            90,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_dagger\\cazador-f-attack_dagger-03.png",
+          "sha256": "8f44e6e79f55c413bc0a62c127384b9dc82677b26c7014b98380bf525a0fd86d",
+          "alpha_bbox": [
+            14,
+            91,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_dagger\\cazador-f-attack_dagger-04.png",
+          "sha256": "806647e6437fbc41ca67d0d253b8fbff45dc6fcd5ecbd1de1cc01b23abd419e5",
+          "alpha_bbox": [
+            17,
+            89,
+            104,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_bow\\cazador-f-attack_bow-01.png",
+          "sha256": "b8ded8050909095e633289e0c906ab138a9e6a944e4bcfff8bb13461426451a5",
+          "alpha_bbox": [
+            16,
+            90,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_bow\\cazador-f-attack_bow-02.png",
+          "sha256": "54e0e28221ea3bf16fa5bc8737f5f0d1782c5127aa916e78f0be189333e97b5f",
+          "alpha_bbox": [
+            15,
+            90,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_bow\\cazador-f-attack_bow-03.png",
+          "sha256": "0a9ce5746970ee087c98ae0bd192d16a0913a8badce1caddcba3d928f5de3f4d",
+          "alpha_bbox": [
+            13,
+            90,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_bow\\cazador-f-attack_bow-04.png",
+          "sha256": "e7e531ba0655b72967e56b63b3790a8df3f54ac19cd593685298d801f67fca18",
+          "alpha_bbox": [
+            14,
+            90,
+            113,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_staff\\cazador-f-attack_staff-01.png",
+          "sha256": "0132b4603c9ef0d44cb2e483e6b7f11adbe0965af7add0d2ac8e5baf754740aa",
+          "alpha_bbox": [
+            23,
+            90,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_staff\\cazador-f-attack_staff-02.png",
+          "sha256": "3653ea9ca64a912de9657f5b6250916d231a0e79f0b6e08e2e750cf56e7eaf07",
+          "alpha_bbox": [
+            23,
+            90,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_staff\\cazador-f-attack_staff-03.png",
+          "sha256": "0bc65555949baed2ce702b803131bf79a189464d0810e722b5d21947bc5fa367",
+          "alpha_bbox": [
+            25,
+            90,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_staff\\cazador-f-attack_staff-04.png",
+          "sha256": "0d4eb2485d41c1a3960b3b8dc8bdddb9b2f3cc7b4912b5618dfbcab7056a61f3",
+          "alpha_bbox": [
+            23,
+            90,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_mace\\cazador-f-attack_mace-01.png",
+          "sha256": "7e084d251dda5a9abbf612546400e6a96a2ea86d01974b3d8bcd0b1ade4dbf0c",
+          "alpha_bbox": [
+            26,
+            89,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_mace\\cazador-f-attack_mace-02.png",
+          "sha256": "8aad5232505e192de07b051ee16e3bd44c506a94ae581e8e47144528834826a7",
+          "alpha_bbox": [
+            23,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_mace\\cazador-f-attack_mace-03.png",
+          "sha256": "157783f8cb9739de3e2d6b2914d51f77a4a58ca8414fab589ae59cfb48e00aef",
+          "alpha_bbox": [
+            19,
+            95,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_mace\\cazador-f-attack_mace-04.png",
+          "sha256": "25c16322460a40a808ff1c62f135aabf84f4d3eb402d5e77163f6b2d11213ad8",
+          "alpha_bbox": [
+            15,
+            90,
+            100,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_book\\cazador-f-attack_book-01.png",
+          "sha256": "2d82980efc2a6511e8c90693eb3cdd1e682200ea5764c72604f14a618930bf09",
+          "alpha_bbox": [
+            25,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_book\\cazador-f-attack_book-02.png",
+          "sha256": "287fa4d5bf5c2e1f75cc800d05bfdbdc36891afe078e7635f430ae0bb6849b31",
+          "alpha_bbox": [
+            19,
+            90,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_book\\cazador-f-attack_book-03.png",
+          "sha256": "8ff82a8a0767e7ba60ff8eda073eb304ecae7b68b9be64fd0ff458e541228590",
+          "alpha_bbox": [
+            16,
+            90,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_book\\cazador-f-attack_book-04.png",
+          "sha256": "2ecdec70306599655f6a53ccfc48f19d33297a293e647472c04bae6d79f93c2b",
+          "alpha_bbox": [
+            16,
+            90,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_gloves\\cazador-f-attack_gloves-01.png",
+          "sha256": "0670a1b2c65dfc5209d15b68a22446e08155309fe60dfae321ad761afbadf6f7",
+          "alpha_bbox": [
+            18,
+            90,
+            103,
+            245
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_gloves\\cazador-f-attack_gloves-02.png",
+          "sha256": "23243ff4238bc3604471cf7d4628c9d24f0f67af57e7bcc8d827588c9fcb8ee9",
+          "alpha_bbox": [
+            16,
+            90,
+            102,
+            245
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_gloves\\cazador-f-attack_gloves-03.png",
+          "sha256": "c9d898e2784d7f54a74e8499dbc3edcbaee9cd5708a8bee4572098d404c34327",
+          "alpha_bbox": [
+            8,
+            91,
+            113,
+            245
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\cazador\\f\\frames\\attack_gloves\\cazador-f-attack_gloves-04.png",
+          "sha256": "e331f3cd4d2e68373ccab93bc2b81503cbfc672582d5257d4d4e91c85b08d681",
+          "alpha_bbox": [
+            6,
+            90,
+            92,
+            245
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
