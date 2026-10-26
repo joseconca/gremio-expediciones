@@ -75,3 +75,39 @@ test('multi-target impacts never turn an uninvolved ally into an attacker or pot
   assert.equal(hd.propsSpriteHeroeHd(state,'unrelated').accion,'idle');
   assert.equal(hd.propsSpriteHeroeHd(state,'ally').inicioAnimacion,20);
 });
+
+test('idle drift correction moves the complete actor before drawing and respects reflection',()=>{
+  for (const reflected of [false,true]) {
+    const calls=[];const ctx={};
+    for(const method of ['clearRect','save','restore','translate','scale','beginPath','moveTo','arc','clip','drawImage'])ctx[method]=(...a)=>calls.push([method,...a]);
+    dibujarHeroeHd(ctx,'BODY',[{id:'baston_madera',imagen:'STAFF'}],'idle','f',3,reflected,'mago');
+    assert.deepEqual(calls.filter(c=>c[0]==='translate'),reflected ? [['translate',384,0],['translate',9,0]] : [['translate',9,0]]);
+    const correction=calls.findIndex(c=>c[0]==='translate'&&c[1]===9);
+    assert.ok(correction<calls.findIndex(c=>c[0]==='drawImage'));
+    assert.ok(calls.some(c=>c[0]==='drawImage'&&c[1]==='STAFF'));
+    assert.deepEqual(calls.find(c=>c[0]==='drawImage'&&c[1]==='BODY'),['drawImage','BODY',384,0,128,256,128,64,128,256]);
+    assert.equal(calls.at(-1)[0],'restore');
+  }
+});
+
+test('idle correction leaves male swordsman, first poses and other actions unchanged',()=>{
+  for(const [action,sex,phase,clase] of [['idle','m',3,'espadachin'],['idle','f',0,'mago'],...hd.BIBLIOTECA_SPRITES_HD.actions.filter(a=>a!=='idle').map(a=>[a,'f',3,'mago'])]) {
+    const calls=[];const ctx={};
+    for(const method of ['clearRect','save','restore','translate','scale','drawImage'])ctx[method]=(...a)=>calls.push([method,...a]);
+    dibujarHeroeHd(ctx,'BODY',[],action,sex,phase,false,clase);
+    assert.equal(calls.filter(c=>c[0]==='translate').length,0);
+  }
+});
+
+test('idle support report uses current source frames and removes horizontal drift in all completed classes',()=>{
+  const report=JSON.parse(read('assets/spritesheets/hd-128x256/idle-alignment-report.json'));
+  const positions=JSON.parse(read('src/lib/generated/posiciones-idle-hd.json'));
+  const manifest=JSON.parse(read('assets/spritesheets/hd-128x256/manifest.json'));
+  assert.deepEqual(Object.keys(report.variants).sort(),manifest.variants.filter(v=>v.audit.technicalActions.includes('idle')).map(v=>v.classId+'-'+v.sex).sort());
+  for(const [key,v] of Object.entries(report.variants)) {
+    const [c,s]=key.split('-');
+    for(let i=0;i<4;i++) assert.equal(sha(read(`assets/spritesheets/hd-128x256/${c}/${s}/frames/idle/${c}-${s}-idle-${String(i+1).padStart(2,'0')}.png`)),v.frameHashes[i]);
+    assert.deepEqual(positions[c][s],v.offsetsX);
+    assert.ok(Math.max(...v.correctedCentersX)-Math.min(...v.correctedCentersX)<=1);
+  }
+});

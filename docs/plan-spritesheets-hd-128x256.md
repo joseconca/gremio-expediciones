@@ -12,6 +12,12 @@ Revisar la [galería estática](../assets/spritesheets/hd-128x256/previews/tier2
 
 Próximo paso: revisión del usuario de Tier 2 y, después, su incorporación al juego con autorización de publicación. La integración ya aprobada de Novato y Tier 1 sigue siendo la activa. Las siguientes clases mantienen el orden del manifiesto, las mismas referencias corporales, la separación de equipo por sexo y el guardado por acción.
 
+### Corrección de deriva horizontal en reposo
+
+El usuario detectó que la maga se desplazaba lateralmente al cambiar de fotograma, mientras el espadachín masculino permanecía estable. Se midió el punto medio del apoyo de las botas en las 26 variantes HD completas: 13 necesitaban compensación. `alinear-reposo-hd.py` conserva los hashes y medidas en `idle-alignment-report.json` y genera `posiciones-idle-hd.json`; `--check` detecta datos obsoletos si cambian los originales. La deriva de la maga pasa de 9 píxeles a un máximo de medio píxel de variación del contorno; todas las variantes quedan en un píxel o menos. El espadachín masculino conserva sus cuatro posiciones.
+
+El dibujado aplica únicamente una traslación horizontal entera al actor completo durante `idle`, después del reflejo y antes de componer cuerpo, equipo y máscaras de dedos. Se conservan las fuentes, atlas, movimientos verticales, demás acciones y coordenadas relativas del equipo compartido. La [comparativa animada](../assets/spritesheets/hd-128x256/previews/idle-alignment.gif) muestra la maga y el espadachín antes y después. La suite de sprites pasa sus 21 pruebas.
+
 ## Contrato
 
 - Cuerpo HD: PNG con alfa real, celda 128×256; atlas RGBA 512×3840.

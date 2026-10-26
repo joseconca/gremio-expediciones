@@ -44,7 +44,7 @@ export default function SpriteHeroeHd({ claseId, sexo, nombre, accion, armaId, e
       const pintar = (ahora: number) => {
         if (!activo) return;
         const fase = obtenerFotogramaHeroeHd(accion, sexo, ahora - inicio, media.matches);
-        if (fase !== anterior) { dibujarHeroeHd(ctx, cuerpo, capas.filter(c => c !== null), accion, sexo, fase, reflejado); anterior = fase; }
+        if (fase !== anterior) { dibujarHeroeHd(ctx, cuerpo, capas.filter(c => c !== null), accion, sexo, fase, reflejado, claseId); anterior = fase; }
         if (!media.matches) raf = requestAnimationFrame(pintar);
       };
       repintar = () => { cancelAnimationFrame(raf); anterior = -1; pintar(performance.now()); };
