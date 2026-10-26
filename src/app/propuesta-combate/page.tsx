@@ -94,7 +94,7 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
         })}</section>
       </div>
       <div className={`${styles.actionBlock} ${menu !== "principal" ? styles.actionBlockExpanded : ""}`} aria-label="Menú de acciones">
-      <div className={styles.orders}><div className={styles.orderTitle}><span>Aldric</span></div>
+      <div className={styles.orders}>
         <div className={styles.commandGrid}>{["Atacar", "Habilidades", "Objetos", "Huir"].map((label, i) => <button key={label} aria-expanded={i === 1 ? menu === "habilidades" : i === 2 ? menu === "objetos" : undefined} disabled={accion !== "idle" || huido} onClick={() => {
           if (label === "Habilidades" || label === "Objetos") { const next = label === "Habilidades" ? "habilidades" : "objetos"; setMenu(menu === next ? "principal" : next); setDescripcion(next === "habilidades" ? "Selecciona una técnica. El coste se muestra a la derecha." : "Selecciona un consumible. La cantidad disponible se muestra a la derecha."); }
           else if (label === "Huir") { setHuido(true); setHistorial(h => [...h, "Aldric sale del combate (demostración)."]); }

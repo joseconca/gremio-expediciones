@@ -28,6 +28,8 @@ La flecha tiene un pulso discreto, desactivado con movimiento reducido. Las fich
 
 ## Revisión vigente: panel anclado al borde inferior
 
-El panel de combate ocupa una región propia en el flujo de la pantalla (214 px en escritorio y 310 px en la maqueta móvil de 390 × 760). La escena ocupa el espacio restante y no queda detrás del panel. Se eliminan las ventanas flotantes, márgenes exteriores, sombras y marcos dobles del menú; un borde superior y separadores interiores mantienen la estética RPG.
+El panel de combate ocupa una región propia en el flujo de la pantalla (180 px en escritorio y 270 px en la maqueta móvil de 390 × 760). La escena ocupa el espacio restante y no queda detrás del panel. Se eliminan las ventanas flotantes, márgenes exteriores, sombras y marcos dobles del menú; un borde superior y separadores interiores mantienen la estética RPG.
 
 Ambos equipos siguen visibles: franja superior compacta en el panel móvil y columnas a la derecha en escritorio. El bloque de acciones se ensancha dentro del panel, sin invadir la escena. El historial permanece separado y se expande dentro de esta región inferior. Esta revisión sustituye el posicionamiento flotante de las revisiones anteriores.
+
+Ajuste de compactación: se elimina el nombre del actor sobre las órdenes y la franja inferior vacía. El panel gana 34 px de escena en escritorio y 40 px en móvil.

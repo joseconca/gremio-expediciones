@@ -127,3 +127,13 @@
 .battle.mobile .teamLedger+ .teamLedger .heroCard{grid-template-columns:94px 1fr}.battle.mobile .teamLedger+ .teamLedger .stat>b{width:36px}
 .battle:not(.mobile) .teamLedger .heroCard{grid-template-columns:76px 1fr;grid-template-rows:16px 16px;gap:0 4px;padding:3px 0}
 .battle:not(.mobile) .teamLedger .cardTitle{grid-row:1/3;flex-direction:column;justify-content:center;align-items:flex-start;gap:2px;margin:0}.battle:not(.mobile) .teamLedger .cardTitle strong{font-size:10px;line-height:12px}.battle:not(.mobile) .teamLedger .stat>b{width:48px}
+
+/* Compact dock: remove the actor heading and the unused bottom strip. */
+.battle .hud{flex-basis:180px;height:180px;min-height:180px}
+.battle .actionBlock,.battle .historyOnly{bottom:0}
+.battle .actionDescription{max-height:32px}
+.battle.mobile .hud{flex-basis:270px;height:270px;min-height:270px}
+.battle.mobile .allCombatants{height:92px}
+.battle.mobile .actionBlock,.battle.mobile .historyOnly{top:92px;bottom:0}
+.battle.mobile .actionBlock .submenu>button{min-height:36px}
+.battle.mobile .actionDescription{max-height:30px}
