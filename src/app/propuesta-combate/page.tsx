@@ -78,12 +78,12 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
     </div>
     <footer className={styles.hud}>
       <div className={styles.allCombatants}>
-        <section className={styles.teamLedger} aria-label="Aliados"><h3>Aliados</h3>
+        <section className={styles.teamLedger} aria-label="Aliados">
         {heroes.map((h, i) => <div key={h.nombre} className={`${styles.heroCard} ${i === 0 ? styles.activeCard : ""}`}>
           <div className={styles.cardTitle}><strong>{h.nombre}</strong><span>{i === 0 ? "◆ ACTÚA" : h.clase}</span></div>
           <div className={styles.stat}><span>PV</span><div className={styles.bar}><i style={{ width: `${h.hp / h.max * 100}%` }} /></div><b>{h.hp}<small>/{h.max}</small></b></div>
           <div className={styles.stat}><span>{i === 1 || i === 3 ? "PM" : "EN"}</span><div className={`${styles.bar} ${styles.mana}`}><i style={{ width: "72%" }} /></div><b>{h.mp}</b></div>
-        </div>)}</section><section className={styles.teamLedger} aria-label="Enemigos"><h3>Enemigos</h3>{enemigos.map((id, i) => {
+        </div>)}</section><section className={styles.teamLedger} aria-label="Enemigos">{enemigos.map((id, i) => {
           const e = obtenerEnemigoPorId(id);
           const hp = e?.hp ?? 100;
           return <button key={id} className={`${styles.heroCard} ${styles.enemyCard} ${seleccionado === i ? styles.selectedEnemyCard : ""}`} aria-label={`Ver ${ENEMIGOS_HD[id].name}`} aria-pressed={seleccionado === i} onClick={() => setObjetivo(i)}>
@@ -113,10 +113,10 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
           <p className={styles.actionDescription} aria-live="polite">{descripcion}</p>
         </div>}
       </div>
-      <section className={`${styles.historyOnly} ${expandido ? styles.historyOpen : ""} ${menu !== "principal" ? styles.historyDuringMenu : ""}`} aria-label="Historial del combate">
+      {menu === "principal" && <section className={`${styles.historyOnly} ${expandido ? styles.historyOpen : ""}`} aria-label="Historial del combate">
         <button className={styles.historyToggle} aria-expanded={expandido} onClick={() => setExpandido(!expandido)}>Historial <span>{expandido ? "−" : "+"}</span></button>
         <ol>{(expandido ? historial : historial.slice(-2)).map((linea, i) => <li key={i}>{linea}</li>)}</ol>
-      </section>
+      </section>}
       {huido && <div className={styles.exitPanel}><strong>Has salido del combate</strong><p>Demostración de la acción Huir.</p><button onClick={() => { setHuido(false); }}>Volver a la vista previa</button></div>}
 
     </footer>
