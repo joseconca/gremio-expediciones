@@ -1,9 +1,13 @@
 {
-  "status": "passed",
+  "status": "contact-review-required",
   "classId": "brujo",
   "sex": "f",
   "actions": [
-    "idle"
+    "idle",
+    "hurt",
+    "use_consumable",
+    "dodge",
+    "block_shield"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,10 +15,107 @@
       "cb3f5cea4cbd52258d35df25be9c0de2200834382a0791c2f9584da2e3bb8575",
       "e4eaf5d5b98d11438c7abd6c5ef02340e1fb99cc9c03fa1ba919fd59338ee6b7",
       "7d393fec1e450c96f799bfc2531865eca7f475c2b7f93c4701329a3b2379ead1"
+    ],
+    "hurt": [
+      "83713f75380bac137ca8120080c67c44bc4818f82f71bd65f32c893386db6f7a",
+      "ed57a3f570aa653896d10ed4a80eac1d2e2fae16f5afacb52b157d0130e1e246",
+      "977a4c7f7c46dfe56fa1c360c63fe38a278483b292fd07236a8bd02fc8683eb1",
+      "455d009021f75cb181132b5a9d9b86eb423de768b2668bc228739ae6141f03fd"
+    ],
+    "use_consumable": [
+      "61e29e6ffe6178866e29e3eefeb0fc3bc6f2cead98f9b88962024926cbbb6117",
+      "9b1fe34d724a5987bb33a911a53341e5426e7f5864c394e3f8f951340ceda000",
+      "19383af39b70269e87b45eec25fa10493760c4bb38649e1804cb82d0cee3ed2f",
+      "0ff69906ba5c75f6d98ba437d0020174a2f145182b1f5cd51464e4d00747e065"
+    ],
+    "dodge": [
+      "0af7b53edd3b81b7ed5b8cfc5b1bea5304cfafbfe9c654a0aefcfa84727c03ae",
+      "3835cc8efd23056cf8a26b3fb8501ec85cb228062c935d6b276c2a318d202993",
+      "ca4293d817ca1c089607a966eb6b3d3ab3c0a8a3b2d3e430effb2d5ca60521fb",
+      "4f80b737efc61ba56e0cc91a7526b51a165314408718458ac47aed57fae10098"
+    ],
+    "block_shield": [
+      "23c15f1e9f1aa8c8a9fc8ba7d7ff0e80c41e7f32be3ddbb0c7addaa82b106310",
+      "8c1bde7336c54c4035ff3c0c48d7c548a1148565aa00d9e1b709389567720a61",
+      "e05f08d54310be1929d5ed874d709c83812ce8b5ea5799ca3a8bfa6ff95491e6",
+      "86d5151a327518183205a7f1ca2ad4ba845a075144959209905ea33aecb88f76"
     ]
   },
-  "contactChecks": 128,
-  "warnings": [],
+  "contactChecks": 396,
+  "warnings": [
+    {
+      "action": "hurt",
+      "frame": 3,
+      "item": "arco_cazador",
+      "point": [
+        75,
+        176
+      ]
+    },
+    {
+      "action": "hurt",
+      "frame": 3,
+      "item": "arco_madera",
+      "point": [
+        75,
+        176
+      ]
+    },
+    {
+      "action": "hurt",
+      "frame": 3,
+      "item": "grimorio_eclipse",
+      "point": [
+        75,
+        176
+      ]
+    },
+    {
+      "action": "hurt",
+      "frame": 3,
+      "item": "guantes_lucha",
+      "point": [
+        75,
+        176
+      ]
+    },
+    {
+      "action": "hurt",
+      "frame": 3,
+      "item": "libro_aprendiz",
+      "point": [
+        75,
+        176
+      ]
+    },
+    {
+      "action": "hurt",
+      "frame": 3,
+      "item": "punos_lobo",
+      "point": [
+        75,
+        176
+      ]
+    },
+    {
+      "action": "hurt",
+      "frame": 3,
+      "item": "escudo_guardian",
+      "point": [
+        75,
+        176
+      ]
+    },
+    {
+      "action": "hurt",
+      "frame": 3,
+      "item": "escudo_madera",
+      "point": [
+        75,
+        176
+      ]
+    }
+  ],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
 }
