@@ -38323,68 +38323,68 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "0522fd8f1162a95b96320d514d9e7e57c85218a2031ed50fe89c963eadcab1ff",
-                "bytes": 26631,
+                "sha256": "01b0d8d64e35b170d162d2575f743fb45324df84248932bad3b449d26d22857a",
+                "bytes": 26396,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  17,
+                  16,
                   89,
-                  103,
-                  248
+                  100,
+                  246
                 ],
-                "pixelSha256": "66bad3f221b88eb2f72af97da864772fe0ffac52de56ddb981e09100fa07eea4"
+                "pixelSha256": "625376c71e0b5edf797de1faacd114b0b65019ad014ef3535c586e2e8474ae59"
               },
               "02": {
-                "sha256": "5f058b65eb3644155f42e0df60b414ba5c7355766acf2f05193a19795eaf5faf",
-                "bytes": 25570,
+                "sha256": "50c6c0c96e91fe4f0e220746609244f168c2d81bab8300130ae072335b5fa017",
+                "bytes": 25515,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  25,
+                  22,
                   89,
-                  105,
-                  248
+                  100,
+                  246
                 ],
-                "pixelSha256": "b90baf512c7d963d67ba436e204276e19bdd885653acda1652938aea2e68ff7d"
+                "pixelSha256": "e5ebc1e9518b99087c2dfa646c0dce26a37d957a32149247fd55f234a700122a"
               },
               "03": {
-                "sha256": "d7a6adcab360b213d80228c7ec2424e2d8e35fd8752780e8c616028a679d9cd8",
-                "bytes": 25299,
+                "sha256": "f631a7f1c2315bb0f297b63b0650de1b8cb9a7b2b2b60254b88ae75825d75056",
+                "bytes": 24977,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  25,
+                  22,
                   89,
-                  106,
-                  248
+                  102,
+                  246
                 ],
-                "pixelSha256": "786a582372f653d3cc4a4b8f54cd6977757d49c5dadeb34c056ba53df04efa1e"
+                "pixelSha256": "2ef1a588fdc80febc1353b8c44921dd7d3c009cd8c3b181aaafe3ff7f636f9ba"
               },
               "04": {
-                "sha256": "b6fdbcca42c0050557afff1a770c7c2d821132f9b9f11a8e15c98a4966d3dadb",
-                "bytes": 26943,
+                "sha256": "7c04ebfada5ca05535ccf135e4a4a26e8fc54d457b2e524e6b8503fb9030c31b",
+                "bytes": 26232,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  17,
+                  16,
                   89,
-                  105,
-                  248
+                  101,
+                  246
                 ],
-                "pixelSha256": "648f637c56ddb262035562cc9b962db66be1b447f750884c0625070d30c214e5"
+                "pixelSha256": "8286964a2a21d395f00d84d16e1329d46309eb08e5735e89cf9a3a0ce9b3237b"
               }
             },
             "distinctFrames": 4
@@ -39358,9 +39358,9 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "use_consumable": {
-          "sourceSha256": "54771270ec4fc76dcd737f823a8d4dd3aa30b086280871db96bc8372dfc532c0",
+          "sourceSha256": "96198ffcfdd0e6422b0c7bc9b2f8a43c69292483a770f30e06c4db5c4c9e2a24",
           "sourceDimensions": [
-            2170,
+            2169,
             725
           ],
           "registeredSourceDimensions": [
@@ -39383,9 +39383,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/cazador/f/source/use_consumable-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/cazador/f/source/use_consumable-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY CAZADOR FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action use_consumable. Young adult female hunter: long auburn-brown high ponytail and side bangs, keen focused face. Dark forest-green fitted hunter tunic and short split travelling cloak with hood DOWN, muted olive panels and subtle tan-gold edging, brown leather chest straps and belt pouches, dark leggings, fitted brown forearm bracers and fingerless gloves, sturdy brown travel boots. Fully covered practical outfit, exact canonical female skeleton. No bow, quiver, arrows, animal, traps or dagger. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (251,372); figure 2: primary contact (837,272); figure 3: primary contact (1432,206); figure 4: primary contact (1867,393). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "prompt": "Precise arm correction only in figures ONE and FOUR of this hunter drink strip. Their NEAR foreground hand must hold a future separate potion at the belt: bend first figure's existing foreground elbow to move its fist63pixels RIGHT and38pixels UP, to(251,372) on2172x724 canvas. Fourth figure same existing near fist27pixels RIGHT and17pixels UP, to(1867,393). Replace old hanging fists, do not duplicate them. Other far hands and figures2/3 unchanged. Exactly2arms each. No bottle or props, same art and full transparent canvas.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/use_consumable-reference.png",
           "canonicalPoseHashes": [
             "9d423a87f0b50fc02a53ff021d8946c2f0f5b232bc3b645c13717d1514302738",
@@ -39393,7 +39393,47 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "54771270ec4fc76dcd737f823a8d4dd3aa30b086280871db96bc8372dfc532c0",
+              "sourceDimensions": [
+                2170,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                659,
+                15,
+                1015,
+                704
+              ],
+              "scale": 0.23,
+              "origin": [
+                23,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador/f/source/use_consumable-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY CAZADOR FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action use_consumable. Young adult female hunter: long auburn-brown high ponytail and side bangs, keen focused face. Dark forest-green fitted hunter tunic and short split travelling cloak with hood DOWN, muted olive panels and subtle tan-gold edging, brown leather chest straps and belt pouches, dark leggings, fitted brown forearm bracers and fingerless gloves, sturdy brown travel boots. Fully covered practical outfit, exact canonical female skeleton. No bow, quiver, arrows, animal, traps or dagger. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (251,372); figure 2: primary contact (837,272); figure 3: primary contact (1432,206); figure 4: primary contact (1867,393). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/use_consumable-reference.png",
+              "canonicalPoseHashes": [
+                "9d423a87f0b50fc02a53ff021d8946c2f0f5b232bc3b645c13717d1514302738",
+                "75fcd4517c428942562d86e8bb3e34e2817ebc57b601b9c57ded827d48b65d73",
+                "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
+                "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "dodge": {
           "sourceSha256": "fcc3cc9d865be031632a2d88b0f11ffc21ca4a0623a857dfca46fe45f22159b5",
