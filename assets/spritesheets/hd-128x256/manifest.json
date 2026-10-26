@@ -31810,24 +31810,40 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "a300b391cd0fc09ad9d0f91bc7990c9d16dd14545350d19ea51d482ba8dc6dfc",
-                "bytes": 23414,
+                "sha256": "cc04044ebcd030a9235d8ca80c2956227f74739ab472ca6891e6176a712fd285",
+                "bytes": 23658,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  8,
-                  92,
-                  111,
-                  245
+                  5,
+                  91,
+                  110,
+                  247
                 ],
-                "pixelSha256": "8c230802e6e07f824e4aa194652fb362dd1ccf1e958a38d949e0ad2ef58da902"
+                "pixelSha256": "1353be76dd15d5867eb857d399f9017f983e0a7a07fa83f4a0ed3ef56ff3c8f1"
               },
               "02": {
-                "sha256": "4ed71103eb3f2273c97a1141452c8698d7a141cd236df4deac43cc7c7c904292",
-                "bytes": 21466,
+                "sha256": "8889dd0f8b4cd23d05a960747289d33b9ea29caea60c2e16b49448239bbea248",
+                "bytes": 21284,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  91,
+                  108,
+                  246
+                ],
+                "pixelSha256": "14e4ea4b9f69541204685e44cd74e1ce277cb877e5bbf0472877ac0af35e1a27"
+              },
+              "03": {
+                "sha256": "fbc2d38baa1afabc5f9218cd6b766fd2b20bda87c0a9d01a7e0e8cae68946cc0",
+                "bytes": 22241,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -31836,42 +31852,26 @@
                 "bbox": [
                   10,
                   91,
-                  108,
-                  245
+                  115,
+                  247
                 ],
-                "pixelSha256": "101f256340ab745218d4781c27299e3f943a2777c58959af83ca16bddecb8ac0"
-              },
-              "03": {
-                "sha256": "5ba8ebbdfb1537a2b8604f9ed27eada1b96bbf7d9d64b3c289acc84cab88f034",
-                "bytes": 22430,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  5,
-                  92,
-                  112,
-                  245
-                ],
-                "pixelSha256": "86249dbd82c9c2f16d9fd70325a6e35b3c6dfa4c2dabbab6230b8d9aba1f25d0"
+                "pixelSha256": "e87dca762c4e3b00cc9079ebea182d17d16ef8f2a4a0e6ee764b2bedca20aa20"
               },
               "04": {
-                "sha256": "13e95e867f15ecded09dd01b213ebb4bf0721f8fad9731174d0ef75c068421d5",
-                "bytes": 22911,
+                "sha256": "8b0b99521ecbbb57d4036952985a2b0a7cab67691d478bb43598a1462ec8dde4",
+                "bytes": 22836,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  9,
-                  92,
-                  105,
-                  245
+                  14,
+                  91,
+                  112,
+                  247
                 ],
-                "pixelSha256": "a9137bea3744b0a166fb6b8c3c9a5b648beb1a0f424d62ecc69488d43f50ac49"
+                "pixelSha256": "21344d008354cf26b0652bf425943e12fab4459af46d571b065b11a886261e9f"
               }
             },
             "distinctFrames": 4
@@ -32293,7 +32293,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "walk": {
-          "sourceSha256": "14c3b1a2812a0092a22a055c644641c5f76202961d9df372fe8eebbdc5223835",
+          "sourceSha256": "ca80d532875645aee374e36ed49b687ea71cab6ff7b5f57b5d969dbbac438c8e",
           "sourceDimensions": [
             2172,
             724
@@ -32318,9 +32318,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/monje/m/source/walk-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/monje/m/source/walk-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "Fix ONLY FIGURE THREE's FAR ARM in this four-pose transparent male monk walking strip. Its forward swinging far arm is missing/hidden. Restore that far upper arm coming down from the RIGHT shoulder, with elbow beside right ribs, forearm bent forward across the right abdomen, closed fist center(1470,370) on full2172x724 canvas. Clearly visible bare upper arm, brown wrapped forearm, and fingers; match FIGURE TWO's forward arm swing. Keep figure THREE's other near arm hanging behind hip with fist at(1239,414), unchanged. Every figure exactly TWO visible complete arms and TWO hands. Preserve all other figures, hair, russet wrap tunic, cream trousers, boots, leg poses, roots, head size and canvas unchanged. No props, transparent background, same polished game artwork.",
+          "prompt": "Restyle IMAGE ONE's four canonical male walking figures with IMAGE TWO's monk identity and costume. Image ONE is the exact pose edit target: trace every arm, hand, elbow and fist in its original location. Preserve the original head centers, figure spacing, legs, boots baseline and scale. Only replace the clothes: sleeveless russet-red wrap tunic, red waist sash, cream loose trousers, brown wrapped boots, brown forearm wraps with visible fingers. Short dark brown hair and focused monk face from image2. Crucial second and third figures retain the ORIGINAL forward arm swing OVER THE RIGHT THIGH, not across the belt or over the left abdomen; their forward fists remain far to the right, exactly as in image1. Exactly FOUR complete figures on the same transparent canvas. No scarf, leather harness, pouch, weapons or props. Match image2's polished illustrated RPG quality.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
           "canonicalPoseHashes": [
             "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
@@ -32359,6 +32359,44 @@
               "sourcePath": "assets/spritesheets/hd-128x256/monje/m/source/walk-reference.png",
               "generator": "built-in imagegen",
               "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY MONJE MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action walk. Young adult male monk martial artist: short tousled dark brown-black hair, focused composed face. Sleeveless russet-red martial tunic with overlapping wrap front, dark red waist sash and simple leather belt, cream loose trousers tucked into sturdy brown ankle boots, fitted reddish-brown forearm wraps that end before the visible empty bare fingers and palms. Athletic canonical skeleton without exaggerated muscles; no weapon, prayer beads, particles or hand glow. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (140,414), other hand (418,409); figure 2: primary contact (692,418), other hand (909,375); figure 3: primary contact (1239,414), other hand (1470,370); figure 4: primary contact (1795,440), other hand (2078,414). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "14c3b1a2812a0092a22a055c644641c5f76202961d9df372fe8eebbdc5223835",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/monje/m/source/walk-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Fix ONLY FIGURE THREE's FAR ARM in this four-pose transparent male monk walking strip. Its forward swinging far arm is missing/hidden. Restore that far upper arm coming down from the RIGHT shoulder, with elbow beside right ribs, forearm bent forward across the right abdomen, closed fist center(1470,370) on full2172x724 canvas. Clearly visible bare upper arm, brown wrapped forearm, and fingers; match FIGURE TWO's forward arm swing. Keep figure THREE's other near arm hanging behind hip with fist at(1239,414), unchanged. Every figure exactly TWO visible complete arms and TWO hands. Preserve all other figures, hair, russet wrap tunic, cream trousers, boots, leg poses, roots, head size and canvas unchanged. No props, transparent background, same polished game artwork.",
               "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
               "canonicalPoseHashes": [
                 "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
