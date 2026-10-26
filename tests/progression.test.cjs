@@ -607,7 +607,7 @@ test("expediciones: cada duración ofrece todas las amenazas desbloqueadas desde
     ahora,
   });
   validarCobertura(inicial, 3);
-  assert.ok(!inicial.some((mision) => mision.tipo === "elite"));
+  assert.equal(inicial.filter((mision) => mision.tipo === "elite").length, 1, "El boss diario también está disponible en el primer rango");
 
   // Subir de nivel Base no desbloquea por sí solo el rango siguiente.
   const rangoDosBloqueado = generarMisionesDisponibles({

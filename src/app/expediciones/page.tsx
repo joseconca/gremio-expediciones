@@ -312,7 +312,7 @@ export default function ExpedicionesPage() {
     };
 
     void cargarMisionesDisponibles();
-    // La lista cambia por hora y la misión de élite puede cambiar por día.
+    // Refresca el catálogo y la disponibilidad del boss tras las 23 horas.
     const intervalo = setInterval(() => {
       void cargarMisionesDisponibles();
     }, 60_000);
@@ -777,6 +777,7 @@ export default function ExpedicionesPage() {
             <div className="mb-2 flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  {misionSeleccionada.tipo === "elite" && <span className="text-xs font-bold text-amber-300">♛ Boss diario</span>}
                   <h2
                     className={`text-lg font-black uppercase tracking-wide sm:text-2xl ${
                       misionSeleccionada.tipo === "elite"
@@ -856,7 +857,7 @@ export default function ExpedicionesPage() {
                 <div className="grid grid-cols-3 gap-2">
                   {([
                     { id: "facil", nombre: "Fácil", resumen: "−15 % oro/XP", ayuda: "Menos vida, ataque y defensa enemigos." },
-                    { id: "normal", nombre: "Normal", resumen: "Recompensa base", ayuda: "Dificultad equilibrada; cuenta para desbloquear rangos." },
+                    { id: "normal", nombre: "Normal", resumen: "Recompensa base", ayuda: misionSeleccionada.tipo === "elite" ? "Dificultad equilibrada del boss diario; no desbloquea rangos." : "Dificultad equilibrada; cuenta para desbloquear rangos." },
                     { id: "dificil", nombre: "Difícil", resumen: "+25 % oro/XP", ayuda: "Enemigos más resistentes y peligrosos." },
                   ] as const).map((opcion) => {
                     const activa = modoDificultad === opcion.id;

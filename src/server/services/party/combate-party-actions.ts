@@ -800,6 +800,9 @@ async function liquidarRecompensasParty(
         madera: { increment: madera },
         piedra: { increment: piedra },
         metal: { increment: metal },
+        ...(faseResultado === "victoria" && expedicion.tipo === "elite" && !huyo
+          ? { ultimaMisionElite: new Date() }
+          : {}),
       },
     });
     const personajeActualizado = await tx.personaje.updateMany({
