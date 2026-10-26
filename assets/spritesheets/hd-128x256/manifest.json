@@ -49903,12 +49903,13 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/brujo/f/frames",
       "audit": {
-        "validFrames": 12,
+        "validFrames": 16,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "hurt",
-          "use_consumable"
+          "use_consumable",
+          "dodge"
         ],
         "actions": {
           "idle": {
@@ -50125,7 +50126,74 @@
             "distinctFrames": 4
           },
           "dodge": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "0af7b53edd3b81b7ed5b8cfc5b1bea5304cfafbfe9c654a0aefcfa84727c03ae",
+                "bytes": 28025,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  98,
+                  110,
+                  248
+                ],
+                "pixelSha256": "fb6d960fbb7c3eb1d26fe02c774cabbdcfa886ea214cfdff4154fcb61a5bfc87"
+              },
+              "02": {
+                "sha256": "3835cc8efd23056cf8a26b3fb8501ec85cb228062c935d6b276c2a318d202993",
+                "bytes": 27670,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  99,
+                  114,
+                  248
+                ],
+                "pixelSha256": "aaba991e207c22d52e5aa6a3522a1e31b21f25063a289f5c181b4e0850586982"
+              },
+              "03": {
+                "sha256": "ca4293d817ca1c089607a966eb6b3d3ab3c0a8a3b2d3e430effb2d5ca60521fb",
+                "bytes": 22457,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  131,
+                  107,
+                  248
+                ],
+                "pixelSha256": "84e157661e84e10fda510d224608b10147fb33881378c858fdebc2cb7de02f26"
+              },
+              "04": {
+                "sha256": "4f80b737efc61ba56e0cc91a7526b51a165314408718458ac47aed57fae10098",
+                "bytes": 28028,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  4,
+                  97,
+                  98,
+                  248
+                ],
+                "pixelSha256": "13c4ee8616da37e51e0a49eb57ff7e21fc1805a2ea46a84c8cf418e1d1f287c6"
+              }
+            },
+            "distinctFrames": 4
           },
           "block_shield": {
             "status": "missing"
@@ -50314,6 +50382,44 @@
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "dodge": {
+          "sourceSha256": "2e1b9afb389baa21e10bed14981b792ec8c08a469532f2ea81716057fe2b69bd",
+          "sourceDimensions": [
+            2171,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            591,
+            23,
+            1035,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            13,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/brujo/f/source/dodge-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY BRUJO FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action dodge. Young adult female warlock: long deep violet hair with swept bangs, pale composed face, small dark violet browband. Charcoal and dark plum split ritual robe with rich violet lining and muted antique gold edging, high fitted collar, pale grey inner tunic and front panel, layered dark purple shoulder mantle, brown-black waist belt and boots, discreet dark fingerless gloves. Fully covered practical robe, exact canonical female skeleton and readable hands. No staff, skull, floating book, magic, aura or particles. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (265,275), other hand (396,284); figure 2: primary contact (848,275), other hand (930,266); figure 3: primary contact (1395,410), other hand (1473,393); figure 4: primary contact (1920,280), other hand (1968,310). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/dodge-reference.png",
+          "canonicalPoseHashes": [
+            "c44da6657940c3d8f7f0b874b1d7d99735ef3f28a36d46f43e843bb4814305a8",
+            "3ce012d5051019c445bf1b124fa4b54aca454ab2d64fe2e3961287b0274c4e35",
+            "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
+            "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -50363,6 +50469,22 @@
         },
         "use_consumable/04": {
           "source": "sources.use_consumable",
+          "frame": 4
+        },
+        "dodge/01": {
+          "source": "sources.dodge",
+          "frame": 1
+        },
+        "dodge/02": {
+          "source": "sources.dodge",
+          "frame": 2
+        },
+        "dodge/03": {
+          "source": "sources.dodge",
+          "frame": 3
+        },
+        "dodge/04": {
+          "source": "sources.dodge",
           "frame": 4
         }
       },
