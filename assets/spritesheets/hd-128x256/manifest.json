@@ -49913,8 +49913,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "983b935421df30ab06f6b3b6af5024f73889c0cec026510a05a39e4b720dd05d",
-                "bytes": 28449,
+                "sha256": "bdb7b29e64f1143885d53dc30dbe6e75f0296990f93e6e7a4dc7b9dbbeaf20e8",
+                "bytes": 28151,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -49924,57 +49924,57 @@
                   18,
                   92,
                   107,
-                  248
+                  247
                 ],
-                "pixelSha256": "eb4e0a48d8f25096055a90786e34df9e30222709e5f2a4f89443b38d1967221f"
+                "pixelSha256": "1eaa9ff6fb37928a9c9170d22f8e94f6f5918419c66f2dd6d188ac40e72e87d7"
               },
               "02": {
-                "sha256": "6940030b2571f5fb6100b41f1c13ab1dda4ada47ee2aff6cba2bbf129b49c6ca",
-                "bytes": 28762,
+                "sha256": "cb3f5cea4cbd52258d35df25be9c0de2200834382a0791c2f9584da2e3bb8575",
+                "bytes": 28538,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  15,
+                  14,
                   92,
-                  104,
-                  248
+                  103,
+                  247
                 ],
-                "pixelSha256": "af6ca705329dec0bc6cccac0958c1a56b7d1acb92ce4f8648fdfd62842e9159a"
+                "pixelSha256": "b8114ee889dca9fd2f1accbd37b057a048477c67132186673a46756510a27fc9"
               },
               "03": {
-                "sha256": "6bfaf7d66e69f7924dc28606a3fcb6eaee47467c21ff715902a786ddacb3288a",
-                "bytes": 28251,
+                "sha256": "e4eaf5d5b98d11438c7abd6c5ef02340e1fb99cc9c03fa1ba919fd59338ee6b7",
+                "bytes": 28468,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  9,
+                  7,
                   92,
                   97,
-                  248
+                  247
                 ],
-                "pixelSha256": "989dab09dd0a19110a64217b67e52d49d4baef47a73749b2df48795332db4e77"
+                "pixelSha256": "2030e248dde7a5373e65b061d94236fa11ad1f6856e63cd3cdee8a0595588f90"
               },
               "04": {
-                "sha256": "0a0e7ab14eaa45ef659a2721d31c37648242998a5e4bcfe1009c5f3747ebaad8",
-                "bytes": 28458,
+                "sha256": "7d393fec1e450c96f799bfc2531865eca7f475c2b7f93c4701329a3b2379ead1",
+                "bytes": 28149,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  6,
+                  3,
                   92,
-                  95,
-                  248
+                  92,
+                  247
                 ],
-                "pixelSha256": "c43a0944c460d3759f36f3f38fde139780ab66df944c48395f91e6c14b03c6e2"
+                "pixelSha256": "2e6987fefdc0df4479836a774d991825e33f45589177ae8e2efe3dbd15c0f699"
               }
             },
             "distinctFrames": 4
@@ -50026,7 +50026,7 @@
       "equipmentRigId": "humanoid-f-v1",
       "sources": {
         "idle": {
-          "sourceSha256": "a9c2b5eed4901ff8faf2ac29b07a9cdda60cb0109be8266b4228c4d6906a3fd9",
+          "sourceSha256": "e8f4b9464a0d0f5444206025bfb403747cb40b22c4d414be32eefc3da2a33014",
           "sourceDimensions": [
             2172,
             724
@@ -50051,9 +50051,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/brujo/f/source/idle-reference-v3.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/brujo/f/source/idle-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": "Only costume silhouette edit: in ALL FOUR female warlock figures, make the billowing lower cloak on LEFT substantially narrower, with its leftmost hem folded60pixels inward toward the right knee. Keep the long robe length, all heads/hair/hands/legs/boots and figure positions EXACTLY unchanged. No body resizing or recentering. Preserve same2172x724 transparent strip, detailed charcoal/plum/gold costume. Empty hands. The cloak should follow close behind the near hip instead of flaring far outward.",
+          "prompt": "Tiny edit only to THIRD FIGURE (eyes closed), her FAR hanging hand on RIGHT side: move that existing gloved hand30pixels RIGHT and12pixels DOWN by extending the same forearm naturally. Preserve the other near hand and the already narrow cloak, all heads/boots/roots and all other figures. Same transparent full strip. Exactly2hands each, no props or body resizing.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
           "canonicalPoseHashes": [
             "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
@@ -50061,7 +50061,47 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "a9c2b5eed4901ff8faf2ac29b07a9cdda60cb0109be8266b4228c4d6906a3fd9",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                636,
+                14,
+                1027,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                19,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/brujo/f/source/idle-reference-v3.png",
+              "generator": "built-in imagegen",
+              "prompt": "Only costume silhouette edit: in ALL FOUR female warlock figures, make the billowing lower cloak on LEFT substantially narrower, with its leftmost hem folded60pixels inward toward the right knee. Keep the long robe length, all heads/hair/hands/legs/boots and figure positions EXACTLY unchanged. No body resizing or recentering. Preserve same2172x724 transparent strip, detailed charcoal/plum/gold costume. Empty hands. The cloak should follow close behind the near hip instead of flaring far outward.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+              "canonicalPoseHashes": [
+                "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+                "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+                "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+                "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         }
       },
       "frameProvenance": {

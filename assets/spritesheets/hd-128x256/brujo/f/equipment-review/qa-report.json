@@ -1,0 +1,93 @@
+{
+  "status": "contact-review-required",
+  "classId": "brujo",
+  "sex": "f",
+  "actions": [
+    "idle"
+  ],
+  "bodyHashes": {
+    "idle": [
+      "983b935421df30ab06f6b3b6af5024f73889c0cec026510a05a39e4b720dd05d",
+      "6940030b2571f5fb6100b41f1c13ab1dda4ada47ee2aff6cba2bbf129b49c6ca",
+      "6bfaf7d66e69f7924dc28606a3fcb6eaee47467c21ff715902a786ddacb3288a",
+      "0a0e7ab14eaa45ef659a2721d31c37648242998a5e4bcfe1009c5f3747ebaad8"
+    ]
+  },
+  "contactChecks": 128,
+  "warnings": [
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "arco_cazador",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "arco_madera",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "grimorio_eclipse",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "guantes_lucha",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "libro_aprendiz",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "punos_lobo",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "escudo_guardian",
+      "point": [
+        97,
+        184
+      ]
+    },
+    {
+      "action": "idle",
+      "frame": 3,
+      "item": "escudo_madera",
+      "point": [
+        97,
+        184
+      ]
+    }
+  ],
+  "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
+  "artisticApproval": "not-automatic"
+}
