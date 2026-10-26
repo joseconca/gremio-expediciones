@@ -1,8 +1,12 @@
 {
   "action": "idle",
-  "method": "Horizontal midpoint of the opaque boot support band (bottom 15 pixels), relative to frame 1; integer translation of the entire composed actor.",
+  "method": "Horizontal midpoint of the opaque boot support band (bottom 15 pixels), relative to frame 1; integer body translation with equipment and finger masks fixed to the shared first idle pose.",
   "bodyAndEquipmentPixelsChanged": false,
   "verticalOffset": 0,
+  "equipmentFrame": 0,
+  "fingerMaskFrame": 0,
+  "equipmentContactChecks": 3328,
+  "equipmentWarnings": 0,
   "variants": {
     "novato-m": {
       "frameHashes": [

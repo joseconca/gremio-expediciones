@@ -13,12 +13,14 @@ REPORT = HD / 'idle-alignment-report.json'
 
 def measure():
     manifest = json.loads((HD / 'manifest.json').read_text(encoding='utf-8'))
+    equipment = json.loads((HD / 'equipment/manifest.json').read_text(encoding='utf-8'))
     positions, variants = {}, {}
+    contact_checks = 0
     for v in manifest['variants']:
         if 'idle' not in v['audit']['technicalActions']:
             continue
         c, s = v['classId'], v['sex']
-        centers, hashes = [], []
+        centers, hashes, masks = [], [], []
         for n in range(1, 5):
             p = HD / c / s / 'frames/idle' / f'{c}-{s}-idle-{n:02d}.png'
             with Image.open(p) as im:
@@ -26,16 +28,28 @@ def measure():
                 bottom = mask.getbbox()[3]
                 feet = mask.crop((0, bottom - 15, 128, bottom)).getbbox()
                 centers.append((feet[0] + feet[2]) / 2)
+                masks.append(mask)
             hashes.append(hashlib.sha256(p.read_bytes()).hexdigest())
         # Leave already stationary variants (including male swordsman) untouched.
         offsets = [math.floor(centers[0] - x + .5) for x in centers] if max(centers) - min(centers) > 1.5 else [0] * 4
         corrected = [x + dx for x, dx in zip(centers, offsets)]
         assert max(corrected) - min(corrected) <= 1.5
+        for mask, dx in zip(masks, offsets):
+            for item in equipment['items'].values():
+                records = item['sheets'][s]['actions'].get('idle')
+                if not records:
+                    continue
+                for x, y in records[0]['config']['contacts']:
+                    contact_checks += 1
+                    x -= dx
+                    assert mask.crop((max(0, x-3), y-3, min(128, x+4), y+4)).getextrema()[1] >= 128, f'Idle grip misses body: {c}-{s}'
         positions.setdefault(c, {})[s] = offsets
         variants[c + '-' + s] = {'frameHashes': hashes, 'supportCentersX': centers,
                                  'offsetsX': offsets, 'correctedCentersX': corrected}
-    report = {'action': 'idle', 'method': 'Horizontal midpoint of the opaque boot support band (bottom 15 pixels), relative to frame 1; integer translation of the entire composed actor.',
+    report = {'action': 'idle', 'method': 'Horizontal midpoint of the opaque boot support band (bottom 15 pixels), relative to frame 1; integer body translation with equipment and finger masks fixed to the shared first idle pose.',
               'bodyAndEquipmentPixelsChanged': False, 'verticalOffset': 0,
+              'equipmentFrame': 0, 'fingerMaskFrame': 0, 'equipmentContactChecks': contact_checks,
+              'equipmentWarnings': 0,
               'variants': variants}
     return positions, report
 

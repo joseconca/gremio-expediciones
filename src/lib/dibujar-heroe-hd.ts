@@ -8,15 +8,15 @@ export function dibujarHeroeHd(ctx: CanvasRenderingContext2D, cuerpo: CanvasImag
   const fila = BIBLIOTECA_SPRITES_HD.actions.indexOf(accion);
   ctx.clearRect(0, 0, 384, 384); ctx.save();
   if (reflejado) { ctx.translate(384, 0); ctx.scale(-1, 1); }
-  // Stabilize the actor root; body, equipment and finger masks keep their shared coordinates.
+  // Stabilize the body while idle equipment retains the first pose's shared grips.
   const desplazamiento = accion === "idle"
     ? (posicionesReposo as Record<string, Partial<Record<SexoSpriteHd, number[]>>>)[claseId]?.[sexo]?.[fase] ?? 0 : 0;
-  if (desplazamiento) ctx.translate(desplazamiento, 0);
-  const dibujarCuerpo = () => ctx.drawImage(cuerpo, fase * 128, fila * 256, 128, 256, 128, 64, 128, 256);
+  const faseEquipo = accion === "idle" ? 0 : fase;
+  const dibujarCuerpo = () => ctx.drawImage(cuerpo, fase * 128, fila * 256, 128, 256, 128 + desplazamiento, 64, 128, 256);
   const preparadas = capas.flatMap(capa => {
     const item = BIBLIOTECA_SPRITES_HD.items[capa.id];
-    const config = BIBLIOTECA_SPRITES_HD.compositions[item.composition][sexo][accion]?.[fase];
-    const rect = item.frames[sexo][accion]?.[fase];
+    const config = BIBLIOTECA_SPRITES_HD.compositions[item.composition][sexo][accion]?.[faseEquipo];
+    const rect = item.frames[sexo][accion]?.[faseEquipo];
     return config && rect ? [{ ...capa, config, rect }] : [];
   });
   const dibujarEquipo = (capa: (typeof preparadas)[number]) => {
