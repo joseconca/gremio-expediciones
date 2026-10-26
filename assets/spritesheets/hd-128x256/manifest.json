@@ -33960,8 +33960,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "0510962f2454b9dcde48a806e1bbbf598b40826e77ffc3825c44050771acf29a",
-                "bytes": 24548,
+                "sha256": "e30422b100840dddb16d3db225ddb43c3fb3b77c83e55b0434cad133178b7cdc",
+                "bytes": 25199,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -33969,59 +33969,59 @@
                 ],
                 "bbox": [
                   15,
-                  90,
-                  107,
+                  89,
+                  108,
                   246
                 ],
-                "pixelSha256": "1770ac99f8186a355c8f7321555d8a69df51004b223b76b30bf1f449a625d8dc"
+                "pixelSha256": "dc3e76c0a30fa6d6d7885cff998e1f68aa0d6fd74f4341d3c9f01243f0b541d5"
               },
               "02": {
-                "sha256": "73f12eb37ce6fffe0c8f38cdaa369f5cb79788519a3d78e5f250b6f17a75a875",
-                "bytes": 21626,
+                "sha256": "f314d5a142558e5073c9ef301ff087448b131358e1a8ab712f773d1f4a9584d8",
+                "bytes": 22096,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  30,
-                  90,
+                  29,
+                  89,
                   97,
                   248
                 ],
-                "pixelSha256": "52b8ec05500c5a57b2e11571370f8483295e8fd97434b95500cdee0ecd063ea8"
+                "pixelSha256": "d0d48bf3e649a63b95aecaec7b25c831c8bb17d6198fa29e9fd81af9331db500"
               },
               "03": {
-                "sha256": "801b17658f4cd2a462c81845d5016c63207002d3129c3b1a97c148bbf457e9dd",
-                "bytes": 24730,
+                "sha256": "85b252741ac44f5a34d3ff5ea4e39e806127c7d9d01f0bd4ea863591b812df85",
+                "bytes": 25149,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  12,
-                  90,
+                  11,
+                  89,
                   118,
                   246
                 ],
-                "pixelSha256": "acb23e723ace8cc38aca56c2cff6c0502966b092671c44a59eb7ed761cdecc19"
+                "pixelSha256": "4048a1463f0e83d877d283146f814640a458837700894d517e6f06caa92dde72"
               },
               "04": {
-                "sha256": "daf9d730c000eec53e20d113c8d4661fb566d7b3470f91087b12d61496858337",
-                "bytes": 21575,
+                "sha256": "1459c4d74c7100301ee65f4dfe9de2b6fe6dc052d5799e69af0b95d682c32e86",
+                "bytes": 21884,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  24,
-                  90,
-                  99,
+                  23,
+                  89,
+                  98,
                   248
                 ],
-                "pixelSha256": "62f0fcdfb5b0e99e71937f71e284a3daf1a4cda803a45134ab03f65261103652"
+                "pixelSha256": "42b4069c1fb9700bdc3dfe788c0d0b811890bf869004eb1b33a01400591fa29e"
               }
             },
             "distinctFrames": 4
@@ -34242,7 +34242,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "walk": {
-          "sourceSha256": "78973100395549d9a2bc3ef36e6592ce687509b3e580ad00c0838afd6520a933",
+          "sourceSha256": "75cef5425b91e3ae8bfae983393406640a717a5330f24f9219b88eba318bcd42",
           "sourceDimensions": [
             2169,
             725
@@ -34267,9 +34267,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/monje/f/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/monje/f/source/walk-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY MONJE FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action walk. Young adult female monk martial artist: high chestnut-brown ponytail and swept bangs, focused calm face. Fully covered russet-red sleeveless wrap tunic with high practical neckline, dark red waist sash and simple leather belt, cream loose trousers tucked into sturdy brown ankle boots, reddish-brown fitted forearm wraps ending before empty bare fingers and palms. Exact canonical female skeleton; no weapon, prayer beads, particles or hand glow. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2170x725 canvas: figure 1: primary contact (188,412), other hand (466,399); figure 2: primary contact (757,403), other hand (970,390); figure 3: primary contact (1257,381), other hand (1509,373); figure 4: primary contact (1847,438), other hand (2060,386). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "prompt": "Small clothing-only edit in this four-pose female monk walking strip. Remove the CREAM SHIRT SLEEVE around the near elbow of FIGURE FOUR and replace only that fabric with bare skin matching her upper arm and shoulder. All figures wear the same SLEEVELESS russet wrap tunic, with BARE upper arms and elbows followed by brown forearm wraps. Preserve every hand, fist, elbow, arm silhouette, face, hair, leg and boot in EXACT same location. Do not change the walking poses or four roots. No props, actual transparent background, exactly four full figures, same high quality RPG art.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
           "canonicalPoseHashes": [
             "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
@@ -34277,7 +34277,47 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "78973100395549d9a2bc3ef36e6592ce687509b3e580ad00c0838afd6520a933",
+              "sourceDimensions": [
+                2169,
+                725
+              ],
+              "registeredSourceDimensions": [
+                2170,
+                725
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                631,
+                16,
+                1090,
+                702
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/monje/f/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY MONJE FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action walk. Young adult female monk martial artist: high chestnut-brown ponytail and swept bangs, focused calm face. Fully covered russet-red sleeveless wrap tunic with high practical neckline, dark red waist sash and simple leather belt, cream loose trousers tucked into sturdy brown ankle boots, reddish-brown fitted forearm wraps ending before empty bare fingers and palms. Exact canonical female skeleton; no weapon, prayer beads, particles or hand glow. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2170x725 canvas: figure 1: primary contact (188,412), other hand (466,399); figure 2: primary contact (757,403), other hand (970,390); figure 3: primary contact (1257,381), other hand (1509,373); figure 4: primary contact (1847,438), other hand (2060,386). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+                "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+                "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+                "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "hurt": {
           "sourceSha256": "190e4c670b770e1bfafd43a65f9cf0c26fcbb1cf956c4d71ba60d26f6ee7ba64",
