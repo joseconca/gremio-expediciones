@@ -6,7 +6,9 @@
     "idle",
     "walk",
     "hurt",
-    "use_consumable"
+    "use_consumable",
+    "dodge",
+    "block_shield"
   ],
   "bodyHashes": {
     "idle": [
@@ -16,10 +18,10 @@
       "531d0d5441278d03d612de1981f9329e3df69c5e5e916aa2dfc274c7b41698ff"
     ],
     "walk": [
-      "0510962f2454b9dcde48a806e1bbbf598b40826e77ffc3825c44050771acf29a",
-      "73f12eb37ce6fffe0c8f38cdaa369f5cb79788519a3d78e5f250b6f17a75a875",
-      "801b17658f4cd2a462c81845d5016c63207002d3129c3b1a97c148bbf457e9dd",
-      "daf9d730c000eec53e20d113c8d4661fb566d7b3470f91087b12d61496858337"
+      "e30422b100840dddb16d3db225ddb43c3fb3b77c83e55b0434cad133178b7cdc",
+      "f314d5a142558e5073c9ef301ff087448b131358e1a8ab712f773d1f4a9584d8",
+      "85b252741ac44f5a34d3ff5ea4e39e806127c7d9d01f0bd4ea863591b812df85",
+      "1459c4d74c7100301ee65f4dfe9de2b6fe6dc052d5799e69af0b95d682c32e86"
     ],
     "hurt": [
       "4fba4edd99a73817d4660071da46bd4c2b8d1276e347973a27649747c8315fd1",
@@ -32,9 +34,21 @@
       "4a8513c0d1c5b50d567e3cc73c246e96132e6fdc6f497db4a5e19177e53ccaf5",
       "0ef1bfb042a7c287eeaa136e4a0e55214d8364562a735e31c7e0567718efdb03",
       "749c9099e72732451374580f713b650fce934658ae704dfb847ce5cf60f173cf"
+    ],
+    "dodge": [
+      "4ef6c7e407b0b9160aaaf33b261ed1427f6013a5df5785656fac13a50eabd7b8",
+      "6b3f8da6fe39574809cf80079a4cb5f8c99db5863bea0c7aa43f17414ce5d9d3",
+      "432b462b46ea19a2764345fc8e4e967da45a6f866efaa2e735e5836dcb38ae7d",
+      "3de0342a6d12e6609427c791edd543d145e5776b59d65dc214ecab36d8f47908"
+    ],
+    "block_shield": [
+      "bc8956b4f570188394b84dc5a8e12f954d2c1edd9232e4693caad288a80f0b02",
+      "c94c2ee5b0c7d8d590588d1b443392aaaf939717ad61124a993f6169f2ca83c6",
+      "7e5a60694e0cf99e78c4aa1fcabe09196d2f6b271fb8cd6113b1da237bb345a7",
+      "122d195f585b1192271ead85b7d27536107c7723c8418b050bfb6b22daaa5547"
     ]
   },
-  "contactChecks": 388,
+  "contactChecks": 524,
   "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
