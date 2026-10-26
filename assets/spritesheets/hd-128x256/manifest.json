@@ -47948,7 +47948,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/brujo/m/frames",
       "audit": {
-        "validFrames": 28,
+        "validFrames": 32,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -47957,7 +47957,8 @@
           "use_consumable",
           "dodge",
           "block_shield",
-          "attack_sword"
+          "attack_sword",
+          "attack_axe"
         ],
         "actions": {
           "idle": {
@@ -48451,7 +48452,74 @@
             "distinctFrames": 4
           },
           "attack_axe": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "3d3d9c169b01e9dc8cb80d787495f49f7c23f52f9e886ba4fdd2b11dec201fc0",
+                "bytes": 28529,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  101,
+                  109,
+                  249
+                ],
+                "pixelSha256": "23bbcba9d227c742eeb43a7686a513094c3e28bbb56f5c464b9a336eb41587f7"
+              },
+              "02": {
+                "sha256": "14635dbc8d970c4aba501d93a01f92e0ab56f98e2c7b1dc3b98c6ba09e03cc24",
+                "bytes": 25396,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  112,
+                  115,
+                  247
+                ],
+                "pixelSha256": "4b4e636f14c2c01efbd4d1b70fe3b95c8d44ab3af289a8f4ab499d147e33858f"
+              },
+              "03": {
+                "sha256": "814a07b90a674dcb985702edbae87f701c478f267658c8c0032d0db29454ff2c",
+                "bytes": 25037,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  121,
+                  115,
+                  247
+                ],
+                "pixelSha256": "2518f7f1ac7fb6c8bbbed3aa71ca20c51d7cf4bff1ac896a0332f0d38cef431a"
+              },
+              "04": {
+                "sha256": "818feab94059c8955ff1c49e9583fd468f2742c8055c48edb0249d5da5a6388b",
+                "bytes": 26411,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  104,
+                  118,
+                  248
+                ],
+                "pixelSha256": "bc93bf9b2b946090126a37525c7482c9db12ec356d027ef68a5664c89f908b54"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_spear": {
             "status": "missing"
@@ -48755,6 +48823,44 @@
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_axe": {
+          "sourceSha256": "a7635a1d665c8e5af50cdea7f7d851ccb27aa3f497b4c4d79ba2aed8753a2ae7",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            579,
+            42,
+            1045,
+            683
+          ],
+          "scale": 0.23,
+          "origin": [
+            10,
+            101
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/brujo/m/source/attack_axe-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY BRUJO MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_axe. Young adult male warlock: short tousled deep black-violet hair, small dark violet browband, pale composed face. Charcoal and dark plum split ritual coat with rich violet lining and muted antique gold edging, high fitted collar, pale grey inner tunic and front panel, dark layered shoulder mantle, brown-black waist belt and boots, discreet dark fingerless gloves. Exact canonical skeleton and readable hands. No staff, skull, floating book, magical particles, aura or shadows. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (210,72), other hand (371,285); figure 2: primary contact (966,433), other hand (918,307); figure 3: primary contact (1552,455), other hand (1452,338); figure 4: primary contact (2017,307), other hand (1848,246). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_axe-reference.png",
+          "canonicalPoseHashes": [
+            "682a330cdfbbd6bcfacc4d46ef31720e23129a82c4ecbc6d86067419022619e6",
+            "ebf63fb2782826250141ce2304dcb21499a70d4de29c8b97ebfca68db1287d08",
+            "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
+            "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -48868,6 +48974,22 @@
         },
         "attack_sword/04": {
           "source": "sources.attack_sword",
+          "frame": 4
+        },
+        "attack_axe/01": {
+          "source": "sources.attack_axe",
+          "frame": 1
+        },
+        "attack_axe/02": {
+          "source": "sources.attack_axe",
+          "frame": 2
+        },
+        "attack_axe/03": {
+          "source": "sources.attack_axe",
+          "frame": 3
+        },
+        "attack_axe/04": {
+          "source": "sources.attack_axe",
           "frame": 4
         }
       },
