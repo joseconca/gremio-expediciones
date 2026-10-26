@@ -4,6 +4,14 @@
 Estado verificable: [manifest.json](../assets/spritesheets/hd-128x256/manifest.json).
 Los informes automáticos son derivados técnicos, no planes alternativos.
 
+## Estado actual — 26 de octubre de 2026
+
+Tier 2 completo como biblioteca candidata: ocho clases en orden, masculino y femenino, dieciséis atlas y 960 fotogramas nuevos. Las 240 acciones conservan las fuentes grandes y sus instrucciones de generación. Las comparativas con equipo reutilizan las mismas capas por sexo y no añaden desplazamientos por clase: 10.912 comprobaciones de contacto sin avisos. La auditoría general cuenta 1.560 fotogramas válidos y ninguno inválido, incluyendo Novato y Tier 1.
+
+Revisar la [galería estática](../assets/spritesheets/hd-128x256/previews/tier2-overview.png), la [galería animada](../assets/spritesheets/hd-128x256/previews/tier2-overview.gif) y las comparativas `equipment-review` de cada variante. El [informe conjunto](../assets/spritesheets/hd-128x256/previews/tier2-verification.json) reúne los puntos de control verificados desde GitHub. Hay commits por acción y por cierre de variante en la rama indicada arriba.
+
+Próximo paso: revisión del usuario de Tier 2 y, después, su incorporación al juego con autorización de publicación. La integración ya aprobada de Novato y Tier 1 sigue siendo la activa. Las siguientes clases mantienen el orden del manifiesto, las mismas referencias corporales, la separación de equipo por sexo y el guardado por acción.
+
 ## Contrato
 
 - Cuerpo HD: PNG con alfa real, celda 128×256; atlas RGBA 512×3840.

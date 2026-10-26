@@ -1,0 +1,240 @@
+{
+  "status": "passed-user-review-pending",
+  "variants": 16,
+  "bodyFrames": 960,
+  "actionsPerVariant": 15,
+  "contactChecks": 10912,
+  "warnings": 0,
+  "equipmentPolicy": "Unchanged shared sheets per sex; no class offsets",
+  "runtimePromotion": "pending-user-review",
+  "galleries": {
+    "assets/spritesheets/hd-128x256/previews/tier2-overview.png": "7d302421e565aa9666e8126a8ed061fc38a29fb0f30c8204f692ae466a2e8b3a",
+    "assets/spritesheets/hd-128x256/previews/tier2-overview.gif": "e1927b03261a2db6185a849cb2fe533b684c422c28ed28a49729898e4192eda7"
+  },
+  "remoteCheckpoints": [
+    {
+      "status": "passed",
+      "commit": "579b74188b89d584084a7e4460f902a86b320ce9",
+      "classId": "caballero",
+      "sex": "m",
+      "media": {
+        "png": 105,
+        "gif": 17
+      },
+      "bodyFrames": 60,
+      "actions": 15,
+      "contactChecks": 682,
+      "method": "Independent GitHub fetch, SHA256 against local files and remote manifest, full PNG and every GIF frame decoded."
+    },
+    {
+      "status": "passed",
+      "commit": "9b1a449bade6345361738b7e09b0d90705c0c6f7",
+      "classId": "caballero",
+      "sex": "f",
+      "media": {
+        "png": 104,
+        "gif": 17
+      },
+      "bodyFrames": 60,
+      "actions": 15,
+      "contactChecks": 682,
+      "method": "Independent GitHub fetch, SHA256 against local files and remote manifest, full PNG and every GIF frame decoded."
+    },
+    {
+      "status": "passed",
+      "commit": "7788f9cbea192f6cb42a977b0f2690b85acd3fdc",
+      "classId": "duelista",
+      "sex": "m",
+      "media": {
+        "png": 107,
+        "gif": 17
+      },
+      "bodyFrames": 60,
+      "actions": 15,
+      "contactChecks": 682,
+      "method": "Independent GitHub fetch, SHA256 against local files and remote manifest, full PNG and every GIF frame decoded."
+    },
+    {
+      "status": "passed",
+      "commit": "f2d703e8039b6c9586c4c16a41f84cfb3819824e",
+      "classId": "duelista",
+      "sex": "f",
+      "media": {
+        "png": 105,
+        "gif": 17
+      },
+      "bodyFrames": 60,
+      "actions": 15,
+      "contactChecks": 682,
+      "method": "Independent GitHub fetch, SHA256 against local files and remote manifest, full PNG and every GIF frame decoded."
+    },
+    {
+      "status": "passed",
+      "commit": "da197a36b65958bee7b56f560121d5fa63f52400",
+      "classId": "sacerdote",
+      "sex": "m",
+      "media": {
+        "png": 112,
+        "gif": 17
+      },
+      "bodyFrames": 60,
+      "actions": 15,
+      "contactChecks": 682,
+      "method": "Independent GitHub fetch, SHA256 against local files and remote manifest, full PNG and every GIF frame decoded."
+    },
+    {
+      "status": "passed",
+      "commit": "0cd78fd874a9b76c64fb0ba5c10d7367cfaf14fc",
+      "classId": "sacerdote",
+      "sex": "f",
+      "media": {
+        "png": 108,
+        "gif": 17
+      },
+      "bodyFrames": 60,
+      "actions": 15,
+      "contactChecks": 682,
+      "method": "Independent GitHub fetch, SHA256 against local files and remote manifest, full PNG and every GIF frame decoded."
+    },
+    {
+      "status": "passed",
+      "commit": "a80c0f46d152e84411e31c3035f618140c08798c",
+      "classId": "monje",
+      "sex": "m",
+      "media": {
+        "png": 109,
+        "gif": 17
+      },
+      "bodyFrames": 60,
+      "actions": 15,
+      "contactChecks": 682,
+      "method": "Independent GitHub fetch, SHA256 against local files and remote manifest, full PNG and every GIF frame decoded."
+    },
+    {
+      "status": "passed",
+      "commit": "693d09611a42700fffd32a5b673642d669aa83b9",
+      "classId": "monje",
+      "sex": "f",
+      "media": {
+        "png": 106,
+        "gif": 17
+      },
+      "bodyFrames": 60,
+      "actions": 15,
+      "contactChecks": 682,
+      "method": "Independent GitHub fetch, SHA256 against local files and remote manifest, full PNG and every GIF frame decoded."
+    },
+    {
+      "status": "passed",
+      "commit": "f757548c674905da40438f1095666378ad262bfd",
+      "classId": "cazador",
+      "sex": "m",
+      "media": {
+        "png": 110,
+        "gif": 17
+      },
+      "bodyFrames": 60,
+      "actions": 15,
+      "contactChecks": 682,
+      "method": "Independent GitHub fetch, SHA256 against local files and remote manifest, full PNG and every GIF frame decoded."
+    },
+    {
+      "status": "passed",
+      "commit": "a86bc30f91938700ea3a7cfd6380b86732fd960a",
+      "classId": "cazador",
+      "sex": "f",
+      "media": {
+        "png": 107,
+        "gif": 17
+      },
+      "bodyFrames": 60,
+      "actions": 15,
+      "contactChecks": 682,
+      "method": "Independent GitHub fetch, SHA256 against local files and remote manifest, full PNG and every GIF frame decoded."
+    },
+    {
+      "status": "passed",
+      "commit": "fbc4f9eaaa7ee390dcbc40c3a047e84a1025d2b4",
+      "classId": "explorador",
+      "sex": "m",
+      "media": {
+        "png": 107,
+        "gif": 17
+      },
+      "bodyFrames": 60,
+      "actions": 15,
+      "contactChecks": 682,
+      "method": "Independent GitHub fetch, SHA256 against local files and remote manifest, full PNG and every GIF frame decoded."
+    },
+    {
+      "status": "passed",
+      "commit": "2103b7c8ea1edae57452fa5c0fa9f921e5c4fee8",
+      "classId": "explorador",
+      "sex": "f",
+      "media": {
+        "png": 104,
+        "gif": 17
+      },
+      "bodyFrames": 60,
+      "actions": 15,
+      "contactChecks": 682,
+      "method": "Independent GitHub fetch, SHA256 against local files and remote manifest, full PNG and every GIF frame decoded."
+    },
+    {
+      "status": "passed",
+      "commit": "c6a9f3b6f1c70b67e9a877e2af22cb808cc6b795",
+      "classId": "elementalista",
+      "sex": "m",
+      "media": {
+        "png": 104,
+        "gif": 17
+      },
+      "bodyFrames": 60,
+      "actions": 15,
+      "contactChecks": 682,
+      "method": "Independent GitHub fetch, SHA256 against local files and remote manifest, full PNG and every GIF frame decoded."
+    },
+    {
+      "status": "passed",
+      "commit": "4ded445dad6374d09797d1275a8faaa25364661c",
+      "classId": "elementalista",
+      "sex": "f",
+      "media": {
+        "png": 104,
+        "gif": 17
+      },
+      "bodyFrames": 60,
+      "actions": 15,
+      "contactChecks": 682,
+      "method": "Independent GitHub fetch, SHA256 against local files and remote manifest, full PNG and every GIF frame decoded."
+    },
+    {
+      "status": "passed",
+      "commit": "d9cf21d29a0773cb490d1c41b0bc2310892611bd",
+      "classId": "brujo",
+      "sex": "m",
+      "media": {
+        "png": 104,
+        "gif": 17
+      },
+      "bodyFrames": 60,
+      "actions": 15,
+      "contactChecks": 682,
+      "method": "Independent GitHub fetch, SHA256 against local files and remote manifest, full PNG and every GIF frame decoded."
+    },
+    {
+      "status": "passed",
+      "commit": "3517eb62f4a8527bd5477d2fb6b6b00118d8a20f",
+      "classId": "brujo",
+      "sex": "f",
+      "media": {
+        "png": 115,
+        "gif": 17
+      },
+      "bodyFrames": 60,
+      "actions": 15,
+      "contactChecks": 682,
+      "method": "Independent GitHub fetch, SHA256 against local files and remote manifest, full PNG and every GIF frame decoded."
+    }
+  ]
+}
