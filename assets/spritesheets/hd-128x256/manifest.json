@@ -36479,24 +36479,24 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "c298df2f4ef1fe0305a1e9b6fa71c8cf4ace0a804c7c95247851683b325b2ab4",
-                "bytes": 26505,
+                "sha256": "fb77dc215cb4ea86d1b64266cd09a0c7e753f863b91ea09dc8d46e625751baa4",
+                "bytes": 26933,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  6,
-                  92,
-                  108,
+                  5,
+                  91,
+                  109,
                   247
                 ],
-                "pixelSha256": "f4fb64f31ff9703216ce2b0818beb7c4b1b23f8a104e75a0127e535c8b63f433"
+                "pixelSha256": "6658f8fbb6286d88e7e70e72c9b21f19a51fabffc165901c77b5ca9e8fc021ae"
               },
               "02": {
-                "sha256": "2cf1fab305d72639801b2760b90337c1ab5d4da7dc6e5b0bbbda956ff4832350",
-                "bytes": 25618,
+                "sha256": "dbfc55bf3092bb75290be43cbc79d8f97bcad6cfa5c9aeaec9fb4f1acd882a59",
+                "bytes": 26026,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -36508,11 +36508,27 @@
                   103,
                   247
                 ],
-                "pixelSha256": "0bf08c01b608df26fd694bd6a1ed63d10e9f92009b4d062e07f7881a4af51913"
+                "pixelSha256": "0cce576fed02bb1ab1e4078c793d3251abba75e8450573f71c1958cdc2e48659"
               },
               "03": {
-                "sha256": "f03a4b593c670ee7cd6a9aaf7dcac47122ee401b8265ddc2daf9c3c3d3370acc",
-                "bytes": 25958,
+                "sha256": "48e01ff591fa8ba6fce2b106afe4e4ee4c19e5a50dd128c30c3469a7ec0afdfd",
+                "bytes": 26413,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  1,
+                  92,
+                  115,
+                  247
+                ],
+                "pixelSha256": "62b48daa6dab45488c29256e0b7ad5baa1672b34572cb12485effe3e2be2cfc2"
+              },
+              "04": {
+                "sha256": "9ac38e852bf9c849765e629bb7eafcae37f3fb16f99795dbbf617005683d33cb",
+                "bytes": 27226,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -36521,26 +36537,10 @@
                 "bbox": [
                   2,
                   92,
-                  115,
+                  116,
                   247
                 ],
-                "pixelSha256": "9c7823b13b372ccd986dcb69dc2bae709b7ba1eb1437dd64a2ddc9678f75bc24"
-              },
-              "04": {
-                "sha256": "2091d670ca56a1075ce61ee39a7ac0a67a91c250099ca59b8b77c8ce82360012",
-                "bytes": 26103,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  4,
-                  92,
-                  101,
-                  247
-                ],
-                "pixelSha256": "1c833b7df89e1ec57e0e017dabc69cedc999bac16c9345b5da5138b2d6757826"
+                "pixelSha256": "8734ab3e4e90195ac5a643875985847991cfa31aa17fe8e96118541de1863754"
               }
             },
             "distinctFrames": 4
@@ -37107,10 +37107,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_spear": {
-          "sourceSha256": "361672737cf60de9e1cc6d3dae94b1630823ed9c84ecebb7773d558bfdb95478",
+          "sourceSha256": "93b0f13aa9c2b72340bc37cb18aca16e132fbafdc66ff12d690a48e8ef2a7685",
           "sourceDimensions": [
-            2173,
-            724
+            2170,
+            725
           ],
           "registeredSourceDimensions": [
             2172,
@@ -37132,9 +37132,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/cazador/m/source/attack_spear-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/cazador/m/source/attack_spear-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "Small precise change only to THIRD FIGURE's OUTSTRETCHED RIGHTMOST FIST in this four-frame hunter spear strip. Extend that same arm40pixels farther RIGHT and10pixels DOWN, ending the existing gloved fist at(1586,235) on2172x724 canvas. Move the whole existing fist with connected forearm, no duplicate fist or extra arm. Preserve its other fist in front of chest and every other figure/detail and transparency. No spear or props.",
+          "prompt": "Only change FOURTH (rightmost) hunter's extended rightmost fist: extend the existing arm25pixels RIGHT and20pixels DOWN so the fist center is(2099,261) on2172x724 canvas. Precisely preserve the first three figures, both hands and registration. Exactly two arms per figure. Same detailed art, no props, transparent background. Do not move or rescale any figure.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
@@ -37173,6 +37173,44 @@
               "sourcePath": "assets/spritesheets/hd-128x256/cazador/m/source/attack_spear-reference.png",
               "generator": "built-in imagegen",
               "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY CAZADOR MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_spear. Young adult male hunter: shaggy chestnut-brown hair, keen focused face. Dark forest-green fitted hunter tunic and short split travelling cloak with hood DOWN behind the neck, muted olive panels and subtle tan-gold edging, brown leather chest straps and belt pouches, dark olive trousers, brown forearm bracers and small fingerless gloves, sturdy brown travel boots. No bow, quiver, arrows, traps, animal or dagger. Exact canonical skeleton and clear uncovered hands. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (235,322), other hand (444,240); figure 2: primary contact (778,327), other hand (904,275); figure 3: primary contact (1417,279), other hand (1586,235); figure 4: primary contact (1855,335), other hand (2099,261). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
+                "0fd9a42095cd1675a9044ac97a3373f187b949983c002d31bc6e8418789b3ac0",
+                "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
+                "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "361672737cf60de9e1cc6d3dae94b1630823ed9c84ecebb7773d558bfdb95478",
+              "sourceDimensions": [
+                2173,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                604,
+                18,
+                1064,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                11,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador/m/source/attack_spear-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Small precise change only to THIRD FIGURE's OUTSTRETCHED RIGHTMOST FIST in this four-frame hunter spear strip. Extend that same arm40pixels farther RIGHT and10pixels DOWN, ending the existing gloved fist at(1586,235) on2172x724 canvas. Move the whole existing fist with connected forearm, no duplicate fist or extra arm. Preserve its other fist in front of chest and every other figure/detail and transparency. No spear or props.",
               "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_spear-reference.png",
               "canonicalPoseHashes": [
                 "00440534b26ae904c51b55fe4785faf15994fd499d99a593b110bb3c32a1db5d",
