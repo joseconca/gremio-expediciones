@@ -50487,8 +50487,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "e7de53887d70e06762a461471cb9e32ca510dd7779bac8c7caac8006b60d8b9b",
-                "bytes": 29413,
+                "sha256": "eaa2420e081349d31ef4188c82f91d841d986d6e9cd7c6102a9e51e90b2f8481",
+                "bytes": 29114,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -50500,11 +50500,11 @@
                   112,
                   248
                 ],
-                "pixelSha256": "24253b0150bdcbf596307eccd436e1f34747648064c3d5d11e23bbad0681fc21"
+                "pixelSha256": "1556999ff65e68ed1f84ae6e45413f882e82b7ce25d67b60b54f16a42c02ebfd"
               },
               "02": {
-                "sha256": "d07e47917e33a2569f1fe370b513b185414fcf8432f4f3de76a40c54a3a86536",
-                "bytes": 28689,
+                "sha256": "5fcc2c279810df954670b4aa923135c007bad76984820d84086a0e5cc54c6e6f",
+                "bytes": 28311,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -50513,14 +50513,14 @@
                 "bbox": [
                   9,
                   93,
-                  100,
+                  99,
                   248
                 ],
-                "pixelSha256": "b25c7e14eef6d594230eed6cb1965c5c8b810db66c8bafaa081484d02ab74802"
+                "pixelSha256": "310b3ff8138b57e7f790eebedd88fb4476bcc9f806910a823b08df749a58fd1c"
               },
               "03": {
-                "sha256": "49cbf3be612c5241bf97d2f1af2f9701057d8ac975f7d4d4e2570d5b034e769e",
-                "bytes": 27840,
+                "sha256": "f9bc69df3a0480803ac7be102003492115a0077506be3652adf5be4509ca99d5",
+                "bytes": 27543,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -50532,23 +50532,23 @@
                   109,
                   248
                 ],
-                "pixelSha256": "9b61ba37f4cbf5fab16c966f969a2d7d9ba2543472e81ca2273fbb2837a11dc3"
+                "pixelSha256": "de68d97aab8aae11fe228bec5925b1dbadfb6058b917b4d6d86ece66495d6683"
               },
               "04": {
-                "sha256": "59a1101ae787aeab8aa039eda28d9dbe2cc4fde35e9110e89f7005d0782eaede",
-                "bytes": 29148,
+                "sha256": "27aa09dd0ad84e975b0c2c8748d64f6d0137170661c6ea595c4a8c714aa09b54",
+                "bytes": 29139,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  4,
+                  5,
                   93,
-                  104,
+                  112,
                   248
                 ],
-                "pixelSha256": "20bc3a80d89a6430e9fc0a0d2e042b2a8c140de14d6f8957861da72f7e71dd5b"
+                "pixelSha256": "16b48360338f40685b6a8f827766f5c7ccc850637364f1063779894c27f1e9f2"
               }
             },
             "distinctFrames": 4
@@ -51362,10 +51362,10 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_spear": {
-          "sourceSha256": "5453ab8787021a9206ab1767087a8d2c73507518d8e20f22a9081bb3094be1c5",
+          "sourceSha256": "46897fa5ab218c45e334cab6690ca2ada474d340578a371848303e5ce3a6c51d",
           "sourceDimensions": [
-            2173,
-            724
+            2170,
+            725
           ],
           "registeredSourceDimensions": [
             2172,
@@ -51387,9 +51387,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/brujo/f/source/attack_spear-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/brujo/f/source/attack_spear-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "Clean up the FIRST leftmost character ONLY. Remove the small dangling flesh colored hand/finger shapes visible immediately below the short left cape flap at her left hip, around x185 y425 in the 2172x724 source. Replace that entire small dangling nub with a smooth plain dark-purple cloth edge. It must be a single smooth cloth silhouette, no fingers, no skin, no gold bumps there. Keep the proper two fists at x280 y320 and x510 y240 intact. All other frames, body positions, canvas, transparency, hands and equipment grip coordinates exactly unchanged. This is an anatomical cleanup, the extra hip hand must disappear.",
+          "prompt": "Small precision edit of FOURTH (rightmost) figure ONLY. Move her far right EXTENDED fist and attached forearm slightly RIGHT by 22 source pixels and DOWN by 6 source pixels. The gripping fist center must be at source canvas coordinate (2130,246) on the 2172x724 canvas. Keep the near waist fist at (1887,320) unchanged. Preserve both arms naturally connected, exact body root/head/boots/costume positions and size. All other three figures stay unchanged, especially clean smooth cloak edge of first figure with no extra hand. Exactly two hands per figure. No weapons/props. Preserve transparency.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -51428,6 +51428,44 @@
               "sourcePath": "assets/spritesheets/hd-128x256/brujo/f/source/attack_spear-reference.png",
               "generator": "built-in imagegen",
               "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY BRUJO FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_spear. Young adult female warlock: long deep violet hair with swept bangs, pale composed face, small dark violet browband. Charcoal and dark plum split ritual robe with rich violet lining and muted antique gold edging, high fitted collar, pale grey inner tunic and front panel, layered dark purple shoulder mantle, brown-black waist belt and boots, discreet dark fingerless gloves. Fully covered practical robe, exact canonical female skeleton and readable hands. No staff, skull, floating book, magic, aura or particles. Long hair falls close behind the shoulders and back, with no wide sideways sweep. Keep robe and cloak tails close to the legs, narrow silhouette inside exact canonical limits. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (253,320), other hand (488,242); figure 2: primary contact (796,311), other hand (922,277); figure 3: primary contact (1448,311), other hand (1591,259); figure 4: primary contact (1887,320), other hand (2130,246). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "5453ab8787021a9206ab1767087a8d2c73507518d8e20f22a9081bb3094be1c5",
+              "sourceDimensions": [
+                2173,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/brujo/f/source/attack_spear-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Clean up the FIRST leftmost character ONLY. Remove the small dangling flesh colored hand/finger shapes visible immediately below the short left cape flap at her left hip, around x185 y425 in the 2172x724 source. Replace that entire small dangling nub with a smooth plain dark-purple cloth edge. It must be a single smooth cloth silhouette, no fingers, no skin, no gold bumps there. Keep the proper two fists at x280 y320 and x510 y240 intact. All other frames, body positions, canvas, transparency, hands and equipment grip coordinates exactly unchanged. This is an anatomical cleanup, the extra hip hand must disappear.",
               "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
               "canonicalPoseHashes": [
                 "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
