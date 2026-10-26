@@ -206,7 +206,7 @@ El usuario ha probado la integración anterior de Novato, Tier 1 y equipo, la co
 | Monje | 60 / 15 acciones; contactos revisados | 60 / 15 acciones; contactos revisados |
 | Cazador | 60 / 15 acciones; contactos revisados | 60 / 15 acciones; contactos revisados |
 | Explorador | 60 / 15 acciones; contactos revisados | 60 / 15 acciones; contactos revisados |
-| Elementalista | 0 / 60 fotogramas | 0 / 60 fotogramas |
+| Elementalista | 60 / 15 acciones; contactos revisados | 0 / 60 fotogramas |
 | Brujo | 0 / 60 fotogramas | 0 / 60 fotogramas |
 
 Los atlas completos son candidatos para revisión del usuario. `revisar-contactos-clase-hd.py` reutiliza las capas de equipo ya existentes, registra los hashes corporales y genera comparativas de las quince acciones. El resultado técnico no sustituye la revisión artística. Las fuentes y revisiones sustituidas permanecen conservadas. Tier 2 no se activa automáticamente en el juego por generar un atlas.
