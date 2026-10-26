@@ -22,11 +22,13 @@ const VISTAS = [
 
 function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: string }) {
   const [objetivo, setObjetivo] = useState(0);
-  const [accion, setAccion] = useState<"idle" | "attack" | "hurt" | "dodge">("idle");
+  const [accion, setAccion] = useState<"idle" | "attack" | "hurt">("idle");
   const [inicio, setInicio] = useState(0);
   const [mensaje, setMensaje] = useState("Elige un objetivo y una orden.");
   const [menu, setMenu] = useState<"principal" | "habilidades" | "objetos">("principal");
   const [registro, setRegistro] = useState(false);
+  const [detalles, setDetalles] = useState(false);
+  const [huido, setHuido] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
   const heroes = party ? HEROES : HEROES.slice(0, 1);
@@ -39,12 +41,11 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
     timer.current = setTimeout(() => setAccion("idle"), 1100);
   };
   const ancho = movil ? 390 : 1120;
-  const altoEscena = movil ? (party ? 402 : 474) : 434;
+  const altoEscena = movil ? 470 : 400;
   return <div className={`${styles.battle} ${movil ? styles.mobile : ""}`} style={{ width: ancho, height: movil ? 760 : 680 }}>
     <header className={styles.battleHeader}><div><span className={styles.eyebrow}>BOSQUE DE LAS CENIZAS</span><strong>{jefe ? "Una presencia ancestral" : "Emboscada en el sendero"}</strong></div><span className={styles.turn}>Turno 03</span></header>
-    <div className={styles.stage} style={{ height: altoEscena }}>
+    <div className={styles.stage}>
       <div className={styles.stageVeil} />
-      <div className={styles.targetInfo}><span>OBJETIVO</span><strong>{ENEMIGOS_HD[enemigos[seleccionado]].name}</strong><div className={styles.enemyBar}><i /></div></div>
       <div className={styles.turnNote}>◆ Turno de Aldric</div>
       {heroes.map((h, i) => {
         const size = movil ? (party ? 80 : 124) : (party ? 116 : 172);
@@ -53,7 +54,7 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
         return <div key={h.nombre} className={styles.actor} style={{ left: x, top: foot - size, width: size * 0.7, height: size, zIndex: 10 + i }}>
           <div className={`${styles.ground} ${i === 0 ? styles.activeGround : ""}`} />
           <SpriteHeroeAnimado clase={h.clase} profesionActivaId={h.clase} sexo={h.sexo} nombre={h.nombre} armaId={h.arma} escudoId={i === 0 ? "escudo_guardian" : undefined}
-            accion={i === 0 && accion === "attack" ? "attack_sword" : i === 0 && accion === "dodge" ? "dodge" : "idle"} inicioAnimacion={inicio} />
+            accion={i === 0 && accion === "attack" ? "attack_sword" : "idle"} inicioAnimacion={inicio} />
         </div>;
       })}
       {enemigos.map((id, i) => {
@@ -79,14 +80,17 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
         <div className={styles.stat}><span>PV</span><div className={styles.bar}><i style={{ width: `${h.hp / h.max * 100}%` }} /></div><b>{h.hp}<small>/{h.max}</small></b></div>
         <div className={styles.stat}><span>{i === 1 || i === 3 ? "PM" : "EN"}</span><div className={`${styles.bar} ${styles.mana}`}><i style={{ width: "72%" }} /></div><b>{h.mp}</b></div>
       </div>)}</div>
-      <div className={styles.orders}><div className={styles.orderTitle}><span>{menu === "principal" ? "ÓRDENES · ALDRIC" : menu === "habilidades" ? "HABILIDADES" : "OBJETOS"}</span><button onClick={() => setRegistro(!registro)}>Registro {registro ? "−" : "+"}</button></div>
-        <div className={styles.commandGrid}>{(menu === "principal" ? ["Atacar", "Habilidades", "Objetos", "Esquivar"] : menu === "habilidades" ? ["Corte poderoso", "Golpe certero", "Bloquear", "Volver"] : ["Poción", "Éter", "Antídoto", "Volver"]).map((label, i) => <button key={label} disabled={accion !== "idle"} onClick={() => {
+      <div className={styles.orders}><div className={styles.orderTitle}><span>{menu === "principal" ? "Aldric" : menu === "habilidades" ? "Habilidades" : "Objetos"}</span></div>
+        <div className={styles.commandGrid}>{(menu === "principal" ? ["Atacar", "Habilidades", "Objetos", "Huir"] : menu === "habilidades" ? ["Corte poderoso", "Golpe certero", "Bloquear", "Volver"] : ["Poción", "Éter", "Antídoto", "Volver"]).map((label, i) => <button key={label} disabled={accion !== "idle" || huido} onClick={() => {
           if (label === "Habilidades") setMenu("habilidades"); else if (label === "Objetos") setMenu("objetos"); else if (label === "Volver") setMenu("principal");
-          else if (label === "Esquivar") ejecutar("Esquiva", performance.now(), "dodge");
+          else if (label === "Huir") { setHuido(true); setMensaje("Has salido del combate · demostración"); }
           else if (label === "Atacar" || label === "Corte poderoso" || label === "Golpe certero") ejecutar(label, performance.now());
           else { setMensaje(`${label} seleccionado · demostración visual`); setMenu("principal"); }
-        }}><span>{["⚔", "✦", "◇", "➜"][i]}</span>{label}</button>)}</div>
+        }}><span aria-hidden="true">{i === 0 ? "▸" : ""}</span>{label}{menu !== "principal" && label !== "Volver" && <small>{menu === "objetos" ? ["×3", "×1", "×2"][i] : ["18 EN", "12 EN", "8 EN"][i]}</small>}</button>)}</div>
       </div>
+      <div className={styles.utilities}><button onClick={() => setDetalles(!detalles)}>Detalles</button><span>·</span><button onClick={() => setRegistro(!registro)}>Historial</button></div>
+      {detalles && <div className={styles.log}><button onClick={() => setDetalles(false)} aria-label="Cerrar detalles">×</button><strong>{ENEMIGOS_HD[enemigos[seleccionado]].name}</strong><p>PV 760 / 1000 · Posición: frente</p><p>Aldric · PV 840 / 1080 · EN 64</p><small>Datos de muestra. En el juego se conservan las estadísticas, efectos y recursos reales.</small></div>}
+      {huido && <div className={styles.exitPanel}><strong>Has salido del combate</strong><p>Demostración de la acción Huir.</p><button onClick={() => { setHuido(false); setMensaje("Elige un objetivo y una orden."); }}>Volver a la vista previa</button></div>}
       {registro && <div className={styles.log}><button onClick={() => setRegistro(false)} aria-label="Cerrar registro">×</button><strong>Registro de combate</strong><p>El grupo entra en el claro.</p><p>{mensaje}</p><small>Demostración: no consume recursos ni modifica tu partida.</small></div>}
     </footer>
   </div>;
@@ -110,7 +114,7 @@ function Marco({ vista, jefe }: { vista: typeof VISTAS[number]; jefe: string }) 
 export default function PropuestaCombate() {
   const [vista, setVista] = useState("todas");
   const [jefe, setJefe] = useState("");
-  return <main className={styles.page}><div className={styles.intro}><Link href="/revision-sprites">← Revisión de sprites</Link><p className={styles.eyebrow}>PROPUESTA VISUAL · NO APLICADA AL JUEGO</p><h1>Un escenario para la aventura.</h1><p>Combate lateral, estados separados del escenario y órdenes siempre a mano. Prueba los objetivos y los botones: esta demostración no modifica tu partida.</p></div>
+  return <main className={styles.page}><div className={styles.intro}><Link href="/revision-sprites">← Revisión de sprites</Link><p className={styles.eyebrow}>PROPUESTA VISUAL · NO APLICADA AL JUEGO</p><h1>Un escenario para la aventura.</h1><p>Órdenes clásicas en una ventana lateral, estados compactos y selección directamente sobre el enemigo. Prueba los objetivos y los botones: esta demostración no modifica tu partida.</p></div>
     <div className={styles.toolbar}><nav aria-label="Vistas de la propuesta">{[{ id: "todas", nombre: "Las cuatro vistas" }, ...VISTAS].map(v => <button key={v.id} aria-pressed={vista === v.id} onClick={() => setVista(v.id)}>{v.nombre}</button>)}</nav>
       <label>Encuentro <select aria-label="Encuentro" value={jefe} onChange={e => setJefe(e.target.value)}><option value="">Enemigos del sendero</option>{Object.entries(ENEMIGOS_HD).filter(([, s]) => s.boss).map(([id, s]) => <option key={id} value={id}>{s.name}</option>)}</select></label>
     </div>
