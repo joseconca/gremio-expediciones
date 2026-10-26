@@ -49896,19 +49896,88 @@
       "tier": 2,
       "sex": "f",
       "order": 26,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/brujo/f/brujo-f-sheet.png",
       "sourceStatus": "hires-library-verified",
-      "qaStatus": "not-started",
+      "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/brujo/f/frames",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "983b935421df30ab06f6b3b6af5024f73889c0cec026510a05a39e4b720dd05d",
+                "bytes": 28449,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  92,
+                  107,
+                  248
+                ],
+                "pixelSha256": "eb4e0a48d8f25096055a90786e34df9e30222709e5f2a4f89443b38d1967221f"
+              },
+              "02": {
+                "sha256": "6940030b2571f5fb6100b41f1c13ab1dda4ada47ee2aff6cba2bbf129b49c6ca",
+                "bytes": 28762,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  92,
+                  104,
+                  248
+                ],
+                "pixelSha256": "af6ca705329dec0bc6cccac0958c1a56b7d1acb92ce4f8648fdfd62842e9159a"
+              },
+              "03": {
+                "sha256": "6bfaf7d66e69f7924dc28606a3fcb6eaee47467c21ff715902a786ddacb3288a",
+                "bytes": 28251,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  9,
+                  92,
+                  97,
+                  248
+                ],
+                "pixelSha256": "989dab09dd0a19110a64217b67e52d49d4baef47a73749b2df48795332db4e77"
+              },
+              "04": {
+                "sha256": "0a0e7ab14eaa45ef659a2721d31c37648242998a5e4bcfe1009c5f3747ebaad8",
+                "bytes": 28458,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  6,
+                  92,
+                  95,
+                  248
+                ],
+                "pixelSha256": "c43a0944c460d3759f36f3f38fde139780ab66df944c48395f91e6c14b03c6e2"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -49954,7 +50023,66 @@
           }
         }
       },
-      "equipmentRigId": "humanoid-f-v1"
+      "equipmentRigId": "humanoid-f-v1",
+      "sources": {
+        "idle": {
+          "sourceSha256": "a9c2b5eed4901ff8faf2ac29b07a9cdda60cb0109be8266b4228c4d6906a3fd9",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/brujo/f/source/idle-reference-v3.png",
+          "generator": "built-in imagegen",
+          "prompt": "Only costume silhouette edit: in ALL FOUR female warlock figures, make the billowing lower cloak on LEFT substantially narrower, with its leftmost hem folded60pixels inward toward the right knee. Keep the long robe length, all heads/hair/hands/legs/boots and figure positions EXACTLY unchanged. No body resizing or recentering. Preserve same2172x724 transparent strip, detailed charcoal/plum/gold costume. Empty hands. The cloak should follow close behind the near hip instead of flaring far outward.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
+        }
+      },
+      "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex"
     }
   ],
   "highResolutionSourceCandidates": [
@@ -50118,7 +50246,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue all Tier 2 classes in the documented order, male then female, preserving canonical grips and quality.",
+  "nextTask": "Continue Tier 2 in class order: Caballero, Duelista, Sacerdote, Monje, Cazador, Explorador, Elementalista, Brujo; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
