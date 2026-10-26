@@ -9,7 +9,7 @@
     "dodge"
   ],
   "generator": "built-in image_gen",
-  "runtimePromotion": "pending-review",
+  "runtimePromotion": "integrated-on-branch-pending-main-publication",
   "enemies": [
     {
       "id": "mimic",
@@ -1240,5 +1240,10 @@
     384,
     384
   ],
-  "sizePolicy": "Fixed species height in pixels relative to heroes; canvas grows for wide attacks, body never shrinks to fit."
+  "sizePolicy": "Fixed species height in pixels relative to heroes; canvas grows for wide attacks, body never shrinks to fit.",
+  "artApproval": {
+    "status": "approved",
+    "date": "2026-10-26",
+    "instruction": "Están genial. Integra los enemigos con sus spritesheets"
+  }
 }

@@ -17,6 +17,8 @@ for path in base.rglob('*.gif'):
             count+=1
 page=(base/'previews/revision.html').read_text(encoding='utf-8')
 for p in pages:assert p['gif'] in page
-report={'status':'passed','galleryPages':len(pages),'enemiesRepresented':len(ids),'gifFramesDecoded':count,'artApproval':'pending-user-review','runtimeModified':False}
+report={'status':'passed','galleryPages':len(pages),'enemiesRepresented':len(ids),'gifFramesDecoded':count,
+        'artApproval':manifest.get('artApproval',{}).get('status','pending-user-review'),
+        'runtimeModified':manifest.get('runtimePromotion')=='integrated-on-branch-pending-main-publication'}
 (base/'preview-validation-report.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
 print(json.dumps(report))

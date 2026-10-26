@@ -12,14 +12,16 @@ Producción mediante la herramienta integrada de generación de imágenes, con l
 
 Se revisa cada hoja completa, transparencia, dieciséis poses, márgenes y coherencia del diseño. El progreso se guarda en commits de `creacion-sprite-sheets`. El manifiesto de `assets/spritesheets/enemies-hd` indica el avance real. La integración en combate y la publicación en main se realizan después de revisar la biblioteca terminada.
 
-La biblioteca completa está disponible en la [galería animada](../assets/spritesheets/enemies-hd/previews/revision.html), con navegación por rango/jefes y vista a tamaño real. La revisión de proporciones sustituyó 19 diseños: goblin, bandido, orco, murciélago, kobold, arbalestero, cultista, gnoll, hombre lagarto, arpía, nigromante, centauro, sacerdotisa, vampiro, demonio menor, reina de las sombras, minotauro, basilisco y troll. Los nueve jefes restantes de la última tanda se generaron directamente con la dirección más seria. Se comprobaron también las tres cabezas de la hidra y la continuidad del equipo en las poses; el cetro de la reina y el reposo de la sacerdotisa recibieron correcciones específicas. La aceptación artística final sigue pendiente del usuario.
+La biblioteca completa está disponible en la [galería animada](../assets/spritesheets/enemies-hd/previews/revision.html), con navegación por rango/jefes y vista a tamaño real. La revisión de proporciones sustituyó 19 diseños: goblin, bandido, orco, murciélago, kobold, arbalestero, cultista, gnoll, hombre lagarto, arpía, nigromante, centauro, sacerdotisa, vampiro, demonio menor, reina de las sombras, minotauro, basilisco y troll. Los nueve jefes restantes de la última tanda se generaron directamente con la dirección más seria. Se comprobaron también las tres cabezas de la hidra y la continuidad del equipo en las poses; el cetro de la reina y el reposo de la sacerdotisa recibieron correcciones específicas. El usuario aprobó el arte y pidió integrarlo el 26 de octubre de 2026.
+
+Integración: `SpriteEnemigoAnimado` usa los atlas originales de `public/sprites/enemies-hd-v1`, con selección de fila desde los eventos reales del combate, reloj compartido de cuerpo/sombra/silueta, anclaje por especie y escala independiente del tamaño de celda. Reposo en bucle; daño, ataque y esquiva se reproducen una vez; se respeta movimiento reducido y se conserva un recurso estático si falla una carga. Los turnos de varios atacantes reinician el reloj de cada enemigo. `/revision-enemigos` permite comprobar las cuatro acciones de las 54 criaturas con el mismo componente del combate. La compilación de producción con webpack, TypeScript, ESLint y 38 pruebas de sprites y presentación pasan. El navegador verificó un humanoide y un jefe; la prueba manual de una expedición completa queda disponible para el usuario. Publicación en main pendiente de autorización.
 
 
 
 <!-- ENEMIES_HD_PROGRESS_START -->
 ## Avance verificable
 
-54 / 54 enemigos candidatos; 864 / 864 fotogramas. Revisión del usuario e integración pendientes.
+54 / 54 enemigos candidatos; 864 / 864 fotogramas. Arte aprobado e integración en la rama completada; publicación en main pendiente.
 
 | Enemigo | Estado |
 |---|---|

@@ -176,6 +176,8 @@ export function useAnimacionesCombate() {
         setActorImpactado(null);
         setCuracionVisible(null);
         setActorAnimando(impacto.actorEnemigoId);
+        setActorSpriteAnimando(impacto.actorEnemigoId);
+        setInicioAccionSprite(performance.now());
         setActoresAnimando([impacto.actorEnemigoId]);
         setAnimacionActual(impacto.critico ? "ofensiva_potenciada" : "ofensiva");
 
@@ -209,6 +211,7 @@ export function useAnimacionesCombate() {
         setObjetivosMultiplesImpactados([]);
         setActorImpactado(null);
         setActorAnimando(null);
+        setActorSpriteAnimando(null);
         setActoresAnimando([]);
       }
 

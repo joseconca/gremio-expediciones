@@ -1,10 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import Image from "next/image";
 import SpriteHeroeAnimado from "@/components/combate/SpriteHeroeAnimado";
 import { propsSpriteHeroeHd } from "@/lib/sprites-heroes-hd";
-import { obtenerRutaSpriteEnemigo } from "@/lib/enemigos";
+import SpriteEnemigoAnimado from "@/components/combate/SpriteEnemigoAnimado";
+import { ENEMIGOS_HD, propsSpriteEnemigoHd } from "@/lib/sprites-enemigos-hd";
 import { CLASES } from "@/lib/progresion/clases";
 import type { CombatePve, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
@@ -1029,19 +1029,12 @@ export default function CombateModal({
                     ? "w-[36%] max-w-[120px]"
                     : "w-[30%] max-w-[98px]";
               const escalaSprite = cantidadEnemigos <= 1
-                ? "h-[154px] w-[138px] sm:h-[205px] sm:w-[180px]"
+                ? "[--unidad-enemigo:1.058824px] w-[138px] sm:w-[180px]"
                 : cantidadEnemigos === 2
-                  ? "h-[112px] w-[96px] sm:h-[154px] sm:w-[136px]"
+                  ? "[--unidad-enemigo:0.658824px] sm:[--unidad-enemigo:0.905882px] w-[96px] sm:w-[136px]"
                   : cantidadEnemigos === 3
-                    ? "h-[86px] w-[78px] sm:h-[116px] sm:w-[104px]"
-                    : "h-[70px] w-[64px] sm:h-[96px] sm:w-[86px]";
-              const spriteSizes = cantidadEnemigos <= 1
-                ? "(max-width: 640px) 138px, 180px"
-                : cantidadEnemigos === 2
-                  ? "(max-width: 640px) 96px, 136px"
-                  : cantidadEnemigos === 3
-                    ? "(max-width: 640px) 78px, 104px"
-                    : "(max-width: 640px) 64px, 86px";
+                    ? "[--unidad-enemigo:0.505882px] sm:[--unidad-enemigo:0.682353px] w-[78px] sm:w-[104px]"
+                    : "[--unidad-enemigo:0.411765px] sm:[--unidad-enemigo:0.564706px] w-[64px] sm:w-[86px]";
               const desplazamientoFila = enemigo.posicion === "centro" ? 4 : enemigo.posicion === "retaguardia" ? 8 : 0;
               const x = cantidadEnemigos <= 1
                 ? 50
@@ -1055,7 +1048,10 @@ export default function CombateModal({
                   : enemigo.posicion === "retaguardia"
                     ? 82
                     : 50;
-              const sprite = obtenerRutaSpriteEnemigo(enemigo.enemigoId);
+              const spriteHd = ENEMIGOS_HD[enemigo.enemigoId ?? ""];
+              const estadoSpriteEnemigo = propsSpriteEnemigoHd(estadoSprite, enemigo.id);
+              const spriteProps = { enemigoId: enemigo.enemigoId, ...estadoSpriteEnemigo,
+                pausado: !vivo && estadoSpriteEnemigo.accion === "idle" };
               return (
                 <div
                   key={enemigo.id}
@@ -1121,21 +1117,13 @@ export default function CombateModal({
                   )}
                   <div
                     className={`relative ${escalaSprite} transition-all duration-200 ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}
+                    style={{ height: `calc(var(--unidad-enemigo) * ${spriteHd?.height ?? 170})` }}
                     data-combate-ancla={enemigo.id}
                   >
-                    <div className="absolute inset-0 z-0 opacity-45 blur-[1px]" style={{ transform: "translateY(36%) perspective(110px) rotateX(65deg) scale(1.05,-0.65)" }}>
-                      <Image src={sprite} alt="" fill sizes={spriteSizes} style={{ transform: "scaleX(-1)" }} className="object-contain brightness-0" />
-                    </div>
+                    <SpriteEnemigoAnimado {...spriteProps} nombre="" sombra />
                     {seleccionado && vivo && (
                       <div aria-hidden="true" className="pointer-events-none absolute -inset-px z-[5]">
-                        <Image
-                          src={sprite}
-                          alt=""
-                          fill
-                          sizes={spriteSizes}
-                          style={{ transform: "scaleX(-1)" }}
-                          className="combate-objetivo-silueta combate-objetivo-silueta-enemigo object-contain [image-rendering:pixelated]"
-                        />
+                        <SpriteEnemigoAnimado {...spriteProps} nombre="" className="combate-objetivo-silueta combate-objetivo-silueta-enemigo" />
                       </div>
                     )}
                     {pulsosEstadoVisibles.filter((pulso) => pulso.actor === enemigo.id).map((pulso, indice) => (
@@ -1143,14 +1131,8 @@ export default function CombateModal({
                         {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}
                       </span>
                     ))}
-                    <Image
-                      src={sprite}
-                      alt={enemigo.nombre}
-                      fill
-                      sizes={spriteSizes}
-                      style={{ transform: "scaleX(-1)" }}
-                      className={`relative z-10 object-contain [image-rendering:pixelated] ${modoPresentacionActual === "curacion" && animando ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && animando ? "combate-defensa-resplandor" : ""}`}
-                    />
+                    <SpriteEnemigoAnimado {...spriteProps} nombre={enemigo.nombre}
+                      className={`z-10 ${modoPresentacionActual === "curacion" && animando ? "combate-curacion-resplandor" : ""} ${modoPresentacionActual === "defensiva" && animando ? "combate-defensa-resplandor" : ""}`} />
                   </div>
                   </button>
                   <IndicadoresEfectosCombate efectos={enemigo.efectos ?? []} />

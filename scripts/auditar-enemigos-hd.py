@@ -60,13 +60,15 @@ def audit():
                 assert abs(sum(idle_heights)/4-targets[enemy['id']]['idleHeight'])<=2, 'Visible enemy height differs from species target'
             complete.append({'id':enemy['id'],'frames':16,'idleAnchorMode':q.get('idleAnchorMode','ground'),'idleSupportCentersX':idle_centers,'aerialReview':'fixed cell origin; torso visually reviewed, wing tips excluded from ground test' if q.get('idleAnchorMode')=='air' else None})
     assert len(complete) == m.get('completedCandidates',0)
-    result = {'status':'passed','expectedEnemies':54,'candidateEnemies':len(complete),'framesValidated':len(complete)*16,'runtimeModified':False,'enemies':complete}
+    integrated=m.get('runtimePromotion')=='integrated-on-branch-pending-main-publication'
+    result = {'status':'passed','expectedEnemies':54,'candidateEnemies':len(complete),'framesValidated':len(complete)*16,'runtimeModified':integrated,'enemies':complete}
     (BASE/'validation-report.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     doc=ROOT/'docs/plan-enemigos-hd.md'
     text=doc.read_text(encoding='utf-8-sig')
     start='<!-- ENEMIES_HD_PROGRESS_START -->'
     end='<!-- ENEMIES_HD_PROGRESS_END -->'
-    lines=[start,'## Avance verificable','',f'{len(complete)} / {len(m["enemies"])} enemigos candidatos; {len(complete)*16} / {len(m["enemies"])*16} fotogramas. Revisión del usuario e integración pendientes.','', '| Enemigo | Estado |','|---|---|']
+    status='Arte aprobado e integración en la rama completada; publicación en main pendiente.' if integrated else 'Revisión del usuario e integración pendientes.'
+    lines=[start,'## Avance verificable','',f'{len(complete)} / {len(m["enemies"])} enemigos candidatos; {len(complete)*16} / {len(m["enemies"])*16} fotogramas. '+status,'', '| Enemigo | Estado |','|---|---|']
     lines += ['| '+e['name']+' | '+('16 fotogramas; candidato revisado' if e['status']=='candidate' else 'Pendiente')+' |' for e in m['enemies']]
     lines += ['', 'Previsualizaciones por rango en `assets/spritesheets/enemies-hd/previews`. Se mantienen las fuentes y todas las revisiones anteriores.',end]
     block='\n'.join(lines)

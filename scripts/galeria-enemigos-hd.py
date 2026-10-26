@@ -68,6 +68,8 @@ def main():
 <main><img alt="Cuatro animaciones por enemigo, con escala común entre especies"></main>
 <script>const s=document.querySelector('select'),im=document.querySelector('img');function show(){im.src=s.value}function move(n){s.selectedIndex=(s.selectedIndex+n+s.length)%s.length;show()}s.onchange=show;document.querySelector('#previous').onclick=()=>move(-1);document.querySelector('#next').onclick=()=>move(1);document.querySelector('#scale').onclick=e=>{const real=document.body.classList.toggle('real');e.target.textContent=real?'Ajustar a pantalla':'Tamaño real'};show()</script></html>'''.replace('OPTIONS',options).replace('ENEMY_COUNT',str(m.get('completedCandidates',0)))
     (out/'revision.html').write_text(review,encoding='utf-8')
+    if m.get('artApproval',{}).get('status')=='approved':
+        (out/'revision.html').write_text(review.replace('pendientes de aprobación visual','arte aprobado · integrado en la rama de trabajo'),encoding='utf-8')
     print(json.dumps({'candidates':m.get('completedCandidates',0),'output':out.relative_to(ROOT).as_posix()}))
 
 if __name__=='__main__':main()

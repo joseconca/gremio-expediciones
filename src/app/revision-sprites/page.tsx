@@ -17,6 +17,7 @@ export default function RevisionSprites() {
   return <main className="min-h-screen overflow-x-clip bg-stone-950 p-5 text-stone-100 sm:p-10">
     <div className="mx-auto max-w-7xl"><Link href="/base" className="text-amber-300">← Volver al juego</Link>
       <h1 className="mt-6 text-3xl font-bold">Aventureros y equipo</h1>
+      <Link href="/revision-enemigos" className="mt-3 inline-block text-amber-300">Revisar enemigos y jefes →</Link>
       <p className="mt-3 max-w-3xl text-stone-300">Prueba el mismo equipo sobre las cinco clases. Esta vista usa el montaje que se muestra en combate. Pulsa una acción para repetirla.</p>
       <div className="my-6 flex flex-wrap items-center gap-4 rounded-xl border border-stone-700 bg-stone-900 p-4">
         <label>Sexo <select aria-label="Sexo" className="rounded bg-stone-800 p-2" value={sexo} onChange={e => cambiar(() => setSexo(e.target.value))}><option value="chico">Masculino</option><option value="chica">Femenino</option></select></label>
