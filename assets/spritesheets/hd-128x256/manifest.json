@@ -29661,14 +29661,15 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/sacerdote/f/frames",
       "audit": {
-        "validFrames": 20,
+        "validFrames": 24,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
           "walk",
           "hurt",
           "use_consumable",
-          "dodge"
+          "dodge",
+          "block_shield"
         ],
         "actions": {
           "idle": {
@@ -30022,7 +30023,74 @@
             "distinctFrames": 4
           },
           "block_shield": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "dfaa2bc285198aa403b08299c929409c024546c8b2f426a70f758ae3d3d480e7",
+                "bytes": 27857,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  92,
+                  112,
+                  248
+                ],
+                "pixelSha256": "e755c0d3d6daa0c9e884dda06b7ea80b4382b6dc180fbd865c0097e3e34a7331"
+              },
+              "02": {
+                "sha256": "c5bf0bf157334f4d894564a9c1d7c4e477fb46f649b3ce6cfc59c65fecf9c354",
+                "bytes": 28332,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  92,
+                  110,
+                  248
+                ],
+                "pixelSha256": "4de4058e41a5122d9e73e3551213db02de8106210a359a23fcfe8cc8440c557c"
+              },
+              "03": {
+                "sha256": "4d156b011f720f862910a12ab37798ce99c39e77d1c84f67babc45633e03e398",
+                "bytes": 26275,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  104,
+                  103,
+                  248
+                ],
+                "pixelSha256": "5d95e6a198da823bc1a0d785d6194638423e646432de0445d2bbc95e2e580773"
+              },
+              "04": {
+                "sha256": "b2142547072ef66e4e16e7b10a18d585c6f912f36c43d990fe05248b7c40c61d",
+                "bytes": 27859,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  91,
+                  100,
+                  248
+                ],
+                "pixelSha256": "b45ea747be71a9111e2b9fa99fb994b3f8df396a56a10ad6240c1820a19a5956"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_sword": {
             "status": "missing"
@@ -30324,6 +30392,44 @@
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "block_shield": {
+          "sourceSha256": "ad2ae26dff87c86a79f870a5cc827e5164336544f1fbf8e032d1a9485349ea0a",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            621,
+            24,
+            1036,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            16,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/sacerdote/f/source/block_shield-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY SACERDOTE FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action block_shield. Young adult female priest: long warm auburn ponytail and soft bangs, calm compassionate face. Substantial ivory clerical robe and split tabard with warm gold edging, long muted rust-red stole, cream high collar and layered sleeves ending before visible hands, modest gold neck clasp and leather waist belt, brown boots and discreet fingerless gloves. Fully covered practical robes, exact canonical female skeleton. No staff, book, chalice, halo or magical effect. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (387,241); figure 2: primary contact (973,194); figure 3: primary contact (1499,302); figure 4: primary contact (2016,241). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/block_shield-reference.png",
+          "canonicalPoseHashes": [
+            "78f50adf1b9160267132cab30dcb3c6b9f52d478c45661a7538effd431036e51",
+            "a411cde4a2c2d92380d227042031444c460b3b6036ce7abdd1646078ebbac89a",
+            "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
+            "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -30405,6 +30511,22 @@
         },
         "dodge/04": {
           "source": "sources.dodge",
+          "frame": 4
+        },
+        "block_shield/01": {
+          "source": "sources.block_shield",
+          "frame": 1
+        },
+        "block_shield/02": {
+          "source": "sources.block_shield",
+          "frame": 2
+        },
+        "block_shield/03": {
+          "source": "sources.block_shield",
+          "frame": 3
+        },
+        "block_shield/04": {
+          "source": "sources.block_shield",
           "frame": 4
         }
       },
