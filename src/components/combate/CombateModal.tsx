@@ -20,6 +20,7 @@ import PanelCombatientes from "./PanelCombatientes";
 import HistorialCombate from "./HistorialCombate";
 import styles from "./combate-rpg.module.css";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
+import { alturaCombatiente, limiteEscalaEnemigo } from "@/lib/expediciones/escala-combate";
 
 type AccionCombatePartyUI = "atacar" | "usar_habilidad" | "usar_objeto" | "escapar" | "cambiar_posicion";
 
@@ -195,7 +196,7 @@ export default function CombateModal({
     if (zonaEnemigosRef.current) observer.observe(zonaEnemigosRef.current);
     return () => observer.disconnect();
   }, []);
-  const tamanoHeroe = Math.min(180, escena.ancho * 0.29, Math.max(36, (escena.alto - 110) / 1.6));
+  const tamanoHeroe = alturaCombatiente(escena.ancho, escena.alto, Boolean(partyMode));
 
   const faseCombateRef = useRef(combate.fase);
 
@@ -814,7 +815,7 @@ export default function CombateModal({
                       </div>
                     )}
                     <div className={`relative transition-all duration-200 ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}
-                      style={{ height: Math.min(126, tamanoHeroe * 0.7), width: Math.min(110, tamanoHeroe * 0.6) }} data-combate-ancla={participante.usuarioId}>
+                      style={{ height: tamanoHeroe, width: tamanoHeroe * 0.75 }} data-combate-ancla={participante.usuarioId}>
                       <SpriteHeroeAnimado
                         clase={participante.clase}
                         sexo={participante.sexo}
@@ -1052,7 +1053,6 @@ export default function CombateModal({
                     ? "w-[36%] max-w-[120px]"
                     : "w-[30%] max-w-[98px]";
               const escalaSprite = "w-full";
-              const limiteEscala = cantidadEnemigos <= 1 ? 1.058824 : cantidadEnemigos === 2 ? 0.905882 : cantidadEnemigos === 3 ? 0.682353 : 0.564706;
               const desplazamientoFila = enemigo.posicion === "centro" ? 4 : enemigo.posicion === "retaguardia" ? 8 : 0;
               const jefeUnico = cantidadEnemigos === 1 && ENEMIGOS_HD[enemigo.enemigoId ?? ""]?.boss;
               const x = Math.max(22, Math.min(78, cantidadEnemigos <= 1
@@ -1071,7 +1071,7 @@ export default function CombateModal({
               const anchoDisponible = jefeUnico ? escena.ancho : anchoEnemigos;
               const centroX = jefeUnico ? (escena.ancho - anchoEnemigos + anchoEnemigos * x / 100) / Math.max(1, escena.ancho) * 100 : x;
               const unidadEnemigo = escalaEnemigoEnEscena(spriteHd, anchoDisponible, escena.alto, centroX, y,
-                spriteHd?.boss ? Math.max(1.6, limiteEscala * 1.65) : limiteEscala);
+                limiteEscalaEnemigo(tamanoHeroe, Boolean(spriteHd?.boss)));
               const estadoSpriteEnemigo = propsSpriteEnemigoHd(estadoSprite, enemigo.id);
               const spriteProps = { enemigoId: enemigo.enemigoId, ...estadoSpriteEnemigo,
                 pausado: !vivo && estadoSpriteEnemigo.accion === "idle" };
