@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "monje-m",
+  "nextVariant": "monje-f",
   "classes": [
     {
       "id": "novato",
@@ -32834,7 +32834,7 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "walk": {
           "sourceSha256": "ca80d532875645aee374e36ed49b687ea71cab6ff7b5f57b5d969dbbac438c8e",
@@ -32872,7 +32872,7 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment",
           "previousRevisions": [
             {
               "sourceSha256": "17519f246b13100d7ef55d16d9f95bf6169f222b5f99a311564e07c428a1fab3",
@@ -32988,7 +32988,7 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "use_consumable": {
           "sourceSha256": "e77fbb7d390707b379d263f717a9f346e85d8cc8ca8a62bb4bbbd33af74237c7",
@@ -33026,7 +33026,7 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "dodge": {
           "sourceSha256": "fefb4190edebd9e92d8e839087c7eab43d2b87f79c025c4621835f35b2868613",
@@ -33070,7 +33070,7 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "block_shield": {
           "sourceSha256": "b6454462b9a1e7b84f92112775a4a7a332c239b74494805ca5e22bf98a727b17",
@@ -33114,7 +33114,7 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_sword": {
           "sourceSha256": "25edf6d18ad646746fd2e5b806da6c56578cce865f5d85590de782573ac3ad73",
@@ -33152,7 +33152,7 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_axe": {
           "sourceSha256": "4036d86b0ccc9522c2fa7813bc6982928d41dfb1e5b4ee71ea12d51a3e10e8e2",
@@ -33190,7 +33190,7 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_spear": {
           "sourceSha256": "a6f249f44f3ce7d233f6bb919c15942c0e30bb91abf28332f23c12f1ce132c55",
@@ -33228,7 +33228,7 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_dagger": {
           "sourceSha256": "705166d6e51149af78495c428ebfb4c65e8d33831a1218f3a4b1e0dd3a50743e",
@@ -33266,7 +33266,7 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment",
           "previousRevisions": [
             {
               "sourceSha256": "dfa9f6110c1227ca1071f2bc389e063ba5fa492966651460db31ff79cbcc1997",
@@ -33344,7 +33344,7 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_staff": {
           "sourceSha256": "7e677dd6e22691015deb67be98b54b33080680bab5147e2a75c5fe838cae86bf",
@@ -33382,7 +33382,7 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_mace": {
           "sourceSha256": "c33ced7646cedb23b75ce1c7519ddebbbb148536255207ce263b93bcc981e37e",
@@ -33420,7 +33420,7 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment",
           "previousRevisions": [
             {
               "sourceSha256": "fa37baa619f71ab3002c25179cc1d9056d13e8bc9a7e85d05516cf0d4b268512",
@@ -33498,7 +33498,7 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_gloves": {
           "sourceSha256": "d067119cb650d13576b02586ab944d8db59ca485d5d47bf047d3af68d72e73e5",
@@ -33536,7 +33536,7 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment",
           "previousRevisions": [
             {
               "sourceSha256": "9d1bfdf0513071c8ffeb70bb8ff6392aa5b1f8c58180f34b0321423556ae52e5",
@@ -33852,6 +33852,16 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-assistant-reviewed-candidate",
+      "equipmentCompatibility": {
+        "status": "shared-layers-reviewed-candidate",
+        "report": "assets/spritesheets/hd-128x256/monje/m/equipment-review/qa-report.json",
+        "contactChecks": 682,
+        "warnings": 0,
+        "classSpecificOffsets": false,
+        "equipmentLayerPolicy": "Exactly the existing sheets for this sex; no equipment changes to fit the new body.",
+        "userApproval": "pending"
       }
     },
     {
@@ -34610,7 +34620,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 2 in class order: Caballero, Duelista, Sacerdote, Monje, Cazador, Explorador, Elementalista, Brujo; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue all Tier 2 classes in the documented order, male then female, preserving canonical grips and quality.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
@@ -35133,9 +35143,10 @@
       "duelista-m",
       "duelista-f",
       "sacerdote-m",
-      "sacerdote-f"
+      "sacerdote-f",
+      "monje-m"
     ],
-    "bodyFramesPresent": 360,
+    "bodyFramesPresent": 420,
     "sharedEquipment": "Existing male/female rigs and equipment sheets unchanged",
     "runtimePromotion": "pending-complete-variant-review-and-user-approval"
   }
