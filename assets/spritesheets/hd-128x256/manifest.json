@@ -40152,11 +40152,12 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/explorador/m/frames",
       "audit": {
-        "validFrames": 8,
+        "validFrames": 12,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
-          "walk"
+          "walk",
+          "hurt"
         ],
         "actions": {
           "idle": {
@@ -40300,7 +40301,74 @@
             "distinctFrames": 4
           },
           "hurt": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "158aea94d386cdba46a569f91606c90dbcfc4d04709b9dabd968a82b8df16472",
+                "bytes": 27119,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  14,
+                  91,
+                  106,
+                  249
+                ],
+                "pixelSha256": "f8c663b0d76fc236040d5443b6230eca22687f7f85b5d2060992c9a0fa67725d"
+              },
+              "02": {
+                "sha256": "5d181aeac1d18ffb9a8fcf4872e0008a10af3a7ba3b889311219ce5c15bfa922",
+                "bytes": 28040,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  100,
+                  118,
+                  249
+                ],
+                "pixelSha256": "9d52c36ccf6205da9772d06b3ef3f5fe6838c878431d690e10650bf178ce380d"
+              },
+              "03": {
+                "sha256": "63aeb521c570cfc0c32907053fb7435b9da5feff391ea558c9c2aedb1d160974",
+                "bytes": 24171,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  118,
+                  105,
+                  249
+                ],
+                "pixelSha256": "02af03ba9e2c668a2024e0569f5e449f33e603bf60b7452ac4f3a0f8f64f20cb"
+              },
+              "04": {
+                "sha256": "192ae770779b3e5e2b09140604480f2ca1e3d6446356d6b88bd2978d3472399d",
+                "bytes": 26276,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  91,
+                  95,
+                  249
+                ],
+                "pixelSha256": "fd7bf36a1b8f364c36ad2a004e9fb4a44d07f0c6329681b4c9d3b9ec76f6d2a4"
+              }
+            },
+            "distinctFrames": 4
           },
           "use_consumable": {
             "status": "missing"
@@ -40417,6 +40485,44 @@
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "hurt": {
+          "sourceSha256": "c8a008752d29ffebaa1505be06fdcb43e8c328f4596128c54f5f0ef154e720ee",
+          "sourceDimensions": [
+            2171,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            617,
+            19,
+            1047,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            14,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/explorador/m/source/hurt-reference-v4.png",
+          "generator": "built-in imagegen",
+          "prompt": "Only FOURTH RIGHTMOST explorer's lower coat edge on LEFT: tuck that leftmost tan-edged cloth tip20pixels inward toward the RIGHT. Do not change first three figures at all. Preserve exact canvas2172x724, every head/hand/boot/root and other costume detail. No rescale or moving figures. Actual transparent background.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
+          "canonicalPoseHashes": [
+            "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
+            "bd77167140c15b93b69566bb90c4d9b42293de7cbb2fffd05fdc4e429c80edd7",
+            "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
+            "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -40450,6 +40556,22 @@
         },
         "walk/04": {
           "source": "sources.walk",
+          "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt",
           "frame": 4
         }
       },

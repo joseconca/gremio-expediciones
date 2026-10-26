@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "classId": "explorador",
+  "sex": "m",
+  "actions": [
+    "idle",
+    "walk"
+  ],
+  "bodyHashes": {
+    "idle": [
+      "a71106428d7e1ef9934540f221b069c6f16385e0132e5c740393dd287946ffae",
+      "0cc6c674a196b79f0491a5bad407e08be596a256bb9a88f9fdbf67cbc5b6d584",
+      "7cab9d7853864824b6d7b52b65c8367270367b93f2561bfa0548fb04d39b9f57",
+      "2c6161bf03d96fdd36c9647a17e1e117e13e70658d9187b98201bb0e7824efcc"
+    ],
+    "walk": [
+      "08e2bc547a6648e89bc0903ad27bb5f76b0559109854303a55bf65ac4e432d3e",
+      "743863a4abd103c6cc1579e14e2a0ba87f10dd37e52f4dd9aca3a2d5e067649a",
+      "76873e90824d036b1a5dc470a09b7d218749d8dc6e5cf8bb3bd11bbcef5ab996",
+      "9a9e2438263149e434c2e7af514136b17594369f33b47731170fe593be1b52fb"
+    ]
+  },
+  "contactChecks": 256,
+  "warnings": [],
+  "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
+  "artisticApproval": "not-automatic"
+}
