@@ -1,5 +1,5 @@
 {
-  "status": "passed",
+  "status": "contact-review-required",
   "classId": "monje",
   "sex": "m",
   "actions": [
@@ -12,7 +12,10 @@
     "attack_sword",
     "attack_axe",
     "attack_spear",
-    "attack_dagger"
+    "attack_dagger",
+    "attack_bow",
+    "attack_staff",
+    "attack_mace"
   ],
   "bodyHashes": {
     "idle": [
@@ -70,14 +73,51 @@
       "ebe5e994de8dbab163164c2f504acb13ed8949a02b2329a4ffde766d8a528ee7"
     ],
     "attack_dagger": [
-      "d2ba9aaec7a35037dfb02f899dca27a25ed07dcba7d8421c5ae0205424501755",
-      "d764d9ed03464390695b86155e7056e7d48ba6e0cea02323b2174221f45e14b1",
-      "5555297945a15536cbeac08dca2f21beb71d1547d432e17635c5f0ee19a3b0e0",
-      "dff2e5ba8d7568cf172997e4f96742e1556a19b3f4f7b0654aec63294b0297cd"
+      "3726160a9f11d8db64cd723efbcdc02e0af0698df00b729f945a8f565c80631a",
+      "6e8fe2a2afac603f0ca9b8f44768c1397f8a048f54bfa248f25f65265b12aee9",
+      "966e347ae1ed1bbcfb970eee27244d7b8e4f9f822ff8301ce93629bbea75670c",
+      "45d2294f4636db2ce493408f8ce5b5a4f22addfcbe525e5edb34b5435e270128"
+    ],
+    "attack_bow": [
+      "8a2791a07a402ed087a1ab5554c315931becc9276d93e125414c890fee596ced",
+      "67a953345d45a29a4390ac1fd1365b1444f1ce18efcb658985dc58ef21a39320",
+      "47c738fc7e85bbf4507f6291ff97468d130f8e80d8dadc2f20f8c0c4ea6247b3",
+      "109af49ebe4c149c78e856f9913e53e878d453de4487d5dcdd64189af4a3184e"
+    ],
+    "attack_staff": [
+      "303515fc56b9e8a2b34100afbedb75610d9ca6a57d71a547a67a75dee9c8c054",
+      "490689d8ddf7b3ff7f2c40fe9b6a85ca242005ee8fa2d9d7a655287f4ed7e394",
+      "35005ddead6c46a8d8f66d181833314a7c8d3fc5b3345e5a5cde39941368964c",
+      "def22a3e99273443f8927522a4b4467571d4b9cd85e31000674044a44e0d7c5a"
+    ],
+    "attack_mace": [
+      "66ca9533c9d14816c0c233a80b0601ed5a547f3f34f74343524b18c6cbd380fb",
+      "2b2ff6f8883d4b08128b530f3cb2b23c3f94111f859d459bcccddab3e64ff3c6",
+      "fe1fb7e24d1bdaeb30cac2aea7fb1f660f091a536a685f8ffdb8f4dbe550b3ed",
+      "6e9f316e9cbe9befd5e93aec90a85a9a69ea093fbe3b1bb647c0c5e281a9dc7b"
     ]
   },
-  "contactChecks": 612,
-  "warnings": [],
+  "contactChecks": 652,
+  "warnings": [
+    {
+      "action": "attack_mace",
+      "frame": 4,
+      "item": "maza_enana",
+      "point": [
+        41,
+        135
+      ]
+    },
+    {
+      "action": "attack_mace",
+      "frame": 4,
+      "item": "maza_madera",
+      "point": [
+        41,
+        135
+      ]
+    }
+  ],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
 }

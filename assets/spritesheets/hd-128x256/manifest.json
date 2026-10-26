@@ -32586,8 +32586,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "66ca9533c9d14816c0c233a80b0601ed5a547f3f34f74343524b18c6cbd380fb",
-                "bytes": 21503,
+                "sha256": "19f622adc4f37c2d0f906b4953a4f4fde455088fcbaf4e4b9153128ce756cf77",
+                "bytes": 22053,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -32595,15 +32595,47 @@
                 ],
                 "bbox": [
                   20,
-                  92,
+                  91,
                   106,
                   248
                 ],
-                "pixelSha256": "0d5c216e525f8c38662620713538408fdd8bbe47dc910e3a89531bb885c7b0c9"
+                "pixelSha256": "b823cc9edb6bd0f745b2d1276bcab170470ff562ed41e72bd2f6724782ffcb27"
               },
               "02": {
-                "sha256": "2b2ff6f8883d4b08128b530f3cb2b23c3f94111f859d459bcccddab3e64ff3c6",
-                "bytes": 22969,
+                "sha256": "a5432c6e82a585fb276809e9549aeabbea98c06a84c22e30a6e68727de7146a1",
+                "bytes": 23558,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  91,
+                  115,
+                  248
+                ],
+                "pixelSha256": "08ec41cc8176c39a90cfd4b7391b50a69aefe7b2851c857303133781014e50c5"
+              },
+              "03": {
+                "sha256": "ac9135c3f49c3ca8e4b252f03e6b618de2a3e12bfab94751540f4564300b1b07",
+                "bytes": 20910,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  103,
+                  111,
+                  248
+                ],
+                "pixelSha256": "fc392d393ab24527a0554754545c5285612a9833d5a7dfe33e0173414b78a354"
+              },
+              "04": {
+                "sha256": "5f5c158dc38d61dc29f5d78cc486731d150792a26444b38973063cdf5a918530",
+                "bytes": 22016,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -32615,39 +32647,7 @@
                   114,
                   248
                 ],
-                "pixelSha256": "466e632358140a540f5e0b55f07467b91a24ac05d7f19d2c28484a7d25afdd7e"
-              },
-              "03": {
-                "sha256": "fe1fb7e24d1bdaeb30cac2aea7fb1f660f091a536a685f8ffdb8f4dbe550b3ed",
-                "bytes": 20386,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  24,
-                  103,
-                  111,
-                  248
-                ],
-                "pixelSha256": "d82d1af20cffe9ef1aa83bd461f8a1043288deaaca85d2b4b1fafe28b28f4814"
-              },
-              "04": {
-                "sha256": "6e9f316e9cbe9befd5e93aec90a85a9a69ea093fbe3b1bb647c0c5e281a9dc7b",
-                "bytes": 21478,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  31,
-                  92,
-                  116,
-                  248
-                ],
-                "pixelSha256": "15aeee992b80b81b1e18b1acc197abe0c98e5aff030fe75c74ab1005043d384f"
+                "pixelSha256": "e957727c82395afafbcb2cb87245d149712ffebf22258e7d648ceaf077af4a84"
               }
             },
             "distinctFrames": 4
@@ -33249,7 +33249,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_mace": {
-          "sourceSha256": "fa37baa619f71ab3002c25179cc1d9056d13e8bc9a7e85d05516cf0d4b268512",
+          "sourceSha256": "c33ced7646cedb23b75ce1c7519ddebbbb148536255207ce263b93bcc981e37e",
           "sourceDimensions": [
             2172,
             724
@@ -33274,9 +33274,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/monje/m/source/attack_mace-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/monje/m/source/attack_mace-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY MONJE MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_mace. Young adult male monk martial artist: short tousled dark brown-black hair, focused composed face. Sleeveless russet-red martial tunic with overlapping wrap front, dark red waist sash and simple leather belt, cream loose trousers tucked into sturdy brown ankle boots, fitted reddish-brown forearm wraps that end before the visible empty bare fingers and palms. Athletic canonical skeleton without exaggerated muscles; no weapon, prayer beads, particles or hand glow. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (175,208), other hand (353,282); figure 2: primary contact (748,82), other hand (896,282); figure 3: primary contact (1487,417), other hand (1439,317); figure 4: primary contact (1804,208), other hand (1982,282). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "prompt": "Precise arm edit in this four-pose male monk strip. Only FIGURE FOUR's NEAR raised fist, beside his left ear: move that fist50pixels LEFT and25pixels DOWN on the full2172x724 canvas, to center(1804,208). Bend elbow accordingly, keeping upper arm attached naturally. It must match FIGURE ONE's raised-fist pose exactly, shifted1629pixels right across the strip. All other hands, all first three figures, fourth head, torso, legs and boots remain unchanged. Same sleeveless red martial tunic, cream trousers, wraps and bare upper arms. Four full figures, no mace or props, actual transparent background, exact same polished quality.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_mace-reference.png",
           "canonicalPoseHashes": [
             "a11705dacb702e8c1c58b57c86f812f23d4bbc28eb6cc76083ca860222f1c5d6",
@@ -33284,7 +33284,47 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "fa37baa619f71ab3002c25179cc1d9056d13e8bc9a7e85d05516cf0d4b268512",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                622,
+                21,
+                1014,
+                698
+              ],
+              "scale": 0.23,
+              "origin": [
+                19,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/monje/m/source/attack_mace-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY MONJE MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_mace. Young adult male monk martial artist: short tousled dark brown-black hair, focused composed face. Sleeveless russet-red martial tunic with overlapping wrap front, dark red waist sash and simple leather belt, cream loose trousers tucked into sturdy brown ankle boots, fitted reddish-brown forearm wraps that end before the visible empty bare fingers and palms. Athletic canonical skeleton without exaggerated muscles; no weapon, prayer beads, particles or hand glow. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (175,208), other hand (353,282); figure 2: primary contact (748,82), other hand (896,282); figure 3: primary contact (1487,417), other hand (1439,317); figure 4: primary contact (1804,208), other hand (1982,282). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_mace-reference.png",
+              "canonicalPoseHashes": [
+                "a11705dacb702e8c1c58b57c86f812f23d4bbc28eb6cc76083ca860222f1c5d6",
+                "88cadcb4855373bf03959f73d20befa913d54aed991922498eaa839f5a0437d3",
+                "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
+                "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         }
       },
       "frameProvenance": {
