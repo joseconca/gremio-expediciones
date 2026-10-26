@@ -44050,7 +44050,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/elementalista/m/frames",
       "audit": {
-        "validFrames": 56,
+        "validFrames": 60,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -44066,7 +44066,8 @@
           "attack_bow",
           "attack_staff",
           "attack_mace",
-          "attack_book"
+          "attack_book",
+          "attack_gloves"
         ],
         "actions": {
           "idle": {
@@ -45050,7 +45051,74 @@
             "distinctFrames": 4
           },
           "attack_gloves": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "1f1b3fcac35dcb53b73831a385946ae7ed3062fd323669407fd5cb2ccd050062",
+                "bytes": 26330,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  91,
+                  107,
+                  248
+                ],
+                "pixelSha256": "63fa91fd3f2ef70d05cd1cf63f01d8d42e9a789e6c369c2fb488e803869caf80"
+              },
+              "02": {
+                "sha256": "0ce2d76832724c00b509d9c1248266e97e9cd5094148aece02f0288aa15c1ca1",
+                "bytes": 27060,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  91,
+                  114,
+                  248
+                ],
+                "pixelSha256": "d2a2d6d79efc12554a07160b8e3b514c590461b4424baf7c705a64414d0fa852"
+              },
+              "03": {
+                "sha256": "791ea194c5a9dc9eb2d0e2bd08685527dab7ef7c510e902bc4137bb901af89f3",
+                "bytes": 26902,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  91,
+                  114,
+                  248
+                ],
+                "pixelSha256": "cca1e20db93074276c68276663de327aa606ce135713f481ef56e9dfabf1178d"
+              },
+              "04": {
+                "sha256": "e77de3e4cefab40ea1ff089af44ad5616cdcf66200594e72e8303be20fef3c53",
+                "bytes": 26067,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  91,
+                  114,
+                  248
+                ],
+                "pixelSha256": "5c172889d1d53b3e99995d74185099fad8d9bbebe52f968072fff0fcdecb0cc3"
+              }
+            },
+            "distinctFrames": 4
           }
         }
       },
@@ -45599,6 +45667,44 @@
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_gloves": {
+          "sourceSha256": "a4afdca3143e531b2ff05e59260e25fa2b2f2f5e83430fed9746ffd8a68cebbc",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            643,
+            21,
+            1018,
+            698
+          ],
+          "scale": 0.23,
+          "origin": [
+            21,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/elementalista/m/source/attack_gloves-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY ELEMENTALISTA MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_gloves. Young adult male elementalist: short tousled silver-white hair, intelligent calm face. Elegant dark navy and deep blue split arcane robe with restrained gold edging, ivory center tunic and hanging front panel, blue shoulder mantle and structured cuffs ending before visible fingers, brown waist belt with a small blue cabochon clasp, dark trousers, brown leather boots and discreet fingerless gloves. Exact canonical skeleton and head scale. No staff, book, floating gems, elemental symbols in air, magic, light trails or glow. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (270,269), other hand (374,225); figure 2: primary contact (769,308), other hand (917,221); figure 3: primary contact (1543,234), other hand (1443,238); figure 4: primary contact (1899,269), other hand (2003,225). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_gloves-reference.png",
+          "canonicalPoseHashes": [
+            "fd3bdbdb7204be611733c4e8b780ac94a9d94cad2e8b18fe044e3d89d7885eb0",
+            "d04a757fc88ca7f0dfa4705d69a34d7c68f645f6c78e8a608f990a1870c2e25e",
+            "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
+            "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -45824,6 +45930,22 @@
         },
         "attack_book/04": {
           "source": "sources.attack_book",
+          "frame": 4
+        },
+        "attack_gloves/01": {
+          "source": "sources.attack_gloves",
+          "frame": 1
+        },
+        "attack_gloves/02": {
+          "source": "sources.attack_gloves",
+          "frame": 2
+        },
+        "attack_gloves/03": {
+          "source": "sources.attack_gloves",
+          "frame": 3
+        },
+        "attack_gloves/04": {
+          "source": "sources.attack_gloves",
           "frame": 4
         }
       },
