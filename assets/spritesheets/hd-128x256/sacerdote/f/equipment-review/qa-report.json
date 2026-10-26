@@ -1,5 +1,5 @@
 {
-  "status": "passed",
+  "status": "contact-review-required",
   "classId": "sacerdote",
   "sex": "f",
   "actions": [
@@ -13,7 +13,10 @@
     "attack_axe",
     "attack_spear",
     "attack_dagger",
-    "attack_bow"
+    "attack_bow",
+    "attack_staff",
+    "attack_mace",
+    "attack_book"
   ],
   "bodyHashes": {
     "idle": [
@@ -81,10 +84,47 @@
       "cbc1da5452c22917e758ef140851ca9713574b1785d8278899cbd3a2d3230abc",
       "aa9b6b7c0525e366408753bcb7aebb439f620c1e807ee779a2024a15ceb4ce1a",
       "505747080ed14a34515cb627c03b5605d96fe356947bf1767210ec9541fb54ae"
+    ],
+    "attack_staff": [
+      "f0a9553db4ae46d28852f4e6250433e051c33356768ddb52755b80efb06c05db",
+      "84ca01fbf2aef0e0e5cf4e6159f2747f7a76195c0d181f3263f00f40127a0716",
+      "6bdf3751ef970145152053871a167218ec6e6788bd5ce9dbd846b9cd810573ba",
+      "9f955b648b39b8375d953cdd0eb6da04db71cc7562905a55b0169b5962faafe6"
+    ],
+    "attack_mace": [
+      "1f58373d1787014f6f0a3ceb562dfd54f634bc052278f8e67729e605325d3b44",
+      "99d5375c71fe6c74af209161a258ee4a68bffcefce60a326c9f3762d33adf831",
+      "8982e9bfa89359fc6916157e92bfa4cd10bf2d99ba157954039473b6c5d306fa",
+      "35dc3dae8dda62fdbbfd21d36dfa2d8435a3b1d348e6be804fc96cb127ba0797"
+    ],
+    "attack_book": [
+      "ef21b0cdc7be9f38836039c5ffd455d827da3b695efdf501083c87b75bc7bb33",
+      "f3038f613b8d6355d79f8f04c8f94d1ace13860449c1eedef0e00b027ad94b43",
+      "130a80e9a064b3758e0bfcd05b583c447b8a66b0746603c775a2cae62ddab296",
+      "eaba06dc397229b1a65e77251d6f86564e955bcd9c2885013fef07f68d15c736"
     ]
   },
-  "contactChecks": 624,
-  "warnings": [],
+  "contactChecks": 666,
+  "warnings": [
+    {
+      "action": "attack_staff",
+      "frame": 3,
+      "item": "baston_madera",
+      "point": [
+        83,
+        161
+      ]
+    },
+    {
+      "action": "attack_staff",
+      "frame": 3,
+      "item": "baston_runico",
+      "point": [
+        83,
+        161
+      ]
+    }
+  ],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
 }
