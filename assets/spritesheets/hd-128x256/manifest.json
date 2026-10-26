@@ -50058,8 +50058,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "83713f75380bac137ca8120080c67c44bc4818f82f71bd65f32c893386db6f7a",
-                "bytes": 29137,
+                "sha256": "a6cd309f4d153c6bf93b6ea086104f970d36401803a490bdfcebafb5f26368f6",
+                "bytes": 29291,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -50067,59 +50067,59 @@
                 ],
                 "bbox": [
                   15,
-                  92,
-                  114,
+                  94,
+                  111,
                   247
                 ],
-                "pixelSha256": "6e754d7028a185e90c518a768a2e8dcb2b7f6b764c8738282eb42b9bc9e4cbc9"
+                "pixelSha256": "d1eebf9723ae3f20146398602ea266a52abb4fe903313bd0206ed4fbe2c36ab5"
               },
               "02": {
-                "sha256": "ed57a3f570aa653896d10ed4a80eac1d2e2fae16f5afacb52b157d0130e1e246",
-                "bytes": 27250,
+                "sha256": "0093ebe0cd9a076c5c3dedd2b172853ed1b0fe578cfd1de4b1af2763586b8b6a",
+                "bytes": 28171,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  16,
-                  92,
-                  105,
+                  13,
+                  93,
+                  104,
                   247
                 ],
-                "pixelSha256": "c7d4006f9cc07a174053b115e2acacbbf6df610b83a2051528bd24f076bc86fd"
+                "pixelSha256": "17ae5d90a5acdbf9f05ce03a8551779384e96c66ac783694e199c2ba8880065b"
               },
               "03": {
-                "sha256": "977a4c7f7c46dfe56fa1c360c63fe38a278483b292fd07236a8bd02fc8683eb1",
-                "bytes": 22663,
+                "sha256": "9d4ad1835569613fd86432305ab64d9c93071a6808bab2f095eae642d00c9a98",
+                "bytes": 23849,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  11,
+                  14,
                   114,
-                  91,
+                  95,
                   247
                 ],
-                "pixelSha256": "77a1f74bd580d9199d177181187a93210dcd62191bab778daa925170692a493e"
+                "pixelSha256": "0b5bb7cf05c947fee8827cf465a35265474f2bf98a85d8cc7f0a6834c57bc616"
               },
               "04": {
-                "sha256": "455d009021f75cb181132b5a9d9b86eb423de768b2668bc228739ae6141f03fd",
-                "bytes": 28086,
+                "sha256": "4d628a50a1b7bd7ca60fe8223fbe157cf33fd54106d151b57c9fac0c15b836da",
+                "bytes": 29400,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  5,
-                  92,
-                  94,
+                  2,
+                  93,
+                  96,
                   247
                 ],
-                "pixelSha256": "06c0538056d687937b04a4cdd3ddeca85e4b4d3cf1f4e5f6bab090efe695b6c1"
+                "pixelSha256": "4479be7903340b82e990c985cb47b0a8dffab1512ddfd6e4fafa6db07aaf08e3"
               }
             },
             "distinctFrames": 4
@@ -50444,10 +50444,10 @@
           ]
         },
         "hurt": {
-          "sourceSha256": "ceca39a22ee2876ff9e1d52f894a7a6bd0d223103fca0b14f85c37afa99caad8",
+          "sourceSha256": "bedaeeaf9ff05bc4edf3d1bd66cad2e4f4cf86f19a7308c8b2e2d0ad3c51eb9e",
           "sourceDimensions": [
-            2172,
-            724
+            2169,
+            725
           ],
           "registeredSourceDimensions": [
             2172,
@@ -50469,9 +50469,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/brujo/f/source/hurt-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/brujo/f/source/hurt-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY BRUJO FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action hurt. Young adult female warlock: long deep violet hair with swept bangs, pale composed face, small dark violet browband. Charcoal and dark plum split ritual robe with rich violet lining and muted antique gold edging, high fitted collar, pale grey inner tunic and front panel, layered dark purple shoulder mantle, brown-black waist belt and boots, discreet dark fingerless gloves. Fully covered practical robe, exact canonical female skeleton and readable hands. No staff, skull, floating book, magic, aura or particles. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (256,409), other hand (490,365); figure 2: primary contact (859,274), other hand (938,313); figure 3: primary contact (1420,400), other hand (1446,387); figure 4: primary contact (1841,431), other hand (2045,422). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY BRUJO FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action hurt. Young adult female warlock: long deep violet hair with swept bangs, pale composed face, small dark violet browband. Charcoal and dark plum split ritual robe with rich violet lining and muted antique gold edging, high fitted collar, pale grey inner tunic and front panel, layered dark purple shoulder mantle, brown-black waist belt and boots, discreet dark fingerless gloves. Fully covered practical robe, exact canonical female skeleton and readable hands. No staff, skull, floating book, magic, aura or particles. Long hair falls close behind the shoulders and back, with no wide sideways sweep. Keep robe and cloak tails close to the legs, narrow silhouette inside exact canonical limits. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (256,409), other hand (490,365); figure 2: primary contact (859,274), other hand (938,313); figure 3: primary contact (1420,400), other hand (1446,387); figure 4: primary contact (1841,431), other hand (2045,422). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
           "canonicalPoseHashes": [
             "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
@@ -50479,7 +50479,47 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "ceca39a22ee2876ff9e1d52f894a7a6bd0d223103fca0b14f85c37afa99caad8",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                642,
+                22,
+                1069,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/brujo/f/source/hurt-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY BRUJO FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action hurt. Young adult female warlock: long deep violet hair with swept bangs, pale composed face, small dark violet browband. Charcoal and dark plum split ritual robe with rich violet lining and muted antique gold edging, high fitted collar, pale grey inner tunic and front panel, layered dark purple shoulder mantle, brown-black waist belt and boots, discreet dark fingerless gloves. Fully covered practical robe, exact canonical female skeleton and readable hands. No staff, skull, floating book, magic, aura or particles. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (256,409), other hand (490,365); figure 2: primary contact (859,274), other hand (938,313); figure 3: primary contact (1420,400), other hand (1446,387); figure 4: primary contact (1841,431), other hand (2045,422). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+                "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+                "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+                "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "use_consumable": {
           "sourceSha256": "da06374ba66278aaab2c975b20c0dc4d92afaf6cd458b69d51c6b3d933ad39e0",
