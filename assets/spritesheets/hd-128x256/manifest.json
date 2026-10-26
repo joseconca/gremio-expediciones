@@ -32728,8 +32728,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "7a42cd545947d2a550379c79cc6e427506844d4afbb0fc3fd623cc144104d6b5",
-                "bytes": 22096,
+                "sha256": "dea329c652cf5e50143754404bb71a44c1af60e3025a75c0222837b955b9491c",
+                "bytes": 22122,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -32741,11 +32741,11 @@
                   108,
                   248
                 ],
-                "pixelSha256": "c0dada86b8e90fea1a5c4e6e2f35d77a23d017adeafca1b827100e6211ce87fa"
+                "pixelSha256": "964ee1211aec232d877a223b100e97d1061d353d7d3f37f70a82f14cb9592dea"
               },
               "02": {
-                "sha256": "457b033a5b5a377825e919c9d8b5d5437e2a2daaaf9222c6a3e5659da84b9ced",
-                "bytes": 22627,
+                "sha256": "6472e2507f00cf9c0d7da45ae7127fd5fd8e5e3caa5958af7e3a6b34fb57e471",
+                "bytes": 22846,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -32757,11 +32757,11 @@
                   108,
                   248
                 ],
-                "pixelSha256": "01e6c8983efbf1c7385d215fcc3c33e67863b8b10fcfaa964c8a1af1bfb9e10c"
+                "pixelSha256": "537752e9d3b4ea366cd8cdf6f082897fbdf93ff9a468eed9fa0b64833490d7cb"
               },
               "03": {
-                "sha256": "cde2fb84e1fe83d43b2bbef3a4a2b8449ec071c343ea903718351c06385b2022",
-                "bytes": 22267,
+                "sha256": "4033d7ce41d2a9f74b66d61aa060b6aa15842ac2ab31c85c6fb7faa828b793bf",
+                "bytes": 22242,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -32770,14 +32770,14 @@
                 "bbox": [
                   17,
                   91,
-                  109,
+                  110,
                   248
                 ],
-                "pixelSha256": "e3d50fcb1abad039448667175d7744a025f5f1c420925aea649774602baa5bfc"
+                "pixelSha256": "1da65e583b099195df2acf6da11e4292f3f9774ce68ac2437ef717d94003ea15"
               },
               "04": {
-                "sha256": "32b67dde6b9f819a41fdd598488abfeba50ee1a6420a90bf172c5d68b4d19a5c",
-                "bytes": 22086,
+                "sha256": "67ae050ee4ad0f59d12f33f0c5dba6ebd924db5e6c9d0dc2a5d0e276a26aef57",
+                "bytes": 22131,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -32789,7 +32789,7 @@
                   108,
                   248
                 ],
-                "pixelSha256": "dddbf56cb3c06542c2c5db12bdb5c96f45bd817cabeed6afb5e15fb8ae0fc158"
+                "pixelSha256": "d8cda8ea1d25696e795589de46a1c22e34538fd38878859577e4b7a3068df4ba"
               }
             },
             "distinctFrames": 4
@@ -33501,7 +33501,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_gloves": {
-          "sourceSha256": "9d1bfdf0513071c8ffeb70bb8ff6392aa5b1f8c58180f34b0321423556ae52e5",
+          "sourceSha256": "d067119cb650d13576b02586ab944d8db59ca485d5d47bf047d3af68d72e73e5",
           "sourceDimensions": [
             2172,
             724
@@ -33526,9 +33526,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/monje/m/source/attack_gloves-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/monje/m/source/attack_gloves-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY MONJE MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_gloves. Young adult male monk martial artist: short tousled dark brown-black hair, focused composed face. Sleeveless russet-red martial tunic with overlapping wrap front, dark red waist sash and simple leather belt, cream loose trousers tucked into sturdy brown ankle boots, fitted reddish-brown forearm wraps that end before the visible empty bare fingers and palms. Athletic canonical skeleton without exaggerated muscles; no weapon, prayer beads, particles or hand glow. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (270,269), other hand (374,225); figure 2: primary contact (769,308), other hand (917,221); figure 3: primary contact (1543,234), other hand (1443,238); figure 4: primary contact (1899,269), other hand (2003,225). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "prompt": "Clothing-only correction to this FOUR-frame male monk punching strip. Remove ALL cream fabric shirt cuffs and sleeve remnants from BOTH ARMS of EVERY FIGURE. Every upper arm, elbow and strip between russet tunic armhole and brown forearm wraps is BARE SKIN, warm tan skin matching shoulders. Especially the pale rolled cuffs around elbows in figures ONE and FOUR and the far elbow under the guard hand. Keep brown forearm wraps intact. Do NOT move a single fist, wrist, elbow or arm: preserve exact limb silhouette and replace only the cream fabric inside it with anatomically shaded skin. Same sleeveless red wrap tunic, cream trousers, boots, heads, hair, root positions and canvas. No props, exactly four complete full-body figures, real transparency and same high-quality RPG art.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_gloves-reference.png",
           "canonicalPoseHashes": [
             "fd3bdbdb7204be611733c4e8b780ac94a9d94cad2e8b18fe044e3d89d7885eb0",
@@ -33536,7 +33536,47 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "9d1bfdf0513071c8ffeb70bb8ff6392aa5b1f8c58180f34b0321423556ae52e5",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                643,
+                21,
+                1018,
+                698
+              ],
+              "scale": 0.23,
+              "origin": [
+                21,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/monje/m/source/attack_gloves-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY MONJE MALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_gloves. Young adult male monk martial artist: short tousled dark brown-black hair, focused composed face. Sleeveless russet-red martial tunic with overlapping wrap front, dark red waist sash and simple leather belt, cream loose trousers tucked into sturdy brown ankle boots, fitted reddish-brown forearm wraps that end before the visible empty bare fingers and palms. Athletic canonical skeleton without exaggerated muscles; no weapon, prayer beads, particles or hand glow. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (270,269), other hand (374,225); figure 2: primary contact (769,308), other hand (917,221); figure 3: primary contact (1543,234), other hand (1443,238); figure 4: primary contact (1899,269), other hand (2003,225). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_gloves-reference.png",
+              "canonicalPoseHashes": [
+                "fd3bdbdb7204be611733c4e8b780ac94a9d94cad2e8b18fe044e3d89d7885eb0",
+                "d04a757fc88ca7f0dfa4705d69a34d7c68f645f6c78e8a608f990a1870c2e25e",
+                "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
+                "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         }
       },
       "frameProvenance": {

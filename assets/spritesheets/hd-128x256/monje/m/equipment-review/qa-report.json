@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "monje",
   "sex": "m",
   "actions": [
@@ -15,7 +15,9 @@
     "attack_dagger",
     "attack_bow",
     "attack_staff",
-    "attack_mace"
+    "attack_mace",
+    "attack_book",
+    "attack_gloves"
   ],
   "bodyHashes": {
     "idle": [
@@ -91,33 +93,26 @@
       "def22a3e99273443f8927522a4b4467571d4b9cd85e31000674044a44e0d7c5a"
     ],
     "attack_mace": [
-      "66ca9533c9d14816c0c233a80b0601ed5a547f3f34f74343524b18c6cbd380fb",
-      "2b2ff6f8883d4b08128b530f3cb2b23c3f94111f859d459bcccddab3e64ff3c6",
-      "fe1fb7e24d1bdaeb30cac2aea7fb1f660f091a536a685f8ffdb8f4dbe550b3ed",
-      "6e9f316e9cbe9befd5e93aec90a85a9a69ea093fbe3b1bb647c0c5e281a9dc7b"
+      "19f622adc4f37c2d0f906b4953a4f4fde455088fcbaf4e4b9153128ce756cf77",
+      "a5432c6e82a585fb276809e9549aeabbea98c06a84c22e30a6e68727de7146a1",
+      "ac9135c3f49c3ca8e4b252f03e6b618de2a3e12bfab94751540f4564300b1b07",
+      "5f5c158dc38d61dc29f5d78cc486731d150792a26444b38973063cdf5a918530"
+    ],
+    "attack_book": [
+      "41c343ab54b318d8bdad56ed7a27a9339ae02abe22bd16af1798f9d8b5a49026",
+      "3789297a1cd4d0b97934fcc8d6dfe1ac781bde9ac1042c0249f64e37ca50acc6",
+      "468db620a99ec26cc800948adbae7e335683b65adc92d9489e386132d4790924",
+      "aaa462cadd72ede70c212fec0fd692b2e82aacf72f9fa4abf90cad2bc34b8e93"
+    ],
+    "attack_gloves": [
+      "7a42cd545947d2a550379c79cc6e427506844d4afbb0fc3fd623cc144104d6b5",
+      "457b033a5b5a377825e919c9d8b5d5437e2a2daaaf9222c6a3e5659da84b9ced",
+      "cde2fb84e1fe83d43b2bbef3a4a2b8449ec071c343ea903718351c06385b2022",
+      "32b67dde6b9f819a41fdd598488abfeba50ee1a6420a90bf172c5d68b4d19a5c"
     ]
   },
-  "contactChecks": 652,
-  "warnings": [
-    {
-      "action": "attack_mace",
-      "frame": 4,
-      "item": "maza_enana",
-      "point": [
-        41,
-        135
-      ]
-    },
-    {
-      "action": "attack_mace",
-      "frame": 4,
-      "item": "maza_madera",
-      "point": [
-        41,
-        135
-      ]
-    }
-  ],
+  "contactChecks": 682,
+  "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
 }
