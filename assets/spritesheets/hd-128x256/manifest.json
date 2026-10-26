@@ -33877,7 +33877,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/monje/f/frames",
       "audit": {
-        "validFrames": 36,
+        "validFrames": 40,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -33888,7 +33888,8 @@
           "block_shield",
           "attack_sword",
           "attack_axe",
-          "attack_spear"
+          "attack_spear",
+          "attack_dagger"
         ],
         "actions": {
           "idle": {
@@ -34522,7 +34523,74 @@
             "distinctFrames": 4
           },
           "attack_dagger": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "fab3668ae7a8ef7a1d1f5f587b7379d5c5c6433da32a934907257612c758c877",
+                "bytes": 24461,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  89,
+                  103,
+                  248
+                ],
+                "pixelSha256": "59ab56efc5073b6de8e4b8ba1ae671de12db4a372e50d3f574eaf89da38b6a77"
+              },
+              "02": {
+                "sha256": "32aeae6acea340f07b947116a3c0624cf3cbc00ff9c496c3dc0608d1ff5ab3bc",
+                "bytes": 24920,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  90,
+                  109,
+                  248
+                ],
+                "pixelSha256": "7de2ef3717c19cb644d9c8363a349954b100a6ad78ac18a75f8c406bdadd2d22"
+              },
+              "03": {
+                "sha256": "269b5d5407df4de1629bb84e0c177e482c5d20d8ed49626d23c51d092d20fafc",
+                "bytes": 24053,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  90,
+                  103,
+                  248
+                ],
+                "pixelSha256": "88784fc750424b75faa346f4d88375e849fdcd2d6e327627bf1c391d79e63f4c"
+              },
+              "04": {
+                "sha256": "27ac02134fe983e24e6e7f5fea43f07895d11a644ef8d7255de921ef9c282171",
+                "bytes": 24463,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  89,
+                  103,
+                  248
+                ],
+                "pixelSha256": "657048947bcb692b953c0a1a16033d2efd197b4c71f541769f13ac5501478bc6"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_bow": {
             "status": "missing"
@@ -34924,6 +34992,44 @@
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_dagger": {
+          "sourceSha256": "cd0011ba38a772e3e1056bdbdf9a6059e120c8fa7d6fe15d07d19e1e05d4708d",
+          "sourceDimensions": [
+            2170,
+            725
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            635,
+            14,
+            1036,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            18,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/monje/f/source/attack_dagger-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY MONJE FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_dagger. Young adult female monk martial artist: high chestnut-brown ponytail and swept bangs, focused calm face. Fully covered russet-red sleeveless wrap tunic with high practical neckline, dark red waist sash and simple leather belt, cream loose trousers tucked into sturdy brown ankle boots, reddish-brown fitted forearm wraps ending before empty bare fingers and palms. Exact canonical female skeleton; no weapon, prayer beads, particles or hand glow. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (240,357), other hand (375,227); figure 2: primary contact (822,292), other hand (926,253); figure 3: primary contact (1474,336), other hand (1465,249); figure 4: primary contact (1869,357), other hand (2004,227). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_dagger-reference.png",
+          "canonicalPoseHashes": [
+            "b099831c99647577fb107c59a2b854539e72f15343b11ac556963365d5c38e4a",
+            "1194001a1568733743072382e4df28905a78b397e3b28af933b29c7d0fbff071",
+            "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
+            "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -35069,6 +35175,22 @@
         },
         "attack_spear/04": {
           "source": "sources.attack_spear",
+          "frame": 4
+        },
+        "attack_dagger/01": {
+          "source": "sources.attack_dagger",
+          "frame": 1
+        },
+        "attack_dagger/02": {
+          "source": "sources.attack_dagger",
+          "frame": 2
+        },
+        "attack_dagger/03": {
+          "source": "sources.attack_dagger",
+          "frame": 3
+        },
+        "attack_dagger/04": {
+          "source": "sources.attack_dagger",
           "frame": 4
         }
       },
