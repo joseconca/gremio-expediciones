@@ -38103,8 +38103,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "2cc17d1f8c048de337a38385b6ed99fe2329f196f76c19b9b4aa8259edb4f4c8",
-                "bytes": 25705,
+                "sha256": "6140935ca0c5c5fde8d8aca07b7aab36ed316521b80cef07dd7b276feed8d695",
+                "bytes": 25660,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -38116,11 +38116,11 @@
                   109,
                   248
                 ],
-                "pixelSha256": "d59036e19f6291e3f92bc483bc6fea6854291eb82003a741b627822e95419aa3"
+                "pixelSha256": "284c891a3bc53f457d4c434e27fed926cbea21f97bce540698191adc28926bc2"
               },
               "02": {
-                "sha256": "d6037677bc05b832d9bb302ba535f8435947f064c63601744d554b1326489639",
-                "bytes": 25815,
+                "sha256": "fb0d3024217212b57f073d17e8d622a2bbd875cf1c1641813c00550165a88a9f",
+                "bytes": 25751,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -38132,11 +38132,11 @@
                   107,
                   248
                 ],
-                "pixelSha256": "868288107262f11807f53dbfd7c0ee60f5754e03ea5e57b649663bc0f2e3de15"
+                "pixelSha256": "574533db8e4162b1e6972132561ee792a1a2ac66020885e65992f9e1a49423dc"
               },
               "03": {
-                "sha256": "f6c8a0e03133bc7cf94eade9abfc32b21d1178c7dde007db82fbb070a0d97b7d",
-                "bytes": 25478,
+                "sha256": "13605222c5ebad1ff96a9797f3d801985fa3b1aa5c84bd99740cb3d3a840c0d3",
+                "bytes": 25749,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -38148,11 +38148,11 @@
                   101,
                   248
                 ],
-                "pixelSha256": "bd4970e24959a2ad1db3c3fd7f64efae2309ed22710dabf51ceaeef4cdbdfec5"
+                "pixelSha256": "c6b04a1d7ef2af5bf78d38d633db46ff3c8ae1d5842a3798e38f12ce1bbf9ccf"
               },
               "04": {
-                "sha256": "932131343979a6faaefb3afc7b928371fa4aeb0c5a9a366578457eddd211c1e0",
-                "bytes": 25435,
+                "sha256": "77c119c3d1e40885c5a912526c7ff5c4d10dd8eb5f4a335ca6e4d813f066340e",
+                "bytes": 25327,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -38164,7 +38164,7 @@
                   98,
                   248
                 ],
-                "pixelSha256": "03aeb8fb7f2fa665997ceaadf90c5b1d524eb9a628d3ea2beedb4d803c465855"
+                "pixelSha256": "2da5c29ed9483c3983a14e7986446f7b793b41796c9b9ecfa1f98941ffc6fcae"
               }
             },
             "distinctFrames": 4
@@ -38484,7 +38484,7 @@
       "equipmentRigId": "humanoid-f-v1",
       "sources": {
         "idle": {
-          "sourceSha256": "ece6973232c6cb6a8d872881133f621fff7483ef17c75d485b30511c529f073e",
+          "sourceSha256": "c5ad27f4eed5252ca1e1bcad354624b0ae76ad478f61192152104f97562a409a",
           "sourceDimensions": [
             2172,
             724
@@ -38509,9 +38509,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/cazador/f/source/idle-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/cazador/f/source/idle-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY CAZADOR FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action idle. Young adult female hunter: long auburn-brown high ponytail and side bangs, keen focused face. Dark forest-green fitted hunter tunic and short split travelling cloak with hood DOWN, muted olive panels and subtle tan-gold edging, brown leather chest straps and belt pouches, dark leggings, fitted brown forearm bracers and fingerless gloves, sturdy brown travel boots. Fully covered practical outfit, exact canonical female skeleton. No bow, quiver, arrows, animal, traps or dagger. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (193,431), other hand (432,423); figure 2: primary contact (736,431), other hand (975,423); figure 3: primary contact (1283,427), other hand (1518,423); figure 4: primary contact (1822,431), other hand (2026,423). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "prompt": "Tiny targeted edit in four-frame female hunter idle strip. ONLY FIGURE THREE, the one with closed eyes: move her FAR hand on the RIGHT side of her figure30pixels RIGHT and12pixels DOWN, lengthening that existing forearm naturally. Preserve her other hanging hand and every detail of all figures, exact canvas, roots, proportions and transparency. Two hands only, no props.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
           "canonicalPoseHashes": [
             "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
@@ -38519,7 +38519,47 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "ece6973232c6cb6a8d872881133f621fff7483ef17c75d485b30511c529f073e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                636,
+                14,
+                1027,
+                700
+              ],
+              "scale": 0.23,
+              "origin": [
+                19,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cazador/f/source/idle-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY CAZADOR FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action idle. Young adult female hunter: long auburn-brown high ponytail and side bangs, keen focused face. Dark forest-green fitted hunter tunic and short split travelling cloak with hood DOWN, muted olive panels and subtle tan-gold edging, brown leather chest straps and belt pouches, dark leggings, fitted brown forearm bracers and fingerless gloves, sturdy brown travel boots. Fully covered practical outfit, exact canonical female skeleton. No bow, quiver, arrows, animal, traps or dagger. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (193,431), other hand (432,423); figure 2: primary contact (736,431), other hand (975,423); figure 3: primary contact (1283,427), other hand (1518,423); figure 4: primary contact (1822,431), other hand (2026,423). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+              "canonicalPoseHashes": [
+                "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+                "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+                "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+                "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "walk": {
           "sourceSha256": "6e51023cd84db865e0b1e448d09b8c984fcefede3385aaeb2c79d3247a69435a",
