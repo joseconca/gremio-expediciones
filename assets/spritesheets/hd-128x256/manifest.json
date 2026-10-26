@@ -50347,40 +50347,40 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "ea2982b185636dd63860f2bb66dae2f9c242407ad61406e85cae8ce665fc01aa",
-                "bytes": 29352,
+                "sha256": "4c053db5329cc45351edb45b186587384f1e8833daef274ee778462bd7c25c0c",
+                "bytes": 29267,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  20,
+                  18,
                   92,
-                  112,
+                  109,
                   248
                 ],
-                "pixelSha256": "7bed7e129944a761b26ac7cb04b6cd46e51bd263711e569005df806e14301a3f"
+                "pixelSha256": "35286484f8aa9f0c52a2bdf1a48c2a9fa0ff7f1c343025f16964b3d3c02e1fc4"
               },
               "02": {
-                "sha256": "27611b2a58b8bbbd6ff8930c47f50961fef7acab7f86a38bf821cebf5621fe6c",
-                "bytes": 28846,
+                "sha256": "47cf68df36a62a632379ac03be55580137890040724b94ce55c0759d22ad098b",
+                "bytes": 28222,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  20,
+                  25,
                   91,
-                  110,
+                  111,
                   248
                 ],
-                "pixelSha256": "fdcc1dc62e7315356cc26e905e12ecae7c0122165a5767d703e3ba47ade1a6d3"
+                "pixelSha256": "22f4af221ec2451cc36c06159753acc2b8b82be873979c405fda6b3b345949c4"
               },
               "03": {
-                "sha256": "51f92d19a5d64fd6df079151e2c5575c66ced62dcb5603443ed32ddf8985269c",
-                "bytes": 27686,
+                "sha256": "31382b6e610ff26774a9517032473f54a4b4b0f81eef26f69715a2030dd988b4",
+                "bytes": 27055,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -50389,26 +50389,26 @@
                 "bbox": [
                   16,
                   97,
-                  105,
+                  104,
                   248
                 ],
-                "pixelSha256": "5ac7480882339e1b5b6acd1460c945c84ef9ddaccf029a99bb06035da6e03a3f"
+                "pixelSha256": "1330811ec972c836b86352610645d0e3ff122fe1157f57bb8d278b98c8ee6fb2"
               },
               "04": {
-                "sha256": "7a7c59a1f18333b4bbaa171893d8f8b4f9b94d472dce8097ba8b785daab86225",
-                "bytes": 29356,
+                "sha256": "1331c06d992ee06b2e6df38523c594cc728006cfa64d27fe1730c9413bb0a6a9",
+                "bytes": 28910,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  11,
-                  91,
-                  102,
+                  13,
+                  92,
+                  101,
                   248
                 ],
-                "pixelSha256": "3fb9f9d5030b765892b498c17200074da2d403f4bfdcd6cdfc6234a88bd3c712"
+                "pixelSha256": "afcc1a22a1681d89bc96c019d64a7a7efe09ae071610ddb29a235b449c642260"
               }
             },
             "distinctFrames": 4
@@ -51013,7 +51013,7 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment",
           "previousRevisions": [
             {
               "sourceSha256": "a9c2b5eed4901ff8faf2ac29b07a9cdda60cb0109be8266b4228c4d6906a3fd9",
@@ -51091,7 +51091,7 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment",
           "previousRevisions": [
             {
               "sourceSha256": "ceca39a22ee2876ff9e1d52f894a7a6bd0d223103fca0b14f85c37afa99caad8",
@@ -51169,7 +51169,7 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "dodge": {
           "sourceSha256": "2e1b9afb389baa21e10bed14981b792ec8c08a469532f2ea81716057fe2b69bd",
@@ -51207,7 +51207,7 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "block_shield": {
           "sourceSha256": "3ab24402c7aec3ad77b26664e053623ae98031e8929020c99160566235615e39",
@@ -51245,7 +51245,7 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "walk": {
           "sourceSha256": "23ab0a68710306fc9db43396e840aa0d9787e0fc652174ee8292695ef77fc943",
@@ -51283,10 +51283,10 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_sword": {
-          "sourceSha256": "224e31b548cb7071130ea57b90483d70f2801f0b62cfe104805a507bb7dafc88",
+          "sourceSha256": "1ed45d6ec97241935dd68443f3868fff427a7d6355f8180fcb65f556e027c5d5",
           "sourceDimensions": [
             2172,
             724
@@ -51311,7 +51311,7 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/brujo/f/source/attack_sword-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/brujo/f/source/attack_sword-reference-v3.png",
           "generator": "built-in imagegen",
           "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY BRUJO FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_sword. Young adult female warlock: long deep violet hair with swept bangs, pale composed face, small dark violet browband. Charcoal and dark plum split ritual robe with rich violet lining and muted antique gold edging, high fitted collar, pale grey inner tunic and front panel, layered dark purple shoulder mantle, brown-black waist belt and boots, discreet dark fingerless gloves. Fully covered practical robe, exact canonical female skeleton and readable hands. No staff, skull, floating book, magic, aura or particles. Long hair falls close behind the shoulders and back, with no wide sideways sweep. Keep robe and cloak tails close to the legs, narrow silhouette inside exact canonical limits. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (212,193), other hand (347,276); figure 2: primary contact (811,115), other hand (885,280); figure 3: primary contact (1506,419), other hand (1433,306); figure 4: primary contact (1828,193), other hand (1976,276). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_sword-reference.png",
@@ -51321,7 +51321,47 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "224e31b548cb7071130ea57b90483d70f2801f0b62cfe104805a507bb7dafc88",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                620,
+                15,
+                1030,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                17,
+                91
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/brujo/f/source/attack_sword-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY BRUJO FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_sword. Young adult female warlock: long deep violet hair with swept bangs, pale composed face, small dark violet browband. Charcoal and dark plum split ritual robe with rich violet lining and muted antique gold edging, high fitted collar, pale grey inner tunic and front panel, layered dark purple shoulder mantle, brown-black waist belt and boots, discreet dark fingerless gloves. Fully covered practical robe, exact canonical female skeleton and readable hands. No staff, skull, floating book, magic, aura or particles. Long hair falls close behind the shoulders and back, with no wide sideways sweep. Keep robe and cloak tails close to the legs, narrow silhouette inside exact canonical limits. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (212,193), other hand (347,276); figure 2: primary contact (811,115), other hand (885,280); figure 3: primary contact (1506,419), other hand (1433,306); figure 4: primary contact (1828,193), other hand (1976,276). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_sword-reference.png",
+              "canonicalPoseHashes": [
+                "2cdc01930823f3356c34672d3037877c10a3b25337d5ff78350f147e0f5fba9a",
+                "db31283eb15589cf13fb33aac39b277606ed938f4afe84955356f0253579e4e0",
+                "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
+                "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
+              ],
+              "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
+            }
+          ]
         },
         "attack_axe": {
           "sourceSha256": "3903a186b24e2910507f96f6ba1084561e99b320d0ea92c5377abe0a312db9aa",
@@ -51359,7 +51399,7 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_spear": {
           "sourceSha256": "46897fa5ab218c45e334cab6690ca2ada474d340578a371848303e5ce3a6c51d",
@@ -51397,7 +51437,7 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment",
           "previousRevisions": [
             {
               "sourceSha256": "7ba314bac8055cb48df89784304069950ce6d2441b420ba78f0a9fd685471bf3",
@@ -51513,7 +51553,7 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_bow": {
           "sourceSha256": "9ff531ea0b0705d29b046774e369d4c7c09e3a6a41963e25845222d6ad49804d",
@@ -51551,7 +51591,7 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_staff": {
           "sourceSha256": "8fe0e6717a4375085d0b7aa97fb19315c72729dc7826c60cbe87fca7651c87a6",
@@ -51589,7 +51629,7 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_mace": {
           "sourceSha256": "9617fede08528e4dba0475af578b69e9a2987e8ebfd582e7ac8272e3fcaca2b3",
@@ -51627,7 +51667,7 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_book": {
           "sourceSha256": "54c92eecf8e94a0141e324410a3996c3a95812c068e603b01d21d2080987d912",
@@ -51665,7 +51705,7 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         },
         "attack_gloves": {
           "sourceSha256": "2d665a6a1e9684a1e46976d83b3f8403d5df9e6d8a312a0f525208ee3ecd0bbe",
@@ -51703,7 +51743,7 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-assistant-reviewed-with-shared-equipment"
         }
       },
       "frameProvenance": {
@@ -51961,16 +52001,16 @@
           "frameIndex": "shared-body-and-equipment",
           "frames": [
             {
-              "bodySha256": "ea2982b185636dd63860f2bb66dae2f9c242407ad61406e85cae8ce665fc01aa"
+              "bodySha256": "4c053db5329cc45351edb45b186587384f1e8833daef274ee778462bd7c25c0c"
             },
             {
-              "bodySha256": "27611b2a58b8bbbd6ff8930c47f50961fef7acab7f86a38bf821cebf5621fe6c"
+              "bodySha256": "47cf68df36a62a632379ac03be55580137890040724b94ce55c0759d22ad098b"
             },
             {
-              "bodySha256": "51f92d19a5d64fd6df079151e2c5575c66ced62dcb5603443ed32ddf8985269c"
+              "bodySha256": "31382b6e610ff26774a9517032473f54a4b4b0f81eef26f69715a2030dd988b4"
             },
             {
-              "bodySha256": "7a7c59a1f18333b4bbaa171893d8f8b4f9b94d472dce8097ba8b785daab86225"
+              "bodySha256": "1331c06d992ee06b2e6df38523c594cc728006cfa64d27fe1730c9413bb0a6a9"
             }
           ],
           "limitations": [
@@ -51979,6 +52019,16 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-assistant-reviewed-candidate",
+      "equipmentCompatibility": {
+        "status": "shared-layers-reviewed-candidate",
+        "report": "assets/spritesheets/hd-128x256/brujo/f/equipment-review/qa-report.json",
+        "contactChecks": 682,
+        "warnings": 0,
+        "classSpecificOffsets": false,
+        "equipmentLayerPolicy": "Exactly the existing sheets for this sex; no equipment changes to fit the new body.",
+        "userApproval": "pending"
       }
     }
   ],
@@ -52647,7 +52697,7 @@
     }
   },
   "tier2Production": {
-    "status": "in-progress",
+    "status": "candidate-library-complete-user-review-pending",
     "classesInOrder": [
       "caballero",
       "duelista",
@@ -52675,9 +52725,10 @@
       "explorador-f",
       "elementalista-m",
       "elementalista-f",
-      "brujo-m"
+      "brujo-m",
+      "brujo-f"
     ],
-    "bodyFramesPresent": 900,
+    "bodyFramesPresent": 960,
     "sharedEquipment": "Existing male/female rigs and equipment sheets unchanged",
     "runtimePromotion": "pending-complete-variant-review-and-user-approval"
   }

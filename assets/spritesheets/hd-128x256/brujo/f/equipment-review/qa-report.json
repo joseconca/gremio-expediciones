@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "brujo",
   "sex": "f",
   "actions": [
@@ -69,10 +69,10 @@
       "4d116a1e6a04c86705381b249d8940df6ee3540672309efa73105683236018a0"
     ],
     "attack_spear": [
-      "e7de53887d70e06762a461471cb9e32ca510dd7779bac8c7caac8006b60d8b9b",
-      "d07e47917e33a2569f1fe370b513b185414fcf8432f4f3de76a40c54a3a86536",
-      "49cbf3be612c5241bf97d2f1af2f9701057d8ac975f7d4d4e2570d5b034e769e",
-      "59a1101ae787aeab8aa039eda28d9dbe2cc4fde35e9110e89f7005d0782eaede"
+      "eaa2420e081349d31ef4188c82f91d841d986d6e9cd7c6102a9e51e90b2f8481",
+      "5fcc2c279810df954670b4aa923135c007bad76984820d84086a0e5cc54c6e6f",
+      "f9bc69df3a0480803ac7be102003492115a0077506be3652adf5be4509ca99d5",
+      "27aa09dd0ad84e975b0c2c8748d64f6d0137170661c6ea595c4a8c714aa09b54"
     ],
     "attack_dagger": [
       "310ab331f27c18e58e9fbe1ca1a9e7fdb01288ddddfbf71974446ceb2f60aa3f",
@@ -112,26 +112,7 @@
     ]
   },
   "contactChecks": 682,
-  "warnings": [
-    {
-      "action": "attack_spear",
-      "frame": 4,
-      "item": "lanza_escama",
-      "point": [
-        107,
-        145
-      ]
-    },
-    {
-      "action": "attack_spear",
-      "frame": 4,
-      "item": "lanza_madera",
-      "point": [
-        107,
-        145
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
 }
