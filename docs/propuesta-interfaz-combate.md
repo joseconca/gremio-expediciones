@@ -17,3 +17,9 @@ Cambiar la presentación manteniendo los controladores y contratos actuales de `
 - Mantener victoria, derrota, retirada, recompensas, pérdidas, botín e informes/cierre.
 
 Los datos, costes y acciones de la propuesta son ejemplos visuales, no implementaciones alternativas de estas reglas. Antes de integrar, conectar cada control a su función existente y verificar solo y party en móvil y escritorio.
+
+## Revisión: información integrada
+
+Historial y detalles comparten el panel central en escritorio. Habilidades y Objetos despliegan su lista a la derecha conservando las cuatro órdenes. En móvil el panel se adapta y las fichas de combatientes alternan entre aliados y enemigos para ahorrar espacio. Seleccionar un enemigo en la escena abre su pestaña; también puede seleccionarse desde su ficha.
+
+Se elimina el mensaje textual de selección y se añade un pulso discreto a la flecha, desactivado con movimiento reducido. Las fichas enemigas muestran nombres y PV del catálogo. El modelo actual `DefinicionEnemigo` no tiene reservas de maná/energía: se muestra un guion en lugar de inventar recursos. Los datos siguen siendo de demostración, sin llamadas a acciones reales.

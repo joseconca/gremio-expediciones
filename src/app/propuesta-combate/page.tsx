@@ -5,6 +5,7 @@ import Link from "next/link";
 import SpriteHeroeAnimado from "@/components/combate/SpriteHeroeAnimado";
 import SpriteEnemigoAnimado from "@/components/combate/SpriteEnemigoAnimado";
 import { ENEMIGOS_HD } from "@/lib/sprites-enemigos-hd";
+import { obtenerEnemigoPorId } from "@/lib/enemigos";
 import styles from "./preview.module.css";
 
 const HEROES = [
@@ -24,10 +25,12 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
   const [objetivo, setObjetivo] = useState(0);
   const [accion, setAccion] = useState<"idle" | "attack" | "hurt">("idle");
   const [inicio, setInicio] = useState(0);
-  const [mensaje, setMensaje] = useState("Elige un objetivo y una orden.");
   const [menu, setMenu] = useState<"principal" | "habilidades" | "objetos">("principal");
-  const [registro, setRegistro] = useState(false);
-  const [detalles, setDetalles] = useState(false);
+  const [panel, setPanel] = useState<"detalles" | "historial">("historial");
+  const [expandido, setExpandido] = useState(false);
+  const [bando, setBando] = useState<"aliados" | "enemigos">("aliados");
+  const [historial, setHistorial] = useState(["El grupo entra en el claro.", "Aldric está listo para actuar."]);
+  const [descripcion, setDescripcion] = useState("Atacar usa el arma equipada contra el enemigo marcado. Huir intenta abandonar el combate.");
   const [huido, setHuido] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
@@ -37,7 +40,8 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
   const ejecutar = (nombre: string, ahora: number, animacion: typeof accion = "attack") => {
     if (timer.current) clearTimeout(timer.current);
     setInicio(ahora); setAccion(animacion); setMenu("principal");
-    setMensaje(`${nombre} · ${ENEMIGOS_HD[enemigos[seleccionado]].name}`);
+    const linea = `${nombre} · ${ENEMIGOS_HD[enemigos[seleccionado]].name}`;
+    setHistorial(h => [...h.slice(-19), linea]);
     timer.current = setTimeout(() => setAccion("idle"), 1100);
   };
   const ancho = movil ? 390 : 1120;
@@ -64,7 +68,7 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
         const x = ancho * (enemigos.length === 1 ? 0.74 : [0.71, 0.81, 0.69][i]);
         const foot = altoEscena * (enemigos.length === 1 ? 0.8 : [0.48, 0.68, 0.88][i]);
         return <button key={id} className={`${styles.actor} ${styles.enemy}`} aria-label={`Seleccionar ${s.name}`} aria-pressed={seleccionado === i}
-          onClick={() => { setObjetivo(i); setMensaje(`Objetivo: ${s.name}`); }}
+          onClick={() => { setObjetivo(i); setBando("enemigos"); }}
           style={{ left: x, top: foot - s.height * unit, width: Math.max(64, radio * unit * 1.2), height: s.height * unit, "--unidad-enemigo": `${unit}px`, zIndex: 10 + i } as CSSProperties}>
           <div className={`${styles.ground} ${seleccionado === i ? styles.enemyGround : ""}`} />
           <SpriteEnemigoAnimado enemigoId={id} nombre={s.name} accion={seleccionado === i && accion === "attack" ? "hurt" : seleccionado === i && accion === "hurt" ? "attack" : "idle"} inicioAnimacion={inicio} />
@@ -72,26 +76,48 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
           {seleccionado === i && accion === "attack" && <span className={styles.damage}>128</span>}
         </button>;
       })}
-      <div className={styles.caption}>{mensaje}</div>
+
     </div>
     <footer className={styles.hud}>
-      <div className={styles.roster} style={!party ? { gridTemplateColumns: "minmax(0, 1fr)" } : undefined}>{heroes.map((h, i) => <div key={h.nombre} className={`${styles.heroCard} ${i === 0 ? styles.activeCard : ""}`}>
-        <div className={styles.cardTitle}><strong>{h.nombre}</strong><span>{i === 0 ? "◆ ACTÚA" : h.clase}</span></div>
-        <div className={styles.stat}><span>PV</span><div className={styles.bar}><i style={{ width: `${h.hp / h.max * 100}%` }} /></div><b>{h.hp}<small>/{h.max}</small></b></div>
-        <div className={styles.stat}><span>{i === 1 || i === 3 ? "PM" : "EN"}</span><div className={`${styles.bar} ${styles.mana}`}><i style={{ width: "72%" }} /></div><b>{h.mp}</b></div>
-      </div>)}</div>
-      <div className={styles.orders}><div className={styles.orderTitle}><span>{menu === "principal" ? "Aldric" : menu === "habilidades" ? "Habilidades" : "Objetos"}</span></div>
-        <div className={styles.commandGrid}>{(menu === "principal" ? ["Atacar", "Habilidades", "Objetos", "Huir"] : menu === "habilidades" ? ["Corte poderoso", "Golpe certero", "Bloquear", "Volver"] : ["Poción", "Éter", "Antídoto", "Volver"]).map((label, i) => <button key={label} disabled={accion !== "idle" || huido} onClick={() => {
-          if (label === "Habilidades") setMenu("habilidades"); else if (label === "Objetos") setMenu("objetos"); else if (label === "Volver") setMenu("principal");
-          else if (label === "Huir") { setHuido(true); setMensaje("Has salido del combate · demostración"); }
-          else if (label === "Atacar" || label === "Corte poderoso" || label === "Golpe certero") ejecutar(label, performance.now());
-          else { setMensaje(`${label} seleccionado · demostración visual`); setMenu("principal"); }
-        }}><span aria-hidden="true">{i === 0 ? "▸" : ""}</span>{label}{menu !== "principal" && label !== "Volver" && <small>{menu === "objetos" ? ["×3", "×1", "×2"][i] : ["18 EN", "12 EN", "8 EN"][i]}</small>}</button>)}</div>
+      <div className={`${styles.roster} ${styles.combatants}`}>
+        <div className={styles.rosterTabs}><button aria-pressed={bando === "aliados"} onClick={() => setBando("aliados")}>Aliados · {heroes.length}</button><button aria-pressed={bando === "enemigos"} onClick={() => setBando("enemigos")}>Enemigos · {enemigos.length}</button></div>
+        {bando === "aliados" ? heroes.map((h, i) => <div key={h.nombre} className={`${styles.heroCard} ${i === 0 ? styles.activeCard : ""}`}>
+          <div className={styles.cardTitle}><strong>{h.nombre}</strong><span>{i === 0 ? "◆ ACTÚA" : h.clase}</span></div>
+          <div className={styles.stat}><span>PV</span><div className={styles.bar}><i style={{ width: `${h.hp / h.max * 100}%` }} /></div><b>{h.hp}<small>/{h.max}</small></b></div>
+          <div className={styles.stat}><span>{i === 1 || i === 3 ? "PM" : "EN"}</span><div className={`${styles.bar} ${styles.mana}`}><i style={{ width: "72%" }} /></div><b>{h.mp}</b></div>
+        </div>) : enemigos.map((id, i) => {
+          const e = obtenerEnemigoPorId(id);
+          const hp = e?.hp ?? 100;
+          return <button key={id} className={`${styles.heroCard} ${styles.enemyCard} ${seleccionado === i ? styles.selectedEnemyCard : ""}`} aria-label={`Ver ${ENEMIGOS_HD[id].name}`} aria-pressed={seleccionado === i} onClick={() => setObjetivo(i)}>
+            <div className={styles.cardTitle}><strong>{ENEMIGOS_HD[id].name}</strong><span>{seleccionado === i ? "◆ MARCADO" : "ENEMIGO"}</span></div>
+            <div className={styles.stat}><span>PV</span><div className={`${styles.bar} ${styles.enemyHealth}`}><i style={{width:"100%"}} /></div><b>{hp}<small>/{hp}</small></b></div>
+            <div className={styles.stat}><span>PM/EN</span><span className={styles.noResource} title="El combate actual no asigna maná ni energía a los enemigos">—</span></div>
+          </button>;
+        })}
       </div>
-      <div className={styles.utilities}><button onClick={() => setDetalles(!detalles)}>Detalles</button><span>·</span><button onClick={() => setRegistro(!registro)}>Historial</button></div>
-      {detalles && <div className={styles.log}><button onClick={() => setDetalles(false)} aria-label="Cerrar detalles">×</button><strong>{ENEMIGOS_HD[enemigos[seleccionado]].name}</strong><p>PV 760 / 1000 · Posición: frente</p><p>Aldric · PV 840 / 1080 · EN 64</p><small>Datos de muestra. En el juego se conservan las estadísticas, efectos y recursos reales.</small></div>}
-      {huido && <div className={styles.exitPanel}><strong>Has salido del combate</strong><p>Demostración de la acción Huir.</p><button onClick={() => { setHuido(false); setMensaje("Elige un objetivo y una orden."); }}>Volver a la vista previa</button></div>}
-      {registro && <div className={styles.log}><button onClick={() => setRegistro(false)} aria-label="Cerrar registro">×</button><strong>Registro de combate</strong><p>El grupo entra en el claro.</p><p>{mensaje}</p><small>Demostración: no consume recursos ni modifica tu partida.</small></div>}
+      <div className={styles.orders}><div className={styles.orderTitle}><span>Aldric</span></div>
+        <div className={styles.commandGrid}>{["Atacar", "Habilidades", "Objetos", "Huir"].map((label, i) => <button key={label} aria-expanded={i === 1 ? menu === "habilidades" : i === 2 ? menu === "objetos" : undefined} disabled={accion !== "idle" || huido} onClick={() => {
+          if (label === "Habilidades" || label === "Objetos") { const next = label === "Habilidades" ? "habilidades" : "objetos"; setMenu(menu === next ? "principal" : next); setPanel("detalles"); setDescripcion(next === "habilidades" ? "Selecciona una técnica. El coste se muestra a la derecha." : "Selecciona un consumible. La cantidad disponible se muestra a la derecha."); }
+          else if (label === "Huir") { setHuido(true); setHistorial(h => [...h, "Aldric sale del combate (demostración)."]); }
+          else ejecutar(label, performance.now());
+        }}><span aria-hidden="true">{i === 0 ? "▸" : ""}</span>{label}{(i === 1 || i === 2) && <small>›</small>}</button>)}</div>
+      </div>
+      <section className={`${styles.contextPanel} ${expandido ? styles.contextExpanded : ""} ${menu !== "principal" ? styles.withSubmenu : ""}`} aria-label="Información del combate">
+        <div className={styles.contextTabs}><button aria-pressed={panel === "historial"} onClick={() => { setPanel("historial"); setExpandido(panel === "historial" ? !expandido : true); }}>Historial</button><button aria-pressed={panel === "detalles"} onClick={() => { setPanel("detalles"); setExpandido(panel === "detalles" ? !expandido : true); }}>Detalles</button>{movil && expandido && <button aria-label="Contraer información" onClick={() => setExpandido(false)}>−</button>}</div>
+        {menu !== "principal" && <div className={styles.submenu} aria-label={menu === "habilidades" ? "Lista de habilidades" : "Lista de objetos"}>
+          <div className={styles.submenuTitle}><strong>{menu === "habilidades" ? "Habilidades" : "Objetos"}</strong><button aria-label="Cerrar lista" onClick={() => setMenu("principal")}>×</button></div>
+          {(menu === "habilidades" ? ["Corte poderoso", "Golpe certero", "Bloquear"] : ["Poción", "Éter", "Antídoto"]).map((nombre, i) => {
+            const texto = menu === "habilidades" ? ["Un golpe reforzado con el arma equipada. Coste: 18 EN.", "Un ataque preciso contra un enemigo. Coste: 12 EN.", "Una técnica defensiva. Coste: 8 EN."][i] : ["Recupera puntos de vida. Disponibles: 3.", "Recupera maná. Disponible: 1.", "Elimina veneno. Disponibles: 2."][i];
+            return <button key={nombre} disabled={accion !== "idle" || huido} onFocus={() => setDescripcion(texto)} onMouseEnter={() => setDescripcion(texto)} onClick={() => {
+              if (menu === "habilidades" && i < 2) ejecutar(nombre, performance.now());
+              else { const linea = `${nombre} utilizado · demostración`; setHistorial(h => [...h.slice(-19), linea]); setMenu("principal"); }
+            }}><span>{nombre}</span><small>{menu === "habilidades" ? ["18 EN", "12 EN", "8 EN"][i] : ["×3", "×1", "×2"][i]}</small></button>;
+          })}
+        </div>}
+        <div className={styles.contextBody} aria-live="polite">{panel === "historial" ? <ol>{historial.map((linea, i) => <li key={i}>{linea}</li>)}</ol> : <p>{descripcion}</p>}</div>
+      </section>
+      {huido && <div className={styles.exitPanel}><strong>Has salido del combate</strong><p>Demostración de la acción Huir.</p><button onClick={() => { setHuido(false); }}>Volver a la vista previa</button></div>}
+
     </footer>
   </div>;
 }
