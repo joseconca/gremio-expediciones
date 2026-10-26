@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "classId": "cazador",
+  "sex": "m",
+  "actions": [
+    "idle",
+    "walk",
+    "hurt",
+    "use_consumable"
+  ],
+  "bodyHashes": {
+    "idle": [
+      "7cfd91836c34fea6811126230c5af4be6a1ceac3d3279510374eeb983ea9aef7",
+      "00ed4070f5e06f2345ff9897a04bd8c01ff1baf7abdb695955df99436a6b0312",
+      "5baccbddc6f0701263fda4183f350ee2f5ed135aaec510606094cd5ee6d85e4e",
+      "daa4dcdbfc5335b42d2cc6b14fc0abb07a318d132aa16952c1df28a0d420f6a9"
+    ],
+    "walk": [
+      "71183eb6f3b645d365aa3dfd791dbea950addf260d3653975361e97b393ee162",
+      "49281b634d7303b07e6cf2b0186f9f389f73aa1cb65a76a864b41a02e86004d8",
+      "a6c86e18deff3a90fb13e9b52a7bcb467416c83eccacae341c915d1a376ed07a",
+      "48cb5283ca6de692bce224ba030e0d7f3bf816815cf56176d3ec9f5c0159a992"
+    ],
+    "hurt": [
+      "dc5c9fba2ab4baf5054bf5adc1c5dcf7e8ff81e8bf8d988f980f0bc4f8999f68",
+      "4ac52c49b856dc4bd1e084cedc22b4cfab9e4462aa355b0eb5dec045974bd29d",
+      "a343ac412306b467506dc6386b7c806fe957b6c4eca3df94e1bc05ffc2266cd4",
+      "30d3efc6b3ff0a8333cea848a8ee893fe5a00e17486c9f84d83155c7217a8b0a"
+    ],
+    "use_consumable": [
+      "2528e7e769737f3149fbcefbcb43137b03af5e190821f8f1bad8d34760a5bbf1",
+      "6037014b0b6ea9b948a06710c135ecc2ccc45d912bc29075516f9cca9077672a",
+      "899c5605f2d49d6940151070fa2d6ce279d4e7cdfaeeffe069e8c778a6559bc4",
+      "1aea2b262000cc6edab9f31d0a24a8e8286e0e6222b2290886fc2cd7a74290f1"
+    ]
+  },
+  "contactChecks": 388,
+  "warnings": [],
+  "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
+  "artisticApproval": "not-automatic"
+}
