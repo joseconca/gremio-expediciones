@@ -1276,6 +1276,22 @@ export default function CombateModal({
           )}
         </section>
 
+        {partyMode && (
+          <div className={styles.turnStatus}>
+            <p className="truncate text-center text-[10px] font-bold text-amber-200">
+              {partyMode.estadoJugador === "huyo"
+                ? "Has huido de la batalla; sigues en la party y esperas a que termine."
+                : partyMode.estadoJugador === "caido"
+                  ? "Has caído en combate. El grupo sigue luchando."
+                  : puedeActuarJugador
+                    ? "Es tu turno: elige una acción."
+                    : partyMode.faseTurno === "enemigo"
+                      ? "El enemigo está actuando..."
+                      : `Esperando el turno de ${partyMode.participantes.find((p) => p.usuarioId === partyMode.turnoActualUsuarioId)?.nombre ?? "otro aventurero"}.`}
+            </p>
+          </div>
+        )}
+
         {/* ZONA INFERIOR (Acciones Flexibles | Panel Dinámico) */}
         <section className={styles.dock}>
 
@@ -1371,22 +1387,6 @@ export default function CombateModal({
               </button>
             </div>
           </div>
-
-          {partyMode && (
-            <div className="absolute bottom-full left-0 right-0 z-10 border-b border-stone-800 bg-stone-950/95 px-3 py-1.5">
-              <p className="truncate text-center text-[10px] font-bold text-amber-200">
-                {partyMode.estadoJugador === "huyo"
-                  ? "Has huido de la batalla; sigues en la party y esperas a que termine."
-                  : partyMode.estadoJugador === "caido"
-                    ? "Has caído en combate. El grupo sigue luchando."
-                    : puedeActuarJugador
-                      ? "Es tu turno: elige una acción."
-                      : partyMode.faseTurno === "enemigo"
-                        ? "El enemigo está actuando..."
-                        : `Esperando el turno de ${partyMode.participantes.find((p) => p.usuarioId === partyMode.turnoActualUsuarioId)?.nombre ?? "otro aventurero"}.`}
-              </p>
-            </div>
-          )}
 
           {/* DERECHA: PANEL DINÁMICO (Registro / Menús) - Ocupa el resto del espacio */}
           <div className={styles.content}>

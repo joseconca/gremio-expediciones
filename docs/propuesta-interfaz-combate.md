@@ -70,3 +70,10 @@ La revisión se aplica al combate real PvE solo/party y al asedio. `EstadoSobreA
 En móvil las tres posiciones usan coordenadas distintas de profundidad, manteniendo el valor táctico persistido. La distribución deja margen superior para las barras. Los enemigos normales se normalizan según la altura real de su atlas: estar junto a un borde ajusta su posición antes de reducirlos. Los bosses conservan su escala especial. El menú inferior queda dedicado a acciones e historial, con 202 px en móvil y 232 px en escritorio (174 px en horizontal corto).
 
 La party envía las comidas activas y los identificadores de pasivas equipadas para mostrar los indicadores de cada integrante. Se conservan acciones, restricciones por modo, turnos, recursos, cooldowns, objetivos, animaciones, estados, informes y recompensas. No requiere cambios de esquema ni migración de datos.
+
+
+## Separación del turno y anclaje de sombras
+
+El aviso de espera/turno de party ocupa una franja de 24 px en el flujo entre escena y menú, sin superponerse al área de personajes. El menú se compacta a 180 px en móvil, 196 px en escritorio y 164 px en horizontal corto. Se verificó en móvil que los actores inferiores conservan 18 px de separación respecto a la franja.
+
+Héroes HD, héroes legacy y enemigos comparten `estiloSombraCombate`: proyección achatada hacia el fondo, origen en el centro inferior de los pies, sin inversión horizontal adicional. Se mantienen el frame, el equipo y la orientación del actor. Una prueba geométrica verifica que ambos pies permanecen fijos, la silueta se proyecta hacia arriba y conserva el orden izquierda/derecha.

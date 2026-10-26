@@ -7,6 +7,7 @@ import {
 } from "@/lib/configuracionJuego";
 import { esClaseHeroeHd, type AccionHeroeHd } from "@/lib/sprites-heroes-hd";
 import SpriteHeroeHd from "./SpriteHeroeHd";
+import { estiloSombraCombate } from "@/lib/expediciones/sombra-combate";
 
 export type AccionSpriteHeroe = AccionHeroeHd;
 
@@ -64,15 +65,12 @@ function SpriteHeroeLegacy({
   };
 
   if (sombra) {
-    const transformSombra = contextoSombra === "party"
-      ? "translateY(36%) perspective(110px) rotateX(65deg) scaleX(-1) scale(1.05,-0.65)"
-      : "translateY(42%) perspective(160px) rotateX(65deg) scaleX(-1) scale(1.1,-0.9)";
-
     return (
       <div
         aria-hidden="true"
         className={`pointer-events-none absolute inset-0 z-0 overflow-visible ${contextoSombra === "party" ? "opacity-45 blur-[1px]" : "opacity-60 blur-xs"}`}
-        style={{ transform: transformSombra }}
+        data-sombra-combate
+        style={estiloSombraCombate(contextoSombra)}
       >
         <div
           className="hero-sprite-animated pointer-events-none absolute inset-y-0 left-1/2 h-full aspect-[1/2] -translate-x-1/2 bg-no-repeat brightness-0"

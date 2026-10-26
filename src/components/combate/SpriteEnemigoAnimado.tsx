@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { obtenerRutaSpriteEnemigo } from "@/lib/enemigos";
 import { ENEMIGOS_HD, dibujarEnemigoHd, fotogramaEnemigoHd, type AccionEnemigoHd } from "@/lib/sprites-enemigos-hd";
+import { estiloSombraCombate } from "@/lib/expediciones/sombra-combate";
 
 const imagenes = new Map<string, Promise<HTMLImageElement>>();
 function cargar(src: string) {
@@ -60,5 +61,5 @@ export default function SpriteEnemigoAnimado({ enemigoId, nombre, accion = "idle
       : <Image src={obtenerRutaSpriteEnemigo(enemigoId)} alt="" fill sizes="180px" className="object-contain" style={{ transform: reflejado ? "scaleX(-1)" : undefined }} />}
   </div>;
   return sombra ? <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 overflow-visible opacity-45 blur-[1px]"
-    style={{ transform: "translateY(36%) perspective(110px) rotateX(65deg) scale(1.05,-0.65)" }}>{actor}</div> : actor;
+    data-sombra-combate style={estiloSombraCombate("party")}>{actor}</div> : actor;
 }

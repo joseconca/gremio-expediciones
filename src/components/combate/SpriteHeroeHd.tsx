@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { obtenerCapasHeroeHd, obtenerFotogramaHeroeHd, type AccionHeroeHd, type SexoSpriteHd } from "@/lib/sprites-heroes-hd";
 import { dibujarHeroeHd } from "@/lib/dibujar-heroe-hd";
+import { estiloSombraCombate } from "@/lib/expediciones/sombra-combate";
 
 const imagenes = new Map<string, Promise<HTMLImageElement>>();
 function cargar(ruta: string) {
@@ -61,5 +62,5 @@ export default function SpriteHeroeHd({ claseId, sexo, nombre, accion, armaId, e
   </div>;
   if (!sombra) return actor;
   return <div aria-hidden="true" className={`pointer-events-none absolute inset-0 z-0 overflow-visible ${contextoSombra === "party" ? "opacity-45 blur-[1px]" : "opacity-60 blur-xs"}`}
-    style={{ transform: contextoSombra === "party" ? "translateY(36%) perspective(110px) rotateX(65deg) scale(1.05,-0.65)" : "translateY(42%) perspective(160px) rotateX(65deg) scale(1.1,-0.9)" }}>{actor}</div>;
+    data-sombra-combate style={estiloSombraCombate(contextoSombra)}>{actor}</div>;
 }
