@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "status": "passed",
-  "assembledAtUtc": "2026-10-26T10:23:21.666463+00:00",
+  "assembledAtUtc": "2026-10-26T10:26:52.383843+00:00",
   "classId": "brujo",
   "sex": "f",
   "sheetPath": "assets\\spritesheets\\hd-128x256\\brujo\\f\\brujo-f-sheet.png",
-  "sheetSha256": "a4052169a03591c86b33841525dcec09144e7ef274790edc2cb51e8b28c291aa",
+  "sheetSha256": "2ac81fee1f81983d5c7654a0164ce09b093870b5ec6268bcdf1d95bfe3aca038",
   "sheetDimensions": [
     512,
     3840
@@ -337,44 +337,44 @@
         {
           "frame": 1,
           "path": "assets\\spritesheets\\hd-128x256\\brujo\\f\\frames\\attack_sword\\brujo-f-attack_sword-01.png",
-          "sha256": "ea2982b185636dd63860f2bb66dae2f9c242407ad61406e85cae8ce665fc01aa",
+          "sha256": "4c053db5329cc45351edb45b186587384f1e8833daef274ee778462bd7c25c0c",
           "alpha_bbox": [
-            20,
+            18,
             92,
-            112,
+            109,
             248
           ]
         },
         {
           "frame": 2,
           "path": "assets\\spritesheets\\hd-128x256\\brujo\\f\\frames\\attack_sword\\brujo-f-attack_sword-02.png",
-          "sha256": "27611b2a58b8bbbd6ff8930c47f50961fef7acab7f86a38bf821cebf5621fe6c",
+          "sha256": "47cf68df36a62a632379ac03be55580137890040724b94ce55c0759d22ad098b",
           "alpha_bbox": [
-            20,
+            25,
             91,
-            110,
+            111,
             248
           ]
         },
         {
           "frame": 3,
           "path": "assets\\spritesheets\\hd-128x256\\brujo\\f\\frames\\attack_sword\\brujo-f-attack_sword-03.png",
-          "sha256": "51f92d19a5d64fd6df079151e2c5575c66ced62dcb5603443ed32ddf8985269c",
+          "sha256": "31382b6e610ff26774a9517032473f54a4b4b0f81eef26f69715a2030dd988b4",
           "alpha_bbox": [
             16,
             97,
-            105,
+            104,
             248
           ]
         },
         {
           "frame": 4,
           "path": "assets\\spritesheets\\hd-128x256\\brujo\\f\\frames\\attack_sword\\brujo-f-attack_sword-04.png",
-          "sha256": "7a7c59a1f18333b4bbaa171893d8f8b4f9b94d472dce8097ba8b785daab86225",
+          "sha256": "1331c06d992ee06b2e6df38523c594cc728006cfa64d27fe1730c9413bb0a6a9",
           "alpha_bbox": [
-            11,
-            91,
-            102,
+            13,
+            92,
+            101,
             248
           ]
         }
