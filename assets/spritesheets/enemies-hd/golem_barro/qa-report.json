@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.9112814895947426,
+  "cellSize": [
+    448,
+    448
+  ],
+  "sheetSize": [
+    1792,
+    1792
+  ],
+  "requestedIdleHeight": 208,
+  "idleHeightMean": 208.25,
+  "actorAnchor": [
+    224,
+    435
+  ],
+  "baselineY": 435,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      155.0,
+      305.0
+    ],
+    [
+      155.0,
+      303.5
+    ],
+    [
+      145.5,
+      298.0
+    ],
+    [
+      155.0,
+      271.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/golem_barro/golem_barro-sheet.png",
+  "sheetSha256": "1e06da114aecdb57c439603e8828c576e5b03a681f8adc30ea89521aac571f9c",
+  "sourcePath": "assets/spritesheets/enemies-hd/golem_barro/source/sheet-v1.png",
+  "sourceSha256": "f2025388ebc3c8753ba81093d19c0f3b54c77e3085006ec55c818016cdb85ca4",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/golem_barro/frames/idle/golem_barro-idle-01.png",
+        "sha256": "d8d9caa8d5a86b17b746bafb9962e3350725d44b11ea085f8717700c7a930842",
+        "bounds": [
+          113,
+          226,
+          346,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/golem_barro/frames/idle/golem_barro-idle-02.png",
+        "sha256": "306faa97c81419df3b9ecc13cfe7910a3f3213b008e7886d788bd6bbfa28db5e",
+        "bounds": [
+          113,
+          227,
+          349,
+          435
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/golem_barro/frames/idle/golem_barro-idle-03.png",
+        "sha256": "2477c1866a0abc09e548db98c7b192a164894c7d846a200c75b2658eaca0d37e",
+        "bounds": [
+          113,
+          226,
+          347,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/golem_barro/frames/idle/golem_barro-idle-04.png",
+        "sha256": "407ac1314381b265e4276932ef5c4b95baeb04a7b8a181d79d5862930b27c8a9",
+        "bounds": [
+          114,
+          228,
+          348,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/golem_barro/frames/hurt/golem_barro-hurt-01.png",
+        "sha256": "1911776034bd5a12860293a03138931dc86fe355a593a1f16f43424c5e7dd59f",
+        "bounds": [
+          112,
+          228,
+          346,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/golem_barro/frames/hurt/golem_barro-hurt-02.png",
+        "sha256": "ab6e12959634206e0733dcf64543e3bc88361cdbec96e3649ab40b79532691ad",
+        "bounds": [
+          111,
+          240,
+          348,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/golem_barro/frames/hurt/golem_barro-hurt-03.png",
+        "sha256": "47694c2b932c59b78b03088de122fdcc563164899e9f46076dc8cb7ab85c7a24",
+        "bounds": [
+          135,
+          257,
+          338,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/golem_barro/frames/hurt/golem_barro-hurt-04.png",
+        "sha256": "eea2d427efbb6b04e389ed727a5195a329701b3e341f6dfbf9e91f15c4cf2103",
+        "bounds": [
+          115,
+          228,
+          348,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/golem_barro/frames/attack/golem_barro-attack-01.png",
+        "sha256": "039708f2c8cee1e9b7ce6ef0bffa6d4b4ef6d9faf68d5bf605c285b1d18131f0",
+        "bounds": [
+          132,
+          239,
+          361,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/golem_barro/frames/attack/golem_barro-attack-02.png",
+        "sha256": "46d6326533215a8f87b1d92c5b77b781ef0c45489e2184572f94798e77fa7453",
+        "bounds": [
+          136,
+          195,
+          370,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/golem_barro/frames/attack/golem_barro-attack-03.png",
+        "sha256": "65dbce3c32643d849a4efebd038c03b3eb3fb3f6a57f0951f423248ab06a5c08",
+        "bounds": [
+          125,
+          246,
+          416,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/golem_barro/frames/attack/golem_barro-attack-04.png",
+        "sha256": "baa9c9d433d0e3896787a8f800554fd9b4dd51f5259ef0d10ab06659050472e6",
+        "bounds": [
+          136,
+          238,
+          360,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/golem_barro/frames/dodge/golem_barro-dodge-01.png",
+        "sha256": "ae940402f8800c4821cce0fd25abf438a7a5ae9f6535ecc73abbe766e2df406c",
+        "bounds": [
+          114,
+          227,
+          347,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/golem_barro/frames/dodge/golem_barro-dodge-02.png",
+        "sha256": "669e16d43b6b4766dc4d48ec63e4542d0e6caa432e34355771f09f01b43b8cbe",
+        "bounds": [
+          121,
+          244,
+          346,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/golem_barro/frames/dodge/golem_barro-dodge-03.png",
+        "sha256": "d52c9541ca8bb85191d03ff505a5ac04035c9e80940bd912ea4ce4ae14f5b6ea",
+        "bounds": [
+          121,
+          270,
+          358,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/golem_barro/frames/dodge/golem_barro-dodge-04.png",
+        "sha256": "3999c1c2a9afadae56a7fdaaf9148bd562b27496799afb0efde5dbf742fe914b",
+        "bounds": [
+          113,
+          227,
+          346,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.6906474820143885,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 192,
+  "idleHeightMean": 192.0,
+  "actorAnchor": [
+    192,
+    371
+  ],
+  "baselineY": 371,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      169.5,
+      338.0
+    ],
+    [
+      168.0,
+      344.5
+    ],
+    [
+      163.5,
+      325.0
+    ],
+    [
+      163.5,
+      283.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/hombre_lagarto/hombre_lagarto-sheet.png",
+  "sheetSha256": "c4c5780a1a3f02c394dc64dcceb42390d6243fabd2fe30ab7f9dc6053321cbc9",
+  "sourcePath": "assets/spritesheets/enemies-hd/hombre_lagarto/source/sheet-v1.png",
+  "sourceSha256": "000c3e178fa9a544d86d5e00f2fe8ecd252d7424e59643a91942571251e0ce4c",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/hombre_lagarto/frames/idle/hombre_lagarto-idle-01.png",
+        "sha256": "0edf15c943607d92a26e236f4421d5e5e487e68c1aa9d2c3b018030f274fc2ac",
+        "bounds": [
+          94,
+          178,
+          287,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hombre_lagarto/frames/idle/hombre_lagarto-idle-02.png",
+        "sha256": "055c36db4dbe58e157eeb3b9f6162454598f24e6c1c8d238d5b5a21a9db4e19a",
+        "bounds": [
+          93,
+          180,
+          288,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hombre_lagarto/frames/idle/hombre_lagarto-idle-03.png",
+        "sha256": "09accace347afb437db2d1f575cfba8dc590e9cdc707503b445a1607b9409ffa",
+        "bounds": [
+          86,
+          178,
+          285,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hombre_lagarto/frames/idle/hombre_lagarto-idle-04.png",
+        "sha256": "c51a90df11dc501e5482408b6217725ba448f3fd20f2e549d19ac321fa06a0bc",
+        "bounds": [
+          93,
+          180,
+          288,
+          371
+        ],
+        "idleAnchorCorrectionX": 2
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/hombre_lagarto/frames/hurt/hombre_lagarto-hurt-01.png",
+        "sha256": "79699a350356a64b5bc961a48002ff244beb8c43d06b3aea7f9b5c3e0667fd54",
+        "bounds": [
+          98,
+          185,
+          283,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hombre_lagarto/frames/hurt/hombre_lagarto-hurt-02.png",
+        "sha256": "6f2e511a2b544aba7d018382e0efbe1b8e74a34f312508dedeabf169834bcd4a",
+        "bounds": [
+          94,
+          205,
+          285,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hombre_lagarto/frames/hurt/hombre_lagarto-hurt-03.png",
+        "sha256": "ac28d0f63eab671df8d1487e56862aaa3f296b59ca8f8cab5f94b0c627132784",
+        "bounds": [
+          102,
+          195,
+          282,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hombre_lagarto/frames/hurt/hombre_lagarto-hurt-04.png",
+        "sha256": "591cf560021a4847ae7b4d4947110725fcff8eeb546a08dc4021ba078789660f",
+        "bounds": [
+          95,
+          189,
+          277,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/hombre_lagarto/frames/attack/hombre_lagarto-attack-01.png",
+        "sha256": "89089a6b5c8a0b3720c73cd24d51754614304360875c2ff278780ecc055cd8f1",
+        "bounds": [
+          89,
+          198,
+          282,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hombre_lagarto/frames/attack/hombre_lagarto-attack-02.png",
+        "sha256": "07da39ca586b8604023a639d4de30a29b8e594ab1c15b95ff1ccc9ead0d0485b",
+        "bounds": [
+          95,
+          174,
+          273,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hombre_lagarto/frames/attack/hombre_lagarto-attack-03.png",
+        "sha256": "03fe065a6fdf91573dc31130365e681be1167d282c6139a9d6d128bed81ae381",
+        "bounds": [
+          80,
+          206,
+          330,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hombre_lagarto/frames/attack/hombre_lagarto-attack-04.png",
+        "sha256": "9cf289263d8cf0916ec38dc4a728d7036989e761cbeba614c19289934a0989ee",
+        "bounds": [
+          92,
+          202,
+          288,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/hombre_lagarto/frames/dodge/hombre_lagarto-dodge-01.png",
+        "sha256": "985edc59dda2c2ffb57658afb611a04897415395a2f90bba0dc0d5fe6f5693f4",
+        "bounds": [
+          93,
+          207,
+          282,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hombre_lagarto/frames/dodge/hombre_lagarto-dodge-02.png",
+        "sha256": "2a37135f26e8328dd0ced606799e74f3c1ac23c885e2665255c517726b835064",
+        "bounds": [
+          93,
+          220,
+          291,
+          368
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hombre_lagarto/frames/dodge/hombre_lagarto-dodge-03.png",
+        "sha256": "35ce8ea48a86e14591ae3afd115ed7cba9bb44a03937f721f38e8b190691fa44",
+        "bounds": [
+          80,
+          245,
+          293,
+          365
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/hombre_lagarto/frames/dodge/hombre_lagarto-dodge-04.png",
+        "sha256": "19f78de2f5276fce34f1b2bd7730f92c5d50d0d5f3ed9327a2032cc69a0b1181",
+        "bounds": [
+          106,
+          199,
+          283,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

@@ -1,14 +1,6 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "status": "in-progress",
-  "cellSize": [
-    256,
-    256
-  ],
-  "sheetSize": [
-    1024,
-    1024
-  ],
   "columns": 4,
   "actions": [
     "idle",
@@ -29,7 +21,17 @@
       "status": "candidate",
       "frames": 16,
       "sourceRevision": 3,
-      "report": "assets/spritesheets/enemies-hd/mimic/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/mimic/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 128,
+      "anchorMode": "ground"
     },
     {
       "id": "slime_acido",
@@ -41,7 +43,17 @@
       "status": "candidate",
       "frames": 16,
       "sourceRevision": 3,
-      "report": "assets/spritesheets/enemies-hd/slime_acido/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/slime_acido/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 96,
+      "anchorMode": "ground"
     },
     {
       "id": "rata_gigante",
@@ -53,7 +65,17 @@
       "status": "candidate",
       "frames": 16,
       "sourceRevision": 3,
-      "report": "assets/spritesheets/enemies-hd/rata_gigante/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/rata_gigante/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 112,
+      "anchorMode": "ground"
     },
     {
       "id": "goblin_explorador",
@@ -65,7 +87,17 @@
       "status": "candidate",
       "frames": 16,
       "sourceRevision": 1,
-      "report": "assets/spritesheets/enemies-hd/goblin_explorador/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/goblin_explorador/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 140,
+      "anchorMode": "ground"
     },
     {
       "id": "bandido_camino",
@@ -77,7 +109,17 @@
       "status": "candidate",
       "frames": 16,
       "sourceRevision": 1,
-      "report": "assets/spritesheets/enemies-hd/bandido_camino/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/bandido_camino/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 168,
+      "anchorMode": "ground"
     },
     {
       "id": "orco_despiadado",
@@ -89,7 +131,17 @@
       "status": "candidate",
       "frames": 16,
       "sourceRevision": 3,
-      "report": "assets/spritesheets/enemies-hd/orco_despiadado/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/orco_despiadado/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 192,
+      "anchorMode": "ground"
     },
     {
       "id": "esqueleto_guerrero",
@@ -101,7 +153,17 @@
       "status": "candidate",
       "frames": 16,
       "sourceRevision": 3,
-      "report": "assets/spritesheets/enemies-hd/esqueleto_guerrero/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/esqueleto_guerrero/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 168,
+      "anchorMode": "ground"
     },
     {
       "id": "ogro",
@@ -113,7 +175,17 @@
       "status": "candidate",
       "frames": 16,
       "sourceRevision": 1,
-      "report": "assets/spritesheets/enemies-hd/ogro/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/ogro/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 224,
+      "anchorMode": "ground"
     },
     {
       "id": "arana_sombras",
@@ -125,7 +197,17 @@
       "status": "candidate",
       "frames": 16,
       "sourceRevision": 3,
-      "report": "assets/spritesheets/enemies-hd/arana_sombras/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/arana_sombras/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 128,
+      "anchorMode": "ground"
     },
     {
       "id": "troll_cavernas",
@@ -137,7 +219,17 @@
       "status": "candidate",
       "frames": 16,
       "sourceRevision": 1,
-      "report": "assets/spritesheets/enemies-hd/troll_cavernas/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/troll_cavernas/qa-report.json",
+      "cellSize": [
+        448,
+        448
+      ],
+      "sheetSize": [
+        1792,
+        1792
+      ],
+      "idleHeight": 208,
+      "anchorMode": "ground"
     },
     {
       "id": "minotauro",
@@ -149,7 +241,17 @@
       "status": "candidate",
       "frames": 16,
       "sourceRevision": 1,
-      "report": "assets/spritesheets/enemies-hd/minotauro/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/minotauro/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 216,
+      "anchorMode": "ground"
     },
     {
       "id": "lobo_hambriento",
@@ -161,7 +263,17 @@
       "status": "candidate",
       "frames": 16,
       "sourceRevision": 1,
-      "report": "assets/spritesheets/enemies-hd/lobo_hambriento/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/lobo_hambriento/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 132,
+      "anchorMode": "ground"
     },
     {
       "id": "murcielago_sanguinario",
@@ -173,7 +285,17 @@
       "status": "candidate",
       "frames": 16,
       "sourceRevision": 1,
-      "report": "assets/spritesheets/enemies-hd/murcielago_sanguinario/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/murcielago_sanguinario/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 120,
+      "anchorMode": "air"
     },
     {
       "id": "avispa_gigante",
@@ -185,7 +307,17 @@
       "status": "candidate",
       "frames": 16,
       "sourceRevision": 2,
-      "report": "assets/spritesheets/enemies-hd/avispa_gigante/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/avispa_gigante/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 120,
+      "anchorMode": "air"
     },
     {
       "id": "kobold_trampero",
@@ -197,7 +329,17 @@
       "status": "candidate",
       "frames": 16,
       "sourceRevision": 1,
-      "report": "assets/spritesheets/enemies-hd/kobold_trampero/qa-report.json"
+      "report": "assets/spritesheets/enemies-hd/kobold_trampero/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 140,
+      "anchorMode": "ground"
     },
     {
       "id": "bandido_arbalestero",
@@ -206,7 +348,20 @@
       "boss": false,
       "rank": "I",
       "legacyPath": "public/sprites/enemies/I/bandido_arbalestero.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/bandido_arbalestero/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 168,
+      "anchorMode": "ground"
     },
     {
       "id": "zombie_errante",
@@ -215,7 +370,20 @@
       "boss": false,
       "rank": "I",
       "legacyPath": "public/sprites/enemies/I/zombie_errante.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/zombie_errante/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 168,
+      "anchorMode": "ground"
     },
     {
       "id": "hiena_salvaje",
@@ -224,7 +392,20 @@
       "boss": false,
       "rank": "I",
       "legacyPath": "public/sprites/enemies/I/hiena_salvaje.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/hiena_salvaje/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 132,
+      "anchorMode": "ground"
     },
     {
       "id": "cultista_encapuchado",
@@ -233,7 +414,20 @@
       "boss": false,
       "rank": "II",
       "legacyPath": "public/sprites/enemies/II/cultista_encapuchado.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/cultista_encapuchado/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 168,
+      "anchorMode": "ground"
     },
     {
       "id": "gnoll_merodeador",
@@ -242,7 +436,20 @@
       "boss": false,
       "rank": "II",
       "legacyPath": "public/sprites/enemies/II/gnoll_merodeador.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/gnoll_merodeador/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 184,
+      "anchorMode": "ground"
     },
     {
       "id": "ghoul_cripta",
@@ -251,7 +458,20 @@
       "boss": false,
       "rank": "II",
       "legacyPath": "public/sprites/enemies/II/ghoul_cripta.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/ghoul_cripta/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 176,
+      "anchorMode": "ground"
     },
     {
       "id": "hombre_lagarto",
@@ -260,7 +480,20 @@
       "boss": false,
       "rank": "II",
       "legacyPath": "public/sprites/enemies/II/hombre_lagarto.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/hombre_lagarto/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 192,
+      "anchorMode": "ground"
     },
     {
       "id": "golem_barro",
@@ -269,7 +502,20 @@
       "boss": false,
       "rank": "II",
       "legacyPath": "public/sprites/enemies/II/golem_barro.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/golem_barro/qa-report.json",
+      "cellSize": [
+        448,
+        448
+      ],
+      "sheetSize": [
+        1792,
+        1792
+      ],
+      "idleHeight": 208,
+      "anchorMode": "ground"
     },
     {
       "id": "oso_cavernario",
@@ -278,7 +524,20 @@
       "boss": false,
       "rank": "II",
       "legacyPath": "public/sprites/enemies/II/oso_cavernario.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "report": "assets/spritesheets/enemies-hd/oso_cavernario/qa-report.json",
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 184,
+      "anchorMode": "ground"
     },
     {
       "id": "espectro_errante",
@@ -287,7 +546,20 @@
       "boss": false,
       "rank": "II",
       "legacyPath": "public/sprites/enemies/II/espectro_errante.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 176,
+      "anchorMode": "air",
+      "report": "assets/spritesheets/enemies-hd/espectro_errante/qa-report.json"
     },
     {
       "id": "harpia_cazadora",
@@ -296,7 +568,20 @@
       "boss": false,
       "rank": "II",
       "legacyPath": "public/sprites/enemies/II/harpia_cazadora.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 176,
+      "anchorMode": "air",
+      "report": "assets/spritesheets/enemies-hd/harpia_cazadora/qa-report.json"
     },
     {
       "id": "nigromante_aprendiz",
@@ -305,7 +590,20 @@
       "boss": false,
       "rank": "II",
       "legacyPath": "public/sprites/enemies/II/nigromante_aprendiz.png",
-      "status": "pending"
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 1,
+      "cellSize": [
+        384,
+        384
+      ],
+      "sheetSize": [
+        1536,
+        1536
+      ],
+      "idleHeight": 168,
+      "anchorMode": "ground",
+      "report": "assets/spritesheets/enemies-hd/nigromante_aprendiz/qa-report.json"
     },
     {
       "id": "guardian_cripta",
@@ -551,8 +849,13 @@
       "status": "pending"
     }
   ],
-  "completedCandidates": 15,
-  "framesPresent": 240,
+  "completedCandidates": 27,
+  "framesPresent": 432,
   "framesExpected": 864,
-  "nextEnemy": "bandido_arbalestero"
+  "nextEnemy": "guardian_cripta",
+  "minimumCellSize": [
+    384,
+    384
+  ],
+  "sizePolicy": "Fixed species height in pixels relative to heroes; canvas grows for wide attacks, body never shrinks to fit."
 }

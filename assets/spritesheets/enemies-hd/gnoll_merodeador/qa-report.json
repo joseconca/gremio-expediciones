@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.7434343434343434,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 184,
+  "idleHeightMean": 184.0,
+  "actorAnchor": [
+    192,
+    371
+  ],
+  "baselineY": 371,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      149.0,
+      312.0
+    ],
+    [
+      148.0,
+      312.5
+    ],
+    [
+      156.0,
+      307.0
+    ],
+    [
+      205.0,
+      274.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/gnoll_merodeador/gnoll_merodeador-sheet.png",
+  "sheetSha256": "54dcc19b94a42c0a226d33330d31c6329069d36615fb0b6af9c6bd307f15d3db",
+  "sourcePath": "assets/spritesheets/enemies-hd/gnoll_merodeador/source/sheet-v1.png",
+  "sourceSha256": "d8731aa6c7e16dfc159f4dd1e8c974be47acb8b0064010e722232fd92b3f6394",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/gnoll_merodeador/frames/idle/gnoll_merodeador-idle-01.png",
+        "sha256": "28f2fba2089b333dd1974d3c17cdc0fb4e0aaf46d3db17a8866f0c1835e27cad",
+        "bounds": [
+          103,
+          187,
+          298,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gnoll_merodeador/frames/idle/gnoll_merodeador-idle-02.png",
+        "sha256": "95f1f52041d99c4ffe31c27b3512334ac49574f940e9379f20c22ffec1394681",
+        "bounds": [
+          106,
+          187,
+          297,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gnoll_merodeador/frames/idle/gnoll_merodeador-idle-03.png",
+        "sha256": "12a82c0c8d5745881f08ac55945c7c9703a002c67667dd93f69dc559f2ba20a8",
+        "bounds": [
+          103,
+          187,
+          297,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gnoll_merodeador/frames/idle/gnoll_merodeador-idle-04.png",
+        "sha256": "36ce3377d8d5cd7379e3d17a7c85e39a22047bf08cb837cc9ef989620418fea2",
+        "bounds": [
+          108,
+          187,
+          297,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/gnoll_merodeador/frames/hurt/gnoll_merodeador-hurt-01.png",
+        "sha256": "1e087cf512b6d227160c3116d137e32018c1bd026487d4187fcdf49ae7fd9fc0",
+        "bounds": [
+          101,
+          186,
+          298,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gnoll_merodeador/frames/hurt/gnoll_merodeador-hurt-02.png",
+        "sha256": "6edfdcef17e6cffe5e9f0ddd6fc48a3ac5222c1d399bfcdf7343951d2ca707af",
+        "bounds": [
+          112,
+          202,
+          295,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gnoll_merodeador/frames/hurt/gnoll_merodeador-hurt-03.png",
+        "sha256": "5af15ea3e2686c3d230dc7b511bc72e1c928de0494ca4338a0198a1001e2f989",
+        "bounds": [
+          129,
+          196,
+          296,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gnoll_merodeador/frames/hurt/gnoll_merodeador-hurt-04.png",
+        "sha256": "74884be29c6b4a90ba5fa3624a9915b8cba7f42a3923087406a744e9142573d7",
+        "bounds": [
+          108,
+          201,
+          298,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/gnoll_merodeador/frames/attack/gnoll_merodeador-attack-01.png",
+        "sha256": "2440ba5e60a2eef78a870b8a3f942372df4bceba4718aa6a7d9fc9809d5aa6d2",
+        "bounds": [
+          108,
+          208,
+          278,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gnoll_merodeador/frames/attack/gnoll_merodeador-attack-02.png",
+        "sha256": "58a921fc0e075e2fcd152a2ada86dffbe27e76c92cf07f2be4034c3567ab6820",
+        "bounds": [
+          112,
+          150,
+          279,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gnoll_merodeador/frames/attack/gnoll_merodeador-attack-03.png",
+        "sha256": "403bcb82ab9079498ee8b9cc609bf83739b2d02d3511c1fc99997dd4251b1687",
+        "bounds": [
+          88,
+          205,
+          323,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gnoll_merodeador/frames/attack/gnoll_merodeador-attack-04.png",
+        "sha256": "71f0efa29d7f637f490d898257d886f0828e3575afc7720d8b08bc16df41152b",
+        "bounds": [
+          108,
+          208,
+          298,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/gnoll_merodeador/frames/dodge/gnoll_merodeador-dodge-01.png",
+        "sha256": "5d500200eba04c3499eef1bbb4fff8b347fddd81acda98a7b40cb0a2f67e39e3",
+        "bounds": [
+          93,
+          199,
+          265,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gnoll_merodeador/frames/dodge/gnoll_merodeador-dodge-02.png",
+        "sha256": "39cd9ae93f33e462d23d7017d8cb34002ee958dc49626e4f668224e23bc13911",
+        "bounds": [
+          76,
+          225,
+          265,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gnoll_merodeador/frames/dodge/gnoll_merodeador-dodge-03.png",
+        "sha256": "7e8ee08f14e504184e932b1d0769eb486ce8f8eaaa625505e35fffc21f54cb4d",
+        "bounds": [
+          63,
+          241,
+          272,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/gnoll_merodeador/frames/dodge/gnoll_merodeador-dodge-04.png",
+        "sha256": "69d0be537bff7de44589928e1ff2652b95eda53ae064d4788e0a43d6c1e6c4de",
+        "bounds": [
+          67,
+          194,
+          259,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

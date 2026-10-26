@@ -8,7 +8,21 @@
     "dodge"
   ],
   "scale": 0.5679513184584178,
-  "baselineY": 243,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 140,
+  "idleHeightMean": 139.75,
+  "actorAnchor": [
+    192,
+    371
+  ],
+  "baselineY": 371,
   "idleAnchorMode": "ground",
   "rowReferenceRoots": [
     [
@@ -29,52 +43,52 @@
     ]
   ],
   "sheetPath": "assets/spritesheets/enemies-hd/kobold_trampero/kobold_trampero-sheet.png",
-  "sheetSha256": "341528d5512aca4992da57791eb1e7ff3a5b9b4725a87e27b407b06c965adac4",
+  "sheetSha256": "a0d580664e393a9427b8b7b4f42559f93a170084cc5f7bc35c3244f2ad51bc26",
   "sourcePath": "assets/spritesheets/enemies-hd/kobold_trampero/source/sheet-v1.png",
   "sourceSha256": "304eddf3a5c1f67d34bc9573e1149dc9d04cf7b77c4e16631cb2aefdd8b689ff",
   "frameData": {
     "idle": [
       {
         "path": "assets/spritesheets/enemies-hd/kobold_trampero/frames/idle/kobold_trampero-idle-01.png",
-        "sha256": "9a0c2d06ee90a889849e6af3025fd98e0f479df8bb99d99a91d9df3bb22e8f2f",
+        "sha256": "c978cbe8407b307f9c8e31c4c43b2cda1cad9fe7786587812cd2da63ee8b357e",
         "bounds": [
-          67,
-          103,
-          206,
-          243
+          131,
+          231,
+          270,
+          371
         ],
         "idleAnchorCorrectionX": 1
       },
       {
         "path": "assets/spritesheets/enemies-hd/kobold_trampero/frames/idle/kobold_trampero-idle-02.png",
-        "sha256": "2915e963409e2d1680ea93b6781b4752f57070c0a55094ba724b68f82af10e4a",
+        "sha256": "d5f87c453fe317d0325baaa505e986ddeefd38b72a23eec03bd1cf9667585359",
         "bounds": [
-          65,
-          104,
-          203,
-          243
+          129,
+          232,
+          267,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/kobold_trampero/frames/idle/kobold_trampero-idle-03.png",
-        "sha256": "7c62deedb7fd312d3d27717791eac3d3d47cb5c17d208f15bd27e24af8c33a57",
+        "sha256": "72db78d3fe1459ba760e0f8e805db21159ebd42eff69d0bde14d6c3afc9c0fa0",
         "bounds": [
-          67,
-          103,
-          206,
-          243
+          131,
+          231,
+          270,
+          371
         ],
         "idleAnchorCorrectionX": 1
       },
       {
         "path": "assets/spritesheets/enemies-hd/kobold_trampero/frames/idle/kobold_trampero-idle-04.png",
-        "sha256": "412e86a85610314b812627e161e6431759012f92aeb8c9b9b9df63e5c56aee06",
+        "sha256": "b1c86c8432b20758d690b679a876474a69e80f13e4281f9e13f706da9da8b10b",
         "bounds": [
-          65,
-          103,
-          204,
-          243
+          129,
+          231,
+          268,
+          371
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -82,45 +96,45 @@
     "hurt": [
       {
         "path": "assets/spritesheets/enemies-hd/kobold_trampero/frames/hurt/kobold_trampero-hurt-01.png",
-        "sha256": "9ac290bed6339ece96c406bff1833cbb1859249335dab5b0079a0b9ef95f78d2",
+        "sha256": "e95aeb3fa3fc7ab0d36436a7ecaa05ff0dea7d790dafc7be99a34a798d01eef3",
         "bounds": [
-          59,
-          108,
-          198,
-          243
+          123,
+          236,
+          262,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/kobold_trampero/frames/hurt/kobold_trampero-hurt-02.png",
-        "sha256": "1f35e991607caa8e0c4f4700a9c4622db712c878b7c1cf54a535638cbd61c57c",
+        "sha256": "4ee3d7d46cb1c41f618d5fb041a26be0f0667a522548e7bd4952b1b8c79656ae",
         "bounds": [
-          64,
-          107,
-          196,
-          244
+          128,
+          235,
+          260,
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/kobold_trampero/frames/hurt/kobold_trampero-hurt-03.png",
-        "sha256": "313a44dc08d821a88d3bd5a2abfd9ca3e32107a00715ed12a861b2665d9723da",
+        "sha256": "7f5783a5e786e16fa94389488d9450bfaf9ce09795bd10a19a9b84e3427b0c76",
         "bounds": [
-          60,
-          111,
-          208,
-          244
+          124,
+          239,
+          272,
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/kobold_trampero/frames/hurt/kobold_trampero-hurt-04.png",
-        "sha256": "1acb4f80906a7334b2fb8e1ec2f009ca5e22c81bfc702dd77ed4902dddc70c35",
+        "sha256": "9030b4353ee858c1990ff377c0011e9a97a6477ee2aefdf93a8316f42c50106f",
         "bounds": [
-          65,
-          113,
-          194,
-          244
+          129,
+          241,
+          258,
+          372
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -128,45 +142,45 @@
     "attack": [
       {
         "path": "assets/spritesheets/enemies-hd/kobold_trampero/frames/attack/kobold_trampero-attack-01.png",
-        "sha256": "28e896d94b814935f63592c32583cad3aec585f91857aad514c001149b5d11d6",
+        "sha256": "1cb23b3a84432b38326cbb46b403fb4d03d6675b489c637e27492c2de2c5f632",
         "bounds": [
-          63,
-          116,
-          200,
-          243
+          127,
+          244,
+          264,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/kobold_trampero/frames/attack/kobold_trampero-attack-02.png",
-        "sha256": "5a19a0b77b31b189a4e3ededfc0b7ad9584c63296d0ba14290d18022c5210cff",
+        "sha256": "0229a1ebf576b22ff1a4e1cba7ee243aacafd1906d02dea823e9bb4257c6cca8",
         "bounds": [
-          56,
-          94,
-          184,
-          244
+          120,
+          222,
+          248,
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/kobold_trampero/frames/attack/kobold_trampero-attack-03.png",
-        "sha256": "c9ff52c907e89a478ebbfeca78ddb8bebb7f5d637389933f0e98f6f30029da48",
+        "sha256": "61f3e54a01b82f05d29262fe230f2341169285031746ac327e55faef7b46f9fa",
         "bounds": [
-          58,
-          126,
-          236,
-          243
+          122,
+          254,
+          300,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/kobold_trampero/frames/attack/kobold_trampero-attack-04.png",
-        "sha256": "deb6fc8e9f97c604885657da354a295c6c7bea54fe5daddec9944123dd8eb5d7",
+        "sha256": "36f7623789cb6fb7b5985ee36b3ef704dc40a9b72320323058ae81f031e26445",
         "bounds": [
-          70,
-          115,
-          199,
-          243
+          134,
+          243,
+          263,
+          371
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -174,45 +188,45 @@
     "dodge": [
       {
         "path": "assets/spritesheets/enemies-hd/kobold_trampero/frames/dodge/kobold_trampero-dodge-01.png",
-        "sha256": "fc6485cc8aad1b6505418cc720e5e0fe3b12e2ab36144ecbd7820246f2cbe1b2",
+        "sha256": "a93822bf84ceb61a12560be2d09b5f3f77525fcbbb09e7a15ad03f175f0fd31b",
         "bounds": [
-          63,
-          123,
-          199,
-          243
+          127,
+          251,
+          263,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/kobold_trampero/frames/dodge/kobold_trampero-dodge-02.png",
-        "sha256": "0e660997e64e6b12d54310c5b0a1058884ad9471403557e3d678b3141824b078",
+        "sha256": "13a1a99ed02b8b579016826728818bc95c27c1e69a85a9ce46cb55a375099f2a",
         "bounds": [
-          54,
-          135,
-          199,
-          243
+          118,
+          263,
+          263,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/kobold_trampero/frames/dodge/kobold_trampero-dodge-03.png",
-        "sha256": "107a4cc954b8791789f7283c0943ebbe2af5d3bb2b38b9efb9d2a274c7b5281a",
+        "sha256": "5b6d2e1cf36134f8d539cb39f377fda093e499b3854d1cdbafb8810f138b3e97",
         "bounds": [
-          60,
-          146,
-          211,
-          242
+          124,
+          274,
+          275,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/kobold_trampero/frames/dodge/kobold_trampero-dodge-04.png",
-        "sha256": "3a32d6d66201e68455e87af021e1f93537a75378e26018a78f28b83bf7f12766",
+        "sha256": "c46907c0758d7f3a425a936d0c1acd347a4576cbc3f51abcbebd4de65df5bee9",
         "bounds": [
-          65,
-          120,
-          197,
-          242
+          129,
+          248,
+          261,
+          370
         ],
         "idleAnchorCorrectionX": 0
       }

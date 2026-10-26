@@ -28,8 +28,12 @@ def audit():
         assert sha(ROOT/q['sheetPath']) == q['sheetSha256']
         assert sha(ROOT/q['sourcePath']) == q['sourceSha256']
         with Image.open(ROOT/q['sheetPath']) as sheet:
-            assert sheet.size == (1024,1024) and sheet.mode == 'RGBA'
+            cell=q.get('cellSize',[256,256])[0]
+            assert sheet.size == (cell*4,cell*4) and sheet.mode == 'RGBA'
+            if 'requestedIdleHeight' in q:
+                assert abs(q['idleHeightMean']-q['requestedIdleHeight'])<=2, 'Enemy body was shrunk to fit an attack'
             idle_centers = []
+            idle_heights = []
             for row, action in enumerate(m['actions']):
                 hashes = []
                 for col, record in enumerate(q['frameData'][action]):
@@ -37,19 +41,23 @@ def audit():
                     assert sha(p) == record['sha256']
                     hashes.append(record['sha256'])
                     with Image.open(p) as frame:
-                        assert frame.size == (256,256) and frame.mode == 'RGBA'
+                        assert frame.size == (cell,cell) and frame.mode == 'RGBA'
                         assert frame.getchannel('A').getextrema() == (0,255)
                         bounds = frame.getbbox()
-                        assert bounds[0] >= 2 and bounds[1] >= 2 and bounds[2] <= 254 and bounds[3] <= 254
-                        assert frame.tobytes() == sheet.crop((col*256,row*256,(col+1)*256,(row+1)*256)).tobytes()
+                        assert bounds[0] >= 2 and bounds[1] >= 2 and bounds[2] <= cell-2 and bounds[3] <= cell-2
+                        assert frame.tobytes() == sheet.crop((col*cell,row*cell,(col+1)*cell,(row+1)*cell)).tobytes()
                         if action == 'idle':
+                            idle_heights.append(bounds[3]-bounds[1])
                             a = frame.getchannel('A').point(lambda v:255 if v>=128 else 0)
                             bottom = a.getbbox()[3]
-                            feet = a.crop((0,bottom-8,256,bottom)).getbbox()
+                            feet = a.crop((0,bottom-8,cell,bottom)).getbbox()
                             idle_centers.append((feet[0]+feet[2])/2)
                 assert len(set(hashes)) == 4
             if q.get('idleAnchorMode','ground') == 'ground':
                 assert max(idle_centers)-min(idle_centers) <= 2, (enemy['id'],idle_centers)
+            if 'requestedIdleHeight' in q:
+                targets=json.loads((BASE/'scale-targets.json').read_text(encoding='utf-8'))['targets']
+                assert abs(sum(idle_heights)/4-targets[enemy['id']]['idleHeight'])<=2, 'Visible enemy height differs from species target'
             complete.append({'id':enemy['id'],'frames':16,'idleAnchorMode':q.get('idleAnchorMode','ground'),'idleSupportCentersX':idle_centers,'aerialReview':'fixed cell origin; torso visually reviewed, wing tips excluded from ground test' if q.get('idleAnchorMode')=='air' else None})
     assert len(complete) == m.get('completedCandidates',0)
     result = {'status':'passed','expectedEnemies':54,'candidateEnemies':len(complete),'framesValidated':len(complete)*16,'runtimeModified':False,'enemies':complete}

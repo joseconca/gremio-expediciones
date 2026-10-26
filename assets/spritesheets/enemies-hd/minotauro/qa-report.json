@@ -7,7 +7,23 @@
     "attack",
     "dodge"
   ],
-  "scale": 0.49673202614379086,
+  "scale": 0.7346938775510204,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 216,
+  "idleHeightMean": 216.25,
+  "actorAnchor": [
+    192,
+    371
+  ],
+  "baselineY": 371,
+  "idleAnchorMode": "ground",
   "rowReferenceRoots": [
     [
       152.0,
@@ -27,98 +43,98 @@
     ]
   ],
   "sheetPath": "assets/spritesheets/enemies-hd/minotauro/minotauro-sheet.png",
-  "sheetSha256": "7814d0b33b35687a8a54e7a7a425a393c23f4dab5806eb0aa28d1ec8a53c96c3",
+  "sheetSha256": "572f66a24c22572a6c05eb00bf091b5172ccb92957ca14b7d30449f998362098",
   "sourcePath": "assets/spritesheets/enemies-hd/minotauro/source/sheet-v1.png",
   "sourceSha256": "91c51a9a4bd050f9c9f6c9d91827bbee5cf3f7ad4f0305f2e5685f15da456142",
   "frameData": {
     "idle": [
       {
         "path": "assets/spritesheets/enemies-hd/minotauro/frames/idle/minotauro-idle-01.png",
-        "sha256": "1b9e61c532751309b1204cff57bd2c7701582ae1450d80f6bb9c1094ef3f28c7",
+        "sha256": "4211577cfcda1ad416a477c428ecd9d40ee99491b17c6d8d656be22c9c7db8ac",
         "bounds": [
-          70,
-          97,
-          210,
-          244
+          106,
+          154,
+          313,
+          371
         ],
         "idleAnchorCorrectionX": 1
       },
       {
         "path": "assets/spritesheets/enemies-hd/minotauro/frames/idle/minotauro-idle-02.png",
-        "sha256": "417a71dd2ab365d38b9620a62cec515e19bdb583a6da408c0c26eed1245aa523",
+        "sha256": "871d0136da5e1a13ce5c706149ebcbaae7403f439684b9c5df9de8d3a6ec26f7",
         "bounds": [
-          69,
-          99,
-          210,
-          244
+          104,
+          157,
+          313,
+          371
         ],
         "idleAnchorCorrectionX": 1
       },
       {
         "path": "assets/spritesheets/enemies-hd/minotauro/frames/idle/minotauro-idle-03.png",
-        "sha256": "5ff43581265240fa179893ac6238e43a5202e40d178220cd14b8bec9270986aa",
+        "sha256": "77337b94624e2fbae703012f367d62f0e468fd15b17d63f8432477a17e06170d",
         "bounds": [
-          68,
-          97,
-          208,
-          244
+          104,
+          154,
+          310,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/minotauro/frames/idle/minotauro-idle-04.png",
-        "sha256": "341a70eef41f7e1c68e7e6abe18fc3eae7c79c19bb61c7b7a707a219388a8d43",
+        "sha256": "b308a7379c7661c57bf9b6d5790347f90746cf756709799eaff7c52b07fc4541",
         "bounds": [
-          68,
-          97,
-          206,
-          244
+          102,
+          154,
+          306,
+          371
         ],
-        "idleAnchorCorrectionX": 0
+        "idleAnchorCorrectionX": -1
       }
     ],
     "hurt": [
       {
         "path": "assets/spritesheets/enemies-hd/minotauro/frames/hurt/minotauro-hurt-01.png",
-        "sha256": "9192d43e1695b297c43da613e537a798224982bfffbb9d0b1ab771fe64d2fdc2",
+        "sha256": "eba5b8613de8aea3f96d95d118d6159ff044b485c12662f663f392e03e7f4f57",
         "bounds": [
-          67,
-          97,
-          211,
-          244
+          101,
+          154,
+          313,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/minotauro/frames/hurt/minotauro-hurt-02.png",
-        "sha256": "9b8726eccceb0dc48f73d2399143a9f6d4a0a334928158b40428bd100e6d64bd",
+        "sha256": "7a9a18ed504e5233b99ebd28774c2f27dccd5eb0077a7d5ffcd733e4597180de",
         "bounds": [
-          72,
-          108,
-          219,
-          244
+          109,
+          170,
+          326,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/minotauro/frames/hurt/minotauro-hurt-03.png",
-        "sha256": "3bb7a1e9de09285b6301a4cb8fa7f2bc6c7952165846ffd3c63064c91289f10d",
+        "sha256": "b3c7de23561e98e393e2e474cca8e31c32a272b67cf010532c7f856eb560dd7b",
         "bounds": [
-          76,
-          95,
-          222,
-          244
+          114,
+          151,
+          330,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/minotauro/frames/hurt/minotauro-hurt-04.png",
-        "sha256": "38cda39fc4bbced2d1d052e35811dfdb57678a2e87f8f8b18034d5b7531112bd",
+        "sha256": "54817b187e9229d1bc80b94c7533ef121514049b7481d673898a33556ef7b159",
         "bounds": [
-          66,
-          108,
-          203,
-          244
+          101,
+          170,
+          304,
+          371
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -126,45 +142,45 @@
     "attack": [
       {
         "path": "assets/spritesheets/enemies-hd/minotauro/frames/attack/minotauro-attack-01.png",
-        "sha256": "94e6d556a4c05c7f19411884e5ee8343dce211facc670eb86de848d25e9e9a70",
+        "sha256": "6be4fa87f0af7591966664d45d1f32edab160070a33f26e314d7e60494c2d396",
         "bounds": [
-          70,
-          111,
-          208,
-          244
+          106,
+          175,
+          310,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/minotauro/frames/attack/minotauro-attack-02.png",
-        "sha256": "03487fe60f95ebd36e74ac1b6657e08ac6b0c85bbf12ade13a440d5b542f3d21",
+        "sha256": "cd6c30a6b184d89ec8c26a58ddfe4f250c59affe7779164926c5086bd1fb48c2",
         "bounds": [
-          64,
-          100,
-          206,
-          245
+          98,
+          158,
+          307,
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/minotauro/frames/attack/minotauro-attack-03.png",
-        "sha256": "4b4a104dc2a98df9b0ed334b51bc1a0a85027407a8b65a86d21a44707c44dda8",
+        "sha256": "0d31bf3fd78ab157a929f27e65a6b4c31399ad18f68422d551e9704e1d9a844f",
         "bounds": [
-          68,
-          115,
-          242,
-          245
+          103,
+          180,
+          361,
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/minotauro/frames/attack/minotauro-attack-04.png",
-        "sha256": "271e470e52ee00c5209d26e2da602d57a7f9a634d57eb520eb1c030eb6b46a7c",
+        "sha256": "fb2b78e0b699270ee16e260b8bd8e36eae65c7f5963e1503191bbd3c24a2f9a2",
         "bounds": [
-          81,
-          108,
-          210,
-          245
+          122,
+          170,
+          313,
+          372
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -172,45 +188,45 @@
     "dodge": [
       {
         "path": "assets/spritesheets/enemies-hd/minotauro/frames/dodge/minotauro-dodge-01.png",
-        "sha256": "b15d6e92e4862c14087732413cd7e94bd176ee0f76f1288a6c821f2a6dc59089",
+        "sha256": "ec6752e5735396745d88099793643964f1c02bd0c51abd373fcead361da71b55",
         "bounds": [
-          70,
-          101,
-          209,
-          244
+          106,
+          160,
+          311,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/minotauro/frames/dodge/minotauro-dodge-02.png",
-        "sha256": "3dfb8d70461b257d9fd5f15ce02abc4d58a8c9b76d663cbcc6855bd325408b49",
+        "sha256": "d0b897edcba4e873ac30019d58f60d267509abe3cd0af6995edbd8f91bcccbd6",
         "bounds": [
-          65,
-          117,
-          205,
-          244
+          99,
+          184,
+          305,
+          371
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/minotauro/frames/dodge/minotauro-dodge-03.png",
-        "sha256": "f16afce85ba7666ff85fb5398510651cd6b6d451f2384e8ff00bf3bfa4485a7d",
+        "sha256": "9a08e6a53cab2806188884785ab262fc7d471d71c1813c51286f4f4e0df5bf40",
         "bounds": [
-          62,
-          136,
-          208,
-          245
+          95,
+          210,
+          310,
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/minotauro/frames/dodge/minotauro-dodge-04.png",
-        "sha256": "0ee123fa8b5727ed86e1d507a63db82d4050652d3a34a3d6b4b406bb8c37ae60",
+        "sha256": "d46ca0e701b4c75b127377da2147dac549b95ea260607f5bfafccc5a6b6c8f4b",
         "bounds": [
-          72,
-          101,
-          204,
-          244
+          109,
+          160,
+          304,
+          372
         ],
         "idleAnchorCorrectionX": 0
       }

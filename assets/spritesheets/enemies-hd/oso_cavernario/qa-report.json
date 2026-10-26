@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.9328263624841572,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 184,
+  "idleHeightMean": 184.25,
+  "actorAnchor": [
+    192,
+    372
+  ],
+  "baselineY": 372,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      158.5,
+      282.0
+    ],
+    [
+      159.0,
+      281.5
+    ],
+    [
+      162.5,
+      278.0
+    ],
+    [
+      164.0,
+      250.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/oso_cavernario/oso_cavernario-sheet.png",
+  "sheetSha256": "c90d53b8dd73de7019ca4da626b36a65de6445c9d30ba21926880b8f3c30effe",
+  "sourcePath": "assets/spritesheets/enemies-hd/oso_cavernario/source/sheet-v1.png",
+  "sourceSha256": "e97028cdff97b1214d263c826a340c0e8181aa1f09027112ac64975eefb6c06c",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/oso_cavernario/frames/idle/oso_cavernario-idle-01.png",
+        "sha256": "6468480ec888fc9cc8df0ed3e87df1dbb04a4c3ecfe11ec5c7d55b4b3a5ff316",
+        "bounds": [
+          72,
+          187,
+          306,
+          372
+        ],
+        "idleAnchorCorrectionX": -3
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/oso_cavernario/frames/idle/oso_cavernario-idle-02.png",
+        "sha256": "e47b6823f35aa4172393f5a9cd8687ba488606da596bfedb8c917c82c24c00fd",
+        "bounds": [
+          71,
+          188,
+          305,
+          372
+        ],
+        "idleAnchorCorrectionX": -4
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/oso_cavernario/frames/idle/oso_cavernario-idle-03.png",
+        "sha256": "ae2bd645e4e3f9b474468027967e9be65be618618533bbc3560c162588f700e5",
+        "bounds": [
+          73,
+          188,
+          307,
+          372
+        ],
+        "idleAnchorCorrectionX": -2
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/oso_cavernario/frames/idle/oso_cavernario-idle-04.png",
+        "sha256": "0bed2ea707efe2b48053928ebccd6e00b02c3a1ce8ee229402339e55a3e4912e",
+        "bounds": [
+          71,
+          188,
+          305,
+          372
+        ],
+        "idleAnchorCorrectionX": -4
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/oso_cavernario/frames/hurt/oso_cavernario-hurt-01.png",
+        "sha256": "2bc693be1dbf3fb39c7f04650887659a320899c358016cc20e9b80f9d2a2ebd9",
+        "bounds": [
+          74,
+          180,
+          309,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/oso_cavernario/frames/hurt/oso_cavernario-hurt-02.png",
+        "sha256": "6e7c0ce4f88240bdf01ee476807c29a34e2a84a79a39b9ec764517657011a098",
+        "bounds": [
+          76,
+          182,
+          320,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/oso_cavernario/frames/hurt/oso_cavernario-hurt-03.png",
+        "sha256": "53cb2199581ff3c67862f1a1414eee957d8faa50b6fe3f790458d5a5b826f12c",
+        "bounds": [
+          81,
+          171,
+          327,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/oso_cavernario/frames/hurt/oso_cavernario-hurt-04.png",
+        "sha256": "d765aa24a5e03517d336bbb0ed8421c8c1dc5e9a537a202c4b563123beac6888",
+        "bounds": [
+          74,
+          186,
+          308,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/oso_cavernario/frames/attack/oso_cavernario-attack-01.png",
+        "sha256": "cb9b37348d679474b8eb3c5728717f092d13baaee074a4fc8a2fca31b4f9857d",
+        "bounds": [
+          70,
+          187,
+          313,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/oso_cavernario/frames/attack/oso_cavernario-attack-02.png",
+        "sha256": "9b8e8d23e34cb6fadc4706d5ee47ea77ccc456ac523528aaafe30f557884760b",
+        "bounds": [
+          75,
+          122,
+          331,
+          366
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/oso_cavernario/frames/attack/oso_cavernario-attack-03.png",
+        "sha256": "26f576c2c8401fb552c6c71d43ca2c25c32e670a0960f998c00db6d4023aad0b",
+        "bounds": [
+          62,
+          175,
+          343,
+          365
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/oso_cavernario/frames/attack/oso_cavernario-attack-04.png",
+        "sha256": "05336e6455f77c915d465d644d723b838d2a8f5f76ee4299ec13a246e3974330",
+        "bounds": [
+          71,
+          189,
+          308,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/oso_cavernario/frames/dodge/oso_cavernario-dodge-01.png",
+        "sha256": "a5eb4d5b13b16ac5de9d916a354f055603b527217eb116a6bae7267dcf5ffc18",
+        "bounds": [
+          70,
+          197,
+          313,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/oso_cavernario/frames/dodge/oso_cavernario-dodge-02.png",
+        "sha256": "311887a5fff680739b911f1f59eb4c77fe634890c3764a5187c592bbb3a2525f",
+        "bounds": [
+          67,
+          207,
+          314,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/oso_cavernario/frames/dodge/oso_cavernario-dodge-03.png",
+        "sha256": "2eecab25a4b1ce4c0d0d53fa8b1be1f8db9d5cdea66d37ae626e03996dd6332c",
+        "bounds": [
+          66,
+          217,
+          333,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/oso_cavernario/frames/dodge/oso_cavernario-dodge-04.png",
+        "sha256": "480511ad84991fb6c713bbe5846cac3494dd4f8be40aa150e0bb0949eab7030a",
+        "bounds": [
+          69,
+          189,
+          306,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

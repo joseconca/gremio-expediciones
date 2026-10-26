@@ -7,7 +7,23 @@
     "attack",
     "dodge"
   ],
-  "scale": 0.7950310559006211,
+  "scale": 0.8347826086956521,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 168,
+  "idleHeightMean": 168.25,
+  "actorAnchor": [
+    192,
+    370
+  ],
+  "baselineY": 370,
+  "idleAnchorMode": "ground",
   "rowReferenceRoots": [
     [
       182.5,
@@ -27,52 +43,52 @@
     ]
   ],
   "sheetPath": "assets/spritesheets/enemies-hd/esqueleto_guerrero/esqueleto_guerrero-sheet.png",
-  "sheetSha256": "5009885a1b9a1680cc8cde22a112b01720afc2f9d5400a02b11d0bec3fd18780",
+  "sheetSha256": "e87e34b20eb98f32a835e39b257e8b9422bad978178dd2135d2cabb771c0fd4e",
   "sourcePath": "assets/spritesheets/enemies-hd/esqueleto_guerrero/source/sheet-v3.png",
   "sourceSha256": "a3bf719988a4227117631b57c71bd9f3fda63cd5cfe5947b8541f79d93cee0fe",
   "frameData": {
     "idle": [
       {
         "path": "assets/spritesheets/enemies-hd/esqueleto_guerrero/frames/idle/esqueleto_guerrero-idle-01.png",
-        "sha256": "a405fbb76b1f3b394a324026178593022ea299a57b195c0164d3f5838da1773b",
+        "sha256": "9af5673d1066ba1c1df5c9f50881934c6f5c9643d679cfe1bef94f43f3579f68",
         "bounds": [
-          65,
-          85,
-          190,
-          244
+          127,
+          203,
+          258,
+          370
         ],
-        "idleAnchorCorrectionX": -1
+        "idleAnchorCorrectionX": 1
       },
       {
         "path": "assets/spritesheets/enemies-hd/esqueleto_guerrero/frames/idle/esqueleto_guerrero-idle-02.png",
-        "sha256": "0c9da539e83a70ed1452d337a37407731ac436899959bb7e5b5d6b2889d8ad3a",
+        "sha256": "851284d242034f875eba90dd5637b345d823af70ccafded7b901372553755022",
         "bounds": [
-          67,
-          84,
-          190,
-          245
+          128,
+          202,
+          257,
+          371
         ],
         "idleAnchorCorrectionX": 1
       },
       {
         "path": "assets/spritesheets/enemies-hd/esqueleto_guerrero/frames/idle/esqueleto_guerrero-idle-03.png",
-        "sha256": "ca0fc1675a8f266d05bfaaf17a25586d85e391e489e245574380a9cd9707423e",
+        "sha256": "4fe3fc2e3df59bc2f6bf3623c640bb7005ef1b0522c6380059ae7b1f155ed6f3",
         "bounds": [
-          64,
-          83,
-          190,
-          244
+          125,
+          201,
+          257,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/esqueleto_guerrero/frames/idle/esqueleto_guerrero-idle-04.png",
-        "sha256": "ba22a3ea3ff23741dae96043f9dcfaac0bd5a9006a2b1349715290245ec184e3",
+        "sha256": "caa232b731f51516798f27b3a057ab0b400f108797df1ad5cca722056f9b5567",
         "bounds": [
-          66,
-          84,
-          191,
-          244
+          127,
+          202,
+          258,
+          370
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -80,45 +96,45 @@
     "hurt": [
       {
         "path": "assets/spritesheets/enemies-hd/esqueleto_guerrero/frames/hurt/esqueleto_guerrero-hurt-01.png",
-        "sha256": "554fe92ea51abf63d1abb69bf5d36c0229e7d7bb0330a08b29a3cb59ef2afedf",
+        "sha256": "5e64dce70658f7739a63ac81abec1b8e7489fae96adc408ffb0d5f7afd9bb694",
         "bounds": [
-          59,
-          85,
-          193,
-          244
+          119,
+          203,
+          260,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/esqueleto_guerrero/frames/hurt/esqueleto_guerrero-hurt-02.png",
-        "sha256": "e24c493871c6290a995c4e85729b2d3a37d9b72b90428358cbcd58d1978f26b4",
+        "sha256": "13d9e8752683a17ee53155fa15353c68991c9b160460f4063056629ae40d7604",
         "bounds": [
-          65,
-          90,
-          193,
-          244
+          126,
+          208,
+          260,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/esqueleto_guerrero/frames/hurt/esqueleto_guerrero-hurt-03.png",
-        "sha256": "31321ffdabc5e9f18fa210c8cb2278abe03864dd242787e8fe2b3f95c851ffa8",
+        "sha256": "7281f13c333c47440d5874b4d3af93f2c3d956651a58252ed5c8f6a001b0e808",
         "bounds": [
-          43,
-          96,
-          181,
-          246
+          103,
+          214,
+          248,
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/esqueleto_guerrero/frames/hurt/esqueleto_guerrero-hurt-04.png",
-        "sha256": "dfa76bfb3ba45d04655ac9be8dd4aeb7c3fe803c9ddb43266d971f281e18d9b5",
+        "sha256": "2e80479ea0104a73ceab3a19b15834acb402a63ad3bbdd6bf828a9947a4bcbe4",
         "bounds": [
-          29,
-          87,
-          154,
-          246
+          88,
+          205,
+          219,
+          372
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -126,45 +142,45 @@
     "attack": [
       {
         "path": "assets/spritesheets/enemies-hd/esqueleto_guerrero/frames/attack/esqueleto_guerrero-attack-01.png",
-        "sha256": "c99bf7a7aebc24e6e68c7d18ac13feb11bd3432b675fad9c57a8719e6f3a1a98",
+        "sha256": "1f02c1fd7c4365cd2f55060995731682c2458bd9674f179086bf1404d8a3c316",
         "bounds": [
-          56,
-          86,
-          195,
-          244
+          116,
+          204,
+          262,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/esqueleto_guerrero/frames/attack/esqueleto_guerrero-attack-02.png",
-        "sha256": "4d3f1b1059e5ffa0244bbd66337bf50c758b9901fd8bdad2e694d791f1797049",
+        "sha256": "644570106e45b3f44eac25ceedcf06d70a752ec8129a10ee26e657dde3010dee",
         "bounds": [
-          52,
-          71,
-          198,
-          244
+          112,
+          189,
+          266,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/esqueleto_guerrero/frames/attack/esqueleto_guerrero-attack-03.png",
-        "sha256": "91be59125c118886e61e1a238f97f65ac48d244bda95f078a3e17cc53672ab28",
+        "sha256": "70c284696dd4e9ecd1de99a447963cc337bb17e0ebc2a7322257f8819e2b2d90",
         "bounds": [
-          32,
-          97,
-          225,
-          243
+          91,
+          215,
+          294,
+          369
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/esqueleto_guerrero/frames/attack/esqueleto_guerrero-attack-04.png",
-        "sha256": "c07b1807b8a4fb1c6fc67f304fdfb821aec21039a5dbb8c1ab61f66b8da981f5",
+        "sha256": "a89c138324662e81f8c4922199f5af2fdd193534b614d08a49f9408666c4691f",
         "bounds": [
-          33,
-          87,
-          162,
-          243
+          93,
+          205,
+          228,
+          369
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -172,45 +188,45 @@
     "dodge": [
       {
         "path": "assets/spritesheets/enemies-hd/esqueleto_guerrero/frames/dodge/esqueleto_guerrero-dodge-01.png",
-        "sha256": "47b7726f75ab88b32e71b981169c764c07d53a7a4abc9a56985e892937b9fa4a",
+        "sha256": "00fe46a74805cd521a7a7d4c944d097bf0cad3ef18d6a92dadc28ba3ae56b3b2",
         "bounds": [
-          63,
-          98,
-          197,
-          244
+          124,
+          216,
+          264,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/esqueleto_guerrero/frames/dodge/esqueleto_guerrero-dodge-02.png",
-        "sha256": "76c4059d5d0fac0ae83e0dc5568a41d8f4a78e4584a2aa14e35a596151f07579",
+        "sha256": "58cab04df2653bfc561ac08e23cbab515d2388229ac78e5873117bc0296d81ea",
         "bounds": [
-          55,
-          117,
-          185,
-          244
+          116,
+          236,
+          252,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/esqueleto_guerrero/frames/dodge/esqueleto_guerrero-dodge-03.png",
-        "sha256": "5d819ab35a7ea2893b9edcbf5b5f4c4b340e61ae7676123ecf49255917d18220",
+        "sha256": "dc26397b4e20a34c6779bc819f31ee88eb6b48509a4ff669895ac124e92154a3",
         "bounds": [
-          43,
-          120,
-          164,
-          242
+          103,
+          240,
+          230,
+          368
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/esqueleto_guerrero/frames/dodge/esqueleto_guerrero-dodge-04.png",
-        "sha256": "f4199ad92633926d2c76c5ae112c68b413097bedee4b9e2fcc2cd5634598a176",
+        "sha256": "cb6991b4e7f177e619de90efe1495284f7ad857c29dd06da19644cf7dff8bd38",
         "bounds": [
-          22,
-          95,
-          160,
-          243
+          81,
+          214,
+          225,
+          369
         ],
         "idleAnchorCorrectionX": 0
       }

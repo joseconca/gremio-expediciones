@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.7410526315789474,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 176,
+  "idleHeightMean": 176.0,
+  "actorAnchor": [
+    192,
+    370
+  ],
+  "baselineY": 370,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      153.5,
+      305.0
+    ],
+    [
+      154.5,
+      308.5
+    ],
+    [
+      154.5,
+      304.0
+    ],
+    [
+      154.0,
+      261.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/ghoul_cripta/ghoul_cripta-sheet.png",
+  "sheetSha256": "99ef8e7c3aa331c76b2c5bf9315cd9e1dc11c53d54ec104122c7662e2de5b813",
+  "sourcePath": "assets/spritesheets/enemies-hd/ghoul_cripta/source/sheet-v1.png",
+  "sourceSha256": "2dc7d6a1200bffb53b8c9e432e554f726e43c5ef564fe7e53d3b8c37d583c334",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/ghoul_cripta/frames/idle/ghoul_cripta-idle-01.png",
+        "sha256": "e1d3961cfbf853c51429f4af41843f419aaa9f6ef2ae6700ec081e52806c1704",
+        "bounds": [
+          119,
+          194,
+          280,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ghoul_cripta/frames/idle/ghoul_cripta-idle-02.png",
+        "sha256": "443549bfa40c9500be54e0a47b0889bda05719f5edac7adcee76405d017d4ce8",
+        "bounds": [
+          120,
+          194,
+          279,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ghoul_cripta/frames/idle/ghoul_cripta-idle-03.png",
+        "sha256": "18e398f5ebb95a4a9ad9abd49aae86fee146f87cdc9fd403cfe38ff7122e27c0",
+        "bounds": [
+          119,
+          195,
+          280,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ghoul_cripta/frames/idle/ghoul_cripta-idle-04.png",
+        "sha256": "b124a72e64d7aa01c3be82a7f714edef181936dd176abbf05b34bad2cf641ebf",
+        "bounds": [
+          122,
+          194,
+          281,
+          370
+        ],
+        "idleAnchorCorrectionX": 3
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/ghoul_cripta/frames/hurt/ghoul_cripta-hurt-01.png",
+        "sha256": "7a5af4f6175e7e8fe9158c96ec1176e5593d2bc0259df140a354d6e26934c897",
+        "bounds": [
+          113,
+          194,
+          288,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ghoul_cripta/frames/hurt/ghoul_cripta-hurt-02.png",
+        "sha256": "bacd49ac682f729914a5073c3d5d006dc0c68d04377d2a051b5c48b86c178c2a",
+        "bounds": [
+          125,
+          199,
+          280,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ghoul_cripta/frames/hurt/ghoul_cripta-hurt-03.png",
+        "sha256": "8baa11f61bb27a34ae3b77c75b2fc6c43d978739086d1071a572a4a20faa763d",
+        "bounds": [
+          100,
+          199,
+          279,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ghoul_cripta/frames/hurt/ghoul_cripta-hurt-04.png",
+        "sha256": "b2fe76cb69cd7bcac2970677fd4968fb19b18415cc89782dc71723127f52229c",
+        "bounds": [
+          115,
+          199,
+          283,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/ghoul_cripta/frames/attack/ghoul_cripta-attack-01.png",
+        "sha256": "8ff722c9741e9568d43a5af617d34e75be965c9b6abc551d23b7c9c79b7283f8",
+        "bounds": [
+          117,
+          202,
+          296,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ghoul_cripta/frames/attack/ghoul_cripta-attack-02.png",
+        "sha256": "06fdd3cf36260668efc964dec5e22d6855909a14e5111751ab52e279f861d7a3",
+        "bounds": [
+          119,
+          178,
+          303,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ghoul_cripta/frames/attack/ghoul_cripta-attack-03.png",
+        "sha256": "86e63f81faaee58e82c196de65c30f1d591498b60a484f1165a21d3f64717178",
+        "bounds": [
+          85,
+          209,
+          343,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ghoul_cripta/frames/attack/ghoul_cripta-attack-04.png",
+        "sha256": "d74f7172a4ce205ed353f3f8e58ccb2605557b76f88cb4d5c237da64e303867b",
+        "bounds": [
+          122,
+          200,
+          299,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/ghoul_cripta/frames/dodge/ghoul_cripta-dodge-01.png",
+        "sha256": "cd0fb758184004f360d28edd62b9870676bd0d3471f2d29559bb9353d8469bb6",
+        "bounds": [
+          113,
+          223,
+          286,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ghoul_cripta/frames/dodge/ghoul_cripta-dodge-02.png",
+        "sha256": "f21ddc940899ba11413cd40b62f26fbe4cb10eef3ee0f5251e739e1ed48ae948",
+        "bounds": [
+          109,
+          238,
+          302,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ghoul_cripta/frames/dodge/ghoul_cripta-dodge-03.png",
+        "sha256": "efb2376f7927f4a85061af02b1d8e7d89d883bc6f10a53163379140846e470b2",
+        "bounds": [
+          112,
+          243,
+          294,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/ghoul_cripta/frames/dodge/ghoul_cripta-dodge-04.png",
+        "sha256": "4032b171c7a09299d4a5784f0ee44405936cacf2811de9f3abe52404ebaafac7",
+        "bounds": [
+          116,
+          219,
+          288,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

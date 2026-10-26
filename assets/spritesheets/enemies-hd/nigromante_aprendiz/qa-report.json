@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.6070460704607046,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 168,
+  "idleHeightMean": 168.0,
+  "actorAnchor": [
+    192,
+    369
+  ],
+  "baselineY": 369,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      164.5,
+      339.0
+    ],
+    [
+      153.0,
+      337.5
+    ],
+    [
+      162.0,
+      315.0
+    ],
+    [
+      153.5,
+      277.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/nigromante_aprendiz/nigromante_aprendiz-sheet.png",
+  "sheetSha256": "a30fcacc20d348723f0c5d5a9e8edc7e7a460d9609708f45d765fd721808133f",
+  "sourcePath": "assets/spritesheets/enemies-hd/nigromante_aprendiz/source/sheet-v1.png",
+  "sourceSha256": "636fb66f106a4da0989d49c6d0b915d6cbbff783eb213791b6c606d12d1c7ebe",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/nigromante_aprendiz/frames/idle/nigromante_aprendiz-idle-01.png",
+        "sha256": "17858dbdbae9c28ead531e6ba40690bf67a82773be25095596f918f73d020096",
+        "bounds": [
+          124,
+          201,
+          272,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/nigromante_aprendiz/frames/idle/nigromante_aprendiz-idle-02.png",
+        "sha256": "76f8cb5bf1af5681f4a6fc158665899662e7cee3fcc3db2303895e4d1940f473",
+        "bounds": [
+          125,
+          201,
+          272,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/nigromante_aprendiz/frames/idle/nigromante_aprendiz-idle-03.png",
+        "sha256": "f446ebe1e925799e2c8019b5ff6b5ce706d0f7e37867b61ebc2bc06e1795d777",
+        "bounds": [
+          124,
+          201,
+          271,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/nigromante_aprendiz/frames/idle/nigromante_aprendiz-idle-04.png",
+        "sha256": "9431d8b3cef21f7414516278072b90eee0f11f4c06de1e0160e9704e7a92e266",
+        "bounds": [
+          125,
+          201,
+          271,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/nigromante_aprendiz/frames/hurt/nigromante_aprendiz-hurt-01.png",
+        "sha256": "27f98d2b82a3cf41ae28a6efdd8a7917f9b80596fb85aa447d659c846ed1c905",
+        "bounds": [
+          128,
+          217,
+          272,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/nigromante_aprendiz/frames/hurt/nigromante_aprendiz-hurt-02.png",
+        "sha256": "ae834435d1fc31d2dd3d79db7e63bc991c456af5289adee8f306da285c559bb2",
+        "bounds": [
+          133,
+          226,
+          269,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/nigromante_aprendiz/frames/hurt/nigromante_aprendiz-hurt-03.png",
+        "sha256": "94d841e2a410be23ee05197281b65991ddeeb46a9b66a034435fe228d2753a58",
+        "bounds": [
+          136,
+          220,
+          275,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/nigromante_aprendiz/frames/hurt/nigromante_aprendiz-hurt-04.png",
+        "sha256": "51bcc55ea9aa58d0c13c66fafa6dd10fea7844ef9e377faa130e2b9c90da1930",
+        "bounds": [
+          132,
+          219,
+          279,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/nigromante_aprendiz/frames/attack/nigromante_aprendiz-attack-01.png",
+        "sha256": "9ad44232ca808614c538ba34f9aa24182121b80da9ec8078918977039a6cb581",
+        "bounds": [
+          111,
+          227,
+          285,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/nigromante_aprendiz/frames/attack/nigromante_aprendiz-attack-02.png",
+        "sha256": "c3751b087f1706bbcb48ea18c4047194b0f1cfa1e9de4d57aac7fba9cbd8430d",
+        "bounds": [
+          105,
+          199,
+          273,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/nigromante_aprendiz/frames/attack/nigromante_aprendiz-attack-03.png",
+        "sha256": "1a8a8b7363befed3def94eb8e1a8bd49dc4a517f3e67e4327f0f591e6eb837e6",
+        "bounds": [
+          108,
+          228,
+          326,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/nigromante_aprendiz/frames/attack/nigromante_aprendiz-attack-04.png",
+        "sha256": "f73996d681ec2a41586d61e16290a9609ee186df82213448a01d340933c90cae",
+        "bounds": [
+          126,
+          226,
+          272,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/nigromante_aprendiz/frames/dodge/nigromante_aprendiz-dodge-01.png",
+        "sha256": "82f1b9e71a738a9f71750a08ae0ec8bfdcbfafe2c5b7701fc9d6155322ac009e",
+        "bounds": [
+          125,
+          236,
+          273,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/nigromante_aprendiz/frames/dodge/nigromante_aprendiz-dodge-02.png",
+        "sha256": "637a2b6a4cf6eec9637a148ba1b90e2aeda614bc285b8f274770f1927c19be2e",
+        "bounds": [
+          117,
+          229,
+          280,
+          368
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/nigromante_aprendiz/frames/dodge/nigromante_aprendiz-dodge-03.png",
+        "sha256": "18170766f845a7926b37a5104c8cbb9bbc74ae7e8a8f18a5ff1c9e62f769bd98",
+        "bounds": [
+          113,
+          252,
+          282,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/nigromante_aprendiz/frames/dodge/nigromante_aprendiz-dodge-04.png",
+        "sha256": "1dba54ffb96a508ac83fe4b1f538b19e8ed3edb91273d4ddbb972fc9828d7b08",
+        "bounds": [
+          126,
+          221,
+          272,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}
