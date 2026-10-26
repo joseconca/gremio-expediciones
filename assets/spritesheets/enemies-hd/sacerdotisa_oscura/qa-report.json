@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.6268656716417911,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 168,
+  "idleHeightMean": 168.0,
+  "actorAnchor": [
+    192,
+    372
+  ],
+  "baselineY": 372,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      151.5,
+      311.0
+    ],
+    [
+      153.0,
+      307.5
+    ],
+    [
+      152.5,
+      295.0
+    ],
+    [
+      153.5,
+      277.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/sacerdotisa_oscura-sheet.png",
+  "sheetSha256": "40c9fcc29ef2132512133c8248e1712f3a35b96d2665c8ba7145aa4d5517edf5",
+  "sourcePath": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/source/sheet-v2.png",
+  "sourceSha256": "9df6d7d05dc47d8ddb5b49a4501360f00d825290a81b29a855fd23e3d9c3bd40",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/frames/idle/sacerdotisa_oscura-idle-01.png",
+        "sha256": "c0d791d206f1cd0dec92edb31dabc872b2794860ee3c6548311e2626ece8e31b",
+        "bounds": [
+          127,
+          204,
+          256,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/frames/idle/sacerdotisa_oscura-idle-02.png",
+        "sha256": "97d170a82bbfda49757c958318d1ce7e710c220b37b6db11d1f258dc7c1bbac8",
+        "bounds": [
+          128,
+          204,
+          255,
+          372
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/frames/idle/sacerdotisa_oscura-idle-03.png",
+        "sha256": "f7d6e039865c2c29752cd62cd09d184955f3a59ac9bcd0d156064bac47b0df20",
+        "bounds": [
+          127,
+          204,
+          256,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/frames/idle/sacerdotisa_oscura-idle-04.png",
+        "sha256": "92dc779ee5930deecca7d9869eb08087e2a81f5c49585e0a5b576839bb6fd3c8",
+        "bounds": [
+          127,
+          204,
+          256,
+          372
+        ],
+        "idleAnchorCorrectionX": 1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/frames/hurt/sacerdotisa_oscura-hurt-01.png",
+        "sha256": "7124e0dd6a311467061ddef1bf2446bbedda9ca95f4325e0191664c52170190f",
+        "bounds": [
+          121,
+          208,
+          260,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/frames/hurt/sacerdotisa_oscura-hurt-02.png",
+        "sha256": "6a5b7930f30cdbbc36994cd82eeb3a2661928f05c0f176bba13f617de9889413",
+        "bounds": [
+          120,
+          213,
+          265,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/frames/hurt/sacerdotisa_oscura-hurt-03.png",
+        "sha256": "e61931aba33b69e7644d6f4a0aa00ce75014f4c7d974c0385ec25689c4bcea12",
+        "bounds": [
+          117,
+          218,
+          284,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/frames/hurt/sacerdotisa_oscura-hurt-04.png",
+        "sha256": "d1ffbc8a22eda5d6e79a1ac23f902c69a916bcf0d0b0de9b9010fed3a6ea21d0",
+        "bounds": [
+          139,
+          207,
+          273,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/frames/attack/sacerdotisa_oscura-attack-01.png",
+        "sha256": "e6458c1deab7851f0e5d06fd2f590f4c9c958824ed8d565d4f6640b13d0cf977",
+        "bounds": [
+          120,
+          215,
+          268,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/frames/attack/sacerdotisa_oscura-attack-02.png",
+        "sha256": "fdbaecaf0ecf52dd4797575060190eefed90d7344b5b91f9bdab975eb2b6662f",
+        "bounds": [
+          114,
+          216,
+          286,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/frames/attack/sacerdotisa_oscura-attack-03.png",
+        "sha256": "2e5cdd46cb5b296cde16e38c66407da6bb833ea8e4ae0cc71a0423b7e21fed75",
+        "bounds": [
+          111,
+          217,
+          293,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/frames/attack/sacerdotisa_oscura-attack-04.png",
+        "sha256": "40f11ad95209c59db2a61d5e0f72c6e44e83d99a590b54137565eb9e9d4d738d",
+        "bounds": [
+          126,
+          213,
+          276,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/frames/dodge/sacerdotisa_oscura-dodge-01.png",
+        "sha256": "ca84fec0faa2dd0c4fb384b296535a97511cb882d69fb84b7f4fe397e54df40c",
+        "bounds": [
+          124,
+          213,
+          269,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/frames/dodge/sacerdotisa_oscura-dodge-02.png",
+        "sha256": "15117fbf3ee514ff7cfe4a5f01ba38a89df8580e4db084bbf41458ed252eb787",
+        "bounds": [
+          119,
+          233,
+          272,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/frames/dodge/sacerdotisa_oscura-dodge-03.png",
+        "sha256": "e14c8c5cd663c695756f4f72a3baccbc218211c1165bbfbec51a2fdb7f4e32ca",
+        "bounds": [
+          128,
+          246,
+          277,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/sacerdotisa_oscura/frames/dodge/sacerdotisa_oscura-dodge-04.png",
+        "sha256": "b31e49b8a8dcc207519816e34eacbf79da19dcbd4ce493f88501c8b07edd578b",
+        "bounds": [
+          131,
+          212,
+          270,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

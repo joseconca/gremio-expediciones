@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 1.2578034682080925,
+  "cellSize": [
+    448,
+    448
+  ],
+  "sheetSize": [
+    1792,
+    1792
+  ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
+  "requestedIdleHeight": 272,
+  "idleHeightMean": 272.0,
+  "actorAnchor": [
+    224,
+    435
+  ],
+  "baselineY": 435,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      172.0,
+      291.0
+    ],
+    [
+      169.5,
+      273.5
+    ],
+    [
+      177.0,
+      274.0
+    ],
+    [
+      175.0,
+      252.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/dragon_bosque_verde/dragon_bosque_verde-sheet.png",
+  "sheetSha256": "2893c2fa8edc9ab801dafbaabd407db5e0647e3e242ce211c8d6a012dbc6e4f6",
+  "sourcePath": "assets/spritesheets/enemies-hd/dragon_bosque_verde/source/sheet-v2.png",
+  "sourceSha256": "c3547014ad77f65c1f58543dfea9c589247dd7f8959da1ca97775118022ebc32",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_bosque_verde/frames/idle/dragon_bosque_verde-idle-01.png",
+        "sha256": "6bdb173b19ff11a6ea7f615325bfa335fe3dbb6905d088f7a4b498d8a62be6c3",
+        "bounds": [
+          13,
+          162,
+          351,
+          435
+        ],
+        "idleAnchorCorrectionX": -31
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_bosque_verde/frames/idle/dragon_bosque_verde-idle-02.png",
+        "sha256": "b36b8bd2ac5adc536f3ce142104cdec2370e5a0a45a54d689f73760e43028f8d",
+        "bounds": [
+          15,
+          162,
+          351,
+          435
+        ],
+        "idleAnchorCorrectionX": -32
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_bosque_verde/frames/idle/dragon_bosque_verde-idle-03.png",
+        "sha256": "01ff7ecbd7f6c3776f0c056a45a50ecd0545ec6e32142b7db9e95ac39c55abee",
+        "bounds": [
+          9,
+          163,
+          349,
+          435
+        ],
+        "idleAnchorCorrectionX": -36
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_bosque_verde/frames/idle/dragon_bosque_verde-idle-04.png",
+        "sha256": "145b55367e306b27af6e65982117dc7832ccfec3e4bcca3e3cfd7e39fda24752",
+        "bounds": [
+          14,
+          164,
+          347,
+          434
+        ],
+        "idleAnchorCorrectionX": -36
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_bosque_verde/frames/hurt/dragon_bosque_verde-hurt-01.png",
+        "sha256": "91e503b7b1dabf9a5eb727424c05468fa31313e314fafc2c10053497510b9777",
+        "bounds": [
+          46,
+          163,
+          386,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_bosque_verde/frames/hurt/dragon_bosque_verde-hurt-02.png",
+        "sha256": "51329f09ecd7018e409c0c9b2ce6f8b3f43360929c9a7e3cfde025f7f919f56a",
+        "bounds": [
+          43,
+          166,
+          390,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_bosque_verde/frames/hurt/dragon_bosque_verde-hurt-03.png",
+        "sha256": "d0adef69e11b503df74c48c56642c237407cf10e62db82e4c1cfa6776a5b4238",
+        "bounds": [
+          38,
+          196,
+          391,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_bosque_verde/frames/hurt/dragon_bosque_verde-hurt-04.png",
+        "sha256": "5bf6fa97f1dabbe3ca0981bb7319502e2755cc59e7fbc8ccd90870f89854283f",
+        "bounds": [
+          43,
+          163,
+          379,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_bosque_verde/frames/attack/dragon_bosque_verde-attack-01.png",
+        "sha256": "5d81592ce30bff7422df36d791b71926ed6feb0a97798868189008a0d2a2e6f8",
+        "bounds": [
+          33,
+          138,
+          397,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_bosque_verde/frames/attack/dragon_bosque_verde-attack-02.png",
+        "sha256": "a57c3f1986bef819194eee769d73c8cae4a34cb27266c8d808320bdee9c38dc4",
+        "bounds": [
+          28,
+          127,
+          366,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_bosque_verde/frames/attack/dragon_bosque_verde-attack-03.png",
+        "sha256": "3f4e0020ab96b01db5f48efe015f0eb6f328ce42284f48fe7f1f838403d86b5c",
+        "bounds": [
+          18,
+          167,
+          413,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_bosque_verde/frames/attack/dragon_bosque_verde-attack-04.png",
+        "sha256": "68d8e7ae0e6fbd52d68b3b546b0763c7468c8e3a65e928aee52c88cc3fd49361",
+        "bounds": [
+          23,
+          151,
+          368,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_bosque_verde/frames/dodge/dragon_bosque_verde-dodge-01.png",
+        "sha256": "d0414a4d44dbbfc3840580d1d5ec0ce477833538869057edf4298e0c07009277",
+        "bounds": [
+          33,
+          182,
+          397,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_bosque_verde/frames/dodge/dragon_bosque_verde-dodge-02.png",
+        "sha256": "74e23c78246ced8dbc5743865b3142613652c5e6b4146b40836ed3695ce3f8c6",
+        "bounds": [
+          37,
+          193,
+          389,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_bosque_verde/frames/dodge/dragon_bosque_verde-dodge-03.png",
+        "sha256": "d6d5406693a3bf09d3aa67f9d2b225ddf5d51ea58ab62d2a3cbc4a2fce0de07b",
+        "bounds": [
+          29,
+          229,
+          414,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/dragon_bosque_verde/frames/dodge/dragon_bosque_verde-dodge-04.png",
+        "sha256": "8cf14bc9404923fdcea8283138668e1c1a2d7189a0fc6f2119a0f883c8b64326",
+        "bounds": [
+          41,
+          163,
+          376,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

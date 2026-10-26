@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.9110320284697508,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "artDirection": "earlier-candidate-style",
+  "requestedIdleHeight": 192,
+  "idleHeightMean": 191.75,
+  "actorAnchor": [
+    192,
+    371
+  ],
+  "baselineY": 371,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      169.0,
+      297.0
+    ],
+    [
+      168.0,
+      292.5
+    ],
+    [
+      171.0,
+      290.0
+    ],
+    [
+      169.0,
+      256.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/senor_frontera/senor_frontera-sheet.png",
+  "sheetSha256": "e99346e1f2e8486bfc08785585632b867463fde880715e552db225a7af57100f",
+  "sourcePath": "assets/spritesheets/enemies-hd/senor_frontera/source/sheet-v2.png",
+  "sourceSha256": "4900efc3513b904aba70fd5e3ce48ffc7602040e1db692bcebd9bbfc8f6f55a9",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_frontera/frames/idle/senor_frontera-idle-01.png",
+        "sha256": "d7836327f2060e35ed693b06be97a8bfa745d55ac9ee8338b6689c71182c8ef1",
+        "bounds": [
+          79,
+          179,
+          309,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_frontera/frames/idle/senor_frontera-idle-02.png",
+        "sha256": "9820157e46609e0961ba5237ae07cdf0b9b80a25a68e1c7676d63a85f6cd6f05",
+        "bounds": [
+          79,
+          179,
+          309,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_frontera/frames/idle/senor_frontera-idle-03.png",
+        "sha256": "1c4fc2317653aa01f72bef7a57faca3dfa527030c4fe038d7fb49c881d50a9b1",
+        "bounds": [
+          79,
+          180,
+          307,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_frontera/frames/idle/senor_frontera-idle-04.png",
+        "sha256": "aade9b65b926dc949a2e36e23c4d97f6e304b8d144471c58e764ab114dfb6138",
+        "bounds": [
+          77,
+          179,
+          311,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_frontera/frames/hurt/senor_frontera-hurt-01.png",
+        "sha256": "5d8747c5c0bb7be99ba29a9e264463f16831ee73b975708454b94447b206f14e",
+        "bounds": [
+          80,
+          176,
+          310,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_frontera/frames/hurt/senor_frontera-hurt-02.png",
+        "sha256": "007d5b6f5cd6038f0613cc73cdc80b068b8046c9c2553c1171260c56154536c1",
+        "bounds": [
+          77,
+          190,
+          285,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_frontera/frames/hurt/senor_frontera-hurt-03.png",
+        "sha256": "fd5fe3c4440a3a56531d605b70230db2ed6b361cbcda6d78bd9ae616e8245f85",
+        "bounds": [
+          77,
+          208,
+          280,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_frontera/frames/hurt/senor_frontera-hurt-04.png",
+        "sha256": "c784f73af77a6202745fcd91cb362e550cd00c99a0b46558cc7be407d97b8e1a",
+        "bounds": [
+          69,
+          175,
+          299,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_frontera/frames/attack/senor_frontera-attack-01.png",
+        "sha256": "cd972a6f3b02b0e7290b56377a14eb7d3bfb192aa6aa6e2e9c81eaff768b4d11",
+        "bounds": [
+          77,
+          175,
+          302,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_frontera/frames/attack/senor_frontera-attack-02.png",
+        "sha256": "3557637d9786f8fe9024c7f60bb31ae640e5d3aa96033b4a8c4ef23b1c85c4b2",
+        "bounds": [
+          83,
+          129,
+          288,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_frontera/frames/attack/senor_frontera-attack-03.png",
+        "sha256": "7b432ce4053ed903c082747d2c5932586d1f1c8bd0202178cfc23f884baf57ba",
+        "bounds": [
+          31,
+          189,
+          348,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_frontera/frames/attack/senor_frontera-attack-04.png",
+        "sha256": "1bd96e78335d841ae467823c4062befaa6f606a3f727b539c10d25c8f7cc40f7",
+        "bounds": [
+          66,
+          177,
+          296,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_frontera/frames/dodge/senor_frontera-dodge-01.png",
+        "sha256": "3c60fff1cb117c38b0d3648c1271651ab85d57591fa70e4966fbb39d531ba4f5",
+        "bounds": [
+          78,
+          176,
+          304,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_frontera/frames/dodge/senor_frontera-dodge-02.png",
+        "sha256": "dc62f5c211af19ef304e6761b2bfc0cad1adeac37b052c744a2f23589cd802da",
+        "bounds": [
+          78,
+          202,
+          302,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_frontera/frames/dodge/senor_frontera-dodge-03.png",
+        "sha256": "ed7d76b3b5b6b7b47e5823b75c07d226a8a77b34a6fa09522e538ef2ae9b7aef",
+        "bounds": [
+          62,
+          202,
+          292,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/senor_frontera/frames/dodge/senor_frontera-dodge-04.png",
+        "sha256": "c137d76119cbadd0e2021440327769bbf273535e967b95f6ce3e7f6e57d78848",
+        "bounds": [
+          66,
+          175,
+          290,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

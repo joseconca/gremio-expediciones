@@ -181,6 +181,7 @@ def register(data, idle_height, reviewed, anchor_mode='ground'):
     save_image(contact.convert('RGB'),preview/'contact.png')
     heights=[f['bounds'][3]-f['bounds'][1] for f in report_frames['idle']]
     report = {'status':'passed', 'frames':16, 'actions':list(ACTIONS), 'scale':scale, 'cellSize':[cell,cell], 'sheetSize':[cell*4,cell*4],
+              'artDirection':data.get('artDirection','earlier-candidate-style'),
               'requestedIdleHeight':idle_height, 'idleHeightMean':sum(heights)/4, 'actorAnchor':[center,baseline], 'baselineY':baseline, 'idleAnchorMode':anchor_mode,
               'rowReferenceRoots':row_roots, 'sheetPath':target.relative_to(ROOT).as_posix(), 'sheetSha256':sha(target),
               'sourcePath':source.relative_to(ROOT).as_posix(), 'sourceSha256':sha(source),
@@ -189,7 +190,7 @@ def register(data, idle_height, reviewed, anchor_mode='ground'):
     manifest_path = BASE/'manifest.json'
     m = json.loads(manifest_path.read_text(encoding='utf-8-sig'))
     item = next(e for e in m['enemies'] if e['id'] == data['id'])
-    item.update(status='candidate' if reviewed else 'visual-review-pending',frames=16,sourceRevision=data['revision'],cellSize=[cell,cell],sheetSize=[cell*4,cell*4],idleHeight=idle_height,anchorMode=anchor_mode,report=(folder/'qa-report.json').relative_to(ROOT).as_posix())
+    item.update(status='candidate' if reviewed else 'visual-review-pending',frames=16,sourceRevision=data['revision'],cellSize=[cell,cell],sheetSize=[cell*4,cell*4],idleHeight=idle_height,anchorMode=anchor_mode,artDirection=report['artDirection'],report=(folder/'qa-report.json').relative_to(ROOT).as_posix())
     m['schemaVersion']=2
     m.pop('cellSize',None)
     m.pop('sheetSize',None)

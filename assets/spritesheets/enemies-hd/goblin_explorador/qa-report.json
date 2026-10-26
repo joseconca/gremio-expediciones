@@ -7,7 +7,7 @@
     "attack",
     "dodge"
   ],
-  "scale": 0.4745762711864407,
+  "scale": 0.4371584699453552,
   "cellSize": [
     384,
     384
@@ -16,125 +16,126 @@
     1536,
     1536
   ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
   "requestedIdleHeight": 140,
-  "idleHeightMean": 140.0,
+  "idleHeightMean": 139.75,
   "actorAnchor": [
     192,
-    371
+    372
   ],
-  "baselineY": 371,
+  "baselineY": 372,
   "idleAnchorMode": "ground",
   "rowReferenceRoots": [
     [
-      159.5,
-      314.0
+      161.5,
+      340.0
     ],
     [
-      159.0,
-      307.5
+      154.5,
+      335.5
     ],
     [
-      155.5,
-      304.0
+      151.5,
+      322.0
     ],
     [
-      159.5,
-      290.5
+      157.5,
+      297.5
     ]
   ],
   "sheetPath": "assets/spritesheets/enemies-hd/goblin_explorador/goblin_explorador-sheet.png",
-  "sheetSha256": "e1365ab590a15bbfb76bff8782f97e21092fb97e14d012867a2db97f88ca3af5",
-  "sourcePath": "assets/spritesheets/enemies-hd/goblin_explorador/source/sheet-v1.png",
-  "sourceSha256": "86fbaec5569c1da92d5715104d8c11342f396f2f495b3ee4d9ea81a25c7a2b60",
+  "sheetSha256": "1a103c6510103f9f3242225a3b124dfd687e2c5951fb4e8f74a985c3f7f697d6",
+  "sourcePath": "assets/spritesheets/enemies-hd/goblin_explorador/source/sheet-v2.png",
+  "sourceSha256": "3058a188bc5e4c1ad4221e5411ad9584ce579b5810041de4d3ab28b8d5fb17d3",
   "frameData": {
     "idle": [
       {
         "path": "assets/spritesheets/enemies-hd/goblin_explorador/frames/idle/goblin_explorador-idle-01.png",
-        "sha256": "11203eda823f310fff08571a62e2110a54c020f490df57989fb2f88080eb1f00",
+        "sha256": "2c421bd1ee1a51dbd45aa4e5f4be977d1276c4f414779817729bc4c033bdbbd5",
         "bounds": [
-          140,
-          231,
-          238,
-          371
+          142,
+          232,
+          235,
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/goblin_explorador/frames/idle/goblin_explorador-idle-02.png",
-        "sha256": "aa946d62898c677fe8c7c214585c2a282faab729bcf684c815f83d285c3235f9",
+        "sha256": "b91ff202403c7823bcf0490285857178e3ba224a16bc828fda081b61a191caed",
         "bounds": [
-          141,
-          231,
-          238,
-          371
+          144,
+          233,
+          235,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/goblin_explorador/frames/idle/goblin_explorador-idle-03.png",
+        "sha256": "1bbc60ad115629a185bea869a29b910ffe999c3f61e141c8f3a8c71a54f8828d",
+        "bounds": [
+          144,
+          232,
+          235,
+          372
         ],
         "idleAnchorCorrectionX": 1
       },
       {
-        "path": "assets/spritesheets/enemies-hd/goblin_explorador/frames/idle/goblin_explorador-idle-03.png",
-        "sha256": "f7e16eaf66e71a45adafb9a63e556dcf1c197268495a78f24d626ffce71f23a3",
-        "bounds": [
-          140,
-          231,
-          239,
-          371
-        ],
-        "idleAnchorCorrectionX": 0
-      },
-      {
         "path": "assets/spritesheets/enemies-hd/goblin_explorador/frames/idle/goblin_explorador-idle-04.png",
-        "sha256": "858af77d555d057ba937aac37fed99415d786e1c2a53d5ae6807cbc232728ec0",
+        "sha256": "484420e75a94630d94b92b43da5eb3db853195a8b530ca7c6efe7ec47abb93d9",
         "bounds": [
-          140,
-          231,
-          237,
-          371
+          145,
+          232,
+          236,
+          372
         ],
-        "idleAnchorCorrectionX": 0
+        "idleAnchorCorrectionX": 1
       }
     ],
     "hurt": [
       {
         "path": "assets/spritesheets/enemies-hd/goblin_explorador/frames/hurt/goblin_explorador-hurt-01.png",
-        "sha256": "fa67f19613449525b87a7f917385414ce782aed6d40749f0b8485e45517f435e",
+        "sha256": "06b7e1ef5d184a95ac650014dcfcfe4406f41634853162c762d3daac4d6039aa",
         "bounds": [
-          136,
-          236,
-          244,
-          371
+          144,
+          245,
+          243,
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/goblin_explorador/frames/hurt/goblin_explorador-hurt-02.png",
-        "sha256": "8200fa9facbccd31431bbf07e9a8c47474f184d03aa56319a64114c45d720fa0",
+        "sha256": "e7db94623c587289f2c7357ad6a4c4ff05a53a2391248be70ea378424afd39e9",
         "bounds": [
-          144,
-          241,
-          249,
-          371
+          148,
+          245,
+          242,
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/goblin_explorador/frames/hurt/goblin_explorador-hurt-03.png",
-        "sha256": "2b3358a121010ce579ae2ed3dcb21548617da21673e81335bd9cc2bcf66fee9b",
+        "sha256": "5647b72bb8cad482253433d8ec18e7a0274bf44f14b31782aad7f9e4a8ff467f",
         "bounds": [
-          123,
-          242,
-          250,
-          371
+          138,
+          245,
+          253,
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/goblin_explorador/frames/hurt/goblin_explorador-hurt-04.png",
-        "sha256": "cc1c98e43dc43f597bb681a46b45648909992805dcbd1dd7c67aee872c92ff0c",
+        "sha256": "f4c5625ab68511e94b7f03e7ba893a97d5b9888925048836369dfbe10ab055f4",
         "bounds": [
-          140,
-          240,
+          148,
+          246,
           245,
-          371
+          372
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -142,45 +143,45 @@
     "attack": [
       {
         "path": "assets/spritesheets/enemies-hd/goblin_explorador/frames/attack/goblin_explorador-attack-01.png",
-        "sha256": "e414bacb9733b5802e60114532e358636ae0a6263ac9699660660360c374a465",
+        "sha256": "fa5c20602a64f3337cdd5d965853319d0fa83913fb2e282d98b0ced657ce8a8c",
         "bounds": [
-          138,
-          243,
-          254,
-          371
+          139,
+          248,
+          250,
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/goblin_explorador/frames/attack/goblin_explorador-attack-02.png",
-        "sha256": "7e12d1d81281f09afa10c036146be96f9723de3c1199a718573f9807d4ebbdef",
+        "sha256": "78335162d2dcd11037522f087cc82e863cd588895942edb6a7290bf6346d4add",
         "bounds": [
-          135,
-          236,
-          255,
-          371
+          140,
+          240,
+          257,
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/goblin_explorador/frames/attack/goblin_explorador-attack-03.png",
-        "sha256": "1bc7e9ad41be7570792cb920854d36185ba5e1262fa96bc53dc9227497e4d8a0",
+        "sha256": "1efe00f70b1fa2fc0a3c83104cb2d83a54a80e3e6f1991cb2ee62b3169b4969d",
         "bounds": [
-          116,
-          252,
-          297,
-          371
+          130,
+          255,
+          290,
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/goblin_explorador/frames/attack/goblin_explorador-attack-04.png",
-        "sha256": "7e9fbea9b15e7c1ef794eeaa33e01defc8658fe2b1afd94e9990f891c443da92",
+        "sha256": "2ea05e94b2fcb054dc5b51796a8694a58c46f4fac0dcd16b8e596270c35620cc",
         "bounds": [
-          146,
-          243,
-          255,
-          371
+          149,
+          247,
+          251,
+          372
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -188,43 +189,43 @@
     "dodge": [
       {
         "path": "assets/spritesheets/enemies-hd/goblin_explorador/frames/dodge/goblin_explorador-dodge-01.png",
-        "sha256": "e0c9fb4e1d6350695cf98acae986ffdaefbe3721a1e89538aeb14c9e5543e0e8",
+        "sha256": "433b63bdaa3272828f32a9f19069333e9202aab936e08cca1cb2a96cd2dd57e4",
         "bounds": [
-          135,
+          140,
+          251,
           240,
-          242,
-          371
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/goblin_explorador/frames/dodge/goblin_explorador-dodge-02.png",
-        "sha256": "dcf5d1d3c0c1f9a83e9d9b6d13a9406e410425c106157273da029953ac5db51d",
+        "sha256": "d7aa63dbe5b9ba81c3649c20c7516a3245c2f02f7438d6f458d3f8a33f287468",
         "bounds": [
-          117,
-          247,
-          264,
-          371
+          132,
+          252,
+          262,
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/goblin_explorador/frames/dodge/goblin_explorador-dodge-03.png",
-        "sha256": "f3a925da10f1cdbe1354c93dde17f309f1d877406caab3856b17d35dfd197eb7",
+        "sha256": "affd3b8aedaca809ba8cae88df13b55c32c727f26a8ab008f08f35d2192f9d6a",
         "bounds": [
-          137,
+          139,
           264,
-          253,
-          367
+          247,
+          369
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/goblin_explorador/frames/dodge/goblin_explorador-dodge-04.png",
-        "sha256": "aa53b981992c7d7af14679876e2f150f11734eb66ffdfdf182d8c8b1650f8e33",
+        "sha256": "e4745259413f2561a6eceb4a782bade32a73eaf48170de0d36db926e5879993a",
         "bounds": [
-          142,
-          242,
+          146,
+          249,
           247,
           372
         ],

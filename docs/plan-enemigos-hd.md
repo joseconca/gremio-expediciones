@@ -6,7 +6,7 @@ Contrato: una hoja RGBA por enemigo con cuatro columnas y cuatro filas en orden 
 
 Detalle y acabado ilustrado de los personajes HD, contorno legible, materiales pintados y perspectiva lateral de tres cuartos hacia la derecha. Cada criatura mantiene una única escala en las dieciséis poses. Reposo con apoyo estable, respiración sutil y sin deriva horizontal; ataque con anticipación, impacto y recuperación. Sin fondos, suelo, texto ni sombras incrustadas.
 
-Dirección artística vigente: enemigos caricaturescos, animados y expresivos, pero con malicia y carácter de adversarios. El usuario rechazó tanto los primeros bocetos demasiado serios como las versiones de ojos grandes y aspecto adorable. Se busca un punto intermedio de fantasía medieval: gestos exagerados, siluetas claras, mirada pícara o desafiante y materiales pintados. Evitar rasgos de mascota, ojos brillantes gigantes, coloretes, proporciones de bebé y sonrisas inocentes; también evitar realismo sombrío y terror. Las versiones anteriores se conservan como bocetos sustituidos y no se contabilizan como hojas aprobadas.
+Dirección artística vigente tras la última revisión: acabado pintado de fantasía RPG y proporciones serias acordes a los personajes jugables. Reducir el aspecto chibi, las cabezas y ojos sobredimensionados, las extremidades cortas y las expresiones caricaturescas. Los humanoides adultos se comparan directamente con el espadachín como referencia de anatomía y estilo, aproximadamente cuatro a cuatro cabezas y media de altura. Las especies no humanas conservan su anatomía propia con el mismo tratamiento más sobrio. Se mantienen los tamaños por especie ya corregidos. Evitar tanto mascotas adorables como realismo fotográfico o terror. Los bocetos y versiones sustituidas se conservan; ninguna hoja implica aprobación artística del usuario.
 
 Producción mediante la herramienta integrada de generación de imágenes, con los personajes HD como referencia de estilo. Se conservan originales, instrucciones, hashes, fotogramas y previsualizaciones animadas. El ensamblado solo separa, alinea y empaqueta el arte; no dibuja criaturas ni inventa poses.
 
@@ -17,7 +17,7 @@ Se revisa cada hoja completa, transparencia, dieciséis poses, márgenes y coher
 <!-- ENEMIES_HD_PROGRESS_START -->
 ## Avance verificable
 
-27 / 54 enemigos candidatos; 432 / 864 fotogramas. Revisión del usuario e integración pendientes.
+47 / 54 enemigos candidatos; 752 / 864 fotogramas. Revisión del usuario e integración pendientes.
 
 | Enemigo | Estado |
 |---|---|
@@ -48,27 +48,27 @@ Se revisa cada hoja completa, transparencia, dieciséis poses, márgenes y coher
 | Espectro Errante | 16 fotogramas; candidato revisado |
 | Arpía Cazadora | 16 fotogramas; candidato revisado |
 | Nigromante Aprendiz | 16 fotogramas; candidato revisado |
-| Guardián de la Cripta | Pendiente |
-| Basilisco Joven | Pendiente |
-| Centauro Saqueador | Pendiente |
-| Gárgola Ancestral | Pendiente |
-| Elemental de Roca | Pendiente |
-| Sacerdotisa Oscura | Pendiente |
-| Mantícora | Pendiente |
-| Ogro Chamán | Pendiente |
-| Caballero Maldito | Pendiente |
-| Wyvern Joven | Pendiente |
-| Elemental de Fuego | Pendiente |
-| Vampiro Noble | Pendiente |
-| Demonio Menor | Pendiente |
-| Dragón Negro Joven | Pendiente |
-| Gigante de Escarcha | Pendiente |
-| Señor de la Frontera | Pendiente |
+| Guardián de la Cripta | 16 fotogramas; candidato revisado |
+| Basilisco Joven | 16 fotogramas; candidato revisado |
+| Centauro Saqueador | 16 fotogramas; candidato revisado |
+| Gárgola Ancestral | 16 fotogramas; candidato revisado |
+| Elemental de Roca | 16 fotogramas; candidato revisado |
+| Sacerdotisa Oscura | 16 fotogramas; candidato revisado |
+| Mantícora | 16 fotogramas; candidato revisado |
+| Ogro Chamán | 16 fotogramas; candidato revisado |
+| Caballero Maldito | 16 fotogramas; candidato revisado |
+| Wyvern Joven | 16 fotogramas; candidato revisado |
+| Elemental de Fuego | 16 fotogramas; candidato revisado |
+| Vampiro Noble | 16 fotogramas; candidato revisado |
+| Demonio Menor | 16 fotogramas; candidato revisado |
+| Dragón Negro Joven | 16 fotogramas; candidato revisado |
+| Gigante de Escarcha | 16 fotogramas; candidato revisado |
+| Señor de la Frontera | 16 fotogramas; candidato revisado |
 | Reina de las Sombras | Pendiente |
-| Titán de Hierro | Pendiente |
-| Dragón del Bosque Verde | Pendiente |
-| Capitán de los Orcos | Pendiente |
-| Reina Araña | Pendiente |
+| Titán de Hierro | 16 fotogramas; candidato revisado |
+| Dragón del Bosque Verde | 16 fotogramas; candidato revisado |
+| Capitán de los Orcos | 16 fotogramas; candidato revisado |
+| Reina Araña | 16 fotogramas; candidato revisado |
 | Archimago Exiliado | Pendiente |
 | Dragón del Pantano | Pendiente |
 | Rey No Muerto | Pendiente |

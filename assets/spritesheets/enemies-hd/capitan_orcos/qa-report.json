@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.757396449704142,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
+  "requestedIdleHeight": 224,
+  "idleHeightMean": 223.75,
+  "actorAnchor": [
+    192,
+    371
+  ],
+  "baselineY": 371,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      150.5,
+      309.0
+    ],
+    [
+      152.0,
+      307.5
+    ],
+    [
+      160.0,
+      308.0
+    ],
+    [
+      162.0,
+      292.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/capitan_orcos/capitan_orcos-sheet.png",
+  "sheetSha256": "095b126092343454dfef698631da5a5bd51af2b3f398259ce89944a2f69d5dfa",
+  "sourcePath": "assets/spritesheets/enemies-hd/capitan_orcos/source/sheet-v1.png",
+  "sourceSha256": "4672a613301871e5eb2c6724cc18f546063b24076ea93bd47a14b60e95afd622",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/capitan_orcos/frames/idle/capitan_orcos-idle-01.png",
+        "sha256": "be0cedfbbe845db0c66fc31831628a9a0d4309ca1f3ec2fd991256537039a3ec",
+        "bounds": [
+          103,
+          148,
+          297,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/capitan_orcos/frames/idle/capitan_orcos-idle-02.png",
+        "sha256": "2ac1000f8979a21f868be912abf00b290346bfda9a29b84ac2fffecda840a5eb",
+        "bounds": [
+          102,
+          147,
+          297,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/capitan_orcos/frames/idle/capitan_orcos-idle-03.png",
+        "sha256": "baa296a8ebd1da5ebd7c3bbbcc5e3f07b4dc9d418cb1cafb7aa3decce2bf0e01",
+        "bounds": [
+          100,
+          147,
+          297,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/capitan_orcos/frames/idle/capitan_orcos-idle-04.png",
+        "sha256": "a15ae4f82d22f71e906dad9fd46a4b5f604a704f2ef080928201eaee811e7917",
+        "bounds": [
+          102,
+          147,
+          297,
+          371
+        ],
+        "idleAnchorCorrectionX": 1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/capitan_orcos/frames/hurt/capitan_orcos-hurt-01.png",
+        "sha256": "4184b30c8cd782979f484548bf6b54d48948a5e66408dffddfeb96802417bdbf",
+        "bounds": [
+          109,
+          153,
+          305,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/capitan_orcos/frames/hurt/capitan_orcos-hurt-02.png",
+        "sha256": "e2776dcbf9903372b3a948046d25e1181a99ce743e599fc6e0b5559e1a5452cb",
+        "bounds": [
+          109,
+          156,
+          305,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/capitan_orcos/frames/hurt/capitan_orcos-hurt-03.png",
+        "sha256": "b1a056d5ec4078e152860498707f5b4374ce75137e850a2df3cbedcb57be6933",
+        "bounds": [
+          113,
+          155,
+          293,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/capitan_orcos/frames/hurt/capitan_orcos-hurt-04.png",
+        "sha256": "28c6dd26ce06be7c01e763372c1e9822c30489204da67a43ecddf4d680cb8522",
+        "bounds": [
+          105,
+          154,
+          297,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/capitan_orcos/frames/attack/capitan_orcos-attack-01.png",
+        "sha256": "32104d9d8c3cc6592a1b4b51584c64081759a69252c308719f876559acd8921f",
+        "bounds": [
+          110,
+          163,
+          311,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/capitan_orcos/frames/attack/capitan_orcos-attack-02.png",
+        "sha256": "6cbe9b4b89b90e749ea383e9533cd9d3fb487d563eb4d17a45b48b7ca1d2165e",
+        "bounds": [
+          113,
+          136,
+          302,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/capitan_orcos/frames/attack/capitan_orcos-attack-03.png",
+        "sha256": "4346a54edeca81ace8fcd9f02cb439b1c781a039d5749f756c7f669f225d1c46",
+        "bounds": [
+          91,
+          172,
+          355,
+          368
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/capitan_orcos/frames/attack/capitan_orcos-attack-04.png",
+        "sha256": "e5f9c2ec5138f7c3955bbad53347c3748a852c78b294f3296905b4191126131f",
+        "bounds": [
+          125,
+          154,
+          298,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/capitan_orcos/frames/dodge/capitan_orcos-dodge-01.png",
+        "sha256": "59529b5de2ef557691fce09cb9bae62653c8761626b2276f8c07c5340c92e017",
+        "bounds": [
+          89,
+          164,
+          314,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/capitan_orcos/frames/dodge/capitan_orcos-dodge-02.png",
+        "sha256": "cd030af3b799f7cb8117581f8c40003021ec0bcb75eb0960b02d244a636f8ffc",
+        "bounds": [
+          92,
+          180,
+          307,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/capitan_orcos/frames/dodge/capitan_orcos-dodge-03.png",
+        "sha256": "0db2192dbf4e9a734c148a1433492779ad9cf3e3c25caf34e9e94b02d9e80ebf",
+        "bounds": [
+          86,
+          204,
+          307,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/capitan_orcos/frames/dodge/capitan_orcos-dodge-04.png",
+        "sha256": "1bcba4d8a7fd06f8e668162f8d99bb74553cd1625e69283b71bf73e9952ec9ad",
+        "bounds": [
+          91,
+          155,
+          295,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

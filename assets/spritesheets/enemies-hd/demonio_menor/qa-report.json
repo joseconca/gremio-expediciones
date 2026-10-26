@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.7878787878787878,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
+  "requestedIdleHeight": 208,
+  "idleHeightMean": 207.75,
+  "actorAnchor": [
+    192,
+    372
+  ],
+  "baselineY": 372,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      192.0,
+      327.0
+    ],
+    [
+      183.5,
+      326.25
+    ],
+    [
+      183.5,
+      339.5
+    ],
+    [
+      179.0,
+      264.75
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/demonio_menor/demonio_menor-sheet.png",
+  "sheetSha256": "d4b0a216020cd2d586b26fec05e634fe3cd5916a641b1e8298b8744b4cf2c303",
+  "sourcePath": "assets/spritesheets/enemies-hd/demonio_menor/source/sheet-v3.png",
+  "sourceSha256": "62c85eba1490659da75f02bced280cf869ab1d358aceef30df104f9e0cc08340",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/demonio_menor/frames/idle/demonio_menor-idle-01.png",
+        "sha256": "38a869a2fdf6baec7e68e648afb6a9c654a8de6bd381a597202f7720dce7dcfb",
+        "bounds": [
+          86,
+          162,
+          265,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/demonio_menor/frames/idle/demonio_menor-idle-02.png",
+        "sha256": "888b9b758970cb5af2cfbfca24d0b4318b90c0ddeaf045f69eed608eac94536c",
+        "bounds": [
+          85,
+          162,
+          261,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/demonio_menor/frames/idle/demonio_menor-idle-03.png",
+        "sha256": "e76484376b2fc17a15d575b7c63441af047159181b15132e59ece1c5b0a5717c",
+        "bounds": [
+          87,
+          168,
+          266,
+          372
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/demonio_menor/frames/idle/demonio_menor-idle-04.png",
+        "sha256": "4ab5e90dfa1e621702f1e1a6aa4f6b5c6846051eb74038320b8c61c779874734",
+        "bounds": [
+          87,
+          165,
+          265,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/demonio_menor/frames/hurt/demonio_menor-hurt-01.png",
+        "sha256": "91c6be62a1a020a541e793265bec5f0fd11c5305d0333a3d7e5821c561f4b2aa",
+        "bounds": [
+          84,
+          181,
+          278,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/demonio_menor/frames/hurt/demonio_menor-hurt-02.png",
+        "sha256": "2ef6e49cbd8d08d518e5a22880c37f35c78a36e4d921b5a848d8673479190b69",
+        "bounds": [
+          90,
+          176,
+          276,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/demonio_menor/frames/hurt/demonio_menor-hurt-03.png",
+        "sha256": "1216c6d5cafa60927047647f097aab2b7237f600068f02521196e4f80486c3ef",
+        "bounds": [
+          88,
+          176,
+          275,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/demonio_menor/frames/hurt/demonio_menor-hurt-04.png",
+        "sha256": "df4e228482dafb2923486aa8b435bc4ec2beaa3e53c384a4ba76ec986d32c3f6",
+        "bounds": [
+          90,
+          180,
+          285,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/demonio_menor/frames/attack/demonio_menor-attack-01.png",
+        "sha256": "d757138619e3a2395c9ebbf59a2f34de20ebdca837310e255341f3c7292333f9",
+        "bounds": [
+          88,
+          181,
+          288,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/demonio_menor/frames/attack/demonio_menor-attack-02.png",
+        "sha256": "8dce73fb684441bce762f04ffc939a882e066186c7bd9052fedd387cc309664b",
+        "bounds": [
+          100,
+          155,
+          303,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/demonio_menor/frames/attack/demonio_menor-attack-03.png",
+        "sha256": "78971cca8f33bff5f1dcc56871438ed786aaf4a68fb9c7c905b62636f27e48bc",
+        "bounds": [
+          84,
+          188,
+          322,
+          370
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/demonio_menor/frames/attack/demonio_menor-attack-04.png",
+        "sha256": "db55f7894ca86e7eceb1684557944cb119a8f74a4448c72080ecf883205fd52a",
+        "bounds": [
+          103,
+          178,
+          286,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/demonio_menor/frames/dodge/demonio_menor-dodge-01.png",
+        "sha256": "c3e7220ad6a1b30e684624cb326241f039bab2be1b607ba0a04b567763131ff8",
+        "bounds": [
+          94,
+          225,
+          281,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/demonio_menor/frames/dodge/demonio_menor-dodge-02.png",
+        "sha256": "1e1dba20b50c5470135d3f7ae5e4fc56de131ae71e2e42793460d23a8a54ec69",
+        "bounds": [
+          99,
+          222,
+          294,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/demonio_menor/frames/dodge/demonio_menor-dodge-03.png",
+        "sha256": "12d876a1fd935a898decb8a243dc0edd724e8ed7f927cec5660d8115cf7da66b",
+        "bounds": [
+          86,
+          231,
+          292,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/demonio_menor/frames/dodge/demonio_menor-dodge-04.png",
+        "sha256": "9b982e747f427af87f9777a3a0355dc4c0e88472be556823d8e690c259935f0c",
+        "bounds": [
+          105,
+          217,
+          287,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

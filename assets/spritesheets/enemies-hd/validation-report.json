@@ -1,8 +1,8 @@
 {
   "status": "passed",
   "expectedEnemies": 54,
-  "candidateEnemies": 27,
-  "framesValidated": 432,
+  "candidateEnemies": 47,
+  "framesValidated": 752,
   "runtimeModified": false,
   "enemies": [
     {
@@ -46,8 +46,8 @@
       "frames": 16,
       "idleAnchorMode": "ground",
       "idleSupportCentersX": [
-        192.5,
-        192.5,
+        192.0,
+        192.0,
         192.5,
         192.5
       ],
@@ -58,10 +58,10 @@
       "frames": 16,
       "idleAnchorMode": "ground",
       "idleSupportCentersX": [
-        192.5,
         192.0,
         192.5,
-        192.0
+        192.0,
+        192.5
       ],
       "aerialReview": null
     },
@@ -70,10 +70,10 @@
       "frames": 16,
       "idleAnchorMode": "ground",
       "idleSupportCentersX": [
-        192.0,
-        192.0,
         192.5,
-        192.5
+        192.5,
+        192.0,
+        192.0
       ],
       "aerialReview": null
     },
@@ -227,9 +227,9 @@
       "idleAnchorMode": "ground",
       "idleSupportCentersX": [
         192.5,
+        192.0,
         192.5,
-        192.5,
-        192.5
+        192.0
       ],
       "aerialReview": null
     },
@@ -238,9 +238,9 @@
       "frames": 16,
       "idleAnchorMode": "ground",
       "idleSupportCentersX": [
-        192.5,
-        192.5,
-        192.5,
+        192.0,
+        192.0,
+        192.0,
         192.5
       ],
       "aerialReview": null
@@ -263,9 +263,9 @@
       "idleAnchorMode": "ground",
       "idleSupportCentersX": [
         192.0,
-        192.5,
         192.0,
-        192.0
+        192.5,
+        192.5
       ],
       "aerialReview": null
     },
@@ -310,10 +310,10 @@
       "frames": 16,
       "idleAnchorMode": "air",
       "idleSupportCentersX": [
-        191.0,
-        191.0,
-        190.0,
-        191.5
+        191.5,
+        185.5,
+        183.0,
+        184.5
       ],
       "aerialReview": "fixed cell origin; torso visually reviewed, wing tips excluded from ground test"
     },
@@ -326,6 +326,246 @@
         192.0,
         192.0,
         192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "guardian_cripta",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        224.5,
+        224.5,
+        224.0,
+        224.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "basilisco_joven",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.5,
+        192.5,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "centauro_saqueador",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.5,
+        192.0,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "gargola_ancestral",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.0,
+        192.0,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "elemental_roca",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        224.5,
+        224.5,
+        224.5,
+        224.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "sacerdotisa_oscura",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.5,
+        192.5,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "mantícora",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.0,
+        192.5,
+        192.0,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "ogro_chaman",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        224.0,
+        224.5,
+        224.0,
+        224.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "caballero_maldito",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.5,
+        192.5,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "wyvern_joven",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.5,
+        192.5,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "elemental_fuego",
+      "frames": 16,
+      "idleAnchorMode": "air",
+      "idleSupportCentersX": [
+        195.0,
+        187.5,
+        193.5,
+        194.5
+      ],
+      "aerialReview": "fixed cell origin; torso visually reviewed, wing tips excluded from ground test"
+    },
+    {
+      "id": "vampiro_noble",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.5,
+        192.5,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "demonio_menor",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.0,
+        192.5,
+        192.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "dragon_negro_joven",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        224.0,
+        224.0,
+        224.5,
+        224.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "gigante_escarcha",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        256.0,
+        256.5,
+        256.0,
+        256.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "senor_frontera",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.5,
+        192.0,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "titan_hierro",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        256.5,
+        256.0,
+        256.5,
+        256.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "dragon_bosque_verde",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        224.5,
+        224.5,
+        224.5,
+        224.0
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "capitan_orcos",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        192.5,
+        192.5,
+        192.5,
+        192.5
+      ],
+      "aerialReview": null
+    },
+    {
+      "id": "reina_arana",
+      "frames": 16,
+      "idleAnchorMode": "ground",
+      "idleSupportCentersX": [
+        288.0,
+        288.5,
+        288.0,
+        288.5
       ],
       "aerialReview": null
     }

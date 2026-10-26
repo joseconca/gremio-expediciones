@@ -1,0 +1,238 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 1.4906832298136645,
+  "cellSize": [
+    576,
+    576
+  ],
+  "sheetSize": [
+    2304,
+    2304
+  ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
+  "requestedIdleHeight": 240,
+  "idleHeightMean": 240.0,
+  "actorAnchor": [
+    288,
+    560
+  ],
+  "baselineY": 560,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      162.5,
+      293.0
+    ],
+    [
+      162.0,
+      292.5
+    ],
+    [
+      148.0,
+      299.0
+    ],
+    [
+      162.0,
+      266.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/reina_arana/reina_arana-sheet.png",
+  "sheetSha256": "159ed897e5c2cc48820b9a51dcc9b5cbcab2ffae0437c96ae879fd5833decd75",
+  "sourcePath": "assets/spritesheets/enemies-hd/reina_arana/source/sheet-v2.png",
+  "sourceSha256": "0387f300a2ed936b73fc5319de1560b09cde89c98ffc3812ebec1b009589d062",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_arana/frames/idle/reina_arana-idle-01.png",
+        "sha256": "257c0b541886f706bc43b8e6d49c7d815113e2225a83a55f6a8f85d9a4d29e9e",
+        "bounds": [
+          167,
+          320,
+          543,
+          560
+        ],
+        "idleAnchorCorrectionX": 66
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_arana/frames/idle/reina_arana-idle-02.png",
+        "sha256": "90c9a5dff5e618fe2f567fc839cc329db4b249fc2aa2372dcd52cb562b95d2c1",
+        "bounds": [
+          167,
+          320,
+          541,
+          560
+        ],
+        "idleAnchorCorrectionX": 65
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_arana/frames/idle/reina_arana-idle-03.png",
+        "sha256": "1d176e43adc641f6882bffdd7bfc1691262ebc252998440a2ae83bb0447406de",
+        "bounds": [
+          165,
+          320,
+          539,
+          560
+        ],
+        "idleAnchorCorrectionX": 63
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_arana/frames/idle/reina_arana-idle-04.png",
+        "sha256": "bf41ba2a47d529fc7034b2cb2da9974027dabc14b0a0ae26d58dd61bab979e4f",
+        "bounds": [
+          166,
+          320,
+          542,
+          560
+        ],
+        "idleAnchorCorrectionX": 65
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_arana/frames/hurt/reina_arana-hurt-01.png",
+        "sha256": "e8c025536291f0e21d3da0cdef477cce51454596c2b602c5ef017540be75e0c0",
+        "bounds": [
+          100,
+          321,
+          477,
+          560
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_arana/frames/hurt/reina_arana-hurt-02.png",
+        "sha256": "7f8f3eee0f46ac5774a5afdd08d99cc611403d5086be71b5f93bdb4730a77d26",
+        "bounds": [
+          101,
+          320,
+          477,
+          561
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_arana/frames/hurt/reina_arana-hurt-03.png",
+        "sha256": "8fd205e317a96976ba442f66c4c9b58ac34d78b1594c253ae7ffb279b106aa8a",
+        "bounds": [
+          103,
+          381,
+          489,
+          564
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_arana/frames/hurt/reina_arana-hurt-04.png",
+        "sha256": "55d3204b615bff11d2d56625b21e673b9c92b55553ff1c777d0b4c4e8a5a9fbc",
+        "bounds": [
+          99,
+          318,
+          476,
+          561
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_arana/frames/attack/reina_arana-attack-01.png",
+        "sha256": "6c3254668ecbe2e6305725accc91fa30ced38672a4e310f786f76f5039adfb98",
+        "bounds": [
+          121,
+          238,
+          535,
+          560
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_arana/frames/attack/reina_arana-attack-02.png",
+        "sha256": "8ce6bfdd156d31be838d9d5d51ed17caccf84cfc78cd46f5dca1d74d61337b7e",
+        "bounds": [
+          122,
+          292,
+          520,
+          563
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_arana/frames/attack/reina_arana-attack-03.png",
+        "sha256": "1db187c526892e8e5b6d6a14222ec8b837838beb9eb7a064ae2c902ea2edda77",
+        "bounds": [
+          108,
+          325,
+          555,
+          561
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_arana/frames/attack/reina_arana-attack-04.png",
+        "sha256": "4f67fdf97865f804e9c3ef143549732ba331caf7272b24ac20ddb84e6553d39e",
+        "bounds": [
+          116,
+          318,
+          493,
+          561
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_arana/frames/dodge/reina_arana-dodge-01.png",
+        "sha256": "f38887f74eb6dff5f21725d809e06457f6ea97ea563375e74b5501af15a8f28d",
+        "bounds": [
+          97,
+          341,
+          479,
+          560
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_arana/frames/dodge/reina_arana-dodge-02.png",
+        "sha256": "fc0e8f24d94c09b49d75a0a031f91d956cb438431b2af07e45c64799088e8283",
+        "bounds": [
+          107,
+          356,
+          495,
+          559
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_arana/frames/dodge/reina_arana-dodge-03.png",
+        "sha256": "766142085ca9eb2be30587c4862cae8b57ed1bb84fd1b9427e2cc646f4337b50",
+        "bounds": [
+          102,
+          386,
+          500,
+          559
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/reina_arana/frames/dodge/reina_arana-dodge-04.png",
+        "sha256": "6b6834d77c6166d43336082e66939933fae16a66b127af17987cabb9f4b89373",
+        "bounds": [
+          98,
+          341,
+          475,
+          560
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

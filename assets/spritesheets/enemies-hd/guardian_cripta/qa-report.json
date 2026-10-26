@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.8328328328328328,
+  "cellSize": [
+    448,
+    448
+  ],
+  "sheetSize": [
+    1792,
+    1792
+  ],
+  "requestedIdleHeight": 208,
+  "idleHeightMean": 207.75,
+  "actorAnchor": [
+    224,
+    435
+  ],
+  "baselineY": 435,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      155.0,
+      316.0
+    ],
+    [
+      156.5,
+      311.5
+    ],
+    [
+      156.5,
+      301.0
+    ],
+    [
+      162.0,
+      271.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/guardian_cripta/guardian_cripta-sheet.png",
+  "sheetSha256": "2554d08584f8c046092381222efd875839d579a544cf9d40f84e0c0b84730d40",
+  "sourcePath": "assets/spritesheets/enemies-hd/guardian_cripta/source/sheet-v1.png",
+  "sourceSha256": "17d91fbc3506143b05ec8cfabea420b2a04ae8578d3ffa7faf7e3ea46e2d9789",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/guardian_cripta/frames/idle/guardian_cripta-idle-01.png",
+        "sha256": "95b414636563c52660cc373d12af5e052b413e6d5d0196ef4601e69a88d98080",
+        "bounds": [
+          121,
+          228,
+          338,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/guardian_cripta/frames/idle/guardian_cripta-idle-02.png",
+        "sha256": "f4b972e4b5a5b178e535be9f5641234f36a70448c9e623058603a5c5e42e5de2",
+        "bounds": [
+          117,
+          227,
+          339,
+          435
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/guardian_cripta/frames/idle/guardian_cripta-idle-03.png",
+        "sha256": "d9b30d327c40cbfd3108b5cc5b08bd9e7f6cd8e89693dc6ec0069e443e97762a",
+        "bounds": [
+          118,
+          227,
+          340,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/guardian_cripta/frames/idle/guardian_cripta-idle-04.png",
+        "sha256": "806f012fe485982db85b6c3eb029c477f2adaf9464af09abd165bda1a9c4335a",
+        "bounds": [
+          122,
+          228,
+          339,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/guardian_cripta/frames/hurt/guardian_cripta-hurt-01.png",
+        "sha256": "6688e747a63554cf7afccfa4447d260aea54aa65b222c094e5665bad4ff5543c",
+        "bounds": [
+          114,
+          229,
+          337,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/guardian_cripta/frames/hurt/guardian_cripta-hurt-02.png",
+        "sha256": "9606725fecca37b95c594c0798a55c3909bc9ed6c9bb6bf808aee964162cc48b",
+        "bounds": [
+          124,
+          250,
+          355,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/guardian_cripta/frames/hurt/guardian_cripta-hurt-03.png",
+        "sha256": "96ea29d5d8f3866b161479eebc473aec9177fc2206f73447de6366644a19e674",
+        "bounds": [
+          118,
+          257,
+          361,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/guardian_cripta/frames/hurt/guardian_cripta-hurt-04.png",
+        "sha256": "8db1691ac2689b2e28f56eb78551eae6a416d859eb5f1fd3f40bc04acf759a7d",
+        "bounds": [
+          125,
+          230,
+          345,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/guardian_cripta/frames/attack/guardian_cripta-attack-01.png",
+        "sha256": "8fe9410e2f1d6443f363bebace3aeae1c76c724cb305b811d97da80935b14e2f",
+        "bounds": [
+          114,
+          240,
+          339,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/guardian_cripta/frames/attack/guardian_cripta-attack-02.png",
+        "sha256": "612ff4dcbe566625db626597e371068168fbbe0d183a6e92352d1a27f4f314f9",
+        "bounds": [
+          115,
+          189,
+          319,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/guardian_cripta/frames/attack/guardian_cripta-attack-03.png",
+        "sha256": "944a4316d6ee0cbaa0d1436db6cdced4e830cb61f18fbc5864dbdc16ee2f9a41",
+        "bounds": [
+          91,
+          244,
+          405,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/guardian_cripta/frames/attack/guardian_cripta-attack-04.png",
+        "sha256": "251c48b51aab345472b9d8b7a80ebdfd9d3992ee3ee0d87dccfadc93bbb99170",
+        "bounds": [
+          131,
+          239,
+          344,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/guardian_cripta/frames/dodge/guardian_cripta-dodge-01.png",
+        "sha256": "3b19cde49c7ba51e692d0125fb47146532ca72486af491c294c17d773be0823d",
+        "bounds": [
+          114,
+          243,
+          338,
+          435
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/guardian_cripta/frames/dodge/guardian_cripta-dodge-02.png",
+        "sha256": "8686a110dd518c5b92ef5f241c44d747ddba534526613bbd84ca4ffe9961ce81",
+        "bounds": [
+          114,
+          272,
+          340,
+          434
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/guardian_cripta/frames/dodge/guardian_cripta-dodge-03.png",
+        "sha256": "03174cbb76d9cf253159440196fba4609fc4bb865097e12a19750957fc142956",
+        "bounds": [
+          122,
+          290,
+          359,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/guardian_cripta/frames/dodge/guardian_cripta-dodge-04.png",
+        "sha256": "de3addac027e49468d88fffe36c6fa9e5371540b3e9741fe84dd864aa17accd4",
+        "bounds": [
+          124,
+          243,
+          338,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

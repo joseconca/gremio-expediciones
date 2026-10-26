@@ -7,7 +7,7 @@
     "attack",
     "dodge"
   ],
-  "scale": 0.6488479262672812,
+  "scale": 0.5789473684210527,
   "cellSize": [
     384,
     384
@@ -16,78 +16,79 @@
     1536,
     1536
   ],
+  "artDirection": "serious-proportions-matched-to-playable-characters",
   "requestedIdleHeight": 176,
   "idleHeightMean": 176.0,
   "actorAnchor": [
     192,
-    368
+    369
   ],
-  "baselineY": 368,
+  "baselineY": 369,
   "idleAnchorMode": "air",
   "rowReferenceRoots": [
     [
-      157.0,
-      326.0
+      158.5,
+      331.0
     ],
     [
-      119.0,
-      319.5
+      139.0,
+      327.25
     ],
     [
-      120.5,
-      307.0
+      121.0,
+      312.5
     ],
     [
-      149.5,
-      280.5
+      142.0,
+      292.75
     ]
   ],
   "sheetPath": "assets/spritesheets/enemies-hd/harpia_cazadora/harpia_cazadora-sheet.png",
-  "sheetSha256": "c002c4d4cd05b8a4a72c26004bb28c570b94edd6e51039b7ad84d50057640125",
-  "sourcePath": "assets/spritesheets/enemies-hd/harpia_cazadora/source/sheet-v1.png",
-  "sourceSha256": "fd99af4fada3bb8c8d10d4e236b290797fedf711b7ac9cf786d0ef5fcaaf2425",
+  "sheetSha256": "90f3f87b385e83dca30d34dd5768a9d65ee2436ab56abcabdb1eed33a61b6891",
+  "sourcePath": "assets/spritesheets/enemies-hd/harpia_cazadora/source/sheet-v2.png",
+  "sourceSha256": "90a259c72c2648cbf348c7eaf876e35c6ed3262c79f1e7a42d0fafa2a254d11e",
   "frameData": {
     "idle": [
       {
         "path": "assets/spritesheets/enemies-hd/harpia_cazadora/frames/idle/harpia_cazadora-idle-01.png",
-        "sha256": "d489398b845d66443c99ba172276eddafd1c254219368f10c23ada0707d997a6",
+        "sha256": "82a9fd11b02982f6aeddbe5dc5a66b6ac622c09e289cf433b1a2bfaee2ff6b00",
         "bounds": [
-          110,
-          195,
-          277,
-          368
+          116,
+          194,
+          275,
+          369
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/harpia_cazadora/frames/idle/harpia_cazadora-idle-02.png",
-        "sha256": "fe4323850d716c9e2a9dbb7d8a20312a0262a6d74823f527dcfeafdbcc35deda",
+        "sha256": "310563b56a22e1ba1ba226f49de55e2492fdd5027a8c332c3fee4b4c91533a79",
         "bounds": [
-          107,
-          190,
-          280,
+          117,
+          192,
+          273,
           368
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/harpia_cazadora/frames/idle/harpia_cazadora-idle-03.png",
-        "sha256": "67175cab2f11c124c1adc074e9a4de664522ba6ca317a8e0e634d26ac4374cdd",
+        "sha256": "aa7a78a41f4a8d32201aa8507aad7c98aa1e40fb18985c42e961121ad25b1690",
         "bounds": [
-          104,
-          189,
-          284,
-          367
+          110,
+          193,
+          272,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/harpia_cazadora/frames/idle/harpia_cazadora-idle-04.png",
-        "sha256": "55e423ecd3be0914eb58965a0abd140c7a8feee65cfc3994539e92ebda8204cb",
+        "sha256": "9af970a47f40412e0416acc00cb55ee6ce5f1637561dc88cff251ced94b1b841",
         "bounds": [
-          107,
-          193,
-          278,
+          116,
+          192,
+          273,
           368
         ],
         "idleAnchorCorrectionX": 0
@@ -96,45 +97,45 @@
     "hurt": [
       {
         "path": "assets/spritesheets/enemies-hd/harpia_cazadora/frames/hurt/harpia_cazadora-hurt-01.png",
-        "sha256": "89d1d466b82f6f254e05f4a925747e8096684d1775478820f0778156631dca12",
+        "sha256": "81c0fd082d94a3861eab7791a6e0c8caf0d1f8705d789b04a453da0fccb7ef6f",
         "bounds": [
-          145,
-          195,
-          307,
-          368
+          124,
+          201,
+          289,
+          369
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/harpia_cazadora/frames/hurt/harpia_cazadora-hurt-02.png",
-        "sha256": "425cc72325b40071eba32fba883b55f9fd50d53b3381d59ec9e7739f32d78de6",
+        "sha256": "b4a77c09bb0909b5e0903767fb7825891b771e2b7542a782c9456c46b09b106f",
         "bounds": [
-          137,
-          204,
-          296,
-          367
+          132,
+          202,
+          278,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/harpia_cazadora/frames/hurt/harpia_cazadora-hurt-03.png",
-        "sha256": "e026e2a0ec17a669fd2fef4ce6e1a137229e7e18fcee52fb230a6f87ae72a904",
+        "sha256": "815f51578013e29a8855e414e56ce13a26ad7db43507b9f0a03045c127891081",
         "bounds": [
-          145,
-          209,
-          299,
-          367
+          121,
+          207,
+          277,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/harpia_cazadora/frames/hurt/harpia_cazadora-hurt-04.png",
-        "sha256": "f4459891c52e7f61690cc1d43f07f0c7b06a5701a807f6037dba256ee1046cf9",
+        "sha256": "472fc4548f07c98e1f02583a66dbe2b65e576504687114fad9e9fcfcde3cfd2e",
         "bounds": [
-          142,
-          199,
-          289,
-          368
+          130,
+          203,
+          283,
+          372
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -142,45 +143,45 @@
     "attack": [
       {
         "path": "assets/spritesheets/enemies-hd/harpia_cazadora/frames/attack/harpia_cazadora-attack-01.png",
-        "sha256": "7a5c331d023008c61f59f5f4ecf798bce4969e162d92d092c7cb477c4086700d",
+        "sha256": "c43c3d463d7e018b033f5d25aa82418b9fa8bd19096f133b2318e7b3e9624e9a",
         "bounds": [
-          142,
-          193,
-          309,
-          368
+          132,
+          204,
+          303,
+          369
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/harpia_cazadora/frames/attack/harpia_cazadora-attack-02.png",
-        "sha256": "75a428c9296808e51e29c2908d6051ae63b9f12c65ee4063ff76350b42bbe724",
+        "sha256": "759ccfa4359a1afceb057e5bc327b67be2f9fd26af4e241403df2ec648859b77",
         "bounds": [
-          133,
-          199,
-          310,
-          368
+          128,
+          206,
+          308,
+          370
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/harpia_cazadora/frames/attack/harpia_cazadora-attack-03.png",
-        "sha256": "371ef354a0178721d0b3ba58d64801400203dea78941afb8482ade070bf54a02",
+        "sha256": "01747e607b348c88465058690fec6fcd8029cb6077772defdda9b267c420b7d9",
         "bounds": [
-          123,
-          197,
-          348,
-          368
+          103,
+          208,
+          337,
+          372
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/harpia_cazadora/frames/attack/harpia_cazadora-attack-04.png",
-        "sha256": "8e14663bf02556f5cc7124dcade0f76d6b3fcdb4862b9389f20ee8158a4d2f93",
+        "sha256": "b9e72c74868f24eb8d8d3afb178557e1df9c73704c8e7a4afef175660a4ca97b",
         "bounds": [
-          138,
-          199,
-          295,
-          368
+          128,
+          208,
+          296,
+          370
         ],
         "idleAnchorCorrectionX": 0
       }
@@ -188,45 +189,45 @@
     "dodge": [
       {
         "path": "assets/spritesheets/enemies-hd/harpia_cazadora/frames/dodge/harpia_cazadora-dodge-01.png",
-        "sha256": "fb40e09189b17ae6ce9ff5014e52e1b983f12b949f3fdb3577f2f716da806246",
+        "sha256": "8e63bc769e8710d50125da6fabcd9a472e3d564377d7168275ced2153fc927a3",
         "bounds": [
-          124,
-          206,
-          284,
-          368
+          127,
+          202,
+          287,
+          369
         ],
         "idleAnchorCorrectionX": 0
       },
       {
         "path": "assets/spritesheets/enemies-hd/harpia_cazadora/frames/dodge/harpia_cazadora-dodge-02.png",
-        "sha256": "b8f54fecab687cd0f9f4a8f4e586758393891e03a844abf608f743bba3e0c8f1",
+        "sha256": "58eb049a3b9095989ca3a455a4a0f54d6603f2867de7bae266f0b7e5c1da1bcd",
         "bounds": [
           123,
-          212,
-          287,
-          370
-        ],
-        "idleAnchorCorrectionX": 0
-      },
-      {
-        "path": "assets/spritesheets/enemies-hd/harpia_cazadora/frames/dodge/harpia_cazadora-dodge-03.png",
-        "sha256": "8ba46e3b5f0336d1ea3c6ef18ebdd60aa21c8494fb8ee24ea2bbeba67c4958ba",
-        "bounds": [
-          111,
-          227,
-          289,
+          213,
+          286,
           368
         ],
         "idleAnchorCorrectionX": 0
       },
       {
-        "path": "assets/spritesheets/enemies-hd/harpia_cazadora/frames/dodge/harpia_cazadora-dodge-04.png",
-        "sha256": "d6692e2e792d95db770849a4867857fb7401570f4a8333661ed231f15a75fd5b",
+        "path": "assets/spritesheets/enemies-hd/harpia_cazadora/frames/dodge/harpia_cazadora-dodge-03.png",
+        "sha256": "2561b60b532340ba952effff29e1334024c5d39512507ba52f237fc793fd8d6e",
         "bounds": [
-          124,
-          205,
-          280,
-          372
+          116,
+          219,
+          290,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/harpia_cazadora/frames/dodge/harpia_cazadora-dodge-04.png",
+        "sha256": "7d239cd7d003aa74229f2bea93d06882b64950f3122bd7dba6caab425657fa19",
+        "bounds": [
+          126,
+          202,
+          285,
+          367
         ],
         "idleAnchorCorrectionX": 0
       }

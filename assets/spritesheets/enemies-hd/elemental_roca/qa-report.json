@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.9078014184397163,
+  "cellSize": [
+    448,
+    448
+  ],
+  "sheetSize": [
+    1792,
+    1792
+  ],
+  "requestedIdleHeight": 224,
+  "idleHeightMean": 223.75,
+  "actorAnchor": [
+    224,
+    436
+  ],
+  "baselineY": 436,
+  "idleAnchorMode": "ground",
+  "rowReferenceRoots": [
+    [
+      156.5,
+      301.0
+    ],
+    [
+      160.0,
+      298.5
+    ],
+    [
+      150.0,
+      279.0
+    ],
+    [
+      153.0,
+      258.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/elemental_roca/elemental_roca-sheet.png",
+  "sheetSha256": "382145a03c4ca75160ecdf4a2690d77d1e3d2079492c392259910ccbcaff9d7c",
+  "sourcePath": "assets/spritesheets/enemies-hd/elemental_roca/source/sheet-v1.png",
+  "sourceSha256": "444f1263d1ade44fff7de97cff474869572b47f5ee494127970f44d454fd8984",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_roca/frames/idle/elemental_roca-idle-01.png",
+        "sha256": "2c926a81d158320e81b3a207b1864f2c07aac8875c24df6616cec982e93a6893",
+        "bounds": [
+          108,
+          212,
+          339,
+          436
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_roca/frames/idle/elemental_roca-idle-02.png",
+        "sha256": "edb0f4dd9770f3b2e1523710e1116677707da22ad250f240c0c7639ec6f02505",
+        "bounds": [
+          109,
+          211,
+          340,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_roca/frames/idle/elemental_roca-idle-03.png",
+        "sha256": "2bd43f221c7537e1c1f7b3857a3fbab3d7e842febb39ba5cfc5db512a93da400",
+        "bounds": [
+          109,
+          214,
+          339,
+          436
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_roca/frames/idle/elemental_roca-idle-04.png",
+        "sha256": "4b4ff41794025ced2201c8296711dd145811c3da732b59de966ee6ec88bad9ad",
+        "bounds": [
+          109,
+          212,
+          338,
+          436
+        ],
+        "idleAnchorCorrectionX": -1
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_roca/frames/hurt/elemental_roca-hurt-01.png",
+        "sha256": "ea6d2a37401def3aa233b6a5518f76ba79cbf4cb3105e836897d7b813d64f4cc",
+        "bounds": [
+          114,
+          219,
+          329,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_roca/frames/hurt/elemental_roca-hurt-02.png",
+        "sha256": "b0f222456d202c01a8337255ca61b6cdbdd0378afdb2efe3b8852d5bb603df88",
+        "bounds": [
+          114,
+          220,
+          336,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_roca/frames/hurt/elemental_roca-hurt-03.png",
+        "sha256": "99af4f88572cfc6073bdfdf10a1688634f98b3698ece16493033fc5fddfc6fb3",
+        "bounds": [
+          99,
+          225,
+          353,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_roca/frames/hurt/elemental_roca-hurt-04.png",
+        "sha256": "0dc12f24cacec56b95a25eb298a6cb05ab6336c7c46c146a1121b5040e15bd45",
+        "bounds": [
+          107,
+          226,
+          333,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_roca/frames/attack/elemental_roca-attack-01.png",
+        "sha256": "a9c0191ea27bf70f78b36122393201f1375ee6ab1c4912980c20757b7470017f",
+        "bounds": [
+          115,
+          227,
+          366,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_roca/frames/attack/elemental_roca-attack-02.png",
+        "sha256": "46341dd32180e45a03387abbfa04743c9b6e338353e983c2178b4e09694bc722",
+        "bounds": [
+          116,
+          197,
+          357,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_roca/frames/attack/elemental_roca-attack-03.png",
+        "sha256": "41d686feedbe3667a02705935d12f76b087c76c983b068536e7c203a143205c7",
+        "bounds": [
+          87,
+          238,
+          409,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_roca/frames/attack/elemental_roca-attack-04.png",
+        "sha256": "bae607f4ac3f6753aab59fc81ce66d0069b55c426a89960cc20949156102a01a",
+        "bounds": [
+          129,
+          231,
+          352,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_roca/frames/dodge/elemental_roca-dodge-01.png",
+        "sha256": "7d9b6d77facb0ebe172b9155a7f97bd339b4f4e227c51d9fd3e87135d4a480ee",
+        "bounds": [
+          122,
+          225,
+          335,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_roca/frames/dodge/elemental_roca-dodge-02.png",
+        "sha256": "1dd6772f37c6582975c057767a43f2a0ceedb2e2c662297b9eb523583bbb4a03",
+        "bounds": [
+          102,
+          224,
+          346,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_roca/frames/dodge/elemental_roca-dodge-03.png",
+        "sha256": "32ae01a151edcf21b643963f47d0d6de00ec55844fffe77ff2e9849d462c54c8",
+        "bounds": [
+          121,
+          259,
+          360,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_roca/frames/dodge/elemental_roca-dodge-04.png",
+        "sha256": "a09a48ca653c807a9a555ebdf05a0d21bc03d54d64ebc24840b82731de237471",
+        "bounds": [
+          125,
+          224,
+          340,
+          436
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

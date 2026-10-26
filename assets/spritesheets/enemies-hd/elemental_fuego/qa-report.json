@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.7536231884057971,
+  "cellSize": [
+    384,
+    384
+  ],
+  "sheetSize": [
+    1536,
+    1536
+  ],
+  "requestedIdleHeight": 208,
+  "idleHeightMean": 208.25,
+  "actorAnchor": [
+    192,
+    369
+  ],
+  "baselineY": 369,
+  "idleAnchorMode": "air",
+  "rowReferenceRoots": [
+    [
+      168.0,
+      305.0
+    ],
+    [
+      173.5,
+      299.5
+    ],
+    [
+      149.0,
+      292.0
+    ],
+    [
+      155.0,
+      273.5
+    ]
+  ],
+  "sheetPath": "assets/spritesheets/enemies-hd/elemental_fuego/elemental_fuego-sheet.png",
+  "sheetSha256": "31d9ff01a2ff0bb8eab3ea1c9d57984d6351452d8b40d7463c873a76683ecb9f",
+  "sourcePath": "assets/spritesheets/enemies-hd/elemental_fuego/source/sheet-v1.png",
+  "sourceSha256": "e9a5c63ecda00f61cd6d5c7d3cae4116879ea4aeafa885566e357f2ddf70687b",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_fuego/frames/idle/elemental_fuego-idle-01.png",
+        "sha256": "35a9c5718421edf5db9c9b5791a6422f2f81cedb92ba42eab39a90350d9ef3e5",
+        "bounds": [
+          95,
+          159,
+          277,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_fuego/frames/idle/elemental_fuego-idle-02.png",
+        "sha256": "dd7a129ef1350b08869c8bf29530eded245b2f1496b06b2e9808e288ab217170",
+        "bounds": [
+          94,
+          157,
+          279,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_fuego/frames/idle/elemental_fuego-idle-03.png",
+        "sha256": "75d8b8e446c2a85b5b19a53954d282eb3e6bce30dca0c78bbf5cb9056af897d0",
+        "bounds": [
+          96,
+          162,
+          278,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_fuego/frames/idle/elemental_fuego-idle-04.png",
+        "sha256": "4401f488d8ca23d11cff799356b95aab007ec8c6d8fc960b77b329a0b27f86fa",
+        "bounds": [
+          99,
+          161,
+          279,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_fuego/frames/hurt/elemental_fuego-hurt-01.png",
+        "sha256": "e23fb755ee588d96e4ce479c804304f194ddd3272c3f18daef580f6ad56f8146",
+        "bounds": [
+          93,
+          163,
+          291,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_fuego/frames/hurt/elemental_fuego-hurt-02.png",
+        "sha256": "6c9d42eef1b93972229bf7000598aa436de5d75434a91e03ee8fbd95b1d8d75a",
+        "bounds": [
+          93,
+          178,
+          294,
+          372
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_fuego/frames/hurt/elemental_fuego-hurt-03.png",
+        "sha256": "2ac8e6a4af268f07fea94b06ceba5cbb7b8f84c625fb159b8ba47a7c859f4cc3",
+        "bounds": [
+          73,
+          172,
+          310,
+          367
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_fuego/frames/hurt/elemental_fuego-hurt-04.png",
+        "sha256": "0af62deb77e3f9e1e5974a92c98fc54179902916e27654f52e4b562d24d5d1d3",
+        "bounds": [
+          97,
+          174,
+          281,
+          368
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_fuego/frames/attack/elemental_fuego-attack-01.png",
+        "sha256": "21b3e91182e407823993485f3e124b81c26467e2e5c62a0f2ae5809134b5de58",
+        "bounds": [
+          109,
+          166,
+          318,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_fuego/frames/attack/elemental_fuego-attack-02.png",
+        "sha256": "93ca26f25067a3a81ab99e5d95c773224e87ab346718d0faf367c7e6771427d6",
+        "bounds": [
+          125,
+          158,
+          307,
+          368
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_fuego/frames/attack/elemental_fuego-attack-03.png",
+        "sha256": "75e52f8f25f9c5828959993fbacf8695f51708439626b1203ff446fe5f969215",
+        "bounds": [
+          93,
+          187,
+          333,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_fuego/frames/attack/elemental_fuego-attack-04.png",
+        "sha256": "319295e061f04edd85ca96b91886b5a7800cebcd99e0d63660aa31f1fe3ce90d",
+        "bounds": [
+          113,
+          173,
+          304,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_fuego/frames/dodge/elemental_fuego-dodge-01.png",
+        "sha256": "dbe7e2947071e340beeeb7e0cda638895a7efd011c05b98467eb9ed415bf5a76",
+        "bounds": [
+          109,
+          171,
+          296,
+          369
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_fuego/frames/dodge/elemental_fuego-dodge-02.png",
+        "sha256": "b404b1f19322a58d03fbd3b0f56c4c10f80ab5801ea36faa1f28aafcf82288f5",
+        "bounds": [
+          112,
+          195,
+          294,
+          364
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_fuego/frames/dodge/elemental_fuego-dodge-03.png",
+        "sha256": "a74aca79583592ccb21eb893b76f9014005da93de322e64b5d3709d1cd2686ac",
+        "bounds": [
+          105,
+          215,
+          283,
+          371
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/elemental_fuego/frames/dodge/elemental_fuego-dodge-04.png",
+        "sha256": "6494cb8cd3c2d02ef64236abebc05ee30713ff318d509a6928599d298a7e329b",
+        "bounds": [
+          103,
+          168,
+          288,
+          365
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}
