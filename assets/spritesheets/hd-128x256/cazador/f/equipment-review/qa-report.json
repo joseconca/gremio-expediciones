@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "cazador",
   "sex": "f",
   "actions": [
@@ -11,10 +11,10 @@
   ],
   "bodyHashes": {
     "idle": [
-      "2cc17d1f8c048de337a38385b6ed99fe2329f196f76c19b9b4aa8259edb4f4c8",
-      "d6037677bc05b832d9bb302ba535f8435947f064c63601744d554b1326489639",
-      "f6c8a0e03133bc7cf94eade9abfc32b21d1178c7dde007db82fbb070a0d97b7d",
-      "932131343979a6faaefb3afc7b928371fa4aeb0c5a9a366578457eddd211c1e0"
+      "6140935ca0c5c5fde8d8aca07b7aab36ed316521b80cef07dd7b276feed8d695",
+      "fb0d3024217212b57f073d17e8d622a2bbd875cf1c1641813c00550165a88a9f",
+      "13605222c5ebad1ff96a9797f3d801985fa3b1aa5c84bd99740cb3d3a840c0d3",
+      "77c119c3d1e40885c5a912526c7ff5c4d10dd8eb5f4a335ca6e4d813f066340e"
     ],
     "walk": [
       "f2d228bd0fbb18e7f3f11ffdd156a593c39b6e60f4bd6a9918fe03018640edc7",
@@ -42,80 +42,7 @@
     ]
   },
   "contactChecks": 516,
-  "warnings": [
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "arco_cazador",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "arco_madera",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "grimorio_eclipse",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "guantes_lucha",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "libro_aprendiz",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "punos_lobo",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "escudo_guardian",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "escudo_madera",
-      "point": [
-        97,
-        184
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
 }
