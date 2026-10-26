@@ -17,16 +17,21 @@ export function dibujarHeroeHd(ctx: CanvasRenderingContext2D, cuerpo: CanvasImag
     const item = BIBLIOTECA_SPRITES_HD.items[capa.id];
     const config = BIBLIOTECA_SPRITES_HD.compositions[item.composition][sexo][accion]?.[faseEquipo];
     const rect = item.frames[sexo][accion]?.[faseEquipo];
-    return config && rect ? [{ ...capa, config, rect }] : [];
-  });
+    return config && rect ? [{ ...capa, config, rect, escudo: item.family === "shield" }] : [];
+  }).sort((a, b) => Number(b.escudo) - Number(a.escudo));
   const dibujarEquipo = (capa: (typeof preparadas)[number]) => {
     const [x, y, w, h] = capa.rect.source; const [dx, dy] = capa.rect.offset;
+    ctx.save();
+    if (capa.escudo) {
+      // Reflect only the shield around its hand, preserving the shared grip.
+      const agarre = capa.config.contacts[0][0] + 128;
+      ctx.translate(agarre * 2, 0); ctx.scale(-1, 1);
+    }
     ctx.drawImage(capa.imagen, x, y, w, h, dx, dy, w, h);
+    ctx.restore();
   };
-  for (const capa of preparadas) if (capa.config.depth === "behind") dibujarEquipo(capa);
   dibujarCuerpo();
   for (const capa of preparadas) {
-    if (capa.config.depth === "behind") continue;
     dibujarEquipo(capa);
     if (capa.config.restoreHands) {
       ctx.save(); ctx.beginPath();

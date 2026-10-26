@@ -60,12 +60,12 @@ test('one shared clock gives exact release phases, loops and stable reduced-moti
 test('all canvas layers share the same frame rectangle, body origin and single reflection',()=>{
   const calls=[]; const ctx={};for(const method of ['clearRect','save','restore','translate','scale','beginPath','moveTo','arc','clip','drawImage'])ctx[method]=(...a)=>calls.push([method,...a]);
   dibujarHeroeHd(ctx,'BODY',[{id:'espada_hierro',imagen:'SWORD'},{id:'escudo_madera',imagen:'SHIELD'}],'attack_sword','f',2,true);
-  assert.deepEqual(calls.filter(c=>c[0]==='scale'),[['scale',-1,1]]);
+  assert.deepEqual(calls.filter(c=>c[0]==='scale'),[['scale',-1,1],['scale',-1,1]]);
   const draws=calls.filter(c=>c[0]==='drawImage');
   assert.deepEqual(draws[0],['drawImage','BODY',256,1536,128,256,128,64,128,256]);
   const rect=hd.obtenerEquipoSpriteHd('espada_hierro').frames.f.attack_sword[2];
   assert.deepEqual(draws.find(c=>c[1]==='SWORD'),['drawImage','SWORD',...rect.source,...rect.offset,rect.source[2],rect.source[3]]);
-  assert.ok(draws.findIndex(c=>c[1]==='SWORD')<draws.findIndex(c=>c[1]==='SHIELD'));
+  assert.ok(draws.findIndex(c=>c[1]==='SHIELD')<draws.findIndex(c=>c[1]==='SWORD'));
   assert.ok(calls.some(c=>c[0]==='clip'));
 });
 test('multi-target impacts never turn an uninvolved ally into an attacker or potion user',()=>{
@@ -123,5 +123,17 @@ test('all idle weapons, shields and finger masks stay fixed across every class a
       if(phase===0)reference=equipment;else assert.deepEqual(equipment,reference,`${clase}-${sex} idle phase ${phase}`);
       assert.deepEqual(calls.find(c=>c[0]==='drawImage'&&c[1]==='BODY'),['drawImage','BODY',phase*128,0,128,256,128+sexes[sex][phase],64,128,256]);
     }
+  }
+});
+
+test('both shields reflect around their grip and stay below the weapon in every supported pose',()=>{
+  for(const id of ['escudo_madera','escudo_guardian'])for(const sex of ['m','f'])for(const action of hd.obtenerEquipoSpriteHd(id).actions)for(let phase=0;phase<4;phase++) {
+    const calls=[],ctx={};for(const op of ['clearRect','save','restore','translate','scale','beginPath','moveTo','arc','clip','drawImage'])ctx[op]=(...a)=>calls.push([op,...a]);
+    dibujarHeroeHd(ctx,'BODY',[{id:'espada_hierro',imagen:'SWORD'},{id,imagen:'SHIELD'}],action,sex,phase);
+    const item=hd.obtenerEquipoSpriteHd(id), config=hd.BIBLIOTECA_SPRITES_HD.compositions[item.composition][sex][action][action==='idle'?0:phase];
+    assert.ok(calls.some(c=>c[0]==='translate'&&c[1]===2*(config.contacts[0][0]+128)&&c[2]===0));
+    const draws=calls.filter(c=>c[0]==='drawImage');
+    const sword=draws.findIndex(c=>c[1]==='SWORD'),shield=draws.findIndex(c=>c[1]==='SHIELD');
+    assert.ok(shield>=0);if(sword>=0)assert.ok(sword>shield);
   }
 });

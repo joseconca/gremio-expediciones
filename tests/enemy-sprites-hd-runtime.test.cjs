@@ -41,3 +41,26 @@ test('every action crops exactly one cell, without fitting or shrinking the artw
     assert.deepEqual(calls.filter(c=>c[0]==='scale'),[['scale',-1,1]]);
   }
 });
+
+test('all animation bounds fit mobile and desktop battle regions without changing scale between poses',()=>{
+  const {escalaEnemigoEnEscena}=require('../src/lib/sprites-enemigos-hd.ts');
+  for(const [id,s] of Object.entries(ENEMIGOS_HD)) {
+    const qa=JSON.parse(fs.readFileSync(path.join(root,'assets/spritesheets/enemies-hd',id,'qa-report.json'),'utf8'));
+    const frames=Object.values(qa.frameData).flat();
+    assert.deepEqual(s.bounds,[Math.min(...frames.map(f=>f.bounds[0])),Math.min(...frames.map(f=>f.bounds[1])),Math.max(...frames.map(f=>f.bounds[2])),Math.max(...frames.map(f=>f.bounds[3]))]);
+    for(const [w,h] of [[140,220],[180,380],[360,260],[560,640]]) for(const [x,y] of [[50,50],[28,32],[72,68],[22,32],[78,68]]) {
+      const u=escalaEnemigoEnEscena(s,w,h,x,y,1.058824);
+      assert.ok(u>0 && u<=1.058824);
+      for(const {bounds:[l,t,r,b]} of frames) {
+        const center=w*x/100, feet=h*y/100+15+s.height*u/2;
+        for(const reflected of [false,true]) {
+          const left=center+(reflected?s.anchor[0]-r:l-s.anchor[0])*u;
+          const right=center+(reflected?s.anchor[0]-l:r-s.anchor[0])*u;
+          assert.ok(left>=15.99 && right<=w-15.99,`${id}: horizontal bounds`);
+        }
+        assert.ok(feet+(t-s.anchor[1])*u>=0,`${id}: top`);
+        assert.ok(feet+(b-s.anchor[1])*u<=h,`${id}: bottom`);
+      }
+    }
+  }
+});

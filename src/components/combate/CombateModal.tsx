@@ -1,10 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import SpriteHeroeAnimado from "@/components/combate/SpriteHeroeAnimado";
 import { propsSpriteHeroeHd } from "@/lib/sprites-heroes-hd";
 import SpriteEnemigoAnimado from "@/components/combate/SpriteEnemigoAnimado";
-import { ENEMIGOS_HD, propsSpriteEnemigoHd } from "@/lib/sprites-enemigos-hd";
+import { ENEMIGOS_HD, escalaEnemigoEnEscena, propsSpriteEnemigoHd } from "@/lib/sprites-enemigos-hd";
 import { CLASES } from "@/lib/progresion/clases";
 import type { CombatePve, Personaje } from "@/store/useGameStore";
 import type { AccionAnimadaCombate } from "@/lib/expediciones/combate";
@@ -57,7 +57,7 @@ type AccionAnimadaPartyUI = AccionAnimadaCombate;
 function distribuirFormacionParty(
   participantes: ParticipanteCombatePartyUI[],
 ): { participante: ParticipanteCombatePartyUI; x: number; y: number }[] {
-  const columnas = { retaguardia: 14, centro: 50, mele: 86 } as const;
+  const columnas = { retaguardia: 22, centro: 50, mele: 78 } as const;
   const grupos: Record<keyof typeof columnas, ParticipanteCombatePartyUI[]> = {
     retaguardia: [],
     centro: [],
@@ -81,8 +81,8 @@ function distribuirFormacionParty(
       : grupo.length === 2
         ? [31, 69]
         : grupo.length === 3
-          ? [20, 50, 80]
-          : grupo.map((_, indice) => 12 + indice * (76 / Math.max(1, grupo.length - 1)));
+          ? [30, 50, 70]
+          : grupo.map((_, indice) => 30 + indice * (40 / Math.max(1, grupo.length - 1)));
     grupo.forEach((participante, indice) => {
       resultado.push({ participante, x: columnas[posicion], y: nivelesY[indice] });
     });
@@ -173,6 +173,24 @@ export default function CombateModal({
   onCerrar,
 }: CombateModalProps) {
   const logRef = useRef<HTMLDivElement>(null);
+  const escenaRef = useRef<HTMLElement>(null);
+  const zonaEnemigosRef = useRef<HTMLDivElement>(null);
+  const [anchoEnemigos, setAnchoEnemigos] = useState(147);
+  const [escena, setEscena] = useState({ ancho: 320, alto: 260 });
+  useEffect(() => {
+    const elemento = escenaRef.current;
+    if (!elemento) return;
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.target === elemento) setEscena({ ancho: entry.contentRect.width, alto: entry.contentRect.height });
+        else setAnchoEnemigos(entry.contentRect.width);
+      }
+    });
+    observer.observe(elemento);
+    if (zonaEnemigosRef.current) observer.observe(zonaEnemigosRef.current);
+    return () => observer.disconnect();
+  }, []);
+  const tamanoHeroe = Math.min(180, escena.ancho * 0.29, Math.max(36, (escena.alto - 110) / 1.6));
 
   const faseCombateRef = useRef(combate.fase);
 
@@ -738,7 +756,7 @@ export default function CombateModal({
         {/* La formación de party se representa dentro de la escena de batalla. */}
 
         {/* ESCENA */}
-        <section className="relative flex min-h-0 flex-1 items-center justify-between overflow-hidden px-2 sm:px-8">
+        <section ref={escenaRef} className="relative flex min-h-0 flex-1 items-center justify-between overflow-hidden px-2 sm:px-8">
           {/* EQUIPO: todos los aventureros ocupan una casilla de la formación */}
           {partyMode ? (
             <div className="relative flex h-full w-1/2 min-w-0 items-center overflow-visible">
@@ -792,8 +810,8 @@ export default function CombateModal({
                         <span className="combate-numero-curacion">+{curacionVisible.cantidad}</span>
                       </div>
                     )}
-                    <div className={`relative h-[90px] w-[80px] transition-all duration-200 sm:h-[126px] sm:w-[110px] ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}
-                      data-combate-ancla={participante.usuarioId}>
+                    <div className={`relative transition-all duration-200 ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}
+                      style={{ height: Math.min(126, tamanoHeroe * 0.7), width: Math.min(110, tamanoHeroe * 0.6) }} data-combate-ancla={participante.usuarioId}>
                       <SpriteHeroeAnimado
                         clase={participante.clase}
                         sexo={participante.sexo}
@@ -957,7 +975,8 @@ export default function CombateModal({
               )}
 
               <div
-                className={`relative h-[180px] w-[180px] transition-all duration-300 ${
+                style={{ height: tamanoHeroe, width: tamanoHeroe }}
+                className={`relative transition-all duration-300 ${
                   actorImpactado === "jugador"
                     ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]"
                     : ""
@@ -1009,7 +1028,7 @@ export default function CombateModal({
           )}
 
           {/* FORMACIÓN ENEMIGA: cada criatura mantiene su propia casilla, vida y ancla de animación. */}
-          <div className={`relative h-full ${partyMode ? "w-1/2" : "w-[46%] sm:w-[40%]"} min-w-0`}>
+          <div ref={zonaEnemigosRef} className={`relative h-full ${partyMode ? "w-1/2" : "w-[46%] sm:w-[40%]"} min-w-0`}>
             {enemigosVisibles.map((enemigo, indiceEnemigo) => {
               const vida = Math.max(0, Math.min(100, enemigo.hp / Math.max(1, enemigo.hpMaximo) * 100));
               const vivo = enemigo.hp > 0;
@@ -1028,27 +1047,23 @@ export default function CombateModal({
                   : cantidadEnemigos === 3
                     ? "w-[36%] max-w-[120px]"
                     : "w-[30%] max-w-[98px]";
-              const escalaSprite = cantidadEnemigos <= 1
-                ? "[--unidad-enemigo:1.058824px] w-[138px] sm:w-[180px]"
-                : cantidadEnemigos === 2
-                  ? "[--unidad-enemigo:0.658824px] sm:[--unidad-enemigo:0.905882px] w-[96px] sm:w-[136px]"
-                  : cantidadEnemigos === 3
-                    ? "[--unidad-enemigo:0.505882px] sm:[--unidad-enemigo:0.682353px] w-[78px] sm:w-[104px]"
-                    : "[--unidad-enemigo:0.411765px] sm:[--unidad-enemigo:0.564706px] w-[64px] sm:w-[86px]";
+              const escalaSprite = "w-full";
+              const limiteEscala = cantidadEnemigos <= 1 ? 1.058824 : cantidadEnemigos === 2 ? 0.905882 : cantidadEnemigos === 3 ? 0.682353 : 0.564706;
               const desplazamientoFila = enemigo.posicion === "centro" ? 4 : enemigo.posicion === "retaguardia" ? 8 : 0;
-              const x = cantidadEnemigos <= 1
+              const x = Math.max(22, Math.min(78, cantidadEnemigos <= 1
                 ? 50
                 : cantidadEnemigos === 2
                   ? (indiceEnemigo === 0 ? 28 : 72)
-                  : 17 + enemigo.columna * 33 + desplazamientoFila;
+                  : 17 + enemigo.columna * 33 + desplazamientoFila));
               const y = cantidadEnemigos <= 1
                 ? 50
                 : enemigo.posicion === "mele"
-                  ? 18
+                  ? 32
                   : enemigo.posicion === "retaguardia"
-                    ? 82
+                    ? 68
                     : 50;
               const spriteHd = ENEMIGOS_HD[enemigo.enemigoId ?? ""];
+              const unidadEnemigo = escalaEnemigoEnEscena(spriteHd, anchoEnemigos, escena.alto, x, y, limiteEscala);
               const estadoSpriteEnemigo = propsSpriteEnemigoHd(estadoSprite, enemigo.id);
               const spriteProps = { enemigoId: enemigo.enemigoId, ...estadoSpriteEnemigo,
                 pausado: !vivo && estadoSpriteEnemigo.accion === "idle" };
@@ -1117,7 +1132,7 @@ export default function CombateModal({
                   )}
                   <div
                     className={`relative ${escalaSprite} transition-all duration-200 ${impactado ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]" : ""}`}
-                    style={{ height: `calc(var(--unidad-enemigo) * ${spriteHd?.height ?? 170})` }}
+                    style={{ "--unidad-enemigo": `${unidadEnemigo}px`, height: unidadEnemigo * (spriteHd?.height ?? 170) } as CSSProperties}
                     data-combate-ancla={enemigo.id}
                   >
                     <SpriteEnemigoAnimado {...spriteProps} nombre="" sombra />

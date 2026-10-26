@@ -24,7 +24,9 @@ def main():
         target=ROOT/'public/sprites/enemies-hd-v1'/f'{id}-sheet.png'
         target.parent.mkdir(parents=True,exist_ok=True)
         shutil.copyfile(source,target)
-        result['enemies'][id]={'name':item['name'],'boss':item['boss'],'rank':item['rank'],
+        bounds=[frame['bounds'] for frames in qa['frameData'].values() for frame in frames]
+        envelope=[min(b[0] for b in bounds),min(b[1] for b in bounds),max(b[2] for b in bounds),max(b[3] for b in bounds)]
+        result['enemies'][id]={'name':item['name'],'boss':item['boss'],'rank':item['rank'],'bounds':envelope,
             'src':f'/sprites/enemies-hd-v1/{id}-sheet.png','cellSize':qa['cellSize'][0],
             'anchor':qa['actorAnchor'],'height':qa['requestedIdleHeight'],'sha256':digest}
     target=ROOT/'src/lib/generated/enemies-hd.json'
