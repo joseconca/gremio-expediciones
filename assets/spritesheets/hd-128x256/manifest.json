@@ -49903,7 +49903,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/brujo/f/frames",
       "audit": {
-        "validFrames": 24,
+        "validFrames": 28,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -49911,7 +49911,8 @@
           "hurt",
           "use_consumable",
           "dodge",
-          "block_shield"
+          "block_shield",
+          "attack_sword"
         ],
         "actions": {
           "idle": {
@@ -50335,7 +50336,74 @@
             "distinctFrames": 4
           },
           "attack_sword": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "ea2982b185636dd63860f2bb66dae2f9c242407ad61406e85cae8ce665fc01aa",
+                "bytes": 29352,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  92,
+                  112,
+                  248
+                ],
+                "pixelSha256": "7bed7e129944a761b26ac7cb04b6cd46e51bd263711e569005df806e14301a3f"
+              },
+              "02": {
+                "sha256": "27611b2a58b8bbbd6ff8930c47f50961fef7acab7f86a38bf821cebf5621fe6c",
+                "bytes": 28846,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  91,
+                  110,
+                  248
+                ],
+                "pixelSha256": "fdcc1dc62e7315356cc26e905e12ecae7c0122165a5767d703e3ba47ade1a6d3"
+              },
+              "03": {
+                "sha256": "51f92d19a5d64fd6df079151e2c5575c66ced62dcb5603443ed32ddf8985269c",
+                "bytes": 27686,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  97,
+                  105,
+                  248
+                ],
+                "pixelSha256": "5ac7480882339e1b5b6acd1460c945c84ef9ddaccf029a99bb06035da6e03a3f"
+              },
+              "04": {
+                "sha256": "7a7c59a1f18333b4bbaa171893d8f8b4f9b94d472dce8097ba8b785daab86225",
+                "bytes": 29356,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  91,
+                  102,
+                  248
+                ],
+                "pixelSha256": "3fb9f9d5030b765892b498c17200074da2d403f4bfdcd6cdfc6234a88bd3c712"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_axe": {
             "status": "missing"
@@ -50672,6 +50740,44 @@
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_sword": {
+          "sourceSha256": "224e31b548cb7071130ea57b90483d70f2801f0b62cfe104805a507bb7dafc88",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            620,
+            15,
+            1030,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            17,
+            91
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/brujo/f/source/attack_sword-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production game sprite strip, exactly FOUR full-body poses, actual transparent background. IMAGE 1 is the EDIT TARGET and EXACT canonical pose registration. IMAGE 2 defines ONLY BRUJO FEMALE identity, face and outfit. Redraw the four figures of IMAGE 1 in the identity and costume of IMAGE 2, preserving EXACT canvas proportions, four figure centers, head scale, camera, boot baseline, hand CENTERS, empty finger grip, wrist orientation, elbows and limb poses. Action attack_sword. Young adult female warlock: long deep violet hair with swept bangs, pale composed face, small dark violet browband. Charcoal and dark plum split ritual robe with rich violet lining and muted antique gold edging, high fitted collar, pale grey inner tunic and front panel, layered dark purple shoulder mantle, brown-black waist belt and boots, discreet dark fingerless gloves. Fully covered practical robe, exact canonical female skeleton and readable hands. No staff, skull, floating book, magic, aura or particles. Long hair falls close behind the shoulders and back, with no wide sideways sweep. Keep robe and cloak tails close to the legs, narrow silhouette inside exact canonical limits. Match the newly hand-painted crisp pixel-inspired RPG finish, clean warm outlines and detailed readable materials of IMAGE 1, NOT the low resolution of any old identity reference. Same identity and outfit across all four figures. Empty hands throughout: all weapons, shields, books, bottles, bows, arrows and effects are separate EXISTING SHARED sprite layers; entirely omit such props visible in either reference. Keep cuffs clear of fingers and keep their exact positions visible. No Novato-specific scarf, patched clothes, face or hair unless the class identity explicitly requires them. Garments follow each pose but must NOT move the hands, enlarge the skeleton or alter relative root positions. No ground, shadows, labels, grid, effects or extra views. Preserve all headroom and margins from IMAGE 1; do NOT fill or recenter the canvas. Full hair, hems, hands and boots remain inside their respective quarters. EXACT shared hand-contact registration on the full canonical 2172x724 canvas: figure 1: primary contact (212,193), other hand (347,276); figure 2: primary contact (811,115), other hand (885,280); figure 3: primary contact (1506,419), other hand (1433,306); figure 4: primary contact (1828,193), other hand (1976,276). These refer to the original full strip pixel positions before export, not new equipment offsets. Preserve those contact positions even if armor or cuffs are thicker. Four figures must keep the exact Novato limb arrangement.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_sword-reference.png",
+          "canonicalPoseHashes": [
+            "2cdc01930823f3356c34672d3037877c10a3b25337d5ff78350f147e0f5fba9a",
+            "db31283eb15589cf13fb33aac39b277606ed938f4afe84955356f0253579e4e0",
+            "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
+            "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -50770,9 +50876,56 @@
         "walk/04": {
           "source": "sources.walk",
           "frame": 4
+        },
+        "attack_sword/01": {
+          "source": "sources.attack_sword",
+          "frame": 1
+        },
+        "attack_sword/02": {
+          "source": "sources.attack_sword",
+          "frame": 2
+        },
+        "attack_sword/03": {
+          "source": "sources.attack_sword",
+          "frame": 3
+        },
+        "attack_sword/04": {
+          "source": "sources.attack_sword",
+          "frame": 4
         }
       },
-      "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex"
+      "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
+      "equipmentTests": {
+        "attack_sword": {
+          "status": "technical-preview-verified-art-review-pending",
+          "weaponPath": "public/sprites/items/weapons/espada_hierro.png",
+          "weaponSha256": "8b21d32318b5d8778325ea8899f2e74524c9c98bce540656844faf02758f7589",
+          "weaponGrip": [
+            32,
+            55
+          ],
+          "frameIndex": "shared-body-and-equipment",
+          "frames": [
+            {
+              "bodySha256": "ea2982b185636dd63860f2bb66dae2f9c242407ad61406e85cae8ce665fc01aa"
+            },
+            {
+              "bodySha256": "27611b2a58b8bbbd6ff8930c47f50961fef7acab7f86a38bf821cebf5621fe6c"
+            },
+            {
+              "bodySha256": "51f92d19a5d64fd6df079151e2c5575c66ced62dcb5603443ed32ddf8985269c"
+            },
+            {
+              "bodySha256": "7a7c59a1f18333b4bbaa171893d8f8b4f9b94d472dce8097ba8b785daab86225"
+            }
+          ],
+          "limitations": [
+            "Uses current item icon at native size to prove compositing; not a new HD equipment asset.",
+            "Hand masks and anchors are explicit candidates tied to current body hashes.",
+            "No runtime promotion; test does not validate other weapons or actions."
+          ]
+        }
+      }
     }
   ],
   "highResolutionSourceCandidates": [
