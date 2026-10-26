@@ -49903,7 +49903,7 @@
       "qaStatus": "visual-review-pending",
       "frameRoot": "assets/spritesheets/hd-128x256/brujo/f/frames",
       "audit": {
-        "validFrames": 56,
+        "validFrames": 60,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -49919,7 +49919,8 @@
           "attack_bow",
           "attack_staff",
           "attack_mace",
-          "attack_book"
+          "attack_book",
+          "attack_gloves"
         ],
         "actions": {
           "idle": {
@@ -50903,7 +50904,74 @@
             "distinctFrames": 4
           },
           "attack_gloves": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "a839d10589879d764ad7cec6d4f5874954088812d376ec26507385ee652773ef",
+                "bytes": 28201,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  90,
+                  103,
+                  248
+                ],
+                "pixelSha256": "b3de150f066ce5df2802a6834595952bf596ed1545bf38a7168bf0e8ecab3b2c"
+              },
+              "02": {
+                "sha256": "15b82fb9f8c58cc15235acf3b31a18a20b8a592506deed2c97c9962011c4959b",
+                "bytes": 28863,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  90,
+                  103,
+                  248
+                ],
+                "pixelSha256": "475a00fae7121f0c38ae6432ffd794786dd5fa2e65f09ec49695756947039fc5"
+              },
+              "03": {
+                "sha256": "37419546d13885e5367e7f684f7564ecfa831227280905cd378fc6f5af075c44",
+                "bytes": 28514,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  7,
+                  90,
+                  113,
+                  248
+                ],
+                "pixelSha256": "4fa6c1fc6234b9ee0873274aa1014709ed1cdd759f39407a22dcf436ef400372"
+              },
+              "04": {
+                "sha256": "2ddf917557b9933d7c97249eb88a703862408dc996db4decc93d34d8f2d4b703",
+                "bytes": 28122,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  5,
+                  90,
+                  92,
+                  248
+                ],
+                "pixelSha256": "60091c4d8e7414415a47b8b29d7094ed252b7177f6d0309a15af5fdd10db0781"
+              }
+            },
+            "distinctFrames": 4
           }
         }
       },
@@ -51560,6 +51628,44 @@
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_gloves": {
+          "sourceSha256": "2d665a6a1e9684a1e46976d83b3f8403d5df9e6d8a312a0f525208ee3ecd0bbe",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            625,
+            17,
+            1080,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/brujo/f/source/attack_gloves-reference-v2.png",
+          "generator": "built-in imagegen",
+          "prompt": "Edit this exact transparent four-frame sheet. Keep all anatomy, heads, BOTH hands, fists, grip coordinates, boots, body roots and positions unchanged. On ONLY the THIRD figure (punch extended toward right), bring the OUTERMOST LEFT cloak/hair trailing silhouette inward toward her body by about 20 source pixels, especially the leftmost cape fold around hip level. Make this left edge a little narrower. Do not move or rescale the figure itself. Preserve the same detailed plum costume and gold trim. The other three figures remain exactly unchanged. Four complete figures, same canvas, true transparent background, no weapons.",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
+          "canonicalPoseHashes": [
+            "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
+            "bc21f0517b9ace7b72e967c7e10c7c545df05e99f658515b97ca568f5ac474ff",
+            "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
+            "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -51785,6 +51891,22 @@
         },
         "attack_book/04": {
           "source": "sources.attack_book",
+          "frame": 4
+        },
+        "attack_gloves/01": {
+          "source": "sources.attack_gloves",
+          "frame": 1
+        },
+        "attack_gloves/02": {
+          "source": "sources.attack_gloves",
+          "frame": 2
+        },
+        "attack_gloves/03": {
+          "source": "sources.attack_gloves",
+          "frame": 3
+        },
+        "attack_gloves/04": {
+          "source": "sources.attack_gloves",
           "frame": 4
         }
       },
