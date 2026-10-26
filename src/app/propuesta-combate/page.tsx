@@ -6,7 +6,8 @@ import SpriteHeroeAnimado from "@/components/combate/SpriteHeroeAnimado";
 import SpriteEnemigoAnimado from "@/components/combate/SpriteEnemigoAnimado";
 import { ENEMIGOS_HD } from "@/lib/sprites-enemigos-hd";
 import { obtenerEnemigoPorId } from "@/lib/enemigos";
-import styles from "./preview.module.css";
+import styles from "./estados.module.css";
+import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
 
 const HEROES = [
   { nombre: "Aldric", clase: "espadachin", sexo: "chico", arma: "espada_hierro", hp: 840, max: 1080, mp: 64 },
@@ -21,6 +22,21 @@ const VISTAS = [
   { id: "party-mobile", nombre: "Party · Móvil", movil: true, party: true },
 ];
 
+const EFECTOS_ALIADO = [{ habilidadId: "guardia_caballero", tipo: "bonus_defensa", valor: 10, duracionTurnos: 3, turnosRestantes: 2, objetivo: "jugador" }];
+const EFECTOS_ENEMIGO = [{ habilidadId: "tajo_sangrante", tipo: "dano_progresivo", valor: 5, duracionTurnos: 3, turnosRestantes: 3, objetivo: "enemigo" }];
+
+function Placa({ nombre, hp, max, recurso, actual, aliado = false, boss = false, efectos, comida }: {
+  nombre: string; hp: number; max: number; recurso?: string; actual?: number; aliado?: boolean; boss?: boolean; efectos: unknown; comida?: string | null;
+}) {
+  return <div className={`${styles.plate} ${aliado ? styles.allyPlate : styles.enemyPlate} ${boss ? styles.bossPlate : ""}`}>
+    <strong>{nombre}</strong>
+    <div className={styles.life} role="progressbar" aria-label={`Vida de ${nombre}`} aria-valuemin={0} aria-valuemax={max} aria-valuenow={hp}><i style={{ width: `${hp / max * 100}%` }} /></div>
+    <div className={styles.values}>{hp}<small>/{max} PV</small></div>
+    {recurso && <div className={styles.resource}><span>{recurso}</span><div className={recurso === "PM" ? styles.mana : styles.energy}><i style={{ width: "72%" }} /></div><b>{actual}</b></div>}
+    <div className={styles.effects}><IndicadoresEfectosCombate efectos={efectos} comidaPreparada={comida} /></div>
+  </div>;
+}
+
 function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: string }) {
   const [objetivo, setObjetivo] = useState(0);
   const [accion, setAccion] = useState<"idle" | "attack" | "hurt">("idle");
@@ -33,7 +49,7 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
   const infoRef = useRef<HTMLDialogElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
-  const heroes = party ? HEROES : HEROES.slice(0, 1);
+  const heroes = party ? HEROES.slice(0, 3) : HEROES.slice(0, 1);
   const enemigos = jefe ? [jefe] : party ? ["bandido_camino", "orco_despiadado", "esqueleto_guerrero"] : ["bandido_camino"];
   const seleccionado = Math.min(objetivo, enemigos.length - 1);
   const ejecutar = (nombre: string, ahora: number, animacion: typeof accion = "attack") => {
@@ -44,17 +60,18 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
     timer.current = setTimeout(() => setAccion("idle"), 1100);
   };
   const ancho = movil ? 390 : 1120;
-  const altoEscena = 360;
+  const altoEscena = movil ? 502 : 392;
   return <div className={`${styles.battle} ${movil ? styles.mobile : ""}`} style={{ width: ancho, height: movil ? 760 : 680 }}>
     <header className={styles.battleHeader}><div><span className={styles.eyebrow}>BOSQUE DE LAS CENIZAS</span><strong>{jefe ? "Una presencia ancestral" : "Emboscada en el sendero"}</strong></div><nav className={styles.headerTools} aria-label="Información del combate"><button onClick={() => infoRef.current?.showModal()}>Info</button><span className={styles.turn}>Turno 03</span></nav></header>
     <div className={styles.stage}>
       <div className={styles.stageVeil} />
       <div className={styles.turnNote}>◆ Turno de Aldric</div>
       {heroes.map((h, i) => {
-        const size = movil ? (party ? 80 : 124) : (party ? 116 : 172);
-        const x = party ? (movil ? [102, 57, 113, 68][i] : [340, 205, 340, 205][i]) : ancho * 0.24;
-        const foot = party ? altoEscena * [0.45, 0.59, 0.75, 0.89][i] : altoEscena * 0.8;
+        const size = movil ? 124 : 144;
+        const x = party ? (movil ? [130, 52, 130][i] : [400, 170, 300][i]) : ancho * 0.25;
+        const foot = altoEscena * (party ? (movil ? [0.30, 0.55, 0.80][i] : [0.37, 0.59, 0.81][i]) : 0.56) + size / 2;
         return <div key={h.nombre} className={styles.actor} style={{ left: x, top: foot - size, width: size * 0.7, height: size, zIndex: 10 + i }}>
+          <Placa nombre={h.nombre} hp={h.hp} max={h.max} recurso={h.clase === "mago" || h.clase === "acolito" ? "PM" : "EN"} actual={h.mp} aliado efectos={i === 0 ? EFECTOS_ALIADO : []} comida={i === 0 ? "carne-cazadora" : i === 1 ? "setas-arcanas" : null} />
           <div className={`${styles.ground} ${i === 0 ? styles.activeGround : ""}`} />
           <SpriteHeroeAnimado clase={h.clase} profesionActivaId={h.clase} sexo={h.sexo} nombre={h.nombre} armaId={h.arma} escudoId={i === 0 ? "escudo_guardian" : undefined}
             accion={i === 0 && accion === "attack" ? "attack_sword" : "idle"} inicioAnimacion={inicio} />
@@ -63,37 +80,22 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
       {enemigos.map((id, i) => {
         const s = ENEMIGOS_HD[id];
         const radio = Math.max(s.anchor[0] - s.bounds[0], s.bounds[2] - s.anchor[0]);
-        const unit = Math.min((movil ? (party ? 80 : 124) : (party ? 116 : 172)) / 170 * (s.boss ? 1.6 : 1), (movil ? 92 : 235) / radio, (altoEscena * 0.58) / (s.anchor[1] - s.bounds[1]));
-        const x = ancho * (enemigos.length === 1 ? 0.74 : [0.71, 0.81, 0.69][i]);
-        const foot = altoEscena * (enemigos.length === 1 ? 0.8 : [0.48, 0.68, 0.88][i]);
-        return <button key={id} className={`${styles.actor} ${styles.enemy}`} aria-label={`Seleccionar ${s.name}`} aria-pressed={seleccionado === i}
-          onClick={() => { setObjetivo(i); }}
+        const unit = Math.min((movil ? 124 : 144) / 170 * (s.boss ? 2 : 1), (movil ? (s.boss ? 110 : 60) : 235) / radio, (altoEscena * 0.58) / (s.anchor[1] - s.bounds[1]));
+        const x = enemigos.length > 1 ? (movil ? [255, 335, 255][i] : [780, 965, 690][i]) : ancho * 0.74;
+        const foot = altoEscena * (enemigos.length > 1 ? (movil ? [0.30, 0.55, 0.80][i] : [0.42, 0.59, 0.81][i]) : 0.56) + s.height * unit / 2;
+        return <div key={id} className={`${styles.actor} ${styles.enemy}`}
           style={{ left: x, top: foot - s.height * unit, width: Math.max(64, radio * unit * 1.2), height: s.height * unit, "--unidad-enemigo": `${unit}px`, zIndex: 10 + i } as CSSProperties}>
+          <button className={styles.enemySelect} aria-label={`Seleccionar ${s.name}`} aria-pressed={seleccionado === i} onClick={() => setObjetivo(i)} />
+          <Placa nombre={s.name} hp={obtenerEnemigoPorId(id)?.hp ?? 100} max={obtenerEnemigoPorId(id)?.hp ?? 100} boss={s.boss} efectos={i === 0 ? EFECTOS_ENEMIGO : []} />
           <div className={`${styles.ground} ${seleccionado === i ? styles.enemyGround : ""}`} />
           <SpriteEnemigoAnimado enemigoId={id} nombre={s.name} accion={seleccionado === i && accion === "attack" ? "hurt" : seleccionado === i && accion === "hurt" ? "attack" : "idle"} inicioAnimacion={inicio} />
           {seleccionado === i && <span className={styles.targetArrow}>▼</span>}
           {seleccionado === i && accion === "attack" && <span className={styles.damage}>128</span>}
-        </button>;
+        </div>;
       })}
 
     </div>
     <footer className={styles.hud}>
-      <div className={styles.allCombatants}>
-        <section className={styles.teamLedger} aria-label="Aliados">
-        {heroes.map((h, i) => <div key={h.nombre} className={`${styles.heroCard} ${i === 0 ? styles.activeCard : ""}`}>
-          <div className={styles.cardTitle}><strong>{h.nombre}</strong><span>{i === 0 ? "◆ ACTÚA" : h.clase}</span></div>
-          <div className={styles.stat}><span>PV</span><div className={styles.bar}><i style={{ width: `${h.hp / h.max * 100}%` }} /></div><b>{h.hp}<small>/{h.max}</small></b></div>
-          <div className={styles.stat}><span>{i === 1 || i === 3 ? "PM" : "EN"}</span><div className={`${styles.bar} ${styles.mana}`}><i style={{ width: "72%" }} /></div><b>{h.mp}</b></div>
-        </div>)}</section><section className={styles.teamLedger} aria-label="Enemigos">{enemigos.map((id, i) => {
-          const e = obtenerEnemigoPorId(id);
-          const hp = e?.hp ?? 100;
-          return <button key={id} className={`${styles.heroCard} ${styles.enemyCard} ${seleccionado === i ? styles.selectedEnemyCard : ""}`} aria-label={`Ver ${ENEMIGOS_HD[id].name}`} aria-pressed={seleccionado === i} onClick={() => setObjetivo(i)}>
-            <div className={styles.cardTitle}><strong>{ENEMIGOS_HD[id].name}</strong><span>{seleccionado === i ? "◆ MARCADO" : "ENEMIGO"}</span></div>
-            <div className={styles.stat}><span>PV</span><div className={`${styles.bar} ${styles.enemyHealth}`}><i style={{width:"100%"}} /></div><b>{hp}<small>/{hp}</small></b></div>
-            <div className={styles.stat}><span>PM/EN</span><span className={styles.noResource} title="El combate actual no asigna maná ni energía a los enemigos">—</span></div>
-          </button>;
-        })}</section>
-      </div>
       <div className={`${styles.actionBlock} ${menu !== "principal" ? styles.actionBlockExpanded : ""}`} aria-label="Menú de acciones">
       <div className={styles.orders}>
         <div className={styles.commandGrid}>{["Atacar", "Habilidades", "Objetos", "Huir"].map((label, i) => <button key={label} aria-expanded={i === 1 ? menu === "habilidades" : i === 2 ? menu === "objetos" : undefined} disabled={accion !== "idle" || huido} onClick={() => {
@@ -126,10 +128,10 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
       <div className={styles.infoTeams}>
         <section><h3>Tu grupo</h3>{heroes.map((h, i) => <article key={h.nombre}><h4>{h.nombre} <small>{h.clase}</small></h4><dl>
           <dt>Vida</dt><dd>{h.hp} / {h.max}</dd><dt>{i === 1 || i === 3 ? "Maná" : "Energía"}</dt><dd>{h.mp}</dd>
-          <dt>Ataque físico</dt><dd>{[86, 28, 72, 36][i]}</dd><dt>Ataque mágico</dt><dd>{[14, 96, 18, 74][i]}</dd><dt>Defensa física</dt><dd>{[62, 24, 38, 42][i]}</dd><dt>Defensa mágica</dt><dd>{[28, 68, 32, 64][i]}</dd><dt>Velocidad</dt><dd>{[30, 26, 48, 24][i]}</dd><dt>Posición</dt><dd>{i === 0 ? "Frente" : "Retaguardia"}</dd><dt>Estado</dt><dd>{i === 0 ? "Turno activo" : "En espera"}</dd><dt>Efectos</dt><dd>Ninguno</dd>
+          <dt>Ataque físico</dt><dd>{[86, 28, 72, 36][i]}</dd><dt>Ataque mágico</dt><dd>{[14, 96, 18, 74][i]}</dd><dt>Defensa física</dt><dd>{[62, 24, 38, 42][i]}</dd><dt>Defensa mágica</dt><dd>{[28, 68, 32, 64][i]}</dd><dt>Velocidad</dt><dd>{[30, 26, 48, 24][i]}</dd><dt>Posición</dt><dd>{i === 0 ? "Frente" : "Retaguardia"}</dd><dt>Estado</dt><dd>{i === 0 ? "Turno activo" : "En espera"}</dd><dt>Efectos</dt><dd>{i === 0 ? "Defensa aumentada · 2 turnos; Carne del cazador" : i === 1 ? "Setas arcanas" : "Ninguno"}</dd>
         </dl></article>)}</section>
         <section><h3>Rivales</h3>{enemigos.map((id, i) => { const e = obtenerEnemigoPorId(id); return <article key={id}><h4>{ENEMIGOS_HD[id].name}</h4><dl>
-          <dt>Vida</dt><dd>{e?.hp ?? 100} / {e?.hp ?? 100}</dd><dt>Ataque físico</dt><dd>{e?.ataque ?? "—"}</dd><dt>Ataque mágico</dt><dd>{e?.ataqueMagico ?? "—"}</dd><dt>Defensa física</dt><dd>{e?.defensa ?? "—"}</dd><dt>Defensa mágica</dt><dd>{e?.defensaMagica ?? "—"}</dd><dt>Velocidad</dt><dd>{e?.velocidad ?? "—"}</dd><dt>Posición</dt><dd>Frente</dd><dt>Estado</dt><dd>{i === seleccionado ? "Objetivo marcado" : "En espera"}</dd><dt>Efectos</dt><dd>Ninguno</dd>
+          <dt>Vida</dt><dd>{e?.hp ?? 100} / {e?.hp ?? 100}</dd><dt>Ataque físico</dt><dd>{e?.ataque ?? "—"}</dd><dt>Ataque mágico</dt><dd>{e?.ataqueMagico ?? "—"}</dd><dt>Defensa física</dt><dd>{e?.defensa ?? "—"}</dd><dt>Defensa mágica</dt><dd>{e?.defensaMagica ?? "—"}</dd><dt>Velocidad</dt><dd>{e?.velocidad ?? "—"}</dd><dt>Posición</dt><dd>Frente</dd><dt>Estado</dt><dd>{i === seleccionado ? "Objetivo marcado" : "En espera"}</dd><dt>Efectos</dt><dd>{i === 0 ? "Daño progresivo · 3 turnos" : "Ninguno"}</dd>
         </dl></article>; })}</section>
       </div>
     </dialog>
@@ -154,9 +156,15 @@ function Marco({ vista, jefe }: { vista: typeof VISTAS[number]; jefe: string }) 
 export default function PropuestaCombate() {
   const [vista, setVista] = useState("todas");
   const [jefe, setJefe] = useState("");
-  return <main className={styles.page}><div className={styles.intro}><Link href="/revision-sprites">← Revisión de sprites</Link><p className={styles.eyebrow}>PROPUESTA VISUAL · NO APLICADA AL JUEGO</p><h1>Un escenario para la aventura.</h1><p>Órdenes clásicas en una ventana lateral, estados compactos y selección directamente sobre el enemigo. Prueba los objetivos y los botones: esta demostración no modifica tu partida.</p></div>
+  const [pantallaCompleta, setPantallaCompleta] = useState(false);
+  if (pantallaCompleta) {
+    const seleccion = VISTAS.find(v => v.id === vista) ?? VISTAS[3];
+    return <div className={styles.fullscreen}><div style={{ width: seleccion.movil ? 390 : 1120, maxWidth: "100%" }}><Marco vista={seleccion} jefe={jefe} /></div><button className={styles.back} onClick={() => setPantallaCompleta(false)}>Volver a las vistas</button></div>;
+  }
+  return <main className={styles.page}><div className={styles.intro}><Link href="/revision-sprites">← Revisión de sprites</Link><p className={styles.eyebrow}>PROPUESTA VISUAL · NO APLICADA AL JUEGO</p><h1>Vida y estados sobre cada combatiente.</h1><p>Propuesta sin publicar: vida y recursos encima de cada personaje, estados y comidas bajo las barras, y un menú de acciones más alto. Toca los iconos para consultar sus efectos. Los datos y las acciones son de demostración.</p></div>
     <div className={styles.toolbar}><nav aria-label="Vistas de la propuesta">{[{ id: "todas", nombre: "Las cuatro vistas" }, ...VISTAS].map(v => <button key={v.id} aria-pressed={vista === v.id} onClick={() => setVista(v.id)}>{v.nombre}</button>)}</nav>
       <label>Encuentro <select aria-label="Encuentro" value={jefe} onChange={e => setJefe(e.target.value)}><option value="">Enemigos del sendero</option>{Object.entries(ENEMIGOS_HD).filter(([, s]) => s.boss).map(([id, s]) => <option key={id} value={id}>{s.name}</option>)}</select></label>
+      <button onClick={() => setPantallaCompleta(true)}>Ver combate a tamaño real</button>
     </div>
     <p className={styles.hint}>Selecciona una vista para ampliarla. Las vistas de escritorio se reducen proporcionalmente si el panel es estrecho.</p>
     <div className={`${styles.gallery} ${vista !== "todas" ? styles.single : ""}`}>{VISTAS.filter(v => vista === "todas" || vista === v.id).map(v => <Marco key={v.id} vista={v} jefe={jefe} />)}</div>

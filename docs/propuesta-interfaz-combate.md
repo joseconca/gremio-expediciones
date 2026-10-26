@@ -52,3 +52,12 @@ Los bosses reciben un límite de escala mayor, ajustado a los márgenes de la es
 Verificación: compilación de producción, TypeScript y lint; 35 pruebas de panel/recursos, 75 de party, 134 de progresión/combate y 28 de sprites. Revisión visual de los componentes reales con fixtures locales en 390×760 y escritorio, incluyendo jefe, selección, objetos, Info y cooldown del defensor. No se ha completado una batalla autenticada contra el servidor.
 
 `/revision-combate-real` sirve únicamente en desarrollo y monta los mismos componentes con datos de prueba y acciones sin efectos. En producción devuelve notFound. La propuesta original sigue disponible como referencia visual. Esta integración se guarda en la rama de trabajo; su publicación es una acción separada.
+
+
+## Nueva revisión visual: barras sobre los personajes (sin publicar)
+
+`/propuesta-combate` muestra una alternativa aislada: nombre, vida y recursos encima de cada sprite; estados, mejoras y comida en una fila de iconos bajo las barras. Los iconos muestran turnos restantes o duración de expedición y se pueden pulsar para consultar el detalle. Se reutiliza `IndicadoresEfectosCombate` para la interacción.
+
+La formación vuelve a estar escalonada en profundidad. El menú de acciones gana 24 px útiles en móvil y 24 px respecto al menú de combate actual de escritorio; desaparece el bloque inferior de fichas. Siguen disponibles solo/party, móvil/escritorio, selección de enemigos, menús de habilidades y objetos, historial ampliable e Info. El botón de tamaño real facilita evaluar cada vista sin reducción.
+
+Es una propuesta con datos simulados: no modifica los componentes del combate real ni se ha publicado en main.
