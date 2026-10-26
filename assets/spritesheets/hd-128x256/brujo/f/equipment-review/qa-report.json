@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "brujo",
   "sex": "f",
   "actions": [
@@ -7,87 +7,14 @@
   ],
   "bodyHashes": {
     "idle": [
-      "983b935421df30ab06f6b3b6af5024f73889c0cec026510a05a39e4b720dd05d",
-      "6940030b2571f5fb6100b41f1c13ab1dda4ada47ee2aff6cba2bbf129b49c6ca",
-      "6bfaf7d66e69f7924dc28606a3fcb6eaee47467c21ff715902a786ddacb3288a",
-      "0a0e7ab14eaa45ef659a2721d31c37648242998a5e4bcfe1009c5f3747ebaad8"
+      "bdb7b29e64f1143885d53dc30dbe6e75f0296990f93e6e7a4dc7b9dbbeaf20e8",
+      "cb3f5cea4cbd52258d35df25be9c0de2200834382a0791c2f9584da2e3bb8575",
+      "e4eaf5d5b98d11438c7abd6c5ef02340e1fb99cc9c03fa1ba919fd59338ee6b7",
+      "7d393fec1e450c96f799bfc2531865eca7f475c2b7f93c4701329a3b2379ead1"
     ]
   },
   "contactChecks": 128,
-  "warnings": [
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "arco_cazador",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "arco_madera",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "grimorio_eclipse",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "guantes_lucha",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "libro_aprendiz",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "punos_lobo",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "escudo_guardian",
-      "point": [
-        97,
-        184
-      ]
-    },
-    {
-      "action": "idle",
-      "frame": 3,
-      "item": "escudo_madera",
-      "point": [
-        97,
-        184
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
 }
