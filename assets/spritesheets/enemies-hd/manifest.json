@@ -1,0 +1,520 @@
+{
+  "schemaVersion": 1,
+  "status": "in-progress",
+  "cellSize": [
+    256,
+    256
+  ],
+  "sheetSize": [
+    1024,
+    1024
+  ],
+  "columns": 4,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "generator": "built-in image_gen",
+  "runtimePromotion": "pending-review",
+  "enemies": [
+    {
+      "id": "mimic",
+      "name": "Mímico",
+      "difficulty": 0,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/mimic.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 3,
+      "report": "assets/spritesheets/enemies-hd/mimic/qa-report.json"
+    },
+    {
+      "id": "slime_acido",
+      "name": "Slime Ácido",
+      "difficulty": 0,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/slime_acido.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 3,
+      "report": "assets/spritesheets/enemies-hd/slime_acido/qa-report.json"
+    },
+    {
+      "id": "rata_gigante",
+      "name": "Rata Gigante",
+      "difficulty": 1,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/rata_gigante.png",
+      "status": "candidate",
+      "frames": 16,
+      "sourceRevision": 3,
+      "report": "assets/spritesheets/enemies-hd/rata_gigante/qa-report.json"
+    },
+    {
+      "id": "goblin_explorador",
+      "name": "Goblin Explorador",
+      "difficulty": 2,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/goblin_explorador.png",
+      "status": "pending"
+    },
+    {
+      "id": "bandido_camino",
+      "name": "Bandido del Camino",
+      "difficulty": 3,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/bandido_camino.png",
+      "status": "pending"
+    },
+    {
+      "id": "orco_despiadado",
+      "name": "Orco Despiadado",
+      "difficulty": 4,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/orco_despiadado.png",
+      "status": "pending"
+    },
+    {
+      "id": "esqueleto_guerrero",
+      "name": "Esqueleto Guerrero",
+      "difficulty": 4,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/esqueleto_guerrero.png",
+      "status": "pending"
+    },
+    {
+      "id": "ogro",
+      "name": "Ogro",
+      "difficulty": 5,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/ogro.png",
+      "status": "pending"
+    },
+    {
+      "id": "arana_sombras",
+      "name": "Araña de las Sombras",
+      "difficulty": 5,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/arana_sombras.png",
+      "status": "pending"
+    },
+    {
+      "id": "troll_cavernas",
+      "name": "Troll de las Cavernas",
+      "difficulty": 6,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/troll_cavernas.png",
+      "status": "pending"
+    },
+    {
+      "id": "minotauro",
+      "name": "Minotauro",
+      "difficulty": 7,
+      "boss": false,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/minotauro.png",
+      "status": "pending"
+    },
+    {
+      "id": "lobo_hambriento",
+      "name": "Lobo Hambriento",
+      "difficulty": 1,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/lobo_hambriento.png",
+      "status": "pending"
+    },
+    {
+      "id": "murcielago_sanguinario",
+      "name": "Murciélago Sanguinario",
+      "difficulty": 1,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/murcielago_sanguinario.png",
+      "status": "pending"
+    },
+    {
+      "id": "avispa_gigante",
+      "name": "Avispa Gigante",
+      "difficulty": 2,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/avispa_gigante.png",
+      "status": "pending"
+    },
+    {
+      "id": "kobold_trampero",
+      "name": "Kobold Trampero",
+      "difficulty": 2,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/kobold_trampero.png",
+      "status": "pending"
+    },
+    {
+      "id": "bandido_arbalestero",
+      "name": "Bandido Arbalestero",
+      "difficulty": 3,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/bandido_arbalestero.png",
+      "status": "pending"
+    },
+    {
+      "id": "zombie_errante",
+      "name": "Zombi Errante",
+      "difficulty": 3,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/zombie_errante.png",
+      "status": "pending"
+    },
+    {
+      "id": "hiena_salvaje",
+      "name": "Hiena Salvaje",
+      "difficulty": 3,
+      "boss": false,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/hiena_salvaje.png",
+      "status": "pending"
+    },
+    {
+      "id": "cultista_encapuchado",
+      "name": "Cultista Encapuchado",
+      "difficulty": 4,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/cultista_encapuchado.png",
+      "status": "pending"
+    },
+    {
+      "id": "gnoll_merodeador",
+      "name": "Gnoll Merodeador",
+      "difficulty": 4,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/gnoll_merodeador.png",
+      "status": "pending"
+    },
+    {
+      "id": "ghoul_cripta",
+      "name": "Ghoul de la Cripta",
+      "difficulty": 4,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/ghoul_cripta.png",
+      "status": "pending"
+    },
+    {
+      "id": "hombre_lagarto",
+      "name": "Hombre Lagarto",
+      "difficulty": 5,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/hombre_lagarto.png",
+      "status": "pending"
+    },
+    {
+      "id": "golem_barro",
+      "name": "Gólem de Barro",
+      "difficulty": 5,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/golem_barro.png",
+      "status": "pending"
+    },
+    {
+      "id": "oso_cavernario",
+      "name": "Oso Cavernario",
+      "difficulty": 5,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/oso_cavernario.png",
+      "status": "pending"
+    },
+    {
+      "id": "espectro_errante",
+      "name": "Espectro Errante",
+      "difficulty": 6,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/espectro_errante.png",
+      "status": "pending"
+    },
+    {
+      "id": "harpia_cazadora",
+      "name": "Arpía Cazadora",
+      "difficulty": 6,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/harpia_cazadora.png",
+      "status": "pending"
+    },
+    {
+      "id": "nigromante_aprendiz",
+      "name": "Nigromante Aprendiz",
+      "difficulty": 6,
+      "boss": false,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/nigromante_aprendiz.png",
+      "status": "pending"
+    },
+    {
+      "id": "guardian_cripta",
+      "name": "Guardián de la Cripta",
+      "difficulty": 7,
+      "boss": false,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/guardian_cripta.png",
+      "status": "pending"
+    },
+    {
+      "id": "basilisco_joven",
+      "name": "Basilisco Joven",
+      "difficulty": 7,
+      "boss": false,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/basilisco_joven.png",
+      "status": "pending"
+    },
+    {
+      "id": "centauro_saqueador",
+      "name": "Centauro Saqueador",
+      "difficulty": 7,
+      "boss": false,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/centauro_saqueador.png",
+      "status": "pending"
+    },
+    {
+      "id": "gargola_ancestral",
+      "name": "Gárgola Ancestral",
+      "difficulty": 8,
+      "boss": false,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/gargola_ancestral.png",
+      "status": "pending"
+    },
+    {
+      "id": "elemental_roca",
+      "name": "Elemental de Roca",
+      "difficulty": 8,
+      "boss": false,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/elemental_roca.png",
+      "status": "pending"
+    },
+    {
+      "id": "sacerdotisa_oscura",
+      "name": "Sacerdotisa Oscura",
+      "difficulty": 8,
+      "boss": false,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/sacerdotisa_oscura.png",
+      "status": "pending"
+    },
+    {
+      "id": "mantícora",
+      "name": "Mantícora",
+      "difficulty": 9,
+      "boss": false,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/mantícora.png",
+      "status": "pending"
+    },
+    {
+      "id": "ogro_chaman",
+      "name": "Ogro Chamán",
+      "difficulty": 9,
+      "boss": false,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/ogro_chaman.png",
+      "status": "pending"
+    },
+    {
+      "id": "caballero_maldito",
+      "name": "Caballero Maldito",
+      "difficulty": 10,
+      "boss": false,
+      "rank": "IV",
+      "legacyPath": "public/sprites/enemies/IV/caballero_maldito.png",
+      "status": "pending"
+    },
+    {
+      "id": "wyvern_joven",
+      "name": "Wyvern Joven",
+      "difficulty": 10,
+      "boss": false,
+      "rank": "IV",
+      "legacyPath": "public/sprites/enemies/IV/wyvern_joven.png",
+      "status": "pending"
+    },
+    {
+      "id": "elemental_fuego",
+      "name": "Elemental de Fuego",
+      "difficulty": 11,
+      "boss": false,
+      "rank": "IV",
+      "legacyPath": "public/sprites/enemies/IV/elemental_fuego.png",
+      "status": "pending"
+    },
+    {
+      "id": "vampiro_noble",
+      "name": "Vampiro Noble",
+      "difficulty": 12,
+      "boss": false,
+      "rank": "IV",
+      "legacyPath": "public/sprites/enemies/IV/vampiro_noble.png",
+      "status": "pending"
+    },
+    {
+      "id": "demonio_menor",
+      "name": "Demonio Menor",
+      "difficulty": 13,
+      "boss": false,
+      "rank": "V",
+      "legacyPath": "public/sprites/enemies/V/demonio_menor.png",
+      "status": "pending"
+    },
+    {
+      "id": "dragon_negro_joven",
+      "name": "Dragón Negro Joven",
+      "difficulty": 14,
+      "boss": false,
+      "rank": "V",
+      "legacyPath": "public/sprites/enemies/V/dragon_negro_joven.png",
+      "status": "pending"
+    },
+    {
+      "id": "gigante_escarcha",
+      "name": "Gigante de Escarcha",
+      "difficulty": 15,
+      "boss": false,
+      "rank": "V",
+      "legacyPath": "public/sprites/enemies/V/gigante_escarcha.png",
+      "status": "pending"
+    },
+    {
+      "id": "senor_frontera",
+      "name": "Señor de la Frontera",
+      "difficulty": 3,
+      "boss": true,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/senor_frontera.png",
+      "status": "pending"
+    },
+    {
+      "id": "reina_sombras",
+      "name": "Reina de las Sombras",
+      "difficulty": 3,
+      "boss": true,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/reina_sombras.png",
+      "status": "pending"
+    },
+    {
+      "id": "titan_hierro",
+      "name": "Titán de Hierro",
+      "difficulty": 3,
+      "boss": true,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/titan_hierro.png",
+      "status": "pending"
+    },
+    {
+      "id": "dragon_bosque_verde",
+      "name": "Dragón del Bosque Verde",
+      "difficulty": 3,
+      "boss": true,
+      "rank": "I",
+      "legacyPath": "public/sprites/enemies/I/dragon_bosque_verde.png",
+      "status": "pending"
+    },
+    {
+      "id": "capitan_orcos",
+      "name": "Capitán de los Orcos",
+      "difficulty": 5,
+      "boss": true,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/capitan_orcos.png",
+      "status": "pending"
+    },
+    {
+      "id": "reina_arana",
+      "name": "Reina Araña",
+      "difficulty": 6,
+      "boss": true,
+      "rank": "II",
+      "legacyPath": "public/sprites/enemies/II/reina_arana.png",
+      "status": "pending"
+    },
+    {
+      "id": "archimago_exiliado",
+      "name": "Archimago Exiliado",
+      "difficulty": 7,
+      "boss": true,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/archimago_exiliado.png",
+      "status": "pending"
+    },
+    {
+      "id": "dragon_pantano",
+      "name": "Dragón del Pantano",
+      "difficulty": 9,
+      "boss": true,
+      "rank": "III",
+      "legacyPath": "public/sprites/enemies/III/dragon_pantano.png",
+      "status": "pending"
+    },
+    {
+      "id": "rey_no_muerto",
+      "name": "Rey No Muerto",
+      "difficulty": 11,
+      "boss": true,
+      "rank": "IV",
+      "legacyPath": "public/sprites/enemies/IV/rey_no_muerto.png",
+      "status": "pending"
+    },
+    {
+      "id": "hidra_tres_cabezas",
+      "name": "Hidra de Tres Cabezas",
+      "difficulty": 12,
+      "boss": true,
+      "rank": "IV",
+      "legacyPath": "public/sprites/enemies/IV/hidra_tres_cabezas.png",
+      "status": "pending"
+    },
+    {
+      "id": "senor_abismo",
+      "name": "Señor del Abismo",
+      "difficulty": 14,
+      "boss": true,
+      "rank": "V",
+      "legacyPath": "public/sprites/enemies/V/senor_abismo.png",
+      "status": "pending"
+    },
+    {
+      "id": "dragon_anciano",
+      "name": "Dragón Anciano",
+      "difficulty": 17,
+      "boss": true,
+      "rank": "V",
+      "legacyPath": "public/sprites/enemies/V/dragon_anciano.png",
+      "status": "pending"
+    }
+  ],
+  "completedCandidates": 3,
+  "framesPresent": 48
+}

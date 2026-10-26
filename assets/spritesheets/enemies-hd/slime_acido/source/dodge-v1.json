@@ -1,0 +1,10 @@
+{
+  "id": "slime_acido",
+  "source": "assets/spritesheets/enemies-hd/slime_acido/source/dodge-v1.png",
+  "prompt": "Create a NEW horizontal sprite strip with exactly FOUR equally spaced full-body poses, one row, transparent background. The supplied sprite sheet defines the EXACT creature identity and art style; copy its material colors, details, anatomy, proportions and camera. This strip is the DODGE animation for slime_acido: 1 prepare, 2 evade backward/duck, 3 deepest evasion, 4 recover. The same lime acid slime compresses and leans backward to the LEFT to avoid a blow, then reforms. Exactly one connected slime per pose, no extra heads or droplets. All face right. Four distinct poses, SAME SCALE across all four, no cropping, no text, no floor or shadow, no other objects. Preserve generous transparent space between creatures. No attack, no tongue strike, no damage effects.",
+  "revision": 1,
+  "action": "dodge",
+  "originalGenerationPath": "C:\\Users\\Casa\\.codex\\generated_images\\01a17347-0d75-7921-a8f3-393fa129f972\\exec-e765d933-aeea-4f20-ab7c-f84f7174d151.png",
+  "sourceSha256": "1e24fbfaf2852402cd1def6152dbe29cface4ededbf80375fbf7b97229fca8c9",
+  "generator": "built-in image_gen"
+}

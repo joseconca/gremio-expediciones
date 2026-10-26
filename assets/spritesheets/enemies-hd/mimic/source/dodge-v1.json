@@ -1,0 +1,10 @@
+{
+  "id": "mimic",
+  "source": "assets/spritesheets/enemies-hd/mimic/source/dodge-v1.png",
+  "prompt": "Create a NEW horizontal sprite strip with exactly FOUR equally spaced full-body poses, one row, transparent background. The supplied sprite sheet defines the EXACT creature identity and art style; copy its material colors, details, anatomy, proportions and camera. This strip is the DODGE animation for mimic: 1 prepare, 2 evade backward/duck, 3 deepest evasion, 4 recover. The same gold-banded wooden toothy chest rocks backward onto its rear lower edge, lid clenched, then recovers. No legs, no arms. All face right. Four distinct poses, SAME SCALE across all four, no cropping, no text, no floor or shadow, no other objects. Preserve generous transparent space between creatures. No attack, no tongue strike, no damage effects.",
+  "revision": 1,
+  "action": "dodge",
+  "originalGenerationPath": "C:\\Users\\Casa\\.codex\\generated_images\\01a17347-0d75-7921-a8f3-393fa129f972\\exec-ae6f5e37-9f99-4aa4-8d80-19b54b9f0a68.png",
+  "sourceSha256": "f48ce0810a7027be0efa685d50171d5787efe55b5e1b826b3b6141b957145b65",
+  "generator": "built-in image_gen"
+}

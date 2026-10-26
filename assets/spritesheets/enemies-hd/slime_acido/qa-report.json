@@ -1,0 +1,203 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.5267489711934157,
+  "sheetPath": "assets/spritesheets/enemies-hd/slime_acido/slime_acido-sheet.png",
+  "sheetSha256": "0d97be892be463ffc773fe283328b877263a6cf33c17a2cd6f6d92dfb0105bd8",
+  "sourcePath": "assets/spritesheets/enemies-hd/slime_acido/source/sheet-v3.png",
+  "sourceSha256": "c232332d5b1a947474d87dd74f4a2eee356686aad986d6816609a9be5f4f7d29",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/slime_acido/frames/idle/slime_acido-idle-01.png",
+        "sha256": "f3fc943569c698be08804d695e712dfcf3f0bcbcfc16b234e0a5776cec8c7f97",
+        "bounds": [
+          56,
+          148,
+          197,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/slime_acido/frames/idle/slime_acido-idle-02.png",
+        "sha256": "17cadbeb83fde9cb1e36ec3cac89d92c8917fa80b5d1c591a574ac28ab063345",
+        "bounds": [
+          56,
+          148,
+          197,
+          244
+        ],
+        "idleAnchorCorrectionX": -1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/slime_acido/frames/idle/slime_acido-idle-03.png",
+        "sha256": "affed16a988758528941fae746dd5b6f2f1405da7383b4eeb07cbbba54c62cc7",
+        "bounds": [
+          56,
+          148,
+          198,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/slime_acido/frames/idle/slime_acido-idle-04.png",
+        "sha256": "31e19821aba15824747ac659d59aff041ec901696f87bc754241e379e6da5ab8",
+        "bounds": [
+          56,
+          148,
+          197,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/slime_acido/frames/hurt/slime_acido-hurt-01.png",
+        "sha256": "84c1d9c01127fe8f835a809accf53489b779676442304fe37c9f965a5bb2438b",
+        "bounds": [
+          57,
+          139,
+          198,
+          239
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/slime_acido/frames/hurt/slime_acido-hurt-02.png",
+        "sha256": "349fcb0ea0ebac3079bc9739112301bc9835b3b6ea134c8a4dcdd44e1ed1b1c7",
+        "bounds": [
+          57,
+          148,
+          202,
+          239
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/slime_acido/frames/hurt/slime_acido-hurt-03.png",
+        "sha256": "3c3c11ae7a6bd5487ad09c192ab23b782c8a82343dfb79f9be2dd10a71d0db1f",
+        "bounds": [
+          54,
+          139,
+          200,
+          239
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/slime_acido/frames/hurt/slime_acido-hurt-04.png",
+        "sha256": "dc415926e58953731277e169b2aaee59e74452a97403602de2c1def718ea1544",
+        "bounds": [
+          58,
+          146,
+          198,
+          238
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/slime_acido/frames/attack/slime_acido-attack-01.png",
+        "sha256": "a09ba67ab4171093b89ccccc994c7dedba06e29cfae371cef70f7fce0af2ecde",
+        "bounds": [
+          55,
+          137,
+          198,
+          238
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/slime_acido/frames/attack/slime_acido-attack-02.png",
+        "sha256": "d9c2bbaa9e66f090f77bb53240e207fa36d208bebc834393087c414761050f71",
+        "bounds": [
+          54,
+          108,
+          187,
+          240
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/slime_acido/frames/attack/slime_acido-attack-03.png",
+        "sha256": "711274fd44f13b582ef23b9dda59377156a4480805c462d59b72f8dec3a9d677",
+        "bounds": [
+          25,
+          134,
+          244,
+          241
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/slime_acido/frames/attack/slime_acido-attack-04.png",
+        "sha256": "d0ac893002b9afd63390ed6e055dba0e6444a95091290bc4ad11ad93284edca1",
+        "bounds": [
+          55,
+          145,
+          200,
+          239
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/slime_acido/frames/dodge/slime_acido-dodge-01.png",
+        "sha256": "2d59d8f252446a0b5c136a214fbdf6f04ae3be868fd5f1552bcd381448ec94d2",
+        "bounds": [
+          57,
+          127,
+          197,
+          224
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/slime_acido/frames/dodge/slime_acido-dodge-02.png",
+        "sha256": "8e4e79765c9ebdc022522cef5b581e155a1fd1a6d96097f1eb142585765495d8",
+        "bounds": [
+          57,
+          141,
+          208,
+          224
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/slime_acido/frames/dodge/slime_acido-dodge-03.png",
+        "sha256": "d2faf6619a8197ca8b796ccc0e4d41d27c4af5f21f1e6922cac5012597a7cbdd",
+        "bounds": [
+          59,
+          166,
+          209,
+          226
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/slime_acido/frames/dodge/slime_acido-dodge-04.png",
+        "sha256": "2e0475dcd8041b8abda1e50e7d1fd0fb13bc2f15e653ac571021c907bded3900",
+        "bounds": [
+          58,
+          127,
+          199,
+          225
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}

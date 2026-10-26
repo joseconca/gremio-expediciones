@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "expectedEnemies": 54,
+  "candidateEnemies": 3,
+  "framesValidated": 48,
+  "runtimeModified": false,
+  "enemies": [
+    {
+      "id": "mimic",
+      "frames": 16,
+      "idleSupportCentersX": [
+        128.0,
+        128.0,
+        128.5,
+        128.0
+      ]
+    },
+    {
+      "id": "slime_acido",
+      "frames": 16,
+      "idleSupportCentersX": [
+        128.0,
+        128.0,
+        128.5,
+        128.0
+      ]
+    },
+    {
+      "id": "rata_gigante",
+      "frames": 16,
+      "idleSupportCentersX": [
+        128.0,
+        128.0,
+        128.0,
+        128.0
+      ]
+    }
+  ]
+}

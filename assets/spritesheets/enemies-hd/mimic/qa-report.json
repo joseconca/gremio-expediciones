@@ -1,0 +1,203 @@
+{
+  "status": "passed",
+  "frames": 16,
+  "actions": [
+    "idle",
+    "hurt",
+    "attack",
+    "dodge"
+  ],
+  "scale": 0.562019758507135,
+  "sheetPath": "assets/spritesheets/enemies-hd/mimic/mimic-sheet.png",
+  "sheetSha256": "5f56a0780cd0361c444b7adb494b983ad89ad327100c1b856fe86547d8bb08d7",
+  "sourcePath": "assets/spritesheets/enemies-hd/mimic/source/sheet-v3.png",
+  "sourceSha256": "4a20195b4281f048f999250157a28d4a0b0ff7afdab97b6a1389a12b839bed7f",
+  "frameData": {
+    "idle": [
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/idle/mimic-idle-01.png",
+        "sha256": "fd3463562274b81cdd077da3dbb32fb73c4ee2cf3ef3f98691091403c073e1ae",
+        "bounds": [
+          64,
+          112,
+          203,
+          244
+        ],
+        "idleAnchorCorrectionX": 1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/idle/mimic-idle-02.png",
+        "sha256": "c98846a47c4f7a3997e2d9d6a8e9cefc02fe85d74bddf7cb2fbaaa2846d10124",
+        "bounds": [
+          62,
+          114,
+          201,
+          244
+        ],
+        "idleAnchorCorrectionX": -1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/idle/mimic-idle-03.png",
+        "sha256": "cdcafff24ff3b658742e4d75d036d1b1101be49e0101927ee0f1ef8ec1d0c249",
+        "bounds": [
+          61,
+          119,
+          201,
+          244
+        ],
+        "idleAnchorCorrectionX": -1
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/idle/mimic-idle-04.png",
+        "sha256": "04034057c0b4358cf36fc9d194012bee85bc88368187c77bc48bece5069ea742",
+        "bounds": [
+          66,
+          118,
+          204,
+          244
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "hurt": [
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/hurt/mimic-hurt-01.png",
+        "sha256": "c9aeb37154472218315d85fbbb67b5223e31088a45756246076c49a86c90a306",
+        "bounds": [
+          58,
+          115,
+          199,
+          243
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/hurt/mimic-hurt-02.png",
+        "sha256": "531411ce835e7a2c8eba9dcece8909f6e802a5fa67e628a63a96bbec5875cf19",
+        "bounds": [
+          58,
+          108,
+          206,
+          243
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/hurt/mimic-hurt-03.png",
+        "sha256": "028f90f9df805c18ad8d46cc5b33438e9c80debc637a6139bf5a47f8a69fed33",
+        "bounds": [
+          57,
+          84,
+          209,
+          243
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/hurt/mimic-hurt-04.png",
+        "sha256": "87771d43d74f1e62a0f1daa11b5f5b078adbf37f3f11178bf73f4bb4539631e6",
+        "bounds": [
+          63,
+          108,
+          206,
+          243
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "attack": [
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/attack/mimic-attack-01.png",
+        "sha256": "52e2cd062bbf25dc32b78d8c40d2a52b3e477c6c9cb8dbbefc63baefe33fb628",
+        "bounds": [
+          58,
+          106,
+          204,
+          240
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/attack/mimic-attack-02.png",
+        "sha256": "27f4d28ded614d195ba5ce9c16e8db8f576eaae2722892df17992ce5ce31d936",
+        "bounds": [
+          64,
+          91,
+          203,
+          240
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/attack/mimic-attack-03.png",
+        "sha256": "e3b853d614dbd3561ca7d4219bef64834839bd6582f2517686c49b9c241d7344",
+        "bounds": [
+          60,
+          101,
+          223,
+          240
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/attack/mimic-attack-04.png",
+        "sha256": "8e0472b8f0d2db38f767f301e440bf7f6e574dab83130599e8a372c8dd4a0aca",
+        "bounds": [
+          65,
+          108,
+          204,
+          240
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ],
+    "dodge": [
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/dodge/mimic-dodge-01.png",
+        "sha256": "dc245683134b54e54e4c4d362506477542697469589782648e1a5017029677d5",
+        "bounds": [
+          58,
+          101,
+          198,
+          231
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/dodge/mimic-dodge-02.png",
+        "sha256": "46aae4a6fb5b19a5e9e6ea72a548773e0c340b852be9739597c56a2331dbb8f8",
+        "bounds": [
+          59,
+          94,
+          207,
+          228
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/dodge/mimic-dodge-03.png",
+        "sha256": "325b4c04cce8e593718d9ddfff97117fc661a758bcd21a5ea2d8f7f6b8f63adb",
+        "bounds": [
+          54,
+          122,
+          203,
+          231
+        ],
+        "idleAnchorCorrectionX": 0
+      },
+      {
+        "path": "assets/spritesheets/enemies-hd/mimic/frames/dodge/mimic-dodge-04.png",
+        "sha256": "39942e43e2750ed8a90495bb3e663cd7a0bb732805c444b2dc8b936e9279d915",
+        "bounds": [
+          59,
+          98,
+          200,
+          231
+        ],
+        "idleAnchorCorrectionX": 0
+      }
+    ]
+  },
+  "visualReview": "assistant-reviewed-candidate",
+  "userApproval": "pending"
+}
