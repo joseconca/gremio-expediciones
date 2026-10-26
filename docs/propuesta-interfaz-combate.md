@@ -39,3 +39,16 @@ Ajuste de compactación: se elimina el nombre del actor sobre las órdenes y la 
 Las órdenes se compactan a 33 px en escritorio y 36 px en móvil. El historial muestra hasta cuatro entradas sin encabezado: anteriores en gris claro y última en blanco. El pequeño control +/− amplía el área y permite consultar todas las entradas; no oculta el texto.
 
 Info, junto al turno, abre un diálogo accesible con todos los participantes, vida, recurso disponible, ataques, defensas, velocidad, posición, estado y efectos. Los valores aliados son muestras de diseño y los enemigos usan el catálogo; al integrar deben sustituirse por el estado real de la batalla. Se conserva la lógica de combate existente.
+
+
+## Integración en combate real — 26 de octubre de 2026
+
+La presentación aprobada se aplica ahora a `CombateModal` (solo/party PvE) y `AsedioModal` (atacante/defensor). El panel inferior reserva su propio espacio; las órdenes expanden su menú a la derecha, el historial queda independiente y ambos bandos permanecen visibles. Info reutiliza las estadísticas reales existentes. La selección mantiene anillo rojo y flecha animada, respetando movimiento reducido.
+
+`PanelCombatientes` muestra energía, maná o ambos según la profesión activa. No inventa reservas de enemigos PvE ni del rival de asedio: esos snapshots no contienen tales valores. Se mantienen las reglas existentes de habilidades, cooldowns de cada lado del asedio, consumibles, huida, turnos, efectos, animaciones, resultados y recompensas. Asedio conserva su conjunto de acciones: no se han añadido huida, objetos ni asedios de party, que el juego actual no ofrece.
+
+Los bosses reciben un límite de escala mayor, ajustado a los márgenes de la escena y al tamaño de sus animaciones. No se cambia la composición de encuentros; las formaciones siguen admitiendo varios enemigos.
+
+Verificación: compilación de producción, TypeScript y lint; 35 pruebas de panel/recursos, 75 de party, 134 de progresión/combate y 28 de sprites. Revisión visual de los componentes reales con fixtures locales en 390×760 y escritorio, incluyendo jefe, selección, objetos, Info y cooldown del defensor. No se ha completado una batalla autenticada contra el servidor.
+
+`/revision-combate-real` sirve únicamente en desarrollo y monta los mismos componentes con datos de prueba y acciones sin efectos. En producción devuelve notFound. La propuesta original sigue disponible como referencia visual. Esta integración se guarda en la rama de trabajo; su publicación es una acción separada.

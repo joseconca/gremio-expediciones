@@ -63,7 +63,7 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
       {enemigos.map((id, i) => {
         const s = ENEMIGOS_HD[id];
         const radio = Math.max(s.anchor[0] - s.bounds[0], s.bounds[2] - s.anchor[0]);
-        const unit = Math.min((movil ? (party ? 80 : 124) : (party ? 116 : 172)) / 170, (movil ? 92 : 235) / radio, (altoEscena * 0.58) / (s.anchor[1] - s.bounds[1]));
+        const unit = Math.min((movil ? (party ? 80 : 124) : (party ? 116 : 172)) / 170 * (s.boss ? 1.6 : 1), (movil ? 92 : 235) / radio, (altoEscena * 0.58) / (s.anchor[1] - s.bounds[1]));
         const x = ancho * (enemigos.length === 1 ? 0.74 : [0.71, 0.81, 0.69][i]);
         const foot = altoEscena * (enemigos.length === 1 ? 0.8 : [0.48, 0.68, 0.88][i]);
         return <button key={id} className={`${styles.actor} ${styles.enemy}`} aria-label={`Seleccionar ${s.name}`} aria-pressed={seleccionado === i}
@@ -100,7 +100,7 @@ function Escena({ movil, party, jefe }: { movil: boolean; party: boolean; jefe: 
           if (label === "Habilidades" || label === "Objetos") { const next = label === "Habilidades" ? "habilidades" : "objetos"; setMenu(menu === next ? "principal" : next); setDescripcion(next === "habilidades" ? "Selecciona una técnica. El coste se muestra a la derecha." : "Selecciona un consumible. La cantidad disponible se muestra a la derecha."); }
           else if (label === "Huir") { setHuido(true); setHistorial(h => [...h, "Aldric sale del combate (demostración)."]); }
           else ejecutar(label, performance.now());
-        }}><span aria-hidden="true">{i === 0 ? "▸" : ""}</span>{label}{(i === 1 || i === 2) && <small>›</small>}</button>)}</div>
+        }}><span aria-hidden="true">{(menu === "principal" && i === 0) || (menu === "habilidades" && i === 1) || (menu === "objetos" && i === 2) ? "▸" : ""}</span>{label}{(i === 1 || i === 2) && <small>›</small>}</button>)}</div>
       </div>
         {menu !== "principal" && <div className={styles.submenu} aria-label={menu === "habilidades" ? "Lista de habilidades" : "Lista de objetos"}>
           <div className={styles.submenuTitle}><strong>{menu === "habilidades" ? "Habilidades" : "Objetos"}</strong><button aria-label="Cerrar lista" onClick={() => setMenu("principal")}>×</button></div>

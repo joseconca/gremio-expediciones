@@ -16,6 +16,9 @@ import type { ObjetoInventario, ReglaObjetivoHabilidad, RecompensaMision } from 
 import { obtenerReglaObjetivoHabilidad } from "@/lib/expediciones/objetivos-combate";
 import { crearEnemigoLegacy, leerEnemigosEnCombate } from "@/lib/expediciones/enemigos-combate";
 import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
+import PanelCombatientes from "./PanelCombatientes";
+import HistorialCombate from "./HistorialCombate";
+import styles from "./combate-rpg.module.css";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 
 type AccionCombatePartyUI = "atacar" | "usar_habilidad" | "usar_objeto" | "escapar" | "cambiar_posicion";
@@ -112,6 +115,7 @@ interface RecompensaInformeCombate {
 }
 
 interface CombateModalProps {
+  habilidadesIniciales?: HabilidadEquipable[];
   combate: CombatePve;
   personaje: Personaje;
   comidaActiva?: string | null;
@@ -171,6 +175,7 @@ export default function CombateModal({
   onAccionCombate,
   partyMode,
   onCerrar,
+  habilidadesIniciales = [],
 }: CombateModalProps) {
   const logRef = useRef<HTMLDivElement>(null);
   const escenaRef = useRef<HTMLElement>(null);
@@ -200,7 +205,7 @@ export default function CombateModal({
 
   const [mostrarStatsEnemigo, setMostrarStatsEnemigo] = useState(false);
   const [panelStats, setPanelStats] = useState<"jugador" | "enemigo">("enemigo");
-  const [habilidades, setHabilidades] = useState<HabilidadEquipable[]>([]);
+  const [habilidades, setHabilidades] = useState<HabilidadEquipable[]>(habilidadesIniciales);
   const [mostrarHabilidades, setMostrarHabilidades] = useState(false);
   const [mostrarObjetos, setMostrarObjetos] = useState(false);
   const [objetoSeleccionadoId, setObjetoSeleccionadoId] = useState<string | null>(null);
@@ -568,10 +573,7 @@ export default function CombateModal({
     return typeof cooldown === "number" && cooldown > 0 ? cooldown : 0;
   };
 
-  const ultimaLineaLog =
-    combate.log.length > 0
-      ? combate.log[combate.log.length - 1]
-      : "El combate comienza...";
+
   const botinObtenidoInforme = recompensaInforme
     ? recompensaInforme.botin
     : partyMode
@@ -703,7 +705,7 @@ export default function CombateModal({
 
   return (
     <div
-      className="fixed inset-0 z-[9999] h-[100dvh] w-full overflow-hidden bg-black font-sans"
+      className={`${styles.root} fixed inset-0 z-[9999] h-[100dvh] w-full overflow-hidden bg-black font-sans`}
       style={{ touchAction: "none" }}
     >
       {/* FONDO */}
@@ -732,6 +734,7 @@ export default function CombateModal({
             </button>
           </div>
           <div className="flex shrink-0 items-center gap-2">
+            <button type="button" className={styles.info} onClick={() => { setPanelStats("jugador"); setMostrarStatsEnemigo(true); }}>Info</button>
             {partyMode && (
               <span className="hidden max-w-[150px] truncate rounded border border-amber-900/70 bg-amber-950/50 px-2 py-1 text-[9px] font-black uppercase tracking-wider text-amber-200 sm:inline">
                 {partyMode.turnoActualUsuarioId === partyMode.usuarioId && partyMode.faseTurno === "jugador"
@@ -864,7 +867,7 @@ export default function CombateModal({
                         </span>
                       ))}
                     </div>
-                    <span className="mt-0.5 flex max-w-full items-center gap-0.5 rounded bg-black/65 px-1 text-center text-[9px] font-black leading-tight text-stone-100 shadow sm:text-[10px]">
+                    <div className={styles.inlineStatus}><span className="mt-0.5 flex max-w-full items-center gap-0.5 rounded bg-black/65 px-1 text-center text-[9px] font-black leading-tight text-stone-100 shadow sm:text-[10px]">
                       <span className="max-w-full truncate">{participante.nombre}</span>{participante.esLider ? <span className="text-amber-300" title="Líder">♛</span> : null}
                     </span>
                     <div className="mt-0.5 flex w-[88%] max-w-[100px] items-center gap-0.5">
@@ -896,6 +899,7 @@ export default function CombateModal({
                         {retirado ? "Retirado" : "Caído"}
                       </span>
                     )}
+                    </div>
                   </div>
                 );
               })}
@@ -911,7 +915,7 @@ export default function CombateModal({
             }`}
           >
             <div className="flex w-full flex-col items-center">
-              <div className="mb-4 w-full max-w-[250px]">
+              <div className={styles.inlineStatus}>
                 <div className="mb-1.5 flex items-center rounded border border-stone-800/80 bg-black/50 px-2.5 py-1 shadow-sm backdrop-blur-sm">
                   <span className="truncate text-sm font-bold tracking-wide text-stone-100">{personaje.nombre}</span>
                 </div>
@@ -943,6 +947,7 @@ export default function CombateModal({
                   )}
                 </div>
 
+              </div>
                 <div className="relative mt-1 min-h-6 w-full overflow-visible">
                   <IndicadoresEfectosCombate
                     efectos={combate.efectos}
@@ -950,7 +955,6 @@ export default function CombateModal({
                     habilidades={personaje.habilidades}
                   />
                 </div>
-              </div>
 
               {danioVisible?.actor === "jugador" && (
                 <div
@@ -1050,8 +1054,9 @@ export default function CombateModal({
               const escalaSprite = "w-full";
               const limiteEscala = cantidadEnemigos <= 1 ? 1.058824 : cantidadEnemigos === 2 ? 0.905882 : cantidadEnemigos === 3 ? 0.682353 : 0.564706;
               const desplazamientoFila = enemigo.posicion === "centro" ? 4 : enemigo.posicion === "retaguardia" ? 8 : 0;
+              const jefeUnico = cantidadEnemigos === 1 && ENEMIGOS_HD[enemigo.enemigoId ?? ""]?.boss;
               const x = Math.max(22, Math.min(78, cantidadEnemigos <= 1
-                ? 50
+                ? jefeUnico ? 35 : 50
                 : cantidadEnemigos === 2
                   ? (indiceEnemigo === 0 ? 28 : 72)
                   : 17 + enemigo.columna * 33 + desplazamientoFila));
@@ -1063,7 +1068,10 @@ export default function CombateModal({
                     ? 68
                     : 50;
               const spriteHd = ENEMIGOS_HD[enemigo.enemigoId ?? ""];
-              const unidadEnemigo = escalaEnemigoEnEscena(spriteHd, anchoEnemigos, escena.alto, x, y, limiteEscala);
+              const anchoDisponible = jefeUnico ? escena.ancho : anchoEnemigos;
+              const centroX = jefeUnico ? (escena.ancho - anchoEnemigos + anchoEnemigos * x / 100) / Math.max(1, escena.ancho) * 100 : x;
+              const unidadEnemigo = escalaEnemigoEnEscena(spriteHd, anchoDisponible, escena.alto, centroX, y,
+                spriteHd?.boss ? Math.max(1.6, limiteEscala * 1.65) : limiteEscala);
               const estadoSpriteEnemigo = propsSpriteEnemigoHd(estadoSprite, enemigo.id);
               const spriteProps = { enemigoId: enemigo.enemigoId, ...estadoSpriteEnemigo,
                 pausado: !vivo && estadoSpriteEnemigo.accion === "idle" };
@@ -1110,7 +1118,7 @@ export default function CombateModal({
                     className={`group relative flex w-full flex-col items-center gap-0 rounded p-0 transition-[filter,opacity] focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 ${vivo ? "hover:brightness-110" : "cursor-not-allowed"}`}
                     title={`${enemigo.nombre}: ${Math.max(0, enemigo.hp)}/${enemigo.hpMaximo} PV`}
                   >
-                  <div className="mb-0.5 w-full min-w-0 rounded-sm bg-black/65 px-1 py-0.5 text-center">
+                  <div className={styles.inlineStatus}>
                     <span className="block truncate text-[9px] font-bold leading-tight text-stone-100 sm:text-[10px]">{enemigo.nombre}</span>
                     <div className="mt-0.5 flex w-full min-w-0 items-center gap-0.5">
                       <div role="progressbar" aria-label={`Vida de ${enemigo.nombre}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(vida)} className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full border border-stone-700 bg-stone-900 shadow-inner">
@@ -1136,11 +1144,7 @@ export default function CombateModal({
                     data-combate-ancla={enemigo.id}
                   >
                     <SpriteEnemigoAnimado {...spriteProps} nombre="" sombra />
-                    {seleccionado && vivo && (
-                      <div aria-hidden="true" className="pointer-events-none absolute -inset-px z-[5]">
-                        <SpriteEnemigoAnimado {...spriteProps} nombre="" className="combate-objetivo-silueta combate-objetivo-silueta-enemigo" />
-                      </div>
-                    )}
+                    {seleccionado && vivo && <><span className={styles.targetArrow} aria-hidden="true">▼</span><span className={styles.targetRing} aria-hidden="true" /></>}
                     {pulsosEstadoVisibles.filter((pulso) => pulso.actor === enemigo.id).map((pulso, indice) => (
                       <span key={`pulso-${enemigo.id}-${indice}-${pulso.tipo}`} className={`combate-estado-pulso absolute bottom-0 z-40 -translate-x-1/2 rounded bg-stone-950/90 px-1 py-0.5 font-mono text-[10px] font-black shadow ${pulso.tipo === "curacion" ? "text-emerald-300" : "text-red-300"}`} style={{ left: `calc(50% + ${(indice - 0.5) * 20}px)` }}>
                         {pulso.tipo === "curacion" ? "+" : "−"}{pulso.cantidad}
@@ -1265,11 +1269,20 @@ export default function CombateModal({
         </section>
 
         {/* ZONA INFERIOR (Acciones Flexibles | Panel Dinámico) */}
-        <section className={`relative ${partyMode ? "h-[244px] sm:h-[220px]" : "h-[220px]"} shrink-0 bg-stone-950/95 border-t border-stone-800 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] flex flex-row`}>
+        <section className={styles.dock}>
+          <PanelCombatientes onInfo={() => { setPanelStats("jugador"); setMostrarStatsEnemigo(true); }}
+            aliados={partyMode ? partyMode.participantes.map(p => ({ id: p.usuarioId, nombre: p.nombre, claseId: p.profesionActivaId,
+              hp: vidasTemporalesCombate?.[p.usuarioId] ?? p.jugadorHp, hpMaximo: p.jugadorHpMaximo,
+              energia: p.jugadorEnergiaActual, energiaMaxima: p.jugadorEnergiaMaxima, mana: p.jugadorManaActual, manaMaximo: p.jugadorManaMaximo,
+              estado: p.estado, activo: partyMode.faseTurno === "jugador" && partyMode.turnoActualUsuarioId === p.usuarioId })) : [{
+              id: "jugador", nombre: personaje.nombre, claseId: personaje.profesionActivaId, hp: hpJugadorVisual, hpMaximo: combate.jugadorHpMaximo,
+              energia: personaje.energiaActual, energiaMaxima: personaje.energiaMaxima, mana: personaje.manaActual, manaMaximo: personaje.manaMaximo, activo: combate.turno === "jugador" }]}
+            enemigos={enemigosVisibles.map(e => ({ id: e.id, nombre: e.nombre, hp: e.hp, hpMaximo: e.hpMaximo, seleccionado: enemigoObjetivoElegidoId === e.id }))} />
           {/* IZQUIERDA: PANEL DE ACCIONES (Fijo en PC, 1/3 en Móvil) */}
-          <div className="w-2/5 sm:w-1/6 shrink-0 p-3 sm:p-5 border-r border-stone-800 flex items-center justify-center relative z-20">
+          <div className={styles.commands}>
             <div className="flex flex-col gap-2 w-full max-w-[200px]">
               <button
+                data-active={!mostrarHabilidades && !mostrarObjetos}
                 onClick={() => void ejecutarAtaqueJugador()}
                 disabled={
                   procesando ||
@@ -1285,6 +1298,7 @@ export default function CombateModal({
               </button>
 
               <button
+                data-active={mostrarHabilidades}
                 onClick={() => {
                   if (
                     !mostrarHabilidades &&
@@ -1293,6 +1307,7 @@ export default function CombateModal({
                   ) {
                     setHabilidadSeleccionadaId(habilidades[0].habilidadId);
                   }
+                  setMostrarObjetos(false);
                   if (mostrarHabilidades) setHabilidadEsperandoObjetivoId(null);
                   setMostrarHabilidades((actual) => !actual);
                 }}
@@ -1323,6 +1338,7 @@ export default function CombateModal({
               </button>
 
               <button
+                data-active={mostrarObjetos}
                 onClick={() => {
                   setMostrarHabilidades(false);
                   setHabilidadEsperandoObjetivoId(null);
@@ -1372,7 +1388,7 @@ export default function CombateModal({
           )}
 
           {/* DERECHA: PANEL DINÁMICO (Registro / Menús) - Ocupa el resto del espacio */}
-          <div className="flex-1 p-4 sm:p-6 relative flex flex-col justify-center bg-stone-900/30 overflow-hidden">
+          <div className={styles.content}>
             {mostrarObjetos ? (
               <div className="flex h-full w-full animate-fade-in flex-col">
                 <div className="mb-2 flex shrink-0 items-center justify-between border-b border-stone-700 pb-2">
@@ -1643,40 +1659,23 @@ export default function CombateModal({
 
               </div>
             ) : (
-              /* ESTADO B: MOSTRAR REGISTRO (LOG) */
-              <div className="flex flex-col h-full w-full justify-center animate-fade-in relative">
-                <div className="absolute top-0 left-0">
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-stone-600">
-                    Registro
-                  </span>
-                </div>
-
-                <p className="text-sm sm:text-base md:text-lg text-stone-300 text-center min-h-[3rem] flex items-center justify-start line-clamp-2 px-2">
-                  {ultimaLineaLog}
-                </p>
-
-                <button
-                  onClick={() => setLogExpandido(true)}
-                  className="absolute bottom-0 right-0 text-[10px] sm:text-xs font-bold text-stone-500 tracking-widest hover:text-stone-300 transition-colors"
-                >
-                  VER HISTORIAL ▲
-                </button>
-              </div>
+              <HistorialCombate lineas={combate.log} onAmpliar={() => setLogExpandido(true)} />
             )}
           </div>
 
           {/* HISTORIAL EXPANDIDO (Modal Overlay Pantalla Completa) */}
           {logExpandido && (
-            <div className="absolute inset-0 z-30 bg-stone-950/95 flex flex-col border-t border-stone-800 animate-fade-in">
+            <div className={`${styles.expandedHistory} absolute inset-0 z-30 flex flex-col border-t border-stone-800 animate-fade-in`}>
               <div className="flex items-center justify-between p-3 sm:p-4 border-b border-stone-800">
                 <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-stone-400">
                   Historial del Combate
                 </span>
                 <button
+                  aria-label="Reducir historial"
                   onClick={() => setLogExpandido(false)}
                   className="text-[10px] sm:text-xs font-bold text-stone-400 hover:text-white tracking-widest"
                 >
-                  CERRAR ▼
+                  −
                 </button>
               </div>
               <div

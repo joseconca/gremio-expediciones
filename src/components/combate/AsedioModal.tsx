@@ -12,9 +12,13 @@ import { calcularBonusDefensaMuralla } from "@/lib/expediciones/combate";
 import { CLASES } from "@/lib/progresion/clases";
 import { ETIQUETAS_POSICION_COMBATE, normalizarPosicionCombate } from "@/lib/expediciones/posicion-combate";
 import IndicadoresEfectosCombate from "@/components/combate/IndicadoresEfectosCombate";
+import PanelCombatientes from "./PanelCombatientes";
+import HistorialCombate from "./HistorialCombate";
+import styles from "./combate-rpg.module.css";
 import IconoHabilidad from "@/components/habilidades/IconoHabilidad";
 
 interface AsedioModalProps {
+  habilidadesIniciales?: HabilidadEquipable[];
   combate: CombateActivo;
   personaje: Personaje;
   comidaActiva?: string | null;
@@ -69,6 +73,7 @@ export default function AsedioModal({
   procesando = false,
   onAccionCombate,
   onCerrar,
+  habilidadesIniciales = [],
 }: AsedioModalProps) {
   const logRef = useRef<HTMLDivElement>(null);
   const faseCombateRef = useRef(combate.fase);
@@ -77,7 +82,7 @@ export default function AsedioModal({
   const firmaAccionLocal = useRef<string | null>(null);
   const versionAccionLocal = useRef<number | null>(null);
 
-  const [habilidades, setHabilidades] = useState<HabilidadEquipable[]>([]);
+  const [habilidades, setHabilidades] = useState<HabilidadEquipable[]>(habilidadesIniciales);
   const [mostrarHabilidades, setMostrarHabilidades] = useState(false);
   const [habilidadSeleccionadaId, setHabilidadSeleccionadaId] = useState<
     string | null
@@ -471,14 +476,11 @@ export default function AsedioModal({
   const sexoRival = aparienciaRival?.sexo ?? (esAtacante ? combate.defensorSexo : combate.atacanteSexo);
 
 
-  const ultimaLineaLog =
-    combate.log.length > 0
-      ? combate.log[combate.log.length - 1]
-      : "El asedio comienza...";
+
 
   return (
     <div
-      className="fixed inset-0 z-[9999] h-[100dvh] w-full overflow-hidden bg-black font-sans"
+      className={`${styles.root} fixed inset-0 z-[9999] h-[100dvh] w-full overflow-hidden bg-black font-sans`}
       style={{ touchAction: "none" }}
     >
       {/* FONDO */}
@@ -513,6 +515,7 @@ export default function AsedioModal({
           </div>
 
           <div className="flex shrink-0 items-center gap-2">
+            <button type="button" className={styles.info} onClick={() => { setPanelStatsRival("jugador"); setMostrarStatsRival(true); }}>Info</button>
             <span className="rounded bg-stone-900 px-3 py-1 font-mono text-[10px] tracking-widest text-stone-500 shadow-inner sm:text-xs">
               RONDA {combate.ronda}
             </span>
@@ -548,7 +551,7 @@ export default function AsedioModal({
             }`}
           >
             <div className="flex w-full flex-col items-center">
-              <div className="mb-4 w-full max-w-[250px]">
+              <div className={styles.inlineStatus}>
                 <div className="mb-1.5 flex items-center rounded border border-stone-800/80 bg-black/50 px-2.5 py-1 shadow-sm backdrop-blur-sm">
                   <span className="truncate text-sm font-bold tracking-wide text-stone-100">
                     {personaje.nombre}
@@ -585,6 +588,7 @@ export default function AsedioModal({
                   )}
                 </div>
 
+              </div>
                 <div className="relative mt-1 min-h-6 w-full overflow-visible">
                   <IndicadoresEfectosCombate
                     efectos={esAtacante ? combate.efectos : combate.efectosDefensor}
@@ -592,7 +596,6 @@ export default function AsedioModal({
                     habilidades={personaje.habilidades}
                   />
                 </div>
-              </div>
 
               {danioVisible?.actor === "jugador" && (
                 <div
@@ -613,7 +616,7 @@ export default function AsedioModal({
               )}
 
               <div
-                className={`relative h-[180px] w-[180px] transition-all duration-300 ${
+                className={`${styles.siegeSprite} relative h-[180px] w-[180px] transition-all duration-300 ${
                   actorImpactado === "jugador"
                     ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]"
                     : ""
@@ -666,7 +669,7 @@ export default function AsedioModal({
             }`}
           >
             <div className="flex w-full flex-col items-center">
-              <div className="mb-4 w-full max-w-[250px]">
+              <div className={styles.inlineStatus}>
                 <div className="mb-1.5 flex items-center rounded border border-stone-800/80 bg-black/50 px-2.5 py-1 shadow-sm backdrop-blur-sm">
                   <span className="truncate text-sm font-bold tracking-wide text-stone-100">
                     {nombreRival}
@@ -683,10 +686,10 @@ export default function AsedioModal({
                   <span className="w-[54px] shrink-0 text-right font-mono text-[9px] font-bold text-stone-200">{Math.max(0, hpRival)}/{hpMaximoRival}</span>
                 </div>
 
+              </div>
                 <div className="relative mt-1 min-h-6 w-full overflow-visible">
                   <IndicadoresEfectosCombate efectos={esAtacante ? combate.efectosDefensor : combate.efectos} />
                 </div>
-              </div>
 
 {danioVisible?.actor === "enemigo" && (
                 <div
@@ -707,13 +710,13 @@ export default function AsedioModal({
               )}
 
               <div
-                className={`relative h-[180px] w-[180px] ${
+                className={`${styles.siegeSprite} relative h-[180px] w-[180px] ${
                   actorImpactado === "enemigo"
                     ? "animate-[combate-shake_180ms_ease-in-out] brightness-150 grayscale-[50%]"
                     : ""
                 }`}
                 data-combate-ancla="enemigo"
-              >
+              ><span className={styles.targetArrow} aria-hidden="true">▼</span><span className={styles.targetRing} aria-hidden="true" />
                 {pulsosEstadoVisibles.filter((pulso) => pulso.actor === "enemigo").map((pulso, indice) => (
                   <div
                     key={`pulso-rival-${indice}-${pulso.tipo}`}
@@ -802,12 +805,18 @@ export default function AsedioModal({
         {/* ZONA INFERIOR */}
         {/* ====================================================== */}
 
-        <section className="relative flex h-[220px] shrink-0 flex-row border-t border-stone-800 bg-stone-950/95 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+        <section className={styles.dock}>
+          <PanelCombatientes onInfo={() => { setPanelStatsRival("jugador"); setMostrarStatsRival(true); }}
+            aliados={[{ id: "jugador", nombre: personaje.nombre, claseId: personaje.profesionActivaId,
+              hp: hpPropio, hpMaximo: hpMaximoPropio, energia: personaje.energiaActual, energiaMaxima: personaje.energiaMaxima,
+              mana: personaje.manaActual, manaMaximo: personaje.manaMaximo, activo: miTurno }]}
+            enemigos={[{ id: "enemigo", nombre: nombreRival, claseId: aparienciaRival?.profesionActivaId ?? claseRival, hp: hpRival, hpMaximo: hpMaximoRival, activo: !miTurno }]} />
           {/* ACCIONES */}
 
-          <div className="relative z-20 flex w-2/5 shrink-0 items-center justify-center border-r border-stone-800 p-3 sm:w-1/6 sm:p-5">
+          <div className={styles.commands}>
             <div className="flex w-full max-w-[200px] flex-col gap-2">
               <button
+                data-active={!mostrarHabilidades}
                 onClick={() => void ejecutarAtaque()}
                 disabled={
                   procesando || procesandoLocal || combateTerminado || !miTurno
@@ -820,6 +829,7 @@ export default function AsedioModal({
               </button>
 
               <button
+                data-active={mostrarHabilidades}
                 onClick={() => setMostrarHabilidades(!mostrarHabilidades)}
                 disabled={
                   procesando ||
@@ -862,7 +872,7 @@ export default function AsedioModal({
 
           {/* PANEL DERECHO */}
 
-          <div className="relative flex flex-1 flex-col justify-center overflow-hidden bg-stone-900/30 p-4 sm:p-6">
+          <div className={styles.content}>
             {mostrarHabilidades ? (
               <div className="flex h-full w-full animate-fade-in flex-col">
                 <div className="mb-2 flex shrink-0 items-center justify-between border-b border-stone-700 pb-2">
@@ -908,6 +918,7 @@ export default function AsedioModal({
                       return (
                         <button
                           key={h.id}
+                          aria-label={`Usar habilidad ${h.habilidad.nombre}`}
                           onClick={() => void ejecutarHabilidad(h.habilidadId)}
                           onMouseEnter={() =>
                             setHabilidadSeleccionadaId(h.habilidadId)
@@ -1019,24 +1030,7 @@ export default function AsedioModal({
                 </div>
               </div>
             ) : (
-              <div className="relative flex h-full w-full flex-col justify-center">
-                <div className="absolute left-0 top-0">
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-stone-600">
-                    Registro del asedio
-                  </span>
-                </div>
-
-                <p className="flex min-h-[3rem] items-center justify-start px-2 text-center text-sm text-stone-300 sm:text-base md:text-lg">
-                  {ultimaLineaLog}
-                </p>
-
-                <button
-                  onClick={() => setLogExpandido(true)}
-                  className="absolute bottom-0 right-0 text-[10px] font-bold tracking-widest text-stone-500 transition-colors hover:text-stone-300 sm:text-xs"
-                >
-                  VER HISTORIAL ▲
-                </button>
-              </div>
+              <HistorialCombate lineas={combate.log} onAmpliar={() => setLogExpandido(true)} />
             )}
 
             {/* HISTORIAL */}
@@ -1049,10 +1043,11 @@ export default function AsedioModal({
                   </span>
 
                   <button
-                    onClick={() => setLogExpandido(false)}
+                    aria-label="Reducir historial"
+                  onClick={() => setLogExpandido(false)}
                     className="text-[10px] font-bold tracking-widest text-stone-400 hover:text-white sm:text-xs"
                   >
-                    CERRAR ▼
+                    −
                   </button>
                 </div>
 
