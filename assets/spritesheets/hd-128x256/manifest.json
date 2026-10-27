@@ -96632,7 +96632,7 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "e9a6f23a84f6a5ce759702781ead12586e5847867c229f77e5d8d2fe5fdd42c4",
+                "sha256": "14058705ebe3d6af001b071131d3ac367facf1078d58eb6e868f261fd73fd934",
                 "bytes": 25088,
                 "status": "valid",
                 "dimensions": [
@@ -96640,16 +96640,16 @@
                   256
                 ],
                 "bbox": [
-                  23,
+                  22,
                   89,
                   101,
                   249
                 ],
-                "pixelSha256": "f9966b0366c0760eb56baadcbfcb585062a88f88d2a2627e72eb46e01debaaff"
+                "pixelSha256": "c92e040414c35f041a6d095abb6e0b2460a43bc43b3c827c1bcdb84aa0e8f661"
               },
               "02": {
-                "sha256": "1cb280968b1f5ad609898787fba199989004ca9d81e7d202010b89b0eab2f46d",
-                "bytes": 25024,
+                "sha256": "f0536821c3b7f97320179e8021e3ba84cbbc14e7e5a49b4d60967be178ecb27b",
+                "bytes": 25074,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -96661,39 +96661,39 @@
                   101,
                   249
                 ],
-                "pixelSha256": "4ec016530f683837c0fbb814bb97bfbe2bb6579147ed987b0b2af4dfc43bcc75"
+                "pixelSha256": "f09eb69d2f24709776908431918a52f79705a39ca436d999a31fe60e3ac3b067"
               },
               "03": {
-                "sha256": "78f343b96d383da010c8c0b816e437d1f95cd4b41362693d1d19f3a79f465895",
-                "bytes": 24648,
+                "sha256": "eb3989eafd58f5d4ff9057f744c4caacd8e0c26c24fce008553ace5d2f9aabcd",
+                "bytes": 24847,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  26,
+                  23,
                   89,
-                  106,
+                  103,
                   249
                 ],
-                "pixelSha256": "e086ae2b72e586be646580d4fb5d9084bb663fd541b90275e95df694aa46c175"
+                "pixelSha256": "c03b6592d391718d721bc38559575c26212f4f89c13020e2be217c5511a4b252"
               },
               "04": {
-                "sha256": "70945b25027277ec238393fbbe29b81d36966d187222c01b9d91a34cc224bbdb",
-                "bytes": 25018,
+                "sha256": "ffac34c2f9eb0edb9a5be0ced93921a7bfa4d9a166fd5dab15e1030e83e459c3",
+                "bytes": 25151,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  25,
+                  23,
                   89,
-                  104,
+                  103,
                   249
                 ],
-                "pixelSha256": "c1237c56e9594ec26b7ba419fd5f73dbd8cd2d1af86519d0010364089ba3691f"
+                "pixelSha256": "f4e065227881a1252a136e9378f439644f98e2545155c47101f38fec4d19a4eb"
               }
             },
             "distinctFrames": 4
@@ -97626,7 +97626,7 @@
           ]
         },
         "use_consumable": {
-          "sourceSha256": "6a67b6fdfdecdfcf72713ad1f7ff398b859cb824b29a1a8278279c1aff52c7b6",
+          "sourceSha256": "e02624ae54dd53cc3c058bb9ee91c15f10715bce515404876a86e0e4e01fe125",
           "sourceDimensions": [
             2172,
             724
@@ -97651,9 +97651,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/use_consumable-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/use_consumable-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Druida FEMALE, Tier 2.5, action use_consumable. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult calm feminine woodland adept with warm russet-red compact high braided ponytail and green eyes. Woodland druid: fitted MOSS-GREEN layered tunic with PALE SAGE leaf-shaped leather shoulder caps, compact woven bark-brown corset belt, ivory acorn clasp, three small amber stones sewn at collar and belt, short overlapping pointed leaf skirt panels close to thighs over dark olive trousers, soft bark-brown boots with rootlike stitched straps, dark fingerless gloves. Small symmetrical carved WOOD leaf circlet close to forehead, no antlers. No cape, scarf, loose vines, leaves floating or magic effects. Tier2.5 Explorador/Elementalista hybrid: natural woven materials and orderly leaf-shaped tailoring distinguish it from ordinary ranger leather and wizard robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "LOCAL COSTUME CONTINUITY CORRECTION ONLY: preserve every pose, face, expression, hair, circlet, all hands and limbs exactly as Image1. The large rectangular novice pouch on hip is WRONG. On ALL FOUR figures replace with the SAME SMALL FLAT bark-brown pouch with sage LEAF-SHAPED FLAP seen in Image2 Druid idle. It must stay close to belt, not a big square bag hanging to thigh. Preserve all other artwork and four positions exactly.  Production RPG body sprite strip for Druida FEMALE, Tier 2.5, action use_consumable. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Small FLAT bark-brown hip pouch with SAGE LEAF-SHAPED flap, close to waist; never large rectangular novice pouch hanging down thigh. Adult calm feminine woodland adept with warm russet-red compact high braided ponytail and green eyes. Woodland druid: fitted MOSS-GREEN layered tunic with PALE SAGE leaf-shaped leather shoulder caps, compact woven bark-brown corset belt, ivory acorn clasp, three small amber stones sewn at collar and belt, short overlapping pointed leaf skirt panels close to thighs over dark olive trousers, soft bark-brown boots with rootlike stitched straps, dark fingerless gloves. Small symmetrical carved WOOD leaf circlet close to forehead, no antlers. No cape, scarf, loose vines, leaves floating or magic effects. Tier2.5 Explorador/Elementalista hybrid: natural woven materials and orderly leaf-shaped tailoring distinguish it from ordinary ranger leather and wizard robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/use_consumable-reference.png",
           "canonicalPoseHashes": [
             "9d423a87f0b50fc02a53ff021d8946c2f0f5b232bc3b645c13717d1514302738",
@@ -97661,7 +97661,47 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "6a67b6fdfdecdfcf72713ad1f7ff398b859cb824b29a1a8278279c1aff52c7b6",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                659,
+                15,
+                1015,
+                704
+              ],
+              "scale": 0.23,
+              "origin": [
+                23,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/use_consumable-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Druida FEMALE, Tier 2.5, action use_consumable. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult calm feminine woodland adept with warm russet-red compact high braided ponytail and green eyes. Woodland druid: fitted MOSS-GREEN layered tunic with PALE SAGE leaf-shaped leather shoulder caps, compact woven bark-brown corset belt, ivory acorn clasp, three small amber stones sewn at collar and belt, short overlapping pointed leaf skirt panels close to thighs over dark olive trousers, soft bark-brown boots with rootlike stitched straps, dark fingerless gloves. Small symmetrical carved WOOD leaf circlet close to forehead, no antlers. No cape, scarf, loose vines, leaves floating or magic effects. Tier2.5 Explorador/Elementalista hybrid: natural woven materials and orderly leaf-shaped tailoring distinguish it from ordinary ranger leather and wizard robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/use_consumable-reference.png",
+              "canonicalPoseHashes": [
+                "9d423a87f0b50fc02a53ff021d8946c2f0f5b232bc3b645c13717d1514302738",
+                "75fcd4517c428942562d86e8bb3e34e2817ebc57b601b9c57ded827d48b65d73",
+                "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
+                "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "dodge": {
           "sourceSha256": "758b29b4fda2e5692d7c1dc05d50e9371a49291bae0576952a2a9bde746bd29f",
