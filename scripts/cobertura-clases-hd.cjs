@@ -45,6 +45,7 @@ const rows = catalog.map(c => ({
     const actions = v?.audit?.technicalActions ?? [];
     return { sex, validFrames: v?.audit?.validFrames ?? 0, invalidFrames: v?.audit?.invalidFrames ?? 0,
       technicalActions: actions.length, missingActions: 15 - actions.length,
+      costumeRevisionPendingActions: v?.artDirection?.actionsToRework ?? [],
       visualApprovedActions: v?.actionsCompleted?.length ?? 0 };
   }),
 }));
@@ -52,7 +53,7 @@ const variants = rows.flatMap(c => c.variants);
 const report = {
   catalogClasses: catalog.length, expectedVariants: catalog.length * 2,
   expectedFrames: catalog.length * 120,
-  technicallyCompleteVariants: variants.filter(v => v.technicalActions === 15).length,
+  technicallyCompleteVariants: variants.filter(v => v.technicalActions === 15 && !v.costumeRevisionPendingActions.length).length,
   validFrames: variants.reduce((n, v) => n + v.validFrames, 0),
   invalidFrames: variants.reduce((n, v) => n + v.invalidFrames, 0),
   missingActions: variants.reduce((n, v) => n + v.missingActions, 0),

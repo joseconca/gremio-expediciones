@@ -52377,7 +52377,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/superNovato/m/superNovato-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/superNovato/m/frames",
-      "sourceStatus": "not-started",
+      "sourceStatus": "hires-redesign-in-progress",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -52409,40 +52409,40 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "c1edb37ced92a135b9aef493db60b961622ad875f3cabe1d339e87ad8ddc2e64",
-                "bytes": 24259,
+                "sha256": "724362b09d044c9917412965937f82f165fb0bc5c72c52accd71efc812b0c76e",
+                "bytes": 22278,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  25,
-                  93,
-                  105,
-                  248
+                  26,
+                  92,
+                  106,
+                  249
                 ],
-                "pixelSha256": "f3345a7072289f1bf1e6608651a5d26bbee0448c907da4aca8d86883d04cdcc2"
+                "pixelSha256": "d24e6335c23be79c3fb8bb7a262fce965bceeeb36c803be2d14c9109a458380f"
               },
               "02": {
-                "sha256": "1caac271d342d98da332792639a8bfe4f2a3acaf3f079a46fd07aafbfd80e440",
-                "bytes": 24348,
+                "sha256": "4c2d5053a517436672422b5cb1360a07ee0268650138b3756ec9e6884c736b39",
+                "bytes": 22389,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  24,
-                  93,
+                  25,
+                  92,
                   105,
-                  248
+                  249
                 ],
-                "pixelSha256": "553d5e16c09ff52f3dd739e7204eea89db20f7442f34aaba275d208b10ccef74"
+                "pixelSha256": "8c8d8d5ee9ee85f7626a8494a2897597a2a74041cccf3d4e22e3a74a11bc9849"
               },
               "03": {
-                "sha256": "16563b848256a74e6d0809588f2978837a96b1684fcc7a0ffab55ba1f1a433b5",
-                "bytes": 24295,
+                "sha256": "0af07f450ddefc73e0161346e2104d61895638e70becbecff89815f645b48dae",
+                "bytes": 22299,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -52450,15 +52450,15 @@
                 ],
                 "bbox": [
                   25,
-                  93,
-                  106,
-                  248
+                  92,
+                  105,
+                  249
                 ],
-                "pixelSha256": "918c653944dd0f4b26966451fe4b07c8bda6e1470afd561a09a8c48826505b07"
+                "pixelSha256": "0c5df6c0c06afb4b9dd5e21e8575f8ad42e9ab65dec22d60b9e06b501d23bf9c"
               },
               "04": {
-                "sha256": "7724aef9530c6911edf3507ee166e0ba6c2c99d140754d066f65c12541ee457e",
-                "bytes": 24262,
+                "sha256": "240d45218d9967b3ab4e3f88f0b2fa895e1edcf9e016b5f74b542baaf1238544",
+                "bytes": 22416,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -52466,11 +52466,11 @@
                 ],
                 "bbox": [
                   25,
-                  93,
-                  105,
-                  248
+                  92,
+                  106,
+                  249
                 ],
-                "pixelSha256": "906a190c3d37595dccf576bcc34e349dbee09c16a5213d3d5bd2246fb4635d7c"
+                "pixelSha256": "a143b2b9cae368477dba86a20bbcb70475e9bc05b7678a4d049b9c538b81e269"
               }
             },
             "distinctFrames": 4
@@ -52990,7 +52990,7 @@
       },
       "sources": {
         "idle": {
-          "sourceSha256": "35ce36ac3ad7fdc4c372d91404553fe42dd9ad1c3626379b0ccba17d0b772daf",
+          "sourceSha256": "3c0f13c1d70abbd6020341580ccb8831c182087b2c807e583816384d2c973ab3",
           "sourceDimensions": [
             2172,
             724
@@ -53015,9 +53015,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/idle-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/idle-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Use case: stylized-concept. Asset: production RPG sprite action, Super Novato MALE, idle. Reference image is the canonical masculine body geometry and rendering style. Create a new higher-class costume while EXACTLY preserving four poses, hands, feet, head size, character position in each quarter and canvas aspect ratio 3:1. Exactly FOUR separate full-body frames in ONE horizontal row on true transparent background. Facing right in three-quarter side view. Same youthful brown spiky-haired masculine hero and anime painted sprite style. Super Novato is a versatile master adventurer: ivory short jacket with restrained golden edging over burgundy tunic, short burgundy scarf, neat brown leather cross-straps and bracers, blue trousers with reinforced knee panels, brown boots with small brass fittings. Keep silhouette narrow and same body proportions as reference; no cloak extending beyond reference. Empty lowered hands. Four distinct subtle breathing and blinking idle poses, planted feet fixed. Preserve reference camera, lighting, limb and hand coordinates, feet baseline and scale in all four cells. No weapons, shields, items, magic, shadows, text, grid or labels. Preserve large original resolution, target 2172x724.\n",
+          "prompt": "Production RPG sprite strip, SUPER NOVATO MALE redesigned with a strong recognizable Ragnarok Online Super Novice costume inspiration. Image 1 is our game's canonical male body poses, face proportions, rendering and geometry ONLY. Image 2 is the official Ragnarok Online Super Novice clothing reference: use the MALE outfit on the LEFT as costume inspiration, not its art style. Replace entire costume of image 1, strongly differentiating from a red-scarf novice. Outfit: fitted sleeveless WHITE tabard/tunic with royal cobalt BLUE shoulder yoke, blue standing collar and vertical blue central panel, short white neck cravat, brown leather belt carrying two small compact utility pouches, a small brass chain draped at right hip, deep warm BROWN cropped loose trousers with no patches, off-white wraps below knees, rugged dark brown lace-up boots and dark brown fingerless gloves. Bare upper arms, neat leather wrist bracers. Absolutely NO red or burgundy scarf, NO crossed leather chest harness, NO cream jacket, NO blue trousers, NO gold embroidery. Hair stays youthful chestnut brown and spiky, face stays same hero. Image 1 four full body idle poses must be retained precisely: same head size, hand and foot coordinates, planted boots, position per quarter, camera and scale. Exactly FOUR distinct subtle breathing/blinking idle phases in ONE horizontal row, facing RIGHT three-quarter view. Match game's painted anime pixel-inspired RPG rendering, fully detailed high resolution art. Background truly transparent with alpha. Empty lowered hands. No weapons, shields, bottles, bags held in hands, effects, ground shadows, grid, labels or text. Full heads and boots with margins. Target canvas 2172x724, exact 3:1 ratio. White-and-blue outfit must read clearly at small game size.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
           "canonicalPoseHashes": [
             "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
@@ -53025,7 +53025,57 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-review-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "35ce36ac3ad7fdc4c372d91404553fe42dd9ad1c3626379b0ccba17d0b772daf",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                654,
+                21,
+                1010,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                23,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/idle-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Use case: stylized-concept. Asset: production RPG sprite action, Super Novato MALE, idle. Reference image is the canonical masculine body geometry and rendering style. Create a new higher-class costume while EXACTLY preserving four poses, hands, feet, head size, character position in each quarter and canvas aspect ratio 3:1. Exactly FOUR separate full-body frames in ONE horizontal row on true transparent background. Facing right in three-quarter side view. Same youthful brown spiky-haired masculine hero and anime painted sprite style. Super Novato is a versatile master adventurer: ivory short jacket with restrained golden edging over burgundy tunic, short burgundy scarf, neat brown leather cross-straps and bracers, blue trousers with reinforced knee panels, brown boots with small brass fittings. Keep silhouette narrow and same body proportions as reference; no cloak extending beyond reference. Empty lowered hands. Four distinct subtle breathing and blinking idle poses, planted feet fixed. Preserve reference camera, lighting, limb and hand coordinates, feet baseline and scale in all four cells. No weapons, shields, items, magic, shadows, text, grid or labels. Preserve large original resolution, target 2172x724.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+              "canonicalPoseHashes": [
+                "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+                "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+                "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+                "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "generationSteps": [
+            {
+              "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/idle-ragnarok-v2-before-cleanup.png",
+              "promptPath": "assets/spritesheets/hd-128x256/superNovato/m/source/idle-ragnarok-v2-prompt.txt"
+            },
+            {
+              "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/idle-reference-v2.png",
+              "promptPath": "assets/spritesheets/hd-128x256/superNovato/m/source/idle-ragnarok-v2-cleanup-prompt.txt"
+            }
+          ]
         },
         "walk": {
           "sourceSha256": "b772497729ecfdfb2a9ed38de0158cfa00f4b0dee4d3484e5da95421260d8cc6",
@@ -53063,7 +53113,7 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "superseded-costume-rework-required"
         },
         "hurt": {
           "sourceSha256": "9d62dabe12f701458a7ad3649883c78573cca897dc41020924372cef437c17e8",
@@ -53101,7 +53151,7 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "superseded-costume-rework-required"
         },
         "use_consumable": {
           "sourceSha256": "a254241a017baa27c6bf920d24b93387b901bc1cd6076ee8e23a94ebc53e63a3",
@@ -53139,7 +53189,7 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "superseded-costume-rework-required"
         },
         "dodge": {
           "sourceSha256": "b7c2e608c628b4e74e7f0dc8dded93346e8800c762e106f9e2580068f3c16dc6",
@@ -53183,7 +53233,7 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "superseded-costume-rework-required"
         },
         "block_shield": {
           "sourceSha256": "fdaea5e4c48690f714ce4be0fc4d8afa82d55e4c2773bb3fb49d7cc9238cfe02",
@@ -53227,7 +53277,7 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "superseded-costume-rework-required"
         },
         "attack_sword": {
           "sourceSha256": "5410b1831c4a6411e0ba2b52824dd548be326a57581683f0832ae148834610f9",
@@ -53265,7 +53315,7 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "superseded-costume-rework-required"
         },
         "attack_axe": {
           "sourceSha256": "16562007f162183207886303c90cf4c6ce350589d7f71a3ff3fade6e3fcbabe2",
@@ -53303,7 +53353,7 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "superseded-costume-rework-required"
         }
       },
       "frameProvenance": {
@@ -53466,6 +53516,24 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "artDirection": {
+        "revision": 2,
+        "inspiration": "Ragnarok Online Super Novice, official male costume",
+        "referenceUrl": "https://ragnarokonline.gungho.jp/gameguide/character/novice/supernovice.html",
+        "referenceImageUrl": "https://ragnarokonline.gungho.jp/gameguide/character/images/novice/supernovice/job_image.jpg",
+        "identitySource": "assets/spritesheets/hd-128x256/superNovato/m/source/idle-reference-v2.png",
+        "costume": "White and cobalt blue sleeveless tunic, white cravat, brown trousers, utility belt, brass hip chain, dark boots; no red scarf or chest harness.",
+        "actionsToRework": [
+          "walk",
+          "hurt",
+          "use_consumable",
+          "dodge",
+          "block_shield",
+          "attack_sword",
+          "attack_axe"
+        ],
+        "status": "redesign-in-progress"
       }
     },
     {
@@ -60945,7 +61013,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 1.5 in class order: Super Novato; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Regenerate previous male actions in the requested Ragnarok-inspired white/blue costume, then finish male and female Super Novato before continuing missing classes by tier.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",

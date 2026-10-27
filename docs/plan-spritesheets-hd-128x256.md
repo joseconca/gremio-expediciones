@@ -12,6 +12,8 @@ El manifiesto incluye ahora las 61 clases y ambos sexos, también las variantes 
 
 Continuar por tier, clase, sexo masculino/femenino y las quince acciones del contrato, empezando por Super Novato. Cada acción conserva su PNG grande original, prompt, cuatro frames, procedencia y previews. Commit por acción, revisión de equipo compartido por sexo al cerrar una variante. La creación solicitada se realiza en `nuevas-clases`; la promoción y la publicación en main requieren la revisión del conjunto.
 
+Dirección artística corregida por el usuario para Super Novato: inspiración en el Super Novice de Ragnarok Online. Túnica blanca y azul cobalto sin mangas, corbatín blanco, pantalones marrones, cinturón de utilidades, cadena lateral y botas oscuras. La revisión inicial con bufanda granate y chaqueta marfil se conserva como fuente anterior, pero queda descartada como identidad de esta clase. `variants[].artDirection.actionsToRework` identifica las acciones que aún requieren el nuevo vestuario; una acción técnicamente válida con el diseño descartado no completa la variante. Referencia oficial: https://ragnarokonline.gungho.jp/gameguide/character/novice/supernovice.html.
+
 ## Estado actual — 26 de octubre de 2026
 
 Tier 2 completo como biblioteca candidata: ocho clases en orden, masculino y femenino, dieciséis atlas y 960 fotogramas nuevos. Las 240 acciones conservan las fuentes grandes y sus instrucciones de generación. Las comparativas con equipo reutilizan las mismas capas por sexo y no añaden desplazamientos por clase: 10.912 comprobaciones de contacto sin avisos. La auditoría general cuenta 1.560 fotogramas válidos y ninguno inválido, incluyendo Novato y Tier 1.
