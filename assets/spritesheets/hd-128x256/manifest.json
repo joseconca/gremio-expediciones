@@ -116878,12 +116878,12 @@
       "tier": 2.5,
       "sex": "m",
       "order": 53,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/heraldo_guerra/m/heraldo_guerra-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/heraldo_guerra/m/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -116897,12 +116897,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "c0dabeb864c9185ad70e13e809f1ae523b3f595833291952b5db4ff377a5eb25",
+                "bytes": 23904,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  107,
+                  250
+                ],
+                "pixelSha256": "e65d9e8e59cbb3103c03ab3d5390d8048757dbe722afd88c4ad77e282195180e"
+              },
+              "02": {
+                "sha256": "f59076d05a7b47dd25ab903a91d3e7dfd43e16530e18aa2d618d91fc0556c24f",
+                "bytes": 23968,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  107,
+                  250
+                ],
+                "pixelSha256": "8e50cc61d04124dff37ba469050dc66d9de27c86e53699a03a0593a76ad4b3b8"
+              },
+              "03": {
+                "sha256": "7ce0749f1ff31a3f12ff21b3d670c7ff7eef2768767e78ba8e31bc3b576938a3",
+                "bytes": 23902,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  91,
+                  107,
+                  250
+                ],
+                "pixelSha256": "9f3c32117a765334f38b41f0695afd27f1495f223ffea988a3fa9e217b74e2d3"
+              },
+              "04": {
+                "sha256": "a4ece6efff111d7cfc55a28ad3f02d8503f855539770981e713b594612e75768",
+                "bytes": 23916,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  92,
+                  107,
+                  250
+                ],
+                "pixelSha256": "af49c1253ee59fea12386f925a44a80aff4f77907c6be43fe2b8483afb41cbaa"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -116946,6 +117015,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "3361844f5e040353d9d1ef03e8c4555c88d5b64c6ea46ca7aced62b4c48c453f",
+          "sourceDimensions": [
+            2171,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            654,
+            21,
+            1010,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/heraldo_guerra/m/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG body sprite strip, Heraldo de guerra MALE Tier2.5 action idle. Image1 ONLY defines EXACT body geometry: all four canonical poses, head size, hand/finger/joint coordinates, feet, quarter centers, camera and scale. Completely replace every novice garment and hairstyle with NEW CLASS identity below. Its garment edges and bare skin patches are not pose constraints: match NEW outfit coverage while preserving body contours. Adult confident masculine tactician with jet-black hair swept into a short high knot, warm tan skin and clean-shaven face. Martial herald uniform: fitted DEEP TEAL padded sleeveless battle vest over PARCHMENT fitted sleeves, compact COPPER lamellar shoulder caps, ivory short split tabard with three flat crimson geometric seal patches, copper fist-and-quill chest emblem, dark navy broad sash, white wrist fighting wraps leaving full fingertips visible, charcoal tapered trousers and dark fighting boots with copper greaves. No spectacles, no neck scarf/cape or tall banner. No held book, weapon or physical flag. Tier2.5 Luchador/Escriba arcano hybrid: combines athletic fighting wraps and copper motifs with parchment seals, adding compact battlefield reinforcement. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Establish one consistent costume in four distinct full figures, one horizontal row, facing RIGHT three-quarter view. Full parchment long sleeves under teal padded vest, white fighting wrist wraps, bare fingertips, compact copper shoulders. Make THREE crimson seal patches distinct physical flat emblems, no detached floating paper. Same crisp painted anime pixel-inspired RPG finish and lighting. Keep2172x724canvas with full hair, fingers and boots inside each quarter and clear margins, no figure enlargement. No weapon, book, potion, shield, banner, cape, shadow, magic, text, grid or logos. True transparent alpha background.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "canonicalPoseHashes": [
+            "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+            "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+            "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+            "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
@@ -122424,7 +122551,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
+  "nextTask": "Continue Tier 2.5 in class order: Cruzado, Pirata, Druida, Espadachín rúnico, Chamán, Inquisidor, Heraldo de guerra, Ninja, Alquimista, Herrero; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
