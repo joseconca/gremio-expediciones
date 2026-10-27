@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-27T18:15:26.598389+00:00",
+  "classId": "pirata",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\pirata\\f\\pirata-f-sheet.png",
+  "sheetSha256": "b34d8b3db4398e4f224fa45c7b67c8b39ba348af97545612fe78af68f0e9a2df",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\idle\\pirata-f-idle-01.png",
+          "sha256": "467d170b71248a9b26b44ba7c09409088c6187857c797ae17d6bd8811828d217",
+          "alpha_bbox": [
+            27,
+            90,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\idle\\pirata-f-idle-02.png",
+          "sha256": "d92a32d3aff8b47f09824de2f31653ff91db7b66f41846daea74a6025f0d4c46",
+          "alpha_bbox": [
+            27,
+            90,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\idle\\pirata-f-idle-03.png",
+          "sha256": "f22a34005d8af2b9bc72edbf61a297b4f2de321b3d392d5cc65317ff6795e9b9",
+          "alpha_bbox": [
+            27,
+            90,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\idle\\pirata-f-idle-04.png",
+          "sha256": "45588ef93ffc1a4f0c965c30a0244613cb0f50e94eb8e7ba3dfa981ab852d72d",
+          "alpha_bbox": [
+            27,
+            90,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\walk\\pirata-f-walk-01.png",
+          "sha256": "1fbeb0f467408869ddb436f98f8df9e86c45ac77a7266c3d48dd709c9577aa01",
+          "alpha_bbox": [
+            10,
+            90,
+            104,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\walk\\pirata-f-walk-02.png",
+          "sha256": "d3dd73a8c37c48fdb3fe78d6b663e8e0974de52e2c8258a9c879f7990493c27b",
+          "alpha_bbox": [
+            28,
+            90,
+            95,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\walk\\pirata-f-walk-03.png",
+          "sha256": "1074d8a588592ea7956677050eec3ace0a0f6c80e61f312dd36a04f43b964e0f",
+          "alpha_bbox": [
+            8,
+            90,
+            114,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\walk\\pirata-f-walk-04.png",
+          "sha256": "6f182d264f2d315e2dc40857e1d76d034b76afd1bda663505a30071e99f4e8bc",
+          "alpha_bbox": [
+            15,
+            90,
+            98,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\hurt\\pirata-f-hurt-01.png",
+          "sha256": "3df8dc5ab00907b54862e8a391d51be5e749a7b08762cfb0c08e18abf026da91",
+          "alpha_bbox": [
+            28,
+            90,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\hurt\\pirata-f-hurt-02.png",
+          "sha256": "7592e2f174ce633800ea810366bef4af8145f0ff33f1afb6715000cf24f9dac9",
+          "alpha_bbox": [
+            24,
+            90,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\hurt\\pirata-f-hurt-03.png",
+          "sha256": "fdcb167e525a93e68dc0e67df92e70eabf9b8a37d44b43adb92516c0d5cdb584",
+          "alpha_bbox": [
+            18,
+            112,
+            95,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\hurt\\pirata-f-hurt-04.png",
+          "sha256": "996d57845499ecb404604fc3642eb860d2815ffdf1b1068f974e7b6f88cf9de2",
+          "alpha_bbox": [
+            10,
+            90,
+            93,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\use_consumable\\pirata-f-use_consumable-01.png",
+          "sha256": "12e70a673c5c0651c76883981857063d1125e685fbd75085ac8741871ed3ce6a",
+          "alpha_bbox": [
+            22,
+            90,
+            100,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\use_consumable\\pirata-f-use_consumable-02.png",
+          "sha256": "52f4c5649b666c193bd9d11fecc31f00f7daba606b71c9cb204375fe8867a68e",
+          "alpha_bbox": [
+            22,
+            90,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\use_consumable\\pirata-f-use_consumable-03.png",
+          "sha256": "a2bd15fed96d0b7dbea3c4387ef16f321f93efc446fd6bf91833585064312cb7",
+          "alpha_bbox": [
+            22,
+            90,
+            100,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\use_consumable\\pirata-f-use_consumable-04.png",
+          "sha256": "beec235ed411f9ca7fec9c6fe524e1e93e81932a6b1925e6c32dfb40d33c96f1",
+          "alpha_bbox": [
+            21,
+            90,
+            100,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\dodge\\pirata-f-dodge-01.png",
+          "sha256": "2d04f1bf4d87fbe9b1e1646531064f073a77836bc09fefa4ffba825658df5d4e",
+          "alpha_bbox": [
+            32,
+            91,
+            116,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\dodge\\pirata-f-dodge-02.png",
+          "sha256": "95f8e5c063c8039b74e965ec180e4ef419e900819cafc1270d85e2634626d602",
+          "alpha_bbox": [
+            31,
+            94,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\dodge\\pirata-f-dodge-03.png",
+          "sha256": "a81110c4066f751e68b631793d56953ddbb3835d400253c8b6cc6a48ebc28ebd",
+          "alpha_bbox": [
+            27,
+            126,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\dodge\\pirata-f-dodge-04.png",
+          "sha256": "18540c2b5ad383681c1ffb54fad8d6b3734734a39481f2932b67230e7b4f4953",
+          "alpha_bbox": [
+            21,
+            91,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\block_shield\\pirata-f-block_shield-01.png",
+          "sha256": "b224c1aef4df2833b714d4934b3002da830c1be655789c905f375e5b6f80cf1f",
+          "alpha_bbox": [
+            26,
+            91,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\block_shield\\pirata-f-block_shield-02.png",
+          "sha256": "ce036ab0e7f11bc22e0aa8fafb3ccd3b314c91a05c56bbf30d6454bc5e02b359",
+          "alpha_bbox": [
+            26,
+            91,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\block_shield\\pirata-f-block_shield-03.png",
+          "sha256": "4cc1a0cf81e4910a008e68bf36b995d007ff516c085ec86e84751da7617986ad",
+          "alpha_bbox": [
+            23,
+            102,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\block_shield\\pirata-f-block_shield-04.png",
+          "sha256": "d0f7b9cf799533c449d5ca1f6319ede8a3084f89059dbf67b5b25efe3608f669",
+          "alpha_bbox": [
+            26,
+            91,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_sword\\pirata-f-attack_sword-01.png",
+          "sha256": "405f5b23a8564bbda375bb07ffcff928d8b96f72375ee0a927e6a08365691741",
+          "alpha_bbox": [
+            25,
+            91,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_sword\\pirata-f-attack_sword-02.png",
+          "sha256": "14b6942011259894e31d87c4493e28efc4d7685fa1128a6c83455ac23b734eaa",
+          "alpha_bbox": [
+            22,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_sword\\pirata-f-attack_sword-03.png",
+          "sha256": "9c0cf9739b8fbbc7c9966c753acbea8e14fde6b254d892fc9c3f884472ca0d44",
+          "alpha_bbox": [
+            17,
+            93,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_sword\\pirata-f-attack_sword-04.png",
+          "sha256": "4dbc91f2af7396262283f17ad5f20dc5c62845cbd81d4c9c6d5e7dca3970592f",
+          "alpha_bbox": [
+            18,
+            91,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_axe\\pirata-f-attack_axe-01.png",
+          "sha256": "35a423161432ec7c8a4e1617bad63be33b34c63bd5e1e728ac755860fa94ecd4",
+          "alpha_bbox": [
+            25,
+            94,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_axe\\pirata-f-attack_axe-02.png",
+          "sha256": "60cafc6498f8d07958a5f59f115785dc96a558e148b23bcb904b1e3281bcec93",
+          "alpha_bbox": [
+            25,
+            89,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_axe\\pirata-f-attack_axe-03.png",
+          "sha256": "05b759a0fd0a6fe32b675cbc1130fada8f8005b8097ee400a0a5f74f231f721e",
+          "alpha_bbox": [
+            17,
+            105,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_axe\\pirata-f-attack_axe-04.png",
+          "sha256": "d761b00b52863539565b7732c5309688e2111a4bb60b1b3689fdda6d6a755c99",
+          "alpha_bbox": [
+            19,
+            94,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_spear\\pirata-f-attack_spear-01.png",
+          "sha256": "7ad3da874bde623d444d5aa51b23d5747aab241aba1a6e71a9941d7c72c54678",
+          "alpha_bbox": [
+            15,
+            92,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_spear\\pirata-f-attack_spear-02.png",
+          "sha256": "49b7cac2ff2d07187f6519c9d1f9914285276a25425f109ae7ae582444ee02c3",
+          "alpha_bbox": [
+            15,
+            92,
+            100,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_spear\\pirata-f-attack_spear-03.png",
+          "sha256": "25f684d6925cbd812ec2d7069e552d090607f524e49648ca55d0e0fb2faa51f5",
+          "alpha_bbox": [
+            15,
+            92,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_spear\\pirata-f-attack_spear-04.png",
+          "sha256": "6b1286eae793808fc3642696d4c799a7c1f3189b36cd6de0e6dccf883d474587",
+          "alpha_bbox": [
+            15,
+            92,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_dagger\\pirata-f-attack_dagger-01.png",
+          "sha256": "2def580d8539fbcfba75fef0861d9b4bec3828651d5494f8c7f80459995d3bf3",
+          "alpha_bbox": [
+            16,
+            90,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_dagger\\pirata-f-attack_dagger-02.png",
+          "sha256": "2ca7a4cb2fba445d250bf92245a1b97bf2e731b899c1954dbec8e379801913fc",
+          "alpha_bbox": [
+            19,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_dagger\\pirata-f-attack_dagger-03.png",
+          "sha256": "81a9c34003d922738029d97c72a836485609dd2c8e2b3ad9b1fddd1c000596ca",
+          "alpha_bbox": [
+            17,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_dagger\\pirata-f-attack_dagger-04.png",
+          "sha256": "dea8ac159866a727f1f85028c3bd39bd78a39865a9e55601ae9f6715b9903027",
+          "alpha_bbox": [
+            26,
+            90,
+            113,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_bow\\pirata-f-attack_bow-01.png",
+          "sha256": "46d0e5bc5237c2672628c164e564cbb21c961320d6ac5e620215598be7679b3e",
+          "alpha_bbox": [
+            17,
+            90,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_bow\\pirata-f-attack_bow-02.png",
+          "sha256": "af1d1dcb6e26a681fb72c41a5fe2f6f27283e461395142d8553899312b6b2da4",
+          "alpha_bbox": [
+            14,
+            90,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_bow\\pirata-f-attack_bow-03.png",
+          "sha256": "3a13a7412ec38400103feeecf0483c23d34b8833a27708eeac5d2ee29d887239",
+          "alpha_bbox": [
+            14,
+            90,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_bow\\pirata-f-attack_bow-04.png",
+          "sha256": "57224c2c10b9d3d24440075eceac02ee089fd6a58dc710cb9f03f495f43de11c",
+          "alpha_bbox": [
+            19,
+            89,
+            116,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_staff\\pirata-f-attack_staff-01.png",
+          "sha256": "c8e8987d70b6b2a7117c12901d7ba0b24931a7018d2882998586c7456057de31",
+          "alpha_bbox": [
+            20,
+            90,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_staff\\pirata-f-attack_staff-02.png",
+          "sha256": "57cd8de00354a4ff31ab5e0b4b0238b093d1d7054cac104960ed5f001a3ca645",
+          "alpha_bbox": [
+            16,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_staff\\pirata-f-attack_staff-03.png",
+          "sha256": "99dd3862eac4b44e82da46d50a6b584c4c5efe1ff4d39fda7b811118a2b3911c",
+          "alpha_bbox": [
+            19,
+            90,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_staff\\pirata-f-attack_staff-04.png",
+          "sha256": "f8f635bfb9aad55e83c7363633755f7967871660341c989a88a3400dc375d619",
+          "alpha_bbox": [
+            20,
+            90,
+            103,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_mace\\pirata-f-attack_mace-01.png",
+          "sha256": "75cce44b1d92889c28a56cf01dddba90d484603196a48e37aa10d36f83181f31",
+          "alpha_bbox": [
+            23,
+            89,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_mace\\pirata-f-attack_mace-02.png",
+          "sha256": "7e8e483cf3a77238366129b204af3c413f2352034d3798800008766db6633b70",
+          "alpha_bbox": [
+            23,
+            89,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_mace\\pirata-f-attack_mace-03.png",
+          "sha256": "e238515a303b69fac61f47b028a3dc5ca8e68cbb5a0ebba9888bec0fe4576b1f",
+          "alpha_bbox": [
+            18,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_mace\\pirata-f-attack_mace-04.png",
+          "sha256": "851635722f1f35e9c7ba99a67adeca956e36146d0ecc806147dcec261499e4a0",
+          "alpha_bbox": [
+            17,
+            89,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_book\\pirata-f-attack_book-01.png",
+          "sha256": "d20319470381b8a3f28073b646ee5f35c9564371fb7906cbca17ea08a3777c1d",
+          "alpha_bbox": [
+            28,
+            89,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_book\\pirata-f-attack_book-02.png",
+          "sha256": "6bfa2c68508d3750481a748a82f5133147131bbc91af05b1cb8b8c510ba0a4c5",
+          "alpha_bbox": [
+            25,
+            89,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_book\\pirata-f-attack_book-03.png",
+          "sha256": "8bddf8c5b92e9a986559696f68c0ae1d6f1603b05782f40e3859ba288a0bbaba",
+          "alpha_bbox": [
+            24,
+            89,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_book\\pirata-f-attack_book-04.png",
+          "sha256": "14e9113947a7962aa06680e6421e7a63f4394f25a1777aff57edd990d263dfde",
+          "alpha_bbox": [
+            25,
+            90,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_gloves\\pirata-f-attack_gloves-01.png",
+          "sha256": "c4abcbbe3b87e42b88b90b5e19cea6c5eed5f4f3fe53524a291f1e4cb98ac831",
+          "alpha_bbox": [
+            19,
+            88,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_gloves\\pirata-f-attack_gloves-02.png",
+          "sha256": "81c1cf6f1b9d2054610444f1b9e1a3f68e03cdf6614ed861898ea5e17055f407",
+          "alpha_bbox": [
+            21,
+            88,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_gloves\\pirata-f-attack_gloves-03.png",
+          "sha256": "4130b0012f27cf56b786fca272015fe7779d1584005c199e7cd9841fb3ed1b22",
+          "alpha_bbox": [
+            13,
+            88,
+            118,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\pirata\\f\\frames\\attack_gloves\\pirata-f-attack_gloves-04.png",
+          "sha256": "0a25b3c4fcad68df8f4d06081f580ca763d6fb29044788cc4aac97ea8d5dcb98",
+          "alpha_bbox": [
+            12,
+            88,
+            95,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

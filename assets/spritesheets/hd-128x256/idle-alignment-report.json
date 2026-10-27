@@ -5,7 +5,7 @@
   "verticalOffset": 0,
   "equipmentFrame": 0,
   "fingerMaskFrame": 0,
-  "equipmentContactChecks": 5376,
+  "equipmentContactChecks": 5632,
   "equipmentWarnings": 0,
   "variants": {
     "novato-m": {
@@ -1098,6 +1098,58 @@
         70.0,
         70.0,
         70.0
+      ]
+    },
+    "pirata-m": {
+      "frameHashes": [
+        "ca1d0ad8e19c2693366195a837279d16b8691e4a05b438c294e6118fca38ba31",
+        "56b54ecf52321c0eaad7d50c1380ec9801588fbcd0a4b160522b9a0ce1783ab1",
+        "809d64e24f9d0bba6b38f34f0751ca5bea163ac30913670dee0031719067a82b",
+        "f571715ccf20da51a32e96cecdf6617a65f3c4169e13198745e708e019915f77"
+      ],
+      "supportCentersX": [
+        65.5,
+        65.5,
+        65.5,
+        65.5
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        65.5,
+        65.5,
+        65.5,
+        65.5
+      ]
+    },
+    "pirata-f": {
+      "frameHashes": [
+        "467d170b71248a9b26b44ba7c09409088c6187857c797ae17d6bd8811828d217",
+        "d92a32d3aff8b47f09824de2f31653ff91db7b66f41846daea74a6025f0d4c46",
+        "f22a34005d8af2b9bc72edbf61a297b4f2de321b3d392d5cc65317ff6795e9b9",
+        "45588ef93ffc1a4f0c965c30a0244613cb0f50e94eb8e7ba3dfa981ab852d72d"
+      ],
+      "supportCentersX": [
+        69.0,
+        68.5,
+        69.0,
+        69.0
+      ],
+      "offsetsX": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "correctedCentersX": [
+        69.0,
+        68.5,
+        69.0,
+        69.0
       ]
     }
   }
