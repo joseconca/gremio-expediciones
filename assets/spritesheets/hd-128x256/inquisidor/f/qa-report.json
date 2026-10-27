@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-27T23:11:48.017668+00:00",
+  "classId": "inquisidor",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\inquisidor-f-sheet.png",
+  "sheetSha256": "358ea52c70cf9d968622fb81ca16d81f53d170080b92ff9f1b4744f69fa29cbb",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\idle\\inquisidor-f-idle-01.png",
+          "sha256": "9b8728acc36aa97ce6a8ba00802c5ee68c174013c4ca0f71bbb2b067bd10568f",
+          "alpha_bbox": [
+            24,
+            92,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\idle\\inquisidor-f-idle-02.png",
+          "sha256": "b117162b03373f0b4711d8ce82397623388a65d7a2eea2f531a444a0767102ea",
+          "alpha_bbox": [
+            21,
+            92,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\idle\\inquisidor-f-idle-03.png",
+          "sha256": "8e479a4f9b63fa98f44db25b3362b73e8e6373320c90298e5c5dda2f6bac951d",
+          "alpha_bbox": [
+            18,
+            92,
+            101,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\idle\\inquisidor-f-idle-04.png",
+          "sha256": "cc9a18e6d792978f278b1e329dd45c0cb77d5772e3ab6ac8e9bf6624c3f6ddec",
+          "alpha_bbox": [
+            19,
+            92,
+            103,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\walk\\inquisidor-f-walk-01.png",
+          "sha256": "ba27931b01ed007ccf8fd564ea4f38c8bd9224bbe94c499bccc330d5dbca141f",
+          "alpha_bbox": [
+            11,
+            90,
+            105,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\walk\\inquisidor-f-walk-02.png",
+          "sha256": "dfd80cf054b6864c549960c98ad8e2e8cd29e87ded7506e01a897b5ac706477b",
+          "alpha_bbox": [
+            29,
+            91,
+            91,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\walk\\inquisidor-f-walk-03.png",
+          "sha256": "4c2962ec7d4eba66f25843fc9c34a4673c8f434e8ec23b7bad6efdd9bfdf5ccd",
+          "alpha_bbox": [
+            13,
+            90,
+            119,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\walk\\inquisidor-f-walk-04.png",
+          "sha256": "2e36f11bb2a1dcb4f4b0a312a4bc9dcc1efed93a5d310d4b8095ae896eeaae80",
+          "alpha_bbox": [
+            19,
+            91,
+            96,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\hurt\\inquisidor-f-hurt-01.png",
+          "sha256": "475cb6eca0be104f323dadf31afef02a2c35fa1664a4c10b62f199f913b3ce47",
+          "alpha_bbox": [
+            23,
+            92,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\hurt\\inquisidor-f-hurt-02.png",
+          "sha256": "35b7d00248649377c16441d243fe3a3e5d971cc710830693e51d0ac6714a8e8d",
+          "alpha_bbox": [
+            22,
+            92,
+            104,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\hurt\\inquisidor-f-hurt-03.png",
+          "sha256": "846452ed8f34e5d7f361ad855ff33ed1d48c38a205ce5a2b368b33a85fdb2176",
+          "alpha_bbox": [
+            13,
+            114,
+            88,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\hurt\\inquisidor-f-hurt-04.png",
+          "sha256": "24e57f6952328c31bd096e2e0e2d0a9e2e4479c8250c0f6de0bb2473cfef1a59",
+          "alpha_bbox": [
+            16,
+            91,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\use_consumable\\inquisidor-f-use_consumable-01.png",
+          "sha256": "7b64980566a0611ea7ff8e334b26198165a7814370b500b11c5f2e2ec6fbb7d8",
+          "alpha_bbox": [
+            22,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\use_consumable\\inquisidor-f-use_consumable-02.png",
+          "sha256": "893dbbaa7f91e3170c572f162e7199795cf6478c5ba6fd5e6af2c054f09788ed",
+          "alpha_bbox": [
+            21,
+            92,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\use_consumable\\inquisidor-f-use_consumable-03.png",
+          "sha256": "eabee396579da3cb105a6c8294cd2837684d960b930920234d9fdf4cb64e3d37",
+          "alpha_bbox": [
+            23,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\use_consumable\\inquisidor-f-use_consumable-04.png",
+          "sha256": "5bbcdb14620477cf687bd24a4ae93ac44cc7a6665b6e1fd5b773663390f7acbb",
+          "alpha_bbox": [
+            26,
+            92,
+            110,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\dodge\\inquisidor-f-dodge-01.png",
+          "sha256": "b91b71c75d24446de07459738eb15c8b51b562d8fdee0c92ecf9ae4582c6008b",
+          "alpha_bbox": [
+            28,
+            93,
+            112,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\dodge\\inquisidor-f-dodge-02.png",
+          "sha256": "8b5a61a4f6c053f21624bbfdf0f40ebd8987fc17dc817b4498c58a74107276e4",
+          "alpha_bbox": [
+            27,
+            93,
+            113,
+            246
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\dodge\\inquisidor-f-dodge-03.png",
+          "sha256": "1c67482e89de05033592f6d659c86f982c9260a52c2a0a4fb942467a3e9ae424",
+          "alpha_bbox": [
+            19,
+            122,
+            104,
+            243
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\dodge\\inquisidor-f-dodge-04.png",
+          "sha256": "14637be69f9a420b4a58ee2dfa8217c7909af31263ae2a349d9aec854e453a8c",
+          "alpha_bbox": [
+            17,
+            93,
+            102,
+            246
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\block_shield\\inquisidor-f-block_shield-01.png",
+          "sha256": "31737913ce640e626b8fa02e1f4eed938bcdae81f5ec92c04712f2aac2a0c518",
+          "alpha_bbox": [
+            23,
+            92,
+            109,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\block_shield\\inquisidor-f-block_shield-02.png",
+          "sha256": "94b9f5ebdf58b76679befa953010a7d26150e4a6d5e14d70be5716644fd9c4a2",
+          "alpha_bbox": [
+            21,
+            92,
+            109,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\block_shield\\inquisidor-f-block_shield-03.png",
+          "sha256": "a9d3e6b879ed94116a01ffb6e77d3ed3fbb12da114afcaf8af1d1a367cd2662a",
+          "alpha_bbox": [
+            15,
+            103,
+            104,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\block_shield\\inquisidor-f-block_shield-04.png",
+          "sha256": "b30798dfff56ef0bd06f24bdd3bb9c90bf4884cde09b4ec2fdfc6abeb8dddfcc",
+          "alpha_bbox": [
+            13,
+            92,
+            101,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_sword\\inquisidor-f-attack_sword-01.png",
+          "sha256": "7c302454eb79d8960789b778f663abf8d66b3c5a2d4f3744eeb2611e46cb05a7",
+          "alpha_bbox": [
+            22,
+            92,
+            107,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_sword\\inquisidor-f-attack_sword-02.png",
+          "sha256": "b450431bedd35b459873b19d6af8127a525be5f2633148475a56a49bfe823c16",
+          "alpha_bbox": [
+            21,
+            91,
+            110,
+            246
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_sword\\inquisidor-f-attack_sword-03.png",
+          "sha256": "d650f58b7cc9632e156ecb0da5003ac60424cbcec59edcd9e41a700bc360f44a",
+          "alpha_bbox": [
+            15,
+            95,
+            106,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_sword\\inquisidor-f-attack_sword-04.png",
+          "sha256": "de8d5aa1ca059c65025b64fc2407478b7698b0923c3f09110bd11433fb2da06a",
+          "alpha_bbox": [
+            17,
+            91,
+            106,
+            246
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_axe\\inquisidor-f-attack_axe-01.png",
+          "sha256": "50048537ea747fa4dcdd77c77a6d246f42d6c97bda150dcd12a039d29e711766",
+          "alpha_bbox": [
+            21,
+            94,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_axe\\inquisidor-f-attack_axe-02.png",
+          "sha256": "ddd7b61dd97839d60c1a51eec504ec5e68339ca10cdf73828440c9c348f07c73",
+          "alpha_bbox": [
+            21,
+            90,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_axe\\inquisidor-f-attack_axe-03.png",
+          "sha256": "bed6474b1db709487f2a6b7f34cc1d95893360f7129b6bdba82770d52a05bf7d",
+          "alpha_bbox": [
+            14,
+            104,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_axe\\inquisidor-f-attack_axe-04.png",
+          "sha256": "849c251f2e1bb05492c3ab56849596a42d8698db69121c76ca95c52c42c90399",
+          "alpha_bbox": [
+            12,
+            94,
+            100,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_spear\\inquisidor-f-attack_spear-01.png",
+          "sha256": "ef4053563d72f5acbedda6b441600936e3b95385746ec4d321f311f7076d10bb",
+          "alpha_bbox": [
+            15,
+            93,
+            116,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_spear\\inquisidor-f-attack_spear-02.png",
+          "sha256": "52128dcb8fb79e80f74947867caf68496fcafb57660850270df6a95d11dcb154",
+          "alpha_bbox": [
+            17,
+            93,
+            105,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_spear\\inquisidor-f-attack_spear-03.png",
+          "sha256": "4f0d47899a46a897094490bf6d3d20189dadc3aa84e3ddc8a45ecdac78a79986",
+          "alpha_bbox": [
+            12,
+            92,
+            113,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_spear\\inquisidor-f-attack_spear-04.png",
+          "sha256": "a2eea4067861e1ee712849fb946df65c9e035c15837ae83806893bb28ef6ed68",
+          "alpha_bbox": [
+            15,
+            92,
+            114,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_dagger\\inquisidor-f-attack_dagger-01.png",
+          "sha256": "75b5a24718ba459bef31ddcce023f5ec7699f5cc313a4db426f67ed1dc4555d9",
+          "alpha_bbox": [
+            11,
+            91,
+            98,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_dagger\\inquisidor-f-attack_dagger-02.png",
+          "sha256": "f88cf5daf5db8e74a0ac49a920d83a11c4b744c5337b3c3ca2ff73b9ec3b486d",
+          "alpha_bbox": [
+            16,
+            91,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_dagger\\inquisidor-f-attack_dagger-03.png",
+          "sha256": "93837e16bc21a5d98db19fcddecb44b9924732d0f14ce6ef5bbc4d75a5cda100",
+          "alpha_bbox": [
+            14,
+            91,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_dagger\\inquisidor-f-attack_dagger-04.png",
+          "sha256": "178fbd4cee9343044242f62af89db5c232b6afda65087e115d69cd6312b2f74a",
+          "alpha_bbox": [
+            21,
+            91,
+            112,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_bow\\inquisidor-f-attack_bow-01.png",
+          "sha256": "7ddcfaedc241c8537cf4aab4fcb26ae0839a96bba240e743ff7264f6c9b4ab70",
+          "alpha_bbox": [
+            24,
+            92,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_bow\\inquisidor-f-attack_bow-02.png",
+          "sha256": "8c96bee53a27cdd3d4344909ddc2191bcc38bd1fb76d0b29e8a461159be5db29",
+          "alpha_bbox": [
+            23,
+            92,
+            119,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_bow\\inquisidor-f-attack_bow-03.png",
+          "sha256": "83fece30a981b3b7c2d9babfdf48906eef22b3fc7d62ae165ae241a2db71b56d",
+          "alpha_bbox": [
+            24,
+            92,
+            121,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_bow\\inquisidor-f-attack_bow-04.png",
+          "sha256": "873280a483f9ea89e94509eb822c0dddd3774f08457b37d4520efed3b391a606",
+          "alpha_bbox": [
+            23,
+            92,
+            119,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_staff\\inquisidor-f-attack_staff-01.png",
+          "sha256": "a8975147cec5e1153be2ff68582d22c807e61390f211fc68b3a6a4bebcdddc6d",
+          "alpha_bbox": [
+            21,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_staff\\inquisidor-f-attack_staff-02.png",
+          "sha256": "b2a5ba04fd99c49f734443b80c48acaface235193b0a20616d753db95cc07ab8",
+          "alpha_bbox": [
+            19,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_staff\\inquisidor-f-attack_staff-03.png",
+          "sha256": "258675bed9f8b8d1241fc500408ec2f86fa35463d3908588cd544036682f4547",
+          "alpha_bbox": [
+            16,
+            92,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_staff\\inquisidor-f-attack_staff-04.png",
+          "sha256": "623a214e62b0c8b33219352731ae9982db9bd0e3e4273a49dd8b3403f9c99a5d",
+          "alpha_bbox": [
+            19,
+            92,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_mace\\inquisidor-f-attack_mace-01.png",
+          "sha256": "75a2aaa7d3d1163814e4e79f186848694853c2e8d369eb4b9756c7d851866643",
+          "alpha_bbox": [
+            22,
+            91,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_mace\\inquisidor-f-attack_mace-02.png",
+          "sha256": "507e0e25e3589dbd5bd886a66d75e9aa560cceb5f00e1b0f4b1cbfd9ba3971af",
+          "alpha_bbox": [
+            23,
+            91,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_mace\\inquisidor-f-attack_mace-03.png",
+          "sha256": "baea84d4639974db412ebe191a2e5854e4503f6bb421aa5cd3ba2290aac8c95e",
+          "alpha_bbox": [
+            17,
+            96,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_mace\\inquisidor-f-attack_mace-04.png",
+          "sha256": "f9ed9757709e04867b27c780ac91c8eef88a037f287c6bed71ff721a370bd208",
+          "alpha_bbox": [
+            22,
+            92,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_book\\inquisidor-f-attack_book-01.png",
+          "sha256": "83b6de708d2321f74ca196c4dbea1d3ae3f278046dd48e9d6d4aa80331c9a92c",
+          "alpha_bbox": [
+            25,
+            92,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_book\\inquisidor-f-attack_book-02.png",
+          "sha256": "b818a4b0c4e8c0da5ac303ffcfbca17d1b582b7f2ddb21a7063d27777a503ad3",
+          "alpha_bbox": [
+            23,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_book\\inquisidor-f-attack_book-03.png",
+          "sha256": "c28afbd4d0e6d11c294f45b04aad2d8871544d5a558b8d8679f79363ff5fccfa",
+          "alpha_bbox": [
+            20,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_book\\inquisidor-f-attack_book-04.png",
+          "sha256": "84e2d81362560bc4d30dd6fc6f3c9b4ec7b877fa92762e428f881ff752b40661",
+          "alpha_bbox": [
+            21,
+            92,
+            104,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_gloves\\inquisidor-f-attack_gloves-01.png",
+          "sha256": "50dd46c253603eadcc6d60ee6552a3d7bf75061ec95c4dac68fffbb20fd3f929",
+          "alpha_bbox": [
+            20,
+            91,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_gloves\\inquisidor-f-attack_gloves-02.png",
+          "sha256": "e18bc1e8127b936585c0f3bca93aa9a1bab9eb1f22f3f1139c71bfd683b2e9b0",
+          "alpha_bbox": [
+            20,
+            91,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_gloves\\inquisidor-f-attack_gloves-03.png",
+          "sha256": "88df252746789d2d4b9dfbeb2f17cfa80273b71d8339edb35022bc940ad3c476",
+          "alpha_bbox": [
+            14,
+            91,
+            125,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\inquisidor\\f\\frames\\attack_gloves\\inquisidor-f-attack_gloves-04.png",
+          "sha256": "4d6505167ab90dd6677a198e50d6d665eb7db624b754216f0a31b025b3c36f72",
+          "alpha_bbox": [
+            17,
+            91,
+            104,
+            247
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

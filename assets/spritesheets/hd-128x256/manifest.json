@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "inquisidor-f",
+  "nextVariant": "heraldo_guerra-m",
   "classes": [
     {
       "id": "novato",
@@ -240,7 +240,7 @@
       "name": "Inquisidor",
       "tier": 2.5,
       "order": 26,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "heraldo_guerra",
@@ -111816,7 +111816,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/inquisidor/m/inquisidor-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/inquisidor/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -112940,7 +112940,8 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "be2cbfe8faff8a63c3fc6f3e400f9801a906f73a59bdab2081ffc18fb490c2f8",
@@ -112978,7 +112979,7 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "c18d0ea718e3159115d5c5e83f31ca7bd1e41025043929f48d9263ca1e9523de",
@@ -113080,7 +113081,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "fa8c327249ad651b9463e8285a979f92dddd203b2fe31d12099644b8875521e9",
@@ -113118,7 +113120,7 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "9b565739d8e3a38ee98063bafbff6552f332ee15e8b3e592e3a318886ca499c8",
@@ -113220,7 +113222,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "d2c40a54e0e6666b395daf50cf1a8571faae1d717dbc446ce0d3b596e54372f2",
@@ -113258,7 +113261,7 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "3d8b9cc0b15dfa726b95958d7275d66e707154efa139c7dc14069dbb0affaa4b",
@@ -113390,7 +113393,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "7f051461115fc42dd0abbbbaff39d15d6d0bff2e640ebd7048ca394e07d8a22e",
@@ -113434,7 +113438,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "dbf1f4c31f73dc2af4ca396ea0c529c205f90c5365b59d90c1089752353dedfb",
@@ -113478,7 +113483,7 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "e9cbab7e28b728a62bd27617857f2a5a2ad3ffb5ae28967689a178d49e22d429",
@@ -113524,7 +113529,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "8fd7c8a9ec8ddbe36667e659bfd6a9ec6d0d300e45de3f63ba13d443c2ba1a4e",
@@ -113562,7 +113568,8 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "eb82966396a9c6a29c57a6722a90aa36eae2e7bcac19751be9d5f53d85536dec",
@@ -113600,7 +113607,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "b9ca09ff3ec79295e871b7688116cd305db5b5995e26598ba9b55d4ae968ba0f",
@@ -113638,7 +113646,8 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "786589eb9343c9050d2e2a98b51141aa8b6ca181f07c9014721b441bdf9c9a35",
@@ -113676,7 +113685,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "fb1a57f50620c0f0efdf4ffd845c2f36b140813c96f815d8d93c03094c637739",
@@ -113714,7 +113724,8 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "4fda0929a38cf7e0a705e105c78526198ec5685b7f5c3102b920f8dc9aec844a",
@@ -113752,7 +113763,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "fe20710fe8aed42a5734542e4048b329bb3b5d6979c97383ce7a2e8242ace313",
@@ -113790,7 +113802,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "31eeec4c5be7cc14fc97a8a3e70cbe48ddec4c22076400cf065416ed04235e38",
@@ -113828,7 +113841,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "03a24f4d9504299265d68a288ae1e676bb85fd03519bfb9f45a2f4df70eef784",
@@ -113866,7 +113880,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -114141,6 +114156,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "inquisidor",
+        "name": "Inquisidor",
+        "tier": 2.5,
+        "costume": "Austere inquisitor uniform: fitted BLACKENED-PLUM long vest coat with BONE-WHITE vertical stole panels, narrow crimson piping, short rigid standing collar, compact brushed pewter shoulder caps and forearm cuffs, flat pewter balance-scales brooch at chest, broad black belt with three rectangular red wax-seal plates, split coat tails close to knees, fitted black trousers and high dark boots, dark fingerless gloves. No hat, no neck scarf or cape, no flames or glowing symbols, no held book or weapon.",
+        "maleIdentity": "Adult severe masculine inquisitor with silver-white neat short hair, sharp dark brows, clean-shaven, cool gray eyes.",
+        "femaleIdentity": "Adult severe feminine inquisitor with silver-white hair in a compact center-parted low knot, cool gray eyes.",
+        "unique": "Bone stole over blackened plum, pewter scales brooch, red seal plates.",
+        "advancement": "Tier2.5 Sacerdote/Brujo hybrid: disciplined ecclesiastical tailoring with controlled dark occult details, richer layered ritual cloth than either parent.",
+        "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. STRICT CLOTHING COVERAGE: Inquisidor has FULL-LENGTH fitted BLACKENED-PLUM sleeves covering EVERY part of both arms from shoulders through elbows to glove wrists, under engraved pewter bracers. NO BARE ELBOW or forearm skin, NO WHITE ROLLED NOVICE CLOTH CUFF. Keep dark plum fabric on inner/reverse forearms even when bracer plate turns away. Only face, neck and exposed finger tips show skin. ",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/inquisidor/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "33248711e5efaff33fa8ddd6ddfc5015917e2219974c0f68ee431ed07c97af64",
+            "396c24f28cf23a6d198185dd621e779984bb7a23d438ea5a5681ed7614b35a47",
+            "96663488bcb54eed9432422774b6d78cb5a10006ad3c8915773a62551fb0f008",
+            "b9844d485f86686f33d53e6be6ca5155690d34600f0a2219d87cd60fced2ed67"
+          ],
+          "walk": [
+            "8327820d133d749586d4abff6a3dd81b3231e405ad3220fb386c028eb04e4a0f",
+            "fd87eafffad6c1e7e3e3c6eba4d227a74804dd1e06996b6163d9264d673a71d1",
+            "975f08a81333875e6074a4fae916d9c7a0d0a32e1b4da95130601cce5256bf06",
+            "e92f682627250dd4dd43b0fabcd058663cd3f0dabca72e96ce25e499cf2b508d"
+          ],
+          "hurt": [
+            "ed31f09b93f0485e55979a9515d8880f6f2637e4d2d8d6d962841e18ba59bb7a",
+            "83837120746b219deb8d7b1079246fa8c2c5029ed2a027f5e3b603b7449bcfa4",
+            "7fa53c556e0a26d2fb39dfd1a16935307276119537d2adad9d60172cbd8ca7b9",
+            "df39d8b66f06a619bf3b39e773361f32adff35520d853acd53eabede24bda04d"
+          ],
+          "use_consumable": [
+            "26942e93e9375a67119c280c30ff3b57ea13618aad7d8f6b08642aa43416b5f4",
+            "91430f674159f72d69f600d6fdd04fdee9c58416a37914f2975ce00f1c01c4ce",
+            "1785aef82ec59f1f01e8bfbd9c80c5a4d3279d0883ad42198f6d8f168ae7441b",
+            "36977b4cbbdadcb67037aa27ae3edfc410f7834fd33dd15c19e7ea862e5fb8b8"
+          ],
+          "dodge": [
+            "45b5e607022aa393511a380933b533f7ef075b67ce047a1be27c794c830d07e4",
+            "6460b924a5cc16c2a1b9054fbf0504dd7d4814cbebc6b7fcca2ba8176ebbeb80",
+            "76dbb85de82124a302974f750c8196697bd6ead4430577164f097177d085b82a",
+            "a6aa39c23ea66517685367014bd7ae9de6c673a460f7736af7e69f8c4abe0a75"
+          ],
+          "block_shield": [
+            "dae65f3348f9e5b2c8fc5dac5cd7acc21f67870bd2cf3f0100214ef9554b384a",
+            "16856e465d96c809cac74b2741fc431e28bb20613cada029911e4ecdd89421c7",
+            "77c04f8d2c430279f1ba94ab18f9f0ea4c900354f830a5f6e8a217a7be934be9",
+            "e35a265cf98e279728a5c176b64b20a70509614407d8d99839dbbbba914579e9"
+          ],
+          "attack_sword": [
+            "8524865fbcfa39ef5f7473f92689a3f8d2553f12bc7facc8903bef314f8d8c06",
+            "1d833ba1683514962c535d98157943d1e9773a5c2801efa876b0ebb040b14029",
+            "aeee2600cfa63a7b86adf325ae18039ea30f49a5d5716cdb5fcf008e95f7212c",
+            "a2f46455d570d2724e8b9df5b32df3ab80453476706168897353656cc6baf295"
+          ],
+          "attack_axe": [
+            "c0ce5257e64f369bc424f0f0d271983280ffbc12eddc51986a14ffa222b3fab9",
+            "d0c03fba6134961f00de275d8b64f488bea4d70b6b922d2c25ece68f523071ca",
+            "e127d6ff628b8657a12c86a3b17632eb92be0629868e43b83ba9037a14aee11d",
+            "48f65af0203e5e801d5ef1cd90546a73bc273d282de18954063dcc3be357922d"
+          ],
+          "attack_spear": [
+            "9dc5a8227ede47eddbf1d63d5f36e1ed210553c7864ca60cef9137d12beacbf4",
+            "5b388ea58c90d05e5af5e6a6e7df707c5922a239004ae84e4dc824aee1ec52f9",
+            "9d04ad31d873f29d4a75f663bb1b48136c7eb9066c0ad8eb15f00e1a26888c3d",
+            "fe60c4c2303f923c789e657a7cd371cc017d2bdc837773afc4c285e95778c8a0"
+          ],
+          "attack_dagger": [
+            "2fc4442770532238318cdfd762da220e45344f1473b17ab09e1d1050fb0a99ea",
+            "9133f699dea5662ae6f1e29a390b96a45fbbcad9281319b0beb756f0401a9529",
+            "e4f9614b20ed33328d058c4db1c42f425eb65f75389e6b6fd002eb79a078c799",
+            "d80d961c0c6607519ebfcd861b571532237146fd5b4a2007d82a48845d71f3f7"
+          ],
+          "attack_bow": [
+            "94cc88b6d08f7515b924bdbcd4a590efec06a40e693203a45077640a62a3b5ac",
+            "8d2a052baa571ee1fa7d093f58835dddc96f7e55a8ac15b93b4ed092db194a70",
+            "b4af7f8308271be91c7360794624a20e55a539cf042fd9a09806c6066c911701",
+            "a6936480c3c3c6fd4753d610d54f1e4e7eac902c91018392942c25314b6d0c67"
+          ],
+          "attack_staff": [
+            "6cdba71893b26a145a5a000fd893c811dff7a7fb54a12a14a10b94caa177cba9",
+            "bec543908a4fd789466bdf4e020b179b02f692b11ba42a41ae79dea704f8f6d9",
+            "41730e906dd8a422b602879d291dcf82470011423677ecc5a648c848ea4cccb6",
+            "a66bcebe9fce0a955395df6cf298d92a7fb9c9880e0c7cb6280924addc1dfb5f"
+          ],
+          "attack_mace": [
+            "7efb2da952ec6ce6fb77968811eb1cb64cac76b6947455365aaed744fae3a81c",
+            "c55d6379e9b337e58d1702d394eaa5028fd903116477c5d3b4a72d116b9852dc",
+            "daca5f8dc3ec7148ace26020e6089a83c5ac9b980aa6b99bcd1faad2d44d6ef3",
+            "73c72c80b79255d4796fa9e315b6d7925e6e0b13e507cda98fc91bb40bdd451a"
+          ],
+          "attack_book": [
+            "ec725faf746f6b64619274f10894c87ed02a52ce750acf3e7695fa2333d13d84",
+            "75e83a50ffa47aaf98639b895b12de86508acc7b3b0d9b4d71dacd9e16e7b5af",
+            "43b843bb0544e62a3faa7e6cf24b7706000a0c5939b58f895f487814bdabaa4d",
+            "4d5e18a3d20b95fa225f266142d761c82ec5bf98abe07f3f081d96feea0621bd"
+          ],
+          "attack_gloves": [
+            "405c4252e00adeca6754eb34813f380248f5334a1b93819b2c76592783bf3322",
+            "a28529a436f26f7cc6569a0f4204440dba6693ea9359daa57db36f39771553dd",
+            "f0301c455b8fcec63f1fcc6bc6b712e0b89593bc40f51559885a9a3912b249a3",
+            "29488bf7a7f77b2a27c5d17878566957391a0f8598efdae6f33a701fc26e35ff"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 3
       }
     },
     {
@@ -114153,7 +114283,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/inquisidor/f/inquisidor-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/inquisidor/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -114784,8 +114914,8 @@
                 "pixelSha256": "ce5e3a7b07e88c60f231a046ed81f98beafc00678ed14a7e2265fc74d9057815"
               },
               "03": {
-                "sha256": "4591dca0d16568501a287f5dd85b5d6aa3f85ad14797a30a7f99bb7bf5503957",
-                "bytes": 24298,
+                "sha256": "4f0d47899a46a897094490bf6d3d20189dadc3aa84e3ddc8a45ecdac78a79986",
+                "bytes": 24600,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -114793,11 +114923,11 @@
                 ],
                 "bbox": [
                   12,
-                  93,
-                  112,
+                  92,
+                  113,
                   247
                 ],
-                "pixelSha256": "14984bea4e71e273ba07a33223bd73e4066b5c415aac9efdaba160b64bfa4dfb"
+                "pixelSha256": "8f4976b5043c4232f6897a2123413b3cef4d670576439d824dc86aa9447ceb8e"
               },
               "04": {
                 "sha256": "a2eea4067861e1ee712849fb946df65c9e035c15837ae83806893bb28ef6ed68",
@@ -115277,7 +115407,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "67664ec7510b844345985257c041b39dc4511b644194461cf835f1917e3af2f9",
@@ -115315,7 +115446,8 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "f21083aeda7dc9cdb9b27c96956cf2c72b65a77e635e538d931ed2b87c752b6d",
@@ -115353,7 +115485,7 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "40fbeb4aaf32bbbf10deb56cac6d5732227ec9a1c18959cd4fcb44669f777ebd",
@@ -115615,7 +115747,8 @@
                 }
               }
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "c325caa7a26deae380051629bfe6d26b137a908109e9c76c9a8fc915e7ea9028",
@@ -115653,7 +115786,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "38b71fe255d39f7b2986fced103a29a5933fcf3c52f3a947f0b61d23668bf17f",
@@ -115691,7 +115825,7 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "01": {
               "sourceSha256": "4ef951b06d407e3cd12e60808b5ac076b14c8e853ba57c13d8e245388bd77867",
@@ -115823,7 +115957,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "35b93043dc371041f32eab7cdded98fe2167d8acc988731feadde3fc0efd9002",
@@ -115861,7 +115996,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "971ab81f9e9f78d8cf0e2ddb96a1fb623071bd0b6171d79def081ec654fcdd30",
@@ -115899,7 +116035,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "217d37472f5bee53da870b5a06747c811c6666a8010fbe3adc90a76ab368ffd5",
@@ -115937,10 +116074,11 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
-          "sourceSha256": "513785ad6499cefb53554ec1950f3f6d2b0696abea7c420d4c0d9882ca91ca5e",
+          "sourceSha256": "3f330d93ca75c40aca681ed23d3f199ddfc64a55a01d13eaa58a655a96dfd6ec",
           "sourceDimensions": [
             2172,
             724
@@ -115965,9 +116103,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/inquisidor/f/source/attack_spear-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/inquisidor/f/source/attack_spear-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " STRICT CLOTHING COVERAGE: Inquisidor has FULL-LENGTH fitted BLACKENED-PLUM sleeves covering EVERY part of both arms from shoulders through elbows to glove wrists, under engraved pewter bracers. NO BARE ELBOW or forearm skin, NO WHITE ROLLED NOVICE CLOTH CUFF. Keep dark plum fabric on inner/reverse forearms even when bracer plate turns away. Only face, neck and exposed finger tips show skin.  Production RPG body sprite strip for Inquisidor FEMALE, Tier 2.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. STRICT CLOTHING COVERAGE: Inquisidor has FULL-LENGTH fitted BLACKENED-PLUM sleeves covering EVERY part of both arms from shoulders through elbows to glove wrists, under engraved pewter bracers. NO BARE ELBOW or forearm skin, NO WHITE ROLLED NOVICE CLOTH CUFF. Keep dark plum fabric on inner/reverse forearms even when bracer plate turns away. Only face, neck and exposed finger tips show skin.  Adult severe feminine inquisitor with silver-white hair in a compact center-parted low knot, cool gray eyes. Austere inquisitor uniform: fitted BLACKENED-PLUM long vest coat with BONE-WHITE vertical stole panels, narrow crimson piping, short rigid standing collar, compact brushed pewter shoulder caps and forearm cuffs, flat pewter balance-scales brooch at chest, broad black belt with three rectangular red wax-seal plates, split coat tails close to knees, fitted black trousers and high dark boots, dark fingerless gloves. No hat, no neck scarf or cape, no flames or glowing symbols, no held book or weapon. Tier2.5 Sacerdote/Brujo hybrid: disciplined ecclesiastical tailoring with controlled dark occult details, richer layered ritual cloth than either parent. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise tiny wardrobe-only correction of Image1 FEMALE Inquisidor spear strip, THIRD figure ONLY. The NEAR/LEFT-in-picture forearm stretched horizontally across the chest erroneously shows a FLAT PEACH BARE SKIN PATCH between a silver elbow-side cuff and black glove. Replace that entire skin-colored forearm patch with an ENGRAVED PEWTER METAL BRACER over fitted DARK PLUM sleeve, matching the bracer in Image2. It is around source x1390..1430,y255..300 on2172x724canvas. No bare forearm skin and no white cloth. Keep exactly the same arm outer contour, elbow, wrist, fist/finger coordinates, both grip points, body scale, pose and all other pixels as closely as possible. Figures1,2,4 unchanged, third head, coat, brooch, seals, feet unchanged. Four full bodies in one row, true transparent alpha, no weapon, shield, magic, shadow, text or markers.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
           "canonicalPoseHashes": [
             "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
@@ -115975,7 +116113,140 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "513785ad6499cefb53554ec1950f3f6d2b0696abea7c420d4c0d9882ca91ca5e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/inquisidor/f/source/attack_spear-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "513785ad6499cefb53554ec1950f3f6d2b0696abea7c420d4c0d9882ca91ca5e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/inquisidor/f/source/attack_spear-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "513785ad6499cefb53554ec1950f3f6d2b0696abea7c420d4c0d9882ca91ca5e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/inquisidor/f/source/attack_spear-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "513785ad6499cefb53554ec1950f3f6d2b0696abea7c420d4c0d9882ca91ca5e",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                644,
+                20,
+                1069,
+                693
+              ],
+              "scale": 0.23,
+              "origin": [
+                15,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/inquisidor/f/source/attack_spear-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " STRICT CLOTHING COVERAGE: Inquisidor has FULL-LENGTH fitted BLACKENED-PLUM sleeves covering EVERY part of both arms from shoulders through elbows to glove wrists, under engraved pewter bracers. NO BARE ELBOW or forearm skin, NO WHITE ROLLED NOVICE CLOTH CUFF. Keep dark plum fabric on inner/reverse forearms even when bracer plate turns away. Only face, neck and exposed finger tips show skin.  Production RPG body sprite strip for Inquisidor FEMALE, Tier 2.5, action attack_spear. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. STRICT CLOTHING COVERAGE: Inquisidor has FULL-LENGTH fitted BLACKENED-PLUM sleeves covering EVERY part of both arms from shoulders through elbows to glove wrists, under engraved pewter bracers. NO BARE ELBOW or forearm skin, NO WHITE ROLLED NOVICE CLOTH CUFF. Keep dark plum fabric on inner/reverse forearms even when bracer plate turns away. Only face, neck and exposed finger tips show skin.  Adult severe feminine inquisitor with silver-white hair in a compact center-parted low knot, cool gray eyes. Austere inquisitor uniform: fitted BLACKENED-PLUM long vest coat with BONE-WHITE vertical stole panels, narrow crimson piping, short rigid standing collar, compact brushed pewter shoulder caps and forearm cuffs, flat pewter balance-scales brooch at chest, broad black belt with three rectangular red wax-seal plates, split coat tails close to knees, fitted black trousers and high dark boots, dark fingerless gloves. No hat, no neck scarf or cape, no flames or glowing symbols, no held book or weapon. Tier2.5 Sacerdote/Brujo hybrid: disciplined ecclesiastical tailoring with controlled dark occult details, richer layered ritual cloth than either parent. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_spear-reference.png",
+              "canonicalPoseHashes": [
+                "d97758f8dbc4d891b40639bbe1bd6512bc553343b493e368b3b2bc37dd4fd2c7",
+                "8024001fc8d1993688f9a27efa28f3d4c610b1bf4697d0da1f00ea3f8703f5c3",
+                "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
+                "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "276e312029421d7fa3e78dd715e7f950f58a0df48f5822aa23c8d36d4e19cf4c",
@@ -116013,7 +116284,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "5ead4388f5e803ebf3eaa44b8eb0f244f0ce2c425743be4b33b3ad2b2036ff0c",
@@ -116051,7 +116323,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "b90664d44453a7a4a2ab8b9c9c46d16dfecc24ecb95f2c4a2f252841507258be",
@@ -116089,7 +116362,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "255ca0d3e73630a7c349afecb3474a4ddcdd1a09f8d04ac21a74480a411aeb95",
@@ -116127,7 +116401,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "a07845cfdb1cf74766936e0b1606d64230d3160f1d8dc23f140d0b9487607de8",
@@ -116165,7 +116440,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "18d2adb5dfff885bd955913f65fc8e24d92e2ad49a380822787d3ce7fea4fb3d",
@@ -116203,7 +116479,8 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -116336,11 +116613,11 @@
           "frame": 4
         },
         "attack_spear/01": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_spear/02": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_spear/03": {
@@ -116348,7 +116625,7 @@
           "frame": 3
         },
         "attack_spear/04": {
-          "source": "sources.attack_spear",
+          "source": "sources.attack_spear.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_dagger/01": {
@@ -116478,6 +116755,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "inquisidor",
+        "name": "Inquisidor",
+        "tier": 2.5,
+        "costume": "Austere inquisitor uniform: fitted BLACKENED-PLUM long vest coat with BONE-WHITE vertical stole panels, narrow crimson piping, short rigid standing collar, compact brushed pewter shoulder caps and forearm cuffs, flat pewter balance-scales brooch at chest, broad black belt with three rectangular red wax-seal plates, split coat tails close to knees, fitted black trousers and high dark boots, dark fingerless gloves. No hat, no neck scarf or cape, no flames or glowing symbols, no held book or weapon.",
+        "maleIdentity": "Adult severe masculine inquisitor with silver-white neat short hair, sharp dark brows, clean-shaven, cool gray eyes.",
+        "femaleIdentity": "Adult severe feminine inquisitor with silver-white hair in a compact center-parted low knot, cool gray eyes.",
+        "unique": "Bone stole over blackened plum, pewter scales brooch, red seal plates.",
+        "advancement": "Tier2.5 Sacerdote/Brujo hybrid: disciplined ecclesiastical tailoring with controlled dark occult details, richer layered ritual cloth than either parent.",
+        "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. STRICT CLOTHING COVERAGE: Inquisidor has FULL-LENGTH fitted BLACKENED-PLUM sleeves covering EVERY part of both arms from shoulders through elbows to glove wrists, under engraved pewter bracers. NO BARE ELBOW or forearm skin, NO WHITE ROLLED NOVICE CLOTH CUFF. Keep dark plum fabric on inner/reverse forearms even when bracer plate turns away. Only face, neck and exposed finger tips show skin. ",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/inquisidor/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "9b8728acc36aa97ce6a8ba00802c5ee68c174013c4ca0f71bbb2b067bd10568f",
+            "b117162b03373f0b4711d8ce82397623388a65d7a2eea2f531a444a0767102ea",
+            "8e479a4f9b63fa98f44db25b3362b73e8e6373320c90298e5c5dda2f6bac951d",
+            "cc9a18e6d792978f278b1e329dd45c0cb77d5772e3ab6ac8e9bf6624c3f6ddec"
+          ],
+          "walk": [
+            "ba27931b01ed007ccf8fd564ea4f38c8bd9224bbe94c499bccc330d5dbca141f",
+            "dfd80cf054b6864c549960c98ad8e2e8cd29e87ded7506e01a897b5ac706477b",
+            "4c2962ec7d4eba66f25843fc9c34a4673c8f434e8ec23b7bad6efdd9bfdf5ccd",
+            "2e36f11bb2a1dcb4f4b0a312a4bc9dcc1efed93a5d310d4b8095ae896eeaae80"
+          ],
+          "hurt": [
+            "475cb6eca0be104f323dadf31afef02a2c35fa1664a4c10b62f199f913b3ce47",
+            "35b7d00248649377c16441d243fe3a3e5d971cc710830693e51d0ac6714a8e8d",
+            "846452ed8f34e5d7f361ad855ff33ed1d48c38a205ce5a2b368b33a85fdb2176",
+            "24e57f6952328c31bd096e2e0e2d0a9e2e4479c8250c0f6de0bb2473cfef1a59"
+          ],
+          "use_consumable": [
+            "7b64980566a0611ea7ff8e334b26198165a7814370b500b11c5f2e2ec6fbb7d8",
+            "893dbbaa7f91e3170c572f162e7199795cf6478c5ba6fd5e6af2c054f09788ed",
+            "eabee396579da3cb105a6c8294cd2837684d960b930920234d9fdf4cb64e3d37",
+            "5bbcdb14620477cf687bd24a4ae93ac44cc7a6665b6e1fd5b773663390f7acbb"
+          ],
+          "dodge": [
+            "b91b71c75d24446de07459738eb15c8b51b562d8fdee0c92ecf9ae4582c6008b",
+            "8b5a61a4f6c053f21624bbfdf0f40ebd8987fc17dc817b4498c58a74107276e4",
+            "1c67482e89de05033592f6d659c86f982c9260a52c2a0a4fb942467a3e9ae424",
+            "14637be69f9a420b4a58ee2dfa8217c7909af31263ae2a349d9aec854e453a8c"
+          ],
+          "block_shield": [
+            "31737913ce640e626b8fa02e1f4eed938bcdae81f5ec92c04712f2aac2a0c518",
+            "94b9f5ebdf58b76679befa953010a7d26150e4a6d5e14d70be5716644fd9c4a2",
+            "a9d3e6b879ed94116a01ffb6e77d3ed3fbb12da114afcaf8af1d1a367cd2662a",
+            "b30798dfff56ef0bd06f24bdd3bb9c90bf4884cde09b4ec2fdfc6abeb8dddfcc"
+          ],
+          "attack_sword": [
+            "7c302454eb79d8960789b778f663abf8d66b3c5a2d4f3744eeb2611e46cb05a7",
+            "b450431bedd35b459873b19d6af8127a525be5f2633148475a56a49bfe823c16",
+            "d650f58b7cc9632e156ecb0da5003ac60424cbcec59edcd9e41a700bc360f44a",
+            "de8d5aa1ca059c65025b64fc2407478b7698b0923c3f09110bd11433fb2da06a"
+          ],
+          "attack_axe": [
+            "50048537ea747fa4dcdd77c77a6d246f42d6c97bda150dcd12a039d29e711766",
+            "ddd7b61dd97839d60c1a51eec504ec5e68339ca10cdf73828440c9c348f07c73",
+            "bed6474b1db709487f2a6b7f34cc1d95893360f7129b6bdba82770d52a05bf7d",
+            "849c251f2e1bb05492c3ab56849596a42d8698db69121c76ca95c52c42c90399"
+          ],
+          "attack_spear": [
+            "ef4053563d72f5acbedda6b441600936e3b95385746ec4d321f311f7076d10bb",
+            "52128dcb8fb79e80f74947867caf68496fcafb57660850270df6a95d11dcb154",
+            "4f0d47899a46a897094490bf6d3d20189dadc3aa84e3ddc8a45ecdac78a79986",
+            "a2eea4067861e1ee712849fb946df65c9e035c15837ae83806893bb28ef6ed68"
+          ],
+          "attack_dagger": [
+            "75b5a24718ba459bef31ddcce023f5ec7699f5cc313a4db426f67ed1dc4555d9",
+            "f88cf5daf5db8e74a0ac49a920d83a11c4b744c5337b3c3ca2ff73b9ec3b486d",
+            "93837e16bc21a5d98db19fcddecb44b9924732d0f14ce6ef5bbc4d75a5cda100",
+            "178fbd4cee9343044242f62af89db5c232b6afda65087e115d69cd6312b2f74a"
+          ],
+          "attack_bow": [
+            "7ddcfaedc241c8537cf4aab4fcb26ae0839a96bba240e743ff7264f6c9b4ab70",
+            "8c96bee53a27cdd3d4344909ddc2191bcc38bd1fb76d0b29e8a461159be5db29",
+            "83fece30a981b3b7c2d9babfdf48906eef22b3fc7d62ae165ae241a2db71b56d",
+            "873280a483f9ea89e94509eb822c0dddd3774f08457b37d4520efed3b391a606"
+          ],
+          "attack_staff": [
+            "a8975147cec5e1153be2ff68582d22c807e61390f211fc68b3a6a4bebcdddc6d",
+            "b2a5ba04fd99c49f734443b80c48acaface235193b0a20616d753db95cc07ab8",
+            "258675bed9f8b8d1241fc500408ec2f86fa35463d3908588cd544036682f4547",
+            "623a214e62b0c8b33219352731ae9982db9bd0e3e4273a49dd8b3403f9c99a5d"
+          ],
+          "attack_mace": [
+            "75a2aaa7d3d1163814e4e79f186848694853c2e8d369eb4b9756c7d851866643",
+            "507e0e25e3589dbd5bd886a66d75e9aa560cceb5f00e1b0f4b1cbfd9ba3971af",
+            "baea84d4639974db412ebe191a2e5854e4503f6bb421aa5cd3ba2290aac8c95e",
+            "f9ed9757709e04867b27c780ac91c8eef88a037f287c6bed71ff721a370bd208"
+          ],
+          "attack_book": [
+            "83b6de708d2321f74ca196c4dbea1d3ae3f278046dd48e9d6d4aa80331c9a92c",
+            "b818a4b0c4e8c0da5ac303ffcfbca17d1b582b7f2ddb21a7063d27777a503ad3",
+            "c28afbd4d0e6d11c294f45b04aad2d8871544d5a558b8d8679f79363ff5fccfa",
+            "84e2d81362560bc4d30dd6fc6f3c9b4ec7b877fa92762e428f881ff752b40661"
+          ],
+          "attack_gloves": [
+            "50dd46c253603eadcc6d60ee6552a3d7bf75061ec95c4dac68fffbb20fd3f929",
+            "e18bc1e8127b936585c0f3bca93aa9a1bab9eb1f22f3f1139c71bfd683b2e9b0",
+            "88df252746789d2d4b9dfbeb2f17cfa80273b71d8339edb35022bc940ad3c476",
+            "4d6505167ab90dd6677a198e50d6d665eb7db624b754216f0a31b025b3c36f72"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 3
       }
     },
     {
@@ -122032,7 +122424,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 2.5 in class order: Cruzado, Pirata, Druida, Espadachín rúnico, Chamán, Inquisidor, Heraldo de guerra, Ninja, Alquimista, Herrero; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
@@ -122702,18 +123094,18 @@
       "femaleIdentity": "Adult severe feminine inquisitor with silver-white hair in a compact center-parted low knot, cool gray eyes.",
       "unique": "Bone stole over blackened plum, pewter scales brooch, red seal plates.",
       "advancement": "Tier2.5 Sacerdote/Brujo hybrid: disciplined ecclesiastical tailoring with controlled dark occult details, richer layered ritual cloth than either parent.",
-      "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses."
+      "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. STRICT CLOTHING COVERAGE: Inquisidor has FULL-LENGTH fitted BLACKENED-PLUM sleeves covering EVERY part of both arms from shoulders through elbows to glove wrists, under engraved pewter bracers. NO BARE ELBOW or forearm skin, NO WHITE ROLLED NOVICE CLOTH CUFF. Keep dark plum fabric on inner/reverse forearms even when bracer plate turns away. Only face, neck and exposed finger tips show skin. "
     },
     "heraldo_guerra": {
       "id": "heraldo_guerra",
       "name": "Heraldo de guerra",
       "tier": 2.5,
-      "costume": "Martial herald uniform: fitted DEEP TEAL padded sleeveless battle vest over PARCHMENT fitted sleeves, compact COPPER lamellar shoulder caps, ivory short split tabard with three flat crimson geometric seal patches, copper fist-and-quill chest emblem, dark navy broad sash, white wrist fighting wraps leaving full fingertips visible, charcoal tapered trousers and dark fighting boots with copper greaves. No spectacles, no neck scarf/cape or tall banner. No held book, weapon or physical flag.",
+      "costume": "Martial herald uniform: fitted DEEP TEAL padded sleeveless battle vest over PARCHMENT fitted sleeves rolled neatly below the elbows, with a short bare forearm section above white wrist wraps, compact COPPER lamellar shoulder caps, ivory short split tabard with three flat crimson geometric seal patches, copper fist-and-quill chest emblem, dark navy broad sash, white wrist fighting wraps leaving full fingertips visible, charcoal tapered trousers and dark fighting boots with copper greaves. No spectacles, no neck scarf/cape or tall banner. No held book, weapon or physical flag.",
       "maleIdentity": "Adult confident masculine tactician with jet-black hair swept into a short high knot, warm tan skin and clean-shaven face.",
       "femaleIdentity": "Adult confident feminine tactician with jet-black compact double braided knot, warm tan skin.",
       "unique": "Copper fist-and-quill emblem, parchment seal tabard over teal martial layers, fighting wraps.",
       "advancement": "Tier2.5 Luchador/Escriba arcano hybrid: combines athletic fighting wraps and copper motifs with parchment seals, adding compact battlefield reinforcement.",
-      "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses."
+      "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Keep the chosen male reference's neat elbow-length rolled ivory sleeves, exposed short forearms, white wrist wraps and three separate crimson tabard seal patches identical in every pose."
     },
     "ninja": {
       "id": "ninja",
