@@ -3,7 +3,8 @@
   "classId": "inquisidor",
   "sex": "m",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "396c24f28cf23a6d198185dd621e779984bb7a23d438ea5a5681ed7614b35a47",
       "96663488bcb54eed9432422774b6d78cb5a10006ad3c8915773a62551fb0f008",
       "b9844d485f86686f33d53e6be6ca5155690d34600f0a2219d87cd60fced2ed67"
+    ],
+    "walk": [
+      "8327820d133d749586d4abff6a3dd81b3231e405ad3220fb386c028eb04e4a0f",
+      "61b1294a6cbeedf22dd2036e76f4396c6732af2c046276226af16a3094c347b2",
+      "cfae3b24749c09406ff3f4b2c6653aea27ddc2df68a3c369fc0084a2cfbde612",
+      "e92f682627250dd4dd43b0fabcd058663cd3f0dabca72e96ce25e499cf2b508d"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 3,
