@@ -75480,8 +75480,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "43eb8c9f62fe3b581734a12f6ee53f79999452952709b66d6a4dbf6c98bf348c",
-                "bytes": 24555,
+                "sha256": "db09921a18772c41b3f35d2389cf5be5c15b91fac76398dec1694c48fc961311",
+                "bytes": 25019,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -75490,14 +75490,14 @@
                 "bbox": [
                   14,
                   99,
-                  108,
+                  109,
                   248
                 ],
-                "pixelSha256": "c422ae431dd1ecca46f673c6889377c5ebf2d352df7cfc42d44546ff0c224b15"
+                "pixelSha256": "3ac41972cee1d966ad0f22c7dc7e912d6299e6841bfaf23a0bc96c4ece7ead17"
               },
               "02": {
-                "sha256": "f99663cc053c9358bd7854963433273f54661e070ab3a5859fd33f4713284c2a",
-                "bytes": 24959,
+                "sha256": "6074842c7bfda68fa2311fb70e71ee8660b779fb9615b20515b29601d18060a8",
+                "bytes": 23679,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -75505,15 +75505,15 @@
                 ],
                 "bbox": [
                   7,
-                  99,
-                  109,
+                  98,
+                  110,
                   248
                 ],
-                "pixelSha256": "0783ec1b149acf3593de6647674b107c44518c2b304eb7aa8772541694b7e56f"
+                "pixelSha256": "a0a68caa75fcb9c2f735683861f37f3ca87d71c90477f409db83371848c7ba20"
               },
               "03": {
-                "sha256": "ac8fdd71655ba2fc7cd97ec9dc641893ca0d9281dc190deb8ac2a82ec155363b",
-                "bytes": 25444,
+                "sha256": "a818b289124533a9dedef45830afe9e1da0c0544acf791b8cdfdfdebdd4457e3",
+                "bytes": 24479,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -75521,27 +75521,27 @@
                 ],
                 "bbox": [
                   9,
-                  101,
-                  122,
+                  100,
+                  123,
                   249
                 ],
-                "pixelSha256": "8e5ebdcfdc0e2fe5d7ca6e2f4aef6bc55de77bbed449ff4699acf02b6321e52c"
+                "pixelSha256": "4a2150b244775db93eb16eee3002640f32178ceca5c33eee5eab8b198bfea127"
               },
               "04": {
-                "sha256": "c0972290b76521b815c4840ba293eff0187a134f460cbd6d4360f20e97123935",
-                "bytes": 24860,
+                "sha256": "5508e41ed9135fe565e3d90ff79fb398ea3eb4688932b60157493409eff00873",
+                "bytes": 24381,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  20,
-                  99,
-                  113,
+                  19,
+                  98,
+                  112,
                   248
                 ],
-                "pixelSha256": "9b41bc2c7a84230703765c4a0ad0ff7bfeb536ab07ea6b2032979dc683f3ed53"
+                "pixelSha256": "eb41cce677ae02fd9cca2b6ad50df2b0308ad64f9ad509785f22dc7d1939e005"
               }
             },
             "distinctFrames": 4
@@ -76396,7 +76396,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_sword": {
-          "sourceSha256": "f234a8fe86c4387db8890e13d2169e6d4c951ba45eab55e93052c04062c34908",
+          "sourceSha256": "23e6d59cea8945f79be5c19c5b87d1a918ae09ba74541ff235b71d968391536f",
           "sourceDimensions": [
             2172,
             724
@@ -76421,7 +76421,7 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/bardo/m/source/attack_sword-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/bardo/m/source/attack_sword-reference-v2.png",
           "generator": "built-in imagegen",
           "prompt": " Production RPG body sprite strip for Bardo MALE, Tier 2, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted cream undersleeves with narrow cuffs, palms and gloved fingertips clearly visible; keep shoulders and feather compact inside source margins. Adult charismatic masculine troubadour with warm golden-copper wavy short hair under the compact beret, expressive eyes and confident half-smile, clean-shaven; canonical head proportions. Travelling bard outfit: compact soft PLUM beret with one short IVORY feather tucked close to hair, tailored PETROL-TEAL doublet with PLUM shoulder panels and restrained ROSE-GOLD braid, cream fitted undersleeves, plum waist sash and two short split coat tails, small rose-gold lyre-shaped chest brooch, fine diamond pattern on lower doublet, dark aubergine fitted trousers, neat brown riding boots with rose-gold buckles and dark fingerless gloves. Defining features are plum feather beret, teal/plum doublet and lyre brooch. No instrument, no lute, no bow, no music notes, no long cape or attached weapons. Tier 2 support branch after Arquero, an accomplished travelling performer with tailored brocade rather than ranger leather. Reserve paired sword motifs and longer dance panels for Danzaespadas. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_sword-reference.png",
@@ -76431,7 +76431,47 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "f234a8fe86c4387db8890e13d2169e6d4c951ba45eab55e93052c04062c34908",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/bardo/m/source/attack_sword-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Bardo MALE, Tier 2, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted cream undersleeves with narrow cuffs, palms and gloved fingertips clearly visible; keep shoulders and feather compact inside source margins. Adult charismatic masculine troubadour with warm golden-copper wavy short hair under the compact beret, expressive eyes and confident half-smile, clean-shaven; canonical head proportions. Travelling bard outfit: compact soft PLUM beret with one short IVORY feather tucked close to hair, tailored PETROL-TEAL doublet with PLUM shoulder panels and restrained ROSE-GOLD braid, cream fitted undersleeves, plum waist sash and two short split coat tails, small rose-gold lyre-shaped chest brooch, fine diamond pattern on lower doublet, dark aubergine fitted trousers, neat brown riding boots with rose-gold buckles and dark fingerless gloves. Defining features are plum feather beret, teal/plum doublet and lyre brooch. No instrument, no lute, no bow, no music notes, no long cape or attached weapons. Tier 2 support branch after Arquero, an accomplished travelling performer with tailored brocade rather than ranger leather. Reserve paired sword motifs and longer dance panels for Danzaespadas. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_sword-reference.png",
+              "canonicalPoseHashes": [
+                "94a4871c11e468f126047a7a472588393f74f1d9030e300baa1a8d02eb68d602",
+                "d1b8dd9b5ff7a4aa6b896810a5ccbf6ac50fc6fb36e029b6e0d55031f1d814a4",
+                "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
+                "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_axe": {
           "sourceSha256": "7945e2da70b085d439c7b282ef567f2722b316597cd743350d4696e84035a18c",
@@ -76992,16 +77032,16 @@
           "frameIndex": "shared-body-and-equipment",
           "frames": [
             {
-              "bodySha256": "43eb8c9f62fe3b581734a12f6ee53f79999452952709b66d6a4dbf6c98bf348c"
+              "bodySha256": "db09921a18772c41b3f35d2389cf5be5c15b91fac76398dec1694c48fc961311"
             },
             {
-              "bodySha256": "f99663cc053c9358bd7854963433273f54661e070ab3a5859fd33f4713284c2a"
+              "bodySha256": "6074842c7bfda68fa2311fb70e71ee8660b779fb9615b20515b29601d18060a8"
             },
             {
-              "bodySha256": "ac8fdd71655ba2fc7cd97ec9dc641893ca0d9281dc190deb8ac2a82ec155363b"
+              "bodySha256": "a818b289124533a9dedef45830afe9e1da0c0544acf791b8cdfdfdebdd4457e3"
             },
             {
-              "bodySha256": "c0972290b76521b815c4840ba293eff0187a134f460cbd6d4360f20e97123935"
+              "bodySha256": "5508e41ed9135fe565e3d90ff79fb398ea3eb4688932b60157493409eff00873"
             }
           ],
           "limitations": [
