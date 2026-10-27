@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "heraldo_guerra-m",
+  "nextVariant": "heraldo_guerra-f",
   "classes": [
     {
       "id": "novato",
@@ -117082,12 +117082,12 @@
       "tier": 2.5,
       "sex": "f",
       "order": 54,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/heraldo_guerra/f/heraldo_guerra-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/heraldo_guerra/f/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -117101,12 +117101,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "72ee927df774d6b60a274308ef23296417e0742c5ce1a8d7e2f94a7157b43cc3",
+                "bytes": 23446,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  91,
+                  104,
+                  248
+                ],
+                "pixelSha256": "00bc51245913e34a389d54863d3439cb1975137ab45d69a7df8399f8a48891c8"
+              },
+              "02": {
+                "sha256": "e74d552212e7490185a202c1bab99ca1f63e5cb38b4b8d50cac9d09ee57f4b51",
+                "bytes": 23522,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  91,
+                  104,
+                  248
+                ],
+                "pixelSha256": "496994d5d757d8d7cb2641e3ad1e2e5d112477800a3ad7e751fa28d53004f991"
+              },
+              "03": {
+                "sha256": "a19182ca54674ef7f488ad73c6e2f06bbd3a1310e9104144bf70136c0a626d88",
+                "bytes": 23423,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  91,
+                  104,
+                  248
+                ],
+                "pixelSha256": "286a266e27c7136fa4a137b52722c8df8541be38f274b8eee08ee11d6720a9b8"
+              },
+              "04": {
+                "sha256": "3cddb1fc162b92f4c54bdbacba804a65fbef6211430ea02f26a7bf8c306c2e5d",
+                "bytes": 23437,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  91,
+                  104,
+                  248
+                ],
+                "pixelSha256": "a1da49a218d1b9b6377f5ea1522d89cee1bd7ec8b721f8eff9cd4a655eb7c5d2"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -117150,6 +117219,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "3fb58ab6c8d6135cfa8addad44d6bc07264f5fa12348e3c9d1a5f12986b1e0df",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/heraldo_guerra/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG body sprite strip for Heraldo de guerra FEMALE Tier2.5 action idle. Image1 defines ONLY exact canonical FEMALE geometry: four poses, full hand/finger and joint coordinates, head size, feet, quarter centers, scale and canvas2172x724. Image2 defines COSTUME ONLY from male Heraldo: match exactly teal padded vest, ivory sleeves ROLLED BELOW ELBOWS leaving a short bare forearm section above WHITE WRIST FIGHTING WRAPS, copper lamellar shoulders, copper fist-and-quill chest emblem, navy waist sash, THREE individual ivory tabard panels with three different flat CRIMSON GEOMETRIC SEAL patches, charcoal trousers and copper greaves on dark boots. Do not copy male face, hair silhouette or male body proportions. Adult confident feminine tactician with jet-black compact double braided knot, warm tan skin. Tier2.5 Luchador/Escriba arcano hybrid: combines athletic fighting wraps and copper motifs with parchment seals, adding compact battlefield reinforcement. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Keep the chosen male reference's neat elbow-length rolled ivory sleeves, exposed short forearms, white wrist wraps and three separate crimson tabard seal patches identical in every pose. Same crisp painted anime pixel-inspired RPG finish. All four costumes identical, three seals attached physically to tabard, full fingers visible. Replace all novice garments and hairstyle. Exactly four distinct full bodies in one horizontal row facing RIGHT three-quarter view, compact silhouette with hair hands boots fully inside own quarter with clear margins. No held or sheathed equipment, book, weapon, shield, flag, cape, shadow, effects, grid, text or logos. True transparent background.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
