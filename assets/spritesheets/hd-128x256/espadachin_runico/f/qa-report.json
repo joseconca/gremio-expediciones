@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-27T21:26:16.175523+00:00",
+  "classId": "espadachin_runico",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\espadachin_runico-f-sheet.png",
+  "sheetSha256": "72cb625be65bc804bf484a709f5fc8b13fdaf7129763c9c323721091c42e2d5f",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\idle\\espadachin_runico-f-idle-01.png",
+          "sha256": "b93f506da87b15e97e1e0c8db038dab4cc547518d229ac473071d3aee262f994",
+          "alpha_bbox": [
+            28,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\idle\\espadachin_runico-f-idle-02.png",
+          "sha256": "65f9194b94291e65b61f54b077673df21823fa956d23fe58048874dd1e367313",
+          "alpha_bbox": [
+            28,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\idle\\espadachin_runico-f-idle-03.png",
+          "sha256": "25ebc4e97874b1a28e9305723511157afdf28408e9038fcb84f445aa6d90576d",
+          "alpha_bbox": [
+            28,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\idle\\espadachin_runico-f-idle-04.png",
+          "sha256": "28124f52410f311e9e0f491b752e93063da0b7a38a6e9e32eda396c6eac3f5b6",
+          "alpha_bbox": [
+            28,
+            91,
+            108,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\walk\\espadachin_runico-f-walk-01.png",
+          "sha256": "9c77d4d22ea9f5d483fea6359c26bdc8071e14f402e3d3ff8f596208bfbca5a2",
+          "alpha_bbox": [
+            15,
+            90,
+            109,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\walk\\espadachin_runico-f-walk-02.png",
+          "sha256": "6c43647ecb20b907002922b3e1fe03470c3ee444b6a4442bf323ac076167803b",
+          "alpha_bbox": [
+            30,
+            90,
+            97,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\walk\\espadachin_runico-f-walk-03.png",
+          "sha256": "a75a2fa226b2c356b921c701fd9d0576ff59298e92625326c93d2f7d6aaad530",
+          "alpha_bbox": [
+            13,
+            90,
+            120,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\walk\\espadachin_runico-f-walk-04.png",
+          "sha256": "fb3248b8bf5846c55f7155db2a4468f0ece967ff4eddb21f2c85546be9a18dc5",
+          "alpha_bbox": [
+            25,
+            90,
+            100,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\hurt\\espadachin_runico-f-hurt-01.png",
+          "sha256": "56ac24440f318a198f020106e80089c17a19c188d88bba6b834e156575bf6ae7",
+          "alpha_bbox": [
+            22,
+            93,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\hurt\\espadachin_runico-f-hurt-02.png",
+          "sha256": "5b89d61b08286aeb13cac1716df96b63bd54d7bcbfc5656233486d0d2fdd57ee",
+          "alpha_bbox": [
+            27,
+            94,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\hurt\\espadachin_runico-f-hurt-03.png",
+          "sha256": "1f1bdbe4a259c649573b2b10436d183daa82c6a5a6e92686919d852b70a0f078",
+          "alpha_bbox": [
+            20,
+            115,
+            95,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\hurt\\espadachin_runico-f-hurt-04.png",
+          "sha256": "4d933014b79f1cdb94165fedc381416318e03c98900b6885a0bdb1105c166b39",
+          "alpha_bbox": [
+            17,
+            93,
+            99,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\use_consumable\\espadachin_runico-f-use_consumable-01.png",
+          "sha256": "ac37d91080289e394189eafcce22e82990baf181f36f190b232c861aaa82011b",
+          "alpha_bbox": [
+            25,
+            89,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\use_consumable\\espadachin_runico-f-use_consumable-02.png",
+          "sha256": "5b1c686788a641e1135453e29b60c6df89661520e4e82aecfd47282c0ae75f01",
+          "alpha_bbox": [
+            25,
+            89,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\use_consumable\\espadachin_runico-f-use_consumable-03.png",
+          "sha256": "b9b6f94c960c9fc7be3123e994f3a7395f53aae1ecbd28ffcfcfe57088cd6aa8",
+          "alpha_bbox": [
+            26,
+            89,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\use_consumable\\espadachin_runico-f-use_consumable-04.png",
+          "sha256": "c8cb954330bdbcb2f7fefaeac775240b36ed5ee259101ee20aba5a2a62decf3c",
+          "alpha_bbox": [
+            25,
+            89,
+            107,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\dodge\\espadachin_runico-f-dodge-01.png",
+          "sha256": "eb6ee56663611a18c4a0591a6a20a47b0e037e66b5b46f4a3ca88a53ebaa4128",
+          "alpha_bbox": [
+            33,
+            91,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\dodge\\espadachin_runico-f-dodge-02.png",
+          "sha256": "6d83f2501522f7f1f5aea0845103977b7c006f7d6a2354f49a1a0bde58076a3c",
+          "alpha_bbox": [
+            34,
+            98,
+            120,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\dodge\\espadachin_runico-f-dodge-03.png",
+          "sha256": "c59828a741e2401b75880816c693df4c4a3012d2e9c70c870d04910a898bee14",
+          "alpha_bbox": [
+            26,
+            124,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\dodge\\espadachin_runico-f-dodge-04.png",
+          "sha256": "97679fa60c8dfb5ddce20dda0ac5cad7e10cc26f67dfec28a95d4dc531b675ff",
+          "alpha_bbox": [
+            19,
+            91,
+            104,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\block_shield\\espadachin_runico-f-block_shield-01.png",
+          "sha256": "d9066ce8a3ab224a0df1099d1cf5c674708ae408f173a0079cd4e57a26a78766",
+          "alpha_bbox": [
+            29,
+            91,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\block_shield\\espadachin_runico-f-block_shield-02.png",
+          "sha256": "17395301abd1a8042b61820e9c61b2b5c5d1b355bc6765ce4840e383a48bcc4d",
+          "alpha_bbox": [
+            29,
+            91,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\block_shield\\espadachin_runico-f-block_shield-03.png",
+          "sha256": "60f0a710b8691b45110838ff151c23e873820d385995e2e8c59b67efe1d4b081",
+          "alpha_bbox": [
+            21,
+            105,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\block_shield\\espadachin_runico-f-block_shield-04.png",
+          "sha256": "79e7383c2d3c51c331cd998e18818410cc393a2d45877fddbc55341ac0329af8",
+          "alpha_bbox": [
+            18,
+            91,
+            102,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_sword\\espadachin_runico-f-attack_sword-01.png",
+          "sha256": "bd3e8f10f220153905e2c2d17d0a5c7c6545407deebc9a53d112be00f6ca71cc",
+          "alpha_bbox": [
+            23,
+            90,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_sword\\espadachin_runico-f-attack_sword-02.png",
+          "sha256": "5a4f5ef031f86eccb89089c8af3085815f17b83e435cf9e6d0286a764469ce2e",
+          "alpha_bbox": [
+            26,
+            89,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_sword\\espadachin_runico-f-attack_sword-03.png",
+          "sha256": "6db7990d316a4f76c359da900f0bc2e285144b6e30235eb0903f1d90b2815c8f",
+          "alpha_bbox": [
+            19,
+            94,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_sword\\espadachin_runico-f-attack_sword-04.png",
+          "sha256": "dbf46abfa352e04e6a87a0cfc06afaf5df109896b2ca109fc959e40e3831da5e",
+          "alpha_bbox": [
+            23,
+            89,
+            113,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_axe\\espadachin_runico-f-attack_axe-01.png",
+          "sha256": "1fb065d68b705be037828f5d73816f3e5790b820acd51d29261bf0c10d21447d",
+          "alpha_bbox": [
+            26,
+            94,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_axe\\espadachin_runico-f-attack_axe-02.png",
+          "sha256": "4465354e83b424b0d586a45f1750458d6b733af44ab64dc6dae71536f01d44d9",
+          "alpha_bbox": [
+            21,
+            90,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_axe\\espadachin_runico-f-attack_axe-03.png",
+          "sha256": "2365bd212643f9f76e53b05b20ccda47b67b3afc9d4ce478e1fc61d69314ecc0",
+          "alpha_bbox": [
+            17,
+            104,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_axe\\espadachin_runico-f-attack_axe-04.png",
+          "sha256": "83b7d7790521506e9f0c2221254f4d83b7e3ae90700b3dedc1169700a233fd52",
+          "alpha_bbox": [
+            8,
+            95,
+            99,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_spear\\espadachin_runico-f-attack_spear-01.png",
+          "sha256": "f56151b6febde2a8a282cc3c3ece85a386847622deb4291cd8059c210bbc1623",
+          "alpha_bbox": [
+            16,
+            92,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_spear\\espadachin_runico-f-attack_spear-02.png",
+          "sha256": "98d7ee53996b1936b7c6cb425412326ca464548253592071fb721cbda9d3cf1a",
+          "alpha_bbox": [
+            18,
+            92,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_spear\\espadachin_runico-f-attack_spear-03.png",
+          "sha256": "df72d0b2090c6d688921ad8683aff6e35e0314c05e3b0bc729e9080ffc412ffa",
+          "alpha_bbox": [
+            17,
+            92,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_spear\\espadachin_runico-f-attack_spear-04.png",
+          "sha256": "6379a7e3883fb20f60a2f56f67ba1bc3930df6e4e7284f0e3c3f8396ad9ec04f",
+          "alpha_bbox": [
+            18,
+            92,
+            114,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_dagger\\espadachin_runico-f-attack_dagger-01.png",
+          "sha256": "c91fe15db25db05eaafae8a82fcd478f2c45bad66f47b81cf886740eab0aa6fa",
+          "alpha_bbox": [
+            18,
+            90,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_dagger\\espadachin_runico-f-attack_dagger-02.png",
+          "sha256": "c0fcbdfed9cfd8de136afd0c2c518437830cfd973999e303bb96657ea077566f",
+          "alpha_bbox": [
+            19,
+            90,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_dagger\\espadachin_runico-f-attack_dagger-03.png",
+          "sha256": "9f91e55bb0bda8e41530df9a18e81401e3b1d7655e17632f24391b5fb05e84fc",
+          "alpha_bbox": [
+            17,
+            90,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_dagger\\espadachin_runico-f-attack_dagger-04.png",
+          "sha256": "257098eeb46b5d06898f1a9eb8262ee6deff41b9bb2fe68a6e2b1b629b9f8459",
+          "alpha_bbox": [
+            27,
+            90,
+            119,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_bow\\espadachin_runico-f-attack_bow-01.png",
+          "sha256": "3767f78f8f3d2b690da75bcc139fc18635aab315213d0902db139cc419bc35ab",
+          "alpha_bbox": [
+            26,
+            90,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_bow\\espadachin_runico-f-attack_bow-02.png",
+          "sha256": "fe2c0ad38a7416a244837f69569c6066bdd444ebe32e6c476f3551371c2f4280",
+          "alpha_bbox": [
+            19,
+            90,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_bow\\espadachin_runico-f-attack_bow-03.png",
+          "sha256": "e7fed3b6f48f20cfbb9b6228a44a32c433099167d0ad866dab7afaf93780cef3",
+          "alpha_bbox": [
+            20,
+            90,
+            117,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_bow\\espadachin_runico-f-attack_bow-04.png",
+          "sha256": "9354461f13d2744873bbb97ded4002af871ccf8189920c5a6f18af459984ffce",
+          "alpha_bbox": [
+            17,
+            90,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_staff\\espadachin_runico-f-attack_staff-01.png",
+          "sha256": "b1d96ed00a0e1f65fc1de31c635a16f795e4d0d97c70910d71c26c3f2433d61a",
+          "alpha_bbox": [
+            26,
+            90,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_staff\\espadachin_runico-f-attack_staff-02.png",
+          "sha256": "83615914b4dcc50bb63a4f383beb51cb9ff8ff64ce15f6bf8d0f5af7c27d955e",
+          "alpha_bbox": [
+            23,
+            90,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_staff\\espadachin_runico-f-attack_staff-03.png",
+          "sha256": "2c624c4aec9102147d3e44d320d12724252dbb27b8dbe5277e8928a472214cc2",
+          "alpha_bbox": [
+            23,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_staff\\espadachin_runico-f-attack_staff-04.png",
+          "sha256": "1ed54cb420187a7795caf2c5edc526ed336e5991f29cd88ea3c04ed15a82adb2",
+          "alpha_bbox": [
+            22,
+            90,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_mace\\espadachin_runico-f-attack_mace-01.png",
+          "sha256": "6887e24ccc9ea483cc59d46cb0a93a996d1dfb51b4f3d3a6393d85634cbdfc0d",
+          "alpha_bbox": [
+            31,
+            89,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_mace\\espadachin_runico-f-attack_mace-02.png",
+          "sha256": "7221012d09d6786d50fccd1ba14ed9b1033969a7486aec0a8289c38782de8034",
+          "alpha_bbox": [
+            26,
+            89,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_mace\\espadachin_runico-f-attack_mace-03.png",
+          "sha256": "6689345c188bd5c1cd95e52c370105ca0d7be56eac1e2e50d4a5505ff288157b",
+          "alpha_bbox": [
+            23,
+            95,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_mace\\espadachin_runico-f-attack_mace-04.png",
+          "sha256": "361db59fc08c4e98ad647543f2b5d073ad8453cca09a9fc058450b61c53b1d2e",
+          "alpha_bbox": [
+            21,
+            89,
+            103,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_book\\espadachin_runico-f-attack_book-01.png",
+          "sha256": "30402f3272e95d4028244d953ed2e3e9d47949e689541979c7e86cf924c483fe",
+          "alpha_bbox": [
+            30,
+            90,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_book\\espadachin_runico-f-attack_book-02.png",
+          "sha256": "6ec58597aa60a58da42cf0f559803281f112ad21be2432cbf1b87fe428560bb0",
+          "alpha_bbox": [
+            28,
+            90,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_book\\espadachin_runico-f-attack_book-03.png",
+          "sha256": "c72f9f63504c1878c1452db852f40c9fe949335ccf9a7e8a2e5a97c53bde5b4c",
+          "alpha_bbox": [
+            26,
+            89,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_book\\espadachin_runico-f-attack_book-04.png",
+          "sha256": "707a972b9a9f6d23eab8f978ebd9f17acf2a74e59610460faf7d4ea92fe3dba1",
+          "alpha_bbox": [
+            25,
+            89,
+            108,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_gloves\\espadachin_runico-f-attack_gloves-01.png",
+          "sha256": "1b6bba9c358b4e56387aec334829c1c8e023db829fa12bdad64e718e94cfdeec",
+          "alpha_bbox": [
+            23,
+            89,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_gloves\\espadachin_runico-f-attack_gloves-02.png",
+          "sha256": "fae26486c319c69935a1ff97a9f13432ed17a36940062021c07ed86e2f6e012f",
+          "alpha_bbox": [
+            23,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_gloves\\espadachin_runico-f-attack_gloves-03.png",
+          "sha256": "9eaffef39feae76e8231b9cc54b20c0c40d4db24b4a205ff020794099a4d0bf8",
+          "alpha_bbox": [
+            13,
+            90,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\espadachin_runico\\f\\frames\\attack_gloves\\espadachin_runico-f-attack_gloves-04.png",
+          "sha256": "9851ce5c75e6bab00ac51da7c29304e370fb6bfd42025b5b89dbda166dc59029",
+          "alpha_bbox": [
+            13,
+            90,
+            95,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
