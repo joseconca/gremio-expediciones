@@ -3,7 +3,8 @@
   "classId": "ninja",
   "sex": "m",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "f0bd4b2e0b843a5ee39115dd1fc1741e4486c0a12190c52c0861f0ca3f2503c4",
       "d0d838766429b47772578d74a18199e162198493da86ac080445415cd12a4e08",
       "a56d1e444bdcc30698547ca3b5abdd57224db788b2b5e21ccf5911c4ef8fcce0"
+    ],
+    "walk": [
+      "a671a190f87be47e2ec28d78cd3ceadfcfd08540618ae5a8ff754593d0493605",
+      "470a3a252259211f8a14a53bfefa9f1eaa54b0803589fe05dc095f5727536d88",
+      "4b41766b1ecec8e82ea78cf3db43c327429e7401a72b743d5882b37ae4c78d1c",
+      "2d807e66668c38cf3d59386f8c87f15cf35243289d4e69a880c393ef85a402f5"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 3,
