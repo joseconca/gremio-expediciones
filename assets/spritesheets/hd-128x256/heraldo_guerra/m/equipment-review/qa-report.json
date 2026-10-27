@@ -3,7 +3,8 @@
   "classId": "heraldo_guerra",
   "sex": "m",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "f59076d05a7b47dd25ab903a91d3e7dfd43e16530e18aa2d618d91fc0556c24f",
       "7ce0749f1ff31a3f12ff21b3d670c7ff7eef2768767e78ba8e31bc3b576938a3",
       "a4ece6efff111d7cfc55a28ad3f02d8503f855539770981e713b594612e75768"
+    ],
+    "walk": [
+      "b342206521ce388bf42fc4279799a0a3a9ac9e84868363c7ff3f88728fd8c166",
+      "a212eabc9d1e66c6d7e2761a89cbbefef0437ef9f2f0cdf73dfef40280e0a135",
+      "286889c6e89a0ba3b53a85d1f648ef051ab1a1443962fdcf53de3d9d59efafac",
+      "19dbe44318343436bdfb4ba2dc9b484739421d8ec5ca2987abeb55af9d35f0ab"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 3,
