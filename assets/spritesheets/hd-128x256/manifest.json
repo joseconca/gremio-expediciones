@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "pirata-m",
+  "nextVariant": "berserker-m",
   "classes": [
     {
       "id": "novato",
@@ -57021,7 +57021,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/berserker/m/berserker-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/berserker/m/frames",
-      "sourceStatus": "hires-library-candidate",
+      "sourceStatus": "hires-library-in-progress",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -57722,8 +57722,8 @@
                 "pixelSha256": "38f4878077ec27fba5198ad5ce1963dd985f82c8a0a8add1f828d412acc46edf"
               },
               "03": {
-                "sha256": "f772022f573bdfcf3d1164e45073f5e2bdd783b04ea90abb685958ace3ccb6bf",
-                "bytes": 22591,
+                "sha256": "8c991a432ae5569373430757cfb00041abf062fbfc50b1ee866984f4f70b5fb1",
+                "bytes": 22934,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -57731,11 +57731,11 @@
                 ],
                 "bbox": [
                   15,
-                  95,
+                  94,
                   102,
                   248
                 ],
-                "pixelSha256": "5c03ffd04edcc78d4f539a1480fe337e7d7498b8d638be5d9bd40d63f45a6a52"
+                "pixelSha256": "a76100a027d140847f05b4a7a47f3e306b9ba082c04e9dbcd60f74bde9f35110"
               },
               "04": {
                 "sha256": "11b6b38e7028fcbfa0ff6867f2cbb0f6882aa9fb5cf659d0161a5f518952a3a8",
@@ -58473,7 +58473,7 @@
           "artDirectionRevision": 1
         },
         "attack_dagger": {
-          "sourceSha256": "86b18456f3e33cb9552c85707020b06c50503f930ede37b19322d5f1e444847b",
+          "sourceSha256": "307f0a16b17755945c5bef57a30aeeb999c23235d36b5b269b3597a4474a32a4",
           "sourceDimensions": [
             2172,
             724
@@ -58498,9 +58498,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/berserker/m/source/attack_dagger-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/berserker/m/source/attack_dagger-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Production RPG body sprite strip for Berserker MALE, Tier 2, action attack_dagger. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines the NEW CLASS IDENTITY and COSTUME: use its face, hair color, hair silhouette, exact clothing pieces, palette and finish in all four poses. Adult masculine warrior, stern brows, gray-silver swept-back short hair, small eyebrow scar, restrained jaw stubble; same canonical head size and face placement, no helmet. Advanced axe-warrior costume: charcoal sleeveless fitted leather cuirass with deep oxblood-red vertical panels and dark iron rivets; ONE compact dark iron segmented shoulder guard on the rear shoulder and a short pale ivory wolf-fur collar close to neck, asymmetric leather chest straps rather than novice cross-harness; wide dark leather belt with iron bear-head buckle and two short red leather waist tabs; charcoal trousers with narrow iron knee guards; dark heavy boots with iron toe caps, leather fingerless gloves and compact iron wrist bracers. Bare upper arms. No weapon attached, no shield, no long cape, no red scarf, no cream shirt, no blue trousers. The pale fur collar, single iron shoulder and oxblood/charcoal palette are defining features; keep them identical across every pose. Tier 2 martial specialization after Espadachin: fitted battle-worn iron/leather and mature warrior identity. Do not add Tier 3 full plate or giant horns. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "LOCAL shared-equipment geometry fix on THIRD figure (second from RIGHT) ONLY in Image1. The FRONT FIST currently too low beside waist must reach FORWARD TOWARD RIGHT and slightly UP, to actually hold the overlaid dagger. Move that front fist roughly70 SOURCE PIXELS RIGHT and35 SOURCE PIXELS UP, adjusting forearm naturally across belly, and center the solid gripping hand/fingers ON canvas point x1462,y318 on2172x724canvas. Keep the rear guarding hand near chest unchanged. Preserve ALL class-specific gloves/wraps/bracers and sleeves, face, hair, identity, ornaments and clothing exactly asImage1 andImage2. Do not borrow clothes from another class. Third head/torso/legs/boots/scale stay fixed. All other three complete figures EXACTLY unchanged. No held weapon or equipment drawn; empty gripping hands, true transparent background, samecanvas. The third forward hand must be clearly IN FRONT of torso at x1462,y318, not low beside belt. This aligns the BODY with the unchanged shared equipment grip, no equipment offsets.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_dagger-reference.png",
           "canonicalPoseHashes": [
             "a5a4fb44f6eb17e6a4020f9acda0374d081c9dfcf708482d5217a991853e8daa",
@@ -58508,8 +58508,140 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-user-art-review-pending",
-          "artDirectionRevision": 1
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "86b18456f3e33cb9552c85707020b06c50503f930ede37b19322d5f1e444847b",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/berserker/m/source/attack_dagger-frame01-reference-v2.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "86b18456f3e33cb9552c85707020b06c50503f930ede37b19322d5f1e444847b",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/berserker/m/source/attack_dagger-frame02-reference-v2.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "86b18456f3e33cb9552c85707020b06c50503f930ede37b19322d5f1e444847b",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/berserker/m/source/attack_dagger-frame04-reference-v2.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
+          "previousRevisions": [
+            {
+              "sourceSha256": "86b18456f3e33cb9552c85707020b06c50503f930ede37b19322d5f1e444847b",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/berserker/m/source/attack_dagger-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production RPG body sprite strip for Berserker MALE, Tier 2, action attack_dagger. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines the NEW CLASS IDENTITY and COSTUME: use its face, hair color, hair silhouette, exact clothing pieces, palette and finish in all four poses. Adult masculine warrior, stern brows, gray-silver swept-back short hair, small eyebrow scar, restrained jaw stubble; same canonical head size and face placement, no helmet. Advanced axe-warrior costume: charcoal sleeveless fitted leather cuirass with deep oxblood-red vertical panels and dark iron rivets; ONE compact dark iron segmented shoulder guard on the rear shoulder and a short pale ivory wolf-fur collar close to neck, asymmetric leather chest straps rather than novice cross-harness; wide dark leather belt with iron bear-head buckle and two short red leather waist tabs; charcoal trousers with narrow iron knee guards; dark heavy boots with iron toe caps, leather fingerless gloves and compact iron wrist bracers. Bare upper arms. No weapon attached, no shield, no long cape, no red scarf, no cream shirt, no blue trousers. The pale fur collar, single iron shoulder and oxblood/charcoal palette are defining features; keep them identical across every pose. Tier 2 martial specialization after Espadachin: fitted battle-worn iron/leather and mature warrior identity. Do not add Tier 3 full plate or giant horns. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_dagger-reference.png",
+              "canonicalPoseHashes": [
+                "a5a4fb44f6eb17e6a4020f9acda0374d081c9dfcf708482d5217a991853e8daa",
+                "d4ba48a4d952c823903133d05a54b3338afbc39649e2228a95f97e5577818fc1",
+                "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
+                "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
+              ],
+              "visualStatus": "candidate-user-art-review-pending",
+              "artDirectionRevision": 1
+            }
+          ]
         },
         "attack_bow": {
           "sourceSha256": "a37d0bb19b4e2c91d3f7f79b6ab404815f849e0b7962d74a6033beb7ab8b465b",
@@ -58893,11 +59025,11 @@
           "frame": 4
         },
         "attack_dagger/01": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_dagger/02": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_dagger/03": {
@@ -58905,7 +59037,7 @@
           "frame": 3
         },
         "attack_dagger/04": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_bow/01": {
@@ -99271,7 +99403,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 2.5 in class order: Cruzado, Pirata, Druida, Espadachín rúnico, Chamán, Inquisidor, Heraldo de guerra, Ninja, Alquimista, Herrero; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue Tier 2 in class order: Caballero, Duelista, Sacerdote, Monje, Cazador, Explorador, Elementalista, Brujo, Berserker, Luchador, Centinela, Escriba arcano, Bardo, Comerciante; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
