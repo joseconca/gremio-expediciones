@@ -1,0 +1,1415 @@
+{
+  "catalogClasses": 61,
+  "expectedVariants": 122,
+  "expectedFrames": 7320,
+  "technicallyCompleteVariants": 26,
+  "validFrames": 1560,
+  "invalidFrames": 0,
+  "missingActions": 1440,
+  "note": "Technical completion is not artistic approval or runtime promotion. Run auditar-sprites-hd.py before refreshing this derived report.",
+  "classes": [
+    {
+      "classId": "novato",
+      "name": "Novato",
+      "tier": 0,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "espadachin",
+      "name": "Espadachín",
+      "tier": 1,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "acolito",
+      "name": "Acólito",
+      "tier": 1,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "arquero",
+      "name": "Arquero",
+      "tier": 1,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "mago",
+      "name": "Mago",
+      "tier": 1,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "superNovato",
+      "name": "Super Novato",
+      "tier": 1.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "caballero",
+      "name": "Caballero",
+      "tier": 2,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "duelista",
+      "name": "Duelista",
+      "tier": 2,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "sacerdote",
+      "name": "Sacerdote",
+      "tier": 2,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "monje",
+      "name": "Monje",
+      "tier": 2,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "cazador",
+      "name": "Cazador",
+      "tier": 2,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "explorador",
+      "name": "Explorador",
+      "tier": 2,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "elementalista",
+      "name": "Elementalista",
+      "tier": 2,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "brujo",
+      "name": "Brujo",
+      "tier": 2,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 60,
+          "invalidFrames": 0,
+          "technicalActions": 15,
+          "missingActions": 0,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "berserker",
+      "name": "Berserker",
+      "tier": 2,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "luchador",
+      "name": "Luchador",
+      "tier": 2,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "centinela",
+      "name": "Centinela",
+      "tier": 2,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "escriba_arcano",
+      "name": "Escriba arcano",
+      "tier": 2,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "bardo",
+      "name": "Bardo",
+      "tier": 2,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "comerciante",
+      "name": "Comerciante",
+      "tier": 2,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "cruzado",
+      "name": "Cruzado",
+      "tier": 2.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "pirata",
+      "name": "Pirata",
+      "tier": 2.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "druida",
+      "name": "Druida",
+      "tier": 2.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "espadachin_runico",
+      "name": "Espadachín rúnico",
+      "tier": 2.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "chaman",
+      "name": "Chamán",
+      "tier": 2.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "inquisidor",
+      "name": "Inquisidor",
+      "tier": 2.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "heraldo_guerra",
+      "name": "Heraldo de guerra",
+      "tier": 2.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "ninja",
+      "name": "Ninja",
+      "tier": 2.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "alquimista",
+      "name": "Alquimista",
+      "tier": 2.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "herrero",
+      "name": "Herrero",
+      "tier": 2.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "paladin",
+      "name": "Paladín",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "guardian_real",
+      "name": "Guardián real",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "asesino",
+      "name": "Asesino",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "maestro_espadas",
+      "name": "Maestro de espadas",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "oraculo",
+      "name": "Oráculo",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "hierofante",
+      "name": "Hierofante",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "asceta",
+      "name": "Asceta",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "gran_maestro",
+      "name": "Gran maestro",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "francotirador",
+      "name": "Francotirador",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "domabestias",
+      "name": "Domabestias",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "guardian_bosque",
+      "name": "Guardián del bosque",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "rastreador",
+      "name": "Rastreador",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "archimago",
+      "name": "Archimago",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "invocador",
+      "name": "Invocador",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "nigromante",
+      "name": "Nigromante",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "demonologo",
+      "name": "Demonólogo",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "verdugo",
+      "name": "Verdugo",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "saqueador",
+      "name": "Saqueador",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "campeon_arena",
+      "name": "Campeón de arena",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "mariscal",
+      "name": "Mariscal",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "vigia",
+      "name": "Vigía",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "runista",
+      "name": "Runista",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "abjurador",
+      "name": "Abjurador",
+      "tier": 3,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "senor_guerra",
+      "name": "Señor de la guerra",
+      "tier": 3.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "avatar_tormenta",
+      "name": "Avatar de la tormenta",
+      "tier": 3.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "cazador_espectral",
+      "name": "Cazador espectral",
+      "tier": 3.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "arconte",
+      "name": "Arconte",
+      "tier": 3.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "justiciero",
+      "name": "Justiciero",
+      "tier": 3.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "hoja_velo",
+      "name": "Hoja del velo",
+      "tier": 3.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "danzaespadas",
+      "name": "Danzaespadas",
+      "tier": 3.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    },
+    {
+      "classId": "corsario",
+      "name": "Corsario",
+      "tier": 3.5,
+      "variants": [
+        {
+          "sex": "m",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        },
+        {
+          "sex": "f",
+          "validFrames": 0,
+          "invalidFrames": 0,
+          "technicalActions": 0,
+          "missingActions": 15,
+          "visualApprovedActions": 0
+        }
+      ]
+    }
+  ]
+}

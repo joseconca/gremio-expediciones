@@ -1,8 +1,16 @@
 # Producción de sprites de personajes
 
-Único documento operativo. Rama: `creacion-sprite-sheets`.
+Único documento operativo. Rama de continuación: `nuevas-clases` (producción anterior en `creacion-sprite-sheets`).
 Estado verificable: [manifest.json](../assets/spritesheets/hd-128x256/manifest.json).
 Los informes automáticos son derivados técnicos, no planes alternativos.
+
+## Ampliación del catálogo — 27 de octubre de 2026
+
+Catálogo contrastado con `src/lib/progresion/clases.ts`: 61 clases y 122 variantes por sexo. La auditoría estricta inicial confirma 1.560 fotogramas válidos y cero inválidos, correspondientes a Novato, las cuatro troncales y las ocho clases originales de tier 2. Quedan 48 clases sin biblioteca HD propia: Super Novato (1.5), seis de tier 2, diez de tier 2.5, veintitrés de tier 3 y ocho de tier 3.5. Son 96 variantes y 1.440 acciones por producir. Los sprites legacy y los fallbacks de antecesoras no cuentan como arte HD nuevo.
+
+El manifiesto incluye ahora las 61 clases y ambos sexos, también las variantes todavía sin comenzar. `node scripts/cobertura-clases-hd.cjs --write` contrasta el catálogo real y genera `previews/class-coverage.json`; ejecutar antes el auditor para refrescar los hashes y recuentos. Ese informe es derivado: el manifiesto sigue siendo el único registro de producción.
+
+Continuar por tier, clase, sexo masculino/femenino y las quince acciones del contrato, empezando por Super Novato. Cada acción conserva su PNG grande original, prompt, cuatro frames, procedencia y previews. Commit por acción, revisión de equipo compartido por sexo al cerrar una variante. La creación solicitada se realiza en `nuevas-clases`; la promoción y la publicación en main requieren la revisión del conjunto.
 
 ## Estado actual — 26 de octubre de 2026
 
