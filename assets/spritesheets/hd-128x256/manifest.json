@@ -118852,7 +118852,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 24,
+        "validFrames": 28,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -118860,7 +118860,8 @@
           "hurt",
           "use_consumable",
           "dodge",
-          "block_shield"
+          "block_shield",
+          "attack_sword"
         ],
         "actions": {
           "idle": {
@@ -119284,7 +119285,74 @@
             "distinctFrames": 4
           },
           "attack_sword": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "02d078c8bfcef31773a071d7ba4b1b859e04b2aedd6ee4147148e1e427b1510f",
+                "bytes": 23855,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  90,
+                  110,
+                  248
+                ],
+                "pixelSha256": "e6610eb88dd62a58330c652165319d7c54b5ce4eece39c08dcec911a41f839e5"
+              },
+              "02": {
+                "sha256": "d5cf3d9d5f90e60415da8c9c941d4964b5be8b86888c456180252f02aeb2cba8",
+                "bytes": 23367,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  90,
+                  112,
+                  249
+                ],
+                "pixelSha256": "9bcf97a0bbe6e2ec8654d06e8c5269fd79a2c70705296ce79df838963921423e"
+              },
+              "03": {
+                "sha256": "78f6df23b271d5c874b4256f914e6009318e38a76dcdeb8f80e9d700554113b1",
+                "bytes": 23078,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  94,
+                  109,
+                  249
+                ],
+                "pixelSha256": "ada7397f5f30b2fbc84c4a31f106612cde3b9b07f45c53448199fe361f35a8ab"
+              },
+              "04": {
+                "sha256": "4048d3b7cbe6f697ef8290b8f0e051d92beb5a88cd61943abcd8ae2dc18e3dbb",
+                "bytes": 23980,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  90,
+                  104,
+                  249
+                ],
+                "pixelSha256": "41c9d55c434f515020559a905cdec5e1298803a3fdb391ddb4471fd33f8f05b4"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_axe": {
             "status": "missing"
@@ -119540,6 +119608,44 @@
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_sword": {
+          "sourceSha256": "c2c56b6d12287006a84fca77676bfc5aa147a24b2f6ba157b95c01df3900f0ac",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            620,
+            15,
+            1030,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            17,
+            91
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/heraldo_guerra/f/source/attack_sword-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Keep the THREE specific crimson tabard seals (diamond motif, square spiral, four diamonds) and copper fist-and-quill chest badge from identity reference. Ivory sleeves rolled below elbows, short bare forearms, WHITE fighting wrist/palm wraps and fully exposed fingertips; no dark novice leather gloves or bracers.  Production RPG body sprite strip for Heraldo de guerra FEMALE, Tier 2.5, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Keep the chosen male reference's neat elbow-length rolled ivory sleeves, exposed short forearms, white wrist wraps and three separate crimson tabard seal patches identical in every pose. Adult confident feminine tactician with jet-black compact double braided knot, warm tan skin. Martial herald uniform: fitted DEEP TEAL padded sleeveless battle vest over PARCHMENT fitted sleeves rolled neatly below the elbows, with a short bare forearm section above white wrist wraps, compact COPPER lamellar shoulder caps, ivory short split tabard with three flat crimson geometric seal patches, copper fist-and-quill chest emblem, dark navy broad sash, white wrist fighting wraps leaving full fingertips visible, charcoal tapered trousers and dark fighting boots with copper greaves. No spectacles, no neck scarf/cape or tall banner. No held book, weapon or physical flag. Tier2.5 Luchador/Escriba arcano hybrid: combines athletic fighting wraps and copper motifs with parchment seals, adding compact battlefield reinforcement. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Image1 garment edges and exposed-skin patches are NOT pose constraints: redraw them with the NEW outfit coverage (full sleeves or bare arms as specified), preserving only anatomical contours and joint/finger coordinates. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_sword-reference.png",
+          "canonicalPoseHashes": [
+            "2cdc01930823f3356c34672d3037877c10a3b25337d5ff78350f147e0f5fba9a",
+            "db31283eb15589cf13fb33aac39b277606ed938f4afe84955356f0253579e4e0",
+            "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
+            "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -119638,6 +119744,53 @@
         "block_shield/04": {
           "source": "sources.block_shield",
           "frame": 4
+        },
+        "attack_sword/01": {
+          "source": "sources.attack_sword",
+          "frame": 1
+        },
+        "attack_sword/02": {
+          "source": "sources.attack_sword",
+          "frame": 2
+        },
+        "attack_sword/03": {
+          "source": "sources.attack_sword",
+          "frame": 3
+        },
+        "attack_sword/04": {
+          "source": "sources.attack_sword",
+          "frame": 4
+        }
+      },
+      "equipmentTests": {
+        "attack_sword": {
+          "status": "technical-preview-verified-art-review-pending",
+          "weaponPath": "public/sprites/items/weapons/espada_hierro.png",
+          "weaponSha256": "8b21d32318b5d8778325ea8899f2e74524c9c98bce540656844faf02758f7589",
+          "weaponGrip": [
+            32,
+            55
+          ],
+          "frameIndex": "shared-body-and-equipment",
+          "frames": [
+            {
+              "bodySha256": "02d078c8bfcef31773a071d7ba4b1b859e04b2aedd6ee4147148e1e427b1510f"
+            },
+            {
+              "bodySha256": "d5cf3d9d5f90e60415da8c9c941d4964b5be8b86888c456180252f02aeb2cba8"
+            },
+            {
+              "bodySha256": "78f6df23b271d5c874b4256f914e6009318e38a76dcdeb8f80e9d700554113b1"
+            },
+            {
+              "bodySha256": "4048d3b7cbe6f697ef8290b8f0e051d92beb5a88cd61943abcd8ae2dc18e3dbb"
+            }
+          ],
+          "limitations": [
+            "Uses current item icon at native size to prove compositing; not a new HD equipment asset.",
+            "Hand masks and anchors are explicit candidates tied to current body hashes.",
+            "No runtime promotion; test does not validate other weapons or actions."
+          ]
         }
       }
     },
