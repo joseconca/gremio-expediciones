@@ -3,7 +3,8 @@
   "classId": "centinela",
   "sex": "m",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "96c5212286747b759410ed3bb6ad5ccff8c7ed4f7d1ff69477a41d85fd743100",
       "5a1cc8544b9d0ec2fc97c4dbec0370dc747c4fd0a31cbe4f034e1e0e401c0c2d",
       "fab4ded38e67824d74bce20186b8095837069e21c615e53b4b4918b92cb3c9bf"
+    ],
+    "walk": [
+      "faeba557aa6e78bf745d3495aa5f247ff656640489fb06413ff7fa63fb67b490",
+      "e5443baaccd8ac7991822f7795e0595da1947be6daec8c8828a0e4b777bb5792",
+      "f27512295a9c7ada8c4ccdf0bac72a7d50c1ed00b97d4b9081b610c02db1d12d",
+      "a7164e7a8ce5082f8aa3dc5338c03c84546e590bbcc053c2e7a97c4fac1b8666"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
