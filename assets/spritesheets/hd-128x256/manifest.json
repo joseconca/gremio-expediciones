@@ -57017,12 +57017,12 @@
       "tier": 2,
       "sex": "m",
       "order": 29,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/berserker/m/berserker-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/berserker/m/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -57036,12 +57036,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "86d4fcd3b122326953f3a9c4c9127c44b8d42a249568aa1d995521d9897f8a49",
+                "bytes": 25307,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  93,
+                  106,
+                  249
+                ],
+                "pixelSha256": "42f4be6fc090ed68976a34288067571eb9b8146387e11073f7d9616971ea88b7"
+              },
+              "02": {
+                "sha256": "b4cfe218c7b1d26649599f8d3dab5709fc71582dd954108dd0bee3d4021e20a6",
+                "bytes": 25368,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  93,
+                  106,
+                  249
+                ],
+                "pixelSha256": "ea83371defd6671137cd8c23ef7eb3bed03331aa38707a17c8bd28936dbf9e22"
+              },
+              "03": {
+                "sha256": "ea1e5893c56f5786cf1e9c9444110193820c5032b3dadc9cdfc2ee6a1b539211",
+                "bytes": 25377,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  93,
+                  106,
+                  249
+                ],
+                "pixelSha256": "363aaaddd30232d7b32cb760bf8ed273ca921c4e3355e3033655862ece731654"
+              },
+              "04": {
+                "sha256": "1e1125ee56b69a087b32ba27234bedebbbf51c9a7f422c5144124e1a3d9f376d",
+                "bytes": 25274,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  93,
+                  106,
+                  249
+                ],
+                "pixelSha256": "6e55583752cf33fe9fbe1ff816ac3a53907976a79a39a9cd4f2ae55a679d3ae5"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -57085,6 +57154,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "d6261e7ccb71c8c66de9a65c741a601cdda8795e7f02c2729451c86574a745c1",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            654,
+            21,
+            1010,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/berserker/m/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Use case: stylized-concept. Production game body sprite strip for BERSERKER MALE, Tier 2. Reference image is ONLY the canonical four male idle body poses, head proportions, hand/foot pixel coordinates and game rendering style; replace the whole costume and character identity. Adult masculine warrior, stern brows, gray-silver swept-back short hair, small eyebrow scar, restrained jaw stubble; same canonical head size and face placement, no helmet. Advanced axe-warrior costume: charcoal sleeveless fitted leather cuirass with deep oxblood-red vertical panels and dark iron rivets; ONE compact dark iron segmented shoulder guard on the rear shoulder and a short pale ivory wolf-fur collar close to neck, asymmetric leather chest straps rather than novice cross-harness; wide dark leather belt with iron bear-head buckle and two short red leather waist tabs; charcoal trousers with narrow iron knee guards; dark heavy boots with iron toe caps, leather fingerless gloves and compact iron wrist bracers. Bare upper arms. No weapon attached, no shield, no long cape, no red scarf, no cream shirt, no blue trousers. The pale fur collar, single iron shoulder and oxblood/charcoal palette are defining features; keep them identical across every pose. Tier 2 martial specialization after Espadachin: fitted battle-worn iron/leather and mature warrior identity. Do not add Tier 3 full plate or giant horns. Exactly FOUR separate full-body figures in one horizontal row, 2172x724 canvas, facing RIGHT three-quarter view. Preserve EXACT canonical figure scale, head size, empty lowered hand and foot coordinates and per-quarter positions. Four distinct subtle breathing/blinking poses, planted boots; third figure blinks. Crisp detailed hand-painted anime pixel-inspired RPG rendering, same finish and lighting as reference. Costume silhouette must remain compact inside original body envelope: fur close to neck, shoulder guard not wider than natural shoulders. Full heads, hands and boots with clear margins. Real transparent alpha background. No held or sheathed weapons, shields, equipment, effects, shadows, grid, words, labels or logos. The resulting figure must read as a distinct more advanced axe warrior, not a recolored Novato.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "canonicalPoseHashes": [
+            "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+            "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+            "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+            "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
@@ -64411,7 +64538,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Next missing class: Berserker male, then female; finish each 15-action variant before the next class. Super Novato male/female are complete candidates with all shared contacts checked; user art review and runtime promotion pending.",
+  "nextTask": "Continue Tier 2 in class order: Caballero, Duelista, Sacerdote, Monje, Cazador, Explorador, Elementalista, Brujo, Berserker, Luchador, Centinela, Escriba arcano, Bardo, Comerciante; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
