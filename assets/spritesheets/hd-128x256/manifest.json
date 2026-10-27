@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "espadachin_runico-m",
+  "nextVariant": "espadachin_runico-f",
   "classes": [
     {
       "id": "novato",
@@ -105187,12 +105187,12 @@
       "tier": 2.5,
       "sex": "f",
       "order": 48,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/espadachin_runico/f/espadachin_runico-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/espadachin_runico/f/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -105206,12 +105206,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "b93f506da87b15e97e1e0c8db038dab4cc547518d229ac473071d3aee262f994",
+                "bytes": 25086,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  91,
+                  108,
+                  248
+                ],
+                "pixelSha256": "e7b83898cab187dbca1ee7e23428c22680ee356175aeffeed4d4ca1ea3804e23"
+              },
+              "02": {
+                "sha256": "65f9194b94291e65b61f54b077673df21823fa956d23fe58048874dd1e367313",
+                "bytes": 25077,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  91,
+                  108,
+                  248
+                ],
+                "pixelSha256": "e22831369944d5b455cc8880fb3730020a6ac787028457792b08753571ebb955"
+              },
+              "03": {
+                "sha256": "25ebc4e97874b1a28e9305723511157afdf28408e9038fcb84f445aa6d90576d",
+                "bytes": 25058,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  91,
+                  108,
+                  248
+                ],
+                "pixelSha256": "d6de77e4755055fd6ef7a60fc6561a6f0a3f81ba9850ac2d657d7e9fd24da982"
+              },
+              "04": {
+                "sha256": "28124f52410f311e9e0f491b752e93063da0b7a38a6e9e32eda396c6eac3f5b6",
+                "bytes": 24988,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  91,
+                  108,
+                  248
+                ],
+                "pixelSha256": "da6da10f940aaece6d409631ce6b77d686987cc48aeb879b48177967ae6caa2b"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -105255,6 +105324,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "a3b8b2be389d4ef270e92dd4568486ff6792c6053d2965f6d48f7bf22c896e9e",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/espadachin_runico/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Espadachín rúnico FEMALE, Tier 2.5, action idle. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines COSTUME ONLY from male class reference; DO NOT copy male face, stubble or masculine body. Follow the FEMALE identity below and retain feminine canonical proportions. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult focused feminine arcane duelist with dark violet-black compact high braided ponytail and pale hazel eyes. Rune duelist outfit: fitted MIDNIGHT-BLUE dueling coat with AMETHYST diagonal inset panels and brushed SILVER compact asymmetrical half-cuirass, three engraved violet geometric rune tiles on breastplate, short narrow split coattails, narrow silver belt with diamond-shaped crystal buckle, fitted navy trousers, dark neat boots and silver bracers over black fingerless gloves. One short close-fitting silver angular shoulder on rear side, front shoulder cloth. No neck scarf, cape, held weapons or glowing effects. Tier2.5 hybrid Duelista/Brujo: fitted fencing gear plus engraved occult armor. Reserve elaborate translucent veil and richer blade heraldry for Hoja del velo. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
