@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-27T12:38:58.451788+00:00",
+  "classId": "centinela",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\centinela\\f\\centinela-f-sheet.png",
+  "sheetSha256": "07459bfc0a71affdb9d79f50265bbae9308e2279c617f47adfc5d5f3138cba8e",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\idle\\centinela-f-idle-01.png",
+          "sha256": "68b2b66f87193364190302cf11e9fdeb5ff95122c674f57a7b4b150e463887ec",
+          "alpha_bbox": [
+            31,
+            90,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\idle\\centinela-f-idle-02.png",
+          "sha256": "fafc40d9eff5bfbc69c61c6b880cdc516c9a61dfd9702216a22d957c565c8e1c",
+          "alpha_bbox": [
+            27,
+            90,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\idle\\centinela-f-idle-03.png",
+          "sha256": "a5be4a708a29c9c3e631cc476f0e12394aacf1cea0877d335b853f7547db4ea3",
+          "alpha_bbox": [
+            22,
+            90,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\idle\\centinela-f-idle-04.png",
+          "sha256": "80f312202ba5d2148348c4bfc64739306e268417c417668b72e7c321acf51447",
+          "alpha_bbox": [
+            23,
+            90,
+            105,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\walk\\centinela-f-walk-01.png",
+          "sha256": "793d40100e125c2edecb0f5aa97da33cc16b0963b058e1290e8c760ddda11d19",
+          "alpha_bbox": [
+            16,
+            89,
+            108,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\walk\\centinela-f-walk-02.png",
+          "sha256": "d759a6c82ad3cf1e8aac13fb8d380c7ebc4bc9fad15af91f43efdf9b4fe8d25b",
+          "alpha_bbox": [
+            28,
+            89,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\walk\\centinela-f-walk-03.png",
+          "sha256": "6eca5ec3244de3ec5cca50c6a6b4fb8e3b976f8a6013f2037685cef6dbd33364",
+          "alpha_bbox": [
+            11,
+            89,
+            119,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\walk\\centinela-f-walk-04.png",
+          "sha256": "426f06ab7abc6bd3048ceb86ca3ffaae57a0db72c8b781bbdefc17a9e4311837",
+          "alpha_bbox": [
+            19,
+            89,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\hurt\\centinela-f-hurt-01.png",
+          "sha256": "574d3db2032ec91a0c34077c5ee00fd179b11fcbbcc937857bb38c6cc1720fc0",
+          "alpha_bbox": [
+            20,
+            93,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\hurt\\centinela-f-hurt-02.png",
+          "sha256": "dbf469b80eea82fb4227c4bf225f47f710376dcd541f26b5e1eec5e4d4f1a841",
+          "alpha_bbox": [
+            25,
+            93,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\hurt\\centinela-f-hurt-03.png",
+          "sha256": "e3a018639d8ecaebd801447122c4798f5258804b4ba94013a1f8064851bf9019",
+          "alpha_bbox": [
+            19,
+            114,
+            96,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\hurt\\centinela-f-hurt-04.png",
+          "sha256": "bd9318b98e9e0e39e920db16ce281060eb4de4cfa17833e8d67071d843fa3115",
+          "alpha_bbox": [
+            17,
+            91,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\use_consumable\\centinela-f-use_consumable-01.png",
+          "sha256": "dc0a7b16904f48061822b706dd31737161aec63916ac3fb231983b36d7f0e2b6",
+          "alpha_bbox": [
+            25,
+            89,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\use_consumable\\centinela-f-use_consumable-02.png",
+          "sha256": "bacc92c56bb1e0194803573f3aa64970f06df28e264c71fb7d70a05c5a253180",
+          "alpha_bbox": [
+            25,
+            89,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\use_consumable\\centinela-f-use_consumable-03.png",
+          "sha256": "513058f1bee1b4b16fe7d4f92b7eecaae44d14ebd034b99749230035c0115ba2",
+          "alpha_bbox": [
+            25,
+            89,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\use_consumable\\centinela-f-use_consumable-04.png",
+          "sha256": "b442f6570fb1895964ba7ea48c450106a5ff328cfe081aa94d6884d428d08bcf",
+          "alpha_bbox": [
+            25,
+            89,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\dodge\\centinela-f-dodge-01.png",
+          "sha256": "b0c2f784cd5e2189f03904e6d0b501f8dae166f27aa326726add0cf5bbd78bb5",
+          "alpha_bbox": [
+            30,
+            90,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\dodge\\centinela-f-dodge-02.png",
+          "sha256": "5cacab0cbedb2b5478b80c846884771b3863ae820aa3d75dcac8fb0501d1ca86",
+          "alpha_bbox": [
+            31,
+            98,
+            115,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\dodge\\centinela-f-dodge-03.png",
+          "sha256": "c85a6646ae2b0d70c895536da5b40821afa4e2924386b170a21160b90ad65416",
+          "alpha_bbox": [
+            23,
+            124,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\dodge\\centinela-f-dodge-04.png",
+          "sha256": "a7f86b0c97ae722777a57fef183414e7bc1e1be4873f42c706ee183e01ff204a",
+          "alpha_bbox": [
+            15,
+            95,
+            100,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\block_shield\\centinela-f-block_shield-01.png",
+          "sha256": "530369bae7ad0a1c1afc4d03f2b16c1b278b3d5ff7bbbb26a9bc4c2358515375",
+          "alpha_bbox": [
+            29,
+            91,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\block_shield\\centinela-f-block_shield-02.png",
+          "sha256": "6248835c2faed07278aee61ccd24c52b9d108c945f1ffc7a0d3c415509c9e474",
+          "alpha_bbox": [
+            25,
+            91,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\block_shield\\centinela-f-block_shield-03.png",
+          "sha256": "4fe568dc413652baa75dd8e0efdcc18dcb2b7e9d45ad61319d6d6211057bfc44",
+          "alpha_bbox": [
+            17,
+            104,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\block_shield\\centinela-f-block_shield-04.png",
+          "sha256": "d9bc5fc000576d6b6de222678c1e6941ed06f98ae2be57d526c7dd86a3b5c2e1",
+          "alpha_bbox": [
+            13,
+            91,
+            101,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_sword\\centinela-f-attack_sword-01.png",
+          "sha256": "21dc139ee11bec2c332b4ca54abe1b21c683cefa02b64349fc2da80b1aa00953",
+          "alpha_bbox": [
+            25,
+            90,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_sword\\centinela-f-attack_sword-02.png",
+          "sha256": "a397e6cef667e6dd60e7444d8dbc50b70c53fed6a0bf38f585fd613107995cef",
+          "alpha_bbox": [
+            25,
+            90,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_sword\\centinela-f-attack_sword-03.png",
+          "sha256": "9da8d8cd15bba68ba454c35fc26dee65a129d6e7a2acf2d986599dd67813dabb",
+          "alpha_bbox": [
+            13,
+            96,
+            102,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_sword\\centinela-f-attack_sword-04.png",
+          "sha256": "c5fc42686d62e1591ca1646eb3ec220be0e82a8dacfa87157237c5d82aef92d2",
+          "alpha_bbox": [
+            13,
+            90,
+            100,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_axe\\centinela-f-attack_axe-01.png",
+          "sha256": "a19e1a7dbefc6d8b4492d546046b1849c6a1e59dea3af81b9a44a49bca234cdc",
+          "alpha_bbox": [
+            30,
+            92,
+            118,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_axe\\centinela-f-attack_axe-02.png",
+          "sha256": "2820f0cf763595580f2ba0a69e771079eddcc55ccd8d4163b97ec01252d1e305",
+          "alpha_bbox": [
+            23,
+            90,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_axe\\centinela-f-attack_axe-03.png",
+          "sha256": "176e8c163a0411f390b9d5f35cabe77da1068da1f690ab5190dcaffea6caf2d7",
+          "alpha_bbox": [
+            14,
+            103,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_axe\\centinela-f-attack_axe-04.png",
+          "sha256": "ca58dc57ba3a6af2ae4458337744c6476e311d6e2dd1c58268ab554f9c888800",
+          "alpha_bbox": [
+            9,
+            92,
+            98,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_spear\\centinela-f-attack_spear-01.png",
+          "sha256": "611aaf4acc648fd4fcc3ed7b6e39279b6fdece1408742a5f018ded018777a66f",
+          "alpha_bbox": [
+            17,
+            92,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_spear\\centinela-f-attack_spear-02.png",
+          "sha256": "2aac35b9ff897800488f5ae452320de8292f33f89df8b22d3d4a8dc7a85006fc",
+          "alpha_bbox": [
+            16,
+            92,
+            102,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_spear\\centinela-f-attack_spear-03.png",
+          "sha256": "d09236cb92075060e21c0fb042df71be705ea5ef5bdc81ada806fba30691913b",
+          "alpha_bbox": [
+            14,
+            92,
+            113,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_spear\\centinela-f-attack_spear-04.png",
+          "sha256": "cf309adb997aee2a3e12dc68595005f6b921dd915a0d4f6991c9f2bce4f7d428",
+          "alpha_bbox": [
+            15,
+            92,
+            113,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_dagger\\centinela-f-attack_dagger-01.png",
+          "sha256": "f7351cb54104f5b58ae631d08904376d10f8afc776be2e964bf190d66b83f610",
+          "alpha_bbox": [
+            19,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_dagger\\centinela-f-attack_dagger-02.png",
+          "sha256": "c787354af68b07127fa0e685bf44d72501974526c29144fd6f7a9826d6f035f3",
+          "alpha_bbox": [
+            20,
+            90,
+            111,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_dagger\\centinela-f-attack_dagger-03.png",
+          "sha256": "3ad1e19ab72e2321422c46232e56900e6d24139ef6d7ae093202af8a5ac2e7db",
+          "alpha_bbox": [
+            17,
+            91,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_dagger\\centinela-f-attack_dagger-04.png",
+          "sha256": "aa7e7206ca37574599095c412233ea5fe678814a610f7a2c9d95cbcf6d4047af",
+          "alpha_bbox": [
+            23,
+            90,
+            108,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_bow\\centinela-f-attack_bow-01.png",
+          "sha256": "ac42d58914c5208696911049abbc8afd6003a44c6e63bfbdad82c64b9a0886ec",
+          "alpha_bbox": [
+            24,
+            90,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_bow\\centinela-f-attack_bow-02.png",
+          "sha256": "6cd5d07695d3c0df614dae0b09501dcd6be6a69af286fd244ed2fd79cb6efe53",
+          "alpha_bbox": [
+            18,
+            90,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_bow\\centinela-f-attack_bow-03.png",
+          "sha256": "1ec754491dd7457c978f38c03347a8b7799efd5a9958f72a9a216484eca79b5a",
+          "alpha_bbox": [
+            18,
+            90,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_bow\\centinela-f-attack_bow-04.png",
+          "sha256": "17cb5451080af88efb8f2b1e050de7b587ade538636000708ce42b08c813201e",
+          "alpha_bbox": [
+            20,
+            90,
+            116,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_staff\\centinela-f-attack_staff-01.png",
+          "sha256": "acf1d38a46878afe6c941a0cac19ec93e22a95f7ecc10f7bdb8b3c34d17172ad",
+          "alpha_bbox": [
+            28,
+            89,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_staff\\centinela-f-attack_staff-02.png",
+          "sha256": "46cb024836f029fde4e58195cfaaea8daf36777ac1c5dda1c82897cbe99a1086",
+          "alpha_bbox": [
+            24,
+            89,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_staff\\centinela-f-attack_staff-03.png",
+          "sha256": "9493056c8d91fd6e7ab837759ea7faa93936327a265b874a85fd49065e64177e",
+          "alpha_bbox": [
+            23,
+            89,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_staff\\centinela-f-attack_staff-04.png",
+          "sha256": "c6e640c0c5381bb36c78c4adad0292154ffd3bd819ca2c40c41655d63cc7c24a",
+          "alpha_bbox": [
+            24,
+            89,
+            105,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_mace\\centinela-f-attack_mace-01.png",
+          "sha256": "19bfbf1b1def0860e2ec33882224fce41efb8c9b499d15c0435bc5c3cb27aaf0",
+          "alpha_bbox": [
+            30,
+            89,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_mace\\centinela-f-attack_mace-02.png",
+          "sha256": "7a122081f5cf423f0c9c35d4f980b5ea318507d3ec3cfbc786e24d48fe36eba7",
+          "alpha_bbox": [
+            25,
+            89,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_mace\\centinela-f-attack_mace-03.png",
+          "sha256": "49cf22f7f3f3d482b3ede9cdfef90db6b07337acf03d564c84ac12b0eae74caa",
+          "alpha_bbox": [
+            21,
+            94,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_mace\\centinela-f-attack_mace-04.png",
+          "sha256": "8f784bb2a981d165a8e09596a037eda505b554ef81113577443042005c35d7d9",
+          "alpha_bbox": [
+            20,
+            89,
+            105,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_book\\centinela-f-attack_book-01.png",
+          "sha256": "33dbab4edba9155f726b95d1f02d6e2be322e1bdfc51950e75422fc343a146da",
+          "alpha_bbox": [
+            30,
+            89,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_book\\centinela-f-attack_book-02.png",
+          "sha256": "a4da8a544ee6992ef51abb16a87f7cca4dbacf25fee2ef0bd664f52fb963593d",
+          "alpha_bbox": [
+            25,
+            89,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_book\\centinela-f-attack_book-03.png",
+          "sha256": "1936f69736065e3a5a2693272188075dbd413539f0f4e0b7dc5323696bfb9dbd",
+          "alpha_bbox": [
+            19,
+            89,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_book\\centinela-f-attack_book-04.png",
+          "sha256": "bf98cad372e4443faa613662a497dac7db7559dcc4e19c6b8f5d04026ff85b1b",
+          "alpha_bbox": [
+            22,
+            89,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_gloves\\centinela-f-attack_gloves-01.png",
+          "sha256": "14ca09e78c5cd1d2a17fa954eb248ff4d3471c0f395a131cef4d18fe0f46d375",
+          "alpha_bbox": [
+            24,
+            89,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_gloves\\centinela-f-attack_gloves-02.png",
+          "sha256": "658b42fbc8b47a382b4e1c4945cc37cf671e2b7e46b084d6c35a18cb8cb971fd",
+          "alpha_bbox": [
+            21,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_gloves\\centinela-f-attack_gloves-03.png",
+          "sha256": "a85e9e1cf19b472859dda2cf531fccd22d3ee3bed7c112f793c0ac3dc309cc40",
+          "alpha_bbox": [
+            10,
+            90,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\centinela\\f\\frames\\attack_gloves\\centinela-f-attack_gloves-04.png",
+          "sha256": "3358e450005b4ea4e41845dd469fd744246c65478d486de75c1b9116a726725b",
+          "alpha_bbox": [
+            12,
+            90,
+            95,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
