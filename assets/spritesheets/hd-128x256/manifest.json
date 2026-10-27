@@ -86539,8 +86539,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "6f1fad566e67e8cffb3ae0e61f6c39bdfa26a6631a0bcff76d4e80ad19cdbfce",
-                "bytes": 25833,
+                "sha256": "7d0a1461bc80be0643d813b29ebf87f4ff03096493e7204a6b766cc7ff72d0c0",
+                "bytes": 25903,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -86552,11 +86552,11 @@
                   114,
                   248
                 ],
-                "pixelSha256": "2d14ae66ffe3c23af0039f9c4890749ada2169ffdbd5e74efdf7fabc2ec95773"
+                "pixelSha256": "613a8659594cb0fceb3e29d06a4b38975bb5b760a08b53794e8f0fd801bcf996"
               },
               "02": {
-                "sha256": "2d2f92b1a726137614552f53d0aa57fc5ccbcab52ace44dcdb929564d2064d26",
-                "bytes": 26027,
+                "sha256": "e1547b13d41d34a61b907159844ae4427699f8b28bb4c8bb405770dd402052a9",
+                "bytes": 26115,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -86568,11 +86568,11 @@
                   112,
                   248
                 ],
-                "pixelSha256": "c93dbdec5651b6687f54a72d270eafb30f9a1858e0dcc5a05f892eb7b6bf0de7"
+                "pixelSha256": "19d5936ec0abc6be1961d83adb9efdbff83422b28444e8f859a254553b0660f0"
               },
               "03": {
-                "sha256": "b5b13e564dd5d854e220f3d840ad8d4f06117185ef373b6057a0e262ecd8d8bb",
-                "bytes": 24286,
+                "sha256": "5feab5cb12b9fee2b1b71d5659791b408aa9b0cee9da8ea95825c5217374eb71",
+                "bytes": 24456,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -86584,11 +86584,11 @@
                   108,
                   248
                 ],
-                "pixelSha256": "be7500e2ad6cb96ec0e7802302d6684ba1991f218ac2c52b35a6c5e5e38fad54"
+                "pixelSha256": "a733dec8556a6ec4711568ec055860ae2a693207822ec339fa5ab1d53cd78a55"
               },
               "04": {
-                "sha256": "40bf6637ea3b970b6a5df37eb8d4459f16e6d25d07be586522e44c581f7662cb",
-                "bytes": 25801,
+                "sha256": "5e8c74a2146624ca330f013b913eaec044ff7795dafaa350f85ca100f8ac2baf",
+                "bytes": 25834,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -86600,7 +86600,7 @@
                   103,
                   248
                 ],
-                "pixelSha256": "ac5ca9e4c085082abb936212b292955982277e827364f7790c2a297d24f43189"
+                "pixelSha256": "a8682c72a29f7e1fa34e89012e12129bbc7c1d926f02d689945d17758b31c47c"
               }
             },
             "distinctFrames": 4
@@ -87509,7 +87509,7 @@
           ]
         },
         "block_shield": {
-          "sourceSha256": "d988b805acb59060965da46c034846c815b09499b0f971b8d96c39c79c1f53bc",
+          "sourceSha256": "c8362974a61c2ba4dc62f6961adbf591d0f88f6c283698173ffad2b411b56f37",
           "sourceDimensions": [
             2172,
             724
@@ -87534,9 +87534,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/cruzado/f/source/block_shield-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/cruzado/f/source/block_shield-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Cruzado FEMALE, Tier 2.5, action block_shield. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult resolute feminine crusader with ash-brown crown braid and compact low ponytail, blue-gray eyes. Holy crusader hybrid uniform: compact satin STEEL half-plate with IVORY enamel chest panels, deep WINE-RED fitted sleeves and split short surcoat, broad flat GOLD solar-cross medallion on sternum, narrow gold edging and matching two compact rounded pauldrons, wine sash, steel knee cups and sabatons, dark fingerless gloves with steel wrist cuffs. No helmet, no cape or neck scarf, no weapon or shield. Chest solar cross is physical engraved insignia, no light effects. Tier2.5 hybrid of Caballero and Sacerdote: combines compact knight armor and liturgical wine/ivory cloth. More ceremonial than Caballero, reserve extensive gilded full plate and sun crown for Paladin. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "LOCAL ARM COSTUME correction in Image1 ONLY, preserving poses EXACTLY. Every FOREARM on all four figures must have a polished SILVER STEEL BRACER with GOLD BORDERS extending from just BELOW ELBOW to the BLACK GLOVE WRIST, as Image2 idle. Replace any exposed forearm skin, rolled CREAM/WHITE novice sleeve cuff or pale cloth patch on arms with matching STEEL ARMOR; upper-arm/bent-elbow sleeve cloth is deep WINE RED. There are NO white fabric cuffs on arms and no bare forearms in this costume. Preserve existing correct bracers; only fill missing coverage with matching solid reflective metal, gold edging. Keep EXACT hands, fingertips, gloves, wrist coordinates, elbow angle and overall arm geometry unchanged. Keep all four head/face/hair, body poses, shoulder caps, chest emblem, tabard, hips, legs and boots unchanged. No held equipment, no cape/scarf. Same full strip canvas, transparent background. This corrects clothing only; never move any grip.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/block_shield-reference.png",
           "canonicalPoseHashes": [
             "78f50adf1b9160267132cab30dcb3c6b9f52d478c45661a7538effd431036e51",
@@ -87544,7 +87544,47 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "d988b805acb59060965da46c034846c815b09499b0f971b8d96c39c79c1f53bc",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                621,
+                24,
+                1036,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                16,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cruzado/f/source/block_shield-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Cruzado FEMALE, Tier 2.5, action block_shield. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult resolute feminine crusader with ash-brown crown braid and compact low ponytail, blue-gray eyes. Holy crusader hybrid uniform: compact satin STEEL half-plate with IVORY enamel chest panels, deep WINE-RED fitted sleeves and split short surcoat, broad flat GOLD solar-cross medallion on sternum, narrow gold edging and matching two compact rounded pauldrons, wine sash, steel knee cups and sabatons, dark fingerless gloves with steel wrist cuffs. No helmet, no cape or neck scarf, no weapon or shield. Chest solar cross is physical engraved insignia, no light effects. Tier2.5 hybrid of Caballero and Sacerdote: combines compact knight armor and liturgical wine/ivory cloth. More ceremonial than Caballero, reserve extensive gilded full plate and sun crown for Paladin. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/block_shield-reference.png",
+              "canonicalPoseHashes": [
+                "78f50adf1b9160267132cab30dcb3c6b9f52d478c45661a7538effd431036e51",
+                "a411cde4a2c2d92380d227042031444c460b3b6036ce7abdd1646078ebbac89a",
+                "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
+                "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_sword": {
           "sourceSha256": "68bba95c56985f329f46aa5a3e8281dde808fb0022322de11c32933db5b065d7",
