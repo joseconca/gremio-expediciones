@@ -3,7 +3,8 @@
   "classId": "pirata",
   "sex": "m",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "56b54ecf52321c0eaad7d50c1380ec9801588fbcd0a4b160522b9a0ce1783ab1",
       "809d64e24f9d0bba6b38f34f0751ca5bea163ac30913670dee0031719067a82b",
       "f571715ccf20da51a32e96cecdf6617a65f3c4169e13198745e708e019915f77"
+    ],
+    "walk": [
+      "17834f9c4e4e0e1f060e153f7554cbf9ec817720b2091fa9904a885eb399cebe",
+      "6464f16a0e4726e94767a91d28c4cc7054698210b02f0b2c0de4835649cbc0ed",
+      "37d37afc27250a78cc1357ffb261f79a80a15c658dd5151ac0de8a41c0851453",
+      "502cd212949a6bbe3ace1a3a8b6ed678e327e4cf5d8a8090bbbedaff79a22f24"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
