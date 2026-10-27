@@ -3,7 +3,8 @@
   "classId": "luchador",
   "sex": "f",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "418fbfd310aaa8e112678e3c000cb439e9dcbececce87e41f4522e963b004638",
       "850742261ae08f156eb286b7f8b19fd12e3a97e3c280a96b4c46a1941440dc5d",
       "da785f5ba487c642f652e9ff4ecd220e5718a9f2128208feb41ed8770d09e78d"
+    ],
+    "walk": [
+      "171fc235378d2406918eeaf19dc6a8c5f3255bcf5d2e7b8aa2f1d99fe7cad58a",
+      "733fbd25749ba4964f08b0b50f0fdfd67a847d256e15b0d717dc6d8bc313cd6f",
+      "2c095f70b77c5f9beaddd7d9b20405e6872b0b2f09281049e565df4e6b77b4f9",
+      "10e98c926813854fd2cf2544810a8d9db4acf08cd1fd505e80ee6363834e31b6"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
