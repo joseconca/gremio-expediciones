@@ -52377,7 +52377,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/superNovato/m/superNovato-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/superNovato/m/frames",
-      "sourceStatus": "hires-redesign-in-progress",
+      "sourceStatus": "hires-library-in-progress",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -52619,68 +52619,68 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "961e09dc6892ce331acb714ec63db7c6855652333feb188be4150fcc2655853e",
-                "bytes": 24260,
+                "sha256": "051c92ed82f18b7c3aa570d10a28f84915df6ed4bee7b3d30fb0101aac727e58",
+                "bytes": 22410,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  26,
+                  28,
                   93,
                   109,
-                  248
+                  249
                 ],
-                "pixelSha256": "47a36274b8989c78246131a515c840e287d5aea8928243f462bfd44ed55e493c"
+                "pixelSha256": "4f090bb83367fd412176c7e25b2c589b058e058761b13eb8cdc36d6f4654e5a1"
               },
               "02": {
-                "sha256": "fc9a4ff816a16c0ab547df738e236c84eb7f81b994cc51256bd2acbc46c39820",
-                "bytes": 24115,
+                "sha256": "66091fc7ac025a632575c11f3d53eeb9dc907dca32ca81e1c60fe61025a51dc4",
+                "bytes": 21824,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  24,
+                  29,
                   92,
                   110,
-                  248
+                  249
                 ],
-                "pixelSha256": "256dfd78adc17f6a50ea79da86a8370dc2bc0442a84c071f8bb937d64938c72f"
+                "pixelSha256": "4356677fbea9adf7d34e44022a419fc79e8c82240c393efc3a38424c0a459de1"
               },
               "03": {
-                "sha256": "53f8ada5d0b47f91af2802d51e2d718b45028f90e523403cdb6702ed56dfab27",
-                "bytes": 24938,
+                "sha256": "bb171db60901b5e8dc60799844f7d947a30b9d09181aedcad062ba8789cd3345",
+                "bytes": 23039,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  18,
+                  29,
                   93,
-                  106,
-                  248
+                  110,
+                  249
                 ],
-                "pixelSha256": "1a7f306d6a19cca08e9c3497c20f580c8e946009ff6c58ccd733ae47e86da3db"
+                "pixelSha256": "18a9fddc095cb9a0a07b490cb36560af819a43e9613e3a5af3a7fee09980d8c0"
               },
               "04": {
-                "sha256": "b05402bf9eb99ea87b5850e11c64f811118bed89db37e822a3a24d78b5bdeed5",
-                "bytes": 24772,
+                "sha256": "8da54104508d2ffe68a1b5d6364336934c22b1dfd51703ae2b96cf3ff405a30c",
+                "bytes": 22674,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  17,
-                  93,
-                  99,
-                  248
+                  23,
+                  92,
+                  104,
+                  249
                 ],
-                "pixelSha256": "0df4485635d8e72ca2e26295daade57c6ffa5a91583da1d58e3554c4cd27fa9e"
+                "pixelSha256": "5da93bba0c8b8c8039e55986235950347aa6ea2c8eec7295987621ff159e6a40"
               }
             },
             "distinctFrames": 4
@@ -53237,7 +53237,7 @@
           "artDirectionRevision": 2
         },
         "use_consumable": {
-          "sourceSha256": "a254241a017baa27c6bf920d24b93387b901bc1cd6076ee8e23a94ebc53e63a3",
+          "sourceSha256": "0092711ea02719921527803acfb7a2bfd821f4f6a27abd919ed6d3d9c93abf20",
           "sourceDimensions": [
             2172,
             724
@@ -53262,9 +53262,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/use_consumable-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/use_consumable-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Production RPG sprite action use_consumable for Super Novato MALE masculine brown spiky-haired. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: ivory short jacket with restrained golden edging over burgundy tunic, short burgundy scarf, neat brown leather cross-straps and bracers, blue trousers with reinforced brown knee panels, brown boots with small brass fittings. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. Four distinct phases: reach belt with empty gripping hand; lift hand to mouth; tip head slightly back as if drinking; lower hand to rest. Keep imaginary potion entirely absent for separate overlay.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
+          "prompt": "Production RPG sprite action use_consumable for Super Novato MALE masculine brown spiky-haired. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: fitted sleeveless white tunic with cobalt blue shoulder yoke, standing blue collar and vertical blue front panel, small white neck cravat, brown leather belt with small pouches, brass chain at hip, warm brown cropped loose trousers WITHOUT patches, off-white knee wraps, dark brown lace-up boots and fingerless gloves; bare upper arms. NO red scarf, NO crossed chest harness, NO cream jacket, NO blue trousers, NO gold embroidery. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. Four phases: reach belt with empty gripping hand, lift hand to mouth, tip head back slightly, return hand to rest. Preserve canonical hand coordinates. Potion is invisible and belongs to equipment layer. All red scarf scraps removed to transparency.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/use_consumable-reference.png",
           "canonicalPoseHashes": [
             "3552da6dbec2996d43f7df4e603badd73c0c750b1e67f12e938abeaf6d2ab8e0",
@@ -53272,7 +53272,48 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "superseded-costume-rework-required"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "a254241a017baa27c6bf920d24b93387b901bc1cd6076ee8e23a94ebc53e63a3",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                627,
+                16,
+                1015,
+                695
+              ],
+              "scale": 0.23,
+              "origin": [
+                19,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/use_consumable-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production RPG sprite action use_consumable for Super Novato MALE masculine brown spiky-haired. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: ivory short jacket with restrained golden edging over burgundy tunic, short burgundy scarf, neat brown leather cross-straps and bracers, blue trousers with reinforced brown knee panels, brown boots with small brass fittings. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. Four distinct phases: reach belt with empty gripping hand; lift hand to mouth; tip head slightly back as if drinking; lower hand to rest. Keep imaginary potion entirely absent for separate overlay.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/use_consumable-reference.png",
+              "canonicalPoseHashes": [
+                "3552da6dbec2996d43f7df4e603badd73c0c750b1e67f12e938abeaf6d2ab8e0",
+                "f2f24093e0fde6f7519f844675db9b749b5ec233a189c153dc35b65bb556ef51",
+                "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
+                "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
+              ],
+              "visualStatus": "superseded-costume-rework-required"
+            }
+          ],
+          "artDirectionRevision": 2
         },
         "dodge": {
           "sourceSha256": "b7c2e608c628b4e74e7f0dc8dded93346e8800c762e106f9e2580068f3c16dc6",
@@ -53608,7 +53649,6 @@
         "identitySource": "assets/spritesheets/hd-128x256/superNovato/m/source/idle-reference-v2.png",
         "costume": "White and cobalt blue sleeveless tunic, white cravat, brown trousers, utility belt, brass hip chain, dark boots; no red scarf or chest harness.",
         "actionsToRework": [
-          "use_consumable",
           "dodge",
           "block_shield",
           "attack_sword",
