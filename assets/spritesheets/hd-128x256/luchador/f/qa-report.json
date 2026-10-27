@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-27T11:20:25.094031+00:00",
+  "classId": "luchador",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\luchador\\f\\luchador-f-sheet.png",
+  "sheetSha256": "65ba99bf210f21df4a51337eeb56cea5e04edf99a97d5b4aafbaea857bceb793",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\idle\\luchador-f-idle-01.png",
+          "sha256": "992756356c84fa0f97e5f01a3d15ceab93e2a2846f2f79eb5d0b1d2525378bab",
+          "alpha_bbox": [
+            30,
+            90,
+            111,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\idle\\luchador-f-idle-02.png",
+          "sha256": "418fbfd310aaa8e112678e3c000cb439e9dcbececce87e41f4522e963b004638",
+          "alpha_bbox": [
+            29,
+            90,
+            110,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\idle\\luchador-f-idle-03.png",
+          "sha256": "850742261ae08f156eb286b7f8b19fd12e3a97e3c280a96b4c46a1941440dc5d",
+          "alpha_bbox": [
+            25,
+            90,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\idle\\luchador-f-idle-04.png",
+          "sha256": "da785f5ba487c642f652e9ff4ecd220e5718a9f2128208feb41ed8770d09e78d",
+          "alpha_bbox": [
+            25,
+            90,
+            106,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\walk\\luchador-f-walk-01.png",
+          "sha256": "171fc235378d2406918eeaf19dc6a8c5f3255bcf5d2e7b8aa2f1d99fe7cad58a",
+          "alpha_bbox": [
+            15,
+            89,
+            109,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\walk\\luchador-f-walk-02.png",
+          "sha256": "733fbd25749ba4964f08b0b50f0fdfd67a847d256e15b0d717dc6d8bc313cd6f",
+          "alpha_bbox": [
+            31,
+            89,
+            97,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\walk\\luchador-f-walk-03.png",
+          "sha256": "2c095f70b77c5f9beaddd7d9b20405e6872b0b2f09281049e565df4e6b77b4f9",
+          "alpha_bbox": [
+            12,
+            89,
+            117,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\walk\\luchador-f-walk-04.png",
+          "sha256": "10e98c926813854fd2cf2544810a8d9db4acf08cd1fd505e80ee6363834e31b6",
+          "alpha_bbox": [
+            27,
+            89,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\hurt\\luchador-f-hurt-01.png",
+          "sha256": "d250c772c5348d56b07306436a64186cf1ebb94a3c3b35f088ce70f1c9bbdf81",
+          "alpha_bbox": [
+            26,
+            91,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\hurt\\luchador-f-hurt-02.png",
+          "sha256": "3bd46797093477b82b481e835cff1b5a0e12a4f9e457f1046daef074c3f5575e",
+          "alpha_bbox": [
+            26,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\hurt\\luchador-f-hurt-03.png",
+          "sha256": "0266166eebd57233961e28681495cfeb7d120eebce71d785c1d9a737a137c0ba",
+          "alpha_bbox": [
+            18,
+            112,
+            96,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\hurt\\luchador-f-hurt-04.png",
+          "sha256": "4c62b417420469d61ffb3a2af102aa807ef9e0c3a670c9b031c22ee9e31aae43",
+          "alpha_bbox": [
+            18,
+            91,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\use_consumable\\luchador-f-use_consumable-01.png",
+          "sha256": "7f28c73f3193ecafa20c16f2b01555301f0226663a769e6d1e373da4b55208c4",
+          "alpha_bbox": [
+            26,
+            89,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\use_consumable\\luchador-f-use_consumable-02.png",
+          "sha256": "e3f42371a79770c0d72e060ca9d27d7b647663a3527328fd27ece7701c0e727d",
+          "alpha_bbox": [
+            25,
+            89,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\use_consumable\\luchador-f-use_consumable-03.png",
+          "sha256": "251db20b8802be94ee3af67ac5ab2877e18ebcf1a0e6ba8a0b99f19853a1e034",
+          "alpha_bbox": [
+            25,
+            89,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\use_consumable\\luchador-f-use_consumable-04.png",
+          "sha256": "ff3352c1a5f59169a9d0c9ded41d03f2ec4da9a865b5e381013a2e26830c1625",
+          "alpha_bbox": [
+            25,
+            89,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\dodge\\luchador-f-dodge-01.png",
+          "sha256": "37abb2a3caa0ffc6227ac4970a0f9d42ceea81b8c35d97d285b4628506fb6db4",
+          "alpha_bbox": [
+            29,
+            91,
+            115,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\dodge\\luchador-f-dodge-02.png",
+          "sha256": "3de1177f6e54366ff87c1386967def8bef7cb41dffb54b5c7ce9e66cbfb1a0a6",
+          "alpha_bbox": [
+            30,
+            92,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\dodge\\luchador-f-dodge-03.png",
+          "sha256": "8ebbd0352b683875bf45922bb672f39f9d9f62c851a64e3c663887f7ded61973",
+          "alpha_bbox": [
+            22,
+            124,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\dodge\\luchador-f-dodge-04.png",
+          "sha256": "bb7f378e437f0ddc89f5fc14c4bee7674760094910d2ae1bbc9402237aa8fcb8",
+          "alpha_bbox": [
+            16,
+            91,
+            104,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\block_shield\\luchador-f-block_shield-01.png",
+          "sha256": "afaf9e768bedbc26d743416531340d4f0eb412a01e4e8b90258fd9c9aa58923b",
+          "alpha_bbox": [
+            28,
+            91,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\block_shield\\luchador-f-block_shield-02.png",
+          "sha256": "4409445976d1d709ef26471618870f3c3a73d1188d9037b54f9675c2f3253afc",
+          "alpha_bbox": [
+            26,
+            92,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\block_shield\\luchador-f-block_shield-03.png",
+          "sha256": "7ef6dc9eb7c1694a657dbed9aaa5dc7e6501ad8a4eb6af0f5e266ffce4863cac",
+          "alpha_bbox": [
+            25,
+            103,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\block_shield\\luchador-f-block_shield-04.png",
+          "sha256": "58cba17762b8373e92510c229f74e39ddfa35f0a7e357b89b939eea1faf0a380",
+          "alpha_bbox": [
+            22,
+            91,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_sword\\luchador-f-attack_sword-01.png",
+          "sha256": "cc2c095b66eea63790a6e828897637881a367a0bc441cf2404451197a9828259",
+          "alpha_bbox": [
+            25,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_sword\\luchador-f-attack_sword-02.png",
+          "sha256": "5f2ecca1c7fefa2dcd658e93add3f352a7d5fa48c91042c25bcc700c9807aa9e",
+          "alpha_bbox": [
+            26,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_sword\\luchador-f-attack_sword-03.png",
+          "sha256": "20f2a1da423610a59fdd5f697879a7671363a6d02bda8e401f9f36578b70148a",
+          "alpha_bbox": [
+            14,
+            96,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_sword\\luchador-f-attack_sword-04.png",
+          "sha256": "f64f8e6fa5eb72e01e4bf70c2e1bf32ec1c61a799298a12141cb869b16dc6a1a",
+          "alpha_bbox": [
+            14,
+            90,
+            100,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_axe\\luchador-f-attack_axe-01.png",
+          "sha256": "1905e99cfad43361456d6a1593527679ed9bc75afc7a0a1c876d9a0b3bf0d47b",
+          "alpha_bbox": [
+            25,
+            95,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_axe\\luchador-f-attack_axe-02.png",
+          "sha256": "7d012235fdb220f3ea1a43d5cd30eafef59e9af01c26713655a71569032a1da6",
+          "alpha_bbox": [
+            17,
+            90,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_axe\\luchador-f-attack_axe-03.png",
+          "sha256": "a8772d74f3255f85380a1b761888c428bcf1001750f6cf093bb79ba60d12e2ad",
+          "alpha_bbox": [
+            13,
+            103,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_axe\\luchador-f-attack_axe-04.png",
+          "sha256": "82bf3c1cc4fa97dfed5f9a955adab2a7999393fa787eeeba312a35c6a88d4ead",
+          "alpha_bbox": [
+            8,
+            94,
+            96,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_spear\\luchador-f-attack_spear-01.png",
+          "sha256": "ccefa2fd6714cddfc16d0d1d1f97f8f2f2cdb40951fdb944e3dfbde027da74f3",
+          "alpha_bbox": [
+            17,
+            92,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_spear\\luchador-f-attack_spear-02.png",
+          "sha256": "0d0e0db573da3682311fec99c177ba758425c9263fcfc6dd78f2dfca82c657f9",
+          "alpha_bbox": [
+            17,
+            92,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_spear\\luchador-f-attack_spear-03.png",
+          "sha256": "9d1851c204f9d6b4973f14a4b792c8227da4a060e137b24443611a86a81122e9",
+          "alpha_bbox": [
+            13,
+            92,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_spear\\luchador-f-attack_spear-04.png",
+          "sha256": "c2e8c9c1f83a4f872099fa70cc9a324608c10bbaa68deb13aed2e857099deb49",
+          "alpha_bbox": [
+            17,
+            92,
+            114,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_dagger\\luchador-f-attack_dagger-01.png",
+          "sha256": "7d842d4062b04d7a21246a10c3126b20d02fe1aedadf530377b68c25877699ab",
+          "alpha_bbox": [
+            18,
+            90,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_dagger\\luchador-f-attack_dagger-02.png",
+          "sha256": "cdff873431c0e9fa1c57cdcb3c68285159a38e6e248626585c32af6e5602f35b",
+          "alpha_bbox": [
+            20,
+            90,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_dagger\\luchador-f-attack_dagger-03.png",
+          "sha256": "883052f5dba01b8761dac57670671a5f958129f4ff0cb6a0a1d81db8b173e71a",
+          "alpha_bbox": [
+            19,
+            90,
+            114,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_dagger\\luchador-f-attack_dagger-04.png",
+          "sha256": "d93ec0d166bfebde435c86a51ad553226627be43e470632fa8c9bafc42648972",
+          "alpha_bbox": [
+            26,
+            90,
+            114,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_bow\\luchador-f-attack_bow-01.png",
+          "sha256": "e8174f14f4ef72c6a84b872d6cb9cd2a737fbf908b7dab288a58e5b01228fc0c",
+          "alpha_bbox": [
+            26,
+            90,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_bow\\luchador-f-attack_bow-02.png",
+          "sha256": "8ef9a70a2bcc97f176fffeab19211d9f550042ccf4d90976c3817ffc4539720d",
+          "alpha_bbox": [
+            17,
+            90,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_bow\\luchador-f-attack_bow-03.png",
+          "sha256": "827de3688df9504cd3ce2e1fd464dae4c91dd8235d06434367649cd2595cce9e",
+          "alpha_bbox": [
+            17,
+            90,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_bow\\luchador-f-attack_bow-04.png",
+          "sha256": "a92aeb2e9e72c8b9bc19e6c34299829412259ad518717946abe9b11bcbe46fa2",
+          "alpha_bbox": [
+            17,
+            90,
+            112,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_staff\\luchador-f-attack_staff-01.png",
+          "sha256": "104d766dece8b846dbf0b8fb44785a2dac20c84111240b2b4a2778877e5d1683",
+          "alpha_bbox": [
+            27,
+            90,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_staff\\luchador-f-attack_staff-02.png",
+          "sha256": "7aa94c62dbf6c5a622d48100f0b761302050298d5bd77ea8d7e8f5c29db2ae42",
+          "alpha_bbox": [
+            26,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_staff\\luchador-f-attack_staff-03.png",
+          "sha256": "f13a382932b17231f92e1be07285d17185c7c3f48599c81362133a3fd75d9836",
+          "alpha_bbox": [
+            25,
+            90,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_staff\\luchador-f-attack_staff-04.png",
+          "sha256": "e70ffffe7b62e4c89a03ea38f232a96fba0b5259f006b63ae432bc21053ebc63",
+          "alpha_bbox": [
+            25,
+            90,
+            108,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_mace\\luchador-f-attack_mace-01.png",
+          "sha256": "90d066bac87924fad20eda0d385abb1e70d3e911d8fb0c18f4b7f832222496b3",
+          "alpha_bbox": [
+            29,
+            89,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_mace\\luchador-f-attack_mace-02.png",
+          "sha256": "08f9dfc200d5c74649d50bba78b546e6ac2d03b35aa0fc1ec103bb5eb83c187d",
+          "alpha_bbox": [
+            24,
+            89,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_mace\\luchador-f-attack_mace-03.png",
+          "sha256": "3dc64115bcf8f763c4b07d50d0e6be35dcf80a8a8391fbde9c8ac79123cdb879",
+          "alpha_bbox": [
+            19,
+            95,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_mace\\luchador-f-attack_mace-04.png",
+          "sha256": "55a9ba84915e6d7eacf4e778bec1e5efd18760a18307af052e7bc3927f291b4b",
+          "alpha_bbox": [
+            19,
+            89,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_book\\luchador-f-attack_book-01.png",
+          "sha256": "01456c4f86a63556b1cb713af9a3a4d11b3df8ff1899307c94a4bcc77e59d69b",
+          "alpha_bbox": [
+            31,
+            90,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_book\\luchador-f-attack_book-02.png",
+          "sha256": "5ade9c08e43669d21e025b935c2de971760a28cd9118f8848d15ce205dacdd20",
+          "alpha_bbox": [
+            24,
+            89,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_book\\luchador-f-attack_book-03.png",
+          "sha256": "b96184bba8e06c14ccc5a54f94176b85200f2d3db4da79efdcc8e1117bca31da",
+          "alpha_bbox": [
+            23,
+            89,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_book\\luchador-f-attack_book-04.png",
+          "sha256": "cfc9ea818a5b19f3b1ae5abb52bdcbbfea2009656f34fe02c0824ecea089b9b8",
+          "alpha_bbox": [
+            20,
+            89,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_gloves\\luchador-f-attack_gloves-01.png",
+          "sha256": "971046c9f2475be36c297414d80fcbdf24fd155ebd419569bd7acdf3ccf1d9d5",
+          "alpha_bbox": [
+            24,
+            90,
+            105,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_gloves\\luchador-f-attack_gloves-02.png",
+          "sha256": "43bf8ad22f3ec0c9a4e8cf6bff9cc7804d815f0d7c6d3cd2ab6bd40c48f55bad",
+          "alpha_bbox": [
+            23,
+            89,
+            104,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_gloves\\luchador-f-attack_gloves-03.png",
+          "sha256": "3f4d8715f89646d01e3c6a81e449941a525d97899b2a77dd725f7f3d9eb63edc",
+          "alpha_bbox": [
+            12,
+            90,
+            117,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\luchador\\f\\frames\\attack_gloves\\luchador-f-attack_gloves-04.png",
+          "sha256": "95625e333dea832f9afaccd44e7ea89a25f44021a8a90a33e2de28a535f29a63",
+          "alpha_bbox": [
+            12,
+            90,
+            93,
+            247
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
