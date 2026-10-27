@@ -77,7 +77,7 @@
     "attack_dagger": [
       "66d8d1a68a9da46348bb8cd347ceebd9dad925f16ca343d3bb39fb848f534f9c",
       "89fc7119a8ddc6f7608e060f8ef0d45d2cb6144fc4fea7e673d36addcbee1a6f",
-      "0424fa9bbc707b6c8b97459d02b5ca40e84dc2325e7d29e50845c76597549584",
+      "4dcd46cbf3f235a26e2bd8e47880978b6d4f5dfece0a14205e4ff2a7af4f987e",
       "4081c497a4e42704c0a30bf6187d8e4ce7e10fa356567b63ecc4503e47e6f829"
     ],
     "attack_bow": [
@@ -113,6 +113,7 @@
   },
   "contactChecks": 682,
   "warnings": [],
-  "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
+  "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
+  "equipmentRigRevision": 2,
   "artisticApproval": "not-automatic"
 }

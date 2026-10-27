@@ -7829,7 +7829,7 @@
       "sheets": {
         "m": {
           "path": "assets/spritesheets/hd-128x256/equipment/daga_hierro/m/daga_hierro-m-sheet.png",
-          "sha256": "84b35483fe8f8d88179eaa4024b1aa9bb1b1deebb4570e41bf4379c3de2e506f",
+          "sha256": "f1268258b1b455bc62f89c807ef568db223980feb1b7d5c821ddfd7dd02d084a",
           "dimensions": [
             1536,
             5760
@@ -8387,11 +8387,11 @@
               {
                 "frame": 3,
                 "path": "assets/spritesheets/hd-128x256/equipment/daga_hierro/m/frames/attack_dagger/03.png",
-                "sha256": "0a55187aca79c196975af4bcff9edc5353ecdbb1cae29c3b8009f4198c9fdf95",
+                "sha256": "99577f67e0d9df03d9c2691cfa73edc1757e3c50209a43de15ff4bf87bb967e0",
                 "config": {
                   "primary": [
-                    84,
-                    161
+                    73,
+                    168
                   ],
                   "secondary": [
                     83,
@@ -8406,8 +8406,8 @@
                   ],
                   "contacts": [
                     [
-                      84,
-                      161
+                      73,
+                      168
                     ]
                   ],
                   "restoreHands": true,
@@ -9105,7 +9105,7 @@
       "sheets": {
         "m": {
           "path": "assets/spritesheets/hd-128x256/equipment/daga_sombria/m/daga_sombria-m-sheet.png",
-          "sha256": "809ac26b9c5db78e8aa6e8b71dbf220a079b87bf383cd88dd94c5276cbf3bc65",
+          "sha256": "0d0db49c6c15dda65a022441c48e230ecbc370458286e8281d1aded04a78b388",
           "dimensions": [
             1536,
             5760
@@ -9663,11 +9663,11 @@
               {
                 "frame": 3,
                 "path": "assets/spritesheets/hd-128x256/equipment/daga_sombria/m/frames/attack_dagger/03.png",
-                "sha256": "dd0546915d096b75dc6065f0ac04203d4809a0e62ec6af5ff20a230d972864f7",
+                "sha256": "c7e9d84ccba64d79261479b793ce3df72063734c68f20ef53beb6b89e95bc032",
                 "config": {
                   "primary": [
-                    84,
-                    161
+                    73,
+                    168
                   ],
                   "secondary": [
                     83,
@@ -9682,8 +9682,8 @@
                   ],
                   "contacts": [
                     [
-                      84,
-                      161
+                      73,
+                      168
                     ]
                   ],
                   "restoreHands": true,
@@ -25459,7 +25459,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/lanza_escama/f/lanza_escama-f-sheet.png",
-          "sha256": "6acbaffb3b33fd3fe971368df7d09704160509f5490a83838655e878604bd3ef",
+          "sha256": "da15d9e30e3bfda607bbe6ebe185a86ee40a9475721d1ac9952ee4586e444cb5",
           "dimensions": [
             1536,
             5760
@@ -26025,17 +26025,17 @@
               {
                 "frame": 3,
                 "path": "assets/spritesheets/hd-128x256/equipment/lanza_escama/f/frames/attack_spear/03.png",
-                "sha256": "0b6576004ab9bd8170bbe53c57b60266e73723456b89f67a777ab8a2d9e4fad5",
+                "sha256": "ca396c8267ac68689dcb85785896b1bf1d2b7dbf8ba6b3576fb4a26811ff0919",
                 "config": {
                   "primary": [
-                    75,
-                    160
+                    85,
+                    153
                   ],
                   "secondary": [
-                    108,
-                    148
+                    107,
+                    146
                   ],
-                  "angleDegrees": -70.01689347810003,
+                  "angleDegrees": -72.34987578006988,
                   "depth": "front",
                   "handMaskRadius": 5,
                   "modelGrip": [
@@ -26044,12 +26044,12 @@
                   ],
                   "contacts": [
                     [
-                      75,
-                      160
+                      85,
+                      153
                     ],
                     [
-                      108,
-                      148
+                      107,
+                      146
                     ]
                   ],
                   "restoreHands": true,
@@ -26767,7 +26767,7 @@
         },
         "f": {
           "path": "assets/spritesheets/hd-128x256/equipment/lanza_madera/f/lanza_madera-f-sheet.png",
-          "sha256": "3a7c9347608477655b4148d44297ba99399e47bf9e82288f5985632d201d355f",
+          "sha256": "5032c97ac099e60107a9f55d1bcbf16045c0e0f47f304c1deb7c8b798d7c8974",
           "dimensions": [
             1536,
             5760
@@ -27333,17 +27333,17 @@
               {
                 "frame": 3,
                 "path": "assets/spritesheets/hd-128x256/equipment/lanza_madera/f/frames/attack_spear/03.png",
-                "sha256": "1e7406c6a1ac6795a1720b27aa0b3b0988e4c4e55164206da1cd93510ac390d5",
+                "sha256": "6bfb1a9bfd19007fa919721ba8e06d341bd1de71203793e6ba55cffd766ad25b",
                 "config": {
                   "primary": [
-                    75,
-                    160
+                    85,
+                    153
                   ],
                   "secondary": [
-                    108,
-                    148
+                    107,
+                    146
                   ],
-                  "angleDegrees": -70.01689347810003,
+                  "angleDegrees": -72.34987578006988,
                   "depth": "front",
                   "handMaskRadius": 5,
                   "modelGrip": [
@@ -27352,12 +27352,12 @@
                   ],
                   "contacts": [
                     [
-                      75,
-                      160
+                      85,
+                      153
                     ],
                     [
-                      108,
-                      148
+                      107,
+                      146
                     ]
                   ],
                   "restoreHands": true,
@@ -37785,8 +37785,8 @@
           },
           {
             "primary": [
-              84,
-              161
+              73,
+              168
             ],
             "secondary": [
               83,
@@ -38601,12 +38601,12 @@
           },
           {
             "primary": [
-              75,
-              160
+              85,
+              153
             ],
             "secondary": [
-              108,
-              148
+              107,
+              146
             ],
             "angleDegrees": -76,
             "depth": "front",
@@ -40080,5 +40080,76 @@
     "compositionMetadata": "src/lib/generated/sprites-hd.json",
     "previewRoute": "/revision-sprites",
     "nextStep": "User gameplay verification before further class production."
+  },
+  "sharedGripCorrection": {
+    "revision": 2,
+    "reason": "Canonical closed-fist centers; previous alpha-radius check accepted wrist or cloth outside fist",
+    "changes": [
+      {
+        "sex": "m",
+        "action": "attack_dagger",
+        "frame": 3,
+        "field": "primary",
+        "previous": [
+          84,
+          161
+        ],
+        "corrected": [
+          73,
+          168
+        ]
+      },
+      {
+        "sex": "f",
+        "action": "attack_spear",
+        "frame": 3,
+        "field": "primary",
+        "previous": [
+          75,
+          160
+        ],
+        "corrected": [
+          85,
+          153
+        ]
+      },
+      {
+        "sex": "f",
+        "action": "attack_spear",
+        "frame": 3,
+        "field": "secondary",
+        "previous": [
+          108,
+          148
+        ],
+        "corrected": [
+          107,
+          146
+        ]
+      }
+    ],
+    "classSpecificTransforms": false,
+    "bodyPolicy": "Preserve original generated anatomy; one common rig per sex",
+    "visualReference": "assets/spritesheets/hd-128x256/equipment/previews/shared-grip-correction-before-after.png",
+    "canonicalFistRegions": {
+      "m/attack_dagger/03/primary": [
+        68,
+        163,
+        80,
+        176
+      ],
+      "f/attack_spear/03/primary": [
+        80,
+        148,
+        91,
+        158
+      ],
+      "f/attack_spear/03/secondary": [
+        103,
+        142,
+        112,
+        151
+      ]
+    }
   }
 }

@@ -31,7 +31,7 @@ def review(c,sex):
                 grips.paste(tile.convert('RGB').crop((104,128,280,288)).resize((352,320),Image.Resampling.NEAREST),(n*352,row*320+24))
         contact.save(out/(action+'.png'))
         grips.save(out/(action+'-grips.png'))
-    result={'status':'contact-review-required' if warnings else 'passed','classId':c,'sex':sex,'actions':available,'bodyHashes':hashes,'contactChecks':checks,'warnings':warnings,'equipmentTransforms':'unchanged; exact existing equipment layers per sex, no class offsets','artisticApproval':'not-automatic'}
+    result={'status':'contact-review-required' if warnings else 'passed','classId':c,'sex':sex,'actions':available,'bodyHashes':hashes,'contactChecks':checks,'warnings':warnings,'equipmentTransforms':'exact shared equipment layers per sex; no class offsets','equipmentRigRevision':m.get('sharedGripCorrection',{}).get('revision',1),'artisticApproval':'not-automatic'}
     (out/'qa-report.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({'class':c,'sex':sex,'actions':len(available),'contactChecks':checks,'warnings':warnings},ensure_ascii=False));return result
 if __name__=='__main__':

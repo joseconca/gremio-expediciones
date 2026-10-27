@@ -6,6 +6,17 @@ ROOT=Path(__file__).resolve().parents[1]
 render=runpy.run_path(str(ROOT/'scripts/ensamblar-equipo-hd.py'))
 validate=runpy.run_path(str(ROOT/'scripts/validar-equipo-hd.py'))
 class EquipmentTests(unittest.TestCase):
+    def test_impact_grips_stay_inside_canonical_closed_fists(self):
+        # Measured hand regions exclude the wrist, torso and cloth accepted by
+        # the former radius-only alpha check. See the shared-grip visual review.
+        m=json.loads((ROOT/'assets/spritesheets/hd-128x256/equipment/manifest.json').read_text(encoding='utf-8'))
+        cases=[('m','attack_dagger','primary',(68,163,80,176)),('f','attack_spear','primary',(80,148,91,158)),('f','attack_spear','secondary',(103,142,112,151))]
+        for sex,action,key,(left,top,right,bottom) in cases:
+            with self.subTest(sex=sex,action=action,key=key):
+                x,y=m['rigs'][sex]['actions'][action][2][key]
+                self.assertTrue(left<=x<right and top<=y<bottom,'Grip must lie in the closed fist, not on nearby cloth or wrist')
+                body=Image.open(ROOT/f'assets/spritesheets/hd-128x256/novato/{sex}/frames/{action}/novato-{sex}-{action}-03.png').convert('RGBA')
+                self.assertGreaterEqual(body.getpixel((x,y))[3],240)
     def test_rotation_preserves_exact_pivot(self):
         source=Image.new('RGBA',(21,41));source.paste((255,30,0,255),(8,28,13,33))
         for angle in (0,45,90,-135):

@@ -71,7 +71,7 @@
     "attack_spear": [
       "b73cf1ce46ef0705fea9b3d66710572a1408112c7913d877e7761c45f3fedd50",
       "fd375f24dcc4edfc2e17449cd0a56ea355092960046cee798afeac00ea7209b7",
-      "170a7b132b531fde8930edf9f3f5f3b7b7648a15bdae3c4ad959c9719198e743",
+      "2e0b2ab5e1571e85c69c5c147c2703b0d2df6bcbe65abcb9ad242357e49034d3",
       "458cc778f05a88229064c164a6bf0108395f5266fb83bf731cee53add3b6619d"
     ],
     "attack_dagger": [
@@ -113,6 +113,7 @@
   },
   "contactChecks": 682,
   "warnings": [],
-  "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
+  "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
+  "equipmentRigRevision": 2,
   "artisticApproval": "not-automatic"
 }

@@ -10,7 +10,7 @@ class RigTests(unittest.TestCase):
     def test_all_classes_share_exactly_one_rig_per_sex(self):
         for sex in ('m','f'):
             variants=[v for v in self.manifest['variants'] if v['sex']==sex]
-            self.assertEqual(len(variants),13)
+            self.assertEqual(len(variants),len(self.manifest['classes']))
             self.assertEqual(len({v['equipmentRigId'] for v in variants}),1)
             for v in variants:self.assertEqual(self.manifest['equipmentRigs'][v['equipmentRigId']]['sex'],sex)
         female=next(v for v in self.manifest['variants'] if v['classId']=='novato' and v['sex']=='f')
