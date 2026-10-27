@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import tempfile
 from pathlib import Path
 from PIL import Image
 
@@ -16,6 +17,18 @@ HD_ROOT = ROOT / 'assets/spritesheets/hd-128x256'
 ACTIONS = ('idle','walk','hurt','use_consumable','dodge','block_shield',
            'attack_sword','attack_axe','attack_spear','attack_dagger','attack_bow',
            'attack_staff','attack_mace','attack_book','attack_gloves')
+
+
+def write_progress(path: Path, text: str) -> None:
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', dir=path.parent, suffix='.tmp', delete=False) as saved:
+            temporary = Path(saved.name)
+            saved.write(text)
+        temporary.replace(path)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
 
 
 def inspect_frame(path: Path) -> dict:
@@ -92,12 +105,12 @@ def main() -> int:
     p.add_argument('--strict',action='store_true')
     args=p.parse_args()
     path=args.root/'manifest.json'
-    before=path.read_text()
+    before=path.read_text(encoding='utf-8')
     manifest=reconcile(json.loads(before),args.root)
     after=json.dumps(manifest,ensure_ascii=False,indent=2)+'\n'
     invalid=sum(v['audit']['invalidFrames'] for v in manifest['variants'])
     valid=sum(v['audit']['validFrames'] for v in manifest['variants'])
-    if args.write: path.write_text(after)
+    if args.write: write_progress(path, after)
     elif before != after:
         print('Progress differs from files. Run: python scripts/auditar-sprites-hd.py --write')
         return 1

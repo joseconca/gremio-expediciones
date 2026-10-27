@@ -254,6 +254,10 @@ Los atlas completos son candidatos para revisión del usuario. `revisar-contacto
 
 Se trabaja en `nuevas-clases`. El catálogo actual contiene 61 clases y 122 variantes; el informe derivado `previews/class-coverage.json` compara las clases reales con el manifiesto para que también figuren las especializaciones intermedias. El usuario ha aprobado el estilo de Super Novato inspirado en Ragnarok Online y solicita continuar con todas las clases pendientes, con una identidad propia y una apariencia más avanzada según su nivel.
 
+Respaldo solicitado por el usuario: commits locales frecuentes por sexo y acción, y subida de `nuevas-clases` a GitHub después de terminar cada clase. Comprobar que el extremo remoto coincide con el commit enviado. Para recuperar una acumulación grande, revisar objetos y dividir las subidas en avances normales de la misma rama, sin forzar ni reescribir el historial.
+
+El registro de acciones y la auditoría guardan el manifiesto mediante sustitución de un archivo temporal terminado: si Windows interrumpe una escritura, la versión anterior permanece completa. Las imágenes de revisión usan el mismo criterio de sustitución.
+
 | Clase nueva | Masculino | Femenino | Rasgos propios |
 |---|---|---|---|
 | Super Novato | 60 / 15 acciones | 60 / 15 acciones | Blanco y azul; estilo inspirado en Ragnarok Online |

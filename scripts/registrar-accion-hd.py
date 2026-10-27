@@ -1,7 +1,17 @@
 """Preserve one generated action and export it against the canonical Novato pose."""
-import argparse,copy,hashlib,json,runpy,shutil,subprocess,sys
+import argparse,copy,hashlib,json,runpy,shutil,subprocess,sys,tempfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];HD=ROOT/'assets/spritesheets/hd-128x256'
+
+def write_progress(path,text):
+    temporary=None
+    try:
+        with tempfile.NamedTemporaryFile(mode='w',encoding='utf-8',dir=path.parent,suffix='.tmp',delete=False) as saved:
+            temporary=Path(saved.name)
+            saved.write(text)
+        temporary.replace(path)
+    finally:
+        if temporary is not None:temporary.unlink(missing_ok=True)
 def register(class_id,sex,action,source,prompt_file,revision=None,frame_sources=None):
     path=HD/'manifest.json';m=json.loads(path.read_text(encoding='utf-8'))
     v=next(v for v in m['variants'] if v['classId']==class_id and v['sex']==sex)
@@ -60,7 +70,7 @@ def register(class_id,sex,action,source,prompt_file,revision=None,frame_sources=
     m['nextVariant']=class_id+'-'+sex
     tier=v['tier'];ordered=[c['name'] for c in sorted(m['classes'],key=lambda c:c['order']) if c['tier']==tier]
     m['nextTask']=f'Continue Tier {tier} in class order: '+', '.join(ordered)+'; male then female, 15 registered actions each, shared equipment contacts unchanged.'
-    path.write_text(json.dumps(m,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    write_progress(path,json.dumps(m,ensure_ascii=False,indent=2)+'\n')
     for script,args in [('auditar-sprites-hd.py',['--write']),('ensamblar-progreso-spritesheet-hd.py',['--class-id',class_id,'--sex',sex])]:subprocess.run([sys.executable,str(ROOT/'scripts'/script),*args],cwd=ROOT,check=True)
     print(json.dumps({'class':class_id,'sex':sex,'action':action,'registration':metadata['scalePolicy']}))
 if __name__=='__main__':
