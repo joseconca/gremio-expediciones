@@ -66638,68 +66638,68 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "deabd35bfbf46b423ea7b9fb458d75bb83c6571746b499c3b31c7331703a945d",
-                "bytes": 22900,
+                "sha256": "239d0fff84414f6e0f72acb6dc6cb09c93bf6ac4f8b3cf30ec50874d0e4b9a52",
+                "bytes": 22954,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  23,
+                  22,
                   91,
                   99,
                   248
                 ],
-                "pixelSha256": "7e35fec8a9a7552f922ae5091769440aaff8ee7c4a9c71f502d89a80bed3dc00"
+                "pixelSha256": "614c921edcca04017425048687827d024d3758ab06561755b51731b856996d3d"
               },
               "02": {
-                "sha256": "0d29ae9acad6176ef6d13de0e1d7646936d7764ba390830eb27ba4d28fcef0c0",
-                "bytes": 22377,
+                "sha256": "1c4f8d4dc6e03c83bbc6cf58d00516f989e9f0e84a48515b655f5fc2eb2d1acc",
+                "bytes": 22716,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  23,
+                  21,
                   91,
-                  100,
+                  99,
                   248
                 ],
-                "pixelSha256": "7f0b4347f6aeb483cb2a17ec984a95602d0728f8623789b6649fa6a41fd5430d"
+                "pixelSha256": "cf00ff1d53bf576a4c48f5ac0b78c8d305714c8053a1c73c7ad860a1cf7bdbe8"
               },
               "03": {
-                "sha256": "eed63b02e9951985bce745cfb197319bf60a882a4c2e9ed76ae5d3d7d7c65774",
-                "bytes": 23398,
+                "sha256": "b327bd6eee255e62f1541e80cdcab8719acdafc9da3661bf9bdead0f7ead0244",
+                "bytes": 23310,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  23,
-                  91,
-                  104,
-                  248
-                ],
-                "pixelSha256": "c0e25054fe70a5751e93624e2d2eea76dedeff6ec056e6de0d97c06a6f33a81d"
-              },
-              "04": {
-                "sha256": "811b0127cc8818fc4d5d2de39c5ac719473191abe4f28e643d43876da6e3dbb3",
-                "bytes": 22367,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  23,
+                  18,
                   91,
                   100,
                   248
                 ],
-                "pixelSha256": "0822a1aa04f8191517cff19fa487ab7217688b477590991469dd2c545b0705bf"
+                "pixelSha256": "9e1ccce5232b9a4b5cd90f11a2d56ea0ee5168ca879e119f6c3bbd175f57e4b6"
+              },
+              "04": {
+                "sha256": "65b584ba8d3b79e3fc937e664ab1e918aee0f253a222bd1e016619895872b21c",
+                "bytes": 22728,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  91,
+                  95,
+                  248
+                ],
+                "pixelSha256": "6d986dcec29820da23ab492e31f685696907a147f84058dc2a1aa955d3786cef"
               }
             },
             "distinctFrames": 4
@@ -67786,7 +67786,7 @@
           ]
         },
         "attack_book": {
-          "sourceSha256": "273316c4cdaab39c96d4a79ca097efa75c55583a05da0a510b4647f933fc8420",
+          "sourceSha256": "8856b413f4ae59785d4545121cfe4a72ba9f6c0fe1a5f40157efb7efa5d0da14",
           "sourceDimensions": [
             2172,
             724
@@ -67811,7 +67811,7 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/centinela/m/source/attack_book-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/centinela/m/source/attack_book-reference-v2.png",
           "generator": "built-in imagegen",
           "prompt": " Production RPG body sprite strip for Centinela MALE, Tier 2, action attack_book. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted teal sleeves stop above wrist guards; fingers and exact hand contours remain visible, shoulders compact. Adult vigilant masculine border guard, sandy-blond short neat hair, focused gray-green eyes, clean-shaven, firm jaw; canonical head scale. Border-sentinel uniform: fitted warm BRONZE lamellar cuirass over a deep FOREST-TEAL padded tunic, two compact squared bronze shoulder caps with IVORY chevron marks, short split tan tabard with teal border and a small gate-shaped badge, dark brown belt, fitted slate trousers, compact bronze knee plates, dark brown long boots and dark fingerless leather gloves with bronze forearm guards. A narrow teal headband with a small flat bronze gate emblem, no plume or tall helmet. Defining features are rectangular lamellar armor, paired square shoulders and ivory gate chevrons. No fur, no knight full plate, no long cloak, no attached weapon or quiver. Tier 2 armored evolution from Arquero, a disciplined border guard distinct from green leather Hunter/Explorer and silver plate Knight. Reserve command crests, long officer tabards and richer plate for Mariscal. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_book-reference.png",
@@ -67821,7 +67821,47 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "273316c4cdaab39c96d4a79ca097efa75c55583a05da0a510b4647f933fc8420",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                665,
+                21,
+                1019,
+                698
+              ],
+              "scale": 0.23,
+              "origin": [
+                23,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/centinela/m/source/attack_book-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Centinela MALE, Tier 2, action attack_book. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted teal sleeves stop above wrist guards; fingers and exact hand contours remain visible, shoulders compact. Adult vigilant masculine border guard, sandy-blond short neat hair, focused gray-green eyes, clean-shaven, firm jaw; canonical head scale. Border-sentinel uniform: fitted warm BRONZE lamellar cuirass over a deep FOREST-TEAL padded tunic, two compact squared bronze shoulder caps with IVORY chevron marks, short split tan tabard with teal border and a small gate-shaped badge, dark brown belt, fitted slate trousers, compact bronze knee plates, dark brown long boots and dark fingerless leather gloves with bronze forearm guards. A narrow teal headband with a small flat bronze gate emblem, no plume or tall helmet. Defining features are rectangular lamellar armor, paired square shoulders and ivory gate chevrons. No fur, no knight full plate, no long cloak, no attached weapon or quiver. Tier 2 armored evolution from Arquero, a disciplined border guard distinct from green leather Hunter/Explorer and silver plate Knight. Reserve command crests, long officer tabards and richer plate for Mariscal. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_book-reference.png",
+              "canonicalPoseHashes": [
+                "db64a1ea4ec27c23b57356995f06beb240d11450d6f96f0c9bd3c20dae9f79ca",
+                "d87721aa7ae120db1b22041eb42147a4c471295e0f0e0f39407719e3b92f53a0",
+                "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
+                "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_gloves": {
           "sourceSha256": "c28e12ffe552be9aeaf5625eb3351b0a619c0f3b43720f202dc0a4deda3508c4",
