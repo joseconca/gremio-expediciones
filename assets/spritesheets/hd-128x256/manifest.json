@@ -52479,8 +52479,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "1d90b3ddbbf094aad6697d79d543f8de8d5615636e6027e87bad766e1ecf8296",
-                "bytes": 25917,
+                "sha256": "cb40ab2f4c4fa58f2e33b2e9ee4294be1d67788d04e41fa2bd37e8d7ece80523",
+                "bytes": 23877,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -52488,31 +52488,31 @@
                 ],
                 "bbox": [
                   11,
-                  91,
+                  92,
                   113,
-                  248
+                  249
                 ],
-                "pixelSha256": "46a8e3075f6011e4138d670378307eb7413f6ec00724e4a8afce6bd36f898dfd"
+                "pixelSha256": "69724d095a5b2ffb1242c8fad7b7d89099b73c68720f49870dd3e7d3dae8b679"
               },
               "02": {
-                "sha256": "9b4b786acb13bcab725035f2b6e964cd04e0daf1cedfad871b7dfc2871340ace",
-                "bytes": 23256,
+                "sha256": "bd4b9875c4195cc9b86d35e568562af40ac46afcce5737c4652ae3a73a0b2932",
+                "bytes": 21395,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  14,
-                  91,
-                  110,
+                  13,
+                  92,
+                  111,
                   248
                 ],
-                "pixelSha256": "addfc55ff527e986e75257e68cf3c0d068a3f4c69538da279309ed2f072e86ee"
+                "pixelSha256": "b8d1fb825aa5a647fdeb4a305d8f3a87078da90e8e95858c992d9a48a036892a"
               },
               "03": {
-                "sha256": "1f18d9c8419e57d44522f03a954e33e207a8594fc6c9073f919afbc83fe64c7e",
-                "bytes": 23898,
+                "sha256": "fc94dbded79c2be50e0d8d8999b799ba21d60872f41d8fa4c4054d1730121a09",
+                "bytes": 22410,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -52520,15 +52520,15 @@
                 ],
                 "bbox": [
                   12,
-                  91,
+                  92,
                   118,
-                  248
+                  249
                 ],
-                "pixelSha256": "2639ccf3d799132740988d2e139925c60b3572a073d76c8d7a3746698f2ac8dd"
+                "pixelSha256": "40cb0098ea0b5a1bfc170c2a3d81282c729bfb187095ad6cef1f9c1eda21fbeb"
               },
               "04": {
-                "sha256": "538495d5ad6993ee3d5f8e0c8b1f6899f327dd6b6c2c96d9a6865d812117ac41",
-                "bytes": 24866,
+                "sha256": "2cf0b445814be716193c7450b3e10f8d92bfcf9a9481ea94eafcc69772c38667",
+                "bytes": 22859,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -52536,11 +52536,11 @@
                 ],
                 "bbox": [
                   16,
-                  91,
-                  109,
+                  92,
+                  112,
                   248
                 ],
-                "pixelSha256": "1fc11853be98b839be328aab35fa32722534c5fac1a72f08fb2b87ec44cc4e85"
+                "pixelSha256": "83a36c912bf5624e2d4ba5ae4dfb80afe22dd4f27243e3ae07da83288f974f0c"
               }
             },
             "distinctFrames": 4
@@ -53078,9 +53078,9 @@
           ]
         },
         "walk": {
-          "sourceSha256": "b772497729ecfdfb2a9ed38de0158cfa00f4b0dee4d3484e5da95421260d8cc6",
+          "sourceSha256": "6a6af6189ac0a60c5392c315ae40f57b88fb6d9fb0e2e72ee95959ada8dd2bb5",
           "sourceDimensions": [
-            2171,
+            2172,
             724
           ],
           "registeredSourceDimensions": [
@@ -53103,9 +53103,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/walk-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/walk-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Create production RPG body sprites for Super Novato MALE, action WALK. Image 1 is canonical male walk geometry; Image 2 is the approved costume identity from idle. Change ONLY clothing of image 1 to match image 2: ivory short jacket with restrained golden edging over burgundy tunic, short burgundy scarf, neat brown leather cross-straps and bracers, blue trousers with reinforced brown knee panels, brown boots with small brass fittings. Preserve EXACTLY image 1 four full-body poses, head scale, hand and foot coordinates, per-quarter positions and 3:1 canvas. Same youthful brown spiky-haired hero, anime painted sprite rendering. Four distinct walking phases with alternating feet and opposite arm swings, facing right. True transparent background. Empty hands; no equipment, shadows, labels, grid, or effects. Narrow costume must stay within body silhouette allowance. Target 2172x724, one horizontal row of four separate complete characters. Keep exact reference geometry to fit shared equipment layers, no re-centering each figure.\n",
+          "prompt": "Production RPG sprite action walk for Super Novato MALE masculine brown spiky-haired. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: fitted sleeveless white tunic with cobalt blue shoulder yoke, standing blue collar and vertical blue front panel, small white neck cravat, brown leather belt with small pouches, brass chain at hip, warm brown cropped loose trousers WITHOUT patches, off-white knee wraps, dark brown lace-up boots and fingerless gloves; bare upper arms. NO red scarf, NO crossed chest harness, NO cream jacket, NO blue trousers, NO gold embroidery. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. Four canonical walk phases, preserve original alternating leg action and opposite arm swings. All old red scarf and cross-straps must be fully removed to transparency; tunic hem replaces shirt hem. No red leftover pixels.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
           "canonicalPoseHashes": [
             "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
@@ -53113,7 +53113,47 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "superseded-costume-rework-required"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "b772497729ecfdfb2a9ed38de0158cfa00f4b0dee4d3484e5da95421260d8cc6",
+              "sourceDimensions": [
+                2171,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/walk-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Create production RPG body sprites for Super Novato MALE, action WALK. Image 1 is canonical male walk geometry; Image 2 is the approved costume identity from idle. Change ONLY clothing of image 1 to match image 2: ivory short jacket with restrained golden edging over burgundy tunic, short burgundy scarf, neat brown leather cross-straps and bracers, blue trousers with reinforced brown knee panels, brown boots with small brass fittings. Preserve EXACTLY image 1 four full-body poses, head scale, hand and foot coordinates, per-quarter positions and 3:1 canvas. Same youthful brown spiky-haired hero, anime painted sprite rendering. Four distinct walking phases with alternating feet and opposite arm swings, facing right. True transparent background. Empty hands; no equipment, shadows, labels, grid, or effects. Narrow costume must stay within body silhouette allowance. Target 2172x724, one horizontal row of four separate complete characters. Keep exact reference geometry to fit shared equipment layers, no re-centering each figure.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "superseded-costume-rework-required"
+            }
+          ]
         },
         "hurt": {
           "sourceSha256": "9d62dabe12f701458a7ad3649883c78573cca897dc41020924372cef437c17e8",
@@ -61013,7 +61053,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Regenerate previous male actions in the requested Ragnarok-inspired white/blue costume, then finish male and female Super Novato before continuing missing classes by tier.",
+  "nextTask": "Continue Tier 1.5 in class order: Super Novato; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
