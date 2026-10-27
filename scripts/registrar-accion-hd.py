@@ -26,6 +26,11 @@ def register(class_id,sex,action,source,prompt_file,revision=None):
     if previous and previous.get('sourceSha256')!=metadata['sourceSha256']:
         metadata['previousRevisions']=previous.get('previousRevisions',[])+[{k:val for k,val in previous.items() if k!='previousRevisions'}]
     v['sources'][action]=metadata
+    direction=v.get('artDirection',{})
+    if revision is not None and direction.get('revision')==revision:
+        metadata['artDirectionRevision']=revision
+        direction['actionsToRework']=[a for a in direction.get('actionsToRework',[]) if a!=action]
+    v['sourceStatus']='hires-library-in-progress'
     for n in range(1,5):v.setdefault('frameProvenance',{})[f'{action}/{n:02d}']={'source':f'sources.{action}','frame':n}
     if action=='attack_sword':
         config=copy.deepcopy(ref['equipmentTests'][action])

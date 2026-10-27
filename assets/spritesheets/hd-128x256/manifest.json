@@ -52549,40 +52549,40 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "9ab777485ce36e835b9daff419af1bb8a17968fc9ee74effb9988fec4f930007",
-                "bytes": 24800,
+                "sha256": "4107e15e909ee530df0bd7b69521753acde8623b152555a83e8f4923beb3f56f",
+                "bytes": 22785,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  24,
-                  92,
-                  105,
+                  25,
+                  91,
+                  106,
                   248
                 ],
-                "pixelSha256": "0207510a40813ee50c52d1c48792ba787204f1951bc25e38234017f7a34fe06f"
+                "pixelSha256": "96458c933414a3347e97f09ddbcb03aade8c059e96ae372d1aa89eb95382b59b"
               },
               "02": {
-                "sha256": "3a2e7fb2ca73447a1c4b60dfb0141feea35542df9b6b8a133b6a6970909629ed",
-                "bytes": 24999,
+                "sha256": "b5b9ea90cc2940c97d0afe4c310d9ce5001e14f5e491227aa2c7490ff6e58986",
+                "bytes": 22054,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  13,
-                  100,
-                  113,
+                  28,
+                  101,
+                  114,
                   248
                 ],
-                "pixelSha256": "89b11f9c9b1ec9c0e2ed5c04adedbe1d85a87caabe3ce5b50ed8620c7ee1a138"
+                "pixelSha256": "c248a57456e51f94e10a775fe66b785677a1ed63b0da52f14ddbcfd732e4b66b"
               },
               "03": {
-                "sha256": "0e5a4d27449209a0606939a2affd844c393aba8e27cfb6c8301bac1af6ccd722",
-                "bytes": 22422,
+                "sha256": "55298ef5f4542b944850ab46952fffc92bef89321fe1319d252f604c5bb1bdb7",
+                "bytes": 20227,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -52591,26 +52591,26 @@
                 "bbox": [
                   16,
                   119,
-                  104,
+                  106,
                   248
                 ],
-                "pixelSha256": "09ec4b0577497f395bfddd24efe1e4f7d3cc5061454e3383b8fadb792eae4c39"
+                "pixelSha256": "0b4cdc42f2c9f460020d5b02c22cc2e4ed295a106e9292bd8abbdf4a22ec71af"
               },
               "04": {
-                "sha256": "58f6050a4690f7dba5b2fc3cee6306e8bdc61cadc63304f5434f9464d3ea442d",
-                "bytes": 25048,
+                "sha256": "d181f450b9333efcfdfa9fe27aa7dc4cd202f065788909cd80c1e885dcfb8941",
+                "bytes": 22700,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  20,
-                  92,
-                  102,
+                  16,
+                  91,
+                  97,
                   248
                 ],
-                "pixelSha256": "c4e05e46317c11d2bbf2823ee74e0dd08f18851b8b9518770d03cb541d22db85"
+                "pixelSha256": "a29b8189ab1f38c7304a6e35acd6ebdb589e5f5df43fe021b556b86a6374ca79"
               }
             },
             "distinctFrames": 4
@@ -53075,7 +53075,8 @@
               "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/idle-reference-v2.png",
               "promptPath": "assets/spritesheets/hd-128x256/superNovato/m/source/idle-ragnarok-v2-cleanup-prompt.txt"
             }
-          ]
+          ],
+          "artDirectionRevision": 2
         },
         "walk": {
           "sourceSha256": "6a6af6189ac0a60c5392c315ae40f57b88fb6d9fb0e2e72ee95959ada8dd2bb5",
@@ -53153,10 +53154,11 @@
               ],
               "visualStatus": "superseded-costume-rework-required"
             }
-          ]
+          ],
+          "artDirectionRevision": 2
         },
         "hurt": {
-          "sourceSha256": "9d62dabe12f701458a7ad3649883c78573cca897dc41020924372cef437c17e8",
+          "sourceSha256": "8ce34d73a833302c2b2fd0ac86d994cdd00069f9bc565f48cf2fd7f9a559afb4",
           "sourceDimensions": [
             2172,
             724
@@ -53181,9 +53183,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/hurt-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/hurt-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Create production RPG body sprites for Super Novato MALE, action HURT. Image 1 is canonical male hurt geometry; Image 2 defines costume identity from idle. Change ONLY clothing of image 1 to match image 2: ivory short jacket with restrained golden edging over burgundy tunic, short burgundy scarf, neat brown leather cross-straps and bracers, blue trousers with reinforced brown knee panels, brown boots with small brass fittings. Preserve EXACTLY image 1 four full-body poses, head scale, hand and foot coordinates, per-quarter positions, camera and 3:1 canvas. Same youthful brown spiky-haired hero and painted anime RPG style. Four distinct phases: ready, recoil and wince, knees buckle briefly, recover. Facing right throughout. True transparent background. Empty hands; no equipment, blood, effects, shadows, labels or grid. Do not enlarge crouched character. Narrow costume, target 2172x724, one row of four separate complete characters, full boots visible with margins. Exact canonical geometry is required for shared equipment.\n",
+          "prompt": "Production RPG sprite action hurt for Super Novato MALE masculine brown spiky-haired. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: fitted sleeveless white tunic with cobalt blue shoulder yoke, standing blue collar and vertical blue front panel, small white neck cravat, brown leather belt with small pouches, brass chain at hip, warm brown cropped loose trousers WITHOUT patches, off-white knee wraps, dark brown lace-up boots and fingerless gloves; bare upper arms. NO red scarf, NO crossed chest harness, NO cream jacket, NO blue trousers, NO gold embroidery. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. Four phases ready, recoil and wince, brief knees buckling, recover. Preserve canonical hand and leg positions exactly. Remove all red scarf remnants to transparency. No visible burgundy fabric.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
           "canonicalPoseHashes": [
             "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
@@ -53191,7 +53193,48 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "superseded-costume-rework-required"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "9d62dabe12f701458a7ad3649883c78573cca897dc41020924372cef437c17e8",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                617,
+                19,
+                1047,
+                697
+              ],
+              "scale": 0.23,
+              "origin": [
+                14,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/hurt-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Create production RPG body sprites for Super Novato MALE, action HURT. Image 1 is canonical male hurt geometry; Image 2 defines costume identity from idle. Change ONLY clothing of image 1 to match image 2: ivory short jacket with restrained golden edging over burgundy tunic, short burgundy scarf, neat brown leather cross-straps and bracers, blue trousers with reinforced brown knee panels, brown boots with small brass fittings. Preserve EXACTLY image 1 four full-body poses, head scale, hand and foot coordinates, per-quarter positions, camera and 3:1 canvas. Same youthful brown spiky-haired hero and painted anime RPG style. Four distinct phases: ready, recoil and wince, knees buckle briefly, recover. Facing right throughout. True transparent background. Empty hands; no equipment, blood, effects, shadows, labels or grid. Do not enlarge crouched character. Narrow costume, target 2172x724, one row of four separate complete characters, full boots visible with margins. Exact canonical geometry is required for shared equipment.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
+              "canonicalPoseHashes": [
+                "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
+                "bd77167140c15b93b69566bb90c4d9b42293de7cbb2fffd05fdc4e429c80edd7",
+                "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
+                "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
+              ],
+              "visualStatus": "superseded-costume-rework-required"
+            }
+          ],
+          "artDirectionRevision": 2
         },
         "use_consumable": {
           "sourceSha256": "a254241a017baa27c6bf920d24b93387b901bc1cd6076ee8e23a94ebc53e63a3",
@@ -53565,8 +53608,6 @@
         "identitySource": "assets/spritesheets/hd-128x256/superNovato/m/source/idle-reference-v2.png",
         "costume": "White and cobalt blue sleeveless tunic, white cravat, brown trousers, utility belt, brass hip chain, dark boots; no red scarf or chest harness.",
         "actionsToRework": [
-          "walk",
-          "hurt",
           "use_consumable",
           "dodge",
           "block_shield",
