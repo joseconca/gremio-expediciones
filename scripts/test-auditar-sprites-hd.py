@@ -1,8 +1,10 @@
 import copy
+import json
 import runpy
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 from PIL import Image,ImageDraw,PngImagePlugin
 API=runpy.run_path(str(Path(__file__).with_name('auditar-sprites-hd.py')))
 
@@ -10,6 +12,19 @@ class AuditTests(unittest.TestCase):
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory();self.root=Path(self.temp.name)
     def tearDown(self):self.temp.cleanup()
+    def test_manifest_keeps_unicode_after_audit(self):
+        p=self.root/'manifest.json'
+        manifest={'name':'Cham\u00e1n y Espadach\u00edn r\u00fanico','variants':[]}
+        p.write_text(json.dumps(manifest,ensure_ascii=False),encoding='utf-8')
+        with patch('sys.argv',['auditar-sprites-hd.py','--root',str(self.root),'--write']):
+            self.assertEqual(API['main'](),0)
+        self.assertEqual(json.loads(p.read_text(encoding='utf-8')),manifest)
+    def test_interrupted_replace_keeps_previous_manifest(self):
+        p=self.root/'manifest.json';p.write_text('previous',encoding='utf-8')
+        with patch.object(Path,'replace',side_effect=OSError('interrupted')):
+            with self.assertRaises(OSError):API['write_progress'](p,'new')
+        self.assertEqual(p.read_text(encoding='utf-8'),'previous')
+        self.assertEqual(list(self.root.iterdir()),[p])
     def frame(self,n=1):
         p=self.root/'novato/m/frames/idle'/f'novato-m-idle-{n:02d}.png';p.parent.mkdir(parents=True,exist_ok=True)
         im=Image.new('RGBA',(128,256));ImageDraw.Draw(im).rectangle((20+n,20,80,240),fill='red');im.save(p);return p
