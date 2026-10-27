@@ -72835,7 +72835,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 44,
+        "validFrames": 48,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -72848,7 +72848,8 @@
           "attack_axe",
           "attack_spear",
           "attack_dagger",
-          "attack_bow"
+          "attack_bow",
+          "attack_staff"
         ],
         "actions": {
           "idle": {
@@ -73622,7 +73623,74 @@
             "distinctFrames": 4
           },
           "attack_staff": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "7963dc209af12358ba9fd404d84557c4929e464c34f5760a9a1bf4026a9d94e1",
+                "bytes": 23232,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  92,
+                  105,
+                  248
+                ],
+                "pixelSha256": "72fc684d89b609043e1421d2c1ebfc8b647f2577768049359a71ca4c42d2ac13"
+              },
+              "02": {
+                "sha256": "e8df558effdb5a827f3ee14a11f8907dc0d8702aabced896ffe2021dde25b241",
+                "bytes": 24202,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  92,
+                  107,
+                  248
+                ],
+                "pixelSha256": "d55e784d40963ef6dd367b305bf89fb13dbe4865422b4169863613beef7ea281"
+              },
+              "03": {
+                "sha256": "aaabecf4d233c60249e40bc1c8248f1d81383c9532388f9bf15b81ae2ddf9b35",
+                "bytes": 22797,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  92,
+                  106,
+                  248
+                ],
+                "pixelSha256": "fe2868937e12332ffd40499b312fafd8e13fd6704962f0345eed3189c91f5b9c"
+              },
+              "04": {
+                "sha256": "31f0238e3f67e1f2c4a5be66fad3d0171d304ac1a77f9ed9c1ba7ec54c9f830a",
+                "bytes": 23090,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  92,
+                  105,
+                  248
+                ],
+                "pixelSha256": "cd78bf8e1ddf65263d92965ce78100e655560e5b0a344521d7ebd401d84d74f5"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_mace": {
             "status": "missing"
@@ -74053,6 +74121,44 @@
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_staff": {
+          "sourceSha256": "77e66b937d5d2d065b3847291c0b7dd7a833d54cdc0cab81d7c0970cc05dd73c",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            648,
+            14,
+            1028,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            20,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/escriba_arcano/f/source/attack_staff-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Escriba arcano FEMALE, Tier 2, action attack_staff. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted ivory sleeves with narrow navy cuffs stop above the glove grip; no loose cuffs covering palms or fingers. All FOUR figures wear ROUND BRASS-RIM GLASSES with visible circular golden rims, including blinking/CLOSED-EYE poses; glasses do not disappear when eyes close. NO SCARF, cape, shoulder cloth or floating neck tails; only folded coat collar and waist coat tails. Adult studious feminine scholar with ink-black hair neatly bound in a compact low braided knot, a restrained dark-blue sheen and thin brass round spectacles; canonical female head size. Arcane scribe academic outfit: fitted PARCHMENT-IVORY scholar coat with INK-NAVY vertical panels and narrow AMETHYST piping, high folded collar, fitted sleeves ending above dark fingerless gloves, coat split into short narrow knee-length tails close to legs; three flat violet geometric seal patches on chest and belt, fine brass round spectacles, a small quill-shaped metal collar clasp and compact closed scroll-case loops at belt (no held scroll). Ink-navy fitted trousers, dark neat boots, violet sash. Defining features are ivory parchment coat, ink panels, brass spectacles and violet seal geometry. No wizard hat, no staff, no open book, no glowing symbols or floating effects. Tier 2 book specialist after Mago, scholarly seal-worker rather than another blue/gold elemental robe. Reserve dense rune armor for Runista and luminous ward mantles for Abjurador. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_staff-reference.png",
+          "canonicalPoseHashes": [
+            "442cc437e40b766ae74ed6549516dc0fc46f33e1a3c010e32f03a0b8f7a72e46",
+            "d8606da96c9ceb3adfe9152ec3559f0b01465b55fc73b64b8ae6adeb6b4fdf9d",
+            "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
+            "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -74230,6 +74336,22 @@
         },
         "attack_bow/04": {
           "source": "sources.attack_bow",
+          "frame": 4
+        },
+        "attack_staff/01": {
+          "source": "sources.attack_staff",
+          "frame": 1
+        },
+        "attack_staff/02": {
+          "source": "sources.attack_staff",
+          "frame": 2
+        },
+        "attack_staff/03": {
+          "source": "sources.attack_staff",
+          "frame": 3
+        },
+        "attack_staff/04": {
+          "source": "sources.attack_staff",
           "frame": 4
         }
       },
