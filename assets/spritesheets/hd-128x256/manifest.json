@@ -94424,12 +94424,12 @@
       "tier": 2.5,
       "sex": "m",
       "order": 45,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/druida/m/druida-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/druida/m/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -94443,12 +94443,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "a702964f106cf3036fe803f2781ff8d6f80b3b2f5e89376c7c86dfeeed12d4a0",
+                "bytes": 23570,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  93,
+                  105,
+                  249
+                ],
+                "pixelSha256": "e798d11e7c8ac73ebe1d00ecce1a8d2df00a67262efe43863975909c0d2946f7"
+              },
+              "02": {
+                "sha256": "c580e52c20a885c65c43ae7f9a0073d7b9428cb50403e4560ae0c645482b3df8",
+                "bytes": 23733,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  93,
+                  105,
+                  249
+                ],
+                "pixelSha256": "f4ea9caf21e644f0d0deefc2e16e8c4274efcb067c1934e581d4083433a71255"
+              },
+              "03": {
+                "sha256": "f8dff0f3fc80a4a879138edd983fb7eec1fc066e09bafb329391fed8d40a1bc0",
+                "bytes": 23580,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  93,
+                  105,
+                  249
+                ],
+                "pixelSha256": "42026c5cb6fe6ec165e69026ef3e1c169e07adecda23dea69c22e2deb257d20a"
+              },
+              "04": {
+                "sha256": "781bc9aec9c72ca05fb887297571f6adb60ea318e31306f89c117d22af61fa0c",
+                "bytes": 23733,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  93,
+                  105,
+                  249
+                ],
+                "pixelSha256": "bbe701d663c606dd7068d626f4309c717b6a0f9b950f08cbea69740d4d9bd9b1"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -94492,6 +94561,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "76202c0e15f91bf717e2423ba230fc8bba8f1eaf417eaf590a746ab1aab80b36",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            654,
+            21,
+            1010,
+            696
+          ],
+          "scale": 0.23,
+          "origin": [
+            23,
+            93
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/druida/m/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Druida MALE, Tier 2.5, action idle. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. No second reference yet: establish this NEW class identity and costume from the written design. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult calm masculine woodland adept with warm russet-red wavy medium-short hair, green eyes and clean-shaven face. Woodland druid: fitted MOSS-GREEN layered tunic with PALE SAGE leaf-shaped leather shoulder caps, compact woven bark-brown corset belt, ivory acorn clasp, three small amber stones sewn at collar and belt, short overlapping pointed leaf skirt panels close to thighs over dark olive trousers, soft bark-brown boots with rootlike stitched straps, dark fingerless gloves. Small symmetrical carved WOOD leaf circlet close to forehead, no antlers. No cape, scarf, loose vines, leaves floating or magic effects. Tier2.5 Explorador/Elementalista hybrid: natural woven materials and orderly leaf-shaped tailoring distinguish it from ordinary ranger leather and wizard robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/idle-reference-2026-10-25.png",
+          "canonicalPoseHashes": [
+            "11bc28deb6725c646421d31c05b732611f3c9260bcde8176ff7dbe46529778a9",
+            "18ab5b455eabd0496c36664e3112244811eedd7657ad2242fe352a018bd0f052",
+            "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
+            "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
@@ -100586,7 +100713,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
+  "nextTask": "Continue Tier 2.5 in class order: Cruzado, Pirata, Druida, Espadachín rúnico, Chamán, Inquisidor, Heraldo de guerra, Ninja, Alquimista, Herrero; male then female, 15 registered actions each, shared equipment contacts unchanged.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
