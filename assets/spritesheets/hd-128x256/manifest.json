@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "luchador-m",
+  "nextVariant": "centinela-m",
   "classes": [
     {
       "id": "novato",
@@ -65953,7 +65953,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/centinela/m/centinela-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/centinela/m/frames",
-      "sourceStatus": "hires-library-candidate",
+      "sourceStatus": "hires-library-in-progress",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -66654,20 +66654,20 @@
                 "pixelSha256": "a412f3fa77dd350f23ad2d4b8534817bb6b093cc55be2ed16e44a2a18252e627"
               },
               "03": {
-                "sha256": "f451ca2f448c8258098ddaa302d285b0e5925edacdb1f73f9a6e71dbfa88f79c",
-                "bytes": 22020,
+                "sha256": "9f52d19c38fedb3e321d6d427097f85bdcba7dd2e6d4e43988f8ff7449cb0e50",
+                "bytes": 21418,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  23,
+                  22,
                   95,
-                  106,
-                  247
+                  103,
+                  246
                 ],
-                "pixelSha256": "16748fe3ea34b707180e0e8e601035046a4bd79c266d9016512cab8c24afcc21"
+                "pixelSha256": "fbb3ac1b973e21e3bcd58babf6863efbe02ae860ee02ffdf580d83d3ddf5fe45"
               },
               "04": {
                 "sha256": "6c6b879f96083519c15e65ce9120ffe96ff6307ed4a47df507a6963d28e6931a",
@@ -67787,7 +67787,7 @@
           "artDirectionRevision": 1
         },
         "attack_dagger": {
-          "sourceSha256": "b6e66f19ba2772a5812a6f18f869ef6998adea105d82debe0061a11232220c3c",
+          "sourceSha256": "b71c56028ef5e7c264579430e6c8b722b318b364ecbfa66e2c21400f706ac595",
           "sourceDimensions": [
             2172,
             724
@@ -67812,9 +67812,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/centinela/m/source/attack_dagger-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/centinela/m/source/attack_dagger-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "Precise localized COSTUME-MATERIAL CORRECTION to Image1, FOUR existing complete sprite poses. Image2 is the same character's definitive costume/material reference ONLY. Preserve EXACTLY every pose, face, all hand/finger coordinates, silhouettes, scale, margins and transparent canvas of Image1. Change ONLY wrist/forearm guards: BOTH wrists of ALL FOUR figures must have the same polished warm BRONZE segmented bracers as Image2. Replace any brown leather wrist wraps with bronze metal bands, matching Image2. Keep dark brown fingerless gloves, visible skin fingertips, teal sleeves and exposed elbow skin. Also ensure the rectangular HIP PANEL is overlapping bronze armor plates like Image2, with no bag flap, clasp, pouch or buckle on it. No other changes. Especially do not move any arm, hand, body or foot. Keep true transparency. No equipment or props.\n",
+          "prompt": "LOCAL shared-equipment geometry fix on THIRD figure (second from RIGHT) ONLY in Image1. The FRONT FIST currently too low beside waist must reach FORWARD TOWARD RIGHT and slightly UP, to actually hold the overlaid dagger. Move that front fist roughly70 SOURCE PIXELS RIGHT and35 SOURCE PIXELS UP, adjusting forearm naturally across belly, and center the solid gripping hand/fingers ON canvas point x1462,y318 on2172x724canvas. Keep the rear guarding hand near chest unchanged. Preserve ALL class-specific gloves/wraps/bracers and sleeves, face, hair, identity, ornaments and clothing exactly asImage1 andImage2. Do not borrow clothes from another class. Third head/torso/legs/boots/scale stay fixed. All other three complete figures EXACTLY unchanged. No held weapon or equipment drawn; empty gripping hands, true transparent background, samecanvas. The third forward hand must be clearly IN FRONT of torso at x1462,y318, not low beside belt. This aligns the BODY with the unchanged shared equipment grip, no equipment offsets.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_dagger-reference.png",
           "canonicalPoseHashes": [
             "a5a4fb44f6eb17e6a4020f9acda0374d081c9dfcf708482d5217a991853e8daa",
@@ -67822,7 +67822,99 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-user-art-review-pending",
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "frameSourceOverrides": {
+            "01": {
+              "sourceSha256": "b6e66f19ba2772a5812a6f18f869ef6998adea105d82debe0061a11232220c3c",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/centinela/m/source/attack_dagger-frame01-reference-v3.png",
+              "selectedFrame": 1,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "02": {
+              "sourceSha256": "b6e66f19ba2772a5812a6f18f869ef6998adea105d82debe0061a11232220c3c",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/centinela/m/source/attack_dagger-frame02-reference-v3.png",
+              "selectedFrame": 2,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            },
+            "04": {
+              "sourceSha256": "b6e66f19ba2772a5812a6f18f869ef6998adea105d82debe0061a11232220c3c",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/centinela/m/source/attack_dagger-frame04-reference-v3.png",
+              "selectedFrame": 4,
+              "selectionPolicy": "complete generated pose; unchanged canonical transform; no pixel retouching"
+            }
+          },
           "previousRevisions": [
             {
               "sourceSha256": "739e048a1047fcb6f828d513cc9c120959cf8569cb79d4efff70996ca94ca044",
@@ -67861,9 +67953,47 @@
                 "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "b6e66f19ba2772a5812a6f18f869ef6998adea105d82debe0061a11232220c3c",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/centinela/m/source/attack_dagger-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Precise localized COSTUME-MATERIAL CORRECTION to Image1, FOUR existing complete sprite poses. Image2 is the same character's definitive costume/material reference ONLY. Preserve EXACTLY every pose, face, all hand/finger coordinates, silhouettes, scale, margins and transparent canvas of Image1. Change ONLY wrist/forearm guards: BOTH wrists of ALL FOUR figures must have the same polished warm BRONZE segmented bracers as Image2. Replace any brown leather wrist wraps with bronze metal bands, matching Image2. Keep dark brown fingerless gloves, visible skin fingertips, teal sleeves and exposed elbow skin. Also ensure the rectangular HIP PANEL is overlapping bronze armor plates like Image2, with no bag flap, clasp, pouch or buckle on it. No other changes. Especially do not move any arm, hand, body or foot. Keep true transparency. No equipment or props.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_dagger-reference.png",
+              "canonicalPoseHashes": [
+                "a5a4fb44f6eb17e6a4020f9acda0374d081c9dfcf708482d5217a991853e8daa",
+                "d4ba48a4d952c823903133d05a54b3338afbc39649e2228a95f97e5577818fc1",
+                "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
+                "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
+              ],
+              "visualStatus": "candidate-user-art-review-pending",
+              "artDirectionRevision": 1
             }
-          ],
-          "artDirectionRevision": 1
+          ]
         },
         "attack_bow": {
           "sourceSha256": "86179a8f935c6d4a06426c4452346c91fba1ab13d43c9ed52f2dfa66ae097f42",
@@ -68365,11 +68495,11 @@
           "frame": 4
         },
         "attack_dagger/01": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.01",
           "frame": 1
         },
         "attack_dagger/02": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.02",
           "frame": 2
         },
         "attack_dagger/03": {
@@ -68377,7 +68507,7 @@
           "frame": 3
         },
         "attack_dagger/04": {
-          "source": "sources.attack_dagger",
+          "source": "sources.attack_dagger.frameSourceOverrides.04",
           "frame": 4
         },
         "attack_bow/01": {
