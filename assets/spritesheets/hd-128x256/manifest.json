@@ -86399,8 +86399,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "cad6943273ac17f21885c8759e534198b3b6eded742337d2143b4544ecf9fbab",
-                "bytes": 25649,
+                "sha256": "2be06c57fe6acff73780d595ff178b08e846c98586de6746f4b785aea87b60ae",
+                "bytes": 25342,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -86409,58 +86409,58 @@
                 "bbox": [
                   25,
                   90,
-                  106,
-                  248
+                  105,
+                  247
                 ],
-                "pixelSha256": "ec1a4f07da272aaa322b1565d4f84c549f9496af7def0de61c6c5ec313c90f66"
+                "pixelSha256": "717c5fe52a33cbff75ce442b2a12ee57e5aed79049b5e12965b4bb77ae3d2829"
               },
               "02": {
-                "sha256": "218e1ae8291410425eee6712de90c2773cfe6936c776a1ac2af3dc1fec8d6790",
-                "bytes": 25220,
+                "sha256": "06b18726d81fe7ee874cd6be98734c12041572816f37e9932c79bda4244db272",
+                "bytes": 24861,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  25,
+                  24,
                   90,
-                  106,
-                  248
+                  105,
+                  247
                 ],
-                "pixelSha256": "8fab6c90066dd810924d1688b89e0345a9ab6aa45386005e874ef9b6fd09a15a"
+                "pixelSha256": "134656c8c078dcdda11aec8cac8fffbd9feb731cc8906adc3fa4f4cb10212882"
               },
               "03": {
-                "sha256": "c746bb2926500bdcde5f259b6f29e0c1b145a1a54e7a2118df1927a4f646ac37",
-                "bytes": 24903,
+                "sha256": "b24f41057d8686cc6bb766c2180c2dee7add7b931631a86cb9053d3cd8203b04",
+                "bytes": 24434,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  25,
+                  23,
                   90,
-                  106,
-                  248
+                  103,
+                  247
                 ],
-                "pixelSha256": "69f824bc38bfe8bf3ccc587a239e9397fb1474ef33e0c7288d013785b1367f19"
+                "pixelSha256": "51d1a9ba2f377538125d58123f304de8368b8156596c6fc8c04ee1a8d0d424af"
               },
               "04": {
-                "sha256": "b978711f49d928024d8fbd9ec6449deb108d410784f6f2df935bbaca51618627",
-                "bytes": 25552,
+                "sha256": "05558f301a757c976d66853c4807d4b200529bf9de645b38a1af5c991feef73e",
+                "bytes": 25119,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  25,
+                  22,
                   90,
-                  107,
-                  248
+                  103,
+                  247
                 ],
-                "pixelSha256": "b5b19ca74922cc463e5b113add1d5d56e87a30b99a110f4674e90b6e6de5acb4"
+                "pixelSha256": "8114e22095fe30a58dc2867af190c22471a4ea9aabdda0e1e5e856dcdba32383"
               }
             },
             "distinctFrames": 4
@@ -87353,7 +87353,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "use_consumable": {
-          "sourceSha256": "f4f609c989b1e0aefd7a266cd64b39244d12d5e87ee69ac5508da5bd582fc7a3",
+          "sourceSha256": "33b9e6e55ef4db372c6af80741602fa7523e85761db37d211c4930a0777b19e3",
           "sourceDimensions": [
             2172,
             724
@@ -87378,9 +87378,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/cruzado/f/source/use_consumable-reference-v2.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/cruzado/f/source/use_consumable-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "LOCAL ARM COSTUME correction in Image1 ONLY, preserving poses EXACTLY. Every FOREARM on all four figures must have a polished SILVER STEEL BRACER with GOLD BORDERS extending from just BELOW ELBOW to the BLACK GLOVE WRIST, as Image2 idle. Replace any exposed forearm skin, rolled CREAM/WHITE novice sleeve cuff or pale cloth patch on arms with matching STEEL ARMOR; upper-arm/bent-elbow sleeve cloth is deep WINE RED. There are NO white fabric cuffs on arms and no bare forearms in this costume. Preserve existing correct bracers; only fill missing coverage with matching solid reflective metal, gold edging. Keep EXACT hands, fingertips, gloves, wrist coordinates, elbow angle and overall arm geometry unchanged. Keep all four head/face/hair, body poses, shoulder caps, chest emblem, tabard, hips, legs and boots unchanged. No held equipment, no cape/scarf. Same full strip canvas, transparent background. This corrects clothing only; never move any grip.\n",
+          "prompt": "Tiny LOCAL COLOR correction ONLY on Image1: the rolled FABRIC CUFFS just at the ELBOWS, immediately ABOVE the silver forearm armor, are incorrectly WHITE/CREAM. RECOLOR ONLY those soft folded fabric elbow cuffs to DARK WINE RED matching the upper-arm sleeves. Most visible on THIRD woman drinking, raised arm elbow; also second woman bent arm. Keep silver METAL BRACERS silver, keep GOLD trim gold, keep chest and tabard IVORY. Do NOT recolor white chest/tabard. Do NOT change any shapes or geometry, preserve hand/finger/grip and elbow positions, all face/hair/body/clothing/boots unchanged. Exactly same image and transparentcanvas, only replace pale FABRIC elbow cuffs with wine-red fabric. No equipment.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/use_consumable-reference.png",
           "canonicalPoseHashes": [
             "9d423a87f0b50fc02a53ff021d8946c2f0f5b232bc3b645c13717d1514302738",
@@ -87419,6 +87419,44 @@
               "sourcePath": "assets/spritesheets/hd-128x256/cruzado/f/source/use_consumable-reference.png",
               "generator": "built-in imagegen",
               "prompt": " Production RPG body sprite strip for Cruzado FEMALE, Tier 2.5, action use_consumable. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult resolute feminine crusader with ash-brown crown braid and compact low ponytail, blue-gray eyes. Holy crusader hybrid uniform: compact satin STEEL half-plate with IVORY enamel chest panels, deep WINE-RED fitted sleeves and split short surcoat, broad flat GOLD solar-cross medallion on sternum, narrow gold edging and matching two compact rounded pauldrons, wine sash, steel knee cups and sabatons, dark fingerless gloves with steel wrist cuffs. No helmet, no cape or neck scarf, no weapon or shield. Chest solar cross is physical engraved insignia, no light effects. Tier2.5 hybrid of Caballero and Sacerdote: combines compact knight armor and liturgical wine/ivory cloth. More ceremonial than Caballero, reserve extensive gilded full plate and sun crown for Paladin. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/use_consumable-reference.png",
+              "canonicalPoseHashes": [
+                "9d423a87f0b50fc02a53ff021d8946c2f0f5b232bc3b645c13717d1514302738",
+                "75fcd4517c428942562d86e8bb3e34e2817ebc57b601b9c57ded827d48b65d73",
+                "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
+                "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "f4f609c989b1e0aefd7a266cd64b39244d12d5e87ee69ac5508da5bd582fc7a3",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                659,
+                15,
+                1015,
+                704
+              ],
+              "scale": 0.23,
+              "origin": [
+                23,
+                90
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/cruzado/f/source/use_consumable-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "LOCAL ARM COSTUME correction in Image1 ONLY, preserving poses EXACTLY. Every FOREARM on all four figures must have a polished SILVER STEEL BRACER with GOLD BORDERS extending from just BELOW ELBOW to the BLACK GLOVE WRIST, as Image2 idle. Replace any exposed forearm skin, rolled CREAM/WHITE novice sleeve cuff or pale cloth patch on arms with matching STEEL ARMOR; upper-arm/bent-elbow sleeve cloth is deep WINE RED. There are NO white fabric cuffs on arms and no bare forearms in this costume. Preserve existing correct bracers; only fill missing coverage with matching solid reflective metal, gold edging. Keep EXACT hands, fingertips, gloves, wrist coordinates, elbow angle and overall arm geometry unchanged. Keep all four head/face/hair, body poses, shoulder caps, chest emblem, tabard, hips, legs and boots unchanged. No held equipment, no cape/scarf. Same full strip canvas, transparent background. This corrects clothing only; never move any grip.\n",
               "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/use_consumable-reference.png",
               "canonicalPoseHashes": [
                 "9d423a87f0b50fc02a53ff021d8946c2f0f5b232bc3b645c13717d1514302738",
