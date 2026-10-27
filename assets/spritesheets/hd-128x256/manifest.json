@@ -80032,24 +80032,24 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "9f1f94ee56aded345e2268154ebeda6bb769e146c6e5b0a32b47fe7ca8349569",
-                "bytes": 22390,
+                "sha256": "4d1f44870637d459025efa92b6ca453db248d16a7b4c7be538af76bf8e374788",
+                "bytes": 22977,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  10,
+                  9,
                   101,
-                  110,
+                  111,
                   249
                 ],
-                "pixelSha256": "b36c4d6ab88976b6166872be6e2bc6363c29f4b78cd2b09664e7dbe59e1eb839"
+                "pixelSha256": "19d29741a45de609d1acbbcb30a5c4e3954b13947258642852a1eb565ab6c25d"
               },
               "02": {
-                "sha256": "474e17940d65f5553f54fd96b9eda8d5d5f01b54bab937724a2575ba0ff792b5",
-                "bytes": 19248,
+                "sha256": "81521465feff670c91f6cc5a897ef1633a86fa5ce468a07887e086cb3dc2493f",
+                "bytes": 19880,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -80057,15 +80057,15 @@
                 ],
                 "bbox": [
                   18,
-                  113,
-                  117,
-                  247
+                  112,
+                  118,
+                  248
                 ],
-                "pixelSha256": "c917fc7d481e94335f6981ceab0d714a29629c006b0ec620a923599c7090bb50"
+                "pixelSha256": "b1d488def5f4c7db51ae875c592e89d32d304add73a96cce30038ec858469f4f"
               },
               "03": {
-                "sha256": "7549257b4a6a364625dbe03fd471e3c103a451a2b38f419eac6358c0e12dd5ce",
-                "bytes": 19239,
+                "sha256": "fec678fe15144c04d948590ca222b6df1f7a8fa3a4924ffcca523c841891c3e9",
+                "bytes": 19757,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -80073,27 +80073,27 @@
                 ],
                 "bbox": [
                   15,
-                  122,
                   121,
-                  247
+                  123,
+                  248
                 ],
-                "pixelSha256": "0dc64d6eb53a37855e05374fe82e18fc023b2b6f43908fc7e0879bacb147bb95"
+                "pixelSha256": "35bd525b21b1da11784a0f5217ff0ee51d07780b98d86a304bb5bfc83d7e1e55"
               },
               "04": {
-                "sha256": "07fc4888981319db287ce0c4ffd716c489a2ecf900992938efbc213df648bb15",
-                "bytes": 20564,
+                "sha256": "27f9c59428607d2479d0c4ac33edbbfccbac389267d2395c2205eba90248c4fa",
+                "bytes": 21130,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  29,
+                  26,
                   105,
                   123,
-                  248
+                  249
                 ],
-                "pixelSha256": "1ee3ea229b5ee3190f66bb4863bdbb94b5c50fb34e0b9d8d32119e9d8c7c031f"
+                "pixelSha256": "8ee061c214458fbb2f7d01622a93200f94f86e999659031779ce1dc389dfb359"
               }
             },
             "distinctFrames": 4
@@ -80950,9 +80950,9 @@
           ]
         },
         "attack_axe": {
-          "sourceSha256": "1e627423c65ed6f0f8874efd5c1e3b3bcd2f6a445ebcf45fcd8e7ccac228f58b",
+          "sourceSha256": "24260a693ffc0c05bc441ec8355f0b6d7746ab3b938292cda4b90519ff21442e",
           "sourceDimensions": [
-            2172,
+            2171,
             724
           ],
           "registeredSourceDimensions": [
@@ -80975,9 +80975,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/comerciante/m/source/attack_axe-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/comerciante/m/source/attack_axe-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Comerciante MALE, Tier 2, action attack_axe. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted ochre sleeves and ivory narrow cuffs end above fingerless gloves; no large cuffs covering grip points. ALL FOUR figures wear visible BRASS OVAL GLASSES, even blinking and closed-eye poses; keep golden oval rims visible at all times. No scarf, cape, mantle or floating shoulder cloth; only a small tucked-in dark green cravat. Adult clever masculine guild merchant with neatly combed dark chestnut pompadour and a short tidy moustache, warm expression, brass oval spectacles; canonical head size. Prosperous travelling merchant guild outfit: fitted OCHRE short tailcoat with rich BOTTLE-GREEN waistcoat, ivory high-collar shirt and small dark green cravat, dark brown belt with a neat brass ledger-shaped buckle, two compact square leather utility pouches, brass pocket-watch chain and coin-shaped lapel pin, fine brass oval spectacles, warm charcoal fitted trousers, polished brown ankle boots and fitted dark fingerless gloves. Coat tails short and close to hips, no flowing cape. Defining features are ochre/green tailoring, oval spectacles, square pouches and pocket-watch chain. No held money, weapons, bottle, open ledger or props. Secret Tier 2 commercial profession, skilled and well supplied without royal finery or heavy armor. Reserve glass/plague-green alchemy elements for Alquimista and apron/soot/iron details for Herrero. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise tiny LOCAL facial consistency correction in Image1 only. Every male merchant here MUST HAVE the SAME small tidy dark-chestnut moustache seen in Image2 idle identity. Restore the missing moustache immediately below nose and ABOVE the upper lip on the open-mouth/pain/exertion figures. Keep existing open mouth/teeth and facial expression, brass oval glasses, eyes and head position unchanged. Do NOT turn the mouth into a moustache: draw neat facial hair between nose and upper lip while retaining mouth beneath it. Leave all existing correct moustaches alone. Preserve all four complete figures, exact poses, hand/finger/grip locations, hair, costume, watch chain, pouches and boots,2172x724canvas and true transparent background. Nothing else changes; no props, equipment, scarf or cape.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_axe-reference.png",
           "canonicalPoseHashes": [
             "682a330cdfbbd6bcfacc4d46ef31720e23129a82c4ecbc6d86067419022619e6",
@@ -80985,7 +80985,47 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "1e627423c65ed6f0f8874efd5c1e3b3bcd2f6a445ebcf45fcd8e7ccac228f58b",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                579,
+                42,
+                1045,
+                683
+              ],
+              "scale": 0.23,
+              "origin": [
+                10,
+                101
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/comerciante/m/source/attack_axe-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Comerciante MALE, Tier 2, action attack_axe. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted ochre sleeves and ivory narrow cuffs end above fingerless gloves; no large cuffs covering grip points. ALL FOUR figures wear visible BRASS OVAL GLASSES, even blinking and closed-eye poses; keep golden oval rims visible at all times. No scarf, cape, mantle or floating shoulder cloth; only a small tucked-in dark green cravat. Adult clever masculine guild merchant with neatly combed dark chestnut pompadour and a short tidy moustache, warm expression, brass oval spectacles; canonical head size. Prosperous travelling merchant guild outfit: fitted OCHRE short tailcoat with rich BOTTLE-GREEN waistcoat, ivory high-collar shirt and small dark green cravat, dark brown belt with a neat brass ledger-shaped buckle, two compact square leather utility pouches, brass pocket-watch chain and coin-shaped lapel pin, fine brass oval spectacles, warm charcoal fitted trousers, polished brown ankle boots and fitted dark fingerless gloves. Coat tails short and close to hips, no flowing cape. Defining features are ochre/green tailoring, oval spectacles, square pouches and pocket-watch chain. No held money, weapons, bottle, open ledger or props. Secret Tier 2 commercial profession, skilled and well supplied without royal finery or heavy armor. Reserve glass/plague-green alchemy elements for Alquimista and apron/soot/iron details for Herrero. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_axe-reference.png",
+              "canonicalPoseHashes": [
+                "682a330cdfbbd6bcfacc4d46ef31720e23129a82c4ecbc6d86067419022619e6",
+                "ebf63fb2782826250141ce2304dcb21499a70d4de29c8b97ebfca68db1287d08",
+                "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
+                "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_spear": {
           "sourceSha256": "af2266eea489736b6fc2fc5c74fae6c52242919b6ba85935f916ae73706d97ce",
