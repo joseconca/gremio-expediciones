@@ -58040,68 +58040,68 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "168e20a0b1b274e9ae060f2230596d2b6b78282aaa5ead70de41affa51616f41",
-                "bytes": 23461,
+                "sha256": "c5f7d61929604b0a1f11df2501248a689f22d3c49e4654dd22965780340aa12c",
+                "bytes": 23454,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  24,
-                  91,
+                  21,
+                  92,
                   107,
                   248
                 ],
-                "pixelSha256": "bec92ef3ae57e6cb15a5cb7eb3f362bcc49d8bfcee0705be862032b56bd758af"
+                "pixelSha256": "f6487700ec57eaaa07b447eb5bba58bba41201ae5c2bf1064e768e632215b523"
               },
               "02": {
-                "sha256": "55501d2e35054c4e0b3aec07425d3b18aa9200435f77592ad4da1f55d1717475",
-                "bytes": 24242,
+                "sha256": "4923359b204e3805a9af18c943aee166ed8d2ebd57e81c4205d378fdcf7bb4bd",
+                "bytes": 24354,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  26,
-                  91,
+                  22,
+                  92,
                   110,
                   248
                 ],
-                "pixelSha256": "231ed2a2000916a290efed5dd3e0effb19e57c305d95774de8cf0bcf63449b6b"
+                "pixelSha256": "6d9c4a0797c69e3526d1e00ef680c8a2d2533e01f2f6c6cc2858c882dc064420"
               },
               "03": {
-                "sha256": "8802dcc0dc25591cf71676d27565dbb4bdfc61642a299fa12c240a1ffae6d926",
-                "bytes": 23438,
+                "sha256": "ca546dbb977dd3d8c0c4ba396535923abc3604182d0d40c2842ce5f282a231f2",
+                "bytes": 23843,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  26,
-                  91,
+                  22,
+                  92,
                   110,
                   248
                 ],
-                "pixelSha256": "276bf410a38d5cc23ce412414e524bff46c2d170e1dae2315519ad9952cd628d"
+                "pixelSha256": "70fa6762cd5375d45018bdfacaa05bdbe75e48562c7cc4ae83d6ab4289e57d56"
               },
               "04": {
-                "sha256": "0027124819fecc0c3dc769e13c976812ed571613af167ec31d5cf8d3aa4b4d16",
-                "bytes": 23592,
+                "sha256": "07788786a7390d4ea79001f67c22c1ebd524469083994740be8a6653264e8454",
+                "bytes": 23929,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  27,
-                  91,
-                  111,
+                  22,
+                  92,
+                  110,
                   248
                 ],
-                "pixelSha256": "619d52bc5fa28fc8341d9f09c6c0b939aa2b046a4f9a83385871b1cdc0e06234"
+                "pixelSha256": "4c379dcffdf0ed6600173550e94a6e77b8eff445f417df3f0eff6fa82c39eb9a"
               }
             },
             "distinctFrames": 4
@@ -58654,7 +58654,7 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_gloves": {
-          "sourceSha256": "336380e69fe9f2de60f67f38ba003e2de12cc93d4dfedb31cf649a46b38eb23f",
+          "sourceSha256": "7f8d6102343030f496e27e9001c54afa074e348d06d5b7e8bbb7e0caee20c515",
           "sourceDimensions": [
             2172,
             724
@@ -58679,9 +58679,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/berserker/m/source/attack_gloves-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/berserker/m/source/attack_gloves-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": "Production RPG body sprite strip for Berserker MALE, Tier 2, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines the NEW CLASS IDENTITY and COSTUME: use its face, hair color, hair silhouette, exact clothing pieces, palette and finish in all four poses. Adult masculine warrior, stern brows, gray-silver swept-back short hair, small eyebrow scar, restrained jaw stubble; same canonical head size and face placement, no helmet. Advanced axe-warrior costume: charcoal sleeveless fitted leather cuirass with deep oxblood-red vertical panels and dark iron rivets; ONE compact dark iron segmented shoulder guard on the rear shoulder and a short pale ivory wolf-fur collar close to neck, asymmetric leather chest straps rather than novice cross-harness; wide dark leather belt with iron bear-head buckle and two short red leather waist tabs; charcoal trousers with narrow iron knee guards; dark heavy boots with iron toe caps, leather fingerless gloves and compact iron wrist bracers. Bare upper arms. No weapon attached, no shield, no long cape, no red scarf, no cream shirt, no blue trousers. The pale fur collar, single iron shoulder and oxblood/charcoal palette are defining features; keep them identical across every pose. Tier 2 martial specialization after Espadachin: fitted battle-worn iron/leather and mature warrior identity. Do not add Tier 3 full plate or giant horns. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Wardrobe-only edit of Image1 with costume and identity from Image2. BERSERKER MALE: Adult masculine warrior, stern brows, gray-silver swept-back short hair, small eyebrow scar, restrained jaw stubble; same canonical head size and face placement, no helmet. Advanced axe-warrior costume: charcoal sleeveless fitted leather cuirass with deep oxblood-red vertical panels and dark iron rivets; ONE compact dark iron segmented shoulder guard on the rear shoulder and a short pale ivory wolf-fur collar close to neck, asymmetric leather chest straps rather than novice cross-harness; wide dark leather belt with iron bear-head buckle and two short red leather waist tabs; charcoal trousers with narrow iron knee guards; dark heavy boots with iron toe caps, leather fingerless gloves and compact iron wrist bracers. Bare upper arms. No weapon attached, no shield, no long cape, no red scarf, no cream shirt, no blue trousers. The pale fur collar, single iron shoulder and oxblood/charcoal palette are defining features; keep them identical across every pose. Preserve EXACTLY Image1 four poses and ALL hand/fist, elbow, shoulder and foot pixel coordinates, head size, per-quarter centers and 2172x724 canvas. Do not reinterpret the four punches or move any hand. IMPORTANT: all four upper arms are COMPLETELY BARE SKIN between leather cuirass armhole and wrist bracers. Remove every white/cream shirt sleeve, rolled sleeve cuff and fabric armband in ALL FOUR poses, replacing with continuous bare muscular skin, with no change in limb outline or hand positions. Keep shoulder guard and pale fur collar from Image2. All four figures same iron bracers, dark gloves, crimson leather, charcoal trousers and iron-toed boots. True transparent alpha. No weapons, effects, shadows, text, grid or logos. Same crisp painted anime RPG style. Full bodies with clear margins, facing right.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_gloves-reference.png",
           "canonicalPoseHashes": [
             "fd3bdbdb7204be611733c4e8b780ac94a9d94cad2e8b18fe044e3d89d7885eb0",
@@ -58689,7 +58689,47 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "336380e69fe9f2de60f67f38ba003e2de12cc93d4dfedb31cf649a46b38eb23f",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                643,
+                21,
+                1018,
+                698
+              ],
+              "scale": 0.23,
+              "origin": [
+                21,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/berserker/m/source/attack_gloves-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production RPG body sprite strip for Berserker MALE, Tier 2, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines the NEW CLASS IDENTITY and COSTUME: use its face, hair color, hair silhouette, exact clothing pieces, palette and finish in all four poses. Adult masculine warrior, stern brows, gray-silver swept-back short hair, small eyebrow scar, restrained jaw stubble; same canonical head size and face placement, no helmet. Advanced axe-warrior costume: charcoal sleeveless fitted leather cuirass with deep oxblood-red vertical panels and dark iron rivets; ONE compact dark iron segmented shoulder guard on the rear shoulder and a short pale ivory wolf-fur collar close to neck, asymmetric leather chest straps rather than novice cross-harness; wide dark leather belt with iron bear-head buckle and two short red leather waist tabs; charcoal trousers with narrow iron knee guards; dark heavy boots with iron toe caps, leather fingerless gloves and compact iron wrist bracers. Bare upper arms. No weapon attached, no shield, no long cape, no red scarf, no cream shirt, no blue trousers. The pale fur collar, single iron shoulder and oxblood/charcoal palette are defining features; keep them identical across every pose. Tier 2 martial specialization after Espadachin: fitted battle-worn iron/leather and mature warrior identity. Do not add Tier 3 full plate or giant horns. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_gloves-reference.png",
+              "canonicalPoseHashes": [
+                "fd3bdbdb7204be611733c4e8b780ac94a9d94cad2e8b18fe044e3d89d7885eb0",
+                "d04a757fc88ca7f0dfa4705d69a34d7c68f645f6c78e8a608f990a1870c2e25e",
+                "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
+                "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         }
       },
       "frameProvenance": {
