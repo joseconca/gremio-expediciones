@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-27T18:33:49.777677+00:00",
+  "classId": "druida",
+  "sex": "m",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\druida\\m\\druida-m-sheet.png",
+  "sheetSha256": "39ac58305d1745c00f28dbcb690ecb08fd2533c5b9f724564dccc42edb3f70c9",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\idle\\druida-m-idle-01.png",
+          "sha256": "a702964f106cf3036fe803f2781ff8d6f80b3b2f5e89376c7c86dfeeed12d4a0",
+          "alpha_bbox": [
+            27,
+            93,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\idle\\druida-m-idle-02.png",
+          "sha256": "c580e52c20a885c65c43ae7f9a0073d7b9428cb50403e4560ae0c645482b3df8",
+          "alpha_bbox": [
+            27,
+            93,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\idle\\druida-m-idle-03.png",
+          "sha256": "f8dff0f3fc80a4a879138edd983fb7eec1fc066e09bafb329391fed8d40a1bc0",
+          "alpha_bbox": [
+            27,
+            93,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\idle\\druida-m-idle-04.png",
+          "sha256": "781bc9aec9c72ca05fb887297571f6adb60ea318e31306f89c117d22af61fa0c",
+          "alpha_bbox": [
+            27,
+            93,
+            105,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\walk\\druida-m-walk-01.png",
+          "sha256": "a294c91cf57b203810dacaaf6dbe1e3ce3cb9cfa052d18c05b3f76471477f6eb",
+          "alpha_bbox": [
+            11,
+            92,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\walk\\druida-m-walk-02.png",
+          "sha256": "1bb8e6565af6522a47be85e763094a02cec565e8255fa374a175b19c58c73de6",
+          "alpha_bbox": [
+            14,
+            92,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\walk\\druida-m-walk-03.png",
+          "sha256": "f678e88d4a90e1f3a66b8c48fea8ecf41d942d0818457ff92ba666d5a31c5b22",
+          "alpha_bbox": [
+            11,
+            92,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\walk\\druida-m-walk-04.png",
+          "sha256": "5eac241b9ab2551742265d2d8ccff390936f118f952efc9e9674feef6aa6d565",
+          "alpha_bbox": [
+            14,
+            92,
+            107,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\hurt\\druida-m-hurt-01.png",
+          "sha256": "7d7023e2e0431c484312581bb77f3e8456039a989436a14c4b64c91d6ee58ae1",
+          "alpha_bbox": [
+            26,
+            92,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\hurt\\druida-m-hurt-02.png",
+          "sha256": "9a4e4b1a33f5f1772b9ccbb6ea75fd1ec16538f33d7ec659de820876225f3c9b",
+          "alpha_bbox": [
+            26,
+            100,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\hurt\\druida-m-hurt-03.png",
+          "sha256": "3aa04823ccdd4d1e7187ccd98416d67e33178f5e72fb3949f349946d786d0306",
+          "alpha_bbox": [
+            16,
+            119,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\hurt\\druida-m-hurt-04.png",
+          "sha256": "06b50de44cffdb9003198e44297d00616074c813d6590a20556ddb4f4cd72a03",
+          "alpha_bbox": [
+            18,
+            92,
+            98,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\use_consumable\\druida-m-use_consumable-01.png",
+          "sha256": "1c3cb740d36e04dbad06875f80a83a9b24d1ee4167d09f2a2c33d1105e471d98",
+          "alpha_bbox": [
+            28,
+            93,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\use_consumable\\druida-m-use_consumable-02.png",
+          "sha256": "8c6f9e8c7a5405fa80e72906f47237d71acbbb4f58072368a5968e14ce3cf1a8",
+          "alpha_bbox": [
+            25,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\use_consumable\\druida-m-use_consumable-03.png",
+          "sha256": "101e8a76f048bc5fed0bf9323a209349b39cda4143d57e4240df320d53a050c8",
+          "alpha_bbox": [
+            21,
+            92,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\use_consumable\\druida-m-use_consumable-04.png",
+          "sha256": "c8b413c1aeaeb938b763dc5d9eb8f6c87ca1dc4f72c30c054c5b2bb2f89d1aaa",
+          "alpha_bbox": [
+            20,
+            92,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\dodge\\druida-m-dodge-01.png",
+          "sha256": "8bde29ab15c466eeba6695c23eb3f338d67332f43d77114d6b7c7b61e1382437",
+          "alpha_bbox": [
+            20,
+            98,
+            105,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\dodge\\druida-m-dodge-02.png",
+          "sha256": "12375e425cb89147e643b1aa914a974179c494cf737c28149ec3aa45d82a0f51",
+          "alpha_bbox": [
+            19,
+            99,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\dodge\\druida-m-dodge-03.png",
+          "sha256": "be151054b8f9849f002df92ddf3e744917ae6f00f8ba431afd755ebeedf7c519",
+          "alpha_bbox": [
+            21,
+            101,
+            109,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\dodge\\druida-m-dodge-04.png",
+          "sha256": "c4a63fa9453ab5025ab73b98c7a4ac6f95666991f7b42fe45be64b058b089c2e",
+          "alpha_bbox": [
+            19,
+            98,
+            108,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\block_shield\\druida-m-block_shield-01.png",
+          "sha256": "de2f465df446adc6df52f55a6a0d7e582a2ab52eabfd1a4aa7d3a904139c4dea",
+          "alpha_bbox": [
+            20,
+            98,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\block_shield\\druida-m-block_shield-02.png",
+          "sha256": "f8b9ddc00306c4cadbe09aa14d3beb1b00661904d326aaabcd0ac9c059d28387",
+          "alpha_bbox": [
+            22,
+            98,
+            113,
+            250
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\block_shield\\druida-m-block_shield-03.png",
+          "sha256": "d865eb54a5dbdb3de546e46ab6b7bbe3e430a52bae978524f2ada23a09ce2ff0",
+          "alpha_bbox": [
+            22,
+            114,
+            111,
+            250
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\block_shield\\druida-m-block_shield-04.png",
+          "sha256": "68b2979936fe49a45a518cce5050a3c912ecda04a49b95f00c7a9a147549c6c7",
+          "alpha_bbox": [
+            22,
+            98,
+            112,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_sword\\druida-m-attack_sword-01.png",
+          "sha256": "6c6018a66e2766bcf24272a03879e2f85c9084e697c8b76ac1fb0bcba350f817",
+          "alpha_bbox": [
+            14,
+            98,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_sword\\druida-m-attack_sword-02.png",
+          "sha256": "19e66bfc8130d6107d334129e8e3077e7c935aa12eb9f949b6f84eccdd94d787",
+          "alpha_bbox": [
+            7,
+            98,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_sword\\druida-m-attack_sword-03.png",
+          "sha256": "1ef7993fc6907f23d9391b163dd56b1d1bf5094d817249f83db4fdad0d4c17cf",
+          "alpha_bbox": [
+            10,
+            101,
+            123,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_sword\\druida-m-attack_sword-04.png",
+          "sha256": "b21b7227585f81bd8c7caeb5eddec656632989cf7ee4a2d2102dd7c198d008ee",
+          "alpha_bbox": [
+            20,
+            98,
+            112,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_axe\\druida-m-attack_axe-01.png",
+          "sha256": "fca0ca3e88d63505df0cc42a0c53dac6b8ec179b8fadf254ff55db37a5ace168",
+          "alpha_bbox": [
+            9,
+            100,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_axe\\druida-m-attack_axe-02.png",
+          "sha256": "fa7faf146db1091c5fd7d6ec0ed134a28e99fc0c84ebfcbf3413001a689a2380",
+          "alpha_bbox": [
+            16,
+            112,
+            115,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_axe\\druida-m-attack_axe-03.png",
+          "sha256": "8da3eca9115504c3def4d78e861fe38ab8ea55295fe22a967e311a27e6e87658",
+          "alpha_bbox": [
+            10,
+            121,
+            116,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_axe\\druida-m-attack_axe-04.png",
+          "sha256": "4513058e2fce9f2144aeb7c1abe8b35b60a56b0db99c74b351f7a99aeb76f361",
+          "alpha_bbox": [
+            24,
+            104,
+            119,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_spear\\druida-m-attack_spear-01.png",
+          "sha256": "590177b36e9bf768a044b98b1ac1598af6dabbfca828e3f2cb474dcff1d591c1",
+          "alpha_bbox": [
+            11,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_spear\\druida-m-attack_spear-02.png",
+          "sha256": "c37c1361742e6b693d5e90980149b7b3b5d1ba52b683cef5f3b40cf2ebb3d948",
+          "alpha_bbox": [
+            13,
+            92,
+            100,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_spear\\druida-m-attack_spear-03.png",
+          "sha256": "97e5355d4f89eab3d9897779422bea6bf961633152ff66ba63f021765e4bd86f",
+          "alpha_bbox": [
+            10,
+            92,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_spear\\druida-m-attack_spear-04.png",
+          "sha256": "f84a3aac4783e089addb9ed5170b720f4259847262a5cf6ee191de1b5381ad31",
+          "alpha_bbox": [
+            12,
+            91,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_dagger\\druida-m-attack_dagger-01.png",
+          "sha256": "ca70c95ea592046a516976a50cd1f161d16a261031844304942387c4e9fde1cc",
+          "alpha_bbox": [
+            23,
+            92,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_dagger\\druida-m-attack_dagger-02.png",
+          "sha256": "616ed9b5e04186a899a12c3025b1b5a7c611162a94159b09147bfae0f57d8372",
+          "alpha_bbox": [
+            26,
+            92,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_dagger\\druida-m-attack_dagger-03.png",
+          "sha256": "d9934ac4620bfc787878160504fe19b71ed60a2d9d3f8c5223c1d1b14162d3f0",
+          "alpha_bbox": [
+            25,
+            93,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_dagger\\druida-m-attack_dagger-04.png",
+          "sha256": "25a8e9033007fb428f8c6748737458c93205d3b886c50bcb231e3028e35fe9e8",
+          "alpha_bbox": [
+            23,
+            93,
+            106,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_bow\\druida-m-attack_bow-01.png",
+          "sha256": "078cd48a7958c61e40dede57914b067ef758f9684b0a3fcf4eb889565a531ed5",
+          "alpha_bbox": [
+            25,
+            96,
+            119,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_bow\\druida-m-attack_bow-02.png",
+          "sha256": "b96b0e194c5d9ecf9600263cbe2c7f9ac3c91896b07429c11519672c7a089b4a",
+          "alpha_bbox": [
+            19,
+            96,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_bow\\druida-m-attack_bow-03.png",
+          "sha256": "5c3ff547a8d259be5c867570de6276d58a421d496d1edffaf69e6fec9b508e6d",
+          "alpha_bbox": [
+            19,
+            96,
+            115,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_bow\\druida-m-attack_bow-04.png",
+          "sha256": "e2dd15222979b7c5f71de5efaf4aa5e7feeeeb9c112bc30fdd8c6e546e6c71c5",
+          "alpha_bbox": [
+            17,
+            96,
+            115,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_staff\\druida-m-attack_staff-01.png",
+          "sha256": "e41d07966412d6e5fce19ea259ad84debb56cde7b585be0cedb4b9bc4caabf80",
+          "alpha_bbox": [
+            30,
+            93,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_staff\\druida-m-attack_staff-02.png",
+          "sha256": "5636a67dccab59ebdbdaf830ebc5361206435226154cedc161791ffc9d9292d8",
+          "alpha_bbox": [
+            25,
+            93,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_staff\\druida-m-attack_staff-03.png",
+          "sha256": "0f9c17e15d70f55d4c912b4ff74584fd7fd729874abb1654bdbc07121dce84e1",
+          "alpha_bbox": [
+            28,
+            93,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_staff\\druida-m-attack_staff-04.png",
+          "sha256": "824f1e55b7a4f76cf56525275bf119d635883007781a1a5061246c088090d072",
+          "alpha_bbox": [
+            20,
+            93,
+            96,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_mace\\druida-m-attack_mace-01.png",
+          "sha256": "e67bedafe21f9edbb28bc9fe01f64526a6d5b6d73cbdd694c77e49837bcd01db",
+          "alpha_bbox": [
+            27,
+            92,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_mace\\druida-m-attack_mace-02.png",
+          "sha256": "b069cd77d105caccaebfd8d2c2eb58efee744adf4a9911a65f5676eb5ca83f1d",
+          "alpha_bbox": [
+            30,
+            92,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_mace\\druida-m-attack_mace-03.png",
+          "sha256": "98d73c30898807a94086ff2e11e591b4a733c516c2990af8ca03579fa14f1f18",
+          "alpha_bbox": [
+            26,
+            103,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_mace\\druida-m-attack_mace-04.png",
+          "sha256": "03d9024911022eda99f067140c0570a8e496fbff6a1f097f01200fc8f3371c59",
+          "alpha_bbox": [
+            36,
+            92,
+            113,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_book\\druida-m-attack_book-01.png",
+          "sha256": "bf0f154163889db27fefbc64c7650b9b7c3f0a64483bc449ea7bedb683865a84",
+          "alpha_bbox": [
+            26,
+            91,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_book\\druida-m-attack_book-02.png",
+          "sha256": "0c153699ed2fd72080684563e1310236b5d6ffc02a6b0d727a27a72c13bda95b",
+          "alpha_bbox": [
+            25,
+            91,
+            97,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_book\\druida-m-attack_book-03.png",
+          "sha256": "c96cc6cd1585694f5b900e63c5746c2d8720c01de16d20f540f56420183b2893",
+          "alpha_bbox": [
+            24,
+            91,
+            103,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_book\\druida-m-attack_book-04.png",
+          "sha256": "297ddbe53fd0259e864198ad6544a8fa6ed6fcb8d27defcb2b1cbed42a410ac1",
+          "alpha_bbox": [
+            24,
+            91,
+            95,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_gloves\\druida-m-attack_gloves-01.png",
+          "sha256": "cb7bfa6020a9ab8a55a4b3efc8646e5e9777c2ae40e4724087684fa5529c4e56",
+          "alpha_bbox": [
+            26,
+            91,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_gloves\\druida-m-attack_gloves-02.png",
+          "sha256": "ed499f16265bbb3d76c472a04bb29e7c20f9f361c3a5e74495972d4253fec635",
+          "alpha_bbox": [
+            26,
+            91,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_gloves\\druida-m-attack_gloves-03.png",
+          "sha256": "fa5269e2bc944721ff58156afddefa8bb45a6da8fd7f5caa23f466638b2bc73c",
+          "alpha_bbox": [
+            26,
+            91,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\druida\\m\\frames\\attack_gloves\\druida-m-attack_gloves-04.png",
+          "sha256": "f873d596a65647c2b2f284567069eed24f9cec38d0bdd1dab1d580e60adb50ff",
+          "alpha_bbox": [
+            26,
+            91,
+            106,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
