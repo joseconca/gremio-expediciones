@@ -96398,7 +96398,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 56,
+        "validFrames": 60,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -96414,7 +96414,8 @@
           "attack_bow",
           "attack_staff",
           "attack_mace",
-          "attack_book"
+          "attack_book",
+          "attack_gloves"
         ],
         "actions": {
           "idle": {
@@ -97398,7 +97399,74 @@
             "distinctFrames": 4
           },
           "attack_gloves": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "bd9c45b328454141b5aa8e06a20f83b57de963aa79d6c757370abad965215dc9",
+                "bytes": 23899,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  89,
+                  104,
+                  248
+                ],
+                "pixelSha256": "f8411e398d32cecbec69a08d1b96499e3941c1018734c749c8af44e2b08413fd"
+              },
+              "02": {
+                "sha256": "22c9d0776d3dd13a3f239a970f69943dc99f8a294ce36db7556ddfb5f7f9d49b",
+                "bytes": 24295,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  22,
+                  89,
+                  104,
+                  248
+                ],
+                "pixelSha256": "3f05013681ca04097651af8aa2974e9103b07becb97a6e7baa5d3fbdebd2ea6d"
+              },
+              "03": {
+                "sha256": "5e3aa5e1ad1eed3b6cc50fcdcfb986cb62edae2ac293244d43fb590c337ea83f",
+                "bytes": 24431,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  10,
+                  90,
+                  111,
+                  248
+                ],
+                "pixelSha256": "1912a9155b3e27f9970ec3533505876c2b4facb1fc52b6e037a179f24e3adfea"
+              },
+              "04": {
+                "sha256": "5a30401a8118fd5687a2696e59c7aeb326116b2047dee0483b7248a819cd2d2f",
+                "bytes": 23895,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  90,
+                  94,
+                  248
+                ],
+                "pixelSha256": "10e3b90bf9a9aa735b8bef40e45c9f8bdf51356bc1ef0336676e568ac0f36f12"
+              }
+            },
+            "distinctFrames": 4
           }
         }
       },
@@ -97934,6 +98002,44 @@
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_gloves": {
+          "sourceSha256": "9481defd93eb85a7c05a9de9d8b802dc9957b23ba5043d3895bf6271c7c078ed",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            625,
+            17,
+            1080,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/druida/f/source/attack_gloves-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Druida FEMALE, Tier 2.5, action attack_gloves. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Adult calm feminine woodland adept with warm russet-red compact high braided ponytail and green eyes. Woodland druid: fitted MOSS-GREEN layered tunic with PALE SAGE leaf-shaped leather shoulder caps, compact woven bark-brown corset belt, ivory acorn clasp, three small amber stones sewn at collar and belt, short overlapping pointed leaf skirt panels close to thighs over dark olive trousers, soft bark-brown boots with rootlike stitched straps, dark fingerless gloves. Small symmetrical carved WOOD leaf circlet close to forehead, no antlers. No cape, scarf, loose vines, leaves floating or magic effects. Tier2.5 Explorador/Elementalista hybrid: natural woven materials and orderly leaf-shaped tailoring distinguish it from ordinary ranger leather and wizard robes. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_gloves-reference.png",
+          "canonicalPoseHashes": [
+            "30e14210ad821af706bab535ab7cf10bd690cb1a887feedf331dcc474aa34a16",
+            "bc21f0517b9ace7b72e967c7e10c7c545df05e99f658515b97ca568f5ac474ff",
+            "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
+            "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -98159,6 +98265,22 @@
         },
         "attack_book/04": {
           "source": "sources.attack_book",
+          "frame": 4
+        },
+        "attack_gloves/01": {
+          "source": "sources.attack_gloves",
+          "frame": 1
+        },
+        "attack_gloves/02": {
+          "source": "sources.attack_gloves",
+          "frame": 2
+        },
+        "attack_gloves/03": {
+          "source": "sources.attack_gloves",
+          "frame": 3
+        },
+        "attack_gloves/04": {
+          "source": "sources.attack_gloves",
           "frame": 4
         }
       },
