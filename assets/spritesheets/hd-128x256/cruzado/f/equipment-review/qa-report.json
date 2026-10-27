@@ -1,5 +1,5 @@
 {
-  "status": "contact-review-required",
+  "status": "passed",
   "classId": "cruzado",
   "sex": "f",
   "actions": [
@@ -75,10 +75,10 @@
       "f952ae3fa52f3f40ed207d09be8e7c88dcf7af64cb94f1976da4a87c81cb11c3"
     ],
     "attack_dagger": [
-      "117e7ec4d82a157b611c31c5df1e52988b7421c3b09dbea6085cf68720dfd4fa",
-      "10aeb6d6a572079fab4a87cb96dadbdd4293170b38efc585138ed4389bd05dd7",
-      "92f27affd593b35f5c6e7d09afd203d2d3175fd4db20335dc6bb65537c3f7dff",
-      "4d0aaedbc52edb9d30b3c2f6d8acdb24fadb7268ff5e4411e6276af1aac00559"
+      "5f2f9fac92c3359cf015ecd4c9812ac3156bd30e9b00bcd8a304259ef22be30d",
+      "c075cc65b416e99c08a5c309d505de1b866ffa7142dbba001d4fba789a9ebd43",
+      "8e19e19edd7b2095e2de0e6d9e0bc218bb3a8948535a763c48f15dd094b66449",
+      "84279f3d2cf34d6b7b5d0357459838e346b55f1d0f7a930f9d96eb9ca3f690f9"
     ],
     "attack_bow": [
       "c0b1001b9f8624efa4c713514eba78e2ca3ce6e4bf6ada1953fbb90e03fbb863",
@@ -112,26 +112,7 @@
     ]
   },
   "contactChecks": 682,
-  "warnings": [
-    {
-      "action": "attack_dagger",
-      "frame": 3,
-      "item": "daga_hierro",
-      "point": [
-        86,
-        164
-      ]
-    },
-    {
-      "action": "attack_dagger",
-      "frame": 3,
-      "item": "daga_sombria",
-      "point": [
-        86,
-        164
-      ]
-    }
-  ],
+  "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
 }
