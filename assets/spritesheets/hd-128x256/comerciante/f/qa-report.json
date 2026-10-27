@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-27T15:33:35.138402+00:00",
+  "classId": "comerciante",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\comerciante-f-sheet.png",
+  "sheetSha256": "89f8ed0e2cb0f50ec6580a31ec578f58daeafcb994c797cdc8ec3e9de835ea47",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\idle\\comerciante-f-idle-01.png",
+          "sha256": "74cfc89886cbf5c09d1291cfb93915e302fad964826769668796f08a504dcfc1",
+          "alpha_bbox": [
+            28,
+            90,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\idle\\comerciante-f-idle-02.png",
+          "sha256": "2b56bb239e7392226d32a4f68c4dc10af211aa1e678a4240348daa9c2d1be480",
+          "alpha_bbox": [
+            28,
+            90,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\idle\\comerciante-f-idle-03.png",
+          "sha256": "a4d1cb587e5b1d3569ece99615d0673a88f824b46bda7922d1422933ee4ac062",
+          "alpha_bbox": [
+            28,
+            90,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\idle\\comerciante-f-idle-04.png",
+          "sha256": "ef7ae8cf83ddf5acbf8276221f6ed8d73ea3e97df2796e4a72c251b4129bb5f5",
+          "alpha_bbox": [
+            28,
+            90,
+            109,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\walk\\comerciante-f-walk-01.png",
+          "sha256": "7358c7e60308537383f9dee9743f9dd42154694f79d67eaf36934654f5c954fd",
+          "alpha_bbox": [
+            13,
+            89,
+            109,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\walk\\comerciante-f-walk-02.png",
+          "sha256": "d910bc6efc5f5b18c3443d2e1a0a381d49d435c3ab8bc30933c17735563216f6",
+          "alpha_bbox": [
+            25,
+            89,
+            97,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\walk\\comerciante-f-walk-03.png",
+          "sha256": "82354de20ba5ab88f0df457464c6a8ece80e558ac9c2376c80d981a034904b12",
+          "alpha_bbox": [
+            7,
+            89,
+            118,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\walk\\comerciante-f-walk-04.png",
+          "sha256": "67443207447cb30414532ce2dfc2031aeaf5f8997cb6ead2eed121c8f9c60137",
+          "alpha_bbox": [
+            12,
+            89,
+            93,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\hurt\\comerciante-f-hurt-01.png",
+          "sha256": "8fa58bb77a24bff783e6dfa327d36870caa642815bd25e3aaf18daa4e50126ba",
+          "alpha_bbox": [
+            28,
+            91,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\hurt\\comerciante-f-hurt-02.png",
+          "sha256": "d5042c1fb10e8a66768dec764ea76cf51868c31085a6e1ee3f850f9ac43aaa4f",
+          "alpha_bbox": [
+            26,
+            91,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\hurt\\comerciante-f-hurt-03.png",
+          "sha256": "0394de7063791b247d3ff47123a2ba8102c31d80c9c72b9dc055cfbe9a74587b",
+          "alpha_bbox": [
+            20,
+            112,
+            95,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\hurt\\comerciante-f-hurt-04.png",
+          "sha256": "655b059879a9136bd439683423bb4ba0935d3b7883566b9a611cb6005e3fdc38",
+          "alpha_bbox": [
+            18,
+            91,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\use_consumable\\comerciante-f-use_consumable-01.png",
+          "sha256": "1945dc71091438c5fe9a1a484f40e8da18b80ab62908113a69c2c3f6c8150e61",
+          "alpha_bbox": [
+            23,
+            89,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\use_consumable\\comerciante-f-use_consumable-02.png",
+          "sha256": "1fa48191662c0ad62f4bd16efb002289be0da48e304f8f20699cef841c0b0548",
+          "alpha_bbox": [
+            22,
+            89,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\use_consumable\\comerciante-f-use_consumable-03.png",
+          "sha256": "5578da80b7378ab673210bde6b4d30c95c385c29e4978059588c300eb159d550",
+          "alpha_bbox": [
+            23,
+            89,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\use_consumable\\comerciante-f-use_consumable-04.png",
+          "sha256": "826e2a522fe65a58fa11082595fb31e60817c0b1b98401c71bed45a46e04d1e0",
+          "alpha_bbox": [
+            23,
+            89,
+            103,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\dodge\\comerciante-f-dodge-01.png",
+          "sha256": "20d0e74e4618d243469f339b010a42ce0e65c0403d7494054c43549febfcefea",
+          "alpha_bbox": [
+            30,
+            92,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\dodge\\comerciante-f-dodge-02.png",
+          "sha256": "b5f9b6f6b67aaf19c59523e393c9b09149971e799f81f8bda647ad18ea8f8797",
+          "alpha_bbox": [
+            30,
+            93,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\dodge\\comerciante-f-dodge-03.png",
+          "sha256": "08596b31209529f26ece6e408c69e94630665a012582cdc9ef63612d69451869",
+          "alpha_bbox": [
+            22,
+            123,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\dodge\\comerciante-f-dodge-04.png",
+          "sha256": "ca29a87fb8f36868c345b51b1943692963170b01bcd220a5bf276f35ba7c4580",
+          "alpha_bbox": [
+            19,
+            92,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\block_shield\\comerciante-f-block_shield-01.png",
+          "sha256": "47848fb26b2dd4710f74bc9728d00fbed5a84f3b4fa51236e0125f6f62ed798b",
+          "alpha_bbox": [
+            29,
+            91,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\block_shield\\comerciante-f-block_shield-02.png",
+          "sha256": "06093437c03d0b1c61059fa2939e6ca3ee8d4076cdcfa7512a1d91f51e58a152",
+          "alpha_bbox": [
+            28,
+            91,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\block_shield\\comerciante-f-block_shield-03.png",
+          "sha256": "159563b28335b186318b64542c92371e26a5dc228a8d11ed1188654fede9717b",
+          "alpha_bbox": [
+            26,
+            100,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\block_shield\\comerciante-f-block_shield-04.png",
+          "sha256": "f3845cc9f699ad733faa0c05b142ed2d221772fa168c92f65ba48fb39205ff87",
+          "alpha_bbox": [
+            24,
+            91,
+            109,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_sword\\comerciante-f-attack_sword-01.png",
+          "sha256": "dcce0cbc74206e4ad691974986b9eb9e2815327ed8e755430fb155f1abc556be",
+          "alpha_bbox": [
+            23,
+            91,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_sword\\comerciante-f-attack_sword-02.png",
+          "sha256": "7537e84d062a7c29320b407063d637959c5df5d25841fe6f6cf4497307bd34d4",
+          "alpha_bbox": [
+            23,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_sword\\comerciante-f-attack_sword-03.png",
+          "sha256": "dadba83dcc8ac8b916d1f784b0d0be5f310ef4f28703f12093ed6b311dff0963",
+          "alpha_bbox": [
+            21,
+            92,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_sword\\comerciante-f-attack_sword-04.png",
+          "sha256": "660f950aafb94a2f668ea5e07a6385e08323a966bbf4a3c3172f57f8e788f49f",
+          "alpha_bbox": [
+            15,
+            90,
+            103,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_axe\\comerciante-f-attack_axe-01.png",
+          "sha256": "c80b4560d50abe39d806a9b99e272a8bd52157adccec59a829b8979025dc9255",
+          "alpha_bbox": [
+            29,
+            94,
+            117,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_axe\\comerciante-f-attack_axe-02.png",
+          "sha256": "a2a6734ead48886535e4b28b10c057ad313625bb8475fe26520b717c603207c7",
+          "alpha_bbox": [
+            21,
+            90,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_axe\\comerciante-f-attack_axe-03.png",
+          "sha256": "d473c8edb8b0cc1095229fc0c9b8b168b89b58afc02ad32f943cbf910aa2e352",
+          "alpha_bbox": [
+            16,
+            102,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_axe\\comerciante-f-attack_axe-04.png",
+          "sha256": "7fab4c9bb972e0c6593f823beaf2edfe185ca3b45a9e5b300d31808958ff5124",
+          "alpha_bbox": [
+            10,
+            94,
+            98,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_spear\\comerciante-f-attack_spear-01.png",
+          "sha256": "294a63f32a44c50db18b653298159e360d1ac4e337b73faec240ba37c49ffa89",
+          "alpha_bbox": [
+            16,
+            92,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_spear\\comerciante-f-attack_spear-02.png",
+          "sha256": "d0d328a41ecd62d8c724681b6d62266b71a255547ced63269ef925299cf3c83a",
+          "alpha_bbox": [
+            15,
+            92,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_spear\\comerciante-f-attack_spear-03.png",
+          "sha256": "c5fdc5be37742be5e65ba9b5a56d4cbc35ca12ba4b6733d99705e131bdeae541",
+          "alpha_bbox": [
+            14,
+            92,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_spear\\comerciante-f-attack_spear-04.png",
+          "sha256": "d754b513304d429a79de3283b809912c151b44832b820cffd65cce6e80f11758",
+          "alpha_bbox": [
+            15,
+            92,
+            112,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_dagger\\comerciante-f-attack_dagger-01.png",
+          "sha256": "de94ee514c2320352b54bf1371e1093f239340c9aef4dec8ba1f044a3de97e44",
+          "alpha_bbox": [
+            20,
+            90,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_dagger\\comerciante-f-attack_dagger-02.png",
+          "sha256": "5d922331376a9040c56675008099f7ed775c621c629a8e5b130a08548d137bd5",
+          "alpha_bbox": [
+            20,
+            90,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_dagger\\comerciante-f-attack_dagger-03.png",
+          "sha256": "36f1fdff765a117a6286a21bb94e461b7835e80c83bbe59457567ba1779a03d4",
+          "alpha_bbox": [
+            17,
+            90,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_dagger\\comerciante-f-attack_dagger-04.png",
+          "sha256": "0675e25d72479e48d549d0f331caac9870e4426f54afc0ded88433765681b097",
+          "alpha_bbox": [
+            18,
+            90,
+            105,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_bow\\comerciante-f-attack_bow-01.png",
+          "sha256": "31fde4b85c5cd021f0f6f7a26cd8022f2bea7f7607bba8db32b59f8310e4989f",
+          "alpha_bbox": [
+            24,
+            90,
+            111,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_bow\\comerciante-f-attack_bow-02.png",
+          "sha256": "87e03ce51bd52000de8ea815831acf07cb4bcf1be5c31cad8d9979a04310d8d2",
+          "alpha_bbox": [
+            16,
+            90,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_bow\\comerciante-f-attack_bow-03.png",
+          "sha256": "0a0b538c8aa078e712d2d998d2e2f9f6a62fcf291f119c92484c356ef91b1ae8",
+          "alpha_bbox": [
+            15,
+            89,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_bow\\comerciante-f-attack_bow-04.png",
+          "sha256": "fb09d5754e4e464a385f85e2aed3fddbb0321dba1923f58b67b334c278338d7b",
+          "alpha_bbox": [
+            13,
+            89,
+            110,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_staff\\comerciante-f-attack_staff-01.png",
+          "sha256": "33d687e3ec8eb62a5c2412e2bb893e7dde25a51ff57ea3a9c5079196856ae207",
+          "alpha_bbox": [
+            24,
+            90,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_staff\\comerciante-f-attack_staff-02.png",
+          "sha256": "1f29886945f509479902006d9d15173a8725b9253d78bc4b88ae6dd100681d19",
+          "alpha_bbox": [
+            23,
+            90,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_staff\\comerciante-f-attack_staff-03.png",
+          "sha256": "8a6602a0b6f9184193b690c692ff333a2efb6d82ddc3267af4f159cf6f7847aa",
+          "alpha_bbox": [
+            23,
+            90,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_staff\\comerciante-f-attack_staff-04.png",
+          "sha256": "06c9c0237206c54d5122f484e13412f38b35d350e73ff9bc8979c93f6796b2b1",
+          "alpha_bbox": [
+            24,
+            90,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_mace\\comerciante-f-attack_mace-01.png",
+          "sha256": "c9b5fb1dc58072e6d133464a6752dbbc12acfb385516185611cbbbd2b9620595",
+          "alpha_bbox": [
+            28,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_mace\\comerciante-f-attack_mace-02.png",
+          "sha256": "2332502d2a80deee932908078e21e48a9ddf7070e7f57bc627ae95ecd0e663c0",
+          "alpha_bbox": [
+            23,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_mace\\comerciante-f-attack_mace-03.png",
+          "sha256": "95c415ee5d0f26b4c01b52190efe9f9ac30afd48f4c26df73918adf940db4eee",
+          "alpha_bbox": [
+            18,
+            98,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_mace\\comerciante-f-attack_mace-04.png",
+          "sha256": "a07d7cca236205d5f41c4ffad51c60e4fc340a67ad9ec06fa193b5bbdc3ae387",
+          "alpha_bbox": [
+            23,
+            90,
+            108,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_book\\comerciante-f-attack_book-01.png",
+          "sha256": "8254e05c9de588ceb5a2f34571131e107d1266a60dce43e2e3d21794a23b6eef",
+          "alpha_bbox": [
+            28,
+            90,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_book\\comerciante-f-attack_book-02.png",
+          "sha256": "bc82b60783abd19c7b939f35d4e52ae2ead12b2d269d0e7afdfe373d1079e64f",
+          "alpha_bbox": [
+            28,
+            90,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_book\\comerciante-f-attack_book-03.png",
+          "sha256": "b131ff3659825c8dc57d333b3b9c8f2daf2f0f7efba0cacab2b05d958d849053",
+          "alpha_bbox": [
+            28,
+            90,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_book\\comerciante-f-attack_book-04.png",
+          "sha256": "dbc6bdf0fd749d174b0a8c61c86a718befbfef7d7c1b3ae0e5d6aec10ec1bac6",
+          "alpha_bbox": [
+            28,
+            90,
+            109,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_gloves\\comerciante-f-attack_gloves-01.png",
+          "sha256": "8159ca78e76f5f1e4212e935de3e8f7e51b5e925e3c2c067afe82d8263390ac6",
+          "alpha_bbox": [
+            23,
+            89,
+            105,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_gloves\\comerciante-f-attack_gloves-02.png",
+          "sha256": "828c029e8d582abc2e61b36325e7d9f191149061b6e489c0fee252dac49e3ead",
+          "alpha_bbox": [
+            23,
+            89,
+            106,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_gloves\\comerciante-f-attack_gloves-03.png",
+          "sha256": "20c5d59493fb73ce1d64bc98a3419fbd07e117524796c0840f17d0fa4648f0fc",
+          "alpha_bbox": [
+            13,
+            89,
+            117,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\comerciante\\f\\frames\\attack_gloves\\comerciante-f-attack_gloves-04.png",
+          "sha256": "9ba79c17b704a9c303c28c2003286e30d3fc3d8acbe5d3bfd5fe61145d8545df",
+          "alpha_bbox": [
+            12,
+            89,
+            95,
+            247
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
