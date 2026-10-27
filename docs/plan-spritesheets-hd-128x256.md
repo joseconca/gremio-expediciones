@@ -14,6 +14,16 @@ Continuar por tier, clase, sexo masculino/femenino y las quince acciones del con
 
 Dirección artística corregida por el usuario para Super Novato: inspiración en el Super Novice de Ragnarok Online. Túnica blanca y azul cobalto sin mangas, corbatín blanco, pantalones marrones, cinturón de utilidades, cadena lateral y botas oscuras. La revisión inicial con bufanda granate y chaqueta marfil se conserva como fuente anterior, pero queda descartada como identidad de esta clase. `variants[].artDirection.actionsToRework` identifica las acciones que aún requieren el nuevo vestuario; una acción técnicamente válida con el diseño descartado no completa la variante. Referencia oficial: https://ragnarokonline.gungho.jp/gameguide/character/novice/supernovice.html.
 
+### Entrega candidata de Super Novato (tier 1.5)
+
+Masculino y femenino: quince acciones y sesenta fotogramas por variante, dos atlas RGBA de 512×3840, originales de alta resolución y prompts conservados por acción. [Comparativa estática](../assets/spritesheets/hd-128x256/previews/superNovato-overview.png) y [comparativa animada](../assets/spritesheets/hd-128x256/previews/superNovato-overview.gif). La animación sincroniza fases para revisión, sin definir la temporización final del juego.
+
+Cada variante pasa 682 comprobaciones con las mismas capas de equipo de su sexo, sin avisos ni desplazamientos por clase. Corregido el agarre de la tercera pose de Caminar masculino y una manga residual en Daga; las revisiones que alteraron gestos o contactos se conservan identificadas en la procedencia. La estabilización de reposo cubre ahora 28 variantes y mantiene como máximo un píxel de variación del apoyo.
+
+Validación acumulada: 1.680 frames válidos, cero inválidos; 29 pruebas de animación/runtime y siete pruebas del pipeline aprobadas. El informe de cobertura incluye 28 variantes técnicamente completas. Son recursos candidatos para revisión artística: no se han promovido al runtime ni publicado en main. Guardados commits por acción y cierre de variante en `nuevas-clases`.
+
+Quedan 47 clases por producir (94 variantes, 1.410 acciones y 5.640 frames): seis de tier 2, diez de tier 2.5, veintitrés de tier 3 y ocho de tier 3.5. Siguiente variante: `berserker-m`, después `berserker-f`, conservando la separación por clase, sexo y acción.
+
 ## Estado actual — 26 de octubre de 2026
 
 Tier 2 completo como biblioteca candidata: ocho clases en orden, masculino y femenino, dieciséis atlas y 960 fotogramas nuevos. Las 240 acciones conservan las fuentes grandes y sus instrucciones de generación. Las comparativas con equipo reutilizan las mismas capas por sexo y no añaden desplazamientos por clase: 10.912 comprobaciones de contacto sin avisos. La auditoría general cuenta 1.560 fotogramas válidos y ninguno inválido, incluyendo Novato y Tier 1.

@@ -2,10 +2,10 @@
   "catalogClasses": 61,
   "expectedVariants": 122,
   "expectedFrames": 7320,
-  "technicallyCompleteVariants": 26,
-  "validFrames": 1592,
+  "technicallyCompleteVariants": 28,
+  "validFrames": 1680,
   "invalidFrames": 0,
-  "missingActions": 1432,
+  "missingActions": 1410,
   "note": "Technical completion is not artistic approval or runtime promotion. Run auditar-sprites-hd.py before refreshing this derived report.",
   "classes": [
     {
@@ -140,27 +140,19 @@
       "variants": [
         {
           "sex": "m",
-          "validFrames": 32,
+          "validFrames": 60,
           "invalidFrames": 0,
-          "technicalActions": 8,
-          "missingActions": 7,
-          "costumeRevisionPendingActions": [
-            "walk",
-            "hurt",
-            "use_consumable",
-            "dodge",
-            "block_shield",
-            "attack_sword",
-            "attack_axe"
-          ],
+          "technicalActions": 15,
+          "missingActions": 0,
+          "costumeRevisionPendingActions": [],
           "visualApprovedActions": 0
         },
         {
           "sex": "f",
-          "validFrames": 0,
+          "validFrames": 60,
           "invalidFrames": 0,
-          "technicalActions": 0,
-          "missingActions": 15,
+          "technicalActions": 15,
+          "missingActions": 0,
           "costumeRevisionPendingActions": [],
           "visualApprovedActions": 0
         }

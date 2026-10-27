@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "superNovato-f",
+  "nextVariant": "berserker-m",
   "classes": [
     {
       "id": "novato",
@@ -156,7 +156,7 @@
       "name": "Super Novato",
       "tier": 1.5,
       "order": 14,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "berserker",
@@ -52377,7 +52377,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/superNovato/m/superNovato-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/superNovato/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -53046,8 +53046,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "6ec1b37a57ef81650c8af6ed0f5aff50fad0e78c0f7f5d5c3cc7fcbe53f259f9",
-                "bytes": 21177,
+                "sha256": "d907073ea90cbca631e8f55b17eea1a20dc27f7f190c45cbc36d822adffeac8d",
+                "bytes": 21112,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -53055,15 +53055,15 @@
                 ],
                 "bbox": [
                   26,
-                  93,
+                  92,
                   105,
-                  248
+                  249
                 ],
-                "pixelSha256": "78d10a43eeb3e164f3e15f0c6a4ccb7dece867f858a60e859754329222108e9b"
+                "pixelSha256": "2053c0bb0c4442c50440218dfa865c780ae1fc26f10529fae846f929436f4174"
               },
               "02": {
-                "sha256": "1015b3144cb38de41e6654b71c262e10d66fc282a15ac1711f59be83b4456a01",
-                "bytes": 21786,
+                "sha256": "e4ce07ec4b76bb9b821e417a6e0c357c96f97249bc018083e5319c3da1ac4086",
+                "bytes": 21593,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -53071,15 +53071,15 @@
                 ],
                 "bbox": [
                   27,
-                  93,
-                  106,
-                  248
+                  92,
+                  107,
+                  249
                 ],
-                "pixelSha256": "32c7214632e9f5dea4327490f0743429de6f7b0833c17041a2dce1a37bb585aa"
+                "pixelSha256": "0e2b6393ccead81496cf9d5426594b3bac040c089ccc3e651f7f871d4493cd06"
               },
               "03": {
-                "sha256": "a984d6c799198ef988658d6cc1c5f0b6506626d9660acc97de892ae448d8a37a",
-                "bytes": 20696,
+                "sha256": "60ad09e50b5879b9f18bd33502107ded0dcbf6799d2e77c791f0dd371eea4be5",
+                "bytes": 20702,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -53087,15 +53087,15 @@
                 ],
                 "bbox": [
                   25,
-                  96,
-                  109,
-                  248
+                  94,
+                  108,
+                  249
                 ],
-                "pixelSha256": "320a31ab18d5fa6728e09813e1706915bc879f62423c0de317bfb48fcdd016fa"
+                "pixelSha256": "356b864849d3d0cf6b40b354aca4e161c4d8862147a9473a23ac073e989b51e1"
               },
               "04": {
-                "sha256": "38e9dd753607fc7b2a499d3b3e7274bbe942b59edda3ad945be081888469493f",
-                "bytes": 21158,
+                "sha256": "97871fbd973f1c456a1e1fd07370ec3b796bce8aa935501601266d21bd4cfa5a",
+                "bytes": 21060,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -53103,11 +53103,11 @@
                 ],
                 "bbox": [
                   26,
-                  93,
-                  106,
-                  248
+                  92,
+                  105,
+                  249
                 ],
-                "pixelSha256": "1c00934946a82853a9bc1fae05b397ef44a4ba005e07ed37e10775c02b618a16"
+                "pixelSha256": "97ca5cb806520f398b3c01b0c670810c2441b03b23f59c6dbe56bfb8be1e14f7"
               }
             },
             "distinctFrames": 4
@@ -53501,7 +53501,7 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-review-pending",
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
           "previousRevisions": [
             {
               "sourceSha256": "35ce36ac3ad7fdc4c372d91404553fe42dd9ad1c3626379b0ccba17d0b772daf",
@@ -53590,7 +53590,7 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
           "previousRevisions": [
             {
               "sourceSha256": "b772497729ecfdfb2a9ed38de0158cfa00f4b0dee4d3484e5da95421260d8cc6",
@@ -53666,7 +53666,7 @@
                 "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
                 "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
               ],
-              "visualStatus": "candidate-reviewed-equipment-contact-pending",
+              "visualStatus": "rejected-shared-equipment-contact-missing",
               "artDirectionRevision": 2
             },
             {
@@ -53705,9 +53705,10 @@
                 "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
                 "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
               ],
-              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+              "visualStatus": "rejected-shared-equipment-contact-missing"
             }
-          ]
+          ],
+          "artDirectionRevision": 2
         },
         "hurt": {
           "sourceSha256": "8ce34d73a833302c2b2fd0ac86d994cdd00069f9bc565f48cf2fd7f9a559afb4",
@@ -53745,7 +53746,7 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
           "previousRevisions": [
             {
               "sourceSha256": "9d62dabe12f701458a7ad3649883c78573cca897dc41020924372cef437c17e8",
@@ -53824,7 +53825,7 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
           "previousRevisions": [
             {
               "sourceSha256": "a254241a017baa27c6bf920d24b93387b901bc1cd6076ee8e23a94ebc53e63a3",
@@ -53909,7 +53910,7 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
           "previousRevisions": [
             {
               "sourceSha256": "b7c2e608c628b4e74e7f0dc8dded93346e8800c762e106f9e2580068f3c16dc6",
@@ -54000,7 +54001,7 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
           "previousRevisions": [
             {
               "sourceSha256": "fdaea5e4c48690f714ce4be0fc4d8afa82d55e4c2773bb3fb49d7cc9238cfe02",
@@ -54085,7 +54086,7 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
           "previousRevisions": [
             {
               "sourceSha256": "5410b1831c4a6411e0ba2b52824dd548be326a57581683f0832ae148834610f9",
@@ -54164,7 +54165,7 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
           "previousRevisions": [
             {
               "sourceSha256": "16562007f162183207886303c90cf4c6ce350589d7f71a3ff3fade6e3fcbabe2",
@@ -54243,10 +54244,11 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "attack_dagger": {
-          "sourceSha256": "2ed4b10e8a2261aef37f2a18964415bef5c3f8fb3ca5f71166f1e0c4b98c0595",
+          "sourceSha256": "fb21ce70750ddff9e207e8ec5728b46b2853a9fd5496603178c91d3df239e9a3",
           "sourceDimensions": [
             2172,
             724
@@ -54271,9 +54273,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/attack_dagger-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/attack_dagger-reference-v3.png",
           "generator": "built-in imagegen",
-          "prompt": "Production RPG sprite action attack_dagger for Super Novato MALE masculine brown spiky-haired. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: fitted sleeveless white tunic with cobalt blue shoulder yoke, standing blue collar and vertical blue front panel, small white neck cravat, brown leather belt with small pouches, brass chain at hip, warm brown cropped loose trousers WITHOUT patches, off-white knee wraps, dark brown lace-up boots and fingerless gloves; bare upper arms. NO red scarf, NO crossed chest harness, NO cream jacket, NO blue trousers, NO gold embroidery. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. Wardrobe edit ONLY, leave exact four canonical poses and ALL gloved hand coordinates unchanged. Do not reinterpret action. Empty hands for dagger overlay; dagger invisible. Fully remove red scarf and leather chest harness. Match Image 2 costume and boots.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
+          "prompt": "WARDROBE ONLY edit of Image 1, keep its EXACT four distinct poses and all hand/arm/foot coordinates. Do not reinterpret the gesture or improve animation. Image 2 gives new costume only. Super Novato male costume: fitted sleeveless WHITE tunic, cobalt BLUE shoulder yoke and collar and central vertical panel, white neck cravat, brown belt and brass hip chain, loose brown cropped trousers, off-white knee wraps, dark lace-up boots, brown fingerless gloves. ALL FOUR UPPER ARMS MUST BE COMPLETELY BARE SKIN from shoulder to leather wrist bracers: NO WHITE ROLLED SLEEVES OR ARMBANDS. Remove all red scarf and chest straps. Preserve original gloved hands in their exact pixel locations: pose 1 fist by belt and guard at chest; pose 2 foreground fist bent up near lower ribs with elbow sticking sideways, guard hand at chest; pose 3 short stab fist just ahead of waist, guard at cheek; pose 4 return fist beside belt and guard at chest. Pose TWO must stay distinct from pose ONE with fist visibly raised toward ribs. Pose FOUR guard hand MUST stay at Image1 chest coordinate for shield overlay, do not lower it. Preserve canonical face, brown spiky hair, proportions, camera, per-cell centers, canvas 2172x724, exact scale and baseline. Four separate full bodies facing RIGHT in one horizontal strip, true transparent alpha. No weapons, dagger, shields, effects, shadows, labels or grid.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_dagger-reference.png",
           "canonicalPoseHashes": [
             "a5a4fb44f6eb17e6a4020f9acda0374d081c9dfcf708482d5217a991853e8daa",
@@ -54281,7 +54283,87 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "previousRevisions": [
+            {
+              "sourceSha256": "2ed4b10e8a2261aef37f2a18964415bef5c3f8fb3ca5f71166f1e0c4b98c0595",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/attack_dagger-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": "Production RPG sprite action attack_dagger for Super Novato MALE masculine brown spiky-haired. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: fitted sleeveless white tunic with cobalt blue shoulder yoke, standing blue collar and vertical blue front panel, small white neck cravat, brown leather belt with small pouches, brass chain at hip, warm brown cropped loose trousers WITHOUT patches, off-white knee wraps, dark brown lace-up boots and fingerless gloves; bare upper arms. NO red scarf, NO crossed chest harness, NO cream jacket, NO blue trousers, NO gold embroidery. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. Wardrobe edit ONLY, leave exact four canonical poses and ALL gloved hand coordinates unchanged. Do not reinterpret action. Empty hands for dagger overlay; dagger invisible. Fully remove red scarf and leather chest harness. Match Image 2 costume and boots.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_dagger-reference.png",
+              "canonicalPoseHashes": [
+                "a5a4fb44f6eb17e6a4020f9acda0374d081c9dfcf708482d5217a991853e8daa",
+                "d4ba48a4d952c823903133d05a54b3338afbc39649e2228a95f97e5577818fc1",
+                "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
+                "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            },
+            {
+              "sourceSha256": "21fa4a7819aa07d0f81890765dfaf5a67d2d30297c0b163d8619b11165e55b80",
+              "sourceDimensions": [
+                2171,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                658,
+                22,
+                1007,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                24,
+                93
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/attack_dagger-reference-v2.png",
+              "generator": "built-in imagegen",
+              "prompt": "Edit this Super Novato male four-pose dagger sprite strip. Make ONLY ONE tiny costume correction: in the SECOND figure, remove the white rolled-sleeve band around the visible upper arm just above its elbow, replacing that white fabric with continuous natural bare skin matching the same arm's skin tone and shading. All four figures must have completely bare upper arms like figures 1, 3 and 4. Do not move or alter any arm, hand, fist, fingers, pose, silhouette, face, hair, clothing, belt, chain, boots or other pixels. Keep first, third and fourth figures unchanged. Keep exact 2172x724 canvas, real transparent alpha, frame centers and scale. No added props or text.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_dagger-reference.png",
+              "canonicalPoseHashes": [
+                "a5a4fb44f6eb17e6a4020f9acda0374d081c9dfcf708482d5217a991853e8daa",
+                "d4ba48a4d952c823903133d05a54b3338afbc39649e2228a95f97e5577818fc1",
+                "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
+                "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
+              ],
+              "visualStatus": "rejected-gesture-and-equipment-contact-changed",
+              "artDirectionRevision": 2
+            }
+          ],
+          "artDirectionRevision": 2
         },
         "attack_bow": {
           "sourceSha256": "40058c2d332f8d27412c232aa50356ccbbaf929ab72a00c47845aac2e5ae0f1d",
@@ -54319,7 +54401,8 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "attack_staff": {
           "sourceSha256": "368536fe7048a9963f63093a1b0f3bf4ec9d98beb6dd9ea8f43f0267d3a29dbd",
@@ -54357,7 +54440,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "attack_mace": {
           "sourceSha256": "328ea1ad811012eb73811d772b9f6324787ef0d8b4c971531e69242100c61b5c",
@@ -54395,7 +54479,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "attack_book": {
           "sourceSha256": "e4bb2de95564c93dc0833829008fa54dca38164f2259cc99a3ad476b6895387e",
@@ -54433,7 +54518,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "attack_gloves": {
           "sourceSha256": "a24c7300c90a3893423b84db516821a90cfa5ece226dba0c77b04b8b2cd539e0",
@@ -54471,7 +54557,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         }
       },
       "frameProvenance": {
@@ -54749,13 +54836,112 @@
       },
       "artDirection": {
         "revision": 2,
-        "inspiration": "Ragnarok Online Super Novice, official male costume",
+        "inspiration": "Ragnarok Online Super Novice",
         "referenceUrl": "https://ragnarokonline.gungho.jp/gameguide/character/novice/supernovice.html",
-        "referenceImageUrl": "https://ragnarokonline.gungho.jp/gameguide/character/images/novice/supernovice/job_image.jpg",
         "identitySource": "assets/spritesheets/hd-128x256/superNovato/m/source/idle-reference-v2.png",
-        "costume": "White and cobalt blue sleeveless tunic, white cravat, brown trousers, utility belt, brass hip chain, dark boots; no red scarf or chest harness.",
+        "costume": "White/cobalt blue sleeveless tunic, white cravat, brown trousers, utility belt, brass hip chain and dark boots.",
         "actionsToRework": [],
-        "status": "redesign-in-progress"
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/superNovato/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "724362b09d044c9917412965937f82f165fb0bc5c72c52accd71efc812b0c76e",
+            "4c2d5053a517436672422b5cb1360a07ee0268650138b3756ec9e6884c736b39",
+            "0af07f450ddefc73e0161346e2104d61895638e70becbecff89815f645b48dae",
+            "240d45218d9967b3ab4e3f88f0b2fa895e1edcf9e016b5f74b542baaf1238544"
+          ],
+          "walk": [
+            "f5e0126239507ac6a96e28b5bd436a993a69084a91991fc650fb252bf91ea480",
+            "48eb001073990c4d151047b8bf76d7297b643d145efdf7db18bdb505ae1c5b31",
+            "ef4583c729a7d65cb7f7be7a8f3059f7c2eb4c20b4953df2bdc3e886d6746478",
+            "d30f7c1cdb87b163bc59f6752d8170f2cd8ed52574abf1f4f7682e206702d447"
+          ],
+          "hurt": [
+            "4107e15e909ee530df0bd7b69521753acde8623b152555a83e8f4923beb3f56f",
+            "b5b9ea90cc2940c97d0afe4c310d9ce5001e14f5e491227aa2c7490ff6e58986",
+            "55298ef5f4542b944850ab46952fffc92bef89321fe1319d252f604c5bb1bdb7",
+            "d181f450b9333efcfdfa9fe27aa7dc4cd202f065788909cd80c1e885dcfb8941"
+          ],
+          "use_consumable": [
+            "051c92ed82f18b7c3aa570d10a28f84915df6ed4bee7b3d30fb0101aac727e58",
+            "66091fc7ac025a632575c11f3d53eeb9dc907dca32ca81e1c60fe61025a51dc4",
+            "bb171db60901b5e8dc60799844f7d947a30b9d09181aedcad062ba8789cd3345",
+            "8da54104508d2ffe68a1b5d6364336934c22b1dfd51703ae2b96cf3ff405a30c"
+          ],
+          "dodge": [
+            "ba9b78f2bac010a59142fe412562cac5774f2dbf8c4fd88ec8eeecdcd70b6fdc",
+            "c0c265208b4953c076f88d0d9e1ea98fc820714c82c9cee951088b39d4a11eea",
+            "d6f31e4872622f63e134933e95d82fd6a751b5c25ddb9c7d0266eca368ae21c6",
+            "ea0b3943cc77d04f5f1fa2e4e490d99315b47e9720436d60331dfe50de84a39f"
+          ],
+          "block_shield": [
+            "2e504a4b93666c9201f9a64cbf9686f688531261366ca3ee42373bd283262b25",
+            "faf4791a4ae39c0b889298335736379c40cd0518e1ebfcb6fdd6061982f0102f",
+            "ccb0d69962328bd0777e744ff27196f60e12621c46a0ef50bb0e5aa0c80f7959",
+            "1dc6d870da35701da95593f96d5dc01ab953129a3dacf60dea4276da94cf0376"
+          ],
+          "attack_sword": [
+            "e6012011d96e2d15cfbb4ed48238337a4d9ad3a742791cdc45fa1fffe9dcbd16",
+            "bd7c5bd24865e946a795bd4fcd881b6904624df04bc4650dac4ed4285d4a2640",
+            "306528831435f6de5b557c82616a0a4dd3ab64e0f9a5cad4a6efa27b88a61960",
+            "7b39fd530e61a37a8490de79790bf261aa4b785b5830599adf0891630dad4eb9"
+          ],
+          "attack_axe": [
+            "fa6b3280d77b4daaaa93a7631efc1efd986c6fe9e8080f3e6e5f47c64e864df2",
+            "8208bfe6006886fd7d1386320ec0f244d3df0b87e8439d347b3d2d0805ed5ccc",
+            "725e0fc1157910e5cf8d18509643dbdffe15ab95df41ec9c97dfba9374abcd97",
+            "4d6dde6bece96e547ec03ba9fedc84029d1d97829ec2ed987cd7e504b406b4c9"
+          ],
+          "attack_spear": [
+            "a10cbe77ec83d174f991b26b29803691c3294476d14f9db5954c27dc41501d9e",
+            "dc2da57ed96d4c49a8efeb114abc2033fde5f274481d3b577ae01adc98b864fd",
+            "dbd2ad94f425de4d67b45f11ef197c464e70968608bfcadfaf46d480f93c0120",
+            "d89166d5c7446d4d1f359e55544db1c343bed7df18d4b79bb1ff2eee4d0774f5"
+          ],
+          "attack_dagger": [
+            "d907073ea90cbca631e8f55b17eea1a20dc27f7f190c45cbc36d822adffeac8d",
+            "e4ce07ec4b76bb9b821e417a6e0c357c96f97249bc018083e5319c3da1ac4086",
+            "60ad09e50b5879b9f18bd33502107ded0dcbf6799d2e77c791f0dd371eea4be5",
+            "97871fbd973f1c456a1e1fd07370ec3b796bce8aa935501601266d21bd4cfa5a"
+          ],
+          "attack_bow": [
+            "c3347ba26fb0b2ed71cb7e1afd80b7c008081dcfa1af7fde37c9046cb54077fd",
+            "d25f680494bab6211fb944b9f4cbaaf40c7e2879ebbdd70f5f5e569a7f33456c",
+            "37dbdbd3b0211ba416c31bbf50bcd2b8949030a0ac7d6fa7d823cf4a81a9f20d",
+            "61adbfe6bb0a841aff159840214b60a65279dc5695179f3308d8e025992ca387"
+          ],
+          "attack_staff": [
+            "70e3a335958ca72be28bd4221341bc2731c8b9d5df70eb7496e1588fe72a61cb",
+            "30bc959717a6fa9f462faf16d5bfec80e232c11162d2acc00ef154eb3f3d08b4",
+            "c76f6aeeb0d9aba36f57b50ed31e3d513a6e5d9c47b90ef0192b3e79f33e4779",
+            "f230b5e18bbd66dea1d0d20a488ac839347054da68588e05c537cfae232df79d"
+          ],
+          "attack_mace": [
+            "ecc2c36f4d5c42bae8ce218684a578e0c451eb60b60e6d65b04d0eb2e6e4661e",
+            "80c80249137cc7afcf3ac3ff7e62040398284ff62fdc36c080df6d1f5d154d89",
+            "17e22b44c982015fcd1fbbb96e63ebc84e7c4f6cfbe5957c30b95cad43d85428",
+            "f5409e0e616feb638466d114451eb142acdc3c67bb6d105580c6e3c2f9b3eefa"
+          ],
+          "attack_book": [
+            "0a1509f4ea4b7a566827ff8affe30999a549d80bd45baaed1833079c39c9175b",
+            "1206e93315bc39dda88960dce6a856235c03e5b8dce2e6594d3e9739327facda",
+            "bac296437e2685e7c1b5322d4c1ecd1b4a10c5e1ab5691ec30ee1c272d919419",
+            "c3627e61828c71281b797a4501727a798eb83b2dffe78ba24f6a1788c96fcac4"
+          ],
+          "attack_gloves": [
+            "bbd2cc706abcbab151d83824c06eb7c225b699417e471b9fd925648e0e16a99f",
+            "c9a9ee0a45adb155a93c00de1f1131dd63765cd95196f8f0f94d3deef2d2d296",
+            "bd97829ee46608a9d1c9b1bf71e4abd7b498c712b34b9fbf07fa297d1b14064a",
+            "82ceff85328c84170429057c34b45cf3e30fb301fc9cec132dfaf1ce972526a8"
+          ]
+        },
+        "equipmentTransforms": "shared by sex, unchanged; no class offsets"
       }
     },
     {
@@ -54768,7 +54954,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/superNovato/f/superNovato-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/superNovato/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -55892,7 +56078,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "walk": {
           "sourceSha256": "32eea644239c1ad5150945264884d4d638aabc42821cfdd6ebc846930292a083",
@@ -55930,7 +56117,8 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "hurt": {
           "sourceSha256": "8edc99287f2b4e1cde917f1accfbd5c34ba4124322e28a9d8cc5cf70c369263c",
@@ -55968,7 +56156,8 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "use_consumable": {
           "sourceSha256": "e3e88fdd1a99f1e7e69670c730a75619417506afec00682e1b94110275b07d3a",
@@ -56006,7 +56195,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "dodge": {
           "sourceSha256": "5c4c2d91e5b2b1a0958e624629e27498fe1d497411c259d128452ef88c6a26be",
@@ -56044,7 +56234,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "block_shield": {
           "sourceSha256": "704748daaa7ef1412a0bf0b5de09cf9a68b03314db790f28191ba56ab7da09ad",
@@ -56082,7 +56273,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "attack_sword": {
           "sourceSha256": "777c7acd782352101acc7b9f5f42425891a9088d536e3b0ab0014c0327351068",
@@ -56120,7 +56312,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "attack_axe": {
           "sourceSha256": "6614cc32ad91dabd826865bd736e6f377875d11bb9f67fc6ef0420a2b50ffb48",
@@ -56158,7 +56351,8 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "attack_spear": {
           "sourceSha256": "2e5c0796960e4c40d49d522848d1f2c1ba40849406e2ac04bb24ed51b20ffcdc",
@@ -56196,7 +56390,8 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "attack_dagger": {
           "sourceSha256": "8d48e50aa0187b70608489ce67ac613fc4664f2a8c512fe25ea520cc43f17b54",
@@ -56234,7 +56429,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "attack_bow": {
           "sourceSha256": "d03de73df8276e4ff613481b4d6e03dd7c3c2fd664ecde1c9e3ac817ef63c1ec",
@@ -56272,7 +56468,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "attack_staff": {
           "sourceSha256": "e2f352ccbb6540e51e934cb90772ae08c37fb05248dcad12e5d63aaec6aee771",
@@ -56310,7 +56507,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "attack_mace": {
           "sourceSha256": "af350f467bd3c3f3dc96860ce7f1cf3b5970dfc36dc8963414faeb1d466b4491",
@@ -56348,7 +56546,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "attack_book": {
           "sourceSha256": "b716111e77d32e7653067cc45e728de202df22512af0a80d3dd0b407e49cf98a",
@@ -56386,7 +56585,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         },
         "attack_gloves": {
           "sourceSha256": "8197363beec64514f8ad28edbe7e07190b4b792a68f4db63170f91550763cb0b",
@@ -56424,7 +56624,8 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending-user-art-review",
+          "artDirectionRevision": 2
         }
       },
       "frameProvenance": {
@@ -56699,6 +56900,115 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "revision": 2,
+        "inspiration": "Ragnarok Online Super Novice",
+        "referenceUrl": "https://ragnarokonline.gungho.jp/gameguide/character/novice/supernovice.html",
+        "identitySource": "assets/spritesheets/hd-128x256/superNovato/f/source/idle-reference.png",
+        "costume": "White/cobalt blue sleeveless tunic, white cravat, brown trousers, utility belt, brass hip chain and dark boots.",
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/superNovato/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "0500de1118199c9cb3f8106aa6733aee8b443b884b84ebcd8e4891b552c096de",
+            "13ef3f9b69757e13b98809320349e7a84e8e37c2b8b4a224b7a1453818c861fd",
+            "3aef0c287899035f307fceea52c94a6647a7b55f52f73b8fa6d4460ca77ebaf6",
+            "086e53bfea17d501bde57457707a87cec7e0d13ccb73c4f1d5eccb35fbe9dcb7"
+          ],
+          "walk": [
+            "588bbb68f736dc3704aa2cdb0f11c8f9edca5b2673474038a1fa82da6e851ebe",
+            "7c92492b418965618a3f7b336d41edd53154d5e7d4b45000b627f5af1d96fab4",
+            "c2e952a720fb8253e6c87b440840ec3f40b72902b4b34dbbc46780a6758fd117",
+            "eda534117adf623319a6daacaa0a3827d5bbf5ff0f6d6ffbc47996348057245a"
+          ],
+          "hurt": [
+            "2574a8ef6f3303ffe85ed0cf99a0a6def655eb00b28a982d7a5c7393ae2805fb",
+            "021b88d33e1ecd4bab7b0b38bae2929733adf998a954746458c0d9f74f70501e",
+            "369c82b5b98b9114f57d0d1f758949a47bebe6a566bf1298410960ec107d8080",
+            "761569e09af3fb22eff4540291662ff2bcda7ecd5c804fcb72f1ccb75d7383ad"
+          ],
+          "use_consumable": [
+            "f7a98fbc9ecd86155cff1b83fbfd1d79f3c12ddf9ab61bd901058bfbcabbc4ca",
+            "3f35ddcd3065b95cc83c68f4e66c613b2f88b56d9cf58cbdedbf3989caf45981",
+            "acf40c3fc4737ec2a8abf4705cd6647c0e84edbe64848e67ca9e65e15f594867",
+            "b75439f6897023c1e50dd17be031336b9b38e4ecbf8b772b2dff74dd94420241"
+          ],
+          "dodge": [
+            "60b393e7fd49c64e51dd7a4729d81078d07585fe0d2c569b03203d98d43125bf",
+            "8c458fae3cc84756d7db3a6a5670819c411510fca6acb81a37e0792989db4683",
+            "d64cf7eb1d57b26250d1668074fe64da665d9d49a4b75c50185ba8697c091936",
+            "7815db320e6f18d9f36fc57cd32b810b426ddce7da323c4a2d4078e8393b49e8"
+          ],
+          "block_shield": [
+            "a08ec44eedd9eb91ed53154fa4fe5bdbf0824b808e7d8ef4c3215fbd84a72897",
+            "f0483c715c6dc817adb83bf28d3db30397a54d1191bd5e199dc451b3696f1d21",
+            "06f5e541bbe3e670ee1ea17251a6e5c673e2012e945d116cc79d445fb100668c",
+            "da874d375967a5bb0dbd552170954eb874af4bae9cceebb80276c8df61b2cf7e"
+          ],
+          "attack_sword": [
+            "33341b7734b26a2bc26f7a9744968d4d8781ae985bd821f182cca6034c5dfc8b",
+            "4a9dd5e5dc4c121dff1117623de43280f213a7de17f1a2a6650300c9769bba44",
+            "90716a32caed2fa3bb4b99672ee6edd282c462c29772998a85a663d2e33b0c6d",
+            "27b5bec759524abf5b86265ff1f716e2d3ea9c503a681a5eda904272dadc4ffa"
+          ],
+          "attack_axe": [
+            "c4e1ae7de017a21fb376647a7fee32bb1ccfafa949d2ded420668997fca610d6",
+            "cb8a85e539097c516435cebc2124276368de5feccda5701e8cf8b4efe64160a1",
+            "144349623f7fb892ea50ec7caa84cb680778d29fadf677ae17a53fc275050d31",
+            "ecfd887761080aa76e912abf1c0bf5805cdf414044c0c47a0d256dc6f0b07be2"
+          ],
+          "attack_spear": [
+            "6f477cc9c880e93cbebed515b3fb52c9a2647771cf10e346848481c818e5fcc5",
+            "0b0e8e9d2d83d1db891a468d28dd6885a0267568da907f56f0a2442262c61416",
+            "75fa5628c178d6ffd0f9777bc71305d005eaff14301f05f8f9325058d3783f40",
+            "faf5cee971f8c5491e533282c584f28f0e2006f61c410c035f61bea92c705087"
+          ],
+          "attack_dagger": [
+            "64f24e74368821172f513adcb1bc48f7b271c5682bac1424054f95b11ed139bc",
+            "6b5158cbac974aeeade4cb6820242a8df79b931df7b99ede0b47a9f205380c41",
+            "2d64d9547e65edd9e7905ab0332149c12b3bd31fa1c4ba10148b6d3c6233115d",
+            "88a9e04bd4990df7c57f91575a03292889bd69e07fd0b67f5733a81f2437af97"
+          ],
+          "attack_bow": [
+            "df53b2f420da3bc663bbce1ce6a4ecda4728cd15fde8b932d66a7cd08c71b6c3",
+            "858b99a66735a8c84f66e54e3fc52894d91946ebfa6899f68550789e49de2655",
+            "8619769e4f2065706b606de9187c64f007ed64b0d734a8a071a761e80f813f58",
+            "1e7fce36fc0562d65adb63a2edca6ae2e251875fd634a3d0f233592f39191b6a"
+          ],
+          "attack_staff": [
+            "1d68c3e4a54a8189d44f11357e8a41742dc64415c4617ef3ef81a56dc7f13759",
+            "9c1dc6fe17b4feb64c0c4afb658b7df28b45621012462067a0eed4d407c4f537",
+            "1b7726f56862f716c712ce1d0344f14b4825c05e1b58769f944547e18eb44bd5",
+            "d4fd4d8da12cb3201ec89e96d395dd24d512826fd25ba40015536b5e3638bcb9"
+          ],
+          "attack_mace": [
+            "f1f6cf6c17f53f2b36c2e9c31ca6550e6030c71ebbce9631136609970b45cb02",
+            "32907f9c129f046ce964f29d73d5fbfd516d45200a83e66ea7be266d6a5c8792",
+            "4545849e60ef95577a9eb48778de347f67fcb94fcc1e1399ae292296e5e2e0df",
+            "e5a179e14e5bf5596958f3dfa523a781c7b4cbcbffe125449a1401f60791fc00"
+          ],
+          "attack_book": [
+            "46653219ded5f171249f945b4f1bdd413692e5c23f3bf43352847e87e49b1ae9",
+            "289be02906422675c5cc9bf5fa91df6e141090fce3cade2d3022e8c5dea92548",
+            "30c0e747d3c8bf928b5865f5434ec76e38ae8c6d95c7187b1f9674d7a70a26b9",
+            "06ce3b195c95638e5ce6bbc0862204f8b056f257dc6b704bd5352ee8f6ece0b5"
+          ],
+          "attack_gloves": [
+            "d5df01ab20bc8e6b5eed761217d9cf9df25eb91935214fd606e5843d9545ed6a",
+            "9f5cada60af7aac6983cf303843c6fc0cfaa7509e9d6528edfe4ff9850941319",
+            "d8c6e0fa781c689bbb9fcd6eb5210e4df6dee9e1ae10874035d09817beafcd01",
+            "aeed45b641c52d6ec4e8e4cf61f58a3a677d019336a6c1c22fe8af4c92d41835"
+          ]
+        },
+        "equipmentTransforms": "shared by sex, unchanged; no class offsets"
       }
     },
     {
@@ -64101,7 +64411,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 1.5 in class order: Super Novato; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Next missing class: Berserker male, then female; finish each 15-action variant before the next class. Super Novato male/female are complete candidates with all shared contacts checked; user art review and runtime promotion pending.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",

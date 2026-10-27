@@ -1,5 +1,6 @@
 // Compare the actual class catalog with the HD production library, without
 // treating ancestor fallbacks or legacy sprites as newly produced HD artwork.
+/* eslint-disable @typescript-eslint/no-require-imports -- The in-memory TypeScript loader uses CommonJS, like the repository's Node tests. */
 require("../tests/load-typescript.cjs");
 const fs = require("node:fs");
 const path = require("node:path");
