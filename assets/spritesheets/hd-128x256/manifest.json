@@ -88950,11 +88950,12 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 8,
+        "validFrames": 12,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
-          "walk"
+          "walk",
+          "hurt"
         ],
         "actions": {
           "idle": {
@@ -89098,7 +89099,74 @@
             "distinctFrames": 4
           },
           "hurt": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "8e2ed623833110e44e28ab73317a078698259aaf81a544653c2909efd1c67680",
+                "bytes": 25110,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  91,
+                  106,
+                  249
+                ],
+                "pixelSha256": "bdcd4e4932f6e5b20a6e2881031a60248f60d8004107b3200b8fd23f43696639"
+              },
+              "02": {
+                "sha256": "786e237403f9881071e9baf3068bae3a7a13571cf1d1cf2a4e03c674b9bad8ba",
+                "bytes": 24911,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  28,
+                  91,
+                  115,
+                  249
+                ],
+                "pixelSha256": "eb6af59a86ede1a23564bfcb208ae7f1870e384ccc21f9be78a948d3cd085045"
+              },
+              "03": {
+                "sha256": "a0831bbe93b1f07d4ed7fd75bb69c8c42126c80ed1d6db74176454ee537ce8ca",
+                "bytes": 21623,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  120,
+                  107,
+                  249
+                ],
+                "pixelSha256": "e47e592842a3bc963d98f93b3c38f8ce36ee4de8f94e8b259e357c419f302e31"
+              },
+              "04": {
+                "sha256": "7ade0cd3cd0a39c90cb5b70f3677e3951cf7fc766a284bad80507b3c651e2c94",
+                "bytes": 25002,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  27,
+                  91,
+                  108,
+                  249
+                ],
+                "pixelSha256": "fca8f9cf9bb13fc8623b29bed133989420abc722ec9d20b094880fa2fbb1ec50"
+              }
+            },
+            "distinctFrames": 4
           },
           "use_consumable": {
             "status": "missing"
@@ -89214,6 +89282,44 @@
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "hurt": {
+          "sourceSha256": "345ad85abd50a34ba8260a19ed45b4d29673903c7465b7c396f29a3b7fe36107",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            617,
+            19,
+            1047,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            14,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/pirata/m/source/hurt-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Pirata MALE, Tier 2.5, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses. Compact navy BICORNE has the same BRASS KNOT insignia on ALL four figures, never skull insignia. Male retains small CHIN GOATEE on every pose even open mouth/closed eyes; female has no facial hair. Cream shirt sleeves and snug dark fingerless gloves are identical across all poses. No neck scarf/cape. Adult mischievous masculine seafarer, sun-tanned skin, dark auburn cropped hair and small chin goatee, expressive eyebrows. Agile fantasy boarding pirate: compact rolled NAVY bicorne with BRASS knot emblem (no skull), fitted indigo short naval jacket with coral lining and cream shirt, waist RUST-RED sash with short knot tails, broad leather belt two asymmetrical flat pouches, diagonal single brass chain, dark gray breeches, sturdy brown sea boots with folded narrow cuffs, dark fingerless gloves. One small brass hoop earring. No neck scarf, no long cape, no weapon or telescope or hooks. Tier2.5 hybrid Duelista/Cazador: light dueling tailoring and practical seafaring gear. Keep modest officer detailing; reserve ornate captain coat and larger tricorn silhouette for Corsario. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
+          "canonicalPoseHashes": [
+            "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
+            "bd77167140c15b93b69566bb90c4d9b42293de7cbb2fffd05fdc4e429c80edd7",
+            "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
+            "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -89247,6 +89353,22 @@
         },
         "walk/04": {
           "source": "sources.walk",
+          "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt",
           "frame": 4
         }
       }
