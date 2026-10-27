@@ -54783,7 +54783,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 24,
+        "validFrames": 28,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -54791,7 +54791,8 @@
           "hurt",
           "use_consumable",
           "dodge",
-          "block_shield"
+          "block_shield",
+          "attack_sword"
         ],
         "actions": {
           "idle": {
@@ -55215,7 +55216,74 @@
             "distinctFrames": 4
           },
           "attack_sword": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "33341b7734b26a2bc26f7a9744968d4d8781ae985bd821f182cca6034c5dfc8b",
+                "bytes": 23812,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  91,
+                  111,
+                  248
+                ],
+                "pixelSha256": "1157dc7975de74d3595c35dca5818c2c7453c03bdc04a0a7b6b152e3b3c8fd97"
+              },
+              "02": {
+                "sha256": "4a9dd5e5dc4c121dff1117623de43280f213a7de17f1a2a6650300c9769bba44",
+                "bytes": 22975,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  91,
+                  112,
+                  248
+                ],
+                "pixelSha256": "08d6dd093b2c6d129924c81675d98ee7bee31bea3ac54da32617f231ef3a84ae"
+              },
+              "03": {
+                "sha256": "90716a32caed2fa3bb4b99672ee6edd282c462c29772998a85a663d2e33b0c6d",
+                "bytes": 22851,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  97,
+                  108,
+                  248
+                ],
+                "pixelSha256": "9d575cd01d3b9b3059a93c68458e5f4f300dbac364536d9f31eb8b204b257a67"
+              },
+              "04": {
+                "sha256": "27b5bec759524abf5b86265ff1f716e2d3ea9c503a681a5eda904272dadc4ffa",
+                "bytes": 23598,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  12,
+                  91,
+                  99,
+                  248
+                ],
+                "pixelSha256": "d566600b68af15377d2e5bc3d8ef68ef54fb412961508c78f51d82cdbb803630"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_axe": {
             "status": "missing"
@@ -55471,6 +55539,44 @@
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_sword": {
+          "sourceSha256": "777c7acd782352101acc7b9f5f42425891a9088d536e3b0ab0014c0327351068",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            620,
+            15,
+            1030,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            17,
+            91
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/f/source/attack_sword-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG sprite action attack_sword for Super Novato FEMALE feminine brown high-ponytail. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: fitted sleeveless white tunic with cobalt blue shoulder yoke, standing blue collar and vertical blue front panel, small white neck cravat, brown leather belt with small pouches, brass chain at hip, warm brown cropped loose trousers WITHOUT patches, off-white knee wraps, dark brown lace-up boots and fingerless gloves; bare upper arms. NO red scarf, NO crossed chest harness, NO cream jacket, NO blue trousers, NO gold embroidery. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. Wardrobe-only edit. Retain exact four canonical female poses and ALL sword-grip hand coordinates; do not reinterpret sword movement. Weapon absent for equipment overlay. Same sleeveless white/blue tunic, brown pants, brass chain and dark lace-up boots as Image2. No old sleeves, red scarf or chest straps.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_sword-reference.png",
+          "canonicalPoseHashes": [
+            "2cdc01930823f3356c34672d3037877c10a3b25337d5ff78350f147e0f5fba9a",
+            "db31283eb15589cf13fb33aac39b277606ed938f4afe84955356f0253579e4e0",
+            "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
+            "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -55569,6 +55675,53 @@
         "block_shield/04": {
           "source": "sources.block_shield",
           "frame": 4
+        },
+        "attack_sword/01": {
+          "source": "sources.attack_sword",
+          "frame": 1
+        },
+        "attack_sword/02": {
+          "source": "sources.attack_sword",
+          "frame": 2
+        },
+        "attack_sword/03": {
+          "source": "sources.attack_sword",
+          "frame": 3
+        },
+        "attack_sword/04": {
+          "source": "sources.attack_sword",
+          "frame": 4
+        }
+      },
+      "equipmentTests": {
+        "attack_sword": {
+          "status": "technical-preview-verified-art-review-pending",
+          "weaponPath": "public/sprites/items/weapons/espada_hierro.png",
+          "weaponSha256": "8b21d32318b5d8778325ea8899f2e74524c9c98bce540656844faf02758f7589",
+          "weaponGrip": [
+            32,
+            55
+          ],
+          "frameIndex": "shared-body-and-equipment",
+          "frames": [
+            {
+              "bodySha256": "33341b7734b26a2bc26f7a9744968d4d8781ae985bd821f182cca6034c5dfc8b"
+            },
+            {
+              "bodySha256": "4a9dd5e5dc4c121dff1117623de43280f213a7de17f1a2a6650300c9769bba44"
+            },
+            {
+              "bodySha256": "90716a32caed2fa3bb4b99672ee6edd282c462c29772998a85a663d2e33b0c6d"
+            },
+            {
+              "bodySha256": "27b5bec759524abf5b86265ff1f716e2d3ea9c503a681a5eda904272dadc4ffa"
+            }
+          ],
+          "limitations": [
+            "Uses current item icon at native size to prove compositing; not a new HD equipment asset.",
+            "Hand masks and anchors are explicit candidates tied to current body hashes.",
+            "No runtime promotion; test does not validate other weapons or actions."
+          ]
         }
       }
     },
