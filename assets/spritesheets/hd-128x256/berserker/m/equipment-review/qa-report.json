@@ -3,7 +3,8 @@
   "classId": "berserker",
   "sex": "m",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "b4cfe218c7b1d26649599f8d3dab5709fc71582dd954108dd0bee3d4021e20a6",
       "ea1e5893c56f5786cf1e9c9444110193820c5032b3dadc9cdfc2ee6a1b539211",
       "1e1125ee56b69a087b32ba27234bedebbbf51c9a7f422c5144124e1a3d9f376d"
+    ],
+    "walk": [
+      "3dcde1e9c525cbeec5470b48d563dfb23fb98be822c7045d4c86bd1b0dff6a79",
+      "5a521e1bd591c60244cf42e03cf30aaeaba2cfd21c6b5dd0cbb2afdbd264c1b6",
+      "ace1aeb7a157cded443246bc605cfac3596b1245dbc2e28b76cbb355edfddce8",
+      "1f44201247cc9958b6251fe452a91da5f27de3d69e68664f5c921c3daba80bbd"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
