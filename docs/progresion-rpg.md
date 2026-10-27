@@ -7,8 +7,8 @@ Esta primera iteración integra el núcleo de progresión Base/Job, el catálogo
 - Todos los personajes nuevos empiezan como **Novato**, Base 1 y Job 1. El servidor ignora cualquier clase enviada por el cliente al reclutar.
 - El nivel y la experiencia Base se mantienen en `Personaje.nivel` y `Personaje.experiencia`. Cada profesión tiene su propio `ProgresoClase.nivelJob` y `experienciaJob`; cambiar de profesión no borra el progreso de ninguna otra.
 - Job 10 de Novato permite desbloquear Tier 1: Espadachín, Acólito, Arquero o Mago.
-- Tier 1 tiene Job máximo 40. Las ramas Tier 2 requieren la clase predecesora a Job 40.
-- Cruzado es un ejemplo de clase híbrida Tier 3 y requiere Caballero Job 40 **y** Sacerdote Job 40.
+- Tier 1 tiene Job máximo 40. Las ramas Tier 2 requieren la clase predecesora a Job 20.
+- Cruzado es una clase híbrida Tier 2.5 y requiere Caballero Job 20 **y** Sacerdote Job 20. Tier 3 y Tier 3.5 requieren Job 30 en cada profesión indicada; sus máximos permanecen en 80.
 - Las profesiones desbloqueadas se pueden seleccionar libremente fuera de expediciones y combates. Al cambiar, se desequipan las habilidades incompatibles, pero no se pierden las habilidades aprendidas ni el Job de otras profesiones.
 - Los requisitos de clase están definidos en `src/lib/progresion/clases.ts`. `obtenerAncestrosClase` recorre el grafo; una clase hereda las habilidades de sí misma y de todas sus ramas antecesoras. Una híbrida hereda de ambas ramas.
 - Cada nivel Job obtenido en combate PvE concede un punto de habilidad para la profesión activa. Al alcanzar el Job máximo se registra el hito de maestría.
@@ -21,7 +21,7 @@ Esta primera iteración integra el núcleo de progresión Base/Job, el catálogo
 - Cada clase declara sus dominios de equipo. Las armas de mano principal y los tipos de mano secundaria (como el escudo) usan el dominio de equipo: una categoría dominada aplica la bonificación de la clase y una no dominada aporta solo el 75 % de sus estadísticas relevantes. El Arquero domina arco y daga, no espada ni escudo. Las armaduras de casco, torso, pantalones, botas y guantes usan categorías ligera/media/pesada y aportan el 75 % de su defensa si la clase no domina esa categoría o no tiene una bonificación positiva para ella. Collares y anillos quedan exentos. El campo `subtipo` refleja el tipo específico del objeto; para armaduras de cuerpo es ligera/media/pesada, y para el offhand puede ser `escudo`. `categoriaArmadura` se conserva por compatibilidad. El catálogo incluye al menos un objeto para cada familia actual de arma (`espada`, `hacha`, `lanza`, `daga`, `arco`, `baston`, `maza`, `libro`, `puños`) y una armadura corporal de cada categoría; los nuevos objetos sin arte propio muestran el icono alternativo hasta añadir sus sprites.
 - Las seis estadísticas principales (Fuerza, Agilidad, Vitalidad, Inteligencia, Destreza y Suerte) alimentan `calcularEstadisticasDerivadasRpg`. Los coeficientes iniciales son valores de balance y están centralizados en ese módulo.
 - Las habilidades marcadas con `tipoDano: "magico"` utilizan ataque y defensa mágicos. Los costes de Energía/Maná se validan y descuentan en la misma transacción que guarda la acción de combate; al iniciar cada turno individual de un jugador recupera 2 de Energía y el 10 % del Maná máximo (redondeado hacia arriba), sin superar los máximos. En combates grupales solo regenera el participante cuyo turno empieza.
-- Los endpoints de profesiones validan de nuevo requisitos y estado del personaje en el servidor; el catálogo solo expone clases desbloqueadas o alcanzables. Los atributos ya no admiten asignación manual.
+- Los endpoints de profesiones validan de nuevo requisitos y estado del personaje en el servidor; el árbol muestra las clases descubiertas y sus requisitos pendientes. Los atributos ya no admiten asignación manual.
 
 ## Endpoints incluidos
 
@@ -33,12 +33,14 @@ Esta primera iteración integra el núcleo de progresión Base/Job, el catálogo
 
 Las profesiones y maestrías se gestionan desde una pestaña de la Escuela de Combate; `/base/profesiones` se mantiene como ruta directa. La base principal muestra atributos de solo lectura y Energía/Maná, y el HUD distingue las barras Base y Job.
 
-## Catálogo inicial
+## Catálogo original (ampliado)
 
 - Tier 0: Novato.
 - Tier 1: Espadachín, Acólito, Arquero y Mago.
 - Tier 2: Caballero/Duelista, Sacerdote/Monje, Cazador/Explorador y Elementalista/Brujo.
-- Híbrida de ejemplo: Cruzado (Caballero Job 40 + Sacerdote Job 40).
+- Híbrida de ejemplo: Cruzado (Caballero Job 20 + Sacerdote Job 20).
+
+El catálogo actual incluye 61 clases. El grafo completo, las 27 incorporaciones y sus reglas se documentan en [Nuevas clases](nuevas-clases.md).
 
 Para ampliar el juego, se añade una definición a `CLASES` indicando `tier`, `nivelJobMaximo`, `requisitos`, dominios de equipo y bonuses. Para que una habilidad sea heredable, se define `claseId` con la profesión que la aprende; las clases descendientes con esa rama la heredan automáticamente.
 
@@ -66,7 +68,7 @@ Las migraciones conservan `Personaje.nivel` y `Personaje.experiencia`. A persona
 
 ## Cambios de progresión por arquetipo
 
-- La API de profesiones solo entrega clases ya desbloqueadas o para las que el personaje cumple todos los requisitos de acceso en ese momento; excluye la profesión activa de las opciones de cambio.
+- La API de profesiones entrega el árbol de clases descubiertas, con el estado de desbloqueo y sus requisitos pendientes; la profesión activa se identifica como en uso.
 - El HUD global muestra niveles y barras de experiencia Base y Job por separado.
 - Los atributos visibles y usados en los cálculos de combate se derivan del arquetipo de la profesión activa, del nivel Base y de su nivel Job. La antigua ruta de asignación manual de atributos devuelve HTTP 410.
 - Profesiones y maestrías se gestionan desde una pestaña de la Escuela de Combate; la base principal conserva una vista de solo lectura de atributos y estadísticas.

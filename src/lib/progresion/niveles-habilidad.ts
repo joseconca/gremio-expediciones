@@ -73,7 +73,8 @@ export function ajustarHabilidadPorNivel(habilidad: DefinicionHabilidad, nivelSo
   if (habilidad.estadosSecundarios) {
     mejorada.estadosSecundarios = habilidad.estadosSecundarios.map((estado) => {
       if (estado.valor <= 0) return { ...estado };
-      const valor = estado.tipo === "debuff_precision"
+      if (estado.tipo === "barrera") return { ...estado };
+      const valor = estado.tipo === "debuff_precision" || estado.tipo === "bonus_precision"
         ? Math.round(estado.valor * factor)
         : Math.round(estado.valor * factor * 10000) / 10000;
       return { ...estado, valor };

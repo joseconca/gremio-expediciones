@@ -1,5 +1,6 @@
 import type { DefinicionHabilidad } from "./tiposJuego";
 import { puedeUsarHabilidadDeClase } from "./progresion/clases";
+import { HABILIDADES_NUEVAS } from "./habilidades-nuevas";
 
 type EntradaHabilidad = Omit<DefinicionHabilidad, "rareza" | "precio" | "costePuntosHabilidad"> &
   Partial<Pick<DefinicionHabilidad, "rareza" | "precio" | "costePuntosHabilidad">>;
@@ -10,6 +11,7 @@ function habilidad(datos: EntradaHabilidad): DefinicionHabilidad {
 
 /** Habilidades profesionales de Job. Las clases avanzadas heredan las de sus antecesoras. */
 export const HABILIDADES: DefinicionHabilidad[] = [
+  ...HABILIDADES_NUEVAS,
   // NOVATO
   habilidad({
     id: "golpe_apresurado", claseId: "novato", nivelJobRequerido: 1,

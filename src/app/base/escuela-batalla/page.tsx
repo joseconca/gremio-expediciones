@@ -55,6 +55,8 @@ function nombreRareza(rareza: Rareza) {
   return valores[rareza];
 }
 function etiquetaEfecto(habilidad: DefinicionHabilidad) {
+  if (habilidad.estadosSecundarios?.some((estado) => estado.tipo === "barrera")) return "Barrera";
+  if (habilidad.efecto === "estado") return "Apoyo";
   if (habilidad.curacionProgresivaPorcentaje) return "Curación progresiva";
   if (
     habilidad.efecto === "curacion" &&

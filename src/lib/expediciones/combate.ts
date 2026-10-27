@@ -1,4 +1,5 @@
 import type { DefinicionHabilidad, PresentacionVisualCombate } from "@/lib/tiposJuego";
+import { aplicarBarreraAccion } from "./estados-combate";
 
 export type AccionAnimadaCombate = {
   actor: "jugador" | "enemigo";
@@ -255,6 +256,7 @@ interface CombateParaHabilidad {
   enemigoEvasion?: number;
   bonusCuracion?: number;
   efectosJugador?: import("@/lib/tiposJuego").EstadoEfectoHabilidad[];
+  efectosEnemigo?: import("@/lib/tiposJuego").EstadoEfectoHabilidad[];
 }
 
 export interface ResultadoHabilidad {
@@ -315,9 +317,10 @@ export function resolverHabilidadJugador(
   const efectos: import("@/lib/tiposJuego").EstadoEfectoHabilidad[] = [];
   const bonusCuracion = Math.max(0, combate.bonusCuracion ?? 0);
   const ataqueMagico = combate.jugadorAtaqueMagico ?? combate.jugadorAtaque;
-  const ataqueEfectivo = habilidad.tipoDano === "magico"
+  const escalado = habilidad.escaladoDano ?? habilidad.tipoDano;
+  const ataqueEfectivo = escalado === "magico"
     ? ataqueMagico
-    : habilidad.tipoDano === "hibrido"
+    : escalado === "hibrido"
       ? Math.floor((combate.jugadorAtaque + ataqueMagico) / 2)
       : combate.jugadorAtaque;
 
@@ -419,20 +422,24 @@ export function resolverHabilidadJugador(
       const danoNormal = calcularDanoMitigado(danoBase, defensa);
       const esCritico = dado === 20 || Math.random() < probabilidadCritico;
       const multiplicadorCritico = (combate.jugadorDanoCritico ?? 1.5) + (habilidad.multiplicadorCritico ?? 0);
-      const dano = esCritico ? Math.max(1, Math.floor(danoNormal * multiplicadorCritico)) : danoNormal;
+      let dano = esCritico ? Math.max(1, Math.floor(danoNormal * multiplicadorCritico)) : danoNormal;
+      const impacto = { dano, critico: esCritico, texto: "" };
+      aplicarBarreraAccion(impacto, combate.efectosEnemigo ?? []);
+      const bloqueado = impacto.dano === 0 && dano > 0;
+      dano = impacto.dano;
 
       if ((habilidad.roboVida ?? 0) > 0) {
         const robo = Math.max(0, Math.floor(dano * Math.min(1, habilidad.roboVida!) * (1 + bonusCuracion)));
         jugadorHp += Math.min(robo, Math.max(0, combate.jugadorHpMaximo - jugadorHp));
       }
-      agregarEstadosExtra();
+      if (!bloqueado) agregarEstadosExtra();
       return {
         accion: presentarAccion(crearAccion({
           actor: "jugador", tipo: "habilidad",
           animacion: esCritico && habilidad.animacion === "ofensiva" ? "ofensiva_potenciada" : habilidad.animacion ?? "ofensiva",
-          dano, critico: esCritico,
+          dano, critico: impacto.critico,
           curacion: jugadorHp > combate.jugadorHp ? jugadorHp - combate.jugadorHp : undefined,
-          texto: esCritico
+          texto: bloqueado ? impacto.texto : esCritico
             ? `💥 ¡${habilidad.nombre} crítico! Infliges ${dano} de daño a ${combate.enemigoNombre}.`
             : `⚔️ Usas ${habilidad.nombre} e infliges ${dano} de daño a ${combate.enemigoNombre}.`,
         })),
@@ -515,12 +522,13 @@ export function resolverHabilidadJugador(
       };
     }
 
+    case "estado":
     case "bonus_ataque_magico": {
       agregarEstadosExtra();
       return {
         accion: presentarAccion(crearAccion({
           actor: "jugador", tipo: "habilidad", animacion: habilidad.animacion ?? "defensiva",
-          texto: `✨ Usas ${habilidad.nombre}. Tu poder mágico aumenta temporalmente.`,
+          texto: `✨ Usas ${habilidad.nombre}. ${habilidad.descripcion}`,
         })),
         jugadorHp, jugadorDefensa, enemigoDefensa, efectos,
       };

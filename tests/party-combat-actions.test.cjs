@@ -30,6 +30,7 @@ function loadService(prisma, testOptions = {}) {
       resolverAtaqueJugador: () => ({ actor: "jugador", tipo: "ataque", animacion: "ofensiva", dano: 12, critico: false, texto: "El aventurero inflige 12 de daño." }),
       resolverAtaqueEnemigo: () => ({ actor: "enemigo", tipo: "ataque", animacion: "ofensiva", dano: 10, critico: false, texto: "El enemigo inflige 10 de daño." }),
       resolverHabilidadJugador: (habilidad, combate) => {
+        if (testOptions.resolverHabilidadesReales) return require("../src/lib/expediciones/combate.ts").resolverHabilidadJugador(habilidad, combate);
         const curacion = habilidad.efecto === "curacion"
           ? Math.min(20, Math.max(0, combate.jugadorHpMaximo - combate.jugadorHp))
           : 0;
@@ -51,6 +52,8 @@ function loadService(prisma, testOptions = {}) {
       },
     },
     "@/lib/expediciones/estados-combate": {
+      aplicarBarreraAccion: require("../src/lib/expediciones/estados-combate.ts").aplicarBarreraAccion,
+      retirarEfectosHabilidad: require("../src/lib/expediciones/estados-combate.ts").retirarEfectosHabilidad,
       calcularAtaqueModificado: (value) => value,
       calcularEvasionModificada: (value) => value,
       calcularPrecisionModificada: (value) => value,
@@ -447,6 +450,39 @@ test("solo el aventurero que tiene el turno puede atacar", async () => {
     (error) => error.status === 409 && error.code === "NO_ES_TU_TURNO",
   );
   assert.equal(calls.combatWrites.length, 0);
+});
+
+test("la barrera de un aliado bloquea y se consume de forma persistente durante el turno enemigo", async () => {
+  const combat = mkCombat({ faseTurno: "enemigo", turnoActualUsuarioId: null });
+  combat.participantes[0].jugadorHp = 40;
+  combat.participantes[0].efectos = [{ habilidadId: "abjurador_tactica", tipo: "barrera", valor: 1, duracionTurnos: 2, turnosRestantes: 2, objetivo: "jugador" }];
+  const { prisma, calls } = mockPrisma(combat);
+  const service = loadService(prisma);
+  const result = await service.ejecutarTurnoEnemigoParty("u1", "expedition-1");
+  assert.equal(result.accion.dano, 0);
+  assert.equal(combat.participantes[0].jugadorHp, 40);
+  assert.ok(calls.participantWrites.some((w) => w.where.id === "cp-u1" && Array.isArray(w.data.efectos) && w.data.efectos.length === 0));
+  assert.equal(combat.participantes[0].efectos.length, 0);
+});
+
+test("Heraldo mejora al grupo y reaplicar sus mejoras no acumula defensa", async () => {
+  const combat = mkCombat();
+  const habilidad = require("../src/lib/habilidades.ts").obtenerHabilidadPorId("heraldo_guerra_tactica");
+  const previo = { habilidadId: habilidad.id, tipo: "bonus_defensa", valor: 2, duracionTurnos: 2, turnosRestantes: 2, objetivo: "jugador" };
+  combat.participantes[1].jugadorDefensa = 7;
+  combat.participantes[1].efectos = [previo];
+  const { prisma, options } = mockPrisma(combat, {
+    resolverHabilidadesReales: true,
+    habilidades: [{ habilidadId: habilidad.id, nivel: 1, slot: "activa_1" }],
+    habilidadesPorId: { [habilidad.id]: habilidad },
+  });
+  const result = await loadService(prisma, options).ejecutarAccionCombateParty("u1", "expedition-1", "usar_habilidad", { habilidadId: habilidad.id });
+  assert.deepEqual(result.accion.objetivosUsuarioIds, ["u1", "u2"]);
+  for (const miembro of combat.participantes) {
+    assert.equal(miembro.jugadorDefensa, 6);
+    assert.equal(miembro.efectos.filter((e) => e.tipo === "bonus_defensa").length, 1);
+    assert.ok(miembro.efectos.some((e) => e.tipo === "bonus_ataque"));
+  }
 });
 
 test("un ataque básico reduce al enemigo y avanza al siguiente miembro", async () => {

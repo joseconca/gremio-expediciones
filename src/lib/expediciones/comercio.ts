@@ -1,9 +1,11 @@
 import type { ReporteComercio } from "@/lib/tiposJuego";
+import { CLASES } from "@/lib/progresion/clases";
 
 export type ResultadoComercio = ReporteComercio;
 interface PersonajeCombate {
   nombre: string;
   clase: string;
+  profesionActivaId?: string;
   hpActual: number;
   hpMaximo: number;
   ataque: number;
@@ -71,6 +73,7 @@ export function calcularOroBaseComercio(distanciaKm: number) {
 export interface ParametrosRecompensaComercio {
   distanciaKm: number; nivelPersonaje: number; nivelMercado: number; afinidad: number;
   capacidadCarruaje: number; clase: string; oroExtraEventos?: number;
+  profesionActivaId?: string;
 }
 
 /** Calcula oro comercial con bonificaciones acotadas para evitar inflación. */
@@ -85,7 +88,10 @@ export function calcularRecompensaComercio(p: ParametrosRecompensaComercio): num
   const porAfinidad = 1 + 0.25 * Math.pow(afinidad / 100, 2);
   const porCapacidad = 1 + Math.min(20, Math.max(0, capacidad - 10)) * 0.025;
   let oro = Math.floor((calcularOroBaseComercio(p.distanciaKm) + extra) * porNivel * porMercado * porAfinidad * porCapacidad);
-  if (p.clase === "Comerciante" || p.clase === "Mercader") oro = Math.floor(oro * 1.1);
+  const bonus = p.profesionActivaId
+    ? CLASES[p.profesionActivaId]?.bonusOroComercio ?? 0
+    : (p.clase === "Comerciante" || p.clase === "Mercader") ? 0.1 : 0;
+  oro = Math.floor(oro * (1 + bonus));
   return Math.max(0, oro);
 }
 
@@ -153,6 +159,7 @@ export function resolverComercio(
     distanciaKm, nivelPersonaje, nivelMercado: nivelMercadoSeguro,
     afinidad: afinidadSegura, capacidadCarruaje: personaje.capacidadCarruaje,
     clase: personaje.clase, oroExtraEventos: oroDeEventos,
+    profesionActivaId: personaje.profesionActivaId,
   });
 
   logCombate.push(

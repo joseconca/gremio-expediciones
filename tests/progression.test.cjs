@@ -93,10 +93,10 @@ test("el catálogo de clases tiene requisitos válidos y no contiene ciclos", ()
 });
 test("el grafo contiene las clases actuales y respeta los máximos por tier", () => {
   const clases = Object.values(CLASES);
-  assert.equal(clases.length, 34);
+  assert.equal(clases.length, 61);
   assert.deepEqual(
-    [0, 1, 1.5, 2, 2.5, 3].map((tier) => clases.filter((clase) => clase.tier === tier).length),
-    [1, 4, 1, 8, 4, 16],
+    [0, 1, 1.5, 2, 2.5, 3, 3.5].map((tier) => clases.filter((clase) => clase.tier === tier).length),
+    [1, 4, 1, 14, 10, 23, 8],
   );
   for (const clase of clases) {
     const maximoEsperado = clase.tier === 0 ? 20
@@ -129,14 +129,14 @@ test("las clases heredan habilidades de todos sus padres, incluidas las híbrida
 });
 test("la clase híbrida exige cumplir todos sus requisitos", () => {
   const incompleto = evaluarDesbloqueoClase("cruzado", [
-    { claseId: "caballero", nivelJob: 40, desbloqueada: true },
-    { claseId: "sacerdote", nivelJob: 39, desbloqueada: true },
+    { claseId: "caballero", nivelJob: 20, desbloqueada: true },
+    { claseId: "sacerdote", nivelJob: 19, desbloqueada: true },
   ]);
   assert.equal(incompleto.puedeDesbloquear, false);
   assert.deepEqual(incompleto.requisitosPendientes.map((r) => r.claseId), ["sacerdote"]);
   assert.equal(evaluarDesbloqueoClase("cruzado", [
-    { claseId: "caballero", nivelJob: 40, desbloqueada: true },
-    { claseId: "sacerdote", nivelJob: 40, desbloqueada: true },
+    { claseId: "caballero", nivelJob: 20, desbloqueada: true },
+    { claseId: "sacerdote", nivelJob: 20, desbloqueada: true },
   ]).puedeDesbloquear, true);
 });
 test("las categorías dominadas siempre tienen una bonificación positiva", () => {
@@ -281,7 +281,7 @@ test("Escuela: muestra siempre las habilidades de la profesión y hereda las ram
 
   const habilidades = require("../src/lib/habilidades.ts");
   const catalogo = habilidades.HABILIDADES;
-  assert.equal(catalogo.length, 166);
+  assert.equal(catalogo.length, 301);
   assert.ok(catalogo.every((habilidad) => Boolean(habilidad.claseId)), "Todas las habilidades pertenecen a una profesión");
   for (const clase of Object.values(CLASES)) {
     // Super Novato es generalista: su catálogo se compone de habilidades heredadas

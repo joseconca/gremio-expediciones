@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useGameStore } from "@/store/useGameStore";
-import { CLASES } from "@/lib/progresion/clases";
 
 interface ProgresoClase {
   claseId: string;
@@ -55,7 +54,6 @@ interface DatosProfesiones {
   clases: ClaseVista[];
 }
 
-const ANCHO_GRAFO = 1184;
 const ANCHO_NODO = 136;
 const ALTO_NODO = 90;
 const PASO_COLUMNA = 148;
@@ -162,63 +160,23 @@ export default function PanelProfesiones({
   };
 
   const nombreClase = (claseId: string) =>
-    CLASES[claseId]?.nombre ?? datos?.clases.find((clase) => clase.id === claseId)?.nombre ?? claseId;
+    datos?.clases.find((clase) => clase.id === claseId)?.nombre ?? claseId;
 
   const grafo = useMemo(() => {
     const clases = datos?.clases ?? [];
-    const porTier = (tier: number) => clases.filter((clase) => clase.tier === tier);
-    const tierInicial = porTier(0);
-    const tierUno = porTier(1);
-    const tierDos = porTier(2);
-    const tierDosMedio = porTier(2.5);
-    const tierTres = porTier(3);
+    const tiers = [...new Set(clases.map((clase) => clase.tier))].sort((a, b) => a - b);
+    const columnas = Math.max(1, ...tiers.map((tier) => clases.filter((clase) => clase.tier === tier).length));
+    const ancho = Math.max(740, columnas * PASO_COLUMNA);
     const nodos: Array<{ clase: ClaseVista; x: number; y: number }> = [];
-
-    tierInicial.forEach((clase) => {
-      nodos.push({ clase, x: (ANCHO_GRAFO - ANCHO_NODO) / 2, y: 22 });
-    });
-    tierUno.forEach((clase, indice) => {
-      nodos.push({ clase, x: indice * PASO_COLUMNA * 2 + PASO_COLUMNA / 2, y: 138 });
-    });
-
-    const indiceTierUno = new Map(tierUno.map((clase, indice) => [clase.id, indice]));
-    const hijosTierUno = new Map<string, number>();
-    tierDos.forEach((clase, indice) => {
-      const padreId = clase.requisitos[0]?.claseId;
-      const indicePadre = padreId ? (indiceTierUno.get(padreId) ?? Math.floor(indice / 2)) : Math.floor(indice / 2);
-      const indiceHermano = padreId ? (hijosTierUno.get(padreId) ?? 0) : indice % 2;
-      if (padreId) hijosTierUno.set(padreId, indiceHermano + 1);
-      nodos.push({
+    const filas = tiers.map((tier, indice) => ({ tier, y: indice * 142, nombre: `Tier ${tier}` }));
+    for (const fila of filas) {
+      const nivel = clases.filter((clase) => clase.tier === fila.tier);
+      nivel.forEach((clase, indice) => nodos.push({
         clase,
-        x: indicePadre * PASO_COLUMNA * 2 + indiceHermano * PASO_COLUMNA,
-        y: 254,
-      });
-    });
-
-    const posicionesHibridas: Record<string, number> = {
-      cruzado: PASO_COLUMNA,
-      pirata: PASO_COLUMNA * 2.5,
-      espadachin_runico: PASO_COLUMNA * 4,
-      druida: PASO_COLUMNA * 5.5,
-    };
-    tierDosMedio.forEach((clase, indice) => {
-      const x = posicionesHibridas[clase.id] ?? (indice + 1) * PASO_COLUMNA * 1.4;
-      nodos.push({ clase, x: Math.max(0, Math.min(ANCHO_GRAFO - ANCHO_NODO, x)), y: 390 });
-    });
-
-    const porIdTierDos = new Map(nodos.filter((nodo) => nodo.clase.tier === 2).map((nodo) => [nodo.clase.id, nodo]));
-    const hijosTierDos = new Map<string, number>();
-    tierTres.forEach((clase) => {
-      const padreId = clase.requisitos[0]?.claseId;
-      const padre = padreId ? porIdTierDos.get(padreId) : undefined;
-      const indiceHermano = padreId ? (hijosTierDos.get(padreId) ?? 0) : 0;
-      if (padreId) hijosTierDos.set(padreId, indiceHermano + 1);
-      nodos.push({
-        clase,
-        x: padre ? padre.x : Math.min(ANCHO_GRAFO - ANCHO_NODO, nodos.length % 8 * PASO_COLUMNA),
-        y: 540 + indiceHermano * 110,
-      });
-    });
+        x: (ancho - nivel.length * PASO_COLUMNA) / 2 + indice * PASO_COLUMNA,
+        y: fila.y + 28,
+      }));
+    }
 
     const nodosPorId = new Map(nodos.map((nodo) => [nodo.clase.id, nodo]));
     const aristas = nodos.flatMap((destino) => destino.clase.requisitos.flatMap((requisito) => {
@@ -237,7 +195,7 @@ export default function PanelProfesiones({
       }];
     }));
     const alto = Math.max(752, ...nodos.map((nodo) => nodo.y + ALTO_NODO + 12));
-    return { nodos, aristas, ancho: ANCHO_GRAFO, alto };
+    return { nodos, aristas, ancho, alto, filas };
   }, [datos]);
 
   return (
@@ -307,11 +265,11 @@ export default function PanelProfesiones({
             </div>
             <div className="overflow-x-auto overscroll-x-contain p-2 sm:p-3">
               <div className="relative mx-auto" style={{ width: grafo.ancho, height: grafo.alto }} aria-label="Árbol de profesiones y requisitos">
-                <div className="absolute left-0 top-0 z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]">Tier 0 · Inicio</div>
-                <div className="absolute left-0 top-[116px] z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]">Tier 1 · Especialización</div>
-                <div className="absolute left-0 top-[232px] z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]">Tier 2 · Maestrías</div>
-                <div className="absolute left-0 top-[368px] z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]">Tier 2.5 · Clases híbridas</div>
-                <div className="absolute left-0 top-[516px] z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]">Tier 3 · Maestría avanzada</div>
+                {grafo.filas.map((fila) => (
+                  <div key={fila.tier} className="absolute left-0 z-10 w-full text-center text-[9px] font-black uppercase tracking-[0.2em] text-[#8b7354]" style={{ top: fila.y }}>
+                    {fila.nombre}
+                  </div>
+                ))}
                 <svg className="pointer-events-none absolute inset-0 z-0" width={grafo.ancho} height={grafo.alto} viewBox={`0 0 ${grafo.ancho} ${grafo.alto}`} aria-hidden="true">
                   <defs><linearGradient id="linea-profesion" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#8c6c42" /><stop offset="100%" stopColor="#58432c" /></linearGradient></defs>
                   {grafo.aristas.map((arista) => (

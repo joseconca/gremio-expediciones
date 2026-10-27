@@ -3,7 +3,8 @@ import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import {
   evaluarDesbloqueoClase,
-  obtenerClasesVisibles,
+  CLASES,
+  esClaseDescubierta,
   obtenerDefinicionClase,
 } from "@/lib/progresion/clases";
 
@@ -46,13 +47,21 @@ export async function GET() {
     const progresoActual = personaje.progresosClase.find(
       (progreso) => progreso.claseId === personaje.profesionActivaId
     );
-    const clases = obtenerClasesVisibles(personaje.profesionActivaId, personaje.progresosClase).map((clase) => {
+    const intercambios = await prisma.afinidadComercial.aggregate({
+      where: { jugador1Id: usuarioSesion.id },
+      _sum: { intercambios: true },
+    });
+    const contexto = { intercambiosComerciales: intercambios._sum.intercambios ?? 0 };
+    const clases = Object.values(CLASES).filter((clase) =>
+      esClaseDescubierta(clase.id, personaje.progresosClase, contexto)
+    ).map((clase) => {
       const progreso = personaje.progresosClase.find(
         (actual) => actual.claseId === clase.id
       );
       const desbloqueo = evaluarDesbloqueoClase(
         clase.id,
-        personaje.progresosClase
+        personaje.progresosClase,
+        contexto,
       );
 
       return {

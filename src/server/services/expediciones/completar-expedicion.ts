@@ -159,7 +159,7 @@ export async function completarExpedicion() {
       );
       const botinTirado =
         exito && expedicion.tipo !== "comercio"
-          ? tirarBotinEnemigo(enemigoDerrotado)
+          ? tirarBotinEnemigo(enemigoDerrotado, Math.random, usuario.personaje.profesionActivaId)
           : null;
 
       // CAPACIDAD DEL ALMACÉN
@@ -339,7 +339,7 @@ export async function completarExpedicion() {
 
         let afinidad = 0;
 
-        if (expedicion.tipo === "comercio" && expedicion.objetivoId) {
+        if (exito && expedicion.tipo === "comercio" && expedicion.objetivoId) {
           await tx.usuario.update({
             where: { id: expedicion.objetivoId },
             data: {
@@ -647,6 +647,7 @@ export async function completarExpedicion() {
     const personajeComercio = {
       nombre: usuario.personaje.nombre,
       clase: usuario.personaje.clase,
+      profesionActivaId: usuario.personaje.profesionActivaId,
       hpActual: usuario.personaje.hpActual,
       hpMaximo: estadisticasPersonaje.total.hpMaximo,
       ataque: estadisticasPersonaje.total.ataque,

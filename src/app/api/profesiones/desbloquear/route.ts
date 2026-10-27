@@ -56,7 +56,13 @@ export async function POST(request: Request) {
 
       if (!personaje) throw new Error("PERSONAJE_NO_ENCONTRADO");
 
-      const resultado = evaluarDesbloqueoClase(claseId, personaje.progresosClase);
+      const intercambios = definicion.descubrimiento ? await tx.afinidadComercial.aggregate({
+        where: { jugador1Id: usuarioSesion.id },
+        _sum: { intercambios: true },
+      }) : null;
+      const resultado = evaluarDesbloqueoClase(claseId, personaje.progresosClase, {
+        intercambiosComerciales: intercambios?._sum.intercambios ?? 0,
+      });
       if (resultado.yaDesbloqueada) throw new Error("CLASE_YA_DESBLOQUEADA");
       if (!resultado.puedeDesbloquear) throw new Error("REQUISITOS_CLASE_PENDIENTES");
 

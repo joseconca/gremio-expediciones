@@ -1,4 +1,5 @@
 import type { TipoArmadura, TipoEquipoDominado } from "../tiposJuego";
+import { CLASES_NUEVAS } from "./clases-nuevas";
 
 export interface RequisitoClase {
   claseId: string;
@@ -44,6 +45,10 @@ export interface DefinicionClase {
   bonoDefensaArmaduraDominada: number;
   /** Aumenta proporcionalmente la velocidad de viaje de expediciones. */
   bonusVelocidadExpedicion?: number;
+  /** Ventajas económicas de clase, heredadas sin acumular generaciones. */
+  bonusBotin?: number;
+  bonusOroComercio?: number;
+  descubrimiento?: { intercambiosMinimos: number; nivelJobTroncal: number };
 }
 
 const NOVATO_JOB_10: readonly RequisitoClase[] = [
@@ -447,8 +452,8 @@ const DEFINICIONES = {
     tier: 2.5,
     nivelJobMaximo: 70,
     requisitos: [
-      { claseId: "caballero", nivelJob: 40 },
-      { claseId: "sacerdote", nivelJob: 40 },
+      { claseId: "caballero", nivelJob: 20 },
+      { claseId: "sacerdote", nivelJob: 20 },
     ],
     armasDominadas: ["espada", "maza", "lanza", "escudo"],
     armadurasDominadas: ["media", "pesada"],
@@ -465,8 +470,8 @@ const DEFINICIONES = {
     tier: 2.5,
     nivelJobMaximo: 70,
     requisitos: [
-      { claseId: "duelista", nivelJob: 40 },
-      { claseId: "cazador", nivelJob: 40 },
+      { claseId: "duelista", nivelJob: 20 },
+      { claseId: "cazador", nivelJob: 20 },
     ],
     armasDominadas: ["espada", "daga", "arco"],
     armadurasDominadas: ["ligera", "media"],
@@ -484,8 +489,8 @@ const DEFINICIONES = {
     tier: 2.5,
     nivelJobMaximo: 70,
     requisitos: [
-      { claseId: "explorador", nivelJob: 40 },
-      { claseId: "elementalista", nivelJob: 40 },
+      { claseId: "explorador", nivelJob: 20 },
+      { claseId: "elementalista", nivelJob: 20 },
     ],
     armasDominadas: ["baston", "arco", "daga"],
     armadurasDominadas: ["ligera", "media"],
@@ -502,8 +507,8 @@ const DEFINICIONES = {
     tier: 2.5,
     nivelJobMaximo: 70,
     requisitos: [
-      { claseId: "duelista", nivelJob: 40 },
-      { claseId: "brujo", nivelJob: 40 },
+      { claseId: "duelista", nivelJob: 20 },
+      { claseId: "brujo", nivelJob: 20 },
     ],
     armasDominadas: ["espada", "daga", "baston"],
     armadurasDominadas: ["ligera", "media"],
@@ -521,7 +526,7 @@ const DEFINICIONES = {
     recursoCombate: "ambos",
     tier: 3,
     nivelJobMaximo: 80,
-    requisitos: [{ claseId: "caballero", nivelJob: 40 }],
+    requisitos: [{ claseId: "caballero", nivelJob: 30 }],
     armasDominadas: ["espada", "maza", "lanza", "escudo"],
     armadurasDominadas: ["media", "pesada"],
     bonoAtaqueArmaDominada: 0.2,
@@ -536,7 +541,7 @@ const DEFINICIONES = {
     recursoCombate: "energia",
     tier: 3,
     nivelJobMaximo: 80,
-    requisitos: [{ claseId: "caballero", nivelJob: 40 }],
+    requisitos: [{ claseId: "caballero", nivelJob: 30 }],
     armasDominadas: ["espada", "lanza", "escudo"],
     armadurasDominadas: ["pesada"],
     bonoAtaqueArmaDominada: 0.15,
@@ -550,7 +555,7 @@ const DEFINICIONES = {
     recursoCombate: "energia",
     tier: 3,
     nivelJobMaximo: 80,
-    requisitos: [{ claseId: "duelista", nivelJob: 40 }],
+    requisitos: [{ claseId: "duelista", nivelJob: 30 }],
     armasDominadas: ["daga", "espada"],
     armadurasDominadas: ["ligera"],
     bonoAtaqueArmaDominada: 0.25,
@@ -564,7 +569,7 @@ const DEFINICIONES = {
     recursoCombate: "energia",
     tier: 3,
     nivelJobMaximo: 80,
-    requisitos: [{ claseId: "duelista", nivelJob: 40 }],
+    requisitos: [{ claseId: "duelista", nivelJob: 30 }],
     armasDominadas: ["espada"],
     armadurasDominadas: ["media"],
     bonoAtaqueArmaDominada: 0.25,
@@ -579,7 +584,7 @@ const DEFINICIONES = {
     recursoCombate: "mana",
     tier: 3,
     nivelJobMaximo: 80,
-    requisitos: [{ claseId: "sacerdote", nivelJob: 40 }],
+    requisitos: [{ claseId: "sacerdote", nivelJob: 30 }],
     armasDominadas: ["baston", "libro"],
     armadurasDominadas: ["ligera", "media"],
     bonoAtaqueArmaDominada: 0.15,
@@ -593,7 +598,7 @@ const DEFINICIONES = {
     recursoCombate: "mana",
     tier: 3,
     nivelJobMaximo: 80,
-    requisitos: [{ claseId: "sacerdote", nivelJob: 40 }],
+    requisitos: [{ claseId: "sacerdote", nivelJob: 30 }],
     armasDominadas: ["maza", "baston"],
     armadurasDominadas: ["media", "pesada"],
     bonoAtaqueArmaDominada: 0.12,
@@ -608,7 +613,7 @@ const DEFINICIONES = {
     recursoCombate: "energia",
     tier: 3,
     nivelJobMaximo: 80,
-    requisitos: [{ claseId: "monje", nivelJob: 40 }],
+    requisitos: [{ claseId: "monje", nivelJob: 30 }],
     armasDominadas: ["puños"],
     armadurasDominadas: ["ligera", "media"],
     bonoAtaqueArmaDominada: 0.22,
@@ -623,7 +628,7 @@ const DEFINICIONES = {
     recursoCombate: "energia",
     tier: 3,
     nivelJobMaximo: 80,
-    requisitos: [{ claseId: "monje", nivelJob: 40 }],
+    requisitos: [{ claseId: "monje", nivelJob: 30 }],
     armasDominadas: ["puños", "maza"],
     armadurasDominadas: ["media", "pesada"],
     bonoAtaqueArmaDominada: 0.22,
@@ -637,7 +642,7 @@ const DEFINICIONES = {
     recursoCombate: "energia",
     tier: 3,
     nivelJobMaximo: 80,
-    requisitos: [{ claseId: "cazador", nivelJob: 40 }],
+    requisitos: [{ claseId: "cazador", nivelJob: 30 }],
     armasDominadas: ["arco"],
     armadurasDominadas: ["ligera"],
     bonoAtaqueArmaDominada: 0.25,
@@ -651,7 +656,7 @@ const DEFINICIONES = {
     recursoCombate: "energia",
     tier: 3,
     nivelJobMaximo: 80,
-    requisitos: [{ claseId: "cazador", nivelJob: 40 }],
+    requisitos: [{ claseId: "cazador", nivelJob: 30 }],
     armasDominadas: ["arco", "daga"],
     armadurasDominadas: ["ligera", "media"],
     bonoAtaqueArmaDominada: 0.2,
@@ -666,7 +671,7 @@ const DEFINICIONES = {
     recursoCombate: "ambos",
     tier: 3,
     nivelJobMaximo: 80,
-    requisitos: [{ claseId: "explorador", nivelJob: 40 }],
+    requisitos: [{ claseId: "explorador", nivelJob: 30 }],
     armasDominadas: ["arco", "daga", "baston"],
     armadurasDominadas: ["ligera", "media"],
     bonoAtaqueArmaDominada: 0.18,
@@ -682,7 +687,7 @@ const DEFINICIONES = {
     recursoCombate: "energia",
     tier: 3,
     nivelJobMaximo: 80,
-    requisitos: [{ claseId: "explorador", nivelJob: 40 }],
+    requisitos: [{ claseId: "explorador", nivelJob: 30 }],
     armasDominadas: ["arco", "daga"],
     armadurasDominadas: ["ligera"],
     bonoAtaqueArmaDominada: 0.22,
@@ -697,7 +702,7 @@ const DEFINICIONES = {
     recursoCombate: "mana",
     tier: 3,
     nivelJobMaximo: 80,
-    requisitos: [{ claseId: "elementalista", nivelJob: 40 }],
+    requisitos: [{ claseId: "elementalista", nivelJob: 30 }],
     armasDominadas: ["baston", "libro"],
     armadurasDominadas: ["ligera"],
     bonoAtaqueArmaDominada: 0.25,
@@ -712,7 +717,7 @@ const DEFINICIONES = {
     recursoCombate: "mana",
     tier: 3,
     nivelJobMaximo: 80,
-    requisitos: [{ claseId: "elementalista", nivelJob: 40 }],
+    requisitos: [{ claseId: "elementalista", nivelJob: 30 }],
     armasDominadas: ["baston", "libro"],
     armadurasDominadas: ["ligera"],
     bonoAtaqueArmaDominada: 0.2,
@@ -726,7 +731,7 @@ const DEFINICIONES = {
     recursoCombate: "mana",
     tier: 3,
     nivelJobMaximo: 80,
-    requisitos: [{ claseId: "brujo", nivelJob: 40 }],
+    requisitos: [{ claseId: "brujo", nivelJob: 30 }],
     armasDominadas: ["baston", "libro", "daga"],
     armadurasDominadas: [],
     bonoAtaqueArmaDominada: 0.25,
@@ -741,15 +746,52 @@ const DEFINICIONES = {
     recursoCombate: "mana",
     tier: 3,
     nivelJobMaximo: 80,
-    requisitos: [{ claseId: "brujo", nivelJob: 40 }],
+    requisitos: [{ claseId: "brujo", nivelJob: 30 }],
     armasDominadas: ["baston", "libro", "daga"],
     armadurasDominadas: [],
     bonoAtaqueArmaDominada: 0.25,
     bonoDefensaArmaduraDominada: 0,
   },
 } as const satisfies Record<string, DefinicionClase>;
-export const CLASES: Readonly<Record<string, DefinicionClase>> = DEFINICIONES;
-export type IdClase = keyof typeof DEFINICIONES;
+const catalogo: Record<string, DefinicionClase> = { ...DEFINICIONES, ...CLASES_NUEVAS };
+const resueltas: Record<string, DefinicionClase> = {};
+function resolverDominios(id: string, ruta = new Set<string>()): DefinicionClase {
+  if (ruta.has(id)) throw new Error(`Ciclo detectado en el grafo de clases: ${id}`);
+  if (resueltas[id]) return resueltas[id];
+  const clase = catalogo[id];
+  if (!clase) throw new Error(`La clase requisito "${id}" no existe.`);
+  ruta.add(id);
+  const padres = clase.requisitos.map((r) => resolverDominios(r.claseId, ruta));
+  ruta.delete(id);
+  return resueltas[id] = {
+    ...clase,
+    armasDominadas: [...new Set([...clase.armasDominadas, ...padres.flatMap((p) => p.armasDominadas)])],
+    bonusBotin: Math.max(clase.bonusBotin ?? 0, ...padres.map((p) => p.bonusBotin ?? 0)),
+    bonusOroComercio: Math.max(clase.bonusOroComercio ?? 0, ...padres.map((p) => p.bonusOroComercio ?? 0)),
+  };
+}
+export const CLASES: Readonly<Record<string, DefinicionClase>> = Object.fromEntries(
+  Object.keys(catalogo).map((id) => [id, resolverDominios(id)])
+);
+export type IdClase = keyof typeof CLASES;
+
+export interface ContextoDesbloqueoClase {
+  intercambiosComerciales?: number;
+}
+
+function cumpleDescubrimiento(clase: DefinicionClase, progresos: readonly ProgresoClaseRequisito[], contexto: ContextoDesbloqueoClase): boolean {
+  if (!clase.descubrimiento) return true;
+  return (contexto.intercambiosComerciales ?? 0) >= clase.descubrimiento.intercambiosMinimos &&
+    progresos.some((p) => ["espadachin", "acolito", "arquero", "mago"].includes(p.claseId) &&
+      p.desbloqueada && p.nivelJob >= clase.descubrimiento!.nivelJobTroncal);
+}
+
+/** Oculta también las ramas descendientes hasta descubrir su profesión secreta. */
+export function esClaseDescubierta(claseId: string, progresos: readonly ProgresoClaseRequisito[], contexto: ContextoDesbloqueoClase = {}): boolean {
+  if (!CLASES[claseId]) return false;
+  return [claseId, ...obtenerAncestrosClase(claseId)].every((id) =>
+    progresos.some((p) => p.claseId === id && p.desbloqueada) || cumpleDescubrimiento(CLASES[id], progresos, contexto));
+}
 
 export interface ProgresoClaseRequisito {
   claseId: string;
@@ -826,7 +868,8 @@ export function puedeUsarHabilidadDeClase(
 
 export function evaluarDesbloqueoClase(
   claseObjetivoId: string,
-  progresos: readonly ProgresoClaseRequisito[]
+  progresos: readonly ProgresoClaseRequisito[],
+  contexto: ContextoDesbloqueoClase = {}
 ): ResultadoDesbloqueoClase {
   const clase = obtenerDefinicionClase(claseObjetivoId);
   if (!clase)
@@ -872,7 +915,7 @@ export function evaluarDesbloqueoClase(
   return {
     claseExiste: true,
     yaDesbloqueada: false,
-    puedeDesbloquear: requisitosPendientes.length === 0,
+    puedeDesbloquear: requisitosPendientes.length === 0 && cumpleDescubrimiento(clase, progresos, contexto),
     requisitosPendientes,
   };
 }
@@ -880,11 +923,12 @@ export function evaluarDesbloqueoClase(
 /** Incluye la clase activa, las ya desbloqueadas y las que pueden desbloquearse. */
 export function obtenerClasesVisibles(
   claseActivaId: string,
-  progresos: readonly ProgresoClaseRequisito[]
+  progresos: readonly ProgresoClaseRequisito[],
+  contexto: ContextoDesbloqueoClase = {}
 ): DefinicionClase[] {
   return Object.values(CLASES).filter((clase) => {
     if (clase.id === claseActivaId) return true;
-    const estado = evaluarDesbloqueoClase(clase.id, progresos);
+    const estado = evaluarDesbloqueoClase(clase.id, progresos, contexto);
     return estado.yaDesbloqueada || estado.puedeDesbloquear;
   });
 }

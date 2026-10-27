@@ -1,3 +1,4 @@
+import { aplicarBarreraAccion } from "@/lib/expediciones/estados-combate";
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
@@ -487,6 +488,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
               jugadorDefensa,
               enemigoNombre: enemigoActualizado.nombre,
             });
+            aplicarBarreraAccion(accionDelEnemigo, efectos);
             const hpAntes = jugadorHp;
             jugadorHp = Math.max(0, jugadorHp - accionDelEnemigo.dano);
             impactos.push({
@@ -788,7 +790,7 @@ export async function ejecutarAccionPveConContexto(contexto: ContextoAccionComba
         const botinesTirados = liquidacion.enemigosDerrotados
           .map(({ snapshot, definicion }) => ({
             snapshot,
-            botin: tirarBotinEnemigo(definicion),
+            botin: tirarBotinEnemigo(definicion, Math.random, personaje.profesionActivaId),
           }))
           .filter((entrada): entrada is {
             snapshot: EnemigoEnCombate;

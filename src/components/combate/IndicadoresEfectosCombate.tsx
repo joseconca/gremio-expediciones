@@ -26,6 +26,8 @@ const CONFIGURACION_ESTADO: Record<TipoEfectoTemporalHabilidad, { nombre: string
   bonus_ataque_magico: { nombre: "Ataque mágico aumentado", emoji: "🔮", sprite: "bonus_ataque_magico.svg" },
   debuff_precision: { nombre: "Precisión reducida", emoji: "🌫️", sprite: "debuff_precision.svg" },
   bonus_evasion: { nombre: "Evasión aumentada", emoji: "💨", sprite: "bonus_evasion.svg" },
+  bonus_precision: { nombre: "Precisión aumentada", emoji: "🎯", sprite: "bonus_ataque.svg" },
+  barrera: { nombre: "Barrera de negación", emoji: "🔰", sprite: "bonus_defensa.svg" },
 };
 
 function IconoIndicador({

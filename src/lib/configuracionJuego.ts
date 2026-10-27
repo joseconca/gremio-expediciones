@@ -1,6 +1,7 @@
 import type { Rareza, ClasePersonaje, IdEdificio } from "./tiposJuego";
 import { CONFIGURACION_EDIFICIOS } from "./tiposJuego";
-import { CLASES } from "./progresion/clases";
+import { CLASES, obtenerAncestrosClase } from "./progresion/clases";
+import { CLASES_NUEVAS } from "./progresion/clases-nuevas";
 import { esClaseHeroeHd } from "./sprites-heroes-hd";
 
 export const REQUISITOS_EDIFICIOS: Partial<
@@ -172,13 +173,19 @@ export function obtenerNombreClaseHeroe(
   return CLASES[idClase]?.nombre ?? (idClase === "guerrero" ? "Guerrero" : "Comerciante");
 }
 
+/** Las clases sin arte propio usan un antecesor existente hasta incorporar sus sprites. */
+export function obtenerIdVisualClase(id: string): string {
+  if (!CLASES_NUEVAS[id] || id === "comerciante") return id;
+  return obtenerAncestrosClase(id).find((padre) => !CLASES_NUEVAS[padre]) ?? "novato";
+}
+
 /** Devuelve el sprite masculino/femenino de la profesión activa del personaje. */
 export function obtenerSpriteHeroe(
   clase?: string | null,
   sexo?: string | null,
   profesionActivaId?: string | null,
 ): string {
-  const idClase = obtenerIdClaseParaSprite(clase, profesionActivaId);
+  const idClase = obtenerIdVisualClase(obtenerIdClaseParaSprite(clase, profesionActivaId));
   const sufijoSexo = sexo === "chica" ? "f" : "m";
   if (esClaseHeroeHd(idClase)) return `/sprites/hd-v1/heroes/${idClase}/${sufijoSexo}-portrait.png`;
   return `/sprites/heroes/${idClase}/${idClase}-${sufijoSexo}.png`;
@@ -212,7 +219,7 @@ export function obtenerRutaSpritesheetHeroe(
   sexo?: string | null,
   profesionActivaId?: string | null,
 ): string {
-  const idClase = obtenerIdClaseParaSprite(clase, profesionActivaId);
+  const idClase = obtenerIdVisualClase(obtenerIdClaseParaSprite(clase, profesionActivaId));
   const sufijoSexo = sexo === "chica" ? "f" : "m";
   if (esClaseHeroeHd(idClase)) return `/sprites/hd-v1/heroes/${idClase}/${sufijoSexo}-sheet.png`;
   return `/sprites/heroes/${idClase}/${idClase}-${sufijoSexo}-sheet.png`;
@@ -223,7 +230,7 @@ export function obtenerLogoClaseHeroe(
   clase?: string | null,
   profesionActivaId?: string | null,
 ): string {
-  const idClase = obtenerIdClaseParaSprite(clase, profesionActivaId);
+  const idClase = obtenerIdVisualClase(obtenerIdClaseParaSprite(clase, profesionActivaId));
   return `/sprites/heroes/${idClase}/${idClase}-logo.svg`;
 }
 

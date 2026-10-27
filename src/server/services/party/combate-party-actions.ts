@@ -21,6 +21,8 @@ import {
   leerEfectosCombate,
   avanzarEfectosCombate,
   procesarEfectosTurno,
+  aplicarBarreraAccion,
+  retirarEfectosHabilidad,
 } from "@/lib/expediciones/estados-combate";
 import {
   resolverResultadoCombateParty,
@@ -892,6 +894,7 @@ async function liquidarRecompensasParty(
       const drop = tirarBotinEnemigo(
         entradaEnemigo.definicion,
         crearRngDeterminista(`${combate.id}:${entradaEnemigo.snapshot.id}:botin:${miembro.usuarioId}`),
+        miembro.personaje.profesionActivaId,
       );
       if (!drop) continue;
 
@@ -1286,7 +1289,8 @@ export async function ejecutarAccionCombateParty(
           if (!aliado || aliado.estado !== "activo" || aliado.jugadorHp <= 0) {
             throw new PartyServiceError("El aliado seleccionado ya no puede recibir esa habilidad.", 409, "OBJETIVO_ALIADO_NO_ACTIVO");
           }
-          const efectosDelObjetivo = obtenerEfectos(aliado.efectos);
+          const previos = retirarEfectosHabilidad(obtenerEfectos(aliado.efectos), habilidad.id, aliado.jugadorDefensa);
+          const efectosDelObjetivo = previos.efectos;
           const resultadoObjetivo = resolverHabilidadJugador(habilidad, {
             jugadorAtaque: calcularAtaqueModificado(participante.jugadorAtaque, efectosJugador),
             jugadorAtaqueMagico: calcularAtaqueModificado(participante.jugadorAtaqueMagico, efectosJugador, true),
@@ -1294,7 +1298,7 @@ export async function ejecutarAccionCombateParty(
             jugadorDanoCritico: participante.jugadorDanoCritico,
             jugadorPrecision: calcularPrecisionModificada(participante.jugadorPrecision, efectosJugador),
             enemigoEvasion: calcularEvasionModificada(combate.enemigoEvasion, efectosEnemigo),
-            jugadorDefensa: aliado.jugadorDefensa,
+            jugadorDefensa: previos.defensa,
             jugadorDefensaMagica: aliado.jugadorDefensaMagica,
             jugadorNivel: participante.jugadorNivel,
             jugadorHp: aliado.jugadorHp,
@@ -1739,6 +1743,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       throw new PartyServiceError("La cola de iniciativa no apunta a un enemigo activo.", 409, "TURNO_ENEMIGO_INICIATIVA_INVALIDA");
     }
     const danoPorUsuario = new Map<string, number>();
+    const barrerasConsumidas = new Map<string, EstadoEfectoHabilidad[]>();
     const impactos: { actorEnemigoId: string; objetivoUsuarioId: string; dano: number; critico: boolean; hpAntes: number; hpDespues: number }[] = [];
     const actoresEnemigoIds: string[] = [];
     for (const enemigoInicial of [...enemigosEnCombate].filter((enemigo) => enemigo.id === turnoEnemigoActual.actorId)) {
@@ -1778,7 +1783,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       if (!objetivo) break;
 
       const participanteHpActual = Math.max(0, objetivo.jugadorHp - (danoPorUsuario.get(objetivo.usuarioId) ?? 0));
-      const efectosObjetivo = obtenerEfectos(objetivo.efectos);
+      const efectosObjetivo = barrerasConsumidas.get(objetivo.usuarioId) ?? obtenerEfectos(objetivo.efectos);
       const accionEnemiga = resolverAtaqueEnemigo({
         enemigoAtaque: calcularAtaqueModificado(enemigo.ataque, enemigo.efectos),
         enemigoProbCritico: enemigo.probCritico,
@@ -1788,6 +1793,9 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
         jugadorDefensa: objetivo.jugadorDefensa,
         enemigoNombre: enemigo.nombre,
       });
+      const cantidadEfectos = efectosObjetivo.length;
+      aplicarBarreraAccion(accionEnemiga, efectosObjetivo);
+      if (efectosObjetivo.length !== cantidadEfectos) barrerasConsumidas.set(objetivo.usuarioId, efectosObjetivo);
       const hpFinalPrevisto = Math.max(0, participanteHpActual - accionEnemiga.dano);
       danoPorUsuario.set(objetivo.usuarioId, (danoPorUsuario.get(objetivo.usuarioId) ?? 0) + accionEnemiga.dano);
       actoresEnemigoIds.push(enemigo.id);
@@ -1853,7 +1861,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
 
     for (const miembro of combate.participantes) {
       const dano = danoPorUsuario.get(miembro.usuarioId) ?? 0;
-      if (dano <= 0 || miembro.estado !== "activo" || miembro.jugadorHp <= 0) continue;
+      if ((dano <= 0 && !barrerasConsumidas.has(miembro.usuarioId)) || miembro.estado !== "activo" || miembro.jugadorHp <= 0) continue;
       const nuevoHp = Math.max(0, miembro.jugadorHp - dano);
       const caido = nuevoHp <= 0;
       const actualizadoParticipante = await tx.combatePartyParticipante.updateMany({
@@ -1866,6 +1874,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
         data: {
           jugadorHp: nuevoHp,
           estado: caido ? "caido" : "activo",
+          ...(barrerasConsumidas.has(miembro.usuarioId) ? { efectos: barrerasConsumidas.get(miembro.usuarioId)! as unknown as Prisma.InputJsonValue } : {}),
         },
       });
       if (actualizadoParticipante.count !== 1) {
@@ -1884,7 +1893,7 @@ export async function ejecutarTurnoEnemigoParty(usuarioId: string, idDesconocido
       }
       participantesActualizados = participantesActualizados.map((p) =>
         p.usuarioId === miembro.usuarioId
-          ? { ...p, jugadorHp: nuevoHp, estado: caido ? "caido" : "activo" }
+          ? { ...p, jugadorHp: nuevoHp, estado: caido ? "caido" : "activo", ...(barrerasConsumidas.has(miembro.usuarioId) ? { efectos: barrerasConsumidas.get(miembro.usuarioId)! } : {}) }
           : p,
       );
     }

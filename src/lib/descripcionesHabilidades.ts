@@ -10,6 +10,7 @@ function tieneEstado(habilidad: DefinicionHabilidad, tipo: EstadoSecundarioHabil
 
 /** Resumen breve y sin cifras para usar directamente en las tarjetas. */
 export function descripcionSimpleHabilidad(habilidad: DefinicionHabilidad): string {
+  if (tieneEstado(habilidad, "barrera")) return "Bloquea el siguiente ataque directo contra un aliado.";
   if (habilidad.tipo === "pasiva") {
     const rasgos: string[] = [];
     if (habilidad.bonusEvasion) rasgos.push("Aumenta la evasión.");
@@ -52,6 +53,7 @@ export function descripcionSimpleHabilidad(habilidad: DefinicionHabilidad): stri
 /** Detalle numérico fiable construido a partir de los parámetros mecánicos. */
 export function detalleNumericoHabilidad(habilidad: DefinicionHabilidad): string[] {
   const lineas: string[] = [];
+  if (habilidad.escaladoDano === "fisico" && habilidad.tipoDano === "magico") lineas.push("Escala con ataque físico y se mitiga con defensa mágica.");
   if (habilidad.tipoDano) {
     const tipoDano = habilidad.tipoDano === "magico" ? "mágico" : habilidad.tipoDano === "hibrido" ? "híbrido" : "físico";
     if (habilidad.multiplicadorDano) lineas.push(`Daño ${tipoDano}: multiplicador ×${habilidad.multiplicadorDano} del ataque.`);
@@ -94,6 +96,8 @@ export function detalleNumericoHabilidad(habilidad: DefinicionHabilidad): string
       case "debuff_ataque": lineas.push(`Ataque enemigo reducido en ${porcentaje(estado.valor)} durante ${turnos} turnos.`); break;
       case "bonus_ataque_magico": lineas.push(`Ataque mágico aumentado en ${porcentaje(estado.valor)} durante ${turnos} turnos.`); break;
       case "bonus_evasion": lineas.push(`Evasión aumentada en ${porcentaje(estado.valor)} durante ${turnos} turnos.`); break;
+      case "bonus_precision": lineas.push(`Precisión aumentada en ${estado.valor} puntos durante ${turnos} turnos.`); break;
+      case "barrera": lineas.push(`Bloquea un ataque directo durante ${turnos} turnos; no acumula cargas.`); break;
       case "debuff_precision": lineas.push(`Precisión enemiga reducida en ${estado.valor} puntos durante ${turnos} turnos.`); break;
       case "curacion_progresiva": lineas.push(`Curación progresiva: ${porcentaje(estado.valor)} de la vida máxima por turno durante ${turnos} turnos.`); break;
       case "dano_progresivo": lineas.push(`Daño progresivo durante ${turnos} turnos.`); break;

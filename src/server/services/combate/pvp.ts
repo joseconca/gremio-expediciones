@@ -1,3 +1,4 @@
+import { aplicarBarreraAccion } from "@/lib/expediciones/estados-combate";
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
@@ -146,6 +147,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
           enemigoNombre: combate.enemigoNombre ?? "Defensor",
         });
 
+        aplicarBarreraAccion(accionAnimada, efectosDefensor);
         enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
       } else {
         if (!habilidad) {
@@ -158,6 +160,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
         }
 
         const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
+          efectosEnemigo: efectosDefensor,
           jugadorAtaque: calcularAtaqueModificado(combate.jugadorAtaque, efectos),
           jugadorAtaqueMagico: calcularAtaqueModificado(combate.jugadorAtaqueMagico ?? combate.jugadorAtaque, efectos, true),
           jugadorProbCritico: combate.jugadorProbCritico,
@@ -182,6 +185,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
         jugadorDefensa = resultadoHabilidad.jugadorDefensa;
         enemigoDefensa = resultadoHabilidad.enemigoDefensa;
 
+        aplicarBarreraAccion(accionAnimada, efectosDefensor);
         enemigoHp = Math.max(0, enemigoHp - accionAnimada.dano);
 
         const efectosRepartidos = distribuirEfectosHabilidadPvp(resultadoHabilidad.efectos, "atacante");
@@ -218,6 +222,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
           enemigoNombre: personaje.nombre,
         });
 
+        aplicarBarreraAccion(accionAnimada, efectos);
         jugadorHp = Math.max(0, jugadorHp - accionAnimada.dano);
       } else {
         if (!habilidad) {
@@ -230,6 +235,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
         }
 
         const resultadoHabilidad = resolverHabilidadJugador(habilidad, {
+          efectosEnemigo: efectos,
           jugadorAtaque: calcularAtaqueModificado(combate.enemigoAtaque, efectosDefensor),
           jugadorAtaqueMagico: calcularAtaqueModificado(combate.enemigoAtaqueMagico ?? combate.enemigoAtaque, efectosDefensor, true),
           jugadorProbCritico: combate.enemigoProbCritico,
@@ -256,6 +262,7 @@ export async function ejecutarAccionPvpConContexto(contexto: ContextoAccionComba
         enemigoDefensa = resultadoHabilidad.jugadorDefensa;
         jugadorDefensa = resultadoHabilidad.enemigoDefensa;
 
+        aplicarBarreraAccion(accionAnimada, efectos);
         jugadorHp = Math.max(0, jugadorHp - accionAnimada.dano);
 
         const efectosRepartidos = distribuirEfectosHabilidadPvp(resultadoHabilidad.efectos, "defensor");

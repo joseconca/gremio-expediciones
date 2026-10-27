@@ -1,6 +1,7 @@
 import type { DefinicionEnemigo, DefinicionObjeto } from "./tiposJuego";
 import { obtenerObjetoPorId } from "./objetos";
 import { generarSufijoObjeto } from "./sufijosObjetos";
+import { CLASES } from "./progresion/clases";
 
 export interface BotinObjeto {
   objeto: DefinicionObjeto;
@@ -11,11 +12,13 @@ export interface BotinObjeto {
 /** Ejecuta una tirada usando la tabla y las probabilidades configuradas en el enemigo. */
 export function tirarBotinEnemigo(
   enemigo: DefinicionEnemigo | null | undefined,
-  rng: () => number = Math.random
+  rng: () => number = Math.random,
+  claseId?: string,
 ): BotinObjeto | null {
   if (!enemigo || !enemigo.tablaLoot?.length) return null;
 
-  const probabilidad = Math.max(0, Math.min(1, enemigo.probabilidadBotin ?? 0));
+  const bonus = CLASES[claseId ?? ""]?.bonusBotin ?? 0;
+  const probabilidad = Math.max(0, Math.min(1, (enemigo.probabilidadBotin ?? 0) * (1 + bonus)));
   if (rng() >= probabilidad) return null;
 
   const opciones = enemigo.tablaLoot.filter(

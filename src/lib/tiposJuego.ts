@@ -49,6 +49,7 @@ export type EfectoHabilidadActiva =
   | "curacion"
   | "bonus_defensa"
   | "curacion_progresiva"
+  | "estado"
   | "bonus_ataque_magico";
 
 export type TipoEfectoTemporalHabilidad =
@@ -59,6 +60,8 @@ export type TipoEfectoTemporalHabilidad =
   | "bonus_ataque_magico"
   | "debuff_precision"
   | "bonus_evasion"
+  | "bonus_precision"
+  | "barrera"
   | "dano_progresivo"
   | "curacion_progresiva";
 
@@ -387,6 +390,8 @@ export interface DefinicionHabilidad {
   claseId?: string;
   /** Tipo de ataque utilizado por habilidades que infligen daño. */
   tipoDano?: TipoDanoHabilidad;
+  /** Fuente de potencia independiente de la defensa que mitiga el daño. */
+  escaladoDano?: "fisico" | "magico" | "hibrido";
   /** Nivel Job mínimo en la profesión activa para aprenderla. */
   nivelJobRequerido?: number;
   /** Puntos Job consumidos al aprender habilidades profesionales. */

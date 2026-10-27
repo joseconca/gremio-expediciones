@@ -3,6 +3,7 @@ import type { EstadoEfectoHabilidad, TipoEfectoTemporalHabilidad } from "../tipo
 const TIPOS_VALIDOS: readonly TipoEfectoTemporalHabilidad[] = [
   "bonus_defensa", "debuff_defensa", "bonus_ataque", "debuff_ataque",
   "bonus_ataque_magico", "debuff_precision", "bonus_evasion",
+  "bonus_precision", "barrera",
   "dano_progresivo", "curacion_progresiva",
 ];
 
@@ -130,7 +131,18 @@ export function calcularAtaqueModificado(
 }
 
 export function calcularPrecisionModificada(precisionBase: number, efectos: readonly EstadoEfectoHabilidad[]): number {
-  return Math.min(100, Math.max(1, precisionBase - efectos.reduce((total, e) => total + (e.tipo === "debuff_precision" ? e.valor : 0), 0)));
+  return Math.min(100, Math.max(1, precisionBase + efectos.reduce((total, e) => total + (e.tipo === "bonus_precision" ? e.valor : e.tipo === "debuff_precision" ? -e.valor : 0), 0)));
+}
+
+/** Consume una única barrera al recibir daño directo; los fallos y pulsos no la gastan. */
+export function aplicarBarreraAccion(accion: { dano: number; critico: boolean; texto: string }, efectos: EstadoEfectoHabilidad[]): void {
+  if (accion.dano <= 0) return;
+  const indice = efectos.findIndex((e) => e.tipo === "barrera" && e.turnosRestantes > 0 && e.valor >= 1);
+  if (indice < 0) return;
+  efectos.splice(indice, 1);
+  accion.dano = 0;
+  accion.critico = false;
+  accion.texto = "🛡️ La barrera bloquea el ataque y se disipa.";
 }
 
 export function calcularEvasionModificada(evasionBase: number, efectos: readonly EstadoEfectoHabilidad[]): number {
