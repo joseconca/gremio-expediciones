@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-27T22:06:35.782873+00:00",
+  "classId": "chaman",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\chaman\\f\\chaman-f-sheet.png",
+  "sheetSha256": "6f8bf1e7bf21897471344aa9a28ebed6d6360c0fc4cf6e1204b48bab53336d70",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\idle\\chaman-f-idle-01.png",
+          "sha256": "b82db6e7b8f4b7d73bc30a9d5fbb8386f3f030cc6d1c627f45ff3435a11659f9",
+          "alpha_bbox": [
+            29,
+            90,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\idle\\chaman-f-idle-02.png",
+          "sha256": "1a914631c723a393cd1653ed7e697219603550c48e830a1d3929d5ffde258c5b",
+          "alpha_bbox": [
+            29,
+            90,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\idle\\chaman-f-idle-03.png",
+          "sha256": "c46e89d75b464cdabf8e44ed16010c6d3bb063d44d730e01fda6018d47c4e37e",
+          "alpha_bbox": [
+            28,
+            90,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\idle\\chaman-f-idle-04.png",
+          "sha256": "5e6adbbec25bc9e5af87faef0e176de694b0981946ed9aeb82e7ce90ddf1ceeb",
+          "alpha_bbox": [
+            28,
+            90,
+            109,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\walk\\chaman-f-walk-01.png",
+          "sha256": "ac8d07e9086e7b1609f015a34f3469d59559b08f206312fd8d9f71b2ea8891d6",
+          "alpha_bbox": [
+            15,
+            89,
+            107,
+            246
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\walk\\chaman-f-walk-02.png",
+          "sha256": "cc500b1cd41abc7ac2353d0237fbfc86b3e08090cbc39e34daf5b7fa18fa20a4",
+          "alpha_bbox": [
+            30,
+            89,
+            96,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\walk\\chaman-f-walk-03.png",
+          "sha256": "c78eea0fc6a1e73e428e5fd104cebb1ad27067d52473190b7f1fbcea67bb3f31",
+          "alpha_bbox": [
+            7,
+            89,
+            113,
+            246
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\walk\\chaman-f-walk-04.png",
+          "sha256": "e866e48cea019a560d29d5e3946f9be8245956d94f547110b2be8c060cd3463a",
+          "alpha_bbox": [
+            19,
+            89,
+            98,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\hurt\\chaman-f-hurt-01.png",
+          "sha256": "b7356ed65d6a6198afbb0c1cfe6da9a88282ea13dad902431f2e5fefb31629b1",
+          "alpha_bbox": [
+            20,
+            94,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\hurt\\chaman-f-hurt-02.png",
+          "sha256": "01a9cfc1e0a42871ea53fdf059697cf7c8a9a1634392d398ac9abf157aaabc36",
+          "alpha_bbox": [
+            24,
+            93,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\hurt\\chaman-f-hurt-03.png",
+          "sha256": "6853653e448fe5e7e0fe0edbc243ef31313295df759bb2cdc28948d8153ad0bc",
+          "alpha_bbox": [
+            18,
+            113,
+            94,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\hurt\\chaman-f-hurt-04.png",
+          "sha256": "0a2cc4b75498fff90ded9acb98be6648eb72ed2dd3a1700c95901ddd7c5263d6",
+          "alpha_bbox": [
+            13,
+            91,
+            96,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\use_consumable\\chaman-f-use_consumable-01.png",
+          "sha256": "2400b9430995e772d84e516c8648ec16ce6f030ea16bb78cbabeb2d9a9b7d24d",
+          "alpha_bbox": [
+            22,
+            88,
+            102,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\use_consumable\\chaman-f-use_consumable-02.png",
+          "sha256": "11ca584748ed01a20fc7efeb5848016b3847edf4c0c23cc6d6b3b70cef709df5",
+          "alpha_bbox": [
+            20,
+            88,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\use_consumable\\chaman-f-use_consumable-03.png",
+          "sha256": "bf31af1aff24c840cced5a8bc6de793b133cdb28f60c0e1f252d174ab0f4634c",
+          "alpha_bbox": [
+            22,
+            88,
+            105,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\use_consumable\\chaman-f-use_consumable-04.png",
+          "sha256": "ee6fe87c52defeebb578f5cac8eb06d670e0c2a4cc46f4d72f75ae2717f9e32f",
+          "alpha_bbox": [
+            22,
+            88,
+            103,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\dodge\\chaman-f-dodge-01.png",
+          "sha256": "239009115562d155a6c61d5008961da0bc66bcb7df9fee7416d2f93cd85b6a41",
+          "alpha_bbox": [
+            31,
+            92,
+            115,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\dodge\\chaman-f-dodge-02.png",
+          "sha256": "aec4d962d1e050f4c155aa9f83c0b18f37a98f5ce0c4ef112fd12c6399a8cb1f",
+          "alpha_bbox": [
+            33,
+            98,
+            118,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\dodge\\chaman-f-dodge-03.png",
+          "sha256": "9fc706ce870c350524c82fa14b37c77255adea005f65a83db930fd964f12b921",
+          "alpha_bbox": [
+            25,
+            124,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\dodge\\chaman-f-dodge-04.png",
+          "sha256": "3081d0257002a97eb0b82adac9870bf2076890bca69f8c5613c50da9d4524fa3",
+          "alpha_bbox": [
+            19,
+            97,
+            105,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\block_shield\\chaman-f-block_shield-01.png",
+          "sha256": "3c6bb10f0902eef4d5e3980a02d5e097c14cf3d915455b2d3bd1cdbb3409c38f",
+          "alpha_bbox": [
+            30,
+            91,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\block_shield\\chaman-f-block_shield-02.png",
+          "sha256": "944d55706cc46bf2c2e954f8e5f804395d09f9baec8847421b7910e685dba1e3",
+          "alpha_bbox": [
+            28,
+            92,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\block_shield\\chaman-f-block_shield-03.png",
+          "sha256": "831ab05e5f1e673a1e8eb9c65041e88f2858f169bfff12144f3eb7985cd30eab",
+          "alpha_bbox": [
+            24,
+            104,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\block_shield\\chaman-f-block_shield-04.png",
+          "sha256": "6e71605ef41aeaf3a1cf4bb56ed880326c90fafef43f3b9ed10bc7ab0421af30",
+          "alpha_bbox": [
+            17,
+            92,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_sword\\chaman-f-attack_sword-01.png",
+          "sha256": "91a873e1294bf79e0cd7a57845d1f36e6dd6bd25019969da701f2f223d0fe825",
+          "alpha_bbox": [
+            25,
+            90,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_sword\\chaman-f-attack_sword-02.png",
+          "sha256": "3e07305170cd76bb2ca65335d5e7d35ce0b613b65e8e11588c3bb743003c043f",
+          "alpha_bbox": [
+            25,
+            90,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_sword\\chaman-f-attack_sword-03.png",
+          "sha256": "421ad9f633bbc9d9854210b381e90281d328d28631bc01aea311d81e8f05059f",
+          "alpha_bbox": [
+            17,
+            96,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_sword\\chaman-f-attack_sword-04.png",
+          "sha256": "52424078c5924603b125dfac4425b7e9a865ae93cd50ad17e77daef81570ef3d",
+          "alpha_bbox": [
+            16,
+            91,
+            102,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_axe\\chaman-f-attack_axe-01.png",
+          "sha256": "1d0a22b200ba122562ec3311758ae2840629af1d2df38278578393340b7cf609",
+          "alpha_bbox": [
+            28,
+            94,
+            117,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_axe\\chaman-f-attack_axe-02.png",
+          "sha256": "8e06e00a53cbe553a01edda5eb468ad11abc675e266ffcb42b512e55866fa223",
+          "alpha_bbox": [
+            20,
+            90,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_axe\\chaman-f-attack_axe-03.png",
+          "sha256": "c4bdb7dea49ab3f00261df141631e1c565920d36e8d357f8b72f66f894e4243d",
+          "alpha_bbox": [
+            16,
+            103,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_axe\\chaman-f-attack_axe-04.png",
+          "sha256": "b9d8e510a3ab79625f9d06126451a30ca5e97521d710cf47efc7255c26223f19",
+          "alpha_bbox": [
+            10,
+            95,
+            96,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_spear\\chaman-f-attack_spear-01.png",
+          "sha256": "7abbcac783a8a18f237f8da1848a73789c33448df1ab3e8ba10c833781913525",
+          "alpha_bbox": [
+            16,
+            91,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_spear\\chaman-f-attack_spear-02.png",
+          "sha256": "f0f498140e5cfbba1a3104a5bbfc29c23bdd8b247e5ea64eea55f6ec87343495",
+          "alpha_bbox": [
+            16,
+            91,
+            101,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_spear\\chaman-f-attack_spear-03.png",
+          "sha256": "b0528206733d37f2020658a77f3d77e44a482d784d5be480c7a4e4bc740108ad",
+          "alpha_bbox": [
+            15,
+            91,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_spear\\chaman-f-attack_spear-04.png",
+          "sha256": "1098edd08a3fff9f3f492a9ee0bfc7b24999ec892debdfd84e1b9c671dc4eb78",
+          "alpha_bbox": [
+            16,
+            91,
+            114,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_dagger\\chaman-f-attack_dagger-01.png",
+          "sha256": "999795ff8b95956033aa9d3636e419cc7c0e0d7085310fb2a5bd9bb7f1362c4d",
+          "alpha_bbox": [
+            20,
+            89,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_dagger\\chaman-f-attack_dagger-02.png",
+          "sha256": "c98c0de461b71cb0b4441966bba37795297e52537a95aa4098972c50e8df115d",
+          "alpha_bbox": [
+            20,
+            90,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_dagger\\chaman-f-attack_dagger-03.png",
+          "sha256": "aa4d02b5e10f4d8cc3af7fab7b6abf9e53802b7e2f511900c80bea218a762e1d",
+          "alpha_bbox": [
+            17,
+            90,
+            110,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_dagger\\chaman-f-attack_dagger-04.png",
+          "sha256": "db0c0583bd586b0e4dc379feb1a723b470d8b316a678091ad815d20662119195",
+          "alpha_bbox": [
+            22,
+            90,
+            111,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_bow\\chaman-f-attack_bow-01.png",
+          "sha256": "56849246f686c34373f97043e7d7a461c1bdeec66332d591f8a6e25c5f43bd97",
+          "alpha_bbox": [
+            17,
+            90,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_bow\\chaman-f-attack_bow-02.png",
+          "sha256": "5aa80af28b1a637223b8ba2b88e3b0299bafc2c388ac1798e7f1efc3305e0745",
+          "alpha_bbox": [
+            15,
+            90,
+            117,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_bow\\chaman-f-attack_bow-03.png",
+          "sha256": "8b0282ed7c4cb97abd0f0a26f356c10ab2a88152a276b2c120ff857d2db835b5",
+          "alpha_bbox": [
+            15,
+            90,
+            117,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_bow\\chaman-f-attack_bow-04.png",
+          "sha256": "999268c0ff19e26f14b8543fd952814c59dfc06949c7e73cda8c7aee8a996420",
+          "alpha_bbox": [
+            15,
+            90,
+            117,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_staff\\chaman-f-attack_staff-01.png",
+          "sha256": "c9ba46c39e96cc43b2617a514834897c481cbb0d58097e32aca9ea6126b47f39",
+          "alpha_bbox": [
+            28,
+            89,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_staff\\chaman-f-attack_staff-02.png",
+          "sha256": "eebc0e097f7a325a3dc51f1b8c65f65a62709c96e4a2ff39de7970e94aab2434",
+          "alpha_bbox": [
+            22,
+            89,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_staff\\chaman-f-attack_staff-03.png",
+          "sha256": "1bf8ab5b0b1cd3e563f6e054636639f547ca796f4daa12ab8e0589b243cb53b1",
+          "alpha_bbox": [
+            20,
+            89,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_staff\\chaman-f-attack_staff-04.png",
+          "sha256": "a057aebecc0f09d0cf44267a678a2581328b4da56f3f6bb7fe6abc68ccfce61d",
+          "alpha_bbox": [
+            22,
+            90,
+            105,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_mace\\chaman-f-attack_mace-01.png",
+          "sha256": "8f8ed2f21b70363b49775a91abcf908ff95c79188c37db72d0f5029e119dcf17",
+          "alpha_bbox": [
+            31,
+            89,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_mace\\chaman-f-attack_mace-02.png",
+          "sha256": "533cf283ff8101681bdb3ccce7c3f1a6edfef899c35e5aba4353cd7d6d0c3069",
+          "alpha_bbox": [
+            24,
+            89,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_mace\\chaman-f-attack_mace-03.png",
+          "sha256": "e9ad795030cd31644159489b1b5a7d7018642aeead217a1573d041bbd0ac0c20",
+          "alpha_bbox": [
+            19,
+            94,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_mace\\chaman-f-attack_mace-04.png",
+          "sha256": "c7e32223343bd47b51762268f06de680a1d5aaff0d2d4e81a1ca432f0184b08e",
+          "alpha_bbox": [
+            17,
+            89,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_book\\chaman-f-attack_book-01.png",
+          "sha256": "59569922644d3bce83bcd027eda6d138c93c29cb8ad8b20467f55e9f5b947d64",
+          "alpha_bbox": [
+            27,
+            90,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_book\\chaman-f-attack_book-02.png",
+          "sha256": "be53c6a65f2a359febb1c4de472db687dbcb8afd6cc696cd99e41642423ffa65",
+          "alpha_bbox": [
+            24,
+            89,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_book\\chaman-f-attack_book-03.png",
+          "sha256": "f0f70ae186bcd0137e03b08ce474606ad19689230287a19e11639e8ef175877a",
+          "alpha_bbox": [
+            24,
+            89,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_book\\chaman-f-attack_book-04.png",
+          "sha256": "207cc69a55221eb70e05fb7c7707ce424aeca6469be1de830ac421bcc640a134",
+          "alpha_bbox": [
+            24,
+            89,
+            108,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_gloves\\chaman-f-attack_gloves-01.png",
+          "sha256": "e4fd9294d41a4455717933fc08df4446d778272f083dde6ab461fc72c1178a1e",
+          "alpha_bbox": [
+            23,
+            89,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_gloves\\chaman-f-attack_gloves-02.png",
+          "sha256": "8eb4d6c2f5966f176a030a102fd8b4f334b24e5c0978b36a40e66809beeb95d7",
+          "alpha_bbox": [
+            23,
+            89,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_gloves\\chaman-f-attack_gloves-03.png",
+          "sha256": "229828fa9160b7ad7d45a78862bbcf45763a841f3d8785d678609af67c745a36",
+          "alpha_bbox": [
+            12,
+            89,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\chaman\\f\\frames\\attack_gloves\\chaman-f-attack_gloves-04.png",
+          "sha256": "4e8f1b19fd0f3dc71a3f988d681b208d7ab94e84fb7dead1e4d618ed17c4a3ac",
+          "alpha_bbox": [
+            12,
+            89,
+            95,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

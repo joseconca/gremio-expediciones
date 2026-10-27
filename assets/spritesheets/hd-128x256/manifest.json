@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "chaman-f",
+  "nextVariant": "inquisidor-m",
   "classes": [
     {
       "id": "novato",
@@ -233,7 +233,7 @@
       "name": "Chamán",
       "tier": 2.5,
       "order": 25,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "inquisidor",
@@ -107548,7 +107548,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/chaman/m/chaman-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/chaman/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -108672,7 +108672,8 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "f3e19ed7444de52241913726f3a4f761b194663de9d144b52d4a4e504fc75c7c",
@@ -108710,7 +108711,8 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "4f838161763728e80efd99d0efdb9c588d9c1c1ac81184cc99dbc22be2af6933",
@@ -108748,7 +108750,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "3acbe9b18f51d6d1614bfae5967e8dc04b8971568d9dd7f56fa2d8a4a827676f",
@@ -108786,7 +108789,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "d86fa4d80a0608d1370ce83327b61a7acbf66820b0bd1e316bdea14b36318815",
@@ -108830,7 +108834,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "9d532e46ff09f260bf3307d191795c64765055481edc00f2539512c40b403109",
@@ -108874,7 +108879,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "2442a396d554934f707395d91eebde2224d3377f4d371062ca86820c053753ae",
@@ -108912,7 +108918,8 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "21afc69d3671f0181952162931a8b391a2d34b46f7e76f8c8b06eb56c38b9bab",
@@ -108950,7 +108957,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "c86a40ebd39113b5f0d47387168e97304c497f5776d8498f04b8c2fcd9f5ec35",
@@ -108988,7 +108996,7 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "frameSourceOverrides": {
             "02": {
               "sourceSha256": "c6a34ef56a5db48d1d8f583235622f36aa782bb518d45aa1ae3331c8a06e551e",
@@ -109098,7 +109106,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "178400a46da0c4b72a83f6eebc13b3d30f0d712d3de5186a100f95e804ce9a4b",
@@ -109136,7 +109145,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "7205a6bccd087a1161d2e1a28b7f00a464fbea470019e779e143d615059d24bf",
@@ -109174,7 +109184,8 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "416e2814df7ec47147bd6bcf7adc668dec2f01e7a0997f0ddc3d0c0cbf3f023a",
@@ -109212,7 +109223,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "5abb08d220d9be3a179c4da11a2f75ca2bb6576978d339c868bb008a6dbd1785",
@@ -109250,7 +109262,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "5003034ef781f976fae7119e1b6067da0e843868e8925cad55204f7132e820d1",
@@ -109288,7 +109301,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "b21f919e5d8255934f8874fcd4daf0176809cb4fb10c891d866eb86802d756b4",
@@ -109326,7 +109340,8 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -109601,6 +109616,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "chaman",
+        "name": "ChamÃ¡n",
+        "tier": 2.5,
+        "costume": "Storm shaman battle attire: fitted BURNT-SIENNA sleeveless hide cuirass with DEEP TURQUOISE insets, close pale fur collar, compact dark bone-and-copper shoulder caps, short stacked geometric fabric waist panels, physical flat three-colored mineral beads sewn to chest (ochre turquoise white), carved copper spiral belt disc, charcoal trousers, brown boots with copper shin plates and fingerless wrap gloves. Compact turquoise headband with one short ivory feather tucked close behind ear, no tall horns or antlers. No loose scarf/cape, no held totem, axe or staff, no magic.",
+        "maleIdentity": "Adult stern masculine shaman, warm brown skin, dark brown swept short hair with one compact side braid, amber eyes, clean-shaven.",
+        "femaleIdentity": "Adult stern feminine shaman, warm brown skin, dark brown hair in compact braided ponytail and amber eyes.",
+        "unique": "Burnt-sienna/turquoise hide, copper spiral disc, sewn mineral beads and short close feather.",
+        "advancement": "Tier2.5 Berserker/Elementalista hybrid: battle-worn hide and pale fur acquire carefully crafted ritual copper and mineral motifs rather than full caster robes.",
+        "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/chaman/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "597eb76fad63c4a82211b56938699cc014adfb8aa84a53d644cbcb96794c7cd9",
+            "c59e137332af12d4e7696c1226ef935213ae6f07fa077353ea7d1393b2ec8bf3",
+            "14e75f53233b86bab64403e16d0bba5da08c843df191afe5869671ff5c5c2d75",
+            "f9f6ef81c8a58e9c3bc73da871913f7e64a4e268b97bf4927ff186476e0e5891"
+          ],
+          "walk": [
+            "fec80b770cd121f5fbb109c3d137a062e49fa7476639286e1dfbcb3f366386ba",
+            "de39146ee8034005d8d8f68951b7777d1ada171b0f4b3a61f9eb3000bf27f064",
+            "a55c66f36810ebb8033e376f64b47427ca63231ad9a6bea580b979df9ecac792",
+            "c01df2be52ca7c4846c868c4cd0c2e088de954fd91c735bc3087212bb1810444"
+          ],
+          "hurt": [
+            "eb8cc3a4b0934599eb968229cb5155bc972534fd5a1fda75a01ae8c907f2b612",
+            "728161d32f2000ba314929f08e9112fde97a95c20bb5b4cd27df77ff6205cf09",
+            "ad1cbc6fa67234df934f67a9efd92fba8dda52f9133c719a54e8faf2cb7667e8",
+            "ecbae0a17a9a1580b060b83839efe41faef260dbde29091b1c8e46201bd3a400"
+          ],
+          "use_consumable": [
+            "35b0929d6e8d80f3ac5c98ba12396fa29adf24fa00d5338c5ceafb519bff5083",
+            "1b8d59a381074b8bfca9114815afa4907450299fa6f68657bff9fdc153e0ab3b",
+            "0ca80a612e4048ca5f818d472ef15e69b3a8ab5acf68c66434419d0384ae4051",
+            "4a7a9b968479c6e056b4ec26243953d62b03855282599768f4ce7c91e8442372"
+          ],
+          "dodge": [
+            "a34a0c6a29257fdcca66d6fae48136806f278c3ea575fe91e1bba4e58dcaf4aa",
+            "53e583edf39e0608ddc32fddd6a065146c55a085593831b0a9ef295bbf833840",
+            "d1fc34116a4d11db6ff59ac6a958ee7a47a0aa17a5b90f5bcf164ffd5936da65",
+            "d246fdd33e83616f86da230e375bd9a7de0b796dfe5208955279d35638be329a"
+          ],
+          "block_shield": [
+            "0858ae798261c292bc71cfdc6a15e19a7bc85296f4afe25b30c4efdd8d37c5e0",
+            "8ca0580f5fa65bc8200d1bbe99a54a56e9b43282bbb9902eb7c5c23fd9181e5e",
+            "ec1558651c3bd7d1177982d70ae68fb53b6198fe44722f432ac1251e27aff924",
+            "ace3ff2079609406a7c8e1976ad0e22a9af462d6fad9bf3053d83c2f3a2d88ce"
+          ],
+          "attack_sword": [
+            "257731ef3cbe2fa5f4bc3bda3e50d8877db8f854bb1705ac735aba3b9a42cddb",
+            "0421a2a81179fafb1e2cc84b3e0d8936ab8b9683b01ec9f1e063412e9b5bd8a2",
+            "41ff42c5f242ca28c1c7b41e7bd17482c6eed5804d7c0bdc967c00933b58e8b7",
+            "291b6404e183e4637466bad6bd5b29e899502ba2836cdc71dfc9382c91ce168d"
+          ],
+          "attack_axe": [
+            "925449b5b1d7af21e7b6b9c02441e0c946c86f4e9bdb594e3776ca022036d6aa",
+            "d2de5319d5362c0d0eb6d8dc3e38c9afa353368e84816c357851bc83be5543de",
+            "158b296be7b200097b10e44f7603f0954e0a95d936941a90c1bd827cb537abda",
+            "569cb8f00b65b6d53682e579fce0d25c4a7a81088702071ebf4b53593e17e659"
+          ],
+          "attack_spear": [
+            "9cb2dab0e9d4a8deef4548d74ae1eb7dfd03bf1b2ab221131dfd3b17458362f7",
+            "eee84bc3507a2a5b9fc7e8324e37fddad7685a9b5c8055031cfcdb5dd1fb31b1",
+            "e10e719e58df5c4f74d8727d64396e2a017fbd823f5193a8385fc6235f2bd0b6",
+            "dcea8ea25cdb232b302aea0b6bf101f3b204aa622be2a39ca9e605b9014cd3d9"
+          ],
+          "attack_dagger": [
+            "b4d2d3870cd1e0b194e93cb64c8a1f577c3cbde9ed69ea7716930dfe4ee401d9",
+            "28ea40eda00531de701c5a728eebb922bf436e1e2a60c400353be61c491b6be8",
+            "690027f92c723bfcb87d875fdd6c1f26d3e290cb8185a0a4abc80279e9c1243b",
+            "92d9c2ca02324e8a06b05dfbab9ee5a759a54782675dff458c45bc2915d3d8a7"
+          ],
+          "attack_bow": [
+            "a2a1109a4e145a98039f98f55c8e413f50751ade41e6b335bf6641f7d16a203c",
+            "b3781e719773044e11eae1e6cf6735707893159bcd76f301b6706baf73765b6d",
+            "a644c1a41c29c0ecc7b6431c4944ba6a8a391c4c7b26548a8d1a57b375f1eb49",
+            "5e20c3804acc3cba05332ad3ddf3aec04bba7b0b2e8d9d9b7c470e02ddc50c71"
+          ],
+          "attack_staff": [
+            "7a54d3ca2886d6b6aa09985f726e5a229f3087da561ef84266ffc82afe90aa0d",
+            "5c5038e0241556e8e16f89b09daf650c3d2dd3fbc29139c6be87bdf870bd6182",
+            "7fb4d9d4b439c02517377dd730e97dd2759314241a0f009ab196870ee57850ae",
+            "ad4a67631e717ab920a18c621e3203d4f674deaa30819af6b94f7cd2f7505bdd"
+          ],
+          "attack_mace": [
+            "cba6496e09953d38664b343d583cdb5b64002b3ef2c7c406be30b61a0be99974",
+            "84fe45a4a746c7562e41f54fee58a36e24e895723ed4b21045fc1ba7510f9486",
+            "f86589147025b8cd28c0bbc3fcaea073b15df67a04f069c9bfb441db4be7cdc4",
+            "b31fd0f0b63457d0eba63c73bd7e89db5489740aa8559e031684be9ab4ca70d3"
+          ],
+          "attack_book": [
+            "e1d92794351aa6a3ce43bcef1bc7852953a6d975e27de2be447b0a097fe1c58f",
+            "134437395b938b34dade332d8f26fc620975735a17efcae0a8bc8f8eff6cbe4b",
+            "f9a50ac9cabce1225de99a2416692dae9dd1f12528f02fc3b3e17a3881e26029",
+            "344b1838d6b3838e1e3d6ea72a8231292dcbb4aba2b0d84936cdb87983d461d3"
+          ],
+          "attack_gloves": [
+            "d0d78ab4676dd01a410c4880df5ca98892f0f3858c74296c18f29978de76761f",
+            "90805bae8eb2d15b54541f9f524822c724f88d8dc4cb545f84a12b8b9cddf6db",
+            "882710ec01d9fb0c32633bb56edcdc0011f05943e52b7f0421689f3a1835a2e2",
+            "b46912846c2a59de1a96ae8b1c6130f4b2cf8d15ef98376ec028ad60efdd9f64"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 3
       }
     },
     {
@@ -109613,7 +109743,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/chaman/f/chaman-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/chaman/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -110737,7 +110867,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "8eda7cfe361b511d4ce7ce238442b7259014966a720da2b96254248366bd7695",
@@ -110775,7 +110906,8 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "45d747d200235f55d6bbbc70c3e4c8232aac8ff95f2289a43f20752e0e8e14d1",
@@ -110813,7 +110945,8 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "f47e70ad14da59e25446d253fe7171147278ee3e3438b29957ab3f6e51d82c7d",
@@ -110851,7 +110984,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "805e358ab4d4a2c9ba5824e0584572f48c07bd59f78ef71e9c4e5374b4826a68",
@@ -110889,7 +111023,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "00cab8ae2b618b88538021d32a591460a6cb0715cd4b510ceb11956179f2935e",
@@ -110927,7 +111062,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "dfdabc7c7fed71a7d2792a6390011cce900762e3cc14870f5c3cfd2b760ef2ff",
@@ -110965,7 +111101,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "00259afe5429780b7ed1c4b73cc9d0c4e4d0353cf24881b2b3c36fc7453dc723",
@@ -111003,7 +111140,8 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "9d396b0a46deac8f149478c19bbadd7ad94fefa362475080ab0a3658ef25981b",
@@ -111041,7 +111179,8 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "d38b6d90802bccd312893983481fd2ab4859b7298498794d358c34cd61b569f5",
@@ -111079,7 +111218,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "ea34cfc2076ccd0c8ad07b284ca40817b7e921a9c487dd0b2d828aa89f846955",
@@ -111117,7 +111257,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "f0b2656e0605bd7d2e31640e0817643c7e10996ddc32971cd97b6d706b04f0ef",
@@ -111155,7 +111296,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "3872faee5976f97851acea672cb42f7e6e9251a02b2e841b8fd174e958a2e59b",
@@ -111193,7 +111335,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "020caa1a987566500facadea5a9d986b34437ffbf67b221c440ce7aec477ea95",
@@ -111231,7 +111374,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "77d203784ed848957d71d048af23fcbf2a691eb29b6f36dbcd4dd580709ccaa1",
@@ -111269,7 +111413,8 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -111544,6 +111689,121 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "chaman",
+        "name": "ChamÃ¡n",
+        "tier": 2.5,
+        "costume": "Storm shaman battle attire: fitted BURNT-SIENNA sleeveless hide cuirass with DEEP TURQUOISE insets, close pale fur collar, compact dark bone-and-copper shoulder caps, short stacked geometric fabric waist panels, physical flat three-colored mineral beads sewn to chest (ochre turquoise white), carved copper spiral belt disc, charcoal trousers, brown boots with copper shin plates and fingerless wrap gloves. Compact turquoise headband with one short ivory feather tucked close behind ear, no tall horns or antlers. No loose scarf/cape, no held totem, axe or staff, no magic.",
+        "maleIdentity": "Adult stern masculine shaman, warm brown skin, dark brown swept short hair with one compact side braid, amber eyes, clean-shaven.",
+        "femaleIdentity": "Adult stern feminine shaman, warm brown skin, dark brown hair in compact braided ponytail and amber eyes.",
+        "unique": "Burnt-sienna/turquoise hide, copper spiral disc, sewn mineral beads and short close feather.",
+        "advancement": "Tier2.5 Berserker/Elementalista hybrid: battle-worn hide and pale fur acquire carefully crafted ritual copper and mineral motifs rather than full caster robes.",
+        "armPolicy": "Retain canonical head size, exact hands and fingertips; fitted sleeves/bracers never cover grip. Compact shoulders and ornaments stay within canonical cell. NO neck scarf, cape or floating shoulder cloth. All fixed costume insignia remain identical in all four figures, including closed-eye or hurt poses.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/chaman/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "b82db6e7b8f4b7d73bc30a9d5fbb8386f3f030cc6d1c627f45ff3435a11659f9",
+            "1a914631c723a393cd1653ed7e697219603550c48e830a1d3929d5ffde258c5b",
+            "c46e89d75b464cdabf8e44ed16010c6d3bb063d44d730e01fda6018d47c4e37e",
+            "5e6adbbec25bc9e5af87faef0e176de694b0981946ed9aeb82e7ce90ddf1ceeb"
+          ],
+          "walk": [
+            "ac8d07e9086e7b1609f015a34f3469d59559b08f206312fd8d9f71b2ea8891d6",
+            "cc500b1cd41abc7ac2353d0237fbfc86b3e08090cbc39e34daf5b7fa18fa20a4",
+            "c78eea0fc6a1e73e428e5fd104cebb1ad27067d52473190b7f1fbcea67bb3f31",
+            "e866e48cea019a560d29d5e3946f9be8245956d94f547110b2be8c060cd3463a"
+          ],
+          "hurt": [
+            "b7356ed65d6a6198afbb0c1cfe6da9a88282ea13dad902431f2e5fefb31629b1",
+            "01a9cfc1e0a42871ea53fdf059697cf7c8a9a1634392d398ac9abf157aaabc36",
+            "6853653e448fe5e7e0fe0edbc243ef31313295df759bb2cdc28948d8153ad0bc",
+            "0a2cc4b75498fff90ded9acb98be6648eb72ed2dd3a1700c95901ddd7c5263d6"
+          ],
+          "use_consumable": [
+            "2400b9430995e772d84e516c8648ec16ce6f030ea16bb78cbabeb2d9a9b7d24d",
+            "11ca584748ed01a20fc7efeb5848016b3847edf4c0c23cc6d6b3b70cef709df5",
+            "bf31af1aff24c840cced5a8bc6de793b133cdb28f60c0e1f252d174ab0f4634c",
+            "ee6fe87c52defeebb578f5cac8eb06d670e0c2a4cc46f4d72f75ae2717f9e32f"
+          ],
+          "dodge": [
+            "239009115562d155a6c61d5008961da0bc66bcb7df9fee7416d2f93cd85b6a41",
+            "aec4d962d1e050f4c155aa9f83c0b18f37a98f5ce0c4ef112fd12c6399a8cb1f",
+            "9fc706ce870c350524c82fa14b37c77255adea005f65a83db930fd964f12b921",
+            "3081d0257002a97eb0b82adac9870bf2076890bca69f8c5613c50da9d4524fa3"
+          ],
+          "block_shield": [
+            "3c6bb10f0902eef4d5e3980a02d5e097c14cf3d915455b2d3bd1cdbb3409c38f",
+            "944d55706cc46bf2c2e954f8e5f804395d09f9baec8847421b7910e685dba1e3",
+            "831ab05e5f1e673a1e8eb9c65041e88f2858f169bfff12144f3eb7985cd30eab",
+            "6e71605ef41aeaf3a1cf4bb56ed880326c90fafef43f3b9ed10bc7ab0421af30"
+          ],
+          "attack_sword": [
+            "91a873e1294bf79e0cd7a57845d1f36e6dd6bd25019969da701f2f223d0fe825",
+            "3e07305170cd76bb2ca65335d5e7d35ce0b613b65e8e11588c3bb743003c043f",
+            "421ad9f633bbc9d9854210b381e90281d328d28631bc01aea311d81e8f05059f",
+            "52424078c5924603b125dfac4425b7e9a865ae93cd50ad17e77daef81570ef3d"
+          ],
+          "attack_axe": [
+            "1d0a22b200ba122562ec3311758ae2840629af1d2df38278578393340b7cf609",
+            "8e06e00a53cbe553a01edda5eb468ad11abc675e266ffcb42b512e55866fa223",
+            "c4bdb7dea49ab3f00261df141631e1c565920d36e8d357f8b72f66f894e4243d",
+            "b9d8e510a3ab79625f9d06126451a30ca5e97521d710cf47efc7255c26223f19"
+          ],
+          "attack_spear": [
+            "7abbcac783a8a18f237f8da1848a73789c33448df1ab3e8ba10c833781913525",
+            "f0f498140e5cfbba1a3104a5bbfc29c23bdd8b247e5ea64eea55f6ec87343495",
+            "b0528206733d37f2020658a77f3d77e44a482d784d5be480c7a4e4bc740108ad",
+            "1098edd08a3fff9f3f492a9ee0bfc7b24999ec892debdfd84e1b9c671dc4eb78"
+          ],
+          "attack_dagger": [
+            "999795ff8b95956033aa9d3636e419cc7c0e0d7085310fb2a5bd9bb7f1362c4d",
+            "c98c0de461b71cb0b4441966bba37795297e52537a95aa4098972c50e8df115d",
+            "aa4d02b5e10f4d8cc3af7fab7b6abf9e53802b7e2f511900c80bea218a762e1d",
+            "db0c0583bd586b0e4dc379feb1a723b470d8b316a678091ad815d20662119195"
+          ],
+          "attack_bow": [
+            "56849246f686c34373f97043e7d7a461c1bdeec66332d591f8a6e25c5f43bd97",
+            "5aa80af28b1a637223b8ba2b88e3b0299bafc2c388ac1798e7f1efc3305e0745",
+            "8b0282ed7c4cb97abd0f0a26f356c10ab2a88152a276b2c120ff857d2db835b5",
+            "999268c0ff19e26f14b8543fd952814c59dfc06949c7e73cda8c7aee8a996420"
+          ],
+          "attack_staff": [
+            "c9ba46c39e96cc43b2617a514834897c481cbb0d58097e32aca9ea6126b47f39",
+            "eebc0e097f7a325a3dc51f1b8c65f65a62709c96e4a2ff39de7970e94aab2434",
+            "1bf8ab5b0b1cd3e563f6e054636639f547ca796f4daa12ab8e0589b243cb53b1",
+            "a057aebecc0f09d0cf44267a678a2581328b4da56f3f6bb7fe6abc68ccfce61d"
+          ],
+          "attack_mace": [
+            "8f8ed2f21b70363b49775a91abcf908ff95c79188c37db72d0f5029e119dcf17",
+            "533cf283ff8101681bdb3ccce7c3f1a6edfef899c35e5aba4353cd7d6d0c3069",
+            "e9ad795030cd31644159489b1b5a7d7018642aeead217a1573d041bbd0ac0c20",
+            "c7e32223343bd47b51762268f06de680a1d5aaff0d2d4e81a1ca432f0184b08e"
+          ],
+          "attack_book": [
+            "59569922644d3bce83bcd027eda6d138c93c29cb8ad8b20467f55e9f5b947d64",
+            "be53c6a65f2a359febb1c4de472db687dbcb8afd6cc696cd99e41642423ffa65",
+            "f0f70ae186bcd0137e03b08ce474606ad19689230287a19e11639e8ef175877a",
+            "207cc69a55221eb70e05fb7c7707ce424aeca6469be1de830ac421bcc640a134"
+          ],
+          "attack_gloves": [
+            "e4fd9294d41a4455717933fc08df4446d778272f083dde6ab461fc72c1178a1e",
+            "8eb4d6c2f5966f176a030a102fd8b4f334b24e5c0978b36a40e66809beeb95d7",
+            "229828fa9160b7ad7d45a78862bbcf45763a841f3d8785d678609af67c745a36",
+            "4e8f1b19fd0f3dc71a3f988d681b208d7ab94e84fb7dead1e4d618ed17c4a3ac"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; no class offsets",
+        "equipmentRigRevision": 3
       }
     },
     {
@@ -117252,7 +117512,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 2.5 in class order: Cruzado, Pirata, Druida, Espadachín rúnico, Chamán, Inquisidor, Heraldo de guerra, Ninja, Alquimista, Herrero; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
