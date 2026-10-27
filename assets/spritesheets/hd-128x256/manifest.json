@@ -63345,11 +63345,12 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 8,
+        "validFrames": 12,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
-          "walk"
+          "walk",
+          "hurt"
         ],
         "actions": {
           "idle": {
@@ -63493,7 +63494,74 @@
             "distinctFrames": 4
           },
           "hurt": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "d250c772c5348d56b07306436a64186cf1ebb94a3c3b35f088ce70f1c9bbdf81",
+                "bytes": 23436,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  91,
+                  114,
+                  248
+                ],
+                "pixelSha256": "c27e0467394d2d80bc324d821ad034b8e810f232c026d0f138e79819031e42b1"
+              },
+              "02": {
+                "sha256": "3bd46797093477b82b481e835cff1b5a0e12a4f9e457f1046daef074c3f5575e",
+                "bytes": 22084,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  91,
+                  108,
+                  248
+                ],
+                "pixelSha256": "93c710e21236ce0f2b4297412c2c6ed5b65ff7e0e06360323889bb115410f8f1"
+              },
+              "03": {
+                "sha256": "0266166eebd57233961e28681495cfeb7d120eebce71d785c1d9a737a137c0ba",
+                "bytes": 19367,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  112,
+                  96,
+                  248
+                ],
+                "pixelSha256": "5a22d060bcd9825e55403ae214c1eaaf37297c57117fc6d2e116818e64b751b0"
+              },
+              "04": {
+                "sha256": "4c62b417420469d61ffb3a2af102aa807ef9e0c3a670c9b031c22ee9e31aae43",
+                "bytes": 23256,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  91,
+                  101,
+                  248
+                ],
+                "pixelSha256": "094933cdc6554f01d02800d40bb4b9490550cfb6e7b8806eb2c55adfd40ccc32"
+              }
+            },
+            "distinctFrames": 4
           },
           "use_consumable": {
             "status": "missing"
@@ -63609,6 +63677,44 @@
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "hurt": {
+          "sourceSha256": "c32eca7cac466b15ea031c12177e8b92db4cf62192eab83e3a0dc59a645b94c8",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            642,
+            22,
+            1069,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/luchador/f/source/hurt-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Luchador FEMALE, Tier 2, action hurt. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Bare upper arms in every pose; no novice shirt sleeves or leather gloves. White fighting wraps cover wrists and backs of hands only, fingers and all grip contours stay visible. Adult athletic feminine fighter with jet-black hair in a compact high double-knotted ponytail, determined brows and warm tan skin; retain canonical female head size and face placement. Specialist hand-to-hand combat outfit: fitted sleeveless deep TEAL martial vest with BLACK side panels, small COPPER diagonal clasps and a fully covered torso; broad black sash with copper geometric fist medallion and two short teal tails close to hips; charcoal tapered martial trousers with teal outer seam, off-white linen wraps on wrists and backs of hands leaving fingertips exposed, black wrapped calf guards and soft dark split-toe fighting boots with copper ankle buckles. Compact leather elbow guards, no pauldrons, no metal breastplate, no fur, no prayer beads. Defining identity is teal/black, white hand wraps and copper fist clasp. No weapon or equipment attached, no long cloak. Tier 2 pressure fighter descended from Acolito, separate from the red/white spiritual Monk. Tailored layered training gear and reinforced wraps show specialization. Reserve heavy gladiator plates for Campeon de arena. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+          "canonicalPoseHashes": [
+            "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+            "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+            "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+            "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -63642,6 +63748,22 @@
         },
         "walk/04": {
           "source": "sources.walk",
+          "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt",
           "frame": 4
         }
       }
