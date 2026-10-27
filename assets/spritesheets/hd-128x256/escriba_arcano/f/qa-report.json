@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-27T13:36:32.687015+00:00",
+  "classId": "escriba_arcano",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\escriba_arcano-f-sheet.png",
+  "sheetSha256": "29963790421bc0a84ade69c5cf8ffed7ba418d6d7d5a86c6c581af5fbf549739",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\idle\\escriba_arcano-f-idle-01.png",
+          "sha256": "970b09cd2c49fe403514463e6a8e9cf5af11e66c31b35ea367bed0eb518cd108",
+          "alpha_bbox": [
+            25,
+            93,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\idle\\escriba_arcano-f-idle-02.png",
+          "sha256": "c1247f0bcf6ab986d0e13696edd74314cfbf8c5c9edad846b71128727b3b667f",
+          "alpha_bbox": [
+            25,
+            93,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\idle\\escriba_arcano-f-idle-03.png",
+          "sha256": "c257754c4918d7e6bd35eec292d3f2c53d6d825ff1d4106b54988c88675167a9",
+          "alpha_bbox": [
+            25,
+            93,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\idle\\escriba_arcano-f-idle-04.png",
+          "sha256": "e78acb5603de9ca0dcc237320e2ca38db68d04b725a32271bb36aecf3daa05b9",
+          "alpha_bbox": [
+            25,
+            93,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\walk\\escriba_arcano-f-walk-01.png",
+          "sha256": "29ad30925a441ce91e0ae8e16c6e40cddff9216a6fc2860113535c54511bf7f1",
+          "alpha_bbox": [
+            11,
+            92,
+            107,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\walk\\escriba_arcano-f-walk-02.png",
+          "sha256": "7b1115733e0e8eceb2cf85ebe6daf9bf39520d612878005367adc5185a0a440d",
+          "alpha_bbox": [
+            29,
+            91,
+            96,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\walk\\escriba_arcano-f-walk-03.png",
+          "sha256": "632a547d7bb935002c40d48cabaff8a4b84df0ff5213fd16805fba2c00f3ee97",
+          "alpha_bbox": [
+            10,
+            92,
+            117,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\walk\\escriba_arcano-f-walk-04.png",
+          "sha256": "b815a96d11c23db8f0e381e92d8d79328d078ee76344ff8ae9cf85c21ab2a993",
+          "alpha_bbox": [
+            19,
+            91,
+            93,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\hurt\\escriba_arcano-f-hurt-01.png",
+          "sha256": "0cff5dda1ca83d6af2bc37a9dadd61a60a598b89c4e11277567bf92e02bb28d3",
+          "alpha_bbox": [
+            29,
+            93,
+            112,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\hurt\\escriba_arcano-f-hurt-02.png",
+          "sha256": "a474f708c65814851bcc1a9f1aa2948b5205bb19bf9367c683333679e4afc129",
+          "alpha_bbox": [
+            26,
+            93,
+            108,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\hurt\\escriba_arcano-f-hurt-03.png",
+          "sha256": "c08877dc9edca99e219e8de0967416a409d6d39890fbe211a3c2d04ef94591d6",
+          "alpha_bbox": [
+            21,
+            113,
+            98,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\hurt\\escriba_arcano-f-hurt-04.png",
+          "sha256": "1a52e4879c0e599628e1f924b95daa9fca0c231d88c9cbb5879c88dd5f63e7a9",
+          "alpha_bbox": [
+            19,
+            93,
+            100,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\use_consumable\\escriba_arcano-f-use_consumable-01.png",
+          "sha256": "799aa64a1bd932e0e9999c445bbd321be7e21be28d57cc6023fdd993ec0c6ea7",
+          "alpha_bbox": [
+            21,
+            91,
+            100,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\use_consumable\\escriba_arcano-f-use_consumable-02.png",
+          "sha256": "cf534c2443390da3235ce4f115bbe65583a266a1e89af864b2e1ca3cc742e64a",
+          "alpha_bbox": [
+            21,
+            91,
+            100,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\use_consumable\\escriba_arcano-f-use_consumable-03.png",
+          "sha256": "b7c18bc4018f15c7dfa41cc981f67bd80e378d0d96e4a8407da8c56ac2bba288",
+          "alpha_bbox": [
+            21,
+            91,
+            100,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\use_consumable\\escriba_arcano-f-use_consumable-04.png",
+          "sha256": "86ac17c2190376457e48cbad596bb26995c48529b3bd6f4465fec432089e3908",
+          "alpha_bbox": [
+            21,
+            91,
+            100,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\dodge\\escriba_arcano-f-dodge-01.png",
+          "sha256": "4a4755cc49e4a187992861ec6dac414abc2efc6c669073912b57340124d0c814",
+          "alpha_bbox": [
+            26,
+            93,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\dodge\\escriba_arcano-f-dodge-02.png",
+          "sha256": "2c53ed169f0f7f3570111caf3a4be1425f9642ab532e833b17421362f6b3efae",
+          "alpha_bbox": [
+            32,
+            93,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\dodge\\escriba_arcano-f-dodge-03.png",
+          "sha256": "b21a1054d9759f35444a2b4eb909ae3efac6662f9a5e6cf3f9e2713eefc245bb",
+          "alpha_bbox": [
+            25,
+            124,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\dodge\\escriba_arcano-f-dodge-04.png",
+          "sha256": "7c42bd599edcd8c14c354d2b0da692df0ea44686da10664827a53d857e783c82",
+          "alpha_bbox": [
+            17,
+            93,
+            103,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\block_shield\\escriba_arcano-f-block_shield-01.png",
+          "sha256": "65b9066a2a3e6a996faf034c3fe990987823a7c3357cf708a877fab341e04f8a",
+          "alpha_bbox": [
+            22,
+            93,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\block_shield\\escriba_arcano-f-block_shield-02.png",
+          "sha256": "e43b1a259f99a5086232fd88e5cd6a1ddc69321887bd72764decb5dc6ed72755",
+          "alpha_bbox": [
+            22,
+            93,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\block_shield\\escriba_arcano-f-block_shield-03.png",
+          "sha256": "b417e09d6d64a167c584f8e357a71fc367fabc7be9b60be5a3c9a73bd2ea1c5f",
+          "alpha_bbox": [
+            21,
+            103,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\block_shield\\escriba_arcano-f-block_shield-04.png",
+          "sha256": "cf48b0ae6a0eaccf202b323969475c2085b392d728183c18d0d867454343dcb7",
+          "alpha_bbox": [
+            23,
+            93,
+            107,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_sword\\escriba_arcano-f-attack_sword-01.png",
+          "sha256": "5e0948c1a893efaf2427de6e8b056bc60a5cc7b7b319094c07e08c4504c82cb9",
+          "alpha_bbox": [
+            21,
+            91,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_sword\\escriba_arcano-f-attack_sword-02.png",
+          "sha256": "d2552ffc3e4d930d0a3b05ea178f2cfe081c51cbee0e75ff50ed1d121dfbfd8e",
+          "alpha_bbox": [
+            25,
+            91,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_sword\\escriba_arcano-f-attack_sword-03.png",
+          "sha256": "f0ce8a63e1f76a59996ba0ceebfd735cdfcac03b294f65ee0a1d0dd48abd243a",
+          "alpha_bbox": [
+            20,
+            94,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_sword\\escriba_arcano-f-attack_sword-04.png",
+          "sha256": "3de3224ef667c86971d4649b41bdb0cf3db08322210fcde33a6d0f8e23d52c3f",
+          "alpha_bbox": [
+            21,
+            91,
+            109,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_axe\\escriba_arcano-f-attack_axe-01.png",
+          "sha256": "6a4db554962d1e55f51801f3574cae34d72738c4c03e00e5dbc16b0c879a7137",
+          "alpha_bbox": [
+            23,
+            95,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_axe\\escriba_arcano-f-attack_axe-02.png",
+          "sha256": "aad828a13fb07466ecd3f904c0cc6a17149f90d3d0eca710405aea24fdf4d967",
+          "alpha_bbox": [
+            21,
+            90,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_axe\\escriba_arcano-f-attack_axe-03.png",
+          "sha256": "4df2011d15d9f927d8154bdb82b5ef7efc62f17ccde1ce243c6505e28bac6cdc",
+          "alpha_bbox": [
+            11,
+            103,
+            102,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_axe\\escriba_arcano-f-attack_axe-04.png",
+          "sha256": "e2e8099b2f43769e303173e35ee8c283784a1b132d1d9d30279cc8533a84695d",
+          "alpha_bbox": [
+            9,
+            95,
+            98,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_spear\\escriba_arcano-f-attack_spear-01.png",
+          "sha256": "aecd278cf79081d852d9b4e5d10a682ce52a6efe0aaa0445173d948195c6930f",
+          "alpha_bbox": [
+            14,
+            94,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_spear\\escriba_arcano-f-attack_spear-02.png",
+          "sha256": "767ce8ff7170dce94a69365de92d53a23e3ad246bff135bde7707ad7c060cedc",
+          "alpha_bbox": [
+            14,
+            94,
+            100,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_spear\\escriba_arcano-f-attack_spear-03.png",
+          "sha256": "9e8276704bc5e0f25eaed367f7a3a1ecd76b3e18425e37a0bce7cfc5f4a26431",
+          "alpha_bbox": [
+            12,
+            94,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_spear\\escriba_arcano-f-attack_spear-04.png",
+          "sha256": "3235bf15609f030fd8695893041a28405f840022e22ad5ed57744124f270d805",
+          "alpha_bbox": [
+            14,
+            94,
+            111,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_dagger\\escriba_arcano-f-attack_dagger-01.png",
+          "sha256": "7bfb0a026b68459be733716b20d4fa373ed1f5b472fccf9578951f2bfb061a09",
+          "alpha_bbox": [
+            14,
+            92,
+            100,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_dagger\\escriba_arcano-f-attack_dagger-02.png",
+          "sha256": "a37855a1ecb2096bf11c68043af2f86c0d393bac8d82280353abb94d9d579efb",
+          "alpha_bbox": [
+            20,
+            92,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_dagger\\escriba_arcano-f-attack_dagger-03.png",
+          "sha256": "d66d7ee07f7480ebfe6a8df25cac78f83535878a440cdd92a1c33d9585a7d44b",
+          "alpha_bbox": [
+            17,
+            92,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_dagger\\escriba_arcano-f-attack_dagger-04.png",
+          "sha256": "e172d66898b499d30889e529f7e75315198d369f5ba643044c99739a6d4221cd",
+          "alpha_bbox": [
+            21,
+            92,
+            109,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_bow\\escriba_arcano-f-attack_bow-01.png",
+          "sha256": "a08da337b4e5e62998ae5ffcfa5f54458c02b111ba959974adff4fba96c4c983",
+          "alpha_bbox": [
+            27,
+            92,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_bow\\escriba_arcano-f-attack_bow-02.png",
+          "sha256": "b81f98b8f27fa70915025e676c88e0bb63322d4cd1cde5540480c7e7255835ac",
+          "alpha_bbox": [
+            18,
+            92,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_bow\\escriba_arcano-f-attack_bow-03.png",
+          "sha256": "78d823794261f773ac0751189cd3135eb7a9fc1284b0901dd466131c9b7c260f",
+          "alpha_bbox": [
+            17,
+            92,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_bow\\escriba_arcano-f-attack_bow-04.png",
+          "sha256": "259635cf9fb608e685328923e36fc2d9d456e1ca16130f21741c7a0c8322744d",
+          "alpha_bbox": [
+            17,
+            92,
+            109,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_staff\\escriba_arcano-f-attack_staff-01.png",
+          "sha256": "7963dc209af12358ba9fd404d84557c4929e464c34f5760a9a1bf4026a9d94e1",
+          "alpha_bbox": [
+            22,
+            92,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_staff\\escriba_arcano-f-attack_staff-02.png",
+          "sha256": "e8df558effdb5a827f3ee14a11f8907dc0d8702aabced896ffe2021dde25b241",
+          "alpha_bbox": [
+            23,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_staff\\escriba_arcano-f-attack_staff-03.png",
+          "sha256": "aaabecf4d233c60249e40bc1c8248f1d81383c9532388f9bf15b81ae2ddf9b35",
+          "alpha_bbox": [
+            23,
+            92,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_staff\\escriba_arcano-f-attack_staff-04.png",
+          "sha256": "31f0238e3f67e1f2c4a5be66fad3d0171d304ac1a77f9ed9c1ba7ec54c9f830a",
+          "alpha_bbox": [
+            22,
+            92,
+            105,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_mace\\escriba_arcano-f-attack_mace-01.png",
+          "sha256": "497b33801955718d2482f35f4ea7374186a2c819a437c336babc3773c2f5d97d",
+          "alpha_bbox": [
+            26,
+            92,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_mace\\escriba_arcano-f-attack_mace-02.png",
+          "sha256": "eb3b7d80978cf062074fa588760d74acb19a5fcb3432487eaedcd64226656771",
+          "alpha_bbox": [
+            23,
+            91,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_mace\\escriba_arcano-f-attack_mace-03.png",
+          "sha256": "f584a9fa90415e2a60fd6b872ccf8ecd24e064d7398b9e9dee6fbc1dd14e900f",
+          "alpha_bbox": [
+            19,
+            100,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_mace\\escriba_arcano-f-attack_mace-04.png",
+          "sha256": "73f551afd66f7d91b72a0260b53464a00a26b78502353f906ba985ba71757458",
+          "alpha_bbox": [
+            17,
+            92,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_book\\escriba_arcano-f-attack_book-01.png",
+          "sha256": "09e4b113afba0aee2272f91bd645a58990c628587a21d25434662bdb6a1fe90b",
+          "alpha_bbox": [
+            26,
+            91,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_book\\escriba_arcano-f-attack_book-02.png",
+          "sha256": "a19b1927413c4cb5e087db4f6b6672aa400eac87971190b2c92de2ab96d758b5",
+          "alpha_bbox": [
+            22,
+            91,
+            103,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_book\\escriba_arcano-f-attack_book-03.png",
+          "sha256": "7bfa76fb26915e16629d83d15d855a3096224ddd6116bbabd5fc0312c7dd4435",
+          "alpha_bbox": [
+            21,
+            91,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_book\\escriba_arcano-f-attack_book-04.png",
+          "sha256": "d7a68d547cc16d9babcf3424c0baef513c8253133c50a980b8ba2b02405cfda0",
+          "alpha_bbox": [
+            21,
+            91,
+            102,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_gloves\\escriba_arcano-f-attack_gloves-01.png",
+          "sha256": "d2d60ae60a65ab19e7fdc3bb81ecd7f9802b8e6e518a2388addccba5e1f9d5a3",
+          "alpha_bbox": [
+            19,
+            93,
+            101,
+            247
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_gloves\\escriba_arcano-f-attack_gloves-02.png",
+          "sha256": "dc1d1ca20aad85204171cd3dc68eaf4e112d8f52a7315c2bb4b313f3bc5931f7",
+          "alpha_bbox": [
+            19,
+            93,
+            101,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_gloves\\escriba_arcano-f-attack_gloves-03.png",
+          "sha256": "66a6c6b8a710ddfeccf57ff88d5bc0415732c812440ead36dd37d1af7951c092",
+          "alpha_bbox": [
+            9,
+            93,
+            114,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\escriba_arcano\\f\\frames\\attack_gloves\\escriba_arcano-f-attack_gloves-04.png",
+          "sha256": "7dd57d17ef87a74e4c7f3da6a1a9f96fcb4782ec34879bcfc46a1a4cc78ba756",
+          "alpha_bbox": [
+            9,
+            93,
+            91,
+            247
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}
