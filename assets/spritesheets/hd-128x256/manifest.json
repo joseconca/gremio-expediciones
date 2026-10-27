@@ -71244,8 +71244,8 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "e6bd71169adf1ef467e42b875125b1cad3a04bb1b804e043d8ae7356f0af2c60",
-                "bytes": 24088,
+                "sha256": "a0f042e4064333a7756c2478faa871f0a985544c0ff5807d549c20eb77dc0567",
+                "bytes": 23932,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -71257,11 +71257,11 @@
                   118,
                   248
                 ],
-                "pixelSha256": "496fdfae1ce31773e0736852d7a95159658a75d339f683a7f14a4e9b6f530edb"
+                "pixelSha256": "7910d091f9ae7fea4d726a7b6348ce6ba2b3be70aaf5730f2b5ee442025ffa1a"
               },
               "02": {
-                "sha256": "b5e3b1e478ac8ac0a176b4432f67c2aaa76d2b7f22ffacf7b8f7f91ac638aeb9",
-                "bytes": 23736,
+                "sha256": "99e81a8e6dde69f4e7e41c113cf539fa901c5f8e6855f4823f33d2a76d7a067c",
+                "bytes": 23651,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -71273,27 +71273,11 @@
                   118,
                   248
                 ],
-                "pixelSha256": "1f76dc514758ea6b5a0e61ceec8d6b3afd0d3dfa9e40966bd3d59cd3996fbf04"
+                "pixelSha256": "2f2ecbd51fd01ef7cdacf08a712fe4c643b584c6af3ceb58142df640420cfd02"
               },
               "03": {
-                "sha256": "4a969a3f90c07e71512a2459390fa32a1f6d6b795c72b16d03ef0ad8ccd28a8b",
-                "bytes": 23748,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  22,
-                  95,
-                  118,
-                  248
-                ],
-                "pixelSha256": "0360b93fefb7f63ef6fdbec0c287bf77ff0fe8d63d450e917b875b84e71183dd"
-              },
-              "04": {
-                "sha256": "7442d4b4a4b29f294dae3eb91a003cbc75f3ba502cc9b625b6c58bdb59f748b7",
-                "bytes": 23973,
+                "sha256": "f99d0041307c508170895270d2b19536cc96d455084ba13f9120ce542dfd4215",
+                "bytes": 23627,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -71302,10 +71286,26 @@
                 "bbox": [
                   20,
                   95,
-                  118,
+                  115,
                   248
                 ],
-                "pixelSha256": "e42d62bdf50b19827bccc87809d8e6c501236999b920a357cf65b2b648e45205"
+                "pixelSha256": "42c0e0070f825ce43e5c48891065ec901fc0572649f26084f51314df4ef72622"
+              },
+              "04": {
+                "sha256": "f792eb3859d066d2caca2d29c8db385fec1f826fd353b21078a1891dc30d3881",
+                "bytes": 23842,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  18,
+                  95,
+                  115,
+                  248
+                ],
+                "pixelSha256": "037c64b54345848d69c8cf34581e28da5b8420e8b451d23fe9d6af0ddcc3b722"
               }
             },
             "distinctFrames": 4
@@ -72226,7 +72226,7 @@
           ]
         },
         "attack_bow": {
-          "sourceSha256": "4adc50cc0916e80026444b7816e06ad8cce3bf8e61f060dbac5862d393f0e4f4",
+          "sourceSha256": "cf3954febaf5d82eb95d13f310e14756dcafdfe3e79278405a8e3d460e06db15",
           "sourceDimensions": [
             2172,
             724
@@ -72251,7 +72251,7 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/escriba_arcano/m/source/attack_bow-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/escriba_arcano/m/source/attack_bow-reference-v2.png",
           "generator": "built-in imagegen",
           "prompt": " Production RPG body sprite strip for Escriba arcano MALE, Tier 2, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted ivory sleeves with narrow navy cuffs stop above the glove grip; no loose cuffs covering palms or fingers. Adult studious masculine scholar with ink-black neatly side-parted hair and a restrained dark-blue sheen, thin brass round spectacles, attentive intelligent expression, clean-shaven; canonical head size. Arcane scribe academic outfit: fitted PARCHMENT-IVORY scholar coat with INK-NAVY vertical panels and narrow AMETHYST piping, high folded collar, fitted sleeves ending above dark fingerless gloves, coat split into short narrow knee-length tails close to legs; three flat violet geometric seal patches on chest and belt, fine brass round spectacles, a small quill-shaped metal collar clasp and compact closed scroll-case loops at belt (no held scroll). Ink-navy fitted trousers, dark neat boots, violet sash. Defining features are ivory parchment coat, ink panels, brass spectacles and violet seal geometry. No wizard hat, no staff, no open book, no glowing symbols or floating effects. Tier 2 book specialist after Mago, scholarly seal-worker rather than another blue/gold elemental robe. Reserve dense rune armor for Runista and luminous ward mantles for Abjurador. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_bow-reference.png",
@@ -72261,7 +72261,47 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "4adc50cc0916e80026444b7816e06ad8cce3bf8e61f060dbac5862d393f0e4f4",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                577,
+                24,
+                1060,
+                686
+              ],
+              "scale": 0.23,
+              "origin": [
+                8,
+                96
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/escriba_arcano/m/source/attack_bow-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Escriba arcano MALE, Tier 2, action attack_bow. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted ivory sleeves with narrow navy cuffs stop above the glove grip; no loose cuffs covering palms or fingers. Adult studious masculine scholar with ink-black neatly side-parted hair and a restrained dark-blue sheen, thin brass round spectacles, attentive intelligent expression, clean-shaven; canonical head size. Arcane scribe academic outfit: fitted PARCHMENT-IVORY scholar coat with INK-NAVY vertical panels and narrow AMETHYST piping, high folded collar, fitted sleeves ending above dark fingerless gloves, coat split into short narrow knee-length tails close to legs; three flat violet geometric seal patches on chest and belt, fine brass round spectacles, a small quill-shaped metal collar clasp and compact closed scroll-case loops at belt (no held scroll). Ink-navy fitted trousers, dark neat boots, violet sash. Defining features are ivory parchment coat, ink panels, brass spectacles and violet seal geometry. No wizard hat, no staff, no open book, no glowing symbols or floating effects. Tier 2 book specialist after Mago, scholarly seal-worker rather than another blue/gold elemental robe. Reserve dense rune armor for Runista and luminous ward mantles for Abjurador. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_bow-reference.png",
+              "canonicalPoseHashes": [
+                "5f2f06dbf03d848a56e8b55f76eeb845995ff83c27b158e6991ff970e57a9887",
+                "ecea87020a72ad40744fb64ca0f66ea268035e9c8b5d90bb6e2a83635019ab5b",
+                "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
+                "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_staff": {
           "sourceSha256": "73906a14062d38fc49cd734927d5d059e238daa7f5dbe13c0b6fa77e94ee129b",
