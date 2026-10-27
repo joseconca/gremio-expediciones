@@ -52392,11 +52392,12 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 8,
+        "validFrames": 12,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
-          "walk"
+          "walk",
+          "hurt"
         ],
         "actions": {
           "idle": {
@@ -52540,7 +52541,74 @@
             "distinctFrames": 4
           },
           "hurt": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "9ab777485ce36e835b9daff419af1bb8a17968fc9ee74effb9988fec4f930007",
+                "bytes": 24800,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  92,
+                  105,
+                  248
+                ],
+                "pixelSha256": "0207510a40813ee50c52d1c48792ba787204f1951bc25e38234017f7a34fe06f"
+              },
+              "02": {
+                "sha256": "3a2e7fb2ca73447a1c4b60dfb0141feea35542df9b6b8a133b6a6970909629ed",
+                "bytes": 24999,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  13,
+                  100,
+                  113,
+                  248
+                ],
+                "pixelSha256": "89b11f9c9b1ec9c0e2ed5c04adedbe1d85a87caabe3ce5b50ed8620c7ee1a138"
+              },
+              "03": {
+                "sha256": "0e5a4d27449209a0606939a2affd844c393aba8e27cfb6c8301bac1af6ccd722",
+                "bytes": 22422,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  16,
+                  119,
+                  104,
+                  248
+                ],
+                "pixelSha256": "09ec4b0577497f395bfddd24efe1e4f7d3cc5061454e3383b8fadb792eae4c39"
+              },
+              "04": {
+                "sha256": "58f6050a4690f7dba5b2fc3cee6306e8bdc61cadc63304f5434f9464d3ea442d",
+                "bytes": 25048,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  92,
+                  102,
+                  248
+                ],
+                "pixelSha256": "c4e05e46317c11d2bbf2823ee74e0dd08f18851b8b9518770d03cb541d22db85"
+              }
+            },
+            "distinctFrames": 4
           },
           "use_consumable": {
             "status": "missing"
@@ -52656,6 +52724,44 @@
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "hurt": {
+          "sourceSha256": "9d62dabe12f701458a7ad3649883c78573cca897dc41020924372cef437c17e8",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            617,
+            19,
+            1047,
+            697
+          ],
+          "scale": 0.23,
+          "origin": [
+            14,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/hurt-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Create production RPG body sprites for Super Novato MALE, action HURT. Image 1 is canonical male hurt geometry; Image 2 defines costume identity from idle. Change ONLY clothing of image 1 to match image 2: ivory short jacket with restrained golden edging over burgundy tunic, short burgundy scarf, neat brown leather cross-straps and bracers, blue trousers with reinforced brown knee panels, brown boots with small brass fittings. Preserve EXACTLY image 1 four full-body poses, head scale, hand and foot coordinates, per-quarter positions, camera and 3:1 canvas. Same youthful brown spiky-haired hero and painted anime RPG style. Four distinct phases: ready, recoil and wince, knees buckle briefly, recover. Facing right throughout. True transparent background. Empty hands; no equipment, blood, effects, shadows, labels or grid. Do not enlarge crouched character. Narrow costume, target 2172x724, one row of four separate complete characters, full boots visible with margins. Exact canonical geometry is required for shared equipment.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/hurt-reference.png",
+          "canonicalPoseHashes": [
+            "8ae381b19524a1f1b98d33e750372e09c7051c5a3868c5d3e6d22f21acd610ee",
+            "bd77167140c15b93b69566bb90c4d9b42293de7cbb2fffd05fdc4e429c80edd7",
+            "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
+            "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -52689,6 +52795,22 @@
         },
         "walk/04": {
           "source": "sources.walk",
+          "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt",
           "frame": 4
         }
       }
