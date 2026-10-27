@@ -52479,68 +52479,68 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "b4e01e7d4202f7a9347d4172a96370d34c3a438ac801348f7a82e5b385ccf757",
-                "bytes": 23608,
+                "sha256": "f5e0126239507ac6a96e28b5bd436a993a69084a91991fc650fb252bf91ea480",
+                "bytes": 23749,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  10,
+                  12,
                   92,
                   112,
-                  246
+                  249
                 ],
-                "pixelSha256": "462a8bb201cd2d2909a95d162e4492e49ad714ec68ebcec56200823e59ce7265"
+                "pixelSha256": "47966663aac32bed128edc568cf9c3a6d6d2cc6b22974f7e20f18f8901146f5c"
               },
               "02": {
-                "sha256": "c12c69b5268b34e4b90b3a3895737a0e42fa4182839213ffbd92e3a208cd6ae0",
-                "bytes": 21213,
+                "sha256": "48eb001073990c4d151047b8bf76d7297b643d145efdf7db18bdb505ae1c5b31",
+                "bytes": 21517,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  11,
+                  14,
                   91,
-                  108,
-                  245
+                  110,
+                  248
                 ],
-                "pixelSha256": "2934ab509cf75db1aabdc8552fad7c1e7f835422f802b8acac5a63b536875a61"
+                "pixelSha256": "26c97cf571cd82ad3b2f36f7a5ed89700a32b4cdff115031157e44a977113a9d"
               },
               "03": {
-                "sha256": "4f4fad357f5021260b14489a7b685d78e95efb6066cd6bfe6e78041ba5a9c491",
-                "bytes": 20786,
+                "sha256": "ef4583c729a7d65cb7f7be7a8f3059f7c2eb4c20b4953df2bdc3e886d6746478",
+                "bytes": 22285,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  6,
-                  91,
-                  113,
-                  246
+                  12,
+                  92,
+                  114,
+                  248
                 ],
-                "pixelSha256": "badaedefb3dee6769587a2bd9f4f1ae86495271cbfdd02c5f5d528d0f2c85c12"
+                "pixelSha256": "00d51652ae64f8d0702ed0e0c61d92f55f5ccdfce8c77415d6e5f26c5853e742"
               },
               "04": {
-                "sha256": "d6e57152e031e152bedf05244de4a29ce51d6b8d2bdedf4866c898d3928cac2d",
-                "bytes": 22679,
+                "sha256": "d30f7c1cdb87b163bc59f6752d8170f2cd8ed52574abf1f4f7682e206702d447",
+                "bytes": 23257,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  17,
-                  91,
-                  112,
-                  246
+                  13,
+                  92,
+                  111,
+                  248
                 ],
-                "pixelSha256": "f263bfc33d8800866f77f020f23499835d1eb789151b0daa81da3282889f6203"
+                "pixelSha256": "9ddb7fe91d68d6f30484bdc93b3a5395bc4eeb4cd201bc4dcadcf776dad3a4e8"
               }
             },
             "distinctFrames": 4
@@ -53079,9 +53079,9 @@
           "artDirectionRevision": 2
         },
         "walk": {
-          "sourceSha256": "c5bdca2673e0d8e13c32bb2937a88e3103e8ee70a4e26c796786b25d4d420aff",
+          "sourceSha256": "e16da77099a6eed116f62bdb4ff8ddfa6f47955cdbc8d9e887f69b6db6c86c58",
           "sourceDimensions": [
-            2172,
+            2171,
             724
           ],
           "registeredSourceDimensions": [
@@ -53104,9 +53104,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/walk-reference-v3.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/walk-reference-v4.png",
           "generator": "built-in imagegen",
-          "prompt": "Precisely correct ONLY the THIRD character's foreground arm/hand in Image 1, a four-frame Super Novato WALK sprite strip. Keep Image 1 white-and-blue sleeveless costume, brown trousers, white cravat, chain, face, hair, scale, legs, boots, camera, canvas and the first, second, fourth figures unchanged. Image 2 is canonical MALE walk geometry. In frame THREE of Image 1, the visible arm is wrongly hanging backward at left side. Move that arm FORWARD across the abdomen, elbow bent, with closed gloved fist in front of right hip/waist, matching EXACTLY the THIRD figure's foreground shoulder, elbow, forearm and glove in Image 2. Match the hand position, not Image 2 costume. The third figure's right-facing foreground fist must be at the SAME pixel location as Image 2 third fist. Preserve all four figure centers and foot placement. Actual transparent alpha background. No red scarf, no chest straps, no blue pants, no new props. Four separate complete bodies in one horizontal row 2172x724. This is an equipment-grip correction, anatomical coordinates are critical.\n",
+          "prompt": "WARDROBE EDIT ONLY of Image 1. Preserve its exact existing four characters, poses and ALL anatomical coordinates; do not reinterpret or improve their movement. DO NOT MOVE OR REPOSE ANY ARM OR HAND. Leave the existing gloved hands and their position exactly as in Image 1. Image 2 is only a costume reference. Replace Image 1 clothing with Super Novato white/cobalt-blue sleeveless tunic, white cravat, brown belt and pouches, brass hip chain, loose brown trousers, white knee wraps, dark lace-up boots as Image 2. Delete red scarf and leather chest straps completely, transparent alpha where scarf used to be. Keep exact face and hair. For THIRD figure there must be TWO visible hands: back/down hand centered around global x=1239 y=414, forward bent hand around global x=1470 y=370 on the 2172x724 source. Both hand centers must match Image 1 exactly within 10 pixels. Do NOT hide the rear hand behind the torso, do NOT shift third figure left. Preserve exact original canvas 2172x724, margins, feet and positions of every subject. Four separate full bodies, right-facing three-quarter view, crisp painted anime RPG style. Absolutely no weapons, props, red fabric, effects, shadows, grid or text. Real transparent background.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
           "canonicalPoseHashes": [
             "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
@@ -53192,6 +53192,44 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending",
               "artDirectionRevision": 2
+            },
+            {
+              "sourceSha256": "c5bdca2673e0d8e13c32bb2937a88e3103e8ee70a4e26c796786b25d4d420aff",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                618,
+                18,
+                1069,
+                696
+              ],
+              "scale": 0.23,
+              "origin": [
+                12,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/superNovato/m/source/walk-reference-v3.png",
+              "generator": "built-in imagegen",
+              "prompt": "Precisely correct ONLY the THIRD character's foreground arm/hand in Image 1, a four-frame Super Novato WALK sprite strip. Keep Image 1 white-and-blue sleeveless costume, brown trousers, white cravat, chain, face, hair, scale, legs, boots, camera, canvas and the first, second, fourth figures unchanged. Image 2 is canonical MALE walk geometry. In frame THREE of Image 1, the visible arm is wrongly hanging backward at left side. Move that arm FORWARD across the abdomen, elbow bent, with closed gloved fist in front of right hip/waist, matching EXACTLY the THIRD figure's foreground shoulder, elbow, forearm and glove in Image 2. Match the hand position, not Image 2 costume. The third figure's right-facing foreground fist must be at the SAME pixel location as Image 2 third fist. Preserve all four figure centers and foot placement. Actual transparent alpha background. No red scarf, no chest straps, no blue pants, no new props. Four separate complete bodies in one horizontal row 2172x724. This is an equipment-grip correction, anatomical coordinates are critical.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/walk-reference.png",
+              "canonicalPoseHashes": [
+                "a10a08916e6be6659913e34fb729d39bdfc8bb07451280fe4998cbf124ecad61",
+                "332685bcc4318acc2dbbc1a24b6cd52d7c3a21917aef6905df79397c340925a7",
+                "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
+                "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
           ]
         },
