@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "assembledAtUtc": "2026-10-27T10:36:37.767697+00:00",
+  "classId": "berserker",
+  "sex": "f",
+  "sheetPath": "assets\\spritesheets\\hd-128x256\\berserker\\f\\berserker-f-sheet.png",
+  "sheetSha256": "d10edde719b3503a791c6cb240fd1ca477240e208b362f90ca85895316dea09b",
+  "sheetDimensions": [
+    512,
+    3840
+  ],
+  "cellDimensions": [
+    128,
+    256
+  ],
+  "columns": 4,
+  "rows": [
+    {
+      "row": 0,
+      "action": "idle",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\idle\\berserker-f-idle-01.png",
+          "sha256": "d796efbb4ccd1ae4b88386727e9bf1f4e4d0d8cbe34902394f17657d5d397a8e",
+          "alpha_bbox": [
+            31,
+            91,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\idle\\berserker-f-idle-02.png",
+          "sha256": "e59156b5d55c4c97097a6fcec3dc126feead9d64f0efe222e4d45aa9556c8e7f",
+          "alpha_bbox": [
+            29,
+            90,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\idle\\berserker-f-idle-03.png",
+          "sha256": "1e64b6234a15721b7f15b1b41e60e73315ee91a009be99b95656bd4801d06849",
+          "alpha_bbox": [
+            26,
+            90,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\idle\\berserker-f-idle-04.png",
+          "sha256": "6619b52257caae4a254d2b36adfe7848c3a0a76cc271482c7d4b9644b7916f3b",
+          "alpha_bbox": [
+            25,
+            90,
+            107,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "action": "walk",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\walk\\berserker-f-walk-01.png",
+          "sha256": "b46245e97686aabf487b7cbb57fed0431640c1e6af8b002603d39bd7027ec463",
+          "alpha_bbox": [
+            15,
+            90,
+            107,
+            243
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\walk\\berserker-f-walk-02.png",
+          "sha256": "df43c9ec3044234d2e1c4ef1ae345eeb966c3097129dd3acc546fc5d26bf281b",
+          "alpha_bbox": [
+            31,
+            89,
+            98,
+            245
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\walk\\berserker-f-walk-03.png",
+          "sha256": "d20302f47876a885cb67d2a3d0665e7c8658ad6a700b32496984f85f12540058",
+          "alpha_bbox": [
+            11,
+            89,
+            118,
+            243
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\walk\\berserker-f-walk-04.png",
+          "sha256": "6750e427c2a61e4ff6d1a0d0b3e1b046ca0b4f47526c4bb336bad5962e68bb0d",
+          "alpha_bbox": [
+            21,
+            90,
+            91,
+            245
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "action": "hurt",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\hurt\\berserker-f-hurt-01.png",
+          "sha256": "0963b565137f7b9b33d8347c25dcb38d9703d9af2e1f50daaa0db04d64d952df",
+          "alpha_bbox": [
+            22,
+            95,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\hurt\\berserker-f-hurt-02.png",
+          "sha256": "5cdacb27ced7e8cbc2793edd35af2df5fe9d04171d941c7dbe31043e7b9a13ee",
+          "alpha_bbox": [
+            26,
+            94,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\hurt\\berserker-f-hurt-03.png",
+          "sha256": "99899f3c4a208794d949ab705f34bedcef0067a63f49cb87b913752c86a38be6",
+          "alpha_bbox": [
+            19,
+            113,
+            94,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\hurt\\berserker-f-hurt-04.png",
+          "sha256": "0e9db6e5a14e61599da4f18c7b42fbd114e015d494eb300c5028bb91bfd0f92a",
+          "alpha_bbox": [
+            15,
+            91,
+            97,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "action": "use_consumable",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\use_consumable\\berserker-f-use_consumable-01.png",
+          "sha256": "401d8ef120deb9125c9cf3310ee06d5ac216f362e1c0aba9421ff10bb40cf2c1",
+          "alpha_bbox": [
+            26,
+            90,
+            107,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\use_consumable\\berserker-f-use_consumable-02.png",
+          "sha256": "d2620fdfd39ed3701448a3df0e0f47ea49ce72668f486c7b61dd0980863f291b",
+          "alpha_bbox": [
+            25,
+            90,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\use_consumable\\berserker-f-use_consumable-03.png",
+          "sha256": "50b1646fa0c249d8aa1865301be5a3ceb6edae05bf21f8e6cb458db47c3d942d",
+          "alpha_bbox": [
+            25,
+            90,
+            106,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\use_consumable\\berserker-f-use_consumable-04.png",
+          "sha256": "6e48df7750a961b3890fff8f3b1410dc41527d5e6869e79fae5a0a3fe2151e32",
+          "alpha_bbox": [
+            25,
+            90,
+            106,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "action": "dodge",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\dodge\\berserker-f-dodge-01.png",
+          "sha256": "35937a1bc3506a7f59934ad3fae6154f8c5eaf9632455aa503de23560c7b4196",
+          "alpha_bbox": [
+            35,
+            91,
+            117,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\dodge\\berserker-f-dodge-02.png",
+          "sha256": "d4906439c2e78b7654d218b87a805c9b1a331d1f9d49cb6e8e94e0e991c7e473",
+          "alpha_bbox": [
+            34,
+            98,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\dodge\\berserker-f-dodge-03.png",
+          "sha256": "41bacf1ecaa1d5752398ac11a2e4cd504dedc153129a1d7d0b2cce7ede490314",
+          "alpha_bbox": [
+            25,
+            125,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\dodge\\berserker-f-dodge-04.png",
+          "sha256": "75ba410349a19a6aa427d56640c8cb9655cd0d9724a1bfc92e947a2cbbcfb01f",
+          "alpha_bbox": [
+            20,
+            94,
+            103,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "action": "block_shield",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\block_shield\\berserker-f-block_shield-01.png",
+          "sha256": "eec424e886152a240290e811b1b79c16b3b7d606ec2f708557e46475bff53b61",
+          "alpha_bbox": [
+            30,
+            92,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\block_shield\\berserker-f-block_shield-02.png",
+          "sha256": "5d2ac0136f02b4a51ac5027b53af38c1c6f76b98f07950b393db50a0794cda4a",
+          "alpha_bbox": [
+            30,
+            92,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\block_shield\\berserker-f-block_shield-03.png",
+          "sha256": "f685c89c0ebb587afdca404ae835b16c55ab2ba22028734d9ca4f4fcd9ca7c39",
+          "alpha_bbox": [
+            24,
+            105,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\block_shield\\berserker-f-block_shield-04.png",
+          "sha256": "8649e9420a2f241f424870cf26ad89004802947471a56019103db9cfe8d77624",
+          "alpha_bbox": [
+            19,
+            92,
+            104,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "action": "attack_sword",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_sword\\berserker-f-attack_sword-01.png",
+          "sha256": "4bdf42f022e6ff6ebc92e89443e9a31fe3614e3de0731efcbcc6a4509e5d0652",
+          "alpha_bbox": [
+            25,
+            91,
+            111,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_sword\\berserker-f-attack_sword-02.png",
+          "sha256": "a0772dac02e3d900be485ebfe06ed0f52f0ab5a3c550a9339401f24b4a756a19",
+          "alpha_bbox": [
+            26,
+            91,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_sword\\berserker-f-attack_sword-03.png",
+          "sha256": "42303dcd3ac4d9259ee40af703176660084e22c3e75d29c98c22669640ffd235",
+          "alpha_bbox": [
+            19,
+            95,
+            109,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_sword\\berserker-f-attack_sword-04.png",
+          "sha256": "306a77913f6bae0e48d8c5d29c49214b6a8445d7f4bc85d5bedcbeb811cc57e6",
+          "alpha_bbox": [
+            20,
+            91,
+            107,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "action": "attack_axe",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_axe\\berserker-f-attack_axe-01.png",
+          "sha256": "05bfa3f47e6adbffd7613f75736a26594843e7af246e8f1574491514cbc612e7",
+          "alpha_bbox": [
+            30,
+            94,
+            118,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_axe\\berserker-f-attack_axe-02.png",
+          "sha256": "a649f7028c5e29d2966848687226c96154fa9e1bfd491bc1da036561f66a63ad",
+          "alpha_bbox": [
+            23,
+            90,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_axe\\berserker-f-attack_axe-03.png",
+          "sha256": "1de111b2c89ff72d1dd2d6556d8bff9fdb052c55b3663b45883e1f31c9ff3ae5",
+          "alpha_bbox": [
+            17,
+            103,
+            106,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_axe\\berserker-f-attack_axe-04.png",
+          "sha256": "f6dbd2ca8852e804a597e57b2b7dccfb9af27180ed0ff8ece2c463a2889ebb4f",
+          "alpha_bbox": [
+            11,
+            94,
+            97,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "action": "attack_spear",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_spear\\berserker-f-attack_spear-01.png",
+          "sha256": "dc3612cd7de73611fd67f75529f818ec30b138f7c32bff19019aac03a7906aaf",
+          "alpha_bbox": [
+            17,
+            92,
+            114,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_spear\\berserker-f-attack_spear-02.png",
+          "sha256": "af2d1d42a0ed3effd4994d85b1ff4ecde078c9cf3940d2e352b7671e2afb5616",
+          "alpha_bbox": [
+            17,
+            92,
+            102,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_spear\\berserker-f-attack_spear-03.png",
+          "sha256": "e9373ce8f1f92dbd42b96685b494d13aa1c8fd15091f78d875ce474493b5f7f4",
+          "alpha_bbox": [
+            15,
+            92,
+            115,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_spear\\berserker-f-attack_spear-04.png",
+          "sha256": "56995038eed8c676cf278e8b8a4d21b06d26a83381a11c732f505c271744704a",
+          "alpha_bbox": [
+            18,
+            92,
+            114,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "action": "attack_dagger",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_dagger\\berserker-f-attack_dagger-01.png",
+          "sha256": "30ca13bf3b4447d0b5b39208d51190593cc427c6a6809e271da28d0d92f47a38",
+          "alpha_bbox": [
+            19,
+            90,
+            104,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_dagger\\berserker-f-attack_dagger-02.png",
+          "sha256": "fda4c8db475e9424ccba4bdb3e7b7877c28400d8944649d91dfcecf4bdbe876c",
+          "alpha_bbox": [
+            20,
+            90,
+            111,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_dagger\\berserker-f-attack_dagger-03.png",
+          "sha256": "21c95c76237cbd32396e23c788d6e8aaa142d8339ece6c1c7d2423989e3216f4",
+          "alpha_bbox": [
+            16,
+            90,
+            109,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_dagger\\berserker-f-attack_dagger-04.png",
+          "sha256": "46bed8f484bdf4a23ef0194bbb3e658b9b10d897d97d453954e14327928b96c1",
+          "alpha_bbox": [
+            27,
+            90,
+            113,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "action": "attack_bow",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_bow\\berserker-f-attack_bow-01.png",
+          "sha256": "02983a04fa59926182423d96cdd569349b6874ba93c0501da299e9868dd8784f",
+          "alpha_bbox": [
+            22,
+            91,
+            110,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_bow\\berserker-f-attack_bow-02.png",
+          "sha256": "eac4a3bb77027dc8cc96353b0b7fd5215a953b50c61d95e81a9718a15182fbe6",
+          "alpha_bbox": [
+            16,
+            91,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_bow\\berserker-f-attack_bow-03.png",
+          "sha256": "e1c5e104b10ec63095bec3d7e0449ab52ef7fa4d22603a87ede256641d1d7e00",
+          "alpha_bbox": [
+            16,
+            91,
+            116,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_bow\\berserker-f-attack_bow-04.png",
+          "sha256": "c5ce070dd9d3f1c1ce4eb09609a27b0d53201ec48b23ff06104fd44864798ad5",
+          "alpha_bbox": [
+            16,
+            91,
+            113,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "action": "attack_staff",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_staff\\berserker-f-attack_staff-01.png",
+          "sha256": "481670263d1d1ec74d333b7d15610656534404fb0826a5afc3caf46e072b5b17",
+          "alpha_bbox": [
+            28,
+            90,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_staff\\berserker-f-attack_staff-02.png",
+          "sha256": "fadeb2af4232a8d6fe081894c081fd08bedf7435711d67eaa26ff4c0c32eecab",
+          "alpha_bbox": [
+            22,
+            90,
+            108,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_staff\\berserker-f-attack_staff-03.png",
+          "sha256": "8249d2ac0e560f4c85a2c51f5984d90a4d9802b0c3aa8c7c5f98413bd3dabdd5",
+          "alpha_bbox": [
+            24,
+            90,
+            105,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_staff\\berserker-f-attack_staff-04.png",
+          "sha256": "5d350b84c9831f4be9b0b824c55f6ec0546831ee4be0c22f9a26bb491aa09b18",
+          "alpha_bbox": [
+            23,
+            90,
+            105,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "action": "attack_mace",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_mace\\berserker-f-attack_mace-01.png",
+          "sha256": "7b02480cdc1519439517c4b8ecf098b77d5973f2f4968e520e5fe5727485dce2",
+          "alpha_bbox": [
+            31,
+            90,
+            113,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_mace\\berserker-f-attack_mace-02.png",
+          "sha256": "2c0ae60bcc2e3443130a1dab0523179c24077a91c09ecbf336d9809280792dfc",
+          "alpha_bbox": [
+            24,
+            90,
+            112,
+            248
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_mace\\berserker-f-attack_mace-03.png",
+          "sha256": "c919f1de8d423181efcd74e93525f3dcb30db62993dfb8f09c9fc6266299b418",
+          "alpha_bbox": [
+            19,
+            96,
+            107,
+            248
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_mace\\berserker-f-attack_mace-04.png",
+          "sha256": "113efa0843d6c2ebc0323a7b93f52adde78479dc763f4c3006b2219c84057025",
+          "alpha_bbox": [
+            15,
+            90,
+            101,
+            248
+          ]
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "action": "attack_book",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_book\\berserker-f-attack_book-01.png",
+          "sha256": "49bc285f480a505c35ae3643eac55c704a9811412c4496eb50347eb8c7fdf1ea",
+          "alpha_bbox": [
+            32,
+            91,
+            112,
+            249
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_book\\berserker-f-attack_book-02.png",
+          "sha256": "1a101a4bfbce592d49990a927f3b5d56d24547ef611ce1e28ddc46bbacb95e63",
+          "alpha_bbox": [
+            27,
+            90,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_book\\berserker-f-attack_book-03.png",
+          "sha256": "5594655a5716d289d544e92a9f3a907a20424b2a29311611a341a763866c35bc",
+          "alpha_bbox": [
+            25,
+            90,
+            108,
+            249
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_book\\berserker-f-attack_book-04.png",
+          "sha256": "8b06cb3ec415e4bf084580cc082b2b0c778a113581c18592be2665e8ec8b2d31",
+          "alpha_bbox": [
+            26,
+            90,
+            107,
+            249
+          ]
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "action": "attack_gloves",
+      "frameCount": 4,
+      "distinctFrameCount": 4,
+      "frames": [
+        {
+          "frame": 1,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_gloves\\berserker-f-attack_gloves-01.png",
+          "sha256": "debeacff4e7d610b1030f036b0c4830ae8adbd919f194d6f8532e293d591e1b0",
+          "alpha_bbox": [
+            24,
+            90,
+            104,
+            248
+          ]
+        },
+        {
+          "frame": 2,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_gloves\\berserker-f-attack_gloves-02.png",
+          "sha256": "5b2acb73027deaaf90e723002dab715ae1df4ab15b2db98913bf71948af495a1",
+          "alpha_bbox": [
+            22,
+            90,
+            103,
+            247
+          ]
+        },
+        {
+          "frame": 3,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_gloves\\berserker-f-attack_gloves-03.png",
+          "sha256": "b4d5c72dd2e2199fe9b117b2d2d8f5cb7c87b414764da28c399e1341b6ce4923",
+          "alpha_bbox": [
+            13,
+            91,
+            116,
+            247
+          ]
+        },
+        {
+          "frame": 4,
+          "path": "assets\\spritesheets\\hd-128x256\\berserker\\f\\frames\\attack_gloves\\berserker-f-attack_gloves-04.png",
+          "sha256": "345ba329634f395d370a6fe0bd4526b9f11128efd2440908b148636fffc1572d",
+          "alpha_bbox": [
+            14,
+            90,
+            95,
+            248
+          ]
+        }
+      ]
+    }
+  ],
+  "framesValidated": 60,
+  "runtimeModified": false,
+  "visualReviewRequired": true,
+  "limitations": [
+    "La validación técnica no sustituye la revisión artística humana.",
+    "La identidad consistente, la anatomía y la calidad de animación requieren QA visual."
+  ]
+}

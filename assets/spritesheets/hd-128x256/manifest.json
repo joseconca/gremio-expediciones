@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "berserker-f",
+  "nextVariant": "luchador-m",
   "classes": [
     {
       "id": "novato",
@@ -163,7 +163,7 @@
       "name": "Berserker",
       "tier": 2,
       "order": 15,
-      "sourceStatus": "not-started"
+      "sourceStatus": "hires-library-candidate"
     },
     {
       "id": "luchador",
@@ -57021,7 +57021,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/berserker/m/berserker-m-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/berserker/m/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-m-v1",
       "bodyScale": {
@@ -58145,7 +58145,8 @@
             "942b0bc17d9d325c08bea1f031c160363c35307bae4b6e807a006ee36276350f",
             "5eec22946cf4e3b110b63731962baf067f7158c61c422cc04a01c1db448196c2"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "2c34bc422fe86c082ac8d630ad29cf6199572c51f3b172f02e5191725ca049b2",
@@ -58183,7 +58184,8 @@
             "49e30600236f0d5e8fe2744bab314bafa2dc1748c72c185853973669dc972d94",
             "c5cf8ce43d43afd72e6923c2f201806ccbe0cecedfdad29f14ec2a2f766d5145"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "b06186affc5a910a39719af39c05dd6d1662d75efd6f7267740cb457e7a270bf",
@@ -58221,7 +58223,8 @@
             "65b0b727ca010d31b5722667b28294f77a942cd8e50b7cd9e97cb04dc2c15087",
             "8732d4726a04c4999143b7648f3414d3eb3dce1f75b1262b5414c785eb5ddcfa"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "2aa5710b803d7b869a24c8e30a53ef751bb32342d9800ee68544c036b9194611",
@@ -58259,7 +58262,8 @@
             "3dc85986c7ad9efe1b13e0aa6b91c99162a8392f759a32c6d4953ffd82b491c2",
             "58304231682f6fdb699be74f0723a5da36393214abbc57d9388a2a9d8f2ecac3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "8fafdb80f8a63e8d2ddd347eeec667f151e73f23c9dee7ad8582f27b69d66185",
@@ -58303,7 +58307,8 @@
             "0843c671d623662c831708a9ba9e4d7b2a4c8f592316103953e951eb7c5f0261",
             "85767c76b875a666074d4e9fab544664109100b4c6cf6ae46847ef0aff85b2b5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "93683f0df9596988f8a94fae577e515233c9e437c2737f5b570c5c48c88b9fa9",
@@ -58347,7 +58352,8 @@
             "3454a8f296925b56432519c50bf93af3fbc06b0a00964b23b63db6f0f0e51ff9",
             "ae9d31c675ff437be0f91df6ddc3914138fa7378e54d86eee4250c266f22776e"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "66bef3a11cde3e49b6dab773931aca5a0d6f55d5cc8770a84a6c9ca8bde35c6a",
@@ -58385,7 +58391,8 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "852361b1929421c30cba6cc64b9442171502313e49928237bc8442e366667a0f",
@@ -58423,7 +58430,8 @@
             "c19d3f481d1a006432dfa038c4f9192ed6ac27a695c3d184586aa83b1fea8ad5",
             "3ea65ab0de097856f858272562c2b4a03110c5564995548153cbf8d7f2f7bba5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "61f2bd91ea32b9d71ab31b366d178e27e06f35951e55aa3de2cef4aa273038c2",
@@ -58461,7 +58469,8 @@
             "ede23f65c042d1367d65e985ffbeadd29372f470a103eda2c95520508d0a04c7",
             "4b4ff6dd6ecba8255ec0486e970ed5f62045fa1a49a79f4c58bdb83b871607f3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "86b18456f3e33cb9552c85707020b06c50503f930ede37b19322d5f1e444847b",
@@ -58499,7 +58508,8 @@
             "0051a4dc2f9c7a274388e652b6d620feecbcffda8051d4cd9fa8589e87daa6ba",
             "5407f39c22b807f61ce0ea29483df5139a1a363f3c64cbd1459fed2f3734eef6"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "a37d0bb19b4e2c91d3f7f79b6ab404815f849e0b7962d74a6033beb7ab8b465b",
@@ -58537,7 +58547,8 @@
             "3a506a8247932be430772fee9283f9fca0b0e825b93908ccc977d3bdaccb7c2f",
             "937846787775b07da5efe9b353ead16e6c133ff9dc9799bdfa5a33f7df8757b0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "73be5a64daa8f9ac2dd1b3ee8e3c54c69260df6b2dca2b4e7ffdf3f6a320b889",
@@ -58575,7 +58586,8 @@
             "b6b6c630d57ee8d1a448b2335b47db473db9abae0a9806c332db6c13bca16494",
             "be6e2cc578cc74528dd44ad17fedd36b92f1b6e389b4702ebddf010031751653"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "fc558d47430a5a9b7bc88a0984c3e6df88947dc3e402f00dbc88c804cd4c681f",
@@ -58613,7 +58625,8 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "eb3e12fe7649f70a8ac9115cdeff06bb8a74d9abfc253faf5762706a6790f8a6",
@@ -58651,7 +58664,8 @@
             "703b4f8ad678d04039ae8a292c51c7bdc73ad5121ec8fcda5adb6ea2d6fe7a1e",
             "7946cc925853bd0fa4bd6703e4aa257f5cc9da8e45456448fd5895d3f7a85b75"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "7f8d6102343030f496e27e9001c54afa074e348d06d5b7e8bbb7e0caee20c515",
@@ -58689,7 +58703,7 @@
             "0d370dc6baaa1550b90cdc4142c7edc9354f8b540bbaeb1563c2f62fa880c5b9",
             "6a5cc2dbd552d943f73e72399bcd4fc2eae442080ec10f2538e8204d03e909dc"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "336380e69fe9f2de60f67f38ba003e2de12cc93d4dfedb31cf649a46b38eb23f",
@@ -58729,7 +58743,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -59004,6 +59019,120 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "berserker",
+        "name": "Berserker",
+        "tier": 2,
+        "costume": "Advanced axe-warrior costume: charcoal sleeveless fitted leather cuirass with deep oxblood-red vertical panels and dark iron rivets; ONE compact dark iron segmented shoulder guard on the rear shoulder and a short pale ivory wolf-fur collar close to neck, asymmetric leather chest straps rather than novice cross-harness; wide dark leather belt with iron bear-head buckle and two short red leather waist tabs; charcoal trousers with narrow iron knee guards; dark heavy boots with iron toe caps, leather fingerless gloves and compact iron wrist bracers. Bare upper arms. No weapon attached, no shield, no long cape, no red scarf, no cream shirt, no blue trousers. The pale fur collar, single iron shoulder and oxblood/charcoal palette are defining features; keep them identical across every pose.",
+        "maleIdentity": "Adult masculine warrior, stern brows, gray-silver swept-back short hair, small eyebrow scar, restrained jaw stubble; same canonical head size and face placement, no helmet.",
+        "femaleIdentity": "Adult feminine warrior, stern brows, gray-silver high braided ponytail kept close to head and shoulders, small eyebrow scar; same canonical female head size and face placement, no helmet.",
+        "unique": "Asymmetric iron shoulder, pale fur collar and iron bear-head belt buckle",
+        "advancement": "Tier 2 martial specialization after Espadachin: fitted battle-worn iron/leather and mature warrior identity. Do not add Tier 3 full plate or giant horns.",
+        "armPolicy": "ALL upper arms are bare skin in EVERY pose; NO cream shirt remnants, rolled sleeve cuffs or white fabric armbands. Only iron wrist bracers and the single iron shoulder guard.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/berserker/m/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "86d4fcd3b122326953f3a9c4c9127c44b8d42a249568aa1d995521d9897f8a49",
+            "b4cfe218c7b1d26649599f8d3dab5709fc71582dd954108dd0bee3d4021e20a6",
+            "ea1e5893c56f5786cf1e9c9444110193820c5032b3dadc9cdfc2ee6a1b539211",
+            "1e1125ee56b69a087b32ba27234bedebbbf51c9a7f422c5144124e1a3d9f376d"
+          ],
+          "walk": [
+            "3dcde1e9c525cbeec5470b48d563dfb23fb98be822c7045d4c86bd1b0dff6a79",
+            "5a521e1bd591c60244cf42e03cf30aaeaba2cfd21c6b5dd0cbb2afdbd264c1b6",
+            "ace1aeb7a157cded443246bc605cfac3596b1245dbc2e28b76cbb355edfddce8",
+            "1f44201247cc9958b6251fe452a91da5f27de3d69e68664f5c921c3daba80bbd"
+          ],
+          "hurt": [
+            "f3963d5ffa896cc842a0b0fd87105167812759191d66128269b2e1f2991f0cd0",
+            "aef348af9a29c336a84b7a8c995ee7beae813dbf0f9b12b3a4190236e3dcb2fd",
+            "0c05d947f88ee2070fbcf06148eada90e684a8936e9a8192f5a142a24351e790",
+            "7111f6458217f4070a5b16484b4b63779c96e6e83c280cf859dffb8d031429d4"
+          ],
+          "use_consumable": [
+            "599dd9179cde677c565e7e205517702459717b78c864f3964a81aa5f4fdea489",
+            "ed948d63a1ec51fd2f44de9daaae41b4852d5228acd10369b960b300724cb34a",
+            "5104fbb7381ccc8bff7dff88865b66a39dac0425b5ed157a6f3af338ed24363d",
+            "49752c79fee5139ba038c29ab2161483d82ab57407504afa7f28cc1ebb89ebbe"
+          ],
+          "dodge": [
+            "cf931dac28f3205527499d19f09e1f1ea5c53e35e26f78b0b4bf6ff7f9a7fdc0",
+            "a4a017064405e54b4fe7c32a913f6eb455ece6c45b1f844fa9a306fceb3e8dd6",
+            "1c58e76a04203c745ca4d919d999d79ca308549d218a0dce9b2fb58c92ef5d08",
+            "f25b514c08471dda1b81b5b04fea40159b274da574284744bc1db971a71b7e63"
+          ],
+          "block_shield": [
+            "521ab007cfb768dd761d23e3a95d071851f5ceefe4a31913cabf283fc5c498a9",
+            "9a82e0574300ec85c32b5b53c22f9105d2c2d8ba7bb231543a0d0462f459181b",
+            "5ba54326e0bf74f4f09162e9efabc136b7d6afe06016c2aa52bd1bac49b013e6",
+            "c4f7c8f7ceed0532e838e8fb250d7ad4f891e9ba9a06fbc70c0b8710291950d0"
+          ],
+          "attack_sword": [
+            "da3a90b6e593e7710aa637a2ae572837043750e54392bd79333ba42d30bf8a9d",
+            "173b39cee079fba7744c3eb3bb64e4f371ebc0ae80b3360b1995a3bf7093200a",
+            "0bdadeab5f59a87dd3094ffa160515df7fcbecd266b497856e0a49c279d3b4c5",
+            "3ee14af04543a8c07d940100ab1dd01b90c84f550cd697cdb111b673f0521352"
+          ],
+          "attack_axe": [
+            "381badcec8bb5378d4fdd62076450f74f4d97454b598598e9b9bd4b364a384ff",
+            "f41541b80e7a46669938d980f5d6fe01e838b1bf0102f6fcb0b37625b04964de",
+            "8b9f7bb6fe5c9668a4a186e7f6d82236106e6c911125c0a385b011bc2b4dfb64",
+            "91becfc8fdbb5c5bedd06f131e3593de526c07bd4a769e3bc419f82ca44074ed"
+          ],
+          "attack_spear": [
+            "28b1f043b072d6dc5a1c6f7b8fe524873908d187eaabf8b74cd9d2dd8a4891bb",
+            "fb51fe10930b442c074e54353426bc17e81713036962372d46c05b7c0b845339",
+            "8dfe7ab6cc057548382489f9ec453029d92cefc8e590d810a29814c3bb34dc12",
+            "bd113abc7b4aa70925e1302b08f358c93763773c4126937dd5901bf2832042a6"
+          ],
+          "attack_dagger": [
+            "147c1ce7dedd0ffb263cce5a4014f117e7f0bcae8f75a85e1779950f89df30e2",
+            "6069916baaa9e5dadf988f1b19718a14950dc16cd16404cf81e55d7fba97c47f",
+            "f772022f573bdfcf3d1164e45073f5e2bdd783b04ea90abb685958ace3ccb6bf",
+            "11b6b38e7028fcbfa0ff6867f2cbb0f6882aa9fb5cf659d0161a5f518952a3a8"
+          ],
+          "attack_bow": [
+            "c324922c5b1a2200654265a17b94bd11e9acea2adcf9a3590ff7749c0e280ef2",
+            "8cc323b8ae9a48311ffbde8968037a21d4ec9b0588c0a3cb84ec46762864f2ad",
+            "216b492a4daa7b5f61d5b9d61727e49ccdfa3523186683023801343398bb5565",
+            "d2c678d90b8636eb800422cc5d7878cf7dcdfb9cdd600994051faebbd965e7cc"
+          ],
+          "attack_staff": [
+            "f2d3d36e8495ff9a36e153fb574bcda8dda5d28c0b1f0e684472dac9e3e4de07",
+            "eb56fcceb9e436d76dccef851617a7763e6a499dd34bcf256d131ebe4954849f",
+            "dd172ea1053a5849f79087fe95a1057496487687e17eb7d3559c7c7ab0be43d6",
+            "ae72bc650fa0ac9d89182ea345eb6597444d51daaf111c8b2760aa76de9cdf5c"
+          ],
+          "attack_mace": [
+            "665633ac13d38f5d917b23256ea0575b23233fda62f0d0b36fc1ac3c00dede56",
+            "564a8b7a0cf2f356f5776f8887d80a40734b92e467c9bc370fb83c85b78790b8",
+            "d1df7640cde82eafc3fdf463be49a759245d0bea08152add30acf7ef23533f32",
+            "32dc6c58a52a58474ccd58973fc19690b8def9b27097afa90ba4584090ad102b"
+          ],
+          "attack_book": [
+            "68809429bbe4f29de4e15b306b08143f07ec85797e8d366e5ec2d153ba43457c",
+            "a118357a63a96e91db0d74e2f10b54dd2aa593c4fc3d3df713b3f2174af1a09b",
+            "0170d70de3bcae45bd639dc617379beb3792911a2bbba176e1abd03b7c9ce7b1",
+            "7636fb52d366a232aa32f5ed16188a06bb7ea222bfad7afa61557394339c40ac"
+          ],
+          "attack_gloves": [
+            "c5f7d61929604b0a1f11df2501248a689f22d3c49e4654dd22965780340aa12c",
+            "4923359b204e3805a9af18c943aee166ed8d2ebd57e81c4205d378fdcf7bb4bd",
+            "ca546dbb977dd3d8c0c4ba396535923abc3604182d0d40c2842ce5f282a231f2",
+            "07788786a7390d4ea79001f67c22c1ebd524469083994740be8a6653264e8454"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; unchanged; no class offsets"
       }
     },
     {
@@ -59016,7 +59145,7 @@
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/berserker/f/berserker-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/berserker/f/frames",
-      "sourceStatus": "hires-library-in-progress",
+      "sourceStatus": "hires-library-candidate",
       "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
@@ -60140,7 +60269,8 @@
             "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "walk": {
           "sourceSha256": "f1fadf2347e158394aa9d1e056978d804c3a2fd7fe4b827bc1b1896b234edf6c",
@@ -60178,7 +60308,7 @@
             "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "visualStatus": "candidate-user-art-review-pending",
           "previousRevisions": [
             {
               "sourceSha256": "fdce08db642ebcf89c2922bdc056cdd6df3eb656f4611bfe77681c08f47f56fc",
@@ -60218,7 +60348,8 @@
               ],
               "visualStatus": "candidate-reviewed-equipment-contact-pending"
             }
-          ]
+          ],
+          "artDirectionRevision": 1
         },
         "hurt": {
           "sourceSha256": "83df36f9f2e18595a81f520c9fbef98687a2856659928b7db935dff7c1b69833",
@@ -60256,7 +60387,8 @@
             "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
             "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "use_consumable": {
           "sourceSha256": "4f069597edb9d4726cea8ae154b9bd2b59379d00f9834596be0200ea0d1a8f62",
@@ -60294,7 +60426,8 @@
             "4232d8f4fbe8fd8912a0499a86a766290df3a908badf23f169c474ead3cda79c",
             "5d23c8980fec1010e339fad5b2fa6152006bec821a921ae718776ffd9bf0df93"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "dodge": {
           "sourceSha256": "246050e9b510815c9c3246234c98ad81ea9f0536fe8457ce22b28afc1258d562",
@@ -60332,7 +60465,8 @@
             "8f57165ca0f909825dd8f719854af8ade303ed6a9843b3580a8b2e8cc6c358ae",
             "c13e57f23d384fbbf5ec99bc4d0fc105b00ef5572fdf5ba63372c8605259f0a0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "block_shield": {
           "sourceSha256": "e2a21f826454ee723d3e55367f803d418af113d1beb47be54e01abdc9ff9b429",
@@ -60370,7 +60504,8 @@
             "f865ca39411af4ee5202722dc6724388cf259537c98df7905ff754b1e5f17239",
             "fcec443961fe0c39f5b4d34a10fef7886e46e46ae58df08a1bf7c112b125abc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_sword": {
           "sourceSha256": "68c544b469b63e6d3826ed79021d32d1888942b976bc4a5c98b3486f12ec753c",
@@ -60408,7 +60543,8 @@
             "72b9f468a02b3bdea1245d8a1391110679d328e8857eec50bdf2834f951f00a9",
             "d3ecbd0a59f786e5ea1766c3574ca75941243c0cdd8a4f451db23f41de4192ca"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_axe": {
           "sourceSha256": "d9362586e4577ea63750ea2b0083f11dc11503bcc57f3db5dcd4b13394cbdbed",
@@ -60446,7 +60582,8 @@
             "b45d1b35ba663735855c14f3ec2629e1e13e661a9e4078a77a2ee92e525b5906",
             "05972ab00ade53cebacc603a997df9600fd28cea0bed36d3f6b04771ed33618c"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_spear": {
           "sourceSha256": "f5035157c6d8de85a4ae8b3dc46cfc1585945f95c84f8bb35de41f0b13749af1",
@@ -60484,7 +60621,8 @@
             "0dc2a0fe85febe6ed2bbd74a937625ee8f31326e510ff5cfcfcd57de92c11740",
             "68270a9fc1141032daa59a41b1bcaec14f426a16c1d2b8c31346924a54171fc0"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_dagger": {
           "sourceSha256": "f38f015fd9a684348d1bc6d607bdd2e1d9efd0dfb9053b9aac517bd41296c135",
@@ -60522,7 +60660,8 @@
             "03f9ef70ecdf0c5de143fc9c6af3e28c4ca3f83ad5e410b30b1c57db2d204f34",
             "250561b2372cfe52273b9e44b76a1a4b90966f9d0a7a32e73cebb3aff2492764"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_bow": {
           "sourceSha256": "a293e9caf9c8df29adeb4bb811869de0f50133b468e89c857398563f076d549e",
@@ -60560,7 +60699,8 @@
             "146dbb140d299b0d8b6d3d6fe40626865a6e453e80455b123e9d2b35c2f61eec",
             "ff6cf4374a911e1deda1c3f8956fe4dda4c766a2603a5a4a00586aee59737419"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_staff": {
           "sourceSha256": "af756e12a9cd6ea68fe1de289e97071cbe19bd0a75c404a905895901bb34973e",
@@ -60598,7 +60738,8 @@
             "45641b80f174dff1e2721ef04e3cbd4840f3b1466c3a6ac8fd8698073a66bb92",
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_mace": {
           "sourceSha256": "c72f8c6c043c58dad66ffc83e184f2ae13dad4e2fc202ce9fdf195b25d5bd667",
@@ -60636,7 +60777,8 @@
             "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
             "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_book": {
           "sourceSha256": "c9fe2e8d0520ad2d172b941d7ef24c14add792945b3ed644ea866d2b65bca2d6",
@@ -60674,7 +60816,8 @@
             "69c82d82d3f89effc5574cbb17a967bb35d29869edd47844e274e529fa1571fa",
             "59652f940b12d74f1f6f65c5c5e3ccc72ada8529207467b45cfa43b4e4ac0fa5"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         },
         "attack_gloves": {
           "sourceSha256": "791fe0d22d553c0c45963ae88505c468594be652e55718d1737136c353e18ebb",
@@ -60712,7 +60855,8 @@
             "22099ff64c4766c9af27f8a1919fbd1cae5d56ab7412fd72d2f10f971a652fe2",
             "4fbe3b55fb2d419ea8f364c2e08c1c2bb10806a6200f877938a63d5b5d4dbdc3"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-user-art-review-pending",
+          "artDirectionRevision": 1
         }
       },
       "frameProvenance": {
@@ -60987,6 +61131,120 @@
             "No runtime promotion; test does not validate other weapons or actions."
           ]
         }
+      },
+      "bodyProductionStatus": "all-60-frames-present-candidate-review-pending",
+      "artDirection": {
+        "id": "berserker",
+        "name": "Berserker",
+        "tier": 2,
+        "costume": "Advanced axe-warrior costume: charcoal sleeveless fitted leather cuirass with deep oxblood-red vertical panels and dark iron rivets; ONE compact dark iron segmented shoulder guard on the rear shoulder and a short pale ivory wolf-fur collar close to neck, asymmetric leather chest straps rather than novice cross-harness; wide dark leather belt with iron bear-head buckle and two short red leather waist tabs; charcoal trousers with narrow iron knee guards; dark heavy boots with iron toe caps, leather fingerless gloves and compact iron wrist bracers. Bare upper arms. No weapon attached, no shield, no long cape, no red scarf, no cream shirt, no blue trousers. The pale fur collar, single iron shoulder and oxblood/charcoal palette are defining features; keep them identical across every pose.",
+        "maleIdentity": "Adult masculine warrior, stern brows, gray-silver swept-back short hair, small eyebrow scar, restrained jaw stubble; same canonical head size and face placement, no helmet.",
+        "femaleIdentity": "Adult feminine warrior, stern brows, gray-silver high braided ponytail kept close to head and shoulders, small eyebrow scar; same canonical female head size and face placement, no helmet.",
+        "unique": "Asymmetric iron shoulder, pale fur collar and iron bear-head belt buckle",
+        "advancement": "Tier 2 martial specialization after Espadachin: fitted battle-worn iron/leather and mature warrior identity. Do not add Tier 3 full plate or giant horns.",
+        "armPolicy": "ALL upper arms are bare skin in EVERY pose; NO cream shirt remnants, rolled sleeve cuffs or white fabric armbands. Only iron wrist bracers and the single iron shoulder guard.",
+        "revision": 1,
+        "actionsToRework": [],
+        "status": "all-actions-generated-candidate-review-pending"
+      },
+      "equipmentReview": {
+        "reportPath": "assets/spritesheets/hd-128x256/berserker/f/equipment-review/qa-report.json",
+        "status": "passed",
+        "contactChecks": 682,
+        "warnings": 0,
+        "bodyHashes": {
+          "idle": [
+            "d796efbb4ccd1ae4b88386727e9bf1f4e4d0d8cbe34902394f17657d5d397a8e",
+            "e59156b5d55c4c97097a6fcec3dc126feead9d64f0efe222e4d45aa9556c8e7f",
+            "1e64b6234a15721b7f15b1b41e60e73315ee91a009be99b95656bd4801d06849",
+            "6619b52257caae4a254d2b36adfe7848c3a0a76cc271482c7d4b9644b7916f3b"
+          ],
+          "walk": [
+            "b46245e97686aabf487b7cbb57fed0431640c1e6af8b002603d39bd7027ec463",
+            "df43c9ec3044234d2e1c4ef1ae345eeb966c3097129dd3acc546fc5d26bf281b",
+            "d20302f47876a885cb67d2a3d0665e7c8658ad6a700b32496984f85f12540058",
+            "6750e427c2a61e4ff6d1a0d0b3e1b046ca0b4f47526c4bb336bad5962e68bb0d"
+          ],
+          "hurt": [
+            "0963b565137f7b9b33d8347c25dcb38d9703d9af2e1f50daaa0db04d64d952df",
+            "5cdacb27ced7e8cbc2793edd35af2df5fe9d04171d941c7dbe31043e7b9a13ee",
+            "99899f3c4a208794d949ab705f34bedcef0067a63f49cb87b913752c86a38be6",
+            "0e9db6e5a14e61599da4f18c7b42fbd114e015d494eb300c5028bb91bfd0f92a"
+          ],
+          "use_consumable": [
+            "401d8ef120deb9125c9cf3310ee06d5ac216f362e1c0aba9421ff10bb40cf2c1",
+            "d2620fdfd39ed3701448a3df0e0f47ea49ce72668f486c7b61dd0980863f291b",
+            "50b1646fa0c249d8aa1865301be5a3ceb6edae05bf21f8e6cb458db47c3d942d",
+            "6e48df7750a961b3890fff8f3b1410dc41527d5e6869e79fae5a0a3fe2151e32"
+          ],
+          "dodge": [
+            "35937a1bc3506a7f59934ad3fae6154f8c5eaf9632455aa503de23560c7b4196",
+            "d4906439c2e78b7654d218b87a805c9b1a331d1f9d49cb6e8e94e0e991c7e473",
+            "41bacf1ecaa1d5752398ac11a2e4cd504dedc153129a1d7d0b2cce7ede490314",
+            "75ba410349a19a6aa427d56640c8cb9655cd0d9724a1bfc92e947a2cbbcfb01f"
+          ],
+          "block_shield": [
+            "eec424e886152a240290e811b1b79c16b3b7d606ec2f708557e46475bff53b61",
+            "5d2ac0136f02b4a51ac5027b53af38c1c6f76b98f07950b393db50a0794cda4a",
+            "f685c89c0ebb587afdca404ae835b16c55ab2ba22028734d9ca4f4fcd9ca7c39",
+            "8649e9420a2f241f424870cf26ad89004802947471a56019103db9cfe8d77624"
+          ],
+          "attack_sword": [
+            "4bdf42f022e6ff6ebc92e89443e9a31fe3614e3de0731efcbcc6a4509e5d0652",
+            "a0772dac02e3d900be485ebfe06ed0f52f0ab5a3c550a9339401f24b4a756a19",
+            "42303dcd3ac4d9259ee40af703176660084e22c3e75d29c98c22669640ffd235",
+            "306a77913f6bae0e48d8c5d29c49214b6a8445d7f4bc85d5bedcbeb811cc57e6"
+          ],
+          "attack_axe": [
+            "05bfa3f47e6adbffd7613f75736a26594843e7af246e8f1574491514cbc612e7",
+            "a649f7028c5e29d2966848687226c96154fa9e1bfd491bc1da036561f66a63ad",
+            "1de111b2c89ff72d1dd2d6556d8bff9fdb052c55b3663b45883e1f31c9ff3ae5",
+            "f6dbd2ca8852e804a597e57b2b7dccfb9af27180ed0ff8ece2c463a2889ebb4f"
+          ],
+          "attack_spear": [
+            "dc3612cd7de73611fd67f75529f818ec30b138f7c32bff19019aac03a7906aaf",
+            "af2d1d42a0ed3effd4994d85b1ff4ecde078c9cf3940d2e352b7671e2afb5616",
+            "e9373ce8f1f92dbd42b96685b494d13aa1c8fd15091f78d875ce474493b5f7f4",
+            "56995038eed8c676cf278e8b8a4d21b06d26a83381a11c732f505c271744704a"
+          ],
+          "attack_dagger": [
+            "30ca13bf3b4447d0b5b39208d51190593cc427c6a6809e271da28d0d92f47a38",
+            "fda4c8db475e9424ccba4bdb3e7b7877c28400d8944649d91dfcecf4bdbe876c",
+            "21c95c76237cbd32396e23c788d6e8aaa142d8339ece6c1c7d2423989e3216f4",
+            "46bed8f484bdf4a23ef0194bbb3e658b9b10d897d97d453954e14327928b96c1"
+          ],
+          "attack_bow": [
+            "02983a04fa59926182423d96cdd569349b6874ba93c0501da299e9868dd8784f",
+            "eac4a3bb77027dc8cc96353b0b7fd5215a953b50c61d95e81a9718a15182fbe6",
+            "e1c5e104b10ec63095bec3d7e0449ab52ef7fa4d22603a87ede256641d1d7e00",
+            "c5ce070dd9d3f1c1ce4eb09609a27b0d53201ec48b23ff06104fd44864798ad5"
+          ],
+          "attack_staff": [
+            "481670263d1d1ec74d333b7d15610656534404fb0826a5afc3caf46e072b5b17",
+            "fadeb2af4232a8d6fe081894c081fd08bedf7435711d67eaa26ff4c0c32eecab",
+            "8249d2ac0e560f4c85a2c51f5984d90a4d9802b0c3aa8c7c5f98413bd3dabdd5",
+            "5d350b84c9831f4be9b0b824c55f6ec0546831ee4be0c22f9a26bb491aa09b18"
+          ],
+          "attack_mace": [
+            "7b02480cdc1519439517c4b8ecf098b77d5973f2f4968e520e5fe5727485dce2",
+            "2c0ae60bcc2e3443130a1dab0523179c24077a91c09ecbf336d9809280792dfc",
+            "c919f1de8d423181efcd74e93525f3dcb30db62993dfb8f09c9fc6266299b418",
+            "113efa0843d6c2ebc0323a7b93f52adde78479dc763f4c3006b2219c84057025"
+          ],
+          "attack_book": [
+            "49bc285f480a505c35ae3643eac55c704a9811412c4496eb50347eb8c7fdf1ea",
+            "1a101a4bfbce592d49990a927f3b5d56d24547ef611ce1e28ddc46bbacb95e63",
+            "5594655a5716d289d544e92a9f3a907a20424b2a29311611a341a763866c35bc",
+            "8b06cb3ec415e4bf084580cc082b2b0c778a113581c18592be2665e8ec8b2d31"
+          ],
+          "attack_gloves": [
+            "debeacff4e7d610b1030f036b0c4830ae8adbd919f194d6f8532e293d591e1b0",
+            "5b2acb73027deaaf90e723002dab715ae1df4ab15b2db98913bf71948af495a1",
+            "b4d5c72dd2e2199fe9b117b2d2d8f5cb7c87b414764da28c399e1341b6ce4923",
+            "345ba329634f395d370a6fe0bd4526b9f11128efd2440908b148636fffc1572d"
+          ]
+        },
+        "equipmentTransforms": "Shared by sex; unchanged; no class offsets"
       }
     },
     {
@@ -68235,7 +68493,7 @@
     "publication": "binary bytes via Git or programmatic blobs; verify remote Git object and full PNG decode",
     "promotion": "complete variant with visual and equipment review; never partial HD rows in runtime"
   },
-  "nextTask": "Continue Tier 2 in class order: Caballero, Duelista, Sacerdote, Monje, Cazador, Explorador, Elementalista, Brujo, Berserker, Luchador, Centinela, Escriba arcano, Bardo, Comerciante; male then female, 15 registered actions each, shared equipment contacts unchanged.",
+  "nextTask": "Continue missing classes, separately by class, sex and action; preserve canonical scale and shared equipment grips.",
   "recoveryAudit": {
     "baseCommit": "52275e042a2369ee2de3ba5d9a5a475e67bfe8d1",
     "date": "2026-10-25",
@@ -68773,5 +69031,78 @@
     "bodyFramesPresent": 960,
     "sharedEquipment": "Existing male/female rigs and equipment sheets unchanged",
     "runtimePromotion": "pending-complete-variant-review-and-user-approval"
+  },
+  "classArtDirections": {
+    "berserker": {
+      "id": "berserker",
+      "name": "Berserker",
+      "tier": 2,
+      "costume": "Advanced axe-warrior costume: charcoal sleeveless fitted leather cuirass with deep oxblood-red vertical panels and dark iron rivets; ONE compact dark iron segmented shoulder guard on the rear shoulder and a short pale ivory wolf-fur collar close to neck, asymmetric leather chest straps rather than novice cross-harness; wide dark leather belt with iron bear-head buckle and two short red leather waist tabs; charcoal trousers with narrow iron knee guards; dark heavy boots with iron toe caps, leather fingerless gloves and compact iron wrist bracers. Bare upper arms. No weapon attached, no shield, no long cape, no red scarf, no cream shirt, no blue trousers. The pale fur collar, single iron shoulder and oxblood/charcoal palette are defining features; keep them identical across every pose.",
+      "maleIdentity": "Adult masculine warrior, stern brows, gray-silver swept-back short hair, small eyebrow scar, restrained jaw stubble; same canonical head size and face placement, no helmet.",
+      "femaleIdentity": "Adult feminine warrior, stern brows, gray-silver high braided ponytail kept close to head and shoulders, small eyebrow scar; same canonical female head size and face placement, no helmet.",
+      "unique": "Asymmetric iron shoulder, pale fur collar and iron bear-head belt buckle",
+      "advancement": "Tier 2 martial specialization after Espadachin: fitted battle-worn iron/leather and mature warrior identity. Do not add Tier 3 full plate or giant horns.",
+      "armPolicy": "ALL upper arms are bare skin in EVERY pose; NO cream shirt remnants, rolled sleeve cuffs or white fabric armbands. Only iron wrist bracers and the single iron shoulder guard."
+    },
+    "luchador": {
+      "id": "luchador",
+      "name": "Luchador",
+      "tier": 2,
+      "costume": "Specialist hand-to-hand combat outfit: fitted sleeveless deep TEAL martial vest with BLACK side panels, small COPPER diagonal clasps and a fully covered torso; broad black sash with copper geometric fist medallion and two short teal tails close to hips; charcoal tapered martial trousers with teal outer seam, off-white linen wraps on wrists and backs of hands leaving fingertips exposed, black wrapped calf guards and soft dark split-toe fighting boots with copper ankle buckles. Compact leather elbow guards, no pauldrons, no metal breastplate, no fur, no prayer beads. Defining identity is teal/black, white hand wraps and copper fist clasp. No weapon or equipment attached, no long cloak.",
+      "maleIdentity": "Adult athletic masculine fighter with short jet-black textured cropped hair, determined brows, warm tan skin, clean-shaven face; retain canonical head size.",
+      "femaleIdentity": "Adult athletic feminine fighter with jet-black hair in a compact high double-knotted ponytail, determined brows and warm tan skin; retain canonical female head size and face placement.",
+      "armPolicy": "Bare upper arms in every pose; no novice shirt sleeves or leather gloves. White fighting wraps cover wrists and backs of hands only, fingers and all grip contours stay visible.",
+      "unique": "Teal martial vest, white hand wraps, copper fist clasp; lighter and more athletic than armored classes.",
+      "advancement": "Tier 2 pressure fighter descended from Acolito, separate from the red/white spiritual Monk. Tailored layered training gear and reinforced wraps show specialization. Reserve heavy gladiator plates for Campeon de arena."
+    },
+    "centinela": {
+      "id": "centinela",
+      "name": "Centinela",
+      "tier": 2,
+      "costume": "Border-sentinel uniform: fitted warm BRONZE lamellar cuirass over a deep FOREST-TEAL padded tunic, two compact squared bronze shoulder caps with IVORY chevron marks, short split tan tabard with teal border and a small gate-shaped badge, dark brown belt, fitted slate trousers, compact bronze knee plates, dark brown long boots and dark fingerless leather gloves with bronze forearm guards. A narrow teal headband with a small flat bronze gate emblem, no plume or tall helmet. Defining features are rectangular lamellar armor, paired square shoulders and ivory gate chevrons. No fur, no knight full plate, no long cloak, no attached weapon or quiver.",
+      "maleIdentity": "Adult vigilant masculine border guard, sandy-blond short neat hair, focused gray-green eyes, clean-shaven, firm jaw; canonical head scale.",
+      "femaleIdentity": "Adult vigilant feminine border guard, sandy-blond hair in a close braided low ponytail, focused gray-green eyes; canonical female head scale.",
+      "armPolicy": "Fitted teal sleeves stop above wrist guards; fingers and exact hand contours remain visible, shoulders compact.",
+      "unique": "Bronze rectangular lamellar plates, square shoulders, ivory chevrons and gate insignia.",
+      "advancement": "Tier 2 armored evolution from Arquero, a disciplined border guard distinct from green leather Hunter/Explorer and silver plate Knight. Reserve command crests, long officer tabards and richer plate for Mariscal."
+    },
+    "escriba_arcano": {
+      "id": "escriba_arcano",
+      "name": "Escriba arcano",
+      "tier": 2,
+      "costume": "Arcane scribe academic outfit: fitted PARCHMENT-IVORY scholar coat with INK-NAVY vertical panels and narrow AMETHYST piping, high folded collar, fitted sleeves ending above dark fingerless gloves, coat split into short narrow knee-length tails close to legs; three flat violet geometric seal patches on chest and belt, fine brass round spectacles, a small quill-shaped metal collar clasp and compact closed scroll-case loops at belt (no held scroll). Ink-navy fitted trousers, dark neat boots, violet sash. Defining features are ivory parchment coat, ink panels, brass spectacles and violet seal geometry. No wizard hat, no staff, no open book, no glowing symbols or floating effects.",
+      "maleIdentity": "Adult studious masculine scholar with ink-black neatly side-parted hair and a restrained dark-blue sheen, thin brass round spectacles, attentive intelligent expression, clean-shaven; canonical head size.",
+      "femaleIdentity": "Adult studious feminine scholar with ink-black hair neatly bound in a compact low braided knot, a restrained dark-blue sheen and thin brass round spectacles; canonical female head size.",
+      "armPolicy": "Fitted ivory sleeves with narrow navy cuffs stop above the glove grip; no loose cuffs covering palms or fingers.",
+      "unique": "Parchment ivory/ink navy coat, brass spectacles and three violet seal patches.",
+      "advancement": "Tier 2 book specialist after Mago, scholarly seal-worker rather than another blue/gold elemental robe. Reserve dense rune armor for Runista and luminous ward mantles for Abjurador."
+    },
+    "bardo": {
+      "id": "bardo",
+      "name": "Bardo",
+      "tier": 2,
+      "costume": "Travelling bard outfit: compact soft PLUM beret with one short IVORY feather tucked close to hair, tailored PETROL-TEAL doublet with PLUM shoulder panels and restrained ROSE-GOLD braid, cream fitted undersleeves, plum waist sash and two short split coat tails, small rose-gold lyre-shaped chest brooch, fine diamond pattern on lower doublet, dark aubergine fitted trousers, neat brown riding boots with rose-gold buckles and dark fingerless gloves. Defining features are plum feather beret, teal/plum doublet and lyre brooch. No instrument, no lute, no bow, no music notes, no long cape or attached weapons.",
+      "maleIdentity": "Adult charismatic masculine troubadour with warm golden-copper wavy short hair under the compact beret, expressive eyes and confident half-smile, clean-shaven; canonical head proportions.",
+      "femaleIdentity": "Adult charismatic feminine troubadour with warm golden-copper hair in a small wavy side ponytail under the compact beret, expressive eyes and confident half-smile; canonical female head proportions.",
+      "armPolicy": "Fitted cream undersleeves with narrow cuffs, palms and gloved fingertips clearly visible; keep shoulders and feather compact inside source margins.",
+      "unique": "Plum beret with ivory feather, petrol teal doublet, rose-gold lyre brooch and diamond pattern.",
+      "advancement": "Tier 2 support branch after Arquero, an accomplished travelling performer with tailored brocade rather than ranger leather. Reserve paired sword motifs and longer dance panels for Danzaespadas."
+    },
+    "comerciante": {
+      "id": "comerciante",
+      "name": "Comerciante",
+      "tier": 2,
+      "costume": "Prosperous travelling merchant guild outfit: fitted OCHRE short tailcoat with rich BOTTLE-GREEN waistcoat, ivory high-collar shirt and small dark green cravat, dark brown belt with a neat brass ledger-shaped buckle, two compact square leather utility pouches, brass pocket-watch chain and coin-shaped lapel pin, fine brass oval spectacles, warm charcoal fitted trousers, polished brown ankle boots and fitted dark fingerless gloves. Coat tails short and close to hips, no flowing cape. Defining features are ochre/green tailoring, oval spectacles, square pouches and pocket-watch chain. No held money, weapons, bottle, open ledger or props.",
+      "maleIdentity": "Adult clever masculine guild merchant with neatly combed dark chestnut pompadour and a short tidy moustache, warm expression, brass oval spectacles; canonical head size.",
+      "femaleIdentity": "Adult clever feminine guild merchant with dark chestnut hair neatly braided into a compact crown and low bun, warm expression and brass oval spectacles; canonical female head size.",
+      "armPolicy": "Fitted ochre sleeves and ivory narrow cuffs end above fingerless gloves; no large cuffs covering grip points.",
+      "unique": "Ochre tailcoat, bottle-green waistcoat, oval spectacles, watch chain and square utility pouches.",
+      "advancement": "Secret Tier 2 commercial profession, skilled and well supplied without royal finery or heavy armor. Reserve glass/plague-green alchemy elements for Alquimista and apron/soot/iron details for Herrero."
+    }
+  },
+  "classArtDirectionPolicy": {
+    "userRequest": "Distinctive advanced specializations, preserving canonical body scale and shared equipment grips; each class, sex and action produced separately.",
+    "tierPolicy": "Tier 2 specialized materials and insignia; Tier 2.5 visibly merges its parent themes; Tier 3 uses mature elite silhouettes and richer crafted details; Tier 3.5 combines elite lineage motifs with a unique focal feature. Higher tier is not a larger or rescaled body.",
+    "userApprovedReference": "Super Novato Ragnarok-inspired white/blue design accepted by user on 2026-10-27."
   }
 }
