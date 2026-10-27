@@ -58,7 +58,7 @@
       "runtimePromotion": "Blocked until body/rig compatibility and equipment occlusion have been reviewed."
     }
   },
-  "nextVariant": "escriba_arcano-m",
+  "nextVariant": "escriba_arcano-f",
   "classes": [
     {
       "id": "novato",
@@ -72816,12 +72816,12 @@
       "tier": 2,
       "sex": "f",
       "order": 36,
-      "status": "pending",
+      "status": "in-progress",
       "actionsCompleted": [],
       "sheetPath": "assets/spritesheets/hd-128x256/escriba_arcano/f/escriba_arcano-f-sheet.png",
       "frameRoot": "assets/spritesheets/hd-128x256/escriba_arcano/f/frames",
-      "sourceStatus": "not-started",
-      "qaStatus": "not-started",
+      "sourceStatus": "hires-library-in-progress",
+      "qaStatus": "visual-review-pending",
       "equipmentRigId": "humanoid-f-v1",
       "bodyScale": {
         "generatedSourceScale": 0.23,
@@ -72835,12 +72835,81 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 0,
+        "validFrames": 4,
         "invalidFrames": 0,
-        "technicalActions": [],
+        "technicalActions": [
+          "idle"
+        ],
         "actions": {
           "idle": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "970b09cd2c49fe403514463e6a8e9cf5af11e66c31b35ea367bed0eb518cd108",
+                "bytes": 23106,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  93,
+                  106,
+                  248
+                ],
+                "pixelSha256": "1749326816f6ecdb532079d232ebe66d90595785998e0eaefc87dbc54e572c7c"
+              },
+              "02": {
+                "sha256": "c1247f0bcf6ab986d0e13696edd74314cfbf8c5c9edad846b71128727b3b667f",
+                "bytes": 23144,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  93,
+                  106,
+                  248
+                ],
+                "pixelSha256": "2cddc851a63234444b578ad1f2b0d30264d2490d2cb79ea9e3b79a9d9e4013ff"
+              },
+              "03": {
+                "sha256": "c257754c4918d7e6bd35eec292d3f2c53d6d825ff1d4106b54988c88675167a9",
+                "bytes": 23153,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  93,
+                  106,
+                  248
+                ],
+                "pixelSha256": "b690b97766be1f9ab935c292ca8918bfce0253138a75d27e671498bd6aef96f9"
+              },
+              "04": {
+                "sha256": "e78acb5603de9ca0dcc237320e2ca38db68d04b725a32271bb36aecf3daa05b9",
+                "bytes": 23141,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  25,
+                  93,
+                  106,
+                  248
+                ],
+                "pixelSha256": "95d4ca0f419d92d250e06d6f7344b7230625fb17554d383470e74fd352facd22"
+              }
+            },
+            "distinctFrames": 4
           },
           "walk": {
             "status": "missing"
@@ -72884,6 +72953,64 @@
           "attack_gloves": {
             "status": "missing"
           }
+        }
+      },
+      "sources": {
+        "idle": {
+          "sourceSha256": "e399cd5cc951e779c553227610d4c895847f4d0b7cb0a3b9d05062e389c98381",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            636,
+            14,
+            1027,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            19,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/escriba_arcano/f/source/idle-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Escriba arcano FEMALE, Tier 2, action idle. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines COSTUME ONLY from male class reference; DO NOT copy male face, stubble or masculine body. Follow the FEMALE identity below and retain feminine canonical proportions. Fitted ivory sleeves with narrow navy cuffs stop above the glove grip; no loose cuffs covering palms or fingers. All FOUR figures wear ROUND BRASS-RIM GLASSES with visible circular golden rims, including blinking/CLOSED-EYE poses; glasses do not disappear when eyes close. NO SCARF, cape, shoulder cloth or floating neck tails; only folded coat collar and waist coat tails. Adult studious feminine scholar with ink-black hair neatly bound in a compact low braided knot, a restrained dark-blue sheen and thin brass round spectacles; canonical female head size. Arcane scribe academic outfit: fitted PARCHMENT-IVORY scholar coat with INK-NAVY vertical panels and narrow AMETHYST piping, high folded collar, fitted sleeves ending above dark fingerless gloves, coat split into short narrow knee-length tails close to legs; three flat violet geometric seal patches on chest and belt, fine brass round spectacles, a small quill-shaped metal collar clasp and compact closed scroll-case loops at belt (no held scroll). Ink-navy fitted trousers, dark neat boots, violet sash. Defining features are ivory parchment coat, ink panels, brass spectacles and violet seal geometry. No wizard hat, no staff, no open book, no glowing symbols or floating effects. Tier 2 book specialist after Mago, scholarly seal-worker rather than another blue/gold elemental robe. Reserve dense rune armor for Runista and luminous ward mantles for Abjurador. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/idle-reference.png",
+          "canonicalPoseHashes": [
+            "5d8d686b2c76d4a5ef55136ea7c372c904eb95942fdaed4ae6fb7fcc723629e1",
+            "b73ce64df9987b78086dece501303ccbc4193e7fcf3f69909595a330561d958e",
+            "3080518173cd5a64f9eb5ed90a111397832197ef4bc143c024d01d82a421c930",
+            "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        }
+      },
+      "frameProvenance": {
+        "idle/01": {
+          "source": "sources.idle",
+          "frame": 1
+        },
+        "idle/02": {
+          "source": "sources.idle",
+          "frame": 2
+        },
+        "idle/03": {
+          "source": "sources.idle",
+          "frame": 3
+        },
+        "idle/04": {
+          "source": "sources.idle",
+          "frame": 4
         }
       }
     },
