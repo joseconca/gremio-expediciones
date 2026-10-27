@@ -54783,11 +54783,12 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 8,
+        "validFrames": 12,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
-          "walk"
+          "walk",
+          "hurt"
         ],
         "actions": {
           "idle": {
@@ -54931,7 +54932,74 @@
             "distinctFrames": 4
           },
           "hurt": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "2574a8ef6f3303ffe85ed0cf99a0a6def655eb00b28a982d7a5c7393ae2805fb",
+                "bytes": 23399,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  21,
+                  95,
+                  114,
+                  248
+                ],
+                "pixelSha256": "d9d680a54aeb6612c8ecbec67843df59d666dbc854ce9407d2894cf19ba1ba74"
+              },
+              "02": {
+                "sha256": "021b88d33e1ecd4bab7b0b38bae2929733adf998a954746458c0d9f74f70501e",
+                "bytes": 21997,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  26,
+                  95,
+                  107,
+                  248
+                ],
+                "pixelSha256": "78b42cd32d1bddaed7ae1c7874ee217a056f7d965c44ee7d6109535afe6c34b1"
+              },
+              "03": {
+                "sha256": "369c82b5b98b9114f57d0d1f758949a47bebe6a566bf1298410960ec107d8080",
+                "bytes": 19870,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  20,
+                  114,
+                  97,
+                  248
+                ],
+                "pixelSha256": "0e6fa591b6176ed2b5767e8f41cfeae605c15402faf99d6dde1c0bf5c983e32c"
+              },
+              "04": {
+                "sha256": "761569e09af3fb22eff4540291662ff2bcda7ecd5c804fcb72f1ccb75d7383ad",
+                "bytes": 23437,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  91,
+                  98,
+                  248
+                ],
+                "pixelSha256": "784c8ba12f800ad10d9b7349d4cdc103e572b59999b35d5b38c9fbf48b66a6a9"
+              }
+            },
+            "distinctFrames": 4
           },
           "use_consumable": {
             "status": "missing"
@@ -55047,6 +55115,44 @@
             "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "hurt": {
+          "sourceSha256": "8edc99287f2b4e1cde917f1accfbd5c34ba4124322e28a9d8cc5cf70c369263c",
+          "sourceDimensions": [
+            2173,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            642,
+            22,
+            1069,
+            700
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            92
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/f/source/hurt-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG sprite action hurt for Super Novato FEMALE feminine brown high-ponytail. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: fitted sleeveless white tunic with cobalt blue shoulder yoke, standing blue collar and vertical blue front panel, small white neck cravat, brown leather belt with small pouches, brass chain at hip, warm brown cropped loose trousers WITHOUT patches, off-white knee wraps, dark brown lace-up boots and fingerless gloves; bare upper arms. NO red scarf, NO crossed chest harness, NO cream jacket, NO blue trousers, NO gold embroidery. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. Wardrobe-only edit. Retain exact four canonical female poses, facial expressions, head scale and ALL hand coordinates. Do not alter crouch height. Same white/blue sleeveless costume and brown trousers as Image2. Remove old red scarf and straps to transparent alpha. No blood or effects.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/hurt-reference.png",
+          "canonicalPoseHashes": [
+            "d5e503ce96fd227057e4c14650139119a926a402bc1da03139494162d84069a7",
+            "71a6a559d9ba1b78b78ae1ce8dc03a98280bae88e0c85fda6197cd1a2c832c79",
+            "26df18aa499118473eb8376f84b441cbda4a8cfc4536ce01c87959aea5fabdf1",
+            "dc88ed40536dd255c9255721317a7a76419f0b06b8503f563b9c7d2df3b2da81"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -55080,6 +55186,22 @@
         },
         "walk/04": {
           "source": "sources.walk",
+          "frame": 4
+        },
+        "hurt/01": {
+          "source": "sources.hurt",
+          "frame": 1
+        },
+        "hurt/02": {
+          "source": "sources.hurt",
+          "frame": 2
+        },
+        "hurt/03": {
+          "source": "sources.hurt",
+          "frame": 3
+        },
+        "hurt/04": {
+          "source": "sources.hurt",
           "frame": 4
         }
       }
