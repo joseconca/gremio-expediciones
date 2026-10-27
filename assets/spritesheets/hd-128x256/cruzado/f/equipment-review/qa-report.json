@@ -3,7 +3,8 @@
   "classId": "cruzado",
   "sex": "f",
   "actions": [
-    "idle"
+    "idle",
+    "walk"
   ],
   "bodyHashes": {
     "idle": [
@@ -11,9 +12,15 @@
       "975245ce33efb8e09b82c10c9be8f4cf0ffb0bfc6997ee03c68248597112519a",
       "a406344fa358784dabe0ba44979d8d91cca724ddd9567dc832976abe3bb80e23",
       "2b55309b957668b1f041034ee03a9d12f9409f54d4587fddb5c61bf4b24f99f8"
+    ],
+    "walk": [
+      "61db47aea330f7b3c5f9f88341ef8507dfd3aeb17b844e928e91d55b9c5dd7d2",
+      "65d555a4516a439c7958f23e264f2a1fe887a08a0fec3cb89caba3648148c969",
+      "3474c085b95bd8def043d9b75157d2e8f78864327709e6d205caab7a9837a180",
+      "e5325d87b8c183b99e41d4d344507943290b555fa80f9ec75222da26c765f590"
     ]
   },
-  "contactChecks": 128,
+  "contactChecks": 256,
   "warnings": [],
   "equipmentTransforms": "unchanged; exact existing equipment layers per sex, no class offsets",
   "artisticApproval": "not-automatic"
