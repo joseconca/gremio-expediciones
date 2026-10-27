@@ -75900,56 +75900,24 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "84ccf959b3ccebf2b272366dce6cf10e1c9d01e0e56b54515cfe2a81c5a4e4d7",
-                "bytes": 23631,
+                "sha256": "db9739a9bc8184a39a6122d12d7d4037a2f57743e0cfb37e870ecb5f3a5a032e",
+                "bytes": 23363,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  21,
+                  24,
                   91,
                   103,
                   248
                 ],
-                "pixelSha256": "d626b3d0db9ceb1a8951d02196ab4f803d7ce3770e30a14f7888f26cacc017ee"
+                "pixelSha256": "d227562b926e0dac2249645199bad7b2f746b19d9c75cca8acea612630428132"
               },
               "02": {
-                "sha256": "447d58c2e2bdf8d3d3a1669960963115f62cc1185b2ae87eab352e617e6ff650",
-                "bytes": 24738,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  31,
-                  91,
-                  112,
-                  248
-                ],
-                "pixelSha256": "f596e7bb3f17b4c700a9cdbad09efeca10a37b957d6ff9fcb0bda9cba6eae540"
-              },
-              "03": {
-                "sha256": "28b2835d091300e1238d1d541d6efdeec4e8e5b2ea027d9e1039bf0be2a00410",
-                "bytes": 22853,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  29,
-                  103,
-                  110,
-                  248
-                ],
-                "pixelSha256": "5737d439cb0a996937b1b4ba8b57ea080a50b7d966b7f89feba5b10967d8b058"
-              },
-              "04": {
-                "sha256": "2ba2e560367fdf473c575f1f727cbafbf7bfd6fd748d42ca663149d2045c6f82",
-                "bytes": 23780,
+                "sha256": "10148516edde447f0c9641fef47ec853c091be1f6a074e61e251ee4682db10ce",
+                "bytes": 24448,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -75961,7 +75929,39 @@
                   113,
                   248
                 ],
-                "pixelSha256": "b8982323e0722aab3dfdb4d673f34221255b14dcb54f60fabfb8df86dec6a7d1"
+                "pixelSha256": "e442af2a3e7c7f06fb153b6bcaa2b776f1b9bc845976542b4c1a7490d02062ca"
+              },
+              "03": {
+                "sha256": "ec15dc6eb7f4da9fca6c1c529e14667c86b67f69effdc6c11af6ca7445ccca32",
+                "bytes": 21962,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  30,
+                  103,
+                  112,
+                  248
+                ],
+                "pixelSha256": "96ea9754c5ac15b063b573fec9d669e2fa9013b10275373a53201936b7822373"
+              },
+              "04": {
+                "sha256": "99c3e249cbe7511e68bace32e2d064101a7311aa080c916b2f69444b09310db9",
+                "bytes": 23343,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  36,
+                  91,
+                  116,
+                  248
+                ],
+                "pixelSha256": "004298c51985c14c52108bc43a963a51fc5b4d365dadd5b8c006354780a2684c"
               }
             },
             "distinctFrames": 4
@@ -76744,9 +76744,9 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_mace": {
-          "sourceSha256": "c80956e935b9045851baa5107a38d536a21e5f195d2850eeaf1709996a44e2fa",
+          "sourceSha256": "41664e069676fdda39bab5e8364723c898fca8205b71b7ea76926cf812b44236",
           "sourceDimensions": [
-            2172,
+            2171,
             724
           ],
           "registeredSourceDimensions": [
@@ -76769,7 +76769,7 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/bardo/m/source/attack_mace-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/bardo/m/source/attack_mace-reference-v2.png",
           "generator": "built-in imagegen",
           "prompt": " Production RPG body sprite strip for Bardo MALE, Tier 2, action attack_mace. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted cream undersleeves with narrow cuffs, palms and gloved fingertips clearly visible; keep shoulders and feather compact inside source margins. Adult charismatic masculine troubadour with warm golden-copper wavy short hair under the compact beret, expressive eyes and confident half-smile, clean-shaven; canonical head proportions. Travelling bard outfit: compact soft PLUM beret with one short IVORY feather tucked close to hair, tailored PETROL-TEAL doublet with PLUM shoulder panels and restrained ROSE-GOLD braid, cream fitted undersleeves, plum waist sash and two short split coat tails, small rose-gold lyre-shaped chest brooch, fine diamond pattern on lower doublet, dark aubergine fitted trousers, neat brown riding boots with rose-gold buckles and dark fingerless gloves. Defining features are plum feather beret, teal/plum doublet and lyre brooch. No instrument, no lute, no bow, no music notes, no long cape or attached weapons. Tier 2 support branch after Arquero, an accomplished travelling performer with tailored brocade rather than ranger leather. Reserve paired sword motifs and longer dance panels for Danzaespadas. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_mace-reference.png",
@@ -76779,7 +76779,47 @@
             "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
             "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "c80956e935b9045851baa5107a38d536a21e5f195d2850eeaf1709996a44e2fa",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                622,
+                21,
+                1014,
+                698
+              ],
+              "scale": 0.23,
+              "origin": [
+                19,
+                92
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/bardo/m/source/attack_mace-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Bardo MALE, Tier 2, action attack_mace. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted cream undersleeves with narrow cuffs, palms and gloved fingertips clearly visible; keep shoulders and feather compact inside source margins. Adult charismatic masculine troubadour with warm golden-copper wavy short hair under the compact beret, expressive eyes and confident half-smile, clean-shaven; canonical head proportions. Travelling bard outfit: compact soft PLUM beret with one short IVORY feather tucked close to hair, tailored PETROL-TEAL doublet with PLUM shoulder panels and restrained ROSE-GOLD braid, cream fitted undersleeves, plum waist sash and two short split coat tails, small rose-gold lyre-shaped chest brooch, fine diamond pattern on lower doublet, dark aubergine fitted trousers, neat brown riding boots with rose-gold buckles and dark fingerless gloves. Defining features are plum feather beret, teal/plum doublet and lyre brooch. No instrument, no lute, no bow, no music notes, no long cape or attached weapons. Tier 2 support branch after Arquero, an accomplished travelling performer with tailored brocade rather than ranger leather. Reserve paired sword motifs and longer dance panels for Danzaespadas. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_mace-reference.png",
+              "canonicalPoseHashes": [
+                "a11705dacb702e8c1c58b57c86f812f23d4bbc28eb6cc76083ca860222f1c5d6",
+                "88cadcb4855373bf03959f73d20befa913d54aed991922498eaa839f5a0437d3",
+                "c67121a7d26d1469961a9547f4a190f56895ba13341b6c8d40dc88fab19d817a",
+                "de0a2895b693e923e086ea7181f1189f953f6194616a5e6cb0b4607679466292"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_book": {
           "sourceSha256": "6258d9db1effeb01ee782842d86305eeed396b7adfa18b275374fce34385d9c3",
