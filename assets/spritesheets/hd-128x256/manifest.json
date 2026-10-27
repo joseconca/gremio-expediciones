@@ -54783,10 +54783,11 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 4,
+        "validFrames": 8,
         "invalidFrames": 0,
         "technicalActions": [
-          "idle"
+          "idle",
+          "walk"
         ],
         "actions": {
           "idle": {
@@ -54860,7 +54861,74 @@
             "distinctFrames": 4
           },
           "walk": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "588bbb68f736dc3704aa2cdb0f11c8f9edca5b2673474038a1fa82da6e851ebe",
+                "bytes": 23947,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  15,
+                  90,
+                  107,
+                  246
+                ],
+                "pixelSha256": "5975c086c31710a96424fe3bb272a0d7b14e495575f70c2f385832f8f221b3f8"
+              },
+              "02": {
+                "sha256": "7c92492b418965618a3f7b336d41edd53154d5e7d4b45000b627f5af1d96fab4",
+                "bytes": 21461,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  30,
+                  89,
+                  96,
+                  248
+                ],
+                "pixelSha256": "f45da2cc22fc3bd50dcfa2a2d1b06a7f06b9515b8979e95a4c61a085c1197c7d"
+              },
+              "03": {
+                "sha256": "c2e952a720fb8253e6c87b440840ec3f40b72902b4b34dbbc46780a6758fd117",
+                "bytes": 23419,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  89,
+                  118,
+                  246
+                ],
+                "pixelSha256": "f79fec82d239102003f17c9132696d6fe450509630991e22bafae1812344bad0"
+              },
+              "04": {
+                "sha256": "eda534117adf623319a6daacaa0a3827d5bbf5ff0f6d6ffbc47996348057245a",
+                "bytes": 20846,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  23,
+                  89,
+                  97,
+                  248
+                ],
+                "pixelSha256": "b38adfef70a04090220086315d5fe0f3336bb4b8b86fa14048c99dfa6d738e76"
+              }
+            },
+            "distinctFrames": 4
           },
           "hurt": {
             "status": "missing"
@@ -54941,6 +55009,44 @@
             "5a77266537152368cdcba5c2740d8dff9c984e368f4882c39551b8b7a5cf21ee"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "walk": {
+          "sourceSha256": "32eea644239c1ad5150945264884d4d638aabc42821cfdd6ebc846930292a083",
+          "sourceDimensions": [
+            2170,
+            725
+          ],
+          "registeredSourceDimensions": [
+            2170,
+            725
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            631,
+            16,
+            1090,
+            702
+          ],
+          "scale": 0.23,
+          "origin": [
+            11,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/superNovato/f/source/walk-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": "Production RPG sprite action walk for Super Novato FEMALE feminine brown high-ponytail. Image 1 is the canonical body geometry for this action and sex. Image 2 defines the Super Novato costume: fitted sleeveless white tunic with cobalt blue shoulder yoke, standing blue collar and vertical blue front panel, small white neck cravat, brown leather belt with small pouches, brass chain at hip, warm brown cropped loose trousers WITHOUT patches, off-white knee wraps, dark brown lace-up boots and fingerless gloves; bare upper arms. NO red scarf, NO crossed chest harness, NO cream jacket, NO blue trousers, NO gold embroidery. Change ONLY costume of image 1. Preserve EXACTLY its four poses, hand coordinates, head size, facial identity, anatomy, foot positions, camera, per-quarter positions and aspect ratio. WARDROBE ONLY. Retain EXACT existing four feminine poses, ALL gloved hand and foot coordinates and female identity from Image1. Do not reinterpret the walking cycle or swap arms. Remove old scarf and chest harness to transparency. Identical sleeveless white/blue costume, brown trousers and boots as Image2 in every figure.. Exactly FOUR separate full bodies in ONE horizontal row, facing RIGHT three-quarter view, real transparent background. Maintain painted anime RPG style, common scale and baseline; retain natural lower height when crouching. Empty hands, no visible weapons, shields, consumables, equipment, magic, shadows, labels or grid. Clothing fully covers torso, narrow silhouette. Do not move or rescale individual figures. Preserve original reference canvas and margins; draw detailed new costume at high resolution.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/walk-reference.png",
+          "canonicalPoseHashes": [
+            "18212ef9a9a0e5aa5b2558a3d69da4c9b9db7e75cd9134df08b1182afaea65eb",
+            "a98c9732fca9abbcfb9dd163cb602752205ea317550786c45c728d175badd472",
+            "dfe67b00dfe6ee626db6f201e6c41f8c67f1f5668933866a8d8ec83749fa1645",
+            "614b3b2560c85afc899db7ae95d848e5ad10d5be28a6ebf9bcc040e7dc7ae4e3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -54958,6 +55064,22 @@
         },
         "idle/04": {
           "source": "sources.idle",
+          "frame": 4
+        },
+        "walk/01": {
+          "source": "sources.walk",
+          "frame": 1
+        },
+        "walk/02": {
+          "source": "sources.walk",
+          "frame": 2
+        },
+        "walk/03": {
+          "source": "sources.walk",
+          "frame": 3
+        },
+        "walk/04": {
+          "source": "sources.walk",
           "frame": 4
         }
       }
