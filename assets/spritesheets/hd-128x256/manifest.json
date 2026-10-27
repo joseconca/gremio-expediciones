@@ -63345,7 +63345,7 @@
       },
       "bodyRegistration": "Novato canonical transforms; equipment rig shared by sex",
       "audit": {
-        "validFrames": 48,
+        "validFrames": 52,
         "invalidFrames": 0,
         "technicalActions": [
           "idle",
@@ -63359,7 +63359,8 @@
           "attack_spear",
           "attack_dagger",
           "attack_bow",
-          "attack_staff"
+          "attack_staff",
+          "attack_mace"
         ],
         "actions": {
           "idle": {
@@ -64203,7 +64204,74 @@
             "distinctFrames": 4
           },
           "attack_mace": {
-            "status": "missing"
+            "status": "technical-passed",
+            "frames": {
+              "01": {
+                "sha256": "90d066bac87924fad20eda0d385abb1e70d3e911d8fb0c18f4b7f832222496b3",
+                "bytes": 22417,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  29,
+                  89,
+                  112,
+                  248
+                ],
+                "pixelSha256": "7719bcd3ec12af49f2af28ebf79beb227d0e3601c48abb3a418894f9b5162ba1"
+              },
+              "02": {
+                "sha256": "08f9dfc200d5c74649d50bba78b546e6ac2d03b35aa0fc1ec103bb5eb83c187d",
+                "bytes": 22568,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  24,
+                  89,
+                  111,
+                  248
+                ],
+                "pixelSha256": "88a563052ed32c87a5b47a28c681789c838475ed603833b7aee60cadce406fa6"
+              },
+              "03": {
+                "sha256": "3dc64115bcf8f763c4b07d50d0e6be35dcf80a8a8391fbde9c8ac79123cdb879",
+                "bytes": 21573,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  95,
+                  108,
+                  248
+                ],
+                "pixelSha256": "122d8440198c4e4565b889f05df21d501a1c3e6e3715ff62fecd81514b2f17d7"
+              },
+              "04": {
+                "sha256": "55a9ba84915e6d7eacf4e778bec1e5efd18760a18307af052e7bc3927f291b4b",
+                "bytes": 22321,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  19,
+                  89,
+                  102,
+                  248
+                ],
+                "pixelSha256": "770f5dc0a411e3bb7f5ad1662fee7fe8fb6eb546698d8e507a6ff216ccb5de7d"
+              }
+            },
+            "distinctFrames": 4
           },
           "attack_book": {
             "status": "missing"
@@ -64709,6 +64777,44 @@
             "1e1e27b1b0227a724187760fdfd2223effcc0eeb31fee66c00024690fe87738f"
           ],
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
+        },
+        "attack_mace": {
+          "sourceSha256": "1289df289d39ba5d4119020082caf5ab1488d99d671590d08dae6393a71a5fa9",
+          "sourceDimensions": [
+            2172,
+            724
+          ],
+          "registeredSourceDimensions": [
+            2172,
+            724
+          ],
+          "sourceCellStep": 543,
+          "commonCrop": [
+            612,
+            14,
+            1034,
+            699
+          ],
+          "scale": 0.23,
+          "origin": [
+            15,
+            90
+          ],
+          "alphaThreshold": 128,
+          "bodyRootCalibration": null,
+          "scalePolicy": "canonical-pose-registration",
+          "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+          "sourcePath": "assets/spritesheets/hd-128x256/luchador/f/source/attack_mace-reference.png",
+          "generator": "built-in imagegen",
+          "prompt": " Production RPG body sprite strip for Luchador FEMALE, Tier 2, action attack_mace. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Bare upper arms in every pose; no novice shirt sleeves or leather gloves. White fighting wraps cover wrists and backs of hands only, fingers and all grip contours stay visible. Adult athletic feminine fighter with jet-black hair in a compact high double-knotted ponytail, determined brows and warm tan skin; retain canonical female head size and face placement. Specialist hand-to-hand combat outfit: fitted sleeveless deep TEAL martial vest with BLACK side panels, small COPPER diagonal clasps and a fully covered torso; broad black sash with copper geometric fist medallion and two short teal tails close to hips; charcoal tapered martial trousers with teal outer seam, off-white linen wraps on wrists and backs of hands leaving fingertips exposed, black wrapped calf guards and soft dark split-toe fighting boots with copper ankle buckles. Compact leather elbow guards, no pauldrons, no metal breastplate, no fur, no prayer beads. Defining identity is teal/black, white hand wraps and copper fist clasp. No weapon or equipment attached, no long cloak. Tier 2 pressure fighter descended from Acolito, separate from the red/white spiritual Monk. Tailored layered training gear and reinforced wraps show specialization. Reserve heavy gladiator plates for Campeon de arena. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/f/source/attack_mace-reference.png",
+          "canonicalPoseHashes": [
+            "04cf87b50672f5f834bbe6287758ddf4f63ae24c37f0eaa528f01a4f5c1941ae",
+            "bea5d88c56e0602be76db93f071cd040cbc22e84b71f9cb6a354b1a0ce8573aa",
+            "0e06a28cd81420c5a07e1623ad5af0fbb805ea034ba6097137733ab72b43f665",
+            "a5ab291437f5700036dba42b83c856e439aee72925249a8506ed04a31c115ad3"
+          ],
+          "visualStatus": "candidate-reviewed-equipment-contact-pending"
         }
       },
       "frameProvenance": {
@@ -64902,6 +65008,22 @@
         },
         "attack_staff/04": {
           "source": "sources.attack_staff",
+          "frame": 4
+        },
+        "attack_mace/01": {
+          "source": "sources.attack_mace",
+          "frame": 1
+        },
+        "attack_mace/02": {
+          "source": "sources.attack_mace",
+          "frame": 2
+        },
+        "attack_mace/03": {
+          "source": "sources.attack_mace",
+          "frame": 3
+        },
+        "attack_mace/04": {
+          "source": "sources.attack_mace",
           "frame": 4
         }
       },
