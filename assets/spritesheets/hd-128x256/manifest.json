@@ -79962,24 +79962,24 @@
             "status": "technical-passed",
             "frames": {
               "01": {
-                "sha256": "59e4fe50f75adfe70c05223c52ccfba3219f55a6b3147688123e814767ae4d7c",
-                "bytes": 23613,
+                "sha256": "fc25f4c6a5096bb3a4fa788d19e94927e552cb46baea16b6878ed164fa29c2c8",
+                "bytes": 24302,
                 "status": "valid",
                 "dimensions": [
                   128,
                   256
                 ],
                 "bbox": [
-                  14,
-                  98,
-                  108,
+                  13,
+                  97,
+                  109,
                   248
                 ],
-                "pixelSha256": "7633b2cc6eb79cc1be1b465f7937251215df8ef990b4be558af836b118056f21"
+                "pixelSha256": "46ac6853fbe9c5d93116571efd0049b568d72b8cb27bece5741e86f734a72b1a"
               },
               "02": {
-                "sha256": "f7bc16ac751cd8684a760435559140c6af744b6b4aad4bcd29c786bcbe4379a0",
-                "bytes": 22178,
+                "sha256": "da1922cfb718852845fcbd2e130306aee9b128f0ccd9d9c72b8bbb772b5ae95a",
+                "bytes": 22627,
                 "status": "valid",
                 "dimensions": [
                   128,
@@ -79987,43 +79987,43 @@
                 ],
                 "bbox": [
                   6,
-                  98,
-                  111,
-                  248
-                ],
-                "pixelSha256": "dfe9fbdc8e4ed99566374645e57929f5594624f8d693cb52c0401b640d81cfba"
-              },
-              "03": {
-                "sha256": "0ce62b27e253bfc74871123803a74d00afd949cb513b1147caab538838a817ff",
-                "bytes": 23044,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  12,
-                  101,
-                  126,
-                  249
-                ],
-                "pixelSha256": "9ea88c6dc39f83b1476795193b9b154d77026b09e1026d9a2c40bedbd8c40c84"
-              },
-              "04": {
-                "sha256": "77b29aa2a2e380ea88b1902cc3dedb356a9846965d956777757ff40799d8cf17",
-                "bytes": 23027,
-                "status": "valid",
-                "dimensions": [
-                  128,
-                  256
-                ],
-                "bbox": [
-                  20,
-                  98,
+                  97,
                   112,
                   248
                 ],
-                "pixelSha256": "127ec392bee2dc4eb21fe8b75bba9fc9bc3caa08492b01594589909132d4d922"
+                "pixelSha256": "cdba742bbbc38e26e43f3d9e7a477d0e72301eecb9365b744fd022053a848854"
+              },
+              "03": {
+                "sha256": "60d25d382c0dfaf5e94d8459f99a4fe35bd779caa9bce9562e850ac052acc913",
+                "bytes": 23518,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  11,
+                  100,
+                  126,
+                  250
+                ],
+                "pixelSha256": "929b7acb712655294e7a0353d59b14b4e650b670cdaa2295bc6ef0cf34f7a6c6"
+              },
+              "04": {
+                "sha256": "938622a8c011837ba67a633e236b1fb0f2aed077306da62be44493fdfb0d3e13",
+                "bytes": 23627,
+                "status": "valid",
+                "dimensions": [
+                  128,
+                  256
+                ],
+                "bbox": [
+                  17,
+                  97,
+                  111,
+                  248
+                ],
+                "pixelSha256": "e3dc5fb687e32adc049e7938b511eefbad1580caf9b1e616c8ad27218fd95137"
               }
             },
             "distinctFrames": 4
@@ -80872,9 +80872,9 @@
           "visualStatus": "candidate-reviewed-equipment-contact-pending"
         },
         "attack_sword": {
-          "sourceSha256": "86d48067fc3b58fd60366c7b869dd22fa60465b0f986cf6894d99ef39cf8a562",
+          "sourceSha256": "004386fd8f560b80a7db0079bd17255399b562554043ad6a098284655ff97d2e",
           "sourceDimensions": [
-            2172,
+            2171,
             724
           ],
           "registeredSourceDimensions": [
@@ -80897,9 +80897,9 @@
           "bodyRootCalibration": null,
           "scalePolicy": "canonical-pose-registration",
           "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
-          "sourcePath": "assets/spritesheets/hd-128x256/comerciante/m/source/attack_sword-reference.png",
+          "sourcePath": "assets/spritesheets/hd-128x256/comerciante/m/source/attack_sword-reference-v2.png",
           "generator": "built-in imagegen",
-          "prompt": " Production RPG body sprite strip for Comerciante MALE, Tier 2, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted ochre sleeves and ivory narrow cuffs end above fingerless gloves; no large cuffs covering grip points. ALL FOUR figures wear visible BRASS OVAL GLASSES, even blinking and closed-eye poses; keep golden oval rims visible at all times. No scarf, cape, mantle or floating shoulder cloth; only a small tucked-in dark green cravat. Adult clever masculine guild merchant with neatly combed dark chestnut pompadour and a short tidy moustache, warm expression, brass oval spectacles; canonical head size. Prosperous travelling merchant guild outfit: fitted OCHRE short tailcoat with rich BOTTLE-GREEN waistcoat, ivory high-collar shirt and small dark green cravat, dark brown belt with a neat brass ledger-shaped buckle, two compact square leather utility pouches, brass pocket-watch chain and coin-shaped lapel pin, fine brass oval spectacles, warm charcoal fitted trousers, polished brown ankle boots and fitted dark fingerless gloves. Coat tails short and close to hips, no flowing cape. Defining features are ochre/green tailoring, oval spectacles, square pouches and pocket-watch chain. No held money, weapons, bottle, open ledger or props. Secret Tier 2 commercial profession, skilled and well supplied without royal finery or heavy armor. Reserve glass/plague-green alchemy elements for Alquimista and apron/soot/iron details for Herrero. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+          "prompt": "Precise tiny LOCAL facial consistency correction in Image1 only. Every male merchant here MUST HAVE the SAME small tidy dark-chestnut moustache seen in Image2 idle identity. Restore the missing moustache immediately below nose and ABOVE the upper lip on the open-mouth/pain/exertion figures. Keep existing open mouth/teeth and facial expression, brass oval glasses, eyes and head position unchanged. Do NOT turn the mouth into a moustache: draw neat facial hair between nose and upper lip while retaining mouth beneath it. Leave all existing correct moustaches alone. Preserve all four complete figures, exact poses, hand/finger/grip locations, hair, costume, watch chain, pouches and boots,2172x724canvas and true transparent background. Nothing else changes; no props, equipment, scarf or cape.\n",
           "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_sword-reference.png",
           "canonicalPoseHashes": [
             "94a4871c11e468f126047a7a472588393f74f1d9030e300baa1a8d02eb68d602",
@@ -80907,7 +80907,47 @@
             "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
             "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
           ],
-          "visualStatus": "candidate-reviewed-equipment-contact-pending"
+          "visualStatus": "candidate-reviewed-equipment-contact-pending",
+          "previousRevisions": [
+            {
+              "sourceSha256": "86d48067fc3b58fd60366c7b869dd22fa60465b0f986cf6894d99ef39cf8a562",
+              "sourceDimensions": [
+                2172,
+                724
+              ],
+              "registeredSourceDimensions": [
+                2172,
+                724
+              ],
+              "sourceCellStep": 543,
+              "commonCrop": [
+                592,
+                31,
+                1088,
+                680
+              ],
+              "scale": 0.23,
+              "origin": [
+                7,
+                99
+              ],
+              "alphaThreshold": 128,
+              "bodyRootCalibration": null,
+              "scalePolicy": "canonical-pose-registration",
+              "method": "fixed canonical transform; no class-dependent crop, centering or equipment offset",
+              "sourcePath": "assets/spritesheets/hd-128x256/comerciante/m/source/attack_sword-reference.png",
+              "generator": "built-in imagegen",
+              "prompt": " Production RPG body sprite strip for Comerciante MALE, Tier 2, action attack_sword. Image1 is ONLY canonical BODY GEOMETRY: preserve EXACTLY its four poses, all hand/finger, arm/elbow, foot coordinates, head size and placement, camera, per-quarter centers, canvas size and proportions. Do not reinterpret the movement or change any grip. Image2 defines NEW CLASS IDENTITY and COSTUME: use its face, hair color and silhouette, exact clothing palette and finish. Fitted ochre sleeves and ivory narrow cuffs end above fingerless gloves; no large cuffs covering grip points. ALL FOUR figures wear visible BRASS OVAL GLASSES, even blinking and closed-eye poses; keep golden oval rims visible at all times. No scarf, cape, mantle or floating shoulder cloth; only a small tucked-in dark green cravat. Adult clever masculine guild merchant with neatly combed dark chestnut pompadour and a short tidy moustache, warm expression, brass oval spectacles; canonical head size. Prosperous travelling merchant guild outfit: fitted OCHRE short tailcoat with rich BOTTLE-GREEN waistcoat, ivory high-collar shirt and small dark green cravat, dark brown belt with a neat brass ledger-shaped buckle, two compact square leather utility pouches, brass pocket-watch chain and coin-shaped lapel pin, fine brass oval spectacles, warm charcoal fitted trousers, polished brown ankle boots and fitted dark fingerless gloves. Coat tails short and close to hips, no flowing cape. Defining features are ochre/green tailoring, oval spectacles, square pouches and pocket-watch chain. No held money, weapons, bottle, open ledger or props. Secret Tier 2 commercial profession, skilled and well supplied without royal finery or heavy armor. Reserve glass/plague-green alchemy elements for Alquimista and apron/soot/iron details for Herrero. Clean transparent outer contours, no stray red/yellow fringe pixels from the reference. Replace every old novice garment and old hairstyle of Image1 completely. Keep compact silhouette and canonical overall body scale, do not enlarge crouched poses or move the equipment grips. Exactly FOUR distinct complete full bodies in ONE horizontal row, facing RIGHT three-quarter view, true transparent alpha background. Same crisp painted anime pixel-inspired RPG game rendering and lighting. All four costumes must be identical, including shoulder side, collar, belt symbol, bracers, knee guards and boots; naturally show their reverse when body turns. Full hair, fingers, boots with clear margins in each quarter. No held or sheathed weapon, shield, bow, book, potion, equipment, attack trail, magic, shadow, grid, text or logos. Empty hands with exact Image1 gestures. Preserve canvas dimensions and positions; do not center or scale individual figures.\n",
+              "canonicalPoseSource": "assets/spritesheets/hd-128x256/novato/m/source/attack_sword-reference.png",
+              "canonicalPoseHashes": [
+                "94a4871c11e468f126047a7a472588393f74f1d9030e300baa1a8d02eb68d602",
+                "d1b8dd9b5ff7a4aa6b896810a5ccbf6ac50fc6fb36e029b6e0d55031f1d814a4",
+                "17c9d2c0ca4ab5bc3393c72e77c3e57697b0ecd2eee50c64d204faf23b8f6f2f",
+                "06ea4dc943720f4e46faec08b9bdf5a67f31d77cdf6acc932fab130ab15f9991"
+              ],
+              "visualStatus": "candidate-reviewed-equipment-contact-pending"
+            }
+          ]
         },
         "attack_axe": {
           "sourceSha256": "1e627423c65ed6f0f8874efd5c1e3b3bcd2f6a445ebcf45fcd8e7ccac228f58b",
@@ -81468,16 +81508,16 @@
           "frameIndex": "shared-body-and-equipment",
           "frames": [
             {
-              "bodySha256": "59e4fe50f75adfe70c05223c52ccfba3219f55a6b3147688123e814767ae4d7c"
+              "bodySha256": "fc25f4c6a5096bb3a4fa788d19e94927e552cb46baea16b6878ed164fa29c2c8"
             },
             {
-              "bodySha256": "f7bc16ac751cd8684a760435559140c6af744b6b4aad4bcd29c786bcbe4379a0"
+              "bodySha256": "da1922cfb718852845fcbd2e130306aee9b128f0ccd9d9c72b8bbb772b5ae95a"
             },
             {
-              "bodySha256": "0ce62b27e253bfc74871123803a74d00afd949cb513b1147caab538838a817ff"
+              "bodySha256": "60d25d382c0dfaf5e94d8459f99a4fe35bd779caa9bce9562e850ac052acc913"
             },
             {
-              "bodySha256": "77b29aa2a2e380ea88b1902cc3dedb356a9846965d956777757ff40799d8cf17"
+              "bodySha256": "938622a8c011837ba67a633e236b1fb0f2aed077306da62be44493fdfb0d3e13"
             }
           ],
           "limitations": [
