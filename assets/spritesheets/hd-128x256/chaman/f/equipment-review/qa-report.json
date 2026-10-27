@@ -14,7 +14,8 @@
     "attack_spear",
     "attack_dagger",
     "attack_bow",
-    "attack_staff"
+    "attack_staff",
+    "attack_mace"
   ],
   "bodyHashes": {
     "idle": [
@@ -88,9 +89,15 @@
       "eebc0e097f7a325a3dc51f1b8c65f65a62709c96e4a2ff39de7970e94aab2434",
       "1bf8ab5b0b1cd3e563f6e054636639f547ca796f4daa12ab8e0589b243cb53b1",
       "a057aebecc0f09d0cf44267a678a2581328b4da56f3f6bb7fe6abc68ccfce61d"
+    ],
+    "attack_mace": [
+      "8f8ed2f21b70363b49775a91abcf908ff95c79188c37db72d0f5029e119dcf17",
+      "533cf283ff8101681bdb3ccce7c3f1a6edfef899c35e5aba4353cd7d6d0c3069",
+      "e9ad795030cd31644159489b1b5a7d7018642aeead217a1573d041bbd0ac0c20",
+      "c7e32223343bd47b51762268f06de680a1d5aaff0d2d4e81a1ca432f0184b08e"
     ]
   },
-  "contactChecks": 636,
+  "contactChecks": 652,
   "warnings": [],
   "equipmentTransforms": "exact shared equipment layers per sex; no class offsets",
   "equipmentRigRevision": 3,
